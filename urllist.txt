@@ -1,0 +1,4 @@
+http://mindmaps.io
+http://mindmaps.io#section-about
+http://mindmaps.io#section-team
+http://mindmaps.io#section-contact

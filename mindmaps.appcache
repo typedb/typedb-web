@@ -1,0 +1,16 @@
+CACHE MANIFEST
+#1
+
+CACHE:
+
+/css/style.css
+/css/bg_black.svg
+/css/bg_tiled.svg
+/css/bg_white.svg
+/css/logo_splash.svg
+/css/sprite.svg
+
+/js/mndmps.min.js
+
+NETWORK:
+*
