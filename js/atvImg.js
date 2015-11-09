@@ -95,7 +95,7 @@ function atvImg(){
                 });
                 
                 thisImg.addEventListener('touchstart', function(e) {
-                    win.preventScroll = true;
+                    win.preventScroll = false;
                     processEnter(e, _thisImg);
                 });
                 

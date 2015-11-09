@@ -811,6 +811,24 @@ window.MNDMPS = {
         } else {
             this.appendSVGSplash();
         }
+
+        if ('ontouchstart' in window || navigator.msMaxTouchPoints) {
+            vanillaSmoothScroller.bind({
+                event: 'touchstart',
+                selector: '.scrollTrigger',
+                offset: function () {
+                    return window.MNDMPS.data.barHeight;
+                }
+            });
+        } else {
+            vanillaSmoothScroller.bind({
+                event: 'click',
+                selector: '.scrollTrigger',
+                offset: function () {
+                    return window.MNDMPS.data.barHeight;
+                }
+            });
+        }
         
         this.watchScroll();
 
@@ -819,14 +837,6 @@ window.MNDMPS = {
         }
 
         atvImg();
-
-        vanillaSmoothScroller.bind({
-            event: 'click',
-            selector: '.scrollTrigger',
-            offset: function () {
-                return window.MNDMPS.data.barHeight;
-            }
-        });
     }
 };
 
