@@ -819,6 +819,14 @@ window.MNDMPS = {
         }
 
         atvImg();
+
+        vanillaSmoothScroller.bind({
+            event: 'click',
+            selector: '.scrollTrigger',
+            offset: function () {
+                return window.MNDMPS.data.barHeight;
+            }
+        });
     }
 };
 

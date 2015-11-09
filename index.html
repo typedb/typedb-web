@@ -252,9 +252,9 @@
                     <span>Mindmaps Research Ltd. <span>the architecture of insight</span></span>
                 </a>
                 <nav>
-                    <a href="#">Work</a>
-                    <a href="#">Team</a>
-                    <a href="#">Contact</a>
+                    <a class="scrollTrigger" data-to="[name='about']" href="/">Work</a>
+                    <a class="scrollTrigger" data-to="[name='team']" href="/">Team</a>
+                    <a class="scrollTrigger" data-to="[name='contact']" href="/">Contact</a>
                     <span class="divider"></span>
                     <a class="button-crystall small" href="#" title="LinkedIn">
                         <svg class="underlay"><use xlink:href="#icon-underlay" /></svg>
@@ -270,7 +270,7 @@
         <div class="block splash">
             <h1>Mindmaps Research Ltd. <span>the architecture of insight</span></h1>
         </div>
-        <div class="block content">
+        <div class="block content" name="about">
             <div class="wrapper">
                 <h2>A little bit about what we do</h2>
                 <div class="icon-block align-left">
@@ -334,7 +334,7 @@
                 </ul>
             </div>
         </div>
-        <div class="block content">
+        <div class="block content" name="team">
             <div class="wrapper team">
                 <h2>Meet our team</h2>
                 <div class="icon-block align-left">
@@ -965,7 +965,7 @@
                 </ul>
             </div>
         </div>
-        <div class="block map">
+        <div class="block map" name="contact">
             <div class="google-map"></div>
             <div class="wrapper">
                 <div class="info">
@@ -992,6 +992,7 @@
         <script src="https://maps.googleapis.com/maps/api/js"></script>
         <script src="three.min.js"></script>
         <script src="atvImg.js"></script>
+        <script src="vanillaSmoothScroller.js"></script>
         <script src="main.js"></script>
     </body>
 </html>
