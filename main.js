@@ -127,7 +127,7 @@ window.MNDMPS = {
             smallNodeMaterial = new THREE.MeshBasicMaterial({color: 0xffffff, transparent: true, opacity: 0.4}),
             bigNodeMaterial = new THREE.MeshBasicMaterial({color: 0xffffff, transparent: true, opacity: 0.8});
 
-            window.MNDMPS.data.threeDRunning = true;
+        window.MNDMPS.data.threeDRunning = false;
 
         function generateNodes() {
             var nodeLinesGeometry = new THREE.BufferGeometry();
