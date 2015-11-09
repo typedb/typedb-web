@@ -246,21 +246,21 @@
         
         <div class="block nav">
             <div class="wrapper">
-                <a class="logo" href="">
+                <a class="scrollTrigger logo" data-to="top" href="/">
                     <svg class="svg-logo-white"><use xlink:href="#svg-logo-white" /></svg>
                     <svg class="svg-logo-black"><use xlink:href="#svg-logo-black" /></svg>
                     <span>Mindmaps Research Ltd. <span>the architecture of insight</span></span>
                 </a>
                 <nav>
-                    <a class="scrollTrigger" data-to="[name='about']" href="/">Work</a>
-                    <a class="scrollTrigger" data-to="[name='team']" href="/">Team</a>
-                    <a class="scrollTrigger" data-to="[name='contact']" href="/">Contact</a>
+                    <a class="scrollTrigger" data-to="#section-about" href="#section-about">Work</a>
+                    <a class="scrollTrigger" data-to="#section-team" href="#section-team">Team</a>
+                    <a class="scrollTrigger" data-to="#section-contact" href="#section-contact">Contact</a>
                     <span class="divider"></span>
-                    <a class="button-crystall small" href="#" title="LinkedIn">
+                    <a target="_blank" class="button-crystall small" href="#" title="LinkedIn">
                         <svg class="underlay"><use xlink:href="#icon-underlay" /></svg>
                         <svg><use xlink:href="#icon-linkedIn" /></svg>
                     </a>
-                    <a class="button-crystall small" href="#" title="Facebook">
+                    <a target="_blank" class="button-crystall small" href="#" title="Facebook">
                         <svg class="underlay"><use xlink:href="#icon-underlay" /></svg>
                         <svg><use xlink:href="#icon-facebook" /></svg>
                     </a>
@@ -270,7 +270,7 @@
         <div class="block splash">
             <h1>Mindmaps Research Ltd. <span>the architecture of insight</span></h1>
         </div>
-        <div class="block content" name="about">
+        <div class="block content" id="section-about">
             <div class="wrapper">
                 <h2>A little bit about what we do</h2>
                 <div class="icon-block align-left">
@@ -300,41 +300,41 @@
                 </div>
                 <ul class="technology-grid">
                     <li>
-                        <a class="title" href="#">Java</a>
+                        <a target="_blank" class="title" href="http://java.com">Java</a>
                         <p>All of our backend systems are developed in one language</p>
                     </li>
                     <li>
-                        <a class="title" href="#">Spring</a>
+                        <a target="_blank" class="title" href="http://spring.io">Spring</a>
                         <p>Spring framework forms the backbone of our web services</p>
                     </li>
                     <li>
-                        <a class="title" href="#">CoreNLP</a>
+                        <a target="_blank" class="title" href="http://nlp.stanford.edu/software/corenlp.shtml">CoreNLP</a>
                         <p>Natural sentence queries are parsed through an engine built using CoreNLP</p>
                     </li>
                     <li>
-                        <a class="title" href="#">Apache Storm</a>
+                        <a target="_blank" class="title" href="http://storm.apache.org">Apache Storm</a>
                         <p>Computations are distributed to a cluster developed using Storm</p>
                     </li>
                     <li>
-                        <a class="title" href="#">Apache Spark</a>
+                        <a target="_blank" class="title" href="http://spark.apache.org">Apache Spark</a>
                         <p>Data crunches for Machine Learning models are parallelised using Spark</p>
                     </li>
                     <li>
-                        <a class="title" href="#">Apache Cassandra</a>
+                        <a target="_blank" class="title" href="http://cassandra.apache.org">Apache Cassandra</a>
                         <p>We store our data in scalable, NoSQL Cassandra</p>
                     </li>
                     <li>
-                        <a class="title" href="#">TitanDB</a>
+                        <a target="_blank" class="title" href="http://thinkaurelius.github.io/titan/">TitanDB</a>
                         <p>Needs some description</p>
                     </li>
                     <li>
-                        <a class="title" href="#">Gremlin / TinkerPop3</a>
+                        <a target="_blank" class="title" href="http://tinkerpop.incubator.apache.org">Gremlin / TinkerPop3</a>
                         <p>Needs some description</p>
                     </li>
                 </ul>
             </div>
         </div>
-        <div class="block content" name="team">
+        <div class="block content" id="section-team">
             <div class="wrapper team">
                 <h2>Meet our team</h2>
                 <div class="icon-block align-left">
@@ -965,7 +965,7 @@
                 </ul>
             </div>
         </div>
-        <div class="block map" name="contact">
+        <div class="block map" id="section-contact">
             <div class="google-map"></div>
             <div class="wrapper">
                 <div class="info">
@@ -986,7 +986,7 @@
                 <div class="logo float-left">
                     <svg class="svg-logo-black"><use xlink:href="#svg-logo-black" /></svg>
                 </div>
-                <p class="float-right">© 2015 <a href="#">Mindmaps Research Ltd.</a></p>
+                <p class="float-right">© 2015 <a class="scrollTrigger" data-to="top" href="/">Mindmaps Research Ltd.</a></p>
             </div>
         </div>
         <script src="https://maps.googleapis.com/maps/api/js"></script>
