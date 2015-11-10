@@ -200,10 +200,8 @@ function atvImg(){
         el.classList.remove('fly');
         el.classList.remove('fade');
 
-        if ((type > 0 && type < 0.33) || type === 0) {
+        if ((type > 0 && type < 0.5) || type === 0) {
             el.classList.add('fly');
-        } else if ((type > 0.33 && type < 0.66) || type === 0.33) {
-            el.classList.add('shuffle');
         } else {
             el.classList.add('fade');
         }

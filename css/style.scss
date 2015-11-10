@@ -109,57 +109,6 @@ a{
     }
 }
 
-@keyframes shufflePolygons{
-    0% {
-        fill: $transparent;
-        transform: translateX(0px);
-    }
-    25%{
-        fill: $brandBlue;
-        transform: translateX(1000px);
-    }
-    25.05%{
-        fill: $transparent;
-        transform: translateX(1000px);
-    }
-    25.1%{
-        fill: $transparent;
-        transform: translateX(0px);
-    }
-    50%{
-        fill: $brandGreen;
-        transform: translateX(1000px);
-    }
-    50.05%{
-        fill: $transparent;
-        transform: translateX(1000px);
-    }
-    50.1%{
-        fill: $transparent;
-        transform: translateX(0px);
-    }
-    75%{
-        fill: $yellow;
-        transform: translateX(1000px);
-    }
-    75.05% {
-        fill: $transparent;
-        transform: translateX(1000px);
-    }
-    75.1% {
-        fill: $transparent;
-        transform: translateX(0px);
-    }
-    99.95%{
-        fill: $pastelRed;
-        transform: translateX(1000px);
-    }
-    99.99%{
-        fill: $transparent;
-        transform: translateX(1000px);
-    }
-}
-
 @keyframes fadePolygons{
     0%, 100% {
         fill: $transparent;
@@ -630,6 +579,13 @@ body{
                     >li{
                         position: relative;
 
+                        .atvImg-layers{
+                            filter: grayscale(1);
+                            transition: filter 400ms linear;
+                            -webkit-filter: grayscale(1);
+                            -webkit-transition: -webkit-filter 400ms linear;
+                        }
+
                         .bg{
                             background: $white url(bg_tiled.svg) no-repeat center center;
                             background-size: cover;
@@ -673,14 +629,6 @@ body{
                                 .svg-bg-tiles{
                                     polygon{
                                         animation-name: flyPolygons;
-                                    }
-                                }
-                            }
-
-                            &.shuffle{
-                                .svg-bg-tiles{
-                                    polygon{
-                                        animation-name: shufflePolygons;
                                     }
                                 }
                             }
@@ -732,6 +680,11 @@ body{
 
                         .over{
                             z-index: 1;
+
+                            .atvImg-layers{
+                                -webkit-filter: grayscale(0);
+                                filter: grayscale(0);
+                            }
                             
                             .description{
                                 //transform: translate(0, 0);
