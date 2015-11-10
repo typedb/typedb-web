@@ -661,19 +661,20 @@ body{
                             transition: background-color 200ms ease-in-out, transform 200ms ease-in-out;
 
                             p{
-                                font-size: 0.9rem;
+                                font-size: 1rem;
                                 line-height: 10px;
                                 margin-bottom: 15px;
                             }
                             
                             span{
                                 display: block;
-                                font-size: 0.6rem;
+                                font-size: 0.8rem;
+                                line-height: 1rem;
                                 margin-bottom: 5px;
 
                                 &.x-small{
-                                    font-size: 0.5rem;
-                                    line-height: 0.6rem;
+                                    font-size: 0.6rem;
+                                    line-height: 0.7rem;
                                 }
                             }
                         }
@@ -1489,6 +1490,12 @@ body{
                                 &:nth-child(3n) {
                                     margin-right: 0;
                                 }
+
+                                .description{
+                                    p{
+                                        font-size: 0.9rem;
+                                    }
+                                }
                             }
                         }
                     }
@@ -1747,6 +1754,13 @@ body{
                         line-height: 50px;
                     }
                 }
+
+                .text-block{
+                    p{
+                        font-size: 0.9rem;
+                        line-height: 1.5rem;
+                    }
+                }
             }
 
             &.footer{
@@ -1793,12 +1807,20 @@ body{
 
                                 .description{
                                     padding: 20px 20px 30px 20px;
+                                    transform: translate(0, calc(100% - 55px));
 
                                     p{
-                                        margin-bottom: 20px;
+                                        margin-bottom: 25px;
                                     }
                                 }
                             }
+                        }
+                    }
+                    
+                    .text-block{
+                        p{
+                            font-size: 0.9rem;
+                            line-height: 1.5rem;
                         }
                     }
                 }
