@@ -565,6 +565,7 @@ body{
                 
                 .team-grid{
                     margin-bottom: 30px;
+                    @include disableSelection();
 
                     &:after{
                         content: '';

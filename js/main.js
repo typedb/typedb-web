@@ -631,7 +631,7 @@ window.MNDMPS = {
             _this.data.mouseX = coordinates.x;
             _this.data.mouseY = coordinates.y;
 
-            _this.data.mouseX = _this.data.mouseX > window.MNDMPS.data.windowWidth ? window.MNDMPS.data.windowWidth : _this.data.mouseX;
+            _this.data.mouseX = _this.data.mouseX > _this.data.windowWidth ? _this.data.windowWidth : _this.data.mouseX;
             _this.data.mouseY = _this.data.mouseY > _this.data.windowHeight ? _this.data.windowHeight : _this.data.mouseY;
         }
 
