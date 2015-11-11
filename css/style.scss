@@ -761,6 +761,7 @@ body{
         top: 0;
         left: 0;
         transition: background-color 100ms ease-in-out;
+        transform: translate3d(0, 0, 40px);
 
         .wrapper{
             
