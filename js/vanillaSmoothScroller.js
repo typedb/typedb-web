@@ -145,6 +145,12 @@ window.vanillaSmoothScroller = {
         
         for (var i = vanillaSmoothScrollerButtons.length - 1; i >= 0; i--) {
             vanillaSmoothScrollerButtons[i].addEventListener(obj.event || 'click', window.vanillaSmoothScroller.scroll, false);
+            
+            if (obj.event === 'touchstart') {
+                vanillaSmoothScrollerButtons[i].addEventListener('click', function(event) {
+                    event.preventDefault();
+                }, false);
+            }
         }
     }
 }
