@@ -49,12 +49,13 @@ window.vanillaSmoothScroller = {
         }
     },
 
-    scroll: function(obj) {
+    scroll: function(event) {
 
-        obj.preventDefault();
+        event.preventDefault();
 
         var _this = window.vanillaSmoothScroller,
-            data = _this._data;
+            data = _this._data,
+            obj;
 
         data.defaults = {
             destination: 0,
@@ -62,18 +63,18 @@ window.vanillaSmoothScroller = {
             scrollUp:    true
         };
         
-        if (!obj) {
-            obj = {};
+        if (!event) {
+            event = {};
         }
 
-        if (obj.target) {
+        if (event.target) {
             obj = _this.getTargetNode({
-                sourceEl: obj.currentTarget,
-                el: obj.target
+                sourceEl: event.currentTarget,
+                el: event.target
             });
-        } else if (!obj.nodeType) {
+        } else if (!event.nodeType) {
             obj = {
-                dataset: obj
+                dataset: event
             };
         }
 

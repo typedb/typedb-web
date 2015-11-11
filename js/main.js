@@ -779,7 +779,7 @@ window.MNDMPS = {
                 _this.centerGoogleMap(
                     map,
                     myLatlng,
-                    (windowWidth - map.getDiv().parentNode.getElementsByClassName('info')[0].offsetWidth)/2 - (windowWidth/2 - map.getDiv().parentNode.getElementsByClassName('info')[0].offsetWidth),
+                    (_this.data.windowWidth - map.getDiv().parentNode.getElementsByClassName('info')[0].offsetWidth)/2 - (_this.data.windowWidth/2 - map.getDiv().parentNode.getElementsByClassName('info')[0].offsetWidth),
                     0);
             }
         });
