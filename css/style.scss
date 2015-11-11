@@ -957,7 +957,7 @@ body{
 
         canvas{
             display: block;
-            height: 100vh;
+            max-height: 100vh;
         }
 
         h1{
