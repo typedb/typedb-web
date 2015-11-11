@@ -1,4 +1,5 @@
 @import 'reset';
+@import 'mixins';
 @import 'atv';
 @import 'vars';
 
@@ -43,7 +44,7 @@ a{
     text-decoration: none;
     color: $gray425C;
     border-bottom: 1px dotted currentColor;
-    transition: border-color 100ms ease-in-out;
+    @include transition(border-color 100ms ease-in-out);
 
     &.alt{
         color: $lightGray;
@@ -54,112 +55,108 @@ a{
     }
 }
 
-/* svg path{
-    fill: inherit;
-} */
-
-@keyframes flyPolygons{
+@include keyframes(flyPolygons){
     0% {
         fill: $transparent;
-        transform: translateY(0px);
+        @include transform(translateY(0px));
     }
     25%{
         fill: $brandBlue;
-        transform: translateY(-1000px);
+        @include transform(translateY(-1000px));
     }
     25.05%{
         fill: $transparent;
-        transform: translateY(-1000px);
+        @include transform(translateY(-1000px));
     }
     25.1%{
         fill: $transparent;
-        transform: translateY(0px);
+        @include transform(translateY(0px));
     }
     50%{
         fill: $brandGreen;
-        transform: translateY(-1000px);
+        @include transform(translateY(-1000px));
     }
     50.05%{
         fill: $transparent;
-        transform: translateY(-1000px);
+        @include transform(translateY(-1000px));
     }
     50.1%{
         fill: $transparent;
-        transform: translateY(0px);
+        @include transform(translateY(0px));
     }
     75%{
         fill: $yellow;
-        transform: translateY(-1000px);
+        @include transform(translateY(-1000px));
     }
     75.05% {
         fill: $transparent;
-        transform: translateY(-1000px);
+        @include transform(translateY(-1000px));
     }
     75.1% {
         fill: $transparent;
-        transform: translateY(0px);
+        @include transform(translateY(0px));
     }
     99.95%{
         fill: $pastelRed;
-        transform: translateY(-1000px);
+        @include transform(translateY(-1000px));
     }
     99.99%{
         fill: $transparent;
-        transform: translateY(-1000px);
+        @include transform(translateY(-1000px));
     }
 }
 
-@keyframes fadePolygons{
+@include keyframes(fadePolygons){
     0%, 100% {
         fill: $transparent;
-        transform: translateY(0px);
+        @include transform(translateY(0px));
     }
     16%{
         fill: rgba($brandBlue, 0.4);
-        transform: translateY(0px);
+        @include transform(translateY(0px));
     }
     33%{
         fill: $transparent;
-        transform: translateY(0px);
+        @include transform(translateY(0px));
     }
     49%{
         fill: rgba($brandGreen, 0.4);
-        transform: translateY(0px);
+        @include transform(translateY(0px));
     }
     66%{
         fill: $transparent;
-        transform: translateY(0px);
+        @include transform(translateY(0px));
     }
     83%{
         fill: rgba($yellow, 0.4);
-        transform: translateY(0px);
+        @include transform(translateY(0px));
     }
 }
 
-@keyframes splashPolygons{
+@include keyframes(splashPolygons){
     0%, 100% {
         fill: $transparent;
-        transform: translateY(0px);
+        @include transform(translateY(0px));
     }
     16%{
         fill: rgba($white, 0.2);
-        transform: translateY(0px);
+        @include transform(translateY(0px));
     }
     33%{
         fill: $transparent;
-        transform: translateY(0px);
+        @include transform(translateY(0px));
     }
     49%{
         fill: rgba($pastelBlue, 0.2);
-        transform: translateY(0px);
+        @include transform(translateY(0px));
     }
     66%{
         fill: $transparent;
-        transform: translateY(0px);
+        @include transform(translateY(0px));
     }
     83%{
         fill: rgba($pastelYellow, 0.2);
-        transform: translateY(0px);
+        @include transform(translateY(0px));
     }
 }
 
@@ -207,13 +204,13 @@ body{
         width: 50%;
         height: 50%;
         margin: -25% 0 0 -25%;
-        transform: translate(7%, -5%) rotateZ(45deg);
-        transition: transform 100ms ease-in-out;
+        @include transform(translate(7%, -5%) rotateZ(45deg));
+        @include transition(transform 100ms ease-in-out);
         
         use{
             stroke: $blackc;
             fill: $transparent;
-            transition: stroke-width 100ms ease-in-out, stroke 100ms ease-in-out, fill 100ms ease-in-out;
+            @include transition(stroke-width 100ms ease-in-out, stroke 100ms ease-in-out, fill 100ms ease-in-out);
         }
     }
 
@@ -240,13 +237,13 @@ body{
         top: 0;
         left: 0;
         z-index: 1;
-        transform: translate(-7%, 5%) rotateZ(-45deg);
-        transition: transform 100ms ease-in-out;
+        @include transform(translate(-7%, 5%) rotateZ(-45deg));
+        @include transition(transform 100ms ease-in-out);
 
         use{
             stroke: $blackc;
             fill: $transparent;
-            transition: fill 100ms ease-in-out;
+            @include transition(fill 100ms ease-in-out);
         }
     }
 
@@ -366,14 +363,14 @@ body{
 
         &.rhomb{
             &:after{ 
-                transform: rotateZ(45deg) scale(0.9);
+                @include transform(rotateZ(45deg) scale(0.9));
             }
         }
     }
 
     &:hover{
         .underlay{
-            transform: translate(-7%, 5%) rotateZ(0deg);
+            @include transform(translate(-7%, 5%) rotateZ(0deg));
 
             use{
                 fill: $blackc;
@@ -381,7 +378,7 @@ body{
         }
         
         .item{
-            transform: translate(7%, -5%) rotateZ(0deg) scale(1.8);
+            @include transform(translate(7%, -5%) rotateZ(0deg) scale(1.8));
             
             use{
                 stroke: $white;
@@ -433,7 +430,7 @@ body{
                 fill: $white;
             }
             .underlay{
-                //transform: rotateZ(0deg);
+                //@include transform(rotateZ(0deg));
 
                 use{
                     fill: $blackc;
@@ -443,7 +440,7 @@ body{
 
         use{
             fill: $blackc;
-            transition: fill 100ms ease-in-out;
+            @include transition(fill 100ms ease-in-out);
         }
 
         svg{
@@ -460,8 +457,8 @@ body{
                 height: 220%;
                 margin: -110% 0 0 -110%;
                 z-index: 0;
-                //transform: rotateZ(-45deg);
-                //transition: transform 100ms ease-in-out;
+                //@include transform(rotateZ(-45deg));
+                //@include transition(transform 100ms ease-in-out);
                 
                 use{
                     stroke-width: 0.5;
@@ -485,13 +482,8 @@ body{
 
     .text-block{
         &.columns{
-            -moz-columns: auto 2;
-            -webkit-columns: auto 2;
-            columns: auto 2;
-            
-            -moz-column-gap: 60px;
-            -webkit-column-gap: 60px;
-            column-gap: 60px;
+            @include columns(auto 2);
+            @include column-gap(60px);
         }
         
         p{
@@ -572,18 +564,21 @@ body{
                 }
                 
                 .team-grid{
-                    display: flex;
-                    flex-flow: row wrap;
                     margin-bottom: 30px;
+
+                    &:after{
+                        content: '';
+                        display: table;
+                        clear: both;
+                    }
                     
                     >li{
                         position: relative;
+                        float: left;
 
                         .atvImg-layers{
-                            filter: grayscale(1);
-                            transition: filter 400ms linear;
-                            -webkit-filter: grayscale(1);
-                            -webkit-transition: -webkit-filter 400ms linear;
+                            @include filter(grayscale(1));
+                            @include transition(filter 400ms linear, -webkit-filter 400ms linear);
                         }
 
                         .bg{
@@ -597,7 +592,7 @@ body{
                                 left: 50%;
                                 height: 100%;
                                 width: 200%;
-                                transform: translateX(-50%);
+                                @include transform(translateX(-50%));
                             }
 
                             .svg-bg-pattern{
@@ -612,14 +607,14 @@ body{
                                 visibility: hidden;
 
                                 polygon{
-                                    animation-iteration-count: infinite;
-                                    animation-timing-function: ease-out;
-                                    animation-play-state: paused;
+                                    @include animation-iteration-count(infinite);
+                                    @include animation-timing-function(ease-out);
+                                    @include animation-play-state(paused);
 
                                     @for $i from 1 through 33 {
                                         &:nth-child(#{$i}){
-                                            animation-delay: -5*random(40)/* *$i */+s;
-                                            animation-duration: 5+random(20)/* *$i */+s;
+                                            @include animation-delay(-5*random(40)/* *$i */+s);
+                                            @include animation-duration(5+random(20)/* *$i */+s)
                                         }
                                     }
                                 }
@@ -628,7 +623,7 @@ body{
                             &.fly{
                                 .svg-bg-tiles{
                                     polygon{
-                                        animation-name: flyPolygons;
+                                        @include animation-name(flyPolygons);
                                     }
                                 }
                             }
@@ -636,7 +631,7 @@ body{
                             &.fade{
                                 .svg-bg-tiles{
                                     polygon{
-                                        animation-name: fadePolygons;
+                                        @include animation-name(fadePolygons);
                                     }
                                 }
                             }
@@ -657,8 +652,8 @@ body{
                             box-sizing: border-box;
                             //padding: 15px;
                             padding: 15px 15px 25px 15px;
-                            transform: translate(0, calc(100% - 40px));
-                            transition: background-color 200ms ease-in-out, transform 200ms ease-in-out;
+                            @include transform(translate(0, calc(100% - 40px)));
+                            @include transition(background-color 200ms ease-in-out, transform 200ms ease-in-out);
 
                             p{
                                 font-size: 1rem;
@@ -683,13 +678,12 @@ body{
                             z-index: 1;
 
                             .atvImg-layers{
-                                -webkit-filter: grayscale(0);
-                                filter: grayscale(0);
+                                @include filter(grayscale(0));
                             }
                             
                             .description{
-                                //transform: translate(0, 0);
-                                transform: translate(0, 10px);
+                                //@include transform(translate(0, 0));
+                                @include transform(translate(0, 10px));
                                 background-color: rgba($blackc, 0.4);
                             }
 
@@ -697,7 +691,7 @@ body{
                                 visibility: visible;
 
                                 polygon{
-                                    animation-play-state: running;
+                                    @include animation-play-state(running);
                                 }
                             }
                         }
@@ -722,7 +716,7 @@ body{
                 padding: 30px;
                 color: $blackc;
                 background-color: rgba($white, 0.8);
-                transition: background-color 200ms ease-in-out;
+                @include transition(background-color 200ms ease-in-out);
 
                 &:hover{
                     background-color: $white;
@@ -760,8 +754,8 @@ body{
         z-index: 10;
         top: 0;
         left: 0;
-        transition: background-color 100ms ease-in-out;
-        transform: translate3d(0, 0, 40px);
+        @include transition(background-color 100ms ease-in-out);
+        @include transform(translate3d(0, 0, 40px));
 
         .wrapper{
             
@@ -772,8 +766,8 @@ body{
                 color: $white;
                 text-decoration: none;
                 border: none;
-                transform: translate(0, -90px);
-                transition: transform 100ms ease-in-out;
+                @include transform(translate(0, -90px));
+                @include transition(transform 100ms ease-in-out);
 
                 span{
                     margin-top: 31px;
@@ -825,15 +819,15 @@ body{
                         position: absolute;
                         bottom: 0;
                         left: 0;
-                        transition: transform 200ms ease-in-out;
+                        @include transition(transform 200ms ease-in-out);
                         transform-origin: right top;
-                        transform: scale(0, 1);
+                        @include transform(scale(0, 1));
                     }
 
                     &:hover{
                         &:after{
                             transform-origin: left top;
-                            transform: scale(1, 1);
+                            @include transform(scale(1, 1));
                         }
                     }
                 }
@@ -845,7 +839,7 @@ body{
                     background-color: rgba($white, 0.4);
                     margin-left: 10px;
                     vertical-align: middle;
-                    transition: background-color 100ms ease-in-out;
+                    @include transition(background-color 100ms ease-in-out);
                 }
 
                 a[class^="button"]{
@@ -885,7 +879,7 @@ body{
 
                 .logo{
                     color: $blackc;
-                    transform: translate(0, 0px);
+                    @include transform(translate(0, 0px));
 
                     svg{
                         &.svg-logo-black{
@@ -993,7 +987,7 @@ body{
                 top: 50%;
                 left: 0;
                 width: 100%;
-                transform: translateY(-50%);
+                @include transform(translateY(-50%));
                 height: 44%;
                 text-align: center;
 
@@ -1006,12 +1000,12 @@ body{
                             fill: $transparent;
                             stroke-width: 0;
 
-                            animation: splashPolygons linear infinite;
+                            @include animation(splashPolygons linear infinite);
 
                             @for $i from 1 through 21 {
                                 &:nth-child(#{$i}){
-                                    animation-delay: -5*random(40)/* *$i */+s;
-                                    animation-duration: 40+random(20)/* *$i */+s;
+                                    @include animation-delay(-5*random(40)/* *$i */+s);
+                                    @include animation-duration(40+random(20)/* *$i */+s);
                                 }
                             }
                         }
@@ -1107,9 +1101,7 @@ body{
 
             .text-block{
                 &.columns{
-                    -moz-columns: 1;
-                    -webkit-columns: 1;
-                    columns: 1;
+                    @include columns(1);
                 }
                 
                 p{
@@ -1136,7 +1128,6 @@ body{
                             
                             >li{
                                 width: 112px;
-                                flex: 0 0 112px;
                                 margin: 0 15px 15px 0;
 
                                 .description{
@@ -1303,9 +1294,7 @@ body{
 
             .text-block{
                 &.columns{
-                    -moz-columns: 1;
-                    -webkit-columns: 1;
-                    columns: 1;
+                    @include columns(1);
                 }
                 
                 p{
@@ -1332,7 +1321,6 @@ body{
                             
                             >li{
                                 width: 152px;
-                                flex: 0 0 152px;
                                 margin: 0 15px 15px 0;
 
                                 &:nth-child(2n) {
@@ -1463,9 +1451,7 @@ body{
 
             .text-block{
                 &.columns{
-                    -moz-columns: 1;
-                    -webkit-columns: 1;
-                    columns: 1;
+                    @include columns(1);
                 }
                 
                 p{
@@ -1487,7 +1473,6 @@ body{
                             
                             >li{
                                 width: 156px;
-                                flex: 0 0 156px;
                                 margin: 0 15px 15px 0;
 
                                 &:nth-child(3n) {
@@ -1584,7 +1569,6 @@ body{
                     .team-grid{
                         >li{
                             width: 193px;
-                            flex: 0 0 193px;
                             margin: 0 30px 30px 0;
 
                             &:nth-child(3n) {
@@ -1654,7 +1638,6 @@ body{
                     .team-grid{
                         >li{
                             width: 197px;
-                            flex: 0 0 197px;
                             margin: 0 30px 30px 0;
 
                             &:nth-child(4n) {
@@ -1723,7 +1706,6 @@ body{
                     .team-grid{
                         >li{
                             width: 175px;
-                            flex: 0 0 175px;
                             margin: 0 30px 30px 0;
                             
                             &:nth-child(6n) {
@@ -1797,7 +1779,6 @@ body{
                         .team-grid{
                             >li{
                                 width: 216px;
-                                flex: 0 0 216px;
                                 margin: 0 30px 30px 0;
                                 
                                 &:nth-child(5n) {
@@ -1810,7 +1791,7 @@ body{
 
                                 .description{
                                     padding: 20px 20px 30px 20px;
-                                    transform: translate(0, calc(100% - 55px));
+                                    @include transform(translate(0, calc(100% - 55px)));
 
                                     p{
                                         margin-bottom: 25px;
