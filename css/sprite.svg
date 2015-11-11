@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="0" height="0" style="display: none;">
-    <symbol id="svg-logo-black" viewBox="0 0 53 53" aria-labelledby="Mindmaps Research Ltd.">
-        <value>Mindmaps Research Ltd.</value>
+    <symbol id="svg-logo-black" viewBox="0 0 53 53" aria-labelledby="Mindmaps Research Ltd">
+        <value>Mindmaps Research Ltd</value>
         <desc>better than architecture</desc>
         <g>
             <line class="stroke-gray4c" x1="4.5" y1="26.5" x2="15.5" y2="15.5"/>
@@ -81,8 +81,8 @@
         </g>
     </symbol>
 
-    <symbol id="svg-logo-white" viewBox="0 0 53 53" aria-labelledby="Mindmaps Research Ltd.">
-        <value>Mindmaps Research Ltd.</value>
+    <symbol id="svg-logo-white" viewBox="0 0 53 53" aria-labelledby="Mindmaps Research Ltd">
+        <value>Mindmaps Research Ltd</value>
         <desc>better than architecture</desc>
         <g>
             <line class="stroke-thinWhite" x1="4.5" y1="26.5" x2="15.5" y2="15.5"/>
