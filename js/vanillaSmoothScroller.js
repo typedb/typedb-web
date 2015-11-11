@@ -50,7 +50,7 @@ window.vanillaSmoothScroller = {
     },
 
     scroll: function(event) {
-
+alert(1);
         event.preventDefault();
 
         var _this = window.vanillaSmoothScroller,
