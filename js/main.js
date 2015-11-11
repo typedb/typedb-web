@@ -637,9 +637,9 @@ window.MNDMPS = {
 
         function changeStateThreeD() {
             if (document.hidden) {
-                window.MNDMPS.data.threeDRunning = false;
+                _this.data.threeDRunning = false;
             } else {
-                window.MNDMPS.data.threeDRunning = true;
+                _this.data.threeDRunning = true;
             }
         }
 
@@ -652,7 +652,22 @@ window.MNDMPS = {
         
         window.addEventListener('resize', function() {
             resize();
+
+            setTimeout(function() {
+                var offsetX = 0;
+
+                if (_this.data.windowWidth < 1000) {
+                    offsetX = (_this.data.windowWidth - _this.data.googleMap.getDiv().parentNode.getElementsByClassName('info')[0].offsetWidth)/2 - (_this.data.windowWidth/2 - _this.data.googleMap.getDiv().parentNode.getElementsByClassName('info')[0].offsetWidth);
+                }
+
+                _this.centerGoogleMap(
+                    _this.data.googleMap,
+                    _this.data.googleMapLatLng,
+                    offsetX,
+                    0);
+            }, 0);
         }, false);
+        
         document.addEventListener('visibilitychange', changeStateThreeD, false);
 
         resize();
@@ -700,9 +715,33 @@ window.MNDMPS = {
         }, false);
     },
 
+    centerGoogleMap: function(map, latlng, offsetx, offsety) {
+        // latlng is the apparent centre-point
+        // offsetx is the distance you want that point to move to the right, in pixels
+        // offsety is the distance you want that point to move upwards, in pixels
+        // offset can be negative
+        // offsetx and offsety are both optional
+
+        var scale = Math.pow(2, map.getZoom()),
+            nw = new google.maps.LatLng(
+                map.getBounds().getNorthEast().lat(),
+                map.getBounds().getSouthWest().lng()
+            ),
+            worldCoordinateCenter = map.getProjection().fromLatLngToPoint(latlng),
+            pixelOffset = new google.maps.Point((offsetx/scale) || 0, (offsety/scale) ||0),
+            worldCoordinateNewCenter = new google.maps.Point(
+                worldCoordinateCenter.x - pixelOffset.x,
+                worldCoordinateCenter.y + pixelOffset.y
+            ),
+            newCenter = map.getProjection().fromPointToLatLng(worldCoordinateNewCenter);
+
+        map.setCenter(newCenter);
+    },
+
     loadGoogleMap: function() {
         
-        var mapStyles = [{"featureType":"water","elementType":"geometry","stylers":[{"color":"#e9e9e9"},{"lightness":17}]},{"featureType":"landscape","elementType":"geometry","stylers":[{"color":"#f5f5f5"},{"lightness":20}]},{"featureType":"road.highway","elementType":"geometry.fill","stylers":[{"color":"#ffffff"},{"lightness":17}]},{"featureType":"road.highway","elementType":"geometry.stroke","stylers":[{"color":"#ffffff"},{"lightness":29},{"weight":0.2}]},{"featureType":"road.arterial","elementType":"geometry","stylers":[{"color":"#ffffff"},{"lightness":18}]},{"featureType":"road.local","elementType":"geometry","stylers":[{"color":"#ffffff"},{"lightness":16}]},{"featureType":"poi","elementType":"geometry","stylers":[{"color":"#f5f5f5"},{"lightness":21}]},{"featureType":"poi.park","elementType":"geometry","stylers":[{"color":"#dedede"},{"lightness":21}]},{"elementType":"labels.text.stroke","stylers":[{"visibility":"on"},{"color":"#ffffff"},{"lightness":16}]},{"elementType":"labels.text.fill","stylers":[{"saturation":36},{"color":"#333333"},{"lightness":40}]},{"elementType":"labels.icon","stylers":[{"visibility":"off"}]},{"featureType":"transit","elementType":"geometry","stylers":[{"color":"#f2f2f2"},{"lightness":19}]},{"featureType":"administrative","elementType":"geometry.fill","stylers":[{"color":"#fefefe"},{"lightness":20}]},{"featureType":"administrative","elementType":"geometry.stroke","stylers":[{"color":"#fefefe"},{"lightness":17},{"weight":1.2}]}],
+        var _this = window.MNDMPS,
+            mapStyles = [{"featureType":"water","elementType":"geometry","stylers":[{"color":"#e9e9e9"},{"lightness":17}]},{"featureType":"landscape","elementType":"geometry","stylers":[{"color":"#f5f5f5"},{"lightness":20}]},{"featureType":"road.highway","elementType":"geometry.fill","stylers":[{"color":"#ffffff"},{"lightness":17}]},{"featureType":"road.highway","elementType":"geometry.stroke","stylers":[{"color":"#ffffff"},{"lightness":29},{"weight":0.2}]},{"featureType":"road.arterial","elementType":"geometry","stylers":[{"color":"#ffffff"},{"lightness":18}]},{"featureType":"road.local","elementType":"geometry","stylers":[{"color":"#ffffff"},{"lightness":16}]},{"featureType":"poi","elementType":"geometry","stylers":[{"color":"#f5f5f5"},{"lightness":21}]},{"featureType":"poi.park","elementType":"geometry","stylers":[{"color":"#dedede"},{"lightness":21}]},{"elementType":"labels.text.stroke","stylers":[{"visibility":"on"},{"color":"#ffffff"},{"lightness":16}]},{"elementType":"labels.text.fill","stylers":[{"saturation":36},{"color":"#333333"},{"lightness":40}]},{"elementType":"labels.icon","stylers":[{"visibility":"off"}]},{"featureType":"transit","elementType":"geometry","stylers":[{"color":"#f2f2f2"},{"lightness":19}]},{"featureType":"administrative","elementType":"geometry.fill","stylers":[{"color":"#fefefe"},{"lightness":20}]},{"featureType":"administrative","elementType":"geometry.stroke","stylers":[{"color":"#fefefe"},{"lightness":17},{"weight":1.2}]}],
             markerIcon = {
                 path: 'M15.2,5.2v9.5L20,10L15.2,5.2z M10,0L5.2,4.8L10,9.7l4.8-4.8L10,0z M0,10l4.8,4.7V5.2L0,10z M14.8,15.3l-4.4,4.4l3.4,3.4l-0.4,0.3l-8.2-8.2V5.6l4.8,4.8l4.7-4.8V15.3z',
                 fillColor: '#5bc2e7',
@@ -728,40 +767,20 @@ window.MNDMPS = {
                 url: '//google.com/maps/?q=loc:51.551157,-0.114799'
             });
 
+        _this.data.googleMapLatLng = myLatlng;
+        _this.data.googleMap = map;
+
         google.maps.event.addListener(marker, 'click', function() {
             window.open(marker.url, '_blank').focus();
         });
 
-        function offsetCenter(latlng, offsetx, offsety) {
-
-            // latlng is the apparent centre-point
-            // offsetx is the distance you want that point to move to the right, in pixels
-            // offsety is the distance you want that point to move upwards, in pixels
-            // offset can be negative
-            // offsetx and offsety are both optional
-
-            var scale = Math.pow(2, map.getZoom()),
-                nw = new google.maps.LatLng(
-                    map.getBounds().getNorthEast().lat(),
-                    map.getBounds().getSouthWest().lng()
-                ),
-                worldCoordinateCenter = map.getProjection().fromLatLngToPoint(latlng),
-                pixelOffset = new google.maps.Point((offsetx/scale) || 0, (offsety/scale) ||0),
-                worldCoordinateNewCenter = new google.maps.Point(
-                    worldCoordinateCenter.x - pixelOffset.x,
-                    worldCoordinateCenter.y + pixelOffset.y
-                ),
-                newCenter = map.getProjection().fromPointToLatLng(worldCoordinateNewCenter);
-
-            map.setCenter(newCenter);
-        }
-
         google.maps.event.addListener(map, 'idle', function() {
-            var windowWidth = window.MNDMPS.data.windowWidth;
-            
-            if (windowWidth < 1000) {
-                var mapOffsetX = (windowWidth - map.getDiv().parentNode.getElementsByClassName('info')[0].offsetWidth)/2 - (windowWidth/2 - map.getDiv().parentNode.getElementsByClassName('info')[0].offsetWidth);
-                offsetCenter(myLatlng, mapOffsetX, 0);
+            if (_this.data.windowWidth < 1000) {
+                _this.centerGoogleMap(
+                    map,
+                    myLatlng,
+                    (windowWidth - map.getDiv().parentNode.getElementsByClassName('info')[0].offsetWidth)/2 - (windowWidth/2 - map.getDiv().parentNode.getElementsByClassName('info')[0].offsetWidth),
+                    0);
             }
         });
     },
