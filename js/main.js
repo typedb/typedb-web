@@ -653,7 +653,7 @@ window.MNDMPS = {
         window.addEventListener('resize', function() {
             resize();
 
-            /*setTimeout(function() {
+            setTimeout(function() {
                 var offsetX = 0;
 
                 if (_this.data.windowWidth < 1000) {
@@ -665,7 +665,7 @@ window.MNDMPS = {
                     _this.data.googleMapLatLng,
                     offsetX,
                     0);
-            }, 0);*/
+            }, 0);
         }, false);
         
         document.addEventListener('visibilitychange', changeStateThreeD, false);
@@ -849,11 +849,11 @@ window.MNDMPS = {
         
         this.watchScroll();
 
-        /*if (document.getElementsByClassName('google-map')[0]) {
-            google.maps.event.addDomListener(window, 'load', this.loadGoogleMap);
-        }*/
-
         atvImg();
+        
+        if (document.getElementsByClassName('google-map')[0]) {
+            google.maps.event.addDomListener(window, 'load', this.loadGoogleMap);
+        }
     }
 };
 

@@ -81,6 +81,8 @@ function atvImg(){
         thisImg.appendChild(containerHTML);
 
         var w = thisImg.clientWidth || thisImg.offsetWidth || thisImg.scrollWidth;
+
+        thisImg.style.webkitTransform = 'perspective(' + w*3 + 'px)';
         thisImg.style.transform = 'perspective(' + w*3 + 'px)';
 
         if (supportsTouch) {
@@ -174,6 +176,7 @@ function atvImg(){
             imgCSS += ' scale3d(0.98, 0.98, 0.98)';
         }
         
+        elem.firstChild.style.webkitTransform = imgCSS;
         elem.firstChild.style.transform = imgCSS;
         
         //gradient angle and opacity for shine
@@ -186,12 +189,15 @@ function atvImg(){
         } else {
             shine.style.background = 'linear-gradient(' + angle + 'deg, rgba(255,255,255,' + (pageY - offsets.top - bdst)/h * 0.24 + ') 0%,rgba(255,255,255,0) 80%)';
         }
+
+        shine.style.webkitTransform = 'translateX(' + (offsetX * totalLayers) - 0.1 + 'px) translateY(' + (offsetY * totalLayers) - 0.1 + 'px)';
         shine.style.transform = 'translateX(' + (offsetX * totalLayers) - 0.1 + 'px) translateY(' + (offsetY * totalLayers) - 0.1 + 'px)';
         
 
         //parallax for each layer
         var revNum = totalLayers;
         for(var ly=0; ly < totalLayers; ly++) {
+            layers[ly].style.webkitTransform = 'translateX(' + (offsetX * revNum) * ((ly * 2.5) / wMultiple) + 'px) translateY(' + (offsetY * totalLayers) * ((ly * 2.5) / wMultiple) + 'px)';
             layers[ly].style.transform = 'translateX(' + (offsetX * revNum) * ((ly * 2.5) / wMultiple) + 'px) translateY(' + (offsetY * totalLayers) * ((ly * 2.5) / wMultiple) + 'px)';
             revNum--;
         }
@@ -223,10 +229,12 @@ function atvImg(){
 
         //container.className = container.className.replace(' over','');
         container.classList.remove('over');
+        container.style.webkitTransform = '';
         container.style.transform = '';
         shine.style.cssText = '';
         
         for(var ly=0; ly < totalLayers; ly++) {
+            layers[ly].style.webkitTransform = '';
             layers[ly].style.transform = '';
         }
     }
