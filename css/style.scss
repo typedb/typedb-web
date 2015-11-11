@@ -756,7 +756,7 @@ body{
         top: 0;
         left: 0;
         @include transition(background-color 100ms ease-in-out);
-        @include transform(translate3d(0, 0, 40px));
+        @include transform(translate3d(0, 0, 80px));
 
         .wrapper{
             

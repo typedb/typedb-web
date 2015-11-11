@@ -155,7 +155,7 @@ function atvImg(){
         
         var yRotate = (offsetX - dx)*(0.07 * wMultiple), //rotation for container Y
             xRotate = (dy - offsetY)*(0.1 * wMultiple), //rotation for container X
-            imgCSS = 'rotateX(' + xRotate + 'deg) rotateY(' + yRotate + 'deg)', //img transform
+            imgCSS = 'rotateX(' + xRotate + 'deg) rotateY(' + yRotate + 'deg) translateZ(40px)', //img transform
             arad = Math.atan2(dy, dx), //angle between cursor and center of container in RAD
             angle = arad * 180 / Math.PI - 90; //convert rad in degrees
 
@@ -167,7 +167,7 @@ function atvImg(){
         //container transform
         //if(elem.firstChild.className.indexOf(' over') != -1) {
         if (elem.firstChild.classList.contains('over')) {
-            imgCSS += ' scale3d(1.04, 1.04, 1.04)';
+            imgCSS += ' scale3d(0.96, 0.96, 0.96)';
         }
         
         elem.firstChild.style.transform = imgCSS;
