@@ -129,6 +129,8 @@ window.vanillaSmoothScroller = {
         }
 
         window.requestAnimationFrame(step);
+
+        return false;
     },
 
     bind: function(obj) {
@@ -146,9 +148,10 @@ window.vanillaSmoothScroller = {
         for (var i = vanillaSmoothScrollerButtons.length - 1; i >= 0; i--) {
             vanillaSmoothScrollerButtons[i].addEventListener(obj.event || 'click', window.vanillaSmoothScroller.scroll, false);
             
-            if (obj.event === 'touchstart') {
+            if (obj.event && obj.event !== 'click') {
                 vanillaSmoothScrollerButtons[i].addEventListener('click', function(event) {
                     event.preventDefault();
+                    return false;
                 }, false);
             }
         }
