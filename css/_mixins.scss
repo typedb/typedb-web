@@ -132,3 +132,14 @@
     -moz-column-gap: $values;
     column-gap: $values;
 }
+
+// Disable selection
+
+@mixin disableSelection() {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
