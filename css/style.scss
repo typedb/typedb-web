@@ -964,7 +964,8 @@ body{
         }
 
         h1{
-            font-size: 1.2rem;
+            //font-size: 1.2rem;
+            font-size: 2.8vh;
             width: 100%;
             color: $white;
             position: absolute;
@@ -974,7 +975,8 @@ body{
 
             span{
                 margin-top: 0.3rem;
-                font-size: 0.8rem;
+                //font-size: 0.8rem;
+                font-size: 1.9vh;
                 display: block;
                 font-weight: 200;
             }

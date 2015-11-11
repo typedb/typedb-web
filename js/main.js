@@ -62,6 +62,7 @@ window.MNDMPS = {
             container = document.getElementsByClassName('splash')[0],
             SCREEN_WIDTH = window.innerWidth,
             SCREEN_HEIGHT = window.innerHeight,
+            INIT_SCREEN_HEIGHT = window.innerHeight,
 
             renderer = new THREE.WebGLRenderer({antialias: true, alpha: true}),
             scene = new THREE.Scene(),
@@ -125,7 +126,8 @@ window.MNDMPS = {
             ],
 
             smallNodeMaterial = new THREE.MeshBasicMaterial({color: 0xffffff, transparent: true, opacity: 0.4}),
-            bigNodeMaterial = new THREE.MeshBasicMaterial({color: 0xffffff, transparent: true, opacity: 0.8});
+            bigNodeMaterial = new THREE.MeshBasicMaterial({color: 0xffffff, transparent: true, opacity: 0.8}),
+            logoScale = 1;
 
         window.MNDMPS.data.threeDRunning = false;
 
@@ -430,6 +432,8 @@ window.MNDMPS = {
             SCREEN_WIDTH = window.innerWidth;
             SCREEN_HEIGHT = window.innerHeight;
 
+            logoScale = SCREEN_HEIGHT/INIT_SCREEN_HEIGHT;
+
             //camera.aspect = SCREEN_WIDTH/SCREEN_HEIGHT;
             
             camera.left = SCREEN_WIDTH/-2;    // For
@@ -544,6 +548,10 @@ window.MNDMPS = {
             logoGroup.rotation.set(Math.radians((_this.data.mouseY - SCREEN_HEIGHT/2) * 0.04), Math.radians((_this.data.mouseX - SCREEN_WIDTH/2) * 0.03), 0);
         }
 
+        function refreshScale() {
+            logoGroup.scale.set(logoScale, logoScale, logoScale);
+        }
+
         _this.data.mouseX = SCREEN_WIDTH/2;
         _this.data.mouseY = SCREEN_HEIGHT/2;
 
@@ -576,6 +584,7 @@ window.MNDMPS = {
                 redrawNodeLines();
                 processRandomFaces();
                 refreshCamera();
+                refreshScale();
                 render();
             }
 
