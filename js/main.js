@@ -424,13 +424,13 @@ window.MNDMPS = {
 
         function resize() {
 
-            _this.data.windowHeight = f_clientHeight();
             _this.data.windowWidth = f_clientWidth();
+            _this.data.windowHeight = f_clientHeight();
             _this.data.barHeight = _this.data.menuBar.offsetHeight;
             _this.processScroll(f_scrollTop(), f_scrollLeft());
             
-            SCREEN_WIDTH = _this.data.windowHeight;
-            SCREEN_HEIGHT = _this.data.windowWidth;
+            SCREEN_WIDTH = _this.data.windowWidth;
+            SCREEN_HEIGHT = _this.data.windowHeight;
 
             logoScale = SCREEN_HEIGHT/INIT_SCREEN_HEIGHT;
 
