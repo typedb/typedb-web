@@ -429,8 +429,8 @@ window.MNDMPS = {
             window.MNDMPS.data.barHeight = window.MNDMPS.data.menuBar.offsetHeight;
             window.MNDMPS.processScroll(f_scrollTop(), f_scrollLeft());
             
-            SCREEN_WIDTH = window.innerWidth;
-            SCREEN_HEIGHT = window.innerHeight;
+            SCREEN_WIDTH = f_clientWidth();
+            SCREEN_HEIGHT = f_clientHeight();
 
             logoScale = SCREEN_HEIGHT/INIT_SCREEN_HEIGHT;
 
