@@ -669,7 +669,7 @@ window.MNDMPS = {
         }, false);
         
         document.addEventListener('visibilitychange', changeStateThreeD, false);
-alert(SCREEN_WIDTH, SCREEN_HEIGHT);
+alert(SCREEN_WIDTH + ', ' + SCREEN_HEIGHT);
         refreshCursorPosition({
             x: SCREEN_WIDTH/2,
             y: SCREEN_HEIGHT/2
