@@ -1124,8 +1124,71 @@ body{
                         .text-block{
                             margin-bottom: 15px;
                         }
-                        
+
                         .team-grid{
+                            margin-bottom: 0px;
+                            
+                            >li{
+                                width: 239px;
+                                margin: 0 0 15px 0;
+
+                                &:before{
+                                    padding-top: 65%;
+                                }
+
+                                .photo{
+                                    background-position: left bottom;
+                                    background-size: 65% auto;
+                                }
+
+                                .bg{
+                                    svg{
+                                        top: 50%;
+                                        left: 0;
+                                        height: 200%;
+                                        width: 100%;
+                                        @include transform(translateY(-50.3%));
+                                    }
+                                }
+
+                                .description{
+                                    padding: 15px 15px 0 0;
+                                    color: $blackc;
+                                    left: auto;
+                                    right: 0;
+                                    height: 100%;
+                                    width: 50%;
+                                    @include transform(none);
+                                    @include transition(none);
+
+                                    p{
+                                        font-size: 0.9rem;
+                                    }
+
+                                    span{
+                                        &+.x-small{
+                                            margin-bottom: 0;
+                                            font-size: 0.7rem;
+                                            line-height: 0.8rem;
+                                        }
+                                    }
+                                }
+
+                                &:nth-child(2n) {
+                                    margin-right: 0;
+                                }
+                            
+                                .over{
+                                    .description{
+                                        background-color: $transparent;
+                                        @include transform(none);
+                                    }
+                                }
+                            }
+                        }
+                        
+                        // Standard variation
+                        /* .team-grid{
                             margin-bottom: 0px;
                             
                             >li{
@@ -1154,7 +1217,7 @@ body{
                                     margin-right: 0;
                                 }
                             }
-                        }
+                        } */
                     }
 
                     &.tech{
