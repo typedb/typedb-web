@@ -555,7 +555,7 @@ window.MNDMPS = {
         _this.data.mouseX = SCREEN_WIDTH/2;
         _this.data.mouseY = SCREEN_HEIGHT/2;
 
-        camera.aspect = SCREEN_WIDTH/SCREEN_HEIGHT;
+        //camera.aspect = SCREEN_WIDTH/SCREEN_HEIGHT;
         camera.updateProjectionMatrix();
         camera.position.z = cameraZ;
         camera.lookAt(scene.position);
