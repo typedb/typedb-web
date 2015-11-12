@@ -60,9 +60,9 @@ window.MNDMPS = {
 
         var _this = this,
             container = document.getElementsByClassName('splash')[0],
-            SCREEN_WIDTH = window.innerWidth,
-            SCREEN_HEIGHT = window.innerHeight,
-            INIT_SCREEN_HEIGHT = window.innerHeight,
+            SCREEN_WIDTH = f_clientWidth(),
+            SCREEN_HEIGHT = f_clientHeight(),
+            INIT_SCREEN_HEIGHT = f_clientHeight(),
 
             renderer = new THREE.WebGLRenderer({antialias: true, alpha: true}),
             scene = new THREE.Scene(),
