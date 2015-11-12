@@ -129,7 +129,7 @@ window.MNDMPS = {
             bigNodeMaterial = new THREE.MeshBasicMaterial({color: 0xffffff, transparent: true, opacity: 0.8}),
             logoScale = 1;
 
-        window.MNDMPS.data.threeDRunning = false;
+        _this.data.threeDRunning = false;
 
         function generateNodes() {
             var nodeLinesGeometry = new THREE.BufferGeometry();
@@ -424,13 +424,13 @@ window.MNDMPS = {
 
         function resize() {
 
-            window.MNDMPS.data.windowHeight = f_clientHeight();
-            window.MNDMPS.data.windowWidth = f_clientWidth();
-            window.MNDMPS.data.barHeight = window.MNDMPS.data.menuBar.offsetHeight;
-            window.MNDMPS.processScroll(f_scrollTop(), f_scrollLeft());
+            _this.data.windowHeight = f_clientHeight();
+            _this.data.windowWidth = f_clientWidth();
+            _this.data.barHeight = _this.data.menuBar.offsetHeight;
+            _this.processScroll(f_scrollTop(), f_scrollLeft());
             
-            SCREEN_WIDTH = f_clientWidth();
-            SCREEN_HEIGHT = f_clientHeight();
+            SCREEN_WIDTH = _this.data.windowHeight;
+            SCREEN_HEIGHT = _this.data.windowWidth;
 
             logoScale = SCREEN_HEIGHT/INIT_SCREEN_HEIGHT;
 
@@ -580,7 +580,7 @@ window.MNDMPS = {
         }
 
         function animate() {
-            if (window.MNDMPS.data.threeDRunning) {
+            if (_this.data.threeDRunning) {
                 redrawNodeLines();
                 processRandomFaces();
                 refreshCamera();
@@ -624,7 +624,7 @@ window.MNDMPS = {
         }
 
         function refreshCursorPosition(coordinates) {
-            if (!window.MNDMPS.data.threeDRunning) {
+            if (!_this.data.threeDRunning) {
                 return;
             }
             
