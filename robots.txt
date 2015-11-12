@@ -5,6 +5,5 @@ Disallow: /
 Disallow: /css/
 Disallow: /img/
 Disallow: /js/
-Disallow: /test/
 
 Sitemap: http://mindmaps.io/sitemap.xml
