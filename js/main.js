@@ -669,15 +669,12 @@ window.MNDMPS = {
         }, false);
         
         document.addEventListener('visibilitychange', changeStateThreeD, false);
-alert(SCREEN_WIDTH + ', ' + SCREEN_HEIGHT);
-setTimeout(function() {
-    alert(SCREEN_WIDTH + ', ' + SCREEN_HEIGHT);
-}, 2000);
+
+        resize();
         refreshCursorPosition({
             x: SCREEN_WIDTH/2,
             y: SCREEN_HEIGHT/2
         });
-        resize();
         animate();
     },
 
