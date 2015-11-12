@@ -442,10 +442,6 @@ window.MNDMPS = {
             
             camera.updateProjectionMatrix();
             renderer.setSize(SCREEN_WIDTH, SCREEN_HEIGHT);
-
-            setTimeout(function() {
-                _this.data.barHeight = _this.data.menuBar.offsetHeight;
-            }, 0);
         }
 
         function generateRandomFaces() {
@@ -683,7 +679,7 @@ window.MNDMPS = {
             this.refreshMousePositionOnScroll(scrolledY, scrolledX);
         }
 
-        if (scrolledY > this.data.windowHeight - this.data.barHeight) {
+        if (scrolledY > this.data.windowHeight - this.data.menuBar.offsetHeight) {
             this.data.menuBar.classList.add('scrolled');
             this.data.threeDRunning = false;
         } else {
@@ -839,7 +835,6 @@ window.MNDMPS = {
         this.data.windowHeight = f_clientHeight();
         this.data.windowWidth = f_clientWidth();
         this.data.menuBar = document.getElementsByClassName('nav')[0];
-        this.data.barHeight = this.data.menuBar.offsetHeight;
 
         if (this.webGLAvailable()) {
             this.threeD();
@@ -850,7 +845,7 @@ window.MNDMPS = {
         vanillaSmoothScroller.bind({
             selector: '.scrollTrigger',
             offset: function () {
-                return window.MNDMPS.data.barHeight;
+                return window.MNDMPS.data.menuBar.offsetHeight;
             }
         });
         
