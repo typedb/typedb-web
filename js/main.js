@@ -562,8 +562,8 @@ window.MNDMPS = {
         camera.zoom = 2; // For the Orthographic Camera
         scene.add(camera);
         
+        renderer.setPixelRatio(window.devicePixelRatio);
         renderer.setSize(SCREEN_WIDTH, SCREEN_HEIGHT);
-        //renderer.setPixelRatio(window.devicePixelRatio);
 
         container.appendChild(renderer.domElement);
 
