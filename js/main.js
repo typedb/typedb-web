@@ -427,7 +427,7 @@ window.MNDMPS = {
             _this.data.windowWidth = f_clientWidth();
             _this.data.windowHeight = f_clientHeight();
             _this.processScroll(f_scrollTop(), f_scrollLeft());
-alert(_this.data.windowWidth + ', ' + _this.data.windowHeight);
+
             SCREEN_WIDTH = _this.data.windowWidth;
             SCREEN_HEIGHT = _this.data.windowHeight;
 
