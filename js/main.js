@@ -671,6 +671,10 @@ window.MNDMPS = {
         document.addEventListener('visibilitychange', changeStateThreeD, false);
 
         resize();
+        refreshCursorPosition({
+            x: SCREEN_WIDTH/2,
+            y: SCREEN_HEIGHT/2
+        });
         animate();
     },
 
