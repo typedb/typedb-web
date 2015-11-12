@@ -563,7 +563,7 @@ window.MNDMPS = {
         scene.add(camera);
         
         renderer.setSize(SCREEN_WIDTH, SCREEN_HEIGHT);
-        renderer.setPixelRatio(window.devicePixelRatio);
+        //renderer.setPixelRatio(window.devicePixelRatio);
 
         container.appendChild(renderer.domElement);
 
