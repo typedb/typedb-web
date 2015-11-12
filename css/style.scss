@@ -1139,6 +1139,11 @@ body{
                                 .photo{
                                     background-position: left bottom;
                                     background-size: 65% auto;
+
+                                    &.empty{
+                                        background-position: -75% center;
+                                        background-size: auto 100%;
+                                    }
                                 }
 
                                 .bg{
