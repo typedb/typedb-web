@@ -1134,9 +1134,19 @@ body{
 
                                 .description{
                                     padding: 10px 10px 20px 10px;
+                                    @include transform(translate(0, calc(100% - 30px)));
 
                                     p{
+                                        font-size: 0.8rem;
                                         margin-bottom: 10px;
+                                    }
+
+                                    span{
+                                        font-size: 0.7rem;
+
+                                        &+.x-small{
+                                            font-size: 0.6rem;
+                                        }
                                     }
                                 }
 

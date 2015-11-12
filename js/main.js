@@ -722,6 +722,10 @@ window.MNDMPS = {
         // offset can be negative
         // offsetx and offsety are both optional
 
+        if (!map.getBounds()) {
+            return;
+        }
+
         var scale = Math.pow(2, map.getZoom()),
             nw = new google.maps.LatLng(
                 map.getBounds().getNorthEast().lat(),
