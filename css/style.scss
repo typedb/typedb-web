@@ -953,6 +953,7 @@ body{
     &.splash{
         overflow: hidden;
         height: 100%;
+        height: 100vh;
         background: linear-gradient(160deg, #5bc2e7 0%, #a1d884 100%);
 
         canvas{
