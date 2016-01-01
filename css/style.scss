@@ -980,6 +980,18 @@ body{
             }
         }
 
+        .skipSplash{
+            position: absolute;
+            bottom: -2vh;
+            left: 50%;
+            margin-left: -2vh;
+            width: 4vh;
+            height: 4vh;
+            background-color: $lightGray;
+            cursor: pointer;
+            @include transform(rotateZ(45deg));
+        }
+
         .svg-splash{
             height: 100vh;
             background: url(bg_white.svg) no-repeat center center;
