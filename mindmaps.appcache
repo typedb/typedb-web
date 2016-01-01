@@ -1,5 +1,5 @@
 CACHE MANIFEST
-#1.03
+#1.04
 
 CACHE:
 
@@ -9,6 +9,20 @@ CACHE:
 /css/bg_white.svg
 /css/logo_splash.svg
 /css/sprite.svg
+
+/img/team_photos/al.png
+/img/team_photos/alexander.png
+/img/team_photos/alexandra.png
+/img/team_photos/denis.png
+/img/team_photos/felix.png
+/img/team_photos/filipe.png
+/img/team_photos/haikal.png
+/img/team_photos/jason.png
+/img/team_photos/kasper.png
+/img/team_photos/marco.png
+/img/team_photos/precy.png
+/img/team_photos/shantanu.png
+/img/team_photos/sheldon.png
 
 /js/mndmps.min.js
 
