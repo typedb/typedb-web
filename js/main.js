@@ -767,7 +767,7 @@ window.MNDMPS = {
                 position: myLatlng,
                 map: map,
                 icon: markerIcon,
-                url: '//google.com/maps/?q=loc:51.551157,-0.114799'
+                url: '//google.co.uk/maps/place/Mindmaps+Research+Ltd/@51.5512213,-0.1169207,17z/data=!3m1!4b1!4m2!3m1!1s0x48761b7382210035:0x9ca7d8a98838539f'
             });
 
         _this.data.googleMapLatLng = myLatlng;
