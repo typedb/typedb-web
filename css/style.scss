@@ -1408,8 +1408,78 @@ body{
                         .text-block{
                             margin-bottom: 30px;
                         }
-                        
+
                         .team-grid{
+                            margin-bottom: 0px;
+                            
+                            >li{
+                                width: 320px;
+                                margin: 0 0 15px 0;
+
+                                &:before{
+                                    padding-top: 65%;
+                                }
+
+                                .photo{
+                                    background-position: left bottom;
+                                    background-size: 65% auto;
+
+                                    &.empty{
+                                        background-position: -75% center;
+                                        background-size: auto 100%;
+                                    }
+                                }
+
+                                .bg{
+                                    svg{
+                                        top: 50%;
+                                        left: 0;
+                                        height: 200%;
+                                        width: 100%;
+                                        @include transform(translateY(-50.3%));
+                                    }
+                                }
+
+                                .description{
+                                    padding: 30px 30px 0 0;
+                                    color: $blackc;
+                                    left: auto;
+                                    right: 0;
+                                    height: 100%;
+                                    width: 45%;
+                                    @include transform(none);
+                                    @include transition(none);
+
+                                    p{
+                                        font-size: 1rem;
+                                    }
+
+                                    span{
+                                        font-size: 0.9rem;
+                                        margin-bottom: 10px;
+                                        
+                                        &+.x-small{
+                                            margin-bottom: 0;
+                                            font-size: 0.75rem;
+                                            line-height: 0.9rem;
+                                        }
+                                    }
+                                }
+
+                                &:nth-child(2n) {
+                                    margin-right: 0;
+                                }
+                            
+                                .over{
+                                    .description{
+                                        background-color: $transparent;
+                                        @include transform(none);
+                                    }
+                                }
+                            }
+                        }
+                        
+                        /* .team-grid{
                             margin-bottom: 15px;
                             
                             >li{
@@ -1420,7 +1490,7 @@ body{
                                     margin-right: 0;
                                 }
                             }
-                        }
+                        } */
                     }
 
                     &.tech{
