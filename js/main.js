@@ -10,6 +10,47 @@ Math.degrees = function(radians) {
     return radians * 180/Math.PI;
 };
 
+function getParentElement(el, className) {
+
+    if (!el) {
+        return;
+    }
+
+    if (el.classList.contains(className)) {
+        return el;
+    } else if (el.nodeName === 'BODY' || el.nodeName === 'HTML') {
+        return false;
+    } else {
+        return getParentElement(el.parentNode, className);
+    }
+}
+
+function getParentElements(el, className) {
+    var array = [],
+        foundEl = getParentElement(el, className);
+
+    while (foundEl) {
+        array.push(foundEl);
+        foundEl = getParentElement(foundEl.parentNode, className);
+    }
+
+    return array;
+}
+
+function getChildren(n, skipMe) {
+    var r = [];
+    for (; n; n = n.nextSibling) 
+        if (n.nodeType == 1 && n != skipMe) {
+            r.push(n);
+        }
+    
+    return r;
+}
+
+function getSiblings(n) {
+    return getChildren(n.parentNode.firstChild, n);
+}
+
 function f_filterResults(n_win, n_docel, n_body) {
     var n_result = n_win ? n_win : 0;
     
@@ -830,6 +871,153 @@ window.MNDMPS = {
         container.appendChild(svgSplash);
     },
 
+    initTechStack: function() {
+
+        var data = this.data,
+            dummy = document.createElement('div');
+        
+        dummy.classList.add('dummy');
+
+        function processLayers(depth) {
+            var layers = data.layers.children;
+
+            for (var i = 0; i < layers.length; i++) {
+                if (i <= depth) {
+                    layers[i].classList.add('active');
+                } else {
+                    layers[i].classList.remove('active');
+                }
+            }
+
+            if (depth >= 0) {
+                data.apps.classList.add('active');
+            }
+        }
+
+        function appendDummyBefore(el) {
+            dummy.style.width = el.offsetWidth + 'px';
+            dummy.style.height = el.offsetHeight + 'px';
+
+            el.parentNode.insertBefore(dummy, el);
+        }
+
+        function removeDummy() {
+            if (dummy.parentNode) {
+                dummy.parentNode.removeChild(dummy);
+            }
+        }
+
+        function activateBlock(el) {
+            el.style.top = el.offsetTop + 'px';
+            el.style.left = el.offsetLeft + 'px';
+            el.classList.remove('inactive');
+
+            setTimeout(function() {
+                appendDummyBefore(el);
+                el.classList.add('active');
+            }, 0);
+            
+            processLayers(parseInt(el.dataset.depth, 10));
+        }
+
+        function deactivateSiblings(el) {
+            var siblings = getSiblings(el);
+
+            for (var i = 0; i < siblings.length; i++) {
+                if (siblings[i].classList.contains('stack-block')) {
+                    siblings[i].removeAttribute('style');
+                    siblings[i].classList.remove('active');
+                    siblings[i].classList.add('inactive');
+                }
+            }
+        }
+
+        function setDepth(event) {
+            var depth = event.target.dataset.depth;
+
+            if (depth) {
+                var stackBlocks = data.techStack.getElementsByClassName('stack-block');
+
+                removeDummy();
+                depth = parseInt(depth, 10);
+
+                for (var i = 0; i < stackBlocks.length; i++) {
+                    if (stackBlocks[i].dataset.depth > depth) {
+                        stackBlocks[i].removeAttribute('style');
+                        stackBlocks[i].classList.remove('active');
+                        stackBlocks[i].classList.remove('inactive');
+                    }
+                }
+
+                processLayers(depth);
+            }
+        }
+
+        function checkClick(event) {
+            var clickedEls = getParentElements(event.target, 'stack-block');
+
+            if (clickedEls.length) {
+                for (var i = clickedEls.length - 1; i >= 0; i--) {
+                    if (!clickedEls[i].classList.contains('active')) {
+                        deactivateSiblings(clickedEls[i]);
+                        activateBlock(clickedEls[i]);
+                        break;
+                    }
+                }
+            }
+        }
+
+        function highlightBlock(attr, colour) {
+            var blocks = data.techStack.getElementsByClassName('stack-block'),
+                apps = null;
+
+            for (var i = 0; i < blocks.length; i++) {
+                if (blocks[i].dataset.app) {
+                    apps = blocks[i].dataset.app.split(' ');
+                    
+                    if (apps.indexOf(attr) >= 0) {
+                        blocks[i].dataset.colour = colour;
+                    } else {
+                        blocks[i].dataset.colour = '';
+                    }
+                }
+            }
+        }
+
+        function removeHighlights() {
+            var blocks = data.techStack.getElementsByClassName('stack-block');
+
+            for (var i = 0; i < blocks.length; i++) {
+                blocks[i].dataset.colour = '';
+            }
+        }
+
+        function checkApp(event) {
+
+            switch(event.type) {
+                case 'mouseover':
+                    var el = getParentElement(event.target, 'app');
+                    
+                    highlightBlock(el.dataset.name, el.dataset.colour);
+                    break;
+                case 'mouseout':
+                    removeHighlights();
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        data.techStack = document.getElementsByClassName('stack-tech')[0];
+        data.layers = data.techStack.getElementsByClassName('layers')[0];
+        data.apps = data.techStack.getElementsByClassName('apps')[0];
+
+        data.techStack.addEventListener('click', checkClick, false);
+        data.layers.addEventListener('click', setDepth, false);
+        data.apps.addEventListener('mouseover', checkApp, false);
+        data.apps.addEventListener('mouseout', checkApp, false);
+    },
+
     init: function() {
 
         this.data.windowHeight = f_clientHeight();
@@ -851,6 +1039,7 @@ window.MNDMPS = {
         
         this.watchScroll();
 
+        this.initTechStack();
         atvImg();
         
         if (document.getElementsByClassName('google-map')[0]) {
