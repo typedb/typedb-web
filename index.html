@@ -286,7 +286,7 @@
         </div>
         <div class="block content gradient-bg">
             <div class="wrapper tech">
-                <h2>Technology that we use</h2>
+                <h2>Our technology canvas</h2>
                 <div class="icon-block align-left">
                     <div class="icon big background green rhomb float-left">
                         <svg class="underlay"><use xlink:href="#icon-underlay" /></svg>
@@ -329,12 +329,38 @@
                     </li>
                 </ul>
                 <h2>Technology stack</h2> -->
+                <div class="stack-apps">
+                    <div class="app" data-name="semantic-graph-query-engine" data-colour="c-white">
+                        <svg class="c-white"><use xlink:href="#icon-underlay" /></svg>
+                        <span>Semantic graph query engine</span>
+                    </div>
+                    <div class="app" data-name="semantic-search-engine" data-colour="c-green">
+                        <svg class="c-green"><use xlink:href="#icon-underlay" /></svg>
+                        <span>Semantic search engine</span>
+                    </div>
+                    <div class="app" data-name="semantic-graph-expert-system" data-colour="c-red">
+                        <svg class="c-red"><use xlink:href="#icon-underlay" /></svg>
+                        <span>Semantic graph expert system</span>
+                    </div>
+                    <div class="app" data-name="graph-database-management-system" data-colour="c-black">
+                        <svg class="c-black"><use xlink:href="#icon-underlay" /></svg>
+                        <span>Graph database management</span>
+                    </div>
+                    <div class="app" data-name="knowledge-engineering-tool" data-colour="c-blue">
+                        <svg class="c-blue"><use xlink:href="#icon-underlay" /></svg>
+                        <span>Knowledge engineering tool</span>
+                    </div>
+                    <div class="app" data-name="integrated-data-exploration-tool" data-colour="c-yellow">
+                        <svg class="c-yellow"><use xlink:href="#icon-underlay" /></svg>
+                        <span>Integrated data exploration tool</span>
+                    </div>
+                </div>
                 <div class="stack-tech">
-                    <div class="stack-block" data-depth="0" data-name="mindmaps-main">
-                        <div class="label"><span>Mindmaps</span></div>
+                    <div class="stack-block active" data-depth="0" data-name="mindmaps-main" data-clickable="true">
+                        <div class="label"><span>Explore the Mindmaps technology canvas</span></div>
 
                         <div class="stack-children" data-parent="mindmaps-main">
-                            <div class="stack-block parent" data-depth="1" data-name="knowledge-graph-api">
+                            <div class="stack-block parent" data-depth="1" data-name="knowledge-graph-api" data-clickable="true">
                                 <div class="label"><span>Knowledge Base Graph API</span></div>
                                 <div class="description">A graph database that is structured using a knowledge representation formalism with a high level API.</div>
 
@@ -377,19 +403,8 @@
                                     </div>
                                 </div>
                             </div>
-
-                            <div class="stack-block parent" data-depth="1" data-name="semantic-language-compatibility">
-                                <div class="label"><span>Semantic Language Compatibility</span></div>
-                                <div class="description">The reasoner can validate that the data conforms to the schema and then use the rules to add new information.</div>
-
-                                <div class="stack-children">
-                                    <div class="stack-block" data-depth="2" data-parent="semantic-language-compatibility" data-app="graph-database-management-system">
-
-                                    </div>
-                                </div>
-                            </div>
                             
-                            <div class="stack-block parent" data-depth="1" data-name="graph-user-interface">
+                            <div class="stack-block parent" data-depth="1" data-name="graph-user-interface" data-clickable="true">
                                 <div class="label"><span>Graph User Interface</span></div>
                                 <div class="description">An inuitive graphical interface to create ontologies, submit queries, navigate data and monitor the cluster.</div>
 
@@ -398,6 +413,14 @@
                                         <div class="label"><span>Ontology editor</span></div>
                                         <div class="description">Intuitive visual editor for domain ontologies.</div>
                                     </div>
+                                    <div class="stack-block" data-depth="2" data-parent="graph-user-interface" data-app="graph-database-management-system knowledge-engineering-tool">
+                                        <div class="label"><span>Domain restriction editor</span></div>
+                                        <div class="description">A component of the ontology editor that allows constraints to be defined for the graph database.</div>
+                                    </div>
+                                    <div class="stack-block" data-depth="2" data-parent="graph-user-interface" data-app="graph-database-management-system knowledge-engineering-tool">
+                                        <div class="label"><span>Inference rule editor</span></div>
+                                        <div class="description">A component of the ontology editor to specify domain inference rules.</div>
+                                    </div>
                                     <div class="stack-block" data-depth="2" data-parent="graph-user-interface" data-app="graph-database-management-system integrated-data-exploration-tool">
                                         <div class="label"><span>Data navigator</span></div>
                                         <div class="description">Exploration of the data visually and via the terminal.</div>
@@ -405,14 +428,6 @@
                                     <div class="stack-block" data-depth="2" data-parent="graph-user-interface" data-app="graph-database-management-system integrated-data-exploration-tool">
                                         <div class="label"><span>Query visualisation</span></div>
                                         <div class="description">Queries are a graph and these can be constructed in a visual way.</div>
-                                    </div>
-                                    <div class="stack-block" data-depth="2" data-parent="graph-user-interface" data-app="graph-database-management-system knowledge-engineering-tool">
-                                        <div class="label"><span>Inference rule editor</span></div>
-                                        <div class="description">A component of the ontology editor to specify domain inference rules.</div>
-                                    </div>
-                                    <div class="stack-block" data-depth="2" data-parent="graph-user-interface" data-app="graph-database-management-system knowledge-engineering-tool">
-                                        <div class="label"><span>Domain restriction editor</span></div>
-                                        <div class="description">A component of the ontology editor that allows constraints to be defined for the graph database.</div>
                                     </div>
                                     <div class="stack-block" data-depth="2" data-parent="graph-user-interface" data-app="graph-database-management-system integrated-data-exploration-tool">
                                         <div class="label"><span>Data clustering</span></div>
@@ -429,74 +444,206 @@
                                 </div>
                             </div>
                             
-                            <div class="stack-block parent" data-depth="1" data-name="data-migration">
-                                <div class="label"><span>Data Migration</span></div>
-                                <div class="description">Intelligent data loading from multiple sources.</div>
+                            <div class="stack-block parent" data-depth="1" data-name="migration" data-clickable="true">
+                                <div class="label"><span>Migration</span></div>
 
                                 <div class="stack-children">
-                                    <div class="stack-block" data-depth="2" data-parent="data-migration" data-app="graph-database-management-system integrated-data-exploration-tool">
-
+                                    <div class="stack-block" data-depth="2" data-parent="migration" data-app="graph-database-management-system integrated-data-exploration-tool">
+                                        <div class="label"><span>Data Migration</span></div>
+                                        <div class="description">Intelligent data loading from multiple sources.</div>
+                                    </div>
+                                    <div class="stack-block" data-depth="2" data-parent="migration" data-app="graph-database-management-system">
+                                        <div class="label"><span>Semantic Language Compatibility</span></div>
+                                        <div class="description">The reasoner can validate that the data conforms to the schema and then use the rules to add new information.</div>
                                     </div>
                                 </div>
                             </div>
                             
-                            <div class="stack-block parent" data-depth="1" data-name="graph-query-language">
+                            <div class="stack-block parent" data-depth="1" data-name="graph-query-language" data-clickable="true">
                                 <div class="label"><span>Graph Query Language</span></div>
                                 <div class="description">A descriptive language that constructs queries that are graphs themselves.</div>
 
                                 <div class="stack-children">
-                                    <div class="stack-block" data-depth="2" data-parent="graph-query-language" data-app="semantic-graph-query-engine semantic-search-engine semantic-graph-expert-system graph-database-management-system integrated-data-exploration-tool">
+                                    <div class="stack-block" data-depth="2" data-parent="graph-query-language" data-app="semantic-graph-query-engine semantic-search-engine semantic-graph-expert-system graph-database-management-system integrated-data-exploration-tool" data-clickable="true">
                                         <div class="label"><span>Data loader</span></div>
                                         <div class="description">Data instances can be loaded into the graph using the query language.</div>
+                                        <div class="content">
+                                            <div class="code-snippet">
+                                                <div class="code">
+                                                    <pre><span class="light">add  </span>
+
+$x <span class="light">isa</span> movie
+   <span class="light">value</span> “The Godfather”;
+  
+$y <span class="light">isa</span> person 
+   <span class="light">value</span> “Francis Ford Coppola”; 
+ 
+$z <span class="light">isa</span> directorship (movie-being-directed $x, director $y);</pre>
+                                                </div>
+                                                <div class="notes">
+                                                    <p>This query adds the movie Godfather and its director to the graph.<br><br> The semantics and the structure are clear from the syntax. Godfather is a movie and Francis Ford Coppola is a person who are related via the relationship directorship that has the two roles movie being directed and director.</p>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="stack-block" data-depth="2" data-parent="graph-query-language" data-app="semantic-graph-query-engine semantic-search-engine semantic-graph-expert-system graph-database-management-system integrated-data-exploration-tool">
+                                    <div class="stack-block" data-depth="2" data-parent="graph-query-language" data-app="semantic-graph-query-engine semantic-search-engine semantic-graph-expert-system graph-database-management-system integrated-data-exploration-tool" data-clickable="true">
                                         <div class="label"><span>Ontology loader</span></div>
                                         <div class="description">The domain ontology that will dictate the structure of the graph is  loaded via the same query language.</div>
+                                        <div class="content">
+                                            <div class="code-snippet">
+                                                <div class="code">
+                                                    <pre><span class="light">add</span>
+  
+$x <span class="light">isa</span> role-type
+   <span class="light">value</span> “director”;
+
+  $y <span class="light">isa</span> role-type
+   <span class="light">value</span> “movie-being-directed”;
+
+  $z <span class="light">isa</span> relation-type
+   <span class="light">value</span> “directorship”
+   <span class="light">has-role</span> $x
+   <span class="light">has-role</span> $y;
+
+$m <span class="light">isa</span> concept-type
+   <span class="light">value</span> “movie” 
+   <span class="light">plays-role</span> $y;
+
+  $p <span class="light">isa</span> concept-type
+   <span class="light">value</span> “person”
+   <span class="light">plays-role</span> $x;</pre>
+                                                </div>
+                                                <div class="notes">
+                                                    <p>This query adds the two roles that form the directorship relationship to the graph, followed by the definition of the relationship itself.<br><br> This illustrates the process of creating an ontology that defines the possible relationships between entities in the graph. Additionally the entities are specified along with the roles they can play in relationships.</p>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="stack-block" data-depth="2" data-parent="graph-query-language" data-app="semantic-graph-query-engine semantic-search-engine semantic-graph-expert-system graph-database-management-system integrated-data-exploration-tool">
+                                    <div class="stack-block" data-depth="2" data-parent="graph-query-language" data-app="semantic-graph-query-engine semantic-search-engine semantic-graph-expert-system graph-database-management-system integrated-data-exploration-tool" data-clickable="true">
                                         <div class="label"><span>Data access</span></div>
                                         <div class="description">Data instances can be retrieved instantaneously.</div>
+                                        <div class="content">
+                                            <div class="code-snippet">
+                                                <div class="code">
+                                                    <pre><span class="white">REQUEST:</span>
+
+<span class="light">select  </span>
+
+$x(value, <span class="light">has</span> rating)
+  
+<span class="light">where</span>
+  
+$x <span class="light">isa</span> movie
+   <span class="light">value</span> “The Godfather”;
+
+<span class="white">RESPONSE:</span>
+
+$x <span class="light">value</span> “The Godfather”
+   <span class="light">has</span> rating 9.2;</pre>
+                                                </div>
+                                                <div class="notes">
+                                                    <p>The retrieval of data from the graph has clear semantics related to the ontology.<br><br> In this query the select statement is used to indicate a query is being executed. The query is asking for the value and rating of a wildcard node in the graph $x. It further specifies that only nodes that are of the type movie are wanted, and specifically the movie with the name Godfather and its rating.</p>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="stack-block" data-depth="2" data-parent="graph-query-language" data-app="semantic-graph-query-engine semantic-search-engine semantic-graph-expert-system graph-database-management-system integrated-data-exploration-tool">
+                                    <div class="stack-block" data-depth="2" data-parent="graph-query-language" data-app="semantic-graph-query-engine semantic-search-engine semantic-graph-expert-system graph-database-management-system integrated-data-exploration-tool" data-clickable="true">
                                         <div class="label"><span>Data semantic search</span></div>
                                         <div class="description">The data can be searched by defining high level concepts, in addition to standard keyword matching.</div>
+                                        <div class="content">
+                                            <div class="code-snippet">
+                                                <div class="code">
+                                                    <pre><span class="white">REQUEST:</span>
+
+<span class="light">select  </span>
+
+$z
+
+  <span class="light">where</span>
+  
+$z <span class="light">isa</span> movie; 
+$x <span class="light">isa</span> movie
+   <span class="light">value</span> “The Godfather”; 
+$y <span class="light">isa</span> person;
+   <span class="light"> isa</span> directorship ($x, $y);
+   <span class="light"> isa</span> directorship ($y, $z);
+
+<span class="white">RESPONSE:</span>
+
+{$z <span class="light">value</span> “The Godfather”}
+ {$z <span class="light">value</span> “Apocalypse Now”}</pre>
+                                                </div>
+                                                <div class="notes">
+                                                    <p>The query language is declarative and leverages the semantics defined in the ontology.<br><br> In this query the search is asking for movies that are directed by the director of the movie Godfather. Three wildcards are defined: a movie $z, the movie $x (Godfather) and a person $y. Then the relationships movie $x — directed-by — person $y AND movie $z — directed-by — person $y are required to exist. All movies directed by Francis Ford Coppola will then be returned. You do not have to consider the most efficient way to retrieve this information, you just have to specify what you want.</p>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="stack-block" data-depth="2" data-parent="graph-query-language" data-app="semantic-graph-query-engine semantic-search-engine semantic-graph-expert-system graph-database-management-system integrated-data-exploration-tool">
+                                    <div class="stack-block" data-depth="2" data-parent="graph-query-language" data-app="semantic-graph-query-engine semantic-search-engine semantic-graph-expert-system graph-database-management-system integrated-data-exploration-tool" data-clickable="true">
                                         <div class="label"><span>Path dependent discovery</span></div>
                                         <div class="description">The query language allows you to traverse the semantic network and obtain suggestions for the next available criteria to narrow search.</div>
+                                        <div class="content">
+                                            <div class="code-snippet">
+                                                <div class="code">
+                                                    <pre><span class="white">REQUEST:</span>
+
+<span class="light">select</span>
+  
+$x
+ 
+<span class="light">where</span>
+  
+$x <span class="light">isa</span> genre;
+ $y <span class="light">id</span> [“The Godfather”,”Apocalypse Now”]; 
+
+($x, $y);
+
+<span class="white">RESPONSE:</span>
+
+{$x <span class="light">value</span> “Crime”} 
+{$x <span class="light">value</span> “War”}</pre>
+                                                </div>
+                                                <div class="notes">
+                                                    <p>The query language allows you to refine your search to specifically what you are interested in. For example, in this query we are finding the genres that apply to a specific set of movies, The Godfather and Apocalypse Now. The set of movies in the initial query could then be further refined using one of the returned genres.</p>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
 
-                            <div class="stack-block parent" data-depth="1" data-name="automated-reasoner">
+                            <div class="stack-block parent" data-depth="1" data-name="automated-reasoner" data-clickable="true">
                                 <div class="label"><span>Automated Reasoner</span></div>
                                 <div class="description">The reasoner can validate that the data conforms to the schema and then use the rules to add new information.</div>
 
                                 <div class="stack-children">
                                     <div class="stack-block" data-depth="2" data-parent="automated-reasoner" data-app="semantic-graph-query-engine semantic-graph-expert-system">
                                         <div class="label"><span>Validate user defined data</span></div>
-                                        <div class="description">The system is able to verify that your data adheres to your own domain constraint definitions.</div>
+                                        <div class="description">The ontology allows a user to strictly define a structure (schema) that the graph must adhere to. This includes details such as: the types of relationships and entities; cardinality of the name of role-players in relationships; and the specific formatting of data used for names and other properties of entities in the graph. In order to maintain clean data, the ontology must be enforced by a validator on construction of the graph. This function forms a part of the automated reasoner.</div>
                                     </div>
                                     <div class="stack-block" data-depth="2" data-parent="automated-reasoner" data-app="semantic-graph-query-engine semantic-graph-expert-system">
                                         <div class="label"><span>Infer implicit information</span></div>
-                                        <div class="description">Using domain specific rules implicit information in the data can be identified and explicitly added to the graph.</div>
+                                        <div class="description">Once a user has specified the set of domain specific rules that are used by the inference engine, such as, realising that you have an uncle if your father has a brother. Implicit information in the data can be automatically identified and explicitly added to the graph. The dependencies of these inferences are also tracked to ensure that they are removed if they are later invalidated by new data.</div>
                                     </div>
                                 </div>
                             </div>
 
-                            <div class="stack-block parent" data-depth="1" data-name="graph-analytics">
+                            <div class="stack-block parent" data-depth="1" data-name="graph-analytics" data-clickable="true">
                                 <div class="label"><span>Graph Analytics</span></div>
                                 <div class="description">Analytics on highly connected big data.</div>
 
                                 <div class="stack-children">
                                     <div class="stack-block" data-depth="2" data-parent="graph-analytics" data-app="integrated-data-exploration-tool">
                                         <div class="label"><span>Big data</span></div>
+                                        <div class="description">Store structured graphs in a horizontally scalable and distributed system. Take graph analytics to your data when it is too large to fit on a single machine.</div>
                                     </div>
                                     <div class="stack-block" data-depth="2" data-parent="graph-analytics" data-app="integrated-data-exploration-tool">
                                         <div class="label"><span>Graph analytics</span></div>
+                                        <div class="description">Discover the information contained in the structure of your data. Uncover hidden communities and unexpected relationships between entities.</div>
                                     </div>
                                     <div class="stack-block" data-depth="2" data-parent="graph-analytics" data-app="integrated-data-exploration-tool">
                                         <div class="label"><span>Statistics</span></div>
+                                        <div class="description">Extract specific data sets amongst highly connected data and compute useful aggregate measures efficiently.</div>
                                     </div>
                                     <div class="stack-block" data-depth="2" data-parent="graph-analytics" data-app="integrated-data-exploration-tool">
                                         <div class="label"><span>Visualiser</span></div>
@@ -507,36 +654,11 @@
                         </div>
                     </div>
                     <div class="layers">
-                        <div data-depth="0"></div>
+                        <div class="active" data-depth="0"></div>
                         <div data-depth="1"></div>
                         <div data-depth="2"></div>
                         <div data-depth="3"></div>
-                    </div>
-                    <div class="apps">
-                        <div class="app" data-name="semantic-graph-query-engine" data-colour="c-white">
-                            <svg class="c-white"><use xlink:href="#icon-underlay" /></svg>
-                            <span>Semantic graph query engine</span>
-                        </div>
-                        <div class="app" data-name="semantic-search-engine" data-colour="c-green">
-                            <svg class="c-green"><use xlink:href="#icon-underlay" /></svg>
-                            <span>Semantic search engine</span>
-                        </div>
-                        <div class="app" data-name="semantic-graph-expert-system" data-colour="c-red">
-                            <svg class="c-red"><use xlink:href="#icon-underlay" /></svg>
-                            <span>Semantic graph expert system</span>
-                        </div>
-                        <div class="app" data-name="graph-database-management-system" data-colour="c-black">
-                            <svg class="c-black"><use xlink:href="#icon-underlay" /></svg>
-                            <span>Graph database management system</span>
-                        </div>
-                        <div class="app" data-name="knowledge-engineering-tool" data-colour="c-blue">
-                            <svg class="c-blue"><use xlink:href="#icon-underlay" /></svg>
-                            <span>Knowledge engineering tool</span>
-                        </div>
-                        <div class="app" data-name="integrated-data-exploration-tool" data-colour="c-yellow">
-                            <svg class="c-yellow"><use xlink:href="#icon-underlay" /></svg>
-                            <span>Integrated data exploration tool</span>
-                        </div>
+                        <span class="up"><i>&nwarr;</i> Back</span>
                     </div>
                 </div>
             </div>

@@ -1,5 +1,123 @@
 .stack{
+    &-apps{
+        margin-bottom: 15px;
+        @include transition(opacity 100ms ease-in-out);
+
+        &:after{
+            content: '';
+            display: table;
+            clear: both;
+        }
+
+        &.active{
+            pointer-events: auto;
+            opacity: 1;
+        }
+
+        span{
+            font-size: 1.2rem;
+            line-height: 60px;
+            pointer-events: none;
+            display: inline-block;
+            vertical-align: middle;
+        }
+        
+        svg{
+            width: 30px;
+            height: 30px;
+            display: inline-block;
+            vertical-align: middle;
+            margin: 15px 15px 15px 0;
+
+            use{
+                stroke: $blackc;
+                stroke-width: 0.6;
+                fill: $transparent;
+                @include transition(fill 100ms ease-in-out);
+            }
+
+            &.c{
+                &-white{
+                    use{
+                        stroke: $white;
+                    }
+                }
+                &-black{
+                    use{
+                        stroke: $blackc;
+                    }
+                }
+                &-blue{
+                    use{
+                        stroke: $shiftBlue;
+                    }
+                }
+                &-red{
+                    use{
+                        stroke: $pastelRed;
+                    }
+                }
+                &-green{
+                    use{
+                        stroke: $shiftGreen;
+                    }
+                }
+                &-yellow{
+                    use{
+                        stroke: $pastelYellow;
+                    }
+                }
+            }
+        }
+
+        >div{
+            white-space: nowrap;
+            width: 33.33%;
+            float: left;
+            height: 60px;
+
+            &.active,
+            &:hover{
+                svg{
+                    &.c{
+                        &-white{
+                            use{
+                                fill: $white;
+                            }
+                        }
+                        &-black{
+                            use{
+                                fill: $blackc;
+                            }
+                        }
+                        &-blue{
+                            use{
+                                fill: $shiftBlue;
+                            }
+                        }
+                        &-red{
+                            use{
+                                fill: $pastelRed;
+                            }
+                        }
+                        &-green{
+                            use{
+                                fill: $shiftGreen;
+                            }
+                        }
+                        &-yellow{
+                            use{
+                                fill: $pastelYellow;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
     &-tech{
+        margin-bottom: 90px;
         width: 100%;
         height: 400px;
         position: relative;
@@ -10,136 +128,46 @@
             float: left;
         }
 
-        .apps{
-            position: absolute;
-            bottom: 20px;
-            left: 20px;
-            height: 11.3rem;
-            opacity: 0;
-            pointer-events: none;
-            @include transition(opacity 100ms ease-in-out);
-
-            &.active{
-                pointer-events: auto;
-                opacity: 1;
-            }
-
-            span{
-                line-height: 1.5rem;
-                pointer-events: none;
-                width: 0;
-                display: inline-block;
-                opacity: 0;
-                vertical-align: middle;
-                @include transition(opacity 100ms ease-in-out);
-            }
-            
-            svg{
-                width: 1.5rem;
-                height: 1.5rem;
-                display: inline-block;
-                vertical-align: middle;
-                margin-right: 0.3rem;
-                opacity: 0.4;
-
-                use{
-                    stroke: $blackc;
-                    fill: $transparent;
-                    @include transition(fill 100ms ease-in-out);
-                }
-
-                &.c{
-                    &-white{
-                        use{
-                            stroke: $white;
-                        }
-                    }
-                    &-black{
-                        use{
-                            stroke: $blackc;
-                        }
-                    }
-                    &-blue{
-                        use{
-                            stroke: $brandBlue;
-                        }
-                    }
-                    &-red{
-                        use{
-                            stroke: $pastelRed;
-                        }
-                    }
-                    &-green{
-                        use{
-                            stroke: $brandGreen;
-                        }
-                    }
-                    &-yellow{
-                        use{
-                            stroke: $pastelYellow;
-                        }
-                    }
-                }
-            }
-
-            >div{
-                clear: left;
-                margin-bottom: 0.5rem;
-                white-space: nowrap;
-                width: 1.5rem;
-
-                &.active,
-                &:hover{
-                    span{
-                        opacity: 1;
-                    }
-                    
-                    svg{
-                        opacity: 0.8;
-                        
-                        &.c{
-                            &-white{
-                                use{
-                                    fill: $white;
-                                }
-                            }
-                            &-black{
-                                use{
-                                    fill: $blackc;
-                                }
-                            }
-                            &-blue{
-                                use{
-                                    fill: $brandBlue;
-                                }
-                            }
-                            &-red{
-                                use{
-                                    fill: $pastelRed;
-                                }
-                            }
-                            &-green{
-                                use{
-                                    fill: $brandGreen;
-                                }
-                            }
-                            &-yellow{
-                                use{
-                                    fill: $pastelYellow;
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
         .layers{
             position: absolute;
             top: 10px;
             right: 20px;
 
+            .up{
+                text-align: center;
+                font-size: 0.9rem;
+                display: block;
+                height: 40px;
+                width: 40px;
+                line-height: 40px;
+                position: absolute;
+                left: 0;
+                top: 30px;
+                opacity: 0;
+                pointer-events: none;
+                white-space: nowrap;
+                @include transition(top 100ms ease-in-out, opacity 100ms ease-in-out);
+
+                &.active{
+                    cursor: pointer;
+                    opacity: 1;
+                    pointer-events: auto;
+                }
+
+                &:active{
+                    i{
+                        @include transform(translateX(-5px) translateY(-5px));
+                    }
+                }
+
+                i{
+                    display: inline-block;
+                    @include transition(transform 100ms ease-in-out);
+                }
+            }
+
             >div{
+                cursor: pointer;
                 background-color: $white;
                 width: 40px;
                 height: 40px;
@@ -180,7 +208,13 @@
 
                 @for $i from 2 through 10 {
                     &:nth-child(#{$i}){
-                        top: ((-$i+1)*5)+px
+                        top: ((-$i+1)*5)+px;
+
+                        &.active{
+                            ~.up{
+                                top: 30px + ($i * 10px);
+                            }
+                        }
                     }
                 }
 
@@ -263,6 +297,79 @@
         box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.1);
         @include transition(opacity 100ms ease-in-out, box-shadow 100ms ease-in-out, width 100ms ease-in-out, height 100ms ease-in-out, top 100ms ease-in-out, left 100ms ease-in-out, background-color 100ms ease-in-out);
 
+        &[data-clickable="true"]{
+            &:not(.active){
+                cursor: pointer;
+            }
+        }
+
+        .content{
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            font-size: 0.2rem;
+            opacity: 0.3;
+            @include transition(font-size 100ms ease-in-out, opacity 100ms ease-in-out);
+
+            .code{
+                float: left;
+
+                pre{
+                    text-align: left;
+                    display: inline-block;
+                    vertical-align: middle;
+                    font-family: 'Courier New', Courier, monospace;
+                    white-space: pre-wrap;
+                    color: $pastelYellow;
+
+                    .light{
+                        color: $pastelRed;
+                    }
+
+                    .white{
+                        color: $white;
+                    }
+                }
+
+                &-snippet{
+                    height: 100%;
+                    
+                    >div{
+                        box-sizing: border-box;
+                        width: 50%;
+                        height: 100%;
+                        padding: 2.5%;
+                        text-align: center;
+                        white-space: nowrap;
+
+                        &:before{
+                            content: '';
+                            display: inline-block;
+                            height: 100%;
+                            vertical-align: middle;
+                        }
+                    }
+
+                    .notes{
+                        float: right;
+
+                        p{
+                            width: 100%;
+                            line-height: 0.4rem;
+                            text-align: left;
+                            display: inline-block;
+                            vertical-align: middle;
+                            white-space: normal;
+                            @include transition(line-height 100ms ease-in-out);
+                        }
+                    }
+                }
+            }
+        }
+
         &[data-colour="c-white"]{
             background-color: $white;
         }
@@ -272,11 +379,11 @@
         &[data-colour="c-blue"]{
             background-color: $brandBlue;
         }
-        &[data-colour="c-red"]{
-            background-color: $pastelRed;
-        }
         &[data-colour="c-green"]{
             background-color: $brandGreen;
+        }
+        &[data-colour="c-red"]{
+            background-color: $pastelRed;
         }
         &[data-colour="c-yellow"]{
             background-color: $pastelYellow;
@@ -293,6 +400,19 @@
             margin: 0 !important;
             position: absolute !important;
             float: none !important;
+
+            >.content{
+                font-size: 1rem;
+                opacity: 1;
+
+                .code-snippet{
+                    .notes{
+                        p{
+                            line-height: 1.2rem;
+                        }
+                    }
+                }
+            }
 
             >.stack-children{
                 opacity: 1;
@@ -382,7 +502,6 @@
             height: 100%;
             top: 0;
             left: 0;
-            @include transition(transform 200ms ease-in-out);
 
             >.label{
                 font-size: 2rem;
@@ -392,7 +511,7 @@
                 [data-name="knowledge-graph-api"]{
                     top: 0;
                     left: 0;
-                    width: 55%;
+                    width: 100%;
 
                     .stack-children{
                         .stack-block{
@@ -421,11 +540,6 @@
                             }
                         }
                     }
-                }
-                [data-name="semantic-language-compatibility"]{
-                    top: 0;
-                    left: 55%;
-                    width: 45%;
                 }
 
                 [data-name="graph-user-interface"]{
@@ -456,10 +570,22 @@
                         }
                     }
                 }
-                [data-name="data-migration"]{
+                [data-name="migration"]{
                     top: 33.33%;
                     left: 60%;
                     width: 40%;
+
+                    .stack-children{
+                        .stack-block{
+                            height: 100%;
+                            width: 50%;
+
+                            &:nth-child(2){
+                                padding: 0 0 0 1px;
+                                margin: 0 0 0 -1px;
+                            }
+                        }
+                    }
                 }
 
                 [data-name="graph-query-language"]{
@@ -542,6 +668,472 @@
                                     margin: -1px 0 0 -1px;
                                 }
                             }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media only screen
+    and (max-width: 339px) {
+    
+    .stack{
+        
+        &-apps{
+            
+            span{
+                font-size: 0.9rem;
+                line-height: 30px;
+            }
+            
+            svg{
+                width: 20px;
+                height: 20px;
+                margin: 5px 5px 5px 0;
+
+                use{
+                    stroke-width: 0.9;
+                }
+            }
+
+            >div{
+                width: 100%;
+                float: none;
+                height: 30px;
+            }
+        }
+
+        &-tech{
+            margin-bottom: 15px;
+            height: 240px;
+
+            .layers{
+                top: 0;
+                right: 0;
+                
+                >div{
+                    display: none;
+                }
+
+                .up{
+                    font-size: 0.7rem;
+                    position: relative;
+                    top: 0 !important;
+                }
+            }
+        }
+
+        &-block{
+            &.active{
+                >.content{
+                    font-size: 0.5rem;
+
+                    .code-snippet{
+                        .notes{
+                            p{
+                                line-height: 0.7rem;
+                            }
+                        }
+                    }
+                }
+                
+                >.stack-children{
+                    >.stack-block{
+                        >.label{
+                            font-size: 0.8rem;
+                            line-height: 0.9rem;
+                        }
+                        >.description{
+                            font-size: 0.6rem;
+                            line-height: 0.65rem;
+                        }
+
+                        &:hover{
+                            >.label{
+                                opacity: 0;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media only screen
+    and (min-width: 340px)
+    and (max-width: 559px) {
+    
+    .stack{
+        
+        &-apps{
+            
+            span{
+                font-size: 1rem;
+                line-height: 30px;
+            }
+            
+            svg{
+                width: 20px;
+                height: 20px;
+                margin: 5px 5px 5px 0;
+
+                use{
+                    stroke-width: 0.9;
+                }
+            }
+
+            >div{
+                width: 100%;
+                float: none;
+                height: 30px;
+            }
+        }
+
+        &-tech{
+            margin-bottom: 30px;
+            height: 320px;
+
+            .layers{
+                top: 0;
+                right: 0;
+                
+                >div{
+                    display: none;
+                }
+
+                .up{
+                    font-size: 0.8rem;
+                    position: relative;
+                    top: 0 !important;
+                }
+            }
+        }
+
+        &-block{
+            &.active{
+                >.content{
+                    font-size: 0.7rem;
+
+                    .code-snippet{
+                        .notes{
+                            p{
+                                line-height: 0.9rem;
+                            }
+                        }
+                    }
+                }
+                
+                >.stack-children{
+                    >.stack-block{
+                        >.label{
+                            font-size: 0.9rem;
+                            line-height: 1rem;
+                        }
+                        >.description{
+                            font-size: 0.7rem;
+                            line-height: 0.75rem;
+                        }
+
+                        &:hover{
+                            >.label{
+                                opacity: 0;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media only screen
+    and (min-width: 560px)
+    and (max-width: 719px) {
+    
+    .stack{
+        
+        &-apps{
+            
+            span{
+                font-size: 0.9rem;
+                line-height: 40px;
+            }
+            
+            svg{
+                width: 24px;
+                height: 24px;
+                margin: 8px 5px 8px 0;
+
+                use{
+                    stroke-width: 0.9;
+                }
+            }
+
+            >div{
+                width: 50%;
+                height: 40px;
+            }
+        }
+
+        &-tech{
+            margin-bottom: 60px;
+            height: 380px;
+        }
+
+        &-block{
+            &.active{
+                >.content{
+                    font-size: 0.8rem;
+
+                    .code-snippet{
+                        .notes{
+                            p{
+                                line-height: 0.95rem;
+                            }
+                        }
+                    }
+                }
+                
+                >.stack-children{
+                    >.stack-block{
+                        >.label{
+                            font-size: 0.8rem;
+                            line-height: 0.9rem;
+                        }
+                        >.description{
+                            font-size: 0.8rem;
+                            line-height: 0.85rem;
+                        }
+
+                        &:hover{
+                            >.label{
+                                opacity: 0;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media only screen
+    and (min-width: 720px)
+    and (max-width: 999px) {
+    
+    .stack{
+        
+        &-apps{
+            
+            span{
+                font-size: 1.1rem;
+                line-height: 60px;
+            }
+            
+            svg{
+                width: 28px;
+                height: 28px;
+                margin: 16px 10px 16px 0;
+
+                use{
+                    stroke-width: 0.7;
+                }
+            }
+
+            >div{
+                width: 50%;
+                height: 60px;
+            }
+        }
+
+        &-tech{
+            margin-bottom: 90px;
+            height: 420px;
+        }
+
+        &-block{
+            &.active{
+                >.content{
+                    font-size: 1rem;
+
+                    .code-snippet{
+                        .notes{
+                            p{
+                                line-height: 1.2rem;
+                            }
+                        }
+                    }
+                }
+                
+                >.stack-children{
+                    >.stack-block{
+                        >.label{
+                            font-size: 0.9rem;
+                            line-height: 1rem;
+                        }
+                        >.description{
+                            font-size: 0.9rem;
+                            line-height: 1rem;
+                        }
+
+                        &:hover{
+                            >.label{
+                                opacity: 0;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media only screen
+    and (min-width: 1000px)
+    and (max-width: 1319px) {
+    
+    .stack{
+        
+        &-apps{
+            
+            span{
+                font-size: 1rem;
+                line-height: 60px;
+            }
+            
+            svg{
+                width: 28px;
+                height: 28px;
+                margin: 16px 10px 16px 0;
+
+                use{
+                    stroke-width: 0.7;
+                }
+            }
+
+            >div{
+                width: 33.33%;
+                height: 60px;
+            }
+        }
+
+        &-tech{
+            margin-bottom: 90px;
+            height: 420px;
+        }
+
+        &-block{
+            &.active{
+                >.stack-children{
+                    >.stack-block{
+                        >.description{
+                            font-size: 0.9rem;
+                            line-height: 1rem;
+                        }
+
+                        &:hover{
+                            >.label{
+                                opacity: 0;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media only screen
+    and (min-width: 1320px) {
+    
+    .stack{
+        
+        &-apps{
+            
+            span{
+                font-size: 1.1rem;
+                line-height: 60px;
+            }
+            
+            svg{
+                width: 30px;
+                height: 30px;
+                margin: 15px 10px 15px 0;
+
+                use{
+                    stroke-width: 0.7;
+                }
+            }
+
+            >div{
+                width: 33.33%;
+                height: 60px;
+            }
+        }
+
+        &-tech{
+            margin-bottom: 90px;
+            height: 460px;
+        }
+
+        &-block{
+            &.active{
+                >.stack-children{
+                    >.stack-block{
+                        >.description{
+                            font-size: 1rem;
+                            line-height: 1.1rem;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media only screen
+    and (min-width: 1600px) {
+    
+    .stack{
+        
+        &-apps{
+            
+            span{
+                font-size: 1rem;
+                line-height: 60px;
+            }
+            
+            svg{
+                width: 32px;
+                height: 32px;
+                margin: 14px 10px 14px 0;
+
+                use{
+                    stroke-width: 0.7;
+                }
+            }
+
+            >div{
+                width: 33.33%;
+                height: 60px;
+            }
+        }
+
+        &-tech{
+            margin-bottom: 90px;
+            height: 520px;
+        }
+
+        &-block{
+            &.active{
+                >.stack-children{
+                    >.stack-block{
+                        >.description{
+                            font-size: 0.8rem;
+                            line-height: 0.9rem;
                         }
                     }
                 }

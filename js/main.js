@@ -874,7 +874,8 @@ window.MNDMPS = {
     initTechStack: function() {
 
         var data = this.data,
-            dummy = document.createElement('div');
+            dummy = document.createElement('div'),
+            globalDepth = 0;
         
         dummy.classList.add('dummy');
 
@@ -889,9 +890,17 @@ window.MNDMPS = {
                 }
             }
 
-            if (depth >= 0) {
-                data.apps.classList.add('active');
+            if (depth > 0) {
+                layers[layers.length-1].classList.add('active');
+            } else {
+                layers[layers.length-1].classList.remove('active');
             }
+
+            if (depth < 2) {
+                resetHighlight();
+            }
+
+            globalDepth = depth;
         }
 
         function appendDummyBefore(el) {
@@ -935,22 +944,32 @@ window.MNDMPS = {
         function setDepth(event) {
             var depth = event.target.dataset.depth;
 
-            if (depth) {
-                var stackBlocks = data.techStack.getElementsByClassName('stack-block');
+            if (!depth) {
+                if (!event.target.classList.contains('up')) {
+                    return;
+                } else {
+                    depth = globalDepth - 1;
 
-                removeDummy();
-                depth = parseInt(depth, 10);
-
-                for (var i = 0; i < stackBlocks.length; i++) {
-                    if (stackBlocks[i].dataset.depth > depth) {
-                        stackBlocks[i].removeAttribute('style');
-                        stackBlocks[i].classList.remove('active');
-                        stackBlocks[i].classList.remove('inactive');
+                    if (depth < 0) {
+                        return;
                     }
                 }
-
-                processLayers(depth);
             }
+            
+            var stackBlocks = data.techStack.getElementsByClassName('stack-block');
+
+            removeDummy();
+            depth = parseInt(depth, 10);
+
+            for (var i = 0; i < stackBlocks.length; i++) {
+                if (stackBlocks[i].dataset.depth > depth) {
+                    stackBlocks[i].removeAttribute('style');
+                    stackBlocks[i].classList.remove('active');
+                    stackBlocks[i].classList.remove('inactive');
+                }
+            }
+
+            processLayers(depth);
         }
 
         function checkClick(event) {
@@ -958,7 +977,7 @@ window.MNDMPS = {
 
             if (clickedEls.length) {
                 for (var i = clickedEls.length - 1; i >= 0; i--) {
-                    if (!clickedEls[i].classList.contains('active')) {
+                    if (!clickedEls[i].classList.contains('active') && clickedEls[i].dataset.clickable) {
                         deactivateSiblings(clickedEls[i]);
                         activateBlock(clickedEls[i]);
                         break;
@@ -994,28 +1013,78 @@ window.MNDMPS = {
 
         function checkApp(event) {
 
-            switch(event.type) {
-                case 'mouseover':
-                    var el = getParentElement(event.target, 'app');
-                    
-                    highlightBlock(el.dataset.name, el.dataset.colour);
-                    break;
-                case 'mouseout':
-                    removeHighlights();
-                    break;
-                default:
-                    break;
+            if (globalDepth >= 0) {
+                switch(event.type) {
+                    case 'mouseover':
+                        var el = getParentElement(event.target, 'app');
+
+                        if (el) {
+                            highlightBlock(el.dataset.name, el.dataset.colour);
+                        }
+                        break;
+                    case 'mouseout':
+                        removeHighlights();
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }
+
+        function resetHighlight() {
+            var appItems = data.apps.children;
+
+            for (var i = 0; i < appItems.length; i++) {
+                appItems[i].classList.remove('active');
+            }
+        }
+
+        function highlightApp(event) {
+
+            if (globalDepth < 2) {
+                resetHighlight();
+            }
+
+            if (globalDepth === 1) {
+                switch(event.type) {
+                    case 'mousemove':
+                        var blocks = getParentElements(event.target, 'stack-block'),
+                            appItems = data.apps.children,
+                            apps = [];
+
+                        for (var i = 0; i < blocks.length; i++) {
+                            if (blocks[i].dataset.app) {
+                                apps = blocks[i].dataset.app.split(' ');
+                                break;
+                            }
+                        }
+
+                        for (i = 0; i < apps.length; i++) {
+                            for (var j = 0; j < appItems.length; j++) {
+                                if (appItems[j].dataset.name === apps[i]) {
+                                    appItems[j].classList.add('active');
+                                }
+                            }
+                        }
+                        break;
+                    default:
+                        break;
+                }
             }
         }
 
         data.techStack = document.getElementsByClassName('stack-tech')[0];
         data.layers = data.techStack.getElementsByClassName('layers')[0];
-        data.apps = data.techStack.getElementsByClassName('apps')[0];
+        data.apps = data.techStack.previousElementSibling;
 
         data.techStack.addEventListener('click', checkClick, false);
         data.layers.addEventListener('click', setDepth, false);
+        
         data.apps.addEventListener('mouseover', checkApp, false);
         data.apps.addEventListener('mouseout', checkApp, false);
+
+        data.techStack.addEventListener('mousemove', highlightApp, false);
+        data.techStack.addEventListener('mouseout', highlightApp, false);
     },
 
     init: function() {
