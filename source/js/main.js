@@ -102,7 +102,7 @@ window.MNDMPS = {
         var _this = this,
             container = document.getElementsByClassName('splash')[0],
             SCREEN_WIDTH = f_clientWidth(),
-            SCREEN_HEIGHT = f_clientHeight(),
+            SCREEN_HEIGHT = f_clientHeight() * 0.8, // 80% of window height
             INIT_SCREEN_HEIGHT = f_clientHeight(),
 
             renderer = new THREE.WebGLRenderer({antialias: true, alpha: true}),
@@ -470,7 +470,7 @@ window.MNDMPS = {
             _this.processScroll(f_scrollTop(), f_scrollLeft());
 
             SCREEN_WIDTH = _this.data.windowWidth;
-            SCREEN_HEIGHT = _this.data.windowHeight;
+            SCREEN_HEIGHT = _this.data.windowHeight * 0.8; // 80% of window height
 
             logoScale = SCREEN_HEIGHT/INIT_SCREEN_HEIGHT;
 
@@ -592,6 +592,10 @@ window.MNDMPS = {
             logoGroup.scale.set(logoScale, logoScale, logoScale);
         }
 
+        function refreshPosition() {
+            logoGroup.position.setY(SCREEN_HEIGHT * 0.13);
+        }
+
         _this.data.mouseX = SCREEN_WIDTH/2;
         _this.data.mouseY = SCREEN_HEIGHT/2;
 
@@ -624,6 +628,7 @@ window.MNDMPS = {
                 redrawNodeLines();
                 processRandomFaces();
                 refreshCamera();
+                refreshPosition();
                 refreshScale();
                 render();
             }
@@ -720,7 +725,7 @@ window.MNDMPS = {
             this.refreshMousePositionOnScroll(scrolledY, scrolledX);
         }
 
-        if (scrolledY > this.data.windowHeight - this.data.menuBar.offsetHeight) {
+        if (scrolledY > this.data.windowHeight * 0.55 - this.data.menuBar.offsetHeight) {
             this.data.menuBar.classList.add('scrolled');
             this.data.threeDRunning = false;
         } else {
@@ -871,220 +876,367 @@ window.MNDMPS = {
         container.appendChild(svgSplash);
     },
 
-    initTechStack: function() {
+    dontScrollParent: function(el, turnOff) {
 
-        var data = this.data,
-            dummy = document.createElement('div'),
-            globalDepth = 0;
+        function catchScroll(ev) {
+            var scrollTop    = this.scrollTop,
+                scrollHeight = this.scrollHeight,
+                height       = this.offsetHeight,
+                delta        = ev.wheelDelta,
+                up           = delta > 0;
+            
+            function prevent() {
+                ev.stopPropagation();
+                ev.preventDefault();
+                ev.returnValue = false;
+                return false;
+            }
+    
+            if (!up && -delta > scrollHeight - height - scrollTop) {
+                this.scrollTop = scrollHeight;
+                return prevent();
+            } else if (up && delta > scrollTop) {
+                this.scrollTop = 0;
+                return prevent();
+            }
+        }
+
+        el.removeEventListener('DOMMouseScroll', catchScroll, false);
+        el.removeEventListener('mousewheel', catchScroll, false);
         
-        dummy.classList.add('dummy');
-
-        function processLayers(depth) {
-            var layers = data.layers.children;
-
-            for (var i = 0; i < layers.length; i++) {
-                if (i <= depth) {
-                    layers[i].classList.add('active');
-                } else {
-                    layers[i].classList.remove('active');
-                }
-            }
-
-            if (depth > 0) {
-                layers[layers.length-1].classList.add('active');
-            } else {
-                layers[layers.length-1].classList.remove('active');
-            }
-
-            if (depth < 2) {
-                resetHighlight();
-            }
-
-            globalDepth = depth;
+        if (!turnOff) {
+            el.addEventListener('DOMMouseScroll', catchScroll, false);
+            el.addEventListener('mousewheel', catchScroll, false);
         }
+    },
 
-        function appendDummyBefore(el) {
-            dummy.style.width = el.offsetWidth + 'px';
-            dummy.style.height = el.offsetHeight + 'px';
-
-            el.parentNode.insertBefore(dummy, el);
-        }
-
-        function removeDummy() {
-            if (dummy.parentNode) {
-                dummy.parentNode.removeChild(dummy);
-            }
-        }
-
-        function activateBlock(el) {
-            el.style.top = el.offsetTop + 'px';
-            el.style.left = el.offsetLeft + 'px';
-            el.classList.remove('inactive');
-
-            setTimeout(function() {
-                appendDummyBefore(el);
-                el.classList.add('active');
-            }, 0);
-            
-            processLayers(parseInt(el.dataset.depth, 10));
-        }
-
-        function deactivateSiblings(el) {
-            var siblings = getSiblings(el);
-
-            for (var i = 0; i < siblings.length; i++) {
-                if (siblings[i].classList.contains('stack-block')) {
-                    siblings[i].removeAttribute('style');
-                    siblings[i].classList.remove('active');
-                    siblings[i].classList.add('inactive');
-                }
-            }
-        }
-
-        function setDepth(event) {
-            var depth = event.target.dataset.depth;
-
-            if (!depth) {
-                if (!event.target.classList.contains('up')) {
-                    return;
-                } else {
-                    depth = globalDepth - 1;
-
-                    if (depth < 0) {
-                        return;
+    initSlick: function() {
+        $('.slider-container').slick({
+            slidesToShow: 1,
+            slidesToScroll: 1,
+            cssEase: 'ease-in-out',
+            infinite: false,
+            dots: true,
+            easing: 'easeInOutQuart',
+            mobileFirst: true,
+            lazyLoad: 'progressive',
+            speed: 200,
+            zIndex: 1,
+            arrows: false,
+            responsive: [
+                {
+                    breakpoint: 559,
+                    settings: {
+                        arrows: true,
+                        draggable: false
                     }
                 }
-            }
+            ]
+        });
+    },
+
+    initGraph: function(obj) {
+
+        var nodes = {},
+            lines_iterator = 0;
+
+        // Compute the distinct nodes from the links.
+        obj.links.forEach(function(link) {
+            link.source = nodes[link.source] || (nodes[link.source] = {name: link.source});
+            link.target = nodes[link.target] || (nodes[link.target] = {name: link.target});
+        });
+
+        var width = parseInt(obj.size.width, 10),
+            height = parseInt(obj.size.height, 10),
+            hypotenuse = Math.sqrt(Math.pow(width, 2) + Math.pow(height, 2));
+
+        var force = d3.layout.force()
+            .nodes(d3.values(nodes))
+            .links(obj.links)
+            .size([width, height])
+            .linkDistance(Math.floor(hypotenuse/7))
+            .charge(-Math.floor(hypotenuse/4))
+            .on("tick", tick)
+            .start();
+
+        var svg = d3.select(obj.node).append("svg")
+            .attr("width", width)
+            .attr("height", height);
+
+        // build the arrow.
+        svg.append("svg:defs").selectAll("marker")
+            .data(["end"]) //Different link/path types can be defined here
+                .enter().append("svg:marker")
+            .attr("id", 'end')
+            .attr("viewBox", "0 0 20 20")
+            .attr("refX", 46)
+            .attr("refY", 10)
+            .attr("markerWidth", 6)
+            .attr("markerHeight", 6)
+            .attr("orient", "auto")
+                .append("svg:path")
+            .attr("d", "M 0 0 L 20 10 L 0 20 z");
+
+        var link = svg.selectAll(".link")
+            .data(force.links())
+            .enter().append("g")
+            .attr("class", "link");
             
-            var stackBlocks = data.techStack.getElementsByClassName('stack-block');
+        var line = link.append("line")
+            .attr("marker-end", "url(#end)");
 
-            removeDummy();
-            depth = parseInt(depth, 10);
+        lines_iterator = 0;
 
-            for (var i = 0; i < stackBlocks.length; i++) {
-                if (stackBlocks[i].dataset.depth > depth) {
-                    stackBlocks[i].removeAttribute('style');
-                    stackBlocks[i].classList.remove('active');
-                    stackBlocks[i].classList.remove('inactive');
+        // Add a text label.
+        var link_text = link.append("text")
+            .attr('text-anchor', 'middle')
+            .text(function(d) {
+                return d.relation;
+            });
+
+        var node = svg.selectAll(".node")
+            .data(force.nodes())
+                .enter().append("g")
+            .attr("class", "node")
+            .on("mouseover", mouseover)
+            .on("mouseout", mouseout)
+            .call(force.drag);
+
+        node.append("circle")
+            .attr("r", 8)
+            .attr('class', function(d) {
+
+                var name = d.name;
+                
+                if (name.split('_')[0].indexOf('empty') > -1) {
+                    return 'empty';
                 }
-            }
 
-            processLayers(depth);
+                if (name.split('^').length > 1) {
+                    return 'concept';
+                }
+            });
+
+        node.append("text")
+            .attr("x", 12)
+            .attr("y", 4)
+            .text(function(d) {
+
+                var name = d.name;
+                
+                if (name.split('_')[0].indexOf('empty') > -1) {
+                    name = '';
+                }
+
+                if (name.split('^').length > 1) {
+                    name = name.split('^')[1];
+                }
+                
+                return name;
+            });
+
+        function tick() {
+            line
+                .attr("x1", function(d) { return d.source.x; })
+                .attr("y1", function(d) { return d.source.y; })
+                .attr("x2", function(d) { return d.target.x; })
+                .attr("y2", function(d) { return d.target.y; });
+
+            link_text
+                .attr("x", function(d) { return (d.source.x + d.target.x)/2; })
+                .attr("y", function(d) { return (d.source.y + d.target.y)/2; });
+
+            node
+                .attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; });
         }
 
-        function checkClick(event) {
-            var clickedEls = getParentElements(event.target, 'stack-block');
-
-            if (clickedEls.length) {
-                for (var i = clickedEls.length - 1; i >= 0; i--) {
-                    if (!clickedEls[i].classList.contains('active') && clickedEls[i].dataset.clickable) {
-                        deactivateSiblings(clickedEls[i]);
-                        activateBlock(clickedEls[i]);
-                        break;
-                    }
-                }
-            }
+        function mouseover() {
+            d3.select(this).select("circle").transition()
+                .duration(100)
+                .attr("r", 9);
         }
 
-        function highlightBlock(attr, colour) {
-            var blocks = data.techStack.getElementsByClassName('stack-block'),
-                apps = null;
+        function mouseout() {
+            d3.select(this).select("circle").transition()
+                .duration(100)
+                .attr("r", 8);
+        }
+    },
+
+    initGraphs: function() {
+        var links = [
+            [
+                {source: "empty_link1", target: "$y: James Cameron", relation: "director"},
+                {source: "empty_link2", target: "$y: James Cameron", relation: "director"},
+                {source: "$y: James Cameron", target: "concept^person", relation: "isa"},
+                {source: "concept^person", target: "concept^concept-type", relation: "isa"},
+                {source: "concept^movie", target: "concept^concept-type", relation: "isa"},
+                {source: "$x: Titanic", target: "concept^movie", relation: "isa"},
+                {source: "$z: Avatar", target: "concept^movie", relation: "isa"},
+                {source: "empty_link1", target: "concept^directorship", relation: "isa"},
+                {source: "empty_link2", target: "concept^directorship", relation: "isa"},
+                {source: "concept^directorship", target: "concept^relation-type", relation: "isa"}
+            ],
+            [
+                {source: "concept^has", target: "Star Wars: Episode VII", relation: "value"},
+                {source: "Star Wars: Episode VII", target: "concept^title", relation: "isa"},
+                {source: "concept^title", target: "concept^resource-type", relation: "isa"},
+                {source: "concept^has", target: "$x: uuid-1234", relation: "owner"},
+                {source: "$x: uuid-1234", target: "concept^movie", relation: "isa"},
+                {source: "concept^movie", target: "concept^concept-type", relation: "isa"},
+                {source: "concept^has", target: "8.3", relation: "value"},
+                {source: "concept^has", target: "18 Dec 2015", relation: "value"},
+                {source: "18 Dec 2015", target: "concept^release-date", relation: "isa"},
+                {source: "8.3", target: "concept^rating", relation: "isa"},
+                {source: "concept^rating", target: "concept^resource-type", relation: "isa"},
+                {source: "concept^release-date", target: "concept^resource-type", relation: "isa"}
+            ],
+            [
+                {source: "$z: Alfred Hitchcock", target: "concept^person", relation: "isa"},
+                {source: "concept^person", target: "concept^concept-type", relation: "isa"},
+                {source: "concept^movie", target: "concept^concept-type", relation: "isa"},
+                {source: "$y: Psycho", target: "concept^movie", relation: "isa"},
+                {source: "$x: Anthony Perkins", target: "concept^person", relation: "isa"},
+                {source: "empty_link1", target: "$z: Alfred Hitchcock", relation: "director"},
+                {source: "empty_link1", target: "$y: Psycho", relation: "movie-being-directed"},
+                {source: "empty_link1", target: "concept^directorship", relation: "isa"},
+                {source: "empty_link2", target: "$y: Psycho", relation: "movie-with-cast"},
+                {source: "empty_link2", target: "$x: Anthony Perkins", relation: "actor"},
+                {source: "empty_link2", target: "concept^casting", relation: "isa"},
+                {source: "concept^directorship", target: "concept^relation-type", relation: "isa"},
+                {source: "concept^casting", target: "concept^relation-type", relation: "isa"}
+            ],
+            [
+                {source: "$x: Friday the 13th", target: "concept^movie", relation: "isa"},
+                {source: "concept^has", target: "$x: Friday the 13th", relation: "owner"},
+                {source: "concept^has", target: "Slasher", relation: "value"},
+                {source: "concept^has", target: "Horror", relation: "value"},
+                {source: "Horror", target: "concept^genre", relation: "isa"},
+                {source: "Slasher", target: "concept^genre", relation: "isa"}
+            ],
+            [
+                {source: "$x: The Godfather", target: "concept^movie", relation: "isa"},
+                {source: "concept^movie", target: "concept^concept-type", relation: "isa"},
+                {source: "$z", target: "$x: The Godfather", relation: "movie-being-directed"},
+                {source: "$z", target: "concept^directorship", relation: "isa"},
+                {source: "concept^directorship", target: "concept^relation-type", relation: "isa"},
+                {source: "$z", target: "$y: Francis Coppola", relation: "director"},
+                {source: "$y: Francis Coppola", target: "concept^person", relation: "isa"},
+                {source: "concept^person", target: "concept^concept-type", relation: "isa"}
+            ]
+        ],
+        nodes = document.getElementsByClassName('graph'),
+        node = nodes[0],
+        size = {
+            width: node.children[0].offsetWidth,
+            height: node.children[0].offsetHeight
+        };
+
+        for (var i = 0; i < links.length; i++) {
+            this.initGraph({
+                links: links[i],
+                node: nodes[i].children[0],
+                size: size
+            });
+        }
+    },
+
+    initPrism: function() {
+
+        var textareas = document.getElementsByClassName('code-input');
+
+        function renderOutput(input) {
+            var value = input.value;
+            
+            value = value
+                    .replace(/&/g, "&amp;")
+                    .replace(/</g, "&lt;")
+                    .replace(/>/g, "&gt;") + "\n";
+
+            $(input).next().children(0)[0].innerHTML = value;
+
+            Prism.highlightAll();
+        }
+
+        function listenForInput(input) {
+
+            function replicate(event) {
+                
+                var selStartPos = this.selectionStart,
+                    inputVal = this.value;
+
+                inputVal = inputVal.replace(/\t/g, '    ');
+                this.value = inputVal;
+
+                if (event.keyCode === 9) {
+                    this.value = inputVal.substring(0, selStartPos) + '    ' + inputVal.substring(selStartPos, this.value.length);
+                    this.selectionStart = selStartPos + 4;
+                    this.selectionEnd = selStartPos + 4;
+                    event.preventDefault();
+                }
+
+                renderOutput(this);
+            }
+
+            input.addEventListener('input', replicate, false);
+            input.addEventListener('keydown', replicate, false);
+
+            Prism.highlightAll();
+        }
+
+        function listenerForScroll(input) {
+            input.addEventListener('scroll', function(event) {
+                $(this).next()[0].scrollTop = this.scrollTop;
+            }, false);
+        }
+
+        for (var i = 0; i < textareas.length; i++) {
+            renderOutput(textareas[i]);
+            listenerForScroll(textareas[i]);
+            listenForInput(textareas[i]);
+            //this.dontScrollParent(textareas[i]);
+        }
+    },
+
+    initStack: function() {
+
+        var data = this.data;
+
+        function displayDescription(name) {
+            var blocks = data.techDescription.children;
 
             for (var i = 0; i < blocks.length; i++) {
-                if (blocks[i].dataset.app) {
-                    apps = blocks[i].dataset.app.split(' ');
-                    
-                    if (apps.indexOf(attr) >= 0) {
-                        blocks[i].dataset.colour = colour;
-                    } else {
-                        blocks[i].dataset.colour = '';
-                    }
+                if (blocks[i].getAttribute('data-name') !== name) {
+                    blocks[i].classList.remove('active');
+                } else {
+                    blocks[i].classList.add('active');
+                    data.techDescription.style.height = blocks[i].offsetHeight + 'px';
                 }
             }
         }
 
-        function removeHighlights() {
-            var blocks = data.techStack.getElementsByClassName('stack-block');
-
-            for (var i = 0; i < blocks.length; i++) {
-                blocks[i].dataset.colour = '';
+        function toggleStack(event) {
+            var el = getParentElement(event.target, 'tab');
+            
+            if (!el) {
+                return;
             }
+            
+            var target = el.getAttribute('data-target');
+
+            for (var i = 0; i < data.techTabs.length; i++) {
+                data.techTabs[i].classList.remove('active');
+            }
+
+            el.classList.add('active');
+
+            displayDescription(target);
         }
 
-        function checkApp(event) {
-
-            if (globalDepth >= 0) {
-                switch(event.type) {
-                    case 'mouseover':
-                        var el = getParentElement(event.target, 'app');
-
-                        if (el) {
-                            highlightBlock(el.dataset.name, el.dataset.colour);
-                        }
-                        break;
-                    case 'mouseout':
-                        removeHighlights();
-                        break;
-                    default:
-                        break;
-                }
-            }
-        }
-
-        function resetHighlight() {
-            var appItems = data.apps.children;
-
-            for (var i = 0; i < appItems.length; i++) {
-                appItems[i].classList.remove('active');
-            }
-        }
-
-        function highlightApp(event) {
-
-            if (globalDepth < 2) {
-                resetHighlight();
-            }
-
-            if (globalDepth === 1) {
-                switch(event.type) {
-                    case 'mousemove':
-                        var blocks = getParentElements(event.target, 'stack-block'),
-                            appItems = data.apps.children,
-                            apps = [];
-
-                        for (var i = 0; i < blocks.length; i++) {
-                            if (blocks[i].dataset.app) {
-                                apps = blocks[i].dataset.app.split(' ');
-                                break;
-                            }
-                        }
-
-                        for (i = 0; i < apps.length; i++) {
-                            for (var j = 0; j < appItems.length; j++) {
-                                if (appItems[j].dataset.name === apps[i]) {
-                                    appItems[j].classList.add('active');
-                                }
-                            }
-                        }
-                        break;
-                    default:
-                        break;
-                }
-            }
-        }
-
-        data.techStack = document.getElementsByClassName('stack-tech')[0];
-        data.layers = data.techStack.getElementsByClassName('layers')[0];
-        data.apps = data.techStack.previousElementSibling;
-
-        data.techStack.addEventListener('click', checkClick, false);
-        data.layers.addEventListener('click', setDepth, false);
-        
-        data.apps.addEventListener('mouseover', checkApp, false);
-        data.apps.addEventListener('mouseout', checkApp, false);
-
-        data.techStack.addEventListener('mousemove', highlightApp, false);
-        data.techStack.addEventListener('mouseout', highlightApp, false);
+        data.techStack = document.getElementsByClassName('tech-stack')[0];
+        data.techDescription = data.techStack.getElementsByClassName('description')[0];
+        data.techTabs = data.techStack.getElementsByClassName('tab');
+        data.techStack.addEventListener('click', toggleStack, false);
     },
 
     init: function() {
@@ -1105,12 +1257,17 @@ window.MNDMPS = {
                 return window.MNDMPS.data.menuBar.offsetHeight;
             }
         });
-        
+
+        this.initSlick();
+        this.initGraphs();
+        this.initPrism();
+        this.initStack();
         this.watchScroll();
 
-        this.initTechStack();
-        atvImg();
-        
+        if (document.getElementById('section-team')) {
+            atvImg();
+        }
+
         if (document.getElementsByClassName('google-map')[0]) {
             google.maps.event.addDomListener(window, 'load', this.loadGoogleMap);
         }

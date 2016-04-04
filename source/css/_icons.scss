@@ -1,0 +1,198 @@
+@include keyframes(svgBorderDash){
+    0% {
+        stroke-dashoffset: 0;
+    }
+    100%{
+        stroke-dashoffset: -80;
+    }
+}
+
+@include keyframes(svgBorderDashLong){
+    0% {
+        stroke-dashoffset: 0;
+    }
+    100%{
+        stroke-dashoffset: -170;
+    }
+}
+
+@include keyframes(linePulse){
+    0%, 100% {
+        stroke: $brandBlue;
+    }
+    50%{
+        stroke: $brandGreen;
+    }
+}
+
+@include keyframes(corePulse){
+    0%, 100% {
+        fill: $brandBlue;
+    }
+    50%{
+        fill: $white;
+    }
+}
+
+@include keyframes(float){
+    0%, 100% {
+        @include transform(translateY(2px));
+    }
+    50%{
+        @include transform(translateY(-2px));
+    }
+}
+
+@include keyframes(fillPulse){
+    0%, 100% {
+        fill: $brandGreen;
+    }
+    50%{
+        fill: $brandBlue;
+    }
+}
+
+@include keyframes(eyeball){
+    0%, 100% {
+        @include transform(translateX(-7px) translateY(-4px));
+    }
+    33%{
+        @include transform(translateX(6px) translateY(-3px));
+    }
+    66%{
+        @include transform(translateX(-4px) translateY(4px));
+    }
+}
+
+@include keyframes(pupil){
+    0%, 100% {
+        @include transform(translateX(-5px) translateY(-4px));
+    }
+    33%{
+        @include transform(translateX(4px) translateY(-3px));
+    }
+    66%{
+        @include transform(translateX(-3px) translateY(3px));
+    }
+}
+
+@include keyframes(opacityPulse){
+    0%, 100% {
+        opacity: 1;
+    }
+    30% {
+        opacity: 1;
+    }
+    35% {
+        opacity: 0;
+    }
+    65%{
+        opacity: 0;
+    }
+    70%{
+        opacity: 1;
+    }
+}
+
+svg{
+    path,
+    polygon{
+        stroke-linecap: round;
+        stroke-linejoin: round;
+    }
+    
+    &.icon{
+        &-core{
+            line,
+            polygon{
+                fill: $transparent;
+                stroke: $blackc;
+                stroke-width: 1px;
+            }
+
+            line{
+                stroke-dasharray: 5;
+            }
+        }
+
+        &-migration{
+            polyline,
+            rect,
+            polygon{
+                stroke: $blackc;
+                stroke-width: 1px;
+                fill: $transparent;
+            }
+
+            polyline{
+                &:not(.solid){
+                    stroke-dasharray: 5;
+                }
+            }
+        }
+
+        &-visualiser{
+            polygon,
+            line{
+                stroke: $blackc;
+                stroke-width: 1px;
+                fill: transparent;
+            }
+
+            .solid{
+                stroke-width: 0;
+                fill: $blackc;
+            }
+
+            .dash{
+                stroke-dasharray: 5;
+            }
+        }
+
+        &-analytics{
+            polygon,
+            line{
+                stroke: $blackc;
+                stroke-width: 1px;
+                fill: transparent;
+            }
+        }
+
+        &-reasoner{
+            .line{
+                stroke: $blackc;
+                stroke-width: 1px;
+                stroke-dasharray: 80, 20, 60, 10;
+                fill: transparent;
+            }
+        }
+
+        &-graql{
+            polyline,
+            line{
+                stroke: $blackc;
+                stroke-width: 1px;
+                fill: transparent;
+            }
+
+            .dash{
+                stroke-dasharray: 5;
+            }
+        }
+
+        &-graph{
+            polyline,
+            polygon{
+                stroke: $blackc;
+                stroke-width: 1px;
+                fill: $transparent;
+            }
+
+            .mindmaps{
+                polyline{
+                    stroke-dasharray: 5;
+                }
+            }
+        }
+    }
+}

@@ -2,7 +2,22 @@
 @import 'mixins';
 @import 'atv';
 @import 'vars';
-@import 'stack';
+@import 'slick';
+@import 'slick-theme';
+@import 'prism';
+@import 'icons';
+
+/* 
+    Breakpoints
+
+    339px
+    559px
+    719px
+    999px
+    1319px
+    1320px
+    1600px
+*/
 
 /* Document level adjustments */
 html{
@@ -34,11 +49,16 @@ h1{
     font-size: 3rem;
 }
 h2{
+    text-align: center;
     font-size: 2.5rem;
     margin-bottom: 60px;
 }
 h3{
     font-size: 2rem;
+}
+h5{
+    font-size: 1.4rem;
+    font-weight: 400;
 }
 
 a{
@@ -197,6 +217,16 @@ body{
     display: block;
     position: relative;
 
+    &.relation{
+        use{
+            stroke-linecap: butt;
+            stroke-linejoin: miter;
+            stroke-width: 1;
+            stroke: $blackc;
+            fill: $transparent;
+        }
+    }
+
     .item{
         position: absolute;
         z-index: 2;
@@ -246,6 +276,11 @@ body{
             fill: $transparent;
             @include transition(fill 100ms ease-in-out);
         }
+    }
+
+    &.x-small{
+        width: 20px;
+        height: 20px;
     }
 
     &.big{
@@ -526,34 +561,6 @@ body{
 
                 .icon{
                     margin-right: 60px;
-                }
-            }
-
-            &.tech{
-                padding: 90px 0 30px 0;
-                
-                .technology-grid{
-
-                    &:after{
-                        content: '';
-                        display: table;
-                        clear: both;
-                    }
-                    
-                    >li{
-                        width: 33.33%;
-                        float: left;
-
-                        &:nth-child(3n+1){
-                            clear: left;
-                        }
-
-                        .title{
-                            text-decoration: none;
-                            color: $white;
-                            display: inline-block;
-                        }
-                    }
                 }
             }
 
@@ -953,8 +960,8 @@ body{
 
     &.splash{
         overflow: hidden;
-        height: 100%;
-        height: 100vh;
+        height: 80%;
+        height: 80vh;
         background: linear-gradient(160deg, #5bc2e7 0%, #a1d884 100%);
 
         canvas{
@@ -964,33 +971,24 @@ body{
 
         h1{
             //font-size: 1.2rem;
-            font-size: 2.8vh;
+            //font-size: 2.8vh;
+            font-size: 2.2vh;
             width: 100%;
             color: $white;
             position: absolute;
-            bottom: 20%;
+            //bottom: 53%;
+            top: 45%;
             left: 0;
             text-align: center;
 
             span{
                 margin-top: 0.3rem;
                 //font-size: 0.8rem;
-                font-size: 1.9vh;
+                //font-size: 1.9vh;
+                font-size: 1.5vh;
                 display: block;
                 font-weight: 200;
             }
-        }
-
-        .skipSplash{
-            position: absolute;
-            bottom: -2vh;
-            left: 50%;
-            margin-left: -2vh;
-            width: 4vh;
-            height: 4vh;
-            background-color: $lightGray;
-            cursor: pointer;
-            @include transform(rotateZ(45deg));
         }
 
         .svg-splash{
@@ -1032,6 +1030,416 @@ body{
     }
 }
 
+#graql-slider{
+    >.wrapper{
+        padding-bottom: 0;
+    }
+    
+    .graph-slider{
+        background-color: $white;
+        margin-top: -35vh;
+        height: 45vh;
+        position: relative;
+
+        .slider-container{
+            position: relative;
+            z-index: 1;
+            display: none;
+
+            &.slick-initialized{
+                display: block;
+            }
+            
+            &.slick-slider{
+                height: 100%;
+
+                .slick-list{
+                    height: 100%;
+                    
+                    .slick-track{
+                        height: 100%;
+                        
+                        .slick-slide{
+                            outline: none;
+                            height: 100%;
+
+                            >div{
+                                width: 50%;
+                                height: 100%;
+                                box-sizing: border-box;
+                                position: relative;
+
+                                &.graph{
+                                    float: left;
+                                    padding: 1rem;
+
+                                    div{
+                                        width: 100%;
+                                        height: 100%;
+                                    }
+
+                                    svg{
+                                        height: 100%;
+                                        width: 100%;
+
+                                        marker{
+                                            path{
+                                                fill: $gray4c;
+                                            }
+                                        }
+
+                                        .link{
+                                            line{
+                                                fill: none;
+                                                stroke: $gray4c;
+                                                stroke-width: 1px;
+                                            }
+
+                                            text{
+                                                font-size: 10px;
+                                            }
+                                        }
+
+                                        .node{
+                                            circle{
+                                                fill: $brandBlue;
+                                                stroke-width: 0;
+
+                                                &.empty{
+                                                    fill: $white;
+                                                    stroke: $brandGreen;
+                                                    stroke-width: 1px;
+                                                }
+
+                                                &.concept{
+                                                    fill: $brandGreen;
+                                                    stroke: $brandGreen;
+                                                }
+                                            }
+
+                                            text{
+                                                font-size: 12px;
+                                            }
+                                        }
+                                        
+                                        text{
+                                            fill: $blackc;
+                                            pointer-events: none;
+                                        }
+                                    }
+                                }
+
+                                &.code{
+                                    float: right;
+                                    padding: 1rem;
+
+                                    .window{
+                                        height: 100%;
+                                        width: 100%;
+                                        background-color: $codeGray;
+                                        position: relative;
+
+                                        .header{
+                                            background-color: $gray425C;
+                                            height: 2rem;
+                                            position: absolute;
+                                            top: 0;
+                                            left: 0;
+                                            width: 100%;
+
+                                            >span{
+                                                float: right;
+                                                line-height: 2rem;
+                                                padding-right: 1rem;
+                                                color: $lightGray;
+                                            }
+
+                                            .buttons{
+                                                width: 0.8rem;
+                                                height: 0.8rem;
+                                                position: absolute;
+                                                top: 0.6rem;
+                                                left: 0.6rem;
+                                                background-color: $pastelRed;
+                                                border-radius: 50%;
+                                                box-shadow: 1.2rem 0 0 0 $brandGreen, 2.4rem 0 0 0 $brandBlue;
+                                            }
+                                        }
+
+                                        .code{
+                                            &-input,
+                                            &-output{
+                                                margin: 2rem 0 0 0;
+                                                position: absolute;
+                                                top: 0;
+                                                left: 0;
+                                                width: 100%;
+                                                height: calc(100% - 2rem);
+                                                padding: 1rem;
+                                                border: none;
+                                                font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+                                                font-size: 0.8rem;
+                                                background: transparent;
+                                                white-space: pre-wrap;
+                                                word-wrap: break-word;
+                                                line-height: 1.5em;
+                                                box-sizing: border-box;
+                                                outline: none;
+                                            }
+
+                                            &-input{
+                                                opacity: 0.5;
+                                                color: $lightGray;
+                                                resize: none;
+                                            }
+
+                                            &-output{
+                                                pointer-events: none;
+                                                overflow-y: auto;
+
+                                                code{
+                                                    position: absolute;
+                                                    top: 0;
+                                                    left: 0;
+                                                    margin: 0;
+                                                    padding: 1rem;
+                                                    display: block;
+                                                    color: $lightGray;
+                                                    font-size: 0.8rem;
+                                                    font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+                                                    white-space: pre-wrap;
+                                                    word-wrap: break-word;
+                                                    width: 100%;
+                                                    box-sizing: border-box;
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.content{
+    .wrapper{
+
+        .usecases{
+            counter-reset: usecases;
+            @include columns(auto 2);
+            @include column-gap(0px);
+
+            &:after{
+                content: '';
+                clear: both;
+                display: table;
+            }
+            
+            li{
+                padding: 0 15px 60px 0;
+                box-sizing: border-box;
+                
+                &:nth-child(n+4){
+                    padding: 0 0 60px 15px;
+                }
+
+                &:nth-child(3),
+                &:nth-child(6){
+                    padding-bottom: 0;
+                }
+
+                h5{
+                    margin-bottom: 30px;
+
+                    &:before{
+                        counter-increment: usecases;
+                        content: counter(usecases)'. ';
+                    }
+                }
+
+                p,
+                .readFurther{
+                    font-size: 0.9rem;
+                    line-height: 1.5rem;
+                }
+
+                .readFurther{
+                    color: $blackc;
+                    font-weight: 600;
+                }
+            }
+        }
+
+        .benefits{
+            &:after{
+                content: '';
+                clear: both;
+                display: table;
+            }
+            
+            &>li{
+                float: left;
+                width: 25%;
+                box-sizing: border-box;
+
+                p{
+                    font-size: 0.9rem;
+                    line-height: 1.5rem;
+                }
+
+                h5{
+                    margin-bottom: 30px;
+                }
+
+                .relations{
+                    margin-top: 10px;
+                    
+                    li{
+                        float: left;
+                        margin-right: 10px;
+                    }
+                }
+
+                &:first-child{
+                    padding: 0 22px 0 0;
+                }
+                
+                &:last-child{
+                    padding: 0 0 0 22px;
+                }
+
+                &:nth-child(2){
+                    padding: 0 15px 0 10px;
+                }
+
+                &:nth-child(3){
+                    padding: 0 10px 0 15px;
+                }
+            }
+        }
+        
+        .tech{
+            &-stack{
+                border: 1px solid $white;
+                background-color: rgba($blackc, 0.1);
+            }
+
+            &-grid{
+                .small{
+                    display: table;
+                    width: 100%;
+                    
+                    .row{
+                        display: table-row;
+                        
+                        >div{
+                            cursor: pointer;
+                            display: table-cell;
+                            box-shadow: inset 1px 0 0 0 $white;
+                            @include transition(background-color 100ms ease-in-out, color 100ms ease-in-out);
+
+                            &:first-child{
+                                box-shadow: none;
+                            }
+
+                            &:hover{
+                                background-color: rgba($white, 0.2);
+                            }
+
+                            &.active{
+                                background-color: $white;
+                                color: $blackc;
+                            }
+                        }
+                    }
+                }
+
+                .tab{
+                    .title{
+                        display: block;
+                        text-align: center;
+                        line-height: 90px;
+                        height: 70px;
+                        font-size: 1.4rem;
+                        font-weight: 200;
+                    }
+                    
+                    p{
+                        text-align: center;
+                        font-size: 0.9rem;
+                        line-height: 1.2rem;
+                        padding: 1rem;
+                    }
+
+                    &.big{
+                        cursor: pointer;
+                        box-shadow: inset 0 1px 0 0 $white;
+                        @include transition(background-color 100ms ease-in-out, color 100ms ease-in-out);
+
+                        &:hover{
+                            background-color: rgba($white, 0.2);
+                        }
+
+                        &.active{
+                            background-color: $white;
+                            color: $blackc;
+                        }
+                        
+                        p{
+                            font-weight: 200;
+                            font-size: 1.2rem;
+                            line-height: 2rem;
+                        }
+                    }
+                }
+
+                .description{
+                    background-color: $white;
+                    height: 0;
+                    overflow: hidden;
+                    @include transition(height 200ms ease-in-out);
+                    
+                    >div{
+                        display: none;
+                        padding: 30px;
+                        color: $blackc;
+
+                        &.active{
+                            display: block;
+                        }
+
+                        .icon{
+                            display: block;
+                            float: left;
+                            margin-right: 30px;
+                        }
+
+                        .text{
+                            @include columns(auto 2);
+                            @include column-gap(30px);
+
+                            p,
+                            .readFurther{
+                                font-size: 0.9rem;
+                                line-height: 1.5rem;
+                            }
+
+                            .readFurther{
+                                color: $blackc;
+                                font-weight: 600;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
 @media only screen
     and (max-width: 339px) {
         h2{
@@ -1045,9 +1453,20 @@ body{
                 width: 60px;
                 height: 60px;
             }
+
+            &.medium{
+                width: 40px;
+                height: 40px;
+            }
         }
 
         .block{
+
+            &.splash{
+                h1{
+                    top: 33%;
+                }
+            }
 
             &.map{
                 .wrapper{
@@ -1087,7 +1506,7 @@ body{
                             line-height: 20px;
                             margin-left: 10px;
 
-                            &:nth-child(2){
+                            &:nth-child(n+2){
                                 display: none;
                             }
                         }
@@ -1131,6 +1550,61 @@ body{
                 .wrapper{
                     padding: 15px 0;
                     width: 240px;
+
+                    .tech{
+                        &-stack{
+                            margin-bottom: 15px;
+                        }
+                        
+                        &-grid{
+                            .small{
+                                .row{
+                                    display: block;
+                                    
+                                    >div{
+                                        display: block;
+                                        box-shadow: inset 0 1px 0 0 $white;
+
+                                        &:first-child{
+                                            box-shadow: none;
+                                        }
+                                    }
+                                }
+                            }
+                            .tab{
+                                .title{
+                                    height: 30px;
+                                    font-weight: 400;
+                                    font-size: 1rem;
+                                    line-height: 30px;
+                                }
+
+                                p{
+                                    display: none;
+                                }
+                            }
+
+                            .description{
+                                >div{
+                                    padding: 15px;
+
+                                    .icon{
+                                        display: none;
+                                    }
+
+                                    .text{
+                                        @include columns(auto 1);
+                                        @include column-gap(0);
+
+                                        p{
+                                            font-size: 0.9rem;
+                                            line-height: 1.5rem;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
                     
                     &.team{
                         padding: 15px 0 0 0;
@@ -1249,32 +1723,6 @@ body{
                         .icon-block{
                             margin-bottom: 20px;
                         }
-                        
-                        .technology-grid{
-                            >li{
-                                width: 50%;
-
-                                &:nth-child(3n+1){
-                                    clear: none;
-                                }
-
-                                &:nth-child(2n+1){
-                                    clear: left;
-                                }
-                                
-                                .title{
-                                    font-size: 0.8rem;
-                                    margin-bottom: 10px;
-                                }
-
-                                p{
-                                    font-weight: 200;
-                                    font-size: 0.8rem;
-                                    margin: 0 15px 20px 0;
-                                    line-height: 1.1rem;
-                                }
-                            }
-                        }
                     }
 
                     .icon-block{
@@ -1287,6 +1735,41 @@ body{
                         .title{
                             font-size: 0.75rem;
                             line-height: 1.225rem;
+                        }
+                    }
+                }
+
+                &#graql-slider{
+                    .wrapper{
+                        width: 100%;
+
+                        .graph-slider{
+                            height: 80vh;
+                            margin-bottom: 30px;
+
+                            .slider-container{
+                                &.slick-slider{
+                                    .slick-list{
+                                        .slick-track{
+                                            .slick-slide{
+                                                >div{
+                                                    padding: 0;
+                                                    width: 100%;
+                                                    height: 50%;
+
+                                                    &.graph{
+                                                        float: none;
+                                                    }
+
+                                                    &.code{
+                                                        float: none;
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
                         }
                     }
                 }
@@ -1327,9 +1810,20 @@ body{
                 width: 90px;
                 height: 90px;
             }
+
+            &.medium{
+                width: 60px;
+                height: 60px;
+            }
         }
 
         .block{
+
+            &.splash{
+                h1{
+                    top: 33%;
+                }
+            }
 
             &.map{
                 .wrapper{
@@ -1370,6 +1864,12 @@ body{
                                 display: none;
                             }
                         }
+
+                        a{
+                            &:nth-child(n+3){
+                                display: none;
+                            }
+                        }
                     }
 
                     .logo{
@@ -1402,6 +1902,61 @@ body{
                 .wrapper{
                     padding: 30px 0;
                     width: 320px;
+
+                    .tech{
+                        &-stack{
+                            margin-bottom: 30px;
+                        }
+                        
+                        &-grid{
+                            .small{
+                                .row{
+                                    display: block;
+                                    
+                                    >div{
+                                        display: block;
+                                        box-shadow: inset 0 1px 0 0 $white;
+
+                                        &:first-child{
+                                            box-shadow: none;
+                                        }
+                                    }
+                                }
+                            }
+                            .tab{
+                                .title{
+                                    height: 30px;
+                                    font-weight: 400;
+                                    font-size: 1rem;
+                                    line-height: 30px;
+                                }
+                                p{
+                                    display: none;
+                                }
+                            }
+
+                            .description{
+                                >div{
+                                    padding: 15px;
+
+
+                                    .icon{
+                                        margin-right: 15px;
+                                    }
+
+                                    .text{
+                                        @include columns(auto 1);
+                                        @include column-gap(0);
+
+                                        p{
+                                            font-size: 0.9rem;
+                                            line-height: 1.5rem;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
                     
                     &.team{
                         padding: 30px 0 0 0;
@@ -1496,31 +2051,6 @@ body{
 
                     &.tech{
                         padding: 30px 0 0 0;
-                        
-                        .technology-grid{
-                            >li{
-                                width: 50%;
-
-                                &:nth-child(3n+1){
-                                    clear: none;
-                                }
-
-                                &:nth-child(2n+1){
-                                    clear: left;
-                                }
-                                
-                                .title{
-                                    font-size: 1rem;
-                                    margin-bottom: 15px;
-                                }
-
-                                p{
-                                    font-size: 0.8rem;
-                                    margin: 0 15px 30px 0;
-                                    line-height: 1.2rem;
-                                }
-                            }
-                        }
                     }
 
                     .icon-block{
@@ -1533,6 +2063,41 @@ body{
                         .title{
                             font-size: 0.9rem;
                             line-height: 22.5px;
+                        }
+                    }
+                }
+
+                &#graql-slider{
+                    .wrapper{
+                        width: 100%;
+
+                        .graph-slider{
+                            height: 80vh;
+                            margin-bottom: 30px;
+
+                            .slider-container{
+                                &.slick-slider{
+                                    .slick-list{
+                                        .slick-track{
+                                            .slick-slide{
+                                                >div{
+                                                    padding: 0;
+                                                    width: 100%;
+                                                    height: 50%;
+
+                                                    &.graph{
+                                                        float: none;
+                                                    }
+
+                                                    &.code{
+                                                        float: none;
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
                         }
                     }
                 }
@@ -1577,6 +2142,12 @@ body{
         
         .block{
 
+            &.splash{
+                h1{
+                    top: 33%;
+                }
+            }
+
             &.map{
                 .wrapper{
                     width: 100%;
@@ -1597,6 +2168,16 @@ body{
 
                     nav{
                         margin-top: 15px;
+
+                        .divider{
+                            display: none;
+                        }
+                        
+                        a{
+                            &:nth-child(n+4){
+                                display: none;
+                            }
+                        }
                     }
 
                     .logo{
@@ -1628,6 +2209,33 @@ body{
                 .wrapper{
                     padding: 60px 0;
                     width: 500px;
+
+                    .tech{
+                        &-stack{
+                            margin-bottom: 60px;
+                        }
+                        
+                        &-grid{
+                            .tab{
+                                .title{
+                                    font-weight: 400;
+                                    font-size: 1rem;
+                                    height: 60px;
+                                    line-height: 60px;
+                                }
+                                p{
+                                    display: none;
+                                }
+                            }
+
+                            .description{
+
+                                .icon{
+                                    display: none;
+                                }
+                            }
+                        }
+                    }
                     
                     &.team{
                         padding: 60px 0 0 0;
@@ -1658,22 +2266,6 @@ body{
                         .icon-block{
                             margin-bottom: 35px;
                         }
-                        
-                        .technology-grid{
-                            >li{
-                                .title{
-                                    font-size: 1.1rem;
-                                    font-weight: 200;
-                                    margin-bottom: 15px;
-                                }
-
-                                p{
-                                    font-size: 0.7rem;
-                                    margin: 0 30px 60px 0;
-                                    line-height: 1.2rem;
-                                }
-                            }
-                        }
                     }
 
                     .icon-block{
@@ -1683,6 +2275,33 @@ body{
                             font-weight: 200;
                             font-size: 1.2rem;
                             line-height: 35px;
+                        }
+                    }
+                }
+
+                &#graql-slider{
+                    .wrapper{
+                        .graph-slider{
+                            margin-bottom: 30px;
+
+                            .slider-container{
+                                &.slick-slider{
+                                    
+                                    .slick-list{
+                                        .slick-track{
+                                            .slick-slide{
+                                                >div{
+                                                    padding: 0;
+                                                }
+                                            }
+                                        }
+                                    }
+
+                                    .slick-dots {
+                                        bottom: -40px;
+                                    }
+                                }
+                            }
                         }
                     }
                 }
@@ -1715,6 +2334,24 @@ body{
     and (max-width: 999px) {
         .block{
 
+            &.nav{
+                .wrapper{
+                    padding: 0 30px;
+
+                    nav{
+                        .divider{
+                            display: none;
+                        }
+                        
+                        a{
+                            &:nth-child(n+6){
+                                display: none;
+                            }
+                        }
+                    }
+                }
+            }
+
             &.map{
                 .wrapper{
                     width: 100%;
@@ -1726,45 +2363,82 @@ body{
                 }
             }
 
-            .wrapper{
-                width: 640px;
-                
-                &.team{
-                    .team-grid{
-                        >li{
-                            width: 193px;
-                            margin: 0 30px 30px 0;
+            &.content{
+            
+                .wrapper{
+                    width: 640px;
 
-                            &:nth-child(3n) {
-                                margin-right: 0;
+                    .tech{
+                        &-grid{
+                            .tab{
+                                .title{
+                                    font-weight: 400;
+                                    font-size: 1.2rem;
+                                    height: 70px;
+                                    line-height: 70px;
+                                }
+                                p{
+                                    display: none;
+                                }
                             }
+
+                            .description{
+                                .icon{
+                                    margin-right: 15px;
+                                }
+                            }
+                        }
+                    }
+                    
+                    &.team{
+                        .team-grid{
+                            >li{
+                                width: 193px;
+                                margin: 0 30px 30px 0;
+
+                                &:nth-child(3n) {
+                                    margin-right: 0;
+                                }
+                            }
+                        }
+                    }
+
+                    &.tech{
+                    }
+
+                    .icon-block{
+                        .title{
+                            font-weight: 200;
+                            font-size: 1.3rem;
+                            line-height: 50px;
                         }
                     }
                 }
 
-                &.tech{
-                    .technology-grid{
-                        >li{
-                            .title{
-                                font-size: 1.1rem;
-                                font-weight: 200;
-                                margin-bottom: 30px;
-                            }
+                &#graql-slider{
+                    .wrapper{
+                        .graph-slider{
+                            margin-bottom: 30px;
 
-                            p{
-                                font-size: 0.8rem;
-                                margin: 0 60px 60px 0;
-                                line-height: 1.2rem;
+                            .slider-container{
+                                &.slick-slider{
+                                    
+                                    .slick-list{
+                                        .slick-track{
+                                            .slick-slide{
+                                                >div{
+                                                    padding: 0;
+                                                }
+                                            }
+                                        }
+                                    }
+
+                                    .slick-dots {
+                                        bottom: -50px;
+                                    }
+                                }
                             }
                         }
-                    }
-                }
-
-                .icon-block{
-                    .title{
-                        font-weight: 200;
-                        font-size: 1.3rem;
-                        line-height: 50px;
                     }
                 }
             }
@@ -1795,45 +2469,84 @@ body{
     and (min-width: 1000px)
     and (max-width: 1319px) {
         .block{
-            .wrapper{
-                width: 880px;
-                
-                &.team{
-                    .team-grid{
-                        >li{
-                            width: 197px;
-                            margin: 0 30px 30px 0;
 
-                            &:nth-child(4n) {
-                                margin-right: 0;
+            &.nav{
+                .wrapper{
+                    padding: 0 30px;
+                }
+            }
+
+            &.content{
+            
+                .wrapper{
+                    width: 880px;
+
+                    .tech{
+                        &-grid{
+                            .tab{
+                                .title{
+                                    font-weight: 400;
+                                    font-size: 1.3rem;
+                                }
+                                
+                                p{
+                                    font-size: 0.8rem;
+                                    line-height: 1rem;
+                                }
+
+                                &.big{
+                                    p{
+                                        font-weight: 400;
+                                        font-size: 1rem;
+                                        line-height: 1.6rem;
+                                    }
+                                }
                             }
+
+                            .description{
+                                .icon{
+                                    margin-right: 20px;
+                                }
+                            }
+                        }
+                    }
+                    
+                    &.team{
+                        .team-grid{
+                            >li{
+                                width: 197px;
+                                margin: 0 30px 30px 0;
+
+                                &:nth-child(4n) {
+                                    margin-right: 0;
+                                }
+                            }
+                        }
+                    }
+
+                    &.tech{
+                    }
+
+                    .icon-block{
+                        .title{
+                            font-weight: 200;
+                            font-size: 1.6rem;
+                            line-height: 50px;
                         }
                     }
                 }
 
-                &.tech{
-                    .technology-grid{
-                        >li{
-                            .title{
-                                font-size: 1.4rem;
-                                font-weight: 200;
-                                margin-bottom: 30px;
-                            }
-
-                            p{
-                                font-size: 0.8rem;
-                                margin: 0 60px 60px 0;
-                                line-height: 1.2rem;
+                &#graql-slider{
+                    .wrapper{
+                        .graph-slider{
+                            .slider-container{
+                                &.slick-slider{
+                                    .slick-dots {
+                                        bottom: -50px;
+                                    }
+                                }
                             }
                         }
-                    }
-                }
-
-                .icon-block{
-                    .title{
-                        font-weight: 200;
-                        font-size: 1.6rem;
-                        line-height: 50px;
                     }
                 }
             }
@@ -1863,51 +2576,75 @@ body{
 @media only screen
     and (min-width: 1320px) {
         .block{
-            .wrapper{
-                width: 1200px;
-                
-                &.team{
-                    .team-grid{
-                        >li{
-                            width: 175px;
-                            margin: 0 30px 30px 0;
-                            
-                            &:nth-child(6n) {
-                                margin-right: 0;
+
+            &.nav{
+                .wrapper{
+                    padding: 0 30px;
+                }
+            }
+
+            &.content{
+            
+                .wrapper{
+                    width: 1200px;
+                    
+                    &.team{
+                        .team-grid{
+                            >li{
+                                width: 175px;
+                                margin: 0 30px 30px 0;
+                                
+                                &:nth-child(6n) {
+                                    margin-right: 0;
+                                }
                             }
                         }
                     }
-                }
 
-                &.tech{
-                    .technology-grid{
-                        >li{
-                            .title{
-                                font-size: 2rem;
-                                font-weight: 200;
-                                margin-bottom: 30px;
-                            }
-
+                    &.tech{
+                        .tab{
                             p{
-                                margin: 0 60px 60px 0;
-                                line-height: 1.6rem;
+                                font-weight: 200;
+                                font-size: 1rem;
+                                line-height: 1.4rem;
                             }
+
+                            &.big{
+                                p{
+                                    font-size: 1.4rem;
+                                    line-height: 2rem;
+                                }
+                            }
+                        }
+                    }
+
+                    .icon-block{
+                        .title{
+                            font-weight: 200;
+                            font-size: 1.6rem;
+                            line-height: 50px;
+                        }
+                    }
+
+                    .text-block{
+                        p{
+                            font-size: 0.9rem;
+                            line-height: 1.5rem;
                         }
                     }
                 }
 
-                .icon-block{
-                    .title{
-                        font-weight: 200;
-                        font-size: 1.6rem;
-                        line-height: 50px;
-                    }
-                }
-
-                .text-block{
-                    p{
-                        font-size: 0.9rem;
-                        line-height: 1.5rem;
+                &#graql-slider{
+                    .wrapper{
+                        .graph-slider{
+                            .slider-container{
+                                &.slick-slider{
+                                    .slick-dots {
+                                        bottom: -50px;
+                                    }
+                                }
+                            }
+                        }
                     }
                 }
             }
@@ -1939,6 +2676,23 @@ body{
         .block{
             &.content{
                 .wrapper{
+                    &.tech{
+                        .tab{
+                            p{
+                                font-weight: 200;
+                                font-size: 0.9rem;
+                                line-height: 1.2rem;
+                            }
+
+                            &.big{
+                                p{
+                                    font-size: 1.2rem;
+                                    line-height: 1.8rem;
+                                }
+                            }
+                        }
+                    }
+                    
                     &.team{
                         .team-grid{
                             >li{
@@ -1969,6 +2723,19 @@ body{
                         p{
                             font-size: 0.9rem;
                             line-height: 1.5rem;
+                        }
+                    }
+                }
+                &#graql-slider{
+                    .wrapper{
+                        .graph-slider{
+                            .slider-container{
+                                &.slick-slider{
+                                    .slick-dots {
+                                        bottom: -50px;
+                                    }
+                                }
+                            }
                         }
                     }
                 }
