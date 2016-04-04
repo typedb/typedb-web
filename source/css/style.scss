@@ -964,6 +964,25 @@ body{
         height: 80vh;
         background: linear-gradient(160deg, #5bc2e7 0%, #a1d884 100%);
 
+        .getMindmaps{
+            position: absolute;
+            left: 0;
+            bottom: 39%;
+            width: 100%;
+            text-align: center;
+
+            a{
+                display: inline-block;
+                background-color: $pastelRed;
+                color: $white;
+                padding: 0 1.5rem;
+                border: none;
+                height: 3rem;
+                line-height: 3rem;
+                border-radius: 2px;
+            }
+        }
+
         canvas{
             display: block;
             max-height: 100vh;
@@ -1037,7 +1056,7 @@ body{
     
     .graph-slider{
         background-color: $white;
-        margin-top: -35vh;
+        margin-top: -40vh;
         height: 45vh;
         position: relative;
 
@@ -1596,9 +1615,10 @@ body{
                                         @include columns(auto 1);
                                         @include column-gap(0);
 
-                                        p{
-                                            font-size: 0.9rem;
-                                            line-height: 1.5rem;
+                                        p,
+                                        .readFurther{
+                                            font-size: 0.8rem;
+                                            line-height: 1.1rem;
                                         }
                                     }
                                 }
@@ -1735,6 +1755,52 @@ body{
                         .title{
                             font-size: 0.75rem;
                             line-height: 1.225rem;
+                        }
+                    }
+
+                    .benefits{
+                        &>li{
+                            float: none;
+                            width: auto;
+                            padding: 0 0 15px 0;
+
+                            &:last-child{
+                                padding-bottom: 0;
+                            }
+
+                            h5{
+                                font-size: 1rem;
+                                margin-bottom: 5px;
+                            }
+
+                            p,
+                            .readFurther{
+                                font-size: 0.8rem;
+                                line-height: 1.1rem;
+                            }
+                        }
+                    }
+
+                    .usecases{
+                        @include columns(auto 0);
+
+                        li{
+                            padding: 0 0 15px 0;
+
+                            &:last-child{
+                                padding-bottom: 0;
+                            }
+
+                            h5{
+                                font-size: 1rem;
+                                margin-bottom: 5px;
+                            }
+
+                            p,
+                            .readFurther{
+                                font-size: 0.8rem;
+                                line-height: 1.1rem;
+                            }
                         }
                     }
                 }
@@ -1941,16 +2007,17 @@ body{
 
 
                                     .icon{
-                                        margin-right: 15px;
+                                        margin-right: 10px;
                                     }
 
                                     .text{
                                         @include columns(auto 1);
                                         @include column-gap(0);
 
-                                        p{
-                                            font-size: 0.9rem;
-                                            line-height: 1.5rem;
+                                        p,
+                                        .readFurther{
+                                            font-size: 0.8rem;
+                                            line-height: 1.3rem;
                                         }
                                     }
                                 }
@@ -2063,6 +2130,52 @@ body{
                         .title{
                             font-size: 0.9rem;
                             line-height: 22.5px;
+                        }
+                    }
+
+                    .benefits{
+                        &>li{
+                            float: none;
+                            width: auto;
+                            padding: 0 0 30px 0;
+
+                            &:last-child{
+                                padding-bottom: 0;
+                            }
+
+                            h5{
+                                font-size: 1rem;
+                                margin-bottom: 10px;
+                            }
+
+                            p,
+                            .readFurther{
+                                font-size: 0.8rem;
+                                line-height: 1.3rem;
+                            }
+                        }
+                    }
+
+                    .usecases{
+                        @include columns(auto 0);
+
+                        li{
+                            padding: 0 0 30px 0;
+
+                            &:last-child{
+                                padding-bottom: 0;
+                            }
+
+                            h5{
+                                font-size: 1rem;
+                                margin-bottom: 10px;
+                            }
+
+                            p,
+                            .readFurther{
+                                font-size: 0.8rem;
+                                line-height: 1.3rem;
+                            }
                         }
                     }
                 }
@@ -2233,6 +2346,18 @@ body{
                                 .icon{
                                     display: none;
                                 }
+
+                                >div{
+                                    .text{
+                                        @include columns(auto 1);
+                                        @include column-gap(0);
+                                        
+                                        p{
+                                            font-size: 0.9rem;
+                                            line-height: 1.4rem;
+                                        }
+                                    }
+                                }
                             }
                         }
                     }
@@ -2275,6 +2400,54 @@ body{
                             font-weight: 200;
                             font-size: 1.2rem;
                             line-height: 35px;
+                        }
+                    }
+
+                    .benefits{
+                        &>li{
+                            float: none;
+                            width: auto;
+                            padding: 0 0 30px 0;
+
+                            &:last-child{
+                                padding-bottom: 0;
+                            }
+
+                            h5{
+                                font-weight: 200;
+                                font-size: 1.2rem;
+                                margin-bottom: 15px;
+                            }
+
+                            p,
+                            .readFurther{
+                                font-size: 0.9rem;
+                                line-height: 1.4rem;
+                            }
+                        }
+                    }
+
+                    .usecases{
+                        @include columns(auto 0);
+
+                        li{
+                            padding: 0 0 30px 0;
+
+                            &:last-child{
+                                padding-bottom: 0;
+                            }
+
+                            h5{
+                                font-weight: 200;
+                                font-size: 1.2rem;
+                                margin-bottom: 15px;
+                            }
+
+                            p,
+                            .readFurther{
+                                font-size: 0.9rem;
+                                line-height: 1.4rem;
+                            }
                         }
                     }
                 }
@@ -2386,6 +2559,18 @@ body{
                                 .icon{
                                     margin-right: 15px;
                                 }
+
+                                >div{
+                                    .text{
+                                        @include columns(auto 1);
+                                        @include column-gap(0);
+                                        
+                                        p{
+                                            font-size: 0.8rem;
+                                            line-height: 1.4rem;
+                                        }
+                                    }
+                                }
                             }
                         }
                     }
@@ -2411,6 +2596,38 @@ body{
                             font-weight: 200;
                             font-size: 1.3rem;
                             line-height: 50px;
+                        }
+                    }
+
+                    .benefits{
+                        &>li{
+                            width: 50%;
+                            padding: 0 15px 60px 0;
+
+                            &:nth-child(2n){
+                                padding: 0 0 60px 15px;
+                            }
+
+                            &:nth-child(n+3){
+                                padding-bottom: 0;
+                            }
+
+                            p,
+                            .readFurther{
+                                font-size: 0.8rem;
+                                line-height: 1.4rem;
+                            }
+                        }
+                    }
+
+                    .usecases{
+
+                        li{
+                            p,
+                            .readFurther{
+                                font-size: 0.8rem;
+                                line-height: 1.4rem;
+                            }
                         }
                     }
                 }
@@ -2532,6 +2749,38 @@ body{
                             font-weight: 200;
                             font-size: 1.6rem;
                             line-height: 50px;
+                        }
+                    }
+
+                    .benefits{
+                        &>li{
+                            width: 50%;
+                            padding: 0 15px 60px 0;
+
+                            &:nth-child(2n){
+                                padding: 0 0 60px 15px;
+                            }
+
+                            &:nth-child(n+3){
+                                padding-bottom: 0;
+                            }
+
+                            p,
+                            .readFurther{
+                                font-size: 0.8rem;
+                                line-height: 1.4rem;
+                            }
+                        }
+                    }
+
+                    .usecases{
+
+                        li{
+                            p,
+                            .readFurther{
+                                font-size: 0.8rem;
+                                line-height: 1.4rem;
+                            }
                         }
                     }
                 }
@@ -2723,6 +2972,21 @@ body{
                         p{
                             font-size: 0.9rem;
                             line-height: 1.5rem;
+                        }
+                    }
+
+                    .benefits{
+                        &>li{
+                            width: 50%;
+                            padding: 0 15px 60px 0;
+
+                            &:nth-child(2n){
+                                padding: 0 0 60px 15px;
+                            }
+
+                            &:nth-child(n+3){
+                                padding-bottom: 0;
+                            }
                         }
                     }
                 }

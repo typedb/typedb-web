@@ -725,7 +725,7 @@ window.MNDMPS = {
             this.refreshMousePositionOnScroll(scrolledY, scrolledX);
         }
 
-        if (scrolledY > this.data.windowHeight * 0.55 - this.data.menuBar.offsetHeight) {
+        if (scrolledY > this.data.windowHeight * 0.50 - this.data.menuBar.offsetHeight) {
             this.data.menuBar.classList.add('scrolled');
             this.data.threeDRunning = false;
         } else {
@@ -916,6 +916,7 @@ window.MNDMPS = {
             slidesToScroll: 1,
             cssEase: 'ease-in-out',
             infinite: false,
+            draggable: false,
             dots: true,
             easing: 'easeInOutQuart',
             mobileFirst: true,
@@ -927,8 +928,7 @@ window.MNDMPS = {
                 {
                     breakpoint: 559,
                     settings: {
-                        arrows: true,
-                        draggable: false
+                        arrows: true
                     }
                 }
             ]
