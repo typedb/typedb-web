@@ -1278,7 +1278,7 @@ window.MNDMPS = {
         _data: {},
 
         open: function() {
-            var data = this._data;
+            var data = window.MNDMPS.modal._data;
             
             data.underlay.classList.add('display');
 
@@ -1362,6 +1362,12 @@ window.MNDMPS = {
 
         if (document.getElementsByClassName('google-map')[0]) {
             google.maps.event.addDomListener(window, 'load', this.loadGoogleMap);
+        }
+
+        var getMindmapsButton = document.getElementsByClassName('getMindmaps')[0];
+
+        if (getMindmapsButton) {
+            getMindmapsButton.addEventListener('click', this.modal.open, false);
         }
     }
 };
