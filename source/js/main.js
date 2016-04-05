@@ -93,6 +93,40 @@ function f_scrollTop() {
     );
 }
 
+function dontScrollParent(el, turnOff) {
+
+    function catchScroll(ev) {
+        var scrollTop    = this.scrollTop,
+            scrollHeight = this.scrollHeight,
+            height       = this.offsetHeight,
+            delta        = ev.wheelDelta,
+            up           = delta > 0;
+        
+        function prevent() {
+            ev.stopPropagation();
+            ev.preventDefault();
+            ev.returnValue = false;
+            return false;
+        }
+
+        if (!up && -delta > scrollHeight - height - scrollTop) {
+            this.scrollTop = scrollHeight;
+            return prevent();
+        } else if (up && delta > scrollTop) {
+            this.scrollTop = 0;
+            return prevent();
+        }
+    }
+
+    el.removeEventListener('DOMMouseScroll', catchScroll, false);
+    el.removeEventListener('mousewheel', catchScroll, false);
+    
+    if (!turnOff) {
+        el.addEventListener('DOMMouseScroll', catchScroll, false);
+        el.addEventListener('mousewheel', catchScroll, false);
+    }
+}
+
 window.MNDMPS = {
 
     data: {},
@@ -585,7 +619,7 @@ window.MNDMPS = {
             camera.position.z = cameraZ;
             camera.lookAt(scene.position);
 
-            logoGroup.rotation.set(Math.radians((_this.data.mouseY - SCREEN_HEIGHT/2) * 0.04), Math.radians((_this.data.mouseX - SCREEN_WIDTH/2) * 0.03), 0);
+            logoGroup.rotation.set(Math.radians((_this.data.mouseY - SCREEN_HEIGHT/4) * 0.04), Math.radians((_this.data.mouseX - SCREEN_WIDTH/2) * 0.03), 0);
         }
 
         function refreshScale() {
@@ -684,7 +718,7 @@ window.MNDMPS = {
             if (document.hidden) {
                 _this.data.threeDRunning = false;
             } else {
-                _this.data.threeDRunning = true;
+                _this.processScroll(f_scrollTop(), f_scrollLeft());
             }
         }
 
@@ -955,7 +989,7 @@ window.MNDMPS = {
             .links(obj.links)
             .size([width, height])
             .linkDistance(Math.floor(hypotenuse/7))
-            .charge(-Math.floor(hypotenuse/4))
+            .charge(-Math.floor(hypotenuse/2))
             .on("tick", tick)
             .start();
 
@@ -1239,16 +1273,60 @@ window.MNDMPS = {
         data.techStack.addEventListener('click', toggleStack, false);
     },
 
+    modal: {
+
+        _data: {},
+
+        open: function() {
+            var data = this._data;
+            
+            data.underlay.classList.add('display');
+
+            setTimeout(function() {
+                data.underlay.classList.add('active');
+            }, 25);
+        },
+
+        close: function(event) {
+            
+            if (!event.target.classList.contains('modal-underlay') && !event.target.classList.contains('modal-close')) {
+                return;
+            }
+            
+            var _this = window.MNDMPS.modal,
+                data = _this._data;
+            
+            data.underlay.classList.remove('active');
+
+            setTimeout(function() {
+                data.underlay.classList.remove('display');
+            }, 200);
+        },
+
+        init: function() {
+
+            var data = this._data;
+
+            data.underlay = document.getElementsByClassName('modal-underlay')[0];
+            data.modal = data.underlay.children[0];
+
+            data.underlay.addEventListener('click', this.close, false);
+            dontScrollParent(data.underlay);
+        }
+    },
+
     init: function() {
 
         this.data.windowHeight = f_clientHeight();
         this.data.windowWidth = f_clientWidth();
         this.data.menuBar = document.getElementsByClassName('nav')[0];
 
-        if (this.webGLAvailable()) {
-            this.threeD();
-        } else {
-            this.appendSVGSplash();
+        if (document.getElementsByClassName('splash').length) {
+            if (this.webGLAvailable()) {
+                this.threeD();
+            } else {
+                this.appendSVGSplash();
+            }
         }
             
         vanillaSmoothScroller.bind({
@@ -1258,14 +1336,28 @@ window.MNDMPS = {
             }
         });
 
-        this.initSlick();
-        this.initGraphs();
-        this.initPrism();
-        this.initStack();
-        this.watchScroll();
+        if (document.getElementById('graql-slider')) {
+            this.initSlick();
+            this.initGraphs();
+            this.initPrism();
+        }
+        
+        if (document.getElementById('section-ecosystem')) {
+            this.initStack();
+        }
+
+        if (document.getElementsByClassName('splash').length) {
+            this.watchScroll();
+        } else {
+            this.data.menuBar.classList.add('white');
+        }
 
         if (document.getElementById('section-team')) {
             atvImg();
+        }
+
+        if (document.getElementsByClassName('modal-underlay').length) {
+            this.modal.init();
         }
 
         if (document.getElementsByClassName('google-map')[0]) {

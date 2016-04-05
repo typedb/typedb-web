@@ -1,0 +1,184 @@
+.modal{
+    &-underlay{
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 15;
+        background-color: rgba(0,0,0,0.4);
+        pointer-events: none;
+        display: none;
+        opacity: 0;
+        text-align: center;
+        white-space: nowrap;
+        @include transition(opacity 200ms ease-in-out);
+
+        &:before{
+            content: '';
+            display: inline-block;
+            height: 100%;
+            vertical-align: middle;
+        }
+
+        &.display{
+            display: block;
+            pointer-events: auto;
+        }
+        
+        &.active{
+            opacity: 1;
+
+            .modal-window{
+                @include transform(scale(1));
+            }
+        }
+    }
+
+    &-window{
+        position: relative;
+        display: inline-block;
+        vertical-align: middle;
+        min-height: 60vh;
+        min-width: 50vw;
+        max-width: 640px;
+        text-align: left;
+        padding: 1rem;
+        box-sizing: border-box;
+        @include transition(transform 200ms ease-in-out);
+        @include transform(scale(0.8));
+        background: $white url(bg_black.svg) no-repeat center center;
+        background-size: cover;
+    }
+
+    &-close{
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 50px;
+        height: 50px;
+        cursor: pointer;
+
+        &:before,
+        &:after{
+            content: '';
+            width: 60%;
+            height: 1px;
+            background-color: $blackc;
+            position: absolute;
+            top: 50%;
+            left: 20%;
+            @include transform(rotateZ(45deg));
+            @include transition(transform 200ms ease-in-out);
+        }
+
+        &:after{
+            @include transform(rotateZ(-45deg));
+        }
+
+        &:hover{
+            &:before{
+                @include transform(rotateZ(135deg));
+            }
+
+            &:after{
+                @include transform(rotateZ(45deg));
+            }
+        }
+
+        &:active{
+            @include transform(scale(0.9));
+        }
+    }
+
+    &-inside{
+        &.subscribe-form{
+            white-space: normal;
+            
+            .row{
+                margin-bottom: 1.4rem;
+
+                &.message{
+                    margin-bottom: 1rem;
+                }
+            }
+            
+            h2{
+                margin-top: calc(50px - 1rem);
+                margin-bottom: 2rem;
+            }
+
+            .intro{
+                margin-bottom: 1.5rem;
+            }
+
+            label{
+                display: block;
+                font-size: 0.9rem;
+                margin-bottom: 0.4rem;
+            }
+
+            input,
+            textarea{
+                display: block;
+                box-sizing: border-box;
+                margin: 0;
+                padding: 0;
+                width: 100%;
+                outline: none;
+            }
+
+            input{
+                padding: 0;
+                background-color: $white;
+                border: none;
+                border-bottom: 1px solid $gray4c;
+                color: $blackc;
+                font: 1rem/1.4rem Raleway, Helvetica, Arial, sans-serif;
+            }
+
+            textarea{
+                padding: 0;
+                font: 1rem/1.4rem Raleway, Helvetica, Arial, sans-serif;
+                border: none;
+                border-bottom: 1px solid $gray4c;
+                resize: none;
+                min-height: 5.9rem;
+            }
+
+            .submit{
+                text-align: center;
+                margin-bottom: 0;
+                
+                >div{
+                    width: 50px;
+                    height: 50px;
+                    position: relative;
+                    display: inline-block;
+                }
+
+                svg{
+                    width: 100%;
+                    height: 100%;
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                }
+
+                input{
+                    cursor: pointer;
+                    background-color: transparent;
+                    border: none;
+                    color: $white;
+                    display: block;
+                    width: 100%;
+                    height: 100%;
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    line-height: 50px;
+                }
+            }
+        }
+    }
+}

@@ -225,15 +225,15 @@
 
         <div class="block nav">
             <div class="wrapper">
-                <a class="scrollTrigger logo" data-to="top" href="/">
+                <a class="logo" href="/">
                     <svg class="svg-logo-white"><use xlink:href="#svg-logo-white" /></svg>
                     <svg class="svg-logo-black"><use xlink:href="#svg-logo-black" /></svg>
                     <span>Mindmaps Research Ltd <span>the architecture of insight</span></span>
                 </a>
                 <nav>
-                    <a class="scrollTrigger" data-to="#section-ecosystem" href="#section-ecosystem">Stack Ecosystem</a>
+                    <a href="/ecosystem.html">Stack Ecosystem</a>
                     <!-- <a class="scrollTrigger" data-to="#section-about" href="#section-about">API Docs</a> -->
-                    <a class="scrollTrigger" data-to="#section-usecases" href="#section-usecases">Use Cases</a>
+                    <a href="/usecases.html">Use Cases</a>
                     <!-- <a class="scrollTrigger" data-to="#section-about" href="#section-about">Partnership</a> -->
                     <a target="_blank" href="https://angel.co/mindmaps/jobs">Careers</a>
                     <a href="/about.html">About</a>
@@ -251,9 +251,9 @@
             </div>
         </div>
         <div class="block splash">
-            <h1>Mindmaps Research Ltd <span>a development stack for semantic graph systems</span></h1>
-            <div class="getMindmaps">
-                <a href="/">Get Mindmaps</a>
+            <div class="overlay">
+                <h1>Mindmaps Research Ltd <span>a development stack for semantic graph systems</span></h1>
+                <a class="getMindmaps" href="/">Get Mindmaps</a>
             </div>
         </div>
         <div class="block content" id="graql-slider">
@@ -386,11 +386,12 @@ $z isa directorship (movie-being-directed $x, director $y)</textarea>
                 </div>
             </div>
         </div>
-        <div class="block content" id="section-about">
+        <div class="block content">
             <div class="wrapper">
                 <div class="text-block columns">
-                    <p>Graphs, or Networks as we call them, are about studying relationships and relationship patterns on objects. For as long as the history of computing exists, we have known that a lot of human knowledge can be represented and viewed as graphs. Graphs and the need to model and analyse them have become so dominant in both academia and industry, that it is found every where today. Google, Facebook, LinkedIn, Twitter and many more companies are thriving in the market with data that are represented, modelled and processed as graphs. If you think about it, the entire world wide web is giant graph that we can analyse.</p>
-                    <p>Consequently, this leads to the blooming of graph industries: Graph Analytics, Graph Computing and Graph Databases. At Mindmaps, we are interested in advancing the the development of graph based systems, using graph databases. Although graph databases have matured and proven to be very strong, it is missing an important element: it has no formal way of structuring. In other words, graph databases do not have a strong semantic structure. This problem makes it hard for your object model to be human understable and grow flexibly, perform semantic / pattern matching queries, data verification and inference, develop data mining functionalities and visualise and manage your graph. Mindmaps Stack is developed to solve this problem.</p>
+                    <p>Mindmaps is a development stack on top of your graph database which exposes an object model that semantically structures your big data according to your domain schema, i.e. ontology. Mindmaps also introduces a pattern matching graph query language that follows your ontology. You can focus on developing your semantic applications on top of a robust domain model while Mindmaps deal with the complexity of structuring and interacting with your graph based cluster of data.</p>
+                    <p>Mindmaps is a development stack that semantically structures your graph database and exposes a powerful object model. The structure is defined according to your own domain ontology in terms of the object model. A key component of the stack is a pattern matching graph query language that is aware of your ontology.</p>
+                    <p>By having a semantic structure over your graph based big data, Mindmaps unveils possibilities of solutions to complex industry problems which were challenging to solve before. This will allow you to exploit the full potential of relationships within your semantic graph of big data through graph computing and graph analytics, and tackle problems from Pharmaceutical, Healthcare, Insurance, Legal, Retail, Finance and many more.</p>
                 </div>
             </div>
         </div>
@@ -429,7 +430,7 @@ $z isa directorship (movie-being-directed $x, director $y)</textarea>
                                     <p>Migrate from RDF/OWL based data</p>
                                 </div>
                                 <div class="tab" data-target="visualiser">
-                                    <span class="title">Visualiser</span>
+                                    <span class="title">Insight</span>
                                     <p>Visualise and manage your graph</p>
                                 </div>
                             </div>
@@ -460,7 +461,7 @@ $z isa directorship (movie-being-directed $x, director $y)</textarea>
                                             </g>
                                         </svg>
                                     </div>
-                                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+                                    <p>If you need to scale horizontally, to meet data or traffic volume constraints, or work in memory for speed then Mindmaps Stack will adapt to your needs. Mindmaps graph gives you the flexibility to decide which database solution best meets your requirements. Many off-the-shelf graph databases are supported, giving maximum flexibility and allowing you to control your costs. Mindmaps graph ensures that the database you choose supports all of the features of the stack, leaving you to make your decision purely based on performance.</p>
                                     <a class="readFurther" href="/">Read further</a>
                                 </div>
                             </div>
@@ -474,8 +475,8 @@ $z isa directorship (movie-being-directed $x, director $y)</textarea>
                                             <line vector-effect="non-scaling-stroke" x1="44.8" y1="119.5" x2="143.8" y2="160.5"/>
                                         </svg>
                                     </div>
-                                    <p>Graql (Graph Query Language) is a declarative language used to query a Mindmaps Graph. There are three main operations that Graql can perform: 'select’ allows patterns to be specified which are searched for in the graph and returned; 'insert' and 'delete' are used to mutate the graph as well as to define inference rules.</p>
-                                    <p>Graql has an efficient syntax and is intuitive to use. It is built to complement the Mindmaps Graph object model working purely in terms of concepts and the relationships between them.</p>
+                                    <p>Graql is the language used to query a Mindmaps Graph. It has been designed to complement the object model by working purely in terms of concepts and the relationships between them. This feature allows you to effortlessly create an ontology and to search for the existence of complex patterns in the graph. You do not need to worry about the optimal traversal to find your information; Graql will do this for you.</p>
+                                    <p>Graql makes it easy to specify generic constraints on your data that restrict the complex patterns that can exist in the graph. Furthermore, these queries can be extended to define inference rules that expose implicit information in your data to your applications.</p>
                                     <a class="readFurther" href="/">Read further</a>
                                 </div>
                             </div>
@@ -486,7 +487,8 @@ $z isa directorship (movie-being-directed $x, director $y)</textarea>
                                             <polyline vector-effect="non-scaling-stroke" class="line" points="34.6,156.9 35,146.2 23,93.2 45,40.2 98,18.2 151,40.2 173,93.2 177,119.7 169.6,137.6 163.3,95.9 143.4,47.8 98,29 52.6,47.8 33.4,94.1 44.7,144 44.1,160.9 53.6,164.8 54.5,141.8 54.5,141.8 43.9,95 60.3,55.5 98,39.8 135.7,55.5 153.6,98.6 161.3,149.2 161.3,149.2 160.2,157.4 149.9,161.7 151.4,150.7 151.4,150.7 143.9,101.3 128.1,63.1 98,50.7 67.9,63.1 54.3,95.9 64.2,139.6 64.2,139.6 63.1,168.8 72.7,172.7 74,137.4 74,137.4 64.8,96.8 75.6,70.8 98,61.5 120.4,70.8 134.2,104 141.5,152.2 141.5,152.2 139.7,165.9 129.4,170.2 131.6,153.7 131.6,153.7 124.5,106.7 112.8,78.4 98,72.3 83.2,78.4 75.3,97.7 83.7,135.2 83.7,135.2 82.2,176.7 91.7,180.6 93.5,133 93.5,133 85.7,98.6 90.9,86.1 98,83.1 105.1,86.1 114.8,109.4 121.7,155.2 121.7,155.2 119.2,174.4 109,178.7 111.8,156.7 111.8,156.7 105.1,112.1 98,95 96.2,99.5 103.2,130.8 103.2,130.8 101.4,181.8"/>
                                         </svg>
                                     </div>
-                                    <p>Mindmaps reasoner is a powerful inference engine that can be used to validate constraints and infer information based on rules specified in Graql. The reasoner uses both forward and backward chaining with data materialisation to make implicit information in your data explicit.</p>
+                                    <p>Mindmaps Reasoner is a powerful inference engine that can validate constraints on your data and infer new information based on rules specified in Graql. Specifying constraints on your data ensures that it is always in the format you expect in your database. Mission critical analytics can be developed on top of your data without having to worry about its fidelity.</p>
+                                    <p>Mindmaps Reasoner uses both forward and backward chaining with data materialisation to make implicit information in your data explicit. Based on patterns specified in Graql, the reasoner identifies matching information in your graph and asserts the logical conclusion.</p>
                                     <a class="readFurther" href="/">Read further</a>
                                 </div>
                             </div>
@@ -501,7 +503,7 @@ $z isa directorship (movie-being-directed $x, director $y)</textarea>
                                             <line vector-effect="non-scaling-stroke" x1="163.6" y1="36.3" x2="100" y2="100"/>
                                         </svg>
                                     </div>
-                                    <p>Once the structure of your graph has been defined Mindmaps Analytics provides the tools to extract aggregate information. Discover the information contained in the structure of your data using graph analytics. Extract specific data sets amongst highly connected or diverse data. Display common windows onto data summarising statistics, clustering, user interaction.</p>
+                                    <p>Once the structure of your graph has been defined, Mindmaps Analytics provides the tools to extract aggregate information. Discover the information contained in the structure of your data using graph analytics. Extract specific data sets amongst highly connected or diverse data. Display common windows onto data by computing statistics. Track and analyse system usage to inform your development and quantify user interaction. Mine your data to identify clusters of products or users and train models to capture and predict behavior.</p>
                                     <a class="readFurther" href="/">Read further</a>
                                 </div>
                             </div>
@@ -523,7 +525,7 @@ $z isa directorship (movie-being-directed $x, director $y)</textarea>
                                             <polygon class="solid" vector-effect="non-scaling-stroke" points="113.3,130 116.8,131.5 118.3,135 116.8,138.6 113.3,140 109.7,138.6 108.3,135 109.7,131.5"/>
                                         </svg>
                                     </div>
-                                    <p>Interact with all aspect of a Mindmaps Graph using visual tools: view and edit your ontology as a graph; add constraints and inference rules; navigate your data using advanced filtering; create queries visually; manage your Mindmaps infrastructure.</p>
+                                    <p>Interact with all aspects of Mindmaps using our visualisation tool: Mindmaps Insight. You can view and edit your ontology as a graph, making clear how concepts are related and how they are constrained. Navigate your data visually using advanced filtering to rapidly shift focus from the coarsest to the finest levels of detail. Specify graph patterns, using an intuitive graphical interface, and execute them as GraQL queries to find complex interrelated information. Additionally, you can manage your entire Mindmaps infrastructure using our web UI. Easily configure and scale your infrastructure to meet changing demands in realtime.</p>
                                     <a class="readFurther" href="/">Read further</a>
                                 </div>
                             </div>
@@ -537,7 +539,8 @@ $z isa directorship (movie-being-directed $x, director $y)</textarea>
                                             <rect vector-effect="non-scaling-stroke" x="12" y="12" width="40" height="40"/>
                                         </svg>
                                     </div>
-                                    <p>Importing your existing data into Mindmaps is simple. If your data is in RDF triples already this can be mapped into a mindmaps graph automatically. Any other data can be imported utilising our extract transform layer (ETL) to import from disparate sources. OWL ontologies can also be transformed into Mindmaps ontologies to preserve existing structure.</p>
+                                    <p>Importing your existing data into Mindmaps is simple. If your data is already in RDF triples, it can be mapped into a Mindmaps graph automatically. OWL ontologies can also be transformed into Mindmaps ontologies to preserve existing domain knowledge.</p>
+                                    <p>Mindmaps migration can also be built into existing or custom ETL tools by using Graql to efficiently bulk load your data into a semantic graph. The object model provides the flexibility to import information from disparate sources and across multiple application domains into a single graph.</p>
                                     <a class="readFurther" href="/">Read further</a>
                                 </div>
                             </div>
@@ -558,8 +561,7 @@ $z isa directorship (movie-being-directed $x, director $y)</textarea>
                                             </g>
                                         </svg>
                                     </div>
-                                    <p>Mindmaps Core exposes an object model that semantically structures your data. It abstracts away nodes and edges in your graph and allows your data to be structured in terms of concepts, the relationships between them and the roles they play in these relationships.</p>
-                                    <p>A domain ontology can be defined and constraints specified to ensure that only valid data will be contained in the database. Inference rules can be added to materialise implicit information in your data for use in queries.</p>
+                                    <p>Let Mindmaps deal with the complex problem of structuring and interacting with your graph database. You can focus on developing your semantic applications while Mindmaps handles the implementation details. Mindmaps Core exposes an object model that semantically structures your data according to an ontology. It abstracts away nodes and edges in your graph and allows your data to be structured in terms of concepts, the relationships between them and the roles they play in these relationships. This simple object model is intuitive to understand and it provides the flexibility to edit your ontology on-the-fly.</p>
                                     <a class="readFurther" href="/">Read further</a>
                                 </div>
                             </div>
@@ -569,9 +571,12 @@ $z isa directorship (movie-being-directed $x, director $y)</textarea>
                 </div>
             </div>
         </div>
-        <div class="block content" id="section-benefits">
+        <div class="block content white-bg">
             <div class="wrapper">
                 <h2>Advantages</h2>
+                <div class="subtitle">
+                    <p>Mindmaps Stack empowers the developer to build the type of semantic applications in the way that they want to - from semantic search engines to systems capable of performing complex analytics.</p>
+                </div>
                 <ul class="benefits">
                     <li>
                         <h5>Faster Development</h5>
@@ -592,35 +597,39 @@ $z isa directorship (movie-being-directed $x, director $y)</textarea>
                 </ul>
             </div>
         </div>
-        <div class="block content white-bg" id="section-usecases">
+        <div class="block content">
             <div class="wrapper">
                 <h2>Use Cases</h2>
-                <ol class="usecases">
+                <div class="subtitle">
+                    <p>Across all sectors and all industries, the dizzying digital pace of the twenty-first century has created a common challenge: managing huge volumes of highly varied, rapidly generated data, and gaining actionable insight from that data. Unfortunately, traditional data tools and technologies are inadequate to this task, keeping critical relationships hidden and deeper meaning undiscovered.</p>
+                    <p>The Mindmaps stack provides a critical and timely solution to these cross-industry challenges. By giving meaningful structure to data, and giving developers the flexibility and choice they require, Mindmaps can help you address your complex data needs and rapidly speed up development times for mission-critical applications. Some of the industries where Mindmaps is best suited include.</p>
+                </div>
+                <ul class="usecases">
                     <li>
                         <h5>Pharmaceuticals</h5>
-                        <p>Leverage biomedical, clinical, and enterprise knowledge to facilitate drug discovery, manage risk, expedite effective decision decision making, and acquire competitive insight.</p>
-                    </li>
-                    <li>
-                        <h5>Healthcare</h5>
-                        <p>Integrate individual patient data with aggregate clinical, demographic, environmental, and operational data to perform complex diagnoses, engage in predictive analytics, and make possible the best care at the lowest cost.</p>
-                    </li>
-                    <li>
-                        <h5>Insurance</h5>
-                        <p>Manage and interconnect customer data to unearth and analyze valuable patterns, minimize overall risk, prevent loss due to fraudulent activity, and improving strategic business insight.</p>
+                        <p>Leverage biomedical, clinical, and enterprise knowledge to facilitate drug discovery, manage risk, expedite effective decision making, and acquire competitive insight.</p>
                     </li>
                     <li>
                         <h5>Legal</h5>
-                        <p>Identify relevant legal precedents, collaborate effectively and efficiently, and uncover complex relationships within a case, and gain strategic insight.</p>
+                        <p>Identify relevant legal precedents, collaborate efficiently and effectively, and uncover complex relationships within and patterns across cases to secure strategic advantage.</p>
+                    </li>
+                    <li>
+                        <h5>Healthcare</h5>
+                        <p>Integrate individual patient data with aggregate clinical, demographic, environmental, and operational data to make possible the best care at the lowest cost.</p>
                     </li>
                     <li>
                         <h5>Retail</h5>
-                        <p>Organize customer and operational data across multiple channels, enabling insight into trends, facilitating personalized recommendations, and improving marketing efforts and business strategy.</p>
+                        <p>Organize and access customer and operational data across multiple channels, to enable insight into trends, facilitate personalized recommendations, and improve marketing and merchandising strategies.</p>
+                    </li>
+                    <li>
+                        <h5>Insurance</h5>
+                        <p>Manage and interconnect customer data to unearth and analyze valuable patterns, minimize overall risks, prevent loss due to fraudulent activity, and improve strategic business insight.</p>
                     </li>
                     <li>
                         <h5>Financial Services</h5>
-                        <p>Determine the optimal investment strategy, reduce risk, manage customer data, and identify suspicious patterns of behavior, while fulfilling regulatory requirements.</p>
+                        <p>Determine optimal investment strategies, manage customer data, reduce risk, and identify suspicious patterns of behavior, while fulfilling regulatory requirements.</p>
                     </li>
-                </ol>
+                </ul>
             </div>
         </div>
         <div class="block map" id="section-contact">
@@ -644,6 +653,35 @@ $z isa directorship (movie-being-directed $x, director $y)</textarea>
                     <svg class="svg-logo-black"><use xlink:href="#svg-logo-black" /></svg>
                 </div>
                 <p class="float-right">© 2016 <a class="scrollTrigger" data-to="top" href="/">Mindmaps Research Ltd</a></p>
+            </div>
+        </div>
+        <div class="modal-underlay">
+            <div class="modal-window">
+                <div class="modal-inside subscribe-form">
+                    <h2>Subscribe NOW!</h2>
+                    <p class="intro">An introduction to what the hell this actually is. Ho-ho-ho! No presents for you this Christmas! Lorem ipsum dolor, second line.</p>
+                    <form action="/mail">
+                        <div class="row">
+                            <label for="name">Full Name</label>
+                            <input type="text" name="name" id="name" placeholder="Steve Wright">
+                        </div>
+                        <div class="row">
+                            <label for="email">Email</label>
+                            <input type="email" name="email" id="email" placeholder="steve.wright@email.com">
+                        </div>
+                        <div class="row message">
+                            <label for="text">Message</label>
+                            <textarea placeholder="Your message" id="text" name="text"></textarea>
+                        </div>
+                        <div class="row submit">
+                            <div>
+                                <svg class="underlay"><use xlink:href="#icon-underlay" /></svg>
+                                <input type="submit" value="GO!">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-close"></div>
             </div>
         </div>
         <script src="https://maps.googleapis.com/maps/api/js"></script>

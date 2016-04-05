@@ -6,6 +6,7 @@
 @import 'slick-theme';
 @import 'prism';
 @import 'icons';
+@import 'modal';
 
 /* 
     Breakpoints
@@ -55,6 +56,7 @@ h2{
 }
 h3{
     font-size: 2rem;
+    margin-bottom: 30px;
 }
 h5{
     font-size: 1.4rem;
@@ -622,8 +624,8 @@ body{
 
                                     @for $i from 1 through 33 {
                                         &:nth-child(#{$i}){
-                                            @include animation-delay(-5*random(40)/* *$i */+s);
-                                            @include animation-duration(5+random(20)/* *$i */+s)
+                                            @include animation-delay(-5s*random(40));
+                                            @include animation-duration(5s+random(20))
                                         }
                                     }
                                 }
@@ -880,7 +882,8 @@ body{
             }
         }
 
-        &.scrolled{
+        &.scrolled,
+        &.white{
             background: $white url(bg_black.svg) no-repeat center center;
             background-size: cover;
 
@@ -939,6 +942,12 @@ body{
                 }
             }
         }
+
+        &.white{
+            +.block{
+                padding-top: 90px;
+            }
+        }
     }
 
     &.footer{
@@ -963,15 +972,43 @@ body{
         height: 80%;
         height: 80vh;
         background: linear-gradient(160deg, #5bc2e7 0%, #a1d884 100%);
+        text-align: center;
+        position: relative;
 
-        .getMindmaps{
+        canvas{
+            display: block;
+            max-height: 100vh;
+        }
+
+        .overlay{
             position: absolute;
+            top: 0;
             left: 0;
-            bottom: 39%;
             width: 100%;
-            text-align: center;
+            height: 100%;
 
-            a{
+            h1{
+                //font-size: 1.2rem;
+                //font-size: 2.8vh;
+                font-size: 2.2vh;
+                width: 100%;
+                color: $white;
+                padding-top: 35vh;
+                //bottom: 53%;
+                //top: 45%;
+                //left: 0;
+
+                span{
+                    margin-top: 0.3rem;
+                    //font-size: 0.8rem;
+                    //font-size: 1.9vh;
+                    font-size: 1.5vh;
+                    display: block;
+                    font-weight: 200;
+                }
+            }
+
+            .getMindmaps{
                 display: inline-block;
                 background-color: $pastelRed;
                 color: $white;
@@ -980,33 +1017,7 @@ body{
                 height: 3rem;
                 line-height: 3rem;
                 border-radius: 2px;
-            }
-        }
-
-        canvas{
-            display: block;
-            max-height: 100vh;
-        }
-
-        h1{
-            //font-size: 1.2rem;
-            //font-size: 2.8vh;
-            font-size: 2.2vh;
-            width: 100%;
-            color: $white;
-            position: absolute;
-            //bottom: 53%;
-            top: 45%;
-            left: 0;
-            text-align: center;
-
-            span{
-                margin-top: 0.3rem;
-                //font-size: 0.8rem;
-                //font-size: 1.9vh;
-                font-size: 1.5vh;
-                display: block;
-                font-weight: 200;
+                margin-top: 1.5rem;
             }
         }
 
@@ -1247,11 +1258,50 @@ body{
 .content{
     .wrapper{
 
-        .usecases{
-            counter-reset: usecases;
-            @include columns(auto 2);
-            @include column-gap(0px);
+        .usecase-list{
+            &:not(:last-child){
+                margin-bottom: 60px;
+            }
 
+            p{
+                &.title{
+                    font-size: 1.2rem;
+                    margin: 30px 0 15px 0;
+                }
+            }
+
+            ul{
+                list-style: disc inside;
+                box-sizing: border-box;
+                width: 50%;
+                padding-right: 15px;
+
+                li{
+                    font-size: 0.9rem;
+                    line-height: 1.5rem;
+
+                    &:not(:last-child){
+                        margin-bottom: 0.2rem;
+                    }
+                }
+            }
+        }
+
+        .subtitle{
+            margin: 0 auto 60px auto;
+            width: 580px;
+
+            p{
+                font-size: 0.9rem;
+                line-height: 1.5rem;
+
+                &:not(:last-child){
+                    margin-bottom: 30px;
+                }
+            }
+        }
+
+        .usecases{
             &:after{
                 content: '';
                 clear: both;
@@ -1259,25 +1309,26 @@ body{
             }
             
             li{
-                padding: 0 15px 60px 0;
+                float: left;
+                width: 33.33%;
+                padding: 0 15px 60px 15px;
                 box-sizing: border-box;
                 
-                &:nth-child(n+4){
+                &:nth-child(3n),{
                     padding: 0 0 60px 15px;
                 }
 
-                &:nth-child(3),
-                &:nth-child(6){
+                &:nth-child(1),
+                &:nth-child(4){
+                    padding: 0 15px 60px 0;
+                }
+
+                &:nth-child(n+4){
                     padding-bottom: 0;
                 }
 
                 h5{
                     margin-bottom: 30px;
-
-                    &:before{
-                        counter-increment: usecases;
-                        content: counter(usecases)'. ';
-                    }
                 }
 
                 p,
@@ -1467,6 +1518,12 @@ body{
             margin-bottom: 15px;
         }
         
+        h3{
+            font-weight: 400;
+            font-size: 1rem;
+            margin-bottom: 15px;
+        }
+
         .icon{
             &.big{
                 width: 60px;
@@ -1482,8 +1539,14 @@ body{
         .block{
 
             &.splash{
-                h1{
-                    top: 33%;
+                .overlay{
+                    h1{
+                        padding-top: 27vh;
+                    }
+
+                    .getMindmaps{
+                        margin-top: 2.5vh;
+                    }
                 }
             }
 
@@ -1512,6 +1575,12 @@ body{
 
             &.nav{
                 height: 40px;
+
+                &.white{
+                    +.block{
+                        padding-top: 40px;
+                    }
+                }
 
                 .wrapper{
                     padding: 0;
@@ -1569,6 +1638,43 @@ body{
                 .wrapper{
                     padding: 15px 0;
                     width: 240px;
+
+                    .usecase-list{
+                        &:not(:last-child){
+                            margin-bottom: 30px;
+                        }
+
+                        p{
+                            &.title{
+                                font-size: 0.9rem;
+                                margin: 15px 0 10px 0;
+                            }
+                        }
+
+                        ul{
+                            width: auto;
+                            padding-right: 0;
+
+                            li{
+                                font-size: 0.8rem;
+                                line-height: 1.1rem;
+                            }
+                        }
+                    }
+
+                    .subtitle{
+                        margin: 0 0 15px 0;
+                        width: auto;
+
+                        p{
+                            font-size: 0.8rem;
+                            line-height: 1.1rem;
+
+                            &:not(:last-child){
+                                margin-bottom: 15px;
+                            }
+                        }
+                    }
 
                     .tech{
                         &-stack{
@@ -1782,9 +1888,9 @@ body{
                     }
 
                     .usecases{
-                        @include columns(auto 0);
-
                         li{
+                            float: none;
+                            width: auto;
                             padding: 0 0 15px 0;
 
                             &:last-child{
@@ -1870,6 +1976,12 @@ body{
             font-size: 1.6rem;
             margin-bottom: 30px;
         }
+
+        h3{
+            font-weight: 400;
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+        }
         
         .icon{
             &.big{
@@ -1886,8 +1998,14 @@ body{
         .block{
 
             &.splash{
-                h1{
-                    top: 33%;
+                .overlay{
+                    h1{
+                        padding-top: 27vh;
+                    }
+
+                    .getMindmaps{
+                        margin-top: 3.5vh;
+                    }
                 }
             }
 
@@ -1910,6 +2028,12 @@ body{
 
             &.nav{
                 height: 40px;
+
+                &.white{
+                    +.block{
+                        padding-top: 40px;
+                    }
+                }
 
                 .wrapper{
                     padding: 0;
@@ -1968,6 +2092,43 @@ body{
                 .wrapper{
                     padding: 30px 0;
                     width: 320px;
+
+                    .usecase-list{
+                        &:not(:last-child){
+                            margin-bottom: 30px;
+                        }
+
+                        p{
+                            &.title{
+                                font-size: 1rem;
+                                margin: 15px 0 10px 0;
+                            }
+                        }
+
+                        ul{
+                            width: auto;
+                            padding-right: 0;
+
+                            li{
+                                font-size: 0.8rem;
+                                line-height: 1.3rem;
+                            }
+                        }
+                    }
+
+                    .subtitle{
+                        margin: 0 0 30px 0;
+                        width: auto;
+
+                        p{
+                            font-size: 0.8rem;
+                            line-height: 1.3rem;
+
+                            &:not(:last-child){
+                                margin-bottom: 15px;
+                            }
+                        }
+                    }
 
                     .tech{
                         &-stack{
@@ -2157,9 +2318,9 @@ body{
                     }
 
                     .usecases{
-                        @include columns(auto 0);
-
                         li{
+                            float: none;
+                            width: auto;
                             padding: 0 0 30px 0;
 
                             &:last-child{
@@ -2245,6 +2406,11 @@ body{
             font-size: 2rem;
             margin-bottom: 30px;
         }
+
+        h3{
+            font-size: 1.6rem;
+            margin-bottom: 15px;
+        }
         
         .icon{
             &.big{
@@ -2256,8 +2422,14 @@ body{
         .block{
 
             &.splash{
-                h1{
-                    top: 33%;
+                .overlay{
+                    h1{
+                        padding-top: 27vh;
+                    }
+
+                    .getMindmaps{
+                        margin-top: 5vh;
+                    }
                 }
             }
 
@@ -2274,6 +2446,12 @@ body{
 
             &.nav{
                 height: 60px;
+
+                &.white{
+                    +.block{
+                        padding-top: 60px;
+                    }
+                }
 
                 .wrapper{
                     padding: 0;
@@ -2322,6 +2500,43 @@ body{
                 .wrapper{
                     padding: 60px 0;
                     width: 500px;
+
+                    .usecase-list{
+                        &:not(:last-child){
+                            margin-bottom: 30px;
+                        }
+
+                        p{
+                            &.title{
+                                font-size: 1.2rem;
+                                margin: 15px 0 10px 0;
+                            }
+                        }
+
+                        ul{
+                            width: auto;
+                            padding-right: 0;
+
+                            li{
+                                font-size: 0.8rem;
+                                line-height: 1.3rem;
+                            }
+                        }
+                    }
+
+                    .subtitle{
+                        margin: 0 0 60px 0;
+                        width: auto;
+
+                        p{
+                            font-size: 0.9rem;
+                            line-height: 1.4rem;
+
+                            &:not(:last-child){
+                                margin-bottom: 30px;
+                            }
+                        }
+                    }
 
                     .tech{
                         &-stack{
@@ -2414,7 +2629,7 @@ body{
                             }
 
                             h5{
-                                font-weight: 200;
+                                font-weight: 400;
                                 font-size: 1.2rem;
                                 margin-bottom: 15px;
                             }
@@ -2428,9 +2643,9 @@ body{
                     }
 
                     .usecases{
-                        @include columns(auto 0);
-
                         li{
+                            float: none;
+                            width: auto;
                             padding: 0 0 30px 0;
 
                             &:last-child{
@@ -2438,7 +2653,7 @@ body{
                             }
 
                             h5{
-                                font-weight: 200;
+                                font-weight: 400;
                                 font-size: 1.2rem;
                                 margin-bottom: 15px;
                             }
@@ -2541,6 +2756,39 @@ body{
                 .wrapper{
                     width: 640px;
 
+                    .usecase-list{
+
+                        p{
+                            &.title{
+                                font-size: 1.2rem;
+                            }
+                        }
+
+                        ul{
+                            width: auto;
+                            padding-right: 0;
+
+                            li{
+                                font-size: 0.8rem;
+                                line-height: 1.4rem;
+                            }
+                        }
+                    }
+
+                    .subtitle{
+                        margin: 0 0 60px 0;
+                        width: auto;
+
+                        p{
+                            font-size: 0.8rem;
+                            line-height: 1.4rem;
+
+                            &:not(:last-child){
+                                margin-bottom: 30px;
+                            }
+                        }
+                    }
+
                     .tech{
                         &-grid{
                             .tab{
@@ -2623,6 +2871,17 @@ body{
                     .usecases{
 
                         li{
+                            width: 50%;
+                            padding: 0 15px 60px 0;
+
+                            &:nth-child(2n){
+                                padding: 0 0 60px 15px;
+                            }
+
+                            &:nth-child(n+5){
+                                padding-bottom: 0;
+                            }
+                            
                             p,
                             .readFurther{
                                 font-size: 0.8rem;
@@ -2697,6 +2956,29 @@ body{
             
                 .wrapper{
                     width: 880px;
+
+                    .usecase-list{
+                        ul{
+                            li{
+                                font-size: 0.8rem;
+                                line-height: 1.4rem;
+                            }
+                        }
+                    }
+
+                    .subtitle{
+                        margin: 0 auto 60px auto;
+                        width: 425px;
+
+                        p{
+                            font-size: 0.8rem;
+                            line-height: 1.4rem;
+
+                            &:not(:last-child){
+                                margin-bottom: 30px;
+                            }
+                        }
+                    }
 
                     .tech{
                         &-grid{
@@ -2923,6 +3205,14 @@ body{
 @media only screen
     and (min-width: 1600px) {
         .block{
+            &.splash{
+                .overlay{
+                    .getMindmaps{
+                        margin-top: 1rem;
+                    }
+                }
+            }
+            
             &.content{
                 .wrapper{
                     &.tech{
