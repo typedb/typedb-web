@@ -10,6 +10,29 @@ Math.degrees = function(radians) {
     return radians * 180/Math.PI;
 };
 
+function serializeObject(el) {
+    
+    var o = {},
+        a = el.serializeArray();
+    
+    $.each(a, function() {
+        
+        if (o[this.name] !== undefined) {
+            
+            if (!o[this.name].push) {
+                o[this.name] = [o[this.name]];
+            }
+            
+            o[this.name].push(this.value || '');
+        } else {
+            
+            o[this.name] = this.value || '';
+        }
+    });
+    
+    return o;
+};
+
 function getParentElement(el, className) {
 
     if (!el) {
@@ -1278,7 +1301,20 @@ window.MNDMPS = {
         _data: {},
 
         open: function() {
-            var data = window.MNDMPS.modal._data;
+            
+            var _this = window.MNDMPS.modal, 
+                data = _this._data;
+
+            if (data.underlay.classList.contains('display')) {
+                return;
+            }
+
+            if (data.sent) {
+                data.sent = false;
+                _this.resetForm(data.form);
+            }
+
+            clearTimeout(data.closeTimeout);
             
             data.underlay.classList.add('display');
 
@@ -1287,14 +1323,14 @@ window.MNDMPS = {
             }, 25);
         },
 
-        close: function(event) {
-            
-            if (!event.target.classList.contains('modal-underlay') && !event.target.classList.contains('modal-close')) {
-                return;
-            }
-            
+        close: function() {
+
             var _this = window.MNDMPS.modal,
                 data = _this._data;
+
+            if (!data.underlay.classList.contains('active')) {
+                return;
+            }
             
             data.underlay.classList.remove('active');
 
@@ -1303,15 +1339,123 @@ window.MNDMPS = {
             }, 200);
         },
 
+        closeByKey: function(event) {
+            
+            var _this = window.MNDMPS.modal;
+            
+            if (event.which === 27) {
+                _this.close();
+            }
+        },
+
+        resetForm: function(form) {
+
+            var data = window.MNDMPS.modal._data,
+                inputs = [].slice.call(form.getElementsByTagName('input'), 0);
+
+            inputs.push(form.getElementsByTagName('textarea')[0]);
+
+            for (var i = 0; i < inputs.length; i++) {
+                if (inputs[i].type !== 'submit') {
+                    inputs[i].value = '';
+                }
+            }
+
+            data.sendButton.classList.remove('disabled');
+            data.sendButton.classList.remove('done');
+        },
+
         init: function() {
 
-            var data = this._data;
+            var _this = this,
+                data = this._data;
 
             data.underlay = document.getElementsByClassName('modal-underlay')[0];
             data.modal = data.underlay.children[0];
+            data.form = data.modal.getElementsByTagName('form')[0];
+            data.sendButton = data.form.getElementsByClassName('sendButton')[0];
 
-            data.underlay.addEventListener('click', this.close, false);
+            data.sendButton.addEventListener('click', function(event) {
+                event.preventDefault();
+
+                if (this.classList.contains('disabled')) {
+                    return;
+                }
+
+                this.classList.add('disabled');
+                
+                window.MNDMPS.ajax.sendSubscribe({
+                    data: serializeObject($(data.form))
+                }).then(
+                    function(response) {
+                        data.sent = true;
+                        data.sendButton.classList.add('done');
+
+                        data.closeTimeout = setTimeout(function() {
+                            _this.close();
+                        }, 1500);
+                    },
+                    function(error) {
+                        console.log(error);
+                    }
+                );
+            }, false);
+
+            data.underlay.addEventListener('click', function(event) {
+                if (!event.target.classList.contains('modal-underlay') && !event.target.classList.contains('modal-close')) {
+                    return;
+                }
+
+                _this.close();
+            }, false);
+
+            document.addEventListener('keydown', this.closeByKey, false);
+
             dontScrollParent(data.underlay);
+        }
+    },
+
+    ajax: {
+
+        _data: {},
+
+        call: function(obj) {
+
+            var promise = new Promise(function(resolve, reject) {
+
+                var client = new XMLHttpRequest();
+                client.open(obj.method, obj.url, true);
+
+                if (obj.contentType) {
+                    client.setRequestHeader("Content-type", obj.contentType);
+                }
+                
+                client.send(obj.data);
+
+                client.onload = function() {
+                    if (this.status >= 200 && this.status < 300) {
+                        resolve(this.response);
+                    } else {
+                        reject(this.statusText);
+                    }
+                };
+            
+                client.onerror = function() {
+                    reject(this.statusText);
+                };
+            });
+
+            return promise;
+        },
+
+        sendSubscribe: function(obj) {
+
+            return this.call({
+                method: 'POST',
+                contentType: 'application/json;charset=UTF-8',
+                data: JSON.stringify(obj.data),
+                url: '/mail'
+            });
         }
     },
 
@@ -1342,7 +1486,7 @@ window.MNDMPS = {
             this.initPrism();
         }
         
-        if (document.getElementById('section-ecosystem')) {
+        if (document.getElementById('section-platform')) {
             this.initStack();
         }
 
@@ -1364,10 +1508,12 @@ window.MNDMPS = {
             google.maps.event.addDomListener(window, 'load', this.loadGoogleMap);
         }
 
-        var getMindmapsButton = document.getElementsByClassName('getMindmaps')[0];
+        var getMindmapsButton = document.getElementsByClassName('getMindmaps');
 
-        if (getMindmapsButton) {
-            getMindmapsButton.addEventListener('click', this.modal.open, false);
+        if (getMindmapsButton.length) {
+            for (var i = 0; i < getMindmapsButton.length; i++) {
+                getMindmapsButton[i].addEventListener('click', this.modal.open, false);
+            }
         }
     }
 };

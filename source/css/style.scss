@@ -765,6 +765,7 @@ body{
         z-index: 10;
         top: 0;
         left: 0;
+        pointer-events: none;
         @include transition(background-color 100ms ease-in-out);
         @include transform(translate3d(0, 0, 60px));
 
@@ -777,6 +778,7 @@ body{
                 color: $white;
                 text-decoration: none;
                 border: none;
+                pointer-events: auto;
                 @include transform(translate(0, -90px));
                 @include transition(transform 100ms ease-in-out);
 
@@ -807,10 +809,31 @@ body{
                 }
             }
 
+            .getMindmaps{
+                font-size: 0.9rem;
+                cursor: pointer;
+                display: block;
+                float: left;
+                background-color: $pastelRed;
+                color: $white;
+                padding: 0 10px;
+                height: 30px;
+                line-height: 30px;
+                border-radius: 2px;
+                margin: 30px 0 0 30px;
+                @include transform(translate(0, -90px));
+                @include transition(background-color 100ms ease-in-out, transform 100ms ease-in-out);
+
+                &:hover{
+                    background-color: lighten($pastelRed, 2.5%);
+                }
+            }
+
             nav{
                 float: right;
                 margin-top: 30px;
                 padding-right: 6px;
+                pointer-events: auto;
 
                 a:not([class^="button"]){
                     position: relative;
@@ -886,6 +909,7 @@ body{
         &.white{
             background: $white url(bg_black.svg) no-repeat center center;
             background-size: cover;
+            pointer-events: auto;
 
             .wrapper{
 
@@ -900,6 +924,14 @@ body{
                         &.svg-logo-white{
                             display: none;
                         }
+                    }
+                }
+
+                .getMindmaps{
+                    @include transform(translate(0, 0px));
+
+                    &:active{
+                        @include transform(scale(0.96));
                     }
                 }
 
@@ -1014,11 +1046,19 @@ body{
                 background-color: $pastelRed;
                 color: $white;
                 padding: 0 1.5rem;
-                border: none;
                 height: 3rem;
                 line-height: 3rem;
                 border-radius: 2px;
                 margin-top: 1.5rem;
+                @include transition(background-color 100ms ease-in-out);
+
+                &:hover{
+                    background-color: lighten($pastelRed, 2.5%);
+                }
+
+                &:active{
+                    @include transform(scale(0.96));
+                }
             }
         }
 
@@ -1587,6 +1627,10 @@ body{
                     padding: 0;
                     width: 240px;
 
+                    .getMindmaps{
+                        display: none;
+                    }
+
                     nav{
                         margin-top: 10px;
                         padding-right: 0;
@@ -2040,6 +2084,10 @@ body{
                     padding: 0;
                     width: 320px;
 
+                    .getMindmaps{
+                        display: none;
+                    }
+
                     nav{
                         margin-top: 10px;
                         padding-right: 0;
@@ -2057,7 +2105,7 @@ body{
                         }
 
                         a{
-                            &:nth-child(n+3){
+                            &:nth-child(n+2){
                                 display: none;
                             }
                         }
@@ -2458,6 +2506,10 @@ body{
                     padding: 0;
                     width: 500px;
 
+                    .getMindmaps{
+                        display: none;
+                    }
+
                     nav{
                         margin-top: 15px;
 
@@ -2726,6 +2778,14 @@ body{
             &.nav{
                 .wrapper{
                     padding: 0 30px;
+
+                    .getMindmaps{
+                        margin: 33px 0 0 15px;
+                        font-size: 0.8rem;
+                        padding: 0 5px;
+                        line-height: 24px;
+                        height: 24px;
+                    }
 
                     nav{
                         .divider{
@@ -3206,6 +3266,17 @@ body{
 @media only screen
     and (min-width: 1600px) {
         .block{
+            &.nav{
+                .wrapper{
+                    .getMindmaps{
+                        margin: 25px 0 0 30px;
+                        height: 40px;
+                        line-height: 40px;
+                        padding: 0 15px;
+                    }
+                }
+            }
+            
             &.splash{
                 .overlay{
                     .getMindmaps{
