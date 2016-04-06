@@ -268,7 +268,8 @@
                                         <div class="buttons"></div>
                                         <span>Graql</span>
                                     </div>
-                                    <textarea class="code-input" readonly=true>graql>
+                                    <textarea class="code-input" readonly=true>
+graql>>
 select $x where
 $x isa movie;
 $y isa person;
@@ -276,7 +277,7 @@ $z isa movie value "Avatar";
 ($x, $y) isa directorship;
 ($y, $z) isa directorship;
 
-results>
+results>>
 {"isa": "movie", "value": "Titanic"}
 {"isa": "movie", "value": "Aliens"}
 {"isa": "movie", "value": "Terminator 2: Judgement Day"}</textarea>
@@ -296,13 +297,14 @@ results>
                                         <div class="buttons"></div>
                                         <span>Graql</span>
                                     </div>
-                                    <textarea class="code-input" readonly=true>graql>
+                                    <textarea class="code-input" readonly=true>
+graql>>
 select $x(id, has title) where
 $x isa movie;
 $x has rating > 8.0;
 $x has release-date >= 01 Jan 2015;
 
-results>
+results>>
 {"id": "uuid-1234", "resources": {"title": ["Star Wars: Episode VII"]}}
 {"id": "w41t-d5ny", "resources": {"title": ["Zootopia"]}}
 {"id": "im0n-M4R5", "resources": {"title": ["The Martian"]}}</textarea>
@@ -322,18 +324,19 @@ results>
                                         <div class="buttons"></div>
                                         <span>Graql</span>
                                     </div>
-                                    <textarea class="code-input" readonly=true>graql>
+                                    <textarea class="code-input" readonly=true>
+graql>>
 select $x where
 $x isa person;
 $y isa movie;
-$z isa person value "Alfred Hitchcock";
+$z isa person value "Ang Lee";
 ($x, $y) isa casting;
 ($y, $z) isa directorship;
 
-results>
-{"isa": "person", "value": "Anthony Perkins"}
-{"isa": "person", "value": "Alfred Hitchcock"}
-{"isa": "person", "value": "Ellen Corby"}</textarea>
+results>>
+{"isa": "person", "value": "Suraj Sharma"}
+{"isa": "person", "value": "Irrfan Khan"}
+{"isa": "person", "value": "Ayush Tandon"}</textarea>
                                     <pre class="code-output">
                                         <code class="language-graql"></code>
                                     </pre>
@@ -350,7 +353,9 @@ results>
                                         <div class="buttons"></div>
                                         <span>Graql</span>
                                     </div>
-                                    <textarea class="code-input" readonly=true>insert
+                                    <textarea class="code-input" readonly=true>
+graql>>
+insert
 $x has genre "Horror"
 where
 $x isa movie has genre "Slasher";</textarea>
@@ -370,9 +375,11 @@ $x isa movie has genre "Slasher";</textarea>
                                         <div class="buttons"></div>
                                         <span>Graql</span>
                                     </div>
-                                    <textarea class="code-input" readonly=true>insert
-$x isa movie value "The Godfather";
-$y isa person value "Francis Coppola";
+                                    <textarea class="code-input" readonly=true>
+graql>>
+insert
+$x isa movie value "Big Fish";
+$y isa person value "Tim Burton";
 $z isa directorship (movie-being-directed $x, director $y)</textarea>
                                     <pre class="code-output">
                                         <code class="language-graql"></code>

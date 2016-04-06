@@ -993,194 +993,754 @@ window.MNDMPS = {
     },
 
     initGraph: function(obj) {
-
-        var nodes = {},
-            lines_iterator = 0;
-
-        // Compute the distinct nodes from the links.
-        obj.links.forEach(function(link) {
-            link.source = nodes[link.source] || (nodes[link.source] = {name: link.source});
-            link.target = nodes[link.target] || (nodes[link.target] = {name: link.target});
-        });
-
-        var width = parseInt(obj.size.width, 10),
-            height = parseInt(obj.size.height, 10),
-            hypotenuse = Math.sqrt(Math.pow(width, 2) + Math.pow(height, 2));
-
-        var force = d3.layout.force()
-            .nodes(d3.values(nodes))
-            .links(obj.links)
-            .size([width, height])
-            .linkDistance(Math.floor(hypotenuse/7))
-            .charge(-Math.floor(hypotenuse/2))
-            .on("tick", tick)
-            .start();
-
-        var svg = d3.select(obj.node).append("svg")
-            .attr("width", width)
-            .attr("height", height);
-
-        // build the arrow.
-        svg.append("svg:defs").selectAll("marker")
-            .data(["end"]) //Different link/path types can be defined here
-                .enter().append("svg:marker")
-            .attr("id", 'end')
-            .attr("viewBox", "0 0 20 20")
-            .attr("refX", 46)
-            .attr("refY", 10)
-            .attr("markerWidth", 6)
-            .attr("markerHeight", 6)
-            .attr("orient", "auto")
-                .append("svg:path")
-            .attr("d", "M 0 0 L 20 10 L 0 20 z");
-
-        var link = svg.selectAll(".link")
-            .data(force.links())
-            .enter().append("g")
-            .attr("class", "link");
-            
-        var line = link.append("line")
-            .attr("marker-end", "url(#end)");
-
-        lines_iterator = 0;
-
-        // Add a text label.
-        var link_text = link.append("text")
-            .attr('text-anchor', 'middle')
-            .text(function(d) {
-                return d.relation;
-            });
-
-        var node = svg.selectAll(".node")
-            .data(force.nodes())
-                .enter().append("g")
-            .attr("class", "node")
-            .on("mouseover", mouseover)
-            .on("mouseout", mouseout)
-            .call(force.drag);
-
-        node.append("circle")
-            .attr("r", 8)
-            .attr('class', function(d) {
-
-                var name = d.name;
-                
-                if (name.split('_')[0].indexOf('empty') > -1) {
-                    return 'empty';
-                }
-
-                if (name.split('^').length > 1) {
-                    return 'concept';
-                }
-            });
-
-        node.append("text")
-            .attr("x", 12)
-            .attr("y", 4)
-            .text(function(d) {
-
-                var name = d.name;
-                
-                if (name.split('_')[0].indexOf('empty') > -1) {
-                    name = '';
-                }
-
-                if (name.split('^').length > 1) {
-                    name = name.split('^')[1];
-                }
-                
-                return name;
-            });
-
-        function tick() {
-            line
-                .attr("x1", function(d) { return d.source.x; })
-                .attr("y1", function(d) { return d.source.y; })
-                .attr("x2", function(d) { return d.target.x; })
-                .attr("y2", function(d) { return d.target.y; });
-
-            link_text
-                .attr("x", function(d) { return (d.source.x + d.target.x)/2; })
-                .attr("y", function(d) { return (d.source.y + d.target.y)/2; });
-
-            node
-                .attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; });
-        }
-
-        function mouseover() {
-            d3.select(this).select("circle").transition()
-                .duration(100)
-                .attr("r", 9);
-        }
-
-        function mouseout() {
-            d3.select(this).select("circle").transition()
-                .duration(100)
-                .attr("r", 8);
-        }
+        buildGraph(obj)
     },
 
     initGraphs: function() {
-        var links = [
-            [
-                {source: "empty_link1", target: "$y: James Cameron", relation: "director"},
-                {source: "empty_link2", target: "$y: James Cameron", relation: "director"},
-                {source: "$y: James Cameron", target: "concept^person", relation: "isa"},
-                {source: "concept^person", target: "concept^concept-type", relation: "isa"},
-                {source: "concept^movie", target: "concept^concept-type", relation: "isa"},
-                {source: "$x: Titanic", target: "concept^movie", relation: "isa"},
-                {source: "$z: Avatar", target: "concept^movie", relation: "isa"},
-                {source: "empty_link1", target: "concept^directorship", relation: "isa"},
-                {source: "empty_link2", target: "concept^directorship", relation: "isa"},
-                {source: "concept^directorship", target: "concept^relation-type", relation: "isa"}
-            ],
-            [
-                {source: "concept^has", target: "Star Wars: Episode VII", relation: "value"},
-                {source: "Star Wars: Episode VII", target: "concept^title", relation: "isa"},
-                {source: "concept^title", target: "concept^resource-type", relation: "isa"},
-                {source: "concept^has", target: "$x: uuid-1234", relation: "owner"},
-                {source: "$x: uuid-1234", target: "concept^movie", relation: "isa"},
-                {source: "concept^movie", target: "concept^concept-type", relation: "isa"},
-                {source: "concept^has", target: "8.3", relation: "value"},
-                {source: "concept^has", target: "18 Dec 2015", relation: "value"},
-                {source: "18 Dec 2015", target: "concept^release-date", relation: "isa"},
-                {source: "8.3", target: "concept^rating", relation: "isa"},
-                {source: "concept^rating", target: "concept^resource-type", relation: "isa"},
-                {source: "concept^release-date", target: "concept^resource-type", relation: "isa"}
-            ],
-            [
-                {source: "$z: Alfred Hitchcock", target: "concept^person", relation: "isa"},
-                {source: "concept^person", target: "concept^concept-type", relation: "isa"},
-                {source: "concept^movie", target: "concept^concept-type", relation: "isa"},
-                {source: "$y: Psycho", target: "concept^movie", relation: "isa"},
-                {source: "$x: Anthony Perkins", target: "concept^person", relation: "isa"},
-                {source: "empty_link1", target: "$z: Alfred Hitchcock", relation: "director"},
-                {source: "empty_link1", target: "$y: Psycho", relation: "movie-being-directed"},
-                {source: "empty_link1", target: "concept^directorship", relation: "isa"},
-                {source: "empty_link2", target: "$y: Psycho", relation: "movie-with-cast"},
-                {source: "empty_link2", target: "$x: Anthony Perkins", relation: "actor"},
-                {source: "empty_link2", target: "concept^casting", relation: "isa"},
-                {source: "concept^directorship", target: "concept^relation-type", relation: "isa"},
-                {source: "concept^casting", target: "concept^relation-type", relation: "isa"}
-            ],
-            [
-                {source: "$x: Friday the 13th", target: "concept^movie", relation: "isa"},
-                {source: "concept^has", target: "$x: Friday the 13th", relation: "owner"},
-                {source: "concept^has", target: "Slasher", relation: "value"},
-                {source: "concept^has", target: "Horror", relation: "value"},
-                {source: "Horror", target: "concept^genre", relation: "isa"},
-                {source: "Slasher", target: "concept^genre", relation: "isa"}
-            ],
-            [
-                {source: "$x: The Godfather", target: "concept^movie", relation: "isa"},
-                {source: "concept^movie", target: "concept^concept-type", relation: "isa"},
-                {source: "$z", target: "$x: The Godfather", relation: "movie-being-directed"},
-                {source: "$z", target: "concept^directorship", relation: "isa"},
-                {source: "concept^directorship", target: "concept^relation-type", relation: "isa"},
-                {source: "$z", target: "$y: Francis Coppola", relation: "director"},
-                {source: "$y: Francis Coppola", target: "concept^person", relation: "isa"},
-                {source: "concept^person", target: "concept^concept-type", relation: "isa"}
-            ]
+        var graphs = [
+                    {
+                "id":1,
+                "width": 562,
+                "height": 400,
+                "nodes":[
+                    {
+                        "id":0,
+                        "type":"meta",
+                        "text":"relation-type",
+                        "x":0.8,
+                        "y":0.15
+                    },
+                    {
+                        "id":1,
+                        "type":"relation-type",
+                        "text":"director-ship",
+                        "x":0.5,
+                        "y":0.1
+                    },
+                    {
+                        "id":2,
+                        "type":"relation",
+                        "text":"_",
+                        "x":0.3,
+                        "y":0.267
+                    },
+                    {
+                        "id":3,
+                        "type":"relation",
+                        "text":"_",
+                        "x":0.7,
+                        "y":0.267
+                    },
+                    {
+                        "id":4,
+                        "type":"instance",
+                        "text":"$x: Titanic",
+                        "x":0.1,
+                        "y":0.533
+                    },
+                    {
+                        "id":5,
+                        "type":"instance",
+                        "text":"$y: James Cameron",
+                        "x":0.5,
+                        "y":0.533
+                    },
+                    {
+                        "id":6,
+                        "type":"instance",
+                        "text":"$z: Avatar",
+                        "x":0.9,
+                        "y":0.533
+                    },
+                    {
+                        "id":7,
+                        "type":"concept-type",
+                        "text":"person",
+                        "x":0.15,
+                        "y":0.8
+                    },
+                    {
+                        "id":8,
+                        "type":"concept-type",
+                        "text":"movie",
+                        "x":0.85,
+                        "y":0.8
+                    },
+                    {
+                        "id":9,
+                        "type":"meta",
+                        "text":"concept-type",
+                        "x":0.5,
+                        "y":0.9
+                    }
+                ],
+                "edges":[
+                    {
+                        "source":1,
+                        "target":0,
+                        "text":"isa"
+                    },
+                    {
+                        "source":2,
+                        "target":1,
+                        "text":"isa"
+                    },
+                    {
+                        "source":3,
+                        "target":1,
+                        "text":"isa"
+                    },
+                    {
+                        "source":3,
+                        "target":5,
+                        "text":"director",
+                        "type":"active"
+                    },
+                    {
+                        "source":3,
+                        "target":6,
+                        "text":"movie-directed",
+                        "type":"active"
+                    },
+                    {
+                        "source":2,
+                        "target":4,
+                        "text":"movie-directed",
+                        "type":"active"
+                    },
+                    {
+                        "source":2,
+                        "target":5,
+                        "text":"director",
+                        "type":"active"
+                    },
+                    {
+                        "source":4,
+                        "target":8,
+                        "text":"isa"
+                    },
+                    {
+                        "source":6,
+                        "target":8,
+                        "text":"isa"
+                    },
+                    {
+                        "source":5,
+                        "target":7,
+                        "text":"isa"
+                    },
+                    {
+                        "source":7,
+                        "target":9,
+                        "text":"isa"
+                    },
+                    {
+                        "source":8,
+                        "target":9,
+                        "text":"isa"
+                    }
+                ]
+            },
+            {
+                "id":2,
+                "width": 562,
+                "height": 400,
+                "nodes":[
+                    {
+                        "id":0,
+                        "type":"meta",
+                        "text":"concept-type",
+                        "x":0.2,
+                        "y":0.15
+                    },
+                    {
+                        "id":1,
+                        "type":"concept-type",
+                        "text":"movie",
+                        "x":0.1,
+                        "y":0.5
+                    },
+                    {
+                        "id":2,
+                        "type":"instance",
+                        "text":"$x: id1234",
+                        "x":0.2,
+                        "y":0.85
+                    },
+                    {
+                        "id":3,
+                        "type":"relation",
+                        "text":"has",
+                        "x":0.37,
+                        "y":0.1
+                    },
+                    {
+                        "id":4,
+                        "type":"relation",
+                        "text":"has",
+                        "x":0.32,
+                        "y":0.5
+                    },
+                    {
+                        "id":5,
+                        "type":"relation",
+                        "text":"has",
+                        "x":0.37,
+                        "y":0.9
+                    },
+                    {
+                        "id":6,
+                        "type":"resource",
+                        "text":"8.3",
+                        "x":0.57,
+                        "y":0.1
+                    },
+                    {
+                        "id":7,
+                        "type":"resource",
+                        "text":"The Martian",
+                        "x":0.5,
+                        "y":0.5
+                    },
+                    {
+                        "id":8,
+                        "type":"resource",
+                        "text":"30 Sep 2015",
+                        "x":0.57,
+                        "y":0.9
+                    },
+                    {
+                        "id":9,
+                        "type":"resource-type",
+                        "text":"rating",
+                        "x":0.8,
+                        "y":0.15
+                    },
+                    {
+                        "id":10,
+                        "type":"resource-type",
+                        "text":"title",
+                        "x":0.7,
+                        "y":0.5
+                    },
+                    {
+                        "id":11,
+                        "type":"resource-type",
+                        "text":"release-date",
+                        "x":0.8,
+                        "y":0.85
+                    },
+                    {
+                        "id":12,
+                        "type":"meta",
+                        "text":"resource-type",
+                        "x":0.9,
+                        "y":0.5
+                    }
+                ],
+                "edges":[
+                    {
+                        "source":1,
+                        "target":0,
+                        "text":"isa"
+                    },
+                    {
+                        "source":2,
+                        "target":1,
+                        "text":"isa",
+                        "type":"active"
+                    },
+                    {
+                        "source":3,
+                        "target":2,
+                        "text":"owner"
+                    },
+                    {
+                        "source":4,
+                        "target":2,
+                        "text":"owner",
+                        "type":"active"
+                    },
+                    {
+                        "source":5,
+                        "target":2,
+                        "text":"owner"
+                    },
+                    {
+                        "source":3,
+                        "target":6,
+                        "text":"value"
+                    },
+                    {
+                        "source":4,
+                        "target":7,
+                        "text":"value",
+                        "type":"active"
+                    },
+                    {
+                        "source":5,
+                        "target":8,
+                        "text":"value"
+                    },
+                    {
+                        "source":6,
+                        "target":9,
+                        "text":"isa"
+                    },
+                    {
+                        "source":7,
+                        "target":10,
+                        "text":"isa",
+                        "type":"active"
+                    },
+                    {
+                        "source":8,
+                        "target":11,
+                        "text":"isa"
+                    },
+                    {
+                        "source":9,
+                        "target":12,
+                        "text":"isa"
+                    },
+                    {
+                        "source":10,
+                        "target":12,
+                        "text":"isa"
+                    },
+                    {
+                        "source":11,
+                        "target":12,
+                        "text":"isa"
+                    }
+                ]
+            },
+            {
+                "id":3,
+                "width": 562,
+                "height": 400,
+                "nodes":[
+                    {
+                        "id":0,
+                        "type":"meta",
+                        "text":"relation-type",
+                        "x":0.5,
+                        "y":0.1
+                    },
+                    {
+                        "id":1,
+                        "type":"relation-type",
+                        "text":"directorship",
+                        "x":0.2,
+                        "y":0.2
+                    },
+                    {
+                        "id":2,
+                        "type":"relation-type",
+                        "text":"casting",
+                        "x":0.8,
+                        "y":0.2
+                    },
+                    {
+                        "id":3,
+                        "type":"relation",
+                        "text":"_",
+                        "x":0.3,
+                        "y":0.36
+                    },
+                    {
+                        "id":4,
+                        "type":"relation",
+                        "text":"_",
+                        "x":0.7,
+                        "y":0.36
+                    },
+                    {
+                        "id":5,
+                        "type":"instance",
+                        "text":"$z: Ang Lee",
+                        "x":0.1,
+                        "y":0.56
+                    },
+                    {
+                        "id":6,
+                        "type":"instance",
+                        "text":"$y: Life of Pi",
+                        "x":0.5,
+                        "y":0.56
+                    },
+                    {
+                        "id":7,
+                        "type":"instance",
+                        "text":"$y: Irrfan Khan",
+                        "x":0.9,
+                        "y":0.56
+                    },
+                    {
+                        "id":8,
+                        "type":"concept-type",
+                        "text":"person",
+                        "x":0.2,
+                        "y":0.8
+                    },
+                    {
+                        "id":9,
+                        "type":"concept-type",
+                        "text":"movie",
+                        "x":0.8,
+                        "y":0.8
+                    },
+                    {
+                        "id":10,
+                        "type":"meta",
+                        "text":"concept-type",
+                        "x":0.5,
+                        "y":0.9
+                    }
+                ],
+                "edges":[
+                    {
+                        "source":1,
+                        "target":0,
+                        "text":"isa"
+                    },
+                    {
+                        "source":2,
+                        "target":0,
+                        "text":"isa"
+                    },
+                    {
+                        "source":3,
+                        "target":1,
+                        "text":"isa"
+                    },
+                    {
+                        "source":3,
+                        "target":5,
+                        "text":"director",
+                        "type":"active"
+                    },
+                    {
+                        "source":3,
+                        "target":6,
+                        "text":"movie-directed",
+                        "type":"active"
+                    },
+                    {
+                        "source":4,
+                        "target":2,
+                        "text":"isa"
+                    },
+                    {
+                        "source":4,
+                        "target":6,
+                        "text":"movie-cast",
+                        "type":"active"
+                    },
+                    {
+                        "source":4,
+                        "target":7,
+                        "text":"actor",
+                        "type":"active"
+                    },
+                    {
+                        "source":7,
+                        "target":8,
+                        "text":"isa"
+                    },
+                    {
+                        "source":6,
+                        "target":9,
+                        "text":"isa"
+                    },
+                    {
+                        "source":5,
+                        "target":8,
+                        "text":"isa"
+                    },
+                    {
+                        "source":9,
+                        "target":10,
+                        "text":"isa"
+                    },
+                    {
+                        "source":8,
+                        "target":10,
+                        "text":"isa"
+                    }
+                ]
+            },
+            {
+                "id":4,
+                "width": 562,
+                "height": 400,
+                "nodes":[
+                    {
+                        "id":0,
+                        "type":"meta",
+                        "text":"concept-type",
+                        "x":0.2,
+                        "y":0.15
+                    },
+                    {
+                        "id":1,
+                        "type":"concept-type",
+                        "text":"movie",
+                        "x":0.1,
+                        "y":0.5
+                    },
+                    {
+                        "id":2,
+                        "type":"instance",
+                        "text":"$x",
+                        "x":0.2,
+                        "y":0.85
+                    },
+
+                    {
+                        "id":3,
+                        "type":"relation",
+                        "text":"has",
+                        "x":0.4,
+                        "y":0.1
+                    },
+                    {
+                        "id":4,
+                        "type":"relation",
+                        "text":"has",
+                        "x":0.367,
+                        "y":0.5
+                    },
+                    {
+                        "id":5,
+                        "type":"relation",
+                        "text":"has",
+                        "x":0.4,
+                        "y":0.9
+                    },
+                    {
+                        "id":6,
+                        "type":"resource",
+                        "text":"Friday the 13th",
+                        "x":0.6,
+                        "y":0.1
+                    },
+                    {
+                        "id":7,
+                        "type":"resource",
+                        "text":"Slasher",
+                        "x":0.633,
+                        "y":0.5
+                    },
+                    {
+                        "id":8,
+                        "type":"resource",
+                        "text":"Horror",
+                        "x":0.6,
+                        "y":0.9
+                    },
+                    {
+                        "id":9,
+                        "type":"resource-type",
+                        "text":"title",
+                        "x":0.8,
+                        "y":0.15
+                    },
+                    {
+                        "id":10,
+                        "type":"meta",
+                        "text":"resource-type",
+                        "x":0.9,
+                        "y":0.5
+                    },
+                    {
+                        "id":11,
+                        "type":"resource-type",
+                        "text":"genre",
+                        "x":0.8,
+                        "y":0.85
+                    }
+                ],
+                "edges":[
+                    {
+                        "source":1,
+                        "target":0,
+                        "text":"isa"
+                    },
+                    {
+                        "source":2,
+                        "target":1,
+                        "text":"isa"
+                    },
+                    {
+                        "source":3,
+                        "target":2,
+                        "text":"owner"
+                    },
+                    {
+                        "source":4,
+                        "target":2,
+                        "text":"owner"
+                    },
+                    {
+                        "source":5,
+                        "target":2,
+                        "text":"owner",
+                        "type":"active"
+                    },
+                    {
+                        "source":3,
+                        "target":6,
+                        "text":"value"
+                    },
+                    {
+                        "source":4,
+                        "target":7,
+                        "text":"value"
+                    },
+                    {
+                        "source":5,
+                        "target":8,
+                        "text":"value",
+                        "type":"active"
+                    },
+                    {
+                        "source":6,
+                        "target":9,
+                        "text":"isa"
+                    },
+                    {
+                        "source":7,
+                        "target":11,
+                        "text":"isa"
+                    },
+                    {
+                        "source":8,
+                        "target":11,
+                        "text":"isa",
+                        "type":"active"
+                    },
+                    {
+                        "source":9,
+                        "target":10,
+                        "text":"isa"
+                    },
+                    {
+                        "source":11,
+                        "target":10,
+                        "text":"isa"
+                    }
+                ]
+            },
+            {
+                "id":5,
+                "width": 562,
+                "height": 400,
+                "nodes":[
+                    {
+                        "id":0,
+                        "type":"meta",
+                        "text":"concept-type",
+                        "x":0.18,
+                        "y":0.2
+                    },
+                    {
+                        "id":1,
+                        "type":"meta",
+                        "text":"relation-type",
+                        "x":0.5,
+                        "y":0.1
+                    },
+                    {
+                        "id":2,
+                        "type":"relation-type",
+                        "text":"director-ship",
+                        "x":0.82,
+                        "y":0.2
+                    },
+                    {
+                        "id":3,
+                        "type":"concept-type",
+                        "text":"movie",
+                        "x":0.1,
+                        "y":0.6
+                    },
+                    {
+                        "id":4,
+                        "type":"relation",
+                        "text":"$z",
+                        "x":0.5,
+                        "y":0.6
+                    },
+                    {
+                        "id":5,
+                        "type":"concept-type",
+                        "text":"person",
+                        "x":0.9,
+                        "y":0.6
+                    },
+                    {
+                        "id":6,
+                        "type":"instance",
+                        "text":"$x: Big Fish",
+                        "x":0.3,
+                        "y":0.9
+                    },
+                    {
+                        "id":7,
+                        "type":"instance",
+                        "text":"$y: Tim Burton",
+                        "x":0.7,
+                        "y":0.9
+                    }
+                ],
+                "edges":[
+                    {
+                        "source":2,
+                        "target":1,
+                        "text":"isa"
+                    },
+                    {
+                        "source":3,
+                        "target":0,
+                        "text":"isa"
+                    },
+                    {
+                        "source":4,
+                        "target":2,
+                        "text":"isa"
+                    },
+                    {
+                        "source":4,
+                        "target":6,
+                        "text":"movie-directed",
+                        "type":"active"
+                    },
+                    {
+                        "source":4,
+                        "target":7,
+                        "text":"director",
+                        "type":"active"
+                    },
+                    {
+                        "source":5,
+                        "target":0,
+                        "text":"isa"
+                    },
+                    {
+                        "source":6,
+                        "target":3,
+                        "text":"isa",
+                        "type":"active"
+                    },
+                    {
+                        "source":7,
+                        "target":5,
+                        "text":"isa",
+                        "type":"active"
+                    }
+                ]
+            }                
         ],
         nodes = document.getElementsByClassName('graph'),
         node = nodes[0],
@@ -1189,10 +1749,11 @@ window.MNDMPS = {
             height: node.children[0].offsetHeight
         };
 
-        for (var i = 0; i < links.length; i++) {
+        for (var i = 0; i < graphs.length; i++) {
+            console.log(graphs[i]);
             this.initGraph({
-                links: links[i],
                 node: nodes[i].children[0],
+                graph: graphs[i],
                 size: size
             });
         }

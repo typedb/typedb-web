@@ -25,6 +25,8 @@ gulp.task('build-js', function() {
             'source/js/prism.js',
             'source/js/prism-graql.js',
             'source/js/d3.js',
+            'source/js/d3plus.js',
+            'source/js/graph.js',
             'source/js/main.js'
         ])
         .pipe(closureCompiler({
