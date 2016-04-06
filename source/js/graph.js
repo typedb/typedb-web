@@ -10,9 +10,8 @@ var edgeTypes = ["default", "active"];
 // var types2 = ["instance", "concept", "relation", "relationship", "concept-type", "relation-type"];
 
 //            green,    darkgreen,orange,   red,      blue,     darkblue, purple,
-//            green,    darkgreen,orange,   red,      blue,     darkblue, purple,
-nodeColors     = ["77dd77", "3CB68E", "FFBF57", "FA72A7", "5bc2e7", "747DF2", "BF77F3"];
-nodeColorsDark = ["61BC60", "008B5D", "FFA81C", "F73882", "46A5C7", "4854ED", "A15FD1"];
+nodeColors     = ["#77dd77", "#3CB68E", "#FFBF57", "#FA72A7", "#5bc2e7", "#747DF2", "#BF77F3"];
+nodeColorsDark = ["#61BC60", "#008B5D", "#FFA81C", "#F73882", "#46A5C7", "#4854ED", "#A15FD1"];
 
 edgeColors = ["#DADADA", "#CAEA9C"]
 edgeLabelColors = ["#54585a", "#2E4E00"]
