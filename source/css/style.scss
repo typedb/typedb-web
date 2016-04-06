@@ -527,10 +527,13 @@ body{
         p{
             font-size: 0.8rem;
             line-height: 1.4rem;
-            @include break-inside(avoid);
             
             &:not(:last-child){
                 padding-bottom: 15px;
+            }
+
+            &.nonbreakable{
+                @include break-inside(avoid);
             }
         }
     }
