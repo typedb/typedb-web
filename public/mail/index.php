@@ -30,7 +30,7 @@ $mail->Port       = "587";
 $mail->SMTPSecure = "tls";
 $mail->SMTPAuth   = true;
 $mail->Username   = "register@mindmaps.io";
-$mail->Password   = "";
+$mail->Password   = "Hornsey.8";
 $mail->addReplyTo("register@mindmaps.io", "Mindmaps");
 $mail->setFrom("register@mindmaps.io", "Mindmaps");
 $mail->addAddress("register@mindmaps.io", "Mindmaps");
