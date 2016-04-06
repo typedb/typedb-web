@@ -133,6 +133,16 @@
     column-gap: $values;
 }
 
+@mixin break-inside($values...) {
+    @if length($values) == 0 {
+        $values: avoid;
+    }
+    
+    -webkit-column-break-inside: $values;
+    page-break-inside: $values;
+    break-inside: $values;
+}
+
 // Disable selection
 
 @mixin disableSelection() {
