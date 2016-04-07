@@ -48,31 +48,6 @@ function getLinkUniqueId(link){
   return graphid + "_link_" + link.source.index + "_" + link.target.index;
 }
 
-var rotate = function(d){
-  if(d.target.x < d.source.x){
-    return "rotate(180, " + Math.abs(dx(d.source.x) + dx(d.target.x)) / 2  + ", " + Math.abs(dy(d.source.y) + dy(d.target.y)) / 2 + ")";
-  }
-  return "";
-}
-
-var boxRotation = function(d, boundingbox){
-  var adjacent = Math.abs(dx(d.target.x) - dx(d.source.x));
-  var opposite = Math.abs(dy(d.target.y) - dy(d.source.y));
-
-  var radians = Math.atan(opposite/adjacent);
-  var degrees = radians * (180 / Math.PI);
-
-  if((!(dx(d.target.x) < dx(d.source.x)) && dy(d.target.y) < dy(d.source.y)) || 
-    (dx(d.target.x) < dx(d.source.x) && !(dy(d.target.y) < dy(d.source.y)))){
-    degrees = -1 * degrees;
-  }
-
-  var xRot = boundingbox.left + hypotenuseLength(boundingbox)/4
-  var yRot = boundingbox.top + hypotenuseLength(boundingbox)/4
-
-  return "rotate(" + degrees + ", " + xRot + ", " + yRot + ")";;
-}
-
 var boundingRect = function(id){
   return document.getElementById(id).getBoundingClientRect()
 }
@@ -108,6 +83,50 @@ var offset = function(d){
   return percent + "%";
 }
 
+var drawGraph = function(){
+  d3.selectAll(".node")
+  .attr("transform", function(d) {
+    return "translate(" +
+      dx(d.x) + "," +
+      dy(d.y) + ")"; 
+  });
+
+  d3.selectAll(".edge")
+    .attr("x1", function(d) { return dx(d.source.x)})
+    .attr("y1", function(d) { return dy(d.source.y)})
+    .attr("x2", function(d) { return dx(d.target.x)})
+    .attr("y2", function(d) { return dy(d.target.y)})
+
+  d3.selectAll(".edgepath").attr("d", function(d) {
+    return "M" + dx(d.source.x) + "," + dy(d.source.y) + "L " + dx(d.target.x) + "," + dy(d.target.y);
+  });
+
+  d3.selectAll(".edgelabel")
+    .attr('transform',function(d,i){
+      if (d.target.x<d.source.x){
+          bbox = this.getBBox();
+          rx = bbox.x+bbox.width/2;
+          ry = bbox.y+bbox.height/2;
+          return 'rotate(180 '+rx+' '+ry+')';
+      }
+      else {
+          return 'rotate(0)';
+      }
+  });
+};
+
+var resize = function(force){
+  width = parseInt(d3.select('.graph').style('width'))
+  height = parseInt(d3.select('.graph').style('height'))
+
+  d3.select("svg")
+    .attr("width", width)
+    .attr("height", height);
+
+  force.size([width , height]).start().stop();
+  drawGraph()
+}
+
 var buildGraph = function(obj){
 
   // Use a timeout to allow the rest of the page to load first.
@@ -126,107 +145,104 @@ var buildGraph = function(obj){
     .start()
     .stop();
 
-  // build the grey arrow
-  svg.append("svg:defs").append("svg:marker")
-    .attr("id", "default-arrow")
-    .attr("viewBox", "0 -5 10 10")
-    .attr("refX", 23)
-    .attr("markerWidth", 2)
-    .attr("markerHeight", 2.5)
-    .attr("orient", "auto")
-    .append("svg:path")
-    .attr("d", "M0,-5L10,0L0,5")
-    .attr("stroke", "#DADADA")
-    .style("fill", "#DADADA")
-    
+  // build the default arrow
+    svg.append("svg:defs").append("svg:marker")
+      .attr("id", "default-arrow")
+      .attr("viewBox", "0 -5 10 10")
+      .attr("refX", 23)
+      .attr("markerWidth", 2)
+      .attr("markerHeight", 2.5)
+      .attr("orient", "auto")
+      .append("svg:path")
+      .attr("d", "M0,-5L10,0L0,5")
+      .attr("stroke", "#DADADA")
+      .style("fill", "#DADADA");
 
-  // build the dark grey arrow
-  svg.append("svg:defs").append("svg:marker")
-    .attr("id", "active-arrow")
-    .attr("viewBox", "0 -5 10 10")
-    .attr("refX", 23)
-    .attr("markerWidth", 2)
-    .attr("markerHeight", 2.5)
-    .attr("orient", "auto")
-    .append("svg:path")
-    .attr("d", "M0,-5L10,0L0,5")
-    .attr("stroke", "#CAEA9C")
-     .style("fill", "#CAEA9C")
-  
+    // build the active arrow
+    svg.append("svg:defs").append("svg:marker")
+      .attr("id", "active-arrow")
+      .attr("viewBox", "0 -5 10 10")
+      .attr("refX", 23)
+      .attr("markerWidth", 2)
+      .attr("markerHeight", 2.5)
+      .attr("orient", "auto")
+      .append("svg:path")
+      .attr("d", "M0,-5L10,0L0,5")
+      .attr("stroke", "#CAEA9C")
+      .style("fill", "#CAEA9C");
 
-  // define the links
-  var links = svg.selectAll("g.link")
-    .data(obj.graph.edges)
-    .enter().append("g")
-    .attr("class", "link")
+    // add the links
+    var edges = svg.selectAll("line")
+      .data(obj.graph.edges)
+      .enter()
+      .append("line")
+      .attr("class", "edge")
+      .attr("stroke", function(d){ return edgeColors(d.type)})
+      .attr("stroke-width", 9)
+      .attr("marker-end", function(d){ return d.type != null ? "url(#" + d.type + "-arrow)" : "url(#default-arrow)"});
 
-  // add the links and the arrows
-  links.append("path")
-    .attr("stroke", function(d){ return edgeColors(d.type)})
-    .attr("stroke-width", 9)
-    .attr("id", function(d){ return getLinkUniqueId(d); })
-    .attr("marker-end", function(d){ return d.type != null ? "url(#" + d.type + "-arrow)" : "url(#default-arrow)"})
-    .attr("d", function(d) {
-      return "M" + dx(d.source.x) + "," + dy(d.source.y) + "L " + dx(d.target.x) + "," + dy(d.target.y);
+    // add the links and the arrows
+    var edgePaths = svg.selectAll(".edgepath")
+      .data(obj.graph.edges)
+      .enter()
+      .append('path')
+      .attr("id", function(d){ return getLinkUniqueId(d); })
+      .attr({'class':'edgepath',
+             'fill-opacity':0,
+             'stroke-opacity':0,
+             'fill':'blue',
+             'stroke':'red'
+      })
+
+    // add the link labels
+    var edgelabels = svg.selectAll(".edgelabel")
+      .data(obj.graph.edges)
+      .enter()
+      .append("text")
+      .attr("class", "edgelabel")
+      .style("font", "10px sans-serif")
+      .attr("id", function(d){ return getLinkUniqueId(d) + "text"})
+      .attr("dy", "3")
+      
+    edgelabels.append("textPath")
+      .attr("stroke", function(d){ return edgeLabelColors(d.type)})
+      .attr("xlink:href", function(d) { return "#" + getLinkUniqueId(d); })
+      .attr("startOffset", function(d){ return offset(d) })
+      .attr("text-anchor", "middle")
+      .text(function(d){ return d.text.toUpperCase()});
+
+    // define the nodes
+    var nodes = svg.selectAll("g.node")
+      .data(obj.graph.nodes)
+      .enter().append("g")
+      .attr("class", "node");
+
+    // add the nodes
+    nodes.append("circle")
+      .attr("r", function(d){ return radius(d.type)})
+      .attr("id", function(d){ return "circle_" + d.id})
+      .style("fill", function(d){ return nodeColor(d.type)})
+      .style("stroke", function(d){ return borderColor(d.type)})
+      .style("stroke-width", 3);
+
+    // add the node labels
+    nodes.append("text")
+      .attr("class", "textWrap")
+      .style("text-anchor", "middle")
+      .style("fill", "white")
+      .text(function(d){ return d.text})
+      .each(function(d){
+        d3plus.textwrap()
+        .align("center")
+        .valign("middle")
+        .container(d3.select(this))
+        .draw();
+      });
+
+    d3.select(window)
+      .on("resize", function(){
+        resize(force)
     });
 
-  // add the link labels
-  links.append("text")
-    .attr("id", function(d){ return getLinkUniqueId(d) + "text"})
-    .attr("dy", "3")
-    .attr("transform", function(d){ return rotate(d); })
-    .append("textPath")
-    .attr("stroke", function(d){ return edgeLabelColors(d.type)})
-    .attr("xlink:href", function(d) { return "#" + getLinkUniqueId(d); })
-    .attr("startOffset", function(d){ return offset(d) })
-    .attr("text-anchor", "middle")
-    .text(function(d){ return d.text.toUpperCase()})
-
-  // links
-  //   .insert("rect", "* ~ text")
-  //   .attr("x", function(d){ 
-  //     return boundingRect(getLinkUniqueId(d) + "text").left - hypotenuseLength(boundingRect(getLinkUniqueId(d) + "text"))/4//((boundingRect(getLinkUniqueId(d) + "text").right - boundingRect(getLinkUniqueId(d) + "text").left)/2)
-  //   })
-  //   .attr("y", function(d){ 
-  //     return boundingRect(getLinkUniqueId(d) + "text").top - hypotenuseLength(boundingRect(getLinkUniqueId(d) + "text"))/4
-  //   })
-  //   .attr("transform", function(d){ return boxRotation(d, boundingRect(getLinkUniqueId(d) + "text")); })
-  //   .attr("width", function(d){ return hypotenuseLength(boundingRect(getLinkUniqueId(d) + "text"));})
-  //   .attr("height", function(d){ return boundingRect(getLinkUniqueId(d) + "text").height ;})
-  //   .attr("fill", "white")
-    // .attr("stroke", "black")
-
-  // define the nodes
-  var nodes = svg.selectAll("g.node")
-    .data(obj.graph.nodes)
-    .enter().append("g")
-    .attr("class", "node")
-
-  // add the nodes
-  nodes.append("circle")
-    .attr("r", function(d){ return radius(d.type)})
-    .attr("id", function(d){ return "circle_" + d.id})
-    .style("stroke", function(d){ return borderColor(d.type)})
-    .style("stroke-width", 3)
-    .style("fill", function(d){ return nodeColor(d.type)})
-
-  // add the node labels
-  nodes.append("text")
-    .attr("class", "textWrap")
-    .style("text-anchor", "middle")
-    .style("fill", "white")
-    .text(function(d){ return d.text})
-    .each(function(d){
-      d3plus.textwrap()
-      .align("center")
-      .valign("middle")
-      .container(d3.select(this))
-      .draw();
-    });
-
-  nodes.attr("transform", function(d) {
-    return "translate(" +
-      dx(d.x) + "," +
-      dy(d.y) + ")"; })
-
+    drawGraph()
 }

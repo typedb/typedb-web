@@ -10,12 +10,6 @@ ini_set('default_charset', 'UTF-8');
 class phpmailerAppException extends phpmailerException {}
 
 try {
-
-$to = 'alexander@mindmaps.io';
-if(!PHPMailer::validateAddress($to)) {
-    throw new phpmailerAppException("Email address " . $to . " is invalid -- aborting!");
-}
-
 $rest_json = file_get_contents("php://input");
 $_POST = json_decode($rest_json, true);
 
@@ -49,12 +43,3 @@ try {
 } catch (phpmailerAppException $e) {
     $results_messages[] = $e->errorMessage();
 }
-/*
-if (count($results_messages) > 0) {
-    echo "Run results\n";
-    echo "\n";
-    foreach ($results_messages as $result) {
-        echo "$result\n";
-    }
-    echo "\n";
-}*/
