@@ -1,45 +1,39 @@
 <?php
+
 require_once 'PHPMailerAutoload.php';
 
-$results_messages = array();
-
 $mail = new PHPMailer(true);
-$mail->CharSet = 'utf-8';
-ini_set('default_charset', 'UTF-8');
-
-class phpmailerAppException extends phpmailerException {}
 
 try {
-$rest_json = file_get_contents("php://input");
-$_POST = json_decode($rest_json, true);
+    $mail->CharSet = 'utf-8';
+    ini_set('default_charset', 'UTF-8');
 
-$message = "Full Name: " . $_POST["name"] . "\r\n";
-$message .= "Email: " . $_POST["email"] . "\r\n";
-$message .= "Message: " . $_POST["text"] . "\r\n";
+    $post_data = file_get_contents("php://input");
+    $decoded = json_decode($post_data, true);
 
-$mail->isSMTP();
-$mail->SMTPDebug  = 0;
-$mail->Host       = "smtp.office365.com";
-$mail->Port       = "587";
-$mail->SMTPSecure = "tls";
-$mail->SMTPAuth   = true;
-$mail->Username   = "register@mindmaps.io";
-$mail->Password   = "Hornsey.8";
-$mail->addReplyTo("register@mindmaps.io", "Mindmaps");
-$mail->setFrom("register@mindmaps.io", "Mindmaps");
-$mail->addAddress("register@mindmaps.io", "Mindmaps");
-$mail->Subject  = "Mindmaps Registration";
-$body = $message;
-$mail->WordWrap = 78;
-$mail->msgHTML($body);
+    $message = "Full Name: " . $decoded["name"] . "\r\n";
+    $message .= "Email: " . $decoded["email"] . "\r\n";
+    $message .= "Message: " . $decoded["text"] . "\r\n";
 
-try {
+    $mail->isSMTP();
+    $mail->SMTPDebug  = 0;
+    $mail->Host = "localhost";
+    $mail->addReplyTo("register@mindmaps.io", "Mindmaps");
+    $mail->setFrom("register@mindmaps.io", "Mindmaps");
+    $mail->addAddress("register@mindmaps.io", "Mindmaps");
+    $mail->Subject  = "Mindmaps Registration";
+    $mail->WordWrap = 78;
+    $mail->msgHTML($message);
+    $mail->isHTML(false);
+
     $mail->send();
-    $results_messages[] = "Message has been sent using SMTP";
+    echo "Submitted.";
 } catch (phpmailerException $e) {
-    throw new phpmailerAppException('Unable to send to: ' . $to. ': '.$e->getMessage());
+    error_log($e->errorMessage(), 0);
+    echo $e->errorMessage();
+} catch (Exception $e) {
+    error_log($e->getMessage(), 0);
+    echo $e->errorMessage();
 }
 
-} catch (phpmailerAppException $e) {
-    $results_messages[] = $e->errorMessage();
-}
+

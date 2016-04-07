@@ -2015,7 +2015,7 @@ window.MNDMPS = {
                 method: 'POST',
                 contentType: 'application/json;charset=UTF-8',
                 data: JSON.stringify(obj.data),
-                url: '/mail'
+                url: '/mail/'
             });
         }
     },
