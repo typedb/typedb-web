@@ -56,6 +56,14 @@ var hypotenuseLength = function(rect){
   return Math.sqrt(Math.pow(rect.top - rect.bottom, 2) + Math.pow(rect.right - rect.left, 2));
 }
 
+var rotate = function(d){
+  console.log(d)
+  if(d.target.x < d.source.x){
+    return "rotate(180, " + Math.abs(dx(d.source.x) + dx(d.target.x)) / 2  + ", " + Math.abs(dy(d.source.y) + dy(d.target.y)) / 2 + ")";
+  }
+  return "";
+}
+
 var offset = function(d){
   var sourceRadius = radius(d.source.type);
   var targetRadius = radius(d.target.type);
@@ -84,7 +92,7 @@ var offset = function(d){
 }
 
 var drawGraph = function(){
-  d3.selectAll(".node")
+  d3.selectAll("g.node")
   .attr("transform", function(d) {
     return "translate(" +
       dx(d.x) + "," +
@@ -95,7 +103,7 @@ var drawGraph = function(){
     .attr("x1", function(d) { return dx(d.source.x)})
     .attr("y1", function(d) { return dy(d.source.y)})
     .attr("x2", function(d) { return dx(d.target.x)})
-    .attr("y2", function(d) { return dy(d.target.y)})
+    .attr("y2", function(d) { return dy(d.target.y)});
 
   d3.selectAll(".edgepath").attr("d", function(d) {
     return "M" + dx(d.source.x) + "," + dy(d.source.y) + "L " + dx(d.target.x) + "," + dy(d.target.y);
@@ -107,17 +115,17 @@ var drawGraph = function(){
           bbox = this.getBBox();
           rx = bbox.x+bbox.width/2;
           ry = bbox.y+bbox.height/2;
-          return 'rotate(180 '+rx+' '+ry+')';
-      }
+          return 'rotate(180 '+Math.abs(dx(d.source.x) + dx(d.target.x)) / 2+' '+Math.abs(dy(d.source.y) + dy(d.target.y)) / 2+')';
+          }
       else {
           return 'rotate(0)';
-      }
-  });
+          }
+    });
 };
 
 var resize = function(force){
-  width = parseInt(d3.select('.graph').style('width'))
-  height = parseInt(d3.select('.graph').style('height'))
+  width = parseInt(d3.select("#graph_" + graphid).style('width'))
+  height = parseInt(d3.select("#graph_" + graphid).style('height'))
 
   d3.select("svg")
     .attr("width", width)
@@ -135,6 +143,7 @@ var buildGraph = function(obj){
   graphid = obj.graph.id;
 
   var svg = d3.select(obj.node).append("svg")
+    .attr("id", function(d){ return "graph_" + graphid})
     .attr("width", width)
     .attr("height", height);
 
@@ -202,6 +211,7 @@ var buildGraph = function(obj){
       .attr("class", "edgelabel")
       .style("font", "10px sans-serif")
       .attr("id", function(d){ return getLinkUniqueId(d) + "text"})
+      .attr("transform", function(d){ return rotate(d); })
       .attr("dy", "3")
       
     edgelabels.append("textPath")
@@ -220,7 +230,6 @@ var buildGraph = function(obj){
     // add the nodes
     nodes.append("circle")
       .attr("r", function(d){ return radius(d.type)})
-      .attr("id", function(d){ return "circle_" + d.id})
       .style("fill", function(d){ return nodeColor(d.type)})
       .style("stroke", function(d){ return borderColor(d.type)})
       .style("stroke-width", 3);
