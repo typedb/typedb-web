@@ -4,32 +4,32 @@
 Math.radians = function(degrees) {
     return degrees * Math.PI/180;
 };
- 
+
 // Converts from radians to degrees.
 Math.degrees = function(radians) {
     return radians * 180/Math.PI;
 };
 
 function serializeObject(el) {
-    
+
     var o = {},
         a = el.serializeArray();
-    
+
     $.each(a, function() {
-        
+
         if (o[this.name] !== undefined) {
-            
+
             if (!o[this.name].push) {
                 o[this.name] = [o[this.name]];
             }
-            
+
             o[this.name].push(this.value || '');
         } else {
-            
+
             o[this.name] = this.value || '';
         }
     });
-    
+
     return o;
 };
 
@@ -62,11 +62,11 @@ function getParentElements(el, className) {
 
 function getChildren(n, skipMe) {
     var r = [];
-    for (; n; n = n.nextSibling) 
+    for (; n; n = n.nextSibling)
         if (n.nodeType == 1 && n != skipMe) {
             r.push(n);
         }
-    
+
     return r;
 }
 
@@ -76,11 +76,11 @@ function getSiblings(n) {
 
 function f_filterResults(n_win, n_docel, n_body) {
     var n_result = n_win ? n_win : 0;
-    
+
     if (n_docel && (!n_result || (n_result > n_docel))) {
         n_result = n_docel;
     }
-    
+
     return n_body && (!n_result || (n_result > n_body)) ? n_body : n_result;
 }
 
@@ -124,7 +124,7 @@ function dontScrollParent(el, turnOff) {
             height       = this.offsetHeight,
             delta        = ev.wheelDelta,
             up           = delta > 0;
-        
+
         function prevent() {
             ev.stopPropagation();
             ev.preventDefault();
@@ -143,7 +143,7 @@ function dontScrollParent(el, turnOff) {
 
     el.removeEventListener('DOMMouseScroll', catchScroll, false);
     el.removeEventListener('mousewheel', catchScroll, false);
-    
+
     if (!turnOff) {
         el.addEventListener('DOMMouseScroll', catchScroll, false);
         el.addEventListener('mousewheel', catchScroll, false);
@@ -169,7 +169,7 @@ window.MNDMPS = {
             cameraZ = 600,
 
             zDepth = 100,
-            
+
             graphGroup = new THREE.Object3D(),
             nodesCloud = null,
             nodeLinesMesh = null,
@@ -209,7 +209,7 @@ window.MNDMPS = {
 
             logoGraphVectors = [
                 [0, 0, -logoUnit*2],
-                
+
                 [0, -logoUnit, -logoUnit],
                 [-logoUnit, 0, -logoUnit], [0, 0, -logoUnit], [logoUnit, 0, -logoUnit],
                 [0, logoUnit, -logoUnit],
@@ -231,7 +231,7 @@ window.MNDMPS = {
 
         function generateNodes() {
             var nodeLinesGeometry = new THREE.BufferGeometry();
-            
+
             for (var h = 0; h < maxNodesCount; h++) {
 
                 var x = Math.random() * SCREEN_WIDTH * 1 - SCREEN_WIDTH * 0.5,
@@ -300,7 +300,7 @@ window.MNDMPS = {
                 for (var j = i + 1; j < nodesCount; j++) {
 
                     particleDataB = nodesData[j];
-                    
+
                     if (effectController.limitConnections && particleDataB.numConnections >= effectController.maxConnections) {
                         continue;
                     }
@@ -383,7 +383,7 @@ window.MNDMPS = {
 
                 logoGraphVertices = new Float32Array(Math.pow(logoGraphVectors.length, 2) * 3),
                 logoMVertices = new Float32Array(Math.pow(logoMVectors.length, 2) * 3),
-                
+
                 tempPairsArray = [],
                 pairsArray = [],
                 logoGraphArray = [],
@@ -393,7 +393,7 @@ window.MNDMPS = {
 
                 littleSpheresArray = [],
                 bigSpheresArray = [],
-                
+
                 distance = null,
                 found = false;
 
@@ -439,7 +439,7 @@ window.MNDMPS = {
                 if ((distance > logoUnit && distance%logoUnit === 0) || (distance > baseHypotenuse && distance%baseHypotenuse === 0)) {
                     found = true;
                 }
-                
+
                 if (!found) {
                     pairsArray.push([tempPairsArray[i][0], tempPairsArray[i][1]]);
                 }
@@ -468,7 +468,7 @@ window.MNDMPS = {
             var smallNodeGeometry = null,
                 smallNodeGeometries = new THREE.Geometry(),
                 matrix = new THREE.Matrix4();
-            
+
             for (i = 0; i < logoGraphVectors.length; i++) {
                 found = false;
 
@@ -489,7 +489,7 @@ window.MNDMPS = {
 // Generating positions for big spheres
             var bigNodeGeometry = null,
                 bigNodeGeometries = new THREE.Geometry();
-            
+
             for (i = 0; i < logoMVectors.length; i++) {
                 found = false;
 
@@ -503,7 +503,7 @@ window.MNDMPS = {
 // Need to find a way to merge BufferGeometry without having to convert it from Geometry
             smallNodeGeometries = new THREE.BufferGeometry().fromGeometry(smallNodeGeometries);
             bigNodeGeometries = new THREE.BufferGeometry().fromGeometry(bigNodeGeometries);
-            
+
             var logoGraphMesh = new THREE.LineSegments(logoGraphGeometry, graphLineMaterial),
                 logoMMesh = new THREE.LineSegments(logoMGeometry, logoMLineMaterial),
                 smallNodeSpheres = new THREE.Mesh(smallNodeGeometries, smallNodeMaterial),
@@ -513,7 +513,7 @@ window.MNDMPS = {
             logoMMesh.geometry.setDrawRange(0, Math.pow(logoMVectors.length, 2));
             smallNodeSpheres.geometry.setDrawRange(0, smallNodeGeometries.attributes.position.array.length);
             bigNodeSpheres.geometry.setDrawRange(0, bigNodeGeometries.attributes.position.array.length);
-            
+
             logoGroup.add(logoGraphMesh);
             logoGroup.add(logoMMesh);
             logoGroup.add(smallNodeSpheres);
@@ -532,12 +532,12 @@ window.MNDMPS = {
             logoScale = SCREEN_HEIGHT/INIT_SCREEN_HEIGHT;
 
             //camera.aspect = SCREEN_WIDTH/SCREEN_HEIGHT;
-            
+
             camera.left = SCREEN_WIDTH/-2;    // For
             camera.right = SCREEN_WIDTH/2;    // the
             camera.top = SCREEN_HEIGHT/2;     // Orthographic
             camera.bottom = SCREEN_HEIGHT/-2; // Camera
-            
+
             camera.updateProjectionMatrix();
             renderer.setSize(SCREEN_WIDTH, SCREEN_HEIGHT);
         }
@@ -559,7 +559,7 @@ window.MNDMPS = {
 
                 while (tempArray.length < 3) {
                     tempEl = Math.floor(Math.random() * logoGraphVectors.length);
-                    
+
                     if (tempArray.indexOf(tempEl) < 0) {
                         tempArray.push(tempEl);
                         tempGeometry.vertices.push(new THREE.Vector3(logoGraphVectors[tempEl][0], logoGraphVectors[tempEl][1], logoGraphVectors[tempEl][2]));
@@ -612,7 +612,7 @@ window.MNDMPS = {
                 posArray[i*3 + 1] = tempArray[i][1];
                 posArray[i*3 + 2] = tempArray[i][2];
             }
-            
+
             mesh.geometry.attributes.position.needsUpdate = true;
         }
 
@@ -662,7 +662,7 @@ window.MNDMPS = {
         camera.lookAt(scene.position);
         camera.zoom = 2; // For the Orthographic Camera
         scene.add(camera);
-        
+
         renderer.setPixelRatio(window.devicePixelRatio);
         renderer.setSize(SCREEN_WIDTH, SCREEN_HEIGHT);
 
@@ -676,7 +676,7 @@ window.MNDMPS = {
         generateRandomFaces();
         scene.add(logoGroup);
 
-        function render() { 
+        function render() {
             renderer.render(scene, camera);
         }
 
@@ -705,7 +705,7 @@ window.MNDMPS = {
                 x: event.touches[0].pageX,
                 y: event.touches[0].pageY
             });
-            
+
             document.addEventListener('touchmove', onTouchMove, false);
         }
 
@@ -729,7 +729,7 @@ window.MNDMPS = {
             if (!_this.data.threeDRunning) {
                 return;
             }
-            
+
             _this.data.mouseX = coordinates.x;
             _this.data.mouseY = coordinates.y;
 
@@ -751,7 +751,7 @@ window.MNDMPS = {
         } else {
             document.addEventListener('mousemove', onMouseMove, false);
         }
-        
+
         window.addEventListener('resize', function() {
             resize();
 
@@ -769,7 +769,7 @@ window.MNDMPS = {
                     0);
             }, 0);
         }, false);
-        
+
         document.addEventListener('visibilitychange', changeStateThreeD, false);
 
         resize();
@@ -845,7 +845,7 @@ window.MNDMPS = {
     },
 
     loadGoogleMap: function() {
-        
+
         var _this = window.MNDMPS,
             mapStyles = [{"featureType":"water","elementType":"geometry","stylers":[{"color":"#e9e9e9"},{"lightness":17}]},{"featureType":"landscape","elementType":"geometry","stylers":[{"color":"#f5f5f5"},{"lightness":20}]},{"featureType":"road.highway","elementType":"geometry.fill","stylers":[{"color":"#ffffff"},{"lightness":17}]},{"featureType":"road.highway","elementType":"geometry.stroke","stylers":[{"color":"#ffffff"},{"lightness":29},{"weight":0.2}]},{"featureType":"road.arterial","elementType":"geometry","stylers":[{"color":"#ffffff"},{"lightness":18}]},{"featureType":"road.local","elementType":"geometry","stylers":[{"color":"#ffffff"},{"lightness":16}]},{"featureType":"poi","elementType":"geometry","stylers":[{"color":"#f5f5f5"},{"lightness":21}]},{"featureType":"poi.park","elementType":"geometry","stylers":[{"color":"#dedede"},{"lightness":21}]},{"elementType":"labels.text.stroke","stylers":[{"visibility":"on"},{"color":"#ffffff"},{"lightness":16}]},{"elementType":"labels.text.fill","stylers":[{"saturation":36},{"color":"#333333"},{"lightness":40}]},{"elementType":"labels.icon","stylers":[{"visibility":"off"}]},{"featureType":"transit","elementType":"geometry","stylers":[{"color":"#f2f2f2"},{"lightness":19}]},{"featureType":"administrative","elementType":"geometry.fill","stylers":[{"color":"#fefefe"},{"lightness":20}]},{"featureType":"administrative","elementType":"geometry.stroke","stylers":[{"color":"#fefefe"},{"lightness":17},{"weight":1.2}]}],
             markerIcon = {
@@ -894,7 +894,7 @@ window.MNDMPS = {
     webGLAvailable: function() {
         var canvas = document.createElement('canvas'),
             gl, experimental;
-        
+
         try {
             gl = canvas.getContext('webgl');
         } catch (error) {
@@ -926,7 +926,7 @@ window.MNDMPS = {
 
         svgContainer.classList.add('svg-logo');
         svgContainer.innerHTML = svg;
-        
+
         svgSplash.appendChild(svgContainer);
         svgSplash.classList.add('svg-splash');
 
@@ -941,14 +941,14 @@ window.MNDMPS = {
                 height       = this.offsetHeight,
                 delta        = ev.wheelDelta,
                 up           = delta > 0;
-            
+
             function prevent() {
                 ev.stopPropagation();
                 ev.preventDefault();
                 ev.returnValue = false;
                 return false;
             }
-    
+
             if (!up && -delta > scrollHeight - height - scrollTop) {
                 this.scrollTop = scrollHeight;
                 return prevent();
@@ -960,7 +960,7 @@ window.MNDMPS = {
 
         el.removeEventListener('DOMMouseScroll', catchScroll, false);
         el.removeEventListener('mousewheel', catchScroll, false);
-        
+
         if (!turnOff) {
             el.addEventListener('DOMMouseScroll', catchScroll, false);
             el.addEventListener('mousewheel', catchScroll, false);
@@ -1330,7 +1330,7 @@ window.MNDMPS = {
                     {
                         "id":1,
                         "type":"relation-type",
-                        "text":"directorship",
+                        "text":"director-ship",
                         "x":0.2,
                         "y":0.2
                     },
@@ -1740,7 +1740,7 @@ window.MNDMPS = {
                         "type":"active"
                     }
                 ]
-            }                
+            }
         ],
         nodes = document.getElementsByClassName('graph'),
         node = nodes[0],
@@ -1765,7 +1765,7 @@ window.MNDMPS = {
 
         function renderOutput(input) {
             var value = input.value;
-            
+
             value = value
                     .replace(/&/g, "&amp;")
                     .replace(/</g, "&lt;")
@@ -1779,7 +1779,7 @@ window.MNDMPS = {
         function listenForInput(input) {
 
             function replicate(event) {
-                
+
                 var selStartPos = this.selectionStart,
                     inputVal = this.value;
 
@@ -1835,11 +1835,11 @@ window.MNDMPS = {
 
         function toggleStack(event) {
             var el = getParentElement(event.target, 'tab');
-            
+
             if (!el) {
                 return;
             }
-            
+
             var target = el.getAttribute('data-target');
 
             for (var i = 0; i < data.techTabs.length; i++) {
@@ -1862,8 +1862,8 @@ window.MNDMPS = {
         _data: {},
 
         open: function() {
-            
-            var _this = window.MNDMPS.modal, 
+
+            var _this = window.MNDMPS.modal,
                 data = _this._data;
 
             if (data.underlay.classList.contains('display')) {
@@ -1876,7 +1876,7 @@ window.MNDMPS = {
             }
 
             clearTimeout(data.closeTimeout);
-            
+
             data.underlay.classList.add('display');
 
             setTimeout(function() {
@@ -1892,7 +1892,7 @@ window.MNDMPS = {
             if (!data.underlay.classList.contains('active')) {
                 return;
             }
-            
+
             data.underlay.classList.remove('active');
 
             setTimeout(function() {
@@ -1901,9 +1901,9 @@ window.MNDMPS = {
         },
 
         closeByKey: function(event) {
-            
+
             var _this = window.MNDMPS.modal;
-            
+
             if (event.which === 27) {
                 _this.close();
             }
@@ -1944,7 +1944,7 @@ window.MNDMPS = {
                 }
 
                 this.classList.add('disabled');
-                
+
                 window.MNDMPS.ajax.sendSubscribe({
                     data: serializeObject($(data.form))
                 }).then(
@@ -1990,7 +1990,7 @@ window.MNDMPS = {
                 if (obj.contentType) {
                     client.setRequestHeader("Content-type", obj.contentType);
                 }
-                
+
                 client.send(obj.data);
 
                 client.onload = function() {
@@ -2000,7 +2000,7 @@ window.MNDMPS = {
                         reject(this.statusText);
                     }
                 };
-            
+
                 client.onerror = function() {
                     reject(this.statusText);
                 };
@@ -2033,7 +2033,7 @@ window.MNDMPS = {
                 this.appendSVGSplash();
             }
         }
-            
+
         vanillaSmoothScroller.bind({
             selector: '.scrollTrigger',
             offset: function () {
@@ -2046,7 +2046,7 @@ window.MNDMPS = {
             this.initGraphs();
             this.initPrism();
         }
-        
+
         if (document.getElementById('section-platform')) {
             this.initStack();
         }
