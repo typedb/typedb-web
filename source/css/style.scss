@@ -1280,7 +1280,7 @@ body{
                                             }
 
                                             &-output{
-                                                pointer-events: none;
+                                                @include enableSelection();
                                                 overflow-y: auto;
 
                                                 code{
