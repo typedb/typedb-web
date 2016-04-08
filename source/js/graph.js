@@ -7,8 +7,8 @@ var largeRadius = 45;
 var nodeTypes = ["instance", "concept-type", "relation", "relation-type", "resource", "resource-type", "meta"];
 var edgeTypes = ["default", "active"];
 
-//                 green,     darkgreen, orange,    red,       blue,      darkblue,  blue
-nodeColors     = ["#a1d884", "#77dd77", "#77dd77", "#d5d6e9", "#5bc2e7", "#ff7878", "#5bc2e7"];
+
+nodeColors     = ["#a1d884", "#ff7878",/*"#77dd77",*/ "#77dd77", "#d5d6e9", "#a1d884",/*"#5bc2e7",*/ "#ff7878", "#5bc2e7"];
 
 edgeColors = ["#bbbcbc", "#77dd77"]
 edgeLabelColors = ["#fff", "#2E4E00"]

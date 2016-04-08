@@ -2157,6 +2157,28 @@ window.MNDMPS = {
 
             jobBlock.innerHTML = '<h3>' + obj.title + '</h3>\
                 <div class="text-block columns">\
+                    <p>Mindmaps is looking for an energetic and proactive Team Leader to lead the development team. In this critical and exciting phase of Mindmaps\'s growth, you will be an integral part of determining the future of our company.\
+As a Team Leader you will oversee the development from start to finish, which includes (but is not limited to) the following:\
+1. Architecture design - develop detailed design of large scale software architecture to meet the requirements of development release cycles\
+2. Project Management - plan and execute development processes and delivery in a custom Agile framework\
+3. Coding - develop high quality code for challenging algorithmic back end development\
+4. Code Reviews - review completed tasks from the development team and hold to a high standard of quality\
+5. Workflow - maintain and apply policies and guidance of development workflow\
+6. Coaching - mentor and coach team members in order to assist in their development\
+7. R&D - drive the research and development direction of our scientific work in computer science related fields\
+8. Business Development - Influence and help execute the development of business direction, models and strategies\
+As a team leader you will have shown excellence in the following:\
+1. Academic background from a top university - minimum Bachelors (1:1) or Masters (2:1) from a computing related field and demonstrate an aptitude for Computer Science research\
+2. Engineering leadership (minimum 6 years)\
+3. Large scale software architecture design\
+4. Full stack enterprise software development (preferably Java)\
+5. Distributed realtime computation systems development\
+6. Working with semantic search, graph databases, knowledge representation systems, machine learning and/or expert systems\
+7. Full software development life cycle project management\
+8. Best security practices in software development\
+9. Coaching a development team\
+10. Continuous Integration\
+11. Fast paced working environment</p>\
                 </div>\
                 <ul>\
                     <li>Updatet on: ' + timeFormatter(obj.updated_at) + '</li>\
