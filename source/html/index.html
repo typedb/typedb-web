@@ -268,7 +268,8 @@
                                         <div class="buttons"></div>
                                         <span>Graql</span>
                                     </div>
-                                    <textarea class="code-input" readonly=true>
+                                    <textarea class="code-input" readonly=true># get movies directed by the director of the movie Avatar
+
 graql>>
 select $x where
 $x isa movie;
@@ -297,7 +298,8 @@ results>>
                                         <div class="buttons"></div>
                                         <span>Graql</span>
                                     </div>
-                                    <textarea class="code-input" readonly=true>
+                                    <textarea class="code-input" readonly=true># get the id and title of highly-rated movies released in 2015 or later
+
 graql>>
 select $x(id, has title) where
 $x isa movie;
@@ -324,7 +326,8 @@ results>>
                                         <div class="buttons"></div>
                                         <span>Graql</span>
                                     </div>
-                                    <textarea class="code-input" readonly=true>
+                                    <textarea class="code-input" readonly=true># get the people in the cast of movies directed by Ang Lee
+
 graql>>
 select $x where
 $x isa person;
@@ -353,7 +356,8 @@ results>>
                                         <div class="buttons"></div>
                                         <span>Graql</span>
                                     </div>
-                                    <textarea class="code-input" readonly=true>
+                                    <textarea class="code-input" readonly=true># associate all slasher movies with the genre horror
+
 graql>>
 insert
 $x has genre "Horror"
@@ -375,7 +379,8 @@ $x isa movie has genre "Slasher";</textarea>
                                         <div class="buttons"></div>
                                         <span>Graql</span>
                                     </div>
-                                    <textarea class="code-input" readonly=true>
+                                    <textarea class="code-input" readonly=true># add the movie Big Fish with director Tim Burton
+
 graql>>
 insert
 $x isa movie value "Big Fish";
