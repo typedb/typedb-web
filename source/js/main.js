@@ -170,8 +170,9 @@ window.MNDMPS = {
 
             zDepth = 100,
 
+            sky = null,
+
             graphGroup = new THREE.Object3D(),
-            nodesCloud = null,
             nodeLinesMesh = null,
             nodesData = [],
             nodesCount = 20,
@@ -251,9 +252,6 @@ window.MNDMPS = {
             nodes.setDrawRange(0, 0);
             nodes.addAttribute('position', new THREE.BufferAttribute(particlePositions, 3).setDynamic(true));
 
-            nodesCloud = new THREE.Points(nodes, nodesMaterial);
-            graphGroup.add(nodesCloud);
-
             nodeLinesGeometry.addAttribute('position', new THREE.BufferAttribute(nodePositions, 3).setDynamic(true));
             nodeLinesGeometry.computeBoundingSphere();
             nodeLinesGeometry.setDrawRange(0, 0);
@@ -305,7 +303,7 @@ window.MNDMPS = {
                         continue;
                     }
 
-                    var dx = particlePositions[i*3 + 0] - particlePositions[j*3],
+                    var dx = particlePositions[i*3] - particlePositions[j*3],
                         dy = particlePositions[i*3 + 1] - particlePositions[j*3 + 1],
                         dz = particlePositions[i*3 + 2] - particlePositions[j*3 + 2],
                         dist = Math.sqrt(Math.pow(dx, 2) + Math.pow(dy, 2) + Math.pow(dz, 2));
@@ -330,8 +328,6 @@ window.MNDMPS = {
 
             nodeLinesMesh.geometry.setDrawRange(0, numConnected*2);
             nodeLinesMesh.geometry.attributes.position.needsUpdate = true;
-
-            nodesCloud.geometry.attributes.position.needsUpdate = true;
         }
 
         function edgesAreEqual(set1, set2) {
@@ -1020,14 +1016,14 @@ window.MNDMPS = {
                     {
                         "id":2,
                         "type":"relation",
-                        "text":"_",
+                        "text":"•",
                         "x":0.3,
                         "y":0.267
                     },
                     {
                         "id":3,
                         "type":"relation",
-                        "text":"_",
+                        "text":"•",
                         "x":0.7,
                         "y":0.267
                     },
@@ -1344,14 +1340,14 @@ window.MNDMPS = {
                     {
                         "id":3,
                         "type":"relation",
-                        "text":"_",
+                        "text":"•",
                         "x":0.3,
                         "y":0.36
                     },
                     {
                         "id":4,
                         "type":"relation",
-                        "text":"_",
+                        "text":"•",
                         "x":0.7,
                         "y":0.36
                     },
@@ -1750,7 +1746,6 @@ window.MNDMPS = {
         };
 
         for (var i = 0; i < graphs.length; i++) {
-            console.log(graphs[i]);
             this.initGraph({
                 node: nodes[i].children[0],
                 graph: graphs[i],
@@ -1855,6 +1850,8 @@ window.MNDMPS = {
         data.techDescription = data.techStack.getElementsByClassName('description')[0];
         data.techTabs = data.techStack.getElementsByClassName('tab');
         data.techStack.addEventListener('click', toggleStack, false);
+
+        displayDescription('graph');
     },
 
     modal: {
@@ -2009,6 +2006,112 @@ window.MNDMPS = {
             return promise;
         },
 
+        getAngelJobs: function() {
+
+            var jobs = [
+                {
+                    "id": 97,
+                    "title": "Venture Hacker",
+                    "created_at": "2011-12-05T21:05:43Z",
+                    "updated_at": "2012-02-13T03:40:17Z",
+                    "equity_cliff": 1.0,
+                    "equity_min": 0.25,
+                    "equity_max": 0.25,
+                    "equity_vest": 4.0,
+                    "salary_min": 100000,
+                    "salary_max": 100000,
+                    "job_type": "full-time",
+                    "angellist_url": "http://angel.co/angellist/jobs/97",
+                    "startup": {
+                        "id": 6702,
+                        "hidden": false,
+                        "name": "AngelList",
+                        "angellist_url": "http://angel.co/angellist",
+                        "logo_url": "https://s3.amazonaws.com/photos.angel.co/startups/i/6702-...",
+                        "thumb_url": "https://s3.amazonaws.com/photos.angel.co/startups/i/6702-...",
+                        "product_desc": "AngelList is an online community that helps startups...",
+                        "high_concept": "Platform for startups",
+                        "follower_count": 876,
+                        "company_url": "http://angel.co"
+                    },
+                    "tags": [
+                        {
+                            "id": 14766,
+                            "tag_type": "SkillTag",
+                            "name": "software engineering",
+                            "display_name": "Software Engineering",
+                            "angellist_url": "http://angel.co/software-engineering"
+                        },
+                        {
+                            "id": 1692,
+                            "tag_type": "LocationTag",
+                            "name": "san francisco",
+                            "display_name": "San Francisco",
+                            "angellist_url": "http://angel.co/san-francisco"
+                        },
+                        {
+                            "id": 14726,
+                            "tag_type": "RoleTag",
+                            "name": "developer",
+                            "display_name": "Developer",
+                            "angellist_url": "http://angel.co/developer"
+                        }
+                        ]
+                },
+                {
+                    "id": 97,
+                    "title": "Venture Hacker",
+                    "created_at": "2011-12-05T21:05:43Z",
+                    "updated_at": "2012-02-13T03:40:17Z",
+                    "equity_cliff": 1.0,
+                    "equity_min": 0.25,
+                    "equity_max": 0.25,
+                    "equity_vest": 4.0,
+                    "salary_min": 100000,
+                    "salary_max": 100000,
+                    "job_type": "full-time",
+                    "angellist_url": "http://angel.co/angellist/jobs/97",
+                    "startup": {
+                        "id": 6702,
+                        "hidden": false,
+                        "name": "AngelList",
+                        "angellist_url": "http://angel.co/angellist",
+                        "logo_url": "https://s3.amazonaws.com/photos.angel.co/startups/i/6702-...",
+                        "thumb_url": "https://s3.amazonaws.com/photos.angel.co/startups/i/6702-...",
+                        "product_desc": "AngelList is an online community that helps startups...",
+                        "high_concept": "Platform for startups",
+                        "follower_count": 876,
+                        "company_url": "http://angel.co"
+                    },
+                    "tags": [
+                        {
+                            "id": 14766,
+                            "tag_type": "SkillTag",
+                            "name": "software engineering",
+                            "display_name": "Software Engineering",
+                            "angellist_url": "http://angel.co/software-engineering"
+                        },
+                        {
+                            "id": 1692,
+                            "tag_type": "LocationTag",
+                            "name": "san francisco",
+                            "display_name": "San Francisco",
+                            "angellist_url": "http://angel.co/san-francisco"
+                        },
+                        {
+                            "id": 14726,
+                            "tag_type": "RoleTag",
+                            "name": "developer",
+                            "display_name": "Developer",
+                            "angellist_url": "http://angel.co/developer"
+                        }
+                        ]
+                }
+            ];
+            
+            return jobs;
+        },
+
         sendSubscribe: function(obj) {
 
             return this.call({
@@ -2017,6 +2120,56 @@ window.MNDMPS = {
                 data: JSON.stringify(obj.data),
                 url: '/mail/'
             });
+        }
+    },
+
+    initJobs: function() {
+
+        var data = this.data,
+            jobs = null,
+            domParser = new DOMParser();
+
+        data.jobsBlock = document.getElementById('section-jobs').children[0];
+
+        jobs = window.MNDMPS.ajax.getAngelJobs();
+
+        function kFormatter(num) {
+            num = parseInt(num, 10);
+            var newNum = num > 999 ? Math.floor(num/1000) : num;
+            
+            return newNum + 'K';
+        }
+
+        function timeFormatter(date) {
+            var monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+
+            var date = new Date(date),
+                day = date.getDate(),
+                monthIndex = date.getMonth(),
+                year = date.getFullYear();
+
+            return newDate = day + ' ' + monthNames[monthIndex] + ' ' + year;
+        }
+
+        function generateJob(obj) {
+            var jobBlock = document.createElement('div');
+            jobBlock.classList.add('job');
+
+            jobBlock.innerHTML = '<h3>' + obj.title + '</h3>\
+                <div class="text-block columns">\
+                </div>\
+                <ul>\
+                    <li>Updatet on: ' + timeFormatter(obj.updated_at) + '</li>\
+                    <li>Type: ' + obj.job_type + '</li>\
+                    <li>Compensation: &pound;' + kFormatter(obj.salary_min) + ' — &pound;' + kFormatter(obj.salary_max) + '</li>\
+                </ul>\
+                <a class="readFurther" href="' + obj.angellist_url + '">Check on AngelList</a>';
+
+            return jobBlock;
+        }
+
+        for (var i = 0; i < jobs.length; i++) {
+            data.jobsBlock.appendChild(generateJob(jobs[i]));
         }
     },
 
@@ -2045,6 +2198,10 @@ window.MNDMPS = {
             this.initSlick();
             this.initGraphs();
             this.initPrism();
+        }
+
+        if (document.getElementById('section-jobs')) {
+            this.initJobs();
         }
 
         if (document.getElementById('section-platform')) {

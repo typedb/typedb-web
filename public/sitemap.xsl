@@ -7,7 +7,7 @@
 	<xsl:template match="/">
 		<html xmlns="http://www.w3.org/1999/xhtml">
 			<head>
-				<title>Rockit XML Sitemap</title>
+				<title>Mindmaps XML Sitemap</title>
 				<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 				<style type="text/css">
 					body{
@@ -37,10 +37,10 @@
 				</style>
 			</head>
 			<body>
-				<h1>Rockit XML Sitemap</h1>
+				<h1>Mindmaps XML Sitemap</h1>
 				<div id="intro">
 					<p>
-						This is the Rockit XML <a href="http://sitemaps.org">Sitemap</a>.
+						This is the Mindmaps XML <a href="http://sitemaps.org">Sitemap</a>.
 					</p>
 				</div>
 				<div id="content">
@@ -70,7 +70,7 @@
 					</table>
 				</div>
 				<div id="footer">
-					<a href="http://rockit.folio.su">Rockit</a>
+					<a href="http://Mindmaps.folio.su">Mindmaps</a>
 				</div>
 			</body>
 		</html>

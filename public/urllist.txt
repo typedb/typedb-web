@@ -1,4 +1,5 @@
 http://mindmaps.io
-http://mindmaps.io#section-about
-http://mindmaps.io#section-team
+http://mindmaps.io/usecases.html
+http://mindmaps.io/careers.html
+http://mindmaps.io/about.html
 http://mindmaps.io#section-contact

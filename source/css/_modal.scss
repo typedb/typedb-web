@@ -51,7 +51,7 @@
         min-width: 50vw;
         max-width: 80vw;
         text-align: left;
-        padding: 1rem;
+        padding: 1rem 1.5rem;
         box-sizing: border-box;
         @include transition(transform 200ms ease-in-out);
         @include transform(scale(0.8));

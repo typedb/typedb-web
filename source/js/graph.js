@@ -4,17 +4,14 @@ var width, height, graphid;
 var smallRadius = 14;
 var mediumRadius = 27;
 var largeRadius = 45;
-var nodeTypes = ["instance","concept-type","relation","relation-type","resource","resource-type", "meta"];
+var nodeTypes = ["instance", "concept-type", "relation", "relation-type", "resource", "resource-type", "meta"];
 var edgeTypes = ["default", "active"];
 
-// var types2 = ["instance", "concept", "relation", "relationship", "concept-type", "relation-type"];
+//                 green,     darkgreen, orange,    red,       blue,      darkblue,  blue
+nodeColors     = ["#a1d884", "#77dd77", "#77dd77", "#d5d6e9", "#5bc2e7", "#ff7878", "#5bc2e7"];
 
-//            green,    darkgreen,orange,   red,      blue,     darkblue, purple,
-nodeColors     = ["#77dd77", "#3CB68E", "#FFBF57", "#FA72A7", "#5bc2e7", "#747DF2", "#BF77F3"];
-nodeColorsDark = ["#61BC60", "#008B5D", "#FFA81C", "#F73882", "#46A5C7", "#4854ED", "#A15FD1"];
-
-edgeColors = ["#DADADA", "#CAEA9C"]
-edgeLabelColors = ["#54585a", "#2E4E00"]
+edgeColors = ["#bbbcbc", "#77dd77"]
+edgeLabelColors = ["#fff", "#2E4E00"]
 
 var nodeColor = d3.scale.ordinal()
   .domain(nodeTypes)
@@ -22,7 +19,7 @@ var nodeColor = d3.scale.ordinal()
 
 var borderColor = d3.scale.ordinal()
   .domain(nodeTypes)
-  .range(nodeColorsDark);
+  .range(nodeColors/*Dark*/);
 
 var edgeColors = d3.scale.ordinal()
   .domain(edgeTypes)
@@ -57,7 +54,6 @@ var hypotenuseLength = function(rect){
 }
 
 var rotate = function(d){
-  console.log(d)
   if(d.target.x < d.source.x){
     return "rotate(180, " + Math.abs(dx(d.source.x) + dx(d.target.x)) / 2  + ", " + Math.abs(dy(d.source.y) + dy(d.target.y)) / 2 + ")";
   }
@@ -164,8 +160,8 @@ var buildGraph = function(obj){
       .attr("orient", "auto")
       .append("svg:path")
       .attr("d", "M0,-5L10,0L0,5")
-      .attr("stroke", "#DADADA")
-      .style("fill", "#DADADA");
+      .attr("stroke", "#bbbcbc")
+      .style("fill", "#bbbcbc");
 
     // build the active arrow
     svg.append("svg:defs").append("svg:marker")
@@ -177,8 +173,8 @@ var buildGraph = function(obj){
       .attr("orient", "auto")
       .append("svg:path")
       .attr("d", "M0,-5L10,0L0,5")
-      .attr("stroke", "#CAEA9C")
-      .style("fill", "#CAEA9C");
+      .attr("stroke", "#77dd77")
+      .style("fill", "#77dd77");
 
     // add the links
     var edges = svg.selectAll("line")
@@ -209,13 +205,13 @@ var buildGraph = function(obj){
       .enter()
       .append("text")
       .attr("class", "edgelabel")
-      .style("font", "10px sans-serif")
+      .style("font", "9.5px sans-serif")
       .attr("id", function(d){ return getLinkUniqueId(d) + "text"})
       .attr("transform", function(d){ return rotate(d); })
-      .attr("dy", "3")
+      .attr("dy", "3.5")
       
     edgelabels.append("textPath")
-      .attr("stroke", function(d){ return edgeLabelColors(d.type)})
+      .attr("fill", function(d){ return edgeLabelColors(d.type)})
       .attr("xlink:href", function(d) { return "#" + getLinkUniqueId(d); })
       .attr("startOffset", function(d){ return offset(d) })
       .attr("text-anchor", "middle")
@@ -232,13 +228,14 @@ var buildGraph = function(obj){
       .attr("r", function(d){ return radius(d.type)})
       .style("fill", function(d){ return nodeColor(d.type)})
       .style("stroke", function(d){ return borderColor(d.type)})
-      .style("stroke-width", 3);
+      .style("stroke-width", 6);
 
     // add the node labels
     nodes.append("text")
       .attr("class", "textWrap")
       .style("text-anchor", "middle")
       .style("fill", "white")
+      .style("font", "12px sans-serif")
       .text(function(d){ return d.text})
       .each(function(d){
         d3plus.textwrap()

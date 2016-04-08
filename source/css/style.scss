@@ -1163,7 +1163,7 @@ body{
                                             }
                                         }
 
-                                        .link{
+                                        /* .link{
                                             line{
                                                 fill: none;
                                                 stroke: $gray4c;
@@ -1195,10 +1195,10 @@ body{
                                             text{
                                                 font-size: 12px;
                                             }
-                                        }
+                                        } */
                                         
                                         text{
-                                            fill: $blackc;
+                                            fill: $white;
                                             pointer-events: none;
                                         }
                                     }
@@ -1263,7 +1263,7 @@ body{
                                             }
 
                                             &-input{
-                                                opacity: 0.5;
+                                                opacity: 0;
                                                 color: $lightGray;
                                                 resize: none;
                                             }
@@ -1303,7 +1303,39 @@ body{
 .content{
     .wrapper{
 
-        .usecase-list{
+        .bigRedButton{
+            border: none;
+            font-size: 1.2rem;
+            cursor: pointer;
+            display: inline-block;
+            background-color: $pastelRed;
+            color: $white;
+            padding: 0 20px;
+            height: 60px;
+            line-height: 60px;
+            border-radius: 2px;
+            @include transition(background-color 100ms ease-in-out);
+
+            &:hover{
+                background-color: lighten($pastelRed, 2.5%);
+            }
+        }
+
+        .readFurther{
+            color: $blackc;
+            font-weight: 600;
+            font-size: 0.9rem;
+            line-height: 1.5rem;
+
+            &:before{
+                content: '';
+                display: block;
+                margin-top: 0.3rem;
+            }
+        }
+
+        .usecase-list,
+        .job{
             &:not(:last-child){
                 margin-bottom: 60px;
             }
@@ -1352,6 +1384,11 @@ body{
                 clear: both;
                 display: table;
             }
+
+            +.more{
+                text-align: center;
+                margin-top: 60px;
+            }
             
             li{
                 float: left;
@@ -1376,15 +1413,9 @@ body{
                     margin-bottom: 30px;
                 }
 
-                p,
-                .readFurther{
+                p{
                     font-size: 0.9rem;
                     line-height: 1.5rem;
-                }
-
-                .readFurther{
-                    color: $blackc;
-                    font-weight: 600;
                 }
             }
         }
@@ -1538,15 +1569,9 @@ body{
                             @include columns(auto 2);
                             @include column-gap(30px);
 
-                            p,
-                            .readFurther{
+                            p{
                                 font-size: 0.9rem;
                                 line-height: 1.5rem;
-                            }
-
-                            .readFurther{
-                                color: $blackc;
-                                font-weight: 600;
                             }
                         }
                     }
@@ -1689,7 +1714,20 @@ body{
                     padding: 15px 0;
                     width: 240px;
 
-                    .usecase-list{
+                    .bigRedButton{
+                        height: 30px;
+                        line-height: 30px;
+                        padding: 0 10px;
+                        font-size: 0.9rem;
+                    }
+
+                    .readFurther{
+                        font-size: 0.8rem;
+                        line-height: 1.1rem;
+                    }
+
+                    .usecase-list,
+                    .job{
                         &:not(:last-child){
                             margin-bottom: 30px;
                         }
@@ -1771,8 +1809,7 @@ body{
                                         @include columns(auto 1);
                                         @include column-gap(0);
 
-                                        p,
-                                        .readFurther{
+                                        p{
                                             font-size: 0.8rem;
                                             line-height: 1.1rem;
                                         }
@@ -1929,8 +1966,7 @@ body{
                                 margin-bottom: 5px;
                             }
 
-                            p,
-                            .readFurther{
+                            p{
                                 font-size: 0.8rem;
                                 line-height: 1.1rem;
                             }
@@ -1952,11 +1988,14 @@ body{
                                 margin-bottom: 5px;
                             }
 
-                            p,
-                            .readFurther{
+                            p{
                                 font-size: 0.8rem;
                                 line-height: 1.1rem;
                             }
+                        }
+
+                        +.more{
+                            padding-top: 15px;
                         }
                     }
                 }
@@ -2147,7 +2186,20 @@ body{
                     padding: 30px 0;
                     width: 320px;
 
-                    .usecase-list{
+                    .bigRedButton{
+                        height: 40px;
+                        line-height: 40px;
+                        padding: 0 15px;
+                        font-size: 1rem;
+                    }
+
+                    .readFurther{
+                        font-size: 0.8rem;
+                        line-height: 1.3rem;
+                    }
+
+                    .usecase-list,
+                    .job{
                         &:not(:last-child){
                             margin-bottom: 30px;
                         }
@@ -2229,8 +2281,7 @@ body{
                                         @include columns(auto 1);
                                         @include column-gap(0);
 
-                                        p,
-                                        .readFurther{
+                                        p{
                                             font-size: 0.8rem;
                                             line-height: 1.3rem;
                                         }
@@ -2363,8 +2414,7 @@ body{
                                 margin-bottom: 10px;
                             }
 
-                            p,
-                            .readFurther{
+                            p{
                                 font-size: 0.8rem;
                                 line-height: 1.3rem;
                             }
@@ -2386,11 +2436,14 @@ body{
                                 margin-bottom: 10px;
                             }
 
-                            p,
-                            .readFurther{
+                            p{
                                 font-size: 0.8rem;
                                 line-height: 1.3rem;
                             }
+                        }
+
+                        +.more{
+                            padding-top: 25px;
                         }
                     }
                 }
@@ -2559,7 +2612,20 @@ body{
                     padding: 60px 0;
                     width: 500px;
 
-                    .usecase-list{
+                    .bigRedButton{
+                        height: 50px;
+                        line-height: 50px;
+                        padding: 0 20px;
+                        font-size: 1.1rem;
+                    }
+
+                    .readFurther{
+                        font-size: 0.9rem;
+                        line-height: 1.4rem;
+                    }
+
+                    .usecase-list,
+                    .job{
                         &:not(:last-child){
                             margin-bottom: 30px;
                         }
@@ -2692,8 +2758,7 @@ body{
                                 margin-bottom: 15px;
                             }
 
-                            p,
-                            .readFurther{
+                            p{
                                 font-size: 0.9rem;
                                 line-height: 1.4rem;
                             }
@@ -2716,11 +2781,14 @@ body{
                                 margin-bottom: 15px;
                             }
 
-                            p,
-                            .readFurther{
+                            p{
                                 font-size: 0.9rem;
                                 line-height: 1.4rem;
                             }
+                        }
+
+                        +.more{
+                            margin-top: 45px;
                         }
                     }
                 }
@@ -2822,7 +2890,13 @@ body{
                 .wrapper{
                     width: 640px;
 
-                    .usecase-list{
+                    .readFurther{
+                        font-size: 0.8rem;
+                        line-height: 1.4rem;
+                    }
+
+                    .usecase-list,
+                    .job{
 
                         p{
                             &.title{
@@ -2926,8 +3000,7 @@ body{
                                 padding-bottom: 0;
                             }
 
-                            p,
-                            .readFurther{
+                            p{
                                 font-size: 0.8rem;
                                 line-height: 1.4rem;
                             }
@@ -2948,8 +3021,7 @@ body{
                                 padding-bottom: 0;
                             }
                             
-                            p,
-                            .readFurther{
+                            p{
                                 font-size: 0.8rem;
                                 line-height: 1.4rem;
                             }
@@ -3023,7 +3095,13 @@ body{
                 .wrapper{
                     width: 880px;
 
-                    .usecase-list{
+                    .readFurther{
+                        font-size: 0.8rem;
+                        line-height: 1.4rem;
+                    }
+
+                    .usecase-list,
+                    .job{
                         ul{
                             li{
                                 font-size: 0.8rem;
@@ -3113,8 +3191,7 @@ body{
                                 padding-bottom: 0;
                             }
 
-                            p,
-                            .readFurther{
+                            p{
                                 font-size: 0.8rem;
                                 line-height: 1.4rem;
                             }
@@ -3124,8 +3201,7 @@ body{
                     .usecases{
 
                         li{
-                            p,
-                            .readFurther{
+                            p{
                                 font-size: 0.8rem;
                                 line-height: 1.4rem;
                             }
