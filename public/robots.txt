@@ -4,5 +4,6 @@ User-Agent: *
 Disallow: /css/
 Disallow: /img/
 Disallow: /js/
+Disallow: /mail/
 
 Sitemap: http://mindmaps.io/sitemap.xml
