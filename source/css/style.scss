@@ -599,6 +599,7 @@ body{
                         .bg{
                             background: $white url(bg_tiled.svg) no-repeat center center;
                             background-size: cover;
+                            pointer-events: none;
 
                             svg{
                                 display: block;
@@ -656,6 +657,15 @@ body{
                             content: '';
                             display: block;
                             padding-top: 130%;
+                        }
+
+                        .link{
+                            display: block;
+                            position: absolute;
+                            top: 0;
+                            left: 0;
+                            width: 100%;
+                            height: 100%;
                         }
 
                         .description{
@@ -2150,7 +2160,7 @@ body{
                         }
 
                         a{
-                            &:nth-child(n+2){
+                            &:not(:nth-child(2)){
                                 display: none;
                             }
                         }
