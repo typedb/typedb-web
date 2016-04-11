@@ -2008,108 +2008,10 @@ window.MNDMPS = {
 
         getAngelJobs: function() {
 
-            var jobs = [
-                {
-                    "id": 97,
-                    "title": "Venture Hacker",
-                    "created_at": "2011-12-05T21:05:43Z",
-                    "updated_at": "2012-02-13T03:40:17Z",
-                    "equity_cliff": 1.0,
-                    "equity_min": 0.25,
-                    "equity_max": 0.25,
-                    "equity_vest": 4.0,
-                    "salary_min": 100000,
-                    "salary_max": 100000,
-                    "job_type": "full-time",
-                    "angellist_url": "http://angel.co/angellist/jobs/97",
-                    "startup": {
-                        "id": 6702,
-                        "hidden": false,
-                        "name": "AngelList",
-                        "angellist_url": "http://angel.co/angellist",
-                        "logo_url": "https://s3.amazonaws.com/photos.angel.co/startups/i/6702-...",
-                        "thumb_url": "https://s3.amazonaws.com/photos.angel.co/startups/i/6702-...",
-                        "product_desc": "AngelList is an online community that helps startups...",
-                        "high_concept": "Platform for startups",
-                        "follower_count": 876,
-                        "company_url": "http://angel.co"
-                    },
-                    "tags": [
-                        {
-                            "id": 14766,
-                            "tag_type": "SkillTag",
-                            "name": "software engineering",
-                            "display_name": "Software Engineering",
-                            "angellist_url": "http://angel.co/software-engineering"
-                        },
-                        {
-                            "id": 1692,
-                            "tag_type": "LocationTag",
-                            "name": "san francisco",
-                            "display_name": "San Francisco",
-                            "angellist_url": "http://angel.co/san-francisco"
-                        },
-                        {
-                            "id": 14726,
-                            "tag_type": "RoleTag",
-                            "name": "developer",
-                            "display_name": "Developer",
-                            "angellist_url": "http://angel.co/developer"
-                        }
-                        ]
-                },
-                {
-                    "id": 97,
-                    "title": "Venture Hacker",
-                    "created_at": "2011-12-05T21:05:43Z",
-                    "updated_at": "2012-02-13T03:40:17Z",
-                    "equity_cliff": 1.0,
-                    "equity_min": 0.25,
-                    "equity_max": 0.25,
-                    "equity_vest": 4.0,
-                    "salary_min": 100000,
-                    "salary_max": 100000,
-                    "job_type": "full-time",
-                    "angellist_url": "http://angel.co/angellist/jobs/97",
-                    "startup": {
-                        "id": 6702,
-                        "hidden": false,
-                        "name": "AngelList",
-                        "angellist_url": "http://angel.co/angellist",
-                        "logo_url": "https://s3.amazonaws.com/photos.angel.co/startups/i/6702-...",
-                        "thumb_url": "https://s3.amazonaws.com/photos.angel.co/startups/i/6702-...",
-                        "product_desc": "AngelList is an online community that helps startups...",
-                        "high_concept": "Platform for startups",
-                        "follower_count": 876,
-                        "company_url": "http://angel.co"
-                    },
-                    "tags": [
-                        {
-                            "id": 14766,
-                            "tag_type": "SkillTag",
-                            "name": "software engineering",
-                            "display_name": "Software Engineering",
-                            "angellist_url": "http://angel.co/software-engineering"
-                        },
-                        {
-                            "id": 1692,
-                            "tag_type": "LocationTag",
-                            "name": "san francisco",
-                            "display_name": "San Francisco",
-                            "angellist_url": "http://angel.co/san-francisco"
-                        },
-                        {
-                            "id": 14726,
-                            "tag_type": "RoleTag",
-                            "name": "developer",
-                            "display_name": "Developer",
-                            "angellist_url": "http://angel.co/developer"
-                        }
-                        ]
-                }
-            ];
-            
-            return jobs;
+            return this.call({
+                method: 'GET',
+                url: '/angel_jobs.php'
+            });
         },
 
         sendSubscribe: function(obj) {
@@ -2126,12 +2028,10 @@ window.MNDMPS = {
     initJobs: function() {
 
         var data = this.data,
-            jobs = null,
-            domParser = new DOMParser();
+            domParser = new DOMParser(),
+            loading = document.getElementsByClassName('loading')[0];
 
         data.jobsBlock = document.getElementById('section-jobs').children[0];
-
-        jobs = window.MNDMPS.ajax.getAngelJobs();
 
         function kFormatter(num) {
             num = parseInt(num, 10);
@@ -2157,42 +2057,36 @@ window.MNDMPS = {
 
             jobBlock.innerHTML = '<h3>' + obj.title + '</h3>\
                 <div class="text-block columns">\
-                    <p>Mindmaps is looking for an energetic and proactive Team Leader to lead the development team. In this critical and exciting phase of Mindmaps\'s growth, you will be an integral part of determining the future of our company.\
-As a Team Leader you will oversee the development from start to finish, which includes (but is not limited to) the following:\
-1. Architecture design - develop detailed design of large scale software architecture to meet the requirements of development release cycles\
-2. Project Management - plan and execute development processes and delivery in a custom Agile framework\
-3. Coding - develop high quality code for challenging algorithmic back end development\
-4. Code Reviews - review completed tasks from the development team and hold to a high standard of quality\
-5. Workflow - maintain and apply policies and guidance of development workflow\
-6. Coaching - mentor and coach team members in order to assist in their development\
-7. R&D - drive the research and development direction of our scientific work in computer science related fields\
-8. Business Development - Influence and help execute the development of business direction, models and strategies\
-As a team leader you will have shown excellence in the following:\
-1. Academic background from a top university - minimum Bachelors (1:1) or Masters (2:1) from a computing related field and demonstrate an aptitude for Computer Science research\
-2. Engineering leadership (minimum 6 years)\
-3. Large scale software architecture design\
-4. Full stack enterprise software development (preferably Java)\
-5. Distributed realtime computation systems development\
-6. Working with semantic search, graph databases, knowledge representation systems, machine learning and/or expert systems\
-7. Full software development life cycle project management\
-8. Best security practices in software development\
-9. Coaching a development team\
-10. Continuous Integration\
-11. Fast paced working environment</p>\
+                    <p>' + obj.description.replace(/[0-9]+\.[^.]*\.(?!\s*[0-9])/g, "$&<br>").replace(/[0-9]+\./g, "<br>$&").replace(/\*/g, '<br><br>') + '</p>\
                 </div>\
                 <ul>\
-                    <li>Updatet on: ' + timeFormatter(obj.updated_at) + '</li>\
-                    <li>Type: ' + obj.job_type + '</li>\
+                    <li>Updated on: ' + timeFormatter(obj.updated_at) + '</li>\
+                    <li>Remote: ' + (obj.remote_ok ? 'Yes' : 'No') + '</li>\
+                    <li>Type: <span class="capitalise">' + obj.job_type + '</span></li>\
                     <li>Compensation: &pound;' + kFormatter(obj.salary_min) + ' — &pound;' + kFormatter(obj.salary_max) + '</li>\
+                    <li>Equity: ' + obj.equity_cliff + '% — ' + obj.equity_vest + '%</li>\
                 </ul>\
                 <a class="readFurther" href="' + obj.angellist_url + '">Check on AngelList</a>';
 
             return jobBlock;
         }
 
-        for (var i = 0; i < jobs.length; i++) {
-            data.jobsBlock.appendChild(generateJob(jobs[i]));
-        }
+        window.MNDMPS.ajax.getAngelJobs().then(
+            
+            function(response) {
+                response = JSON.parse(response);
+
+                data.jobsBlock.removeChild(loading);
+
+                for (var i = 0; i < response.jobs.length; i++) {
+                    data.jobsBlock.appendChild(generateJob(response.jobs[i]));
+                }
+            },
+            
+            function(error) {
+                console.log(error);
+            }
+        );
     },
 
     init: function() {

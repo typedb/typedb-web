@@ -215,6 +215,10 @@ body{
     width: 100%;
 }
 
+.capitalise{
+    text-transform: capitalize;
+}
+
 .icon{
     display: block;
     position: relative;
@@ -804,6 +808,7 @@ body{
 
                 >span{
                     float: left;
+                    
                     span{
                         margin-top: 0.2rem;
                         font-weight: 200;
@@ -1345,7 +1350,7 @@ body{
             &:before{
                 content: '';
                 display: block;
-                margin-top: 0.3rem;
+                margin-top: 0.5rem;
             }
         }
 
@@ -1379,6 +1384,12 @@ body{
             }
         }
 
+        .job{
+            .text-block{
+                margin-bottom: 30px;
+            }
+        }
+
         .subtitle{
             margin: 0 auto 60px auto;
             width: 580px;
@@ -1389,6 +1400,39 @@ body{
 
                 &:not(:last-child){
                     margin-bottom: 30px;
+                }
+            }
+        }
+
+        .loading{
+            text-align: center;
+
+            .indicator{
+                display: inline-block;
+                position: relative;
+                width: 80px;
+                height: 80px;
+
+                &:after{
+                    content: '';
+                    width: 40%;
+                    height: 1px;
+                    position: absolute;
+                    top: 50%;
+                    left: 30%;
+                    background-color: $blackc;
+                    @include animation(rotate360 1s linear infinite);
+                }
+
+                svg{
+                    width: 100%;
+                    height: 100%;
+                    
+                    use{
+                        fill: none;
+                        stroke-width: 0.25;
+                        stroke: $blackc;
+                    }
                 }
             }
         }
@@ -1684,7 +1728,7 @@ body{
                             line-height: 20px;
                             margin-left: 10px;
 
-                            &:nth-child(n+2){
+                            &:nth-child(n+3){
                                 display: none;
                             }
                         }
@@ -1700,7 +1744,12 @@ body{
 
                     .logo{
                         span{
-                            margin-top: 9px;
+                            margin-top: 15px;
+                            font-size: 0.8rem;
+
+                            span{
+                                display: none;
+                            }
                         }
                         
                         svg{
@@ -1766,6 +1815,12 @@ body{
                                 font-size: 0.8rem;
                                 line-height: 1.1rem;
                             }
+                        }
+                    }
+
+                    .job{
+                        .text-block{
+                            margin-bottom: 15px;
                         }
                     }
 
@@ -1891,7 +1946,7 @@ body{
                                     }
 
                                     span{
-                                        &+.x-small{
+                                        +.x-small{
                                             margin-bottom: 0;
                                             font-size: 0.7rem;
                                             line-height: 0.8rem;
@@ -1932,7 +1987,7 @@ body{
                                     span{
                                         font-size: 0.7rem;
 
-                                        &+.x-small{
+                                        +.x-small{
                                             font-size: 0.6rem;
                                         }
                                     }
@@ -2168,7 +2223,7 @@ body{
                         }
 
                         a{
-                            &:not(:nth-child(2)){
+                            &:nth-child(n+4){
                                 display: none;
                             }
                         }
@@ -2176,7 +2231,12 @@ body{
 
                     .logo{
                         span{
-                            margin-top: 9px;
+                            font-size: 0.8rem;
+                            margin-top: 15px;
+
+                            span{
+                                display: none;
+                            }
                         }
                         
                         svg{
@@ -2204,6 +2264,12 @@ body{
                 .wrapper{
                     padding: 30px 0;
                     width: 320px;
+
+                    .job{
+                        .text-block{
+                            margin-bottom: 15px;
+                        }
+                    }
 
                     .prologue{
                         margin-bottom: 30px;
@@ -2370,7 +2436,7 @@ body{
                                         font-size: 0.9rem;
                                         margin-bottom: 10px;
                                         
-                                        &+.x-small{
+                                        +.x-small{
                                             margin-bottom: 0;
                                             font-size: 0.75rem;
                                             line-height: 0.9rem;
@@ -2599,7 +2665,7 @@ body{
                         }
                         
                         a{
-                            &:nth-child(n+4){
+                            &:nth-child(n+5){
                                 display: none;
                             }
                         }
@@ -2607,7 +2673,12 @@ body{
 
                     .logo{
                         span{
-                            margin-top: 17px;
+                            font-size: 0.8rem;
+                            margin-top: 24px;
+
+                            span{
+                                display: none;
+                            }
                         }
                         
                         svg{
@@ -2634,6 +2705,12 @@ body{
                 .wrapper{
                     padding: 60px 0;
                     width: 500px;
+
+                    .job{
+                        .text-block{
+                            margin-bottom: 15px;
+                        }
+                    }
 
                     .prologue{
                         margin-bottom: 30px;
