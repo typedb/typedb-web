@@ -1341,11 +1341,13 @@ body{
             }
         }
 
-        .readFurther{
-            color: $blackc;
-            font-weight: 600;
-            font-size: 0.9rem;
-            line-height: 1.5rem;
+        .bottomLinks{
+            a{
+                color: $blackc;
+                font-weight: 600;
+                font-size: 0.9rem;
+                line-height: 1.5rem;
+            }
 
             &:before{
                 content: '';
@@ -1789,9 +1791,11 @@ body{
                         font-size: 0.9rem;
                     }
 
-                    .readFurther{
-                        font-size: 0.8rem;
-                        line-height: 1.1rem;
+                    .bottomLinks{
+                        a{
+                            font-size: 0.8rem;
+                            line-height: 1.1rem;
+                        }
                     }
 
                     .usecase-list,
@@ -2282,9 +2286,11 @@ body{
                         font-size: 1rem;
                     }
 
-                    .readFurther{
-                        font-size: 0.8rem;
-                        line-height: 1.3rem;
+                    .bottomLinks{
+                        a{
+                            font-size: 0.8rem;
+                            line-height: 1.3rem;
+                        }
                     }
 
                     .usecase-list,
@@ -2723,9 +2729,11 @@ body{
                         font-size: 1.1rem;
                     }
 
-                    .readFurther{
-                        font-size: 0.9rem;
-                        line-height: 1.4rem;
+                    .bottomLinks{
+                        a{
+                            font-size: 0.9rem;
+                            line-height: 1.4rem;
+                        }
                     }
 
                     .usecase-list,
@@ -2994,9 +3002,11 @@ body{
                 .wrapper{
                     width: 640px;
 
-                    .readFurther{
-                        font-size: 0.8rem;
-                        line-height: 1.4rem;
+                    .bottomLinks{
+                        a{
+                            font-size: 0.8rem;
+                            line-height: 1.4rem;
+                        }
                     }
 
                     .usecase-list,
@@ -3199,9 +3209,11 @@ body{
                 .wrapper{
                     width: 880px;
 
-                    .readFurther{
-                        font-size: 0.8rem;
-                        line-height: 1.4rem;
+                    .bottomLinks{
+                        a{
+                            font-size: 0.8rem;
+                            line-height: 1.4rem;
+                        }
                     }
 
                     .usecase-list,

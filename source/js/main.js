@@ -2066,7 +2066,9 @@ window.MNDMPS = {
                     <li>Compensation: &pound;' + kFormatter(obj.salary_min) + ' — &pound;' + kFormatter(obj.salary_max) + '</li>\
                     <li>Equity: ' + obj.equity_cliff + '% — ' + obj.equity_vest + '%</li>\
                 </ul>\
-                <a class="readFurther" href="mailto:">Apply</a> or <a rel="nofollow" class="readFurther" href="' + obj.angellist_url + '">Check on AngelList</a>';
+                <div class="bottomLinks">\
+                    <a href="mailto:recruitment@mindmaps.io">Apply</a> or <a target="_blank" rel="nofollow" href="' + obj.angellist_url + '">Check on AngelList</a>\
+                </div>';
 
             return jobBlock;
         }
