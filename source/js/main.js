@@ -2036,7 +2036,7 @@ window.MNDMPS = {
         function kFormatter(num) {
             num = parseInt(num, 10);
             var newNum = num > 999 ? Math.floor(num/1000) : num;
-            
+
             return newNum + 'K';
         }
 
@@ -2057,7 +2057,7 @@ window.MNDMPS = {
 
             jobBlock.innerHTML = '<h3>' + obj.title + '</h3>\
                 <div class="text-block columns">\
-                    <p>' + obj.description.replace(/[0-9]+\.[^.]*\.(?!\s*[0-9])/g, "$&<br>").replace(/[0-9]+\./g, "<br>$&").replace(/\*/g, '<br><br>') + '</p>\
+                    <p>' + obj.description.replace(/[0-9]+\.[^.]*\.(?!\s*[0-9])/g, "$&<br>").replace(/[0-9]+\./g, "<br>$&").replace(/\*/g, '<br>') + '</p>\
                 </div>\
                 <ul>\
                     <li>Updated on: ' + timeFormatter(obj.updated_at) + '</li>\
@@ -2074,7 +2074,7 @@ window.MNDMPS = {
         }
 
         window.MNDMPS.ajax.getAngelJobs().then(
-            
+
             function(response) {
                 response = JSON.parse(response);
 
@@ -2084,7 +2084,7 @@ window.MNDMPS = {
                     data.jobsBlock.appendChild(generateJob(response.jobs[i]));
                 }
             },
-            
+
             function(error) {
                 console.log(error);
             }
