@@ -2064,7 +2064,7 @@ window.MNDMPS = {
                     <li>Remote: ' + (obj.remote_ok ? 'Yes' : 'No') + '</li>\
                     <li>Type: <span class="capitalise">' + obj.job_type + '</span></li>\
                     <li>Compensation: &pound;' + kFormatter(obj.salary_min) + ' — &pound;' + kFormatter(obj.salary_max) + '</li>\
-                    <li>Equity: ' + obj.equity_cliff + '% — ' + obj.equity_vest + '%</li>\
+                    <li>Equity: ' + obj.equity_min + '% — ' + obj.equity_max + '%</li>\
                 </ul>\
                 <div class="bottomLinks">\
                     <a href="mailto:recruitment@mindmaps.io">Apply</a> or <a target="_blank" rel="nofollow" href="' + obj.angellist_url + '">Check on AngelList</a>\
