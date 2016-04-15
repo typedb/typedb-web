@@ -927,6 +927,7 @@ body{
         &.scrolled,
         &.white{
             background: $white url(bg_black.svg) no-repeat center center;
+            box-shadow: 0 0 2px 0 rgba($blackc, 0.2);
             background-size: cover;
             pointer-events: auto;
 
@@ -1380,7 +1381,7 @@ body{
                     line-height: 1.5rem;
 
                     &:not(:last-child){
-                        margin-bottom: 0.2rem;
+                        margin-bottom: 0.4rem;
                     }
                 }
             }
@@ -1652,7 +1653,7 @@ body{
         
         h3{
             font-weight: 400;
-            font-size: 1rem;
+            font-size: 1.1rem;
             margin-bottom: 15px;
         }
 
@@ -1769,8 +1770,8 @@ body{
                 }
                 
                 p{
-                    font-size: 0.8rem;
-                    line-height: 1.1rem;
+                    font-size: 1rem;
+                    line-height: 1.3rem;
                 }
             }
 
@@ -1793,8 +1794,8 @@ body{
 
                     .bottomLinks{
                         a{
-                            font-size: 0.8rem;
-                            line-height: 1.1rem;
+                            font-size: 1rem;
+                            line-height: 1.3rem;
                         }
                     }
 
@@ -1806,7 +1807,7 @@ body{
 
                         p{
                             &.title{
-                                font-size: 0.9rem;
+                                font-size: 1rem;
                                 margin: 15px 0 10px 0;
                             }
                         }
@@ -1816,8 +1817,8 @@ body{
                             padding-right: 0;
 
                             li{
-                                font-size: 0.8rem;
-                                line-height: 1.1rem;
+                                font-size: 1rem;
+                                line-height: 1.3rem;
                             }
                         }
                     }
@@ -1833,8 +1834,8 @@ body{
                         width: auto;
 
                         p{
-                            font-size: 0.8rem;
-                            line-height: 1.1rem;
+                            font-size: 1rem;
+                            line-height: 1.2rem;
 
                             &:not(:last-child){
                                 margin-bottom: 15px;
@@ -1888,8 +1889,8 @@ body{
                                         @include column-gap(0);
 
                                         p{
-                                            font-size: 0.8rem;
-                                            line-height: 1.1rem;
+                                            font-size: 1rem;
+                                            line-height: 1.2rem;
                                         }
                                     }
                                 }
@@ -2040,13 +2041,13 @@ body{
                             }
 
                             h5{
-                                font-size: 1rem;
+                                font-size: 1.2rem;
                                 margin-bottom: 5px;
                             }
 
                             p{
-                                font-size: 0.8rem;
-                                line-height: 1.1rem;
+                                font-size: 1rem;
+                                line-height: 1.2rem;
                             }
                         }
                     }
@@ -2062,18 +2063,19 @@ body{
                             }
 
                             h5{
-                                font-size: 1rem;
+                                font-size: 1.2rem;
                                 margin-bottom: 5px;
                             }
 
                             p{
-                                font-size: 0.8rem;
-                                line-height: 1.1rem;
+                                font-size: 1rem;
+                                line-height: 1.2rem;
                             }
                         }
 
                         +.more{
                             padding-top: 15px;
+                            margin-top: 0;
                         }
                     }
                 }
@@ -2140,6 +2142,7 @@ body{
     and (min-width: 340px)
     and (max-width: 559px) {
         h2{
+            font-weight: 400;
             font-size: 1.6rem;
             margin-bottom: 30px;
         }
@@ -2258,8 +2261,8 @@ body{
                 }
                 
                 p{
-                    font-size: 0.8rem;
-                    line-height: 1.3rem;
+                    font-size: 1rem;
+                    line-height: 1.4rem;
                 }
             }
 
@@ -2288,8 +2291,8 @@ body{
 
                     .bottomLinks{
                         a{
-                            font-size: 0.8rem;
-                            line-height: 1.3rem;
+                            font-size: 1rem;
+                            line-height: 1.4rem;
                         }
                     }
 
@@ -2311,8 +2314,8 @@ body{
                             padding-right: 0;
 
                             li{
-                                font-size: 0.8rem;
-                                line-height: 1.3rem;
+                                font-size: 1rem;
+                                line-height: 1.4rem;
                             }
                         }
                     }
@@ -2322,7 +2325,7 @@ body{
                         width: auto;
 
                         p{
-                            font-size: 0.8rem;
+                            font-size: 1rem;
                             line-height: 1.3rem;
 
                             &:not(:last-child){
@@ -2377,7 +2380,7 @@ body{
                                         @include column-gap(0);
 
                                         p{
-                                            font-size: 0.8rem;
+                                            font-size: 1rem;
                                             line-height: 1.3rem;
                                         }
                                     }
@@ -2505,12 +2508,12 @@ body{
                             }
 
                             h5{
-                                font-size: 1rem;
+                                font-size: 1.1rem;
                                 margin-bottom: 10px;
                             }
 
                             p{
-                                font-size: 0.8rem;
+                                font-size: 1rem;
                                 line-height: 1.3rem;
                             }
                         }
@@ -2527,17 +2530,18 @@ body{
                             }
 
                             h5{
-                                font-size: 1rem;
+                                font-size: 1.1rem;
                                 margin-bottom: 10px;
                             }
 
                             p{
-                                font-size: 0.8rem;
+                                font-size: 1rem;
                                 line-height: 1.3rem;
                             }
                         }
 
                         +.more{
+                            margin-top: 0;
                             padding-top: 25px;
                         }
                     }
