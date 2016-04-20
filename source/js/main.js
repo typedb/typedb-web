@@ -20,7 +20,7 @@ function selectText(element) {
         range.moveToElementText(text);
         range.select();
     } else if (window.getSelection) {
-        selection = window.getSelection();        
+        selection = window.getSelection();
         range = document.createRange();
         range.selectNodeContents(text);
         selection.removeAllRanges();
@@ -1022,21 +1022,21 @@ window.MNDMPS = {
                         "type":"concept-type",
                         "text":"person",
                         "x":0.5,
-                        "y":0.2
+                        "y":0.1
                     },
                     {
                         "id":1,
                         "type":"instance",
                         "text":"Alice",
-                        "x":0.2,
-                        "y":0.8
+                        "x":0.1,
+                        "y":0.9
                     },
                     {
                         "id":2,
                         "type":"instance",
                         "text":"Bob",
-                        "x":0.8,
-                        "y":0.8
+                        "x":0.9,
+                        "y":0.9
                     }
                 ],
                 "edges":[
@@ -1061,22 +1061,22 @@ window.MNDMPS = {
                         "id":0,
                         "type":"concept-type",
                         "text":"person",
-                        "x":0.2,
-                        "y":0.2
+                        "x":0.1,
+                        "y":0.1
                     },
                     {
                         "id":1,
                         "type":"instance",
                         "text":"Alice",
-                        "x":0.2,
-                        "y":0.8
+                        "x":0.1,
+                        "y":0.9
                     },
                     {
                         "id":2,
                         "type":"instance",
                         "text":"Honesty Inc.",
-                        "x":0.8,
-                        "y":0.8
+                        "x":0.9,
+                        "y":0.9
                     },
                     {
                         "id":3,
@@ -1089,15 +1089,15 @@ window.MNDMPS = {
                         "id":4,
                         "type":"concept-type",
                         "text":"company",
-                        "x":0.8,
-                        "y":0.2
+                        "x":0.9,
+                        "y":0.1
                     },
                     {
                         "id":5,
                         "type":"relation-type",
-                        "text":"directorship",
+                        "text":"director-ship",
                         "x":0.5,
-                        "y":0.2
+                        "y":0.1
                     }
                 ],
                 "edges":[
@@ -1229,58 +1229,58 @@ window.MNDMPS = {
                     {
                         "id":0,
                         "type":"relation-type",
-                        "text":"directorship",
+                        "text":"director-ship",
                         "x":0.5,
-                        "y":0.2
+                        "y":0.1
                     },
                     {
                         "id":1,
                         "type":"role-type",
                         "text":"director",
-                        "x":0.3,
-                        "y":0.4
+                        "x":0.1,
+                        "y":0.1
                     },
                     {
                         "id":2,
                         "type":"role-type",
                         "text":"directed",
-                        "x":0.7,
-                        "y":0.4
+                        "x":0.9,
+                        "y":0.1
                     },
                     {
                         "id":3,
                         "type":"instance",
                         "text":"Alice",
                         "x":0.3,
-                        "y":0.8
+                        "y":0.9
                     },
                     {
                         "id":4,
                         "type":"relation",
                         "text":"•",
                         "x":0.5,
-                        "y":0.6
+                        "y":0.5
                     },
                     {
                         "id":5,
                         "type":"instance",
                         "text":"Honesty Inc.",
                         "x":0.7,
-                        "y":0.8
+                        "y":0.9
                     },
                     {
                         "id":6,
                         "type":"concept-type",
                         "text":"person",
                         "x":0.1,
-                        "y":0.6
+                        "y":0.55
                     },
                     {
                         "id":7,
                         "type":"concept-type",
                         "text":"company",
                         "x":0.9,
-                        "y":0.6
+                        "y":0.55
                     }
                 ],
                 "edges":[
@@ -1339,7 +1339,7 @@ window.MNDMPS = {
                     {
                         "id":0,
                         "type":"relation-type",
-                        "text":"directorship",
+                        "text":"director-ship",
                         "x":0.5,
                         "y":0.1
                     },
@@ -1347,43 +1347,43 @@ window.MNDMPS = {
                         "id":1,
                         "type":"role-type",
                         "text":"director",
-                        "x":0.3,
-                        "y":0.3
+                        "x":0.1,
+                        "y":0.5
                     },
                     {
                         "id":2,
                         "type":"role-type",
                         "text":"directed",
-                        "x":0.7,
-                        "y":0.3
+                        "x":0.9,
+                        "y":0.5
                     },
                     {
                         "id":3,
                         "type":"concept-type",
                         "text":"person",
                         "x":0.1,
-                        "y":0.5
+                        "y":0.9
                     },
                     {
                         "id":4,
                         "type":"concept-type",
                         "text":"company",
                         "x":0.9,
-                        "y":0.5
+                        "y":0.9
                     },
                     {
                         "id":5,
                         "type":"meta",
                         "text":"relation-type",
-                        "x":0.5,
-                        "y":0.5
+                        "x":0.9,
+                        "y":0.1
                     },
                     {
                         "id":6,
                         "type":"meta",
                         "text":"role-type",
                         "x":0.5,
-                        "y":0.7
+                        "y":0.5
                     },
                     {
                         "id":7,
@@ -1449,7 +1449,7 @@ window.MNDMPS = {
                     {
                         "id":0,
                         "type":"relation-type",
-                        "text":"directorship",
+                        "text":"director-ship",
                         "x":0.5,
                         "y":0.1
                     },
@@ -1457,50 +1457,50 @@ window.MNDMPS = {
                         "id":1,
                         "type":"role-type",
                         "text":"director",
-                        "x":0.3,
-                        "y":0.2
+                        "x":0.1,
+                        "y":0.1
                     },
                     {
                         "id":2,
                         "type":"role-type",
                         "text":"directed",
-                        "x":0.7,
-                        "y":0.2
+                        "x":0.9,
+                        "y":0.1
                     },
                     {
                         "id":3,
                         "type":"relation-type",
                         "text":"marriage",
                         "x":0.5,
-                        "y":0.7
+                        "y":0.9
                     },
                     {
                         "id":4,
                         "type":"role-type",
                         "text":"husband",
-                        "x":0.3,
-                        "y":0.8
+                        "x":0.1,
+                        "y":0.9
                     },
                     {
                         "id":5,
                         "type":"role-type",
                         "text":"wife",
-                        "x":0.7,
-                        "y":0.8
+                        "x":0.9,
+                        "y":0.9
                     },
                     {
                         "id":6,
                         "type":"concept-type",
                         "text":"person",
-                        "x":0.5,
-                        "y":0.4
+                        "x":0.3,
+                        "y":0.5
                     },
                     {
                         "id":7,
                         "type":"concept-type",
                         "text":"company",
-                        "x":0.9,
-                        "y":0.3
+                        "x":0.7,
+                        "y":0.5
                     }
                 ],
                 "edges":[
@@ -1563,21 +1563,21 @@ window.MNDMPS = {
                         "type":"instance",
                         "text":"Bob",
                         "x":0.1,
-                        "y":0.6
+                        "y":0.633
                     },
                     {
                         "id":2,
                         "type":"relation",
                         "text":"•",
                         "x":0.3,
-                        "y":0.4
+                        "y":0.367
                     },
                     {
                         "id":3,
                         "type":"instance",
                         "text":"Alice",
                         "x":0.5,
-                        "y":0.6
+                        "y":0.633
                     },
                     {
                         "id":4,
@@ -1591,19 +1591,19 @@ window.MNDMPS = {
                         "type":"relation",
                         "text":"•",
                         "x":0.7,
-                        "y":0.4
+                        "y":0.367
                     },
                     {
                         "id":6,
                         "type":"instance",
                         "text":"Honesty Inc.",
                         "x":0.9,
-                        "y":0.6
+                        "y":0.633
                     },
                     {
                         "id":7,
                         "type":"relation-type",
-                        "text":"directorship",
+                        "text":"director-ship",
                         "x":0.7,
                         "y":0.1
                     },
@@ -1680,21 +1680,21 @@ window.MNDMPS = {
                         "type":"instance",
                         "text":"Bob",
                         "x":0.1,
-                        "y":0.6
+                        "y":0.633
                     },
                     {
                         "id":2,
                         "type":"relation",
                         "text":"•",
                         "x":0.3,
-                        "y":0.4
+                        "y":0.367
                     },
                     {
                         "id":3,
                         "type":"instance",
                         "text":"Alice",
                         "x":0.5,
-                        "y":0.6
+                        "y":0.633
                     },
                     {
                         "id":4,
@@ -1708,14 +1708,14 @@ window.MNDMPS = {
                         "type":"relation",
                         "text":"•",
                         "x":0.7,
-                        "y":0.4
+                        "y":0.367
                     },
                     {
                         "id":6,
                         "type":"instance",
                         "text":"Honesty Inc.",
                         "x":0.9,
-                        "y":0.6
+                        "y":0.633
                     },
                     {
                         "id":7,
@@ -1794,20 +1794,20 @@ window.MNDMPS = {
                         "type":"relation-type",
                         "text":"marriage",
                         "x":0.5,
-                        "y":0.2
+                        "y":0.1
                     },
                     {
                         "id":1,
                         "type":"role-type",
                         "text":"husband",
-                        "x":0.3,
+                        "x":0.1,
                         "y":0.5
                     },
                     {
                         "id":2,
                         "type":"role-type",
                         "text":"wife",
-                        "x":0.7,
+                        "x":0.9,
                         "y":0.5
                     },
                     {
@@ -1815,7 +1815,7 @@ window.MNDMPS = {
                         "type":"concept-type",
                         "text":"person",
                         "x":0.5,
-                        "y":0.8
+                        "y":0.9
                     }
                 ],
                 "edges":[
@@ -1851,63 +1851,63 @@ window.MNDMPS = {
                         "type":"relation",
                         "text":"•",
                         "x":0.5,
-                        "y":0.1
+                        "y":0.35
                     },
                     {
                         "id":1,
                         "type":"relation",
                         "text":"•",
                         "x":0.5,
-                        "y":0.4
+                        "y":0.85
                     },
                     {
                         "id":2,
                         "type":"instance",
                         "text":"Honesty Inc.",
                         "x":0.3,
-                        "y":0.2
+                        "y":0.1
                     },
                     {
                         "id":3,
                         "type":"instance",
                         "text":"Evilcorp",
                         "x":0.3,
-                        "y":0.5
+                        "y":0.6
                     },
                     {
                         "id":4,
                         "type":"instance",
-                        "text":"TrustMe.com",
-                        "x":0.3,
-                        "y":0.8
+                        "text":"TrustMe.co",
+                        "x":0.1,
+                        "y":0.85
                     },
                     {
                         "id":5,
                         "type":"concept-type",
                         "text":"company",
                         "x":0.1,
-                        "y":0.5
+                        "y":0.35
                     },
                     {
                         "id":6,
                         "type":"instance",
                         "text":"Alice",
                         "x":0.7,
-                        "y":0.2
+                        "y":0.1
                     },
                     {
                         "id":7,
                         "type":"instance",
                         "text":"Bob",
                         "x":0.7,
-                        "y":0.5
+                        "y":0.6
                     },
                     {
                         "id":8,
                         "type":"concept-type",
                         "text":"person",
                         "x":0.9,
-                        "y":0.5
+                        "y":0.35
                     }
                 ],
                 "edges":[
@@ -1924,7 +1924,8 @@ window.MNDMPS = {
                     {
                         "source":4,
                         "target":5,
-                        "text":"isa"
+                        "text":"isa",
+                        "type":"active"
                     },
                     {
                         "source":0,
@@ -1975,41 +1976,41 @@ window.MNDMPS = {
                         "type":"instance",
                         "text":"Alice",
                         "x":0.1,
-                        "y":0.3
+                        "y":0.1
                     },
                     {
                         "id":2,
                         "type":"relation",
                         "text":"•",
                         "x":0.5,
-                        "y":0.3
+                        "y":0.35
                     },
                     {
                         "id":3,
                         "type":"instance",
                         "text":"Bob",
                         "x":0.9,
-                        "y":0.3
+                        "y":0.1
                     },
                     {
                         "id":4,
                         "type":"relation",
                         "text":"•",
-                        "x":0.3,
+                        "x":0.35,
                         "y":0.4
                     },
                     {
                         "id":5,
                         "type":"relation-type",
-                        "text":"directorship",
-                        "x":0.5,
-                        "y":0.5
+                        "text":"director-ship",
+                        "x":0.7,
+                        "y":0.7
                     },
                     {
                         "id":6,
                         "type":"relation",
                         "text":"•",
-                        "x":0.7,
+                        "x":0.65,
                         "y":0.4
                     },
                     {
@@ -2017,13 +2018,13 @@ window.MNDMPS = {
                         "type":"instance",
                         "text":"Honesty Inc.",
                         "x":0.1,
-                        "y":0.6
+                        "y":0.5
                     },
                     {
                         "id":8,
                         "type":"relation-type",
                         "text":"address",
-                        "x":0.5,
+                        "x":0.3,
                         "y":0.7
                     },
                     {
@@ -2031,21 +2032,21 @@ window.MNDMPS = {
                         "type":"instance",
                         "text":"Evilcorp",
                         "x":0.9,
-                        "y":0.6
+                        "y":0.5
                     },
                     {
                         "id":10,
                         "type":"relation",
                         "text":"•",
-                        "x":0.3,
-                        "y":0.7
+                        "x":0.1,
+                        "y":0.9
                     },
                     {
                         "id":11,
                         "type":"relation",
                         "text":"•",
-                        "x":0.7,
-                        "y":0.7
+                        "x":0.9,
+                        "y":0.9
                     },
                     {
                         "id":12,
@@ -2064,12 +2065,14 @@ window.MNDMPS = {
                     {
                         "source":2,
                         "target":1,
-                        "text":"wife"
+                        "text":"wife",
+                        "type":"active"
                     },
                     {
                         "source":2,
                         "target":3,
-                        "text":"husband"
+                        "text":"husband",
+                        "type":"active"
                     },
                     {
                         "source":4,
@@ -2094,42 +2097,50 @@ window.MNDMPS = {
                     {
                         "source":4,
                         "target":1,
-                        "text":"director"
+                        "text":"director",
+                        "type":"active"
                     },
                     {
                         "source":6,
                         "target":3,
-                        "text":"director"
+                        "text":"director",
+                        "type":"active"
                     },
                     {
                         "source":4,
                         "target":7,
-                        "text":"directed"
+                        "text":"directed",
+                        "type":"active"
                     },
                     {
                         "source":6,
                         "target":9,
-                        "text":"directed"
+                        "text":"directed",
+                        "type":"active"
                     },
                     {
                         "source":10,
                         "target":7,
-                        "text":"houses"
+                        "text":"houses",
+                        "type":"active"
                     },
                     {
                         "source":11,
                         "target":9,
-                        "text":"houses"
+                        "text":"houses",
+                        "type":"active"
                     },
                     {
                         "source":10,
                         "target":12,
-                        "text":"location"
+                        "text":"location",
+                        "type":"active"
                     },
                     {
                         "source":11,
                         "target":12,
-                        "text":"location"
+                        "text":"location",
+                        "type":"active"
                     }
                 ]
             }
@@ -3285,9 +3296,9 @@ window.MNDMPS = {
 
         function redraw(event) {
             var el = this;
-            
+
             el.style.transform = 'translateZ(0)';
-            
+
             setTimeout(function() {
                 el.style.transform = 'scale(1)';
             }, 0);

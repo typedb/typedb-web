@@ -4,11 +4,11 @@ var width, height, graphid;
 var smallRadius = 14;
 var mediumRadius = 27;
 var largeRadius = 45;
-var nodeTypes = ["instance", "concept-type", "relation", "relation-type", "resource", "resource-type", "meta"];
+var nodeTypes = ["instance", "concept-type", "relation", "relation-type", "resource", "resource-type", "role-type", "meta"];
 var edgeTypes = ["default", "active"];
 
 
-nodeColors     = ["#a1d884", "#ff7878",/*"#77dd77",*/ "#77dd77", "#bfc0d1", "#a1d884",/*"#5bc2e7",*/ "#ff7878", "#5bc2e7"];
+nodeColors     = ["#a1d884", "#ff7878",/*"#77dd77",*/ "#77dd77", "#bfc0d1", "#a1d884",/*"#5bc2e7",*/ "#ff7878", "#FFB96D", "#5bc2e7"];
 
 edgeColors = ["#bbbcbc", "#77dd77"]
 edgeLabelColors = ["#fff", "#2E4E00"]
@@ -92,7 +92,7 @@ var drawGraph = function(){
   .attr("transform", function(d) {
     return "translate(" +
       dx(d.x) + "," +
-      dy(d.y) + ")"; 
+      dy(d.y) + ")";
   });
 
   d3.selectAll(".edge")
@@ -210,7 +210,7 @@ var buildGraph = function(obj){
       .attr("id", function(d){ return getLinkUniqueId(d) + "text"})
       .attr("transform", function(d){ return rotate(d); })
       .attr("dy", "3")
-      
+
     edgelabels.append("textPath")
       .attr("fill", function(d){ return edgeLabelColors(d.type)})
       .attr("xlink:href", function(d) { return "#" + getLinkUniqueId(d); })

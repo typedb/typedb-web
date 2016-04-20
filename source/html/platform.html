@@ -33,7 +33,7 @@
 
         <link rel='shortcut icon' href='favicon.ico' />
 
-        <link href='https://fonts.googleapis.com/css?family=Raleway:400,200' rel='stylesheet' type='text/css' />
+        <link href='https://fonts.googleapis.com/css?family=Raleway:700,400,200' rel='stylesheet' type='text/css' />
         <link rel="stylesheet" href="css/style.css" type="text/css" />
     </head>
     <body>
@@ -276,7 +276,7 @@
                             </div>
                             <span>Core</span>
                         </li>
-                        <li class="scrollTrigger" data-to="#platform-graph" href="#platform-graph">
+                        <li class="scrollTrigger" data-to="#platform-factory" href="#platform-factory">
                             <div class="icon small">
                                 <svg class="icon-graph" viewBox="0 0 200 200">
                                     <g class="stack">
@@ -296,7 +296,7 @@
                                     </g>
                                 </svg>
                             </div>
-                            <span>Graph</span>
+                            <span>Factory</span>
                         </li>
                         <li class="scrollTrigger" data-to="#platform-graql" href="#platform-graql">
                             <div class="icon small">
@@ -365,25 +365,25 @@
                 <div class="text-block booked marginBottom">
                     <div class="graph"></div>
                     <div class="right">
-                        <p>In order to fully understand the platform; the Mindmaps Knowledge Representation (MKR) formalism must first be introduced. In Mindmaps everything is represented by a concept, and the figure shows a simple example. Alice and Bob are concepts that represent individuals in a database, and the concept person represents the idea that they are people. In order to begin to add semantics to generic concepts in Mindmaps, and effectively classify them, concept types such as person can be defined. The arrows with the label ISA indicate that the users are the instances of the concept type person.</p>
+                        <p>In order to fully understand the platform, the <span style="font-weight:bold;">Mindmaps Knowledge Representation (MKR)</span> formalism must first be introduced. In Mindmaps everything is represented by a concept, and the figure shows a simple example. <span style="font-weight:bold;">Alice</span> and <span style="font-weight:bold;">Bob</span> are concepts that represent individuals in a database, and the concept <span style="font-weight:bold;">person</span> represents the idea that they are people. In order to begin to add semantics to generic concepts in Mindmaps, and effectively classify them, concept types such as <span style="font-weight:bold;">person</span> can be defined. The arrows with the label <span style="font-weight:bold;">ISA</span> indicate that the users are the instances of the concept type <span style="font-weight:bold;">person</span>.</p>
                     </div>
                 </div>
                 <div class="text-block booked marginBottom">
                     <div class="graph"></div>
                     <div class="right">
-                        <p>Another powerful construct is a relation that can assert information about concepts. It is useful, for example, to assert that a person is the director of a company and this is shown in the figure. A specific company, Honesty Inc., has been defined here along with its concept type company. In addition, a relation type of directorship is defined giving semantics to the relation used to link the person and the company.</p>
+                        <p>Another powerful construct is a relation that can assert information about concepts. It is useful, for example, to assert that a person is the director of a company and this is shown in the figure. A specific company, <span style="font-weight:bold;">Honesty Inc.</span>, has been defined here along with its concept type <span style="font-weight:bold;">company</span>. In addition, a relation type of <span style="font-weight:bold;">directorship</span> is defined giving semantics to the relation used to link the <span style="font-weight:bold;">person</span> and the <span style="font-weight:bold;">company</span>.</p>
                     </div>
                 </div>
                 <div class="text-block booked marginBottom">
                     <div class="graph"></div>
                     <div class="right">
-                        <p>To increase the expressiveness of the knowledge representation a relation type is not enough information to specify the semantics of a relation. The roles in the relationship must also be defined. The figure shows a relation type marriage with the role types husband and wife specified. For clarity the roles are reflected on the arrows pointing from the relation to the instances. This structure allows relationships with more than two roles to be expressed, which would not be possible using a single labelled arrow between Alice and Bob.</p>
+                        <p>To increase the expressiveness of the knowledge representation a relation type is not enough information to specify the semantics of a relation. The roles in the relationship must also be defined. The figure shows a relation type <span style="font-weight:bold;">marriage</span> with the role types <span style="font-weight:bold;">husband</span> and <span style="font-weight:bold;">wife</span> specified. For clarity the roles are reflected on the arrows pointing from the relation to the instances. This structure allows relationships with more than two roles to be expressed, which would not be possible using a single labelled arrow between <span style="font-weight:bold;">Alice</span> and <span style="font-weight:bold;">Bob</span>.</p>
                     </div>
                 </div>
                 <div class="text-block booked marginBottom">
                     <div class="graph"></div>
                     <div class="right">
-                        <p>Mindmaps Knowledge Representation requires the identification of the concept types that play a role in a relationship. In the example shown here the arrow labelled plays role indicates that only a person can be a director, and only a company can be directed. This ensures that the semantics of the relationship are clearly defined, and that mistakes are not made when asserting the existence of relations between instances of specific types.</p>
+                        <p>Mindmaps Knowledge Representation requires the identification of the concept types that play a role in a relationship. In the example shown here the arrow labelled <span style="font-weight:bold;">plays role</span> indicates that only a <span style="font-weight:bold;">person</span> can be a <span style="font-weight:bold;">director</span>, and only a <span style="font-weight:bold;">company</span> can be <span style="font-weight:bold;">directed</span>. This ensures that the semantics of the relationship are clearly defined, and that mistakes are not made when asserting the existence of relations between instances of specific types.</p>
                     </div>
                 </div>
                 <div class="text-block booked marginBottom">
@@ -415,7 +415,7 @@
                 <div class="text-block booked marginBottom">
                     <div class="right">
                         <p>Mindmaps Core is an API with an object model that maps directly onto Mindmaps Knowledge Representation (MKR). It enables the programmatic definition of an ontology, and interaction with data solely in terms of the MKR without having to consider the complexities of implementing it in a graph database. It abstracts away nodes and edges in your graph and allows your data to be structured in terms of concepts, the relationships between them and the roles they play in these relationships.</p>
-                        <p>An ontology can be thought of as a taxonomy of a particular domain of interest. An example of a minimal ontology for a Mindmaps Graph is shown here. This ontology defines two full relationships, “directorship” and “marriage”, and specifies the roles in the relationships and the concept types that can play the roles. The java code for definining the directorship relationship is also given here.</p>
+                        <p>An ontology can be thought of as a taxonomy of a particular domain of interest. An example of a minimal ontology for a Mindmaps graph is shown here. This ontology defines two full relationships, “directorship” and “marriage”, and specifies the roles in the relationships and the concept types that can play the roles. The java code for definining the directorship relationship is also given here.</p>
                     </div>
                     <div class="graph"></div>
                     <div class="example">
@@ -497,12 +497,12 @@ Relation relation = mindmaps.putRelation(directorship,roleMap);</textarea>
                             </g>
                         </svg>
                     </div>
-                    Graph
-                    <span class="anchor" id="platform-graph"></span>
+                    Factory
+                    <span class="anchor" id="platform-factory"></span>
                 </h3>
                 <div class="text-block columns marginBottom">
-                    <p>Mindmaps is a semantic layer that structures data in a graph in such a way that it can be flexibly constrained and reasoned over. All that is required to persist a Mindmaps Graph is a database that can represent property graphs. For this reason, Mindmaps supports graph databases that have implemented the Apache Tinkerpop API.</p>
-                    <p>Mindmaps Graph provides the flexibility to use different graph databases in a semantic application. The persistence of a Mindmaps Graph and its scalability are left to the graph database to handle. This means that an in-memory graph databases can be used for small applications that run on a single machine. Conversely, a distributed and scalable graph database can be used to serve large volumes of traffic, or to handle big data. Therefore, the optimal database can be used for a specific application.</p>
+                    <p>Mindmaps Factory is a semantic abstraction layer that produces a Mindmaps graph. It does so by structuring a graph database in such a way that it can be flexibly constrained and reasoned over. All that is required to persist a Mindmaps graph is a database that can represent property graphs. For this reason, Mindmaps supports graph databases that have implemented the <a target="_blank" href="http://tinkerpop.apache.org/">Apache Tinkerpop API</a>.</p>
+                    <p>Mindmaps Factory provides the flexibility to use different graph databases in a semantic application. The persistence of a Mindmaps graph and its scalability, through Mindmaps Factory, are left to the graph database to handle. This means that an in-memory graph database can be used for small applications that run on a single machine. Conversely, a distributed and scalable graph database can be used to serve large volumes of traffic, or to handle big data. This provides the freedom to choose the optimal database for a specific application.</p>
                 </div>
 
                 <h3>
@@ -519,9 +519,9 @@ Relation relation = mindmaps.putRelation(directorship,roleMap);</textarea>
                 </h3>
                 <div class="text-block booked marginBottom">
                     <div class="right">
-                        <p>Graql enables users to write queries against a Mindmaps Graph leveraging the inherent semantics of the data. Retrieve concepts by specifying the patterns of types and relationships that identify them. Graql is declarative and therefore it handles the optimisation of the graph traversals needed to retrieve information.</p>
+                        <p>Graql enables users to write queries against a Mindmaps graph leveraging the inherent semantics of the data. Retrieve concepts by specifying the patterns of types and relationships that identify them. Graql is declarative and therefore it handles the optimisation of the graph traversals needed to retrieve information.</p>
                         <p>A query for all spouses of company directors translates into asking for concepts that have the type “person” and are in “marriage” relationship with another person who is in a “directorship” relationship with a “company”. This is shown graphically and using Graql syntax.</p>
-                        <p>The SELECT query form is used here to retrieve information from a Mindmaps Graph. The types of the concepts and relations are specified using the “isa” syntax, and the relationships between the variables are expressed using brackets. There is no need to specify the roles in the above example because this information is implicit.</p>
+                        <p>The SELECT query form is used here to retrieve information from a Mindmaps graph. The types of the concepts and relations are specified using the “isa” syntax, and the relationships between the variables are expressed using brackets. There is no need to specify the roles in the above example because this information is implicit.</p>
                     </div>
                     <div class="graph"></div>
                     <div class="example">
@@ -617,7 +617,7 @@ Relation relation = mindmaps.putRelation(directorship,roleMap);</textarea>
     type “wife” isa role-type; 
     type “husband” isa role-type; 
 
-    # You can now refer to your types directly in in graql syntax 
+    # You can now refer to your types using graql syntax 
 
     # Specify the roles in the relationships 
     marriage has-role wife; 
@@ -625,22 +625,22 @@ Relation relation = mindmaps.putRelation(directorship,roleMap);</textarea>
 
     # specify role-players
     person plays-role wife;
-    person plays-role husband</textarea>
+    person plays-role husband;</textarea>
                                 <pre class="code-output">
                                     <code class="language-graql"></code>
                                 </pre>
                             </div>
                             <div data-type="java">
                                 <textarea class="code-input" readonly=true>graql.insert( 
-    type(“person”).isa(“concept-type”),
-    type(“marriage”).isa(“relation-type”),
-    type(“wife”).isa(“role-type”),
-    type(“husband”).isa(“role-type”),
-    type(“marriage”).hasRole(“wife”),
-    type(“marriage”).hasRole(“husband”),
-    type(“person”).playsRole(“wife”),
-    type(“person”).playsRole(“husband”)
-);</textarea>
+    newType(“person”).isa(“concept-type”),
+    newType(“marriage”).isa(“relation-type”),
+    newType(“wife”).isa(“role-type”),
+    newType(“husband”).isa(“role-type”),
+    getType(“marriage”).hasRole(“wife”),
+    getType(“marriage”).hasRole(“husband”),
+    getType(“person”).playsRole(“wife”),
+    getType(“person”).playsRole(“husband”)
+).execute();</textarea>
                                 <pre class="code-output">
                                     <code class="language-java"></code>
                                 </pre>
@@ -660,15 +660,14 @@ Relation relation = mindmaps.putRelation(directorship,roleMap);</textarea>
                 </h3>
                 <div class="text-block booked marginBottom">
                     <div class="right">
-                        <p>Mindmaps reasoner provides a powerful mechanism for validating constraints and inferring new information in a Mindmaps Graph. All constraints and inference rules are specified using Graql syntax and are automatically used to maintain data. Using Graql syntax to specify constraints and inference rules closely links the semantics of data to how it is constrained and reasoned over.</p>
+                        <p>Mindmaps reasoner provides a powerful mechanism for validating constraints and inferring new information in a Mindmaps graph. All constraints and inference rules are specified using Graql syntax and are automatically used to maintain data. Using Graql syntax to specify constraints and inference rules closely links the semantics of data to how it is constrained and reasoned over.</p>
                         <p>If we consider a system that maintains information about companies, a pragmatic constraint might be that all instances of “company” have a director. The first step is to identify all of the objects that are going to be constrained using a SELECT query. The SELECT query specifies a hypothesis, which is a pattern to be found in the graph. Once these patterns have been identified then an ASK query is used to specify the pattern that all results of the SELECT query must match. These two queries constitute a constraint and this is shown in the graph.</p>
-                        <p>The SELECT query highlights the three instances of the concept type “company”. The ASK query returns true for “Honesty Inc.” and “Evilcorp”, but false for “TrustMe.com”. This constraint would ensure that “TrustMe.com” is considered invalid until the required information is added. In this way the information in a Mindmaps Graph can be guaranteed to have a specified structure.</p>
+                        <p>The SELECT query highlights the three instances of the concept type “company”. The ASK query returns true for “Honesty Inc.” and “Evilcorp”, but false for “TrustMe.co”. This constraint would ensure that “TrustMe.co” is considered invalid until the required information is added. In this way the information in a Mindmaps graph can be guaranteed to have a specified structure.</p>
                     </div>
                     <div data-graph="11" class="graph"></div>
                     <div class="example">
                         <div class="tabs">
                             <span data-target="graql">Graql</span>
-                            <span data-target="java">Java</span>
                         </div>
                         <div class="content">
                             <div data-type="graql">
@@ -681,20 +680,12 @@ ask
                                     <code class="language-graql"></code>
                                 </pre>
                             </div>
-                            <div data-type="java">
-                                <textarea class="code-input" readonly=true>ask
-    $y isa person;
-    ($x, $y) isa directorship</textarea>
-                                <pre class="code-output">
-                                    <code class="language-java"></code>
-                                </pre>
-                            </div>
                         </div>
                     </div>
                 </div>
                 <div class="text-block booked marginBottom">
                     <div class="right">
-                        <p>In order to infer new information from a Mindmaps Graph the reasoner needs to have a set of inference rules defined. Inference rules also consist of two Graql queries; a SELECT and INSERT query. This SELECT query is used to specify a pattern in the graph that the inference will act upon. This pattern might identify suspicious relationships between people and companies. The INSERT query then specifies the action to perform if the hypothesised pattern is found to match any data. In this case the action could be to flag the companies for further investigation. This is shown below.</p>
+                        <p>In order to infer new information from a Mindmaps graph the reasoner needs to have a set of inference rules defined. Inference rules also consist of two Graql queries; a SELECT and INSERT query. This SELECT query is used to specify a pattern in the graph that the inference will act upon. This pattern might identify suspicious relationships between people and companies. The INSERT query then specifies the action to perform if the hypothesised pattern is found to match any data. In this case the action could be to flag the companies for further investigation. This is shown below.</p>
                         <p>The reasoner uses the SELECT query to find that “Honest Inc.” and “Evilcorp” share an address and have related directors. It then uses the INSERT query to flag that the companies are suspicious. One of the features of Graql is that the relationship between the people, “($u, $v)”, does not have to be specified, a relationship just needs to exist.</p>
                         <p>There are two ways of performing this inference, forward and backward chaining, both of which are possible using Mindmaps reasoner. The forward chaining operation of the reasoner responds in real-time to facts and rules added to the system, explicitly adding information to all matching patterns in the graph. Once a rule is added, all matching instances in the graph are found and the inference performed. Due to the nature of this appoach, the inferred information may not be immediately available at query-time while the system processes the rules.</p>
                         <p>The backward chaining operation is triggered when a query is executed. The reasoner translates the query, using the inference rules, in such a way that it finds information that implies the answer to the query. This is in addition to the information that directly satisfies the query. The backward chaining ensures that all inferred information is available at query-time, even if it has not been explicitly added as a result of forward chaining.</p>
@@ -744,9 +735,9 @@ insert 
                     <p>Mindmaps analytics is currently under development and it is expected that the following tools will be included:</p>
                     <p>Graph Analytics - Discover the information contained in the structure of data. Evaluate the topology of a graph by investigating: small worldness, betweenness, centrality, degree distribution, modularity, mean path length, and other common algorithms. Discover how the concepts in a graph are connected and if they naturally form clusters or communities.</p>
                     <p>Data Mining - A toolbox for performing common data mining tasks. The aim is to provide data scientists using Mindmaps the ability to easily extract value from the semantic graph. These include: cluster analysis, data classification, trend discovery and data fusion.</p>
-                    <p>Big Data - Work with large Mindmaps Graphs hosted on a cluster. Perform aggregation and computation tasks utilising the data in place in the cluster, rather than having to download data locally. Compute metrics across all data in the system and scale horizontally with system usage.</p>
+                    <p>Big Data - Work with large Mindmaps graphs hosted on a cluster. Perform aggregation and computation tasks utilising the data in place in the cluster, rather than having to download data locally. Compute metrics across all data in the system and scale horizontally with system usage.</p>
                     <p>Statistics - Extract specific data sets and sample amongst highly connected data. Compute aggregate measures about data and how it is distributed. Find correllations in data and build simple models to describe them.</p>
-                    <p>Track Usage - Monitor the usage of a Mindmaps Graph. Determine the most visited concepts and paths traversed. Truly understand how users interact with data to optimise their experience. Extract information about what people are interested in and how these concepts are related.</p>
+                    <p>Track Usage - Monitor the usage of a Mindmaps graph. Determine the most visited concepts and paths traversed. Truly understand how users interact with data to optimise their experience. Extract information about what people are interested in and how these concepts are related.</p>
                 </div>
 
                 <h3>
@@ -762,9 +753,9 @@ insert 
                     <span class="anchor" id="platform-migration"></span>
                 </h3>
                 <div class="text-block columns marginBottom">
-                    <p>In order to make migrating to Mindmaps hassle-free, OWL and RDFS ontologies can be imported and automatically translated into a Mindmaps Graph. This allows existing RDF triples to then be efficiently loaded into Mindmaps ready for use. If an ontology has not explicitly been defined, RDF triples can be loaded directly and an ontology will be automatically constructed. Custom tools are also provided for importing a SQL database into Mindmaps. Map an SQL schema into a Mindmaps ontology and load data without losing information.</p>
+                    <p>In order to make migrating to Mindmaps hassle-free, OWL and RDFS ontologies can be imported and automatically translated into a Mindmaps graph. This allows existing RDF triples to then be efficiently loaded into Mindmaps ready for use. If an ontology has not explicitly been defined, RDF triples can be loaded directly and an ontology will be automatically constructed. Custom tools are also provided for importing a SQL database into Mindmaps. Map an SQL schema into a Mindmaps ontology and load data without losing information.</p>
                     <p>Mindmaps makes it simple to combine data from diverse sources into a single database. An ontology can be created that represents the individual data sources and the relationships between them. This in turn defines how the data is loaded to form a graph representing the union of data sets. Analysing and retrieving data from across sources then becomes a highly efficient operation due to the graph structure.</p>
-                    <p>Mindmaps provides batch loading to import large volumes of data efficiently. This entry point is particularly useful for building ETL tools to extract data from multiple sources and add to a Mindmaps Graph.</p>
+                    <p>Mindmaps provides batch loading to import large volumes of data efficiently. This entry point is particularly useful for building ETL tools to extract data from multiple sources and add to a Mindmaps graph.</p>
                 </div>
 
                 <h3>

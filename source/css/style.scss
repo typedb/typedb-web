@@ -8,7 +8,7 @@
 @import 'icons';
 @import 'modal';
 
-/* 
+/*
     Breakpoints
 
     339px
@@ -213,6 +213,9 @@ body{
     font-family: Raleway, sans-serif;
     font-weight: 400;
     width: 100%;
+    .bold{
+        font-weight: 700;
+    }
 }
 
 .capitalise{
@@ -243,7 +246,7 @@ body{
         margin: -25% 0 0 -25%;
         @include transform(translate(7%, -5%) rotateZ(45deg));
         @include transition(transform 100ms ease-in-out);
-        
+
         use{
             stroke: $blackc;
             fill: $transparent;
@@ -343,9 +346,9 @@ body{
             top: 0;
             z-index: 0;
         }
-        
+
         &.yellow{
-            &:after{ 
+            &:after{
                 background-color: rgba($yellow, 0.2);
             }
 
@@ -364,9 +367,9 @@ body{
                 }
             }
         }
-        
+
         &.green{
-            &:after{ 
+            &:after{
                 background-color: rgba($brandGreen, 0.2);
             }
 
@@ -385,9 +388,9 @@ body{
                 }
             }
         }
-        
+
         &.blue{
-            &:after{ 
+            &:after{
                 background-color: rgba($brandBlue, 0.2);
             }
 
@@ -406,15 +409,15 @@ body{
                 }
             }
         }
-        
+
         &.circle{
-            &:after{ 
+            &:after{
                 border-radius: 50%;
             }
         }
 
         &.rhomb{
-            &:after{ 
+            &:after{
                 @include transform(rotateZ(45deg) scale(0.9));
             }
         }
@@ -428,10 +431,10 @@ body{
                 fill: $blackc;
             }
         }
-        
+
         .item{
             @include transform(translate(7%, -5%) rotateZ(0deg) scale(1.8));
-            
+
             use{
                 stroke: $white;
                 fill: $white;
@@ -511,7 +514,7 @@ body{
                 z-index: 0;
                 //@include transform(rotateZ(-45deg));
                 //@include transition(transform 100ms ease-in-out);
-                
+
                 use{
                     stroke-width: 0.5;
                     stroke: $blackc;
@@ -558,11 +561,11 @@ body{
                 }
             }
         }
-        
+
         p{
             font-size: 0.8rem;
             line-height: 1.4rem;
-            
+
             &:not(:last-child){
                 padding-bottom: 15px;
             }
@@ -593,7 +596,7 @@ body{
 
             .icon-block{
                 margin-bottom: 60px;
-                
+
                 &:after{
                     content: '';
                     display: table;
@@ -607,11 +610,11 @@ body{
 
             &.team{
                 padding: 90px 0 30px 0;
-                
+
                 .text-block{
                     margin-bottom: 60px;
                 }
-                
+
                 .team-grid{
                     margin-bottom: 30px;
                     @include disableSelection();
@@ -621,7 +624,7 @@ body{
                         display: table;
                         clear: both;
                     }
-                    
+
                     >li{
                         position: relative;
                         float: left;
@@ -720,7 +723,7 @@ body{
                                 line-height: 10px;
                                 margin-bottom: 15px;
                             }
-                            
+
                             span{
                                 display: block;
                                 font-size: 0.8rem;
@@ -740,7 +743,7 @@ body{
                             .atvImg-layers{
                                 @include filter(grayscale(0));
                             }
-                            
+
                             .description{
                                 //@include transform(translate(0, 0));
                                 @include transform(translate(0, 10px));
@@ -819,7 +822,7 @@ body{
         @include transform(translate3d(0, 0, 60px));
 
         .wrapper{
-            
+
             .logo{
                 float: left;
                 height: 100%;
@@ -839,7 +842,7 @@ body{
 
                 >span{
                     float: left;
-                    
+
                     span{
                         margin-top: 0.2rem;
                         font-weight: 200;
@@ -915,7 +918,7 @@ body{
                         }
                     }
                 }
-                
+
                 .divider{
                     display: inline-block;
                     width: 1px;
@@ -1041,7 +1044,7 @@ body{
                 clear: both;
             }
         }
-        
+
         .logo{
             svg{
                 width: 100%;
@@ -1156,7 +1159,7 @@ body{
     >.wrapper{
         padding-bottom: 0;
     }
-    
+
     .graph-slider{
         background-color: $white;
         margin-top: -40vh;
@@ -1171,16 +1174,16 @@ body{
             &.slick-initialized{
                 display: block;
             }
-            
+
             &.slick-slider{
                 height: 100%;
 
                 .slick-list{
                     height: 100%;
-                    
+
                     .slick-track{
                         height: 100%;
-                        
+
                         .slick-slide{
                             outline: none;
                             height: 100%;
@@ -1243,7 +1246,7 @@ body{
                                                 font-size: 12px;
                                             }
                                         } */
-                                        
+
                                         text{
                                             fill: $white;
                                             pointer-events: none;
@@ -1465,7 +1468,7 @@ body{
                 svg{
                     width: 100%;
                     height: 100%;
-                    
+
                     use{
                         fill: none;
                         stroke-width: 0.25;
@@ -1486,13 +1489,13 @@ body{
                 text-align: center;
                 margin-top: 60px;
             }
-            
+
             li{
                 float: left;
                 width: 33.33%;
                 padding: 0 15px 60px 15px;
                 box-sizing: border-box;
-                
+
                 &:nth-child(3n),{
                     padding: 0 0 60px 15px;
                 }
@@ -1523,7 +1526,7 @@ body{
                 clear: both;
                 display: table;
             }
-            
+
             &>li{
                 float: left;
                 width: 25%;
@@ -1540,7 +1543,7 @@ body{
 
                 .relations{
                     margin-top: 10px;
-                    
+
                     li{
                         float: left;
                         margin-right: 10px;
@@ -1550,7 +1553,7 @@ body{
                 &:first-child{
                     padding: 0 22px 0 0;
                 }
-                
+
                 &:last-child{
                     padding: 0 0 0 22px;
                 }
@@ -1564,7 +1567,7 @@ body{
                 }
             }
         }
-        
+
         .tech{
             &-stack{
                 border: 1px solid $white;
@@ -1580,10 +1583,10 @@ body{
                 .small{
                     display: table;
                     width: 100%;
-                    
+
                     .row{
                         display: table-row;
-                        
+
                         >div{
                             cursor: pointer;
                             display: table-cell;
@@ -1615,7 +1618,7 @@ body{
                         font-size: 1.4rem;
                         font-weight: 200;
                     }
-                    
+
                     p{
                         text-align: center;
                         font-size: 0.9rem;
@@ -1636,7 +1639,7 @@ body{
                             background-color: $white;
                             color: $blackc;
                         }
-                        
+
                         p{
                             font-weight: 200;
                             font-size: 1.2rem;
@@ -1651,7 +1654,7 @@ body{
                     height: 0;
                     overflow: hidden;
                     @include transition(height 200ms ease-in-out);
-                    
+
                     >div{
                         display: none;
                         padding: 30px;
@@ -1714,7 +1717,7 @@ body{
             flex-direction: row;
             flex-wrap: nowrap;
             justify-content: space-between;
-            
+
             li{
                 flex-grow: 0;
 
@@ -1725,7 +1728,7 @@ body{
                 }
             }
         }
-        
+
         .icon{
             display: inline-block;
             vertical-align: middle;
@@ -1750,15 +1753,15 @@ body{
         background-color: $gray425C;
         @include break-inside(avoid);
         margin-bottom: 15px;
-        
+
         .tabs{
-            
+
             &:after{
                 content: '';
                 display: table;
                 clear: both;
             }
-            
+
             span{
                 color: $white;
                 display: block;
@@ -1782,12 +1785,12 @@ body{
                 }
             }
         }
-        
+
         .content{
             height: 300px;
             position: relative;
             background-color: $codeGray;
-            
+
             >div{
                 position: absolute;
                 top: 0;
@@ -1802,7 +1805,7 @@ body{
                     pointer-events: auto;
                     opacity: 1;
                 }
-                
+
                 &[data-type="graql"],
                 &[data-type="java"]{
 
@@ -1810,7 +1813,7 @@ body{
                         &-input{
                             display: none;
                         }
-                        
+
                         &-output{
                             position: absolute;
                             top: 0;
@@ -1834,7 +1837,7 @@ body{
 
                         &-output{
                             font-size: 0;
-                            
+
                             code{
                                 margin: 0;
                                 padding: 1rem;
@@ -1875,10 +1878,10 @@ body{
                 float: none;
                 margin-bottom: 15px;
             }
-            
+
             .platform-list{
                 margin-bottom: 15px;
-                
+
                 ul{
                     display: block;
 
@@ -1898,7 +1901,7 @@ body{
             font-size: 1.2rem;
             margin-bottom: 15px;
         }
-        
+
         h3{
             font-weight: 400;
             font-size: 1.1rem;
@@ -2002,7 +2005,7 @@ body{
                                 display: none;
                             }
                         }
-                        
+
                         svg{
                             width: 32px;
                             height: 32px;
@@ -2023,13 +2026,13 @@ body{
                     &:after{
                         display: none;
                     }
-                    
+
                     >div{
                         width: 100%;
                         float: none;
                     }
                 }
-                
+
                 p{
                     font-size: 1rem;
                     line-height: 1.3rem;
@@ -2037,7 +2040,7 @@ body{
             }
 
             &.content{
-            
+
                 .wrapper{
                     padding: 15px 0;
                     width: 240px;
@@ -2113,12 +2116,12 @@ body{
                                 margin-top: 0;
                             }
                         }
-                        
+
                         &-grid{
                             .small{
                                 .row{
                                     display: block;
-                                    
+
                                     >div{
                                         display: block;
                                         box-shadow: inset 0 1px 0 0 $white;
@@ -2163,7 +2166,7 @@ body{
                             }
                         }
                     }
-                    
+
                     &.team{
                         padding: 15px 0 0 0;
 
@@ -2173,7 +2176,7 @@ body{
 
                         .team-grid{
                             margin-bottom: 0px;
-                            
+
                             >li{
                                 width: 239px;
                                 margin: 0 0 15px 0;
@@ -2228,7 +2231,7 @@ body{
                                 &:nth-child(2n) {
                                     margin-right: 0;
                                 }
-                            
+
                                 .over{
                                     .description{
                                         background-color: $transparent;
@@ -2237,11 +2240,11 @@ body{
                                 }
                             }
                         }
-                        
+
                         // Standard variation
                         /* .team-grid{
                             margin-bottom: 0px;
-                            
+
                             >li{
                                 width: 112px;
                                 margin: 0 15px 15px 0;
@@ -2289,7 +2292,7 @@ body{
                         .icon{
                             margin-right: 15px;
                         }
-                        
+
                         .title{
                             font-size: 0.75rem;
                             line-height: 1.225rem;
@@ -2391,7 +2394,7 @@ body{
                         line-height: 30px;
                     }
                 }
-                
+
                 .logo{
                     width: 30px;
                     height: 30px;
@@ -2425,10 +2428,10 @@ body{
                 float: none;
                 margin-bottom: 15px;
             }
-            
+
             .platform-list{
                 margin-bottom: 15px;
-                
+
                 ul{
                     display: block;
 
@@ -2454,7 +2457,7 @@ body{
             font-size: 1.2rem;
             margin-bottom: 15px;
         }
-        
+
         .icon{
             &.big{
                 width: 90px;
@@ -2547,7 +2550,7 @@ body{
                                 display: none;
                             }
                         }
-                        
+
                         svg{
                             width: 32px;
                             height: 32px;
@@ -2568,13 +2571,13 @@ body{
                     &:after{
                         display: none;
                     }
-                    
+
                     >div{
                         width: 100%;
                         float: none;
                     }
                 }
-                
+
                 p{
                     font-size: 1rem;
                     line-height: 1.4rem;
@@ -2582,7 +2585,7 @@ body{
             }
 
             &.content{
-            
+
                 .wrapper{
                     padding: 30px 0;
                     width: 320px;
@@ -2658,12 +2661,12 @@ body{
                                 padding-top: 25px;
                             }
                         }
-                        
+
                         &-grid{
                             .small{
                                 .row{
                                     display: block;
-                                    
+
                                     >div{
                                         display: block;
                                         box-shadow: inset 0 1px 0 0 $white;
@@ -2708,7 +2711,7 @@ body{
                             }
                         }
                     }
-                    
+
                     &.team{
                         padding: 30px 0 0 0;
 
@@ -2718,7 +2721,7 @@ body{
 
                         .team-grid{
                             margin-bottom: 0px;
-                            
+
                             >li{
                                 width: 320px;
                                 margin: 0 0 15px 0;
@@ -2764,7 +2767,7 @@ body{
                                     span{
                                         font-size: 0.9rem;
                                         margin-bottom: 10px;
-                                        
+
                                         +.x-small{
                                             margin-bottom: 0;
                                             font-size: 0.75rem;
@@ -2776,7 +2779,7 @@ body{
                                 &:nth-child(2n) {
                                     margin-right: 0;
                                 }
-                            
+
                                 .over{
                                     .description{
                                         background-color: $transparent;
@@ -2785,10 +2788,10 @@ body{
                                 }
                             }
                         }
-                        
+
                         /* .team-grid{
                             margin-bottom: 15px;
-                            
+
                             >li{
                                 width: 152px;
                                 margin: 0 15px 15px 0;
@@ -2810,7 +2813,7 @@ body{
                         .icon{
                             margin-right: 30px;
                         }
-                        
+
                         .title{
                             font-size: 0.9rem;
                             line-height: 22.5px;
@@ -2912,7 +2915,7 @@ body{
                         line-height: 30px;
                     }
                 }
-                
+
                 .logo{
                     width: 30px;
                     height: 30px;
@@ -2945,10 +2948,10 @@ body{
                 float: none;
                 margin-bottom: 30px;
             }
-            
+
             .platform-list{
                 margin-bottom: 30px;
-                
+
                 ul{
                     li{
                         text-align: center;
@@ -2975,14 +2978,14 @@ body{
             font-size: 1.6rem;
             margin-bottom: 15px;
         }
-        
+
         .icon{
             &.big{
                 width: 140px;
                 height: 140px;
             }
         }
-        
+
         .block{
 
             &.splash{
@@ -3031,7 +3034,7 @@ body{
                         .divider{
                             display: none;
                         }
-                        
+
                         a{
                             &:nth-child(n+5){
                                 display: none;
@@ -3048,7 +3051,7 @@ body{
                                 display: none;
                             }
                         }
-                        
+
                         svg{
                             width: 53px;
                             height: 53px;
@@ -3069,20 +3072,20 @@ body{
                     &:after{
                         display: none;
                     }
-                    
+
                     >div{
                         width: 100%;
                         float: none;
                     }
                 }
-                
+
                 p{
                     font-size: 0.9rem;
                 }
             }
 
             &.content{
-            
+
                 .wrapper{
                     padding: 60px 0;
                     width: 500px;
@@ -3157,7 +3160,7 @@ body{
                                 margin-top: 45px;
                             }
                         }
-                        
+
                         &-grid{
                             .tab{
                                 .title{
@@ -3181,7 +3184,7 @@ body{
                                     .text{
                                         @include columns(auto 1);
                                         @include column-gap(0);
-                                        
+
                                         p{
                                             font-size: 0.9rem;
                                             line-height: 1.4rem;
@@ -3191,13 +3194,13 @@ body{
                             }
                         }
                     }
-                    
+
                     &.team{
                         padding: 60px 0 0 0;
-                        
+
                         .team-grid{
                             margin-bottom: 45px;
-                            
+
                             >li{
                                 width: 156px;
                                 margin: 0 15px 15px 0;
@@ -3225,7 +3228,7 @@ body{
 
                     .icon-block{
                         margin-bottom: 30px;
-                        
+
                         .title{
                             font-weight: 200;
                             font-size: 1.2rem;
@@ -3291,7 +3294,7 @@ body{
 
                             .slider-container{
                                 &.slick-slider{
-                                    
+
                                     .slick-list{
                                         .slick-track{
                                             .slick-slide{
@@ -3321,7 +3324,7 @@ body{
                         line-height: 50px;
                     }
                 }
-                
+
                 .logo{
                     width: 50px;
                     height: 50px;
@@ -3340,7 +3343,7 @@ body{
         #section-platform-full{
             .platform-list{
                 margin-bottom: 60px;
-                
+
                 ul{
                     li{
                         text-align: center;
@@ -3374,7 +3377,7 @@ body{
                         .divider{
                             display: none;
                         }
-                        
+
                         a{
                             &:nth-child(n+6){
                                 display: none;
@@ -3396,7 +3399,7 @@ body{
             }
 
             &.content{
-            
+
                 .wrapper{
                     width: 640px;
 
@@ -3464,7 +3467,7 @@ body{
                                     .text{
                                         @include columns(auto 1);
                                         @include column-gap(0);
-                                        
+
                                         p{
                                             font-size: 0.8rem;
                                             line-height: 1.4rem;
@@ -3474,7 +3477,7 @@ body{
                             }
                         }
                     }
-                    
+
                     &.team{
                         .team-grid{
                             >li{
@@ -3532,7 +3535,7 @@ body{
                             &:nth-child(n+5){
                                 padding-bottom: 0;
                             }
-                            
+
                             p{
                                 font-size: 0.8rem;
                                 line-height: 1.4rem;
@@ -3548,7 +3551,7 @@ body{
 
                             .slider-container{
                                 &.slick-slider{
-                                    
+
                                     .slick-list{
                                         .slick-track{
                                             .slick-slide{
@@ -3578,7 +3581,7 @@ body{
                         line-height: 50px;
                     }
                 }
-                
+
                 .logo{
                     width: 50px;
                     height: 50px;
@@ -3603,7 +3606,7 @@ body{
             }
 
             &.content{
-            
+
                 .wrapper{
                     width: 880px;
 
@@ -3645,7 +3648,7 @@ body{
                                     font-weight: 400;
                                     font-size: 1.3rem;
                                 }
-                                
+
                                 p{
                                     font-size: 0.8rem;
                                     line-height: 1rem;
@@ -3667,7 +3670,7 @@ body{
                             }
                         }
                     }
-                    
+
                     &.team{
                         .team-grid{
                             >li{
@@ -3747,7 +3750,7 @@ body{
                         line-height: 50px;
                     }
                 }
-                
+
                 .logo{
                     width: 50px;
                     height: 50px;
@@ -3771,16 +3774,16 @@ body{
             }
 
             &.content{
-            
+
                 .wrapper{
                     width: 1200px;
-                    
+
                     &.team{
                         .team-grid{
                             >li{
                                 width: 175px;
                                 margin: 0 30px 30px 0;
-                                
+
                                 &:nth-child(6n) {
                                     margin-right: 0;
                                 }
@@ -3845,7 +3848,7 @@ body{
                         line-height: 80px;
                     }
                 }
-                
+
                 .logo{
                     width: 80px;
                     height: 80px;
@@ -3871,7 +3874,7 @@ body{
                     }
                 }
             }
-            
+
             &.splash{
                 .overlay{
                     .getMindmaps{
@@ -3879,7 +3882,7 @@ body{
                     }
                 }
             }
-            
+
             &.content{
                 .wrapper{
                     &.tech{
@@ -3898,13 +3901,13 @@ body{
                             }
                         }
                     }
-                    
+
                     &.team{
                         .team-grid{
                             >li{
                                 width: 216px;
                                 margin: 0 30px 30px 0;
-                                
+
                                 &:nth-child(5n) {
                                     margin-right: 0;
                                 }
@@ -3924,7 +3927,7 @@ body{
                             }
                         }
                     }
-                    
+
                     .text-block{
                         p{
                             font-size: 0.9rem;
