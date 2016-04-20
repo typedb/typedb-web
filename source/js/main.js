@@ -1851,111 +1851,136 @@ window.MNDMPS = {
                         "type":"relation",
                         "text":"•",
                         "x":0.5,
-                        "y":0.35
+                        "y":0.1
                     },
                     {
                         "id":1,
                         "type":"relation",
                         "text":"•",
                         "x":0.5,
-                        "y":0.85
+                        "y":0.9
                     },
                     {
                         "id":2,
                         "type":"instance",
                         "text":"Honesty Inc.",
                         "x":0.3,
-                        "y":0.1
+                        "y":0.3
                     },
                     {
                         "id":3,
                         "type":"instance",
                         "text":"Evilcorp",
                         "x":0.3,
-                        "y":0.6
+                        "y":0.7
                     },
                     {
                         "id":4,
                         "type":"instance",
                         "text":"TrustMe.co",
                         "x":0.1,
-                        "y":0.85
+                        "y":0.9
                     },
                     {
                         "id":5,
                         "type":"concept-type",
                         "text":"company",
                         "x":0.1,
-                        "y":0.35
+                        "y":0.5
                     },
                     {
                         "id":6,
                         "type":"instance",
                         "text":"Alice",
                         "x":0.7,
-                        "y":0.1
+                        "y":0.3
                     },
                     {
                         "id":7,
                         "type":"instance",
                         "text":"Bob",
                         "x":0.7,
-                        "y":0.6
+                        "y":0.7
                     },
                     {
                         "id":8,
                         "type":"concept-type",
                         "text":"person",
                         "x":0.9,
-                        "y":0.35
+                        "y":0.5
+                    },
+                    {
+                        "id":9,
+                        "type":"relation-type",
+                        "text":"director-ship",
+                        "x":0.5,
+                        "y":0.5
                     }
                 ],
                 "edges":[
                     {
+                        "source":0,
+                        "target":9,
+                        "text":"isa"
+                    },
+                    {
+                        "source":1,
+                        "target":9,
+                        "text":"isa"
+                    },
+                    {
                         "source":2,
-                        "target":5,
-                        "text":"isa"
-                    },
-                    {
-                        "source":3,
-                        "target":5,
-                        "text":"isa"
-                    },
-                    {
-                        "source":4,
                         "target":5,
                         "text":"isa",
                         "type":"active"
                     },
                     {
+                        "source":3,
+                        "target":5,
+                        "text":"isa",
+                        "type":"active"
+                    },
+                    {
+                        "source":4,
+                        "target":5,
+                        "text":"isa",
+                        "type":"alert"
+                    },
+                    {
                         "source":0,
                         "target":2,
-                        "text":"directed"
+                        "text":"directed",
+                        "type":"active"
                     },
                     {
                         "source":1,
                         "target":3,
-                        "text":"directed"
+                        "text":"directed",
+                        "type":"active"
                     },
                     {
                         "source":0,
                         "target":6,
-                        "text":"director"
+                        "text":"director",
+                        "type":"active"
                     },
                     {
                         "source":1,
                         "target":7,
-                        "text":"director"
+                        "text":"director",
+                        "type":"active"
                     },
                     {
                         "source":6,
                         "target":8,
-                        "text":"isa"
+                        "text":"isa",
+                        "type":"active"
                     },
                     {
                         "source":7,
                         "target":8,
-                        "text":"isa"
+                        "text":"isa",
+                        "type":"active"
                     }
                 ]
             },

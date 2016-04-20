@@ -5,13 +5,13 @@ var smallRadius = 14;
 var mediumRadius = 27;
 var largeRadius = 45;
 var nodeTypes = ["instance", "concept-type", "relation", "relation-type", "resource", "resource-type", "role-type", "meta"];
-var edgeTypes = ["default", "active"];
+var edgeTypes = ["default", "active", "alert"];
 
 
 nodeColors     = ["#a1d884", "#ff7878",/*"#77dd77",*/ "#77dd77", "#bfc0d1", "#a1d884",/*"#5bc2e7",*/ "#ff7878", "#FFB96D", "#5bc2e7"];
 
-edgeColors = ["#bbbcbc", "#77dd77"]
-edgeLabelColors = ["#fff", "#2E4E00"]
+edgeColors = ["#bbbcbc", "#77dd77", "#FFBB71"]
+edgeLabelColors = ["#fff", "#2E4E00", "#A95800"]
 
 var nodeColor = d3.scale.ordinal()
   .domain(nodeTypes)
@@ -176,6 +176,19 @@ var buildGraph = function(obj){
       .attr("d", "M0,-5L10,0L0,5")
       .attr("stroke", "#77dd77")
       .style("fill", "#77dd77");
+
+    // build the alert arrow
+    svg.append("svg:defs").append("svg:marker")
+        .attr("id", "alert-arrow")
+        .attr("viewBox", "0 -5 10 10")
+        .attr("refX", 23)
+        .attr("markerWidth", 2)
+        .attr("markerHeight", 2.5)
+        .attr("orient", "auto")
+        .append("svg:path")
+        .attr("d", "M0,-5L10,0L0,5")
+        .attr("stroke", "#FFBB71")
+        .style("fill", "#FFBB71");
 
     // add the links
     var edges = svg.selectAll("line")
