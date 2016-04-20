@@ -8,7 +8,7 @@ var nodeTypes = ["instance", "concept-type", "relation", "relation-type", "resou
 var edgeTypes = ["default", "active"];
 
 
-nodeColors     = ["#a1d884", "#ff7878",/*"#77dd77",*/ "#77dd77", "#d5d6e9", "#a1d884",/*"#5bc2e7",*/ "#ff7878", "#5bc2e7"];
+nodeColors     = ["#a1d884", "#ff7878",/*"#77dd77",*/ "#77dd77", "#bfc0d1", "#a1d884",/*"#5bc2e7",*/ "#ff7878", "#5bc2e7"];
 
 edgeColors = ["#bbbcbc", "#77dd77"]
 edgeLabelColors = ["#fff", "#2E4E00"]
@@ -120,15 +120,16 @@ var drawGraph = function(){
 };
 
 var resize = function(force){
-  width = parseInt(d3.select("#graph_" + graphid).style('width'))
-  height = parseInt(d3.select("#graph_" + graphid).style('height'))
+  width = parseInt(d3.select("#graph_" + graphid).style('width'));
+  height = parseInt(d3.select("#graph_" + graphid).style('height'));
+console.log(d3.select("svg"));
 
   d3.select("svg")
     .attr("width", width)
     .attr("height", height);
 
   force.size([width , height]).start().stop();
-  drawGraph()
+  drawGraph();
 }
 
 var buildGraph = function(obj){
@@ -205,10 +206,10 @@ var buildGraph = function(obj){
       .enter()
       .append("text")
       .attr("class", "edgelabel")
-      .style("font", "9.5px sans-serif")
+      .style("font", "9px sans-serif")
       .attr("id", function(d){ return getLinkUniqueId(d) + "text"})
       .attr("transform", function(d){ return rotate(d); })
-      .attr("dy", "3.5")
+      .attr("dy", "3")
       
     edgelabels.append("textPath")
       .attr("fill", function(d){ return edgeLabelColors(d.type)})
@@ -245,10 +246,12 @@ var buildGraph = function(obj){
         .draw();
       });
 
+//if (!document.getElementById('section-platform-full')) {
     d3.select(window)
       .on("resize", function(){
         resize(force)
     });
+//}
 
     drawGraph()
 }

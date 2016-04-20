@@ -10,6 +10,24 @@ Math.degrees = function(radians) {
     return radians * 180/Math.PI;
 };
 
+function selectText(element) {
+    var doc = document,
+        text = element,
+        range,
+        selection;
+    if (doc.body.createTextRange) {
+        range = document.body.createTextRange();
+        range.moveToElementText(text);
+        range.select();
+    } else if (window.getSelection) {
+        selection = window.getSelection();        
+        range = document.createRange();
+        range.selectNodeContents(text);
+        selection.removeAllRanges();
+        selection.addRange(range);
+    }
+}
+
 function serializeObject(el) {
 
     var o = {},
@@ -992,9 +1010,1149 @@ window.MNDMPS = {
         buildGraph(obj)
     },
 
-    initGraphs: function() {
+    initPlatformGraphs: function() {
         var graphs = [
+            {
+                "id": 1,
+                "width": 562,
+                "height": 400,
+                "nodes":[
                     {
+                        "id":0,
+                        "type":"concept-type",
+                        "text":"person",
+                        "x":0.5,
+                        "y":0.2
+                    },
+                    {
+                        "id":1,
+                        "type":"instance",
+                        "text":"Alice",
+                        "x":0.2,
+                        "y":0.8
+                    },
+                    {
+                        "id":2,
+                        "type":"instance",
+                        "text":"Bob",
+                        "x":0.8,
+                        "y":0.8
+                    }
+                ],
+                "edges":[
+                    {
+                        "source":1,
+                        "target":0,
+                        "text":"isa"
+                    },
+                    {
+                        "source":2,
+                        "target":0,
+                        "text":"isa"
+                    }
+                ]
+            },
+            {
+                "id": 2,
+                "width": 562,
+                "height": 400,
+                "nodes":[
+                    {
+                        "id":0,
+                        "type":"concept-type",
+                        "text":"person",
+                        "x":0.2,
+                        "y":0.2
+                    },
+                    {
+                        "id":1,
+                        "type":"instance",
+                        "text":"Alice",
+                        "x":0.2,
+                        "y":0.8
+                    },
+                    {
+                        "id":2,
+                        "type":"instance",
+                        "text":"Honesty Inc.",
+                        "x":0.8,
+                        "y":0.8
+                    },
+                    {
+                        "id":3,
+                        "type":"relation",
+                        "text":"•",
+                        "x":0.5,
+                        "y":0.5
+                    },
+                    {
+                        "id":4,
+                        "type":"concept-type",
+                        "text":"company",
+                        "x":0.8,
+                        "y":0.2
+                    },
+                    {
+                        "id":5,
+                        "type":"relation-type",
+                        "text":"directorship",
+                        "x":0.5,
+                        "y":0.2
+                    }
+                ],
+                "edges":[
+                    {
+                        "source":1,
+                        "target":0,
+                        "text":"isa"
+                    },
+                    {
+                        "source":2,
+                        "target":4,
+                        "text":"isa"
+                    },
+                    {
+                        "source":3,
+                        "target":2,
+                        "text":"directed"
+                    },
+                    {
+                        "source":3,
+                        "target":1,
+                        "text":"director"
+                    },
+                    {
+                        "source":3,
+                        "target":5,
+                        "text":"isa"
+                    }
+                ]
+            },
+            {
+                "id": 3,
+                "width": 562,
+                "height": 400,
+                "nodes":[
+                    {
+                        "id":0,
+                        "type":"relation-type",
+                        "text":"marriage",
+                        "x":0.5,
+                        "y":0.1
+                    },
+                    {
+                        "id":1,
+                        "type":"role-type",
+                        "text":"wife",
+                        "x":0.1,
+                        "y":0.3
+                    },
+                    {
+                        "id":2,
+                        "type":"role-type",
+                        "text":"husband",
+                        "x":0.9,
+                        "y":0.3
+                    },
+                    {
+                        "id":3,
+                        "type":"instance",
+                        "text":"Alice",
+                        "x":0.1,
+                        "y":0.7
+                    },
+                    {
+                        "id":4,
+                        "type":"relation",
+                        "text":"•",
+                        "x":0.5,
+                        "y":0.5
+                    },
+                    {
+                        "id":5,
+                        "type":"instance",
+                        "text":"Bob",
+                        "x":0.9,
+                        "y":0.7
+                    },
+                    {
+                        "id":6,
+                        "type":"concept-type",
+                        "text":"person",
+                        "x":0.5,
+                        "y":0.9
+                    }
+                ],
+                "edges":[
+                    {
+                        "source":0,
+                        "target":1,
+                        "text":"has role"
+                    },
+                    {
+                        "source":0,
+                        "target":2,
+                        "text":"has role"
+                    },
+                    {
+                        "source":4,
+                        "target":0,
+                        "text":"isa"
+                    },
+                    {
+                        "source":4,
+                        "target":3,
+                        "text":"wife"
+                    },
+                    {
+                        "source":4,
+                        "target":5,
+                        "text":"husband"
+                    },
+                    {
+                        "source":3,
+                        "target":6,
+                        "text":"isa"
+                    },
+                    {
+                        "source":5,
+                        "target":6,
+                        "text":"isa"
+                    }
+                ]
+            },
+            {
+                "id": 4,
+                "width": 562,
+                "height": 400,
+                "nodes":[
+                    {
+                        "id":0,
+                        "type":"relation-type",
+                        "text":"directorship",
+                        "x":0.5,
+                        "y":0.2
+                    },
+                    {
+                        "id":1,
+                        "type":"role-type",
+                        "text":"director",
+                        "x":0.3,
+                        "y":0.4
+                    },
+                    {
+                        "id":2,
+                        "type":"role-type",
+                        "text":"directed",
+                        "x":0.7,
+                        "y":0.4
+                    },
+                    {
+                        "id":3,
+                        "type":"instance",
+                        "text":"Alice",
+                        "x":0.3,
+                        "y":0.8
+                    },
+                    {
+                        "id":4,
+                        "type":"relation",
+                        "text":"•",
+                        "x":0.5,
+                        "y":0.6
+                    },
+                    {
+                        "id":5,
+                        "type":"instance",
+                        "text":"Honesty Inc.",
+                        "x":0.7,
+                        "y":0.8
+                    },
+                    {
+                        "id":6,
+                        "type":"concept-type",
+                        "text":"person",
+                        "x":0.1,
+                        "y":0.6
+                    },
+                    {
+                        "id":7,
+                        "type":"concept-type",
+                        "text":"company",
+                        "x":0.9,
+                        "y":0.6
+                    }
+                ],
+                "edges":[
+                    {
+                        "source":0,
+                        "target":1,
+                        "text":"has role"
+                    },
+                    {
+                        "source":0,
+                        "target":2,
+                        "text":"has role"
+                    },
+                    {
+                        "source":4,
+                        "target":0,
+                        "text":"isa"
+                    },
+                    {
+                        "source":4,
+                        "target":3,
+                        "text":"director"
+                    },
+                    {
+                        "source":4,
+                        "target":5,
+                        "text":"directed"
+                    },
+                    {
+                        "source":3,
+                        "target":6,
+                        "text":"isa"
+                    },
+                    {
+                        "source":5,
+                        "target":7,
+                        "text":"isa"
+                    },
+                    {
+                        "source":6,
+                        "target":1,
+                        "text":"plays role"
+                    },
+                    {
+                        "source":7,
+                        "target":2,
+                        "text":"plays role"
+                    }
+                ]
+            },
+            {
+                "id": 5,
+                "width": 562,
+                "height": 400,
+                "nodes":[
+                    {
+                        "id":0,
+                        "type":"relation-type",
+                        "text":"directorship",
+                        "x":0.5,
+                        "y":0.1
+                    },
+                    {
+                        "id":1,
+                        "type":"role-type",
+                        "text":"director",
+                        "x":0.3,
+                        "y":0.3
+                    },
+                    {
+                        "id":2,
+                        "type":"role-type",
+                        "text":"directed",
+                        "x":0.7,
+                        "y":0.3
+                    },
+                    {
+                        "id":3,
+                        "type":"concept-type",
+                        "text":"person",
+                        "x":0.1,
+                        "y":0.5
+                    },
+                    {
+                        "id":4,
+                        "type":"concept-type",
+                        "text":"company",
+                        "x":0.9,
+                        "y":0.5
+                    },
+                    {
+                        "id":5,
+                        "type":"meta",
+                        "text":"relation-type",
+                        "x":0.5,
+                        "y":0.5
+                    },
+                    {
+                        "id":6,
+                        "type":"meta",
+                        "text":"role-type",
+                        "x":0.5,
+                        "y":0.7
+                    },
+                    {
+                        "id":7,
+                        "type":"meta",
+                        "text":"concept-type",
+                        "x":0.5,
+                        "y":0.9
+                    }
+                ],
+                "edges":[
+                    {
+                        "source":0,
+                        "target":1,
+                        "text":"has role"
+                    },
+                    {
+                        "source":0,
+                        "target":2,
+                        "text":"has role"
+                    },
+                    {
+                        "source":3,
+                        "target":1,
+                        "text":"plays role"
+                    },
+                    {
+                        "source":4,
+                        "target":2,
+                        "text":"plays role"
+                    },
+                    {
+                        "source":0,
+                        "target":5,
+                        "text":"isa"
+                    },
+                    {
+                        "source":1,
+                        "target":6,
+                        "text":"isa"
+                    },
+                    {
+                        "source":2,
+                        "target":6,
+                        "text":"isa"
+                    },
+                    {
+                        "source":3,
+                        "target":7,
+                        "text":"isa"
+                    },
+                    {
+                        "source":4,
+                        "target":7,
+                        "text":"isa"
+                    }
+                ]
+            },
+            {
+                "id": 6,
+                "width": 562,
+                "height": 400,
+                "nodes":[
+                    {
+                        "id":0,
+                        "type":"relation-type",
+                        "text":"directorship",
+                        "x":0.5,
+                        "y":0.1
+                    },
+                    {
+                        "id":1,
+                        "type":"role-type",
+                        "text":"director",
+                        "x":0.3,
+                        "y":0.2
+                    },
+                    {
+                        "id":2,
+                        "type":"role-type",
+                        "text":"directed",
+                        "x":0.7,
+                        "y":0.2
+                    },
+                    {
+                        "id":3,
+                        "type":"relation-type",
+                        "text":"marriage",
+                        "x":0.5,
+                        "y":0.7
+                    },
+                    {
+                        "id":4,
+                        "type":"role-type",
+                        "text":"husband",
+                        "x":0.3,
+                        "y":0.8
+                    },
+                    {
+                        "id":5,
+                        "type":"role-type",
+                        "text":"wife",
+                        "x":0.7,
+                        "y":0.8
+                    },
+                    {
+                        "id":6,
+                        "type":"concept-type",
+                        "text":"person",
+                        "x":0.5,
+                        "y":0.4
+                    },
+                    {
+                        "id":7,
+                        "type":"concept-type",
+                        "text":"company",
+                        "x":0.9,
+                        "y":0.3
+                    }
+                ],
+                "edges":[
+                    {
+                        "source":0,
+                        "target":1,
+                        "text":"has role"
+                    },
+                    {
+                        "source":0,
+                        "target":2,
+                        "text":"has role"
+                    },
+                    {
+                        "source":3,
+                        "target":4,
+                        "text":"has role"
+                    },
+                    {
+                        "source":3,
+                        "target":5,
+                        "text":"has role"
+                    },
+                    {
+                        "source":6,
+                        "target":1,
+                        "text":"plays role"
+                    },
+                    {
+                        "source":7,
+                        "target":2,
+                        "text":"plays role"
+                    },
+                    {
+                        "source":6,
+                        "target":4,
+                        "text":"plays role"
+                    },
+                    {
+                        "source":6,
+                        "target":5,
+                        "text":"plays role"
+                    }
+                ]
+            },
+            {
+                "id": 7,
+                "width": 562,
+                "height": 400,
+                "nodes":[
+                    {
+                        "id":0,
+                        "type":"relation-type",
+                        "text":"marriage",
+                        "x":0.3,
+                        "y":0.1
+                    },
+                    {
+                        "id":1,
+                        "type":"instance",
+                        "text":"Bob",
+                        "x":0.1,
+                        "y":0.6
+                    },
+                    {
+                        "id":2,
+                        "type":"relation",
+                        "text":"•",
+                        "x":0.3,
+                        "y":0.4
+                    },
+                    {
+                        "id":3,
+                        "type":"instance",
+                        "text":"Alice",
+                        "x":0.5,
+                        "y":0.6
+                    },
+                    {
+                        "id":4,
+                        "type":"concept-type",
+                        "text":"person",
+                        "x":0.3,
+                        "y":0.9
+                    },
+                    {
+                        "id":5,
+                        "type":"relation",
+                        "text":"•",
+                        "x":0.7,
+                        "y":0.4
+                    },
+                    {
+                        "id":6,
+                        "type":"instance",
+                        "text":"Honesty Inc.",
+                        "x":0.9,
+                        "y":0.6
+                    },
+                    {
+                        "id":7,
+                        "type":"relation-type",
+                        "text":"directorship",
+                        "x":0.7,
+                        "y":0.1
+                    },
+                    {
+                        "id":8,
+                        "type":"concept-type",
+                        "text":"company",
+                        "x":0.7,
+                        "y":0.9
+                    }
+                ],
+                "edges":[
+                    {
+                        "source":2,
+                        "target":0,
+                        "text":"isa"
+                    },
+                    {
+                        "source":2,
+                        "target":1,
+                        "text":"husband"
+                    },
+                    {
+                        "source":2,
+                        "target":3,
+                        "text":"wife"
+                    },
+                    {
+                        "source":1,
+                        "target":4,
+                        "text":"isa"
+                    },
+                    {
+                        "source":3,
+                        "target":4,
+                        "text":"isa"
+                    },
+                    {
+                        "source":5,
+                        "target":3,
+                        "text":"director"
+                    },
+                    {
+                        "source":5,
+                        "target":6,
+                        "text":"directed"
+                    },
+                    {
+                        "source":6,
+                        "target":8,
+                        "text":"isa"
+                    },
+                    {
+                        "source":5,
+                        "target":7,
+                        "text":"isa"
+                    }
+                ]
+            },
+            {
+                "id": 8,
+                "width": 562,
+                "height": 400,
+                "nodes":[
+                    {
+                        "id":0,
+                        "type":"relation-type",
+                        "text":"marriage",
+                        "x":0.3,
+                        "y":0.1
+                    },
+                    {
+                        "id":1,
+                        "type":"instance",
+                        "text":"Bob",
+                        "x":0.1,
+                        "y":0.6
+                    },
+                    {
+                        "id":2,
+                        "type":"relation",
+                        "text":"•",
+                        "x":0.3,
+                        "y":0.4
+                    },
+                    {
+                        "id":3,
+                        "type":"instance",
+                        "text":"Alice",
+                        "x":0.5,
+                        "y":0.6
+                    },
+                    {
+                        "id":4,
+                        "type":"concept-type",
+                        "text":"person",
+                        "x":0.3,
+                        "y":0.9
+                    },
+                    {
+                        "id":5,
+                        "type":"relation",
+                        "text":"•",
+                        "x":0.7,
+                        "y":0.4
+                    },
+                    {
+                        "id":6,
+                        "type":"instance",
+                        "text":"Honesty Inc.",
+                        "x":0.9,
+                        "y":0.6
+                    },
+                    {
+                        "id":7,
+                        "type":"relation-type",
+                        "text":"director-ship",
+                        "x":0.7,
+                        "y":0.1
+                    },
+                    {
+                        "id":8,
+                        "type":"concept-type",
+                        "text":"company",
+                        "x":0.7,
+                        "y":0.9
+                    }
+                ],
+                "edges":[
+                    {
+                        "source":2,
+                        "target":0,
+                        "text":"isa"
+                    },
+                    {
+                        "source":2,
+                        "target":1,
+                        "text":"husband",
+                        "type":"active"
+                    },
+                    {
+                        "source":2,
+                        "target":3,
+                        "text":"wife",
+                        "type":"active"
+                    },
+                    {
+                        "source":1,
+                        "target":4,
+                        "text":"isa"
+                    },
+                    {
+                        "source":3,
+                        "target":4,
+                        "text":"isa"
+                    },
+                    {
+                        "source":5,
+                        "target":3,
+                        "text":"director",
+                        "type":"active"
+                    },
+                    {
+                        "source":5,
+                        "target":6,
+                        "text":"directed",
+                        "type":"active"
+                    },
+                    {
+                        "source":6,
+                        "target":8,
+                        "text":"isa"
+                    },
+                    {
+                        "source":5,
+                        "target":7,
+                        "text":"isa"
+                    }
+                ]
+            },
+            {
+                "id": 10,
+                "width": 562,
+                "height": 400,
+                "nodes":[
+                    {
+                        "id":0,
+                        "type":"relation-type",
+                        "text":"marriage",
+                        "x":0.5,
+                        "y":0.2
+                    },
+                    {
+                        "id":1,
+                        "type":"role-type",
+                        "text":"husband",
+                        "x":0.3,
+                        "y":0.5
+                    },
+                    {
+                        "id":2,
+                        "type":"role-type",
+                        "text":"wife",
+                        "x":0.7,
+                        "y":0.5
+                    },
+                    {
+                        "id":3,
+                        "type":"concept-type",
+                        "text":"person",
+                        "x":0.5,
+                        "y":0.8
+                    }
+                ],
+                "edges":[
+                    {
+                        "source":0,
+                        "target":1,
+                        "text":"has role"
+                    },
+                    {
+                        "source":0,
+                        "target":2,
+                        "text":"has role"
+                    },
+                    {
+                        "source":3,
+                        "target":1,
+                        "text":"plays role"
+                    },
+                    {
+                        "source":3,
+                        "target":2,
+                        "text":"plays role"
+                    }
+                ]
+            },
+            {
+                "id": 11,
+                "width": 562,
+                "height": 400,
+                "nodes":[
+                    {
+                        "id":0,
+                        "type":"relation",
+                        "text":"•",
+                        "x":0.5,
+                        "y":0.1
+                    },
+                    {
+                        "id":1,
+                        "type":"relation",
+                        "text":"•",
+                        "x":0.5,
+                        "y":0.4
+                    },
+                    {
+                        "id":2,
+                        "type":"instance",
+                        "text":"Honesty Inc.",
+                        "x":0.3,
+                        "y":0.2
+                    },
+                    {
+                        "id":3,
+                        "type":"instance",
+                        "text":"Evilcorp",
+                        "x":0.3,
+                        "y":0.5
+                    },
+                    {
+                        "id":4,
+                        "type":"instance",
+                        "text":"TrustMe.com",
+                        "x":0.3,
+                        "y":0.8
+                    },
+                    {
+                        "id":5,
+                        "type":"concept-type",
+                        "text":"company",
+                        "x":0.1,
+                        "y":0.5
+                    },
+                    {
+                        "id":6,
+                        "type":"instance",
+                        "text":"Alice",
+                        "x":0.7,
+                        "y":0.2
+                    },
+                    {
+                        "id":7,
+                        "type":"instance",
+                        "text":"Bob",
+                        "x":0.7,
+                        "y":0.5
+                    },
+                    {
+                        "id":8,
+                        "type":"concept-type",
+                        "text":"person",
+                        "x":0.9,
+                        "y":0.5
+                    }
+                ],
+                "edges":[
+                    {
+                        "source":2,
+                        "target":5,
+                        "text":"isa"
+                    },
+                    {
+                        "source":3,
+                        "target":5,
+                        "text":"isa"
+                    },
+                    {
+                        "source":4,
+                        "target":5,
+                        "text":"isa"
+                    },
+                    {
+                        "source":0,
+                        "target":2,
+                        "text":"directed"
+                    },
+                    {
+                        "source":1,
+                        "target":3,
+                        "text":"directed"
+                    },
+                    {
+                        "source":0,
+                        "target":6,
+                        "text":"director"
+                    },
+                    {
+                        "source":1,
+                        "target":7,
+                        "text":"director"
+                    },
+                    {
+                        "source":6,
+                        "target":8,
+                        "text":"isa"
+                    },
+                    {
+                        "source":7,
+                        "target":8,
+                        "text":"isa"
+                    }
+                ]
+            },
+            {
+                "id": 12,
+                "width": 562,
+                "height": 400,
+                "nodes":[
+                    {
+                        "id":0,
+                        "type":"relation-type",
+                        "text":"marriage",
+                        "x":0.5,
+                        "y":0.1
+                    },
+                    {
+                        "id":1,
+                        "type":"instance",
+                        "text":"Alice",
+                        "x":0.1,
+                        "y":0.3
+                    },
+                    {
+                        "id":2,
+                        "type":"relation",
+                        "text":"•",
+                        "x":0.5,
+                        "y":0.3
+                    },
+                    {
+                        "id":3,
+                        "type":"instance",
+                        "text":"Bob",
+                        "x":0.9,
+                        "y":0.3
+                    },
+                    {
+                        "id":4,
+                        "type":"relation",
+                        "text":"•",
+                        "x":0.3,
+                        "y":0.4
+                    },
+                    {
+                        "id":5,
+                        "type":"relation-type",
+                        "text":"directorship",
+                        "x":0.5,
+                        "y":0.5
+                    },
+                    {
+                        "id":6,
+                        "type":"relation",
+                        "text":"•",
+                        "x":0.7,
+                        "y":0.4
+                    },
+                    {
+                        "id":7,
+                        "type":"instance",
+                        "text":"Honesty Inc.",
+                        "x":0.1,
+                        "y":0.6
+                    },
+                    {
+                        "id":8,
+                        "type":"relation-type",
+                        "text":"address",
+                        "x":0.5,
+                        "y":0.7
+                    },
+                    {
+                        "id":9,
+                        "type":"instance",
+                        "text":"Evilcorp",
+                        "x":0.9,
+                        "y":0.6
+                    },
+                    {
+                        "id":10,
+                        "type":"relation",
+                        "text":"•",
+                        "x":0.3,
+                        "y":0.7
+                    },
+                    {
+                        "id":11,
+                        "type":"relation",
+                        "text":"•",
+                        "x":0.7,
+                        "y":0.7
+                    },
+                    {
+                        "id":12,
+                        "type":"instance",
+                        "text":"Easy Street",
+                        "x":0.5,
+                        "y":0.9
+                    }
+                ],
+                "edges":[
+                    {
+                        "source":2,
+                        "target":0,
+                        "text":"isa"
+                    },
+                    {
+                        "source":2,
+                        "target":1,
+                        "text":"wife"
+                    },
+                    {
+                        "source":2,
+                        "target":3,
+                        "text":"husband"
+                    },
+                    {
+                        "source":4,
+                        "target":5,
+                        "text":"isa"
+                    },
+                    {
+                        "source":6,
+                        "target":5,
+                        "text":"isa"
+                    },
+                    {
+                        "source":10,
+                        "target":8,
+                        "text":"isa"
+                    },
+                    {
+                        "source":11,
+                        "target":8,
+                        "text":"isa"
+                    },
+                    {
+                        "source":4,
+                        "target":1,
+                        "text":"director"
+                    },
+                    {
+                        "source":6,
+                        "target":3,
+                        "text":"director"
+                    },
+                    {
+                        "source":4,
+                        "target":7,
+                        "text":"directed"
+                    },
+                    {
+                        "source":6,
+                        "target":9,
+                        "text":"directed"
+                    },
+                    {
+                        "source":10,
+                        "target":7,
+                        "text":"houses"
+                    },
+                    {
+                        "source":11,
+                        "target":9,
+                        "text":"houses"
+                    },
+                    {
+                        "source":10,
+                        "target":12,
+                        "text":"location"
+                    },
+                    {
+                        "source":11,
+                        "target":12,
+                        "text":"location"
+                    }
+                ]
+            }
+        ],
+            nodes = document.getElementsByClassName('graph'),
+            node = nodes[0],
+            size = {
+                width: node.offsetWidth,
+                height: node.offsetHeight
+            };
+
+        for (var i = 0; i < graphs.length; i++) {
+            this.initGraph({
+                node: nodes[i],
+                graph: graphs[i],
+                size: size
+            });
+        }
+    },
+
+    initHomepageGraphs: function() {
+        var graphs = [
+            {
                 "id":1,
                 "width": 562,
                 "height": 400,
@@ -1806,7 +2964,7 @@ window.MNDMPS = {
         for (var i = 0; i < textareas.length; i++) {
             renderOutput(textareas[i]);
             listenerForScroll(textareas[i]);
-            listenForInput(textareas[i]);
+            //listenForInput(textareas[i]);
             //this.dontScrollParent(textareas[i]);
         }
     },
@@ -2091,6 +3249,63 @@ window.MNDMPS = {
         );
     },
 
+    initPlatform: function() {
+
+        var examples = document.getElementsByClassName('example'),
+            codes = null;
+
+        function switchView(event) {
+
+            var target = event.target.getAttribute('data-target');
+
+            if (!target) {
+                return;
+            }
+
+            var content = this.nextElementSibling,
+                tabs = this.children,
+                blocks = content.children;
+
+            for (var i = 0; i < blocks.length; i++) {
+                blocks[i].classList.remove('active');
+
+                if (blocks[i].getAttribute('data-type') === target) {
+                    blocks[i].classList.add('active');
+                }
+            }
+
+            for (var i = 0; i < tabs.length; i++) {
+                tabs[i].classList.remove('active');
+
+                if (tabs[i].getAttribute('data-target') === target) {
+                    tabs[i].classList.add('active');
+                }
+            }
+        }
+
+        function redraw(event) {
+            var el = this;
+            
+            el.style.transform = 'translateZ(0)';
+            
+            setTimeout(function() {
+                el.style.transform = 'scale(1)';
+            }, 0);
+        }
+
+        for (var i = 0; i < examples.length; i++) {
+            examples[i].children[0].addEventListener('click', switchView, false);
+
+            examples[i].children[0].children[0].classList.add('active');
+            examples[i].children[1].children[0].classList.add('active');
+
+            codes = examples[i].children[1].getElementsByClassName('code-output');
+            for (var k = 0; k < codes.length; k++) {
+                codes[k].addEventListener('scroll', redraw, false);
+            }
+        }
+    },
+
     init: function() {
 
         this.data.windowHeight = f_clientHeight();
@@ -2114,7 +3329,7 @@ window.MNDMPS = {
 
         if (document.getElementById('graql-slider')) {
             this.initSlick();
-            this.initGraphs();
+            this.initHomepageGraphs();
             this.initPrism();
         }
 
@@ -2142,6 +3357,12 @@ window.MNDMPS = {
 
         if (document.getElementsByClassName('google-map')[0]) {
             google.maps.event.addDomListener(window, 'load', this.loadGoogleMap);
+        }
+
+        if (document.getElementById('section-platform-full')) {
+            this.initPlatform();
+            this.initPrism();
+            this.initPlatformGraphs();
         }
 
         var getMindmapsButton = document.getElementsByClassName('getMindmaps');
