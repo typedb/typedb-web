@@ -329,8 +329,8 @@ body{
     }
 
     &.small-l{
-        width: 60px;
-        height: 60px;
+        width: 80px;
+        height: 80px;
     }
 
     &.background{
@@ -1694,6 +1694,7 @@ body{
             display: inline-block;
             vertical-align: middle;
             margin-right: 1rem;
+            margin-top: -0.5rem;
         }
 
         .anchor{
@@ -1861,6 +1862,7 @@ body{
                 .icon{
                     margin-right: 0.5rem;
                     vertical-align: middle;
+                    margin-top: 0;
 
                     &.small-l{
                         width: 40px;
@@ -2409,6 +2411,7 @@ body{
             h3{
                 .icon{
                     margin-right: 0.5rem;
+                    margin-top: 0;
                     vertical-align: middle;
 
                     &.small-l{
@@ -2929,6 +2932,7 @@ body{
             h3{
                 .icon{
                     margin-right: 0.5rem;
+                    margin-top: 0;
 
                     &.small-l{
                         width: 40px;
