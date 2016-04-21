@@ -415,7 +415,7 @@
                 <div class="text-block booked marginBottom">
                     <div class="right">
                         <p>Mindmaps Core is an API with an object model that maps directly onto Mindmaps Knowledge Representation (MKR). It enables the programmatic definition of an ontology, and interaction with data solely in terms of the MKR without having to consider the complexities of implementing it in a graph database. It abstracts away nodes and edges in your graph and allows your data to be structured in terms of concepts, the relationships between them and the roles they play in these relationships.</p>
-                        <p>An ontology can be thought of as a taxonomy of a particular domain of interest. An example of a minimal ontology for a Mindmaps graph is shown here. This ontology defines two full relationships, “directorship” and “marriage”, and specifies the roles in the relationships and the concept types that can play the roles. The java code for definining the directorship relationship is also given here.</p>
+                        <p>An ontology can be thought of as a taxonomy of a particular domain of interest. An example of a minimal ontology for a Mindmaps graph is shown here. This ontology defines two full relationships, "directorship" and "marriage", and specifies the roles in the relationships and the concept types that can play the roles. The java code for definining the directorship relationship is also given here.</p>
                     </div>
                     <div class="graph"></div>
                     <div class="example">
@@ -427,15 +427,15 @@
                                 <textarea class="code-input" readonly=true>MindmapsGraph mindmaps = new MindmapsGraph();
 
 // Define the concept types 
-ConceptType person = mindmaps.putConceptType(“person”); 
-ConceptType company = mindmaps.putConceptType(“company”);
+ConceptType person = mindmaps.putConceptType("person"); 
+ConceptType company = mindmaps.putConceptType("company");
 
 // Define the relation types
- RelationType directorship = mindmaps.putRelationType(“directorship”);
+ RelationType directorship = mindmaps.putRelationType("directorship");
 
 // Define the role types 
-RoleType director = mindmaps.putRoleType(“director”);
- RoleType directed = mindmaps.putRoleType(“directed”);
+RoleType director = mindmaps.putRoleType("director");
+ RoleType directed = mindmaps.putRoleType("directed");
 
 // Define the roles in the relationship 
 directorship.hasRole(director);
@@ -453,7 +453,7 @@ company.playsRole(directed);</textarea>
                 </div>
                 <div class="text-block booked marginBottom">
                     <div class="right">
-                        <p>Once the ontology has been defined it is straightforward to add data instances. In the figure it can be seen that “Bob” is married to “Alice” and that “Alice” is the “director” of “Honesty Inc.”. The programmatic definition of directorship is also displayed.</p>
+                        <p>Once the ontology has been defined it is straightforward to add data instances. In the figure it can be seen that "Bob" is married to "Alice" and that "Alice" is the "director" of "Honesty Inc.". The programmatic definition of directorship is also displayed.</p>
                         <p>Using Mindmaps Core it is straightforward to extend an ontology with further concept types, add more instances, assert relationships between instances and generally mutate data. In order to ensure that mutated data will makes sense, the core also exposes objects to constrain an ontology for greater expressive power.</p>
                     </div>
                     <div class="graph"></div>
@@ -463,8 +463,8 @@ company.playsRole(directed);</textarea>
                         </div>
                         <div class="content">
                             <div data-type="java">
-                                <textarea class="code-input" readonly=true>Instance alice = mindamps.putConceptInstance(“Alice”).type(person);
-Instance honesty = mindmaps.putConceptInstance(“Honesty Inc.”).type(company);
+                                <textarea class="code-input" readonly=true>Instance alice = mindamps.putConceptInstance("Alice").type(person);
+Instance honesty = mindmaps.putConceptInstance("Honesty Inc.").type(company);
 Map<RoleType, Instance> roleMap = new HashMap();
 roleMap.put(director, alice);
  roleMap.put(directed, honesty);
@@ -520,8 +520,8 @@ Relation relation = mindmaps.putRelation(directorship,roleMap);</textarea>
                 <div class="text-block booked marginBottom">
                     <div class="right">
                         <p>Graql enables users to write queries against a Mindmaps graph leveraging the inherent semantics of the data. Retrieve concepts by specifying the patterns of types and relationships that identify them. Graql is declarative and therefore it handles the optimisation of the graph traversals needed to retrieve information.</p>
-                        <p>A query for all spouses of company directors translates into asking for concepts that have the type “person” and are in “marriage” relationship with another person who is in a “directorship” relationship with a “company”. This is shown graphically and using Graql syntax.</p>
-                        <p>The SELECT query form is used here to retrieve information from a Mindmaps graph. The types of the concepts and relations are specified using the “isa” syntax, and the relationships between the variables are expressed using brackets. There is no need to specify the roles in the above example because this information is implicit.</p>
+                        <p>A query for all spouses of company directors translates into asking for concepts that have the type "person" and are in "marriage" relationship with another person who is in a "directorship" relationship with a "company". This is shown graphically and using Graql syntax.</p>
+                        <p>The SELECT query form is used here to retrieve information from a Mindmaps graph. The types of the concepts and relations are specified using the "isa" syntax, and the relationships between the variables are expressed using brackets. There is no need to specify the roles in the above example because this information is implicit.</p>
                     </div>
                     <div class="graph"></div>
                     <div class="example">
@@ -542,13 +542,13 @@ Relation relation = mindmaps.putRelation(directorship,roleMap);</textarea>
                                 </pre>
                             </div>
                             <div data-type="java">
-                                <textarea class="code-input" readonly=true>graql.select(“x”).where(
-    var(“x”).isa(“person”),
-    var(“y”).isa(“person”),
-    var().rel(“x”).rel(“y”).isa(“marriage”),
-    var(“z”).isa(“company”),
-    var().rel(“y”).rel(“z”).isa(“directorship”)
- );</textarea>
+                                <textarea class="code-input" readonly=true>graql.select("x").where(
+    var("x").isa("person"),
+    var("y").isa("person"),
+    var().rel("x").rel("y").isa("marriage"),
+    var("z").isa("company"),
+    var().rel("y").rel("z").isa("directorship")
+ ).execute();</textarea>
                                 <pre class="code-output">
                                     <code class="language-java"></code>
                                 </pre>
@@ -558,7 +558,7 @@ Relation relation = mindmaps.putRelation(directorship,roleMap);</textarea>
                 </div>
                 <div class="text-block booked marginBottom">
                     <div class="right">
-                        <p>To extend simple retrieval operations query modifiers can be specified that allow sorting, pagination and distinct processing of the results. This allows queries such as: find all directors and “order by” their company. The structure of the query is shown above with the Graql syntax. The ability to use the semantics of the data in a query makes the construction of very complex search patterns straightforward.</p>
+                        <p>To extend simple retrieval operations query modifiers can be specified that allow sorting, pagination and distinct processing of the results. This allows queries such as: find all directors and "order by" their company. The structure of the query is shown above with the Graql syntax. The ability to use the semantics of the data in a query makes the construction of very complex search patterns straightforward.</p>
                     </div>
                     <div class="example">
                         <div class="tabs">
@@ -579,13 +579,13 @@ Relation relation = mindmaps.putRelation(directorship,roleMap);</textarea>
                                 </pre>
                             </div>
                             <div data-type="java">
-                                <textarea class="code-input" readonly=true>graql.select(“x”).where(
-    var(“x”).isa(“person”),
-    var(“y”).isa(“person”),
-    var().rel(“x”).rel(“y”).isa(“marriage”),
-    var(“z”).isa(“company”),
-    var().rel(“y”).rel(“z”).isa(“directorship”)
- ).orderBy(“z”);</textarea>
+                                <textarea class="code-input" readonly=true>graql.select("x").where(
+    var("x").isa("person"),
+    var("y").isa("person"),
+    var().rel("x").rel("y").isa("marriage"),
+    var("z").isa("company"),
+    var().rel("y").rel("z").isa("directorship")
+ ).orderBy("z").execute();</textarea>
                                 <pre class="code-output">
                                     <code class="language-java"></code>
                                 </pre>
@@ -595,7 +595,7 @@ Relation relation = mindmaps.putRelation(directorship,roleMap);</textarea>
                 </div>
                 <div class="text-block booked marginBottom">
                     <div class="right">
-                        <p>Graql also provides an interactive way to edit an ontology. Define concept types and relationships using the same syntax used to load data. In this example the “marriage” relationship is defined and the structure in the graph shown. Here the Graql code uses the INSERT query form. This triggers the addition of data to Mindmaps as opposed to a SELECT query that returns data.</p>
+                        <p>Graql also provides an interactive way to edit an ontology. Define concept types and relationships using the same syntax used to load data. In this example the "marriage" relationship is defined and the structure in the graph shown. Here the Graql code uses the INSERT query form. This triggers the addition of data to Mindmaps as opposed to a SELECT query that returns data.</p>
                         <p>The additional query forms provided by Graql are: ASK and DELETE. This provides all of the functionality needed to create ontologies, mutate data and validate the existence of patterns. All of which are in terms of the Mindmaps knowledge representation.</p>
                     </div>
                     <div data-graph="10" class="graph"></div>
@@ -608,14 +608,14 @@ Relation relation = mindmaps.putRelation(directorship,roleMap);</textarea>
                             <div data-type="graql">
                                 <textarea class="code-input" readonly=true>insert 
     # define concept-type 
-    type “person” isa concept-type;
+    type "person" isa concept-type;
 
     # define relationship 
-    type “marriage” isa relation-type;
+    type "marriage" isa relation-type;
 
     # define roles 
-    type “wife” isa role-type; 
-    type “husband” isa role-type; 
+    type "wife" isa role-type; 
+    type "husband" isa role-type; 
 
     # You can now refer to your types using graql syntax 
 
@@ -632,14 +632,14 @@ Relation relation = mindmaps.putRelation(directorship,roleMap);</textarea>
                             </div>
                             <div data-type="java">
                                 <textarea class="code-input" readonly=true>graql.insert( 
-    newType(“person”).isa(“concept-type”),
-    newType(“marriage”).isa(“relation-type”),
-    newType(“wife”).isa(“role-type”),
-    newType(“husband”).isa(“role-type”),
-    getType(“marriage”).hasRole(“wife”),
-    getType(“marriage”).hasRole(“husband”),
-    getType(“person”).playsRole(“wife”),
-    getType(“person”).playsRole(“husband”)
+    newType("person").isa("concept-type"),
+    newType("marriage").isa("relation-type"),
+    newType("wife").isa("role-type"),
+    newType("husband").isa("role-type"),
+    getType("marriage").hasRole("wife"),
+    getType("marriage").hasRole("husband"),
+    getType("person").playsRole("wife"),
+    getType("person").playsRole("husband")
 ).execute();</textarea>
                                 <pre class="code-output">
                                     <code class="language-java"></code>
@@ -661,8 +661,8 @@ Relation relation = mindmaps.putRelation(directorship,roleMap);</textarea>
                 <div class="text-block booked marginBottom">
                     <div class="right">
                         <p>Mindmaps reasoner provides a powerful mechanism for validating constraints and inferring new information in a Mindmaps graph. All constraints and inference rules are specified using Graql syntax and are automatically used to maintain data. Using Graql syntax to specify constraints and inference rules closely links the semantics of data to how it is constrained and reasoned over.</p>
-                        <p>If we consider a system that maintains information about companies, a pragmatic constraint might be that all instances of “company” have a director. The first step is to identify all of the objects that are going to be constrained using a SELECT query. The SELECT query specifies a hypothesis, which is a pattern to be found in the graph. Once these patterns have been identified then an ASK query is used to specify the pattern that all results of the SELECT query must match. These two queries constitute a constraint and this is shown in the graph.</p>
-                        <p>The SELECT query highlights the three instances of the concept type “company”. The ASK query returns true for “Honesty Inc.” and “Evilcorp”, but false for “TrustMe.co”. This constraint would ensure that “TrustMe.co” is considered invalid until the required information is added. In this way the information in a Mindmaps graph can be guaranteed to have a specified structure.</p>
+                        <p>If we consider a system that maintains information about companies, a pragmatic constraint might be that all instances of "company" have a director. The first step is to identify all of the objects that are going to be constrained using a SELECT query. The SELECT query specifies a hypothesis, which is a pattern to be found in the graph. Once these patterns have been identified then an ASK query is used to specify the pattern that all results of the SELECT query must match. These two queries constitute a constraint and this is shown in the graph.</p>
+                        <p>The SELECT query highlights the three instances of the concept type "company". The ASK query returns true for "Honesty Inc." and "Evilcorp", but false for "TrustMe.co". This constraint would ensure that "TrustMe.co" is considered invalid until the required information is added. In this way the information in a Mindmaps graph can be guaranteed to have a specified structure.</p>
                     </div>
                     <div data-graph="11" class="graph"></div>
                     <div class="example">
@@ -672,9 +672,9 @@ Relation relation = mindmaps.putRelation(directorship,roleMap);</textarea>
                         <div class="content">
                             <div data-type="graql">
                                 <textarea class="code-input" readonly=true>select $x where 
-    $x isa company
+    $x isa company;
 ask
-    $y isa person
+    $y isa person;
     ($x, $y) isa directorship;</textarea>
                                 <pre class="code-output">
                                     <code class="language-graql"></code>
@@ -686,7 +686,7 @@ ask
                 <div class="text-block booked marginBottom">
                     <div class="right">
                         <p>In order to infer new information from a Mindmaps graph the reasoner needs to have a set of inference rules defined. Inference rules also consist of two Graql queries; a SELECT and INSERT query. This SELECT query is used to specify a pattern in the graph that the inference will act upon. This pattern might identify suspicious relationships between people and companies. The INSERT query then specifies the action to perform if the hypothesised pattern is found to match any data. In this case the action could be to flag the companies for further investigation. This is shown below.</p>
-                        <p>The reasoner uses the SELECT query to find that “Honest Inc.” and “Evilcorp” share an address and have related directors. It then uses the INSERT query to flag that the companies are suspicious. One of the features of Graql is that the relationship between the people, “($u, $v)”, does not have to be specified, a relationship just needs to exist.</p>
+                        <p>The reasoner uses the SELECT query to find that "Honest Inc." and "Evilcorp" share an address and have related directors. It then uses the INSERT query to flag that the companies are suspicious. One of the features of Graql is that the relationship between the people, "($u, $v)", does not have to be specified, a relationship just needs to exist.</p>
                         <p>There are two ways of performing this inference, forward and backward chaining, both of which are possible using Mindmaps reasoner. The forward chaining operation of the reasoner responds in real-time to facts and rules added to the system, explicitly adding information to all matching patterns in the graph. Once a rule is added, all matching instances in the graph are found and the inference performed. Due to the nature of this appoach, the inferred information may not be immediately available at query-time while the system processes the rules.</p>
                         <p>The backward chaining operation is triggered when a query is executed. The reasoner translates the query, using the inference rules, in such a way that it finds information that implies the answer to the query. This is in addition to the information that directly satisfies the query. The backward chaining ensures that all inferred information is available at query-time, even if it has not been explicitly added as a result of forward chaining.</p>
                     </div>
@@ -705,11 +705,11 @@ ask
     ($y, $z) isa address;
     ($x, $u) isa directorship;
     ($y, $v) isa directorship;
-    ($u, $v)
+    ($u, $v);
 
 insert 
-    $x has flag “suspicious”;
-    $y has flag “suspicious”</textarea>
+    $x has flag "suspicious";
+    $y has flag "suspicious";</textarea>
                                 <pre class="code-output">
                                     <code class="language-graql"></code>
                                 </pre>
