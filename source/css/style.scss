@@ -213,8 +213,11 @@ body{
     font-family: Raleway, sans-serif;
     font-weight: 400;
     width: 100%;
-    .bold{
-        font-weight: 700;
+    
+    span{
+        &.bold{
+            font-weight: 700;
+        }
     }
 }
 
