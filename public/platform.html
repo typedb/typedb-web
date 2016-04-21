@@ -39,7 +39,7 @@ Relation relation = mindmaps.putRelation(directorship,roleMap);</textarea> <pre 
     var().rel("x").rel("y").isa("marriage"),
     var("z").isa("company"),
     var().rel("y").rel("z").isa("directorship")
- ).execute();</textarea> <pre class=code-output>
+ );</textarea> <pre class=code-output>
                                     <code class=language-java></code>
                                 </pre> </div> </div> </div> </div> <div class="text-block booked marginBottom"> <div class=right> <p>To extend simple retrieval operations query modifiers can be specified that allow sorting, pagination and distinct processing of the results. This allows queries such as: find all directors and "order by" their company. The structure of the query is shown above with the Graql syntax. The ability to use the semantics of the data in a query makes the construction of very complex search patterns straightforward.</p> </div> <div class=example> <div class=tabs> <span data-target=graql>Graql</span> <span data-target=java>Java</span> </div> <div class=content> <div data-type=graql> <textarea class=code-input readonly=true>select $x where 
     $x isa person;
@@ -55,7 +55,7 @@ Relation relation = mindmaps.putRelation(directorship,roleMap);</textarea> <pre 
     var().rel("x").rel("y").isa("marriage"),
     var("z").isa("company"),
     var().rel("y").rel("z").isa("directorship")
- ).orderBy("z").execute();</textarea> <pre class=code-output>
+ ).orderBy("z");</textarea> <pre class=code-output>
                                     <code class=language-java></code>
                                 </pre> </div> </div> </div> </div> <div class="text-block booked marginBottom"> <div class=right> <p>Graql also provides an interactive way to edit an ontology. Define concept types and relationships using the same syntax used to load data. In this example the "marriage" relationship is defined and the structure in the graph shown. Here the Graql code uses the INSERT query form. This triggers the addition of data to Mindmaps as opposed to a SELECT query that returns data.</p> <p>The additional query forms provided by Graql are: ASK and DELETE. This provides all of the functionality needed to create ontologies, mutate data and validate the existence of patterns. All of which are in terms of the Mindmaps knowledge representation.</p> </div> <div data-graph=10 class=graph></div> <div class=example> <div class=tabs> <span data-target=graql>Graql</span> <span data-target=java>Java</span> </div> <div class=content> <div data-type=graql> <textarea class=code-input readonly=true>insert 
     # define concept-type 
