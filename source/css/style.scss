@@ -214,10 +214,8 @@ body{
     font-weight: 400;
     width: 100%;
     
-    span{
-        &.bold{
-            font-weight: 700;
-        }
+    b{
+        font-weight: 700;
     }
 }
 
