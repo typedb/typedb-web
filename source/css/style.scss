@@ -1859,8 +1859,99 @@ body{
     }
 }
 
+.users{
+    text-align: center;
+    
+    li{
+        display: inline-block;
+        width: 240px;
+        padding: 0 30px 0 0;
+
+        &:nth-child(2n) {
+            padding: 0 0 0 30px;
+        }
+
+        &:first-child{
+            &:last-child{
+                padding: 0;
+            }
+        }
+        
+        a{
+            .icon{
+                overflow: hidden;
+                display: inline-block;
+                border-radius: 50%;
+                width: 160px;
+                height: 160px;
+                background-position: center center;
+                background-size: 100% 100%;
+                background-repeat: no-repeat;
+                margin-bottom: 0.5em;
+                @include transition(transform 100ms ease-out);
+            }
+
+            .name,
+            .description{
+                line-height: 2em;
+                display: block;
+                opacity: 0.8;
+                @include transition(opacity 100ms ease-out);
+            }
+
+            .name{
+                font-size: 1.4em;
+            }
+
+            .description{
+                font-size: 1em;
+            }
+
+            &:hover{
+                .icon{
+                    @include transform(scale(1.05));
+                }
+
+                .name,
+                .description{
+                    opacity: 1;
+                }
+            }
+            
+            border: none;
+        }
+    }
+}
+
 @media only screen
     and (max-width: 339px) {
+        .users{
+            li{
+                width: 240px;
+                padding: 0;
+
+                a{
+                    .icon{
+                        width: 100px;
+                        height: 100px;
+                    }
+
+                    .name{
+                        font-size: 1.1em;
+                    }
+
+                    .description{
+                        font-size: 0.9em;
+                    }
+
+                    .name,
+                    .description{
+                        line-height: 1.5em;
+                    }
+                }
+            }
+        }
+
         #section-platform-full{
             h3{
                 .icon{
@@ -2276,7 +2367,7 @@ body{
                     }
 
                     &.tech{
-                        padding: 15px 0 0 0;
+                        padding: 15px 0;
 
                         h2{
                             margin-bottom: 20px;
@@ -2411,6 +2502,37 @@ body{
 @media only screen
     and (min-width: 340px)
     and (max-width: 559px) {
+        .users{
+            li{
+                width: 145px;
+                padding: 0 15px 0 0;
+
+                &:nth-child(2n){
+                    padding: 0 0 0 15px;
+                }
+
+                a{
+                    .icon{
+                        width: 120px;
+                        height: 120px;
+                    }
+
+                    .name{
+                        font-size: 1.1em;
+                    }
+
+                    .description{
+                        font-size: 0.9em;
+                    }
+
+                    .name,
+                    .description{
+                        line-height: 1.5em;
+                    }
+                }
+            }
+        }
+
         #section-platform-full{
             h3{
                 .icon{
@@ -2805,7 +2927,7 @@ body{
                     }
 
                     &.tech{
-                        padding: 30px 0 0 0;
+                        padding: 30px 0;
                     }
 
                     .icon-block{
@@ -2932,6 +3054,37 @@ body{
 @media only screen
     and (min-width: 560px)
     and (max-width: 719px) {
+        .users{
+            li{
+                width: 250px;
+                padding: 0 30px 0 0;
+
+                &:nth-child(2n){
+                    padding: 0 0 0 30px;
+                }
+
+                a{
+                    .icon{
+                        width: 150px;
+                        height: 150px;
+                    }
+
+                    .name{
+                        font-size: 1.2em;
+                    }
+
+                    .description{
+                        font-size: 1em;
+                    }
+
+                    .name,
+                    .description{
+                        line-height: 1.9em;
+                    }
+                }
+            }
+        }
+
         #section-platform-full{
             h3{
                 .icon{
@@ -3220,7 +3373,7 @@ body{
                     }
 
                     &.tech{
-                        padding: 60px 0 0 0;
+                        padding: 60px 0;
 
                         .icon-block{
                             margin-bottom: 35px;
@@ -3341,6 +3494,24 @@ body{
 @media only screen
     and (min-width: 720px)
     and (max-width: 999px) {
+        .users{
+            li{
+                width: 320px;
+                padding: 0 30px 0 0;
+
+                &:nth-child(2n){
+                    padding: 0 0 0 30px;
+                }
+
+                a{
+                    .icon{
+                        width: 160px;
+                        height: 160px;
+                    }
+                }
+            }
+        }
+
         #section-platform-full{
             .platform-list{
                 margin-bottom: 60px;
@@ -3864,6 +4035,24 @@ body{
 
 @media only screen
     and (min-width: 1600px) {
+        .users{
+            li{
+                width: 400px;
+                padding: 0 30px 0 0;
+
+                &:nth-child(2n){
+                    padding: 0 0 0 30px;
+                }
+
+                a{
+                    .icon{
+                        width: 200px;
+                        height: 200px;
+                    }
+                }
+            }
+        }
+        
         .block{
             &.nav{
                 .wrapper{
