@@ -1,270 +1,304 @@
+window.D3GRPH = {
 
-var width, height, graphid;
+    _data: {
+        graphIds: [],
+        nodeTypes: [
+            "instance",
+            "concept-type",
+            "relation",
+            "relation-type",
+            "resource",
+            "resource-type",
+            "role-type",
+            "meta"
+        ],
+        edgeTypes: [
+            "default",
+            "active",
+            "alert"
+        ],
+        smallRadius: 14,
+        mediumRadius: 27,
+        largeRadius: 45,
+        nodeColors: [
+            "#a1d884",
+            "#ff7878",
+            "#77dd77",
+            "#bfc0d1",
+            "#a1d884",
+            "#ff7878",
+            "#ffb96d",
+            "#5bc2e7"
+        ],
+        edgeColors: [
+            "#bbbcbc",
+            "#77dd77",
+            "#ffbb71"
+        ],
+        edgeLabelColors: [
+            "#ffffff",
+            "#2e4e00",
+            "#a95800"
+        ]
+    },
 
-var smallRadius = 14;
-var mediumRadius = 27;
-var largeRadius = 45;
-var nodeTypes = ["instance", "concept-type", "relation", "relation-type", "resource", "resource-type", "role-type", "meta"];
-var edgeTypes = ["default", "active", "alert"];
+    dx: function (width, n) {
+        return width * n;
+    },
 
+    dy: function (height, n) {
+        return height * n;
+    },
 
-nodeColors     = ["#a1d884", "#ff7878",/*"#77dd77",*/ "#77dd77", "#bfc0d1", "#a1d884",/*"#5bc2e7",*/ "#ff7878", "#FFB96D", "#5bc2e7"];
+    getLinkUniqueId: function (graphid, link) {
+        return graphid + "_link_" + link.source.index + "_" + link.target.index;
+    },
 
-edgeColors = ["#bbbcbc", "#77dd77", "#FFBB71"]
-edgeLabelColors = ["#fff", "#2E4E00", "#A95800"]
+    boundingRect: function(id) {
+        return document.getElementById(id).getBoundingClientRect();
+    },
 
-var nodeColor = d3.scale.ordinal()
-  .domain(nodeTypes)
-  .range(nodeColors);
+    hypotenuseLength: function(rect) {
+        return Math.sqrt(Math.pow(rect.top - rect.bottom, 2) + Math.pow(rect.right - rect.left, 2));
+    },
 
-var borderColor = d3.scale.ordinal()
-  .domain(nodeTypes)
-  .range(nodeColors/*Dark*/);
+    rotate: function(width, height, d) {
+        if (d.target.x < d.source.x) {
+            return "rotate(180, " + Math.abs(this.dx(width, d.source.x) + this.dx(width, d.target.x))/2 + ", " + Math.abs(this.dy(height, d.source.y) + this.dy(height, d.target.y))/2 + ")";
+        }
 
-var edgeColors = d3.scale.ordinal()
-  .domain(edgeTypes)
-  .range(edgeColors);
+        return "";
+    },
 
-var edgeLabelColors = d3.scale.ordinal()
-  .domain(edgeTypes)
-  .range(edgeLabelColors);
+    offset: function(width, height, d) {
 
-var radius = d3.scale.ordinal()
-  .domain(nodeTypes)
-  .range([mediumRadius, mediumRadius, smallRadius, mediumRadius, mediumRadius, mediumRadius, mediumRadius]);
+        var data = this._data,
+            sourceRadius = data.radius(d.source.type),
+            targetRadius = data.radius(d.target.type),
+            leftRadius = null,
+            rightRadius = null;
 
-var dx = function (n){
-  return width * n;
-}
+        if (d.source.x < d.target.x) {
+            leftRadius = sourceRadius;
+            rightRadius = targetRadius;
+        } else if (d.source.x > d.target.x) {
+            leftRadius = targetRadius;
+            rightRadius = sourceRadius;
+        } else if (d.source.y < d.target.Y) {
+            leftRadius = targetRadius;
+            rightRadius = sourceRadius;
+        } else {
+            leftRadius = sourceRadius;
+            rightRadius = targetRadius;
+        }
 
-var dy = function (n){
-  return height * n;
-}
+        var length = Math.sqrt(Math.pow(this.dy(height, d.target.y) - this.dy(height, d.source.y), 2) + Math.pow(this.dx(width, d.target.x) - this.dx(width, d.source.x), 2)),
+            percent = (((length - (leftRadius + rightRadius))/2 + leftRadius)/length) * 100;
+    
+        return percent + "%";
+    },
 
-function getLinkUniqueId(link){
-  return graphid + "_link_" + link.source.index + "_" + link.target.index;
-}
+    drawGraph: function(width, height) {
 
-var boundingRect = function(id){
-  return document.getElementById(id).getBoundingClientRect()
-}
+        var _this = this,
+            bbox = null,
+            rx = null,
+            ry = null;
 
-var hypotenuseLength = function(rect){
-  return Math.sqrt(Math.pow(rect.top - rect.bottom, 2) + Math.pow(rect.right - rect.left, 2));
-}
+        d3.selectAll("g.node").attr("transform", function(d) {
+            return "translate(" + _this.dx(width, d.x) + "," + _this.dy(height, d.y) + ")";
+        });
+        
+        d3.selectAll(".edge")
+            .attr("x1", function(d) { return _this.dx(width, d.source.x)})
+            .attr("y1", function(d) { return _this.dy(height, d.source.y)})
+            .attr("x2", function(d) { return _this.dx(width, d.target.x)})
+            .attr("y2", function(d) { return _this.dy(height, d.target.y)});
 
-var rotate = function(d){
-  if(d.target.x < d.source.x){
-    return "rotate(180, " + Math.abs(dx(d.source.x) + dx(d.target.x)) / 2  + ", " + Math.abs(dy(d.source.y) + dy(d.target.y)) / 2 + ")";
-  }
-  return "";
-}
+        d3.selectAll(".edgepath").attr("d", function(d) {
+            return "M" + _this.dx(width, d.source.x) + "," + _this.dy(height, d.source.y) + "L " + _this.dx(width, d.target.x) + "," + _this.dy(height, d.target.y);
+        });
 
-var offset = function(d){
-  var sourceRadius = radius(d.source.type);
-  var targetRadius = radius(d.target.type);
+        d3.selectAll(".edgelabel").attr('transform', function(d,i) {
+            if (d.target.x < d.source.x) {
+                bbox = this.getBBox();
+                rx = bbox.x + bbox.width/2;
+                ry = bbox.y + bbox.height/2;
 
-  if(d.source.x < d.target.x){
-      var leftRadius = sourceRadius;
-      var rightRadius = targetRadius;
-  }
-  else if(d.source.x > d.target.x){
-      var leftRadius = targetRadius;
-      var rightRadius = sourceRadius;
-  }
-  else if(d.source.y < d.target.Y){
-      var leftRadius = targetRadius;
-      var rightRadius = sourceRadius;
-  }
-  else{
-      var leftRadius = sourceRadius;
-      var rightRadius = targetRadius;
-  }
+                return 'rotate(180 ' + Math.abs(_this.dx(width, d.source.x) + _this.dx(width, d.target.x))/2 + ' ' + Math.abs(_this.dy(height, d.source.y) + _this.dy(height, d.target.y))/2+')';
+            } else {
+                return 'rotate(0)';
+            }
+        });
+    },
 
-  var length = Math.sqrt(Math.pow(dy(d.target.y) - dy(d.source.y), 2) + Math.pow(dx(d.target.x) - dx(d.source.x), 2));
+    resize: function(graphid, force) {
+        var width = parseInt(d3.select("#graph_" + graphid).style('width')),
+            height = parseInt(d3.select("#graph_" + graphid).style('height'));
 
-  var percent = (((length - (leftRadius + rightRadius))/2 + leftRadius)/length) * 100;
-  return percent + "%";
-}
+        d3.select("svg").attr("width", width).attr("height", height);
+        
+        force.size([width, height]).start().stop();
+        this.drawGraph(width, height);
+    },
 
-var drawGraph = function(){
-  d3.selectAll("g.node")
-  .attr("transform", function(d) {
-    return "translate(" +
-      dx(d.x) + "," +
-      dy(d.y) + ")";
-  });
+    buildGraph: function(obj) {
 
-  d3.selectAll(".edge")
-    .attr("x1", function(d) { return dx(d.source.x)})
-    .attr("y1", function(d) { return dy(d.source.y)})
-    .attr("x2", function(d) { return dx(d.target.x)})
-    .attr("y2", function(d) { return dy(d.target.y)});
+        // Use a timeout to allow the rest of the page to load first.
+        var _this = this,
+            data = this._data,
+            width = obj.size.width,
+            height = obj.size.height,
+            graphid = obj.graph.id,
 
-  d3.selectAll(".edgepath").attr("d", function(d) {
-    return "M" + dx(d.source.x) + "," + dy(d.source.y) + "L " + dx(d.target.x) + "," + dy(d.target.y);
-  });
+            svg = d3.select(obj.node).append("svg")
+                .attr("id", function(d) { return "graph_" + graphid})
+                .attr("width", width)
+                .attr("height", height),
 
-  d3.selectAll(".edgelabel")
-    .attr('transform',function(d,i){
-      if (d.target.x<d.source.x){
-          bbox = this.getBBox();
-          rx = bbox.x+bbox.width/2;
-          ry = bbox.y+bbox.height/2;
-          return 'rotate(180 '+Math.abs(dx(d.source.x) + dx(d.target.x)) / 2+' '+Math.abs(dy(d.source.y) + dy(d.target.y)) / 2+')';
-          }
-      else {
-          return 'rotate(0)';
-          }
-    });
+            force = d3.layout.force()
+                .nodes(obj.graph.nodes)
+                .links(obj.graph.edges)
+                .size([width, height])
+                .start()
+                .stop();
+
+        data.graphIds.push(graphid);
+
+        // build the default arrow
+        svg.append("svg:defs").append("svg:marker")
+            .attr("id", "default-arrow")
+            .attr("viewBox", "0 -5 10 10")
+            .attr("refX", 23)
+            .attr("markerWidth", 2)
+            .attr("markerHeight", 2.5)
+            .attr("orient", "auto")
+            .append("svg:path")
+            .attr("d", "M0,-5L10,0L0,5")
+            .attr("stroke", "#bbbcbc")
+            .style("fill", "#bbbcbc");
+
+        // build the active arrow
+        svg.append("svg:defs").append("svg:marker")
+            .attr("id", "active-arrow")
+            .attr("viewBox", "0 -5 10 10")
+            .attr("refX", 23)
+            .attr("markerWidth", 2)
+            .attr("markerHeight", 2.5)
+            .attr("orient", "auto")
+            .append("svg:path")
+            .attr("d", "M0,-5L10,0L0,5")
+            .attr("stroke", "#77dd77")
+            .style("fill", "#77dd77");
+
+        // build the alert arrow
+        svg.append("svg:defs").append("svg:marker")
+            .attr("id", "alert-arrow")
+            .attr("viewBox", "0 -5 10 10")
+            .attr("refX", 23)
+            .attr("markerWidth", 2)
+            .attr("markerHeight", 2.5)
+            .attr("orient", "auto")
+            .append("svg:path")
+            .attr("d", "M0,-5L10,0L0,5")
+            .attr("stroke", "#FFBB71")
+            .style("fill", "#FFBB71");
+
+        // add the links
+        var edges = svg.selectAll("line")
+            .data(obj.graph.edges)
+            .enter()
+            .append("line")
+            .attr("class", "edge")
+            .attr("stroke", function(d) { return data.edgeColor(d.type)})
+            .attr("stroke-width", 9)
+            .attr("marker-end", function(d) { return d.type != null ? "url(#" + d.type + "-arrow)" : "url(#default-arrow)"}),
+
+        // add the links and the arrows
+            edgePaths = svg.selectAll(".edgepath")
+            .data(obj.graph.edges)
+            .enter()
+            .append('path')
+            .attr("id", function(d) { return _this.getLinkUniqueId(graphid, d); })
+            .attr({
+                'class': 'edgepath',
+                'fill-opacity': 0,
+                'stroke-opacity': 0,
+                'fill': 'blue',
+                'stroke': 'red'
+            }),
+
+        // add the link labels
+            edgelabels = svg.selectAll(".edgelabel")
+            .data(obj.graph.edges)
+            .enter()
+            .append("text")
+            .attr("class", "edgelabel")
+            .style("font", "9px sans-serif")
+            .attr("id", function(d) { return _this.getLinkUniqueId(graphid, d) + "text"})
+            .attr("transform", function(d) { return _this.rotate(width, height, d); })
+            .attr("dy", "3");
+
+        edgelabels.append("textPath")
+            .attr("fill", function(d) { return data.edgeLabelColor(d.type)})
+            .attr("xlink:href", function(d) { return "#" + _this.getLinkUniqueId(graphid, d); })
+            .attr("startOffset", function(d) { return _this.offset(width, height, d) })
+            .attr("text-anchor", "middle")
+            .text(function(d) { return d.text.toUpperCase()});
+
+        // define the nodes
+        var nodes = svg.selectAll("g.node")
+            .data(obj.graph.nodes)
+            .enter().append("g")
+            .attr("class", "node");
+
+        // add the nodes
+        nodes.append("circle")
+            .attr("r", function(d) { return data.radius(d.type)})
+            .style("fill", function(d) { return data.nodeColor(d.type)})
+            .style("stroke", function(d) { return data.borderColor(d.type)})
+            .style("stroke-width", 6);
+
+        // add the node labels
+        nodes.append("text")
+            .attr("class", "textWrap")
+            .style("text-anchor", "middle")
+            .style("fill", "white")
+            .style("font", "12px sans-serif")
+            .text(function(d){ return d.text})
+            .each(function(d){
+                d3plus.textwrap()
+                    .align("center")
+                    .valign("middle")
+                    .container(d3.select(this))
+                    .draw();
+            });
+
+        d3.select(window).on("resize", function() {
+            for (var i = 0; i < data.graphIds.length; i++) {
+                _this.resize(data.graphIds[i], force);
+            }
+        });
+
+        this.drawGraph(width, height);
+    },
+
+    init: function() {
+
+        var data = this._data,
+            nodeTypes = data.nodeTypes,
+            nodeColors = data.nodeColors,
+            edgeTypes = data.edgeTypes,
+            edgeColors = data.edgeColors,
+            edgeLabelColors = data.edgeLabelColors,
+            mediumRadius = data.mediumRadius,
+            smallRadius = data.smallRadius;
+
+        data.nodeColor      = d3.scale.ordinal().domain(nodeTypes).range(nodeColors);
+        data.borderColor    = d3.scale.ordinal().domain(nodeTypes).range(nodeColors);
+        data.edgeColor      = d3.scale.ordinal().domain(edgeTypes).range(edgeColors);
+        data.edgeLabelColor = d3.scale.ordinal().domain(edgeTypes).range(edgeLabelColors);
+        data.radius         = d3.scale.ordinal().domain(nodeTypes)
+                               .range([mediumRadius, mediumRadius, smallRadius, mediumRadius, mediumRadius, mediumRadius, mediumRadius]);
+    }
 };
-
-var resize = function(force){
-  width = parseInt(d3.select("#graph_" + graphid).style('width'));
-  height = parseInt(d3.select("#graph_" + graphid).style('height'));
-console.log(d3.select("svg"));
-
-  d3.select("svg")
-    .attr("width", width)
-    .attr("height", height);
-
-  force.size([width , height]).start().stop();
-  drawGraph();
-}
-
-var buildGraph = function(obj){
-
-  // Use a timeout to allow the rest of the page to load first.
-  width = obj.size.width,
-  height = obj.size.height,
-  graphid = obj.graph.id;
-
-  var svg = d3.select(obj.node).append("svg")
-    .attr("id", function(d){ return "graph_" + graphid})
-    .attr("width", width)
-    .attr("height", height);
-
-  var force = d3.layout.force()
-    .nodes(obj.graph.nodes)
-    .links(obj.graph.edges)
-    .size([width, height])
-    .start()
-    .stop();
-
-  // build the default arrow
-    svg.append("svg:defs").append("svg:marker")
-      .attr("id", "default-arrow")
-      .attr("viewBox", "0 -5 10 10")
-      .attr("refX", 23)
-      .attr("markerWidth", 2)
-      .attr("markerHeight", 2.5)
-      .attr("orient", "auto")
-      .append("svg:path")
-      .attr("d", "M0,-5L10,0L0,5")
-      .attr("stroke", "#bbbcbc")
-      .style("fill", "#bbbcbc");
-
-    // build the active arrow
-    svg.append("svg:defs").append("svg:marker")
-      .attr("id", "active-arrow")
-      .attr("viewBox", "0 -5 10 10")
-      .attr("refX", 23)
-      .attr("markerWidth", 2)
-      .attr("markerHeight", 2.5)
-      .attr("orient", "auto")
-      .append("svg:path")
-      .attr("d", "M0,-5L10,0L0,5")
-      .attr("stroke", "#77dd77")
-      .style("fill", "#77dd77");
-
-    // build the alert arrow
-    svg.append("svg:defs").append("svg:marker")
-        .attr("id", "alert-arrow")
-        .attr("viewBox", "0 -5 10 10")
-        .attr("refX", 23)
-        .attr("markerWidth", 2)
-        .attr("markerHeight", 2.5)
-        .attr("orient", "auto")
-        .append("svg:path")
-        .attr("d", "M0,-5L10,0L0,5")
-        .attr("stroke", "#FFBB71")
-        .style("fill", "#FFBB71");
-
-    // add the links
-    var edges = svg.selectAll("line")
-      .data(obj.graph.edges)
-      .enter()
-      .append("line")
-      .attr("class", "edge")
-      .attr("stroke", function(d){ return edgeColors(d.type)})
-      .attr("stroke-width", 9)
-      .attr("marker-end", function(d){ return d.type != null ? "url(#" + d.type + "-arrow)" : "url(#default-arrow)"});
-
-    // add the links and the arrows
-    var edgePaths = svg.selectAll(".edgepath")
-      .data(obj.graph.edges)
-      .enter()
-      .append('path')
-      .attr("id", function(d){ return getLinkUniqueId(d); })
-      .attr({'class':'edgepath',
-             'fill-opacity':0,
-             'stroke-opacity':0,
-             'fill':'blue',
-             'stroke':'red'
-      })
-
-    // add the link labels
-    var edgelabels = svg.selectAll(".edgelabel")
-      .data(obj.graph.edges)
-      .enter()
-      .append("text")
-      .attr("class", "edgelabel")
-      .style("font", "9px sans-serif")
-      .attr("id", function(d){ return getLinkUniqueId(d) + "text"})
-      .attr("transform", function(d){ return rotate(d); })
-      .attr("dy", "3")
-
-    edgelabels.append("textPath")
-      .attr("fill", function(d){ return edgeLabelColors(d.type)})
-      .attr("xlink:href", function(d) { return "#" + getLinkUniqueId(d); })
-      .attr("startOffset", function(d){ return offset(d) })
-      .attr("text-anchor", "middle")
-      .text(function(d){ return d.text.toUpperCase()});
-
-    // define the nodes
-    var nodes = svg.selectAll("g.node")
-      .data(obj.graph.nodes)
-      .enter().append("g")
-      .attr("class", "node");
-
-    // add the nodes
-    nodes.append("circle")
-      .attr("r", function(d){ return radius(d.type)})
-      .style("fill", function(d){ return nodeColor(d.type)})
-      .style("stroke", function(d){ return borderColor(d.type)})
-      .style("stroke-width", 6);
-
-    // add the node labels
-    nodes.append("text")
-      .attr("class", "textWrap")
-      .style("text-anchor", "middle")
-      .style("fill", "white")
-      .style("font", "12px sans-serif")
-      .text(function(d){ return d.text})
-      .each(function(d){
-        d3plus.textwrap()
-        .align("center")
-        .valign("middle")
-        .container(d3.select(this))
-        .draw();
-      });
-
-//if (!document.getElementById('section-platform-full')) {
-    d3.select(window)
-      .on("resize", function(){
-        resize(force)
-    });
-//}
-
-    drawGraph()
-}

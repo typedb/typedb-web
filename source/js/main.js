@@ -1007,7 +1007,7 @@ window.MNDMPS = {
     },
 
     initGraph: function(obj) {
-        buildGraph(obj)
+        window.D3GRPH.buildGraph(obj);
     },
 
     initPlatformGraphs: function() {
@@ -3411,4 +3411,5 @@ window.MNDMPS = {
     }
 };
 
+window.D3GRPH.init();
 window.MNDMPS.init();
