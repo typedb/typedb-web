@@ -1,3 +1,5 @@
+'use strict';
+
 window.D3GRPH = {
 
     _data: {

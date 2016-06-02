@@ -1124,11 +1124,11 @@ body{
 
             .svg-logo{
                 position: absolute;
-                top: 50%;
+                top: 24%;
                 left: 0;
                 width: 100%;
                 @include transform(translateY(-50%));
-                height: 44%;
+                height: 34%;
                 text-align: center;
 
                 svg{
@@ -1144,8 +1144,8 @@ body{
 
                             @for $i from 1 through 21 {
                                 &:nth-child(#{$i}){
-                                    @include animation-delay(-5*random(40)/* *$i */+s);
-                                    @include animation-duration(40+random(20)/* *$i */+s);
+                                    @include animation-delay(-5*random(40)+s);
+                                    @include animation-duration(40+random(20)+s);
                                 }
                             }
                         }

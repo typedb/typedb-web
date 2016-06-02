@@ -19,7 +19,7 @@ gulp.task('build-js', function() {
     return gulp.src([
             'source/js/jquery-2.2.1.js',
             'source/js/atvImg.js',
-            'source/js/three.min.js',
+            'source/js/three.js',
             'source/js/vanillaSmoothScroller.js',
             'source/js/slick.js',
             'source/js/prism.js',
@@ -27,6 +27,12 @@ gulp.task('build-js', function() {
             'source/js/d3.js',
             'source/js/d3plus.js',
             'source/js/graph.js',
+            'source/js/graphs.js',
+            'source/js/helpers.js',
+            'source/js/ajax.js',
+            'source/js/modal.js',
+            'source/js/map.js',
+            'source/js/three-d.js',
             'source/js/main.js'
         ])
         .pipe(closureCompiler({
@@ -34,8 +40,8 @@ gulp.task('build-js', function() {
             fileName: 'mndmps.min.js',
             compilerFlags: {
                 language_in: 'ES5',
-                compilation_level: 'WHITESPACE_ONLY',
-                //compilation_level: 'SIMPLE_OPTIMIZATIONS',
+                //compilation_level: 'WHITESPACE_ONLY',
+                compilation_level: 'SIMPLE_OPTIMIZATIONS',
                 warning_level: 'QUIET'
             }
         }))
