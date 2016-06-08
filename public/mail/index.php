@@ -21,7 +21,7 @@ try {
     $mail->addReplyTo("register@mindmaps.io", "Mindmaps");
     $mail->setFrom("register@mindmaps.io", "Mindmaps");
     $mail->addAddress("register@mindmaps.io", "Mindmaps");
-    $mail->Subject  = "Mindmaps Registration";
+    $mail->Subject  = "[EAP] Mindmaps Registration";
     $mail->WordWrap = 78;
     $mail->msgHTML($message);
     $mail->isHTML(false);
@@ -35,5 +35,3 @@ try {
     error_log($e->getMessage(), 0);
     echo $e->errorMessage();
 }
-
-
