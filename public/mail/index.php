@@ -18,7 +18,7 @@ try {
     $mail->isSMTP();
     $mail->SMTPDebug  = 0;
     $mail->Host = "localhost";
-    $mail->addReplyTo("register@mindmaps.io", "Mindmaps");
+    $mail->addReplyTo($decoded["email"], $decoded["name"]);
     $mail->setFrom("register@mindmaps.io", "Mindmaps");
     $mail->addAddress("register@mindmaps.io", "Mindmaps");
     $mail->Subject  = "[EAP] Mindmaps Registration";
