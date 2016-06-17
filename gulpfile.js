@@ -15,6 +15,16 @@ gulp.task('build-css', function() {
         }));
 });
 
+gulp.task('build-new-css', function() {
+    return gulp.src('source/css1/style1.scss')
+        .pipe(sass({outputStyle: 'compressed'}))
+        .pipe(gulp.dest('public/css'))
+        .pipe(notify({
+            title: "Mindmaps Website",
+            message: "CSS compiled"
+        }));
+});
+
 gulp.task('build-js', function() {
     return gulp.src([
             'source/js/jquery-2.2.1.js',
@@ -52,6 +62,36 @@ gulp.task('build-js', function() {
         }));
 });
 
+gulp.task('build-new-js', function() {
+    return gulp.src([
+            'source/js1/jquery-3.0.0.js',
+            'source/js1/d3.js',
+            'source/js1/typed.js',
+            'source/js1/helpers.js',
+            'source/js1/tabs.js',
+            'source/js1/splitter.js',
+            'source/js1/prism.js',
+            'source/js1/prism-graql.js',
+            'source/js1/graph.js',
+            'source/js1/main.js'
+        ])
+        .pipe(closureCompiler({
+            compilerPath: 'node_modules/google-closure-compiler/compiler.jar',
+            fileName: 'mndmps1.min.js',
+            compilerFlags: {
+                language_in: 'ES5',
+                compilation_level: 'WHITESPACE_ONLY',
+                //compilation_level: 'SIMPLE_OPTIMIZATIONS',
+                warning_level: 'QUIET'
+            }
+        }))
+        .pipe(gulp.dest('public/js'))
+        .pipe(notify({
+            title: "Mindmaps Website",
+            message: "JS compiled"
+        }));
+});
+
 gulp.task('build-html', function() {
     return gulp.src('source/html/*.html')
         .pipe(htmlmin({
@@ -76,11 +116,13 @@ gulp.task('build-html', function() {
 
 gulp.task('watch', function() {
     gulp.watch('source/css/*.scss', ['build-css']);
+    gulp.watch('source/css1/*.scss', ['build-new-css']);
     gulp.watch('source/js/*.js', ['build-js']);
+    gulp.watch('source/js1/*.js', ['build-new-js']);
     gulp.watch('source/html/*.html', ['build-html']);
 });
 
-gulp.start('build-css', 'build-js', 'build-html');
+gulp.start('build-css', 'build-new-css', 'build-js', 'build-new-js', 'build-html');
 
 gulp.task('default', ['watch'], function() {
     return gutil.log('Gulp gulp gulp...');

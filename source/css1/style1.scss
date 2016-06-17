@@ -1,0 +1,147 @@
+@import 'reset';
+@import 'grid';
+@import 'colors';
+@import 'helpers';
+@import 'buttons';
+@import 'typist';
+@import 'prism';
+@import 'code';
+
+body{
+    font-family: Raleway, sans-serif;
+    font-weight: 400;
+}
+
+*{
+    -webkit-tap-highlight-color: transparent;
+}
+
+html{
+    font-size: 17px;
+    color: $black-brand;
+}
+
+@media (max-width: 559px) {
+    html{
+        font-size: 13px;
+    }
+}
+
+@media (min-width: 560px) {
+    html{
+        font-size: 15px;
+    }
+}
+
+@media (min-width: 1600px) {
+    html{
+        font-size: 19px;
+    }
+}
+
+.container{
+
+    &.title{
+        height: 100vh;
+        background: #1e5799;
+        background: linear-gradient(160deg, $blue-brand 0%, $green-brand 100%);
+
+        .typist{
+            height: 50%;
+            display: flex;
+            flex-flow: row nowrap;
+            justify-content: center;
+            align-items: center;
+
+            p{
+                color: $white;
+                margin: 0;
+                white-space: nowrap;
+                font: 3.5vw/normal monospace;
+                flex: 0 1 auto;
+            }
+        }
+
+        .get{
+            left: 0;
+            top: 25%;
+            position: absolute;
+            height: 25%;
+            display: flex;
+            flex-flow: row nowrap;
+            justify-content: center;
+            align-items: center;
+
+            a{
+                flex: 0 1 auto;
+            }
+        }
+
+        .background{
+            opacity: .15;
+            overflow: hidden;
+            
+            svg{
+                width: 200%;
+                height: 100%;
+                transform: translateX(-25%);
+            }
+        }
+    }
+
+    &.nav{
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        max-width: 100%;
+        padding: 0;
+        z-index: 10;
+        height: 40px;
+
+        .logo{
+            text-decoration: none;
+            display: block;
+            margin: 5px 0 0 5px;
+            float: left;
+            color: $white;
+            white-space: nowrap;
+
+            h1{
+                text-transform: uppercase;
+                font-weight: 400;
+                font-size: 0.7rem;
+                letter-spacing: 0.1rem;
+                line-height: 18px;
+                margin: 0;
+            }
+
+            span{
+                font-size: 0.6rem;
+                line-height: 8px;
+                display: block;
+            }
+
+            svg{
+                width: 30px;
+                height: 30px;
+                float: left;
+                margin-right: 0.3rem;
+            }
+        }
+    }
+}
+
+@media screen and (min-aspect-ratio: 100/75) {
+    .container{
+        &.title{
+            .background{
+                svg{
+                    width: 100%;
+                    height: 200%;
+                    transform: translateY(-25%);
+                }
+            }
+        }
+    }
+}
