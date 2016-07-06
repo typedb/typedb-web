@@ -32,6 +32,7 @@ window.MNDMPS.Tabs = {
             event.target.classList.add('active');
 
             _this.processTabs(tabbed, index);
+            window.MNDMPS.Graph.redraw('graph' + index);
         }
 
         tabs[0].classList.add('active');

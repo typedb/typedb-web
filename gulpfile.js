@@ -73,6 +73,7 @@ gulp.task('build-new-js', function() {
             'source/js1/prism.js',
             'source/js1/prism-graql.js',
             'source/js1/graph.js',
+            'source/js1/graphs.js',
             'source/js1/main.js'
         ])
         .pipe(closureCompiler({

@@ -48,7 +48,8 @@ window.MNDMPS.App = {
 
     init: function() {
 
-        var data = this._data;
+        var data = this._data,
+            codeEditor = document.getElementsByClassName('editor')[0];
 
         this.typist();
         
@@ -58,6 +59,29 @@ window.MNDMPS.App = {
         window.MNDMPS.Tabs.init(document.getElementById('code-container').querySelectorAll('[data-tabs="view"]')[0]);
 
         this.initPrism();
+
+        // Initialising SVG shit
+
+        var graqlSvgContainers = document.querySelectorAll('[data-splitter="slides"]')[0].querySelectorAll('[data-slide="right"]');
+
+        for (var i = 0; i < graqlSvgContainers.length; i++) {
+            if (window.MNDMPS.Graph._data.homepageGraphs[i]) {
+                window.MNDMPS.Graph.init(graqlSvgContainers[i], window.MNDMPS.Graph._data.homepageGraphs[i]);
+            }
+        }
+
+        window.addEventListener('resize', function() {
+            if (codeEditor) {
+                var tabs = codeEditor.getElementsByClassName('content')[0].children;
+
+                for (var i = 0; i < tabs.length; i++) {
+                    if (tabs[i].classList.contains('active')) {
+                        window.MNDMPS.Graph.redraw('graph' + i);
+                        break;
+                    }
+                }
+            }
+        }, false);
     }
 };
 

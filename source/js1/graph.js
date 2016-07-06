@@ -1,327 +1,409 @@
-var w = 900,
-    h = 400,
-    r = 15,
-    maxRadius = 50,
-    linkDistance = 200,
-    padding = 6,
-    colors = d3.scale.category10(),
-    nodeColors = {
-        color1: "#a1d884",
-        color2: "#ff7878",
-        color3: "#77dd77",
-        color4: "#bfc0d1",
-        color5: "#a1d884",
-        color6: "#ff7878",
-        color7: "#ffb96d",
-        color8: "#5bc2e7"
-    },
-    edgeColors = {
-        gray: "#bbbcbc",
-        lightGreen: "#77dd77",
-        paleGreen: "#ffbb71"
-    },
+'use strict';
 
-    dataset = {
-        nodes: [
-            {
-                name: "Adam is a twat",
-                color: nodeColors['color1'],
-                r: 30,
-                cx: (w/100) * 15,
-                cy: (h/100) * 20
-            },
-            {
-                name: "Bob is a fucking idiot",
-                color: nodeColors['color1'],
-                r: 50,
-                cx: (w/100) * 35,
-                cy: (h/100) * 20
-            },
-            {
-                name: "Carrie is a nice girl",
-                color: nodeColors['color1'],
-                r: 20,
-                cx: (w/100) * 60,
-                cy: (h/100) * 20
-            },
-            {
-                name: "Donovan loves to drink milk",
-                color: nodeColors['color1'],
-                r: 20,
-                cx: (w/100) * 80,
-                cy: (h/100) * 20
-            },
-            {
-                name: "Edward goes to school",
-                color: nodeColors['color1'],
-                r: 50,
-                cx: (w/100) * 25,
-                cy: (h/100) * 50
-            },
-            {
-                name: "Felicity is dead",
-                color: nodeColors['color1'],
-                r: 30,
-                cx: (w/100) * 50,
-                cy: (h/100) * 50
-            },
-            {
-                name: "George won't come to the party",
-                color: nodeColors['color1'],
-                r: 20,
-                cx: (w/100) * 65,
-                cy: (h/100) * 50
-            },
-            {
-                name: "Hannah Montana",
-                color: nodeColors['color1'],
-                r: 30,
-                cx: (w/100) * 15,
-                cy: (h/100) * 80
-            },
-            {
-                name: "Iris is funny as hell",
-                color: nodeColors['color1'],
-                r: 50,
-                cx: (w/100) * 55,
-                cy: (h/100) * 80
-            },
-            {
-                name: "Jerry, oh ha-ha-ha",
-                color: nodeColors['color1'],
-                r: 20,
-                cx: (w/100) * 80,
-                cy: (h/100) * 80
-            }
-        ],
-        edges: [
-            {source: 0, target: 4, value: 150, color: edgeColors['gray']},
-            {source: 4, target: 1, value: 150, color: edgeColors['gray']},
-            {source: 1, target: 5, value: 150, color: edgeColors['lightGreen']},
-            {source: 2, target: 1, value: 150, color: edgeColors['gray']},
-            {source: 2, target: 3, value: 150, color: edgeColors['paleGreen']},
-            {source: 3, target: 6, value: 150, color: edgeColors['gray']},
-            {source: 8, target: 6, value: 150, color: edgeColors['lightGreen']},
-            {source: 9, target: 6, value: 150, color: edgeColors['paleGreen']},
-            {source: 4, target: 7, value: 150, color: edgeColors['gray']}
-        ]
-    },
+window.MNDMPS = window.MNDMPS || {};
 
-    svg = d3.select("[data-splitter='slides']").select('[data-slide="right"]').append("svg").attr({"width":w,"height":h}),
-    
-    force = d3.layout.force()
-        .nodes(dataset.nodes)
-        .links(dataset.edges)
-        .size([w,h])
-        //.linkDistance([linkDistance])
-        .linkDistance(function(d) { return  d.value; })
-        .charge(0)
-        .gravity(0)
-        .start(),
-    
-    edges = svg.selectAll("line")
-        .data(dataset.edges)
-        .enter()
-        .append("line")
-        .attr("id",function(d,i) {return 'edge'+i})
-        .attr('marker-end','url(#arrowhead)')
-        .style("stroke", function(d) { return d.color; })
-        .style("pointer-events", "none"),
-    
-    nodes = svg.selectAll("circle")
-        .data(dataset.nodes)
-        .enter()
-        .append("circle")
-        .attr({
-            "r": function(d) { return d.r; }/*,
-            "cx": function(d) { return d.pos ? (w / 100) * d.pos.x : 0 },
-            "cy": function(d) { return d.pos ? (h / 100) * d.pos.y : 0 }*/
-        })
-        .style("stroke",function(d,i){return d.color;})
-        .style("fill","#383838")
-        .call(force.drag),
-    
-    nodelabels = svg.selectAll(".nodelabel") 
-        .data(dataset.nodes)
-        .enter()
-        .append("text")
-        .attr({
-            //"x":function(d){return d.x;},
-            "text-anchor": "middle",
-            "x": 0,
-            //"y":function(d){return d.y;},
-            "y": 0,
-            "class":"nodelabel",
-            "fill": "#ffffff",
-            "stroke-width": 0,
-            "stroke":"transparent"})
-        .text(function(d){return d.name;}),
-    
-    edgepaths = svg.selectAll(".edgepath")
-        .data(dataset.edges)
-        .enter()
-        .append('path')
-        .attr({'d': function(d) {return 'M '+d.source.x+' '+d.source.y+' L '+ d.target.x +' '+d.target.y},
-            'class': 'edgepath',
-            //'fill-opacity': 0,
-            //'stroke-opacity': 0,
-            'stroke-width': 0,
-            'fill': 'transparent',
-            'stroke': 'transparent',
-        'id':function(d,i) {return 'edgepath'+i}})
-        .style("pointer-events", "none"),
+window.MNDMPS.Graph = {
 
-    edgelabels = svg.selectAll(".edgelabel")
-        .data(dataset.edges)
-        .enter()
-        .append('text')
-        .style("pointer-events", "none")
-        .attr({'class':'edgelabel',
-            'id':function(d,i){return 'edgelabel'+i},
-            'dx': 0,
-            'dy': -5,
-            'font-size': 10,
-            'fill': '#aaa'});
-
-edgelabels.append('textPath')
-    .attr('xlink:href',function(d, i) {return '#edgepath'+i})
-    .style("pointer-events", "none")
-    .attr("startOffset", '50%')
-    .attr("text-anchor", "middle")
-    .text(function(d, i){return 'label '+i});
-
-svg.append('defs').append('marker')
-    .attr({'id':'arrowhead',
-        'viewBox':'-0 -5 10 10',
-        'refX': 23,
-        'refY': 0,
-        //'markerUnits':'strokeWidth',
-        'orient':'auto',
-        'markerWidth': 10,
-        'markerHeight': 10,
-        'xoverflow':'visible'})
-    .append('svg:path')
-        .attr('d', 'M 0,-5 L 7,0 L 0,5')
-        .attr('fill', 'transparent')
-        .attr('stroke','#ccc');
-
-// Move nodes toward cluster focus.
-function gravity(alpha) {
-  return function(d) {
-    d.y += (d.cy - d.y) * alpha;
-    d.x += (d.cx - d.x) * alpha;
-  };
-}
-
-// Resolve collisions between nodes.
-function collide(alpha) {
-  var quadtree = d3.geom.quadtree(nodes);
-  return function(d) {
-    var r = d.radius + maxRadius + padding,
-        nx1 = d.x - r,
-        nx2 = d.x + r,
-        ny1 = d.y - r,
-        ny2 = d.y + r;
-    quadtree.visit(function(quad, x1, y1, x2, y2) {
-      if (quad.point && (quad.point !== d)) {
-        var x = d.x - quad.point.x,
-            y = d.y - quad.point.y,
-            l = Math.sqrt(x * x + y * y),
-            r = d.radius + quad.point.radius + (d.color !== quad.point.color) * padding;
-        if (l < r) {
-          l = (l - r) / l * alpha;
-          d.x -= x *= l;
-          d.y -= y *= l;
-          quad.point.x += x;
-          quad.point.y += y;
+    _data: {
+        graphs: {},
+        maxNodeRadius: 60,
+        nodePadding: 5,
+        colors: {
+            'default':       '#bbbcbc',
+            'instance':      '#a1d884',
+            'concept-type':  '#ff7878',
+            'relation':      '#77dd77',
+            'relation-type': '#bfc0d1',
+            'resource':      '#a1d884',
+            'resource-type': '#ff7878',
+            'role-type':     '#ffb96d',
+            'meta':          '#5bc2e7',
+            'dark-bg':       '#383838',
+            'light-bg':      '#ffffff'
         }
-      }
-      return x1 > nx2 || x2 < nx1 || y1 > ny2 || y2 < ny1;
-    });
-  };
-}
+    },
 
-function wrap(text, width) {
-  text.each(function() {
-    var text = d3.select(this),
-        words = text.text().split(/\s+/).reverse(),
-        word,
-        line = [],
-        lineNumber = 0,
-        lineHeight = 1, // ems
-        y = text.attr("y"),
-        //dy = parseFloat(text.attr("dy")),
-        dy = 0,
-        tspan = text.text(null)/*.append("tspan")*//*.attr("dx", 0)*//*.attr("dy", y)*//*.attr("dy", dy + "em")*/;
+    redraw: function(pointer) {
+
+        var _this = this,
+            graphs = this._data.graphs,
+            graph = null;
+
+        for (var key in graphs) {
+            if (pointer && pointer !== key) {
+                continue;
+            }
+            
+            graph = graphs[key];
+
+            if (!graph.nodeLabelsInitialised) {
+                setTimeout(function() {
+                    graph.svg
+                        .selectAll('.nodelabel')
+                        .call(_this.wrap);
+
+                    graph.nodeLabelsInitialised = true;
+                }, 25);
+            }
+            
+            graph.width = graph.container[0][0].offsetWidth;
+            graph.height = graph.container[0][0].offsetHeight;
+            graph.container.select('svg').attr({
+                'width': graph.width,
+                'height': graph.height
+            });
+            graph.force.size([graph.width, graph.height]).start();
+        }
+    },
+
+    offsetEdge: function(graph, d) {
+
+        var data = this._data,
+            side = graph.width > graph.height ? graph.width : graph.height,
+            sourceR = side/100 * d.source.r/2,
+            targetR = side/100 * d.target.r/2,
+            sourceCirc = sourceR * 2 * Math.PI,
+            targetCirc = targetR * 2 * Math.PI,
+            stRatio = sourceCirc/targetCirc,
+
+            diffX = d.target.y - d.source.y,
+            diffY = d.target.x - d.source.x,
+
+            angle = (Math.atan2(diffY, diffX) + (Math.PI/2)),
+
+            x1 = d.source.x - (sourceR * Math.cos(angle)),
+            y1 = d.source.y + (sourceR * Math.sin(angle)),
+            x2 = d.target.x + (targetR * Math.cos(angle)),
+            y2 = d.target.y - (targetR * Math.sin(angle));
+
+        return {x1: x1, y1: y1, x2: x2, y2: y2};
+    },
+
+    gravity: function(graph, alpha) {
+
+        var data = this._data;
+        
+        return function(d) {
+            d.x += ((graph.width/100) * d.cx - d.x) * alpha;
+            d.y += ((graph.height/100) * d.cy - d.y) * alpha;
+        };
+    },
+
+    collide: function(graph, alpha) {
+
+        var data = this._data,
+            quadtree = d3.geom.quadtree(graph.nodes);
     
-    while (word = words.pop()) {
-      line.push(word);
-      tspan.text(line.join(" "));
-      if (tspan.node().getComputedTextLength() > width) {
-        line.pop();
-        tspan.text(line.join(" "));
-        line = [word];
-        tspan = text.append("tspan")/*.attr("x", 0).attr("y", y)*/.attr({
-            "x": 0,
-            "y": 0,
-            "dy": ++lineNumber * lineHeight + dy + "em"
-        }).text(word);
-      }
+        return function(d) {
+            var r = d.radius + data.maxNodeRadius + data.nodePadding,
+                nx1 = d.x - r,
+                nx2 = d.x + r,
+                ny1 = d.y - r,
+                ny2 = d.y + r;
+
+            quadtree.visit(function(quad, x1, y1, x2, y2) {
+                if (quad.point && (quad.point !== d)) {
+                    var x = d.x - quad.point.x,
+                        y = d.y - quad.point.y,
+                        l = Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2)),
+                        r = d.radius + quad.point.radius + (d.color !== quad.point.color) * data.nodePadding;
+    
+                    if (l < r) {
+                        l = (l - r) / (l * alpha);
+                        d.x -= x *= l;
+                        d.y -= y *= l;
+                        quad.point.x += x;
+                        quad.point.y += y;
+                    }
+                }
+    
+                return x1 > nx2 || x2 < nx1 || y1 > ny2 || y2 < ny1;
+            });
+        };
+    },
+
+    wrap: function(text) {
+    
+        text.each(function() {
+            var text = d3.select(this),
+                width = parseInt(text.attr('lable-width'), 10),
+                words = text.text().split(/\s+/).reverse(),
+                word = null,
+                line = [],
+                lineNumber = 0,
+                lineHeight = 1, // ems
+                y = text.attr('y'),
+                dy = 0,
+                tspan = text.text(null).append("tspan").attr({
+                    'x': 0,
+                    'y': 0,
+                    'dy': ++lineNumber * lineHeight + dy + 'em'
+                });
+
+            if (words.length === 1) {
+                tspan.text(words[0]);
+                return;
+            }
+
+            while (word = words.pop()) {
+                line.push(word);
+                tspan.text(line.join(' '));
+    
+                if (tspan.node().getComputedTextLength() > width) {
+                    line.pop();
+                    tspan.text(line.join(' '));
+                    line = [word];
+                    tspan = text.append('tspan').attr({
+                        'x': 0,
+                        'y': 0,
+                        'dy': ++lineNumber * lineHeight + dy + 'em'
+                    }).text(word);
+                }
+            }
+        });
+    },
+
+    getBiggerSide: function(name) {
+        var data = this._data,
+            graph = data.graphs[name];
+        
+        return graph.width > graph.height ? graph.width : graph.height;
+    },
+
+    addArrowheads: function(graphName, types) {
+
+        var data = this._data,
+            graph = data.graphs[graphName];
+
+        graph.defs = graph.svg.append('defs');
+
+        for (var i = 0; i < types.length; i++) {
+            graph.defs.append('marker')
+                .attr({'id': graphName + '_' + types[i] + '-arrowhead',
+                    'viewBox': '-0 -5 10 10',
+                    'refX': 7,
+                    'refY': 0,
+                    'orient': 'auto',
+                    'markerWidth': 10,
+                    'markerHeight': 10,
+                    'xoverflow': 'visible'
+                })
+                .append('svg:path')
+                    .attr('d', 'M 0,-5 L 7,0 L 0,5')
+                    .attr('stroke', data.colors[types[i]]);
+        }
+    },
+
+    init: function(htmlNode, dataset) {
+
+        var _this = this,
+            data = this._data,
+            newGraph = null,
+            graphName = 'graph' + Object.keys(data.graphs).length;
+
+        data.graphs[graphName] = {};
+        newGraph = data.graphs[graphName];
+        newGraph.nodeLabelsInitialised = false;
+
+        newGraph.container = d3.select(htmlNode);
+        newGraph.width = newGraph.container[0][0].offsetWidth;
+        newGraph.height = newGraph.container[0][0].offsetHeight;
+
+        newGraph.svg = newGraph.container
+            .append('svg')
+            .attr({
+                'width': newGraph.width,
+                'height': newGraph.height
+            });
+
+        newGraph.force = d3.layout.force()
+            .nodes(dataset.nodes)
+            .links(dataset.edges)
+            .size([newGraph.width, newGraph.height])
+            .linkDistance(function(d) {
+                var source = {
+                        x: (data.graphs[graphName].width/100) * d.source.cx,
+                        y: (data.graphs[graphName].height/100) * d.source.cy
+                    },
+                    target = {
+                        x: (data.graphs[graphName].width/100) * d.target.cx,
+                        y: (data.graphs[graphName].height/100) * d.target.cy
+                    };
+                
+                return Math.sqrt(Math.pow(source.x - target.x, 2) + Math.pow(source.y - target.y, 2));
+            })
+            .charge(0)
+            .gravity(newGraph, 0)
+            .start();
+
+        newGraph.edges = newGraph.svg.selectAll('line')
+            .data(dataset.edges)
+            .enter()
+            .append('line')
+            .attr('id', function(d, i) {
+                return graphName + '_edge_' + i;
+            })
+            .attr('marker-end', function(d) {
+                return 'url(#' + graphName + '_' + (d.type || 'default') + '-arrowhead)';
+            })
+            .style('stroke', function(d) {
+                return data.colors[d.type || 'default'];
+            });
+
+        newGraph.nodes = newGraph.svg.selectAll('circle')
+            .data(dataset.nodes)
+            .enter()
+            .append('circle')
+            .attr({
+                'r': function(d) {
+                    return _this.getBiggerSide(graphName)/100 * (d.r/2);
+                }
+            })
+            .style('stroke', function(d, i) {
+                return data.colors[d.type];
+            })
+            .style('fill', data.colors['dark-bg'])
+            .call(newGraph.force.drag);
+
+        newGraph.nodelabels = newGraph.svg.selectAll('.nodelabel')
+            .data(dataset.nodes)
+            .enter()
+            .append('text')
+            .attr({
+                'text-anchor': 'middle',
+                'x': 0,
+                'y': 0,
+                'class': 'nodelabel',
+                'fill': function(d) {
+                    return data.colors[d.type];
+                },
+                'font-size': function(d) {
+                    return _this.getBiggerSide(graphName)/100 * d.r/8;
+                },
+                'lable-width': function(d) {
+                    return (_this.getBiggerSide(graphName)/100 * d.r) / Math.sqrt(2);
+                }
+            })
+            .text(function(d) {
+                return d.text;
+            });
+
+        newGraph.edgepaths = newGraph.svg.selectAll('.edgepath')
+            .data(dataset.edges)
+            .enter()
+            .append('path')
+            .attr({
+                'd': function(d) {
+                    return 'M ' + d.source.x + ' ' + d.source.y + ' L ' + d.target.x + ' ' + d.target.y;
+                },
+                'class': 'edgepath',
+                'id': function(d, i) {
+                    return graphName + '_edgepath_' + i;
+                }
+            });
+
+        newGraph.edgelabels = newGraph.svg.selectAll('.edgelabel')
+            .data(dataset.edges)
+            .enter()
+            .append('text')
+            .attr({
+                'class': 'edgelabel',
+                'id': function(d, i) {
+                    return graphName + '_edgelabel_' + i;
+                },
+                'dx': 0,
+                'dy': -5,
+                'fill': function(d) {
+                    return data.colors[d.type || 'default'];
+                }
+            });
+
+        newGraph.edgelabels.append('textPath')
+            .attr('xlink:href', function(d, i) {
+                return '#' + graphName + '_edgepath_' + i;
+            })
+            .attr('startOffset', '50%')
+            .attr('text-anchor', 'middle')
+            .text(function(d, i) {
+                return d.text;
+            });
+
+        this.addArrowheads(graphName, ['default', 'relation']);
+
+        setTimeout(function() {
+            if (htmlNode.offsetWidth > 0 || htmlNode.offsetHeight > 0) {
+                newGraph.svg
+                    .selectAll('.nodelabel')
+                    .call(_this.wrap);
+
+                newGraph.nodeLabelsInitialised = true;
+            }
+        }, 25);
+
+        newGraph.force.on('tick', function(e) {
+
+            newGraph.nodes
+                .each(_this.gravity(newGraph, 0.2 * e.alpha))
+                .each(_this.collide(newGraph, 0.5))
+                .attr('r', function(d) {
+                    return _this.getBiggerSide(graphName)/100 * (d.r/2);
+                })
+                .attr('cx', function(d) {
+                    return d.x;
+                })
+                .attr('cy', function(d) {
+                    return d.y;
+                });
+
+            newGraph.edges.each(function(d) {
+                var altCoords = _this.offsetEdge(newGraph, d);
+                
+                d3.select(this)
+                  .attr('x1', altCoords.x1)
+                  .attr('y1', altCoords.y1)
+                  .attr('x2', altCoords.x2)
+                  .attr('y2', altCoords.y2);
+            });
+
+            newGraph.nodelabels.attr({
+                'transform': function(d) {
+                    return 'translate(' + d.x + ',' + (d.y - this.getBoundingClientRect().height/2) + ')';
+                },
+                'font-size': function(d) {
+                    return _this.getBiggerSide(graphName)/100 * d.r/8;
+                },
+                'style': function(d) {
+                    if (!newGraph.nodeLabelsInitialised) {
+                        return '';
+                    }
+
+                    var fontSize = _this.getBiggerSide(graphName)/100 * d.r/8;
+
+                    return fontSize < 8 ? 'display: none;' : '';
+                }
+            });
+
+            newGraph.edgepaths.attr('d', function(d) {
+                var altCoords = _this.offsetEdge(newGraph, d),
+                    path = 'M ' + altCoords.x1 + ' ' + altCoords.y1 + ' L ' + altCoords.x2 + ' ' + altCoords.y2;
+
+                return path;
+            });
+
+            newGraph.edgelabels.attr({
+                'transform': function(d, i) {
+
+                    if (d.target.x < d.source.x) {
+                        var bbox = this.getBBox(),
+                            rx = bbox.x + bbox.width/2,
+                            ry = bbox.y + bbox.height/2;
+                        
+                        return 'rotate(180 ' + rx + ' ' + ry + ')';
+                    } else {
+                        return 'rotate(0)';
+                    }
+                }
+            });
+        });
     }
-  });
-}
-
-setTimeout(function() {
-    svg
-        .selectAll(".nodelabel")
-        .call(wrap, r);
-}, 25);
- 
-force.on("tick", function(e) {
-    nodes
-        .each(gravity(.2 * e.alpha))
-        .each(collide(.5))
-        .attr("cx", function(d) { return d.x; })
-        .attr("cy", function(d) { return d.y; })
-        /*.attr({
-            "cx":function(d){
-                return d.x = Math.max(r, Math.min(w - r, d.x));
-            },
-            "cy":function(d){
-                return d.y = Math.max(r, Math.min(h - r, d.y));
-            }
-        })*/;
-    
-    edges
-        .attr({
-            "x1": function(d){return d.source.x;},
-            "y1": function(d){return d.source.y;},
-            "x2": function(d){return d.target.x;},
-            "y2": function(d){return d.target.y;}
-        });
-
-
-    nodelabels
-        .attr("transform", function(d) { return "translate(" + d.x + "," + (d.y - this.getBoundingClientRect().height/2) + ")"; })
-        /*.attr("x", function(d) { return d.x; })
-        .attr("y", function(d) { return d.y + r/4; })*/;
-
-    edgepaths
-        .attr('d', function(d) {
-            var path='M '+d.source.x+' '+d.source.y+' L '+ d.target.x +' '+d.target.y;
-            //console.log(d)
-            return path;
-        });
-
-    edgelabels
-        .attr('transform', function(d, i) {
-            if (d.target.x < d.source.x) {
-                bbox = this.getBBox();
-                rx = bbox.x + bbox.width/2;
-                ry = bbox.y + bbox.height/2;
-                return 'rotate(180 ' + rx + ' ' + ry + ')';
-            } else {
-                return 'rotate(0)';
-            }
-        });
-});
+};
