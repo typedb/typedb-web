@@ -53,7 +53,8 @@ window.MNDMPS.App = {
 
         this.typist();
         
-        window.MNDMPS.Splitter.create(document.getElementById('code-container').querySelectorAll('[data-splitter="view"]')[0]);
+        var codeSplitter = window.MNDMPS.Splitter.create(document.getElementById('code-container').querySelectorAll('[data-splitter="view"]')[0]);
+        window.MNDMPS.Splitter.initAutomove(codeSplitter);
         window.MNDMPS.Splitter.init();
 
         window.MNDMPS.Tabs.init(document.getElementById('code-container').querySelectorAll('[data-tabs="view"]')[0]);

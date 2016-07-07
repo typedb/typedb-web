@@ -8,18 +8,51 @@ window.MNDMPS.Splitter = {
         transitionXRegex: /\.*translateX\((.*)px\)/i
     },
 
+    moveClip: function(obj) {
+        obj.splitter.setAttribute('data-clip', obj.pos);
+
+        if (document.documentElement.style.hasOwnProperty('webkitClipPath')) {
+            obj.splitter.style.webkitClipPath = 'inset(0px 0px 0px ' + obj.pos + 'px)';
+        } else {
+            obj.splitter.style.clip = 'rect(0px, ' + obj.splitter.view.offsetWidth + 'px, ' + obj.splitter.view.offsetHeight + 'px, ' + obj.pos + 'px)';
+        }
+    },
+
+    moveKnob: function(obj) {
+        obj.knob.setAttribute('data-translate', obj.pos);
+        obj.knob.style.transform = 'translateX(' + obj.pos + 'px)';
+    },
+
+    setNewContainerWidth: function(splitter) {
+        splitter.view.setAttribute('data-width', splitter.view.offsetWidth);
+    },
+
+    getChangePercent: function(splitter) {
+        var width = parseInt(splitter.view.getAttribute('data-width'), 10),
+            newWidth = splitter.view.offsetWidth;
+
+        return (newWidth - width) / width;
+    },
+
+    getNewPos: function(splitter, oldPos, changePercent) {
+        var newPos = null;
+
+        if (changePercent < 0) {
+            newPos = oldPos + Math.floor(oldPos * changePercent);
+        } else {
+            newPos = oldPos + Math.ceil(oldPos * changePercent);
+        }
+
+        return newPos;
+    },
+
     resizeSplitters: function() {
 
-        var data = window.MNDMPS.Splitter._data,
+        var _this = window.MNDMPS.Splitter,
+            data = _this._data,
             splitters = data.splitters,
             changePercent = null,
-            width = null,
-            newHeight = null,
-            newWidth = null,
-            dragPos = null,
-            newDragPos = null,
-            clipPos = null,
-            newClipPos = null;
+            dragPos = null;
 
         for (var i = 0; i < splitters.length; i++) {
             dragPos = splitters[i].dragger.getAttribute('data-translate');
@@ -27,41 +60,22 @@ window.MNDMPS.Splitter = {
             if (dragPos === null || parseInt(dragPos, 10) <= 10) {
                 continue;
             }
-            
-            width = parseInt(splitters[i].view.getAttribute('data-width'), 10);
-            newWidth = splitters[i].view.offsetWidth;
-            newHeight = splitters[i].view.offsetHeight;
-            changePercent = (newWidth - width) / width;
-            splitters[i].view.setAttribute('data-width', newWidth);
 
-            dragPos = parseInt(dragPos, 10);
-            
-            if (changePercent < 0) {
-                newDragPos = dragPos + Math.floor(dragPos * changePercent);
-            } else {
-                newDragPos = dragPos + Math.ceil(dragPos * changePercent);
-            }
+            changePercent = _this.getChangePercent(splitters[i]);
 
-            splitters[i].dragger.setAttribute('data-translate', newDragPos);
-            splitters[i].dragger.style.transform = 'translateX(' + newDragPos + 'px)';
+            _this.moveKnob({
+                knob: splitters[i].dragger,
+                pos: _this.getNewPos(splitters[i], parseInt(dragPos, 10), changePercent)
+            });
 
             for (var j = 0; j < splitters[i].slides.length; j++) {
-                clipPos = parseInt(splitters[i].slides[j].children[1].getAttribute('data-clip'), 10);
-
-                if (changePercent < 0) {
-                    newClipPos = clipPos + Math.floor(clipPos * changePercent);
-                } else {
-                    newClipPos = clipPos + Math.ceil(clipPos * changePercent);
-                }
-
-                splitters[i].slides[j].children[1].setAttribute('data-clip', newClipPos);
-
-                if (document.documentElement.style.hasOwnProperty('webkitClipPath')) {
-                    splitters[i].slides[j].children[1].style.webkitClipPath = 'inset(0px 0px 0px ' + newClipPos + 'px)';
-                } else {
-                    splitters[i].slides[j].children[1].style.clip = 'rect(0px, ' + newWidth + 'px, ' + newHeight + 'px, ' + newClipPos + 'px)';
-                }
+                _this.moveClip({
+                    splitter: splitters[i].slides[j].children[1],
+                    pos: _this.getNewPos(splitters[i], parseInt(splitters[i].slides[j].children[1].getAttribute('data-clip'), 10), changePercent)
+                });
             }
+
+            _this.setNewContainerWidth(splitters[i]);
         }
     },
 
@@ -137,6 +151,10 @@ window.MNDMPS.Splitter = {
 
         function startDrag(event) {
 
+            if (obj.automoveHandler) {
+                _this.cancelAutomove(obj);
+            }
+
             if (event.touches && event.touches.length) {
                 data.mouseX = event.touches[0].pageX;
             } else {
@@ -175,13 +193,15 @@ window.MNDMPS.Splitter = {
                 view: el,
                 dragger: el.querySelectorAll('[data-splitter="drag"]')[0],
                 slides: el.querySelectorAll('[data-splitter="slides"]')[0].children
-            };
+            },
+            initialPercent = 5,
+            initialPos = null,
+            slides = null;
 
         data.clipX = 0;
         splitter.view.setAttribute('data-width', splitter.view.offsetWidth);
 
         this.initDragger(splitter);
-
         this.processSlides(splitter);
 
         if (!data.splitters) {
@@ -189,6 +209,56 @@ window.MNDMPS.Splitter = {
         }
 
         data.splitters.push(splitter);
+
+        initialPos = Math.floor(splitter.view.offsetWidth/100 * initialPercent);
+        slides = splitter.slides;
+
+        window.MNDMPS.Splitter.moveKnob({
+            knob: splitter.dragger,
+            pos: initialPos
+        });
+
+        for (var i = 0; i < slides.length; i++) {
+            window.MNDMPS.Splitter.moveClip({
+                splitter: slides[i].children[1],
+                pos: initialPos
+            });
+        }
+
+        return splitter;
+    },
+
+    cancelAutomove: function(splitter) {
+        window.removeEventListener('scroll', splitter.automoveHandler, false);
+    },
+
+    initAutomove: function(splitter) {
+        splitter.automoveHandler = function() {
+            var view = splitter.view,
+                viewOffset = view.getBoundingClientRect(),
+                windowPercent = window.innerHeight/100,
+                scrolledPercent = 100 - ((viewOffset.top + view.offsetHeight/2) / windowPercent),
+                newPos = Math.floor(view.offsetWidth/100 * scrolledPercent),
+                slides = splitter.slides;
+
+            if (scrolledPercent <= 5 || scrolledPercent >= 95) {
+                return;
+            }
+
+            window.MNDMPS.Splitter.moveKnob({
+                knob: splitter.dragger,
+                pos: newPos
+            });
+
+            for (var i = 0; i < slides.length; i++) {
+                window.MNDMPS.Splitter.moveClip({
+                    splitter: slides[i].children[1],
+                    pos: newPos
+                });
+            }
+        }
+        
+        window.addEventListener('scroll', splitter.automoveHandler, false);
     },
 
     init: function() {

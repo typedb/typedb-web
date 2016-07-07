@@ -7,6 +7,10 @@ window.MNDMPS.Graph = {
     _data: {
         graphs: {},
         maxNodeRadius: 60,
+        minEdgeFont: 8,
+        maxEdgeFont: 10,
+        minNodeFont: 8,
+        maxNodeFont: 12,
         nodePadding: 5,
         colors: {
             'default':       '#bbbcbc',
@@ -33,18 +37,8 @@ window.MNDMPS.Graph = {
             if (pointer && pointer !== key) {
                 continue;
             }
-            
+
             graph = graphs[key];
-
-            if (!graph.nodeLabelsInitialised) {
-                setTimeout(function() {
-                    graph.svg
-                        .selectAll('.nodelabel')
-                        .call(_this.wrap);
-
-                    graph.nodeLabelsInitialised = true;
-                }, 25);
-            }
             
             graph.width = graph.container[0][0].offsetWidth;
             graph.height = graph.container[0][0].offsetHeight;
@@ -52,7 +46,25 @@ window.MNDMPS.Graph = {
                 'width': graph.width,
                 'height': graph.height
             });
+
+            if (!graph.nodeLabelsInitialised) {
+                setTimeout(function() {
+                    graph.svg
+                        .selectAll('.nodelabel')
+                        .attr('lable-width', function(d) {
+                            return (_this.getBiggerSide(key)/100 * d.r) / Math.sqrt(2);
+                        })
+                        .call(_this.wrap);
+
+                    graph.nodeLabelsInitialised = true;
+                }, 25);
+            }
+
             graph.force.size([graph.width, graph.height]).start();
+
+            if (pointer === key) {
+                break;
+            }
         }
     },
 
@@ -133,11 +145,10 @@ window.MNDMPS.Graph = {
                 lineNumber = 0,
                 lineHeight = 1, // ems
                 y = text.attr('y'),
-                dy = 0,
                 tspan = text.text(null).append("tspan").attr({
                     'x': 0,
                     'y': 0,
-                    'dy': ++lineNumber * lineHeight + dy + 'em'
+                    'dy': ++lineNumber * lineHeight + 'em'
                 });
 
             if (words.length === 1) {
@@ -156,7 +167,7 @@ window.MNDMPS.Graph = {
                     tspan = text.append('tspan').attr({
                         'x': 0,
                         'y': 0,
-                        'dy': ++lineNumber * lineHeight + dy + 'em'
+                        'dy': ++lineNumber * lineHeight + 'em'
                     }).text(word);
                 }
             }
@@ -166,7 +177,7 @@ window.MNDMPS.Graph = {
     getBiggerSide: function(name) {
         var data = this._data,
             graph = data.graphs[name];
-        
+
         return graph.width > graph.height ? graph.width : graph.height;
     },
 
@@ -277,11 +288,17 @@ window.MNDMPS.Graph = {
                 'fill': function(d) {
                     return data.colors[d.type];
                 },
-                'font-size': function(d) {
-                    return _this.getBiggerSide(graphName)/100 * d.r/8;
-                },
                 'lable-width': function(d) {
                     return (_this.getBiggerSide(graphName)/100 * d.r) / Math.sqrt(2);
+                },
+                'style': function(d) {
+                    var fontSize = _this.getBiggerSide(graphName)/100 * d.r/8;
+
+                    if (fontSize > data.maxNodeFont) {
+                        fontSize = data.maxNodeFont;
+                    }
+
+                    return 'font-size: ' + fontSize + 'px;';
                 }
             })
             .text(function(d) {
@@ -369,17 +386,25 @@ window.MNDMPS.Graph = {
                 'transform': function(d) {
                     return 'translate(' + d.x + ',' + (d.y - this.getBoundingClientRect().height/2) + ')';
                 },
-                'font-size': function(d) {
-                    return _this.getBiggerSide(graphName)/100 * d.r/8;
-                },
                 'style': function(d) {
                     if (!newGraph.nodeLabelsInitialised) {
                         return '';
                     }
+                    
+                    var newStyle = [],
+                        fontSize = _this.getBiggerSide(graphName)/100 * d.r/8;
 
-                    var fontSize = _this.getBiggerSide(graphName)/100 * d.r/8;
+                    if (fontSize > data.maxNodeFont) {
+                        fontSize = data.maxNodeFont;
+                    }
 
-                    return fontSize < 8 ? 'display: none;' : '';
+                    newStyle.push('font-size: ' + fontSize + 'px;');
+
+                    if (fontSize < data.minNodeFont) {
+                        newStyle.push('display: none;');
+                    }
+
+                    return newStyle.join(' ');
                 }
             });
 
@@ -402,6 +427,22 @@ window.MNDMPS.Graph = {
                     } else {
                         return 'rotate(0)';
                     }
+                },
+                'style': function(d) {
+                    var newStyle = [],
+                        fontSize = _this.getBiggerSide(graphName)/100 * 1.3;
+
+                    if (fontSize > data.maxEdgeFont) {
+                        fontSize = data.maxEdgeFont;
+                    }
+
+                    newStyle.push('font-size: ' + fontSize + 'px;');
+
+                    if (fontSize < data.minEdgeFont) {
+                        newStyle.push('display: none;');
+                    }
+
+                    return newStyle.join(' ');
                 }
             });
         });
