@@ -27,9 +27,37 @@ window.MNDMPS.Graph = {
         }
     },
 
+    resizeFont: function(graphName, svgElement, type, postRender) {
+        var data = this._data,
+            newStyle = [],
+            fontSize = null;
+
+        switch(type) {
+            case 'Node':
+                fontSize = this.getBiggerSide(graphName)/100 * svgElement.r/8;
+                break;
+            case 'Edge':
+                fontSize = this.getBiggerSide(graphName)/100 * 1.3;
+                break;
+        }
+
+        if (fontSize > data['max' + type + 'Font']) {
+            fontSize = data['max' + type + 'Font'];
+        }
+
+        newStyle.push('font-size: ' + fontSize + 'px;');
+
+        if (postRender && fontSize < data['min' + type + 'Font']) {
+            newStyle.push('display: none;');
+        }
+
+        return newStyle.join(' ');
+    },
+
     redraw: function(pointer) {
 
         var _this = this,
+            data = this._data,
             graphs = this._data.graphs,
             graph = null;
 
@@ -51,8 +79,13 @@ window.MNDMPS.Graph = {
                 setTimeout(function() {
                     graph.svg
                         .selectAll('.nodelabel')
-                        .attr('lable-width', function(d) {
-                            return (_this.getBiggerSide(key)/100 * d.r) / Math.sqrt(2);
+                        .attr({
+                            'style': function(d) {
+                                return _this.resizeFont(key, d, 'Node', false);
+                            },
+                            'lable-width': function(d) {
+                                return (_this.getBiggerSide(key)/100 * d.r) / Math.sqrt(2);
+                            }
                         })
                         .call(_this.wrap);
 
@@ -200,8 +233,10 @@ window.MNDMPS.Graph = {
                     'xoverflow': 'visible'
                 })
                 .append('svg:path')
-                    .attr('d', 'M 0,-5 L 7,0 L 0,5')
-                    .attr('stroke', data.colors[types[i]]);
+                    .attr({
+                        'd': 'M 0,-5 L 7,0 L 0,5',
+                        'stroke': data.colors[types[i]]
+                    });
         }
     },
 
@@ -251,14 +286,16 @@ window.MNDMPS.Graph = {
             .data(dataset.edges)
             .enter()
             .append('line')
-            .attr('id', function(d, i) {
-                return graphName + '_edge_' + i;
-            })
-            .attr('marker-end', function(d) {
-                return 'url(#' + graphName + '_' + (d.type || 'default') + '-arrowhead)';
-            })
-            .style('stroke', function(d) {
-                return data.colors[d.type || 'default'];
+            .attr({
+                'id': function(d, i) {
+                    return graphName + '_edge_' + i;
+                },
+                'marker-end': function(d) {
+                    return 'url(#' + graphName + '_' + (d.type || 'default') + '-arrowhead)';
+                },
+                'style': function(d) {
+                    return 'stroke: ' + data.colors[d.type || 'default'];
+                }
             });
 
         newGraph.nodes = newGraph.svg.selectAll('circle')
@@ -268,12 +305,11 @@ window.MNDMPS.Graph = {
             .attr({
                 'r': function(d) {
                     return _this.getBiggerSide(graphName)/100 * (d.r/2);
+                },
+                'style': function(d) {
+                    return 'stroke: ' + data.colors[d.type] + '; ' + 'fill: ' + data.colors['dark-bg'];
                 }
             })
-            .style('stroke', function(d, i) {
-                return data.colors[d.type];
-            })
-            .style('fill', data.colors['dark-bg'])
             .call(newGraph.force.drag);
 
         newGraph.nodelabels = newGraph.svg.selectAll('.nodelabel')
@@ -292,13 +328,7 @@ window.MNDMPS.Graph = {
                     return (_this.getBiggerSide(graphName)/100 * d.r) / Math.sqrt(2);
                 },
                 'style': function(d) {
-                    var fontSize = _this.getBiggerSide(graphName)/100 * d.r/8;
-
-                    if (fontSize > data.maxNodeFont) {
-                        fontSize = data.maxNodeFont;
-                    }
-
-                    return 'font-size: ' + fontSize + 'px;';
+                    return _this.resizeFont(graphName, d, 'Node', false);
                 }
             })
             .text(function(d) {
@@ -335,12 +365,15 @@ window.MNDMPS.Graph = {
                 }
             });
 
-        newGraph.edgelabels.append('textPath')
-            .attr('xlink:href', function(d, i) {
-                return '#' + graphName + '_edgepath_' + i;
+        newGraph.edgelabels
+            .append('textPath')
+            .attr({
+                'xlink:href': function(d, i) {
+                    return '#' + graphName + '_edgepath_' + i;
+                },
+                'startOffset': '50%',
+                'text-anchor': 'middle'
             })
-            .attr('startOffset', '50%')
-            .attr('text-anchor', 'middle')
             .text(function(d, i) {
                 return d.text;
             });
@@ -362,89 +395,65 @@ window.MNDMPS.Graph = {
             newGraph.nodes
                 .each(_this.gravity(newGraph, 0.2 * e.alpha))
                 .each(_this.collide(newGraph, 0.5))
-                .attr('r', function(d) {
-                    return _this.getBiggerSide(graphName)/100 * (d.r/2);
-                })
-                .attr('cx', function(d) {
-                    return d.x;
-                })
-                .attr('cy', function(d) {
-                    return d.y;
+                .attr({
+                    'r': function(d) {
+                        return _this.getBiggerSide(graphName)/100 * (d.r/2);
+                    },
+                    'cx': function(d) {
+                        return d.x;
+                    },
+                    'cy': function(d) {
+                        return d.y;
+                    }
                 });
 
-            newGraph.edges.each(function(d) {
-                var altCoords = _this.offsetEdge(newGraph, d);
-                
-                d3.select(this)
-                  .attr('x1', altCoords.x1)
-                  .attr('y1', altCoords.y1)
-                  .attr('x2', altCoords.x2)
-                  .attr('y2', altCoords.y2);
-            });
-
-            newGraph.nodelabels.attr({
-                'transform': function(d) {
-                    return 'translate(' + d.x + ',' + (d.y - this.getBoundingClientRect().height/2) + ')';
-                },
-                'style': function(d) {
-                    if (!newGraph.nodeLabelsInitialised) {
-                        return '';
-                    }
+            newGraph.edges
+                .each(function(d) {
+                    var altCoords = _this.offsetEdge(newGraph, d);
                     
-                    var newStyle = [],
-                        fontSize = _this.getBiggerSide(graphName)/100 * d.r/8;
+                    d3.select(this).attr({
+                        'x1': altCoords.x1,
+                        'y1': altCoords.y1,
+                        'x2': altCoords.x2,
+                        'y2': altCoords.y2
+                    });
+                });
 
-                    if (fontSize > data.maxNodeFont) {
-                        fontSize = data.maxNodeFont;
+            newGraph.nodelabels
+                .attr('transform', function(d) {
+                    return 'translate(' + d.x + ', ' + (d.y - this.getBoundingClientRect().height/2) + ')';
+                });
+
+            if (newGraph.nodeLabelsInitialised) {
+                newGraph.nodelabels
+                    .attr('style', function(d) {
+                        return _this.resizeFont(graphName, d, 'Node', true);
+                    });
+            }
+
+            newGraph.edgepaths
+                .attr('d', function(d) {
+                    var altCoords = _this.offsetEdge(newGraph, d);
+                    return 'M ' + altCoords.x1 + ' ' + altCoords.y1 + ' L ' + altCoords.x2 + ' ' + altCoords.y2;
+                });
+
+            newGraph.edgelabels
+                .attr({
+                    'transform': function(d, i) {
+                        if (d.target.x < d.source.x) {
+                            var bbox = this.getBBox(),
+                                rx = bbox.x + bbox.width/2,
+                                ry = bbox.y + bbox.height/2;
+                            
+                            return 'rotate(180 ' + rx + ' ' + ry + ')';
+                        } else {
+                            return 'rotate(0)';
+                        }
+                    },
+                    'style': function(d) {
+                        return _this.resizeFont(graphName, d, 'Edge', true);
                     }
-
-                    newStyle.push('font-size: ' + fontSize + 'px;');
-
-                    if (fontSize < data.minNodeFont) {
-                        newStyle.push('display: none;');
-                    }
-
-                    return newStyle.join(' ');
-                }
-            });
-
-            newGraph.edgepaths.attr('d', function(d) {
-                var altCoords = _this.offsetEdge(newGraph, d),
-                    path = 'M ' + altCoords.x1 + ' ' + altCoords.y1 + ' L ' + altCoords.x2 + ' ' + altCoords.y2;
-
-                return path;
-            });
-
-            newGraph.edgelabels.attr({
-                'transform': function(d, i) {
-
-                    if (d.target.x < d.source.x) {
-                        var bbox = this.getBBox(),
-                            rx = bbox.x + bbox.width/2,
-                            ry = bbox.y + bbox.height/2;
-                        
-                        return 'rotate(180 ' + rx + ' ' + ry + ')';
-                    } else {
-                        return 'rotate(0)';
-                    }
-                },
-                'style': function(d) {
-                    var newStyle = [],
-                        fontSize = _this.getBiggerSide(graphName)/100 * 1.3;
-
-                    if (fontSize > data.maxEdgeFont) {
-                        fontSize = data.maxEdgeFont;
-                    }
-
-                    newStyle.push('font-size: ' + fontSize + 'px;');
-
-                    if (fontSize < data.minEdgeFont) {
-                        newStyle.push('display: none;');
-                    }
-
-                    return newStyle.join(' ');
-                }
-            });
+                });
         });
     }
 };

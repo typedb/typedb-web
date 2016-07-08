@@ -135,6 +135,29 @@
                     }
 
                     svg{
+                        line{
+                            stroke-width: 1px;
+                            stroke: $gray-light-4;
+                        }
+
+                        circle{
+                            stroke-width: 1px;
+                            stroke: $gray-light-4;
+                            fill: transparent;
+                        }
+
+                        text{
+                            stroke-width: 0;
+                            stroke: transparent;
+                            //fill: $gray-light-4;
+                        }
+
+                        >path{
+                            stroke-width: 0;
+                            stroke: transparent;
+                            fill: transparent;
+                        }
+                        
                         .nodelabel,
                         .edgelabel{
                             pointer-events: none;
@@ -142,7 +165,11 @@
                         
                         marker{
                             path{
+                                stroke-width: 1px;
+                                //stroke: $gray-light-4;
                                 fill: transparent;
+                                stroke-linejoin: round;
+                                stroke-linecap: round;
                             }
                         }
                     }
