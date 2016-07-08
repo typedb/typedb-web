@@ -17,7 +17,8 @@ window.MNDMPS.Tabs = {
 
         function switchTab(event) {
             
-            var index = event.target.getAttribute('data-tabs-index');
+            var index = event.target.getAttribute('data-tabs-index'),
+                prevIndex = null;
 
             if (index === null) {
                 return;
@@ -26,12 +27,17 @@ window.MNDMPS.Tabs = {
             index = parseInt(index, 10);
 
             for (var i = 0; i < tabs.length; i++) {
+                if (tabs[i].classList.contains('active')) {
+                    prevIndex = i;
+                }
+                
                 tabs[i].classList.remove('active');
             }
 
             event.target.classList.add('active');
 
             _this.processTabs(tabbed, index);
+            window.MNDMPS.Graph.stop('graph' + prevIndex);
             window.MNDMPS.Graph.redraw('graph' + index);
         }
 

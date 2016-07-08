@@ -54,6 +54,10 @@ window.MNDMPS.Graph = {
         return newStyle.join(' ');
     },
 
+    stop: function(pointer) {
+        this._data.graphs[pointer].force.stop();
+    },
+
     redraw: function(pointer) {
 
         var _this = this,
@@ -279,8 +283,7 @@ window.MNDMPS.Graph = {
                 return Math.sqrt(Math.pow(source.x - target.x, 2) + Math.pow(source.y - target.y, 2));
             })
             .charge(0)
-            .gravity(newGraph, 0)
-            .start();
+            .gravity(newGraph, 0);
 
         newGraph.edges = newGraph.svg.selectAll('line')
             .data(dataset.edges)
@@ -380,15 +383,17 @@ window.MNDMPS.Graph = {
 
         this.addArrowheads(graphName, ['default', 'relation']);
 
-        setTimeout(function() {
-            if (htmlNode.offsetWidth > 0 || htmlNode.offsetHeight > 0) {
+        if (htmlNode.offsetWidth > 0 || htmlNode.offsetHeight > 0) {
+            setTimeout(function() {
                 newGraph.svg
                     .selectAll('.nodelabel')
                     .call(_this.wrap);
 
                 newGraph.nodeLabelsInitialised = true;
-            }
-        }, 25);
+            }, 25);
+
+            newGraph.force.start();
+        }
 
         newGraph.force.on('tick', function(e) {
 
