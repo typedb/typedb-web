@@ -51,6 +51,8 @@ window.MNDMPS.App = {
         var data = this._data,
             codeEditor = document.getElementsByClassName('editor')[0];
 
+        window.MNDMPS.Nav.init();
+
         this.typist();
         
         var codeSplitter = window.MNDMPS.Splitter.create(document.getElementById('code-container').querySelectorAll('[data-splitter="view"]')[0]);

@@ -7,6 +7,32 @@
         border-radius: 3px;
         position: relative;
 
+        .info{
+            //color: $white;
+            position: absolute;
+            bottom: 100%;
+            font-size: 0.8rem;
+            width: 100%;
+            display: flex;
+            flex-flow: row nowrap;
+            justify-content: flex-start;
+            align-items: flex-start;
+
+            span{
+                flex: 1 1 auto;
+            }
+
+            svg{
+                fill: $black-brand;
+                width: 16px;
+                height: 16px;
+                position: relative;
+                top: -1px;
+                vertical-align: middle;
+                display: inline-block;
+            }
+        }
+
         .controls{
             width: 8px;
             height: 8px;

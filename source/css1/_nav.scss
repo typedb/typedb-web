@@ -1,0 +1,379 @@
+.container{
+    &.nav{
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        max-width: 100%;
+        padding: 0;
+        z-index: 10;
+        height: 40px;
+        margin: 0;
+        transition: box-shadow 200ms ease-in-out, background-color 200ms ease-in-out, height 200ms ease-in-out;
+
+        .logo{
+            text-decoration: none;
+            display: block;
+            margin: 5px 0 0 5px;
+            float: left;
+            color: $white;
+            white-space: nowrap;
+            transition: margin 200ms ease-in-out, color 200ms ease-in-out;
+
+            h1{
+                text-transform: uppercase;
+                font-weight: 400;
+                font-size: 0.7rem;
+                letter-spacing: 0.1rem;
+                line-height: 18px;
+                margin: 0;
+                transition: margin 200ms ease-in-out, font-size 200ms ease-in-out;
+            }
+
+            span{
+                font-size: 0.6rem;
+                line-height: 8px;
+                display: block;
+                transition: margin 200ms ease-in-out, font-size 200ms ease-in-out;
+            }
+
+            svg{
+                width: 30px;
+                height: 30px;
+                float: left;
+                margin-right: 0.3rem;
+                transition: width 200ms ease-in-out, height 200ms ease-in-out;
+
+                use{
+                    transition: stroke 200ms ease-in-out;
+                    stroke: $white;
+                }
+            }
+        }
+
+        .menu{
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            transition: background-color 200ms ease-in-out;
+
+            .toggle{
+                position: absolute;
+                top: 0;
+                right: 0;
+                height: 40px;
+                width: 40px;
+                pointer-events: auto;
+                z-index: 1;
+                cursor: pointer;
+
+                span{
+                    display: block;
+                    width: 50%;
+                    height: 1px;
+                    background-color: $white;
+                    position: absolute;
+                    left: 25%;
+                    top: 50%;
+                    pointer-events: none;
+                    transition: background-color 200ms ease-in-out;
+
+                    &:before,
+                    &:after{
+                        content: '';
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        width: 100%;
+                        height: 1px;
+                        background-color: $white;
+                        transition: margin-top 200ms ease-in-out, background-color 200ms ease-in-out, transform 200ms ease-in-out;
+                    }
+
+                    &:before{
+                        margin-top: -8px;
+                    }
+
+                    &:after{
+                        margin-top: 8px;
+                    }
+                }
+            }
+
+            ul{
+                list-style: none;
+                background-color: $white;
+                position: absolute;
+                margin: 0;
+                padding: 10px 0;
+                top: 0;
+                left: 0;
+                width: 100%;
+                transform: translateY(-100%);
+                transition: transform 200ms ease-in-out;
+
+                li{
+                    text-align: center;
+
+                    a{
+                        font-size: 1.1rem;
+                        display: inline-block;
+                        text-decoration: none;
+                        position: relative;
+                        color: $black-brand;
+                        line-height: 30px;
+
+                        &.github{
+
+                            &:after{
+                                display: none;
+                            }
+
+                            svg{
+                                display: inline-block;
+                                vertical-align: middle;
+                                width: 30px;
+                                height: 30px;
+
+                                use{
+                                    stroke: transparent;
+                                    stroke-width: 0;
+                                    fill: $black-brand;
+                                }
+                            }
+
+                            span{
+                                display: none;
+                            }
+                        }
+                    }
+                }
+            }
+
+            &.active{
+                pointer-events: auto;
+                background-color: rgba($black-brand, 0.8);
+
+                .toggle{
+                    span{
+                        background-color: transparent;
+                        
+                        &:before,
+                        &:after{
+                            background-color: $black-brand;
+                            margin-top: 0;
+                        }
+
+                        &:before{
+                            transform: rotate(-225deg);
+                        }
+
+                        &:after{
+                            transform: rotate(-135deg);
+                        }
+                    }
+                }
+
+                ul{
+                    transform: translateY(0);
+                }
+            }
+        }
+
+        &.white{
+            box-shadow: 0 1px 0 0 rgba($black-brand, 0.2);
+            background-color: $white;
+
+            .logo{
+                color: $black-brand;
+
+                svg{
+                    use{
+                        stroke: $black-brand;
+                    }
+                }
+            }
+
+            .menu{
+                .toggle{
+                    span{
+                        background-color: $black-brand;
+                        
+                        &:before,
+                        &:after{
+                            background-color: $black-brand;
+                        }
+                    }
+                }
+
+                &.active{
+                    .toggle{
+                        span{
+                            background-color: transparent;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+/* Larger than mobile */
+@media (min-width: 400px) {}
+
+/* Larger than phablet (also point when grid becomes active) */
+@media (min-width: 550px) {
+    .container{
+        &.nav{
+            .menu{
+                ul{
+                    padding: 20px 0;
+
+                    li{
+                        a{
+                            line-height: 40px;
+
+                            &.github{
+                                svg{
+                                    width: 36px;
+                                    height: 36px;
+                                    position: relative;
+                                    top: -2px;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+/* Larger than tablet */
+@media (min-width: 750px) {
+    .container{
+        &.nav{
+            height: 50px;
+
+            .logo{
+                margin: 10px 0 0 10px;
+                
+                h1,
+                span{
+                    margin-left: 5px;
+                }
+            }
+
+            .menu{
+                position: absolute;
+                top: 0;
+                right: 0;
+                left: auto;
+                background-color: transparent;
+
+                ul{
+                    background-color: transparent;
+                    position: relative;
+                    padding: 0;
+                    float: right;
+                    left: auto;
+                    width: auto;
+                    margin-top: 40px;
+
+                    li{
+                        display: inline-block;
+                        text-align: left;
+                        margin-right: 1rem;
+
+                        a{
+                            line-height: 20px;
+                            margin-top: 15px;
+                            font-size: 0.8rem;
+                            display: block;
+                            color: $white;
+                            pointer-events: auto;
+                            transition: color 200ms ease-in-out;
+
+                            &:after{
+                                content: '';
+                                width: 100%;
+                                height: 1px;
+                                background-color: $white;
+                                position: absolute;
+                                bottom: 0;
+                                left: 0;
+                                transition: transform 200ms ease-in-out;
+                                transform: scale(0, 1);
+                                transform-origin: right top;
+                            }
+
+                            &:hover{
+                                &:after{
+                                    transform-origin: left top;
+                                    transform: scale(1, 1);
+                                }
+                            }
+
+                            &.github{
+                                svg{
+                                    width: 24px;
+                                    height: 24px;
+
+                                    use{
+                                        fill: $white;
+                                        transition: fill 200ms ease-in-out;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                
+                .toggle{
+                    display: none;
+                }
+
+                &.active{
+                    background-color: transparent;
+
+                    ul{
+                        margin-top: 0px;
+                    }
+                }
+            }
+        }
+
+        &.white{
+            .menu{
+                ul{
+                    li{
+                        a{
+                            color: $black-brand;
+
+                            &:after{
+                                background-color: $black-brand;
+                            }
+
+                            &.github{
+                                svg{
+                                    use{
+                                        fill: $black-brand;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+/* Larger than desktop */
+@media (min-width: 1000px) {}
+
+/* Larger than Desktop HD */
+@media (min-width: 1200px) {}

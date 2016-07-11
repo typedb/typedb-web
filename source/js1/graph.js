@@ -343,9 +343,6 @@ window.MNDMPS.Graph = {
             .enter()
             .append('path')
             .attr({
-                'd': function(d) {
-                    return 'M ' + d.source.x + ' ' + d.source.y + ' L ' + d.target.x + ' ' + d.target.y;
-                },
                 'class': 'edgepath',
                 'id': function(d, i) {
                     return graphName + '_edgepath_' + i;

@@ -6,6 +6,8 @@
 @import 'typist';
 @import 'prism';
 @import 'code';
+@import 'columns';
+@import 'nav';
 
 body{
     font-family: Raleway, sans-serif;
@@ -42,6 +44,7 @@ html{
 .container{
 
     &.title{
+        margin: 0;
         height: 100vh;
         background: #1e5799;
         background: linear-gradient(160deg, $blue-brand 0%, $green-brand 100%);
@@ -82,54 +85,22 @@ html{
             overflow: hidden;
             
             svg{
-                width: 200%;
+                width: 250%;
                 height: 100%;
-                transform: translateX(-25%);
+                transform: translateX(-32%);
             }
         }
     }
+}
 
-    &.nav{
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        max-width: 100%;
-        padding: 0;
-        z-index: 10;
-        height: 40px;
+p{
+    margin: 0 0 1rem 0;
+}
 
-        .logo{
-            text-decoration: none;
-            display: block;
-            margin: 5px 0 0 5px;
-            float: left;
-            color: $white;
-            white-space: nowrap;
-
-            h1{
-                text-transform: uppercase;
-                font-weight: 400;
-                font-size: 0.7rem;
-                letter-spacing: 0.1rem;
-                line-height: 18px;
-                margin: 0;
-            }
-
-            span{
-                font-size: 0.6rem;
-                line-height: 8px;
-                display: block;
-            }
-
-            svg{
-                width: 30px;
-                height: 30px;
-                float: left;
-                margin-right: 0.3rem;
-            }
-        }
-    }
+.nonbreakable {
+    -webkit-column-break-inside: avoid;
+    page-break-inside: avoid;
+    break-inside: avoid;
 }
 
 @media screen and (min-aspect-ratio: 100/75) {
@@ -138,10 +109,29 @@ html{
             .background{
                 svg{
                     width: 100%;
-                    height: 200%;
-                    transform: translateY(-25%);
+                    height: 250%;
+                    transform: translateY(-32%);
                 }
             }
         }
     }
 }
+
+/* Larger than mobile */
+@media (min-width: 400px) {}
+
+/* Larger than phablet (also point when grid becomes active) */
+@media (min-width: 550px) {}
+
+/* Larger than tablet */
+@media (min-width: 750px) {}
+
+/* Larger than desktop */
+@media (min-width: 1000px) {
+    p{
+        margin: 0 0 2rem 0;
+    }
+}
+
+/* Larger than Desktop HD */
+@media (min-width: 1200px) {}

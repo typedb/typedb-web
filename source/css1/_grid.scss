@@ -5,6 +5,7 @@
     margin: 0 auto;
     padding: 0 20px;
     box-sizing: border-box;
+    margin-bottom: 1rem;
 }
 
 .column,
@@ -80,4 +81,10 @@
 
     .offset-by-one-half.column,
     .offset-by-one-half.columns     { margin-left: 52%; }
+}
+
+@media (min-width: 750px) {
+    .container{
+        margin-bottom: 2rem;
+    }
 }
