@@ -11,6 +11,7 @@
             //color: $white;
             position: absolute;
             bottom: 100%;
+            margin-bottom: 0.25rem;
             font-size: 0.8rem;
             width: 100%;
             display: flex;
@@ -18,8 +19,21 @@
             justify-content: flex-start;
             align-items: flex-start;
 
-            span{
+            >div{
                 flex: 1 1 auto;
+
+                span{
+                    display: none;
+                }
+
+                &:nth-child(2){
+                    text-align: right;
+                }
+
+                &:last-child{
+                    display: none;
+                    text-align: right;
+                }
             }
 
             svg{
@@ -254,7 +268,24 @@
 }
 
 /* Larger than mobile */
-@media (min-width: 400px) {}
+@media (min-width: 400px) {
+    .code{
+        .editor{
+            .info{
+                >div{
+                    
+                    &:nth-child(2){
+                        text-align: center;
+                    }
+                    
+                    &:last-child{
+                        display: block;
+                    }
+                }
+            }
+        }
+    }
+}
 
 /* Larger than phablet (also point when grid becomes active) */
 @media (min-width: 550px) {}
@@ -298,7 +329,19 @@
 }
 
 /* Larger than desktop */
-@media (min-width: 1000px) {}
+@media (min-width: 1000px) {
+    .code{
+        .editor{
+            .info{
+                >div{
+                    span{
+                        display: inline;
+                    }
+                }
+            }
+        }
+    }
+}
 
 /* Larger than Desktop HD */
 @media (min-width: 1200px) {}
