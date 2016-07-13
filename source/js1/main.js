@@ -8,11 +8,11 @@ window.MNDMPS.App = {
 
     typist: function() {
         $("#typist").typed({
-            strings: ['is a reasoning engine', 'is an analytics tool', 'is a graph database', 'is an AI-Driven Data Platform'],
-            typeSpeed: 60,
-            backSpeed: 15,
-            backDelay: 3000,
-            loop: true
+            strings: ['a knowledge graph', 'a reasoning engine', 'a network analysis tool', 'a distributed semantic database'],
+            typeSpeed: 5,
+            backSpeed: 5,
+            backDelay: 2000,
+            loop: false
         });
     },
 

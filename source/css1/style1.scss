@@ -7,6 +7,7 @@
 @import 'prism';
 @import 'code';
 @import 'columns';
+@import 'slider';
 @import 'nav';
 
 body{
@@ -43,11 +44,46 @@ html{
 
 .container{
 
+    &.bg{
+        &-yellow{
+            background-color: $pale-yellow;
+        }
+    }
+
     &.title{
-        margin: 0;
         height: 100vh;
         background: #1e5799;
         background: linear-gradient(160deg, $blue-brand 0%, $green-brand 100%);
+
+        .logo{
+            display: block;
+            position: absolute;
+            top: 12.5%;
+            left: 50%;
+            color: $white;
+            text-decoration: none;
+            transform: translate(-50%, -50%);
+
+            span{
+                font-weight: 200;
+                font-size: 5.3vw;
+                vertical-align: middle;
+                display: inline-block;
+            }
+
+            svg{
+                width: 10vw;
+                height: 10vw;
+                vertical-align: middle;
+                display: inline-block;
+
+                use{
+                    fill: transparent;
+                    stroke: $white;
+                    stroke-width: 1px;
+                }
+            }
+        }
 
         .typist{
             height: 50%;
@@ -60,7 +96,7 @@ html{
                 color: $white;
                 margin: 0;
                 white-space: nowrap;
-                font: 3.5vw/normal monospace;
+                font-size: 3.5vw;
                 flex: 0 1 auto;
             }
         }
@@ -97,6 +133,12 @@ p{
     margin: 0 0 1rem 0;
 }
 
+.bigText{
+    p{
+        font-size: 1.4rem;
+    }
+}
+
 .nonbreakable {
     -webkit-column-break-inside: avoid;
     page-break-inside: avoid;
@@ -118,20 +160,86 @@ p{
 }
 
 /* Larger than mobile */
-@media (min-width: 400px) {}
+@media (min-width: 400px) {
+    .container{
+        &.title{
+            .typist{
+                p{
+                    font-weight: 200;
+                }
+            }
+        }
+    }
+}
 
 /* Larger than phablet (also point when grid becomes active) */
 @media (min-width: 550px) {}
 
 /* Larger than tablet */
-@media (min-width: 750px) {}
+@media (min-width: 750px) {
+    .container{
+        &.title{
+            .logo{
+                top: 15%;
+                
+                span{
+                    font-size: 2.75vw;
+                }
+
+                svg{
+                    width: 5vw;
+                    height: 5vw;
+                }
+            }
+
+            .typist{
+                p{
+                    font-size: 1.75vw;
+                }
+            }
+        }
+    }
+}
 
 /* Larger than desktop */
 @media (min-width: 1000px) {
     p{
         margin: 0 0 2rem 0;
     }
+
+    .bigText{
+        p{
+            font-size: 1.4rem;
+        }
+    }
+
+    .container{
+        &.title{
+            .typist{
+                p{
+                    font-size: 1.5vw;
+                }
+            }
+        }
+    }
 }
 
 /* Larger than Desktop HD */
-@media (min-width: 1200px) {}
+@media (min-width: 1200px) {
+    .container{
+        &.title{
+            .logo{
+                svg{
+                    use{
+                        stroke-width: 1.5px;
+                    }
+                }
+            }
+            .typist{
+                p{
+                    font-size: 1.25vw;
+                }
+            }
+        }
+    }
+}
