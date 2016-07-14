@@ -21,7 +21,7 @@ window.MNDMPS.Nav = {
             windowHeight = window.innerHeight,
             scrolled = document.body.scrollTop;
 
-        if (scrolled > windowHeight/6) {
+        if (scrolled > windowHeight/8) {
             _this.toggleWhite(true);
         } else {
             _this.toggleWhite(false);

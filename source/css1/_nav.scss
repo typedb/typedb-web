@@ -15,14 +15,15 @@
             display: block;
             margin: 5px 0 0 5px;
             float: left;
-            color: transparent;
+            color: $white;
             white-space: nowrap;
             transition: margin 200ms ease-in-out, color 200ms ease-in-out;
 
             h1{
                 font-weight: 400;
+                font-family: 'Blender', Helvetica, Arial, sans-serif;
                 font-size: 1.2rem;
-                line-height: 30px;
+                line-height: 32px;
                 margin: 0;
                 transition: font-size 200ms ease-in-out;
             }
@@ -36,8 +37,8 @@
 
                 use{
                     transition: stroke 200ms ease-in-out;
-                    stroke: transparent;
-                    stroke-width: 1px;
+                    stroke: $white;
+                    stroke-width: 2px;
                 }
             }
         }
@@ -251,12 +252,6 @@
 
             .logo{
                 margin: 10px 0 0 10px;
-
-                svg{
-                    use{
-                        stroke-width: 1.5px;
-                    }
-                }
             }
 
             .menu{
@@ -281,9 +276,10 @@
                         margin-right: 1rem;
 
                         a{
-                            line-height: 20px;
-                            margin-top: 15px;
-                            font-size: 0.8rem;
+                            line-height: 22px;
+                            position: relative;
+                            top: 2px;
+                            font-size: 0.9rem;
                             display: block;
                             color: $white;
                             pointer-events: auto;
@@ -311,8 +307,8 @@
 
                             &.github{
                                 svg{
-                                    width: 24px;
-                                    height: 24px;
+                                    width: 28px;
+                                    height: 28px;
 
                                     use{
                                         fill: $white;

@@ -7,11 +7,15 @@ window.MNDMPS.App = {
     _data: {},
 
     typist: function() {
-        $("#typist").typed({
-            strings: ['a knowledge graph', 'a reasoning engine', 'a network analysis tool', 'a distributed semantic database'],
-            typeSpeed: 5,
+        var data = this._data;
+        
+        data.typist = $("#typist");
+
+        data.typist.typed({
+            strings: ['a knowledge graph', 'a reasoning engine', 'a graph analytics tool', 'a distributed semantic database'],
+            typeSpeed: 10,
             backSpeed: 5,
-            backDelay: 2000,
+            backDelay: 1500,
             loop: false
         });
     },

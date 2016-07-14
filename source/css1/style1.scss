@@ -1,3 +1,4 @@
+@import 'font';
 @import 'reset';
 @import 'grid';
 @import 'colors';
@@ -11,8 +12,8 @@
 @import 'nav';
 
 body{
-    font-family: Raleway, sans-serif;
-    font-weight: 400;
+    font-family: 'DIN', Helvetica, Arial, sans-serif;
+    font-weight: 100;
 }
 
 *{
@@ -51,59 +52,32 @@ html{
     }
 
     &.title{
-        height: 100vh;
+        height: 80vh;
         background: #1e5799;
         background: linear-gradient(160deg, $blue-brand 0%, $green-brand 100%);
 
-        .logo{
-            display: block;
-            position: absolute;
-            top: 12.5%;
-            left: 50%;
-            color: $white;
-            text-decoration: none;
-            transform: translate(-50%, -50%);
-
-            span{
-                font-weight: 200;
-                font-size: 5.3vw;
-                vertical-align: middle;
-                display: inline-block;
-            }
-
-            svg{
-                width: 10vw;
-                height: 10vw;
-                vertical-align: middle;
-                display: inline-block;
-
-                use{
-                    fill: transparent;
-                    stroke: $white;
-                    stroke-width: 1px;
-                }
-            }
-        }
-
         .typist{
-            height: 50%;
+            height: 20%;
             display: flex;
             flex-flow: row nowrap;
             justify-content: center;
             align-items: center;
 
             p{
+                text-transform: uppercase;
+                font-family: 'Blender', Helvetica, Arial, sans-serif;
+                font-weight: 400;
                 color: $white;
                 margin: 0;
                 white-space: nowrap;
-                font-size: 3.5vw;
+                font-size: 4vw;
                 flex: 0 1 auto;
             }
         }
 
         .get{
             left: 0;
-            top: 25%;
+            top: 10%;
             position: absolute;
             height: 25%;
             display: flex;
@@ -131,11 +105,13 @@ html{
 
 p{
     margin: 0 0 1rem 0;
-}
 
-.bigText{
-    p{
-        font-size: 1.4rem;
+    &.bigText{
+        font-size: 1.3rem;
+    }
+
+    &.centered{
+        text-align: center;
     }
 }
 
@@ -160,17 +136,7 @@ p{
 }
 
 /* Larger than mobile */
-@media (min-width: 400px) {
-    .container{
-        &.title{
-            .typist{
-                p{
-                    font-weight: 200;
-                }
-            }
-        }
-    }
-}
+@media (min-width: 400px) {}
 
 /* Larger than phablet (also point when grid becomes active) */
 @media (min-width: 550px) {}
@@ -193,9 +159,11 @@ p{
             }
 
             .typist{
-                p{
-                    font-size: 1.75vw;
-                }
+                height: 28%;
+            }
+
+            .get{
+                top: 13%;
             }
         }
     }
@@ -205,15 +173,13 @@ p{
 @media (min-width: 1000px) {
     p{
         margin: 0 0 2rem 0;
-    }
-
-    .bigText{
-        p{
+        
+        &.bigText{
             font-size: 1.4rem;
         }
     }
 
-    .container{
+    /* .container{
         &.title{
             .typist{
                 p{
@@ -221,7 +187,7 @@ p{
                 }
             }
         }
-    }
+    } */
 }
 
 /* Larger than Desktop HD */
@@ -235,11 +201,11 @@ p{
                     }
                 }
             }
-            .typist{
+            /* .typist{
                 p{
                     font-size: 1.25vw;
                 }
-            }
+            } */
         }
     }
 }

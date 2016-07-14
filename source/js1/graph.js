@@ -8,7 +8,7 @@ window.MNDMPS.Graph = {
         graphs: {},
         maxNodeRadius: 60,
         minEdgeFont: 8,
-        maxEdgeFont: 10,
+        maxEdgeFont: 12,
         minNodeFont: 8,
         maxNodeFont: 12,
         nodePadding: 5,

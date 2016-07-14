@@ -2,11 +2,12 @@
     margin-bottom: 1rem;
 
     .editor{
-        height: 65vh;
+        height: 60vh;
         background-color: $gray-dark;
         margin-top: -50vh;
         border-radius: 3px;
         position: relative;
+        box-shadow: 0 2px 4px 0 rgba($black-brand, 0.4);
 
         .info{
             position: absolute;

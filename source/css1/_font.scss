@@ -1,0 +1,70 @@
+// Blender
+@font-face{
+    font-family: 'Blender';
+    src: url('/fonts/blender/blenderpro-medium-webfont.eot');
+    src: url('/fonts/blender/blenderpro-medium-webfont.eot#iefix') format('embedded-opentype'),
+         url('/fonts/blender/blenderpro-medium-webfont.woff') format('woff'),
+         url('/fonts/blender/blenderpro-medium-webfont.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal
+}
+@font-face{
+    font-family: 'Blender';
+    src: url('/fonts/blender/blenderpro-bold-webfont.eot#iefix');
+    src: url('/fonts/blender/blenderpro-bold-webfont.eot') format('embedded-opentype'),
+         url('/fonts/blender/blenderpro-bold-webfont.woff') format('woff'),
+         url('/fonts/blender/blenderpro-bold-webfont.ttf') format('truetype');
+    font-weight: 700;
+    font-style: normal
+}
+@font-face{
+    font-family: 'Blender';
+    src: url('/fonts/blender/blenderpro-heavy-webfont.eot');
+    src: url('/fonts/blender/blenderpro-heavy-webfont.eot#iefix') format('embedded-opentype'),
+         url('/fonts/blender/blenderpro-heavy-webfont.woff') format('woff'),
+         url('/fonts/blender/blenderpro-heavy-webfont.ttf') format('truetype');
+    font-weight: 800;
+    font-style: normal
+}
+
+// DIN
+@font-face {
+    font-family: 'DIN';
+    src: url('/fonts/din/din-bold-webfont.eot');
+    src: url('/fonts/din/din-bold-webfont.eot?#iefix') format('embedded-opentype'),
+         url('/fonts/din/din-bold-webfont.woff') format('woff'),
+         url('/fonts/din/din-bold-webfont.ttf') format('truetype'),
+         url('/fonts/din/din-bold-webfont.svg#DINBold') format('svg');
+    font-weight: 400;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'DIN';
+    src: url('/fonts/din/din-light-webfont.eot');
+    src: url('/fonts/din/din-light-webfont.eot?#iefix') format('embedded-opentype'),
+         url('/fonts/din/din-light-webfont.woff') format('woff'),
+         url('/fonts/din/din-light-webfont.ttf') format('truetype'),
+         url('/fonts/din/din-light-webfont.svg#DINLight') format('svg');
+    font-weight: 100;
+    font-style: normal;
+}
+@font-face { 
+    font-family: 'DIN';
+    src: url('/fonts/din/din-regular-webfont.eot');
+    src: url('/fonts/din/din-regular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('/fonts/din/din-regular-webfont.woff') format('woff'),
+         url('/fonts/din/din-regular-webfont.ttf') format('truetype'),
+         url('/fonts/din/din-regular-webfont.svg#DINRegular') format('svg');
+    font-weight: 200;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'DIN';
+    src: url('/fonts/din/din-black-webfont.eot');
+    src: url('/fonts/din/din-black-webfont.eot?#iefix') format('embedded-opentype'),
+         url('/fonts/din/din-black-webfont.woff') format('woff'),
+         url('/fonts/din/din-black-webfont.ttf') format('truetype'),
+         url('/fonts/din/din-black-webfont.svg#DINBlack') format('svg');
+    font-weight: 800;
+    font-style: normal;
+}
