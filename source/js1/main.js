@@ -12,7 +12,7 @@ window.MNDMPS.App = {
         data.typist = $("#typist");
 
         data.typist.typed({
-            strings: ['a knowledge graph', 'a reasoning engine', 'a graph analytics tool', 'a distributed semantic database'],
+            strings: ['a knowledge graph', 'an inference engine', 'a graph analytics tool', 'a distributed semantic database'],
             typeSpeed: 10,
             backSpeed: 5,
             backDelay: 1500,

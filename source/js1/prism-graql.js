@@ -9,7 +9,7 @@
             alias: 'string'
         },
         keyword: {
-            pattern: /(to|select|insert|delete|where|group|by|isa|has|as|value|id|of|plays-role|has-role|ako|limit|offset|order|format)(?![-\$a-zA-Z_0-9])/,
+            pattern: /(select|ask|insert|delete|where|isa|ako|plays-role|has-role|has-scope|datatype|is-abstract|has|value|id|of|limit|offset|order|by)(?![-\$a-zA-Z_0-9])/,
             alias: 'keyword'
         },
         special: {
@@ -20,7 +20,7 @@
             alias: 'number'
         },
         variable: {
-            pattern: /\$[a-zA-Z_][-a-zA-Z_0-9]*(?![-\$a-zA-Z_0-9])/,
+            pattern: /\$[-a-zA-Z_0-9]+(?![-\$a-zA-Z_0-9])/,
             alias: 'variable'
         },
         type: {
@@ -32,7 +32,7 @@
             alias: 'number'
         },
         operator: {
-            pattern: /=|!=|>|<|>=|<=/,
+            pattern: /=|!=|>|<|>=|<=|contains|regex/,
             alias: 'operator'
         }
     };

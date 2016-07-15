@@ -57,7 +57,7 @@ html{
         background: linear-gradient(160deg, $blue-brand 0%, $green-brand 100%);
 
         .typist{
-            height: 20%;
+            height: 24%;
             display: flex;
             flex-flow: row nowrap;
             justify-content: center;
@@ -70,7 +70,7 @@ html{
                 color: $white;
                 margin: 0;
                 white-space: nowrap;
-                font-size: 4vw;
+                font-size: 5vw;
                 flex: 0 1 auto;
             }
         }
@@ -107,7 +107,7 @@ p{
     margin: 0 0 1rem 0;
 
     &.bigText{
-        font-size: 1.3rem;
+        font-size: 1.2rem;
     }
 
     &.centered{
@@ -160,6 +160,10 @@ p{
 
             .typist{
                 height: 28%;
+
+                p{
+                    font-size: 3vw;
+                }
             }
 
             .get{
@@ -175,19 +179,9 @@ p{
         margin: 0 0 2rem 0;
         
         &.bigText{
-            font-size: 1.4rem;
+            font-size: 1.3rem;
         }
     }
-
-    /* .container{
-        &.title{
-            .typist{
-                p{
-                    font-size: 1.5vw;
-                }
-            }
-        }
-    } */
 }
 
 /* Larger than Desktop HD */
@@ -201,11 +195,6 @@ p{
                     }
                 }
             }
-            /* .typist{
-                p{
-                    font-size: 1.25vw;
-                }
-            } */
         }
     }
 }
