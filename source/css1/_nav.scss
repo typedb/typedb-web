@@ -44,6 +44,7 @@
         }
 
         .menu{
+            font-family: 'Blender', Helvetica, Arial, sans-serif;
             position: fixed;
             top: 0;
             left: 0;
@@ -152,7 +153,7 @@
                 .toggle{
                     span{
                         background-color: transparent;
-                        
+
                         &:before,
                         &:after{
                             background-color: $black-brand;
@@ -193,7 +194,7 @@
                 .toggle{
                     span{
                         background-color: $black-brand;
-                        
+
                         &:before,
                         &:after{
                             background-color: $black-brand;
@@ -316,7 +317,7 @@
                         }
                     }
                 }
-                
+
                 .toggle{
                     display: none;
                 }
