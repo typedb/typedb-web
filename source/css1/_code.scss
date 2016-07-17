@@ -10,6 +10,7 @@
         box-shadow: 0 2px 4px 0 rgba($black-brand, 0.4);
 
         .info{
+            font-family: 'Blender', Helvetica, Arial, sans-serif;
             position: absolute;
             bottom: 100%;
             margin-bottom: 0.25rem;
@@ -209,12 +210,12 @@
                             stroke: transparent;
                             fill: transparent;
                         }
-                        
+
                         .nodelabel,
                         .edgelabel{
                             pointer-events: none;
                         }
-                        
+
                         marker{
                             path{
                                 stroke-width: 1px;
@@ -285,11 +286,11 @@
         .editor{
             .info{
                 >div{
-                    
+
                     &:nth-child(2){
                         text-align: center;
                     }
-                    
+
                     &:last-child{
                         display: block;
                     }
