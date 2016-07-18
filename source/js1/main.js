@@ -89,6 +89,8 @@ window.MNDMPS.App = {
                 }
             }
         }, false);
+
+        window.MNDMPS.Slider.init();
     }
 };
 
