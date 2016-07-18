@@ -74,6 +74,7 @@ gulp.task('build-new-js', function() {
             'source/js1/prism-graql.js',
             'source/js1/graph.js',
             'source/js1/graphs.js',
+            'source/js1/shifty.js',
             'source/js1/slider.js',
             'source/js1/nav.js',
             'source/js1/main.js'

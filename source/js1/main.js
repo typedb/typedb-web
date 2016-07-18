@@ -67,7 +67,7 @@ window.MNDMPS.App = {
 
         this.initPrism();
 
-        // Initialising SVG shit
+        // Initialising SVG
 
         var graqlSvgContainers = document.querySelectorAll('[data-splitter="slides"]')[0].querySelectorAll('[data-slide="right"]');
 
@@ -77,8 +77,8 @@ window.MNDMPS.App = {
             }
         }
 
-        window.addEventListener('resize', function() {
-            if (codeEditor) {
+        if (codeEditor) {
+            window.addEventListener('resize', function() {
                 var tabs = codeEditor.getElementsByClassName('content')[0].children;
 
                 for (var i = 0; i < tabs.length; i++) {
@@ -87,8 +87,8 @@ window.MNDMPS.App = {
                         break;
                     }
                 }
-            }
-        }, false);
+            }, false);
+        }
 
         window.MNDMPS.Slider.init();
     }

@@ -63,12 +63,97 @@
             justify-content: space-around;
 
             li{
-                padding-top: 13px;
-                height: 27px;
+                font-family: 'Blender', Helvetica, Arial, sans-serif;
+                cursor: pointer;
+                opacity: 0.4;
+                padding-top: 10px;
+                height: 30px;
                 text-align: center;
-                font-size: 0.6rem;
+                font-size: 0.7rem;
                 width: 20%;
                 flex: 0 1 auto;
+                white-space: pre;
+                overflow: hidden;
+                transform: translateZ(0);
+
+                &:before{
+                    content: '•';
+                    font-size: 1.2rem;
+                }
+
+                span{
+                    pointer-events: none;
+                    display: none;
+
+                    i{
+                        font-style: normal;
+
+                        &:before{
+                            content: '\A';
+                        }
+                    }
+
+                }
+            }
+        }
+    }
+}
+
+@media (min-width: 400px) {
+    .promoSlider{
+        .controls{
+            ul{
+                li{
+                    &:before{
+                        display: none;
+                    }
+
+                    span{
+                        display: inline-block;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media (min-width: 750px) {
+    .promoSlider{
+        height: 60vh;
+
+        .content{
+            height: calc(100% - 50px);
+        }
+
+        .controls{
+            height: 50px;
+
+            ul{
+                li{
+                    padding-top: 12px;
+                    height: 38px;
+                    font-size: 0.8rem;
+                }
+            }
+        }
+    }
+}
+
+@media (min-width: 1000px) {
+    .promoSlider{
+        .content{
+            height: calc(100% - 60px);
+        }
+
+        .controls{
+            height: 60px;
+
+            ul{
+                li{
+                    padding-top: 12px;
+                    height: 48px;
+                    font-size: 1.1rem;
+                }
             }
         }
     }
