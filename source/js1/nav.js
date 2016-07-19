@@ -65,6 +65,6 @@ window.MNDMPS.Nav = {
         window.addEventListener('scroll', this.checkPosition, false);
         window.addEventListener('resize', this.checkWidth, false);
 
-        window.MNDMPS.Helpers.dontScrollParent(data.menu);
+        this.checkWidth();
     }
 };

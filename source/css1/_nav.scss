@@ -3,8 +3,6 @@
         position: fixed;
         top: 0;
         left: 0;
-        width: 100%;
-        max-width: 100%;
         padding: 0;
         z-index: 10;
         height: 40px;
@@ -13,6 +11,9 @@
         .logo{
             text-decoration: none;
             display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
             margin: 5px 0 0 5px;
             float: left;
             color: $white;
@@ -96,21 +97,27 @@
                 }
             }
 
-            ul{
+            >ul{
                 list-style: none;
                 background-color: $white;
                 position: absolute;
                 margin: 0;
-                padding: 10px 0;
+                padding: 5px 0 0 0;
                 top: 0;
                 left: 0;
                 width: 100%;
+                max-height: 100%;
+                overflow-y: scroll;
                 transform: translateY(-100%);
                 transition: transform 200ms ease-in-out;
 
-                li{
-                    text-align: center;
+                >li{
+                    padding: 0 1rem;
 
+                    &:last-child{
+                        margin-bottom: 20px;
+                    }
+                    
                     a{
                         font-size: 1.1rem;
                         display: inline-block;
@@ -118,6 +125,7 @@
                         position: relative;
                         color: $black-brand;
                         line-height: 30px;
+                        cursor: pointer;
 
                         &.github{
 
@@ -140,6 +148,22 @@
 
                             span{
                                 display: none;
+                            }
+                        }
+                    }
+
+                    >a{
+                        text-transform: uppercase;
+                    }
+
+                    >ul{
+                        padding: 0;
+                        margin: 0 0 2rem 0;
+                        list-style: none;
+
+                        >li{
+                            a{
+                                color: rgba($black-brand, 0.6);
                             }
                         }
                     }
@@ -251,8 +275,12 @@
         &.nav{
             height: 50px;
 
+            .columns{
+                position: relative;
+            }
+
             .logo{
-                margin: 10px 0 0 10px;
+                margin: 10px 0 0 0;
             }
 
             .menu{
@@ -262,17 +290,27 @@
                 left: auto;
                 background-color: transparent;
 
-                ul{
+                >ul{
                     margin-top: 40px;
                     background-color: transparent;
                     position: relative;
                     padding: 0;
-                    text-align: center;
+                    max-height: none;
+                    overflow: visible;
+                    text-align: right;
 
-                    li{
+                    >li{
                         display: inline-block;
-                        margin: 0 0.25rem;
-                        transition: margin 200ms ease-in-out;
+                        padding: 0 0.5rem;
+                        position: relative;
+                        transition: padding 200ms ease-in-out;
+                        text-align: left;
+
+                        &:last-child{
+                            padding: 0;
+                            margin-left: 0.5rem;
+                            margin-bottom: 0;
+                        }
 
                         a{
                             line-height: 22px;
@@ -281,7 +319,7 @@
                             display: block;
                             color: $white;
                             pointer-events: auto;
-                            transition: font-size 200ms ease-in-out, color 200ms ease-in-out;
+                            transition: font-size 200ms ease-in-out, color 100ms ease-in-out;
 
                             &:after{
                                 content: '';
@@ -315,6 +353,79 @@
                                 }
                             }
                         }
+
+                        >a{
+                            text-transform: none;
+                        }
+
+                        >ul{
+                            display: none;
+                            position: absolute;
+                            top: 110%;
+                            left: 0;
+                            padding: 0 0 0.1rem 0;
+                            background-color: $white;
+                            border-radius: 0 0 2px 2px;
+
+                            >li{
+                                padding: 0 0.5rem;
+                                
+                                &:last-child{
+                                    margin: 0;
+                                }
+                                
+                                a{
+                                    white-space: nowrap;
+
+                                    &:hover{
+                                        color: $black-brand;
+                                    }
+                                }
+                            }
+                        }
+
+                        &:hover{
+                            >ul{
+                                pointer-events: auto;
+                                display: block;
+                            }
+                        }
+
+                        &.dropdown{
+
+                            >a{
+                                transition: none;
+                                position: relative;
+                                z-index: 1;
+                                
+                                &:after{
+                                    display: none;
+                                }
+                            }
+                            
+                            &:after{
+                                pointer-events: auto;
+                                content: '';
+                                width: 100%;
+                                height: 150%;
+                                position: absolute;
+                                top: -10%;
+                                left: 0;
+                                background-color: $white;
+                                border-radius: 2px 2px 0 0;
+                                display: none;
+                            }
+                            
+                            &:hover{
+                                >a{
+                                    color: $black-brand;
+                                }
+                                
+                                &:after{
+                                    display: block;
+                                }
+                            }
+                        }
                     }
                 }
 
@@ -334,9 +445,9 @@
 
         &.white{
             .menu{
-                ul{
-                    li{
-                        a{
+                >ul{
+                    >li{
+                        >a{
                             color: $black-brand;
 
                             &:after{
@@ -347,6 +458,37 @@
                                 svg{
                                     use{
                                         fill: $black-brand;
+                                    }
+                                }
+                            }
+                        }
+
+                        &.dropdown{
+
+                            &:hover{
+                                >a{
+                                    color: $white;
+                                }
+                            }
+                            
+                            &:after{
+                                background-color: lighten($black-brand, 5%);
+                            }
+                        }
+
+                        >ul{
+                            background-color: lighten($black-brand, 5%);
+
+                            >li{
+                                >a{
+                                    color: rgba($white, 0.6);
+
+                                    &:after{
+                                        display: none;
+                                    }
+
+                                    &:hover{
+                                        color: $white;
                                     }
                                 }
                             }
@@ -363,9 +505,13 @@
     .container{
         &.nav{
             .menu{
-                ul{
-                    li{
-                        margin: 0 0.5rem;
+                >ul{
+                    >li{
+                        padding: 0 1rem;
+
+                        &:last-child{
+                            margin-left: 1rem;
+                        }
 
                         a{
                             top: 2px;
@@ -376,6 +522,21 @@
                                     width: 28px;
                                     height: 28px;
                                 }
+                            }
+                        }
+
+                        &.dropdown{
+                            &:after{
+                                top: -15%;
+                            }
+                        }
+
+                        >ul{
+                            padding: 0 0 0.65rem 0;
+                            top: 130%;
+                            
+                            >li{
+                                padding: 0 1rem;
                             }
                         }
                     }

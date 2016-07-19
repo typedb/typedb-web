@@ -45,43 +45,5 @@ window.MNDMPS.Helpers = {
         event.returnValue = false;
         
         return false;
-    },
-
-    dontScrollParent: function(el, turnOff) {
-
-        function catchScroll(ev) {
-            var scrollTop    = this.scrollTop,
-                scrollHeight = this.scrollHeight,
-                height       = this.offsetHeight,
-                delta        = ev.wheelDelta,
-                up           = delta > 0;
-
-            function prevent() {
-                ev.stopPropagation();
-                ev.preventDefault();
-                ev.returnValue = false;
-                return false;
-            }
-
-            if (event.type === 'touchmove') {
-                return prevent();
-            } else if (!up && -delta > scrollHeight - height - scrollTop) {
-                this.scrollTop = scrollHeight;
-                return prevent();
-            } else if (up && delta > scrollTop) {
-                this.scrollTop = 0;
-                return prevent();
-            }
-        }
-
-        el.removeEventListener('touchmove', catchScroll, false);
-        el.removeEventListener('DOMMouseScroll', catchScroll, false);
-        el.removeEventListener('mousewheel', catchScroll, false);
-
-        if (!turnOff) {
-            el.addEventListener('touchmove', catchScroll, false);
-            el.addEventListener('DOMMouseScroll', catchScroll, false);
-            el.addEventListener('mousewheel', catchScroll, false);
-        }
     }
 }
