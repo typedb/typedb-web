@@ -21,7 +21,7 @@
             transition: margin 200ms ease-in-out, color 200ms ease-in-out;
 
             h1{
-                font-weight: 400;
+                font-weight: 200;
                 font-family: 'Blender', Helvetica, Arial, sans-serif;
                 font-size: 1.2rem;
                 line-height: 32px;
@@ -120,6 +120,7 @@
                     
                     a{
                         font-size: 1.1rem;
+                        font-weight: 200;
                         display: inline-block;
                         text-decoration: none;
                         position: relative;
@@ -363,9 +364,10 @@
                             position: absolute;
                             top: 110%;
                             left: 0;
-                            padding: 0 0 0.1rem 0;
+                            padding: 0.125rem 0;
                             background-color: $white;
                             border-radius: 0 0 2px 2px;
+                            margin: 0;
 
                             >li{
                                 padding: 0 0.5rem;
@@ -532,7 +534,7 @@
                         }
 
                         >ul{
-                            padding: 0 0 0.65rem 0;
+                            padding: 0.65rem 0;
                             top: 130%;
                             
                             >li{

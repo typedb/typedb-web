@@ -32,3 +32,39 @@ $countArray: 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'ni
         height: 100%;
     }
 }
+
+@keyframes svg-dash{
+    0%{
+        stroke-dashoffset: 0;
+    }
+    100%{
+        stroke-dashoffset: 20;
+    }
+}
+
+@keyframes svg-float{
+    0%, 100%{
+        transform: translateY(5px);
+    }
+    50%{
+        transform: translateY(-5px);
+    }
+}
+
+@keyframes svg-float-2{
+    0%, 100%{
+        transform: translateY(7px);
+    }
+    50%{
+        transform: translateY(-7px);
+    }
+}
+
+@keyframes svg-fill-blink{
+    0%, 100%{
+        fill: transparent;
+    }
+    50%{
+        fill: $black-brand;
+    }
+}
