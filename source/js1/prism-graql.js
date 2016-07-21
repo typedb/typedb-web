@@ -9,14 +9,14 @@
             alias: 'string'
         },
         keyword: {
-            pattern: /(select|ask|insert|delete|where|isa|ako|plays-role|has-role|has-scope|datatype|is-abstract|has|value|id|of|limit|offset|order|by)(?![-\$a-zA-Z_0-9])/,
+            pattern: /(match|ask|insert|delete|select|isa|ako|plays-role|has-role|has-scope|datatype|is-abstract|has|value|id|of|limit|offset|order|by)(?![-\$a-zA-Z_0-9])/,
             alias: 'keyword'
         },
         special: {
             pattern: /graql>|results>|\.\.\./
         },
         month: {
-            pattern: /Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec(?!{-\$a-zA-Z_0-9})/,
+            pattern: /(?!{-\$a-zA-Z_0-9})/,
             alias: 'number'
         },
         variable: {

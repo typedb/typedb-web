@@ -5,7 +5,7 @@
     line-height: 3rem;
     height: 3rem;
     display: inline-block;
-    font-size: 0.8rem;
+    font-size: 1rem;
     font-weight: 200;
     letter-spacing: 0.05rem;
     transition: transform 100ms ease-in-out;
@@ -17,7 +17,36 @@
         &-red{
             color: $white;
             background-color: $red;
+
+            &.hollow{
+                color: $red;
+                border: 1px solid $red;
+            }
         }
+
+        &-black{
+            color: $white;
+            background-color: $black-brand;
+
+            &.hollow{
+                color: $black-brand;
+                border: 1px solid $black-brand;
+            }
+        }
+
+        &-white{
+            color: $black-brand;
+            background-color: $white;
+
+            &.hollow{
+                color: $white;
+                border: 1px solid $white;
+            }
+        }
+    }
+
+    &.hollow{
+        background-color: transparent;
     }
 
     &:active{

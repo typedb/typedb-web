@@ -9,6 +9,7 @@
 @import 'code';
 @import 'columns';
 @import 'slider';
+@import 'platform';
 @import 'nav';
 
 body{
@@ -25,13 +26,13 @@ html{
     color: $black-brand;
 }
 
-@media (max-width: 559px) {
+@media (max-width: 549px) {
     html{
         font-size: 13px;
     }
 }
 
-@media (min-width: 560px) {
+@media (min-width: 550px) {
     html{
         font-size: 15px;
     }
@@ -111,10 +112,14 @@ p{
     }
 }
 
-.nonbreakable {
-    -webkit-column-break-inside: avoid;
-    page-break-inside: avoid;
-    break-inside: avoid;
+.google-map{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    min-height: calc(100vh - 40px);
+    //height: 100%;
+    z-index: -1;
 }
 
 @media screen and (min-aspect-ratio: 100/75) {
@@ -172,7 +177,7 @@ p{
 /* Larger than desktop */
 @media (min-width: 750px) {
     p{
-        margin: 0 0 2rem 0;
+        margin: 0 0 1.5rem 0;
     }
 }
 

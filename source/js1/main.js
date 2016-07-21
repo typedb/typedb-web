@@ -91,6 +91,8 @@ window.MNDMPS.App = {
         }
 
         window.MNDMPS.Slider.init();
+
+        google.maps.event.addDomListener(window, 'load', window.MNDMPS.Map.load);
     }
 };
 

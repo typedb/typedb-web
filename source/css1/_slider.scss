@@ -33,7 +33,7 @@
 
                 .live-icon{
                     width: 55vw;
-                    margin: 1rem auto;
+                    margin: 0 auto 1rem auto;
                     display: block;
 
                     polyline,
@@ -81,12 +81,7 @@
                 }
 
                 h3{
-                    font-weight: 500;
                     margin: 0 0 0.5rem 0;
-                }
-
-                p{
-                    font-size: 1.1rem;
                 }
             }
         }
@@ -185,11 +180,25 @@
     }
 }
 
+@media (min-width: 550px) {
+    .promoSlider{
+        .content{
+            ul{
+                li{
+                    .live-icon{
+                        width: 35vw;
+                    }
+                }
+            }
+        }
+    }
+}
+
 @media (min-width: 750px) {
     .promoSlider{
         height: 60vh;
         padding-bottom: 1rem;
-        max-height: 320px;
+        max-height: 280px;
 
         .content{
             height: calc(100% - 50px);
@@ -200,12 +209,8 @@
                         height: 40vh;
                         max-height: 200px;
                         width: auto;
-                        margin: 2rem 2rem 0 2rem;
+                        margin: 0 2rem 0 2rem;
                         float: left;
-                    }
-
-                    h3{
-                        margin-top: 2rem;
                     }
                 }
             }
@@ -228,7 +233,7 @@
 @media (min-width: 1000px) {
     .promoSlider{
         height: 40vh;
-        max-height: 340px;
+        max-height: 300px;
         
         .content{
             height: calc(100% - 60px);
