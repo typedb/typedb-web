@@ -33,6 +33,14 @@ $countArray: 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'ni
     }
 }
 
+.centered{
+    text-align: center;
+}
+
+.margin-bottom{
+    margin-bottom: 1.5rem;
+}
+
 @keyframes svg-dash{
     0%{
         stroke-dashoffset: 0;
@@ -66,5 +74,12 @@ $countArray: 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'ni
     }
     50%{
         fill: $black-brand;
+    }
+}
+
+/* Larger than tablet */
+@media (min-width: 750px) {
+    .margin-bottom{
+        margin-bottom: 2rem;
     }
 }
