@@ -8,7 +8,7 @@
             font-weight: 200;
             transition: color 100ms ease-in-out;
         }
-        
+
         .parent{
             border-radius: 2px;
             border: 1px solid $black-brand;
@@ -48,7 +48,7 @@
                     margin-left: 0;
                 }
             }
-            
+
             >.title{
                 border-radius: 2px;
                 border: 1px solid $black-brand;
@@ -102,7 +102,7 @@
     .platform{
         &-table{
             margin: 3rem 0 1.5rem 0;
-            
+
             .parent{
                 >.title{
                     margin: 1rem 0 0 0;
@@ -121,7 +121,7 @@
                         margin-left: 1rem;
                     }
                 }
-                
+
                 >.title{
                     font-size: 1rem;
                 }
@@ -159,7 +159,7 @@
 @media (min-width: 1000px) {
     .platform{
         &-table{
-            
+
             .parent{
                 >.title{
                     margin: 1.5rem 0 0 0;
@@ -172,7 +172,7 @@
                 >div{
                     margin: 1.5rem;
                 }
-                
+
                 >.title{
                     font-size: 1.1rem;
                 }

@@ -13,7 +13,7 @@
     text-decoration: none;
 
     &.color{
-        
+
         &-red{
             color: $white;
             background-color: $red;
@@ -31,6 +31,10 @@
             &.hollow{
                 color: $black-brand;
                 border: 1px solid $black-brand;
+                &:hover{
+                    background-color: $black-brand;
+                    color: $white;
+                }
             }
         }
 
@@ -41,6 +45,10 @@
             &.hollow{
                 color: $white;
                 border: 1px solid $white;
+                &:hover{
+                    color: $white;
+                    background-color: $black-brand;
+                }
             }
         }
     }
@@ -51,5 +59,9 @@
 
     &:active{
         transform: scale(0.97);
+    }
+
+    &.gap{
+        margin-top:10px;
     }
 }
