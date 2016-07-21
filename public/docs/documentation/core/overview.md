@@ -1,11 +1,11 @@
 # Overview
 
 > You should checkout the [Quickstart
-> Tutorial](../documentation/basic-tutorial.md) before looking through here. It
+> Tutorial](documentation/basic-tutorial.md) before looking through here. It
 > is also recommended looking at the example code provided in mindmaps.zip
 
 Mindmaps Core API is the implementation of the object model discussed in
-[Mindmaps Basics](../documentation/mindmaps-basics.md). It allows you to create
+[Mindmaps Basics](documentation/mindmaps-basics.md). It allows you to create
 Mindmaps Graphs using Java 8. It supports any
 [Tinkerpop](http://tinkerpop.incubator.apache.org/docs/3.0.2-incubating/) 3.0.z
 version. 
