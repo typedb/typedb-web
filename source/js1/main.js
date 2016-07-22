@@ -8,11 +8,11 @@ window.MNDMPS.App = {
 
     typist: function() {
         var data = this._data;
-        
+
         data.typist = $("#typist");
 
         data.typist.typed({
-            strings: ['a knowledge graph', 'an inference engine', 'a graph analytics tool', 'a distributed semantic database'],
+            strings: ['a knowledge graph', 'an inference engine', 'an analytics tool', 'a distributed semantic database'],
             typeSpeed: 10,
             backSpeed: 5,
             backDelay: 1500,
@@ -58,7 +58,7 @@ window.MNDMPS.App = {
         window.MNDMPS.Nav.init();
 
         this.typist();
-        
+
         var codeSplitter = window.MNDMPS.Splitter.create(document.getElementById('code-container').querySelectorAll('[data-splitter="view"]')[0]);
         window.MNDMPS.Splitter.initAutomove(codeSplitter);
         window.MNDMPS.Splitter.init();

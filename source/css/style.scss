@@ -213,7 +213,7 @@ body{
     font-family: Raleway, sans-serif;
     font-weight: 400;
     width: 100%;
-    
+
     b{
         font-weight: 700;
     }
@@ -668,7 +668,7 @@ body{
 
                                     @for $i from 1 through 33 {
                                         &:nth-child(#{$i}){
-                                            @include animation-delay(-5s*random(40));
+                                            @include animation-delay(-5s+random(40));
                                             @include animation-duration(5s+random(20))
                                         }
                                     }
@@ -1861,7 +1861,7 @@ body{
 
 .users{
     text-align: center;
-    
+
     li{
         display: inline-block;
         width: 240px;
@@ -1876,7 +1876,7 @@ body{
                 padding: 0;
             }
         }
-        
+
         a{
             .icon{
                 overflow: hidden;
@@ -1917,7 +1917,7 @@ body{
                     opacity: 1;
                 }
             }
-            
+
             border: none;
         }
     }
@@ -4052,7 +4052,7 @@ body{
                 }
             }
         }
-        
+
         .block{
             &.nav{
                 .wrapper{
