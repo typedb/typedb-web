@@ -71,7 +71,7 @@ window.MNDMPS.Graph = {
             }
 
             graph = graphs[key];
-            
+
             graph.width = graph.container[0][0].offsetWidth;
             graph.height = graph.container[0][0].offsetHeight;
             graph.container.select('svg').attr({
@@ -131,7 +131,7 @@ window.MNDMPS.Graph = {
     gravity: function(graph, alpha) {
 
         var data = this._data;
-        
+
         return function(d) {
             d.x += ((graph.width/100) * d.cx - d.x) * alpha;
             d.y += ((graph.height/100) * d.cy - d.y) * alpha;
@@ -142,7 +142,7 @@ window.MNDMPS.Graph = {
 
         var data = this._data,
             quadtree = d3.geom.quadtree(graph.nodes);
-    
+
         return function(d) {
             var r = d.radius + data.maxNodeRadius + data.nodePadding,
                 nx1 = d.x - r,
@@ -156,7 +156,7 @@ window.MNDMPS.Graph = {
                         y = d.y - quad.point.y,
                         l = Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2)),
                         r = d.radius + quad.point.radius + (d.color !== quad.point.color) * data.nodePadding;
-    
+
                     if (l < r) {
                         l = (l - r) / (l * alpha);
                         d.x -= x *= l;
@@ -165,14 +165,14 @@ window.MNDMPS.Graph = {
                         quad.point.y += y;
                     }
                 }
-    
+
                 return x1 > nx2 || x2 < nx1 || y1 > ny2 || y2 < ny1;
             });
         };
     },
 
     wrap: function(text) {
-    
+
         text.each(function() {
             var text = d3.select(this),
                 width = parseInt(text.attr('lable-width'), 10),
@@ -196,7 +196,7 @@ window.MNDMPS.Graph = {
             while (word = words.pop()) {
                 line.push(word);
                 tspan.text(line.join(' '));
-    
+
                 if (tspan.node().getComputedTextLength() > width) {
                     line.pop();
                     tspan.text(line.join(' '));
@@ -279,7 +279,7 @@ window.MNDMPS.Graph = {
                         x: (data.graphs[graphName].width/100) * d.target.cx,
                         y: (data.graphs[graphName].height/100) * d.target.cy
                     };
-                
+
                 return Math.sqrt(Math.pow(source.x - target.x, 2) + Math.pow(source.y - target.y, 2));
             })
             .charge(0)
@@ -412,7 +412,7 @@ window.MNDMPS.Graph = {
             newGraph.edges
                 .each(function(d) {
                     var altCoords = _this.offsetEdge(newGraph, d);
-                    
+
                     d3.select(this).attr({
                         'x1': altCoords.x1,
                         'y1': altCoords.y1,
@@ -446,7 +446,7 @@ window.MNDMPS.Graph = {
                             var bbox = this.getBBox(),
                                 rx = bbox.x + bbox.width/2,
                                 ry = bbox.y + bbox.height/2;
-                            
+
                             return 'rotate(180 ' + rx + ' ' + ry + ')';
                         } else {
                             return 'rotate(0)';

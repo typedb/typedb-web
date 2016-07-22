@@ -8,11 +8,11 @@ window.MNDMPS.App = {
 
     typist: function() {
         var data = this._data;
-        
+
         data.typist = $("#typist");
 
         data.typist.typed({
-            strings: ['a knowledge graph', 'an inference engine', 'a graph analytics tool', 'a distributed semantic database'],
+            strings: ['a knowledge graph', 'an inference engine', 'an analytics tool', 'a distributed semantic database'],
             typeSpeed: 10,
             backSpeed: 5,
             backDelay: 1500,
@@ -58,7 +58,7 @@ window.MNDMPS.App = {
         window.MNDMPS.Nav.init();
 
         this.typist();
-        
+
         var codeSplitter = window.MNDMPS.Splitter.create(document.getElementById('code-container').querySelectorAll('[data-splitter="view"]')[0]);
         window.MNDMPS.Splitter.initAutomove(codeSplitter);
         window.MNDMPS.Splitter.init();
@@ -77,8 +77,11 @@ window.MNDMPS.App = {
             }
         }
 
-        if (codeEditor) {
-            window.addEventListener('resize', function() {
+        window.addEventListener('resize', function() {
+
+            window.MNDMPS.Map.center(window.MNDMPS.Map.data.googleMap, window.MNDMPS.Map.data.googleMapLatLng, 0, 0);
+                
+            if (codeEditor) {
                 var tabs = codeEditor.getElementsByClassName('content')[0].children;
 
                 for (var i = 0; i < tabs.length; i++) {
@@ -87,12 +90,26 @@ window.MNDMPS.App = {
                         break;
                     }
                 }
-            }, false);
-        }
+            }
+        }, false);
 
         window.MNDMPS.Slider.init();
 
         google.maps.event.addDomListener(window, 'load', window.MNDMPS.Map.load);
+
+        // Modal
+
+        if (document.getElementsByClassName('modal-underlay').length) {
+            window.MNDMPS.Modal.init();
+        }
+
+        var getMindmapsButton = document.getElementsByClassName('installMindmaps');
+
+        if (getMindmapsButton.length) {
+            for (var i = 0; i < getMindmapsButton.length; i++) {
+                getMindmapsButton[i].addEventListener('click', window.MNDMPS.Modal.open, false);
+            }
+        }
     }
 };
 

@@ -1,6 +1,6 @@
 .platform{
     &-table{
-        margin: 1rem 0 2rem 0;
+        margin: 0 0 2rem 0;
 
         .title{
             text-align: center;
@@ -8,14 +8,14 @@
             font-weight: 200;
             transition: color 100ms ease-in-out;
         }
-        
+
         .parent{
             border-radius: 2px;
             border: 1px solid $black-brand;
             transition: background-color 100ms ease-in-out;
 
             >.title{
-                margin: 2rem 0 0 0;
+                margin: 1.5rem 0 0 0;
                 font-size: 1.6rem;
             }
 
@@ -42,13 +42,13 @@
 
             >div{
                 flex: 1 1 auto;
-                margin: 2rem;
+                margin: 1.5rem;
 
                 +div{
                     margin-left: 0;
                 }
             }
-            
+
             >.title{
                 border-radius: 2px;
                 border: 1px solid $black-brand;
@@ -101,8 +101,8 @@
 @media (min-width: 550px) {
     .platform{
         &-table{
-            margin: 3rem 0 1.5rem 0;
-            
+            margin: 2rem 0 1.5rem 0;
+
             .parent{
                 >.title{
                     margin: 1rem 0 0 0;
@@ -121,7 +121,7 @@
                         margin-left: 1rem;
                     }
                 }
-                
+
                 >.title{
                     font-size: 1rem;
                 }
@@ -134,6 +134,16 @@
 
         &-wrapper{
             padding-bottom: 1.5rem;
+
+            .centered{
+                text-align: left;
+            }
+
+            &-wrapper{
+                .button{
+                    margin-top: 0.5rem;
+                }
+            }
         }
     }
 }
@@ -141,6 +151,8 @@
 @media (min-width: 750px) {
     .platform{
         &-table{
+            margin: 3rem 0 1.5rem 0;
+            
             .children{
                 display: flex;
 
@@ -153,26 +165,27 @@
                 }
             }
         }
+
+        &-wrapper{
+            .button{
+                margin-top: 1rem;
+            }
+        }
     }
 }
 
 @media (min-width: 1000px) {
     .platform{
         &-table{
-            
+
             .parent{
                 >.title{
-                    margin: 1.5rem 0 0 0;
                     font-size: 1.4rem;
                 }
             }
 
             .children{
 
-                >div{
-                    margin: 1.5rem;
-                }
-                
                 >.title{
                     font-size: 1.1rem;
                 }

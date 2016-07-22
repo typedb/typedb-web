@@ -1,5 +1,6 @@
 .promoSlider{
-    height: calc(100vh - 40px);
+    height: 80vh;
+    margin-bottom: 0.5rem;
 
     ul{
         margin: 0;
@@ -151,10 +152,16 @@
             }
         }
     }
+
+    &-wrapper{
+        padding-bottom: 0.5rem;
+    }
 }
 
 @media (min-width: 400px) {
     .promoSlider{
+        margin-bottom: 1rem;
+        
         .content{
             ul{
                 li{
@@ -226,6 +233,10 @@
                     font-size: 0.8rem;
                 }
             }
+        }
+
+        &-wrapper{
+            padding-bottom: 1.5rem;
         }
     }
 }

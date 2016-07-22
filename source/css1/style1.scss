@@ -10,6 +10,8 @@
 @import 'columns';
 @import 'slider';
 @import 'platform';
+@import 'footer';
+@import 'modal';
 @import 'nav';
 
 body{
@@ -49,6 +51,10 @@ html{
     &.bg{
         &-yellow{
             background-color: $pale-yellow;
+        }
+
+        &-blue{
+            background-color: $pale-blue;
         }
     }
 
@@ -104,6 +110,10 @@ html{
     }
 }
 
+a{
+    color: $black-brand;
+}
+
 p{
     margin: 0 0 1rem 0;
 
@@ -112,14 +122,14 @@ p{
     }
 }
 
-.google-map{
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    min-height: calc(100vh - 40px);
-    //height: 100%;
-    z-index: -1;
+.introduction{
+    &-wrapper{
+        padding-bottom: 0.5rem;
+
+        .button{
+            margin-top: 0.5rem;
+        }
+    }
 }
 
 @media screen and (min-aspect-ratio: 100/75) {
@@ -169,6 +179,16 @@ p{
 
             .get{
                 top: 13%;
+            }
+        }
+    }
+
+    .introduction{
+        &-wrapper{
+            padding-bottom: 1.5rem;
+
+            .button{
+                margin-top: 1rem;
             }
         }
     }

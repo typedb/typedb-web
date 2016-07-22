@@ -13,7 +13,7 @@
     text-decoration: none;
 
     &.color{
-        
+
         &-red{
             color: $white;
             background-color: $red;
@@ -31,6 +31,11 @@
             &.hollow{
                 color: $black-brand;
                 border: 1px solid $black-brand;
+                
+                &:hover{
+                    background-color: $black-brand;
+                    color: $white;
+                }
             }
         }
 
@@ -41,6 +46,11 @@
             &.hollow{
                 color: $white;
                 border: 1px solid $white;
+                
+                &:hover{
+                    color: $black-brand;
+                    background-color: $white;
+                }
             }
         }
     }

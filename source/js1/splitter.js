@@ -14,7 +14,9 @@ window.MNDMPS.Splitter = {
         if (document.documentElement.style.hasOwnProperty('webkitClipPath')) {
             obj.splitter.style.webkitClipPath = 'inset(0px 0px 0px ' + obj.pos + 'px)';
         } else {
-            obj.splitter.style.clip = 'rect(0px, ' + obj.splitter.view.offsetWidth + 'px, ' + obj.splitter.view.offsetHeight + 'px, ' + obj.pos + 'px)';
+            if (obj.splitter.view) {
+                obj.splitter.style.clip = 'rect(0px, ' + obj.splitter.view.offsetWidth + 'px, ' + obj.splitter.view.offsetHeight + 'px, ' + obj.pos + 'px)';
+            }
         }
     },
 
