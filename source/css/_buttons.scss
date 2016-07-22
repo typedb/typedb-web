@@ -18,7 +18,7 @@
         height: 12px;
         vertical-align: middle;
         margin-top: -0.15rem;
-        
+
         use{
             fill: transparent;
             stroke: $black-brand;
@@ -44,6 +44,11 @@
                 color: $red;
                 border: 1px solid $red;
             }
+            svg{
+                use{
+                    stroke: $white;
+                }
+            }
         }
 
         &-black{
@@ -53,7 +58,7 @@
             &.hollow{
                 color: $black-brand;
                 border: 1px solid $black-brand;
-                
+
                 &:hover{
                     background-color: $black-brand;
                     color: $white;
@@ -68,7 +73,7 @@
             &.hollow{
                 color: $white;
                 border: 1px solid $white;
-                
+
                 &:hover{
                     color: $black-brand;
                     background-color: $white;
