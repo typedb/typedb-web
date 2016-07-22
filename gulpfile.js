@@ -15,24 +15,71 @@ gulp.task('build-css', function() {
         }));
 });
 
+gulp.task('build-new-css', function() {
+    return gulp.src('source/css1/style1.scss')
+        .pipe(sass({outputStyle: 'compressed'}))
+        .pipe(gulp.dest('public/css'))
+        .pipe(notify({
+            title: "Mindmaps Website",
+            message: "CSS compiled"
+        }));
+});
+
 gulp.task('build-js', function() {
     return gulp.src([
-            'source/js/jquery-2.2.1.js',
-            'source/js/atvImg.js',
-            'source/js/three.js',
-            'source/js/vanillaSmoothScroller.js',
-            'source/js/slick.js',
+            'source/js1/jquery-2.2.1.js',
+            'source/js1/atvImg.js',
+            'source/js1/three.js',
+            'source/js1/vanillaSmoothScroller.js',
+            'source/js1/slick.js',
+            'source/js1/prism.js',
+            'source/js1/prism-graql.js',
+            'source/js1/d3.js',
+            'source/js1/d3plus.js',
+            'source/js1/graph.js',
+            'source/js1/graphs.js',
+            'source/js1/helpers.js',
+            'source/js1/ajax.js',
+            'source/js1/modal.js',
+            'source/js1/map.js',
+            'source/js1/three-d.js',
+            'source/js1/main.js'
+        ])
+        .pipe(closureCompiler({
+            compilerPath: 'node_modules/google-closure-compiler/compiler.jar',
+            fileName: 'mndmps1.min.js',
+            compilerFlags: {
+                language_in: 'ES5',
+                //compilation_level: 'WHITESPACE_ONLY',
+                compilation_level: 'SIMPLE_OPTIMIZATIONS',
+                warning_level: 'QUIET'
+            }
+        }))
+        .pipe(gulp.dest('public/js'))
+        .pipe(notify({
+            title: "Mindmaps Website",
+            message: "JS compiled"
+        }));
+});
+
+gulp.task('build-new-js', function() {
+    return gulp.src([
+            'source/js/jquery-3.0.0.js',
+            'source/js/d3.js',
+            'source/js/typed.js',
+            'source/js/helpers.js',
+            'source/js/tabs.js',
+            'source/js/splitter.js',
             'source/js/prism.js',
             'source/js/prism-graql.js',
-            'source/js/d3.js',
-            'source/js/d3plus.js',
             'source/js/graph.js',
             'source/js/graphs.js',
-            'source/js/helpers.js',
+            'source/js/shifty.js',
+            'source/js/slider.js',
+            'source/js/nav.js',
             'source/js/ajax.js',
             'source/js/modal.js',
             'source/js/map.js',
-            'source/js/three-d.js',
             'source/js/main.js'
         ])
         .pipe(closureCompiler({
@@ -76,11 +123,13 @@ gulp.task('build-html', function() {
 
 gulp.task('watch', function() {
     gulp.watch('source/css/*.scss', ['build-css']);
+    gulp.watch('source/css1/*.scss', ['build-new-css']);
     gulp.watch('source/js/*.js', ['build-js']);
+    gulp.watch('source/js1/*.js', ['build-new-js']);
     gulp.watch('source/html/*.html', ['build-html']);
 });
 
-gulp.start('build-css', 'build-js', 'build-html');
+gulp.start('build-css', 'build-new-css', 'build-js', 'build-new-js', 'build-html');
 
 gulp.task('default', ['watch'], function() {
     return gutil.log('Gulp gulp gulp...');

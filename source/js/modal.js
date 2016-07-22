@@ -2,13 +2,13 @@
 
 window.MNDMPS = window.MNDMPS || {};
 
-window.MNDMPS.modal = {
+window.MNDMPS.Modal = {
 
     _data: {},
 
     open: function() {
 
-        var _this = window.MNDMPS.modal,
+        var _this = window.MNDMPS.Modal,
             data = _this._data;
 
         if (data.underlay.classList.contains('display')) {
@@ -31,7 +31,7 @@ window.MNDMPS.modal = {
 
     close: function() {
 
-        var _this = window.MNDMPS.modal,
+        var _this = window.MNDMPS.Modal,
             data = _this._data;
 
         if (!data.underlay.classList.contains('active')) {
@@ -47,7 +47,7 @@ window.MNDMPS.modal = {
 
     closeByKey: function(event) {
 
-        var _this = window.MNDMPS.modal;
+        var _this = window.MNDMPS.Modal;
 
         if (event.which === 27) {
             _this.close();
@@ -56,7 +56,7 @@ window.MNDMPS.modal = {
 
     resetForm: function(form) {
 
-        var data = window.MNDMPS.modal._data,
+        var data = window.MNDMPS.Modal._data,
             inputs = [].slice.call(form.getElementsByTagName('input'), 0);
 
         inputs.push(form.getElementsByTagName('textarea')[0]);
@@ -90,8 +90,8 @@ window.MNDMPS.modal = {
 
             this.classList.add('disabled');
 
-            window.MNDMPS.ajax.sendSubscribe({
-                data: serializeObject($(data.form))
+            window.MNDMPS.Ajax.sendSubscribe({
+                data: window.MNDMPS.Helpers.serializeObject($(data.form))
             }).then(
                 function(response) {
                     data.sent = true;
@@ -117,6 +117,6 @@ window.MNDMPS.modal = {
 
         document.addEventListener('keydown', this.closeByKey, false);
 
-        dontScrollParent(data.underlay);
+        //dontScrollParent(data.underlay);
     }
 };

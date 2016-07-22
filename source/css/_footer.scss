@@ -1,0 +1,125 @@
+.container{
+    &.footer{
+        .google-map{
+            width: 100%;
+            height: 50vh;
+        }
+
+        .row{
+            padding-bottom: 2rem;
+            font-family: 'Blender', Helvetica, Arial, sans-serif;
+
+            .button{
+                margin: 0 1rem 1rem 0;
+            }
+
+            h4{
+                margin-bottom: 1rem;
+            }
+
+            p{
+                margin-bottom: 0;
+                font-weight: 200;
+                color: lighten($black-brand, 20%);
+
+                a{
+                    color: lighten($black-brand, 20%);
+
+                    &.community{
+                        display: inline-block;
+                        text-decoration: none;
+
+                        &:not(.installMindmaps){
+                            margin-bottom: 0.5rem;
+                        }
+                    }
+                }
+
+                svg{
+                    fill: lighten($black-brand, 20%);
+                    width: 16px;
+                    height: 16px;
+                    position: relative;
+                    top: -1px;
+                    vertical-align: middle;
+                    display: inline-block;
+                    margin-right: 0.1rem;
+                }
+            }
+
+            ul{
+                list-style: none;
+                margin: 0;
+                padding: 0;
+
+                li{
+                    a{
+                        font-weight: 200;
+                        text-decoration: none;
+                        color: lighten($black-brand, 20%);
+                    }
+                }
+
+            }
+        }
+    }
+}
+
+/* Larger than desktop */
+@media (min-width: 750px) {
+    .container{
+        &.footer{
+            .row{
+
+                h4{
+                    font-size: 0.9rem;
+                }
+
+                p{
+                    font-size: 0.8rem;
+                }
+
+                ul{
+
+                    li{
+                        font-size: 0.8rem;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media (min-width: 1000px) {
+    .container{
+        &.footer{
+            .google-map{
+                height: 40vh;
+            }
+            
+            .row{
+
+                &:last-child{
+                    padding-bottom: 3rem;
+                }
+
+                h4{
+                    font-size: 1.1rem;
+                }
+
+                p{
+                    font-size: 0.9rem;
+                    line-height: 1.1rem;
+                }
+
+                ul{
+
+                    li{
+                        font-size: 0.9rem;
+                        line-height: 1.1rem;
+                    }
+                }
+            }
+        }
+    }
+}

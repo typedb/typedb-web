@@ -1,0 +1,4158 @@
+@import 'reset';
+@import 'mixins';
+@import 'atv';
+@import 'vars';
+@import 'slick';
+@import 'slick-theme';
+@import 'prism';
+@import 'icons';
+@import 'modal';
+
+/*
+    Breakpoints
+
+    339px
+    559px
+    719px
+    999px
+    1319px
+    1320px
+    1600px
+*/
+
+/* Document level adjustments */
+html{
+    font-size: 17px;
+    color: $blackc;
+    background: none;
+}
+@media (max-width: 559px) {
+    html{
+        font-size: 13px;
+    }
+}
+@media (min-width: 560px) {
+    html{
+        font-size: 15px;
+    }
+}
+@media (min-width: 1600px) {
+    html{
+        font-size: 19px;
+    }
+}
+
+h1, h2, h3, h4, h5, h6{
+    font-weight: 200;
+}
+
+h1{
+    font-size: 3rem;
+}
+h2{
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 60px;
+}
+h3{
+    font-size: 2.2rem;
+    margin-bottom: 30px;
+}
+h5{
+    font-size: 1.4rem;
+    font-weight: 400;
+}
+
+a{
+    text-decoration: none;
+    color: $gray425C;
+    border-bottom: 1px dotted currentColor;
+    @include transition(border-color 100ms ease-in-out);
+
+    &.alt{
+        color: $lightGray;
+    }
+
+    &:hover{
+        border-bottom-color: $transparent;
+    }
+}
+
+@include keyframes(flyPolygons){
+    0% {
+        fill: $transparent;
+        @include transform(translateY(0px));
+    }
+    25%{
+        fill: $brandBlue;
+        @include transform(translateY(-1000px));
+    }
+    25.05%{
+        fill: $transparent;
+        @include transform(translateY(-1000px));
+    }
+    25.1%{
+        fill: $transparent;
+        @include transform(translateY(0px));
+    }
+    50%{
+        fill: $brandGreen;
+        @include transform(translateY(-1000px));
+    }
+    50.05%{
+        fill: $transparent;
+        @include transform(translateY(-1000px));
+    }
+    50.1%{
+        fill: $transparent;
+        @include transform(translateY(0px));
+    }
+    75%{
+        fill: $yellow;
+        @include transform(translateY(-1000px));
+    }
+    75.05% {
+        fill: $transparent;
+        @include transform(translateY(-1000px));
+    }
+    75.1% {
+        fill: $transparent;
+        @include transform(translateY(0px));
+    }
+    99.95%{
+        fill: $pastelRed;
+        @include transform(translateY(-1000px));
+    }
+    99.99%{
+        fill: $transparent;
+        @include transform(translateY(-1000px));
+    }
+}
+
+@include keyframes(fadePolygons){
+    0%, 100% {
+        fill: $transparent;
+        @include transform(translateY(0px));
+    }
+    16%{
+        fill: rgba($brandBlue, 0.4);
+        @include transform(translateY(0px));
+    }
+    33%{
+        fill: $transparent;
+        @include transform(translateY(0px));
+    }
+    49%{
+        fill: rgba($brandGreen, 0.4);
+        @include transform(translateY(0px));
+    }
+    66%{
+        fill: $transparent;
+        @include transform(translateY(0px));
+    }
+    83%{
+        fill: rgba($yellow, 0.4);
+        @include transform(translateY(0px));
+    }
+}
+
+@include keyframes(splashPolygons){
+    0%, 100% {
+        fill: $transparent;
+        @include transform(translateY(0px));
+    }
+    16%{
+        fill: rgba($white, 0.2);
+        @include transform(translateY(0px));
+    }
+    33%{
+        fill: $transparent;
+        @include transform(translateY(0px));
+    }
+    49%{
+        fill: rgba($pastelBlue, 0.2);
+        @include transform(translateY(0px));
+    }
+    66%{
+        fill: $transparent;
+        @include transform(translateY(0px));
+    }
+    83%{
+        fill: rgba($pastelYellow, 0.2);
+        @include transform(translateY(0px));
+    }
+}
+
+symbol[id^="svg-logo"],
+svg[class^="svg-logo"]{
+    .stroke{
+        &-gray4c{
+            stroke: $gray4c;
+            fill: $white;
+            stroke-width: 0.3;
+        }
+        &-blackc{
+            stroke: $blackc;
+            fill: $white;
+            stroke-width: 0.7;
+        }
+        &-thinWhite{
+            stroke: $white;
+            fill: $brandBlue;
+            stroke-width: 0.15;
+        }
+        &-white{
+            stroke: $white;
+            fill: $brandBlue;
+            stroke-width: 0.7;
+        }
+    }
+}
+
+body{
+    font-family: Raleway, sans-serif;
+    font-weight: 400;
+    width: 100%;
+
+    b{
+        font-weight: 700;
+    }
+}
+
+.capitalise{
+    text-transform: capitalize;
+}
+
+.icon{
+    display: block;
+    position: relative;
+
+    &.relation{
+        use{
+            stroke-linecap: butt;
+            stroke-linejoin: miter;
+            stroke-width: 1;
+            stroke: $blackc;
+            fill: $transparent;
+        }
+    }
+
+    .item{
+        position: absolute;
+        z-index: 2;
+        top: 50%;
+        left: 50%;
+        width: 50%;
+        height: 50%;
+        margin: -25% 0 0 -25%;
+        @include transform(translate(7%, -5%) rotateZ(45deg));
+        @include transition(transform 100ms ease-in-out);
+
+        use{
+            stroke: $blackc;
+            fill: $transparent;
+            @include transition(stroke-width 100ms ease-in-out, stroke 100ms ease-in-out, fill 100ms ease-in-out);
+        }
+    }
+
+    &.no-fill{
+        .item{
+            use{
+                fill: $transparent;
+            }
+        }
+    }
+    &.no-stroke{
+        .item{
+            use{
+                stroke: $transparent;
+                stroke-width: 0;
+            }
+        }
+    }
+
+    .underlay{
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 1;
+        @include transform(translate(-7%, 5%) rotateZ(-45deg));
+        @include transition(transform 100ms ease-in-out);
+
+        use{
+            stroke: $blackc;
+            fill: $transparent;
+            @include transition(fill 100ms ease-in-out);
+        }
+    }
+
+    &.x-small{
+        width: 20px;
+        height: 20px;
+    }
+
+    &.big{
+        width: 200px;
+        height: 200px;
+
+        .underlay{
+            use{
+                stroke-width: 0.06;
+            }
+        }
+
+        .item{
+            use{
+                stroke-width: 0.12;
+            }
+        }
+    }
+
+    &.medium{
+        width: 100px;
+        height: 100px;
+
+        .underlay{
+            use{
+                stroke-width: 0.12;
+            }
+        }
+
+        .item{
+            use{
+                stroke-width: 0.24;
+            }
+        }
+    }
+
+    &.small{
+        width: 40px;
+        height: 40px;
+    }
+
+    &.small-l{
+        width: 80px;
+        height: 80px;
+    }
+
+    &.background{
+        &:after{
+            content: '';
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            left: 0;
+            top: 0;
+            z-index: 0;
+        }
+
+        &.yellow{
+            &:after{
+                background-color: rgba($yellow, 0.2);
+            }
+
+            &:hover{
+                .item{
+                    use{
+                        fill: $pastelYellow;
+                        stroke: $pastelYellow;
+                    }
+                }
+                .underlay{
+                    use{
+                        fill: $pastelRed;
+                        stroke: $pastelRed;
+                    }
+                }
+            }
+        }
+
+        &.green{
+            &:after{
+                background-color: rgba($brandGreen, 0.2);
+            }
+
+            &:hover{
+                .item{
+                    use{
+                        fill: $brandGreen;
+                        stroke: $brandGreen;
+                    }
+                }
+                .underlay{
+                    use{
+                        fill: $white;
+                        stroke: $white;
+                    }
+                }
+            }
+        }
+
+        &.blue{
+            &:after{
+                background-color: rgba($brandBlue, 0.2);
+            }
+
+            &:hover{
+                .item{
+                    use{
+                        fill: $pastelBlue;
+                        stroke: $pastelBlue;
+                    }
+                }
+                .underlay{
+                    use{
+                        fill: $pastelYellow;
+                        stroke: $pastelYellow;
+                    }
+                }
+            }
+        }
+
+        &.circle{
+            &:after{
+                border-radius: 50%;
+            }
+        }
+
+        &.rhomb{
+            &:after{
+                @include transform(rotateZ(45deg) scale(0.9));
+            }
+        }
+    }
+
+    &:hover{
+        .underlay{
+            @include transform(translate(-7%, 5%) rotateZ(0deg));
+
+            use{
+                fill: $blackc;
+            }
+        }
+
+        .item{
+            @include transform(translate(7%, -5%) rotateZ(0deg) scale(1.8));
+
+            use{
+                stroke: $white;
+                fill: $white;
+                stroke-width:0.06;
+            }
+        }
+
+        &.no-fill{
+            .item{
+                use{
+                    fill: $transparent;
+                }
+            }
+        }
+        &.no-stroke{
+            .item{
+                use{
+                    stroke: $transparent;
+                    stroke-width: 0;
+                }
+            }
+        }
+    }
+}
+
+.float{
+    &-left{
+        float: left;
+    }
+    &-right{
+        float: right;
+    }
+}
+
+.button{
+
+    &-crystall{
+        display: inline-block;
+        position: relative;
+
+        &.small{
+            width: 13px;
+            height: 13px;
+        }
+
+        &:hover{
+            use{
+                fill: $white;
+            }
+            .underlay{
+                //@include transform(rotateZ(0deg));
+
+                use{
+                    fill: $blackc;
+                }
+            }
+        }
+
+        use{
+            fill: $blackc;
+            @include transition(fill 100ms ease-in-out);
+        }
+
+        svg{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 100%;
+            height: 100%;
+            margin: -50% 0 0 -50%;
+            z-index: 1;
+
+            &.underlay{
+                width: 220%;
+                height: 220%;
+                margin: -110% 0 0 -110%;
+                z-index: 0;
+                //@include transform(rotateZ(-45deg));
+                //@include transition(transform 100ms ease-in-out);
+
+                use{
+                    stroke-width: 0.5;
+                    stroke: $blackc;
+                    fill: $transparent;
+                }
+            }
+        }
+    }
+}
+
+.block{
+    width: 100%;
+    position: relative;
+
+    &:after{
+        content: '';
+        display: table;
+        clear: both;
+    }
+
+    .text-block{
+        &.columns{
+            @include columns(auto 2);
+            @include column-gap(60px);
+        }
+
+        &.booked{
+            clear: both;
+
+            &:after{
+                content: '';
+                display: table;
+                clear: both;
+            }
+
+            >div{
+                width: calc(50% - 30px);
+                float: left;
+                clear: left;
+
+                &.right{
+                    float: right;
+                    clear: right;
+                }
+            }
+        }
+
+        p{
+            font-size: 0.8rem;
+            line-height: 1.4rem;
+
+            &:not(:last-child){
+                padding-bottom: 15px;
+            }
+
+            &.nonbreakable{
+                @include break-inside(avoid);
+            }
+        }
+    }
+
+    &.content{
+        background: $lightGray url(bg_black.svg) no-repeat center center;
+        background-size: cover;
+
+        &.gradient-bg{
+            background-image: url(bg_white.svg), linear-gradient(160deg, #5bc2e7 0%, #a1d884 100%);
+            color: $white;
+        }
+
+        &.white-bg{
+            background-color: $white;
+            background-image: url(bg_black.svg);
+            color: $blackc;
+        }
+
+        .wrapper{
+            padding: 90px 0;
+
+            .icon-block{
+                margin-bottom: 60px;
+
+                &:after{
+                    content: '';
+                    display: table;
+                    clear: both;
+                }
+
+                .icon{
+                    margin-right: 60px;
+                }
+            }
+
+            &.team{
+                padding: 90px 0 30px 0;
+
+                .text-block{
+                    margin-bottom: 60px;
+                }
+
+                .team-grid{
+                    margin-bottom: 30px;
+                    @include disableSelection();
+
+                    &:after{
+                        content: '';
+                        display: table;
+                        clear: both;
+                    }
+
+                    >li{
+                        position: relative;
+                        float: left;
+
+                        .atvImg-layers{
+                            @include filter(grayscale(1));
+                            @include transition(filter 400ms linear, -webkit-filter 400ms linear);
+                        }
+
+                        .bg{
+                            background: $white url(bg_tiled.svg) no-repeat center center;
+                            background-size: cover;
+                            pointer-events: none;
+
+                            svg{
+                                display: block;
+                                position: absolute;
+                                top: 0;
+                                left: 50%;
+                                height: 100%;
+                                width: 200%;
+                                @include transform(translateX(-50%));
+                            }
+
+                            .svg-bg-pattern{
+                                use{
+                                    stroke: rgba($blackc, 0.4);
+                                    stroke-width: 0.25;
+                                    fill: rgba($blackc, 0.4);
+                                }
+                            }
+
+                            .svg-bg-tiles{
+                                visibility: hidden;
+
+                                polygon{
+                                    @include animation-iteration-count(infinite);
+                                    @include animation-timing-function(ease-out);
+                                    @include animation-play-state(paused);
+
+                                    @for $i from 1 through 33 {
+                                        &:nth-child(#{$i}){
+                                            @include animation-delay(random(40)*(-5s));
+                                            @include animation-duration(5s+random(20))
+                                        }
+                                    }
+                                }
+                            }
+
+                            &.fly{
+                                .svg-bg-tiles{
+                                    polygon{
+                                        @include animation-name(flyPolygons);
+                                    }
+                                }
+                            }
+
+                            &.fade{
+                                .svg-bg-tiles{
+                                    polygon{
+                                        @include animation-name(fadePolygons);
+                                    }
+                                }
+                            }
+                        }
+
+                        &:before{
+                            content: '';
+                            display: block;
+                            padding-top: 130%;
+                        }
+
+                        .link{
+                            display: block;
+                            position: absolute;
+                            top: 0;
+                            left: 0;
+                            width: 100%;
+                            height: 100%;
+                        }
+
+                        .description{
+                            color: $white;
+                            position: absolute;
+                            bottom: 0;
+                            left: 0;
+                            width: 100%;
+                            box-sizing: border-box;
+                            //padding: 15px;
+                            padding: 15px 15px 25px 15px;
+                            @include transform(translate(0, calc(100% - 40px)));
+                            @include transition(background-color 200ms ease-in-out, transform 200ms ease-in-out);
+
+                            p{
+                                font-size: 1rem;
+                                line-height: 10px;
+                                margin-bottom: 15px;
+                            }
+
+                            span{
+                                display: block;
+                                font-size: 0.8rem;
+                                line-height: 1rem;
+                                margin-bottom: 5px;
+
+                                &.x-small{
+                                    font-size: 0.6rem;
+                                    line-height: 0.7rem;
+                                }
+                            }
+                        }
+
+                        .over{
+                            z-index: 1;
+
+                            .atvImg-layers{
+                                @include filter(grayscale(0));
+                            }
+
+                            .description{
+                                //@include transform(translate(0, 0));
+                                @include transform(translate(0, 10px));
+                                background-color: rgba($blackc, 0.4);
+                            }
+
+                            .svg-bg-tiles{
+                                visibility: visible;
+
+                                polygon{
+                                    @include animation-play-state(running);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    &.map{
+
+        .wrapper{
+            pointer-events: none;
+            box-sizing: border-box;
+            position: relative;
+            padding: 60px 0;
+            z-index: 1;
+
+            .info{
+                pointer-events: auto;
+                display: inline-block;
+                padding: 30px;
+                color: $blackc;
+                background-color: rgba($white, 0.8);
+                @include transition(background-color 200ms ease-in-out);
+
+                &:hover{
+                    background-color: $white;
+                }
+
+                .text-block{
+                    p{
+                        &:not(:last-child){
+                            margin-bottom: 15px;
+                        }
+                    }
+                }
+            }
+        }
+
+        .google-map{
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+        }
+    }
+
+    .wrapper{
+        height: 100%;
+        margin: 0 auto;
+    }
+
+    &.nav{
+        overflow: hidden;
+        height: 90px;
+        position: fixed;
+        z-index: 10;
+        top: 0;
+        left: 0;
+        pointer-events: none;
+        @include transition(background-color 100ms ease-in-out);
+        @include transform(translate3d(0, 0, 60px));
+
+        .wrapper{
+
+            .logo{
+                float: left;
+                height: 100%;
+                display: block;
+                color: $white;
+                text-decoration: none;
+                border: none;
+                pointer-events: auto;
+                @include transform(translate(0, -90px));
+                @include transition(transform 100ms ease-in-out);
+
+                span{
+                    margin-top: 31px;
+                    display: block;
+                    font-size: 0.7rem;
+                }
+
+                >span{
+                    float: left;
+
+                    span{
+                        margin-top: 0.2rem;
+                        font-weight: 200;
+                        font-size: 0.6rem;
+                    }
+                }
+
+                svg{
+                    float: left;
+                    width: 53px;
+                    height: 53px;
+                    margin: 18px 18px 0 -4px;
+
+                    &.svg-logo-black{
+                        display: none;
+                    }
+                }
+            }
+
+            .getMindmaps{
+                font-size: 0.9rem;
+                cursor: pointer;
+                display: block;
+                float: left;
+                background-color: $pastelRed;
+                color: $white;
+                padding: 0 10px;
+                height: 30px;
+                line-height: 30px;
+                border-radius: 2px;
+                margin: 30px 0 0 30px;
+                @include transform(translate(0, -90px));
+                @include transition(background-color 100ms ease-in-out, transform 100ms ease-in-out);
+
+                &:hover{
+                    background-color: lighten($pastelRed, 2.5%);
+                }
+            }
+
+            nav{
+                float: right;
+                margin-top: 30px;
+                padding-right: 6px;
+                pointer-events: auto;
+
+                a:not([class^="button"]){
+                    position: relative;
+                    font-size: 0.8rem;
+                    color: $white;
+                    text-decoration: none;
+                    margin-left: 20px;
+                    line-height: 30px;
+                    display: inline-block;
+                    border: none;
+
+                    &:after{
+                        content: '';
+                        width: 100%;
+                        height: 1px;
+                        background-color: $white;
+                        position: absolute;
+                        bottom: 0;
+                        left: 0;
+                        @include transition(transform 200ms ease-in-out);
+                        transform-origin: right top;
+                        @include transform(scale(0, 1));
+                    }
+
+                    &:hover{
+                        &:after{
+                            transform-origin: left top;
+                            @include transform(scale(1, 1));
+                        }
+                    }
+                }
+
+                .divider{
+                    display: inline-block;
+                    width: 1px;
+                    height: 10px;
+                    background-color: rgba($white, 0.4);
+                    margin-left: 10px;
+                    vertical-align: middle;
+                    @include transition(background-color 100ms ease-in-out);
+                }
+
+                a[class^="button"]{
+                    vertical-align: middle;
+                    margin-left: 20px;
+                    border: none;
+
+                    use{
+                        fill: $white;
+                    }
+
+                    .underlay{
+                        use{
+                            stroke: $white;
+                            fill: $transparent;
+                        }
+                    }
+                    &:hover{
+                        use{
+                            fill: $blackc;
+                        }
+                        .underlay{
+                            use{
+                                fill: $white;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        &.scrolled,
+        &.white{
+            background: $white url(bg_black.svg) no-repeat center center;
+            box-shadow: 0 0 2px 0 rgba($blackc, 0.2);
+            background-size: cover;
+            pointer-events: auto;
+
+            .wrapper{
+
+                .logo{
+                    color: $blackc;
+                    @include transform(translate(0, 0px));
+
+                    svg{
+                        &.svg-logo-black{
+                            display: block;
+                        }
+                        &.svg-logo-white{
+                            display: none;
+                        }
+                    }
+                }
+
+                .getMindmaps{
+                    @include transform(translate(0, 0px));
+
+                    &:active{
+                        @include transform(scale(0.96));
+                    }
+                }
+
+                nav{
+                    a:not([class^="button"]){
+                        color: $blackc;
+
+                        &:after{
+                            background-color: $blackc;
+                        }
+                    }
+
+                    .divider{
+                        background-color: rgba($blackc, 0.4);
+                    }
+
+                    a[class^="button"]{
+
+                        use{
+                            fill: $blackc;
+                        }
+
+                        .underlay{
+                            use{
+                                stroke: $blackc;
+                                fill: $transparent;
+                            }
+                        }
+                        &:hover{
+                            use{
+                                fill: $white;
+                            }
+                            .underlay{
+                                use{
+                                    fill: $blackc;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        &.white{
+            +.block{
+                padding-top: 90px;
+            }
+        }
+    }
+
+    &.footer{
+        .wrapper{
+            &:after{
+                content: '';
+                display: table;
+                clear: both;
+            }
+        }
+
+        .logo{
+            svg{
+                width: 100%;
+                height: 100%;
+            }
+        }
+    }
+
+    &.splash{
+        overflow: hidden;
+        height: 80%;
+        height: 80vh;
+        background: linear-gradient(160deg, #5bc2e7 0%, #a1d884 100%);
+        text-align: center;
+        position: relative;
+
+        canvas{
+            display: block;
+            max-height: 100vh;
+        }
+
+        .overlay{
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+
+            h1{
+                //font-size: 1.2rem;
+                //font-size: 2.8vh;
+                font-size: 2.8vh;
+                width: 100%;
+                color: $white;
+                padding-top: 34vh;
+                //bottom: 53%;
+                //top: 45%;
+                //left: 0;
+
+                span{
+                    margin-top: 0.5rem;
+                    //font-size: 0.8rem;
+                    //font-size: 1.9vh;
+                    font-size: 1.8vh;
+                    display: block;
+                    font-weight: 200;
+                }
+            }
+
+            .getMindmaps{
+                cursor: pointer;
+                display: inline-block;
+                background-color: $pastelRed;
+                color: $white;
+                padding: 0 1.5rem;
+                height: 3rem;
+                line-height: 3rem;
+                border-radius: 2px;
+                margin-top: 1.5rem;
+                @include transition(background-color 100ms ease-in-out);
+
+                &:hover{
+                    background-color: lighten($pastelRed, 2.5%);
+                }
+
+                &:active{
+                    @include transform(scale(0.96));
+                }
+            }
+        }
+
+        .svg-splash{
+            height: 100vh;
+            background: url(bg_white.svg) no-repeat center center;
+            background-size: cover;
+
+            .svg-logo{
+                position: absolute;
+                top: 24%;
+                left: 0;
+                width: 100%;
+                @include transform(translateY(-50%));
+                height: 34%;
+                text-align: center;
+
+                svg{
+                    display: inline-block;
+                    height: 100%;
+
+                    .polygons{
+                        polygon{
+                            fill: $transparent;
+                            stroke-width: 0;
+
+                            @include animation(splashPolygons linear infinite);
+
+                            @for $i from 1 through 21 {
+                                &:nth-child(#{$i}){
+                                    @include animation-delay(-5*random(40)+s);
+                                    @include animation-duration(40+random(20)+s);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+#graql-slider{
+    >.wrapper{
+        padding-bottom: 0;
+    }
+
+    .graph-slider{
+        background-color: $white;
+        margin-top: -40vh;
+        height: 45vh;
+        position: relative;
+
+        .slider-container{
+            position: relative;
+            z-index: 1;
+            display: none;
+
+            &.slick-initialized{
+                display: block;
+            }
+
+            &.slick-slider{
+                height: 100%;
+
+                .slick-list{
+                    height: 100%;
+
+                    .slick-track{
+                        height: 100%;
+
+                        .slick-slide{
+                            outline: none;
+                            height: 100%;
+
+                            >div{
+                                width: 50%;
+                                height: 100%;
+                                box-sizing: border-box;
+                                position: relative;
+
+                                &.graph{
+                                    float: left;
+                                    padding: 1rem;
+
+                                    div{
+                                        width: 100%;
+                                        height: 100%;
+                                    }
+
+                                    svg{
+                                        height: 100%;
+                                        width: 100%;
+
+                                        marker{
+                                            path{
+                                                fill: $gray4c;
+                                            }
+                                        }
+
+                                        /* .link{
+                                            line{
+                                                fill: none;
+                                                stroke: $gray4c;
+                                                stroke-width: 1px;
+                                            }
+
+                                            text{
+                                                font-size: 10px;
+                                            }
+                                        }
+
+                                        .node{
+                                            circle{
+                                                fill: $brandBlue;
+                                                stroke-width: 0;
+
+                                                &.empty{
+                                                    fill: $white;
+                                                    stroke: $brandGreen;
+                                                    stroke-width: 1px;
+                                                }
+
+                                                &.concept{
+                                                    fill: $brandGreen;
+                                                    stroke: $brandGreen;
+                                                }
+                                            }
+
+                                            text{
+                                                font-size: 12px;
+                                            }
+                                        } */
+
+                                        text{
+                                            fill: $white;
+                                            pointer-events: none;
+                                        }
+                                    }
+                                }
+
+                                &.code{
+                                    float: right;
+                                    padding: 1rem;
+
+                                    .window{
+                                        height: 100%;
+                                        width: 100%;
+                                        background-color: $codeGray;
+                                        position: relative;
+
+                                        .header{
+                                            background-color: $gray425C;
+                                            height: 2rem;
+                                            position: absolute;
+                                            top: 0;
+                                            left: 0;
+                                            width: 100%;
+
+                                            >span{
+                                                float: right;
+                                                line-height: 2rem;
+                                                padding-right: 1rem;
+                                                color: $lightGray;
+                                            }
+
+                                            .buttons{
+                                                width: 0.8rem;
+                                                height: 0.8rem;
+                                                position: absolute;
+                                                top: 0.6rem;
+                                                left: 0.6rem;
+                                                background-color: $pastelRed;
+                                                border-radius: 50%;
+                                                box-shadow: 1.2rem 0 0 0 $brandGreen, 2.4rem 0 0 0 $brandBlue;
+                                            }
+                                        }
+
+                                        .code{
+                                            &-input,
+                                            &-output{
+                                                margin: 2rem 0 0 0;
+                                                position: absolute;
+                                                top: 0;
+                                                left: 0;
+                                                width: 100%;
+                                                height: calc(100% - 2rem);
+                                                padding: 1rem;
+                                                border: none;
+                                                font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+                                                font-size: 0.8rem;
+                                                background: transparent;
+                                                white-space: pre-wrap;
+                                                word-wrap: break-word;
+                                                line-height: 1.5em;
+                                                box-sizing: border-box;
+                                                outline: none;
+                                            }
+
+                                            &-input{
+                                                pointer-events: none;
+                                                opacity: 0;
+                                                color: $lightGray;
+                                                resize: none;
+                                            }
+
+                                            &-output{
+                                                @include enableSelection();
+                                                overflow-y: auto;
+
+                                                code{
+                                                    position: absolute;
+                                                    top: 0;
+                                                    left: 0;
+                                                    margin: 0;
+                                                    padding: 1rem;
+                                                    display: block;
+                                                    color: $lightGray;
+                                                    font-size: 0.8rem;
+                                                    font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+                                                    white-space: pre-wrap;
+                                                    word-wrap: break-word;
+                                                    width: 100%;
+                                                    box-sizing: border-box;
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.content{
+    .wrapper{
+
+        .marginBottom{
+            margin-bottom: 90px;
+
+            &:last-of-type{
+                margin-bottom: 0;
+            }
+        }
+
+        .bigRedButton{
+            border: none;
+            font-size: 1.2rem;
+            cursor: pointer;
+            display: inline-block;
+            background-color: $pastelRed;
+            color: $white;
+            padding: 0 20px;
+            height: 60px;
+            line-height: 60px;
+            border-radius: 2px;
+            @include transition(background-color 100ms ease-in-out);
+
+            &:hover{
+                background-color: lighten($pastelRed, 2.5%);
+            }
+        }
+
+        .bottomLinks{
+            a{
+                color: $blackc;
+                font-weight: 600;
+                font-size: 0.9rem;
+                line-height: 1.5rem;
+            }
+
+            &:before{
+                content: '';
+                display: block;
+                margin-top: 0.5rem;
+            }
+        }
+
+        .usecase-list,
+        .job{
+            &:not(:last-child){
+                margin-bottom: 60px;
+            }
+
+            p{
+                &.title{
+                    font-size: 1.2rem;
+                    margin: 30px 0 15px 0;
+                }
+            }
+
+            ul{
+                list-style: disc inside;
+                box-sizing: border-box;
+                width: 50%;
+                padding-right: 15px;
+
+                li{
+                    font-size: 0.9rem;
+                    line-height: 1.5rem;
+
+                    &:not(:last-child){
+                        margin-bottom: 0.4rem;
+                    }
+                }
+            }
+        }
+
+        .job{
+            .text-block{
+                margin-bottom: 30px;
+            }
+        }
+
+        .subtitle{
+            margin: 0 auto 60px auto;
+            width: 580px;
+
+            p{
+                font-size: 0.9rem;
+                line-height: 1.5rem;
+
+                &:not(:last-child){
+                    margin-bottom: 30px;
+                }
+            }
+        }
+
+        .loading{
+            text-align: center;
+
+            .indicator{
+                display: inline-block;
+                position: relative;
+                width: 80px;
+                height: 80px;
+
+                &:after{
+                    content: '';
+                    width: 40%;
+                    height: 1px;
+                    position: absolute;
+                    top: 50%;
+                    left: 30%;
+                    background-color: $blackc;
+                    @include animation(rotate360 1s linear infinite);
+                }
+
+                svg{
+                    width: 100%;
+                    height: 100%;
+
+                    use{
+                        fill: none;
+                        stroke-width: 0.25;
+                        stroke: $blackc;
+                    }
+                }
+            }
+        }
+
+        .usecases{
+            &:after{
+                content: '';
+                clear: both;
+                display: table;
+            }
+
+            +.more{
+                text-align: center;
+                margin-top: 60px;
+            }
+
+            li{
+                float: left;
+                width: 33.33%;
+                padding: 0 15px 60px 15px;
+                box-sizing: border-box;
+
+                &:nth-child(3n),{
+                    padding: 0 0 60px 15px;
+                }
+
+                &:nth-child(1),
+                &:nth-child(4){
+                    padding: 0 15px 60px 0;
+                }
+
+                &:nth-child(n+4){
+                    padding-bottom: 0;
+                }
+
+                h5{
+                    margin-bottom: 30px;
+                }
+
+                p{
+                    font-size: 0.9rem;
+                    line-height: 1.5rem;
+                }
+            }
+        }
+
+        .benefits{
+            &:after{
+                content: '';
+                clear: both;
+                display: table;
+            }
+
+            &>li{
+                float: left;
+                width: 25%;
+                box-sizing: border-box;
+
+                p{
+                    font-size: 0.9rem;
+                    line-height: 1.5rem;
+                }
+
+                h5{
+                    margin-bottom: 30px;
+                }
+
+                .relations{
+                    margin-top: 10px;
+
+                    li{
+                        float: left;
+                        margin-right: 10px;
+                    }
+                }
+
+                &:first-child{
+                    padding: 0 22px 0 0;
+                }
+
+                &:last-child{
+                    padding: 0 0 0 22px;
+                }
+
+                &:nth-child(2){
+                    padding: 0 15px 0 10px;
+                }
+
+                &:nth-child(3){
+                    padding: 0 10px 0 15px;
+                }
+            }
+        }
+
+        .tech{
+            &-stack{
+                border: 1px solid $white;
+                background-color: rgba($blackc, 0.1);
+
+                +.more{
+                    text-align: center;
+                    margin-top: 60px;
+                }
+            }
+
+            &-grid{
+                .small{
+                    display: table;
+                    width: 100%;
+
+                    .row{
+                        display: table-row;
+
+                        >div{
+                            cursor: pointer;
+                            display: table-cell;
+                            box-shadow: inset 1px 0 0 0 $white;
+                            @include transition(background-color 100ms ease-in-out, color 100ms ease-in-out);
+
+                            &:first-child{
+                                box-shadow: none;
+                            }
+
+                            &:hover{
+                                background-color: rgba($white, 0.2);
+                            }
+
+                            &.active{
+                                background-color: $white;
+                                color: $blackc;
+                            }
+                        }
+                    }
+                }
+
+                .tab{
+                    .title{
+                        display: block;
+                        text-align: center;
+                        line-height: 90px;
+                        height: 70px;
+                        font-size: 1.4rem;
+                        font-weight: 200;
+                    }
+
+                    p{
+                        text-align: center;
+                        font-size: 0.9rem;
+                        line-height: 1.2rem;
+                        padding: 1rem;
+                    }
+
+                    &.big{
+                        cursor: pointer;
+                        box-shadow: inset 0 1px 0 0 $white;
+                        @include transition(background-color 100ms ease-in-out, color 100ms ease-in-out);
+
+                        &:hover{
+                            background-color: rgba($white, 0.2);
+                        }
+
+                        &.active{
+                            background-color: $white;
+                            color: $blackc;
+                        }
+
+                        p{
+                            font-weight: 200;
+                            font-size: 1.2rem;
+                            line-height: 2rem;
+                            padding-top: 0.5rem;
+                        }
+                    }
+                }
+
+                .description{
+                    background-color: $white;
+                    height: 0;
+                    overflow: hidden;
+                    @include transition(height 200ms ease-in-out);
+
+                    >div{
+                        display: none;
+                        padding: 30px;
+                        color: $blackc;
+
+                        &.active{
+                            display: block;
+                        }
+
+                        .icon{
+                            display: block;
+                            float: left;
+                            margin-right: 30px;
+                        }
+
+                        .text{
+                            @include columns(auto 2);
+                            @include column-gap(30px);
+
+                            p{
+                                font-size: 0.9rem;
+                                line-height: 1.5rem;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+#section-platform-full{
+
+    h3{
+        position: relative;
+        clear: both;
+        text-align: center;
+
+        .icon{
+            display: inline-block;
+            vertical-align: middle;
+            margin-right: 1rem;
+            margin-top: -0.5rem;
+        }
+
+        .anchor{
+            display: block;
+            position: absolute;
+            left: 0;
+            height: 100%;
+            width: 0;
+            top: -100%;
+        }
+    }
+
+    .platform-list{
+
+        ul{
+            display: flex;
+            flex-direction: row;
+            flex-wrap: nowrap;
+            justify-content: space-between;
+
+            li{
+                flex-grow: 0;
+
+                &:hover{
+                    span{
+                        text-decoration: underline;
+                    }
+                }
+            }
+        }
+
+        .icon{
+            display: inline-block;
+            vertical-align: middle;
+            margin-right: 0.5rem;
+        }
+
+        margin-bottom: 60px;
+    }
+
+    .graph{
+        height: 300px;
+        overflow: hidden;
+        margin-bottom: 15px;
+
+        svg{
+            width: 100%;
+            height: 100%;
+        }
+    }
+
+    .example{
+        background-color: $gray425C;
+        @include break-inside(avoid);
+        margin-bottom: 15px;
+
+        .tabs{
+
+            &:after{
+                content: '';
+                display: table;
+                clear: both;
+            }
+
+            span{
+                color: $white;
+                display: block;
+                float: left;
+                height: 2rem;
+                line-height: 2rem;
+                cursor: pointer;
+                opacity: 0.4;
+                padding: 0 0.5rem;
+
+                &:first-child{
+                    padding-left: 1rem;
+                }
+
+                &:hover{
+                    opacity: 0.6;
+                }
+
+                &.active{
+                    opacity: 1;
+                }
+            }
+        }
+
+        .content{
+            height: 300px;
+            position: relative;
+            background-color: $codeGray;
+
+            >div{
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                opacity: 0;
+                pointer-events: none;
+                @include transition(opacity 100ms ease-in-out);
+
+                &.active{
+                    pointer-events: auto;
+                    opacity: 1;
+                }
+
+                &[data-type="graql"],
+                &[data-type="java"]{
+
+                    .code{
+                        &-input{
+                            display: none;
+                        }
+
+                        &-output{
+                            position: absolute;
+                            top: 0;
+                            left: 0;
+                            width: 100%;
+                            height: 100%;
+                            padding: 0;
+                            margin: 0;
+                            border: none;
+                            font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+                            font-size: 0.8rem;
+                            background: transparent;
+                            white-space: pre-wrap;
+                            word-wrap: break-word;
+                            line-height: 1.5em;
+                            box-sizing: border-box;
+                            outline: none;
+                            overflow-y: auto;
+                        }
+
+
+                        &-output{
+                            font-size: 0;
+
+                            code{
+                                margin: 0;
+                                padding: 1rem;
+                                display: block;
+                                color: $lightGray;
+                                font-size: 0.8rem;
+                                font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+                                white-space: pre-wrap;
+                                word-wrap: break-word;
+                                width: 100%;
+                                box-sizing: border-box;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.users{
+    text-align: center;
+
+    li{
+        display: inline-block;
+        width: 240px;
+        padding: 0 30px 0 0;
+
+        &:nth-child(2n) {
+            padding: 0 0 0 30px;
+        }
+
+        &:first-child{
+            &:last-child{
+                padding: 0;
+            }
+        }
+
+        a{
+            .icon{
+                overflow: hidden;
+                display: inline-block;
+                border-radius: 50%;
+                width: 160px;
+                height: 160px;
+                background-position: center center;
+                background-size: 100% 100%;
+                background-repeat: no-repeat;
+                margin-bottom: 0.5em;
+                @include transition(transform 100ms ease-out);
+            }
+
+            .name,
+            .description{
+                line-height: 2em;
+                display: block;
+                opacity: 0.8;
+                @include transition(opacity 100ms ease-out);
+            }
+
+            .name{
+                font-size: 1.4em;
+            }
+
+            .description{
+                font-size: 1em;
+            }
+
+            &:hover{
+                .icon{
+                    @include transform(scale(1.05));
+                }
+
+                .name,
+                .description{
+                    opacity: 1;
+                }
+            }
+
+            border: none;
+        }
+    }
+}
+
+@media only screen
+    and (max-width: 339px) {
+        .users{
+            li{
+                width: 240px;
+                padding: 0;
+
+                a{
+                    .icon{
+                        width: 100px;
+                        height: 100px;
+                    }
+
+                    .name{
+                        font-size: 1.1em;
+                    }
+
+                    .description{
+                        font-size: 0.9em;
+                    }
+
+                    .name,
+                    .description{
+                        line-height: 1.5em;
+                    }
+                }
+            }
+        }
+
+        #section-platform-full{
+            h3{
+                .icon{
+                    margin-right: 0.5rem;
+                    vertical-align: middle;
+                    margin-top: 0;
+
+                    &.small-l{
+                        width: 40px;
+                        height: 40px;
+                    }
+                }
+            }
+
+            .right{
+                float: none;
+                margin-bottom: 15px;
+            }
+
+            .platform-list{
+                margin-bottom: 15px;
+
+                ul{
+                    display: block;
+
+                    li{
+                        flex-grow: 0;
+
+                        .icon{
+                            margin: 0 1rem 0.5rem 0;
+                        }
+                    }
+                }
+            }
+        }
+
+        h2{
+            font-weight: 400;
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+        }
+
+        h3{
+            font-weight: 400;
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+        }
+
+        .icon{
+            &.big{
+                width: 60px;
+                height: 60px;
+            }
+
+            &.medium{
+                width: 40px;
+                height: 40px;
+            }
+        }
+
+        .block{
+
+            &.splash{
+                .overlay{
+                    h1{
+                        padding-top: 27vh;
+                    }
+
+                    .getMindmaps{
+                        margin-top: 1vh;
+                    }
+                }
+            }
+
+            &.map{
+                .wrapper{
+                    width: 100%;
+                    padding: 0;
+
+                    .info{
+                        padding: 15px;
+
+                        .text-block{
+                            p{
+                                &:first-child{
+                                    display: none;
+                                }
+
+                                &:not(:last-child){
+                                    margin-bottom: 0;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            &.nav{
+                height: 40px;
+
+                &.white{
+                    +.block{
+                        padding-top: 40px;
+                    }
+                }
+
+                .wrapper{
+                    padding: 0;
+                    width: 240px;
+
+                    .getMindmaps{
+                        display: none;
+                    }
+
+                    nav{
+                        margin-top: 10px;
+                        padding-right: 0;
+
+                        a:not([class^="button"]){
+                            line-height: 20px;
+                            margin-left: 10px;
+
+                            &:nth-child(n+3){
+                                display: none;
+                            }
+                        }
+
+                        .divider{
+                            display: none;
+
+                            &~a{
+                                display: none;
+                            }
+                        }
+                    }
+
+                    .logo{
+                        span{
+                            margin-top: 15px;
+                            font-size: 0.8rem;
+
+                            span{
+                                display: none;
+                            }
+                        }
+
+                        svg{
+                            width: 32px;
+                            height: 32px;
+                            margin: 4px 6px 0 -3px;
+                        }
+                    }
+                }
+            }
+
+            .text-block{
+                &.columns{
+                    @include columns(1);
+                }
+
+                &.booked{
+                    clear: none;
+
+                    &:after{
+                        display: none;
+                    }
+
+                    >div{
+                        width: 100%;
+                        float: none;
+                    }
+                }
+
+                p{
+                    font-size: 1rem;
+                    line-height: 1.3rem;
+                }
+            }
+
+            &.content{
+
+                .wrapper{
+                    padding: 15px 0;
+                    width: 240px;
+
+                    .marginBottom{
+                        margin-bottom: 60px;
+                    }
+
+                    .bigRedButton{
+                        height: 30px;
+                        line-height: 30px;
+                        padding: 0 10px;
+                        font-size: 0.9rem;
+                    }
+
+                    .bottomLinks{
+                        a{
+                            font-size: 1rem;
+                            line-height: 1.3rem;
+                        }
+                    }
+
+                    .usecase-list,
+                    .job{
+                        &:not(:last-child){
+                            margin-bottom: 30px;
+                        }
+
+                        p{
+                            &.title{
+                                font-size: 1rem;
+                                margin: 15px 0 10px 0;
+                            }
+                        }
+
+                        ul{
+                            width: auto;
+                            padding-right: 0;
+
+                            li{
+                                font-size: 1rem;
+                                line-height: 1.3rem;
+                            }
+                        }
+                    }
+
+                    .job{
+                        .text-block{
+                            margin-bottom: 15px;
+                        }
+                    }
+
+                    .subtitle{
+                        margin: 0 0 15px 0;
+                        width: auto;
+
+                        p{
+                            font-size: 1rem;
+                            line-height: 1.2rem;
+
+                            &:not(:last-child){
+                                margin-bottom: 15px;
+                            }
+                        }
+                    }
+
+                    .tech{
+                        &-stack{
+                            margin-bottom: 15px;
+
+                            +.more{
+                                padding-top: 15px;
+                                margin-top: 0;
+                            }
+                        }
+
+                        &-grid{
+                            .small{
+                                .row{
+                                    display: block;
+
+                                    >div{
+                                        display: block;
+                                        box-shadow: inset 0 1px 0 0 $white;
+
+                                        &:first-child{
+                                            box-shadow: none;
+                                        }
+                                    }
+                                }
+                            }
+                            .tab{
+                                .title{
+                                    height: 30px;
+                                    font-weight: 400;
+                                    font-size: 1rem;
+                                    line-height: 30px;
+                                }
+
+                                p{
+                                    display: none;
+                                }
+                            }
+
+                            .description{
+                                >div{
+                                    padding: 15px;
+
+                                    .icon{
+                                        display: none;
+                                    }
+
+                                    .text{
+                                        @include columns(auto 1);
+                                        @include column-gap(0);
+
+                                        p{
+                                            font-size: 1rem;
+                                            line-height: 1.2rem;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    &.team{
+                        padding: 15px 0 0 0;
+
+                        .text-block{
+                            margin-bottom: 15px;
+                        }
+
+                        .team-grid{
+                            margin-bottom: 0px;
+
+                            >li{
+                                width: 239px;
+                                margin: 0 0 15px 0;
+
+                                &:before{
+                                    padding-top: 65%;
+                                }
+
+                                .photo{
+                                    background-position: left bottom;
+                                    background-size: 65% auto;
+
+                                    &.empty{
+                                        background-position: -75% center;
+                                        background-size: auto 100%;
+                                    }
+                                }
+
+                                .bg{
+                                    svg{
+                                        top: 50%;
+                                        left: 0;
+                                        height: 200%;
+                                        width: 100%;
+                                        @include transform(translateY(-50.3%));
+                                    }
+                                }
+
+                                .description{
+                                    padding: 15px 15px 0 0;
+                                    color: $blackc;
+                                    left: auto;
+                                    right: 0;
+                                    height: 100%;
+                                    width: 50%;
+                                    @include transform(none);
+                                    @include transition(none);
+
+                                    p{
+                                        font-size: 0.9rem;
+                                    }
+
+                                    span{
+                                        +.x-small{
+                                            margin-bottom: 0;
+                                            font-size: 0.7rem;
+                                            line-height: 0.8rem;
+                                        }
+                                    }
+                                }
+
+                                &:nth-child(2n) {
+                                    margin-right: 0;
+                                }
+
+                                .over{
+                                    .description{
+                                        background-color: $transparent;
+                                        @include transform(none);
+                                    }
+                                }
+                            }
+                        }
+
+                        // Standard variation
+                        /* .team-grid{
+                            margin-bottom: 0px;
+
+                            >li{
+                                width: 112px;
+                                margin: 0 15px 15px 0;
+
+                                .description{
+                                    padding: 10px 10px 20px 10px;
+                                    @include transform(translate(0, calc(100% - 30px)));
+
+                                    p{
+                                        font-size: 0.8rem;
+                                        margin-bottom: 10px;
+                                    }
+
+                                    span{
+                                        font-size: 0.7rem;
+
+                                        +.x-small{
+                                            font-size: 0.6rem;
+                                        }
+                                    }
+                                }
+
+                                &:nth-child(2n) {
+                                    margin-right: 0;
+                                }
+                            }
+                        } */
+                    }
+
+                    &.tech{
+                        padding: 15px 0;
+
+                        h2{
+                            margin-bottom: 20px;
+                        }
+
+                        .icon-block{
+                            margin-bottom: 20px;
+                        }
+                    }
+
+                    .icon-block{
+                        margin-bottom: 15px;
+
+                        .icon{
+                            margin-right: 15px;
+                        }
+
+                        .title{
+                            font-size: 0.75rem;
+                            line-height: 1.225rem;
+                        }
+                    }
+
+                    .benefits{
+                        &>li{
+                            float: none;
+                            width: auto;
+                            padding: 0 0 15px 0;
+
+                            &:last-child{
+                                padding-bottom: 0;
+                            }
+
+                            h5{
+                                font-size: 1.2rem;
+                                margin-bottom: 5px;
+                            }
+
+                            p{
+                                font-size: 1rem;
+                                line-height: 1.2rem;
+                            }
+                        }
+                    }
+
+                    .usecases{
+                        li{
+                            float: none;
+                            width: auto;
+                            padding: 0 0 15px 0;
+
+                            &:last-child{
+                                padding-bottom: 0;
+                            }
+
+                            h5{
+                                font-size: 1.2rem;
+                                margin-bottom: 5px;
+                            }
+
+                            p{
+                                font-size: 1rem;
+                                line-height: 1.2rem;
+                            }
+                        }
+
+                        +.more{
+                            padding-top: 15px;
+                            margin-top: 0;
+                        }
+                    }
+                }
+
+                &#graql-slider{
+                    .wrapper{
+                        width: 100%;
+
+                        .graph-slider{
+                            height: 80vh;
+                            margin-bottom: 30px;
+
+                            .slider-container{
+                                &.slick-slider{
+                                    .slick-list{
+                                        .slick-track{
+                                            .slick-slide{
+                                                >div{
+                                                    padding: 0;
+                                                    width: 100%;
+                                                    height: 50%;
+
+                                                    &.graph{
+                                                        float: none;
+                                                    }
+
+                                                    &.code{
+                                                        float: none;
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            &.footer{
+                .wrapper{
+                    padding: 5px 0;
+
+                    p{
+                        font-size: 0.7rem;
+                        line-height: 30px;
+                    }
+                }
+
+                .logo{
+                    width: 30px;
+                    height: 30px;
+
+                    svg{
+                        margin-left: -3px;
+                    }
+                }
+            }
+        }
+}
+
+@media only screen
+    and (min-width: 340px)
+    and (max-width: 559px) {
+        .users{
+            li{
+                width: 145px;
+                padding: 0 15px 0 0;
+
+                &:nth-child(2n){
+                    padding: 0 0 0 15px;
+                }
+
+                a{
+                    .icon{
+                        width: 120px;
+                        height: 120px;
+                    }
+
+                    .name{
+                        font-size: 1.1em;
+                    }
+
+                    .description{
+                        font-size: 0.9em;
+                    }
+
+                    .name,
+                    .description{
+                        line-height: 1.5em;
+                    }
+                }
+            }
+        }
+
+        #section-platform-full{
+            h3{
+                .icon{
+                    margin-right: 0.5rem;
+                    margin-top: 0;
+                    vertical-align: middle;
+
+                    &.small-l{
+                        width: 40px;
+                        height: 40px;
+                    }
+                }
+            }
+
+            .right{
+                float: none;
+                margin-bottom: 15px;
+            }
+
+            .platform-list{
+                margin-bottom: 15px;
+
+                ul{
+                    display: block;
+
+                    li{
+                        flex-grow: 0;
+
+                        .icon{
+                            margin: 0 1rem 0.5rem 0;
+                        }
+                    }
+                }
+            }
+        }
+
+        h2{
+            font-weight: 400;
+            font-size: 1.6rem;
+            margin-bottom: 30px;
+        }
+
+        h3{
+            font-weight: 400;
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+        }
+
+        .icon{
+            &.big{
+                width: 90px;
+                height: 90px;
+            }
+
+            &.medium{
+                width: 60px;
+                height: 60px;
+            }
+        }
+
+        .block{
+
+            &.splash{
+                .overlay{
+                    h1{
+                        padding-top: 27vh;
+                    }
+
+                    .getMindmaps{
+                        margin-top: 2.5vh;
+                    }
+                }
+            }
+
+            &.map{
+                .wrapper{
+                    width: 100%;
+                    padding: 0;
+
+                    .info{
+                        padding: 30px;
+
+                        .text-block{
+                            p:first-child{
+                                display: none;
+                            }
+                        }
+                    }
+                }
+            }
+
+            &.nav{
+                height: 40px;
+
+                &.white{
+                    +.block{
+                        padding-top: 40px;
+                    }
+                }
+
+                .wrapper{
+                    padding: 0;
+                    width: 320px;
+
+                    .getMindmaps{
+                        display: none;
+                    }
+
+                    nav{
+                        margin-top: 10px;
+                        padding-right: 0;
+
+                        a:not([class^="button"]){
+                            line-height: 20px;
+                        }
+
+                        .divider{
+                            display: none;
+
+                            &~a{
+                                display: none;
+                            }
+                        }
+
+                        a{
+                            &:nth-child(n+4){
+                                display: none;
+                            }
+                        }
+                    }
+
+                    .logo{
+                        span{
+                            font-size: 0.8rem;
+                            margin-top: 15px;
+
+                            span{
+                                display: none;
+                            }
+                        }
+
+                        svg{
+                            width: 32px;
+                            height: 32px;
+                            margin: 4px 6px 0 -3px;
+                        }
+                    }
+                }
+            }
+
+            .text-block{
+                &.columns{
+                    @include columns(1);
+                }
+
+                &.booked{
+                    clear: none;
+
+                    &:after{
+                        display: none;
+                    }
+
+                    >div{
+                        width: 100%;
+                        float: none;
+                    }
+                }
+
+                p{
+                    font-size: 1rem;
+                    line-height: 1.4rem;
+                }
+            }
+
+            &.content{
+
+                .wrapper{
+                    padding: 30px 0;
+                    width: 320px;
+
+                    .job{
+                        .text-block{
+                            margin-bottom: 15px;
+                        }
+                    }
+
+                    .marginBottom{
+                        margin-bottom: 60px;
+                    }
+
+                    .bigRedButton{
+                        height: 40px;
+                        line-height: 40px;
+                        padding: 0 15px;
+                        font-size: 1rem;
+                    }
+
+                    .bottomLinks{
+                        a{
+                            font-size: 1rem;
+                            line-height: 1.4rem;
+                        }
+                    }
+
+                    .usecase-list,
+                    .job{
+                        &:not(:last-child){
+                            margin-bottom: 30px;
+                        }
+
+                        p{
+                            &.title{
+                                font-size: 1rem;
+                                margin: 15px 0 10px 0;
+                            }
+                        }
+
+                        ul{
+                            width: auto;
+                            padding-right: 0;
+
+                            li{
+                                font-size: 1rem;
+                                line-height: 1.4rem;
+                            }
+                        }
+                    }
+
+                    .subtitle{
+                        margin: 0 0 30px 0;
+                        width: auto;
+
+                        p{
+                            font-size: 1rem;
+                            line-height: 1.3rem;
+
+                            &:not(:last-child){
+                                margin-bottom: 15px;
+                            }
+                        }
+                    }
+
+                    .tech{
+                        &-stack{
+                            margin-bottom: 30px;
+
+                            +.more{
+                                margin-top: 0;
+                                padding-top: 25px;
+                            }
+                        }
+
+                        &-grid{
+                            .small{
+                                .row{
+                                    display: block;
+
+                                    >div{
+                                        display: block;
+                                        box-shadow: inset 0 1px 0 0 $white;
+
+                                        &:first-child{
+                                            box-shadow: none;
+                                        }
+                                    }
+                                }
+                            }
+                            .tab{
+                                .title{
+                                    height: 30px;
+                                    font-weight: 400;
+                                    font-size: 1rem;
+                                    line-height: 30px;
+                                }
+                                p{
+                                    display: none;
+                                }
+                            }
+
+                            .description{
+                                >div{
+                                    padding: 15px;
+
+
+                                    .icon{
+                                        margin-right: 10px;
+                                    }
+
+                                    .text{
+                                        @include columns(auto 1);
+                                        @include column-gap(0);
+
+                                        p{
+                                            font-size: 1rem;
+                                            line-height: 1.3rem;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    &.team{
+                        padding: 30px 0 0 0;
+
+                        .text-block{
+                            margin-bottom: 30px;
+                        }
+
+                        .team-grid{
+                            margin-bottom: 0px;
+
+                            >li{
+                                width: 320px;
+                                margin: 0 0 15px 0;
+
+                                &:before{
+                                    padding-top: 65%;
+                                }
+
+                                .photo{
+                                    background-position: left bottom;
+                                    background-size: 65% auto;
+
+                                    &.empty{
+                                        background-position: -75% center;
+                                        background-size: auto 100%;
+                                    }
+                                }
+
+                                .bg{
+                                    svg{
+                                        top: 50%;
+                                        left: 0;
+                                        height: 200%;
+                                        width: 100%;
+                                        @include transform(translateY(-50.3%));
+                                    }
+                                }
+
+                                .description{
+                                    padding: 30px 30px 0 0;
+                                    color: $blackc;
+                                    left: auto;
+                                    right: 0;
+                                    height: 100%;
+                                    width: 45%;
+                                    @include transform(none);
+                                    @include transition(none);
+
+                                    p{
+                                        font-size: 1rem;
+                                    }
+
+                                    span{
+                                        font-size: 0.9rem;
+                                        margin-bottom: 10px;
+
+                                        +.x-small{
+                                            margin-bottom: 0;
+                                            font-size: 0.75rem;
+                                            line-height: 0.9rem;
+                                        }
+                                    }
+                                }
+
+                                &:nth-child(2n) {
+                                    margin-right: 0;
+                                }
+
+                                .over{
+                                    .description{
+                                        background-color: $transparent;
+                                        @include transform(none);
+                                    }
+                                }
+                            }
+                        }
+
+                        /* .team-grid{
+                            margin-bottom: 15px;
+
+                            >li{
+                                width: 152px;
+                                margin: 0 15px 15px 0;
+
+                                &:nth-child(2n) {
+                                    margin-right: 0;
+                                }
+                            }
+                        } */
+                    }
+
+                    &.tech{
+                        padding: 30px 0;
+                    }
+
+                    .icon-block{
+                        margin-bottom: 30px;
+
+                        .icon{
+                            margin-right: 30px;
+                        }
+
+                        .title{
+                            font-size: 0.9rem;
+                            line-height: 22.5px;
+                        }
+                    }
+
+                    .benefits{
+                        &>li{
+                            float: none;
+                            width: auto;
+                            padding: 0 0 30px 0;
+
+                            &:last-child{
+                                padding-bottom: 0;
+                            }
+
+                            h5{
+                                font-size: 1.1rem;
+                                margin-bottom: 10px;
+                            }
+
+                            p{
+                                font-size: 1rem;
+                                line-height: 1.3rem;
+                            }
+                        }
+                    }
+
+                    .usecases{
+                        li{
+                            float: none;
+                            width: auto;
+                            padding: 0 0 30px 0;
+
+                            &:last-child{
+                                padding-bottom: 0;
+                            }
+
+                            h5{
+                                font-size: 1.1rem;
+                                margin-bottom: 10px;
+                            }
+
+                            p{
+                                font-size: 1rem;
+                                line-height: 1.3rem;
+                            }
+                        }
+
+                        +.more{
+                            margin-top: 0;
+                            padding-top: 25px;
+                        }
+                    }
+                }
+
+                &#graql-slider{
+                    .wrapper{
+                        width: 100%;
+
+                        .graph-slider{
+                            height: 80vh;
+                            margin-bottom: 30px;
+
+                            .slider-container{
+                                &.slick-slider{
+                                    .slick-list{
+                                        .slick-track{
+                                            .slick-slide{
+                                                >div{
+                                                    padding: 0;
+                                                    width: 100%;
+                                                    height: 50%;
+
+                                                    &.graph{
+                                                        float: none;
+                                                    }
+
+                                                    &.code{
+                                                        float: none;
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            &.footer{
+                .wrapper{
+                    padding: 5px 0;
+
+                    p{
+                        font-size: 0.7rem;
+                        line-height: 30px;
+                    }
+                }
+
+                .logo{
+                    width: 30px;
+                    height: 30px;
+
+                    svg{
+                        margin-left: -3px;
+                    }
+                }
+            }
+        }
+}
+
+@media only screen
+    and (min-width: 560px)
+    and (max-width: 719px) {
+        .users{
+            li{
+                width: 250px;
+                padding: 0 30px 0 0;
+
+                &:nth-child(2n){
+                    padding: 0 0 0 30px;
+                }
+
+                a{
+                    .icon{
+                        width: 150px;
+                        height: 150px;
+                    }
+
+                    .name{
+                        font-size: 1.2em;
+                    }
+
+                    .description{
+                        font-size: 1em;
+                    }
+
+                    .name,
+                    .description{
+                        line-height: 1.9em;
+                    }
+                }
+            }
+        }
+
+        #section-platform-full{
+            h3{
+                .icon{
+                    margin-right: 0.5rem;
+                    margin-top: 0;
+
+                    &.small-l{
+                        width: 40px;
+                        height: 40px;
+                    }
+                }
+            }
+
+            .right{
+                float: none;
+                margin-bottom: 30px;
+            }
+
+            .platform-list{
+                margin-bottom: 30px;
+
+                ul{
+                    li{
+                        text-align: center;
+
+                        .icon{
+                            margin: 0 0 0.5rem 0;
+                        }
+
+                        span{
+                            display: block;
+                            font-size: 0.9rem;
+                        }
+                    }
+                }
+            }
+        }
+
+        h2{
+            font-size: 2rem;
+            margin-bottom: 30px;
+        }
+
+        h3{
+            font-size: 1.6rem;
+            margin-bottom: 15px;
+        }
+
+        .icon{
+            &.big{
+                width: 140px;
+                height: 140px;
+            }
+        }
+
+        .block{
+
+            &.splash{
+                .overlay{
+                    h1{
+                        padding-top: 27vh;
+                    }
+
+                    .getMindmaps{
+                        margin-top: 5vh;
+                    }
+                }
+            }
+
+            &.map{
+                .wrapper{
+                    width: 100%;
+                    padding: 0;
+
+                    .info{
+                        padding: 60px 30px;
+                    }
+                }
+            }
+
+            &.nav{
+                height: 60px;
+
+                &.white{
+                    +.block{
+                        padding-top: 60px;
+                    }
+                }
+
+                .wrapper{
+                    padding: 0;
+                    width: 500px;
+
+                    .getMindmaps{
+                        display: none;
+                    }
+
+                    nav{
+                        margin-top: 15px;
+
+                        .divider{
+                            display: none;
+                        }
+
+                        a{
+                            &:nth-child(n+5){
+                                display: none;
+                            }
+                        }
+                    }
+
+                    .logo{
+                        span{
+                            font-size: 0.8rem;
+                            margin-top: 24px;
+
+                            span{
+                                display: none;
+                            }
+                        }
+
+                        svg{
+                            width: 53px;
+                            height: 53px;
+                            margin: 3px 9px 0 -4px;
+                        }
+                    }
+                }
+            }
+
+            .text-block{
+                &.columns{
+                    @include columns(1);
+                }
+
+                &.booked{
+                    clear: none;
+
+                    &:after{
+                        display: none;
+                    }
+
+                    >div{
+                        width: 100%;
+                        float: none;
+                    }
+                }
+
+                p{
+                    font-size: 0.9rem;
+                }
+            }
+
+            &.content{
+
+                .wrapper{
+                    padding: 60px 0;
+                    width: 500px;
+
+                    .job{
+                        .text-block{
+                            margin-bottom: 15px;
+                        }
+                    }
+
+                    .marginBottom{
+                        margin-bottom: 60px;
+                    }
+
+                    .bigRedButton{
+                        height: 50px;
+                        line-height: 50px;
+                        padding: 0 20px;
+                        font-size: 1.1rem;
+                    }
+
+                    .bottomLinks{
+                        a{
+                            font-size: 0.9rem;
+                            line-height: 1.4rem;
+                        }
+                    }
+
+                    .usecase-list,
+                    .job{
+                        &:not(:last-child){
+                            margin-bottom: 30px;
+                        }
+
+                        p{
+                            &.title{
+                                font-size: 1.2rem;
+                                margin: 15px 0 10px 0;
+                            }
+                        }
+
+                        ul{
+                            width: auto;
+                            padding-right: 0;
+
+                            li{
+                                font-size: 0.8rem;
+                                line-height: 1.3rem;
+                            }
+                        }
+                    }
+
+                    .subtitle{
+                        margin: 0 0 60px 0;
+                        width: auto;
+
+                        p{
+                            font-size: 0.9rem;
+                            line-height: 1.4rem;
+
+                            &:not(:last-child){
+                                margin-bottom: 30px;
+                            }
+                        }
+                    }
+
+                    .tech{
+                        &-stack{
+                            margin-bottom: 60px;
+
+                            +.more{
+                                margin-top: 45px;
+                            }
+                        }
+
+                        &-grid{
+                            .tab{
+                                .title{
+                                    font-weight: 400;
+                                    font-size: 1rem;
+                                    height: 60px;
+                                    line-height: 60px;
+                                }
+                                p{
+                                    display: none;
+                                }
+                            }
+
+                            .description{
+
+                                .icon{
+                                    display: none;
+                                }
+
+                                >div{
+                                    .text{
+                                        @include columns(auto 1);
+                                        @include column-gap(0);
+
+                                        p{
+                                            font-size: 0.9rem;
+                                            line-height: 1.4rem;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    &.team{
+                        padding: 60px 0 0 0;
+
+                        .team-grid{
+                            margin-bottom: 45px;
+
+                            >li{
+                                width: 156px;
+                                margin: 0 15px 15px 0;
+
+                                &:nth-child(3n) {
+                                    margin-right: 0;
+                                }
+
+                                .description{
+                                    p{
+                                        font-size: 0.9rem;
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    &.tech{
+                        padding: 60px 0;
+
+                        .icon-block{
+                            margin-bottom: 35px;
+                        }
+                    }
+
+                    .icon-block{
+                        margin-bottom: 30px;
+
+                        .title{
+                            font-weight: 200;
+                            font-size: 1.2rem;
+                            line-height: 35px;
+                        }
+                    }
+
+                    .benefits{
+                        &>li{
+                            float: none;
+                            width: auto;
+                            padding: 0 0 30px 0;
+
+                            &:last-child{
+                                padding-bottom: 0;
+                            }
+
+                            h5{
+                                font-weight: 400;
+                                font-size: 1.2rem;
+                                margin-bottom: 15px;
+                            }
+
+                            p{
+                                font-size: 0.9rem;
+                                line-height: 1.4rem;
+                            }
+                        }
+                    }
+
+                    .usecases{
+                        li{
+                            float: none;
+                            width: auto;
+                            padding: 0 0 30px 0;
+
+                            &:last-child{
+                                padding-bottom: 0;
+                            }
+
+                            h5{
+                                font-weight: 400;
+                                font-size: 1.2rem;
+                                margin-bottom: 15px;
+                            }
+
+                            p{
+                                font-size: 0.9rem;
+                                line-height: 1.4rem;
+                            }
+                        }
+
+                        +.more{
+                            margin-top: 45px;
+                        }
+                    }
+                }
+
+                &#graql-slider{
+                    .wrapper{
+                        .graph-slider{
+                            margin-bottom: 30px;
+
+                            .slider-container{
+                                &.slick-slider{
+
+                                    .slick-list{
+                                        .slick-track{
+                                            .slick-slide{
+                                                >div{
+                                                    padding: 0;
+                                                }
+                                            }
+                                        }
+                                    }
+
+                                    .slick-dots {
+                                        bottom: -40px;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            &.footer{
+                .wrapper{
+                    padding: 5px 0;
+
+                    p{
+                        font-size: 0.7rem;
+                        line-height: 50px;
+                    }
+                }
+
+                .logo{
+                    width: 50px;
+                    height: 50px;
+
+                    svg{
+                        margin-left: -4px;
+                    }
+                }
+            }
+        }
+}
+
+@media only screen
+    and (min-width: 720px)
+    and (max-width: 999px) {
+        .users{
+            li{
+                width: 320px;
+                padding: 0 30px 0 0;
+
+                &:nth-child(2n){
+                    padding: 0 0 0 30px;
+                }
+
+                a{
+                    .icon{
+                        width: 160px;
+                        height: 160px;
+                    }
+                }
+            }
+        }
+
+        #section-platform-full{
+            .platform-list{
+                margin-bottom: 60px;
+
+                ul{
+                    li{
+                        text-align: center;
+
+                        .icon{
+                            margin: 0 0 1rem 0;
+                        }
+
+                        span{
+                            display: block;
+                        }
+                    }
+                }
+            }
+        }
+        .block{
+
+            &.nav{
+                .wrapper{
+                    padding: 0 30px;
+
+                    .getMindmaps{
+                        margin: 33px 0 0 15px;
+                        font-size: 0.8rem;
+                        padding: 0 5px;
+                        line-height: 24px;
+                        height: 24px;
+                    }
+
+                    nav{
+                        .divider{
+                            display: none;
+                        }
+
+                        a{
+                            &:nth-child(n+6){
+                                display: none;
+                            }
+                        }
+                    }
+                }
+            }
+
+            &.map{
+                .wrapper{
+                    width: 100%;
+                    padding: 0;
+
+                    .info{
+                        padding: 60px 30px;
+                    }
+                }
+            }
+
+            &.content{
+
+                .wrapper{
+                    width: 640px;
+
+                    .bottomLinks{
+                        a{
+                            font-size: 0.8rem;
+                            line-height: 1.4rem;
+                        }
+                    }
+
+                    .usecase-list,
+                    .job{
+
+                        p{
+                            &.title{
+                                font-size: 1.2rem;
+                            }
+                        }
+
+                        ul{
+                            width: auto;
+                            padding-right: 0;
+
+                            li{
+                                font-size: 0.8rem;
+                                line-height: 1.4rem;
+                            }
+                        }
+                    }
+
+                    .subtitle{
+                        margin: 0 0 60px 0;
+                        width: auto;
+
+                        p{
+                            font-size: 0.8rem;
+                            line-height: 1.4rem;
+
+                            &:not(:last-child){
+                                margin-bottom: 30px;
+                            }
+                        }
+                    }
+
+                    .tech{
+                        &-grid{
+                            .tab{
+                                .title{
+                                    font-weight: 400;
+                                    font-size: 1.2rem;
+                                    height: 70px;
+                                    line-height: 70px;
+                                }
+                                p{
+                                    display: none;
+                                }
+                            }
+
+                            .description{
+                                .icon{
+                                    margin-right: 15px;
+                                }
+
+                                >div{
+                                    .text{
+                                        @include columns(auto 1);
+                                        @include column-gap(0);
+
+                                        p{
+                                            font-size: 0.8rem;
+                                            line-height: 1.4rem;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    &.team{
+                        .team-grid{
+                            >li{
+                                width: 193px;
+                                margin: 0 30px 30px 0;
+
+                                &:nth-child(3n) {
+                                    margin-right: 0;
+                                }
+                            }
+                        }
+                    }
+
+                    &.tech{
+                    }
+
+                    .icon-block{
+                        .title{
+                            font-weight: 200;
+                            font-size: 1.3rem;
+                            line-height: 50px;
+                        }
+                    }
+
+                    .benefits{
+                        &>li{
+                            width: 50%;
+                            padding: 0 15px 60px 0;
+
+                            &:nth-child(2n){
+                                padding: 0 0 60px 15px;
+                            }
+
+                            &:nth-child(n+3){
+                                padding-bottom: 0;
+                            }
+
+                            p{
+                                font-size: 0.8rem;
+                                line-height: 1.4rem;
+                            }
+                        }
+                    }
+
+                    .usecases{
+
+                        li{
+                            width: 50%;
+                            padding: 0 15px 60px 0;
+
+                            &:nth-child(2n){
+                                padding: 0 0 60px 15px;
+                            }
+
+                            &:nth-child(n+5){
+                                padding-bottom: 0;
+                            }
+
+                            p{
+                                font-size: 0.8rem;
+                                line-height: 1.4rem;
+                            }
+                        }
+                    }
+                }
+
+                &#graql-slider{
+                    .wrapper{
+                        .graph-slider{
+                            margin-bottom: 30px;
+
+                            .slider-container{
+                                &.slick-slider{
+
+                                    .slick-list{
+                                        .slick-track{
+                                            .slick-slide{
+                                                >div{
+                                                    padding: 0;
+                                                }
+                                            }
+                                        }
+                                    }
+
+                                    .slick-dots {
+                                        bottom: -50px;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            &.footer{
+                .wrapper{
+                    padding: 15px 0;
+
+                    p{
+                        font-size: 0.7rem;
+                        line-height: 50px;
+                    }
+                }
+
+                .logo{
+                    width: 50px;
+                    height: 50px;
+
+                    svg{
+                        margin-left: -5px;
+                    }
+                }
+            }
+        }
+}
+
+@media only screen
+    and (min-width: 1000px)
+    and (max-width: 1319px) {
+        .block{
+
+            &.nav{
+                .wrapper{
+                    padding: 0 30px;
+                }
+            }
+
+            &.content{
+
+                .wrapper{
+                    width: 880px;
+
+                    .bottomLinks{
+                        a{
+                            font-size: 0.8rem;
+                            line-height: 1.4rem;
+                        }
+                    }
+
+                    .usecase-list,
+                    .job{
+                        ul{
+                            li{
+                                font-size: 0.8rem;
+                                line-height: 1.4rem;
+                            }
+                        }
+                    }
+
+                    .subtitle{
+                        margin: 0 auto 60px auto;
+                        width: 425px;
+
+                        p{
+                            font-size: 0.8rem;
+                            line-height: 1.4rem;
+
+                            &:not(:last-child){
+                                margin-bottom: 30px;
+                            }
+                        }
+                    }
+
+                    .tech{
+                        &-grid{
+                            .tab{
+                                .title{
+                                    font-weight: 400;
+                                    font-size: 1.3rem;
+                                }
+
+                                p{
+                                    font-size: 0.8rem;
+                                    line-height: 1rem;
+                                }
+
+                                &.big{
+                                    p{
+                                        font-weight: 400;
+                                        font-size: 1rem;
+                                        line-height: 1.6rem;
+                                    }
+                                }
+                            }
+
+                            .description{
+                                .icon{
+                                    margin-right: 20px;
+                                }
+                            }
+                        }
+                    }
+
+                    &.team{
+                        .team-grid{
+                            >li{
+                                width: 197px;
+                                margin: 0 30px 30px 0;
+
+                                &:nth-child(4n) {
+                                    margin-right: 0;
+                                }
+                            }
+                        }
+                    }
+
+                    &.tech{
+                    }
+
+                    .icon-block{
+                        .title{
+                            font-weight: 200;
+                            font-size: 1.6rem;
+                            line-height: 50px;
+                        }
+                    }
+
+                    .benefits{
+                        &>li{
+                            width: 50%;
+                            padding: 0 15px 60px 0;
+
+                            &:nth-child(2n){
+                                padding: 0 0 60px 15px;
+                            }
+
+                            &:nth-child(n+3){
+                                padding-bottom: 0;
+                            }
+
+                            p{
+                                font-size: 0.8rem;
+                                line-height: 1.4rem;
+                            }
+                        }
+                    }
+
+                    .usecases{
+
+                        li{
+                            p{
+                                font-size: 0.8rem;
+                                line-height: 1.4rem;
+                            }
+                        }
+                    }
+                }
+
+                &#graql-slider{
+                    .wrapper{
+                        .graph-slider{
+                            .slider-container{
+                                &.slick-slider{
+                                    .slick-dots {
+                                        bottom: -50px;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            &.footer{
+                .wrapper{
+                    padding: 15px 0;
+
+                    p{
+                        font-size: 0.7rem;
+                        line-height: 50px;
+                    }
+                }
+
+                .logo{
+                    width: 50px;
+                    height: 50px;
+
+                    svg{
+                        margin-left: -5px;
+                    }
+                }
+            }
+        }
+}
+
+@media only screen
+    and (min-width: 1320px) {
+        .block{
+
+            &.nav{
+                .wrapper{
+                    padding: 0 30px;
+                }
+            }
+
+            &.content{
+
+                .wrapper{
+                    width: 1200px;
+
+                    &.team{
+                        .team-grid{
+                            >li{
+                                width: 175px;
+                                margin: 0 30px 30px 0;
+
+                                &:nth-child(6n) {
+                                    margin-right: 0;
+                                }
+                            }
+                        }
+                    }
+
+                    &.tech{
+                        .tab{
+                            p{
+                                font-weight: 200;
+                                font-size: 1rem;
+                                line-height: 1.4rem;
+                            }
+
+                            &.big{
+                                p{
+                                    font-size: 1.4rem;
+                                    line-height: 2rem;
+                                }
+                            }
+                        }
+                    }
+
+                    .icon-block{
+                        .title{
+                            font-weight: 200;
+                            font-size: 1.6rem;
+                            line-height: 50px;
+                        }
+                    }
+
+                    .text-block{
+                        p{
+                            font-size: 0.9rem;
+                            line-height: 1.5rem;
+                        }
+                    }
+                }
+
+                &#graql-slider{
+                    .wrapper{
+                        .graph-slider{
+                            .slider-container{
+                                &.slick-slider{
+                                    .slick-dots {
+                                        bottom: -50px;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            &.footer{
+                .wrapper{
+                    padding: 30px 0;
+
+                    p{
+                        font-size: 0.8rem;
+                        line-height: 80px;
+                    }
+                }
+
+                .logo{
+                    width: 80px;
+                    height: 80px;
+
+                    svg{
+                        margin-left: -7px;
+                    }
+                }
+            }
+        }
+}
+
+@media only screen
+    and (min-width: 1600px) {
+        .users{
+            li{
+                width: 400px;
+                padding: 0 30px 0 0;
+
+                &:nth-child(2n){
+                    padding: 0 0 0 30px;
+                }
+
+                a{
+                    .icon{
+                        width: 200px;
+                        height: 200px;
+                    }
+                }
+            }
+        }
+
+        .block{
+            &.nav{
+                .wrapper{
+                    .getMindmaps{
+                        margin: 25px 0 0 30px;
+                        height: 40px;
+                        line-height: 40px;
+                        padding: 0 15px;
+                    }
+                }
+            }
+
+            &.splash{
+                .overlay{
+                    .getMindmaps{
+                        margin-top: 1rem;
+                    }
+                }
+            }
+
+            &.content{
+                .wrapper{
+                    &.tech{
+                        .tab{
+                            p{
+                                font-weight: 200;
+                                font-size: 0.9rem;
+                                line-height: 1.2rem;
+                            }
+
+                            &.big{
+                                p{
+                                    font-size: 1.2rem;
+                                    line-height: 1.8rem;
+                                }
+                            }
+                        }
+                    }
+
+                    &.team{
+                        .team-grid{
+                            >li{
+                                width: 216px;
+                                margin: 0 30px 30px 0;
+
+                                &:nth-child(5n) {
+                                    margin-right: 0;
+                                }
+
+                                &:nth-child(6n) {
+                                    margin-right: 30px;
+                                }
+
+                                .description{
+                                    padding: 20px 20px 30px 20px;
+                                    @include transform(translate(0, calc(100% - 55px)));
+
+                                    p{
+                                        margin-bottom: 25px;
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    .text-block{
+                        p{
+                            font-size: 0.9rem;
+                            line-height: 1.5rem;
+                        }
+                    }
+
+                    .benefits{
+                        &>li{
+                            width: 50%;
+                            padding: 0 15px 60px 0;
+
+                            &:nth-child(2n){
+                                padding: 0 0 60px 15px;
+                            }
+
+                            &:nth-child(n+3){
+                                padding-bottom: 0;
+                            }
+                        }
+                    }
+                }
+                &#graql-slider{
+                    .wrapper{
+                        .graph-slider{
+                            .slider-container{
+                                &.slick-slider{
+                                    .slick-dots {
+                                        bottom: -50px;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+}

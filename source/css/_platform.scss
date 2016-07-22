@@ -1,0 +1,227 @@
+.platform{
+    &-table{
+        margin: 0 0 2rem 0;
+
+        .title{
+            text-align: center;
+            font-family: 'Blender', Helvetica, Arial, sans-serif;
+            font-weight: 200;
+            transition: color 100ms ease-in-out;
+            display: block;
+            text-decoration: none;
+            cursor: pointer;
+            position: relative;
+            z-index: 1;
+        }
+
+        .parent{
+            position: relative;
+            border-radius: 2px;
+            border: 1px solid $black-brand;
+            transition: background-color 100ms ease-in-out;
+
+            >.underlayLink{
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                top: 0;
+                left: 0;
+                z-index: 0;
+            }
+
+            >.title{
+                margin: 1.5rem 0 0 0;
+                font-size: 1.6rem;
+                pointer-events: none;
+            }
+
+            &:hover{
+                background-color: $black-brand;
+
+
+                .children{
+                    .title{
+                        border: 1px solid $white;
+                    }
+                }
+
+                .title{
+                    color: $white;
+                }
+            }
+        }
+
+        .children{
+            display: flex;
+            flex-flow:  row nowrap;
+            justify-content: space-around;
+
+            >.title{
+                flex: 1 1 auto;
+                margin: 1.5rem;
+                border-radius: 2px;
+                border: 1px solid $black-brand;
+                padding: 1rem;
+                font-size: 1.2rem;
+                transition: color 100ms ease-in-out, border-color 100ms ease-in-out, background-color 100ms ease-in-out;
+
+                +.title{
+                    margin-left: 0;
+                }
+
+                &:hover{
+                    background-color: $white;
+                    color: $black-brand;
+                }
+            }
+        }
+
+        .arrows{
+            height: 3rem;
+            display: flex;
+            flex-flow:  row nowrap;
+            justify-content: space-around;
+
+            >div{
+                height: 100%;
+                flex: 0 1 auto;
+
+                &:first-child{
+                    transform: rotate(180deg);
+                }
+            }
+
+            svg{
+                height: 100%;
+                width: 100%;
+
+                line,
+                polyline{
+                    stroke-width: 1px;
+                    fill: transparent;
+                    stroke: $black-brand;
+                }
+
+                .dashed{
+                    stroke-dasharray: 10;
+                    animation: svg-dash 1s linear infinite;
+                }
+            }
+        }
+    }
+}
+
+@media (min-width: 550px) {
+    .platform{
+        &-table{
+            margin: 2rem 0 1.5rem 0;
+
+            .parent{
+                >.title{
+                    margin: 1rem 0 0 0;
+                    font-size: 1.2rem;
+                }
+            }
+
+            .children{
+                display: block;
+
+                >.title{
+                    font-size: 1rem;
+                    margin: 1rem;
+                    flex: none;
+
+                    +.title{
+                        margin-left: 1rem;
+                    }
+                }
+            }
+
+            .arrows{
+                height: 2rem;
+            }
+        }
+
+        &-wrapper{
+            padding-bottom: 1.5rem;
+
+            .centered{
+                text-align: left;
+            }
+
+            &-wrapper{
+                .button{
+                    margin-top: 0.5rem;
+                }
+            }
+        }
+    }
+}
+
+@media (min-width: 750px) {
+    .platform{
+        &-table{
+            margin: 3rem 0 1.5rem 0;
+            
+            .children{
+                display: flex;
+
+                >.title{
+                    flex: 1 1 auto;
+
+                    +.title{
+                        margin-left: 0;
+                    }
+                }
+            }
+        }
+
+        &-wrapper{
+            .button{
+                margin-top: 1rem;
+            }
+        }
+    }
+}
+
+@media (min-width: 1000px) {
+    .platform{
+        &-table{
+
+            .parent{
+                >.title{
+                    font-size: 1.4rem;
+                }
+            }
+
+            .children{
+
+                >.title{
+                    font-size: 1.1rem;
+                }
+            }
+
+            .arrows{
+                height: 2rem;
+            }
+        }
+    }
+}
+
+@media (min-width: 1200px) {
+    .platform{
+        &-table{
+            .parent{
+                >.title{
+                    font-size: 1.6rem;
+                }
+            }
+
+            .children{
+                >.title{
+                    font-size: 1.2rem;
+                }
+            }
+        }
+    }
+}

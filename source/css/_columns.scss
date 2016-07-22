@@ -1,0 +1,38 @@
+.columned{
+    columns: auto 1;
+    column-gap: 0px;
+
+    p{
+        display: inline-block;
+        position: relative;
+    }
+}
+
+/* Larger than mobile */
+@media (min-width: 400px) {}
+
+/* Larger than phablet (also point when grid becomes active) */
+@media (min-width: 550px) {}
+
+/* Larger than tablet */
+@media (min-width: 750px) {
+    .columned{
+        column-gap: 1rem;
+        
+        @for $i from 1 through length($countArray) {
+            &.#{nth($countArray, $i)}{
+                columns: $i;
+            }
+        }
+    }
+}
+
+/* Larger than desktop */
+@media (min-width: 1000px) {
+    .columned{
+        column-gap: 2rem;
+    }
+}
+
+/* Larger than Desktop HD */
+@media (min-width: 1200px) {}
