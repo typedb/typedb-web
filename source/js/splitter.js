@@ -153,9 +153,9 @@ window.MNDMPS.Splitter = {
 
         function startDrag(event) {
 
-            if (obj.automoveHandler) {
+            /*if (obj.automoveHandler) {
                 _this.cancelAutomove(obj);
-            }
+            }*/
 
             if (event.touches && event.touches.length) {
                 data.mouseX = event.touches[0].pageX;

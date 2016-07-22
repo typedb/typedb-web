@@ -12,6 +12,20 @@
     font-family: 'Blender', Helvetica, Arial, sans-serif;
     text-decoration: none;
 
+    svg{
+        display: inline-block;
+        width: 12px;
+        height: 12px;
+        vertical-align: middle;
+        margin-top: -0.15rem;
+        
+        use{
+            fill: transparent;
+            stroke: $black-brand;
+            stroke-width: 1px;
+        }
+    }
+
     &.color{
 
         &-red{

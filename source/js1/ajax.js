@@ -2,7 +2,7 @@
 
 window.MNDMPS = window.MNDMPS || {};
 
-window.MNDMPS.Ajax = {
+window.MNDMPS.ajax = {
 
     _data: {},
 

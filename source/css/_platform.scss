@@ -7,16 +7,32 @@
             font-family: 'Blender', Helvetica, Arial, sans-serif;
             font-weight: 200;
             transition: color 100ms ease-in-out;
+            display: block;
+            text-decoration: none;
+            cursor: pointer;
+            position: relative;
+            z-index: 1;
         }
 
         .parent{
+            position: relative;
             border-radius: 2px;
             border: 1px solid $black-brand;
             transition: background-color 100ms ease-in-out;
 
+            >.underlayLink{
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                top: 0;
+                left: 0;
+                z-index: 0;
+            }
+
             >.title{
                 margin: 1.5rem 0 0 0;
                 font-size: 1.6rem;
+                pointer-events: none;
             }
 
             &:hover{
@@ -40,21 +56,18 @@
             flex-flow:  row nowrap;
             justify-content: space-around;
 
-            >div{
+            >.title{
                 flex: 1 1 auto;
                 margin: 1.5rem;
-
-                +div{
-                    margin-left: 0;
-                }
-            }
-
-            >.title{
                 border-radius: 2px;
                 border: 1px solid $black-brand;
                 padding: 1rem;
                 font-size: 1.2rem;
                 transition: color 100ms ease-in-out, border-color 100ms ease-in-out, background-color 100ms ease-in-out;
+
+                +.title{
+                    margin-left: 0;
+                }
 
                 &:hover{
                     background-color: $white;
@@ -113,17 +126,14 @@
             .children{
                 display: block;
 
-                >div{
+                >.title{
+                    font-size: 1rem;
                     margin: 1rem;
                     flex: none;
 
-                    +div{
+                    +.title{
                         margin-left: 1rem;
                     }
-                }
-
-                >.title{
-                    font-size: 1rem;
                 }
             }
 
@@ -156,10 +166,10 @@
             .children{
                 display: flex;
 
-                >div{
+                >.title{
                     flex: 1 1 auto;
 
-                    +div{
+                    +.title{
                         margin-left: 0;
                     }
                 }
