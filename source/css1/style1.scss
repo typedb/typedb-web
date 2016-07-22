@@ -668,7 +668,7 @@ body{
 
                                     @for $i from 1 through 33 {
                                         &:nth-child(#{$i}){
-                                            @include animation-delay(-5s*random(40));
+                                            @include animation-delay(random(40)*(-5s));
                                             @include animation-duration(5s+random(20))
                                         }
                                     }

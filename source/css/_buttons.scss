@@ -26,6 +26,14 @@
         }
     }
 
+    &:hover{
+        svg{
+            use{
+                stroke: $white;
+            }
+        }
+    }
+
     &.color{
 
         &-red{
