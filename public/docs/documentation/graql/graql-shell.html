@@ -1,0 +1,65 @@
+<h2 id="graql-shell">Graql Shell</h2>
+
+<p>The Graql shell is used to execute Graql queries from the command line, or to
+let Graql be invoked from other applications.</p>
+
+<h2 id="interactive-shell">Interactive Shell</h2>
+
+<p>The Graql shell is contained in the <code class="highlighter-rouge">bin</code> folder.</p>
+
+<p>If the shell is executed without any parameters, it will open a REPL (Read
+Evaluate Print Loop):</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>bin/graql.sh
+<span class="gp">&gt;&gt;&gt; </span>match <span class="nv">$x</span> id <span class="s2">"Pikachu"</span>;
+<span class="nv">$x</span> id <span class="s2">"Pikachu"</span> isa pokemon;
+</code></pre>
+</div>
+
+<p>The user can enter a query and press enter for it to be evaluated. <code class="highlighter-rouge">match</code>
+queries will return the first hundred results, <code class="highlighter-rouge">ask</code> queries will return <code class="highlighter-rouge">true</code>
+or <code class="highlighter-rouge">false</code>. <code class="highlighter-rouge">insert</code> and <code class="highlighter-rouge">delete</code> queries will execute with no output.</p>
+
+<p>The interactive shell will never commit to the graph unless the user types
+<code class="highlighter-rouge">commit</code>.</p>
+
+<p>The REPL features several special commands:
+- <code class="highlighter-rouge">commit</code> - Commits and validates the graph. If validation fails, the graph
+  will not commit.
+- <code class="highlighter-rouge">edit</code> - Opens the user’s default text editor, specified by the <code class="highlighter-rouge">$EDITOR</code>
+  environment variable. By default set to <code class="highlighter-rouge">vim</code>. When the editor exits, the
+  query is executed in the shell.</p>
+
+<h2 id="arguments">Arguments</h2>
+
+<p>The Graql shell accepts several arguments:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Long Option</th>
+      <th>Option</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>–config</td>
+      <td>-c</td>
+      <td>Path to a graph config file.</td>
+    </tr>
+    <tr>
+      <td>–execute</td>
+      <td>-e</td>
+      <td>A query to execute.</td>
+    </tr>
+    <tr>
+      <td>–file</td>
+      <td>-f</td>
+      <td>A path to a file containg a query to execute.</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>If either <code class="highlighter-rouge">--execute</code> or <code class="highlighter-rouge">--file</code> is provided, the REPL will not open and the
+graph will be automatically committed.</p>

@@ -94,7 +94,7 @@ instances.</p>
 <blockquote>
   <p><strong>Variables</strong></p>
 
-  <p>Graql variables start with a <code class="highlighter-rouge">$</code>. They represent “wildcards”, and can be
+  <p>Graql variables start with a <code class="highlighter-rouge">$</code>. They represent “wildcards”, and are
 returned as results in <code class="highlighter-rouge">match</code> queries. A variable name can contain
 alphanumeric characters, dashes and underscores.</p>
 </blockquote>
@@ -159,7 +159,7 @@ insert practice has-role philosopher has-role philosophy
 </code>
 Similarly, we could insert <code class="highlighter-rouge">practice</code> like this:
 <code class="highlighter-rouge">sql
-insert id "practice", isa relation-type;
+insert practice, isa relation-type;
 </code></p>
 </blockquote>
 
@@ -200,9 +200,7 @@ the Graql shell to commit any changes.</p>
 </code></pre>
 </div>
 
-<p><img src="/docs/images/practice.png" alt="A &quot;practice&quot; relation, indicated by the blue concept, relating the
-philosopher Plato to the philosophy
-Idealism." /></p>
+<p><img src="/docs/images/practice.png" alt="" /></p>
 
 <p>A relation comprises of pairs of role types and role players. For example,
 <code class="highlighter-rouge">Plato</code> is playing the role of <code class="highlighter-rouge">philosopher</code>. Our relations also have a type
@@ -284,8 +282,6 @@ see when the results change!</p>
 
 <h2 id="resources">Resources</h2>
 
-<p>We can also attach resources to our instances using <code class="highlighter-rouge">has-resource</code>.</p>
-
 <p>Some people have special titles and epithets and we want to talk about that!
 So, we’ll create some resource types that can be attached to a person:</p>
 
@@ -313,7 +309,7 @@ So, we’ll create some resource types that can be attached to a person:</p>
 
 <p>Let’s make Alexander “Great”!</p>
 
-<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">insert</span> <span class="n">Alexander</span> <span class="n">has</span> <span class="n">epithet</span> <span class="nv">"The Great"</span><span class="p">;</span>
+<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">insert</span> <span class="nv">"Alexander"</span> <span class="n">has</span> <span class="n">epithet</span> <span class="nv">"The Great"</span><span class="p">;</span>
 </code></pre>
 </div>
 <div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">Resource</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">theGreat</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">putResource</span><span class="o">(</span><span class="s">"The Great"</span><span class="o">,</span> <span class="n">epithet</span><span class="o">);</span>
@@ -322,18 +318,18 @@ So, we’ll create some resource types that can be attached to a person:</p>
 </code></pre>
 </div>
 
-<p>This is a quick way to add a <code class="highlighter-rouge">has-resource</code> relation between <code class="highlighter-rouge">Alexander</code> and an
-<code class="highlighter-rouge">epithet</code> with value <code class="highlighter-rouge">"The Great"</code>.</p>
+<p>This is a quick way to add a relation between <code class="highlighter-rouge">Alexander</code> and an <code class="highlighter-rouge">epithet</code> with
+value <code class="highlighter-rouge">"The Great"</code>.</p>
 
 <p><img src="/docs/images/epithet.png" alt="" /></p>
 
 <p>Let’s add the rest of Alexander’s titles while we’re at it:</p>
 
-<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">insert</span> <span class="n">Alexander</span> <span class="n">has</span> <span class="n">title</span> <span class="nv">"Hegemon"</span><span class="p">;</span>
-<span class="k">insert</span> <span class="n">Alexander</span> <span class="n">has</span> <span class="n">title</span> <span class="nv">"King of Macedon"</span><span class="p">;</span>
-<span class="k">insert</span> <span class="n">Alexander</span> <span class="n">has</span> <span class="n">title</span> <span class="nv">"King of Persia"</span><span class="p">;</span>
-<span class="k">insert</span> <span class="n">Alexander</span> <span class="n">has</span> <span class="n">title</span> <span class="nv">"Pharaoh of Egypt"</span><span class="p">;</span>
-<span class="k">insert</span> <span class="n">Alexander</span> <span class="n">has</span> <span class="n">title</span> <span class="nv">"Lord of Asia"</span><span class="p">;</span>
+<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">insert</span> <span class="nv">"Alexander"</span> <span class="n">has</span> <span class="n">title</span> <span class="nv">"Hegemon"</span><span class="p">;</span>
+<span class="k">insert</span> <span class="nv">"Alexander"</span> <span class="n">has</span> <span class="n">title</span> <span class="nv">"King of Macedon"</span><span class="p">;</span>
+<span class="k">insert</span> <span class="nv">"Alexander"</span> <span class="n">has</span> <span class="n">title</span> <span class="nv">"King of Persia"</span><span class="p">;</span>
+<span class="k">insert</span> <span class="nv">"Alexander"</span> <span class="n">has</span> <span class="n">title</span> <span class="nv">"Pharaoh of Egypt"</span><span class="p">;</span>
+<span class="k">insert</span> <span class="nv">"Alexander"</span> <span class="n">has</span> <span class="n">title</span> <span class="nv">"Lord of Asia"</span><span class="p">;</span>
 </code></pre>
 </div>
 <div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">Resource</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">hegemon</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">putResource</span><span class="o">(</span><span class="s">"Hegemon"</span><span class="o">,</span> <span class="n">title</span><span class="o">);</span>

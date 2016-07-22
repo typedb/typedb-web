@@ -1,0 +1,16 @@
+<h1 id="tinker-graph-factory">Tinker Graph Factory</h1>
+
+<blockquote>
+  <p>Tinkergraph is n in-memory data structure only, so this backed serves as a
+good toy to familiarise yourself with the API.</p>
+</blockquote>
+
+<p>Initialising a Mindmaps graph on top of a TinkerGraph is as simple as:</p>
+
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">MindmapsGraphFactory</span> <span class="n">mindmapsGraphFactory</span> <span class="o">=</span> <span class="n">MindmapsTinkerGraphFactory</span><span class="o">.</span><span class="na">getInstance</span><span class="o">();</span>
+<span class="n">mindmapsGraph</span> <span class="o">=</span> <span class="n">mindmapsGraphFactory</span><span class="o">.</span><span class="na">newGraph</span><span class="o">();</span>
+</code></pre>
+</div>
+
+<p>A Tinkergraph requires no configuration files and does not support
+transactions. So this is the simplest way to initialise a Mindmaps Graph.</p>

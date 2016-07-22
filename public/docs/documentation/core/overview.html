@@ -1,0 +1,58 @@
+<h1 id="overview">Overview</h1>
+
+<blockquote>
+  <p>You should checkout the <a href="documentation/basic-tutorial.md">Quickstart
+Tutorial</a> before looking through here. It
+is also recommended looking at the example code provided in mindmaps.zip</p>
+</blockquote>
+
+<p>Mindmaps Core API is the implementation of the object model discussed in
+<a href="documentation/mindmaps-basics.md">Mindmaps Basics</a>. It allows you to create
+Mindmaps Graphs using Java 8. It supports any
+<a href="http://tinkerpop.incubator.apache.org/docs/3.0.2-incubating/">Tinkerpop</a> 3.0.z
+version.</p>
+
+<p>Mindmaps Core API is catered towards constructing Mindmaps Graphs. Graql is
+catered towards querying in more complex manners.</p>
+
+<h2 id="core-api-construction">Core API Construction</h2>
+
+<p>Let’s jump into the deep end of and create an ontology which can be used in the
+domain of movies:</p>
+
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">RoleType</span> <span class="n">prodCast</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">putRoleType</span><span class="o">(</span><span class="s">"Production with Cast"</span><span class="o">);</span>
+<span class="n">RoleType</span> <span class="n">prodRole</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">putRoleType</span><span class="o">(</span><span class="s">"Role within the production"</span><span class="o">);</span>
+<span class="n">RoleType</span> <span class="n">actor</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">putRoleType</span><span class="o">(</span><span class="s">"Actor"</span><span class="o">);</span>
+
+<span class="n">RelationType</span> <span class="n">casting</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">putRelationType</span><span class="o">(</span><span class="s">"Casting"</span><span class="o">)</span>
+    <span class="o">.</span><span class="na">hasRole</span><span class="o">(</span><span class="n">prodCast</span><span class="o">).</span><span class="na">hasRole</span><span class="o">(</span><span class="n">prodRole</span><span class="o">).</span><span class="na">hasRole</span><span class="o">(</span><span class="n">actor</span><span class="o">);</span>
+    
+<span class="n">EntityType</span> <span class="n">production</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">putEntityType</span><span class="o">(</span><span class="s">"Production"</span><span class="o">).</span><span class="na">playsRole</span><span class="o">(</span><span class="n">prodCast</span><span class="o">);</span>
+<span class="n">EntityType</span> <span class="n">tvShow</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">putEntityType</span><span class="o">(</span><span class="s">"Tv Show"</span><span class="o">).</span><span class="na">superConcept</span><span class="o">(</span><span class="n">production</span><span class="o">);</span>
+<span class="n">EntityType</span> <span class="n">movie</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">putEntityType</span><span class="o">(</span><span class="s">"Movie"</span><span class="o">).</span><span class="na">superConcept</span><span class="o">(</span><span class="n">production</span><span class="o">);</span>
+    
+<span class="n">Type</span> <span class="n">character</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">putType</span><span class="o">(</span><span class="s">"Character"</span><span class="o">).</span><span class="na">playsRole</span><span class="o">(</span><span class="n">prodRole</span><span class="o">);</span>
+    
+<span class="n">EntityType</span> <span class="n">person</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">putEntityType</span><span class="o">(</span><span class="s">"Person"</span><span class="o">).</span><span class="na">playsRole</span><span class="o">(</span><span class="n">actor</span><span class="o">);</span>
+<span class="n">EntityType</span> <span class="n">man</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">putEntityType</span><span class="o">(</span><span class="s">"Man"</span><span class="o">).</span><span class="na">supertype</span><span class="o">(</span><span class="n">person</span><span class="o">);</span>
+<span class="n">EntityType</span> <span class="n">woman</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">putEntityType</span><span class="o">(</span><span class="s">"Man"</span><span class="o">).</span><span class="na">superType</span><span class="o">(</span><span class="n">person</span><span class="o">);</span><span class="err">"</span><span class="o">,</span>
+</code></pre>
+</div>
+
+<p>Now some data:</p>
+
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">Entity</span> <span class="n">godfather</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">putEntity</span><span class="o">(</span><span class="s">"Godfather"</span><span class="o">,</span> <span class="n">movie</span><span class="o">);</span>
+<span class="n">Entity</span> <span class="n">alPacino</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">putEntity</span><span class="o">(</span><span class="s">"Al Pacino"</span><span class="o">,</span> <span class="n">man</span><span class="o">);</span>
+<span class="n">Entity</span> <span class="n">michaelCorleone</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">putEntity</span><span class="o">(</span><span class="s">"Michael Corleone"</span><span class="o">,</span> <span class="n">character</span><span class="o">);</span>
+
+<span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">putRelation</span><span class="o">(</span><span class="n">casting</span><span class="o">)</span>
+    <span class="o">.</span><span class="na">putRolePlayer</span><span class="o">(</span><span class="n">prodCast</span><span class="o">,</span> <span class="n">godfather</span><span class="o">)</span>
+    <span class="o">.</span><span class="na">putRolePlayer</span><span class="o">(</span><span class="n">prodRole</span><span class="o">,</span> <span class="n">michaelCorleone</span><span class="o">)</span>
+    <span class="o">.</span><span class="na">putRolePlayer</span><span class="o">(</span><span class="n">actor</span><span class="o">,</span> <span class="n">alPacino</span><span class="o">);</span>
+</code></pre>
+</div>
+
+<p>Bang a graph which represents that Al Pacino was in the movie Godfather where
+he played the role of Michael Corleone:</p>
+
+<p><img src="/docs/images/example_core.png" alt="" /></p>
