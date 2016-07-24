@@ -3,7 +3,7 @@
 window.MNDMPS = window.MNDMPS || {};
 
 window.MNDMPS.Splitter = {
-    
+
     _data: {
         transitionXRegex: /\.*translateX\((.*)px\)/i
     },
@@ -90,13 +90,13 @@ window.MNDMPS.Splitter = {
 
         for (var i = 0; i < splitter.slides.length; i++) {
             el = splitter.slides[i].querySelectorAll('[data-slide="right"]')[0];
-            
+
             if (document.documentElement.style.hasOwnProperty('webkitClipPath')) {
                 el.style.webkitClipPath = 'inset(0px 0px 0px ' + data.clipX + 'px)';
             } else {
                 el.style.clip = 'rect(0px, ' + width + 'px, ' + height + 'px, ' + data.clipX + 'px)';
             }
-            
+
             el.setAttribute('data-clip', data.clipX);
         }
     },
@@ -120,7 +120,7 @@ window.MNDMPS.Splitter = {
         function drag(event) {
 
             window.MNDMPS.Helpers.pauseEvent(event);
-            
+
             var newMouseX = null;
 
             if (event.touches && event.touches.length) {
@@ -128,7 +128,7 @@ window.MNDMPS.Splitter = {
             } else {
                 newMouseX = event.pageX;
             }
-            
+
             var diff = newMouseX - data.mouseX,
                 relativeOffsetX = data.relativeX + diff + data.offsetX,
                 newTranslateX = null;
@@ -259,7 +259,7 @@ window.MNDMPS.Splitter = {
                 });
             }
         }
-        
+
         window.addEventListener('scroll', splitter.automoveHandler, false);
     },
 
