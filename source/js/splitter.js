@@ -8,21 +8,43 @@ window.MNDMPS.Splitter = {
         transitionXRegex: /\.*translateX\((.*)px\)/i
     },
 
+    posLimits: function(view) {
+        return {
+            min: view.offsetWidth * 0.15,
+            max: view.offsetWidth * 0.95
+        };
+    },
+
+    sanitisePos: function(view, pos) {
+        var posLimits = this.posLimits(view);
+
+        if (pos < posLimits.min) {
+            pos = posLimits.min;
+        } else if (pos > posLimits.max) {
+            pos = posLimits.max;
+        }
+
+        return pos;
+    },
+
     moveClip: function(obj) {
+        var view = obj.splitter.parentNode.parentNode.parentNode,
+            pos = this.sanitisePos(view, obj.pos);
+        
         obj.splitter.setAttribute('data-clip', obj.pos);
 
         if (document.documentElement.style.hasOwnProperty('webkitClipPath')) {
             obj.splitter.style.webkitClipPath = 'inset(0px 0px 0px ' + obj.pos + 'px)';
         } else {
-            if (obj.splitter.view) {
-                obj.splitter.style.clip = 'rect(0px, ' + obj.splitter.view.offsetWidth + 'px, ' + obj.splitter.view.offsetHeight + 'px, ' + obj.pos + 'px)';
-            }
+            obj.splitter.style.clip = 'rect(0px, ' + view.offsetWidth + 'px, ' + view.offsetHeight + 'px, ' + obj.pos + 'px)';
         }
     },
 
     moveKnob: function(obj) {
-        obj.knob.setAttribute('data-translate', obj.pos);
-        obj.knob.style.transform = 'translateX(' + obj.pos + 'px)';
+        var pos = this.sanitisePos(obj.splitter.view, obj.pos);
+
+        obj.splitter.dragger.setAttribute('data-translate', pos);
+        obj.splitter.dragger.style.transform = 'translateX(' + pos + 'px)';
     },
 
     setNewContainerWidth: function(splitter) {
@@ -66,7 +88,7 @@ window.MNDMPS.Splitter = {
             changePercent = _this.getChangePercent(splitters[i]);
 
             _this.moveKnob({
-                knob: splitters[i].dragger,
+                splitter: splitters[i],
                 pos: _this.getNewPos(splitters[i], parseInt(dragPos, 10), changePercent)
             });
 
@@ -216,7 +238,7 @@ window.MNDMPS.Splitter = {
         slides = splitter.slides;
 
         window.MNDMPS.Splitter.moveKnob({
-            knob: splitter.dragger,
+            splitter: splitter,
             pos: initialPos
         });
 
@@ -248,7 +270,7 @@ window.MNDMPS.Splitter = {
             }
 
             window.MNDMPS.Splitter.moveKnob({
-                knob: splitter.dragger,
+                splitter: splitter,
                 pos: newPos
             });
 
@@ -261,6 +283,8 @@ window.MNDMPS.Splitter = {
         }
 
         window.addEventListener('scroll', splitter.automoveHandler, false);
+
+        splitter.automoveHandler();
     },
 
     init: function() {

@@ -5,7 +5,7 @@ var gulp  = require('gulp'),
     htmlmin = require('gulp-htmlmin'),
     notify = require("gulp-notify");
 
-gulp.task('build-css', function() {
+gulp.task('build-new-css', function() {
     return gulp.src('source/css/style.scss')
         .pipe(sass({outputStyle: 'compressed'}))
         .pipe(gulp.dest('public/css'))
@@ -15,7 +15,7 @@ gulp.task('build-css', function() {
         }));
 });
 
-gulp.task('build-new-css', function() {
+gulp.task('build-css', function() {
     return gulp.src('source/css1/style1.scss')
         .pipe(sass({outputStyle: 'compressed'}))
         .pipe(gulp.dest('public/css'))
@@ -50,8 +50,8 @@ gulp.task('build-js', function() {
             fileName: 'mndmps1.min.js',
             compilerFlags: {
                 language_in: 'ES5',
-                //compilation_level: 'WHITESPACE_ONLY',
-                compilation_level: 'SIMPLE_OPTIMIZATIONS',
+                compilation_level: 'WHITESPACE_ONLY',
+                //compilation_level: 'SIMPLE_OPTIMIZATIONS',
                 warning_level: 'QUIET'
             }
         }))
@@ -87,8 +87,8 @@ gulp.task('build-new-js', function() {
             fileName: 'mndmps.min.js',
             compilerFlags: {
                 language_in: 'ES5',
-                //compilation_level: 'WHITESPACE_ONLY',
-                compilation_level: 'SIMPLE_OPTIMIZATIONS',
+                compilation_level: 'WHITESPACE_ONLY',
+                //compilation_level: 'SIMPLE_OPTIMIZATIONS',
                 warning_level: 'QUIET'
             }
         }))
@@ -122,10 +122,10 @@ gulp.task('build-html', function() {
 });
 
 gulp.task('watch', function() {
-    gulp.watch('source/css/*.scss', ['build-css']);
-    gulp.watch('source/css1/*.scss', ['build-new-css']);
-    gulp.watch('source/js/*.js', ['build-js']);
-    gulp.watch('source/js1/*.js', ['build-new-js']);
+    gulp.watch('source/css/*.scss', ['build-new-css']);
+    gulp.watch('source/css1/*.scss', ['build-css']);
+    gulp.watch('source/js/*.js', ['build-new-js']);
+    gulp.watch('source/js1/*.js', ['build-js']);
     gulp.watch('source/html/*.html', ['build-html']);
 });
 

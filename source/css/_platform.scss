@@ -15,10 +15,10 @@
         }
 
         .parent{
+            padding-top: 2.15rem;
             position: relative;
             border-radius: 2px;
             border: 1px solid $black-brand;
-            transition: background-color 100ms ease-in-out;
 
             >.underlayLink{
                 position: absolute;
@@ -27,26 +27,33 @@
                 top: 0;
                 left: 0;
                 z-index: 0;
-            }
+                text-decoration: none;
+                transition: background-color 100ms ease-in-out;
 
-            >.title{
-                margin: 1.5rem 0 0 0;
-                font-size: 1.6rem;
-                pointer-events: none;
-            }
-
-            &:hover{
-                background-color: $black-brand;
-
-
-                .children{
-                    .title{
-                        border: 1px solid $white;
-                    }
+                >.title{
+                    font-family: 'Blender', Helvetica, Arial, sans-serif;
+                    font-weight: 200;
+                    font-size: 1.6rem;
+                    text-align: center;
+                    display: block;
+                    padding: 1rem;
+                    pointer-events: none;
                 }
 
-                .title{
-                    color: $white;
+                &:hover{
+                    background-color: $black-brand;
+
+                    +.children{
+                        .title{
+                            color: $white;
+                            border: 1px solid $white;
+                            background-color: $black-brand;
+                        }
+                    }
+
+                    >.title{
+                        color: $white;
+                    }
                 }
             }
         }
@@ -70,8 +77,8 @@
                 }
 
                 &:hover{
-                    background-color: $white;
-                    color: $black-brand;
+                    background-color: $black-brand;
+                    color: $white;
                 }
             }
         }
@@ -117,9 +124,12 @@
             margin: 2rem 0 1.5rem 0;
 
             .parent{
-                >.title{
-                    margin: 1rem 0 0 0;
-                    font-size: 1.2rem;
+                padding-top: 2.2rem;
+                
+                >.underlayLink{
+                    >.title{
+                        font-size: 1.2rem;
+                    }
                 }
             }
 
@@ -189,8 +199,12 @@
         &-table{
 
             .parent{
-                >.title{
-                    font-size: 1.4rem;
+                padding-top: 2.4rem;
+                
+                >.underlayLink{
+                    >.title{
+                        font-size: 1.4rem;
+                    }
                 }
             }
 
@@ -212,8 +226,12 @@
     .platform{
         &-table{
             .parent{
-                >.title{
-                    font-size: 1.6rem;
+                padding-top: 2.6rem;
+                
+                >.underlayLink{
+                    >.title{
+                        font-size: 1.6rem;
+                    }
                 }
             }
 

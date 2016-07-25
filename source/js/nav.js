@@ -66,5 +66,6 @@ window.MNDMPS.Nav = {
         window.addEventListener('resize', this.checkWidth, false);
 
         this.checkWidth();
+        this.checkPosition();
     }
 };

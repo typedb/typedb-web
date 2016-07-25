@@ -238,7 +238,7 @@ window.MNDMPS.Graph = {
                 })
                 .append('svg:path')
                     .attr({
-                        'd': 'M 0,-5 L 7,0 L 0,5',
+                        'd': 'M 2,-3 L 7,0 L 2,3',
                         'stroke': data.colors[types[i]]
                     });
         }

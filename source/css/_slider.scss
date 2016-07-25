@@ -1,5 +1,5 @@
 .promoSlider{
-    height: 80vh;
+    height: 74vh;
     margin-bottom: 0.5rem;
 
     ul{
@@ -160,6 +160,7 @@
 
 @media (min-width: 400px) {
     .promoSlider{
+        height: 64vh;
         margin-bottom: 1rem;
         
         .content{

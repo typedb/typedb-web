@@ -5,6 +5,7 @@ window.MNDMPS = window.MNDMPS || {};
 window.MNDMPS.Slider = {
 
     _data: {
+        switchTimeout: 400,
         minTabOpacity: 0.4,
         tabSpeed: 200
     },
@@ -39,7 +40,7 @@ window.MNDMPS.Slider = {
         var _this = window.MNDMPS.Slider,
             data = _this._data,
             tabs = [].slice.call(data.tabs.children),
-            index = tabs.indexOf(event.target),
+            index = typeof event === 'object' ? tabs.indexOf(event.target) : event,
             scrollPos = index * data.scrollerWidth;
 
         data.tabTween.stop();
@@ -60,20 +61,42 @@ window.MNDMPS.Slider = {
 
     processTabs: function(pos) {
 
-        var data = this._data,
+        var _this = this,
+            data = this._data,
             tabs = data.tabs.children,
             value = pos/data.scrollKnobWidth,
             index = {
                 prev: parseInt(value, 10),
                 next: Math.ceil(value)
             },
-            opacity = {
+            percentage = {
                 prev: index.next - value,
                 next: value - index.prev
             };
 
+        function changeTabsOpacity(tab, opacity) {
+            if (tab) {
+                tab.style.opacity = Math.max(opacity, data.minTabOpacity);
+            }
+        }
+
+        function tabSpring() {
+
+            clearTimeout(data.scrollTimeout);
+
+            if (index.prev === index.next) {
+                _this.switchTab(index.prev);
+            } else {
+                if (percentage.prev > percentage.next) {
+                    _this.switchTab(index.prev);
+                } else {
+                    _this.switchTab(index.next);
+                }
+            }
+        }
+
         if (index.prev === index.next) {
-            opacity.prev = opacity.next = 1;
+            percentage.prev = percentage.next = 1;
         }
 
         for (var i = 0; i < tabs.length; i++) {
@@ -81,10 +104,11 @@ window.MNDMPS.Slider = {
         }
 
         for (var key in index) {
-            if (tabs[index[key]]) {
-                tabs[index[key]].style.opacity = Math.max(opacity[key], data.minTabOpacity);
-            }
+            changeTabsOpacity(tabs[index[key]], percentage[key]);
         }
+
+        clearTimeout(data.scrollTimeout);
+        data.scrollTimeout = setTimeout(tabSpring, data.switchTimeout);
     },
 
     init: function() {

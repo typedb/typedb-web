@@ -190,12 +190,12 @@
 
                     svg{
                         line{
-                            stroke-width: 1px;
+                            stroke-width: 1.3px;
                             stroke: $gray-light-4;
                         }
 
                         circle{
-                            stroke-width: 1px;
+                            stroke-width: 1.3px;
                             stroke: $gray-light-4;
                             fill: transparent;
                         }
@@ -238,7 +238,7 @@
         .splitter{
             position: absolute;
             z-index: 1;
-            background-color: $gray-light-2;
+            background-color: lighten($gray-light-2, 5%);
             width: 2px;
             height: calc(100% - 22px);
             left: 0;
@@ -249,7 +249,7 @@
                 position: absolute;
                 left: 50%;
                 top: 50%;
-                background-color: $gray-light-2;
+                background-color: lighten($gray-light-2, 5%);
                 width: 24px;
                 height: 24px;
                 border-radius: 3px;
@@ -268,12 +268,12 @@
                 }
 
                 &:before{
-                    border-right-color: rgba($white, .2);
+                    border-right-color: rgba($white, .4);
                     left: 0;
                 }
 
                 &:after{
-                    border-left-color: rgba($white, .2);
+                    border-left-color: rgba($white, .4);
                     right: 0;
                 }
             }

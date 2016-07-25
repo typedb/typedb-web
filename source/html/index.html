@@ -236,9 +236,11 @@ $z isa movie value "Avatar";
 select $x;
 
 # results>>
-{"isa": "movie", "value": "Titanic"}
-{"isa": "movie", "value": "Aliens"}
-{"isa": "movie", "value": "Terminator 2: Judgement Day"}</textarea>
+[
+  {"isa": "movie", "value": "Titanic"},
+  {"isa": "movie", "value": "Aliens"},
+  {"isa": "movie", "value": "Terminator 2: Judgement Day"}
+]</textarea>
                                     <pre class="code-output">
                                         <code class="language-graql"></code>
                                     </pre>
@@ -258,9 +260,11 @@ $x has release-date >= "01 Jan 2015";
 select $x(id, has title);
 
 # results>>
-{"id": "id1234", "resources": {"title": ["Star Wars: Episode VII"]}}
-{"id": "id4567", "resources": {"title": ["Zootopia"]}}
-{"id": "id6789", "resources": {"title": ["The Martian"]}}</textarea>
+[
+  {"id": "id1234", "resources": {"title": ["Star Wars: Episode VII"]}},
+  {"id": "id4567", "resources": {"title": ["Zootopia"]}},
+  {"id": "id6789", "resources": {"title": ["The Martian"]}}
+]</textarea>
                                     <pre class="code-output">
                                         <code class="language-graql"></code>
                                     </pre>
@@ -281,9 +285,11 @@ $z isa person value "Ang Lee";
 select $x;
 
 # results>>
-{"isa": "person", "value": "Suraj Sharma"}
-{"isa": "person", "value": "Irrfan Khan"}
-{"isa": "person", "value": "Ayush Tandon"}</textarea>
+[
+  {"isa": "person", "value": "Suraj Sharma"},
+  {"isa": "person", "value": "Irrfan Khan"},
+  {"isa": "person", "value": "Ayush Tandon"}
+]</textarea>
                                     <pre class="code-output">
                                         <code class="language-graql"></code>
                                     </pre>
@@ -445,8 +451,9 @@ $z isa directorship (movie-being-directed $x, director $y);</textarea>
                 <div class="columns five">
                     <div class="platform-table">
                         <div class="parent">
-                            <a class="underlayLink" href="/platform.html"></a>
-                            <div class="title">Graql</div>
+                            <a class="underlayLink" href="/platform.html">
+                                <span class="title">Graql</span>
+                            </a>
                             <div class="children">
                                 <a href="/platform.html" class="title">Analytics</a>
                                 <a href="/platform.html" class="title">Inference</a>
@@ -467,8 +474,9 @@ $z isa directorship (movie-being-directed $x, director $y);</textarea>
                             </div>
                         </div>
                         <div class="parent">
-                            <a class="underlayLink" href="/platform.html"></a>
-                            <div class="title">MindmapsDB</div>
+                            <a class="underlayLink" href="/platform.html">
+                                <span class="title">MindmapsDB</span>
+                            </a>
                             <div class="children">
                                 <a href="/platform.html" class="title">Core API</a>
                             </div>
