@@ -226,7 +226,7 @@
                                 <div data-slide="left">
                                     <textarea class="code-input" readonly=true># get movies directed by the director of the movie Avatar
 
-# graql>>
+graql>>
 match
 $x isa movie;
 $y isa person;
@@ -235,7 +235,7 @@ $z isa movie value "Avatar";
 ($y, $z) isa directorship;
 select $x;
 
-# results>>
+results>>
 [
   {"isa": "movie", "value": "Titanic"},
   {"isa": "movie", "value": "Aliens"},
@@ -252,14 +252,14 @@ select $x;
                                 <div data-slide="left">
                                     <textarea class="code-input" readonly=true># get the id and title of highly-rated movies released in 2015 or later
 
-# graql>>
+graql>>
 match
 $x isa movie;
 $x has rating > 8.0;
 $x has release-date >= "01 Jan 2015";
 select $x(id, has title);
 
-# results>>
+results>>
 [
   {"id": "id1234", "resources": {"title": ["Star Wars: Episode VII"]}},
   {"id": "id4567", "resources": {"title": ["Zootopia"]}},
@@ -275,7 +275,7 @@ select $x(id, has title);
                                 <div data-slide="left">
                                     <textarea class="code-input" readonly=true># get the people in the cast of movies directed by Ang Lee
 
-# graql>>
+graql>>
 match
 $x isa person;
 $y isa movie;
@@ -284,7 +284,7 @@ $z isa person value "Ang Lee";
 ($y, $z) isa directorship;
 select $x;
 
-# results>>
+results>>
 [
   {"isa": "person", "value": "Suraj Sharma"},
   {"isa": "person", "value": "Irrfan Khan"},
@@ -300,7 +300,7 @@ select $x;
                                 <div data-slide="left">
                                     <textarea class="code-input" readonly=true># associate all slasher movies with the genre horror
 
-# graql>>
+graql>>
 match
 $x isa movie has genre "Slasher";
 insert
