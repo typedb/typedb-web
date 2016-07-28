@@ -50,8 +50,8 @@ gulp.task('build-js', function() {
             fileName: 'mndmps1.min.js',
             compilerFlags: {
                 language_in: 'ES5',
-                //compilation_level: 'WHITESPACE_ONLY',
-                compilation_level: 'SIMPLE_OPTIMIZATIONS',
+                compilation_level: 'WHITESPACE_ONLY',
+                //compilation_level: 'SIMPLE_OPTIMIZATIONS',
                 warning_level: 'QUIET'
             }
         }))
@@ -66,6 +66,7 @@ gulp.task('build-new-js', function() {
     return gulp.src([
             'source/js/jquery-3.0.0.js',
             'source/js/d3.js',
+            'source/js/d3.superformula.js',
             'source/js/typed.js',
             'source/js/helpers.js',
             'source/js/tabs.js',
@@ -87,8 +88,8 @@ gulp.task('build-new-js', function() {
             fileName: 'mndmps.min.js',
             compilerFlags: {
                 language_in: 'ES5',
-                //compilation_level: 'WHITESPACE_ONLY',
-                compilation_level: 'SIMPLE_OPTIMIZATIONS',
+                compilation_level: 'WHITESPACE_ONLY',
+                //compilation_level: 'SIMPLE_OPTIMIZATIONS',
                 warning_level: 'QUIET'
             }
         }))

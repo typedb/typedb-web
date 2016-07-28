@@ -9,15 +9,31 @@ window.MNDMPS.App = {
     typist: function() {
         var data = this._data;
 
-        data.typist = $("#typist");
+        data.typist = [];
 
-        data.typist.typed({
+        var topTypist = $("#topTypist");
+        
+        topTypist.typed({
             strings: ['a knowledge graph', 'an inference engine', 'an analytics tool', 'a distributed semantic database'],
             typeSpeed: 10,
             backSpeed: 5,
             backDelay: 1500,
             loop: false
         });
+
+        data.typist.push(topTypist);
+
+        var advantagesTypist = $("#advantagesTypist");
+        
+        advantagesTypist.typed({
+            strings: ['$z isa movie value "Avatar"', 'select $x(id, has title)', '($x, $y) isa casting', '$x isa movie value "Big Fish"'],
+            typeSpeed: 10,
+            backSpeed: 5,
+            backDelay: 1500,
+            loop: true
+        });
+
+        data.typist.push(advantagesTypist);
     },
 
     initPrism: function() {
@@ -48,6 +64,172 @@ window.MNDMPS.App = {
             renderOutput(textareas[i]);
             listenerForScroll(textareas[i]);
         }
+    },
+
+    initRealTimeAnalytics: function(node) {
+
+        var i = null,
+            tempMaxArray = [],
+            tickGap = 50,
+            segments = 80,
+            duration = 1000,
+            nowDate = new Date(Date.now() - duration),
+            data = [
+                d3.range(segments).map(function() { return 0; }),
+                d3.range(segments).map(function() { return 0; })
+            ],
+
+            margin = {top: 2, right: 1, bottom: 20, left: 1},
+            width = node.offsetWidth - margin.right - margin.left,
+            height = node.offsetHeight - margin.top - margin.bottom,
+
+            x = d3.time.scale()
+                .domain([nowDate - (segments - 2) * duration, nowDate - duration])
+                .range([0, width]),
+
+            y = d3.scale.linear()
+                .range([height, 0]),
+
+            line = d3.svg.line()
+                .interpolate('basis')
+                .x(function(d, i) {return x(nowDate - (segments - 1 - i) * duration);})
+                .y(function(d, i) {return y(d);}),
+
+            svgNode = d3.select(node).append('svg')
+                .attr('width', width + margin.left + margin.right)
+                .attr('height', height + margin.top + margin.bottom)
+                .style('margin-left', -margin.left + 'px'),
+
+            svg = svgNode
+                    .append('g')
+                        .attr('transform', 'translate(' + margin.left + ', ' + margin.top + ')'),
+
+            mask = svg.append('defs').append('clipPath')
+                .attr('id', 'realTimeClip')
+                    .append('rect')
+                        .attr('width', width)
+                        .attr('height', height);
+
+        var axis = svg.append('g')
+                .attr('class', 'x axis')
+                .attr('transform', 'translate(0, ' + height + ')')
+                .call(x.axis = d3.svg.axis().scale(x).orient('bottom').ticks(Math.floor(width/tickGap))),
+
+            paths = svg.append('g')
+                .attr('class', 'lines')
+                .attr('clip-path', 'url(#realTimeClip)');
+
+        for (i = 0; i < data.length; i++) {
+            paths
+                .append('path')
+                    .datum(data[i])
+                    .attr('class', 'line_' + i);
+        }
+
+        var transition = d3.select({}).transition()
+            .duration(duration)
+            .ease('linear');
+
+        y.domain([0, 30]);
+
+        window.addEventListener('resize', function() {
+            width = node.offsetWidth - margin.right - margin.left,
+            height = node.offsetHeight - margin.top - margin.bottom;
+
+            x.range([0, width])
+                .axis
+                .ticks(Math.floor(width/tickGap));
+            
+            mask
+                .attr('width', width)
+                .attr('height', height);
+            
+            svgNode
+                .attr('width', width + margin.left + margin.right)
+                .attr('height', height + margin.top + margin.bottom);
+        }, false);
+
+        function tick() {
+            transition = transition.each(function() {
+
+                // push the accumulated count onto the back, and reset the count
+                for (i = 0; i < data.length; i++) {
+                    data[i].push(Math.min(30, Math.random() * 30));
+                    
+                    // redraw the line
+                    svg.select('.line_' + i)
+                        .attr("d", line)
+                        // slide the line left
+                        .attr("transform", null)
+                        .transition()
+                        .attr('transform', 'translate(' + x(nowDate - (segments - 1) * duration) + ')');
+
+                    // pop the old data point off the front
+                    data[i].shift();
+                }
+
+                // slide the x-axis left
+                axis.call(x.axis);
+
+                // update the domains
+                tempMaxArray = [];
+                for (i = 0; i < data.length; i++) {
+                    tempMaxArray.push.apply(tempMaxArray, data[i]);
+                }
+                nowDate = new Date();
+                x.domain([nowDate - (segments - 2) * duration, nowDate - duration]);
+
+            }).transition().each('start', tick);
+        }
+
+        tick();
+    },
+
+    initImplicitData: function(node) {
+
+        var width = node.offsetWidth,
+            height = node.offsetHeight,
+            svg = node.children[0],
+            maskPath = svg.getElementsByClassName('maskPath')[0],
+            maskVisible = svg.getElementsByClassName('maskVisible')[0],
+            speed = 4000,
+            timeout = 600,
+            pos = {
+                max: 80,
+                min: 0
+            },
+            maskTween = new Tweenable();
+
+        function moveMask() {
+
+            var currentPos = maskVisible.getAttribute('data-x') || pos.min;
+            currentPos = parseInt(currentPos, 10);
+
+            maskTween.tween({
+                from: {x: currentPos > 40 ? pos.max : pos.min},
+                to:   {x: currentPos > 40 ? pos.min : pos.max},
+                duration: speed,
+                easing: 'easeInOutQuart',
+                step: function(state) {
+                    maskVisible.setAttribute('data-x', state.x);
+                    maskVisible.style.transform = 'translate(' + state.x + 'px, 0px)';
+                    maskPath.style.transform = 'translate(' + state.x + 'px, 0px)';
+                },
+                finish: function() {
+                    setTimeout(function() {
+                        moveMask();
+                    }, timeout);
+                }
+            });
+        }
+
+        moveMask();
+    },
+
+    initAdvantages: function() {
+
+        this.initRealTimeAnalytics(document.getElementsByClassName('advantages-realtime')[0]);
+        this.initImplicitData(document.getElementsByClassName('advantages-discover')[0]);
     },
 
     init: function() {
@@ -110,6 +292,8 @@ window.MNDMPS.App = {
                 getMindmapsButton[i].addEventListener('click', window.MNDMPS.Modal.open, false);
             }
         }
+
+        this.initAdvantages();
     }
 };
 
