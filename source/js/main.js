@@ -108,9 +108,9 @@ window.MNDMPS.App = {
                 .attr('id', 'realTimeClip')
                     .append('rect')
                         .attr('width', width)
-                        .attr('height', height);
+                        .attr('height', height),
 
-        var axis = svg.append('g')
+            axis = svg.append('g')
                 .attr('class', 'x axis')
                 .attr('transform', 'translate(0, ' + height + ')')
                 .call(x.axis = d3.svg.axis().scale(x).orient('bottom').ticks(Math.floor(width/tickGap))),
@@ -118,6 +118,12 @@ window.MNDMPS.App = {
             paths = svg.append('g')
                 .attr('class', 'lines')
                 .attr('clip-path', 'url(#realTimeClip)');
+
+        for (i = 0; i < data.length; i++) {
+            for (var j = segments/2; j < data[i].length; j++) {
+                data[i][j] = Math.min(30, Math.random() * 30);
+            }
+        }
 
         for (i = 0; i < data.length; i++) {
             paths
