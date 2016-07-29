@@ -125,7 +125,7 @@
                     left: 0;
                     height: 200%;
                     width: 100%;
-                    transform: translateY(-50.3%);
+                    transform: translateY(-50%);
                 }
 
                 .svg-bg-tiles{
@@ -221,9 +221,7 @@
                     filter: grayscale(0);
                 }
 
-                .description{
-
-                }
+                .description{}
 
                 .svg-bg-tiles{
                     visibility: visible;
@@ -242,14 +240,64 @@
         &-grid{
             >li{
                 .description{
-                    p{
+                    padding: 3rem 1.5rem 0 0;
 
+                    p{
+                        font-size: 1.35rem;
+                        line-height: 1.5rem;
+                        margin-bottom: 1.5rem;
                     }
 
                     span{
+                        font-size: 1.2rem;
+                        line-height: 1.5rem;
+                        margin-bottom: 0.5rem;
 
                         &.x-small{
+                            font-size: 1rem;
+                            line-height: 1.2rem;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
 
+@media (min-width: 550px) {
+    .team{
+        &-grid{
+            >li{
+                float: left;
+                width: calc(50% - 0.5rem);
+                margin: 0 0.5rem 1rem 0;
+
+                &:nth-child(2n){
+                    margin: 0 0 1rem 0.5rem;
+                }
+
+                .photo{
+                    margin-left: -12%;
+                }
+                
+                .description{
+                    width: 60%;
+                    padding: 1.5rem 1rem 0 0;
+
+                    p{
+                        font-size: 0.8rem;
+                        line-height: 0.7rem;
+                        margin-bottom: 0.7rem;
+                    }
+
+                    span{
+                        font-size: 0.7rem;
+                        line-height: 0.7rem;
+                        margin-bottom: 0.5rem;
+
+                        &.x-small{
+                            font-size: 0.6rem;
+                            line-height: 0.7rem;
                         }
                     }
                 }
@@ -262,6 +310,87 @@
     .vision{
         &-wrapper{
             padding-bottom: 3.75rem;
+        }
+    }
+    
+    .team{
+        &-grid{
+            margin-top: 1.5rem;
+
+            >li{
+                .photo{
+                    margin-left: 0;
+                }
+                
+                .description{
+                    width: 50%;
+                    padding: 2rem 1rem 0 0;
+
+                    p{
+                        font-size: 0.9rem;
+                        line-height: 1rem;
+                        margin-bottom: 1rem;
+                    }
+
+                    span{
+                        font-size: 0.8rem;
+                        line-height: 1rem;
+                        margin-bottom: 0.5rem;
+
+                        &.x-small{
+                            font-size: 0.7rem;
+                            line-height: 0.8rem;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media (min-width: 1000px) {
+    .team{
+        &-grid{
+            margin-top: 1.5rem;
+
+            >li{
+                width: calc(25% - 0.75rem);
+                margin: 0 1rem 1rem 0;
+
+                &:nth-child(2n){
+                    margin: 0 1rem 1rem 0;
+                }
+
+                &:nth-child(4n){
+                    margin: 0 0 1rem 0;
+                }
+                
+                .photo{
+                    margin-left: 0;
+                }
+                
+                .description{
+                    width: 50%;
+                    padding: 2rem 1rem 0 0;
+
+                    p{
+                        font-size: 0.9rem;
+                        line-height: 1rem;
+                        margin-bottom: 1rem;
+                    }
+
+                    span{
+                        font-size: 0.8rem;
+                        line-height: 1rem;
+                        margin-bottom: 0.5rem;
+
+                        &.x-small{
+                            font-size: 0.7rem;
+                            line-height: 0.8rem;
+                        }
+                    }
+                }
+            }
         }
     }
 }

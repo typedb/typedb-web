@@ -26,10 +26,12 @@ window.MNDMPS.App = {
         var advantagesTypist = $("#advantagesTypist");
 
         advantagesTypist.typed({
-            strings: ['match<br/>($a, $b) isa knows;<br/>($b, $c) isa employment;<br/>($c, $d) isa resides;<br/>$d isa country, value "UK";<br/>select $a(value);'],
-            typeSpeed: 10,
+            strings: ['match ($a, $b) isa knows;<br/>$b isa person, value "Marco";<br/>select $a(value);',
+            'match ($a, $b) isa employment;<br/>$b isa company, value "MindmapsDB";<br/>select $a(value);',
+            'match ($a, $b) isa knows;<br/>($b, $c) isa employment;<br/>$c isa company, value "MindmapsDB"<br/>select $a(value);'],
+            typeSpeed: 5,
             backSpeed: 0,
-            backDelay: 12000,
+            backDelay: 5000,
             loop: true
         });
 
