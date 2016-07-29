@@ -92,14 +92,15 @@
     &-code{
         background-color: rgba($black-brand, 0.05);
         border-radius: 3px;
-        
+
         p{
             height: 5rem;
             color: $black-brand;
-            padding: 1rem;
+            padding: 0.7rem 0.7rem 1.2rem 0.7rem;
             display: block;
             font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
             margin-bottom: 0;
+            font-size:0.75rem;
         }
     }
 

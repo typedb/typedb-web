@@ -12,7 +12,7 @@ window.MNDMPS.App = {
         data.typist = [];
 
         var topTypist = $("#topTypist");
-        
+
         topTypist.typed({
             strings: ['a knowledge graph', 'an inference engine', 'an analytics tool', 'a distributed semantic database'],
             typeSpeed: 10,
@@ -24,12 +24,12 @@ window.MNDMPS.App = {
         data.typist.push(topTypist);
 
         var advantagesTypist = $("#advantagesTypist");
-        
+
         advantagesTypist.typed({
-            strings: ['$z isa movie value "Avatar"', 'select $x(id, has title)', '($x, $y) isa casting', '$x isa movie value "Big Fish"'],
+            strings: ['match<br/>($a, $b) isa knows;<br/>($b, $c) isa employment;<br/>($c, $d) isa resides;<br/>$d isa country, value "UK";<br/>select $a(value);'],
             typeSpeed: 10,
-            backSpeed: 5,
-            backDelay: 1500,
+            backSpeed: 0,
+            backDelay: 12000,
             loop: true
         });
 
@@ -145,11 +145,11 @@ window.MNDMPS.App = {
             x.range([0, width])
                 .axis
                 .ticks(Math.floor(width/tickGap));
-            
+
             mask
                 .attr('width', width)
                 .attr('height', height);
-            
+
             svgNode
                 .attr('width', width + margin.left + margin.right)
                 .attr('height', height + margin.top + margin.bottom);
@@ -161,7 +161,7 @@ window.MNDMPS.App = {
                 // push the accumulated count onto the back, and reset the count
                 for (i = 0; i < data.length; i++) {
                     data[i].push(Math.min(30, Math.random() * 30));
-                    
+
                     // redraw the line
                     svg.select('.line_' + i)
                         .attr("d", line)
@@ -268,7 +268,7 @@ window.MNDMPS.App = {
         window.addEventListener('resize', function() {
 
             window.MNDMPS.Map.center(window.MNDMPS.Map.data.googleMap, window.MNDMPS.Map.data.googleMapLatLng, 0, 0);
-                
+
             if (codeEditor) {
                 var tabs = codeEditor.getElementsByClassName('content')[0].children;
 
