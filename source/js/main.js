@@ -201,7 +201,7 @@ window.MNDMPS.App = {
             speed = 4000,
             timeout = 600,
             pos = {
-                max: 80,
+                max: 60,
                 min: 0
             },
             maskTween = new Tweenable();
@@ -241,27 +241,38 @@ window.MNDMPS.App = {
     init: function() {
 
         var data = this._data,
-            codeEditor = document.getElementsByClassName('editor')[0];
+            codeEditor = document.getElementsByClassName('editor')[0],
+            titleContainer = document.getElementsByClassName('title')[0],
+            platformContainer = document.getElementsByClassName('platform-wrapper')[0],
+            advantagesContainer = document.getElementsByClassName('advantages-wrapper')[0],
+            careersContainer = document.getElementsByClassName('careers-wrapper')[0];
 
         window.MNDMPS.Nav.init();
 
-        this.typist();
+        if (careersContainer) {
+            window.MNDMPS.Careers.init(careersContainer);
+        }
 
-        var codeSplitter = window.MNDMPS.Splitter.create(document.getElementById('code-container').querySelectorAll('[data-splitter="view"]')[0]);
-        window.MNDMPS.Splitter.initAutomove(codeSplitter);
-        window.MNDMPS.Splitter.init();
+        if (titleContainer) {
 
-        window.MNDMPS.Tabs.init(document.getElementById('code-container').querySelectorAll('[data-tabs="view"]')[0]);
+            this.typist();
 
-        this.initPrism();
+            var codeSplitter = window.MNDMPS.Splitter.create(document.getElementById('code-container').querySelectorAll('[data-splitter="view"]')[0]),
+                graqlSvgContainers = document.querySelectorAll('[data-splitter="slides"]')[0].querySelectorAll('[data-slide="right"]');
+            
+            window.MNDMPS.Splitter.initAutomove(codeSplitter);
+            window.MNDMPS.Splitter.init();
 
-        // Initialising SVG
+            window.MNDMPS.Tabs.init(document.getElementById('code-container').querySelectorAll('[data-tabs="view"]')[0]);
 
-        var graqlSvgContainers = document.querySelectorAll('[data-splitter="slides"]')[0].querySelectorAll('[data-slide="right"]');
+            this.initPrism();
 
-        for (var i = 0; i < graqlSvgContainers.length; i++) {
-            if (window.MNDMPS.Graph._data.homepageGraphs[i]) {
-                window.MNDMPS.Graph.init(graqlSvgContainers[i], window.MNDMPS.Graph._data.homepageGraphs[i]);
+            // Initialising SVG
+
+            for (var i = 0; i < graqlSvgContainers.length; i++) {
+                if (window.MNDMPS.Graph._data.homepageGraphs[i]) {
+                    window.MNDMPS.Graph.init(graqlSvgContainers[i], window.MNDMPS.Graph._data.homepageGraphs[i]);
+                }
             }
         }
 
@@ -281,7 +292,9 @@ window.MNDMPS.App = {
             }
         }, false);
 
-        window.MNDMPS.Slider.init();
+        if (platformContainer) {
+            window.MNDMPS.Slider.init();
+        }
 
         google.maps.event.addDomListener(window, 'load', window.MNDMPS.Map.load);
 
@@ -299,7 +312,13 @@ window.MNDMPS.App = {
             }
         }
 
-        this.initAdvantages();
+        if (document.getElementsByClassName('team-wrapper')[0]) {
+            atvImg();
+        }
+
+        if (advantagesContainer) {
+            this.initAdvantages();
+        }
     }
 };
 

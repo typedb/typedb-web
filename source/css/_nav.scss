@@ -236,6 +236,10 @@
                 }
             }
         }
+
+        +:not(.title){
+            padding-top: 40px;
+        }
     }
 }
 
@@ -275,6 +279,10 @@
     .container{
         &.nav{
             height: 50px;
+
+            +:not(.title){
+                padding-top: 50px;
+            }
 
             .columns{
                 position: relative;

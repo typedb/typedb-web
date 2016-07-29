@@ -1,5 +1,14 @@
 $countArray: 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten', 'eleven', 'twelve';
 
+@keyframes rotate360{
+    0%{
+        transform: rotate(0);
+    },
+    100%{
+        transform: rotate(360deg); 
+    }
+}
+
 h1, h2, h3, h4, h5, h6{
     font-family: 'Blender', Helvetica, Arial, sans-serif;
     font-weight: 200;
@@ -8,6 +17,18 @@ h1, h2, h3, h4, h5, h6{
     strong{
         font-weight: 400;
     }
+}
+
+h1, h2{
+    margin: 2rem 0;
+}
+
+h3, h4{
+    margin: 1.6rem 0;
+}
+
+h5, h6{
+    margin: 1.2rem 0;
 }
 
 .full-height{
@@ -95,8 +116,16 @@ h1, h2, h3, h4, h5, h6{
 
 /* Larger than tablet */
 @media (min-width: 750px) {
-    h1, h2, h3, h4, h5, h6{
+    h1, h2{
         margin: 3rem 0;
+    }
+
+    h3, h4{
+        margin: 2.4rem 0;
+    }
+
+    h5, h6{
+        margin: 1.8rem 0;
     }
 
     .margin-bottom{
