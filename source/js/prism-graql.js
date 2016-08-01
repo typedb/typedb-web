@@ -15,10 +15,6 @@
         special: {
             pattern: /graql>|results>|\.\.\./
         },
-        month: {
-            pattern: /(?!{-\$a-zA-Z_0-9})/,
-            alias: 'number'
-        },
         variable: {
             pattern: /\$[-a-zA-Z_0-9]+(?![-\$a-zA-Z_0-9])/,
             alias: 'variable'
