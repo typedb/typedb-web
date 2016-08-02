@@ -57,7 +57,11 @@ function atvImg(){
                 layer.innerHTML = elSrc;
             } else {
                 var imgSrc = layerElems[i].getAttribute('data-img');
-                layer.style.backgroundImage = 'url('+imgSrc+')';
+                if (imgSrc) {
+                    layer.style.backgroundImage = 'url('+imgSrc+')';
+                } else {
+                    layer.style.backgroundImage = 'none';
+                }
             }
 
             layer.className = 'atvImg-rendered-layer';
