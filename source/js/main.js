@@ -247,7 +247,8 @@ window.MNDMPS.App = {
             titleContainer = document.getElementsByClassName('title')[0],
             platformContainer = document.getElementsByClassName('platform-wrapper')[0],
             advantagesContainer = document.getElementsByClassName('advantages-wrapper')[0],
-            careersContainer = document.getElementsByClassName('careers-wrapper')[0];
+            careersContainer = document.getElementsByClassName('careers-wrapper')[0],
+            docsContainer = document.getElementById('docs-wrapper');
 
         window.MNDMPS.Nav.init();
 
@@ -320,6 +321,10 @@ window.MNDMPS.App = {
 
         if (advantagesContainer) {
             this.initAdvantages();
+        }
+
+        if (docsContainer) {
+            window.MNDMPS.Docs.init(docsContainer);
         }
     }
 };

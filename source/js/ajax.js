@@ -35,6 +35,22 @@ window.MNDMPS.Ajax = {
         return promise;
     },
 
+    getDocsPage: function(obj) {
+
+        return this.call({
+            method: 'GET',
+            url: '/docs/' + obj.type + '/documentation' + obj.url
+        });
+    },
+
+    getDocsMenu: function(type) {
+
+        return this.call({
+            method: 'GET',
+            url: '/docs/' + type + '/navigation.html'
+        });
+    },
+
     getAngelJobs: function() {
 
         return this.call({

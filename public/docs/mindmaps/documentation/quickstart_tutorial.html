@@ -1,0 +1,342 @@
+<h1 id="quickstart-tutorial">Quickstart Tutorial</h1>
+
+<p>This document will teach you how to use Graql to load both an ontology and some data into a Mindmaps Graph. You can find this example (philosophers.gql) in the examples directory included in the mindmaps.zip. If you have not yet set up the Mindmaps environment, please see the Quick Start guide here. LINK TO DO</p>
+
+<p><strong>TO DO: Insert table of contents</strong></p>
+
+<p>We are going model how philosophers are related to each other. By the way, don’t worry if you’ve already loaded some data into your graph. A Mindmaps Graph can contain as many ontologies as you want.</p>
+
+<h2 id="concepts">Concepts</h2>
+
+<p>We’ll first add an ontology element - an entity type: <code class="highlighter-rouge">person</code>…</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>bin/graql.sh
+insert person isa entity-type;
+</code></pre>
+</div>
+
+<p>…and now some data in the form of concept instances: in our case, a bunch of ancient Greeks…</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>insert "Socrates" isa person;
+insert "Plato" isa person;
+insert "Aristotle" isa person;
+insert "Alexander" isa person;
+</code></pre>
+</div>
+
+<p><img src="phil.png" alt="" /></p>
+
+<p>So now we’ve created a super-simple graph, with one concept type and four 
+concept instances.</p>
+
+<blockquote>
+  <p><strong>Types</strong>
+Every concept needs a type, using <code class="highlighter-rouge">isa</code>. <br />
+<code class="highlighter-rouge">Plato</code> <code class="highlighter-rouge">is a</code> <code class="highlighter-rouge">person</code> <br />
+<code class="highlighter-rouge">person</code><code class="highlighter-rouge">is a</code> <code class="highlighter-rouge">entity-type</code></p>
+</blockquote>
+
+<blockquote>
+  <p><strong>Ancient History</strong><br />
+Graql shell maintains a history of past commands with the ‘up’ and ‘down’
+arrows. You can also autocomplete keywords, type and variable names using
+‘tab’!”</p>
+</blockquote>
+
+<p>We’ll quickly check our data has loaded:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>match $p isa person
+
+$p id "Aristotle" isa person;
+$p id "Plato" isa person;
+$p id "Socrates" isa person;
+$p id "Alexander" isa person;
+</code></pre>
+</div>
+<p>TO DO - Where did we set the id? What does this represent?</p>
+
+<blockquote>
+  <p><strong>Variables</strong>
+Graql variables start with a <code class="highlighter-rouge">$</code>. They represent “wildcards”, and are
+returned as results in <code class="highlighter-rouge">match</code> queries. A variable name can contain
+alphanumeric characters, dashes and underscores.</p>
+</blockquote>
+
+<p>Next, let’s add some <code class="highlighter-rouge">schools</code> of thought:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>insert school isa entity-type;
+insert "Peripateticism" isa school;
+insert "Platonism" isa school;
+insert "Idealism" isa school;
+insert "Cynicism" isa school;
+</code></pre>
+</div>
+
+<p>And look up one:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>match $cyn id "Cynicism"
+
+$cyn id "Cynicism" isa school;
+</code></pre>
+</div>
+
+<h2 id="relations">Relations</h2>
+
+<p>How do we define a “philosopher”? Very smart people have argued for a very long time about this, but we’re going to put our fingers in our ears and say a philosopher is someone who practices a philosophy.</p>
+
+<p>A relation comprises of pairs of role types and role players. Relations and roles also have types, just like normal concepts.</p>
+
+<p>First, we define a <code class="highlighter-rouge">relation-type</code> called <code class="highlighter-rouge">practice</code> that relates a
+<code class="highlighter-rouge">role-type</code> called <code class="highlighter-rouge">philosopher</code> to a <code class="highlighter-rouge">role-type</code> called <code class="highlighter-rouge">philosophy</code>:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>insert practice isa relation-type;
+insert philosopher isa role-type;
+insert philosophy isa role-type;
+insert practice has-role philosopher, has-role philosophy;
+</code></pre>
+</div>
+
+<blockquote>
+  <p><strong>I don’t like typing!</strong>
+Commas are totally optional in query patterns, so these pairs are equivalent:</p>
+</blockquote>
+
+<blockquote>
+  <div class="highlighter-rouge"><pre class="highlight"><code>insert practice has-role philosopher, has-role philosophy;
+insert practice has-role philosopher has-role philosophy;
+ 
+insert practice, isa relation-type;
+insert practice isa relation-type;
+</code></pre>
+  </div>
+</blockquote>
+
+<p>A <code class="highlighter-rouge">person</code> can have the role of <code class="highlighter-rouge">philosopher</code> and a <code class="highlighter-rouge">school</code> can have the role of <code class="highlighter-rouge">philosophy</code>:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>insert person plays-role philosopher;
+insert school plays-role philosophy;
+</code></pre>
+</div>
+
+<blockquote>
+  <p><strong>graql commit -am “changed some stuff”</strong><br />
+The changes you’ve made to the graph haven’t been saved yet! <br />
+Type <code class="highlighter-rouge">commit</code> in the Graql shell to commit any changes.</p>
+</blockquote>
+
+<p>Now let’s relate some <code class="highlighter-rouge">philosophers</code> to their <code class="highlighter-rouge">philosophies</code>:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>insert (philosopher "Socrates", philosophy "Platonism") isa practice;
+insert (philosopher "Plato", philosophy "Idealism") isa practice;
+insert (philosopher "Plato", philosophy "Platonism") isa practice;
+insert (philosopher "Aristotle", philosophy "Peripateticism") isa practice;
+</code></pre>
+</div>
+
+<p><img src="practice.png" alt="" /></p>
+
+<p>Here, <code class="highlighter-rouge">Plato</code> is playing the role of <code class="highlighter-rouge">philosopher</code>, and <code class="highlighter-rouge">Idealism</code> is playing the role of <code class="highlighter-rouge">philosophy</code>.</p>
+
+<p>Now we can query for all our Platonists:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>match (philosopher $phil, "Platonism") isa practice;
+
+$phil id "Socrates" isa person;
+$phil id "Plato" isa person;
+</code></pre>
+</div>
+
+<blockquote>
+  <p><strong>In Plain English…</strong><br />
+This query can be read as “Get me philosophers in a practice relationship
+with Platonism.”</p>
+
+  <p>We didn’t specify the role of <code class="highlighter-rouge">Platonism</code> in this query, or the type of
+<code class="highlighter-rouge">$phil</code>, which is totally fine! Roles and types can be omitted in queries.</p>
+
+  <p>For example, the query <code class="highlighter-rouge">match ($x, $y)</code> is a valid query (that will
+find <em>everything</em> in a relationship with <em>anything</em>).</p>
+</blockquote>
+
+<p>Next let’s talk about the relationships between our philosophers. Socrates
+taught Plato, Plato taught Aristotle and Aristotle even taught Alexander the
+Great!</p>
+
+<p>First, extend our ontology:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>insert education isa relation-type;
+insert teacher isa role-type;
+insert student isa role-type;
+insert education has-role teacher, has-role student;
+insert person plays-role teacher, plays-role student;
+</code></pre>
+</div>
+
+<p>Second, our data:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>insert (teacher "Socrates", student "Plato") isa education;
+insert (teacher "Plato", student "Aristotle") isa education;
+insert (teacher "Aristotle", student "Alexander") isa education;
+</code></pre>
+</div>
+
+<blockquote>
+  <p><strong>Aristotle’s Teacher</strong><br />
+Try writing a query to see who taught Aristotle. Include all the roles and
+types (<code class="highlighter-rouge">teacher</code>, <code class="highlighter-rouge">student</code> and <code class="highlighter-rouge">education</code>), then remove them one by one to see when the results change! The answer is at the bottom of this page.</p>
+</blockquote>
+
+<h2 id="resources">Resources</h2>
+
+<p>Some people have special titles and epithets and we want to talk about that.
+So, we’ll create some resource types that can be attached to a person:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>insert title isa resource-type, datatype string;
+insert epithet isa resource-type, datatype string;
+insert person has-resource title, has-resource epithet;
+</code></pre>
+</div>
+
+<p>Let’s make Alexander “Great”!</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>insert "Alexander" has epithet "The Great";
+</code></pre>
+</div>
+
+<p>This is a quick way to add a relation between <code class="highlighter-rouge">Alexander</code> and an <code class="highlighter-rouge">epithet</code> with value <code class="highlighter-rouge">"The Great"</code>.</p>
+
+<p><img src="epithet.png" alt="" /></p>
+
+<p>Let’s add the rest of Alexander’s titles while we’re at it:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>insert "Alexander" has title "Hegemon";
+insert "Alexander" has title "King of Macedon";
+insert "Alexander" has title "King of Persia";
+insert "Alexander" has title "Pharaoh of Egypt";
+insert "Alexander" has title "Lord of Asia";
+</code></pre>
+</div>
+
+<p>Now we can query for people, listing their id and titles:<br />
+<strong>TO DO - Again, need to clarify id</strong></p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>match $x isa person select $x(id, has title)
+
+$x id "Socrates";
+$x id "Plato";
+$x id "Aristotle";
+$x id "Alexander" has title "Pharaoh of Egypt" has title "Hegeon" has title "Shah of Persia" has title "King of Macedon" has title "Lord of Asia";
+</code></pre>
+</div>
+
+<p>Wait, who’s the Pharaoh again?</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>match $pharaoh has title "Pharaoh of Egypt"
+
+$pharaoh id "Alexander" isa person;
+</code></pre>
+</div>
+
+<blockquote>
+  <p><strong>Predicates</strong>
+When querying for an id, value or resource you can use predicates as well as direct values. For example, <code class="highlighter-rouge">has epithet contains "Great"</code>. See if you can write a query for everyone with a title containing “King”. Answers are at the bottom of the page!</p>
+</blockquote>
+
+<h2 id="relations-as-role-players">Relations as Role players</h2>
+
+<p>Philosophers know lots of things. We should probably include this in our
+ontology.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>insert knowledge isa relation-type;
+insert thinker isa role-type;
+insert thought isa role-type;
+insert knowledge has-role thinker, has-role thought;
+insert fact isa entity-type, plays-role thought;
+insert person plays-role thinker;
+</code></pre>
+</div>
+
+<p>Aristotle knew some astronomy, Plato knew a lot about caves and Socrates didn’t really know anything at all.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>insert "sun-fact" isa fact, value "The Sun is bigger than the Earth";
+insert (thinker "Aristotle", thought "sun-fact") isa knowledge;
+insert "cave-fact" isa fact, value "Caves are mostly pretty dark";
+insert (thinker "Plato", thought "cave-fact") isa knowledge;
+insert "nothing" isa fact;
+insert (thinker "Socrates", thought "nothing") isa knowledge;
+</code></pre>
+</div>
+
+<p>TO DO - probably need to talk more about introducing “value”</p>
+
+<p>A relation is actually just a special kind of instance. Just as
+<code class="highlighter-rouge">Socrates</code> can be a role player, relations themselves can also be role players.</p>
+
+<p>TO DO - OK, I lost it here!</p>
+
+<p>For example, Socrates knew nothing, but he also <em>knew</em> that he knew nothing!</p>
+
+<p>First, we have to state that someone can think about their own knowledge:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>insert knowledge plays-role thought;
+</code></pre>
+</div>
+
+<p>We can now give Socrates one final piece of knowledge:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>match $socratesKnowsNothing ("Socrates", "nothing") insert (thinker "Socrates", thought $socratesKnowsNothing) isa knowledge
+</code></pre>
+</div>
+
+<p>Here, <code class="highlighter-rouge">socratesKnowsNothing</code> is the relation between <code class="highlighter-rouge">Socrates</code> and <code class="highlighter-rouge">nothing</code>.
+We then put <code class="highlighter-rouge">socratesKnowsNothing</code> in a <em>new</em> <code class="highlighter-rouge">knowledge</code> relation as a role
+player.</p>
+
+<p>Finally, we’ll check out everything Socrates knows:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>match ("Socrates", $x) isa knowledge
+
+$x id "nothing" isa fact;
+$x id "knowledge-e387d27c-4f5e-11e6-beb8-9e71128cae77" isa knowledge;
+</code></pre>
+</div>
+
+<blockquote>
+  <p><strong>knowledge-ohmygod-whatisthat-???</strong>
+If you don’t provide an ID for something such as a relation, it will get an automatically generated ID.</p>
+</blockquote>
+
+<p><img src="knowledge.png" alt="" /></p>
+
+<blockquote>
+  <p><strong>When Persisting The Data To Disk</strong>
+Once you done make sure to use <code class="highlighter-rouge">mindmaps.sh stop &amp;&amp; mindmaps.sh clean</code> if you would like to clean your graph quickly. <br />
+<strong>Warning :</strong> This will delete all your graphs.</p>
+</blockquote>
+
+<h2 id="answers">Answers</h2>
+<p>We asked you to write a query to see who taught Aristotle. Answer:
+<code class="highlighter-rouge">
+select $teach where (teacher $teach, $student Aristotle) isa education
+</code></p>
+
+<p>We asked you to write a query for everyone with a title containing “King”. Answer:
+<code class="highlighter-rouge">
+match $king has title contains "King"
+</code></p>
+
+<h2 id="document-changelog">Document Changelog</h2>
+
+<table>
+    <tr>
+        <td>Version</td>
+        <td>Date</td>
+        <td>Description</td>        
+    </tr>
+        <tr>
+        <td>v1.01</td>
+        <td>03/08/2016</td>
+        <td>Updated content and formatting.</td>        
+    </tr>
+    
+</table>

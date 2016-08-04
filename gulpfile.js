@@ -83,6 +83,7 @@ gulp.task('build-new-js', function() {
             'source/js/modal.js',
             'source/js/map.js',
             'source/js/careers.js',
+            'source/js/docs.js',
             'source/js/main.js'
         ])
         .pipe(closureCompiler({
