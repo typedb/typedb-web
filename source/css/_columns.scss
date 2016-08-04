@@ -2,9 +2,11 @@
     columns: auto 1;
     column-gap: 0px;
 
-    p{
-        display: inline-block;
-        position: relative;
+    &.nonSeparable{
+        p{
+            display: inline-block;
+            position: relative;
+        }
     }
 }
 

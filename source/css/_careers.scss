@@ -1,0 +1,52 @@
+.careers{
+    &-wrapper{
+
+        padding-bottom: 2.5rem;
+
+        .job{
+            &:not(:last-of-type){
+                margin-bottom: 2.5rem;
+            }
+        }
+        
+        ul{
+            padding: 0;
+            margin: 0 0 0.25rem 0;
+            list-style: disc inside;
+
+            li{
+
+            }
+        }
+    }
+}
+
+/* Larger than phablet (also point when grid becomes active) */
+@media (min-width: 550px) {
+    .careers{
+        &-wrapper{
+            ul{
+                margin-top: 1rem;
+            }
+        }
+    }
+}
+
+@media (min-width: 750px) {
+    .careers{
+        &-wrapper{
+            
+            padding-bottom: 3.75rem;
+            
+            .job{
+                &:not(:last-of-type){
+                    margin-bottom: 3.75rem;
+                }
+            }
+            
+            ul{
+                margin-top: 1.5rem;
+            }
+        }
+    }
+}

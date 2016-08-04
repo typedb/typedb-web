@@ -20,7 +20,7 @@ window.MNDMPS.Nav = {
             data = _this._data,
             scrolled = document.documentElement.scrollTop || document.body.scrollTop;
 
-        if (scrolled > 0) {
+        if (scrolled > 20) {
             _this.toggleWhite(true);
         } else {
             _this.toggleWhite(false);
@@ -62,10 +62,15 @@ window.MNDMPS.Nav = {
         data.toggle = data.nav.getElementsByClassName('toggle')[0];
 
         data.menu.addEventListener('click', this.toggleMenu, false);
-        window.addEventListener('scroll', this.checkPosition, false);
         window.addEventListener('resize', this.checkWidth, false);
 
         this.checkWidth();
-        this.checkPosition();
+
+        if (document.getElementById('code-container')) {
+            window.addEventListener('scroll', this.checkPosition, false);
+            this.checkPosition();
+        } else {
+            this.toggleWhite(true);
+        }
     }
 };

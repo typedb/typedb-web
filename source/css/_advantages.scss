@@ -1,79 +1,9 @@
-@keyframes flexible-line{
-    0%, 100%{
-        transform: scale(1, 1);
-    },
-    10%, 20%{
-        transform: scale(0, 1);
-    }
-    30%, 50%{
-        transform: scale(0.5, 1);
-    }
-    60%, 71%{
-        transform: scale(0, 1);
-    },
-    80%{
+@keyframes width{
+    0%, 60%, 100%{
         transform: scale(1, 1);
     }
-}
-
-@keyframes flexible-2{
-    0%, 3.5%, 100%{
-        transform: scale(1) translate(0, 0);
-    },
-    10%, 20%{
-        transform: scale(1.4) translate(0, 0);
-    }
-    30%, 50%{
-        transform: scale(1.2) translate(-100%, 0);
-    }
-    60%, 71%{
-        transform: scale(1.4) translate(0, 0);
-    },
-    76%{
-        transform: scale(1) translate(0, 0);
-    }
-}
-
-@keyframes flexible-3{
-    0%, 100%{
-        transform: translate(0, 0);
-    },
-    10%{
-        opacity: 1;
-        transform: translate(-200%, 0);
-    }
-    11%{
-        opacity: 0;
-        transform: translate(-200%, 0);
-    }
-    70%{
-        opacity: 0;
-        transform: translate(-200%, 0);
-    }
-    71%{
-        opacity: 1;
-        transform: translate(-200%, 0);
-    }
-    80%{
-        transform: translate(0, 0);
-    }
-}
-
-@keyframes flexible-1{
-    0%, 100%{
-        transform: translate(0, 0);
-    },
-    10%, 20%{
-        transform: translate(200%, 0);
-    }
-    30%, 50%{
-        transform: translate(300%, 0);
-    }
-    60%, 71%{
-        transform: translate(200%, 0);
-    },
-    81%{
-        transform: translate(0, 0);
+    10%, 50%{
+        transform: scale(0, 1);
     }
 }
 
@@ -143,17 +73,65 @@
             position: absolute;
             height: 2px;
             margin-top: -1px;
-            width: 60%;
+            width: 70%;
             top: 50%;
-            left: 20%;
-            background-color: lighten($black-brand, 65%);
-            animation: flexible-line 10s ease-out infinite;
+            left: 15%;
+
+            >div{
+                position: absolute;
+                top: 0;
+                height: 100%;
+                width: 50%;
+
+                &:before,
+                &:after{
+                    content: '';
+                    position: absolute;
+                    top: 0;
+                    height: 100%;
+                    width: 50%;
+                    background-color: lighten($black-brand, 65%);
+                    animation: width 4s linear infinite;
+                }
+
+                &:before{
+                    transform-origin: left center;
+                    left: 0;
+                }
+
+                &:after{
+                    transform-origin: right center;
+                    right: 0;
+                }
+
+                &.left{
+                    left: 0;
+                }
+
+                &.right{
+                    right: 0;
+                }
+
+                &:nth-child(1){
+                    &:before,
+                    &:after{
+                        animation-duration: random(4) + 2s;
+                    }
+                }
+
+                &:nth-child(2){
+                    &:before,
+                    &:after{
+                        animation-duration: random(4) + 2s;
+                    }
+                }
+            }
         }
 
         .shape{
             position: absolute;
             top: 50%;
-            width: 15%;
+            width: 10%;
             height: 0;
 
             div{
@@ -177,19 +155,13 @@
             }
 
             &.n1{
-                left: 20%;
-
-                >div{
-                    animation: flexible-1 10s ease-out infinite;
-                }
+                left: 15%;
             }
 
             &.n2{
                 left: 50%;
 
                 >div{
-                    animation: flexible-2 10s ease-out infinite;
-
                     div{
                         border-radius: 50%;
                         animation: none;
@@ -198,11 +170,9 @@
             }
 
             &.n3{
-                left: 80%;
+                left: 85%;
 
                 >div{
-                    animation: flexible-3 10s ease-out infinite;
-
                     div{
                         margin-top: 21%;
                         height: 58%;

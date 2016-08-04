@@ -26,6 +26,7 @@
                 font-size: 1.2rem;
                 line-height: 32px;
                 margin: 0;
+                padding: 0;
                 transition: font-size 200ms ease-in-out;
             }
 
@@ -236,6 +237,10 @@
                 }
             }
         }
+
+        +:not(.title){
+            padding-top: 40px;
+        }
     }
 }
 
@@ -275,6 +280,10 @@
     .container{
         &.nav{
             height: 50px;
+
+            +:not(.title){
+                padding-top: 50px;
+            }
 
             .columns{
                 position: relative;
