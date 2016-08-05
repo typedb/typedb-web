@@ -275,7 +275,7 @@
 
                     .bg{
                         &-pattern{
-                            clip-path: url(#ticketMask);
+                            //clip-path: url("#ticketMask");
 
                             polygon{
                                 fill: transparent;
@@ -475,6 +475,11 @@
                 >li{
                     h3{
                         margin: 1rem 0 1.6rem 0;
+                    }
+
+                    &:after{
+                        height: 107%;
+                        top: 0.7rem;
                     }
                 }
             }
