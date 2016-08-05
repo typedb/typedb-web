@@ -220,8 +220,8 @@ window.MNDMPS.App = {
                 easing: 'easeInOutQuart',
                 step: function(state) {
                     maskVisible.setAttribute('data-x', state.x);
-                    maskVisible.style.transform = 'translate(' + state.x + 'px, 0px)';
-                    maskPath.style.transform = 'translate(' + state.x + 'px, 0px)';
+                    maskVisible.setAttribute('transform', 'translate (' + state.x + ' 0)');
+                    maskPath.setAttribute('transform', 'translate (' + state.x + ' 0)');
                 },
                 finish: function() {
                     setTimeout(function() {

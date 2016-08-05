@@ -36,6 +36,16 @@
         <link rel='stylesheet' type='text/css' href='css/style.css' />
     </head>
     <body>
+        <svg xmlns="http://www.w3.org/2000/svg" version="1.1" class="advantages-goo">
+            <defs>
+                <filter id="goo-filter">
+                    <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
+                    <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 19 -9" result="goo" />
+                    <feComposite in="SourceGraphic" in2="goo" operator="atop"/>
+                </filter>
+            </defs>
+        </svg>
+
         <svg xmlns="http://www.w3.org/2000/svg" width="0" height="0" style="display: none;">
             <symbol id="logo" viewBox="0 0 40 40" aria-labelledby="MindmapsDB">
                <value>MindmapsDB</value>
@@ -497,7 +507,7 @@ $z isa directorship (movie-being-directed $x, director $y);</textarea>
                     <h3>Flexible object-oriented schema</h3>
                     <p>MindmapsDB allows you to define a schema that truly describes the meaning of your data through a model that could express the real world. Your schema could flexibly evolve as your business grows.</p>
                     <div class="illustration">
-                        <div class="advantages-flexible">
+                        <div class="advantages-flexible" style="-moz-filter: url(#goo-filter); -webkit-filter: url(#goo-filter); filter: url(#goo-filter);">
                             <div class="shape n1">
                                 <div>
                                     <div></div>
@@ -512,10 +522,6 @@ $z isa directorship (movie-being-directed $x, director $y);</textarea>
                                 <div>
                                     <div></div>
                                 </div>
-                            </div>
-                            <div class="line">
-                                <div class="left"></div>
-                                <div class="right"></div>
                             </div>
                         </div>
                     </div>
