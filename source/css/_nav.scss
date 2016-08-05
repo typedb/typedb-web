@@ -238,7 +238,7 @@
             }
         }
 
-        +:not(.title){
+        +:not(.bg-gradient){
             padding-top: 40px;
         }
     }
@@ -281,7 +281,7 @@
         &.nav{
             height: 50px;
 
-            +:not(.title){
+            +:not(.bg-gradient){
                 padding-top: 50px;
             }
 

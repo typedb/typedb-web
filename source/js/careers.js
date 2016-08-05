@@ -12,7 +12,8 @@ window.MNDMPS.Careers = {
             domParser = new DOMParser(),
             loading = node.getElementsByClassName('loading')[0];
 
-        data.jobsBlock = node.children[0].children[0];
+        //data.jobsBlock = node.children[0].children[0];
+        data.jobsBlock = node;
 
         function kFormatter(num) {
             num = parseInt(num, 10);
@@ -30,6 +31,28 @@ window.MNDMPS.Careers = {
                 year = date.getFullYear();
 
             return newDate = day + ' ' + monthNames[monthIndex] + ' ' + year;
+        }
+
+        function wrapWithContainer(node, index) {
+
+            var container = document.createElement('div'),
+                wrapper = '<div class="row"><div class="columns twelve"></div></div>',
+                innerWrapper = null;
+
+            container.classList.add('container');
+            container.classList.add('careers-wrapper');
+
+            if (index % 2 !== 0) {
+                container.classList.add('full-width');
+                container.classList.add('bg-yellow');
+            }
+            
+            container.innerHTML = wrapper;
+
+            innerWrapper = container.children[0].children[0];
+            innerWrapper.appendChild(node);
+
+            return container;
         }
 
         function generateJob(obj) {
@@ -59,10 +82,11 @@ window.MNDMPS.Careers = {
             function(response) {
                 response = JSON.parse(response);
 
-                data.jobsBlock.removeChild(loading);
+                data.jobsBlock.classList.add('active');
+                data.jobsBlock.children[0].children[0].removeChild(loading);
 
                 for (var i = 0; i < response.jobs.length; i++) {
-                    data.jobsBlock.appendChild(generateJob(response.jobs[i]));
+                    data.jobsBlock.parentNode.insertBefore(wrapWithContainer(generateJob(response.jobs[i]), i), data.jobsBlock.nextSibling);
                 }
             },
 

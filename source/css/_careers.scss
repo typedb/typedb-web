@@ -1,21 +1,21 @@
 .careers{
     &-wrapper{
 
-        padding-bottom: 2.5rem;
+        padding-bottom: 2rem;
 
-        .job{
-            &:not(:last-of-type){
-                margin-bottom: 2.5rem;
-            }
-        }
-        
         ul{
             padding: 0;
-            margin: 0 0 0.25rem 0;
+            margin: 0 0 0.5rem 0;
             list-style: disc inside;
+        }
 
-            li{
+        &.header{
+            &.active{
+                padding-bottom: 0;
 
+                h2{
+                    margin-bottom: 0;
+                }
             }
         }
     }
@@ -36,14 +36,8 @@
     .careers{
         &-wrapper{
             
-            padding-bottom: 3.75rem;
-            
-            .job{
-                &:not(:last-of-type){
-                    margin-bottom: 3.75rem;
-                }
-            }
-            
+            padding-bottom: 2.75rem;
+
             ul{
                 margin-top: 1.5rem;
             }
