@@ -78,12 +78,46 @@
 
 .vision{
     &-wrapper{
+        padding-top: 40px;
         padding-bottom: 2.5rem;
         color: $white;
+        overflow: hidden;
+        height: 50vh;
+        box-sizing: border-box;
+
+        .row{
+            height: 100%;
+            
+            .columns{
+                height: 100%;
+                white-space: nowrap;
+                text-align: center;
+
+                &:before {
+                    content: '';
+                    display: inline-block;
+                    height: 100%;
+                    vertical-align: middle;
+                }
+
+                p{
+                    white-space: normal;
+                    padding: 0 2rem;
+                    display: inline-block;
+                    vertical-align: middle;
+                    margin: 0;
+                }
+            }
+        }
     }
 }
 
 .team{
+    &-wrapper{
+        h2{
+            text-align: center;
+        }
+    }
     &-grid{
         -webkit-touch-callout: none;
         -webkit-user-select: none;
@@ -316,6 +350,7 @@
     .vision{
         &-wrapper{
             padding-bottom: 3.75rem;
+            padding-top: 50px;
         }
     }
     
