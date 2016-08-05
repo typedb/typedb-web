@@ -532,7 +532,7 @@ Relation relation = mindmaps.putRelation(directorship,roleMap);</textarea>
                         </div>
                         <div class="content">
                             <div data-type="graql">
-                                <textarea class="code-input" readonly=true>select $x where 
+                                <textarea class="code-input" readonly=true>match 
     $x isa person;
     $y isa person;
     ($x, $y) isa marriage;
@@ -543,7 +543,7 @@ Relation relation = mindmaps.putRelation(directorship,roleMap);</textarea>
                                 </pre>
                             </div>
                             <div data-type="java">
-                                <textarea class="code-input" readonly=true>graql.select("x").where(
+                                <textarea class="code-input" readonly=true>graql.match(
     var("x").isa("person"),
     var("y").isa("person"),
     var().rel("x").rel("y").isa("marriage"),
@@ -568,7 +568,7 @@ Relation relation = mindmaps.putRelation(directorship,roleMap);</textarea>
                         </div>
                         <div class="content">
                             <div data-type="graql">
-                                <textarea class="code-input" readonly=true>select $x where 
+                                <textarea class="code-input" readonly=true>match 
     $x isa person;
     $y isa person;
     ($x, $y) isa marriage;
@@ -580,7 +580,7 @@ Relation relation = mindmaps.putRelation(directorship,roleMap);</textarea>
                                 </pre>
                             </div>
                             <div data-type="java">
-                                <textarea class="code-input" readonly=true>graql.select("x").where(
+                                <textarea class="code-input" readonly=true>graql.match(
     var("x").isa("person"),
     var("y").isa("person"),
     var().rel("x").rel("y").isa("marriage"),
@@ -608,15 +608,15 @@ Relation relation = mindmaps.putRelation(directorship,roleMap);</textarea>
                         <div class="content">
                             <div data-type="graql">
                                 <textarea class="code-input" readonly=true>insert 
-    # define concept-type 
-    type "person" isa concept-type;
+    # define entity-type 
+    person isa entity-type;
 
     # define relationship 
-    type "marriage" isa relation-type;
+    marriage isa relation-type;
 
     # define roles 
-    type "wife" isa role-type; 
-    type "husband" isa role-type; 
+    wife isa role-type; 
+    husband isa role-type; 
 
     # You can now refer to your types using graql syntax 
 
@@ -633,14 +633,14 @@ Relation relation = mindmaps.putRelation(directorship,roleMap);</textarea>
                             </div>
                             <div data-type="java">
                                 <textarea class="code-input" readonly=true>graql.insert( 
-    newType("person").isa("concept-type"),
-    newType("marriage").isa("relation-type"),
-    newType("wife").isa("role-type"),
-    newType("husband").isa("role-type"),
-    getType("marriage").hasRole("wife"),
-    getType("marriage").hasRole("husband"),
-    getType("person").playsRole("wife"),
-    getType("person").playsRole("husband")
+    id("person").isa("entity-type"),
+    id("marriage").isa("relation-type"),
+    id("wife").isa("role-type"),
+    id("husband").isa("role-type"),
+    id("marriage").hasRole("wife"),
+    id("marriage").hasRole("husband"),
+    id("person").playsRole("wife"),
+    id("person").playsRole("husband")
 ).execute();</textarea>
                                 <pre class="code-output">
                                     <code class="language-java"></code>
@@ -672,7 +672,7 @@ Relation relation = mindmaps.putRelation(directorship,roleMap);</textarea>
                         </div>
                         <div class="content">
                             <div data-type="graql">
-                                <textarea class="code-input" readonly=true>select $x where 
+                                <textarea class="code-input" readonly=true>match 
     $x isa company;
 ask
     $y isa person;
@@ -698,7 +698,7 @@ ask
                         </div>
                         <div class="content">
                             <div data-type="graql">
-                                <textarea class="code-input" readonly=true>select $x, $y where
+                                <textarea class="code-input" readonly=true>match
     $x isa company;
     $y isa company;
     $z isa location;
