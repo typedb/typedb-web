@@ -66,7 +66,6 @@ gulp.task('build-new-js', function() {
     return gulp.src([
             'source/js/jquery-3.0.0.js',
             'source/js/d3.js',
-            'source/js/d3.superformula.js',
             'source/js/atvImg.js',
             'source/js/typed.js',
             'source/js/helpers.js',

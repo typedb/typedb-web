@@ -2,6 +2,10 @@
 
 window.MNDMPS = window.MNDMPS || {};
 
+/**
+ * Does all the stuff related to SVG graphs
+ */
+
 window.MNDMPS.Graph = {
 
     _data: {
@@ -26,6 +30,15 @@ window.MNDMPS.Graph = {
             'light-bg':      '#ffffff'
         }
     },
+
+    /**
+     * Changes the font size depending pn the viewport size
+     *
+     * @param {string} graphName - The graph name to resize
+     * @param {object} svgElement - The svg element with the text
+     * @param {string} type - The SVG object type, either node or edge
+     * @param {boolean} postRender - Used to check if anything needs to be done after the resize took place and new text has been rendered
+     */
 
     resizeFont: function(graphName, svgElement, type, postRender) {
         var data = this._data,
@@ -54,9 +67,21 @@ window.MNDMPS.Graph = {
         return newStyle.join(' ');
     },
 
+    /**
+     * Stops updating the graph. Used when the graph is not visible
+     *
+     * @param {string} pointer - The graph name to stop
+     */
+
     stop: function(pointer) {
         this._data.graphs[pointer].force.stop();
     },
+
+    /**
+     * Forces graph to redraw. Used when the viewport has changed
+     *
+     * @param {string} pointer - The graph name to redraw
+     */
 
     redraw: function(pointer) {
 
@@ -105,6 +130,13 @@ window.MNDMPS.Graph = {
         }
     },
 
+    /**
+     * Calculates the offset for the graph edge, because we need those arrows to point into those circles
+     *
+     * @param {object} graph - The graph object
+     * @param {object} d - The graph node object
+     */
+
     offsetEdge: function(graph, d) {
 
         var data = this._data,
@@ -128,6 +160,14 @@ window.MNDMPS.Graph = {
         return {x1: x1, y1: y1, x2: x2, y2: y2};
     },
 
+    /**
+     * I think it's used while processing collisions
+     * Was found somewhere online and just copied over
+     *
+     * @param {object} graph - The graph object
+     * @param {number} alpha - A value used to position nodes properly
+     */
+
     gravity: function(graph, alpha) {
 
         var data = this._data;
@@ -137,6 +177,13 @@ window.MNDMPS.Graph = {
             d.y += ((graph.height/100) * d.cy - d.y) * alpha;
         };
     },
+
+    /**
+     * Used to process node collisions
+     *
+     * @param {object} graph - The graph object
+     * @param {number} alpha - A value used to position nodes properly
+     */
 
     collide: function(graph, alpha) {
 
@@ -170,6 +217,12 @@ window.MNDMPS.Graph = {
             });
         };
     },
+
+    /**
+     * Used to break the nodes' text to be inscribed without overflowing
+     *
+     * @param {string} text - The label text
+     */
 
     wrap: function(text) {
 
@@ -211,12 +264,25 @@ window.MNDMPS.Graph = {
         });
     },
 
+    /**
+     * Gets the bigger graph block side. Used to resize graph properly
+     *
+     * @param {string} name - The graph name
+     */
+
     getBiggerSide: function(name) {
         var data = this._data,
             graph = data.graphs[name];
 
         return graph.width > graph.height ? graph.width : graph.height;
     },
+
+    /**
+     * Adds arrowhead definitions to the SVG
+     *
+     * @param {string} graphName - The graph name
+     * @param {array} types - A list of arrowhead types to add
+     */
 
     addArrowheads: function(graphName, types) {
 
@@ -243,6 +309,13 @@ window.MNDMPS.Graph = {
                     });
         }
     },
+
+    /**
+     * Initialises the graph using the html node to draw graph into and the dataset
+     *
+     * @param {object} htmlNode - The node to draw graph into
+     * @param {object} dataset - The dataset used to build the graph
+     */
 
     init: function(htmlNode, dataset) {
 

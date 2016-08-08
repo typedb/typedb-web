@@ -2,9 +2,19 @@
 
 window.MNDMPS = window.MNDMPS || {};
 
+/**
+ * Used on the Careers page
+ */
+
 window.MNDMPS.Careers = {
 
     _data: {},
+
+    /**
+     * Initialises the Careers page
+     *
+     * @param {object} node - The node that indicates that we have the Jobs section and need to make calls
+     */
 
     init: function(node) {
 
@@ -12,8 +22,13 @@ window.MNDMPS.Careers = {
             domParser = new DOMParser(),
             loading = node.getElementsByClassName('loading')[0];
 
-        //data.jobsBlock = node.children[0].children[0];
         data.jobsBlock = node;
+
+        /**
+         * Makes thousands to be 1K format
+         *
+         * @param {(number|string)} num - The number to format
+         */
 
         function kFormatter(num) {
             num = parseInt(num, 10);
@@ -21,6 +36,12 @@ window.MNDMPS.Careers = {
 
             return newNum + 'K';
         }
+
+        /**
+         * Reformats date to look like this "13 Apr 2016"
+         *
+         * @param {string} date - The date to format
+         */
 
         function timeFormatter(date) {
             var monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
@@ -32,6 +53,13 @@ window.MNDMPS.Careers = {
 
             return newDate = day + ' ' + monthNames[monthIndex] + ' ' + year;
         }
+
+        /**
+         * Wraps every job block with a separate container node
+         *
+         * @param {object} node - The job node
+         * @param {number} index - Index of the job block. Used for different background colour
+         */
 
         function wrapWithContainer(node, index) {
 
@@ -54,6 +82,12 @@ window.MNDMPS.Careers = {
 
             return container;
         }
+
+        /**
+         * Generates job block using the information from Angel.co
+         *
+         * @param {object} obj - An object got from Angel.co, containing job description
+         */
 
         function generateJob(obj) {
             var jobBlock = document.createElement('div');
