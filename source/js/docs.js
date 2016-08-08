@@ -82,24 +82,43 @@ window.MNDMPS.Docs = {
      * @param {object} node - The node that contains the menu and content wrappers
      */
 
+    fixMenu: function() {
+
+        var data = this._data,
+            newHref = null,
+            links = data.nav.getElementsByTagName('a');
+
+        for (var i = 0; i < links.length; i++) {
+            newHref = links[i].getAttribute('href');
+            newHref = newHref.replace(/\/documentation\//g,'');
+            newHref = '/docs/' + newHref;
+            newHref += '.html';
+
+            links[i].setAttribute('href', newHref);
+        }
+    },
+
     init: function(node) {
 
         var data = this._data;
 
         data.wapper = node;
-        data.type = data.wapper.getAttribute('data-type');
+        //data.type = data.wapper.getAttribute('data-type');
         data.nav = node.getElementsByClassName('docs-menu')[0];
         data.view = node.getElementsByClassName('docs-content')[0];
 
-        data.nav.addEventListener('click', this.getPage, false);
+        //data.nav.addEventListener('click', this.getPage, false);
 
-        window.MNDMPS.Ajax.getDocsMenu(data.type).then(
+        /*window.MNDMPS.Ajax.getDocsMenu(data.type).then(
             function(response) {
                 data.nav.innerHTML = response;
             },
             function(error) {
                 console.log(error);
             }
-        );
+        );*/
+
+        this.fixMenu();
+        Prism.highlightAll();
     }
 };
