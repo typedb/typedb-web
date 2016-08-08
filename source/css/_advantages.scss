@@ -9,12 +9,6 @@
 }
 
 .advantages{
-    &-goo{
-        position: absolute;
-        top: 0;
-        right: 110%;
-    }
-    
     &-wrapper{
         h3{
             margin: 0 0 1rem 0;
@@ -76,6 +70,17 @@
         height: 100%;
         position: relative;
 
+        &:before{
+            content: '';
+            height: 2px;
+            width: 70%;
+            left: 15%;
+            top: 50%;
+            position: absolute;
+            margin-top: -1px;
+            background-color: lighten($black-brand, 65%);
+        }
+
         .shape{
             position: absolute;
             top: 50%;
@@ -104,15 +109,9 @@
 
             &.n1{
                 left: 15%;
-                animation: float-right 8000ms + random(4000) infinite ease-in-out;
-                animation-delay: 0ms - random(4000);
 
                 >div{
-                    transform: translateY(50%) rotateZ(90deg);
-                    
                     div{
-                        width: 150%;
-                        margin-left: -75%;
                         animation-duration: 2000ms + random(2000);
                     }
                 }
@@ -120,24 +119,38 @@
 
             &.n2{
                 left: 50%;
+                width: 12%;
 
                 >div{
                     div{
-                        animation-duration: 2000ms + random(2000);
+                        border-radius: 50%;
+                        animation: none;
                     }
                 }
             }
 
             &.n3{
                 left: 85%;
-                animation: float-left 8000ms + random(4000) infinite ease-in-out;
-                animation-delay: 0ms - random(2000);
+                width: 15%;
 
                 >div{
                     div{
-                        width: 150%;
-                        margin-left: -75%;
+                        background-color: transparent;
                         animation-duration: 2000ms + random(2000);
+
+                        svg{
+                            position: absolute;
+                            top: 0;
+                            left: 0;
+                            width: 100%;
+                            height: 100%;
+
+                            polygon{
+                                fill: lighten($black-brand, 65%);
+                                stroke: transparent;
+                                stroke-width: 0;
+                            }
+                        }
                     }
                 }
             }
