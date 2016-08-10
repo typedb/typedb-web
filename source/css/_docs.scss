@@ -16,4 +16,42 @@
             }
         }
     }
+
+    &-content{
+        padding-bottom: 1rem;
+
+        p{
+            >code{
+                font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+                font-size: 0.8rem;
+            }
+        }
+
+        blockquote{
+            position: relative;
+            margin: 0 0 1rem 0;
+            padding: 1rem;
+            background-color: lighten($black-brand, 70%);
+            border-radius: 3px;
+            border-left: 0.25rem solid $pastel-red;
+
+            p{
+                margin: 0;
+            }
+        }
+
+        pre{
+            &[class*="language-"]{
+                margin: 0 0 1rem 0;
+                font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+                font-size: 0.8rem;
+                background: $black-brand;
+                white-space: pre-wrap;
+                word-wrap: break-word;
+                line-height: 1.5em;
+                outline: none;
+                border-radius: 3px;
+            }
+        }
+    }
 }

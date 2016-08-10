@@ -325,7 +325,7 @@
                         a{
                             line-height: 22px;
                             position: relative;
-                            font-size: 0.8rem;
+                            font-size: 1.1rem;
                             display: block;
                             color: $white;
                             pointer-events: auto;
@@ -526,7 +526,7 @@
 
                         a{
                             top: 2px;
-                            font-size: 0.9rem;
+                            font-size: 1.2rem;
 
                             &.github{
                                 svg{
@@ -558,4 +558,18 @@
 }
 
 /* Larger than Desktop HD */
-@media (min-width: 1200px) {}
+@media (min-width: 1600px) {
+    .container{
+        &.nav{
+            .menu{
+                >ul{
+                    >li{
+                        a{
+                            font-size: 1.1rem;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

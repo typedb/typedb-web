@@ -2,9 +2,19 @@
 
 window.MNDMPS = window.MNDMPS || {};
 
+/**
+ * Everything that is used on the docs pages
+ */
+
 window.MNDMPS.Docs = {
 
     _data: {},
+
+    /**
+     * Gets page depending on the link that was clicked
+     *
+     * @param {object} event - A click event
+     */
 
     getPage: function(event) {
 
@@ -30,6 +40,13 @@ window.MNDMPS.Docs = {
         );
     },
 
+    /**
+     * Replaces all image links.
+     * Removes everything but image file names, then adds the proper relative path
+     *
+     * @param {string} html - HTML string
+     */
+
     replaceImages: function(html) {
         
         var data = this._data,
@@ -46,6 +63,12 @@ window.MNDMPS.Docs = {
         return wrapper.innerHTML;
     },
 
+    /**
+     * Replaces html content of the docs content node
+     *
+     * @param {string} html - HTML string
+     */
+
     refreshPage: function(html) {
         
         var data = this._data;
@@ -53,24 +76,49 @@ window.MNDMPS.Docs = {
         data.view.innerHTML = html;
     },
 
+    /**
+     * Initialises docs JS
+     *
+     * @param {object} node - The node that contains the menu and content wrappers
+     */
+
+    fixMenu: function() {
+
+        var data = this._data,
+            newHref = null,
+            links = data.nav.getElementsByTagName('a');
+
+        for (var i = 0; i < links.length; i++) {
+            newHref = links[i].getAttribute('href');
+            newHref = newHref.replace(/\/documentation\//g,'');
+            newHref = '/docs/' + newHref;
+            newHref += '.html';
+
+            links[i].setAttribute('href', newHref);
+        }
+    },
+
     init: function(node) {
 
         var data = this._data;
 
         data.wapper = node;
-        data.type = data.wapper.getAttribute('data-type');
+        //data.type = data.wapper.getAttribute('data-type');
         data.nav = node.getElementsByClassName('docs-menu')[0];
         data.view = node.getElementsByClassName('docs-content')[0];
 
-        data.nav.addEventListener('click', this.getPage, false);
+        //data.nav.addEventListener('click', this.getPage, false);
 
-        window.MNDMPS.Ajax.getDocsMenu(data.type).then(
+        /*window.MNDMPS.Ajax.getDocsMenu(data.type).then(
             function(response) {
                 data.nav.innerHTML = response;
             },
             function(error) {
                 console.log(error);
             }
-        );
+        );*/
+
+        this.fixMenu();
+        Prism.highlightAll();
     }
 };

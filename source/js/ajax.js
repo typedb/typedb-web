@@ -2,9 +2,24 @@
 
 window.MNDMPS = window.MNDMPS || {};
 
+/**
+ * Makes all the ajax calls. 
+ * Also contains some context specific methods like a call for Angel.co jobs.
+ */
+
 window.MNDMPS.Ajax = {
 
     _data: {},
+
+    /**
+     * Makes an ajax call. Returns a promise.
+     *
+     * @param {object} obj - An object containing data and parametres
+     * @param {string} obj.method - Method to use for the call. POST, GET etc.
+     * @param {string} obj.url - The URL ta make the call to
+     * @param {string} obj.contentType - Content-type header if need one
+     * @param {(string|object)} obj.data - Data to send along with the request
+     */
 
     call: function(obj) {
 
@@ -35,6 +50,14 @@ window.MNDMPS.Ajax = {
         return promise;
     },
 
+    /**
+     * Gets the doc html
+     *
+     * @param {object} obj - An object containing parametres
+     * @param {string} obj.type - The documentation type
+     * @param {string} obj.url - The url of the page
+     */
+
     getDocsPage: function(obj) {
 
         return this.call({
@@ -42,6 +65,12 @@ window.MNDMPS.Ajax = {
             url: '/docs/' + obj.type + '/documentation' + obj.url
         });
     },
+
+    /**
+     * Gets the docs menu
+     *
+     * @param {string} type - The docs type to use as a part of the url
+     */
 
     getDocsMenu: function(type) {
 
@@ -51,6 +80,10 @@ window.MNDMPS.Ajax = {
         });
     },
 
+    /**
+     * Gets the job list from Angel.co
+     */
+
     getAngelJobs: function() {
 
         return this.call({
@@ -58,6 +91,13 @@ window.MNDMPS.Ajax = {
             url: '/angel_jobs.php'
         });
     },
+
+    /**
+     * Sends the subscribe request 
+     *
+     * @param {object} obj - An object containing parametres
+     * @param {object} obj.data - An object containing user information
+     */
 
     sendSubscribe: function(obj) {
 

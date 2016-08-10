@@ -5,10 +5,10 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta http-equiv='content-type' content='text/html; charset=utf-8' />
 
-        <meta name='viewport'    content='width=de  vice-width, initial-scale=1, maximum-scale=1, user-scalable=0' />
+        <meta name='viewport'    content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0' />
         <meta name='description' content='Open-Source Distributed Semantic Database' />
         <meta name='keywords'    content='mindmapsdb, mindmaps, mindmaps.io, semantic database, distributed semantic database, distributed database, semantic, database, software, Mindmaps Research, Mindmaps Research Ltd, semantic search, data exploration, recommendation system, knowledge management, advanced analytics, research engines, business, big data, semantic search, semantic graph, semantic web, knowledge representation, automated reasoning, semantic network, data management, data platform, knowledge ontology, ontology, ontology engineering, graph database, graph based knowledge representation, reasoning engine, inference system, inference engine, expert systems, development platform, semantic applications, artificial intelligence' />
-        <title>Careers — MindmapsDB</title>
+        <title>Docs — MindmapsDB</title>
 
         <meta property='og:title'       content='MindmapsDB' />
         <meta property='og:type'        content='website' />
@@ -22,7 +22,7 @@
         <meta name="msapplication-TileImage" content="/img/metro/ms-icon-144x144.png" />
 
         <meta name='theme-color' content='#ffffff' />
-        <link rel='shortcut icon' href='/favicon.ico' />
+        <link rel='shortcut icon' href='favicon.ico' />
 
         <link rel="apple-touch-icon" sizes="57x57"   href="img/apple/apple-touch-icon-57x57.png" />
         <link rel="apple-touch-icon" sizes="114x114" href="img/apple/apple-touch-icon-114x114.png" />
@@ -36,7 +36,7 @@
         <link rel='stylesheet' type='text/css' href='/css/style.css' />
     </head>
     <body>
-        <svg xmlns="http://www.w3.org/2000/svg" width="0" height="0" style="display: none;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="0" height="0" style="display: none;">
             <symbol id="logo" viewBox="0 0 40 40" aria-labelledby="MindmapsDB">
                <value>MindmapsDB</value>
                <desc>Distributed Semantic Database</desc>
@@ -149,7 +149,7 @@
             </symbol>
         </svg>
 
-        <div class="container nav full-width">
+                <div class="container nav full-width">
             <div class="row">
                 <div class="columns twelve">
                     <a class="logo" href="/">
@@ -170,7 +170,7 @@
                                 </ul>
                             </li> -->
                             <!-- <li><a href="/platform.html">Platform</a></li> -->
-                            <li><a href="/community.html">Community</a></li>
+                            <!-- <li><a href="#">Community</a></li> -->
                             <!-- <li class="dropdown">
                                 <a>Documentation</a>
                                 <ul>
@@ -179,6 +179,7 @@
                                     <li><a href="#">Javadoc</a></li>
                                 </ul>
                             </li> -->
+                            <li><a href="/about.html">About</a></li>
                             <li><a href="/careers.html">Careers</a></li>
                             <li><a href="http://discuss.mindmaps.io">Discussion</a></li>
                             <li><a rel="nofollow me" href="http://blog.mindmaps.io" target="_blank">Blog</a></li>
@@ -189,21 +190,135 @@
             </div>
         </div>
 
-        <div class="container careers-wrapper header">
+                <div class="container docs-wrapper" id="docs-wrapper" data-type="mindmaps">
             <div class="row">
-                <div class="columns twelve">
-                    <h2>Careers</h2>
-                    <div class="loading">
-                        <div class="indicator">
-                            <svg class="underlay"><use xlink:href="#icon-underlay" /></svg>
-                        </div>
-                        <p><br>Please wait while we fetch data or check it on <a target="_blank" rel="nofollow me" href="https://angel.co/mindmaps/jobs">AngelList</a></p>
+                <div class="columns three">
+                    <h2>Contents</h2>
+                    <div class="docs-menu">
+                        <ul>
+    
+    <li><h3>Overview</h3>
+        <ul>
+            
+            <li><a href="/documentation/overview">Overview</a></li>
+            
+            <li><a href="/documentation/mindmaps_basics">Mindmaps Basics</a></li>
+            
+            <li><a href="/documentation/quickstart_tutorial">Quickstart Tutorial</a></li>
+            
+            <li><a href="/documentation/getting_started">Getting Started</a></li>
+            
+            <li><a href="/documentation/troubleshooting">Troubleshooting</a></li>
+            
+        </ul>
+    </li>
+    
+    <li><h3>Core</h3>
+        <ul>
+            
+            <li><a href="/documentation/core/overview">Overview</a></li>
+            
+        </ul>
+    </li>
+    
+    <li><h3>Factory</h3>
+        <ul>
+            
+            <li><a href="/documentation/factory/overview">Overview</a></li>
+            
+            <li><a href="/documentation/factory/tinker-graph-factory">Tinker Graph Factory</a></li>
+            
+            <li><a href="/documentation/factory/titan-graph-factory">Titan Graph Factory</a></li>
+            
+        </ul>
+    </li>
+    
+    <li><h3>Graql</h3>
+        <ul>
+            
+            <li><a href="/documentation/graql/overview">Overview</a></li>
+            
+            <li><a href="/documentation/graql/match-queries">Match Queries</a></li>
+            
+            <li><a href="/documentation/graql/ask-queries">Ask Queries</a></li>
+            
+            <li><a href="/documentation/graql/delete-queries">Delete Queries</a></li>
+            
+            <li><a href="/documentation/graql/insert-queries">Insert Queries</a></li>
+            
+            <li><a href="/documentation/graql/graql-shell">Graql Shell</a></li>
+            
+            <li><a href="/documentation/graql/java-graql">Java Graql</a></li>
+            
+        </ul>
+    </li>
+    
+
+</ul>
+                    </div>
+                </div>
+                <div class="columns nine">
+                    <div class="docs-content">
+                        <h2 id="delete-queries">Delete Queries</h2>
+
+<pre><code class="language-sql">match $x isa pokemon delete $x
+</code></pre>
+<pre><code class="language-java">qb.match(var("x").isa("pokemon")).delete("x").execute();
+</code></pre>
+
+<p>A delete query will delete the specified <a href="#variable-patterns">variable
+patterns</a> for every result of the <a href="match-query.md">match
+query</a>. If a variable pattern indicates just a variable, then
+the whole concept will be deleted. If it is more specific (such as indicating
+the <code>id</code> or <code>isa</code>) it will only delete the specified properties.</p>
+
+<h2 id="variable-patterns">Variable Patterns</h2>
+
+<p>A variable pattern is a pattern describing <a href="#properties">properties</a> to delete
+on a particular concept. The variable pattern is always bound to a variable
+name.</p>
+
+<p>If a variable pattern has no properties, then the concept itself is deleted.
+Otherwise, only the specified properties are deleted.</p>
+
+<h2 id="properties">Properties</h2>
+
+<h3 id="has-role">has-role</h3>
+
+<pre><code class="language-sql">match $x id "evolution" delete $x has-role descendant;
+</code></pre>
+<pre><code class="language-java">qb.match(var("x").id("evolution")).delete(var("x").hasRole("descendant"));
+</code></pre>
+
+<p>Removes the given role from the relation type.</p>
+
+<h3 id="plays-role">plays-role</h3>
+
+<pre><code class="language-sql">match $x id "type" delete $x plays-role attacking-type;
+</code></pre>
+<pre><code class="language-java">qb.match(var("x").id("type")).delete(var("x").playsRole("attacking-type"));
+</code></pre>
+
+<p>Disallows the concept type from playing the given role.</p>
+
+<h3 id="has">has</h3>
+
+<pre><code class="language-sql">match $x id "Bulbasaur" delete $x has weight;
+</code></pre>
+<pre><code class="language-java">qb.match(var("x").id("Bulbasaur")).delete(var("x").has("weight"));
+</code></pre>
+
+<p>Deletes the resources of the given type on the concept. If a value is given,
+only delete resources matching that value.</p>
+
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="container footer full-width">
+
+
+                <div class="container footer full-width">
             <div class="google-map"></div>
             <div class="row">
                 <div class="columns four">

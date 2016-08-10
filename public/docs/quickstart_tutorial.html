@@ -5,10 +5,10 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta http-equiv='content-type' content='text/html; charset=utf-8' />
 
-        <meta name='viewport'    content='width=de  vice-width, initial-scale=1, maximum-scale=1, user-scalable=0' />
+        <meta name='viewport'    content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0' />
         <meta name='description' content='Open-Source Distributed Semantic Database' />
         <meta name='keywords'    content='mindmapsdb, mindmaps, mindmaps.io, semantic database, distributed semantic database, distributed database, semantic, database, software, Mindmaps Research, Mindmaps Research Ltd, semantic search, data exploration, recommendation system, knowledge management, advanced analytics, research engines, business, big data, semantic search, semantic graph, semantic web, knowledge representation, automated reasoning, semantic network, data management, data platform, knowledge ontology, ontology, ontology engineering, graph database, graph based knowledge representation, reasoning engine, inference system, inference engine, expert systems, development platform, semantic applications, artificial intelligence' />
-        <title>Careers — MindmapsDB</title>
+        <title>Docs — MindmapsDB</title>
 
         <meta property='og:title'       content='MindmapsDB' />
         <meta property='og:type'        content='website' />
@@ -22,7 +22,7 @@
         <meta name="msapplication-TileImage" content="/img/metro/ms-icon-144x144.png" />
 
         <meta name='theme-color' content='#ffffff' />
-        <link rel='shortcut icon' href='/favicon.ico' />
+        <link rel='shortcut icon' href='favicon.ico' />
 
         <link rel="apple-touch-icon" sizes="57x57"   href="img/apple/apple-touch-icon-57x57.png" />
         <link rel="apple-touch-icon" sizes="114x114" href="img/apple/apple-touch-icon-114x114.png" />
@@ -36,7 +36,7 @@
         <link rel='stylesheet' type='text/css' href='/css/style.css' />
     </head>
     <body>
-        <svg xmlns="http://www.w3.org/2000/svg" width="0" height="0" style="display: none;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="0" height="0" style="display: none;">
             <symbol id="logo" viewBox="0 0 40 40" aria-labelledby="MindmapsDB">
                <value>MindmapsDB</value>
                <desc>Distributed Semantic Database</desc>
@@ -149,7 +149,7 @@
             </symbol>
         </svg>
 
-        <div class="container nav full-width">
+                <div class="container nav full-width">
             <div class="row">
                 <div class="columns twelve">
                     <a class="logo" href="/">
@@ -170,7 +170,7 @@
                                 </ul>
                             </li> -->
                             <!-- <li><a href="/platform.html">Platform</a></li> -->
-                            <li><a href="/community.html">Community</a></li>
+                            <!-- <li><a href="#">Community</a></li> -->
                             <!-- <li class="dropdown">
                                 <a>Documentation</a>
                                 <ul>
@@ -179,6 +179,7 @@
                                     <li><a href="#">Javadoc</a></li>
                                 </ul>
                             </li> -->
+                            <li><a href="/about.html">About</a></li>
                             <li><a href="/careers.html">Careers</a></li>
                             <li><a href="http://discuss.mindmaps.io">Discussion</a></li>
                             <li><a rel="nofollow me" href="http://blog.mindmaps.io" target="_blank">Blog</a></li>
@@ -189,21 +190,404 @@
             </div>
         </div>
 
-        <div class="container careers-wrapper header">
+                <div class="container docs-wrapper" id="docs-wrapper" data-type="mindmaps">
             <div class="row">
-                <div class="columns twelve">
-                    <h2>Careers</h2>
-                    <div class="loading">
-                        <div class="indicator">
-                            <svg class="underlay"><use xlink:href="#icon-underlay" /></svg>
-                        </div>
-                        <p><br>Please wait while we fetch data or check it on <a target="_blank" rel="nofollow me" href="https://angel.co/mindmaps/jobs">AngelList</a></p>
+                <div class="columns three">
+                    <h2>Contents</h2>
+                    <div class="docs-menu">
+                        <ul>
+    
+    <li><h3>Overview</h3>
+        <ul>
+            
+            <li><a href="/documentation/overview">Overview</a></li>
+            
+            <li><a href="/documentation/mindmaps_basics">Mindmaps Basics</a></li>
+            
+            <li><a href="/documentation/quickstart_tutorial">Quickstart Tutorial</a></li>
+            
+            <li><a href="/documentation/getting_started">Getting Started</a></li>
+            
+            <li><a href="/documentation/troubleshooting">Troubleshooting</a></li>
+            
+        </ul>
+    </li>
+    
+    <li><h3>Core</h3>
+        <ul>
+            
+            <li><a href="/documentation/core/overview">Overview</a></li>
+            
+        </ul>
+    </li>
+    
+    <li><h3>Factory</h3>
+        <ul>
+            
+            <li><a href="/documentation/factory/overview">Overview</a></li>
+            
+            <li><a href="/documentation/factory/tinker-graph-factory">Tinker Graph Factory</a></li>
+            
+            <li><a href="/documentation/factory/titan-graph-factory">Titan Graph Factory</a></li>
+            
+        </ul>
+    </li>
+    
+    <li><h3>Graql</h3>
+        <ul>
+            
+            <li><a href="/documentation/graql/overview">Overview</a></li>
+            
+            <li><a href="/documentation/graql/match-queries">Match Queries</a></li>
+            
+            <li><a href="/documentation/graql/ask-queries">Ask Queries</a></li>
+            
+            <li><a href="/documentation/graql/delete-queries">Delete Queries</a></li>
+            
+            <li><a href="/documentation/graql/insert-queries">Insert Queries</a></li>
+            
+            <li><a href="/documentation/graql/graql-shell">Graql Shell</a></li>
+            
+            <li><a href="/documentation/graql/java-graql">Java Graql</a></li>
+            
+        </ul>
+    </li>
+    
+
+</ul>
+                    </div>
+                </div>
+                <div class="columns nine">
+                    <div class="docs-content">
+                        <h1 id="quickstart-tutorial">Quickstart Tutorial</h1>
+
+<p>This document will teach you how to use Graql to load both an ontology and some data into a Mindmaps Graph. You can find this example (philosophers.gql) in the examples directory included in the mindmaps.zip. If you have not yet set up the Mindmaps environment, please see the Quick Start guide here. LINK TO DO</p>
+
+<p><strong>TO DO: Insert table of contents</strong></p>
+
+<p>We are going model how philosophers are related to each other. By the way, don’t worry if you’ve already loaded some data into your graph. A Mindmaps Graph can contain as many ontologies as you want.</p>
+
+<h2 id="concepts">Concepts</h2>
+
+<p>We’ll first add an ontology element - an entity type: <code>person</code>…</p>
+
+<pre><code class="language-bash">bin/graql.sh
+insert person isa entity-type;
+</code></pre>
+
+<p>…and now some data in the form of concept instances: in our case, a bunch of ancient Greeks…</p>
+
+<pre><code class="language-sql">insert "Socrates" isa person;
+insert "Plato" isa person;
+insert "Aristotle" isa person;
+insert "Alexander" isa person;
+</code></pre>
+
+<p><img src="/docs/images/phil.png" alt="" /></p>
+
+<p>So now we’ve created a super-simple graph, with one concept type and four 
+concept instances.</p>
+
+<blockquote>
+  <p><strong>Types</strong>
+Every concept needs a type, using <code>isa</code>. <br />
+<code>Plato</code> <code>is a</code> <code>person</code> <br />
+<code>person</code><code>is a</code> <code>entity-type</code></p>
+</blockquote>
+
+<blockquote>
+  <p><strong>Ancient History</strong><br />
+Graql shell maintains a history of past commands with the ‘up’ and ‘down’
+arrows. You can also autocomplete keywords, type and variable names using
+‘tab’!”</p>
+</blockquote>
+
+<p>We’ll quickly check our data has loaded:</p>
+
+<pre><code class="language-sql">match $p isa person
+
+$p id "Aristotle" isa person;
+$p id "Plato" isa person;
+$p id "Socrates" isa person;
+$p id "Alexander" isa person;
+</code></pre>
+<p>TO DO - Where did we set the id? What does this represent?</p>
+
+<blockquote>
+  <p><strong>Variables</strong>
+Graql variables start with a <code>$</code>. They represent “wildcards”, and are
+returned as results in <code>match</code> queries. A variable name can contain
+alphanumeric characters, dashes and underscores.</p>
+</blockquote>
+
+<p>Next, let’s add some <code>schools</code> of thought:</p>
+
+<pre><code class="language-sql">insert school isa entity-type;
+insert "Peripateticism" isa school;
+insert "Platonism" isa school;
+insert "Idealism" isa school;
+insert "Cynicism" isa school;
+</code></pre>
+
+<p>And look up one:</p>
+
+<pre><code class="language-sql">match $cyn id "Cynicism"
+
+$cyn id "Cynicism" isa school;
+</code></pre>
+
+<h2 id="relations">Relations</h2>
+
+<p>How do we define a “philosopher”? Very smart people have argued for a very long time about this, but we’re going to put our fingers in our ears and say a philosopher is someone who practices a philosophy.</p>
+
+<p>A relation comprises of pairs of role types and role players. Relations and roles also have types, just like normal concepts.</p>
+
+<p>First, we define a <code>relation-type</code> called <code>practice</code> that relates a
+<code>role-type</code> called <code>philosopher</code> to a <code>role-type</code> called <code>philosophy</code>:</p>
+
+<pre><code class="language-sql">insert practice isa relation-type;
+insert philosopher isa role-type;
+insert philosophy isa role-type;
+insert practice has-role philosopher, has-role philosophy;
+</code></pre>
+
+<blockquote>
+  <p><strong>I don’t like typing!</strong>
+Commas are totally optional in query patterns, so these pairs are equivalent:</p>
+</blockquote>
+
+<blockquote>
+  <pre><code class="language-sql">insert practice has-role philosopher, has-role philosophy;
+insert practice has-role philosopher has-role philosophy;
+ 
+insert practice, isa relation-type;
+insert practice isa relation-type;
+</code></pre>
+</blockquote>
+
+<p>A <code>person</code> can have the role of <code>philosopher</code> and a <code>school</code> can have the role of <code>philosophy</code>:</p>
+
+<pre><code class="language-sql">insert person plays-role philosopher;
+insert school plays-role philosophy;
+</code></pre>
+
+<blockquote>
+  <p><strong>graql commit -am “changed some stuff”</strong><br />
+The changes you’ve made to the graph haven’t been saved yet! <br />
+Type <code>commit</code> in the Graql shell to commit any changes.</p>
+</blockquote>
+
+<p>Now let’s relate some <code>philosophers</code> to their <code>philosophies</code>:</p>
+
+<pre><code class="language-sql">insert (philosopher "Socrates", philosophy "Platonism") isa practice;
+insert (philosopher "Plato", philosophy "Idealism") isa practice;
+insert (philosopher "Plato", philosophy "Platonism") isa practice;
+insert (philosopher "Aristotle", philosophy "Peripateticism") isa practice;
+</code></pre>
+
+<p><img src="/docs/images/practice.png" alt="" /></p>
+
+<p>Here, <code>Plato</code> is playing the role of <code>philosopher</code>, and <code>Idealism</code> is playing the role of <code>philosophy</code>.</p>
+
+<p>Now we can query for all our Platonists:</p>
+
+<pre><code class="language-sql">match (philosopher $phil, "Platonism") isa practice;
+
+$phil id "Socrates" isa person;
+$phil id "Plato" isa person;
+</code></pre>
+
+<blockquote>
+  <p><strong>In Plain English…</strong><br />
+This query can be read as “Get me philosophers in a practice relationship
+with Platonism.”</p>
+
+  <p>We didn’t specify the role of <code>Platonism</code> in this query, or the type of
+<code>$phil</code>, which is totally fine! Roles and types can be omitted in queries.</p>
+
+  <p>For example, the query <code>match ($x, $y)</code> is a valid query (that will
+find <em>everything</em> in a relationship with <em>anything</em>).</p>
+</blockquote>
+
+<p>Next let’s talk about the relationships between our philosophers. Socrates
+taught Plato, Plato taught Aristotle and Aristotle even taught Alexander the
+Great!</p>
+
+<p>First, extend our ontology:</p>
+
+<pre><code class="language-sql">insert education isa relation-type;
+insert teacher isa role-type;
+insert student isa role-type;
+insert education has-role teacher, has-role student;
+insert person plays-role teacher, plays-role student;
+</code></pre>
+
+<p>Second, our data:</p>
+
+<pre><code class="language-sql">insert (teacher "Socrates", student "Plato") isa education;
+insert (teacher "Plato", student "Aristotle") isa education;
+insert (teacher "Aristotle", student "Alexander") isa education;
+</code></pre>
+
+<blockquote>
+  <p><strong>Aristotle’s Teacher</strong><br />
+Try writing a query to see who taught Aristotle. Include all the roles and
+types (<code>teacher</code>, <code>student</code> and <code>education</code>), then remove them one by one to see when the results change! The answer is at the bottom of this page.</p>
+</blockquote>
+
+<h2 id="resources">Resources</h2>
+
+<p>Some people have special titles and epithets and we want to talk about that.
+So, we’ll create some resource types that can be attached to a person:</p>
+
+<pre><code class="language-sql">insert title isa resource-type, datatype string;
+insert epithet isa resource-type, datatype string;
+insert person has-resource title, has-resource epithet;
+</code></pre>
+
+<p>Let’s make Alexander “Great”!</p>
+
+<pre><code class="language-sql">insert "Alexander" has epithet "The Great";
+</code></pre>
+
+<p>This is a quick way to add a relation between <code>Alexander</code> and an <code>epithet</code> with value <code>"The Great"</code>.</p>
+
+<p><img src="/docs/images/epithet.png" alt="" /></p>
+
+<p>Let’s add the rest of Alexander’s titles while we’re at it:</p>
+
+<pre><code class="language-sql">insert "Alexander" has title "Hegemon";
+insert "Alexander" has title "King of Macedon";
+insert "Alexander" has title "King of Persia";
+insert "Alexander" has title "Pharaoh of Egypt";
+insert "Alexander" has title "Lord of Asia";
+</code></pre>
+
+<p>Now we can query for people, listing their id and titles:<br />
+<strong>TO DO - Again, need to clarify id</strong></p>
+
+<pre><code class="language-sql">match $x isa person select $x(id, has title)
+
+$x id "Socrates";
+$x id "Plato";
+$x id "Aristotle";
+$x id "Alexander" has title "Pharaoh of Egypt" has title "Hegeon" has title "Shah of Persia" has title "King of Macedon" has title "Lord of Asia";
+</code></pre>
+
+<p>Wait, who’s the Pharaoh again?</p>
+
+<pre><code class="language-sql">match $pharaoh has title "Pharaoh of Egypt"
+
+$pharaoh id "Alexander" isa person;
+</code></pre>
+
+<blockquote>
+  <p><strong>Predicates</strong>
+When querying for an id, value or resource you can use predicates as well as direct values. For example, <code>has epithet contains "Great"</code>. See if you can write a query for everyone with a title containing “King”. Answers are at the bottom of the page!</p>
+</blockquote>
+
+<h2 id="relations-as-role-players">Relations as Role players</h2>
+
+<p>Philosophers know lots of things. We should probably include this in our
+ontology.</p>
+
+<pre><code class="language-sql">insert knowledge isa relation-type;
+insert thinker isa role-type;
+insert thought isa role-type;
+insert knowledge has-role thinker, has-role thought;
+insert fact isa entity-type, plays-role thought;
+insert person plays-role thinker;
+</code></pre>
+
+<p>Aristotle knew some astronomy, Plato knew a lot about caves and Socrates didn’t really know anything at all.</p>
+
+<pre><code class="language-sql">insert "sun-fact" isa fact, value "The Sun is bigger than the Earth";
+insert (thinker "Aristotle", thought "sun-fact") isa knowledge;
+insert "cave-fact" isa fact, value "Caves are mostly pretty dark";
+insert (thinker "Plato", thought "cave-fact") isa knowledge;
+insert "nothing" isa fact;
+insert (thinker "Socrates", thought "nothing") isa knowledge;
+</code></pre>
+
+<p>TO DO - probably need to talk more about introducing “value”</p>
+
+<p>A relation is actually just a special kind of instance. Just as
+<code>Socrates</code> can be a role player, relations themselves can also be role players.</p>
+
+<p>TO DO - OK, I lost it here!</p>
+
+<p>For example, Socrates knew nothing, but he also <em>knew</em> that he knew nothing!</p>
+
+<p>First, we have to state that someone can think about their own knowledge:</p>
+
+<pre><code class="language-sql">insert knowledge plays-role thought;
+</code></pre>
+
+<p>We can now give Socrates one final piece of knowledge:</p>
+
+<pre><code class="language-sql">match $socratesKnowsNothing ("Socrates", "nothing") insert (thinker "Socrates", thought $socratesKnowsNothing) isa knowledge
+</code></pre>
+
+<p>Here, <code>socratesKnowsNothing</code> is the relation between <code>Socrates</code> and <code>nothing</code>.
+We then put <code>socratesKnowsNothing</code> in a <em>new</em> <code>knowledge</code> relation as a role
+player.</p>
+
+<p>Finally, we’ll check out everything Socrates knows:</p>
+
+<pre><code class="language-sql">match ("Socrates", $x) isa knowledge
+
+$x id "nothing" isa fact;
+$x id "knowledge-e387d27c-4f5e-11e6-beb8-9e71128cae77" isa knowledge;
+</code></pre>
+
+<blockquote>
+  <p><strong>knowledge-ohmygod-whatisthat-???</strong>
+If you don’t provide an ID for something such as a relation, it will get an automatically generated ID.</p>
+</blockquote>
+
+<p><img src="/docs/images/knowledge.png" alt="" /></p>
+
+<blockquote>
+  <p><strong>When Persisting The Data To Disk</strong>
+Once you done make sure to use <code>mindmaps.sh stop &amp;&amp; mindmaps.sh clean</code> if you would like to clean your graph quickly. <br />
+<strong>Warning :</strong> This will delete all your graphs.</p>
+</blockquote>
+
+<h2 id="answers">Answers</h2>
+<p>We asked you to write a query to see who taught Aristotle. Answer:
+<code>sql
+select $teach where (teacher $teach, $student Aristotle) isa education
+</code></p>
+
+<p>We asked you to write a query for everyone with a title containing “King”. Answer:
+<code>sql
+match $king has title contains "King"
+</code></p>
+
+<h2 id="document-changelog">Document Changelog</h2>
+
+<table>
+    <tr>
+        <td>Version</td>
+        <td>Date</td>
+        <td>Description</td>        
+    </tr>
+        <tr>
+        <td>v1.01</td>
+        <td>03/08/2016</td>
+        <td>Updated content and formatting.</td>        
+    </tr>
+    
+</table>
+
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="container footer full-width">
+
+
+                <div class="container footer full-width">
             <div class="google-map"></div>
             <div class="row">
                 <div class="columns four">
