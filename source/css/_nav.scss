@@ -118,9 +118,9 @@
                     &:last-child{
                         margin-bottom: 20px;
                     }
-                    
+
                     a{
-                        font-size: 1.1rem;
+                        font-size: 1rem;
                         font-weight: 200;
                         display: inline-block;
                         text-decoration: none;
@@ -380,11 +380,11 @@
 
                             >li{
                                 padding: 0 0.5rem;
-                                
+
                                 &:last-child{
                                     margin: 0;
                                 }
-                                
+
                                 a{
                                     white-space: nowrap;
 
@@ -408,12 +408,12 @@
                                 transition: none;
                                 position: relative;
                                 z-index: 1;
-                                
+
                                 &:after{
                                     display: none;
                                 }
                             }
-                            
+
                             &:after{
                                 pointer-events: auto;
                                 content: '';
@@ -426,12 +426,12 @@
                                 border-radius: 2px 2px 0 0;
                                 display: none;
                             }
-                            
+
                             &:hover{
                                 >a{
                                     color: $black-brand;
                                 }
-                                
+
                                 &:after{
                                     display: block;
                                 }
@@ -481,7 +481,7 @@
                                     color: $white;
                                 }
                             }
-                            
+
                             &:after{
                                 background-color: lighten($black-brand, 5%);
                             }
@@ -545,7 +545,7 @@
                         >ul{
                             padding: 0.65rem 0;
                             top: 130%;
-                            
+
                             >li{
                                 padding: 0 1rem;
                             }
