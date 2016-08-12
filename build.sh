@@ -4,10 +4,8 @@ git pull
 echo Updating docs submodule
 if [ ! -d docs/.git ]; then
     git submodule init
-    git submodule update
-else
-    git submodule update --remote docs
 fi
+git submodule update --remote docs
 
 #echo Building site
 #grunt ??
