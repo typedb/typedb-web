@@ -66,7 +66,7 @@ window.MNDMPS.Nav = {
 
         this.checkWidth();
 
-        if (document.getElementById('code-container')) {
+        if (data.nav.classList.contains('transparent')) {
             window.addEventListener('scroll', this.checkPosition, false);
             this.checkPosition();
         } else {

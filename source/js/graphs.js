@@ -2,6 +2,10 @@
 
 window.MNDMPS = window.MNDMPS || {};
 
+/**
+ * Datasets for generating graphs using MNDMPS.Graph
+ */
+
 window.MNDMPS.Graph._data.homepageGraphs = [
     {
         nodes: [
