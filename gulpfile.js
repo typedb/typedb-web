@@ -50,8 +50,8 @@ gulp.task('build-js', function() {
             fileName: 'mndmps1.min.js',
             compilerFlags: {
                 language_in: 'ES5',
-                compilation_level: 'WHITESPACE_ONLY',
-                //compilation_level: 'SIMPLE_OPTIMIZATIONS',
+                //compilation_level: 'WHITESPACE_ONLY',
+                compilation_level: 'SIMPLE_OPTIMIZATIONS',
                 warning_level: 'QUIET'
             }
         }))
@@ -90,8 +90,8 @@ gulp.task('build-new-js', function() {
             fileName: 'mndmps.min.js',
             compilerFlags: {
                 language_in: 'ES5',
-                compilation_level: 'WHITESPACE_ONLY',
-                //compilation_level: 'SIMPLE_OPTIMIZATIONS',
+                //compilation_level: 'WHITESPACE_ONLY',
+                compilation_level: 'SIMPLE_OPTIMIZATIONS',
                 warning_level: 'QUIET'
             }
         }))
