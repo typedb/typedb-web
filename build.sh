@@ -2,7 +2,12 @@
 echo Updating main repository
 git pull
 echo Updating docs submodule
-git submodule update --remote docs
+if [ ! -d docs/.git ]; then
+    git submodule init
+    git submodule update
+else
+    git submodule update --remote docs
+if
 
 #echo Building site
 #grunt ??
