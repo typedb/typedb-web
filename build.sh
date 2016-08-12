@@ -7,7 +7,7 @@ if [ ! -d docs/.git ]; then
     git submodule update
 else
     git submodule update --remote docs
-if
+fi
 
 #echo Building site
 #grunt ??
@@ -17,16 +17,17 @@ cd docs
 rake build
 cd ..
 
-if [ ! -d public/docs ]; then
+if [ -d public/docs ]; then
     echo Removing old documentation files
     rm -rf public/docs/
 fi
 
 echo Copying files
 mkdir public/docs
-cp -rd docs/_site/* public/docs/
+# OSX
+if [ $(dirname $HOME) == "/Users" ];then
+    cp -r docs/_site/* public/docs/
+else
+    cp -rd docs/_site/* public/docs/
+fi
 
-#echo Prepairing commit
-#git add .
-#git commit -m "Automated site deployment from $(date '+%Y-%m-%d')"
-#echo Commit made, push when ready
