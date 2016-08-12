@@ -1,0 +1,220 @@
+[
+
+
+
+
+{
+"title": "Ask Queries",
+"tags": "graql",
+"keywords": "graql, query, ask",
+"url": "graqlask-queries",
+"summary": "Graql Ask Queries"
+}
+,
+
+
+
+{
+"title": "Defining a Schema",
+"tags": "",
+"keywords": "core, schema",
+"url": "defining-schema.html",
+"summary": "Demonstrates how to create a schema for a Mindmaps knowledge graph"
+}
+,
+
+
+
+{
+"title": "Delete Queries",
+"tags": "graql",
+"keywords": "graql, query, delete",
+"url": "graqldelete-queries",
+"summary": "Graql Delete Queries"
+}
+,
+
+
+
+{
+"title": "Downloads",
+"tags": "getting_started",
+"keywords": "setup, getting started, download",
+"url": "overviewdownloads",
+"summary": "This is a list of Mindmaps releases. It's the place to come to download the most recent versions of MindmapsDB."
+}
+,
+
+
+
+
+
+{
+"title": "Setup Guide",
+"tags": "getting_startedgraql",
+"keywords": "setup, getting started",
+"url": "overviewgetting_started",
+"summary": "This document will teach you how to set up a Mindmaps environment, start it up and load an example dataset to make a query using our query language, Graql."
+}
+,
+
+
+
+{
+"title": "Graql Shell",
+"tags": "graql",
+"keywords": "graql, shell",
+"url": "graqlgraql-shell",
+"summary": "The Graql shell is used to execute Graql queries from the command line, or to let Graql be invoked from other applications."
+}
+,
+
+
+
+{
+"title": "Welcome to the Mindmaps Documentation Portal",
+"tags": "getting_started",
+"keywords": "sample homepage",
+"url": "index",
+"summary": "Documentation Portal Home."
+}
+,
+
+
+
+{
+"title": "Insert Queries",
+"tags": "graql",
+"keywords": "graql, query, insert",
+"url": "graqlinsert-queries",
+"summary": "Graql Insert Queries"
+}
+,
+
+
+
+{
+"title": "Java Graql",
+"tags": "graqljava",
+"keywords": "graql, java",
+"url": "graqljava-graql",
+"summary": "How to construct and execute Graql queries programmatically in Java."
+}
+,
+
+
+
+{
+"title": "Match Queries",
+"tags": "graql",
+"keywords": "graql, query, match",
+"url": "graqlmatch-queries",
+"summary": "Graql Match Queries"
+}
+,
+
+
+
+{
+"title": "Mindmaps Basics",
+"tags": "getting_started",
+"keywords": "setup, getting started, basics",
+"url": "overviewmindmaps_basics",
+"summary": "MindmapsDB basics"
+}
+,
+
+
+
+{
+"title": "Scroll layout",
+"tags": "special_layouts",
+"keywords": "json, scrolling, scrollto, jquery plugin",
+"url": "jsmydoc_scroll.html",
+"summary": "This page demonstrates how you the integration of a script called ScrollTo, which is used here to link definitions of a JSON code sample to a list of definitions for that particular term. The scenario here is that the JSON blocks are really long, with extensive nesting and subnesting, which makes it difficult for tables below the JSON to adequately explain the term in a usable way."
+}
+,
+
+
+
+{
+"title": "Graql Overview",
+"tags": "graql",
+"keywords": "graql, overview",
+"url": "graqloverview",
+"summary": "An introduction to Graql"
+}
+,
+
+
+
+{
+"title": "How does Mindmaps work",
+"tags": "getting_started",
+"keywords": "setup, getting started",
+"url": "overviewoverview",
+"summary": "A platform-level overview of MindmapsDB."
+}
+,
+
+
+
+{
+"title": "Quickstart Tutorial",
+"tags": "getting_startedgraql",
+"keywords": "setup, getting started",
+"url": "overviewquickstart_tutorial",
+"summary": "This document will teach you how to use Graql to load an ontology and some data into a Mindmaps Graph."
+}
+,
+
+
+
+{
+"title": "Java Quickstart Tutorial",
+"tags": "getting_startedjava",
+"keywords": "setup, getting started",
+"url": "overviewquickstart_tutorial_java",
+"summary": "This document will teach you how to use Java to load both an ontology and some data into a Mindmaps Graph."
+}
+,
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{
+"title": "Troubleshooting",
+"tags": "getting_started",
+"keywords": "troubleshooting",
+"url": "overviewtroubleshooting",
+"summary": "Troubleshooting guide for MindmapsDB."
+}
+,
+
+
+
+{
+"title": "Core Overview",
+"tags": "",
+"keywords": "core, overview",
+"url": "coretutorial",
+"summary": "MindmapsDB Core Overview"
+}
+
+
+
+
+]

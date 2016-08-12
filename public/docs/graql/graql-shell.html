@@ -1,294 +1,438 @@
 <!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="utf-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta http-equiv='content-type' content='text/html; charset=utf-8' />
+<head>
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content=" The Graql shell is used to execute Graql queries from the command line, or to let Graql be invoked from other applications.">
+<meta name="keywords" content="graql,  graql, shell">
+<title>Graql Shell | MindmapsDB</title>
+<link rel="stylesheet" href="/docs/css/syntax.css">
 
-        <meta name='viewport'    content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0' />
-        <meta name='description' content='Open-Source Distributed Semantic Database' />
-        <meta name='keywords'    content='mindmapsdb, mindmaps, mindmaps.io, semantic database, distributed semantic database, distributed database, semantic, database, software, Mindmaps Research, Mindmaps Research Ltd, semantic search, data exploration, recommendation system, knowledge management, advanced analytics, research engines, business, big data, semantic search, semantic graph, semantic web, knowledge representation, automated reasoning, semantic network, data management, data platform, knowledge ontology, ontology, ontology engineering, graph database, graph based knowledge representation, reasoning engine, inference system, inference engine, expert systems, development platform, semantic applications, artificial intelligence' />
-        <title>Docs — MindmapsDB</title>
 
-        <meta property='og:title'       content='MindmapsDB' />
-        <meta property='og:type'        content='website' />
-        <meta property='og:image'       content='img/mindmaps.png' />
-        <meta property='og:url'         content='http://mindmaps.io' />
-        <meta property='og:site_name'   content='MindmapsDB' />
-        <meta property='og:description' content='Open-Source Distributed Semantic Database' />
-        <meta property='og:email'       content='info@mindmaps.io' />
+<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+<!--<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">-->
+<link rel="stylesheet" href="/docs/css/modern-business.css">
+<link rel="stylesheet" href="/docs/css/lavish-bootstrap.css">
+<link rel="stylesheet" href="/docs/css/customstyles.css">
+<link rel="stylesheet" href="/docs/css/theme-white.css">
 
-        <meta name="msapplication-TileColor" content="#ffffff" />
-        <meta name="msapplication-TileImage" content="/img/metro/ms-icon-144x144.png" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+<script src="/docs/js/jquery.navgoco.min.js"></script>
 
-        <meta name='theme-color' content='#ffffff' />
-        <link rel='shortcut icon' href='favicon.ico' />
 
-        <link rel="apple-touch-icon" sizes="57x57"   href="img/apple/apple-touch-icon-57x57.png" />
-        <link rel="apple-touch-icon" sizes="114x114" href="img/apple/apple-touch-icon-114x114.png" />
-        <link rel="apple-touch-icon" sizes="72x72"   href="img/apple/apple-touch-icon-72x72.png" />
-        <link rel="apple-touch-icon" sizes="144x144" href="img/apple/apple-touch-icon-144x144.png" />
-        <link rel="apple-touch-icon" sizes="60x60"   href="img/apple/apple-touch-icon-60x60.png" />
-        <link rel="apple-touch-icon" sizes="120x120" href="img/apple/apple-touch-icon-120x120.png" />
-        <link rel="apple-touch-icon" sizes="76x76"   href="img/apple/apple-touch-icon-76x76.png" />
-        <link rel="apple-touch-icon" sizes="152x152" href="img/apple/apple-touch-icon-152x152.png" />
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/2.0.0/anchor.min.js"></script>
+<script src="/docs/js/toc.js"></script>
+<script src="/docs/js/customscripts.js"></script>
 
-        <link rel='stylesheet' type='text/css' href='/css/style.css' />
-    </head>
-    <body>
-                <svg xmlns="http://www.w3.org/2000/svg" width="0" height="0" style="display: none;">
-            <symbol id="logo" viewBox="0 0 40 40" aria-labelledby="MindmapsDB">
-               <value>MindmapsDB</value>
-               <desc>Distributed Semantic Database</desc>
-               <polygon vector-effect="non-scaling-stroke" fill="transparent" stroke-linejoin="round" points="20,2 38,20 20,38 2,20"/>
-               <polyline vector-effect="non-scaling-stroke" fill="transparent" stroke-linejoin="round" points="7.27,32.73 7.27,7.27 20,20 32.73,7.27 32.73,32.73"/>
-            </symbol>
-            <symbol id="bg-white" viewBox="0 0 1200 860" aria-labelledby="Graph pattern">
-                <value>Graph pattern</value>
-                <desc>A pattern representing a graph</desc>
-                <line vector-effect="non-scaling-stroke" fill="transparent" stroke="#ffffff" stroke-width="1px" x1="374.1" y1="252" x2="714.1" y2="582"/>
-                <line vector-effect="non-scaling-stroke" fill="transparent" stroke="#ffffff" stroke-width="1px" x1="714.1" y1="582" x2="1034.1" y2="502"/>
-                <line vector-effect="non-scaling-stroke" fill="transparent" stroke="#ffffff" stroke-width="1px" x1="814.1" y1="262" x2="1034.1" y2="502"/>
-                <line vector-effect="non-scaling-stroke" fill="transparent" stroke="#ffffff" stroke-width="1px" x1="814.1" y1="262" x2="714.1" y2="582"/>
-                <line vector-effect="non-scaling-stroke" fill="transparent" stroke="#ffffff" stroke-width="1px" x1="864.1" y1="392" x2="814.1" y2="262"/>
-                <line vector-effect="non-scaling-stroke" fill="transparent" stroke="#ffffff" stroke-width="1px" x1="864.1" y1="392" x2="1034.1" y2="502"/>
-                <line vector-effect="non-scaling-stroke" fill="transparent" stroke="#ffffff" stroke-width="1px" x1="864.1" y1="392" x2="714.1" y2="582"/>
-                <line vector-effect="non-scaling-stroke" fill="transparent" stroke="#ffffff" stroke-width="1px" x1="1219.1" y1="551.5" x2="1034.1" y2="502"/>
-                <line vector-effect="non-scaling-stroke" fill="transparent" stroke="#ffffff" stroke-width="1px" x1="984.1" y1="712" x2="1034.1" y2="502"/>
-                <line vector-effect="non-scaling-stroke" fill="transparent" stroke="#ffffff" stroke-width="1px" x1="984.1" y1="712" x2="1219.1" y2="551.5"/>
-                <line vector-effect="non-scaling-stroke" fill="transparent" stroke="#ffffff" stroke-width="1px" x1="984.1" y1="712" x2="829.1" y2="874"/>
-                <line vector-effect="non-scaling-stroke" fill="transparent" stroke="#ffffff" stroke-width="1px" x1="814.1" y1="262" x2="1214.1" y2="181.5"/>
-                <line vector-effect="non-scaling-stroke" fill="transparent" stroke="#ffffff" stroke-width="1px" x1="714.1" y1="582" x2="464.1" y2="462"/>
-                <line vector-effect="non-scaling-stroke" fill="transparent" stroke="#ffffff" stroke-width="1px" x1="374.1" y1="252" x2="464.1" y2="462"/>
-                <line vector-effect="non-scaling-stroke" fill="transparent" stroke="#ffffff" stroke-width="1px" x1="374.1" y1="252" x2="-10.9" y2="552"/>
-                <line vector-effect="non-scaling-stroke" fill="transparent" stroke="#ffffff" stroke-width="1px" x1="-10.9" y1="552" x2="464.1" y2="462"/>
-                <line vector-effect="non-scaling-stroke" fill="transparent" stroke="#ffffff" stroke-width="1px" x1="714.1" y1="582" x2="829.1" y2="874"/>
-                <line vector-effect="non-scaling-stroke" fill="transparent" stroke="#ffffff" stroke-width="1px" x1="374.1" y1="252" x2="-15.9" y2="182"/>
-                <line vector-effect="non-scaling-stroke" fill="transparent" stroke="#ffffff" stroke-width="1px" x1="464.1" y1="462" x2="394.1" y2="712"/>
-                <line vector-effect="non-scaling-stroke" fill="transparent" stroke="#ffffff" stroke-width="1px" x1="394.1" y1="712" x2="-10.9" y2="552"/>
-                <line vector-effect="non-scaling-stroke" fill="transparent" stroke="#ffffff" stroke-width="1px" x1="1154.1" y1="872" x2="984.1" y2="712"/>
-                <line vector-effect="non-scaling-stroke" fill="transparent" stroke="#ffffff" stroke-width="1px" x1="394.1" y1="712" x2="204.1" y2="882"/>
-                <line vector-effect="non-scaling-stroke" fill="transparent" stroke="#ffffff" stroke-width="1px" x1="814.1" y1="262" x2="934.1" y2="122"/>
-                <line vector-effect="non-scaling-stroke" fill="transparent" stroke="#ffffff" stroke-width="1px" x1="934.1" y1="122" x2="1214.1" y2="181.5"/>
-                <line vector-effect="non-scaling-stroke" fill="transparent" stroke="#ffffff" stroke-width="1px" x1="934.1" y1="122" x2="829.1" y2="-18"/>
-                <line vector-effect="non-scaling-stroke" fill="transparent" stroke="#ffffff" stroke-width="1px" x1="374.1" y1="252" x2="474.1" y2="-10"/>
-                <line vector-effect="non-scaling-stroke" fill="transparent" stroke="#ffffff" stroke-width="1px" x1="934.1" y1="122" x2="1154.1" y2="-20"/>
-                <line vector-effect="non-scaling-stroke" fill="transparent" stroke="#ffffff" stroke-width="1px" x1="714.1" y1="582" x2="474.1" y2="882"/>
-                <line vector-effect="non-scaling-stroke" fill="transparent" stroke="#ffffff" stroke-width="1px" x1="474.1" y1="882" x2="394.1" y2="712"/>
-                <line vector-effect="non-scaling-stroke" fill="transparent" stroke="#ffffff" stroke-width="1px" x1="204.1" y1="-10" x2="-15.9" y2="182"/>
-                <line vector-effect="non-scaling-stroke" fill="transparent" stroke="#ffffff" stroke-width="1px" x1="374.1" y1="252" x2="204.1" y2="-10"/>
-                <line vector-effect="non-scaling-stroke" fill="transparent" stroke="#ffffff" stroke-width="1px" x1="204.1" y1="-10" x2="-75.9" y2="-19.5"/>
-                <line vector-effect="non-scaling-stroke" fill="transparent" stroke="#ffffff" stroke-width="1px" x1="394.1" y1="712" x2="-75.9" y2="872.5"/>
-                <line vector-effect="non-scaling-stroke" fill="transparent" stroke="#ffffff" stroke-width="1px" x1="814.1" y1="262" x2="1275.5" y2="330.1"/>
-                <line vector-effect="non-scaling-stroke" fill="transparent" stroke="#ffffff" stroke-width="1px" x1="1034.1" y1="502" x2="1275.5" y2="330.1"/>
-                <line vector-effect="non-scaling-stroke" fill="transparent" stroke="#ffffff" stroke-width="1px" x1="-15.9" y1="182" x2="45.5" y2="330.6"/>
-                <line vector-effect="non-scaling-stroke" fill="transparent" stroke="#ffffff" stroke-width="1px" x1="45.5" y1="330.6" x2="-10.9" y2="552"/>
-                <line vector-effect="non-scaling-stroke" fill="transparent" stroke="#ffffff" stroke-width="1px" x1="45.5" y1="330.6" x2="374.1" y2="252"/>
-                <line vector-effect="non-scaling-stroke" fill="transparent" stroke="#ffffff" stroke-width="1px" x1="374.1" y1="252" x2="632.5" y2="234.3"/>
-                <line vector-effect="non-scaling-stroke" fill="transparent" stroke="#ffffff" stroke-width="1px" x1="632.5" y1="234.3" x2="814.1" y2="262"/>
-                <line vector-effect="non-scaling-stroke" fill="transparent" stroke="#ffffff" stroke-width="1px" x1="632.5" y1="234.3" x2="714.1" y2="582"/>
-                <line vector-effect="non-scaling-stroke" fill="transparent" stroke="#ffffff" stroke-width="1px" x1="632.5" y1="234.3" x2="474.1" y2="-10"/>
-                <line vector-effect="non-scaling-stroke" fill="transparent" stroke="#ffffff" stroke-width="1px" x1="632.5" y1="234.3" x2="829.1" y2="-18"/>
-                <line vector-effect="non-scaling-stroke" fill="transparent" stroke="#ffffff" stroke-width="1px" x1="714.1" y1="582" x2="646.8" y2="767.2"/>
-                <line vector-effect="non-scaling-stroke" fill="transparent" stroke="#ffffff" stroke-width="1px" x1="646.8" y1="767.2" x2="474.1" y2="882"/>
-                <line vector-effect="non-scaling-stroke" fill="transparent" stroke="#ffffff" stroke-width="1px" x1="646.8" y1="767.2" x2="829.1" y2="874"/>
-                <circle fill="#fff" stroke-width="0" cx="374.1" cy="252" r="2"/>
-                <circle fill="#fff" stroke-width="0" cx="714.1" cy="582" r="2"/>
-                <circle fill="#fff" stroke-width="0" cx="1034.1" cy="502" r="2"/>
-                <circle fill="#fff" stroke-width="0" cx="814.1" cy="262" r="2"/>
-                <circle fill="#fff" stroke-width="0" cx="1275.5" cy="330.1" r="2"/>
-                <circle fill="#fff" stroke-width="0" cx="1219.1" cy="551.5" r="2"/>
-                <circle fill="#fff" stroke-width="0" cx="984.1" cy="712" r="2"/>
-                <circle fill="#fff" stroke-width="0" cx="1214.1" cy="181.5" r="2"/>
-                <circle fill="#fff" stroke-width="0" cx="464.1" cy="462" r="2"/>
-                <circle fill="#fff" stroke-width="0" cx="-10.9" cy="552" r="2"/>
-                <circle fill="#fff" stroke-width="0" cx="829.1" cy="874" r="2"/>
-                <circle fill="#fff" stroke-width="0" cx="-15.9" cy="182" r="2"/>
-                <circle fill="#fff" stroke-width="0" cx="394.1" cy="712" r="2"/>
-                <circle fill="#fff" stroke-width="0" cx="646.8" cy="767.2" r="2"/>
-                <circle fill="#fff" stroke-width="0" cx="-75.9" cy="872.5" r="2"/>
-                <circle fill="#fff" stroke-width="0" cx="1154.1" cy="872" r="2"/>
-                <circle fill="#fff" stroke-width="0" cx="204.1" cy="882" r="2"/>
-                <circle fill="#fff" stroke-width="0" cx="934.1" cy="122" r="2"/>
-                <circle fill="#fff" stroke-width="0" cx="829.1" cy="-18" r="2"/>
-                <circle fill="#fff" stroke-width="0" cx="632.5" cy="234.3" r="2"/>
-                <circle fill="#fff" stroke-width="0" cx="474.1" cy="-10" r="2"/>
-                <circle fill="#fff" stroke-width="0" cx="-75.9" cy="-19.5" r="2"/>
-                <circle fill="#fff" stroke-width="0" cx="1154.1" cy="-20" r="2"/>
-                <circle fill="#fff" stroke-width="0" cx="474.1" cy="882" r="2"/>
-                <circle fill="#fff" stroke-width="0" cx="204.1" cy="-10" r="2"/>
-            </symbol>
-            <symbol id="github" viewBox="0 0 16 16" aria-labelledby="GitHub">
-                <value>GitHub</value>
-                <desc>GitHub</desc>
-                <path vector-effect="non-scaling-stroke" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"></path>
-            </symbol>
-            <symbol id="gitter" viewBox="0 0 28 40" aria-labelledby="Gitter">
-                <value>Gitter</value>
-                <desc>Gitter</desc>
-                <rect vector-effect="non-scaling-stroke" x="15.6" y="6.4" width="3.2" height="33.6"/>
-                <rect vector-effect="non-scaling-stroke" x="22" y="6.4" width="3.2" height="17.6"/>
-                <rect vector-effect="non-scaling-stroke" x="9.2" y="6.4" width="3.2" height="33.6"/>
-                <rect vector-effect="non-scaling-stroke" x="2.8" width="3.2" height="24"/>
-            </symbol>
-            <symbol id="twitter" viewBox="0 0 40 40" aria-labelledby="Twitter">
-                <value>Twitter</value>
-                <desc>Twitter</desc>
-                <path vector-effect="non-scaling-stroke" d="M40,7.6c-1.5,0.7-3.1,1.1-4.7,1.3c1.7-1,3-2.6,3.6-4.5c-1.6,0.9-3.3,1.6-5.2,2c-1.5-1.6-3.6-2.6-6-2.6c-4.5,0-8.2,3.7-8.2,8.2c0,0.6,0.1,1.3,0.2,1.9c-6.8-0.3-12.9-3.6-16.9-8.6C2.1,6.5,1.7,7.9,1.7,9.4c0,2.8,1.4,5.4,3.7,6.8c-1.3,0-2.6-0.4-3.7-1c0,0,0,0.1,0,0.1c0,4,2.8,7.3,6.6,8c-0.7,0.2-1.4,0.3-2.2,0.3c-0.5,0-1-0.1-1.5-0.1c1,3.3,4.1,5.6,7.7,5.7C9.3,31.4,5.8,32.7,2,32.7c-0.7,0-1.3,0-2-0.1c3.6,2.3,7.9,3.7,12.6,3.7c15.1,0,23.3-12.5,23.3-23.3c0-0.4,0-0.7,0-1.1C37.5,10.7,38.9,9.2,40,7.6z"/>
-            </symbol>
-            <symbol id="icon-underlay" viewBox="0 0 22 22" aria-labelledby="Icon underlay">
-                <value>Icon underlay</value>
-                <desc>Icon underlay</desc>
-                <polygon vector-effect="non-scaling-stroke" points="11,1 18.1,3.9 21,11 18.1,18.1 11,21 3.9,18.1 1,11 3.9,3.9"/>
-            </symbol>
+<link rel="shortcut icon" href="/img/favicon.ico">
 
-            <symbol id="arrow-right" viewBox="0 0 40 40" aria-labelledby="Arrow right">
-                <value>Arrow right</value>
-                <desc>Arrow right</desc>
-                <polyline vector-effect="non-scaling-stroke" points="12.5,35 27.5,20 12.5,5 "/>
-            </symbol>
-        </svg>
+<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
 
-                <div class="container nav full-width">
-            <div class="row">
-                <div class="columns twelve">
-                    <a class="logo" href="/">
-                        <svg><use xlink:href="#logo" /></svg>
-                        <h1>MindmapsDB</h1>
-                    </a>
-                    <div class="menu">
-                        <div class="toggle">
-                            <span></span>
-                        </div>
-                        <ul>
-                            <!-- <li class="dropdown">
-                                <a>Platform</a>
-                                <ul>
-                                    <li><a href="#">What is MindmapsDB?</a></li>
-                                    <li><a href="#">Development Platform</a></li>
-                                    <li><a href="#">Solutions</a></li>
-                                </ul>
-                            </li> -->
-                            <!-- <li><a href="/platform.html">Platform</a></li> -->
-                            <!-- <li><a href="#">Community</a></li> -->
-                            <!-- <li class="dropdown">
-                                <a>Documentation</a>
-                                <ul>
-                                    <li><a href="#">Quickstart Tutorial</a></li>
-                                    <li><a href="#">MindmapsDB Basics</a></li>
-                                    <li><a href="#">Javadoc</a></li>
-                                </ul>
-                            </li> -->
-                            <li><a href="/about.html">About</a></li>
-                            <li><a href="/careers.html">Careers</a></li>
-                            <li><a href="http://discuss.mindmaps.io">Discussion</a></li>
-                            <li><a rel="nofollow me" href="http://blog.mindmaps.io" target="_blank">Blog</a></li>
-                            <li><a rel="nofollow me" class="github installMindmaps"><svg><use xlink:href="#github" /></svg><span>Github</span></a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
+<link rel="alternate" type="application/rss+xml" title="" href="http://mindmaps.io/docs/feed.xml">
+
+    <script>
+        $(document).ready(function() {
+            // Initialize navgoco with default options
+            $("#mysidebar").navgoco({
+                caretHtml: '',
+                accordion: true,
+                openClass: 'active', // open
+                save: false, // leave false or nav highlighting doesn't work right
+                cookie: {
+                    name: 'navgoco',
+                    expires: false,
+                    path: '/'
+                },
+                slide: {
+                    duration: 400,
+                    easing: 'swing'
+                }
+            });
+
+            $("#collapseAll").click(function(e) {
+                e.preventDefault();
+                $("#mysidebar").navgoco('toggle', false);
+            });
+
+            $("#expandAll").click(function(e) {
+                e.preventDefault();
+                $("#mysidebar").navgoco('toggle', true);
+            });
+
+        });
+
+    </script>
+    <script>
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        })
+    </script>
+    
+
+</head>
+<body>
+<svg xmlns="http://www.w3.org/2000/svg" width="0" height="0" style="display: none;">
+    <symbol id="logo" viewBox="0 0 40 40" aria-labelledby="MindmapsDB">
+       <value>MindmapsDB</value>
+       <desc>Distributed Semantic Database</desc>
+       <polygon vector-effect="non-scaling-stroke" fill="transparent" stroke-linejoin="round" points="20,2 38,20 20,38 2,20"/>
+       <polyline vector-effect="non-scaling-stroke" fill="transparent" stroke-linejoin="round" points="7.27,32.73 7.27,7.27 20,20 32.73,7.27 32.73,32.73"/>
+    </symbol>
+    <symbol id="github" viewBox="0 0 16 16" aria-labelledby="GitHub">
+        <value>GitHub</value>
+        <desc>GitHub</desc>
+        <path vector-effect="non-scaling-stroke" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"></path>
+    </symbol>
+    <symbol id="gitter" viewBox="0 0 28 40" aria-labelledby="Gitter">
+        <value>Gitter</value>
+        <desc>Gitter</desc>
+        <rect vector-effect="non-scaling-stroke" x="15.6" y="6.4" width="3.2" height="33.6"/>
+        <rect vector-effect="non-scaling-stroke" x="22" y="6.4" width="3.2" height="17.6"/>
+        <rect vector-effect="non-scaling-stroke" x="9.2" y="6.4" width="3.2" height="33.6"/>
+        <rect vector-effect="non-scaling-stroke" x="2.8" width="3.2" height="24"/>
+    </symbol>
+</svg>
+<!-- Navigation -->
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container topnavlinks">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/index.html">
+                <svg><use xlink:href="#logo" /></svg>
+                <span class="projectTitle">MindmapsDB</span>
+            </a>
         </div>
-
-                <div class="container docs-wrapper" id="docs-wrapper" data-type="mindmaps">
-            <div class="row">
-                <div class="columns three">
-                    <h2>Contents</h2>
-                    <div class="docs-menu">
-                        <ul>
-    
-    <li><h3>Overview</h3>
-        <ul>
-            
-            <li><a href="/documentation/overview">Overview</a></li>
-            
-            <li><a href="/documentation/mindmaps_basics">Mindmaps Basics</a></li>
-            
-            <li><a href="/documentation/quickstart_tutorial">Quickstart Tutorial</a></li>
-            
-            <li><a href="/documentation/getting_started">Getting Started</a></li>
-            
-            <li><a href="/documentation/troubleshooting">Troubleshooting</a></li>
-            
-        </ul>
-    </li>
-    
-    <li><h3>Core</h3>
-        <ul>
-            
-            <li><a href="/documentation/core/overview">Overview</a></li>
-            
-        </ul>
-    </li>
-    
-    <li><h3>Factory</h3>
-        <ul>
-            
-            <li><a href="/documentation/factory/overview">Overview</a></li>
-            
-            <li><a href="/documentation/factory/tinker-graph-factory">Tinker Graph Factory</a></li>
-            
-            <li><a href="/documentation/factory/titan-graph-factory">Titan Graph Factory</a></li>
-            
-        </ul>
-    </li>
-    
-    <li><h3>Graql</h3>
-        <ul>
-            
-            <li><a href="/documentation/graql/overview">Overview</a></li>
-            
-            <li><a href="/documentation/graql/match-queries">Match Queries</a></li>
-            
-            <li><a href="/documentation/graql/ask-queries">Ask Queries</a></li>
-            
-            <li><a href="/documentation/graql/delete-queries">Delete Queries</a></li>
-            
-            <li><a href="/documentation/graql/insert-queries">Insert Queries</a></li>
-            
-            <li><a href="/documentation/graql/graql-shell">Graql Shell</a></li>
-            
-            <li><a href="/documentation/graql/java-graql">Java Graql</a></li>
-            
-        </ul>
-    </li>
-    
-
-</ul>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                <!-- entries without drop-downs appear here -->
+                
+                
+                
+                <li><a href="about.html">About</a></li>
+                
+                
+                
+                <li><a href="careers.html">Careers</a></li>
+                
+                
+                
+                <li><a href="//discuss.mindmaps.io" target="_blank">Discussion</a></li>
+                
+                
+                
+                <li><a href="//blog.mindmaps.io" target="_blank">Blog</a></li>
+                
+                
+                
+                <!-- entries with drop-downs appear here -->
+                <!-- conditional logic to control which topnav appears for the audience defined in the configuration file.-->
+                
+                
+                <!--comment out this block if you want to hide github link-->
+                <li>
+                    <a rel="nofollow me" class="github">
+                        <svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#github"></use></svg>
+                    </a>
+                </li>
+                <!--comment out this block if you want to hide search-->
+                <li>
+                    <!--start search-->
+                    <div id="search-demo-container">
+                        <input type="text" id="search-input" placeholder="Search">
+                        <ul id="results-container"></ul>
                     </div>
-                </div>
-                <div class="columns nine">
-                    <div class="docs-content">
-                        <h2 id="graql-shell">Graql Shell</h2>
+                    <script src="/docs/js/jekyll-search.js" type="text/javascript"></script>
+                    <script type="text/javascript">
+                        SimpleJekyllSearch.init({
+                            searchInput: document.getElementById('search-input'),
+                            resultsContainer: document.getElementById('results-container'),
+                            
+                            dataSource: '/docs/search.json',
+                            
+                            searchResultTemplate: '<li><a href="{url}" title="Graql Shell">{title}</a></li>',
+                            noResultsText: '<li><a class="empty">No results found</a></li>',
+                            limit: 10,
+                            fuzzy: true
+                        });
+                    </script>
+                    <!--end search-->
+                </li>
+            </ul>
+        </div>
+        </div>
+        <!-- /.container -->
+</nav>
 
-<p>The Graql shell is used to execute Graql queries from the command line, or to
-let Graql be invoked from other applications.</p>
+<!-- Page Content -->
+<div class="container">
+    <!-- Content Row -->
+    <div class="row">
+        <!-- Sidebar Column -->
+        <div class="col-md-3">
+          
 
-<h2 id="interactive-shell">Interactive Shell</h2>
 
-<p>The Graql shell is contained in the <code>bin</code> folder.</p>
 
-<p>If the shell is executed without any parameters, it will open a REPL (Read
-Evaluate Print Loop):</p>
 
-<pre><code class="language-bash">bin/graql.sh
-&gt;&gt;&gt; match $x id "Pikachu";
-$x id "Pikachu" isa pokemon;
+
+<ul id="mysidebar" class="nav">
+    <li class="sidebarTitle">MindmapsDB 1.0</li>
+    
+    
+    
+    <li>
+        <a href="#">Get Started</a>
+        <ul>
+            
+            
+            
+            <!-- <li><a href="overviewoverview">Overview</a></li> -->
+            <li><a href="/docs/overview/overview">Overview</a></li>
+            
+            
+            
+            
+            
+            
+            <!-- <li><a href="overviewgetting_started">Setup Guide</a></li> -->
+            <li><a href="/docs/overview/getting_started">Setup Guide</a></li>
+            
+            
+            
+            
+        </ul>
+        
+        
+    
+    <li>
+        <a href="#">The Basics</a>
+        <ul>
+            
+            
+            
+            <!-- <li><a href="overviewmindmaps_basics">Mindmaps Basics</a></li> -->
+            <li><a href="/docs/overview/mindmaps_basics">Mindmaps Basics</a></li>
+            
+            
+            
+            
+            
+            
+            <!-- <li><a href="overviewquickstart_tutorial">Quickstart Tutorial</a></li> -->
+            <li><a href="/docs/overview/quickstart_tutorial">Quickstart Tutorial</a></li>
+            
+            
+            
+            
+            
+            
+            <!-- <li><a href="overviewquickstart_tutorial_java">Java Quickstart Tutorial</a></li> -->
+            <li><a href="/docs/overview/quickstart_tutorial_java">Java Quickstart Tutorial</a></li>
+            
+            
+            
+            
+        </ul>
+        
+        
+    
+    <li>
+        <a href="#">Troubleshooting</a>
+        <ul>
+            
+            
+            
+            <!-- <li><a href="overviewtroubleshooting">Troubleshooting</a></li> -->
+            <li><a href="/docs/overview/troubleshooting">Troubleshooting</a></li>
+            
+            
+            
+            
+        </ul>
+        
+        
+    
+    <li>
+        <a href="#">Resources</a>
+        <ul>
+            
+            
+            
+            <!-- <li><a href="overviewdownloads">Downloads</a></li> -->
+            <li><a href="/docs/overview/downloads">Downloads</a></li>
+            
+            
+            
+            
+        </ul>
+        
+        
+    
+    <li>
+        <a href="#">Graql</a>
+        <ul>
+            
+            
+            
+            <!-- <li><a href="graqloverview">Overview</a></li> -->
+            <li><a href="/docs/graql/overview">Overview</a></li>
+            
+            
+            
+            
+            
+            
+            <!-- <li><a href="graqlmatch-queries">Match Queries</a></li> -->
+            <li><a href="/docs/graql/match-queries">Match Queries</a></li>
+            
+            
+            
+            
+            
+            
+            <!-- <li><a href="graqlask-queries">Ask Queries</a></li> -->
+            <li><a href="/docs/graql/ask-queries">Ask Queries</a></li>
+            
+            
+            
+            
+            
+            
+            <!-- <li><a href="graqldelete-queries">Delete Queries</a></li> -->
+            <li><a href="/docs/graql/delete-queries">Delete Queries</a></li>
+            
+            
+            
+            
+            
+            
+            <!-- <li><a href="graqlinsert-queries">Insert Queries</a></li> -->
+            <li><a href="/docs/graql/insert-queries">Insert Queries</a></li>
+            
+            
+            
+            
+            
+            
+            <!-- <li class="active"><a href="graqlgraql-shell">Graql Shell</a></li> -->
+            <li class="active"><a href="/docs/graql/graql-shell">Graql Shell</a></li>
+            
+            
+            
+            
+            
+            
+            <!-- <li><a href="graqljava-graql">Java Graql</a></li> -->
+            <li><a href="/docs/graql/java-graql">Java Graql</a></li>
+            
+            
+            
+            
+        </ul>
+        
+        
+        
+        <!-- if you aren't using the accordion, uncomment this block:
+           <p class="external">
+               <a href="#" id="collapseAll">Collapse All</a> | <a href="#" id="expandAll">Expand All</a>
+           </p>
+           -->
+    </li>
+</ul>
+
+<!-- this highlights the active parent class in the navgoco sidebar. this is critical so that the parent expands when you're viewing a page. This must appear below the sidebar code above. Otherwise, if placed inside customscripts.js, the script runs before the sidebar code runs and the class never gets inserted.-->
+<script>$("li.active").parents('li').toggleClass("active");</script>
+
+        </div>
+        <!-- Content Column -->
+        <div class="col-md-9">
+            <div class="post-header">
+   <h1 class="post-title-main">Graql Shell</h1>
+</div>
+
+
+
+<div class="post-content">
+
+   
+    <div class="summary"> The Graql shell is used to execute Graql queries from the command line, or to let Graql be invoked from other applications.</div>
+   
+
+    
+    
+<!-- this handles the automatic toc. use ## for subheads to auto-generate the on-page minitoc. if you use html tags, you must supply an ID for the heading element in order for it to appear in the minitoc. -->
+<script>
+$( document ).ready(function() {
+  // Handler for .ready() called.
+
+$('#toc').toc({ minimumHeaders: 0, listType: 'ul', showSpeed: 0, headers: 'h2,h3,h4' });
+
+/* this offset helps account for the space taken up by the floating toolbar. */
+$('#toc').on('click', 'a', function() {
+  var target = $(this.getAttribute('href'))
+    , scroll_target = target.offset().top
+
+  $(window).scrollTop(scroll_target - 10);
+  return false
+})
+  
+});
+</script>
+
+<div id="toc"></div>
+
+    
+
+    
+
+    
+
+    <!-- <a target="_blank" href="https://github.com/mindmapsdb/docs/blob/master/pages/graql/graqlgraql-shell.md" class="btn btn-default githubEditButton" role="button"><i class="fa fa-github fa-lg"></i> Edit me</a> -->
+    <a target="_blank" href="https://github.com/mindmapsdb/docs/blob/master/pages/graql/graql-shell.md" class="btn btn-default githubEditButton" role="button"><i class="fa fa-github fa-lg"></i> Edit me</a>
+
+    
+
+    
+
+  <p>The Graql shell is contained in the <code class="highlighter-rouge">bin</code> folder.</p>
+
+<p>After starting the Mindmaps server, you can execute the shell without any
+parameters to open a REPL (Read Evaluate Print Loop):</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>bin/graql.sh
+<span class="gp">&gt;&gt;&gt; </span>match <span class="nv">$x</span> id <span class="s2">"Pikachu"</span>;
+<span class="nv">$x</span> id <span class="s2">"Pikachu"</span> isa pokemon;
 </code></pre>
+</div>
 
-<p>The user can enter a query and press enter for it to be evaluated. <code>match</code>
-queries will return the first hundred results, <code>ask</code> queries will return <code>true</code>
-or <code>false</code>. <code>insert</code> and <code>delete</code> queries will execute with no output.</p>
+<p>The user can enter a query and press enter for it to be evaluated. <code class="highlighter-rouge">match</code>
+queries will return the first hundred results, <code class="highlighter-rouge">ask</code> queries will return <code class="highlighter-rouge">true</code>
+or <code class="highlighter-rouge">false</code>. <code class="highlighter-rouge">insert</code> queries will output the concept IDs they are inserting.
+<code class="highlighter-rouge">delete</code> queries will execute with no output.</p>
 
-<p>The interactive shell will never commit to the graph unless the user types
-<code>commit</code>.</p>
+<p>The interactive shell commits to the graph only when the user type <code class="highlighter-rouge">commit</code>.</p>
 
 <p>The REPL features several special commands:
-- <code>commit</code> - Commits and validates the graph. If validation fails, the graph
+- <code class="highlighter-rouge">commit</code> - Commits and validates the graph. If validation fails, the graph
   will not commit.
-- <code>edit</code> - Opens the user’s default text editor, specified by the <code>$EDITOR</code>
-  environment variable. By default set to <code>vim</code>. When the editor exits, the
-  query is executed in the shell.</p>
+- <code class="highlighter-rouge">edit</code> - Opens the user’s default text editor, specified by the <code class="highlighter-rouge">$EDITOR</code>
+  environment variable. By default set to <code class="highlighter-rouge">vim</code>. When the editor exits, the
+  query is executed in the shell.
+- <code class="highlighter-rouge">load &lt;filename&gt;</code> - Executes the given file containing a Graql query.
+- <code class="highlighter-rouge">clear</code> - Clears the console window
+- <code class="highlighter-rouge">license</code> - Prints the license</p>
 
 <h2 id="arguments">Arguments</h2>
 
@@ -304,9 +448,9 @@ or <code>false</code>. <code>insert</code> and <code>delete</code> queries will 
   </thead>
   <tbody>
     <tr>
-      <td>–config</td>
-      <td>-c</td>
-      <td>Path to a graph config file.</td>
+      <td>–name</td>
+      <td>-n</td>
+      <td>The name of the graph.</td>
     </tr>
     <tr>
       <td>–execute</td>
@@ -318,113 +462,104 @@ or <code>false</code>. <code>insert</code> and <code>delete</code> queries will 
       <td>-f</td>
       <td>A path to a file containg a query to execute.</td>
     </tr>
+    <tr>
+      <td>–help</td>
+      <td>-h</td>
+      <td>Print usage message</td>
+    </tr>
+    <tr>
+      <td>–version</td>
+      <td>-v</td>
+      <td>Print version</td>
+    </tr>
   </tbody>
 </table>
 
-<p>If either <code>--execute</code> or <code>--file</code> is provided, the REPL will not open and the
+<p>If either <code class="highlighter-rouge">--execute</code> or <code class="highlighter-rouge">--file</code> is provided, the REPL will not open and the
 graph will be automatically committed.</p>
 
-                    </div>
-                </div>
-            </div>
+<h2 id="document-changelog">Document Changelog</h2>
+
+<table>
+    <tr>
+        <td>Version</td>
+        <td>Date</td>
+        <td>Description</td>        
+    </tr>
+    <tr>
+        <td>v1</td>
+        <td>11/08/2016</td>
+        <td>New page for developer portal.</td>        
+    </tr>
+    
+</table>
+
+
+    <div class="tags">
+        
+        <b>Tags: </b>
+        
+        
+        
+        <a href="/docs/tag_graql.html" class="btn btn-default navbar-btn cursorNorm" role="button">graql</a>
+        
+        
+        
+    </div>
+
+    
+
+</div>
+
+<!-- <hr class="shaded"/> -->
+
+<footer class="row">
+    <div class="col-lg-5 footer">
+        <span class="footer-header">Get in touch</span>
+        <p>
+            <a rel="nofollow me" class="gitter" href="http://gitter.im/mindmapsdb/mindmapsdb" target="_blank">
+                <svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#gitter"></use></svg> #mindmapsdb on Gitter
+            </a>
+            <br>
+            <a rel="nofollow me" class="github" href="http://gitter.im/mindmapsdb/mindmapsdb" target="_blank">
+                <svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#github"></use></svg> MindmapsDB 0.1 on GitHub
+            </a>
+            <br><br>
+            <a href="mailto:info@mindmaps.io">info@mindmaps.io</a><br>
+            Unit 22, 8 Hornsey Street<br>
+            London, UK, N7 8EG
+        </p>
+        <br>
+        <p>© 2016 <a href="http://minadmaps.io">Mindmaps Research Ltd</a></p>
+        <!-- &copy;2016 MindmapsDB. All rights reserved. <br />
+        <span>Page last updated:</span> August 11, 2016<br/> Site last generated: Aug 12, 2016 <br />
+        <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
+    </div>
+    <div class="col-lg-2 footer">
+        <span class="footer-header">Community</span>
+        <ul>
+            <li><a href="http://discuss.mindmaps.io">Discussion</a></li>
+            <li><a rel="nofollow me" href="http://stackoverflow.com/tags/mindmapsdb" target="_blank">Stack Overflow</a></li>
+            <li><a rel="nofollow me" href="http://gitter.im/mindmapsdb/mindmapsdb" target="_blank">Gitter</a></li>
+            <li><a rel="nofollow me" href="http://twitter.com/mindmapsdb" target="_blank">Twitter</a></li>
+        </ul>
+    </div>
+    <div class="col-lg-2 footer">
+        <span class="footer-header">Company</span>
+        <ul>
+            <li><a rel="nofollow me" href="http://blog.mindmaps.io" target="_blank">Blog</a></li>
+            <li><a href="http://minadmaps.io/careers.html">Careers</a></li>
+            <li><a href="http://minadmaps.io/about.html">About</a></li>
+        </ul>
+    </div>
+</footer>
+
         </div>
+    </div>
+</div>
+<!-- /.container -->
+    </div>
 
+</body>
 
-
-                <div class="container footer full-width">
-            <div class="google-map"></div>
-            <div class="row">
-                <div class="columns four">
-                    <h4>Get in touch</h4>
-                    <p>
-                        <a rel="nofollow me" class="community" href="http://gitter.im/mindmapsdb/mindmapsdb" target="_blank"><svg><use xlink:href="#gitter" /></svg> #mindmapsdb on Gitter</a><br>
-                        <a rel="nofollow me" class="community installMindmaps"><svg><use xlink:href="#github" /></svg> MindmapsDB 0.1 on GitHub</a><br><br>
-                        <a href="mailto:info@mindmaps.io">info@mindmaps.io</a><br>
-                        Unit 22, 8 Hornsey Street<br>
-                        London, UK, N7 8EG
-                    </p><br/>
-                    <p>© 2016 <a href="/">Mindmaps Research Ltd</a></p>
-                </div>
-                <!-- <div class="columns two">
-                    <h4>Quickstart</h4>
-                    <ul>
-                        <li><a href="#">Platform</a></li>
-                        <li><a href="#">Install</a></li>
-                        <li><a href="#">Quick Tutorial</a></li>
-                    </ul>
-                </div>
-                <div class="columns two">
-                    <h4>Resources</h4>
-                    <ul>
-                        <li><a href="#">Documentation</a></li>
-                        <li><a href="#">GitHub</a></li>
-                        <li><a href="#">Javadoc</a></li>
-                    </ul>
-                </div> -->
-                <div class="columns two">
-                    <h4>Community</h4>
-                    <ul>
-                        <li><a href="http://discuss.mindmaps.io">Discussion</a></li>
-                        <li><a rel="nofollow me" href="http://stackoverflow.com/tags/mindmapsdb" target="_blank">Stack Overflow</a></li>
-                        <li><a rel="nofollow me" href="http://gitter.im/mindmapsdb/mindmapsdb" target="_blank">Gitter</a></li>
-                        <li><a rel="nofollow me" href="http://twitter.com/mindmapsdb" target="_blank">Twitter</a></li>
-                    </ul>
-                </div>
-                <div class="columns two">
-                    <h4>Company</h4>
-                    <ul>
-                        <li><a rel="nofollow me" href="http://blog.mindmaps.io" target="_blank">Blog</a></li>
-                        <li><a href="/careers.html">Careers</a></li>
-                        <li><a href="/about.html">About</a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-
-        <div class="modal-underlay">
-            <div class="modal-window">
-                <div class="modal-inside subscribe-form">
-                    <h2>Join our Early Adopters Program!</h2>
-                    <p class="intro">We'll be ready in mid August 2016. Let us know what you think about our technology and what you would like to build with it.</p>
-                    <form action="/mail">
-                        <div class="row">
-                            <label for="name">Full Name</label>
-                            <input type="text" name="name" id="name" placeholder="Steve Wright">
-                        </div>
-                        <div class="row">
-                            <label for="email">Email</label>
-                            <input type="email" name="email" id="email" placeholder="steve.wright@email.com">
-                        </div>
-                        <div class="row message">
-                            <label for="text">Message</label>
-                            <textarea placeholder="Your message" id="text" name="text"></textarea>
-                        </div>
-                        <div class="row submit">
-                            <div class="sendButton">
-                                <svg class="underlay"><use xlink:href="#icon-underlay" /></svg>
-                                <div class="state">
-                                    <span class="done"></span>
-                                    <span class="processing"></span>
-                                    <span class="active"></span>
-                                </div>
-                                <input type="submit" value="Subscribe">
-                            </div>
-                        </div>
-                    </form>
-                </div>
-                <div class="modal-close"></div>
-            </div>
-        </div>
-
-        <script src="https://maps.googleapis.com/maps/api/js"></script>
-        <script src="/js/mndmps.min.js"></script>
-        <script>
-            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-            })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-            ga('create', 'UA-72414051-1', 'auto');
-            ga('send', 'pageview');
-        </script>
-    </body>
 </html>
