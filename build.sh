@@ -13,6 +13,7 @@ fi
 #grunt ??
 
 echo Building documentation pages
+export uriprefix=/docs
 cd docs
 rake build
 cd ..
