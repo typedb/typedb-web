@@ -20,10 +20,26 @@
     &-content{
         padding-bottom: 1rem;
 
+        ul,
+        ol{
+            margin: 0;
+            padding: 0;
+            list-style-position: inside;
+        }
+
         p{
             >code{
                 font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
                 font-size: 0.8rem;
+            }
+
+            img{
+                margin: 1rem 0;
+                width: 100%;
+
+                &:last-child{
+                    margin-bottom: 0;
+                }
             }
         }
 
@@ -37,6 +53,16 @@
 
             p{
                 margin: 0;
+
+                img{
+                    width: 100%;
+                }
+            }
+
+            pre{
+                &[class*="language-"]{
+                    margin: 0;
+                }
             }
         }
 
