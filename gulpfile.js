@@ -65,6 +65,8 @@ gulp.task('build-js', function() {
 gulp.task('build-new-js', function() {
     return gulp.src([
             'source/js/jquery-3.0.0.js',
+            'source/js/hammer.js',
+            'source/js/hammer-time.js',
             'source/js/d3.js',
             'source/js/atvImg.js',
             'source/js/typed.js',
