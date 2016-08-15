@@ -24,11 +24,19 @@ window.MNDMPS.Slider = {
         _this.processScroll();
     },
 
+    getKnobPosition: function() {
+
+        var _this = window.MNDMPS.Slider,
+            data = _this._data;
+
+        return data.wrapper.scrollLeft/data.scrolledPercent;
+    },
+
     processScroll: function() {
 
         var _this = window.MNDMPS.Slider,
             data = _this._data,
-            knobPosition = data.wrapper.scrollLeft/data.scrolledPercent;
+            knobPosition = _this.getKnobPosition();
 
         data.scrollKnob.style.left = knobPosition + '%';
 
@@ -80,21 +88,6 @@ window.MNDMPS.Slider = {
             }
         }
 
-        function tabSpring() {
-
-            clearTimeout(data.scrollTimeout);
-
-            if (index.prev === index.next) {
-                _this.switchTab(index.prev);
-            } else {
-                if (percentage.prev > percentage.next) {
-                    _this.switchTab(index.prev);
-                } else {
-                    _this.switchTab(index.next);
-                }
-            }
-        }
-
         if (index.prev === index.next) {
             percentage.prev = percentage.next = 1;
         }
@@ -106,9 +99,78 @@ window.MNDMPS.Slider = {
         for (var key in index) {
             changeTabsOpacity(tabs[index[key]], percentage[key]);
         }
+    },
 
-        clearTimeout(data.scrollTimeout);
-        data.scrollTimeout = setTimeout(tabSpring, data.switchTimeout);
+    springTabs: function(obj) {
+
+        var _this = this,
+            data = this._data,
+            tabs = data.wrapper.children,
+            tempPos = null,
+            activeTabs = [],
+            currentTabIndex = null;
+
+        for (var i = 0; i < tabs.length; i++) {
+            tempPos = data.wrapper.scrollLeft - (i * tabs[i].offsetWidth);
+            
+            if (tempPos < data.wrapper.offsetWidth && tempPos > -data.wrapper.offsetWidth) {
+                activeTabs.push({
+                    index: i,
+                    tab: tabs[i],
+                    area: data.wrapper.offsetWidth - Math.abs(tempPos)
+                });
+            }
+        }
+
+        function slide(dir) {
+            if (activeTabs.length > 1) {
+                if (activeTabs[0].area > activeTabs[1].area) {
+                    currentTabIndex = activeTabs[0].index;
+                } else {
+                    currentTabIndex = activeTabs[1].index;
+                }
+            } else {
+                currentTabIndex = activeTabs[0].index;
+            }
+
+            if (tabs[currentTabIndex + dir]) {
+                _this.switchTab(currentTabIndex + dir);
+            } else {
+                _this.switchTab(currentTabIndex);
+            }
+        }
+
+        switch(obj.dir) {
+            case Hammer.DIRECTION_LEFT:
+                slide(1);
+                break;
+            case Hammer.DIRECTION_RIGHT:
+                slide(-1);
+                break;
+        }
+    },
+
+    initSwipe: function() {
+
+        var _this = this,
+            data = this._data;
+        
+        data.hammerEl = new Hammer.Manager(data.wrapper);
+        data.hammerSwipe = new Hammer.Swipe({
+            direction: Hammer.DIRECTION_HORIZONTAL
+        });
+        data.hammerEl.add(data.hammerSwipe);
+        
+        data.hammerEl.on('swipe', function(event) {
+
+            event.preventDefault();
+            
+            _this.springTabs({
+                warpperPos: event.target.getBoundingClientRect(),
+                eventPos: event.center,
+                dir: event.direction
+            });
+        });
     },
 
     init: function() {
@@ -138,6 +200,7 @@ window.MNDMPS.Slider = {
 
         data.tabTween = new Tweenable();
 
+        this.initSwipe();
         this.processScroll();
     }
 };
