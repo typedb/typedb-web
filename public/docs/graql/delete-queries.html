@@ -412,10 +412,10 @@ query</a>. If a variable pattern indicates just a variable, then
 the whole concept will be deleted. If it is more specific (such as indicating
 the <code class="highlighter-rouge">id</code> or <code class="highlighter-rouge">isa</code>) it will only delete the specified properties.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">match</span> <span class="err">$</span><span class="n">x</span> <span class="n">isa</span> <span class="n">pokemon</span> <span class="k">delete</span> <span class="err">$</span><span class="n">x</span>
+<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">match</span> <span class="err">$</span><span class="n">x</span> <span class="n">isa</span> <span class="n">pokemon</span> <span class="k">delete</span> <span class="err">$</span><span class="n">x</span>
 </code></pre>
 </div>
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">qb</span><span class="o">.</span><span class="na">match</span><span class="o">(</span><span class="n">var</span><span class="o">(</span><span class="s">"x"</span><span class="o">).</span><span class="na">isa</span><span class="o">(</span><span class="s">"pokemon"</span><span class="o">)).</span><span class="na">delete</span><span class="o">(</span><span class="s">"x"</span><span class="o">).</span><span class="na">execute</span><span class="o">();</span>
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">qb</span><span class="o">.</span><span class="na">match</span><span class="o">(</span><span class="n">var</span><span class="o">(</span><span class="s">"x"</span><span class="o">).</span><span class="na">isa</span><span class="o">(</span><span class="s">"pokemon"</span><span class="o">)).</span><span class="na">delete</span><span class="o">(</span><span class="s">"x"</span><span class="o">).</span><span class="na">execute</span><span class="o">();</span>
 </code></pre>
 </div>
 
@@ -433,20 +433,20 @@ Otherwise, only the specified properties are deleted.</p>
 <h3 id="has-role">has-role</h3>
 <p>Removes the given role from the relation type.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">match</span> <span class="err">$</span><span class="n">x</span> <span class="n">id</span> <span class="nv">"evolution"</span> <span class="k">delete</span> <span class="err">$</span><span class="n">x</span> <span class="n">has</span><span class="o">-</span><span class="k">role</span> <span class="n">descendant</span><span class="p">;</span>
+<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">match</span> <span class="err">$</span><span class="n">x</span> <span class="n">id</span> <span class="nv">"evolution"</span> <span class="k">delete</span> <span class="err">$</span><span class="n">x</span> <span class="n">has</span><span class="o">-</span><span class="k">role</span> <span class="n">descendant</span><span class="p">;</span>
 </code></pre>
 </div>
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">qb</span><span class="o">.</span><span class="na">match</span><span class="o">(</span><span class="n">var</span><span class="o">(</span><span class="s">"x"</span><span class="o">).</span><span class="na">id</span><span class="o">(</span><span class="s">"evolution"</span><span class="o">)).</span><span class="na">delete</span><span class="o">(</span><span class="n">var</span><span class="o">(</span><span class="s">"x"</span><span class="o">).</span><span class="na">hasRole</span><span class="o">(</span><span class="s">"descendant"</span><span class="o">));</span>
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">qb</span><span class="o">.</span><span class="na">match</span><span class="o">(</span><span class="n">var</span><span class="o">(</span><span class="s">"x"</span><span class="o">).</span><span class="na">id</span><span class="o">(</span><span class="s">"evolution"</span><span class="o">)).</span><span class="na">delete</span><span class="o">(</span><span class="n">var</span><span class="o">(</span><span class="s">"x"</span><span class="o">).</span><span class="na">hasRole</span><span class="o">(</span><span class="s">"descendant"</span><span class="o">));</span>
 </code></pre>
 </div>
 
 <h3 id="plays-role">plays-role</h3>
 <p>Disallows the concept type from playing the given role.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">match</span> <span class="err">$</span><span class="n">x</span> <span class="n">id</span> <span class="nv">"type"</span> <span class="k">delete</span> <span class="err">$</span><span class="n">x</span> <span class="n">plays</span><span class="o">-</span><span class="k">role</span> <span class="n">attacking</span><span class="o">-</span><span class="k">type</span><span class="p">;</span>
+<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">match</span> <span class="err">$</span><span class="n">x</span> <span class="n">id</span> <span class="nv">"type"</span> <span class="k">delete</span> <span class="err">$</span><span class="n">x</span> <span class="n">plays</span><span class="o">-</span><span class="k">role</span> <span class="n">attacking</span><span class="o">-</span><span class="k">type</span><span class="p">;</span>
 </code></pre>
 </div>
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">qb</span><span class="o">.</span><span class="na">match</span><span class="o">(</span><span class="n">var</span><span class="o">(</span><span class="s">"x"</span><span class="o">).</span><span class="na">id</span><span class="o">(</span><span class="s">"type"</span><span class="o">)).</span><span class="na">delete</span><span class="o">(</span><span class="n">var</span><span class="o">(</span><span class="s">"x"</span><span class="o">).</span><span class="na">playsRole</span><span class="o">(</span><span class="s">"attacking-type"</span><span class="o">));</span>
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">qb</span><span class="o">.</span><span class="na">match</span><span class="o">(</span><span class="n">var</span><span class="o">(</span><span class="s">"x"</span><span class="o">).</span><span class="na">id</span><span class="o">(</span><span class="s">"type"</span><span class="o">)).</span><span class="na">delete</span><span class="o">(</span><span class="n">var</span><span class="o">(</span><span class="s">"x"</span><span class="o">).</span><span class="na">playsRole</span><span class="o">(</span><span class="s">"attacking-type"</span><span class="o">));</span>
 </code></pre>
 </div>
 
@@ -454,10 +454,10 @@ Otherwise, only the specified properties are deleted.</p>
 <p>Deletes the resources of the given type on the concept. If a value is given,
 only delete resources matching that value.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">match</span> <span class="err">$</span><span class="n">x</span> <span class="n">id</span> <span class="nv">"Bulbasaur"</span> <span class="k">delete</span> <span class="err">$</span><span class="n">x</span> <span class="n">has</span> <span class="n">weight</span><span class="p">;</span>
+<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">match</span> <span class="err">$</span><span class="n">x</span> <span class="n">id</span> <span class="nv">"Bulbasaur"</span> <span class="k">delete</span> <span class="err">$</span><span class="n">x</span> <span class="n">has</span> <span class="n">weight</span><span class="p">;</span>
 </code></pre>
 </div>
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">qb</span><span class="o">.</span><span class="na">match</span><span class="o">(</span><span class="n">var</span><span class="o">(</span><span class="s">"x"</span><span class="o">).</span><span class="na">id</span><span class="o">(</span><span class="s">"Bulbasaur"</span><span class="o">)).</span><span class="na">delete</span><span class="o">(</span><span class="n">var</span><span class="o">(</span><span class="s">"x"</span><span class="o">).</span><span class="na">has</span><span class="o">(</span><span class="s">"weight"</span><span class="o">));</span>
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">qb</span><span class="o">.</span><span class="na">match</span><span class="o">(</span><span class="n">var</span><span class="o">(</span><span class="s">"x"</span><span class="o">).</span><span class="na">id</span><span class="o">(</span><span class="s">"Bulbasaur"</span><span class="o">)).</span><span class="na">delete</span><span class="o">(</span><span class="n">var</span><span class="o">(</span><span class="s">"x"</span><span class="o">).</span><span class="na">has</span><span class="o">(</span><span class="s">"weight"</span><span class="o">));</span>
 </code></pre>
 </div>
 
@@ -515,7 +515,7 @@ only delete resources matching that value.</p>
         <br>
         <p>© 2016 <a href="http://minadmaps.io">Mindmaps Research Ltd</a></p>
         <!-- &copy;2016 MindmapsDB. All rights reserved. <br />
-        <span>Page last updated:</span> August 11, 2016<br/> Site last generated: Aug 12, 2016 <br />
+        <span>Page last updated:</span> August 11, 2016<br/> Site last generated: Aug 16, 2016 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">

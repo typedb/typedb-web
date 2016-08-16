@@ -527,7 +527,7 @@ a.dropdown-toggle,
     font-weight: 200;
     padding-top: 5px;
     padding-bottom: 5px;
-    font-size: 1.6rem;
+    font-size: 1.65rem;
     color: #383838;
     background-color: #B0E3EF;
 }
@@ -559,6 +559,21 @@ a.dropdown-toggle,
 
 .nav li > a > span:after{
     display: none;
+}
+
+@media (min-width: 1600px) {
+    .nav li a {
+        font-size: 1.27em;
+    }
+
+    #mysidebar li a{
+        padding-top: 7px;
+        padding-bottom: 7px;
+    }
+
+    .nav li li a {
+        font-size: 1.15em;
+    }
 }
 
 /*  */
@@ -614,7 +629,7 @@ a.dropdown-toggle,
     font-size: 110%;
     display: block;
     font-weight: 200;
-    margin-bottom: 1rem;
+    margin-bottom: 0.7em;
 }
 
 .footer a.gitter {

@@ -415,12 +415,12 @@ patterns for every result of the match query.</p>
 set on a particular concept. The variable pattern can optionally be bound to a
 variable or an ID.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">insert</span>
+<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">insert</span>
 <span class="err">$</span><span class="n">p</span> <span class="n">isa</span> <span class="n">pokemon</span><span class="p">,</span> <span class="n">id</span> <span class="nv">"Pichu"</span><span class="p">,</span> <span class="n">has</span> <span class="n">pokedex</span><span class="o">-</span><span class="k">no</span> <span class="mi">172</span><span class="p">;</span>
 <span class="p">(</span><span class="n">descendant</span> <span class="n">Pikachu</span><span class="p">,</span> <span class="n">ancestor</span> <span class="err">$</span><span class="n">p</span><span class="p">)</span> <span class="n">isa</span> <span class="n">evolution</span><span class="p">;</span>
 </code></pre>
 </div>
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">qb</span><span class="o">.</span><span class="na">insert</span><span class="o">(</span>
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">qb</span><span class="o">.</span><span class="na">insert</span><span class="o">(</span>
     <span class="n">var</span><span class="o">(</span><span class="s">"p"</span><span class="o">).</span><span class="na">isa</span><span class="o">(</span><span class="s">"pokemon"</span><span class="o">).</span><span class="na">id</span><span class="o">(</span><span class="s">"Pichu"</span><span class="o">).</span><span class="na">has</span><span class="o">(</span><span class="s">"pokedex-no"</span><span class="o">,</span> <span class="mi">172</span><span class="o">),</span>
     <span class="n">var</span><span class="o">().</span><span class="na">isa</span><span class="o">(</span><span class="s">"evolution"</span><span class="o">)</span>
         <span class="o">.</span><span class="na">rel</span><span class="o">(</span><span class="s">"descendant"</span><span class="o">,</span> <span class="n">var</span><span class="o">().</span><span class="na">id</span><span class="o">(</span><span class="s">"Pikachu"</span><span class="o">))</span>
@@ -433,10 +433,10 @@ variable or an ID.</p>
 
 <h3 id="isa">isa</h3>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">insert</span> <span class="nv">"Totodile"</span> <span class="n">isa</span> <span class="n">pokemon</span><span class="p">;</span>
+<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">insert</span> <span class="nv">"Totodile"</span> <span class="n">isa</span> <span class="n">pokemon</span><span class="p">;</span>
 </code></pre>
 </div>
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">qb</span><span class="o">.</span><span class="na">insert</span><span class="o">(</span><span class="n">id</span><span class="o">(</span><span class="s">"Totodile"</span><span class="o">).</span><span class="na">isa</span><span class="o">(</span><span class="s">"pokemon"</span><span class="o">));</span>
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">qb</span><span class="o">.</span><span class="na">insert</span><span class="o">(</span><span class="n">id</span><span class="o">(</span><span class="s">"Totodile"</span><span class="o">).</span><span class="na">isa</span><span class="o">(</span><span class="s">"pokemon"</span><span class="o">));</span>
 </code></pre>
 </div>
 
@@ -447,10 +447,10 @@ variable or an ID.</p>
 <p>Create a concept with the given id, or retrieve it if one with that id exists.
 The created or retrieved concept can then be modified with further properties.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">insert</span> <span class="nv">"Pikachu"</span> <span class="n">isa</span> <span class="n">pokemon</span>
+<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">insert</span> <span class="nv">"Pikachu"</span> <span class="n">isa</span> <span class="n">pokemon</span>
 </code></pre>
 </div>
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">qb</span><span class="o">.</span><span class="na">insert</span><span class="o">(</span><span class="n">id</span><span class="o">(</span><span class="s">"Pikachu"</span><span class="o">).</span><span class="na">isa</span><span class="o">(</span><span class="s">"pokemon"</span><span class="o">));</span>
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">qb</span><span class="o">.</span><span class="na">insert</span><span class="o">(</span><span class="n">id</span><span class="o">(</span><span class="s">"Pikachu"</span><span class="o">).</span><span class="na">isa</span><span class="o">(</span><span class="s">"pokemon"</span><span class="o">));</span>
 </code></pre>
 </div>
 
@@ -458,10 +458,10 @@ The created or retrieved concept can then be modified with further properties.</
 
 <p>Set the value of the concept.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">insert</span> <span class="n">trained</span><span class="o">-</span><span class="k">by</span> <span class="n">isa</span> <span class="n">relation</span><span class="o">-</span><span class="k">type</span><span class="p">,</span> <span class="n">value</span> <span class="nv">"Trained By"</span><span class="p">;</span>
+<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">insert</span> <span class="n">trained</span><span class="o">-</span><span class="k">by</span> <span class="n">isa</span> <span class="n">relation</span><span class="o">-</span><span class="k">type</span><span class="p">,</span> <span class="n">value</span> <span class="nv">"Trained By"</span><span class="p">;</span>
 </code></pre>
 </div>
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">qb</span><span class="o">.</span><span class="na">insert</span><span class="o">(</span><span class="n">id</span><span class="o">(</span><span class="s">"trained-by"</span><span class="o">).</span><span class="na">isa</span><span class="o">(</span><span class="s">"relation-type"</span><span class="o">).</span><span class="na">value</span><span class="o">(</span><span class="s">"Trained By"</span><span class="o">));</span>
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">qb</span><span class="o">.</span><span class="na">insert</span><span class="o">(</span><span class="n">id</span><span class="o">(</span><span class="s">"trained-by"</span><span class="o">).</span><span class="na">isa</span><span class="o">(</span><span class="s">"relation-type"</span><span class="o">).</span><span class="na">value</span><span class="o">(</span><span class="s">"Trained By"</span><span class="o">));</span>
 </code></pre>
 </div>
 
@@ -469,23 +469,23 @@ The created or retrieved concept can then be modified with further properties.</
 
 <p>Add a resource of the given type to the concept.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">insert</span> <span class="nv">"Pichu"</span> <span class="n">isa</span> <span class="n">pokemon</span> <span class="n">has</span> <span class="n">height</span> <span class="mi">30</span><span class="p">;</span>
+<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">insert</span> <span class="nv">"Pichu"</span> <span class="n">isa</span> <span class="n">pokemon</span> <span class="n">has</span> <span class="n">height</span> <span class="mi">30</span><span class="p">;</span>
 </code></pre>
 </div>
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">qb</span><span class="o">.</span><span class="na">insert</span><span class="o">(</span><span class="n">id</span><span class="o">(</span><span class="s">"Pichu"</span><span class="o">).</span><span class="na">isa</span><span class="o">(</span><span class="s">"pokemon"</span><span class="o">).</span><span class="na">has</span><span class="o">(</span><span class="s">"height"</span><span class="o">,</span> <span class="mi">30</span><span class="o">));</span>
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">qb</span><span class="o">.</span><span class="na">insert</span><span class="o">(</span><span class="n">id</span><span class="o">(</span><span class="s">"Pichu"</span><span class="o">).</span><span class="na">isa</span><span class="o">(</span><span class="s">"pokemon"</span><span class="o">).</span><span class="na">has</span><span class="o">(</span><span class="s">"height"</span><span class="o">,</span> <span class="mi">30</span><span class="o">));</span>
 </code></pre>
 </div>
 
 <p>The above example is equivalent to:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">insert</span>
+<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">insert</span>
 <span class="err">$</span><span class="k">owner</span> <span class="n">id</span> <span class="nv">"Pichu"</span> <span class="n">isa</span> <span class="n">pokemon</span><span class="p">;</span>
 <span class="err">$</span><span class="n">value</span> <span class="n">isa</span> <span class="n">height</span><span class="p">,</span> <span class="n">value</span> <span class="mi">30</span><span class="p">;</span>
 
 <span class="p">(</span><span class="n">height</span><span class="o">-</span><span class="k">owner</span> <span class="err">$</span><span class="k">owner</span><span class="p">,</span> <span class="n">height</span><span class="o">-</span><span class="n">value</span> <span class="err">$</span><span class="n">value</span><span class="p">)</span> <span class="n">isa</span> <span class="n">has</span><span class="o">-</span><span class="n">height</span><span class="p">;</span>
 </code></pre>
 </div>
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">qb</span><span class="o">.</span><span class="na">insert</span><span class="o">(</span>
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">qb</span><span class="o">.</span><span class="na">insert</span><span class="o">(</span>
   <span class="n">var</span><span class="o">(</span><span class="s">"owner"</span><span class="o">).</span><span class="na">id</span><span class="o">(</span><span class="s">"Pichu"</span><span class="o">).</span><span class="na">isa</span><span class="o">(</span><span class="s">"pokemon"</span><span class="o">),</span>
   <span class="n">var</span><span class="o">(</span><span class="s">"value"</span><span class="o">).</span><span class="na">isa</span><span class="o">(</span><span class="s">"height"</span><span class="o">).</span><span class="na">value</span><span class="o">(</span><span class="mi">30</span><span class="o">),</span>
   <span class="n">var</span><span class="o">().</span><span class="na">rel</span><span class="o">(</span><span class="s">"height-owner"</span><span class="o">,</span> <span class="s">"owner"</span><span class="o">).</span><span class="na">rel</span><span class="o">(</span><span class="s">"height-value"</span><span class="o">,</span> <span class="s">"value"</span><span class="o">).</span><span class="na">isa</span><span class="o">(</span><span class="s">"has-height"</span><span class="o">)</span>
@@ -498,10 +498,10 @@ The created or retrieved concept can then be modified with further properties.</
 <p>Make the concept a relation that relates the given role players, playing the
 given roles.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">insert</span> <span class="p">(</span><span class="n">pokemon</span><span class="o">-</span><span class="k">with</span><span class="o">-</span><span class="k">type</span> <span class="nv">"Pichu"</span><span class="p">,</span> <span class="k">type</span><span class="o">-</span><span class="k">of</span><span class="o">-</span><span class="n">pokemon</span> <span class="nv">"electric"</span><span class="p">)</span> <span class="n">isa</span> <span class="n">has</span><span class="o">-</span><span class="k">type</span><span class="p">;</span>
+<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">insert</span> <span class="p">(</span><span class="n">pokemon</span><span class="o">-</span><span class="k">with</span><span class="o">-</span><span class="k">type</span> <span class="nv">"Pichu"</span><span class="p">,</span> <span class="k">type</span><span class="o">-</span><span class="k">of</span><span class="o">-</span><span class="n">pokemon</span> <span class="nv">"electric"</span><span class="p">)</span> <span class="n">isa</span> <span class="n">has</span><span class="o">-</span><span class="k">type</span><span class="p">;</span>
 </code></pre>
 </div>
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">qb</span><span class="o">.</span><span class="na">insert</span><span class="o">(</span>
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">qb</span><span class="o">.</span><span class="na">insert</span><span class="o">(</span>
   <span class="n">var</span><span class="o">()</span>
     <span class="o">.</span><span class="na">rel</span><span class="o">(</span><span class="s">"pokemon-with-type"</span><span class="o">,</span> <span class="n">id</span><span class="o">(</span><span class="s">"Pichu"</span><span class="o">))</span>
     <span class="o">.</span><span class="na">rel</span><span class="o">(</span><span class="s">"type-of-pokemon"</span><span class="o">,</span> <span class="n">id</span><span class="o">(</span><span class="s">"electric"</span><span class="o">))</span>
@@ -518,21 +518,21 @@ given roles.</p>
 
 <p>Set the supertype of this concept type.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">insert</span> <span class="n">gen2</span><span class="o">-</span><span class="n">pokemon</span> <span class="n">ako</span> <span class="n">pokemon</span><span class="p">;</span>
+<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">insert</span> <span class="n">gen2</span><span class="o">-</span><span class="n">pokemon</span> <span class="n">ako</span> <span class="n">pokemon</span><span class="p">;</span>
 </code></pre>
 </div>
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">qb</span><span class="o">.</span><span class="na">insert</span><span class="o">(</span><span class="n">id</span><span class="o">(</span><span class="s">"gen2-pokemon"</span><span class="o">).</span><span class="na">ako</span><span class="o">(</span><span class="s">"pokemon"</span><span class="o">));</span>
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">qb</span><span class="o">.</span><span class="na">insert</span><span class="o">(</span><span class="n">id</span><span class="o">(</span><span class="s">"gen2-pokemon"</span><span class="o">).</span><span class="na">ako</span><span class="o">(</span><span class="s">"pokemon"</span><span class="o">));</span>
 </code></pre>
 </div>
 
 <h3 id="has-role">has-role</h3>
 <p>Add a role to this relation type.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">insert</span>
+<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">insert</span>
 <span class="n">trained</span><span class="o">-</span><span class="k">by</span> <span class="n">isa</span> <span class="n">relation</span><span class="o">-</span><span class="k">type</span><span class="p">,</span> <span class="n">has</span><span class="o">-</span><span class="k">role</span> <span class="n">trainer</span><span class="p">,</span> <span class="n">has</span><span class="o">-</span><span class="k">role</span> <span class="n">pokemon</span><span class="o">-</span><span class="n">trained</span><span class="p">;</span>
 </code></pre>
 </div>
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">qb</span><span class="o">.</span><span class="na">insert</span><span class="o">(</span>
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">qb</span><span class="o">.</span><span class="na">insert</span><span class="o">(</span>
   <span class="n">id</span><span class="o">(</span><span class="s">"trained-by"</span><span class="o">).</span><span class="na">isa</span><span class="o">(</span><span class="s">"relation-type"</span><span class="o">)</span>
     <span class="o">.</span><span class="na">hasRole</span><span class="o">(</span><span class="s">"trainer"</span><span class="o">).</span><span class="na">hasRole</span><span class="o">(</span><span class="s">"pokemon-trained"</span><span class="o">)</span>
 <span class="o">);</span>
@@ -542,10 +542,10 @@ given roles.</p>
 <h3 id="plays-role">plays-role</h3>
 <p>Allow the concept type to play the given role.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">insert</span> <span class="n">pokemon</span> <span class="n">plays</span><span class="o">-</span><span class="k">role</span> <span class="n">pokemon</span><span class="o">-</span><span class="n">trained</span><span class="p">;</span>
+<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">insert</span> <span class="n">pokemon</span> <span class="n">plays</span><span class="o">-</span><span class="k">role</span> <span class="n">pokemon</span><span class="o">-</span><span class="n">trained</span><span class="p">;</span>
 </code></pre>
 </div>
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">qb</span><span class="o">.</span><span class="na">insert</span><span class="o">(</span><span class="n">id</span><span class="o">(</span><span class="s">"pokemon"</span><span class="o">).</span><span class="na">playsRole</span><span class="o">(</span><span class="s">"pokemon-trained"</span><span class="o">));</span>
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">qb</span><span class="o">.</span><span class="na">insert</span><span class="o">(</span><span class="n">id</span><span class="o">(</span><span class="s">"pokemon"</span><span class="o">).</span><span class="na">playsRole</span><span class="o">(</span><span class="s">"pokemon-trained"</span><span class="o">));</span>
 </code></pre>
 </div>
 
@@ -556,16 +556,16 @@ given roles.</p>
 <p>This is done by creating a specific relation type relating the concept type
 and resource.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">insert</span> <span class="n">pokemon</span> <span class="n">has</span><span class="o">-</span><span class="n">resource</span> <span class="n">pokedex</span><span class="o">-</span><span class="k">no</span><span class="p">;</span>
+<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">insert</span> <span class="n">pokemon</span> <span class="n">has</span><span class="o">-</span><span class="n">resource</span> <span class="n">pokedex</span><span class="o">-</span><span class="k">no</span><span class="p">;</span>
 </code></pre>
 </div>
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">qb</span><span class="o">.</span><span class="na">insert</span><span class="o">(</span><span class="n">id</span><span class="o">(</span><span class="s">"pokemon"</span><span class="o">).</span><span class="na">hasResource</span><span class="o">(</span><span class="s">"pokedex-no"</span><span class="o">));</span>
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">qb</span><span class="o">.</span><span class="na">insert</span><span class="o">(</span><span class="n">id</span><span class="o">(</span><span class="s">"pokemon"</span><span class="o">).</span><span class="na">hasResource</span><span class="o">(</span><span class="s">"pokedex-no"</span><span class="o">));</span>
 </code></pre>
 </div>
 
 <p>The above example is equivalent to:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">insert</span>
+<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">insert</span>
 
 <span class="n">has</span><span class="o">-</span><span class="n">pokedex</span><span class="o">-</span><span class="k">no</span> <span class="n">isa</span> <span class="n">relation</span><span class="o">-</span><span class="k">type</span><span class="p">,</span>
   <span class="n">has</span><span class="o">-</span><span class="k">role</span> <span class="n">pokedex</span><span class="o">-</span><span class="k">no</span><span class="o">-</span><span class="k">owner</span><span class="p">,</span>
@@ -578,7 +578,7 @@ and resource.</p>
 <span class="n">pokedex</span><span class="o">-</span><span class="k">no</span> <span class="n">plays</span><span class="o">-</span><span class="k">role</span> <span class="n">pokedex</span><span class="o">-</span><span class="k">no</span><span class="o">-</span><span class="n">value</span><span class="p">;</span>
 </code></pre>
 </div>
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">qb</span><span class="o">.</span><span class="na">insert</span><span class="o">(</span>
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">qb</span><span class="o">.</span><span class="na">insert</span><span class="o">(</span>
   <span class="n">id</span><span class="o">(</span><span class="s">"has-pokedex-no"</span><span class="o">).</span><span class="na">isa</span><span class="o">(</span><span class="s">"relation-type"</span><span class="o">)</span>
     <span class="o">.</span><span class="na">hasRole</span><span class="o">(</span><span class="s">"pokedex-no-owner"</span><span class="o">).</span><span class="na">hasRole</span><span class="o">(</span><span class="s">"pokedex-no-value"</span><span class="o">),</span>
 
@@ -644,7 +644,7 @@ and resource.</p>
         <br>
         <p>© 2016 <a href="http://minadmaps.io">Mindmaps Research Ltd</a></p>
         <!-- &copy;2016 MindmapsDB. All rights reserved. <br />
-        <span>Page last updated:</span> August 10, 2016<br/> Site last generated: Aug 12, 2016 <br />
+        <span>Page last updated:</span> August 10, 2016<br/> Site last generated: Aug 16, 2016 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">

@@ -410,12 +410,12 @@ $('#toc').on('click', 'a', function() {
 <a href="#variable-patterns">patterns</a>. A result is produced for each match found,
 containing any variables in the query. The results of the query can be modified with various <a href="#modifiers">modifiers</a>.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">match</span>
+<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">match</span>
 <span class="err">$</span><span class="n">x</span> <span class="n">isa</span> <span class="n">pokemon</span><span class="p">,</span> <span class="n">id</span> <span class="nv">"Pikachu"</span><span class="p">;</span>
 <span class="p">(</span><span class="n">pokemon</span><span class="o">-</span><span class="k">with</span><span class="o">-</span><span class="k">type</span> <span class="err">$</span><span class="n">x</span><span class="p">,</span> <span class="err">$</span><span class="n">y</span><span class="p">);</span>
 </code></pre>
 </div>
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">qb</span><span class="o">.</span><span class="na">match</span><span class="o">(</span>
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">qb</span><span class="o">.</span><span class="na">match</span><span class="o">(</span>
     <span class="n">var</span><span class="o">(</span><span class="s">"x"</span><span class="o">).</span><span class="na">isa</span><span class="o">(</span><span class="s">"pokemon"</span><span class="o">).</span><span class="na">id</span><span class="o">(</span><span class="s">"Pikachu"</span><span class="o">),</span>
     <span class="n">var</span><span class="o">().</span><span class="na">rel</span><span class="o">(</span><span class="s">"pokemon-with-type"</span><span class="o">,</span> <span class="s">"x"</span><span class="o">).</span><span class="na">rel</span><span class="o">(</span><span class="s">"y"</span><span class="o">)</span>
 <span class="o">);</span>
@@ -431,7 +431,7 @@ A variable pattern is a pattern describing <a href="#properties">properties</a> 
 particular concept. The variable pattern can optionally be bound to a variable
 or an ID.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">match</span>
+<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">match</span>
 <span class="err">$</span><span class="n">x</span> <span class="n">isa</span> <span class="n">pokemon</span><span class="p">;</span>
 <span class="err">{</span>
   <span class="err">$</span><span class="n">x</span> <span class="n">id</span> <span class="nv">"Mew"</span>
@@ -441,7 +441,7 @@ or an ID.</p>
 <span class="err">}</span>
 </code></pre>
 </div>
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">qb</span><span class="o">.</span><span class="na">match</span><span class="o">(</span>
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">qb</span><span class="o">.</span><span class="na">match</span><span class="o">(</span>
   <span class="n">var</span><span class="o">(</span><span class="s">"x"</span><span class="o">).</span><span class="na">isa</span><span class="o">(</span><span class="s">"pokemon"</span><span class="o">),</span>
   <span class="n">or</span><span class="o">(</span>
     <span class="n">var</span><span class="o">(</span><span class="s">"x"</span><span class="o">).</span><span class="na">id</span><span class="o">(</span><span class="s">"Mew"</span><span class="o">),</span>
@@ -459,20 +459,20 @@ or an ID.</p>
 <h3 id="isa">isa</h3>
 <p>Match instances that have the given type.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">match</span> <span class="err">$</span><span class="n">x</span> <span class="n">isa</span> <span class="n">pokemon</span>
+<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">match</span> <span class="err">$</span><span class="n">x</span> <span class="n">isa</span> <span class="n">pokemon</span>
 </code></pre>
 </div>
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">qb</span><span class="o">.</span><span class="na">match</span><span class="o">(</span><span class="n">var</span><span class="o">(</span><span class="s">"x"</span><span class="o">).</span><span class="na">isa</span><span class="o">(</span><span class="s">"pokemon"</span><span class="o">));</span>
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">qb</span><span class="o">.</span><span class="na">match</span><span class="o">(</span><span class="n">var</span><span class="o">(</span><span class="s">"x"</span><span class="o">).</span><span class="na">isa</span><span class="o">(</span><span class="s">"pokemon"</span><span class="o">));</span>
 </code></pre>
 </div>
 
 <h3 id="id">id</h3>
 <p>Match concepts that have an <code class="highlighter-rouge">id</code> which matches the <a href="#predicates">predicate</a>.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">match</span> <span class="err">$</span><span class="n">x</span> <span class="n">id</span> <span class="nv">"Articuno"</span>
+<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">match</span> <span class="err">$</span><span class="n">x</span> <span class="n">id</span> <span class="nv">"Articuno"</span>
 </code></pre>
 </div>
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">qb</span><span class="o">.</span><span class="na">match</span><span class="o">(</span><span class="n">var</span><span class="o">(</span><span class="s">"x"</span><span class="o">).</span><span class="na">id</span><span class="o">(</span><span class="s">"Articuno"</span><span class="o">));</span>
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">qb</span><span class="o">.</span><span class="na">match</span><span class="o">(</span><span class="n">var</span><span class="o">(</span><span class="s">"x"</span><span class="o">).</span><span class="na">id</span><span class="o">(</span><span class="s">"Articuno"</span><span class="o">));</span>
 </code></pre>
 </div>
 
@@ -480,10 +480,10 @@ or an ID.</p>
 
 <p>Match concepts that have a <code class="highlighter-rouge">value</code>. If a <a href="#predicates">predicate</a> is provided, the resource must match that predicate.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">match</span> <span class="err">$</span><span class="n">x</span> <span class="n">value</span> <span class="k">contains</span> <span class="nv">"lightning"</span><span class="p">;</span>
+<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">match</span> <span class="err">$</span><span class="n">x</span> <span class="n">value</span> <span class="k">contains</span> <span class="nv">"lightning"</span><span class="p">;</span>
 </code></pre>
 </div>
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">static</span> <span class="n">io</span><span class="o">.</span><span class="na">mindmaps</span><span class="o">.</span><span class="na">graql</span><span class="o">.</span><span class="na">api</span><span class="o">.</span><span class="na">query</span><span class="o">.</span><span class="na">ValuePredicate</span><span class="o">.*;</span>
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">static</span> <span class="n">io</span><span class="o">.</span><span class="na">mindmaps</span><span class="o">.</span><span class="na">graql</span><span class="o">.</span><span class="na">api</span><span class="o">.</span><span class="na">query</span><span class="o">.</span><span class="na">ValuePredicate</span><span class="o">.*;</span>
 
 <span class="n">qb</span><span class="o">.</span><span class="na">match</span><span class="o">(</span><span class="n">var</span><span class="o">(</span><span class="s">"x"</span><span class="o">).</span><span class="na">value</span><span class="o">(</span><span class="n">contains</span><span class="o">(</span><span class="s">"lightning"</span><span class="o">)))</span>
 </code></pre>
@@ -493,10 +493,10 @@ or an ID.</p>
 
 <p>Match concepts that have a resource of <code class="highlighter-rouge">type</code>. If a <a href="#predicates">predicate</a> is provided, the resource must match that predicate.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">match</span> <span class="err">$</span><span class="n">x</span> <span class="n">has</span> <span class="n">pokedex</span><span class="o">-</span><span class="k">no</span> <span class="o">&lt;</span> <span class="mi">20</span>
+<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">match</span> <span class="err">$</span><span class="n">x</span> <span class="n">has</span> <span class="n">pokedex</span><span class="o">-</span><span class="k">no</span> <span class="o">&lt;</span> <span class="mi">20</span>
 </code></pre>
 </div>
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">static</span> <span class="n">io</span><span class="o">.</span><span class="na">mindmaps</span><span class="o">.</span><span class="na">graql</span><span class="o">.</span><span class="na">api</span><span class="o">.</span><span class="na">query</span><span class="o">.</span><span class="na">ValuePredicate</span><span class="o">.*;</span>
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">static</span> <span class="n">io</span><span class="o">.</span><span class="na">mindmaps</span><span class="o">.</span><span class="na">graql</span><span class="o">.</span><span class="na">api</span><span class="o">.</span><span class="na">query</span><span class="o">.</span><span class="na">ValuePredicate</span><span class="o">.*;</span>
 
 <span class="n">qb</span><span class="o">.</span><span class="na">match</span><span class="o">(</span><span class="n">var</span><span class="o">(</span><span class="s">"x"</span><span class="o">).</span><span class="na">has</span><span class="o">(</span><span class="s">"pokedex-no"</span><span class="o">,</span> <span class="n">lt</span><span class="o">(</span><span class="mi">20</span><span class="o">)));</span>
 </code></pre>
@@ -504,12 +504,12 @@ or an ID.</p>
 
 <p>The above is equivalent to:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">match</span>
+<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">match</span>
 <span class="p">(</span><span class="n">pokedex</span><span class="o">-</span><span class="k">no</span><span class="o">-</span><span class="k">owner</span> <span class="err">$</span><span class="n">x</span><span class="p">,</span> <span class="n">pokedex</span><span class="o">-</span><span class="k">no</span><span class="o">-</span><span class="n">value</span> <span class="err">$</span><span class="n">pokedex</span><span class="o">-</span><span class="k">no</span><span class="p">)</span> <span class="n">isa</span> <span class="n">has</span><span class="o">-</span><span class="n">pokedex</span><span class="o">-</span><span class="k">no</span><span class="p">;</span>
 <span class="err">$</span><span class="n">pokedex</span><span class="o">-</span><span class="k">no</span> <span class="n">value</span> <span class="o">&lt;</span> <span class="mi">20</span><span class="p">;</span>
 </code></pre>
 </div>
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">qb</span><span class="o">.</span><span class="na">match</span><span class="o">(</span>
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">qb</span><span class="o">.</span><span class="na">match</span><span class="o">(</span>
   <span class="n">var</span><span class="o">().</span><span class="na">rel</span><span class="o">(</span><span class="s">"pokedex-no-owner"</span><span class="o">,</span> <span class="s">"x"</span><span class="o">).</span><span class="na">rel</span><span class="o">(</span><span class="s">"pokedex-no-value"</span><span class="o">,</span> <span class="s">"pokedex-no"</span><span class="o">)</span>
     <span class="o">.</span><span class="na">isa</span><span class="o">(</span><span class="s">"has-pokedex-no"</span><span class="o">),</span>
   <span class="n">var</span><span class="o">(</span><span class="s">"pokedex-no"</span><span class="o">).</span><span class="na">value</span><span class="o">(</span><span class="n">lt</span><span class="o">(</span><span class="mi">20</span><span class="o">))</span>
@@ -521,12 +521,12 @@ or an ID.</p>
 
 <p>Match concepts that are relations between the given variables. If a role type is provided, the role player must be playing that role type.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">match</span>
+<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">match</span>
 <span class="err">$</span><span class="n">x</span> <span class="n">isa</span> <span class="n">pokemon</span><span class="p">;</span>
 <span class="p">(</span><span class="n">ancestor</span> <span class="err">$</span><span class="n">x</span><span class="p">,</span> <span class="err">$</span><span class="n">y</span><span class="p">)</span>
 </code></pre>
 </div>
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">qb</span><span class="o">.</span><span class="na">match</span><span class="o">(</span>
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">qb</span><span class="o">.</span><span class="na">match</span><span class="o">(</span>
   <span class="n">var</span><span class="o">(</span><span class="s">"x"</span><span class="o">).</span><span class="na">isa</span><span class="o">(</span><span class="s">"pokemon"</span><span class="o">),</span>
   <span class="n">var</span><span class="o">().</span><span class="na">rel</span><span class="o">(</span><span class="s">"ancestor"</span><span class="o">,</span> <span class="s">"x"</span><span class="o">).</span><span class="na">rel</span><span class="o">(</span><span class="s">"y"</span><span class="o">)</span>
 <span class="o">);</span>
@@ -540,49 +540,49 @@ or an ID.</p>
 <h3 id="ako">ako</h3>
 <p>Match types that are a subclass of the given type.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">match</span> <span class="err">$</span><span class="n">x</span> <span class="n">ako</span> <span class="k">type</span>
+<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">match</span> <span class="err">$</span><span class="n">x</span> <span class="n">ako</span> <span class="k">type</span>
 </code></pre>
 </div>
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">qb</span><span class="o">.</span><span class="na">match</span><span class="o">(</span><span class="n">var</span><span class="o">(</span><span class="s">"x"</span><span class="o">).</span><span class="na">ako</span><span class="o">(</span><span class="s">"type"</span><span class="o">))</span>
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">qb</span><span class="o">.</span><span class="na">match</span><span class="o">(</span><span class="n">var</span><span class="o">(</span><span class="s">"x"</span><span class="o">).</span><span class="na">ako</span><span class="o">(</span><span class="s">"type"</span><span class="o">))</span>
 </code></pre>
 </div>
 
 <h3 id="has-role">has-role</h3>
 <p>Match relation types that have the given role.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">match</span> <span class="n">evolution</span> <span class="n">has</span><span class="o">-</span><span class="k">role</span> <span class="err">$</span><span class="n">x</span>
+<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">match</span> <span class="n">evolution</span> <span class="n">has</span><span class="o">-</span><span class="k">role</span> <span class="err">$</span><span class="n">x</span>
 </code></pre>
 </div>
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">qb</span><span class="o">.</span><span class="na">match</span><span class="o">(</span><span class="n">id</span><span class="o">(</span><span class="s">"evolution"</span><span class="o">).</span><span class="na">hasRole</span><span class="o">(</span><span class="n">var</span><span class="o">(</span><span class="s">"x"</span><span class="o">)));</span>
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">qb</span><span class="o">.</span><span class="na">match</span><span class="o">(</span><span class="n">id</span><span class="o">(</span><span class="s">"evolution"</span><span class="o">).</span><span class="na">hasRole</span><span class="o">(</span><span class="n">var</span><span class="o">(</span><span class="s">"x"</span><span class="o">)));</span>
 </code></pre>
 </div>
 
 <h3 id="plays-role">plays-role</h3>
 <p>Match concept types that play the given role.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">match</span> <span class="err">$</span><span class="n">x</span> <span class="n">plays</span><span class="o">-</span><span class="k">role</span> <span class="n">ancestor</span>
+<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">match</span> <span class="err">$</span><span class="n">x</span> <span class="n">plays</span><span class="o">-</span><span class="k">role</span> <span class="n">ancestor</span>
 </code></pre>
 </div>
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">qb</span><span class="o">.</span><span class="na">match</span><span class="o">(</span><span class="n">var</span><span class="o">(</span><span class="s">"x"</span><span class="o">).</span><span class="na">playsRole</span><span class="o">(</span><span class="s">"ancestor"</span><span class="o">));</span>
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">qb</span><span class="o">.</span><span class="na">match</span><span class="o">(</span><span class="n">var</span><span class="o">(</span><span class="s">"x"</span><span class="o">).</span><span class="na">playsRole</span><span class="o">(</span><span class="s">"ancestor"</span><span class="o">));</span>
 </code></pre>
 </div>
 
 <h3 id="has-resource">has-resource</h3>
 <p>Match concept types that can have the given resource types.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">match</span> <span class="err">$</span><span class="n">x</span> <span class="n">has</span><span class="o">-</span><span class="n">resource</span> <span class="n">name</span>
+<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">match</span> <span class="err">$</span><span class="n">x</span> <span class="n">has</span><span class="o">-</span><span class="n">resource</span> <span class="n">name</span>
 </code></pre>
 </div>
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">qb</span><span class="o">.</span><span class="na">match</span><span class="o">(</span><span class="n">var</span><span class="o">(</span><span class="s">"x"</span><span class="o">).</span><span class="na">hasResource</span><span class="o">(</span><span class="s">"name"</span><span class="o">));</span>
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">qb</span><span class="o">.</span><span class="na">match</span><span class="o">(</span><span class="n">var</span><span class="o">(</span><span class="s">"x"</span><span class="o">).</span><span class="na">hasResource</span><span class="o">(</span><span class="s">"name"</span><span class="o">));</span>
 </code></pre>
 </div>
 
 <p>The above is equivalent to:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">match</span> <span class="err">$</span><span class="n">x</span> <span class="n">plays</span><span class="o">-</span><span class="k">role</span> <span class="n">name</span><span class="o">-</span><span class="k">owner</span><span class="p">;</span>
+<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">match</span> <span class="err">$</span><span class="n">x</span> <span class="n">plays</span><span class="o">-</span><span class="k">role</span> <span class="n">name</span><span class="o">-</span><span class="k">owner</span><span class="p">;</span>
 </code></pre>
 </div>
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">qb</span><span class="o">.</span><span class="na">match</span><span class="o">(</span><span class="n">var</span><span class="o">(</span><span class="s">"x"</span><span class="o">).</span><span class="na">playsRole</span><span class="o">(</span><span class="s">"name-owner"</span><span class="o">));</span>
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">qb</span><span class="o">.</span><span class="na">match</span><span class="o">(</span><span class="n">var</span><span class="o">(</span><span class="s">"x"</span><span class="o">).</span><span class="na">playsRole</span><span class="o">(</span><span class="s">"name-owner"</span><span class="o">));</span>
 </code></pre>
 </div>
 
@@ -597,10 +597,10 @@ or an ID.</p>
 <p>There are several standard comparators, <code class="highlighter-rouge">=</code>, <code class="highlighter-rouge">!=</code>, <code class="highlighter-rouge">&gt;</code>, <code class="highlighter-rouge">&gt;=</code>, <code class="highlighter-rouge">&lt;</code> and <code class="highlighter-rouge">&lt;=</code>. For
 longs and doubles, these sort by value. Strings are ordered lexicographically.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">match</span> <span class="err">$</span><span class="n">x</span> <span class="n">has</span> <span class="n">height</span> <span class="o">=</span> <span class="mi">19</span><span class="p">,</span> <span class="n">has</span> <span class="n">weight</span> <span class="o">&gt;</span> <span class="mi">1500</span>
+<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">match</span> <span class="err">$</span><span class="n">x</span> <span class="n">has</span> <span class="n">height</span> <span class="o">=</span> <span class="mi">19</span><span class="p">,</span> <span class="n">has</span> <span class="n">weight</span> <span class="o">&gt;</span> <span class="mi">1500</span>
 </code></pre>
 </div>
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">static</span> <span class="n">io</span><span class="o">.</span><span class="na">mindmaps</span><span class="o">.</span><span class="na">graql</span><span class="o">.</span><span class="na">api</span><span class="o">.</span><span class="na">query</span><span class="o">.</span><span class="na">ValuePredicate</span><span class="o">.*;</span>
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">static</span> <span class="n">io</span><span class="o">.</span><span class="na">mindmaps</span><span class="o">.</span><span class="na">graql</span><span class="o">.</span><span class="na">api</span><span class="o">.</span><span class="na">query</span><span class="o">.</span><span class="na">ValuePredicate</span><span class="o">.*;</span>
 
 <span class="n">qb</span><span class="o">.</span><span class="na">match</span><span class="o">(</span><span class="n">var</span><span class="o">(</span><span class="s">"x"</span><span class="o">).</span><span class="na">has</span><span class="o">(</span><span class="s">"height"</span><span class="o">,</span> <span class="mi">19</span><span class="o">).</span><span class="na">has</span><span class="o">(</span><span class="s">"weight"</span><span class="o">,</span> <span class="n">gt</span><span class="o">(</span><span class="mi">1500</span><span class="o">)));</span>
 </code></pre>
@@ -609,11 +609,11 @@ longs and doubles, these sort by value. Strings are ordered lexicographically.</
 <h3 id="contains">Contains</h3>
 <p>Asks if the given string is a substring.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">match</span> <span class="err">$</span><span class="n">x</span> <span class="n">has</span> <span class="n">description</span> <span class="k">contains</span> <span class="nv">"underground"</span>
+<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">match</span> <span class="err">$</span><span class="n">x</span> <span class="n">has</span> <span class="n">description</span> <span class="k">contains</span> <span class="nv">"underground"</span>
 <span class="k">select</span> <span class="err">$</span><span class="n">x</span><span class="p">(</span><span class="n">id</span><span class="p">,</span> <span class="n">has</span> <span class="n">description</span><span class="p">)</span>
 </code></pre>
 </div>
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">static</span> <span class="n">io</span><span class="o">.</span><span class="na">mindmaps</span><span class="o">.</span><span class="na">graql</span><span class="o">.</span><span class="na">api</span><span class="o">.</span><span class="na">query</span><span class="o">.</span><span class="na">ValuePredicate</span><span class="o">.*;</span>
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">static</span> <span class="n">io</span><span class="o">.</span><span class="na">mindmaps</span><span class="o">.</span><span class="na">graql</span><span class="o">.</span><span class="na">api</span><span class="o">.</span><span class="na">query</span><span class="o">.</span><span class="na">ValuePredicate</span><span class="o">.*;</span>
 
 <span class="n">qb</span><span class="o">.</span><span class="na">match</span><span class="o">(</span><span class="n">var</span><span class="o">(</span><span class="s">"x"</span><span class="o">).</span><span class="na">has</span><span class="o">(</span><span class="s">"description"</span><span class="o">,</span> <span class="n">contains</span><span class="o">(</span><span class="s">"underground"</span><span class="o">)));</span>
 </code></pre>
@@ -624,10 +624,10 @@ longs and doubles, these sort by value. Strings are ordered lexicographically.</
 entire string, so if you want to match something within a string, you must
 surround the expression with <code class="highlighter-rouge">.*</code>.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">match</span> <span class="err">$</span><span class="n">x</span> <span class="n">value</span> <span class="o">/</span><span class="p">.</span><span class="o">*</span><span class="p">(</span><span class="n">fast</span><span class="o">|</span><span class="n">quick</span><span class="p">).</span><span class="o">*/</span>
+<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">match</span> <span class="err">$</span><span class="n">x</span> <span class="n">value</span> <span class="o">/</span><span class="p">.</span><span class="o">*</span><span class="p">(</span><span class="n">fast</span><span class="o">|</span><span class="n">quick</span><span class="p">).</span><span class="o">*/</span>
 </code></pre>
 </div>
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">static</span> <span class="n">io</span><span class="o">.</span><span class="na">mindmaps</span><span class="o">.</span><span class="na">graql</span><span class="o">.</span><span class="na">api</span><span class="o">.</span><span class="na">query</span><span class="o">.</span><span class="na">ValuePredicate</span><span class="o">.*;</span>
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">static</span> <span class="n">io</span><span class="o">.</span><span class="na">mindmaps</span><span class="o">.</span><span class="na">graql</span><span class="o">.</span><span class="na">api</span><span class="o">.</span><span class="na">query</span><span class="o">.</span><span class="na">ValuePredicate</span><span class="o">.*;</span>
 
 <span class="n">qb</span><span class="o">.</span><span class="na">match</span><span class="o">(</span><span class="n">var</span><span class="o">(</span><span class="s">"x"</span><span class="o">).</span><span class="na">value</span><span class="o">(</span><span class="n">regex</span><span class="o">(</span><span class="s">".*(fast|quick).*"</span><span class="o">)));</span>
 </code></pre>
@@ -636,10 +636,10 @@ surround the expression with <code class="highlighter-rouge">.*</code>.</p>
 <h3 id="and-and-or">And and Or</h3>
 <p><code class="highlighter-rouge">and</code> and <code class="highlighter-rouge">or</code> allows combining predicates using boolean logic.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">match</span> <span class="err">$</span><span class="n">x</span> <span class="n">has</span> <span class="n">weight</span> <span class="o">&gt;</span><span class="mi">20</span> <span class="k">and</span> <span class="o">&lt;</span><span class="mi">30</span>
+<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">match</span> <span class="err">$</span><span class="n">x</span> <span class="n">has</span> <span class="n">weight</span> <span class="o">&gt;</span><span class="mi">20</span> <span class="k">and</span> <span class="o">&lt;</span><span class="mi">30</span>
 </code></pre>
 </div>
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">static</span> <span class="n">io</span><span class="o">.</span><span class="na">mindmaps</span><span class="o">.</span><span class="na">graql</span><span class="o">.</span><span class="na">api</span><span class="o">.</span><span class="na">query</span><span class="o">.</span><span class="na">ValuePredicate</span><span class="o">.*;</span>
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">static</span> <span class="n">io</span><span class="o">.</span><span class="na">mindmaps</span><span class="o">.</span><span class="na">graql</span><span class="o">.</span><span class="na">api</span><span class="o">.</span><span class="na">query</span><span class="o">.</span><span class="na">ValuePredicate</span><span class="o">.*;</span>
 
 <span class="n">qb</span><span class="o">.</span><span class="na">match</span><span class="o">(</span><span class="n">var</span><span class="o">(</span><span class="s">"x"</span><span class="o">).</span><span class="na">has</span><span class="o">(</span><span class="s">"weight"</span><span class="o">,</span> <span class="n">gt</span><span class="o">(</span><span class="mi">20</span><span class="o">).</span><span class="na">and</span><span class="o">(</span><span class="n">lt</span><span class="o">(</span><span class="mi">30</span><span class="o">))));</span>
 </code></pre>
@@ -647,12 +647,12 @@ surround the expression with <code class="highlighter-rouge">.*</code>.</p>
 
 <h2 id="modifiers">Modifiers</h2>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">match</span> <span class="err">$</span><span class="n">x</span> <span class="n">isa</span> <span class="n">pokemon</span>
+<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">match</span> <span class="err">$</span><span class="n">x</span> <span class="n">isa</span> <span class="n">pokemon</span>
 <span class="k">select</span> <span class="err">$</span><span class="n">x</span><span class="p">(</span><span class="n">has</span> <span class="n">pokedex</span><span class="o">-</span><span class="k">no</span><span class="p">,</span> <span class="n">id</span><span class="p">)</span>
 <span class="k">limit</span> <span class="mi">30</span><span class="p">,</span> <span class="k">offset</span> <span class="mi">10</span><span class="p">,</span> <span class="k">distinct</span><span class="p">,</span> <span class="k">order</span> <span class="k">by</span> <span class="err">$</span><span class="n">x</span><span class="p">(</span><span class="n">has</span> <span class="n">pokedex</span><span class="o">-</span><span class="k">no</span><span class="p">)</span> <span class="k">asc</span>
 </code></pre>
 </div>
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">qb</span><span class="o">.</span><span class="na">match</span><span class="o">(</span><span class="n">var</span><span class="o">(</span><span class="s">"x"</span><span class="o">).</span><span class="na">isa</span><span class="o">(</span><span class="s">"pokemon"</span><span class="o">))</span>
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">qb</span><span class="o">.</span><span class="na">match</span><span class="o">(</span><span class="n">var</span><span class="o">(</span><span class="s">"x"</span><span class="o">).</span><span class="na">isa</span><span class="o">(</span><span class="s">"pokemon"</span><span class="o">))</span>
     <span class="o">.</span><span class="na">select</span><span class="o">(</span><span class="s">"x"</span><span class="o">)</span>
     <span class="o">.</span><span class="na">limit</span><span class="o">(</span><span class="mi">30</span><span class="o">)</span>
     <span class="o">.</span><span class="na">offset</span><span class="o">(</span><span class="mi">10</span><span class="o">)</span>
@@ -685,7 +685,7 @@ each result.</p>
 <p>A getter indicates a property to get from a variable. Getters are supported in
 the Graql shell, but are not supported in <a href="java_graql.html">Java Graql</a>.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">match</span> <span class="err">$</span><span class="n">x</span> <span class="n">isa</span> <span class="n">pokemon</span>
+<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">match</span> <span class="err">$</span><span class="n">x</span> <span class="n">isa</span> <span class="n">pokemon</span>
 <span class="k">select</span> <span class="err">$</span><span class="n">x</span><span class="p">(</span><span class="n">id</span><span class="p">,</span> <span class="n">has</span> <span class="n">pokedex</span><span class="o">-</span><span class="k">no</span><span class="p">,</span> <span class="n">has</span> <span class="n">description</span><span class="p">)</span>
 </code></pre>
 </div>
@@ -756,7 +756,7 @@ the Graql shell, but are not supported in <a href="java_graql.html">Java Graql</
         <br>
         <p>© 2016 <a href="http://minadmaps.io">Mindmaps Research Ltd</a></p>
         <!-- &copy;2016 MindmapsDB. All rights reserved. <br />
-        <span>Page last updated:</span> August 11, 2016<br/> Site last generated: Aug 12, 2016 <br />
+        <span>Page last updated:</span> August 11, 2016<br/> Site last generated: Aug 16, 2016 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">

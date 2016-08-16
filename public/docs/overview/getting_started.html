@@ -414,7 +414,7 @@ Mindmaps also requires Maven 3.</div>
 <p>The latest version of mindmaps can be downloaded from the
 <a href="downloads.html">downloads page</a>. Unzip it and run the following in the terminal:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="nb">cd </span>mindmaps-build
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="nb">cd </span>mindmaps-build
 bin/mindmaps.sh start
 </code></pre>
 </div>
@@ -435,13 +435,13 @@ To delete all data in Mindamps graph, stop the Mindmaps backend, then run <code 
 <p>Graql is our query language, which allows you to interface with a Mindmaps graph. We will use Graql to load an example data set and run some simple queries against it.<br />
 The following will make Graql load an example data set and exit:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>bin/graql.sh -f examples/pokemon.gql
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>bin/graql.sh -f examples/pokemon.gql
 </code></pre>
 </div>
 
 <p>This will create and persist an example data set. Now we can run the following query using the Graql shell:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>bin/graql.sh
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>bin/graql.sh
 <span class="k">select</span> <span class="nv">$x</span> where <span class="nv">$x</span> isa pokemon
 <span class="nv">$x</span> id <span class="s2">"Bulbasaur"</span> isa pokemon;
 <span class="nv">$x</span> id <span class="s2">"Charmander"</span> isa pokemon;
@@ -518,7 +518,7 @@ The following will make Graql load an example data set and exit:</p>
         <br>
         <p>© 2016 <a href="http://minadmaps.io">Mindmaps Research Ltd</a></p>
         <!-- &copy;2016 MindmapsDB. All rights reserved. <br />
-        <span>Page last updated:</span> August 10, 2016<br/> Site last generated: Aug 12, 2016 <br />
+        <span>Page last updated:</span> August 10, 2016<br/> Site last generated: Aug 16, 2016 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">
