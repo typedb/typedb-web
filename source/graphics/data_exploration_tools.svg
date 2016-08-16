@@ -1,7 +1,0 @@
-<svg viewBox="0 0 200 200">
-    <polygon vector-effect="non-scaling-stroke" points="100,130 78.8,121.2 70,100 78.8,78.8 100,70 121.2,78.8 130,100 121.2,121.2"/>
-    <line vector-effect="non-scaling-stroke" x1="30" y1="10" x2="190" y2="170"/>
-    <line vector-effect="non-scaling-stroke" x1="80" y1="190" x2="190" y2="80"/>
-    <line vector-effect="non-scaling-stroke" x1="10" y1="68" x2="148" y2="10"/>
-    <line vector-effect="non-scaling-stroke" x1="190" y1="157" x2="10" y2="82"/>
-</svg>

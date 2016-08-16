@@ -1,7 +1,0 @@
-<svg viewBox="0 0 200 200">
-    <polygon vector-effect="non-scaling-stroke" points="160,190 40,190 57.6,147.5 79.6,138.4 81.2,142.2 100,150 118.8,142.2 120.4,138.4 142.4,147.5 "/>
-    <polygon vector-effect="non-scaling-stroke" points="126.7,103.3 126.7,123.3 120.4,138.4 118.8,142.2 100,150 81.2,142.2 79.6,138.4 73.3,123.3 73.3,103.3 81.2,84.5 100,76.7 118.8,84.5 "/>
-    <polygon vector-effect="non-scaling-stroke" points="25,85 35.6,89.4 40,100 35.6,110.6 25,115 14.4,110.6 10,100 14.4,89.4 "/>
-    <polygon vector-effect="non-scaling-stroke" points="100,12 115,38 85,38 "/>
-    <rect x="160" y="85" width="30" height="30"/>
-</svg>
