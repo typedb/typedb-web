@@ -8,7 +8,7 @@
   
   
   <url>
-    <loc>http://mindmaps.io/docs//graql/ask-queries</loc>
+    <loc>http://mindmaps.io/docs//graql/ask-queries.html</loc>
   </url>
   
   
@@ -26,13 +26,13 @@
   
   
   <url>
-    <loc>http://mindmaps.io/docs//graql/delete-queries</loc>
+    <loc>http://mindmaps.io/docs//graql/delete-queries.html</loc>
   </url>
   
   
   
   <url>
-    <loc>http://mindmaps.io/docs//overview/downloads</loc>
+    <loc>http://mindmaps.io/docs//overview/downloads.html</loc>
   </url>
   
   
@@ -40,13 +40,13 @@
   
   
   <url>
-    <loc>http://mindmaps.io/docs//overview/getting_started</loc>
+    <loc>http://mindmaps.io/docs//overview/getting_started.html</loc>
   </url>
   
   
   
   <url>
-    <loc>http://mindmaps.io/docs//graql/graql-shell</loc>
+    <loc>http://mindmaps.io/docs//graql/graql-shell.html</loc>
   </url>
   
   
@@ -58,25 +58,25 @@
   
   
   <url>
-    <loc>http://mindmaps.io/docs//graql/insert-queries</loc>
+    <loc>http://mindmaps.io/docs//graql/insert-queries.html</loc>
   </url>
   
   
   
   <url>
-    <loc>http://mindmaps.io/docs//graql/java-graql</loc>
+    <loc>http://mindmaps.io/docs//graql/java-graql.html</loc>
   </url>
   
   
   
   <url>
-    <loc>http://mindmaps.io/docs//graql/match-queries</loc>
+    <loc>http://mindmaps.io/docs//graql/match-queries.html</loc>
   </url>
   
   
   
   <url>
-    <loc>http://mindmaps.io/docs//overview/mindmaps_basics</loc>
+    <loc>http://mindmaps.io/docs//overview/mindmaps_basics.html</loc>
   </url>
   
   
@@ -88,25 +88,25 @@
   
   
   <url>
-    <loc>http://mindmaps.io/docs//overview/overview</loc>
+    <loc>http://mindmaps.io/docs//overview/overview.html</loc>
   </url>
   
   
   
   <url>
-    <loc>http://mindmaps.io/docs//graql/overview</loc>
+    <loc>http://mindmaps.io/docs//graql/overview.html</loc>
   </url>
   
   
   
   <url>
-    <loc>http://mindmaps.io/docs//overview/quickstart_tutorial</loc>
+    <loc>http://mindmaps.io/docs//overview/quickstart_tutorial.html</loc>
   </url>
   
   
   
   <url>
-    <loc>http://mindmaps.io/docs//overview/quickstart_tutorial_java</loc>
+    <loc>http://mindmaps.io/docs//overview/quickstart_tutorial_java.html</loc>
   </url>
   
   
@@ -126,13 +126,13 @@
   
   
   <url>
-    <loc>http://mindmaps.io/docs//overview/troubleshooting</loc>
+    <loc>http://mindmaps.io/docs//overview/troubleshooting.html</loc>
   </url>
   
   
   
   <url>
-    <loc>http://mindmaps.io/docs//core/tutorial</loc>
+    <loc>http://mindmaps.io/docs//core/tutorial.html</loc>
   </url>
   
   
