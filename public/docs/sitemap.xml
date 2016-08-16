@@ -14,7 +14,13 @@
   
   
   <url>
-    <loc>http://mindmaps.io/docs//defining-schema.html</loc>
+    <loc>http://mindmaps.io/docs//core/defining-schema-advanced.html</loc>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://mindmaps.io/docs//core/defining-schema-simple.html</loc>
   </url>
   
   
@@ -82,13 +88,13 @@
   
   
   <url>
-    <loc>http://mindmaps.io/docs//graql/overview</loc>
+    <loc>http://mindmaps.io/docs//overview/overview</loc>
   </url>
   
   
   
   <url>
-    <loc>http://mindmaps.io/docs//overview/overview</loc>
+    <loc>http://mindmaps.io/docs//graql/overview</loc>
   </url>
   
   

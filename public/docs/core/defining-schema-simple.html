@@ -3,9 +3,9 @@
     <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content=" The Graql shell is used to execute Graql queries from the command line, or to let Graql be invoked from other applications.">
-<meta name="keywords" content="graql,  graql, shell">
-<title>Graql Shell | MindmapsDB</title>
+<meta name="description" content="Demonstrates how to create a schema for a Mindmaps knowledge graph">
+<meta name="keywords" content="core,  core, schema">
+<title>Defining a Schema | MindmapsDB</title>
 <link rel="stylesheet" href="/docs/css/syntax.css">
 
 
@@ -161,7 +161,7 @@
                             
                             dataSource: '/docs/search.json',
                             
-                            searchResultTemplate: '<li><a href="{url}" title="Graql Shell">{title}</a></li>',
+                            searchResultTemplate: '<li><a href="{url}" title="Defining a Schema">{title}</a></li>',
                             noResultsText: '<li><a class="empty">No results found</a></li>',
                             limit: 10,
                             fuzzy: true
@@ -326,8 +326,8 @@
             
             
             
-            <!-- <li class="active"><a href="graqlgraql-shell">Graql Shell</a></li> -->
-            <li class="active"><a href="/docs/graql/graql-shell">Graql Shell</a></li>
+            <!-- <li><a href="graqlgraql-shell">Graql Shell</a></li> -->
+            <li><a href="/docs/graql/graql-shell">Graql Shell</a></li>
             
             
             
@@ -359,7 +359,7 @@
         <!-- Content Column -->
         <div class="col-md-9">
             <div class="post-header">
-   <h1 class="post-title-main">Graql Shell</h1>
+   <h1 class="post-title-main">Defining a Schema</h1>
 </div>
 
 
@@ -367,7 +367,7 @@
 <div class="post-content">
 
    
-    <div class="summary"> The Graql shell is used to execute Graql queries from the command line, or to let Graql be invoked from other applications.</div>
+    <div class="summary">Demonstrates how to create a schema for a Mindmaps knowledge graph</div>
    
 
     
@@ -399,100 +399,110 @@ $('#toc').on('click', 'a', function() {
 
     
 
-    <!-- <a target="_blank" href="https://github.com/mindmapsdb/docs/blob/master/pages/graql/graqlgraql-shell.md" class="btn btn-default githubEditButton" role="button"><i class="fa fa-github fa-lg"></i> Edit me</a> -->
-    <a target="_blank" href="https://github.com/mindmapsdb/docs/blob/master/pages/graql/graql-shell.md" class="btn btn-default githubEditButton" role="button"><i class="fa fa-github fa-lg"></i> Edit me</a>
+    <!-- <a target="_blank" href="https://github.com/mindmapsdb/docs/blob/master/pages/core/coredefining-schema-simple.html.md" class="btn btn-default githubEditButton" role="button"><i class="fa fa-github fa-lg"></i> Edit me</a> -->
+    <a target="_blank" href="https://github.com/mindmapsdb/docs/blob/master/pages/core/defining-schema-simple.html.md" class="btn btn-default githubEditButton" role="button"><i class="fa fa-github fa-lg"></i> Edit me</a>
 
     
 
     
 
-  <p>The Graql shell is contained in the <code class="highlighter-rouge">bin</code> folder.</p>
+  <h1 id="mindmaps-schema">Mindmaps Schema</h1>
 
-<p>After starting the Mindmaps server, you can execute the shell without any
-parameters to open a REPL (Read Evaluate Print Loop):</p>
+<p>Defining a schema for your graph allows you to:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>bin/graql.sh
-<span class="gp">&gt;&gt;&gt; </span>match <span class="nv">$x</span> id <span class="s2">"Pikachu"</span>;
-<span class="nv">$x</span> id <span class="s2">"Pikachu"</span> isa pokemon;
+<ul>
+  <li>Control how your data relates to each other</li>
+  <li>Ensure your graph is consistent</li>
+  <li>Design domain specific knowledge graphs</li>
+</ul>
+
+<p>In Mindmaps, a schema is defined by adding <strong>types</strong> to your graph. 
+These <strong>types</strong> allow you to divide your  data into different categories but also control how data instances may relate to each other.</p>
+
+<p>In this section we will review each of these types and explain how you use them when defining a Mindmaps graph.</p>
+
+<h2 id="basic-type-definitions">Basic Type Definitions</h2>
+
+<p>This section describes basic types which are <strong>essential</strong> to a Mindmaps schema. 
+When creating a Mindmaps knowledge graph you should always begin with defining these schema elements.</p>
+
+<h3 id="entity-type">Entity Type</h3>
+
+<p>Entity types essentially define a broad category which data can fall with in. For example Al Pacino, Patrick Stewart, 
+and Charlize Theron could all be categorised as people. 
+Similarly we could say that Godfather, Star Treck Nemisis, and Monster can all be categorised as movies.</p>
+
+<p>We would define such <strong>Entity Types</strong> as follows:</p>
+
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">EntityType</span> <span class="n">person</span> <span class="o">=</span> <span class="n">mindmapsTransaction</span><span class="o">.</span><span class="na">putEntityType</span><span class="o">(</span><span class="s">"Person"</span><span class="o">);</span>
+<span class="n">EntityType</span> <span class="n">movie</span> <span class="o">=</span> <span class="n">mindmapsTransaction</span><span class="o">.</span><span class="na">putEntityType</span><span class="o">(</span><span class="s">"Movie"</span><span class="o">);</span>
 </code></pre>
 </div>
 
-<p>The user can enter a query and press enter for it to be evaluated. <code class="highlighter-rouge">match</code>
-queries will return the first hundred results, <code class="highlighter-rouge">ask</code> queries will return <code class="highlighter-rouge">true</code>
-or <code class="highlighter-rouge">false</code>. <code class="highlighter-rouge">insert</code> queries will output the concept IDs they are inserting.
-<code class="highlighter-rouge">delete</code> queries will execute with no output.</p>
+<p>With this we can arrange our data into categories:</p>
 
-<p>The interactive shell commits to the graph only when the user type <code class="highlighter-rouge">commit</code>.</p>
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">alPacino</span> <span class="o">=</span> <span class="n">mindmapsTransaction</span><span class="o">.</span><span class="na">addEntity</span><span class="o">(</span><span class="n">person</span><span class="o">).</span><span class="na">setValue</span><span class="o">(</span><span class="s">"Al Pacino"</span><span class="o">);</span>
+<span class="n">patrickStewart</span> <span class="o">=</span> <span class="n">mindmapsTransaction</span><span class="o">.</span><span class="na">addEntity</span><span class="o">(</span><span class="n">person</span><span class="o">).</span><span class="na">setValue</span><span class="o">(</span><span class="s">"Patrick Stewart"</span><span class="o">);</span>
+<span class="n">charliseTheron</span> <span class="o">=</span> <span class="n">mindmapsTransaction</span><span class="o">.</span><span class="na">addEntity</span><span class="o">(</span><span class="n">person</span><span class="o">).</span><span class="na">setValue</span><span class="o">(</span><span class="s">"Charlise Theron"</span><span class="o">);</span>
 
-<p>The REPL features several special commands:
-- <code class="highlighter-rouge">commit</code> - Commits and validates the graph. If validation fails, the graph
-  will not commit.
-- <code class="highlighter-rouge">edit</code> - Opens the user’s default text editor, specified by the <code class="highlighter-rouge">$EDITOR</code>
-  environment variable. By default set to <code class="highlighter-rouge">vim</code>. When the editor exits, the
-  query is executed in the shell.
-- <code class="highlighter-rouge">load &lt;filename&gt;</code> - Executes the given file containing a Graql query.
-- <code class="highlighter-rouge">clear</code> - Clears the console window
-- <code class="highlighter-rouge">license</code> - Prints the license</p>
+<span class="n">godfather</span> <span class="o">=</span> <span class="n">mindmapsTransaction</span><span class="o">.</span><span class="na">addEntity</span><span class="o">(</span><span class="n">movie</span><span class="o">).</span><span class="na">setValue</span><span class="o">(</span><span class="s">"Godfather"</span><span class="o">);</span>
+<span class="n">starTreck</span> <span class="o">=</span> <span class="n">mindmapsTransaction</span><span class="o">.</span><span class="na">addEntity</span><span class="o">(</span><span class="n">movie</span><span class="o">).</span><span class="na">setValue</span><span class="o">(</span><span class="s">"Star Treck Nemisis"</span><span class="o">);</span>
+<span class="n">monster</span> <span class="o">=</span> <span class="n">mindmapsTransaction</span><span class="o">.</span><span class="na">addEntity</span><span class="o">(</span><span class="n">movie</span><span class="o">).</span><span class="na">setValue</span><span class="o">(</span><span class="s">"Monster"</span><span class="o">);</span>
+</code></pre>
+</div>
 
-<h2 id="arguments">Arguments</h2>
+<h3 id="relation-and-role-types">Relation and Role Types</h3>
 
-<p>The Graql shell accepts several arguments:</p>
+<p>The greatest advantage of a graph database is the expressiveness of the relationships between data. 
+With Mindmaps we can control how our data relates to each other.</p>
 
-<table>
-  <thead>
-    <tr>
-      <th>Long Option</th>
-      <th>Option</th>
-      <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>–name</td>
-      <td>-n</td>
-      <td>The name of the graph.</td>
-    </tr>
-    <tr>
-      <td>–execute</td>
-      <td>-e</td>
-      <td>A query to execute.</td>
-    </tr>
-    <tr>
-      <td>–file</td>
-      <td>-f</td>
-      <td>A path to a file containg a query to execute.</td>
-    </tr>
-    <tr>
-      <td>–help</td>
-      <td>-h</td>
-      <td>Print usage message</td>
-    </tr>
-    <tr>
-      <td>–version</td>
-      <td>-v</td>
-      <td>Print version</td>
-    </tr>
-  </tbody>
-</table>
+<p>For example how can we say that Patrick Stewart starred in Star Treck Nemisis ? 
+To be able to do so we must first allow such behaviour between our types. 
+We begin doing this by defining a <strong>Relation Type</strong> which categorises the relationships of a specific type. 
+For example:</p>
 
-<p>If either <code class="highlighter-rouge">--execute</code> or <code class="highlighter-rouge">--file</code> is provided, the REPL will not open and the
-graph will be automatically committed.</p>
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">RelationType</span> <span class="n">starsIn</span> <span class="o">=</span> <span class="n">mindmapsTransaction</span><span class="o">.</span><span class="na">putRelationType</span><span class="o">(</span><span class="s">"Stars In"</span><span class="o">);</span>
+</code></pre>
+</div>
 
-<h2 id="document-changelog">Document Changelog</h2>
+<p>In addition to this we have to specify the roles of relationship:</p>
 
-<table>
-    <tr>
-        <td>Version</td>
-        <td>Date</td>
-        <td>Description</td>        
-    </tr>
-    <tr>
-        <td>v1</td>
-        <td>11/08/2016</td>
-        <td>New page for developer portal.</td>        
-    </tr>
-    
-</table>
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">RoleType</span> <span class="n">actor</span> <span class="o">=</span> <span class="n">mindmapsTrancation</span><span class="o">.</span><span class="na">putRoleType</span><span class="o">(</span><span class="s">"Actor"</span><span class="o">);</span>
+<span class="n">RoleType</span> <span class="n">movieCastIn</span> <span class="o">=</span> <span class="n">mindmapsTrancation</span><span class="o">.</span><span class="na">putRoleType</span><span class="o">(</span><span class="s">"Movie Cast In"</span><span class="o">);</span>
+</code></pre>
+</div>
+
+<p>We also have to link these roles to the correct <strong>Relaiton Type</strong> (NB Roles are unique and cannot be in more than one 
+Relation Type):</p>
+
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">starsIn</span><span class="o">.</span><span class="na">hasRole</span><span class="o">(</span><span class="n">actor</span><span class="o">).</span><span class="na">hasRole</span><span class="o">(</span><span class="n">movieCastIn</span><span class="o">);</span> 
+</code></pre>
+</div>
+
+<p>Finally we have to explicitly define which <strong>Entity Typpes</strong> are allowed to play which <strong>*Role Types</strong>:</p>
+
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">person</span><span class="o">.</span><span class="na">playsRole</span><span class="o">(</span><span class="n">actor</span><span class="o">);</span>
+<span class="n">movie</span><span class="o">.</span><span class="na">playsRolw</span><span class="o">(</span><span class="n">movieCastIn</span><span class="o">);</span>
+</code></pre>
+</div>
+
+<p>The above statements allow people to be actors and allow movies to have actors cast in them.</p>
+
+<p><strong>Note:</strong> Explicitly specifying which <strong>Role Types</strong> an <strong>Entity Type</strong> can play allows us to control our data more easily. 
+Essentially it would prevent us from accidentally saying that a movie starred in another movie.</p>
+
+<p>Now finally we can specify that Patrick Stewart was in Star Treck Nemisis. 
+First we create an instance of the Relation Type:</p>
+
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">Relation</span> <span class="n">relation</span> <span class="o">=</span> <span class="n">mindmapsTransaction</span><span class="o">.</span><span class="na">addRelation</span><span class="o">(</span><span class="n">starsIn</span><span class="o">);</span>
+</code></pre>
+</div>
+
+<p>Then we specify who is playing which role:</p>
+
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">relation</span><span class="o">.</span><span class="na">putRolePlayer</span><span class="o">(</span><span class="n">actor</span><span class="o">,</span> <span class="n">patrickStewart</span><span class="o">).</span><span class="na">putRolePlayer</span><span class="o">(</span><span class="n">movieCastIn</span><span class="o">,</span> <span class="n">startreck</span><span class="o">);</span>
+</code></pre>
+</div>
 
 
     <div class="tags">
@@ -500,8 +510,6 @@ graph will be automatically committed.</p>
         <b>Tags: </b>
         
         
-        
-        <a href="/docs/tag_graql.html" class="btn btn-default navbar-btn cursorNorm" role="button">graql</a>
         
         
         
@@ -532,7 +540,7 @@ graph will be automatically committed.</p>
         <br>
         <p>© 2016 <a href="http://minadmaps.io">Mindmaps Research Ltd</a></p>
         <!-- &copy;2016 MindmapsDB. All rights reserved. <br />
-        <span>Page last updated:</span> August 11, 2016<br/> Site last generated: Aug 12, 2016 <br />
+        <span>Page last updated:</span> August 15, 2016<br/> Site last generated: Aug 16, 2016 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">

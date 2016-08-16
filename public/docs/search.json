@@ -15,10 +15,21 @@
 
 
 {
-"title": "Defining a Schema",
-"tags": "",
+"title": "Defining an Advanced Schema",
+"tags": "core",
 "keywords": "core, schema",
-"url": "defining-schema.html",
+"url": "coredefining-schema-advanced.html",
+"summary": "Demonstrates how to create an Advanced schema for a Mindmaps knowledge graph"
+}
+,
+
+
+
+{
+"title": "Defining a Schema",
+"tags": "core",
+"keywords": "core, schema",
+"url": "coredefining-schema-simple.html",
 "summary": "Demonstrates how to create a schema for a Mindmaps knowledge graph"
 }
 ,
@@ -138,22 +149,22 @@
 
 
 {
-"title": "Graql Overview",
-"tags": "graql",
-"keywords": "graql, overview",
-"url": "graqloverview",
-"summary": "An introduction to Graql"
+"title": "How does Mindmaps work",
+"tags": "getting_started",
+"keywords": "setup, getting started",
+"url": "overviewoverview",
+"summary": "A platform-level overview of MindmapsDB."
 }
 ,
 
 
 
 {
-"title": "How does Mindmaps work",
-"tags": "getting_started",
-"keywords": "setup, getting started",
-"url": "overviewoverview",
-"summary": "A platform-level overview of MindmapsDB."
+"title": "Graql Overview",
+"tags": "graql",
+"keywords": "graql, overview",
+"url": "graqloverview",
+"summary": "An introduction to Graql"
 }
 ,
 
@@ -211,7 +222,7 @@
 "tags": "",
 "keywords": "core, overview",
 "url": "coretutorial",
-"summary": "MindmapsDB Core Overview"
+"summary": "MindmapsDB Core Tutorial. Runs through a basic example of how to use Mindmaps Core API."
 }
 
 
