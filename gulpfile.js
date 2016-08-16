@@ -50,8 +50,8 @@ gulp.task('build-js', function() {
             fileName: 'mndmps1.min.js',
             compilerFlags: {
                 language_in: 'ES5',
-                //compilation_level: 'WHITESPACE_ONLY',
-                compilation_level: 'SIMPLE_OPTIMIZATIONS',
+                compilation_level: 'WHITESPACE_ONLY',
+                //compilation_level: 'SIMPLE_OPTIMIZATIONS',
                 warning_level: 'QUIET'
             }
         }))
@@ -65,6 +65,8 @@ gulp.task('build-js', function() {
 gulp.task('build-new-js', function() {
     return gulp.src([
             'source/js/jquery-3.0.0.js',
+            'source/js/hammer.js',
+            'source/js/hammer-time.js',
             'source/js/d3.js',
             'source/js/atvImg.js',
             'source/js/typed.js',
@@ -82,7 +84,6 @@ gulp.task('build-new-js', function() {
             'source/js/modal.js',
             'source/js/map.js',
             'source/js/careers.js',
-            'source/js/docs.js',
             'source/js/main.js'
         ])
         .pipe(closureCompiler({
@@ -90,8 +91,8 @@ gulp.task('build-new-js', function() {
             fileName: 'mndmps.min.js',
             compilerFlags: {
                 language_in: 'ES5',
-                //compilation_level: 'WHITESPACE_ONLY',
-                compilation_level: 'SIMPLE_OPTIMIZATIONS',
+                compilation_level: 'WHITESPACE_ONLY',
+                //compilation_level: 'SIMPLE_OPTIMIZATIONS',
                 warning_level: 'QUIET'
             }
         }))
@@ -126,13 +127,13 @@ gulp.task('build-html', function() {
 
 gulp.task('watch', function() {
     gulp.watch('source/css/*.scss', ['build-new-css']);
-    gulp.watch('source/css1/*.scss', ['build-css']);
+    //gulp.watch('source/css1/*.scss', ['build-css']);
     gulp.watch('source/js/*.js', ['build-new-js']);
-    gulp.watch('source/js1/*.js', ['build-js']);
+    //gulp.watch('source/js1/*.js', ['build-js']);
     gulp.watch('source/html/*.html', ['build-html']);
 });
 
-gulp.start('build-css', 'build-new-css', 'build-js', 'build-new-js', 'build-html');
+gulp.start(/*'build-css', */'build-new-css',/* 'build-js',*/ 'build-new-js', 'build-html');
 
 gulp.task('default', ['watch'], function() {
     return gutil.log('Gulp gulp gulp...');

@@ -1,0 +1,11 @@
+<svg viewBox="0 0 200 200">
+     <line vector-effect="non-scaling-stroke" x1="37.1" y1="117.1" x2="46.4" y2="139.5"/>
+     <polyline vector-effect="non-scaling-stroke" points="70.5,163.6 110,180 166.5,156.5 190,100 173.6,60.4"/>
+     <polyline vector-effect="non-scaling-stroke" points="149.5,36.3 110,20 53.5,43.4 37.1,82.9"/>
+     <polygon vector-effect="non-scaling-stroke" points="166.5,23.4 180.7,29.2 186.5,43.4 180.7,57.5 166.5,63.4 152.4,57.5 146.5,43.4 152.4,29.2"/>
+     <polygon vector-effect="non-scaling-stroke" points="53.5,136.5 67.6,142.4 73.5,156.5 67.6,170.7 53.5,176.5 39.3,170.7 33.5,156.5 39.3,142.4"/>
+     <polygon vector-effect="non-scaling-stroke" points="30,80 44.1,85.8 50,100 44.1,114.1 30,120 15.9,114.1 10,100 15.9,85.8"/>
+     <polyline vector-effect="non-scaling-stroke" points="145.6,27.1 149.5,36.3 140.2,40.1"/>
+     <polyline vector-effect="non-scaling-stroke" points="74.4,172.9 70.5,163.6 79.8,159.8"/>
+     <polyline vector-effect="non-scaling-stroke" points="33.3,126.3 37.1,117.1 46.3,120.9"/>
+ </svg>

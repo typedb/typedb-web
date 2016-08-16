@@ -25,6 +25,7 @@
                 height: 100%;
                 position: absolute;
                 top: 0;
+                overflow: hidden;
 
                 @for $i from 0 through 4 {
                     &:nth-child(#{$i+1}){
