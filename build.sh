@@ -11,7 +11,7 @@ git submodule update --remote docs
 #grunt ??
 
 echo Building documentation pages
-export uriprefix=/docs
+export urlprefix=/docs
 cd docs
 rake build
 cd ..
