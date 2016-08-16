@@ -2,9 +2,18 @@
 
 window.MNDMPS = window.MNDMPS || {};
 
+/**
+ * Main object with a bunch of stuff that is used on the web site.
+ */
+
 window.MNDMPS.App = {
 
     _data: {},
+
+    /**
+     * Initialises the typing text on the home page
+     * Uses typed.js library
+     */
 
     typist: function() {
         var data = this._data;
@@ -38,6 +47,11 @@ window.MNDMPS.App = {
         data.typist.push(advantagesTypist);
     },
 
+    /**
+     * Initialises the code highlighter for code and graph examples on the home page
+     * Uses prism.js library
+     */
+
     initPrism: function() {
 
         var textareas = document.getElementsByClassName('code-input');
@@ -67,6 +81,12 @@ window.MNDMPS.App = {
             listenerForScroll(textareas[i]);
         }
     },
+
+    /**
+     * Initialises the real-time stats svg animation for "Why use MindmapsDB?" section
+     *
+     * @param {object} node - The html node to append the graph to
+     */
 
     initRealTimeAnalytics: function(node) {
 
@@ -193,6 +213,12 @@ window.MNDMPS.App = {
         tick();
     },
 
+    /**
+     * Initialises the graph svg animation for "Why use MindmapsDB?" section
+     *
+     * @param {object} node - The html node to append the graph to
+     */
+
     initImplicitData: function(node) {
 
         var width = node.offsetWidth,
@@ -234,11 +260,19 @@ window.MNDMPS.App = {
         moveMask();
     },
 
+    /**
+     * Initialises the "Why use MindmapsDB?" section
+     */
+
     initAdvantages: function() {
 
         this.initRealTimeAnalytics(document.getElementsByClassName('advantages-realtime')[0]);
         this.initImplicitData(document.getElementsByClassName('advantages-discover')[0]);
     },
+
+    /**
+     * Initialises everything we need on the website and the home page
+     */
 
     init: function() {
 
@@ -270,7 +304,7 @@ window.MNDMPS.App = {
 
             this.initPrism();
 
-            // Initialising SVG
+            // Initialising SVGs
 
             for (var i = 0; i < graqlSvgContainers.length; i++) {
                 if (window.MNDMPS.Graph._data.homepageGraphs[i]) {
@@ -314,6 +348,8 @@ window.MNDMPS.App = {
                 getMindmapsButton[i].addEventListener('click', window.MNDMPS.Modal.open, false);
             }
         }
+
+        // Team photos on the About page
 
         if (document.getElementsByClassName('team-wrapper')[0]) {
             atvImg();

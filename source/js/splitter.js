@@ -2,11 +2,21 @@
 
 window.MNDMPS = window.MNDMPS || {};
 
+/**
+ * Splitter used for the code and svg examples block on the home page
+ */
+
 window.MNDMPS.Splitter = {
 
     _data: {
         transitionXRegex: /\.*translateX\((.*)px\)/i
     },
+
+    /**
+     * Returns left (min) and right (max) limits for the splitter
+     *
+     * @param {object} view - The html wrapping node of the splitter
+     */
 
     posLimits: function(view) {
         return {
@@ -14,6 +24,13 @@ window.MNDMPS.Splitter = {
             max: view.offsetWidth * 0.95
         };
     },
+
+    /**
+     * Returns parsed values for splitter positions
+     *
+     * @param {object} view - The html wrapping node of the splitter
+     * @param {(number|string)} pos - Split position
+     */
 
     sanitisePos: function(view, pos) {
         var posLimits = this.posLimits(view);
@@ -26,6 +43,14 @@ window.MNDMPS.Splitter = {
 
         return pos;
     },
+
+    /**
+     * Changes clipping parametres for the clipped block
+     *
+     * @param {object} obj - A set of parametres
+     * @param {object} obj.splitter - The splitter html node
+     * @param {(number|string)} obj.pos - New clipping position
+     */
 
     moveClip: function(obj) {
         var view = obj.splitter.parentNode.parentNode.parentNode,
@@ -40,6 +65,14 @@ window.MNDMPS.Splitter = {
         }
     },
 
+    /**
+     * Moves the splitter knob
+     *
+     * @param {object} obj - A set of parametres
+     * @param {object} obj.splitter - The splitter object
+     * @param {(number|string)} obj.pos - New clipping position
+     */
+
     moveKnob: function(obj) {
         var pos = this.sanitisePos(obj.splitter.view, obj.pos);
 
@@ -47,9 +80,22 @@ window.MNDMPS.Splitter = {
         obj.splitter.dragger.style.transform = 'translateX(' + pos + 'px)';
     },
 
+    /**
+     * Sets the new splitter wrapper width.
+     * Usually happens on window resize.
+     *
+     * @param {object} splitter - The splitter object
+     */
+
     setNewContainerWidth: function(splitter) {
         splitter.view.setAttribute('data-width', splitter.view.offsetWidth);
     },
+
+    /**
+     * Returns the wrapper width change percentage
+     *
+     * @param {object} splitter - The splitter object
+     */
 
     getChangePercent: function(splitter) {
         var width = parseInt(splitter.view.getAttribute('data-width'), 10),
@@ -57,6 +103,14 @@ window.MNDMPS.Splitter = {
 
         return (newWidth - width) / width;
     },
+
+    /**
+     * Returns new clipping position based on the the new wrapper width
+     *
+     * @param {object} splitter - The splitter object
+     * @param {number} oldPos - The previous position
+     * @param {number} changePercent - The percantage the splitter with was changed
+     */
 
     getNewPos: function(splitter, oldPos, changePercent) {
         var newPos = null;
@@ -69,6 +123,11 @@ window.MNDMPS.Splitter = {
 
         return newPos;
     },
+
+    /**
+     * Changes all splitters width.
+     * Usually happens on window resize.
+     */
 
     resizeSplitters: function() {
 
@@ -103,6 +162,14 @@ window.MNDMPS.Splitter = {
         }
     },
 
+    /**
+     * Changes clipping position for all slides, visible or hidden
+     *
+     * @param {object} splitter - The splitter object
+     * @param {object} splitter.view - The splitter wrapper
+     * @param {array} splitter.slides - Slides
+     */
+
     processSlides: function(splitter) {
 
         var data = this._data,
@@ -123,12 +190,26 @@ window.MNDMPS.Splitter = {
         }
     },
 
+    /**
+     * Initialises the splitter knob dragging
+     *
+     * @param {object} obj - The splitter object
+     * @param {array} splitter.dragger - The knob node
+     * @param {object} splitter.view - The splitter wrapper
+     */
+
     initDragger: function(obj) {
 
         var _this = this,
             data = this._data,
             dragger = obj.dragger,
             view = obj.view;
+
+        /**
+         * Removes mouse and tiuch listeners from the document
+         *
+         * @param {object} event - The mouse or touch event
+         */
 
         function removeListeners(event) {
             document.removeEventListener('mousedown', removeListeners, false);
@@ -138,6 +219,13 @@ window.MNDMPS.Splitter = {
             document.removeEventListener('mousemove', drag, false);
             document.removeEventListener('touchmove', drag, false);
         }
+
+        /**
+         * Listens for mouse or touch movement while it is pressed.
+         * Moves the knob and updates clipping values.
+         *
+         * @param {object} event - The mouse or touch event
+         */
 
         function drag(event) {
 
@@ -173,8 +261,16 @@ window.MNDMPS.Splitter = {
             _this.processSlides(obj);
         }
 
+        /**
+         * Stores mouse or touch initial event point.
+         * Adds listeners to the document to follow the pointer movements.
+         *
+         * @param {object} event - The mouse or touch event
+         */
+
         function startDrag(event) {
 
+            // Uncomment this to remove automoving the knob after the first interaction with it
             /*if (obj.automoveHandler) {
                 _this.cancelAutomove(obj);
             }*/
@@ -209,6 +305,12 @@ window.MNDMPS.Splitter = {
         dragger.children[0].addEventListener('mousedown', startDrag, false);
         dragger.children[0].addEventListener('touchstart', startDrag, false);
     },
+
+    /**
+     * Creates and returns a splitter object from an html node
+     *
+     * @param {object} el - The splitter node
+     */
 
     create: function(el) {
 
@@ -252,9 +354,22 @@ window.MNDMPS.Splitter = {
         return splitter;
     },
 
+    /**
+     * Removes automoving the splitter knob
+     *
+     * @param {object} splitter - The splitter object
+     */
+
     cancelAutomove: function(splitter) {
         window.removeEventListener('scroll', splitter.automoveHandler, false);
     },
+
+    /**
+     * Initialises automoving the splitter knob
+     * Assings and adds a method to the splitter object
+     *
+     * @param {object} splitter - The splitter object
+     */
 
     initAutomove: function(splitter) {
         splitter.automoveHandler = function() {
@@ -286,6 +401,10 @@ window.MNDMPS.Splitter = {
 
         splitter.automoveHandler();
     },
+
+    /**
+     * Assigns the window resize listener to execute splitters resizing methods
+     */
 
     init: function() {
         window.addEventListener('resize', this.resizeSplitters, false);

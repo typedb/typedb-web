@@ -15,6 +15,8 @@ gulp.task('build-new-css', function() {
         }));
 });
 
+// The old CSS, deprecated
+
 gulp.task('build-css', function() {
     return gulp.src('source/css1/style1.scss')
         .pipe(sass({outputStyle: 'compressed'}))
@@ -24,6 +26,8 @@ gulp.task('build-css', function() {
             message: "CSS compiled"
         }));
 });
+
+// The old JS, deprecated
 
 gulp.task('build-js', function() {
     return gulp.src([

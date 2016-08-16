@@ -2,16 +2,24 @@
 
 window.MNDMPS = window.MNDMPS || {};
 
+/**
+ * Loads the Google map
+ */
+
 window.MNDMPS.Map = {
 
     data: {},
 
+    /**
+     * Centers the map on the specified location
+     *
+     * @param {object} map - The map object
+     * @param {object} latlng - The centre point
+     * @param {number} offsetx - The distance you want that point to move to the right, in pixels
+     * @param {number} offsety - The distance you want that point to move upwards, in pixels
+     */
+
     center: function(map, latlng, offsetx, offsety) {
-        // latlng is the apparent centre-point
-        // offsetx is the distance you want that point to move to the right, in pixels
-        // offsety is the distance you want that point to move upwards, in pixels
-        // offset can be negative
-        // offsetx and offsety are both optional
 
         if (!map.getBounds()) {
             return;
@@ -32,6 +40,11 @@ window.MNDMPS.Map = {
 
         map.setCenter(newCenter);
     },
+
+    /**
+     * Creates Google map object using specified options.
+     * Such as theme, marker, latitude and longitude.
+     */
 
     load: function() {
 

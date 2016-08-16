@@ -1,3 +1,8 @@
+/**
+ * Contains the Graql syntax highlighter for Prism.
+ * Written by Felix
+ */
+
 (function () {
     Prism.languages.graql = {
         comment: {

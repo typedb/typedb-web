@@ -2,9 +2,19 @@
 
 window.MNDMPS = window.MNDMPS || {};
 
+/**
+ * Tabbed view for the home page graph examples block
+ */
+
 window.MNDMPS.Tabs = {
 
     _data: {},
+
+    /**
+     * Adds mouse or touch listeners to tabs
+     *
+     * @param {object} tabbed - A tabbed view object
+     */
 
     initTabs: function(tabbed) {
 
@@ -14,6 +24,12 @@ window.MNDMPS.Tabs = {
         for (var i = 0; i < tabs.length; i++) {
             tabs[i].setAttribute('data-tabs-index', i);
         }
+
+        /**
+         * Switches active tab
+         *
+         * @param {object} event - A mouse or touch event
+         */
 
         function switchTab(event) {
             
@@ -46,6 +62,13 @@ window.MNDMPS.Tabs = {
         tabbed.tabs.addEventListener('click', switchTab, false);
     },
 
+    /**
+     * Goes through tabs and toggles the "active" class
+     *
+     * @param {object} tabbed - A tabbed view object
+     * @param {number} index - The active tab index
+     */
+
     processTabs: function(tabbed, index) {
 
         var content = tabbed.content.children;
@@ -56,6 +79,12 @@ window.MNDMPS.Tabs = {
 
         content[index].classList.add('active');
     },
+
+    /**
+     * Initialises the tabbed interface for specified html node
+     *
+     * @param {object} el - The tabbed view html node
+     */
 
     init: function(el) {
 

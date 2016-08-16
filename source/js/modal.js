@@ -2,9 +2,18 @@
 
 window.MNDMPS = window.MNDMPS || {};
 
+/**
+ * Operates modal windows
+ */
+
 window.MNDMPS.Modal = {
 
     _data: {},
+
+    /**
+     * Displays modal window.
+     * There can be only one window, so it doesn't accept any parametres.
+     */
 
     open: function() {
 
@@ -29,6 +38,10 @@ window.MNDMPS.Modal = {
         }, 25);
     },
 
+    /**
+     * Hides modal window
+     */
+
     close: function() {
 
         var _this = window.MNDMPS.Modal,
@@ -45,6 +58,10 @@ window.MNDMPS.Modal = {
         }, 200);
     },
 
+    /**
+     * Listens for key events and if the key is "Escape", closes the modal window
+     */
+
     closeByKey: function(event) {
 
         var _this = window.MNDMPS.Modal;
@@ -53,6 +70,12 @@ window.MNDMPS.Modal = {
             _this.close();
         }
     },
+
+    /**
+     * Resets the subscription form that is used as promotional stuff instead of the link to the repo
+     *
+     * @param {object} form - The html node of the form
+     */
 
     resetForm: function(form) {
 
@@ -70,6 +93,10 @@ window.MNDMPS.Modal = {
         data.sendButton.classList.remove('disabled');
         data.sendButton.classList.remove('done');
     },
+
+    /**
+     * Initialises the modal window environment
+     */
 
     init: function() {
 
@@ -116,7 +143,5 @@ window.MNDMPS.Modal = {
         }, false);
 
         document.addEventListener('keydown', this.closeByKey, false);
-
-        //dontScrollParent(data.underlay);
     }
 };

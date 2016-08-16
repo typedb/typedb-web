@@ -2,7 +2,17 @@
 
 window.MNDMPS = window.MNDMPS || {};
 
+/**
+ * Several methods that are used across the website
+ */
+
 window.MNDMPS.Helpers = {
+
+    /**
+     * Returns the position of an element relative to the document
+     *
+     * @param {object} el - An html element
+     */
 
     getPosition: function(el) {
 
@@ -31,6 +41,12 @@ window.MNDMPS.Helpers = {
         };
     },
 
+    /**
+     * Stops event from bubbling
+     *
+     * @param {object} event - An event to stop
+     */
+
     pauseEvent: function(event) {
         
         if (event.stopPropagation) {
@@ -46,6 +62,13 @@ window.MNDMPS.Helpers = {
         
         return false;
     },
+
+    /**
+     * Serializes object to a form
+     * Used when we need to send a form as a payload to the server
+     *
+     * @param {object} el - An object with properties we need to serialize
+     */
 
     serializeObject: function(el) {
 
@@ -71,6 +94,14 @@ window.MNDMPS.Helpers = {
     }
 };
 
+/**
+ * Returns the property that is assumably correct
+ *
+ * @param {number} n_win - Window value
+ * @param {number} n_docel - Document element value
+ * @param {number} n_body - Body value
+ */
+
 function f_filterResults(n_win, n_docel, n_body) {
     var n_result = n_win ? n_win : 0;
 
@@ -81,6 +112,10 @@ function f_filterResults(n_win, n_docel, n_body) {
     return n_body && (!n_result || (n_result > n_body)) ? n_body : n_result;
 }
 
+/**
+ * Returns the window width
+ */
+
 function f_clientWidth() {
     return f_filterResults (
         window.innerWidth ? window.innerWidth : 0,
@@ -88,6 +123,10 @@ function f_clientWidth() {
         document.body ? document.body.clientWidth : 0
     );
 }
+
+/**
+ * Returns the window height
+ */
 
 function f_clientHeight() {
     return f_filterResults (
@@ -97,6 +136,10 @@ function f_clientHeight() {
     );
 }
 
+/**
+ * Returns the window horizontal scroll
+ */
+
 function f_scrollLeft() {
     return f_filterResults (
         window.pageXOffset ? window.pageXOffset : 0,
@@ -104,6 +147,10 @@ function f_scrollLeft() {
         document.body ? document.body.scrollLeft : 0
     );
 }
+
+/**
+ * Returns the window vertical scroll
+ */
 
 function f_scrollTop() {
     return f_filterResults (

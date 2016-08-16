@@ -2,6 +2,10 @@
 
 window.MNDMPS = window.MNDMPS || {};
 
+/**
+ * Slider for "Building intelligent systems for complex data is now easy" section
+ */
+
 window.MNDMPS.Slider = {
 
     _data: {
@@ -9,6 +13,10 @@ window.MNDMPS.Slider = {
         minTabOpacity: 0.4,
         tabSpeed: 200
     },
+
+    /**
+     * Updates parametres and then scroll position
+     */
 
     updateParams: function() {
 
@@ -24,6 +32,10 @@ window.MNDMPS.Slider = {
         _this.processScroll();
     },
 
+    /**
+     * Returns scroller knob position
+     */
+
     getKnobPosition: function() {
 
         var _this = window.MNDMPS.Slider,
@@ -31,6 +43,11 @@ window.MNDMPS.Slider = {
 
         return data.wrapper.scrollLeft/data.scrolledPercent;
     },
+
+    /**
+     * Checks the scroll position.
+     * Changes the knob position and tabs opacity.
+     */
 
     processScroll: function() {
 
@@ -42,6 +59,12 @@ window.MNDMPS.Slider = {
 
         _this.processTabs(knobPosition);
     },
+
+    /**
+     * Switches the scroller tab
+     *
+     * @param {(object|number)} event - The click event or the tab index to switch to
+     */
 
     switchTab: function(event) {
 
@@ -66,6 +89,12 @@ window.MNDMPS.Slider = {
             }
         });
     },
+
+    /**
+     * Changes tabs opacity depending on the scroll position
+     *
+     * @param {number} pos - Scroll position
+     */
 
     processTabs: function(pos) {
 
@@ -101,6 +130,16 @@ window.MNDMPS.Slider = {
         }
     },
 
+    /**
+     * Animates the switching transition between tabs.
+     * Currently used for swipe.
+     *
+     * @param {object} obj - Set of paranetres
+     * @param {object} obj.warpperPos - Scroller wrapper position relative to the viewport
+     * @param {object} obj.eventPos - Touch event position relative to the viewport
+     * @param {number} obj.dir - Swipe direction
+     */
+
     springTabs: function(obj) {
 
         var _this = this,
@@ -121,6 +160,12 @@ window.MNDMPS.Slider = {
                 });
             }
         }
+
+        /**
+         * Based on the direction and number of visible slides executes transition to the next slide
+         *
+         * @param {number} dir - Either 1 or -1 to get the meighbour element of the currently active slide
+         */
 
         function slide(dir) {
             if (activeTabs.length > 1) {
@@ -150,6 +195,11 @@ window.MNDMPS.Slider = {
         }
     },
 
+    /**
+     * Initialises the swipe listener.
+     * Uses hammer.js library.
+     */
+
     initSwipe: function() {
 
         var _this = this,
@@ -164,7 +214,7 @@ window.MNDMPS.Slider = {
         data.hammerEl.on('swipe', function(event) {
 
             event.preventDefault();
-            
+
             _this.springTabs({
                 warpperPos: event.target.getBoundingClientRect(),
                 eventPos: event.center,
@@ -172,6 +222,11 @@ window.MNDMPS.Slider = {
             });
         });
     },
+
+    /**
+     * Initialises the slider.
+     * Slide transitions use shifty.js library.
+     */
 
     init: function() {
 

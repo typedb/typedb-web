@@ -2,9 +2,19 @@
 
 window.MNDMPS = window.MNDMPS || {};
 
+/**
+ * Does all the stuff with the top navigation bar
+ */
+
 window.MNDMPS.Nav = {
 
     _data: {},
+
+    /**
+     * Toggles the navbar background colour
+     *
+     * @param {boolean} state - Specifies whether to make background colour white
+     */
 
     toggleWhite: function(state) {
 
@@ -13,6 +23,11 @@ window.MNDMPS.Nav = {
 
         data.nav.classList[action]('white');
     },
+
+    /**
+     * Checks the scrolled value of the window
+     * If it's more than 20px (wow, such subtle), toggles the navbar white colour
+     */
 
     checkPosition: function() {
 
@@ -27,6 +42,11 @@ window.MNDMPS.Nav = {
         }
     },
 
+    /**
+     * Checks the window width.
+     * If it's more than 750, removes the active class from navbar wrapper.
+     */
+
     checkWidth: function() {
 
         var _this = window.MNDMPS.Nav,
@@ -36,6 +56,12 @@ window.MNDMPS.Nav = {
             data.menu.classList.remove('active');
         }
     },
+
+    /**
+     * Toggles the expaned state of the navbar
+     *
+     * @param {object} event - Usually a click event, that is propagated either from the toggler or from the dark menu background
+     */
 
     toggleMenu: function(event) {
 
@@ -52,6 +78,10 @@ window.MNDMPS.Nav = {
             event.stopPropagation();
         }
     },
+
+    /**
+     * Initialises everything the top navbar needs
+     */
 
     init: function() {
 

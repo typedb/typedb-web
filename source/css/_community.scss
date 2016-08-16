@@ -73,16 +73,6 @@
         height: 50vh;
         box-sizing: border-box;
 
-        .background{
-            position: absolute;
-            top: 0;
-            left: 0;
-            z-index: 0;
-            background: url(/img/community.jpg) no-repeat center center;
-            background-size: cover;
-            opacity: 0.2;
-        }
-
         .row{
             position: relative;
             z-index: 1;
