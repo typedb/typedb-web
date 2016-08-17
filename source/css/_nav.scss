@@ -242,6 +242,12 @@
             padding-top: 40px;
         }
     }
+    &.navbar {
+        background-color: #6aae9b;
+        background: linear-gradient(160deg, #4da5c5 0%, #6aae9b 100%);
+        border: none;
+        box-shadow: 0 1px 2px 0 rgba(56, 56, 56, 0.2);
+    }
 }
 
 /* Larger than mobile */

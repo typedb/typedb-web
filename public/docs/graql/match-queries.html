@@ -120,10 +120,24 @@
                 
                 
                 
+                <li><a href="index.html">Documentation</a></li>
+                
+                
+                
                 <!-- entries with drop-downs appear here -->
                 <!-- conditional logic to control which topnav appears for the audience defined in the configuration file.-->
                 
                 
+                <!-- <li class="dropdown">
+                    <a>Documentation</a>
+                    <ul>
+                        <li><a href="#">Overview</a></li>
+                        <li><a href="#">Core API</a></li>
+                        <li><a href="#">Graql API</a></li>
+                        <li><a href="#">Rest API</a></li>
+                        <li><a href="#">Javadoc</a></li>
+                    </ul>
+                </li> -->
                 <li>
                     <a href="//mindmaps.io/community.html">Community</a>
                 </li>
@@ -287,6 +301,14 @@
             
             
             
+            <!-- <li><a href="graqlgraql-shell.html">Graql Shell</a></li> -->
+            <li><a href="/docs/graql/graql-shell.html">Graql Shell</a></li>
+            
+            
+            
+            
+            
+            
             <!-- <li class="active"><a href="graqlmatch-queries.html">Match Queries</a></li> -->
             <li class="active"><a href="/docs/graql/match-queries.html">Match Queries</a></li>
             
@@ -319,8 +341,8 @@
             
             
             
-            <!-- <li><a href="graqlgraql-shell.html">Graql Shell</a></li> -->
-            <li><a href="/docs/graql/graql-shell.html">Graql Shell</a></li>
+            <!-- <li><a href="graqlgraql_cheatsheet.html">Graql Cheatsheet</a></li> -->
+            <li><a href="/docs/graql/graql_cheatsheet.html">Graql Cheatsheet</a></li>
             
             
             
@@ -402,18 +424,6 @@ $('#toc').on('click', 'a', function() {
   <p>A match query will search the graph for any subgraphs that match the given
 <a href="#variable-patterns">patterns</a>. A result is produced for each match found,
 containing any variables in the query. The results of the query can be modified with various <a href="#modifiers">modifiers</a>.</p>
-
-<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">match</span>
-<span class="err">$</span><span class="n">x</span> <span class="n">isa</span> <span class="n">pokemon</span><span class="p">,</span> <span class="n">id</span> <span class="nv">"Pikachu"</span><span class="p">;</span>
-<span class="p">(</span><span class="n">pokemon</span><span class="o">-</span><span class="k">with</span><span class="o">-</span><span class="k">type</span> <span class="err">$</span><span class="n">x</span><span class="p">,</span> <span class="err">$</span><span class="n">y</span><span class="p">);</span>
-</code></pre>
-</div>
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">qb</span><span class="o">.</span><span class="na">match</span><span class="o">(</span>
-    <span class="n">var</span><span class="o">(</span><span class="s">"x"</span><span class="o">).</span><span class="na">isa</span><span class="o">(</span><span class="s">"pokemon"</span><span class="o">).</span><span class="na">id</span><span class="o">(</span><span class="s">"Pikachu"</span><span class="o">),</span>
-    <span class="n">var</span><span class="o">().</span><span class="na">rel</span><span class="o">(</span><span class="s">"pokemon-with-type"</span><span class="o">,</span> <span class="s">"x"</span><span class="o">).</span><span class="na">rel</span><span class="o">(</span><span class="s">"y"</span><span class="o">)</span>
-<span class="o">);</span>
-</code></pre>
-</div>
 
 <h2 id="variable-patterns">Variable Patterns</h2>
 

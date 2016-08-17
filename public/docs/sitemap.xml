@@ -52,6 +52,12 @@
   
   
   <url>
+    <loc>http://mindmaps.io/docs//graql/graql_cheatsheet.html</loc>
+  </url>
+  
+  
+  
+  <url>
     <loc>http://mindmaps.io/docs//index</loc>
   </url>
   
@@ -88,13 +94,13 @@
   
   
   <url>
-    <loc>http://mindmaps.io/docs//overview/overview.html</loc>
+    <loc>http://mindmaps.io/docs//graql/overview.html</loc>
   </url>
   
   
   
   <url>
-    <loc>http://mindmaps.io/docs//graql/overview.html</loc>
+    <loc>http://mindmaps.io/docs//overview/overview.html</loc>
   </url>
   
   

@@ -120,10 +120,24 @@
                 
                 
                 
+                <li><a href="index.html">Documentation</a></li>
+                
+                
+                
                 <!-- entries with drop-downs appear here -->
                 <!-- conditional logic to control which topnav appears for the audience defined in the configuration file.-->
                 
                 
+                <!-- <li class="dropdown">
+                    <a>Documentation</a>
+                    <ul>
+                        <li><a href="#">Overview</a></li>
+                        <li><a href="#">Core API</a></li>
+                        <li><a href="#">Graql API</a></li>
+                        <li><a href="#">Rest API</a></li>
+                        <li><a href="#">Javadoc</a></li>
+                    </ul>
+                </li> -->
                 <li>
                     <a href="//mindmaps.io/community.html">Community</a>
                 </li>
@@ -287,6 +301,14 @@
             
             
             
+            <!-- <li class="active"><a href="graqlgraql-shell.html">Graql Shell</a></li> -->
+            <li class="active"><a href="/docs/graql/graql-shell.html">Graql Shell</a></li>
+            
+            
+            
+            
+            
+            
             <!-- <li><a href="graqlmatch-queries.html">Match Queries</a></li> -->
             <li><a href="/docs/graql/match-queries.html">Match Queries</a></li>
             
@@ -319,8 +341,8 @@
             
             
             
-            <!-- <li class="active"><a href="graqlgraql-shell.html">Graql Shell</a></li> -->
-            <li class="active"><a href="/docs/graql/graql-shell.html">Graql Shell</a></li>
+            <!-- <li><a href="graqlgraql_cheatsheet.html">Graql Cheatsheet</a></li> -->
+            <li><a href="/docs/graql/graql_cheatsheet.html">Graql Cheatsheet</a></li>
             
             
             
@@ -410,22 +432,21 @@ parameters to open a REPL (Read Evaluate Print Loop):</p>
 </code></pre>
 </div>
 
-<p>The user can enter a query and press enter for it to be evaluated. <code class="highlighter-rouge">match</code>
-queries will return the first hundred results, <code class="highlighter-rouge">ask</code> queries will return <code class="highlighter-rouge">true</code>
-or <code class="highlighter-rouge">false</code>. <code class="highlighter-rouge">insert</code> queries will output the concept IDs they are inserting.
+<p>The user can enter a query and press enter for it to be evaluated. <br />
+<code class="highlighter-rouge">match</code>
+queries will return the first hundred results. <br />
+<code class="highlighter-rouge">ask</code> queries will return <code class="highlighter-rouge">true</code> or <code class="highlighter-rouge">false</code>.  <br />
+<code class="highlighter-rouge">insert</code> queries will output the concept IDs they are inserting. <br />
 <code class="highlighter-rouge">delete</code> queries will execute with no output.</p>
 
 <p>The interactive shell commits to the graph only when the user type <code class="highlighter-rouge">commit</code>.</p>
 
-<p>The REPL features several special commands:
-- <code class="highlighter-rouge">commit</code> - Commits and validates the graph. If validation fails, the graph
-  will not commit.
-- <code class="highlighter-rouge">edit</code> - Opens the user’s default text editor, specified by the <code class="highlighter-rouge">$EDITOR</code>
-  environment variable. By default set to <code class="highlighter-rouge">vim</code>. When the editor exits, the
-  query is executed in the shell.
-- <code class="highlighter-rouge">load &lt;filename&gt;</code> - Executes the given file containing a Graql query.
-- <code class="highlighter-rouge">clear</code> - Clears the console window
-- <code class="highlighter-rouge">license</code> - Prints the license</p>
+<p>The REPL features several special commands:<br />
+ <code class="highlighter-rouge">commit</code> Commits and validates the graph. If validation fails, the graph will not commit. <br />
+ <code class="highlighter-rouge">edit</code> Opens the user’s default text editor, specified by the <code class="highlighter-rouge">$EDITOR</code> environment variable. By default set to <code class="highlighter-rouge">vim</code>. When the editor exits, the query is executed in the shell. <br />
+   <code class="highlighter-rouge">load &lt;filename&gt;</code> Executes the given file containing a Graql query. <br />
+   <code class="highlighter-rouge">clear</code> Clears the console window. <br />
+   <code class="highlighter-rouge">license</code> Prints the license</p>
 
 <h2 id="arguments">Arguments</h2>
 

@@ -3,9 +3,9 @@
     <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Demonstrates how to create a schema for a Mindmaps knowledge graph">
-<meta name="keywords" content="core,  core, schema">
-<title>Defining a Schema | MindmapsDB</title>
+<meta name="description" content="A reference card (cheatsheet) for Graql">
+<meta name="keywords" content="graqlgetting_started,  graql">
+<title>Graql Cheatsheet | MindmapsDB</title>
 <link rel="stylesheet" href="/docs/css/syntax.css">
 
 
@@ -162,7 +162,7 @@
                             
                             dataSource: '/docs/search.json',
                             
-                            searchResultTemplate: '<li><a href="{url}" title="Defining a Schema">{title}</a></li>',
+                            searchResultTemplate: '<li><a href="{url}" title="Graql Cheatsheet">{title}</a></li>',
                             noResultsText: '<li><a class="empty">No results found</a></li>',
                             limit: 10,
                             fuzzy: true
@@ -341,8 +341,8 @@
             
             
             
-            <!-- <li><a href="graqlgraql_cheatsheet.html">Graql Cheatsheet</a></li> -->
-            <li><a href="/docs/graql/graql_cheatsheet.html">Graql Cheatsheet</a></li>
+            <!-- <li class="active"><a href="graqlgraql_cheatsheet.html">Graql Cheatsheet</a></li> -->
+            <li class="active"><a href="/docs/graql/graql_cheatsheet.html">Graql Cheatsheet</a></li>
             
             
             
@@ -374,7 +374,7 @@
         <!-- Content Column -->
         <div class="col-md-9">
             <div class="post-header">
-   <h1 class="post-title-main">Defining a Schema</h1>
+   <h1 class="post-title-main">Graql Cheatsheet</h1>
 </div>
 
 
@@ -382,7 +382,7 @@
 <div class="post-content">
 
    
-    <div class="summary">Demonstrates how to create a schema for a Mindmaps knowledge graph</div>
+    <div class="summary">A reference card (cheatsheet) for Graql</div>
    
 
     
@@ -414,110 +414,370 @@ $('#toc').on('click', 'a', function() {
 
     
 
-    <!-- <a target="_blank" href="https://github.com/mindmapsdb/docs/blob/master/pages/core/coredefining-schema-simple.html.md" class="btn btn-default githubEditButton" role="button"><i class="fa fa-github fa-lg"></i> Edit me</a> -->
-    <a target="_blank" href="https://github.com/mindmapsdb/docs/blob/master/pages/core/defining-schema-simple.md" class="btn btn-default githubEditButton" role="button"><i class="fa fa-github fa-lg"></i> Edit me</a>
+    <!-- <a target="_blank" href="https://github.com/mindmapsdb/docs/blob/master/pages/graql/graqlgraql_cheatsheet.html.md" class="btn btn-default githubEditButton" role="button"><i class="fa fa-github fa-lg"></i> Edit me</a> -->
+    <a target="_blank" href="https://github.com/mindmapsdb/docs/blob/master/pages/graql/graql_cheatsheet.md" class="btn btn-default githubEditButton" role="button"><i class="fa fa-github fa-lg"></i> Edit me</a>
 
     
 
     
 
-  <h1 id="mindmaps-schema">Mindmaps Schema</h1>
+  <p>Graql is the declarative query language for MindmapsDB, more about which can be found at <a href="http://www.mindmaps.io">mindmaps.io</a>.</p>
 
-<p>Defining a schema for your graph allows you to:</p>
+<p>Key principles and capabilities of Graql are as follows:<br />
+* Graql is a pattern matching language that can search and modify a Mindmaps graph. <br />
+* Graql operates on concepts and relations between them. <br />
+* Graql will automatically execute the query in an efficient fashion, taking advantage of existing indexes.</p>
 
-<ul>
-  <li>Control how your data relates to each other</li>
-  <li>Ensure your graph is consistent</li>
-  <li>Design domain specific knowledge graphs</li>
-</ul>
+<p>This page is intended to be a quick reference guide for those already familiar with Graql. For further information and additional documentation, please see the Graql section on our developer portal <a href="http://www.mindmaps.io/docs/graql/overview.html">mindmaps.io/docs</a>.</p>
 
-<p>In Mindmaps, a schema is defined by adding <strong>types</strong> to your graph. 
-These <strong>types</strong> allow you to divide your  data into different categories but also control how data instances may relate to each other.</p>
+<div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> <b>Note:</b> This version of the cheatsheet is for Graql version 0.1.0</div>
 
-<p>In this section we will review each of these types and explain how you use them when defining a Mindmaps graph.</p>
+<h2 id="match">match</h2>
 
-<h2 id="basic-type-definitions">Basic Type Definitions</h2>
+<p>A match query will search the graph for any subgraphs that match the given
+<a href="#pattern">pattern</a>. A result is produced for each match to the <a href="#variables">variables</a> in the query. The results of the query can be modified with various <a href="#modifiers">modifiers</a>: <a href="#select">select</a>, <a href="#limit">limit</a>, <a href="#offset">offset</a>, <a href="#distinct">distinct</a> and <a href="#order">order</a>.</p>
 
-<p>This section describes basic types which are <strong>essential</strong> to a Mindmaps schema. 
-When creating a Mindmaps knowledge graph you should always begin with defining these schema elements.</p>
-
-<h3 id="entity-type">Entity Type</h3>
-
-<p>Entity types essentially define a broad category which data can fall with in. For example Al Pacino, Patrick Stewart, 
-and Charlize Theron could all be categorised as people. 
-Similarly we could say that Godfather, Star Treck Nemisis, and Monster can all be categorised as movies.</p>
-
-<p>We would define such <strong>Entity Types</strong> as follows:</p>
-
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">EntityType</span> <span class="n">person</span> <span class="o">=</span> <span class="n">mindmapsTransaction</span><span class="o">.</span><span class="na">putEntityType</span><span class="o">(</span><span class="s">"Person"</span><span class="o">);</span>
-<span class="n">EntityType</span> <span class="n">movie</span> <span class="o">=</span> <span class="n">mindmapsTransaction</span><span class="o">.</span><span class="na">putEntityType</span><span class="o">(</span><span class="s">"Movie"</span><span class="o">);</span>
+<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">match</span>  
+<span class="p">[</span> <span class="n">pattern</span><span class="p">;</span> <span class="p">...</span> <span class="p">]</span>  
+<span class="p">[</span> <span class="k">select</span> <span class="o">|</span> <span class="k">limit</span> <span class="o">|</span> <span class="k">offset</span> <span class="o">|</span> <span class="k">distinct</span> <span class="o">|</span> <span class="k">order</span> <span class="p">...</span> <span class="p">]</span>
 </code></pre>
 </div>
 
-<p>With this we can arrange our data into categories:</p>
+<p>Match a pattern in the graph.</p>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">alPacino</span> <span class="o">=</span> <span class="n">mindmapsTransaction</span><span class="o">.</span><span class="na">addEntity</span><span class="o">(</span><span class="n">person</span><span class="o">).</span><span class="na">setValue</span><span class="o">(</span><span class="s">"Al Pacino"</span><span class="o">);</span>
-<span class="n">patrickStewart</span> <span class="o">=</span> <span class="n">mindmapsTransaction</span><span class="o">.</span><span class="na">addEntity</span><span class="o">(</span><span class="n">person</span><span class="o">).</span><span class="na">setValue</span><span class="o">(</span><span class="s">"Patrick Stewart"</span><span class="o">);</span>
-<span class="n">charliseTheron</span> <span class="o">=</span> <span class="n">mindmapsTransaction</span><span class="o">.</span><span class="na">addEntity</span><span class="o">(</span><span class="n">person</span><span class="o">).</span><span class="na">setValue</span><span class="o">(</span><span class="s">"Charlise Theron"</span><span class="o">);</span>
+<div class="highlighter-rouge"><pre class="highlight"><code>match $x isa movie
+</code></pre>
+</div>
+<p>Match several patterns together.</p>
 
-<span class="n">godfather</span> <span class="o">=</span> <span class="n">mindmapsTransaction</span><span class="o">.</span><span class="na">addEntity</span><span class="o">(</span><span class="n">movie</span><span class="o">).</span><span class="na">setValue</span><span class="o">(</span><span class="s">"Godfather"</span><span class="o">);</span>
-<span class="n">starTreck</span> <span class="o">=</span> <span class="n">mindmapsTransaction</span><span class="o">.</span><span class="na">addEntity</span><span class="o">(</span><span class="n">movie</span><span class="o">).</span><span class="na">setValue</span><span class="o">(</span><span class="s">"Star Treck Nemisis"</span><span class="o">);</span>
-<span class="n">monster</span> <span class="o">=</span> <span class="n">mindmapsTransaction</span><span class="o">.</span><span class="na">addEntity</span><span class="o">(</span><span class="n">movie</span><span class="o">).</span><span class="na">setValue</span><span class="o">(</span><span class="s">"Monster"</span><span class="o">);</span>
+<div class="highlighter-rouge"><pre class="highlight"><code>match
+$x isa movie, id "titanic";
+(actor $a, $x);
 </code></pre>
 </div>
 
-<h3 id="relation-and-role-types">Relation and Role Types</h3>
+<h3 id="modifiers">modifiers</h3>
 
-<p>The greatest advantage of a graph database is the expressiveness of the relationships between data. 
-With Mindmaps we can control how our data relates to each other.</p>
+<h4 id="select">select</h4>
+<div class="highlighter-rouge"><pre class="highlight"><code>select [ variable, ... ]
+</code></pre>
+</div>
+<p>Select particular variables from the query.</p>
 
-<p>For example how can we say that Patrick Stewart starred in Star Treck Nemisis ? 
-To be able to do so we must first allow such behaviour between our types. 
-We begin doing this by defining a <strong>Relation Type</strong> which categorises the relationships of a specific type. 
-For example:</p>
-
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">RelationType</span> <span class="n">starsIn</span> <span class="o">=</span> <span class="n">mindmapsTransaction</span><span class="o">.</span><span class="na">putRelationType</span><span class="o">(</span><span class="s">"Stars In"</span><span class="o">);</span>
+<div class="highlighter-rouge"><pre class="highlight"><code>match $m isa movie; (actor $a1, $m); (actor $a2, $m);
+select $a1, $a2
 </code></pre>
 </div>
 
-<p>In addition to this we have to specify the roles of relationship:</p>
+<h4 id="limit">limit</h4>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">RoleType</span> <span class="n">actor</span> <span class="o">=</span> <span class="n">mindmapsTrancation</span><span class="o">.</span><span class="na">putRoleType</span><span class="o">(</span><span class="s">"Actor"</span><span class="o">);</span>
-<span class="n">RoleType</span> <span class="n">movieCastIn</span> <span class="o">=</span> <span class="n">mindmapsTrancation</span><span class="o">.</span><span class="na">putRoleType</span><span class="o">(</span><span class="s">"Movie Cast In"</span><span class="o">);</span>
+<div class="highlighter-rouge"><pre class="highlight"><code>limit {integer}
+</code></pre>
+</div>
+<p>Limit the number of results returned by a query.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>match (director $x, $y)
+limit 10
 </code></pre>
 </div>
 
-<p>We also have to link these roles to the correct <strong>Relaiton Type</strong> (NB Roles are unique and cannot be in more than one 
-Relation Type):</p>
+<h4 id="offset">offset</h4>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">starsIn</span><span class="o">.</span><span class="na">hasRole</span><span class="o">(</span><span class="n">actor</span><span class="o">).</span><span class="na">hasRole</span><span class="o">(</span><span class="n">movieCastIn</span><span class="o">);</span> 
+<div class="highlighter-rouge"><pre class="highlight"><code>offset {integer}
+</code></pre>
+</div>
+<p>Skip some results in a query.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>match (director $x, $y)
+limit 10
+offset 20
 </code></pre>
 </div>
 
-<p>Finally we have to explicitly define which <strong>Entity Typpes</strong> are allowed to play which <strong>*Role Types</strong>:</p>
+<h4 id="distinct">distinct</h4>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">person</span><span class="o">.</span><span class="na">playsRole</span><span class="o">(</span><span class="n">actor</span><span class="o">);</span>
-<span class="n">movie</span><span class="o">.</span><span class="na">playsRolw</span><span class="o">(</span><span class="n">movieCastIn</span><span class="o">);</span>
+<div class="highlighter-rouge"><pre class="highlight"><code>distinct
+</code></pre>
+</div>
+<p>De-duplicate the results of a query.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>match $m isa movie, id 'dr-strangelove'; (actor $a, $m);
+select $a
+distinct
 </code></pre>
 </div>
 
-<p>The above statements allow people to be actors and allow movies to have actors cast in them.</p>
+<h4 id="order">order</h4>
 
-<p><strong>Note:</strong> Explicitly specifying which <strong>Role Types</strong> an <strong>Entity Type</strong> can play allows us to control our data more easily. 
-Essentially it would prevent us from accidentally saying that a movie starred in another movie.</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>order by variable [ (has resource-type) ] [ asc | desc ]
+</code></pre>
+</div>
+<p>Order by id in ascending order.</p>
 
-<p>Now finally we can specify that Patrick Stewart was in Star Treck Nemisis. 
-First we create an instance of the Relation Type:</p>
-
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">Relation</span> <span class="n">relation</span> <span class="o">=</span> <span class="n">mindmapsTransaction</span><span class="o">.</span><span class="na">addRelation</span><span class="o">(</span><span class="n">starsIn</span><span class="o">);</span>
+<div class="highlighter-rouge"><pre class="highlight"><code>match $x isa person order by $x
 </code></pre>
 </div>
 
-<p>Then we specify who is playing which role:</p>
+<p>Order by a resource in descending order.</p>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">relation</span><span class="o">.</span><span class="na">putRolePlayer</span><span class="o">(</span><span class="n">actor</span><span class="o">,</span> <span class="n">patrickStewart</span><span class="o">).</span><span class="na">putRolePlayer</span><span class="o">(</span><span class="n">movieCastIn</span><span class="o">,</span> <span class="n">startreck</span><span class="o">);</span>
+<div class="highlighter-rouge"><pre class="highlight"><code>match $x isa person order by $x(has name) desc
 </code></pre>
 </div>
+
+<h2 id="ask">ask</h2>
+
+<p>An ask query will return whether the given match query has any results.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>[match] ask
+</code></pre>
+</div>
+<p>Return whether the match query has any results.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>match $x isa person, id 'james-cameron'; (actor $x)
+ask
+</code></pre>
+</div>
+
+<h2 id="insert">insert</h2>
+
+<p>An insert query will insert the specified variable patterns into the graph.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>insert [ pattern ; ... ]
+</code></pre>
+</div>
+<p>Insert a concept into the graph.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>insert 'finding-dory' isa movie;
+</code></pre>
+</div>
+<p>If a match query is provided, the query will insert the given variable patterns for every result of the match query.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>match  insert [ pattern ; ... ]
+</code></pre>
+</div>
+
+<p>Insert a relation for every result of a match query.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>match $m isa movie; (director 'tim-burton', $m);
+insert (actor 'johnny-depp', production-with-cast $m) isa has-cast;
+</code></pre>
+</div>
+
+<h2 id="delete">delete</h2>
+
+<p>A delete query will delete the specified variable patterns for every result of the match query.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>match  delete [ pattern ; ... ]
+</code></pre>
+</div>
+<p>Delete every instance of a type.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>match $x isa person;
+delete $x;
+</code></pre>
+</div>
+
+<h2 id="pattern">pattern</h2>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>identifier [ property, ... ]
+</code></pre>
+</div>
+<p>A variable with several properties.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>$x isa person, value "Guillermo del Toro"
+</code></pre>
+</div>
+
+<p>Match either the left or right pattern.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>pattern or pattern
+</code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>$x isa movie or $x isa person
+</code></pre>
+</div>
+
+<p>Match either the left pattern or all the right patterns.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="w"> </span><span class="err">[</span><span class="w"> </span><span class="err">pattern</span><span class="w"> </span><span class="err">;</span><span class="w"> </span><span class="err">...</span><span class="w"> </span><span class="err">]</span><span class="w"> </span><span class="p">}</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>$x isa movie or { (actor $x, $y); $y id 'the-martian'; }
+</code></pre>
+</div>
+
+<h3 id="variables">variables</h3>
+
+<p>Variables start with a <code class="highlighter-rouge">$</code>, followed by alphanumeric characters, underscores or dashes.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>match (director $the-director, $theMovie); $theMovie isa movie;
+</code></pre>
+</div>
+
+<h3 id="identifier">identifier</h3>
+
+<p>An <code class="highlighter-rouge">id</code> is a sequence of alphanumeric characters, underscores and dashes, or a quoted string.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>variable | id
+</code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>insert "TV Show" isa entity-type; movie isa entity-type;
+</code></pre>
+</div>
+
+<h2 id="type-properties">type properties</h2>
+
+<p>Specify the type of a concept.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>isa type
+</code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>match $x isa movie;
+</code></pre>
+</div>
+
+<p>Match concepts and their types.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>match $x isa $y;
+</code></pre>
+</div>
+
+<p>Match the concept with a particular ID.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>id {string}
+</code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>match $x id 'ridley-scott';
+</code></pre>
+</div>
+
+<p>Match concepts with a value that contains the given string.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>value [ = | != | &lt; | &lt;= | &gt;= | &gt; | contains ] {value}
+</code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>match $m value contains "The Lord of the Rings";
+</code></pre>
+</div>
+
+<p>Match concepts with a resource matching a predicate.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>has resource-type [ = | != | &lt; | &lt;= | &gt;= | &gt; | contains ] {value}
+</code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>match $m isa movie, has runtime &gt; 180;
+</code></pre>
+</div>
+
+<p>Match related concepts.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>( [ [ role-type ] role-player , ... ] )
+</code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>match ($x, $y);
+</code></pre>
+</div>
+
+<p>Match concepts related with a particular relation type.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>match ($p1, $p2) isa marriage;
+</code></pre>
+</div>
+
+<p>Match two related concepts where one plays a specified role type.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>match (director $p, $m);
+</code></pre>
+</div>
+
+<p>Match concepts in a ternary relation.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>match (actor $p, character-being-played $c, production-with-cast $m);
+</code></pre>
+</div>
+
+<h3 id="ako">ako</h3>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>ako type
+</code></pre>
+</div>
+<p>Insert a new type that is a subtype of an existing type.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>insert blockbuster ako movie;
+</code></pre>
+</div>
+
+<h3 id="has-role">has-role</h3>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>has-role role-type
+</code></pre>
+</div>
+<p>Insert a new relation type with two role types.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>insert
+director isa role-type;
+production-with-director isa role-type;
+directorship isa relation-type, has-role director, has-role production-with-director;
+</code></pre>
+</div>
+
+<h3 id="plays-role">plays-role</h3>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>plays-role role-type
+</code></pre>
+</div>
+
+<p>Allow instances of a type to play a role in a relation.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>insert person plays-role director
+</code></pre>
+</div>
+
+<h3 id="has-resource">has-resource</h3>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>has-resource resource-type
+</code></pre>
+</div>
+<p>Allow instances of a type to have a resource.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>insert person has-resource name;
+</code></pre>
+</div>
+
+<h3 id="datatype">datatype</h3>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>datatype ( string | long | double | boolean )
+</code></pre>
+</div>
+<p>Insert a new resource type with the given datatype.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>insert name isa resource-type, datatype string;
+</code></pre>
+</div>
+
+<h2 id="document-changelog">Document Changelog</h2>
+
+<table>
+    <tr>
+        <td>Version</td>
+        <td>Date</td>
+        <td>Description</td>        
+    </tr>
+    <tr>
+        <td>v1</td>
+        <td>17/08/2016</td>
+        <td>New page for developer portal.</td>        
+    </tr>
+    
+</table>
 
 
     <div class="tags">
@@ -525,6 +785,12 @@ First we create an instance of the Relation Type:</p>
         <b>Tags: </b>
         
         
+        
+        <a href="/docs/tag_graql.html" class="btn btn-default navbar-btn cursorNorm" role="button">graql</a>
+        
+        
+        
+        <a href="/docs/tag_getting_started.html" class="btn btn-default navbar-btn cursorNorm" role="button">getting_started</a>
         
         
         
@@ -555,7 +821,7 @@ First we create an instance of the Relation Type:</p>
         <br>
         <p>© 2016 <a href="http://mindmaps.io">Mindmaps Research Ltd</a></p>
         <!-- &copy;2016 MindmapsDB. All rights reserved. <br />
-        <span>Page last updated:</span> August 15, 2016<br/> Site last generated: Aug 17, 2016 <br />
+        <span>Page last updated:</span> August 17, 2016<br/> Site last generated: Aug 17, 2016 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">

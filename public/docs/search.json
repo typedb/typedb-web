@@ -83,6 +83,17 @@
 
 
 {
+"title": "Graql Cheatsheet",
+"tags": "graqlgetting_started",
+"keywords": "graql",
+"url": "graqlgraql_cheatsheet.html",
+"summary": "A reference card (cheatsheet) for Graql"
+}
+,
+
+
+
+{
 "title": "Welcome to the Mindmaps Documentation Portal",
 "tags": "getting_started",
 "keywords": "sample homepage",
@@ -131,7 +142,7 @@
 "tags": "getting_started",
 "keywords": "setup, getting started, basics",
 "url": "overviewmindmaps_basics.html",
-"summary": "MindmapsDB basics"
+"summary": "MindmapsDB basics."
 }
 ,
 
@@ -149,22 +160,22 @@
 
 
 {
-"title": "How does Mindmaps work",
-"tags": "getting_started",
-"keywords": "setup, getting started",
-"url": "overviewoverview.html",
-"summary": "A platform-level overview of MindmapsDB."
+"title": "Graql Overview",
+"tags": "graql",
+"keywords": "graql, overview",
+"url": "graqloverview.html",
+"summary": "An introduction to Graql"
 }
 ,
 
 
 
 {
-"title": "Graql Overview",
-"tags": "graql",
-"keywords": "graql, overview",
-"url": "graqloverview.html",
-"summary": "An introduction to Graql"
+"title": "How does Mindmaps work",
+"tags": "getting_started",
+"keywords": "setup, getting started",
+"url": "overviewoverview.html",
+"summary": "A platform-level overview of MindmapsDB."
 }
 ,
 
