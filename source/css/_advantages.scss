@@ -192,12 +192,13 @@
             .background{
                 polyline,
                 line{
-                    stroke: $blue-brand;
+                    stroke: $black-brand;
                     stroke-dasharray: 5;
+                    stroke-width:2px;
                     animation: svg-dash 1s linear infinite;
                 }
                 circle{
-                    stroke: $blue-brand;
+                    stroke: $black-brand;
                 }
             }
         }
