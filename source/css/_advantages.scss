@@ -201,6 +201,17 @@
                     stroke: $black-brand;
                 }
             }
+            .background-darker{
+                polyline,
+                line{
+                    stroke: $blue-brand;
+                    stroke-dasharray: 5;
+                    animation: svg-dash 1s linear infinite;
+                }
+                circle{
+                    stroke: $blue-brand;
+                }
+            }
         }
     }
 }
