@@ -4,21 +4,10 @@
 
 
 {
-"title": "Ask Queries",
-"tags": "graql",
-"keywords": "graql, query, ask",
-"url": "graqlask-queries.html",
-"summary": "Graql Ask Queries"
-}
-,
-
-
-
-{
 "title": "Defining an Advanced Schema",
 "tags": "core",
 "keywords": "core, schema",
-"url": "coredefining-schema-advanced.html",
+"url": "documentationcore-apiadvanced-schema-definition.html",
 "summary": "Demonstrates how to create an Advanced schema for a Mindmaps knowledge graph"
 }
 ,
@@ -26,11 +15,11 @@
 
 
 {
-"title": "Defining a Schema",
-"tags": "core",
-"keywords": "core, schema",
-"url": "coredefining-schema-simple.html",
-"summary": "Demonstrates how to create a schema for a Mindmaps knowledge graph"
+"title": "Ask Queries",
+"tags": "graql",
+"keywords": "graql, query, ask",
+"url": "documentationgraqlask-queries.html",
+"summary": "Graql Ask Queries"
 }
 ,
 
@@ -40,7 +29,7 @@
 "title": "Delete Queries",
 "tags": "graql",
 "keywords": "graql, query, delete",
-"url": "graqldelete-queries.html",
+"url": "documentationgraqldelete-queries.html",
 "summary": "Graql Delete Queries"
 }
 ,
@@ -51,7 +40,7 @@
 "title": "Downloads",
 "tags": "getting_started",
 "keywords": "setup, getting started, download",
-"url": "overviewdownloads.html",
+"url": "documentationresourcesdownloads.html",
 "summary": "This is a list of Mindmaps releases. It's the place to come to download the most recent versions of MindmapsDB."
 }
 ,
@@ -61,11 +50,11 @@
 
 
 {
-"title": "Setup Guide",
-"tags": "getting_startedgraql",
-"keywords": "setup, getting started",
-"url": "overviewgetting_started.html",
-"summary": "This document will teach you how to set up a Mindmaps environment, start it up and load an example dataset to make a query using our query language, Graql."
+"title": "Graql Cheatsheet",
+"tags": "graqlgetting_started",
+"keywords": "graql",
+"url": "documentationgraqlgraql-cheatsheet.html",
+"summary": "A reference card (cheatsheet) for Graql"
 }
 ,
 
@@ -75,7 +64,7 @@
 "title": "Graql Shell",
 "tags": "graql",
 "keywords": "graql, shell",
-"url": "graqlgraql-shell.html",
+"url": "documentationgraqlgraql-shell.html",
 "summary": "The Graql shell is used to execute Graql queries from the command line, or to let Graql be invoked from other applications."
 }
 ,
@@ -83,11 +72,11 @@
 
 
 {
-"title": "Graql Cheatsheet",
-"tags": "graqlgetting_started",
-"keywords": "graql",
-"url": "graqlgraql_cheatsheet.html",
-"summary": "A reference card (cheatsheet) for Graql"
+"title": "Mindmaps Platform",
+"tags": "platform",
+"keywords": "platform",
+"url": "platformindex",
+"summary": ""
 }
 ,
 
@@ -108,8 +97,19 @@
 "title": "Insert Queries",
 "tags": "graql",
 "keywords": "graql, query, insert",
-"url": "graqlinsert-queries.html",
+"url": "documentationgraqlinsert-queries.html",
 "summary": "Graql Insert Queries"
+}
+,
+
+
+
+{
+"title": "Intro to Mindmaps Platform",
+"tags": "platform",
+"keywords": "platform",
+"url": "platformintroduction.html",
+"summary": ""
 }
 ,
 
@@ -119,8 +119,19 @@
 "title": "Java Graql",
 "tags": "graqljava",
 "keywords": "graql, java",
-"url": "graqljava-graql.html",
+"url": "documentationgraqljava-graql.html",
 "summary": "How to construct and execute Graql queries programmatically in Java."
+}
+,
+
+
+
+{
+"title": "Known Issues",
+"tags": "getting_started",
+"keywords": "troubleshooting",
+"url": "documentationtroubleshootingknown-issues.html",
+"summary": "Troubleshooting guide for MindmapsDB."
 }
 ,
 
@@ -130,7 +141,7 @@
 "title": "Match Queries",
 "tags": "graql",
 "keywords": "graql, query, match",
-"url": "graqlmatch-queries.html",
+"url": "documentationgraqlmatch-queries.html",
 "summary": "Graql Match Queries"
 }
 ,
@@ -141,7 +152,7 @@
 "title": "Mindmaps Basics",
 "tags": "getting_started",
 "keywords": "setup, getting started, basics",
-"url": "overviewmindmaps_basics.html",
+"url": "documentationthe-basicsmindmaps-basics.html",
 "summary": "MindmapsDB basics."
 }
 ,
@@ -163,66 +174,8 @@
 "title": "Graql Overview",
 "tags": "graql",
 "keywords": "graql, overview",
-"url": "graqloverview.html",
+"url": "documentationgraqloverview.html",
 "summary": "An introduction to Graql"
-}
-,
-
-
-
-{
-"title": "How does Mindmaps work",
-"tags": "getting_started",
-"keywords": "setup, getting started",
-"url": "overviewoverview.html",
-"summary": "A platform-level overview of MindmapsDB."
-}
-,
-
-
-
-{
-"title": "Quickstart Tutorial",
-"tags": "getting_startedgraql",
-"keywords": "setup, getting started",
-"url": "overviewquickstart_tutorial.html",
-"summary": "This document will teach you how to use Graql to load an ontology and some data into a Mindmaps Graph."
-}
-,
-
-
-
-{
-"title": "Java Quickstart Tutorial",
-"tags": "getting_startedjava",
-"keywords": "setup, getting started",
-"url": "overviewquickstart_tutorial_java.html",
-"summary": "This document will teach you how to use Java to load both an ontology and some data into a Mindmaps Graph."
-}
-,
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-{
-"title": "Troubleshooting",
-"tags": "getting_started",
-"keywords": "troubleshooting",
-"url": "overviewtroubleshooting.html",
-"summary": "Troubleshooting guide for MindmapsDB."
 }
 ,
 
@@ -232,9 +185,78 @@
 "title": "Core Overview",
 "tags": "",
 "keywords": "core, overview",
-"url": "coretutorial.html",
+"url": "documentationcore-apioverview.html",
 "summary": "MindmapsDB Core Tutorial. Runs through a basic example of how to use Mindmaps Core API."
 }
+,
+
+
+
+{
+"title": "How does Mindmaps work",
+"tags": "getting_started",
+"keywords": "setup, getting started",
+"url": "documentationget-startedoverview.html",
+"summary": "A platform-level overview of MindmapsDB."
+}
+,
+
+
+
+{
+"title": "Java Quickstart Tutorial",
+"tags": "getting_startedjava",
+"keywords": "setup, getting started",
+"url": "documentationthe-basicsquickstart-tutorial-java.html",
+"summary": "This document will teach you how to use Java to load both an ontology and some data into a Mindmaps Graph."
+}
+,
+
+
+
+{
+"title": "Quickstart Tutorial",
+"tags": "getting_startedgraql",
+"keywords": "setup, getting started",
+"url": "documentationthe-basicsquickstart-tutorial.html",
+"summary": "This document will teach you how to use Graql to load an ontology and some data into a Mindmaps Graph."
+}
+,
+
+
+
+
+
+{
+"title": "Setup Guide",
+"tags": "getting_startedgraql",
+"keywords": "setup, getting started",
+"url": "documentationget-startedsetup-guide.html",
+"summary": "This document will teach you how to set up a Mindmaps environment, start it up and load an example dataset to make a query using our query language, Graql."
+}
+,
+
+
+
+{
+"title": "Defining a Schema",
+"tags": "core",
+"keywords": "core, schema",
+"url": "documentationcore-apisimple-schema-definition.html",
+"summary": "Demonstrates how to create a schema for a Mindmaps knowledge graph"
+}
+,
+
+
+
+
+
+
+
+
+
+
+
 
 
 

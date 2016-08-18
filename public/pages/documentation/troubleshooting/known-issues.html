@@ -3,9 +3,9 @@
     <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="This document will teach you how to set up a Mindmaps environment, start it up and load an example dataset to make a query using our query language, Graql.">
-<meta name="keywords" content="getting_startedgraql,  setup, getting started">
-<title>Setup Guide | MindmapsDB</title>
+<meta name="description" content="Troubleshooting guide for MindmapsDB.">
+<meta name="keywords" content="getting_started,  troubleshooting">
+<title>Known Issues | MindmapsDB</title>
 <link rel="stylesheet" href="/pages/css/syntax.css">
 
 
@@ -118,12 +118,6 @@
             <ul class="nav navbar-nav navbar-right">
                 <!-- entries without drop-downs appear here -->
                 
-                
-                
-                <li><a href="index.html">Documentation</a></li>
-                
-                
-                
                 <!-- entries with drop-downs appear here -->
                 <!-- conditional logic to control which topnav appears for the audience defined in the configuration file.-->
                 
@@ -138,15 +132,11 @@
                         <li><a href="#">Javadoc</a></li>
                     </ul>
                 </li> -->
-                <li>
-                    <a href="//mindmaps.io/community.html">Community</a>
-                </li>
-                <li>
-                    <a href="//discuss.mindmaps.io/">Discussion</a>
-                </li>
-                <li>
-                    <a href="//blog.mindmaps.io/" target="_blank">Blog</a>
-                </li>
+                <!-- <li><a href="/pages/platform/index.html">Platform</a></li> -->
+                <li><a href="/pages/index.html">Documentation</a></li>
+                <li><a href="//mindmaps.io/community.html">Community</a></li>
+                <li><a href="//discuss.mindmaps.io/">Discussion</a></li>
+                <li><a href="//blog.mindmaps.io/" target="_blank">Blog</a></li>
                 <!--comment out this block if you want to hide search-->
                 <li>
                     <!--start search-->
@@ -162,7 +152,7 @@
                             
                             dataSource: '/pages/search.json',
                             
-                            searchResultTemplate: '<li><a href="{url}" title="Setup Guide">{title}</a></li>',
+                            searchResultTemplate: '<li><a href="{url}" title="Known Issues">{title}</a></li>',
                             noResultsText: '<li><a class="empty">No results found</a></li>',
                             limit: 10,
                             fuzzy: true
@@ -205,16 +195,16 @@
             
             
             
-            <!-- <li><a href="overviewoverview.html">Overview</a></li> -->
-            <li><a href="/pages/overview/overview.html">Overview</a></li>
+            <!-- <li><a href="documentationget-startedoverview.html">Overview</a></li> -->
+            <li><a href="/pages/documentation/get-started/overview.html">Overview</a></li>
             
             
             
             
             
             
-            <!-- <li class="active"><a href="overviewgetting_started.html">Setup Guide</a></li> -->
-            <li class="active"><a href="/pages/overview/getting_started.html">Setup Guide</a></li>
+            <!-- <li><a href="documentationget-startedsetup-guide.html">Setup Guide</a></li> -->
+            <li><a href="/pages/documentation/get-started/setup-guide.html">Setup Guide</a></li>
             
             
             
@@ -229,40 +219,24 @@
             
             
             
-            <!-- <li><a href="overviewmindmaps_basics.html">Mindmaps Basics</a></li> -->
-            <li><a href="/pages/overview/mindmaps_basics.html">Mindmaps Basics</a></li>
+            <!-- <li><a href="documentationthe-basicsmindmaps-basics.html">Mindmaps Basics</a></li> -->
+            <li><a href="/pages/documentation/the-basics/mindmaps-basics.html">Mindmaps Basics</a></li>
             
             
             
             
             
             
-            <!-- <li><a href="overviewquickstart_tutorial.html">Quickstart Tutorial</a></li> -->
-            <li><a href="/pages/overview/quickstart_tutorial.html">Quickstart Tutorial</a></li>
+            <!-- <li><a href="documentationthe-basicsquickstart-tutorial.html">Quickstart Tutorial</a></li> -->
+            <li><a href="/pages/documentation/the-basics/quickstart-tutorial.html">Quickstart Tutorial</a></li>
             
             
             
             
             
             
-            <!-- <li><a href="overviewquickstart_tutorial_java.html">Java Quickstart Tutorial</a></li> -->
-            <li><a href="/pages/overview/quickstart_tutorial_java.html">Java Quickstart Tutorial</a></li>
-            
-            
-            
-            
-        </ul>
-        
-        
-    
-    <li>
-        <a href="#">Troubleshooting</a>
-        <ul>
-            
-            
-            
-            <!-- <li><a href="overviewtroubleshooting.html">Troubleshooting</a></li> -->
-            <li><a href="/pages/overview/troubleshooting.html">Troubleshooting</a></li>
+            <!-- <li><a href="documentationthe-basicsquickstart-tutorial-java.html">Java Quickstart Tutorial</a></li> -->
+            <li><a href="/pages/documentation/the-basics/quickstart-tutorial-java.html">Java Quickstart Tutorial</a></li>
             
             
             
@@ -272,13 +246,29 @@
         
     
     <li>
-        <a href="#">Resources</a>
+        <a href="#">Core API</a>
         <ul>
             
             
             
-            <!-- <li><a href="overviewdownloads.html">Downloads</a></li> -->
-            <li><a href="/pages/overview/downloads.html">Downloads</a></li>
+            <!-- <li><a href="documentationcore-apioverview.html">Overview</a></li> -->
+            <li><a href="/pages/documentation/core-api/overview.html">Overview</a></li>
+            
+            
+            
+            
+            
+            
+            <!-- <li><a href="documentationcore-apisimple-schema-definition.html">Simple Schema Definition</a></li> -->
+            <li><a href="/pages/documentation/core-api/simple-schema-definition.html">Simple Schema Definition</a></li>
+            
+            
+            
+            
+            
+            
+            <!-- <li><a href="documentationcore-apiadvanced-schema-definition.html">Advanced Schema Definition</a></li> -->
+            <li><a href="/pages/documentation/core-api/advanced-schema-definition.html">Advanced Schema Definition</a></li>
             
             
             
@@ -293,70 +283,104 @@
             
             
             
-            <!-- <li><a href="graqloverview.html">Overview</a></li> -->
-            <li><a href="/pages/graql/overview.html">Overview</a></li>
+            <!-- <li><a href="documentationgraqloverview.html">Overview</a></li> -->
+            <li><a href="/pages/documentation/graql/overview.html">Overview</a></li>
             
             
             
             
             
             
-            <!-- <li><a href="graqlgraql-shell.html">Graql Shell</a></li> -->
-            <li><a href="/pages/graql/graql-shell.html">Graql Shell</a></li>
+            <!-- <li><a href="documentationgraqlgraql-shell.html">Graql Shell</a></li> -->
+            <li><a href="/pages/documentation/graql/graql-shell.html">Graql Shell</a></li>
             
             
             
             
             
             
-            <!-- <li><a href="graqlmatch-queries.html">Match Queries</a></li> -->
-            <li><a href="/pages/graql/match-queries.html">Match Queries</a></li>
+            <!-- <li><a href="documentationgraqlmatch-queries.html">Match Queries</a></li> -->
+            <li><a href="/pages/documentation/graql/match-queries.html">Match Queries</a></li>
             
             
             
             
             
             
-            <!-- <li><a href="graqlask-queries.html">Ask Queries</a></li> -->
-            <li><a href="/pages/graql/ask-queries.html">Ask Queries</a></li>
+            <!-- <li><a href="documentationgraqlask-queries.html">Ask Queries</a></li> -->
+            <li><a href="/pages/documentation/graql/ask-queries.html">Ask Queries</a></li>
             
             
             
             
             
             
-            <!-- <li><a href="graqldelete-queries.html">Delete Queries</a></li> -->
-            <li><a href="/pages/graql/delete-queries.html">Delete Queries</a></li>
+            <!-- <li><a href="documentationgraqldelete-queries.html">Delete Queries</a></li> -->
+            <li><a href="/pages/documentation/graql/delete-queries.html">Delete Queries</a></li>
             
             
             
             
             
             
-            <!-- <li><a href="graqlinsert-queries.html">Insert Queries</a></li> -->
-            <li><a href="/pages/graql/insert-queries.html">Insert Queries</a></li>
+            <!-- <li><a href="documentationgraqlinsert-queries.html">Insert Queries</a></li> -->
+            <li><a href="/pages/documentation/graql/insert-queries.html">Insert Queries</a></li>
             
             
             
             
             
             
-            <!-- <li><a href="graqlgraql_cheatsheet.html">Graql Cheatsheet</a></li> -->
-            <li><a href="/pages/graql/graql_cheatsheet.html">Graql Cheatsheet</a></li>
+            <!-- <li><a href="documentationgraqlgraql-cheatsheet.html">Graql Cheatsheet</a></li> -->
+            <li><a href="/pages/documentation/graql/graql-cheatsheet.html">Graql Cheatsheet</a></li>
             
             
             
             
             
             
-            <!-- <li><a href="graqljava-graql.html">Java Graql</a></li> -->
-            <li><a href="/pages/graql/java-graql.html">Java Graql</a></li>
+            <!-- <li><a href="documentationgraqljava-graql.html">Java Graql</a></li> -->
+            <li><a href="/pages/documentation/graql/java-graql.html">Java Graql</a></li>
             
             
             
             
         </ul>
         
+        
+    
+    <li>
+        <a href="#">Troubleshooting</a>
+        <ul>
+            
+            
+            
+            <!-- <li class="active"><a href="documentationtroubleshootingknown-issues.html">Known Issues</a></li> -->
+            <li class="active"><a href="/pages/documentation/troubleshooting/known-issues.html">Known Issues</a></li>
+            
+            
+            
+            
+        </ul>
+        
+        
+    
+    <li>
+        <a href="#">Resources</a>
+        <ul>
+            
+            
+            
+            <!-- <li><a href="documentationresourcesdownloads.html">Downloads</a></li> -->
+            <li><a href="/pages/documentation/resources/downloads.html">Downloads</a></li>
+            
+            
+            
+            
+        </ul>
+        
+        
+
         
         
         <!-- if you aren't using the accordion, uncomment this block:
@@ -374,7 +398,7 @@
         <!-- Content Column -->
         <div class="col-md-9">
             <div class="post-header">
-   <h1 class="post-title-main">Setup Guide</h1>
+   <h1 class="post-title-main">Known Issues</h1>
 </div>
 
 
@@ -382,7 +406,7 @@
 <div class="post-content">
 
    
-    <div class="summary">This document will teach you how to set up a Mindmaps environment, start it up and load an example dataset to make a query using our query language, Graql.</div>
+    <div class="summary">Troubleshooting guide for MindmapsDB.</div>
    
 
     
@@ -414,64 +438,50 @@ $('#toc').on('click', 'a', function() {
 
     
 
-    <!-- <a target="_blank" href="https://github.com/mindmapsdb/docs/blob/master/pages/overview/overviewgetting_started.html.md" class="btn btn-default githubEditButton" role="button"><i class="fa fa-github fa-lg"></i> Edit me</a> -->
-    <a target="_blank" href="https://github.com/mindmapsdb/docs/blob/master/pages/overview/getting_started.md" class="btn btn-default githubEditButton" role="button"><i class="fa fa-github fa-lg"></i> Edit me</a>
+    <!-- <a target="_blank" href="https://github.com/mindmapsdb/docs/blob/master/pages/documentation/documentationtroubleshootingknown-issues.html.md" class="btn btn-default githubEditButton" role="button"><i class="fa fa-github fa-lg"></i> Edit me</a> -->
+    <a target="_blank" href="https://github.com/mindmapsdb/docs/blob/master/pages/documentation/troubleshooting/known-issues.md" class="btn btn-default githubEditButton" role="button"><i class="fa fa-github fa-lg"></i> Edit me</a>
 
     
 
     
 
-  <h2 id="download-and-install-mindmaps">Download and Install Mindmaps</h2>
+  <div class="alert alert-danger" role="alert"><i class="fa fa-exclamation-circle"></i> <b>Warning:</b> While MindmapsDB is still in an early adopters phase, you may encounter some exceptions. This page attempts to help you debug any problems you may experience. Please feel free to use our <a href="http://discuss.mindmaps.io">discussion forums</a> for any specific queries.</div>
 
-<div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> <b>Note:</b> Mindmaps requires Java 8 (Standard Edition) with the <code class="highlighter-rouge">$JAVA_HOME</code> set accordingly. <br />
-Mindmaps also requires Maven 3.</div>
+<h2 id="strange-exceptions">Strange Exceptions</h2>
 
-<p>The latest version of mindmaps can be downloaded from the
-<a href="downloads.html">downloads page</a>. Unzip it and run the following in the terminal:</p>
-
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="nb">cd </span>mindmaps-build
-bin/mindmaps.sh start
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>java.lang.RuntimeException: java.lang.IllegalStateException: The vertex or <span class="nb">type </span>is not associated with this transaction <span class="o">[</span>v[24584]]
 </code></pre>
 </div>
 
-<div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> <b>Note:</b> <strong>Useful commands</strong>  <br />
-To start Mindmaps graph, run <code class="highlighter-rouge">mindmaps.sh start</code>. <br />
-To stop Mindmaps graph, run <code class="highlighter-rouge">mindmaps.sh stop</code>. <br />
-To delete all data in Mindamps graph, stop the Mindmaps backend, then run <code class="highlighter-rouge">mindmaps.sh clean</code>.</div>
+<p>This exception occurs when you try to create links between concepts in
+different graphs. The following code reproduces this exception:</p>
 
-<p>This will start an instance of Cassandra which serves as the supported backend for Mindmaps.</p>
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">MindmapsTitanGraphFactory</span> <span class="n">factory</span> <span class="o">=</span> <span class="n">MindmapsTitanGraphFactory</span><span class="o">.</span><span class="na">getInstance</span><span class="o">();</span>
+<span class="c1">//Configuration pointing to keyspace one</span>
+<span class="n">MindmapsGraph</span> <span class="n">mindmapsGraph1</span> <span class="o">=</span> <span class="n">factory</span><span class="o">.</span><span class="na">newGraph</span><span class="o">(</span><span class="s">"conf1.properties"</span><span class="o">);</span>
+<span class="c1">//Configuration pointing to keyspace two</span>
+<span class="n">MindmapsGraph</span> <span class="n">mindmapsGraph2</span> <span class="o">=</span> <span class="n">factory</span><span class="o">.</span><span class="na">newGraph</span><span class="o">(</span><span class="s">"conf2.properties"</span><span class="o">);</span>
 
-<p><img src="/images/terminal_mindmaps_start.png" alt="Starting Mindmaps successfully" /></p>
+<span class="n">ConceptType</span> <span class="n">conceptType1</span> <span class="o">=</span> <span class="n">mindmapsGraph1</span><span class="o">.</span><span class="na">putConceptType</span><span class="o">(</span><span class="s">"1"</span><span class="o">);</span>
+<span class="n">ConceptType</span> <span class="n">conceptType2</span> <span class="o">=</span> <span class="n">mindmapsGraph2</span><span class="o">.</span><span class="na">putConceptType</span><span class="o">(</span><span class="s">"2"</span><span class="o">);</span>
 
-<h2 id="set-up-graql">Set up Graql</h2>
-
-<p>Graql is our query language, which allows you to interface with a Mindmaps graph. We will use Graql to load an example data set and run some simple queries against it.<br />
-The following will make Graql load an example data set and exit:</p>
-
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>bin/graql.sh -f examples/pokemon.gql
+<span class="n">conceptType1</span><span class="o">.</span><span class="na">superConcept</span><span class="o">(</span><span class="n">conceptType2</span><span class="o">);</span>
 </code></pre>
 </div>
 
-<p>This will create and persist an example data set. Now we can run the following query using the Graql shell:</p>
+<h2 id="other-issues">Other Issues</h2>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>bin/graql.sh
-<span class="k">select</span> <span class="nv">$x</span> where <span class="nv">$x</span> isa pokemon
-<span class="nv">$x</span> id <span class="s2">"Bulbasaur"</span> isa pokemon;
-<span class="nv">$x</span> id <span class="s2">"Charmander"</span> isa pokemon;
-<span class="nv">$x</span> id <span class="s2">"Pikachu"</span> isa pokemon;
-...
-</code></pre>
-</div>
+<h3 id="ghost-vertices">Ghost Vertices</h3>
 
-<p>If you see the above output then congratulations! You have set up Mindmaps.</p>
-
-<h3 id="troubleshooting">Troubleshooting</h3>
-<p>If you do not see the above message, please check our <a href="troubleshooting.html">troubleshooting page</a>. If you have any questions, please ask a question on our <a href="http://discuss.mindmaps.io">discussion forum</a>, or on <a href="http://stackoverflow.com">Stack Overflow</a>.</p>
-
-<h2 id="where-next">Where next?</h2>
-<p>Our <a href="quickstart_tutorial.html">Quick Start Tutorial</a> will show you how to load an ontology and data into a Mindmaps Graph using <a href="quickstart_tutorial.html">Graql</a> or <a href="quickstart_tutorial_java.html">Java</a>.</p>
-
-<p>You can find additional example code and documentation on this portal. We are always adding more and welcome ideas and improvement suggestions. Please get in touch!</p>
+<p>In a  transaction based environment it is possible to have one transaction
+removing a concept while another concurrently modifies the same concept. Both
+transactions may successfully commit if the backend is eventually consistent
+(e.g. <a href="http://s3.thinkaurelius.com/docs/titan/1.0.0/common-questions.html">Titan
+Cassandra</a>
+). The concept is likely to still exist with only the modified properties.
+When using the Titan Cassandra backend it is possible to safeguard against
+this by setting the <code class="highlighter-rouge">checkInternalVertexExistence</code> property to true. <br />
+However, this will result in slower transaction as more reads will be necessary.</p>
 
 <h2 id="document-changelog">Document Changelog</h2>
 
@@ -481,10 +491,10 @@ The following will make Graql load an example data set and exit:</p>
         <td>Date</td>
         <td>Description</td>        
     </tr>
-        <tr>
-        <td>v1.01</td>
-        <td>03/08/2016</td>
-        <td>Updated content and formatting.</td>        
+    <tr>
+        <td>v1</td>
+        <td>10/08/2016</td>
+        <td>Checked for release to developer portal.</td>        
     </tr>
 
 </table>
@@ -497,10 +507,6 @@ The following will make Graql load an example data set and exit:</p>
         
         
         <a href="/pages/tag_getting_started.html" class="btn btn-default navbar-btn cursorNorm" role="button">getting_started</a>
-        
-        
-        
-        <a href="/pages/tag_graql.html" class="btn btn-default navbar-btn cursorNorm" role="button">graql</a>
         
         
         

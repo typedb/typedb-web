@@ -8,31 +8,25 @@
   
   
   <url>
-    <loc>http://mindmaps.io/docs//graql/ask-queries.html</loc>
+    <loc>http://mindmaps.io/docs//documentation/core-api/advanced-schema-definition.html</loc>
   </url>
   
   
   
   <url>
-    <loc>http://mindmaps.io/docs//core/defining-schema-advanced.html</loc>
+    <loc>http://mindmaps.io/docs//documentation/graql/ask-queries.html</loc>
   </url>
   
   
   
   <url>
-    <loc>http://mindmaps.io/docs//core/defining-schema-simple.html</loc>
+    <loc>http://mindmaps.io/docs//documentation/graql/delete-queries.html</loc>
   </url>
   
   
   
   <url>
-    <loc>http://mindmaps.io/docs//graql/delete-queries.html</loc>
-  </url>
-  
-  
-  
-  <url>
-    <loc>http://mindmaps.io/docs//overview/downloads.html</loc>
+    <loc>http://mindmaps.io/docs//documentation/resources/downloads.html</loc>
   </url>
   
   
@@ -40,19 +34,19 @@
   
   
   <url>
-    <loc>http://mindmaps.io/docs//overview/getting_started.html</loc>
+    <loc>http://mindmaps.io/docs//documentation/graql/graql-cheatsheet.html</loc>
   </url>
   
   
   
   <url>
-    <loc>http://mindmaps.io/docs//graql/graql-shell.html</loc>
+    <loc>http://mindmaps.io/docs//documentation/graql/graql-shell.html</loc>
   </url>
   
   
   
   <url>
-    <loc>http://mindmaps.io/docs//graql/graql_cheatsheet.html</loc>
+    <loc>http://mindmaps.io/docs//platform/index</loc>
   </url>
   
   
@@ -64,25 +58,37 @@
   
   
   <url>
-    <loc>http://mindmaps.io/docs//graql/insert-queries.html</loc>
+    <loc>http://mindmaps.io/docs//documentation/graql/insert-queries.html</loc>
   </url>
   
   
   
   <url>
-    <loc>http://mindmaps.io/docs//graql/java-graql.html</loc>
+    <loc>http://mindmaps.io/docs//platform/introduction.html</loc>
   </url>
   
   
   
   <url>
-    <loc>http://mindmaps.io/docs//graql/match-queries.html</loc>
+    <loc>http://mindmaps.io/docs//documentation/graql/java-graql.html</loc>
   </url>
   
   
   
   <url>
-    <loc>http://mindmaps.io/docs//overview/mindmaps_basics.html</loc>
+    <loc>http://mindmaps.io/docs//documentation/troubleshooting/known-issues.html</loc>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://mindmaps.io/docs//documentation/graql/match-queries.html</loc>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://mindmaps.io/docs//documentation/the-basics/mindmaps-basics.html</loc>
   </url>
   
   
@@ -94,52 +100,58 @@
   
   
   <url>
-    <loc>http://mindmaps.io/docs//graql/overview.html</loc>
+    <loc>http://mindmaps.io/docs//documentation/graql/overview.html</loc>
   </url>
   
   
   
   <url>
-    <loc>http://mindmaps.io/docs//overview/overview.html</loc>
+    <loc>http://mindmaps.io/docs//documentation/core-api/overview.html</loc>
   </url>
   
   
   
   <url>
-    <loc>http://mindmaps.io/docs//overview/quickstart_tutorial.html</loc>
+    <loc>http://mindmaps.io/docs//documentation/get-started/overview.html</loc>
   </url>
   
   
   
   <url>
-    <loc>http://mindmaps.io/docs//overview/quickstart_tutorial_java.html</loc>
+    <loc>http://mindmaps.io/docs//documentation/the-basics/quickstart-tutorial-java.html</loc>
   </url>
   
   
   
-  
-  
-  
-  
-  
-  
-  
-  
-  
+  <url>
+    <loc>http://mindmaps.io/docs//documentation/the-basics/quickstart-tutorial.html</loc>
+  </url>
   
   
   
   
   
   <url>
-    <loc>http://mindmaps.io/docs//overview/troubleshooting.html</loc>
+    <loc>http://mindmaps.io/docs//documentation/get-started/setup-guide.html</loc>
   </url>
   
   
   
   <url>
-    <loc>http://mindmaps.io/docs//core/tutorial.html</loc>
+    <loc>http://mindmaps.io/docs//documentation/core-api/simple-schema-definition.html</loc>
   </url>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
   
   
 </urlset>

@@ -3,9 +3,9 @@
     <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content=" The Graql shell is used to execute Graql queries from the command line, or to let Graql be invoked from other applications.">
-<meta name="keywords" content="graql,  graql, shell">
-<title>Graql Shell | MindmapsDB</title>
+<meta name="description" content="This document will teach you how to set up a Mindmaps environment, start it up and load an example dataset to make a query using our query language, Graql.">
+<meta name="keywords" content="getting_startedgraql,  setup, getting started">
+<title>Setup Guide | MindmapsDB</title>
 <link rel="stylesheet" href="/pages/css/syntax.css">
 
 
@@ -118,12 +118,6 @@
             <ul class="nav navbar-nav navbar-right">
                 <!-- entries without drop-downs appear here -->
                 
-                
-                
-                <li><a href="index.html">Documentation</a></li>
-                
-                
-                
                 <!-- entries with drop-downs appear here -->
                 <!-- conditional logic to control which topnav appears for the audience defined in the configuration file.-->
                 
@@ -138,15 +132,11 @@
                         <li><a href="#">Javadoc</a></li>
                     </ul>
                 </li> -->
-                <li>
-                    <a href="//mindmaps.io/community.html">Community</a>
-                </li>
-                <li>
-                    <a href="//discuss.mindmaps.io/">Discussion</a>
-                </li>
-                <li>
-                    <a href="//blog.mindmaps.io/" target="_blank">Blog</a>
-                </li>
+                <!-- <li><a href="/pages/platform/index.html">Platform</a></li> -->
+                <li><a href="/pages/index.html">Documentation</a></li>
+                <li><a href="//mindmaps.io/community.html">Community</a></li>
+                <li><a href="//discuss.mindmaps.io/">Discussion</a></li>
+                <li><a href="//blog.mindmaps.io/" target="_blank">Blog</a></li>
                 <!--comment out this block if you want to hide search-->
                 <li>
                     <!--start search-->
@@ -162,7 +152,7 @@
                             
                             dataSource: '/pages/search.json',
                             
-                            searchResultTemplate: '<li><a href="{url}" title="Graql Shell">{title}</a></li>',
+                            searchResultTemplate: '<li><a href="{url}" title="Setup Guide">{title}</a></li>',
                             noResultsText: '<li><a class="empty">No results found</a></li>',
                             limit: 10,
                             fuzzy: true
@@ -205,16 +195,16 @@
             
             
             
-            <!-- <li><a href="overviewoverview.html">Overview</a></li> -->
-            <li><a href="/pages/overview/overview.html">Overview</a></li>
+            <!-- <li><a href="documentationget-startedoverview.html">Overview</a></li> -->
+            <li><a href="/pages/documentation/get-started/overview.html">Overview</a></li>
             
             
             
             
             
             
-            <!-- <li><a href="overviewgetting_started.html">Setup Guide</a></li> -->
-            <li><a href="/pages/overview/getting_started.html">Setup Guide</a></li>
+            <!-- <li class="active"><a href="documentationget-startedsetup-guide.html">Setup Guide</a></li> -->
+            <li class="active"><a href="/pages/documentation/get-started/setup-guide.html">Setup Guide</a></li>
             
             
             
@@ -229,40 +219,24 @@
             
             
             
-            <!-- <li><a href="overviewmindmaps_basics.html">Mindmaps Basics</a></li> -->
-            <li><a href="/pages/overview/mindmaps_basics.html">Mindmaps Basics</a></li>
+            <!-- <li><a href="documentationthe-basicsmindmaps-basics.html">Mindmaps Basics</a></li> -->
+            <li><a href="/pages/documentation/the-basics/mindmaps-basics.html">Mindmaps Basics</a></li>
             
             
             
             
             
             
-            <!-- <li><a href="overviewquickstart_tutorial.html">Quickstart Tutorial</a></li> -->
-            <li><a href="/pages/overview/quickstart_tutorial.html">Quickstart Tutorial</a></li>
+            <!-- <li><a href="documentationthe-basicsquickstart-tutorial.html">Quickstart Tutorial</a></li> -->
+            <li><a href="/pages/documentation/the-basics/quickstart-tutorial.html">Quickstart Tutorial</a></li>
             
             
             
             
             
             
-            <!-- <li><a href="overviewquickstart_tutorial_java.html">Java Quickstart Tutorial</a></li> -->
-            <li><a href="/pages/overview/quickstart_tutorial_java.html">Java Quickstart Tutorial</a></li>
-            
-            
-            
-            
-        </ul>
-        
-        
-    
-    <li>
-        <a href="#">Troubleshooting</a>
-        <ul>
-            
-            
-            
-            <!-- <li><a href="overviewtroubleshooting.html">Troubleshooting</a></li> -->
-            <li><a href="/pages/overview/troubleshooting.html">Troubleshooting</a></li>
+            <!-- <li><a href="documentationthe-basicsquickstart-tutorial-java.html">Java Quickstart Tutorial</a></li> -->
+            <li><a href="/pages/documentation/the-basics/quickstart-tutorial-java.html">Java Quickstart Tutorial</a></li>
             
             
             
@@ -272,13 +246,29 @@
         
     
     <li>
-        <a href="#">Resources</a>
+        <a href="#">Core API</a>
         <ul>
             
             
             
-            <!-- <li><a href="overviewdownloads.html">Downloads</a></li> -->
-            <li><a href="/pages/overview/downloads.html">Downloads</a></li>
+            <!-- <li><a href="documentationcore-apioverview.html">Overview</a></li> -->
+            <li><a href="/pages/documentation/core-api/overview.html">Overview</a></li>
+            
+            
+            
+            
+            
+            
+            <!-- <li><a href="documentationcore-apisimple-schema-definition.html">Simple Schema Definition</a></li> -->
+            <li><a href="/pages/documentation/core-api/simple-schema-definition.html">Simple Schema Definition</a></li>
+            
+            
+            
+            
+            
+            
+            <!-- <li><a href="documentationcore-apiadvanced-schema-definition.html">Advanced Schema Definition</a></li> -->
+            <li><a href="/pages/documentation/core-api/advanced-schema-definition.html">Advanced Schema Definition</a></li>
             
             
             
@@ -293,70 +283,104 @@
             
             
             
-            <!-- <li><a href="graqloverview.html">Overview</a></li> -->
-            <li><a href="/pages/graql/overview.html">Overview</a></li>
+            <!-- <li><a href="documentationgraqloverview.html">Overview</a></li> -->
+            <li><a href="/pages/documentation/graql/overview.html">Overview</a></li>
             
             
             
             
             
             
-            <!-- <li class="active"><a href="graqlgraql-shell.html">Graql Shell</a></li> -->
-            <li class="active"><a href="/pages/graql/graql-shell.html">Graql Shell</a></li>
+            <!-- <li><a href="documentationgraqlgraql-shell.html">Graql Shell</a></li> -->
+            <li><a href="/pages/documentation/graql/graql-shell.html">Graql Shell</a></li>
             
             
             
             
             
             
-            <!-- <li><a href="graqlmatch-queries.html">Match Queries</a></li> -->
-            <li><a href="/pages/graql/match-queries.html">Match Queries</a></li>
+            <!-- <li><a href="documentationgraqlmatch-queries.html">Match Queries</a></li> -->
+            <li><a href="/pages/documentation/graql/match-queries.html">Match Queries</a></li>
             
             
             
             
             
             
-            <!-- <li><a href="graqlask-queries.html">Ask Queries</a></li> -->
-            <li><a href="/pages/graql/ask-queries.html">Ask Queries</a></li>
+            <!-- <li><a href="documentationgraqlask-queries.html">Ask Queries</a></li> -->
+            <li><a href="/pages/documentation/graql/ask-queries.html">Ask Queries</a></li>
             
             
             
             
             
             
-            <!-- <li><a href="graqldelete-queries.html">Delete Queries</a></li> -->
-            <li><a href="/pages/graql/delete-queries.html">Delete Queries</a></li>
+            <!-- <li><a href="documentationgraqldelete-queries.html">Delete Queries</a></li> -->
+            <li><a href="/pages/documentation/graql/delete-queries.html">Delete Queries</a></li>
             
             
             
             
             
             
-            <!-- <li><a href="graqlinsert-queries.html">Insert Queries</a></li> -->
-            <li><a href="/pages/graql/insert-queries.html">Insert Queries</a></li>
+            <!-- <li><a href="documentationgraqlinsert-queries.html">Insert Queries</a></li> -->
+            <li><a href="/pages/documentation/graql/insert-queries.html">Insert Queries</a></li>
             
             
             
             
             
             
-            <!-- <li><a href="graqlgraql_cheatsheet.html">Graql Cheatsheet</a></li> -->
-            <li><a href="/pages/graql/graql_cheatsheet.html">Graql Cheatsheet</a></li>
+            <!-- <li><a href="documentationgraqlgraql-cheatsheet.html">Graql Cheatsheet</a></li> -->
+            <li><a href="/pages/documentation/graql/graql-cheatsheet.html">Graql Cheatsheet</a></li>
             
             
             
             
             
             
-            <!-- <li><a href="graqljava-graql.html">Java Graql</a></li> -->
-            <li><a href="/pages/graql/java-graql.html">Java Graql</a></li>
+            <!-- <li><a href="documentationgraqljava-graql.html">Java Graql</a></li> -->
+            <li><a href="/pages/documentation/graql/java-graql.html">Java Graql</a></li>
             
             
             
             
         </ul>
         
+        
+    
+    <li>
+        <a href="#">Troubleshooting</a>
+        <ul>
+            
+            
+            
+            <!-- <li><a href="documentationtroubleshootingknown-issues.html">Known Issues</a></li> -->
+            <li><a href="/pages/documentation/troubleshooting/known-issues.html">Known Issues</a></li>
+            
+            
+            
+            
+        </ul>
+        
+        
+    
+    <li>
+        <a href="#">Resources</a>
+        <ul>
+            
+            
+            
+            <!-- <li><a href="documentationresourcesdownloads.html">Downloads</a></li> -->
+            <li><a href="/pages/documentation/resources/downloads.html">Downloads</a></li>
+            
+            
+            
+            
+        </ul>
+        
+        
+
         
         
         <!-- if you aren't using the accordion, uncomment this block:
@@ -374,7 +398,7 @@
         <!-- Content Column -->
         <div class="col-md-9">
             <div class="post-header">
-   <h1 class="post-title-main">Graql Shell</h1>
+   <h1 class="post-title-main">Setup Guide</h1>
 </div>
 
 
@@ -382,7 +406,7 @@
 <div class="post-content">
 
    
-    <div class="summary"> The Graql shell is used to execute Graql queries from the command line, or to let Graql be invoked from other applications.</div>
+    <div class="summary">This document will teach you how to set up a Mindmaps environment, start it up and load an example dataset to make a query using our query language, Graql.</div>
    
 
     
@@ -414,83 +438,64 @@ $('#toc').on('click', 'a', function() {
 
     
 
-    <!-- <a target="_blank" href="https://github.com/mindmapsdb/docs/blob/master/pages/graql/graqlgraql-shell.html.md" class="btn btn-default githubEditButton" role="button"><i class="fa fa-github fa-lg"></i> Edit me</a> -->
-    <a target="_blank" href="https://github.com/mindmapsdb/docs/blob/master/pages/graql/graql-shell.md" class="btn btn-default githubEditButton" role="button"><i class="fa fa-github fa-lg"></i> Edit me</a>
+    <!-- <a target="_blank" href="https://github.com/mindmapsdb/docs/blob/master/pages/documentation/documentationget-startedsetup-guide.html.md" class="btn btn-default githubEditButton" role="button"><i class="fa fa-github fa-lg"></i> Edit me</a> -->
+    <a target="_blank" href="https://github.com/mindmapsdb/docs/blob/master/pages/documentation/get-started/setup-guide.md" class="btn btn-default githubEditButton" role="button"><i class="fa fa-github fa-lg"></i> Edit me</a>
 
     
 
     
 
-  <p>The Graql shell is contained in the <code class="highlighter-rouge">bin</code> folder.</p>
+  <h2 id="download-and-install-mindmaps">Download and Install Mindmaps</h2>
 
-<p>After starting the Mindmaps server, you can execute the shell without any
-parameters to open a REPL (Read Evaluate Print Loop):</p>
+<div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> <b>Note:</b> Mindmaps requires Java 8 (Standard Edition) with the <code class="highlighter-rouge">$JAVA_HOME</code> set accordingly. <br />
+Mindmaps also requires Maven 3.</div>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>bin/graql.sh
-<span class="gp">&gt;&gt;&gt; </span>match <span class="nv">$x</span> id <span class="s2">"Pikachu"</span>;
-<span class="nv">$x</span> id <span class="s2">"Pikachu"</span> isa pokemon;
+<p>The latest version of mindmaps can be downloaded from the
+<a href="downloads.html">downloads page</a>. Unzip it and run the following in the terminal:</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="nb">cd </span>mindmaps-build
+bin/mindmaps.sh start
 </code></pre>
 </div>
 
-<p>The user can enter a query and press enter for it to be evaluated. <br />
-<code class="highlighter-rouge">match</code>
-queries will return the first hundred results. <br />
-<code class="highlighter-rouge">ask</code> queries will return <code class="highlighter-rouge">true</code> or <code class="highlighter-rouge">false</code>.  <br />
-<code class="highlighter-rouge">insert</code> queries will output the concept IDs they are inserting. <br />
-<code class="highlighter-rouge">delete</code> queries will execute with no output.</p>
+<div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> <b>Note:</b> <strong>Useful commands</strong>  <br />
+To start Mindmaps graph, run <code class="highlighter-rouge">mindmaps.sh start</code>. <br />
+To stop Mindmaps graph, run <code class="highlighter-rouge">mindmaps.sh stop</code>. <br />
+To delete all data in Mindamps graph, stop the Mindmaps backend, then run <code class="highlighter-rouge">mindmaps.sh clean</code>.</div>
 
-<p>The interactive shell commits to the graph only when the user type <code class="highlighter-rouge">commit</code>.</p>
+<p>This will start an instance of Cassandra which serves as the supported backend for Mindmaps.</p>
 
-<p>The REPL features several special commands:<br />
- <code class="highlighter-rouge">commit</code> Commits and validates the graph. If validation fails, the graph will not commit. <br />
- <code class="highlighter-rouge">edit</code> Opens the user’s default text editor, specified by the <code class="highlighter-rouge">$EDITOR</code> environment variable. By default set to <code class="highlighter-rouge">vim</code>. When the editor exits, the query is executed in the shell. <br />
-   <code class="highlighter-rouge">load &lt;filename&gt;</code> Executes the given file containing a Graql query. <br />
-   <code class="highlighter-rouge">clear</code> Clears the console window. <br />
-   <code class="highlighter-rouge">license</code> Prints the license</p>
+<p><img src="/images/terminal_mindmaps_start.png" alt="Starting Mindmaps successfully" /></p>
 
-<h2 id="arguments">Arguments</h2>
+<h2 id="set-up-graql">Set up Graql</h2>
 
-<p>The Graql shell accepts several arguments:</p>
+<p>Graql is our query language, which allows you to interface with a Mindmaps graph. We will use Graql to load an example data set and run some simple queries against it.<br />
+The following will make Graql load an example data set and exit:</p>
 
-<table>
-  <thead>
-    <tr>
-      <th>Long Option</th>
-      <th>Option</th>
-      <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>–name</td>
-      <td>-n</td>
-      <td>The name of the graph.</td>
-    </tr>
-    <tr>
-      <td>–execute</td>
-      <td>-e</td>
-      <td>A query to execute.</td>
-    </tr>
-    <tr>
-      <td>–file</td>
-      <td>-f</td>
-      <td>A path to a file containg a query to execute.</td>
-    </tr>
-    <tr>
-      <td>–help</td>
-      <td>-h</td>
-      <td>Print usage message</td>
-    </tr>
-    <tr>
-      <td>–version</td>
-      <td>-v</td>
-      <td>Print version</td>
-    </tr>
-  </tbody>
-</table>
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>bin/graql.sh -f examples/pokemon.gql
+</code></pre>
+</div>
 
-<p>If either <code class="highlighter-rouge">--execute</code> or <code class="highlighter-rouge">--file</code> is provided, the REPL will not open and the
-graph will be automatically committed.</p>
+<p>This will create and persist an example data set. Now we can run the following query using the Graql shell:</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>bin/graql.sh
+<span class="k">select</span> <span class="nv">$x</span> where <span class="nv">$x</span> isa pokemon
+<span class="nv">$x</span> id <span class="s2">"Bulbasaur"</span> isa pokemon;
+<span class="nv">$x</span> id <span class="s2">"Charmander"</span> isa pokemon;
+<span class="nv">$x</span> id <span class="s2">"Pikachu"</span> isa pokemon;
+...
+</code></pre>
+</div>
+
+<p>If you see the above output then congratulations! You have set up Mindmaps.</p>
+
+<h3 id="troubleshooting">Troubleshooting</h3>
+<p>If you do not see the above message, please check our <a href="troubleshooting.html">troubleshooting page</a>. If you have any questions, please ask a question on our <a href="http://discuss.mindmaps.io">discussion forum</a>, or on <a href="http://stackoverflow.com">Stack Overflow</a>.</p>
+
+<h2 id="where-next">Where next?</h2>
+<p>Our <a href="quickstart_tutorial.html">Quick Start Tutorial</a> will show you how to load an ontology and data into a Mindmaps Graph using <a href="quickstart_tutorial.html">Graql</a> or <a href="quickstart_tutorial_java.html">Java</a>.</p>
+
+<p>You can find additional example code and documentation on this portal. We are always adding more and welcome ideas and improvement suggestions. Please get in touch!</p>
 
 <h2 id="document-changelog">Document Changelog</h2>
 
@@ -500,10 +505,10 @@ graph will be automatically committed.</p>
         <td>Date</td>
         <td>Description</td>        
     </tr>
-    <tr>
-        <td>v1</td>
-        <td>11/08/2016</td>
-        <td>New page for developer portal.</td>        
+        <tr>
+        <td>v1.01</td>
+        <td>03/08/2016</td>
+        <td>Updated content and formatting.</td>        
     </tr>
 
 </table>
@@ -512,6 +517,10 @@ graph will be automatically committed.</p>
     <div class="tags">
         
         <b>Tags: </b>
+        
+        
+        
+        <a href="/pages/tag_getting_started.html" class="btn btn-default navbar-btn cursorNorm" role="button">getting_started</a>
         
         
         
@@ -546,7 +555,7 @@ graph will be automatically committed.</p>
         <br>
         <p>© 2016 <a href="http://mindmaps.io">Mindmaps Research Ltd</a></p>
         <!-- &copy;2016 MindmapsDB. All rights reserved. <br />
-        <span>Page last updated:</span> August 11, 2016<br/> Site last generated: Aug 18, 2016 <br />
+        <span>Page last updated:</span> August 10, 2016<br/> Site last generated: Aug 18, 2016 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">
