@@ -14,9 +14,11 @@
             alias: 'string'
         },
         keyword: {
-            pattern: /((?:(?![-a-zA-Z_0-9]).)|^)(match|ask|insert|delete|select|isa|ako|plays-role|has-role|has-scope|datatype|is-abstract|has|value|id|of|limit|offset|order|by)(?![-a-zA-Z_0-9])/,
-            alias: 'keyword'
+            pattern: /((?:(?![-a-zA-Z_0-9]).)|^|\s)(match|ask|insert|delete|select|isa|ako|plays-role|has-role|has-scope|datatype|is-abstract|has|value|id|of|limit|offset|order|by)(?![-a-zA-Z_0-9])/,
+            alias: 'keyword',
+            lookbehind: true
         },
+
         special: {
             pattern: /graql>|results>|\.\.\./
         },
