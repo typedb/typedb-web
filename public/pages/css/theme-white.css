@@ -607,6 +607,7 @@ a.dropdown-toggle,
 
 .footer li a,
 .footer a.gitter,
+.footer a.slack,
 .footer a.github {
     text-decoration: none;
 }
