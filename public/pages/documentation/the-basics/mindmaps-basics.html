@@ -3,7 +3,7 @@
     <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="MindmapsDB basics.">
+<meta name="description" content="Introducing the basics of the Mindmaps object model.">
 <meta name="keywords" content="getting_started,  setup, getting started, basics, mindmapsdb, mindmaps, mindmaps.io, Mindmaps Research, Mindmaps Research Ltd, software, development platform, developer tool, data platform, programming langauge, query langauge, database, semantic database, distributed semantic database, distributed database, graph database, semantic search, data exploration, recommendation system, knowledge management, knowledge engineering, real-time analytics, advanced analytics, reasoning engine, inference engine, expert systems, semantic applications, research engines, data management, business intelligence, big data, semantic web, semantic data, knowledge representation, automated reasoning, semantic network, knowledge ontology, semantic graph, ontology engineering, graph based knowledge representation, artificial intelligence,">
 <title>Mindmaps Basics | MindmapsDB</title>
 <link rel="stylesheet" href="/pages/css/syntax.css">
@@ -206,14 +206,6 @@
             
             
             
-            <!-- <li><a href="documentationget-startedoverview.html">Overview</a></li> -->
-            <li><a href="/pages/documentation/get-started/overview.html">Overview</a></li>
-            
-            
-            
-            
-            
-            
             <!-- <li><a href="documentationget-startedsetup-guide.html">Setup Guide</a></li> -->
             <li><a href="/pages/documentation/get-started/setup-guide.html">Setup Guide</a></li>
             
@@ -240,14 +232,6 @@
             
             <!-- <li><a href="documentationthe-basicsquickstart-tutorial.html">Quickstart Tutorial</a></li> -->
             <li><a href="/pages/documentation/the-basics/quickstart-tutorial.html">Quickstart Tutorial</a></li>
-            
-            
-            
-            
-            
-            
-            <!-- <li><a href="documentationthe-basicsquickstart-tutorial-java.html">Java Quickstart Tutorial</a></li> -->
-            <li><a href="/pages/documentation/the-basics/quickstart-tutorial-java.html">Java Quickstart Tutorial</a></li>
             
             
             
@@ -382,6 +366,22 @@
             
             
             
+            <!-- <li><a href="documentationresourcesresources.html">Resources</a></li> -->
+            <li><a href="/pages/documentation/resources/resources.html">Resources</a></li>
+            
+            
+            
+            
+            
+            
+            <!-- <li><a href="documentationresourcesdeveloper-faq.html">Frequently Asked Questions</a></li> -->
+            <li><a href="/pages/documentation/resources/developer-faq.html">Frequently Asked Questions</a></li>
+            
+            
+            
+            
+            
+            
             <!-- <li><a href="documentationresourcesdownloads.html">Downloads</a></li> -->
             <li><a href="/pages/documentation/resources/downloads.html">Downloads</a></li>
             
@@ -417,7 +417,7 @@
 <div class="post-content">
 
    
-    <div class="summary">MindmapsDB basics.</div>
+    <div class="summary">Introducing the basics of the Mindmaps object model.</div>
    
 
     
@@ -458,290 +458,172 @@ $('#toc').on('click', 'a', function() {
 
   <h1 id="mindmaps-basics">Mindmaps Basics</h1>
 
-<h2 id="ontology-vs-data">Ontology Vs Data</h2>
+<h2 id="ontology-and-data">Ontology and Data</h2>
 
-<p>A Mindmaps graph is made of two layers. The ontology and the data layer.</p>
+<p>A Mindmaps graph is made of two layers: the ontology and the data layer.</p>
 
-<p>The ontology is used to formalise the data within a specific domain. If our
-data is about healthcare then we need to design an ontology specific to
-healthcare. If our data is about movies, then we need to define an ontology
-specific to the movie industry. A Mindmaps ontology is analogous to a database
-schema. Ideally, It should be clearly defined before loading data into the
-graph. Example of Ontological concepts could include <code class="highlighter-rouge">Car</code>, <code class="highlighter-rouge">Person</code>, <code class="highlighter-rouge">Movie</code>.</p>
+<p><strong><em>A Mindmaps ontology is analogous to a database schema</em></strong>. Ideally, it should be clearly defined before loading data into the graph. The ontology is used to formalise the data within a specific domain. If data is about healthcare, then we need to design an ontology specific to healthcare. If data is about movies, then we need to define an ontology
+specific to the movie industry.</p>
 
-<p>The data layer is categorised within the ontology. It is essentially everything
-we wish to model. Examples of data concept could include <code class="highlighter-rouge">a VW Golf TDI</code>, <code class="highlighter-rouge">Al
-Pacino</code>, <code class="highlighter-rouge">Godfather</code>.</p>
+<p>Example ontological concepts could include <code class="highlighter-rouge">Car</code>, <code class="highlighter-rouge">Person</code>, <code class="highlighter-rouge">Movie</code>.</p>
 
-<h2 id="the-graph-structure">The Graph Structure</h2>
+<p><strong><em>The data is categorised by the ontology</em></strong>. It is essentially everything
+we wish to model.</p>
 
-<p>A graph is defined by vertices and the edges between them. Similarly, a
+<p>Example data concepts could include <code class="highlighter-rouge">a VW Golf TDI</code>, <code class="highlighter-rouge">Tom Cruise</code>, <code class="highlighter-rouge">Mission: Impossible</code>.</p>
+
+<h2 id="the-object-model---ontology">The Object Model - Ontology</h2>
+
+<p>The Mindmaps stack provides a formal structure to a graph database.  The following figure represents the inheritance structure of the ontological elements. These are used to design our domain specific ontology.</p>
+
+<p><img src="/images/ontology_object_model.png" alt="The ontology object model" /></p>
+
+<h3 id="concept">Concept</h3>
+
+<p>Just as a graph is defined by vertices and the edges between them, a
 Mindmaps graph is defined by concepts and the relationships between those
-concepts. In the following section we will describe the ways in which concepts
-can relate to one another.</p>
+concepts.  Every vertex is a concept and has the following properties:</p>
 
-<h3 id="concepts-have-types">Concepts Have Types</h3>
+<h4 id="unique-properties">Unique Properties</h4>
 
-<p>All concepts must have a type. The type defines the category which a concept
-falls within. It allows us to categorise Instances withi Types  For example the
-type of an Instance, <code class="highlighter-rouge">a BMW</code> could be a Type, <code class="highlighter-rouge">Car</code>. Similarly, the type of
-<code class="highlighter-rouge">Aristotle</code> is the Type <code class="highlighter-rouge">Man</code>.</p>
+<p>Properties which must be unique throughout the entire graph.</p>
 
-<p>The following is an example of how Instances can have a Type:</p>
+<p><strong>Id</strong> - A concept must, at minimum, have a unique ID. This is a string which identifies the concept. For example if a concept is representing a person it could be their id number. <br />
+<strong>Subject</strong> - An optional unique string which can be used to refer to
+external resources relating to the concept. For example if the concept is used to represent a country or city the subject could point to the wikipedia page of that city.</p>
 
-<p><img src="/images/example_types.png" alt="An example of the type relationship between some Instances and a
-Type" /></p>
+<h4 id="additional-properties">Additional Properties</h4>
 
-<blockquote>
-  <p>In a Mindmaps graph we use the shorthand <code class="highlighter-rouge">isa</code> when representing the type
-relationship. For example, <code class="highlighter-rouge">Aristotle</code> <code class="highlighter-rouge">is a</code> <code class="highlighter-rouge">Man</code>.</p>
-</blockquote>
+<p>Properties that store additional information about the concept and do not have to be unique across the graph.</p>
 
-<h3 id="types-can-be-subclassed">Types Can Be Subclassed</h3>
+<p><strong>Value</strong> - A string value which can be used to store an additional piece of data. For example this could represent a person’s name, a movie title, or any representative string.</p>
 
-<p>Mindmaps provides the ability to define rich semantic ontologies. One way of
-achieving this is to allow Types to be subclassed. For example, valid
-subclasses for the Type, <code class="highlighter-rouge">Vehicle</code> could include <code class="highlighter-rouge">Car</code>, <code class="highlighter-rouge">Truck</code>, and
-<code class="highlighter-rouge">Motorbike</code>.</p>
+<h3 id="concept-type">Concept Type</h3>
 
-<p>If we expand our example above to include female philosophers we would have the
-following graph:</p>
+<p>A Type is an ontological element that represents something that can have instances, and is extended into the following types: <br />
+-  Entity Types<br />
+-  Relation Types<br />
+-  Role Types<br />
+-  Resource Types</p>
 
-<p><img src="/images/example_no_super.png" alt="Expanding the previous example to include female
-philosophers." /></p>
+<h3 id="entity-type">Entity Type</h3>
 
-<p>By using subclassing we can more richly model this graph as follows:</p>
+<p>A Entity Type is used to represent a category of entities, e.g. <code class="highlighter-rouge">Person</code>, <code class="highlighter-rouge">Vehicle</code>, <code class="highlighter-rouge">Movie</code> or <code class="highlighter-rouge">Country</code>.</p>
 
-<p><img src="/images/example_super.png" alt="Expanding the example further to include
-subtypes." /></p>
+<h3 id="resource-type">Resource Type</h3>
 
-<blockquote>
-  <p>In a Mindmaps graph we use the shorthand <code class="highlighter-rouge">ako</code> when referring to a Type being
-the sub type of another Type. For example, <code class="highlighter-rouge">Man</code> <code class="highlighter-rouge">a kind of (ako)</code> <code class="highlighter-rouge">Person</code>.</p>
-</blockquote>
+<p>A Resource Type is used to represent a category of resources. e.g. <code class="highlighter-rouge">birthdate</code> or <code class="highlighter-rouge">name</code>. Resource Types have additional properties including:</p>
 
-<p>This simple subclassing allows us to expand and deepen our ontology to whatever
-granularity of detail is needed. For example a simple ontology would be <code class="highlighter-rouge">Car</code>
-<code class="highlighter-rouge">is a</code> <code class="highlighter-rouge">Vehicle</code> but with subclassing we could go as far as <code class="highlighter-rouge">a VW Gold TDI
-2014</code> <code class="highlighter-rouge">isa</code> <code class="highlighter-rouge">VW</code> <code class="highlighter-rouge">ako</code> <code class="highlighter-rouge">Car</code> <code class="highlighter-rouge">isa</code> <code class="highlighter-rouge">Vehicle</code>.</p>
+<ol>
+  <li><strong>Datatype</strong> - Indicates the datatype of the resource. For example if the resource is <code class="highlighter-rouge">Age</code> the the datatype would be <strong>integer</strong></li>
+  <li><strong>Regex</strong> - Used to constrain string data types to specific regex patterns.</li>
+  <li><strong>Unique</strong> - A boolean which indicates if the resource should be unique
+across the graph.</li>
+</ol>
 
-<h3 id="types-constrain-roles-that-can-be-played">Types Constrain Roles that can be Played</h3>
+<h3 id="relation-type">Relation Type</h3>
 
-<p>A Role allows us to define how concepts can relate to one another for example.
-The instance <code class="highlighter-rouge">Al Pacino</code> could have the Role <code class="highlighter-rouge">Actor</code> when relating to to the
-movie <code class="highlighter-rouge">Godfather</code>. However, <code class="highlighter-rouge">Al Pacino</code> would have the Role of <code class="highlighter-rouge">Father</code> when
-relating to his daughter <code class="highlighter-rouge">Olivia Pacino</code>.</p>
+<p>A Relation Type is used to model relationships. For example, to model that <code class="highlighter-rouge">Tom Cruise</code> is an <code class="highlighter-rouge">Actor</code> in <code class="highlighter-rouge">Mission: Impossible</code> we need to use a Relation Type such as <code class="highlighter-rouge">Has Cast</code>. This allows us to model that
+<code class="highlighter-rouge">Mission: Impossible</code> <code class="highlighter-rouge">Has Cast</code> <code class="highlighter-rouge">Tom Cruise</code>.</p>
 
-<p>Types allow us to constrain the types of roles Instances can play. This allows
-us to ensure that only instances of the correct type are involved in the
-correct relationships. For example, in the movie domain, a <code class="highlighter-rouge">Person</code> Type can
-play the role <code class="highlighter-rouge">Actor</code>. This would mean that Instances of the Type <code class="highlighter-rouge">Person</code>,
-such as <code class="highlighter-rouge">Al Pacino</code> or <code class="highlighter-rouge">Leonardo DiCaprio</code> are allowed to be <code class="highlighter-rouge">Actors</code> in the
-relationship involving the <code class="highlighter-rouge">Actor</code> role. At the same time this would implicitly
-define that an Instance of Concept Type <code class="highlighter-rouge">Dog</code> would not be allowed to play the
-role <code class="highlighter-rouge">Actor</code>.</p>
+<p>A Mindmaps graph enables us to model complex n-ary relationships. To do this we define a Relation Type and link it with roles which flesh out the details of the relationship. For example, in the movie domain a valid Relation Type could be <code class="highlighter-rouge">Cast</code> which has the Role Types <code class="highlighter-rouge">Actor</code> and <code class="highlighter-rouge">Movie With Cast</code>.</p>
 
-<p>Going back to our philosophers example we could define the following structure
-where people can now play the roles of teachers and students:</p>
+<h3 id="role-type">Role Type</h3>
+
+<p>A Role Type is used to represent a role in a relationship, and how concepts relate to one another. For example, if we wish to model that <code class="highlighter-rouge">Jon Voight</code> is an <code class="highlighter-rouge">Actor</code> in <code class="highlighter-rouge">Mission: Impossible</code> then we need to define a Role Type <code class="highlighter-rouge">Actor</code>. However, <code class="highlighter-rouge">Jon Voight</code> would have the role of <code class="highlighter-rouge">Father</code> relating to his daughter <code class="highlighter-rouge">Angelina Jolie</code>.</p>
+
+<p>Types constrain the roles that can be played to ensure that only instances of the correct type are involved in the correct relationships. For example, in the movie domain, a <code class="highlighter-rouge">Person</code> Type can play the role <code class="highlighter-rouge">Actor</code>. This would mean that Instances of the Type <code class="highlighter-rouge">Person</code>, such as <code class="highlighter-rouge">Al Pacino</code> or <code class="highlighter-rouge">Leonardo DiCaprio</code> are allowed to be <code class="highlighter-rouge">Actors</code> in the relationship involving the <code class="highlighter-rouge">Actor</code> role. At the same time this would implicitly
+define that an Instance of Concept Type <code class="highlighter-rouge">Dog</code> would not be allowed to play the role <code class="highlighter-rouge">Actor</code>.</p>
+
+<h3 id="subclasses">Subclasses</h3>
+
+<p>The four types described above can be subclassed. For example, subclasses of <code class="highlighter-rouge">Person</code> could be <code class="highlighter-rouge">Man</code> and <code class="highlighter-rouge">Woman</code>.  This simple subclassing allows us to expand and deepen our ontology to whatever granularity of detail is needed. For example a simple ontology would be <code class="highlighter-rouge">Car</code> <code class="highlighter-rouge">is a</code> <code class="highlighter-rouge">Vehicle</code> but with subclassing we could go as far as <code class="highlighter-rouge">a VW Gold TDI 2014</code> <code class="highlighter-rouge">isa</code> <code class="highlighter-rouge">VW</code> <code class="highlighter-rouge">ako</code> <code class="highlighter-rouge">Car</code> <code class="highlighter-rouge">isa</code> <code class="highlighter-rouge">Vehicle</code>.</p>
+
+<p>Types can have an additional property, <code class="highlighter-rouge">Abstract</code>, which indicates the type cannot have instances. This is useful when we want to define a deeper ontology. For example if we have <code class="highlighter-rouge">Person</code> and its subclasses <code class="highlighter-rouge">Man</code> and <code class="highlighter-rouge">Woman</code>, then we may want to define <code class="highlighter-rouge">Person</code> as <code class="highlighter-rouge">Abstract</code> to prohibit it from having any direct instances.</p>
+
+<h2 id="the-object-model---data">The Object Model - Data</h2>
+<p>The following figure represents the inheritance structure of the data elements.</p>
+
+<p><img src="/images/data_object_model.png" alt="The data object model" /></p>
+
+<h3 id="instance">Instance</h3>
+
+<p>Instances are data elements. They are named as such because they are instances of the Types described above. For example: a <code class="highlighter-rouge">BMW</code> is an instance of the Entity Type <code class="highlighter-rouge">Car</code> and <code class="highlighter-rouge">09/10/1988</code> is an instance of Resource Type <code class="highlighter-rouge">Date</code>.</p>
+
+<h3 id="entity">Entity</h3>
+
+<p>An instance of the Entity Type (which is known as an Entity)  represents an actual item of data. For example, Entity Type <code class="highlighter-rouge">Car</code> could have Entities <code class="highlighter-rouge">a BMW</code>, <code class="highlighter-rouge">this Mercedes</code>, and <code class="highlighter-rouge">that Volkswagen</code>. The Mindmaps graph enables us to model relationships between these entities, once they have been defined.</p>
+
+<h3 id="resource">Resource</h3>
+
+<p>Resources are instances of the Resource Type described above. They allow us to attribute data to a specific instance. For example, if <code class="highlighter-rouge">Alice</code> is an instance of <code class="highlighter-rouge">Person</code> we could model Alice’s birthday <code class="highlighter-rouge">09/10/1988</code> as an instance of the Resource Type <code class="highlighter-rouge">Birthdate</code>.  The Resource object allows us to impose some additional constraints, such as ensuring that it conforms to a regex pattern or is of a particular data type.</p>
+
+<h3 id="relation">Relation</h3>
+
+<p>A Relation represents an instance of a Relation Type. We can use a Relation to model multiple relationships between instances. For example, if <code class="highlighter-rouge">Alice</code> and <code class="highlighter-rouge">Bob</code> are married then we would create a Relation object <code class="highlighter-rouge">Marriage</code>, which is an instance of Relation Type, to model that relationship. At the same time, Alice could work for an organisation <code class="highlighter-rouge">Apache</code>. Similarly, we would create an instance of the Relation
+Type <code class="highlighter-rouge">Works For</code> to model that relationship.</p>
+
+<p>Essentially a Relation describes a relationship of a specific type between
+instances of a specific type. For example, one Relation can define that the Instance <code class="highlighter-rouge">Tom Cruise</code> plays the Role Type <code class="highlighter-rouge">Actor</code> with the movie Instance <code class="highlighter-rouge">Mission: Impossible</code> which plays the Role Type <code class="highlighter-rouge">Movie With Cast</code>.</p>
+
+<h2 id="an-example-graph-structure">An Example Graph Structure</h2>
+
+<h3 id="subclasses-1">Subclasses</h3>
+
+<p>Consider the following example of male and female philosopers.</p>
+
+<p><img src="/images/example_super.png" alt="Male and Female philosophers" /></p>
+
+<div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> <b>Note:</b> In a Mindmaps graph, we use the shorthand <code class="highlighter-rouge">isa</code> when representing the type relationship. <br /> 
+For example, <code class="highlighter-rouge">Aristotle</code> <code class="highlighter-rouge">is a</code> <code class="highlighter-rouge">Man</code>.   <br />
+We use the shorthand <code class="highlighter-rouge">ako</code> when referring to a Type being the sub type of another Type. <br />
+For example, <code class="highlighter-rouge">Man</code> <code class="highlighter-rouge">a kind of (ako)</code> <code class="highlighter-rouge">Person</code>.</div>
+
+<h3 id="roles">Roles</h3>
+<p>We can define the following structure where people can now play the roles of teachers or students:</p>
 
 <p><img src="/images/examples_playsroles.png" alt="A simple example of allowing a Type to play specific Role
 Types." /></p>
 
-<h3 id="relation-types-are-associated-with-roles">Relation Types are Associated with Roles</h3>
+<h3 id="relation-types">Relation Types</h3>
 
-<p>A Mindmaps graph enables us to model complex n-ary relationships. To do this we
-define a Relation Type and link it with roles which flesh out the details of
-the relationship. For example, in the movie domain a valid Relation Type could
-be <code class="highlighter-rouge">Cast</code> which has the Role Types <code class="highlighter-rouge">Actor</code> and <code class="highlighter-rouge">Movie With Cast</code>.</p>
-
-<p>Expanding our philosophers example we could define a Relation Type, <code class="highlighter-rouge">Education</code>
-which encapsulates the needed roles:</p>
+<p>Expanding our philosophers example we could define a Relation Type, <code class="highlighter-rouge">Education</code> to encapsulate the needed roles:</p>
 
 <p><img src="/images/example_relationtype.png" alt="Expanding the example to illustrate how a relation type is linked with Role
 Types." /></p>
 
 <h3 id="defining-relations">Defining Relations</h3>
 
-<p>Relations allow us to represent different instances of Relation Types. For
-example one Relation could represent <code class="highlighter-rouge">Al Pacino</code> as an <code class="highlighter-rouge">Actor</code> in the movie
-<code class="highlighter-rouge">Godfather</code>, while another Relation could represent <code class="highlighter-rouge">Al Pacino</code> as an <code class="highlighter-rouge">Actor</code>
-in the movie <code class="highlighter-rouge">S1m0ne</code>.</p>
-
-<p>Essentially they encapsulate a relationship of a specific type between
-instances of a specific type. For example, one Relation can define that the
-Instance <code class="highlighter-rouge">Al Pacino</code> plays the Role Type <code class="highlighter-rouge">Actor</code> with the movie Instance
-<code class="highlighter-rouge">Godfather</code> which plays the Role Type <code class="highlighter-rouge">Movie With Cast</code>.</p>
-
-<p>Finally, we can expand our philosophers example to define that Plato taught
-Aristotle:</p>
+<p>Finally, we can expand our philosophers example to define that Plato taught Aristotle:</p>
 
 <p><img src="/images/example_relation.png" alt="An example of a Relation. The dark blue represents the Relation which is an
 instance of
 `Education`" /></p>
 
-<blockquote>
-  <p>When creating a relation you must ensure that the type of the Instances are
-allowed to play the Role Types. For example, in the above graph if we forgot
-to define that the Type <code class="highlighter-rouge">Person</code> is allowed to play the Role <code class="highlighter-rouge">Teacher</code> then
-the Relation between <code class="highlighter-rouge">Plato</code> and <code class="highlighter-rouge">Aristotle</code> would not be valid.</p>
-</blockquote>
+<div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> <b>Note:</b> When creating a relation you must ensure that the type of the Instances are allowed to play the Role Types. For example, in the above graph if we forgot to define that the Type <code class="highlighter-rouge">Person</code> is allowed to play the Role <code class="highlighter-rouge">Teacher</code> then the Relation between <code class="highlighter-rouge">Plato</code> and <code class="highlighter-rouge">Aristotle</code> would not be valid.</div>
 
-<h2 id="the-object-model">The Object Model</h2>
+<!-- Removed a section on the meta ontology. We could create a separate article about this later if we think it's useful -->
 
-<p>One of the benefits of using the Mindmaps stack is the ability of Mindmaps to
-provide a formal structure to a graph database. This section focuses on
-understanding that structure. You will be using this object model as a Mindmaps
-developer.</p>
+<h2 id="where-next">Where next?</h2>
+<p>Our <a href="../the-basics/quickstart-tutorial.html">Quickstart Tutorial</a> will show you how to load an ontology and data into a Mindmaps Graph using Graql or Java.</p>
 
-<p>The following figure represents the inheritance structure of the Mindmaps
-object model:</p>
+<p>You can find additional example code and documentation on this portal. We are always adding more and welcome ideas and improvement suggestions. Please get in touch!</p>
 
-<p><img src="/images/object_model.png" alt="The Mindmaps Object
-Model." /></p>
+<h2 id="document-changelog">Document Changelog</h2>
 
-<blockquote>
-  <p>Types (The right branch in the above diagram) are ontological elements. They
-are used to design our domain specific ontology. For example, within the
-domain of movies valid types include: <code class="highlighter-rouge">Movie</code>, <code class="highlighter-rouge">Actor</code>, and <code class="highlighter-rouge">Director</code>.</p>
-</blockquote>
+<table>
+    <tr>
+        <td>Version</td>
+        <td>Date</td>
+        <td>Description</td>        
+    </tr>
+        <tr>
+        <td>v1.01</td>
+        <td>25/08/2016</td>
+        <td>Updated content and formatting.</td>        
+    </tr>
 
-<blockquote>
-  <p>Instances (The left branch in the above diagram) are data elements. They are
-named such because they are instances of Types. For example, within the
-domain of movies, valid instances could include: <code class="highlighter-rouge">The Godfather</code>, <code class="highlighter-rouge">Al
-Pacino</code>, and <code class="highlighter-rouge">Coppola</code>.</p>
-</blockquote>
-
-<h3 id="concepts">Concepts</h3>
-
-<p>A concept represents a thing, for example, a movie, a category etc . .  In the
-Mindmaps stack every vertex is a concept. Each concept has the following
-properties:</p>
-
-<blockquote>
-  <p>A concept must at minimum have a unique ID. All other properties are
-optional.</p>
-</blockquote>
-
-<h4 id="unique-properties">Unique Properties</h4>
-
-<p>Properties which must be unique throughout the entire graph.</p>
-
-<ol>
-  <li><strong>Id</strong> - A unique string which identifies the concept. For example if a
-concept is representing a person it could be their id number.</li>
-  <li><strong>Subject</strong> - An optional unique string which can be used to refer to
-external resources relating to the concept. For example if the concept is used
-to represent a country or city the subject could point to the wikipedia page of
-that city.</li>
-</ol>
-
-<h4 id="additional-properties">Additional Properties</h4>
-
-<p>Properties which store additional information about the concept and do not have
-to be unique across the graph.</p>
-
-<ol>
-  <li><strong>Value</strong> - A string value which can be used to store an additional piece of
-data. For example this could represent a person’s name, a movie title, or any
-representative string.</li>
-</ol>
-
-<h3 id="types">Types</h3>
-
-<p>A Type is an ontological element represents something which can have instances.
-To provider a richer ontology Instances can fall into one of the following
-Types: Entity Types, Relation Types, Role Types, and Resource Types.</p>
-
-<p>Types can have an additional property, Abstract, which indicates the type
-cannot have instances. This is useful when we want to define a deeper ontology.
-For example if we have two ontology elements <code class="highlighter-rouge">Car</code> which is a subclass
-<code class="highlighter-rouge">Vehicle</code> then we may want to define <code class="highlighter-rouge">Vehicle</code> as abstract to prohibit it have
-any direct instances.</p>
-
-<h3 id="entity-types">Entity Types</h3>
-
-<p>A Entity Type is used to represent a category of entities. “Vehicle”, “Movie”,
-“Country”. These are valid examples of what a Entity type can be used to
-represent.</p>
-
-<h3 id="resource-types">Resource Types</h3>
-
-<p>A Resource Type is used to represent a category of resources. A valid example
-could include a <code class="highlighter-rouge">birthdate</code> or a <code class="highlighter-rouge">name</code>. Resource Types have additional
-properties including:</p>
-
-<ol>
-  <li><strong>Data Type</strong> - Indicates the data type of the resource. For example if the
-resource is <code class="highlighter-rouge">Age</code> the the data type would be <strong>integer</strong></li>
-  <li><strong>Regex</strong> - Used to constrain string data types to specific regex patterns.</li>
-  <li><strong>Unique</strong> - A boolean which indicates if the resource should be unique
-across the graph.</li>
-</ol>
-
-<h3 id="relation-types">Relation Types</h3>
-
-<p>A Mindmaps graph not only models the data but also models the relationships
-between the data. These relationships are categorised using Relation Types.</p>
-
-<p>For example, to model that <code class="highlighter-rouge">Al Pacino</code> was an <code class="highlighter-rouge">Actor</code> in <code class="highlighter-rouge">Godfather</code> we would
-need an instance of the Relation Type <code class="highlighter-rouge">Has Cast</code>. This allows us to model that
-<code class="highlighter-rouge">Godfather</code> <code class="highlighter-rouge">Has Cast</code> <code class="highlighter-rouge">Al Pacino</code>.</p>
-
-<h3 id="role-types">Role Types</h3>
-
-<p>A Role Type is used to represent a role in a relationship that a concept can
-play. For example, if we wish to model that <code class="highlighter-rouge">Al Pacino</code> was in <code class="highlighter-rouge">Godfather</code> then
-we define a Role Type <code class="highlighter-rouge">Actor</code> which <code class="highlighter-rouge">Al Pacino</code> can play.</p>
-
-<h3 id="instances">Instances</h3>
-
-<p>An instance represents a concept which falls under a type. For example: <code class="highlighter-rouge">a BMW</code>
-would be an instance of the Entity Type <code class="highlighter-rouge">Car</code> and <code class="highlighter-rouge">09/10/1988</code> could be an
-instance of Resource Type <code class="highlighter-rouge">Date</code>.</p>
-
-<h3 id="entities">Entities</h3>
-
-<p>An Instance of an Entity Type (i.e. an Entity)  represents an actual item or
-piece of data which falls under a category. For example, the Entity Type <code class="highlighter-rouge">Car</code>
-could have entities <code class="highlighter-rouge">a BMW</code>, <code class="highlighter-rouge">this Mercedes</code>, and <code class="highlighter-rouge">that Volkswagen</code>. One of the
-most important features of a Mindmaps graph is that it enables us to model
-relationships between these entities, once they have been defined.</p>
-
-<h3 id="resources">Resources</h3>
-
-<p>Resources are instances of Resource Types and they allow us to attribute data
-to a specific instance. For example, if <code class="highlighter-rouge">Alice</code> is an instance of <code class="highlighter-rouge">Person</code> we
-could model Alice’s birthday <code class="highlighter-rouge">09/10/1988</code> as an instance of the Resource Type
-<code class="highlighter-rouge">Birthdate</code>.  The resource object allows us to impose some additional
-constraints on the resource, such as ensuring the resource conforms to a regex
-pattern or is of a particular data type.</p>
-
-<h3 id="relations">Relations</h3>
-
-<p>A relation represents an instance of a Relation Type. They allow us to model
-multiple relationships between instances. For example, if instances <code class="highlighter-rouge">Alice</code> and
-<code class="highlighter-rouge">Bob</code> are married then we would create an instance of Relation Type <code class="highlighter-rouge">Marriage</code>
-to model that relationship. At the same time, Alice could work for an
-organisation Apache. Similarly, we would create an instance of the Relation
-Type Works For to model that relationship.</p>
-
-<h2 id="the-meta-ontology">The Meta Ontology</h2>
-
-<p>The backbone of any Mindmaps graph is the domain specific ontology which you
-design. The domain specific ontology also has its own meta ontoloty. The meta
-ontology is a set of concepts which layout the overall structure of a Mindmaps
-graph.</p>
-
-<blockquote>
-  <p>Just as all roads lead to Rome, all edges lead to the meta ontology.</p>
-</blockquote>
-
-<p>Lets see how the meta ontology fits in with a philosophers example:
-<img src="/images/example_meta.png" alt="The meta ontology of a Mindmaps graph. The light blue concepts represent the
-Mindmaps Meta
-ontology." /></p>
-
+</table>
 
 
     <div class="tags">
@@ -781,7 +663,7 @@ ontology." /></p>
         <br>
         <p>© 2016 <a href="http://mindmaps.io">Mindmaps Research Ltd</a></p>
         <!-- &copy;2016 MindmapsDB. All rights reserved. <br />
-        <span>Page last updated:</span> August 10, 2016<br/> Site last generated: Aug 20, 2016 <br />
+        <span>Page last updated:</span> August 24, 2016<br/> Site last generated: Aug 25, 2016 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">

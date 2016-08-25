@@ -4,7 +4,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="This document will teach you how to use Graql to load an ontology and some data into a Mindmaps Graph.">
-<meta name="keywords" content="getting_startedgraql,  setup, getting started, mindmapsdb, mindmaps, mindmaps.io, Mindmaps Research, Mindmaps Research Ltd, software, development platform, developer tool, data platform, programming langauge, query langauge, database, semantic database, distributed semantic database, distributed database, graph database, semantic search, data exploration, recommendation system, knowledge management, knowledge engineering, real-time analytics, advanced analytics, reasoning engine, inference engine, expert systems, semantic applications, research engines, data management, business intelligence, big data, semantic web, semantic data, knowledge representation, automated reasoning, semantic network, knowledge ontology, semantic graph, ontology engineering, graph based knowledge representation, artificial intelligence,">
+<meta name="keywords" content="getting_startedgraqljava,  setup, getting started, mindmapsdb, mindmaps, mindmaps.io, Mindmaps Research, Mindmaps Research Ltd, software, development platform, developer tool, data platform, programming langauge, query langauge, database, semantic database, distributed semantic database, distributed database, graph database, semantic search, data exploration, recommendation system, knowledge management, knowledge engineering, real-time analytics, advanced analytics, reasoning engine, inference engine, expert systems, semantic applications, research engines, data management, business intelligence, big data, semantic web, semantic data, knowledge representation, automated reasoning, semantic network, knowledge ontology, semantic graph, ontology engineering, graph based knowledge representation, artificial intelligence,">
 <title>Quickstart Tutorial | MindmapsDB</title>
 <link rel="stylesheet" href="/pages/css/syntax.css">
 
@@ -206,14 +206,6 @@
             
             
             
-            <!-- <li><a href="documentationget-startedoverview.html">Overview</a></li> -->
-            <li><a href="/pages/documentation/get-started/overview.html">Overview</a></li>
-            
-            
-            
-            
-            
-            
             <!-- <li><a href="documentationget-startedsetup-guide.html">Setup Guide</a></li> -->
             <li><a href="/pages/documentation/get-started/setup-guide.html">Setup Guide</a></li>
             
@@ -240,14 +232,6 @@
             
             <!-- <li class="active"><a href="documentationthe-basicsquickstart-tutorial.html">Quickstart Tutorial</a></li> -->
             <li class="active"><a href="/pages/documentation/the-basics/quickstart-tutorial.html">Quickstart Tutorial</a></li>
-            
-            
-            
-            
-            
-            
-            <!-- <li><a href="documentationthe-basicsquickstart-tutorial-java.html">Java Quickstart Tutorial</a></li> -->
-            <li><a href="/pages/documentation/the-basics/quickstart-tutorial-java.html">Java Quickstart Tutorial</a></li>
             
             
             
@@ -382,6 +366,22 @@
             
             
             
+            <!-- <li><a href="documentationresourcesresources.html">Resources</a></li> -->
+            <li><a href="/pages/documentation/resources/resources.html">Resources</a></li>
+            
+            
+            
+            
+            
+            
+            <!-- <li><a href="documentationresourcesdeveloper-faq.html">Frequently Asked Questions</a></li> -->
+            <li><a href="/pages/documentation/resources/developer-faq.html">Frequently Asked Questions</a></li>
+            
+            
+            
+            
+            
+            
             <!-- <li><a href="documentationresourcesdownloads.html">Downloads</a></li> -->
             <li><a href="/pages/documentation/resources/downloads.html">Downloads</a></li>
             
@@ -456,11 +456,26 @@ $('#toc').on('click', 'a', function() {
 
     
 
-  <h2 id="introduction">Introduction</h2>
-<p>If you have not yet set up the Mindmaps environment, please see the <a href="getting_started.html">Quick Set Up guide</a>.
-You can find the example <code class="highlighter-rouge">philosophers.gql</code> in the examples directory included in the Mindmaps download.</p>
+  <div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> <b>Note:</b> This tutorial shows you how to use the Graql shell or the Java API. The code for each approach is shown at each stage: please use the tabs to move between them, as shown.</div>
 
-<p>If you want to use Java rather than Graql, please see the <a href="quickstart_tutorial_java.html">Java Quick Start tutorial</a>, which is analagous to this one, but uses the MindmapsDB Java API.</p>
+<ul id="profileTabs" class="nav nav-tabs">
+    <li class="active"><a href="#shell0" data-toggle="tab">Graql</a></li>
+    <li><a href="#java0" data-toggle="tab">Java</a></li>
+</ul>
+
+<div class="tab-content">
+<div role="tabpanel" class="tab-pane active" id="shell0">
+Graql shell.
+</div>
+<div role="tabpanel" class="tab-pane" id="java0">
+Java API.
+</div> <!-- tab-pane -->
+</div>
+<p><!-- tab-content --></p>
+
+<h2 id="introduction">Introduction</h2>
+<p>If you have not yet set up the Mindmaps environment, please see the <a href="../get-started/setup-guide.html">Setup guide</a>.
+You can find the example <code class="highlighter-rouge">philosophers.gql</code> in the examples directory included in the Mindmaps download.</p>
 
 <p>We are going model how philosophers are related to each other. If you don’t want to type everything below to build up the philosophers ontology, you can load it using:</p>
 
@@ -773,6 +788,10 @@ Answer:</p>
         
         
         
+        <a href="/pages/tag_java.html" class="btn btn-default navbar-btn cursorNorm" role="button">java</a>
+        
+        
+        
     </div>
 
     
@@ -800,7 +819,7 @@ Answer:</p>
         <br>
         <p>© 2016 <a href="http://mindmaps.io">Mindmaps Research Ltd</a></p>
         <!-- &copy;2016 MindmapsDB. All rights reserved. <br />
-        <span>Page last updated:</span> August 10, 2016<br/> Site last generated: Aug 20, 2016 <br />
+        <span>Page last updated:</span> August 10, 2016<br/> Site last generated: Aug 25, 2016 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">

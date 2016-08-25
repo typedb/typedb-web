@@ -26,6 +26,12 @@
   
   
   <url>
+    <loc>http://mindmaps.io/docs//documentation/resources/developer-faq.html</loc>
+  </url>
+  
+  
+  
+  <url>
     <loc>http://mindmaps.io/docs//documentation/resources/downloads.html</loc>
   </url>
   
@@ -112,19 +118,13 @@
   
   
   <url>
-    <loc>http://mindmaps.io/docs//documentation/get-started/overview.html</loc>
-  </url>
-  
-  
-  
-  <url>
-    <loc>http://mindmaps.io/docs//documentation/the-basics/quickstart-tutorial-java.html</loc>
-  </url>
-  
-  
-  
-  <url>
     <loc>http://mindmaps.io/docs//documentation/the-basics/quickstart-tutorial.html</loc>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://mindmaps.io/docs//documentation/resources/resources.html</loc>
   </url>
   
   
@@ -140,6 +140,8 @@
   <url>
     <loc>http://mindmaps.io/docs//documentation/core-api/simple-schema-definition.html</loc>
   </url>
+  
+  
   
   
   

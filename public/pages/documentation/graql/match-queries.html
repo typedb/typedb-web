@@ -206,14 +206,6 @@
             
             
             
-            <!-- <li><a href="documentationget-startedoverview.html">Overview</a></li> -->
-            <li><a href="/pages/documentation/get-started/overview.html">Overview</a></li>
-            
-            
-            
-            
-            
-            
             <!-- <li><a href="documentationget-startedsetup-guide.html">Setup Guide</a></li> -->
             <li><a href="/pages/documentation/get-started/setup-guide.html">Setup Guide</a></li>
             
@@ -240,14 +232,6 @@
             
             <!-- <li><a href="documentationthe-basicsquickstart-tutorial.html">Quickstart Tutorial</a></li> -->
             <li><a href="/pages/documentation/the-basics/quickstart-tutorial.html">Quickstart Tutorial</a></li>
-            
-            
-            
-            
-            
-            
-            <!-- <li><a href="documentationthe-basicsquickstart-tutorial-java.html">Java Quickstart Tutorial</a></li> -->
-            <li><a href="/pages/documentation/the-basics/quickstart-tutorial-java.html">Java Quickstart Tutorial</a></li>
             
             
             
@@ -382,6 +366,22 @@
             
             
             
+            <!-- <li><a href="documentationresourcesresources.html">Resources</a></li> -->
+            <li><a href="/pages/documentation/resources/resources.html">Resources</a></li>
+            
+            
+            
+            
+            
+            
+            <!-- <li><a href="documentationresourcesdeveloper-faq.html">Frequently Asked Questions</a></li> -->
+            <li><a href="/pages/documentation/resources/developer-faq.html">Frequently Asked Questions</a></li>
+            
+            
+            
+            
+            
+            
             <!-- <li><a href="documentationresourcesdownloads.html">Downloads</a></li> -->
             <li><a href="/pages/documentation/resources/downloads.html">Downloads</a></li>
             
@@ -469,107 +469,183 @@ A variable pattern is a pattern describing <a href="#properties">properties</a> 
 particular concept. The variable pattern can optionally be bound to a variable
 or an ID.</p>
 
-<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">match</span>
-<span class="err">$</span><span class="n">x</span> <span class="n">isa</span> <span class="n">pokemon</span><span class="p">;</span>
-<span class="err">{</span>
-  <span class="err">$</span><span class="n">x</span> <span class="n">id</span> <span class="nv">"Mew"</span>
-<span class="err">}</span> <span class="k">or</span> <span class="err">{</span>
-  <span class="p">(</span><span class="err">$</span><span class="n">x</span><span class="p">,</span> <span class="err">$</span><span class="n">y</span><span class="p">);</span>
-  <span class="err">$</span><span class="n">y</span> <span class="n">isa</span> <span class="n">pokemon</span><span class="o">-</span><span class="k">type</span><span class="p">,</span> <span class="n">id</span> <span class="nv">"water"</span><span class="p">;</span>
-<span class="err">}</span>
-</code></pre>
+<ul id="profileTabs" class="nav nav-tabs">
+    <li class="active"><a href="#shell" data-toggle="tab">Graql</a></li>
+    <li><a href="#java" data-toggle="tab">Java</a></li>
+</ul>
+
+<div class="tab-content">
+<div role="tabpanel" class="tab-pane active" id="shell">
+<pre>match $x isa pokemon;
+{
+  $x id "Mew"
+} or {
+  ($x, $y);
+  $y isa pokemon-type, id "water";
+}</pre>
 </div>
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">qb</span><span class="o">.</span><span class="na">match</span><span class="o">(</span>
-  <span class="n">var</span><span class="o">(</span><span class="s">"x"</span><span class="o">).</span><span class="na">isa</span><span class="o">(</span><span class="s">"pokemon"</span><span class="o">),</span>
-  <span class="n">or</span><span class="o">(</span>
-    <span class="n">var</span><span class="o">(</span><span class="s">"x"</span><span class="o">).</span><span class="na">id</span><span class="o">(</span><span class="s">"Mew"</span><span class="o">),</span>
-    <span class="n">and</span><span class="o">(</span>
-      <span class="n">var</span><span class="o">().</span><span class="na">rel</span><span class="o">(</span><span class="s">"x"</span><span class="o">).</span><span class="na">rel</span><span class="o">(</span><span class="s">"y"</span><span class="o">),</span>
-      <span class="n">var</span><span class="o">(</span><span class="s">"y"</span><span class="o">).</span><span class="na">isa</span><span class="o">(</span><span class="s">"pokemon-type"</span><span class="o">).</span><span class="na">id</span><span class="o">(</span><span class="s">"water"</span><span class="o">)</span>
-    <span class="o">)</span>
-  <span class="o">)</span>
-<span class="o">);</span>
-</code></pre>
+<div role="tabpanel" class="tab-pane" id="java">
+<pre>qb.match(
+  var("x").isa("pokemon"),
+  or(
+    var("x").id("Mew"),
+    and(
+      var().rel("x").rel("y"),
+      var("y").isa("pokemon-type").id("water")
+    )
+  )
+);</pre>
+</div> <!-- tab-pane -->
 </div>
+<p><!-- tab-content --></p>
 
 <h2 id="properties">Properties</h2>
 
 <h3 id="isa">isa</h3>
 <p>Match instances that have the given type.</p>
 
-<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">match</span> <span class="err">$</span><span class="n">x</span> <span class="n">isa</span> <span class="n">pokemon</span>
-</code></pre>
+<ul id="profileTabs" class="nav nav-tabs">
+    <li class="active"><a href="#shell1" data-toggle="tab">Graql</a></li>
+    <li><a href="#java1" data-toggle="tab">Java</a></li>
+</ul>
+
+<div class="tab-content">
+<div role="tabpanel" class="tab-pane active" id="shell1">
+<pre>match $x isa pokemon</pre>
 </div>
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">qb</span><span class="o">.</span><span class="na">match</span><span class="o">(</span><span class="n">var</span><span class="o">(</span><span class="s">"x"</span><span class="o">).</span><span class="na">isa</span><span class="o">(</span><span class="s">"pokemon"</span><span class="o">));</span>
-</code></pre>
+<div role="tabpanel" class="tab-pane" id="java1">
+<pre>qb.match(var("x").isa("pokemon"));</pre>
+</div> <!-- tab-pane -->
 </div>
+<p><!-- tab-content --></p>
 
 <h3 id="id">id</h3>
 <p>Match concepts that have an <code class="highlighter-rouge">id</code> which matches the <a href="#predicates">predicate</a>.</p>
+<ul id="profileTabs" class="nav nav-tabs">
+    <li class="active"><a href="#shell2" data-toggle="tab">Graql</a></li>
+    <li><a href="#java2" data-toggle="tab">Java</a></li>
+</ul>
 
-<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">match</span> <span class="err">$</span><span class="n">x</span> <span class="n">id</span> <span class="nv">"Articuno"</span>
-</code></pre>
+<div class="tab-content">
+<div role="tabpanel" class="tab-pane active" id="shell2">
+<pre>
+match $x id "Articuno"
+</pre>
 </div>
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">qb</span><span class="o">.</span><span class="na">match</span><span class="o">(</span><span class="n">var</span><span class="o">(</span><span class="s">"x"</span><span class="o">).</span><span class="na">id</span><span class="o">(</span><span class="s">"Articuno"</span><span class="o">));</span>
-</code></pre>
+<div role="tabpanel" class="tab-pane" id="java2">
+<pre>
+qb.match(var("x").id("Articuno"));
+</pre>
+</div> <!-- tab-pane -->
 </div>
+<p><!-- tab-content --></p>
 
 <h3 id="value">value</h3>
 
 <p>Match concepts that have a <code class="highlighter-rouge">value</code>. If a <a href="#predicates">predicate</a> is provided, the resource must match that predicate.</p>
 
-<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">match</span> <span class="err">$</span><span class="n">x</span> <span class="n">value</span> <span class="k">contains</span> <span class="nv">"lightning"</span><span class="p">;</span>
-</code></pre>
-</div>
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">static</span> <span class="n">io</span><span class="o">.</span><span class="na">mindmaps</span><span class="o">.</span><span class="na">graql</span><span class="o">.</span><span class="na">api</span><span class="o">.</span><span class="na">query</span><span class="o">.</span><span class="na">ValuePredicate</span><span class="o">.*;</span>
+<ul id="profileTabs" class="nav nav-tabs">
+    <li class="active"><a href="#shell3" data-toggle="tab">Graql</a></li>
+    <li><a href="#java3" data-toggle="tab">Java</a></li>
+</ul>
 
-<span class="n">qb</span><span class="o">.</span><span class="na">match</span><span class="o">(</span><span class="n">var</span><span class="o">(</span><span class="s">"x"</span><span class="o">).</span><span class="na">value</span><span class="o">(</span><span class="n">contains</span><span class="o">(</span><span class="s">"lightning"</span><span class="o">)))</span>
-</code></pre>
+<div class="tab-content">
+<div role="tabpanel" class="tab-pane active" id="shell3">
+<pre>
+match $x value contains "lightning";
+</pre>
 </div>
+<div role="tabpanel" class="tab-pane" id="java3">
+<pre>
+import static io.mindmaps.graql.api.query.ValuePredicate.*;
+
+qb.match(var("x").value(contains("lightning")))
+</pre>
+</div> <!-- tab-pane -->
+</div>
+<p><!-- tab-content --></p>
 
 <h3 id="has">has</h3>
 
 <p>Match concepts that have a resource of <code class="highlighter-rouge">type</code>. If a <a href="#predicates">predicate</a> is provided, the resource must match that predicate.</p>
 
-<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">match</span> <span class="err">$</span><span class="n">x</span> <span class="n">has</span> <span class="n">pokedex</span><span class="o">-</span><span class="k">no</span> <span class="o">&lt;</span> <span class="mi">20</span>
-</code></pre>
-</div>
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">static</span> <span class="n">io</span><span class="o">.</span><span class="na">mindmaps</span><span class="o">.</span><span class="na">graql</span><span class="o">.</span><span class="na">api</span><span class="o">.</span><span class="na">query</span><span class="o">.</span><span class="na">ValuePredicate</span><span class="o">.*;</span>
+<ul id="profileTabs" class="nav nav-tabs">
+    <li class="active"><a href="#shell4" data-toggle="tab">Graql</a></li>
+    <li><a href="#java4" data-toggle="tab">Java</a></li>
+</ul>
 
-<span class="n">qb</span><span class="o">.</span><span class="na">match</span><span class="o">(</span><span class="n">var</span><span class="o">(</span><span class="s">"x"</span><span class="o">).</span><span class="na">has</span><span class="o">(</span><span class="s">"pokedex-no"</span><span class="o">,</span> <span class="n">lt</span><span class="o">(</span><span class="mi">20</span><span class="o">)));</span>
-</code></pre>
+<div class="tab-content">
+<div role="tabpanel" class="tab-pane active" id="shell4">
+<pre>
+match $x has pokedex-no &lt; 20
+</pre>
 </div>
+<div role="tabpanel" class="tab-pane" id="java4">
+<pre>
+import static io.mindmaps.graql.api.query.ValuePredicate.*;
+
+qb.match(var("x").has("pokedex-no", lt(20)));
+
+</pre>
+</div> <!-- tab-pane -->
+</div>
+<p><!-- tab-content --></p>
 
 <p>The above is equivalent to:</p>
 
-<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">match</span>
-<span class="p">(</span><span class="n">pokedex</span><span class="o">-</span><span class="k">no</span><span class="o">-</span><span class="k">owner</span> <span class="err">$</span><span class="n">x</span><span class="p">,</span> <span class="n">pokedex</span><span class="o">-</span><span class="k">no</span><span class="o">-</span><span class="n">value</span> <span class="err">$</span><span class="n">pokedex</span><span class="o">-</span><span class="k">no</span><span class="p">)</span> <span class="n">isa</span> <span class="n">has</span><span class="o">-</span><span class="n">pokedex</span><span class="o">-</span><span class="k">no</span><span class="p">;</span>
-<span class="err">$</span><span class="n">pokedex</span><span class="o">-</span><span class="k">no</span> <span class="n">value</span> <span class="o">&lt;</span> <span class="mi">20</span><span class="p">;</span>
-</code></pre>
+<ul id="profileTabs" class="nav nav-tabs">
+    <li class="active"><a href="#shell5" data-toggle="tab">Graql</a></li>
+    <li><a href="#java5" data-toggle="tab">Java</a></li>
+</ul>
+
+<div class="tab-content">
+<div role="tabpanel" class="tab-pane active" id="shell5">
+<pre>
+match
+(pokedex-no-owner $x, pokedex-no-value $pokedex-no) isa has-pokedex-no;
+$pokedex-no value &lt; 20;
+</pre>
 </div>
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">qb</span><span class="o">.</span><span class="na">match</span><span class="o">(</span>
-  <span class="n">var</span><span class="o">().</span><span class="na">rel</span><span class="o">(</span><span class="s">"pokedex-no-owner"</span><span class="o">,</span> <span class="s">"x"</span><span class="o">).</span><span class="na">rel</span><span class="o">(</span><span class="s">"pokedex-no-value"</span><span class="o">,</span> <span class="s">"pokedex-no"</span><span class="o">)</span>
-    <span class="o">.</span><span class="na">isa</span><span class="o">(</span><span class="s">"has-pokedex-no"</span><span class="o">),</span>
-  <span class="n">var</span><span class="o">(</span><span class="s">"pokedex-no"</span><span class="o">).</span><span class="na">value</span><span class="o">(</span><span class="n">lt</span><span class="o">(</span><span class="mi">20</span><span class="o">))</span>
-<span class="o">);</span>
-</code></pre>
+<div role="tabpanel" class="tab-pane" id="java5">
+<pre>
+qb.match(
+  var().rel("pokedex-no-owner", "x").rel("pokedex-no-value", "pokedex-no")
+    .isa("has-pokedex-no"),
+  var("pokedex-no").value(lt(20))
+);
+
+</pre>
+</div> <!-- tab-pane -->
 </div>
+<p><!-- tab-content --></p>
 
 <h3 id="relation">relation</h3>
 
 <p>Match concepts that are relations between the given variables. If a role type is provided, the role player must be playing that role type.</p>
 
-<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">match</span>
-<span class="err">$</span><span class="n">x</span> <span class="n">isa</span> <span class="n">pokemon</span><span class="p">;</span>
-<span class="p">(</span><span class="n">ancestor</span> <span class="err">$</span><span class="n">x</span><span class="p">,</span> <span class="err">$</span><span class="n">y</span><span class="p">)</span>
-</code></pre>
+<ul id="profileTabs" class="nav nav-tabs">
+    <li class="active"><a href="#shell6" data-toggle="tab">Graql</a></li>
+    <li><a href="#java6" data-toggle="tab">Java</a></li>
+</ul>
+
+<div class="tab-content">
+<div role="tabpanel" class="tab-pane active" id="shell6">
+<pre>
+match
+$x isa pokemon;
+(ancestor $x, $y)
+</pre>
 </div>
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">qb</span><span class="o">.</span><span class="na">match</span><span class="o">(</span>
-  <span class="n">var</span><span class="o">(</span><span class="s">"x"</span><span class="o">).</span><span class="na">isa</span><span class="o">(</span><span class="s">"pokemon"</span><span class="o">),</span>
-  <span class="n">var</span><span class="o">().</span><span class="na">rel</span><span class="o">(</span><span class="s">"ancestor"</span><span class="o">,</span> <span class="s">"x"</span><span class="o">).</span><span class="na">rel</span><span class="o">(</span><span class="s">"y"</span><span class="o">)</span>
-<span class="o">);</span>
-</code></pre>
+<div role="tabpanel" class="tab-pane" id="java6">
+<pre>
+qb.match(
+  var("x").isa("pokemon"),
+  var().rel("ancestor", "x").rel("y")
+);
+</pre>
+</div> <!-- tab-pane -->
 </div>
+<p><!-- tab-content --></p>
 
 <h2 id="type-properties">Type Properties</h2>
 
@@ -578,51 +654,110 @@ or an ID.</p>
 <h3 id="ako">ako</h3>
 <p>Match types that are a subclass of the given type.</p>
 
-<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">match</span> <span class="err">$</span><span class="n">x</span> <span class="n">ako</span> <span class="k">type</span>
-</code></pre>
+<ul id="profileTabs" class="nav nav-tabs">
+    <li class="active"><a href="#shell7" data-toggle="tab">Graql</a></li>
+    <li><a href="#java7" data-toggle="tab">Java</a></li>
+</ul>
+
+<div class="tab-content">
+<div role="tabpanel" class="tab-pane active" id="shell7">
+<pre>
+match $x ako type
+</pre>
 </div>
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">qb</span><span class="o">.</span><span class="na">match</span><span class="o">(</span><span class="n">var</span><span class="o">(</span><span class="s">"x"</span><span class="o">).</span><span class="na">ako</span><span class="o">(</span><span class="s">"type"</span><span class="o">))</span>
-</code></pre>
+<div role="tabpanel" class="tab-pane" id="java7">
+<pre>
+qb.match(var("x").ako("type"))
+</pre>
+</div> <!-- tab-pane -->
 </div>
+<p><!-- tab-content --></p>
 
 <h3 id="has-role">has-role</h3>
 <p>Match relation types that have the given role.</p>
 
-<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">match</span> <span class="n">evolution</span> <span class="n">has</span><span class="o">-</span><span class="k">role</span> <span class="err">$</span><span class="n">x</span>
-</code></pre>
+<ul id="profileTabs" class="nav nav-tabs">
+    <li class="active"><a href="#shell8" data-toggle="tab">Graql</a></li>
+    <li><a href="#java8" data-toggle="tab">Java</a></li>
+</ul>
+
+<div class="tab-content">
+<div role="tabpanel" class="tab-pane active" id="shell8">
+<pre>
+match evolution has-role $x
+</pre>
 </div>
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">qb</span><span class="o">.</span><span class="na">match</span><span class="o">(</span><span class="n">id</span><span class="o">(</span><span class="s">"evolution"</span><span class="o">).</span><span class="na">hasRole</span><span class="o">(</span><span class="n">var</span><span class="o">(</span><span class="s">"x"</span><span class="o">)));</span>
-</code></pre>
+<div role="tabpanel" class="tab-pane" id="java8">
+<pre>
+qb.match(id("evolution").hasRole(var("x")));
+</pre>
+</div> <!-- tab-pane -->
 </div>
+<p><!-- tab-content --></p>
 
 <h3 id="plays-role">plays-role</h3>
 <p>Match concept types that play the given role.</p>
+<ul id="profileTabs" class="nav nav-tabs">
+    <li class="active"><a href="#shell9" data-toggle="tab">Graql</a></li>
+    <li><a href="#java9" data-toggle="tab">Java</a></li>
+</ul>
 
-<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">match</span> <span class="err">$</span><span class="n">x</span> <span class="n">plays</span><span class="o">-</span><span class="k">role</span> <span class="n">ancestor</span>
-</code></pre>
+<div class="tab-content">
+<div role="tabpanel" class="tab-pane active" id="shell9">
+<pre>
+match $x plays-role ancestor
+</pre>
 </div>
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">qb</span><span class="o">.</span><span class="na">match</span><span class="o">(</span><span class="n">var</span><span class="o">(</span><span class="s">"x"</span><span class="o">).</span><span class="na">playsRole</span><span class="o">(</span><span class="s">"ancestor"</span><span class="o">));</span>
-</code></pre>
+<div role="tabpanel" class="tab-pane" id="java9">
+<pre>
+qb.match(var("x").playsRole("ancestor"));
+</pre>
+</div> <!-- tab-pane -->
 </div>
+<p><!-- tab-content --></p>
 
 <h3 id="has-resource">has-resource</h3>
 <p>Match concept types that can have the given resource types.</p>
 
-<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">match</span> <span class="err">$</span><span class="n">x</span> <span class="n">has</span><span class="o">-</span><span class="n">resource</span> <span class="n">name</span>
-</code></pre>
+<ul id="profileTabs" class="nav nav-tabs">
+    <li class="active"><a href="#shell10" data-toggle="tab">Graql</a></li>
+    <li><a href="#java10" data-toggle="tab">Java</a></li>
+</ul>
+
+<div class="tab-content">
+<div role="tabpanel" class="tab-pane active" id="shell10">
+<pre>
+match $x has-resource name
+</pre>
 </div>
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">qb</span><span class="o">.</span><span class="na">match</span><span class="o">(</span><span class="n">var</span><span class="o">(</span><span class="s">"x"</span><span class="o">).</span><span class="na">hasResource</span><span class="o">(</span><span class="s">"name"</span><span class="o">));</span>
-</code></pre>
+<div role="tabpanel" class="tab-pane" id="java10">
+<pre>
+qb.match(var("x").hasResource("name"));
+</pre>
+</div> <!-- tab-pane -->
 </div>
+<p><!-- tab-content --></p>
 
 <p>The above is equivalent to:</p>
 
-<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">match</span> <span class="err">$</span><span class="n">x</span> <span class="n">plays</span><span class="o">-</span><span class="k">role</span> <span class="n">name</span><span class="o">-</span><span class="k">owner</span><span class="p">;</span>
-</code></pre>
+<ul id="profileTabs" class="nav nav-tabs">
+    <li class="active"><a href="#shell11" data-toggle="tab">Graql</a></li>
+    <li><a href="#java11" data-toggle="tab">Java</a></li>
+</ul>
+
+<div class="tab-content">
+<div role="tabpanel" class="tab-pane active" id="shell11">
+<pre>
+match $x plays-role name-owner;
+</pre>
 </div>
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">qb</span><span class="o">.</span><span class="na">match</span><span class="o">(</span><span class="n">var</span><span class="o">(</span><span class="s">"x"</span><span class="o">).</span><span class="na">playsRole</span><span class="o">(</span><span class="s">"name-owner"</span><span class="o">));</span>
-</code></pre>
+<div role="tabpanel" class="tab-pane" id="java11">
+<pre>
+qb.match(var("x").playsRole("name-owner"));
+</pre>
+</div> <!-- tab-pane -->
 </div>
+<p><!-- tab-content --></p>
 
 <h2 id="predicates">Predicates</h2>
 
@@ -634,70 +769,135 @@ or an ID.</p>
 
 <p>There are several standard comparators, <code class="highlighter-rouge">=</code>, <code class="highlighter-rouge">!=</code>, <code class="highlighter-rouge">&gt;</code>, <code class="highlighter-rouge">&gt;=</code>, <code class="highlighter-rouge">&lt;</code> and <code class="highlighter-rouge">&lt;=</code>. For
 longs and doubles, these sort by value. Strings are ordered lexicographically.</p>
+<ul id="profileTabs" class="nav nav-tabs">
+    <li class="active"><a href="#shell12" data-toggle="tab">Graql</a></li>
+    <li><a href="#java12" data-toggle="tab">Java</a></li>
+</ul>
 
-<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">match</span> <span class="err">$</span><span class="n">x</span> <span class="n">has</span> <span class="n">height</span> <span class="o">=</span> <span class="mi">19</span><span class="p">,</span> <span class="n">has</span> <span class="n">weight</span> <span class="o">&gt;</span> <span class="mi">1500</span>
-</code></pre>
+<div class="tab-content">
+<div role="tabpanel" class="tab-pane active" id="shell12">
+<pre>
+match $x has height = 19, has weight &gt; 1500
+</pre>
 </div>
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">static</span> <span class="n">io</span><span class="o">.</span><span class="na">mindmaps</span><span class="o">.</span><span class="na">graql</span><span class="o">.</span><span class="na">api</span><span class="o">.</span><span class="na">query</span><span class="o">.</span><span class="na">ValuePredicate</span><span class="o">.*;</span>
+<div role="tabpanel" class="tab-pane" id="java12">
+<pre>
+import static io.mindmaps.graql.api.query.ValuePredicate.*;
 
-<span class="n">qb</span><span class="o">.</span><span class="na">match</span><span class="o">(</span><span class="n">var</span><span class="o">(</span><span class="s">"x"</span><span class="o">).</span><span class="na">has</span><span class="o">(</span><span class="s">"height"</span><span class="o">,</span> <span class="mi">19</span><span class="o">).</span><span class="na">has</span><span class="o">(</span><span class="s">"weight"</span><span class="o">,</span> <span class="n">gt</span><span class="o">(</span><span class="mi">1500</span><span class="o">)));</span>
-</code></pre>
+qb.match(var("x").has("height", 19).has("weight", gt(1500)));
+
+</pre>
+</div> <!-- tab-pane -->
 </div>
+<p><!-- tab-content --></p>
 
 <h3 id="contains">Contains</h3>
 <p>Asks if the given string is a substring.</p>
 
-<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">match</span> <span class="err">$</span><span class="n">x</span> <span class="n">has</span> <span class="n">description</span> <span class="k">contains</span> <span class="nv">"underground"</span>
-<span class="k">select</span> <span class="err">$</span><span class="n">x</span><span class="p">(</span><span class="n">id</span><span class="p">,</span> <span class="n">has</span> <span class="n">description</span><span class="p">)</span>
-</code></pre>
-</div>
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">static</span> <span class="n">io</span><span class="o">.</span><span class="na">mindmaps</span><span class="o">.</span><span class="na">graql</span><span class="o">.</span><span class="na">api</span><span class="o">.</span><span class="na">query</span><span class="o">.</span><span class="na">ValuePredicate</span><span class="o">.*;</span>
+<ul id="profileTabs" class="nav nav-tabs">
+    <li class="active"><a href="#shell13" data-toggle="tab">Graql</a></li>
+    <li><a href="#java13" data-toggle="tab">Java</a></li>
+</ul>
 
-<span class="n">qb</span><span class="o">.</span><span class="na">match</span><span class="o">(</span><span class="n">var</span><span class="o">(</span><span class="s">"x"</span><span class="o">).</span><span class="na">has</span><span class="o">(</span><span class="s">"description"</span><span class="o">,</span> <span class="n">contains</span><span class="o">(</span><span class="s">"underground"</span><span class="o">)));</span>
-</code></pre>
+<div class="tab-content">
+<div role="tabpanel" class="tab-pane active" id="shell13">
+<pre>
+match $x has description contains "underground"
+select $x(id, has description)
+
+</pre>
 </div>
+<div role="tabpanel" class="tab-pane" id="java13">
+<pre>
+import static io.mindmaps.graql.api.query.ValuePredicate.*;
+
+qb.match(var("x").has("description", contains("underground")));
+
+</pre>
+</div> <!-- tab-pane -->
+</div>
+<p><!-- tab-content --></p>
 
 <h3 id="regex">Regex</h3>
 <p>Checks if the value matches a regular expression. This match is across the
 entire string, so if you want to match something within a string, you must
 surround the expression with <code class="highlighter-rouge">.*</code>.</p>
 
-<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">match</span> <span class="err">$</span><span class="n">x</span> <span class="n">value</span> <span class="o">/</span><span class="p">.</span><span class="o">*</span><span class="p">(</span><span class="n">fast</span><span class="o">|</span><span class="n">quick</span><span class="p">).</span><span class="o">*/</span>
-</code></pre>
-</div>
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">static</span> <span class="n">io</span><span class="o">.</span><span class="na">mindmaps</span><span class="o">.</span><span class="na">graql</span><span class="o">.</span><span class="na">api</span><span class="o">.</span><span class="na">query</span><span class="o">.</span><span class="na">ValuePredicate</span><span class="o">.*;</span>
+<ul id="profileTabs" class="nav nav-tabs">
+    <li class="active"><a href="#shell14" data-toggle="tab">Graql</a></li>
+    <li><a href="#java14" data-toggle="tab">Java</a></li>
+</ul>
 
-<span class="n">qb</span><span class="o">.</span><span class="na">match</span><span class="o">(</span><span class="n">var</span><span class="o">(</span><span class="s">"x"</span><span class="o">).</span><span class="na">value</span><span class="o">(</span><span class="n">regex</span><span class="o">(</span><span class="s">".*(fast|quick).*"</span><span class="o">)));</span>
-</code></pre>
+<div class="tab-content">
+<div role="tabpanel" class="tab-pane active" id="shell14">
+<pre>
+match $x value /.*(fast|quick).*/
+</pre>
 </div>
+<div role="tabpanel" class="tab-pane" id="java14">
+<pre>
+import static io.mindmaps.graql.api.query.ValuePredicate.*;
+
+qb.match(var("x").value(regex(".*(fast|quick).*")));
+
+</pre>
+</div> <!-- tab-pane -->
+</div>
+<p><!-- tab-content --></p>
 
 <h3 id="and-and-or">And and Or</h3>
 <p><code class="highlighter-rouge">and</code> and <code class="highlighter-rouge">or</code> allows combining predicates using boolean logic.</p>
 
-<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">match</span> <span class="err">$</span><span class="n">x</span> <span class="n">has</span> <span class="n">weight</span> <span class="o">&gt;</span><span class="mi">20</span> <span class="k">and</span> <span class="o">&lt;</span><span class="mi">30</span>
-</code></pre>
-</div>
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">static</span> <span class="n">io</span><span class="o">.</span><span class="na">mindmaps</span><span class="o">.</span><span class="na">graql</span><span class="o">.</span><span class="na">api</span><span class="o">.</span><span class="na">query</span><span class="o">.</span><span class="na">ValuePredicate</span><span class="o">.*;</span>
+<ul id="profileTabs" class="nav nav-tabs">
+    <li class="active"><a href="#shell15" data-toggle="tab">Graql</a></li>
+    <li><a href="#java15" data-toggle="tab">Java</a></li>
+</ul>
 
-<span class="n">qb</span><span class="o">.</span><span class="na">match</span><span class="o">(</span><span class="n">var</span><span class="o">(</span><span class="s">"x"</span><span class="o">).</span><span class="na">has</span><span class="o">(</span><span class="s">"weight"</span><span class="o">,</span> <span class="n">gt</span><span class="o">(</span><span class="mi">20</span><span class="o">).</span><span class="na">and</span><span class="o">(</span><span class="n">lt</span><span class="o">(</span><span class="mi">30</span><span class="o">))));</span>
-</code></pre>
+<div class="tab-content">
+<div role="tabpanel" class="tab-pane active" id="shell15">
+<pre>
+match $x has weight &gt;20 and &lt;30
+</pre>
 </div>
+<div role="tabpanel" class="tab-pane" id="java15">
+<pre>
+import static io.mindmaps.graql.api.query.ValuePredicate.*;
+
+qb.match(var("x").has("weight", gt(20).and(lt(30))));
+
+</pre>
+</div> <!-- tab-pane -->
+</div>
+<p><!-- tab-content --></p>
 
 <h2 id="modifiers">Modifiers</h2>
 
-<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">match</span> <span class="err">$</span><span class="n">x</span> <span class="n">isa</span> <span class="n">pokemon</span>
-<span class="k">select</span> <span class="err">$</span><span class="n">x</span><span class="p">(</span><span class="n">has</span> <span class="n">pokedex</span><span class="o">-</span><span class="k">no</span><span class="p">,</span> <span class="n">id</span><span class="p">)</span>
-<span class="k">limit</span> <span class="mi">30</span><span class="p">,</span> <span class="k">offset</span> <span class="mi">10</span><span class="p">,</span> <span class="k">distinct</span><span class="p">,</span> <span class="k">order</span> <span class="k">by</span> <span class="err">$</span><span class="n">x</span><span class="p">(</span><span class="n">has</span> <span class="n">pokedex</span><span class="o">-</span><span class="k">no</span><span class="p">)</span> <span class="k">asc</span>
-</code></pre>
+<ul id="profileTabs" class="nav nav-tabs">
+    <li class="active"><a href="#shell16" data-toggle="tab">Graql</a></li>
+    <li><a href="#java16" data-toggle="tab">Java</a></li>
+</ul>
+
+<div class="tab-content">
+<div role="tabpanel" class="tab-pane active" id="shell16">
+<pre>
+match $x isa pokemon
+select $x(has pokedex-no, id)
+limit 30, offset 10, distinct, order by $x(has pokedex-no) asc
+
+</pre>
 </div>
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">qb</span><span class="o">.</span><span class="na">match</span><span class="o">(</span><span class="n">var</span><span class="o">(</span><span class="s">"x"</span><span class="o">).</span><span class="na">isa</span><span class="o">(</span><span class="s">"pokemon"</span><span class="o">))</span>
-    <span class="o">.</span><span class="na">select</span><span class="o">(</span><span class="s">"x"</span><span class="o">)</span>
-    <span class="o">.</span><span class="na">limit</span><span class="o">(</span><span class="mi">30</span><span class="o">)</span>
-    <span class="o">.</span><span class="na">offset</span><span class="o">(</span><span class="mi">10</span><span class="o">)</span>
-    <span class="o">.</span><span class="na">distinct</span><span class="o">()</span>
-    <span class="o">.</span><span class="na">orderBy</span><span class="o">(</span><span class="s">"x"</span><span class="o">,</span> <span class="s">"pokedex-no"</span><span class="o">,</span> <span class="kc">true</span><span class="o">);</span>
-</code></pre>
+<div role="tabpanel" class="tab-pane" id="java16">
+<pre>
+qb.match(var("x").isa("pokemon"))
+    .select("x")
+    .limit(30)
+    .offset(10)
+    .distinct()
+    .orderBy("x", "pokedex-no", true);
+</pre>
+</div> <!-- tab-pane -->
 </div>
+<p><!-- tab-content --></p>
 
 <h3 id="limit">limit</h3>
 <p>Limit the query to the given number of results.</p>
@@ -723,10 +923,25 @@ each result.</p>
 <p>A getter indicates a property to get from a variable. Getters are supported in
 the Graql shell, but are not supported in <a href="java_graql.html">Java Graql</a>.</p>
 
-<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">match</span> <span class="err">$</span><span class="n">x</span> <span class="n">isa</span> <span class="n">pokemon</span>
-<span class="k">select</span> <span class="err">$</span><span class="n">x</span><span class="p">(</span><span class="n">id</span><span class="p">,</span> <span class="n">has</span> <span class="n">pokedex</span><span class="o">-</span><span class="k">no</span><span class="p">,</span> <span class="n">has</span> <span class="n">description</span><span class="p">)</span>
-</code></pre>
+<ul id="profileTabs" class="nav nav-tabs">
+    <li class="active"><a href="#shell17" data-toggle="tab">Graql</a></li>
+    <li><a href="#java17" data-toggle="tab">Java</a></li>
+</ul>
+
+<div class="tab-content">
+<div role="tabpanel" class="tab-pane active" id="shell17">
+<pre>
+match $x isa pokemon
+select $x(id, has pokedex-no, has description)
+</pre>
 </div>
+<div role="tabpanel" class="tab-pane" id="java17">
+<p>
+Not supported by the Java API.
+</p>
+</div> <!-- tab-pane -->
+</div>
+<p><!-- tab-content --></p>
 
 <h5 id="isa-1">isa</h5>
 <p>Get the type of a concept.</p>
@@ -794,7 +1009,7 @@ the Graql shell, but are not supported in <a href="java_graql.html">Java Graql</
         <br>
         <p>© 2016 <a href="http://mindmaps.io">Mindmaps Research Ltd</a></p>
         <!-- &copy;2016 MindmapsDB. All rights reserved. <br />
-        <span>Page last updated:</span> August 11, 2016<br/> Site last generated: Aug 20, 2016 <br />
+        <span>Page last updated:</span> August 11, 2016<br/> Site last generated: Aug 25, 2016 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">

@@ -3,8 +3,8 @@
     <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Demonstrates how to create an Advanced schema for a Mindmaps knowledge graph">
-<meta name="keywords" content="core,  core, schema, mindmapsdb, mindmaps, mindmaps.io, Mindmaps Research, Mindmaps Research Ltd, software, development platform, developer tool, data platform, programming langauge, query langauge, database, semantic database, distributed semantic database, distributed database, graph database, semantic search, data exploration, recommendation system, knowledge management, knowledge engineering, real-time analytics, advanced analytics, reasoning engine, inference engine, expert systems, semantic applications, research engines, data management, business intelligence, big data, semantic web, semantic data, knowledge representation, automated reasoning, semantic network, knowledge ontology, semantic graph, ontology engineering, graph based knowledge representation, artificial intelligence,">
+<meta name="description" content="Demonstrates how to create an Advanced schema for a Mindmaps knowledge graph.">
+<meta name="keywords" content="coreAPIjava,  core, schema, mindmapsdb, mindmaps, mindmaps.io, Mindmaps Research, Mindmaps Research Ltd, software, development platform, developer tool, data platform, programming langauge, query langauge, database, semantic database, distributed semantic database, distributed database, graph database, semantic search, data exploration, recommendation system, knowledge management, knowledge engineering, real-time analytics, advanced analytics, reasoning engine, inference engine, expert systems, semantic applications, research engines, data management, business intelligence, big data, semantic web, semantic data, knowledge representation, automated reasoning, semantic network, knowledge ontology, semantic graph, ontology engineering, graph based knowledge representation, artificial intelligence,">
 <title>Defining an Advanced Schema | MindmapsDB</title>
 <link rel="stylesheet" href="/pages/css/syntax.css">
 
@@ -206,14 +206,6 @@
             
             
             
-            <!-- <li><a href="documentationget-startedoverview.html">Overview</a></li> -->
-            <li><a href="/pages/documentation/get-started/overview.html">Overview</a></li>
-            
-            
-            
-            
-            
-            
             <!-- <li><a href="documentationget-startedsetup-guide.html">Setup Guide</a></li> -->
             <li><a href="/pages/documentation/get-started/setup-guide.html">Setup Guide</a></li>
             
@@ -240,14 +232,6 @@
             
             <!-- <li><a href="documentationthe-basicsquickstart-tutorial.html">Quickstart Tutorial</a></li> -->
             <li><a href="/pages/documentation/the-basics/quickstart-tutorial.html">Quickstart Tutorial</a></li>
-            
-            
-            
-            
-            
-            
-            <!-- <li><a href="documentationthe-basicsquickstart-tutorial-java.html">Java Quickstart Tutorial</a></li> -->
-            <li><a href="/pages/documentation/the-basics/quickstart-tutorial-java.html">Java Quickstart Tutorial</a></li>
             
             
             
@@ -382,6 +366,22 @@
             
             
             
+            <!-- <li><a href="documentationresourcesresources.html">Resources</a></li> -->
+            <li><a href="/pages/documentation/resources/resources.html">Resources</a></li>
+            
+            
+            
+            
+            
+            
+            <!-- <li><a href="documentationresourcesdeveloper-faq.html">Frequently Asked Questions</a></li> -->
+            <li><a href="/pages/documentation/resources/developer-faq.html">Frequently Asked Questions</a></li>
+            
+            
+            
+            
+            
+            
             <!-- <li><a href="documentationresourcesdownloads.html">Downloads</a></li> -->
             <li><a href="/pages/documentation/resources/downloads.html">Downloads</a></li>
             
@@ -417,7 +417,7 @@
 <div class="post-content">
 
    
-    <div class="summary">Demonstrates how to create an Advanced schema for a Mindmaps knowledge graph</div>
+    <div class="summary">Demonstrates how to create an Advanced schema for a Mindmaps knowledge graph.</div>
    
 
     
@@ -456,46 +456,36 @@ $('#toc').on('click', 'a', function() {
 
     
 
-  <h1 id="advanced-schema">Advanced Schema</h1>
+  <p>This document introduces some advanced schema concepts, which you can use to create more expressive Mindmaps graphs. It is recommend that you read our document about <a href="simple-schema-definition.html">defining a simple schema</a> before continuing.</p>
 
-<p>It is recommend that you read <a href="core/defining-schema-simple.html">this</a> section before continuing.
-The following section will introduce more adavanced concepts which you can use to create more expressive graphs.
-This section will also discuss creating a graph which supports Mindmaps reasoning and inference features.</p>
+<p>Here, we also discuss creating a graph which supports Mindmaps reasoning and inference features.</p>
 
 <h2 id="sub-classing-types">Sub Classing Types</h2>
 
-<p>Let’s say we wanted to model a graph which encapsulates movies and tv shows, as well as the actors who can play in them.
-The Naive way to do this would be as follows:</p>
+<p>Let’s say we wanted to model a graph which encapsulates films and tv shows, as well as the actors who can play in them.
+The naive way to do this would be as follows:</p>
 
-<ol>
-  <li>
-    <p>Create the Entity types:
-<code class="highlighter-rouge">java
-EntityType person = mindmapsTransaction.putEntityType("Person");
-EntityType movie = mindmapsTransaction.putEntityType("Movie");
-EntityType tvShow = mindmapsTransaction.putEntityType("TV Show");
-</code></p>
-  </li>
-  <li>
-    <p>Create the roles and relation types:</p>
-  </li>
-</ol>
+<p>Create the Entity types:</p>
+
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">EntityType</span> <span class="n">person</span> <span class="o">=</span> <span class="n">mindmapsTransaction</span><span class="o">.</span><span class="na">putEntityType</span><span class="o">(</span><span class="s">"Person"</span><span class="o">);</span>
+<span class="n">EntityType</span> <span class="n">movie</span> <span class="o">=</span> <span class="n">mindmapsTransaction</span><span class="o">.</span><span class="na">putEntityType</span><span class="o">(</span><span class="s">"Movie"</span><span class="o">);</span>
+<span class="n">EntityType</span> <span class="n">tvShow</span> <span class="o">=</span> <span class="n">mindmapsTransaction</span><span class="o">.</span><span class="na">putEntityType</span><span class="o">(</span><span class="s">"TV Show"</span><span class="o">);</span>
+</code></pre>
+</div>
+
+<p>Create the roles and relation types:</p>
 
 <div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">RoleType</span> <span class="n">actorInMovie</span> <span class="o">=</span> <span class="n">mindmapsTrancation</span><span class="o">.</span><span class="na">putRoleType</span><span class="o">(</span><span class="s">"Actor In Movie"</span><span class="o">);</span>
 <span class="n">RoleType</span> <span class="n">movieCastIn</span> <span class="o">=</span> <span class="n">mindmapsTrancation</span><span class="o">.</span><span class="na">putRoleType</span><span class="o">(</span><span class="s">"Movie Cast In"</span><span class="o">);</span>
 <span class="n">RelationType</span> <span class="n">starsInMovie</span> <span class="o">=</span> <span class="n">mindmapsTransaction</span><span class="o">.</span><span class="na">putRelationType</span><span class="o">(</span><span class="s">"Stars In Movie"</span><span class="o">).</span><span class="na">hasRole</span><span class="o">(</span><span class="n">actorInMovie</span><span class="o">).</span><span class="na">hasRole</span><span class="o">(</span><span class="n">movieCastIn</span><span class="o">);</span>
-</code></pre>
-</div>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">RoleType</span> <span class="n">actorInTvShow</span> <span class="o">=</span> <span class="n">mindmapsTrancation</span><span class="o">.</span><span class="na">putRoleType</span><span class="o">(</span><span class="s">"Actor In Tv Show"</span><span class="o">);</span>
+<span class="n">RoleType</span> <span class="n">actorInTvShow</span> <span class="o">=</span> <span class="n">mindmapsTrancation</span><span class="o">.</span><span class="na">putRoleType</span><span class="o">(</span><span class="s">"Actor In Tv Show"</span><span class="o">);</span>
 <span class="n">RoleType</span> <span class="n">tvShowCastIn</span> <span class="o">=</span> <span class="n">mindmapsTrancation</span><span class="o">.</span><span class="na">putRoleType</span><span class="o">(</span><span class="s">"Tv Show Cast In"</span><span class="o">);</span>
 <span class="n">RelationType</span> <span class="n">starsInTvShow</span> <span class="o">=</span> <span class="n">mindmapsTransaction</span><span class="o">.</span><span class="na">putRelationType</span><span class="o">(</span><span class="s">"Stars In Tv Show"</span><span class="o">).</span><span class="na">hasRole</span><span class="o">(</span><span class="n">actorInTvShow</span><span class="o">).</span><span class="na">hasRole</span><span class="o">(</span><span class="n">tvShowCastIn</span><span class="o">);</span>
 </code></pre>
 </div>
 
-<ol>
-  <li>Allow the roles to be played</li>
-</ol>
+<p>Allow the roles to be played</p>
 
 <div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">person</span><span class="o">.</span><span class="na">playsRole</span><span class="o">(</span><span class="n">actorInMovie</span><span class="o">).</span><span class="na">playsRole</span><span class="o">(</span><span class="n">actorInTvShow</span><span class="o">);</span>
 <span class="n">movie</span><span class="o">.</span><span class="na">playsRole</span><span class="o">(</span><span class="n">movieCastIn</span><span class="o">;</span>
@@ -504,18 +494,14 @@ EntityType tvShow = mindmapsTransaction.putEntityType("TV Show");
 </div>
 
 <p>The above schema is valid and will allow us to model our data. However, there are a lot of duplicate definitions.
-For example, an actor should be able to star in anything (ideally) a movie, a tv show, a theater production etc . . .
-Furthermore, there is a lot of contextual overlap between movies and TV shows.
-Ideally we should be able to do so and with Mindmaps we can.</p>
+For example, an actor should be able to star in anything (ideally) a film, a tv show, a theatre production etc.  Furthermore, there is a lot of contextual overlap between films and TV shows.</p>
 
-<p>Subclassing allows us to define things which fall into categories and sub categories.
-This allows us to create a deep object orientated schema where the rules of the super class provide additional functionality to the sub classes.</p>
+<p>A more sophisticated approach uses subclassing, which allows us to define things that fall into categories and sub categories.
+We can create a deep object-orientated schema where the rules of the super class provide additional functionality to the sub classes.</p>
 
-<p>Lets convert our above schema into a more expressive.</p>
+<p>Lets convert our schema into something that is more expressive.</p>
 
-<ol>
-  <li>Movies and Tv Show are similar so we should have a super category to represent both:</li>
-</ol>
+<p>Films and TV shows are similar so we should have a super category to represent both:</p>
 
 <div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">EntityType</span> <span class="n">person</span> <span class="o">=</span> <span class="n">mindmapsTransaction</span><span class="o">.</span><span class="na">putEntityType</span><span class="o">(</span><span class="s">"Person"</span><span class="o">);</span>
 <span class="n">EntityType</span> <span class="n">production</span> <span class="o">=</span> <span class="n">mindmapsTransaction</span><span class="o">.</span><span class="na">putEntityType</span><span class="o">(</span><span class="s">"Production"</span><span class="o">);</span>
@@ -524,9 +510,7 @@ This allows us to create a deep object orientated schema where the rules of the 
 </code></pre>
 </div>
 
-<ol>
-  <li>Actors should be able to star in any type of production, be it a Movie or a TV Show:</li>
-</ol>
+<p>Actors should be able to star in any type of production, be it a film or a TV Show:</p>
 
 <div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">RoleType</span> <span class="n">actor</span> <span class="o">=</span> <span class="n">mindmapsTrancation</span><span class="o">.</span><span class="na">putRoleType</span><span class="o">(</span><span class="s">"Actor"</span><span class="o">);</span>
 <span class="n">RoleType</span> <span class="n">productionCastIn</span> <span class="o">=</span> <span class="n">mindmapsTrancation</span><span class="o">.</span><span class="na">putRoleType</span><span class="o">(</span><span class="s">"Production Cast In"</span><span class="o">);</span>
@@ -534,18 +518,16 @@ This allows us to create a deep object orientated schema where the rules of the 
 </code></pre>
 </div>
 
-<ol>
-  <li>Allow the role to be played:</li>
-</ol>
+<p>Allow the role to be played:</p>
 
 <div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">person</span><span class="o">.</span><span class="na">playsRole</span><span class="o">(</span><span class="n">actor</span><span class="o">);</span>
 <span class="n">production</span><span class="o">.</span><span class="na">playsRole</span><span class="o">(</span><span class="n">productionCastIn</span><span class="o">);</span>
 </code></pre>
 </div>
 
-<p>This schema is more expressive but is also shorted because common role type (e.g. <em>*Actor</em>) are inherited through a super class.
-This also makes defining the schema shorter and gives more opportunities for graph.
-For example, we can start to differentiate between male and female actors withough largely impacting the schema:</p>
+<p>This schema is more expressive but is also shorter because the common role type (e.g. <em>Actor</em>) are inherited through a super class.
+This also makes defining the schema shorter and gives more opportunities for graph enhancements.
+For example, we can start to differentiate between male and female actors without impacting the schema significantly:</p>
 
 <div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">EntityType</span> <span class="n">person</span> <span class="o">=</span> <span class="n">mindmapsTransaction</span><span class="o">.</span><span class="na">putEntityType</span><span class="o">(</span><span class="s">"Person"</span><span class="o">);</span>
 <span class="n">EntityType</span> <span class="n">man</span> <span class="o">=</span> <span class="n">mindmapsTransaction</span><span class="o">.</span><span class="na">putEntityType</span><span class="o">(</span><span class="s">"Man"</span><span class="o">).</span><span class="na">superType</span><span class="o">(</span><span class="n">person</span><span class="o">);</span>
@@ -557,12 +539,35 @@ For example, we can start to differentiate between male and female actors withou
 
 <p>TODO</p>
 
+<h2 id="document-changelog">Document Changelog</h2>
+
+<table>
+    <tr>
+        <td>Version</td>
+        <td>Date</td>
+        <td>Description</td>        
+    </tr>
+    <tr>
+        <td>v1.01</td>
+        <td>23/08/2016</td>
+        <td>Updated content and formatting.</td>        
+    </tr>
+    
+
+</table>
+
 
     <div class="tags">
         
         <b>Tags: </b>
         
         
+        
+        <a href="/pages/tag_coreAPI.html" class="btn btn-default navbar-btn cursorNorm" role="button">coreAPI</a>
+        
+        
+        
+        <a href="/pages/tag_java.html" class="btn btn-default navbar-btn cursorNorm" role="button">java</a>
         
         
         
@@ -593,7 +598,7 @@ For example, we can start to differentiate between male and female actors withou
         <br>
         <p>© 2016 <a href="http://mindmaps.io">Mindmaps Research Ltd</a></p>
         <!-- &copy;2016 MindmapsDB. All rights reserved. <br />
-        <span>Page last updated:</span> August 15, 2016<br/> Site last generated: Aug 20, 2016 <br />
+        <span>Page last updated:</span> August 23, 2016<br/> Site last generated: Aug 25, 2016 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">

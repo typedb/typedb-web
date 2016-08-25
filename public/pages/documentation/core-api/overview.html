@@ -3,8 +3,8 @@
     <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="MindmapsDB Core Tutorial. Runs through a basic example of how to use Mindmaps Core API.">
-<meta name="keywords" content=",  core, overview, mindmapsdb, mindmaps, mindmaps.io, Mindmaps Research, Mindmaps Research Ltd, software, development platform, developer tool, data platform, programming langauge, query langauge, database, semantic database, distributed semantic database, distributed database, graph database, semantic search, data exploration, recommendation system, knowledge management, knowledge engineering, real-time analytics, advanced analytics, reasoning engine, inference engine, expert systems, semantic applications, research engines, data management, business intelligence, big data, semantic web, semantic data, knowledge representation, automated reasoning, semantic network, knowledge ontology, semantic graph, ontology engineering, graph based knowledge representation, artificial intelligence,">
+<meta name="description" content="A basic example of how to use Mindmaps Core API.">
+<meta name="keywords" content="javacoreAPI,  core, overview, mindmapsdb, mindmaps, mindmaps.io, Mindmaps Research, Mindmaps Research Ltd, software, development platform, developer tool, data platform, programming langauge, query langauge, database, semantic database, distributed semantic database, distributed database, graph database, semantic search, data exploration, recommendation system, knowledge management, knowledge engineering, real-time analytics, advanced analytics, reasoning engine, inference engine, expert systems, semantic applications, research engines, data management, business intelligence, big data, semantic web, semantic data, knowledge representation, automated reasoning, semantic network, knowledge ontology, semantic graph, ontology engineering, graph based knowledge representation, artificial intelligence,">
 <title>Core Overview | MindmapsDB</title>
 <link rel="stylesheet" href="/pages/css/syntax.css">
 
@@ -206,14 +206,6 @@
             
             
             
-            <!-- <li><a href="documentationget-startedoverview.html">Overview</a></li> -->
-            <li><a href="/pages/documentation/get-started/overview.html">Overview</a></li>
-            
-            
-            
-            
-            
-            
             <!-- <li><a href="documentationget-startedsetup-guide.html">Setup Guide</a></li> -->
             <li><a href="/pages/documentation/get-started/setup-guide.html">Setup Guide</a></li>
             
@@ -240,14 +232,6 @@
             
             <!-- <li><a href="documentationthe-basicsquickstart-tutorial.html">Quickstart Tutorial</a></li> -->
             <li><a href="/pages/documentation/the-basics/quickstart-tutorial.html">Quickstart Tutorial</a></li>
-            
-            
-            
-            
-            
-            
-            <!-- <li><a href="documentationthe-basicsquickstart-tutorial-java.html">Java Quickstart Tutorial</a></li> -->
-            <li><a href="/pages/documentation/the-basics/quickstart-tutorial-java.html">Java Quickstart Tutorial</a></li>
             
             
             
@@ -382,6 +366,22 @@
             
             
             
+            <!-- <li><a href="documentationresourcesresources.html">Resources</a></li> -->
+            <li><a href="/pages/documentation/resources/resources.html">Resources</a></li>
+            
+            
+            
+            
+            
+            
+            <!-- <li><a href="documentationresourcesdeveloper-faq.html">Frequently Asked Questions</a></li> -->
+            <li><a href="/pages/documentation/resources/developer-faq.html">Frequently Asked Questions</a></li>
+            
+            
+            
+            
+            
+            
             <!-- <li><a href="documentationresourcesdownloads.html">Downloads</a></li> -->
             <li><a href="/pages/documentation/resources/downloads.html">Downloads</a></li>
             
@@ -417,7 +417,7 @@
 <div class="post-content">
 
    
-    <div class="summary">MindmapsDB Core Tutorial. Runs through a basic example of how to use Mindmaps Core API.</div>
+    <div class="summary">A basic example of how to use Mindmaps Core API.</div>
    
 
     
@@ -456,22 +456,15 @@ $('#toc').on('click', 'a', function() {
 
     
 
-  <h1 id="overview">Overview</h1>
+  <p>This article assumes that you have already looked at the <a href="../the-basics/quickstart-tutorial.html">Quickstart
+Tutorial</a>. You can find the code below as part in the example code directory of the MindmapsDB zip.</p>
 
-<blockquote>
-  <p>You should checkout the <a href="documentation/basic-tutorial.md">Quickstart
-Tutorial</a> before looking through here. It
-is also recommended looking at the example code provided.</p>
-</blockquote>
+<h2 id="introduction">Introduction</h2>
 
 <p>Mindmaps Core API is the implementation of the object model discussed in
-<a href="documentation/mindmaps-basics.md">Mindmaps Basics</a>. It allows you to create
+<a href="../the-basics/mindmaps-basics.html">Mindmaps Basics</a>. It allows you to create
 Mindmaps Graphs using Java 8. It supports any
-<a href="http://tinkerpop.incubator.apache.org/docs/3.0.2-incubating/">Tinkerpop</a> 3.0.z
-version.</p>
-
-<p>Mindmaps Core API is catered towards constructing a Mindmaps Graphs. Graql is
-catered towards querying in more complex manners.</p>
+<a href="http://tinkerpop.incubator.apache.org/docs/3.0.2-incubating/">Tinkerpop</a> 3.0.z version.</p>
 
 <h2 id="getting-a-graph-and-a-transaction">Getting a Graph and a Transaction</h2>
 
@@ -481,19 +474,20 @@ catered towards querying in more complex manners.</p>
 </code></pre>
 </div>
 
-<p>Now that we have a graph we can create thread bound transactions from the graph</p>
+<p>Now that we have a graph we can create thread bound transactions from the graph:</p>
 
 <div class="language-java highlighter-rouge"><pre class="highlight"><code>    <span class="n">MindmapsTransaction</span> <span class="n">transaction</span> <span class="o">=</span> <span class="n">graph</span><span class="o">.</span><span class="na">newTransaction</span><span class="o">();</span>
 </code></pre>
 </div>
 
-<h2 id="modelling-a-the-philosophers">Modelling A The Philosophers</h2>
+<h2 id="modelling-the-philosophers">Modelling The Philosophers</h2>
 
-<p>With a transaction in place lets go through and repeat the <a href="documentation/basic-tutorial.md">Quickstart Tutorial</a> using the core Java API.</p>
+<p>With a transaction in place lets go through and repeat the <a href="../the-basics/quickstart-tutorial">Quickstart
+Tutorial</a> using the core Java API.</p>
 
 <h3 id="entity-types">Entity Types</h3>
 
-<p>First we create some philosophers, do to so we define the category of <code class="highlighter-rouge">people</code></p>
+<p>First we create some philosophers, so we define the category of <code class="highlighter-rouge">people</code>:</p>
 
 <div class="language-java highlighter-rouge"><pre class="highlight"><code>    <span class="n">EntityType</span> <span class="n">person</span> <span class="o">=</span> <span class="n">transaction</span><span class="o">.</span><span class="na">putEntityType</span><span class="o">(</span><span class="s">"person"</span><span class="o">);</span>
 </code></pre>
@@ -508,13 +502,13 @@ catered towards querying in more complex manners.</p>
 </code></pre>
 </div>
 
-<p>We can query for all the people by:</p>
+<p>We can query for all the people:</p>
 
 <div class="language-java highlighter-rouge"><pre class="highlight"><code>    <span class="n">people</span><span class="o">.</span><span class="na">instances</span><span class="o">().</span><span class="na">forEach</span><span class="o">(</span><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">::</span><span class="n">println</span><span class="o">);</span>
 </code></pre>
 </div>
 
-<p>Now lets create some schools of philosophy</p>
+<p>Now lets create some schools of philosophy:</p>
 
 <div class="language-java highlighter-rouge"><pre class="highlight"><code>    <span class="n">EntityType</span> <span class="n">school</span> <span class="o">=</span> <span class="n">transaction</span><span class="o">.</span><span class="na">putEntityType</span><span class="o">(</span><span class="s">"school"</span><span class="o">);</span>
     <span class="n">Entity</span> <span class="n">peripateticism</span> <span class="o">=</span> <span class="n">transaction</span><span class="o">.</span><span class="na">putEntity</span><span class="o">(</span><span class="s">"Peripateticism"</span><span class="o">,</span> <span class="n">school</span><span class="o">);</span>
@@ -526,7 +520,7 @@ catered towards querying in more complex manners.</p>
 
 <h3 id="relation-types">Relation Types</h3>
 
-<p>Now that we have some data lets specify how these philosophers relate to these schools. First we create the Relation Type and its Role Types:</p>
+<p>Now that we have some data lets specify how these philosophers relate to these schools. First we create the <code class="highlighter-rouge">Relation Type</code> and its <code class="highlighter-rouge">Role Types</code>:</p>
 
 <div class="language-java highlighter-rouge"><pre class="highlight"><code>    <span class="n">RoleType</span> <span class="n">philosopher</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">putRoleType</span><span class="o">(</span><span class="s">"philosopher"</span><span class="o">);</span>
     <span class="n">RoleType</span> <span class="n">philosophy</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">putRoleType</span><span class="o">(</span><span class="s">"philosophy"</span><span class="o">);</span>
@@ -534,7 +528,7 @@ catered towards querying in more complex manners.</p>
 </code></pre>
 </div>
 
-<p>Next we can relate our philosophers and schools to east other:</p>
+<p>Next we can relate our philosophers and schools to each other:</p>
 
 <div class="language-java highlighter-rouge"><pre class="highlight"><code>    <span class="n">transaction</span><span class="o">.</span><span class="na">addRelation</span><span class="o">(</span><span class="n">practice</span><span class="o">).</span><span class="na">putRolePlayer</span><span class="o">(</span><span class="n">philosopher</span><span class="o">,</span> <span class="n">socrates</span><span class="o">).</span><span class="na">putRolePlayer</span><span class="o">(</span><span class="n">philosophy</span><span class="o">,</span> <span class="n">platonisim</span><span class="o">);</span>
     <span class="n">transaction</span><span class="o">.</span><span class="na">addRelation</span><span class="o">(</span><span class="n">practice</span><span class="o">).</span><span class="na">putRolePlayer</span><span class="o">(</span><span class="n">philosopher</span><span class="o">,</span> <span class="n">plato</span><span class="o">).</span><span class="na">putRolePlayer</span><span class="o">(</span><span class="n">philosophy</span><span class="o">,</span> <span class="n">idealism</span><span class="o">);</span>
@@ -555,10 +549,35 @@ catered towards querying in more complex manners.</p>
 </code></pre>
 </div>
 
+<h2 id="document-changelog">Document Changelog</h2>
+
+<table>
+    <tr>
+        <td>Version</td>
+        <td>Date</td>
+        <td>Description</td>        
+    </tr>
+    <tr>
+        <td>v1.01</td>
+        <td>23/08/2016</td>
+        <td>Updated content and formatting.</td>        
+    </tr>
+    
+
+</table>
+
 
     <div class="tags">
         
         <b>Tags: </b>
+        
+        
+        
+        <a href="/pages/tag_java.html" class="btn btn-default navbar-btn cursorNorm" role="button">java</a>
+        
+        
+        
+        <a href="/pages/tag_coreAPI.html" class="btn btn-default navbar-btn cursorNorm" role="button">coreAPI</a>
         
         
         
@@ -589,7 +608,7 @@ catered towards querying in more complex manners.</p>
         <br>
         <p>© 2016 <a href="http://mindmaps.io">Mindmaps Research Ltd</a></p>
         <!-- &copy;2016 MindmapsDB. All rights reserved. <br />
-        <span>Page last updated:</span> August 10, 2016<br/> Site last generated: Aug 20, 2016 <br />
+        <span>Page last updated:</span> August 10, 2016<br/> Site last generated: Aug 25, 2016 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">

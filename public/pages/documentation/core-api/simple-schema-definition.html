@@ -3,8 +3,8 @@
     <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Demonstrates how to create a schema for a Mindmaps knowledge graph">
-<meta name="keywords" content="core,  core, schema, mindmapsdb, mindmaps, mindmaps.io, Mindmaps Research, Mindmaps Research Ltd, software, development platform, developer tool, data platform, programming langauge, query langauge, database, semantic database, distributed semantic database, distributed database, graph database, semantic search, data exploration, recommendation system, knowledge management, knowledge engineering, real-time analytics, advanced analytics, reasoning engine, inference engine, expert systems, semantic applications, research engines, data management, business intelligence, big data, semantic web, semantic data, knowledge representation, automated reasoning, semantic network, knowledge ontology, semantic graph, ontology engineering, graph based knowledge representation, artificial intelligence,">
+<meta name="description" content="Demonstrates how to create a schema for a Mindmaps knowledge graph.">
+<meta name="keywords" content="javacoreAPI,  core, schema, mindmapsdb, mindmaps, mindmaps.io, Mindmaps Research, Mindmaps Research Ltd, software, development platform, developer tool, data platform, programming langauge, query langauge, database, semantic database, distributed semantic database, distributed database, graph database, semantic search, data exploration, recommendation system, knowledge management, knowledge engineering, real-time analytics, advanced analytics, reasoning engine, inference engine, expert systems, semantic applications, research engines, data management, business intelligence, big data, semantic web, semantic data, knowledge representation, automated reasoning, semantic network, knowledge ontology, semantic graph, ontology engineering, graph based knowledge representation, artificial intelligence,">
 <title>Defining a Schema | MindmapsDB</title>
 <link rel="stylesheet" href="/pages/css/syntax.css">
 
@@ -206,14 +206,6 @@
             
             
             
-            <!-- <li><a href="documentationget-startedoverview.html">Overview</a></li> -->
-            <li><a href="/pages/documentation/get-started/overview.html">Overview</a></li>
-            
-            
-            
-            
-            
-            
             <!-- <li><a href="documentationget-startedsetup-guide.html">Setup Guide</a></li> -->
             <li><a href="/pages/documentation/get-started/setup-guide.html">Setup Guide</a></li>
             
@@ -240,14 +232,6 @@
             
             <!-- <li><a href="documentationthe-basicsquickstart-tutorial.html">Quickstart Tutorial</a></li> -->
             <li><a href="/pages/documentation/the-basics/quickstart-tutorial.html">Quickstart Tutorial</a></li>
-            
-            
-            
-            
-            
-            
-            <!-- <li><a href="documentationthe-basicsquickstart-tutorial-java.html">Java Quickstart Tutorial</a></li> -->
-            <li><a href="/pages/documentation/the-basics/quickstart-tutorial-java.html">Java Quickstart Tutorial</a></li>
             
             
             
@@ -382,6 +366,22 @@
             
             
             
+            <!-- <li><a href="documentationresourcesresources.html">Resources</a></li> -->
+            <li><a href="/pages/documentation/resources/resources.html">Resources</a></li>
+            
+            
+            
+            
+            
+            
+            <!-- <li><a href="documentationresourcesdeveloper-faq.html">Frequently Asked Questions</a></li> -->
+            <li><a href="/pages/documentation/resources/developer-faq.html">Frequently Asked Questions</a></li>
+            
+            
+            
+            
+            
+            
             <!-- <li><a href="documentationresourcesdownloads.html">Downloads</a></li> -->
             <li><a href="/pages/documentation/resources/downloads.html">Downloads</a></li>
             
@@ -417,7 +417,7 @@
 <div class="post-content">
 
    
-    <div class="summary">Demonstrates how to create a schema for a Mindmaps knowledge graph</div>
+    <div class="summary">Demonstrates how to create a schema for a Mindmaps knowledge graph.</div>
    
 
     
@@ -456,31 +456,31 @@ $('#toc').on('click', 'a', function() {
 
     
 
-  <h1 id="mindmaps-schema">Mindmaps Schema</h1>
+  <p>This article assumes that you have already looked at page that covers <a href="../the-basics/mindmaps-basics.html">Mindmaps Basics</a>.</p>
 
 <p>Defining a schema for your graph allows you to:</p>
 
 <ul>
-  <li>Control how your data relates to each other</li>
-  <li>Ensure your graph is consistent</li>
-  <li>Design domain specific knowledge graphs</li>
+  <li>control how your data relates to each other</li>
+  <li>ensure your graph is consistent</li>
+  <li>design domain specific knowledge graphs.</li>
 </ul>
 
 <p>In Mindmaps, a schema is defined by adding <strong>types</strong> to your graph.
-These <strong>types</strong> allow you to divide your  data into different categories but also control how data instances may relate to each other.</p>
+These <strong>types</strong> allow you to divide your data into different categories but also control how data instances may relate to each other.</p>
 
 <p>In this section we will review each of these types and explain how you use them when defining a Mindmaps graph.</p>
 
 <h2 id="basic-type-definitions">Basic Type Definitions</h2>
 
 <p>This section describes basic types which are <strong>essential</strong> to a Mindmaps schema.
-When creating a Mindmaps knowledge graph you should always begin with defining these schema elements.</p>
+When creating a Mindmaps knowledge graph you should always begin by defining these schema elements.</p>
 
 <h3 id="entity-type">Entity Type</h3>
 
-<p>Entity types essentially define a broad category which data can fall with in. For example Al Pacino, Patrick Stewart,
+<p>Entity types essentially define a broad category into which data can fall. For example Al Pacino, Patrick Stewart,
 and Charlize Theron could all be categorised as people.
-Similarly we could say that Godfather, Star Treck Nemisis, and Monster can all be categorised as movies.</p>
+Similarly we could say that Godfather, Star Trek Nemesis and Monster can all be categorised as movies.</p>
 
 <p>We would define such <strong>Entity Types</strong> as follows:</p>
 
@@ -496,7 +496,7 @@ Similarly we could say that Godfather, Star Treck Nemisis, and Monster can all b
 <span class="n">charliseTheron</span> <span class="o">=</span> <span class="n">mindmapsTransaction</span><span class="o">.</span><span class="na">addEntity</span><span class="o">(</span><span class="n">person</span><span class="o">).</span><span class="na">setValue</span><span class="o">(</span><span class="s">"Charlise Theron"</span><span class="o">);</span>
 
 <span class="n">godfather</span> <span class="o">=</span> <span class="n">mindmapsTransaction</span><span class="o">.</span><span class="na">addEntity</span><span class="o">(</span><span class="n">movie</span><span class="o">).</span><span class="na">setValue</span><span class="o">(</span><span class="s">"Godfather"</span><span class="o">);</span>
-<span class="n">starTreck</span> <span class="o">=</span> <span class="n">mindmapsTransaction</span><span class="o">.</span><span class="na">addEntity</span><span class="o">(</span><span class="n">movie</span><span class="o">).</span><span class="na">setValue</span><span class="o">(</span><span class="s">"Star Treck Nemisis"</span><span class="o">);</span>
+<span class="n">starTrek</span> <span class="o">=</span> <span class="n">mindmapsTransaction</span><span class="o">.</span><span class="na">addEntity</span><span class="o">(</span><span class="n">movie</span><span class="o">).</span><span class="na">setValue</span><span class="o">(</span><span class="s">"Star Trek Nemesis"</span><span class="o">);</span>
 <span class="n">monster</span> <span class="o">=</span> <span class="n">mindmapsTransaction</span><span class="o">.</span><span class="na">addEntity</span><span class="o">(</span><span class="n">movie</span><span class="o">).</span><span class="na">setValue</span><span class="o">(</span><span class="s">"Monster"</span><span class="o">);</span>
 </code></pre>
 </div>
@@ -506,7 +506,7 @@ Similarly we could say that Godfather, Star Treck Nemisis, and Monster can all b
 <p>The greatest advantage of a graph database is the expressiveness of the relationships between data.
 With Mindmaps we can control how our data relates to each other.</p>
 
-<p>For example how can we say that Patrick Stewart starred in Star Treck Nemisis ?
+<p>For example how can we say that Patrick Stewart starred in Star Trek Nemesis?
 To be able to do so we must first allow such behaviour between our types.
 We begin doing this by defining a <strong>Relation Type</strong> which categorises the relationships of a specific type.
 For example:</p>
@@ -522,26 +522,26 @@ For example:</p>
 </code></pre>
 </div>
 
-<p>We also have to link these roles to the correct <strong>Relaiton Type</strong> (NB Roles are unique and cannot be in more than one
+<p>We also have to link these roles to the correct <strong>Relation Type</strong> (NB Roles are unique and cannot be in more than one
 Relation Type):</p>
 
 <div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">starsIn</span><span class="o">.</span><span class="na">hasRole</span><span class="o">(</span><span class="n">actor</span><span class="o">).</span><span class="na">hasRole</span><span class="o">(</span><span class="n">movieCastIn</span><span class="o">);</span>
 </code></pre>
 </div>
 
-<p>Finally we have to explicitly define which <strong>Entity Typpes</strong> are allowed to play which <strong>*Role Types</strong>:</p>
+<p>Finally we have to explicitly define which <strong>Entity Types</strong> are allowed to play which <strong>Role Types</strong>:</p>
 
 <div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">person</span><span class="o">.</span><span class="na">playsRole</span><span class="o">(</span><span class="n">actor</span><span class="o">);</span>
-<span class="n">movie</span><span class="o">.</span><span class="na">playsRolw</span><span class="o">(</span><span class="n">movieCastIn</span><span class="o">);</span>
+<span class="n">movie</span><span class="o">.</span><span class="na">playsRole</span><span class="o">(</span><span class="n">movieCastIn</span><span class="o">);</span>
 </code></pre>
 </div>
 
 <p>The above statements allow people to be actors and allow movies to have actors cast in them.</p>
 
-<p><strong>Note:</strong> Explicitly specifying which <strong>Role Types</strong> an <strong>Entity Type</strong> can play allows us to control our data more easily.
-Essentially it would prevent us from accidentally saying that a movie starred in another movie.</p>
+<div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> <b>Note:</b> Explicitly specifying which <strong>Role Types</strong> an <strong>Entity Type</strong> can play allows us to control our data more easily.
+Essentially it would prevent us from accidentally saying that a movie starred in another movie.</div>
 
-<p>Now finally we can specify that Patrick Stewart was in Star Treck Nemisis.
+<p>Now finally we can specify that Patrick Stewart was in Star Trek Nemesis.
 First we create an instance of the Relation Type:</p>
 
 <div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">Relation</span> <span class="n">relation</span> <span class="o">=</span> <span class="n">mindmapsTransaction</span><span class="o">.</span><span class="na">addRelation</span><span class="o">(</span><span class="n">starsIn</span><span class="o">);</span>
@@ -550,9 +550,26 @@ First we create an instance of the Relation Type:</p>
 
 <p>Then we specify who is playing which role:</p>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">relation</span><span class="o">.</span><span class="na">putRolePlayer</span><span class="o">(</span><span class="n">actor</span><span class="o">,</span> <span class="n">patrickStewart</span><span class="o">).</span><span class="na">putRolePlayer</span><span class="o">(</span><span class="n">movieCastIn</span><span class="o">,</span> <span class="n">startreck</span><span class="o">);</span>
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">relation</span><span class="o">.</span><span class="na">putRolePlayer</span><span class="o">(</span><span class="n">actor</span><span class="o">,</span> <span class="n">patrickStewart</span><span class="o">).</span><span class="na">putRolePlayer</span><span class="o">(</span><span class="n">movieCastIn</span><span class="o">,</span> <span class="n">startrek</span><span class="o">);</span>
 </code></pre>
 </div>
+
+<h2 id="document-changelog">Document Changelog</h2>
+
+<table>
+    <tr>
+        <td>Version</td>
+        <td>Date</td>
+        <td>Description</td>        
+    </tr>
+    <tr>
+        <td>v1.01</td>
+        <td>23/08/2016</td>
+        <td>Updated content and formatting.</td>        
+    </tr>
+    
+
+</table>
 
 
     <div class="tags">
@@ -560,6 +577,12 @@ First we create an instance of the Relation Type:</p>
         <b>Tags: </b>
         
         
+        
+        <a href="/pages/tag_java.html" class="btn btn-default navbar-btn cursorNorm" role="button">java</a>
+        
+        
+        
+        <a href="/pages/tag_coreAPI.html" class="btn btn-default navbar-btn cursorNorm" role="button">coreAPI</a>
         
         
         
@@ -590,7 +613,7 @@ First we create an instance of the Relation Type:</p>
         <br>
         <p>© 2016 <a href="http://mindmaps.io">Mindmaps Research Ltd</a></p>
         <!-- &copy;2016 MindmapsDB. All rights reserved. <br />
-        <span>Page last updated:</span> August 15, 2016<br/> Site last generated: Aug 20, 2016 <br />
+        <span>Page last updated:</span> August 23, 2016<br/> Site last generated: Aug 25, 2016 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">

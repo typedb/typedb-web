@@ -206,14 +206,6 @@
             
             
             
-            <!-- <li><a href="documentationget-startedoverview.html">Overview</a></li> -->
-            <li><a href="/pages/documentation/get-started/overview.html">Overview</a></li>
-            
-            
-            
-            
-            
-            
             <!-- <li><a href="documentationget-startedsetup-guide.html">Setup Guide</a></li> -->
             <li><a href="/pages/documentation/get-started/setup-guide.html">Setup Guide</a></li>
             
@@ -240,14 +232,6 @@
             
             <!-- <li><a href="documentationthe-basicsquickstart-tutorial.html">Quickstart Tutorial</a></li> -->
             <li><a href="/pages/documentation/the-basics/quickstart-tutorial.html">Quickstart Tutorial</a></li>
-            
-            
-            
-            
-            
-            
-            <!-- <li><a href="documentationthe-basicsquickstart-tutorial-java.html">Java Quickstart Tutorial</a></li> -->
-            <li><a href="/pages/documentation/the-basics/quickstart-tutorial-java.html">Java Quickstart Tutorial</a></li>
             
             
             
@@ -382,6 +366,22 @@
             
             
             
+            <!-- <li><a href="documentationresourcesresources.html">Resources</a></li> -->
+            <li><a href="/pages/documentation/resources/resources.html">Resources</a></li>
+            
+            
+            
+            
+            
+            
+            <!-- <li><a href="documentationresourcesdeveloper-faq.html">Frequently Asked Questions</a></li> -->
+            <li><a href="/pages/documentation/resources/developer-faq.html">Frequently Asked Questions</a></li>
+            
+            
+            
+            
+            
+            
             <!-- <li><a href="documentationresourcesdownloads.html">Downloads</a></li> -->
             <li><a href="/pages/documentation/resources/downloads.html">Downloads</a></li>
             
@@ -457,38 +457,63 @@ $('#toc').on('click', 'a', function() {
     
 
   <p>An insert query will insert the specified <a href="#variable-patterns">variable
-patterns</a> into the graph. If a <a href="match-queries.md">match
+patterns</a> into the graph. If a <a href="match-queries.html">match
 query</a> is provided, the query will insert the given variable
 patterns for every result of the match query.</p>
 
 <p>A variable pattern in an insert query describes <a href="#properties">properties</a> to
 set on a particular concept. The variable pattern can optionally be bound to a
 variable or an ID.</p>
+<ul id="profileTabs" class="nav nav-tabs">
+    <li class="active"><a href="#shell1" data-toggle="tab">Graql</a></li>
+    <li><a href="#java1" data-toggle="tab">Java</a></li>
+</ul>
 
-<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">insert</span>
-<span class="err">$</span><span class="n">p</span> <span class="n">isa</span> <span class="n">pokemon</span><span class="p">,</span> <span class="n">id</span> <span class="nv">"Pichu"</span><span class="p">,</span> <span class="n">has</span> <span class="n">pokedex</span><span class="o">-</span><span class="k">no</span> <span class="mi">172</span><span class="p">;</span>
-<span class="p">(</span><span class="n">descendant</span> <span class="n">Pikachu</span><span class="p">,</span> <span class="n">ancestor</span> <span class="err">$</span><span class="n">p</span><span class="p">)</span> <span class="n">isa</span> <span class="n">evolution</span><span class="p">;</span>
-</code></pre>
+<div class="tab-content">
+<div role="tabpanel" class="tab-pane active" id="shell1">
+<pre>
+insert
+$p isa pokemon, id "Pichu", has pokedex-no 172;
+(descendant Pikachu, ancestor $p) isa evolution;
+
+</pre>
 </div>
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">qb</span><span class="o">.</span><span class="na">insert</span><span class="o">(</span>
-    <span class="n">var</span><span class="o">(</span><span class="s">"p"</span><span class="o">).</span><span class="na">isa</span><span class="o">(</span><span class="s">"pokemon"</span><span class="o">).</span><span class="na">id</span><span class="o">(</span><span class="s">"Pichu"</span><span class="o">).</span><span class="na">has</span><span class="o">(</span><span class="s">"pokedex-no"</span><span class="o">,</span> <span class="mi">172</span><span class="o">),</span>
-    <span class="n">var</span><span class="o">().</span><span class="na">isa</span><span class="o">(</span><span class="s">"evolution"</span><span class="o">)</span>
-        <span class="o">.</span><span class="na">rel</span><span class="o">(</span><span class="s">"descendant"</span><span class="o">,</span> <span class="n">var</span><span class="o">().</span><span class="na">id</span><span class="o">(</span><span class="s">"Pikachu"</span><span class="o">))</span>
-        <span class="o">.</span><span class="na">rel</span><span class="o">(</span><span class="s">"ancestor"</span><span class="o">,</span> <span class="s">"p"</span><span class="o">)</span>
-<span class="o">).</span><span class="na">execute</span><span class="o">();</span><span class="err">"</span><span class="o">,</span>
-</code></pre>
+<div role="tabpanel" class="tab-pane" id="java1">
+<pre>
+qb.insert(
+    var("p").isa("pokemon").id("Pichu").has("pokedex-no", 172),
+    var().isa("evolution")
+        .rel("descendant", var().id("Pikachu"))
+        .rel("ancestor", "p")
+).execute();",
+
+</pre>
+</div> <!-- tab-pane -->
 </div>
+<p><!-- tab-content --></p>
 
 <h2 id="properties">Properties</h2>
 
 <h3 id="isa">isa</h3>
 
-<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">insert</span> <span class="nv">"Totodile"</span> <span class="n">isa</span> <span class="n">pokemon</span><span class="p">;</span>
-</code></pre>
+<ul id="profileTabs" class="nav nav-tabs">
+    <li class="active"><a href="#shell2" data-toggle="tab">Graql</a></li>
+    <li><a href="#java2" data-toggle="tab">Java</a></li>
+</ul>
+
+<div class="tab-content">
+<div role="tabpanel" class="tab-pane active" id="shell2">
+<pre>
+insert "Totodile" isa pokemon;
+</pre>
 </div>
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">qb</span><span class="o">.</span><span class="na">insert</span><span class="o">(</span><span class="n">id</span><span class="o">(</span><span class="s">"Totodile"</span><span class="o">).</span><span class="na">isa</span><span class="o">(</span><span class="s">"pokemon"</span><span class="o">));</span>
-</code></pre>
+<div role="tabpanel" class="tab-pane" id="java2">
+<pre>
+qb.insert(id("Totodile").isa("pokemon"));
+</pre>
+</div> <!-- tab-pane -->
 </div>
+<p><!-- tab-content --></p>
 
 <p>Set the type of this concept.</p>
 
@@ -497,68 +522,129 @@ variable or an ID.</p>
 <p>Create a concept with the given id, or retrieve it if one with that id exists.
 The created or retrieved concept can then be modified with further properties.</p>
 
-<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">insert</span> <span class="nv">"Pikachu"</span> <span class="n">isa</span> <span class="n">pokemon</span>
-</code></pre>
+<ul id="profileTabs" class="nav nav-tabs">
+    <li class="active"><a href="#shell3" data-toggle="tab">Graql</a></li>
+    <li><a href="#java3" data-toggle="tab">Java</a></li>
+</ul>
+
+<div class="tab-content">
+<div role="tabpanel" class="tab-pane active" id="shell3">
+<pre>
+insert "Pikachu" isa pokemon
+</pre>
 </div>
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">qb</span><span class="o">.</span><span class="na">insert</span><span class="o">(</span><span class="n">id</span><span class="o">(</span><span class="s">"Pikachu"</span><span class="o">).</span><span class="na">isa</span><span class="o">(</span><span class="s">"pokemon"</span><span class="o">));</span>
-</code></pre>
+<div role="tabpanel" class="tab-pane" id="java3">
+<pre>
+qb.insert(id("Pikachu").isa("pokemon"));
+</pre>
+</div> <!-- tab-pane -->
 </div>
+<p><!-- tab-content --></p>
 
 <h3 id="value">value</h3>
 
 <p>Set the value of the concept.</p>
+<ul id="profileTabs" class="nav nav-tabs">
+    <li class="active"><a href="#shell4" data-toggle="tab">Graql</a></li>
+    <li><a href="#java4" data-toggle="tab">Java</a></li>
+</ul>
 
-<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">insert</span> <span class="n">trained</span><span class="o">-</span><span class="k">by</span> <span class="n">isa</span> <span class="n">relation</span><span class="o">-</span><span class="k">type</span><span class="p">,</span> <span class="n">value</span> <span class="nv">"Trained By"</span><span class="p">;</span>
-</code></pre>
+<div class="tab-content">
+<div role="tabpanel" class="tab-pane active" id="shell4">
+<pre>
+insert trained-by isa relation-type, value "Trained By";
+</pre>
 </div>
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">qb</span><span class="o">.</span><span class="na">insert</span><span class="o">(</span><span class="n">id</span><span class="o">(</span><span class="s">"trained-by"</span><span class="o">).</span><span class="na">isa</span><span class="o">(</span><span class="s">"relation-type"</span><span class="o">).</span><span class="na">value</span><span class="o">(</span><span class="s">"Trained By"</span><span class="o">));</span>
-</code></pre>
+<div role="tabpanel" class="tab-pane" id="java4">
+<pre>
+qb.insert(id("trained-by").isa("relation-type").value("Trained By"));
+</pre>
+</div> <!-- tab-pane -->
 </div>
+<p><!-- tab-content --></p>
 
 <h3 id="has">has</h3>
 
 <p>Add a resource of the given type to the concept.</p>
 
-<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">insert</span> <span class="nv">"Pichu"</span> <span class="n">isa</span> <span class="n">pokemon</span> <span class="n">has</span> <span class="n">height</span> <span class="mi">30</span><span class="p">;</span>
-</code></pre>
+<ul id="profileTabs" class="nav nav-tabs">
+    <li class="active"><a href="#shell5" data-toggle="tab">Graql</a></li>
+    <li><a href="#java5" data-toggle="tab">Java</a></li>
+</ul>
+
+<div class="tab-content">
+<div role="tabpanel" class="tab-pane active" id="shell5">
+<pre>
+insert "Pichu" isa pokemon has height 30;
+</pre>
 </div>
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">qb</span><span class="o">.</span><span class="na">insert</span><span class="o">(</span><span class="n">id</span><span class="o">(</span><span class="s">"Pichu"</span><span class="o">).</span><span class="na">isa</span><span class="o">(</span><span class="s">"pokemon"</span><span class="o">).</span><span class="na">has</span><span class="o">(</span><span class="s">"height"</span><span class="o">,</span> <span class="mi">30</span><span class="o">));</span>
-</code></pre>
+<div role="tabpanel" class="tab-pane" id="java5">
+<pre>
+qb.insert(id("Pichu").isa("pokemon").has("height", 30));
+</pre>
+</div> <!-- tab-pane -->
 </div>
+<p><!-- tab-content --></p>
 
 <p>The above example is equivalent to:</p>
 
-<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">insert</span>
-<span class="err">$</span><span class="k">owner</span> <span class="n">id</span> <span class="nv">"Pichu"</span> <span class="n">isa</span> <span class="n">pokemon</span><span class="p">;</span>
-<span class="err">$</span><span class="n">value</span> <span class="n">isa</span> <span class="n">height</span><span class="p">,</span> <span class="n">value</span> <span class="mi">30</span><span class="p">;</span>
+<ul id="profileTabs" class="nav nav-tabs">
+    <li class="active"><a href="#shell6" data-toggle="tab">Graql</a></li>
+    <li><a href="#java6" data-toggle="tab">Java</a></li>
+</ul>
 
-<span class="p">(</span><span class="n">height</span><span class="o">-</span><span class="k">owner</span> <span class="err">$</span><span class="k">owner</span><span class="p">,</span> <span class="n">height</span><span class="o">-</span><span class="n">value</span> <span class="err">$</span><span class="n">value</span><span class="p">)</span> <span class="n">isa</span> <span class="n">has</span><span class="o">-</span><span class="n">height</span><span class="p">;</span>
-</code></pre>
+<div class="tab-content">
+<div role="tabpanel" class="tab-pane active" id="shell6">
+<pre>
+insert
+$owner id "Pichu" isa pokemon;
+$value isa height, value 30;
+
+(height-owner $owner, height-value $value) isa has-height;
+
+</pre>
 </div>
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">qb</span><span class="o">.</span><span class="na">insert</span><span class="o">(</span>
-  <span class="n">var</span><span class="o">(</span><span class="s">"owner"</span><span class="o">).</span><span class="na">id</span><span class="o">(</span><span class="s">"Pichu"</span><span class="o">).</span><span class="na">isa</span><span class="o">(</span><span class="s">"pokemon"</span><span class="o">),</span>
-  <span class="n">var</span><span class="o">(</span><span class="s">"value"</span><span class="o">).</span><span class="na">isa</span><span class="o">(</span><span class="s">"height"</span><span class="o">).</span><span class="na">value</span><span class="o">(</span><span class="mi">30</span><span class="o">),</span>
-  <span class="n">var</span><span class="o">().</span><span class="na">rel</span><span class="o">(</span><span class="s">"height-owner"</span><span class="o">,</span> <span class="s">"owner"</span><span class="o">).</span><span class="na">rel</span><span class="o">(</span><span class="s">"height-value"</span><span class="o">,</span> <span class="s">"value"</span><span class="o">).</span><span class="na">isa</span><span class="o">(</span><span class="s">"has-height"</span><span class="o">)</span>
-<span class="o">);</span>
-</code></pre>
+<div role="tabpanel" class="tab-pane" id="java6">
+<pre>
+qb.insert(
+  var("owner").id("Pichu").isa("pokemon"),
+  var("value").isa("height").value(30),
+  var().rel("height-owner", "owner").rel("height-value", "value").isa("has-height")
+);
+</pre>
+</div> <!-- tab-pane -->
 </div>
+<p><!-- tab-content --></p>
 
 <h3 id="relation">relation</h3>
 
 <p>Make the concept a relation that relates the given role players, playing the
 given roles.</p>
 
-<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">insert</span> <span class="p">(</span><span class="n">pokemon</span><span class="o">-</span><span class="k">with</span><span class="o">-</span><span class="k">type</span> <span class="nv">"Pichu"</span><span class="p">,</span> <span class="k">type</span><span class="o">-</span><span class="k">of</span><span class="o">-</span><span class="n">pokemon</span> <span class="nv">"electric"</span><span class="p">)</span> <span class="n">isa</span> <span class="n">has</span><span class="o">-</span><span class="k">type</span><span class="p">;</span>
-</code></pre>
+<ul id="profileTabs" class="nav nav-tabs">
+    <li class="active"><a href="#shell7" data-toggle="tab">Graql</a></li>
+    <li><a href="#java7" data-toggle="tab">Java</a></li>
+</ul>
+
+<div class="tab-content">
+<div role="tabpanel" class="tab-pane active" id="shell7">
+<pre>
+insert (pokemon-with-type "Pichu", type-of-pokemon "electric") isa has-type;
+</pre>
 </div>
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">qb</span><span class="o">.</span><span class="na">insert</span><span class="o">(</span>
-  <span class="n">var</span><span class="o">()</span>
-    <span class="o">.</span><span class="na">rel</span><span class="o">(</span><span class="s">"pokemon-with-type"</span><span class="o">,</span> <span class="n">id</span><span class="o">(</span><span class="s">"Pichu"</span><span class="o">))</span>
-    <span class="o">.</span><span class="na">rel</span><span class="o">(</span><span class="s">"type-of-pokemon"</span><span class="o">,</span> <span class="n">id</span><span class="o">(</span><span class="s">"electric"</span><span class="o">))</span>
-    <span class="o">.</span><span class="na">isa</span><span class="o">(</span><span class="s">"has-type"</span><span class="o">)</span>
-<span class="o">);</span><span class="err">"</span><span class="o">,</span>
-</code></pre>
+<div role="tabpanel" class="tab-pane" id="java7">
+<pre>
+qb.insert(
+  var()
+    .rel("pokemon-with-type", id("Pichu"))
+    .rel("type-of-pokemon", id("electric"))
+    .isa("has-type")
+);",
+
+</pre>
+</div> <!-- tab-pane -->
 </div>
+<p><!-- tab-content --></p>
 
 <h2 id="type-properties">Type Properties</h2>
 
@@ -568,36 +654,73 @@ given roles.</p>
 
 <p>Set the supertype of this concept type.</p>
 
-<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">insert</span> <span class="n">gen2</span><span class="o">-</span><span class="n">pokemon</span> <span class="n">ako</span> <span class="n">pokemon</span><span class="p">;</span>
-</code></pre>
+<ul id="profileTabs" class="nav nav-tabs">
+    <li class="active"><a href="#shell8" data-toggle="tab">Graql</a></li>
+    <li><a href="#java8" data-toggle="tab">Java</a></li>
+</ul>
+
+<div class="tab-content">
+<div role="tabpanel" class="tab-pane active" id="shell8">
+<pre>
+insert gen2-pokemon ako pokemon;
+</pre>
 </div>
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">qb</span><span class="o">.</span><span class="na">insert</span><span class="o">(</span><span class="n">id</span><span class="o">(</span><span class="s">"gen2-pokemon"</span><span class="o">).</span><span class="na">ako</span><span class="o">(</span><span class="s">"pokemon"</span><span class="o">));</span>
-</code></pre>
+<div role="tabpanel" class="tab-pane" id="java8">
+<pre>
+qb.insert(id("gen2-pokemon").ako("pokemon"));
+</pre>
+</div> <!-- tab-pane -->
 </div>
+<p><!-- tab-content --></p>
 
 <h3 id="has-role">has-role</h3>
 <p>Add a role to this relation type.</p>
 
-<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">insert</span>
-<span class="n">trained</span><span class="o">-</span><span class="k">by</span> <span class="n">isa</span> <span class="n">relation</span><span class="o">-</span><span class="k">type</span><span class="p">,</span> <span class="n">has</span><span class="o">-</span><span class="k">role</span> <span class="n">trainer</span><span class="p">,</span> <span class="n">has</span><span class="o">-</span><span class="k">role</span> <span class="n">pokemon</span><span class="o">-</span><span class="n">trained</span><span class="p">;</span>
-</code></pre>
+<ul id="profileTabs" class="nav nav-tabs">
+    <li class="active"><a href="#shell9" data-toggle="tab">Graql</a></li>
+    <li><a href="#java9" data-toggle="tab">Java</a></li>
+</ul>
+
+<div class="tab-content">
+<div role="tabpanel" class="tab-pane active" id="shell9">
+<pre>
+insert
+trained-by isa relation-type, has-role trainer, has-role pokemon-trained;
+
+</pre>
 </div>
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">qb</span><span class="o">.</span><span class="na">insert</span><span class="o">(</span>
-  <span class="n">id</span><span class="o">(</span><span class="s">"trained-by"</span><span class="o">).</span><span class="na">isa</span><span class="o">(</span><span class="s">"relation-type"</span><span class="o">)</span>
-    <span class="o">.</span><span class="na">hasRole</span><span class="o">(</span><span class="s">"trainer"</span><span class="o">).</span><span class="na">hasRole</span><span class="o">(</span><span class="s">"pokemon-trained"</span><span class="o">)</span>
-<span class="o">);</span>
-</code></pre>
+<div role="tabpanel" class="tab-pane" id="java9">
+<pre>
+qb.insert(
+  id("trained-by").isa("relation-type")
+    .hasRole("trainer").hasRole("pokemon-trained")
+);
+</pre>
+</div> <!-- tab-pane -->
 </div>
+<p><!-- tab-content --></p>
 
 <h3 id="plays-role">plays-role</h3>
 <p>Allow the concept type to play the given role.</p>
 
-<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">insert</span> <span class="n">pokemon</span> <span class="n">plays</span><span class="o">-</span><span class="k">role</span> <span class="n">pokemon</span><span class="o">-</span><span class="n">trained</span><span class="p">;</span>
-</code></pre>
+<ul id="profileTabs" class="nav nav-tabs">
+    <li class="active"><a href="#shell10" data-toggle="tab">Graql</a></li>
+    <li><a href="#java10" data-toggle="tab">Java</a></li>
+</ul>
+
+<div class="tab-content">
+<div role="tabpanel" class="tab-pane active" id="shell10">
+<pre>
+insert pokemon plays-role pokemon-trained;
+</pre>
 </div>
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">qb</span><span class="o">.</span><span class="na">insert</span><span class="o">(</span><span class="n">id</span><span class="o">(</span><span class="s">"pokemon"</span><span class="o">).</span><span class="na">playsRole</span><span class="o">(</span><span class="s">"pokemon-trained"</span><span class="o">));</span>
-</code></pre>
+<div role="tabpanel" class="tab-pane" id="java10">
+<pre>
+qb.insert(id("pokemon").playsRole("pokemon-trained"));
+</pre>
+</div> <!-- tab-pane -->
 </div>
+<p><!-- tab-content --></p>
 
 <h3 id="has-resource">has-resource</h3>
 
@@ -606,40 +729,52 @@ given roles.</p>
 <p>This is done by creating a specific relation type relating the concept type
 and resource.</p>
 
-<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">insert</span> <span class="n">pokemon</span> <span class="n">has</span><span class="o">-</span><span class="n">resource</span> <span class="n">pokedex</span><span class="o">-</span><span class="k">no</span><span class="p">;</span>
-</code></pre>
-</div>
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">qb</span><span class="o">.</span><span class="na">insert</span><span class="o">(</span><span class="n">id</span><span class="o">(</span><span class="s">"pokemon"</span><span class="o">).</span><span class="na">hasResource</span><span class="o">(</span><span class="s">"pokedex-no"</span><span class="o">));</span>
-</code></pre>
-</div>
+<ul id="profileTabs" class="nav nav-tabs">
+    <li class="active"><a href="#shell11" data-toggle="tab">Graql</a></li>
+    <li><a href="#java11" data-toggle="tab">Java</a></li>
+</ul>
 
+<div class="tab-content">
+<div role="tabpanel" class="tab-pane active" id="shell11">
+<pre>
+insert pokemon has-resource pokedex-no;
+</pre>
 <p>The above example is equivalent to:</p>
+<pre>
+insert
 
-<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">insert</span>
+has-pokedex-no isa relation-type,
+  has-role pokedex-no-owner,
+  has-role pokedex-no-value;
 
-<span class="n">has</span><span class="o">-</span><span class="n">pokedex</span><span class="o">-</span><span class="k">no</span> <span class="n">isa</span> <span class="n">relation</span><span class="o">-</span><span class="k">type</span><span class="p">,</span>
-  <span class="n">has</span><span class="o">-</span><span class="k">role</span> <span class="n">pokedex</span><span class="o">-</span><span class="k">no</span><span class="o">-</span><span class="k">owner</span><span class="p">,</span>
-  <span class="n">has</span><span class="o">-</span><span class="k">role</span> <span class="n">pokedex</span><span class="o">-</span><span class="k">no</span><span class="o">-</span><span class="n">value</span><span class="p">;</span>
+pokedex-no-owner isa role-type;
+pokedex-no-value isa role-type;
 
-<span class="n">pokedex</span><span class="o">-</span><span class="k">no</span><span class="o">-</span><span class="k">owner</span> <span class="n">isa</span> <span class="k">role</span><span class="o">-</span><span class="k">type</span><span class="p">;</span>
-<span class="n">pokedex</span><span class="o">-</span><span class="k">no</span><span class="o">-</span><span class="n">value</span> <span class="n">isa</span> <span class="k">role</span><span class="o">-</span><span class="k">type</span><span class="p">;</span>
+pokemon plays-role pokedex-no-owner;
+pokedex-no plays-role pokedex-no-value;
+</pre>
 
-<span class="n">pokemon</span> <span class="n">plays</span><span class="o">-</span><span class="k">role</span> <span class="n">pokedex</span><span class="o">-</span><span class="k">no</span><span class="o">-</span><span class="k">owner</span><span class="p">;</span>
-<span class="n">pokedex</span><span class="o">-</span><span class="k">no</span> <span class="n">plays</span><span class="o">-</span><span class="k">role</span> <span class="n">pokedex</span><span class="o">-</span><span class="k">no</span><span class="o">-</span><span class="n">value</span><span class="p">;</span>
-</code></pre>
 </div>
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">qb</span><span class="o">.</span><span class="na">insert</span><span class="o">(</span>
-  <span class="n">id</span><span class="o">(</span><span class="s">"has-pokedex-no"</span><span class="o">).</span><span class="na">isa</span><span class="o">(</span><span class="s">"relation-type"</span><span class="o">)</span>
-    <span class="o">.</span><span class="na">hasRole</span><span class="o">(</span><span class="s">"pokedex-no-owner"</span><span class="o">).</span><span class="na">hasRole</span><span class="o">(</span><span class="s">"pokedex-no-value"</span><span class="o">),</span>
+<div role="tabpanel" class="tab-pane" id="java11">
+<pre>
+qb.insert(id("pokemon").hasResource("pokedex-no"));
+</pre>
+<p>The above example is equivalent to:</p>
+<pre>
+qb.insert(
+  id("has-pokedex-no").isa("relation-type")
+    .hasRole("pokedex-no-owner").hasRole("pokedex-no-value"),
 
-  <span class="n">id</span><span class="o">(</span><span class="s">"pokedex-no-owner"</span><span class="o">).</span><span class="na">isa</span><span class="o">(</span><span class="s">"role-type"</span><span class="o">),</span>
-  <span class="n">id</span><span class="o">(</span><span class="s">"pokedex-no-value"</span><span class="o">).</span><span class="na">isa</span><span class="o">(</span><span class="s">"role-type"</span><span class="o">),</span>
+  id("pokedex-no-owner").isa("role-type"),
+  id("pokedex-no-value").isa("role-type"),
 
-  <span class="n">id</span><span class="o">(</span><span class="s">"pokemon"</span><span class="o">).</span><span class="na">playsRole</span><span class="o">(</span><span class="s">"pokedex-no-owner"</span><span class="o">),</span>
-  <span class="n">id</span><span class="o">(</span><span class="s">"pokedex-no"</span><span class="o">).</span><span class="na">playsRole</span><span class="o">(</span><span class="s">"pokedex-no-value"</span><span class="o">)</span>
-<span class="o">);</span>
-</code></pre>
+  id("pokemon").playsRole("pokedex-no-owner"),
+  id("pokedex-no").playsRole("pokedex-no-value")
+);
+</pre>
+</div> <!-- tab-pane -->
 </div>
+<p><!-- tab-content --></p>
 
 <h2 id="document-changelog">Document Changelog</h2>
 
@@ -695,7 +830,7 @@ and resource.</p>
         <br>
         <p>© 2016 <a href="http://mindmaps.io">Mindmaps Research Ltd</a></p>
         <!-- &copy;2016 MindmapsDB. All rights reserved. <br />
-        <span>Page last updated:</span> August 10, 2016<br/> Site last generated: Aug 20, 2016 <br />
+        <span>Page last updated:</span> August 10, 2016<br/> Site last generated: Aug 25, 2016 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">

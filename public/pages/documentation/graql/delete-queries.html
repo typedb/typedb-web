@@ -206,14 +206,6 @@
             
             
             
-            <!-- <li><a href="documentationget-startedoverview.html">Overview</a></li> -->
-            <li><a href="/pages/documentation/get-started/overview.html">Overview</a></li>
-            
-            
-            
-            
-            
-            
             <!-- <li><a href="documentationget-startedsetup-guide.html">Setup Guide</a></li> -->
             <li><a href="/pages/documentation/get-started/setup-guide.html">Setup Guide</a></li>
             
@@ -240,14 +232,6 @@
             
             <!-- <li><a href="documentationthe-basicsquickstart-tutorial.html">Quickstart Tutorial</a></li> -->
             <li><a href="/pages/documentation/the-basics/quickstart-tutorial.html">Quickstart Tutorial</a></li>
-            
-            
-            
-            
-            
-            
-            <!-- <li><a href="documentationthe-basicsquickstart-tutorial-java.html">Java Quickstart Tutorial</a></li> -->
-            <li><a href="/pages/documentation/the-basics/quickstart-tutorial-java.html">Java Quickstart Tutorial</a></li>
             
             
             
@@ -382,6 +366,22 @@
             
             
             
+            <!-- <li><a href="documentationresourcesresources.html">Resources</a></li> -->
+            <li><a href="/pages/documentation/resources/resources.html">Resources</a></li>
+            
+            
+            
+            
+            
+            
+            <!-- <li><a href="documentationresourcesdeveloper-faq.html">Frequently Asked Questions</a></li> -->
+            <li><a href="/pages/documentation/resources/developer-faq.html">Frequently Asked Questions</a></li>
+            
+            
+            
+            
+            
+            
             <!-- <li><a href="documentationresourcesdownloads.html">Downloads</a></li> -->
             <li><a href="/pages/documentation/resources/downloads.html">Downloads</a></li>
             
@@ -461,13 +461,24 @@ patterns</a> for every result of the <a href="graql_match.html">match
 query</a>. If a variable pattern indicates just a variable, then
 the whole concept will be deleted. If it is more specific (such as indicating
 the <code class="highlighter-rouge">id</code> or <code class="highlighter-rouge">isa</code>) it will only delete the specified properties.</p>
+<ul id="profileTabs" class="nav nav-tabs">
+    <li class="active"><a href="#shell1" data-toggle="tab">Graql</a></li>
+    <li><a href="#java1" data-toggle="tab">Java</a></li>
+</ul>
 
-<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">match</span> <span class="err">$</span><span class="n">x</span> <span class="n">isa</span> <span class="n">pokemon</span> <span class="k">delete</span> <span class="err">$</span><span class="n">x</span>
-</code></pre>
+<div class="tab-content">
+<div role="tabpanel" class="tab-pane active" id="shell1">
+<pre>
+match $x isa pokemon delete $x
+</pre>
 </div>
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">qb</span><span class="o">.</span><span class="na">match</span><span class="o">(</span><span class="n">var</span><span class="o">(</span><span class="s">"x"</span><span class="o">).</span><span class="na">isa</span><span class="o">(</span><span class="s">"pokemon"</span><span class="o">)).</span><span class="na">delete</span><span class="o">(</span><span class="s">"x"</span><span class="o">).</span><span class="na">execute</span><span class="o">();</span>
-</code></pre>
+<div role="tabpanel" class="tab-pane" id="java1">
+<pre>
+qb.match(var("x").isa("pokemon")).delete("x").execute();
+</pre>
+</div> <!-- tab-pane -->
 </div>
+<p><!-- tab-content --></p>
 
 <h2 id="variable-patterns">Variable Patterns</h2>
 
@@ -482,34 +493,69 @@ Otherwise, only the specified properties are deleted.</p>
 
 <h3 id="has-role">has-role</h3>
 <p>Removes the given role from the relation type.</p>
+<ul id="profileTabs" class="nav nav-tabs">
+    <li class="active"><a href="#shell2" data-toggle="tab">Graql</a></li>
+    <li><a href="#java2" data-toggle="tab">Java</a></li>
+</ul>
 
-<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">match</span> <span class="err">$</span><span class="n">x</span> <span class="n">id</span> <span class="nv">"evolution"</span> <span class="k">delete</span> <span class="err">$</span><span class="n">x</span> <span class="n">has</span><span class="o">-</span><span class="k">role</span> <span class="n">descendant</span><span class="p">;</span>
-</code></pre>
+<div class="tab-content">
+<div role="tabpanel" class="tab-pane active" id="shell2">
+<pre>
+match $x id "evolution" delete $x has-role descendant;
+</pre>
 </div>
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">qb</span><span class="o">.</span><span class="na">match</span><span class="o">(</span><span class="n">var</span><span class="o">(</span><span class="s">"x"</span><span class="o">).</span><span class="na">id</span><span class="o">(</span><span class="s">"evolution"</span><span class="o">)).</span><span class="na">delete</span><span class="o">(</span><span class="n">var</span><span class="o">(</span><span class="s">"x"</span><span class="o">).</span><span class="na">hasRole</span><span class="o">(</span><span class="s">"descendant"</span><span class="o">));</span>
-</code></pre>
+<div role="tabpanel" class="tab-pane" id="java2">
+<pre>
+qb.match(var("x").id("evolution")).delete(var("x").hasRole("descendant"));
+</pre>
+</div> <!-- tab-pane -->
 </div>
+<p><!-- tab-content --></p>
 
 <h3 id="plays-role">plays-role</h3>
 <p>Disallows the concept type from playing the given role.</p>
 
-<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">match</span> <span class="err">$</span><span class="n">x</span> <span class="n">id</span> <span class="nv">"type"</span> <span class="k">delete</span> <span class="err">$</span><span class="n">x</span> <span class="n">plays</span><span class="o">-</span><span class="k">role</span> <span class="n">attacking</span><span class="o">-</span><span class="k">type</span><span class="p">;</span>
-</code></pre>
+<ul id="profileTabs" class="nav nav-tabs">
+    <li class="active"><a href="#shell3" data-toggle="tab">Graql</a></li>
+    <li><a href="#java3" data-toggle="tab">Java</a></li>
+</ul>
+
+<div class="tab-content">
+<div role="tabpanel" class="tab-pane active" id="shell3">
+<pre>
+match $x id "type" delete $x plays-role attacking-type;
+</pre>
 </div>
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">qb</span><span class="o">.</span><span class="na">match</span><span class="o">(</span><span class="n">var</span><span class="o">(</span><span class="s">"x"</span><span class="o">).</span><span class="na">id</span><span class="o">(</span><span class="s">"type"</span><span class="o">)).</span><span class="na">delete</span><span class="o">(</span><span class="n">var</span><span class="o">(</span><span class="s">"x"</span><span class="o">).</span><span class="na">playsRole</span><span class="o">(</span><span class="s">"attacking-type"</span><span class="o">));</span>
-</code></pre>
+<div role="tabpanel" class="tab-pane" id="java3">
+<pre>
+qb.match(var("x").id("type")).delete(var("x").playsRole("attacking-type"));
+</pre>
+</div> <!-- tab-pane -->
 </div>
+<p><!-- tab-content --></p>
 
 <h3 id="has">has</h3>
 <p>Deletes the resources of the given type on the concept. If a value is given,
 only delete resources matching that value.</p>
 
-<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">match</span> <span class="err">$</span><span class="n">x</span> <span class="n">id</span> <span class="nv">"Bulbasaur"</span> <span class="k">delete</span> <span class="err">$</span><span class="n">x</span> <span class="n">has</span> <span class="n">weight</span><span class="p">;</span>
-</code></pre>
+<ul id="profileTabs" class="nav nav-tabs">
+    <li class="active"><a href="#shell4" data-toggle="tab">Graql</a></li>
+    <li><a href="#java4" data-toggle="tab">Java</a></li>
+</ul>
+
+<div class="tab-content">
+<div role="tabpanel" class="tab-pane active" id="shell4">
+<pre>
+match $x id "Bulbasaur" delete $x has weight;
+</pre>
 </div>
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">qb</span><span class="o">.</span><span class="na">match</span><span class="o">(</span><span class="n">var</span><span class="o">(</span><span class="s">"x"</span><span class="o">).</span><span class="na">id</span><span class="o">(</span><span class="s">"Bulbasaur"</span><span class="o">)).</span><span class="na">delete</span><span class="o">(</span><span class="n">var</span><span class="o">(</span><span class="s">"x"</span><span class="o">).</span><span class="na">has</span><span class="o">(</span><span class="s">"weight"</span><span class="o">));</span>
-</code></pre>
+<div role="tabpanel" class="tab-pane" id="java4">
+<pre>
+qb.match(var("x").id("Bulbasaur")).delete(var("x").has("weight"));
+</pre>
+</div> <!-- tab-pane -->
 </div>
+<p><!-- tab-content --></p>
 
 <h2 id="document-changelog">Document Changelog</h2>
 
@@ -565,7 +611,7 @@ only delete resources matching that value.</p>
         <br>
         <p>© 2016 <a href="http://mindmaps.io">Mindmaps Research Ltd</a></p>
         <!-- &copy;2016 MindmapsDB. All rights reserved. <br />
-        <span>Page last updated:</span> August 11, 2016<br/> Site last generated: Aug 20, 2016 <br />
+        <span>Page last updated:</span> August 11, 2016<br/> Site last generated: Aug 25, 2016 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">
