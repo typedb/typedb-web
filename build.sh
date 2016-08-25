@@ -29,3 +29,6 @@ if [ $(dirname $HOME) == "/Users" ];then
 else
     cp -rd docs/_site/* public/pages/
 fi
+
+echo Creating images symlink
+ln -sf pages/images public/images
