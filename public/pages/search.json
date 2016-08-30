@@ -182,22 +182,22 @@
 
 
 {
-"title": "Graql Overview",
-"tags": "graql",
-"keywords": "graql, overview",
-"url": "documentationgraqloverview.html",
-"summary": "An introduction to Graql"
+"title": "Core Overview",
+"tags": "javacoreAPI",
+"keywords": "core, overview",
+"url": "documentationcore-apioverview.html",
+"summary": "A basic example of how to use Mindmaps Core API."
 }
 ,
 
 
 
 {
-"title": "Core Overview",
-"tags": "javacoreAPI",
-"keywords": "core, overview",
-"url": "documentationcore-apioverview.html",
-"summary": "A basic example of how to use Mindmaps Core API."
+"title": "Graql Overview",
+"tags": "graql",
+"keywords": "graql, overview",
+"url": "documentationgraqloverview.html",
+"summary": "An introduction to Graql"
 }
 ,
 
