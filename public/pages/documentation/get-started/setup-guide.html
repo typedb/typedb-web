@@ -374,14 +374,6 @@
             
             
             
-            <!-- <li><a href="documentationresourcesdeveloper-faq.html">Frequently Asked Questions</a></li> -->
-            <li><a href="/pages/documentation/resources/developer-faq.html">Frequently Asked Questions</a></li>
-            
-            
-            
-            
-            
-            
             <!-- <li><a href="documentationresourcesdownloads.html">Downloads</a></li> -->
             <li><a href="/pages/documentation/resources/downloads.html">Downloads</a></li>
             
@@ -463,7 +455,7 @@ Mindmaps also requires Maven 3.</div>
 <p>The latest version of mindmaps can be downloaded from the
 <a href="../resources/downloads.html">downloads page</a>. Unzip it and run the following in the terminal:</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="nb">cd </span>mindmaps-build
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="nb">cd </span>mindmaps-build
 bin/mindmaps.sh start
 </code></pre>
 </div>
@@ -482,13 +474,13 @@ To delete all data in Mindamps graph, stop the Mindmaps backend, then run <code 
 <p>Graql is our query language, which allows you to interface with a Mindmaps graph. We will use Graql to load an example data set and run some simple queries against it.<br />
 The following will make Graql load an example data set and exit:</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>bin/graql.sh -f examples/pokemon.gql
+<div class="highlighter-rouge"><pre class="highlight"><code>bin/graql.sh -f examples/pokemon.gql
 </code></pre>
 </div>
 
 <p>This will create and persist an example data set. Now we can run the following query using the Graql shell:</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>bin/graql.sh
+<div class="highlighter-rouge"><pre class="highlight"><code>bin/graql.sh
 <span class="k">select</span> <span class="nv">$x</span> where <span class="nv">$x</span> isa pokemon
 <span class="nv">$x</span> id <span class="s2">"Bulbasaur"</span> isa pokemon;
 <span class="nv">$x</span> id <span class="s2">"Charmander"</span> isa pokemon;
