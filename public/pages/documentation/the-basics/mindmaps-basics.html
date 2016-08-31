@@ -35,7 +35,7 @@
 <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 <![endif]-->
 
-<link rel="alternate" type="application/rss+xml" title="" href="http://mindmaps.io/docs/feed.xml">
+<link rel="alternate" type="application/rss+xml" title="" href="http://mindmaps.io/pages/feed.xml">
 
     <script>
         $(document).ready(function() {
@@ -528,7 +528,14 @@ define that an Instance of Concept Type <code class="highlighter-rouge">Dog</cod
 
 <h3 id="subclasses">Subclasses</h3>
 
-<p>The four types described above can be subclassed. For example, subclasses of <code class="highlighter-rouge">Person</code> could be <code class="highlighter-rouge">Man</code> and <code class="highlighter-rouge">Woman</code>.  This simple subclassing allows us to expand and deepen our ontology to whatever granularity of detail is needed. For example a simple ontology would be <code class="highlighter-rouge">Car</code> <code class="highlighter-rouge">is a</code> <code class="highlighter-rouge">Vehicle</code> but with subclassing we could go as far as <code class="highlighter-rouge">a VW Gold TDI 2014</code> <code class="highlighter-rouge">isa</code> <code class="highlighter-rouge">VW</code> <code class="highlighter-rouge">ako</code> <code class="highlighter-rouge">Car</code> <code class="highlighter-rouge">isa</code> <code class="highlighter-rouge">Vehicle</code>.</p>
+<p>The four types described above can be subclassed. For example, subclasses of <code class="highlighter-rouge">Person</code> could be <code class="highlighter-rouge">Man</code> and <code class="highlighter-rouge">Woman</code>.  This simple subclassing allows us to expand and deepen our ontology to whatever granularity of detail is needed.</p>
+
+<div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> <b>Note:</b> In a Mindmaps graph, we use the shorthand <code class="highlighter-rouge">isa</code> when representing the type relationship. <br /> 
+For example, <code class="highlighter-rouge">Aristotle</code> (entity) <code class="highlighter-rouge">is a</code> <code class="highlighter-rouge">Man</code> (entity type).   <br />
+We use the shorthand <code class="highlighter-rouge">ako</code> when referring to a type being the sub type of another Type. <br />
+For example, <code class="highlighter-rouge">Man</code> (entity type) <code class="highlighter-rouge">a kind of (ako)</code> <code class="highlighter-rouge">Person</code> (entity type).</div>
+
+<p>For example a simple ontology would be <code class="highlighter-rouge">Car</code> <code class="highlighter-rouge">is a</code> <code class="highlighter-rouge">Vehicle</code> but with subclassing we could go as far as <code class="highlighter-rouge">a VW Gold TDI 2014</code> <code class="highlighter-rouge">isa</code> <code class="highlighter-rouge">VW</code> <code class="highlighter-rouge">ako</code> <code class="highlighter-rouge">Car</code> <code class="highlighter-rouge">isa</code> <code class="highlighter-rouge">Vehicle</code>.</p>
 
 <p>Types can have an additional property, <code class="highlighter-rouge">Abstract</code>, which indicates the type cannot have instances. This is useful when we want to define a deeper ontology. For example if we have <code class="highlighter-rouge">Person</code> and its subclasses <code class="highlighter-rouge">Man</code> and <code class="highlighter-rouge">Woman</code>, then we may want to define <code class="highlighter-rouge">Person</code> as <code class="highlighter-rouge">Abstract</code> to prohibit it from having any direct instances.</p>
 
@@ -564,11 +571,6 @@ instances of a specific type. For example, one Relation can define that the Inst
 <p>Consider the following example of male and female philosopers.</p>
 
 <p><img src="/images/example_super.png" alt="Male and Female philosophers" /></p>
-
-<div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> <b>Note:</b> In a Mindmaps graph, we use the shorthand <code class="highlighter-rouge">isa</code> when representing the type relationship. <br /> 
-For example, <code class="highlighter-rouge">Aristotle</code> <code class="highlighter-rouge">is a</code> <code class="highlighter-rouge">Man</code>.   <br />
-We use the shorthand <code class="highlighter-rouge">ako</code> when referring to a Type being the sub type of another Type. <br />
-For example, <code class="highlighter-rouge">Man</code> <code class="highlighter-rouge">a kind of (ako)</code> <code class="highlighter-rouge">Person</code>.</div>
 
 <h3 id="roles">Roles</h3>
 <p>We can define the following structure where people can now play the roles of teachers or students:</p>
@@ -654,7 +656,7 @@ instance of
         <br>
         <p>© 2016 <a href="http://mindmaps.io">Mindmaps Research Ltd</a></p>
         <!-- &copy;2016 MindmapsDB. All rights reserved. <br />
-        <span>Page last updated:</span> August 24, 2016<br/> Site last generated: Aug 30, 2016 <br />
+        <span>Page last updated:</span> August 24, 2016<br/> Site last generated: Aug 31, 2016 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">

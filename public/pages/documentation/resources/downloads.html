@@ -35,7 +35,7 @@
 <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 <![endif]-->
 
-<link rel="alternate" type="application/rss+xml" title="" href="http://mindmaps.io/docs/feed.xml">
+<link rel="alternate" type="application/rss+xml" title="" href="http://mindmaps.io/pages/feed.xml">
 
     <script>
         $(document).ready(function() {
@@ -449,60 +449,11 @@ $('#toc').on('click', 'a', function() {
 
   <h2 id="download-mindmaps">Download Mindmaps</h2>
 
-<p>The latest version of mindmaps is vX.X.  TO DO<br />
-It can be downloaded from <a href="http://mindmaps.io/download/mindmaps-0.2.1.zip">here</a>.</p>
+<p>The latest version of mindmaps is v0.1.0.
+It can be downloaded from <a href="https://github.com/mindmapsdb/mindmapsdb/releases/download/v0.1.0-SNAPSHOT/mindmaps-dist-0.1.0-SNAPSHOT-dist.zip">here</a>.</p>
 
 <h3 id="past-versions">Past Versions</h3>
-<p>Here is a list of previously released versions of MindmapsDB:</p>
-
-<h2 id="whats-included">What’s included?</h2>
-<p>TO DO: Will there be release notes?</p>
-
-<p>Here is a listing of the key items in the Mindmaps zip that you have downloaded.</p>
-
-<table>
-    <tr>
-        <td>Directory</td>
-        <td>Name</td>
-        <td>Description</td>        
-    </tr>
-    <tr>
-        <td>bin</td>
-        <td>graql.sh</td>
-        <td>Graql shell script</td>        
-    </tr>
-    <tr>
-        <td>bin</td>
-        <td>mindmaps.sh</td>
-        <td>Mindmaps shell script</td>        
-    </tr>    
-    <tr>
-        <td>examples</td>
-        <td>philosophers.gql</td>
-        <td>Ontology description for philosophers example</td>        
-    </tr>
-    <tr>
-        <td>examples</td>
-        <td>pokemon.gql</td>
-        <td>Ontology description for pokemon example</td>        
-    </tr>
-    <tr>
-        <td>lib</td>
-        <td>graql-core-0.2.1.jar <br />   
-        graql-parser-0.2.1.jar  <br />
-        graql-shell-0.2.1-jar-with-dependencies.jar  <br />
-        mindmaps-core-0.2.1.jar  <br />
-        mindmaps-test-0.2.1.jar  <br />
-        mindmaps-titan-factory-0.2.1.jar <br />
-        </td>        
-        <td>See Mindmaps Java API section below</td>
-    </tr>
-    <tr>
-        <td>titan</td>
-        <td></td>
-        <td><strong>To do: describe why this directory is here</strong></td>        
-    </tr>    
-</table>
+<p>A list of previously released versions of MindmapsDB can be found on <a href="https://github.com/mindmapsdb/mindmapsdb/releases">Github</a>.</p>
 
 <h2 id="prerequisites">Prerequisites</h2>
 
@@ -512,9 +463,19 @@ Mindmaps also requires Maven 3.</div>
 <h2 id="code">Code</h2>
 <p>We are an open source project. If you want to look at our code, we are on Github at <a href="https://github.com/mindmapsdb/mindmapsdb">https://github.com/mindmapsdb/mindmapsdb</a>.</p>
 
-<h2 id="mindmaps-java-api">Mindmaps Java API</h2>
+<h3 id="building-the-code">Building the Code</h3>
 
-<div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> <b>Note:</b> TO DO - SPECIFY MAVEN DEPENDENCY.</div>
+<p>To build MindmapsDB, you need git and Maven.</p>
+
+<p>Clone the <a href="https://github.com/mindmapsdb/mindmapsdb">mindmapsdb repository</a> to a local directory.  In that directory:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>mvn package
+</code></pre>
+</div>
+
+<p>The code should build and the tests will then run (the tests will take approximately 10 minutes to finish). When the build has completed, you will find it in the <code class="highlighter-rouge">mindmaps-dist</code> directory under <code class="highlighter-rouge">target</code>. The zip file built into that directory is the same as that distributed as a release on <a href="https://github.com/mindmapsdb/mindmapsdb/releases">Github</a>.</p>
+
+<h2 id="mindmaps-java-api">Mindmaps Java API</h2>
 
 <p>Inside the <code class="highlighter-rouge">lib</code> directory of mindmaps.zip are the jars you will need to
 develop with mindmaps.</p>
@@ -550,6 +511,11 @@ Maven to acquire the other dependencies.</p>
         <td>v1</td>
         <td>09/08/2016</td>
         <td>New page for developer portal.</td>        
+    </tr>
+        <tr>
+        <td>v1</td>
+        <td>30/08/2016</td>
+        <td>Update for first release.</td>        
     </tr>
 
 </table>
@@ -592,7 +558,7 @@ Maven to acquire the other dependencies.</p>
         <br>
         <p>© 2016 <a href="http://mindmaps.io">Mindmaps Research Ltd</a></p>
         <!-- &copy;2016 MindmapsDB. All rights reserved. <br />
-        <span>Page last updated:</span> August 10, 2016<br/> Site last generated: Aug 30, 2016 <br />
+        <span>Page last updated:</span> August 10, 2016<br/> Site last generated: Aug 31, 2016 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">

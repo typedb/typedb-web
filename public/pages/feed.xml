@@ -3,10 +3,10 @@
     <channel>
         <title></title>
         <description>Open-Source Distributed Semantic Database</description>
-        <link>http://mindmaps.io/docs//</link>
-        <atom:link href="http://mindmaps.io/docs//feed.xml" rel="self" type="application/rss+xml"/>
-        <pubDate>Tue, 30 Aug 2016 13:16:24 +0100</pubDate>
-        <lastBuildDate>Tue, 30 Aug 2016 13:16:24 +0100</lastBuildDate>
+        <link>http://mindmaps.io/pages//</link>
+        <atom:link href="http://mindmaps.io/pages//feed.xml" rel="self" type="application/rss+xml"/>
+        <pubDate>Wed, 31 Aug 2016 10:13:10 +0100</pubDate>
+        <lastBuildDate>Wed, 31 Aug 2016 10:13:10 +0100</lastBuildDate>
         <generator>Jekyll v3.0.3</generator>
         
     </channel>
