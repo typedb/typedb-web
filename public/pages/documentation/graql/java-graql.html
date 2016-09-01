@@ -206,7 +206,13 @@
             
             
             
-            <!-- <li><a href="documentationget-startedsetup-guide.html">Setup Guide</a></li> -->
+            <li><a href="/pages/index.html">Home</a></li>
+            
+            
+            
+            
+            
+            
             <li><a href="/pages/documentation/get-started/setup-guide.html">Setup Guide</a></li>
             
             
@@ -222,7 +228,6 @@
             
             
             
-            <!-- <li><a href="documentationthe-basicsmindmaps-basics.html">Mindmaps Basics</a></li> -->
             <li><a href="/pages/documentation/the-basics/mindmaps-basics.html">Mindmaps Basics</a></li>
             
             
@@ -230,7 +235,6 @@
             
             
             
-            <!-- <li><a href="documentationthe-basicsquickstart-tutorial.html">Quickstart Tutorial</a></li> -->
             <li><a href="/pages/documentation/the-basics/quickstart-tutorial.html">Quickstart Tutorial</a></li>
             
             
@@ -246,7 +250,6 @@
             
             
             
-            <!-- <li><a href="documentationcore-apioverview.html">Overview</a></li> -->
             <li><a href="/pages/documentation/core-api/overview.html">Overview</a></li>
             
             
@@ -254,7 +257,6 @@
             
             
             
-            <!-- <li><a href="documentationcore-apisimple-schema-definition.html">Simple Schema Definition</a></li> -->
             <li><a href="/pages/documentation/core-api/simple-schema-definition.html">Simple Schema Definition</a></li>
             
             
@@ -262,8 +264,14 @@
             
             
             
-            <!-- <li><a href="documentationcore-apiadvanced-schema-definition.html">Advanced Schema Definition</a></li> -->
             <li><a href="/pages/documentation/core-api/advanced-schema-definition.html">Advanced Schema Definition</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="//mindmaps.io/javadocs.html" target="_blank">API Reference</a></li>
             
             
             
@@ -278,7 +286,6 @@
             
             
             
-            <!-- <li><a href="documentationgraqloverview.html">Overview</a></li> -->
             <li><a href="/pages/documentation/graql/overview.html">Overview</a></li>
             
             
@@ -286,7 +293,6 @@
             
             
             
-            <!-- <li><a href="documentationgraqlgraql-shell.html">Graql Shell</a></li> -->
             <li><a href="/pages/documentation/graql/graql-shell.html">Graql Shell</a></li>
             
             
@@ -294,7 +300,6 @@
             
             
             
-            <!-- <li><a href="documentationgraqlmatch-queries.html">Match Queries</a></li> -->
             <li><a href="/pages/documentation/graql/match-queries.html">Match Queries</a></li>
             
             
@@ -302,7 +307,6 @@
             
             
             
-            <!-- <li><a href="documentationgraqlask-queries.html">Ask Queries</a></li> -->
             <li><a href="/pages/documentation/graql/ask-queries.html">Ask Queries</a></li>
             
             
@@ -310,7 +314,6 @@
             
             
             
-            <!-- <li><a href="documentationgraqldelete-queries.html">Delete Queries</a></li> -->
             <li><a href="/pages/documentation/graql/delete-queries.html">Delete Queries</a></li>
             
             
@@ -318,7 +321,6 @@
             
             
             
-            <!-- <li><a href="documentationgraqlinsert-queries.html">Insert Queries</a></li> -->
             <li><a href="/pages/documentation/graql/insert-queries.html">Insert Queries</a></li>
             
             
@@ -326,7 +328,6 @@
             
             
             
-            <!-- <li><a href="documentationgraqlgraql-cheatsheet.html">Graql Cheatsheet</a></li> -->
             <li><a href="/pages/documentation/graql/graql-cheatsheet.html">Graql Cheatsheet</a></li>
             
             
@@ -334,8 +335,14 @@
             
             
             
-            <!-- <li class="active"><a href="documentationgraqljava-graql.html">Java Graql</a></li> -->
             <li class="active"><a href="/pages/documentation/graql/java-graql.html">Java Graql</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="//mindmaps.io/javadocs.html" target="_blank">API Reference</a></li>
             
             
             
@@ -350,7 +357,6 @@
             
             
             
-            <!-- <li><a href="documentationtroubleshootingknown-issues.html">Known Issues</a></li> -->
             <li><a href="/pages/documentation/troubleshooting/known-issues.html">Known Issues</a></li>
             
             
@@ -366,7 +372,6 @@
             
             
             
-            <!-- <li><a href="documentationresourcesresources.html">Resources</a></li> -->
             <li><a href="/pages/documentation/resources/resources.html">Resources</a></li>
             
             
@@ -374,7 +379,6 @@
             
             
             
-            <!-- <li><a href="documentationresourcesdownloads.html">Downloads</a></li> -->
             <li><a href="/pages/documentation/resources/downloads.html">Downloads</a></li>
             
             
@@ -453,7 +457,7 @@ $('#toc').on('click', 'a', function() {
 
 <p>Add the following to your <code class="highlighter-rouge">pom.xml</code>:</p>
 
-<div class="language-xml highlighter-rouge"><pre class="highlight"><code><span class="nt">&lt;dependency&gt;</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="nt">&lt;dependency&gt;</span>
   <span class="nt">&lt;groupId&gt;</span>io.mindmaps<span class="nt">&lt;/groupId&gt;</span>
   <span class="nt">&lt;artifactId&gt;</span>mindmaps-graql<span class="nt">&lt;/artifactId&gt;</span>
   <span class="nt">&lt;version&gt;</span>0.1.0<span class="nt">&lt;/version&gt;</span>
@@ -468,7 +472,7 @@ $('#toc').on('click', 'a', function() {
 <p><code class="highlighter-rouge">QueryBuilder</code> and <code class="highlighter-rouge">ValuePredicate</code> contains several useful static methods such
 as <code class="highlighter-rouge">var</code> and <code class="highlighter-rouge">eq</code>, so it’s recommended that you use a static import:</p>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">io.mindmaps.graql.api.query.QueryBuilder</span><span class="o">;</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">io.mindmaps.graql.api.query.QueryBuilder</span><span class="o">;</span>
 <span class="kn">import</span> <span class="nn">static</span> <span class="n">io</span><span class="o">.</span><span class="na">mindmaps</span><span class="o">.</span><span class="na">graql</span><span class="o">.</span><span class="na">api</span><span class="o">.</span><span class="na">query</span><span class="o">.</span><span class="na">QueryBuilder</span><span class="o">.*;</span>
 <span class="kn">import</span> <span class="nn">static</span> <span class="n">io</span><span class="o">.</span><span class="na">mindmaps</span><span class="o">.</span><span class="na">graql</span><span class="o">.</span><span class="na">api</span><span class="o">.</span><span class="na">query</span><span class="o">.</span><span class="na">ValuePredicate</span><span class="o">.*;</span>
 </code></pre>
@@ -476,7 +480,7 @@ as <code class="highlighter-rouge">var</code> and <code class="highlighter-rouge
 
 <p>A <code class="highlighter-rouge">QueryBuilder</code> is constructed by providing a <code class="highlighter-rouge">MindmapsTransaction</code>:</p>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">MindmapsGraph</span> <span class="n">graph</span> <span class="o">=</span> <span class="n">MindmapsClient</span><span class="o">.</span><span class="na">getGraph</span><span class="o">(</span><span class="s">"my-graph"</span><span class="o">);</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">MindmapsGraph</span> <span class="n">graph</span> <span class="o">=</span> <span class="n">MindmapsClient</span><span class="o">.</span><span class="na">getGraph</span><span class="o">(</span><span class="s">"my-graph"</span><span class="o">);</span>
 <span class="n">MindmapsTransaction</span> <span class="n">transaction</span> <span class="o">=</span> <span class="n">graph</span><span class="o">.</span><span class="na">newTransaction</span><span class="o">();</span>
 <span class="n">QueryBuilder</span> <span class="n">qb</span> <span class="o">=</span> <span class="n">QueryBuilder</span><span class="o">.</span><span class="na">build</span><span class="o">(</span><span class="n">transaction</span><span class="o">);</span>
 </code></pre>
@@ -496,7 +500,7 @@ queries.</p>
 <code class="highlighter-rouge">MatchQuery</code> instance, which includes additional methods that apply modifiers
 such as <code class="highlighter-rouge">limit</code> and <code class="highlighter-rouge">distinct</code>:</p>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">MatchQuery</span> <span class="n">tallPokemon</span> <span class="o">=</span> <span class="n">qb</span><span class="o">.</span><span class="na">match</span><span class="o">(</span><span class="n">var</span><span class="o">(</span><span class="s">"x"</span><span class="o">).</span><span class="na">isa</span><span class="o">(</span><span class="s">"pokemon"</span><span class="o">).</span><span class="na">has</span><span class="o">(</span><span class="s">"height"</span><span class="o">,</span> <span class="n">gt</span><span class="o">(</span><span class="mi">10</span><span class="o">))).</span><span class="na">limit</span><span class="o">(</span><span class="mi">50</span><span class="o">);</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">MatchQuery</span> <span class="n">tallPokemon</span> <span class="o">=</span> <span class="n">qb</span><span class="o">.</span><span class="na">match</span><span class="o">(</span><span class="n">var</span><span class="o">(</span><span class="s">"x"</span><span class="o">).</span><span class="na">isa</span><span class="o">(</span><span class="s">"pokemon"</span><span class="o">).</span><span class="na">has</span><span class="o">(</span><span class="s">"height"</span><span class="o">,</span> <span class="n">gt</span><span class="o">(</span><span class="mi">10</span><span class="o">))).</span><span class="na">limit</span><span class="o">(</span><span class="mi">50</span><span class="o">);</span>
 </code></pre>
 </div>
 
@@ -505,7 +509,7 @@ such as <code class="highlighter-rouge">limit</code> and <code class="highlighte
 
 <p>A <code class="highlighter-rouge">MatchQuery</code> will only execute when it is iterated over.</p>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="k">for</span> <span class="o">(</span><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Concept</span><span class="o">&gt;</span> <span class="n">result</span> <span class="o">:</span> <span class="n">tallPokemon</span><span class="o">)</span> <span class="o">{</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">for</span> <span class="o">(</span><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Concept</span><span class="o">&gt;</span> <span class="n">result</span> <span class="o">:</span> <span class="n">tallPokemon</span><span class="o">)</span> <span class="o">{</span>
   <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">result</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">"x"</span><span class="o">).</span><span class="na">getValue</span><span class="o">());</span>
 <span class="o">}</span>
 </code></pre>
@@ -520,7 +524,7 @@ for requesting a single variable:</p>
 
 <h2 id="ask-queries">Ask Queries</h2>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="k">if</span> <span class="o">(</span><span class="n">qb</span><span class="o">.</span><span class="na">ask</span><span class="o">(</span><span class="n">var</span><span class="o">().</span><span class="na">isa</span><span class="o">(</span><span class="s">"pokemon-type"</span><span class="o">).</span><span class="na">value</span><span class="o">(</span><span class="s">"dragon"</span><span class="o">)))</span> <span class="o">{</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">if</span> <span class="o">(</span><span class="n">qb</span><span class="o">.</span><span class="na">ask</span><span class="o">(</span><span class="n">var</span><span class="o">().</span><span class="na">isa</span><span class="o">(</span><span class="s">"pokemon-type"</span><span class="o">).</span><span class="na">value</span><span class="o">(</span><span class="s">"dragon"</span><span class="o">)))</span> <span class="o">{</span>
   <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Dragons are real!"</span><span class="o">);</span>
 <span class="o">}</span>
 </code></pre>
@@ -528,7 +532,7 @@ for requesting a single variable:</p>
 
 <h2 id="insert-queries">Insert Queries</h2>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">InsertQuery</span> <span class="n">addPichu</span> <span class="o">=</span> <span class="n">qb</span><span class="o">.</span><span class="na">insert</span><span class="o">(</span><span class="n">var</span><span class="o">().</span><span class="na">id</span><span class="o">(</span><span class="s">"Pichu"</span><span class="o">).</span><span class="na">isa</span><span class="o">(</span><span class="s">"pokemon"</span><span class="o">));</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">InsertQuery</span> <span class="n">addPichu</span> <span class="o">=</span> <span class="n">qb</span><span class="o">.</span><span class="na">insert</span><span class="o">(</span><span class="n">var</span><span class="o">().</span><span class="na">id</span><span class="o">(</span><span class="s">"Pichu"</span><span class="o">).</span><span class="na">isa</span><span class="o">(</span><span class="s">"pokemon"</span><span class="o">));</span>
 
 <span class="n">addPichu</span><span class="o">.</span><span class="na">execute</span><span class="o">();</span>
 
@@ -545,13 +549,13 @@ for requesting a single variable:</p>
 
 <h2 id="delete-queries">Delete Queries</h2>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">qb</span><span class="o">.</span><span class="na">match</span><span class="o">(</span><span class="n">var</span><span class="o">(</span><span class="s">"x"</span><span class="o">).</span><span class="na">id</span><span class="o">(</span><span class="s">"Pichu"</span><span class="o">)).</span><span class="na">delete</span><span class="o">(</span><span class="s">"x"</span><span class="o">).</span><span class="na">execute</span><span class="o">();</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">qb</span><span class="o">.</span><span class="na">match</span><span class="o">(</span><span class="n">var</span><span class="o">(</span><span class="s">"x"</span><span class="o">).</span><span class="na">id</span><span class="o">(</span><span class="s">"Pichu"</span><span class="o">)).</span><span class="na">delete</span><span class="o">(</span><span class="s">"x"</span><span class="o">).</span><span class="na">execute</span><span class="o">();</span>
 </code></pre>
 </div>
 
 <h2 id="query-parser">Query Parser</h2>
 
-<div class="language-xml highlighter-rouge"><pre class="highlight"><code><span class="nt">&lt;dependency&gt;</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="nt">&lt;dependency&gt;</span>
   <span class="nt">&lt;groupId&gt;</span>io.mindmaps.graql<span class="nt">&lt;/groupId&gt;</span>
   <span class="nt">&lt;artifactId&gt;</span>graql-parser<span class="nt">&lt;/artifactId&gt;</span>
   <span class="nt">&lt;version&gt;</span>0.2.1<span class="nt">&lt;/version&gt;</span>
@@ -562,7 +566,7 @@ for requesting a single variable:</p>
 <p>The <code class="highlighter-rouge">QueryParser</code> allows the user to parse Graql query strings into Java Graql
 objects:</p>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">QueryParser</span> <span class="n">parser</span> <span class="o">=</span> <span class="k">new</span> <span class="n">QueryParser</span><span class="o">(</span><span class="n">graph</span><span class="o">);</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">QueryParser</span> <span class="n">parser</span> <span class="o">=</span> <span class="k">new</span> <span class="n">QueryParser</span><span class="o">(</span><span class="n">graph</span><span class="o">);</span>
 
 <span class="n">parser</span><span class="o">.</span><span class="na">parseMatchQuery</span><span class="o">(</span><span class="s">"match $x isa pokemon"</span><span class="o">).</span><span class="na">getMatchQuery</span><span class="o">().</span><span class="na">get</span><span class="o">(</span><span class="s">"x"</span><span class="o">).</span><span class="na">forEach</span><span class="o">(</span><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">::</span><span class="n">println</span><span class="o">);</span>
 
@@ -619,12 +623,12 @@ objects:</p>
     <div class="col-lg-5 footer">
         <span class="footer-header">Get in touch</span>
         <p>
-            <a rel="nofollow me" class="slack" href="http://mindmaps.io/slack.html">
-                <svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#slack"></use></svg> MindmapsDB on Slack
+            <a rel="nofollow me" class="slack" href="https://mindmaps.io/slack.html">
+                <svg><use xmlns:xlink="https://www.w3.org/1999/xlink" xlink:href="#slack"></use></svg> MindmapsDB on Slack
             </a>
             <br>
             <a rel="nofollow me" class="github" href="https://github.com/mindmapsdb/mindmapsdb" target="_blank">
-                <svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#github"></use></svg> MindmapsDB 0.1 on GitHub
+                <svg><use xmlns:xlink="https://www.w3.org/1999/xlink" xlink:href="#github"></use></svg> MindmapsDB 0.1 on GitHub
             </a>
             <br><br>
             <a href="mailto:info@mindmaps.io">info@mindmaps.io</a><br>
@@ -632,26 +636,26 @@ objects:</p>
             London, UK, N7 8EG
         </p>
         <br>
-        <p>© 2016 <a href="http://mindmaps.io">Mindmaps Research Ltd</a></p>
+        <p>© 2016 <a href="https://mindmaps.io">Mindmaps Research Ltd</a></p>
         <!-- &copy;2016 MindmapsDB. All rights reserved. <br />
-        <span>Page last updated:</span> August 11, 2016<br/> Site last generated: Aug 31, 2016 <br />
+        <span>Page last updated:</span> August 11, 2016<br/> Site last generated: Sep 1, 2016 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">
         <span class="footer-header">Community</span>
         <ul>
-            <li><a href="http://discuss.mindmaps.io">Discussion</a></li>
-            <li><a rel="nofollow me" href="http://stackoverflow.com/tags/mindmapsdb" target="_blank">Stack Overflow</a></li>
-            <li><a rel="nofollow me" href="http://mindmaps.io/slack.html">Slack</a></li>
-            <li><a rel="nofollow me" href="http://twitter.com/mindmapsdb" target="_blank">Twitter</a></li>
+            <li><a href="https://discuss.mindmaps.io">Discussion</a></li>
+            <li><a rel="nofollow me" href="https://stackoverflow.com/tags/mindmapsdb" target="_blank">Stack Overflow</a></li>
+            <li><a rel="nofollow me" href="https://mindmaps.io/slack.html">Slack</a></li>
+            <li><a rel="nofollow me" href="https://twitter.com/mindmapsdb" target="_blank">Twitter</a></li>
         </ul>
     </div>
     <div class="col-lg-2 footer">
         <span class="footer-header">Company</span>
         <ul>
-            <li><a rel="nofollow me" href="http://blog.mindmaps.io" target="_blank">Blog</a></li>
-            <li><a href="http://mindmaps.io/careers.html">Careers</a></li>
-            <li><a href="http://mindmaps.io/about.html">About</a></li>
+            <li><a rel="nofollow me" href="https://blog.mindmaps.io" target="_blank">Blog</a></li>
+            <li><a href="https://mindmaps.io/careers.html">Careers</a></li>
+            <li><a href="https://mindmaps.io/about.html">About</a></li>
         </ul>
     </div>
 </footer>
