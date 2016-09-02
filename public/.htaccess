@@ -9,13 +9,16 @@ RewriteEngine on
     Header set Access-Control-Allow-Origin "*"
 </FilesMatch>
 
+# Redirect for mindmaps.io/discuss
 RewriteCond %{HTTP_HOST} ^mindmaps\.io$ [OR]
 RewriteCond %{HTTP_HOST} ^www\.mindmaps\.io$
 RewriteRule ^discuss$ "http://discuss.mindmaps.io/" [R=301,L]
 
+# Redirect www to non-www
 RewriteCond %{HTTP_HOST} ^www\.mindmaps\.io$
 RewriteRule ^(.*)$ "https://mindmaps.io/$1" [R=301,L]
 
+# Redirect to https
 RewriteCond %{HTTP_HOST} ^mindmaps\.io [NC]
 RewriteCond %{SERVER_PORT} 80
 RewriteRule ^(.*)$  "https://mindmaps.io/$1" [R=301,L]
