@@ -462,7 +462,7 @@ The naive way to do this would be as follows:</p>
 
 <p>Create the Entity types:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">EntityType</span> <span class="n">person</span> <span class="o">=</span> <span class="n">mindmapsTransaction</span><span class="o">.</span><span class="na">putEntityType</span><span class="o">(</span><span class="s">"Person"</span><span class="o">);</span>
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">EntityType</span> <span class="n">person</span> <span class="o">=</span> <span class="n">mindmapsTransaction</span><span class="o">.</span><span class="na">putEntityType</span><span class="o">(</span><span class="s">"Person"</span><span class="o">);</span>
 <span class="n">EntityType</span> <span class="n">movie</span> <span class="o">=</span> <span class="n">mindmapsTransaction</span><span class="o">.</span><span class="na">putEntityType</span><span class="o">(</span><span class="s">"Movie"</span><span class="o">);</span>
 <span class="n">EntityType</span> <span class="n">tvShow</span> <span class="o">=</span> <span class="n">mindmapsTransaction</span><span class="o">.</span><span class="na">putEntityType</span><span class="o">(</span><span class="s">"TV Show"</span><span class="o">);</span>
 </code></pre>
@@ -470,7 +470,7 @@ The naive way to do this would be as follows:</p>
 
 <p>Create the roles and relation types:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">RoleType</span> <span class="n">actorInMovie</span> <span class="o">=</span> <span class="n">mindmapsTrancation</span><span class="o">.</span><span class="na">putRoleType</span><span class="o">(</span><span class="s">"Actor In Movie"</span><span class="o">);</span>
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">RoleType</span> <span class="n">actorInMovie</span> <span class="o">=</span> <span class="n">mindmapsTrancation</span><span class="o">.</span><span class="na">putRoleType</span><span class="o">(</span><span class="s">"Actor In Movie"</span><span class="o">);</span>
 <span class="n">RoleType</span> <span class="n">movieCastIn</span> <span class="o">=</span> <span class="n">mindmapsTrancation</span><span class="o">.</span><span class="na">putRoleType</span><span class="o">(</span><span class="s">"Movie Cast In"</span><span class="o">);</span>
 <span class="n">RelationType</span> <span class="n">starsInMovie</span> <span class="o">=</span> <span class="n">mindmapsTransaction</span><span class="o">.</span><span class="na">putRelationType</span><span class="o">(</span><span class="s">"Stars In Movie"</span><span class="o">).</span><span class="na">hasRole</span><span class="o">(</span><span class="n">actorInMovie</span><span class="o">).</span><span class="na">hasRole</span><span class="o">(</span><span class="n">movieCastIn</span><span class="o">);</span>
 
@@ -482,7 +482,7 @@ The naive way to do this would be as follows:</p>
 
 <p>Allow the roles to be played</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">person</span><span class="o">.</span><span class="na">playsRole</span><span class="o">(</span><span class="n">actorInMovie</span><span class="o">).</span><span class="na">playsRole</span><span class="o">(</span><span class="n">actorInTvShow</span><span class="o">);</span>
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">person</span><span class="o">.</span><span class="na">playsRole</span><span class="o">(</span><span class="n">actorInMovie</span><span class="o">).</span><span class="na">playsRole</span><span class="o">(</span><span class="n">actorInTvShow</span><span class="o">);</span>
 <span class="n">movie</span><span class="o">.</span><span class="na">playsRole</span><span class="o">(</span><span class="n">movieCastIn</span><span class="o">;</span>
 <span class="n">tvShow</span><span class="o">.</span><span class="na">playsRole</span><span class="o">(</span><span class="n">tvShowCastIn</span><span class="o">);</span>
 </code></pre>
@@ -498,7 +498,7 @@ We can create a deep object-orientated schema where the rules of the super class
 
 <p>Films and TV shows are similar so we should have a super category to represent both:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">EntityType</span> <span class="n">person</span> <span class="o">=</span> <span class="n">mindmapsTransaction</span><span class="o">.</span><span class="na">putEntityType</span><span class="o">(</span><span class="s">"Person"</span><span class="o">);</span>
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">EntityType</span> <span class="n">person</span> <span class="o">=</span> <span class="n">mindmapsTransaction</span><span class="o">.</span><span class="na">putEntityType</span><span class="o">(</span><span class="s">"Person"</span><span class="o">);</span>
 <span class="n">EntityType</span> <span class="n">production</span> <span class="o">=</span> <span class="n">mindmapsTransaction</span><span class="o">.</span><span class="na">putEntityType</span><span class="o">(</span><span class="s">"Production"</span><span class="o">);</span>
 <span class="n">EntityType</span> <span class="n">movie</span> <span class="o">=</span> <span class="n">mindmapsTransaction</span><span class="o">.</span><span class="na">putEntityType</span><span class="o">(</span><span class="s">"Movie"</span><span class="o">).</span><span class="na">superType</span><span class="o">();</span>
 <span class="n">EntityType</span> <span class="n">tvShow</span> <span class="o">=</span> <span class="n">mindmapsTransaction</span><span class="o">.</span><span class="na">putEntityType</span><span class="o">(</span><span class="s">"TV Show"</span><span class="o">).</span><span class="na">superType</span><span class="o">(</span><span class="n">production</span><span class="o">);</span>
@@ -507,7 +507,7 @@ We can create a deep object-orientated schema where the rules of the super class
 
 <p>Actors should be able to star in any type of production, be it a film or a TV Show:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">RoleType</span> <span class="n">actor</span> <span class="o">=</span> <span class="n">mindmapsTrancation</span><span class="o">.</span><span class="na">putRoleType</span><span class="o">(</span><span class="s">"Actor"</span><span class="o">);</span>
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">RoleType</span> <span class="n">actor</span> <span class="o">=</span> <span class="n">mindmapsTrancation</span><span class="o">.</span><span class="na">putRoleType</span><span class="o">(</span><span class="s">"Actor"</span><span class="o">);</span>
 <span class="n">RoleType</span> <span class="n">productionCastIn</span> <span class="o">=</span> <span class="n">mindmapsTrancation</span><span class="o">.</span><span class="na">putRoleType</span><span class="o">(</span><span class="s">"Production Cast In"</span><span class="o">);</span>
 <span class="n">RelationType</span> <span class="n">starsIn</span> <span class="o">=</span> <span class="n">mindmapsTransaction</span><span class="o">.</span><span class="na">putRelationType</span><span class="o">(</span><span class="s">"Stars In"</span><span class="o">).</span><span class="na">hasRole</span><span class="o">(</span><span class="n">actor</span><span class="o">).</span><span class="na">hasRole</span><span class="o">(</span><span class="n">productionCastIn</span><span class="o">);</span>
 </code></pre>
@@ -515,7 +515,7 @@ We can create a deep object-orientated schema where the rules of the super class
 
 <p>Allow the role to be played:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">person</span><span class="o">.</span><span class="na">playsRole</span><span class="o">(</span><span class="n">actor</span><span class="o">);</span>
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">person</span><span class="o">.</span><span class="na">playsRole</span><span class="o">(</span><span class="n">actor</span><span class="o">);</span>
 <span class="n">production</span><span class="o">.</span><span class="na">playsRole</span><span class="o">(</span><span class="n">productionCastIn</span><span class="o">);</span>
 </code></pre>
 </div>
@@ -524,7 +524,7 @@ We can create a deep object-orientated schema where the rules of the super class
 This also makes defining the schema shorter and gives more opportunities for graph enhancements.
 For example, we can start to differentiate between male and female actors without impacting the schema significantly:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">EntityType</span> <span class="n">person</span> <span class="o">=</span> <span class="n">mindmapsTransaction</span><span class="o">.</span><span class="na">putEntityType</span><span class="o">(</span><span class="s">"Person"</span><span class="o">);</span>
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">EntityType</span> <span class="n">person</span> <span class="o">=</span> <span class="n">mindmapsTransaction</span><span class="o">.</span><span class="na">putEntityType</span><span class="o">(</span><span class="s">"Person"</span><span class="o">);</span>
 <span class="n">EntityType</span> <span class="n">man</span> <span class="o">=</span> <span class="n">mindmapsTransaction</span><span class="o">.</span><span class="na">putEntityType</span><span class="o">(</span><span class="s">"Man"</span><span class="o">).</span><span class="na">superType</span><span class="o">(</span><span class="n">person</span><span class="o">);</span>
 <span class="n">EntityType</span> <span class="n">woman</span> <span class="o">=</span> <span class="n">mindmapsTransaction</span><span class="o">.</span><span class="na">putEntityType</span><span class="o">(</span><span class="s">"Woman"</span><span class="o">).</span><span class="na">superType</span><span class="o">();</span>
 </code></pre>
@@ -532,7 +532,46 @@ For example, we can start to differentiate between male and female actors withou
 
 <h2 id="rule-types">Rule Types</h2>
 
-<p>TODO</p>
+<p>MindmapsDB supports rule-based backward-chained (BC) reasoning to allow automated capturing and evolution of patterns within the graph. The BC approach is a goal-driven approach to reasoning where the subset of applicable rules is controlled by a particular query. In the BC mode, all the inferrable information is available at query time.</p>
+
+<p>The inference rules are expressed in the following form:</p>
+
+<h4 id="if-rule-body-then-rule-head">if [rule-body] then [rule-head]</h4>
+
+<p>or in Prolog/Datalog terms:</p>
+
+<h4 id="rule-head---rule-body">[rule-head] :- [rule-body]</h4>
+
+<p>Both the head and the body of the rule are graql statements. In logical terms, we restrict the rules to be definite Horn clauses (i.e. disjunctions of atoms with at most one unnegated atom).</p>
+
+<p>All rule instances are of type inference-rule which can be retrieved by:</p>
+
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">RuleType</span> <span class="n">inferenceRule</span> <span class="o">=</span> <span class="n">mindmapsTransaction</span><span class="o">.</span><span class="na">getMetaRuleInference</span><span class="o">();</span>
+</code></pre>
+</div>
+
+<p>Rule instances can be added to the graph both through the Core API as well as through graql. Considering a sample rule reflecting the transitivity of a located-in relation, with the use of the Core API we can add it in the following way:</p>
+
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">String</span> <span class="n">ruleBody</span> <span class="o">=</span> <span class="s">"match "</span> <span class="o">+</span>
+                <span class="s">"(geo-entity $x, entity-location $y) isa is-located-in;"</span> <span class="o">+</span>
+                <span class="s">"(geo-entity $y, entity-location $z) isa is-located-in; select $x, $z"</span><span class="o">;</span>
+
+<span class="n">String</span> <span class="n">ruleHead</span> <span class="o">=</span> <span class="s">"match (geo-entity $x, entity-location $z) isa is-located-in select $x, $z"</span><span class="o">;</span>
+
+<span class="n">Rule</span> <span class="n">rule</span> <span class="o">=</span> <span class="n">mindmapsTransaction</span><span class="o">.</span><span class="na">putRule</span><span class="o">(</span><span class="s">"transitivity"</span><span class="o">,</span><span class="n">ruleBody</span><span class="o">,</span> <span class="n">ruleHead</span><span class="o">,</span> <span class="n">inferenceRule</span><span class="o">);</span>
+</code></pre>
+</div>
+
+<p>The addition of the same rule instance can be expressed via an insert graql statement where the body and the head of the rule are separated with curly braces, the statement then reads:</p>
+
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="s">"transitivity"</span> <span class="n">isa</span> <span class="n">inference</span><span class="o">-</span><span class="n">rule</span><span class="o">,</span>
+<span class="n">lhs</span> <span class="o">{</span><span class="n">match</span>
+<span class="o">(</span><span class="n">geo</span><span class="o">-</span><span class="n">entity</span> <span class="n">$x</span><span class="o">,</span> <span class="n">entity</span><span class="o">-</span><span class="n">location</span> <span class="n">$y</span><span class="o">)</span> <span class="n">isa</span> <span class="n">is</span><span class="o">-</span><span class="n">located</span><span class="o">-</span><span class="n">in</span><span class="o">;</span>
+<span class="o">(</span><span class="n">geo</span><span class="o">-</span><span class="n">entity</span> <span class="n">$y</span><span class="o">,</span> <span class="n">entity</span><span class="o">-</span><span class="n">location</span> <span class="n">$z</span><span class="o">)</span> <span class="n">isa</span> <span class="n">is</span><span class="o">-</span><span class="n">located</span><span class="o">-</span><span class="n">in</span><span class="o">;</span>
+<span class="n">select</span> <span class="n">$x</span><span class="o">,</span> <span class="n">$z</span><span class="o">},</span>
+<span class="o">(</span><span class="n">geo</span><span class="o">-</span><span class="n">entity</span> <span class="n">$x</span><span class="o">,</span> <span class="n">entity</span><span class="o">-</span><span class="n">location</span> <span class="n">$z</span><span class="o">)</span> <span class="n">isa</span> <span class="n">is</span><span class="o">-</span><span class="n">located</span><span class="o">-</span><span class="n">in</span><span class="o">};</span>
+</code></pre>
+</div>
 
 <h2 id="document-changelog">Document Changelog</h2>
 
@@ -547,7 +586,7 @@ For example, we can start to differentiate between male and female actors withou
         <td>23/08/2016</td>
         <td>Updated content and formatting.</td>        
     </tr>
-    
+
 
 </table>
 
@@ -593,7 +632,7 @@ For example, we can start to differentiate between male and female actors withou
         <br>
         <p>© 2016 <a href="https://mindmaps.io">Mindmaps Research Ltd</a></p>
         <!-- &copy;2016 MindmapsDB. All rights reserved. <br />
-        <span>Page last updated:</span> August 23, 2016<br/> Site last generated: Sep 1, 2016 <br />
+        <span>Page last updated:</span> August 23, 2016<br/> Site last generated: Sep 2, 2016 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">
