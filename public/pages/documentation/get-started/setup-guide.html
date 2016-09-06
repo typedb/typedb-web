@@ -485,7 +485,7 @@ The following will make Graql load an example data set and exit:</p>
 <p>This will create and persist an example data set. Now we can run the following query using the Graql shell:</p>
 
 <div class="language-bash highlighter-rouge"><pre class="highlight"><code>bin/graql.sh
-<span class="k">select</span> <span class="nv">$x</span> where <span class="nv">$x</span> isa pokemon
+<span class="k">match</span> <span class="nv">$x</span> isa pokemon
 <span class="nv">$x</span> id <span class="s2">"Bulbasaur"</span> isa pokemon;
 <span class="nv">$x</span> id <span class="s2">"Charmander"</span> isa pokemon;
 <span class="nv">$x</span> id <span class="s2">"Pikachu"</span> isa pokemon;
