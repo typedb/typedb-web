@@ -3,7 +3,7 @@
     <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Demonstrates how to create an Advanced schema for a Mindmaps knowledge graph.">
+<meta name="description" content="Demonstrates how to create an advanced schema for a Mindmaps knowledge graph.">
 <meta name="keywords" content="core-apijava,  core, schema, mindmapsdb, mindmaps, mindmaps.io, Mindmaps Research, Mindmaps Research Ltd, software, development platform, developer tool, data platform, programming langauge, query langauge, database, semantic database, distributed semantic database, distributed database, graph database, semantic search, data exploration, recommendation system, knowledge management, knowledge engineering, real-time analytics, advanced analytics, reasoning engine, inference engine, expert systems, semantic applications, research engines, data management, business intelligence, big data, semantic web, semantic data, knowledge representation, automated reasoning, semantic network, knowledge ontology, semantic graph, ontology engineering, graph based knowledge representation, artificial intelligence,">
 <title>Defining an Advanced Schema | MindmapsDB</title>
 <link rel="stylesheet" href="/pages/css/syntax.css">
@@ -413,7 +413,7 @@
 <div class="post-content">
 
    
-    <div class="summary">Demonstrates how to create an Advanced schema for a Mindmaps knowledge graph.</div>
+    <div class="summary">Demonstrates how to create an advanced schema for a Mindmaps knowledge graph.</div>
    
 
     
@@ -451,14 +451,13 @@ $('#toc').on('click', 'a', function() {
 
     
 
-  <p>This document introduces some advanced schema concepts, which you can use to create more expressive Mindmaps graphs. It is recommend that you read our document about <a href="simple-schema-definition.html">defining a simple schema</a> before continuing.</p>
+  <p>This document introduces some advanced schema concepts, which you can use to create more expressive Mindmaps graphs. We recommend that you read our document about <a href="simple-schema-definition.html">defining a simple schema</a> before continuing.</p>
 
 <p>Here, we also discuss creating a graph which supports Mindmaps reasoning and inference features.</p>
 
-<h2 id="sub-classing-types">Sub Classing Types</h2>
+<h2 id="sub-classing-types">Sub-Classing Types</h2>
 
-<p>Let’s say we wanted to model a graph which encapsulates films and tv shows, as well as the actors who can play in them.
-The naive way to do this would be as follows:</p>
+<p>Let’s say we wanted to model a graph that encapsulates films and tv shows, as well as the actors who can play in them. The naive way to do this would be as follows:</p>
 
 <p>Create the Entity types:</p>
 
@@ -480,7 +479,7 @@ The naive way to do this would be as follows:</p>
 </code></pre>
 </div>
 
-<p>Allow the roles to be played</p>
+<p>Allow the roles to be played:</p>
 
 <div class="highlighter-rouge"><pre class="highlight"><code><span class="n">person</span><span class="o">.</span><span class="na">playsRole</span><span class="o">(</span><span class="n">actorInMovie</span><span class="o">).</span><span class="na">playsRole</span><span class="o">(</span><span class="n">actorInTvShow</span><span class="o">);</span>
 <span class="n">movie</span><span class="o">.</span><span class="na">playsRole</span><span class="o">(</span><span class="n">movieCastIn</span><span class="o">;</span>
@@ -488,15 +487,14 @@ The naive way to do this would be as follows:</p>
 </code></pre>
 </div>
 
-<p>The above schema is valid and will allow us to model our data. However, there are a lot of duplicate definitions.
-For example, an actor should be able to star in anything (ideally) a film, a tv show, a theatre production etc.  Furthermore, there is a lot of contextual overlap between films and TV shows.</p>
+<p>The above schema is valid and will allow us to model our data. However, there are a lot of duplicate definitions. For example, an actor should be able to star in anything (ideally): a film, a tv show, a theatre production etc.  Furthermore, there is a lot of contextual overlap between films and TV shows.</p>
 
-<p>A more sophisticated approach uses subclassing, which allows us to define things that fall into categories and sub categories.
-We can create a deep object-orientated schema where the rules of the super class provide additional functionality to the sub classes.</p>
+<p>A more sophisticated approach uses sub-classing, which allows us to define things that fall into categories and sub-categories.
+We can create a deep object-orientated schema where the rules of the super-class provide additional functionality to its sub-classes.</p>
 
-<p>Lets convert our schema into something that is more expressive.</p>
+<p>Let’s convert our schema into something that is more expressive.</p>
 
-<p>Films and TV shows are similar so we should have a super category to represent both:</p>
+<p>Films and TV shows are similar so we should have a super-class <code class="highlighter-rouge">Production</code> to represent both:</p>
 
 <div class="highlighter-rouge"><pre class="highlight"><code><span class="n">EntityType</span> <span class="n">person</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">putEntityType</span><span class="o">(</span><span class="s">"Person"</span><span class="o">);</span>
 <span class="n">EntityType</span> <span class="n">production</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">putEntityType</span><span class="o">(</span><span class="s">"Production"</span><span class="o">);</span>
@@ -505,7 +503,7 @@ We can create a deep object-orientated schema where the rules of the super class
 </code></pre>
 </div>
 
-<p>Actors should be able to star in any type of production, be it a film or a TV Show:</p>
+<p>Actors should be able to star in any type of <code class="highlighter-rouge">Production</code>, be it a film or a TV Show:</p>
 
 <div class="highlighter-rouge"><pre class="highlight"><code><span class="n">RoleType</span> <span class="n">actor</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">putRoleType</span><span class="o">(</span><span class="s">"Actor"</span><span class="o">);</span>
 <span class="n">RoleType</span> <span class="n">productionCastIn</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">putRoleType</span><span class="o">(</span><span class="s">"Production Cast In"</span><span class="o">);</span>
@@ -520,7 +518,7 @@ We can create a deep object-orientated schema where the rules of the super class
 </code></pre>
 </div>
 
-<p>This schema is more expressive but is also shorter because the common role type (e.g. <em>Actor</em>) are inherited through a super class.
+<p>This schema is more expressive but is also shorter because the common role type (e.g. <em>Actor</em>) are inherited through a super-class.
 This also makes defining the schema shorter and gives more opportunities for graph enhancements.
 For example, we can start to differentiate between male and female actors without impacting the schema significantly:</p>
 
