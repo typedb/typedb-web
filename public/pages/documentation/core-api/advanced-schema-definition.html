@@ -532,42 +532,68 @@ For example, we can start to differentiate between male and female actors withou
 
 <p>MindmapsDB supports rule-based backward-chained (BC) reasoning to allow automated capturing and evolution of patterns within the graph. The BC approach is a goal-driven approach to reasoning where the subset of applicable rules is controlled by a particular query. In the BC mode, all the inferrable information is available at query time.</p>
 
-<p>The inference rules are expressed in the following form:</p>
+<p>The inference rules are expressed in the following general form:</p>
 
-<h4 id="if-rule-body-then-rule-head">if [rule-body] then [rule-head]</h4>
+<div class="highlighter-rouge"><pre class="highlight"><code>if [rule-body] then [rule-head]
+</code></pre>
+</div>
 
 <p>or in Prolog/Datalog terms:</p>
 
-<h4 id="rule-head---rule-body">[rule-head] :- [rule-body]</h4>
+<div class="highlighter-rouge"><pre class="highlight"><code>[rule-head] :- [rule-body]
+</code></pre>
+</div>
 
-<p>Both the head and the body of the rule are graql statements. In logical terms, we restrict the rules to be definite Horn clauses (i.e. disjunctions of atoms with at most one unnegated atom).</p>
+<p>In logical terms, we restrict the rules to be definite Horn clauses (i.e. disjunctions of atoms with at most one unnegated atom). In our system we define both the head and the body of rules as graql queries. Consequently the rules are statements of the form:</p>
 
-<p>All rule instances are of type inference-rule which can be retrieved by:</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>p :- q1, q2, ..., qn
+</code></pre>
+</div>
+<p>where p and qi’s are atoms that each correspond to a single graql statements.</p>
+
+<p>A classic reasoning example is the ancestor example: the two rules stated below define the ancestor (anc) relationship, given a parenthood relationship (parent) between individuals:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>R1: anc(X, Y):-parent(X, Y)
+R2: anc(X, Y):-parent(X, Z), anc(Z, Y)
+</code></pre>
+</div>
+<p>### Rule Java API
+All rule instances are of type inference-rule which can be retrieved by:</p>
 
 <div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">RuleType</span> <span class="n">inferenceRule</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">getMetaRuleInference</span><span class="o">();</span>
 </code></pre>
 </div>
 
-<p>Rule instances can be added to the graph both through the Core API as well as through graql. Considering a sample rule reflecting the transitivity of a located-in relation, with the use of the Core API we can add it in the following way:</p>
+<p>Rule instances can be added to the graph both through the Core API as well as through graql. Considering the ancestor example, with the use of the Core API we can add the rules in the following way:</p>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">String</span> <span class="n">ruleBody</span> <span class="o">=</span> <span class="s">"match "</span> <span class="o">+</span>
-                <span class="s">"(geo-entity $x, entity-location $y) isa is-located-in;"</span> <span class="o">+</span>
-                <span class="s">"(geo-entity $y, entity-location $z) isa is-located-in; select $x, $z"</span><span class="o">;</span>
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">String</span> <span class="n">r1Body</span> <span class="o">=</span> <span class="s">"match (parent $x, child $y) isa Parent"</span><span class="o">;</span>
+<span class="n">String</span> <span class="n">r1Head</span> <span class="o">=</span> <span class="s">"match (ancestor $x, descendant $y) isa Ancestor"</span><span class="o">;</span>
 
-<span class="n">String</span> <span class="n">ruleHead</span> <span class="o">=</span> <span class="s">"match (geo-entity $x, entity-location $z) isa is-located-in select $x, $z"</span><span class="o">;</span>
+<span class="n">String</span> <span class="n">r2Body</span> <span class="o">=</span> <span class="s">"match (parent $x, child $z) isa Parent;(ancestor $z, descendant $y) isa Ancestor; select $x, $y"</span><span class="o">;</span>
+<span class="n">String</span> <span class="n">r2Head</span> <span class="o">=</span> <span class="s">"match (ancestor $x, descendant $y) isa Ancestor"</span><span class="o">;</span>
 
-<span class="n">Rule</span> <span class="n">rule</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">putRule</span><span class="o">(</span><span class="s">"transitivity"</span><span class="o">,</span><span class="n">ruleBody</span><span class="o">,</span> <span class="n">ruleHead</span><span class="o">,</span> <span class="n">inferenceRule</span><span class="o">);</span>
+<span class="n">Rule</span> <span class="n">rule1</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">putRule</span><span class="o">(</span><span class="s">"R1"</span><span class="o">,</span> <span class="n">r1Body</span><span class="o">,</span> <span class="n">r1Head</span><span class="o">,</span> <span class="n">inferenceRule</span><span class="o">);</span>
+<span class="n">Rule</span> <span class="n">rule2</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">putRule</span><span class="o">(</span><span class="s">"R2"</span><span class="o">,</span> <span class="n">r2Body</span><span class="o">,</span> <span class="n">r2Head</span><span class="o">,</span> <span class="n">inferenceRule</span><span class="o">);</span>
 </code></pre>
 </div>
 
-<p>The addition of the same rule instance can be expressed via an insert graql statement where the body and the head of the rule are separated with curly braces, the statement then reads:</p>
+<h3 id="rule-graql-syntax">Rule Graql Syntax</h3>
+<p>The addition of the rules specified above can be expressed via an insert graql statement where the body and the head of the rule are separated with curly braces, the corresponding statement then reads:</p>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="s">"transitivity"</span> <span class="n">isa</span> <span class="n">inference</span><span class="o">-</span><span class="n">rule</span><span class="o">,</span>
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">insert</span>
+<span class="s">"R1"</span> <span class="n">isa</span> <span class="n">inference</span><span class="o">-</span><span class="n">rule</span><span class="o">,</span>
 <span class="n">lhs</span> <span class="o">{</span><span class="n">match</span>
-<span class="o">(</span><span class="n">geo</span><span class="o">-</span><span class="n">entity</span> <span class="n">$x</span><span class="o">,</span> <span class="n">entity</span><span class="o">-</span><span class="n">location</span> <span class="n">$y</span><span class="o">)</span> <span class="n">isa</span> <span class="n">is</span><span class="o">-</span><span class="n">located</span><span class="o">-</span><span class="n">in</span><span class="o">;</span>
-<span class="o">(</span><span class="n">geo</span><span class="o">-</span><span class="n">entity</span> <span class="n">$y</span><span class="o">,</span> <span class="n">entity</span><span class="o">-</span><span class="n">location</span> <span class="n">$z</span><span class="o">)</span> <span class="n">isa</span> <span class="n">is</span><span class="o">-</span><span class="n">located</span><span class="o">-</span><span class="n">in</span><span class="o">;</span>
-<span class="n">select</span> <span class="n">$x</span><span class="o">,</span> <span class="n">$z</span><span class="o">},</span>
-<span class="o">(</span><span class="n">geo</span><span class="o">-</span><span class="n">entity</span> <span class="n">$x</span><span class="o">,</span> <span class="n">entity</span><span class="o">-</span><span class="n">location</span> <span class="n">$z</span><span class="o">)</span> <span class="n">isa</span> <span class="n">is</span><span class="o">-</span><span class="n">located</span><span class="o">-</span><span class="n">in</span><span class="o">};</span>
+<span class="o">(</span><span class="n">parent</span> <span class="n">$x</span><span class="o">,</span> <span class="n">child</span> <span class="n">$y</span><span class="o">)</span> <span class="n">isa</span> <span class="n">Parent</span><span class="o">},</span>
+<span class="n">rhs</span> <span class="o">{</span><span class="n">match</span>
+<span class="o">(</span><span class="n">ancestor</span> <span class="n">$x</span><span class="o">,</span> <span class="n">descendant</span> <span class="n">$y</span><span class="o">)</span> <span class="n">isa</span> <span class="n">Ancestor</span><span class="o">};</span>
+
+<span class="s">"R2"</span> <span class="n">isa</span> <span class="n">inference</span><span class="o">-</span><span class="n">rule</span><span class="o">,</span>
+<span class="n">lhs</span> <span class="o">{</span><span class="n">match</span>
+<span class="o">(</span><span class="n">parent</span> <span class="n">$x</span><span class="o">,</span> <span class="n">child</span> <span class="n">$z</span><span class="o">)</span> <span class="n">isa</span> <span class="n">Parent</span><span class="o">;</span>
+<span class="o">(</span><span class="n">ancestor</span> <span class="n">$z</span><span class="o">,</span> <span class="n">descendant</span> <span class="n">$y</span><span class="o">)</span> <span class="n">isa</span> <span class="n">Ancestor</span><span class="o">;</span>
+<span class="n">select</span> <span class="n">$x</span><span class="o">,</span> <span class="n">$y</span><span class="o">},</span>
+<span class="n">rhs</span> <span class="o">{</span><span class="n">match</span>
+<span class="o">(</span><span class="n">ancestor</span> <span class="n">$x</span><span class="o">,</span> <span class="n">descendant</span> <span class="n">$y</span><span class="o">)</span> <span class="n">isa</span> <span class="n">Ancestor</span><span class="o">};</span>
 </code></pre>
 </div>
 
