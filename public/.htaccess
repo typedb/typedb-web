@@ -26,6 +26,7 @@ RewriteRule ^(.*)$  "https://mindmaps.io/$1" [R=301,L]
 # Redirect for Mindmaps release archive
 Redirect /download/latest "https://github.com/mindmapsdb/mindmapsdb/releases/download/v0.1.0-SNAPSHOT/mindmaps-dist-0.1.0-SNAPSHOT-dist.zip"
 Redirect /download "https://github.com/mindmapsdb/mindmapsdb/releases/"
+Redirect /install "/pages/documentation/get-started/setup-guide.html"
 
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME} !-f

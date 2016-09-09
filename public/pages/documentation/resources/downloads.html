@@ -145,9 +145,9 @@
                 </li> -->
                 <!-- <li><a href="/pages/platform/index.html">Platform</a></li> -->
                 <li><a href="/pages/index.html">Documentation</a></li>
-                <li><a href="//mindmaps.io/community.html">Community</a></li>
-                <li><a href="//discuss.mindmaps.io/">Discussion</a></li>
-                <li><a href="//blog.mindmaps.io/" target="_blank">Blog</a></li>
+                <li><a rel="me" href="//mindmaps.io/community.html">Community</a></li>
+                <li><a rel="me" href="//discuss.mindmaps.io/">Discussion</a></li>
+                <li><a rel="me" href="//blog.mindmaps.io/" target="_blank">Blog</a></li>
                 <!--comment out this block if you want to hide search-->
                 <li>
                     <!--start search-->
@@ -173,7 +173,7 @@
                 </li>
                 <!--comment out this block if you want to hide github link-->
                 <li>
-                    <a rel="nofollow me" href="//github.com/mindmapsdb/mindmapsdb" target="_blank" class="github">
+                    <a rel="me" href="//github.com/mindmapsdb/mindmapsdb" target="_blank" class="github">
                         <svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#github"></use></svg>
                     </a>
                 </li>
@@ -454,12 +454,12 @@ $('#toc').on('click', 'a', function() {
   <h2 id="download-mindmaps">Download Mindmaps</h2>
 
 <p>The latest version of mindmaps is v0.1.0.
-It can be downloaded from <a href="https://github.com/mindmapsdb/mindmapsdb/releases/download/v0.1.0-SNAPSHOT/mindmaps-dist-0.1.0-SNAPSHOT-dist.zip">here</a>.</p>
+It can be downloaded from <a href="https://mindmaps/io/download/latest">here</a>.</p>
 
 <p>We currently support Mac OS X and Linux.</p>
 
 <h3 id="past-versions">Past Versions</h3>
-<p>A list of previously released versions of MindmapsDB can be found on <a href="https://github.com/mindmapsdb/mindmapsdb/releases">Github</a>.</p>
+<p>A list of previously released versions of MindmapsDB can be found on <a href="https://mindmaps.io/download">Github</a>.</p>
 
 <h2 id="prerequisites">Prerequisites</h2>
 
@@ -479,7 +479,7 @@ Mindmaps also requires Maven 3.</div>
 </code></pre>
 </div>
 
-<p>The code should build and the tests will then run (the tests will take approximately 10 minutes to finish). When the build has completed, you will find it in the <code class="highlighter-rouge">mindmaps-dist</code> directory under <code class="highlighter-rouge">target</code>. The zip file built into that directory is the same as that distributed as a release on <a href="https://github.com/mindmapsdb/mindmapsdb/releases">Github</a>.</p>
+<p>The code should build and the tests will then run (the tests will take approximately 10 minutes to finish). When the build has completed, you will find it in the <code class="highlighter-rouge">mindmaps-dist</code> directory under <code class="highlighter-rouge">target</code>. The zip file built into that directory is the same as that distributed as a release on <a href="https://mindmaps.io/download">Github</a>.</p>
 
 <h3 id="example-code">Example Code</h3>
 <p>You can find an additional repo on Github containing our <a href="https://github.com/mindmapsdb/sample-projects">example code</a>.</p>
@@ -547,11 +547,11 @@ Maven to acquire the other dependencies.</p>
     <div class="col-lg-5 footer">
         <span class="footer-header">Get in touch</span>
         <p>
-            <a rel="nofollow me" class="slack" href="https://mindmaps.io/slack.html">
+            <a class="slack" href="https://mindmaps.io/slack.html">
                 <svg><use xmlns:xlink="https://www.w3.org/1999/xlink" xlink:href="#slack"></use></svg> MindmapsDB on Slack
             </a>
             <br>
-            <a rel="nofollow me" class="github" href="https://github.com/mindmapsdb/mindmapsdb" target="_blank">
+            <a rel="me" class="github" href="https://github.com/mindmapsdb/mindmapsdb" target="_blank">
                 <svg><use xmlns:xlink="https://www.w3.org/1999/xlink" xlink:href="#github"></use></svg> MindmapsDB 0.1 on GitHub
             </a>
             <br><br>
@@ -566,18 +566,26 @@ Maven to acquire the other dependencies.</p>
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">
+        <span class="footer-header">Resources</span>
+        <ul>
+            <li><a href="/index.html">Documentation</a></li>
+            <li><a rel="me" href="https://github.com/mindmapsdb/mindmapsdb">GitHub</a></li>
+            <li><a href="https://mindmaps.io/javadocs.html">Javadoc</a></li>
+        </ul>
+    </div>
+    <div class="col-lg-2 footer">
         <span class="footer-header">Community</span>
         <ul>
-            <li><a href="https://discuss.mindmaps.io">Discussion</a></li>
-            <li><a rel="nofollow me" href="https://stackoverflow.com/tags/mindmapsdb" target="_blank">Stack Overflow</a></li>
-            <li><a rel="nofollow me" href="https://mindmaps.io/slack.html">Slack</a></li>
-            <li><a rel="nofollow me" href="https://twitter.com/mindmapsdb" target="_blank">Twitter</a></li>
+            <li><a rel="me" href="https://discuss.mindmaps.io">Discussion</a></li>
+            <li><a rel="me" href="https://stackoverflow.com/tags/mindmapsdb" target="_blank">Stack Overflow</a></li>
+            <li><a href="https://mindmaps.io/slack.html">Slack</a></li>
+            <li><a rel="me" href="https://twitter.com/mindmapsdb" target="_blank">Twitter</a></li>
         </ul>
     </div>
     <div class="col-lg-2 footer">
         <span class="footer-header">Company</span>
         <ul>
-            <li><a rel="nofollow me" href="https://blog.mindmaps.io" target="_blank">Blog</a></li>
+            <li><a rel="me" href="https://blog.mindmaps.io" target="_blank">Blog</a></li>
             <li><a href="https://mindmaps.io/careers.html">Careers</a></li>
             <li><a href="https://mindmaps.io/about.html">About</a></li>
         </ul>
