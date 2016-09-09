@@ -5,7 +5,7 @@
 
 {
 "title": "Defining an Advanced Schema",
-"tags": "coreAPIjava",
+"tags": "core-apijava",
 "keywords": "core, schema",
 "url": "documentationcore-apiadvanced-schema-definition.html",
 "summary": "Demonstrates how to create an Advanced schema for a Mindmaps knowledge graph."
@@ -38,7 +38,7 @@
 
 {
 "title": "Frequently Asked Questions",
-"tags": "getting_started",
+"tags": "getting-started",
 "keywords": "troubleshooting, getting started",
 "url": "documentationresourcesdeveloper-faq.html",
 "summary": "Frequently asked questions about MindmapsDB."
@@ -49,7 +49,7 @@
 
 {
 "title": "Downloads",
-"tags": "getting_started",
+"tags": "getting-started",
 "keywords": "setup, getting started, download",
 "url": "documentationresourcesdownloads.html",
 "summary": "This is a list of Mindmaps releases. It's the place to come to download the most recent versions of MindmapsDB."
@@ -62,7 +62,7 @@
 
 {
 "title": "Graql Cheatsheet",
-"tags": "graqlgetting_started",
+"tags": "graql",
 "keywords": "graql",
 "url": "documentationgraqlgraql-cheatsheet.html",
 "summary": "A reference card (cheatsheet) for Graql"
@@ -95,7 +95,7 @@
 
 {
 "title": "Welcome to the Mindmaps Documentation Portal",
-"tags": "getting_startedgraqljavacoreAPI",
+"tags": "getting-startedgraqljavacore-api",
 "keywords": "sample homepage",
 "url": "index",
 "summary": ""
@@ -139,7 +139,7 @@
 
 {
 "title": "Known Issues",
-"tags": "getting_started",
+"tags": "getting-started",
 "keywords": "troubleshooting",
 "url": "documentationtroubleshootingknown-issues.html",
 "summary": "Troubleshooting guide for MindmapsDB."
@@ -161,7 +161,7 @@
 
 {
 "title": "Mindmaps Basics",
-"tags": "getting_started",
+"tags": "getting-started",
 "keywords": "setup, getting started, basics",
 "url": "documentationthe-basicsmindmaps-basics.html",
 "summary": "Introducing the basics of the Mindmaps object model."
@@ -194,7 +194,7 @@
 
 {
 "title": "Core Overview",
-"tags": "javacoreAPI",
+"tags": "javacore-api",
 "keywords": "core, overview",
 "url": "documentationcore-apioverview.html",
 "summary": "A basic example of how to use Mindmaps Core API."
@@ -205,7 +205,7 @@
 
 {
 "title": "Quickstart Tutorial",
-"tags": "getting_startedgraqljava",
+"tags": "getting-startedgraqljava",
 "keywords": "setup, getting started",
 "url": "documentationthe-basicsquickstart-tutorial.html",
 "summary": "This document will teach you how to use Graql to load an ontology and some data into a Mindmaps Graph."
@@ -216,7 +216,7 @@
 
 {
 "title": "Resources",
-"tags": "getting_started",
+"tags": "getting-started",
 "keywords": "setup, getting started, download",
 "url": "documentationresourcesresources.html",
 "summary": "Resources to help you learn more about graph databases."
@@ -229,7 +229,7 @@
 
 {
 "title": "Setup Guide",
-"tags": "getting_startedgraql",
+"tags": "getting-startedgraql",
 "keywords": "setup, getting started",
 "url": "documentationget-startedsetup-guide.html",
 "summary": "This document will teach you how to set up a Mindmaps environment, start it up and load an example dataset to make a query using our query language, Graql."
@@ -240,7 +240,7 @@
 
 {
 "title": "Defining a Schema",
-"tags": "javacoreAPI",
+"tags": "javacore-api",
 "keywords": "core, schema",
 "url": "documentationcore-apisimple-schema-definition.html",
 "summary": "Demonstrates how to create a schema for a Mindmaps knowledge graph."

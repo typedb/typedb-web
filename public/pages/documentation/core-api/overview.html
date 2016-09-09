@@ -4,7 +4,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="A basic example of how to use Mindmaps Core API.">
-<meta name="keywords" content="javacoreAPI,  core, overview, mindmapsdb, mindmaps, mindmaps.io, Mindmaps Research, Mindmaps Research Ltd, software, development platform, developer tool, data platform, programming langauge, query langauge, database, semantic database, distributed semantic database, distributed database, graph database, semantic search, data exploration, recommendation system, knowledge management, knowledge engineering, real-time analytics, advanced analytics, reasoning engine, inference engine, expert systems, semantic applications, research engines, data management, business intelligence, big data, semantic web, semantic data, knowledge representation, automated reasoning, semantic network, knowledge ontology, semantic graph, ontology engineering, graph based knowledge representation, artificial intelligence,">
+<meta name="keywords" content="javacore-api,  core, overview, mindmapsdb, mindmaps, mindmaps.io, Mindmaps Research, Mindmaps Research Ltd, software, development platform, developer tool, data platform, programming langauge, query langauge, database, semantic database, distributed semantic database, distributed database, graph database, semantic search, data exploration, recommendation system, knowledge management, knowledge engineering, real-time analytics, advanced analytics, reasoning engine, inference engine, expert systems, semantic applications, research engines, data management, business intelligence, big data, semantic web, semantic data, knowledge representation, automated reasoning, semantic network, knowledge ontology, semantic graph, ontology engineering, graph based knowledge representation, artificial intelligence,">
 <title>Core Overview | MindmapsDB</title>
 <link rel="stylesheet" href="/pages/css/syntax.css">
 
@@ -463,53 +463,47 @@ Mindmaps Graphs using Java 8. It supports any
 
 <h2 id="getting-a-graph-and-a-transaction">Getting a Graph and a Transaction</h2>
 
-<p>Once you have started MindmapsDB with <code class="highlighter-rouge">mindmaps.sh start</code> you will be able to create graphs as follows:</p>
+<p>Once you have started MindmapsDB with <code class="highlighter-rouge">mindmaps.sh start</code> you will be able to create a thread bound graphs as follows:</p>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code>    <span class="n">MindmapsGraph</span> <span class="n">graph</span> <span class="o">=</span> <span class="n">MindmapsClient</span><span class="o">.</span><span class="na">getGraph</span><span class="o">(</span><span class="s">"MyGraph"</span><span class="o">);</span>
-</code></pre>
-</div>
-
-<p>Now that we have a graph we can create thread bound transactions from the graph:</p>
-
-<div class="language-java highlighter-rouge"><pre class="highlight"><code>    <span class="n">MindmapsTransaction</span> <span class="n">transaction</span> <span class="o">=</span> <span class="n">graph</span><span class="o">.</span><span class="na">newTransaction</span><span class="o">();</span>
+<div class="highlighter-rouge"><pre class="highlight"><code>    <span class="n">MindmapsGraph</span> <span class="n">mindmapsGraph</span> <span class="o">=</span> <span class="n">MindmapsClient</span><span class="o">.</span><span class="na">getGraph</span><span class="o">(</span><span class="s">"MyGraph"</span><span class="o">);</span>
 </code></pre>
 </div>
 
 <h2 id="modelling-the-philosophers">Modelling The Philosophers</h2>
 
-<p>With a transaction in place lets go through and repeat the <a href="../the-basics/quickstart-tutorial">Quickstart
+<p>With a graph in place lets go through and repeat the <a href="../the-basics/quickstart-tutorial">Quickstart
 Tutorial</a> using the core Java API.</p>
 
 <h3 id="entity-types">Entity Types</h3>
 
 <p>First we create some philosophers, so we define the category of <code class="highlighter-rouge">people</code>:</p>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code>    <span class="n">EntityType</span> <span class="n">person</span> <span class="o">=</span> <span class="n">transaction</span><span class="o">.</span><span class="na">putEntityType</span><span class="o">(</span><span class="s">"person"</span><span class="o">);</span>
+<div class="highlighter-rouge"><pre class="highlight"><code>    <span class="n">EntityType</span> <span class="n">person</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">putEntityType</span><span class="o">(</span><span class="s">"person"</span><span class="o">);</span>
 </code></pre>
 </div>
 
 <p>Next we specify who our people are:</p>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code>    <span class="n">Entity</span> <span class="n">socrates</span> <span class="o">=</span> <span class="n">transaction</span><span class="o">.</span><span class="na">putEntity</span><span class="o">(</span><span class="s">"Socrates"</span><span class="o">,</span> <span class="n">person</span><span class="o">);</span>
-    <span class="n">Entity</span> <span class="n">plato</span> <span class="o">=</span> <span class="n">transaction</span><span class="o">.</span><span class="na">putEntity</span><span class="o">(</span><span class="s">"Plato"</span><span class="o">,</span> <span class="n">person</span><span class="o">);</span>
-    <span class="n">Entity</span> <span class="n">aristotle</span> <span class="o">=</span> <span class="n">transaction</span><span class="o">.</span><span class="na">putEntity</span><span class="o">(</span><span class="s">"Aristotle"</span><span class="o">,</span> <span class="n">person</span><span class="o">);</span>
-    <span class="n">Entity</span> <span class="n">alexander</span> <span class="o">=</span> <span class="n">transaction</span><span class="o">.</span><span class="na">putEntity</span><span class="o">(</span><span class="s">"Alexander"</span><span class="o">,</span> <span class="n">person</span><span class="o">);</span>
+<div class="highlighter-rouge"><pre class="highlight"><code>    <span class="n">Entity</span> <span class="n">socrates</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">putEntity</span><span class="o">(</span><span class="s">"Socrates"</span><span class="o">,</span> <span class="n">person</span><span class="o">);</span>
+    <span class="n">Entity</span> <span class="n">plato</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">putEntity</span><span class="o">(</span><span class="s">"Plato"</span><span class="o">,</span> <span class="n">person</span><span class="o">);</span>
+    <span class="n">Entity</span> <span class="n">aristotle</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">putEntity</span><span class="o">(</span><span class="s">"Aristotle"</span><span class="o">,</span> <span class="n">person</span><span class="o">);</span>
+    <span class="n">Entity</span> <span class="n">alexander</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">putEntity</span><span class="o">(</span><span class="s">"Alexander"</span><span class="o">,</span> <span class="n">person</span><span class="o">);</span>
 </code></pre>
 </div>
 
 <p>We can query for all the people:</p>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code>    <span class="n">people</span><span class="o">.</span><span class="na">instances</span><span class="o">().</span><span class="na">forEach</span><span class="o">(</span><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">::</span><span class="n">println</span><span class="o">);</span>
+<div class="highlighter-rouge"><pre class="highlight"><code>    <span class="n">people</span><span class="o">.</span><span class="na">instances</span><span class="o">().</span><span class="na">forEach</span><span class="o">(</span><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">::</span><span class="n">println</span><span class="o">);</span>
 </code></pre>
 </div>
 
 <p>Now lets create some schools of philosophy:</p>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code>    <span class="n">EntityType</span> <span class="n">school</span> <span class="o">=</span> <span class="n">transaction</span><span class="o">.</span><span class="na">putEntityType</span><span class="o">(</span><span class="s">"school"</span><span class="o">);</span>
-    <span class="n">Entity</span> <span class="n">peripateticism</span> <span class="o">=</span> <span class="n">transaction</span><span class="o">.</span><span class="na">putEntity</span><span class="o">(</span><span class="s">"Peripateticism"</span><span class="o">,</span> <span class="n">school</span><span class="o">);</span>
-    <span class="n">Entity</span> <span class="n">platonism</span> <span class="o">=</span> <span class="n">transaction</span><span class="o">.</span><span class="na">putEntity</span><span class="o">(</span><span class="s">"Platonism"</span><span class="o">,</span> <span class="n">school</span><span class="o">);</span>
-    <span class="n">Entity</span> <span class="n">idealism</span> <span class="o">=</span> <span class="n">transaction</span><span class="o">.</span><span class="na">putEntity</span><span class="o">(</span><span class="s">"Idealism"</span><span class="o">,</span> <span class="n">school</span><span class="o">);</span>
-    <span class="n">Entity</span> <span class="n">cynicism</span> <span class="o">=</span> <span class="n">transaction</span><span class="o">.</span><span class="na">putEntity</span><span class="o">(</span><span class="s">"Cynicism"</span><span class="o">,</span> <span class="n">school</span><span class="o">);</span>
+<div class="highlighter-rouge"><pre class="highlight"><code>    <span class="n">EntityType</span> <span class="n">school</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">putEntityType</span><span class="o">(</span><span class="s">"school"</span><span class="o">);</span>
+    <span class="n">Entity</span> <span class="n">peripateticism</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">putEntity</span><span class="o">(</span><span class="s">"Peripateticism"</span><span class="o">,</span> <span class="n">school</span><span class="o">);</span>
+    <span class="n">Entity</span> <span class="n">platonism</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">putEntity</span><span class="o">(</span><span class="s">"Platonism"</span><span class="o">,</span> <span class="n">school</span><span class="o">);</span>
+    <span class="n">Entity</span> <span class="n">idealism</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">putEntity</span><span class="o">(</span><span class="s">"Idealism"</span><span class="o">,</span> <span class="n">school</span><span class="o">);</span>
+    <span class="n">Entity</span> <span class="n">cynicism</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">putEntity</span><span class="o">(</span><span class="s">"Cynicism"</span><span class="o">,</span> <span class="n">school</span><span class="o">);</span>
 </code></pre>
 </div>
 
@@ -517,7 +511,7 @@ Tutorial</a> using the core Java API.</p>
 
 <p>Now that we have some data lets specify how these philosophers relate to these schools. First we create the <code class="highlighter-rouge">Relation Type</code> and its <code class="highlighter-rouge">Role Types</code>:</p>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code>    <span class="n">RoleType</span> <span class="n">philosopher</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">putRoleType</span><span class="o">(</span><span class="s">"philosopher"</span><span class="o">);</span>
+<div class="highlighter-rouge"><pre class="highlight"><code>    <span class="n">RoleType</span> <span class="n">philosopher</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">putRoleType</span><span class="o">(</span><span class="s">"philosopher"</span><span class="o">);</span>
     <span class="n">RoleType</span> <span class="n">philosophy</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">putRoleType</span><span class="o">(</span><span class="s">"philosophy"</span><span class="o">);</span>
     <span class="n">RelationType</span> <span class="n">practice</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">putRelationType</span><span class="o">(</span><span class="s">"practice"</span><span class="o">).</span><span class="na">hasRole</span><span class="o">(</span><span class="n">philosopher</span><span class="o">).</span><span class="na">hasRole</span><span class="o">(</span><span class="n">philosophy</span><span class="o">);</span>
 </code></pre>
@@ -525,22 +519,22 @@ Tutorial</a> using the core Java API.</p>
 
 <p>Next we can relate our philosophers and schools to each other:</p>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code>    <span class="n">transaction</span><span class="o">.</span><span class="na">addRelation</span><span class="o">(</span><span class="n">practice</span><span class="o">).</span><span class="na">putRolePlayer</span><span class="o">(</span><span class="n">philosopher</span><span class="o">,</span> <span class="n">socrates</span><span class="o">).</span><span class="na">putRolePlayer</span><span class="o">(</span><span class="n">philosophy</span><span class="o">,</span> <span class="n">platonisim</span><span class="o">);</span>
-    <span class="n">transaction</span><span class="o">.</span><span class="na">addRelation</span><span class="o">(</span><span class="n">practice</span><span class="o">).</span><span class="na">putRolePlayer</span><span class="o">(</span><span class="n">philosopher</span><span class="o">,</span> <span class="n">plato</span><span class="o">).</span><span class="na">putRolePlayer</span><span class="o">(</span><span class="n">philosophy</span><span class="o">,</span> <span class="n">idealism</span><span class="o">);</span>
-    <span class="n">transaction</span><span class="o">.</span><span class="na">addRelation</span><span class="o">(</span><span class="n">practice</span><span class="o">).</span><span class="na">putRolePlayer</span><span class="o">(</span><span class="n">philosopher</span><span class="o">,</span> <span class="n">plato</span><span class="o">).</span><span class="na">putRolePlayer</span><span class="o">(</span><span class="n">philosophy</span><span class="o">,</span> <span class="n">platonisim</span><span class="o">);</span>
-    <span class="n">transaction</span><span class="o">.</span><span class="na">addRelation</span><span class="o">(</span><span class="n">practice</span><span class="o">).</span><span class="na">putRolePlayer</span><span class="o">(</span><span class="n">philosopher</span><span class="o">,</span> <span class="n">aristotle</span><span class="o">).</span><span class="na">putRolePlayer</span><span class="o">(</span><span class="n">philosophy</span><span class="o">,</span> <span class="n">peripateticism</span><span class="o">);</span>
+<div class="highlighter-rouge"><pre class="highlight"><code>    <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">addRelation</span><span class="o">(</span><span class="n">practice</span><span class="o">).</span><span class="na">putRolePlayer</span><span class="o">(</span><span class="n">philosopher</span><span class="o">,</span> <span class="n">socrates</span><span class="o">).</span><span class="na">putRolePlayer</span><span class="o">(</span><span class="n">philosophy</span><span class="o">,</span> <span class="n">platonisim</span><span class="o">);</span>
+    <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">addRelation</span><span class="o">(</span><span class="n">practice</span><span class="o">).</span><span class="na">putRolePlayer</span><span class="o">(</span><span class="n">philosopher</span><span class="o">,</span> <span class="n">plato</span><span class="o">).</span><span class="na">putRolePlayer</span><span class="o">(</span><span class="n">philosophy</span><span class="o">,</span> <span class="n">idealism</span><span class="o">);</span>
+    <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">addRelation</span><span class="o">(</span><span class="n">practice</span><span class="o">).</span><span class="na">putRolePlayer</span><span class="o">(</span><span class="n">philosopher</span><span class="o">,</span> <span class="n">plato</span><span class="o">).</span><span class="na">putRolePlayer</span><span class="o">(</span><span class="n">philosophy</span><span class="o">,</span> <span class="n">platonisim</span><span class="o">);</span>
+    <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">addRelation</span><span class="o">(</span><span class="n">practice</span><span class="o">).</span><span class="na">putRolePlayer</span><span class="o">(</span><span class="n">philosopher</span><span class="o">,</span> <span class="n">aristotle</span><span class="o">).</span><span class="na">putRolePlayer</span><span class="o">(</span><span class="n">philosophy</span><span class="o">,</span> <span class="n">peripateticism</span><span class="o">);</span>
 </code></pre>
 </div>
 
-<p>We can even define how our philosophers relate to each other:</p>
+<p>Now we can define how our philosophers relate to each other:</p>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code>    <span class="n">RoleType</span> <span class="n">teacher</span> <span class="o">=</span> <span class="n">transaction</span><span class="o">.</span><span class="na">putRoleType</span><span class="o">(</span><span class="s">"teacher"</span><span class="o">);</span>
-    <span class="n">RoleType</span> <span class="n">student</span> <span class="o">=</span> <span class="n">transaction</span><span class="o">.</span><span class="na">putRoleType</span><span class="o">(</span><span class="s">"student"</span><span class="o">);</span>
-    <span class="n">RelationType</span> <span class="n">education</span> <span class="o">=</span> <span class="n">transaction</span><span class="o">.</span><span class="na">putRelationType</span><span class="o">(</span><span class="s">"education"</span><span class="o">).</span><span class="na">hasRole</span><span class="o">(</span><span class="n">teacher</span><span class="o">).</span><span class="na">hasRole</span><span class="o">(</span><span class="n">student</span><span class="o">);</span>
+<div class="highlighter-rouge"><pre class="highlight"><code>    <span class="n">RoleType</span> <span class="n">teacher</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">putRoleType</span><span class="o">(</span><span class="s">"teacher"</span><span class="o">);</span>
+    <span class="n">RoleType</span> <span class="n">student</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">putRoleType</span><span class="o">(</span><span class="s">"student"</span><span class="o">);</span>
+    <span class="n">RelationType</span> <span class="n">education</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">putRelationType</span><span class="o">(</span><span class="s">"education"</span><span class="o">).</span><span class="na">hasRole</span><span class="o">(</span><span class="n">teacher</span><span class="o">).</span><span class="na">hasRole</span><span class="o">(</span><span class="n">student</span><span class="o">);</span>
 
-    <span class="n">transaction</span><span class="o">.</span><span class="na">putRelation</span><span class="o">(</span><span class="n">education</span><span class="o">).</span><span class="na">putRolePlayer</span><span class="o">(</span><span class="n">teacher</span><span class="o">,</span> <span class="n">socrates</span><span class="o">).</span><span class="na">putRolePlayer</span><span class="o">(</span><span class="n">student</span><span class="o">,</span> <span class="n">plato</span><span class="o">);</span>
-    <span class="n">transaction</span><span class="o">.</span><span class="na">putRelation</span><span class="o">(</span><span class="n">education</span><span class="o">).</span><span class="na">putRolePlayer</span><span class="o">(</span><span class="n">teacher</span><span class="o">,</span> <span class="n">plato</span><span class="o">).</span><span class="na">putRolePlayer</span><span class="o">(</span><span class="n">student</span><span class="o">,</span> <span class="n">aristotle</span><span class="o">);</span>
-    <span class="n">transaction</span><span class="o">.</span><span class="na">putRelation</span><span class="o">(</span><span class="n">education</span><span class="o">).</span><span class="na">putRolePlayer</span><span class="o">(</span><span class="n">teacher</span><span class="o">,</span> <span class="n">aristotle</span><span class="o">).</span><span class="na">putRolePlayer</span><span class="o">(</span><span class="n">student</span><span class="o">,</span> <span class="n">alexander</span><span class="o">);</span>
+    <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">putRelation</span><span class="o">(</span><span class="n">education</span><span class="o">).</span><span class="na">putRolePlayer</span><span class="o">(</span><span class="n">teacher</span><span class="o">,</span> <span class="n">socrates</span><span class="o">).</span><span class="na">putRolePlayer</span><span class="o">(</span><span class="n">student</span><span class="o">,</span> <span class="n">plato</span><span class="o">);</span>
+    <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">putRelation</span><span class="o">(</span><span class="n">education</span><span class="o">).</span><span class="na">putRolePlayer</span><span class="o">(</span><span class="n">teacher</span><span class="o">,</span> <span class="n">plato</span><span class="o">).</span><span class="na">putRolePlayer</span><span class="o">(</span><span class="n">student</span><span class="o">,</span> <span class="n">aristotle</span><span class="o">);</span>
+    <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">putRelation</span><span class="o">(</span><span class="n">education</span><span class="o">).</span><span class="na">putRolePlayer</span><span class="o">(</span><span class="n">teacher</span><span class="o">,</span> <span class="n">aristotle</span><span class="o">).</span><span class="na">putRolePlayer</span><span class="o">(</span><span class="n">student</span><span class="o">,</span> <span class="n">alexander</span><span class="o">);</span>
 </code></pre>
 </div>
 
@@ -552,12 +546,11 @@ Tutorial</a> using the core Java API.</p>
         <td>Date</td>
         <td>Description</td>        
     </tr>
-    <tr>
-        <td>v1.01</td>
-        <td>23/08/2016</td>
-        <td>Updated content and formatting.</td>        
+        <tr>
+        <td>v0.1.0.1</td>
+        <td>03/09/2016</td>
+        <td>First release.</td>        
     </tr>
-    
 
 </table>
 
@@ -572,7 +565,7 @@ Tutorial</a> using the core Java API.</p>
         
         
         
-        <a href="/pages/tag_coreAPI.html" class="btn btn-default navbar-btn cursorNorm" role="button">coreAPI</a>
+        <a href="/pages/tag_core-api.html" class="btn btn-default navbar-btn cursorNorm" role="button">core-api</a>
         
         
         
@@ -603,7 +596,7 @@ Tutorial</a> using the core Java API.</p>
         <br>
         <p>© 2016 <a href="https://mindmaps.io">Mindmaps Research Ltd</a></p>
         <!-- &copy;2016 MindmapsDB. All rights reserved. <br />
-        <span>Page last updated:</span> August 10, 2016<br/> Site last generated: Sep 6, 2016 <br />
+        <span>Page last updated:</span> August 10, 2016<br/> Site last generated: Sep 9, 2016 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">
