@@ -553,8 +553,8 @@ For example, we can start to differentiate between male and female actors withou
 
 <p>A classic reasoning example is the ancestor example: the two rules stated below define the ancestor (anc) relationship, given a parenthood relationship (parent) between individuals:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>R1: anc(X, Y):-parent(X, Y)
-R2: anc(X, Y):-parent(X, Z), anc(Z, Y)
+<div class="highlighter-rouge"><pre class="highlight"><code>R1: anc(X, Y) :- parent(X, Y)
+R2: anc(X, Y) :- parent(X, Z), anc(Z, Y)
 </code></pre>
 </div>
 <p>### Rule Java API
@@ -569,7 +569,8 @@ All rule instances are of type inference-rule which can be retrieved by:</p>
 <div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">String</span> <span class="n">r1Body</span> <span class="o">=</span> <span class="s">"match (parent $x, child $y) isa Parent"</span><span class="o">;</span>
 <span class="n">String</span> <span class="n">r1Head</span> <span class="o">=</span> <span class="s">"match (ancestor $x, descendant $y) isa Ancestor"</span><span class="o">;</span>
 
-<span class="n">String</span> <span class="n">r2Body</span> <span class="o">=</span> <span class="s">"match (parent $x, child $z) isa Parent;(ancestor $z, descendant $y) isa Ancestor; select $x, $y"</span><span class="o">;</span>
+<span class="n">String</span> <span class="n">r2Body</span> <span class="o">=</span> <span class="s">"match (parent $x, child $z) isa Parent;"</span> <span class="o">+</span>
+                <span class="s">"(ancestor $z, descendant $y) isa Ancestor select $x, $y"</span><span class="o">;</span>
 <span class="n">String</span> <span class="n">r2Head</span> <span class="o">=</span> <span class="s">"match (ancestor $x, descendant $y) isa Ancestor"</span><span class="o">;</span>
 
 <span class="n">Rule</span> <span class="n">rule1</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">putRule</span><span class="o">(</span><span class="s">"R1"</span><span class="o">,</span> <span class="n">r1Body</span><span class="o">,</span> <span class="n">r1Head</span><span class="o">,</span> <span class="n">inferenceRule</span><span class="o">);</span>
@@ -582,18 +583,13 @@ All rule instances are of type inference-rule which can be retrieved by:</p>
 
 <div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">insert</span>
 <span class="s">"R1"</span> <span class="n">isa</span> <span class="n">inference</span><span class="o">-</span><span class="n">rule</span><span class="o">,</span>
-<span class="n">lhs</span> <span class="o">{</span><span class="n">match</span>
-<span class="o">(</span><span class="n">parent</span> <span class="n">$x</span><span class="o">,</span> <span class="n">child</span> <span class="n">$y</span><span class="o">)</span> <span class="n">isa</span> <span class="n">Parent</span><span class="o">},</span>
-<span class="n">rhs</span> <span class="o">{</span><span class="n">match</span>
-<span class="o">(</span><span class="n">ancestor</span> <span class="n">$x</span><span class="o">,</span> <span class="n">descendant</span> <span class="n">$y</span><span class="o">)</span> <span class="n">isa</span> <span class="n">Ancestor</span><span class="o">};</span>
+<span class="n">lhs</span> <span class="o">{</span><span class="n">match</span> <span class="o">(</span><span class="n">parent</span> <span class="n">$x</span><span class="o">,</span> <span class="n">child</span> <span class="n">$y</span><span class="o">)</span> <span class="n">isa</span> <span class="n">Parent</span><span class="o">},</span>
+<span class="n">rhs</span> <span class="o">{</span><span class="n">match</span> <span class="o">(</span><span class="n">ancestor</span> <span class="n">$x</span><span class="o">,</span> <span class="n">descendant</span> <span class="n">$y</span><span class="o">)</span> <span class="n">isa</span> <span class="n">Ancestor</span><span class="o">};</span>
 
 <span class="s">"R2"</span> <span class="n">isa</span> <span class="n">inference</span><span class="o">-</span><span class="n">rule</span><span class="o">,</span>
-<span class="n">lhs</span> <span class="o">{</span><span class="n">match</span>
-<span class="o">(</span><span class="n">parent</span> <span class="n">$x</span><span class="o">,</span> <span class="n">child</span> <span class="n">$z</span><span class="o">)</span> <span class="n">isa</span> <span class="n">Parent</span><span class="o">;</span>
-<span class="o">(</span><span class="n">ancestor</span> <span class="n">$z</span><span class="o">,</span> <span class="n">descendant</span> <span class="n">$y</span><span class="o">)</span> <span class="n">isa</span> <span class="n">Ancestor</span><span class="o">;</span>
-<span class="n">select</span> <span class="n">$x</span><span class="o">,</span> <span class="n">$y</span><span class="o">},</span>
-<span class="n">rhs</span> <span class="o">{</span><span class="n">match</span>
-<span class="o">(</span><span class="n">ancestor</span> <span class="n">$x</span><span class="o">,</span> <span class="n">descendant</span> <span class="n">$y</span><span class="o">)</span> <span class="n">isa</span> <span class="n">Ancestor</span><span class="o">};</span>
+<span class="n">lhs</span> <span class="o">{</span><span class="n">match</span> <span class="o">(</span><span class="n">parent</span> <span class="n">$x</span><span class="o">,</span> <span class="n">child</span> <span class="n">$z</span><span class="o">)</span> <span class="n">isa</span> <span class="n">Parent</span><span class="o">;</span>
+<span class="o">(</span><span class="n">ancestor</span> <span class="n">$z</span><span class="o">,</span> <span class="n">descendant</span> <span class="n">$y</span><span class="o">)</span> <span class="n">isa</span> <span class="n">Ancestor</span> <span class="n">select</span> <span class="n">$x</span><span class="o">,</span> <span class="n">$y</span><span class="o">},</span>
+<span class="n">rhs</span> <span class="o">{</span><span class="n">match</span> <span class="o">(</span><span class="n">ancestor</span> <span class="n">$x</span><span class="o">,</span> <span class="n">descendant</span> <span class="n">$y</span><span class="o">)</span> <span class="n">isa</span> <span class="n">Ancestor</span><span class="o">};</span>
 </code></pre>
 </div>
 
@@ -655,7 +651,7 @@ All rule instances are of type inference-rule which can be retrieved by:</p>
         <br>
         <p>© 2016 <a href="https://mindmaps.io">Mindmaps Research Ltd</a></p>
         <!-- &copy;2016 MindmapsDB. All rights reserved. <br />
-        <span>Page last updated:</span> August 23, 2016<br/> Site last generated: Sep 9, 2016 <br />
+        <span>Page last updated:</span> August 23, 2016<br/> Site last generated: Sep 10, 2016 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">
