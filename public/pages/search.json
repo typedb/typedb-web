@@ -1,6 +1,83 @@
 [
 
 
+{
+"title": "What is MindmapsDB?",
+"tags": "overview",
+"keywords": "intro",
+"url": "platformindex.html",
+"summary": "false"
+}
+,
+
+
+
+{
+"title": "What can you build with MindampsDB?",
+"tags": "overview",
+"keywords": "applications",
+"url": "platformapplications.html",
+"summary": "false"
+}
+,
+
+
+
+{
+"title": "Why use MindmapsDB?",
+"tags": "overview",
+"keywords": "advantages",
+"url": "platformadvantages.html",
+"summary": "false"
+}
+,
+
+
+
+{
+"title": "Comparison with other Databases",
+"tags": "overview",
+"keywords": "comparison",
+"url": "platformcomparison.html",
+"summary": "false"
+}
+,
+
+
+
+{
+"title": "When to use MindmapsDB?",
+"tags": "overview",
+"keywords": "use case",
+"url": "platformuse-case.html",
+"summary": "false"
+}
+,
+
+
+
+
+
+{
+"title": "Developing with MindmapsDB",
+"tags": "overview",
+"keywords": "developer",
+"url": "platformdeveloper.html",
+"summary": "false"
+}
+,
+
+
+
+{
+"title": "Mindmaps Platform",
+"tags": "overviewfaq",
+"keywords": "platform",
+"url": "platformfaq.html",
+"summary": ""
+}
+,
+
 
 
 {
@@ -83,17 +160,6 @@
 
 
 {
-"title": "Mindmaps Platform",
-"tags": "platform",
-"keywords": "platform",
-"url": "platformindex",
-"summary": ""
-}
-,
-
-
-
-{
 "title": "Welcome to the Mindmaps Documentation Portal",
 "tags": "getting-startedgraqljavacore-api",
 "keywords": "sample homepage",
@@ -110,17 +176,6 @@
 "keywords": "graql, query, insert",
 "url": "documentationgraqlinsert-queries.html",
 "summary": "Graql Insert Queries"
-}
-,
-
-
-
-{
-"title": "Intro to Mindmaps Platform",
-"tags": "platform",
-"keywords": "platform",
-"url": "platformintroduction.html",
-"summary": ""
 }
 ,
 
@@ -246,6 +301,8 @@
 "summary": "Demonstrates how to create a schema for a Mindmaps knowledge graph."
 }
 ,
+
+
 
 
 

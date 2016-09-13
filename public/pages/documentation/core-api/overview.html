@@ -465,7 +465,7 @@ Mindmaps Graphs using Java 8. It supports any
 
 <p>Once you have started MindmapsDB with <code class="highlighter-rouge">mindmaps.sh start</code> you will be able to create a thread bound graphs as follows:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>    <span class="n">MindmapsGraph</span> <span class="n">mindmapsGraph</span> <span class="o">=</span> <span class="n">MindmapsClient</span><span class="o">.</span><span class="na">getGraph</span><span class="o">(</span><span class="s">"MyGraph"</span><span class="o">);</span>
+<div class="language-java highlighter-rouge"><pre class="highlight"><code>    <span class="n">MindmapsGraph</span> <span class="n">mindmapsGraph</span> <span class="o">=</span> <span class="n">MindmapsClient</span><span class="o">.</span><span class="na">getGraph</span><span class="o">(</span><span class="s">"MyGraph"</span><span class="o">);</span>
 </code></pre>
 </div>
 
@@ -478,13 +478,13 @@ Tutorial</a> using the core Java API.</p>
 
 <p>First we create some philosophers, so we define the category of <code class="highlighter-rouge">people</code>:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>    <span class="n">EntityType</span> <span class="n">person</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">putEntityType</span><span class="o">(</span><span class="s">"person"</span><span class="o">);</span>
+<div class="language-java highlighter-rouge"><pre class="highlight"><code>    <span class="n">EntityType</span> <span class="n">person</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">putEntityType</span><span class="o">(</span><span class="s">"person"</span><span class="o">);</span>
 </code></pre>
 </div>
 
 <p>Next we specify who our people are:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>    <span class="n">Entity</span> <span class="n">socrates</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">putEntity</span><span class="o">(</span><span class="s">"Socrates"</span><span class="o">,</span> <span class="n">person</span><span class="o">);</span>
+<div class="language-java highlighter-rouge"><pre class="highlight"><code>    <span class="n">Entity</span> <span class="n">socrates</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">putEntity</span><span class="o">(</span><span class="s">"Socrates"</span><span class="o">,</span> <span class="n">person</span><span class="o">);</span>
     <span class="n">Entity</span> <span class="n">plato</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">putEntity</span><span class="o">(</span><span class="s">"Plato"</span><span class="o">,</span> <span class="n">person</span><span class="o">);</span>
     <span class="n">Entity</span> <span class="n">aristotle</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">putEntity</span><span class="o">(</span><span class="s">"Aristotle"</span><span class="o">,</span> <span class="n">person</span><span class="o">);</span>
     <span class="n">Entity</span> <span class="n">alexander</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">putEntity</span><span class="o">(</span><span class="s">"Alexander"</span><span class="o">,</span> <span class="n">person</span><span class="o">);</span>
@@ -493,13 +493,13 @@ Tutorial</a> using the core Java API.</p>
 
 <p>We can query for all the people:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>    <span class="n">people</span><span class="o">.</span><span class="na">instances</span><span class="o">().</span><span class="na">forEach</span><span class="o">(</span><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">::</span><span class="n">println</span><span class="o">);</span>
+<div class="language-java highlighter-rouge"><pre class="highlight"><code>    <span class="n">people</span><span class="o">.</span><span class="na">instances</span><span class="o">().</span><span class="na">forEach</span><span class="o">(</span><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">::</span><span class="n">println</span><span class="o">);</span>
 </code></pre>
 </div>
 
 <p>Now lets create some schools of philosophy:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>    <span class="n">EntityType</span> <span class="n">school</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">putEntityType</span><span class="o">(</span><span class="s">"school"</span><span class="o">);</span>
+<div class="language-java highlighter-rouge"><pre class="highlight"><code>    <span class="n">EntityType</span> <span class="n">school</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">putEntityType</span><span class="o">(</span><span class="s">"school"</span><span class="o">);</span>
     <span class="n">Entity</span> <span class="n">peripateticism</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">putEntity</span><span class="o">(</span><span class="s">"Peripateticism"</span><span class="o">,</span> <span class="n">school</span><span class="o">);</span>
     <span class="n">Entity</span> <span class="n">platonism</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">putEntity</span><span class="o">(</span><span class="s">"Platonism"</span><span class="o">,</span> <span class="n">school</span><span class="o">);</span>
     <span class="n">Entity</span> <span class="n">idealism</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">putEntity</span><span class="o">(</span><span class="s">"Idealism"</span><span class="o">,</span> <span class="n">school</span><span class="o">);</span>
@@ -511,7 +511,7 @@ Tutorial</a> using the core Java API.</p>
 
 <p>Now that we have some data lets specify how these philosophers relate to these schools. First we create the <code class="highlighter-rouge">Relation Type</code> and its <code class="highlighter-rouge">Role Types</code>:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>    <span class="n">RoleType</span> <span class="n">philosopher</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">putRoleType</span><span class="o">(</span><span class="s">"philosopher"</span><span class="o">);</span>
+<div class="language-java highlighter-rouge"><pre class="highlight"><code>    <span class="n">RoleType</span> <span class="n">philosopher</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">putRoleType</span><span class="o">(</span><span class="s">"philosopher"</span><span class="o">);</span>
     <span class="n">RoleType</span> <span class="n">philosophy</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">putRoleType</span><span class="o">(</span><span class="s">"philosophy"</span><span class="o">);</span>
     <span class="n">RelationType</span> <span class="n">practice</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">putRelationType</span><span class="o">(</span><span class="s">"practice"</span><span class="o">).</span><span class="na">hasRole</span><span class="o">(</span><span class="n">philosopher</span><span class="o">).</span><span class="na">hasRole</span><span class="o">(</span><span class="n">philosophy</span><span class="o">);</span>
 </code></pre>
@@ -519,7 +519,7 @@ Tutorial</a> using the core Java API.</p>
 
 <p>Next we can relate our philosophers and schools to each other:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>    <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">addRelation</span><span class="o">(</span><span class="n">practice</span><span class="o">).</span><span class="na">putRolePlayer</span><span class="o">(</span><span class="n">philosopher</span><span class="o">,</span> <span class="n">socrates</span><span class="o">).</span><span class="na">putRolePlayer</span><span class="o">(</span><span class="n">philosophy</span><span class="o">,</span> <span class="n">platonisim</span><span class="o">);</span>
+<div class="language-java highlighter-rouge"><pre class="highlight"><code>    <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">addRelation</span><span class="o">(</span><span class="n">practice</span><span class="o">).</span><span class="na">putRolePlayer</span><span class="o">(</span><span class="n">philosopher</span><span class="o">,</span> <span class="n">socrates</span><span class="o">).</span><span class="na">putRolePlayer</span><span class="o">(</span><span class="n">philosophy</span><span class="o">,</span> <span class="n">platonisim</span><span class="o">);</span>
     <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">addRelation</span><span class="o">(</span><span class="n">practice</span><span class="o">).</span><span class="na">putRolePlayer</span><span class="o">(</span><span class="n">philosopher</span><span class="o">,</span> <span class="n">plato</span><span class="o">).</span><span class="na">putRolePlayer</span><span class="o">(</span><span class="n">philosophy</span><span class="o">,</span> <span class="n">idealism</span><span class="o">);</span>
     <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">addRelation</span><span class="o">(</span><span class="n">practice</span><span class="o">).</span><span class="na">putRolePlayer</span><span class="o">(</span><span class="n">philosopher</span><span class="o">,</span> <span class="n">plato</span><span class="o">).</span><span class="na">putRolePlayer</span><span class="o">(</span><span class="n">philosophy</span><span class="o">,</span> <span class="n">platonisim</span><span class="o">);</span>
     <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">addRelation</span><span class="o">(</span><span class="n">practice</span><span class="o">).</span><span class="na">putRolePlayer</span><span class="o">(</span><span class="n">philosopher</span><span class="o">,</span> <span class="n">aristotle</span><span class="o">).</span><span class="na">putRolePlayer</span><span class="o">(</span><span class="n">philosophy</span><span class="o">,</span> <span class="n">peripateticism</span><span class="o">);</span>
@@ -528,7 +528,7 @@ Tutorial</a> using the core Java API.</p>
 
 <p>Now we can define how our philosophers relate to each other:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>    <span class="n">RoleType</span> <span class="n">teacher</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">putRoleType</span><span class="o">(</span><span class="s">"teacher"</span><span class="o">);</span>
+<div class="language-java highlighter-rouge"><pre class="highlight"><code>    <span class="n">RoleType</span> <span class="n">teacher</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">putRoleType</span><span class="o">(</span><span class="s">"teacher"</span><span class="o">);</span>
     <span class="n">RoleType</span> <span class="n">student</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">putRoleType</span><span class="o">(</span><span class="s">"student"</span><span class="o">);</span>
     <span class="n">RelationType</span> <span class="n">education</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">putRelationType</span><span class="o">(</span><span class="s">"education"</span><span class="o">).</span><span class="na">hasRole</span><span class="o">(</span><span class="n">teacher</span><span class="o">).</span><span class="na">hasRole</span><span class="o">(</span><span class="n">student</span><span class="o">);</span>
 

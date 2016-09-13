@@ -6,7 +6,7 @@
         margin: 0;
         padding: 0;
     }
-    
+
     .content{
         width: 100%;
         height: calc(100% - 40px);
@@ -47,7 +47,7 @@
                         stroke: $black-brand;
 
                     }
-                    
+
                     .fill{
                         stroke-width: 0;
                         fill: $black-brand;
@@ -88,11 +88,11 @@
             }
         }
     }
-    
+
     .controls{
         height: 40px;
         position: relative;
-        
+
         .scrollbar{
             height: 1px;
             width: 100%;
@@ -138,7 +138,6 @@
                 }
 
                 span{
-                    pointer-events: none;
                     display: none;
 
                     i{
@@ -163,7 +162,7 @@
     .promoSlider{
         height: 64vh;
         margin-bottom: 1rem;
-        
+
         .content{
             ul{
                 li{
@@ -247,7 +246,7 @@
     .promoSlider{
         height: 40vh;
         max-height: 300px;
-        
+
         .content{
             height: calc(100% - 60px);
 

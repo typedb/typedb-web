@@ -5,6 +5,48 @@
 
   
   
+  <url>
+    <loc>http://mindmaps.io/pages//platform/index.html</loc>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://mindmaps.io/pages//platform/applications.html</loc>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://mindmaps.io/pages//platform/advantages.html</loc>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://mindmaps.io/pages//platform/comparison.html</loc>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://mindmaps.io/pages//platform/use-case.html</loc>
+  </url>
+  
+  
+  
+  
+  
+  <url>
+    <loc>http://mindmaps.io/pages//platform/developer.html</loc>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://mindmaps.io/pages//platform/faq.html</loc>
+  </url>
+  
   
   
   <url>
@@ -52,12 +94,6 @@
   
   
   <url>
-    <loc>http://mindmaps.io/pages//platform/index</loc>
-  </url>
-  
-  
-  
-  <url>
     <loc>http://mindmaps.io/pages//index</loc>
   </url>
   
@@ -65,12 +101,6 @@
   
   <url>
     <loc>http://mindmaps.io/pages//documentation/graql/insert-queries.html</loc>
-  </url>
-  
-  
-  
-  <url>
-    <loc>http://mindmaps.io/pages//platform/introduction.html</loc>
   </url>
   
   
@@ -140,6 +170,8 @@
   <url>
     <loc>http://mindmaps.io/pages//documentation/core-api/simple-schema-definition.html</loc>
   </url>
+  
+  
   
   
   

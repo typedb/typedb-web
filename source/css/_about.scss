@@ -87,7 +87,7 @@
 
         .row{
             height: 100%;
-            
+
             .columns{
                 height: 100%;
                 white-space: nowrap;
@@ -319,7 +319,7 @@
                 .photo{
                     margin-left: -12%;
                 }
-                
+
                 .description{
                     width: 60%;
                     padding: 1.5rem 1rem 0 0;
@@ -353,7 +353,7 @@
             padding-top: 50px;
         }
     }
-    
+
     .team{
         &-grid{
             margin: 4rem 0 3rem 0;
@@ -364,7 +364,7 @@
                 .photo{
                     margin-left: -6%;
                 }
-                
+
                 .description{
                     width: 50%;
                     padding: 2rem 1rem 0 0;
@@ -413,7 +413,7 @@
                 &:nth-child(4n){
                     margin: 0 0 1rem 0;
                 }
-                
+
                 .photo{
                     margin-left: 0;
                     background-position: center bottom;
@@ -429,7 +429,7 @@
                         transform: translateX(-50%);
                     }
                 }
-                
+
                 .description{
                     height: auto;
                     width: 100%;
@@ -486,7 +486,7 @@
                 .description{
                     padding: 0 1rem 2rem 1rem;
                     transform: translate(0, calc(100% - 2.5rem));
-                    
+
                     p{
                         font-size: 0.8rem;
                         line-height: 2.2rem;

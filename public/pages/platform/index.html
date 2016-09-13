@@ -4,8 +4,8 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="">
-<meta name="keywords" content="platform,  platform, mindmapsdb, mindmaps, mindmaps.io, Mindmaps Research, Mindmaps Research Ltd, software, development platform, developer tool, data platform, programming langauge, query langauge, database, semantic database, distributed semantic database, distributed database, graph database, semantic search, data exploration, recommendation system, knowledge management, knowledge engineering, real-time analytics, advanced analytics, reasoning engine, inference engine, expert systems, semantic applications, research engines, data management, business intelligence, big data, semantic web, semantic data, knowledge representation, automated reasoning, semantic network, knowledge ontology, semantic graph, ontology engineering, graph based knowledge representation, artificial intelligence,">
-<title>Mindmaps Platform | MindmapsDB</title>
+<meta name="keywords" content="overview,  intro, mindmapsdb, mindmaps, mindmaps.io, Mindmaps Research, Mindmaps Research Ltd, software, development platform, developer tool, data platform, programming langauge, query langauge, database, semantic database, distributed semantic database, distributed database, graph database, semantic search, data exploration, recommendation system, knowledge management, knowledge engineering, real-time analytics, advanced analytics, reasoning engine, inference engine, expert systems, semantic applications, research engines, data management, business intelligence, big data, semantic web, semantic data, knowledge representation, automated reasoning, semantic network, knowledge ontology, semantic graph, ontology engineering, graph based knowledge representation, artificial intelligence,">
+<title>What is MindmapsDB? | MindmapsDB</title>
 <link rel="stylesheet" href="/pages/css/syntax.css">
 
 
@@ -163,7 +163,7 @@
                             
                             dataSource: '/pages/search.json',
                             
-                            searchResultTemplate: '<li><a href="{url}" title="Mindmaps Platform">{title}</a></li>',
+                            searchResultTemplate: '<li><a href="{url}" title="What is MindmapsDB?">{title}</a></li>',
                             noResultsText: '<li><a class="empty">No results found</a></li>',
                             limit: 10,
                             fuzzy: true
@@ -203,43 +203,43 @@
         
         <li>
             
-            <li><a href="/pages/platform/introduction.html">What is MindmapsDB?</a></li>
+            <li class="active"><a href="/pages/platform/index.html">Introduction</a></li>
             
         </li>
         
         <li>
             
-            <li><a href="/pages">What can you build with MindmapsDB?</a></li>
+            <li><a href="/pages/platform/applications.html">System Applications</a></li>
             
         </li>
         
         <li>
             
-            <li><a href="/pages">Why use MindmapsDB?</a></li>
+            <li><a href="/pages/platform/advantages.html">Advantages</a></li>
             
         </li>
         
         <li>
             
-            <li><a href="/pages">How is it different from other database solutions?</a></li>
+            <li><a href="/pages/platform/comparison.html">Database Comparison</a></li>
             
         </li>
         
         <li>
             
-            <li><a href="/pages">When to use MindmapsDB?</a></li>
+            <li><a href="/pages/platform/use-case.html">Use Case</a></li>
             
         </li>
         
         <li>
             
-            <li><a href="/pages">What languages can I use to work with MindmapsDB?</a></li>
+            <li><a href="/pages/platform/developer.html">Developer</a></li>
             
         </li>
         
         <li>
             
-            <li><a href="/pages">How can I start developing with MindmapsDB?</a></li>
+            <li><a href="/pages/platform/faq.html">FAQ</a></li>
             
         </li>
         
@@ -259,7 +259,7 @@
         <!-- Content Column -->
         <div class="col-md-9">
             <div class="post-header">
-   <h1 class="post-title-main">Mindmaps Platform</h1>
+   <h1 class="post-title-main">What is MindmapsDB?</h1>
 </div>
 
 
@@ -269,27 +269,6 @@
    
 
     
-    
-<!-- this handles the automatic toc. use ## for subheads to auto-generate the on-page minitoc. if you use html tags, you must supply an ID for the heading element in order for it to appear in the minitoc. -->
-<script>
-$( document ).ready(function() {
-  // Handler for .ready() called.
-
-$('#toc').toc({ minimumHeaders: 0, listType: 'ul', showSpeed: 0, headers: 'h2,h3,h4' });
-
-/* this offset helps account for the space taken up by the floating toolbar. */
-$('#toc').on('click', 'a', function() {
-  var target = $(this.getAttribute('href'))
-    , scroll_target = target.offset().top
-
-  $(window).scrollTop(scroll_target - 10);
-  return false
-})
-  
-});
-</script>
-
-<div id="toc"></div>
 
     
 
@@ -297,13 +276,29 @@ $('#toc').on('click', 'a', function() {
 
     
 
-    <a target="_blank" href="https://github.com/mindmapsdb/docs/blob/master/pages/platform/index.md" class="btn btn-default githubEditButton" role="button"><i class="fa fa-github fa-lg"></i> Edit me</a>
+  <p>MindmapsDB is a distributed semantic database that provides a flexible object-oriented schema and a knowledge-oriented query language, capable of real-time analytics and reasoning.</p>
 
-    
+<p>Let’s break that down a bit and explain what it means.</p>
 
-    
+<p><strong><em>“MindmapsDB is a distributed semantic database …“</em></strong></p>
 
-  
+<p>MindmapsDB is database that stores data in a way that allows machines to understand the meaning of information, which would allow computers to process complex information more intelligently with less human intervention. MindmapsDB is implemented using a <a href="faq.html#what-is-a-graph-database">graph database</a> that could be sharded and replicated over a network of distributed machines. Effectively, MindmapsDB turn your dataset into a distributed knowledge graph.</p>
+
+<p><strong><em>“… that provides a flexible object-oriented schema …“</em></strong></p>
+
+<p>MindmapsDB provides an object model with an API that enables the programmatic definition of highly expressive data schemas. Your schema could flexibly evolve as your application grows and MindmapsDB will guarantee the consistency of your data.</p>
+
+<p><strong><em>“… and a knowledge-oriented query language …“</em></strong></p>
+
+<p>Our query language, Graql, is a declarative, knowledge-oriented query language that uses pattern matching for retrieving explicitly stored and implicitly derived knowledge. Graql allows you to express complex queries in simple and short pattern matching statements and it leverages the inherent semantics of data.</p>
+
+<p><strong><em>“… capable of real-time analytics …“</em></strong></p>
+
+<p>Graql is capable of performing distributed computation over large amount of data to answer commonly asked analytics queries. These types of analytics queries is usually not possible to perform on big data without developing custom distributed algorithms.</p>
+
+<p><strong><em>“… and reasoning.”</em></strong></p>
+
+<p>Graql is capable of validating constraints and inferring new information in a MindmapsDB graph. In the past, queries that are executed on a database have to explicitly define the relationship they are looking for. Graql, on the other hand, will infer all relationships that matches a query pattern, as well as relationships that are semantically equivalent.</p>
 
 
     <div class="tags">
@@ -311,6 +306,8 @@ $('#toc').on('click', 'a', function() {
         <b>Tags: </b>
         
         
+        
+        <a href="/pages/tag_overview.html" class="btn btn-default navbar-btn cursorNorm" role="button">overview</a>
         
         
         
@@ -341,7 +338,7 @@ $('#toc').on('click', 'a', function() {
         <br>
         <p>© 2016 <a href="https://mindmaps.io">Mindmaps Research Ltd</a></p>
         <!-- &copy;2016 MindmapsDB. All rights reserved. <br />
-        <span>Page last updated:</span> August 18, 2016<br/> Site last generated: Sep 13, 2016 <br />
+        <span>Page last updated:</span> September 13, 2016<br/> Site last generated: Sep 13, 2016 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">
