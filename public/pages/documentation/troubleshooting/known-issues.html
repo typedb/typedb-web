@@ -460,14 +460,14 @@ $('#toc').on('click', 'a', function() {
 
 <h2 id="strange-exceptions">Strange Exceptions</h2>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>java.lang.RuntimeException: java.lang.IllegalStateException: The vertex or <span class="nb">type </span>is not associated with this transaction <span class="o">[</span>v[24584]]
+<div class="highlighter-rouge"><pre class="highlight"><code>java.lang.RuntimeException: java.lang.IllegalStateException: The vertex or <span class="nb">type </span>is not associated with this transaction <span class="o">[</span>v[24584]]
 </code></pre>
 </div>
 
 <p>This exception occurs when you try to create links between concepts in
 different graphs. The following code reproduces this exception:</p>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">MindmapsTitanGraphFactory</span> <span class="n">factory</span> <span class="o">=</span> <span class="n">MindmapsTitanGraphFactory</span><span class="o">.</span><span class="na">getInstance</span><span class="o">();</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">MindmapsTitanGraphFactory</span> <span class="n">factory</span> <span class="o">=</span> <span class="n">MindmapsTitanGraphFactory</span><span class="o">.</span><span class="na">getInstance</span><span class="o">();</span>
 <span class="c1">//Configuration pointing to keyspace one</span>
 <span class="n">MindmapsGraph</span> <span class="n">mindmapsGraph1</span> <span class="o">=</span> <span class="n">factory</span><span class="o">.</span><span class="na">newGraph</span><span class="o">(</span><span class="s">"conf1.properties"</span><span class="o">);</span>
 <span class="c1">//Configuration pointing to keyspace two</span>
