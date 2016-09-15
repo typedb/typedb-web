@@ -1,4 +1,7 @@
 Options +MultiViews
+
+ErrorDocument 404 /pages/404.html
+
 RewriteEngine on
 <FilesMatch "(error_log|php\.ini|index\.php\.swp)$">
   Order deny,allow
