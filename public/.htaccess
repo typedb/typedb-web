@@ -27,7 +27,7 @@ RewriteCond %{SERVER_PORT} 80
 RewriteRule ^(.*)$  "https://mindmaps.io/$1" [R=301,L]
 
 # Redirect for Mindmaps release archive
-Redirect /download/latest "https://github.com/mindmapsdb/mindmapsdb/releases/download/v0.1.0/mindmaps-dist-0.1.0.zip"
+Redirect /download/latest "https://github.com/mindmapsdb/mindmapsdb/releases/download/v0.1.1/mindmaps-dist-0.1.1.zip"
 Redirect /download "https://github.com/mindmapsdb/mindmapsdb/releases/"
 Redirect /docs "/pages/index.html"
 Redirect /install "/pages/documentation/get-started/setup-guide.html"
