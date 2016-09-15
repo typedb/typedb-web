@@ -59,14 +59,14 @@ window.MNDMPS.Graph._data.homepageGraphs = [
                 cy: 50
             },
             {
-                type: 'concept-type',
+                type: 'entity-type',
                 text: 'person',
                 r: 10,
                 cx: 15,
                 cy: 75
             },
             {
-                type: 'concept-type',
+                type: 'entity-type',
                 text: 'movie',
                 r: 10,
                 cx: 85,
@@ -74,7 +74,7 @@ window.MNDMPS.Graph._data.homepageGraphs = [
             },
             {
                 type: 'meta',
-                text: 'concept-type',
+                text: 'entity-type',
                 r: 10,
                 cx: 50,
                 cy: 85
@@ -99,13 +99,13 @@ window.MNDMPS.Graph._data.homepageGraphs = [
         nodes: [
             {
                 type: 'meta',
-                text: 'concept-type',
+                text: 'entity-type',
                 r: 10,
                 cx: 15,
                 cy: 15
             },
             {
-                type: 'concept-type',
+                type: 'entity-type',
                 text: 'movie',
                 r: 10,
                 cx: 10,
@@ -265,14 +265,14 @@ window.MNDMPS.Graph._data.homepageGraphs = [
                 cy: 55
             },
             {
-                type: 'concept-type',
+                type: 'entity-type',
                 text: 'person',
                 r: 10,
                 cx: 20,
                 cy: 80
             },
             {
-                type: 'concept-type',
+                type: 'entity-type',
                 text: 'movie',
                 r: 10,
                 cx: 80,
@@ -280,7 +280,7 @@ window.MNDMPS.Graph._data.homepageGraphs = [
             },
             {
                 type: 'meta',
-                text: 'concept-type',
+                text: 'entity-type',
                 r: 10,
                 cx: 50,
                 cy: 85
@@ -306,13 +306,13 @@ window.MNDMPS.Graph._data.homepageGraphs = [
         nodes: [
             {
                 type: 'meta',
-                text: 'concept-type',
+                text: 'entity-type',
                 r: 10,
                 cx: 20,
                 cy: 15
             },
             {
-                type: 'concept-type',
+                type: 'entity-type',
                 text: 'movie',
                 r: 10,
                 cx: 10,
@@ -410,7 +410,7 @@ window.MNDMPS.Graph._data.homepageGraphs = [
         nodes: [
             {
                 type: 'meta',
-                text: 'concept-type',
+                text: 'entity-type',
                 r: 10,
                 cx: 20,
                 cy: 25
@@ -430,7 +430,7 @@ window.MNDMPS.Graph._data.homepageGraphs = [
                 cy: 25
             },
             {
-                type: 'concept-type',
+                type: 'entity-type',
                 text: 'movie',
                 r: 10,
                 cx: 10,
@@ -444,7 +444,7 @@ window.MNDMPS.Graph._data.homepageGraphs = [
                 cy: 50
             },
             {
-                type: 'concept-type',
+                type: 'entity-type',
                 text: 'person',
                 r: 10,
                 cx: 90,
@@ -486,7 +486,7 @@ window.MNDMPS.Graph._data.homepageGraphs = [
         "nodes":[
             {
                 "id":0,
-                "type":"concept-type",
+                "type":"entity-type",
                 "text":"person",
                 "x":0.5,
                 "y":0.1
@@ -526,7 +526,7 @@ window.MNDMPS.Graph._data.homepageGraphs = [
         "nodes":[
             {
                 "id":0,
-                "type":"concept-type",
+                "type":"entity-type",
                 "text":"person",
                 "x":0.1,
                 "y":0.1
@@ -554,7 +554,7 @@ window.MNDMPS.Graph._data.homepageGraphs = [
             },
             {
                 "id":4,
-                "type":"concept-type",
+                "type":"entity-type",
                 "text":"company",
                 "x":0.9,
                 "y":0.1
@@ -644,7 +644,7 @@ window.MNDMPS.Graph._data.homepageGraphs = [
             },
             {
                 "id":6,
-                "type":"concept-type",
+                "type":"entity-type",
                 "text":"person",
                 "x":0.5,
                 "y":0.9
@@ -737,14 +737,14 @@ window.MNDMPS.Graph._data.homepageGraphs = [
             },
             {
                 "id":6,
-                "type":"concept-type",
+                "type":"entity-type",
                 "text":"person",
                 "x":0.1,
                 "y":0.55
             },
             {
                 "id":7,
-                "type":"concept-type",
+                "type":"entity-type",
                 "text":"company",
                 "x":0.9,
                 "y":0.55
@@ -826,14 +826,14 @@ window.MNDMPS.Graph._data.homepageGraphs = [
             },
             {
                 "id":3,
-                "type":"concept-type",
+                "type":"entity-type",
                 "text":"person",
                 "x":0.1,
                 "y":0.9
             },
             {
                 "id":4,
-                "type":"concept-type",
+                "type":"entity-type",
                 "text":"company",
                 "x":0.9,
                 "y":0.9
@@ -855,7 +855,7 @@ window.MNDMPS.Graph._data.homepageGraphs = [
             {
                 "id":7,
                 "type":"meta",
-                "text":"concept-type",
+                "text":"entity-type",
                 "x":0.5,
                 "y":0.9
             }
@@ -957,14 +957,14 @@ window.MNDMPS.Graph._data.homepageGraphs = [
             },
             {
                 "id":6,
-                "type":"concept-type",
+                "type":"entity-type",
                 "text":"person",
                 "x":0.3,
                 "y":0.5
             },
             {
                 "id":7,
-                "type":"concept-type",
+                "type":"entity-type",
                 "text":"company",
                 "x":0.7,
                 "y":0.5
@@ -1048,7 +1048,7 @@ window.MNDMPS.Graph._data.homepageGraphs = [
             },
             {
                 "id":4,
-                "type":"concept-type",
+                "type":"entity-type",
                 "text":"person",
                 "x":0.3,
                 "y":0.9
@@ -1076,7 +1076,7 @@ window.MNDMPS.Graph._data.homepageGraphs = [
             },
             {
                 "id":8,
-                "type":"concept-type",
+                "type":"entity-type",
                 "text":"company",
                 "x":0.7,
                 "y":0.9
@@ -1165,7 +1165,7 @@ window.MNDMPS.Graph._data.homepageGraphs = [
             },
             {
                 "id":4,
-                "type":"concept-type",
+                "type":"entity-type",
                 "text":"person",
                 "x":0.3,
                 "y":0.9
@@ -1193,7 +1193,7 @@ window.MNDMPS.Graph._data.homepageGraphs = [
             },
             {
                 "id":8,
-                "type":"concept-type",
+                "type":"entity-type",
                 "text":"company",
                 "x":0.7,
                 "y":0.9
@@ -1279,7 +1279,7 @@ window.MNDMPS.Graph._data.homepageGraphs = [
             },
             {
                 "id":3,
-                "type":"concept-type",
+                "type":"entity-type",
                 "text":"person",
                 "x":0.5,
                 "y":0.9
@@ -1350,7 +1350,7 @@ window.MNDMPS.Graph._data.homepageGraphs = [
             },
             {
                 "id":5,
-                "type":"concept-type",
+                "type":"entity-type",
                 "text":"company",
                 "x":0.1,
                 "y":0.5
@@ -1371,7 +1371,7 @@ window.MNDMPS.Graph._data.homepageGraphs = [
             },
             {
                 "id":8,
-                "type":"concept-type",
+                "type":"entity-type",
                 "text":"person",
                 "x":0.9,
                 "y":0.5

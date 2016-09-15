@@ -19,7 +19,7 @@ window.MNDMPS.Graph = {
         colors: {
             'default':       '#bbbcbc',
             'instance':      '#a1d884',
-            'concept-type':  '#ff7878',
+            'entity-type':  '#ff7878',
             'relation':      '#77dd77',
             'relation-type': '#bfc0d1',
             'resource':      '#a1d884',
