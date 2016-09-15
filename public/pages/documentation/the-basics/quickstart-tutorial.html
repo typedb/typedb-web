@@ -614,25 +614,10 @@ So, we’ll create some resource types that can be attached to a person:</p>
 <span class="o">&gt;&gt;&gt;</span><span class="k">insert</span> <span class="n">person</span> <span class="n">has</span><span class="o">-</span><span class="n">resource</span> <span class="n">title</span><span class="p">,</span> <span class="n">has</span><span class="o">-</span><span class="n">resource</span> <span class="n">epithet</span><span class="p">;</span>
 </code></pre>
 </div>
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">ResourceType</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">title</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">putResourceType</span><span class="o">(</span><span class="s">"title"</span><span class="o">,</span> <span class="n">Data</span><span class="o">.</span><span class="na">STRING</span><span class="o">);</span>
-<span class="n">ResourceType</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">epithet</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">putResourceType</span><span class="o">(</span><span class="s">"epithet"</span><span class="o">,</span> <span class="n">Data</span><span class="o">.</span><span class="na">STRING</span><span class="o">);</span>
-
-<span class="n">person</span><span class="o">.</span><span class="na">playsRole</span><span class="o">(</span><span class="n">hasResourceTarget</span><span class="o">);</span>
-<span class="n">title</span><span class="o">.</span><span class="na">playsRole</span><span class="o">(</span><span class="n">hasResourceValue</span><span class="o">);</span>
-<span class="n">epithet</span><span class="o">.</span><span class="na">playsRole</span><span class="o">(</span><span class="n">hasResourceValue</span><span class="o">);</span>
-</code></pre>
-</div>
 
 <p>Let’s make Alexander “Great”!</p>
 
 <div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span><span class="k">insert</span> <span class="nv">"Alexander"</span> <span class="n">has</span> <span class="n">epithet</span> <span class="nv">"The Great"</span><span class="p">;</span>
-</code></pre>
-</div>
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">Resource</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">theGreat</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">putResource</span><span class="o">(</span><span class="s">"The Great"</span><span class="o">,</span> <span class="n">epithet</span><span class="o">);</span>
-
-<span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">putRelation</span><span class="o">(</span><span class="n">hasResource</span><span class="o">).</span>
-  <span class="n">putRolePlayer</span><span class="o">(</span><span class="n">hasResourceTarget</span><span class="o">,</span> <span class="n">alexander</span><span class="o">).</span>
-  <span class="n">putRolePlayer</span><span class="o">(</span><span class="n">hasResourceValue</span><span class="o">,</span> <span class="n">theGreat</span><span class="o">);</span>
 </code></pre>
 </div>
 
@@ -647,33 +632,6 @@ So, we’ll create some resource types that can be attached to a person:</p>
 <span class="o">&gt;&gt;&gt;</span><span class="k">insert</span> <span class="nv">"Alexander"</span> <span class="n">has</span> <span class="n">title</span> <span class="nv">"King of Persia"</span><span class="p">;</span>
 <span class="o">&gt;&gt;&gt;</span><span class="k">insert</span> <span class="nv">"Alexander"</span> <span class="n">has</span> <span class="n">title</span> <span class="nv">"Pharaoh of Egypt"</span><span class="p">;</span>
 <span class="o">&gt;&gt;&gt;</span><span class="k">insert</span> <span class="nv">"Alexander"</span> <span class="n">has</span> <span class="n">title</span> <span class="nv">"Lord of Asia"</span><span class="p">;</span>
-</code></pre>
-</div>
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">Resource</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">hegemon</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">putResource</span><span class="o">(</span><span class="s">"Hegemon"</span><span class="o">,</span> <span class="n">title</span><span class="o">);</span>
-<span class="n">Resource</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">kingOfMacedon</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">putResource</span><span class="o">(</span><span class="s">"King of Macedon"</span><span class="o">,</span> <span class="n">title</span><span class="o">);</span>
-<span class="n">Resource</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">shahOfPersia</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">putResource</span><span class="o">(</span><span class="s">"Shah of Persia"</span><span class="o">,</span> <span class="n">title</span><span class="o">);</span>
-<span class="n">Resource</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">pharaohOfEgypt</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">putResource</span><span class="o">(</span><span class="s">"Pharaoh of Egypt"</span><span class="o">,</span> <span class="n">title</span><span class="o">);</span>
-<span class="n">Resource</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">lordOfAsia</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">putResource</span><span class="o">(</span><span class="s">"Lord of Asia"</span><span class="o">,</span> <span class="n">title</span><span class="o">);</span>
-
-<span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">putRelation</span><span class="o">(</span><span class="n">hasResource</span><span class="o">).</span>
-  <span class="n">putRolePlayer</span><span class="o">(</span><span class="n">hasResourceTarget</span><span class="o">,</span> <span class="n">alexander</span><span class="o">).</span>
-  <span class="n">putRolePlayer</span><span class="o">(</span><span class="n">hasResourceValue</span><span class="o">,</span> <span class="n">hegemon</span><span class="o">);</span>
-
-<span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">putRelation</span><span class="o">(</span><span class="n">hasResource</span><span class="o">).</span>
-  <span class="n">putRolePlayer</span><span class="o">(</span><span class="n">hasResourceTarget</span><span class="o">,</span> <span class="n">alexander</span><span class="o">).</span>
-  <span class="n">putRolePlayer</span><span class="o">(</span><span class="n">hasResourceValue</span><span class="o">,</span> <span class="n">kingOfMacedon</span><span class="o">);</span>
-
-<span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">putRelation</span><span class="o">(</span><span class="n">hasResource</span><span class="o">).</span>
-  <span class="n">putRolePlayer</span><span class="o">(</span><span class="n">hasResourceTarget</span><span class="o">,</span> <span class="n">alexander</span><span class="o">).</span>
-  <span class="n">putRolePlayer</span><span class="o">(</span><span class="n">hasResourceValue</span><span class="o">,</span> <span class="n">shahOfPersia</span><span class="o">);</span>
-
-<span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">putRelation</span><span class="o">(</span><span class="n">hasResource</span><span class="o">).</span>
-  <span class="n">putRolePlayer</span><span class="o">(</span><span class="n">hasResourceTarget</span><span class="o">,</span> <span class="n">alexander</span><span class="o">).</span>
-  <span class="n">putRolePlayer</span><span class="o">(</span><span class="n">hasResourceValue</span><span class="o">,</span> <span class="n">pharaohOfEgypt</span><span class="o">);</span>
-
-<span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">putRelation</span><span class="o">(</span><span class="n">hasResource</span><span class="o">).</span>
-  <span class="n">putRolePlayer</span><span class="o">(</span><span class="n">hasResourceTarget</span><span class="o">,</span> <span class="n">alexander</span><span class="o">).</span>
-  <span class="n">putRolePlayer</span><span class="o">(</span><span class="n">hasResourceValue</span><span class="o">,</span> <span class="n">lordOfAsia</span><span class="o">);</span>
 </code></pre>
 </div>
 
@@ -693,11 +651,6 @@ So, we’ll create some resource types that can be attached to a person:</p>
 <div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span><span class="k">match</span> <span class="err">$</span><span class="n">pharaoh</span> <span class="n">has</span> <span class="n">title</span> <span class="nv">"Pharaoh of Egypt"</span>
 
 <span class="err">$</span><span class="n">pharaoh</span> <span class="n">id</span> <span class="nv">"Alexander"</span> <span class="n">isa</span> <span class="n">person</span><span class="p">;</span>
-</code></pre>
-</div>
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">pharaohOfEgypt</span><span class="o">.</span><span class="na">ownerInstances</span><span class="o">().</span><span class="na">forEach</span><span class="o">(</span><span class="n">instance</span> <span class="o">-&gt;</span> <span class="o">{</span>
-  <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"    -&gt;"</span> <span class="o">+</span> <span class="n">instance</span><span class="o">.</span><span class="na">getId</span><span class="o">());</span>
-<span class="o">});</span> <span class="c1">//Pssssstttt Graql is much better at querying relationships!!</span>
 </code></pre>
 </div>
 
@@ -786,7 +739,7 @@ Answer:</p>
         <td>Description</td>        
     </tr>
         <tr>
-        <td>v0.1.0.1</td>
+        <td>v0.1.1.1</td>
         <td>03/09/2016</td>
         <td>First release.</td>        
     </tr>

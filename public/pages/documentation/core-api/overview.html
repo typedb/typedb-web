@@ -461,7 +461,7 @@ You can find the code below in the example code directory of the MindmapsDB dist
 
 <h3 id="initialising-a-mindmapsdb-graph-in-java">Initialising a MindmapsDB Graph in Java</h3>
 
-<p>Make sure you have MindmapsDB Engine running locally by using <code class="highlighter-rouge">mindmaps.sh start</code>. 
+<p>Make sure you have MindmapsDB Engine running locally by using <code class="highlighter-rouge">mindmaps.sh start</code>.
 Once you have done that, a thread-bound graph can be retrieved by:</p>
 
 <div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">MindmapsGraph</span> <span class="n">mindmapsGraph</span> <span class="o">=</span> <span class="n">MindmapsClient</span><span class="o">.</span><span class="na">getGraph</span><span class="o">();</span>
@@ -473,7 +473,7 @@ Once you have done that, a thread-bound graph can be retrieved by:</p>
 <div class="highlighter-rouge"><pre class="highlight"><code>&lt;dependency&gt;
     &lt;groupId&gt;io.mindmaps&lt;/groupId&gt;
     &lt;artifactId&gt;mindmaps-titan-factory&lt;/artifactId&gt;
-    &lt;version&gt;0.1.0&lt;/version&gt;
+    &lt;version&gt;0.1.1&lt;/version&gt;
 &lt;/dependency&gt;
 </code></pre>
 </div>
@@ -541,15 +541,15 @@ Tutorial</a> using the Java Graph API.</p>
 <div class="language-java highlighter-rouge"><pre class="highlight"><code>    <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">addRelation</span><span class="o">(</span><span class="n">practice</span><span class="o">).</span>  
       <span class="n">putRolePlayer</span><span class="o">(</span><span class="n">philosopher</span><span class="o">,</span> <span class="n">socrates</span><span class="o">).</span>
       <span class="n">putRolePlayer</span><span class="o">(</span><span class="n">philosophy</span><span class="o">,</span> <span class="n">platonisim</span><span class="o">);</span>
-    
+
     <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">addRelation</span><span class="o">(</span><span class="n">practice</span><span class="o">).</span>
       <span class="n">putRolePlayer</span><span class="o">(</span><span class="n">philosopher</span><span class="o">,</span> <span class="n">plato</span><span class="o">).</span>
       <span class="n">putRolePlayer</span><span class="o">(</span><span class="n">philosophy</span><span class="o">,</span> <span class="n">idealism</span><span class="o">);</span>
-    
+
     <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">addRelation</span><span class="o">(</span><span class="n">practice</span><span class="o">).</span>
       <span class="n">putRolePlayer</span><span class="o">(</span><span class="n">philosopher</span><span class="o">,</span> <span class="n">plato</span><span class="o">).</span>
       <span class="n">putRolePlayer</span><span class="o">(</span><span class="n">philosophy</span><span class="o">,</span> <span class="n">platonisim</span><span class="o">);</span>
-      
+
     <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">addRelation</span><span class="o">(</span><span class="n">practice</span><span class="o">).</span>
       <span class="n">putRolePlayer</span><span class="o">(</span><span class="n">philosopher</span><span class="o">,</span> <span class="n">aristotle</span><span class="o">).</span>
       <span class="n">putRolePlayer</span><span class="o">(</span><span class="n">philosophy</span><span class="o">,</span> <span class="n">peripateticism</span><span class="o">);</span>
@@ -644,7 +644,7 @@ So, we’ll create some resource types that can be attached to a person:</p>
         <td>Description</td>        
     </tr>
         <tr>
-        <td>v0.1.0.1</td>
+        <td>v0.1.1.1</td>
         <td>03/09/2016</td>
         <td>First release.</td>        
     </tr>
