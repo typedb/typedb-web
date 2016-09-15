@@ -3,8 +3,8 @@
     <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="This document will teach you how to use Graql to load an ontology and some data into a Mindmaps Graph.">
-<meta name="keywords" content="getting-startedgraqljava,  setup, getting started, mindmapsdb, mindmaps, mindmaps.io, Mindmaps Research, Mindmaps Research Ltd, software, development platform, developer tool, data platform, programming langauge, query langauge, database, semantic database, distributed semantic database, distributed database, graph database, semantic search, data exploration, recommendation system, knowledge management, knowledge engineering, real-time analytics, advanced analytics, reasoning engine, inference engine, expert systems, semantic applications, research engines, data management, business intelligence, big data, semantic web, semantic data, knowledge representation, automated reasoning, semantic network, knowledge ontology, semantic graph, ontology engineering, graph based knowledge representation, artificial intelligence,">
+<meta name="description" content="This document will teach you how to use Graql to load a schema and some data into a MindmapsDB Graph.">
+<meta name="keywords" content="getting-startedgraql,  setup, getting started, mindmapsdb, mindmaps, mindmaps.io, Mindmaps Research, Mindmaps Research Ltd, software, development platform, developer tool, data platform, programming langauge, query langauge, database, semantic database, distributed semantic database, distributed database, graph database, semantic search, data exploration, recommendation system, knowledge management, knowledge engineering, real-time analytics, advanced analytics, reasoning engine, inference engine, expert systems, semantic applications, research engines, data management, business intelligence, big data, semantic web, semantic data, knowledge representation, automated reasoning, semantic network, knowledge ontology, semantic graph, ontology engineering, graph based knowledge representation, artificial intelligence,">
 <title>Quickstart Tutorial | MindmapsDB</title>
 <link rel="stylesheet" href="/pages/css/syntax.css">
 
@@ -245,7 +245,7 @@
         
     
     <li>
-        <a href="#">Core API</a>
+        <a href="#">Graph API</a>
         <ul>
             
             
@@ -413,7 +413,7 @@
 <div class="post-content">
 
    
-    <div class="summary">This document will teach you how to use Graql to load an ontology and some data into a Mindmaps Graph.</div>
+    <div class="summary">This document will teach you how to use Graql to load a schema and some data into a MindmapsDB Graph.</div>
    
 
     
@@ -451,80 +451,50 @@ $('#toc').on('click', 'a', function() {
 
     
 
-  <div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> <b>Note:</b> This tutorial shows you how to use the Graql shell or the Java API. The code for each approach is shown at each stage: Graql first, and then the equivalent in Java.</div>
-
-<p><strong>Initialising a Mindmaps Graph in Java</strong></p>
-
-<p><em>(Skip to the following <a href="#introduction">Introduction</a> section if you will be using Graql exclusively.)</em></p>
-
-<p>Make sure you have Mindmaps Engine running locally by <code class="highlighter-rouge">mindmaps.sh start</code>. 
-Once you have done that a graph can be retrieved by:</p>
-
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">MindmapsGraph</span> <span class="n">mindmapsGraph</span> <span class="o">=</span> <span class="n">MindmapsClient</span><span class="o">.</span><span class="na">getGraph</span><span class="o">();</span>
-</code></pre>
-</div>
-
-<div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> <b>Note:</b> Make sure that your project depends on <code class="highlighter-rouge">mindmaps-titan-factory</code> at a minimum.</div>
-
-<div class="highlighter-rouge"><pre class="highlight"><code>&lt;dependency&gt;
-    &lt;groupId&gt;io.mindmaps&lt;/groupId&gt;
-    &lt;artifactId&gt;mindmaps-titan-factory&lt;/artifactId&gt;
-    &lt;version&gt;0.1.0&lt;/version&gt;
-&lt;/dependency&gt;
-</code></pre>
-</div>
+  <div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> <b>Note:</b> This tutorial shows you how to use the Graql shell. The equivalent code, using the Graph API is described in the <a href="https://mindmaps.io/pages/documentation/core-api/overview.html">Overview</a> to the Graph API.</div>
 
 <h2 id="introduction">Introduction</h2>
-<p>If you have not yet set up the Mindmaps environment, please see the <a href="../get-started/setup-guide.html">Setup guide</a>.
-You can find the example <code class="highlighter-rouge">philosophers.gql</code> in the examples directory included in the Mindmaps download.</p>
+<p>If you have not yet set up the MindmapsDB environment, please see the <a href="../get-started/setup-guide.html">Setup guide</a>.
+You can find the example <code class="highlighter-rouge">philosophers.gql</code> in the examples directory included in the MindmapsDB download zip.</p>
 
-<p>We are going model how philosophers are related to each other. If you are using Graql and don’t want to type everything below to build up the philosophers ontology, you can load it using:</p>
+<p>We are going model how philosophers are related to each other. If you are using Graql and don’t want to type everything below to build up the schema, you can load it using:</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>bin/graql.sh -f examples/philosophers.gql
+<div class="highlighter-rouge"><pre class="highlight"><code>bin/graql.sh -f examples/philosophers.gql
 </code></pre>
 </div>
 
-<p>By the way, don’t worry if you’ve already loaded some different data into your graph. A Mindmaps Graph can contain as many ontologies as you want.</p>
+<p>By the way, don’t worry if you’ve already loaded some different data into your graph. A MindmapsDB graph can simultaneously contain as many schemas as you want.</p>
 
 <h2 id="concepts">Concepts</h2>
 
-<p>We’ll first add an ontology element - an entity type: <code class="highlighter-rouge">person</code>…</p>
+<p>We’ll first add an entity type <code class="highlighter-rouge">person</code>:</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>bin/graql.sh
+<div class="highlighter-rouge"><pre class="highlight"><code>bin/graql.sh
 &gt;&gt;&gt;insert person isa entity-type;
-</code></pre>
-</div>
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">EntityType</span> <span class="n">person</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">putEntityType</span><span class="o">(</span><span class="s">"person"</span><span class="o">);</span>
 </code></pre>
 </div>
 
 <p>…and now some data in the form of concept instances: in our case, a bunch of ancient Greeks…</p>
 
-<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span><span class="k">insert</span> <span class="nv">"Socrates"</span> <span class="n">isa</span> <span class="n">person</span><span class="p">;</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span><span class="k">insert</span> <span class="nv">"Socrates"</span> <span class="n">isa</span> <span class="n">person</span><span class="p">;</span>
 <span class="o">&gt;&gt;&gt;</span><span class="k">insert</span> <span class="nv">"Plato"</span> <span class="n">isa</span> <span class="n">person</span><span class="p">;</span>
 <span class="o">&gt;&gt;&gt;</span><span class="k">insert</span> <span class="nv">"Aristotle"</span> <span class="n">isa</span> <span class="n">person</span><span class="p">;</span>
 <span class="o">&gt;&gt;&gt;</span><span class="k">insert</span> <span class="nv">"Alexander"</span> <span class="n">isa</span> <span class="n">person</span><span class="p">;</span>
 </code></pre>
 </div>
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">Entity</span> <span class="n">socrates</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">putEntity</span><span class="o">(</span><span class="s">"Socrates"</span><span class="o">,</span> <span class="n">person</span><span class="o">);</span>
-<span class="n">Entity</span> <span class="n">plato</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">putEntity</span><span class="o">(</span><span class="s">"Plato"</span><span class="o">,</span> <span class="n">person</span><span class="o">);</span>
-<span class="n">Entity</span> <span class="n">aristotle</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">putEntity</span><span class="o">(</span><span class="s">"Aristotle"</span><span class="o">,</span> <span class="n">person</span><span class="o">);</span>
-<span class="n">Entity</span> <span class="n">alexander</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">putEntity</span><span class="o">(</span><span class="s">"Alexander"</span><span class="o">,</span> <span class="n">person</span><span class="o">);</span>
-</code></pre>
-</div>
 
 <p><img src="/images/phil.png" alt="" /></p>
 
-<p>So now we’ve created a super-simple graph, with one concept type and four
+<p>So now we’ve created a simple graph, with one concept type and four
 concept instances.</p>
 
 <div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> <b>Note:</b> Every concept needs a type, using <code class="highlighter-rouge">isa</code>. <br />   <code class="highlighter-rouge">Plato</code> <code class="highlighter-rouge">is a</code> <code class="highlighter-rouge">person</code>   <br />  <code class="highlighter-rouge">person</code> <code class="highlighter-rouge">is a</code> <code class="highlighter-rouge">entity-type</code></div>
 
 <div class="alert alert-success" role="alert"><i class="fa fa-check-square-o"></i> <b>Tip:</b> Graql shell maintains a history of past commands with the ‘up’ and ‘down’ arrows. You can also autocomplete keywords, type and variable names using tab!</div>
 
-<p>We’ll quickly check our data has loaded:</p>
+<p>We’ll quickly check that our data has loaded:</p>
 
-<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span><span class="k">match</span> <span class="err">$</span><span class="n">p</span> <span class="n">isa</span> <span class="n">person</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span><span class="k">match</span> <span class="err">$</span><span class="n">p</span> <span class="n">isa</span> <span class="n">person</span>
 
 <span class="err">$</span><span class="n">p</span> <span class="n">id</span> <span class="nv">"Aristotle"</span> <span class="n">isa</span> <span class="n">person</span><span class="p">;</span>
 <span class="err">$</span><span class="n">p</span> <span class="n">id</span> <span class="nv">"Plato"</span> <span class="n">isa</span> <span class="n">person</span><span class="p">;</span>
@@ -532,38 +502,24 @@ concept instances.</p>
 <span class="err">$</span><span class="n">p</span> <span class="n">id</span> <span class="nv">"Alexander"</span> <span class="n">isa</span> <span class="n">person</span><span class="p">;</span>
 </code></pre>
 </div>
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Instances of Person:"</span><span class="o">);</span>
- <span class="n">person</span><span class="o">.</span><span class="na">instances</span><span class="o">().</span><span class="na">forEach</span><span class="o">(</span><span class="n">i</span> <span class="o">-&gt;</span> <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">i</span><span class="o">.</span><span class="na">getId</span><span class="o">()));</span>
-</code></pre>
-</div>
 
 <div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> <b>Note:</b> Graql variables start with a <code class="highlighter-rouge">$</code>. They represent wildcards, and are returned as results in <code class="highlighter-rouge">match</code> queries. A variable name can contain alphanumeric characters, dashes and underscores.</div>
 
 <p>Next, let’s add some <code class="highlighter-rouge">schools</code> of thought:</p>
 
-<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span><span class="k">insert</span> <span class="n">school</span> <span class="n">isa</span> <span class="n">entity</span><span class="o">-</span><span class="k">type</span><span class="p">;</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span><span class="k">insert</span> <span class="n">school</span> <span class="n">isa</span> <span class="n">entity</span><span class="o">-</span><span class="k">type</span><span class="p">;</span>
 <span class="o">&gt;&gt;&gt;</span><span class="k">insert</span> <span class="nv">"Peripateticism"</span> <span class="n">isa</span> <span class="n">school</span><span class="p">;</span>
 <span class="o">&gt;&gt;&gt;</span><span class="k">insert</span> <span class="nv">"Platonism"</span> <span class="n">isa</span> <span class="n">school</span><span class="p">;</span>
 <span class="o">&gt;&gt;&gt;</span><span class="k">insert</span> <span class="nv">"Idealism"</span> <span class="n">isa</span> <span class="n">school</span><span class="p">;</span>
 <span class="o">&gt;&gt;&gt;</span><span class="k">insert</span> <span class="nv">"Cynicism"</span> <span class="n">isa</span> <span class="n">school</span><span class="p">;</span>
 </code></pre>
 </div>
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">EntityType</span> <span class="n">school</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">putEntityType</span><span class="o">(</span><span class="s">"school"</span><span class="o">);</span>
-<span class="n">Entity</span> <span class="n">peripateticism</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">putEntity</span><span class="o">(</span><span class="s">"Peripateticism"</span><span class="o">,</span> <span class="n">person</span><span class="o">);</span>
-<span class="n">Entity</span> <span class="n">platonism</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">putEntity</span><span class="o">(</span><span class="s">"Platonism"</span><span class="o">,</span> <span class="n">person</span><span class="o">);</span>
-<span class="n">Entity</span> <span class="n">idealism</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">putEntity</span><span class="o">(</span><span class="s">"Idealism"</span><span class="o">,</span> <span class="n">person</span><span class="o">);</span>
-<span class="n">Entity</span> <span class="n">cynicism</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">putEntity</span><span class="o">(</span><span class="s">"Cynicism"</span><span class="o">,</span> <span class="n">person</span><span class="o">);</span>
-</code></pre>
-</div>
 
 <p>And look up one:</p>
 
-<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span><span class="k">match</span> <span class="err">$</span><span class="n">cyn</span> <span class="n">id</span> <span class="nv">"Cynicism"</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span><span class="k">match</span> <span class="err">$</span><span class="n">cyn</span> <span class="n">id</span> <span class="nv">"Cynicism"</span>
 
 <span class="err">$</span><span class="n">cyn</span> <span class="n">id</span> <span class="nv">"Cynicism"</span> <span class="n">isa</span> <span class="n">school</span><span class="p">;</span>
-</code></pre>
-</div>
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">getEntity</span><span class="o">(</span><span class="s">"Cynicism"</span><span class="o">).</span><span class="na">getId</span><span class="o">();</span>
 </code></pre>
 </div>
 
@@ -576,16 +532,10 @@ concept instances.</p>
 <p>First, we define a <code class="highlighter-rouge">relation-type</code> called <code class="highlighter-rouge">practice</code> that relates a
 <code class="highlighter-rouge">role-type</code> called <code class="highlighter-rouge">philosopher</code> to a <code class="highlighter-rouge">role-type</code> called <code class="highlighter-rouge">philosophy</code>:</p>
 
-<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span><span class="k">insert</span> <span class="n">practice</span> <span class="n">isa</span> <span class="n">relation</span><span class="o">-</span><span class="k">type</span><span class="p">;</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span><span class="k">insert</span> <span class="n">practice</span> <span class="n">isa</span> <span class="n">relation</span><span class="o">-</span><span class="k">type</span><span class="p">;</span>
 <span class="o">&gt;&gt;&gt;</span><span class="k">insert</span> <span class="n">philosopher</span> <span class="n">isa</span> <span class="k">role</span><span class="o">-</span><span class="k">type</span><span class="p">;</span>
 <span class="o">&gt;&gt;&gt;</span><span class="k">insert</span> <span class="n">philosophy</span> <span class="n">isa</span> <span class="k">role</span><span class="o">-</span><span class="k">type</span><span class="p">;</span>
 <span class="o">&gt;&gt;&gt;</span><span class="k">insert</span> <span class="n">practice</span> <span class="n">has</span><span class="o">-</span><span class="k">role</span> <span class="n">philosopher</span><span class="p">,</span> <span class="n">has</span><span class="o">-</span><span class="k">role</span> <span class="n">philosophy</span><span class="p">;</span>
-</code></pre>
-</div>
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">RoleType</span> <span class="n">philosopher</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">putRoleType</span><span class="o">(</span><span class="s">"philosopher"</span><span class="o">);</span>
-<span class="n">RoleType</span> <span class="n">philosophy</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">putRoleType</span><span class="o">(</span><span class="s">"philosophy"</span><span class="o">);</span>
-<span class="n">RelationType</span> <span class="n">practice</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">putRelationType</span><span class="o">(</span><span class="s">"practice"</span><span class="o">).</span>
-  <span class="n">hasRole</span><span class="o">(</span><span class="n">philosopher</span><span class="o">).</span><span class="na">hasRole</span><span class="o">(</span><span class="n">philosophy</span><span class="o">);</span>
 </code></pre>
 </div>
 
@@ -599,12 +549,8 @@ and
 
 <p>A <code class="highlighter-rouge">person</code> can have the role of <code class="highlighter-rouge">philosopher</code> and a <code class="highlighter-rouge">school</code> can have the role of <code class="highlighter-rouge">philosophy</code>:</p>
 
-<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span><span class="k">insert</span> <span class="n">person</span> <span class="n">plays</span><span class="o">-</span><span class="k">role</span> <span class="n">philosopher</span><span class="p">;</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span><span class="k">insert</span> <span class="n">person</span> <span class="n">plays</span><span class="o">-</span><span class="k">role</span> <span class="n">philosopher</span><span class="p">;</span>
 <span class="o">&gt;&gt;&gt;</span><span class="k">insert</span> <span class="n">school</span> <span class="n">plays</span><span class="o">-</span><span class="k">role</span> <span class="n">philosophy</span><span class="p">;</span>
-</code></pre>
-</div>
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">person</span><span class="o">.</span><span class="na">playsRole</span><span class="o">(</span><span class="n">philosopher</span><span class="o">);</span>
-<span class="n">school</span><span class="o">.</span><span class="na">playsRole</span><span class="o">(</span><span class="n">philosophy</span><span class="o">);</span>
 </code></pre>
 </div>
 
@@ -612,27 +558,10 @@ and
 
 <p>Now let’s relate some <code class="highlighter-rouge">philosophers</code> to their <code class="highlighter-rouge">philosophies</code>:</p>
 
-<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span><span class="k">insert</span> <span class="p">(</span><span class="n">philosopher</span> <span class="nv">"Socrates"</span><span class="p">,</span> <span class="n">philosophy</span> <span class="nv">"Platonism"</span><span class="p">)</span> <span class="n">isa</span> <span class="n">practice</span><span class="p">;</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span><span class="k">insert</span> <span class="p">(</span><span class="n">philosopher</span> <span class="nv">"Socrates"</span><span class="p">,</span> <span class="n">philosophy</span> <span class="nv">"Platonism"</span><span class="p">)</span> <span class="n">isa</span> <span class="n">practice</span><span class="p">;</span>
 <span class="o">&gt;&gt;&gt;</span><span class="k">insert</span> <span class="p">(</span><span class="n">philosopher</span> <span class="nv">"Plato"</span><span class="p">,</span> <span class="n">philosophy</span> <span class="nv">"Idealism"</span><span class="p">)</span> <span class="n">isa</span> <span class="n">practice</span><span class="p">;</span>
 <span class="o">&gt;&gt;&gt;</span><span class="k">insert</span> <span class="p">(</span><span class="n">philosopher</span> <span class="nv">"Plato"</span><span class="p">,</span> <span class="n">philosophy</span> <span class="nv">"Platonism"</span><span class="p">)</span> <span class="n">isa</span> <span class="n">practice</span><span class="p">;</span>
 <span class="o">&gt;&gt;&gt;</span><span class="k">insert</span> <span class="p">(</span><span class="n">philosopher</span> <span class="nv">"Aristotle"</span><span class="p">,</span> <span class="n">philosophy</span> <span class="nv">"Peripateticism"</span><span class="p">)</span> <span class="n">isa</span> <span class="n">practice</span><span class="p">;</span>
-</code></pre>
-</div>
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">putRelation</span><span class="o">(</span><span class="n">practice</span><span class="o">).</span>
-  <span class="n">putRolePlayer</span><span class="o">(</span><span class="n">philosopher</span><span class="o">,</span> <span class="n">socrates</span><span class="o">).</span>
-  <span class="n">putRolePlayer</span><span class="o">(</span><span class="n">philosophy</span><span class="o">,</span> <span class="n">platonisim</span><span class="o">);</span>
-
-<span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">putRelation</span><span class="o">(</span><span class="n">practice</span><span class="o">).</span>
-  <span class="n">putRolePlayer</span><span class="o">(</span><span class="n">philosopher</span><span class="o">,</span> <span class="n">plato</span><span class="o">).</span>
-  <span class="n">putRolePlayer</span><span class="o">(</span><span class="n">philosophy</span><span class="o">,</span> <span class="n">idealism</span><span class="o">);</span>
-
-<span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">putRelation</span><span class="o">(</span><span class="n">practice</span><span class="o">).</span>
-  <span class="n">putRolePlayer</span><span class="o">(</span><span class="n">philosopher</span><span class="o">,</span> <span class="n">plato</span><span class="o">).</span>
-  <span class="n">putRolePlayer</span><span class="o">(</span><span class="n">philosophy</span><span class="o">,</span> <span class="n">platonisim</span><span class="o">);</span>
-
-<span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">putRelation</span><span class="o">(</span><span class="n">practice</span><span class="o">).</span>
-  <span class="n">putRolePlayer</span><span class="o">(</span><span class="n">philosopher</span><span class="o">,</span> <span class="n">aristotle</span><span class="o">).</span>
-  <span class="n">putRolePlayer</span><span class="o">(</span><span class="n">philosophy</span><span class="o">,</span> <span class="n">peripateticism</span><span class="o">);</span>
 </code></pre>
 </div>
 
@@ -642,18 +571,10 @@ and
 
 <p>Now we can query for all our Platonists:</p>
 
-<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span><span class="k">match</span> <span class="p">(</span><span class="n">philosopher</span> <span class="err">$</span><span class="n">phil</span><span class="p">,</span> <span class="nv">"Platonism"</span><span class="p">)</span> <span class="n">isa</span> <span class="n">practice</span><span class="p">;</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span><span class="k">match</span> <span class="p">(</span><span class="n">philosopher</span> <span class="err">$</span><span class="n">phil</span><span class="p">,</span> <span class="nv">"Platonism"</span><span class="p">)</span> <span class="n">isa</span> <span class="n">practice</span><span class="p">;</span>
 
 <span class="err">$</span><span class="n">phil</span> <span class="n">id</span> <span class="nv">"Socrates"</span> <span class="n">isa</span> <span class="n">person</span><span class="p">;</span>
 <span class="err">$</span><span class="n">phil</span> <span class="n">id</span> <span class="nv">"Plato"</span> <span class="n">isa</span> <span class="n">person</span><span class="p">;</span>
-</code></pre>
-</div>
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">platonisim</span><span class="o">.</span><span class="na">relations</span><span class="o">(</span><span class="n">philosophy</span><span class="o">).</span><span class="na">forEach</span><span class="o">(</span><span class="n">relation</span> <span class="o">-&gt;</span> <span class="o">{</span>
-  <span class="n">relation</span><span class="o">.</span><span class="na">rolePlayers</span><span class="o">().</span><span class="na">values</span><span class="o">().</span><span class="na">forEach</span><span class="o">(</span><span class="n">rolePlayer</span> <span class="o">-&gt;</span> <span class="o">{</span>
-    <span class="k">if</span> <span class="o">(!</span><span class="n">rolePlayer</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="n">platonisim</span><span class="o">))</span>
-      <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"    -&gt; "</span> <span class="o">+</span> <span class="n">rolePlayer</span><span class="o">.</span><span class="na">getId</span><span class="o">());</span>
-  <span class="o">});</span>
-<span class="o">});</span> <span class="c1">//Pssssstttt Graql is much better at querying relationships!!</span>
 </code></pre>
 </div>
 
@@ -663,43 +584,21 @@ and
 taught Plato, Plato taught Aristotle and Aristotle even taught Alexander the
 Great!</p>
 
-<p>First, extend our ontology:</p>
+<p>First, extend our schema:</p>
 
-<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span><span class="k">insert</span> <span class="n">education</span> <span class="n">isa</span> <span class="n">relation</span><span class="o">-</span><span class="k">type</span><span class="p">;</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span><span class="k">insert</span> <span class="n">education</span> <span class="n">isa</span> <span class="n">relation</span><span class="o">-</span><span class="k">type</span><span class="p">;</span>
 <span class="o">&gt;&gt;&gt;</span><span class="k">insert</span> <span class="n">teacher</span> <span class="n">isa</span> <span class="k">role</span><span class="o">-</span><span class="k">type</span><span class="p">;</span>
 <span class="o">&gt;&gt;&gt;</span><span class="k">insert</span> <span class="n">student</span> <span class="n">isa</span> <span class="k">role</span><span class="o">-</span><span class="k">type</span><span class="p">;</span>
 <span class="o">&gt;&gt;&gt;</span><span class="k">insert</span> <span class="n">education</span> <span class="n">has</span><span class="o">-</span><span class="k">role</span> <span class="n">teacher</span><span class="p">,</span> <span class="n">has</span><span class="o">-</span><span class="k">role</span> <span class="n">student</span><span class="p">;</span>
 <span class="o">&gt;&gt;&gt;</span><span class="k">insert</span> <span class="n">person</span> <span class="n">plays</span><span class="o">-</span><span class="k">role</span> <span class="n">teacher</span><span class="p">,</span> <span class="n">plays</span><span class="o">-</span><span class="k">role</span> <span class="n">student</span><span class="p">;</span>
 </code></pre>
 </div>
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">RoleType</span> <span class="n">teacher</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">putRoleType</span><span class="o">(</span><span class="s">"teacher"</span><span class="o">);</span>
-<span class="n">RoleType</span> <span class="n">student</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">putRoleType</span><span class="o">(</span><span class="s">"student"</span><span class="o">);</span>
-
-<span class="n">RelationType</span> <span class="n">education</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">putRelationType</span><span class="o">(</span><span class="s">"education"</span><span class="o">).</span>
-  <span class="n">hasRole</span><span class="o">(</span><span class="n">teacher</span><span class="o">).</span><span class="na">hasRole</span><span class="o">(</span><span class="n">student</span><span class="o">);</span>
-
-<span class="n">person</span><span class="o">.</span><span class="na">playsRole</span><span class="o">(</span><span class="n">teacher</span><span class="o">).</span><span class="na">playsRole</span><span class="o">(</span><span class="n">student</span><span class="o">);</span>
-</code></pre>
-</div>
 
 <p>Second, our data:</p>
 
-<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span><span class="k">insert</span> <span class="p">(</span><span class="n">teacher</span> <span class="nv">"Socrates"</span><span class="p">,</span> <span class="n">student</span> <span class="nv">"Plato"</span><span class="p">)</span> <span class="n">isa</span> <span class="n">education</span><span class="p">;</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span><span class="k">insert</span> <span class="p">(</span><span class="n">teacher</span> <span class="nv">"Socrates"</span><span class="p">,</span> <span class="n">student</span> <span class="nv">"Plato"</span><span class="p">)</span> <span class="n">isa</span> <span class="n">education</span><span class="p">;</span>
 <span class="o">&gt;&gt;&gt;</span><span class="k">insert</span> <span class="p">(</span><span class="n">teacher</span> <span class="nv">"Plato"</span><span class="p">,</span> <span class="n">student</span> <span class="nv">"Aristotle"</span><span class="p">)</span> <span class="n">isa</span> <span class="n">education</span><span class="p">;</span>
 <span class="o">&gt;&gt;&gt;</span><span class="k">insert</span> <span class="p">(</span><span class="n">teacher</span> <span class="nv">"Aristotle"</span><span class="p">,</span> <span class="n">student</span> <span class="nv">"Alexander"</span><span class="p">)</span> <span class="n">isa</span> <span class="n">education</span><span class="p">;</span>
-</code></pre>
-</div>
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">putRelation</span><span class="o">(</span><span class="n">education</span><span class="o">).</span>
-  <span class="n">putRolePlayer</span><span class="o">(</span><span class="n">teacher</span><span class="o">,</span> <span class="n">socrates</span><span class="o">).</span>
-  <span class="n">putRolePlayer</span><span class="o">(</span><span class="n">student</span><span class="o">,</span> <span class="n">plato</span><span class="o">);</span>
-
-<span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">putRelation</span><span class="o">(</span><span class="n">education</span><span class="o">).</span>
-  <span class="n">putRolePlayer</span><span class="o">(</span><span class="n">teacher</span><span class="o">,</span> <span class="n">plato</span><span class="o">).</span>
-  <span class="n">putRolePlayer</span><span class="o">(</span><span class="n">student</span><span class="o">,</span> <span class="n">aristotle</span><span class="o">);</span>
-
-<span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">putRelation</span><span class="o">(</span><span class="n">education</span><span class="o">).</span>
-  <span class="n">putRolePlayer</span><span class="o">(</span><span class="n">teacher</span><span class="o">,</span> <span class="n">aristotle</span><span class="o">).</span>
-  <span class="n">putRolePlayer</span><span class="o">(</span><span class="n">student</span><span class="o">,</span> <span class="n">alexander</span><span class="o">);</span>
 </code></pre>
 </div>
 
@@ -710,12 +609,12 @@ Great!</p>
 <p>Some people have special titles and epithets and we want to talk about that.
 So, we’ll create some resource types that can be attached to a person:</p>
 
-<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span><span class="k">insert</span> <span class="n">title</span> <span class="n">isa</span> <span class="n">resource</span><span class="o">-</span><span class="k">type</span><span class="p">,</span> <span class="n">datatype</span> <span class="n">string</span><span class="p">;</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span><span class="k">insert</span> <span class="n">title</span> <span class="n">isa</span> <span class="n">resource</span><span class="o">-</span><span class="k">type</span><span class="p">,</span> <span class="n">datatype</span> <span class="n">string</span><span class="p">;</span>
 <span class="o">&gt;&gt;&gt;</span><span class="k">insert</span> <span class="n">epithet</span> <span class="n">isa</span> <span class="n">resource</span><span class="o">-</span><span class="k">type</span><span class="p">,</span> <span class="n">datatype</span> <span class="n">string</span><span class="p">;</span>
 <span class="o">&gt;&gt;&gt;</span><span class="k">insert</span> <span class="n">person</span> <span class="n">has</span><span class="o">-</span><span class="n">resource</span> <span class="n">title</span><span class="p">,</span> <span class="n">has</span><span class="o">-</span><span class="n">resource</span> <span class="n">epithet</span><span class="p">;</span>
 </code></pre>
 </div>
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">ResourceType</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">title</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">putResourceType</span><span class="o">(</span><span class="s">"title"</span><span class="o">,</span> <span class="n">Data</span><span class="o">.</span><span class="na">STRING</span><span class="o">);</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">ResourceType</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">title</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">putResourceType</span><span class="o">(</span><span class="s">"title"</span><span class="o">,</span> <span class="n">Data</span><span class="o">.</span><span class="na">STRING</span><span class="o">);</span>
 <span class="n">ResourceType</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">epithet</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">putResourceType</span><span class="o">(</span><span class="s">"epithet"</span><span class="o">,</span> <span class="n">Data</span><span class="o">.</span><span class="na">STRING</span><span class="o">);</span>
 
 <span class="n">person</span><span class="o">.</span><span class="na">playsRole</span><span class="o">(</span><span class="n">hasResourceTarget</span><span class="o">);</span>
@@ -726,10 +625,10 @@ So, we’ll create some resource types that can be attached to a person:</p>
 
 <p>Let’s make Alexander “Great”!</p>
 
-<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span><span class="k">insert</span> <span class="nv">"Alexander"</span> <span class="n">has</span> <span class="n">epithet</span> <span class="nv">"The Great"</span><span class="p">;</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span><span class="k">insert</span> <span class="nv">"Alexander"</span> <span class="n">has</span> <span class="n">epithet</span> <span class="nv">"The Great"</span><span class="p">;</span>
 </code></pre>
 </div>
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">Resource</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">theGreat</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">putResource</span><span class="o">(</span><span class="s">"The Great"</span><span class="o">,</span> <span class="n">epithet</span><span class="o">);</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">Resource</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">theGreat</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">putResource</span><span class="o">(</span><span class="s">"The Great"</span><span class="o">,</span> <span class="n">epithet</span><span class="o">);</span>
 
 <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">putRelation</span><span class="o">(</span><span class="n">hasResource</span><span class="o">).</span>
   <span class="n">putRolePlayer</span><span class="o">(</span><span class="n">hasResourceTarget</span><span class="o">,</span> <span class="n">alexander</span><span class="o">).</span>
@@ -743,14 +642,14 @@ So, we’ll create some resource types that can be attached to a person:</p>
 
 <p>Let’s add the rest of Alexander’s titles while we’re at it:</p>
 
-<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span><span class="k">insert</span> <span class="nv">"Alexander"</span> <span class="n">has</span> <span class="n">title</span> <span class="nv">"Hegemon"</span><span class="p">;</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span><span class="k">insert</span> <span class="nv">"Alexander"</span> <span class="n">has</span> <span class="n">title</span> <span class="nv">"Hegemon"</span><span class="p">;</span>
 <span class="o">&gt;&gt;&gt;</span><span class="k">insert</span> <span class="nv">"Alexander"</span> <span class="n">has</span> <span class="n">title</span> <span class="nv">"King of Macedon"</span><span class="p">;</span>
 <span class="o">&gt;&gt;&gt;</span><span class="k">insert</span> <span class="nv">"Alexander"</span> <span class="n">has</span> <span class="n">title</span> <span class="nv">"King of Persia"</span><span class="p">;</span>
 <span class="o">&gt;&gt;&gt;</span><span class="k">insert</span> <span class="nv">"Alexander"</span> <span class="n">has</span> <span class="n">title</span> <span class="nv">"Pharaoh of Egypt"</span><span class="p">;</span>
 <span class="o">&gt;&gt;&gt;</span><span class="k">insert</span> <span class="nv">"Alexander"</span> <span class="n">has</span> <span class="n">title</span> <span class="nv">"Lord of Asia"</span><span class="p">;</span>
 </code></pre>
 </div>
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">Resource</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">hegemon</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">putResource</span><span class="o">(</span><span class="s">"Hegemon"</span><span class="o">,</span> <span class="n">title</span><span class="o">);</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">Resource</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">hegemon</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">putResource</span><span class="o">(</span><span class="s">"Hegemon"</span><span class="o">,</span> <span class="n">title</span><span class="o">);</span>
 <span class="n">Resource</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">kingOfMacedon</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">putResource</span><span class="o">(</span><span class="s">"King of Macedon"</span><span class="o">,</span> <span class="n">title</span><span class="o">);</span>
 <span class="n">Resource</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">shahOfPersia</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">putResource</span><span class="o">(</span><span class="s">"Shah of Persia"</span><span class="o">,</span> <span class="n">title</span><span class="o">);</span>
 <span class="n">Resource</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">pharaohOfEgypt</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">putResource</span><span class="o">(</span><span class="s">"Pharaoh of Egypt"</span><span class="o">,</span> <span class="n">title</span><span class="o">);</span>
@@ -780,7 +679,7 @@ So, we’ll create some resource types that can be attached to a person:</p>
 
 <p>Using Graql, we can query for people, listing their id and titles.</p>
 
-<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span><span class="k">match</span> <span class="err">$</span><span class="n">x</span> <span class="n">isa</span> <span class="n">person</span> <span class="k">select</span> <span class="err">$</span><span class="n">x</span><span class="p">(</span><span class="n">id</span><span class="p">,</span> <span class="n">has</span> <span class="n">title</span><span class="p">)</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span><span class="k">match</span> <span class="err">$</span><span class="n">x</span> <span class="n">isa</span> <span class="n">person</span> <span class="k">select</span> <span class="err">$</span><span class="n">x</span><span class="p">(</span><span class="n">id</span><span class="p">,</span> <span class="n">has</span> <span class="n">title</span><span class="p">)</span>
 
 <span class="err">$</span><span class="n">x</span> <span class="n">id</span> <span class="nv">"Socrates"</span><span class="p">;</span>
 <span class="err">$</span><span class="n">x</span> <span class="n">id</span> <span class="nv">"Plato"</span><span class="p">;</span>
@@ -791,28 +690,25 @@ So, we’ll create some resource types that can be attached to a person:</p>
 
 <p>Wait, who’s the Pharaoh again?</p>
 
-<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span><span class="k">match</span> <span class="err">$</span><span class="n">pharaoh</span> <span class="n">has</span> <span class="n">title</span> <span class="nv">"Pharaoh of Egypt"</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span><span class="k">match</span> <span class="err">$</span><span class="n">pharaoh</span> <span class="n">has</span> <span class="n">title</span> <span class="nv">"Pharaoh of Egypt"</span>
 
 <span class="err">$</span><span class="n">pharaoh</span> <span class="n">id</span> <span class="nv">"Alexander"</span> <span class="n">isa</span> <span class="n">person</span><span class="p">;</span>
 </code></pre>
 </div>
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">pharaohOfEgypt</span><span class="o">.</span><span class="na">ownerInstances</span><span class="o">().</span><span class="na">forEach</span><span class="o">(</span><span class="n">instance</span> <span class="o">-&gt;</span> <span class="o">{</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">pharaohOfEgypt</span><span class="o">.</span><span class="na">ownerInstances</span><span class="o">().</span><span class="na">forEach</span><span class="o">(</span><span class="n">instance</span> <span class="o">-&gt;</span> <span class="o">{</span>
   <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"    -&gt;"</span> <span class="o">+</span> <span class="n">instance</span><span class="o">.</span><span class="na">getId</span><span class="o">());</span>
 <span class="o">});</span> <span class="c1">//Pssssstttt Graql is much better at querying relationships!!</span>
 </code></pre>
 </div>
-
-<p>For the remainder of this tutorial we will exclusively use graql. 
-If you would like to learn more about the java api you can do so <a href="../core-api/overview.html">here</a> or take a look at the <a href="https://github.com/mindmapsdb/sample-projects">sample projects</a>.</p>
 
 <div class="alert alert-success" role="alert"><i class="fa fa-check-square-o"></i> <b>Tip:</b> <strong>Test Yourself</strong> <br /> When querying for an id, value or resource you can use predicates as well as direct values. For example, has epithet contains ‘Great’. See if you can write a query for everyone with a title containing ‘King’. The answer is at the bottom of the page.</div>
 
 <h2 id="relations-as-role-players">Relations as Role Players</h2>
 
 <p>Philosophers know lots of things. We should probably include this in our
-ontology.</p>
+schema.</p>
 
-<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span><span class="k">insert</span> <span class="n">knowledge</span> <span class="n">isa</span> <span class="n">relation</span><span class="o">-</span><span class="k">type</span><span class="p">;</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span><span class="k">insert</span> <span class="n">knowledge</span> <span class="n">isa</span> <span class="n">relation</span><span class="o">-</span><span class="k">type</span><span class="p">;</span>
 <span class="o">&gt;&gt;&gt;</span><span class="k">insert</span> <span class="n">thinker</span> <span class="n">isa</span> <span class="k">role</span><span class="o">-</span><span class="k">type</span><span class="p">;</span>
 <span class="o">&gt;&gt;&gt;</span><span class="k">insert</span> <span class="n">thought</span> <span class="n">isa</span> <span class="k">role</span><span class="o">-</span><span class="k">type</span><span class="p">;</span>
 <span class="o">&gt;&gt;&gt;</span><span class="k">insert</span> <span class="n">knowledge</span> <span class="n">has</span><span class="o">-</span><span class="k">role</span> <span class="n">thinker</span><span class="p">,</span> <span class="n">has</span><span class="o">-</span><span class="k">role</span> <span class="n">thought</span><span class="p">;</span>
@@ -823,7 +719,7 @@ ontology.</p>
 
 <p>Aristotle knew some astronomy, Plato knew a lot about caves and Socrates didn’t really know anything at all.</p>
 
-<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span><span class="k">insert</span> <span class="nv">"sun-fact"</span> <span class="n">isa</span> <span class="n">fact</span><span class="p">,</span> <span class="n">value</span> <span class="nv">"The Sun is bigger than the Earth"</span><span class="p">;</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span><span class="k">insert</span> <span class="nv">"sun-fact"</span> <span class="n">isa</span> <span class="n">fact</span><span class="p">,</span> <span class="n">value</span> <span class="nv">"The Sun is bigger than the Earth"</span><span class="p">;</span>
 <span class="o">&gt;&gt;&gt;</span><span class="k">insert</span> <span class="p">(</span><span class="n">thinker</span> <span class="nv">"Aristotle"</span><span class="p">,</span> <span class="n">thought</span> <span class="nv">"sun-fact"</span><span class="p">)</span> <span class="n">isa</span> <span class="n">knowledge</span><span class="p">;</span>
 <span class="o">&gt;&gt;&gt;</span><span class="k">insert</span> <span class="nv">"cave-fact"</span> <span class="n">isa</span> <span class="n">fact</span><span class="p">,</span> <span class="n">value</span> <span class="nv">"Caves are mostly pretty dark"</span><span class="p">;</span>
 <span class="o">&gt;&gt;&gt;</span><span class="k">insert</span> <span class="p">(</span><span class="n">thinker</span> <span class="nv">"Plato"</span><span class="p">,</span> <span class="n">thought</span> <span class="nv">"cave-fact"</span><span class="p">)</span> <span class="n">isa</span> <span class="n">knowledge</span><span class="p">;</span>
@@ -839,13 +735,13 @@ ontology.</p>
 
 <p>First, we have to state that someone can think about their own knowledge:</p>
 
-<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span><span class="k">insert</span> <span class="n">knowledge</span> <span class="n">plays</span><span class="o">-</span><span class="k">role</span> <span class="n">thought</span><span class="p">;</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span><span class="k">insert</span> <span class="n">knowledge</span> <span class="n">plays</span><span class="o">-</span><span class="k">role</span> <span class="n">thought</span><span class="p">;</span>
 </code></pre>
 </div>
 
 <p>We can now give Socrates one final piece of knowledge:</p>
 
-<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span><span class="k">match</span> <span class="err">$</span><span class="n">socratesKnowsNothing</span> <span class="p">(</span><span class="nv">"Socrates"</span><span class="p">,</span> <span class="nv">"nothing"</span><span class="p">)</span> <span class="k">insert</span> <span class="p">(</span><span class="n">thinker</span> <span class="nv">"Socrates"</span><span class="p">,</span> <span class="n">thought</span> <span class="err">$</span><span class="n">socratesKnowsNothing</span><span class="p">)</span> <span class="n">isa</span> <span class="n">knowledge</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span><span class="k">match</span> <span class="err">$</span><span class="n">socratesKnowsNothing</span> <span class="p">(</span><span class="nv">"Socrates"</span><span class="p">,</span> <span class="nv">"nothing"</span><span class="p">)</span> <span class="k">insert</span> <span class="p">(</span><span class="n">thinker</span> <span class="nv">"Socrates"</span><span class="p">,</span> <span class="n">thought</span> <span class="err">$</span><span class="n">socratesKnowsNothing</span><span class="p">)</span> <span class="n">isa</span> <span class="n">knowledge</span>
 </code></pre>
 </div>
 
@@ -855,7 +751,7 @@ player.</p>
 
 <p>Finally, we’ll check out everything Socrates knows:</p>
 
-<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span><span class="k">match</span> <span class="p">(</span><span class="nv">"Socrates"</span><span class="p">,</span> <span class="err">$</span><span class="n">x</span><span class="p">)</span> <span class="n">isa</span> <span class="n">knowledge</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span><span class="k">match</span> <span class="p">(</span><span class="nv">"Socrates"</span><span class="p">,</span> <span class="err">$</span><span class="n">x</span><span class="p">)</span> <span class="n">isa</span> <span class="n">knowledge</span>
 
 <span class="err">$</span><span class="n">x</span> <span class="n">id</span> <span class="nv">"nothing"</span> <span class="n">isa</span> <span class="n">fact</span><span class="p">;</span>
 <span class="err">$</span><span class="n">x</span> <span class="n">id</span> <span class="nv">"knowledge-e387d27c-4f5e-11e6-beb8-9e71128cae77"</span> <span class="n">isa</span> <span class="n">knowledge</span><span class="p">;</span>
@@ -870,14 +766,14 @@ player.</p>
 <p>We asked you to write a query to see who taught Aristotle. <br />
 Graql answers:</p>
 
-<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">match</span> <span class="p">(</span><span class="n">teacher</span> <span class="err">$</span><span class="n">teach</span><span class="p">,</span> <span class="err">$</span><span class="n">student</span> <span class="n">Aristotle</span><span class="p">)</span> <span class="n">isa</span> <span class="n">education</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">match</span> <span class="p">(</span><span class="n">teacher</span> <span class="err">$</span><span class="n">teach</span><span class="p">,</span> <span class="err">$</span><span class="n">student</span> <span class="n">Aristotle</span><span class="p">)</span> <span class="n">isa</span> <span class="n">education</span>
 </code></pre>
 </div>
 
 <p>We asked you to write a query for everyone with a title containing “King”. <br />
 Answer:</p>
 
-<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">match</span> <span class="err">$</span><span class="n">king</span> <span class="n">has</span> <span class="n">title</span> <span class="k">contains</span> <span class="nv">"King"</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">match</span> <span class="err">$</span><span class="n">king</span> <span class="n">has</span> <span class="n">title</span> <span class="k">contains</span> <span class="nv">"King"</span>
 </code></pre>
 </div>
 
@@ -896,6 +792,7 @@ Answer:</p>
     </tr>
 
 </table>
+<p>MindmapsDB</p>
 
 
     <div class="tags">
@@ -909,10 +806,6 @@ Answer:</p>
         
         
         <a href="/pages/tag_graql.html" class="btn btn-default navbar-btn cursorNorm" role="button">graql</a>
-        
-        
-        
-        <a href="/pages/tag_java.html" class="btn btn-default navbar-btn cursorNorm" role="button">java</a>
         
         
         
@@ -943,7 +836,7 @@ Answer:</p>
         <br>
         <p>© 2016 <a href="https://mindmaps.io">Mindmaps Research Ltd</a></p>
         <!-- &copy;2016 MindmapsDB. All rights reserved. <br />
-        <span>Page last updated:</span> August 10, 2016<br/> Site last generated: Sep 14, 2016 <br />
+        <span>Page last updated:</span> August 10, 2016<br/> Site last generated: Sep 15, 2016 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">

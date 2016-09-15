@@ -245,7 +245,7 @@
         
     
     <li>
-        <a href="#">Core API</a>
+        <a href="#">Graph API</a>
         <ul>
             
             
@@ -453,30 +453,81 @@ $('#toc').on('click', 'a', function() {
 
   <p>The Graql shell is contained in the <code class="highlighter-rouge">bin</code> folder.</p>
 
-<p>After starting the Mindmaps server, you can execute the shell without any
+<p>After starting the MindmapsDB server, you can execute the shell without any
 parameters to open a REPL (Read Evaluate Print Loop):</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>bin/graql.sh
-<span class="gp">&gt;&gt;&gt; </span>match <span class="nv">$x</span> id <span class="s2">"Pikachu"</span>;
+<div class="highlighter-rouge"><pre class="highlight"><code>bin/graql.sh
+</code></pre>
+</div>
+
+<p>The user can enter a query and press enter for it to be evaluated:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">&gt;&gt;&gt; </span>match <span class="nv">$x</span> id <span class="s2">"Pikachu"</span>;
 <span class="nv">$x</span> id <span class="s2">"Pikachu"</span> isa pokemon;
 </code></pre>
 </div>
 
-<p>The user can enter a query and press enter for it to be evaluated. <br />
-<code class="highlighter-rouge">match</code>
-queries will return the first hundred results. <br />
-<code class="highlighter-rouge">ask</code> queries will return <code class="highlighter-rouge">true</code> or <code class="highlighter-rouge">false</code>.  <br />
-<code class="highlighter-rouge">insert</code> queries will output the concept IDs they are inserting. <br />
-<code class="highlighter-rouge">delete</code> queries will execute with no output.</p>
+<table>
+  <thead>
+    <tr>
+      <th>Query</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="highlighter-rouge">match</code></td>
+      <td>Returns the first 100 results.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">ask</code></td>
+      <td>Returns <code class="highlighter-rouge">true</code> or <code class="highlighter-rouge">false</code>.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">insert</code></td>
+      <td>Outputs the concept IDs inserted.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">delete</code></td>
+      <td>Executes with no output.</td>
+    </tr>
+  </tbody>
+</table>
 
 <p>The interactive shell commits to the graph only when the user types <code class="highlighter-rouge">commit</code>.</p>
 
-<p>The REPL features several special commands:<br />
- <code class="highlighter-rouge">commit</code> Commits and validates the graph. If validation fails, the graph will not commit. <br />
- <code class="highlighter-rouge">edit</code> Opens the user’s default text editor, specified by the <code class="highlighter-rouge">$EDITOR</code> environment variable. By default set to <code class="highlighter-rouge">vim</code>. When the editor exits, the query is executed in the shell. <br />
-   <code class="highlighter-rouge">load &lt;filename&gt;</code> Executes the given file containing a Graql query. <br />
-   <code class="highlighter-rouge">clear</code> Clears the console window. <br />
-   <code class="highlighter-rouge">license</code> Prints the license</p>
+<p>The REPL features several special commands:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Query</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="highlighter-rouge">commit</code></td>
+      <td>Commits and validates the graph. If validation fails, the graph will not commit.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">edit</code></td>
+      <td>Opens the user’s default text editor, specified by the <code class="highlighter-rouge">$EDITOR</code> environment variable. By default set to <code class="highlighter-rouge">vim</code>. When the editor exits, the query is executed in the shell.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">load &lt;filename&gt;</code></td>
+      <td>Executes the given file containing a Graql query.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">clear</code></td>
+      <td>Clears the console window.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">license</code></td>
+      <td>Prints the license</td>
+    </tr>
+  </tbody>
+</table>
 
 <h2 id="arguments">Arguments</h2>
 
@@ -492,28 +543,28 @@ queries will return the first hundred results. <br />
   </thead>
   <tbody>
     <tr>
-      <td>–name</td>
-      <td>-n</td>
+      <td><code class="highlighter-rouge">--name</code></td>
+      <td><code class="highlighter-rouge">-n</code></td>
       <td>The name of the graph.</td>
     </tr>
     <tr>
-      <td>–execute</td>
-      <td>-e</td>
+      <td><code class="highlighter-rouge">--execute</code></td>
+      <td><code class="highlighter-rouge">-e</code></td>
       <td>A query to execute.</td>
     </tr>
     <tr>
-      <td>–file</td>
-      <td>-f</td>
+      <td><code class="highlighter-rouge">--file</code></td>
+      <td><code class="highlighter-rouge">-f</code></td>
       <td>A path to a file containg a query to execute.</td>
     </tr>
     <tr>
-      <td>–help</td>
-      <td>-h</td>
+      <td><code class="highlighter-rouge">--help</code></td>
+      <td><code class="highlighter-rouge">-h</code></td>
       <td>Print usage message</td>
     </tr>
     <tr>
-      <td>–version</td>
-      <td>-v</td>
+      <td><code class="highlighter-rouge">--version</code></td>
+      <td><code class="highlighter-rouge">-v</code></td>
       <td>Print version</td>
     </tr>
   </tbody>
@@ -576,7 +627,7 @@ graph will be automatically committed.</p>
         <br>
         <p>© 2016 <a href="https://mindmaps.io">Mindmaps Research Ltd</a></p>
         <!-- &copy;2016 MindmapsDB. All rights reserved. <br />
-        <span>Page last updated:</span> August 11, 2016<br/> Site last generated: Sep 14, 2016 <br />
+        <span>Page last updated:</span> August 11, 2016<br/> Site last generated: Sep 15, 2016 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">

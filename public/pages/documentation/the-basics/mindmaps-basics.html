@@ -3,9 +3,9 @@
     <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Introducing the basics of the Mindmaps object model.">
+<meta name="description" content="Introducing the basics of the MindmapsDB object model.">
 <meta name="keywords" content="getting-started,  setup, getting started, basics, mindmapsdb, mindmaps, mindmaps.io, Mindmaps Research, Mindmaps Research Ltd, software, development platform, developer tool, data platform, programming langauge, query langauge, database, semantic database, distributed semantic database, distributed database, graph database, semantic search, data exploration, recommendation system, knowledge management, knowledge engineering, real-time analytics, advanced analytics, reasoning engine, inference engine, expert systems, semantic applications, research engines, data management, business intelligence, big data, semantic web, semantic data, knowledge representation, automated reasoning, semantic network, knowledge ontology, semantic graph, ontology engineering, graph based knowledge representation, artificial intelligence,">
-<title>Mindmaps Basics | MindmapsDB</title>
+<title>MindmapsDB Basics | MindmapsDB</title>
 <link rel="stylesheet" href="/pages/css/syntax.css">
 
 
@@ -163,7 +163,7 @@
                             
                             dataSource: '/pages/search.json',
                             
-                            searchResultTemplate: '<li><a href="{url}" title="Mindmaps Basics">{title}</a></li>',
+                            searchResultTemplate: '<li><a href="{url}" title="MindmapsDB Basics">{title}</a></li>',
                             noResultsText: '<li><a class="empty">No results found</a></li>',
                             limit: 10,
                             fuzzy: true
@@ -245,7 +245,7 @@
         
     
     <li>
-        <a href="#">Core API</a>
+        <a href="#">Graph API</a>
         <ul>
             
             
@@ -405,7 +405,7 @@
         <!-- Content Column -->
         <div class="col-md-9">
             <div class="post-header">
-   <h1 class="post-title-main">Mindmaps Basics</h1>
+   <h1 class="post-title-main">MindmapsDB Basics</h1>
 </div>
 
 
@@ -413,7 +413,7 @@
 <div class="post-content">
 
    
-    <div class="summary">Introducing the basics of the Mindmaps object model.</div>
+    <div class="summary">Introducing the basics of the MindmapsDB object model.</div>
    
 
     
@@ -451,40 +451,40 @@ $('#toc').on('click', 'a', function() {
 
     
 
-  <h1 id="mindmaps-basics">Mindmaps Basics</h1>
+  <h1 id="mindmapsdb-basics">MindmapsDB Basics</h1>
 
-<h2 id="ontology-and-data">Ontology and Data</h2>
+<h2 id="schema-and-data">Schema and Data</h2>
 
-<p>A Mindmaps graph is made of two layers: the ontology and the data layer.</p>
+<p>A MindmapsDB graph is made of two layers: the database schema and the data layer.</p>
 
-<p><strong><em>A Mindmaps ontology is analogous to a database schema</em></strong>. Ideally, it should be clearly defined before loading data into the graph. The ontology is used to formalise the data within a specific domain. If data is about healthcare, then we need to design an ontology specific to healthcare. If data is about movies, then we need to define an ontology
-specific to the movie industry.</p>
+<p><strong><em>A MindmapsDB schema should be clearly defined before loading data into the graph.</em></strong> The schema is used to formalise the data within a specific domain. If data is about healthcare, then we need to design a schema specific to healthcare. If data is about movies, then we need to define an schema specific to the movie industry.</p>
 
-<p>Example ontological concepts could include <code class="highlighter-rouge">Car</code>, <code class="highlighter-rouge">Person</code>, <code class="highlighter-rouge">Movie</code>.</p>
+<p>Example schema concepts could include <code class="highlighter-rouge">Car</code>, <code class="highlighter-rouge">Person</code>, <code class="highlighter-rouge">Movie</code>.</p>
 
-<p><strong><em>The data is categorised by the ontology</em></strong>. It is essentially everything
+<p><strong><em>The data is categorised by the schema.</em></strong> It is essentially everything
 we wish to model.</p>
 
 <p>Example data concepts could include <code class="highlighter-rouge">a VW Golf TDI</code>, <code class="highlighter-rouge">Tom Cruise</code>, <code class="highlighter-rouge">Mission: Impossible</code>.</p>
 
-<h2 id="the-object-model---ontology">The Object Model - Ontology</h2>
+<h2 id="the-object-model---schema">The Object Model - Schema</h2>
 
-<p>The Mindmaps stack provides a formal structure to a graph database.  The following figure represents the inheritance structure of the ontological elements. These are used to design our domain specific ontology.</p>
+<p>The MindmapsDB stack provides a formal structure to a graph database.  The following figure represents the inheritance structure of the schema elements. These are used to design our domain specific schema.</p>
 
-<p><img src="/images/ontology_object_model.png" alt="The ontology object model" /></p>
+<p><img src="/images/ontology_object_model.png" alt="The schema object model" /></p>
 
 <h3 id="concept">Concept</h3>
 
 <p>Just as a graph is defined by vertices and the edges between them, a
-Mindmaps graph is defined by concepts and the relationships between those
+MindmapsDB graph is defined by concepts and the relationships between those
 concepts.  Every vertex is a concept and has the following properties:</p>
 
 <h4 id="unique-properties">Unique Properties</h4>
 
 <p>Properties which must be unique throughout the entire graph.</p>
 
-<p><strong>Id</strong> - A concept must, at minimum, have a unique ID. This is a string which identifies the concept. For example if a concept is representing a person it could be their id number. <br />
-<strong>Subject</strong> - An optional unique string which can be used to refer to
+<p><strong>Id</strong> - A concept must, at minimum, have a unique ID. This is a string which identifies the concept. For example if a concept is representing a person it could be their id number.</p>
+
+<p><strong>Subject</strong> - An optional unique string which can be used to refer to
 external resources relating to the concept. For example if the concept is used to represent a country or city the subject could point to the wikipedia page of that city.</p>
 
 <h4 id="additional-properties">Additional Properties</h4>
@@ -495,7 +495,7 @@ external resources relating to the concept. For example if the concept is used t
 
 <h3 id="concept-type">Concept Type</h3>
 
-<p>A Type is an ontological element that represents something that can have instances, and is extended into the following types: <br />
+<p>A Type is a schema element that represents something that can have instances, and is extended into the following types: <br />
 -  Entity Types<br />
 -  Relation Types<br />
 -  Role Types<br />
@@ -507,13 +507,19 @@ external resources relating to the concept. For example if the concept is used t
 
 <h3 id="resource-type">Resource Type</h3>
 
-<p>A Resource Type is used to represent a category of resources. e.g. <code class="highlighter-rouge">birthdate</code> or <code class="highlighter-rouge">name</code>. Resource Types have additional properties including:</p>
+<p>A Resource Type is used to represent a category of resources e.g. <code class="highlighter-rouge">birthdate</code> or <code class="highlighter-rouge">name</code>. Resource Types have additional properties including:</p>
 
 <ol>
-  <li><strong>Datatype</strong> - Indicates the datatype of the resource. For example if the resource is <code class="highlighter-rouge">Age</code> the the datatype would be <strong>integer</strong></li>
-  <li><strong>Regex</strong> - Used to constrain string data types to specific regex patterns.</li>
-  <li><strong>Unique</strong> - A boolean which indicates if the resource should be unique
-across the graph.</li>
+  <li>
+    <p><strong>Datatype</strong> - Indicates the datatype of the resource. For example if the resource is <code class="highlighter-rouge">Age</code> the datatype would be <strong>integer</strong></p>
+  </li>
+  <li>
+    <p><strong>Regex</strong> - Used to constrain string data types to specific regex patterns.</p>
+  </li>
+  <li>
+    <p><strong>Unique</strong> - A boolean which indicates if the resource should be unique
+across the graph.</p>
+  </li>
 </ol>
 
 <h3 id="relation-type">Relation Type</h3>
@@ -521,7 +527,7 @@ across the graph.</li>
 <p>A Relation Type is used to model relationships. For example, to model that <code class="highlighter-rouge">Tom Cruise</code> is an <code class="highlighter-rouge">Actor</code> in <code class="highlighter-rouge">Mission: Impossible</code> we need to use a Relation Type such as <code class="highlighter-rouge">Has Cast</code>. This allows us to model that
 <code class="highlighter-rouge">Mission: Impossible</code> <code class="highlighter-rouge">Has Cast</code> <code class="highlighter-rouge">Tom Cruise</code>.</p>
 
-<p>A Mindmaps graph enables us to model complex n-ary relationships. To do this we define a Relation Type and link it with roles which flesh out the details of the relationship. For example, in the movie domain a valid Relation Type could be <code class="highlighter-rouge">Cast</code> which has the Role Types <code class="highlighter-rouge">Actor</code> and <code class="highlighter-rouge">Movie With Cast</code>.</p>
+<p>A MindmapsDB graph enables us to model complex n-ary relationships. To do this we define a Relation Type and link it with roles which flesh out the details of the relationship. For example, in the movie domain a valid Relation Type could be <code class="highlighter-rouge">Cast</code> which has the Role Types <code class="highlighter-rouge">Actor</code> and <code class="highlighter-rouge">Movie With Cast</code>.</p>
 
 <h3 id="role-type">Role Type</h3>
 
@@ -532,16 +538,17 @@ define that an Instance of Concept Type <code class="highlighter-rouge">Dog</cod
 
 <h3 id="subclasses">Subclasses</h3>
 
-<p>The four types described above can be subclassed. For example, subclasses of <code class="highlighter-rouge">Person</code> could be <code class="highlighter-rouge">Man</code> and <code class="highlighter-rouge">Woman</code>.  This simple subclassing allows us to expand and deepen our ontology to whatever granularity of detail is needed.</p>
+<p>The four types described above can be subclassed. For example, subclasses of <code class="highlighter-rouge">Person</code> could be <code class="highlighter-rouge">Man</code> and <code class="highlighter-rouge">Woman</code>.  This simple subclassing allows us to expand and deepen our schema to whatever granularity of detail is needed.</p>
 
-<div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> <b>Note:</b> In a Mindmaps graph, we use the shorthand <code class="highlighter-rouge">isa</code> when representing the type relationship. <br /> 
-For example, <code class="highlighter-rouge">Aristotle</code> (<em>data entity</em>) <code class="highlighter-rouge">is a</code> <code class="highlighter-rouge">Man</code> (<em>ontology entity type</em>).   <br />
-We use the shorthand <code class="highlighter-rouge">ako</code> when referring to a type being the sub type of another Type. <br />
-For example, <code class="highlighter-rouge">Man</code> (<em>entity type</em>) <code class="highlighter-rouge">a kind of (ako)</code> <code class="highlighter-rouge">Person</code> (<em>ontology entity type</em>).</div>
+<div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> <b>Note:</b> In a MindmapsDB graph, we use the shorthand <code class="highlighter-rouge">isa</code> when representing the type relationship. <br /> 
+For example, <code class="highlighter-rouge">Aristotle</code> (<em>data entity</em>) <code class="highlighter-rouge">isa </code> <code class="highlighter-rouge">Man</code> (<em>schema entity type</em>).   <br /><br />
 
-<p>For example a simple ontology would be <code class="highlighter-rouge">Car</code> <code class="highlighter-rouge">is a</code> <code class="highlighter-rouge">Vehicle</code> but with subclassing we could go as far as <code class="highlighter-rouge">a VW Gold TDI 2014</code> <code class="highlighter-rouge">isa</code> <code class="highlighter-rouge">VW</code> <code class="highlighter-rouge">ako</code> <code class="highlighter-rouge">Car</code> <code class="highlighter-rouge">isa</code> <code class="highlighter-rouge">Vehicle</code>.</p>
+We use the shorthand <code class="highlighter-rouge">ako ('a kind of')</code> when referring to a type being the sub type of another Type. <br />
+For example, <code class="highlighter-rouge">Man</code> (<em>entity type</em>) <code class="highlighter-rouge">ako</code> <code class="highlighter-rouge">Person</code> (<em>schema entity type</em>).</div>
 
-<p>Types can have an additional property, <code class="highlighter-rouge">Abstract</code>, which indicates the type cannot have instances. This is useful when we want to define a deeper ontology. For example if we have <code class="highlighter-rouge">Person</code> and its subclasses <code class="highlighter-rouge">Man</code> and <code class="highlighter-rouge">Woman</code>, then we may want to define <code class="highlighter-rouge">Person</code> as <code class="highlighter-rouge">Abstract</code> to prohibit it from having any direct instances.</p>
+<p>For example a simple schema would be <code class="highlighter-rouge">Car</code> <code class="highlighter-rouge">isa</code> <code class="highlighter-rouge">Vehicle</code> but with subclassing we could go as far as <code class="highlighter-rouge">a VW Gold TDI 2014</code> <code class="highlighter-rouge">isa </code> <code class="highlighter-rouge">VW</code> <code class="highlighter-rouge">ako</code> <code class="highlighter-rouge">Car</code> <code class="highlighter-rouge">isa</code> <code class="highlighter-rouge">Vehicle</code>.</p>
+
+<p>Types can have an additional property, <code class="highlighter-rouge">Abstract</code>, which indicates the type cannot have instances. This is useful when we want to define a deeper schema. For example if we have <code class="highlighter-rouge">Person</code> and its subclasses <code class="highlighter-rouge">Man</code> and <code class="highlighter-rouge">Woman</code>, then we may want to define <code class="highlighter-rouge">Person</code> as <code class="highlighter-rouge">Abstract</code> to prohibit it from having any direct instances.</p>
 
 <h2 id="the-object-model---data">The Object Model - Data</h2>
 <p>The following figure represents the inheritance structure of the data elements.</p>
@@ -554,7 +561,7 @@ For example, <code class="highlighter-rouge">Man</code> (<em>entity type</em>) <
 
 <h3 id="entity">Entity</h3>
 
-<p>An instance of the Entity Type (which is known as an Entity)  represents an actual item of data. For example, Entity Type <code class="highlighter-rouge">Car</code> could have Entities <code class="highlighter-rouge">a BMW</code>, <code class="highlighter-rouge">this Mercedes</code>, and <code class="highlighter-rouge">that Volkswagen</code>. The Mindmaps graph enables us to model relationships between these entities, once they have been defined.</p>
+<p>An instance of the Entity Type (which is known as an Entity)  represents an actual item of data. For example, Entity Type <code class="highlighter-rouge">Car</code> could have Entities <code class="highlighter-rouge">a BMW</code>, <code class="highlighter-rouge">this Mercedes</code>, and <code class="highlighter-rouge">that Volkswagen</code>. The MindmapsDB graph enables us to model relationships between these entities, once they have been defined.</p>
 
 <h3 id="resource">Resource</h3>
 
@@ -602,7 +609,7 @@ instance of
 <!-- Removed a section on the meta ontology. We could create a separate article about this later if we think it's useful -->
 
 <h2 id="where-next">Where next?</h2>
-<p>Our <a href="../the-basics/quickstart-tutorial.html">Quickstart Tutorial</a> will show you how to load an ontology and data into a Mindmaps Graph using Graql or Java.</p>
+<p>Our <a href="../the-basics/quickstart-tutorial.html">Quickstart Tutorial</a> will show you how to load a schema and data into a MindmapsDB Graph using Graql.</p>
 
 <p>You can find additional example code and documentation on this portal. We are always adding more and welcome ideas and improvement suggestions. Please get in touch!</p>
 
@@ -660,7 +667,7 @@ instance of
         <br>
         <p>© 2016 <a href="https://mindmaps.io">Mindmaps Research Ltd</a></p>
         <!-- &copy;2016 MindmapsDB. All rights reserved. <br />
-        <span>Page last updated:</span> August 24, 2016<br/> Site last generated: Sep 14, 2016 <br />
+        <span>Page last updated:</span> August 24, 2016<br/> Site last generated: Sep 15, 2016 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">
