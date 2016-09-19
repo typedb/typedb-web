@@ -226,6 +226,17 @@
 
 
 {
+"title": "Test your Graql",
+"tags": "graql",
+"keywords": "graql, query",
+"url": "documentationexamplesmodern.html",
+"summary": "A short example to illustrate Graql queries"
+}
+,
+
+
+
+{
 "title": "Scroll layout",
 "tags": "special_layouts",
 "keywords": "json, scrolling, scrollto, jquery plugin",
