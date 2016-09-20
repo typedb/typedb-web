@@ -269,13 +269,6 @@
             
             
             
-            
-            
-            <li><a href="//mindmaps.io/javadocs.html" target="_blank">API Reference</a></li>
-            
-            
-            
-            
         </ul>
         
         
@@ -340,9 +333,17 @@
             
             
             
+        </ul>
+        
+        
+    
+    <li>
+        <a href="#">API Reference</a>
+        <ul>
             
             
-            <li><a href="//mindmaps.io/javadocs.html" target="_blank">API Reference</a></li>
+            
+            <li><a href="/pages/documentation/api-reference/api-reference.html">API Reference</a></li>
             
             
             
@@ -486,7 +487,7 @@ $('#toc').on('click', 'a', function() {
 
 <p>Here, we add person and software entity types:</p>
 
-<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">insert</span> <span class="n">person</span> <span class="n">isa</span> <span class="n">entity</span><span class="o">-</span><span class="k">type</span><span class="p">;</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">insert</span> <span class="n">person</span> <span class="n">isa</span> <span class="n">entity</span><span class="o">-</span><span class="k">type</span><span class="p">;</span>
 <span class="k">insert</span> <span class="n">software</span> <span class="n">isa</span> <span class="n">entity</span><span class="o">-</span><span class="k">type</span><span class="p">;</span>
 </code></pre>
 </div>
@@ -495,7 +496,7 @@ $('#toc').on('click', 'a', function() {
 
 <p>To assign resources, which you can think of as attributes, to the entities, we use resource types. First, we define what they are (age is a number, programming language is a string, which represents the language’s name), then we allocate them to the entity in question:</p>
 
-<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">insert</span> <span class="n">age</span> <span class="n">isa</span> <span class="n">resource</span><span class="o">-</span><span class="k">type</span><span class="p">,</span> <span class="n">datatype</span> <span class="n">long</span><span class="p">;</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">insert</span> <span class="n">age</span> <span class="n">isa</span> <span class="n">resource</span><span class="o">-</span><span class="k">type</span><span class="p">,</span> <span class="n">datatype</span> <span class="n">long</span><span class="p">;</span>
 <span class="k">insert</span> <span class="n">person</span> <span class="n">has</span><span class="o">-</span><span class="n">resource</span> <span class="n">age</span><span class="p">;</span>
 
 <span class="k">insert</span> <span class="n">lang</span> <span class="n">isa</span> <span class="n">resource</span><span class="o">-</span><span class="k">type</span><span class="p">,</span> <span class="n">datatype</span> <span class="n">string</span><span class="p">;</span>
@@ -507,7 +508,7 @@ $('#toc').on('click', 'a', function() {
 
 <p>Let’s first define the relationship between people. The diagram shows that marko knows vadas, but we don’t have any information about whether the inverse is true (though it seems likely that vadas probably also knows marko). Let’s set up a relationship called <code class="highlighter-rouge">knows</code>, which has two role-types (<code class="highlighter-rouge">knower</code> (for marko) and <code class="highlighter-rouge">known-about</code> (for vadas):</p>
 
-<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">insert</span> <span class="n">knows</span> <span class="n">isa</span> <span class="n">relation</span><span class="o">-</span><span class="k">type</span><span class="p">;</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">insert</span> <span class="n">knows</span> <span class="n">isa</span> <span class="n">relation</span><span class="o">-</span><span class="k">type</span><span class="p">;</span>
 <span class="k">insert</span> <span class="n">knower</span> <span class="n">isa</span> <span class="k">role</span><span class="o">-</span><span class="k">type</span><span class="p">;</span>
 <span class="k">insert</span> <span class="n">known</span><span class="o">-</span><span class="n">about</span> <span class="n">isa</span> <span class="k">role</span><span class="o">-</span><span class="k">type</span>
 <span class="k">insert</span> <span class="n">knows</span> <span class="n">has</span><span class="o">-</span><span class="k">role</span> <span class="n">knower</span><span class="p">,</span> <span class="n">has</span><span class="o">-</span><span class="k">role</span> <span class="n">known</span><span class="o">-</span><span class="n">about</span><span class="p">;</span>
@@ -518,7 +519,7 @@ $('#toc').on('click', 'a', function() {
 
 <p>We can set up a similar relationship between software and the people that created it:</p>
 
-<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">insert</span> <span class="n">programming</span> <span class="n">isa</span> <span class="n">relation</span><span class="o">-</span><span class="k">type</span><span class="p">;</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">insert</span> <span class="n">programming</span> <span class="n">isa</span> <span class="n">relation</span><span class="o">-</span><span class="k">type</span><span class="p">;</span>
 <span class="k">insert</span> <span class="n">programmer</span> <span class="n">isa</span> <span class="k">role</span><span class="o">-</span><span class="k">type</span><span class="p">;</span>
 <span class="k">insert</span> <span class="n">programmed</span> <span class="n">isa</span> <span class="k">role</span><span class="o">-</span><span class="k">type</span><span class="p">;</span>
 <span class="k">insert</span> <span class="n">programming</span> <span class="n">has</span><span class="o">-</span><span class="k">role</span> <span class="n">programmer</span><span class="p">,</span> <span class="n">has</span><span class="o">-</span><span class="k">role</span> <span class="n">programmed</span><span class="p">;</span>
@@ -532,7 +533,7 @@ $('#toc').on('click', 'a', function() {
 <h2 id="adding-the-data">Adding the Data</h2>
 <p>Now we have a schema, we can move on to adding in the data, which is pretty much just a typing exercise:</p>
 
-<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">insert</span> <span class="nv">"marko"</span> <span class="n">isa</span> <span class="n">person</span><span class="p">;</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">insert</span> <span class="nv">"marko"</span> <span class="n">isa</span> <span class="n">person</span><span class="p">;</span>
 <span class="k">insert</span> <span class="nv">"vadas"</span> <span class="n">isa</span> <span class="n">person</span><span class="p">;</span>
 <span class="k">insert</span> <span class="nv">"josh"</span> <span class="n">isa</span> <span class="n">person</span><span class="p">;</span>
 <span class="k">insert</span> <span class="nv">"peter"</span> <span class="n">isa</span> <span class="n">person</span><span class="p">;</span>
@@ -545,7 +546,7 @@ $('#toc').on('click', 'a', function() {
 </code></pre>
 </div>
 
-<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">insert</span> <span class="nv">"lop"</span> <span class="n">isa</span> <span class="n">software</span><span class="p">;</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">insert</span> <span class="nv">"lop"</span> <span class="n">isa</span> <span class="n">software</span><span class="p">;</span>
 <span class="k">insert</span> <span class="nv">"ripple"</span> <span class="n">isa</span> <span class="n">software</span><span class="p">;</span>
 <span class="k">insert</span> <span class="nv">"lop"</span> <span class="n">has</span> <span class="n">lang</span> <span class="nv">"java"</span><span class="p">;</span>
 <span class="k">insert</span> <span class="nv">"ripple"</span> <span class="n">has</span> <span class="n">lang</span> <span class="nv">"java"</span><span class="p">;</span>
@@ -558,13 +559,13 @@ $('#toc').on('click', 'a', function() {
 
 <h2 id="querying">Querying</h2>
 
-<p>This example is designed to make you get up close and personal with Graql queries. It will run through a few basic examples, then ask you a set of “Test Yourself” questions. The answers are available at the end of the page, but please don’t look at them immediately! The best way to find out how much you understand about using Graql is to challenge yourself to work out the Graql query without a prompt.</p>
+<p>This example is designed to make you get up close and personal with Graql queries. It will run through a few basic examples, then ask you a set of “Test Yourself” questions. The answers are available at the end of the page, but please don’t look at them immediately! The best way to find out how much you understand about using Graql is to challenge yourself to work out the queries without a prompt.</p>
 
 <p>OK, so if you’ve followed the above, you should now have a schema and some data in a graph. How do you go about using the graph to answer your queries? That’s where the <code class="highlighter-rouge">match</code> statement comes in.</p>
 
 <p>As with any query language, you use a variable to receive the results of the match query, which you must prefix with a <code class="highlighter-rouge">$</code>. So, to make the query “List every person in the graph”, you would use the following in Graql:</p>
 
-<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">match</span> <span class="err">$</span><span class="n">x</span> <span class="n">isa</span> <span class="n">person</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">match</span> <span class="err">$</span><span class="n">x</span> <span class="n">isa</span> <span class="n">person</span>
 
 <span class="err">$</span><span class="n">x</span> <span class="n">id</span> <span class="nv">"marko"</span> <span class="n">isa</span> <span class="n">person</span><span class="p">;</span> 
 <span class="err">$</span><span class="n">x</span> <span class="n">id</span> <span class="nv">"vadas"</span> <span class="n">isa</span> <span class="n">person</span><span class="p">;</span> 
@@ -575,14 +576,20 @@ $('#toc').on('click', 'a', function() {
 
 <p>In Graql, a match is formed of three parts: the <code class="highlighter-rouge">match</code> statement, an optional <code class="highlighter-rouge">select</code> statement, and any optional <a href="../graql/match-queries.html#modifiers">modifiers</a> that you choose to apply to the listing of results. Only the first part of a match query is actually needed: the select and modifier parts are optional.   In the above query we are not using any select or delimiters, so let’s show how to add them now.</p>
 
-<p>In the query below, we add a <code class="highlighter-rouge">select</code> statement to ask Graql to list out every person and to include their names and ages. We use <code class="highlighter-rouge">order by</code> to modify how the results are listed out - in this case, we order them by ascending age, so the youngest person is shown first.</p>
+<p>In the query below, we add a <code class="highlighter-rouge">select</code> statement to ask Graql to list out every person and to include their id (which is their name) and age. We use <code class="highlighter-rouge">order by</code> to modify how the results are listed out - in this case, we order them by ascending age, so the youngest person is shown first.</p>
 
-<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">match</span> <span class="err">$</span><span class="n">x</span> <span class="n">isa</span> <span class="n">person</span> <span class="k">select</span> <span class="err">$</span><span class="n">x</span><span class="p">(</span><span class="n">id</span><span class="p">,</span> <span class="n">has</span> <span class="n">age</span><span class="p">)</span> <span class="k">order</span> <span class="k">by</span> <span class="err">$</span><span class="n">x</span><span class="p">(</span><span class="n">has</span> <span class="n">age</span><span class="p">)</span> <span class="k">asc</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">match</span> <span class="err">$</span><span class="n">x</span> <span class="n">isa</span> <span class="n">person</span> <span class="k">select</span> <span class="err">$</span><span class="n">x</span><span class="p">(</span><span class="n">id</span><span class="p">,</span> <span class="n">has</span> <span class="n">age</span><span class="p">)</span> <span class="k">order</span> <span class="k">by</span> <span class="err">$</span><span class="n">x</span><span class="p">(</span><span class="n">has</span> <span class="n">age</span><span class="p">)</span> <span class="k">asc</span>
 
 <span class="err">$</span><span class="n">x</span> <span class="n">id</span> <span class="nv">"vadas"</span> <span class="n">has</span> <span class="n">age</span> <span class="nv">"27"</span><span class="p">;</span> 
 <span class="err">$</span><span class="n">x</span> <span class="n">id</span> <span class="nv">"marko"</span> <span class="n">has</span> <span class="n">age</span> <span class="nv">"29"</span><span class="p">;</span> 
 <span class="err">$</span><span class="n">x</span> <span class="n">id</span> <span class="nv">"josh"</span> <span class="n">has</span> <span class="n">age</span> <span class="nv">"32"</span><span class="p">;</span> 
 <span class="err">$</span><span class="n">x</span> <span class="n">id</span> <span class="nv">"peter"</span> <span class="n">has</span> <span class="n">age</span> <span class="nv">"35"</span><span class="p">;</span>
+</code></pre>
+</div>
+
+<p>Now let’s look at querying for a relationship. We can query to find out which entities have a particular role-type associated with a relation-type. For example, we can match everyone with a <code class="highlighter-rouge">knower</code> role who knows someone else:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">match</span> <span class="p">(</span><span class="n">knower</span> <span class="err">$</span><span class="n">x</span><span class="p">)</span> <span class="n">isa</span> <span class="n">knows</span><span class="p">;</span> 
 </code></pre>
 </div>
 
@@ -621,7 +628,7 @@ $('#toc').on('click', 'a', function() {
 <h2 id="complete-example">Complete Example</h2>
 <p>Here is the complete example - the code to define the Schema and insert the data into a graph, followed by the queries for the Test Yourself section.</p>
 
-<div class="language-sql highlighter-rouge"><pre class="highlight"><code>
+<div class="highlighter-rouge"><pre class="highlight"><code>
 <span class="k">insert</span> <span class="n">age</span> <span class="n">isa</span> <span class="n">resource</span><span class="o">-</span><span class="k">type</span><span class="p">,</span> <span class="n">datatype</span> <span class="n">long</span><span class="p">;</span>
 <span class="k">insert</span> <span class="n">person</span> <span class="n">isa</span> <span class="n">entity</span><span class="o">-</span><span class="k">type</span><span class="p">;</span>
 <span class="k">insert</span> <span class="n">person</span> <span class="n">has</span><span class="o">-</span><span class="n">resource</span> <span class="n">age</span><span class="p">;</span>
@@ -679,7 +686,7 @@ $('#toc').on('click', 'a', function() {
   <li>List every person with their name and age in ascending age order</li>
 </ol>
 
-<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">match</span> <span class="err">$</span><span class="n">x</span> <span class="n">isa</span> <span class="n">person</span> <span class="k">select</span> <span class="err">$</span><span class="n">x</span><span class="p">(</span><span class="n">id</span><span class="p">,</span> <span class="n">has</span> <span class="n">age</span><span class="p">)</span> <span class="k">order</span> <span class="k">by</span> <span class="err">$</span><span class="n">x</span><span class="p">(</span><span class="n">has</span> <span class="n">age</span><span class="p">)</span> <span class="k">asc</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">match</span> <span class="err">$</span><span class="n">x</span> <span class="n">isa</span> <span class="n">person</span> <span class="k">select</span> <span class="err">$</span><span class="n">x</span><span class="p">(</span><span class="n">id</span><span class="p">,</span> <span class="n">has</span> <span class="n">age</span><span class="p">)</span> <span class="k">order</span> <span class="k">by</span> <span class="err">$</span><span class="n">x</span><span class="p">(</span><span class="n">has</span> <span class="n">age</span><span class="p">)</span> <span class="k">asc</span>
 </code></pre>
 </div>
 
@@ -687,7 +694,7 @@ $('#toc').on('click', 'a', function() {
   <li>List every person who has an age over 30, showing their name and age</li>
 </ol>
 
-<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">match</span> <span class="err">$</span><span class="n">x</span> <span class="n">isa</span> <span class="n">person</span><span class="p">,</span> <span class="n">has</span> <span class="n">age</span> <span class="o">&gt;</span> <span class="mi">30</span><span class="p">,</span> <span class="k">select</span> <span class="err">$</span><span class="n">x</span><span class="p">(</span><span class="n">id</span><span class="p">,</span> <span class="n">has</span> <span class="n">age</span><span class="p">)</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">match</span> <span class="err">$</span><span class="n">x</span> <span class="n">isa</span> <span class="n">person</span><span class="p">,</span> <span class="n">has</span> <span class="n">age</span> <span class="o">&gt;</span> <span class="mi">30</span><span class="p">,</span> <span class="k">select</span> <span class="err">$</span><span class="n">x</span><span class="p">(</span><span class="n">id</span><span class="p">,</span> <span class="n">has</span> <span class="n">age</span><span class="p">)</span>
 </code></pre>
 </div>
 
@@ -695,7 +702,7 @@ $('#toc').on('click', 'a', function() {
   <li>List every person who knows someone else, and every person who is known about</li>
 </ol>
 
-<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">match</span> <span class="p">(</span><span class="n">knower</span> <span class="err">$</span><span class="n">x</span><span class="p">)</span> <span class="n">isa</span> <span class="n">knows</span><span class="p">;</span> 
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">match</span> <span class="p">(</span><span class="n">knower</span> <span class="err">$</span><span class="n">x</span><span class="p">)</span> <span class="n">isa</span> <span class="n">knows</span><span class="p">;</span> 
 <span class="k">match</span> <span class="p">(</span><span class="n">known</span><span class="o">-</span><span class="n">about</span> <span class="err">$</span><span class="n">x</span><span class="p">)</span> <span class="n">isa</span> <span class="n">knows</span><span class="p">;</span>
 </code></pre>
 </div>
@@ -704,7 +711,7 @@ $('#toc').on('click', 'a', function() {
   <li>List every person that Marko knows</li>
 </ol>
 
-<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">match</span> <span class="p">(</span><span class="n">known</span><span class="o">-</span><span class="n">about</span> <span class="err">$</span><span class="n">x</span><span class="p">,</span> <span class="nv">"marko"</span><span class="p">)</span> <span class="n">isa</span> <span class="n">knows</span><span class="p">;</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">match</span> <span class="p">(</span><span class="n">known</span><span class="o">-</span><span class="n">about</span> <span class="err">$</span><span class="n">x</span><span class="p">,</span> <span class="nv">"marko"</span><span class="p">)</span> <span class="n">isa</span> <span class="n">knows</span><span class="p">;</span>
 </code></pre>
 </div>
 
@@ -712,7 +719,7 @@ $('#toc').on('click', 'a', function() {
   <li>List every item of software and the language associated with it</li>
 </ol>
 
-<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">match</span> <span class="err">$</span><span class="n">x</span> <span class="n">isa</span> <span class="n">software</span> <span class="k">select</span> <span class="err">$</span><span class="n">x</span><span class="p">(</span><span class="n">id</span><span class="p">,</span> <span class="n">has</span> <span class="n">lang</span><span class="p">)</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">match</span> <span class="err">$</span><span class="n">x</span> <span class="n">isa</span> <span class="n">software</span> <span class="k">select</span> <span class="err">$</span><span class="n">x</span><span class="p">(</span><span class="n">id</span><span class="p">,</span> <span class="n">has</span> <span class="n">lang</span><span class="p">)</span>
 </code></pre>
 </div>
 
@@ -720,7 +727,7 @@ $('#toc').on('click', 'a', function() {
   <li>List everything that Josh has programmed</li>
 </ol>
 
-<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">match</span> <span class="p">(</span><span class="n">programmed</span> <span class="err">$</span><span class="n">x</span><span class="p">,</span> <span class="nv">"josh"</span><span class="p">)</span> <span class="n">isa</span> <span class="n">programming</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">match</span> <span class="p">(</span><span class="n">programmed</span> <span class="err">$</span><span class="n">x</span><span class="p">,</span> <span class="nv">"josh"</span><span class="p">)</span> <span class="n">isa</span> <span class="n">programming</span>
 </code></pre>
 </div>
 
@@ -728,7 +735,7 @@ $('#toc').on('click', 'a', function() {
   <li>List everyone who has programmed Lop</li>
 </ol>
 
-<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">match</span> <span class="p">(</span><span class="n">programmer</span> <span class="err">$</span><span class="n">x</span><span class="p">,</span> <span class="nv">"lop"</span><span class="p">)</span> <span class="n">isa</span> <span class="n">programming</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">match</span> <span class="p">(</span><span class="n">programmer</span> <span class="err">$</span><span class="n">x</span><span class="p">,</span> <span class="nv">"lop"</span><span class="p">)</span> <span class="n">isa</span> <span class="n">programming</span>
 </code></pre>
 </div>
 
@@ -736,7 +743,7 @@ $('#toc').on('click', 'a', function() {
   <li>List everything you know about Marko</li>
 </ol>
 
-<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="n">AARRRRRGH</span><span class="o">!</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">AARRRRRGH</span><span class="o">!</span>
 
 </code></pre>
 </div>
@@ -745,7 +752,7 @@ $('#toc').on('click', 'a', function() {
   <li>List everything you know about every person</li>
 </ol>
 
-<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="n">AARRRRRGH</span><span class="o">!</span><span class="n">AARRRRRGH</span><span class="o">!</span><span class="n">AARRRRRGH</span><span class="o">!</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">AARRRRRGH</span><span class="o">!</span><span class="n">AARRRRRGH</span><span class="o">!</span><span class="n">AARRRRRGH</span><span class="o">!</span>
 </code></pre>
 </div>
 
@@ -804,7 +811,7 @@ $('#toc').on('click', 'a', function() {
         <br>
         <p>© 2016 <a href="https://mindmaps.io">Mindmaps Research Ltd</a></p>
         <!-- &copy;2016 MindmapsDB. All rights reserved. <br />
-        <span>Page last updated:</span> September 19, 2016<br/> Site last generated: Sep 19, 2016 <br />
+        <span>Page last updated:</span> September 19, 2016<br/> Site last generated: Sep 20, 2016 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">

@@ -3,9 +3,9 @@
     <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Troubleshooting guide for MindmapsDB.">
-<meta name="keywords" content="getting-started,  troubleshooting, mindmapsdb, mindmaps, mindmaps.io, Mindmaps Research, Mindmaps Research Ltd, software, development platform, developer tool, data platform, programming langauge, query langauge, database, semantic database, distributed semantic database, distributed database, graph database, semantic search, data exploration, recommendation system, knowledge management, knowledge engineering, real-time analytics, advanced analytics, reasoning engine, inference engine, expert systems, semantic applications, research engines, data management, business intelligence, big data, semantic web, semantic data, knowledge representation, automated reasoning, semantic network, knowledge ontology, semantic graph, ontology engineering, graph based knowledge representation, artificial intelligence,">
-<title>Known Issues | MindmapsDB</title>
+<meta name="description" content="">
+<meta name="keywords" content="graqljavagraph-api,  API Reference Documentation, mindmapsdb, mindmaps, mindmaps.io, Mindmaps Research, Mindmaps Research Ltd, software, development platform, developer tool, data platform, programming langauge, query langauge, database, semantic database, distributed semantic database, distributed database, graph database, semantic search, data exploration, recommendation system, knowledge management, knowledge engineering, real-time analytics, advanced analytics, reasoning engine, inference engine, expert systems, semantic applications, research engines, data management, business intelligence, big data, semantic web, semantic data, knowledge representation, automated reasoning, semantic network, knowledge ontology, semantic graph, ontology engineering, graph based knowledge representation, artificial intelligence,">
+<title>MindmapsDB API Reference | MindmapsDB</title>
 <link rel="stylesheet" href="/pages/css/syntax.css">
 
 
@@ -163,7 +163,7 @@
                             
                             dataSource: '/pages/search.json',
                             
-                            searchResultTemplate: '<li><a href="{url}" title="Known Issues">{title}</a></li>',
+                            searchResultTemplate: '<li><a href="{url}" title="MindmapsDB API Reference">{title}</a></li>',
                             noResultsText: '<li><a class="empty">No results found</a></li>',
                             limit: 10,
                             fuzzy: true
@@ -343,7 +343,7 @@
             
             
             
-            <li><a href="/pages/documentation/api-reference/api-reference.html">API Reference</a></li>
+            <li class="active"><a href="/pages/documentation/api-reference/api-reference.html">API Reference</a></li>
             
             
             
@@ -358,7 +358,7 @@
             
             
             
-            <li class="active"><a href="/pages/documentation/troubleshooting/known-issues.html">Known Issues</a></li>
+            <li><a href="/pages/documentation/troubleshooting/known-issues.html">Known Issues</a></li>
             
             
             
@@ -406,7 +406,7 @@
         <!-- Content Column -->
         <div class="col-md-9">
             <div class="post-header">
-   <h1 class="post-title-main">Known Issues</h1>
+   <h1 class="post-title-main">MindmapsDB API Reference</h1>
 </div>
 
 
@@ -414,31 +414,6 @@
 <div class="post-content">
 
    
-    <div class="summary">Troubleshooting guide for MindmapsDB.</div>
-   
-
-    
-    
-<!-- this handles the automatic toc. use ## for subheads to auto-generate the on-page minitoc. if you use html tags, you must supply an ID for the heading element in order for it to appear in the minitoc. -->
-<script>
-$( document ).ready(function() {
-  // Handler for .ready() called.
-
-$('#toc').toc({ minimumHeaders: 0, listType: 'ul', showSpeed: 0, headers: 'h2,h3,h4' });
-
-/* this offset helps account for the space taken up by the floating toolbar. */
-$('#toc').on('click', 'a', function() {
-  var target = $(this.getAttribute('href'))
-    , scroll_target = target.offset().top
-
-  $(window).scrollTop(scroll_target - 10);
-  return false
-})
-  
-});
-</script>
-
-<div id="toc"></div>
 
     
 
@@ -446,54 +421,24 @@ $('#toc').on('click', 'a', function() {
 
     
 
-    <a target="_blank" href="https://github.com/mindmapsdb/docs/blob/master/pages/documentation/5-troubleshooting/known-issues.md" class="btn btn-default githubEditButton" role="button"><i class="fa fa-github fa-lg"></i> Edit me</a>
+    <a target="_blank" href="https://github.com/mindmapsdb/docs/blob/master/pages/documentation/2-api-reference/api-reference.md" class="btn btn-default githubEditButton" role="button"><i class="fa fa-github fa-lg"></i> Edit me</a>
 
     
 
     
 
-  <div class="alert alert-danger" role="alert"><i class="fa fa-exclamation-circle"></i> <b>Warning:</b> While MindmapsDB is still in an early adopters phase, you may encounter some exceptions. This page attempts to help you debug any problems you may experience. Please feel free to use our <a href="http://discuss.mindmaps.io">discussion forums</a> for any specific queries.</div>
+  <p>Welcome to the API Reference landing page. From here, you can find the latest, and all previous, versions of our API reference, which are built from Javadocs.</p>
 
-<h2 id="mindmapsdb-does-not-start">MindmapsDB does not start</h2>
-<p>Problem: You run <code class="highlighter-rouge">mindmaps.sh</code> and it hangs on <code class="highlighter-rouge">Starting Cassandra</code>.</p>
+<h2 id="latest-version">Latest Version</h2>
+<p>The latest version will always be posted at <a href="https://mindmaps.io/pages/api-reference/latest/index.html">https://mindmaps.io/pages/api-reference/latest/index.html</a>.</p>
 
-<p>Solution: This may be because you have cloned the mindmapsdb repo into a directory which has a space in its name (e.g. <code class="highlighter-rouge">/mindmaps DB</code>). You can build our code successfully, but when you start <code class="highlighter-rouge">mindmaps.sh</code>, it hangs because Cassandra needs you to have single word pathnames. Remove the spaces (e.g. <code class="highlighter-rouge">/mindmapsDB</code>) and try again.</p>
+<h2 id="past-versions">Past Versions</h2>
 
-<h2 id="strange-exceptions">Strange Exceptions</h2>
+<h3 id="v010">v0.1.0</h3>
+<p>Find it <a href="https://mindmaps.io/pages/api-reference/v0.1.0/index.html">here</a>.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>java.lang.RuntimeException: java.lang.IllegalStateException: The vertex or <span class="nb">type </span>is not associated with this transaction <span class="o">[</span>v[24584]]
-</code></pre>
-</div>
-
-<p>This exception occurs when you try to create links between concepts in
-different graphs. The following code reproduces this exception:</p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">MindmapsTitanGraphFactory</span> <span class="n">factory</span> <span class="o">=</span> <span class="n">MindmapsTitanGraphFactory</span><span class="o">.</span><span class="na">getInstance</span><span class="o">();</span>
-<span class="c1">//Configuration pointing to keyspace one</span>
-<span class="n">MindmapsGraph</span> <span class="n">mindmapsGraph1</span> <span class="o">=</span> <span class="n">factory</span><span class="o">.</span><span class="na">newGraph</span><span class="o">(</span><span class="s">"conf1.properties"</span><span class="o">);</span>
-<span class="c1">//Configuration pointing to keyspace two</span>
-<span class="n">MindmapsGraph</span> <span class="n">mindmapsGraph2</span> <span class="o">=</span> <span class="n">factory</span><span class="o">.</span><span class="na">newGraph</span><span class="o">(</span><span class="s">"conf2.properties"</span><span class="o">);</span>
-
-<span class="n">ConceptType</span> <span class="n">conceptType1</span> <span class="o">=</span> <span class="n">mindmapsGraph1</span><span class="o">.</span><span class="na">putConceptType</span><span class="o">(</span><span class="s">"1"</span><span class="o">);</span>
-<span class="n">ConceptType</span> <span class="n">conceptType2</span> <span class="o">=</span> <span class="n">mindmapsGraph2</span><span class="o">.</span><span class="na">putConceptType</span><span class="o">(</span><span class="s">"2"</span><span class="o">);</span>
-
-<span class="n">conceptType1</span><span class="o">.</span><span class="na">superConcept</span><span class="o">(</span><span class="n">conceptType2</span><span class="o">);</span>
-</code></pre>
-</div>
-
-<h2 id="other-issues">Other Issues</h2>
-
-<h3 id="ghost-vertices">Ghost Vertices</h3>
-
-<p>In a  transaction based environment it is possible to have one transaction
-removing a concept while another concurrently modifies the same concept. Both
-transactions may successfully commit if the backend is eventually consistent
-(e.g. <a href="http://s3.thinkaurelius.com/docs/titan/1.0.0/common-questions.html">Titan
-Cassandra</a>
-). The concept is likely to still exist with only the modified properties.
-When using the Titan Cassandra backend it is possible to safeguard against
-this by setting the <code class="highlighter-rouge">checkInternalVertexExistence</code> property to true. <br />
-However, this will result in slower transaction as more reads will be necessary.</p>
+<h2 id="feedback">Feedback</h2>
+<p>We hope you find our documentation helpful, but if you need more information, please don’t hesitate to contact us using our <a href="http://discuss.mindmaps.io">discussion forums</a> or through our main <a href="http://www.mindmaps.io">website</a>.</p>
 
 <h2 id="document-changelog">Document Changelog</h2>
 
@@ -505,11 +450,12 @@ However, this will result in slower transaction as more reads will be necessary.
     </tr>
         <tr>
         <td>v0.1.0</td>
-        <td>03/09/2016</td>
+        <td>20/09/2016</td>
         <td>First release.</td>        
     </tr>
 
 </table>
+<p>MindmapsDB</p>
 
 
     <div class="tags">
@@ -518,7 +464,15 @@ However, this will result in slower transaction as more reads will be necessary.
         
         
         
-        <a href="/pages/tag_getting-started.html" class="btn btn-default navbar-btn cursorNorm" role="button">getting-started</a>
+        <a href="/pages/tag_graql.html" class="btn btn-default navbar-btn cursorNorm" role="button">graql</a>
+        
+        
+        
+        <a href="/pages/tag_java.html" class="btn btn-default navbar-btn cursorNorm" role="button">java</a>
+        
+        
+        
+        <a href="/pages/tag_graph-api.html" class="btn btn-default navbar-btn cursorNorm" role="button">graph-api</a>
         
         
         
@@ -549,7 +503,7 @@ However, this will result in slower transaction as more reads will be necessary.
         <br>
         <p>© 2016 <a href="https://mindmaps.io">Mindmaps Research Ltd</a></p>
         <!-- &copy;2016 MindmapsDB. All rights reserved. <br />
-        <span>Page last updated:</span> August 10, 2016<br/> Site last generated: Sep 20, 2016 <br />
+         Site last generated: Sep 20, 2016 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">
