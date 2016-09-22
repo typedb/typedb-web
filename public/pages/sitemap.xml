@@ -74,13 +74,13 @@
   
   
   <url>
-    <loc>http://mindmaps.io/pages//documentation/resources/developer-faq.html</loc>
+    <loc>http://mindmaps.io/pages//documentation/resources/downloads.html</loc>
   </url>
   
   
   
   <url>
-    <loc>http://mindmaps.io/pages//documentation/resources/downloads.html</loc>
+    <loc>http://mindmaps.io/pages//documentation/resources/faq.html</loc>
   </url>
   
   
@@ -113,12 +113,6 @@
   
   <url>
     <loc>http://mindmaps.io/pages//documentation/graql/java-graql.html</loc>
-  </url>
-  
-  
-  
-  <url>
-    <loc>http://mindmaps.io/pages//documentation/troubleshooting/known-issues.html</loc>
   </url>
   
   

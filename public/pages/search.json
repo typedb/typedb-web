@@ -125,22 +125,22 @@
 
 
 {
-"title": "Frequently Asked Questions",
+"title": "Downloads",
 "tags": "getting-started",
-"keywords": "troubleshooting, getting started",
-"url": "documentationresourcesdeveloper-faq.html",
-"summary": "Frequently asked questions about MindmapsDB."
+"keywords": "setup, getting started, download",
+"url": "documentationresourcesdownloads.html",
+"summary": "This is a list of MindmapsDB releases. It's the place to come to download the most recent versions of MindmapsDB."
 }
 ,
 
 
 
 {
-"title": "Downloads",
+"title": "FAQ about MindmapsDB",
 "tags": "getting-started",
-"keywords": "setup, getting started, download",
-"url": "documentationresourcesdownloads.html",
-"summary": "This is a list of MindmapsDB releases. It's the place to come to download the most recent versions of MindmapsDB."
+"keywords": "troubleshooting",
+"url": "documentationresourcesfaq.html",
+"summary": "Frequently asked questions about MindmapsDB."
 }
 ,
 
@@ -198,17 +198,6 @@
 "keywords": "graql, java",
 "url": "documentationgraqljava-graql.html",
 "summary": "How to construct and execute Graql queries programmatically in Java."
-}
-,
-
-
-
-{
-"title": "Known Issues",
-"tags": "getting-started",
-"keywords": "troubleshooting",
-"url": "documentationtroubleshootingknown-issues.html",
-"summary": "Troubleshooting guide for MindmapsDB."
 }
 ,
 
