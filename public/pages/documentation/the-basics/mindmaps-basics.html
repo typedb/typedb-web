@@ -456,11 +456,11 @@ $('#toc').on('click', 'a', function() {
 
 <h2 id="schema-and-data">Schema and Data</h2>
 
-<p>A MindmapsDB graph is made of two layers: the database schema and the data layer.</p>
+<p>A MindmapsDB graph is made of two layers: the database schema (which you can also think of as an ontology) and the data layer.</p>
 
-<p><strong><em>A MindmapsDB schema should be clearly defined before loading data into the graph.</em></strong> The schema is used to formalise the data within a specific domain. If data is about healthcare, then we need to design a schema specific to healthcare. If data is about movies, then we need to define an schema specific to the movie industry.</p>
+<p><strong><em>The schema should be clearly defined before loading data into the graph.</em></strong> The schema is used to formalise the data within a specific domain. If data is about healthcare, then we need to design a schema specific to healthcare. If data is about movies, then we need to define an schema specific to the movie industry.</p>
 
-<p>Example schema concepts could include <code class="highlighter-rouge">Car</code>, <code class="highlighter-rouge">Person</code>, <code class="highlighter-rouge">Movie</code>.</p>
+<p>Example schema concepts could include <code class="highlighter-rouge">car</code>, <code class="highlighter-rouge">person</code>, <code class="highlighter-rouge">movie</code>.</p>
 
 <p><strong><em>The data is categorised by the schema.</em></strong> It is essentially everything
 we wish to model.</p>
@@ -475,81 +475,67 @@ we wish to model.</p>
 
 <h3 id="concept">Concept</h3>
 
-<p>Just as a graph is defined by vertices and the edges between them, a
+<p>Just as a <a href="https://en.wikipedia.org/wiki/Graph_theory">graph</a> is defined by vertices and the edges between them, a
 MindmapsDB graph is defined by concepts and the relationships between those
-concepts.  Every vertex is a concept and has the following properties:</p>
-
-<h4 id="unique-properties">Unique Properties</h4>
-
-<p>Properties which must be unique throughout the entire graph.</p>
-
-<p><strong>Id</strong> - A concept must, at minimum, have a unique ID. This is a string which identifies the concept. For example if a concept is representing a person it could be their id number.</p>
-
-<p><strong>Subject</strong> - An optional unique string which can be used to refer to
-external resources relating to the concept. For example if the concept is used to represent a country or city the subject could point to the wikipedia page of that city.</p>
-
-<h4 id="additional-properties">Additional Properties</h4>
-
-<p>Properties that store additional information about the concept and do not have to be unique across the graph.</p>
-
-<p><strong>Value</strong> - A string value which can be used to store an additional piece of data. For example this could represent a person’s name, a movie title, or any representative string.</p>
+concepts.  Every vertex is a concept and must, at minimum, have a unique ID. This is a string that identifies the concept.</p>
 
 <h3 id="concept-type">Concept Type</h3>
 
-<p>A Type is a schema element that represents something that can have instances, and is extended into the following types: <br />
--  Entity Types<br />
--  Relation Types<br />
--  Role Types<br />
--  Resource Types</p>
+<p>A schema element that represents something that can have instances, and is extended into the following types:</p>
+
+<ul>
+  <li>Entity Types</li>
+  <li>Relation Types</li>
+  <li>Role Types</li>
+  <li>Resource Types</li>
+</ul>
 
 <h3 id="entity-type">Entity Type</h3>
 
-<p>A Entity Type is used to represent a category of entities, e.g. <code class="highlighter-rouge">Person</code>, <code class="highlighter-rouge">Vehicle</code>, <code class="highlighter-rouge">Movie</code> or <code class="highlighter-rouge">Country</code>.</p>
+<p>An Entity Type is used to represent a category e.g. <code class="highlighter-rouge">person</code>, <code class="highlighter-rouge">vehicle</code>, <code class="highlighter-rouge">movie</code> or <code class="highlighter-rouge">country</code>.</p>
 
 <h3 id="resource-type">Resource Type</h3>
 
-<p>A Resource Type is used to represent a category of resources e.g. <code class="highlighter-rouge">birthdate</code> or <code class="highlighter-rouge">name</code>. Resource Types have additional properties including:</p>
+<p>A Resource Type is used to represent an attribute associated with an Entity Type, e.g. <code class="highlighter-rouge">birthdate</code> or <code class="highlighter-rouge">name</code>. Resource Types are effectively properties, and consist of primitive types and values. They are very much like “data properties” in OWL.</p>
 
-<ol>
+<p>Resource types have the following properties:</p>
+
+<ul>
   <li>
-    <p><strong>Datatype</strong> - Indicates the datatype of the resource. For example if the resource is <code class="highlighter-rouge">Age</code> the datatype would be <strong>integer</strong></p>
+    <p><strong>Datatype</strong> - Indicates the datatype of the resource. For example if the resource type is <code class="highlighter-rouge">age</code> the datatype would be <code class="highlighter-rouge">long</code>.</p>
   </li>
   <li>
-    <p><strong>Regex</strong> - Used to constrain string data types to specific regex patterns.</p>
+    <p><strong>Regex</strong> - Optional. Can be used to constrain string data types to specific regex patterns.</p>
   </li>
   <li>
     <p><strong>Unique</strong> - A boolean which indicates if the resource should be unique
 across the graph.</p>
   </li>
-</ol>
+</ul>
 
-<h3 id="relation-type">Relation Type</h3>
+<h3 id="relation-type-and-role-type">Relation Type and Role Type</h3>
 
-<p>A Relation Type is used to model relationships. For example, to model that <code class="highlighter-rouge">Tom Cruise</code> is an <code class="highlighter-rouge">Actor</code> in <code class="highlighter-rouge">Mission: Impossible</code> we need to use a Relation Type such as <code class="highlighter-rouge">Has Cast</code>. This allows us to model that
-<code class="highlighter-rouge">Mission: Impossible</code> <code class="highlighter-rouge">Has Cast</code> <code class="highlighter-rouge">Tom Cruise</code>.</p>
+<p>A MindmapsDB graph enables us to model complex n-ary relationships. To do this we define a Relation Type, which is used to model relationships, and an associated pair of Role Types that are used to represent the two roles within that relationship. There is one Role Type for each entity to explain fully how the two relate to one another.</p>
 
-<p>A MindmapsDB graph enables us to model complex n-ary relationships. To do this we define a Relation Type and link it with roles which flesh out the details of the relationship. For example, in the movie domain a valid Relation Type could be <code class="highlighter-rouge">Cast</code> which has the Role Types <code class="highlighter-rouge">Actor</code> and <code class="highlighter-rouge">Movie With Cast</code>.</p>
+<p>For example, to model that a <code class="highlighter-rouge">person</code> acted in a <code class="highlighter-rouge">movie</code> we need to use a Relation Type such as <code class="highlighter-rouge">has-cast</code>. The Role Type for the <code class="highlighter-rouge">person</code> is  <code class="highlighter-rouge">actor</code>, while the Role Type for the movie is <code class="highlighter-rouge">production-with-cast</code>.</p>
 
-<h3 id="role-type">Role Type</h3>
+<p>Role Types are associated with a particular Relation Type between Entity Types, and constrain it to ensure that only instances of the correct types are involved. In the movie domain, for example, the Relation Type <code class="highlighter-rouge">has-cast</code> involves a <code class="highlighter-rouge">person</code> Entity Type playing the Role Type <code class="highlighter-rouge">actor</code>. An Entity Type <code class="highlighter-rouge">dog</code> is implicitly excluded from playing the role <code class="highlighter-rouge">actor</code> - to include a dog in the cast of a movie, the <code class="highlighter-rouge">dog</code> Entity Type must explicitly be given the role <code class="highlighter-rouge">actor</code> too.</p>
 
-<p>A Role Type is used to represent a role in a relationship, and how concepts relate to one another. For example, if we wish to model that <code class="highlighter-rouge">Jon Voight</code> is an <code class="highlighter-rouge">Actor</code> in <code class="highlighter-rouge">Mission: Impossible</code> then we need to define a Role Type <code class="highlighter-rouge">Actor</code>. However, <code class="highlighter-rouge">Jon Voight</code> would have the role of <code class="highlighter-rouge">Father</code> relating to his daughter <code class="highlighter-rouge">Angelina Jolie</code>.</p>
-
-<p>Types constrain the roles that can be played to ensure that only instances of the correct type are involved in the correct relationships. For example, in the movie domain, a <code class="highlighter-rouge">Person</code> Type can play the role <code class="highlighter-rouge">Actor</code>. This would mean that Instances of the Type <code class="highlighter-rouge">Person</code>, such as <code class="highlighter-rouge">Al Pacino</code> or <code class="highlighter-rouge">Leonardo DiCaprio</code> are allowed to be <code class="highlighter-rouge">Actors</code> in the relationship involving the <code class="highlighter-rouge">Actor</code> role. At the same time this would implicitly
-define that an Instance of Concept Type <code class="highlighter-rouge">Dog</code> would not be allowed to play the role <code class="highlighter-rouge">Actor</code>.</p>
+<p>The Role Types associated with a Relation Type can only be used for that relationship.</p>
 
 <h3 id="subclasses">Subclasses</h3>
 
-<p>The four types described above can be subclassed. For example, subclasses of <code class="highlighter-rouge">Person</code> could be <code class="highlighter-rouge">Man</code> and <code class="highlighter-rouge">Woman</code>.  This simple subclassing allows us to expand and deepen our schema to whatever granularity of detail is needed.</p>
+<p>Instances of the four meta-types described above can be subclassed. For example, subclasses of <code class="highlighter-rouge">person</code> (which is an instance of the meta-type EntityType) could be <code class="highlighter-rouge">man</code> and <code class="highlighter-rouge">woman</code>.  This simple subclassing allows us to expand and deepen our schema to whatever granularity of detail is needed.</p>
 
-<div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> <b>Note:</b> In a MindmapsDB graph, we use the shorthand <code class="highlighter-rouge">isa</code> when representing the type relationship. <br /> 
-For example, <code class="highlighter-rouge">Aristotle</code> (<em>data entity</em>) <code class="highlighter-rouge">isa </code> <code class="highlighter-rouge">Man</code> (<em>schema entity type</em>).   <br /><br />
+<div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> <b>Note:</b> In a MindmapsDB graph, we use the shorthand <code class="highlighter-rouge">ako ('a kind of')</code> when referring to sub-typing or specialisation. <br />
+For example, <code class="highlighter-rouge">man ako person</code>. <br />
+We use the shorthand <code class="highlighter-rouge">isa</code> (‘is a’) to represent the type relationship. <br />
+For example, <code class="highlighter-rouge">car isa vehicle</code>.
+</div>
 
-We use the shorthand <code class="highlighter-rouge">ako ('a kind of')</code> when referring to a type being the sub type of another Type. <br />
-For example, <code class="highlighter-rouge">Man</code> (<em>entity type</em>) <code class="highlighter-rouge">ako</code> <code class="highlighter-rouge">Person</code> (<em>schema entity type</em>).</div>
+<p>For example a simple schema would be <code class="highlighter-rouge">car</code> <code class="highlighter-rouge">isa</code> <code class="highlighter-rouge">vehicle</code> but with subclassing we could go as far as <code class="highlighter-rouge">a VW Gold TDI 2014</code> <code class="highlighter-rouge">isa</code> <code class="highlighter-rouge">VW</code> <code class="highlighter-rouge">ako</code> <code class="highlighter-rouge">car</code> <code class="highlighter-rouge">isa</code> <code class="highlighter-rouge">vehicle</code>.</p>
 
-<p>For example a simple schema would be <code class="highlighter-rouge">Car</code> <code class="highlighter-rouge">isa</code> <code class="highlighter-rouge">Vehicle</code> but with subclassing we could go as far as <code class="highlighter-rouge">a VW Gold TDI 2014</code> <code class="highlighter-rouge">isa </code> <code class="highlighter-rouge">VW</code> <code class="highlighter-rouge">ako</code> <code class="highlighter-rouge">Car</code> <code class="highlighter-rouge">isa</code> <code class="highlighter-rouge">Vehicle</code>.</p>
-
-<p>Types can have an additional property, <code class="highlighter-rouge">Abstract</code>, which indicates the type cannot have instances. This is useful when we want to define a deeper schema. For example if we have <code class="highlighter-rouge">Person</code> and its subclasses <code class="highlighter-rouge">Man</code> and <code class="highlighter-rouge">Woman</code>, then we may want to define <code class="highlighter-rouge">Person</code> as <code class="highlighter-rouge">Abstract</code> to prohibit it from having any direct instances.</p>
+<p>Types can have an additional property, <code class="highlighter-rouge">abstract</code>, which indicates the type cannot have direct instances. This is useful when we want to define a deeper schema. For example if we have <code class="highlighter-rouge">person</code> and its subclasses <code class="highlighter-rouge">man</code> and <code class="highlighter-rouge">woman</code>, then we may want to define <code class="highlighter-rouge">person</code> as <code class="highlighter-rouge">abstract</code> to prohibit it from having any direct instances, whereas the concrete types <code class="highlighter-rouge">man</code> and <code class="highlighter-rouge">woman</code> can have direct instances.</p>
 
 <h2 id="the-object-model---data">The Object Model - Data</h2>
 <p>The following figure represents the inheritance structure of the data elements.</p>
@@ -558,23 +544,19 @@ For example, <code class="highlighter-rouge">Man</code> (<em>entity type</em>) <
 
 <h3 id="instance">Instance</h3>
 
-<p>Instances are data elements. They are named as such because they are instances of the Types described above. For example: a <code class="highlighter-rouge">BMW</code> is an instance of the Entity Type <code class="highlighter-rouge">Car</code> and <code class="highlighter-rouge">09/10/1988</code> is an instance of Resource Type <code class="highlighter-rouge">Date</code>.</p>
+<p>Instances are data elements. They are named as such because they are instances of the Types described above. For example: a <code class="highlighter-rouge">BMW</code> is an instance of the Entity Type <code class="highlighter-rouge">car</code> and <code class="highlighter-rouge">09/10/1988</code> is an instance of Resource Type <code class="highlighter-rouge">date</code>.</p>
 
 <h3 id="entity">Entity</h3>
 
-<p>An instance of the Entity Type (which is known as an Entity)  represents an actual item of data. For example, Entity Type <code class="highlighter-rouge">Car</code> could have Entities <code class="highlighter-rouge">a BMW</code>, <code class="highlighter-rouge">this Mercedes</code>, and <code class="highlighter-rouge">that Volkswagen</code>. The MindmapsDB graph enables us to model relationships between these entities, once they have been defined.</p>
+<p>An instance of the Entity Type (which is known as an Entity)  represents an actual item of data. For example, Entity Type <code class="highlighter-rouge">car</code> could have Entities <code class="highlighter-rouge">a BMW</code>, <code class="highlighter-rouge">this Mercedes</code>, and <code class="highlighter-rouge">that Volkswagen</code>. The MindmapsDB graph enables us to model relationships between these entities, once they have been defined.</p>
 
 <h3 id="resource">Resource</h3>
 
-<p>Resources are instances of the Resource Type described above. They allow us to attribute data to a specific instance. For example, if <code class="highlighter-rouge">Alice</code> is an instance of <code class="highlighter-rouge">Person</code> we could model Alice’s birthday <code class="highlighter-rouge">09/10/1988</code> as an instance of the Resource Type <code class="highlighter-rouge">Birthdate</code>.  The Resource object allows us to impose some additional constraints, such as ensuring that it conforms to a regex pattern or is of a particular data type.</p>
+<p>Resources are instances of the Resource Type described above. They allow us to attribute data to a specific instance. For example, if <code class="highlighter-rouge">Alice</code> is an instance of <code class="highlighter-rouge">person</code> we could model Alice’s birthday <code class="highlighter-rouge">09/10/1988</code> as an instance of the Resource Type <code class="highlighter-rouge">birthdate</code>.  The Resource object allows us to impose some additional constraints, such as ensuring that it conforms to a regex pattern or is of a particular data type.</p>
 
 <h3 id="relation">Relation</h3>
 
-<p>A Relation represents an instance of a Relation Type. We can use a Relation to model multiple relationships between instances. For example, if <code class="highlighter-rouge">Alice</code> and <code class="highlighter-rouge">Bob</code> are married then we would create a Relation object <code class="highlighter-rouge">Marriage</code>, which is an instance of Relation Type, to model that relationship. At the same time, Alice could work for an organisation <code class="highlighter-rouge">Apache</code>. Similarly, we would create an instance of the Relation
-Type <code class="highlighter-rouge">Works For</code> to model that relationship.</p>
-
-<p>Essentially a Relation describes a relationship of a specific type between
-instances of a specific type. For example, one Relation can define that the Instance <code class="highlighter-rouge">Tom Cruise</code> plays the Role Type <code class="highlighter-rouge">Actor</code> with the movie Instance <code class="highlighter-rouge">Mission: Impossible</code> which plays the Role Type <code class="highlighter-rouge">Movie With Cast</code>.</p>
+<p>A Relation represents an instance of a Relation Type. Essentially a Relation describes a relationship between instances of a specific type. For example, a Relation between <code class="highlighter-rouge">Tom Cruise</code> (isa <code class="highlighter-rouge">person</code>) and <code class="highlighter-rouge">Mission: Impossible</code> (isa <code class="highlighter-rouge">movie</code>) where <code class="highlighter-rouge">Tom Cruise</code> plays the Role Type <code class="highlighter-rouge">actor</code> and <code class="highlighter-rouge">Mission: Impossible</code> plays the Role Type <code class="highlighter-rouge">production-with-crew</code>.</p>
 
 <h2 id="an-example-graph-structure">An Example Graph Structure</h2>
 
@@ -592,7 +574,7 @@ Types." /></p>
 
 <h3 id="relation-types">Relation Types</h3>
 
-<p>Expanding our philosophers example we could define a Relation Type, <code class="highlighter-rouge">Education</code> to encapsulate the needed roles:</p>
+<p>Expanding our philosophers example we could define a Relation Type, <code class="highlighter-rouge">education</code> to encapsulate the needed roles:</p>
 
 <p><img src="/images/example_relationtype.png" alt="Expanding the example to illustrate how a relation type is linked with Role
 Types." /></p>
@@ -605,7 +587,7 @@ Types." /></p>
 instance of
 `Education`" /></p>
 
-<div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> <b>Note:</b> When creating a relation you must ensure that the type of the Instances are allowed to play the Role Types. For example, in the above graph if we forgot to define that the Type <code class="highlighter-rouge">Person</code> is allowed to play the Role <code class="highlighter-rouge">Teacher</code> then the Relation between <code class="highlighter-rouge">Plato</code> and <code class="highlighter-rouge">Aristotle</code> would not be valid.</div>
+<div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> <b>Note:</b> When creating a relation you must ensure that the type of the Instances are allowed to play the Role Types. For example, in the above graph if we forgot to define that the Type <code class="highlighter-rouge">person</code> is allowed to play the Role <code class="highlighter-rouge">teacher</code> then the Relation between <code class="highlighter-rouge">Plato</code> and <code class="highlighter-rouge">Aristotle</code> would not be valid.</div>
 
 <!-- Removed a section on the meta ontology. We could create a separate article about this later if we think it's useful -->
 
@@ -629,6 +611,9 @@ instance of
     </tr>
 
 </table>
+
+<h2 id="comments">Comments</h2>
+<p>Want to leave a comment? Visit <a href="https://github.com/mindmapsdb/docs/issues/17" target="_blank">the issues on Github for this page</a> (you’ll need a GitHub account). You are also welcome to contribute to our documentation directly via the “Edit me” button at the top of the page.</p>
 
 
     <div class="tags">
@@ -668,7 +653,7 @@ instance of
         <br>
         <p>© 2016 <a href="https://mindmaps.io">Mindmaps Research Ltd</a></p>
         <!-- &copy;2016 MindmapsDB. All rights reserved. <br />
-        <span>Page last updated:</span> August 24, 2016<br/> Site last generated: Sep 21, 2016 <br />
+        <span>Page last updated:</span> August 24, 2016<br/> Site last generated: Sep 22, 2016 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">
