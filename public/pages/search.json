@@ -136,6 +136,17 @@
 
 
 {
+"title": "MindmapsDB Examples",
+"tags": "getting-started",
+"keywords": "examples",
+"url": "documentationexamplesexamples.html",
+"summary": "Landing page for MindmapsDB examples."
+}
+,
+
+
+
+{
 "title": "FAQ about MindmapsDB",
 "tags": "getting-started",
 "keywords": "troubleshooting",
@@ -226,11 +237,22 @@
 
 
 {
-"title": "Test your Graql",
+"title": "Modern MindmapsDB Example",
 "tags": "graql",
 "keywords": "graql, query",
 "url": "documentationexamplesmodern.html",
 "summary": "A short example to illustrate Graql queries"
+}
+,
+
+
+
+{
+"title": "Moogi MindmapsDB Example",
+"tags": "getting-startedgraql",
+"keywords": "examples",
+"url": "documentationexamplesmoogi.html",
+"summary": "Moogi MindmapsDB example."
 }
 ,
 
@@ -264,6 +286,28 @@
 "keywords": "overview",
 "url": "documentationcore-apioverview.html",
 "summary": "A basic example of how to use MindmapsDB Graph API."
+}
+,
+
+
+
+{
+"title": "Philosophers MindmapsDB Example",
+"tags": "getting-startedgraql",
+"keywords": "examples",
+"url": "documentationexamplesphilosophers.html",
+"summary": "Philosophers MindmapsDB example."
+}
+,
+
+
+
+{
+"title": "Pokemon MindmapsDB Example",
+"tags": "getting-startedgraql",
+"keywords": "examples",
+"url": "documentationexamplespokemon.html",
+"summary": "Pokemon MindmapsDB example."
 }
 ,
 

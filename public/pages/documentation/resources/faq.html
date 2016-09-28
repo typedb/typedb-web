@@ -380,6 +380,49 @@
         </ul>
         
         
+    
+    <li>
+        <a href="#">Examples</a>
+        <ul>
+            
+            
+            
+            <li><a href="/pages/documentation/examples/examples.html">Examples</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="/pages/documentation/examples/pokemon.html">Pokemon example</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="/pages/documentation/examples/philosophers.html">Philosophers example</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="/pages/documentation/examples/moogi.html">Moogi example</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="/pages/documentation/examples/modern.html">Modern example</a></li>
+            
+            
+            
+            
+        </ul>
+        
+        
 
         
         
@@ -444,18 +487,34 @@ $('#toc').on('click', 'a', function() {
 
     
 
-  <div class="alert alert-danger" role="alert"><i class="fa fa-exclamation-circle"></i> <b>Warning:</b> While MindmapsDB is still in an early adopters phase, you may encounter some exceptions. This page attempts to help you debug any problems you may experience. Please feel free to use our <a href="http://discuss.mindmaps.io">discussion forums</a> for any specific queries.</div>
+  <div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> <b>Note:</b> This page contains some of the questions were are mostly commonly asked, and is updated regularly. Please feel free to use our <a href="http://discuss.mindmaps.io">discussion forums</a> to ask us for help or advice.</div>
 
-<h2 id="why-does-mindmapsdb-hang-when-i-try-to-start-it">Why does MindmapsDB hang when I try to start it?</h2>
-<p>Problem: You run <code class="highlighter-rouge">mindmaps.sh start</code> and it hangs on <code class="highlighter-rouge">Starting Cassandra</code>.</p>
+<h2 id="bugs-and-strange-behaviour">Bugs and strange behaviour</h2>
 
-<p>Solution: This may be because you have cloned the mindmapsdb repo into a directory which has a space in its name (e.g. <code class="highlighter-rouge">/mindmaps DB</code>). You can build our code successfully, but when you start <code class="highlighter-rouge">mindmaps.sh</code>, it hangs because Cassandra needs you to have single word pathnames. Remove the spaces (e.g. <code class="highlighter-rouge">/mindmapsDB</code>) and try again.</p>
+<h3 id="why-does-mindmapsdb-hang-when-i-try-to-start-it">Why does MindmapsDB hang when I try to start it?</h3>
 
-<h2 id="why-am-i-getting-a-strange-exception">Why am I getting a strange exception?</h2>
+<p>I am running <code class="highlighter-rouge">mindmaps.sh start</code> but it hangs on <code class="highlighter-rouge">Starting Cassandra</code>. Why?</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>java.lang.RuntimeException: java.lang.IllegalStateException: The vertex or <span class="nb">type </span>is not associated with this transaction <span class="o">[</span>v[24584]]
-</code></pre>
-</div>
+<p>This may be because you have cloned the mindmapsdb repo into a directory which has a space in its name (e.g. <code class="highlighter-rouge">/mindmaps DB</code>). You can build our code successfully, but when you start <code class="highlighter-rouge">mindmaps.sh</code>, it hangs because Cassandra needs you to have single word pathnames. Remove the spaces (e.g. <code class="highlighter-rouge">/mindmapsDB</code>) and try again.</p>
+
+<p>There are other possible reasons why MindmapsDB hangs starting Cassandra. One may be that some other application is using the port 7199, which Cassandra needs.  To find out what is using port 7199:
+<code class="highlighter-rouge">lsof -i tcp:7199</code></p>
+
+<p>From there, you’ll see the PID of application using that port. Check if you can safely kill it or change its port. It may be that another instance of Cassandra is blocking it, and you can simply kill it using:
+<code class="highlighter-rouge">pkill -9 java</code></p>
+
+<p>Then try <code class="highlighter-rouge">mindmaps.sh start</code> again.</p>
+
+<p>Failing that, you can often find out more information by looking in the <code class="highlighter-rouge">/logs</code> directory under your MindmapsDB installation.</p>
+
+<p>Please see the answer to the question below “Can I run MindmapsDB on an existing Cassandra Platform?” if you are already using Cassandra and want to run MindmapsDB on a different instance of Cassandra to our default.</p>
+
+<h3 id="why-am-i-getting-a-strange-exception">Why am I getting a strange exception?</h3>
+
+<p>I am seeing the following exception. Why?
+<code class="highlighter-rouge">bash
+java.lang.RuntimeException: java.lang.IllegalStateException: The vertex or type is not associated with this transaction [v[24584]]
+</code></p>
 
 <p>This exception occurs when you try to create links between concepts in
 different graphs. The following code reproduces this exception:</p>
@@ -473,17 +532,103 @@ different graphs. The following code reproduces this exception:</p>
 </code></pre>
 </div>
 
-<h2 id="why-am-i-getting-ghost-vertices">Why am I getting ghost vertices?</h2>
+<h3 id="why-am-i-getting-ghost-vertices">Why am I getting ghost vertices?</h3>
 
-<p>In a  transaction based environment it is possible to have one transaction
-removing a concept while another concurrently modifies the same concept. Both
-transactions may successfully commit if the backend is eventually consistent
-(e.g. <a href="http://s3.thinkaurelius.com/docs/titan/1.0.0/common-questions.html">Titan
-Cassandra</a>
-). The concept is likely to still exist with only the modified properties.
-When using the Titan Cassandra backend it is possible to safeguard against
-this by setting the <code class="highlighter-rouge">checkInternalVertexExistence</code> property to true. <br />
-However, this will result in slower transaction as more reads will be necessary.</p>
+<p>In a  transaction based environment it is possible to have one transaction removing a concept while another concurrently modifies the same concept. Both
+transactions may successfully commit if the backend is eventually consistent, e.g. [Titan Cassandra](http://s3.thinkaurelius.com/docs/titan/1.0.0/common-questions.html.</p>
+
+<p>The concept is likely to still exist with only the modified properties. When using the Titan Cassandra backend it is possible to safeguard against
+this by setting the <code class="highlighter-rouge">checkInternalVertexExistence</code> property to true. However, this will result in slower transaction as more reads will be necessary.</p>
+
+<h2 id="working-with--mindmapsdb">Working with  MindmapsDB</h2>
+
+<h3 id="which-os-can-i-use-with-mindmapsdb">Which OS can I use with MindmapsDB?</h3>
+
+<p>You can use Mac OS X or Linux right now. We plan to support Windows at a later date.</p>
+
+<h3 id="how-do-i-load-data-into-a-mindmapsdb-graph">How do I load data into a MindmapsDB graph?</h3>
+
+<p>There are several ways to load data into a MindmapsDB graph. For small amounts of data (&lt;1000 lines), you an load it directly via the Graql shell. For example, the following loads up the Pokemon example data:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>bin/graql.sh -f examples/pokemon.gql
+</code></pre>
+</div>
+
+<p>If you have a larger file, you will need to <code class="highlighter-rouge">curl</code> Mindmaps Engine. Loading through Engine will result in a “batch loading” where the file will be divided in batches that will be committed concurrently. This differs from loading through Graql shell, where the whole file is committed in a single chunk when you call commit. See the example below, which loads the Graql file FILENAME.gql, from PATH.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>curl -H "Content-Type: application/json" -X POST -d '{"path":"PATH/FILENAME.gql"}' http://localhost:4567/import/batch/data
+</code></pre>
+</div>
+
+<p>In order to check the status of the loading, you can open a new terminal window, navigate to the logs directory of your MindmapsDB installation and run the command:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>tail -f mindmaps.log
+</code></pre>
+</div>
+
+<h3 id="can-i-run-mindmapsdb-on-an-existing-cassandra-platform">Can I run MindmapsDB on an existing Cassandra Platform?</h3>
+
+<p>By default, MindmapsDB is shipped with TitanDB, which in turn relies on Cassandra. When you call <code class="highlighter-rouge">mindmaps.sh start</code>, this starts a Cassandra instance and then starts the Mindmaps server.  You are not bound to use our instance of Cassandra, and can make adjustments to the settings in the <code class="highlighter-rouge">.properties</code> file in the <code class="highlighter-rouge">conf/main</code> directory of the MindmapsDB, e.g. to make Titan use your Cassandra instance.</p>
+
+<p>Specifically you should change the following parameters:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code># Host Location
+storage.hostname=127.0.0.1
+</code></pre>
+</div>
+
+<p>You can also, for example, add the following to specify a custom port:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>storage.port = 1234
+</code></pre>
+</div>
+
+<p>Please refer to the <a href="http://s3.thinkaurelius.com/docs/titan/1.0.0/titan-config-ref.html#_storage">Titan documentation</a> for more information.</p>
+
+<h3 id="do-applications-written-on-top-of-mindmapsdb-have-to-be-in-java">Do applications written on top of MindmapsDB have to be in Java?</h3>
+
+<p>Currently, there is no official support for languages other than Java. But we are open source and would be very willing to accept proposals from our community, and work with contributors, to create bindings to other languages.</p>
+
+<h3 id="how-do-i-visualise-a-graph">How do I visualise a graph?</h3>
+
+<p>MindmapsDB comes with a basic visualiser, with a web-interface. We appreciate any feedback you give us about it via the <a href="https://discuss.mindmaps.io/t/visualise-my-data/57">discussion boards</a>.</p>
+
+<p>Once you have started MindmapsDB, you will see a message in the console, like:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>Started ServerConnector@7aa5814d{HTTP/1.1,[http/1.1]}{0.0.0.0:4567}
+</code></pre>
+</div>
+
+<p>(We are working to improve this message, in fact in the new release it will be something more similar to <code class="highlighter-rouge">Mindmaps Engine is ready. Listening on [http://0.0.0.0:4567]</code>.)</p>
+
+<p>You can then open your browser and connect to the address printed on the console (http://0.0.0.0:4567). Select the Graql Visualiser tab and you will see a Graql shell, from which you can input queries, for example:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>match $x isa concept-type
+</code></pre>
+</div>
+
+<p>In result, you will see the resulting nodes and relations displayed inside the graql visualiser on the same page.</p>
+
+<h3 id="how-do-i-clear-a-graph">How do I clear a graph?</h3>
+
+<p>I want to clear the graph I’ve been experimenting with and try something with a new, different schema and dataset. How do I do it?</p>
+
+<p>If you are using the Java API, it’s a simple as:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>graph = MindmapsClient.getGraph("myGraph");
+graph.clear();
+</code></pre>
+</div>
+
+<p>If you are using the Graql shell and have not committed what you have in the graph, you can just quit the shell and restart it, and all is clean.</p>
+
+<p>If you’ve committed, then you must currently remove your installation and re-create it.  First, call</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>pkill -9 java
+</code></pre>
+</div>
+
+<p>Then delete the MindmapsDB install directory, and unzip a fresh copy from the distribution zip. It isn’t very elegant at present, and we are working on a simpler way to clear out a graph.</p>
 
 <h2 id="document-changelog">Document Changelog</h2>
 
@@ -547,7 +692,7 @@ However, this will result in slower transaction as more reads will be necessary.
         <br>
         <p>© 2016 <a href="https://mindmaps.io">Mindmaps Research Ltd</a></p>
         <!-- &copy;2016 MindmapsDB. All rights reserved. <br />
-        <span>Page last updated:</span> September 22, 2016<br/> Site last generated: Sep 22, 2016 <br />
+        <span>Page last updated:</span> September 22, 2016<br/> Site last generated: Sep 28, 2016 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">

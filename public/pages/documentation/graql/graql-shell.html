@@ -380,6 +380,49 @@
         </ul>
         
         
+    
+    <li>
+        <a href="#">Examples</a>
+        <ul>
+            
+            
+            
+            <li><a href="/pages/documentation/examples/examples.html">Examples</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="/pages/documentation/examples/pokemon.html">Pokemon example</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="/pages/documentation/examples/philosophers.html">Philosophers example</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="/pages/documentation/examples/moogi.html">Moogi example</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="/pages/documentation/examples/modern.html">Modern example</a></li>
+            
+            
+            
+            
+        </ul>
+        
+        
 
         
         
@@ -444,19 +487,28 @@ $('#toc').on('click', 'a', function() {
 
     
 
-  <p>The Graql shell is contained in the <code class="highlighter-rouge">bin</code> folder.</p>
+  <p>The Graql shell is contained in the <code class="highlighter-rouge">bin</code> folder. After starting the MindmapsDB server, you can load data into a MindmapsDB graph as follows:</p>
 
-<p>After starting the MindmapsDB server, you can execute the shell without any
-parameters to open a REPL (Read Evaluate Print Loop):</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>bin/graql.sh -f examples/pokemon.gql
+</code></pre>
+</div>
+
+<p>Then you can enter a query and press enter for it to be evaluated:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">&gt;&gt;&gt; </span>match <span class="nv">$x</span> id <span class="s2">"Pikachu"</span>;
+<span class="nv">$x</span> id <span class="s2">"Pikachu"</span> isa pokemon;
+</code></pre>
+</div>
+
+<p>If you already have a graph loaded, you can just execute the shell without any parameters to open a REPL (Read Evaluate Print Loop):</p>
 
 <div class="highlighter-rouge"><pre class="highlight"><code>bin/graql.sh
 </code></pre>
 </div>
 
-<p>The user can enter a query and press enter for it to be evaluated:</p>
+<p>To load an additional graph into a different keyspace, that is, to load a graph with a different name to any already loaded, you can specify the graph name:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">&gt;&gt;&gt; </span>match <span class="nv">$x</span> id <span class="s2">"Pikachu"</span>;
-<span class="nv">$x</span> id <span class="s2">"Pikachu"</span> isa pokemon;
+<div class="highlighter-rouge"><pre class="highlight"><code>./graql.sh -n &lt;graphname&gt;
 </code></pre>
 </div>
 
@@ -505,7 +557,7 @@ parameters to open a REPL (Read Evaluate Print Loop):</p>
     </tr>
     <tr>
       <td><code class="highlighter-rouge">edit</code></td>
-      <td>Opens the user’s default text editor, specified by the <code class="highlighter-rouge">$EDITOR</code> environment variable. By default set to <code class="highlighter-rouge">vim</code>. When the editor exits, the query is executed in the shell.</td>
+      <td>Opens the user’s default text editor, specified by the <code class="highlighter-rouge">$EDITOR</code> environment variable. By default set to <code class="highlighter-rouge">vim</code>. When the editor exits, the query is executed in the shell. Useful for executing a large chunk of Graql without typing it all in (e.g. cut and paste from an example).</td>
     </tr>
     <tr>
       <td><code class="highlighter-rouge">load &lt;filename&gt;</code></td>
@@ -554,6 +606,11 @@ parameters to open a REPL (Read Evaluate Print Loop):</p>
       <td><code class="highlighter-rouge">--help</code></td>
       <td><code class="highlighter-rouge">-h</code></td>
       <td>Print usage message</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">--uri</code></td>
+      <td><code class="highlighter-rouge">-u</code></td>
+      <td>Uri to connect to Engine</td>
     </tr>
     <tr>
       <td><code class="highlighter-rouge">--version</code></td>
@@ -620,7 +677,7 @@ graph will be automatically committed.</p>
         <br>
         <p>© 2016 <a href="https://mindmaps.io">Mindmaps Research Ltd</a></p>
         <!-- &copy;2016 MindmapsDB. All rights reserved. <br />
-        <span>Page last updated:</span> August 11, 2016<br/> Site last generated: Sep 22, 2016 <br />
+        <span>Page last updated:</span> August 11, 2016<br/> Site last generated: Sep 28, 2016 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">
