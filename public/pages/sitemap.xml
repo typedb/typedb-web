@@ -68,6 +68,12 @@
   
   
   <url>
+    <loc>http://mindmaps.io/pages//documentation/graql/compute-queries.html</loc>
+  </url>
+  
+  
+  
+  <url>
     <loc>http://mindmaps.io/pages//documentation/graql/delete-queries.html</loc>
   </url>
   
@@ -130,6 +136,12 @@
   
   
   <url>
+    <loc>http://mindmaps.io/pages//documentation/the-basics/migration-tutorial.html</loc>
+  </url>
+  
+  
+  
+  <url>
     <loc>http://mindmaps.io/pages//documentation/the-basics/mindmaps-basics.html</loc>
   </url>
   
@@ -154,13 +166,13 @@
   
   
   <url>
-    <loc>http://mindmaps.io/pages//documentation/graql/overview.html</loc>
+    <loc>http://mindmaps.io/pages//documentation/core-api/overview.html</loc>
   </url>
   
   
   
   <url>
-    <loc>http://mindmaps.io/pages//documentation/core-api/overview.html</loc>
+    <loc>http://mindmaps.io/pages//documentation/graql/overview.html</loc>
   </url>
   
   

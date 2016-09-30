@@ -3,9 +3,9 @@
     <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Demonstrates how to create a schema for a MindmapsDB knowledge graph.">
-<meta name="keywords" content="javagraph-api,  schema, mindmapsdb, mindmaps, mindmaps.io, Mindmaps Research, Mindmaps Research Ltd, software, development platform, developer tool, data platform, programming langauge, query langauge, database, semantic database, distributed semantic database, distributed database, graph database, semantic search, data exploration, recommendation system, knowledge management, knowledge engineering, real-time analytics, advanced analytics, reasoning engine, inference engine, expert systems, semantic applications, research engines, data management, business intelligence, big data, semantic web, semantic data, knowledge representation, automated reasoning, semantic network, knowledge ontology, semantic graph, ontology engineering, graph based knowledge representation, artificial intelligence,">
-<title>Defining a Schema | MindmapsDB</title>
+<meta name="description" content="This document will teach you how to load data in different formats to populate a MindmapsDB graph.">
+<meta name="keywords" content="getting-startedgraql,  setup, getting started, mindmapsdb, mindmaps, mindmaps.io, Mindmaps Research, Mindmaps Research Ltd, software, development platform, developer tool, data platform, programming langauge, query langauge, database, semantic database, distributed semantic database, distributed database, graph database, semantic search, data exploration, recommendation system, knowledge management, knowledge engineering, real-time analytics, advanced analytics, reasoning engine, inference engine, expert systems, semantic applications, research engines, data management, business intelligence, big data, semantic web, semantic data, knowledge representation, automated reasoning, semantic network, knowledge ontology, semantic graph, ontology engineering, graph based knowledge representation, artificial intelligence,">
+<title>Migrating to MindmapsDB | MindmapsDB</title>
 <link rel="stylesheet" href="/pages/css/syntax.css">
 
 
@@ -163,7 +163,7 @@
                             
                             dataSource: '/pages/search.json',
                             
-                            searchResultTemplate: '<li><a href="{url}" title="Defining a Schema">{title}</a></li>',
+                            searchResultTemplate: '<li><a href="{url}" title="Migrating to MindmapsDB">{title}</a></li>',
                             noResultsText: '<li><a class="empty">No results found</a></li>',
                             limit: 10,
                             fuzzy: true
@@ -242,7 +242,7 @@
             
             
             
-            <li><a href="/pages/documentation/the-basics/migration-tutorial.html">Migrating to MindmapsDB</a></li>
+            <li class="active"><a href="/pages/documentation/the-basics/migration-tutorial.html">Migrating to MindmapsDB</a></li>
             
             
             
@@ -264,7 +264,7 @@
             
             
             
-            <li class="active"><a href="/pages/documentation/core-api/simple-schema-definition.html">Simple Schema Definition</a></li>
+            <li><a href="/pages/documentation/core-api/simple-schema-definition.html">Simple Schema Definition</a></li>
             
             
             
@@ -455,7 +455,7 @@
         <!-- Content Column -->
         <div class="col-md-9">
             <div class="post-header">
-   <h1 class="post-title-main">Defining a Schema</h1>
+   <h1 class="post-title-main">Migrating to MindmapsDB</h1>
 </div>
 
 
@@ -463,7 +463,7 @@
 <div class="post-content">
 
    
-    <div class="summary">Demonstrates how to create a schema for a MindmapsDB knowledge graph.</div>
+    <div class="summary">This document will teach you how to load data in different formats to populate a MindmapsDB graph.</div>
    
 
     
@@ -495,109 +495,239 @@ $('#toc').on('click', 'a', function() {
 
     
 
-    <a target="_blank" href="https://github.com/mindmapsdb/docs/blob/master/pages/documentation/3-core-api/simple-schema-definition.md" class="btn btn-default githubEditButton" role="button"><i class="fa fa-github fa-lg"></i> Edit me</a>
+    <a target="_blank" href="https://github.com/mindmapsdb/docs/blob/master/pages/documentation/1-the-basics/migration-tutorial.md" class="btn btn-default githubEditButton" role="button"><i class="fa fa-github fa-lg"></i> Edit me</a>
 
     
 
     
 
-  <p>This article assumes that you have already looked at page that covers <a href="../the-basics/mindmaps-basics.html">MindmapsDB Basics</a>.</p>
+  <h2 id="introduction">Introduction</h2>
+<p>This tutorial shows you how to use migrate content in different formats to populate a MindmapsDB graph. If you have not yet set up the MindmapsDB environment, please see the <a href="../get-started/setup-guide.html">Setup guide</a>.</p>
 
-<p>Defining a schema for your graph allows you to:</p>
+<h2 id="migration-shell-script">Migration Shell Script</h2>
+<p>The migration shell script can be found in <code class="highlighter-rouge">mindmaps-dist/bin</code> after it has been unzipped. Usage is specific to the type of migration being performed:</p>
 
-<ul>
-  <li>control how your data relates to each other</li>
-  <li>ensure your graph is consistent</li>
-  <li>design domain-specific knowledge graphs.</li>
-</ul>
+<h3 id="sql-migration">SQL Migration</h3>
 
-<p>In Mindmaps, a schema is defined by adding <strong>types</strong> to your graph.
-These <strong>types</strong> allow you to divide your data into different categories but also control how data instances may relate to each other.</p>
-
-<p>In this section we will review each of these types and explain how you use them when defining a MindmapsDB graph.</p>
-
-<h2 id="basic-type-definitions">Basic Type Definitions</h2>
-
-<p>This section describes basic types which are <strong>essential</strong> to a MindmapsDB schema.
-When creating a MindmapsDB knowledge graph you should always begin by defining these schema elements.</p>
-
-<h3 id="entity-type">Entity Type</h3>
-
-<p>Entity types essentially define a broad category into which data can fall. For example Al Pacino, Patrick Stewart,
-and Charlize Theron could all be categorised as people.
-Similarly we could say that Godfather, Star Trek Nemesis and Monster can all be categorised as movies.</p>
-
-<p>We would define such <strong>Entity Types</strong> as follows:</p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">EntityType</span> <span class="n">person</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">putEntityType</span><span class="o">(</span><span class="s">"Person"</span><span class="o">);</span>
-<span class="n">EntityType</span> <span class="n">movie</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">putEntityType</span><span class="o">(</span><span class="s">"Movie"</span><span class="o">);</span>
+<div class="highlighter-rouge"><pre class="highlight"><code>usage: ./migration.sh sql -driver &lt;jdbcDriver&gt; -user &lt;username&gt; -pass &lt;password&gt; -database &lt;url&gt; -graph &lt;graphname&gt; [engine &lt;url&gt;]
+       -driver           JDBC driver 
+       -user             username for SQL database
+       -pass             password for SQL database
+       -database         URL to SQL database
+       -graph            graph name
+       -engine           MindmapsDBengine URL, default localhost
 </code></pre>
 </div>
 
-<p>With this we can arrange our data into categories:</p>
+<h3 id="csv-migration">CSV Migration</h3>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">alPacino</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">addEntity</span><span class="o">(</span><span class="n">person</span><span class="o">).</span><span class="na">setValue</span><span class="o">(</span><span class="s">"Al Pacino"</span><span class="o">);</span>
-<span class="n">patrickStewart</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">addEntity</span><span class="o">(</span><span class="n">person</span><span class="o">).</span><span class="na">setValue</span><span class="o">(</span><span class="s">"Patrick Stewart"</span><span class="o">);</span>
-<span class="n">charliseTheron</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">addEntity</span><span class="o">(</span><span class="n">person</span><span class="o">).</span><span class="na">setValue</span><span class="o">(</span><span class="s">"Charlise Theron"</span><span class="o">);</span>
-
-<span class="n">godfather</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">addEntity</span><span class="o">(</span><span class="n">movie</span><span class="o">).</span><span class="na">setValue</span><span class="o">(</span><span class="s">"Godfather"</span><span class="o">);</span>
-<span class="n">starTrek</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">addEntity</span><span class="o">(</span><span class="n">movie</span><span class="o">).</span><span class="na">setValue</span><span class="o">(</span><span class="s">"Star Trek Nemesis"</span><span class="o">);</span>
-<span class="n">monster</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">addEntity</span><span class="o">(</span><span class="n">movie</span><span class="o">).</span><span class="na">setValue</span><span class="o">(</span><span class="s">"Monster"</span><span class="o">);</span>
+<div class="highlighter-rouge"><pre class="highlight"><code>usage: ./migration.sh csv -file &lt;file&gt; -graph &lt;graphname&gt; [-engine &lt;url] [-as &lt;type&gt;]
+      -file             csv file to migrate
+      -graph            graph name
+      -engine           MindmapsDB engine URL, default localhost
+      -as               entity type of this file
 </code></pre>
 </div>
 
-<h3 id="relation-and-role-types">Relation and Role Types</h3>
+<h3 id="json-migration">JSON Migration</h3>
 
-<p>The greatest advantage of a graph database is the expressiveness of the relationships between data.
-With MindmapsDB we can control how our data relates to each other.</p>
-
-<p>For example how can we say that Patrick Stewart starred in Star Trek Nemesis?
-To be able to do so we must first allow such behaviour between our types.
-We begin doing this by defining a <strong>Relation Type</strong> which categorises the relationships of a specific type.
-For example:</p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">RelationType</span> <span class="n">starsIn</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">putRelationType</span><span class="o">(</span><span class="s">"Stars In"</span><span class="o">);</span>
+<div class="highlighter-rouge"><pre class="highlight"><code>usage: ./migration json -schema &lt;schema&gt; -data &lt;path&gt; -graph &lt;name&gt; [-engine &lt;url&gt;]
+       -schema           json schema file or directory
+       -data             json data file or directory
+       -graph            graph name
+       -engine           MindmapsDB engine URL, default localhost
 </code></pre>
 </div>
 
-<p>In addition to this we have to specify the roles of relationship:</p>
+<h3 id="owl-migration">OWL Migration</h3>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">RoleType</span> <span class="n">actor</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">putRoleType</span><span class="o">(</span><span class="s">"Actor"</span><span class="o">);</span>
-<span class="n">RoleType</span> <span class="n">movieCastIn</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">putRoleType</span><span class="o">(</span><span class="s">"Movie Cast In"</span><span class="o">);</span>
+<div class="highlighter-rouge"><pre class="highlight"><code>usage: ./migration.sh owl -file &lt;path&gt; [-graph &lt;name&gt;] [-engine &lt;url&gt;]
+       -file             OWL file
+       -graph            graph name
+       -engine           MindmapsDB engine URL, default localhost
 </code></pre>
 </div>
 
-<p>We also have to link these roles to the correct <strong>Relation Type</strong> (NB Roles are unique and cannot be in more than one
-Relation Type):</p>
+<h2 id="sql-migration-example">SQL Migration Example</h2>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">starsIn</span><span class="o">.</span><span class="na">hasRole</span><span class="o">(</span><span class="n">actor</span><span class="o">).</span><span class="na">hasRole</span><span class="o">(</span><span class="n">movieCastIn</span><span class="o">);</span>
+<p>One of the most common use cases of the migration component will be to move data from an RDBMS into MindmapsDB. MindmapsDB relies on the JDBC API to connect to any RDBMS that uses the SQL language. The example that follows is written in MySQL, but MindmapsDB SQL migration will work with any database it can connect to using a JDBC driver. This has been tested on MySQL, Oracle and PostgresQL.</p>
+
+<h3 id="sql-schema-migration">SQL Schema Migration</h3>
+
+<p>Let’s say you have an SQL table with the following schema:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">pet</span>
+<span class="p">(</span>
+  <span class="n">name</span>    <span class="n">VARCHAR</span><span class="p">(</span><span class="mi">20</span><span class="p">),</span>
+  <span class="k">owner</span>   <span class="n">VARCHAR</span><span class="p">(</span><span class="mi">20</span><span class="p">),</span>
+  <span class="n">species</span> <span class="n">VARCHAR</span><span class="p">(</span><span class="mi">20</span><span class="p">),</span>
+  <span class="n">sex</span>     <span class="n">CHAR</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span>
+  <span class="n">birth</span>   <span class="n">DATE</span><span class="p">,</span>
+  <span class="n">death</span>   <span class="n">DATE</span>
+<span class="p">);</span>
+
+<span class="k">DROP</span> <span class="k">TABLE</span> <span class="n">IF</span> <span class="k">EXISTS</span> <span class="n">event</span><span class="p">;</span>
+
+<span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">event</span>
+<span class="p">(</span>
+  <span class="n">name</span>        <span class="n">VARCHAR</span><span class="p">(</span><span class="mi">20</span><span class="p">),</span>
+  <span class="n">date</span>        <span class="n">DATE</span><span class="p">,</span>
+  <span class="n">eventtype</span>   <span class="n">VARCHAR</span><span class="p">(</span><span class="mi">15</span><span class="p">),</span>
+  <span class="n">remark</span>      <span class="n">VARCHAR</span><span class="p">(</span><span class="mi">255</span><span class="p">)</span>
+<span class="p">);</span>
+
+<span class="k">ALTER</span> <span class="k">TABLE</span> <span class="n">event</span> <span class="k">ADD</span> <span class="k">FOREIGN</span> <span class="k">KEY</span> <span class="p">(</span> <span class="n">name</span> <span class="p">)</span> <span class="k">REFERENCES</span> <span class="n">pet</span> <span class="p">(</span> <span class="n">name</span> <span class="p">);</span>
 </code></pre>
 </div>
 
-<p>Finally we have to explicitly define which <strong>Entity Types</strong> are allowed to play which <strong>Role Types</strong>:</p>
+<p>Each SQL table is mapped to one MindmapsDB entity type. Each column of a table can be mapped as a resource type of that entity type. So the SQL tables above can be directly mapped to a MindmapsDB schema:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">person</span><span class="o">.</span><span class="na">playsRole</span><span class="o">(</span><span class="n">actor</span><span class="o">);</span>
-<span class="n">movie</span><span class="o">.</span><span class="na">playsRole</span><span class="o">(</span><span class="n">movieCastIn</span><span class="o">);</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">insert</span>
+
+<span class="n">pet</span> <span class="n">isa</span> <span class="n">entity</span><span class="o">-</span><span class="k">type</span><span class="p">,</span>
+	<span class="n">has</span><span class="o">-</span><span class="n">resource</span> <span class="n">name</span><span class="p">,</span>
+	<span class="n">has</span><span class="o">-</span><span class="n">resource</span> <span class="k">owner</span><span class="p">,</span>
+	<span class="n">has</span><span class="o">-</span><span class="n">resource</span> <span class="n">species</span><span class="p">,</span>
+	<span class="n">has</span><span class="o">-</span><span class="n">resource</span> <span class="n">sex</span><span class="p">,</span>
+	<span class="n">has</span><span class="o">-</span><span class="n">resource</span> <span class="n">birth</span><span class="p">,</span>
+	<span class="n">has</span><span class="o">-</span><span class="n">resource</span> <span class="n">death</span><span class="p">;</span>
+
+<span class="n">event</span> <span class="n">isa</span> <span class="n">entity</span><span class="o">-</span><span class="k">type</span><span class="p">,</span>
+	<span class="n">has</span><span class="o">-</span><span class="n">resource</span> <span class="n">name</span><span class="p">,</span>
+	<span class="n">has</span><span class="o">-</span><span class="n">resource</span> <span class="n">date</span><span class="p">,</span>
+	<span class="n">has</span><span class="o">-</span><span class="n">resource</span> <span class="n">eventtype</span><span class="p">,</span>
+	<span class="n">has</span><span class="o">-</span><span class="n">resource</span> <span class="n">remark</span><span class="p">;</span>
+
 </code></pre>
 </div>
 
-<p>The above statements allow people to be actors and allow movies to have actors cast in them.</p>
+<p>In SQL, a <code class="highlighter-rouge">foreign key</code> is a column that references another column. The MindmapsDB equivalent is a relationship type. Because SQL <code class="highlighter-rouge">foreign key</code> are not explicitly named, as they are in Mindmaps, the relation and roles have auto-generated names.</p>
 
-<div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> <b>Note:</b> Explicitly specifying which <strong>Role Types</strong> an <strong>Entity Type</strong> can play allows us to control our data more easily.
-Essentially it would prevent us from accidentally saying that a movie starred in another movie.</div>
+<p>The SQL schema line <code class="highlighter-rouge">ALTER TABLE event ADD FOREIGN KEY ( name ) REFERENCES pet ( name );</code> would be migrated as:</p>
 
-<p>Now, finally, we can specify that Patrick Stewart was in Star Trek Nemesis.
-First we create an instance of the Relation Type:</p>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">event</span><span class="o">-</span><span class="n">child</span> <span class="n">isa</span> <span class="k">role</span><span class="o">-</span><span class="k">type</span><span class="p">;</span>
+<span class="n">event</span><span class="o">-</span><span class="n">parent</span> <span class="n">isa</span> <span class="k">role</span><span class="o">-</span><span class="k">type</span><span class="p">;</span>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">Relation</span> <span class="n">relation</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">addRelation</span><span class="o">(</span><span class="n">starsIn</span><span class="o">);</span>
+<span class="n">event</span><span class="o">-</span><span class="n">relation</span> <span class="n">isa</span> <span class="n">relation</span><span class="o">-</span><span class="k">type</span><span class="p">,</span> 
+ 	<span class="n">has</span><span class="o">-</span><span class="k">role</span> <span class="n">event</span><span class="o">-</span><span class="n">child</span><span class="p">,</span>
+ 	<span class="n">has</span><span class="o">-</span><span class="k">role</span> <span class="n">event</span><span class="o">-</span><span class="n">parent</span><span class="p">;</span>
+
+<span class="n">event</span> <span class="n">plays</span><span class="o">-</span><span class="k">role</span> <span class="n">event</span><span class="o">-</span><span class="n">parent</span><span class="p">;</span>
+<span class="n">pet</span> <span class="n">plays</span><span class="o">-</span><span class="k">role</span> <span class="n">event</span><span class="o">-</span><span class="n">child</span><span class="p">;</span>
 </code></pre>
 </div>
 
-<p>Then we specify who is playing which role:</p>
+<h3 id="sql-data-migration">SQL Data Migration</h3>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">relation</span><span class="o">.</span><span class="na">putRolePlayer</span><span class="o">(</span><span class="n">actor</span><span class="o">,</span> <span class="n">patrickStewart</span><span class="o">).</span><span class="na">putRolePlayer</span><span class="o">(</span><span class="n">movieCastIn</span><span class="o">,</span> <span class="n">startrek</span><span class="o">);</span>
+<p>Lets imagine that the data in the SQL database is as follows:</p>
+
+<p>pet:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>--------------------------------------------------------------- 
+| name     | owner  | species | sex | birth      | death      |
+--------------------------------------------------------------- 
+| Bowser   | Diane  | dog     | m   | 1979-08-31 | 1995-07-29 |
+--------------------------------------------------------------- 
+| Fluffy   | Harold | cat     | f   | 1993-02-04 | NULL       |
+--------------------------------------------------------------- 
+| Claws    | Gwen   | cat     | m   | 1994-03-17 | NULL       |
+--------------------------------------------------------------- 
+| Buffy    | Harold | dog     | f   | 1989-05-13 | NULL       |
+--------------------------------------------------------------- 
+| Fang     | Benny  | dog     | m   | 1990-08-27 | NULL       |
+--------------------------------------------------------------- 
+| Puffball | Diane  | hamster | f   | 1999-03-30 | NULL       |
+--------------------------------------------------------------- 
 </code></pre>
 </div>
+
+<p>event:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>-----------------------------------------------------------------------
+| name   | date       | eventtype| remark                             |
+-----------------------------------------------------------------------
+| Bowser | 1991-10-12 | kennel   | NULL                               |
+-----------------------------------------------------------------------
+| Fang   | 1991-10-12 | kennel   | NULL                               |
+-----------------------------------------------------------------------
+| Fluffy | 1995-05-15 | litter   | 4 kittens, 3 female, 1 male        |
+-----------------------------------------------------------------------
+| Buffy  | 1993-06-23 | litter   | 5 puppies, 2 female, 3 male        |
+-----------------------------------------------------------------------
+| Buffy  | 1994-06-19 | litter   | 3 puppies, 3 female                |
+-----------------------------------------------------------------------
+| Fang   | 1998-08-28 | birthday | Gave him a new chew toy            |
+-----------------------------------------------------------------------
+| Claws  | 1998-03-17 | birthday | Gave him a new flea collar         |
+-----------------------------------------------------------------------
+</code></pre>
+</div>
+
+<p>Similar to how the schema is migrated, each row of data in an SQL table can be mapped to a single entity instance and each column value can be mapped as a resource.</p>
+
+<p>Another feature of the migration component is that it will turn any <code class="highlighter-rouge">primary key</code> of a row into the ID of that instance. This works for combined keys as well.</p>
+
+<p>This is how the first two rows of the <code class="highlighter-rouge">pet</code> and <code class="highlighter-rouge">event</code> tables would look if written in Graql:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">insert</span>
+
+<span class="err">$</span><span class="n">x</span> <span class="n">isa</span> <span class="n">pet</span> <span class="n">id</span> <span class="nv">"Bowser"</span><span class="p">,</span>
+	<span class="n">has</span> <span class="k">owner</span> <span class="nv">"Diane"</span><span class="p">,</span>
+	<span class="n">has</span> <span class="n">species</span> <span class="nv">"dog"</span><span class="p">,</span>
+	<span class="n">has</span> <span class="n">sex</span> <span class="nv">"m"</span><span class="p">,</span>
+	<span class="n">has</span> <span class="n">birth</span> <span class="nv">"1979-08-31"</span><span class="p">,</span>
+	<span class="n">has</span> <span class="n">death</span> <span class="nv">"1995-07-29"</span><span class="p">;</span>
+
+<span class="err">$</span><span class="n">y</span> <span class="n">isa</span> <span class="n">event</span>
+	<span class="n">has</span> <span class="n">date</span> <span class="nv">"1991-10-12"</span><span class="p">,</span>
+	<span class="n">has</span> <span class="n">eventtype</span> <span class="nv">"kennel"</span><span class="p">;</span>
+
+</code></pre>
+</div>
+
+<p>If the value of a column is <code class="highlighter-rouge">null</code>, that resource is not added to the graph.</p>
+
+<p>The <code class="highlighter-rouge">name</code> column of the event instance was not migrated as a resource. This is because that column is a foreign key. The migration component will detect when one of the columns is a <code class="highlighter-rouge">foreign key</code> and create a relation between those two instances:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="p">(</span><span class="n">event</span><span class="o">-</span><span class="n">child</span> <span class="err">$</span><span class="n">x</span><span class="p">,</span> <span class="n">event</span><span class="o">-</span><span class="n">parent</span> <span class="err">$</span><span class="n">y</span><span class="p">)</span> <span class="n">isa</span> <span class="n">event</span><span class="o">-</span><span class="n">relation</span><span class="p">;</span>
+</code></pre>
+</div>
+
+<h3 id="in-java">In Java</h3>
+
+<p>While the migration seems rather lengthy when written out in Graql, you only need a few lines of code to accomplish this migration in Mindmaps:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="c1">// get the JDBC connection</span>
+
+<span class="n">Connection</span> <span class="n">connection</span> <span class="o">=</span> <span class="n">DriverManager</span><span class="o">.</span><span class="na">getConnection</span><span class="o">(</span><span class="n">jdbcDBUrl</span><span class="o">,</span> <span class="n">jdbcUser</span><span class="o">,</span> <span class="n">jdbcPass</span><span class="o">);</span>
+
+<span class="c1">// get the MindmapsDB connection</span>
+
+<span class="n">MindmapsGraph</span> <span class="n">graph</span> <span class="o">=</span> <span class="n">Mindmaps</span><span class="o">.</span><span class="na">factory</span><span class="o">(</span><span class="n">Mindmaps</span><span class="o">.</span><span class="na">DEFAULT_URI</span><span class="o">).</span><span class="na">getGraph</span><span class="o">(</span><span class="s">"sql-test-graph"</span><span class="o">);</span>
+<span class="n">Loader</span> <span class="n">loader</span> <span class="o">=</span> <span class="k">new</span> <span class="n">BlockingLoader</span><span class="o">(</span><span class="s">"sql-test-graph"</span><span class="o">);</span>
+
+<span class="c1">// create migrators and perform migration</span>
+
+<span class="n">SQLSchemaMigrator</span> <span class="n">schemaMigrator</span> <span class="o">=</span> <span class="k">new</span> <span class="n">SQLSchemaMigrator</span><span class="o">();</span>
+<span class="n">SQLDataMigrator</span> <span class="n">dataMigrator</span> <span class="o">=</span> <span class="k">new</span> <span class="n">SQLDataMigrator</span><span class="o">();</span>
+
+<span class="n">schemaMigrator</span>
+        <span class="o">.</span><span class="na">graph</span><span class="o">(</span><span class="n">graph</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">configure</span><span class="o">(</span><span class="n">connection</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">migrate</span><span class="o">(</span><span class="n">loader</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">close</span><span class="o">();</span>
+
+<span class="n">dataMigrator</span>
+        <span class="o">.</span><span class="na">graph</span><span class="o">(</span><span class="n">graph</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">configure</span><span class="o">(</span><span class="n">connection</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">migrate</span><span class="o">(</span><span class="n">loader</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">close</span><span class="o">();</span>
+
+</code></pre>
+</div>
+
+<h2 id="where-next">Where Next?</h2>
+<p>You can find further documentation about migration in our API reference documentation (which is in the <code class="highlighter-rouge">/docs</code> directory of the distribution zip file, and also online here).</p>
 
 <h2 id="document-changelog">Document Changelog</h2>
 
@@ -608,15 +738,15 @@ First we create an instance of the Relation Type:</p>
         <td>Description</td>        
     </tr>
         <tr>
-        <td>v0.1.0</td>
-        <td>03/09/2016</td>
-        <td>First release.</td>        
+        <td>v0.2.0</td>
+        <td>28/09/2016</td>
+        <td>First doc release.</td>        
     </tr>
 
 </table>
 
 <h2 id="comments">Comments</h2>
-<p>Want to leave a comment? Visit <a href="https://github.com/mindmapsdb/docs/issues/21" target="_blank">the issues on Github for this page</a> (you’ll need a GitHub account). You are also welcome to contribute to our documentation directly via the “Edit me” button at the top of the page.</p>
+<p>Want to leave a comment? Visit <a href="https://github.com/mindmapsdb/docs/issues/32" target="_blank">the issues on Github for this page</a> (you’ll need a GitHub account). You are also welcome to contribute to our documentation directly via the “Edit me” button at the top of the page.</p>
 
 
     <div class="tags">
@@ -625,11 +755,11 @@ First we create an instance of the Relation Type:</p>
         
         
         
-        <a href="/pages/tag_java.html" class="btn btn-default navbar-btn cursorNorm" role="button">java</a>
+        <a href="/pages/tag_getting-started.html" class="btn btn-default navbar-btn cursorNorm" role="button">getting-started</a>
         
         
         
-        <a href="/pages/tag_graph-api.html" class="btn btn-default navbar-btn cursorNorm" role="button">graph-api</a>
+        <a href="/pages/tag_graql.html" class="btn btn-default navbar-btn cursorNorm" role="button">graql</a>
         
         
         
@@ -660,7 +790,7 @@ First we create an instance of the Relation Type:</p>
         <br>
         <p>© 2016 <a href="https://mindmaps.io">Mindmaps Research Ltd</a></p>
         <!-- &copy;2016 MindmapsDB. All rights reserved. <br />
-        <span>Page last updated:</span> August 23, 2016<br/> Site last generated: Sep 30, 2016 <br />
+        <span>Page last updated:</span> August 10, 2016<br/> Site last generated: Sep 30, 2016 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">

@@ -114,6 +114,17 @@
 
 
 {
+"title": "Compute Queries",
+"tags": "graql",
+"keywords": "graql, compute, match",
+"url": "documentationgraqlcompute-queries.html",
+"summary": "Graql Compute Queries"
+}
+,
+
+
+
+{
 "title": "Delete Queries",
 "tags": "graql",
 "keywords": "graql, query, delete",
@@ -226,6 +237,17 @@
 
 
 {
+"title": "Migrating to MindmapsDB",
+"tags": "getting-startedgraql",
+"keywords": "setup, getting started",
+"url": "documentationthe-basicsmigration-tutorial.html",
+"summary": "This document will teach you how to load data in different formats to populate a MindmapsDB graph."
+}
+,
+
+
+
+{
 "title": "MindmapsDB Basics",
 "tags": "getting-started",
 "keywords": "setup, getting started, basics",
@@ -270,22 +292,22 @@
 
 
 {
-"title": "Graql Overview",
-"tags": "graql",
-"keywords": "graql, overview",
-"url": "documentationgraqloverview.html",
-"summary": "An introduction to Graql"
+"title": "Graph API Overview",
+"tags": "javagraph-api",
+"keywords": "overview",
+"url": "documentationcore-apioverview.html",
+"summary": "A basic example of how to use MindmapsDB Graph API."
 }
 ,
 
 
 
 {
-"title": "Graph API Overview",
-"tags": "javagraph-api",
-"keywords": "overview",
-"url": "documentationcore-apioverview.html",
-"summary": "A basic example of how to use MindmapsDB Graph API."
+"title": "Graql Overview",
+"tags": "graql",
+"keywords": "graql, overview",
+"url": "documentationgraqloverview.html",
+"summary": "An introduction to Graql"
 }
 ,
 

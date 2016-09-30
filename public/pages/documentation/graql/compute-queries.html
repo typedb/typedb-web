@@ -3,9 +3,9 @@
     <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Demonstrates how to create a schema for a MindmapsDB knowledge graph.">
-<meta name="keywords" content="javagraph-api,  schema, mindmapsdb, mindmaps, mindmaps.io, Mindmaps Research, Mindmaps Research Ltd, software, development platform, developer tool, data platform, programming langauge, query langauge, database, semantic database, distributed semantic database, distributed database, graph database, semantic search, data exploration, recommendation system, knowledge management, knowledge engineering, real-time analytics, advanced analytics, reasoning engine, inference engine, expert systems, semantic applications, research engines, data management, business intelligence, big data, semantic web, semantic data, knowledge representation, automated reasoning, semantic network, knowledge ontology, semantic graph, ontology engineering, graph based knowledge representation, artificial intelligence,">
-<title>Defining a Schema | MindmapsDB</title>
+<meta name="description" content="Graql Compute Queries">
+<meta name="keywords" content="graql,  graql, compute, match, mindmapsdb, mindmaps, mindmaps.io, Mindmaps Research, Mindmaps Research Ltd, software, development platform, developer tool, data platform, programming langauge, query langauge, database, semantic database, distributed semantic database, distributed database, graph database, semantic search, data exploration, recommendation system, knowledge management, knowledge engineering, real-time analytics, advanced analytics, reasoning engine, inference engine, expert systems, semantic applications, research engines, data management, business intelligence, big data, semantic web, semantic data, knowledge representation, automated reasoning, semantic network, knowledge ontology, semantic graph, ontology engineering, graph based knowledge representation, artificial intelligence,">
+<title>Compute Queries | MindmapsDB</title>
 <link rel="stylesheet" href="/pages/css/syntax.css">
 
 
@@ -163,7 +163,7 @@
                             
                             dataSource: '/pages/search.json',
                             
-                            searchResultTemplate: '<li><a href="{url}" title="Defining a Schema">{title}</a></li>',
+                            searchResultTemplate: '<li><a href="{url}" title="Compute Queries">{title}</a></li>',
                             noResultsText: '<li><a class="empty">No results found</a></li>',
                             limit: 10,
                             fuzzy: true
@@ -264,7 +264,7 @@
             
             
             
-            <li class="active"><a href="/pages/documentation/core-api/simple-schema-definition.html">Simple Schema Definition</a></li>
+            <li><a href="/pages/documentation/core-api/simple-schema-definition.html">Simple Schema Definition</a></li>
             
             
             
@@ -328,7 +328,7 @@
             
             
             
-            <li><a href="/pages/documentation/graql/compute-queries.html">Compute Queries</a></li>
+            <li class="active"><a href="/pages/documentation/graql/compute-queries.html">Compute Queries</a></li>
             
             
             
@@ -455,7 +455,7 @@
         <!-- Content Column -->
         <div class="col-md-9">
             <div class="post-header">
-   <h1 class="post-title-main">Defining a Schema</h1>
+   <h1 class="post-title-main">Compute Queries</h1>
 </div>
 
 
@@ -463,7 +463,7 @@
 <div class="post-content">
 
    
-    <div class="summary">Demonstrates how to create a schema for a MindmapsDB knowledge graph.</div>
+    <div class="summary">Graql Compute Queries</div>
    
 
     
@@ -495,109 +495,132 @@ $('#toc').on('click', 'a', function() {
 
     
 
-    <a target="_blank" href="https://github.com/mindmapsdb/docs/blob/master/pages/documentation/3-core-api/simple-schema-definition.md" class="btn btn-default githubEditButton" role="button"><i class="fa fa-github fa-lg"></i> Edit me</a>
+    <a target="_blank" href="https://github.com/mindmapsdb/docs/blob/master/pages/documentation/4-graql/compute-queries.md" class="btn btn-default githubEditButton" role="button"><i class="fa fa-github fa-lg"></i> Edit me</a>
 
     
 
     
 
-  <p>This article assumes that you have already looked at page that covers <a href="../the-basics/mindmaps-basics.html">MindmapsDB Basics</a>.</p>
+  <p>A compute query executes a Pregel algorithm to determine information about the graph in parallel. The general syntax is:</p>
 
-<p>Defining a schema for your graph allows you to:</p>
-
-<ul>
-  <li>control how your data relates to each other</li>
-  <li>ensure your graph is consistent</li>
-  <li>design domain-specific knowledge graphs.</li>
-</ul>
-
-<p>In Mindmaps, a schema is defined by adding <strong>types</strong> to your graph.
-These <strong>types</strong> allow you to divide your data into different categories but also control how data instances may relate to each other.</p>
-
-<p>In this section we will review each of these types and explain how you use them when defining a MindmapsDB graph.</p>
-
-<h2 id="basic-type-definitions">Basic Type Definitions</h2>
-
-<p>This section describes basic types which are <strong>essential</strong> to a MindmapsDB schema.
-When creating a MindmapsDB knowledge graph you should always begin by defining these schema elements.</p>
-
-<h3 id="entity-type">Entity Type</h3>
-
-<p>Entity types essentially define a broad category into which data can fall. For example Al Pacino, Patrick Stewart,
-and Charlize Theron could all be categorised as people.
-Similarly we could say that Godfather, Star Trek Nemesis and Monster can all be categorised as movies.</p>
-
-<p>We would define such <strong>Entity Types</strong> as follows:</p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">EntityType</span> <span class="n">person</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">putEntityType</span><span class="o">(</span><span class="s">"Person"</span><span class="o">);</span>
-<span class="n">EntityType</span> <span class="n">movie</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">putEntityType</span><span class="o">(</span><span class="s">"Movie"</span><span class="o">);</span>
+<div class="highlighter-rouge"><pre class="highlight"><code>compute algorithm in subgraph;
 </code></pre>
 </div>
 
-<p>With this we can arrange our data into categories:</p>
+<p>where algorithm can be any of the <a href="#available-algorithms">available</a> options. Subgraph is a comma separated list of
+type IDs that defines the instances that will be visited by the pregel algorithm. For example,</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">alPacino</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">addEntity</span><span class="o">(</span><span class="n">person</span><span class="o">).</span><span class="na">setValue</span><span class="o">(</span><span class="s">"Al Pacino"</span><span class="o">);</span>
-<span class="n">patrickStewart</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">addEntity</span><span class="o">(</span><span class="n">person</span><span class="o">).</span><span class="na">setValue</span><span class="o">(</span><span class="s">"Patrick Stewart"</span><span class="o">);</span>
-<span class="n">charliseTheron</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">addEntity</span><span class="o">(</span><span class="n">person</span><span class="o">).</span><span class="na">setValue</span><span class="o">(</span><span class="s">"Charlise Theron"</span><span class="o">);</span>
-
-<span class="n">godfather</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">addEntity</span><span class="o">(</span><span class="n">movie</span><span class="o">).</span><span class="na">setValue</span><span class="o">(</span><span class="s">"Godfather"</span><span class="o">);</span>
-<span class="n">starTrek</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">addEntity</span><span class="o">(</span><span class="n">movie</span><span class="o">).</span><span class="na">setValue</span><span class="o">(</span><span class="s">"Star Trek Nemesis"</span><span class="o">);</span>
-<span class="n">monster</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">addEntity</span><span class="o">(</span><span class="n">movie</span><span class="o">).</span><span class="na">setValue</span><span class="o">(</span><span class="s">"Monster"</span><span class="o">);</span>
+<div class="highlighter-rouge"><pre class="highlight"><code>compute count in person;
 </code></pre>
 </div>
 
-<h3 id="relation-and-role-types">Relation and Role Types</h3>
+<p>will return the number of instances of the concept type person.</p>
 
-<p>The greatest advantage of a graph database is the expressiveness of the relationships between data.
-With MindmapsDB we can control how our data relates to each other.</p>
+<h2 id="available-algorithms">Available Algorithms</h2>
 
-<p>For example how can we say that Patrick Stewart starred in Star Trek Nemesis?
-To be able to do so we must first allow such behaviour between our types.
-We begin doing this by defining a <strong>Relation Type</strong> which categorises the relationships of a specific type.
-For example:</p>
+<p>The available algorithms currently perform simple tasks and the idea is to add to these as demand dictates. Please get
+in touch on our <a href="https://discuss.mindmaps.io/">discussion</a> page to request any features that are of particular interest
+to you. A summary of the algorithms is given in the table below.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">RelationType</span> <span class="n">starsIn</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">putRelationType</span><span class="o">(</span><span class="s">"Stars In"</span><span class="o">);</span>
+<table>
+  <thead>
+    <tr>
+      <th>Algorithm</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><a href="#count"><code class="highlighter-rouge">count</code></a></td>
+      <td>Count the number of instances.</td>
+    </tr>
+    <tr>
+      <td><a href="#degrees"><code class="highlighter-rouge">degrees</code></a></td>
+      <td>Compute the degree of the instances.</td>
+    </tr>
+    <tr>
+      <td><a href="#degrees-and-persist"><code class="highlighter-rouge">degreesAndPersist</code></a></td>
+      <td>Compute the degree of the instances and persist this in the graph.</td>
+    </tr>
+    <tr>
+      <td><a href="#mean"><code class="highlighter-rouge">mean</code></a></td>
+      <td>Compute the mean value of a resource.</td>
+    </tr>
+    <tr>
+      <td><a href="#minimum"><code class="highlighter-rouge">min</code></a></td>
+      <td>Compute the minimum value of a resource.</td>
+    </tr>
+    <tr>
+      <td><a href="#maximum"><code class="highlighter-rouge">max</code></a></td>
+      <td>Compute the maximum value of a resource.</td>
+    </tr>
+    <tr>
+      <td><a href="#standard-deviation"><code class="highlighter-rouge">std</code></a></td>
+      <td>Compute the standard deviation of a resource.</td>
+    </tr>
+    <tr>
+      <td><a href="#sum"><code class="highlighter-rouge">sum</code></a></td>
+      <td>Comoute the sum of a resource.</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>For further information see the individual sections below.</p>
+
+<h3 id="count">Count</h3>
+
+<p>The default behaviour of count is to return a single value that gives the number of instances present in the graph. It
+is possible to also count subsets of the instances in the graph using the <a href="#subgraph">subgraph</a> syntax.</p>
+
+<h3 id="degrees">Degrees</h3>
+
+<p>The <code class="highlighter-rouge">degrees</code> algorithm computes how many edges there are attached to a given instances in the graph. A map is returned
+that displays an instance ID and its degree.</p>
+
+<h3 id="degrees-and-persist">Degrees and Persist</h3>
+
+<p>This algorithm starts by calling <a href="#degrees"><code class="highlighter-rouge">degrees</code></a>. Instead of returning the map of results it persists each degree
+to its respective instance in the graph using a resource.</p>
+
+<h3 id="mean">Mean</h3>
+
+<p>Computes the mean value of a given resource type. This algorithm requires the <a href="#subgraph">subgraph</a> syntax to be used.
+For example,</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>compute mean in age;
 </code></pre>
 </div>
 
-<p>In addition to this we have to specify the roles of relationship:</p>
+<p>would compute the mean of the value persisted in instances of the resource type age. It is also possible to provide a
+set of resource types.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">RoleType</span> <span class="n">actor</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">putRoleType</span><span class="o">(</span><span class="s">"Actor"</span><span class="o">);</span>
-<span class="n">RoleType</span> <span class="n">movieCastIn</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">putRoleType</span><span class="o">(</span><span class="s">"Movie Cast In"</span><span class="o">);</span>
+<div class="highlighter-rouge"><pre class="highlight"><code>compute mean in user-rating, expert-rating;
 </code></pre>
 </div>
 
-<p>We also have to link these roles to the correct <strong>Relation Type</strong> (NB Roles are unique and cannot be in more than one
-Relation Type):</p>
+<p>which would compute the mean of the union of the instances of the two resource types.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">starsIn</span><span class="o">.</span><span class="na">hasRole</span><span class="o">(</span><span class="n">actor</span><span class="o">).</span><span class="na">hasRole</span><span class="o">(</span><span class="n">movieCastIn</span><span class="o">);</span>
-</code></pre>
-</div>
+<h3 id="minimum">Minimum</h3>
 
-<p>Finally we have to explicitly define which <strong>Entity Types</strong> are allowed to play which <strong>Role Types</strong>:</p>
+<p>Computes the minimum value of a given resource type, similar to <a href="#mean">mean</a>.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">person</span><span class="o">.</span><span class="na">playsRole</span><span class="o">(</span><span class="n">actor</span><span class="o">);</span>
-<span class="n">movie</span><span class="o">.</span><span class="na">playsRole</span><span class="o">(</span><span class="n">movieCastIn</span><span class="o">);</span>
-</code></pre>
-</div>
+<h3 id="maximum">Maximum</h3>
 
-<p>The above statements allow people to be actors and allow movies to have actors cast in them.</p>
+<p>Computes the maximum value of a given resource type, similar to <a href="#mean">mean</a>.</p>
 
-<div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> <b>Note:</b> Explicitly specifying which <strong>Role Types</strong> an <strong>Entity Type</strong> can play allows us to control our data more easily.
-Essentially it would prevent us from accidentally saying that a movie starred in another movie.</div>
+<h3 id="standard-deviation">Standard Deviation</h3>
 
-<p>Now, finally, we can specify that Patrick Stewart was in Star Trek Nemesis.
-First we create an instance of the Relation Type:</p>
+<p>Computes the standard deviation of a given resource type, similar to <a href="#mean">mean</a>.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">Relation</span> <span class="n">relation</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">addRelation</span><span class="o">(</span><span class="n">starsIn</span><span class="o">);</span>
-</code></pre>
-</div>
+<h3 id="sum">Sum</h3>
 
-<p>Then we specify who is playing which role:</p>
+<p>Computes the sum of a given resource type, similar to <a href="#mean">mean</a>.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">relation</span><span class="o">.</span><span class="na">putRolePlayer</span><span class="o">(</span><span class="n">actor</span><span class="o">,</span> <span class="n">patrickStewart</span><span class="o">).</span><span class="na">putRolePlayer</span><span class="o">(</span><span class="n">movieCastIn</span><span class="o">,</span> <span class="n">startrek</span><span class="o">);</span>
-</code></pre>
-</div>
+<h2 id="subgraph">Subgraph</h2>
+
+<p>The subgraph syntax is provided to more accurately control the data that a chosen <a href="#available-algorithms">algorithm</a> is
+operating on. The algorithms, by default, include every instance in the calculation. Using the <code class="highlighter-rouge">in</code> keyword followed by
+a comma separated list of type IDs will restrict the calculations to instances of those types only.</p>
 
 <h2 id="document-changelog">Document Changelog</h2>
 
@@ -615,9 +638,6 @@ First we create an instance of the Relation Type:</p>
 
 </table>
 
-<h2 id="comments">Comments</h2>
-<p>Want to leave a comment? Visit <a href="https://github.com/mindmapsdb/docs/issues/21" target="_blank">the issues on Github for this page</a> (you’ll need a GitHub account). You are also welcome to contribute to our documentation directly via the “Edit me” button at the top of the page.</p>
-
 
     <div class="tags">
         
@@ -625,11 +645,7 @@ First we create an instance of the Relation Type:</p>
         
         
         
-        <a href="/pages/tag_java.html" class="btn btn-default navbar-btn cursorNorm" role="button">java</a>
-        
-        
-        
-        <a href="/pages/tag_graph-api.html" class="btn btn-default navbar-btn cursorNorm" role="button">graph-api</a>
+        <a href="/pages/tag_graql.html" class="btn btn-default navbar-btn cursorNorm" role="button">graql</a>
         
         
         
@@ -660,7 +676,7 @@ First we create an instance of the Relation Type:</p>
         <br>
         <p>© 2016 <a href="https://mindmaps.io">Mindmaps Research Ltd</a></p>
         <!-- &copy;2016 MindmapsDB. All rights reserved. <br />
-        <span>Page last updated:</span> August 23, 2016<br/> Site last generated: Sep 30, 2016 <br />
+        <span>Page last updated:</span> September 28, 2016<br/> Site last generated: Sep 30, 2016 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">
