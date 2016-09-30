@@ -514,7 +514,13 @@ You can find the code below in the example code directory of the MindmapsDB dist
 <p>Make sure you have MindmapsDB Engine running locally by using <code class="highlighter-rouge">mindmaps.sh start</code>.
 Once you have done that, a thread-bound graph can be retrieved by:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">MindmapsGraph</span> <span class="n">mindmapsGraph</span> <span class="o">=</span> <span class="n">MindmapsClient</span><span class="o">.</span><span class="na">getGraph</span><span class="o">();</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">MindmapsGraph</span> <span class="n">mindmapsGraph</span> <span class="o">=</span> <span class="n">Mindmaps</span><span class="o">.</span><span class="na">factory</span><span class="o">(</span><span class="n">Mindmaps</span><span class="o">.</span><span class="na">DEFAULT_URI</span><span class="o">,</span> <span class="s">"my-graph"</span><span class="o">).</span><span class="na">getGraph</span><span class="o">();</span>
+</code></pre>
+</div>
+
+<p>Alternatively an in-memory graph can be created with:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">MindmapsGraph</span> <span class="n">mindmapsGraph</span> <span class="o">=</span> <span class="n">Mindmaps</span><span class="o">.</span><span class="na">factory</span><span class="o">(</span><span class="n">Mindmaps</span><span class="o">.</span><span class="na">IN_MEMORY</span><span class="o">,</span> <span class="s">"my-graph"</span><span class="o">).</span><span class="na">getGraph</span><span class="o">();</span>
 </code></pre>
 </div>
 

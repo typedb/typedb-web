@@ -526,11 +526,10 @@ as <code class="highlighter-rouge">var</code> and <code class="highlighter-rouge
 </code></pre>
 </div>
 
-<p>A <code class="highlighter-rouge">QueryBuilder</code> is constructed by providing a <code class="highlighter-rouge">MindmapsTransaction</code>:</p>
+<p>A <code class="highlighter-rouge">QueryBuilder</code> is constructed by providing a <code class="highlighter-rouge">MindmapsGraph</code>:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">MindmapsGraph</span> <span class="n">graph</span> <span class="o">=</span> <span class="n">MindmapsClient</span><span class="o">.</span><span class="na">getGraph</span><span class="o">(</span><span class="s">"my-graph"</span><span class="o">);</span>
-<span class="n">MindmapsTransaction</span> <span class="n">transaction</span> <span class="o">=</span> <span class="n">graph</span><span class="o">.</span><span class="na">newTransaction</span><span class="o">();</span>
-<span class="n">QueryBuilder</span> <span class="n">qb</span> <span class="o">=</span> <span class="n">QueryBuilder</span><span class="o">.</span><span class="na">build</span><span class="o">(</span><span class="n">transaction</span><span class="o">);</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">MindmapsGraph</span> <span class="n">graph</span> <span class="o">=</span> <span class="n">Mindmaps</span><span class="o">.</span><span class="na">factory</span><span class="o">(</span><span class="n">Mindmaps</span><span class="o">.</span><span class="na">DEFAULT_URI</span><span class="o">,</span> <span class="s">"my-graph"</span><span class="o">).</span><span class="na">getGraph</span><span class="o">();</span>
+<span class="n">QueryBuilder</span> <span class="n">qb</span> <span class="o">=</span> <span class="n">QueryBuilder</span><span class="o">.</span><span class="na">build</span><span class="o">(</span><span class="n">graph</span><span class="o">);</span>
 </code></pre>
 </div>
 

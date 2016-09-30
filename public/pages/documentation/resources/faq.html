@@ -523,29 +523,6 @@ $('#toc').on('click', 'a', function() {
 
 <p>Please see the answer to the question below “Can I run MindmapsDB on an existing Cassandra Platform?” if you are already using Cassandra and want to run MindmapsDB on a different instance of Cassandra to our default.</p>
 
-<h3 id="why-am-i-getting-a-strange-exception">Why am I getting a strange exception?</h3>
-
-<p>I am seeing the following exception. Why?
-<code class="highlighter-rouge">bash
-java.lang.RuntimeException: java.lang.IllegalStateException: The vertex or type is not associated with this transaction [v[24584]]
-</code></p>
-
-<p>This exception occurs when you try to create links between concepts in
-different graphs. The following code reproduces this exception:</p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">MindmapsTitanGraphFactory</span> <span class="n">factory</span> <span class="o">=</span> <span class="n">MindmapsTitanGraphFactory</span><span class="o">.</span><span class="na">getInstance</span><span class="o">();</span>
-<span class="c1">//Configuration pointing to keyspace one</span>
-<span class="n">MindmapsGraph</span> <span class="n">mindmapsGraph1</span> <span class="o">=</span> <span class="n">factory</span><span class="o">.</span><span class="na">newGraph</span><span class="o">(</span><span class="s">"conf1.properties"</span><span class="o">);</span>
-<span class="c1">//Configuration pointing to keyspace two</span>
-<span class="n">MindmapsGraph</span> <span class="n">mindmapsGraph2</span> <span class="o">=</span> <span class="n">factory</span><span class="o">.</span><span class="na">newGraph</span><span class="o">(</span><span class="s">"conf2.properties"</span><span class="o">);</span>
-
-<span class="n">ConceptType</span> <span class="n">conceptType1</span> <span class="o">=</span> <span class="n">mindmapsGraph1</span><span class="o">.</span><span class="na">putConceptType</span><span class="o">(</span><span class="s">"1"</span><span class="o">);</span>
-<span class="n">ConceptType</span> <span class="n">conceptType2</span> <span class="o">=</span> <span class="n">mindmapsGraph2</span><span class="o">.</span><span class="na">putConceptType</span><span class="o">(</span><span class="s">"2"</span><span class="o">);</span>
-
-<span class="n">conceptType1</span><span class="o">.</span><span class="na">superConcept</span><span class="o">(</span><span class="n">conceptType2</span><span class="o">);</span>
-</code></pre>
-</div>
-
 <h3 id="why-am-i-getting-ghost-vertices">Why am I getting ghost vertices?</h3>
 
 <p>In a  transaction based environment it is possible to have one transaction removing a concept while another concurrently modifies the same concept. Both
@@ -629,7 +606,7 @@ storage.hostname=127.0.0.1
 
 <p>If you are using the Java API, it’s a simple as:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>graph = MindmapsClient.getGraph("myGraph");
+<div class="highlighter-rouge"><pre class="highlight"><code>graph = Mindmaps.factory(Mindmaps.DEFAULT_URI, "my-graph").getGraph();
 graph.clear();
 </code></pre>
 </div>
