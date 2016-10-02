@@ -556,7 +556,7 @@ $('#toc').on('click', 'a', function() {
 
 <p>Let’s say you have an SQL table with the following schema:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">pet</span>
+<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">pet</span>
 <span class="p">(</span>
   <span class="n">name</span>    <span class="n">VARCHAR</span><span class="p">(</span><span class="mi">20</span><span class="p">),</span>
   <span class="k">owner</span>   <span class="n">VARCHAR</span><span class="p">(</span><span class="mi">20</span><span class="p">),</span>
@@ -582,7 +582,7 @@ $('#toc').on('click', 'a', function() {
 
 <p>Each SQL table is mapped to one MindmapsDB entity type. Each column of a table can be mapped as a resource type of that entity type. So the SQL tables above can be directly mapped to a MindmapsDB schema:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">insert</span>
+<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">insert</span>
 
 <span class="n">pet</span> <span class="n">isa</span> <span class="n">entity</span><span class="o">-</span><span class="k">type</span><span class="p">,</span>
 	<span class="n">has</span><span class="o">-</span><span class="n">resource</span> <span class="n">name</span><span class="p">,</span>
@@ -605,7 +605,7 @@ $('#toc').on('click', 'a', function() {
 
 <p>The SQL schema line <code class="highlighter-rouge">ALTER TABLE event ADD FOREIGN KEY ( name ) REFERENCES pet ( name );</code> would be migrated as:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">event</span><span class="o">-</span><span class="n">child</span> <span class="n">isa</span> <span class="k">role</span><span class="o">-</span><span class="k">type</span><span class="p">;</span>
+<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="n">event</span><span class="o">-</span><span class="n">child</span> <span class="n">isa</span> <span class="k">role</span><span class="o">-</span><span class="k">type</span><span class="p">;</span>
 <span class="n">event</span><span class="o">-</span><span class="n">parent</span> <span class="n">isa</span> <span class="k">role</span><span class="o">-</span><span class="k">type</span><span class="p">;</span>
 
 <span class="n">event</span><span class="o">-</span><span class="n">relation</span> <span class="n">isa</span> <span class="n">relation</span><span class="o">-</span><span class="k">type</span><span class="p">,</span> 
@@ -669,7 +669,7 @@ $('#toc').on('click', 'a', function() {
 
 <p>This is how the first two rows of the <code class="highlighter-rouge">pet</code> and <code class="highlighter-rouge">event</code> tables would look if written in Graql:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">insert</span>
+<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">insert</span>
 
 <span class="err">$</span><span class="n">x</span> <span class="n">isa</span> <span class="n">pet</span> <span class="n">id</span> <span class="nv">"Bowser"</span><span class="p">,</span>
 	<span class="n">has</span> <span class="k">owner</span> <span class="nv">"Diane"</span><span class="p">,</span>
@@ -689,7 +689,7 @@ $('#toc').on('click', 'a', function() {
 
 <p>The <code class="highlighter-rouge">name</code> column of the event instance was not migrated as a resource. This is because that column is a foreign key. The migration component will detect when one of the columns is a <code class="highlighter-rouge">foreign key</code> and create a relation between those two instances:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="p">(</span><span class="n">event</span><span class="o">-</span><span class="n">child</span> <span class="err">$</span><span class="n">x</span><span class="p">,</span> <span class="n">event</span><span class="o">-</span><span class="n">parent</span> <span class="err">$</span><span class="n">y</span><span class="p">)</span> <span class="n">isa</span> <span class="n">event</span><span class="o">-</span><span class="n">relation</span><span class="p">;</span>
+<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="p">(</span><span class="n">event</span><span class="o">-</span><span class="n">child</span> <span class="err">$</span><span class="n">x</span><span class="p">,</span> <span class="n">event</span><span class="o">-</span><span class="n">parent</span> <span class="err">$</span><span class="n">y</span><span class="p">)</span> <span class="n">isa</span> <span class="n">event</span><span class="o">-</span><span class="n">relation</span><span class="p">;</span>
 </code></pre>
 </div>
 
@@ -697,7 +697,7 @@ $('#toc').on('click', 'a', function() {
 
 <p>While the migration seems rather lengthy when written out in Graql, you only need a few lines of code to accomplish this migration in Mindmaps:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="c1">// get the JDBC connection</span>
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="c1">// get the JDBC connection</span>
 
 <span class="n">Connection</span> <span class="n">connection</span> <span class="o">=</span> <span class="n">DriverManager</span><span class="o">.</span><span class="na">getConnection</span><span class="o">(</span><span class="n">jdbcDBUrl</span><span class="o">,</span> <span class="n">jdbcUser</span><span class="o">,</span> <span class="n">jdbcPass</span><span class="o">);</span>
 

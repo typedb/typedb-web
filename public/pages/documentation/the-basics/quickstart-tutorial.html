@@ -509,7 +509,7 @@ You can find the example <code class="highlighter-rouge">philosophers.gql</code>
 
 <p>We are going model how philosophers are related to each other. If you are using Graql and don’t want to type everything below to build up the schema, you can load it using:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>bin/graql.sh -f examples/philosophers.gql
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>bin/graql.sh -f examples/philosophers.gql
 </code></pre>
 </div>
 
@@ -519,14 +519,14 @@ You can find the example <code class="highlighter-rouge">philosophers.gql</code>
 
 <p>We’ll first add an entity type <code class="highlighter-rouge">person</code>:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>bin/graql.sh
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>bin/graql.sh
 &gt;&gt;&gt;insert person isa entity-type;
 </code></pre>
 </div>
 
 <p>…and now some data in the form of concept instances: in our case, a bunch of ancient Greeks…</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span><span class="k">insert</span> <span class="nv">"Socrates"</span> <span class="n">isa</span> <span class="n">person</span><span class="p">;</span>
+<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span><span class="k">insert</span> <span class="nv">"Socrates"</span> <span class="n">isa</span> <span class="n">person</span><span class="p">;</span>
 <span class="o">&gt;&gt;&gt;</span><span class="k">insert</span> <span class="nv">"Plato"</span> <span class="n">isa</span> <span class="n">person</span><span class="p">;</span>
 <span class="o">&gt;&gt;&gt;</span><span class="k">insert</span> <span class="nv">"Aristotle"</span> <span class="n">isa</span> <span class="n">person</span><span class="p">;</span>
 <span class="o">&gt;&gt;&gt;</span><span class="k">insert</span> <span class="nv">"Alexander"</span> <span class="n">isa</span> <span class="n">person</span><span class="p">;</span>
@@ -544,7 +544,7 @@ concept instances.</p>
 
 <p>We’ll quickly check that our data has loaded:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span><span class="k">match</span> <span class="err">$</span><span class="n">p</span> <span class="n">isa</span> <span class="n">person</span>
+<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span><span class="k">match</span> <span class="err">$</span><span class="n">p</span> <span class="n">isa</span> <span class="n">person</span>
 
 <span class="err">$</span><span class="n">p</span> <span class="n">id</span> <span class="nv">"Aristotle"</span> <span class="n">isa</span> <span class="n">person</span><span class="p">;</span>
 <span class="err">$</span><span class="n">p</span> <span class="n">id</span> <span class="nv">"Plato"</span> <span class="n">isa</span> <span class="n">person</span><span class="p">;</span>
@@ -557,7 +557,7 @@ concept instances.</p>
 
 <p>Next, let’s add some <code class="highlighter-rouge">schools</code> of thought:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span><span class="k">insert</span> <span class="n">school</span> <span class="n">isa</span> <span class="n">entity</span><span class="o">-</span><span class="k">type</span><span class="p">;</span>
+<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span><span class="k">insert</span> <span class="n">school</span> <span class="n">isa</span> <span class="n">entity</span><span class="o">-</span><span class="k">type</span><span class="p">;</span>
 <span class="o">&gt;&gt;&gt;</span><span class="k">insert</span> <span class="nv">"Peripateticism"</span> <span class="n">isa</span> <span class="n">school</span><span class="p">;</span>
 <span class="o">&gt;&gt;&gt;</span><span class="k">insert</span> <span class="nv">"Platonism"</span> <span class="n">isa</span> <span class="n">school</span><span class="p">;</span>
 <span class="o">&gt;&gt;&gt;</span><span class="k">insert</span> <span class="nv">"Idealism"</span> <span class="n">isa</span> <span class="n">school</span><span class="p">;</span>
@@ -567,7 +567,7 @@ concept instances.</p>
 
 <p>And look up one:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span><span class="k">match</span> <span class="err">$</span><span class="n">cyn</span> <span class="n">id</span> <span class="nv">"Cynicism"</span>
+<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span><span class="k">match</span> <span class="err">$</span><span class="n">cyn</span> <span class="n">id</span> <span class="nv">"Cynicism"</span>
 
 <span class="err">$</span><span class="n">cyn</span> <span class="n">id</span> <span class="nv">"Cynicism"</span> <span class="n">isa</span> <span class="n">school</span><span class="p">;</span>
 </code></pre>
@@ -582,7 +582,7 @@ concept instances.</p>
 <p>First, we define a <code class="highlighter-rouge">relation-type</code> called <code class="highlighter-rouge">practice</code> that relates a
 <code class="highlighter-rouge">role-type</code> called <code class="highlighter-rouge">philosopher</code> to a <code class="highlighter-rouge">role-type</code> called <code class="highlighter-rouge">philosophy</code>:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span><span class="k">insert</span> <span class="n">practice</span> <span class="n">isa</span> <span class="n">relation</span><span class="o">-</span><span class="k">type</span><span class="p">;</span>
+<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span><span class="k">insert</span> <span class="n">practice</span> <span class="n">isa</span> <span class="n">relation</span><span class="o">-</span><span class="k">type</span><span class="p">;</span>
 <span class="o">&gt;&gt;&gt;</span><span class="k">insert</span> <span class="n">philosopher</span> <span class="n">isa</span> <span class="k">role</span><span class="o">-</span><span class="k">type</span><span class="p">;</span>
 <span class="o">&gt;&gt;&gt;</span><span class="k">insert</span> <span class="n">philosophy</span> <span class="n">isa</span> <span class="k">role</span><span class="o">-</span><span class="k">type</span><span class="p">;</span>
 <span class="o">&gt;&gt;&gt;</span><span class="k">insert</span> <span class="n">practice</span> <span class="n">has</span><span class="o">-</span><span class="k">role</span> <span class="n">philosopher</span><span class="p">,</span> <span class="n">has</span><span class="o">-</span><span class="k">role</span> <span class="n">philosophy</span><span class="p">;</span>
@@ -599,7 +599,7 @@ and
 
 <p>A <code class="highlighter-rouge">person</code> can have the role of <code class="highlighter-rouge">philosopher</code> and a <code class="highlighter-rouge">school</code> can have the role of <code class="highlighter-rouge">philosophy</code>:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span><span class="k">insert</span> <span class="n">person</span> <span class="n">plays</span><span class="o">-</span><span class="k">role</span> <span class="n">philosopher</span><span class="p">;</span>
+<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span><span class="k">insert</span> <span class="n">person</span> <span class="n">plays</span><span class="o">-</span><span class="k">role</span> <span class="n">philosopher</span><span class="p">;</span>
 <span class="o">&gt;&gt;&gt;</span><span class="k">insert</span> <span class="n">school</span> <span class="n">plays</span><span class="o">-</span><span class="k">role</span> <span class="n">philosophy</span><span class="p">;</span>
 </code></pre>
 </div>
@@ -608,7 +608,7 @@ and
 
 <p>Now let’s relate some <code class="highlighter-rouge">philosophers</code> to their <code class="highlighter-rouge">philosophies</code>:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span><span class="k">insert</span> <span class="p">(</span><span class="n">philosopher</span> <span class="nv">"Socrates"</span><span class="p">,</span> <span class="n">philosophy</span> <span class="nv">"Platonism"</span><span class="p">)</span> <span class="n">isa</span> <span class="n">practice</span><span class="p">;</span>
+<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span><span class="k">insert</span> <span class="p">(</span><span class="n">philosopher</span> <span class="nv">"Socrates"</span><span class="p">,</span> <span class="n">philosophy</span> <span class="nv">"Platonism"</span><span class="p">)</span> <span class="n">isa</span> <span class="n">practice</span><span class="p">;</span>
 <span class="o">&gt;&gt;&gt;</span><span class="k">insert</span> <span class="p">(</span><span class="n">philosopher</span> <span class="nv">"Plato"</span><span class="p">,</span> <span class="n">philosophy</span> <span class="nv">"Idealism"</span><span class="p">)</span> <span class="n">isa</span> <span class="n">practice</span><span class="p">;</span>
 <span class="o">&gt;&gt;&gt;</span><span class="k">insert</span> <span class="p">(</span><span class="n">philosopher</span> <span class="nv">"Plato"</span><span class="p">,</span> <span class="n">philosophy</span> <span class="nv">"Platonism"</span><span class="p">)</span> <span class="n">isa</span> <span class="n">practice</span><span class="p">;</span>
 <span class="o">&gt;&gt;&gt;</span><span class="k">insert</span> <span class="p">(</span><span class="n">philosopher</span> <span class="nv">"Aristotle"</span><span class="p">,</span> <span class="n">philosophy</span> <span class="nv">"Peripateticism"</span><span class="p">)</span> <span class="n">isa</span> <span class="n">practice</span><span class="p">;</span>
@@ -621,7 +621,7 @@ and
 
 <p>Now we can query for all our Platonists:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span><span class="k">match</span> <span class="p">(</span><span class="n">philosopher</span> <span class="err">$</span><span class="n">phil</span><span class="p">,</span> <span class="nv">"Platonism"</span><span class="p">)</span> <span class="n">isa</span> <span class="n">practice</span><span class="p">;</span>
+<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span><span class="k">match</span> <span class="p">(</span><span class="n">philosopher</span> <span class="err">$</span><span class="n">phil</span><span class="p">,</span> <span class="nv">"Platonism"</span><span class="p">)</span> <span class="n">isa</span> <span class="n">practice</span><span class="p">;</span>
 
 <span class="err">$</span><span class="n">phil</span> <span class="n">id</span> <span class="nv">"Socrates"</span> <span class="n">isa</span> <span class="n">person</span><span class="p">;</span>
 <span class="err">$</span><span class="n">phil</span> <span class="n">id</span> <span class="nv">"Plato"</span> <span class="n">isa</span> <span class="n">person</span><span class="p">;</span>
@@ -636,7 +636,7 @@ Great!</p>
 
 <p>First, extend our schema:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span><span class="k">insert</span> <span class="n">education</span> <span class="n">isa</span> <span class="n">relation</span><span class="o">-</span><span class="k">type</span><span class="p">;</span>
+<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span><span class="k">insert</span> <span class="n">education</span> <span class="n">isa</span> <span class="n">relation</span><span class="o">-</span><span class="k">type</span><span class="p">;</span>
 <span class="o">&gt;&gt;&gt;</span><span class="k">insert</span> <span class="n">teacher</span> <span class="n">isa</span> <span class="k">role</span><span class="o">-</span><span class="k">type</span><span class="p">;</span>
 <span class="o">&gt;&gt;&gt;</span><span class="k">insert</span> <span class="n">student</span> <span class="n">isa</span> <span class="k">role</span><span class="o">-</span><span class="k">type</span><span class="p">;</span>
 <span class="o">&gt;&gt;&gt;</span><span class="k">insert</span> <span class="n">education</span> <span class="n">has</span><span class="o">-</span><span class="k">role</span> <span class="n">teacher</span><span class="p">,</span> <span class="n">has</span><span class="o">-</span><span class="k">role</span> <span class="n">student</span><span class="p">;</span>
@@ -646,7 +646,7 @@ Great!</p>
 
 <p>Second, our data:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span><span class="k">insert</span> <span class="p">(</span><span class="n">teacher</span> <span class="nv">"Socrates"</span><span class="p">,</span> <span class="n">student</span> <span class="nv">"Plato"</span><span class="p">)</span> <span class="n">isa</span> <span class="n">education</span><span class="p">;</span>
+<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span><span class="k">insert</span> <span class="p">(</span><span class="n">teacher</span> <span class="nv">"Socrates"</span><span class="p">,</span> <span class="n">student</span> <span class="nv">"Plato"</span><span class="p">)</span> <span class="n">isa</span> <span class="n">education</span><span class="p">;</span>
 <span class="o">&gt;&gt;&gt;</span><span class="k">insert</span> <span class="p">(</span><span class="n">teacher</span> <span class="nv">"Plato"</span><span class="p">,</span> <span class="n">student</span> <span class="nv">"Aristotle"</span><span class="p">)</span> <span class="n">isa</span> <span class="n">education</span><span class="p">;</span>
 <span class="o">&gt;&gt;&gt;</span><span class="k">insert</span> <span class="p">(</span><span class="n">teacher</span> <span class="nv">"Aristotle"</span><span class="p">,</span> <span class="n">student</span> <span class="nv">"Alexander"</span><span class="p">)</span> <span class="n">isa</span> <span class="n">education</span><span class="p">;</span>
 </code></pre>
@@ -659,7 +659,7 @@ Great!</p>
 <p>Some people have special titles and epithets and we want to talk about that.
 So, we’ll create some resource types that can be attached to a person:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span><span class="k">insert</span> <span class="n">title</span> <span class="n">isa</span> <span class="n">resource</span><span class="o">-</span><span class="k">type</span><span class="p">,</span> <span class="n">datatype</span> <span class="n">string</span><span class="p">;</span>
+<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span><span class="k">insert</span> <span class="n">title</span> <span class="n">isa</span> <span class="n">resource</span><span class="o">-</span><span class="k">type</span><span class="p">,</span> <span class="n">datatype</span> <span class="n">string</span><span class="p">;</span>
 <span class="o">&gt;&gt;&gt;</span><span class="k">insert</span> <span class="n">epithet</span> <span class="n">isa</span> <span class="n">resource</span><span class="o">-</span><span class="k">type</span><span class="p">,</span> <span class="n">datatype</span> <span class="n">string</span><span class="p">;</span>
 <span class="o">&gt;&gt;&gt;</span><span class="k">insert</span> <span class="n">person</span> <span class="n">has</span><span class="o">-</span><span class="n">resource</span> <span class="n">title</span><span class="p">,</span> <span class="n">has</span><span class="o">-</span><span class="n">resource</span> <span class="n">epithet</span><span class="p">;</span>
 </code></pre>
@@ -667,7 +667,7 @@ So, we’ll create some resource types that can be attached to a person:</p>
 
 <p>Let’s make Alexander “Great”!</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span><span class="k">insert</span> <span class="nv">"Alexander"</span> <span class="n">has</span> <span class="n">epithet</span> <span class="nv">"The Great"</span><span class="p">;</span>
+<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span><span class="k">insert</span> <span class="nv">"Alexander"</span> <span class="n">has</span> <span class="n">epithet</span> <span class="nv">"The Great"</span><span class="p">;</span>
 </code></pre>
 </div>
 
@@ -677,7 +677,7 @@ So, we’ll create some resource types that can be attached to a person:</p>
 
 <p>Let’s add the rest of Alexander’s titles while we’re at it:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span><span class="k">insert</span> <span class="nv">"Alexander"</span> <span class="n">has</span> <span class="n">title</span> <span class="nv">"Hegemon"</span><span class="p">;</span>
+<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span><span class="k">insert</span> <span class="nv">"Alexander"</span> <span class="n">has</span> <span class="n">title</span> <span class="nv">"Hegemon"</span><span class="p">;</span>
 <span class="o">&gt;&gt;&gt;</span><span class="k">insert</span> <span class="nv">"Alexander"</span> <span class="n">has</span> <span class="n">title</span> <span class="nv">"King of Macedon"</span><span class="p">;</span>
 <span class="o">&gt;&gt;&gt;</span><span class="k">insert</span> <span class="nv">"Alexander"</span> <span class="n">has</span> <span class="n">title</span> <span class="nv">"King of Persia"</span><span class="p">;</span>
 <span class="o">&gt;&gt;&gt;</span><span class="k">insert</span> <span class="nv">"Alexander"</span> <span class="n">has</span> <span class="n">title</span> <span class="nv">"Pharaoh of Egypt"</span><span class="p">;</span>
@@ -687,7 +687,7 @@ So, we’ll create some resource types that can be attached to a person:</p>
 
 <p>Using Graql, we can query for people, listing their id and titles.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span><span class="k">match</span> <span class="err">$</span><span class="n">x</span> <span class="n">isa</span> <span class="n">person</span> <span class="k">select</span> <span class="err">$</span><span class="n">x</span><span class="p">(</span><span class="n">id</span><span class="p">,</span> <span class="n">has</span> <span class="n">title</span><span class="p">)</span>
+<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span><span class="k">match</span> <span class="err">$</span><span class="n">x</span> <span class="n">isa</span> <span class="n">person</span> <span class="k">select</span> <span class="err">$</span><span class="n">x</span><span class="p">(</span><span class="n">id</span><span class="p">,</span> <span class="n">has</span> <span class="n">title</span><span class="p">)</span>
 
 <span class="err">$</span><span class="n">x</span> <span class="n">id</span> <span class="nv">"Socrates"</span><span class="p">;</span>
 <span class="err">$</span><span class="n">x</span> <span class="n">id</span> <span class="nv">"Plato"</span><span class="p">;</span>
@@ -698,7 +698,7 @@ So, we’ll create some resource types that can be attached to a person:</p>
 
 <p>Wait, who’s the Pharaoh again?</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span><span class="k">match</span> <span class="err">$</span><span class="n">pharaoh</span> <span class="n">has</span> <span class="n">title</span> <span class="nv">"Pharaoh of Egypt"</span>
+<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span><span class="k">match</span> <span class="err">$</span><span class="n">pharaoh</span> <span class="n">has</span> <span class="n">title</span> <span class="nv">"Pharaoh of Egypt"</span>
 
 <span class="err">$</span><span class="n">pharaoh</span> <span class="n">id</span> <span class="nv">"Alexander"</span> <span class="n">isa</span> <span class="n">person</span><span class="p">;</span>
 </code></pre>
@@ -711,7 +711,7 @@ So, we’ll create some resource types that can be attached to a person:</p>
 <p>Philosophers know lots of things. We should probably include this in our
 schema.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span><span class="k">insert</span> <span class="n">knowledge</span> <span class="n">isa</span> <span class="n">relation</span><span class="o">-</span><span class="k">type</span><span class="p">;</span>
+<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span><span class="k">insert</span> <span class="n">knowledge</span> <span class="n">isa</span> <span class="n">relation</span><span class="o">-</span><span class="k">type</span><span class="p">;</span>
 <span class="o">&gt;&gt;&gt;</span><span class="k">insert</span> <span class="n">thinker</span> <span class="n">isa</span> <span class="k">role</span><span class="o">-</span><span class="k">type</span><span class="p">;</span>
 <span class="o">&gt;&gt;&gt;</span><span class="k">insert</span> <span class="n">thought</span> <span class="n">isa</span> <span class="k">role</span><span class="o">-</span><span class="k">type</span><span class="p">;</span>
 <span class="o">&gt;&gt;&gt;</span><span class="k">insert</span> <span class="n">knowledge</span> <span class="n">has</span><span class="o">-</span><span class="k">role</span> <span class="n">thinker</span><span class="p">,</span> <span class="n">has</span><span class="o">-</span><span class="k">role</span> <span class="n">thought</span><span class="p">;</span>
@@ -722,7 +722,7 @@ schema.</p>
 
 <p>Aristotle knew some astronomy, Plato knew a lot about caves and Socrates didn’t really know anything at all.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span><span class="k">insert</span> <span class="nv">"sun-fact"</span> <span class="n">isa</span> <span class="n">fact</span><span class="p">,</span> <span class="n">value</span> <span class="nv">"The Sun is bigger than the Earth"</span><span class="p">;</span>
+<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span><span class="k">insert</span> <span class="nv">"sun-fact"</span> <span class="n">isa</span> <span class="n">fact</span><span class="p">,</span> <span class="n">value</span> <span class="nv">"The Sun is bigger than the Earth"</span><span class="p">;</span>
 <span class="o">&gt;&gt;&gt;</span><span class="k">insert</span> <span class="p">(</span><span class="n">thinker</span> <span class="nv">"Aristotle"</span><span class="p">,</span> <span class="n">thought</span> <span class="nv">"sun-fact"</span><span class="p">)</span> <span class="n">isa</span> <span class="n">knowledge</span><span class="p">;</span>
 <span class="o">&gt;&gt;&gt;</span><span class="k">insert</span> <span class="nv">"cave-fact"</span> <span class="n">isa</span> <span class="n">fact</span><span class="p">,</span> <span class="n">value</span> <span class="nv">"Caves are mostly pretty dark"</span><span class="p">;</span>
 <span class="o">&gt;&gt;&gt;</span><span class="k">insert</span> <span class="p">(</span><span class="n">thinker</span> <span class="nv">"Plato"</span><span class="p">,</span> <span class="n">thought</span> <span class="nv">"cave-fact"</span><span class="p">)</span> <span class="n">isa</span> <span class="n">knowledge</span><span class="p">;</span>
@@ -738,13 +738,13 @@ schema.</p>
 
 <p>First, we have to state that someone can think about their own knowledge:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span><span class="k">insert</span> <span class="n">knowledge</span> <span class="n">plays</span><span class="o">-</span><span class="k">role</span> <span class="n">thought</span><span class="p">;</span>
+<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span><span class="k">insert</span> <span class="n">knowledge</span> <span class="n">plays</span><span class="o">-</span><span class="k">role</span> <span class="n">thought</span><span class="p">;</span>
 </code></pre>
 </div>
 
 <p>We can now give Socrates one final piece of knowledge:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span><span class="k">match</span> <span class="err">$</span><span class="n">socratesKnowsNothing</span> <span class="p">(</span><span class="nv">"Socrates"</span><span class="p">,</span> <span class="nv">"nothing"</span><span class="p">)</span> <span class="k">insert</span> <span class="p">(</span><span class="n">thinker</span> <span class="nv">"Socrates"</span><span class="p">,</span> <span class="n">thought</span> <span class="err">$</span><span class="n">socratesKnowsNothing</span><span class="p">)</span> <span class="n">isa</span> <span class="n">knowledge</span>
+<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span><span class="k">match</span> <span class="err">$</span><span class="n">socratesKnowsNothing</span> <span class="p">(</span><span class="nv">"Socrates"</span><span class="p">,</span> <span class="nv">"nothing"</span><span class="p">)</span> <span class="k">insert</span> <span class="p">(</span><span class="n">thinker</span> <span class="nv">"Socrates"</span><span class="p">,</span> <span class="n">thought</span> <span class="err">$</span><span class="n">socratesKnowsNothing</span><span class="p">)</span> <span class="n">isa</span> <span class="n">knowledge</span>
 </code></pre>
 </div>
 
@@ -754,7 +754,7 @@ player.</p>
 
 <p>Finally, we’ll check out everything Socrates knows:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span><span class="k">match</span> <span class="p">(</span><span class="nv">"Socrates"</span><span class="p">,</span> <span class="err">$</span><span class="n">x</span><span class="p">)</span> <span class="n">isa</span> <span class="n">knowledge</span>
+<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span><span class="k">match</span> <span class="p">(</span><span class="nv">"Socrates"</span><span class="p">,</span> <span class="err">$</span><span class="n">x</span><span class="p">)</span> <span class="n">isa</span> <span class="n">knowledge</span>
 
 <span class="err">$</span><span class="n">x</span> <span class="n">id</span> <span class="nv">"nothing"</span> <span class="n">isa</span> <span class="n">fact</span><span class="p">;</span>
 <span class="err">$</span><span class="n">x</span> <span class="n">id</span> <span class="nv">"knowledge-e387d27c-4f5e-11e6-beb8-9e71128cae77"</span> <span class="n">isa</span> <span class="n">knowledge</span><span class="p">;</span>
@@ -769,14 +769,14 @@ player.</p>
 <p>We asked you to write a query to see who taught Aristotle. <br />
 Graql answers:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">match</span> <span class="p">(</span><span class="n">teacher</span> <span class="err">$</span><span class="n">teach</span><span class="p">,</span> <span class="err">$</span><span class="n">student</span> <span class="n">Aristotle</span><span class="p">)</span> <span class="n">isa</span> <span class="n">education</span>
+<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">match</span> <span class="p">(</span><span class="n">teacher</span> <span class="err">$</span><span class="n">teach</span><span class="p">,</span> <span class="err">$</span><span class="n">student</span> <span class="n">Aristotle</span><span class="p">)</span> <span class="n">isa</span> <span class="n">education</span>
 </code></pre>
 </div>
 
 <p>We asked you to write a query for everyone with a title containing “King”. <br />
 Answer:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">match</span> <span class="err">$</span><span class="n">king</span> <span class="n">has</span> <span class="n">title</span> <span class="k">contains</span> <span class="nv">"King"</span>
+<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">match</span> <span class="err">$</span><span class="n">king</span> <span class="n">has</span> <span class="n">title</span> <span class="k">contains</span> <span class="nv">"King"</span>
 </code></pre>
 </div>
 

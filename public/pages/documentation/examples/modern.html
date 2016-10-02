@@ -546,7 +546,7 @@ bin/graql.sh
 
 <p>Here, we add person and software entity types to the graph, via the Graql shell:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">insert</span> <span class="n">person</span> <span class="n">isa</span> <span class="n">entity</span><span class="o">-</span><span class="k">type</span><span class="p">;</span>
+<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">insert</span> <span class="n">person</span> <span class="n">isa</span> <span class="n">entity</span><span class="o">-</span><span class="k">type</span><span class="p">;</span>
 <span class="k">insert</span> <span class="n">software</span> <span class="n">isa</span> <span class="n">entity</span><span class="o">-</span><span class="k">type</span><span class="p">;</span>
 </code></pre>
 </div>
@@ -555,7 +555,7 @@ bin/graql.sh
 
 <p>To assign resources to the entities, which you can think of as attributes, we use resource types. First, we define what they are (age is a number, programming language is a string that represents the language’s name), then we allocate them to the entity in question:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">insert</span> <span class="n">age</span> <span class="n">isa</span> <span class="n">resource</span><span class="o">-</span><span class="k">type</span>
+<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">insert</span> <span class="n">age</span> <span class="n">isa</span> <span class="n">resource</span><span class="o">-</span><span class="k">type</span>
 	<span class="n">datatype</span> <span class="n">long</span><span class="p">;</span>
 	
 <span class="k">insert</span> <span class="n">person</span> <span class="n">has</span><span class="o">-</span><span class="n">resource</span> <span class="n">age</span><span class="p">;</span>
@@ -574,7 +574,7 @@ bin/graql.sh
 
 <p>Let’s first define the relationship between people. The diagram shows that marko knows vadas, but we don’t have any information about whether the inverse is true (though it seems likely that vadas probably also knows marko). Let’s set up a relationship called <code class="highlighter-rouge">knows</code>, which has two role-types - <code class="highlighter-rouge">knower</code> (for marko) and <code class="highlighter-rouge">known-about</code> (for vadas):</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">insert</span> <span class="n">knower</span> <span class="n">isa</span> <span class="k">role</span><span class="o">-</span><span class="k">type</span><span class="p">;</span>
+<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">insert</span> <span class="n">knower</span> <span class="n">isa</span> <span class="k">role</span><span class="o">-</span><span class="k">type</span><span class="p">;</span>
 <span class="k">insert</span> <span class="n">known</span><span class="o">-</span><span class="n">about</span> <span class="n">isa</span> <span class="k">role</span><span class="o">-</span><span class="k">type</span><span class="p">;</span>
 
 <span class="k">insert</span> <span class="n">person</span> <span class="n">plays</span><span class="o">-</span><span class="k">role</span> <span class="n">knower</span><span class="p">;</span>
@@ -591,7 +591,7 @@ bin/graql.sh
 
 <p>We can set up a similar relationship between software and the people that created it:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">insert</span> <span class="n">programmer</span> <span class="n">isa</span> <span class="k">role</span><span class="o">-</span><span class="k">type</span><span class="p">;</span>
+<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">insert</span> <span class="n">programmer</span> <span class="n">isa</span> <span class="k">role</span><span class="o">-</span><span class="k">type</span><span class="p">;</span>
 <span class="k">insert</span> <span class="n">programmed</span> <span class="n">isa</span> <span class="k">role</span><span class="o">-</span><span class="k">type</span><span class="p">;</span>
 
 <span class="k">insert</span> <span class="n">person</span> <span class="n">plays</span><span class="o">-</span><span class="k">role</span> <span class="n">programmer</span><span class="p">;</span>
@@ -609,7 +609,7 @@ bin/graql.sh
 <h2 id="adding-the-data">Adding the Data</h2>
 <p>Now we have a schema, we can move on to adding in the data, which is pretty much just a typing exercise:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">insert</span> <span class="nv">"marko"</span> <span class="n">isa</span> <span class="n">person</span><span class="p">;</span>
+<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">insert</span> <span class="nv">"marko"</span> <span class="n">isa</span> <span class="n">person</span><span class="p">;</span>
 <span class="k">insert</span> <span class="nv">"vadas"</span> <span class="n">isa</span> <span class="n">person</span><span class="p">;</span>
 <span class="k">insert</span> <span class="nv">"josh"</span> <span class="n">isa</span> <span class="n">person</span><span class="p">;</span>
 <span class="k">insert</span> <span class="nv">"peter"</span> <span class="n">isa</span> <span class="n">person</span><span class="p">;</span>
@@ -622,7 +622,7 @@ bin/graql.sh
 </code></pre>
 </div>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">insert</span> <span class="nv">"lop"</span> <span class="n">isa</span> <span class="n">software</span><span class="p">;</span>
+<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">insert</span> <span class="nv">"lop"</span> <span class="n">isa</span> <span class="n">software</span><span class="p">;</span>
 <span class="k">insert</span> <span class="nv">"ripple"</span> <span class="n">isa</span> <span class="n">software</span><span class="p">;</span>
 <span class="k">insert</span> <span class="nv">"lop"</span> <span class="n">has</span> <span class="n">lang</span> <span class="nv">"java"</span><span class="p">;</span>
 <span class="k">insert</span> <span class="nv">"ripple"</span> <span class="n">has</span> <span class="n">lang</span> <span class="nv">"java"</span><span class="p">;</span>
@@ -641,7 +641,7 @@ bin/graql.sh
 
 <p>As with any query language, you use a variable to receive the results of the match query, which you must prefix with a <code class="highlighter-rouge">$</code>. So, to make the query “List every person in the graph”, you would use the following in Graql:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">match</span> <span class="err">$</span><span class="n">x</span> <span class="n">isa</span> <span class="n">person</span><span class="p">;</span>
+<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">match</span> <span class="err">$</span><span class="n">x</span> <span class="n">isa</span> <span class="n">person</span><span class="p">;</span>
 
 <span class="err">$</span><span class="n">x</span> <span class="n">id</span> <span class="nv">"marko"</span> <span class="n">isa</span> <span class="n">person</span><span class="p">;</span> 
 <span class="err">$</span><span class="n">x</span> <span class="n">id</span> <span class="nv">"vadas"</span> <span class="n">isa</span> <span class="n">person</span><span class="p">;</span> 
@@ -654,7 +654,7 @@ bin/graql.sh
 
 <p>In the <code class="highlighter-rouge">match $x isa person</code> query we are not using any select or delimiters, so let’s add some now.  We can add a <code class="highlighter-rouge">select</code> statement to ask Graql to list out every person and to include their id (which is their name) and age. We use <code class="highlighter-rouge">order by</code> to modify how the results are listed out - in this case, we order them by ascending age, so the youngest person is shown first.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">match</span> <span class="err">$</span><span class="n">x</span> <span class="n">isa</span> <span class="n">person</span><span class="p">;</span> <span class="k">select</span> <span class="err">$</span><span class="n">x</span><span class="p">(</span><span class="n">id</span><span class="p">,</span> <span class="n">has</span> <span class="n">age</span><span class="p">);</span> <span class="k">order</span> <span class="k">by</span> <span class="err">$</span><span class="n">x</span><span class="p">(</span><span class="n">has</span> <span class="n">age</span><span class="p">)</span> <span class="k">asc</span><span class="p">;</span>
+<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">match</span> <span class="err">$</span><span class="n">x</span> <span class="n">isa</span> <span class="n">person</span><span class="p">;</span> <span class="k">select</span> <span class="err">$</span><span class="n">x</span><span class="p">(</span><span class="n">id</span><span class="p">,</span> <span class="n">has</span> <span class="n">age</span><span class="p">);</span> <span class="k">order</span> <span class="k">by</span> <span class="err">$</span><span class="n">x</span><span class="p">(</span><span class="n">has</span> <span class="n">age</span><span class="p">)</span> <span class="k">asc</span><span class="p">;</span>
 
 <span class="err">$</span><span class="n">x</span> <span class="n">id</span> <span class="nv">"vadas"</span> <span class="n">has</span> <span class="n">age</span> <span class="nv">"27"</span><span class="p">;</span> 
 <span class="err">$</span><span class="n">x</span> <span class="n">id</span> <span class="nv">"marko"</span> <span class="n">has</span> <span class="n">age</span> <span class="nv">"29"</span><span class="p">;</span> 
@@ -665,7 +665,7 @@ bin/graql.sh
 
 <p>Now let’s look at querying for a relationship. We can query to find out which entities have a particular role-type associated with a relation-type. For example, we can match everyone with a <code class="highlighter-rouge">knower</code> role who knows someone else:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">match</span> <span class="err">$</span><span class="n">x</span> <span class="n">plays</span><span class="o">-</span><span class="k">role</span> <span class="n">knows</span><span class="p">;</span> 
+<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">match</span> <span class="err">$</span><span class="n">x</span> <span class="n">plays</span><span class="o">-</span><span class="k">role</span> <span class="n">knows</span><span class="p">;</span> 
 </code></pre>
 </div>
 
@@ -712,7 +712,7 @@ match person plays-role $x;
 
 <p>Then type edit, which will open up the systems default text editor where you can paste your chunk of text. Upon exiting the editor, the Graql will execute.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">insert</span> 
+<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">insert</span> 
 <span class="n">age</span> <span class="n">isa</span> <span class="n">resource</span><span class="o">-</span><span class="k">type</span>
 	<span class="n">datatype</span> <span class="n">long</span><span class="p">;</span>
 <span class="n">person</span> <span class="n">isa</span> <span class="n">entity</span><span class="o">-</span><span class="k">type</span><span class="p">;</span>
@@ -779,50 +779,50 @@ match person plays-role $x;
 
 <p>List every person with their name and age in ascending age order</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">match</span> <span class="err">$</span><span class="n">x</span> <span class="n">isa</span> <span class="n">person</span><span class="p">;</span> <span class="k">select</span> <span class="err">$</span><span class="n">x</span><span class="p">(</span><span class="n">id</span><span class="p">,</span> <span class="n">has</span> <span class="n">age</span><span class="p">);</span> <span class="k">order</span> <span class="k">by</span> <span class="err">$</span><span class="n">x</span><span class="p">(</span><span class="n">has</span> <span class="n">age</span><span class="p">)</span> <span class="k">asc</span><span class="p">;</span>
+<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">match</span> <span class="err">$</span><span class="n">x</span> <span class="n">isa</span> <span class="n">person</span><span class="p">;</span> <span class="k">select</span> <span class="err">$</span><span class="n">x</span><span class="p">(</span><span class="n">id</span><span class="p">,</span> <span class="n">has</span> <span class="n">age</span><span class="p">);</span> <span class="k">order</span> <span class="k">by</span> <span class="err">$</span><span class="n">x</span><span class="p">(</span><span class="n">has</span> <span class="n">age</span><span class="p">)</span> <span class="k">asc</span><span class="p">;</span>
 </code></pre>
 </div>
 
 <p>List every person who has an age over 30, showing their name and age</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">match</span> <span class="err">$</span><span class="n">x</span> <span class="n">isa</span> <span class="n">person</span><span class="p">;</span> <span class="n">has</span> <span class="n">age</span> <span class="o">&gt;</span> <span class="mi">30</span><span class="p">;</span> <span class="k">select</span> <span class="err">$</span><span class="n">x</span><span class="p">(</span><span class="n">id</span><span class="p">,</span> <span class="n">has</span> <span class="n">age</span><span class="p">);</span>
+<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">match</span> <span class="err">$</span><span class="n">x</span> <span class="n">isa</span> <span class="n">person</span><span class="p">;</span> <span class="n">has</span> <span class="n">age</span> <span class="o">&gt;</span> <span class="mi">30</span><span class="p">;</span> <span class="k">select</span> <span class="err">$</span><span class="n">x</span><span class="p">(</span><span class="n">id</span><span class="p">,</span> <span class="n">has</span> <span class="n">age</span><span class="p">);</span>
 </code></pre>
 </div>
 
 <p>List every person who knows someone else, and every person who is known about</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">match</span> <span class="p">(</span><span class="n">knower</span> <span class="err">$</span><span class="n">x</span><span class="p">)</span> <span class="n">isa</span> <span class="n">knows</span><span class="p">;</span>
+<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">match</span> <span class="p">(</span><span class="n">knower</span> <span class="err">$</span><span class="n">x</span><span class="p">)</span> <span class="n">isa</span> <span class="n">knows</span><span class="p">;</span>
 <span class="k">match</span> <span class="p">(</span><span class="n">known</span><span class="o">-</span><span class="n">about</span> <span class="err">$</span><span class="n">x</span><span class="p">)</span> <span class="n">isa</span> <span class="n">knows</span><span class="p">;</span>
 </code></pre>
 </div>
 
 <p>List every person that marko knows</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">match</span> <span class="p">(</span><span class="n">known</span><span class="o">-</span><span class="n">about</span> <span class="err">$</span><span class="n">x</span><span class="p">,</span> <span class="nv">"marko"</span><span class="p">)</span> <span class="n">isa</span> <span class="n">knows</span><span class="p">;</span>
+<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">match</span> <span class="p">(</span><span class="n">known</span><span class="o">-</span><span class="n">about</span> <span class="err">$</span><span class="n">x</span><span class="p">,</span> <span class="nv">"marko"</span><span class="p">)</span> <span class="n">isa</span> <span class="n">knows</span><span class="p">;</span>
 </code></pre>
 </div>
 
 <p>List every item of software and the language associated with it</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">match</span> <span class="err">$</span><span class="n">x</span> <span class="n">isa</span> <span class="n">software</span><span class="p">;</span> <span class="k">select</span> <span class="err">$</span><span class="n">x</span><span class="p">(</span><span class="n">id</span><span class="p">,</span> <span class="n">has</span> <span class="n">lang</span><span class="p">);</span>
+<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">match</span> <span class="err">$</span><span class="n">x</span> <span class="n">isa</span> <span class="n">software</span><span class="p">;</span> <span class="k">select</span> <span class="err">$</span><span class="n">x</span><span class="p">(</span><span class="n">id</span><span class="p">,</span> <span class="n">has</span> <span class="n">lang</span><span class="p">);</span>
 </code></pre>
 </div>
 
 <p>List everything that josh has programmed</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">match</span> <span class="p">(</span><span class="n">programmed</span> <span class="err">$</span><span class="n">x</span><span class="p">,</span> <span class="nv">"josh"</span><span class="p">)</span> <span class="n">isa</span> <span class="n">programming</span><span class="p">;</span>
+<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">match</span> <span class="p">(</span><span class="n">programmed</span> <span class="err">$</span><span class="n">x</span><span class="p">,</span> <span class="nv">"josh"</span><span class="p">)</span> <span class="n">isa</span> <span class="n">programming</span><span class="p">;</span>
 </code></pre>
 </div>
 
 <p>List everyone who has programmed Lop</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">match</span> <span class="p">(</span><span class="n">programmer</span> <span class="err">$</span><span class="n">x</span><span class="p">,</span> <span class="nv">"lop"</span><span class="p">)</span> <span class="n">isa</span> <span class="n">programming</span><span class="p">;</span>
+<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">match</span> <span class="p">(</span><span class="n">programmer</span> <span class="err">$</span><span class="n">x</span><span class="p">,</span> <span class="nv">"lop"</span><span class="p">)</span> <span class="n">isa</span> <span class="n">programming</span><span class="p">;</span>
 </code></pre>
 </div>
 
 <p>List everything you know about marko</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">match</span> <span class="err">$</span><span class="n">relation</span><span class="p">(</span><span class="nv">"marko"</span><span class="p">,</span> <span class="err">$</span><span class="n">y</span><span class="p">);</span> <span class="err">$</span><span class="n">y</span> <span class="n">isa</span> <span class="err">$</span><span class="n">z</span><span class="p">;</span> <span class="err">$</span><span class="n">z</span> <span class="n">isa</span> <span class="n">entity</span><span class="o">-</span><span class="k">type</span><span class="p">;</span> <span class="err">$</span><span class="n">relation</span> <span class="n">isa</span> <span class="err">$</span><span class="n">reltype</span><span class="p">;</span> <span class="k">select</span> <span class="err">$</span><span class="n">y</span><span class="p">,</span> <span class="err">$</span><span class="n">reltype</span><span class="p">;</span>
+<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">match</span> <span class="err">$</span><span class="n">relation</span><span class="p">(</span><span class="nv">"marko"</span><span class="p">,</span> <span class="err">$</span><span class="n">y</span><span class="p">);</span> <span class="err">$</span><span class="n">y</span> <span class="n">isa</span> <span class="err">$</span><span class="n">z</span><span class="p">;</span> <span class="err">$</span><span class="n">z</span> <span class="n">isa</span> <span class="n">entity</span><span class="o">-</span><span class="k">type</span><span class="p">;</span> <span class="err">$</span><span class="n">relation</span> <span class="n">isa</span> <span class="err">$</span><span class="n">reltype</span><span class="p">;</span> <span class="k">select</span> <span class="err">$</span><span class="n">y</span><span class="p">,</span> <span class="err">$</span><span class="n">reltype</span><span class="p">;</span>
 
 </code></pre>
 </div>
