@@ -518,7 +518,7 @@ $('#toc').on('click', 'a', function() {
 <p>A match query will search the graph for any subgraphs that match the given
 <a href="#pattern">pattern</a>. A result is produced for each match to the <a href="#variables">variables</a> in the query. The results of the query can be modified with various <a href="#modifiers">modifiers</a>: <a href="#select">select</a>, <a href="#limit">limit</a>, <a href="#offset">offset</a>, <a href="#distinct">distinct</a> and <a href="#order">order</a>.</p>
 
-<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">match</span>  
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">match</span>  
 <span class="p">[</span> <span class="n">pattern</span><span class="p">;</span> <span class="p">...</span> <span class="p">]</span>  
 <span class="p">[</span> <span class="k">select</span> <span class="o">|</span> <span class="k">limit</span> <span class="o">|</span> <span class="k">offset</span> <span class="o">|</span> <span class="k">distinct</span> <span class="o">|</span> <span class="k">order</span> <span class="p">...</span> <span class="p">]</span>
 </code></pre>
@@ -526,12 +526,12 @@ $('#toc').on('click', 'a', function() {
 
 <p>Match a pattern in the graph.</p>
 
-<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">match</span> <span class="err">$</span><span class="n">x</span> <span class="n">isa</span> <span class="n">movie</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">match</span> <span class="err">$</span><span class="n">x</span> <span class="n">isa</span> <span class="n">movie</span>
 </code></pre>
 </div>
 <p>Match several patterns together.</p>
 
-<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">match</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">match</span>
 <span class="err">$</span><span class="n">x</span> <span class="n">isa</span> <span class="n">movie</span><span class="p">,</span> <span class="n">id</span> <span class="nv">"titanic"</span><span class="p">;</span>
 <span class="p">(</span><span class="n">actor</span> <span class="err">$</span><span class="n">a</span><span class="p">,</span> <span class="err">$</span><span class="n">x</span><span class="p">);</span>
 </code></pre>
@@ -540,36 +540,36 @@ $('#toc').on('click', 'a', function() {
 <h3 id="modifiers">modifiers</h3>
 
 <h4 id="select">select</h4>
-<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">select</span> <span class="p">[</span> <span class="k">variable</span><span class="p">,</span> <span class="p">...</span> <span class="p">]</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">select</span> <span class="p">[</span> <span class="k">variable</span><span class="p">,</span> <span class="p">...</span> <span class="p">]</span>
 </code></pre>
 </div>
 <p>Select particular variables from the query.</p>
 
-<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">match</span> <span class="err">$</span><span class="n">m</span> <span class="n">isa</span> <span class="n">movie</span><span class="p">;</span> <span class="p">(</span><span class="n">actor</span> <span class="err">$</span><span class="n">a1</span><span class="p">,</span> <span class="err">$</span><span class="n">m</span><span class="p">);</span> <span class="p">(</span><span class="n">actor</span> <span class="err">$</span><span class="n">a2</span><span class="p">,</span> <span class="err">$</span><span class="n">m</span><span class="p">);</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">match</span> <span class="err">$</span><span class="n">m</span> <span class="n">isa</span> <span class="n">movie</span><span class="p">;</span> <span class="p">(</span><span class="n">actor</span> <span class="err">$</span><span class="n">a1</span><span class="p">,</span> <span class="err">$</span><span class="n">m</span><span class="p">);</span> <span class="p">(</span><span class="n">actor</span> <span class="err">$</span><span class="n">a2</span><span class="p">,</span> <span class="err">$</span><span class="n">m</span><span class="p">);</span>
 <span class="k">select</span> <span class="err">$</span><span class="n">a1</span><span class="p">,</span> <span class="err">$</span><span class="n">a2</span>
 </code></pre>
 </div>
 
 <h4 id="limit">limit</h4>
 
-<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">limit</span> <span class="err">{</span><span class="n">integer</span><span class="err">}</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">limit</span> <span class="err">{</span><span class="n">integer</span><span class="err">}</span>
 </code></pre>
 </div>
 <p>Limit the number of results returned by a query.</p>
 
-<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">match</span> <span class="p">(</span><span class="n">director</span> <span class="err">$</span><span class="n">x</span><span class="p">,</span> <span class="err">$</span><span class="n">y</span><span class="p">)</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">match</span> <span class="p">(</span><span class="n">director</span> <span class="err">$</span><span class="n">x</span><span class="p">,</span> <span class="err">$</span><span class="n">y</span><span class="p">)</span>
 <span class="k">limit</span> <span class="mi">10</span>
 </code></pre>
 </div>
 
 <h4 id="offset">offset</h4>
 
-<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">offset</span> <span class="err">{</span><span class="n">integer</span><span class="err">}</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">offset</span> <span class="err">{</span><span class="n">integer</span><span class="err">}</span>
 </code></pre>
 </div>
 <p>Skip some results in a query.</p>
 
-<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">match</span> <span class="p">(</span><span class="n">director</span> <span class="err">$</span><span class="n">x</span><span class="p">,</span> <span class="err">$</span><span class="n">y</span><span class="p">)</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">match</span> <span class="p">(</span><span class="n">director</span> <span class="err">$</span><span class="n">x</span><span class="p">,</span> <span class="err">$</span><span class="n">y</span><span class="p">)</span>
 <span class="k">limit</span> <span class="mi">10</span>
 <span class="k">offset</span> <span class="mi">20</span>
 </code></pre>
@@ -577,12 +577,12 @@ $('#toc').on('click', 'a', function() {
 
 <h4 id="distinct">distinct</h4>
 
-<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">distinct</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">distinct</span>
 </code></pre>
 </div>
 <p>De-duplicate the results of a query.</p>
 
-<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">match</span> <span class="err">$</span><span class="n">m</span> <span class="n">isa</span> <span class="n">movie</span><span class="p">,</span> <span class="n">id</span> <span class="s1">'dr-strangelove'</span><span class="p">;</span> <span class="p">(</span><span class="n">actor</span> <span class="err">$</span><span class="n">a</span><span class="p">,</span> <span class="err">$</span><span class="n">m</span><span class="p">);</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">match</span> <span class="err">$</span><span class="n">m</span> <span class="n">isa</span> <span class="n">movie</span><span class="p">,</span> <span class="n">id</span> <span class="s1">'dr-strangelove'</span><span class="p">;</span> <span class="p">(</span><span class="n">actor</span> <span class="err">$</span><span class="n">a</span><span class="p">,</span> <span class="err">$</span><span class="n">m</span><span class="p">);</span>
 <span class="k">select</span> <span class="err">$</span><span class="n">a</span>
 <span class="k">distinct</span>
 </code></pre>
@@ -590,18 +590,18 @@ $('#toc').on('click', 'a', function() {
 
 <h4 id="order">order</h4>
 
-<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">order</span> <span class="k">by</span> <span class="k">variable</span> <span class="p">[</span> <span class="p">(</span><span class="n">has</span> <span class="n">resource</span><span class="o">-</span><span class="k">type</span><span class="p">)</span> <span class="p">]</span> <span class="p">[</span> <span class="k">asc</span> <span class="o">|</span> <span class="k">desc</span> <span class="p">]</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">order</span> <span class="k">by</span> <span class="k">variable</span> <span class="p">[</span> <span class="p">(</span><span class="n">has</span> <span class="n">resource</span><span class="o">-</span><span class="k">type</span><span class="p">)</span> <span class="p">]</span> <span class="p">[</span> <span class="k">asc</span> <span class="o">|</span> <span class="k">desc</span> <span class="p">]</span>
 </code></pre>
 </div>
 <p>Order by id in ascending order.</p>
 
-<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">match</span> <span class="err">$</span><span class="n">x</span> <span class="n">isa</span> <span class="n">person</span> <span class="k">order</span> <span class="k">by</span> <span class="err">$</span><span class="n">x</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">match</span> <span class="err">$</span><span class="n">x</span> <span class="n">isa</span> <span class="n">person</span> <span class="k">order</span> <span class="k">by</span> <span class="err">$</span><span class="n">x</span>
 </code></pre>
 </div>
 
 <p>Order by a resource in descending order.</p>
 
-<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">match</span> <span class="err">$</span><span class="n">x</span> <span class="n">isa</span> <span class="n">person</span> <span class="k">order</span> <span class="k">by</span> <span class="err">$</span><span class="n">x</span><span class="p">(</span><span class="n">has</span> <span class="n">name</span><span class="p">)</span> <span class="k">desc</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">match</span> <span class="err">$</span><span class="n">x</span> <span class="n">isa</span> <span class="n">person</span> <span class="k">order</span> <span class="k">by</span> <span class="err">$</span><span class="n">x</span><span class="p">(</span><span class="n">has</span> <span class="n">name</span><span class="p">)</span> <span class="k">desc</span>
 </code></pre>
 </div>
 
@@ -609,12 +609,12 @@ $('#toc').on('click', 'a', function() {
 
 <p>An ask query will return whether the given match query has any results.</p>
 
-<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="p">[</span><span class="k">match</span><span class="p">]</span> <span class="n">ask</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="p">[</span><span class="k">match</span><span class="p">]</span> <span class="n">ask</span>
 </code></pre>
 </div>
 <p>Return whether the match query has any results.</p>
 
-<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">match</span> <span class="err">$</span><span class="n">x</span> <span class="n">isa</span> <span class="n">person</span><span class="p">,</span> <span class="n">id</span> <span class="s1">'james-cameron'</span><span class="p">;</span> <span class="p">(</span><span class="n">actor</span> <span class="err">$</span><span class="n">x</span><span class="p">)</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">match</span> <span class="err">$</span><span class="n">x</span> <span class="n">isa</span> <span class="n">person</span><span class="p">,</span> <span class="n">id</span> <span class="s1">'james-cameron'</span><span class="p">;</span> <span class="p">(</span><span class="n">actor</span> <span class="err">$</span><span class="n">x</span><span class="p">)</span>
 <span class="n">ask</span>
 </code></pre>
 </div>
@@ -623,23 +623,23 @@ $('#toc').on('click', 'a', function() {
 
 <p>An insert query will insert the specified variable patterns into the graph.</p>
 
-<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">insert</span> <span class="p">[</span> <span class="n">pattern</span> <span class="p">;</span> <span class="p">...</span> <span class="p">]</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">insert</span> <span class="p">[</span> <span class="n">pattern</span> <span class="p">;</span> <span class="p">...</span> <span class="p">]</span>
 </code></pre>
 </div>
 <p>Insert a concept into the graph.</p>
 
-<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">insert</span> <span class="s1">'finding-dory'</span> <span class="n">isa</span> <span class="n">movie</span><span class="p">;</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">insert</span> <span class="s1">'finding-dory'</span> <span class="n">isa</span> <span class="n">movie</span><span class="p">;</span>
 </code></pre>
 </div>
 <p>If a match query is provided, the query will insert the given variable patterns for every result of the match query.</p>
 
-<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">match</span>  <span class="k">insert</span> <span class="p">[</span> <span class="n">pattern</span> <span class="p">;</span> <span class="p">...</span> <span class="p">]</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">match</span>  <span class="k">insert</span> <span class="p">[</span> <span class="n">pattern</span> <span class="p">;</span> <span class="p">...</span> <span class="p">]</span>
 </code></pre>
 </div>
 
 <p>Insert a relation for every result of a match query.</p>
 
-<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">match</span> <span class="err">$</span><span class="n">m</span> <span class="n">isa</span> <span class="n">movie</span><span class="p">;</span> <span class="p">(</span><span class="n">director</span> <span class="s1">'tim-burton'</span><span class="p">,</span> <span class="err">$</span><span class="n">m</span><span class="p">);</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">match</span> <span class="err">$</span><span class="n">m</span> <span class="n">isa</span> <span class="n">movie</span><span class="p">;</span> <span class="p">(</span><span class="n">director</span> <span class="s1">'tim-burton'</span><span class="p">,</span> <span class="err">$</span><span class="n">m</span><span class="p">);</span>
 <span class="k">insert</span> <span class="p">(</span><span class="n">actor</span> <span class="s1">'johnny-depp'</span><span class="p">,</span> <span class="n">production</span><span class="o">-</span><span class="k">with</span><span class="o">-</span><span class="k">cast</span> <span class="err">$</span><span class="n">m</span><span class="p">)</span> <span class="n">isa</span> <span class="n">has</span><span class="o">-</span><span class="k">cast</span><span class="p">;</span>
 </code></pre>
 </div>
@@ -648,44 +648,44 @@ $('#toc').on('click', 'a', function() {
 
 <p>A delete query will delete the specified variable patterns for every result of the match query.</p>
 
-<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">match</span>  <span class="k">delete</span> <span class="p">[</span> <span class="n">pattern</span> <span class="p">;</span> <span class="p">...</span> <span class="p">]</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">match</span>  <span class="k">delete</span> <span class="p">[</span> <span class="n">pattern</span> <span class="p">;</span> <span class="p">...</span> <span class="p">]</span>
 </code></pre>
 </div>
 <p>Delete every instance of a type.</p>
 
-<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">match</span> <span class="err">$</span><span class="n">x</span> <span class="n">isa</span> <span class="n">person</span><span class="p">;</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">match</span> <span class="err">$</span><span class="n">x</span> <span class="n">isa</span> <span class="n">person</span><span class="p">;</span>
 <span class="k">delete</span> <span class="err">$</span><span class="n">x</span><span class="p">;</span>
 </code></pre>
 </div>
 
 <h2 id="pattern">pattern</h2>
 
-<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="n">identifier</span> <span class="p">[</span> <span class="n">property</span><span class="p">,</span> <span class="p">...</span> <span class="p">]</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">identifier</span> <span class="p">[</span> <span class="n">property</span><span class="p">,</span> <span class="p">...</span> <span class="p">]</span>
 </code></pre>
 </div>
 <p>A variable with several properties.</p>
 
-<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="err">$</span><span class="n">x</span> <span class="n">isa</span> <span class="n">person</span><span class="p">,</span> <span class="n">value</span> <span class="nv">"Guillermo del Toro"</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="err">$</span><span class="n">x</span> <span class="n">isa</span> <span class="n">person</span><span class="p">,</span> <span class="n">value</span> <span class="nv">"Guillermo del Toro"</span>
 </code></pre>
 </div>
 
 <p>Match either the left or right pattern.</p>
 
-<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="n">pattern</span> <span class="k">or</span> <span class="n">pattern</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">pattern</span> <span class="k">or</span> <span class="n">pattern</span>
 </code></pre>
 </div>
 
-<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="err">$</span><span class="n">x</span> <span class="n">isa</span> <span class="n">movie</span> <span class="k">or</span> <span class="err">$</span><span class="n">x</span> <span class="n">isa</span> <span class="n">person</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="err">$</span><span class="n">x</span> <span class="n">isa</span> <span class="n">movie</span> <span class="k">or</span> <span class="err">$</span><span class="n">x</span> <span class="n">isa</span> <span class="n">person</span>
 </code></pre>
 </div>
 
 <p>Match either the left pattern or all the right patterns.</p>
 
-<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="err">{</span> <span class="p">[</span> <span class="n">pattern</span> <span class="p">;</span> <span class="p">...</span> <span class="p">]</span> <span class="err">}</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="err">{</span> <span class="p">[</span> <span class="n">pattern</span> <span class="p">;</span> <span class="p">...</span> <span class="p">]</span> <span class="err">}</span>
 </code></pre>
 </div>
 
-<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="err">$</span><span class="n">x</span> <span class="n">isa</span> <span class="n">movie</span> <span class="k">or</span> <span class="err">{</span> <span class="p">(</span><span class="n">actor</span> <span class="err">$</span><span class="n">x</span><span class="p">,</span> <span class="err">$</span><span class="n">y</span><span class="p">);</span> <span class="err">$</span><span class="n">y</span> <span class="n">id</span> <span class="s1">'the-martian'</span><span class="p">;</span> <span class="err">}</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="err">$</span><span class="n">x</span> <span class="n">isa</span> <span class="n">movie</span> <span class="k">or</span> <span class="err">{</span> <span class="p">(</span><span class="n">actor</span> <span class="err">$</span><span class="n">x</span><span class="p">,</span> <span class="err">$</span><span class="n">y</span><span class="p">);</span> <span class="err">$</span><span class="n">y</span> <span class="n">id</span> <span class="s1">'the-martian'</span><span class="p">;</span> <span class="err">}</span>
 </code></pre>
 </div>
 
@@ -693,7 +693,7 @@ $('#toc').on('click', 'a', function() {
 
 <p>Variables start with a <code class="highlighter-rouge">$</code>, followed by alphanumeric characters, underscores or dashes.</p>
 
-<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">match</span> <span class="p">(</span><span class="n">director</span> <span class="err">$</span><span class="n">the</span><span class="o">-</span><span class="n">director</span><span class="p">,</span> <span class="err">$</span><span class="n">theMovie</span><span class="p">);</span> <span class="err">$</span><span class="n">theMovie</span> <span class="n">isa</span> <span class="n">movie</span><span class="p">;</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">match</span> <span class="p">(</span><span class="n">director</span> <span class="err">$</span><span class="n">the</span><span class="o">-</span><span class="n">director</span><span class="p">,</span> <span class="err">$</span><span class="n">theMovie</span><span class="p">);</span> <span class="err">$</span><span class="n">theMovie</span> <span class="n">isa</span> <span class="n">movie</span><span class="p">;</span>
 </code></pre>
 </div>
 
@@ -701,11 +701,11 @@ $('#toc').on('click', 'a', function() {
 
 <p>An <code class="highlighter-rouge">id</code> is a sequence of alphanumeric characters, underscores and dashes, or a quoted string.</p>
 
-<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">variable</span> <span class="o">|</span> <span class="n">id</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">variable</span> <span class="o">|</span> <span class="n">id</span>
 </code></pre>
 </div>
 
-<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">insert</span> <span class="nv">"TV Show"</span> <span class="n">isa</span> <span class="n">entity</span><span class="o">-</span><span class="k">type</span><span class="p">;</span> <span class="n">movie</span> <span class="n">isa</span> <span class="n">entity</span><span class="o">-</span><span class="k">type</span><span class="p">;</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">insert</span> <span class="nv">"TV Show"</span> <span class="n">isa</span> <span class="n">entity</span><span class="o">-</span><span class="k">type</span><span class="p">;</span> <span class="n">movie</span> <span class="n">isa</span> <span class="n">entity</span><span class="o">-</span><span class="k">type</span><span class="p">;</span>
 </code></pre>
 </div>
 
@@ -713,97 +713,97 @@ $('#toc').on('click', 'a', function() {
 
 <p>Specify the type of a concept.</p>
 
-<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="n">isa</span> <span class="k">type</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">isa</span> <span class="k">type</span>
 </code></pre>
 </div>
 
-<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">match</span> <span class="err">$</span><span class="n">x</span> <span class="n">isa</span> <span class="n">movie</span><span class="p">;</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">match</span> <span class="err">$</span><span class="n">x</span> <span class="n">isa</span> <span class="n">movie</span><span class="p">;</span>
 </code></pre>
 </div>
 
 <p>Match concepts and their types.</p>
 
-<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">match</span> <span class="err">$</span><span class="n">x</span> <span class="n">isa</span> <span class="err">$</span><span class="n">y</span><span class="p">;</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">match</span> <span class="err">$</span><span class="n">x</span> <span class="n">isa</span> <span class="err">$</span><span class="n">y</span><span class="p">;</span>
 </code></pre>
 </div>
 
 <p>Match the concept with a particular ID.</p>
 
-<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="n">id</span> <span class="err">{</span><span class="n">string</span><span class="err">}</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">id</span> <span class="err">{</span><span class="n">string</span><span class="err">}</span>
 </code></pre>
 </div>
 
-<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">match</span> <span class="err">$</span><span class="n">x</span> <span class="n">id</span> <span class="s1">'ridley-scott'</span><span class="p">;</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">match</span> <span class="err">$</span><span class="n">x</span> <span class="n">id</span> <span class="s1">'ridley-scott'</span><span class="p">;</span>
 </code></pre>
 </div>
 
 <p>Match concepts with a value that contains the given string.</p>
 
-<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="n">value</span> <span class="p">[</span> <span class="o">=</span> <span class="o">|</span> <span class="o">!=</span> <span class="o">|</span> <span class="o">&lt;</span> <span class="o">|</span> <span class="o">&lt;=</span> <span class="o">|</span> <span class="o">&gt;=</span> <span class="o">|</span> <span class="o">&gt;</span> <span class="o">|</span> <span class="k">contains</span> <span class="p">]</span> <span class="err">{</span><span class="n">value</span><span class="err">}</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">value</span> <span class="p">[</span> <span class="o">=</span> <span class="o">|</span> <span class="o">!=</span> <span class="o">|</span> <span class="o">&lt;</span> <span class="o">|</span> <span class="o">&lt;=</span> <span class="o">|</span> <span class="o">&gt;=</span> <span class="o">|</span> <span class="o">&gt;</span> <span class="o">|</span> <span class="k">contains</span> <span class="p">]</span> <span class="err">{</span><span class="n">value</span><span class="err">}</span>
 </code></pre>
 </div>
 
-<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">match</span> <span class="err">$</span><span class="n">m</span> <span class="n">value</span> <span class="k">contains</span> <span class="nv">"The Lord of the Rings"</span><span class="p">;</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">match</span> <span class="err">$</span><span class="n">m</span> <span class="n">value</span> <span class="k">contains</span> <span class="nv">"The Lord of the Rings"</span><span class="p">;</span>
 </code></pre>
 </div>
 
 <p>Match concepts with a resource matching a predicate.</p>
 
-<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="n">has</span> <span class="n">resource</span><span class="o">-</span><span class="k">type</span> <span class="p">[</span> <span class="o">=</span> <span class="o">|</span> <span class="o">!=</span> <span class="o">|</span> <span class="o">&lt;</span> <span class="o">|</span> <span class="o">&lt;=</span> <span class="o">|</span> <span class="o">&gt;=</span> <span class="o">|</span> <span class="o">&gt;</span> <span class="o">|</span> <span class="k">contains</span> <span class="p">]</span> <span class="err">{</span><span class="n">value</span><span class="err">}</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">has</span> <span class="n">resource</span><span class="o">-</span><span class="k">type</span> <span class="p">[</span> <span class="o">=</span> <span class="o">|</span> <span class="o">!=</span> <span class="o">|</span> <span class="o">&lt;</span> <span class="o">|</span> <span class="o">&lt;=</span> <span class="o">|</span> <span class="o">&gt;=</span> <span class="o">|</span> <span class="o">&gt;</span> <span class="o">|</span> <span class="k">contains</span> <span class="p">]</span> <span class="err">{</span><span class="n">value</span><span class="err">}</span>
 </code></pre>
 </div>
 
-<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">match</span> <span class="err">$</span><span class="n">m</span> <span class="n">isa</span> <span class="n">movie</span><span class="p">,</span> <span class="n">has</span> <span class="n">runtime</span> <span class="o">&gt;</span> <span class="mi">180</span><span class="p">;</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">match</span> <span class="err">$</span><span class="n">m</span> <span class="n">isa</span> <span class="n">movie</span><span class="p">,</span> <span class="n">has</span> <span class="n">runtime</span> <span class="o">&gt;</span> <span class="mi">180</span><span class="p">;</span>
 </code></pre>
 </div>
 
 <p>Match related concepts.</p>
 
-<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="p">(</span> <span class="p">[</span> <span class="p">[</span> <span class="k">role</span><span class="o">-</span><span class="k">type</span> <span class="p">]</span> <span class="k">role</span><span class="o">-</span><span class="n">player</span> <span class="p">,</span> <span class="p">...</span> <span class="p">]</span> <span class="p">)</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="p">(</span> <span class="p">[</span> <span class="p">[</span> <span class="k">role</span><span class="o">-</span><span class="k">type</span> <span class="p">]</span> <span class="k">role</span><span class="o">-</span><span class="n">player</span> <span class="p">,</span> <span class="p">...</span> <span class="p">]</span> <span class="p">)</span>
 </code></pre>
 </div>
 
-<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">match</span> <span class="p">(</span><span class="err">$</span><span class="n">x</span><span class="p">,</span> <span class="err">$</span><span class="n">y</span><span class="p">);</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">match</span> <span class="p">(</span><span class="err">$</span><span class="n">x</span><span class="p">,</span> <span class="err">$</span><span class="n">y</span><span class="p">);</span>
 </code></pre>
 </div>
 
 <p>Match concepts related with a particular relation type.</p>
 
-<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">match</span> <span class="p">(</span><span class="err">$</span><span class="n">p1</span><span class="p">,</span> <span class="err">$</span><span class="n">p2</span><span class="p">)</span> <span class="n">isa</span> <span class="n">marriage</span><span class="p">;</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">match</span> <span class="p">(</span><span class="err">$</span><span class="n">p1</span><span class="p">,</span> <span class="err">$</span><span class="n">p2</span><span class="p">)</span> <span class="n">isa</span> <span class="n">marriage</span><span class="p">;</span>
 </code></pre>
 </div>
 
 <p>Match two related concepts where one plays a specified role type.</p>
 
-<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">match</span> <span class="p">(</span><span class="n">director</span> <span class="err">$</span><span class="n">p</span><span class="p">,</span> <span class="err">$</span><span class="n">m</span><span class="p">);</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">match</span> <span class="p">(</span><span class="n">director</span> <span class="err">$</span><span class="n">p</span><span class="p">,</span> <span class="err">$</span><span class="n">m</span><span class="p">);</span>
 </code></pre>
 </div>
 
 <p>Match concepts in a ternary relation.</p>
 
-<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">match</span> <span class="p">(</span><span class="n">actor</span> <span class="err">$</span><span class="n">p</span><span class="p">,</span> <span class="n">character</span><span class="o">-</span><span class="n">being</span><span class="o">-</span><span class="n">played</span> <span class="err">$</span><span class="k">c</span><span class="p">,</span> <span class="n">production</span><span class="o">-</span><span class="k">with</span><span class="o">-</span><span class="k">cast</span> <span class="err">$</span><span class="n">m</span><span class="p">);</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">match</span> <span class="p">(</span><span class="n">actor</span> <span class="err">$</span><span class="n">p</span><span class="p">,</span> <span class="n">character</span><span class="o">-</span><span class="n">being</span><span class="o">-</span><span class="n">played</span> <span class="err">$</span><span class="k">c</span><span class="p">,</span> <span class="n">production</span><span class="o">-</span><span class="k">with</span><span class="o">-</span><span class="k">cast</span> <span class="err">$</span><span class="n">m</span><span class="p">);</span>
 </code></pre>
 </div>
 
 <h3 id="ako">ako</h3>
 
-<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="n">ako</span> <span class="k">type</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">ako</span> <span class="k">type</span>
 </code></pre>
 </div>
 <p>Insert a new type that is a subtype of an existing type.</p>
 
-<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">insert</span> <span class="n">blockbuster</span> <span class="n">ako</span> <span class="n">movie</span><span class="p">;</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">insert</span> <span class="n">blockbuster</span> <span class="n">ako</span> <span class="n">movie</span><span class="p">;</span>
 </code></pre>
 </div>
 
 <h3 id="has-role">has-role</h3>
 
-<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="n">has</span><span class="o">-</span><span class="k">role</span> <span class="k">role</span><span class="o">-</span><span class="k">type</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">has</span><span class="o">-</span><span class="k">role</span> <span class="k">role</span><span class="o">-</span><span class="k">type</span>
 </code></pre>
 </div>
 <p>Insert a new relation type with two role types.</p>
 
-<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">insert</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">insert</span>
 <span class="n">director</span> <span class="n">isa</span> <span class="k">role</span><span class="o">-</span><span class="k">type</span><span class="p">;</span>
 <span class="n">production</span><span class="o">-</span><span class="k">with</span><span class="o">-</span><span class="n">director</span> <span class="n">isa</span> <span class="k">role</span><span class="o">-</span><span class="k">type</span><span class="p">;</span>
 <span class="n">directorship</span> <span class="n">isa</span> <span class="n">relation</span><span class="o">-</span><span class="k">type</span><span class="p">,</span> <span class="n">has</span><span class="o">-</span><span class="k">role</span> <span class="n">director</span><span class="p">,</span> <span class="n">has</span><span class="o">-</span><span class="k">role</span> <span class="n">production</span><span class="o">-</span><span class="k">with</span><span class="o">-</span><span class="n">director</span><span class="p">;</span>
@@ -812,35 +812,35 @@ $('#toc').on('click', 'a', function() {
 
 <h3 id="plays-role">plays-role</h3>
 
-<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="n">plays</span><span class="o">-</span><span class="k">role</span> <span class="k">role</span><span class="o">-</span><span class="k">type</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">plays</span><span class="o">-</span><span class="k">role</span> <span class="k">role</span><span class="o">-</span><span class="k">type</span>
 </code></pre>
 </div>
 
 <p>Allow instances of a type to play a role in a relation.</p>
 
-<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">insert</span> <span class="n">person</span> <span class="n">plays</span><span class="o">-</span><span class="k">role</span> <span class="n">director</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">insert</span> <span class="n">person</span> <span class="n">plays</span><span class="o">-</span><span class="k">role</span> <span class="n">director</span>
 </code></pre>
 </div>
 
 <h3 id="has-resource">has-resource</h3>
 
-<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="n">has</span><span class="o">-</span><span class="n">resource</span> <span class="n">resource</span><span class="o">-</span><span class="k">type</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">has</span><span class="o">-</span><span class="n">resource</span> <span class="n">resource</span><span class="o">-</span><span class="k">type</span>
 </code></pre>
 </div>
 <p>Allow instances of a type to have a resource.</p>
 
-<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">insert</span> <span class="n">person</span> <span class="n">has</span><span class="o">-</span><span class="n">resource</span> <span class="n">name</span><span class="p">;</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">insert</span> <span class="n">person</span> <span class="n">has</span><span class="o">-</span><span class="n">resource</span> <span class="n">name</span><span class="p">;</span>
 </code></pre>
 </div>
 
 <h3 id="datatype">datatype</h3>
 
-<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="n">datatype</span> <span class="p">(</span> <span class="n">string</span> <span class="o">|</span> <span class="n">long</span> <span class="o">|</span> <span class="n">double</span> <span class="o">|</span> <span class="n">boolean</span> <span class="p">)</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">datatype</span> <span class="p">(</span> <span class="n">string</span> <span class="o">|</span> <span class="n">long</span> <span class="o">|</span> <span class="n">double</span> <span class="o">|</span> <span class="n">boolean</span> <span class="p">)</span>
 </code></pre>
 </div>
 <p>Insert a new resource type with the given datatype.</p>
 
-<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">insert</span> <span class="n">name</span> <span class="n">isa</span> <span class="n">resource</span><span class="o">-</span><span class="k">type</span><span class="p">,</span> <span class="n">datatype</span> <span class="n">string</span><span class="p">;</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">insert</span> <span class="n">name</span> <span class="n">isa</span> <span class="n">resource</span><span class="o">-</span><span class="k">type</span><span class="p">,</span> <span class="n">datatype</span> <span class="n">string</span><span class="p">;</span>
 </code></pre>
 </div>
 
@@ -898,7 +898,7 @@ $('#toc').on('click', 'a', function() {
         <br>
         <p>© 2016 <a href="https://mindmaps.io">Mindmaps Research Ltd</a></p>
         <!-- &copy;2016 MindmapsDB. All rights reserved. <br />
-        <span>Page last updated:</span> August 17, 2016<br/> Site last generated: Oct 2, 2016 <br />
+        <span>Page last updated:</span> August 17, 2016<br/> Site last generated: Oct 3, 2016 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">
