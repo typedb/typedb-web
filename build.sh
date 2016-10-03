@@ -34,4 +34,4 @@ echo Creating images symlink
 ln -sf pages/images public/images
 
 echo Create javadocs symlink
-ln -sTf ../../api-reference public/pages/api-reference
+ln -sf ../../api-reference public/pages/api-reference
