@@ -1,6 +1,8 @@
 [
 
 
+,
+
 {
 "title": "What is MindmapsDB?",
 "tags": "overview",
@@ -8,9 +10,11 @@
 "url": "platformindex.html",
 "summary": "false"
 }
+
+
+
+
 ,
-
-
 
 {
 "title": "What can you build with MindampsDB?",
@@ -19,9 +23,11 @@
 "url": "platformapplications.html",
 "summary": "false"
 }
+
+
+
+
 ,
-
-
 
 {
 "title": "Why use MindmapsDB?",
@@ -30,9 +36,11 @@
 "url": "platformadvantages.html",
 "summary": "false"
 }
+
+
+
+
 ,
-
-
 
 {
 "title": "Comparison with other Databases",
@@ -41,9 +49,11 @@
 "url": "platformcomparison.html",
 "summary": "false"
 }
+
+
+
+
 ,
-
-
 
 {
 "title": "When to use MindmapsDB?",
@@ -52,11 +62,13 @@
 "url": "platformuse-case.html",
 "summary": "false"
 }
+
+
+
+
+
+
 ,
-
-
-
-
 
 {
 "title": "Developing with MindmapsDB",
@@ -65,9 +77,11 @@
 "url": "platformdeveloper.html",
 "summary": "false"
 }
+
+
+
+
 ,
-
-
 
 {
 "title": "Mindmaps Platform",
@@ -76,9 +90,11 @@
 "url": "platformfaq.html",
 "summary": ""
 }
+
+
+
+
 ,
-
-
 
 {
 "title": "Defining an Advanced Schema",
@@ -87,9 +103,11 @@
 "url": "documentationcore-apiadvanced-schema-definition.html",
 "summary": "Demonstrates how to create an advanced schema for a MindmapsDB knowledge graph."
 }
+
+
+
+
 ,
-
-
 
 {
 "title": "MindmapsDB API Reference",
@@ -98,9 +116,11 @@
 "url": "documentationapi-referenceapi-reference.html",
 "summary": ""
 }
+
+
+
+
 ,
-
-
 
 {
 "title": "Ask Queries",
@@ -109,9 +129,11 @@
 "url": "documentationgraqlask-queries.html",
 "summary": "Graql Ask Queries"
 }
+
+
+
+
 ,
-
-
 
 {
 "title": "Compute Queries",
@@ -120,9 +142,11 @@
 "url": "documentationgraqlcompute-queries.html",
 "summary": "Graql Compute Queries"
 }
+
+
+
+
 ,
-
-
 
 {
 "title": "Delete Queries",
@@ -131,9 +155,11 @@
 "url": "documentationgraqldelete-queries.html",
 "summary": "Graql Delete Queries"
 }
+
+
+
+
 ,
-
-
 
 {
 "title": "Downloads",
@@ -142,9 +168,11 @@
 "url": "documentationresourcesdownloads.html",
 "summary": "This is a list of MindmapsDB releases. It's the place to come to download the most recent versions of MindmapsDB."
 }
+
+
+
+
 ,
-
-
 
 {
 "title": "MindmapsDB Examples",
@@ -153,9 +181,11 @@
 "url": "documentationexamplesexamples.html",
 "summary": "Landing page for MindmapsDB examples."
 }
+
+
+
+
 ,
-
-
 
 {
 "title": "FAQ about MindmapsDB",
@@ -164,11 +194,13 @@
 "url": "documentationresourcesfaq.html",
 "summary": "Frequently asked questions about MindmapsDB."
 }
+
+
+
+
+
+
 ,
-
-
-
-
 
 {
 "title": "Graql Cheatsheet",
@@ -177,9 +209,11 @@
 "url": "documentationgraqlgraql-cheatsheet.html",
 "summary": "A reference card (cheatsheet) for Graql"
 }
+
+
+
+
 ,
-
-
 
 {
 "title": "Graql Shell",
@@ -188,9 +222,11 @@
 "url": "documentationgraqlgraql-shell.html",
 "summary": "The Graql shell is used to execute Graql queries from the command line, or to let Graql be invoked from other applications."
 }
+
+
+
+
 ,
-
-
 
 {
 "title": "Welcome to the MindmapsDB Documentation Portal",
@@ -199,9 +235,11 @@
 "url": "index",
 "summary": ""
 }
+
+
+
+
 ,
-
-
 
 {
 "title": "Insert Queries",
@@ -210,9 +248,11 @@
 "url": "documentationgraqlinsert-queries.html",
 "summary": "Graql Insert Queries"
 }
+
+
+
+
 ,
-
-
 
 {
 "title": "Java Graql",
@@ -221,9 +261,11 @@
 "url": "documentationgraqljava-graql.html",
 "summary": "How to construct and execute Graql queries programmatically in Java."
 }
+
+
+
+
 ,
-
-
 
 {
 "title": "Match Queries",
@@ -232,9 +274,11 @@
 "url": "documentationgraqlmatch-queries.html",
 "summary": "Graql Match Queries"
 }
+
+
+
+
 ,
-
-
 
 {
 "title": "Migrating to MindmapsDB",
@@ -243,9 +287,11 @@
 "url": "documentationthe-basicsmigration-tutorial.html",
 "summary": "This document will teach you how to load data in different formats to populate a MindmapsDB graph."
 }
+
+
+
+
 ,
-
-
 
 {
 "title": "MindmapsDB Basics",
@@ -254,9 +300,11 @@
 "url": "documentationthe-basicsmindmaps-basics.html",
 "summary": "Introducing the basics of the MindmapsDB object model."
 }
+
+
+
+
 ,
-
-
 
 {
 "title": "Modern MindmapsDB Example",
@@ -265,9 +313,11 @@
 "url": "documentationexamplesmodern.html",
 "summary": "A short example to illustrate Graql queries"
 }
+
+
+
+
 ,
-
-
 
 {
 "title": "Moogi MindmapsDB Example",
@@ -276,9 +326,11 @@
 "url": "documentationexamplesmoogi.html",
 "summary": "Moogi MindmapsDB example."
 }
+
+
+
+
 ,
-
-
 
 {
 "title": "Scroll layout",
@@ -287,9 +339,11 @@
 "url": "jsmydoc_scroll.html",
 "summary": "This page demonstrates how you the integration of a script called ScrollTo, which is used here to link definitions of a JSON code sample to a list of definitions for that particular term. The scenario here is that the JSON blocks are really long, with extensive nesting and subnesting, which makes it difficult for tables below the JSON to adequately explain the term in a usable way."
 }
+
+
+
+
 ,
-
-
 
 {
 "title": "Graph API Overview",
@@ -298,9 +352,11 @@
 "url": "documentationcore-apioverview.html",
 "summary": "A basic example of how to use MindmapsDB Graph API."
 }
+
+
+
+
 ,
-
-
 
 {
 "title": "Graql Overview",
@@ -309,9 +365,11 @@
 "url": "documentationgraqloverview.html",
 "summary": "An introduction to Graql"
 }
+
+
+
+
 ,
-
-
 
 {
 "title": "Philosophers MindmapsDB Example",
@@ -320,9 +378,11 @@
 "url": "documentationexamplesphilosophers.html",
 "summary": "Philosophers MindmapsDB example."
 }
+
+
+
+
 ,
-
-
 
 {
 "title": "Pokemon MindmapsDB Example",
@@ -331,9 +391,11 @@
 "url": "documentationexamplespokemon.html",
 "summary": "Pokemon MindmapsDB example."
 }
+
+
+
+
 ,
-
-
 
 {
 "title": "Quickstart Tutorial",
@@ -342,9 +404,11 @@
 "url": "documentationthe-basicsquickstart-tutorial.html",
 "summary": "This document will teach you how to use Graql to load a schema and some data into a MindmapsDB Graph."
 }
+
+
+
+
 ,
-
-
 
 {
 "title": "Resources",
@@ -353,11 +417,13 @@
 "url": "documentationresourcesresources.html",
 "summary": "Resources to help you learn more about graph databases."
 }
+
+
+
+
+
+
 ,
-
-
-
-
 
 {
 "title": "MindmapsDB Setup Guide",
@@ -366,9 +432,11 @@
 "url": "documentationget-startedsetup-guide.html",
 "summary": "This document will teach you how to set up a MindmapsDB environment, start it up and load an example dataset to make a query using our query language, Graql."
 }
+
+
+
+
 ,
-
-
 
 {
 "title": "Defining a Schema",
@@ -377,7 +445,6 @@
 "url": "documentationcore-apisimple-schema-definition.html",
 "summary": "Demonstrates how to create a schema for a MindmapsDB knowledge graph."
 }
-,
 
 
 
