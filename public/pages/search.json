@@ -1,7 +1,6 @@
 [
 
 
-,
 
 {
 "title": "What is MindmapsDB?",
@@ -13,9 +12,7 @@
 
 
 
-
 ,
-
 {
 "title": "What can you build with MindampsDB?",
 "tags": "overview",
@@ -26,9 +23,7 @@
 
 
 
-
 ,
-
 {
 "title": "Why use MindmapsDB?",
 "tags": "overview",
@@ -39,9 +34,7 @@
 
 
 
-
 ,
-
 {
 "title": "Comparison with other Databases",
 "tags": "overview",
@@ -52,9 +45,7 @@
 
 
 
-
 ,
-
 {
 "title": "When to use MindmapsDB?",
 "tags": "overview",
@@ -67,9 +58,7 @@
 
 
 
-
 ,
-
 {
 "title": "Developing with MindmapsDB",
 "tags": "overview",
@@ -80,9 +69,7 @@
 
 
 
-
 ,
-
 {
 "title": "Mindmaps Platform",
 "tags": "overviewfaq",
@@ -93,9 +80,7 @@
 
 
 
-
 ,
-
 {
 "title": "Defining an Advanced Schema",
 "tags": "graph-apijava",
@@ -106,9 +91,7 @@
 
 
 
-
 ,
-
 {
 "title": "MindmapsDB API Reference",
 "tags": "graqljavagraph-api",
@@ -119,9 +102,7 @@
 
 
 
-
 ,
-
 {
 "title": "Ask Queries",
 "tags": "graql",
@@ -132,9 +113,7 @@
 
 
 
-
 ,
-
 {
 "title": "Compute Queries",
 "tags": "graql",
@@ -145,9 +124,7 @@
 
 
 
-
 ,
-
 {
 "title": "Delete Queries",
 "tags": "graql",
@@ -158,9 +135,7 @@
 
 
 
-
 ,
-
 {
 "title": "Downloads",
 "tags": "getting-started",
@@ -171,9 +146,7 @@
 
 
 
-
 ,
-
 {
 "title": "MindmapsDB Examples",
 "tags": "getting-started",
@@ -184,9 +157,7 @@
 
 
 
-
 ,
-
 {
 "title": "FAQ about MindmapsDB",
 "tags": "getting-started",
@@ -199,9 +170,7 @@
 
 
 
-
 ,
-
 {
 "title": "Graql Cheatsheet",
 "tags": "graql",
@@ -212,9 +181,7 @@
 
 
 
-
 ,
-
 {
 "title": "Graql Shell",
 "tags": "graql",
@@ -225,9 +192,7 @@
 
 
 
-
 ,
-
 {
 "title": "Welcome to the MindmapsDB Documentation Portal",
 "tags": "getting-startedgraqljavacore-api",
@@ -238,9 +203,7 @@
 
 
 
-
 ,
-
 {
 "title": "Insert Queries",
 "tags": "graql",
@@ -251,9 +214,7 @@
 
 
 
-
 ,
-
 {
 "title": "Java Graql",
 "tags": "graqljava",
@@ -264,9 +225,7 @@
 
 
 
-
 ,
-
 {
 "title": "Match Queries",
 "tags": "graql",
@@ -277,9 +236,7 @@
 
 
 
-
 ,
-
 {
 "title": "Migrating to MindmapsDB",
 "tags": "getting-startedgraql",
@@ -290,9 +247,7 @@
 
 
 
-
 ,
-
 {
 "title": "MindmapsDB Basics",
 "tags": "getting-started",
@@ -303,9 +258,7 @@
 
 
 
-
 ,
-
 {
 "title": "Modern MindmapsDB Example",
 "tags": "graql",
@@ -316,9 +269,7 @@
 
 
 
-
 ,
-
 {
 "title": "Moogi MindmapsDB Example",
 "tags": "getting-startedgraql",
@@ -329,9 +280,7 @@
 
 
 
-
 ,
-
 {
 "title": "Scroll layout",
 "tags": "special_layouts",
@@ -342,9 +291,7 @@
 
 
 
-
 ,
-
 {
 "title": "Graph API Overview",
 "tags": "javagraph-api",
@@ -355,9 +302,7 @@
 
 
 
-
 ,
-
 {
 "title": "Graql Overview",
 "tags": "graql",
@@ -368,9 +313,7 @@
 
 
 
-
 ,
-
 {
 "title": "Philosophers MindmapsDB Example",
 "tags": "getting-startedgraql",
@@ -381,9 +324,7 @@
 
 
 
-
 ,
-
 {
 "title": "Pokemon MindmapsDB Example",
 "tags": "getting-startedgraql",
@@ -394,9 +335,7 @@
 
 
 
-
 ,
-
 {
 "title": "Quickstart Tutorial",
 "tags": "getting-startedgraql",
@@ -407,9 +346,7 @@
 
 
 
-
 ,
-
 {
 "title": "Resources",
 "tags": "getting-started",
@@ -422,9 +359,7 @@
 
 
 
-
 ,
-
 {
 "title": "MindmapsDB Setup Guide",
 "tags": "getting-startedgraql",
@@ -435,9 +370,7 @@
 
 
 
-
 ,
-
 {
 "title": "Defining a Schema",
 "tags": "javagraph-api",
@@ -445,7 +378,6 @@
 "url": "documentationcore-apisimple-schema-definition.html",
 "summary": "Demonstrates how to create a schema for a MindmapsDB knowledge graph."
 }
-
 
 
 
