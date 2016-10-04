@@ -6,7 +6,7 @@
 "title": "What is MindmapsDB?",
 "tags": "overview",
 "keywords": "intro",
-"url": "platformindex.html",
+"url": "/platform/index.html",
 "summary": "false"
 }
 
@@ -17,7 +17,7 @@
 "title": "What can you build with MindampsDB?",
 "tags": "overview",
 "keywords": "applications",
-"url": "platformapplications.html",
+"url": "/platform/applications.html",
 "summary": "false"
 }
 
@@ -28,7 +28,7 @@
 "title": "Why use MindmapsDB?",
 "tags": "overview",
 "keywords": "advantages",
-"url": "platformadvantages.html",
+"url": "/platform/advantages.html",
 "summary": "false"
 }
 
@@ -39,7 +39,7 @@
 "title": "Comparison with other Databases",
 "tags": "overview",
 "keywords": "comparison",
-"url": "platformcomparison.html",
+"url": "/platform/comparison.html",
 "summary": "false"
 }
 
@@ -50,7 +50,7 @@
 "title": "When to use MindmapsDB?",
 "tags": "overview",
 "keywords": "use case",
-"url": "platformuse-case.html",
+"url": "/platform/use-case.html",
 "summary": "false"
 }
 
@@ -63,7 +63,7 @@
 "title": "Developing with MindmapsDB",
 "tags": "overview",
 "keywords": "developer",
-"url": "platformdeveloper.html",
+"url": "/platform/developer.html",
 "summary": "false"
 }
 
@@ -74,7 +74,7 @@
 "title": "Mindmaps Platform",
 "tags": "overviewfaq",
 "keywords": "platform",
-"url": "platformfaq.html",
+"url": "/platform/faq.html",
 "summary": ""
 }
 
@@ -85,7 +85,7 @@
 "title": "Defining an Advanced Schema",
 "tags": "graph-apijava",
 "keywords": "schema",
-"url": "documentationcore-apiadvanced-schema-definition.html",
+"url": "/documentation/core-api/advanced-schema-definition.html",
 "summary": "Demonstrates how to create an advanced schema for a MindmapsDB knowledge graph."
 }
 
@@ -96,7 +96,7 @@
 "title": "MindmapsDB API Reference",
 "tags": "graqljavagraph-api",
 "keywords": "API Reference Documentation",
-"url": "documentationapi-referenceapi-reference.html",
+"url": "/documentation/api-reference/api-reference.html",
 "summary": ""
 }
 
@@ -107,7 +107,7 @@
 "title": "Ask Queries",
 "tags": "graql",
 "keywords": "graql, query, ask",
-"url": "documentationgraqlask-queries.html",
+"url": "/documentation/graql/ask-queries.html",
 "summary": "Graql Ask Queries"
 }
 
@@ -118,7 +118,7 @@
 "title": "Compute Queries",
 "tags": "graql",
 "keywords": "graql, compute, match",
-"url": "documentationgraqlcompute-queries.html",
+"url": "/documentation/graql/compute-queries.html",
 "summary": "Graql Compute Queries"
 }
 
@@ -129,7 +129,7 @@
 "title": "Delete Queries",
 "tags": "graql",
 "keywords": "graql, query, delete",
-"url": "documentationgraqldelete-queries.html",
+"url": "/documentation/graql/delete-queries.html",
 "summary": "Graql Delete Queries"
 }
 
@@ -140,7 +140,7 @@
 "title": "Downloads",
 "tags": "getting-started",
 "keywords": "setup, getting started, download",
-"url": "documentationresourcesdownloads.html",
+"url": "/documentation/resources/downloads.html",
 "summary": "This is a list of MindmapsDB releases. It's the place to come to download the most recent versions of MindmapsDB."
 }
 
@@ -151,7 +151,7 @@
 "title": "MindmapsDB Examples",
 "tags": "getting-started",
 "keywords": "examples",
-"url": "documentationexamplesexamples.html",
+"url": "/documentation/examples/examples.html",
 "summary": "Landing page for MindmapsDB examples."
 }
 
@@ -162,7 +162,7 @@
 "title": "FAQ about MindmapsDB",
 "tags": "getting-started",
 "keywords": "troubleshooting",
-"url": "documentationresourcesfaq.html",
+"url": "/documentation/resources/faq.html",
 "summary": "Frequently asked questions about MindmapsDB."
 }
 
@@ -175,7 +175,7 @@
 "title": "Graql Cheatsheet",
 "tags": "graql",
 "keywords": "graql",
-"url": "documentationgraqlgraql-cheatsheet.html",
+"url": "/documentation/graql/graql-cheatsheet.html",
 "summary": "A reference card (cheatsheet) for Graql"
 }
 
@@ -186,7 +186,7 @@
 "title": "Graql Shell",
 "tags": "graql",
 "keywords": "graql, shell",
-"url": "documentationgraqlgraql-shell.html",
+"url": "/documentation/graql/graql-shell.html",
 "summary": "The Graql shell is used to execute Graql queries from the command line, or to let Graql be invoked from other applications."
 }
 
@@ -197,7 +197,7 @@
 "title": "Welcome to the MindmapsDB Documentation Portal",
 "tags": "getting-startedgraqljavacore-api",
 "keywords": "sample homepage",
-"url": "index",
+"url": "/index",
 "summary": ""
 }
 
@@ -208,7 +208,7 @@
 "title": "Insert Queries",
 "tags": "graql",
 "keywords": "graql, query, insert",
-"url": "documentationgraqlinsert-queries.html",
+"url": "/documentation/graql/insert-queries.html",
 "summary": "Graql Insert Queries"
 }
 
@@ -219,7 +219,7 @@
 "title": "Java Graql",
 "tags": "graqljava",
 "keywords": "graql, java",
-"url": "documentationgraqljava-graql.html",
+"url": "/documentation/graql/java-graql.html",
 "summary": "How to construct and execute Graql queries programmatically in Java."
 }
 
@@ -230,7 +230,7 @@
 "title": "Match Queries",
 "tags": "graql",
 "keywords": "graql, query, match",
-"url": "documentationgraqlmatch-queries.html",
+"url": "/documentation/graql/match-queries.html",
 "summary": "Graql Match Queries"
 }
 
@@ -241,7 +241,7 @@
 "title": "Migrating to MindmapsDB",
 "tags": "getting-startedgraql",
 "keywords": "setup, getting started",
-"url": "documentationthe-basicsmigration-tutorial.html",
+"url": "/documentation/the-basics/migration-tutorial.html",
 "summary": "This document will teach you how to load data in different formats to populate a MindmapsDB graph."
 }
 
@@ -252,7 +252,7 @@
 "title": "MindmapsDB Basics",
 "tags": "getting-started",
 "keywords": "setup, getting started, basics",
-"url": "documentationthe-basicsmindmaps-basics.html",
+"url": "/documentation/the-basics/mindmaps-basics.html",
 "summary": "Introducing the basics of the MindmapsDB object model."
 }
 
@@ -263,7 +263,7 @@
 "title": "Modern MindmapsDB Example",
 "tags": "graql",
 "keywords": "graql, query",
-"url": "documentationexamplesmodern.html",
+"url": "/documentation/examples/modern.html",
 "summary": "A short example to illustrate Graql queries"
 }
 
@@ -274,7 +274,7 @@
 "title": "Moogi MindmapsDB Example",
 "tags": "getting-startedgraql",
 "keywords": "examples",
-"url": "documentationexamplesmoogi.html",
+"url": "/documentation/examples/moogi.html",
 "summary": "Moogi MindmapsDB example."
 }
 
@@ -285,7 +285,7 @@
 "title": "Scroll layout",
 "tags": "special_layouts",
 "keywords": "json, scrolling, scrollto, jquery plugin",
-"url": "jsmydoc_scroll.html",
+"url": "/js/mydoc_scroll.html",
 "summary": "This page demonstrates how you the integration of a script called ScrollTo, which is used here to link definitions of a JSON code sample to a list of definitions for that particular term. The scenario here is that the JSON blocks are really long, with extensive nesting and subnesting, which makes it difficult for tables below the JSON to adequately explain the term in a usable way."
 }
 
@@ -296,7 +296,7 @@
 "title": "Graph API Overview",
 "tags": "javagraph-api",
 "keywords": "overview",
-"url": "documentationcore-apioverview.html",
+"url": "/documentation/core-api/overview.html",
 "summary": "A basic example of how to use MindmapsDB Graph API."
 }
 
@@ -307,7 +307,7 @@
 "title": "Graql Overview",
 "tags": "graql",
 "keywords": "graql, overview",
-"url": "documentationgraqloverview.html",
+"url": "/documentation/graql/overview.html",
 "summary": "An introduction to Graql"
 }
 
@@ -318,7 +318,7 @@
 "title": "Philosophers MindmapsDB Example",
 "tags": "getting-startedgraql",
 "keywords": "examples",
-"url": "documentationexamplesphilosophers.html",
+"url": "/documentation/examples/philosophers.html",
 "summary": "Philosophers MindmapsDB example."
 }
 
@@ -329,7 +329,7 @@
 "title": "Pokemon MindmapsDB Example",
 "tags": "getting-startedgraql",
 "keywords": "examples",
-"url": "documentationexamplespokemon.html",
+"url": "/documentation/examples/pokemon.html",
 "summary": "Pokemon MindmapsDB example."
 }
 
@@ -340,7 +340,7 @@
 "title": "Quickstart Tutorial",
 "tags": "getting-startedgraql",
 "keywords": "setup, getting started",
-"url": "documentationthe-basicsquickstart-tutorial.html",
+"url": "/documentation/the-basics/quickstart-tutorial.html",
 "summary": "This document will teach you how to use Graql to load a schema and some data into a MindmapsDB Graph."
 }
 
@@ -351,7 +351,7 @@
 "title": "Resources",
 "tags": "getting-started",
 "keywords": "setup, getting started, download",
-"url": "documentationresourcesresources.html",
+"url": "/documentation/resources/resources.html",
 "summary": "Resources to help you learn more about graph databases."
 }
 
@@ -364,7 +364,7 @@
 "title": "MindmapsDB Setup Guide",
 "tags": "getting-startedgraql",
 "keywords": "setup, getting started",
-"url": "documentationget-startedsetup-guide.html",
+"url": "/documentation/get-started/setup-guide.html",
 "summary": "This document will teach you how to set up a MindmapsDB environment, start it up and load an example dataset to make a query using our query language, Graql."
 }
 
@@ -375,7 +375,7 @@
 "title": "Defining a Schema",
 "tags": "javagraph-api",
 "keywords": "schema",
-"url": "documentationcore-apisimple-schema-definition.html",
+"url": "/documentation/core-api/simple-schema-definition.html",
 "summary": "Demonstrates how to create a schema for a MindmapsDB knowledge graph."
 }
 
