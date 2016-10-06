@@ -647,7 +647,7 @@ qb.match(var("x").has("pokedex-no", lt(20)));
 <div role="tabpanel" class="tab-pane active" id="shell5">
 <pre>
 match
-(pokedex-no-owner $x, pokedex-no-value $pokedex-no) isa has-pokedex-no;
+(has-pokedex-no-owner: $x, has-pokedex-no-value: $pokedex-no) isa has-pokedex-no;
 $pokedex-no value &lt; 20;
 </pre>
 </div>
@@ -678,7 +678,7 @@ qb.match(
 <pre>
 match
 $x isa pokemon;
-(ancestor $x, $y)
+(ancestor: $x, $y);
 </pre>
 </div>
 <div role="tabpanel" class="tab-pane" id="java6">
@@ -750,7 +750,7 @@ qb.match(id("evolution").hasRole(var("x")));
 <div class="tab-content">
 <div role="tabpanel" class="tab-pane active" id="shell9">
 <pre>
-match $x plays-role ancestor
+match $x plays-role ancestor;
 </pre>
 </div>
 <div role="tabpanel" class="tab-pane" id="java9">
@@ -851,8 +851,8 @@ qb.match(var("x").has("height", 19).has("weight", gt(1500)));
 <div class="tab-content">
 <div role="tabpanel" class="tab-pane active" id="shell13">
 <pre>
-match $x has description contains "underground";
-select $x(id, has description);
+match $x has description $desc;
+$desc value contains "underground";
 
 </pre>
 </div>
@@ -860,7 +860,10 @@ select $x(id, has description);
 <pre>
 import static io.mindmaps.graql.api.query.ValuePredicate.*;
 
-qb.match(var("x").has("description", contains("underground")));
+qb.match(
+    var("x").has("description", var("desc")),
+    var("desc").value(contains("underground"))
+);
 
 </pre>
 </div> <!-- tab-pane -->
@@ -929,20 +932,20 @@ qb.match(var("x").has("weight", gt(20).and(lt(30))));
 <div class="tab-content">
 <div role="tabpanel" class="tab-pane active" id="shell16">
 <pre>
-match $x isa pokemon;
-select $x(has pokedex-no, id);
-limit 30, offset 10, distinct, order by $x(has pokedex-no) asc;
+match $x isa pokemon, has pokedex-no $no;
+select $x;
+limit 30; offset 10; distinct; order by $no asc;
 
 </pre>
 </div>
 <div role="tabpanel" class="tab-pane" id="java16">
 <pre>
-qb.match(var("x").isa("pokemon"))
+qb.match(var("x").isa("pokemon").has("pokedex-no", var("no"))
     .select("x")
     .limit(30)
     .offset(10)
     .distinct()
-    .orderBy("x", "pokedex-no", true);
+    .orderBy("no", true);
 </pre>
 </div> <!-- tab-pane -->
 </div>
@@ -963,46 +966,7 @@ by the resource of that type on that concept. Order is ascending by default.</p>
 
 <h3 id="select">select</h3>
 
-<p>Indicates which variables to include in the results as well as optionally some
-<a href="#getters">getters</a>, e.g. <code class="highlighter-rouge">$x(id)</code>. If no getters are provided, the query will
-get the <a href="#section-id">id</a>, <a href="#section-value">value</a> and <a href="#section-isa">isa</a> from
-each result.</p>
-
-<h4 id="getters">Getters</h4>
-<p>A getter indicates a property to get from a variable. Getters are supported in
-the Graql shell, but are not supported in <a href="java_graql.html">Java Graql</a>.</p>
-
-<ul id="profileTabs" class="nav nav-tabs">
-    <li class="active"><a href="#shell17" data-toggle="tab">Graql</a></li>
-    <li><a href="#java17" data-toggle="tab">Java</a></li>
-</ul>
-
-<div class="tab-content">
-<div role="tabpanel" class="tab-pane active" id="shell17">
-<pre>
-match $x isa pokemon;
-select $x(id, has pokedex-no, has description);
-</pre>
-</div>
-<div role="tabpanel" class="tab-pane" id="java17">
-<p>
-Not supported by the Java API.
-</p>
-</div> <!-- tab-pane -->
-</div>
-<p><!-- tab-content --></p>
-
-<h5 id="isa-1">isa</h5>
-<p>Get the type of a concept.</p>
-
-<h5 id="id-1">id</h5>
-<p>Get the <code class="highlighter-rouge">id</code> of a concept.</p>
-
-<h5 id="value-1">value</h5>
-<p>Get the <code class="highlighter-rouge">value</code> of a concept.</p>
-
-<h5 id="has-1">has</h5>
-<p>Get all resources of the given type on this concept.</p>
+<p>Indicates which variables to include in the results.</p>
 
 <h2 id="document-changelog">Document Changelog</h2>
 
