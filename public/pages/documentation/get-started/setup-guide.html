@@ -522,22 +522,21 @@ To stop MindmapsDB graph, run <code class="highlighter-rouge">mindmaps.sh stop</
 
 <h2 id="set-up-graql">Set up Graql</h2>
 
-<p>Graql is our query language, which allows you to interface with a MindmapsDB graph. We will use Graql to load an example data set and run some simple queries against it.</p>
+<p>Graql is our query language, which allows you to interface with a MindmapsDB graph. We will start Graql and enter a few lines to check that all is working as it should.</p>
 
-<p>The following will make Graql load an example data set and exit:</p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code>bin/graql.sh -f examples/pokemon.gql
+<div class="highlighter-rouge"><pre class="highlight"><code>bin/graql.sh
 </code></pre>
 </div>
 
-<p>This will create and persist an example data set. Now we can run the following query using the Graql shell:</p>
+<p>The Graql shell starts and you see a <code class="highlighter-rouge">&gt;&gt;&gt;</code> prompt. Type in the following:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>bin/graql.sh
-match <span class="nv">$x</span> isa pokemon
-<span class="nv">$x</span> id <span class="s2">"Bulbasaur"</span> isa pokemon;
-<span class="nv">$x</span> id <span class="s2">"Charmander"</span> isa pokemon;
-<span class="nv">$x</span> id <span class="s2">"Pikachu"</span> isa pokemon;
-...
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">insert</span> <span class="n">twin</span> <span class="n">isa</span> <span class="n">entity</span><span class="o">-</span><span class="k">type</span><span class="p">;</span>
+<span class="k">insert</span> <span class="n">topsy</span> <span class="n">isa</span> <span class="n">twin</span><span class="p">;</span>
+<span class="k">insert</span> <span class="n">tim</span> <span class="n">isa</span> <span class="n">twin</span><span class="p">;</span>
+<span class="k">match</span> <span class="err">$</span><span class="n">x</span> <span class="n">isa</span> <span class="n">twin</span><span class="p">;</span>   
+
+<span class="err">$</span><span class="n">x</span> <span class="n">id</span> <span class="nv">"tim"</span> <span class="n">isa</span> <span class="n">twin</span><span class="p">;</span> 
+<span class="err">$</span><span class="n">x</span> <span class="n">id</span> <span class="nv">"topsy"</span> <span class="n">isa</span> <span class="n">twin</span><span class="p">;</span>
 </code></pre>
 </div>
 
@@ -612,7 +611,7 @@ match <span class="nv">$x</span> isa pokemon
         <br>
         <p>© 2016 <a href="https://mindmaps.io">Mindmaps Research Ltd</a></p>
         <!-- &copy;2016 MindmapsDB. All rights reserved. <br />
-        <span>Page last updated:</span> August 10, 2016<br/> Site last generated: Oct 4, 2016 <br />
+        <span>Page last updated:</span> August 10, 2016<br/> Site last generated: Oct 6, 2016 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">

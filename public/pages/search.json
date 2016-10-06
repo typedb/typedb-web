@@ -82,6 +82,28 @@
 
 ,
 {
+"title": "An Example of Migrating OWL to MindmapsDB",
+"tags": "migration",
+"keywords": "migration",
+"url": "/pages/documentation/examples/OWL-migration.html",
+"summary": "A short example to illustrate migration of OWL to MindmapsDB"
+}
+
+
+
+,
+{
+"title": "An Example of Migrating SQL to MindmapsDB",
+"tags": "migration",
+"keywords": "migration",
+"url": "/pages/documentation/examples/SQL-migration.html",
+"summary": "A short example to illustrate migration of SQL to MindmapsDB"
+}
+
+
+
+,
+{
 "title": "Defining an Advanced Schema",
 "tags": "graph-apijava",
 "keywords": "schema",
@@ -239,7 +261,7 @@
 ,
 {
 "title": "Migrating to MindmapsDB",
-"tags": "getting-startedgraql",
+"tags": "getting-startedgraqlmigration",
 "keywords": "setup, getting started",
 "url": "/pages/documentation/the-basics/migration-tutorial.html",
 "summary": "This document will teach you how to load data in different formats to populate a MindmapsDB graph."
@@ -293,22 +315,22 @@
 
 ,
 {
-"title": "Graph API Overview",
-"tags": "javagraph-api",
-"keywords": "overview",
-"url": "/pages/documentation/core-api/overview.html",
-"summary": "A basic example of how to use MindmapsDB Graph API."
+"title": "Graql Overview",
+"tags": "graql",
+"keywords": "graql, overview",
+"url": "/pages/documentation/graql/overview.html",
+"summary": "An introduction to Graql"
 }
 
 
 
 ,
 {
-"title": "Graql Overview",
-"tags": "graql",
-"keywords": "graql, overview",
-"url": "/pages/documentation/graql/overview.html",
-"summary": "An introduction to Graql"
+"title": "Graph API Overview",
+"tags": "javagraph-api",
+"keywords": "overview",
+"url": "/pages/documentation/core-api/overview.html",
+"summary": "A basic example of how to use MindmapsDB Graph API."
 }
 
 
@@ -378,6 +400,8 @@
 "url": "/pages/documentation/core-api/simple-schema-definition.html",
 "summary": "Demonstrates how to create a schema for a MindmapsDB knowledge graph."
 }
+
+
 
 
 

@@ -556,7 +556,7 @@ or an ID.</p>
 
 <div class="tab-content">
 <div role="tabpanel" class="tab-pane active" id="shell1">
-<pre>match $x isa pokemon</pre>
+<pre>match $x isa pokemon;</pre>
 </div>
 <div role="tabpanel" class="tab-pane" id="java1">
 <pre>qb.match(var("x").isa("pokemon"));</pre>
@@ -574,7 +574,7 @@ or an ID.</p>
 <div class="tab-content">
 <div role="tabpanel" class="tab-pane active" id="shell2">
 <pre>
-match $x id "Articuno"
+match $x id "Articuno";
 </pre>
 </div>
 <div role="tabpanel" class="tab-pane" id="java2">
@@ -622,7 +622,7 @@ qb.match(var("x").value(contains("lightning")))
 <div class="tab-content">
 <div role="tabpanel" class="tab-pane active" id="shell4">
 <pre>
-match $x has pokedex-no &lt; 20
+match $x has pokedex-no &lt; 20;
 </pre>
 </div>
 <div role="tabpanel" class="tab-pane" id="java4">
@@ -707,7 +707,7 @@ qb.match(
 <div class="tab-content">
 <div role="tabpanel" class="tab-pane active" id="shell7">
 <pre>
-match $x ako type
+match $x ako type;
 </pre>
 </div>
 <div role="tabpanel" class="tab-pane" id="java7">
@@ -729,7 +729,7 @@ qb.match(var("x").ako("type"))
 <div class="tab-content">
 <div role="tabpanel" class="tab-pane active" id="shell8">
 <pre>
-match evolution has-role $x
+match evolution has-role $x;
 </pre>
 </div>
 <div role="tabpanel" class="tab-pane" id="java8">
@@ -772,7 +772,7 @@ qb.match(var("x").playsRole("ancestor"));
 <div class="tab-content">
 <div role="tabpanel" class="tab-pane active" id="shell10">
 <pre>
-match $x has-resource name
+match $x has-resource name;
 </pre>
 </div>
 <div role="tabpanel" class="tab-pane" id="java10">
@@ -820,7 +820,7 @@ longs and doubles, these sort by value. Strings are ordered lexicographically.</
 <div class="tab-content">
 <div role="tabpanel" class="tab-pane active" id="shell12">
 <pre>
-match $x has height = 19, has weight &gt; 1500
+match $x has height = 19, has weight &gt; 1500;
 </pre>
 </div>
 <div role="tabpanel" class="tab-pane" id="java12">
@@ -836,7 +836,7 @@ qb.match(var("x").has("height", 19).has("weight", gt(1500)));
 
 <p>If a concept doesn’t have a value, all predicates are considered false. The query below matches everything where the predicate <code class="highlighter-rouge">&gt;10</code> is true. So, it will find all concepts with value greater than 10. However, if a concept does not have a value at all, the predicate is considered false, so it won’t appear in the results.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">match</span> <span class="err">$</span><span class="n">x</span> <span class="n">value</span> <span class="o">&gt;</span><span class="mi">10</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">match</span> <span class="err">$</span><span class="n">x</span> <span class="n">value</span> <span class="o">&gt;</span><span class="mi">10</span><span class="p">;</span>
 </code></pre>
 </div>
 
@@ -851,8 +851,8 @@ qb.match(var("x").has("height", 19).has("weight", gt(1500)));
 <div class="tab-content">
 <div role="tabpanel" class="tab-pane active" id="shell13">
 <pre>
-match $x has description contains "underground"
-select $x(id, has description)
+match $x has description contains "underground";
+select $x(id, has description);
 
 </pre>
 </div>
@@ -880,7 +880,7 @@ surround the expression with <code class="highlighter-rouge">.*</code>.</p>
 <div class="tab-content">
 <div role="tabpanel" class="tab-pane active" id="shell14">
 <pre>
-match $x value /.*(fast|quick).*/
+match $x value /.*(fast|quick).*/;
 </pre>
 </div>
 <div role="tabpanel" class="tab-pane" id="java14">
@@ -905,7 +905,7 @@ qb.match(var("x").value(regex(".*(fast|quick).*")));
 <div class="tab-content">
 <div role="tabpanel" class="tab-pane active" id="shell15">
 <pre>
-match $x has weight &gt;20 and &lt;30
+match $x has weight &gt;20 and &lt;30;
 </pre>
 </div>
 <div role="tabpanel" class="tab-pane" id="java15">
@@ -929,9 +929,9 @@ qb.match(var("x").has("weight", gt(20).and(lt(30))));
 <div class="tab-content">
 <div role="tabpanel" class="tab-pane active" id="shell16">
 <pre>
-match $x isa pokemon
-select $x(has pokedex-no, id)
-limit 30, offset 10, distinct, order by $x(has pokedex-no) asc
+match $x isa pokemon;
+select $x(has pokedex-no, id);
+limit 30, offset 10, distinct, order by $x(has pokedex-no) asc;
 
 </pre>
 </div>
@@ -980,8 +980,8 @@ the Graql shell, but are not supported in <a href="java_graql.html">Java Graql</
 <div class="tab-content">
 <div role="tabpanel" class="tab-pane active" id="shell17">
 <pre>
-match $x isa pokemon
-select $x(id, has pokedex-no, has description)
+match $x isa pokemon;
+select $x(id, has pokedex-no, has description);
 </pre>
 </div>
 <div role="tabpanel" class="tab-pane" id="java17">
@@ -1058,7 +1058,7 @@ Not supported by the Java API.
         <br>
         <p>© 2016 <a href="https://mindmaps.io">Mindmaps Research Ltd</a></p>
         <!-- &copy;2016 MindmapsDB. All rights reserved. <br />
-        <span>Page last updated:</span> August 11, 2016<br/> Site last generated: Oct 4, 2016 <br />
+        <span>Page last updated:</span> August 11, 2016<br/> Site last generated: Oct 6, 2016 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">

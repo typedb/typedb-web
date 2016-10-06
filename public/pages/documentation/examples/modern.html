@@ -791,14 +791,14 @@ match person plays-role $x;
 
 <p>List every person who knows someone else, and every person who is known about</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">match</span> <span class="p">(</span><span class="n">knower</span> <span class="err">$</span><span class="n">x</span><span class="p">)</span> <span class="n">isa</span> <span class="n">knows</span><span class="p">;</span>
-<span class="k">match</span> <span class="p">(</span><span class="n">known</span><span class="o">-</span><span class="n">about</span> <span class="err">$</span><span class="n">x</span><span class="p">)</span> <span class="n">isa</span> <span class="n">knows</span><span class="p">;</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">match</span> <span class="p">(</span><span class="n">knower</span><span class="p">:</span> <span class="err">$</span><span class="n">x</span><span class="p">)</span> <span class="n">isa</span> <span class="n">knows</span><span class="p">;</span>
+<span class="k">match</span> <span class="p">(</span><span class="n">known</span><span class="o">-</span><span class="n">about</span><span class="p">:</span> <span class="err">$</span><span class="n">x</span><span class="p">)</span> <span class="n">isa</span> <span class="n">knows</span><span class="p">;</span>
 </code></pre>
 </div>
 
 <p>List every person that marko knows</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">match</span> <span class="p">(</span><span class="n">known</span><span class="o">-</span><span class="n">about</span> <span class="err">$</span><span class="n">x</span><span class="p">,</span> <span class="nv">"marko"</span><span class="p">)</span> <span class="n">isa</span> <span class="n">knows</span><span class="p">;</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">match</span> <span class="p">(</span><span class="n">known</span><span class="o">-</span><span class="n">about</span><span class="p">:</span> <span class="err">$</span><span class="n">x</span><span class="p">,</span> <span class="nv">"marko"</span><span class="p">)</span> <span class="n">isa</span> <span class="n">knows</span><span class="p">;</span>
 </code></pre>
 </div>
 
@@ -810,13 +810,13 @@ match person plays-role $x;
 
 <p>List everything that josh has programmed</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">match</span> <span class="p">(</span><span class="n">programmed</span> <span class="err">$</span><span class="n">x</span><span class="p">,</span> <span class="nv">"josh"</span><span class="p">)</span> <span class="n">isa</span> <span class="n">programming</span><span class="p">;</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">match</span> <span class="p">(</span><span class="n">programmed</span><span class="p">:</span> <span class="err">$</span><span class="n">x</span><span class="p">,</span> <span class="nv">"josh"</span><span class="p">)</span> <span class="n">isa</span> <span class="n">programming</span><span class="p">;</span>
 </code></pre>
 </div>
 
 <p>List everyone who has programmed Lop</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">match</span> <span class="p">(</span><span class="n">programmer</span> <span class="err">$</span><span class="n">x</span><span class="p">,</span> <span class="nv">"lop"</span><span class="p">)</span> <span class="n">isa</span> <span class="n">programming</span><span class="p">;</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">match</span> <span class="p">(</span><span class="n">programmer</span><span class="p">:</span> <span class="err">$</span><span class="n">x</span><span class="p">,</span> <span class="nv">"lop"</span><span class="p">)</span> <span class="n">isa</span> <span class="n">programming</span><span class="p">;</span>
 </code></pre>
 </div>
 
@@ -889,7 +889,7 @@ match person plays-role $x;
         <br>
         <p>© 2016 <a href="https://mindmaps.io">Mindmaps Research Ltd</a></p>
         <!-- &copy;2016 MindmapsDB. All rights reserved. <br />
-        <span>Page last updated:</span> September 19, 2016<br/> Site last generated: Oct 4, 2016 <br />
+        <span>Page last updated:</span> September 19, 2016<br/> Site last generated: Oct 6, 2016 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">

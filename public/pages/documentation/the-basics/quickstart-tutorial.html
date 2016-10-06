@@ -544,7 +544,7 @@ concept instances.</p>
 
 <p>We’ll quickly check that our data has loaded:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span><span class="k">match</span> <span class="err">$</span><span class="n">p</span> <span class="n">isa</span> <span class="n">person</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span><span class="k">match</span> <span class="err">$</span><span class="n">p</span> <span class="n">isa</span> <span class="n">person</span><span class="p">;</span>
 
 <span class="err">$</span><span class="n">p</span> <span class="n">id</span> <span class="nv">"Aristotle"</span> <span class="n">isa</span> <span class="n">person</span><span class="p">;</span>
 <span class="err">$</span><span class="n">p</span> <span class="n">id</span> <span class="nv">"Plato"</span> <span class="n">isa</span> <span class="n">person</span><span class="p">;</span>
@@ -567,7 +567,7 @@ concept instances.</p>
 
 <p>And look up one:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span><span class="k">match</span> <span class="err">$</span><span class="n">cyn</span> <span class="n">id</span> <span class="nv">"Cynicism"</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span><span class="k">match</span> <span class="err">$</span><span class="n">cyn</span> <span class="n">id</span> <span class="nv">"Cynicism"</span><span class="p">;</span>
 
 <span class="err">$</span><span class="n">cyn</span> <span class="n">id</span> <span class="nv">"Cynicism"</span> <span class="n">isa</span> <span class="n">school</span><span class="p">;</span>
 </code></pre>
@@ -608,10 +608,10 @@ and
 
 <p>Now let’s relate some <code class="highlighter-rouge">philosophers</code> to their <code class="highlighter-rouge">philosophies</code>:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span><span class="k">insert</span> <span class="p">(</span><span class="n">philosopher</span> <span class="nv">"Socrates"</span><span class="p">,</span> <span class="n">philosophy</span> <span class="nv">"Platonism"</span><span class="p">)</span> <span class="n">isa</span> <span class="n">practice</span><span class="p">;</span>
-<span class="o">&gt;&gt;&gt;</span><span class="k">insert</span> <span class="p">(</span><span class="n">philosopher</span> <span class="nv">"Plato"</span><span class="p">,</span> <span class="n">philosophy</span> <span class="nv">"Idealism"</span><span class="p">)</span> <span class="n">isa</span> <span class="n">practice</span><span class="p">;</span>
-<span class="o">&gt;&gt;&gt;</span><span class="k">insert</span> <span class="p">(</span><span class="n">philosopher</span> <span class="nv">"Plato"</span><span class="p">,</span> <span class="n">philosophy</span> <span class="nv">"Platonism"</span><span class="p">)</span> <span class="n">isa</span> <span class="n">practice</span><span class="p">;</span>
-<span class="o">&gt;&gt;&gt;</span><span class="k">insert</span> <span class="p">(</span><span class="n">philosopher</span> <span class="nv">"Aristotle"</span><span class="p">,</span> <span class="n">philosophy</span> <span class="nv">"Peripateticism"</span><span class="p">)</span> <span class="n">isa</span> <span class="n">practice</span><span class="p">;</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span><span class="k">insert</span> <span class="p">(</span><span class="n">philosopher</span><span class="p">:</span> <span class="nv">"Socrates"</span><span class="p">,</span> <span class="n">philosophy</span><span class="p">:</span> <span class="nv">"Platonism"</span><span class="p">)</span> <span class="n">isa</span> <span class="n">practice</span><span class="p">;</span>
+<span class="o">&gt;&gt;&gt;</span><span class="k">insert</span> <span class="p">(</span><span class="n">philosopher</span><span class="p">:</span> <span class="nv">"Plato"</span><span class="p">,</span> <span class="n">philosophy</span><span class="p">:</span> <span class="nv">"Idealism"</span><span class="p">)</span> <span class="n">isa</span> <span class="n">practice</span><span class="p">;</span>
+<span class="o">&gt;&gt;&gt;</span><span class="k">insert</span> <span class="p">(</span><span class="n">philosopher</span><span class="p">:</span> <span class="nv">"Plato"</span><span class="p">,</span> <span class="n">philosophy</span><span class="p">:</span> <span class="nv">"Platonism"</span><span class="p">)</span> <span class="n">isa</span> <span class="n">practice</span><span class="p">;</span>
+<span class="o">&gt;&gt;&gt;</span><span class="k">insert</span> <span class="p">(</span><span class="n">philosopher</span><span class="p">:</span> <span class="nv">"Aristotle"</span><span class="p">,</span> <span class="n">philosophy</span><span class="p">:</span> <span class="nv">"Peripateticism"</span><span class="p">)</span> <span class="n">isa</span> <span class="n">practice</span><span class="p">;</span>
 </code></pre>
 </div>
 
@@ -646,9 +646,9 @@ Great!</p>
 
 <p>Second, our data:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span><span class="k">insert</span> <span class="p">(</span><span class="n">teacher</span> <span class="nv">"Socrates"</span><span class="p">,</span> <span class="n">student</span> <span class="nv">"Plato"</span><span class="p">)</span> <span class="n">isa</span> <span class="n">education</span><span class="p">;</span>
-<span class="o">&gt;&gt;&gt;</span><span class="k">insert</span> <span class="p">(</span><span class="n">teacher</span> <span class="nv">"Plato"</span><span class="p">,</span> <span class="n">student</span> <span class="nv">"Aristotle"</span><span class="p">)</span> <span class="n">isa</span> <span class="n">education</span><span class="p">;</span>
-<span class="o">&gt;&gt;&gt;</span><span class="k">insert</span> <span class="p">(</span><span class="n">teacher</span> <span class="nv">"Aristotle"</span><span class="p">,</span> <span class="n">student</span> <span class="nv">"Alexander"</span><span class="p">)</span> <span class="n">isa</span> <span class="n">education</span><span class="p">;</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span><span class="k">insert</span> <span class="p">(</span><span class="n">teacher</span><span class="p">:</span> <span class="nv">"Socrates"</span><span class="p">,</span> <span class="n">student</span><span class="p">:</span> <span class="nv">"Plato"</span><span class="p">)</span> <span class="n">isa</span> <span class="n">education</span><span class="p">;</span>
+<span class="o">&gt;&gt;&gt;</span><span class="k">insert</span> <span class="p">(</span><span class="n">teacher</span><span class="p">:</span> <span class="nv">"Plato"</span><span class="p">,</span> <span class="n">student</span><span class="p">:</span> <span class="nv">"Aristotle"</span><span class="p">)</span> <span class="n">isa</span> <span class="n">education</span><span class="p">;</span>
+<span class="o">&gt;&gt;&gt;</span><span class="k">insert</span> <span class="p">(</span><span class="n">teacher</span><span class="p">:</span> <span class="nv">"Aristotle"</span><span class="p">,</span> <span class="n">student</span><span class="p">:</span> <span class="nv">"Alexander"</span><span class="p">)</span> <span class="n">isa</span> <span class="n">education</span><span class="p">;</span>
 </code></pre>
 </div>
 
@@ -687,7 +687,7 @@ So, we’ll create some resource types that can be attached to a person:</p>
 
 <p>Using Graql, we can query for people, listing their id and titles.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span><span class="k">match</span> <span class="err">$</span><span class="n">x</span> <span class="n">isa</span> <span class="n">person</span> <span class="k">select</span> <span class="err">$</span><span class="n">x</span><span class="p">(</span><span class="n">id</span><span class="p">,</span> <span class="n">has</span> <span class="n">title</span><span class="p">)</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span><span class="k">match</span> <span class="err">$</span><span class="n">x</span> <span class="n">isa</span> <span class="n">person</span> <span class="k">select</span> <span class="err">$</span><span class="n">x</span><span class="p">(</span><span class="n">id</span><span class="p">,</span> <span class="n">has</span> <span class="n">title</span><span class="p">);</span>
 
 <span class="err">$</span><span class="n">x</span> <span class="n">id</span> <span class="nv">"Socrates"</span><span class="p">;</span>
 <span class="err">$</span><span class="n">x</span> <span class="n">id</span> <span class="nv">"Plato"</span><span class="p">;</span>
@@ -698,7 +698,7 @@ So, we’ll create some resource types that can be attached to a person:</p>
 
 <p>Wait, who’s the Pharaoh again?</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span><span class="k">match</span> <span class="err">$</span><span class="n">pharaoh</span> <span class="n">has</span> <span class="n">title</span> <span class="nv">"Pharaoh of Egypt"</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span><span class="k">match</span> <span class="err">$</span><span class="n">pharaoh</span> <span class="n">has</span> <span class="n">title</span> <span class="nv">"Pharaoh of Egypt"</span><span class="p">;</span>
 
 <span class="err">$</span><span class="n">pharaoh</span> <span class="n">id</span> <span class="nv">"Alexander"</span> <span class="n">isa</span> <span class="n">person</span><span class="p">;</span>
 </code></pre>
@@ -723,11 +723,11 @@ schema.</p>
 <p>Aristotle knew some astronomy, Plato knew a lot about caves and Socrates didn’t really know anything at all.</p>
 
 <div class="highlighter-rouge"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span><span class="k">insert</span> <span class="nv">"sun-fact"</span> <span class="n">isa</span> <span class="n">fact</span><span class="p">,</span> <span class="n">value</span> <span class="nv">"The Sun is bigger than the Earth"</span><span class="p">;</span>
-<span class="o">&gt;&gt;&gt;</span><span class="k">insert</span> <span class="p">(</span><span class="n">thinker</span> <span class="nv">"Aristotle"</span><span class="p">,</span> <span class="n">thought</span> <span class="nv">"sun-fact"</span><span class="p">)</span> <span class="n">isa</span> <span class="n">knowledge</span><span class="p">;</span>
+<span class="o">&gt;&gt;&gt;</span><span class="k">insert</span> <span class="p">(</span><span class="n">thinker</span><span class="p">:</span> <span class="nv">"Aristotle"</span><span class="p">,</span> <span class="n">thought</span><span class="p">:</span> <span class="nv">"sun-fact"</span><span class="p">)</span> <span class="n">isa</span> <span class="n">knowledge</span><span class="p">;</span>
 <span class="o">&gt;&gt;&gt;</span><span class="k">insert</span> <span class="nv">"cave-fact"</span> <span class="n">isa</span> <span class="n">fact</span><span class="p">,</span> <span class="n">value</span> <span class="nv">"Caves are mostly pretty dark"</span><span class="p">;</span>
-<span class="o">&gt;&gt;&gt;</span><span class="k">insert</span> <span class="p">(</span><span class="n">thinker</span> <span class="nv">"Plato"</span><span class="p">,</span> <span class="n">thought</span> <span class="nv">"cave-fact"</span><span class="p">)</span> <span class="n">isa</span> <span class="n">knowledge</span><span class="p">;</span>
+<span class="o">&gt;&gt;&gt;</span><span class="k">insert</span> <span class="p">(</span><span class="n">thinker</span><span class="p">:</span> <span class="nv">"Plato"</span><span class="p">,</span> <span class="n">thought</span><span class="p">:</span> <span class="nv">"cave-fact"</span><span class="p">)</span> <span class="n">isa</span> <span class="n">knowledge</span><span class="p">;</span>
 <span class="o">&gt;&gt;&gt;</span><span class="k">insert</span> <span class="nv">"nothing"</span> <span class="n">isa</span> <span class="n">fact</span><span class="p">;</span>
-<span class="o">&gt;&gt;&gt;</span><span class="k">insert</span> <span class="p">(</span><span class="n">thinker</span> <span class="nv">"Socrates"</span><span class="p">,</span> <span class="n">thought</span> <span class="nv">"nothing"</span><span class="p">)</span> <span class="n">isa</span> <span class="n">knowledge</span><span class="p">;</span>
+<span class="o">&gt;&gt;&gt;</span><span class="k">insert</span> <span class="p">(</span><span class="n">thinker</span><span class="p">:</span> <span class="nv">"Socrates"</span><span class="p">,</span> <span class="n">thought</span><span class="p">:</span> <span class="nv">"nothing"</span><span class="p">)</span> <span class="n">isa</span> <span class="n">knowledge</span><span class="p">;</span>
 </code></pre>
 </div>
 
@@ -744,7 +744,7 @@ schema.</p>
 
 <p>We can now give Socrates one final piece of knowledge:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span><span class="k">match</span> <span class="err">$</span><span class="n">socratesKnowsNothing</span> <span class="p">(</span><span class="nv">"Socrates"</span><span class="p">,</span> <span class="nv">"nothing"</span><span class="p">)</span> <span class="k">insert</span> <span class="p">(</span><span class="n">thinker</span> <span class="nv">"Socrates"</span><span class="p">,</span> <span class="n">thought</span> <span class="err">$</span><span class="n">socratesKnowsNothing</span><span class="p">)</span> <span class="n">isa</span> <span class="n">knowledge</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span><span class="k">match</span> <span class="err">$</span><span class="n">socratesKnowsNothing</span> <span class="p">(</span><span class="nv">"Socrates"</span><span class="p">,</span> <span class="nv">"nothing"</span><span class="p">)</span> <span class="k">insert</span> <span class="p">(</span><span class="n">thinker</span><span class="p">:</span> <span class="nv">"Socrates"</span><span class="p">,</span> <span class="n">thought</span><span class="p">:</span> <span class="err">$</span><span class="n">socratesKnowsNothing</span><span class="p">)</span> <span class="n">isa</span> <span class="n">knowledge</span><span class="p">;</span>
 </code></pre>
 </div>
 
@@ -754,7 +754,7 @@ player.</p>
 
 <p>Finally, we’ll check out everything Socrates knows:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span><span class="k">match</span> <span class="p">(</span><span class="nv">"Socrates"</span><span class="p">,</span> <span class="err">$</span><span class="n">x</span><span class="p">)</span> <span class="n">isa</span> <span class="n">knowledge</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span><span class="k">match</span> <span class="p">(</span><span class="nv">"Socrates"</span><span class="p">,</span> <span class="err">$</span><span class="n">x</span><span class="p">)</span> <span class="n">isa</span> <span class="n">knowledge</span><span class="p">;</span>
 
 <span class="err">$</span><span class="n">x</span> <span class="n">id</span> <span class="nv">"nothing"</span> <span class="n">isa</span> <span class="n">fact</span><span class="p">;</span>
 <span class="err">$</span><span class="n">x</span> <span class="n">id</span> <span class="nv">"knowledge-e387d27c-4f5e-11e6-beb8-9e71128cae77"</span> <span class="n">isa</span> <span class="n">knowledge</span><span class="p">;</span>
@@ -769,14 +769,14 @@ player.</p>
 <p>We asked you to write a query to see who taught Aristotle. <br />
 Graql answers:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">match</span> <span class="p">(</span><span class="n">teacher</span> <span class="err">$</span><span class="n">teach</span><span class="p">,</span> <span class="err">$</span><span class="n">student</span> <span class="n">Aristotle</span><span class="p">)</span> <span class="n">isa</span> <span class="n">education</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">match</span> <span class="p">(</span><span class="n">teacher</span> <span class="err">$</span><span class="n">teach</span><span class="p">,</span> <span class="err">$</span><span class="n">student</span> <span class="n">Aristotle</span><span class="p">)</span> <span class="n">isa</span> <span class="n">education</span><span class="p">;</span>
 </code></pre>
 </div>
 
 <p>We asked you to write a query for everyone with a title containing “King”. <br />
 Answer:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">match</span> <span class="err">$</span><span class="n">king</span> <span class="n">has</span> <span class="n">title</span> <span class="k">contains</span> <span class="nv">"King"</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">match</span> <span class="err">$</span><span class="n">king</span> <span class="n">has</span> <span class="n">title</span> <span class="k">contains</span> <span class="nv">"King"</span><span class="p">;</span>
 </code></pre>
 </div>
 
@@ -792,6 +792,11 @@ Answer:</p>
         <td>v0.1.0</td>
         <td>03/09/2016</td>
         <td>First release.</td>        
+    </tr>
+    <tr>
+        <td>v0.2.0</td>
+        <td>06/09/2016</td>
+        <td>Updates for Graql syntax changes.</td>        
     </tr>
 
 </table>
@@ -841,7 +846,7 @@ Answer:</p>
         <br>
         <p>© 2016 <a href="https://mindmaps.io">Mindmaps Research Ltd</a></p>
         <!-- &copy;2016 MindmapsDB. All rights reserved. <br />
-        <span>Page last updated:</span> August 10, 2016<br/> Site last generated: Oct 4, 2016 <br />
+        <span>Page last updated:</span> August 10, 2016<br/> Site last generated: Oct 6, 2016 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">
