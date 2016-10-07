@@ -441,6 +441,13 @@
             
             
             
+            
+            
+            <li><a href="/pages/documentation/examples/projects.html">Example Projects</a></li>
+            
+            
+            
+            
         </ul>
         
         
@@ -777,8 +784,9 @@ $y isa event
 
 <p>The ontology defines a single class (type) <code class="highlighter-rouge">Person</code> as well as two instances of the class - individuals <code class="highlighter-rouge">Witold</code> and <code class="highlighter-rouge">Stefan</code>. The ontology defines properties <code class="highlighter-rouge">hasAncestor</code> and its inverse <code class="highlighter-rouge">isAncestorOf</code> as well as <code class="highlighter-rouge">hasParent</code> and <code class="highlighter-rouge">isParentOf</code> properties. The <code class="highlighter-rouge">hasAncestor</code> property is defined as transitive and additionally defines a property chain which corresponds to the rule:</p>
 
-<pre><code class="language-graql">hasAncestor(X, Y) :- hasParent(X, Z), hasAncestor(Z, Y)
+<div class="highlighter-rouge"><pre class="highlight"><code>hasAncestor(X, Y) :- hasParent(X, Z), hasAncestor(Z, Y);
 </code></pre>
+</div>
 
 <p>Upon migration, the OWL ontology will be mapped to the MindmapsDB Model. The following Graql statement inserts an equivalent structure to the one obtained through the migration mapping:</p>
 

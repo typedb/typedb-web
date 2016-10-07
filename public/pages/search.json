@@ -359,6 +359,17 @@
 
 ,
 {
+"title": "Example Projects",
+"tags": "",
+"keywords": "examples, projects",
+"url": "/pages/documentation/examples/projects.html",
+"summary": "A list of potential projects that use MindmapsDB."
+}
+
+
+
+,
+{
 "title": "Quickstart Tutorial",
 "tags": "getting-startedgraql",
 "keywords": "setup, getting started",

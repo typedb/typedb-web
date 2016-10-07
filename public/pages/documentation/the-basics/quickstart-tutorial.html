@@ -441,6 +441,13 @@
             
             
             
+            
+            
+            <li><a href="/pages/documentation/examples/projects.html">Example Projects</a></li>
+            
+            
+            
+            
         </ul>
         
         
@@ -527,16 +534,16 @@ You can find the example <code class="highlighter-rouge">philosophers.gql</code>
 <p>We’ll first add an entity type <code class="highlighter-rouge">person</code>:</p>
 
 <div class="highlighter-rouge"><pre class="highlight"><code>bin/graql.sh
-&gt;&gt;&gt;insert person isa entity-type;
+insert person isa entity-type;
 </code></pre>
 </div>
 
 <p>…and now some data in the form of concept instances: in our case, a bunch of ancient Greeks…</p>
 
-<pre><code class="language-graql">&gt;&gt;&gt;insert "Socrates" isa person;
-&gt;&gt;&gt;insert "Plato" isa person;
-&gt;&gt;&gt;insert "Aristotle" isa person;
-&gt;&gt;&gt;insert "Alexander" isa person;
+<pre><code class="language-graql">insert "Socrates" isa person;
+insert "Plato" isa person;
+insert "Aristotle" isa person;
+insert "Alexander" isa person;
 </code></pre>
 
 <p><img src="/images/phil.png" alt="" /></p>
@@ -550,7 +557,7 @@ concept instances.</p>
 
 <p>We’ll quickly check that our data has loaded:</p>
 
-<pre><code class="language-graql">&gt;&gt;&gt;match $p isa person;
+<pre><code class="language-graql">match $p isa person;
 
 $p id "Aristotle" isa person;
 $p id "Plato" isa person;
@@ -562,16 +569,16 @@ $p id "Alexander" isa person;
 
 <p>Next, let’s add some <code class="highlighter-rouge">schools</code> of thought:</p>
 
-<pre><code class="language-graql">&gt;&gt;&gt;insert school isa entity-type;
-&gt;&gt;&gt;insert "Peripateticism" isa school;
-&gt;&gt;&gt;insert "Platonism" isa school;
-&gt;&gt;&gt;insert "Idealism" isa school;
-&gt;&gt;&gt;insert "Cynicism" isa school;
+<pre><code class="language-graql">insert school isa entity-type;
+insert "Peripateticism" isa school;
+insert "Platonism" isa school;
+insert "Idealism" isa school;
+insert "Cynicism" isa school;
 </code></pre>
 
 <p>And look up one:</p>
 
-<pre><code class="language-graql">&gt;&gt;&gt;match $cyn id "Cynicism";
+<pre><code class="language-graql">match $cyn id "Cynicism";
 
 $cyn id "Cynicism" isa school;
 </code></pre>
@@ -585,36 +592,36 @@ $cyn id "Cynicism" isa school;
 <p>First, we define a <code class="highlighter-rouge">relation-type</code> called <code class="highlighter-rouge">practice</code> that relates a
 <code class="highlighter-rouge">role-type</code> called <code class="highlighter-rouge">philosopher</code> to a <code class="highlighter-rouge">role-type</code> called <code class="highlighter-rouge">philosophy</code>:</p>
 
-<pre><code class="language-graql">&gt;&gt;&gt;insert practice isa relation-type;
-&gt;&gt;&gt;insert philosopher isa role-type;
-&gt;&gt;&gt;insert philosophy isa role-type;
-&gt;&gt;&gt;insert practice has-role philosopher, has-role philosophy;
+<pre><code class="language-graql">insert practice isa relation-type;
+insert philosopher isa role-type;
+insert philosophy isa role-type;
+insert practice has-role philosopher, has-role philosophy;
 </code></pre>
 
 <div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> <b>Note:</b> Commas are totally optional in query patterns, so these pairs are equivalent:<br /> 
 
-<code class="highlighter-rouge">graql
-&gt;&gt;&gt;insert practice has-role philosopher, has-role philosophy;
-&gt;&gt;&gt;insert practice has-role philosopher has-role philosophy;
-and  
-&gt;&gt;&gt;insert practice, isa relation-type;
-&gt;&gt;&gt;insert practice isa relation-type;
+<code class="highlighter-rouge">
+insert practice has-role philosopher, has-role philosophy;
+insert practice has-role philosopher has-role philosophy;
+#and  
+insert practice, isa relation-type;
+insert practice isa relation-type;
 </code></div>
 
 <p>A <code class="highlighter-rouge">person</code> can have the role of <code class="highlighter-rouge">philosopher</code> and a <code class="highlighter-rouge">school</code> can have the role of <code class="highlighter-rouge">philosophy</code>:</p>
 
-<pre><code class="language-graql">&gt;&gt;&gt;insert person plays-role philosopher;
-&gt;&gt;&gt;insert school plays-role philosophy;
+<pre><code class="language-graql">insert person plays-role philosopher;
+insert school plays-role philosophy;
 </code></pre>
 
 <div class="alert alert-danger" role="alert"><i class="fa fa-exclamation-circle"></i> <b>Warning:</b> The changes you’ve made to the graph haven’t been saved yet!  <br /> Type <code class="highlighter-rouge">commit</code> in the Graql shell to commit any changes.</div>
 
 <p>Now let’s relate some <code class="highlighter-rouge">philosophers</code> to their <code class="highlighter-rouge">philosophies</code>:</p>
 
-<pre><code class="language-graql">&gt;&gt;&gt;insert (philosopher: "Socrates", philosophy: "Platonism") isa practice;
-&gt;&gt;&gt;insert (philosopher: "Plato", philosophy: "Idealism") isa practice;
-&gt;&gt;&gt;insert (philosopher: "Plato", philosophy: "Platonism") isa practice;
-&gt;&gt;&gt;insert (philosopher: "Aristotle", philosophy: "Peripateticism") isa practice;
+<pre><code class="language-graql">insert (philosopher: "Socrates", philosophy: "Platonism") isa practice;
+insert (philosopher: "Plato", philosophy: "Idealism") isa practice;
+insert (philosopher: "Plato", philosophy: "Platonism") isa practice;
+insert (philosopher: "Aristotle", philosophy: "Peripateticism") isa practice;
 </code></pre>
 
 <p><img src="/images/practice.png" alt="" /></p>
@@ -623,7 +630,7 @@ and
 
 <p>Now we can query for all our Platonists:</p>
 
-<pre><code class="language-graql">&gt;&gt;&gt;match (philosopher $phil, "Platonism") isa practice;
+<pre><code class="language-graql">match (philosopher $phil, "Platonism") isa practice;
 
 $phil id "Socrates" isa person;
 $phil id "Plato" isa person;
@@ -637,18 +644,18 @@ Great!</p>
 
 <p>First, extend our schema:</p>
 
-<pre><code class="language-graql">&gt;&gt;&gt;insert education isa relation-type;
-&gt;&gt;&gt;insert teacher isa role-type;
-&gt;&gt;&gt;insert student isa role-type;
-&gt;&gt;&gt;insert education has-role teacher, has-role student;
-&gt;&gt;&gt;insert person plays-role teacher, plays-role student;
+<pre><code class="language-graql">insert education isa relation-type;
+insert teacher isa role-type;
+insert student isa role-type;
+insert education has-role teacher, has-role student;
+insert person plays-role teacher, plays-role student;
 </code></pre>
 
 <p>Second, our data:</p>
 
-<pre><code class="language-graql">&gt;&gt;&gt;insert (teacher: "Socrates", student: "Plato") isa education;
-&gt;&gt;&gt;insert (teacher: "Plato", student: "Aristotle") isa education;
-&gt;&gt;&gt;insert (teacher: "Aristotle", student: "Alexander") isa education;
+<pre><code class="language-graql">insert (teacher: "Socrates", student: "Plato") isa education;
+insert (teacher: "Plato", student: "Aristotle") isa education;
+insert (teacher: "Aristotle", student: "Alexander") isa education;
 </code></pre>
 
 <div class="alert alert-success" role="alert"><i class="fa fa-check-square-o"></i> <b>Tip:</b> <strong>Test Yourself</strong> <br /> Try writing a query to see who taught Aristotle. Include all the roles and types (<code class="highlighter-rouge">teacher</code>, <code class="highlighter-rouge">student</code> and <code class="highlighter-rouge">education</code>), then remove them one by one to see when the results change! The answer is at the bottom of this page.</div>
@@ -658,14 +665,14 @@ Great!</p>
 <p>Some people have special titles and epithets and we want to talk about that.
 So, we’ll create some resource types that can be attached to a person:</p>
 
-<pre><code class="language-graql">&gt;&gt;&gt;insert title isa resource-type, datatype string;
-&gt;&gt;&gt;insert epithet isa resource-type, datatype string;
-&gt;&gt;&gt;insert person has-resource title, has-resource epithet;
+<pre><code class="language-graql">insert title isa resource-type, datatype string;
+insert epithet isa resource-type, datatype string;
+insert person has-resource title, has-resource epithet;
 </code></pre>
 
 <p>Let’s make Alexander “Great”!</p>
 
-<pre><code class="language-graql">&gt;&gt;&gt;insert "Alexander" has epithet "The Great";
+<pre><code class="language-graql">insert "Alexander" has epithet "The Great";
 </code></pre>
 
 <p>This is a quick way to add a relation between <code class="highlighter-rouge">Alexander</code> and an <code class="highlighter-rouge">epithet</code> with value <code class="highlighter-rouge">"The Great"</code>.</p>
@@ -674,16 +681,16 @@ So, we’ll create some resource types that can be attached to a person:</p>
 
 <p>Let’s add the rest of Alexander’s titles while we’re at it:</p>
 
-<pre><code class="language-graql">&gt;&gt;&gt;insert "Alexander" has title "Hegemon";
-&gt;&gt;&gt;insert "Alexander" has title "King of Macedon";
-&gt;&gt;&gt;insert "Alexander" has title "King of Persia";
-&gt;&gt;&gt;insert "Alexander" has title "Pharaoh of Egypt";
-&gt;&gt;&gt;insert "Alexander" has title "Lord of Asia";
+<pre><code class="language-graql">insert "Alexander" has title "Hegemon";
+insert "Alexander" has title "King of Macedon";
+insert "Alexander" has title "King of Persia";
+insert "Alexander" has title "Pharaoh of Egypt";
+insert "Alexander" has title "Lord of Asia";
 </code></pre>
 
 <p>Using Graql, we can query for people, listing their id and titles.</p>
 
-<pre><code class="language-graql">&gt;&gt;&gt;match $x isa person select $x(id, has title);
+<pre><code class="language-graql">match $x isa person select $x(id, has title);
 
 $x id "Socrates";
 $x id "Plato";
@@ -693,7 +700,7 @@ $x id "Alexander" has title "Pharaoh of Egypt" has title "Hegeon" has title "Sha
 
 <p>Wait, who’s the Pharaoh again?</p>
 
-<pre><code class="language-graql">&gt;&gt;&gt;match $pharaoh has title "Pharaoh of Egypt";
+<pre><code class="language-graql">match $pharaoh has title "Pharaoh of Egypt";
 
 $pharaoh id "Alexander" isa person;
 </code></pre>
@@ -705,22 +712,22 @@ $pharaoh id "Alexander" isa person;
 <p>Philosophers know lots of things. We should probably include this in our
 schema.</p>
 
-<pre><code class="language-graql">&gt;&gt;&gt;insert knowledge isa relation-type;
-&gt;&gt;&gt;insert thinker isa role-type;
-&gt;&gt;&gt;insert thought isa role-type;
-&gt;&gt;&gt;insert knowledge has-role thinker, has-role thought;
-&gt;&gt;&gt;insert fact isa entity-type, plays-role thought;
-&gt;&gt;&gt;insert person plays-role thinker;
+<pre><code class="language-graql">insert knowledge isa relation-type;
+insert thinker isa role-type;
+insert thought isa role-type;
+insert knowledge has-role thinker, has-role thought;
+insert fact isa entity-type, plays-role thought;
+insert person plays-role thinker;
 </code></pre>
 
 <p>Aristotle knew some astronomy, Plato knew a lot about caves and Socrates didn’t really know anything at all.</p>
 
-<pre><code class="language-graql">&gt;&gt;&gt;insert "sun-fact" isa fact, value "The Sun is bigger than the Earth";
-&gt;&gt;&gt;insert (thinker: "Aristotle", thought: "sun-fact") isa knowledge;
-&gt;&gt;&gt;insert "cave-fact" isa fact, value "Caves are mostly pretty dark";
-&gt;&gt;&gt;insert (thinker: "Plato", thought: "cave-fact") isa knowledge;
-&gt;&gt;&gt;insert "nothing" isa fact;
-&gt;&gt;&gt;insert (thinker: "Socrates", thought: "nothing") isa knowledge;
+<pre><code class="language-graql">insert "sun-fact" isa fact, value "The Sun is bigger than the Earth";
+insert (thinker: "Aristotle", thought: "sun-fact") isa knowledge;
+insert "cave-fact" isa fact, value "Caves are mostly pretty dark";
+insert (thinker: "Plato", thought: "cave-fact") isa knowledge;
+insert "nothing" isa fact;
+insert (thinker: "Socrates", thought: "nothing") isa knowledge;
 </code></pre>
 
 <p>A relation is actually just a special kind of instance. Just as
@@ -730,12 +737,12 @@ schema.</p>
 
 <p>First, we have to state that someone can think about their own knowledge:</p>
 
-<pre><code class="language-graql">&gt;&gt;&gt;insert knowledge plays-role thought;
+<pre><code class="language-graql">insert knowledge plays-role thought;
 </code></pre>
 
 <p>We can now give Socrates one final piece of knowledge:</p>
 
-<pre><code class="language-graql">&gt;&gt;&gt;match $socratesKnowsNothing ("Socrates", "nothing") insert (thinker: "Socrates", thought: $socratesKnowsNothing) isa knowledge;
+<pre><code class="language-graql">match $socratesKnowsNothing ("Socrates", "nothing") insert (thinker: "Socrates", thought: $socratesKnowsNothing) isa knowledge;
 </code></pre>
 
 <p>Here, <code class="highlighter-rouge">socratesKnowsNothing</code> is the relation between <code class="highlighter-rouge">Socrates</code> and <code class="highlighter-rouge">nothing</code>.
@@ -744,7 +751,7 @@ player.</p>
 
 <p>Finally, we’ll check out everything Socrates knows:</p>
 
-<pre><code class="language-graql">&gt;&gt;&gt;match ("Socrates", $x) isa knowledge;
+<pre><code class="language-graql">match ("Socrates", $x) isa knowledge;
 
 $x id "nothing" isa fact;
 $x id "knowledge-e387d27c-4f5e-11e6-beb8-9e71128cae77" isa knowledge;
