@@ -434,6 +434,13 @@
             
             
             
+            
+            
+            <li><a href="/pages/documentation/examples/SQL-migration.html">SQL migration</a></li>
+            
+            
+            
+            
         </ul>
         
         
@@ -582,40 +589,40 @@ $('#toc').on('click', 'a', function() {
 
 <p>Each SQL table is mapped to one MindmapsDB entity type. Each column of a table can be mapped as a resource type of that entity type. So the SQL tables above can be directly mapped to a MindmapsDB schema:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">insert</span>
+<pre><code class="language-graql">insert
 
-<span class="n">pet</span> <span class="n">isa</span> <span class="n">entity</span><span class="o">-</span><span class="k">type</span><span class="p">,</span>
-	<span class="n">has</span><span class="o">-</span><span class="n">resource</span> <span class="n">name</span><span class="p">,</span>
-	<span class="n">has</span><span class="o">-</span><span class="n">resource</span> <span class="k">owner</span><span class="p">,</span>
-	<span class="n">has</span><span class="o">-</span><span class="n">resource</span> <span class="n">species</span><span class="p">,</span>
-	<span class="n">has</span><span class="o">-</span><span class="n">resource</span> <span class="n">sex</span><span class="p">,</span>
-	<span class="n">has</span><span class="o">-</span><span class="n">resource</span> <span class="n">birth</span><span class="p">,</span>
-	<span class="n">has</span><span class="o">-</span><span class="n">resource</span> <span class="n">death</span><span class="p">;</span>
+pet isa entity-type,
+	has-resource name,
+	has-resource owner,
+	has-resource species,
+	has-resource sex,
+	has-resource birth,
+	has-resource death;
 
-<span class="n">event</span> <span class="n">isa</span> <span class="n">entity</span><span class="o">-</span><span class="k">type</span><span class="p">,</span>
-	<span class="n">has</span><span class="o">-</span><span class="n">resource</span> <span class="n">name</span><span class="p">,</span>
-	<span class="n">has</span><span class="o">-</span><span class="n">resource</span> <span class="n">date</span><span class="p">,</span>
-	<span class="n">has</span><span class="o">-</span><span class="n">resource</span> <span class="n">eventtype</span><span class="p">,</span>
-	<span class="n">has</span><span class="o">-</span><span class="n">resource</span> <span class="n">remark</span><span class="p">;</span>
+event isa entity-type,
+	has-resource name,
+	has-resource date,
+	has-resource eventtype,
+	has-resource remark;
 
 </code></pre>
-</div>
 
 <p>In SQL, a <code class="highlighter-rouge">foreign key</code> is a column that references another column. The MindmapsDB equivalent is a relationship type. Because SQL <code class="highlighter-rouge">foreign key</code> are not explicitly named, as they are in Mindmaps, the relation and roles have auto-generated names.</p>
 
 <p>The SQL schema line <code class="highlighter-rouge">ALTER TABLE event ADD FOREIGN KEY ( name ) REFERENCES pet ( name );</code> would be migrated as:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">event</span><span class="o">-</span><span class="n">child</span> <span class="n">isa</span> <span class="k">role</span><span class="o">-</span><span class="k">type</span><span class="p">;</span>
-<span class="n">event</span><span class="o">-</span><span class="n">parent</span> <span class="n">isa</span> <span class="k">role</span><span class="o">-</span><span class="k">type</span><span class="p">;</span>
+<pre><code class="language-graql">insert
 
-<span class="n">event</span><span class="o">-</span><span class="n">relation</span> <span class="n">isa</span> <span class="n">relation</span><span class="o">-</span><span class="k">type</span><span class="p">,</span>
- 	<span class="n">has</span><span class="o">-</span><span class="k">role</span> <span class="n">event</span><span class="o">-</span><span class="n">child</span><span class="p">,</span>
- 	<span class="n">has</span><span class="o">-</span><span class="k">role</span> <span class="n">event</span><span class="o">-</span><span class="n">parent</span><span class="p">;</span>
+event-child isa role-type;
+event-parent isa role-type;
 
-<span class="n">event</span> <span class="n">plays</span><span class="o">-</span><span class="k">role</span> <span class="n">event</span><span class="o">-</span><span class="n">parent</span><span class="p">;</span>
-<span class="n">pet</span> <span class="n">plays</span><span class="o">-</span><span class="k">role</span> <span class="n">event</span><span class="o">-</span><span class="n">child</span><span class="p">;</span>
+event-relation isa relation-type,
+ 	has-role event-child,
+ 	has-role event-parent;
+
+event plays-role event-parent;
+pet plays-role event-child;
 </code></pre>
-</div>
 
 <h3 id="sql-data-migration">SQL Data Migration</h3>
 
@@ -669,29 +676,27 @@ $('#toc').on('click', 'a', function() {
 
 <p>This is how the first two rows of the <code class="highlighter-rouge">pet</code> and <code class="highlighter-rouge">event</code> tables would look if written in Graql:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">insert</span>
+<pre><code class="language-graql">insert
 
-<span class="err">$</span><span class="n">x</span> <span class="n">isa</span> <span class="n">pet</span> <span class="n">id</span> <span class="nv">"Bowser"</span><span class="p">,</span>
-	<span class="n">has</span> <span class="k">owner</span> <span class="nv">"Diane"</span><span class="p">,</span>
-	<span class="n">has</span> <span class="n">species</span> <span class="nv">"dog"</span><span class="p">,</span>
-	<span class="n">has</span> <span class="n">sex</span> <span class="nv">"m"</span><span class="p">,</span>
-	<span class="n">has</span> <span class="n">birth</span> <span class="nv">"1979-08-31"</span><span class="p">,</span>
-	<span class="n">has</span> <span class="n">death</span> <span class="nv">"1995-07-29"</span><span class="p">;</span>
+$x isa pet id "Bowser",
+	has owner "Diane",
+	has species "dog",
+	has sex "m",
+	has birth "1979-08-31",
+	has death "1995-07-29";
 
-<span class="err">$</span><span class="n">y</span> <span class="n">isa</span> <span class="n">event</span>
-	<span class="n">has</span> <span class="n">date</span> <span class="nv">"1991-10-12"</span><span class="p">,</span>
-	<span class="n">has</span> <span class="n">eventtype</span> <span class="nv">"kennel"</span><span class="p">;</span>
+$y isa event
+	has date "1991-10-12",
+	has eventtype "kennel";
 
 </code></pre>
-</div>
 
 <p>If the value of a column is <code class="highlighter-rouge">NULL</code>, that resource is not added to the graph.</p>
 
 <p>The <code class="highlighter-rouge">name</code> column of the event instance was not migrated as a resource. This is because that column is a foreign key. The migration component will detect when one of the columns is a <code class="highlighter-rouge">foreign key</code> and create a relation between those two instances:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="p">(</span><span class="n">event</span><span class="o">-</span><span class="n">child</span> <span class="err">$</span><span class="n">x</span><span class="p">,</span> <span class="n">event</span><span class="o">-</span><span class="n">parent</span> <span class="err">$</span><span class="n">y</span><span class="p">)</span> <span class="n">isa</span> <span class="n">event</span><span class="o">-</span><span class="n">relation</span><span class="p">;</span>
+<pre><code class="language-graql">insert (event-child: $x, event-parent: $y) isa event-relation;
 </code></pre>
-</div>
 
 <h3 id="in-java">In Java</h3>
 
@@ -726,7 +731,7 @@ $('#toc').on('click', 'a', function() {
 </code></pre>
 </div>
 
-<!--Please take a look at our example of [SQL migration](../examples/SQL-migration.html) to find out more.-->
+<p>Please take a look at our example of <a href="../examples/SQL-migration.html">SQL migration</a> to find out more.</p>
 
 <h2 id="owl-migration-example">OWL Migration Example</h2>
 
@@ -772,13 +777,12 @@ $('#toc').on('click', 'a', function() {
 
 <p>The ontology defines a single class (type) <code class="highlighter-rouge">Person</code> as well as two instances of the class - individuals <code class="highlighter-rouge">Witold</code> and <code class="highlighter-rouge">Stefan</code>. The ontology defines properties <code class="highlighter-rouge">hasAncestor</code> and its inverse <code class="highlighter-rouge">isAncestorOf</code> as well as <code class="highlighter-rouge">hasParent</code> and <code class="highlighter-rouge">isParentOf</code> properties. The <code class="highlighter-rouge">hasAncestor</code> property is defined as transitive and additionally defines a property chain which corresponds to the rule:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>hasAncestor(X, Y) :- hasParent(X, Z), hasAncestor(Z, Y)
+<pre><code class="language-graql">hasAncestor(X, Y) :- hasParent(X, Z), hasAncestor(Z, Y)
 </code></pre>
-</div>
 
 <p>Upon migration, the OWL ontology will be mapped to the MindmapsDB Model. The following Graql statement inserts an equivalent structure to the one obtained through the migration mapping:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>insert
+<pre><code class="language-graql">insert
 
 "tPerson" isa entity-type;
 "eWitold" isa tPerson;
@@ -832,7 +836,6 @@ lhs {match
 rhs {match
 (owl-subject-op-hasAncestor: $x, owl-object-op-hasAncestor: $y) isa hasAncestor;};
 </code></pre>
-</div>
 
 <h2 id="where-next">Where Next?</h2>
 <p>You can find further documentation about migration in our API reference documentation (which is in the <code class="highlighter-rouge">/docs</code> directory of the distribution zip file, and also online <a href="https://mindmaps.io/pages/api-reference/latest/index.html">here</a>).</p>
@@ -905,7 +908,7 @@ rhs {match
         <br>
         <p>© 2016 <a href="https://mindmaps.io">Mindmaps Research Ltd</a></p>
         <!-- &copy;2016 MindmapsDB. All rights reserved. <br />
-        <span>Page last updated:</span> August 10, 2016<br/> Site last generated: Oct 6, 2016 <br />
+        <span>Page last updated:</span> August 10, 2016<br/> Site last generated: Oct 7, 2016 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">

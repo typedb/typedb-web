@@ -434,6 +434,13 @@
             
             
             
+            
+            
+            <li><a href="/pages/documentation/examples/SQL-migration.html">SQL migration</a></li>
+            
+            
+            
+            
         </ul>
         
         
@@ -518,7 +525,7 @@ $('#toc').on('click', 'a', function() {
 
 <p>If it is not already running, start MindmapsDB, then open a Graql shell:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>cd [your MindmapsDB install directory]
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="nb">cd</span> <span class="o">[</span>your MindmapsDB install directory]
 bin/mindmaps.sh start
 bin/graql.sh
 </code></pre>
@@ -546,92 +553,73 @@ bin/graql.sh
 
 <p>Here, we add person and software entity types to the graph, via the Graql shell:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">insert</span> <span class="n">person</span> <span class="n">isa</span> <span class="n">entity</span><span class="o">-</span><span class="k">type</span><span class="p">;</span>
-<span class="k">insert</span> <span class="n">software</span> <span class="n">isa</span> <span class="n">entity</span><span class="o">-</span><span class="k">type</span><span class="p">;</span>
+<pre><code class="language-graql">insert person isa entity-type;
+insert software isa entity-type;
 </code></pre>
-</div>
 
 <h3 id="resource-types">Resource Types</h3>
 
 <p>To assign resources to the entities, which you can think of as attributes, we use resource types. First, we define what they are (age is a number, programming language is a string that represents the language’s name), then we allocate them to the entity in question:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">insert</span> <span class="n">age</span> <span class="n">isa</span> <span class="n">resource</span><span class="o">-</span><span class="k">type</span>
-	<span class="n">datatype</span> <span class="n">long</span><span class="p">;</span>
-	
-<span class="k">insert</span> <span class="n">person</span> <span class="n">has</span><span class="o">-</span><span class="n">resource</span> <span class="n">age</span><span class="p">;</span>
+<pre><code class="language-graql">insert age isa resource-type, datatype long;
+insert person has-resource age;
 
-<span class="k">insert</span> <span class="n">lang</span> <span class="n">isa</span> <span class="n">resource</span><span class="o">-</span><span class="k">type</span>
-    <span class="n">datatype</span> <span class="n">string</span><span class="p">;</span>
- 
-<span class="k">insert</span> <span class="n">software</span> <span class="n">has</span><span class="o">-</span><span class="n">resource</span> <span class="n">lang</span><span class="p">;</span>
+insert lang isa resource-type, datatype string;
+insert software has-resource lang;
 
-<span class="k">insert</span> <span class="n">weight</span> <span class="n">isa</span> <span class="n">resource</span><span class="o">-</span><span class="k">type</span>
-    <span class="n">datatype</span> <span class="n">double</span><span class="p">;</span>
+insert weight isa resource-type, datatype double;
 </code></pre>
-</div>
 
 <h3 id="relation-types">Relation Types</h3>
 
 <p>Let’s first define the relationship between people. The diagram shows that marko knows vadas, but we don’t have any information about whether the inverse is true (though it seems likely that vadas probably also knows marko). Let’s set up a relationship called <code class="highlighter-rouge">knows</code>, which has two role-types - <code class="highlighter-rouge">knower</code> (for marko) and <code class="highlighter-rouge">known-about</code> (for vadas):</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">insert</span> <span class="n">knower</span> <span class="n">isa</span> <span class="k">role</span><span class="o">-</span><span class="k">type</span><span class="p">;</span>
-<span class="k">insert</span> <span class="n">known</span><span class="o">-</span><span class="n">about</span> <span class="n">isa</span> <span class="k">role</span><span class="o">-</span><span class="k">type</span><span class="p">;</span>
-
-<span class="k">insert</span> <span class="n">person</span> <span class="n">plays</span><span class="o">-</span><span class="k">role</span> <span class="n">knower</span><span class="p">;</span>
-<span class="k">insert</span> <span class="n">person</span> <span class="n">plays</span><span class="o">-</span><span class="k">role</span> <span class="n">known</span><span class="o">-</span><span class="n">about</span><span class="p">;</span>
-
-<span class="k">insert</span> <span class="n">knows</span> <span class="n">isa</span> <span class="n">relation</span><span class="o">-</span><span class="k">type</span>
-	<span class="n">has</span><span class="o">-</span><span class="k">role</span> <span class="n">knower</span>
-	<span class="n">has</span><span class="o">-</span><span class="k">role</span> <span class="n">known</span><span class="o">-</span><span class="n">about</span>
-	<span class="n">has</span><span class="o">-</span><span class="n">resource</span> <span class="n">weight</span><span class="p">;</span>	
+<pre><code class="language-graql">insert knower isa role-type;
+insert known-about isa role-type;
+insert person plays-role knower;
+insert person plays-role known-about;
+insert knows isa relation-type, has-role knower, has-role known-about, has-resource weight;	
 </code></pre>
-</div>
 
 <p>Note that the  <code class="highlighter-rouge">knows</code> relation type also has an attribute, in the form of a resource called <code class="highlighter-rouge">weight</code> (though it’s not clear from the TinkerPop example what this represents).</p>
 
 <p>We can set up a similar relationship between software and the people that created it:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">insert</span> <span class="n">programmer</span> <span class="n">isa</span> <span class="k">role</span><span class="o">-</span><span class="k">type</span><span class="p">;</span>
-<span class="k">insert</span> <span class="n">programmed</span> <span class="n">isa</span> <span class="k">role</span><span class="o">-</span><span class="k">type</span><span class="p">;</span>
+<pre><code class="language-graql">insert programmer isa role-type;
+insert programmed isa role-type;
 
-<span class="k">insert</span> <span class="n">person</span> <span class="n">plays</span><span class="o">-</span><span class="k">role</span> <span class="n">programmer</span><span class="p">;</span>
-<span class="k">insert</span> <span class="n">software</span> <span class="n">plays</span><span class="o">-</span><span class="k">role</span> <span class="n">programmed</span><span class="p">;</span>
+insert person plays-role programmer;
+insert software plays-role programmed;
 
-<span class="k">insert</span> <span class="n">programming</span> <span class="n">isa</span> <span class="n">relation</span><span class="o">-</span><span class="k">type</span>
-	<span class="n">has</span><span class="o">-</span><span class="k">role</span> <span class="n">programmer</span>
-	<span class="n">has</span><span class="o">-</span><span class="k">role</span> <span class="n">programmed</span>
-	<span class="n">has</span><span class="o">-</span><span class="n">resource</span> <span class="n">weight</span><span class="p">;</span>
+insert programming isa relation-type, has-role programmer, has-role programmed, has-resource weight;
 </code></pre>
-</div>
 
 <p>And that’s it. At this point, we have defined the schema of the MindmapsDB graph.</p>
 
 <h2 id="adding-the-data">Adding the Data</h2>
 <p>Now we have a schema, we can move on to adding in the data, which is pretty much just a typing exercise:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">insert</span> <span class="nv">"marko"</span> <span class="n">isa</span> <span class="n">person</span><span class="p">;</span>
-<span class="k">insert</span> <span class="nv">"vadas"</span> <span class="n">isa</span> <span class="n">person</span><span class="p">;</span>
-<span class="k">insert</span> <span class="nv">"josh"</span> <span class="n">isa</span> <span class="n">person</span><span class="p">;</span>
-<span class="k">insert</span> <span class="nv">"peter"</span> <span class="n">isa</span> <span class="n">person</span><span class="p">;</span>
-<span class="k">insert</span> <span class="nv">"marko"</span> <span class="n">has</span> <span class="n">age</span> <span class="mi">29</span><span class="p">;</span>
-<span class="k">insert</span> <span class="nv">"josh"</span> <span class="n">has</span> <span class="n">age</span> <span class="mi">32</span><span class="p">;</span>
-<span class="k">insert</span> <span class="nv">"vadas"</span> <span class="n">has</span> <span class="n">age</span> <span class="mi">27</span><span class="p">;</span>
-<span class="k">insert</span> <span class="nv">"peter"</span> <span class="n">has</span> <span class="n">age</span> <span class="mi">35</span><span class="p">;</span>
-<span class="k">insert</span> <span class="p">(</span><span class="n">knower</span><span class="p">:</span> <span class="nv">"marko"</span><span class="p">,</span> <span class="n">known</span><span class="o">-</span><span class="n">about</span><span class="p">:</span> <span class="nv">"josh"</span><span class="p">)</span> <span class="n">isa</span> <span class="n">knows</span> <span class="n">has</span> <span class="n">weight</span> <span class="mi">1</span><span class="p">.</span><span class="mi">0</span><span class="p">;</span>
-<span class="k">insert</span> <span class="p">(</span><span class="n">knower</span><span class="p">:</span> <span class="nv">"marko"</span><span class="p">,</span> <span class="n">known</span><span class="o">-</span><span class="n">about</span><span class="p">:</span> <span class="nv">"vadas"</span><span class="p">)</span> <span class="n">isa</span> <span class="n">knows</span> <span class="n">has</span> <span class="n">weight</span> <span class="mi">0</span><span class="p">.</span><span class="mi">5</span><span class="p">;</span>
+<pre><code class="language-graql">insert "marko" isa person;
+insert "vadas" isa person;
+insert "josh" isa person;
+insert "peter" isa person;
+insert "marko" has age 29;
+insert "josh" has age 32;
+insert "vadas" has age 27;
+insert "peter" has age 35;
+insert (knower: "marko", known-about: "josh") isa knows has weight 1.0;
+insert (knower: "marko", known-about: "vadas") isa knows has weight 0.5;
 </code></pre>
-</div>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">insert</span> <span class="nv">"lop"</span> <span class="n">isa</span> <span class="n">software</span><span class="p">;</span>
-<span class="k">insert</span> <span class="nv">"ripple"</span> <span class="n">isa</span> <span class="n">software</span><span class="p">;</span>
-<span class="k">insert</span> <span class="nv">"lop"</span> <span class="n">has</span> <span class="n">lang</span> <span class="nv">"java"</span><span class="p">;</span>
-<span class="k">insert</span> <span class="nv">"ripple"</span> <span class="n">has</span> <span class="n">lang</span> <span class="nv">"java"</span><span class="p">;</span>
-<span class="k">insert</span> <span class="p">(</span><span class="n">programmer</span><span class="p">:</span> <span class="nv">"marko"</span><span class="p">,</span> <span class="n">programmed</span><span class="p">:</span> <span class="nv">"lop"</span><span class="p">)</span> <span class="n">isa</span> <span class="n">programming</span> <span class="n">has</span> <span class="n">weight</span> <span class="mi">0</span><span class="p">.</span><span class="mi">4</span><span class="p">;</span>
-<span class="k">insert</span> <span class="p">(</span><span class="n">programmer</span><span class="p">:</span> <span class="nv">"peter"</span><span class="p">,</span> <span class="n">programmed</span><span class="p">:</span> <span class="nv">"lop"</span><span class="p">)</span> <span class="n">isa</span> <span class="n">programming</span> <span class="n">has</span> <span class="n">weight</span> <span class="mi">0</span><span class="p">.</span><span class="mi">2</span><span class="p">;</span>
-<span class="k">insert</span> <span class="p">(</span><span class="n">programmer</span><span class="p">:</span> <span class="nv">"josh"</span><span class="p">,</span> <span class="n">programmed</span><span class="p">:</span> <span class="nv">"lop"</span><span class="p">)</span> <span class="n">isa</span> <span class="n">programming</span> <span class="n">has</span> <span class="n">weight</span> <span class="mi">0</span><span class="p">.</span><span class="mi">4</span><span class="p">;</span>
-<span class="k">insert</span> <span class="p">(</span><span class="n">programmer</span><span class="p">:</span> <span class="nv">"josh"</span><span class="p">,</span> <span class="n">programmed</span><span class="p">:</span> <span class="nv">"ripple"</span><span class="p">)</span> <span class="n">isa</span> <span class="n">programming</span> <span class="n">has</span> <span class="n">weight</span> <span class="mi">1</span><span class="p">.</span><span class="mi">0</span><span class="p">;</span>
+<pre><code class="language-graql">insert "lop" isa software;
+insert "ripple" isa software;
+insert "lop" has lang "java";
+insert "ripple" has lang "java";
+insert (programmer: "marko", programmed: "lop") isa programming has weight 0.4;
+insert (programmer: "peter", programmed: "lop") isa programming has weight 0.2;
+insert (programmer: "josh", programmed: "lop") isa programming has weight 0.4;
+insert (programmer: "josh", programmed: "ripple") isa programming has weight 1.0;
 </code></pre>
-</div>
 
 <h2 id="querying">Querying</h2>
 
@@ -641,36 +629,33 @@ bin/graql.sh
 
 <p>As with any query language, you use a variable to receive the results of the match query, which you must prefix with a <code class="highlighter-rouge">$</code>. So, to make the query “List every person in the graph”, you would use the following in Graql:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">match</span> <span class="err">$</span><span class="n">x</span> <span class="n">isa</span> <span class="n">person</span><span class="p">;</span>
+<pre><code class="language-graql">match $x isa person;
 
-<span class="err">$</span><span class="n">x</span> <span class="n">id</span> <span class="nv">"marko"</span> <span class="n">isa</span> <span class="n">person</span><span class="p">;</span> 
-<span class="err">$</span><span class="n">x</span> <span class="n">id</span> <span class="nv">"vadas"</span> <span class="n">isa</span> <span class="n">person</span><span class="p">;</span> 
-<span class="err">$</span><span class="n">x</span> <span class="n">id</span> <span class="nv">"josh"</span> <span class="n">isa</span> <span class="n">person</span><span class="p">;</span> 
-<span class="err">$</span><span class="n">x</span> <span class="n">id</span> <span class="nv">"peter"</span> <span class="n">isa</span> <span class="n">person</span><span class="p">;</span> 
+$x id "marko" isa person; 
+$x id "vadas" isa person; 
+$x id "josh" isa person; 
+$x id "peter" isa person; 
 </code></pre>
-</div>
 
 <p>In Graql, a match is formed of three parts: the <code class="highlighter-rouge">match</code> statement, an optional <code class="highlighter-rouge">select</code> statement, and any other optional <a href="../graql/match-queries.html#modifiers">modifiers</a> that you choose to apply to the listing of results. Only the first part of a match query is needed: the modifier parts are optional.</p>
 
 <p>In the <code class="highlighter-rouge">match $x isa person</code> query we are not using any select or delimiters, so let’s add some now.  We can add a <code class="highlighter-rouge">select</code> statement to ask Graql to list out every person and to include their id (which is their name) and age. We use <code class="highlighter-rouge">order by</code> to modify how the results are listed out - in this case, we order them by ascending age, so the youngest person is shown first.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">match</span> <span class="err">$</span><span class="n">x</span> <span class="n">isa</span> <span class="n">person</span><span class="p">;</span> <span class="k">select</span> <span class="err">$</span><span class="n">x</span><span class="p">(</span><span class="n">id</span><span class="p">,</span> <span class="n">has</span> <span class="n">age</span><span class="p">);</span> <span class="k">order</span> <span class="k">by</span> <span class="err">$</span><span class="n">x</span><span class="p">(</span><span class="n">has</span> <span class="n">age</span><span class="p">)</span> <span class="k">asc</span><span class="p">;</span>
+<pre><code class="language-graql">&gt;&gt;&gt; match $x isa person, has age $a; select $x, $a; order by $a asc;
 
-<span class="err">$</span><span class="n">x</span> <span class="n">id</span> <span class="nv">"vadas"</span> <span class="n">has</span> <span class="n">age</span> <span class="nv">"27"</span><span class="p">;</span> 
-<span class="err">$</span><span class="n">x</span> <span class="n">id</span> <span class="nv">"marko"</span> <span class="n">has</span> <span class="n">age</span> <span class="nv">"29"</span><span class="p">;</span> 
-<span class="err">$</span><span class="n">x</span> <span class="n">id</span> <span class="nv">"josh"</span> <span class="n">has</span> <span class="n">age</span> <span class="nv">"32"</span><span class="p">;</span> 
-<span class="err">$</span><span class="n">x</span> <span class="n">id</span> <span class="nv">"peter"</span> <span class="n">has</span> <span class="n">age</span> <span class="nv">"35"</span><span class="p">;</span>
+$x id "vadas" has age "27"; 
+$x id "marko" has age "29"; 
+$x id "josh" has age "32"; 
+$x id "peter" has age "35";
 </code></pre>
-</div>
 
 <p>Now let’s look at querying for a relationship. We can query to find out which entities have a particular role-type associated with a relation-type. For example, we can match everyone with a <code class="highlighter-rouge">knower</code> role who knows someone else:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">match</span> <span class="err">$</span><span class="n">x</span> <span class="n">plays</span><span class="o">-</span><span class="k">role</span> <span class="n">knows</span><span class="p">;</span> 
+<pre><code class="language-graql">match $x plays-role knows; 
 </code></pre>
-</div>
 
 <p>We can also match every role that a <code class="highlighter-rouge">person</code> can play:
-<code class="highlighter-rouge">sql
+<code class="highlighter-rouge">graql
 match person plays-role $x;
 </code></p>
 
@@ -712,66 +697,65 @@ match person plays-role $x;
 
 <p>Then type edit, which will open up the systems default text editor where you can paste your chunk of text. Upon exiting the editor, the Graql will execute.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">insert</span> 
-<span class="n">age</span> <span class="n">isa</span> <span class="n">resource</span><span class="o">-</span><span class="k">type</span>
-	<span class="n">datatype</span> <span class="n">long</span><span class="p">;</span>
-<span class="n">person</span> <span class="n">isa</span> <span class="n">entity</span><span class="o">-</span><span class="k">type</span><span class="p">;</span>
-<span class="n">person</span> <span class="n">has</span><span class="o">-</span><span class="n">resource</span> <span class="n">age</span><span class="p">;</span>
+<pre><code class="language-graql">insert 
+age isa resource-type
+	datatype long;
+person isa entity-type;
+person has-resource age;
 
-<span class="nv">"marko"</span> <span class="n">isa</span> <span class="n">person</span><span class="p">;</span>
-<span class="nv">"vadas"</span> <span class="n">isa</span> <span class="n">person</span><span class="p">;</span>
-<span class="nv">"josh"</span> <span class="n">isa</span> <span class="n">person</span><span class="p">;</span>
-<span class="nv">"peter"</span> <span class="n">isa</span> <span class="n">person</span><span class="p">;</span>
-<span class="nv">"marko"</span> <span class="n">has</span> <span class="n">age</span> <span class="mi">29</span><span class="p">;</span>
-<span class="nv">"josh"</span> <span class="n">has</span> <span class="n">age</span> <span class="mi">32</span><span class="p">;</span>
-<span class="nv">"vadas"</span> <span class="n">has</span> <span class="n">age</span> <span class="mi">27</span><span class="p">;</span>
-<span class="nv">"peter"</span> <span class="n">has</span> <span class="n">age</span> <span class="mi">35</span><span class="p">;</span>
+"marko" isa person;
+"vadas" isa person;
+"josh" isa person;
+"peter" isa person;
+"marko" has age 29;
+"josh" has age 32;
+"vadas" has age 27;
+"peter" has age 35;
 
-<span class="n">weight</span> <span class="n">isa</span> <span class="n">resource</span><span class="o">-</span><span class="k">type</span>
-	<span class="n">datatype</span> <span class="n">double</span><span class="p">;</span>
+weight isa resource-type
+	datatype double;
 
-<span class="n">knower</span> <span class="n">isa</span> <span class="k">role</span><span class="o">-</span><span class="k">type</span><span class="p">;</span>
-<span class="n">known</span><span class="o">-</span><span class="n">about</span> <span class="n">isa</span> <span class="k">role</span><span class="o">-</span><span class="k">type</span><span class="p">;</span>
+knower isa role-type;
+known-about isa role-type;
 
-<span class="n">person</span> <span class="n">plays</span><span class="o">-</span><span class="k">role</span> <span class="n">knower</span><span class="p">;</span>
-<span class="n">person</span> <span class="n">plays</span><span class="o">-</span><span class="k">role</span> <span class="n">known</span><span class="o">-</span><span class="n">about</span><span class="p">;</span>
+person plays-role knower;
+person plays-role known-about;
 
-<span class="n">knows</span> <span class="n">isa</span> <span class="n">relation</span><span class="o">-</span><span class="k">type</span>
-	<span class="n">has</span><span class="o">-</span><span class="k">role</span> <span class="n">knower</span>
-	<span class="n">has</span><span class="o">-</span><span class="k">role</span> <span class="n">known</span><span class="o">-</span><span class="n">about</span>
-	<span class="n">has</span><span class="o">-</span><span class="n">resource</span> <span class="n">weight</span><span class="p">;</span>
+knows isa relation-type
+	has-role knower
+	has-role known-about
+	has-resource weight;
 
-<span class="p">(</span><span class="n">knower</span><span class="p">:</span> <span class="nv">"marko"</span><span class="p">,</span> <span class="n">known</span><span class="o">-</span><span class="n">about</span><span class="p">:</span> <span class="nv">"josh"</span><span class="p">)</span> <span class="n">isa</span> <span class="n">knows</span> <span class="n">has</span> <span class="n">weight</span> <span class="mi">1</span><span class="p">.</span><span class="mi">0</span><span class="p">;</span>
-<span class="p">(</span><span class="n">knower</span><span class="p">:</span> <span class="nv">"marko"</span><span class="p">,</span> <span class="n">known</span><span class="o">-</span><span class="n">about</span><span class="p">:</span> <span class="nv">"vadas"</span><span class="p">)</span> <span class="n">isa</span> <span class="n">knows</span> <span class="n">has</span> <span class="n">weight</span> <span class="mi">0</span><span class="p">.</span><span class="mi">5</span><span class="p">;</span>
+(knower: "marko", known-about: "josh") isa knows has weight 1.0;
+(knower: "marko", known-about: "vadas") isa knows has weight 0.5;
 
-<span class="n">lang</span> <span class="n">isa</span> <span class="n">resource</span><span class="o">-</span><span class="k">type</span>
-	<span class="n">datatype</span> <span class="n">string</span><span class="p">;</span>
-<span class="n">software</span> <span class="n">isa</span> <span class="n">entity</span><span class="o">-</span><span class="k">type</span><span class="p">;</span>
-<span class="n">software</span> <span class="n">has</span><span class="o">-</span><span class="n">resource</span> <span class="n">lang</span><span class="p">;</span>
+lang isa resource-type
+	datatype string;
+software isa entity-type;
+software has-resource lang;
 
-<span class="nv">"lop"</span> <span class="n">isa</span> <span class="n">software</span><span class="p">;</span>
-<span class="nv">"ripple"</span> <span class="n">isa</span> <span class="n">software</span><span class="p">;</span>
+"lop" isa software;
+"ripple" isa software;
 
-<span class="nv">"lop"</span> <span class="n">has</span> <span class="n">lang</span> <span class="nv">"java"</span><span class="p">;</span>
-<span class="nv">"ripple"</span> <span class="n">has</span> <span class="n">lang</span> <span class="nv">"java"</span><span class="p">;</span>
+"lop" has lang "java";
+"ripple" has lang "java";
 
-<span class="n">programmer</span> <span class="n">isa</span> <span class="k">role</span><span class="o">-</span><span class="k">type</span><span class="p">;</span>
-<span class="n">programmed</span> <span class="n">isa</span> <span class="k">role</span><span class="o">-</span><span class="k">type</span><span class="p">;</span>
+programmer isa role-type;
+programmed isa role-type;
 
-<span class="n">person</span> <span class="n">plays</span><span class="o">-</span><span class="k">role</span> <span class="n">programmer</span><span class="p">;</span>
-<span class="n">software</span> <span class="n">plays</span><span class="o">-</span><span class="k">role</span> <span class="n">programmed</span><span class="p">;</span>
+person plays-role programmer;
+software plays-role programmed;
 
-<span class="n">programming</span> <span class="n">isa</span> <span class="n">relation</span><span class="o">-</span><span class="k">type</span>
-	<span class="n">has</span><span class="o">-</span><span class="k">role</span> <span class="n">programmer</span>
-	<span class="n">has</span><span class="o">-</span><span class="k">role</span> <span class="n">programmed</span>
-	<span class="n">has</span><span class="o">-</span><span class="n">resource</span> <span class="n">weight</span><span class="p">;</span>
+programming isa relation-type
+	has-role programmer
+	has-role programmed
+	has-resource weight;
 
-<span class="p">(</span><span class="n">programmer</span><span class="p">:</span> <span class="nv">"marko"</span><span class="p">,</span> <span class="n">programmed</span><span class="p">:</span> <span class="nv">"lop"</span><span class="p">)</span> <span class="n">isa</span> <span class="n">programming</span> <span class="n">has</span> <span class="n">weight</span> <span class="mi">0</span><span class="p">.</span><span class="mi">4</span><span class="p">;</span>
-<span class="p">(</span><span class="n">programmer</span><span class="p">:</span> <span class="nv">"peter"</span><span class="p">,</span> <span class="n">programmed</span><span class="p">:</span> <span class="nv">"lop"</span><span class="p">)</span> <span class="n">isa</span> <span class="n">programming</span> <span class="n">has</span> <span class="n">weight</span> <span class="mi">0</span><span class="p">.</span><span class="mi">2</span><span class="p">;</span>
-<span class="p">(</span><span class="n">programmer</span><span class="p">:</span> <span class="nv">"josh"</span><span class="p">,</span> <span class="n">programmed</span><span class="p">:</span> <span class="nv">"lop"</span><span class="p">)</span> <span class="n">isa</span> <span class="n">programming</span> <span class="n">has</span> <span class="n">weight</span> <span class="mi">0</span><span class="p">.</span><span class="mi">4</span><span class="p">;</span>
-<span class="p">(</span><span class="n">programmer</span><span class="p">:</span> <span class="nv">"josh"</span><span class="p">,</span> <span class="n">programmed</span><span class="p">:</span> <span class="nv">"ripple"</span><span class="p">)</span> <span class="n">isa</span> <span class="n">programming</span> <span class="n">has</span> <span class="n">weight</span> <span class="mi">1</span><span class="p">.</span><span class="mi">0</span><span class="p">;</span>
+(programmer: "marko", programmed: "lop") isa programming has weight 0.4;
+(programmer: "peter", programmed: "lop") isa programming has weight 0.2;
+(programmer: "josh", programmed: "lop") isa programming has weight 0.4;
+(programmer: "josh", programmed: "ripple") isa programming has weight 1.0;
 </code></pre>
-</div>
 
 <h2 id="answers-to-the-test-yourself-section">Answers to the Test Yourself section</h2>
 
@@ -779,53 +763,45 @@ match person plays-role $x;
 
 <p>List every person with their name and age in ascending age order</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">match</span> <span class="err">$</span><span class="n">x</span> <span class="n">isa</span> <span class="n">person</span><span class="p">;</span> <span class="k">select</span> <span class="err">$</span><span class="n">x</span><span class="p">(</span><span class="n">id</span><span class="p">,</span> <span class="n">has</span> <span class="n">age</span><span class="p">);</span> <span class="k">order</span> <span class="k">by</span> <span class="err">$</span><span class="n">x</span><span class="p">(</span><span class="n">has</span> <span class="n">age</span><span class="p">)</span> <span class="k">asc</span><span class="p">;</span>
+<pre><code class="language-graql">match $x isa person, has age $a; select $x, $a; order by $a asc;
 </code></pre>
-</div>
 
 <p>List every person who has an age over 30, showing their name and age</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">match</span> <span class="err">$</span><span class="n">x</span> <span class="n">isa</span> <span class="n">person</span><span class="p">;</span> <span class="n">has</span> <span class="n">age</span> <span class="o">&gt;</span> <span class="mi">30</span><span class="p">;</span> <span class="k">select</span> <span class="err">$</span><span class="n">x</span><span class="p">(</span><span class="n">id</span><span class="p">,</span> <span class="n">has</span> <span class="n">age</span><span class="p">);</span>
+<pre><code class="language-graql">match $x isa person, has age $a, has age &gt; 30; select $x, $a;
 </code></pre>
-</div>
 
 <p>List every person who knows someone else, and every person who is known about</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">match</span> <span class="p">(</span><span class="n">knower</span><span class="p">:</span> <span class="err">$</span><span class="n">x</span><span class="p">)</span> <span class="n">isa</span> <span class="n">knows</span><span class="p">;</span>
-<span class="k">match</span> <span class="p">(</span><span class="n">known</span><span class="o">-</span><span class="n">about</span><span class="p">:</span> <span class="err">$</span><span class="n">x</span><span class="p">)</span> <span class="n">isa</span> <span class="n">knows</span><span class="p">;</span>
+<pre><code class="language-graql">match (knower: $x) isa knows;
+match (known-about: $x) isa knows;
 </code></pre>
-</div>
 
 <p>List every person that marko knows</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">match</span> <span class="p">(</span><span class="n">known</span><span class="o">-</span><span class="n">about</span><span class="p">:</span> <span class="err">$</span><span class="n">x</span><span class="p">,</span> <span class="nv">"marko"</span><span class="p">)</span> <span class="n">isa</span> <span class="n">knows</span><span class="p">;</span>
+<pre><code class="language-graql">match (known-about: $x, "marko") isa knows;
 </code></pre>
-</div>
 
 <p>List every item of software and the language associated with it</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">match</span> <span class="err">$</span><span class="n">x</span> <span class="n">isa</span> <span class="n">software</span><span class="p">;</span> <span class="k">select</span> <span class="err">$</span><span class="n">x</span><span class="p">(</span><span class="n">id</span><span class="p">,</span> <span class="n">has</span> <span class="n">lang</span><span class="p">);</span>
+<pre><code class="language-graql">match $x isa software, has lang $lang;
 </code></pre>
-</div>
 
 <p>List everything that josh has programmed</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">match</span> <span class="p">(</span><span class="n">programmed</span><span class="p">:</span> <span class="err">$</span><span class="n">x</span><span class="p">,</span> <span class="nv">"josh"</span><span class="p">)</span> <span class="n">isa</span> <span class="n">programming</span><span class="p">;</span>
+<pre><code class="language-graql">match (programmed: $x, "josh") isa programming;
 </code></pre>
-</div>
 
 <p>List everyone who has programmed Lop</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">match</span> <span class="p">(</span><span class="n">programmer</span><span class="p">:</span> <span class="err">$</span><span class="n">x</span><span class="p">,</span> <span class="nv">"lop"</span><span class="p">)</span> <span class="n">isa</span> <span class="n">programming</span><span class="p">;</span>
+<pre><code class="language-graql">match (programmer: $x, "lop") isa programming;
 </code></pre>
-</div>
 
 <p>List everything you know about marko</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">match</span> <span class="err">$</span><span class="n">relation</span><span class="p">(</span><span class="nv">"marko"</span><span class="p">,</span> <span class="err">$</span><span class="n">y</span><span class="p">);</span> <span class="err">$</span><span class="n">y</span> <span class="n">isa</span> <span class="err">$</span><span class="n">z</span><span class="p">;</span> <span class="err">$</span><span class="n">z</span> <span class="n">isa</span> <span class="n">entity</span><span class="o">-</span><span class="k">type</span><span class="p">;</span> <span class="err">$</span><span class="n">relation</span> <span class="n">isa</span> <span class="err">$</span><span class="n">reltype</span><span class="p">;</span> <span class="k">select</span> <span class="err">$</span><span class="n">y</span><span class="p">,</span> <span class="err">$</span><span class="n">reltype</span><span class="p">;</span>
+<pre><code class="language-graql">match $relation("marko", $y); $y isa $z; $z isa entity-type; $relation isa $reltype; select $y, $reltype;
 
 </code></pre>
-</div>
 
 <h2 id="where-next">Where next?</h2>
 
@@ -889,7 +865,7 @@ match person plays-role $x;
         <br>
         <p>© 2016 <a href="https://mindmaps.io">Mindmaps Research Ltd</a></p>
         <!-- &copy;2016 MindmapsDB. All rights reserved. <br />
-        <span>Page last updated:</span> September 19, 2016<br/> Site last generated: Oct 6, 2016 <br />
+        <span>Page last updated:</span> September 19, 2016<br/> Site last generated: Oct 7, 2016 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">

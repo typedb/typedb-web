@@ -434,6 +434,13 @@
             
             
             
+            
+            
+            <li><a href="/pages/documentation/examples/SQL-migration.html">SQL migration</a></li>
+            
+            
+            
+            
         </ul>
         
         
@@ -526,16 +533,14 @@ $('#toc').on('click', 'a', function() {
 
 <p>Match a pattern in the graph.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">match</span> <span class="err">$</span><span class="n">x</span> <span class="n">isa</span> <span class="n">movie</span>
+<pre><code class="language-graql">match $x isa movie;
 </code></pre>
-</div>
 <p>Match several patterns together.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">match</span>
-<span class="err">$</span><span class="n">x</span> <span class="n">isa</span> <span class="n">movie</span><span class="p">,</span> <span class="n">id</span> <span class="nv">"titanic"</span><span class="p">;</span>
-<span class="p">(</span><span class="n">actor</span> <span class="err">$</span><span class="n">a</span><span class="p">,</span> <span class="err">$</span><span class="n">x</span><span class="p">);</span>
+<pre><code class="language-graql">match
+$x isa movie, id "titanic";
+(actor: $a, $x);
 </code></pre>
-</div>
 
 <h3 id="modifiers">modifiers</h3>
 
@@ -545,10 +550,9 @@ $('#toc').on('click', 'a', function() {
 </div>
 <p>Select particular variables from the query.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">match</span> <span class="err">$</span><span class="n">m</span> <span class="n">isa</span> <span class="n">movie</span><span class="p">;</span> <span class="p">(</span><span class="n">actor</span> <span class="err">$</span><span class="n">a1</span><span class="p">,</span> <span class="err">$</span><span class="n">m</span><span class="p">);</span> <span class="p">(</span><span class="n">actor</span> <span class="err">$</span><span class="n">a2</span><span class="p">,</span> <span class="err">$</span><span class="n">m</span><span class="p">);</span>
-<span class="k">select</span> <span class="err">$</span><span class="n">a1</span><span class="p">,</span> <span class="err">$</span><span class="n">a2</span>
+<pre><code class="language-graql">match $m isa movie; (actor: $a1, $m); (actor: $a2, $m);
+select $a1, $a2;
 </code></pre>
-</div>
 
 <h4 id="limit">limit</h4>
 
@@ -557,10 +561,9 @@ $('#toc').on('click', 'a', function() {
 </div>
 <p>Limit the number of results returned by a query.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">match</span> <span class="p">(</span><span class="n">director</span> <span class="err">$</span><span class="n">x</span><span class="p">,</span> <span class="err">$</span><span class="n">y</span><span class="p">)</span>
-<span class="k">limit</span> <span class="mi">10</span>
+<pre><code class="language-graql">match (director: $x, $y);
+limit 10;
 </code></pre>
-</div>
 
 <h4 id="offset">offset</h4>
 
@@ -569,11 +572,10 @@ $('#toc').on('click', 'a', function() {
 </div>
 <p>Skip some results in a query.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">match</span> <span class="p">(</span><span class="n">director</span> <span class="err">$</span><span class="n">x</span><span class="p">,</span> <span class="err">$</span><span class="n">y</span><span class="p">)</span>
-<span class="k">limit</span> <span class="mi">10</span>
-<span class="k">offset</span> <span class="mi">20</span>
+<pre><code class="language-graql">match (director: $x, $y);
+limit 10;
+offset 20;
 </code></pre>
-</div>
 
 <h4 id="distinct">distinct</h4>
 
@@ -582,28 +584,20 @@ $('#toc').on('click', 'a', function() {
 </div>
 <p>De-duplicate the results of a query.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">match</span> <span class="err">$</span><span class="n">m</span> <span class="n">isa</span> <span class="n">movie</span><span class="p">,</span> <span class="n">id</span> <span class="s1">'dr-strangelove'</span><span class="p">;</span> <span class="p">(</span><span class="n">actor</span> <span class="err">$</span><span class="n">a</span><span class="p">,</span> <span class="err">$</span><span class="n">m</span><span class="p">);</span>
-<span class="k">select</span> <span class="err">$</span><span class="n">a</span>
-<span class="k">distinct</span>
+<pre><code class="language-graql">match $m isa movie, id 'dr-strangelove'; (actor: $a, $m);
+select $a;
+distinct;
 </code></pre>
-</div>
 
 <h4 id="order">order</h4>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">order</span> <span class="k">by</span> <span class="k">variable</span> <span class="p">[</span> <span class="p">(</span><span class="n">has</span> <span class="n">resource</span><span class="o">-</span><span class="k">type</span><span class="p">)</span> <span class="p">]</span> <span class="p">[</span> <span class="k">asc</span> <span class="o">|</span> <span class="k">desc</span> <span class="p">]</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">order</span> <span class="k">by</span> <span class="k">variable</span> <span class="p">[</span> <span class="k">asc</span> <span class="o">|</span> <span class="k">desc</span> <span class="p">]</span>
 </code></pre>
 </div>
-<p>Order by id in ascending order.</p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">match</span> <span class="err">$</span><span class="n">x</span> <span class="n">isa</span> <span class="n">person</span> <span class="k">order</span> <span class="k">by</span> <span class="err">$</span><span class="n">x</span>
-</code></pre>
-</div>
-
 <p>Order by a resource in descending order.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">match</span> <span class="err">$</span><span class="n">x</span> <span class="n">isa</span> <span class="n">person</span> <span class="k">order</span> <span class="k">by</span> <span class="err">$</span><span class="n">x</span><span class="p">(</span><span class="n">has</span> <span class="n">name</span><span class="p">)</span> <span class="k">desc</span>
+<pre><code class="language-graql">match $x isa person, has name $n; order by $n desc;
 </code></pre>
-</div>
 
 <h2 id="ask">ask</h2>
 
@@ -614,10 +608,9 @@ $('#toc').on('click', 'a', function() {
 </div>
 <p>Return whether the match query has any results.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">match</span> <span class="err">$</span><span class="n">x</span> <span class="n">isa</span> <span class="n">person</span><span class="p">,</span> <span class="n">id</span> <span class="s1">'james-cameron'</span><span class="p">;</span> <span class="p">(</span><span class="n">actor</span> <span class="err">$</span><span class="n">x</span><span class="p">)</span>
-<span class="n">ask</span>
+<pre><code class="language-graql">match $x isa person, id 'james-cameron'; (actor: $x);
+ask;
 </code></pre>
-</div>
 
 <h2 id="insert">insert</h2>
 
@@ -628,9 +621,8 @@ $('#toc').on('click', 'a', function() {
 </div>
 <p>Insert a concept into the graph.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">insert</span> <span class="s1">'finding-dory'</span> <span class="n">isa</span> <span class="n">movie</span><span class="p">;</span>
+<pre><code class="language-graql">insert 'finding-dory' isa movie;
 </code></pre>
-</div>
 <p>If a match query is provided, the query will insert the given variable patterns for every result of the match query.</p>
 
 <div class="highlighter-rouge"><pre class="highlight"><code><span class="k">match</span>  <span class="k">insert</span> <span class="p">[</span> <span class="n">pattern</span> <span class="p">;</span> <span class="p">...</span> <span class="p">]</span>
@@ -639,10 +631,9 @@ $('#toc').on('click', 'a', function() {
 
 <p>Insert a relation for every result of a match query.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">match</span> <span class="err">$</span><span class="n">m</span> <span class="n">isa</span> <span class="n">movie</span><span class="p">;</span> <span class="p">(</span><span class="n">director</span> <span class="s1">'tim-burton'</span><span class="p">,</span> <span class="err">$</span><span class="n">m</span><span class="p">);</span>
-<span class="k">insert</span> <span class="p">(</span><span class="n">actor</span> <span class="s1">'johnny-depp'</span><span class="p">,</span> <span class="n">production</span><span class="o">-</span><span class="k">with</span><span class="o">-</span><span class="k">cast</span> <span class="err">$</span><span class="n">m</span><span class="p">)</span> <span class="n">isa</span> <span class="n">has</span><span class="o">-</span><span class="k">cast</span><span class="p">;</span>
+<pre><code class="language-graql">match $m isa movie; (director: 'tim-burton', $m);
+insert (actor: 'johnny-depp', production-with-cast: $m) isa has-cast;
 </code></pre>
-</div>
 
 <h2 id="delete">delete</h2>
 
@@ -653,10 +644,9 @@ $('#toc').on('click', 'a', function() {
 </div>
 <p>Delete every instance of a type.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">match</span> <span class="err">$</span><span class="n">x</span> <span class="n">isa</span> <span class="n">person</span><span class="p">;</span>
-<span class="k">delete</span> <span class="err">$</span><span class="n">x</span><span class="p">;</span>
+<pre><code class="language-graql">match $x isa person;
+delete $x;
 </code></pre>
-</div>
 
 <h2 id="pattern">pattern</h2>
 
@@ -665,9 +655,8 @@ $('#toc').on('click', 'a', function() {
 </div>
 <p>A variable with several properties.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="err">$</span><span class="n">x</span> <span class="n">isa</span> <span class="n">person</span><span class="p">,</span> <span class="n">value</span> <span class="nv">"Guillermo del Toro"</span>
+<pre><code class="language-graql">match $x isa person, value "Guillermo del Toro";
 </code></pre>
-</div>
 
 <p>Match either the left or right pattern.</p>
 
@@ -675,9 +664,8 @@ $('#toc').on('click', 'a', function() {
 </code></pre>
 </div>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="err">$</span><span class="n">x</span> <span class="n">isa</span> <span class="n">movie</span> <span class="k">or</span> <span class="err">$</span><span class="n">x</span> <span class="n">isa</span> <span class="n">person</span>
+<pre><code class="language-graql">match $x isa movie or $x isa person;
 </code></pre>
-</div>
 
 <p>Match either the left pattern or all the right patterns.</p>
 
@@ -685,17 +673,15 @@ $('#toc').on('click', 'a', function() {
 </code></pre>
 </div>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="err">$</span><span class="n">x</span> <span class="n">isa</span> <span class="n">movie</span> <span class="k">or</span> <span class="err">{</span> <span class="p">(</span><span class="n">actor</span> <span class="err">$</span><span class="n">x</span><span class="p">,</span> <span class="err">$</span><span class="n">y</span><span class="p">);</span> <span class="err">$</span><span class="n">y</span> <span class="n">id</span> <span class="s1">'the-martian'</span><span class="p">;</span> <span class="err">}</span>
+<pre><code class="language-graql">match $x isa movie or { (actor: $x, $y); $y id 'the-martian'; };
 </code></pre>
-</div>
 
 <h3 id="variables">variables</h3>
 
 <p>Variables start with a <code class="highlighter-rouge">$</code>, followed by alphanumeric characters, underscores or dashes.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">match</span> <span class="p">(</span><span class="n">director</span> <span class="err">$</span><span class="n">the</span><span class="o">-</span><span class="n">director</span><span class="p">,</span> <span class="err">$</span><span class="n">theMovie</span><span class="p">);</span> <span class="err">$</span><span class="n">theMovie</span> <span class="n">isa</span> <span class="n">movie</span><span class="p">;</span>
+<pre><code class="language-graql">match (director: $the-director, $theMovie); $theMovie isa movie;
 </code></pre>
-</div>
 
 <h3 id="identifier">identifier</h3>
 
@@ -705,9 +691,8 @@ $('#toc').on('click', 'a', function() {
 </code></pre>
 </div>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">insert</span> <span class="nv">"TV Show"</span> <span class="n">isa</span> <span class="n">entity</span><span class="o">-</span><span class="k">type</span><span class="p">;</span> <span class="n">movie</span> <span class="n">isa</span> <span class="n">entity</span><span class="o">-</span><span class="k">type</span><span class="p">;</span>
+<pre><code class="language-graql">insert "TV Show" isa entity-type; movie isa entity-type;
 </code></pre>
-</div>
 
 <h2 id="type-properties">type properties</h2>
 
@@ -717,15 +702,13 @@ $('#toc').on('click', 'a', function() {
 </code></pre>
 </div>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">match</span> <span class="err">$</span><span class="n">x</span> <span class="n">isa</span> <span class="n">movie</span><span class="p">;</span>
+<pre><code class="language-graql">match $x isa movie;
 </code></pre>
-</div>
 
 <p>Match concepts and their types.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">match</span> <span class="err">$</span><span class="n">x</span> <span class="n">isa</span> <span class="err">$</span><span class="n">y</span><span class="p">;</span>
+<pre><code class="language-graql">match $x isa $y;
 </code></pre>
-</div>
 
 <p>Match the concept with a particular ID.</p>
 
@@ -733,9 +716,8 @@ $('#toc').on('click', 'a', function() {
 </code></pre>
 </div>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">match</span> <span class="err">$</span><span class="n">x</span> <span class="n">id</span> <span class="s1">'ridley-scott'</span><span class="p">;</span>
+<pre><code class="language-graql">match $x id 'ridley-scott';
 </code></pre>
-</div>
 
 <p>Match concepts with a value that contains the given string.</p>
 
@@ -743,9 +725,8 @@ $('#toc').on('click', 'a', function() {
 </code></pre>
 </div>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">match</span> <span class="err">$</span><span class="n">m</span> <span class="n">value</span> <span class="k">contains</span> <span class="nv">"The Lord of the Rings"</span><span class="p">;</span>
+<pre><code class="language-graql">match $m value contains "The Lord of the Rings";
 </code></pre>
-</div>
 
 <p>Match concepts with a resource matching a predicate.</p>
 
@@ -753,9 +734,8 @@ $('#toc').on('click', 'a', function() {
 </code></pre>
 </div>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">match</span> <span class="err">$</span><span class="n">m</span> <span class="n">isa</span> <span class="n">movie</span><span class="p">,</span> <span class="n">has</span> <span class="n">runtime</span> <span class="o">&gt;</span> <span class="mi">180</span><span class="p">;</span>
+<pre><code class="language-graql">match $m isa movie, has runtime &gt; 180;
 </code></pre>
-</div>
 
 <p>Match related concepts.</p>
 
@@ -763,27 +743,23 @@ $('#toc').on('click', 'a', function() {
 </code></pre>
 </div>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">match</span> <span class="p">(</span><span class="err">$</span><span class="n">x</span><span class="p">,</span> <span class="err">$</span><span class="n">y</span><span class="p">);</span>
+<pre><code class="language-graql">match ($x, $y);
 </code></pre>
-</div>
 
 <p>Match concepts related with a particular relation type.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">match</span> <span class="p">(</span><span class="err">$</span><span class="n">p1</span><span class="p">,</span> <span class="err">$</span><span class="n">p2</span><span class="p">)</span> <span class="n">isa</span> <span class="n">marriage</span><span class="p">;</span>
+<pre><code class="language-graql">match ($p1, $p2) isa marriage;
 </code></pre>
-</div>
 
 <p>Match two related concepts where one plays a specified role type.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">match</span> <span class="p">(</span><span class="n">director</span> <span class="err">$</span><span class="n">p</span><span class="p">,</span> <span class="err">$</span><span class="n">m</span><span class="p">);</span>
+<pre><code class="language-graql">match (director: $p, $m);
 </code></pre>
-</div>
 
 <p>Match concepts in a ternary relation.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">match</span> <span class="p">(</span><span class="n">actor</span> <span class="err">$</span><span class="n">p</span><span class="p">,</span> <span class="n">character</span><span class="o">-</span><span class="n">being</span><span class="o">-</span><span class="n">played</span> <span class="err">$</span><span class="k">c</span><span class="p">,</span> <span class="n">production</span><span class="o">-</span><span class="k">with</span><span class="o">-</span><span class="k">cast</span> <span class="err">$</span><span class="n">m</span><span class="p">);</span>
+<pre><code class="language-graql">match (actor: $p, character-being-played: $c, production-with-cast: $m);
 </code></pre>
-</div>
 
 <h3 id="ako">ako</h3>
 
@@ -792,9 +768,8 @@ $('#toc').on('click', 'a', function() {
 </div>
 <p>Insert a new type that is a subtype of an existing type.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">insert</span> <span class="n">blockbuster</span> <span class="n">ako</span> <span class="n">movie</span><span class="p">;</span>
+<pre><code class="language-graql">insert blockbuster ako movie;
 </code></pre>
-</div>
 
 <h3 id="has-role">has-role</h3>
 
@@ -803,12 +778,11 @@ $('#toc').on('click', 'a', function() {
 </div>
 <p>Insert a new relation type with two role types.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">insert</span>
-<span class="n">director</span> <span class="n">isa</span> <span class="k">role</span><span class="o">-</span><span class="k">type</span><span class="p">;</span>
-<span class="n">production</span><span class="o">-</span><span class="k">with</span><span class="o">-</span><span class="n">director</span> <span class="n">isa</span> <span class="k">role</span><span class="o">-</span><span class="k">type</span><span class="p">;</span>
-<span class="n">directorship</span> <span class="n">isa</span> <span class="n">relation</span><span class="o">-</span><span class="k">type</span><span class="p">,</span> <span class="n">has</span><span class="o">-</span><span class="k">role</span> <span class="n">director</span><span class="p">,</span> <span class="n">has</span><span class="o">-</span><span class="k">role</span> <span class="n">production</span><span class="o">-</span><span class="k">with</span><span class="o">-</span><span class="n">director</span><span class="p">;</span>
+<pre><code class="language-graql">insert
+director isa role-type;
+production-with-director isa role-type;
+directorship isa relation-type, has-role director, has-role production-with-director;
 </code></pre>
-</div>
 
 <h3 id="plays-role">plays-role</h3>
 
@@ -818,9 +792,8 @@ $('#toc').on('click', 'a', function() {
 
 <p>Allow instances of a type to play a role in a relation.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">insert</span> <span class="n">person</span> <span class="n">plays</span><span class="o">-</span><span class="k">role</span> <span class="n">director</span>
+<pre><code class="language-graql">insert person plays-role director;
 </code></pre>
-</div>
 
 <h3 id="has-resource">has-resource</h3>
 
@@ -829,9 +802,8 @@ $('#toc').on('click', 'a', function() {
 </div>
 <p>Allow instances of a type to have a resource.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">insert</span> <span class="n">person</span> <span class="n">has</span><span class="o">-</span><span class="n">resource</span> <span class="n">name</span><span class="p">;</span>
+<pre><code class="language-graql">insert person has-resource name;
 </code></pre>
-</div>
 
 <h3 id="datatype">datatype</h3>
 
@@ -840,9 +812,8 @@ $('#toc').on('click', 'a', function() {
 </div>
 <p>Insert a new resource type with the given datatype.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">insert</span> <span class="n">name</span> <span class="n">isa</span> <span class="n">resource</span><span class="o">-</span><span class="k">type</span><span class="p">,</span> <span class="n">datatype</span> <span class="n">string</span><span class="p">;</span>
+<pre><code class="language-graql">insert name isa resource-type, datatype string;
 </code></pre>
-</div>
 
 <h2 id="document-changelog">Document Changelog</h2>
 
@@ -898,7 +869,7 @@ $('#toc').on('click', 'a', function() {
         <br>
         <p>© 2016 <a href="https://mindmaps.io">Mindmaps Research Ltd</a></p>
         <!-- &copy;2016 MindmapsDB. All rights reserved. <br />
-        <span>Page last updated:</span> August 17, 2016<br/> Site last generated: Oct 6, 2016 <br />
+        <span>Page last updated:</span> August 17, 2016<br/> Site last generated: Oct 7, 2016 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">

@@ -434,6 +434,13 @@
             
             
             
+            
+            
+            <li><a href="/pages/documentation/examples/SQL-migration.html">SQL migration</a></li>
+            
+            
+            
+            
         </ul>
         
         
@@ -530,15 +537,13 @@ To stop MindmapsDB graph, run <code class="highlighter-rouge">mindmaps.sh stop</
 
 <p>The Graql shell starts and you see a <code class="highlighter-rouge">&gt;&gt;&gt;</code> prompt. Type in the following:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">insert</span> <span class="n">twin</span> <span class="n">isa</span> <span class="n">entity</span><span class="o">-</span><span class="k">type</span><span class="p">;</span>
-<span class="k">insert</span> <span class="n">topsy</span> <span class="n">isa</span> <span class="n">twin</span><span class="p">;</span>
-<span class="k">insert</span> <span class="n">tim</span> <span class="n">isa</span> <span class="n">twin</span><span class="p">;</span>
-<span class="k">match</span> <span class="err">$</span><span class="n">x</span> <span class="n">isa</span> <span class="n">twin</span><span class="p">;</span>   
-
-<span class="err">$</span><span class="n">x</span> <span class="n">id</span> <span class="nv">"tim"</span> <span class="n">isa</span> <span class="n">twin</span><span class="p">;</span> 
-<span class="err">$</span><span class="n">x</span> <span class="n">id</span> <span class="nv">"topsy"</span> <span class="n">isa</span> <span class="n">twin</span><span class="p">;</span>
+<pre><code class="language-graql">&gt;&gt;&gt; insert twin isa entity-type;
+&gt;&gt;&gt; insert topsy isa twin;
+&gt;&gt;&gt; insert tim isa twin;
+&gt;&gt;&gt; match $x isa twin;
+$x id "tim" isa twin; 
+$x id "topsy" isa twin;
 </code></pre>
-</div>
 
 <p>If you see the above output then congratulations! You have set up MindmapsDB.</p>
 
@@ -611,7 +616,7 @@ To stop MindmapsDB graph, run <code class="highlighter-rouge">mindmaps.sh stop</
         <br>
         <p>© 2016 <a href="https://mindmaps.io">Mindmaps Research Ltd</a></p>
         <!-- &copy;2016 MindmapsDB. All rights reserved. <br />
-        <span>Page last updated:</span> August 10, 2016<br/> Site last generated: Oct 6, 2016 <br />
+        <span>Page last updated:</span> August 10, 2016<br/> Site last generated: Oct 7, 2016 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">

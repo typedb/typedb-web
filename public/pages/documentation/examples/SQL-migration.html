@@ -434,6 +434,13 @@
             
             
             
+            
+            
+            <li class="active"><a href="/pages/documentation/examples/SQL-migration.html">SQL migration</a></li>
+            
+            
+            
+            
         </ul>
         
         
@@ -503,11 +510,68 @@ $('#toc').on('click', 'a', function() {
 
   <p>If you have not yet set up the MindmapsDB environment, please see the <a href="../get-started/setup-guide.html">Setup guide</a>. For a comprehensive guide to migration, please see the <a href="../the-basics/migration-tutorial.html">Migration Tutorial</a>.</p>
 
-<h2 id="introduction">Introduction</h2>
+<h2 id="migrating-the-world">Migrating the World</h2>
 
-<h3 id="second-level-header">Second level header</h3>
+<p>In this example, we will show you how to import SQL data, from a relational database, to a MindmapsDB graph.</p>
 
-<h2 id="where-next">Where next?</h2>
+<h3 id="prerequisites">Prerequisites</h3>
+
+<h4 id="mysql">MySQL</h4>
+
+<p>To run this example, you should have set up <a href="http://dev.mysql.com/doc/mysql-getting-started/en/">MySQL</a> and the <a href="http://dev.mysql.com/doc/world-setup/en/world-setup-installation.html">MySQL world</a> example.</p>
+
+<p>One you have the SQL database loaded, you need to allow the MindmapsDB migration default user (username: <code class="highlighter-rouge">mindmaps</code>, password: <code class="highlighter-rouge">mindmaps</code>) access, which you can do with the following command from within the MySQL shell:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">CREATE</span> <span class="k">USER</span> <span class="s1">'mindmaps'</span><span class="o">@</span><span class="s1">'localhost'</span> <span class="n">IDENTIFIED</span> <span class="k">BY</span> <span class="s1">'mindmaps'</span><span class="p">;</span>
+<span class="k">GRANT</span> <span class="k">ALL</span> <span class="k">PRIVILEGES</span> <span class="k">ON</span> <span class="o">*</span><span class="p">.</span><span class="o">*</span> <span class="k">TO</span> <span class="s1">'mindmaps'</span><span class="o">@</span><span class="s1">'localhost'</span>
+	<span class="k">WITH</span> <span class="k">GRANT</span> <span class="k">OPTION</span><span class="p">;</span>
+</code></pre>
+</div>
+
+<p>This will allow the migration example access to your new MySQL world database.</p>
+
+<h4 id="mindmapsdb-engine">MindmapsDB Engine</h4>
+
+<p>MindmapsDB Engine needs to be running, as always, for this example to work. If you need help starting Engine, please see the <a href="../get-started/setup-guide.html">Setup guide</a>.</p>
+
+<h3 id="running-the-example">Running the Example</h3>
+
+<p>You can run this example by running the <code class="highlighter-rouge">Main</code> class. Check out the <code class="highlighter-rouge">SqlWorldMigrator</code> class for the bulk of the migration code.</p>
+
+<p>We run a few queries in the example to prove that the data has been migrated. After running the example, you should be able to answer the following questions (see the bottom of the page for answers - but please don’t peek until you’ve tried it!):</p>
+
+<ul>
+  <li>What are the Types in the World MindmapsDB graph?</li>
+  <li>How many cities are in Niger?</li>
+  <li>How many countries are in the world?</li>
+  <li>What are the languages spoken in Sweden?</li>
+</ul>
+
+<p>(We do not provide any guarantees for data integrity. Data is provided by MySQL.)</p>
+
+<h3 id="in-memory-example-lazy-folks-here-please">In-Memory Example (Lazy folks here, please)</h3>
+
+<p>If you are feeling lazy, and do not want to install MySQL to test this out, we do provide an in-memory SQL database option.</p>
+
+<p>You can run this example by running the <code class="highlighter-rouge">MainInMemory</code> class. It demonstrates the same functionality by pre-loading the World data into an <a href="http://www.h2database.com/html/main.html">H2</a> SQL database.</p>
+
+<h2 id="test-yourself-answers">Test Yourself Answers</h2>
+
+<p><strong>What are the Types in the World MindmapsDB graph?</strong> <br />
+Answer:</p>
+
+<p><strong>How many cities are in Niger?</strong> <br />
+Answer:</p>
+
+<p><strong>How many countries are in the world?</strong> <br />
+Answer:</p>
+
+<p><strong>What are the languages spoken in Sweden?</strong> <br />
+Answer:</p>
+
+<h2 id="where-next">Where Next?</h2>
+
+<p>After running this SQL migration, check out the <a href="../graql/overview.html">Graql documentation</a> and the <a href="../core-api/overview.html">Graph API documentation</a> for more instructions on how you can explore <strong>the world</strong>.</p>
 
 <h2 id="document-changelog">Document Changelog</h2>
 
@@ -567,7 +631,7 @@ $('#toc').on('click', 'a', function() {
         <br>
         <p>© 2016 <a href="https://mindmaps.io">Mindmaps Research Ltd</a></p>
         <!-- &copy;2016 MindmapsDB. All rights reserved. <br />
-        <span>Page last updated:</span> September 19, 2016<br/> Site last generated: Oct 6, 2016 <br />
+        <span>Page last updated:</span> September 19, 2016<br/> Site last generated: Oct 7, 2016 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">

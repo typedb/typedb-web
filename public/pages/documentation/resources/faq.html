@@ -434,6 +434,13 @@
             
             
             
+            
+            
+            <li><a href="/pages/documentation/examples/SQL-migration.html">SQL migration</a></li>
+            
+            
+            
+            
         </ul>
         
         
@@ -547,7 +554,7 @@ this by setting the <code class="highlighter-rouge">checkInternalVertexExistence
 
 <p>If you have a larger file, you will need to <code class="highlighter-rouge">curl</code> Mindmaps Engine. Loading through Engine will result in a “batch loading” where the file will be divided in batches that will be committed concurrently. This differs from loading through Graql shell, where the whole file is committed in a single chunk when you call commit. See the example below, which loads the Graql file FILENAME.gql, from PATH.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>curl -H "Content-Type: application/json" -X POST -d '{"path":"PATH/FILENAME.gql"}' http://localhost:4567/import/batch/data
+<div class="highlighter-rouge"><pre class="highlight"><code>curl -H <span class="s2">"Content-Type: application/json"</span> -X POST -d <span class="s1">'{"path":"PATH/FILENAME.gql"}'</span> http://localhost:4567/import/batch/data
 </code></pre>
 </div>
 
@@ -563,14 +570,14 @@ this by setting the <code class="highlighter-rouge">checkInternalVertexExistence
 
 <p>Specifically you should change the following parameters:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code># Host Location
-storage.hostname=127.0.0.1
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="c"># Host Location</span>
+storage.hostname<span class="o">=</span>127.0.0.1
 </code></pre>
 </div>
 
 <p>You can also, for example, add the following to specify a custom port:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>storage.port = 1234
+<div class="highlighter-rouge"><pre class="highlight"><code>storage.port <span class="o">=</span> 1234
 </code></pre>
 </div>
 
@@ -586,7 +593,7 @@ storage.hostname=127.0.0.1
 
 <p>Once you have started MindmapsDB, you will see a message in the console, like:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>Started ServerConnector@7aa5814d{HTTP/1.1,[http/1.1]}{0.0.0.0:4567}
+<div class="highlighter-rouge"><pre class="highlight"><code>Started ServerConnector@7aa5814d<span class="o">{</span>HTTP/1.1,[http/1.1]<span class="o">}{</span>0.0.0.0:4567<span class="o">}</span>
 </code></pre>
 </div>
 
@@ -594,9 +601,8 @@ storage.hostname=127.0.0.1
 
 <p>You can then open your browser and connect to the address printed on the console (http://0.0.0.0:4567). Select the Graql Visualiser tab and you will see a Graql shell, from which you can input queries, for example:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>match $x isa concept-type
+<pre><code class="language-graql">match $x isa concept-type;
 </code></pre>
-</div>
 
 <p>In result, you will see the resulting nodes and relations displayed inside the graql visualiser on the same page.</p>
 
@@ -606,8 +612,8 @@ storage.hostname=127.0.0.1
 
 <p>If you are using the Java API, it’s a simple as:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>graph = Mindmaps.factory(Mindmaps.DEFAULT_URI, "my-graph").getGraph();
-graph.clear();
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">graph</span> <span class="o">=</span> <span class="n">Mindmaps</span><span class="o">.</span><span class="na">factory</span><span class="o">(</span><span class="n">Mindmaps</span><span class="o">.</span><span class="na">DEFAULT_URI</span><span class="o">,</span> <span class="s">"my-graph"</span><span class="o">).</span><span class="na">getGraph</span><span class="o">();</span>
+<span class="n">graph</span><span class="o">.</span><span class="na">clear</span><span class="o">();</span>
 </code></pre>
 </div>
 
@@ -683,7 +689,7 @@ graph.clear();
         <br>
         <p>© 2016 <a href="https://mindmaps.io">Mindmaps Research Ltd</a></p>
         <!-- &copy;2016 MindmapsDB. All rights reserved. <br />
-        <span>Page last updated:</span> September 22, 2016<br/> Site last generated: Oct 6, 2016 <br />
+        <span>Page last updated:</span> September 22, 2016<br/> Site last generated: Oct 7, 2016 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">
