@@ -578,9 +578,9 @@ insert "Cynicism" isa school;
 
 <p>And look up one:</p>
 
-<pre><code class="language-graql">match $cyn id "Cynicism";
+<pre><code class="language-graql">match $c id "Cynicism";
 
-$cyn id "Cynicism" isa school;
+$c id "Cynicism" isa school;
 </code></pre>
 
 <h2 id="relations">Relations</h2>
@@ -597,16 +597,6 @@ insert philosopher isa role-type;
 insert philosophy isa role-type;
 insert practice has-role philosopher, has-role philosophy;
 </code></pre>
-
-<div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> <b>Note:</b> Commas are totally optional in query patterns, so these pairs are equivalent:<br /> 
-
-<code class="highlighter-rouge">
-insert practice has-role philosopher, has-role philosophy;
-insert practice has-role philosopher has-role philosophy;
-#and  
-insert practice, isa relation-type;
-insert practice isa relation-type;
-</code></div>
 
 <p>A <code class="highlighter-rouge">person</code> can have the role of <code class="highlighter-rouge">philosopher</code> and a <code class="highlighter-rouge">school</code> can have the role of <code class="highlighter-rouge">philosophy</code>:</p>
 
@@ -630,11 +620,14 @@ insert (philosopher: "Aristotle", philosophy: "Peripateticism") isa practice;
 
 <p>Now we can query for all our Platonists:</p>
 
-<pre><code class="language-graql">match (philosopher $phil, "Platonism") isa practice;
+<pre><code class="language-graql">match (philosopher: $phil, "Platonism") isa practice;
+</code></pre>
 
+<p>This returns: <br />
+<code class="highlighter-rouge">
 $phil id "Socrates" isa person;
 $phil id "Plato" isa person;
-</code></pre>
+</code></p>
 
 <div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> <b>Note:</b> This query can be read as ‘Get me philosophers in a practice relationship with Platonism’.  <br /> We didn’t specify the role of <code class="highlighter-rouge">Platonism</code> in this query, or the type of <code class="highlighter-rouge">$phil</code>, which is totally fine! <br /> Roles and types can be omitted in queries. <br /> For example, the query <code class="highlighter-rouge">match ($x, $y)</code> is a valid query (that will find <em>everything</em> in a relationship with <em>anything</em>).</div>
 
@@ -688,21 +681,15 @@ insert "Alexander" has title "Pharaoh of Egypt";
 insert "Alexander" has title "Lord of Asia";
 </code></pre>
 
-<p>Using Graql, we can query for people, listing their id and titles.</p>
+<p>Using Graql, we can query for people who have titles, and list them out.</p>
 
-<pre><code class="language-graql">match $x isa person select $x(id, has title);
+<pre><code class="language-graql">match $x isa person, has title $y;
 
-$x id "Socrates";
-$x id "Plato";
-$x id "Aristotle";
-$x id "Alexander" has title "Pharaoh of Egypt" has title "Hegeon" has title "Shah of Persia" has title "King of Macedon" has title "Lord of Asia";
-</code></pre>
-
-<p>Wait, who’s the Pharaoh again?</p>
-
-<pre><code class="language-graql">match $pharaoh has title "Pharaoh of Egypt";
-
-$pharaoh id "Alexander" isa person;
+$x id "Alexander" isa person; $y value "Shah of Persia" isa title; 
+$x id "Alexander" isa person; $y value "Hegeon" isa title; 
+$x id "Alexander" isa person; $y value "King of Macedon" isa title; 
+$x id "Alexander" isa person; $y value "Pharaoh of Egypt" isa title; 
+$x id "Alexander" isa person; $y value "Lord of Asia" isa title; 
 </code></pre>
 
 <div class="alert alert-success" role="alert"><i class="fa fa-check-square-o"></i> <b>Tip:</b> <strong>Test Yourself</strong> <br /> When querying for an id, value or resource you can use predicates as well as direct values. For example, has epithet contains ‘Great’. See if you can write a query for everyone with a title containing ‘King’. The answer is at the bottom of the page.</div>
@@ -742,7 +729,7 @@ insert (thinker: "Socrates", thought: "nothing") isa knowledge;
 
 <p>We can now give Socrates one final piece of knowledge:</p>
 
-<pre><code class="language-graql">match $socratesKnowsNothing ("Socrates", "nothing") insert (thinker: "Socrates", thought: $socratesKnowsNothing) isa knowledge;
+<pre><code class="language-graql">match $socratesKnowsNothing ("Socrates", "nothing"); insert (thinker: "Socrates", thought: $socratesKnowsNothing) isa knowledge;
 </code></pre>
 
 <p>Here, <code class="highlighter-rouge">socratesKnowsNothing</code> is the relation between <code class="highlighter-rouge">Socrates</code> and <code class="highlighter-rouge">nothing</code>.
@@ -844,7 +831,7 @@ Answer:</p>
         <br>
         <p>© 2016 <a href="https://mindmaps.io">Mindmaps Research Ltd</a></p>
         <!-- &copy;2016 MindmapsDB. All rights reserved. <br />
-        <span>Page last updated:</span> August 10, 2016<br/> Site last generated: Oct 7, 2016 <br />
+        <span>Page last updated:</span> August 10, 2016<br/> Site last generated: Oct 11, 2016 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">

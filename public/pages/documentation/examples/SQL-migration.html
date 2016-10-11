@@ -519,7 +519,7 @@ $('#toc').on('click', 'a', function() {
 
 <h2 id="migrating-the-world">Migrating the World</h2>
 
-<p>In this example, we will show you how to import SQL data, from a relational database, to a MindmapsDB graph.</p>
+<p>In this example, we will show you how to import SQL data, from a relational database, to a MindmapsDB graph. The code for this example can be found in our <a href="https://github.com/mindmapsdb/sample-projects/tree/master/example-sql-migration">github repo</a>.</p>
 
 <h3 id="prerequisites">Prerequisites</h3>
 
@@ -539,19 +539,19 @@ $('#toc').on('click', 'a', function() {
 
 <h4 id="mindmapsdb-engine">MindmapsDB Engine</h4>
 
-<p>MindmapsDB Engine needs to be running, as always, for this example to work. If you need help starting Engine, please see the <a href="../get-started/setup-guide.html">Setup guide</a>.</p>
+<p>MindmapsDB Engine needs to be running for this example to work. If you need help starting Engine, please see the <a href="../get-started/setup-guide.html">Setup guide</a>.</p>
 
 <h3 id="running-the-example">Running the Example</h3>
 
-<p>You can run this example by running the <code class="highlighter-rouge">Main</code> class. Check out the <code class="highlighter-rouge">SqlWorldMigrator</code> class for the bulk of the migration code.</p>
+<p>You can run this example by running the <a href="https://github.com/mindmapsdb/sample-projects/blob/master/example-sql-migration/src/main/java/Main.java"><code class="highlighter-rouge">Main</code></a> class. Check out the <code class="highlighter-rouge">SqlWorldMigrator</code> class for the bulk of the migration code.</p>
 
 <p>We run a few queries in the example to prove that the data has been migrated. After running the example, you should be able to answer the following questions (see the bottom of the page for answers - but please don’t peek until you’ve tried it!):</p>
 
 <ul>
   <li>What are the Types in the World MindmapsDB graph?</li>
-  <li>How many cities are in Niger?</li>
   <li>How many countries are in the world?</li>
-  <li>What are the languages spoken in Sweden?</li>
+  <li>How may cities are in the world?</li>
+  <li>What are the cities in Niger?</li>
 </ul>
 
 <p>(We do not provide any guarantees for data integrity. Data is provided by MySQL.)</p>
@@ -560,21 +560,35 @@ $('#toc').on('click', 'a', function() {
 
 <p>If you are feeling lazy, and do not want to install MySQL to test this out, we do provide an in-memory SQL database option.</p>
 
-<p>You can run this example by running the <code class="highlighter-rouge">MainInMemory</code> class. It demonstrates the same functionality by pre-loading the World data into an <a href="http://www.h2database.com/html/main.html">H2</a> SQL database.</p>
+<p>You can run this example by running the <a href="https://github.com/mindmapsdb/sample-projects/blob/master/example-sql-migration/src/main/java/MainInMemory.java"><code class="highlighter-rouge">MainInMemory</code></a> class. It demonstrates the same functionality by pre-loading the World data into an <a href="http://www.h2database.com/html/main.html">H2</a> SQL database.</p>
 
 <h2 id="test-yourself-answers">Test Yourself Answers</h2>
 
 <p><strong>What are the Types in the World MindmapsDB graph?</strong> <br />
 Answer:</p>
 
-<p><strong>How many cities are in Niger?</strong> <br />
+<div class="highlighter-rouge"><pre class="highlight"><code>country
+city 
+countrylanguage
+</code></pre>
+</div>
+
+<p><strong>How many countries are in the world?</strong></p>
+
+<p>Answer: <code class="highlighter-rouge">239</code></p>
+
+<p><strong>How may cities are in the world?</strong></p>
+
+<p>Answer: <code class="highlighter-rouge">4079</code></p>
+
+<p><strong>What are the cities in Niger?</strong> <br />
 Answer:</p>
 
-<p><strong>How many countries are in the world?</strong> <br />
-Answer:</p>
-
-<p><strong>What are the languages spoken in Sweden?</strong> <br />
-Answer:</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>Niamey
+Zinder
+Maradi
+</code></pre>
+</div>
 
 <h2 id="where-next">Where Next?</h2>
 
@@ -638,7 +652,7 @@ Answer:</p>
         <br>
         <p>© 2016 <a href="https://mindmaps.io">Mindmaps Research Ltd</a></p>
         <!-- &copy;2016 MindmapsDB. All rights reserved. <br />
-        <span>Page last updated:</span> September 19, 2016<br/> Site last generated: Oct 7, 2016 <br />
+        <span>Page last updated:</span> September 19, 2016<br/> Site last generated: Oct 11, 2016 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">
