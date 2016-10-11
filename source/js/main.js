@@ -24,7 +24,7 @@ window.MNDMPS.App = {
 
         topTypist.typed({
             strings: ['a distributed knowledge graph'],
-            typeSpeed: 100,
+            typeSpeed: 25,
             backSpeed: 5,
             backDelay: 1500,
             loop: false
