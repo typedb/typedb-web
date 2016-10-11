@@ -555,19 +555,19 @@ this by setting the <code class="highlighter-rouge">checkInternalVertexExistence
 
 <p>There are several ways to load data into a MindmapsDB graph. For small amounts of data (&lt;1000 lines), you an load it directly via the Graql shell. For example, the following loads up the Pokemon example data:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>bin/graql.sh -f examples/pokemon.gql
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>bin/graql.sh -f examples/pokemon.gql
 </code></pre>
 </div>
 
 <p>If you have a larger file, you will need to <code class="highlighter-rouge">curl</code> Mindmaps Engine. Loading through Engine will result in a “batch loading” where the file will be divided in batches that will be committed concurrently. This differs from loading through Graql shell, where the whole file is committed in a single chunk when you call commit. See the example below, which loads the Graql file FILENAME.gql, from PATH.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>curl -H <span class="s2">"Content-Type: application/json"</span> -X POST -d <span class="s1">'{"path":"PATH/FILENAME.gql"}'</span> http://localhost:4567/import/batch/data
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>curl -H <span class="s2">"Content-Type: application/json"</span> -X POST -d <span class="s1">'{"path":"PATH/FILENAME.gql"}'</span> http://localhost:4567/import/batch/data
 </code></pre>
 </div>
 
 <p>In order to check the status of the loading, you can open a new terminal window, navigate to the logs directory of your MindmapsDB installation and run the command:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>tail -f mindmaps.log
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>tail -f mindmaps.log
 </code></pre>
 </div>
 
@@ -577,14 +577,14 @@ this by setting the <code class="highlighter-rouge">checkInternalVertexExistence
 
 <p>Specifically you should change the following parameters:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="c"># Host Location</span>
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="c"># Host Location</span>
 storage.hostname<span class="o">=</span>127.0.0.1
 </code></pre>
 </div>
 
 <p>You can also, for example, add the following to specify a custom port:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>storage.port <span class="o">=</span> 1234
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>storage.port <span class="o">=</span> 1234
 </code></pre>
 </div>
 
@@ -600,7 +600,7 @@ storage.hostname<span class="o">=</span>127.0.0.1
 
 <p>Once you have started MindmapsDB, you will see a message in the console, like:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>Started ServerConnector@7aa5814d<span class="o">{</span>HTTP/1.1,[http/1.1]<span class="o">}{</span>0.0.0.0:4567<span class="o">}</span>
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>Started ServerConnector@7aa5814d<span class="o">{</span>HTTP/1.1,[http/1.1]<span class="o">}{</span>0.0.0.0:4567<span class="o">}</span>
 </code></pre>
 </div>
 
@@ -619,7 +619,7 @@ storage.hostname<span class="o">=</span>127.0.0.1
 
 <p>If you are using the Java API, it’s a simple as:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">graph</span> <span class="o">=</span> <span class="n">Mindmaps</span><span class="o">.</span><span class="na">factory</span><span class="o">(</span><span class="n">Mindmaps</span><span class="o">.</span><span class="na">DEFAULT_URI</span><span class="o">,</span> <span class="s">"my-graph"</span><span class="o">).</span><span class="na">getGraph</span><span class="o">();</span>
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">graph</span> <span class="o">=</span> <span class="n">Mindmaps</span><span class="o">.</span><span class="na">factory</span><span class="o">(</span><span class="n">Mindmaps</span><span class="o">.</span><span class="na">DEFAULT_URI</span><span class="o">,</span> <span class="s">"my-graph"</span><span class="o">).</span><span class="na">getGraph</span><span class="o">();</span>
 <span class="n">graph</span><span class="o">.</span><span class="na">clear</span><span class="o">();</span>
 </code></pre>
 </div>
@@ -628,7 +628,7 @@ storage.hostname<span class="o">=</span>127.0.0.1
 
 <p>If you’ve committed, then you must currently remove your installation and re-create it.  First, call</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>pkill -9 java
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>pkill -9 java
 </code></pre>
 </div>
 

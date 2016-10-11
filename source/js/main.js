@@ -23,8 +23,8 @@ window.MNDMPS.App = {
         var topTypist = $("#topTypist");
 
         topTypist.typed({
-            strings: ['a knowledge graph', 'an inference engine', 'an analytics tool', 'a distributed semantic database'],
-            typeSpeed: 10,
+            strings: ['a distributed knowledge graph'],
+            typeSpeed: 100,
             backSpeed: 5,
             backDelay: 1500,
             loop: false
@@ -296,7 +296,7 @@ window.MNDMPS.App = {
 
             var codeSplitter = window.MNDMPS.Splitter.create(document.getElementById('code-container').querySelectorAll('[data-splitter="view"]')[0]),
                 graqlSvgContainers = document.querySelectorAll('[data-splitter="slides"]')[0].querySelectorAll('[data-slide="right"]');
-            
+
             window.MNDMPS.Splitter.initAutomove(codeSplitter);
             window.MNDMPS.Splitter.init();
 
