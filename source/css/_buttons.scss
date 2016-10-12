@@ -77,6 +77,16 @@
                 &:hover{
                     color: $black-brand;
                     background-color: $white;
+                    svg{
+                        use{
+                            stroke: $black-brand;
+                        }
+                    }
+                }
+                svg{
+                    use{
+                        stroke: $white;
+                    }
                 }
             }
         }

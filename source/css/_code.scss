@@ -1,10 +1,10 @@
 .code{
-    margin-bottom: 1rem;
+    // margin-bottom: 1rem;
 
     .editor{
         height: 55vh;
         background-color: $gray-dark;
-        margin-top: -50vh;
+        margin-top: -59vh;
         border-radius: 3px;
         position: relative;
         box-shadow: 0 2px 4px 0 rgba($black-brand, 0.4);
@@ -308,7 +308,7 @@
 @media (min-width: 750px) {
 
     .code{
-        margin-bottom: 2rem;
+        // margin-bottom: 2rem;
 
         .editor{
             .controls{

@@ -71,10 +71,11 @@ html{
     }
 
     &.title{
-        height: 80vh;
+        height: 100vh;
 
         .typist{
-            height: 24%;
+            margin-top: 5%;
+            height: 12%;
             display: flex;
             flex-flow: row nowrap;
             justify-content: center;
@@ -92,9 +93,18 @@ html{
             }
         }
 
+        .intro{
+            height: 15%;
+            p{
+                color: $white;
+                text-align: center;
+                font-size: 0.8rem;
+            }
+        }
+
         .get{
             left: 0;
-            top: 10%;
+            top: 20%;
             position: absolute;
             height: 25%;
             display: flex;
@@ -104,6 +114,7 @@ html{
 
             a{
                 flex: 0 1 auto;
+                margin: 0px 5px;
             }
         }
     }
@@ -185,7 +196,7 @@ p{
         &.title{
             .logo{
                 top: 15%;
-                
+
                 span{
                     font-size: 2.75vw;
                 }
@@ -197,15 +208,18 @@ p{
             }
 
             .typist{
-                height: 28%;
+                height: 12%;
 
                 p{
                     font-size: 3vw;
                 }
             }
 
-            .get{
-                top: 13%;
+            .intro{
+                height: 15%;
+                p{
+                    font-size: 1rem;
+                }
             }
         }
     }
