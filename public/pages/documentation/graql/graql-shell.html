@@ -240,9 +240,31 @@
             
             
             
+        </ul>
+        
+        
+    
+    <li>
+        <a href="#">Migrating to MindmapsDB</a>
+        <ul>
             
             
-            <li><a href="/pages/documentation/the-basics/migration-tutorial.html">Migrating to MindmapsDB</a></li>
+            
+            <li><a href="/pages/documentation/migration/migration.html">Migrating to MindmapsDB</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="/pages/documentation/migration/SQL-migration.html">SQL Migration</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="/pages/documentation/migration/OWL-migration.html">OWL Migration</a></li>
             
             
             
@@ -523,14 +545,14 @@ $('#toc').on('click', 'a', function() {
 
 <p>Then you can enter a query and press enter for it to be evaluated:</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">&gt;&gt;&gt; </span>match <span class="nv">$x</span> id <span class="s2">"Pikachu"</span>;
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">&gt;&gt;&gt; </span>match <span class="nv">$x</span> id <span class="s2">"Pikachu"</span>;
 <span class="nv">$x</span> id <span class="s2">"Pikachu"</span> isa pokemon;
 </code></pre>
 </div>
 
 <p>If you already have a graph loaded, you can just execute the shell without any parameters to open a REPL (Read Evaluate Print Loop):</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>bin/graql.sh
+<div class="highlighter-rouge"><pre class="highlight"><code>bin/graql.sh
 </code></pre>
 </div>
 
@@ -588,6 +610,10 @@ $('#toc').on('click', 'a', function() {
       <td>Commits and validates the graph. If validation fails, the graph will not commit.</td>
     </tr>
     <tr>
+      <td><code class="highlighter-rouge">rollback</code></td>
+      <td>Rolls back the transaction, undoing everything that hasn’t been committed.</td>
+    </tr>
+    <tr>
       <td><code class="highlighter-rouge">edit</code></td>
       <td>Opens the user’s default text editor, specified by the <code class="highlighter-rouge">$EDITOR</code> environment variable. By default set to <code class="highlighter-rouge">vim</code>. When the editor exits, the query is executed in the shell. Useful for executing a large chunk of Graql without typing it all in (e.g. cut and paste from an example).</td>
     </tr>
@@ -598,6 +624,10 @@ $('#toc').on('click', 'a', function() {
     <tr>
       <td><code class="highlighter-rouge">clear</code></td>
       <td>Clears the console window.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">exit</code></td>
+      <td>Exits the REPL</td>
     </tr>
     <tr>
       <td><code class="highlighter-rouge">license</code></td>
@@ -635,6 +665,16 @@ $('#toc').on('click', 'a', function() {
       <td>A path to a file containg a query to execute.</td>
     </tr>
     <tr>
+      <td><code class="highlighter-rouge">--uri</code></td>
+      <td><code class="highlighter-rouge">-u</code></td>
+      <td>The URI to connect to engine.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">--batch</code></td>
+      <td><code class="highlighter-rouge">-b</code></td>
+      <td>A path to a file containg a query to batch load.</td>
+    </tr>
+    <tr>
       <td><code class="highlighter-rouge">--help</code></td>
       <td><code class="highlighter-rouge">-h</code></td>
       <td>Print usage message</td>
@@ -652,7 +692,7 @@ $('#toc').on('click', 'a', function() {
   </tbody>
 </table>
 
-<p>If either <code class="highlighter-rouge">--execute</code> or <code class="highlighter-rouge">--file</code> is provided, the REPL will not open and the
+<p>If <code class="highlighter-rouge">--execute</code>, <code class="highlighter-rouge">--file</code> or <code class="highlighter-rouge">--batch</code> is provided, the REPL will not open and the
 graph will be automatically committed.</p>
 
 <h2 id="document-changelog">Document Changelog</h2>

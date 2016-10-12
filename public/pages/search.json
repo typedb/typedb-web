@@ -82,6 +82,17 @@
 
 ,
 {
+"title": "OWL Migration to MindmapsDB",
+"tags": "migration",
+"keywords": "setup, getting started",
+"url": "/pages/documentation/migration/OWL-migration.html",
+"summary": "This document will teach you how to load OWL into MindmapsDB."
+}
+
+
+
+,
+{
 "title": "An Example of Migrating OWL to MindmapsDB",
 "tags": "migration",
 "keywords": "migration",
@@ -98,6 +109,17 @@
 "keywords": "migration",
 "url": "/pages/documentation/examples/SQL-migration.html",
 "summary": "A short example to illustrate migration of SQL to MindmapsDB"
+}
+
+
+
+,
+{
+"title": "SQL Migration to MindmapsDB",
+"tags": "migration",
+"keywords": "setup, getting started",
+"url": "/pages/documentation/migration/SQL-migration.html",
+"summary": "This document will teach you how to migrate SQL data into a MindmapsDB graph."
 }
 
 
@@ -263,8 +285,8 @@
 "title": "Migrating to MindmapsDB",
 "tags": "getting-startedgraqlmigration",
 "keywords": "setup, getting started",
-"url": "/pages/documentation/the-basics/migration-tutorial.html",
-"summary": "This document will teach you how to load data in different formats to populate a MindmapsDB graph."
+"url": "/pages/documentation/migration/migration.html",
+"summary": "Landing page for documentation about loading data in different formats to populate a MindmapsDB graph."
 }
 
 
@@ -315,22 +337,22 @@
 
 ,
 {
-"title": "Graql Overview",
-"tags": "graql",
-"keywords": "graql, overview",
-"url": "/pages/documentation/graql/overview.html",
-"summary": "An introduction to Graql"
+"title": "Graph API Overview",
+"tags": "javagraph-api",
+"keywords": "overview",
+"url": "/pages/documentation/core-api/overview.html",
+"summary": "A basic example of how to use MindmapsDB Graph API."
 }
 
 
 
 ,
 {
-"title": "Graph API Overview",
-"tags": "javagraph-api",
-"keywords": "overview",
-"url": "/pages/documentation/core-api/overview.html",
-"summary": "A basic example of how to use MindmapsDB Graph API."
+"title": "Graql Overview",
+"tags": "graql",
+"keywords": "graql, overview",
+"url": "/pages/documentation/graql/overview.html",
+"summary": "An introduction to Graql"
 }
 
 

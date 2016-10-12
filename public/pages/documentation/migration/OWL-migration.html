@@ -3,9 +3,9 @@
     <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Demonstrates how to create a schema for a MindmapsDB knowledge graph.">
-<meta name="keywords" content="javagraph-api,  schema, mindmapsdb, mindmaps, mindmaps.io, Mindmaps Research, Mindmaps Research Ltd, software, development platform, developer tool, data platform, programming langauge, query langauge, database, semantic database, distributed semantic database, distributed database, graph database, semantic search, data exploration, recommendation system, knowledge management, knowledge engineering, real-time analytics, advanced analytics, reasoning engine, inference engine, expert systems, semantic applications, research engines, data management, business intelligence, big data, semantic web, semantic data, knowledge representation, automated reasoning, semantic network, knowledge ontology, semantic graph, ontology engineering, graph based knowledge representation, artificial intelligence,">
-<title>Defining a Schema | MindmapsDB</title>
+<meta name="description" content="This document will teach you how to load OWL into MindmapsDB.">
+<meta name="keywords" content="migration,  setup, getting started, mindmapsdb, mindmaps, mindmaps.io, Mindmaps Research, Mindmaps Research Ltd, software, development platform, developer tool, data platform, programming langauge, query langauge, database, semantic database, distributed semantic database, distributed database, graph database, semantic search, data exploration, recommendation system, knowledge management, knowledge engineering, real-time analytics, advanced analytics, reasoning engine, inference engine, expert systems, semantic applications, research engines, data management, business intelligence, big data, semantic web, semantic data, knowledge representation, automated reasoning, semantic network, knowledge ontology, semantic graph, ontology engineering, graph based knowledge representation, artificial intelligence,">
+<title>OWL Migration to MindmapsDB | MindmapsDB</title>
 <link rel="stylesheet" href="/pages/css/syntax.css">
 
 
@@ -163,7 +163,7 @@
                             
                             dataSource: '/pages/search.json',
                             
-                            searchResultTemplate: '<li><a href="{url}" title="Defining a Schema">{title}</a></li>',
+                            searchResultTemplate: '<li><a href="{url}" title="OWL Migration to MindmapsDB">{title}</a></li>',
                             noResultsText: '<li><a class="empty">No results found</a></li>',
                             limit: 10,
                             fuzzy: true
@@ -264,7 +264,7 @@
             
             
             
-            <li><a href="/pages/documentation/migration/OWL-migration.html">OWL Migration</a></li>
+            <li class="active"><a href="/pages/documentation/migration/OWL-migration.html">OWL Migration</a></li>
             
             
             
@@ -286,7 +286,7 @@
             
             
             
-            <li class="active"><a href="/pages/documentation/core-api/simple-schema-definition.html">Simple Schema Definition</a></li>
+            <li><a href="/pages/documentation/core-api/simple-schema-definition.html">Simple Schema Definition</a></li>
             
             
             
@@ -491,7 +491,7 @@
         <!-- Content Column -->
         <div class="col-md-9">
             <div class="post-header">
-   <h1 class="post-title-main">Defining a Schema</h1>
+   <h1 class="post-title-main">OWL Migration to MindmapsDB</h1>
 </div>
 
 
@@ -499,7 +499,7 @@
 <div class="post-content">
 
    
-    <div class="summary">Demonstrates how to create a schema for a MindmapsDB knowledge graph.</div>
+    <div class="summary">This document will teach you how to load OWL into MindmapsDB.</div>
    
 
     
@@ -531,109 +531,135 @@ $('#toc').on('click', 'a', function() {
 
     
 
-    <a target="_blank" href="https://github.com/mindmapsdb/docs/blob/master/pages/documentation/3-core-api/simple-schema-definition.md" class="btn btn-default githubEditButton" role="button"><i class="fa fa-github fa-lg"></i> Edit me</a>
+    <a target="_blank" href="https://github.com/mindmapsdb/docs/blob/master/pages/documentation/5-migration/OWL-migration.md" class="btn btn-default githubEditButton" role="button"><i class="fa fa-github fa-lg"></i> Edit me</a>
 
     
 
     
 
-  <p>This article assumes that you have already looked at page that covers <a href="../the-basics/mindmaps-basics.html">MindmapsDB Basics</a>.</p>
+  <h2 id="introduction">Introduction</h2>
+<p>This tutorial shows you how to migrate OWL into MindmapsDB. If you have not yet set up the MindmapsDB environment, please see the <a href="../get-started/setup-guide.html">Setup guide</a>.</p>
 
-<p>Defining a schema for your graph allows you to:</p>
+<h2 id="migration-shell-script">Migration Shell Script</h2>
+<p>The migration shell script can be found in <code class="highlighter-rouge">mindmaps-dist/bin</code> after it has been unzipped. Usage is specific to the type of migration being performed. For OWL:</p>
 
-<ul>
-  <li>control how your data relates to each other</li>
-  <li>ensure your graph is consistent</li>
-  <li>design domain-specific knowledge graphs.</li>
-</ul>
-
-<p>In Mindmaps, a schema is defined by adding <strong>types</strong> to your graph.
-These <strong>types</strong> allow you to divide your data into different categories but also control how data instances may relate to each other.</p>
-
-<p>In this section we will review each of these types and explain how you use them when defining a MindmapsDB graph.</p>
-
-<h2 id="basic-type-definitions">Basic Type Definitions</h2>
-
-<p>This section describes basic types which are <strong>essential</strong> to a MindmapsDB schema.
-When creating a MindmapsDB knowledge graph you should always begin by defining these schema elements.</p>
-
-<h3 id="entity-type">Entity Type</h3>
-
-<p>Entity types essentially define a broad category into which data can fall. For example Al Pacino, Patrick Stewart,
-and Charlize Theron could all be categorised as people.
-Similarly we could say that Godfather, Star Trek Nemesis and Monster can all be categorised as movies.</p>
-
-<p>We would define such <strong>Entity Types</strong> as follows:</p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">EntityType</span> <span class="n">person</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">putEntityType</span><span class="o">(</span><span class="s">"Person"</span><span class="o">);</span>
-<span class="n">EntityType</span> <span class="n">movie</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">putEntityType</span><span class="o">(</span><span class="s">"Movie"</span><span class="o">);</span>
+<div class="highlighter-rouge"><pre class="highlight"><code>usage: ./migration.sh owl -file &lt;path&gt; [-graph &lt;name&gt;] [-engine &lt;url&gt;]
+       -file             OWL file
+       -graph            graph name
+       -engine           MindmapsDB engine URL, default localhost
 </code></pre>
 </div>
 
-<p>With this we can arrange our data into categories:</p>
+<h2 id="owl-migration">OWL Migration</h2>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">alPacino</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">addEntity</span><span class="o">(</span><span class="n">person</span><span class="o">).</span><span class="na">setValue</span><span class="o">(</span><span class="s">"Al Pacino"</span><span class="o">);</span>
-<span class="n">patrickStewart</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">addEntity</span><span class="o">(</span><span class="n">person</span><span class="o">).</span><span class="na">setValue</span><span class="o">(</span><span class="s">"Patrick Stewart"</span><span class="o">);</span>
-<span class="n">charliseTheron</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">addEntity</span><span class="o">(</span><span class="n">person</span><span class="o">).</span><span class="na">setValue</span><span class="o">(</span><span class="s">"Charlise Theron"</span><span class="o">);</span>
+<!--When you have read the following, you may find our extended example of [OWL migration](../examples/OWL-migration.html) useful.-->
 
-<span class="n">godfather</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">addEntity</span><span class="o">(</span><span class="n">movie</span><span class="o">).</span><span class="na">setValue</span><span class="o">(</span><span class="s">"Godfather"</span><span class="o">);</span>
-<span class="n">starTrek</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">addEntity</span><span class="o">(</span><span class="n">movie</span><span class="o">).</span><span class="na">setValue</span><span class="o">(</span><span class="s">"Star Trek Nemesis"</span><span class="o">);</span>
-<span class="n">monster</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">addEntity</span><span class="o">(</span><span class="n">movie</span><span class="o">).</span><span class="na">setValue</span><span class="o">(</span><span class="s">"Monster"</span><span class="o">);</span>
+<p>Consider the following OWL ontology:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="nt">&lt;rdf:RDF</span> <span class="na">xmlns=</span><span class="s">"http://www.co-ode.org/roberts/family-tree.owl#"</span>
+     <span class="na">xml:base=</span><span class="s">"http://www.co-ode.org/roberts/family-tree.owl"</span>
+     <span class="na">xmlns:rdf=</span><span class="s">"http://www.w3.org/1999/02/22-rdf-syntax-ns#"</span>
+     <span class="na">xmlns:owl=</span><span class="s">"http://www.w3.org/2002/07/owl#"</span>
+     <span class="na">xmlns:xml=</span><span class="s">"http://www.w3.org/XML/1998/namespace"</span>
+     <span class="na">xmlns:owl2xml=</span><span class="s">"http://www.w3.org/2006/12/owl2-xml#"</span>
+     <span class="na">xmlns:xsd=</span><span class="s">"http://www.w3.org/2001/XMLSchema#"</span>
+     <span class="na">xmlns:rdfs=</span><span class="s">"http://www.w3.org/2000/01/rdf-schema#"</span><span class="nt">&gt;</span>
+
+    <span class="nt">&lt;owl:Class</span> <span class="na">rdf:about=</span><span class="s">"http://www.co-ode.org/roberts/family-tree.owl#Person"</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;owl:ObjectProperty</span> <span class="na">rdf:about=</span><span class="s">"http://www.co-ode.org/roberts/family-tree.owl#isAncestorOf"</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;owl:ObjectProperty</span> <span class="na">rdf:about=</span><span class="s">"http://www.co-ode.org/roberts/family-tree.owl#isParentOf"</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;owl:ObjectProperty</span> <span class="na">rdf:about=</span><span class="s">"http://www.co-ode.org/roberts/family-tree.owl#hasParent"</span><span class="nt">/&gt;</span>
+
+    <span class="nt">&lt;owl:ObjectProperty</span> <span class="na">rdf:about=</span><span class="s">"http://www.co-ode.org/roberts/family-tree.owl#hasAncestor"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;owl:inverseOf</span> <span class="na">rdf:resource=</span><span class="s">"http://www.co-ode.org/roberts/family-tree.owl#isAncestorOf"</span><span class="nt">/&gt;</span>
+        <span class="nt">&lt;rdf:type</span> <span class="na">rdf:resource=</span><span class="s">"http://www.w3.org/2002/07/owl#TransitiveProperty"</span><span class="nt">/&gt;</span>
+        <span class="nt">&lt;rdfs:domain</span> <span class="na">rdf:resource=</span><span class="s">"http://www.co-ode.org/roberts/family-tree.owl#Person"</span><span class="nt">/&gt;</span>
+        <span class="nt">&lt;owl:propertyChainAxiom</span> <span class="na">rdf:parseType=</span><span class="s">"Collection"</span><span class="nt">&gt;</span>
+             <span class="nt">&lt;rdf:Description</span> <span class="na">rdf:about=</span><span class="s">"http://www.co-ode.org/roberts/family-tree.owl#hasParent"</span><span class="nt">/&gt;</span>
+             <span class="nt">&lt;rdf:Description</span> <span class="na">rdf:about=</span><span class="s">"http://www.co-ode.org/roberts/family-tree.owl#hasAncestor"</span><span class="nt">/&gt;</span>
+        <span class="nt">&lt;/owl:propertyChainAxiom&gt;</span>
+    <span class="nt">&lt;/owl:ObjectProperty&gt;</span>
+
+    <span class="nt">&lt;owl:NamedIndividual</span> <span class="na">rdf:about=</span><span class="s">"#Witold"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;rdf:type</span> <span class="na">rdf:resource=</span><span class="s">"http://www.co-ode.org/roberts/family-tree.owl#Person"</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;/owl:NamedIndividual&gt;</span>
+
+    <span class="nt">&lt;owl:NamedIndividual</span> <span class="na">rdf:about=</span><span class="s">"#Stefan"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;rdf:type</span> <span class="na">rdf:resource=</span><span class="s">"http://www.co-ode.org/roberts/family-tree.owl#Person"</span><span class="nt">/&gt;</span>
+        <span class="nt">&lt;isParentOf</span> <span class="na">rdf:resource=</span><span class="s">"#Witold"</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;/owl:NamedIndividual&gt;</span>
+<span class="err">&lt;</span>\rdf:RDF&gt;
 </code></pre>
 </div>
 
-<h3 id="relation-and-role-types">Relation and Role Types</h3>
+<p>The ontology defines a single class (type) <code class="highlighter-rouge">Person</code> as well as two instances of the class - individuals <code class="highlighter-rouge">Witold</code> and <code class="highlighter-rouge">Stefan</code>. The ontology defines properties <code class="highlighter-rouge">hasAncestor</code> and its inverse <code class="highlighter-rouge">isAncestorOf</code> as well as <code class="highlighter-rouge">hasParent</code> and <code class="highlighter-rouge">isParentOf</code> properties. The <code class="highlighter-rouge">hasAncestor</code> property is defined as transitive and additionally defines a property chain which corresponds to the rule:</p>
 
-<p>The greatest advantage of a graph database is the expressiveness of the relationships between data.
-With MindmapsDB we can control how our data relates to each other.</p>
-
-<p>For example how can we say that Patrick Stewart starred in Star Trek Nemesis?
-To be able to do so we must first allow such behaviour between our types.
-We begin doing this by defining a <strong>Relation Type</strong> which categorises the relationships of a specific type.
-For example:</p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">RelationType</span> <span class="n">starsIn</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">putRelationType</span><span class="o">(</span><span class="s">"Stars In"</span><span class="o">);</span>
+<div class="highlighter-rouge"><pre class="highlight"><code>hasAncestor(X, Y) :- hasParent(X, Z), hasAncestor(Z, Y);
 </code></pre>
 </div>
 
-<p>In addition to this we have to specify the roles of relationship:</p>
+<p>Upon migration, the OWL ontology will be mapped to the MindmapsDB Model. The following Graql statement inserts an equivalent structure to the one obtained through the migration mapping:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">RoleType</span> <span class="n">actor</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">putRoleType</span><span class="o">(</span><span class="s">"Actor"</span><span class="o">);</span>
-<span class="n">RoleType</span> <span class="n">movieCastIn</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">putRoleType</span><span class="o">(</span><span class="s">"Movie Cast In"</span><span class="o">);</span>
+<pre><code class="language-graql">insert
+
+"tPerson" isa entity-type;
+"eWitold" isa tPerson;
+"eStefan" isa tPerson;
+
+"owl-subject-op-isAncestorOf" isa role-type;
+"owl-object-op-isAncestorOf" isa role-type;
+"op-isAncestorOf" isa relation-type, has-role owl-subject-op-isAncestorOf, has-role owl-object-op-isAncestorOf;
+tPerson plays-role owl-subject-op-isAncestorOf, plays-role owl-object-op-isAncestorOf;
+
+"owl-subject-op-hasAncestor" isa role-type;
+"owl-object-op-hasAncestor" isa role-type;
+"op-hasAncestor" isa relation-type, has-role owl-subject-op-hasAncestor, has-role owl-object-op-hasAncestor;
+tPerson plays-role owl-subject-op-hasAncestor, plays-role owl-object-op-hasAncestor;
+
+"owl-subject-op-isParentOf" isa role-type;
+"owl-object-op-isParentOf" isa role-type;
+"op-isParentOf" isa relation-type, has-role owl-subject-op-isParentOf, has-role owl-object-op-isParentOf;
+tPerson plays-role owl-subject-op-isParentOf, plays-role owl-object-op-isParentOf;
+
+"owl-subject-op-hasParent" isa role-type;
+"owl-object-op-hasParent" isa role-type;
+"op-hasParent" isa relation-type, has-role owl-subject-op-hasParent, has-role owl-object-op-hasParent;
+tPerson plays-role owl-subject-op-hasParent, plays-role owl-object-op-hasParent;
+
+(owl-subject-op-isParentOf: 'eStefan', owl-object-op-isParentOf: eWitold) isa op-isParentOf;
+
+"inv-op-hasAncestor" isa inference-rule,
+lhs {match
+(owl-subject-op-hasAncestor: $x, owl-object-op-hasAncestor: $y) isa hasAncestor;},
+rhs {match
+(owl-subject-op-isAncestorOf: $y, owl-object-op-isAncestorOf: $x) isa isAncestorOf;};
+
+"inv-op-isAncestorOf" isa inference-rule,
+lhs {match
+(owl-subject-op-isAncestorOf: $x, owl-object-op-isAncestorOf: $y) isa isAncestorOf;},
+rhs {match
+(owl-subject-op-hasAncestor: $y, owl-object-op-hasAncestor: $x) isa hasAncestor;};
+
+"trst-op-hasAncestor" isa inference-rule,
+lhs {match
+(owl-subject-op-hasParent: $x, owl-object-op-hasParent: $z) isa hasAncestor;
+(owl-subject-op-hasAncestor: $z, owl-object-op-hasAncestor: $y) isa hasAncestor;},
+rhs {match
+(owl-subject-op-hasAncestor: $x, owl-object-op-hasAncestor: $y) isa hasAncestor;};
+
+"pch-op-hasAncestor" isa inference-rule,
+lhs {match
+(owl-subject-op-hasParent: $x, owl-object-op-hasParent: $z) isa hasParent;
+(owl-subject-op-hasAncestor: $z, owl-object-op-hasAncestor: $y) isa hasAncestor;},
+rhs {match
+(owl-subject-op-hasAncestor: $x, owl-object-op-hasAncestor: $y) isa hasAncestor;};
 </code></pre>
-</div>
 
-<p>We also have to link these roles to the correct <strong>Relation Type</strong> (NB Roles are unique and cannot be in more than one
-Relation Type):</p>
+<h2 id="where-next">Where Next?</h2>
+<p>You can find further documentation about migration in our API reference documentation (which is in the <code class="highlighter-rouge">/docs</code> directory of the distribution zip file, and also online <a href="https://mindmaps.io/pages/api-reference/latest/index.html">here</a>).</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">starsIn</span><span class="o">.</span><span class="na">hasRole</span><span class="o">(</span><span class="n">actor</span><span class="o">).</span><span class="na">hasRole</span><span class="o">(</span><span class="n">movieCastIn</span><span class="o">);</span>
-</code></pre>
-</div>
-
-<p>Finally we have to explicitly define which <strong>Entity Types</strong> are allowed to play which <strong>Role Types</strong>:</p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">person</span><span class="o">.</span><span class="na">playsRole</span><span class="o">(</span><span class="n">actor</span><span class="o">);</span>
-<span class="n">movie</span><span class="o">.</span><span class="na">playsRole</span><span class="o">(</span><span class="n">movieCastIn</span><span class="o">);</span>
-</code></pre>
-</div>
-
-<p>The above statements allow people to be actors and allow movies to have actors cast in them.</p>
-
-<div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> <b>Note:</b> Explicitly specifying which <strong>Role Types</strong> an <strong>Entity Type</strong> can play allows us to control our data more easily.
-Essentially it would prevent us from accidentally saying that a movie starred in another movie.</div>
-
-<p>Now, finally, we can specify that Patrick Stewart was in Star Trek Nemesis.
-First we create an instance of the Relation Type:</p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">Relation</span> <span class="n">relation</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">addRelation</span><span class="o">(</span><span class="n">starsIn</span><span class="o">);</span>
-</code></pre>
-</div>
-
-<p>Then we specify who is playing which role:</p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">relation</span><span class="o">.</span><span class="na">putRolePlayer</span><span class="o">(</span><span class="n">actor</span><span class="o">,</span> <span class="n">patrickStewart</span><span class="o">).</span><span class="na">putRolePlayer</span><span class="o">(</span><span class="n">movieCastIn</span><span class="o">,</span> <span class="n">startrek</span><span class="o">);</span>
-</code></pre>
-</div>
+<!--Please take a look at our examples to further illustrate [SQL migration](../examples/SQL-migration.html) and [OWL migration](../examples/OWL-migration.html).
+-->
 
 <h2 id="document-changelog">Document Changelog</h2>
 
@@ -644,15 +670,15 @@ First we create an instance of the Relation Type:</p>
         <td>Description</td>        
     </tr>
         <tr>
-        <td>v0.1.0</td>
-        <td>03/09/2016</td>
-        <td>First release.</td>        
+        <td>v0.2.0</td>
+        <td>28/09/2016</td>
+        <td>First doc release.</td>        
     </tr>
 
 </table>
 
 <h2 id="comments">Comments</h2>
-<p>Want to leave a comment? Visit <a href="https://github.com/mindmapsdb/docs/issues/21" target="_blank">the issues on Github for this page</a> (you’ll need a GitHub account). You are also welcome to contribute to our documentation directly via the “Edit me” button at the top of the page.</p>
+<p>Want to leave a comment? Visit <a href="https://github.com/mindmapsdb/docs/issues/32" target="_blank">the issues on Github for this page</a> (you’ll need a GitHub account). You are also welcome to contribute to our documentation directly via the “Edit me” button at the top of the page.</p>
 
 
     <div class="tags">
@@ -661,11 +687,7 @@ First we create an instance of the Relation Type:</p>
         
         
         
-        <a href="/pages/tag_java.html" class="btn btn-default navbar-btn cursorNorm" role="button">java</a>
-        
-        
-        
-        <a href="/pages/tag_graph-api.html" class="btn btn-default navbar-btn cursorNorm" role="button">graph-api</a>
+        <a href="/pages/tag_migration.html" class="btn btn-default navbar-btn cursorNorm" role="button">migration</a>
         
         
         
@@ -696,7 +718,7 @@ First we create an instance of the Relation Type:</p>
         <br>
         <p>© 2016 <a href="https://mindmaps.io">Mindmaps Research Ltd</a></p>
         <!-- &copy;2016 MindmapsDB. All rights reserved. <br />
-        <span>Page last updated:</span> August 23, 2016<br/> Site last generated: Oct 12, 2016 <br />
+        <span>Page last updated:</span> August 10, 2016<br/> Site last generated: Oct 12, 2016 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">

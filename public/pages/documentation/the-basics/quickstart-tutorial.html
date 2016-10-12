@@ -240,9 +240,31 @@
             
             
             
+        </ul>
+        
+        
+    
+    <li>
+        <a href="#">Migrating to MindmapsDB</a>
+        <ul>
             
             
-            <li><a href="/pages/documentation/the-basics/migration-tutorial.html">Migrating to MindmapsDB</a></li>
+            
+            <li><a href="/pages/documentation/migration/migration.html">Migrating to MindmapsDB</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="/pages/documentation/migration/SQL-migration.html">SQL Migration</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="/pages/documentation/migration/OWL-migration.html">OWL Migration</a></li>
             
             
             
@@ -523,7 +545,7 @@ You can find the example <code class="highlighter-rouge">philosophers.gql</code>
 
 <p>We are going model how philosophers are related to each other. If you are using Graql and don’t want to type everything below to build up the schema, you can load it using:</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>bin/graql.sh -f examples/philosophers.gql
+<div class="highlighter-rouge"><pre class="highlight"><code>bin/graql.sh -f examples/philosophers.gql
 </code></pre>
 </div>
 
@@ -533,7 +555,7 @@ You can find the example <code class="highlighter-rouge">philosophers.gql</code>
 
 <p>We’ll first add an entity type <code class="highlighter-rouge">person</code>:</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>bin/graql.sh
+<div class="highlighter-rouge"><pre class="highlight"><code>bin/graql.sh
 insert person isa entity-type;
 </code></pre>
 </div>
