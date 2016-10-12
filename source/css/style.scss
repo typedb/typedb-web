@@ -74,8 +74,8 @@ html{
         height: 100vh;
 
         .typist{
-            margin-top: 5%;
-            height: 12%;
+            margin-top: 8%;
+            height: 10%;
             display: flex;
             flex-flow: row nowrap;
             justify-content: center;
@@ -88,7 +88,7 @@ html{
                 color: $white;
                 margin: 0;
                 white-space: nowrap;
-                font-size: 5vw;
+                font-size: 1.5rem;
                 flex: 0 1 auto;
             }
         }
@@ -98,7 +98,7 @@ html{
             p{
                 color: $white;
                 text-align: center;
-                font-size: 0.8rem;
+                font-size: 0.7rem;
             }
         }
 
@@ -185,10 +185,30 @@ p{
 }
 
 /* Larger than mobile */
-@media (min-width: 400px) {}
+@media (min-width: 400px) {
+    .container{
+        &.title{
+            .intro{
+                p{
+                    font-size: 0.8rem;
+                }
+            }
+        }
+    }
+}
 
 /* Larger than phablet (also point when grid becomes active) */
-@media (min-width: 550px) {}
+@media (min-width: 550px) {
+    .container{
+        &.title{
+            .intro{
+                p{
+                    font-size: 0.9rem;
+                }
+            }
+        }
+    }
+}
 
 /* Larger than tablet */
 @media (min-width: 750px) {
@@ -208,15 +228,13 @@ p{
             }
 
             .typist{
-                height: 12%;
-
+                margin-top: 5%;
                 p{
-                    font-size: 3vw;
+                    font-size: 2rem;
                 }
             }
 
             .intro{
-                height: 15%;
                 p{
                     font-size: 1rem;
                 }
@@ -240,6 +258,20 @@ p{
     p{
         margin: 0 0 1.5rem 0;
     }
+    .container{
+        &.title{
+            .intro{
+                p{
+                    font-size: 1.1;
+                }
+            }
+            .typist{
+                p{
+                    font-size: 2.5rem;
+                }
+            }
+        }
+    }
 }
 
 /* Larger than Desktop HD */
@@ -251,6 +283,11 @@ p{
                     use{
                         stroke-width: 1.5px;
                     }
+                }
+            }
+            .typist{
+                p{
+                    font-size: 3rem;
                 }
             }
         }
