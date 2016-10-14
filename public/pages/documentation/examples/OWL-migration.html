@@ -540,10 +540,54 @@ $('#toc').on('click', 'a', function() {
   <p>If you have not yet set up the MindmapsDB environment, please see the <a href="../get-started/setup-guide.html">Setup guide</a>. For a comprehensive guide to migration, please see the <a href="../the-basics/migration-tutorial.html">Migration Tutorial</a>.</p>
 
 <h2 id="introduction">Introduction</h2>
+<p>This example addresses the topic of OWL interoperability through a migration of a family tree OWL ontology. The sole prerequisity of the example is having the Mindmaps Engine running. If you need help starting Engine, please see the <a href="../get-started/setup-guide.html">Setup guide</a>.</p>
 
-<h3 id="second-level-header">Second level header</h3>
+<h3 id="running-the-example">Running the example</h3>
+<p>You can run this example by running the <a href="https://github.com/mindmapsdb/sample-projects/blob/master/example-owl-migration/src/main/java/Main.java"><code class="highlighter-rouge">Main</code></a> class. Check out the <code class="highlighter-rouge">OWLResourceMigrator</code> class for the bulk of the migration code.</p>
+
+<p>We run a few queries in the example to prove that the data has been migrated. After running the example, you should be able to answer the following questions (see the bottom of the page for answers - but please don’t peek until you’ve tried it!):</p>
+
+<ul>
+  <li>What are the Types in the Family Tree MindmapsDB graph?</li>
+  <li>How many people are in the family tree?</li>
+  <li>How many descendants does Eleanor Pringle have?</li>
+  <li>Who are the great uncles of Ethel Archer?</li>
+</ul>
+
+<h2 id="test-yourself-answers">Test Yourself Answers</h2>
+
+<p><strong>What are the Types in the Family Tree MindmapsDB graph?</strong> <br />
+Answer:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>tThing
+tPerson
+tMan
+tWoman
+</code></pre>
+</div>
+
+<p><strong>How many people are in the family tree?</strong></p>
+
+<p>Answer: <code class="highlighter-rouge">407</code></p>
+
+<p><strong>How many descendants does Eleanor Pringle have?</strong></p>
+
+<p>Answer: <code class="highlighter-rouge">53</code></p>
+
+<p><strong>Who are the great uncles of Ethel Archer?</strong> <br />
+Answer:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>William Whitfield
+Harry Whitfield
+George Whitfield
+Walter Whitfield
+James Whitfield
+</code></pre>
+</div>
 
 <h2 id="where-next">Where next?</h2>
+
+<p>After running this OWL migration, check out the <a href="../graql/overview.html">Graql documentation</a> and the <a href="../core-api/overview.html">Graph API documentation</a> for more instructions on how you can explore <strong>the family tree</strong>.</p>
 
 <h2 id="document-changelog">Document Changelog</h2>
 
@@ -563,7 +607,6 @@ $('#toc').on('click', 'a', function() {
 
 <h2 id="comments">Comments</h2>
 <p>Want to leave a comment? Visit <a href="https://github.com/mindmapsdb/docs/issues/41" target="_blank">the issues on Github for this page</a> (you’ll need a GitHub account). You are also welcome to contribute to our documentation directly via the “Edit me” button at the top of the page.</p>
-
 
 
     <div class="tags">
@@ -603,7 +646,7 @@ $('#toc').on('click', 'a', function() {
         <br>
         <p>© 2016 <a href="https://mindmaps.io">Mindmaps Research Ltd</a></p>
         <!-- &copy;2016 MindmapsDB. All rights reserved. <br />
-        <span>Page last updated:</span> September 19, 2016<br/> Site last generated: Oct 12, 2016 <br />
+        <span>Page last updated:</span> September 19, 2016<br/> Site last generated: Oct 14, 2016 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">

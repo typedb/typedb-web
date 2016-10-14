@@ -550,13 +550,13 @@ You can find the code below in the example code directory of the MindmapsDB dist
 <p>Make sure you have MindmapsDB Engine running locally by using <code class="highlighter-rouge">mindmaps.sh start</code>.
 Once you have done that, a thread-bound graph can be retrieved by:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">MindmapsGraph</span> <span class="n">mindmapsGraph</span> <span class="o">=</span> <span class="n">Mindmaps</span><span class="o">.</span><span class="na">factory</span><span class="o">(</span><span class="n">Mindmaps</span><span class="o">.</span><span class="na">DEFAULT_URI</span><span class="o">,</span> <span class="s">"my-graph"</span><span class="o">).</span><span class="na">getGraph</span><span class="o">();</span>
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">MindmapsGraph</span> <span class="n">mindmapsGraph</span> <span class="o">=</span> <span class="n">Mindmaps</span><span class="o">.</span><span class="na">factory</span><span class="o">(</span><span class="n">Mindmaps</span><span class="o">.</span><span class="na">DEFAULT_URI</span><span class="o">,</span> <span class="s">"my-graph"</span><span class="o">).</span><span class="na">getGraph</span><span class="o">();</span>
 </code></pre>
 </div>
 
 <p>Alternatively an in-memory graph can be created with:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">MindmapsGraph</span> <span class="n">mindmapsGraph</span> <span class="o">=</span> <span class="n">Mindmaps</span><span class="o">.</span><span class="na">factory</span><span class="o">(</span><span class="n">Mindmaps</span><span class="o">.</span><span class="na">IN_MEMORY</span><span class="o">,</span> <span class="s">"my-graph"</span><span class="o">).</span><span class="na">getGraph</span><span class="o">();</span>
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">MindmapsGraph</span> <span class="n">mindmapsGraph</span> <span class="o">=</span> <span class="n">Mindmaps</span><span class="o">.</span><span class="na">factory</span><span class="o">(</span><span class="n">Mindmaps</span><span class="o">.</span><span class="na">IN_MEMORY</span><span class="o">,</span> <span class="s">"my-graph"</span><span class="o">).</span><span class="na">getGraph</span><span class="o">();</span>
 </code></pre>
 </div>
 
@@ -579,13 +579,13 @@ Tutorial</a> using the Java Graph API.</p>
 
 <p>First we create some philosophers, so we define the category of <code class="highlighter-rouge">people</code>:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>    <span class="n">EntityType</span> <span class="n">person</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">putEntityType</span><span class="o">(</span><span class="s">"person"</span><span class="o">);</span>
+<div class="language-java highlighter-rouge"><pre class="highlight"><code>    <span class="n">EntityType</span> <span class="n">person</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">putEntityType</span><span class="o">(</span><span class="s">"person"</span><span class="o">);</span>
 </code></pre>
 </div>
 
 <p>Next we specify who our people are:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>    <span class="n">Entity</span> <span class="n">socrates</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">putEntity</span><span class="o">(</span><span class="s">"Socrates"</span><span class="o">,</span> <span class="n">person</span><span class="o">);</span>
+<div class="language-java highlighter-rouge"><pre class="highlight"><code>    <span class="n">Entity</span> <span class="n">socrates</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">putEntity</span><span class="o">(</span><span class="s">"Socrates"</span><span class="o">,</span> <span class="n">person</span><span class="o">);</span>
     <span class="n">Entity</span> <span class="n">plato</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">putEntity</span><span class="o">(</span><span class="s">"Plato"</span><span class="o">,</span> <span class="n">person</span><span class="o">);</span>
     <span class="n">Entity</span> <span class="n">aristotle</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">putEntity</span><span class="o">(</span><span class="s">"Aristotle"</span><span class="o">,</span> <span class="n">person</span><span class="o">);</span>
     <span class="n">Entity</span> <span class="n">alexander</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">putEntity</span><span class="o">(</span><span class="s">"Alexander"</span><span class="o">,</span> <span class="n">person</span><span class="o">);</span>
@@ -596,14 +596,14 @@ Tutorial</a> using the Java Graph API.</p>
 
 <p>We can query for all the people:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Instances of Person:"</span><span class="o">);</span>
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Instances of Person:"</span><span class="o">);</span>
  <span class="n">person</span><span class="o">.</span><span class="na">instances</span><span class="o">().</span><span class="na">forEach</span><span class="o">(</span><span class="n">i</span> <span class="o">-&gt;</span> <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">i</span><span class="o">.</span><span class="na">getId</span><span class="o">()));</span>
 </code></pre>
 </div>
 
 <p>Next, let’s add some <code class="highlighter-rouge">schools</code> of thought:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>    <span class="n">EntityType</span> <span class="n">school</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">putEntityType</span><span class="o">(</span><span class="s">"school"</span><span class="o">);</span>
+<div class="language-java highlighter-rouge"><pre class="highlight"><code>    <span class="n">EntityType</span> <span class="n">school</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">putEntityType</span><span class="o">(</span><span class="s">"school"</span><span class="o">);</span>
     <span class="n">Entity</span> <span class="n">peripateticism</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">putEntity</span><span class="o">(</span><span class="s">"Peripateticism"</span><span class="o">,</span> <span class="n">school</span><span class="o">);</span>
     <span class="n">Entity</span> <span class="n">platonism</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">putEntity</span><span class="o">(</span><span class="s">"Platonism"</span><span class="o">,</span> <span class="n">school</span><span class="o">);</span>
     <span class="n">Entity</span> <span class="n">idealism</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">putEntity</span><span class="o">(</span><span class="s">"Idealism"</span><span class="o">,</span> <span class="n">school</span><span class="o">);</span>
@@ -613,7 +613,7 @@ Tutorial</a> using the Java Graph API.</p>
 
 <p>And look one up:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">getEntity</span><span class="o">(</span><span class="s">"Cynicism"</span><span class="o">).</span><span class="na">getId</span><span class="o">();</span>
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">getEntity</span><span class="o">(</span><span class="s">"Cynicism"</span><span class="o">).</span><span class="na">getId</span><span class="o">();</span>
 </code></pre>
 </div>
 
@@ -621,7 +621,7 @@ Tutorial</a> using the Java Graph API.</p>
 
 <p>Now that we have some data lets specify how these philosophers relate to these schools. First we create the <code class="highlighter-rouge">Relation Type</code> and its <code class="highlighter-rouge">Role Types</code>:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">RoleType</span> <span class="n">philosopher</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">putRoleType</span><span class="o">(</span><span class="s">"philosopher"</span><span class="o">);</span>
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">RoleType</span> <span class="n">philosopher</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">putRoleType</span><span class="o">(</span><span class="s">"philosopher"</span><span class="o">);</span>
 <span class="n">RoleType</span> <span class="n">philosophy</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">putRoleType</span><span class="o">(</span><span class="s">"philosophy"</span><span class="o">);</span>
 <span class="n">RelationType</span> <span class="n">practice</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">putRelationType</span><span class="o">(</span><span class="s">"practice"</span><span class="o">).</span>
   <span class="n">hasRole</span><span class="o">(</span><span class="n">philosopher</span><span class="o">).</span><span class="na">hasRole</span><span class="o">(</span><span class="n">philosophy</span><span class="o">);</span>
@@ -630,7 +630,7 @@ Tutorial</a> using the Java Graph API.</p>
 
 <p>Next we can relate our philosophers and schools to each other:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>    <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">addRelation</span><span class="o">(</span><span class="n">practice</span><span class="o">).</span>  
+<div class="language-java highlighter-rouge"><pre class="highlight"><code>    <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">addRelation</span><span class="o">(</span><span class="n">practice</span><span class="o">).</span>  
       <span class="n">putRolePlayer</span><span class="o">(</span><span class="n">philosopher</span><span class="o">,</span> <span class="n">socrates</span><span class="o">).</span>
       <span class="n">putRolePlayer</span><span class="o">(</span><span class="n">philosophy</span><span class="o">,</span> <span class="n">platonisim</span><span class="o">);</span>
 
@@ -652,7 +652,7 @@ Tutorial</a> using the Java Graph API.</p>
 
 <p>Now we can define how our philosophers relate to each other:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>    <span class="n">RoleType</span> <span class="n">teacher</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">putRoleType</span><span class="o">(</span><span class="s">"teacher"</span><span class="o">);</span>
+<div class="language-java highlighter-rouge"><pre class="highlight"><code>    <span class="n">RoleType</span> <span class="n">teacher</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">putRoleType</span><span class="o">(</span><span class="s">"teacher"</span><span class="o">);</span>
     <span class="n">RoleType</span> <span class="n">student</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">putRoleType</span><span class="o">(</span><span class="s">"student"</span><span class="o">);</span>
     <span class="n">RelationType</span> <span class="n">education</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">putRelationType</span><span class="o">(</span><span class="s">"education"</span><span class="o">).</span>
       <span class="n">hasRole</span><span class="o">(</span><span class="n">teacher</span><span class="o">).</span><span class="na">hasRole</span><span class="o">(</span><span class="n">student</span><span class="o">);</span>
@@ -671,7 +671,7 @@ Tutorial</a> using the Java Graph API.</p>
 <p>Some people have special titles and epithets and we want to talk about that.
 So, we’ll create some resource types that can be attached to a person:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">ResourceType</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">title</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">putResourceType</span><span class="o">(</span><span class="s">"title"</span><span class="o">,</span> <span class="n">Data</span><span class="o">.</span><span class="na">STRING</span><span class="o">);</span>
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">ResourceType</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">title</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">putResourceType</span><span class="o">(</span><span class="s">"title"</span><span class="o">,</span> <span class="n">Data</span><span class="o">.</span><span class="na">STRING</span><span class="o">);</span>
 <span class="n">ResourceType</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">epithet</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">putResourceType</span><span class="o">(</span><span class="s">"epithet"</span><span class="o">,</span> <span class="n">Data</span><span class="o">.</span><span class="na">STRING</span><span class="o">);</span>
 
 <span class="n">person</span><span class="o">.</span><span class="na">playsRole</span><span class="o">(</span><span class="n">hasResourceTarget</span><span class="o">);</span>
@@ -682,7 +682,7 @@ So, we’ll create some resource types that can be attached to a person:</p>
 
 <p>Let’s make Alexander “Great”!</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">Resource</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">theGreat</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">putResource</span><span class="o">(</span><span class="s">"The Great"</span><span class="o">,</span> <span class="n">epithet</span><span class="o">);</span>
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">Resource</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">theGreat</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">putResource</span><span class="o">(</span><span class="s">"The Great"</span><span class="o">,</span> <span class="n">epithet</span><span class="o">);</span>
 
 <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">putRelation</span><span class="o">(</span><span class="n">hasResource</span><span class="o">).</span>
   <span class="n">putRolePlayer</span><span class="o">(</span><span class="n">hasResourceTarget</span><span class="o">,</span> <span class="n">alexander</span><span class="o">).</span>
@@ -696,7 +696,7 @@ So, we’ll create some resource types that can be attached to a person:</p>
 
 <p>Let’s add the rest of Alexander’s titles while we’re at it:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">Resource</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">hegemon</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">putResource</span><span class="o">(</span><span class="s">"Hegemon"</span><span class="o">,</span> <span class="n">title</span><span class="o">);</span>
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">Resource</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">hegemon</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">putResource</span><span class="o">(</span><span class="s">"Hegemon"</span><span class="o">,</span> <span class="n">title</span><span class="o">);</span>
 <span class="n">Resource</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">kingOfMacedon</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">putResource</span><span class="o">(</span><span class="s">"King of Macedon"</span><span class="o">,</span> <span class="n">title</span><span class="o">);</span>
 <span class="n">Resource</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">shahOfPersia</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">putResource</span><span class="o">(</span><span class="s">"Shah of Persia"</span><span class="o">,</span> <span class="n">title</span><span class="o">);</span>
 <span class="n">Resource</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">pharaohOfEgypt</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">putResource</span><span class="o">(</span><span class="s">"Pharaoh of Egypt"</span><span class="o">,</span> <span class="n">title</span><span class="o">);</span>
@@ -788,7 +788,7 @@ So, we’ll create some resource types that can be attached to a person:</p>
         <br>
         <p>© 2016 <a href="https://mindmaps.io">Mindmaps Research Ltd</a></p>
         <!-- &copy;2016 MindmapsDB. All rights reserved. <br />
-        <span>Page last updated:</span> August 10, 2016<br/> Site last generated: Oct 12, 2016 <br />
+        <span>Page last updated:</span> August 10, 2016<br/> Site last generated: Oct 14, 2016 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">
