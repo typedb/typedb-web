@@ -238,6 +238,17 @@
 
 ,
 {
+"title": "Graql Templating",
+"tags": "graql",
+"keywords": "graql, java",
+"url": "/pages/documentation/graql/graql-templating.html",
+"summary": "How to use templating on top of Graql"
+}
+
+
+
+,
+{
 "title": "Welcome to the MindmapsDB Documentation Portal",
 "tags": "getting-startedgraqljavacore-api",
 "keywords": "sample homepage",

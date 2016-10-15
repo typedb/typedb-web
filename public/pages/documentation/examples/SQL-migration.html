@@ -357,6 +357,13 @@
             
             
             
+            <li><a href="/pages/documentation/graql/graql-templating.html">Graql Templating</a></li>
+            
+            
+            
+            
+            
+            
             <li><a href="/pages/documentation/graql/graql-cheatsheet.html">Graql Cheatsheet</a></li>
             
             
@@ -549,7 +556,7 @@ $('#toc').on('click', 'a', function() {
 
 <p>To run this example, you should have set up <a href="http://dev.mysql.com/doc/mysql-getting-started/en/">MySQL</a> and the <a href="http://dev.mysql.com/doc/world-setup/en/world-setup-installation.html">MySQL world</a> example.</p>
 
-<p>One you have the SQL database loaded, you need to allow the MindmapsDB migration default user (username: <code class="highlighter-rouge">mindmaps</code>, password: <code class="highlighter-rouge">mindmaps</code>) access, which you can do with the following command from within the MySQL shell:</p>
+<p>Once you have the SQL database loaded, you need to allow the MindmapsDB migration default user (username: <code class="highlighter-rouge">mindmaps</code>, password: <code class="highlighter-rouge">mindmaps</code>) access, which you can do with the following command from within the MySQL shell:</p>
 
 <div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">CREATE</span> <span class="k">USER</span> <span class="s1">'mindmaps'</span><span class="o">@</span><span class="s1">'localhost'</span> <span class="n">IDENTIFIED</span> <span class="k">BY</span> <span class="s1">'mindmaps'</span><span class="p">;</span>
 <span class="k">GRANT</span> <span class="k">ALL</span> <span class="k">PRIVILEGES</span> <span class="k">ON</span> <span class="o">*</span><span class="p">.</span><span class="o">*</span> <span class="k">TO</span> <span class="s1">'mindmaps'</span><span class="o">@</span><span class="s1">'localhost'</span>
@@ -585,6 +592,8 @@ $('#toc').on('click', 'a', function() {
 <p>You can run this example by running the <a href="https://github.com/mindmapsdb/sample-projects/blob/master/example-sql-migration/src/main/java/MainInMemory.java"><code class="highlighter-rouge">MainInMemory</code></a> class. It demonstrates the same functionality by pre-loading the World data into an <a href="http://www.h2database.com/html/main.html">H2</a> SQL database.</p>
 
 <h2 id="test-yourself-answers">Test Yourself Answers</h2>
+
+<p>You can see the code to answer these questions in the function <a href="https://github.com/mindmapsdb/sample-projects/blob/master/example-sql-migration/src/main/java/SqlWorldMigrator.java">printInformationAboutWorld()</a>.</p>
 
 <p><strong>What are the Types in the World MindmapsDB graph?</strong> <br />
 Answer:</p>
@@ -674,7 +683,7 @@ Maradi
         <br>
         <p>© 2016 <a href="https://mindmaps.io">Mindmaps Research Ltd</a></p>
         <!-- &copy;2016 MindmapsDB. All rights reserved. <br />
-        <span>Page last updated:</span> September 19, 2016<br/> Site last generated: Oct 14, 2016 <br />
+        <span>Page last updated:</span> September 19, 2016<br/> Site last generated: Oct 15, 2016 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">
