@@ -240,6 +240,13 @@
             
             
             
+            
+            
+            <li><a href="/pages/documentation/the-basics/visualiser.html">Visualising a Graph</a></li>
+            
+            
+            
+            
         </ul>
         
         
@@ -558,7 +565,7 @@ $('#toc').on('click', 'a', function() {
 
 <p>Once you have the SQL database loaded, you need to allow the MindmapsDB migration default user (username: <code class="highlighter-rouge">mindmaps</code>, password: <code class="highlighter-rouge">mindmaps</code>) access, which you can do with the following command from within the MySQL shell:</p>
 
-<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">CREATE</span> <span class="k">USER</span> <span class="s1">'mindmaps'</span><span class="o">@</span><span class="s1">'localhost'</span> <span class="n">IDENTIFIED</span> <span class="k">BY</span> <span class="s1">'mindmaps'</span><span class="p">;</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">CREATE</span> <span class="k">USER</span> <span class="s1">'mindmaps'</span><span class="o">@</span><span class="s1">'localhost'</span> <span class="n">IDENTIFIED</span> <span class="k">BY</span> <span class="s1">'mindmaps'</span><span class="p">;</span>
 <span class="k">GRANT</span> <span class="k">ALL</span> <span class="k">PRIVILEGES</span> <span class="k">ON</span> <span class="o">*</span><span class="p">.</span><span class="o">*</span> <span class="k">TO</span> <span class="s1">'mindmaps'</span><span class="o">@</span><span class="s1">'localhost'</span>
 	<span class="k">WITH</span> <span class="k">GRANT</span> <span class="k">OPTION</span><span class="p">;</span>
 </code></pre>
@@ -570,7 +577,7 @@ $('#toc').on('click', 'a', function() {
 
 <p>MindmapsDB Engine needs to be running for this example to work. If you need help starting Engine, please see the <a href="../get-started/setup-guide.html">Setup guide</a>.</p>
 
-<h3 id="running-the-example">Running the Example</h3>
+<h3 id="running-the-example-in-java">Running the Example in Java</h3>
 
 <p>You can run this example by running the <a href="https://github.com/mindmapsdb/sample-projects/blob/master/example-sql-migration/src/main/java/Main.java"><code class="highlighter-rouge">Main</code></a> class. Check out the <code class="highlighter-rouge">SqlWorldMigrator</code> class for the bulk of the migration code.</p>
 
@@ -590,6 +597,14 @@ $('#toc').on('click', 'a', function() {
 <p>If you are feeling lazy, and do not want to install MySQL to test this out, we do provide an in-memory SQL database option.</p>
 
 <p>You can run this example by running the <a href="https://github.com/mindmapsdb/sample-projects/blob/master/example-sql-migration/src/main/java/MainInMemory.java"><code class="highlighter-rouge">MainInMemory</code></a> class. It demonstrates the same functionality by pre-loading the World data into an <a href="http://www.h2database.com/html/main.html">H2</a> SQL database.</p>
+
+<h3 id="running-the-example-in-the-shell">Running the example in the shell</h3>
+
+<p>The following command will run the above migration by using the shell script. Be sure to execute this from within <code class="highlighter-rouge">mindmaps-dist-x.x.x/bin</code>.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>./migration.sh sql -database jdbc:mysql://localhost:3306/world -user mindmaps -pass mindmaps -driver com.mysql.jdbc.Driver
+</code></pre>
+</div>
 
 <h2 id="test-yourself-answers">Test Yourself Answers</h2>
 
@@ -683,7 +698,7 @@ Maradi
         <br>
         <p>© 2016 <a href="https://mindmaps.io">Mindmaps Research Ltd</a></p>
         <!-- &copy;2016 MindmapsDB. All rights reserved. <br />
-        <span>Page last updated:</span> September 19, 2016<br/> Site last generated: Oct 15, 2016 <br />
+        <span>Page last updated:</span> September 19, 2016<br/> Site last generated: Oct 20, 2016 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">

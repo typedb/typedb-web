@@ -240,6 +240,13 @@
             
             
             
+            
+            
+            <li><a href="/pages/documentation/the-basics/visualiser.html">Visualising a Graph</a></li>
+            
+            
+            
+            
         </ul>
         
         
@@ -552,7 +559,7 @@ If you intend to build MindmapsDB, you will also need Maven 3.</div>
 <p>The latest version of MindmapsDB can be downloaded from the
 <a href="../resources/downloads.html">downloads page</a>. Unzip it and run the following in the terminal:</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="nb">cd</span> <span class="o">[</span>your MindmapsDB install directory]
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="nb">cd</span> <span class="o">[</span>your MindmapsDB install directory]
 bin/mindmaps.sh start
 </code></pre>
 </div>
@@ -567,7 +574,7 @@ To stop MindmapsDB graph, run <code class="highlighter-rouge">mindmaps.sh stop</
 
 <p>Graql is our query language, which allows you to interface with a MindmapsDB graph. We will start Graql and enter a few lines to check that all is working as it should.</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>bin/graql.sh
+<div class="highlighter-rouge"><pre class="highlight"><code>bin/graql.sh
 </code></pre>
 </div>
 
@@ -576,12 +583,19 @@ To stop MindmapsDB graph, run <code class="highlighter-rouge">mindmaps.sh stop</
 <pre><code class="language-graql">&gt;&gt;&gt; insert twin isa entity-type;
 &gt;&gt;&gt; insert topsy isa twin;
 &gt;&gt;&gt; insert tim isa twin;
+&gt;&gt;&gt; commit;
 &gt;&gt;&gt; match $x isa twin;
 $x id "tim" isa twin; 
 $x id "topsy" isa twin;
 </code></pre>
 
 <p>If you see the above output then congratulations! You have set up MindmapsDB.</p>
+
+<p>You can now open <a href="http://localhost:4567">localhost:4567</a> in your browser to start the visualiser, which provides a graphical dashboard on a MindmapsDB graph.</p>
+
+<p><img src="/images/topsyandtim.jpg" alt="Visualising a MindmapsDB graph" /></p>
+
+<p>Further information about the visualiser can be found in <a href="./visualiser.html">Visualising a MindmapsDB Graph</a>.</p>
 
 <h3 id="troubleshooting">Troubleshooting</h3>
 <p>If you do not see the above message, please check our <a href="../troubleshooting/known-issues.html">troubleshooting page</a>. If you have any questions, please ask a question on our <a href="http://discuss.mindmaps.io">discussion forum</a>, or on <a href="http://stackoverflow.com">Stack Overflow</a>.</p>
@@ -652,7 +666,7 @@ $x id "topsy" isa twin;
         <br>
         <p>© 2016 <a href="https://mindmaps.io">Mindmaps Research Ltd</a></p>
         <!-- &copy;2016 MindmapsDB. All rights reserved. <br />
-        <span>Page last updated:</span> August 10, 2016<br/> Site last generated: Oct 15, 2016 <br />
+        <span>Page last updated:</span> August 10, 2016<br/> Site last generated: Oct 20, 2016 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">

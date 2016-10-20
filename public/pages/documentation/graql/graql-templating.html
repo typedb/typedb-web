@@ -240,6 +240,13 @@
             
             
             
+            
+            
+            <li><a href="/pages/documentation/the-basics/visualiser.html">Visualising a Graph</a></li>
+            
+            
+            
+            
         </ul>
         
         
@@ -544,7 +551,302 @@ $('#toc').on('click', 'a', function() {
 
     
 
-  <h2 id="introduction">Introduction</h2>
+  <h2 id="basic-syntax">Basic Syntax</h2>
+
+<p>Graql Templates are Graql statements with the addition of functions and variables. Graql templates are primarily used for migrating data into a Mindmaps graph, although as a component of graql can be used whevever writing Graql in java. You can find more examples of their usage in the Migration section of the documentaion.</p>
+
+<div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> <b>Note:</b>  For the moment, Graql Template usage is limited to Graql java. It will not work in the shell. </div>
+
+<p>Templates are used to expand Graql queries given data. They allow you to control the flow of information.</p>
+
+<p>Accessing a single value:
+<code class="highlighter-rouge">graql
+$x isa thing has value &lt;value&gt;
+</code></p>
+
+<p>Value in a nested context:
+<code class="highlighter-rouge">graql
+$x isa person has name &lt;person.name.firstName&gt;
+</code></p>
+
+<h2 id="replacement">Replacement</h2>
+
+<p>Replacement occurs inside the <code class="highlighter-rouge">&lt;</code> <code class="highlighter-rouge">&gt;</code> characters or when executing a macro that is not a condition.</p>
+
+<div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> <b>Note:</b>  When replacing values in the output, the templating engine will automatically surround any <code class="highlighter-rouge">string</code> in quotes. It will not for any <code class="highlighter-rouge">int</code>, <code class="highlighter-rouge">double</code> or <code class="highlighter-rouge">boolean</code> </div>
+
+<p>A quick example of what the replacement looks like:</p>
+
+<pre><code class="language-graql">first is a &lt;string&gt;, second a &lt;long&gt;, third a &lt;double&gt;, fourth a &lt;boolean&gt;
+</code></pre>
+
+<pre><code class="language-graql">first is a "string", second a 40, third a 0.001, fourth a false
+</code></pre>
+
+<h2 id="logic">Logic</h2>
+
+<h3 id="expressions">Expressions</h3>
+
+<p>Expressions can be used as the conditions in <code class="highlighter-rouge">if</code>/<code class="highlighter-rouge">elseif</code> statements or as the contents of <code class="highlighter-rouge">macro</code> statements.</p>
+
+<h4 id="boolean-expressions">Boolean expressions</h4>
+
+<p>Boolean expressions only accept <code class="highlighter-rouge">true</code> and <code class="highlighter-rouge">false</code> (they will not work with <code class="highlighter-rouge">0/1</code> or <code class="highlighter-rouge">1/-1</code>).</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Expression</th>
+      <th>Definition</th>
+      <th>Usage</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="highlighter-rouge">and</code></td>
+      <td><code class="highlighter-rouge">this &amp;&amp; that</code></td>
+      <td><code class="highlighter-rouge">if (and this that) do { ... }</code></td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">or</code></td>
+      <td><code class="highlighter-rouge">this || that</code></td>
+      <td><code class="highlighter-rouge">if (or this that) do { ... }</code></td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">not</code></td>
+      <td><code class="highlighter-rouge">!this</code></td>
+      <td><code class="highlighter-rouge">if (not this) do { ... }</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<h4 id="comparison">Comparison</h4>
+
+<table>
+  <thead>
+    <tr>
+      <th>Expression</th>
+      <th>Definition</th>
+      <th>Usage</th>
+      <th>Notes</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="highlighter-rouge">eq</code></td>
+      <td><code class="highlighter-rouge">this == that</code></td>
+      <td><code class="highlighter-rouge">if (eq this that) do { ... }</code></td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">ne</code></td>
+      <td><code class="highlighter-rouge">this != that</code></td>
+      <td><code class="highlighter-rouge">if (ne this that) do { ... }</code></td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">gt</code></td>
+      <td><code class="highlighter-rouge">this &gt; that</code></td>
+      <td><code class="highlighter-rouge">if (gt this that) do { ... }</code></td>
+      <td>operates on numbers</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">ge</code></td>
+      <td><code class="highlighter-rouge">this &gt;= that</code></td>
+      <td><code class="highlighter-rouge">if (ge this that) do { ... }</code></td>
+      <td>operates on numbers</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">lt</code></td>
+      <td><code class="highlighter-rouge">this &lt; that</code></td>
+      <td><code class="highlighter-rouge">if (lt this that) do { ... }</code></td>
+      <td>operates on numbers</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">le</code></td>
+      <td><code class="highlighter-rouge">this &lt;= that</code></td>
+      <td><code class="highlighter-rouge">if (le this that) do { ... }</code></td>
+      <td>operates on numbers</td>
+    </tr>
+  </tbody>
+</table>
+
+<h4 id="grouping-expressions">Grouping expressions</h4>
+
+<p>Expressions can be grouped using <code class="highlighter-rouge">(</code> and <code class="highlighter-rouge">)</code>.</p>
+
+<p>//TODO</p>
+
+<h3 id="iteration">Iteration</h3>
+
+<p>Graql Templates allow you to iterate over a maps or lists.</p>
+
+<p>Example 1: <code class="highlighter-rouge">for</code> over a list
+<code class="highlighter-rouge">graql
+for (whale in whales)
+do { $x isa whale has name &lt;whale&gt;; }
+</code></p>
+
+<p>Example 2: <code class="highlighter-rouge">for</code> over a map
+<code class="highlighter-rouge">graql
+insert $x isa person;
+    for (name in names) do {
+        $x has nickname &lt;name.nickname&gt; ;
+    }
+</code></p>
+
+<p>Example 3: “enhanced” <code class="highlighter-rouge">for</code> over a map
+<code class="highlighter-rouge">graql
+insert $x isa person;
+    for (names) do {
+        $x has nickname &lt;nickname&gt; ;
+    }
+</code></p>
+
+<p>When iterating over a map as in Example 3, you are allowed to use the “enhanced” for syntax. In this loop, it is not required to provide the item name. The properties within the <code class="highlighter-rouge">do</code> block context are inferred to be the first level children of tbe property in the <code class="highlighter-rouge">for</code> statement.</p>
+
+<p>Example 5: doubly nested <code class="highlighter-rouge">for</code>
+<code class="highlighter-rouge">graql
+for (people) do { 
+insert $x isa person has name &lt;name&gt;;
+    for (addresses) do {
+    insert $y isa address ;
+        $y has street &lt;street&gt; ;
+        $y has number &lt;number&gt; ;
+        ($x, $y) isa resides;
+    }
+}
+</code></p>
+
+<h3 id="conditionals">Conditionals</h3>
+
+<p><code class="highlighter-rouge">if</code>, <code class="highlighter-rouge">else</code> and <code class="highlighter-rouge">elseif</code> are the included commands that provide conditional logic.</p>
+
+<p>Example 6: <code class="highlighter-rouge">if</code>
+<code class="highlighter-rouge">graql
+if (ne dog null)
+do { insert $dog isa dog; }
+</code></p>
+
+<p>Example 7: <code class="highlighter-rouge">if</code>…<code class="highlighter-rouge">else</code>
+<code class="highlighter-rouge">graql
+if (ne firstName null) do {
+    insert $person has name &lt;firstName&gt;;
+} else {
+    insert $person;
+}
+</code></p>
+
+<h3 id="macros">Macros</h3>
+
+<p>Macros are denoted by an <code class="highlighter-rouge">@</code> symbol prefixing the name of the macro function. Mindmaps has included the following functions to the basic templating logic.</p>
+
+<h4 id="noescp">noescp</h4>
+
+<p>Macro <code class="highlighter-rouge">noescp</code> is short for “no escape”. This function will not add quotes or escape the characters inside the value when doing replacement. Accepts exactly one argument.</p>
+
+<p>e.g.
+<code class="highlighter-rouge">graql
+insert $person has introduction "Hi! My name is @noescp(firstname) @noescp(lastname)";
+</code></p>
+
+<h4 id="int">int</h4>
+
+<p><code class="highlighter-rouge">int</code> converts the contents of the data to an interger. Accepts exactly one argument.</p>
+
+<p>e.g.
+<code class="highlighter-rouge">graql
+match $x isa thing has value @int(value);
+</code></p>
+
+<h4 id="double">double</h4>
+
+<p><code class="highlighter-rouge">double</code> converts the contents of the data to a double. Accepts exactly one argument.</p>
+
+<p>e.g.
+<code class="highlighter-rouge">graql
+match $x isa thing has value @double(value);
+</code></p>
+
+<h4 id="equals">equals</h4>
+
+<p>The <code class="highlighter-rouge">equals</code> macro returns a boolean and as such can be used in conditional statements. It can also be used in the Graql statment. Requires at least two arguments.</p>
+
+<p>e.g. in Graql
+<code class="highlighter-rouge">graql
+insert $x isa hasEquivalentResource value @equals(this that other)
+</code></p>
+
+<p>e.g. in conditional
+<code class="highlighter-rouge">graql
+if (@equals(this that)) do { equals } else { not }"
+</code></p>
+
+<h3 id="scopes">Scopes</h3>
+
+<p>When using iterators Graql variables will be automatically suffixed with an aggregate index of the loop. This is necessary because otherwise Graql would confuse variables belonging to different statements when running the queries.</p>
+
+<p>For example, the following loop:
+```graql
+insert $x isa person has name <name>;</name></p>
+
+<p>for (addresses) do {
+    insert $y isa address ;
+        $y has street <street> ;
+        $y has number <number> ;
+        ($x, $y) isa resides;
+}</number></street></p>
+
+<p>$y isa person, id 1234;
+($x, $y) isa friends;
+```</p>
+
+<p>would result in the expanded Graql query:
+```graql
+insert $x0 isa person has name “Elmo”;</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>insert $y0 isa address ;
+    $y0 has street "North Pole" ;
+    $y0 has number 100 ;
+    ($x0 $y0) isa resides;
+insert $y1 isa address ;
+    $y1 has street "South Pole" ;
+    $y1 has number -100 ;
+    ($x0 $y1) isa resides;
+
+$y2 isa person, id 1234;
+($x0, $y2) isa friends; 
+</code></pre>
+</div>
+
+<p>insert $x1 isa person has name “Flounder”;</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>insert $y3 isa address ;
+    $y3 has street "Under the sea" ;
+    $y3 has number 22 ;
+    ($x1 $y3) isa resides;
+
+$y4 isa person, id 1234;
+($x1, $y4) isa friends;  ```
+</code></pre>
+</div>
+
+<h2 id="usage-in-java">Usage in Java</h2>
+
+<p>For the moment, Graql templating can only be used through the java API:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">String</span> <span class="n">template</span> <span class="o">=</span> <span class="s">""</span> <span class="o">+</span>
+                <span class="s">"for (whale in whales ) do {"</span> <span class="o">+</span>
+                <span class="s">"   $x isa whale has name &lt;whale&gt;;"</span> <span class="o">+</span>
+                <span class="s">"}"</span><span class="o">;</span>
+
+<span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;</span> <span class="n">data</span> <span class="o">=</span> <span class="n">Collection</span><span class="o">.</span><span class="na">singletonMap</span><span class="o">(</span><span class="s">"whales"</span><span class="o">,</span> <span class="n">Arrays</span><span class="o">.</span><span class="na">asList</span><span class="o">(</span><span class="s">"shamu"</span><span class="o">,</span> <span class="s">"dory"</span><span class="o">));</span>
+
+<span class="n">Graql</span><span class="o">.</span><span class="na">parseTemplate</span><span class="o">(</span><span class="n">template</span><span class="o">,</span> <span class="n">data</span><span class="o">);</span>
+</code></pre>
+</div>
+
+<p>The data argument to the <code class="highlighter-rouge">parseTemplate()</code> function is a <code class="highlighter-rouge">Map&lt;String, Object&gt;</code>, where the <code class="highlighter-rouge">Object</code> is one of a <code class="highlighter-rouge">List&lt;Object&gt;</code>, <code class="highlighter-rouge">String</code>, <code class="highlighter-rouge">Double</code>, <code class="highlighter-rouge">Integer</code>, <code class="highlighter-rouge">Boolean</code> or another nested <code class="highlighter-rouge">Map&lt;String, Object</code>.</p>
 
 <h2 id="document-changelog">Document Changelog</h2>
 
@@ -600,7 +902,7 @@ $('#toc').on('click', 'a', function() {
         <br>
         <p>© 2016 <a href="https://mindmaps.io">Mindmaps Research Ltd</a></p>
         <!-- &copy;2016 MindmapsDB. All rights reserved. <br />
-        <span>Page last updated:</span> October 14, 2016<br/> Site last generated: Oct 15, 2016 <br />
+        <span>Page last updated:</span> October 14, 2016<br/> Site last generated: Oct 20, 2016 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">

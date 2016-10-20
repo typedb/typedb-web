@@ -82,17 +82,6 @@
 
 ,
 {
-"title": "OWL Migration to MindmapsDB",
-"tags": "migration",
-"keywords": "setup, getting started",
-"url": "/pages/documentation/migration/OWL-migration.html",
-"summary": "This document will teach you how to load OWL into MindmapsDB."
-}
-
-
-
-,
-{
 "title": "An Example of Migrating OWL to MindmapsDB",
 "tags": "migration",
 "keywords": "migration",
@@ -104,11 +93,11 @@
 
 ,
 {
-"title": "An Example of Migrating SQL to MindmapsDB",
+"title": "OWL Migration to MindmapsDB",
 "tags": "migration",
-"keywords": "migration",
-"url": "/pages/documentation/examples/SQL-migration.html",
-"summary": "A short example to illustrate migration of SQL to MindmapsDB"
+"keywords": "setup, getting started",
+"url": "/pages/documentation/migration/OWL-migration.html",
+"summary": "This document will teach you how to load OWL into MindmapsDB."
 }
 
 
@@ -120,6 +109,17 @@
 "keywords": "setup, getting started",
 "url": "/pages/documentation/migration/SQL-migration.html",
 "summary": "This document will teach you how to migrate SQL data into a MindmapsDB graph."
+}
+
+
+
+,
+{
+"title": "An Example of Migrating SQL to MindmapsDB",
+"tags": "migration",
+"keywords": "migration",
+"url": "/pages/documentation/examples/SQL-migration.html",
+"summary": "A short example to illustrate migration of SQL to MindmapsDB"
 }
 
 
@@ -462,6 +462,17 @@
 
 
 
+
+
+
+,
+{
+"title": "Visualising a MindmapsDB Graph",
+"tags": "getting-startedgraql",
+"keywords": "setup, getting started",
+"url": "/pages/documentation/the-basics/visualiser.html",
+"summary": "How to use the MindmapsDB Visualiser."
+}
 
 
 ]

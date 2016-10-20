@@ -50,25 +50,25 @@
   
   
   <url>
-    <loc>http://mindmaps.io/pages//documentation/migration/OWL-migration.html</loc>
-  </url>
-  
-  
-  
-  <url>
     <loc>http://mindmaps.io/pages//documentation/examples/OWL-migration.html</loc>
   </url>
   
   
   
   <url>
-    <loc>http://mindmaps.io/pages//documentation/examples/SQL-migration.html</loc>
+    <loc>http://mindmaps.io/pages//documentation/migration/OWL-migration.html</loc>
   </url>
   
   
   
   <url>
     <loc>http://mindmaps.io/pages//documentation/migration/SQL-migration.html</loc>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://mindmaps.io/pages//documentation/examples/SQL-migration.html</loc>
   </url>
   
   
@@ -266,6 +266,12 @@
   
   
   
+  
+  
+  
+  <url>
+    <loc>http://mindmaps.io/pages//documentation/the-basics/visualiser.html</loc>
+  </url>
   
   
 </urlset>
