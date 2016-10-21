@@ -42,6 +42,8 @@ for RELEASE in $RELEASES; do
 done
 
 # Create symlink for latest version
-ln -sTf ${LATEST_VERSION} latest
+if [[ -d ${LATEST_VERSION} ]]; then
+  ln -sTf ${LATEST_VERSION} latest
+fi
 
 rm -f ${LOCKFILE}
