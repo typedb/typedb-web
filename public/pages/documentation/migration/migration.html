@@ -196,7 +196,7 @@
 
 
 <ul id="mysidebar" class="nav">
-    <li class="sidebarTitle">MindmapsDB 0.2</li>
+    <li class="sidebarTitle">MindmapsDB 0.3.0</li>
     
     
     
@@ -564,7 +564,7 @@ $('#toc').on('click', 'a', function() {
        -user             username for SQL database
        -pass             password for SQL database
        -database         URL to SQL database
-       -graph            graph name
+       -graph            graph name (or defaults to the default keyspace)
        -engine           MindmapsDB engine URL, default localhost
 </code></pre>
 </div>
@@ -575,7 +575,7 @@ $('#toc').on('click', 'a', function() {
 
 <div class="highlighter-rouge"><pre class="highlight"><code>usage: ./migration.sh csv -file &lt;file&gt; -graph &lt;graphname&gt; [-engine &lt;url] [-as &lt;type&gt;]
       -file             csv file to migrate
-      -graph            graph name
+      -graph            graph name (or defaults to the default keyspace)
       -engine           MindmapsDB engine URL, default localhost
       -as               entity type of this file
 </code></pre>
@@ -586,7 +586,7 @@ $('#toc').on('click', 'a', function() {
 <div class="highlighter-rouge"><pre class="highlight"><code>usage: ./migration json -schema &lt;schema&gt; -data &lt;path&gt; -graph &lt;name&gt; [-engine &lt;url&gt;]
        -schema           json schema file or directory
        -data             json data file or directory
-       -graph            graph name
+       -graph            graph name (or defaults to the default keyspace)
        -engine           MindmapsDB engine URL, default localhost
 </code></pre>
 </div>
@@ -595,7 +595,7 @@ $('#toc').on('click', 'a', function() {
 
 <div class="highlighter-rouge"><pre class="highlight"><code>usage: ./migration.sh owl -file &lt;path&gt; [-graph &lt;name&gt;] [-engine &lt;url&gt;]
        -file             OWL file
-       -graph            graph name
+       -graph            graph name (defaults to the name of the file with spaces replaced by _)
        -engine           MindmapsDB engine URL, default localhost
 </code></pre>
 </div>
@@ -607,22 +607,6 @@ $('#toc').on('click', 'a', function() {
 
 <p>Please take a look at our examples to further illustrate <a href="../examples/SQL-migration.html">SQL migration</a>. <!--and [OWL migration](../examples/OWL-migration.html).
 --></p>
-
-<h2 id="document-changelog">Document Changelog</h2>
-
-<table>
-    <tr>
-        <td>Version</td>
-        <td>Date</td>
-        <td>Description</td>        
-    </tr>
-        <tr>
-        <td>v0.2.0</td>
-        <td>28/09/2016</td>
-        <td>First doc release.</td>        
-    </tr>
-
-</table>
 
 <h2 id="comments">Comments</h2>
 <p>Want to leave a comment? Visit <a href="https://github.com/mindmapsdb/docs/issues/32" target="_blank">the issues on Github for this page</a> (you’ll need a GitHub account). You are also welcome to contribute to our documentation directly via the “Edit me” button at the top of the page.</p>
