@@ -562,7 +562,7 @@ $('#toc').on('click', 'a', function() {
 
 <h2 id="migrating-the-world">Migrating the World</h2>
 
-<p>In this example, we will show you how to import SQL data, from a relational database, to a MindmapsDB graph. The code for this example can be found in our <a href="https://github.com/mindmapsdb/sample-projects/tree/master/example-sql-migration">github repo</a>.</p>
+<p>In this example, we will show you how to import SQL data, from a relational database, to a MindmapsDB graph. The code for this example can be found in our <a href="https://github.com/mindmapsdb/sample-projects/tree/master/example-sql-migration">github repo</a>. We have a <a href="https://blog.mindmaps.io/populating-mindmapsdb-with-the-world-5b2445aee60c#">blog post</a> that also discusses SQL migration, using the migration shell script.</p>
 
 <h3 id="prerequisites">Prerequisites</h3>
 
@@ -572,7 +572,7 @@ $('#toc').on('click', 'a', function() {
 
 <p>Once you have the SQL database loaded, you need to allow the MindmapsDB migration default user (username: <code class="highlighter-rouge">mindmaps</code>, password: <code class="highlighter-rouge">mindmaps</code>) access, which you can do with the following command from within the MySQL shell:</p>
 
-<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">CREATE</span> <span class="k">USER</span> <span class="s1">'mindmaps'</span><span class="o">@</span><span class="s1">'localhost'</span> <span class="n">IDENTIFIED</span> <span class="k">BY</span> <span class="s1">'mindmaps'</span><span class="p">;</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">CREATE</span> <span class="k">USER</span> <span class="s1">'mindmaps'</span><span class="o">@</span><span class="s1">'localhost'</span> <span class="n">IDENTIFIED</span> <span class="k">BY</span> <span class="s1">'mindmaps'</span><span class="p">;</span>
 <span class="k">GRANT</span> <span class="k">ALL</span> <span class="k">PRIVILEGES</span> <span class="k">ON</span> <span class="o">*</span><span class="p">.</span><span class="o">*</span> <span class="k">TO</span> <span class="s1">'mindmaps'</span><span class="o">@</span><span class="s1">'localhost'</span>
 	<span class="k">WITH</span> <span class="k">GRANT</span> <span class="k">OPTION</span><span class="p">;</span>
 </code></pre>
@@ -689,7 +689,7 @@ Maradi
         <br>
         <p>© 2016 <a href="https://mindmaps.io">Mindmaps Research Ltd</a></p>
         <!-- &copy;2016 MindmapsDB. All rights reserved. <br />
-        <span>Page last updated:</span> September 19, 2016<br/> Site last generated: Oct 22, 2016 <br />
+        <span>Page last updated:</span> September 19, 2016<br/> Site last generated: Oct 25, 2016 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">

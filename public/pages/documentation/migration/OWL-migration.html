@@ -575,7 +575,7 @@ $('#toc').on('click', 'a', function() {
 
 <p>Consider the following OWL ontology:</p>
 
-<div class="language-xml highlighter-rouge"><pre class="highlight"><code><span class="nt">&lt;rdf:RDF</span> <span class="na">xmlns=</span><span class="s">"http://www.co-ode.org/roberts/family-tree.owl#"</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="nt">&lt;rdf:RDF</span> <span class="na">xmlns=</span><span class="s">"http://www.co-ode.org/roberts/family-tree.owl#"</span>
      <span class="na">xml:base=</span><span class="s">"http://www.co-ode.org/roberts/family-tree.owl"</span>
      <span class="na">xmlns:rdf=</span><span class="s">"http://www.w3.org/1999/02/22-rdf-syntax-ns#"</span>
      <span class="na">xmlns:owl=</span><span class="s">"http://www.w3.org/2002/07/owl#"</span>
@@ -648,29 +648,29 @@ tPerson plays-role owl-subject-op-hasParent, plays-role owl-object-op-hasParent;
 (owl-subject-op-isParentOf: 'eStefan', owl-object-op-isParentOf: eWitold) isa op-isParentOf;
 
 "inv-op-hasAncestor" isa inference-rule,
-lhs {match
+lhs {
 (owl-subject-op-hasAncestor: $x, owl-object-op-hasAncestor: $y) isa hasAncestor;},
-rhs {match
+rhs {
 (owl-subject-op-isAncestorOf: $y, owl-object-op-isAncestorOf: $x) isa isAncestorOf;};
 
 "inv-op-isAncestorOf" isa inference-rule,
-lhs {match
+lhs {
 (owl-subject-op-isAncestorOf: $x, owl-object-op-isAncestorOf: $y) isa isAncestorOf;},
-rhs {match
+rhs {
 (owl-subject-op-hasAncestor: $y, owl-object-op-hasAncestor: $x) isa hasAncestor;};
 
 "trst-op-hasAncestor" isa inference-rule,
-lhs {match
+lhs {
 (owl-subject-op-hasParent: $x, owl-object-op-hasParent: $z) isa hasAncestor;
 (owl-subject-op-hasAncestor: $z, owl-object-op-hasAncestor: $y) isa hasAncestor;},
-rhs {match
+rhs {
 (owl-subject-op-hasAncestor: $x, owl-object-op-hasAncestor: $y) isa hasAncestor;};
 
 "pch-op-hasAncestor" isa inference-rule,
-lhs {match
+lhs {
 (owl-subject-op-hasParent: $x, owl-object-op-hasParent: $z) isa hasParent;
 (owl-subject-op-hasAncestor: $z, owl-object-op-hasAncestor: $y) isa hasAncestor;},
-rhs {match
+rhs {
 (owl-subject-op-hasAncestor: $x, owl-object-op-hasAncestor: $y) isa hasAncestor;};
 </code></pre>
 
@@ -720,7 +720,7 @@ rhs {match
         <br>
         <p>© 2016 <a href="https://mindmaps.io">Mindmaps Research Ltd</a></p>
         <!-- &copy;2016 MindmapsDB. All rights reserved. <br />
-        <span>Page last updated:</span> August 10, 2016<br/> Site last generated: Oct 22, 2016 <br />
+        <span>Page last updated:</span> August 10, 2016<br/> Site last generated: Oct 25, 2016 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">
