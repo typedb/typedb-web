@@ -586,7 +586,7 @@ Once you have done that, a thread-bound graph can be retrieved by:</p>
 <div class="highlighter-rouge"><pre class="highlight"><code>&lt;dependency&gt;
     &lt;groupId&gt;io.mindmaps&lt;/groupId&gt;
     &lt;artifactId&gt;mindmaps-titan-factory&lt;/artifactId&gt;
-    &lt;version&gt;0.2.0&lt;/version&gt;
+    &lt;version&gt;0.4.0&lt;/version&gt;
 &lt;/dependency&gt;
 </code></pre>
 </div>
@@ -692,8 +692,8 @@ Tutorial</a> using the Java Graph API.</p>
 <p>Some people have special titles and epithets and we want to talk about that.
 So, we’ll create some resource types that can be attached to a person:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">ResourceType</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">title</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">putResourceType</span><span class="o">(</span><span class="s">"title"</span><span class="o">,</span> <span class="n">Data</span><span class="o">.</span><span class="na">STRING</span><span class="o">);</span>
-<span class="n">ResourceType</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">epithet</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">putResourceType</span><span class="o">(</span><span class="s">"epithet"</span><span class="o">,</span> <span class="n">Data</span><span class="o">.</span><span class="na">STRING</span><span class="o">);</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">ResourceType</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">title</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">putResourceType</span><span class="o">(</span><span class="s">"title"</span><span class="o">,</span> <span class="n">ResourceType</span><span class="o">.</span><span class="na">DataType</span><span class="o">.</span><span class="na">STRING</span><span class="o">);</span>
+<span class="n">ResourceType</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">epithet</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">putResourceType</span><span class="o">(</span><span class="s">"epithet"</span><span class="o">,</span> <span class="n">ResourceType</span><span class="o">.</span><span class="na">DataType</span><span class="o">.</span><span class="na">STRING</span><span class="o">);</span>
 
 <span class="n">person</span><span class="o">.</span><span class="na">playsRole</span><span class="o">(</span><span class="n">hasResourceTarget</span><span class="o">);</span>
 <span class="n">title</span><span class="o">.</span><span class="na">playsRole</span><span class="o">(</span><span class="n">hasResourceValue</span><span class="o">);</span>
@@ -793,7 +793,7 @@ So, we’ll create some resource types that can be attached to a person:</p>
         <br>
         <p>© 2016 <a href="https://mindmaps.io">Mindmaps Research Ltd</a></p>
         <!-- &copy;2016 MindmapsDB. All rights reserved. <br />
-        <span>Page last updated:</span> August 10, 2016<br/> Site last generated: Oct 26, 2016 <br />
+        <span>Page last updated:</span> August 10, 2016<br/> Site last generated: Oct 27, 2016 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">
