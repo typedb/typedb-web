@@ -196,7 +196,7 @@
 
 
 <ul id="mysidebar" class="nav">
-    <li class="sidebarTitle">MindmapsDB 0.4.0</li>
+    <li class="sidebarTitle">MindmapsDB 0.5.0</li>
     
     
     
@@ -593,13 +593,13 @@ Similarly we could say that Godfather, Star Trek Nemesis and Monster can all be 
 
 <p>With this we can arrange our data into categories:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">alPacino</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">addEntity</span><span class="o">(</span><span class="n">person</span><span class="o">).</span><span class="na">setValue</span><span class="o">(</span><span class="s">"Al Pacino"</span><span class="o">);</span>
-<span class="n">patrickStewart</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">addEntity</span><span class="o">(</span><span class="n">person</span><span class="o">).</span><span class="na">setValue</span><span class="o">(</span><span class="s">"Patrick Stewart"</span><span class="o">);</span>
-<span class="n">charliseTheron</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">addEntity</span><span class="o">(</span><span class="n">person</span><span class="o">).</span><span class="na">setValue</span><span class="o">(</span><span class="s">"Charlise Theron"</span><span class="o">);</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">alPacino</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">addEntity</span><span class="o">(</span><span class="n">person</span><span class="o">);</span>
+<span class="n">patrickStewart</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">addEntity</span><span class="o">(</span><span class="n">person</span><span class="o">);</span>
+<span class="n">charliseTheron</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">addEntity</span><span class="o">(</span><span class="n">person</span><span class="o">);</span>
 
-<span class="n">godfather</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">addEntity</span><span class="o">(</span><span class="n">movie</span><span class="o">).</span><span class="na">setValue</span><span class="o">(</span><span class="s">"Godfather"</span><span class="o">);</span>
-<span class="n">starTrek</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">addEntity</span><span class="o">(</span><span class="n">movie</span><span class="o">).</span><span class="na">setValue</span><span class="o">(</span><span class="s">"Star Trek Nemesis"</span><span class="o">);</span>
-<span class="n">monster</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">addEntity</span><span class="o">(</span><span class="n">movie</span><span class="o">).</span><span class="na">setValue</span><span class="o">(</span><span class="s">"Monster"</span><span class="o">);</span>
+<span class="n">godfather</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">addEntity</span><span class="o">(</span><span class="n">movie</span><span class="o">);</span>
+<span class="n">starTrek</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">addEntity</span><span class="o">(</span><span class="n">movie</span><span class="o">);</span>
+<span class="n">monster</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">addEntity</span><span class="o">(</span><span class="n">movie</span><span class="o">);</span>
 </code></pre>
 </div>
 
@@ -652,7 +652,7 @@ First we create an instance of the Relation Type:</p>
 
 <p>Then we specify who is playing which role:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">relation</span><span class="o">.</span><span class="na">putRolePlayer</span><span class="o">(</span><span class="n">actor</span><span class="o">,</span> <span class="n">patrickStewart</span><span class="o">).</span><span class="na">putRolePlayer</span><span class="o">(</span><span class="n">movieCastIn</span><span class="o">,</span> <span class="n">startrek</span><span class="o">);</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">relation</span><span class="o">.</span><span class="na">putRolePlayer</span><span class="o">(</span><span class="n">actor</span><span class="o">,</span> <span class="n">patrickStewart</span><span class="o">).</span><span class="na">putRolePlayer</span><span class="o">(</span><span class="n">movieCastIn</span><span class="o">,</span> <span class="n">starTrek</span><span class="o">);</span>
 </code></pre>
 </div>
 
@@ -701,7 +701,7 @@ First we create an instance of the Relation Type:</p>
         <br>
         <p>© 2016 <a href="https://mindmaps.io">Mindmaps Research Ltd</a></p>
         <!-- &copy;2016 MindmapsDB. All rights reserved. <br />
-        <span>Page last updated:</span> August 23, 2016<br/> Site last generated: Oct 27, 2016 <br />
+        <span>Page last updated:</span> August 23, 2016<br/> Site last generated: Oct 28, 2016 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">

@@ -196,7 +196,7 @@
 
 
 <ul id="mysidebar" class="nav">
-    <li class="sidebarTitle">MindmapsDB 0.4.0</li>
+    <li class="sidebarTitle">MindmapsDB 0.5.0</li>
     
     
     
@@ -565,7 +565,7 @@ $('#toc').on('click', 'a', function() {
 <div class="highlighter-rouge"><pre class="highlight"><code><span class="nt">&lt;dependency&gt;</span>
   <span class="nt">&lt;groupId&gt;</span>io.mindmaps<span class="nt">&lt;/groupId&gt;</span>
   <span class="nt">&lt;artifactId&gt;</span>mindmaps-graql<span class="nt">&lt;/artifactId&gt;</span>
-  <span class="nt">&lt;version&gt;</span>0.1.1<span class="nt">&lt;/version&gt;</span>
+  <span class="nt">&lt;version&gt;</span>0.5.0<span class="nt">&lt;/version&gt;</span>
 <span class="nt">&lt;/dependency&gt;</span>
 </code></pre>
 </div>
@@ -574,21 +574,18 @@ $('#toc').on('click', 'a', function() {
 
 <p>The <code class="highlighter-rouge">QueryBuilder</code> class is how you begin building Graql queries.</p>
 
-<p><code class="highlighter-rouge">QueryBuilder</code> and <code class="highlighter-rouge">ValuePredicate</code> contains several useful static methods such
-as <code class="highlighter-rouge">var</code> and <code class="highlighter-rouge">eq</code>, so it’s recommended that you use a static import:</p>
+<p><code class="highlighter-rouge">Graql</code> contains several useful static methods such as <code class="highlighter-rouge">var</code> and <code class="highlighter-rouge">eq</code>, so it’s recommended that you use a static import:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">io.mindmaps.graql.api.query.QueryBuilder</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">static</span> <span class="n">io</span><span class="o">.</span><span class="na">mindmaps</span><span class="o">.</span><span class="na">graql</span><span class="o">.</span><span class="na">api</span><span class="o">.</span><span class="na">query</span><span class="o">.</span><span class="na">QueryBuilder</span><span class="o">.*;</span>
-<span class="kn">import</span> <span class="nn">static</span> <span class="n">io</span><span class="o">.</span><span class="na">mindmaps</span><span class="o">.</span><span class="na">graql</span><span class="o">.</span><span class="na">api</span><span class="o">.</span><span class="na">query</span><span class="o">.</span><span class="na">ValuePredicate</span><span class="o">.*;</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">static</span> <span class="n">io</span><span class="o">.</span><span class="na">mindmaps</span><span class="o">.</span><span class="na">graql</span><span class="o">.</span><span class="na">Graql</span><span class="o">.*;</span>
 </code></pre>
 </div>
 
 <p>A <code class="highlighter-rouge">QueryBuilder</code> is constructed by providing a <code class="highlighter-rouge">MindmapsGraph</code>:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">MindmapsGraph</span> <span class="n">graph</span> <span class="o">=</span> <span class="n">Mindmaps</span><span class="o">.</span><span class="na">factory</span><span class="o">(</span><span class="n">Mindmaps</span><span class="o">.</span><span class="na">DEFAULT_URI</span><span class="o">,</span> <span class="s">"my-graph"</span><span class="o">).</span><span class="na">getGraph</span><span class="o">();</span>
-<span class="n">QueryBuilder</span> <span class="n">qb</span> <span class="o">=</span> <span class="n">QueryBuilder</span><span class="o">.</span><span class="na">build</span><span class="o">(</span><span class="n">graph</span><span class="o">);</span>
-</code></pre>
-</div>
+<p><code class="highlighter-rouge">java test-ignore
+MindmapsGraph mindmapsGraph = Mindmaps.factory(Mindmaps.DEFAULT_URI, "my-graph").getGraph();
+QueryBuilder qb = withGraph(mindmapsGraph);
+</code></p>
 
 <p>The user can also choose to not provide a transaction. This can be useful if
 you need to provide the transaction later (using <code class="highlighter-rouge">withTransaction</code>), or you
@@ -614,7 +611,7 @@ such as <code class="highlighter-rouge">limit</code> and <code class="highlighte
 <p>A <code class="highlighter-rouge">MatchQuery</code> will only execute when it is iterated over.</p>
 
 <div class="highlighter-rouge"><pre class="highlight"><code><span class="k">for</span> <span class="o">(</span><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Concept</span><span class="o">&gt;</span> <span class="n">result</span> <span class="o">:</span> <span class="n">tallPokemon</span><span class="o">)</span> <span class="o">{</span>
-  <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">result</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">"x"</span><span class="o">).</span><span class="na">getValue</span><span class="o">());</span>
+  <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">result</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">"x"</span><span class="o">).</span><span class="na">getId</span><span class="o">());</span>
 <span class="o">}</span>
 </code></pre>
 </div>
@@ -628,7 +625,7 @@ for requesting a single variable:</p>
 
 <h2 id="ask-queries">Ask Queries</h2>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">if</span> <span class="o">(</span><span class="n">qb</span><span class="o">.</span><span class="na">ask</span><span class="o">(</span><span class="n">var</span><span class="o">().</span><span class="na">isa</span><span class="o">(</span><span class="s">"pokemon-type"</span><span class="o">).</span><span class="na">value</span><span class="o">(</span><span class="s">"dragon"</span><span class="o">)))</span> <span class="o">{</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">if</span> <span class="o">(</span><span class="n">qb</span><span class="o">.</span><span class="na">match</span><span class="o">(</span><span class="n">var</span><span class="o">().</span><span class="na">isa</span><span class="o">(</span><span class="s">"pokemon-type"</span><span class="o">).</span><span class="na">value</span><span class="o">(</span><span class="s">"dragon"</span><span class="o">)).</span><span class="na">ask</span><span class="o">().</span><span class="na">execute</span><span class="o">())</span> <span class="o">{</span>
   <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Dragons are real!"</span><span class="o">);</span>
 <span class="o">}</span>
 </code></pre>
@@ -667,20 +664,20 @@ for requesting a single variable:</p>
 </code></pre>
 </div>
 
-<p>The <code class="highlighter-rouge">QueryParser</code> allows the user to parse Graql query strings into Java Graql
+<p>The <code class="highlighter-rouge">QueryBuilder</code> also allows the user to parse Graql query strings into Java Graql
 objects:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">QueryParser</span> <span class="n">parser</span> <span class="o">=</span> <span class="k">new</span> <span class="n">QueryParser</span><span class="o">(</span><span class="n">graph</span><span class="o">);</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">for</span> <span class="o">(</span><span class="n">Concept</span> <span class="n">x</span> <span class="o">:</span> <span class="n">qb</span><span class="o">.&lt;</span><span class="n">MatchQuery</span><span class="o">&gt;</span><span class="n">parse</span><span class="o">(</span><span class="s">"match $x isa pokemon;"</span><span class="o">).</span><span class="na">get</span><span class="o">(</span><span class="s">"x"</span><span class="o">))</span> <span class="o">{</span>
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">x</span><span class="o">);</span>
+<span class="o">}</span>
 
-<span class="n">parser</span><span class="o">.</span><span class="na">parseMatchQuery</span><span class="o">(</span><span class="s">"match $x isa pokemon"</span><span class="o">).</span><span class="na">getMatchQuery</span><span class="o">().</span><span class="na">get</span><span class="o">(</span><span class="s">"x"</span><span class="o">).</span><span class="na">forEach</span><span class="o">(</span><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">::</span><span class="n">println</span><span class="o">);</span>
-
-<span class="k">if</span> <span class="o">(</span><span class="n">parser</span><span class="o">.</span><span class="na">parseAskQuery</span><span class="o">(</span><span class="s">"match water isa pokemon-type ask"</span><span class="o">).</span><span class="na">execute</span><span class="o">())</span> <span class="o">{</span>
+<span class="k">if</span> <span class="o">(</span><span class="n">qb</span><span class="o">.&lt;</span><span class="n">AskQuery</span><span class="o">&gt;</span><span class="n">parse</span><span class="o">(</span><span class="s">"match water isa pokemon-type; ask;"</span><span class="o">).</span><span class="na">execute</span><span class="o">())</span> <span class="o">{</span>
   <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Water is a pokemon type!"</span><span class="o">);</span>
 <span class="o">}</span>
 
-<span class="n">parser</span><span class="o">.</span><span class="na">parseInsertQuery</span><span class="o">(</span><span class="s">"insert id 'pichu' isa pokemon"</span><span class="o">).</span><span class="na">execute</span><span class="o">();</span>
+<span class="n">qb</span><span class="o">.</span><span class="na">parse</span><span class="o">(</span><span class="s">"insert id 'pichu' isa pokemon;"</span><span class="o">).</span><span class="na">execute</span><span class="o">();</span>
 
-<span class="n">parser</span><span class="o">.</span><span class="na">parseDeleteQuery</span><span class="o">(</span><span class="s">"match $x isa pokemon delete $x"</span><span class="o">);</span>
+<span class="n">qb</span><span class="o">.</span><span class="na">parse</span><span class="o">(</span><span class="s">"match $x isa pokemon; delete $x;"</span><span class="o">).</span><span class="na">execute</span><span class="o">();</span>
 </code></pre>
 </div>
 
@@ -727,7 +724,7 @@ objects:</p>
         <br>
         <p>© 2016 <a href="https://mindmaps.io">Mindmaps Research Ltd</a></p>
         <!-- &copy;2016 MindmapsDB. All rights reserved. <br />
-        <span>Page last updated:</span> August 11, 2016<br/> Site last generated: Oct 27, 2016 <br />
+        <span>Page last updated:</span> August 11, 2016<br/> Site last generated: Oct 28, 2016 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">

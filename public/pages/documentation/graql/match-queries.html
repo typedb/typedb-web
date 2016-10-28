@@ -196,7 +196,7 @@
 
 
 <ul id="mysidebar" class="nav">
-    <li class="sidebarTitle">MindmapsDB 0.4.0</li>
+    <li class="sidebarTitle">MindmapsDB 0.5.0</li>
     
     
     
@@ -659,8 +659,6 @@ match $x value contains "lightning";
 </div>
 <div role="tabpanel" class="tab-pane" id="java3">
 <pre>
-import static io.mindmaps.graql.api.query.ValuePredicate.*;
-
 qb.match(var("x").value(contains("lightning")))
 </pre>
 </div> <!-- tab-pane -->
@@ -684,10 +682,7 @@ match $x has pokedex-no &lt; 20;
 </div>
 <div role="tabpanel" class="tab-pane" id="java4">
 <pre>
-import static io.mindmaps.graql.api.query.ValuePredicate.*;
-
 qb.match(var("x").has("pokedex-no", lt(20)));
-
 </pre>
 </div> <!-- tab-pane -->
 </div>
@@ -753,7 +748,7 @@ qb.match(
 
 <p>The following properties only apply to types.</p>
 
-<h3 id="ako">ako</h3>
+<h3 id="sub">sub</h3>
 <p>Match types that are a subclass of the given type.</p>
 
 <ul id="profileTabs" class="nav nav-tabs">
@@ -764,12 +759,12 @@ qb.match(
 <div class="tab-content">
 <div role="tabpanel" class="tab-pane active" id="shell7">
 <pre>
-match $x ako type;
+match $x sub type;
 </pre>
 </div>
 <div role="tabpanel" class="tab-pane" id="java7">
 <pre>
-qb.match(var("x").ako("type"))
+qb.match(var("x").sub("type"))
 </pre>
 </div> <!-- tab-pane -->
 </div>
@@ -882,10 +877,7 @@ match $x has height = 19, has weight &gt; 1500;
 </div>
 <div role="tabpanel" class="tab-pane" id="java12">
 <pre>
-import static io.mindmaps.graql.api.query.ValuePredicate.*;
-
 qb.match(var("x").has("height", 19).has("weight", gt(1500)));
-
 </pre>
 </div> <!-- tab-pane -->
 </div>
@@ -914,13 +906,10 @@ $desc value contains "underground";
 </div>
 <div role="tabpanel" class="tab-pane" id="java13">
 <pre>
-import static io.mindmaps.graql.api.query.ValuePredicate.*;
-
 qb.match(
     var("x").has("description", var("desc")),
     var("desc").value(contains("underground"))
 );
-
 </pre>
 </div> <!-- tab-pane -->
 </div>
@@ -944,10 +933,7 @@ match $x value /.*(fast|quick).*/;
 </div>
 <div role="tabpanel" class="tab-pane" id="java14">
 <pre>
-import static io.mindmaps.graql.api.query.ValuePredicate.*;
-
 qb.match(var("x").value(regex(".*(fast|quick).*")));
-
 </pre>
 </div> <!-- tab-pane -->
 </div>
@@ -969,10 +955,7 @@ match $x has weight &gt;20 and &lt;30;
 </div>
 <div role="tabpanel" class="tab-pane" id="java15">
 <pre>
-import static io.mindmaps.graql.api.query.ValuePredicate.*;
-
 qb.match(var("x").has("weight", gt(20).and(lt(30))));
-
 </pre>
 </div> <!-- tab-pane -->
 </div>
@@ -996,7 +979,7 @@ limit 30; offset 10; distinct; order by $no asc;
 </div>
 <div role="tabpanel" class="tab-pane" id="java16">
 <pre>
-qb.match(var("x").isa("pokemon").has("pokedex-no", var("no"))
+qb.match(var("x").isa("pokemon").has("pokedex-no", var("no")))
     .select("x")
     .limit(30)
     .offset(10)
@@ -1063,7 +1046,7 @@ by the resource of that type on that concept. Order is ascending by default.</p>
         <br>
         <p>© 2016 <a href="https://mindmaps.io">Mindmaps Research Ltd</a></p>
         <!-- &copy;2016 MindmapsDB. All rights reserved. <br />
-        <span>Page last updated:</span> August 11, 2016<br/> Site last generated: Oct 27, 2016 <br />
+        <span>Page last updated:</span> August 11, 2016<br/> Site last generated: Oct 28, 2016 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">

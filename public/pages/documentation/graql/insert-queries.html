@@ -196,7 +196,7 @@
 
 
 <ul id="mysidebar" class="nav">
-    <li class="sidebarTitle">MindmapsDB 0.4.0</li>
+    <li class="sidebarTitle">MindmapsDB 0.5.0</li>
     
     
     
@@ -576,7 +576,7 @@ variable or an ID.</p>
 <pre>
 insert
 $p isa pokemon, id "Pichu", has pokedex-no 172;
-(descendant: Pikachu, ancestor: $p) isa evolution;
+(descendent: Pikachu, ancestor: $p) isa evolution;
 
 </pre>
 </div>
@@ -585,9 +585,9 @@ $p isa pokemon, id "Pichu", has pokedex-no 172;
 qb.insert(
     var("p").isa("pokemon").id("Pichu").has("pokedex-no", 172),
     var().isa("evolution")
-        .rel("descendant", var().id("Pikachu"))
+        .rel("descendent", var().id("Pikachu"))
         .rel("ancestor", "p")
-).execute();",
+).execute();
 
 </pre>
 </div> <!-- tab-pane -->
@@ -741,7 +741,7 @@ qb.insert(
     .rel("pokemon-with-type", id("Pichu"))
     .rel("type-of-pokemon", id("electric"))
     .isa("has-type")
-);",
+);
 
 </pre>
 </div> <!-- tab-pane -->
@@ -752,9 +752,9 @@ qb.insert(
 
 <p>The following properties only apply to types.</p>
 
-<h3 id="ako">ako</h3>
+<h3 id="sub">sub</h3>
 
-<p>Set the supertype of this concept type.</p>
+<p>Set up the hierarchy.</p>
 
 <ul id="profileTabs" class="nav nav-tabs">
     <li class="active"><a href="#shell8" data-toggle="tab">Graql</a></li>
@@ -764,12 +764,12 @@ qb.insert(
 <div class="tab-content">
 <div role="tabpanel" class="tab-pane active" id="shell8">
 <pre>
-insert gen2-pokemon ako pokemon;
+insert gen2-pokemon sub pokemon;
 </pre>
 </div>
 <div role="tabpanel" class="tab-pane" id="java8">
 <pre>
-qb.insert(id("gen2-pokemon").ako("pokemon"));
+qb.insert(id("gen2-pokemon").sub("pokemon"));
 </pre>
 </div> <!-- tab-pane -->
 </div>
@@ -917,7 +917,7 @@ qb.insert(
         <br>
         <p>© 2016 <a href="https://mindmaps.io">Mindmaps Research Ltd</a></p>
         <!-- &copy;2016 MindmapsDB. All rights reserved. <br />
-        <span>Page last updated:</span> August 10, 2016<br/> Site last generated: Oct 27, 2016 <br />
+        <span>Page last updated:</span> August 10, 2016<br/> Site last generated: Oct 28, 2016 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">

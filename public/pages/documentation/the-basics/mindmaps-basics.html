@@ -196,7 +196,7 @@
 
 
 <ul id="mysidebar" class="nav">
-    <li class="sidebarTitle">MindmapsDB 0.4.0</li>
+    <li class="sidebarTitle">MindmapsDB 0.5.0</li>
     
     
     
@@ -633,13 +633,13 @@ across the graph.</p>
 
 <p>Instances of the four meta-types described above can be subclassed. For example, subclasses of <code class="highlighter-rouge">person</code> (which is an instance of the meta-type EntityType) could be <code class="highlighter-rouge">man</code> and <code class="highlighter-rouge">woman</code>.  This simple subclassing allows us to expand and deepen our schema to whatever granularity of detail is needed.</p>
 
-<div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> <b>Note:</b> In a MindmapsDB graph, we use the shorthand <code class="highlighter-rouge">ako ('a kind of')</code> when referring to sub-typing or specialisation. <br />
-For example, <code class="highlighter-rouge">man ako person</code>. <br />
+<div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> <b>Note:</b> In a MindmapsDB graph, we use the shorthand <code class="highlighter-rouge">sub ('subclass')</code> when referring to sub-typing or specialisation. <br />
+For example, <code class="highlighter-rouge">man sub person</code>. <br />
 We use the shorthand <code class="highlighter-rouge">isa</code> (‘is a’) to represent the type relationship. <br />
 For example, <code class="highlighter-rouge">car isa vehicle</code>.
 </div>
 
-<p>For example a simple schema would be <code class="highlighter-rouge">car</code> <code class="highlighter-rouge">isa</code> <code class="highlighter-rouge">vehicle</code> but with subclassing we could go as far as <code class="highlighter-rouge">a VW Gold TDI 2014</code> <code class="highlighter-rouge">isa</code> <code class="highlighter-rouge">VW</code> <code class="highlighter-rouge">ako</code> <code class="highlighter-rouge">car</code> <code class="highlighter-rouge">isa</code> <code class="highlighter-rouge">vehicle</code>.</p>
+<p>For example a simple schema would be <code class="highlighter-rouge">car</code> <code class="highlighter-rouge">isa</code> <code class="highlighter-rouge">vehicle</code> but with subclassing we could go as far as <code class="highlighter-rouge">a VW Gold TDI 2014</code> <code class="highlighter-rouge">isa</code> <code class="highlighter-rouge">VW</code> <code class="highlighter-rouge">sub</code> <code class="highlighter-rouge">car</code> <code class="highlighter-rouge">isa</code> <code class="highlighter-rouge">vehicle</code>.</p>
 
 <p>Types can have an additional property, <code class="highlighter-rouge">abstract</code>, which indicates the type cannot have direct instances. This is useful when we want to define a deeper schema. For example if we have <code class="highlighter-rouge">person</code> and its subclasses <code class="highlighter-rouge">man</code> and <code class="highlighter-rouge">woman</code>, then we may want to define <code class="highlighter-rouge">person</code> as <code class="highlighter-rouge">abstract</code> to prohibit it from having any direct instances, whereas the concrete types <code class="highlighter-rouge">man</code> and <code class="highlighter-rouge">woman</code> can have direct instances.</p>
 
@@ -743,7 +743,7 @@ instance of
         <br>
         <p>© 2016 <a href="https://mindmaps.io">Mindmaps Research Ltd</a></p>
         <!-- &copy;2016 MindmapsDB. All rights reserved. <br />
-        <span>Page last updated:</span> August 24, 2016<br/> Site last generated: Oct 27, 2016 <br />
+        <span>Page last updated:</span> August 24, 2016<br/> Site last generated: Oct 28, 2016 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">

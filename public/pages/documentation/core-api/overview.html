@@ -196,7 +196,7 @@
 
 
 <ul id="mysidebar" class="nav">
-    <li class="sidebarTitle">MindmapsDB 0.4.0</li>
+    <li class="sidebarTitle">MindmapsDB 0.5.0</li>
     
     
     
@@ -571,22 +571,22 @@ You can find the code below in the example code directory of the MindmapsDB dist
 <p>Make sure you have MindmapsDB Engine running locally by using <code class="highlighter-rouge">mindmaps.sh start</code>.
 Once you have done that, a thread-bound graph can be retrieved by:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">MindmapsGraph</span> <span class="n">mindmapsGraph</span> <span class="o">=</span> <span class="n">Mindmaps</span><span class="o">.</span><span class="na">factory</span><span class="o">(</span><span class="n">Mindmaps</span><span class="o">.</span><span class="na">DEFAULT_URI</span><span class="o">,</span> <span class="s">"my-graph"</span><span class="o">).</span><span class="na">getGraph</span><span class="o">();</span>
-</code></pre>
-</div>
+<p><code class="highlighter-rouge">java test-ignore
+MindmapsGraph mindmapsGraph = Mindmaps.factory(Mindmaps.DEFAULT_URI, "my-graph").getGraph();
+</code></p>
 
 <p>Alternatively an in-memory graph can be created with:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">MindmapsGraph</span> <span class="n">mindmapsGraph</span> <span class="o">=</span> <span class="n">Mindmaps</span><span class="o">.</span><span class="na">factory</span><span class="o">(</span><span class="n">Mindmaps</span><span class="o">.</span><span class="na">IN_MEMORY</span><span class="o">,</span> <span class="s">"my-graph"</span><span class="o">).</span><span class="na">getGraph</span><span class="o">();</span>
-</code></pre>
-</div>
+<p><code class="highlighter-rouge">java test-ignore
+MindmapsGraph mindmapsGraph = Mindmaps.factory(Mindmaps.IN_MEMORY, "my-graph").getGraph();
+</code></p>
 
 <div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> <b>Note:</b> Make sure that your project depends on <code class="highlighter-rouge">mindmaps-titan-factory</code> at a minimum.</div>
 
 <div class="highlighter-rouge"><pre class="highlight"><code>&lt;dependency&gt;
     &lt;groupId&gt;io.mindmaps&lt;/groupId&gt;
     &lt;artifactId&gt;mindmaps-titan-factory&lt;/artifactId&gt;
-    &lt;version&gt;0.4.0&lt;/version&gt;
+    &lt;version&gt;0.5.0&lt;/version&gt;
 &lt;/dependency&gt;
 </code></pre>
 </div>
@@ -618,7 +618,9 @@ Tutorial</a> using the Java Graph API.</p>
 <p>We can query for all the people:</p>
 
 <div class="highlighter-rouge"><pre class="highlight"><code><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Instances of Person:"</span><span class="o">);</span>
- <span class="n">person</span><span class="o">.</span><span class="na">instances</span><span class="o">().</span><span class="na">forEach</span><span class="o">(</span><span class="n">i</span> <span class="o">-&gt;</span> <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">i</span><span class="o">.</span><span class="na">getId</span><span class="o">()));</span>
+<span class="k">for</span> <span class="o">(</span><span class="n">Entity</span> <span class="n">i</span> <span class="o">:</span> <span class="n">person</span><span class="o">.</span><span class="na">instances</span><span class="o">())</span> <span class="o">{</span>
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">i</span><span class="o">.</span><span class="na">getId</span><span class="o">());</span>
+<span class="o">}</span>
 </code></pre>
 </div>
 
@@ -653,7 +655,7 @@ Tutorial</a> using the Java Graph API.</p>
 
 <div class="highlighter-rouge"><pre class="highlight"><code>    <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">addRelation</span><span class="o">(</span><span class="n">practice</span><span class="o">).</span>  
       <span class="n">putRolePlayer</span><span class="o">(</span><span class="n">philosopher</span><span class="o">,</span> <span class="n">socrates</span><span class="o">).</span>
-      <span class="n">putRolePlayer</span><span class="o">(</span><span class="n">philosophy</span><span class="o">,</span> <span class="n">platonisim</span><span class="o">);</span>
+      <span class="n">putRolePlayer</span><span class="o">(</span><span class="n">philosophy</span><span class="o">,</span> <span class="n">platonism</span><span class="o">);</span>
 
     <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">addRelation</span><span class="o">(</span><span class="n">practice</span><span class="o">).</span>
       <span class="n">putRolePlayer</span><span class="o">(</span><span class="n">philosopher</span><span class="o">,</span> <span class="n">plato</span><span class="o">).</span>
@@ -661,7 +663,7 @@ Tutorial</a> using the Java Graph API.</p>
 
     <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">addRelation</span><span class="o">(</span><span class="n">practice</span><span class="o">).</span>
       <span class="n">putRolePlayer</span><span class="o">(</span><span class="n">philosopher</span><span class="o">,</span> <span class="n">plato</span><span class="o">).</span>
-      <span class="n">putRolePlayer</span><span class="o">(</span><span class="n">philosophy</span><span class="o">,</span> <span class="n">platonisim</span><span class="o">);</span>
+      <span class="n">putRolePlayer</span><span class="o">(</span><span class="n">philosophy</span><span class="o">,</span> <span class="n">platonism</span><span class="o">);</span>
 
     <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">addRelation</span><span class="o">(</span><span class="n">practice</span><span class="o">).</span>
       <span class="n">putRolePlayer</span><span class="o">(</span><span class="n">philosopher</span><span class="o">,</span> <span class="n">aristotle</span><span class="o">).</span>
@@ -678,11 +680,11 @@ Tutorial</a> using the Java Graph API.</p>
     <span class="n">RelationType</span> <span class="n">education</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">putRelationType</span><span class="o">(</span><span class="s">"education"</span><span class="o">).</span>
       <span class="n">hasRole</span><span class="o">(</span><span class="n">teacher</span><span class="o">).</span><span class="na">hasRole</span><span class="o">(</span><span class="n">student</span><span class="o">);</span>
 
-    <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">putRelation</span><span class="o">(</span><span class="n">education</span><span class="o">).</span><span class="na">putRolePlayer</span><span class="o">(</span><span class="n">teacher</span><span class="o">,</span> <span class="n">socrates</span><span class="o">).</span>
+    <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">addRelation</span><span class="o">(</span><span class="n">education</span><span class="o">).</span><span class="na">putRolePlayer</span><span class="o">(</span><span class="n">teacher</span><span class="o">,</span> <span class="n">socrates</span><span class="o">).</span>
       <span class="n">putRolePlayer</span><span class="o">(</span><span class="n">student</span><span class="o">,</span> <span class="n">plato</span><span class="o">);</span>
-    <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">putRelation</span><span class="o">(</span><span class="n">education</span><span class="o">).</span><span class="na">putRolePlayer</span><span class="o">(</span><span class="n">teacher</span><span class="o">,</span> <span class="n">plato</span><span class="o">).</span>
+    <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">addRelation</span><span class="o">(</span><span class="n">education</span><span class="o">).</span><span class="na">putRolePlayer</span><span class="o">(</span><span class="n">teacher</span><span class="o">,</span> <span class="n">plato</span><span class="o">).</span>
       <span class="n">putRolePlayer</span><span class="o">(</span><span class="n">student</span><span class="o">,</span> <span class="n">aristotle</span><span class="o">);</span>
-    <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">putRelation</span><span class="o">(</span><span class="n">education</span><span class="o">).</span><span class="na">putRolePlayer</span><span class="o">(</span><span class="n">teacher</span><span class="o">,</span> <span class="n">aristotle</span><span class="o">).</span>
+    <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">addRelation</span><span class="o">(</span><span class="n">education</span><span class="o">).</span><span class="na">putRolePlayer</span><span class="o">(</span><span class="n">teacher</span><span class="o">,</span> <span class="n">aristotle</span><span class="o">).</span>
       <span class="n">putRolePlayer</span><span class="o">(</span><span class="n">student</span><span class="o">,</span> <span class="n">alexander</span><span class="o">);</span>
 </code></pre>
 </div>
@@ -692,7 +694,12 @@ Tutorial</a> using the Java Graph API.</p>
 <p>Some people have special titles and epithets and we want to talk about that.
 So, we’ll create some resource types that can be attached to a person:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">ResourceType</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">title</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">putResourceType</span><span class="o">(</span><span class="s">"title"</span><span class="o">,</span> <span class="n">ResourceType</span><span class="o">.</span><span class="na">DataType</span><span class="o">.</span><span class="na">STRING</span><span class="o">);</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">RoleType</span> <span class="n">hasResourceTarget</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">putRoleType</span><span class="o">(</span><span class="s">"has-resource-target"</span><span class="o">);</span>
+<span class="n">RoleType</span> <span class="n">hasResourceValue</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">putRoleType</span><span class="o">(</span><span class="s">"has-resource-value"</span><span class="o">);</span>
+<span class="n">RelationType</span> <span class="n">hasResource</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">putRelationType</span><span class="o">(</span><span class="s">"has-resource"</span><span class="o">)</span>
+    <span class="o">.</span><span class="na">hasRole</span><span class="o">(</span><span class="n">hasResourceTarget</span><span class="o">).</span><span class="na">hasRole</span><span class="o">(</span><span class="n">hasResourceValue</span><span class="o">);</span>
+
+<span class="n">ResourceType</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">title</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">putResourceType</span><span class="o">(</span><span class="s">"title"</span><span class="o">,</span> <span class="n">ResourceType</span><span class="o">.</span><span class="na">DataType</span><span class="o">.</span><span class="na">STRING</span><span class="o">);</span>
 <span class="n">ResourceType</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">epithet</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">putResourceType</span><span class="o">(</span><span class="s">"epithet"</span><span class="o">,</span> <span class="n">ResourceType</span><span class="o">.</span><span class="na">DataType</span><span class="o">.</span><span class="na">STRING</span><span class="o">);</span>
 
 <span class="n">person</span><span class="o">.</span><span class="na">playsRole</span><span class="o">(</span><span class="n">hasResourceTarget</span><span class="o">);</span>
@@ -705,7 +712,7 @@ So, we’ll create some resource types that can be attached to a person:</p>
 
 <div class="highlighter-rouge"><pre class="highlight"><code><span class="n">Resource</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">theGreat</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">putResource</span><span class="o">(</span><span class="s">"The Great"</span><span class="o">,</span> <span class="n">epithet</span><span class="o">);</span>
 
-<span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">putRelation</span><span class="o">(</span><span class="n">hasResource</span><span class="o">).</span>
+<span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">addRelation</span><span class="o">(</span><span class="n">hasResource</span><span class="o">).</span>
   <span class="n">putRolePlayer</span><span class="o">(</span><span class="n">hasResourceTarget</span><span class="o">,</span> <span class="n">alexander</span><span class="o">).</span>
   <span class="n">putRolePlayer</span><span class="o">(</span><span class="n">hasResourceValue</span><span class="o">,</span> <span class="n">theGreat</span><span class="o">);</span>
 </code></pre>
@@ -723,23 +730,23 @@ So, we’ll create some resource types that can be attached to a person:</p>
 <span class="n">Resource</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">pharaohOfEgypt</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">putResource</span><span class="o">(</span><span class="s">"Pharaoh of Egypt"</span><span class="o">,</span> <span class="n">title</span><span class="o">);</span>
 <span class="n">Resource</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">lordOfAsia</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">putResource</span><span class="o">(</span><span class="s">"Lord of Asia"</span><span class="o">,</span> <span class="n">title</span><span class="o">);</span>
 
-<span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">putRelation</span><span class="o">(</span><span class="n">hasResource</span><span class="o">).</span>
+<span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">addRelation</span><span class="o">(</span><span class="n">hasResource</span><span class="o">).</span>
   <span class="n">putRolePlayer</span><span class="o">(</span><span class="n">hasResourceTarget</span><span class="o">,</span> <span class="n">alexander</span><span class="o">).</span>
   <span class="n">putRolePlayer</span><span class="o">(</span><span class="n">hasResourceValue</span><span class="o">,</span> <span class="n">hegemon</span><span class="o">);</span>
 
-<span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">putRelation</span><span class="o">(</span><span class="n">hasResource</span><span class="o">).</span>
+<span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">addRelation</span><span class="o">(</span><span class="n">hasResource</span><span class="o">).</span>
   <span class="n">putRolePlayer</span><span class="o">(</span><span class="n">hasResourceTarget</span><span class="o">,</span> <span class="n">alexander</span><span class="o">).</span>
   <span class="n">putRolePlayer</span><span class="o">(</span><span class="n">hasResourceValue</span><span class="o">,</span> <span class="n">kingOfMacedon</span><span class="o">);</span>
 
-<span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">putRelation</span><span class="o">(</span><span class="n">hasResource</span><span class="o">).</span>
+<span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">addRelation</span><span class="o">(</span><span class="n">hasResource</span><span class="o">).</span>
   <span class="n">putRolePlayer</span><span class="o">(</span><span class="n">hasResourceTarget</span><span class="o">,</span> <span class="n">alexander</span><span class="o">).</span>
   <span class="n">putRolePlayer</span><span class="o">(</span><span class="n">hasResourceValue</span><span class="o">,</span> <span class="n">shahOfPersia</span><span class="o">);</span>
 
-<span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">putRelation</span><span class="o">(</span><span class="n">hasResource</span><span class="o">).</span>
+<span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">addRelation</span><span class="o">(</span><span class="n">hasResource</span><span class="o">).</span>
   <span class="n">putRolePlayer</span><span class="o">(</span><span class="n">hasResourceTarget</span><span class="o">,</span> <span class="n">alexander</span><span class="o">).</span>
   <span class="n">putRolePlayer</span><span class="o">(</span><span class="n">hasResourceValue</span><span class="o">,</span> <span class="n">pharaohOfEgypt</span><span class="o">);</span>
 
-<span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">putRelation</span><span class="o">(</span><span class="n">hasResource</span><span class="o">).</span>
+<span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">addRelation</span><span class="o">(</span><span class="n">hasResource</span><span class="o">).</span>
   <span class="n">putRolePlayer</span><span class="o">(</span><span class="n">hasResourceTarget</span><span class="o">,</span> <span class="n">alexander</span><span class="o">).</span>
   <span class="n">putRolePlayer</span><span class="o">(</span><span class="n">hasResourceValue</span><span class="o">,</span> <span class="n">lordOfAsia</span><span class="o">);</span>
 </code></pre>
@@ -793,7 +800,7 @@ So, we’ll create some resource types that can be attached to a person:</p>
         <br>
         <p>© 2016 <a href="https://mindmaps.io">Mindmaps Research Ltd</a></p>
         <!-- &copy;2016 MindmapsDB. All rights reserved. <br />
-        <span>Page last updated:</span> August 10, 2016<br/> Site last generated: Oct 27, 2016 <br />
+        <span>Page last updated:</span> August 10, 2016<br/> Site last generated: Oct 28, 2016 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">

@@ -196,7 +196,7 @@
 
 
 <ul id="mysidebar" class="nav">
-    <li class="sidebarTitle">MindmapsDB 0.4.0</li>
+    <li class="sidebarTitle">MindmapsDB 0.5.0</li>
     
     
     
@@ -589,7 +589,7 @@ $('#toc').on('click', 'a', function() {
 <p>Allow the roles to be played:</p>
 
 <div class="highlighter-rouge"><pre class="highlight"><code><span class="n">person</span><span class="o">.</span><span class="na">playsRole</span><span class="o">(</span><span class="n">actorInMovie</span><span class="o">).</span><span class="na">playsRole</span><span class="o">(</span><span class="n">actorInTvShow</span><span class="o">);</span>
-<span class="n">movie</span><span class="o">.</span><span class="na">playsRole</span><span class="o">(</span><span class="n">movieCastIn</span><span class="o">;</span>
+<span class="n">movie</span><span class="o">.</span><span class="na">playsRole</span><span class="o">(</span><span class="n">movieCastIn</span><span class="o">);</span>
 <span class="n">tvShow</span><span class="o">.</span><span class="na">playsRole</span><span class="o">(</span><span class="n">tvShowCastIn</span><span class="o">);</span>
 </code></pre>
 </div>
@@ -603,10 +603,9 @@ We can create a deep object-orientated schema where the rules of the super-class
 
 <p>Films and TV shows are similar, so we should have a super-class <code class="highlighter-rouge">Production</code> to represent both:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">EntityType</span> <span class="n">person</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">putEntityType</span><span class="o">(</span><span class="s">"Person"</span><span class="o">);</span>
-<span class="n">EntityType</span> <span class="n">production</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">putEntityType</span><span class="o">(</span><span class="s">"Production"</span><span class="o">);</span>
-<span class="n">EntityType</span> <span class="n">movie</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">putEntityType</span><span class="o">(</span><span class="s">"Movie"</span><span class="o">).</span><span class="na">superType</span><span class="o">();</span>
-<span class="n">EntityType</span> <span class="n">tvShow</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">putEntityType</span><span class="o">(</span><span class="s">"TV Show"</span><span class="o">).</span><span class="na">superType</span><span class="o">(</span><span class="n">production</span><span class="o">);</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">EntityType</span> <span class="n">production</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">putEntityType</span><span class="o">(</span><span class="s">"Production"</span><span class="o">);</span>
+<span class="n">movie</span><span class="o">.</span><span class="na">superType</span><span class="o">(</span><span class="n">production</span><span class="o">);</span>
+<span class="n">tvShow</span><span class="o">.</span><span class="na">superType</span><span class="o">(</span><span class="n">production</span><span class="o">);</span>
 </code></pre>
 </div>
 
@@ -629,8 +628,7 @@ We can create a deep object-orientated schema where the rules of the super-class
 This also makes defining the schema shorter and gives more opportunities for graph enhancements.
 For example, we can start to differentiate between male and female actors without impacting the schema significantly:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">EntityType</span> <span class="n">person</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">putEntityType</span><span class="o">(</span><span class="s">"Person"</span><span class="o">);</span>
-<span class="n">EntityType</span> <span class="n">man</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">putEntityType</span><span class="o">(</span><span class="s">"Man"</span><span class="o">).</span><span class="na">superType</span><span class="o">(</span><span class="n">person</span><span class="o">);</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">EntityType</span> <span class="n">man</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">putEntityType</span><span class="o">(</span><span class="s">"Man"</span><span class="o">).</span><span class="na">superType</span><span class="o">(</span><span class="n">person</span><span class="o">);</span>
 <span class="n">EntityType</span> <span class="n">woman</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">putEntityType</span><span class="o">(</span><span class="s">"Woman"</span><span class="o">).</span><span class="na">superType</span><span class="o">();</span>
 </code></pre>
 </div>
@@ -689,17 +687,16 @@ R2: anc(X, Y) :- parent(X, Z), anc(Z, Y)
 <h3 id="rule-graql-syntax">Rule Graql Syntax</h3>
 <p>The addition of the rules specified above can be expressed via an insert Graql statement where the body and the head of the rule are separated with curly braces, the corresponding statement then reads:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">insert</span>
-<span class="s">"R1"</span> <span class="n">isa</span> <span class="n">inference</span><span class="o">-</span><span class="n">rule</span><span class="o">,</span>
-<span class="n">lhs</span> <span class="o">{(</span><span class="n">parent</span> <span class="n">$x</span><span class="o">,</span> <span class="n">child</span> <span class="n">$y</span><span class="o">)</span> <span class="n">isa</span> <span class="n">Parent</span><span class="o">},</span>
-<span class="n">rhs</span> <span class="o">{(</span><span class="n">ancestor</span> <span class="n">$x</span><span class="o">,</span> <span class="n">descendant</span> <span class="n">$y</span><span class="o">)</span> <span class="n">isa</span> <span class="n">Ancestor</span><span class="o">};</span>
+<pre><code class="language-graql">insert
+"R1" isa inference-rule,
+lhs {(parent $x, child $y) isa Parent},
+rhs {(ancestor $x, descendant $y) isa Ancestor};
 
-<span class="s">"R2"</span> <span class="n">isa</span> <span class="n">inference</span><span class="o">-</span><span class="n">rule</span><span class="o">,</span>
-<span class="n">lhs</span> <span class="o">{(</span><span class="n">parent</span> <span class="n">$x</span><span class="o">,</span> <span class="n">child</span> <span class="n">$z</span><span class="o">)</span> <span class="n">isa</span> <span class="n">Parent</span><span class="o">;</span>
-<span class="o">(</span><span class="n">ancestor</span> <span class="n">$z</span><span class="o">,</span> <span class="n">descendant</span> <span class="n">$y</span><span class="o">)</span> <span class="n">isa</span> <span class="n">Ancestor</span> <span class="n">select</span> <span class="n">$x</span><span class="o">,</span> <span class="n">$y</span><span class="o">},</span>
-<span class="n">rhs</span> <span class="o">{(</span><span class="n">ancestor</span> <span class="n">$x</span><span class="o">,</span> <span class="n">descendant</span> <span class="n">$y</span><span class="o">)</span> <span class="n">isa</span> <span class="n">Ancestor</span><span class="o">};</span>
+"R2" isa inference-rule,
+lhs {(parent $x, child $z) isa Parent;
+(ancestor $z, descendant $y) isa Ancestor select $x, $y},
+rhs {(ancestor $x, descendant $y) isa Ancestor};
 </code></pre>
-</div>
 
 <h2 id="comments">Comments</h2>
 <p>Want to leave a comment? Visit <a href="https://github.com/mindmapsdb/docs/issues/22" target="_blank">the issues on Github for this page</a> (you’ll need a GitHub account). You are also welcome to contribute to our documentation directly via the “Edit me” button at the top of the page.</p>
@@ -746,7 +743,7 @@ R2: anc(X, Y) :- parent(X, Z), anc(Z, Y)
         <br>
         <p>© 2016 <a href="https://mindmaps.io">Mindmaps Research Ltd</a></p>
         <!-- &copy;2016 MindmapsDB. All rights reserved. <br />
-        <span>Page last updated:</span> August 23, 2016<br/> Site last generated: Oct 27, 2016 <br />
+        <span>Page last updated:</span> August 23, 2016<br/> Site last generated: Oct 28, 2016 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">

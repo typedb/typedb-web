@@ -196,7 +196,7 @@
 
 
 <ul id="mysidebar" class="nav">
-    <li class="sidebarTitle">MindmapsDB 0.4.0</li>
+    <li class="sidebarTitle">MindmapsDB 0.5.0</li>
     
     
     
@@ -579,7 +579,7 @@ $('#toc').on('click', 'a', function() {
 
 <p>To load an additional graph into a different keyspace, that is, to load a graph with a different name to any already loaded, you can specify the graph name:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>./graql.sh -n &lt;graphname&gt;
+<div class="highlighter-rouge"><pre class="highlight"><code>./graql.sh -k &lt;graphname&gt;
 </code></pre>
 </div>
 
@@ -671,9 +671,9 @@ $('#toc').on('click', 'a', function() {
   </thead>
   <tbody>
     <tr>
-      <td><code class="highlighter-rouge">--name</code></td>
-      <td><code class="highlighter-rouge">-n</code></td>
-      <td>The name of the graph.</td>
+      <td><code class="highlighter-rouge">--keyspace</code></td>
+      <td><code class="highlighter-rouge">-k</code></td>
+      <td>The keyspace of the graph.</td>
     </tr>
     <tr>
       <td><code class="highlighter-rouge">--execute</code></td>
@@ -755,7 +755,7 @@ graph will be automatically committed.</p>
         <br>
         <p>© 2016 <a href="https://mindmaps.io">Mindmaps Research Ltd</a></p>
         <!-- &copy;2016 MindmapsDB. All rights reserved. <br />
-        <span>Page last updated:</span> August 11, 2016<br/> Site last generated: Oct 27, 2016 <br />
+        <span>Page last updated:</span> August 11, 2016<br/> Site last generated: Oct 28, 2016 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">

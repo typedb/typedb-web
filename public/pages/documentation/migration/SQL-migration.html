@@ -196,7 +196,7 @@
 
 
 <ul id="mysidebar" class="nav">
-    <li class="sidebarTitle">MindmapsDB 0.4.0</li>
+    <li class="sidebarTitle">MindmapsDB 0.5.0</li>
     
     
     
@@ -719,34 +719,34 @@ $y isa event
 
 <p>While the migration seems rather lengthy when written out in Graql, you only need a few lines of code to accomplish this migration in Mindmaps:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="c1">// get the JDBC connection</span>
+<p>```java test-ignore
+// get the JDBC connection</p>
 
-<span class="n">Connection</span> <span class="n">connection</span> <span class="o">=</span> <span class="n">DriverManager</span><span class="o">.</span><span class="na">getConnection</span><span class="o">(</span><span class="n">jdbcDBUrl</span><span class="o">,</span> <span class="n">jdbcUser</span><span class="o">,</span> <span class="n">jdbcPass</span><span class="o">);</span>
+<p>Connection connection = DriverManager.getConnection(jdbcDBUrl, jdbcUser, jdbcPass);</p>
 
-<span class="c1">// get the MindmapsDB connection</span>
+<p>// get the MindmapsDB connection</p>
 
-<span class="n">MindmapsGraph</span> <span class="n">graph</span> <span class="o">=</span> <span class="n">Mindmaps</span><span class="o">.</span><span class="na">factory</span><span class="o">(</span><span class="n">Mindmaps</span><span class="o">.</span><span class="na">DEFAULT_URI</span><span class="o">).</span><span class="na">getGraph</span><span class="o">(</span><span class="s">"sql-test-graph"</span><span class="o">);</span>
-<span class="n">Loader</span> <span class="n">loader</span> <span class="o">=</span> <span class="k">new</span> <span class="n">BlockingLoader</span><span class="o">(</span><span class="s">"sql-test-graph"</span><span class="o">);</span>
+<p>MindmapsGraph graph = Mindmaps.factory(Mindmaps.DEFAULT_URI).getGraph(“sql-test-graph”);
+Loader loader = new BlockingLoader(“sql-test-graph”);</p>
 
-<span class="c1">// create migrators and perform migration</span>
+<p>// create migrators and perform migration</p>
 
-<span class="n">SQLSchemaMigrator</span> <span class="n">schemaMigrator</span> <span class="o">=</span> <span class="k">new</span> <span class="n">SQLSchemaMigrator</span><span class="o">();</span>
-<span class="n">SQLDataMigrator</span> <span class="n">dataMigrator</span> <span class="o">=</span> <span class="k">new</span> <span class="n">SQLDataMigrator</span><span class="o">();</span>
+<p>SQLSchemaMigrator schemaMigrator = new SQLSchemaMigrator();
+SQLDataMigrator dataMigrator = new SQLDataMigrator();</p>
 
-<span class="n">schemaMigrator</span>
-        <span class="o">.</span><span class="na">graph</span><span class="o">(</span><span class="n">graph</span><span class="o">)</span>
-        <span class="o">.</span><span class="na">configure</span><span class="o">(</span><span class="n">connection</span><span class="o">)</span>
-        <span class="o">.</span><span class="na">migrate</span><span class="o">(</span><span class="n">loader</span><span class="o">)</span>
-        <span class="o">.</span><span class="na">close</span><span class="o">();</span>
+<p>schemaMigrator
+        .graph(graph)
+        .configure(connection)
+        .migrate(loader)
+        .close();</p>
 
-<span class="n">dataMigrator</span>
-        <span class="o">.</span><span class="na">graph</span><span class="o">(</span><span class="n">graph</span><span class="o">)</span>
-        <span class="o">.</span><span class="na">configure</span><span class="o">(</span><span class="n">connection</span><span class="o">)</span>
-        <span class="o">.</span><span class="na">migrate</span><span class="o">(</span><span class="n">loader</span><span class="o">)</span>
-        <span class="o">.</span><span class="na">close</span><span class="o">();</span>
+<p>dataMigrator
+        .graph(graph)
+        .configure(connection)
+        .migrate(loader)
+        .close();</p>
 
-</code></pre>
-</div>
+<p>```</p>
 
 <p>Please take a look at our example of <a href="../examples/SQL-migration.html">SQL migration</a> to find out more, and read our <a href="https://blog.mindmaps.io/populating-mindmapsdb-with-the-world-5b2445aee60c#">blog post</a> which covers using the shell script for SQL migration in more detail.</p>
 
@@ -794,7 +794,7 @@ $y isa event
         <br>
         <p>© 2016 <a href="https://mindmaps.io">Mindmaps Research Ltd</a></p>
         <!-- &copy;2016 MindmapsDB. All rights reserved. <br />
-        <span>Page last updated:</span> August 10, 2016<br/> Site last generated: Oct 27, 2016 <br />
+        <span>Page last updated:</span> August 10, 2016<br/> Site last generated: Oct 28, 2016 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">
