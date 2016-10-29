@@ -173,7 +173,7 @@
                 </li>
                 <!--comment out this block if you want to hide github link-->
                 <li>
-                    <a rel="me" href="//github.com/mindmapsdb/mindmapsdb" target="_blank" class="github">
+                    <a rel="me" href="//github.com/graknlabs/grakn" target="_blank" class="github">
                         <svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#github"></use></svg>
                     </a>
                 </li>
@@ -562,7 +562,7 @@ $('#toc').on('click', 'a', function() {
 
 <p>To use the API, add the following to your <code class="highlighter-rouge">pom.xml</code>:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="nt">&lt;dependency&gt;</span>
+<div class="language-xml highlighter-rouge"><pre class="highlight"><code><span class="nt">&lt;dependency&gt;</span>
   <span class="nt">&lt;groupId&gt;</span>io.mindmaps<span class="nt">&lt;/groupId&gt;</span>
   <span class="nt">&lt;artifactId&gt;</span>mindmaps-graql<span class="nt">&lt;/artifactId&gt;</span>
   <span class="nt">&lt;version&gt;</span>0.5.0<span class="nt">&lt;/version&gt;</span>
@@ -576,7 +576,7 @@ $('#toc').on('click', 'a', function() {
 
 <p><code class="highlighter-rouge">Graql</code> contains several useful static methods such as <code class="highlighter-rouge">var</code> and <code class="highlighter-rouge">eq</code>, so it’s recommended that you use a static import:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">static</span> <span class="n">io</span><span class="o">.</span><span class="na">mindmaps</span><span class="o">.</span><span class="na">graql</span><span class="o">.</span><span class="na">Graql</span><span class="o">.*;</span>
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">static</span> <span class="n">io</span><span class="o">.</span><span class="na">mindmaps</span><span class="o">.</span><span class="na">graql</span><span class="o">.</span><span class="na">Graql</span><span class="o">.*;</span>
 </code></pre>
 </div>
 
@@ -601,7 +601,7 @@ queries.</p>
 <code class="highlighter-rouge">MatchQuery</code> instance, which includes additional methods that apply modifiers
 such as <code class="highlighter-rouge">limit</code> and <code class="highlighter-rouge">distinct</code>:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">MatchQuery</span> <span class="n">tallPokemon</span> <span class="o">=</span> <span class="n">qb</span><span class="o">.</span><span class="na">match</span><span class="o">(</span><span class="n">var</span><span class="o">(</span><span class="s">"x"</span><span class="o">).</span><span class="na">isa</span><span class="o">(</span><span class="s">"pokemon"</span><span class="o">).</span><span class="na">has</span><span class="o">(</span><span class="s">"height"</span><span class="o">,</span> <span class="n">gt</span><span class="o">(</span><span class="mi">10</span><span class="o">))).</span><span class="na">limit</span><span class="o">(</span><span class="mi">50</span><span class="o">);</span>
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">MatchQuery</span> <span class="n">tallPokemon</span> <span class="o">=</span> <span class="n">qb</span><span class="o">.</span><span class="na">match</span><span class="o">(</span><span class="n">var</span><span class="o">(</span><span class="s">"x"</span><span class="o">).</span><span class="na">isa</span><span class="o">(</span><span class="s">"pokemon"</span><span class="o">).</span><span class="na">has</span><span class="o">(</span><span class="s">"height"</span><span class="o">,</span> <span class="n">gt</span><span class="o">(</span><span class="mi">10</span><span class="o">))).</span><span class="na">limit</span><span class="o">(</span><span class="mi">50</span><span class="o">);</span>
 </code></pre>
 </div>
 
@@ -610,7 +610,7 @@ such as <code class="highlighter-rouge">limit</code> and <code class="highlighte
 
 <p>A <code class="highlighter-rouge">MatchQuery</code> will only execute when it is iterated over.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">for</span> <span class="o">(</span><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Concept</span><span class="o">&gt;</span> <span class="n">result</span> <span class="o">:</span> <span class="n">tallPokemon</span><span class="o">)</span> <span class="o">{</span>
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="k">for</span> <span class="o">(</span><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Concept</span><span class="o">&gt;</span> <span class="n">result</span> <span class="o">:</span> <span class="n">tallPokemon</span><span class="o">)</span> <span class="o">{</span>
   <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">result</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">"x"</span><span class="o">).</span><span class="na">getId</span><span class="o">());</span>
 <span class="o">}</span>
 </code></pre>
@@ -625,7 +625,7 @@ for requesting a single variable:</p>
 
 <h2 id="ask-queries">Ask Queries</h2>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">if</span> <span class="o">(</span><span class="n">qb</span><span class="o">.</span><span class="na">match</span><span class="o">(</span><span class="n">var</span><span class="o">().</span><span class="na">isa</span><span class="o">(</span><span class="s">"pokemon-type"</span><span class="o">).</span><span class="na">value</span><span class="o">(</span><span class="s">"dragon"</span><span class="o">)).</span><span class="na">ask</span><span class="o">().</span><span class="na">execute</span><span class="o">())</span> <span class="o">{</span>
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="k">if</span> <span class="o">(</span><span class="n">qb</span><span class="o">.</span><span class="na">match</span><span class="o">(</span><span class="n">var</span><span class="o">().</span><span class="na">isa</span><span class="o">(</span><span class="s">"pokemon-type"</span><span class="o">).</span><span class="na">value</span><span class="o">(</span><span class="s">"dragon"</span><span class="o">)).</span><span class="na">ask</span><span class="o">().</span><span class="na">execute</span><span class="o">())</span> <span class="o">{</span>
   <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Dragons are real!"</span><span class="o">);</span>
 <span class="o">}</span>
 </code></pre>
@@ -633,7 +633,7 @@ for requesting a single variable:</p>
 
 <h2 id="insert-queries">Insert Queries</h2>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">InsertQuery</span> <span class="n">addPichu</span> <span class="o">=</span> <span class="n">qb</span><span class="o">.</span><span class="na">insert</span><span class="o">(</span><span class="n">var</span><span class="o">().</span><span class="na">id</span><span class="o">(</span><span class="s">"Pichu"</span><span class="o">).</span><span class="na">isa</span><span class="o">(</span><span class="s">"pokemon"</span><span class="o">));</span>
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">InsertQuery</span> <span class="n">addPichu</span> <span class="o">=</span> <span class="n">qb</span><span class="o">.</span><span class="na">insert</span><span class="o">(</span><span class="n">var</span><span class="o">().</span><span class="na">id</span><span class="o">(</span><span class="s">"Pichu"</span><span class="o">).</span><span class="na">isa</span><span class="o">(</span><span class="s">"pokemon"</span><span class="o">));</span>
 
 <span class="n">addPichu</span><span class="o">.</span><span class="na">execute</span><span class="o">();</span>
 
@@ -650,13 +650,13 @@ for requesting a single variable:</p>
 
 <h2 id="delete-queries">Delete Queries</h2>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">qb</span><span class="o">.</span><span class="na">match</span><span class="o">(</span><span class="n">var</span><span class="o">(</span><span class="s">"x"</span><span class="o">).</span><span class="na">id</span><span class="o">(</span><span class="s">"Pichu"</span><span class="o">)).</span><span class="na">delete</span><span class="o">(</span><span class="s">"x"</span><span class="o">).</span><span class="na">execute</span><span class="o">();</span>
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">qb</span><span class="o">.</span><span class="na">match</span><span class="o">(</span><span class="n">var</span><span class="o">(</span><span class="s">"x"</span><span class="o">).</span><span class="na">id</span><span class="o">(</span><span class="s">"Pichu"</span><span class="o">)).</span><span class="na">delete</span><span class="o">(</span><span class="s">"x"</span><span class="o">).</span><span class="na">execute</span><span class="o">();</span>
 </code></pre>
 </div>
 
 <h2 id="query-parser">Query Parser</h2>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="nt">&lt;dependency&gt;</span>
+<div class="language-xml highlighter-rouge"><pre class="highlight"><code><span class="nt">&lt;dependency&gt;</span>
   <span class="nt">&lt;groupId&gt;</span>io.mindmaps.graql<span class="nt">&lt;/groupId&gt;</span>
   <span class="nt">&lt;artifactId&gt;</span>graql-parser<span class="nt">&lt;/artifactId&gt;</span>
   <span class="nt">&lt;version&gt;</span>0.2.1<span class="nt">&lt;/version&gt;</span>
@@ -667,7 +667,7 @@ for requesting a single variable:</p>
 <p>The <code class="highlighter-rouge">QueryBuilder</code> also allows the user to parse Graql query strings into Java Graql
 objects:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">for</span> <span class="o">(</span><span class="n">Concept</span> <span class="n">x</span> <span class="o">:</span> <span class="n">qb</span><span class="o">.&lt;</span><span class="n">MatchQuery</span><span class="o">&gt;</span><span class="n">parse</span><span class="o">(</span><span class="s">"match $x isa pokemon;"</span><span class="o">).</span><span class="na">get</span><span class="o">(</span><span class="s">"x"</span><span class="o">))</span> <span class="o">{</span>
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="k">for</span> <span class="o">(</span><span class="n">Concept</span> <span class="n">x</span> <span class="o">:</span> <span class="n">qb</span><span class="o">.&lt;</span><span class="n">MatchQuery</span><span class="o">&gt;</span><span class="n">parse</span><span class="o">(</span><span class="s">"match $x isa pokemon;"</span><span class="o">).</span><span class="na">get</span><span class="o">(</span><span class="s">"x"</span><span class="o">))</span> <span class="o">{</span>
     <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">x</span><span class="o">);</span>
 <span class="o">}</span>
 
@@ -713,7 +713,7 @@ objects:</p>
                 <svg><use xmlns:xlink="https://www.w3.org/1999/xlink" xlink:href="#slack"></use></svg> MindmapsDB on Slack
             </a>
             <br>
-            <a rel="me" class="github" href="https://github.com/mindmapsdb/mindmapsdb" target="_blank">
+            <a rel="me" class="github" href="https://github.com/graknlabs/grakn" target="_blank">
                 <svg><use xmlns:xlink="https://www.w3.org/1999/xlink" xlink:href="#github"></use></svg> MindmapsDB on GitHub
             </a>
             <br><br>
@@ -724,7 +724,7 @@ objects:</p>
         <br>
         <p>© 2016 <a href="https://mindmaps.io">Mindmaps Research Ltd</a></p>
         <!-- &copy;2016 MindmapsDB. All rights reserved. <br />
-        <span>Page last updated:</span> August 11, 2016<br/> Site last generated: Oct 28, 2016 <br />
+        <span>Page last updated:</span> August 11, 2016<br/> Site last generated: Oct 29, 2016 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">
@@ -739,7 +739,7 @@ objects:</p>
         <span class="footer-header">Resources</span>
         <ul>
             <li><a href="/pages/index.html">Documentation</a></li>
-            <li><a rel="me" href="https://github.com/mindmapsdb/mindmapsdb">GitHub</a></li>
+            <li><a rel="me" href="https://github.com/graknlabs/grakn">GitHub</a></li>
             <li><a href="https://mindmaps.io/javadocs.html">Javadoc</a></li>
         </ul>
     </div>
@@ -747,9 +747,9 @@ objects:</p>
         <span class="footer-header">Community</span>
         <ul>
             <li><a rel="me" href="https://discuss.mindmaps.io">Discussion</a></li>
-            <li><a rel="me" href="https://stackoverflow.com/tags/mindmapsdb" target="_blank">Stack Overflow</a></li>
+            <li><a rel="me" href="https://stackoverflow.com/questions/tagged/grakn+or+graql" target="_blank">Stack Overflow</a></li>
             <li><a href="https://mindmaps.io/slack.html">Slack</a></li>
-            <li><a rel="me" href="https://twitter.com/mindmapsdb" target="_blank">Twitter</a></li>
+            <li><a rel="me" href="https://twitter.com/graknlabs" target="_blank">Twitter</a></li>
         </ul>
     </div>
     <div class="col-lg-2 footer">

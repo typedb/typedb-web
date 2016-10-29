@@ -173,7 +173,7 @@
                 </li>
                 <!--comment out this block if you want to hide github link-->
                 <li>
-                    <a rel="me" href="//github.com/mindmapsdb/mindmapsdb" target="_blank" class="github">
+                    <a rel="me" href="//github.com/graknlabs/grakn" target="_blank" class="github">
                         <svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#github"></use></svg>
                     </a>
                 </li>
@@ -598,19 +598,19 @@ this by setting the <code class="highlighter-rouge">checkInternalVertexExistence
 
 <p>There are several ways to load data into a MindmapsDB graph. For small amounts of data (&lt;1000 lines), you an load it directly via the Graql shell. For example, the following loads up the Pokemon example data:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>bin/graql.sh -f examples/pokemon.gql
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>bin/graql.sh -f examples/pokemon.gql
 </code></pre>
 </div>
 
 <p>If you have a larger file, you will need to batch load it. The file will be divided in batches that will be committed concurrently. This differs from a regular load, where the whole file is committed in a single chunk when you call commit. See the example below, which loads the Graql file FILENAME.gql, from PATH.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>bin/graql.sh -b PATH/FILENAME.gql
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>bin/graql.sh -b PATH/FILENAME.gql
 </code></pre>
 </div>
 
 <p>In order to check the status of the loading, you can open a new terminal window, navigate to the logs directory of your MindmapsDB installation and run the command:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>tail -f mindmaps.log
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>tail -f mindmaps.log
 </code></pre>
 </div>
 
@@ -620,14 +620,14 @@ this by setting the <code class="highlighter-rouge">checkInternalVertexExistence
 
 <p>Specifically you should change the following parameters:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="c"># Host Location</span>
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="c"># Host Location</span>
 storage.hostname<span class="o">=</span>127.0.0.1
 </code></pre>
 </div>
 
 <p>You can also, for example, add the following to specify a custom port:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>storage.port <span class="o">=</span> 1234
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>storage.port <span class="o">=</span> 1234
 </code></pre>
 </div>
 
@@ -643,7 +643,7 @@ storage.hostname<span class="o">=</span>127.0.0.1
 
 <p>Once you have started MindmapsDB, you will see a message in the console, like:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>Started ServerConnector@7aa5814d<span class="o">{</span>HTTP/1.1,[http/1.1]<span class="o">}{</span>0.0.0.0:4567<span class="o">}</span>
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>Started ServerConnector@7aa5814d<span class="o">{</span>HTTP/1.1,[http/1.1]<span class="o">}{</span>0.0.0.0:4567<span class="o">}</span>
 </code></pre>
 </div>
 
@@ -671,7 +671,7 @@ graph.clear();
 
 <p>If you’ve committed, then you must currently remove your installation and re-create it.  First, call</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>pkill -9 java
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>pkill -9 java
 </code></pre>
 </div>
 
@@ -707,7 +707,7 @@ graph.clear();
                 <svg><use xmlns:xlink="https://www.w3.org/1999/xlink" xlink:href="#slack"></use></svg> MindmapsDB on Slack
             </a>
             <br>
-            <a rel="me" class="github" href="https://github.com/mindmapsdb/mindmapsdb" target="_blank">
+            <a rel="me" class="github" href="https://github.com/graknlabs/grakn" target="_blank">
                 <svg><use xmlns:xlink="https://www.w3.org/1999/xlink" xlink:href="#github"></use></svg> MindmapsDB on GitHub
             </a>
             <br><br>
@@ -718,7 +718,7 @@ graph.clear();
         <br>
         <p>© 2016 <a href="https://mindmaps.io">Mindmaps Research Ltd</a></p>
         <!-- &copy;2016 MindmapsDB. All rights reserved. <br />
-        <span>Page last updated:</span> September 22, 2016<br/> Site last generated: Oct 28, 2016 <br />
+        <span>Page last updated:</span> September 22, 2016<br/> Site last generated: Oct 29, 2016 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">
@@ -733,7 +733,7 @@ graph.clear();
         <span class="footer-header">Resources</span>
         <ul>
             <li><a href="/pages/index.html">Documentation</a></li>
-            <li><a rel="me" href="https://github.com/mindmapsdb/mindmapsdb">GitHub</a></li>
+            <li><a rel="me" href="https://github.com/graknlabs/grakn">GitHub</a></li>
             <li><a href="https://mindmaps.io/javadocs.html">Javadoc</a></li>
         </ul>
     </div>
@@ -741,9 +741,9 @@ graph.clear();
         <span class="footer-header">Community</span>
         <ul>
             <li><a rel="me" href="https://discuss.mindmaps.io">Discussion</a></li>
-            <li><a rel="me" href="https://stackoverflow.com/tags/mindmapsdb" target="_blank">Stack Overflow</a></li>
+            <li><a rel="me" href="https://stackoverflow.com/questions/tagged/grakn+or+graql" target="_blank">Stack Overflow</a></li>
             <li><a href="https://mindmaps.io/slack.html">Slack</a></li>
-            <li><a rel="me" href="https://twitter.com/mindmapsdb" target="_blank">Twitter</a></li>
+            <li><a rel="me" href="https://twitter.com/graknlabs" target="_blank">Twitter</a></li>
         </ul>
     </div>
     <div class="col-lg-2 footer">

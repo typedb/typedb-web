@@ -173,7 +173,7 @@
                 </li>
                 <!--comment out this block if you want to hide github link-->
                 <li>
-                    <a rel="me" href="//github.com/mindmapsdb/mindmapsdb" target="_blank" class="github">
+                    <a rel="me" href="//github.com/graknlabs/grakn" target="_blank" class="github">
                         <svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#github"></use></svg>
                     </a>
                 </li>
@@ -586,14 +586,14 @@ Similarly we could say that Godfather, Star Trek Nemesis and Monster can all be 
 
 <p>We would define such <strong>Entity Types</strong> as follows:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">EntityType</span> <span class="n">person</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">putEntityType</span><span class="o">(</span><span class="s">"Person"</span><span class="o">);</span>
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">EntityType</span> <span class="n">person</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">putEntityType</span><span class="o">(</span><span class="s">"Person"</span><span class="o">);</span>
 <span class="n">EntityType</span> <span class="n">movie</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">putEntityType</span><span class="o">(</span><span class="s">"Movie"</span><span class="o">);</span>
 </code></pre>
 </div>
 
 <p>With this we can arrange our data into categories:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">alPacino</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">addEntity</span><span class="o">(</span><span class="n">person</span><span class="o">);</span>
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">alPacino</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">addEntity</span><span class="o">(</span><span class="n">person</span><span class="o">);</span>
 <span class="n">patrickStewart</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">addEntity</span><span class="o">(</span><span class="n">person</span><span class="o">);</span>
 <span class="n">charliseTheron</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">addEntity</span><span class="o">(</span><span class="n">person</span><span class="o">);</span>
 
@@ -613,13 +613,13 @@ To be able to do so we must first allow such behaviour between our types.
 We begin doing this by defining a <strong>Relation Type</strong> which categorises the relationships of a specific type.
 For example:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">RelationType</span> <span class="n">starsIn</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">putRelationType</span><span class="o">(</span><span class="s">"Stars In"</span><span class="o">);</span>
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">RelationType</span> <span class="n">starsIn</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">putRelationType</span><span class="o">(</span><span class="s">"Stars In"</span><span class="o">);</span>
 </code></pre>
 </div>
 
 <p>In addition to this we have to specify the roles of relationship:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">RoleType</span> <span class="n">actor</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">putRoleType</span><span class="o">(</span><span class="s">"Actor"</span><span class="o">);</span>
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">RoleType</span> <span class="n">actor</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">putRoleType</span><span class="o">(</span><span class="s">"Actor"</span><span class="o">);</span>
 <span class="n">RoleType</span> <span class="n">movieCastIn</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">putRoleType</span><span class="o">(</span><span class="s">"Movie Cast In"</span><span class="o">);</span>
 </code></pre>
 </div>
@@ -627,13 +627,13 @@ For example:</p>
 <p>We also have to link these roles to the correct <strong>Relation Type</strong> (NB Roles are unique and cannot be in more than one
 Relation Type):</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">starsIn</span><span class="o">.</span><span class="na">hasRole</span><span class="o">(</span><span class="n">actor</span><span class="o">).</span><span class="na">hasRole</span><span class="o">(</span><span class="n">movieCastIn</span><span class="o">);</span>
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">starsIn</span><span class="o">.</span><span class="na">hasRole</span><span class="o">(</span><span class="n">actor</span><span class="o">).</span><span class="na">hasRole</span><span class="o">(</span><span class="n">movieCastIn</span><span class="o">);</span>
 </code></pre>
 </div>
 
 <p>Finally we have to explicitly define which <strong>Entity Types</strong> are allowed to play which <strong>Role Types</strong>:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">person</span><span class="o">.</span><span class="na">playsRole</span><span class="o">(</span><span class="n">actor</span><span class="o">);</span>
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">person</span><span class="o">.</span><span class="na">playsRole</span><span class="o">(</span><span class="n">actor</span><span class="o">);</span>
 <span class="n">movie</span><span class="o">.</span><span class="na">playsRole</span><span class="o">(</span><span class="n">movieCastIn</span><span class="o">);</span>
 </code></pre>
 </div>
@@ -646,13 +646,13 @@ Essentially it would prevent us from accidentally saying that a movie starred in
 <p>Now, finally, we can specify that Patrick Stewart was in Star Trek Nemesis.
 First we create an instance of the Relation Type:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">Relation</span> <span class="n">relation</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">addRelation</span><span class="o">(</span><span class="n">starsIn</span><span class="o">);</span>
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">Relation</span> <span class="n">relation</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">addRelation</span><span class="o">(</span><span class="n">starsIn</span><span class="o">);</span>
 </code></pre>
 </div>
 
 <p>Then we specify who is playing which role:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">relation</span><span class="o">.</span><span class="na">putRolePlayer</span><span class="o">(</span><span class="n">actor</span><span class="o">,</span> <span class="n">patrickStewart</span><span class="o">).</span><span class="na">putRolePlayer</span><span class="o">(</span><span class="n">movieCastIn</span><span class="o">,</span> <span class="n">starTrek</span><span class="o">);</span>
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">relation</span><span class="o">.</span><span class="na">putRolePlayer</span><span class="o">(</span><span class="n">actor</span><span class="o">,</span> <span class="n">patrickStewart</span><span class="o">).</span><span class="na">putRolePlayer</span><span class="o">(</span><span class="n">movieCastIn</span><span class="o">,</span> <span class="n">starTrek</span><span class="o">);</span>
 </code></pre>
 </div>
 
@@ -690,7 +690,7 @@ First we create an instance of the Relation Type:</p>
                 <svg><use xmlns:xlink="https://www.w3.org/1999/xlink" xlink:href="#slack"></use></svg> MindmapsDB on Slack
             </a>
             <br>
-            <a rel="me" class="github" href="https://github.com/mindmapsdb/mindmapsdb" target="_blank">
+            <a rel="me" class="github" href="https://github.com/graknlabs/grakn" target="_blank">
                 <svg><use xmlns:xlink="https://www.w3.org/1999/xlink" xlink:href="#github"></use></svg> MindmapsDB on GitHub
             </a>
             <br><br>
@@ -701,7 +701,7 @@ First we create an instance of the Relation Type:</p>
         <br>
         <p>© 2016 <a href="https://mindmaps.io">Mindmaps Research Ltd</a></p>
         <!-- &copy;2016 MindmapsDB. All rights reserved. <br />
-        <span>Page last updated:</span> August 23, 2016<br/> Site last generated: Oct 28, 2016 <br />
+        <span>Page last updated:</span> August 23, 2016<br/> Site last generated: Oct 29, 2016 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">
@@ -716,7 +716,7 @@ First we create an instance of the Relation Type:</p>
         <span class="footer-header">Resources</span>
         <ul>
             <li><a href="/pages/index.html">Documentation</a></li>
-            <li><a rel="me" href="https://github.com/mindmapsdb/mindmapsdb">GitHub</a></li>
+            <li><a rel="me" href="https://github.com/graknlabs/grakn">GitHub</a></li>
             <li><a href="https://mindmaps.io/javadocs.html">Javadoc</a></li>
         </ul>
     </div>
@@ -724,9 +724,9 @@ First we create an instance of the Relation Type:</p>
         <span class="footer-header">Community</span>
         <ul>
             <li><a rel="me" href="https://discuss.mindmaps.io">Discussion</a></li>
-            <li><a rel="me" href="https://stackoverflow.com/tags/mindmapsdb" target="_blank">Stack Overflow</a></li>
+            <li><a rel="me" href="https://stackoverflow.com/questions/tagged/grakn+or+graql" target="_blank">Stack Overflow</a></li>
             <li><a href="https://mindmaps.io/slack.html">Slack</a></li>
-            <li><a rel="me" href="https://twitter.com/mindmapsdb" target="_blank">Twitter</a></li>
+            <li><a rel="me" href="https://twitter.com/graknlabs" target="_blank">Twitter</a></li>
         </ul>
     </div>
     <div class="col-lg-2 footer">
