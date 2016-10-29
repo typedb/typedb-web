@@ -1,0 +1,2 @@
+RewriteEngine on
+RedirectPermanent / https://grakn.ai/
