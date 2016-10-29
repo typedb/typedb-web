@@ -12,10 +12,10 @@ RewriteEngine on
     Header set Access-Control-Allow-Origin "*"
 </FilesMatch>
 
-# Redirect for mindmaps.io/discuss
-RewriteCond %{HTTP_HOST} ^mindmaps\.io$ [OR]
-RewriteCond %{HTTP_HOST} ^www\.mindmaps\.io$
-RewriteRule ^discuss$ "http://discuss.mindmaps.io/" [R=301,L]
+# Redirect for grakn.ai/discuss
+RewriteCond %{HTTP_HOST} ^grakn\.ai$ [OR]
+RewriteCond %{HTTP_HOST} ^www\.grakn\.ai$
+RewriteRule ^discuss$ "https://discuss.grakn.ai/" [R=301,L]
 
 # Redirect www to non-www
 RewriteCond %{HTTP_HOST} ^www\.grakn\.ai$
