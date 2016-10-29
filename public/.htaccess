@@ -17,14 +17,23 @@ RewriteCond %{HTTP_HOST} ^mindmaps\.io$ [OR]
 RewriteCond %{HTTP_HOST} ^www\.mindmaps\.io$
 RewriteRule ^discuss$ "http://discuss.mindmaps.io/" [R=301,L]
 
-# Redirect www to non-www
+# Redirect www.mindmaps.io
 RewriteCond %{HTTP_HOST} ^www\.mindmaps\.io$
-RewriteRule ^(.*)$ "https://mindmaps.io/$1" [R=301,L]
+RewriteRule ^(.*)$ "https://grakn.ai/$1" [R=301,L]
 
-# Redirect to https
+# Redirect mindmaps.io
 RewriteCond %{HTTP_HOST} ^mindmaps\.io [NC]
 RewriteCond %{SERVER_PORT} 80
-RewriteRule ^(.*)$  "https://mindmaps.io/$1" [R=301,L]
+RewriteRule ^(.*)$  "https://grakn.ai/$1" [R=301,L]
+
+# Redirect www to non-www
+RewriteCond %{HTTP_HOST} ^www\.grakn\.ai$
+RewriteRule ^(.*)$ "https://grakn.ai/$1" [R=301,L]
+
+# Redirect to https
+RewriteCond %{HTTP_HOST} ^grakn\.ai [NC]
+RewriteCond %{SERVER_PORT} 80
+RewriteRule ^(.*)$  "https://grakn.ai/$1" [R=301,L]
 
 # Redirect for Mindmaps release archive
 Redirect /download/latest "https://github.com/graknlabs/grakn/releases/download/v0.5.0/mindmaps-dist-0.5.0.zip"
