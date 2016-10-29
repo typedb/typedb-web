@@ -6,117 +6,31 @@
   
   
   <url>
-    <loc>http://mindmaps.io/pages//platform/index.html</loc>
+    <loc>http://grakn.ai/pages//platform/index.html</loc>
   </url>
   
   
   
   <url>
-    <loc>http://mindmaps.io/pages//platform/applications.html</loc>
+    <loc>http://grakn.ai/pages//platform/applications.html</loc>
   </url>
   
   
   
   <url>
-    <loc>http://mindmaps.io/pages//platform/advantages.html</loc>
+    <loc>http://grakn.ai/pages//platform/advantages.html</loc>
   </url>
   
   
   
   <url>
-    <loc>http://mindmaps.io/pages//platform/comparison.html</loc>
+    <loc>http://grakn.ai/pages//platform/comparison.html</loc>
   </url>
   
   
   
   <url>
-    <loc>http://mindmaps.io/pages//platform/use-case.html</loc>
-  </url>
-  
-  
-  
-  
-  
-  <url>
-    <loc>http://mindmaps.io/pages//platform/developer.html</loc>
-  </url>
-  
-  
-  
-  <url>
-    <loc>http://mindmaps.io/pages//platform/faq.html</loc>
-  </url>
-  
-  
-  
-  <url>
-    <loc>http://mindmaps.io/pages//documentation/examples/OWL-migration.html</loc>
-  </url>
-  
-  
-  
-  <url>
-    <loc>http://mindmaps.io/pages//documentation/migration/OWL-migration.html</loc>
-  </url>
-  
-  
-  
-  <url>
-    <loc>http://mindmaps.io/pages//documentation/migration/SQL-migration.html</loc>
-  </url>
-  
-  
-  
-  <url>
-    <loc>http://mindmaps.io/pages//documentation/examples/SQL-migration.html</loc>
-  </url>
-  
-  
-  
-  <url>
-    <loc>http://mindmaps.io/pages//documentation/core-api/advanced-schema-definition.html</loc>
-  </url>
-  
-  
-  
-  <url>
-    <loc>http://mindmaps.io/pages//documentation/api-reference/api-reference.html</loc>
-  </url>
-  
-  
-  
-  <url>
-    <loc>http://mindmaps.io/pages//documentation/graql/ask-queries.html</loc>
-  </url>
-  
-  
-  
-  <url>
-    <loc>http://mindmaps.io/pages//documentation/graql/compute-queries.html</loc>
-  </url>
-  
-  
-  
-  <url>
-    <loc>http://mindmaps.io/pages//documentation/graql/delete-queries.html</loc>
-  </url>
-  
-  
-  
-  <url>
-    <loc>http://mindmaps.io/pages//documentation/resources/downloads.html</loc>
-  </url>
-  
-  
-  
-  <url>
-    <loc>http://mindmaps.io/pages//documentation/examples/examples.html</loc>
-  </url>
-  
-  
-  
-  <url>
-    <loc>http://mindmaps.io/pages//documentation/resources/faq.html</loc>
+    <loc>http://grakn.ai/pages//platform/use-case.html</loc>
   </url>
   
   
@@ -124,115 +38,85 @@
   
   
   <url>
-    <loc>http://mindmaps.io/pages//documentation/graql/graql-cheatsheet.html</loc>
+    <loc>http://grakn.ai/pages//platform/developer.html</loc>
   </url>
   
   
   
   <url>
-    <loc>http://mindmaps.io/pages//documentation/graql/graql-shell.html</loc>
+    <loc>http://grakn.ai/pages//platform/faq.html</loc>
   </url>
   
   
   
   <url>
-    <loc>http://mindmaps.io/pages//documentation/graql/graql-templating.html</loc>
+    <loc>http://grakn.ai/pages//documentation/examples/OWL-migration.html</loc>
   </url>
   
   
   
   <url>
-    <loc>http://mindmaps.io/pages//index</loc>
+    <loc>http://grakn.ai/pages//documentation/migration/OWL-migration.html</loc>
   </url>
   
   
   
   <url>
-    <loc>http://mindmaps.io/pages//documentation/graql/insert-queries.html</loc>
+    <loc>http://grakn.ai/pages//documentation/migration/SQL-migration.html</loc>
   </url>
   
   
   
   <url>
-    <loc>http://mindmaps.io/pages//documentation/graql/java-graql.html</loc>
+    <loc>http://grakn.ai/pages//documentation/examples/SQL-migration.html</loc>
   </url>
   
   
   
   <url>
-    <loc>http://mindmaps.io/pages//documentation/graql/match-queries.html</loc>
+    <loc>http://grakn.ai/pages//documentation/core-api/advanced-schema-definition.html</loc>
   </url>
   
   
   
   <url>
-    <loc>http://mindmaps.io/pages//documentation/migration/migration.html</loc>
+    <loc>http://grakn.ai/pages//documentation/api-reference/api-reference.html</loc>
   </url>
   
   
   
   <url>
-    <loc>http://mindmaps.io/pages//documentation/the-basics/mindmaps-basics.html</loc>
+    <loc>http://grakn.ai/pages//documentation/graql/ask-queries.html</loc>
   </url>
   
   
   
   <url>
-    <loc>http://mindmaps.io/pages//documentation/examples/modern.html</loc>
+    <loc>http://grakn.ai/pages//documentation/graql/compute-queries.html</loc>
   </url>
   
   
   
   <url>
-    <loc>http://mindmaps.io/pages//documentation/examples/moogi.html</loc>
+    <loc>http://grakn.ai/pages//documentation/graql/delete-queries.html</loc>
   </url>
   
   
   
   <url>
-    <loc>http://mindmaps.io/pages//js/mydoc_scroll.html</loc>
+    <loc>http://grakn.ai/pages//documentation/resources/downloads.html</loc>
   </url>
   
   
   
   <url>
-    <loc>http://mindmaps.io/pages//documentation/core-api/overview.html</loc>
+    <loc>http://grakn.ai/pages//documentation/examples/examples.html</loc>
   </url>
   
   
   
   <url>
-    <loc>http://mindmaps.io/pages//documentation/graql/overview.html</loc>
-  </url>
-  
-  
-  
-  <url>
-    <loc>http://mindmaps.io/pages//documentation/examples/philosophers.html</loc>
-  </url>
-  
-  
-  
-  <url>
-    <loc>http://mindmaps.io/pages//documentation/examples/pokemon.html</loc>
-  </url>
-  
-  
-  
-  <url>
-    <loc>http://mindmaps.io/pages//documentation/examples/projects.html</loc>
-  </url>
-  
-  
-  
-  <url>
-    <loc>http://mindmaps.io/pages//documentation/the-basics/quickstart-tutorial.html</loc>
-  </url>
-  
-  
-  
-  <url>
-    <loc>http://mindmaps.io/pages//documentation/resources/resources.html</loc>
+    <loc>http://grakn.ai/pages//documentation/resources/faq.html</loc>
   </url>
   
   
@@ -240,13 +124,129 @@
   
   
   <url>
-    <loc>http://mindmaps.io/pages//documentation/get-started/setup-guide.html</loc>
+    <loc>http://grakn.ai/pages//documentation/graql/graql-cheatsheet.html</loc>
   </url>
   
   
   
   <url>
-    <loc>http://mindmaps.io/pages//documentation/core-api/simple-schema-definition.html</loc>
+    <loc>http://grakn.ai/pages//documentation/graql/graql-shell.html</loc>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://grakn.ai/pages//documentation/graql/graql-templating.html</loc>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://grakn.ai/pages//index</loc>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://grakn.ai/pages//documentation/graql/insert-queries.html</loc>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://grakn.ai/pages//documentation/graql/java-graql.html</loc>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://grakn.ai/pages//documentation/graql/match-queries.html</loc>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://grakn.ai/pages//documentation/migration/migration.html</loc>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://grakn.ai/pages//documentation/the-basics/mindmaps-basics.html</loc>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://grakn.ai/pages//documentation/examples/modern.html</loc>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://grakn.ai/pages//documentation/examples/moogi.html</loc>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://grakn.ai/pages//js/mydoc_scroll.html</loc>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://grakn.ai/pages//documentation/core-api/overview.html</loc>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://grakn.ai/pages//documentation/graql/overview.html</loc>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://grakn.ai/pages//documentation/examples/philosophers.html</loc>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://grakn.ai/pages//documentation/examples/pokemon.html</loc>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://grakn.ai/pages//documentation/examples/projects.html</loc>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://grakn.ai/pages//documentation/the-basics/quickstart-tutorial.html</loc>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://grakn.ai/pages//documentation/resources/resources.html</loc>
+  </url>
+  
+  
+  
+  
+  
+  <url>
+    <loc>http://grakn.ai/pages//documentation/get-started/setup-guide.html</loc>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://grakn.ai/pages//documentation/core-api/simple-schema-definition.html</loc>
   </url>
   
   
@@ -270,7 +270,7 @@
   
   
   <url>
-    <loc>http://mindmaps.io/pages//documentation/the-basics/visualiser.html</loc>
+    <loc>http://grakn.ai/pages//documentation/the-basics/visualiser.html</loc>
   </url>
   
   
