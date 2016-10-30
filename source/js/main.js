@@ -36,8 +36,8 @@ window.MNDMPS.App = {
 
         advantagesTypist.typed({
             strings: ['match ($a, $b) isa knows;<br/>$b isa person, value "Marco";<br/>select $a(value);',
-            'match ($a, $b) isa employment;<br/>$b isa company, value "MindmapsDB";<br/>select $a(value);',
-            'match ($a, $b) isa knows;<br/>($b, $c) isa employment;<br/>$c isa company, value "MindmapsDB"<br/>select $a(value);'],
+            'match ($a, $b) isa employment;<br/>$b isa company, value "Grakn Labs";<br/>select $a(value);',
+            'match ($a, $b) isa knows;<br/>($b, $c) isa employment;<br/>$c isa company, value "Grakn Labs"<br/>select $a(value);'],
             typeSpeed: 5,
             backSpeed: 0,
             backDelay: 5000,
