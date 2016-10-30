@@ -82,17 +82,6 @@
 
 ,
 {
-"title": "An Example of Migrating OWL to Grakn",
-"tags": "migration",
-"keywords": "migration",
-"url": "/pages/documentation/examples/OWL-migration.html",
-"summary": "A short example to illustrate migration of OWL to Grakn"
-}
-
-
-
-,
-{
 "title": "OWL Migration to Grakn",
 "tags": "migration",
 "keywords": "setup, getting started",
@@ -104,11 +93,11 @@
 
 ,
 {
-"title": "SQL Migration to Grakn",
+"title": "An Example of Migrating OWL to Grakn",
 "tags": "migration",
-"keywords": "setup, getting started",
-"url": "/pages/documentation/migration/SQL-migration.html",
-"summary": "This document will teach you how to migrate SQL data into a Grakn graph."
+"keywords": "migration",
+"url": "/pages/documentation/examples/OWL-migration.html",
+"summary": "A short example to illustrate migration of OWL to Grakn"
 }
 
 
@@ -120,6 +109,17 @@
 "keywords": "migration",
 "url": "/pages/documentation/examples/SQL-migration.html",
 "summary": "A short example to illustrate migration of SQL to Grakn"
+}
+
+
+
+,
+{
+"title": "SQL Migration to Grakn",
+"tags": "migration",
+"keywords": "setup, getting started",
+"url": "/pages/documentation/migration/SQL-migration.html",
+"summary": "This document will teach you how to migrate SQL data into a Grakn graph."
 }
 
 
@@ -348,22 +348,22 @@
 
 ,
 {
-"title": "Graph API Overview",
-"tags": "javagraph-api",
-"keywords": "overview",
-"url": "/pages/documentation/core-api/overview.html",
-"summary": "A basic example of how to use Grakn Graph API."
+"title": "Graql Overview",
+"tags": "graql",
+"keywords": "graql, overview",
+"url": "/pages/documentation/graql/overview.html",
+"summary": "An introduction to Graql"
 }
 
 
 
 ,
 {
-"title": "Graql Overview",
-"tags": "graql",
-"keywords": "graql, overview",
-"url": "/pages/documentation/graql/overview.html",
-"summary": "An introduction to Graql"
+"title": "Graph API Overview",
+"tags": "javagraph-api",
+"keywords": "overview",
+"url": "/pages/documentation/core-api/overview.html",
+"summary": "A basic example of how to use Grakn Graph API."
 }
 
 
