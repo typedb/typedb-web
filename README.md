@@ -1,6 +1,6 @@
 # web-mindmaps
 
-Mindmaps website located at [http://mindmaps.io](http://mindmaps.io).
+Mindmaps website located at [http://mindmaps.io](http://grakn.ai).
 
 ## Installation
 
