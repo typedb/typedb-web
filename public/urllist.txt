@@ -1,5 +1,4 @@
-http://mindmaps.io
-http://mindmaps.io/usecases.html
-http://mindmaps.io/careers.html
-http://mindmaps.io/about.html
-http://mindmaps.io#section-contact
+https://grakn.ai
+https://grakn.ai/careers.html
+https://grakn.ai/about.html
+https://grakn.ai#section-contact
