@@ -1,23 +1,2005 @@
-<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type="text/xsl" href="sitemap.xsl"?>
-<urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-    <url>
-        <loc>https://grakn.ai</loc>
-        <priority>1.0</priority>
-    </url>
-    <url>
-        <loc>https://grakn.ai/pages/platform/applications.html</loc>
-        <priority>0.9</priority>
-    </url>
-    <url>
-        <loc>https://grakn.ai/careers.html</loc>
-        <priority>0.9</priority>
-    </url>
-    <url>
-        <loc>https://grakn.ai/about.html</loc>
-        <priority>0.9</priority>
-    </url>
-    <url>
-        <loc>https://grakn.ai#section-contact</loc>
-        <priority>0.9</priority>
-    </url>
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset
+      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+<!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
+
+<url>
+  <loc>https://grakn.ai/</loc>
+  <priority>1.00</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/careers.html</loc>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/about.html</loc>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/platform/index.html</loc>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/index.html</loc>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/community.html</loc>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/documentation/get-started/setup-guide.html</loc>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/slack.html</loc>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/platform/applications.html</loc>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/platform/advantages.html</loc>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/documentation/the-basics/quickstart-tutorial.html</loc>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/javadocs.html</loc>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/platform/developer.html</loc>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/tag_overview.html</loc>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/documentation/the-basics/mindmaps-basics.html</loc>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/documentation/the-basics/visualiser.html</loc>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/documentation/core-api/overview.html</loc>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/documentation/core-api/simple-schema-definition.html</loc>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/documentation/core-api/advanced-schema-definition.html</loc>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/documentation/graql/overview.html</loc>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/documentation/graql/graql-shell.html</loc>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/documentation/graql/match-queries.html</loc>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/documentation/graql/ask-queries.html</loc>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/documentation/graql/delete-queries.html</loc>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/documentation/graql/insert-queries.html</loc>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/documentation/graql/compute-queries.html</loc>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/documentation/graql/graql-templating.html</loc>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/documentation/graql/graql-cheatsheet.html</loc>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/documentation/graql/java-graql.html</loc>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/documentation/migration/migration.html</loc>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/documentation/migration/SQL-migration.html</loc>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/documentation/migration/OWL-migration.html</loc>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/documentation/api-reference/api-reference.html</loc>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/documentation/resources/resources.html</loc>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/documentation/resources/faq.html</loc>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/documentation/resources/downloads.html</loc>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/documentation/examples/examples.html</loc>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/documentation/examples/pokemon.html</loc>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/documentation/examples/philosophers.html</loc>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/documentation/examples/moogi.html</loc>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/documentation/examples/modern.html</loc>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/documentation/examples/OWL-migration.html</loc>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/documentation/examples/SQL-migration.html</loc>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/documentation/examples/projects.html</loc>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/tag_getting-started.html</loc>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/tag_graql.html</loc>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/tag_java.html</loc>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/platform/comparison.html</loc>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/platform/use-case.html</loc>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/platform/faq.html</loc>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/documentation/the-basics/quickstart-tutorial</loc>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/tag_graph-api.html</loc>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/index.html</loc>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/tag_migration.html</loc>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/v0.4.0/index.html</loc>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/v0.3.0/index.html</loc>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/v0.2.0/index.html</loc>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/v0.1.1/index.html</loc>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/v0.1.0/index.html</loc>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/index</loc>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/tag_faq.html</loc>
+  <priority>0.41</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/overview-summary.html</loc>
+  <priority>0.41</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/overview-frame.html</loc>
+  <priority>0.41</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/allclasses-frame.html</loc>
+  <priority>0.41</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/v0.4.0/overview-summary.html</loc>
+  <priority>0.41</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/v0.4.0/overview-frame.html</loc>
+  <priority>0.41</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/v0.4.0/allclasses-frame.html</loc>
+  <priority>0.41</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/v0.3.0/overview-summary.html</loc>
+  <priority>0.41</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/v0.3.0/overview-frame.html</loc>
+  <priority>0.41</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/v0.3.0/allclasses-frame.html</loc>
+  <priority>0.41</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/v0.2.0/overview-summary.html</loc>
+  <priority>0.41</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/v0.2.0/overview-frame.html</loc>
+  <priority>0.41</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/v0.2.0/allclasses-frame.html</loc>
+  <priority>0.41</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/v0.1.1/overview-summary.html</loc>
+  <priority>0.41</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/v0.1.1/overview-frame.html</loc>
+  <priority>0.41</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/v0.1.1/allclasses-frame.html</loc>
+  <priority>0.41</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/v0.1.0/core/index.html</loc>
+  <priority>0.41</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/v0.1.0/engine/index.html</loc>
+  <priority>0.41</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/v0.1.0/migration/sql/index.html</loc>
+  <priority>0.41</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/v0.1.0/migration/csv/index.html</loc>
+  <priority>0.41</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/v0.1.0/migration/owl/index.html</loc>
+  <priority>0.41</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/v0.1.0/graql/index.html</loc>
+  <priority>0.41</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/overview-tree.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/deprecated-list.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/index-all.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/help-doc.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/index.html?overview-summary.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/allclasses-noframe.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/package-summary.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/concept/package-summary.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/engine/package-summary.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/engine/controller/package-summary.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/engine/loader/package-summary.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/engine/postprocessing/package-summary.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/engine/session/package-summary.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/engine/util/package-summary.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/engine/visualiser/package-summary.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/example/package-summary.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/exception/package-summary.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/factory/package-summary.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/graph/internal/package-summary.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/graql/package-summary.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/graql/admin/package-summary.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/graql/internal/analytics/package-summary.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/graql/internal/gremlin/package-summary.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/graql/internal/gremlin/fragment/package-summary.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/graql/internal/parser/package-summary.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/graql/internal/pattern/package-summary.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/graql/internal/pattern/property/package-summary.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/graql/internal/query/package-summary.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/graql/internal/query/aggregate/package-summary.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/graql/internal/query/match/package-summary.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/graql/internal/query/predicate/package-summary.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/graql/internal/reasoner/package-summary.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/graql/internal/reasoner/atom/package-summary.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/graql/internal/reasoner/query/package-summary.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/graql/internal/reasoner/rule/package-summary.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/graql/internal/shell/package-summary.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/graql/internal/template/package-summary.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/graql/internal/template/macro/package-summary.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/graql/internal/util/package-summary.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/migration/csv/package-summary.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/migration/export/package-summary.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/migration/json/package-summary.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/migration/owl/package-summary.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/migration/sql/package-summary.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/util/package-summary.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/package-frame.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/concept/package-frame.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/engine/package-frame.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/engine/controller/package-frame.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/engine/loader/package-frame.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/engine/postprocessing/package-frame.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/engine/session/package-frame.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/engine/util/package-frame.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/engine/visualiser/package-frame.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/example/package-frame.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/exception/package-frame.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/factory/package-frame.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/graph/internal/package-frame.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/graql/package-frame.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/graql/admin/package-frame.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/graql/internal/analytics/package-frame.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/graql/internal/gremlin/package-frame.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/graql/internal/gremlin/fragment/package-frame.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/graql/internal/parser/package-frame.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/graql/internal/pattern/package-frame.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/graql/internal/pattern/property/package-frame.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/graql/internal/query/package-frame.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/graql/internal/query/aggregate/package-frame.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/graql/internal/query/match/package-frame.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/graql/internal/query/predicate/package-frame.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/graql/internal/reasoner/package-frame.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/graql/internal/reasoner/atom/package-frame.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/graql/internal/reasoner/query/package-frame.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/graql/internal/reasoner/rule/package-frame.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/graql/internal/shell/package-frame.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/graql/internal/template/package-frame.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/graql/internal/template/macro/package-frame.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/graql/internal/util/package-frame.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/migration/csv/package-frame.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/migration/export/package-frame.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/migration/json/package-frame.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/migration/owl/package-frame.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/migration/sql/package-frame.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/util/package-frame.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/graql/internal/query/aggregate/AbstractAggregate.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/graph/internal/AbstractMindmapsGraph.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/graql/internal/util/AdminConverter.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/graql/Aggregate.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/graql/AggregateQuery.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/graql/internal/query/aggregate/Aggregates.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/graql/internal/analytics/Analytics.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/graql/internal/util/ANSI.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/graql/AskQuery.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/graql/admin/AskQueryAdmin.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/graql/internal/reasoner/atom/Atom.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/graql/internal/reasoner/atom/AtomBase.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/graql/internal/reasoner/atom/Atomic.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/graql/internal/reasoner/atom/AtomicFactory.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/graql/internal/reasoner/query/AtomicMatchQuery.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/graql/internal/reasoner/query/AtomicQuery.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/graql/Autocomplete.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/engine/postprocessing/BackgroundTasks.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/graql/internal/reasoner/atom/Binary.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/engine/loader/BlockingLoader.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/engine/postprocessing/Cache.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/engine/controller/CommitLogController.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/graql/internal/util/CommonUtil.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/graql/ComputeQuery.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/concept/Concept.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/exception/ConceptException.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/exception/ConceptNotUniqueException.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/engine/util/ConfigProperties.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/graql/admin/Conjunction.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/graql/internal/analytics/ConnectedComponentVertexProgram.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/graql/internal/analytics/CountVertexProgram.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/migration/csv/CSVMigrator.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/graql/internal/pattern/property/DataTypeProperty.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/graql/internal/analytics/DegreeVertexProgram.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/graql/DeleteQuery.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/graql/admin/DeleteQueryAdmin.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/graql/admin/Disjunction.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/engine/loader/DistributedLoader.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/graql/internal/template/macro/DoubleMacro.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/graph/internal/EngineCommunicator.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/concept/Entity.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/concept/EntityType.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/graql/internal/template/macro/EqualsMacro.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/graql/internal/gremlin/EquivalentFragmentSet.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/graql/internal/shell/ErrorMessage.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/util/ErrorMessage.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/graql/internal/gremlin/fragment/Fragment.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/graql/internal/gremlin/FragmentPriority.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/graql/internal/gremlin/fragment/Fragments.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/factory/GraphFactory.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/engine/controller/GraphFactoryController.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/exception/GraphRuntimeException.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/migration/export/GraphWriter.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/graql/Graql.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/graql/GraqlClient.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/graql/GraqlClientImpl.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/graql/internal/shell/GraQLCompleter.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/graql/GraqlShell.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/graql/internal/shell/GraqlSignalHandler.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/graql/internal/gremlin/GraqlTraversal.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/graql/internal/util/GraqlType.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/graql/internal/gremlin/GremlinQuery.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/engine/visualiser/HALConcept.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/graql/internal/pattern/property/HasResourceProperty.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/graql/internal/pattern/property/HasResourceTypeProperty.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/graql/internal/pattern/property/HasRoleProperty.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/graql/internal/pattern/property/HasScopeProperty.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/graql/internal/reasoner/atom/IdPredicate.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/graql/internal/pattern/property/IdProperty.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/engine/controller/ImportController.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/graql/internal/reasoner/rule/InferenceRule.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/graql/InsertQuery.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/graql/admin/InsertQueryAdmin.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/graql/internal/query/InsertQueryExecutor.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/concept/Instance.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/migration/export/InstanceMapper.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/graql/internal/template/macro/IntMacro.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/exception/InvalidConceptTypeException.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/exception/InvalidConceptValueException.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/graql/internal/pattern/property/IsAbstractProperty.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/graql/internal/pattern/property/IsaProperty.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/migration/json/JsonMigrator.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/graql/internal/pattern/property/LhsProperty.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/engine/loader/Loader.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/graql/internal/template/macro/Macro.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/migration/csv/Main.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/migration/export/Main.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/migration/json/Main.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/migration/owl/Main.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/migration/sql/Main.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/graql/internal/query/match/MatchOrder.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/graql/MatchQuery.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/graql/admin/MatchQueryAdmin.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/graql/internal/query/match/MatchQueryBase.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/graql/internal/query/match/MatchQueryInternal.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/graql/internal/analytics/MaxMapReduce.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/graql/internal/analytics/MeanMapReduce.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/graql/internal/analytics/MedianVertexProgram.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/Mindmaps.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/MindmapsComputer.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/graph/internal/MindmapsComputerImpl.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/engine/MindmapsEngineServer.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/exception/MindmapsEngineServerException.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/MindmapsGraph.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/MindmapsGraphFactory.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/factory/MindmapsGraphFactoryImpl.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/factory/MindmapsGraphFactoryInMemory.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/graql/internal/analytics/MindmapsMapReduce.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/graph/internal/MindmapsOrientDBGraph.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/factory/MindmapsOrientDBInternalFactory.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/graph/internal/MindmapsTinkerGraph.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/graph/internal/MindmapsTitanGraph.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/factory/MindmapsTitanHadoopInternalFactory.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/exception/MindmapsValidationException.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/graql/internal/analytics/MindmapsVertexProgram.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/exception/MoreThanOneConceptException.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/exception/MoreThanOneEdgeException.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/example/MovieGraphFactory.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/graql/NamedAggregate.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/migration/owl/Namer.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/migration/sql/Namer.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/exception/NoEdgeException.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/graql/internal/template/macro/NoescpMacro.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/migration/owl/OWLMigrator.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/migration/owl/OwlMindmapsGraphStoringVisitor.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/migration/owl/OwlModel.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/graql/Pattern.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/graql/admin/PatternAdmin.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/graql/internal/pattern/Patterns.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/graql/internal/pattern/property/PlaysRoleProperty.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/example/PokemonGraphFactory.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/graql/internal/reasoner/atom/Predicate.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/graql/internal/query/predicate/Predicates.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/graql/internal/reasoner/atom/PropertyMapper.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/graql/internal/query/Queries.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/graql/internal/reasoner/query/Query.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/graql/Query.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/graql/internal/reasoner/query/QueryAnswers.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/graql/QueryBuilder.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/graql/internal/parser/QueryParser.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/graql/Reasoner.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/graql/internal/reasoner/query/ReasonerMatchQuery.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/graql/internal/pattern/property/RegexProperty.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/concept/Relation.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/graql/internal/reasoner/atom/Relation.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/graql/internal/pattern/property/RelationProperty.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/concept/RelationType.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/engine/session/RemoteSession.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/engine/controller/RemoteShellController.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/concept/Resource.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/graql/internal/reasoner/atom/Resource.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/concept/ResourceType.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/concept/ResourceType.DataType.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/util/REST.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/util/REST.GraphConfig.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/util/REST.HttpConn.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/util/REST.RemoteShell.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/util/REST.Request.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/util/REST.Response.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/util/REST.WebPath.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/engine/loader/RESTLoader.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/graql/internal/pattern/property/RhsProperty.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/concept/RoleType.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/concept/Rule.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/concept/RuleType.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/util/Schema.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/util/Schema.BaseType.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/util/Schema.ConceptProperty.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/util/Schema.EdgeLabel.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/util/Schema.EdgeProperty.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/util/Schema.MetaSchema.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/graql/internal/template/Scope.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/graql/internal/shell/ShellCommandCompleter.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/graql/internal/gremlin/ShortcutTraversal.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/migration/sql/SQLDataMigrator.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/migration/sql/SQLModel.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/migration/sql/SQLSchemaMigrator.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/migration/sql/SQLType.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/engine/controller/StatusController.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/graql/internal/analytics/StdMapReduce.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/graql/Streamable.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/graql/internal/util/StringConverter.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/graql/internal/pattern/property/SubProperty.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/graql/internal/analytics/SumMapReduce.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/graql/internal/template/TemplateParser.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/graql/internal/template/TemplateVisitor.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/engine/controller/TransactionController.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/engine/loader/TransactionState.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/engine/loader/TransactionState.State.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/concept/Type.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/graql/internal/reasoner/atom/TypeAtom.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/migration/export/TypeMapper.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/graql/admin/UniqueVarProperty.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/graql/internal/analytics/Utility.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/graql/internal/reasoner/Utility.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/graql/internal/template/Value.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/graql/internal/pattern/property/ValueFlagProperty.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/graql/internal/reasoner/atom/ValuePredicate.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/graql/ValuePredicate.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/graql/admin/ValuePredicateAdmin.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/graql/internal/pattern/property/ValueProperty.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/graql/Var.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/graql/admin/VarAdmin.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/graql/admin/VarAdmin.Casting.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/graql/admin/VarProperty.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/graql/internal/pattern/property/VarPropertyInternal.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/latest/io/mindmaps/engine/controller/VisualiserController.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/v0.4.0/overview-tree.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/v0.4.0/deprecated-list.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/v0.4.0/index-all.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/v0.4.0/help-doc.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/v0.4.0/index.html?overview-summary.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/v0.4.0/allclasses-noframe.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/v0.4.0/io/mindmaps/package-summary.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/v0.4.0/io/mindmaps/concept/package-summary.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/v0.4.0/io/mindmaps/engine/package-summary.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/v0.4.0/io/mindmaps/engine/controller/package-summary.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/v0.4.0/io/mindmaps/engine/loader/package-summary.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/v0.4.0/io/mindmaps/engine/postprocessing/package-summary.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/v0.4.0/io/mindmaps/engine/session/package-summary.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/v0.4.0/io/mindmaps/engine/util/package-summary.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/v0.4.0/io/mindmaps/engine/visualiser/package-summary.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/v0.4.0/io/mindmaps/example/package-summary.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/v0.4.0/io/mindmaps/exception/package-summary.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/v0.4.0/io/mindmaps/factory/package-summary.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/v0.4.0/io/mindmaps/graph/internal/package-summary.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/v0.4.0/io/mindmaps/graql/package-summary.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/v0.4.0/io/mindmaps/graql/admin/package-summary.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/v0.4.0/io/mindmaps/graql/internal/analytics/package-summary.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/v0.4.0/io/mindmaps/graql/internal/gremlin/package-summary.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/v0.4.0/io/mindmaps/graql/internal/parser/package-summary.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/v0.4.0/io/mindmaps/graql/internal/pattern/package-summary.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/v0.4.0/io/mindmaps/graql/internal/pattern/property/package-summary.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/v0.4.0/io/mindmaps/graql/internal/query/package-summary.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/v0.4.0/io/mindmaps/graql/internal/query/aggregate/package-summary.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/v0.4.0/io/mindmaps/graql/internal/query/match/package-summary.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/v0.4.0/io/mindmaps/graql/internal/query/predicate/package-summary.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/v0.4.0/io/mindmaps/graql/internal/reasoner/package-summary.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/v0.4.0/io/mindmaps/graql/internal/reasoner/predicate/package-summary.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/v0.4.0/io/mindmaps/graql/internal/reasoner/query/package-summary.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/v0.4.0/io/mindmaps/graql/internal/reasoner/rule/package-summary.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/v0.4.0/io/mindmaps/graql/internal/shell/package-summary.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/v0.4.0/io/mindmaps/graql/internal/template/package-summary.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/v0.4.0/io/mindmaps/graql/internal/template/macro/package-summary.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/v0.4.0/io/mindmaps/graql/internal/util/package-summary.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/v0.4.0/io/mindmaps/migration/csv/package-summary.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/v0.4.0/io/mindmaps/migration/export/package-summary.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/v0.4.0/io/mindmaps/migration/json/package-summary.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/v0.4.0/io/mindmaps/migration/owl/package-summary.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/v0.4.0/io/mindmaps/migration/sql/package-summary.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/v0.4.0/io/mindmaps/util/package-summary.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/v0.4.0/io/mindmaps/package-frame.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/v0.4.0/io/mindmaps/concept/package-frame.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/v0.4.0/io/mindmaps/engine/package-frame.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/v0.4.0/io/mindmaps/engine/controller/package-frame.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/v0.4.0/io/mindmaps/engine/loader/package-frame.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/v0.4.0/io/mindmaps/engine/postprocessing/package-frame.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/v0.4.0/io/mindmaps/engine/session/package-frame.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/v0.4.0/io/mindmaps/engine/util/package-frame.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/v0.4.0/io/mindmaps/engine/visualiser/package-frame.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/v0.4.0/io/mindmaps/example/package-frame.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/v0.4.0/io/mindmaps/exception/package-frame.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/v0.4.0/io/mindmaps/factory/package-frame.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/v0.4.0/io/mindmaps/graph/internal/package-frame.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/v0.4.0/io/mindmaps/graql/package-frame.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/v0.4.0/io/mindmaps/graql/admin/package-frame.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/v0.4.0/io/mindmaps/graql/internal/analytics/package-frame.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/v0.4.0/io/mindmaps/graql/internal/gremlin/package-frame.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/v0.4.0/io/mindmaps/graql/internal/parser/package-frame.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/v0.4.0/io/mindmaps/graql/internal/pattern/package-frame.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/v0.4.0/io/mindmaps/graql/internal/pattern/property/package-frame.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/v0.4.0/io/mindmaps/graql/internal/query/package-frame.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/v0.4.0/io/mindmaps/graql/internal/query/aggregate/package-frame.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/v0.4.0/io/mindmaps/graql/internal/query/match/package-frame.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/v0.4.0/io/mindmaps/graql/internal/query/predicate/package-frame.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/v0.4.0/io/mindmaps/graql/internal/reasoner/package-frame.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/v0.4.0/io/mindmaps/graql/internal/reasoner/predicate/package-frame.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/v0.4.0/io/mindmaps/graql/internal/reasoner/query/package-frame.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/v0.4.0/io/mindmaps/graql/internal/reasoner/rule/package-frame.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/v0.4.0/io/mindmaps/graql/internal/shell/package-frame.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/v0.4.0/io/mindmaps/graql/internal/template/package-frame.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/v0.4.0/io/mindmaps/graql/internal/template/macro/package-frame.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/v0.4.0/io/mindmaps/graql/internal/util/package-frame.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/v0.4.0/io/mindmaps/migration/csv/package-frame.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/v0.4.0/io/mindmaps/migration/export/package-frame.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/v0.4.0/io/mindmaps/migration/json/package-frame.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/v0.4.0/io/mindmaps/migration/owl/package-frame.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/v0.4.0/io/mindmaps/migration/sql/package-frame.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/v0.4.0/io/mindmaps/util/package-frame.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/v0.4.0/io/mindmaps/graql/internal/query/aggregate/AbstractAggregate.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/v0.4.0/io/mindmaps/graph/internal/AbstractMindmapsGraph.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/v0.4.0/io/mindmaps/graql/internal/util/AdminConverter.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/v0.4.0/io/mindmaps/graql/Aggregate.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/v0.4.0/io/mindmaps/graql/AggregateQuery.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/v0.4.0/io/mindmaps/graql/internal/query/aggregate/Aggregates.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/v0.4.0/io/mindmaps/graql/internal/pattern/property/AkoProperty.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/v0.4.0/io/mindmaps/graql/internal/analytics/Analytics.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/v0.4.0/io/mindmaps/graql/internal/util/ANSI.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/v0.4.0/io/mindmaps/graql/AskQuery.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/v0.4.0/io/mindmaps/graql/admin/AskQueryAdmin.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/v0.4.0/io/mindmaps/graql/internal/reasoner/predicate/AtomBase.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/v0.4.0/io/mindmaps/graql/internal/reasoner/predicate/Atomic.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/v0.4.0/io/mindmaps/graql/internal/reasoner/predicate/AtomicFactory.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/v0.4.0/io/mindmaps/graql/internal/reasoner/query/AtomicMatchQuery.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/v0.4.0/io/mindmaps/graql/internal/reasoner/query/AtomicQuery.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/v0.4.0/io/mindmaps/graql/Autocomplete.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/v0.4.0/io/mindmaps/engine/postprocessing/BackgroundTasks.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/v0.4.0/io/mindmaps/engine/loader/BlockingLoader.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/v0.4.0/io/mindmaps/engine/postprocessing/Cache.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/v0.4.0/io/mindmaps/engine/controller/CommitLogController.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/v0.4.0/io/mindmaps/graql/internal/util/CommonUtil.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/v0.4.0/io/mindmaps/graql/ComputeQuery.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/v0.4.0/io/mindmaps/concept/Concept.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/v0.4.0/io/mindmaps/exception/ConceptException.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/v0.4.0/io/mindmaps/exception/ConceptIdNotUniqueException.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/v0.4.0/io/mindmaps/engine/util/ConfigProperties.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/v0.4.0/io/mindmaps/graql/admin/Conjunction.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/v0.4.0/io/mindmaps/graql/internal/analytics/CountVertexProgram.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/v0.4.0/io/mindmaps/migration/csv/CSVMigrator.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/v0.4.0/io/mindmaps/graql/internal/pattern/property/DataTypeProperty.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/v0.4.0/io/mindmaps/graql/internal/analytics/DegreeVertexProgram.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/v0.4.0/io/mindmaps/graql/DeleteQuery.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/v0.4.0/io/mindmaps/graql/admin/DeleteQueryAdmin.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/v0.4.0/io/mindmaps/graql/admin/Disjunction.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/v0.4.0/io/mindmaps/engine/loader/DistributedLoader.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/v0.4.0/io/mindmaps/graql/internal/template/macro/DoubleMacro.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/v0.4.0/io/mindmaps/graph/internal/EngineCommunicator.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/v0.4.0/io/mindmaps/concept/Entity.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/v0.4.0/io/mindmaps/concept/EntityType.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/v0.4.0/io/mindmaps/graql/internal/template/macro/EqualsMacro.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/v0.4.0/io/mindmaps/graql/internal/shell/ErrorMessage.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/v0.4.0/io/mindmaps/util/ErrorMessage.html</loc>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/api-reference/v0.4.0/io/mindmaps/graql/internal/gremlin/Fragment.html</loc>
+  <priority>0.33</priority>
+</url>
 </urlset>
