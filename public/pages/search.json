@@ -82,6 +82,17 @@
 
 ,
 {
+"title": "CSV Migration to Grakn",
+"tags": "migration",
+"keywords": "setup, getting started",
+"url": "/pages/documentation/migration/CSV-migration.html",
+"summary": "This document will teach you how to migrate CSV data into Grakn."
+}
+
+
+
+,
+{
 "title": "OWL Migration to Grakn",
 "tags": "migration",
 "keywords": "setup, getting started",
@@ -119,7 +130,7 @@
 "tags": "migration",
 "keywords": "setup, getting started",
 "url": "/pages/documentation/migration/SQL-migration.html",
-"summary": "This document will teach you how to migrate SQL data into a Grakn graph."
+"summary": "This document will teach you how to migrate SQL data into Grakn."
 }
 
 
@@ -130,7 +141,7 @@
 "tags": "graph-apijava",
 "keywords": "schema",
 "url": "/pages/documentation/core-api/advanced-schema-definition.html",
-"summary": "Demonstrates how to create an advanced schema for a Grakn knowledge graph."
+"summary": "Demonstrates how to create an advanced schema for Grakn."
 }
 
 
@@ -297,7 +308,7 @@
 "tags": "getting-startedgraqlmigration",
 "keywords": "setup, getting started",
 "url": "/pages/documentation/migration/migration.html",
-"summary": "Landing page for documentation about loading data in different formats to populate a Grakn graph."
+"summary": "Landing page for documentation about loading data in different formats to populate a graph in Grakn."
 }
 
 
@@ -363,7 +374,7 @@
 "tags": "javagraph-api",
 "keywords": "overview",
 "url": "/pages/documentation/core-api/overview.html",
-"summary": "A basic example of how to use Grakn Graph API."
+"summary": "A basic example of how to use Grakn's Graph API."
 }
 
 
@@ -407,7 +418,7 @@
 "tags": "getting-startedgraql",
 "keywords": "setup, getting started",
 "url": "/pages/documentation/the-basics/quickstart-tutorial.html",
-"summary": "This document will teach you how to use Graql to load a schema and some data into a Grakn Graph."
+"summary": "This document will teach you how to use Graql to load a schema and some data into Grakn."
 }
 
 
@@ -431,7 +442,7 @@
 "tags": "getting-startedgraql",
 "keywords": "setup, getting started",
 "url": "/pages/documentation/get-started/setup-guide.html",
-"summary": "This document will teach you how to set up a Grakn environment, start it up and load an example dataset to make a query using our query language, Graql."
+"summary": "This document will teach you how to set up a Grakn environment, start it up and load a simple example."
 }
 
 
@@ -442,7 +453,7 @@
 "tags": "javagraph-api",
 "keywords": "schema",
 "url": "/pages/documentation/core-api/simple-schema-definition.html",
-"summary": "Demonstrates how to create a schema for a Grakn knowledge graph."
+"summary": "Demonstrates how to create a schema for Grakn."
 }
 
 

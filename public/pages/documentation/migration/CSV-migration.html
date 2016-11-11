@@ -3,9 +3,9 @@
     <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content=" The Graql shell is used to execute Graql queries from the command line, or to let Graql be invoked from other applications.">
-<meta name="keywords" content="graql,  graql, shell, Grakn Labs, grakn, graql, grakn.ai, Mindmaps Research, Mindmaps Research Ltd, MindmapsDB, mindmaps, mindmaps graph, mindmaps.io, knowledge graph, distributed knowledge graph, development platform, developer tool, data platform, programming langauge, query langauge, database, semantic database, distributed semantic database, distributed database, graph database, semantic search, data exploration, recommendation system, knowledge management, knowledge engineering, real-time analytics, advanced analytics, reasoning engine, inference engine, expert systems, semantic applications, research engines, data management, business intelligence, big data, semantic web, semantic data, knowledge representation, automated reasoning, semantic network, knowledge ontology, semantic graph, ontology engineering, graph based knowledge representation, artificial intelligence,">
-<title>GRAKN.AI | Graql Shell</title>
+<meta name="description" content="This document will teach you how to migrate CSV data into Grakn.">
+<meta name="keywords" content="migration,  setup, getting started, Grakn Labs, grakn, graql, grakn.ai, Mindmaps Research, Mindmaps Research Ltd, MindmapsDB, mindmaps, mindmaps graph, mindmaps.io, knowledge graph, distributed knowledge graph, development platform, developer tool, data platform, programming langauge, query langauge, database, semantic database, distributed semantic database, distributed database, graph database, semantic search, data exploration, recommendation system, knowledge management, knowledge engineering, real-time analytics, advanced analytics, reasoning engine, inference engine, expert systems, semantic applications, research engines, data management, business intelligence, big data, semantic web, semantic data, knowledge representation, automated reasoning, semantic network, knowledge ontology, semantic graph, ontology engineering, graph based knowledge representation, artificial intelligence,">
+<title>GRAKN.AI | CSV Migration to Grakn</title>
 <link rel="stylesheet" href="/pages/css/syntax.css">
 
 
@@ -163,7 +163,7 @@
                             
                             dataSource: '/pages/search.json',
                             
-                            searchResultTemplate: '<li><a href="{url}" title="Graql Shell">{title}</a></li>',
+                            searchResultTemplate: '<li><a href="{url}" title="CSV Migration to Grakn">{title}</a></li>',
                             noResultsText: '<li><a class="empty">No results found</a></li>',
                             limit: 10,
                             fuzzy: true
@@ -293,7 +293,7 @@
             
             
             
-            <li class="active"><a href="/pages/documentation/graql/graql-shell.html">Graql Shell</a></li>
+            <li><a href="/pages/documentation/graql/graql-shell.html">Graql Shell</a></li>
             
             
             
@@ -371,7 +371,7 @@
             
             
             
-            <li><a href="/pages/documentation/migration/CSV-migration.html">CSV Migration</a></li>
+            <li class="active"><a href="/pages/documentation/migration/CSV-migration.html">CSV Migration</a></li>
             
             
             
@@ -512,7 +512,7 @@
         <!-- Content Column -->
         <div class="col-md-9">
             <div class="post-header">
-   <h1 class="post-title-main">Graql Shell</h1>
+   <h1 class="post-title-main">CSV Migration to Grakn</h1>
 </div>
 
 
@@ -520,7 +520,7 @@
 <div class="post-content">
 
    
-    <div class="summary"> The Graql shell is used to execute Graql queries from the command line, or to let Graql be invoked from other applications.</div>
+    <div class="summary">This document will teach you how to migrate CSV data into Grakn.</div>
    
 
     
@@ -552,170 +552,230 @@ $('#toc').on('click', 'a', function() {
 
     
 
-    <a target="_blank" href="https://github.com/graknlabs/docs/blob/master/pages/documentation/3-graql/graql-shell.md" class="btn btn-default githubEditButton" role="button"><i class="fa fa-github fa-lg"></i> Edit me</a>
+    <a target="_blank" href="https://github.com/graknlabs/docs/blob/master/pages/documentation/4-migration/CSV-migration.md" class="btn btn-default githubEditButton" role="button"><i class="fa fa-github fa-lg"></i> Edit me</a>
 
     
 
     
 
-  <p>The Graql shell is contained in the <code class="highlighter-rouge">bin</code> folder. After starting the Grakn server, you can load data into a graph as follows:</p>
+  <h2 id="introduction">Introduction</h2>
+<p>This tutorial shows you how to populate Grakn with CSV data. If you have not yet set up the Grakn environment, please see the <a href="../get-started/setup-guide.html">setup guide</a>.</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>bin/graql.sh -f examples/pokemon.gql
+<h2 id="migration-shell-script-for-csv">Migration Shell Script for CSV</h2>
+<p>The migration shell script can be found in <code class="highlighter-rouge">/bin</code> directory of your Grakn environment. Usage is specific to the type of migration being performed. For CSV:</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>usage: ./migration.sh csv -template &lt;arg&gt; -input &lt;arg&gt; <span class="o">[</span>-help] <span class="o">[</span>-no] <span class="o">[</span>-separator &lt;arg&gt;] <span class="o">[</span>-batch &lt;arg&gt;] <span class="o">[</span>-uri &lt;arg&gt;] <span class="o">[</span>-keyspace &lt;arg&gt;]
+
+OPTIONS
+ -b,--batch &lt;arg&gt;       number of row to load at once
+ -h,--help              print usage message
+ -i,--input &lt;arg&gt;       input csv file
+ -k,--keyspace &lt;arg&gt;    keyspace to use
+ -n,--no                dry run- write to standard out
+ -s,--separator &lt;arg&gt;   separator of columns <span class="k">in </span>input file
+ -t,--template &lt;arg&gt;    graql template to apply over data
+ -u,--uri &lt;arg&gt;         uri to engine endpoint
 </code></pre>
 </div>
 
-<p>Then you can enter a query and press enter for it to be evaluated:</p>
+<h2 id="csv-migration-basics">CSV Migration Basics</h2>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">&gt;&gt;&gt; </span>match <span class="nv">$x</span> id <span class="s2">"Pikachu"</span>;
-<span class="nv">$x</span> id <span class="s2">"Pikachu"</span> isa pokemon;
+<p>CSV Migration makes heavy use of the Graql templating language. You should have a solid foundation in Graql templating before continuing, so please read through our <a href="../graql/graql-templating.html">templating documentation</a> to find out more.</p>
+
+<h4 id="what-about-the-ontology">What about the ontology?</h4>
+
+<p>YOU must write the ontology!</p>
+
+<p>There are limitations on the CSV format that prevent it from expressing the semantics of the data. If we were to automatically migrate the ontology, your data would remain as unhelpful as it is in CSV, and we want our users to have the full benefit of a knowledge graph.</p>
+
+<p>Once you have written an ontology for your domain, you will template Graql statements that instruct the migrator how your data can be mapped to your ontology.</p>
+
+<h4 id="how-do-i-write-a-template">How do I write a template?</h4>
+
+<p>The CSV migrator will apply the template to each row of data in the CSV file. If you are familiar with the Graql templating language, you are aware that it replaces the indicated sections in the template with provided data. In this migrator, the column header is the key and the content of each row at that column the value.</p>
+
+<h4 id="simple-example">Simple example</h4>
+
+<pre><code class="language-graql">insert
+
+car isa entity-type
+    has-resource name
+    has-resource year
+    has-resource description
+    has-resource price;
+
+name isa resource-type datatype string;
+year isa resource-type datatype string;
+description isa resource-type datatype string;
+price isa resource-type datatype double;
+
 </code></pre>
-</div>
 
-<p>If you already have a graph loaded, you can just execute the shell without any parameters to open a REPL (Read Evaluate Print Loop):</p>
+<p>Above is the ontology for the following example</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>bin/graql.sh
+<p><strong>cars.csv</strong></p>
+
+<pre><code class="language-csv">Year,Make,Model,Description,Price
+1997,Ford,E350,"ac, abs, moon",3000.00
+1999,Chevy,"Venture",,4900.00
+1996,Jeep,Grand Cherokee,"MUST SELL! air, moon roof, loaded",4799.00
 </code></pre>
-</div>
 
-<p>To load an additional graph into a different keyspace, that is, to load a graph with a different name to any already loaded, you can specify the graph name:</p>
+<p><strong>template</strong></p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>./graql.sh -k &lt;graphname&gt;
+<pre><code class="language-graql-template">insert 
+
+$x isa car 
+    has name &lt;Make&gt;-&lt;Model&gt;
+    has year &lt;Year&gt;
+    has price @double(Price)
+    if (ne Description null) do { has description &lt;Description&gt;};
 </code></pre>
-</div>
 
-<table>
-  <thead>
-    <tr>
-      <th>Query</th>
-      <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><code class="highlighter-rouge">match</code></td>
-      <td>Returns the first 100 results.</td>
-    </tr>
-    <tr>
-      <td><code class="highlighter-rouge">ask</code></td>
-      <td>Returns <code class="highlighter-rouge">true</code> or <code class="highlighter-rouge">false</code>.</td>
-    </tr>
-    <tr>
-      <td><code class="highlighter-rouge">insert</code></td>
-      <td>Outputs the concept IDs inserted.</td>
-    </tr>
-    <tr>
-      <td><code class="highlighter-rouge">delete</code></td>
-      <td>Executes with no output.</td>
-    </tr>
-    <tr>
-      <td><code class="highlighter-rouge">compute</code></td>
-      <td>Returns either a value or a map from concept to value.</td>
-    </tr>
-  </tbody>
-</table>
+<p>This template will create a <code class="highlighter-rouge">car</code> entity for each row. It will attach <code class="highlighter-rouge">year</code> and <code class="highlighter-rouge">price</code> resources to each of these entities. If the <code class="highlighter-rouge">description</code> resource is present in the data, it will attach the approriate <code class="highlighter-rouge">description</code> to the <code class="highlighter-rouge">car</code>.</p>
 
-<p>The interactive shell commits to the graph only when the user types <code class="highlighter-rouge">commit</code>.</p>
+<p>The template is applied to each row, and the resulting Graql statement, if printed out, looks like:</p>
 
-<p>The REPL features several special commands:</p>
+<pre><code class="language-graql">insert $x0 isa car has name "Ford" has description "ac, abs, moon" has price 3000.0 has year "1997";
+insert $x0 isa car has name "Chevy" has price 4900.0 has year "1999";
+insert $x0 isa car has description "MUST SELL! air, moon roof, loaded" has price 4799.0 has name "Jeep" has year "1996";
+</code></pre>
 
-<table>
-  <thead>
-    <tr>
-      <th>Query</th>
-      <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><code class="highlighter-rouge">commit</code></td>
-      <td>Commits and validates the graph. If validation fails, the graph will not commit.</td>
-    </tr>
-    <tr>
-      <td><code class="highlighter-rouge">rollback</code></td>
-      <td>Rolls back the transaction, undoing everything that hasn’t been committed.</td>
-    </tr>
-    <tr>
-      <td><code class="highlighter-rouge">edit</code></td>
-      <td>Opens the user’s default text editor, specified by the <code class="highlighter-rouge">$EDITOR</code> environment variable. By default set to <code class="highlighter-rouge">vim</code>. When the editor exits, the query is executed in the shell. Useful for executing a large chunk of Graql without typing it all in (e.g. cut and paste from an example).</td>
-    </tr>
-    <tr>
-      <td><code class="highlighter-rouge">load &lt;filename&gt;</code></td>
-      <td>Executes the given file containing a Graql query.</td>
-    </tr>
-    <tr>
-      <td><code class="highlighter-rouge">clear</code></td>
-      <td>Clears the console window.</td>
-    </tr>
-    <tr>
-      <td><code class="highlighter-rouge">exit</code></td>
-      <td>Exits the REPL</td>
-    </tr>
-    <tr>
-      <td><code class="highlighter-rouge">license</code></td>
-      <td>Prints the license</td>
-    </tr>
-  </tbody>
-</table>
+<p>You will note that the third Graql insert is missing the <code class="highlighter-rouge">description</code> resource. This is because that value is not present in the data and the template uses an <code class="highlighter-rouge">if</code> statement to check if it exists.</p>
 
-<h2 id="arguments">Arguments</h2>
+<h3 id="separator">Separator</h3>
 
-<p>The Graql shell accepts several arguments:</p>
+<p>The <code class="highlighter-rouge">separator</code> option allows you to specify the column separator. With this we are able to migrate a wider range of formats, including TSV.</p>
 
-<table>
-  <thead>
-    <tr>
-      <th>Long Option</th>
-      <th>Option</th>
-      <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><code class="highlighter-rouge">--keyspace</code></td>
-      <td><code class="highlighter-rouge">-k</code></td>
-      <td>The keyspace of the graph.</td>
-    </tr>
-    <tr>
-      <td><code class="highlighter-rouge">--execute</code></td>
-      <td><code class="highlighter-rouge">-e</code></td>
-      <td>A query to execute.</td>
-    </tr>
-    <tr>
-      <td><code class="highlighter-rouge">--file</code></td>
-      <td><code class="highlighter-rouge">-f</code></td>
-      <td>A path to a file containg a query to execute.</td>
-    </tr>
-    <tr>
-      <td><code class="highlighter-rouge">--uri</code></td>
-      <td><code class="highlighter-rouge">-u</code></td>
-      <td>The URI to connect to engine.</td>
-    </tr>
-    <tr>
-      <td><code class="highlighter-rouge">--batch</code></td>
-      <td><code class="highlighter-rouge">-b</code></td>
-      <td>A path to a file containg a query to batch load.</td>
-    </tr>
-    <tr>
-      <td><code class="highlighter-rouge">--help</code></td>
-      <td><code class="highlighter-rouge">-h</code></td>
-      <td>Print usage message</td>
-    </tr>
-    <tr>
-      <td><code class="highlighter-rouge">--uri</code></td>
-      <td><code class="highlighter-rouge">-u</code></td>
-      <td>Uri to connect to Engine</td>
-    </tr>
-    <tr>
-      <td><code class="highlighter-rouge">--version</code></td>
-      <td><code class="highlighter-rouge">-v</code></td>
-      <td>Print version</td>
-    </tr>
-  </tbody>
-</table>
+<p>This file would be migrated in the same way as the previous example when you specify the <code class="highlighter-rouge">\t</code> separator:</p>
 
-<p>If <code class="highlighter-rouge">--execute</code>, <code class="highlighter-rouge">--file</code> or <code class="highlighter-rouge">--batch</code> is provided, the REPL will not open and the
-graph will be automatically committed.</p>
+<pre><code class="language-tsv">Year  Make  Model Description Price
+1997  Ford  E350  "ac  abs   moon"  3000.00
+1999  Chevy "Venture" ""  4900.00
+1996  Jeep  Grand Cherokee  "MUST SELL!
+air  moon roof   loaded"  4799.00
+</code></pre>
 
+<h3 id="multiple-files">Multiple Files</h3>
+
+<p>This small example will demonstrate creating one graph from three CSV data files using the templating language.</p>
+
+<p>To start, we must write the ontology for this example.</p>
+
+<pre><code class="language-graql">insert
+
+pokemon isa entity-type
+    plays-role pokemon-with-type
+    has-resource pokedex-no
+    has-resource description;
+
+type-id isa resource-type datatype string;
+pokedex-no isa resource-type datatype long;
+description isa resource-type datatype string;
+
+pokemon-type isa entity-type
+    has-resource description
+    has-resource type-id
+    plays-role type-of-pokemon;
+
+has-type isa relation-type
+    has-role pokemon-with-type
+    has-role type-of-pokemon;
+pokemon-with-type isa role-type;
+type-of-pokemon isa role-type;
+</code></pre>
+
+<p>We define the three data files. Each file needs a template that to tell the Migrator how to deal with the data in each row.</p>
+
+<p><strong>pokemon.csv</strong></p>
+
+<pre><code class="language-csv">id,identifier,species_id,height,weight
+4,charmander,4,6,85
+5,charmeleon,5,11,190
+6,charizard,6,17,905
+</code></pre>
+
+<p><strong>template</strong></p>
+
+<pre><code class="language-graql-template">insert 
+
+$x isa pokemon 
+  has description &lt;identifier&gt;
+  has pokedex-no @int(id);
+</code></pre>
+
+<p>To keep this example simple, here we’ve chosen to only migrate the data from the <code class="highlighter-rouge">id</code> and the <code class="highlighter-rouge">identifier</code> columns. The template creates one pokemon per row, attaching the descriptions and pokemon numbers as resources. The migrated insert statements look like:</p>
+
+<pre><code class="language-graql">insert $x0 has pokedex-no 4 isa pokemon has description "charmander";
+insert $x0 has description "charmeleon" has pokedex-no 5 isa pokemon;
+insert $x0 has pokedex-no 6 isa pokemon has description "charizard";
+</code></pre>
+
+<p><strong>types.csv</strong></p>
+
+<pre><code class="language-csv">id,identifier
+1,normal
+2,fighting
+3,flying
+4,poison
+5,ground
+6,rock
+7,bug
+8,ghost
+9,steel
+10,fire
+</code></pre>
+
+<p><strong>template</strong>:</p>
+
+<pre><code class="language-graql-template">insert
+
+$x isa pokemon-type 
+  has type-id &lt;id&gt;
+  has description &lt;identifier&gt;;
+</code></pre>
+
+<p>This is another very simple example that results in the following inserts:</p>
+
+<pre><code class="language-graql">insert $x0 has description "normal" has type-id "1" isa pokemon-type;
+insert $x0 has type-id "2" has description "fighting" isa pokemon-type;
+insert $x0 has type-id "3" isa pokemon-type has description "flying";
+insert $x0 has description "poison" has type-id "4" isa pokemon-type;
+insert $x0 has type-id "5" has description "ground" isa pokemon-type;
+insert $x0 has description "rock" has type-id "6" isa pokemon-type;
+insert $x0 has description "bug" has type-id "7" isa pokemon-type;
+insert $x0 has type-id "8" isa pokemon-type has description "ghost";
+insert $x0 has description "steel" isa pokemon-type has type-id "9";
+insert $x0 has description "fire" has type-id "10" isa pokemon-type;
+</code></pre>
+
+<p><strong>edges.csv</strong></p>
+
+<pre><code class="language-csv">pokemon_id,type_id,slot
+4,10,1
+5,10,1
+6,10,1
+6,3,2
+</code></pre>
+
+<p><strong>template</strong>:</p>
+
+<pre><code class="language-graql-template">match
+  $pokemon has pokedex-no &lt;pokemon_id&gt;;
+  $type has type-id &lt;type_id&gt;;
+insert (pokemon-with-type: $pokemon, type-of-pokemon: $type) isa has-type;
+
+</code></pre>
+
+<p>In this final template we create a <code class="highlighter-rouge">has-type</code> relationship between the values of the <code class="highlighter-rouge">pokemon_id</code> and <code class="highlighter-rouge">type_id</code> columns. You’ll notice that to ensure the relationship is between the correct entities, we’ve had to find them in the graph before inserting using a <code class="highlighter-rouge">match-insert</code> query.</p>
+
+<div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> <b>Note:</b> It is the responsibility of the user to ensure that all entities exist in the graph before they insert relations.</div>
+
+<h2 id="where-next">Where Next?</h2>
+<p>You can find further documentation about migration in our API reference documentation (which is in the <code class="highlighter-rouge">/docs</code> directory of the distribution zip file, and also online <a href="https://grakn.ai/javadocs.html">here</a>.</p>
+
+<h2 id="comments">Comments</h2>
+<p>Want to leave a comment? Visit <a href="https://github.com/graknlabs/docs/issues/32" target="_blank">the issues on Github for this page</a> (you’ll need a GitHub account). You are also welcome to contribute to our documentation directly via the “Edit me” button at the top of the page.</p>
 
 
     <div class="tags">
@@ -724,7 +784,7 @@ graph will be automatically committed.</p>
         
         
         
-        <a href="/pages/tag_graql.html" class="btn btn-default navbar-btn cursorNorm" role="button">graql</a>
+        <a href="/pages/tag_migration.html" class="btn btn-default navbar-btn cursorNorm" role="button">migration</a>
         
         
         
@@ -755,7 +815,7 @@ graph will be automatically committed.</p>
         <br>
         <p>© 2016 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2016 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> August 11, 2016<br/> Site last generated: Nov 11, 2016 <br />
+        <span>Page last updated:</span> November 2nd 2016<br/> Site last generated: Nov 11, 2016 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">

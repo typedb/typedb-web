@@ -120,7 +120,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/index.html">
+            <a class="navbar-brand" href="/">
                 <svg><use xlink:href="#logo" /></svg>
                 <span class="projectTitle">GRAKN.AI</span>
             </a>
@@ -371,6 +371,13 @@
             
             
             
+            <li><a href="/pages/documentation/migration/CSV-migration.html">CSV Migration</a></li>
+            
+            
+            
+            
+            
+            
             <li><a href="/pages/documentation/migration/SQL-migration.html">SQL Migration</a></li>
             
             
@@ -479,13 +486,6 @@
             
             
             
-            <li><a href="/pages/documentation/examples/SQL-migration.html">SQL migration</a></li>
-            
-            
-            
-            
-            
-            
             <li><a href="/pages/documentation/examples/projects.html">Example Projects</a></li>
             
             
@@ -564,9 +564,9 @@ $('#toc').on('click', 'a', function() {
 
 <h3 id="why-does-grakn-hang-when-i-try-to-start-it">Why does Grakn hang when I try to start it?</h3>
 
-<p>I am running <code class="highlighter-rouge">mindmaps.sh start</code> but it hangs on <code class="highlighter-rouge">Starting Cassandra</code>. Why?</p>
+<p>I am running <code class="highlighter-rouge">grakn.sh start</code> but it hangs on <code class="highlighter-rouge">Starting Cassandra</code>. Why?</p>
 
-<p>This may be because you have cloned the Grakn repo into a directory which has a space in its name (e.g. <code class="highlighter-rouge">/mindmaps DB</code>). You can build our code successfully, but when you start <code class="highlighter-rouge">mindmaps.sh</code>, it hangs because Cassandra needs you to have single word pathnames. Remove the spaces (e.g. <code class="highlighter-rouge">/mindmapsDB</code>) and try again.</p>
+<p>This may be because you have cloned the Grakn repo into a directory which has a space in its name (e.g. <code class="highlighter-rouge">/grakn test</code>). You can build our code successfully, but when you start <code class="highlighter-rouge">grakn.sh</code>, it hangs because Cassandra needs you to have single word pathnames. Remove the spaces (e.g. <code class="highlighter-rouge">/grakn_test</code>) and try again.</p>
 
 <p>There are other possible reasons why Grakn hangs starting Cassandra. One may be that some other application is using the port 7199, which Cassandra needs.  To find out what is using port 7199:
 <code class="highlighter-rouge">lsof -i tcp:7199</code></p>
@@ -574,7 +574,7 @@ $('#toc').on('click', 'a', function() {
 <p>From there, you’ll see the PID of application using that port. Check if you can safely kill it or change its port. It may be that another instance of Cassandra is blocking it, and you can simply kill it using:
 <code class="highlighter-rouge">pkill -9 java</code></p>
 
-<p>Then try <code class="highlighter-rouge">mindmaps.sh start</code> again.</p>
+<p>Then try <code class="highlighter-rouge">grakn.sh start</code> again.</p>
 
 <p>Failing that, you can often find out more information by looking in the <code class="highlighter-rouge">/logs</code> directory under your Grakn installation.</p>
 
@@ -594,9 +594,9 @@ this by setting the <code class="highlighter-rouge">checkInternalVertexExistence
 
 <p>You can use Mac OS X or Linux right now. We plan to support Windows at a later date.</p>
 
-<h3 id="how-do-i-load-data-into-a-grakn-graph">How do I load data into a Grakn graph?</h3>
+<h3 id="how-do-i-load-data-into-grakn">How do I load data into Grakn?</h3>
 
-<p>There are several ways to load data into a Grakn graph. For small amounts of data (&lt;1000 lines), you an load it directly via the Graql shell. For example, the following loads up the Pokemon example data:</p>
+<p>There are several ways to load data into Grakn. For small amounts of data (&lt;1000 lines), you an load it directly via the Graql shell. For example, the following loads up the Pokemon example data:</p>
 
 <div class="language-bash highlighter-rouge"><pre class="highlight"><code>bin/graql.sh -f examples/pokemon.gql
 </code></pre>
@@ -610,13 +610,13 @@ this by setting the <code class="highlighter-rouge">checkInternalVertexExistence
 
 <p>In order to check the status of the loading, you can open a new terminal window, navigate to the logs directory of your Grakn installation and run the command:</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>tail -f mindmaps.log
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>tail -f grakn.log
 </code></pre>
 </div>
 
 <h3 id="can-i-run-grakn-on-an-existing-cassandra-platform">Can I run Grakn on an existing Cassandra Platform?</h3>
 
-<p>By default, Grakn is shipped with TitanDB, which in turn relies on Cassandra. When you call <code class="highlighter-rouge">mindmaps.sh start</code>, this starts a Cassandra instance and then starts the Mindmaps server.  You are not bound to use our instance of Cassandra, and can make adjustments to the settings in the <code class="highlighter-rouge">.properties</code> file in the <code class="highlighter-rouge">conf/main</code> directory of the Grakn, e.g. to make Titan use your Cassandra instance.</p>
+<p>By default, Grakn is shipped with TitanDB, which in turn relies on Cassandra. When you call <code class="highlighter-rouge">grakn.sh start</code>, this starts a Cassandra instance and then starts the Grakn server.  You are not bound to use our instance of Cassandra, and can make adjustments to the settings in the <code class="highlighter-rouge">.properties</code> file in the <code class="highlighter-rouge">conf/main</code> directory of the Grakn, e.g. to make Titan use your Cassandra instance.</p>
 
 <p>Specifically you should change the following parameters:</p>
 
@@ -641,17 +641,15 @@ storage.hostname<span class="o">=</span>127.0.0.1
 
 <p>Grakn comes with a basic visualiser, with a web-interface. We appreciate any feedback you give us about it via the <a href="https://discuss.grakn.ai/t/visualise-my-data/57">discussion boards</a>.</p>
 
-<p>Once you have started Grakn, you will see a message in the console, like:</p>
+<p>Once you have started Grakn, you will see a message in the console:</p>
 
 <div class="language-bash highlighter-rouge"><pre class="highlight"><code>Started ServerConnector@7aa5814d<span class="o">{</span>HTTP/1.1,[http/1.1]<span class="o">}{</span>0.0.0.0:4567<span class="o">}</span>
 </code></pre>
 </div>
 
-<p>(We are working to improve this message, in fact in the new release it will be something more similar to <code class="highlighter-rouge">Mindmaps Engine is ready. Listening on [http://0.0.0.0:4567]</code>.)</p>
-
 <p>You can then open your browser and connect to the address printed on the console (http://0.0.0.0:4567). Select the Graql Visualiser tab and you will see a Graql shell, from which you can input queries, for example:</p>
 
-<pre><code class="language-graql">match $x isa concept-type;
+<pre><code class="language-graql">match $x isa type;
 </code></pre>
 
 <p>In result, you will see the resulting nodes and relations displayed inside the graql visualiser on the same page.</p>
@@ -662,10 +660,9 @@ storage.hostname<span class="o">=</span>127.0.0.1
 
 <p>If you are using the Java API, it’s a simple as:</p>
 
-<p><code class="highlighter-rouge">java test-ignore
-graph = Mindmaps.factory(Mindmaps.DEFAULT_URI, "my-graph").getGraph();
+<pre><code class="language-java-test-ignore">graph = Grakn.factory(Grakn.DEFAULT_URI, "my-graph").getGraph();
 graph.clear();
-</code></p>
+</code></pre>
 
 <p>If you are using the Graql shell and have not committed what you have in the graph, you can just quit the shell and restart it, and all is clean.</p>
 
@@ -718,7 +715,7 @@ graph.clear();
         <br>
         <p>© 2016 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2016 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> September 22, 2016<br/> Site last generated: Oct 30, 2016 <br />
+        <span>Page last updated:</span> September 22, 2016<br/> Site last generated: Nov 11, 2016 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">
@@ -742,7 +739,7 @@ graph.clear();
         <span class="footer-header">Community</span>
         <ul>
             <li><a rel="me" href="https://discuss.grakn.ai">Discussion</a></li>
-            <li><a rel="me" href="https://stackoverflow.com/questions/tagged/grakn+or+graql" target="_blank">Stack Overflow</a></li>
+            <li><a rel="me" href="https://stackoverflow.com/questions/tagged/graql+or+grakn" target="_blank">Stack Overflow</a></li>
             <li><a href="https://grakn.ai/slack.html">Slack</a></li>
             <li><a rel="me" href="https://twitter.com/graknlabs" target="_blank">Twitter</a></li>
         </ul>

@@ -120,7 +120,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/index.html">
+            <a class="navbar-brand" href="/">
                 <svg><use xlink:href="#logo" /></svg>
                 <span class="projectTitle">GRAKN.AI</span>
             </a>
@@ -371,6 +371,13 @@
             
             
             
+            <li><a href="/pages/documentation/migration/CSV-migration.html">CSV Migration</a></li>
+            
+            
+            
+            
+            
+            
             <li><a href="/pages/documentation/migration/SQL-migration.html">SQL Migration</a></li>
             
             
@@ -479,13 +486,6 @@
             
             
             
-            <li><a href="/pages/documentation/examples/SQL-migration.html">SQL migration</a></li>
-            
-            
-            
-            
-            
-            
             <li><a href="/pages/documentation/examples/projects.html">Example Projects</a></li>
             
             
@@ -562,7 +562,7 @@ $('#toc').on('click', 'a', function() {
 
 <h2 id="schema-and-data">Schema and Data</h2>
 
-<p>A Grakn graph is made of two layers: the database schema (which you can also think of as an ontology) and the data layer.</p>
+<p>In Grakn, a graph is made of two layers: the database schema (which you can also think of as an ontology) and the data layer.</p>
 
 <p><strong><em>The schema should be clearly defined before loading data into the graph.</em></strong> The schema is used to formalise the data within a specific domain. If data is about healthcare, then we need to design a schema specific to healthcare. If data is about movies, then we need to define an schema specific to the movie industry.</p>
 
@@ -581,8 +581,8 @@ we wish to model.</p>
 
 <h3 id="concept">Concept</h3>
 
-<p>Just as a <a href="https://en.wikipedia.org/wiki/Graph_theory">graph</a> is defined by vertices and the edges between them, a
-Grakn graph is defined by concepts and the relationships between those
+<p>Just as a <a href="https://en.wikipedia.org/wiki/Graph_theory">graph</a> is defined by vertices and the edges between them, in Grakn, a
+graph is defined by concepts and the relationships between those
 concepts.  Every vertex is a concept and must, at minimum, have a unique ID. This is a string that identifies the concept.</p>
 
 <h3 id="concept-type">Concept Type</h3>
@@ -621,7 +621,7 @@ across the graph.</p>
 
 <h3 id="relation-type-and-role-type">Relation Type and Role Type</h3>
 
-<p>A Grakn graph enables us to model complex n-ary relationships. To do this we define a Relation Type, which is used to model relationships, and an associated pair of Role Types that are used to represent the two roles within that relationship. There is one Role Type for each entity to explain fully how the two relate to one another.</p>
+<p>In Grakn, the graph enables us to model complex n-ary relationships. To do this we define a Relation Type, which is used to model relationships, and an associated pair of Role Types that are used to represent the two roles within that relationship. There is one Role Type for each entity to explain fully how the two relate to one another.</p>
 
 <p>For example, to model that a <code class="highlighter-rouge">person</code> acted in a <code class="highlighter-rouge">movie</code> we need to use a Relation Type such as <code class="highlighter-rouge">has-cast</code>. The Role Type for the <code class="highlighter-rouge">person</code> is  <code class="highlighter-rouge">actor</code>, while the Role Type for the movie is <code class="highlighter-rouge">production-with-cast</code>.</p>
 
@@ -633,7 +633,7 @@ across the graph.</p>
 
 <p>Instances of the four meta-types described above can be subclassed. For example, subclasses of <code class="highlighter-rouge">person</code> (which is an instance of the meta-type EntityType) could be <code class="highlighter-rouge">man</code> and <code class="highlighter-rouge">woman</code>.  This simple subclassing allows us to expand and deepen our schema to whatever granularity of detail is needed.</p>
 
-<div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> <b>Note:</b> In a Grakn graph, we use the shorthand <code class="highlighter-rouge">sub ('subclass')</code> when referring to sub-typing or specialisation. <br />
+<div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> <b>Note:</b> In Grakl, we use the shorthand <code class="highlighter-rouge">sub ('subclass')</code> when referring to sub-typing or specialisation. <br />
 For example, <code class="highlighter-rouge">man sub person</code>. <br />
 We use the shorthand <code class="highlighter-rouge">isa</code> (‘is a’) to represent the type relationship. <br />
 For example, <code class="highlighter-rouge">car isa vehicle</code>.
@@ -654,7 +654,7 @@ For example, <code class="highlighter-rouge">car isa vehicle</code>.
 
 <h3 id="entity">Entity</h3>
 
-<p>An instance of the Entity Type (which is known as an Entity)  represents an actual item of data. For example, Entity Type <code class="highlighter-rouge">car</code> could have Entities <code class="highlighter-rouge">a BMW</code>, <code class="highlighter-rouge">this Mercedes</code>, and <code class="highlighter-rouge">that Volkswagen</code>. The Grakn graph enables us to model relationships between these entities, once they have been defined.</p>
+<p>An instance of the Entity Type (which is known as an Entity)  represents an actual item of data. For example, Entity Type <code class="highlighter-rouge">car</code> could have Entities <code class="highlighter-rouge">a BMW</code>, <code class="highlighter-rouge">this Mercedes</code>, and <code class="highlighter-rouge">that Volkswagen</code>. Grakn enables us to model relationships between these entities, once they have been defined.</p>
 
 <h3 id="resource">Resource</h3>
 
@@ -698,7 +698,7 @@ instance of
 <!-- Removed a section on the meta ontology. We could create a separate article about this later if we think it's useful -->
 
 <h2 id="where-next">Where Next?</h2>
-<p>Our <a href="../the-basics/quickstart-tutorial.html">Quickstart Tutorial</a> will show you how to load a schema and data into a Grakn Graph using Graql.</p>
+<p>Our <a href="../the-basics/quickstart-tutorial.html">Quickstart Tutorial</a> will show you how to load a schema and data into Grakn using Graql.</p>
 
 <p>You can find additional example code and documentation on this portal. We are always adding more and welcome ideas and improvement suggestions. Please get in touch!</p>
 
@@ -743,7 +743,7 @@ instance of
         <br>
         <p>© 2016 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2016 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> August 24, 2016<br/> Site last generated: Oct 30, 2016 <br />
+        <span>Page last updated:</span> August 24, 2016<br/> Site last generated: Nov 11, 2016 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">
@@ -767,7 +767,7 @@ instance of
         <span class="footer-header">Community</span>
         <ul>
             <li><a rel="me" href="https://discuss.grakn.ai">Discussion</a></li>
-            <li><a rel="me" href="https://stackoverflow.com/questions/tagged/grakn+or+graql" target="_blank">Stack Overflow</a></li>
+            <li><a rel="me" href="https://stackoverflow.com/questions/tagged/graql+or+grakn" target="_blank">Stack Overflow</a></li>
             <li><a href="https://grakn.ai/slack.html">Slack</a></li>
             <li><a rel="me" href="https://twitter.com/graknlabs" target="_blank">Twitter</a></li>
         </ul>

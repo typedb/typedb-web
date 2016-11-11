@@ -120,7 +120,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/index.html">
+            <a class="navbar-brand" href="/">
                 <svg><use xlink:href="#logo" /></svg>
                 <span class="projectTitle">GRAKN.AI</span>
             </a>
@@ -371,6 +371,13 @@
             
             
             
+            <li><a href="/pages/documentation/migration/CSV-migration.html">CSV Migration</a></li>
+            
+            
+            
+            
+            
+            
             <li><a href="/pages/documentation/migration/SQL-migration.html">SQL Migration</a></li>
             
             
@@ -479,13 +486,6 @@
             
             
             
-            <li><a href="/pages/documentation/examples/SQL-migration.html">SQL migration</a></li>
-            
-            
-            
-            
-            
-            
             <li><a href="/pages/documentation/examples/projects.html">Example Projects</a></li>
             
             
@@ -582,21 +582,21 @@ $('#toc').on('click', 'a', function() {
 </code></pre>
 </div>
 
-<p>The code should build and the tests will then run (the tests will take approximately 10 minutes to finish). When the build has completed, you will find it in the <code class="highlighter-rouge">mindmaps-dist</code> directory under <code class="highlighter-rouge">target</code>. The zip file built into that directory is the same as that distributed as a release on <a href="https://grakn.ai/download">Github</a>.</p>
+<p>The code should build and the tests will then run (the tests will take approximately 10 minutes to finish). When the build has completed, you will find it in the <code class="highlighter-rouge">grakn-dist</code> directory under <code class="highlighter-rouge">target</code>. The zip file built into that directory is the same as that distributed as a release on <a href="https://grakn.ai/download">Github</a>.</p>
 
 <h3 id="example-code">Example Code</h3>
 <p>You can find an additional repo on Github containing our <a href="https://github.com/graknlabs/sample-projects">example code</a>, while further information about the examples is <a href="../examples/examples.html">here</a>.</p>
 
 <h2 id="grakn-java-api">Grakn Java API</h2>
 
-<p>Inside the <code class="highlighter-rouge">lib</code> directory of mindmaps.zip are the jars you will need to
-develop with mindmaps.</p>
+<p>Inside the <code class="highlighter-rouge">lib</code> directory of Grakn.zip are the jars you will need to
+develop with Grakn.</p>
 
 <p>If you would like to start developing with minimal effort you can integrate the jar file, e.g.
 <code class="highlighter-rouge">graql-shell-0.2.1-jar-with-dependencies.jar</code> into your project. This however
 may be a bit inflexible as all dependencies are compiled in.</p>
 
-<p>If you would like more flexibility, in the <code class="highlighter-rouge">lib</code> directory all the mindmaps
+<p>If you would like more flexibility, in the <code class="highlighter-rouge">lib</code> directory all the Grakn
 jars are provided with no dependencies. Using these would require you to use
 Maven to acquire the other dependencies.</p>
 
@@ -652,7 +652,7 @@ Maven to acquire the other dependencies.</p>
         <br>
         <p>© 2016 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2016 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> October 1st, 2016<br/> Site last generated: Oct 30, 2016 <br />
+        <span>Page last updated:</span> October 1st, 2016<br/> Site last generated: Nov 11, 2016 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">
@@ -676,7 +676,7 @@ Maven to acquire the other dependencies.</p>
         <span class="footer-header">Community</span>
         <ul>
             <li><a rel="me" href="https://discuss.grakn.ai">Discussion</a></li>
-            <li><a rel="me" href="https://stackoverflow.com/questions/tagged/grakn+or+graql" target="_blank">Stack Overflow</a></li>
+            <li><a rel="me" href="https://stackoverflow.com/questions/tagged/graql+or+grakn" target="_blank">Stack Overflow</a></li>
             <li><a href="https://grakn.ai/slack.html">Slack</a></li>
             <li><a rel="me" href="https://twitter.com/graknlabs" target="_blank">Twitter</a></li>
         </ul>

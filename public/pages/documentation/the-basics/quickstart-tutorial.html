@@ -3,7 +3,7 @@
     <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="This document will teach you how to use Graql to load a schema and some data into a Grakn Graph.">
+<meta name="description" content="This document will teach you how to use Graql to load a schema and some data into Grakn.">
 <meta name="keywords" content="getting-startedgraql,  setup, getting started, Grakn Labs, grakn, graql, grakn.ai, Mindmaps Research, Mindmaps Research Ltd, MindmapsDB, mindmaps, mindmaps graph, mindmaps.io, knowledge graph, distributed knowledge graph, development platform, developer tool, data platform, programming langauge, query langauge, database, semantic database, distributed semantic database, distributed database, graph database, semantic search, data exploration, recommendation system, knowledge management, knowledge engineering, real-time analytics, advanced analytics, reasoning engine, inference engine, expert systems, semantic applications, research engines, data management, business intelligence, big data, semantic web, semantic data, knowledge representation, automated reasoning, semantic network, knowledge ontology, semantic graph, ontology engineering, graph based knowledge representation, artificial intelligence,">
 <title>GRAKN.AI | Quickstart Tutorial</title>
 <link rel="stylesheet" href="/pages/css/syntax.css">
@@ -120,7 +120,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/index.html">
+            <a class="navbar-brand" href="/">
                 <svg><use xlink:href="#logo" /></svg>
                 <span class="projectTitle">GRAKN.AI</span>
             </a>
@@ -371,6 +371,13 @@
             
             
             
+            <li><a href="/pages/documentation/migration/CSV-migration.html">CSV Migration</a></li>
+            
+            
+            
+            
+            
+            
             <li><a href="/pages/documentation/migration/SQL-migration.html">SQL Migration</a></li>
             
             
@@ -479,13 +486,6 @@
             
             
             
-            <li><a href="/pages/documentation/examples/SQL-migration.html">SQL migration</a></li>
-            
-            
-            
-            
-            
-            
             <li><a href="/pages/documentation/examples/projects.html">Example Projects</a></li>
             
             
@@ -520,7 +520,7 @@
 <div class="post-content">
 
    
-    <div class="summary">This document will teach you how to use Graql to load a schema and some data into a Grakn Graph.</div>
+    <div class="summary">This document will teach you how to use Graql to load a schema and some data into Grakn.</div>
    
 
     
@@ -570,23 +570,30 @@ You can find the example <code class="highlighter-rouge">philosophers.gql</code>
 </code></pre>
 </div>
 
-<p>By the way, don’t worry if you’ve already loaded some different data into your graph. A Grakn graph can simultaneously contain as many schemas as you want.</p>
+<p>By the way, don’t worry if you’ve already loaded some different data into your graph. In Grakn, a graph can simultaneously contain as many schemas as you want.</p>
 
 <h2 id="concepts">Concepts</h2>
 
-<p>We’ll first add an entity type <code class="highlighter-rouge">person</code>:</p>
+<p>Assuming that you are building up the graph from scratch, rather than loading it directly from the <code class="highlighter-rouge">philosophers.gql</code> file, let’s first add an entity type <code class="highlighter-rouge">person</code>:</p>
 
 <div class="language-bash highlighter-rouge"><pre class="highlight"><code>bin/graql.sh
-insert person isa entity-type;
 </code></pre>
 </div>
+<pre><code class="language-graql">insert person isa entity-type;
+</code></pre>
+
+<p>And a resource for people’s names:</p>
+
+<pre><code class="language-graql">insert name isa resource-type, datatype string;
+insert person has-resource name;
+</code></pre>
 
 <p>…and now some data in the form of concept instances: in our case, a bunch of ancient Greeks…</p>
 
-<pre><code class="language-graql">insert "Socrates" isa person;
-insert "Plato" isa person;
-insert "Aristotle" isa person;
-insert "Alexander" isa person;
+<pre><code class="language-graql">insert isa person, has name "Socrates";
+insert isa person, has name "Plato";
+insert isa person, has name "Aristotle";
+insert isa person, has name "Alexander";
 </code></pre>
 
 <p><img src="/images/phil.png" alt="" /></p>
@@ -600,31 +607,34 @@ concept instances.</p>
 
 <p>We’ll quickly check that our data has loaded:</p>
 
-<pre><code class="language-graql">match $p isa person;
+<pre><code class="language-graql">match $p isa person, has name $n;
 
-$p id "Aristotle" isa person;
-$p id "Plato" isa person;
-$p id "Socrates" isa person;
-$p id "Alexander" isa person;
+$p isa person; $n value "Aristotle" isa name;
+$p isa person; $n value "Plato" isa name;
+$p isa person; $n value "Socrates" isa name;
+$p isa person; $n value "Alexander" isa name;
 </code></pre>
 
 <div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> <b>Note:</b> Graql variables start with a <code class="highlighter-rouge">$</code>. They represent wildcards, and are returned as results in <code class="highlighter-rouge">match</code> queries. A variable name can contain alphanumeric characters, dashes and underscores.</div>
 
 <p>Next, let’s add some <code class="highlighter-rouge">schools</code> of thought:</p>
 
-<pre><code class="language-graql">insert school isa entity-type;
-insert "Peripateticism" isa school;
-insert "Platonism" isa school;
-insert "Idealism" isa school;
-insert "Cynicism" isa school;
+<pre><code class="language-graql">insert school isa entity-type, has-resource name;
+insert isa school, has name "Peripateticism";
+insert isa school, has name "Platonism";
+insert isa school, has name "Idealism";
+insert isa school, has name "Cynicism";
 </code></pre>
 
 <p>And look up one:</p>
 
-<pre><code class="language-graql">match $c id "Cynicism";
+<pre><code class="language-graql">match $c has name "Cynicism";
 
-$c id "Cynicism" isa school;
+$c isa school;
 </code></pre>
+
+<h2 id="a-note-on-commit">A note on <code class="highlighter-rouge">commit</code></h2>
+<p>Nothing you have entered into the Graql shell has yet been committed to the graph, nor has it been validated. To save any changes you make to a graph, you need to type <code class="highlighter-rouge">commit</code> in the shell. It is a good habit to get into regularly committing what you have entered, so we will show this in the following example.</p>
 
 <h2 id="relations">Relations</h2>
 
@@ -647,15 +657,16 @@ insert practice has-role philosopher, has-role philosophy;
 insert school plays-role philosophy;
 </code></pre>
 
-<div class="alert alert-danger" role="alert"><i class="fa fa-exclamation-circle"></i> <b>Warning:</b> The changes you’ve made to the graph haven’t been saved yet!  <br /> Type <code class="highlighter-rouge">commit</code> in the Graql shell to commit any changes.</div>
-
 <p>Now let’s relate some <code class="highlighter-rouge">philosophers</code> to their <code class="highlighter-rouge">philosophies</code>:</p>
 
-<pre><code class="language-graql">insert (philosopher: "Socrates", philosophy: "Platonism") isa practice;
-insert (philosopher: "Plato", philosophy: "Idealism") isa practice;
-insert (philosopher: "Plato", philosophy: "Platonism") isa practice;
-insert (philosopher: "Aristotle", philosophy: "Peripateticism") isa practice;
+<pre><code class="language-graql">match $socrates has name "Socrates"; $platonism has name "Platonism"; insert (philosopher: $socrates, philosophy: $platonism) isa practice;
+match $plato has name "Plato"; $idealism has name "Idealism"; insert (philosopher: $plato, philosophy: $idealism) isa practice;
+match $plato has name "Plato"; $platonism has name "Platonism"; insert (philosopher: $plato, philosophy: $platonism) isa practice;
+match $aristotle has name "Aristotle"; $peripateticism has name "Peripateticism"; insert (philosopher: $aristotle, philosophy: $peripateticism) isa practice;
+commit;
 </code></pre>
+
+<p>The <code class="highlighter-rouge">match .... insert ...</code> syntax will perform the <code class="highlighter-rouge">insert</code> query for every result of the <code class="highlighter-rouge">match</code> query.</p>
 
 <p><img src="/images/practice.png" alt="" /></p>
 
@@ -666,11 +677,12 @@ insert (philosopher: "Aristotle", philosophy: "Peripateticism") isa practice;
 <pre><code class="language-graql">match (philosopher: $phil, "Platonism") isa practice;
 </code></pre>
 
-<p>This returns: <br />
-<code class="highlighter-rouge">
-$phil id "Socrates" isa person;
+<p>This returns:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>$phil id "Socrates" isa person;
 $phil id "Plato" isa person;
-</code></p>
+</code></pre>
+</div>
 
 <div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> <b>Note:</b> This query can be read as ‘Get me philosophers in a practice relationship with Platonism’.  <br /> We didn’t specify the role of <code class="highlighter-rouge">Platonism</code> in this query, or the type of <code class="highlighter-rouge">$phil</code>, which is totally fine! <br /> Roles and types can be omitted in queries. <br /> For example, the query <code class="highlighter-rouge">match ($x, $y)</code> is a valid query (that will find <em>everything</em> in a relationship with <em>anything</em>).</div>
 
@@ -689,9 +701,10 @@ insert person plays-role teacher, plays-role student;
 
 <p>Second, our data:</p>
 
-<pre><code class="language-graql">insert (teacher: "Socrates", student: "Plato") isa education;
-insert (teacher: "Plato", student: "Aristotle") isa education;
-insert (teacher: "Aristotle", student: "Alexander") isa education;
+<pre><code class="language-graql">match $socrates has name "Socrates"; $plato has name "Plato"; insert (teacher: $socrates, student: $plato) isa education;
+match $plato has name "Plato"; $aristotle has name "Aristotle"; insert (teacher: $plato, student: $aristotle) isa education;
+match $aristotle has name "Aristotle"; $alexander has name "Alexander"; insert (teacher: $aristotle, student: $alexander) isa education;
+commit;
 </code></pre>
 
 <div class="alert alert-success" role="alert"><i class="fa fa-check-square-o"></i> <b>Tip:</b> <strong>Test Yourself</strong> <br /> Try writing a query to see who taught Aristotle. Include all the roles and types (<code class="highlighter-rouge">teacher</code>, <code class="highlighter-rouge">student</code> and <code class="highlighter-rouge">education</code>), then remove them one by one to see when the results change! The answer is at the bottom of this page.</div>
@@ -708,7 +721,7 @@ insert person has-resource title, has-resource epithet;
 
 <p>Let’s make Alexander “Great”!</p>
 
-<pre><code class="language-graql">insert "Alexander" has epithet "The Great";
+<pre><code class="language-graql">match $alexander has name "Alexander"; insert $alexander has epithet "The Great";
 </code></pre>
 
 <p>This is a quick way to add a relation between <code class="highlighter-rouge">Alexander</code> and an <code class="highlighter-rouge">epithet</code> with value <code class="highlighter-rouge">"The Great"</code>.</p>
@@ -717,22 +730,23 @@ insert person has-resource title, has-resource epithet;
 
 <p>Let’s add the rest of Alexander’s titles while we’re at it:</p>
 
-<pre><code class="language-graql">insert "Alexander" has title "Hegemon";
-insert "Alexander" has title "King of Macedon";
-insert "Alexander" has title "King of Persia";
-insert "Alexander" has title "Pharaoh of Egypt";
-insert "Alexander" has title "Lord of Asia";
+<pre><code class="language-graql">match $alexander has name "Alexander"; insert $alexander has title "Hegemon";
+match $alexander has name "Alexander"; insert $alexander has title "King of Macedon";
+match $alexander has name "Alexander"; insert $alexander has title "King of Persia";
+match $alexander has name "Alexander"; insert $alexander has title "Pharaoh of Egypt";
+match $alexander has name "Alexander"; insert $alexander has title "Lord of Asia";
+commit;
 </code></pre>
 
 <p>Using Graql, we can query for people who have titles, and list them out.</p>
 
-<pre><code class="language-graql">match $x isa person, has title $y;
+<pre><code class="language-graql">match isa person, has title $y, has name $n;
 
-$x id "Alexander" isa person; $y value "Shah of Persia" isa title; 
-$x id "Alexander" isa person; $y value "Hegeon" isa title; 
-$x id "Alexander" isa person; $y value "King of Macedon" isa title; 
-$x id "Alexander" isa person; $y value "Pharaoh of Egypt" isa title; 
-$x id "Alexander" isa person; $y value "Lord of Asia" isa title; 
+$n value "Alexander" isa name; $y value "Shah of Persia" isa title; 
+$n value "Alexander" isa name; $y value "Hegeon" isa title; 
+$n value "Alexander" isa name; $y value "King of Macedon" isa title; 
+$n value "Alexander" isa name; $y value "Pharaoh of Egypt" isa title; 
+$n value "Alexander" isa name; $y value "Lord of Asia" isa title; 
 </code></pre>
 
 <div class="alert alert-success" role="alert"><i class="fa fa-check-square-o"></i> <b>Tip:</b> <strong>Test Yourself</strong> <br /> When querying for an id, value or resource you can use predicates as well as direct values. For example, has epithet contains ‘Great’. See if you can write a query for everyone with a title containing ‘King’. The answer is at the bottom of the page.</div>
@@ -746,18 +760,21 @@ schema.</p>
 insert thinker isa role-type;
 insert thought isa role-type;
 insert knowledge has-role thinker, has-role thought;
-insert fact isa entity-type, plays-role thought;
+insert fact isa entity-type, plays-role thought, has-resource name;
+insert description isa resource-type, datatype string;
+insert fact has-resource description;
 insert person plays-role thinker;
 </code></pre>
 
 <p>Aristotle knew some astronomy, Plato knew a lot about caves and Socrates didn’t really know anything at all.</p>
 
-<pre><code class="language-graql">insert "sun-fact" isa fact, value "The Sun is bigger than the Earth";
-insert (thinker: "Aristotle", thought: "sun-fact") isa knowledge;
-insert "cave-fact" isa fact, value "Caves are mostly pretty dark";
-insert (thinker: "Plato", thought: "cave-fact") isa knowledge;
-insert "nothing" isa fact;
-insert (thinker: "Socrates", thought: "nothing") isa knowledge;
+<pre><code class="language-graql">insert has name "sun-fact" isa fact, has description "The Sun is bigger than the Earth";
+match $aristotle has name "Aristotle"; $sun-fact has name "sun-fact"; insert (thinker: $aristotle, thought: $sun-fact) isa knowledge;
+insert has name "cave-fact" isa fact, has description "Caves are mostly pretty dark";
+match $plato has name "Plato"; $cave-fact has name "cave-fact"; insert (thinker: $plato, thought: $cave-fact) isa knowledge;
+insert has name "nothing" isa fact;
+match $socrates has name "Socrates"; $nothing has name "nothing"; insert (thinker: $socrates, thought: $nothing) isa knowledge;
+commit;
 </code></pre>
 
 <p>A relation is actually just a special kind of instance. Just as
@@ -768,11 +785,12 @@ insert (thinker: "Socrates", thought: "nothing") isa knowledge;
 <p>First, we have to state that someone can think about their own knowledge:</p>
 
 <pre><code class="language-graql">insert knowledge plays-role thought;
+commit;
 </code></pre>
 
 <p>We can now give Socrates one final piece of knowledge:</p>
 
-<pre><code class="language-graql">match $socratesKnowsNothing ("Socrates", "nothing"); insert (thinker: "Socrates", thought: $socratesKnowsNothing) isa knowledge;
+<pre><code class="language-graql">match $socrates has name "Socrates"; $nothing has name "nothing"; $socratesKnowsNothing ($socrates, $nothing); insert (thinker: $socrates, thought: $socratesKnowsNothing) isa knowledge;
 </code></pre>
 
 <p>Here, <code class="highlighter-rouge">socratesKnowsNothing</code> is the relation between <code class="highlighter-rouge">Socrates</code> and <code class="highlighter-rouge">nothing</code>.
@@ -781,9 +799,9 @@ player.</p>
 
 <p>Finally, we’ll check out everything Socrates knows:</p>
 
-<pre><code class="language-graql">match ("Socrates", $x) isa knowledge;
+<pre><code class="language-graql">match $socrates has name "Socrates"; ($socrates, $x) isa knowledge;
 
-$x id "nothing" isa fact;
+$x id "fact-e387d27c-4f5e-11e6-beb8-9e71128cae77" isa fact;
 $x id "knowledge-e387d27c-4f5e-11e6-beb8-9e71128cae77" isa knowledge;
 </code></pre>
 
@@ -795,7 +813,7 @@ $x id "knowledge-e387d27c-4f5e-11e6-beb8-9e71128cae77" isa knowledge;
 <p>We asked you to write a query to see who taught Aristotle. <br />
 Graql answers:</p>
 
-<pre><code class="language-graql">match (teacher: $teach, $student: Aristotle) isa education;
+<pre><code class="language-graql">match $aristotle has name "Aristotle"; (teacher: $teach, student: $aristotle) isa education;
 </code></pre>
 
 <p>We asked you to write a query for everyone with a title containing “King”. <br />
@@ -853,7 +871,7 @@ Answer:</p>
         <br>
         <p>© 2016 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2016 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> August 10, 2016<br/> Site last generated: Oct 30, 2016 <br />
+        <span>Page last updated:</span> August 10, 2016<br/> Site last generated: Nov 11, 2016 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">
@@ -877,7 +895,7 @@ Answer:</p>
         <span class="footer-header">Community</span>
         <ul>
             <li><a rel="me" href="https://discuss.grakn.ai">Discussion</a></li>
-            <li><a rel="me" href="https://stackoverflow.com/questions/tagged/grakn+or+graql" target="_blank">Stack Overflow</a></li>
+            <li><a rel="me" href="https://stackoverflow.com/questions/tagged/graql+or+grakn" target="_blank">Stack Overflow</a></li>
             <li><a href="https://grakn.ai/slack.html">Slack</a></li>
             <li><a rel="me" href="https://twitter.com/graknlabs" target="_blank">Twitter</a></li>
         </ul>

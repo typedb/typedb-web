@@ -120,7 +120,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/index.html">
+            <a class="navbar-brand" href="/">
                 <svg><use xlink:href="#logo" /></svg>
                 <span class="projectTitle">GRAKN.AI</span>
             </a>
@@ -371,6 +371,13 @@
             
             
             
+            <li><a href="/pages/documentation/migration/CSV-migration.html">CSV Migration</a></li>
+            
+            
+            
+            
+            
+            
             <li><a href="/pages/documentation/migration/SQL-migration.html">SQL Migration</a></li>
             
             
@@ -479,13 +486,6 @@
             
             
             
-            <li><a href="/pages/documentation/examples/SQL-migration.html">SQL migration</a></li>
-            
-            
-            
-            
-            
-            
             <li><a href="/pages/documentation/examples/projects.html">Example Projects</a></li>
             
             
@@ -569,14 +569,14 @@ $('#toc').on('click', 'a', function() {
 
 <p>The image above is used from the documentation provided for TinkerPop3, and licensed by the <a href="http://www.apache.org">Apache Software Foundation</a>.</p>
 
-<p>We have chosen this example as it may already be familiar, and is simple enough to demonstrate some of the fundamentals of Graql. We walk through the entities (“things”) and relationships between them and show how to represent them in a Grakn graph using Graql to define a schema. We then use Graql to add the data to the graph.  The main purpose of this example, however, is to use it for practice at making sample queries on the graph.</p>
+<p>We have chosen this example as it may already be familiar, and is simple enough to demonstrate some of the fundamentals of Graql. We walk through the entities (“things”) and relationships between them and show how to represent them using Graql to define a schema. We then use Graql to add the data to the graph.  The main purpose of this example, however, is to use it for practice at making sample queries on the graph.</p>
 
 <h3 id="starting-graql">Starting Graql</h3>
 
 <p>If it is not already running, start Grakn, then open a Graql shell:</p>
 
 <div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="nb">cd</span> <span class="o">[</span>your Grakn install directory]
-bin/mindmaps.sh start
+bin/grakn.sh start
 bin/graql.sh
 </code></pre>
 </div>
@@ -596,8 +596,6 @@ bin/graql.sh
   <li>there are two connections between marko and other people who he “knows” (josh and vadas).</li>
   <li>there are four connections between people and software, such that the people “created” the software. Lop was created by marko, peter and josh, which ripple was created by josh.</li>
 </ul>
-
-<p>In this example, we use the name of the person or software to make up their id, as in real life, rather than ascribe them the numbers used in the diagram.</p>
 
 <h3 id="entity-types">Entity Types</h3>
 
@@ -644,31 +642,31 @@ insert software plays-role programmed;
 insert programming isa relation-type, has-role programmer, has-role programmed, has-resource weight;
 </code></pre>
 
-<p>And that’s it. At this point, we have defined the schema of the Grakn graph.</p>
+<p>And that’s it. At this point, we have defined the schema of the graph.</p>
 
 <h2 id="adding-the-data">Adding the Data</h2>
 <p>Now we have a schema, we can move on to adding in the data, which is pretty much just a typing exercise:</p>
 
-<pre><code class="language-graql">insert "marko" isa person;
-insert "vadas" isa person;
-insert "josh" isa person;
-insert "peter" isa person;
-insert "marko" has age 29;
-insert "josh" has age 32;
-insert "vadas" has age 27;
-insert "peter" has age 35;
-insert (knower: "marko", known-about: "josh") isa knows has weight 1.0;
-insert (knower: "marko", known-about: "vadas") isa knows has weight 0.5;
+<pre><code class="language-graql">insert has name "marko" isa person;
+insert has name "vadas" isa person;
+insert has name "josh" isa person;
+insert has name "peter" isa person;
+match $marko has name "marko"; insert $marko has age 29;
+match $josh has name "josh"; insert $josh has age 32;
+match $vadas has name "vadas"; insert $vadas has age 27;
+match $peter has name "peter"; insert $peter has age 35;
+match $marko has name "marko"; $josh has name "josh"; insert (knower: $marko, known-about: $josh) isa knows has weight 1.0;
+match $marko has name "marko"; $vadas has name "vadas"; insert (knower: $marko, known-about: $vadas) isa knows has weight 0.5;
 </code></pre>
 
-<pre><code class="language-graql">insert "lop" isa software;
-insert "ripple" isa software;
-insert "lop" has lang "java";
-insert "ripple" has lang "java";
-insert (programmer: "marko", programmed: "lop") isa programming has weight 0.4;
-insert (programmer: "peter", programmed: "lop") isa programming has weight 0.2;
-insert (programmer: "josh", programmed: "lop") isa programming has weight 0.4;
-insert (programmer: "josh", programmed: "ripple") isa programming has weight 1.0;
+<pre><code class="language-graql">insert has name "lop" isa software;
+insert has name "ripple" isa software;
+match $lop has name "lop"; insert $lop has lang "java";
+match $ripple has name "ripple"; insert $ripple has lang "java";
+match $marko has name "marko"; $lop has name "lop"; insert (programmer: $marko, programmed: $lop) isa programming has weight 0.4;
+match $peter has name "peter"; $lop has name "lop"; insert (programmer: $peter, programmed: $lop) isa programming has weight 0.2;
+match $josh has name "josh"; $lop has name "lop"; insert (programmer: $josh, programmed: $lop) isa programming has weight 0.4;
+match $josh has name "josh"; $ripple has name "ripple"; insert (programmer: $josh, programmed: $ripple) isa programming has weight 1.0;
 </code></pre>
 
 <h2 id="querying">Querying</h2>
@@ -899,7 +897,7 @@ match (known-about: $x) isa knows;
         <br>
         <p>© 2016 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2016 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> September 19, 2016<br/> Site last generated: Oct 30, 2016 <br />
+        <span>Page last updated:</span> September 19, 2016<br/> Site last generated: Nov 11, 2016 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">
@@ -923,7 +921,7 @@ match (known-about: $x) isa knows;
         <span class="footer-header">Community</span>
         <ul>
             <li><a rel="me" href="https://discuss.grakn.ai">Discussion</a></li>
-            <li><a rel="me" href="https://stackoverflow.com/questions/tagged/grakn+or+graql" target="_blank">Stack Overflow</a></li>
+            <li><a rel="me" href="https://stackoverflow.com/questions/tagged/graql+or+grakn" target="_blank">Stack Overflow</a></li>
             <li><a href="https://grakn.ai/slack.html">Slack</a></li>
             <li><a rel="me" href="https://twitter.com/graknlabs" target="_blank">Twitter</a></li>
         </ul>

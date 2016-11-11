@@ -120,7 +120,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/index.html">
+            <a class="navbar-brand" href="/">
                 <svg><use xlink:href="#logo" /></svg>
                 <span class="projectTitle">GRAKN.AI</span>
             </a>
@@ -371,6 +371,13 @@
             
             
             
+            <li><a href="/pages/documentation/migration/CSV-migration.html">CSV Migration</a></li>
+            
+            
+            
+            
+            
+            
             <li><a href="/pages/documentation/migration/SQL-migration.html">SQL Migration</a></li>
             
             
@@ -479,13 +486,6 @@
             
             
             
-            <li><a href="/pages/documentation/examples/SQL-migration.html">SQL migration</a></li>
-            
-            
-            
-            
-            
-            
             <li><a href="/pages/documentation/examples/projects.html">Example Projects</a></li>
             
             
@@ -559,7 +559,7 @@ $('#toc').on('click', 'a', function() {
     
 
   <p>A delete query will delete the specified <a href="#variable-patterns">variable
-patterns</a> for every result of the <a href="graql_match.html">match
+patterns</a> for every result of the <a href="match-queries.html">match
 query</a>. If a variable pattern indicates just a variable, then
 the whole concept will be deleted. If it is more specific (such as indicating
 the <code class="highlighter-rouge">id</code> or <code class="highlighter-rouge">isa</code>) it will only delete the specified properties.</p>
@@ -603,12 +603,12 @@ Otherwise, only the specified properties are deleted.</p>
 <div class="tab-content">
 <div role="tabpanel" class="tab-pane active" id="shell2">
 <pre>
-match $x id "evolution"; delete $x has-role descendant;
+match $x id "evolution"; delete $x has-role descendent;
 </pre>
 </div>
 <div role="tabpanel" class="tab-pane" id="java2">
 <pre>
-qb.match(var("x").id("evolution")).delete(var("x").hasRole("descendant"));
+qb.match(var("x").id("evolution")).delete(var("x").hasRole("descendent"));
 </pre>
 </div> <!-- tab-pane -->
 </div>
@@ -698,7 +698,7 @@ qb.match(var("x").id("Bulbasaur")).delete(var("x").has("weight"));
         <br>
         <p>© 2016 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2016 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> August 11, 2016<br/> Site last generated: Oct 30, 2016 <br />
+        <span>Page last updated:</span> August 11, 2016<br/> Site last generated: Nov 11, 2016 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">
@@ -722,7 +722,7 @@ qb.match(var("x").id("Bulbasaur")).delete(var("x").has("weight"));
         <span class="footer-header">Community</span>
         <ul>
             <li><a rel="me" href="https://discuss.grakn.ai">Discussion</a></li>
-            <li><a rel="me" href="https://stackoverflow.com/questions/tagged/grakn+or+graql" target="_blank">Stack Overflow</a></li>
+            <li><a rel="me" href="https://stackoverflow.com/questions/tagged/graql+or+grakn" target="_blank">Stack Overflow</a></li>
             <li><a href="https://grakn.ai/slack.html">Slack</a></li>
             <li><a rel="me" href="https://twitter.com/graknlabs" target="_blank">Twitter</a></li>
         </ul>

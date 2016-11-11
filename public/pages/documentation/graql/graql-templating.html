@@ -120,7 +120,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/index.html">
+            <a class="navbar-brand" href="/">
                 <svg><use xlink:href="#logo" /></svg>
                 <span class="projectTitle">GRAKN.AI</span>
             </a>
@@ -371,6 +371,13 @@
             
             
             
+            <li><a href="/pages/documentation/migration/CSV-migration.html">CSV Migration</a></li>
+            
+            
+            
+            
+            
+            
             <li><a href="/pages/documentation/migration/SQL-migration.html">SQL Migration</a></li>
             
             
@@ -479,13 +486,6 @@
             
             
             
-            <li><a href="/pages/documentation/examples/SQL-migration.html">SQL migration</a></li>
-            
-            
-            
-            
-            
-            
             <li><a href="/pages/documentation/examples/projects.html">Example Projects</a></li>
             
             
@@ -560,21 +560,21 @@ $('#toc').on('click', 'a', function() {
 
   <h2 id="basic-syntax">Basic Syntax</h2>
 
-<p>Graql Templates are Graql statements with the addition of functions and variables. Graql templates are primarily used for migrating data into a Mindmaps graph, although as a component of graql can be used whevever writing Graql in java. You can find more examples of their usage in the Migration section of the documentaion.</p>
+<p>Graql templates are Graql statements with the addition of functions and variables. Graql templates are primarily used for migrating data into Grakn, although as a component of Graql, they can be used whevever writing Graql in Java. You can find more examples of their usage in the <a href="../migration/migration.html">Migration</a> section of the documentation.</p>
 
-<div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> <b>Note:</b>  For the moment, Graql Template usage is limited to Graql java. It will not work in the shell. </div>
+<div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> <b>Note:</b>  For the moment, Graql Template usage is limited to Graql Java. It will not work in the Graql shell. </div>
 
-<p>Templates are used to expand Graql queries given data. They allow you to control the flow of information.</p>
+<p>Templates are used to expand Graql queries, given data. They allow you to control the flow of information.</p>
 
-<p>Accessing a single value:
-<code class="highlighter-rouge">graql
-$x isa thing has value &lt;value&gt;
-</code></p>
+<p>Accessing a single value:</p>
 
-<p>Value in a nested context:
-<code class="highlighter-rouge">graql
-$x isa person has name &lt;person.name.firstName&gt;
-</code></p>
+<pre><code class="language-graql-template">$x isa thing has value &lt;value&gt;
+</code></pre>
+
+<p>Value in a nested context:</p>
+
+<pre><code class="language-graql-template">$x isa person has name &lt;person.name.firstName&gt;
+</code></pre>
 
 <h2 id="replacement">Replacement</h2>
 
@@ -584,11 +584,12 @@ $x isa person has name &lt;person.name.firstName&gt;
 
 <p>A quick example of what the replacement looks like:</p>
 
-<pre><code class="language-graql">first is a &lt;string&gt;, second a &lt;long&gt;, third a &lt;double&gt;, fourth a &lt;boolean&gt;
+<pre><code class="language-graql-template">first is a &lt;string&gt;, second a &lt;long&gt;, third a &lt;double&gt;, fourth a &lt;boolean&gt;
 </code></pre>
 
-<pre><code class="language-graql">first is a "string", second a 40, third a 0.001, fourth a false
+<div class="language-text highlighter-rouge"><pre class="highlight"><code>first is a "string", second a 40, third a 0.001, fourth a false
 </code></pre>
+</div>
 
 <h2 id="logic">Logic</h2>
 
@@ -678,71 +679,67 @@ $x isa person has name &lt;person.name.firstName&gt;
   </tbody>
 </table>
 
-<h4 id="grouping-expressions">Grouping expressions</h4>
-
-<p>Expressions can be grouped using <code class="highlighter-rouge">(</code> and <code class="highlighter-rouge">)</code>.</p>
-
-<p>//TODO</p>
-
 <h3 id="iteration">Iteration</h3>
 
 <p>Graql Templates allow you to iterate over a maps or lists.</p>
 
-<p>Example 1: <code class="highlighter-rouge">for</code> over a list
-<code class="highlighter-rouge">graql
-for (whale in whales)
-do { $x isa whale has name &lt;whale&gt;; }
-</code></p>
+<p>Example 1: <code class="highlighter-rouge">for</code> over a list:</p>
 
-<p>Example 2: <code class="highlighter-rouge">for</code> over a map
-<code class="highlighter-rouge">graql
-insert $x isa person;
+<pre><code class="language-graql-template">for (whale in whales)
+do { $x isa whale has name &lt;whale&gt;; }
+</code></pre>
+
+<p>Example 2: <code class="highlighter-rouge">for</code> over a map:</p>
+
+<pre><code class="language-graql-template">insert $x isa person;
     for (name in names) do {
         $x has nickname &lt;name.nickname&gt; ;
     }
-</code></p>
+</code></pre>
 
-<p>Example 3: “enhanced” <code class="highlighter-rouge">for</code> over a map
-<code class="highlighter-rouge">graql
-insert $x isa person;
+<p>Example 3: “enhanced” <code class="highlighter-rouge">for</code> over a map:</p>
+
+<pre><code class="language-graql-template">insert $x isa person;
     for (names) do {
         $x has nickname &lt;nickname&gt; ;
     }
-</code></p>
+</code></pre>
 
-<p>When iterating over a map as in Example 3, you are allowed to use the “enhanced” for syntax. In this loop, it is not required to provide the item name. The properties within the <code class="highlighter-rouge">do</code> block context are inferred to be the first level children of tbe property in the <code class="highlighter-rouge">for</code> statement.</p>
+<p>When iterating over a map as in Example 3, you are allowed to use the “enhanced” for syntax. In this loop, it is not required to provide the item name. The properties within the <code class="highlighter-rouge">do</code> block context are inferred to be the first level children of the property in the <code class="highlighter-rouge">for</code> statement.</p>
 
-<p>Example 5: doubly nested <code class="highlighter-rouge">for</code>
-<code class="highlighter-rouge">graql
+<p>Example 5: doubly nested <code class="highlighter-rouge">for</code>:</p>
+
+<pre><code class="language-graql-template">insert
+
 for (people) do { 
-insert $x isa person has name &lt;name&gt;;
+$x isa person has name &lt;name&gt;;
     for (addresses) do {
-    insert $y isa address ;
+    $y isa address ;
         $y has street &lt;street&gt; ;
         $y has number &lt;number&gt; ;
         ($x, $y) isa resides;
     }
 }
-</code></p>
+</code></pre>
 
 <h3 id="conditionals">Conditionals</h3>
 
 <p><code class="highlighter-rouge">if</code>, <code class="highlighter-rouge">else</code> and <code class="highlighter-rouge">elseif</code> are the included commands that provide conditional logic.</p>
 
-<p>Example 6: <code class="highlighter-rouge">if</code>
-<code class="highlighter-rouge">graql
-if (ne dog null)
-do { insert $dog isa dog; }
-</code></p>
+<p>Example 6: <code class="highlighter-rouge">if</code>:</p>
 
-<p>Example 7: <code class="highlighter-rouge">if</code>…<code class="highlighter-rouge">else</code>
-<code class="highlighter-rouge">graql
-if (ne firstName null) do {
+<pre><code class="language-graql-template">if (ne dog null)
+do { insert $dog isa dog; }
+</code></pre>
+
+<p>Example 7: <code class="highlighter-rouge">if</code>…<code class="highlighter-rouge">else</code>:</p>
+
+<pre><code class="language-graql-template">if (ne firstName null) do {
     insert $person has name &lt;firstName&gt;;
 } else {
     insert $person;
 }
-</code></p>
+</code></pre>
 
 <h3 id="macros">Macros</h3>
 
@@ -752,95 +749,89 @@ if (ne firstName null) do {
 
 <p>Macro <code class="highlighter-rouge">noescp</code> is short for “no escape”. This function will not add quotes or escape the characters inside the value when doing replacement. Accepts exactly one argument.</p>
 
-<p>e.g.
-<code class="highlighter-rouge">graql
-insert $person has introduction "Hi! My name is @noescp(firstname) @noescp(lastname)";
-</code></p>
+<p>e.g.</p>
+
+<pre><code class="language-graql-template">insert $person has introduction "Hi! My name is @noescp(firstname) @noescp(lastname)";
+</code></pre>
 
 <h4 id="int">int</h4>
 
-<p><code class="highlighter-rouge">int</code> converts the contents of the data to an interger. Accepts exactly one argument.</p>
+<p><code class="highlighter-rouge">int</code> converts the contents of the data to an integer. Accepts exactly one argument.</p>
 
-<p>e.g.
-<code class="highlighter-rouge">graql
-match $x isa thing has value @int(value);
-</code></p>
+<p>e.g.</p>
+
+<pre><code class="language-graql-template">match $x isa thing has value @int(value);
+</code></pre>
 
 <h4 id="double">double</h4>
 
 <p><code class="highlighter-rouge">double</code> converts the contents of the data to a double. Accepts exactly one argument.</p>
 
-<p>e.g.
-<code class="highlighter-rouge">graql
-match $x isa thing has value @double(value);
-</code></p>
+<p>e.g.</p>
+
+<pre><code class="language-graql-template">match $x isa thing has value @double(value);
+</code></pre>
 
 <h4 id="equals">equals</h4>
 
 <p>The <code class="highlighter-rouge">equals</code> macro returns a boolean and as such can be used in conditional statements. It can also be used in the Graql statment. Requires at least two arguments.</p>
 
-<p>e.g. in Graql
-<code class="highlighter-rouge">graql
-insert $x isa hasEquivalentResource value @equals(this that other)
-</code></p>
+<p>e.g. in Graql</p>
 
-<p>e.g. in conditional
-<code class="highlighter-rouge">graql
-if (@equals(this that)) do { equals } else { not }"
-</code></p>
+<pre><code class="language-graql-template">insert $x isa hasEquivalentResource value @equals(this that other)
+</code></pre>
+
+<p>e.g. in conditional</p>
+
+<pre><code class="language-graql-template">if (@equals(this that)) do { equals } else { not }"
+</code></pre>
 
 <h3 id="scopes">Scopes</h3>
 
-<p>When using iterators Graql variables will be automatically suffixed with an aggregate index of the loop. This is necessary because otherwise Graql would confuse variables belonging to different statements when running the queries.</p>
+<p>During iteration Graql variables will be automatically suffixed with an index.</p>
 
-<p>For example, the following loop:
-```graql
-insert $x isa person has name <name>;</name></p>
+<p>For example, the following loop:</p>
 
-<p>for (addresses) do {
-    insert $y isa address ;
-        $y has street <street> ;
-        $y has number <number> ;
-        ($x, $y) isa resides;
-}</number></street></p>
+<pre><code class="language-graql-template">insert $x isa pokemon has description &lt;name&gt;;
+    
+for (types) do {
+    $y isa pokemon-type ;
+        $y has description &lt;type-description&gt; ;
+        (pokemon-with-type: $x, type-of-pokemon: $y) isa has-type;
+}
 
-<p>$y isa person, id 1234;
-($x, $y) isa friends;
-```</p>
-
-<p>would result in the expanded Graql query:
-```graql
-insert $x0 isa person has name “Elmo”;</p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code>insert $y0 isa address ;
-    $y0 has street "North Pole" ;
-    $y0 has number 100 ;
-    ($x0 $y0) isa resides;
-insert $y1 isa address ;
-    $y1 has street "South Pole" ;
-    $y1 has number -100 ;
-    ($x0 $y1) isa resides;
-
-$y2 isa person, id 1234;
-($x0, $y2) isa friends; 
+$y isa pokemon;
+(ancestor: $x, descendent: $y) isa evolution;
 </code></pre>
-</div>
 
-<p>insert $x1 isa person has name “Flounder”;</p>
+<p>would result in the expanded Graql queries:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>insert $y3 isa address ;
-    $y3 has street "Under the sea" ;
-    $y3 has number 22 ;
-    ($x1 $y3) isa resides;
+<pre><code class="language-graql">insert $x0 isa pokemon has description "Pikachu";
+    
+    $y0 isa pokemon-type ;
+        $y0 has description "Electric" ;
+        (pokemon-with-type: $x0, type-of-pokemon: $y0) isa has-type;
+    $y1 isa pokemon-type ;
+        $y1 has description "Mouse" ;
+        (pokemon-with-type: $x0, type-of-pokemon: $y1) isa has-type;
 
-$y4 isa person, id 1234;
-($x1, $y4) isa friends;  ```
+    $y2 isa pokemon;
+    (ancestor: $x0, descendent: $y2) isa evolution; 
 </code></pre>
-</div>
+
+<pre><code class="language-graql">insert $x1 isa pokemon has description "Raichu";
+    
+    $y3 isa pokemon-type ;
+        $y3 has street "Electric" ;
+        (pokemon-with-type: $x1, type-of-pokemon: $y3) isa has-type;
+
+    $y4 isa pokemon;
+    (ancestor: $x1, descendent: $y4) isa evolution; 
+</code></pre>
 
 <h2 id="usage-in-java">Usage in Java</h2>
 
-<p>For the moment, Graql templating can only be used through the java API:</p>
+<p>For the moment, Graql templating can only be used through the Java API:</p>
 
 <div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">String</span> <span class="n">template</span> <span class="o">=</span> <span class="s">""</span> <span class="o">+</span>
                 <span class="s">"for (whale in whales ) do {"</span> <span class="o">+</span>
@@ -894,7 +885,7 @@ $y4 isa person, id 1234;
         <br>
         <p>© 2016 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2016 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> October 14, 2016<br/> Site last generated: Oct 30, 2016 <br />
+        <span>Page last updated:</span> November 4, 2016<br/> Site last generated: Nov 11, 2016 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">
@@ -918,7 +909,7 @@ $y4 isa person, id 1234;
         <span class="footer-header">Community</span>
         <ul>
             <li><a rel="me" href="https://discuss.grakn.ai">Discussion</a></li>
-            <li><a rel="me" href="https://stackoverflow.com/questions/tagged/grakn+or+graql" target="_blank">Stack Overflow</a></li>
+            <li><a rel="me" href="https://stackoverflow.com/questions/tagged/graql+or+grakn" target="_blank">Stack Overflow</a></li>
             <li><a href="https://grakn.ai/slack.html">Slack</a></li>
             <li><a rel="me" href="https://twitter.com/graknlabs" target="_blank">Twitter</a></li>
         </ul>

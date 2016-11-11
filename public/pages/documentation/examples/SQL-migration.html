@@ -120,7 +120,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/index.html">
+            <a class="navbar-brand" href="/">
                 <svg><use xlink:href="#logo" /></svg>
                 <span class="projectTitle">GRAKN.AI</span>
             </a>
@@ -371,6 +371,13 @@
             
             
             
+            <li><a href="/pages/documentation/migration/CSV-migration.html">CSV Migration</a></li>
+            
+            
+            
+            
+            
+            
             <li><a href="/pages/documentation/migration/SQL-migration.html">SQL Migration</a></li>
             
             
@@ -479,13 +486,6 @@
             
             
             
-            <li class="active"><a href="/pages/documentation/examples/SQL-migration.html">SQL migration</a></li>
-            
-            
-            
-            
-            
-            
             <li><a href="/pages/documentation/examples/projects.html">Example Projects</a></li>
             
             
@@ -562,7 +562,7 @@ $('#toc').on('click', 'a', function() {
 
 <h2 id="migrating-the-world">Migrating the World</h2>
 
-<p>In this example, we will show you how to import SQL data, from a relational database, to a Grakn graph. The code for this example can be found in our <a href="https://github.com/graknlabs/sample-projects/tree/master/example-sql-migration">github repo</a>. We have a <a href="https://blog.grakn.ai/populating-mindmapsdb-with-the-world-5b2445aee60c#">blog post</a> that also discusses SQL migration, using the migration shell script.</p>
+<p>In this example, we will show you how to import SQL data, from a relational database, to Grakn. The code for this example can be found in our <a href="https://github.com/graknlabs/sample-projects/tree/master/example-sql-migration">github repo</a>. We have a <a href="https://blog.grakn.ai/populating-mindmapsdb-with-the-world-5b2445aee60c#">blog post</a> that also discusses SQL migration, using the migration shell script.</p>
 
 <h3 id="prerequisites">Prerequisites</h3>
 
@@ -591,7 +591,7 @@ $('#toc').on('click', 'a', function() {
 <p>We run a few queries in the example to prove that the data has been migrated. After running the example, you should be able to answer the following questions (see the bottom of the page for answers - but please don’t peek until you’ve tried it!):</p>
 
 <ul>
-  <li>What are the Types in the World Grakn graph?</li>
+  <li>What are the Types in the World graph in Grakn?</li>
   <li>How many countries are in the world?</li>
   <li>How may cities are in the world?</li>
   <li>What are the cities in Niger?</li>
@@ -617,7 +617,7 @@ $('#toc').on('click', 'a', function() {
 
 <p>You can see the code to answer these questions in the function <a href="https://github.com/graknlabs/sample-projects/blob/master/example-sql-migration/src/main/java/SqlWorldMigrator.java">printInformationAboutWorld()</a>.</p>
 
-<p><strong>What are the Types in the World Grakn graph?</strong> <br />
+<p><strong>What are the Types in the World graph in Grakn?</strong> <br />
 Answer:</p>
 
 <div class="highlighter-rouge"><pre class="highlight"><code>country
@@ -689,7 +689,7 @@ Maradi
         <br>
         <p>© 2016 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2016 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> September 19, 2016<br/> Site last generated: Oct 30, 2016 <br />
+        <span>Page last updated:</span> September 19, 2016<br/> Site last generated: Nov 11, 2016 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">
@@ -713,7 +713,7 @@ Maradi
         <span class="footer-header">Community</span>
         <ul>
             <li><a rel="me" href="https://discuss.grakn.ai">Discussion</a></li>
-            <li><a rel="me" href="https://stackoverflow.com/questions/tagged/grakn+or+graql" target="_blank">Stack Overflow</a></li>
+            <li><a rel="me" href="https://stackoverflow.com/questions/tagged/graql+or+grakn" target="_blank">Stack Overflow</a></li>
             <li><a href="https://grakn.ai/slack.html">Slack</a></li>
             <li><a rel="me" href="https://twitter.com/graknlabs" target="_blank">Twitter</a></li>
         </ul>

@@ -3,7 +3,7 @@
     <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Demonstrates how to create an advanced schema for a Grakn knowledge graph.">
+<meta name="description" content="Demonstrates how to create an advanced schema for Grakn.">
 <meta name="keywords" content="graph-apijava,  schema, Grakn Labs, grakn, graql, grakn.ai, Mindmaps Research, Mindmaps Research Ltd, MindmapsDB, mindmaps, mindmaps graph, mindmaps.io, knowledge graph, distributed knowledge graph, development platform, developer tool, data platform, programming langauge, query langauge, database, semantic database, distributed semantic database, distributed database, graph database, semantic search, data exploration, recommendation system, knowledge management, knowledge engineering, real-time analytics, advanced analytics, reasoning engine, inference engine, expert systems, semantic applications, research engines, data management, business intelligence, big data, semantic web, semantic data, knowledge representation, automated reasoning, semantic network, knowledge ontology, semantic graph, ontology engineering, graph based knowledge representation, artificial intelligence,">
 <title>GRAKN.AI | Defining an Advanced Schema</title>
 <link rel="stylesheet" href="/pages/css/syntax.css">
@@ -120,7 +120,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/index.html">
+            <a class="navbar-brand" href="/">
                 <svg><use xlink:href="#logo" /></svg>
                 <span class="projectTitle">GRAKN.AI</span>
             </a>
@@ -371,6 +371,13 @@
             
             
             
+            <li><a href="/pages/documentation/migration/CSV-migration.html">CSV Migration</a></li>
+            
+            
+            
+            
+            
+            
             <li><a href="/pages/documentation/migration/SQL-migration.html">SQL Migration</a></li>
             
             
@@ -479,13 +486,6 @@
             
             
             
-            <li><a href="/pages/documentation/examples/SQL-migration.html">SQL migration</a></li>
-            
-            
-            
-            
-            
-            
             <li><a href="/pages/documentation/examples/projects.html">Example Projects</a></li>
             
             
@@ -520,7 +520,7 @@
 <div class="post-content">
 
    
-    <div class="summary">Demonstrates how to create an advanced schema for a Grakn knowledge graph.</div>
+    <div class="summary">Demonstrates how to create an advanced schema for Grakn.</div>
    
 
     
@@ -558,7 +558,7 @@ $('#toc').on('click', 'a', function() {
 
     
 
-  <p>This document introduces some advanced schema concepts, which you can use to create more expressive Grakn graphs. We recommend that you read our document about <a href="simple-schema-definition.html">defining a simple schema</a> before continuing.</p>
+  <p>This document introduces some advanced schema concepts, which you can use to create more expressive graphs. We recommend that you read our document about <a href="simple-schema-definition.html">defining a simple schema</a> before continuing.</p>
 
 <p>Here, we also discuss creating a graph which supports Grakn reasoning and inference features.</p>
 
@@ -568,21 +568,21 @@ $('#toc').on('click', 'a', function() {
 
 <p>Create the Entity types:</p>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">EntityType</span> <span class="n">person</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">putEntityType</span><span class="o">(</span><span class="s">"Person"</span><span class="o">);</span>
-<span class="n">EntityType</span> <span class="n">movie</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">putEntityType</span><span class="o">(</span><span class="s">"Movie"</span><span class="o">);</span>
-<span class="n">EntityType</span> <span class="n">tvShow</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">putEntityType</span><span class="o">(</span><span class="s">"TV Show"</span><span class="o">);</span>
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">EntityType</span> <span class="n">person</span> <span class="o">=</span> <span class="n">graknGraph</span><span class="o">.</span><span class="na">putEntityType</span><span class="o">(</span><span class="s">"Person"</span><span class="o">);</span>
+<span class="n">EntityType</span> <span class="n">movie</span> <span class="o">=</span> <span class="n">graknGraph</span><span class="o">.</span><span class="na">putEntityType</span><span class="o">(</span><span class="s">"Movie"</span><span class="o">);</span>
+<span class="n">EntityType</span> <span class="n">tvShow</span> <span class="o">=</span> <span class="n">graknGraph</span><span class="o">.</span><span class="na">putEntityType</span><span class="o">(</span><span class="s">"TV Show"</span><span class="o">);</span>
 </code></pre>
 </div>
 
 <p>Create the roles and relation types:</p>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">RoleType</span> <span class="n">actorInMovie</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">putRoleType</span><span class="o">(</span><span class="s">"Actor In Movie"</span><span class="o">);</span>
-<span class="n">RoleType</span> <span class="n">movieCastIn</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">putRoleType</span><span class="o">(</span><span class="s">"Movie Cast In"</span><span class="o">);</span>
-<span class="n">RelationType</span> <span class="n">starsInMovie</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">putRelationType</span><span class="o">(</span><span class="s">"Stars In Movie"</span><span class="o">).</span><span class="na">hasRole</span><span class="o">(</span><span class="n">actorInMovie</span><span class="o">).</span><span class="na">hasRole</span><span class="o">(</span><span class="n">movieCastIn</span><span class="o">);</span>
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">RoleType</span> <span class="n">actorInMovie</span> <span class="o">=</span> <span class="n">graknGraph</span><span class="o">.</span><span class="na">putRoleType</span><span class="o">(</span><span class="s">"Actor In Movie"</span><span class="o">);</span>
+<span class="n">RoleType</span> <span class="n">movieCastIn</span> <span class="o">=</span> <span class="n">graknGraph</span><span class="o">.</span><span class="na">putRoleType</span><span class="o">(</span><span class="s">"Movie Cast In"</span><span class="o">);</span>
+<span class="n">RelationType</span> <span class="n">starsInMovie</span> <span class="o">=</span> <span class="n">graknGraph</span><span class="o">.</span><span class="na">putRelationType</span><span class="o">(</span><span class="s">"Stars In Movie"</span><span class="o">).</span><span class="na">hasRole</span><span class="o">(</span><span class="n">actorInMovie</span><span class="o">).</span><span class="na">hasRole</span><span class="o">(</span><span class="n">movieCastIn</span><span class="o">);</span>
 
-<span class="n">RoleType</span> <span class="n">actorInTvShow</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">putRoleType</span><span class="o">(</span><span class="s">"Actor In Tv Show"</span><span class="o">);</span>
-<span class="n">RoleType</span> <span class="n">tvShowCastIn</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">putRoleType</span><span class="o">(</span><span class="s">"Tv Show Cast In"</span><span class="o">);</span>
-<span class="n">RelationType</span> <span class="n">starsInTvShow</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">putRelationType</span><span class="o">(</span><span class="s">"Stars In Tv Show"</span><span class="o">).</span><span class="na">hasRole</span><span class="o">(</span><span class="n">actorInTvShow</span><span class="o">).</span><span class="na">hasRole</span><span class="o">(</span><span class="n">tvShowCastIn</span><span class="o">);</span>
+<span class="n">RoleType</span> <span class="n">actorInTvShow</span> <span class="o">=</span> <span class="n">graknGraph</span><span class="o">.</span><span class="na">putRoleType</span><span class="o">(</span><span class="s">"Actor In Tv Show"</span><span class="o">);</span>
+<span class="n">RoleType</span> <span class="n">tvShowCastIn</span> <span class="o">=</span> <span class="n">graknGraph</span><span class="o">.</span><span class="na">putRoleType</span><span class="o">(</span><span class="s">"Tv Show Cast In"</span><span class="o">);</span>
+<span class="n">RelationType</span> <span class="n">starsInTvShow</span> <span class="o">=</span> <span class="n">graknGraph</span><span class="o">.</span><span class="na">putRelationType</span><span class="o">(</span><span class="s">"Stars In Tv Show"</span><span class="o">).</span><span class="na">hasRole</span><span class="o">(</span><span class="n">actorInTvShow</span><span class="o">).</span><span class="na">hasRole</span><span class="o">(</span><span class="n">tvShowCastIn</span><span class="o">);</span>
 </code></pre>
 </div>
 
@@ -603,7 +603,7 @@ We can create a deep object-orientated schema where the rules of the super-class
 
 <p>Films and TV shows are similar, so we should have a super-class <code class="highlighter-rouge">Production</code> to represent both:</p>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">EntityType</span> <span class="n">production</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">putEntityType</span><span class="o">(</span><span class="s">"Production"</span><span class="o">);</span>
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">EntityType</span> <span class="n">production</span> <span class="o">=</span> <span class="n">graknGraph</span><span class="o">.</span><span class="na">putEntityType</span><span class="o">(</span><span class="s">"Production"</span><span class="o">);</span>
 <span class="n">movie</span><span class="o">.</span><span class="na">superType</span><span class="o">(</span><span class="n">production</span><span class="o">);</span>
 <span class="n">tvShow</span><span class="o">.</span><span class="na">superType</span><span class="o">(</span><span class="n">production</span><span class="o">);</span>
 </code></pre>
@@ -611,9 +611,9 @@ We can create a deep object-orientated schema where the rules of the super-class
 
 <p>Actors should be able to star in any type of <code class="highlighter-rouge">Production</code>, be it a film or a TV Show:</p>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">RoleType</span> <span class="n">actor</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">putRoleType</span><span class="o">(</span><span class="s">"Actor"</span><span class="o">);</span>
-<span class="n">RoleType</span> <span class="n">productionCastIn</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">putRoleType</span><span class="o">(</span><span class="s">"Production Cast In"</span><span class="o">);</span>
-<span class="n">RelationType</span> <span class="n">starsIn</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">putRelationType</span><span class="o">(</span><span class="s">"Stars In"</span><span class="o">).</span><span class="na">hasRole</span><span class="o">(</span><span class="n">actor</span><span class="o">).</span><span class="na">hasRole</span><span class="o">(</span><span class="n">productionCastIn</span><span class="o">);</span>
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">RoleType</span> <span class="n">actor</span> <span class="o">=</span> <span class="n">graknGraph</span><span class="o">.</span><span class="na">putRoleType</span><span class="o">(</span><span class="s">"Actor"</span><span class="o">);</span>
+<span class="n">RoleType</span> <span class="n">productionCastIn</span> <span class="o">=</span> <span class="n">graknGraph</span><span class="o">.</span><span class="na">putRoleType</span><span class="o">(</span><span class="s">"Production Cast In"</span><span class="o">);</span>
+<span class="n">RelationType</span> <span class="n">starsIn</span> <span class="o">=</span> <span class="n">graknGraph</span><span class="o">.</span><span class="na">putRelationType</span><span class="o">(</span><span class="s">"Stars In"</span><span class="o">).</span><span class="na">hasRole</span><span class="o">(</span><span class="n">actor</span><span class="o">).</span><span class="na">hasRole</span><span class="o">(</span><span class="n">productionCastIn</span><span class="o">);</span>
 </code></pre>
 </div>
 
@@ -628,8 +628,8 @@ We can create a deep object-orientated schema where the rules of the super-class
 This also makes defining the schema shorter and gives more opportunities for graph enhancements.
 For example, we can start to differentiate between male and female actors without impacting the schema significantly:</p>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">EntityType</span> <span class="n">man</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">putEntityType</span><span class="o">(</span><span class="s">"Man"</span><span class="o">).</span><span class="na">superType</span><span class="o">(</span><span class="n">person</span><span class="o">);</span>
-<span class="n">EntityType</span> <span class="n">woman</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">putEntityType</span><span class="o">(</span><span class="s">"Woman"</span><span class="o">).</span><span class="na">superType</span><span class="o">();</span>
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">EntityType</span> <span class="n">man</span> <span class="o">=</span> <span class="n">graknGraph</span><span class="o">.</span><span class="na">putEntityType</span><span class="o">(</span><span class="s">"Man"</span><span class="o">).</span><span class="na">superType</span><span class="o">(</span><span class="n">person</span><span class="o">);</span>
+<span class="n">EntityType</span> <span class="n">woman</span> <span class="o">=</span> <span class="n">graknGraph</span><span class="o">.</span><span class="na">putEntityType</span><span class="o">(</span><span class="s">"Woman"</span><span class="o">).</span><span class="na">superType</span><span class="o">();</span>
 </code></pre>
 </div>
 
@@ -666,7 +666,7 @@ R2: anc(X, Y) :- parent(X, Z), anc(Z, Y)
 <h3 id="rule-java-api">Rule Java API</h3>
 <p>All rule instances are of type inference-rule which can be retrieved by:</p>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">RuleType</span> <span class="n">inferenceRule</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">getMetaRuleInference</span><span class="o">();</span>
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">RuleType</span> <span class="n">inferenceRule</span> <span class="o">=</span> <span class="n">graknGraph</span><span class="o">.</span><span class="na">getMetaRuleInference</span><span class="o">();</span>
 </code></pre>
 </div>
 
@@ -679,8 +679,8 @@ R2: anc(X, Y) :- parent(X, Z), anc(Z, Y)
                 <span class="s">"(ancestor $z, descendant $y) isa Ancestor select $x, $y"</span><span class="o">;</span>
 <span class="n">String</span> <span class="n">r2Head</span> <span class="o">=</span> <span class="s">"(ancestor $x, descendant $y) isa Ancestor"</span><span class="o">;</span>
 
-<span class="n">Rule</span> <span class="n">rule1</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">putRule</span><span class="o">(</span><span class="s">"R1"</span><span class="o">,</span> <span class="n">r1Body</span><span class="o">,</span> <span class="n">r1Head</span><span class="o">,</span> <span class="n">inferenceRule</span><span class="o">);</span>
-<span class="n">Rule</span> <span class="n">rule2</span> <span class="o">=</span> <span class="n">mindmapsGraph</span><span class="o">.</span><span class="na">putRule</span><span class="o">(</span><span class="s">"R2"</span><span class="o">,</span> <span class="n">r2Body</span><span class="o">,</span> <span class="n">r2Head</span><span class="o">,</span> <span class="n">inferenceRule</span><span class="o">);</span>
+<span class="n">Rule</span> <span class="n">rule1</span> <span class="o">=</span> <span class="n">graknGraph</span><span class="o">.</span><span class="na">addRule</span><span class="o">(</span><span class="n">r1Body</span><span class="o">,</span> <span class="n">r1Head</span><span class="o">,</span> <span class="n">inferenceRule</span><span class="o">);</span>
+<span class="n">Rule</span> <span class="n">rule2</span> <span class="o">=</span> <span class="n">graknGraph</span><span class="o">.</span><span class="na">addRule</span><span class="o">(</span><span class="n">r2Body</span><span class="o">,</span> <span class="n">r2Head</span><span class="o">,</span> <span class="n">inferenceRule</span><span class="o">);</span>
 </code></pre>
 </div>
 
@@ -688,14 +688,22 @@ R2: anc(X, Y) :- parent(X, Z), anc(Z, Y)
 <p>The addition of the rules specified above can be expressed via an insert Graql statement where the body and the head of the rule are separated with curly braces, the corresponding statement then reads:</p>
 
 <pre><code class="language-graql">insert
-"R1" isa inference-rule,
-lhs {(parent $x, child $y) isa Parent},
-rhs {(ancestor $x, descendant $y) isa Ancestor};
+isa inference-rule,
+lhs {
+    (parent: $x, child: $y) isa Parent;
+},
+rhs {
+    (ancestor: $x, descendant: $y) isa Ancestor;
+};
 
-"R2" isa inference-rule,
-lhs {(parent $x, child $z) isa Parent;
-(ancestor $z, descendant $y) isa Ancestor select $x, $y},
-rhs {(ancestor $x, descendant $y) isa Ancestor};
+isa inference-rule,
+lhs {
+    (parent: $x, child: $z) isa Parent;
+    (ancestor: $z, descendant: $y) isa Ancestor;
+},
+rhs {
+    (ancestor: $x, descendant: $y) isa Ancestor;
+};
 </code></pre>
 
 <h2 id="comments">Comments</h2>
@@ -743,7 +751,7 @@ rhs {(ancestor $x, descendant $y) isa Ancestor};
         <br>
         <p>© 2016 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2016 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> August 23, 2016<br/> Site last generated: Oct 30, 2016 <br />
+        <span>Page last updated:</span> August 23, 2016<br/> Site last generated: Nov 11, 2016 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">
@@ -767,7 +775,7 @@ rhs {(ancestor $x, descendant $y) isa Ancestor};
         <span class="footer-header">Community</span>
         <ul>
             <li><a rel="me" href="https://discuss.grakn.ai">Discussion</a></li>
-            <li><a rel="me" href="https://stackoverflow.com/questions/tagged/grakn+or+graql" target="_blank">Stack Overflow</a></li>
+            <li><a rel="me" href="https://stackoverflow.com/questions/tagged/graql+or+grakn" target="_blank">Stack Overflow</a></li>
             <li><a href="https://grakn.ai/slack.html">Slack</a></li>
             <li><a rel="me" href="https://twitter.com/graknlabs" target="_blank">Twitter</a></li>
         </ul>

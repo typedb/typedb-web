@@ -3,7 +3,7 @@
     <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Landing page for documentation about loading data in different formats to populate a Grakn graph.">
+<meta name="description" content="Landing page for documentation about loading data in different formats to populate a graph in Grakn.">
 <meta name="keywords" content="getting-startedgraqlmigration,  setup, getting started, Grakn Labs, grakn, graql, grakn.ai, Mindmaps Research, Mindmaps Research Ltd, MindmapsDB, mindmaps, mindmaps graph, mindmaps.io, knowledge graph, distributed knowledge graph, development platform, developer tool, data platform, programming langauge, query langauge, database, semantic database, distributed semantic database, distributed database, graph database, semantic search, data exploration, recommendation system, knowledge management, knowledge engineering, real-time analytics, advanced analytics, reasoning engine, inference engine, expert systems, semantic applications, research engines, data management, business intelligence, big data, semantic web, semantic data, knowledge representation, automated reasoning, semantic network, knowledge ontology, semantic graph, ontology engineering, graph based knowledge representation, artificial intelligence,">
 <title>GRAKN.AI | Migrating to Grakn</title>
 <link rel="stylesheet" href="/pages/css/syntax.css">
@@ -120,7 +120,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/index.html">
+            <a class="navbar-brand" href="/">
                 <svg><use xlink:href="#logo" /></svg>
                 <span class="projectTitle">GRAKN.AI</span>
             </a>
@@ -371,6 +371,13 @@
             
             
             
+            <li><a href="/pages/documentation/migration/CSV-migration.html">CSV Migration</a></li>
+            
+            
+            
+            
+            
+            
             <li><a href="/pages/documentation/migration/SQL-migration.html">SQL Migration</a></li>
             
             
@@ -479,13 +486,6 @@
             
             
             
-            <li><a href="/pages/documentation/examples/SQL-migration.html">SQL migration</a></li>
-            
-            
-            
-            
-            
-            
             <li><a href="/pages/documentation/examples/projects.html">Example Projects</a></li>
             
             
@@ -520,7 +520,7 @@
 <div class="post-content">
 
    
-    <div class="summary">Landing page for documentation about loading data in different formats to populate a Grakn graph.</div>
+    <div class="summary">Landing page for documentation about loading data in different formats to populate a graph in Grakn.</div>
    
 
     
@@ -559,20 +559,24 @@ $('#toc').on('click', 'a', function() {
     
 
   <h2 id="introduction">Introduction</h2>
-<p>This page introduces migration of data, stored in different formats, to populate a Grakn graph. If you have not yet set up the Grakn environment, please see the <a href="../get-started/setup-guide.html">setup guide</a>.</p>
+<p>This page introduces migration of data, stored in different formats, to populate a graph in Grakn. If you have not yet set up the Grakn environment, please see the <a href="../get-started/setup-guide.html">setup guide</a>.</p>
 
 <h2 id="migration-shell-script">Migration Shell Script</h2>
-<p>The migration shell script can be found in <code class="highlighter-rouge">mindmaps-dist/bin</code> after it has been unzipped. Usage is specific to the type of migration being performed:</p>
+<p>The migration shell script can be found in <code class="highlighter-rouge">grakn-dist/bin</code> after it has been unzipped. Usage is specific to the type of migration being performed:</p>
 
 <h3 id="sql-migration">SQL Migration</h3>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>usage: ./migration.sh sql -driver &lt;jdbcDriver&gt; -user &lt;username&gt; -pass &lt;password&gt; -database &lt;url&gt; -graph &lt;graphname&gt; [engine &lt;url&gt;]
-       -driver           JDBC driver
-       -user             username for SQL database
-       -pass             password for SQL database
-       -database         URL to SQL database
-       -graph            graph name (or defaults to the default keyspace)
-       -engine           Grakn engine URL, default localhost
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>usage: migration.sh sql -template &lt;arg&gt; -driver &lt;arg&gt; -user &lt;arg&gt; -pass &lt;arg&gt; -location &lt;arg&gt; <span class="o">[</span>-help] <span class="o">[</span>-no] <span class="o">[</span>-batch &lt;arg&gt;] <span class="o">[</span>-keyspace &lt;arg&gt;] <span class="o">[</span>-uri &lt;arg&gt;]
+ -driver &lt;arg&gt;         JDBC driver
+ -h,--help             print usage message
+ -k,--keyspace &lt;arg&gt;   keyspace to use
+ -location &lt;arg&gt;       JDBC url <span class="o">(</span>location of DB<span class="o">)</span>
+ -n,--no               dry run- write to standard out
+ -pass &lt;arg&gt;           JDBC password
+ -q,--query &lt;arg&gt;      SQL Query
+ -t,--template &lt;arg&gt;   template <span class="k">for </span>the given SQL query
+ -u,--uri &lt;arg&gt;        uri to engine endpoint
+ -user &lt;arg&gt;           JDBC username
 </code></pre>
 </div>
 
@@ -580,39 +584,66 @@ $('#toc').on('click', 'a', function() {
 
 <h3 id="csv-migration">CSV Migration</h3>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>usage: ./migration.sh csv -file &lt;file&gt; -graph &lt;graphname&gt; [-engine &lt;url] [-as &lt;type&gt;]
-      -file             csv file to migrate
-      -graph            graph name (or defaults to the default keyspace)
-      -engine           Grakn engine URL, default localhost
-      -as               entity type of this file
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>usage: ./migration.sh csv -template &lt;arg&gt; -input &lt;arg&gt; <span class="o">[</span>-help] <span class="o">[</span>-no] <span class="o">[</span>-separator &lt;arg&gt;] <span class="o">[</span>-batch &lt;arg&gt;] <span class="o">[</span>-uri &lt;arg&gt;] <span class="o">[</span>-keyspace &lt;arg&gt;]
+
+OPTIONS
+ -b,--batch &lt;arg&gt;       number of row to load at once
+ -h,--help              print usage message
+ -i,--input &lt;arg&gt;       input csv file
+ -k,--keyspace &lt;arg&gt;    keyspace to use
+ -n,--no                dry run- write to standard out
+ -s,--separator &lt;arg&gt;   separator of columns <span class="k">in </span>input file
+ -t,--template &lt;arg&gt;    graql template to apply over data
+ -u,--uri &lt;arg&gt;         uri to engine endpoint
 </code></pre>
 </div>
+
+<p>Please see the <a href="./CSV-migration.html">CSV migration documentation</a> for further information.</p>
 
 <h3 id="json-migration">JSON Migration</h3>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>usage: ./migration json -schema &lt;schema&gt; -data &lt;path&gt; -graph &lt;name&gt; [-engine &lt;url&gt;]
-       -schema           json schema file or directory
-       -data             json data file or directory
-       -graph            graph name (or defaults to the default keyspace)
-       -engine           Grakn engine URL, default localhost
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>usage: migration.sh json -template &lt;arg&gt; -input &lt;arg&gt; <span class="o">[</span>-help] <span class="o">[</span>-no] <span class="o">[</span>-batch &lt;arg&gt;] <span class="o">[</span>-uri &lt;arg&gt;] <span class="o">[</span>-keyspace &lt;arg&gt;]
+ -b,--batch &lt;arg&gt;      number of row to load at once
+ -h,--help             print usage message
+ -i,--input &lt;arg&gt;      input json data file or directory
+ -k,--keyspace &lt;arg&gt;   keyspace to use
+ -n,--no               dry run- write to standard out
+ -t,--template &lt;arg&gt;   graql template to apply over data
+ -u,--uri &lt;arg&gt;        uri to engine endpoint
 </code></pre>
 </div>
 
+<h3 id="export">Export</h3>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>usage: migration.sh <span class="nb">export</span> -data -ontology <span class="o">[</span>-help] <span class="o">[</span>-no] <span class="o">[</span>-batch &lt;arg&gt;] <span class="o">[</span>-uri &lt;arg&gt;] <span class="o">[</span>-keyspace &lt;arg&gt;]
+ -data                 <span class="nb">export </span>data
+ -ontology             <span class="nb">export </span>ontology
+ -h,--help             print usage message
+ -k,--keyspace &lt;arg&gt;   keyspace to use
+ -n,--no               dry run- write to standard out
+ -u,--uri &lt;arg&gt;        uri to engine endpoint
+</code></pre>
+</div>
+
+<p>Export will always redirect to standard out.</p>
+
 <h3 id="owl-migration">OWL Migration</h3>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>usage: ./migration.sh owl -file &lt;path&gt; [-graph &lt;name&gt;] [-engine &lt;url&gt;]
-       -file             OWL file
-       -graph            graph name (defaults to the name of the file with spaces replaced by _)
-       -engine           Grakn engine URL, default localhost
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>usage: migration.sh owl -input &lt;arg&gt; <span class="o">[</span>-help] <span class="o">[</span>-no] <span class="o">[</span>-batch &lt;arg&gt;] <span class="o">[</span>-uri &lt;arg&gt;] <span class="o">[</span>-keyspace &lt;arg&gt;]
+ -h,--help             print usage message
+ -i,--input &lt;arg&gt;      input owl file
+ -k,--keyspace &lt;arg&gt;   keyspace to use
+ -n,--no               dry run- write to standard out
+ -u,--uri &lt;arg&gt;        uri to engine endpoint
 </code></pre>
 </div>
 
 <p>Please see the <a href="./OWL-migration.html">OWL migration documentation</a> for further information.</p>
 
-<h2 id="where-next">Where Next?</h2>
-<p>You can find further documentation about migration in our API reference documentation (which is in the <code class="highlighter-rouge">/docs</code> directory of the distribution zip file, and also online <a href="https://grakn.ai/pages/api-reference/latest/index.html">here</a>).</p>
+<p>NOTE: <code class="highlighter-rouge">-no</code> is not supported by OWL migration at the moment</p>
 
-<p>Please take a look at our examples to further illustrate <a href="../examples/SQL-migration.html">SQL migration</a> and <a href="../examples/OWL-migration.html">OWL migration</a>.</p>
+<h2 id="where-next">Where Next?</h2>
+<p>You can find further documentation about migration in our API reference documentation (which is in the <code class="highlighter-rouge">/docs</code> directory of the distribution zip file, and also online <a href="https://grakn.ai/javadocs.html">here</a>.</p>
 
 <h2 id="comments">Comments</h2>
 <p>Want to leave a comment? Visit <a href="https://github.com/graknlabs/docs/issues/32" target="_blank">the issues on Github for this page</a> (you’ll need a GitHub account). You are also welcome to contribute to our documentation directly via the “Edit me” button at the top of the page.</p>
@@ -663,7 +694,7 @@ $('#toc').on('click', 'a', function() {
         <br>
         <p>© 2016 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2016 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> August 10, 2016<br/> Site last generated: Oct 30, 2016 <br />
+        <span>Page last updated:</span> August 10, 2016<br/> Site last generated: Nov 11, 2016 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">
@@ -687,7 +718,7 @@ $('#toc').on('click', 'a', function() {
         <span class="footer-header">Community</span>
         <ul>
             <li><a rel="me" href="https://discuss.grakn.ai">Discussion</a></li>
-            <li><a rel="me" href="https://stackoverflow.com/questions/tagged/grakn+or+graql" target="_blank">Stack Overflow</a></li>
+            <li><a rel="me" href="https://stackoverflow.com/questions/tagged/graql+or+grakn" target="_blank">Stack Overflow</a></li>
             <li><a href="https://grakn.ai/slack.html">Slack</a></li>
             <li><a rel="me" href="https://twitter.com/graknlabs" target="_blank">Twitter</a></li>
         </ul>
