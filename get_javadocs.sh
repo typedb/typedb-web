@@ -31,13 +31,14 @@ LATEST_VERSION=$(curl -s https://api.github.com/repos/graknlabs/grakn/releases/l
 
 # Download and extract only docs for each release
 for RELEASE in $RELEASES; do
-  VERSION=$(basename ${RELEASE} | sed -e 's/grakn-dist-//' -e 's/\.tgz//' -e 's/\.tar\.gz//')
+  PKG_NAME=$(basename ${RELEASE} | grep -oE "grakn|mindmaps")
+  VERSION=$(basename ${RELEASE} | sed -e 's/[a-z]*-dist-//' -e 's/\.tgz//' -e 's/\.tar\.gz//')
   if [[ ! -d v${VERSION} ]]; then
     echo "Downloading ${VERSION}"
-    wget --continue -q ${RELEASE} -o grakn-dist-${VERSION}.tar.gz
+    wget --continue -q ${RELEASE} -o ${PKG_NAME}-dist-${VERSION}.tar.gz
     mkdir -p v${VERSION}
-    tar -xf grakn-dist-${VERSION}.tar.gz -C v${VERSION} grakn-dist-${VERSION}/docs/api/ --strip-components=3
-    rm grakn-dist-${VERSION}.tar.gz
+    tar -xf ${PKG_NAME}-dist-${VERSION}.tar.gz -C v${VERSION} ${PKG_NAME}-dist-${VERSION}/docs/api/ --strip-components=3
+    rm ${PKG_NAME}-dist-${VERSION}.tar.gz
   fi
 done
 
