@@ -26,18 +26,18 @@ echo $$ > ${LOCKFILE}
 
 # Obtain list of all releases
 # API limit of 60 requests per hour
-RELEASES=$(curl -s https://api.github.com/repos/mindmapsdb/mindmapsdb/releases | grep browser_download_url | grep -E "tgz|tar\.gz" | awk '{print $2}' | sed -e 's/\"//g')
-LATEST_VERSION=$(curl -s https://api.github.com/repos/mindmapsdb/mindmapsdb/releases/latest | grep tag_name | awk '{print $2}' | sed -e 's/\"//g' | tr -d ',')
+RELEASES=$(curl -s https://api.github.com/repos/graknlabs/grakn/releases | grep browser_download_url | grep -E "tgz|tar\.gz" | awk '{print $2}' | sed -e 's/\"//g')
+LATEST_VERSION=$(curl -s https://api.github.com/repos/graknlabs/grakn/releases/latest | grep tag_name | awk '{print $2}' | sed -e 's/\"//g' | tr -d ',')
 
 # Download and extract only docs for each release
 for RELEASE in $RELEASES; do
-  VERSION=$(basename ${RELEASE} | sed -e 's/mindmaps-dist-//' -e 's/\.tgz//' -e 's/\.tar\.gz//')
+  VERSION=$(basename ${RELEASE} | sed -e 's/grakn-dist-//' -e 's/\.tgz//' -e 's/\.tar\.gz//')
   if [[ ! -d v${VERSION} ]]; then
     echo "Downloading ${VERSION}"
-    wget --continue -q ${RELEASE} -o mindmaps-dist-${VERSION}.tar.gz
+    wget --continue -q ${RELEASE} -o grakn-dist-${VERSION}.tar.gz
     mkdir -p v${VERSION}
-    tar -xf mindmaps-dist-${VERSION}.tar.gz -C v${VERSION} mindmaps-dist-${VERSION}/docs/api/ --strip-components=3
-    rm mindmaps-dist-${VERSION}.tar.gz
+    tar -xf grakn-dist-${VERSION}.tar.gz -C v${VERSION} grakn-dist-${VERSION}/docs/api/ --strip-components=3
+    rm grakn-dist-${VERSION}.tar.gz
   fi
 done
 
