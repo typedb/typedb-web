@@ -228,7 +228,7 @@
             
             
             
-            <li><a href="/pages/documentation/the-basics/mindmaps-basics.html">Grakn Basics</a></li>
+            <li><a href="/pages/documentation/the-basics/grakn-basics.html">Grakn Basics</a></li>
             
             
             
@@ -372,6 +372,13 @@
             
             
             <li><a href="/pages/documentation/migration/CSV-migration.html">CSV Migration</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="/pages/documentation/migration/JSON-migration.html">JSON Migration</a></li>
             
             
             
@@ -564,7 +571,7 @@ $('#toc').on('click', 'a', function() {
 <h2 id="migration-shell-script-for-sql">Migration Shell Script for SQL</h2>
 <p>The migration shell script can be found in <code class="highlighter-rouge">/bin</code> directory of your Grakn environment. Usage is specific to the type of migration being performed. For SQL:</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>usage: migration.sh sql -template &lt;arg&gt; -driver &lt;arg&gt; -user &lt;arg&gt; -pass &lt;arg&gt; -location &lt;arg&gt; <span class="o">[</span>-help] <span class="o">[</span>-no] <span class="o">[</span>-batch &lt;arg&gt;] <span class="o">[</span>-keyspace &lt;arg&gt;] <span class="o">[</span>-uri &lt;arg&gt;]
+<div class="highlighter-rouge"><pre class="highlight"><code>usage: migration.sh sql -template &lt;arg&gt; -driver &lt;arg&gt; -user &lt;arg&gt; -pass &lt;arg&gt; -location &lt;arg&gt; <span class="o">[</span>-help] <span class="o">[</span>-no] <span class="o">[</span>-batch &lt;arg&gt;] <span class="o">[</span>-keyspace &lt;arg&gt;] <span class="o">[</span>-uri &lt;arg&gt;]
  -driver &lt;arg&gt;         JDBC driver
  -h,--help             print usage message
  -k,--keyspace &lt;arg&gt;   keyspace to use
@@ -584,7 +591,7 @@ $('#toc').on('click', 'a', function() {
 
 <p>Let’s say you have an SQL table with the following schema:</p>
 
-<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">pet</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">pet</span>
 <span class="p">(</span>
   <span class="n">name</span>    <span class="n">VARCHAR</span><span class="p">(</span><span class="mi">20</span><span class="p">),</span>
   <span class="k">owner</span>   <span class="n">VARCHAR</span><span class="p">(</span><span class="mi">20</span><span class="p">),</span>
@@ -796,7 +803,7 @@ dataMigrator
         <br>
         <p>© 2016 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2016 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> August 10, 2016<br/> Site last generated: Nov 11, 2016 <br />
+        <span>Page last updated:</span> August 10, 2016<br/> Site last generated: Nov 15, 2016 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">

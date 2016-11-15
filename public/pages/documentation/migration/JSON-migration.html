@@ -3,9 +3,9 @@
     <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Introducing the basics of the Grakn object model.">
-<meta name="keywords" content="getting-started,  setup, getting started, basics, Grakn Labs, grakn, graql, grakn.ai, Mindmaps Research, Mindmaps Research Ltd, MindmapsDB, mindmaps, mindmaps graph, mindmaps.io, knowledge graph, distributed knowledge graph, development platform, developer tool, data platform, programming langauge, query langauge, database, semantic database, distributed semantic database, distributed database, graph database, semantic search, data exploration, recommendation system, knowledge management, knowledge engineering, real-time analytics, advanced analytics, reasoning engine, inference engine, expert systems, semantic applications, research engines, data management, business intelligence, big data, semantic web, semantic data, knowledge representation, automated reasoning, semantic network, knowledge ontology, semantic graph, ontology engineering, graph based knowledge representation, artificial intelligence,">
-<title>GRAKN.AI | Grakn Basics</title>
+<meta name="description" content="This document will teach you how to migrate JSON data into Grakn.">
+<meta name="keywords" content="migration,  setup, getting started, Grakn Labs, grakn, graql, grakn.ai, Mindmaps Research, Mindmaps Research Ltd, MindmapsDB, mindmaps, mindmaps graph, mindmaps.io, knowledge graph, distributed knowledge graph, development platform, developer tool, data platform, programming langauge, query langauge, database, semantic database, distributed semantic database, distributed database, graph database, semantic search, data exploration, recommendation system, knowledge management, knowledge engineering, real-time analytics, advanced analytics, reasoning engine, inference engine, expert systems, semantic applications, research engines, data management, business intelligence, big data, semantic web, semantic data, knowledge representation, automated reasoning, semantic network, knowledge ontology, semantic graph, ontology engineering, graph based knowledge representation, artificial intelligence,">
+<title>GRAKN.AI | JSON Migration to Grakn</title>
 <link rel="stylesheet" href="/pages/css/syntax.css">
 
 
@@ -163,7 +163,7 @@
                             
                             dataSource: '/pages/search.json',
                             
-                            searchResultTemplate: '<li><a href="{url}" title="Grakn Basics">{title}</a></li>',
+                            searchResultTemplate: '<li><a href="{url}" title="JSON Migration to Grakn">{title}</a></li>',
                             noResultsText: '<li><a class="empty">No results found</a></li>',
                             limit: 10,
                             fuzzy: true
@@ -228,7 +228,7 @@
             
             
             
-            <li class="active"><a href="/pages/documentation/the-basics/mindmaps-basics.html">Grakn Basics</a></li>
+            <li><a href="/pages/documentation/the-basics/grakn-basics.html">Grakn Basics</a></li>
             
             
             
@@ -378,6 +378,13 @@
             
             
             
+            <li class="active"><a href="/pages/documentation/migration/JSON-migration.html">JSON Migration</a></li>
+            
+            
+            
+            
+            
+            
             <li><a href="/pages/documentation/migration/SQL-migration.html">SQL Migration</a></li>
             
             
@@ -512,7 +519,7 @@
         <!-- Content Column -->
         <div class="col-md-9">
             <div class="post-header">
-   <h1 class="post-title-main">Grakn Basics</h1>
+   <h1 class="post-title-main">JSON Migration to Grakn</h1>
 </div>
 
 
@@ -520,7 +527,7 @@
 <div class="post-content">
 
    
-    <div class="summary">Introducing the basics of the Grakn object model.</div>
+    <div class="summary">This document will teach you how to migrate JSON data into Grakn.</div>
    
 
     
@@ -552,158 +559,167 @@ $('#toc').on('click', 'a', function() {
 
     
 
-    <a target="_blank" href="https://github.com/graknlabs/docs/blob/master/pages/documentation/1-the-basics/mindmaps-basics.md" class="btn btn-default githubEditButton" role="button"><i class="fa fa-github fa-lg"></i> Edit me</a>
+    <a target="_blank" href="https://github.com/graknlabs/docs/blob/master/pages/documentation/4-migration/JSON-migration.md" class="btn btn-default githubEditButton" role="button"><i class="fa fa-github fa-lg"></i> Edit me</a>
 
     
 
     
 
-  <h1 id="grakn-basics">Grakn Basics</h1>
+  <h2 id="introduction">Introduction</h2>
+<p>This tutorial shows you how to populate Grakn with JSON data. If you have not yet set up the Grakn environment, please see the <a href="../get-started/setup-guide.html">setup guide</a>.</p>
 
-<h2 id="schema-and-data">Schema and Data</h2>
+<h2 id="migration-shell-script-for-json">Migration Shell Script for JSON</h2>
+<p>The migration shell script can be found in <code class="highlighter-rouge">/bin</code> directory of your Grakn environment. Usage is specific to the type of migration being performed.</p>
 
-<p>In Grakn, a graph is made of two layers: the database schema (which you can also think of as an ontology) and the data layer.</p>
-
-<p><strong><em>The schema should be clearly defined before loading data into the graph.</em></strong> The schema is used to formalise the data within a specific domain. If data is about healthcare, then we need to design a schema specific to healthcare. If data is about movies, then we need to define an schema specific to the movie industry.</p>
-
-<p>Example schema concepts could include <code class="highlighter-rouge">car</code>, <code class="highlighter-rouge">person</code>, <code class="highlighter-rouge">movie</code>.</p>
-
-<p><strong><em>The data is categorised by the schema.</em></strong> It is essentially everything
-we wish to model.</p>
-
-<p>Example data concepts could include <code class="highlighter-rouge">a VW Golf TDI</code>, <code class="highlighter-rouge">Tom Cruise</code>, <code class="highlighter-rouge">Mission: Impossible</code>.</p>
-
-<h2 id="the-object-model---schema">The Object Model - Schema</h2>
-
-<p>The Grakn stack provides a formal structure to a graph database.  The following figure represents the inheritance structure of the schema elements. These are used to design our domain specific schema.</p>
-
-<p><img src="/images/ontology_object_model.png" alt="The schema object model" /></p>
-
-<h3 id="concept">Concept</h3>
-
-<p>Just as a <a href="https://en.wikipedia.org/wiki/Graph_theory">graph</a> is defined by vertices and the edges between them, in Grakn, a
-graph is defined by concepts and the relationships between those
-concepts.  Every vertex is a concept and must, at minimum, have a unique ID. This is a string that identifies the concept.</p>
-
-<h3 id="concept-type">Concept Type</h3>
-
-<p>A schema element that represents something that can have instances, and is extended into the following types:</p>
-
-<ul>
-  <li>Entity Types</li>
-  <li>Relation Types</li>
-  <li>Role Types</li>
-  <li>Resource Types</li>
-</ul>
-
-<h3 id="entity-type">Entity Type</h3>
-
-<p>An Entity Type is used to represent a category e.g. <code class="highlighter-rouge">person</code>, <code class="highlighter-rouge">vehicle</code>, <code class="highlighter-rouge">movie</code> or <code class="highlighter-rouge">country</code>.</p>
-
-<h3 id="resource-type">Resource Type</h3>
-
-<p>A Resource Type is used to represent an attribute associated with an Entity Type, e.g. <code class="highlighter-rouge">birthdate</code> or <code class="highlighter-rouge">name</code>. Resource Types are effectively properties, and consist of primitive types and values. They are very much like “data properties” in OWL.</p>
-
-<p>Resource types have the following properties:</p>
-
-<ul>
-  <li>
-    <p><strong>Datatype</strong> - Indicates the datatype of the resource. For example if the resource type is <code class="highlighter-rouge">age</code> the datatype would be <code class="highlighter-rouge">long</code>.</p>
-  </li>
-  <li>
-    <p><strong>Regex</strong> - Optional. Can be used to constrain string data types to specific regex patterns.</p>
-  </li>
-  <li>
-    <p><strong>Unique</strong> - A boolean which indicates if the resource should be unique
-across the graph.</p>
-  </li>
-</ul>
-
-<h3 id="relation-type-and-role-type">Relation Type and Role Type</h3>
-
-<p>In Grakn, the graph enables us to model complex n-ary relationships. To do this we define a Relation Type, which is used to model relationships, and an associated pair of Role Types that are used to represent the two roles within that relationship. There is one Role Type for each entity to explain fully how the two relate to one another.</p>
-
-<p>For example, to model that a <code class="highlighter-rouge">person</code> acted in a <code class="highlighter-rouge">movie</code> we need to use a Relation Type such as <code class="highlighter-rouge">has-cast</code>. The Role Type for the <code class="highlighter-rouge">person</code> is  <code class="highlighter-rouge">actor</code>, while the Role Type for the movie is <code class="highlighter-rouge">production-with-cast</code>.</p>
-
-<p>Role Types are associated with a particular Relation Type between Entity Types, and constrain it to ensure that only instances of the correct types are involved. In the movie domain, for example, the Relation Type <code class="highlighter-rouge">has-cast</code> involves a <code class="highlighter-rouge">person</code> Entity Type playing the Role Type <code class="highlighter-rouge">actor</code>. An Entity Type <code class="highlighter-rouge">dog</code> is implicitly excluded from playing the role <code class="highlighter-rouge">actor</code> - to include a dog in the cast of a movie, the <code class="highlighter-rouge">dog</code> Entity Type must explicitly be given the role <code class="highlighter-rouge">actor</code> too.</p>
-
-<p>The Role Types associated with a Relation Type can only be used for that relationship.</p>
-
-<h3 id="subclasses">Subclasses</h3>
-
-<p>Instances of the four meta-types described above can be subclassed. For example, subclasses of <code class="highlighter-rouge">person</code> (which is an instance of the meta-type EntityType) could be <code class="highlighter-rouge">man</code> and <code class="highlighter-rouge">woman</code>.  This simple subclassing allows us to expand and deepen our schema to whatever granularity of detail is needed.</p>
-
-<div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> <b>Note:</b> In Grakl, we use the shorthand <code class="highlighter-rouge">sub ('subclass')</code> when referring to sub-typing or specialisation. <br />
-For example, <code class="highlighter-rouge">man sub person</code>. <br />
-We use the shorthand <code class="highlighter-rouge">isa</code> (‘is a’) to represent the type relationship. <br />
-For example, <code class="highlighter-rouge">car isa vehicle</code>.
+<div class="highlighter-rouge"><pre class="highlight"><code>usage: migration.sh json -template &lt;arg&gt; -input &lt;arg&gt; <span class="o">[</span>-help] <span class="o">[</span>-no] <span class="o">[</span>-batch &lt;arg&gt;] <span class="o">[</span>-uri &lt;arg&gt;] <span class="o">[</span>-keyspace &lt;arg&gt;]
+ -b,--batch &lt;arg&gt;      number of row to load at once
+ -h,--help             print usage message
+ -i,--input &lt;arg&gt;      input json data file or directory
+ -k,--keyspace &lt;arg&gt;   keyspace to use
+ -n,--no               dry run- write to standard out
+ -t,--template &lt;arg&gt;   graql template to apply over data
+ -u,--uri &lt;arg&gt;        uri to engine endpoint
+</code></pre>
 </div>
 
-<p>For example a simple schema would be <code class="highlighter-rouge">car</code> <code class="highlighter-rouge">isa</code> <code class="highlighter-rouge">vehicle</code> but with subclassing we could go as far as <code class="highlighter-rouge">a VW Gold TDI 2014</code> <code class="highlighter-rouge">isa</code> <code class="highlighter-rouge">VW</code> <code class="highlighter-rouge">sub</code> <code class="highlighter-rouge">car</code> <code class="highlighter-rouge">isa</code> <code class="highlighter-rouge">vehicle</code>.</p>
+<h2 id="json-migration-basics">JSON Migration Basics</h2>
+<p>JSON Migration makes heavy use of the Graql templating language. You should have a solid foundation in Graql templating before continuing, so please read through our <a href="../graql/graql-templating.html">templating documentation</a> to find out more.</p>
 
-<p>Types can have an additional property, <code class="highlighter-rouge">abstract</code>, which indicates the type cannot have direct instances. This is useful when we want to define a deeper schema. For example if we have <code class="highlighter-rouge">person</code> and its subclasses <code class="highlighter-rouge">man</code> and <code class="highlighter-rouge">woman</code>, then we may want to define <code class="highlighter-rouge">person</code> as <code class="highlighter-rouge">abstract</code> to prohibit it from having any direct instances, whereas the concrete types <code class="highlighter-rouge">man</code> and <code class="highlighter-rouge">woman</code> can have direct instances.</p>
+<!-- JSON Migration will apply your template to each [Alex - something missing here?] -->
 
-<h2 id="the-object-model---data">The Object Model - Data</h2>
-<p>The following figure represents the inheritance structure of the data elements.</p>
+<h4 id="what-about-the-ontology">What about the ontology?</h4>
+<p>YOU must write the ontology! Once you have written an ontology for your domain, you will template Graql statements that instruct the migrator on how your data can be mapped to your ontology.</p>
 
-<p><img src="/images/data_object_model.png" alt="The data object model" /></p>
+<h4 id="how-do-you-write-a-template">How do you write a template?</h4>
+<p>Approach each JSON file as though you were inserting a single query. The migrator cannot handle multiple queries per file, so take care that there is not more than one <code class="highlighter-rouge">match</code> or <code class="highlighter-rouge">insert</code> command in your template. Take a look at our other migration guides for more ideas on how to use Graql templates with data.</p>
 
-<h3 id="instance">Instance</h3>
+<div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> <b>Note:</b> The JSON migrator can handle either a directory or a file as the -input parameter!</div>
 
-<p>Instances are data elements. They are named as such because they are instances of the Types described above. For example: a <code class="highlighter-rouge">BMW</code> is an instance of the Entity Type <code class="highlighter-rouge">car</code> and <code class="highlighter-rouge">09/10/1988</code> is an instance of Resource Type <code class="highlighter-rouge">date</code>.</p>
+<h4 id="looping-over-a-json-array">Looping over a JSON array</h4>
+<p><strong>types.json</strong></p>
 
-<h3 id="entity">Entity</h3>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"types"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="nt">"id"</span><span class="p">:</span><span class="mi">1</span><span class="s2">", "</span><span class="err">type</span><span class="s2">": "</span><span class="err">normal</span><span class="s2">" },
+    {"</span><span class="err">id</span><span class="s2">":2"</span><span class="p">,</span><span class="w"> </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"fighting"</span><span class="w"> </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="nt">"id"</span><span class="p">:</span><span class="mi">3</span><span class="s2">", "</span><span class="err">type</span><span class="s2">": "</span><span class="err">flying</span><span class="s2">" },
+    {"</span><span class="err">id</span><span class="s2">":4"</span><span class="p">,</span><span class="w"> </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"poison"</span><span class="w"> </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="nt">"id"</span><span class="p">:</span><span class="mi">5</span><span class="s2">", "</span><span class="err">type</span><span class="s2">": "</span><span class="err">ground</span><span class="s2">" },
+    {"</span><span class="err">id</span><span class="s2">":6"</span><span class="p">,</span><span class="w"> </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"rock"</span><span class="w"> </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="nt">"id"</span><span class="p">:</span><span class="mi">7</span><span class="s2">", "</span><span class="err">type</span><span class="s2">": "</span><span class="err">bug</span><span class="s2">" },
+    {"</span><span class="err">id</span><span class="s2">":8"</span><span class="p">,</span><span class="w"> </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ghost"</span><span class="w"> </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="nt">"id"</span><span class="p">:</span><span class="mi">9</span><span class="s2">", "</span><span class="err">type</span><span class="s2">": "</span><span class="err">steel</span><span class="s2">" },
+    {"</span><span class="err">id</span><span class="s2">":10"</span><span class="w"> </span><span class="s2">"type"</span><span class="err">:</span><span class="w"> </span><span class="p">,</span><span class="nt">"fire"</span><span class="w"> </span><span class="err">}</span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+</div>
 
-<p>An instance of the Entity Type (which is known as an Entity)  represents an actual item of data. For example, Entity Type <code class="highlighter-rouge">car</code> could have Entities <code class="highlighter-rouge">a BMW</code>, <code class="highlighter-rouge">this Mercedes</code>, and <code class="highlighter-rouge">that Volkswagen</code>. Grakn enables us to model relationships between these entities, once they have been defined.</p>
+<p>To migrate all of these types, we need to iterate over the array:</p>
 
-<h3 id="resource">Resource</h3>
+<pre><code class="language-graql-template">insert
+for(types) do {
+    $x isa pokemon-type
+        has description &lt;type&gt;
+        has type-id &lt;id&gt;;
+}
+</code></pre>
 
-<p>Resources are instances of the Resource Type described above. They allow us to attribute data to a specific instance. For example, if <code class="highlighter-rouge">Alice</code> is an instance of <code class="highlighter-rouge">person</code> we could model Alice’s birthday <code class="highlighter-rouge">09/10/1988</code> as an instance of the Resource Type <code class="highlighter-rouge">birthdate</code>.  The Resource object allows us to impose some additional constraints, such as ensuring that it conforms to a regex pattern or is of a particular data type.</p>
+<p>Which will resolve as:</p>
 
-<h3 id="relation">Relation</h3>
+<pre><code class="language-graql">insert $x0 has type-id "1" has description "normal" isa pokemon-type;
+$x1 has description "fighting" has type-id "2" isa pokemon-type;
+$x2 has type-id "3" has description "flying" isa pokemon-type;
+$x3 has type-id "4" has description "poison" isa pokemon-type;
+$x4 has description "ground" has type-id "5" isa pokemon-type;
+$x5 has description "rock" has type-id "6" isa pokemon-type;
+$x6 has description "bug" has type-id "7" isa pokemon-type;
+$x7 has description "ghost" has type-id "8" isa pokemon-type;
+$x8 has type-id "9" has description "steel" isa pokemon-type;
+$x9 has description "fire" isa pokemon-type has type-id "10";
+</code></pre>
 
-<p>A Relation represents an instance of a Relation Type. Essentially a Relation describes a relationship between instances of a specific type. For example, a Relation between <code class="highlighter-rouge">Tom Cruise</code> (isa <code class="highlighter-rouge">person</code>) and <code class="highlighter-rouge">Mission: Impossible</code> (isa <code class="highlighter-rouge">movie</code>) where <code class="highlighter-rouge">Tom Cruise</code> plays the Role Type <code class="highlighter-rouge">actor</code> and <code class="highlighter-rouge">Mission: Impossible</code> plays the Role Type <code class="highlighter-rouge">production-with-crew</code>.</p>
+<h4 id="match-inserts-with-loops">Match-Inserts with loops</h4>
+<p>In some situations, you’ll need to look up references to existing entities so that you can refer to them when inserting data.</p>
 
-<h2 id="an-example-graph-structure">An Example Graph Structure</h2>
+<p>Once the above types are migrated, we can move on to the pokemon JSON file.</p>
 
-<h3 id="subclasses-1">Subclasses</h3>
+<p><strong>pokemon.json</strong></p>
 
-<p>Consider the following example of male and female philosopers.</p>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"pokemon"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"identifier"</span><span class="p">:</span><span class="s2">"Charmander"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"id"</span><span class="p">:</span><span class="mi">4</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"species_id"</span><span class="p">:</span><span class="mi">4</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"height"</span><span class="p">:</span><span class="mi">6</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"weight"</span><span class="p">:</span><span class="mi">85</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"types"</span><span class="p">:[</span><span class="w">
+                </span><span class="s2">"1"</span><span class="w">
+            </span><span class="p">]</span><span class="w">
+        </span><span class="p">},{</span><span class="w">
+            </span><span class="nt">"identifier"</span><span class="p">:</span><span class="s2">"Charmeleon"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"id"</span><span class="p">:</span><span class="s2">"5"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"species_id"</span><span class="p">:</span><span class="mi">5</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"height"</span><span class="p">:</span><span class="mi">11</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"weight"</span><span class="p">:</span><span class="mi">190</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"types"</span><span class="p">:[</span><span class="w">
+                </span><span class="s2">"1"</span><span class="w">
+            </span><span class="p">]</span><span class="w">
+        </span><span class="p">},{</span><span class="w">
+            </span><span class="nt">"identifier"</span><span class="p">:</span><span class="s2">"Charizard"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"id"</span><span class="p">:</span><span class="s2">"6"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"species_id"</span><span class="p">:</span><span class="mi">6</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"height"</span><span class="p">:</span><span class="mi">17</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"weight"</span><span class="p">:</span><span class="mi">905</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"types"</span><span class="p">:[</span><span class="w">
+                </span><span class="s2">"1"</span><span class="p">,</span><span class="w"> </span><span class="s2">"2"</span><span class="w">
+            </span><span class="p">]</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+</div>
 
-<p><img src="/images/example_super.png" alt="Male and Female philosophers" /></p>
+<p>This template is rather complicated. The first <code class="highlighter-rouge">match</code> portion is necessary to look up all of the already migrated pokemon types in the graph. You can then refer to these variables in your <code class="highlighter-rouge">insert</code> statement while creating the relationships.</p>
 
-<h3 id="roles">Roles</h3>
-<p>We can define the following structure where people can now play the roles of teachers or students:</p>
+<pre><code class="language-graql-template">match
+   for(pokemon) do {
+        for(t in types) do {
+            $&lt;t&gt; has type-id &lt;t&gt;;
+        }
+   }
 
-<p><img src="/images/example_playsrole.png" alt="A simple example of allowing a Type to play specific Role
-Types." /></p>
+insert
+for(pokemon) do {
+    $p isa pokemon
+        has weight &lt;weight&gt;
+        has height &lt;height&gt;
+        has pokedex-no &lt;id&gt;
+        has description &lt;identifier&gt;;
 
-<h3 id="relation-types">Relation Types</h3>
+    for(t in types) do {
+        (pokemon-with-type: $p, type-of-pokemon: $&lt;t&gt;) isa has-type;
+    }
+}
+</code></pre>
 
-<p>Expanding our philosophers example we could define a Relation Type, <code class="highlighter-rouge">education</code> to encapsulate the needed roles:</p>
+<p>It will resolve as:</p>
 
-<p><img src="/images/example_relationtype.png" alt="Expanding the example to illustrate how a relation type is linked with Role
-Types." /></p>
-
-<h3 id="defining-relations">Defining Relations</h3>
-
-<p>Finally, we can expand our philosophers example to define that Plato taught Aristotle:</p>
-
-<p><img src="/images/example_relation.png" alt="An example of a Relation. The dark blue represents the Relation which is an
-instance of
-`Education`" /></p>
-
-<div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> <b>Note:</b> When creating a relation you must ensure that the type of the Instances are allowed to play the Role Types. For example, in the above graph if we forgot to define that the Type <code class="highlighter-rouge">person</code> is allowed to play the Role <code class="highlighter-rouge">teacher</code> then the Relation between <code class="highlighter-rouge">Plato</code> and <code class="highlighter-rouge">Aristotle</code> would not be valid.</div>
-
-<!-- Removed a section on the meta ontology. We could create a separate article about this later if we think it's useful -->
+<pre><code class="language-graql">match $1 has type-id "1"; $2 has type-id "2";
+insert $p0 has height 6 has weight 85 isa pokemon has description "Charmander" has pokedex-no "4";
+isa has-type (pokemon-with-type: $p0, type-of-pokemon: $1);
+$p1 has weight 190 has height 11 has pokedex-no "5" has description "Charmeleon" isa pokemon;
+(pokemon-with-type: $p1, type-of-pokemon: $1) isa has-type;
+$p2 has weight 905 has pokedex-no "6" has description "Charizard" isa pokemon has height 17;
+isa has-type (pokemon-with-type: $p2, type-of-pokemon: $1);
+isa has-type (pokemon-with-type: $p2, type-of-pokemon: $2);
+</code></pre>
 
 <h2 id="where-next">Where Next?</h2>
-<p>Our <a href="../the-basics/quickstart-tutorial.html">Quickstart Tutorial</a> will show you how to load a schema and data into Grakn using Graql.</p>
-
-<p>You can find additional example code and documentation on this portal. We are always adding more and welcome ideas and improvement suggestions. Please get in touch!</p>
+<p>You can find further documentation about migration in our API reference documentation (which is in the <code class="highlighter-rouge">/docs</code> directory of the distribution zip file, and also online <a href="https://grakn.ai/pages/api-reference/latest/index.html">here</a>.</p>
 
 <h2 id="comments">Comments</h2>
-<p>Want to leave a comment? Visit <a href="https://github.com/graknlabs/docs/issues/17" target="_blank">the issues on Github for this page</a> (you’ll need a GitHub account). You are also welcome to contribute to our documentation directly via the “Edit me” button at the top of the page.</p>
+<p>Want to leave a comment? Visit <a href="https://github.com/graknlabs/docs/issues/32" target="_blank">the issues on Github for this page</a> (you’ll need a GitHub account). You are also welcome to contribute to our documentation directly via the “Edit me” button at the top of the page.</p>
 
 
     <div class="tags">
@@ -712,7 +728,7 @@ instance of
         
         
         
-        <a href="/pages/tag_getting-started.html" class="btn btn-default navbar-btn cursorNorm" role="button">getting-started</a>
+        <a href="/pages/tag_migration.html" class="btn btn-default navbar-btn cursorNorm" role="button">migration</a>
         
         
         
@@ -743,7 +759,7 @@ instance of
         <br>
         <p>© 2016 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2016 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> August 24, 2016<br/> Site last generated: Nov 11, 2016 <br />
+        <span>Page last updated:</span> November 14th 2016<br/> Site last generated: Nov 15, 2016 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">

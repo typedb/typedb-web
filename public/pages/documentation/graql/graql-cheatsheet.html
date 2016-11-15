@@ -228,7 +228,7 @@
             
             
             
-            <li><a href="/pages/documentation/the-basics/mindmaps-basics.html">Grakn Basics</a></li>
+            <li><a href="/pages/documentation/the-basics/grakn-basics.html">Grakn Basics</a></li>
             
             
             
@@ -372,6 +372,13 @@
             
             
             <li><a href="/pages/documentation/migration/CSV-migration.html">CSV Migration</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="/pages/documentation/migration/JSON-migration.html">JSON Migration</a></li>
             
             
             
@@ -575,7 +582,7 @@ $('#toc').on('click', 'a', function() {
 <p>A match query will search the graph for any subgraphs that match the given
 <a href="#pattern">pattern</a>. A result is produced for each match to the <a href="#variables">variables</a> in the query. The results of the query can be modified with various <a href="#modifiers">modifiers</a>: <a href="#select">select</a>, <a href="#limit">limit</a>, <a href="#offset">offset</a>, <a href="#distinct">distinct</a> and <a href="#order">order</a>.</p>
 
-<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">match</span>  
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">match</span>  
 <span class="p">[</span> <span class="n">pattern</span><span class="p">;</span> <span class="p">...</span> <span class="p">]</span>  
 <span class="p">[</span> <span class="k">select</span> <span class="o">|</span> <span class="k">limit</span> <span class="o">|</span> <span class="k">offset</span> <span class="o">|</span> <span class="k">distinct</span> <span class="o">|</span> <span class="k">order</span> <span class="p">...</span> <span class="p">]</span>
 </code></pre>
@@ -595,7 +602,7 @@ $x isa movie, has title "Titanic";
 <h3 id="modifiers">modifiers</h3>
 
 <h4 id="select">select</h4>
-<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">select</span> <span class="p">[</span> <span class="k">variable</span><span class="p">,</span> <span class="p">...</span> <span class="p">]</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">select</span> <span class="p">[</span> <span class="k">variable</span><span class="p">,</span> <span class="p">...</span> <span class="p">]</span>
 </code></pre>
 </div>
 <p>Select particular variables from the query.</p>
@@ -606,7 +613,7 @@ select $a1, $a2;
 
 <h4 id="limit">limit</h4>
 
-<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">limit</span> <span class="err">{</span><span class="n">integer</span><span class="err">}</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">limit</span> <span class="err">{</span><span class="n">integer</span><span class="err">}</span>
 </code></pre>
 </div>
 <p>Limit the number of results returned by a query.</p>
@@ -617,7 +624,7 @@ limit 10;
 
 <h4 id="offset">offset</h4>
 
-<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">offset</span> <span class="err">{</span><span class="n">integer</span><span class="err">}</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">offset</span> <span class="err">{</span><span class="n">integer</span><span class="err">}</span>
 </code></pre>
 </div>
 <p>Skip some results in a query.</p>
@@ -629,7 +636,7 @@ offset 20;
 
 <h4 id="distinct">distinct</h4>
 
-<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">distinct</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">distinct</span>
 </code></pre>
 </div>
 <p>De-duplicate the results of a query.</p>
@@ -641,7 +648,7 @@ distinct;
 
 <h4 id="order">order</h4>
 
-<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">order</span> <span class="k">by</span> <span class="k">variable</span> <span class="p">[</span> <span class="k">asc</span> <span class="o">|</span> <span class="k">desc</span> <span class="p">]</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">order</span> <span class="k">by</span> <span class="k">variable</span> <span class="p">[</span> <span class="k">asc</span> <span class="o">|</span> <span class="k">desc</span> <span class="p">]</span>
 </code></pre>
 </div>
 <p>Order by a resource in descending order.</p>
@@ -653,7 +660,7 @@ distinct;
 
 <p>An ask query will return whether the given match query has any results.</p>
 
-<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="p">[</span><span class="k">match</span><span class="p">]</span> <span class="n">ask</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="p">[</span><span class="k">match</span><span class="p">]</span> <span class="n">ask</span>
 </code></pre>
 </div>
 <p>Return whether the match query has any results.</p>
@@ -666,7 +673,7 @@ ask;
 
 <p>An insert query will insert the specified variable patterns into the graph.</p>
 
-<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">insert</span> <span class="p">[</span> <span class="n">pattern</span> <span class="p">;</span> <span class="p">...</span> <span class="p">]</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">insert</span> <span class="p">[</span> <span class="n">pattern</span> <span class="p">;</span> <span class="p">...</span> <span class="p">]</span>
 </code></pre>
 </div>
 <p>Insert a concept into the graph.</p>
@@ -675,7 +682,7 @@ ask;
 </code></pre>
 <p>If a match query is provided, the query will insert the given variable patterns for every result of the match query.</p>
 
-<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">match</span>  <span class="k">insert</span> <span class="p">[</span> <span class="n">pattern</span> <span class="p">;</span> <span class="p">...</span> <span class="p">]</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">match</span>  <span class="k">insert</span> <span class="p">[</span> <span class="n">pattern</span> <span class="p">;</span> <span class="p">...</span> <span class="p">]</span>
 </code></pre>
 </div>
 
@@ -693,7 +700,7 @@ insert (actor: $depp, production-with-cast: $m) isa has-cast;
 
 <p>A delete query will delete the specified variable patterns for every result of the match query.</p>
 
-<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">match</span>  <span class="k">delete</span> <span class="p">[</span> <span class="n">pattern</span> <span class="p">;</span> <span class="p">...</span> <span class="p">]</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">match</span>  <span class="k">delete</span> <span class="p">[</span> <span class="n">pattern</span> <span class="p">;</span> <span class="p">...</span> <span class="p">]</span>
 </code></pre>
 </div>
 <p>Delete every instance of a type.</p>
@@ -704,7 +711,7 @@ delete $x;
 
 <h2 id="pattern">pattern</h2>
 
-<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="n">identifier</span> <span class="p">[</span> <span class="n">property</span><span class="p">,</span> <span class="p">...</span> <span class="p">]</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">identifier</span> <span class="p">[</span> <span class="n">property</span><span class="p">,</span> <span class="p">...</span> <span class="p">]</span>
 </code></pre>
 </div>
 <p>A variable with several properties.</p>
@@ -714,7 +721,7 @@ delete $x;
 
 <p>Match either the left or right pattern.</p>
 
-<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="n">pattern</span> <span class="k">or</span> <span class="n">pattern</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">pattern</span> <span class="k">or</span> <span class="n">pattern</span>
 </code></pre>
 </div>
 
@@ -723,7 +730,7 @@ delete $x;
 
 <p>Match either the left pattern or all the right patterns.</p>
 
-<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="err">{</span> <span class="p">[</span> <span class="n">pattern</span> <span class="p">;</span> <span class="p">...</span> <span class="p">]</span> <span class="err">}</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="err">{</span> <span class="p">[</span> <span class="n">pattern</span> <span class="p">;</span> <span class="p">...</span> <span class="p">]</span> <span class="err">}</span>
 </code></pre>
 </div>
 
@@ -741,7 +748,7 @@ delete $x;
 
 <p>An <code class="highlighter-rouge">id</code> is a sequence of alphanumeric characters, underscores and dashes, or a quoted string.</p>
 
-<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">variable</span> <span class="o">|</span> <span class="n">id</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">variable</span> <span class="o">|</span> <span class="n">id</span>
 </code></pre>
 </div>
 
@@ -752,7 +759,7 @@ delete $x;
 
 <p>Specify the type of a concept.</p>
 
-<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="n">isa</span> <span class="k">type</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">isa</span> <span class="k">type</span>
 </code></pre>
 </div>
 
@@ -766,7 +773,7 @@ delete $x;
 
 <p>Match the concept with a particular ID.</p>
 
-<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="n">id</span> <span class="err">{</span><span class="n">string</span><span class="err">}</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">id</span> <span class="err">{</span><span class="n">string</span><span class="err">}</span>
 </code></pre>
 </div>
 
@@ -775,7 +782,7 @@ delete $x;
 
 <p>Match concepts with a value that contains the given string.</p>
 
-<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="n">value</span> <span class="p">[</span> <span class="o">=</span> <span class="o">|</span> <span class="o">!=</span> <span class="o">|</span> <span class="o">&lt;</span> <span class="o">|</span> <span class="o">&lt;=</span> <span class="o">|</span> <span class="o">&gt;=</span> <span class="o">|</span> <span class="o">&gt;</span> <span class="o">|</span> <span class="k">contains</span> <span class="p">]</span> <span class="err">{</span><span class="n">value</span><span class="err">}</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">value</span> <span class="p">[</span> <span class="o">=</span> <span class="o">|</span> <span class="o">!=</span> <span class="o">|</span> <span class="o">&lt;</span> <span class="o">|</span> <span class="o">&lt;=</span> <span class="o">|</span> <span class="o">&gt;=</span> <span class="o">|</span> <span class="o">&gt;</span> <span class="o">|</span> <span class="k">contains</span> <span class="p">]</span> <span class="err">{</span><span class="n">value</span><span class="err">}</span>
 </code></pre>
 </div>
 
@@ -784,7 +791,7 @@ delete $x;
 
 <p>Match concepts with a resource matching a predicate.</p>
 
-<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="n">has</span> <span class="n">resource</span><span class="o">-</span><span class="k">type</span> <span class="p">[</span> <span class="o">=</span> <span class="o">|</span> <span class="o">!=</span> <span class="o">|</span> <span class="o">&lt;</span> <span class="o">|</span> <span class="o">&lt;=</span> <span class="o">|</span> <span class="o">&gt;=</span> <span class="o">|</span> <span class="o">&gt;</span> <span class="o">|</span> <span class="k">contains</span> <span class="p">]</span> <span class="err">{</span><span class="n">value</span><span class="err">}</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">has</span> <span class="n">resource</span><span class="o">-</span><span class="k">type</span> <span class="p">[</span> <span class="o">=</span> <span class="o">|</span> <span class="o">!=</span> <span class="o">|</span> <span class="o">&lt;</span> <span class="o">|</span> <span class="o">&lt;=</span> <span class="o">|</span> <span class="o">&gt;=</span> <span class="o">|</span> <span class="o">&gt;</span> <span class="o">|</span> <span class="k">contains</span> <span class="p">]</span> <span class="err">{</span><span class="n">value</span><span class="err">}</span>
 </code></pre>
 </div>
 
@@ -793,7 +800,7 @@ delete $x;
 
 <p>Match related concepts.</p>
 
-<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="p">(</span> <span class="p">[</span> <span class="p">[</span> <span class="k">role</span><span class="o">-</span><span class="k">type</span> <span class="p">]</span> <span class="k">role</span><span class="o">-</span><span class="n">player</span> <span class="p">,</span> <span class="p">...</span> <span class="p">]</span> <span class="p">)</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="p">(</span> <span class="p">[</span> <span class="p">[</span> <span class="k">role</span><span class="o">-</span><span class="k">type</span> <span class="p">]</span> <span class="k">role</span><span class="o">-</span><span class="n">player</span> <span class="p">,</span> <span class="p">...</span> <span class="p">]</span> <span class="p">)</span>
 </code></pre>
 </div>
 
@@ -817,7 +824,7 @@ delete $x;
 
 <h3 id="sub">sub</h3>
 
-<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="n">sub</span> <span class="k">type</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">sub</span> <span class="k">type</span>
 </code></pre>
 </div>
 <p>Insert a new type that is a subclass of an existing type.</p>
@@ -827,7 +834,7 @@ delete $x;
 
 <h3 id="has-role">has-role</h3>
 
-<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="n">has</span><span class="o">-</span><span class="k">role</span> <span class="k">role</span><span class="o">-</span><span class="k">type</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">has</span><span class="o">-</span><span class="k">role</span> <span class="k">role</span><span class="o">-</span><span class="k">type</span>
 </code></pre>
 </div>
 <p>Insert a new relation type with two role types.</p>
@@ -840,7 +847,7 @@ directorship isa relation-type, has-role director, has-role production-with-dire
 
 <h3 id="plays-role">plays-role</h3>
 
-<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="n">plays</span><span class="o">-</span><span class="k">role</span> <span class="k">role</span><span class="o">-</span><span class="k">type</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">plays</span><span class="o">-</span><span class="k">role</span> <span class="k">role</span><span class="o">-</span><span class="k">type</span>
 </code></pre>
 </div>
 
@@ -851,7 +858,7 @@ directorship isa relation-type, has-role director, has-role production-with-dire
 
 <h3 id="has-resource">has-resource</h3>
 
-<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="n">has</span><span class="o">-</span><span class="n">resource</span> <span class="n">resource</span><span class="o">-</span><span class="k">type</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">has</span><span class="o">-</span><span class="n">resource</span> <span class="n">resource</span><span class="o">-</span><span class="k">type</span>
 </code></pre>
 </div>
 <p>Allow instances of a type to have a resource.</p>
@@ -861,7 +868,7 @@ directorship isa relation-type, has-role director, has-role production-with-dire
 
 <h3 id="datatype">datatype</h3>
 
-<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="n">datatype</span> <span class="p">(</span> <span class="n">string</span> <span class="o">|</span> <span class="n">long</span> <span class="o">|</span> <span class="n">double</span> <span class="o">|</span> <span class="n">boolean</span> <span class="p">)</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">datatype</span> <span class="p">(</span> <span class="n">string</span> <span class="o">|</span> <span class="n">long</span> <span class="o">|</span> <span class="n">double</span> <span class="o">|</span> <span class="n">boolean</span> <span class="p">)</span>
 </code></pre>
 </div>
 <p>Insert a new resource type with the given datatype.</p>
@@ -908,7 +915,7 @@ directorship isa relation-type, has-role director, has-role production-with-dire
         <br>
         <p>© 2016 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2016 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> August 17, 2016<br/> Site last generated: Nov 11, 2016 <br />
+        <span>Page last updated:</span> August 17, 2016<br/> Site last generated: Nov 15, 2016 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">

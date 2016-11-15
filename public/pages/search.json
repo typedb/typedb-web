@@ -14,7 +14,7 @@
 
 ,
 {
-"title": "What can you build with MindampsDB?",
+"title": "What can you build with Grakn?",
 "tags": "overview",
 "keywords": "applications",
 "url": "/pages/platform/applications.html",
@@ -71,7 +71,7 @@
 
 ,
 {
-"title": "Mindmaps Platform",
+"title": "Grakn Platform",
 "tags": "overviewfaq",
 "keywords": "platform",
 "url": "/pages/platform/faq.html",
@@ -93,11 +93,11 @@
 
 ,
 {
-"title": "OWL Migration to Grakn",
+"title": "JSON Migration to Grakn",
 "tags": "migration",
 "keywords": "setup, getting started",
-"url": "/pages/documentation/migration/OWL-migration.html",
-"summary": "This document will teach you how to load OWL into Grakn."
+"url": "/pages/documentation/migration/JSON-migration.html",
+"summary": "This document will teach you how to migrate JSON data into Grakn."
 }
 
 
@@ -115,11 +115,11 @@
 
 ,
 {
-"title": "An Example of Migrating SQL to Grakn",
+"title": "OWL Migration to Grakn",
 "tags": "migration",
-"keywords": "migration",
-"url": "/pages/documentation/examples/SQL-migration.html",
-"summary": "A short example to illustrate migration of SQL to Grakn"
+"keywords": "setup, getting started",
+"url": "/pages/documentation/migration/OWL-migration.html",
+"summary": "This document will teach you how to load OWL into Grakn."
 }
 
 
@@ -131,6 +131,17 @@
 "keywords": "setup, getting started",
 "url": "/pages/documentation/migration/SQL-migration.html",
 "summary": "This document will teach you how to migrate SQL data into Grakn."
+}
+
+
+
+,
+{
+"title": "An Example of Migrating SQL to Grakn",
+"tags": "migration",
+"keywords": "migration",
+"url": "/pages/documentation/examples/SQL-migration.html",
+"summary": "A short example to illustrate migration of SQL to Grakn"
 }
 
 
@@ -227,6 +238,17 @@
 
 ,
 {
+"title": "Grakn Basics",
+"tags": "getting-started",
+"keywords": "setup, getting started, basics",
+"url": "/pages/documentation/the-basics/grakn-basics.html",
+"summary": "Introducing the basics of the Grakn object model."
+}
+
+
+
+,
+{
 "title": "Graql Cheatsheet",
 "tags": "graql",
 "keywords": "graql",
@@ -309,17 +331,6 @@
 "keywords": "setup, getting started",
 "url": "/pages/documentation/migration/migration.html",
 "summary": "Landing page for documentation about loading data in different formats to populate a graph in Grakn."
-}
-
-
-
-,
-{
-"title": "Grakn Basics",
-"tags": "getting-started",
-"keywords": "setup, getting started, basics",
-"url": "/pages/documentation/the-basics/mindmaps-basics.html",
-"summary": "Introducing the basics of the Grakn object model."
 }
 
 

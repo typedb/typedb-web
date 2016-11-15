@@ -228,7 +228,7 @@
             
             
             
-            <li><a href="/pages/documentation/the-basics/mindmaps-basics.html">Grakn Basics</a></li>
+            <li><a href="/pages/documentation/the-basics/grakn-basics.html">Grakn Basics</a></li>
             
             
             
@@ -372,6 +372,13 @@
             
             
             <li><a href="/pages/documentation/migration/CSV-migration.html">CSV Migration</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="/pages/documentation/migration/JSON-migration.html">JSON Migration</a></li>
             
             
             
@@ -566,7 +573,7 @@ You can find the example <code class="highlighter-rouge">philosophers.gql</code>
 
 <p>We are going model how philosophers are related to each other. If you are using Graql and don’t want to type everything below to build up the schema, you can load it using:</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>bin/graql.sh -f examples/philosophers.gql
+<div class="highlighter-rouge"><pre class="highlight"><code>bin/graql.sh -f examples/philosophers.gql
 </code></pre>
 </div>
 
@@ -576,7 +583,7 @@ You can find the example <code class="highlighter-rouge">philosophers.gql</code>
 
 <p>Assuming that you are building up the graph from scratch, rather than loading it directly from the <code class="highlighter-rouge">philosophers.gql</code> file, let’s first add an entity type <code class="highlighter-rouge">person</code>:</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>bin/graql.sh
+<div class="highlighter-rouge"><pre class="highlight"><code>bin/graql.sh
 </code></pre>
 </div>
 <pre><code class="language-graql">insert person isa entity-type;
@@ -871,7 +878,7 @@ Answer:</p>
         <br>
         <p>© 2016 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2016 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> August 10, 2016<br/> Site last generated: Nov 11, 2016 <br />
+        <span>Page last updated:</span> August 10, 2016<br/> Site last generated: Nov 15, 2016 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">

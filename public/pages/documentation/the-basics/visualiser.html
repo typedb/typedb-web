@@ -228,7 +228,7 @@
             
             
             
-            <li><a href="/pages/documentation/the-basics/mindmaps-basics.html">Grakn Basics</a></li>
+            <li><a href="/pages/documentation/the-basics/grakn-basics.html">Grakn Basics</a></li>
             
             
             
@@ -372,6 +372,13 @@
             
             
             <li><a href="/pages/documentation/migration/CSV-migration.html">CSV Migration</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="/pages/documentation/migration/JSON-migration.html">JSON Migration</a></li>
             
             
             
@@ -563,17 +570,17 @@ $('#toc').on('click', 'a', function() {
 
 <h2 id="loading-and-visualising-a-graph">Loading and Visualising a Graph</h2>
 <p>If you have not yet set up the Grakn environment, please see the <a href="../get-started/setup-guide.html">Setup guide</a>.
-You can find the <code class="highlighter-rouge">pokemon.gql</code> example we will work with in the examples directory that is included in the Grakn download zip, or in our <a href="https://github.com/graknlabs/grakn/tree/master/mindmaps-dist/src/examples">Grakn repo</a>.</p>
+You can find the <code class="highlighter-rouge">pokemon.gql</code> example we will work with in the examples directory that is included in the Grakn download zip, or in our <a href="https://github.com/graknlabs/grakn/tree/master/grakn-dist/src/examples">Grakn repo</a>.</p>
 
 <p>The first step is to load the Pokemon graph from the example file into the default keyspace. You need to use your terminal to do this, as the visualiser is a read-only interface to a graph.</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>bin/graql.sh -f examples/pokemon.gql
+<div class="highlighter-rouge"><pre class="highlight"><code>bin/graql.sh -f examples/pokemon.gql
 </code></pre>
 </div>
 
 <p>While in the terminal, you can test in the Graql shell that all is well. For example:</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>bin/graql.sh
+<div class="highlighter-rouge"><pre class="highlight"><code>bin/graql.sh
 &gt;&gt;&gt;match <span class="nv">$x</span> isa pokemon; limit 5;
 <span class="nv">$x</span> id <span class="s2">"Venusaur"</span> isa pokemon; 
 <span class="nv">$x</span> id <span class="s2">"Raticate"</span> isa pokemon; 
@@ -652,7 +659,7 @@ You can find the <code class="highlighter-rouge">pokemon.gql</code> example we w
         <br>
         <p>© 2016 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2016 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> August 10, 2016<br/> Site last generated: Nov 11, 2016 <br />
+        <span>Page last updated:</span> August 10, 2016<br/> Site last generated: Nov 15, 2016 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">
