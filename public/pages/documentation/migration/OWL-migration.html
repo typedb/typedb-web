@@ -196,7 +196,7 @@
 
 
 <ul id="mysidebar" class="nav">
-    <li class="sidebarTitle">Grakn 0.5</li>
+    <li class="sidebarTitle">Grakn 0.6</li>
     
     
     
@@ -571,11 +571,11 @@ $('#toc').on('click', 'a', function() {
 <h2 id="migration-shell-script-for-owl">Migration Shell Script for OWL</h2>
 <p>The migration shell script can be found in the <code class="highlighter-rouge">bin</code> directory after the Grakn distribution file has been unzipped. Usage is specific to the type of migration being performed. For OWL:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>usage: migration.sh owl -input &lt;arg&gt; <span class="o">[</span>-help] <span class="o">[</span>-no] <span class="o">[</span>-batch &lt;arg&gt;] <span class="o">[</span>-uri &lt;arg&gt;] <span class="o">[</span>-keyspace &lt;arg&gt;]
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>usage: migration.sh owl -input &lt;arg&gt; <span class="o">[</span>-help] <span class="o">[</span>-no] <span class="o">[</span>-batch &lt;arg&gt;] <span class="o">[</span>-uri &lt;arg&gt;] <span class="o">[</span>-keyspace &lt;arg&gt;]
  -h,--help             print usage message
  -i,--input &lt;arg&gt;      input owl file
  -k,--keyspace &lt;arg&gt;   keyspace to use
- -n,--no               dry run- write to standard out
+ -n,--no               dry run - write to standard out - not currently supported by the OWL migrator
  -u,--uri &lt;arg&gt;        uri to engine endpoint
 </code></pre>
 </div>
@@ -584,7 +584,7 @@ $('#toc').on('click', 'a', function() {
 
 <p>Consider the following OWL ontology:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="nt">&lt;rdf:RDF</span> <span class="na">xmlns=</span><span class="s">"http://www.co-ode.org/roberts/family-tree.owl#"</span>
+<div class="language-xml highlighter-rouge"><pre class="highlight"><code><span class="nt">&lt;rdf:RDF</span> <span class="na">xmlns=</span><span class="s">"http://www.co-ode.org/roberts/family-tree.owl#"</span>
      <span class="na">xml:base=</span><span class="s">"http://www.co-ode.org/roberts/family-tree.owl"</span>
      <span class="na">xmlns:rdf=</span><span class="s">"http://www.w3.org/1999/02/22-rdf-syntax-ns#"</span>
      <span class="na">xmlns:owl=</span><span class="s">"http://www.w3.org/2002/07/owl#"</span>
@@ -729,7 +729,7 @@ rhs {
         <br>
         <p>© 2016 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2016 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> August 10, 2016<br/> Site last generated: Nov 15, 2016 <br />
+        <span>Page last updated:</span> August 10, 2016<br/> Site last generated: Nov 16, 2016 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">

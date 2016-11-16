@@ -196,7 +196,7 @@
 
 
 <ul id="mysidebar" class="nav">
-    <li class="sidebarTitle">Grakn 0.5</li>
+    <li class="sidebarTitle">Grakn 0.6</li>
     
     
     
@@ -571,34 +571,34 @@ $('#toc').on('click', 'a', function() {
 <h2 id="migration-shell-script-for-json">Migration Shell Script for JSON</h2>
 <p>The migration shell script can be found in <code class="highlighter-rouge">/bin</code> directory of your Grakn environment. Usage is specific to the type of migration being performed.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>usage: migration.sh json -template &lt;arg&gt; -input &lt;arg&gt; <span class="o">[</span>-help] <span class="o">[</span>-no] <span class="o">[</span>-batch &lt;arg&gt;] <span class="o">[</span>-uri &lt;arg&gt;] <span class="o">[</span>-keyspace &lt;arg&gt;]
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>usage: migration.sh json -template &lt;arg&gt; -input &lt;arg&gt; <span class="o">[</span>-help] <span class="o">[</span>-no] <span class="o">[</span>-batch &lt;arg&gt;] <span class="o">[</span>-uri &lt;arg&gt;] <span class="o">[</span>-keyspace &lt;arg&gt;]
  -b,--batch &lt;arg&gt;      number of row to load at once
  -h,--help             print usage message
  -i,--input &lt;arg&gt;      input json data file or directory
  -k,--keyspace &lt;arg&gt;   keyspace to use
- -n,--no               dry run- write to standard out
+ -n,--no               dry run - write to standard out
  -t,--template &lt;arg&gt;   graql template to apply over data
  -u,--uri &lt;arg&gt;        uri to engine endpoint
 </code></pre>
 </div>
 
 <h2 id="json-migration-basics">JSON Migration Basics</h2>
+
+<p>Once you have written an ontology for your domain, you will template Graql statements that instruct the migrator on how your data can be mapped to your ontology.</p>
+
 <p>JSON Migration makes heavy use of the Graql templating language. You should have a solid foundation in Graql templating before continuing, so please read through our <a href="../graql/graql-templating.html">templating documentation</a> to find out more.</p>
 
 <!-- JSON Migration will apply your template to each [Alex - something missing here?] -->
 
-<h4 id="what-about-the-ontology">What about the ontology?</h4>
-<p>YOU must write the ontology! Once you have written an ontology for your domain, you will template Graql statements that instruct the migrator on how your data can be mapped to your ontology.</p>
-
-<h4 id="how-do-you-write-a-template">How do you write a template?</h4>
-<p>Approach each JSON file as though you were inserting a single query. The migrator cannot handle multiple queries per file, so take care that there is not more than one <code class="highlighter-rouge">match</code> or <code class="highlighter-rouge">insert</code> command in your template. Take a look at our other migration guides for more ideas on how to use Graql templates with data.</p>
+<p>Approach each JSON file as though you were inserting a single query. The migrator cannot handle multiple queries per file, so take care that there is not more than one <code class="highlighter-rouge">match</code> or <code class="highlighter-rouge">insert</code> command in your template. Take a look at our <a href="../migration.html">other migration guides</a> for more ideas on how to use Graql templates with data.</p>
 
 <div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> <b>Note:</b> The JSON migrator can handle either a directory or a file as the -input parameter!</div>
 
-<h4 id="looping-over-a-json-array">Looping over a JSON array</h4>
-<p><strong>types.json</strong></p>
+<h3 id="looping-over-a-json-array">Looping over a JSON array</h3>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="w">
+<p>As an example, let’s take some JSON:</p>
+
+<div class="language-json highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="w">
     </span><span class="nt">"types"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="nt">"id"</span><span class="p">:</span><span class="mi">1</span><span class="s2">", "</span><span class="err">type</span><span class="s2">": "</span><span class="err">normal</span><span class="s2">" },
     {"</span><span class="err">id</span><span class="s2">":2"</span><span class="p">,</span><span class="w"> </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"fighting"</span><span class="w"> </span><span class="p">},</span><span class="w">
@@ -638,14 +638,13 @@ $x8 has type-id "9" has description "steel" isa pokemon-type;
 $x9 has description "fire" isa pokemon-type has type-id "10";
 </code></pre>
 
-<h4 id="match-inserts-with-loops">Match-Inserts with loops</h4>
+<h3 id="match-inserts-with-loops">Match-Inserts with loops</h3>
+
 <p>In some situations, you’ll need to look up references to existing entities so that you can refer to them when inserting data.</p>
 
-<p>Once the above types are migrated, we can move on to the pokemon JSON file.</p>
+<p>Once the above types are migrated, we can move on to the pokemon JSON file:</p>
 
-<p><strong>pokemon.json</strong></p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="w">
+<div class="language-json highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="w">
     </span><span class="nt">"pokemon"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
         </span><span class="p">{</span><span class="w">
             </span><span class="nt">"identifier"</span><span class="p">:</span><span class="s2">"Charmander"</span><span class="p">,</span><span class="w">
@@ -759,7 +758,7 @@ isa has-type (pokemon-with-type: $p2, type-of-pokemon: $2);
         <br>
         <p>© 2016 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2016 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> November 14th 2016<br/> Site last generated: Nov 15, 2016 <br />
+        <span>Page last updated:</span> November 14th 2016<br/> Site last generated: Nov 16, 2016 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">
