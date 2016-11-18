@@ -3,9 +3,9 @@
     <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="This document will teach you how to use Graql to load a schema and some data into Grakn.">
-<meta name="keywords" content="getting-startedgraql,  setup, getting started, Grakn Labs, grakn, graql, grakn.ai, Mindmaps Research, Mindmaps Research Ltd, MindmapsDB, mindmaps, mindmaps graph, mindmaps.io, knowledge graph, distributed knowledge graph, development platform, developer tool, data platform, programming langauge, query langauge, database, semantic database, distributed semantic database, distributed database, graph database, semantic search, data exploration, recommendation system, knowledge management, knowledge engineering, real-time analytics, advanced analytics, reasoning engine, inference engine, expert systems, semantic applications, research engines, data management, business intelligence, big data, semantic web, semantic data, knowledge representation, automated reasoning, semantic network, knowledge ontology, semantic graph, ontology engineering, graph based knowledge representation, artificial intelligence,">
-<title>GRAKN.AI | Quickstart Tutorial</title>
+<meta name="description" content="The page describes schema validation.">
+<meta name="keywords" content=" validation, Grakn Labs, grakn, graql, grakn.ai, Mindmaps Research, Mindmaps Research Ltd, MindmapsDB, mindmaps, mindmaps graph, mindmaps.io, knowledge graph, distributed knowledge graph, development platform, developer tool, data platform, programming langauge, query langauge, database, semantic database, distributed semantic database, distributed database, graph database, semantic search, data exploration, recommendation system, knowledge management, knowledge engineering, real-time analytics, advanced analytics, reasoning engine, inference engine, expert systems, semantic applications, research engines, data management, business intelligence, big data, semantic web, semantic data, knowledge representation, automated reasoning, semantic network, knowledge ontology, semantic graph, ontology engineering, graph based knowledge representation, artificial intelligence,">
+<title>GRAKN.AI | Grakn Data Validation</title>
 <link rel="stylesheet" href="/pages/css/syntax.css">
 
 
@@ -163,7 +163,7 @@
                             
                             dataSource: '/pages/search.json',
                             
-                            searchResultTemplate: '<li><a href="{url}" title="Quickstart Tutorial">{title}</a></li>',
+                            searchResultTemplate: '<li><a href="{url}" title="Grakn Data Validation">{title}</a></li>',
                             noResultsText: '<li><a class="empty">No results found</a></li>',
                             limit: 10,
                             fuzzy: true
@@ -235,7 +235,7 @@
             
             
             
-            <li class="active"><a href="/pages/documentation/the-basics/quickstart-tutorial.html">Quickstart Tutorial</a></li>
+            <li><a href="/pages/documentation/the-basics/quickstart-tutorial.html">Quickstart Tutorial</a></li>
             
             
             
@@ -414,7 +414,7 @@
             
             
             
-            <li><a href="/pages/documentation/advanced-grakn/validation.html">Validation</a></li>
+            <li class="active"><a href="/pages/documentation/advanced-grakn/validation.html">Validation</a></li>
             
             
             
@@ -541,7 +541,7 @@
         <!-- Content Column -->
         <div class="col-md-9">
             <div class="post-header">
-   <h1 class="post-title-main">Quickstart Tutorial</h1>
+   <h1 class="post-title-main">Grakn Data Validation</h1>
 </div>
 
 
@@ -549,7 +549,7 @@
 <div class="post-content">
 
    
-    <div class="summary">This document will teach you how to use Graql to load a schema and some data into Grakn.</div>
+    <div class="summary">The page describes schema validation.</div>
    
 
     
@@ -581,297 +581,113 @@ $('#toc').on('click', 'a', function() {
 
     
 
-    <a target="_blank" href="https://github.com/graknlabs/docs/blob/master/pages/documentation/1-the-basics/quickstart-tutorial.md" class="btn btn-default githubEditButton" role="button"><i class="fa fa-github fa-lg"></i> Edit me</a>
+    <a target="_blank" href="https://github.com/graknlabs/docs/blob/master/pages/documentation/8-advanced-grakn/validation.md" class="btn btn-default githubEditButton" role="button"><i class="fa fa-github fa-lg"></i> Edit me</a>
 
     
 
     
 
-  <div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> <b>Note:</b> This tutorial shows you how to use the Graql shell. The equivalent code, using the Graph API is described in the <a href="https://grakn.ai/pages/documentation/core-api/overview.html">Overview</a> to the Graph API.</div>
+  <h2 id="introduction">Introduction</h2>
 
-<h2 id="introduction">Introduction</h2>
-<p>If you have not yet set up the Grakn environment, please see the <a href="../get-started/setup-guide.html">Setup guide</a>.
-You can find the example <code class="highlighter-rouge">philosophers.gql</code> in the examples directory included in the Grakn download zip.</p>
+<p>This page discusses the structural validation rules that are enforced in a Grakn graph. 
+The following consistency checks are executed upon <code class="highlighter-rouge">commit</code> depending on what is being committed:</p>
 
-<p>We are going model how philosophers are related to each other. If you are using Graql and don’t want to type everything below to build up the schema, you can load it using:</p>
+<h3 id="plays-role-validation">Plays Role Validation</h3>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>bin/graql.sh -f examples/philosophers.gql
+<p>This validation rule simply checks if an <em>Entity</em> (which is a role player in a relation) is allowed to play the role it has been allocated to. For example, this is the rule that would prevent a dog from being a driver in a car.</p>
+
+<h3 id="type-validation">Type Validation</h3>
+
+<p>This validation rule ensures that abstract types do not have any instances. For example if we declare the type <code class="highlighter-rouge">vehicle</code> to be abstract, with <code class="highlighter-rouge">car</code> and <code class="highlighter-rouge">motorbike</code> to be sub types of <code class="highlighter-rouge">vehicle</code>, then only cars and motorbikes are allowed to have instances.</p>
+
+<h3 id="role-type-validation">Role Type Validation</h3>
+
+<p>This rule checks that non abstract <em>Role Types</em> are part of a <em>Relation Type</em>. For example if we declare the <em>Role Type</em> <code class="highlighter-rouge">husband</code> and forget to link it to any <code class="highlighter-rouge">Relation Type</code>, then this check will fail.</p>
+
+<h3 id="relation-validation">Relation Validation</h3>
+
+<p>A relation is valid if all of the role players of the relation are allowed to play their corresponding roles. 
+This also includes checking that the relation is an instance of a valid <em>Relation Type</em>. A <em>Relation Type</em> is valid if it has at minimum two roles.</p>
+
+<h3 id="relation-type-validation">Relation Type Validation</h3>
+
+<p>This checks that non abstract relation types have at least 2 roles. 
+For example, a <em>Relation Type</em> <code class="highlighter-rouge">marriage</code> with only one role <code class="highlighter-rouge">husband</code> would fail this check.</p>
+
+<h3 id="an-example-of-validation">An Example of Validation</h3>
+
+<p>Let us say that we want to model a marriage between a man <code class="highlighter-rouge">Bob</code> and woman <code class="highlighter-rouge">Alice</code>.
+This will be our first attempt:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>insert
+  'name' isa resource-type datatype string;
+  'person' is-abstract isa entity-type;
+  'man' is-abstract sub 'person';
+  'woman' sub 'person';
+  'husband' isa role-type;
+  'wife' isa role-type;
+  woman plays-role wife;
+  person has-resource name;
+  'husband' isa role-type;
+  'wife' isa role-type;
+  'marriage' isa relation-type;
+  marriage has-role husband;
+  $x has name 'Bob' isa man;
+  $y has name 'Alice' isa woman;
+  (husband: $x, wife: $y) isa marriage;
 </code></pre>
 </div>
 
-<p>By the way, don’t worry if you’ve already loaded some different data into your graph. In Grakn, a graph can simultaneously contain as many schemas as you want.</p>
+<p>This first attempt was horrible as we ended up failing all the validation rules.       <br />
+On commit we will see an error similar to this:</p>
 
-<h2 id="concepts">Concepts</h2>
-
-<p>Assuming that you are building up the graph from scratch, rather than loading it directly from the <code class="highlighter-rouge">philosophers.gql</code> file, let’s first add an entity type <code class="highlighter-rouge">person</code>:</p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code>bin/graql.sh
-</code></pre>
-</div>
-<pre><code class="language-graql">insert person isa entity-type;
-</code></pre>
-
-<p>And a resource for people’s names:</p>
-
-<pre><code class="language-graql">insert name isa resource-type, datatype string;
-insert person has-resource name;
-</code></pre>
-
-<p>…and now some data in the form of concept instances: in our case, a bunch of ancient Greeks…</p>
-
-<pre><code class="language-graql">insert isa person, has name "Socrates";
-insert isa person, has name "Plato";
-insert isa person, has name "Aristotle";
-insert isa person, has name "Alexander";
-</code></pre>
-
-<p><img src="/images/phil.png" alt="" /></p>
-
-<p>So now we’ve created a simple graph, with one concept type and four
-concept instances.</p>
-
-<div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> <b>Note:</b> Every concept needs a type, using <code class="highlighter-rouge">isa</code>. <br />   <code class="highlighter-rouge">Plato</code> <code class="highlighter-rouge">is a</code> <code class="highlighter-rouge">person</code>   <br />  <code class="highlighter-rouge">person</code> <code class="highlighter-rouge">is a</code> <code class="highlighter-rouge">entity-type</code></div>
-
-<div class="alert alert-success" role="alert"><i class="fa fa-check-square-o"></i> <b>Tip:</b> Graql shell maintains a history of past commands with the ‘up’ and ‘down’ arrows. You can also autocomplete keywords, type and variable names using tab!</div>
-
-<p>We’ll quickly check that our data has loaded:</p>
-
-<pre><code class="language-graql">match $p isa person, has name $n;
-
-$p isa person; $n value "Aristotle" isa name;
-$p isa person; $n value "Plato" isa name;
-$p isa person; $n value "Socrates" isa name;
-$p isa person; $n value "Alexander" isa name;
-</code></pre>
-
-<div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> <b>Note:</b> Graql variables start with a <code class="highlighter-rouge">$</code>. They represent wildcards, and are returned as results in <code class="highlighter-rouge">match</code> queries. A variable name can contain alphanumeric characters, dashes and underscores.</div>
-
-<p>Next, let’s add some <code class="highlighter-rouge">schools</code> of thought:</p>
-
-<pre><code class="language-graql">insert school isa entity-type, has-resource name;
-insert isa school, has name "Peripateticism";
-insert isa school, has name "Platonism";
-insert isa school, has name "Idealism";
-insert isa school, has name "Cynicism";
-</code></pre>
-
-<p>And look up one:</p>
-
-<pre><code class="language-graql">match $c has name "Cynicism";
-
-$c isa school;
-</code></pre>
-
-<h2 id="a-note-on-commit">A note on <code class="highlighter-rouge">commit</code></h2>
-<p>Nothing you have entered into the Graql shell has yet been committed to the graph, nor has it been validated. To save any changes you make to a graph, you need to type <code class="highlighter-rouge">commit</code> in the shell. It is a good habit to get into regularly committing what you have entered, so we will show this in the following example.</p>
-
-<h2 id="relations">Relations</h2>
-
-<p>How do we define a “philosopher”? Very smart people have argued for a very long time about this, but we’re going to put our fingers in our ears and say a philosopher is someone who practices a philosophy.</p>
-
-<p>A relation comprises of pairs of roles and role players. Relations and roles also have types, just like normal concepts.</p>
-
-<p>First, we define a <code class="highlighter-rouge">relation-type</code> called <code class="highlighter-rouge">practice</code> that relates a
-<code class="highlighter-rouge">role-type</code> called <code class="highlighter-rouge">philosopher</code> to a <code class="highlighter-rouge">role-type</code> called <code class="highlighter-rouge">philosophy</code>:</p>
-
-<pre><code class="language-graql">insert practice isa relation-type;
-insert philosopher isa role-type;
-insert philosophy isa role-type;
-insert practice has-role philosopher, has-role philosophy;
-</code></pre>
-
-<p>A <code class="highlighter-rouge">person</code> can have the role of <code class="highlighter-rouge">philosopher</code> and a <code class="highlighter-rouge">school</code> can have the role of <code class="highlighter-rouge">philosophy</code>:</p>
-
-<pre><code class="language-graql">insert person plays-role philosopher;
-insert school plays-role philosophy;
-</code></pre>
-
-<p>Now let’s relate some <code class="highlighter-rouge">philosophers</code> to their <code class="highlighter-rouge">philosophies</code>:</p>
-
-<pre><code class="language-graql">match $socrates has name "Socrates"; $platonism has name "Platonism"; insert (philosopher: $socrates, philosophy: $platonism) isa practice;
-match $plato has name "Plato"; $idealism has name "Idealism"; insert (philosopher: $plato, philosophy: $idealism) isa practice;
-match $plato has name "Plato"; $platonism has name "Platonism"; insert (philosopher: $plato, philosophy: $platonism) isa practice;
-match $aristotle has name "Aristotle"; $peripateticism has name "Peripateticism"; insert (philosopher: $aristotle, philosophy: $peripateticism) isa practice;
-commit;
-</code></pre>
-
-<p>The <code class="highlighter-rouge">match .... insert ...</code> syntax will perform the <code class="highlighter-rouge">insert</code> query for every result of the <code class="highlighter-rouge">match</code> query.</p>
-
-<p><img src="/images/practice.png" alt="" /></p>
-
-<p>Here, <code class="highlighter-rouge">Plato</code> is playing the role of <code class="highlighter-rouge">philosopher</code>, and <code class="highlighter-rouge">Idealism</code> is playing the role of <code class="highlighter-rouge">philosophy</code>.</p>
-
-<p>Now we can query for all our Platonists:</p>
-
-<pre><code class="language-graql">match (philosopher: $phil, "Platonism") isa practice;
-</code></pre>
-
-<p>This returns:</p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code>$phil id "Socrates" isa person;
-$phil id "Plato" isa person;
+<div class="highlighter-rouge"><pre class="highlight"><code>A structural validation error has occurred. Please correct the [`5`] errors found.
+RoleType ['wife'] does not have exactly one has-role connection to any RelationType.
+The abstract Type ['man'] should not have any instances
+Relation Type ['marriage'] does not have two or more roles
+The relation ['RELATION-marriage-2b58b138-2c33-478c-8e8c-e7b357a20941'] has an invalid structure. This is either due to having more role players than roles or the Relation Type ['marriage'] not having the correct has-role connection to one of the provided roles. The provided roles('2'): ['husband,wife,']The provided role players('2'): ['husband,wife,']
+The type ['man'] of role player ['ENTITY-man-2482cb91-1f12-40ea-b659-49d07d06ddf1'] is not allowed to play RoleType ['husband']
 </code></pre>
 </div>
 
-<div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> <b>Note:</b> This query can be read as ‘Get me philosophers in a practice relationship with Platonism’.  <br /> We didn’t specify the role of <code class="highlighter-rouge">Platonism</code> in this query, or the type of <code class="highlighter-rouge">$phil</code>, which is totally fine! <br /> Roles and types can be omitted in queries. <br /> For example, the query <code class="highlighter-rouge">match ($x, $y)</code> is a valid query (that will find <em>everything</em> in a relationship with <em>anything</em>).</div>
+<p>Lets see why:</p>
 
-<p>Next let’s talk about the relationships between our philosophers. Socrates
-taught Plato, Plato taught Aristotle and Aristotle even taught Alexander the
-Great!</p>
+<ol>
+  <li><strong>Role Type Validation</strong> failed because the role <code class="highlighter-rouge">wife</code> is not connected to any <em>Relation Type</em></li>
+  <li><strong>Relation Type Validation</strong> failed because <code class="highlighter-rouge">marriage</code> only has one role <code class="highlighter-rouge">husband</code>.</li>
+  <li><strong>Type Validation</strong> failed because we accidental made <code class="highlighter-rouge">man</code> abstract and we declared <code class="highlighter-rouge">Bob</code> to be an instance of <code class="highlighter-rouge">man</code>.</li>
+  <li><strong>Plays Role Validation</strong> failed because we forgot to say that a <code class="highlighter-rouge">man</code> can play the role of <code class="highlighter-rouge">husband</code>.</li>
+  <li><strong>Relation Validation</strong> failed because <code class="highlighter-rouge">Alice</code> is playing the role of a <code class="highlighter-rouge">wife</code> which is not part of a <code class="highlighter-rouge">marriage</code> and <code class="highlighter-rouge">Bob</code> is playing the role of a <code class="highlighter-rouge">husband</code>, which as a man he is not allowed to do.</li>
+</ol>
 
-<p>First, extend our schema:</p>
+<p>Let’s fix these issues and try again:</p>
 
-<pre><code class="language-graql">insert education isa relation-type;
-insert teacher isa role-type;
-insert student isa role-type;
-insert education has-role teacher, has-role student;
-insert person plays-role teacher, plays-role student;
+<div class="highlighter-rouge"><pre class="highlight"><code>insert
+  'name' isa resource-type datatype string;
+  'person' isa entity-type;                   # Fix (4)
+  'man' sub 'person';
+  'woman' sub 'person';
+  'husband' isa role-type;
+  'wife' isa role-type;
+  man plays-role husband;                     # Fix (3) and part of (5)
+  woman plays-role wife;
+  person has-resource name;
+  'husband' isa role-type;
+  'wife' isa role-type;
+  'marriage' isa relation-type;
+  marriage has-role husband;
+  marriage has-role wife;                     # Fix (1) and (2) and part of (5)
+  $x has name 'Bob' isa man;
+  $y has name 'Alice' isa woman;
+  (husband: $x, wife: $y) isa marriage;
 </code></pre>
+</div>
 
-<p>Second, our data:</p>
+<p>Now we are correctly modelling the marriage between <code class="highlighter-rouge">Alice</code> and <code class="highlighter-rouge">Bob</code>.</p>
 
-<pre><code class="language-graql">match $socrates has name "Socrates"; $plato has name "Plato"; insert (teacher: $socrates, student: $plato) isa education;
-match $plato has name "Plato"; $aristotle has name "Aristotle"; insert (teacher: $plato, student: $aristotle) isa education;
-match $aristotle has name "Aristotle"; $alexander has name "Alexander"; insert (teacher: $aristotle, student: $alexander) isa education;
-commit;
-</code></pre>
-
-<div class="alert alert-success" role="alert"><i class="fa fa-check-square-o"></i> <b>Tip:</b> <strong>Test Yourself</strong> <br /> Try writing a query to see who taught Aristotle. Include all the roles and types (<code class="highlighter-rouge">teacher</code>, <code class="highlighter-rouge">student</code> and <code class="highlighter-rouge">education</code>), then remove them one by one to see when the results change! The answer is at the bottom of this page.</div>
-
-<h2 id="resources">Resources</h2>
-
-<p>Some people have special titles and epithets and we want to talk about that.
-So, we’ll create some resource types that can be attached to a person:</p>
-
-<pre><code class="language-graql">insert title isa resource-type, datatype string;
-insert epithet isa resource-type, datatype string;
-insert person has-resource title, has-resource epithet;
-</code></pre>
-
-<p>Let’s make Alexander “Great”!</p>
-
-<pre><code class="language-graql">match $alexander has name "Alexander"; insert $alexander has epithet "The Great";
-</code></pre>
-
-<p>This is a quick way to add a relation between <code class="highlighter-rouge">Alexander</code> and an <code class="highlighter-rouge">epithet</code> with value <code class="highlighter-rouge">"The Great"</code>.</p>
-
-<p><img src="/images/epithet.png" alt="" /></p>
-
-<p>Let’s add the rest of Alexander’s titles while we’re at it:</p>
-
-<pre><code class="language-graql">match $alexander has name "Alexander"; insert $alexander has title "Hegemon";
-match $alexander has name "Alexander"; insert $alexander has title "King of Macedon";
-match $alexander has name "Alexander"; insert $alexander has title "King of Persia";
-match $alexander has name "Alexander"; insert $alexander has title "Pharaoh of Egypt";
-match $alexander has name "Alexander"; insert $alexander has title "Lord of Asia";
-commit;
-</code></pre>
-
-<p>Using Graql, we can query for people who have titles, and list them out.</p>
-
-<pre><code class="language-graql">match isa person, has title $y, has name $n;
-
-$n value "Alexander" isa name; $y value "Shah of Persia" isa title; 
-$n value "Alexander" isa name; $y value "Hegeon" isa title; 
-$n value "Alexander" isa name; $y value "King of Macedon" isa title; 
-$n value "Alexander" isa name; $y value "Pharaoh of Egypt" isa title; 
-$n value "Alexander" isa name; $y value "Lord of Asia" isa title; 
-</code></pre>
-
-<div class="alert alert-success" role="alert"><i class="fa fa-check-square-o"></i> <b>Tip:</b> <strong>Test Yourself</strong> <br /> When querying for an id, value or resource you can use predicates as well as direct values. For example, has epithet contains ‘Great’. See if you can write a query for everyone with a title containing ‘King’. The answer is at the bottom of the page.</div>
-
-<h2 id="relations-as-role-players">Relations as Role Players</h2>
-
-<p>Philosophers know lots of things. We should probably include this in our
-schema.</p>
-
-<pre><code class="language-graql">insert knowledge isa relation-type;
-insert thinker isa role-type;
-insert thought isa role-type;
-insert knowledge has-role thinker, has-role thought;
-insert fact isa entity-type, plays-role thought, has-resource name;
-insert description isa resource-type, datatype string;
-insert fact has-resource description;
-insert person plays-role thinker;
-</code></pre>
-
-<p>Aristotle knew some astronomy, Plato knew a lot about caves and Socrates didn’t really know anything at all.</p>
-
-<pre><code class="language-graql">insert has name "sun-fact" isa fact, has description "The Sun is bigger than the Earth";
-match $aristotle has name "Aristotle"; $sun-fact has name "sun-fact"; insert (thinker: $aristotle, thought: $sun-fact) isa knowledge;
-insert has name "cave-fact" isa fact, has description "Caves are mostly pretty dark";
-match $plato has name "Plato"; $cave-fact has name "cave-fact"; insert (thinker: $plato, thought: $cave-fact) isa knowledge;
-insert has name "nothing" isa fact;
-match $socrates has name "Socrates"; $nothing has name "nothing"; insert (thinker: $socrates, thought: $nothing) isa knowledge;
-commit;
-</code></pre>
-
-<p>A relation is actually just a special kind of instance. Just as
-<code class="highlighter-rouge">Socrates</code> can be a role player, relations themselves can also be role players.</p>
-
-<p>For example, Socrates knew nothing, but he also <em>knew</em> that he knew nothing!</p>
-
-<p>First, we have to state that someone can think about their own knowledge:</p>
-
-<pre><code class="language-graql">insert knowledge plays-role thought;
-commit;
-</code></pre>
-
-<p>We can now give Socrates one final piece of knowledge:</p>
-
-<pre><code class="language-graql">match $socrates has name "Socrates"; $nothing has name "nothing"; $socratesKnowsNothing ($socrates, $nothing); insert (thinker: $socrates, thought: $socratesKnowsNothing) isa knowledge;
-</code></pre>
-
-<p>Here, <code class="highlighter-rouge">socratesKnowsNothing</code> is the relation between <code class="highlighter-rouge">Socrates</code> and <code class="highlighter-rouge">nothing</code>.
-We then put <code class="highlighter-rouge">socratesKnowsNothing</code> in a <em>new</em> <code class="highlighter-rouge">knowledge</code> relation as a role
-player.</p>
-
-<p>Finally, we’ll check out everything Socrates knows:</p>
-
-<pre><code class="language-graql">match $socrates has name "Socrates"; ($socrates, $x) isa knowledge;
-
-$x id "fact-e387d27c-4f5e-11e6-beb8-9e71128cae77" isa fact;
-$x id "knowledge-e387d27c-4f5e-11e6-beb8-9e71128cae77" isa knowledge;
-</code></pre>
-
-<div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> <b>Note:</b> If you don’t provide an ID for something such as a relation, it will get an automatically generated ID.</div>
-
-<p><img src="/images/knowledge.png" alt="" /></p>
-
-<h2 id="test-yourself-answers">Test Yourself: Answers</h2>
-<p>We asked you to write a query to see who taught Aristotle. <br />
-Graql answers:</p>
-
-<pre><code class="language-graql">match $aristotle has name "Aristotle"; (teacher: $teach, student: $aristotle) isa education;
-</code></pre>
-
-<p>We asked you to write a query for everyone with a title containing “King”. <br />
-Answer:</p>
-
-<pre><code class="language-graql">match $king has title contains "King";
-</code></pre>
-
-<h2 id="where-next">Where Next?</h2>
-
-<p>Now you have started getting to grips with Grakn, please explore our additional <a href="../examples/examples.html">example code</a> and documentation. We are always adding more and welcome ideas and improvement suggestions. Please <a href="https://grakn.ai/community.html">get in touch</a>!</p>
-
-<h2 id="comments">Comments</h2>
-<p>Want to leave a comment? Visit <a href="https://github.com/graknlabs/docs/issues/18" target="_blank">the issues on Github for this page</a> (you’ll need a GitHub account). You are also welcome to contribute to our documentation directly via the “Edit me” button at the top of the page.</p>
 
 
     <div class="tags">
-        
-        <b>Tags: </b>
-        
-        
-        
-        <a href="/pages/tag_getting-started.html" class="btn btn-default navbar-btn cursorNorm" role="button">getting-started</a>
-        
-        
-        
-        <a href="/pages/tag_graql.html" class="btn btn-default navbar-btn cursorNorm" role="button">graql</a>
-        
-        
         
     </div>
 
@@ -900,7 +716,7 @@ Answer:</p>
         <br>
         <p>© 2016 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2016 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> August 10, 2016<br/> Site last generated: Nov 18, 2016 <br />
+        <span>Page last updated:</span> November 17, 2016<br/> Site last generated: Nov 18, 2016 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">
