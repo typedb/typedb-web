@@ -30,6 +30,9 @@ RewriteRule ^(.*)$  "https://grakn.ai/$1" [R=301,L]
 RewriteCond %{HTTP_HOST} ^grakn\.ai [NC]
 RewriteRule ^index.html$  "https://grakn.ai/" [R=301,L]
 
+# Redirect old api-reference links
+RedirectMatch "^/pages/api-reference/(.*)" "/pages/documentation/api-reference/api-reference.html" 
+
 # Redirect for Mindmaps release archive
 Redirect /download/latest "https://github.com/graknlabs/grakn/releases/download/v0.6.1/grakn-dist-0.6.1.zip"
 Redirect /download "https://github.com/graknlabs/grakn/releases/"
