@@ -1,6 +1,6 @@
 # website
 
-GRAKN.AI website located at [http://mindmaps.io](http://grakn.ai).
+GRAKN.AI website located at [https://grakn.ai](https://grakn.ai).
 
 ## Installation
 
