@@ -609,11 +609,11 @@ OPTIONS
 
 <h2 id="csv-migration-basics">CSV Migration Basics</h2>
 
-<p>There are limitations on the CSV format that prevent it from expressing the semantics of the data. If we were to automatically migrate an ontology, your data would remain as unhelpful as it is in CSV, and we want our users to have the full benefit of a knowledge graph. So you must write an ontology for your dataset.</p>
+<p>There are limitations on the CSV format that prevent it from expressing the semantics of the data. Grakn cannot automatically migrate and derive an ontology for your data. To have the full benefit of a knowledge graph, you must write the ontology for your dataset.</p>
 
 <p>CSV Migration makes heavy use of the Graql templating language. You should have a solid foundation in Graql templating before continuing, so please read through our <a href="../graql/graql-templating.html">templating documentation</a> to find out more.</p>
 
-<p>Once you have written an ontology for your domain, you will template Graql statements that instruct the migrator on how your data can be mapped to your ontology. The CSV migrator will apply the template to each row of data in the CSV file. If you are familiar with the Graql templating language, you are aware that it replaces the indicated sections in the template with provided data. In this migrator, the column header is the key and the content of each row at that column the value.</p>
+<p>Once you have written an ontology for your dataset, you will template Graql statements that instruct the migrator on how your data can be mapped to your ontology. The CSV migrator will apply the template to each row of data in the CSV file. If you are familiar with the Graql templating language, you are aware that it replaces the indicated sections in the template with provided data. In this migrator, the column header is the key and the content of each row at that column the value.</p>
 
 <h4 id="cars-example">Cars example</h4>
 
@@ -836,7 +836,7 @@ insert (pokemon-with-type: $pokemon, type-of-pokemon: $type) isa has-type;
         <br>
         <p>© 2016 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2016 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> November 2nd 2016<br/> Site last generated: Nov 18, 2016 <br />
+        <span>Page last updated:</span> November 2nd 2016<br/> Site last generated: Nov 24, 2016 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">
