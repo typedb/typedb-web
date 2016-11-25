@@ -777,6 +777,57 @@ So, we’ll create some resource types that can be attached to a person:</p>
 </code></pre>
 </div>
 
+<h3 id="how-to-get-resources">How to Get Resources</h3>
+
+<h4 id="getting-resources-when-not-knowing-the-entity">Getting Resources When not Knowing the Entity:</h4>
+
+<p>Suppose you have an instance with a resource, which in Graql would look something like:</p>
+
+<pre><code class="language-graql">my-thing has-resource name;
+</code></pre>
+
+<p>How do you retrieve the name using the Graph API? There are three ways to get resources. The simplest is via its id, if that is known:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="o">&lt;</span><span class="n">V</span><span class="o">&gt;</span> <span class="n">Resource</span><span class="o">&lt;</span><span class="n">V</span><span class="o">&gt;</span> <span class="n">getResource</span><span class="o">(</span><span class="n">String</span> <span class="n">id</span><span class="o">);</span>
+</code></pre>
+</div>
+
+<p>Another method is to use the literal value, but this returns a collection of resources:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="o">&lt;</span><span class="n">V</span><span class="o">&gt;</span> <span class="n">Collection</span><span class="o">&lt;</span><span class="n">Resource</span><span class="o">&lt;</span><span class="n">V</span><span class="o">&gt;&gt;</span> <span class="n">getResourcesByValue</span><span class="o">(</span><span class="n">V</span> <span class="n">value</span><span class="o">);</span>
+
+<span class="c1">//Example:</span>
+<span class="n">graph</span><span class="o">.</span><span class="na">getResourcesByValue</span><span class="o">(</span><span class="s">"bob"</span><span class="o">);</span> <span class="c1">// Will get you all the resources with the value "bob"</span>
+</code></pre>
+</div>
+
+<p>Finally you can get resource by resource type, which returns a single resource because resources are unique to their type:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="o">&lt;</span><span class="n">V</span><span class="o">&gt;</span> <span class="n">Resource</span><span class="o">&lt;</span><span class="n">V</span><span class="o">&gt;</span> <span class="n">getResource</span><span class="o">(</span><span class="n">V</span> <span class="n">value</span><span class="o">,</span> <span class="n">ResourceType</span><span class="o">&lt;</span><span class="n">V</span><span class="o">&gt;</span> <span class="n">type</span><span class="o">);</span>
+<span class="c1">//For Example:</span>
+<span class="n">graph</span><span class="o">.</span><span class="na">getResource</span><span class="o">(</span><span class="s">"bob"</span><span class="o">,</span> <span class="n">graph</span><span class="o">.</span><span class="na">getResourceType</span><span class="o">(</span><span class="s">"name"</span><span class="o">));</span> <span class="c1">//This will return a single resource with the value bob of type name</span>
+</code></pre>
+</div>
+
+<h4 id="getting-resources-when-knowing-the-entity">Getting Resources When Knowing The Entity</h4>
+
+<p>If you have an entity and want to get a resource of a particular type attached to that entity you can do so with:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">Collection</span><span class="o">&lt;</span><span class="n">Resource</span><span class="o">&lt;?&gt;&gt;</span> <span class="n">resources</span><span class="o">(</span><span class="n">ResourceType</span> <span class="o">...</span> <span class="n">resourceTypes</span><span class="o">);</span>
+<span class="c1">//Example</span>
+<span class="n">myThing</span><span class="o">.</span><span class="na">resources</span><span class="o">(</span><span class="n">graph</span><span class="o">.</span><span class="na">getResourceType</span><span class="o">(</span><span class="s">"name"</span><span class="o">));</span>
+</code></pre>
+</div>
+
+<h4 id="getting-from-the-resource-to-the-entity">Getting From The Resource To The Entity</h4>
+
+<p>If you have a resource you can get the entitie(s) attached to it with:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">resource</span><span class="o">.</span><span class="na">owner</span><span class="o">();</span>
+<span class="n">resource</span><span class="o">.</span><span class="na">ownerInstances</span><span class="o">();</span>
+</code></pre>
+</div>
+
 <h2 id="where-next">Where Next?</h2>
 <p>If you want to find out more about using the Graph API, please take a look at the documentation about how to define a <a href="../core-api/simple-schema-definition.html">simple schema</a> or an <a href="../core-api/advanced-schema-definition.html">advanced schema</a>.</p>
 
@@ -825,7 +876,7 @@ So, we’ll create some resource types that can be attached to a person:</p>
         <br>
         <p>© 2016 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2016 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> August 10, 2016<br/> Site last generated: Nov 24, 2016 <br />
+        <span>Page last updated:</span> August 10, 2016<br/> Site last generated: Nov 25, 2016 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">
