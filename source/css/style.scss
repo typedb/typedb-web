@@ -94,19 +94,19 @@ html{
         }
 
         .intro{
-            height: 15%;
+            height: 12%;
             p{
                 color: $white;
                 text-align: center;
                 font-size: 0.7rem;
             }
+            a{
+                color: $white;
+            }
         }
 
         .get{
             left: 0;
-            top: 20%;
-            position: absolute;
-            height: 25%;
             display: flex;
             flex-flow: row nowrap;
             justify-content: center;

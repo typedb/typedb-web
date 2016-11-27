@@ -402,28 +402,6 @@
         
     
     <li>
-        <a href="#">Advanced Grakn</a>
-        <ul>
-            
-            
-            
-            <li><a href="/pages/documentation/advanced-grakn/post-processing.html">Post Processing</a></li>
-            
-            
-            
-            
-            
-            
-            <li><a href="/pages/documentation/advanced-grakn/validation.html">Validation</a></li>
-            
-            
-            
-            
-        </ul>
-        
-        
-    
-    <li>
         <a href="#">API Reference</a>
         <ul>
             
@@ -597,7 +575,7 @@ If you intend to build Grakn, you will also need Maven 3.</div>
 
 <p>Unzip the download into your preferred location and run the following in the terminal:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="nb">cd</span> <span class="o">[</span>your Grakn install directory]
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="nb">cd</span> <span class="o">[</span>your Grakn install directory]
 bin/grakn.sh start
 </code></pre>
 </div>
@@ -612,22 +590,19 @@ To stop Grakn, run <code class="highlighter-rouge">grakn.sh stop</code>. </div>
 
 <p>Graql is our knowledge-oriented query language, which allows you to interface with Grakn. We will start Graql and enter a few lines to check that all is working as it should.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>bin/graql.sh
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>bin/graql.sh
 </code></pre>
 </div>
 
 <p>The Graql shell starts and you see a <code class="highlighter-rouge">&gt;&gt;&gt;</code> prompt. Type in the following:</p>
 
-<pre><code class="language-graql">&gt;&gt;&gt; insert person isa entity-type;
-&gt;&gt;&gt; insert name isa resource-type, datatype string;
-&gt;&gt;&gt; insert person has-resource name;
-&gt;&gt;&gt; insert isa person, has name "Topsy";
-&gt;&gt;&gt; insert isa person, has name "Tim";
+<pre><code class="language-graql">&gt;&gt;&gt; insert twin isa entity-type;
+&gt;&gt;&gt; insert topsy isa twin;
+&gt;&gt;&gt; insert tim isa twin;
 &gt;&gt;&gt; commit
-&gt;&gt;&gt; match $x isa person, has name $n; select $x, $n;
-
-$x id "ENTITY-person-89b823a0-606d-434d-a533-1e172b90c7bc" isa person; $n value "Topsy" isa name; 
-$x id "ENTITY-person-afd29319-ff33-4b0c-b7e3-63d04ac81dcf" isa person; $n value "Tim" isa name; 
+&gt;&gt;&gt; match $x isa twin;
+$x id "tim" isa twin;
+$x id "topsy" isa twin;
 </code></pre>
 
 <p>If you see the above output then congratulations! You have set up Grakn.</p>
@@ -691,7 +666,7 @@ $x id "ENTITY-person-afd29319-ff33-4b0c-b7e3-63d04ac81dcf" isa person; $n value 
         <br>
         <p>© 2016 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2016 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> August 10, 2016<br/> Site last generated: Nov 24, 2016 <br />
+        <span>Page last updated:</span> August 10, 2016<br/> Site last generated: Nov 27, 2016 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">

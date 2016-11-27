@@ -414,17 +414,6 @@
 
 ,
 {
-"title": "Grakn Post Processing",
-"tags": "",
-"keywords": "",
-"url": "/pages/documentation/advanced-grakn/post-processing.html",
-"summary": "This page describes post processing by the Grakn engine."
-}
-
-
-
-,
-{
 "title": "Example Projects",
 "tags": "",
 "keywords": "examples, projects",
@@ -495,17 +484,6 @@
 
 
 
-
-
-
-,
-{
-"title": "Grakn Data Validation",
-"tags": "",
-"keywords": "validation",
-"url": "/pages/documentation/advanced-grakn/validation.html",
-"summary": "The page describes schema validation."
-}
 
 
 
