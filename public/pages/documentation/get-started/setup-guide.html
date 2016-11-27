@@ -595,7 +595,8 @@ $('#toc').on('click', 'a', function() {
     
 
   <h2 id="first-download-grakn">First: Download Grakn</h2>
-<p><span class="glyphicon glyphicon-download gi-3x"></span>Visit the <a href="../resources/downloads.html">downloads page</a> for the latest version of Grakn.</p>
+
+<p><a href="../resources/downloads.html"><img src="/images/download.png" alt="download" /></a></p>
 
 <h2 id="install-grakn">Install Grakn</h2>
 <div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> <b>Note:</b> <strong>Prerequisites</strong>   <br />
@@ -633,8 +634,8 @@ To stop Grakn, run <code class="highlighter-rouge">grakn.sh stop</code>. </div>
 &gt;&gt;&gt; commit
 &gt;&gt;&gt; match $x isa person, has name $n; select $x, $n;
 
-$x id "ENTITY-person-89b823a0-606d-434d-a533-1e172b90c7bc" isa person; $n value "Topsy" isa name; 
-$x id "ENTITY-person-afd29319-ff33-4b0c-b7e3-63d04ac81dcf" isa person; $n value "Tim" isa name; 
+$x id "ENTITY-person-89b823a0-606d-434d-a533-1e172b90c7bc" isa person; $n value "Topsy" isa name;
+$x id "ENTITY-person-afd29319-ff33-4b0c-b7e3-63d04ac81dcf" isa person; $n value "Tim" isa name;
 </code></pre>
 
 <p>If you see the above output then congratulations! You have set up Grakn.</p>
