@@ -566,7 +566,7 @@
 $( document ).ready(function() {
   // Handler for .ready() called.
 
-$('#toc').toc({ minimumHeaders: 0, listType: 'ul', showSpeed: 0, headers: 'h2,h3,h4' });
+$('#toc').toc({ minimumHeaders: 0, listType: 'ul', showSpeed: 0, headers: 'h2' });
 
 /* this offset helps account for the space taken up by the floating toolbar. */
 $('#toc').on('click', 'a', function() {
@@ -576,7 +576,7 @@ $('#toc').on('click', 'a', function() {
   $(window).scrollTop(scroll_target - 10);
   return false
 })
-  
+
 });
 </script>
 
@@ -596,7 +596,9 @@ $('#toc').on('click', 'a', function() {
 
   <h2 id="first-download-grakn">First: Download Grakn</h2>
 
-<p><a href="../resources/downloads.html"><img src="/images/download.png" alt="download" /></a></p>
+<p><a href="https://grakn.ai/download/latest"><img src="/images/download.png" alt="download" /></a></p>
+
+<p>For more information on how to download older versions of Grakn, compiling from source code, or importing Grakn Java API library as development dependency, please visit our <a href="../resources/downloads.html">Downloads page</a>.</p>
 
 <h2 id="install-grakn">Install Grakn</h2>
 <div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> <b>Note:</b> <strong>Prerequisites</strong>   <br />
@@ -626,14 +628,15 @@ To stop Grakn, run <code class="highlighter-rouge">grakn.sh stop</code>. </div>
 
 <p>The Graql shell starts and you see a <code class="highlighter-rouge">&gt;&gt;&gt;</code> prompt. Type in the following:</p>
 
-<pre><code class="language-graql">&gt;&gt;&gt; insert person isa entity-type;
-&gt;&gt;&gt; insert name isa resource-type, datatype string;
-&gt;&gt;&gt; insert person has-resource name;
-&gt;&gt;&gt; insert isa person, has name "Topsy";
-&gt;&gt;&gt; insert isa person, has name "Tim";
-&gt;&gt;&gt; commit
-&gt;&gt;&gt; match $x isa person, has name $n; select $x, $n;
+<pre><code class="language-graql">insert person isa entity-type;
+insert name isa resource-type, datatype string;
+insert person has-resource name;
+insert isa person, has name "Topsy";
+insert isa person, has name "Tim";
+commit
+</code></pre>
 
+<pre><code class="language-graql">match $x isa person, has name $n; select $x, $n;
 $x id "ENTITY-person-89b823a0-606d-434d-a533-1e172b90c7bc" isa person; $n value "Topsy" isa name;
 $x id "ENTITY-person-afd29319-ff33-4b0c-b7e3-63d04ac81dcf" isa person; $n value "Tim" isa name;
 </code></pre>
@@ -642,7 +645,7 @@ $x id "ENTITY-person-afd29319-ff33-4b0c-b7e3-63d04ac81dcf" isa person; $n value 
 
 <p>You can now open <a href="http://localhost:4567">localhost:4567</a> in your browser to start the visualiser, which provides a graphical dashboard on a graph.</p>
 
-<p><img src="/images/topsyandtim.jpg" alt="Visualising a graph" /></p>
+<p><img src="/images/topsyandtim.png" alt="Visualising a graph" /></p>
 
 <p>Further information about the visualiser can be found in <a href="../the-basics/visualiser.html">Visualising a Graph</a>.</p>
 

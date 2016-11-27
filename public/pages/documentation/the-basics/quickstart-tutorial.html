@@ -566,7 +566,7 @@
 $( document ).ready(function() {
   // Handler for .ready() called.
 
-$('#toc').toc({ minimumHeaders: 0, listType: 'ul', showSpeed: 0, headers: 'h2,h3,h4' });
+$('#toc').toc({ minimumHeaders: 0, listType: 'ul', showSpeed: 0, headers: 'h2' });
 
 /* this offset helps account for the space taken up by the floating toolbar. */
 $('#toc').on('click', 'a', function() {
@@ -576,7 +576,7 @@ $('#toc').on('click', 'a', function() {
   $(window).scrollTop(scroll_target - 10);
   return false
 })
-  
+
 });
 </script>
 
@@ -669,7 +669,7 @@ insert isa school, has name "Cynicism";
 $c isa school;
 </code></pre>
 
-<h2 id="a-note-on-commit">A note on <code class="highlighter-rouge">commit</code></h2>
+<h2 id="a-note-on-commit">A note on commit</h2>
 <p>Nothing you have entered into the Graql shell has yet been committed to the graph, nor has it been validated. To save any changes you make to a graph, you need to type <code class="highlighter-rouge">commit</code> in the shell. It is a good habit to get into regularly committing what you have entered, so we will show this in the following example.</p>
 
 <h2 id="relations">Relations</h2>
@@ -778,11 +778,11 @@ commit;
 
 <pre><code class="language-graql">match isa person, has title $y, has name $n;
 
-$n value "Alexander" isa name; $y value "Shah of Persia" isa title; 
-$n value "Alexander" isa name; $y value "Hegeon" isa title; 
-$n value "Alexander" isa name; $y value "King of Macedon" isa title; 
-$n value "Alexander" isa name; $y value "Pharaoh of Egypt" isa title; 
-$n value "Alexander" isa name; $y value "Lord of Asia" isa title; 
+$n value "Alexander" isa name; $y value "Shah of Persia" isa title;
+$n value "Alexander" isa name; $y value "Hegeon" isa title;
+$n value "Alexander" isa name; $y value "King of Macedon" isa title;
+$n value "Alexander" isa name; $y value "Pharaoh of Egypt" isa title;
+$n value "Alexander" isa name; $y value "Lord of Asia" isa title;
 </code></pre>
 
 <div class="alert alert-success" role="alert"><i class="fa fa-check-square-o"></i> <b>Tip:</b> <strong>Test Yourself</strong> <br /> When querying for an id, value or resource you can use predicates as well as direct values. For example, has epithet contains ‘Great’. See if you can write a query for everyone with a title containing ‘King’. The answer is at the bottom of the page.</div>
