@@ -3,9 +3,9 @@
     <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="">
-<meta name="keywords" content=" , Grakn Labs, grakn, graql, grakn.ai, Mindmaps Research, Mindmaps Research Ltd, MindmapsDB, mindmaps, mindmaps graph, mindmaps.io, knowledge graph, distributed knowledge graph, development platform, developer tool, data platform, programming langauge, query langauge, database, semantic database, distributed semantic database, distributed database, graph database, semantic search, data exploration, recommendation system, knowledge management, knowledge engineering, real-time analytics, advanced analytics, reasoning engine, inference engine, expert systems, semantic applications, research engines, data management, business intelligence, big data, semantic web, semantic data, knowledge representation, automated reasoning, semantic network, knowledge ontology, semantic graph, ontology engineering, graph based knowledge representation, artificial intelligence,">
-<title>GRAKN.AI | Overview pages</title>
+<meta name="description" content="The page describes schema validation.">
+<meta name="keywords" content=" validation, Grakn Labs, grakn, graql, grakn.ai, Mindmaps Research, Mindmaps Research Ltd, MindmapsDB, mindmaps, mindmaps graph, mindmaps.io, knowledge graph, distributed knowledge graph, development platform, developer tool, data platform, programming langauge, query langauge, database, semantic database, distributed semantic database, distributed database, graph database, semantic search, data exploration, recommendation system, knowledge management, knowledge engineering, real-time analytics, advanced analytics, reasoning engine, inference engine, expert systems, semantic applications, research engines, data management, business intelligence, big data, semantic web, semantic data, knowledge representation, automated reasoning, semantic network, knowledge ontology, semantic graph, ontology engineering, graph based knowledge representation, artificial intelligence,">
+<title>GRAKN.AI | Grakn Data Validation</title>
 <link rel="stylesheet" href="/pages/css/syntax.css">
 
 
@@ -163,7 +163,7 @@
                             
                             dataSource: '/pages/search.json',
                             
-                            searchResultTemplate: '<li><a href="{url}" title="Overview pages">{title}</a></li>',
+                            searchResultTemplate: '<li><a href="{url}" title="Grakn Data Validation">{title}</a></li>',
                             noResultsText: '<li><a class="empty">No results found</a></li>',
                             limit: 10,
                             fuzzy: true
@@ -196,34 +196,341 @@
 
 
 <ul id="mysidebar" class="nav">
-    <li class="sidebarTitle">Grakn Platform </li>
+    <li class="sidebarTitle">Grakn 0.7</li>
     
     
+    
+    <li>
+        <a href="#">Get Started</a>
+        <ul>
+            
+            
+            
+            <li><a href="/pages/index.html">Home</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="/pages/documentation/get-started/setup-guide.html">Setup Guide</a></li>
+            
+            
+            
+            
+        </ul>
+        
+        
+    
+    <li>
+        <a href="#">The Basics</a>
+        <ul>
+            
+            
+            
+            <li><a href="/pages/documentation/the-basics/grakn-basics.html">Grakn Basics</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="/pages/documentation/the-basics/quickstart-tutorial.html">Quickstart Tutorial</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="/pages/documentation/the-basics/visualiser.html">Visualising a Graph</a></li>
+            
+            
+            
+            
+        </ul>
+        
+        
+    
+    <li>
+        <a href="#">Graph API</a>
+        <ul>
+            
+            
+            
+            <li><a href="/pages/documentation/core-api/overview.html">Overview</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="/pages/documentation/core-api/simple-schema-definition.html">Simple Schema Definition</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="/pages/documentation/core-api/advanced-schema-definition.html">Advanced Schema Definition</a></li>
+            
+            
+            
+            
+        </ul>
+        
+        
+    
+    <li>
+        <a href="#">Graql</a>
+        <ul>
+            
+            
+            
+            <li><a href="/pages/documentation/graql/overview.html">Overview</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="/pages/documentation/graql/graql-shell.html">Graql Shell</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="/pages/documentation/graql/match-queries.html">Match Queries</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="/pages/documentation/graql/ask-queries.html">Ask Queries</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="/pages/documentation/graql/delete-queries.html">Delete Queries</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="/pages/documentation/graql/insert-queries.html">Insert Queries</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="/pages/documentation/graql/compute-queries.html">Compute Queries</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="/pages/documentation/graql/graql-templating.html">Graql Templating</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="/pages/documentation/graql/graql-cheatsheet.html">Graql Cheatsheet</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="/pages/documentation/graql/java-graql.html">Java Graql</a></li>
+            
+            
+            
+            
+        </ul>
+        
+        
+    
+    <li>
+        <a href="#">Migrating to Grakn</a>
+        <ul>
+            
+            
+            
+            <li><a href="/pages/documentation/migration/migration.html">Migrating to Grakn</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="/pages/documentation/migration/CSV-migration.html">CSV Migration</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="/pages/documentation/migration/JSON-migration.html">JSON Migration</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="/pages/documentation/migration/SQL-migration.html">SQL Migration</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="/pages/documentation/migration/OWL-migration.html">OWL Migration</a></li>
+            
+            
+            
+            
+        </ul>
+        
+        
+    
+    <li>
+        <a href="#">Advanced Grakn</a>
+        <ul>
+            
+            
+            
+            <li><a href="/pages/documentation/advanced-grakn/post-processing.html">Post Processing</a></li>
+            
+            
+            
+            
+            
+            
+            <li class="active"><a href="/pages/documentation/advanced-grakn/validation.html">Validation</a></li>
+            
+            
+            
+            
+        </ul>
+        
+        
+    
+    <li>
+        <a href="#">API Reference</a>
+        <ul>
+            
+            
+            
+            <li><a href="/pages/documentation/api-reference/api-reference.html">API Reference</a></li>
+            
+            
+            
+            
+        </ul>
+        
+        
+    
+    <li>
+        <a href="#">Resources</a>
+        <ul>
+            
+            
+            
+            <li><a href="/pages/documentation/resources/resources.html">Resources</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="/pages/documentation/resources/faq.html">Grakn FAQ</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="/pages/documentation/resources/downloads.html">Downloads</a></li>
+            
+            
+            
+            
+        </ul>
+        
+        
+    
+    <li>
+        <a href="#">Examples</a>
+        <ul>
+            
+            
+            
+            <li><a href="/pages/documentation/examples/examples.html">Examples</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="/pages/documentation/examples/pokemon.html">Pokemon example</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="/pages/documentation/examples/philosophers.html">Philosophers example</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="/pages/documentation/examples/moogi.html">Moogi example</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="/pages/documentation/examples/modern.html">Modern example</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="/pages/documentation/examples/OWL-migration.html">OWL migration</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="/pages/documentation/examples/SQL-migration.html">SQL migration</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="/pages/documentation/examples/projects.html">Example Projects</a></li>
+            
+            
+            
+            
+        </ul>
+        
+        
 
-        
-        <li>
-            
-            <li><a href="/pages/platform/index.html">Introduction</a></li>
-            
-        </li>
-        
-        <li>
-            
-            <li><a href="/pages/platform/applications.html">System Applications</a></li>
-            
-        </li>
-        
-        <li>
-            
-            <li><a href="/pages/platform/advantages.html">Advantages</a></li>
-            
-        </li>
-        
-        <li>
-            
-            <li><a href="/pages/platform/developer.html">Developer</a></li>
-            
-        </li>
         
         
         <!-- if you aren't using the accordion, uncomment this block:
@@ -241,13 +548,15 @@
         <!-- Content Column -->
         <div class="col-md-9">
             <div class="post-header">
-   <h1 class="post-title-main">Overview pages</h1>
+   <h1 class="post-title-main">Grakn Data Validation</h1>
 </div>
 
 
 
 <div class="post-content">
 
+   
+    <div class="summary">The page describes schema validation.</div>
    
 
     
@@ -279,297 +588,109 @@ $('#toc').on('click', 'a', function() {
 
     
 
+    <a target="_blank" href="https://github.com/graknlabs/docs/blob/master/pages/documentation/8-advanced-grakn/validation.md" class="btn btn-default githubEditButton" role="button"><i class="fa fa-github fa-lg"></i> Edit me</a>
+
     
 
-  <p>The following pages and posts are tagged with <button type="button" style="cursor: default" class="btn btn-default navbar-btn">overview</button></p>
-<table><thead><tr><th>Title</th><th>Type</th><th>Excerpt</th></tr></thead>
-    <tbody>
     
-  
-    
-        
 
-        <tr><td><a href="/pages/platform/index.html">What is Grakn?</a></td>
-            <td><span class="label label-default">Page</span></td>
-          <td> Grakn is a knowledge graph data platform that stores data in a way that allows machines to understand the meaning of information, and equipped with a knowledge-oriented query language capable of real-time analytics and reasoning. Let’s break that down a bit and explain what it means. “Grakn is a knowledge... </td>
-        </tr>
-        
-     
-   
-    
-        
+  <h2 id="introduction">Introduction</h2>
 
-        <tr><td><a href="/pages/platform/applications.html">What can you build with Grakn?</a></td>
-            <td><span class="label label-default">Page</span></td>
-          <td> Grakn makes building intelligent systems for complex data easy. Semantic Search Engines Technologies like Google’s Knowledge Graph pioneered the semantic search experience on the web. With Grakn, you can build ground breaking semantic search tools for your organisation’s corpus of information with dramatically less engineering effort. Data Exploration... </td>
-        </tr>
-        
-     
-   
-    
-        
+<p>This page discusses the structural validation rules that are enforced in a Grakn graph. 
+The following consistency checks are executed upon <code class="highlighter-rouge">commit</code> depending on what is being committed:</p>
 
-        <tr><td><a href="/pages/platform/advantages.html">Why use Grakn?</a></td>
-            <td><span class="label label-default">Page</span></td>
-          <td> Grakn provides flexible schema, intelligent query language, real-time analytics, and inference capabilities. Flexible object-oriented schema Grakn allows you to define a schema that truly describes the meaning of your data through a model that could express the real world. Your schema could flexibly evolve as your business grows. &lt;h2... </td>
-        </tr>
-        
-     
-   
-    
-        
+<h3 id="plays-role-validation">Plays Role Validation</h3>
 
-        <tr><td><a href="/pages/platform/comparison.html">Comparison with other Databases</a></td>
-            <td><span class="label label-default">Page</span></td>
-          <td> Grakn has the consistency of RDBMS, flexibility of NoSQL and expressivity of a graph database.
- </td>
-        </tr>
-        
-     
-   
-    
-        
+<p>This validation rule simply checks if an <em>Entity</em> (which is a role player in a relation) is allowed to play the role it has been allocated to. For example, this is the rule that would prevent a dog from being a driver in a car.</p>
 
-        <tr><td><a href="/pages/platform/use-case.html">When to use Grakn?</a></td>
-            <td><span class="label label-default">Page</span></td>
-          <td> Grakn is perfect when you have heterogeneous data with complex relations that is challenging, unscalable, and cumbersome to model, query and maintain.
- </td>
-        </tr>
-        
-     
-   
-    
-   
-    
-        
+<h3 id="type-validation">Type Validation</h3>
 
-        <tr><td><a href="/pages/platform/developer.html">Developing with Grakn</a></td>
-            <td><span class="label label-default">Page</span></td>
-          <td> Grakn puts the power of a knowledge graph in the hands of every developer. What languages can I use to work with Grakn? At present, you can use Java. We also have Graql, a knowledge-oriented query language, which is allows you to express complex questions in simple and short... </td>
-        </tr>
-        
-     
-   
-    
-        
+<p>This validation rule ensures that abstract types do not have any instances. For example if we declare the type <code class="highlighter-rouge">vehicle</code> to be abstract, with <code class="highlighter-rouge">car</code> and <code class="highlighter-rouge">motorbike</code> to be sub types of <code class="highlighter-rouge">vehicle</code>, then only cars and motorbikes are allowed to have instances.</p>
 
-        <tr><td><a href="/pages/platform/faq.html">Grakn Platform</a></td>
-            <td><span class="label label-default">Page</span></td>
-          <td> What is a Graph Database? As Wikipedia explains, a graph database is “…a database that uses graph structures for semantic queries with nodes, edges and properties to represent and store data. A key concept of the system is the graph (or edge or relationship), which directly relates data... </td>
-        </tr>
-        
-     
-        
-     
-   
-    
-        
-     
-   
-    
-        
-     
-   
-    
-        
-     
-   
-    
-        
-     
-   
-    
-        
-     
-   
-    
-        
-     
-   
-    
-        
-     
-        
-     
-   
-    
-        
-     
-        
-     
-        
-     
-   
-    
-        
-     
-   
-    
-        
-     
-   
-    
-        
-     
-   
-    
-        
-     
-   
-    
-        
-     
-   
-    
-        
-     
-   
-    
-   
-    
-        
-     
-   
-    
-        
-     
-   
-    
-        
-     
-   
-    
-        
-     
-   
-    
-        
-     
-        
-     
-        
-     
-        
-     
-   
-    
-        
-     
-   
-    
-        
-     
-        
-     
-   
-    
-        
-     
-   
-    
-        
-     
-        
-     
-        
-     
-   
-    
-        
-     
-   
-    
-        
-     
-        
-     
-   
-    
-        
-     
-   
-    
-        
-     
-   
-    
-        
-     
-        
-     
-   
-    
-        
-     
-        
-     
-   
-    
-        
-     
-        
-     
-   
-    
-   
-    
-   
-    
-        
-     
-        
-     
-   
-    
-        
-     
-   
-    
-   
-    
-        
-     
-        
-     
-   
-    
-        
-     
-        
-     
-   
-    
-   
-    
-   
-    
-   
-    
-   
-    
-   
-    
-   
-    
-   
-    
-   
-    
-   
-    
-   
-    
-        
-     
-        
-     
-   
+<h3 id="role-type-validation">Role Type Validation</h3>
 
-        
-        
+<p>This rule checks that non abstract <em>Role Types</em> are part of a <em>Relation Type</em>. For example if we declare the <em>Role Type</em> <code class="highlighter-rouge">husband</code> and forget to link it to any <code class="highlighter-rouge">Relation Type</code>, then this check will fail.</p>
 
-   </tbody>
-</table>
+<h3 id="relation-validation">Relation Validation</h3>
+
+<p>A relation is valid if all of the role players of the relation are allowed to play their corresponding roles. 
+This also includes checking that the relation is an instance of a valid <em>Relation Type</em>. A <em>Relation Type</em> is valid if it has at minimum two roles.</p>
+
+<h3 id="relation-type-validation">Relation Type Validation</h3>
+
+<p>This checks that non abstract relation types have at least 2 roles. 
+For example, a <em>Relation Type</em> <code class="highlighter-rouge">marriage</code> with only one role <code class="highlighter-rouge">husband</code> would fail this check.</p>
+
+<h3 id="an-example-of-validation">An Example of Validation</h3>
+
+<p>Let us say that we want to model a marriage between a man <code class="highlighter-rouge">Bob</code> and woman <code class="highlighter-rouge">Alice</code>.
+This will be our first attempt:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>insert
+  'name' isa resource-type datatype string;
+  'person' is-abstract isa entity-type;
+  'man' is-abstract sub 'person';
+  'woman' sub 'person';
+  'husband' isa role-type;
+  'wife' isa role-type;
+  woman plays-role wife;
+  person has-resource name;
+  'husband' isa role-type;
+  'wife' isa role-type;
+  'marriage' isa relation-type;
+  marriage has-role husband;
+  $x has name 'Bob' isa man;
+  $y has name 'Alice' isa woman;
+  (husband: $x, wife: $y) isa marriage;
+</code></pre>
+</div>
+
+<p>This first attempt was horrible as we ended up failing all the validation rules.       <br />
+On commit we will see an error similar to this:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>A structural validation error has occurred. Please correct the [`5`] errors found.
+RoleType ['wife'] does not have exactly one has-role connection to any RelationType.
+The abstract Type ['man'] should not have any instances
+Relation Type ['marriage'] does not have two or more roles
+The relation ['RELATION-marriage-2b58b138-2c33-478c-8e8c-e7b357a20941'] has an invalid structure. This is either due to having more role players than roles or the Relation Type ['marriage'] not having the correct has-role connection to one of the provided roles. The provided roles('2'): ['husband,wife,']The provided role players('2'): ['husband,wife,']
+The type ['man'] of role player ['ENTITY-man-2482cb91-1f12-40ea-b659-49d07d06ddf1'] is not allowed to play RoleType ['husband']
+</code></pre>
+</div>
+
+<p>Lets see why:</p>
+
+<ol>
+  <li><strong>Role Type Validation</strong> failed because the role <code class="highlighter-rouge">wife</code> is not connected to any <em>Relation Type</em></li>
+  <li><strong>Relation Type Validation</strong> failed because <code class="highlighter-rouge">marriage</code> only has one role <code class="highlighter-rouge">husband</code>.</li>
+  <li><strong>Type Validation</strong> failed because we accidental made <code class="highlighter-rouge">man</code> abstract and we declared <code class="highlighter-rouge">Bob</code> to be an instance of <code class="highlighter-rouge">man</code>.</li>
+  <li><strong>Plays Role Validation</strong> failed because we forgot to say that a <code class="highlighter-rouge">man</code> can play the role of <code class="highlighter-rouge">husband</code>.</li>
+  <li><strong>Relation Validation</strong> failed because <code class="highlighter-rouge">Alice</code> is playing the role of a <code class="highlighter-rouge">wife</code> which is not part of a <code class="highlighter-rouge">marriage</code> and <code class="highlighter-rouge">Bob</code> is playing the role of a <code class="highlighter-rouge">husband</code>, which as a man he is not allowed to do.</li>
+</ol>
+
+<p>Let’s fix these issues and try again:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>insert
+  'name' isa resource-type datatype string;
+  'person' isa entity-type;                   # Fix (4)
+  'man' sub 'person';
+  'woman' sub 'person';
+  'husband' isa role-type;
+  'wife' isa role-type;
+  man plays-role husband;                     # Fix (3) and part of (5)
+  woman plays-role wife;
+  person has-resource name;
+  'husband' isa role-type;
+  'wife' isa role-type;
+  'marriage' isa relation-type;
+  marriage has-role husband;
+  marriage has-role wife;                     # Fix (1) and (2) and part of (5)
+  $x has name 'Bob' isa man;
+  $y has name 'Alice' isa woman;
+  (husband: $x, wife: $y) isa marriage;
+</code></pre>
+</div>
+
+<p>Now we are correctly modelling the marriage between <code class="highlighter-rouge">Alice</code> and <code class="highlighter-rouge">Bob</code>.</p>
 
 
 
@@ -602,7 +723,7 @@ $('#toc').on('click', 'a', function() {
         <br>
         <p>© 2016 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2016 GRAKN.AI. All rights reserved. <br />
-         Site last generated: Nov 27, 2016 <br />
+        <span>Page last updated:</span> November 17, 2016<br/> Site last generated: Nov 27, 2016 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">

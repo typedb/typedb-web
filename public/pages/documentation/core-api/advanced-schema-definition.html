@@ -196,7 +196,7 @@
 
 
 <ul id="mysidebar" class="nav">
-    <li class="sidebarTitle">Grakn 0.6</li>
+    <li class="sidebarTitle">Grakn 0.7</li>
     
     
     
@@ -402,6 +402,28 @@
         
     
     <li>
+        <a href="#">Advanced Grakn</a>
+        <ul>
+            
+            
+            
+            <li><a href="/pages/documentation/advanced-grakn/post-processing.html">Post Processing</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="/pages/documentation/advanced-grakn/validation.html">Validation</a></li>
+            
+            
+            
+            
+        </ul>
+        
+        
+    
+    <li>
         <a href="#">API Reference</a>
         <ul>
             
@@ -487,6 +509,13 @@
             
             
             <li><a href="/pages/documentation/examples/OWL-migration.html">OWL migration</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="/pages/documentation/examples/SQL-migration.html">SQL migration</a></li>
             
             
             
@@ -679,15 +708,17 @@ R2: anc(X, Y) :- parent(X, Z), anc(Z, Y)
 
 <p>Rule instances can be added to the graph both through the Graph API as well as through Graql. Considering the ancestor example, with the use of the Graph API we can add the rules in the following way:</p>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">String</span> <span class="n">r1Body</span> <span class="o">=</span> <span class="s">"(parent $x, child $y) isa Parent"</span><span class="o">;</span>
-<span class="n">String</span> <span class="n">r1Head</span> <span class="o">=</span> <span class="s">"(ancestor $x, descendant $y) isa Ancestor"</span><span class="o">;</span>
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">Pattern</span> <span class="n">r1Body</span> <span class="o">=</span> <span class="n">var</span><span class="o">().</span><span class="na">rel</span><span class="o">(</span><span class="s">"parent"</span><span class="o">,</span> <span class="s">"x"</span><span class="o">).</span><span class="na">rel</span><span class="o">(</span><span class="s">"child"</span><span class="o">,</span> <span class="s">"y"</span><span class="o">).</span><span class="na">isa</span><span class="o">(</span><span class="s">"Parent"</span><span class="o">);</span>
+<span class="n">Pattern</span> <span class="n">r1Head</span> <span class="o">=</span> <span class="n">var</span><span class="o">().</span><span class="na">rel</span><span class="o">(</span><span class="s">"ancestor"</span><span class="o">,</span> <span class="s">"x"</span><span class="o">).</span><span class="na">rel</span><span class="o">(</span><span class="s">"descendant"</span><span class="o">,</span> <span class="s">"y"</span><span class="o">).</span><span class="na">isa</span><span class="o">(</span><span class="s">"Ancestor"</span><span class="o">);</span>
 
-<span class="n">String</span> <span class="n">r2Body</span> <span class="o">=</span> <span class="s">"(parent $x, child $z) isa Parent;"</span> <span class="o">+</span>
-                <span class="s">"(ancestor $z, descendant $y) isa Ancestor select $x, $y"</span><span class="o">;</span>
-<span class="n">String</span> <span class="n">r2Head</span> <span class="o">=</span> <span class="s">"(ancestor $x, descendant $y) isa Ancestor"</span><span class="o">;</span>
+<span class="n">Pattern</span> <span class="n">r2Body</span> <span class="o">=</span> <span class="n">and</span><span class="o">(</span>
+        <span class="n">var</span><span class="o">().</span><span class="na">rel</span><span class="o">(</span><span class="s">"parent"</span><span class="o">,</span> <span class="s">"x"</span><span class="o">).</span><span class="na">rel</span><span class="o">(</span><span class="s">"child"</span><span class="o">,</span> <span class="s">"y"</span><span class="o">).</span><span class="na">isa</span><span class="o">(</span><span class="s">"Parent')"</span><span class="o">),</span>
+        <span class="n">var</span><span class="o">().</span><span class="na">rel</span><span class="o">(</span><span class="s">"ancestor"</span><span class="o">,</span> <span class="s">"z"</span><span class="o">).</span><span class="na">rel</span><span class="o">(</span><span class="s">"descendant"</span><span class="o">,</span> <span class="s">"y"</span><span class="o">).</span><span class="na">isa</span><span class="o">(</span><span class="s">"Ancestor"</span><span class="o">)</span>
+<span class="o">);</span>
+<span class="n">Pattern</span> <span class="n">r2Head</span> <span class="o">=</span> <span class="n">var</span><span class="o">().</span><span class="na">rel</span><span class="o">(</span><span class="s">"ancestor"</span><span class="o">,</span> <span class="s">"x"</span><span class="o">).</span><span class="na">rel</span><span class="o">(</span><span class="s">"descendant"</span><span class="o">,</span> <span class="s">"y"</span><span class="o">).</span><span class="na">isa</span><span class="o">(</span><span class="s">"Ancestor"</span><span class="o">);</span>
 
-<span class="n">Rule</span> <span class="n">rule1</span> <span class="o">=</span> <span class="n">graknGraph</span><span class="o">.</span><span class="na">addRule</span><span class="o">(</span><span class="n">r1Body</span><span class="o">,</span> <span class="n">r1Head</span><span class="o">,</span> <span class="n">inferenceRule</span><span class="o">);</span>
-<span class="n">Rule</span> <span class="n">rule2</span> <span class="o">=</span> <span class="n">graknGraph</span><span class="o">.</span><span class="na">addRule</span><span class="o">(</span><span class="n">r2Body</span><span class="o">,</span> <span class="n">r2Head</span><span class="o">,</span> <span class="n">inferenceRule</span><span class="o">);</span>
+<span class="n">Rule</span> <span class="n">rule1</span> <span class="o">=</span> <span class="n">inferenceRule</span><span class="o">.</span><span class="na">addRule</span><span class="o">(</span><span class="n">r1Body</span><span class="o">,</span> <span class="n">r1Head</span><span class="o">);</span>
+<span class="n">Rule</span> <span class="n">rule2</span> <span class="o">=</span> <span class="n">inferenceRule</span><span class="o">.</span><span class="na">addRule</span><span class="o">(</span><span class="n">r2Body</span><span class="o">,</span> <span class="n">r2Head</span><span class="o">);</span>
 </code></pre>
 </div>
 

@@ -196,7 +196,7 @@
 
 
 <ul id="mysidebar" class="nav">
-    <li class="sidebarTitle">Grakn 0.6</li>
+    <li class="sidebarTitle">Grakn 0.7</li>
     
     
     
@@ -402,6 +402,28 @@
         
     
     <li>
+        <a href="#">Advanced Grakn</a>
+        <ul>
+            
+            
+            
+            <li><a href="/pages/documentation/advanced-grakn/post-processing.html">Post Processing</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="/pages/documentation/advanced-grakn/validation.html">Validation</a></li>
+            
+            
+            
+            
+        </ul>
+        
+        
+    
+    <li>
         <a href="#">API Reference</a>
         <ul>
             
@@ -487,6 +509,13 @@
             
             
             <li><a href="/pages/documentation/examples/OWL-migration.html">OWL migration</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="/pages/documentation/examples/SQL-migration.html">SQL migration</a></li>
             
             
             
@@ -581,12 +610,7 @@ You can find the <code class="highlighter-rouge">pokemon.gql</code> example we w
 <p>While in the terminal, you can test in the Graql shell that all is well. For example:</p>
 
 <div class="language-bash highlighter-rouge"><pre class="highlight"><code>bin/graql.sh
-&gt;&gt;&gt;match <span class="nv">$x</span> isa pokemon; limit 5;
-<span class="nv">$x</span> id <span class="s2">"Venusaur"</span> isa pokemon; 
-<span class="nv">$x</span> id <span class="s2">"Raticate"</span> isa pokemon; 
-<span class="nv">$x</span> id <span class="s2">"Nidorina"</span> isa pokemon; 
-<span class="nv">$x</span> id <span class="s2">"Victreebel"</span> isa pokemon; 
-<span class="nv">$x</span> id <span class="s2">"Haunter"</span> isa pokemon; 
+&gt;&gt;&gt;match <span class="nv">$x</span> isa pokemon, has name <span class="nv">$n</span>; <span class="k">select</span> <span class="nv">$x</span>, <span class="nv">$n</span>; 
 </code></pre>
 </div>
 
@@ -598,7 +622,7 @@ You can find the <code class="highlighter-rouge">pokemon.gql</code> example we w
 <p>The Status pane lists various configuration items and their current settings.</p>
 
 <h3 id="graph">Graph</h3>
-<p>This is the main section of the visualiser that you will use to explore the graph. Type in a query to receive a graphical view on the data. For example, <code class="highlighter-rouge">match $x isa pokemon; limit 10;</code></p>
+<p>This is the main section of the visualiser that you will use to explore the graph. Type in a query to receive a graphical view on the data. For example, <code class="highlighter-rouge">match $x isa pokemon, has name $n; select $x, $n;limit 5;</code></p>
 
 <p><img src="/images/pokemon-query-visualiser.jpg" alt="Pokemon query" /></p>
 

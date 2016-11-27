@@ -196,7 +196,7 @@
 
 
 <ul id="mysidebar" class="nav">
-    <li class="sidebarTitle">Grakn 0.6</li>
+    <li class="sidebarTitle">Grakn 0.7</li>
     
     
     
@@ -402,6 +402,28 @@
         
     
     <li>
+        <a href="#">Advanced Grakn</a>
+        <ul>
+            
+            
+            
+            <li><a href="/pages/documentation/advanced-grakn/post-processing.html">Post Processing</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="/pages/documentation/advanced-grakn/validation.html">Validation</a></li>
+            
+            
+            
+            
+        </ul>
+        
+        
+    
+    <li>
         <a href="#">API Reference</a>
         <ul>
             
@@ -487,6 +509,13 @@
             
             
             <li><a href="/pages/documentation/examples/OWL-migration.html">OWL migration</a></li>
+            
+            
+            
+            
+            
+            
+            <li class="active"><a href="/pages/documentation/examples/SQL-migration.html">SQL migration</a></li>
             
             
             
@@ -612,15 +641,16 @@ $('#toc').on('click', 'a', function() {
 
 <p>You can run this example by running the <a href="https://github.com/graknlabs/sample-projects/blob/master/example-sql-migration/src/main/java/MainInMemory.java"><code class="highlighter-rouge">MainInMemory</code></a> class. It demonstrates the same functionality by pre-loading the World data into an <a href="http://www.h2database.com/html/main.html">H2</a> SQL database.</p>
 
-<h3 id="running-the-example-in-the-shell">Running the example in the shell</h3>
+<!--
+### Running the example in the shell
 
-<p>The following command will run the above migration by using the shell script. Be sure to execute this from within <code class="highlighter-rouge">mindmaps-dist-x.x.x/bin</code>.</p>
+The following command will run the above migration by using the shell script. Be sure to execute this from within `mindmaps-dist-x.x.x/bin`. 
 
-<div class="highlighter-rouge"><pre class="highlight"><code>./migration.sh sql -database jdbc:mysql://localhost:3306/world -user mindmaps -pass mindmaps -driver com.mysql.jdbc.Driver
-</code></pre>
-</div>
-
-<h2 id="test-yourself-answers">Test Yourself Answers</h2>
+```
+./migration.sh sql -database jdbc:mysql://localhost:3306/world -user mindmaps -pass mindmaps -driver com.mysql.jdbc.Driver
+```
+-->
+<p>## Test Yourself Answers</p>
 
 <p>You can see the code to answer these questions in the function <a href="https://github.com/graknlabs/sample-projects/blob/master/example-sql-migration/src/main/java/SqlWorldMigrator.java">printInformationAboutWorld()</a>.</p>
 

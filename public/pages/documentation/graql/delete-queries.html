@@ -196,7 +196,7 @@
 
 
 <ul id="mysidebar" class="nav">
-    <li class="sidebarTitle">Grakn 0.6</li>
+    <li class="sidebarTitle">Grakn 0.7</li>
     
     
     
@@ -402,6 +402,28 @@
         
     
     <li>
+        <a href="#">Advanced Grakn</a>
+        <ul>
+            
+            
+            
+            <li><a href="/pages/documentation/advanced-grakn/post-processing.html">Post Processing</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="/pages/documentation/advanced-grakn/validation.html">Validation</a></li>
+            
+            
+            
+            
+        </ul>
+        
+        
+    
+    <li>
         <a href="#">API Reference</a>
         <ul>
             
@@ -487,6 +509,13 @@
             
             
             <li><a href="/pages/documentation/examples/OWL-migration.html">OWL migration</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="/pages/documentation/examples/SQL-migration.html">SQL migration</a></li>
             
             
             
@@ -632,7 +661,7 @@ qb.match(var("x").id("evolution")).delete(var("x").hasRole("descendent"));
 <div class="tab-content">
 <div role="tabpanel" class="tab-pane active" id="shell3">
 <pre>
-match $x id "type"; delete $x plays-role attacking-type;
+match $x id "pokemon-type"; delete $x plays-role attacking-type;
 </pre>
 </div>
 <div role="tabpanel" class="tab-pane" id="java3">

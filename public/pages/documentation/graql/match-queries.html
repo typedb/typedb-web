@@ -196,7 +196,7 @@
 
 
 <ul id="mysidebar" class="nav">
-    <li class="sidebarTitle">Grakn 0.6</li>
+    <li class="sidebarTitle">Grakn 0.7</li>
     
     
     
@@ -402,6 +402,28 @@
         
     
     <li>
+        <a href="#">Advanced Grakn</a>
+        <ul>
+            
+            
+            
+            <li><a href="/pages/documentation/advanced-grakn/post-processing.html">Post Processing</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="/pages/documentation/advanced-grakn/validation.html">Validation</a></li>
+            
+            
+            
+            
+        </ul>
+        
+        
+    
+    <li>
         <a href="#">API Reference</a>
         <ul>
             
@@ -487,6 +509,13 @@
             
             
             <li><a href="/pages/documentation/examples/OWL-migration.html">OWL migration</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="/pages/documentation/examples/SQL-migration.html">SQL migration</a></li>
             
             
             
@@ -980,7 +1009,7 @@ qb.match(var("x").has("weight", gt(20).and(lt(30))));
 <pre>
 match $x isa pokemon, has pokedex-no $no;
 select $x;
-limit 30; offset 10; distinct; order by $no asc;
+limit 10; offset 30; distinct; order by $no asc;
 
 </pre>
 </div>
@@ -988,23 +1017,30 @@ limit 30; offset 10; distinct; order by $no asc;
 <pre>
 qb.match(var("x").isa("pokemon").has("pokedex-no", var("no")))
     .select("x")
-    .limit(30)
-    .offset(10)
+    .limit(10)
+    .offset(30)
     .distinct()
-    .orderBy("no", true);
+    .orderBy("no", Order.asc);
 </pre>
 </div> <!-- tab-pane -->
 </div>
 <p><!-- tab-content --></p>
 
+<h3 id="distinct">distinct</h3>
+<p>Remove any duplicate results.</p>
+
 <h3 id="limit">limit</h3>
 <p>Limit the query to the given number of results.</p>
 
+<p>Note that the order in which you specify modifiers can be important. If you make a query and <code class="highlighter-rouge">limit</code> the results returned, say to 10 as in the example, then specify the <code class="highlighter-rouge">distinct</code> modifier <em>after</em> the <code class="highlighter-rouge">limit</code>, you may find that <code class="highlighter-rouge">distinct</code> removes any non-unique results, so you end up with fewer than the 10 results you expected to be returned to you. To ensure that you receive <em>exactly</em> 10 distinct results, you are better to use <code class="highlighter-rouge">distinct</code> before <code class="highlighter-rouge">limit</code>.</p>
+
+<pre><code class="language-graql">match $x isa pokemon, has pokedex-no $no;
+select $x;
+distinct; limit 10; offset 30; order by $no asc;
+</code></pre>
+
 <h3 id="offset">offset</h3>
 <p>Offset the query by the given number of results.</p>
-
-<h3 id="distinct">distinct</h3>
-<p>Remove any duplicate results.</p>
 
 <h3 id="order">order</h3>
 <p>Order the results by the given variable’s degree. If a type is provided, order

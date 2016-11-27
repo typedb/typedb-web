@@ -196,7 +196,7 @@
 
 
 <ul id="mysidebar" class="nav">
-    <li class="sidebarTitle">Grakn 0.6</li>
+    <li class="sidebarTitle">Grakn 0.7</li>
     
     
     
@@ -402,6 +402,28 @@
         
     
     <li>
+        <a href="#">Advanced Grakn</a>
+        <ul>
+            
+            
+            
+            <li><a href="/pages/documentation/advanced-grakn/post-processing.html">Post Processing</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="/pages/documentation/advanced-grakn/validation.html">Validation</a></li>
+            
+            
+            
+            
+        </ul>
+        
+        
+    
+    <li>
         <a href="#">API Reference</a>
         <ul>
             
@@ -493,6 +515,13 @@
             
             
             
+            <li><a href="/pages/documentation/examples/SQL-migration.html">SQL migration</a></li>
+            
+            
+            
+            
+            
+            
             <li><a href="/pages/documentation/examples/projects.html">Example Projects</a></li>
             
             
@@ -570,9 +599,9 @@ $('#toc').on('click', 'a', function() {
 <p>To use the API, add the following to your <code class="highlighter-rouge">pom.xml</code>:</p>
 
 <div class="language-xml highlighter-rouge"><pre class="highlight"><code><span class="nt">&lt;dependency&gt;</span>
-  <span class="nt">&lt;groupId&gt;</span>io.grakn<span class="nt">&lt;/groupId&gt;</span>
+  <span class="nt">&lt;groupId&gt;</span>ai.grakn<span class="nt">&lt;/groupId&gt;</span>
   <span class="nt">&lt;artifactId&gt;</span>grakn-graql<span class="nt">&lt;/artifactId&gt;</span>
-  <span class="nt">&lt;version&gt;</span>0.6.0<span class="nt">&lt;/version&gt;</span>
+  <span class="nt">&lt;version&gt;</span>0.7.0<span class="nt">&lt;/version&gt;</span>
 <span class="nt">&lt;/dependency&gt;</span>
 </code></pre>
 </div>
@@ -583,14 +612,14 @@ $('#toc').on('click', 'a', function() {
 
 <p><code class="highlighter-rouge">Graql</code> contains several useful static methods such as <code class="highlighter-rouge">var</code> and <code class="highlighter-rouge">eq</code>, so it’s recommended that you use a static import:</p>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">static</span> <span class="n">io</span><span class="o">.</span><span class="na">grakn</span><span class="o">.</span><span class="na">graql</span><span class="o">.</span><span class="na">Graql</span><span class="o">.*;</span>
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">static</span> <span class="n">ai</span><span class="o">.</span><span class="na">grakn</span><span class="o">.</span><span class="na">graql</span><span class="o">.</span><span class="na">Graql</span><span class="o">.*;</span>
 </code></pre>
 </div>
 
 <p>A <code class="highlighter-rouge">QueryBuilder</code> is constructed by providing a <code class="highlighter-rouge">GraknGraph</code>:</p>
 
 <pre><code class="language-java-test-ignore">GraknGraph graknGraph = Grakn.factory(Grakn.DEFAULT_URI, "my-graph").getGraph();
-QueryBuilder qb = withGraph(graknGraph);
+QueryBuilder qb = graknGraph.graql();
 </code></pre>
 
 <p>The user can also choose to not provide a transaction. This can be useful if
@@ -664,9 +693,9 @@ for requesting a single variable:</p>
 <h2 id="query-parser">Query Parser</h2>
 
 <div class="language-xml highlighter-rouge"><pre class="highlight"><code><span class="nt">&lt;dependency&gt;</span>
-  <span class="nt">&lt;groupId&gt;</span>io.grakn.graql<span class="nt">&lt;/groupId&gt;</span>
+  <span class="nt">&lt;groupId&gt;</span>ai.grakn.graql<span class="nt">&lt;/groupId&gt;</span>
   <span class="nt">&lt;artifactId&gt;</span>graql-parser<span class="nt">&lt;/artifactId&gt;</span>
-  <span class="nt">&lt;version&gt;</span>0.2.1<span class="nt">&lt;/version&gt;</span>
+  <span class="nt">&lt;version&gt;</span>0.7.0<span class="nt">&lt;/version&gt;</span>
 <span class="nt">&lt;/dependency&gt;</span>
 </code></pre>
 </div>

@@ -196,7 +196,7 @@
 
 
 <ul id="mysidebar" class="nav">
-    <li class="sidebarTitle">Grakn 0.6</li>
+    <li class="sidebarTitle">Grakn 0.7</li>
     
     
     
@@ -402,6 +402,28 @@
         
     
     <li>
+        <a href="#">Advanced Grakn</a>
+        <ul>
+            
+            
+            
+            <li><a href="/pages/documentation/advanced-grakn/post-processing.html">Post Processing</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="/pages/documentation/advanced-grakn/validation.html">Validation</a></li>
+            
+            
+            
+            
+        </ul>
+        
+        
+    
+    <li>
         <a href="#">API Reference</a>
         <ul>
             
@@ -487,6 +509,13 @@
             
             
             <li><a href="/pages/documentation/examples/OWL-migration.html">OWL migration</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="/pages/documentation/examples/SQL-migration.html">SQL migration</a></li>
             
             
             
@@ -636,7 +665,7 @@ event isa entity-type,
 
 </code></pre>
 
-<p>In SQL, a <code class="highlighter-rouge">foreign key</code> is a column that references another column. The Grakn equivalent is a relationship type. Because SQL <code class="highlighter-rouge">foreign key</code> are not explicitly named, as they are in Mindmaps, the relation and roles have auto-generated names.</p>
+<p>In SQL, a <code class="highlighter-rouge">foreign key</code> is a column that references another column. The Grakn equivalent is a relationship type. Because SQL <code class="highlighter-rouge">foreign key</code> are not explicitly named, as they are in Grakn, the relation and roles have auto-generated names.</p>
 
 <p>The SQL schema line <code class="highlighter-rouge">ALTER TABLE event ADD FOREIGN KEY ( name ) REFERENCES pet ( name );</code> would be migrated as:</p>
 
@@ -729,7 +758,7 @@ $y isa event
 
 <h3 id="in-java">In Java</h3>
 
-<p>While the migration seems rather lengthy when written out in Graql, you only need a few lines of code to accomplish this migration in Mindmaps:</p>
+<p>While the migration seems rather lengthy when written out in Graql, you only need a few lines of code to accomplish this migration in Grakn:</p>
 
 <pre><code class="language-java-test-ignore">// get the JDBC connection
 
@@ -737,7 +766,7 @@ Connection connection = DriverManager.getConnection(jdbcDBUrl, jdbcUser, jdbcPas
 
 // get the Grakn connection
 
-MindmapsGraph graph = Mindmaps.factory(Mindmaps.DEFAULT_URI).getGraph("sql-test-graph");
+GraknGraph graph = Grakn.factory(Grakn.DEFAULT_URI).getGraph("sql-test-graph");
 Loader loader = new BlockingLoader("sql-test-graph");
 
 // create migrators and perform migration
@@ -760,7 +789,7 @@ dataMigrator
 </code></pre>
 
 <h2 id="where-next">Where Next?</h2>
-<p>You can find further documentation about migration in our API reference documentation (which is in the <code class="highlighter-rouge">docs</code> directory of the distribution zip file, and also online <a href="https://grakn.ai/javadocs.html">here</a>.</p>
+<p>You can find further documentation about migration in our API reference documentation (which is in the <code class="highlighter-rouge">docs</code> directory of the distribution zip file, and also online <a href="https://grakn.ai/javadocs.html">here</a>. Examples of SQL migration are also available from <a href="../examples/SQL-migration.html">here</a>.</p>
 
 <h2 id="comments">Comments</h2>
 <p>Want to leave a comment? Visit <a href="https://github.com/graknlabs/docs/issues/32" target="_blank">the issues on Github for this page</a> (you’ll need a GitHub account). You are also welcome to contribute to our documentation directly via the “Edit me” button at the top of the page.</p>
@@ -803,7 +832,7 @@ dataMigrator
         <br>
         <p>© 2016 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2016 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> August 10, 2016<br/> Site last generated: Nov 27, 2016 <br />
+        <span>Page last updated:</span> November 25, 2016<br/> Site last generated: Nov 27, 2016 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">

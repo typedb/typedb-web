@@ -196,7 +196,7 @@
 
 
 <ul id="mysidebar" class="nav">
-    <li class="sidebarTitle">Grakn 0.6</li>
+    <li class="sidebarTitle">Grakn 0.7</li>
     
     
     
@@ -402,6 +402,28 @@
         
     
     <li>
+        <a href="#">Advanced Grakn</a>
+        <ul>
+            
+            
+            
+            <li><a href="/pages/documentation/advanced-grakn/post-processing.html">Post Processing</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="/pages/documentation/advanced-grakn/validation.html">Validation</a></li>
+            
+            
+            
+            
+        </ul>
+        
+        
+    
+    <li>
         <a href="#">API Reference</a>
         <ul>
             
@@ -487,6 +509,13 @@
             
             
             <li><a href="/pages/documentation/examples/OWL-migration.html">OWL migration</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="/pages/documentation/examples/SQL-migration.html">SQL migration</a></li>
             
             
             
@@ -596,13 +625,16 @@ To stop Grakn, run <code class="highlighter-rouge">grakn.sh stop</code>. </div>
 
 <p>The Graql shell starts and you see a <code class="highlighter-rouge">&gt;&gt;&gt;</code> prompt. Type in the following:</p>
 
-<pre><code class="language-graql">&gt;&gt;&gt; insert twin isa entity-type;
-&gt;&gt;&gt; insert topsy isa twin;
-&gt;&gt;&gt; insert tim isa twin;
+<pre><code class="language-graql">&gt;&gt;&gt; insert person isa entity-type;
+&gt;&gt;&gt; insert name isa resource-type, datatype string;
+&gt;&gt;&gt; insert person has-resource name;
+&gt;&gt;&gt; insert isa person, has name "Topsy";
+&gt;&gt;&gt; insert isa person, has name "Tim";
 &gt;&gt;&gt; commit
-&gt;&gt;&gt; match $x isa twin;
-$x id "tim" isa twin;
-$x id "topsy" isa twin;
+&gt;&gt;&gt; match $x isa person, has name $n; select $x, $n;
+
+$x id "ENTITY-person-89b823a0-606d-434d-a533-1e172b90c7bc" isa person; $n value "Topsy" isa name; 
+$x id "ENTITY-person-afd29319-ff33-4b0c-b7e3-63d04ac81dcf" isa person; $n value "Tim" isa name; 
 </code></pre>
 
 <p>If you see the above output then congratulations! You have set up Grakn.</p>

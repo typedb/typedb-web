@@ -196,7 +196,7 @@
 
 
 <ul id="mysidebar" class="nav">
-    <li class="sidebarTitle">Grakn 0.6</li>
+    <li class="sidebarTitle">Grakn 0.7</li>
     
     
     
@@ -402,6 +402,28 @@
         
     
     <li>
+        <a href="#">Advanced Grakn</a>
+        <ul>
+            
+            
+            
+            <li><a href="/pages/documentation/advanced-grakn/post-processing.html">Post Processing</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="/pages/documentation/advanced-grakn/validation.html">Validation</a></li>
+            
+            
+            
+            
+        </ul>
+        
+        
+    
+    <li>
         <a href="#">API Reference</a>
         <ul>
             
@@ -487,6 +509,13 @@
             
             
             <li><a href="/pages/documentation/examples/OWL-migration.html">OWL migration</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="/pages/documentation/examples/SQL-migration.html">SQL migration</a></li>
             
             
             
@@ -829,7 +858,7 @@ $y isa pokemon;
 <pre><code class="language-graql">insert $x1 isa pokemon has description "Raichu";
     
     $y3 isa pokemon-type ;
-        $y3 has street "Electric" ;
+        $y3 has description "Electric" ;
         (pokemon-with-type: $x1, type-of-pokemon: $y3) isa has-type;
 
     $y4 isa pokemon;
@@ -840,7 +869,7 @@ $y isa pokemon;
 
 <p>For the moment, Graql templating can only be used through the Java API:</p>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">String</span> <span class="n">template</span> <span class="o">=</span> <span class="s">""</span> <span class="o">+</span>
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">String</span> <span class="n">template</span> <span class="o">=</span> <span class="s">"insert "</span> <span class="o">+</span>
                 <span class="s">"for (whale in whales ) do {"</span> <span class="o">+</span>
                 <span class="s">"   $x isa whale has name &lt;whale&gt;;"</span> <span class="o">+</span>
                 <span class="s">"}"</span><span class="o">;</span>

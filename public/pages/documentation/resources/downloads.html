@@ -196,7 +196,7 @@
 
 
 <ul id="mysidebar" class="nav">
-    <li class="sidebarTitle">Grakn 0.6</li>
+    <li class="sidebarTitle">Grakn 0.7</li>
     
     
     
@@ -402,6 +402,28 @@
         
     
     <li>
+        <a href="#">Advanced Grakn</a>
+        <ul>
+            
+            
+            
+            <li><a href="/pages/documentation/advanced-grakn/post-processing.html">Post Processing</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="/pages/documentation/advanced-grakn/validation.html">Validation</a></li>
+            
+            
+            
+            
+        </ul>
+        
+        
+    
+    <li>
         <a href="#">API Reference</a>
         <ul>
             
@@ -487,6 +509,13 @@
             
             
             <li><a href="/pages/documentation/examples/OWL-migration.html">OWL migration</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="/pages/documentation/examples/SQL-migration.html">SQL migration</a></li>
             
             
             
@@ -585,11 +614,11 @@ $('#toc').on('click', 'a', function() {
 
 <p>Using git, clone the <a href="https://github.com/graknlabs/grakn">Grakn repository</a> to a local directory.  In that directory:</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>mvn package
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>mvn package -DskipTests
 </code></pre>
 </div>
 
-<p>The code should build and the tests will then run (the tests will take approximately 10 minutes to finish). When the build has completed, you will find it in the <code class="highlighter-rouge">grakn-dist</code> directory under <code class="highlighter-rouge">target</code>. The zip file built into that directory is the same as that distributed as a release on <a href="https://grakn.ai/download">Github</a>.</p>
+<p>When the build has completed, you will find it in the <code class="highlighter-rouge">grakn-dist</code> directory under <code class="highlighter-rouge">target</code>. The zip file built into that directory is the same as that distributed as a release on <a href="https://grakn.ai/download">Github</a>.</p>
 
 <h3 id="example-code">Example Code</h3>
 <p>You can find an additional repo on Github containing our <a href="https://github.com/graknlabs/sample-projects">example code</a>, while further information about the examples is <a href="../examples/examples.html">here</a>.</p>
