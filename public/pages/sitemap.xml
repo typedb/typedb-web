@@ -62,19 +62,13 @@
   
   
   <url>
-    <loc>http://grakn.ai/pages//documentation/examples/OWL-migration.html</loc>
-  </url>
-  
-  
-  
-  <url>
     <loc>http://grakn.ai/pages//documentation/migration/OWL-migration.html</loc>
   </url>
   
   
   
   <url>
-    <loc>http://grakn.ai/pages//documentation/migration/SQL-migration.html</loc>
+    <loc>http://grakn.ai/pages//documentation/examples/OWL-migration.html</loc>
   </url>
   
   
@@ -86,7 +80,49 @@
   
   
   <url>
+    <loc>http://grakn.ai/pages//documentation/migration/SQL-migration.html</loc>
+  </url>
+  
+  
+  
+  <url>
     <loc>http://grakn.ai/pages//documentation/core-api/advanced-schema-definition.html</loc>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://grakn.ai/pages//documentation/graql-analytics/analytics-connected-components.html</loc>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://grakn.ai/pages//documentation/graql-analytics/analytics-degrees.html</loc>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://grakn.ai/pages//documentation/graql-analytics/analytics-overview.html</loc>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://grakn.ai/pages//documentation/graql-analytics/analytics-shortest-path.html</loc>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://grakn.ai/pages//documentation/graql-analytics/analytics-statistics.html</loc>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://grakn.ai/pages//documentation/graql-analytics/analytics-statistics.html</loc>
   </url>
   
   
@@ -208,13 +244,13 @@
   
   
   <url>
-    <loc>http://grakn.ai/pages//documentation/graql/overview.html</loc>
+    <loc>http://grakn.ai/pages//documentation/core-api/overview.html</loc>
   </url>
   
   
   
   <url>
-    <loc>http://grakn.ai/pages//documentation/core-api/overview.html</loc>
+    <loc>http://grakn.ai/pages//documentation/graql/overview.html</loc>
   </url>
   
   
@@ -266,6 +302,14 @@
   <url>
     <loc>http://grakn.ai/pages//documentation/core-api/simple-schema-definition.html</loc>
   </url>
+  
+  
+  
+  
+  
+  
+  
+  
   
   
   

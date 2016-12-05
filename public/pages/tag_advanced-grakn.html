@@ -3,9 +3,9 @@
     <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="How to use templating on top of Graql">
-<meta name="keywords" content="graql,  graql, java, GRAKN.AI, Grakn Labs, grakn, graql, grakn.ai, Mindmaps Research, Mindmaps Research Ltd, MindmapsDB, mindmaps, mindmaps graph, mindmaps.io, knowledge graph, distributed knowledge graph, development platform, developer tool, data platform, programming langauge, query langauge, database, semantic database, distributed semantic database, distributed database, graph database, semantic search, data exploration, recommendation system, knowledge management, knowledge engineering, real-time analytics, advanced analytics, reasoning engine, inference engine, expert systems, semantic applications, research engines, data management, business intelligence, big data, semantic web, semantic data, knowledge representation, automated reasoning, semantic network, knowledge ontology, semantic graph, ontology engineering, graph based knowledge representation, artificial intelligence,">
-<title>GRAKN.AI | Graql Templating</title>
+<meta name="description" content="">
+<meta name="keywords" content=" , GRAKN.AI, Grakn Labs, grakn, graql, grakn.ai, Mindmaps Research, Mindmaps Research Ltd, MindmapsDB, mindmaps, mindmaps graph, mindmaps.io, knowledge graph, distributed knowledge graph, development platform, developer tool, data platform, programming langauge, query langauge, database, semantic database, distributed semantic database, distributed database, graph database, semantic search, data exploration, recommendation system, knowledge management, knowledge engineering, real-time analytics, advanced analytics, reasoning engine, inference engine, expert systems, semantic applications, research engines, data management, business intelligence, big data, semantic web, semantic data, knowledge representation, automated reasoning, semantic network, knowledge ontology, semantic graph, ontology engineering, graph based knowledge representation, artificial intelligence,">
+<title>GRAKN.AI | Advanced Grakn</title>
 <link rel="stylesheet" href="/pages/css/syntax.css">
 
 
@@ -163,7 +163,7 @@
                             
                             dataSource: '/pages/search.json',
                             
-                            searchResultTemplate: '<li><a href="{url}" title="Graql Templating">{title}</a></li>',
+                            searchResultTemplate: '<li><a href="{url}" title="Advanced Grakn">{title}</a></li>',
                             noResultsText: '<li><a class="empty">No results found</a></li>',
                             limit: 10,
                             fuzzy: true
@@ -335,7 +335,7 @@
             
             
             
-            <li class="active"><a href="/pages/documentation/graql/graql-templating.html">Graql Templating</a></li>
+            <li><a href="/pages/documentation/graql/graql-templating.html">Graql Templating</a></li>
             
             
             
@@ -584,15 +584,13 @@
         <!-- Content Column -->
         <div class="col-md-9">
             <div class="post-header">
-   <h1 class="post-title-main">Graql Templating</h1>
+   <h1 class="post-title-main">Advanced Grakn</h1>
 </div>
 
 
 
 <div class="post-content">
 
-   
-    <div class="summary">How to use templating on top of Graql</div>
    
 
     
@@ -624,311 +622,329 @@ $('#toc').on('click', 'a', function() {
 
     
 
-    <a target="_blank" href="https://github.com/graknlabs/docs/blob/master/pages/documentation/3-graql/graql-templating.md" class="btn btn-default githubEditButton" role="button"><i class="fa fa-github fa-lg"></i> Edit me</a>
-
     
 
+  <p>The following pages and posts are tagged with <button type="button" style="cursor: default" class="btn btn-default navbar-btn">advanced-grakn</button></p>
+<table><thead><tr><th>Title</th><th>Type</th><th>Excerpt</th></tr></thead>
+    <tbody>
     
+  
+    
+        
+     
+   
+    
+        
+     
+   
+    
+        
+     
+   
+    
+        
+     
+   
+    
+        
+     
+   
+    
+   
+    
+        
+     
+   
+    
+        
+     
+        
+     
+   
+    
+        
+     
+   
+    
+        
+     
+   
+    
+        
+     
+   
+    
+        
+     
+        
+     
+   
+    
+        
+     
+        
+     
+        
+     
+   
+    
+        
+     
+   
+    
+        
+     
+        
+     
+        
 
-  <h2 id="basic-syntax">Basic Syntax</h2>
+        <tr><td><a href="/pages/documentation/core-api/advanced-schema-definition.html">Defining an Advanced Schema</a></td>
+            <td><span class="label label-default">Page</span></td>
+          <td> Demonstrates how to create an advanced schema for Grakn. </td>
+        </tr>
+        
+     
+   
+    
+        
+     
+   
+    
+        
+     
+   
+    
+        
+     
+   
+    
+        
+     
+   
+    
+        
+     
+   
+    
+        
+     
+   
+    
+        
+     
+        
+     
+        
+     
+   
+    
+        
+     
+   
+    
+        
+     
+   
+    
+        
+     
+   
+    
+        
+     
+   
+    
+        
+     
+        
+     
+   
+    
+        
+     
+   
+    
+   
+    
+        
+     
+   
+    
+        
+     
+   
+    
+        
+     
+   
+    
+        
+     
+   
+    
+        
+     
+        
+     
+        
+     
+        
+     
+   
+    
+        
+     
+   
+    
+        
+     
+        
+     
+   
+    
+        
+     
+   
+    
+        
+     
+        
+     
+        
+     
+   
+    
+        
+     
+        
+     
+   
+    
+        
+     
+        
+     
+        
+     
+   
+    
+        
+     
+   
+    
+        
+     
+        
+     
+   
+    
+        
+     
+   
+    
+        
+     
+        
+     
+        
+     
+   
+    
+        
+     
+        
+     
+        
+     
+   
+    
+        
 
-<p>Graql templates are Graql statements with the addition of functions and variables. Graql templates are primarily used for migrating data into Grakn, although as a component of Graql, they can be used whevever writing Graql in Java. You can find more examples of their usage in the <a href="../migration/migration.html">Migration</a> section of the documentation.</p>
+        <tr><td><a href="/pages/documentation/advanced-grakn/post-processing.html">Grakn Post Processing</a></td>
+            <td><span class="label label-default">Page</span></td>
+          <td> This page describes post processing by the Grakn engine. </td>
+        </tr>
+        
+     
+   
+    
+   
+    
+        
+     
+        
+     
+   
+    
+        
+     
+   
+    
+   
+    
+        
+     
+        
+     
+   
+    
+        
+     
+        
+     
+   
+    
+   
+    
+   
+    
+   
+    
+   
+    
+   
+    
+   
+    
+   
+    
+   
+    
+   
+    
+   
+    
+   
+    
+   
+    
+   
+    
+        
 
-<div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> <b>Note:</b>  For the moment, Graql Template usage is limited to Graql Java. It will not work in the Graql shell. </div>
+        <tr><td><a href="/pages/documentation/advanced-grakn/validation.html">Grakn Data Validation</a></td>
+            <td><span class="label label-default">Page</span></td>
+          <td> The page describes schema validation. </td>
+        </tr>
+        
+     
+   
+    
+        
+     
+        
+     
+   
 
-<p>Templates are used to expand Graql queries, given data. They allow you to control the flow of information.</p>
+        
+        
 
-<p>Accessing a single value:</p>
-
-<pre><code class="language-graql-template">$x isa thing has value &lt;value&gt;
-</code></pre>
-
-<p>Value in a nested context:</p>
-
-<pre><code class="language-graql-template">$x isa person has name &lt;person.name.firstName&gt;
-</code></pre>
-
-<h2 id="replacement">Replacement</h2>
-
-<p>Replacement occurs inside the <code class="highlighter-rouge">&lt;</code> <code class="highlighter-rouge">&gt;</code> characters or when executing a macro that is not a condition.</p>
-
-<div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> <b>Note:</b>  When replacing values in the output, the templating engine will automatically surround any <code class="highlighter-rouge">string</code> in quotes. It will not for any <code class="highlighter-rouge">int</code>, <code class="highlighter-rouge">double</code> or <code class="highlighter-rouge">boolean</code> </div>
-
-<p>A quick example of what the replacement looks like:</p>
-
-<pre><code class="language-graql-template">first is a &lt;string&gt;, second a &lt;long&gt;, third a &lt;double&gt;, fourth a &lt;boolean&gt;
-</code></pre>
-
-<div class="highlighter-rouge"><pre class="highlight"><code>first is a "string", second a 40, third a 0.001, fourth a false
-</code></pre>
-</div>
-
-<h2 id="logic">Logic</h2>
-
-<h3 id="expressions">Expressions</h3>
-
-<p>Expressions can be used as the conditions in <code class="highlighter-rouge">if</code>/<code class="highlighter-rouge">elseif</code> statements or as the contents of <code class="highlighter-rouge">macro</code> statements.</p>
-
-<h4 id="boolean-expressions">Boolean expressions</h4>
-
-<p>Boolean expressions only accept <code class="highlighter-rouge">true</code> and <code class="highlighter-rouge">false</code> (they will not work with <code class="highlighter-rouge">0/1</code> or <code class="highlighter-rouge">1/-1</code>).</p>
-
-<table>
-  <thead>
-    <tr>
-      <th>Expression</th>
-      <th>Definition</th>
-      <th>Usage</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><code class="highlighter-rouge">and</code></td>
-      <td><code class="highlighter-rouge">this &amp;&amp; that</code></td>
-      <td><code class="highlighter-rouge">if (and this that) do { ... }</code></td>
-    </tr>
-    <tr>
-      <td><code class="highlighter-rouge">or</code></td>
-      <td><code class="highlighter-rouge">this || that</code></td>
-      <td><code class="highlighter-rouge">if (or this that) do { ... }</code></td>
-    </tr>
-    <tr>
-      <td><code class="highlighter-rouge">not</code></td>
-      <td><code class="highlighter-rouge">!this</code></td>
-      <td><code class="highlighter-rouge">if (not this) do { ... }</code></td>
-    </tr>
-  </tbody>
+   </tbody>
 </table>
-
-<h4 id="comparison">Comparison</h4>
-
-<table>
-  <thead>
-    <tr>
-      <th>Expression</th>
-      <th>Definition</th>
-      <th>Usage</th>
-      <th>Notes</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><code class="highlighter-rouge">eq</code></td>
-      <td><code class="highlighter-rouge">this == that</code></td>
-      <td><code class="highlighter-rouge">if (eq this that) do { ... }</code></td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td><code class="highlighter-rouge">ne</code></td>
-      <td><code class="highlighter-rouge">this != that</code></td>
-      <td><code class="highlighter-rouge">if (ne this that) do { ... }</code></td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td><code class="highlighter-rouge">gt</code></td>
-      <td><code class="highlighter-rouge">this &gt; that</code></td>
-      <td><code class="highlighter-rouge">if (gt this that) do { ... }</code></td>
-      <td>operates on numbers</td>
-    </tr>
-    <tr>
-      <td><code class="highlighter-rouge">ge</code></td>
-      <td><code class="highlighter-rouge">this &gt;= that</code></td>
-      <td><code class="highlighter-rouge">if (ge this that) do { ... }</code></td>
-      <td>operates on numbers</td>
-    </tr>
-    <tr>
-      <td><code class="highlighter-rouge">lt</code></td>
-      <td><code class="highlighter-rouge">this &lt; that</code></td>
-      <td><code class="highlighter-rouge">if (lt this that) do { ... }</code></td>
-      <td>operates on numbers</td>
-    </tr>
-    <tr>
-      <td><code class="highlighter-rouge">le</code></td>
-      <td><code class="highlighter-rouge">this &lt;= that</code></td>
-      <td><code class="highlighter-rouge">if (le this that) do { ... }</code></td>
-      <td>operates on numbers</td>
-    </tr>
-  </tbody>
-</table>
-
-<h3 id="iteration">Iteration</h3>
-
-<p>Graql Templates allow you to iterate over a maps or lists.</p>
-
-<p>Example 1: <code class="highlighter-rouge">for</code> over a list:</p>
-
-<pre><code class="language-graql-template">for (whale in whales)
-do { $x isa whale has name &lt;whale&gt;; }
-</code></pre>
-
-<p>Example 2: <code class="highlighter-rouge">for</code> over a map:</p>
-
-<pre><code class="language-graql-template">insert $x isa person;
-    for (name in names) do {
-        $x has nickname &lt;name.nickname&gt; ;
-    }
-</code></pre>
-
-<p>Example 3: “enhanced” <code class="highlighter-rouge">for</code> over a map:</p>
-
-<pre><code class="language-graql-template">insert $x isa person;
-    for (names) do {
-        $x has nickname &lt;nickname&gt; ;
-    }
-</code></pre>
-
-<p>When iterating over a map as in Example 3, you are allowed to use the “enhanced” for syntax. In this loop, it is not required to provide the item name. The properties within the <code class="highlighter-rouge">do</code> block context are inferred to be the first level children of the property in the <code class="highlighter-rouge">for</code> statement.</p>
-
-<p>Example 5: doubly nested <code class="highlighter-rouge">for</code>:</p>
-
-<pre><code class="language-graql-template">insert
-
-for (people) do { 
-$x isa person has name &lt;name&gt;;
-    for (addresses) do {
-    $y isa address ;
-        $y has street &lt;street&gt; ;
-        $y has number &lt;number&gt; ;
-        ($x, $y) isa resides;
-    }
-}
-</code></pre>
-
-<h3 id="conditionals">Conditionals</h3>
-
-<p><code class="highlighter-rouge">if</code>, <code class="highlighter-rouge">else</code> and <code class="highlighter-rouge">elseif</code> are the included commands that provide conditional logic.</p>
-
-<p>Example 6: <code class="highlighter-rouge">if</code>:</p>
-
-<pre><code class="language-graql-template">if (ne dog null)
-do { insert $dog isa dog; }
-</code></pre>
-
-<p>Example 7: <code class="highlighter-rouge">if</code>…<code class="highlighter-rouge">else</code>:</p>
-
-<pre><code class="language-graql-template">if (ne firstName null) do {
-    insert $person has name &lt;firstName&gt;;
-} else {
-    insert $person;
-}
-</code></pre>
-
-<h3 id="macros">Macros</h3>
-
-<p>Macros are denoted by an <code class="highlighter-rouge">@</code> symbol prefixing the name of the macro function. Mindmaps has included the following functions to the basic templating logic.</p>
-
-<h4 id="noescp">noescp</h4>
-
-<p>Macro <code class="highlighter-rouge">noescp</code> is short for “no escape”. This function will not add quotes or escape the characters inside the value when doing replacement. Accepts exactly one argument.</p>
-
-<p>e.g.</p>
-
-<pre><code class="language-graql-template">insert $person has introduction "Hi! My name is @noescp(firstname) @noescp(lastname)";
-</code></pre>
-
-<h4 id="int">int</h4>
-
-<p><code class="highlighter-rouge">int</code> converts the contents of the data to an integer. Accepts exactly one argument.</p>
-
-<p>e.g.</p>
-
-<pre><code class="language-graql-template">match $x isa thing has value @int(value);
-</code></pre>
-
-<h4 id="double">double</h4>
-
-<p><code class="highlighter-rouge">double</code> converts the contents of the data to a double. Accepts exactly one argument.</p>
-
-<p>e.g.</p>
-
-<pre><code class="language-graql-template">match $x isa thing has value @double(value);
-</code></pre>
-
-<h4 id="equals">equals</h4>
-
-<p>The <code class="highlighter-rouge">equals</code> macro returns a boolean and as such can be used in conditional statements. It can also be used in the Graql statment. Requires at least two arguments.</p>
-
-<p>e.g. in Graql</p>
-
-<pre><code class="language-graql-template">insert $x isa hasEquivalentResource value @equals(this that other)
-</code></pre>
-
-<p>e.g. in conditional</p>
-
-<pre><code class="language-graql-template">if (@equals(this that)) do { equals } else { not }"
-</code></pre>
-
-<h3 id="scopes">Scopes</h3>
-
-<p>During iteration Graql variables will be automatically suffixed with an index.</p>
-
-<p>For example, the following loop:</p>
-
-<pre><code class="language-graql-template">insert $x isa pokemon has description &lt;name&gt;;
-    
-for (types) do {
-    $y isa pokemon-type ;
-        $y has description &lt;type-description&gt; ;
-        (pokemon-with-type: $x, type-of-pokemon: $y) isa has-type;
-}
-
-$y isa pokemon;
-(ancestor: $x, descendent: $y) isa evolution;
-</code></pre>
-
-<p>would result in the expanded Graql queries:</p>
-
-<pre><code class="language-graql">insert $x0 isa pokemon has description "Pikachu";
-    
-    $y0 isa pokemon-type ;
-        $y0 has description "Electric" ;
-        (pokemon-with-type: $x0, type-of-pokemon: $y0) isa has-type;
-    $y1 isa pokemon-type ;
-        $y1 has description "Mouse" ;
-        (pokemon-with-type: $x0, type-of-pokemon: $y1) isa has-type;
-
-    $y2 isa pokemon;
-    (ancestor: $x0, descendent: $y2) isa evolution; 
-</code></pre>
-
-<pre><code class="language-graql">insert $x1 isa pokemon has description "Raichu";
-    
-    $y3 isa pokemon-type ;
-        $y3 has description "Electric" ;
-        (pokemon-with-type: $x1, type-of-pokemon: $y3) isa has-type;
-
-    $y4 isa pokemon;
-    (ancestor: $x1, descendent: $y4) isa evolution; 
-</code></pre>
-
-<h2 id="usage-in-java">Usage in Java</h2>
-
-<p>For the moment, Graql templating can only be used through the Java API:</p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">String</span> <span class="n">template</span> <span class="o">=</span> <span class="s">"insert "</span> <span class="o">+</span>
-                <span class="s">"for (whale in whales ) do {"</span> <span class="o">+</span>
-                <span class="s">"   $x isa whale has name &lt;whale&gt;;"</span> <span class="o">+</span>
-                <span class="s">"}"</span><span class="o">;</span>
-
-<span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;</span> <span class="n">data</span> <span class="o">=</span> <span class="n">Collections</span><span class="o">.</span><span class="na">singletonMap</span><span class="o">(</span><span class="s">"whales"</span><span class="o">,</span> <span class="n">Arrays</span><span class="o">.</span><span class="na">asList</span><span class="o">(</span><span class="s">"shamu"</span><span class="o">,</span> <span class="s">"dory"</span><span class="o">));</span>
-
-<span class="n">Graql</span><span class="o">.</span><span class="na">parseTemplate</span><span class="o">(</span><span class="n">template</span><span class="o">,</span> <span class="n">data</span><span class="o">);</span>
-</code></pre>
-</div>
-
-<p>The data argument to the <code class="highlighter-rouge">parseTemplate()</code> function is a <code class="highlighter-rouge">Map&lt;String, Object&gt;</code>, where the <code class="highlighter-rouge">Object</code> is one of a <code class="highlighter-rouge">List&lt;Object&gt;</code>, <code class="highlighter-rouge">String</code>, <code class="highlighter-rouge">Double</code>, <code class="highlighter-rouge">Integer</code>, <code class="highlighter-rouge">Boolean</code> or another nested <code class="highlighter-rouge">Map&lt;String, Object</code>.</p>
 
 
 
     <div class="tags">
-        
-        <b>Tags: </b>
-        
-        
-        
-        <a href="/pages/tag_graql.html" class="btn btn-default navbar-btn cursorNorm" role="button">graql</a>
-        
-        
         
     </div>
 
@@ -957,7 +973,7 @@ $y isa pokemon;
         <br>
         <p>© 2016 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2016 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> November 4, 2016<br/> Site last generated: Dec 5, 2016 <br />
+         Site last generated: Dec 5, 2016 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">

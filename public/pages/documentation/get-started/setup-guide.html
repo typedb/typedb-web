@@ -4,7 +4,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="This document will teach you how to set up a Grakn environment, start it up and load a simple example.">
-<meta name="keywords" content="getting-startedgraql,  setup, getting started, Grakn Labs, grakn, graql, grakn.ai, Mindmaps Research, Mindmaps Research Ltd, MindmapsDB, mindmaps, mindmaps graph, mindmaps.io, knowledge graph, distributed knowledge graph, development platform, developer tool, data platform, programming langauge, query langauge, database, semantic database, distributed semantic database, distributed database, graph database, semantic search, data exploration, recommendation system, knowledge management, knowledge engineering, real-time analytics, advanced analytics, reasoning engine, inference engine, expert systems, semantic applications, research engines, data management, business intelligence, big data, semantic web, semantic data, knowledge representation, automated reasoning, semantic network, knowledge ontology, semantic graph, ontology engineering, graph based knowledge representation, artificial intelligence,">
+<meta name="keywords" content="getting-startedgraql,  setup, getting started, GRAKN.AI, Grakn Labs, grakn, graql, grakn.ai, Mindmaps Research, Mindmaps Research Ltd, MindmapsDB, mindmaps, mindmaps graph, mindmaps.io, knowledge graph, distributed knowledge graph, development platform, developer tool, data platform, programming langauge, query langauge, database, semantic database, distributed semantic database, distributed database, graph database, semantic search, data exploration, recommendation system, knowledge management, knowledge engineering, real-time analytics, advanced analytics, reasoning engine, inference engine, expert systems, semantic applications, research engines, data management, business intelligence, big data, semantic web, semantic data, knowledge representation, automated reasoning, semantic network, knowledge ontology, semantic graph, ontology engineering, graph based knowledge representation, artificial intelligence,">
 <title>GRAKN.AI | Grakn Setup Guide</title>
 <link rel="stylesheet" href="/pages/css/syntax.css">
 
@@ -359,6 +359,42 @@
         
     
     <li>
+        <a href="#">Graql Analytics</a>
+        <ul>
+            
+            
+            
+            <li><a href="/pages/documentation/graql-analytics/analytics-overview.html">Graql Analytics Overview</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="/pages/documentation/graql-analytics/analytics-statistics.html">Analytics Statistics</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="/pages/documentation/graql-analytics/analytics-degrees.html">Analytics Degrees</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="/pages/documentation/graql-analytics/analytics-connected-components.html">Connected Components</a></li>
+            
+            
+            
+            
+        </ul>
+        
+        
+    
+    <li>
         <a href="#">Migrating to Grakn</a>
         <ul>
             
@@ -607,7 +643,7 @@ If you intend to build Grakn, you will also need Maven 3.</div>
 
 <p>Unzip the download into your preferred location and run the following in the terminal:</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="nb">cd</span> <span class="o">[</span>your Grakn install directory]
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="nb">cd</span> <span class="o">[</span>your Grakn install directory]
 bin/grakn.sh start
 </code></pre>
 </div>
@@ -622,7 +658,7 @@ To stop Grakn, run <code class="highlighter-rouge">grakn.sh stop</code>. </div>
 
 <p>Graql is our knowledge-oriented query language, which allows you to interface with Grakn. We will start Graql and enter a few lines to check that all is working as it should.</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>bin/graql.sh
+<div class="highlighter-rouge"><pre class="highlight"><code>bin/graql.sh
 </code></pre>
 </div>
 
@@ -636,10 +672,11 @@ insert isa person, has name "Tim";
 commit
 </code></pre>
 
-<pre><code class="language-graql">match $x isa person, has name $n; select $x, $n;
+<div class="highlighter-rouge"><pre class="highlight"><code>match $x isa person, has name $n; select $x, $n;
 $x id "ENTITY-person-89b823a0-606d-434d-a533-1e172b90c7bc" isa person; $n value "Topsy" isa name;
 $x id "ENTITY-person-afd29319-ff33-4b0c-b7e3-63d04ac81dcf" isa person; $n value "Tim" isa name;
 </code></pre>
+</div>
 
 <p>If you see the above output then congratulations! You have set up Grakn.</p>
 
@@ -702,7 +739,7 @@ $x id "ENTITY-person-afd29319-ff33-4b0c-b7e3-63d04ac81dcf" isa person; $n value 
         <br>
         <p>© 2016 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2016 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> August 10, 2016<br/> Site last generated: Nov 27, 2016 <br />
+        <span>Page last updated:</span> August 10, 2016<br/> Site last generated: Dec 5, 2016 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">

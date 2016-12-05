@@ -4,7 +4,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="Demonstrates how to create an advanced schema for Grakn.">
-<meta name="keywords" content="graph-apijava,  schema, Grakn Labs, grakn, graql, grakn.ai, Mindmaps Research, Mindmaps Research Ltd, MindmapsDB, mindmaps, mindmaps graph, mindmaps.io, knowledge graph, distributed knowledge graph, development platform, developer tool, data platform, programming langauge, query langauge, database, semantic database, distributed semantic database, distributed database, graph database, semantic search, data exploration, recommendation system, knowledge management, knowledge engineering, real-time analytics, advanced analytics, reasoning engine, inference engine, expert systems, semantic applications, research engines, data management, business intelligence, big data, semantic web, semantic data, knowledge representation, automated reasoning, semantic network, knowledge ontology, semantic graph, ontology engineering, graph based knowledge representation, artificial intelligence,">
+<meta name="keywords" content="graph-apijavaadvanced-grakn,  schema, GRAKN.AI, Grakn Labs, grakn, graql, grakn.ai, Mindmaps Research, Mindmaps Research Ltd, MindmapsDB, mindmaps, mindmaps graph, mindmaps.io, knowledge graph, distributed knowledge graph, development platform, developer tool, data platform, programming langauge, query langauge, database, semantic database, distributed semantic database, distributed database, graph database, semantic search, data exploration, recommendation system, knowledge management, knowledge engineering, real-time analytics, advanced analytics, reasoning engine, inference engine, expert systems, semantic applications, research engines, data management, business intelligence, big data, semantic web, semantic data, knowledge representation, automated reasoning, semantic network, knowledge ontology, semantic graph, ontology engineering, graph based knowledge representation, artificial intelligence,">
 <title>GRAKN.AI | Defining an Advanced Schema</title>
 <link rel="stylesheet" href="/pages/css/syntax.css">
 
@@ -359,6 +359,42 @@
         
     
     <li>
+        <a href="#">Graql Analytics</a>
+        <ul>
+            
+            
+            
+            <li><a href="/pages/documentation/graql-analytics/analytics-overview.html">Graql Analytics Overview</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="/pages/documentation/graql-analytics/analytics-statistics.html">Analytics Statistics</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="/pages/documentation/graql-analytics/analytics-degrees.html">Analytics Degrees</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="/pages/documentation/graql-analytics/analytics-connected-components.html">Connected Components</a></li>
+            
+            
+            
+            
+        </ul>
+        
+        
+    
+    <li>
         <a href="#">Migrating to Grakn</a>
         <ul>
             
@@ -604,7 +640,7 @@ $('#toc').on('click', 'a', function() {
 
 <p>Create the Entity types:</p>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">EntityType</span> <span class="n">person</span> <span class="o">=</span> <span class="n">graknGraph</span><span class="o">.</span><span class="na">putEntityType</span><span class="o">(</span><span class="s">"Person"</span><span class="o">);</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">EntityType</span> <span class="n">person</span> <span class="o">=</span> <span class="n">graknGraph</span><span class="o">.</span><span class="na">putEntityType</span><span class="o">(</span><span class="s">"Person"</span><span class="o">);</span>
 <span class="n">EntityType</span> <span class="n">movie</span> <span class="o">=</span> <span class="n">graknGraph</span><span class="o">.</span><span class="na">putEntityType</span><span class="o">(</span><span class="s">"Movie"</span><span class="o">);</span>
 <span class="n">EntityType</span> <span class="n">tvShow</span> <span class="o">=</span> <span class="n">graknGraph</span><span class="o">.</span><span class="na">putEntityType</span><span class="o">(</span><span class="s">"TV Show"</span><span class="o">);</span>
 </code></pre>
@@ -612,7 +648,7 @@ $('#toc').on('click', 'a', function() {
 
 <p>Create the roles and relation types:</p>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">RoleType</span> <span class="n">actorInMovie</span> <span class="o">=</span> <span class="n">graknGraph</span><span class="o">.</span><span class="na">putRoleType</span><span class="o">(</span><span class="s">"Actor In Movie"</span><span class="o">);</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">RoleType</span> <span class="n">actorInMovie</span> <span class="o">=</span> <span class="n">graknGraph</span><span class="o">.</span><span class="na">putRoleType</span><span class="o">(</span><span class="s">"Actor In Movie"</span><span class="o">);</span>
 <span class="n">RoleType</span> <span class="n">movieCastIn</span> <span class="o">=</span> <span class="n">graknGraph</span><span class="o">.</span><span class="na">putRoleType</span><span class="o">(</span><span class="s">"Movie Cast In"</span><span class="o">);</span>
 <span class="n">RelationType</span> <span class="n">starsInMovie</span> <span class="o">=</span> <span class="n">graknGraph</span><span class="o">.</span><span class="na">putRelationType</span><span class="o">(</span><span class="s">"Stars In Movie"</span><span class="o">).</span><span class="na">hasRole</span><span class="o">(</span><span class="n">actorInMovie</span><span class="o">).</span><span class="na">hasRole</span><span class="o">(</span><span class="n">movieCastIn</span><span class="o">);</span>
 
@@ -624,7 +660,7 @@ $('#toc').on('click', 'a', function() {
 
 <p>Allow the roles to be played:</p>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">person</span><span class="o">.</span><span class="na">playsRole</span><span class="o">(</span><span class="n">actorInMovie</span><span class="o">).</span><span class="na">playsRole</span><span class="o">(</span><span class="n">actorInTvShow</span><span class="o">);</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">person</span><span class="o">.</span><span class="na">playsRole</span><span class="o">(</span><span class="n">actorInMovie</span><span class="o">).</span><span class="na">playsRole</span><span class="o">(</span><span class="n">actorInTvShow</span><span class="o">);</span>
 <span class="n">movie</span><span class="o">.</span><span class="na">playsRole</span><span class="o">(</span><span class="n">movieCastIn</span><span class="o">);</span>
 <span class="n">tvShow</span><span class="o">.</span><span class="na">playsRole</span><span class="o">(</span><span class="n">tvShowCastIn</span><span class="o">);</span>
 </code></pre>
@@ -639,7 +675,7 @@ We can create a deep object-orientated schema where the rules of the super-class
 
 <p>Films and TV shows are similar, so we should have a super-class <code class="highlighter-rouge">Production</code> to represent both:</p>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">EntityType</span> <span class="n">production</span> <span class="o">=</span> <span class="n">graknGraph</span><span class="o">.</span><span class="na">putEntityType</span><span class="o">(</span><span class="s">"Production"</span><span class="o">);</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">EntityType</span> <span class="n">production</span> <span class="o">=</span> <span class="n">graknGraph</span><span class="o">.</span><span class="na">putEntityType</span><span class="o">(</span><span class="s">"Production"</span><span class="o">);</span>
 <span class="n">movie</span><span class="o">.</span><span class="na">superType</span><span class="o">(</span><span class="n">production</span><span class="o">);</span>
 <span class="n">tvShow</span><span class="o">.</span><span class="na">superType</span><span class="o">(</span><span class="n">production</span><span class="o">);</span>
 </code></pre>
@@ -647,7 +683,7 @@ We can create a deep object-orientated schema where the rules of the super-class
 
 <p>Actors should be able to star in any type of <code class="highlighter-rouge">Production</code>, be it a film or a TV Show:</p>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">RoleType</span> <span class="n">actor</span> <span class="o">=</span> <span class="n">graknGraph</span><span class="o">.</span><span class="na">putRoleType</span><span class="o">(</span><span class="s">"Actor"</span><span class="o">);</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">RoleType</span> <span class="n">actor</span> <span class="o">=</span> <span class="n">graknGraph</span><span class="o">.</span><span class="na">putRoleType</span><span class="o">(</span><span class="s">"Actor"</span><span class="o">);</span>
 <span class="n">RoleType</span> <span class="n">productionCastIn</span> <span class="o">=</span> <span class="n">graknGraph</span><span class="o">.</span><span class="na">putRoleType</span><span class="o">(</span><span class="s">"Production Cast In"</span><span class="o">);</span>
 <span class="n">RelationType</span> <span class="n">starsIn</span> <span class="o">=</span> <span class="n">graknGraph</span><span class="o">.</span><span class="na">putRelationType</span><span class="o">(</span><span class="s">"Stars In"</span><span class="o">).</span><span class="na">hasRole</span><span class="o">(</span><span class="n">actor</span><span class="o">).</span><span class="na">hasRole</span><span class="o">(</span><span class="n">productionCastIn</span><span class="o">);</span>
 </code></pre>
@@ -655,7 +691,7 @@ We can create a deep object-orientated schema where the rules of the super-class
 
 <p>Allow the role to be played:</p>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">person</span><span class="o">.</span><span class="na">playsRole</span><span class="o">(</span><span class="n">actor</span><span class="o">);</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">person</span><span class="o">.</span><span class="na">playsRole</span><span class="o">(</span><span class="n">actor</span><span class="o">);</span>
 <span class="n">production</span><span class="o">.</span><span class="na">playsRole</span><span class="o">(</span><span class="n">productionCastIn</span><span class="o">);</span>
 </code></pre>
 </div>
@@ -664,7 +700,7 @@ We can create a deep object-orientated schema where the rules of the super-class
 This also makes defining the schema shorter and gives more opportunities for graph enhancements.
 For example, we can start to differentiate between male and female actors without impacting the schema significantly:</p>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">EntityType</span> <span class="n">man</span> <span class="o">=</span> <span class="n">graknGraph</span><span class="o">.</span><span class="na">putEntityType</span><span class="o">(</span><span class="s">"Man"</span><span class="o">).</span><span class="na">superType</span><span class="o">(</span><span class="n">person</span><span class="o">);</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">EntityType</span> <span class="n">man</span> <span class="o">=</span> <span class="n">graknGraph</span><span class="o">.</span><span class="na">putEntityType</span><span class="o">(</span><span class="s">"Man"</span><span class="o">).</span><span class="na">superType</span><span class="o">(</span><span class="n">person</span><span class="o">);</span>
 <span class="n">EntityType</span> <span class="n">woman</span> <span class="o">=</span> <span class="n">graknGraph</span><span class="o">.</span><span class="na">putEntityType</span><span class="o">(</span><span class="s">"Woman"</span><span class="o">).</span><span class="na">superType</span><span class="o">();</span>
 </code></pre>
 </div>
@@ -702,13 +738,13 @@ R2: anc(X, Y) :- parent(X, Z), anc(Z, Y)
 <h3 id="rule-java-api">Rule Java API</h3>
 <p>All rule instances are of type inference-rule which can be retrieved by:</p>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">RuleType</span> <span class="n">inferenceRule</span> <span class="o">=</span> <span class="n">graknGraph</span><span class="o">.</span><span class="na">getMetaRuleInference</span><span class="o">();</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">RuleType</span> <span class="n">inferenceRule</span> <span class="o">=</span> <span class="n">graknGraph</span><span class="o">.</span><span class="na">getMetaRuleInference</span><span class="o">();</span>
 </code></pre>
 </div>
 
 <p>Rule instances can be added to the graph both through the Graph API as well as through Graql. Considering the ancestor example, with the use of the Graph API we can add the rules in the following way:</p>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">Pattern</span> <span class="n">r1Body</span> <span class="o">=</span> <span class="n">var</span><span class="o">().</span><span class="na">rel</span><span class="o">(</span><span class="s">"parent"</span><span class="o">,</span> <span class="s">"x"</span><span class="o">).</span><span class="na">rel</span><span class="o">(</span><span class="s">"child"</span><span class="o">,</span> <span class="s">"y"</span><span class="o">).</span><span class="na">isa</span><span class="o">(</span><span class="s">"Parent"</span><span class="o">);</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">Pattern</span> <span class="n">r1Body</span> <span class="o">=</span> <span class="n">var</span><span class="o">().</span><span class="na">rel</span><span class="o">(</span><span class="s">"parent"</span><span class="o">,</span> <span class="s">"x"</span><span class="o">).</span><span class="na">rel</span><span class="o">(</span><span class="s">"child"</span><span class="o">,</span> <span class="s">"y"</span><span class="o">).</span><span class="na">isa</span><span class="o">(</span><span class="s">"Parent"</span><span class="o">);</span>
 <span class="n">Pattern</span> <span class="n">r1Head</span> <span class="o">=</span> <span class="n">var</span><span class="o">().</span><span class="na">rel</span><span class="o">(</span><span class="s">"ancestor"</span><span class="o">,</span> <span class="s">"x"</span><span class="o">).</span><span class="na">rel</span><span class="o">(</span><span class="s">"descendant"</span><span class="o">,</span> <span class="s">"y"</span><span class="o">).</span><span class="na">isa</span><span class="o">(</span><span class="s">"Ancestor"</span><span class="o">);</span>
 
 <span class="n">Pattern</span> <span class="n">r2Body</span> <span class="o">=</span> <span class="n">and</span><span class="o">(</span>
@@ -762,6 +798,10 @@ rhs {
         
         
         
+        <a href="/pages/tag_advanced-grakn.html" class="btn btn-default navbar-btn cursorNorm" role="button">advanced-grakn</a>
+        
+        
+        
     </div>
 
     
@@ -789,7 +829,7 @@ rhs {
         <br>
         <p>© 2016 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2016 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> August 23, 2016<br/> Site last generated: Nov 27, 2016 <br />
+        <span>Page last updated:</span> August 23, 2016<br/> Site last generated: Dec 5, 2016 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">

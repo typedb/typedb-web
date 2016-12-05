@@ -4,7 +4,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="Graql Compute Queries">
-<meta name="keywords" content="graql,  graql, compute, match, Grakn Labs, grakn, graql, grakn.ai, Mindmaps Research, Mindmaps Research Ltd, MindmapsDB, mindmaps, mindmaps graph, mindmaps.io, knowledge graph, distributed knowledge graph, development platform, developer tool, data platform, programming langauge, query langauge, database, semantic database, distributed semantic database, distributed database, graph database, semantic search, data exploration, recommendation system, knowledge management, knowledge engineering, real-time analytics, advanced analytics, reasoning engine, inference engine, expert systems, semantic applications, research engines, data management, business intelligence, big data, semantic web, semantic data, knowledge representation, automated reasoning, semantic network, knowledge ontology, semantic graph, ontology engineering, graph based knowledge representation, artificial intelligence,">
+<meta name="keywords" content="graql,  graql, compute, match, GRAKN.AI, Grakn Labs, grakn, graql, grakn.ai, Mindmaps Research, Mindmaps Research Ltd, MindmapsDB, mindmaps, mindmaps graph, mindmaps.io, knowledge graph, distributed knowledge graph, development platform, developer tool, data platform, programming langauge, query langauge, database, semantic database, distributed semantic database, distributed database, graph database, semantic search, data exploration, recommendation system, knowledge management, knowledge engineering, real-time analytics, advanced analytics, reasoning engine, inference engine, expert systems, semantic applications, research engines, data management, business intelligence, big data, semantic web, semantic data, knowledge representation, automated reasoning, semantic network, knowledge ontology, semantic graph, ontology engineering, graph based knowledge representation, artificial intelligence,">
 <title>GRAKN.AI | Compute Queries</title>
 <link rel="stylesheet" href="/pages/css/syntax.css">
 
@@ -359,6 +359,42 @@
         
     
     <li>
+        <a href="#">Graql Analytics</a>
+        <ul>
+            
+            
+            
+            <li><a href="/pages/documentation/graql-analytics/analytics-overview.html">Graql Analytics Overview</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="/pages/documentation/graql-analytics/analytics-statistics.html">Analytics Statistics</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="/pages/documentation/graql-analytics/analytics-degrees.html">Analytics Degrees</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="/pages/documentation/graql-analytics/analytics-connected-components.html">Connected Components</a></li>
+            
+            
+            
+            
+        </ul>
+        
+        
+    
+    <li>
         <a href="#">Migrating to Grakn</a>
         <ul>
             
@@ -594,26 +630,34 @@ $('#toc').on('click', 'a', function() {
 
     
 
-  <p>A compute query executes a Pregel algorithm to determine information about the graph in parallel. The general syntax is:</p>
+  <p>A compute query executes a <a href="https://www.quora.com/What-are-the-main-concepts-behind-Googles-Pregel">Pregel algorithm</a> to determine information about the graph in parallel. Called within the Graql shell, the general syntax is:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>compute algorithm in subgraph;
+<div class="highlighter-rouge"><pre class="highlight"><code>compute [algorithm] in [subgraph];
 </code></pre>
 </div>
 
-<p>where algorithm can be any of the <a href="#available-algorithms">available</a> options. Subgraph is a comma separated list of
-type IDs that defines the instances that will be visited by the Pregel algorithm. For example,</p>
+<ul>
+  <li><code class="highlighter-rouge">algorithm</code> can be any of the <a href="#available-statistics-algorithms">available statistics algorithms</a>.</li>
+  <li><code class="highlighter-rouge">subgraph</code> is a comma separated list of type IDs to be visited by the Pregel algorithm.</li>
+</ul>
+
+<h2 id="subgraph">Subgraph</h2>
+
+<p>The subgraph syntax is provided to control the types that a chosen <a href="#available-algorithms">algorithm</a> operates upon. By default, the compute algorithms include instances of every type in the calculation. Using the <code class="highlighter-rouge">in</code> keyword followed by a comma separated list of types will restrict the calculations to instances of those types only.</p>
+
+<p>For example,</p>
 
 <div class="highlighter-rouge"><pre class="highlight"><code>compute count in person;
 </code></pre>
 </div>
 
-<p>will return the number of instances of the concept type person.</p>
+<p>will return just the number of instances of the concept type person.</p>
 
-<h2 id="available-algorithms">Available Algorithms</h2>
+<h2 id="available-statistics-algorithms">Available Statistics Algorithms</h2>
 
-<p>The available algorithms currently perform simple tasks and the idea is to add to these as demand dictates. Please get
+<p>The following algorithms are available to perform simple statistics compuations, and we aim to add to these as demand dictates. Please get
 in touch on our <a href="https://discuss.grakn.ai/">discussion</a> page to request any features that are of particular interest
-to you. A summary of the algorithms is given in the table below.</p>
+to you. A summary of the statistics algorithms is given in the table below.</p>
 
 <table>
   <thead>
@@ -628,24 +672,20 @@ to you. A summary of the algorithms is given in the table below.</p>
       <td>Count the number of instances.</td>
     </tr>
     <tr>
-      <td><a href="#degrees"><code class="highlighter-rouge">degrees</code></a></td>
-      <td>Compute the degree of the instances.</td>
-    </tr>
-    <tr>
-      <td><a href="#degrees-and-persist"><code class="highlighter-rouge">degreesAndPersist</code></a></td>
-      <td>Compute the degree of the instances and persist this in the graph.</td>
+      <td><a href="#maximum"><code class="highlighter-rouge">max</code></a></td>
+      <td>Compute the maximum value of a resource.</td>
     </tr>
     <tr>
       <td><a href="#mean"><code class="highlighter-rouge">mean</code></a></td>
       <td>Compute the mean value of a resource.</td>
     </tr>
     <tr>
-      <td><a href="#minimum"><code class="highlighter-rouge">min</code></a></td>
-      <td>Compute the minimum value of a resource.</td>
+      <td><a href="#mean"><code class="highlighter-rouge">median</code></a></td>
+      <td>Compute the median value of a resource.</td>
     </tr>
     <tr>
-      <td><a href="#maximum"><code class="highlighter-rouge">max</code></a></td>
-      <td>Compute the maximum value of a resource.</td>
+      <td><a href="#minimum"><code class="highlighter-rouge">min</code></a></td>
+      <td>Compute the minimum value of a resource.</td>
     </tr>
     <tr>
       <td><a href="#standard-deviation"><code class="highlighter-rouge">std</code></a></td>
@@ -663,57 +703,68 @@ to you. A summary of the algorithms is given in the table below.</p>
 <h3 id="count">Count</h3>
 
 <p>The default behaviour of count is to return a single value that gives the number of instances present in the graph. It
-is possible to also count subsets of the instances in the graph using the <a href="#subgraph">subgraph</a> syntax.</p>
+is possible to also count subsets of the instances in the graph using the <a href="#subgraph">subgraph</a> syntax, as described above.</p>
 
-<h3 id="degrees">Degrees</h3>
-
-<p>The <code class="highlighter-rouge">degrees</code> algorithm computes how many edges there are attached to a given instances in the graph. A map is returned
-that displays an instance ID and its degree.</p>
-
-<h3 id="degrees-and-persist">Degrees and Persist</h3>
-
-<p>This algorithm starts by calling <a href="#degrees"><code class="highlighter-rouge">degrees</code></a>. Instead of returning the map of results it persists each degree
-to its respective instance in the graph using a resource.</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>compute count in person;
+</code></pre>
+</div>
 
 <h3 id="mean">Mean</h3>
 
 <p>Computes the mean value of a given resource type. This algorithm requires the <a href="#subgraph">subgraph</a> syntax to be used.
 For example,</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>compute mean in age;
+<div class="highlighter-rouge"><pre class="highlight"><code>compute mean of age in person;
 </code></pre>
 </div>
 
 <p>would compute the mean of the value persisted in instances of the resource type age. It is also possible to provide a
 set of resource types.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>compute mean in user-rating, expert-rating;
+<div class="highlighter-rouge"><pre class="highlight"><code>compute mean of user-rating, expert-rating in movie;
 </code></pre>
 </div>
 
 <p>which would compute the mean of the union of the instances of the two resource types.</p>
 
+<h3 id="median">Median</h3>
+
+<p>Computes the median value of a given resource type. This algorithm requires the <a href="#subgraph">subgraph</a> syntax to be used.
+For example,</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>compute median of age in person;
+</code></pre>
+</div>
+
+<p>would compute the median of the value persisted in instances of the resource type age.</p>
+
 <h3 id="minimum">Minimum</h3>
 
 <p>Computes the minimum value of a given resource type, similar to <a href="#mean">mean</a>.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>compute min of age in person;
+</code></pre>
+</div>
 
 <h3 id="maximum">Maximum</h3>
 
 <p>Computes the maximum value of a given resource type, similar to <a href="#mean">mean</a>.</p>
 
+<div class="highlighter-rouge"><pre class="highlight"><code>compute max of age in person;
+</code></pre>
+</div>
+
 <h3 id="standard-deviation">Standard Deviation</h3>
 
 <p>Computes the standard deviation of a given resource type, similar to <a href="#mean">mean</a>.</p>
 
+<div class="highlighter-rouge"><pre class="highlight"><code>compute std of age in person;
+</code></pre>
+</div>
+
 <h3 id="sum">Sum</h3>
 
 <p>Computes the sum of a given resource type, similar to <a href="#mean">mean</a>.</p>
-
-<h2 id="subgraph">Subgraph</h2>
-
-<p>The subgraph syntax is provided to more accurately control the data that a chosen <a href="#available-algorithms">algorithm</a> is
-operating on. The algorithms, by default, include every instance in the calculation. Using the <code class="highlighter-rouge">in</code> keyword followed by
-a comma separated list of type IDs will restrict the calculations to instances of those types only.</p>
 
 
 
@@ -754,7 +805,7 @@ a comma separated list of type IDs will restrict the calculations to instances o
         <br>
         <p>© 2016 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2016 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> September 28, 2016<br/> Site last generated: Nov 27, 2016 <br />
+        <span>Page last updated:</span> September 28, 2016<br/> Site last generated: Dec 5, 2016 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">

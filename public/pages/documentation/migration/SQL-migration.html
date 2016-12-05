@@ -4,7 +4,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="This document will teach you how to migrate SQL data into Grakn.">
-<meta name="keywords" content="migration,  setup, getting started, Grakn Labs, grakn, graql, grakn.ai, Mindmaps Research, Mindmaps Research Ltd, MindmapsDB, mindmaps, mindmaps graph, mindmaps.io, knowledge graph, distributed knowledge graph, development platform, developer tool, data platform, programming langauge, query langauge, database, semantic database, distributed semantic database, distributed database, graph database, semantic search, data exploration, recommendation system, knowledge management, knowledge engineering, real-time analytics, advanced analytics, reasoning engine, inference engine, expert systems, semantic applications, research engines, data management, business intelligence, big data, semantic web, semantic data, knowledge representation, automated reasoning, semantic network, knowledge ontology, semantic graph, ontology engineering, graph based knowledge representation, artificial intelligence,">
+<meta name="keywords" content="migration,  setup, getting started, GRAKN.AI, Grakn Labs, grakn, graql, grakn.ai, Mindmaps Research, Mindmaps Research Ltd, MindmapsDB, mindmaps, mindmaps graph, mindmaps.io, knowledge graph, distributed knowledge graph, development platform, developer tool, data platform, programming langauge, query langauge, database, semantic database, distributed semantic database, distributed database, graph database, semantic search, data exploration, recommendation system, knowledge management, knowledge engineering, real-time analytics, advanced analytics, reasoning engine, inference engine, expert systems, semantic applications, research engines, data management, business intelligence, big data, semantic web, semantic data, knowledge representation, automated reasoning, semantic network, knowledge ontology, semantic graph, ontology engineering, graph based knowledge representation, artificial intelligence,">
 <title>GRAKN.AI | SQL Migration to Grakn</title>
 <link rel="stylesheet" href="/pages/css/syntax.css">
 
@@ -359,6 +359,42 @@
         
     
     <li>
+        <a href="#">Graql Analytics</a>
+        <ul>
+            
+            
+            
+            <li><a href="/pages/documentation/graql-analytics/analytics-overview.html">Graql Analytics Overview</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="/pages/documentation/graql-analytics/analytics-statistics.html">Analytics Statistics</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="/pages/documentation/graql-analytics/analytics-degrees.html">Analytics Degrees</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="/pages/documentation/graql-analytics/analytics-connected-components.html">Connected Components</a></li>
+            
+            
+            
+            
+        </ul>
+        
+        
+    
+    <li>
         <a href="#">Migrating to Grakn</a>
         <ul>
             
@@ -600,7 +636,7 @@ $('#toc').on('click', 'a', function() {
 <h2 id="migration-shell-script-for-sql">Migration Shell Script for SQL</h2>
 <p>The migration shell script can be found in <code class="highlighter-rouge">/bin</code> directory of your Grakn environment. Usage is specific to the type of migration being performed. For SQL:</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>usage: migration.sh sql -template &lt;arg&gt; -driver &lt;arg&gt; -user &lt;arg&gt; -pass &lt;arg&gt; -location &lt;arg&gt; <span class="o">[</span>-help] <span class="o">[</span>-no] <span class="o">[</span>-batch &lt;arg&gt;] <span class="o">[</span>-keyspace &lt;arg&gt;] <span class="o">[</span>-uri &lt;arg&gt;]
+<div class="highlighter-rouge"><pre class="highlight"><code>usage: migration.sh sql -template &lt;arg&gt; -driver &lt;arg&gt; -user &lt;arg&gt; -pass &lt;arg&gt; -location &lt;arg&gt; <span class="o">[</span>-help] <span class="o">[</span>-no] <span class="o">[</span>-batch &lt;arg&gt;] <span class="o">[</span>-keyspace &lt;arg&gt;] <span class="o">[</span>-uri &lt;arg&gt;]
  -driver &lt;arg&gt;         JDBC driver
  -h,--help             print usage message
  -k,--keyspace &lt;arg&gt;   keyspace to use
@@ -620,7 +656,7 @@ $('#toc').on('click', 'a', function() {
 
 <p>Let’s say you have an SQL table with the following schema:</p>
 
-<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">pet</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">pet</span>
 <span class="p">(</span>
   <span class="n">name</span>    <span class="n">VARCHAR</span><span class="p">(</span><span class="mi">20</span><span class="p">),</span>
   <span class="k">owner</span>   <span class="n">VARCHAR</span><span class="p">(</span><span class="mi">20</span><span class="p">),</span>
@@ -832,7 +868,7 @@ dataMigrator
         <br>
         <p>© 2016 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2016 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> November 25, 2016<br/> Site last generated: Nov 27, 2016 <br />
+        <span>Page last updated:</span> November 25, 2016<br/> Site last generated: Dec 5, 2016 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">

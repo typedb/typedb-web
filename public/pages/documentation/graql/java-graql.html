@@ -4,7 +4,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="How to construct and execute Graql queries programmatically in Java.">
-<meta name="keywords" content="graqljava,  graql, java, Grakn Labs, grakn, graql, grakn.ai, Mindmaps Research, Mindmaps Research Ltd, MindmapsDB, mindmaps, mindmaps graph, mindmaps.io, knowledge graph, distributed knowledge graph, development platform, developer tool, data platform, programming langauge, query langauge, database, semantic database, distributed semantic database, distributed database, graph database, semantic search, data exploration, recommendation system, knowledge management, knowledge engineering, real-time analytics, advanced analytics, reasoning engine, inference engine, expert systems, semantic applications, research engines, data management, business intelligence, big data, semantic web, semantic data, knowledge representation, automated reasoning, semantic network, knowledge ontology, semantic graph, ontology engineering, graph based knowledge representation, artificial intelligence,">
+<meta name="keywords" content="graqljava,  graql, java, GRAKN.AI, Grakn Labs, grakn, graql, grakn.ai, Mindmaps Research, Mindmaps Research Ltd, MindmapsDB, mindmaps, mindmaps graph, mindmaps.io, knowledge graph, distributed knowledge graph, development platform, developer tool, data platform, programming langauge, query langauge, database, semantic database, distributed semantic database, distributed database, graph database, semantic search, data exploration, recommendation system, knowledge management, knowledge engineering, real-time analytics, advanced analytics, reasoning engine, inference engine, expert systems, semantic applications, research engines, data management, business intelligence, big data, semantic web, semantic data, knowledge representation, automated reasoning, semantic network, knowledge ontology, semantic graph, ontology engineering, graph based knowledge representation, artificial intelligence,">
 <title>GRAKN.AI | Java Graql</title>
 <link rel="stylesheet" href="/pages/css/syntax.css">
 
@@ -359,6 +359,42 @@
         
     
     <li>
+        <a href="#">Graql Analytics</a>
+        <ul>
+            
+            
+            
+            <li><a href="/pages/documentation/graql-analytics/analytics-overview.html">Graql Analytics Overview</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="/pages/documentation/graql-analytics/analytics-statistics.html">Analytics Statistics</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="/pages/documentation/graql-analytics/analytics-degrees.html">Analytics Degrees</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="/pages/documentation/graql-analytics/analytics-connected-components.html">Connected Components</a></li>
+            
+            
+            
+            
+        </ul>
+        
+        
+    
+    <li>
         <a href="#">Migrating to Grakn</a>
         <ul>
             
@@ -598,10 +634,10 @@ $('#toc').on('click', 'a', function() {
 
 <p>To use the API, add the following to your <code class="highlighter-rouge">pom.xml</code>:</p>
 
-<div class="language-xml highlighter-rouge"><pre class="highlight"><code><span class="nt">&lt;dependency&gt;</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="nt">&lt;dependency&gt;</span>
   <span class="nt">&lt;groupId&gt;</span>ai.grakn<span class="nt">&lt;/groupId&gt;</span>
   <span class="nt">&lt;artifactId&gt;</span>grakn-graql<span class="nt">&lt;/artifactId&gt;</span>
-  <span class="nt">&lt;version&gt;</span>0.7.0<span class="nt">&lt;/version&gt;</span>
+  <span class="nt">&lt;version&gt;</span>0.8.0<span class="nt">&lt;/version&gt;</span>
 <span class="nt">&lt;/dependency&gt;</span>
 </code></pre>
 </div>
@@ -612,7 +648,7 @@ $('#toc').on('click', 'a', function() {
 
 <p><code class="highlighter-rouge">Graql</code> contains several useful static methods such as <code class="highlighter-rouge">var</code> and <code class="highlighter-rouge">eq</code>, so it’s recommended that you use a static import:</p>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">static</span> <span class="n">ai</span><span class="o">.</span><span class="na">grakn</span><span class="o">.</span><span class="na">graql</span><span class="o">.</span><span class="na">Graql</span><span class="o">.*;</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">static</span> <span class="n">ai</span><span class="o">.</span><span class="na">grakn</span><span class="o">.</span><span class="na">graql</span><span class="o">.</span><span class="na">Graql</span><span class="o">.*;</span>
 </code></pre>
 </div>
 
@@ -636,7 +672,7 @@ queries.</p>
 <code class="highlighter-rouge">MatchQuery</code> instance, which includes additional methods that apply modifiers
 such as <code class="highlighter-rouge">limit</code> and <code class="highlighter-rouge">distinct</code>:</p>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">MatchQuery</span> <span class="n">tallPokemon</span> <span class="o">=</span> <span class="n">qb</span><span class="o">.</span><span class="na">match</span><span class="o">(</span><span class="n">var</span><span class="o">(</span><span class="s">"x"</span><span class="o">).</span><span class="na">isa</span><span class="o">(</span><span class="s">"pokemon"</span><span class="o">).</span><span class="na">has</span><span class="o">(</span><span class="s">"height"</span><span class="o">,</span> <span class="n">gt</span><span class="o">(</span><span class="mi">10</span><span class="o">))).</span><span class="na">limit</span><span class="o">(</span><span class="mi">50</span><span class="o">);</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">MatchQuery</span> <span class="n">tallPokemon</span> <span class="o">=</span> <span class="n">qb</span><span class="o">.</span><span class="na">match</span><span class="o">(</span><span class="n">var</span><span class="o">(</span><span class="s">"x"</span><span class="o">).</span><span class="na">isa</span><span class="o">(</span><span class="s">"pokemon"</span><span class="o">).</span><span class="na">has</span><span class="o">(</span><span class="s">"height"</span><span class="o">,</span> <span class="n">gt</span><span class="o">(</span><span class="mi">10</span><span class="o">))).</span><span class="na">limit</span><span class="o">(</span><span class="mi">50</span><span class="o">);</span>
 </code></pre>
 </div>
 
@@ -645,7 +681,7 @@ such as <code class="highlighter-rouge">limit</code> and <code class="highlighte
 
 <p>A <code class="highlighter-rouge">MatchQuery</code> will only execute when it is iterated over.</p>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="k">for</span> <span class="o">(</span><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Concept</span><span class="o">&gt;</span> <span class="n">result</span> <span class="o">:</span> <span class="n">tallPokemon</span><span class="o">)</span> <span class="o">{</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">for</span> <span class="o">(</span><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Concept</span><span class="o">&gt;</span> <span class="n">result</span> <span class="o">:</span> <span class="n">tallPokemon</span><span class="o">)</span> <span class="o">{</span>
   <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">result</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">"x"</span><span class="o">).</span><span class="na">getId</span><span class="o">());</span>
 <span class="o">}</span>
 </code></pre>
@@ -660,7 +696,7 @@ for requesting a single variable:</p>
 
 <h2 id="ask-queries">Ask Queries</h2>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="k">if</span> <span class="o">(</span><span class="n">qb</span><span class="o">.</span><span class="na">match</span><span class="o">(</span><span class="n">var</span><span class="o">().</span><span class="na">isa</span><span class="o">(</span><span class="s">"pokemon-type"</span><span class="o">).</span><span class="na">has</span><span class="o">(</span><span class="s">"name"</span><span class="o">,</span> <span class="s">"dragon"</span><span class="o">)).</span><span class="na">ask</span><span class="o">().</span><span class="na">execute</span><span class="o">())</span> <span class="o">{</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">if</span> <span class="o">(</span><span class="n">qb</span><span class="o">.</span><span class="na">match</span><span class="o">(</span><span class="n">var</span><span class="o">().</span><span class="na">isa</span><span class="o">(</span><span class="s">"pokemon-type"</span><span class="o">).</span><span class="na">has</span><span class="o">(</span><span class="s">"name"</span><span class="o">,</span> <span class="s">"dragon"</span><span class="o">)).</span><span class="na">ask</span><span class="o">().</span><span class="na">execute</span><span class="o">())</span> <span class="o">{</span>
   <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Dragons are real!"</span><span class="o">);</span>
 <span class="o">}</span>
 </code></pre>
@@ -668,7 +704,7 @@ for requesting a single variable:</p>
 
 <h2 id="insert-queries">Insert Queries</h2>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">InsertQuery</span> <span class="n">addPichu</span> <span class="o">=</span> <span class="n">qb</span><span class="o">.</span><span class="na">insert</span><span class="o">(</span><span class="n">var</span><span class="o">().</span><span class="na">isa</span><span class="o">(</span><span class="s">"pokemon"</span><span class="o">).</span><span class="na">has</span><span class="o">(</span><span class="s">"name"</span><span class="o">,</span> <span class="s">"Pichu"</span><span class="o">));</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">InsertQuery</span> <span class="n">addPichu</span> <span class="o">=</span> <span class="n">qb</span><span class="o">.</span><span class="na">insert</span><span class="o">(</span><span class="n">var</span><span class="o">().</span><span class="na">isa</span><span class="o">(</span><span class="s">"pokemon"</span><span class="o">).</span><span class="na">has</span><span class="o">(</span><span class="s">"name"</span><span class="o">,</span> <span class="s">"Pichu"</span><span class="o">));</span>
 
 <span class="n">addPichu</span><span class="o">.</span><span class="na">execute</span><span class="o">();</span>
 
@@ -686,13 +722,13 @@ for requesting a single variable:</p>
 
 <h2 id="delete-queries">Delete Queries</h2>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">qb</span><span class="o">.</span><span class="na">match</span><span class="o">(</span><span class="n">var</span><span class="o">(</span><span class="s">"x"</span><span class="o">).</span><span class="na">has</span><span class="o">(</span><span class="s">"name"</span><span class="o">,</span> <span class="s">"Pichu"</span><span class="o">)).</span><span class="na">delete</span><span class="o">(</span><span class="s">"x"</span><span class="o">).</span><span class="na">execute</span><span class="o">();</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">qb</span><span class="o">.</span><span class="na">match</span><span class="o">(</span><span class="n">var</span><span class="o">(</span><span class="s">"x"</span><span class="o">).</span><span class="na">has</span><span class="o">(</span><span class="s">"name"</span><span class="o">,</span> <span class="s">"Pichu"</span><span class="o">)).</span><span class="na">delete</span><span class="o">(</span><span class="s">"x"</span><span class="o">).</span><span class="na">execute</span><span class="o">();</span>
 </code></pre>
 </div>
 
 <h2 id="query-parser">Query Parser</h2>
 
-<div class="language-xml highlighter-rouge"><pre class="highlight"><code><span class="nt">&lt;dependency&gt;</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="nt">&lt;dependency&gt;</span>
   <span class="nt">&lt;groupId&gt;</span>ai.grakn.graql<span class="nt">&lt;/groupId&gt;</span>
   <span class="nt">&lt;artifactId&gt;</span>graql-parser<span class="nt">&lt;/artifactId&gt;</span>
   <span class="nt">&lt;version&gt;</span>0.7.0<span class="nt">&lt;/version&gt;</span>
@@ -703,7 +739,7 @@ for requesting a single variable:</p>
 <p>The <code class="highlighter-rouge">QueryBuilder</code> also allows the user to parse Graql query strings into Java Graql
 objects:</p>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="k">for</span> <span class="o">(</span><span class="n">Concept</span> <span class="n">x</span> <span class="o">:</span> <span class="n">qb</span><span class="o">.&lt;</span><span class="n">MatchQuery</span><span class="o">&gt;</span><span class="n">parse</span><span class="o">(</span><span class="s">"match $x isa pokemon;"</span><span class="o">).</span><span class="na">get</span><span class="o">(</span><span class="s">"x"</span><span class="o">))</span> <span class="o">{</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">for</span> <span class="o">(</span><span class="n">Concept</span> <span class="n">x</span> <span class="o">:</span> <span class="n">qb</span><span class="o">.&lt;</span><span class="n">MatchQuery</span><span class="o">&gt;</span><span class="n">parse</span><span class="o">(</span><span class="s">"match $x isa pokemon;"</span><span class="o">).</span><span class="na">get</span><span class="o">(</span><span class="s">"x"</span><span class="o">))</span> <span class="o">{</span>
     <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">x</span><span class="o">);</span>
 <span class="o">}</span>
 
@@ -760,7 +796,7 @@ objects:</p>
         <br>
         <p>© 2016 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2016 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> August 11, 2016<br/> Site last generated: Nov 27, 2016 <br />
+        <span>Page last updated:</span> August 11, 2016<br/> Site last generated: Dec 5, 2016 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">

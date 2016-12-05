@@ -104,8 +104,19 @@
 
 ,
 {
-"title": "An Example of Migrating OWL to Grakn",
+"title": "OWL Migration to Grakn",
 "tags": "migration",
+"keywords": "setup, getting started",
+"url": "/pages/documentation/migration/OWL-migration.html",
+"summary": "This document will teach you how to load OWL into Grakn."
+}
+
+
+
+,
+{
+"title": "An Example of Migrating OWL to Grakn",
+"tags": "migrationexamples",
 "keywords": "migration",
 "url": "/pages/documentation/examples/OWL-migration.html",
 "summary": "A short example to illustrate migration of OWL to Grakn"
@@ -115,11 +126,11 @@
 
 ,
 {
-"title": "OWL Migration to Grakn",
-"tags": "migration",
-"keywords": "setup, getting started",
-"url": "/pages/documentation/migration/OWL-migration.html",
-"summary": "This document will teach you how to load OWL into Grakn."
+"title": "An Example of Migrating SQL to Grakn",
+"tags": "migrationexamplesjava",
+"keywords": "migration",
+"url": "/pages/documentation/examples/SQL-migration.html",
+"summary": "A short example to illustrate migration of SQL to Grakn"
 }
 
 
@@ -137,22 +148,77 @@
 
 ,
 {
-"title": "An Example of Migrating SQL to Grakn",
-"tags": "migration",
-"keywords": "migration",
-"url": "/pages/documentation/examples/SQL-migration.html",
-"summary": "A short example to illustrate migration of SQL to Grakn"
+"title": "Defining an Advanced Schema",
+"tags": "graph-apijavaadvanced-grakn",
+"keywords": "schema",
+"url": "/pages/documentation/core-api/advanced-schema-definition.html",
+"summary": "Demonstrates how to create an advanced schema for Grakn."
 }
 
 
 
 ,
 {
-"title": "Defining an Advanced Schema",
-"tags": "graph-apijava",
-"keywords": "schema",
-"url": "/pages/documentation/core-api/advanced-schema-definition.html",
-"summary": "Demonstrates how to create an advanced schema for Grakn."
+"title": "Connected Components",
+"tags": "analytics",
+"keywords": "",
+"url": "/pages/documentation/graql-analytics/analytics-connected-components.html",
+"summary": "This page introduces the connected components algorithm and explains how to use it."
+}
+
+
+
+,
+{
+"title": "Degrees",
+"tags": "analytics",
+"keywords": "",
+"url": "/pages/documentation/graql-analytics/analytics-degrees.html",
+"summary": "This page introduces the computation of degrees in a graph."
+}
+
+
+
+,
+{
+"title": "Graql Analytics",
+"tags": "analytics",
+"keywords": "",
+"url": "/pages/documentation/graql-analytics/analytics-overview.html",
+"summary": "This page provides an overview of the Graql analytics capabilities."
+}
+
+
+
+,
+{
+"title": "Shortest Path",
+"tags": "analytics",
+"keywords": "",
+"url": "/pages/documentation/graql-analytics/analytics-shortest-path.html",
+"summary": ""
+}
+
+
+
+,
+{
+"title": "Statistics",
+"tags": "analytics",
+"keywords": "",
+"url": "/pages/documentation/graql-analytics/analytics-statistics.html",
+"summary": "This page introduces the statistics functionality of analytics."
+}
+
+
+
+,
+{
+"title": "Statistics",
+"tags": "analytics",
+"keywords": "",
+"url": "/pages/documentation/graql-analytics/analytics-statistics.html",
+"summary": "This page introduces the statistics functionality of analytics."
 }
 
 
@@ -215,7 +281,7 @@
 ,
 {
 "title": "Grakn Examples",
-"tags": "getting-started",
+"tags": "getting-startedexamples",
 "keywords": "examples",
 "url": "/pages/documentation/examples/examples.html",
 "summary": "Landing page for Grakn examples."
@@ -338,7 +404,7 @@
 ,
 {
 "title": "Modern Grakn Example",
-"tags": "graql",
+"tags": "graqlexamples",
 "keywords": "graql, query",
 "url": "/pages/documentation/examples/modern.html",
 "summary": "A short example to illustrate Graql queries"
@@ -349,7 +415,7 @@
 ,
 {
 "title": "Moogi Grakn Example",
-"tags": "getting-startedgraql",
+"tags": "getting-startedgraqlexamples",
 "keywords": "examples",
 "url": "/pages/documentation/examples/moogi.html",
 "summary": "Moogi Grakn example."
@@ -370,17 +436,6 @@
 
 ,
 {
-"title": "Graql Overview",
-"tags": "graql",
-"keywords": "graql, overview",
-"url": "/pages/documentation/graql/overview.html",
-"summary": "An introduction to Graql"
-}
-
-
-
-,
-{
 "title": "Graph API Overview",
 "tags": "javagraph-api",
 "keywords": "overview",
@@ -392,8 +447,19 @@
 
 ,
 {
+"title": "Graql Overview",
+"tags": "graql",
+"keywords": "graql, overview",
+"url": "/pages/documentation/graql/overview.html",
+"summary": "An introduction to Graql"
+}
+
+
+
+,
+{
 "title": "Philosophers Grakn Example",
-"tags": "getting-startedgraql",
+"tags": "getting-startedgraqlexamples",
 "keywords": "examples",
 "url": "/pages/documentation/examples/philosophers.html",
 "summary": "Philosophers Grakn example."
@@ -404,7 +470,7 @@
 ,
 {
 "title": "Pokemon Grakn Example",
-"tags": "getting-startedgraql",
+"tags": "getting-startedgraqlexamples",
 "keywords": "examples",
 "url": "/pages/documentation/examples/pokemon.html",
 "summary": "Pokemon Grakn example."
@@ -415,7 +481,7 @@
 ,
 {
 "title": "Grakn Post Processing",
-"tags": "",
+"tags": "advanced-grakn",
 "keywords": "",
 "url": "/pages/documentation/advanced-grakn/post-processing.html",
 "summary": "This page describes post processing by the Grakn engine."
@@ -498,10 +564,18 @@
 
 
 
+
+
+
+
+
+
+
+
 ,
 {
 "title": "Grakn Data Validation",
-"tags": "",
+"tags": "advanced-grakn",
 "keywords": "validation",
 "url": "/pages/documentation/advanced-grakn/validation.html",
 "summary": "The page describes schema validation."
