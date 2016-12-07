@@ -92,6 +92,12 @@
   
   
   <url>
+    <loc>http://grakn.ai/pages//documentation/graql/aggregate-queries.html</loc>
+  </url>
+  
+  
+  
+  <url>
     <loc>http://grakn.ai/pages//documentation/graql-analytics/analytics-connected-components.html</loc>
   </url>
   
@@ -111,12 +117,6 @@
   
   <url>
     <loc>http://grakn.ai/pages//documentation/graql-analytics/analytics-shortest-path.html</loc>
-  </url>
-  
-  
-  
-  <url>
-    <loc>http://grakn.ai/pages//documentation/graql-analytics/analytics-statistics.html</loc>
   </url>
   
   
@@ -173,6 +173,12 @@
   
   <url>
     <loc>http://grakn.ai/pages//documentation/the-basics/grakn-basics.html</loc>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://grakn.ai/pages//documentation/the-basics/grakn-knowledge-model.html</loc>
   </url>
   
   
@@ -244,13 +250,13 @@
   
   
   <url>
-    <loc>http://grakn.ai/pages//documentation/core-api/overview.html</loc>
+    <loc>http://grakn.ai/pages//documentation/graql/overview.html</loc>
   </url>
   
   
   
   <url>
-    <loc>http://grakn.ai/pages//documentation/graql/overview.html</loc>
+    <loc>http://grakn.ai/pages//documentation/core-api/overview.html</loc>
   </url>
   
   

@@ -196,7 +196,7 @@
 
 
 <ul id="mysidebar" class="nav">
-    <li class="sidebarTitle">Grakn 0.7</li>
+    <li class="sidebarTitle">Grakn 0.8</li>
     
     
     
@@ -229,6 +229,13 @@
             
             
             <li><a href="/pages/documentation/the-basics/grakn-basics.html">Grakn Basics</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="/pages/documentation/the-basics/grakn-knowledge-model.html">Grakn Knowledge Model</a></li>
             
             
             
@@ -322,6 +329,13 @@
             
             
             <li><a href="/pages/documentation/graql/insert-queries.html">Insert Queries</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="/pages/documentation/graql/aggregate-queries.html">Aggregate Queries</a></li>
             
             
             
@@ -624,7 +638,7 @@ $('#toc').on('click', 'a', function() {
 
     
 
-    <a target="_blank" href="https://github.com/graknlabs/docs/blob/master/pages/documentation/3-graql/delete-queries.md" class="btn btn-default githubEditButton" role="button"><i class="fa fa-github fa-lg"></i> Edit me</a>
+    <a target="_blank" href="https://github.com/graknlabs/docs/blob/master/pages/documentation/4-graql/delete-queries.md" class="btn btn-default githubEditButton" role="button"><i class="fa fa-github fa-lg"></i> Edit me</a>
 
     
 
@@ -675,12 +689,12 @@ Otherwise, only the specified properties are deleted.</p>
 <div class="tab-content">
 <div role="tabpanel" class="tab-pane active" id="shell2">
 <pre>
-match $x id "evolution"; delete $x has-role descendent;
+match $x type-name "evolution"; delete $x has-role descendent;
 </pre>
 </div>
 <div role="tabpanel" class="tab-pane" id="java2">
 <pre>
-qb.match(var("x").id("evolution")).delete(var("x").hasRole("descendent"));
+qb.match(var("x").name("evolution")).delete(var("x").hasRole("descendent"));
 </pre>
 </div> <!-- tab-pane -->
 </div>
@@ -697,12 +711,12 @@ qb.match(var("x").id("evolution")).delete(var("x").hasRole("descendent"));
 <div class="tab-content">
 <div role="tabpanel" class="tab-pane active" id="shell3">
 <pre>
-match $x id "pokemon-type"; delete $x plays-role attacking-type;
+match $x type-name "pokemon-type"; delete $x plays-role attacking-type;
 </pre>
 </div>
 <div role="tabpanel" class="tab-pane" id="java3">
 <pre>
-qb.match(var("x").id("type")).delete(var("x").playsRole("attacking-type"));
+qb.match(var("x").name("pokemon-type")).delete(var("x").playsRole("attacking-type"));
 </pre>
 </div> <!-- tab-pane -->
 </div>
@@ -720,12 +734,12 @@ only delete resources matching that value.</p>
 <div class="tab-content">
 <div role="tabpanel" class="tab-pane active" id="shell4">
 <pre>
-match $x id "Bulbasaur"; delete $x has weight $y;
+match $x has name "Bulbasaur"; delete $x has weight $y;
 </pre>
 </div>
 <div role="tabpanel" class="tab-pane" id="java4">
 <pre>
-qb.match(var("x").id("Bulbasaur")).delete(var("x").has("weight"));
+qb.match(var("x").has("name", "Bulbasaur")).delete(var("x").has("weight"));
 </pre>
 </div> <!-- tab-pane -->
 </div>
@@ -770,7 +784,7 @@ qb.match(var("x").id("Bulbasaur")).delete(var("x").has("weight"));
         <br>
         <p>© 2016 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2016 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> August 11, 2016<br/> Site last generated: Dec 5, 2016 <br />
+        <span>Page last updated:</span> August 11, 2016<br/> Site last generated: Dec 7, 2016 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">

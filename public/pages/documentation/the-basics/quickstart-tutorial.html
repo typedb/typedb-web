@@ -196,7 +196,7 @@
 
 
 <ul id="mysidebar" class="nav">
-    <li class="sidebarTitle">Grakn 0.7</li>
+    <li class="sidebarTitle">Grakn 0.8</li>
     
     
     
@@ -229,6 +229,13 @@
             
             
             <li><a href="/pages/documentation/the-basics/grakn-basics.html">Grakn Basics</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="/pages/documentation/the-basics/grakn-knowledge-model.html">Grakn Knowledge Model</a></li>
             
             
             
@@ -322,6 +329,13 @@
             
             
             <li><a href="/pages/documentation/graql/insert-queries.html">Insert Queries</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="/pages/documentation/graql/aggregate-queries.html">Aggregate Queries</a></li>
             
             
             
@@ -746,7 +760,9 @@ commit;
 
 <p>Now we can query for all our Platonists:</p>
 
-<pre><code class="language-graql">match (philosopher: $phil, "Platonism") isa practice;
+<pre><code class="language-graql">match
+$platonism has name "Platonism";
+(philosopher: $phil, $platonism) isa practice;
 </code></pre>
 
 <p>This returns:</p>
@@ -871,8 +887,7 @@ player.</p>
 
 <p>Finally, we’ll check out everything Socrates knows:</p>
 
-<pre><code class="language-graql">match $socrates has name "Socrates"; ($socrates, $x) isa knowledge;
-
+<pre><code class="language-graql">&gt;&gt;&gt; match $socrates has name "Socrates"; ($socrates, $x) isa knowledge;
 $x id "fact-e387d27c-4f5e-11e6-beb8-9e71128cae77" isa fact;
 $x id "knowledge-e387d27c-4f5e-11e6-beb8-9e71128cae77" isa knowledge;
 </code></pre>
@@ -943,7 +958,7 @@ Answer:</p>
         <br>
         <p>© 2016 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2016 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> August 10, 2016<br/> Site last generated: Dec 5, 2016 <br />
+        <span>Page last updated:</span> August 10, 2016<br/> Site last generated: Dec 7, 2016 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">

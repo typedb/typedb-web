@@ -196,7 +196,7 @@
 
 
 <ul id="mysidebar" class="nav">
-    <li class="sidebarTitle">Grakn 0.7</li>
+    <li class="sidebarTitle">Grakn 0.8</li>
     
     
     
@@ -229,6 +229,13 @@
             
             
             <li><a href="/pages/documentation/the-basics/grakn-basics.html">Grakn Basics</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="/pages/documentation/the-basics/grakn-knowledge-model.html">Grakn Knowledge Model</a></li>
             
             
             
@@ -322,6 +329,13 @@
             
             
             <li><a href="/pages/documentation/graql/insert-queries.html">Insert Queries</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="/pages/documentation/graql/aggregate-queries.html">Aggregate Queries</a></li>
             
             
             
@@ -624,7 +638,7 @@ $('#toc').on('click', 'a', function() {
 
     
 
-    <a target="_blank" href="https://github.com/graknlabs/docs/blob/master/pages/documentation/7-examples/modern.md" class="btn btn-default githubEditButton" role="button"><i class="fa fa-github fa-lg"></i> Edit me</a>
+    <a target="_blank" href="https://github.com/graknlabs/docs/blob/master/pages/documentation/10-examples/modern.md" class="btn btn-default githubEditButton" role="button"><i class="fa fa-github fa-lg"></i> Edit me</a>
 
     
 
@@ -749,7 +763,7 @@ match $josh has name "josh"; $ripple has name "ripple"; insert (programmer: $jos
 
 <p>As with any query language, you use a variable to receive the results of the match query, which you must prefix with a <code class="highlighter-rouge">$</code>. So, to make the query “List every person in the graph”, you would use the following in Graql:</p>
 
-<pre><code class="language-graql">match $x isa person;
+<pre><code class="language-graql">&gt;&gt;&gt; match $x isa person;
 
 $x id "marko" isa person; 
 $x id "vadas" isa person; 
@@ -823,14 +837,14 @@ age isa resource-type
 person isa entity-type;
 person has-resource age;
 
-"marko" isa person;
-"vadas" isa person;
-"josh" isa person;
-"peter" isa person;
-"marko" has age 29;
-"josh" has age 32;
-"vadas" has age 27;
-"peter" has age 35;
+$marko isa person;
+$vadas isa person;
+$josh isa person;
+$peter isa person;
+$marko has age 29;
+$josh has age 32;
+$vadas has age 27;
+$peter has age 35;
 
 weight isa resource-type
 	datatype double;
@@ -846,8 +860,8 @@ knows isa relation-type
 	has-role known-about
 	has-resource weight;
 
-(knower: "marko", known-about: "josh") isa knows has weight 1.0;
-(knower: "marko", known-about: "vadas") isa knows has weight 0.5;
+(knower: $marko, known-about: $josh) isa knows has weight 1.0;
+(knower: $marko, known-about: $vadas) isa knows has weight 0.5;
 
 lang isa resource-type
 	datatype string;
@@ -899,7 +913,7 @@ match (known-about: $x) isa knows;
 
 <p>List every person that marko knows</p>
 
-<pre><code class="language-graql">match (known-about: $x, "marko") isa knows;
+<pre><code class="language-graql">match $marko has name "marco"; (known-about: $x, $marko) isa knows;
 </code></pre>
 
 <p>List every item of software and the language associated with it</p>
@@ -909,17 +923,17 @@ match (known-about: $x) isa knows;
 
 <p>List everything that josh has programmed</p>
 
-<pre><code class="language-graql">match (programmed: $x, "josh") isa programming;
+<pre><code class="language-graql">match $josh has name "josh"; (programmed: $x, $josh) isa programming;
 </code></pre>
 
 <p>List everyone who has programmed Lop</p>
 
-<pre><code class="language-graql">match (programmer: $x, "lop") isa programming;
+<pre><code class="language-graql">match $lop has name "lop"; (programmer: $x, $lop) isa programming;
 </code></pre>
 
 <p>List everything you know about marko</p>
 
-<pre><code class="language-graql">match $relation("marko", $y); $y isa $z; $z isa entity-type; $relation isa $reltype; select $y, $reltype;
+<pre><code class="language-graql">match $marko has name "marko"; $relation($marko, $y); $y isa $z; $z isa entity-type; $relation isa $reltype; select $y, $reltype;
 
 </code></pre>
 
@@ -973,7 +987,7 @@ match (known-about: $x) isa knows;
         <br>
         <p>© 2016 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2016 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> September 19, 2016<br/> Site last generated: Dec 5, 2016 <br />
+        <span>Page last updated:</span> September 19, 2016<br/> Site last generated: Dec 7, 2016 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">

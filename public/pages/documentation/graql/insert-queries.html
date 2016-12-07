@@ -196,7 +196,7 @@
 
 
 <ul id="mysidebar" class="nav">
-    <li class="sidebarTitle">Grakn 0.7</li>
+    <li class="sidebarTitle">Grakn 0.8</li>
     
     
     
@@ -229,6 +229,13 @@
             
             
             <li><a href="/pages/documentation/the-basics/grakn-basics.html">Grakn Basics</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="/pages/documentation/the-basics/grakn-knowledge-model.html">Grakn Knowledge Model</a></li>
             
             
             
@@ -322,6 +329,13 @@
             
             
             <li class="active"><a href="/pages/documentation/graql/insert-queries.html">Insert Queries</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="/pages/documentation/graql/aggregate-queries.html">Aggregate Queries</a></li>
             
             
             
@@ -624,7 +638,7 @@ $('#toc').on('click', 'a', function() {
 
     
 
-    <a target="_blank" href="https://github.com/graknlabs/docs/blob/master/pages/documentation/3-graql/insert-queries.md" class="btn btn-default githubEditButton" role="button"><i class="fa fa-github fa-lg"></i> Edit me</a>
+    <a target="_blank" href="https://github.com/graknlabs/docs/blob/master/pages/documentation/4-graql/insert-queries.md" class="btn btn-default githubEditButton" role="button"><i class="fa fa-github fa-lg"></i> Edit me</a>
 
     
 
@@ -853,7 +867,7 @@ insert gen2-pokemon sub pokemon;
 </div>
 <div role="tabpanel" class="tab-pane" id="java8">
 <pre>
-qb.insert(id("gen2-pokemon").sub("pokemon"));
+qb.insert(name("gen2-pokemon").sub("pokemon"));
 </pre>
 </div> <!-- tab-pane -->
 </div>
@@ -876,7 +890,7 @@ insert trained-by isa relation-type, has-role trainer, has-role pokemon-trained;
 <div role="tabpanel" class="tab-pane" id="java9">
 <pre>
 qb.insert(
-  id("trained-by").isa("relation-type")
+  name("trained-by").isa("relation-type")
     .hasRole("trainer").hasRole("pokemon-trained")
 );
 </pre>
@@ -900,7 +914,7 @@ insert pokemon plays-role pokemon-trained;
 </div>
 <div role="tabpanel" class="tab-pane" id="java10">
 <pre>
-qb.insert(id("pokemon").playsRole("pokemon-trained"));
+qb.insert(name("pokemon").playsRole("pokemon-trained"));
 </pre>
 </div> <!-- tab-pane -->
 </div>
@@ -941,19 +955,19 @@ pokedex-no plays-role has-pokedex-no-value;
 </div>
 <div role="tabpanel" class="tab-pane" id="java11">
 <pre>
-qb.insert(id("pokemon").hasResource("pokedex-no"));
+qb.insert(name("pokemon").hasResource("pokedex-no"));
 </pre>
 <p>The above example is equivalent to:</p>
 <pre>
 qb.insert(
-  id("has-pokedex-no").isa("relation-type")
+  name("has-pokedex-no").isa("relation-type")
     .hasRole("has-pokedex-no-owner").hasRole("has-pokedex-no-value"),
 
-  id("has-pokedex-no-owner").isa("role-type"),
-  id("has-pokedex-no-value").isa("role-type"),
+  name("has-pokedex-no-owner").isa("role-type"),
+  name("has-pokedex-no-value").isa("role-type"),
 
-  id("pokemon").playsRole("has-pokedex-no-owner"),
-  id("pokedex-no").playsRole("has-pokedex-no-value")
+  name("pokemon").playsRole("has-pokedex-no-owner"),
+  name("pokedex-no").playsRole("has-pokedex-no-value")
 );
 </pre>
 </div> <!-- tab-pane -->
@@ -999,7 +1013,7 @@ qb.insert(
         <br>
         <p>© 2016 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2016 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> August 10, 2016<br/> Site last generated: Dec 5, 2016 <br />
+        <span>Page last updated:</span> August 10, 2016<br/> Site last generated: Dec 7, 2016 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">

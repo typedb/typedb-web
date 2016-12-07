@@ -3,9 +3,9 @@
     <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="This page introduces the connected components algorithm and explains how to use it.">
-<meta name="keywords" content="analytics,  , GRAKN.AI, Grakn Labs, grakn, graql, grakn.ai, Mindmaps Research, Mindmaps Research Ltd, MindmapsDB, mindmaps, mindmaps graph, mindmaps.io, knowledge graph, distributed knowledge graph, development platform, developer tool, data platform, programming langauge, query langauge, database, semantic database, distributed semantic database, distributed database, graph database, semantic search, data exploration, recommendation system, knowledge management, knowledge engineering, real-time analytics, advanced analytics, reasoning engine, inference engine, expert systems, semantic applications, research engines, data management, business intelligence, big data, semantic web, semantic data, knowledge representation, automated reasoning, semantic network, knowledge ontology, semantic graph, ontology engineering, graph based knowledge representation, artificial intelligence,">
-<title>GRAKN.AI | Connected Components</title>
+<meta name="description" content="Graql Aggregate Queries">
+<meta name="keywords" content="graql,  graql, query, aggregate, GRAKN.AI, Grakn Labs, grakn, graql, grakn.ai, Mindmaps Research, Mindmaps Research Ltd, MindmapsDB, mindmaps, mindmaps graph, mindmaps.io, knowledge graph, distributed knowledge graph, development platform, developer tool, data platform, programming langauge, query langauge, database, semantic database, distributed semantic database, distributed database, graph database, semantic search, data exploration, recommendation system, knowledge management, knowledge engineering, real-time analytics, advanced analytics, reasoning engine, inference engine, expert systems, semantic applications, research engines, data management, business intelligence, big data, semantic web, semantic data, knowledge representation, automated reasoning, semantic network, knowledge ontology, semantic graph, ontology engineering, graph based knowledge representation, artificial intelligence,">
+<title>GRAKN.AI | Aggregate Queries</title>
 <link rel="stylesheet" href="/pages/css/syntax.css">
 
 
@@ -163,7 +163,7 @@
                             
                             dataSource: '/pages/search.json',
                             
-                            searchResultTemplate: '<li><a href="{url}" title="Connected Components">{title}</a></li>',
+                            searchResultTemplate: '<li><a href="{url}" title="Aggregate Queries">{title}</a></li>',
                             noResultsText: '<li><a class="empty">No results found</a></li>',
                             limit: 10,
                             fuzzy: true
@@ -335,7 +335,7 @@
             
             
             
-            <li><a href="/pages/documentation/graql/aggregate-queries.html">Aggregate Queries</a></li>
+            <li class="active"><a href="/pages/documentation/graql/aggregate-queries.html">Aggregate Queries</a></li>
             
             
             
@@ -399,7 +399,7 @@
             
             
             
-            <li class="active"><a href="/pages/documentation/graql-analytics/analytics-connected-components.html">Connected Components</a></li>
+            <li><a href="/pages/documentation/graql-analytics/analytics-connected-components.html">Connected Components</a></li>
             
             
             
@@ -598,7 +598,7 @@
         <!-- Content Column -->
         <div class="col-md-9">
             <div class="post-header">
-   <h1 class="post-title-main">Connected Components</h1>
+   <h1 class="post-title-main">Aggregate Queries</h1>
 </div>
 
 
@@ -606,7 +606,7 @@
 <div class="post-content">
 
    
-    <div class="summary">This page introduces the connected components algorithm and explains how to use it.</div>
+    <div class="summary">Graql Aggregate Queries</div>
    
 
     
@@ -638,21 +638,219 @@ $('#toc').on('click', 'a', function() {
 
     
 
-    <a target="_blank" href="https://github.com/graknlabs/docs/blob/master/pages/documentation/5-graql-analytics/analytics-connected-components.md" class="btn btn-default githubEditButton" role="button"><i class="fa fa-github fa-lg"></i> Edit me</a>
+    <a target="_blank" href="https://github.com/graknlabs/docs/blob/master/pages/documentation/4-graql/aggregate-queries.md" class="btn btn-default githubEditButton" role="button"><i class="fa fa-github fa-lg"></i> Edit me</a>
 
     
 
     
 
-  <p>The connected components algorithm can be used to find clusters of instances in the graph that are connected. The
- algorithm finds all instances (relations, resources and entities) that are connected via relations in the graph and
- gives each set a unique label. In the graph below you can see three connected components that correspond to groups of
- friends. In this graph three unique labels will be created one corresponding to each of the sets of connected instances.</p>
+  <p>An aggregate query applies an operation on a <a href="match-queries.html">match query</a>.</p>
 
-<p><img src="/images/analytics_conn_comp.png" alt="Three connected components representing groups of friends." /></p>
+<ul id="profileTabs" class="nav nav-tabs">
+    <li class="active"><a href="#shell1" data-toggle="tab">Graql</a></li>
+    <li><a href="#java1" data-toggle="tab">Java</a></li>
+</ul>
 
-<h2 id="comments">Comments</h2>
-<p>Want to leave a comment? Visit <a href="https://github.com/graknlabs/docs/issues/71" target="_blank">the issues on Github for this page</a> (you’ll need a GitHub account). You are also welcome to contribute to our documentation directly via the “Edit me” button at the top of this page.</p>
+<div class="tab-content">
+<div role="tabpanel" class="tab-pane active" id="shell1">
+<pre>
+match
+$x isa pokemon-type;
+($x, $y) isa has-type;
+aggregate group $x count;
+</pre>
+</div>
+<div role="tabpanel" class="tab-pane" id="java1">
+<pre>
+qb.match(
+    var("x").isa("pokemon-type"),
+    var().rel("x").rel("y").isa("has-type")
+).aggregate(group("x", count()));
+</pre>
+</div> <!-- tab-pane -->
+</div>
+<p><!-- tab-content --></p>
+
+<h2 id="aggregate-functions">Aggregate Functions</h2>
+
+<h3 id="count">Count</h3>
+
+<p>Count the number of results of the match query or aggregate result.</p>
+
+<div class="tab-content">
+<div role="tabpanel" class="tab-pane active" id="shell1">
+<pre>
+match $x isa pokemon; aggregate count;
+</pre>
+</div>
+<div role="tabpanel" class="tab-pane" id="java1">
+<pre>
+qb.match(var("x").isa("pokemon")).aggregate(count());
+</pre>
+</div> <!-- tab-pane -->
+</div>
+<p><!-- tab-content --></p>
+
+<h3 id="sum">Sum</h3>
+
+<p>Sum the given resource variable.</p>
+
+<div class="tab-content">
+<div role="tabpanel" class="tab-pane active" id="shell1">
+<pre>
+match
+$x isa pokemon, has weight $w;
+aggregate sum $w;
+</pre>
+</div>
+<div role="tabpanel" class="tab-pane" id="java1">
+<pre>
+qb.match(
+    var("x").isa("pokemon").has("weight", var("w"))
+).aggregate(sum("w"));
+</pre>
+</div> <!-- tab-pane -->
+</div>
+<p><!-- tab-content --></p>
+
+<h3 id="max">Max</h3>
+
+<p>Find the maximum of the given resource variable.</p>
+
+<div class="tab-content">
+<div role="tabpanel" class="tab-pane active" id="shell1">
+<pre>
+match
+$x isa pokemon, has height $h;
+aggregate max $h;
+</pre>
+</div>
+<div role="tabpanel" class="tab-pane" id="java1">
+<pre>
+qb.match(
+    var("x").isa("pokemon").has("height", var("h"))
+).aggregate(max("h"));
+</pre>
+</div> <!-- tab-pane -->
+</div>
+<p><!-- tab-content --></p>
+
+<h3 id="min">Min</h3>
+
+<p>Find the minimum of the given resource variable.</p>
+
+<div class="tab-content">
+<div role="tabpanel" class="tab-pane active" id="shell1">
+<pre>
+match
+$x isa pokemon, has name $n;
+aggregate min $n;
+</pre>
+</div>
+<div role="tabpanel" class="tab-pane" id="java1">
+<pre>
+qb.match(
+    var("x").isa("pokemon").has("name", var("n"))
+).aggregate(min("n"));
+</pre>
+</div> <!-- tab-pane -->
+</div>
+<p><!-- tab-content --></p>
+
+<h3 id="average">Average</h3>
+
+<p>Find the average (mean) of the given resource variable.</p>
+
+<div class="tab-content">
+<div role="tabpanel" class="tab-pane active" id="shell1">
+<pre>
+match
+$x isa pokemon, has height $h;
+aggregate average $h;
+</pre>
+</div>
+<div role="tabpanel" class="tab-pane" id="java1">
+<pre>
+qb.match(
+    var("x").isa("pokemon").has("height", var("h"))
+).aggregate(average("h"));
+</pre>
+</div> <!-- tab-pane -->
+</div>
+<p><!-- tab-content --></p>
+
+<h3 id="median">Median</h3>
+
+<p>Find the median of the given resource variable.</p>
+
+<div class="tab-content">
+<div role="tabpanel" class="tab-pane active" id="shell1">
+<pre>
+match
+$x isa pokemon, has weight $w;
+aggregate median $w;
+</pre>
+</div>
+<div role="tabpanel" class="tab-pane" id="java1">
+<pre>
+qb.match(
+    var("x").isa("pokemon").has("weight", var("w"))
+).aggregate(median("w"));
+</pre>
+</div> <!-- tab-pane -->
+</div>
+<p><!-- tab-content --></p>
+
+<h3 id="group">Group</h3>
+
+<p>Group the results by the given variable.</p>
+
+<p>The group aggregate can optionally accept a second argument which is another 
+aggregate operation, e.g. <code class="highlighter-rouge">count</code>.</p>
+
+<div class="tab-content">
+<div role="tabpanel" class="tab-pane active" id="shell1">
+<pre>
+match
+$x isa pokemon-type;
+$y isa pokemon-type;
+(attacking-type: $x, defending-type: $y) isa super-effective;
+aggregate group $x;
+</pre>
+</div>
+<div role="tabpanel" class="tab-pane" id="java1">
+<pre>
+qb.match(
+    var("x").isa("pokemon-type"),
+    var("y").isa("pokemon-type"),
+    var().rel("attacking-type", "x").rel("defending-type", "y").isa("super-effective")
+).aggregate(group("x"));
+</pre>
+</div> <!-- tab-pane -->
+</div>
+<p><!-- tab-content --></p>
+
+<h3 id="select">Select</h3>
+
+<p>Select and name multiple aggregates.</p>
+
+<div class="tab-content">
+<div role="tabpanel" class="tab-pane active" id="shell1">
+<pre>
+match
+$x isa pokemon, has weight $w, has height $h;
+aggregate (min $w as minWeight, max $h as maxHeight);
+</pre>
+</div>
+<div role="tabpanel" class="tab-pane" id="java1">
+<pre>
+qb.match(
+    var("x").isa("pokemon").has("weight", var("w")).has("height", var("h")),
+).aggregate(select(min("w").as("minWeight"), max("h").as("maxHeight")));
+</pre>
+</div> <!-- tab-pane -->
+</div>
+<p><!-- tab-content --></p>
 
 
 
@@ -662,7 +860,7 @@ $('#toc').on('click', 'a', function() {
         
         
         
-        <a href="/pages/tag_analytics.html" class="btn btn-default navbar-btn cursorNorm" role="button">analytics</a>
+        <a href="/pages/tag_graql.html" class="btn btn-default navbar-btn cursorNorm" role="button">graql</a>
         
         
         
@@ -693,7 +891,7 @@ $('#toc').on('click', 'a', function() {
         <br>
         <p>© 2016 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2016 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> November 24, 2016<br/> Site last generated: Dec 7, 2016 <br />
+        <span>Page last updated:</span> Tuesday 6, 2016<br/> Site last generated: Dec 7, 2016 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">

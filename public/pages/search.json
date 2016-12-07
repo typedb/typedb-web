@@ -159,6 +159,17 @@
 
 ,
 {
+"title": "Aggregate Queries",
+"tags": "graql",
+"keywords": "graql, query, aggregate",
+"url": "/pages/documentation/graql/aggregate-queries.html",
+"summary": "Graql Aggregate Queries"
+}
+
+
+
+,
+{
 "title": "Connected Components",
 "tags": "analytics",
 "keywords": "",
@@ -197,17 +208,6 @@
 "keywords": "",
 "url": "/pages/documentation/graql-analytics/analytics-shortest-path.html",
 "summary": ""
-}
-
-
-
-,
-{
-"title": "Statistics",
-"tags": "analytics",
-"keywords": "",
-"url": "/pages/documentation/graql-analytics/analytics-statistics.html",
-"summary": "This page introduces the statistics functionality of analytics."
 }
 
 
@@ -309,6 +309,17 @@
 "keywords": "setup, getting started, basics",
 "url": "/pages/documentation/the-basics/grakn-basics.html",
 "summary": "Introducing the basics of the Grakn object model."
+}
+
+
+
+,
+{
+"title": "Grakn Knowledge Model",
+"tags": "getting-started",
+"keywords": "setup, getting started, basics",
+"url": "/pages/documentation/the-basics/grakn-knowledge-model.html",
+"summary": "Introducing the basics of the Grakn knowledge model."
 }
 
 
@@ -436,22 +447,22 @@
 
 ,
 {
-"title": "Graph API Overview",
-"tags": "javagraph-api",
-"keywords": "overview",
-"url": "/pages/documentation/core-api/overview.html",
-"summary": "A basic example of how to use Grakn's Graph API."
+"title": "Graql Overview",
+"tags": "graql",
+"keywords": "graql, overview",
+"url": "/pages/documentation/graql/overview.html",
+"summary": "An introduction to Graql"
 }
 
 
 
 ,
 {
-"title": "Graql Overview",
-"tags": "graql",
-"keywords": "graql, overview",
-"url": "/pages/documentation/graql/overview.html",
-"summary": "An introduction to Graql"
+"title": "Graph API Overview",
+"tags": "javagraph-api",
+"keywords": "overview",
+"url": "/pages/documentation/core-api/overview.html",
+"summary": "A basic example of how to use Grakn's Graph API."
 }
 
 
