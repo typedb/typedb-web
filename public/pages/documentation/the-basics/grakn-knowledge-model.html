@@ -650,15 +650,15 @@ $('#toc').on('click', 'a', function() {
 
 <h2 id="ontology">Ontology</h2>
 
-<p>The ontology is used to formalise the data within its domain, and it categorises the data.</p>
+<p>The ontology is a formal specification of all the relevant concepts and their meaningful associations in a given application domain. It allows objects and relationships to be categorised into distinct types, and for generic properties about those types to be expressed. Specifying the ontology enables logical reasoning over the represented knowledge, such as the extraction of implicit information from explicit data (inference) or discovery of inconsistencies in the data (validation).</p>
 
-<p>Grakn provides a formal knowledge model to define the ontology, which comprises of four types:</p>
+<p>Grakn ontologies use four types of concepts for modeling domain knowledge:</p>
 
 <ul>
-  <li><strong>Entity Types</strong>: An Entity Type is used to represent a thing, for example, a <code class="highlighter-rouge">person</code>, and can be thought of as a noun.</li>
-  <li><strong>Relation Types</strong>: A Relation Type is used to model a relationship between two Entity Types, for example, <code class="highlighter-rouge">marriage</code>, and can be thought of as a verb.</li>
-  <li><strong>Role Types</strong>: Two role types are used to represent the two roles within a Relationship Type. There is one Role Type for each Entity Type to explain fully how the two relate to one another, for example, <code class="highlighter-rouge">husband</code> and <code class="highlighter-rouge">wife</code>.</li>
-  <li><strong>Resource Types</strong>: A Resource Type is used to represent an attribute associated with an Entity Type, for example, <code class="highlighter-rouge">name</code>. These are properties consisting of primitive types and values.</li>
+  <li><strong>Entity Types</strong>: Types of objects or things in the domain, for example, a <code class="highlighter-rouge">person</code>.</li>
+  <li><strong>Relation Types</strong>: Types of n-ary relationships between different objects (or possibly other relations), for example, <code class="highlighter-rouge">motherhood</code>, which is a relationship between two people playing roles of <code class="highlighter-rouge">mother</code> and <code class="highlighter-rouge">child</code>.</li>
+  <li><strong>Role Types</strong>: Types of roles involved in specific relationships, for example: <code class="highlighter-rouge">mother</code>, <code class="highlighter-rouge">child</code>.</li>
+  <li><strong>Resource Types</strong>: Types of attributes associated with entities and relations, for example, <code class="highlighter-rouge">name</code>, or <code class="highlighter-rouge">age</code>.</li>
 </ul>
 
 <h3 id="inheritance">Inheritance</h3>
@@ -741,7 +741,7 @@ $('#toc').on('click', 'a', function() {
         <br>
         <p>© 2016 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2016 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> December 7th, 2016<br/> Site last generated: Dec 7, 2016 <br />
+        <span>Page last updated:</span> December 7th, 2016<br/> Site last generated: Dec 8, 2016 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">

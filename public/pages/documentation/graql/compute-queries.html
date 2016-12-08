@@ -780,6 +780,24 @@ For example,</p>
 
 <p>Computes the sum of a given resource type, similar to <a href="#mean">mean</a>.</p>
 
+<h2 id="when-to-use-aggregate-and-when-to-use-compute">When to Use <code class="highlighter-rouge">aggregate</code> and When to Use <code class="highlighter-rouge">compute</code></h2>
+
+<p><a href="./aggregate-queries.html">Aggregate queries</a> are computationally light and run single-threaded on a single machine, but are more flexible than the equivalent compute queries described above.</p>
+
+<p>For example, you can use an aggregate query to filter results by resource. The following  aggregate query, allows you to match the number of people of a particular name:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>match $x has name 'Bob'; aggregate count;
+</code></pre>
+</div>
+
+<p>Compute queries are computationally intensive and run in parallel on a cluster (so are good for big data).</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>compute count of person; 
+</code></pre>
+</div>
+
+<p>Compute queries can be used to calculate the number of people in the graph very fast, but you can’t filter the results to determine the number of people with a certain name.</p>
+
 
 
     <div class="tags">
@@ -819,7 +837,7 @@ For example,</p>
         <br>
         <p>© 2016 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2016 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> September 28, 2016<br/> Site last generated: Dec 7, 2016 <br />
+        <span>Page last updated:</span> September 28, 2016<br/> Site last generated: Dec 8, 2016 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">
