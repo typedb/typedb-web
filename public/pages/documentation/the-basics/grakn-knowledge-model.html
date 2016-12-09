@@ -4,7 +4,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="Introducing the basics of the Grakn knowledge model.">
-<meta name="keywords" content="getting-started,  setup, getting started, basics, GRAKN.AI, Grakn Labs, grakn, graql, grakn.ai, Mindmaps Research, Mindmaps Research Ltd, MindmapsDB, mindmaps, mindmaps graph, mindmaps.io, knowledge graph, distributed knowledge graph, development platform, developer tool, data platform, programming langauge, query langauge, database, semantic database, distributed semantic database, distributed database, graph database, semantic search, data exploration, recommendation system, knowledge management, knowledge engineering, real-time analytics, advanced analytics, reasoning engine, inference engine, expert systems, semantic applications, research engines, data management, business intelligence, big data, semantic web, semantic data, knowledge representation, automated reasoning, semantic network, knowledge ontology, semantic graph, ontology engineering, graph based knowledge representation, artificial intelligence,">
+<meta name="keywords" content="getting-startedreasonergraql,  setup, getting started, basics, GRAKN.AI, Grakn Labs, grakn, graql, grakn.ai, Mindmaps Research, Mindmaps Research Ltd, MindmapsDB, mindmaps, mindmaps graph, mindmaps.io, knowledge graph, distributed knowledge graph, development platform, developer tool, data platform, programming langauge, query langauge, database, semantic database, distributed semantic database, distributed database, graph database, semantic search, data exploration, recommendation system, knowledge management, knowledge engineering, real-time analytics, advanced analytics, reasoning engine, inference engine, expert systems, semantic applications, research engines, data management, business intelligence, big data, semantic web, semantic data, knowledge representation, automated reasoning, semantic network, knowledge ontology, semantic graph, ontology engineering, graph based knowledge representation, artificial intelligence,">
 <title>GRAKN.AI | Grakn Knowledge Model</title>
 <link rel="stylesheet" href="/pages/css/syntax.css">
 
@@ -661,39 +661,97 @@ $('#toc').on('click', 'a', function() {
   <li><strong>Resource Types</strong>: Types of attributes associated with entities and relations, for example, <code class="highlighter-rouge">name</code>, or <code class="highlighter-rouge">age</code>.</li>
 </ul>
 
+<p>In Grakn, different concept types can be related to each other via four constructs (see Figure~1):</p>
+
+<ul>
+  <li><strong>sub</strong>: used to express that a concept type is a subtype of another one, for example, <code class="highlighter-rouge">woman sub person</code>.</li>
+  <li><strong>has-resource</strong>: used to express that a concept type can be associated with a given resource type, for example, <code class="highlighter-rouge">person has-resource name</code>.</li>
+  <li><strong>plays-role</strong>: used to express that instances of a given concept type are allowed to play a specific role, for example, <code class="highlighter-rouge">woman plays-role mother</code>,</li>
+  <li><strong>has-role</strong>: used to express that a given relation type involves a specific role, for example, <code class="highlighter-rouge">motherhood has-role mother</code>.</li>
+</ul>
+
+<p>Additionally, entity types and relation types can be declared as <code class="highlighter-rouge">abstract</code>, meaning that they cannot have any direct instances. For example, <code class="highlighter-rouge">person is-abstract</code> expresses that the only instances of <code class="highlighter-rouge">person</code> can be those that belong to more specific types, e.g., <code class="highlighter-rouge">man</code> or <code class="highlighter-rouge">woman</code>.</p>
+
+<p><img src="/images/knowledge-model-fig1.png" alt="The concept types and their permitted associations via Grakn ontology constructs." /></p>
+
+<!-- This section may possibly be better if moved into a different, more low level page -->
+<p>A well-formed Grakn ontology is further required to satisfy the following structural properties:</p>
+
+<ul>
+  <li>each concept type can have at most one direct supertype,</li>
+  <li>each role type must be involved in exactly one relation type,</li>
+  <li>each relation type must involve at least two distinct role types, <!-- I think an example would help here--></li>
+  <li>each relation type must involve the same number of roles as its direct supertype. In such a case, every role type involved in the subtype relation must be a (possibly indirect) subtype of exactly one role type involved in the supertype relation.   <!-- definitely need an example or diagram --></li>
+</ul>
+
 <h3 id="inheritance">Inheritance</h3>
 
-<p>The four types described above can be subclassed. For example, subclasses of <code class="highlighter-rouge">person</code> could be <code class="highlighter-rouge">man</code> and <code class="highlighter-rouge">woman</code>.  This simple subclassing allows us to expand and deepen our ontology to whatever granularity of detail is needed, and it allows the domain to be modelled as expressively as possible.</p>
+<p>Inheritance allows the domain to be modelled as expressively as possible.  Grakn supports inheritance of <code class="highlighter-rouge">has-resource</code> and <code class="highlighter-rouge">plays-role</code> constraints downwards, via the <code class="highlighter-rouge">sub</code> hierarchies, to enable the more succinct representation of the ontology structure. Every (possibly indirect) subtype of an entity or a relation type implicitly inherits all its <code class="highlighter-rouge">has-resource</code> and <code class="highlighter-rouge">plays-role</code> constraints.</p>
 
-<p>The property <code class="highlighter-rouge">abstract</code> can be applied to a type to indicate that it cannot have direct instances. For example if we have <code class="highlighter-rouge">person</code> and its subclasses <code class="highlighter-rouge">man</code> and <code class="highlighter-rouge">woman</code>, then we may want to define <code class="highlighter-rouge">person</code> as <code class="highlighter-rouge">abstract</code> to prohibit it from having any direct instances, whereas the concrete types <code class="highlighter-rouge">man</code> and <code class="highlighter-rouge">woman</code> can have direct instances.</p>
+<p>For example, in Figure~2, the entity type <code class="highlighter-rouge">woman</code> inherits the constraints <code class="highlighter-rouge">has-resource name</code>, <code class="highlighter-rouge">plays-role child</code>, <code class="highlighter-rouge">plays-role m-child</code> and <code class="highlighter-rouge">plays-role mother</code> from its supertype <code class="highlighter-rouge">person</code>. Similarly, the relation type <code class="highlighter-rouge">motherhood</code> inherits the constraint <code class="highlighter-rouge">has-resource since</code> from <code class="highlighter-rouge">parenthood</code>.</p>
+
+<p><img src="/images/knowledge-model-fig2.png" alt="A sample of a Grakn ontology involving entity, relation and role types." /></p>
+
+<p>Note that no other forms of inheritance are currently supported in Grakn. All the explicitly represented constraints, together with the inherited ones, form complete schema templates for particular entity and relation types, which are used to guide the data entry process and to validate the consistency of the data with respect to the ontology (see details below).</p>
 
 <h2 id="data">Data</h2>
 
-<p>Data elements are named instances to reflect that they are concrete pieces of data, corresponding to the ontology types described above. There are three data instances:</p>
+<p>The instance data is expressed via assertions about the types of specific entities, their relations, roles they play in those relations, and concrete resources they are associated with. The unique identifiers for all instances are assigned internally within the Grakn system. There are three basic types of data assertion (for precise Graql syntax see Page~):</p>
 
 <ul>
   <li>
-    <p><strong>Entity</strong>: A data instance of the Entity Type. For example, <code class="highlighter-rouge">William Titus</code> is an Entity corresponding to the Entity Type <code class="highlighter-rouge">man</code>.</p>
+    <p><strong>Entities</strong>: assertions about types of entity instances, for example, an assertion about <code class="highlighter-rouge">Elizabeth Niesz</code> being of type <code class="highlighter-rouge">woman</code>.</p>
   </li>
   <li>
-    <p><strong>Resource</strong>: A data instance of the Resource Type, which reflects a property of a specific Entity. For example, if <code class="highlighter-rouge">Elizabeth Niesz</code> is an instance of a <code class="highlighter-rouge">woman</code> then we can model her date of birth as a Resource, an instance of the Resource Type <code class="highlighter-rouge">birthdate</code>.</p>
+    <p><strong>Relations</strong>: assertions about relation instances and their types, for example, a <code class="highlighter-rouge">marriage</code> Relation between <code class="highlighter-rouge">Elizabeth Niesz</code> (in role <code class="highlighter-rouge">wife</code>) and <code class="highlighter-rouge">William Titus</code> (in role <code class="highlighter-rouge">husband</code>).</p>
   </li>
   <li>
-    <p><strong>Relation</strong>: A data instance of a Relation Type, which essentially describes a relationship between Entities. For example, a <code class="highlighter-rouge">marriage</code> Relation between <code class="highlighter-rouge">Elizabeth Niesz</code> (isa <code class="highlighter-rouge">woman</code>) and <code class="highlighter-rouge">William Titus</code> (isa <code class="highlighter-rouge">man</code>).</p>
+    <p><strong>Resources</strong>: assertions about resources being associated with particular entities or relation instances, for example, resource with value “Elisabeth Niesz” of type <code class="highlighter-rouge">name</code> being associated with the entity representing Elizabeth Niesz.</p>
   </li>
 </ul>
 
-<p>Note that <code class="highlighter-rouge">Elizabeth Niesz</code> plays the Role Type <code class="highlighter-rouge">wife</code> and <code class="highlighter-rouge">William Titus</code> plays the Role Type <code class="highlighter-rouge">husband</code>. Unlike the Entity, Resource and Relation instances, there are no instances of Role Types in the data layer.</p>
+<p>Unlike the entity, resource and relation instances, there are no instances of Role Types in the data layer.</p>
 
-<h2 id="validation">Validation</h2>
+<h3 id="validation">Validation</h3>
 
-<p>Some examples</p>
+<p>To ensure data is correctly structured (i.e., consistent) with respect to the ontology, all data assertions are validated against the ontology constraints. A set of assertions about an instance of a specific entity or relation type is valid, whenever the resource types, role types, and (possibly inferred) types of the involved role players match the schema template of that entity or relation type.</p>
 
-<h2 id="rules">Rules</h2>
+<p>For example, data assertions in Figure~3 violate the schema templates depicted in Figure~2, by:</p>
 
-<p>Given a set of inference rules, the Grakn reasoner is able to infer new information. The rules are defined as IF…THEN pairs, such that IF something is verified, THEN something else must be true. The reasoner checks if the first part of the rule is verified and, if it is, infers that the second part of the rule is true.</p>
+<ol>
+  <li>including the resource of type <code class="highlighter-rouge">maiden name</code> on type <code class="highlighter-rouge">person</code> (which is not allowed in the ontology).</li>
+  <li>by using an entity with the asserted type <code class="highlighter-rouge">person</code> in the <code class="highlighter-rouge">mother</code> role (while only those of type <code class="highlighter-rouge">woman</code> are accepted by the ontology).</li>
+</ol>
 
-<p>As an example: <strong>IF</strong> X has a mother and the mother has a brother <strong>THEN</strong> X has an uncle.</p>
+<p><img src="/images/knowledge-model-fig3.png" alt="Validation of data against the ontology." /></p>
+
+<h2 id="rule-and-sub-type-inference">Rule and Sub-Type Inference</h2>
+
+<p>Inference is a process of extracting implicit information from explicitly asserted data. Grakn supports two inference mechanisms:</p>
+
+<ol>
+  <li>type inference, based on the semantics of the <code class="highlighter-rouge">sub</code> hierarchies included in the ontology</li>
+  <li>rule-based inference involving user-defined IF-THEN rules.</li>
+</ol>
+
+<p>Both mechanisms are employed by default when querying the knowledge graph with Graql, thus supporting retrieval of both explicit and implicit information at query time.</p>
+
+<h3 id="type-inference">Type Inference</h3>
+<p>The type inference is based on a simple graph traversal along the <code class="highlighter-rouge">sub</code> edges. Every instance of a given concept type is automatically classified as an instance of all (possibly indirect) supertypes of that type. In case of roles, every instance playing a given role is inferred to also play all its (possibly indirect) super-roles.</p>
+
+<h3 id="rule-based-inference">Rule-Based Inference</h3>
+<p>The rule-based inference exploits a set of user-defined Horn rules and is conducted by means of the rule reasoner built naitively into Grakn.</p>
+
+<p>A rule is an expression of the form <code class="highlighter-rouge">IF G1 THEN G2</code>, where <code class="highlighter-rouge">G1</code> and <code class="highlighter-rouge">G2</code> are a pair of <code class="highlighter-rouge">match-insert</code> Graql patterns. Whenever the pattern <code class="highlighter-rouge">G1</code> is found in the data the pattern <code class="highlighter-rouge">G2</code> is inserted, for example the rule:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>IF (child:X, mother:Y); (sister:Y brother:Z) 
+THEN (nephew:X, uncle:Z) isa uncle-relation;
+</code></pre>
+</div>
+
+<p>expresses that whenever X has a mother Y and Y has a brother Z, then we can infer that Z is an uncle of X, and X is a nephew of Z.</p>
+
+<p>For precise rule syntax see <a href="../graql/graql-rules.html">Graql Rules</a>.</p>
 
 <h2 id="where-next">Where Next?</h2>
 <p>Our <a href="../the-basics/quickstart-tutorial.html">Quickstart Tutorial</a> will show you how to load an ontology, rules and data into Grakn using Graql, and to make basic queries.</p>
@@ -711,6 +769,14 @@ $('#toc').on('click', 'a', function() {
         
         
         <a href="/pages/tag_getting-started.html" class="btn btn-default navbar-btn cursorNorm" role="button">getting-started</a>
+        
+        
+        
+        <a href="/pages/tag_reasoner.html" class="btn btn-default navbar-btn cursorNorm" role="button">reasoner</a>
+        
+        
+        
+        <a href="/pages/tag_graql.html" class="btn btn-default navbar-btn cursorNorm" role="button">graql</a>
         
         
         
@@ -741,7 +807,7 @@ $('#toc').on('click', 'a', function() {
         <br>
         <p>© 2016 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2016 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> December 7th, 2016<br/> Site last generated: Dec 8, 2016 <br />
+        <span>Page last updated:</span> December 7th, 2016<br/> Site last generated: Dec 9, 2016 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">

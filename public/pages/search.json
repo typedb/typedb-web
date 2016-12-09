@@ -104,22 +104,22 @@
 
 ,
 {
-"title": "OWL Migration to Grakn",
-"tags": "migration",
-"keywords": "setup, getting started",
-"url": "/pages/documentation/migration/OWL-migration.html",
-"summary": "This document will teach you how to load OWL into Grakn."
+"title": "An Example of Migrating OWL to Grakn",
+"tags": "migrationexamples",
+"keywords": "migration",
+"url": "/pages/documentation/examples/OWL-migration.html",
+"summary": "A short example to illustrate migration of OWL to Grakn"
 }
 
 
 
 ,
 {
-"title": "An Example of Migrating OWL to Grakn",
-"tags": "migrationexamples",
-"keywords": "migration",
-"url": "/pages/documentation/examples/OWL-migration.html",
-"summary": "A short example to illustrate migration of OWL to Grakn"
+"title": "OWL Migration to Grakn",
+"tags": "migration",
+"keywords": "setup, getting started",
+"url": "/pages/documentation/migration/OWL-migration.html",
+"summary": "This document will teach you how to load OWL into Grakn."
 }
 
 
@@ -315,8 +315,19 @@
 
 ,
 {
-"title": "Grakn Knowledge Model",
+"title": "Grakn Deployment Guide",
 "tags": "getting-started",
+"keywords": "setup, getting started, download",
+"url": "/pages/documentation/resources/grakn-deployment-guide.html",
+"summary": "A guide to setting up a production deployment of GRAKN.AI."
+}
+
+
+
+,
+{
+"title": "Grakn Knowledge Model",
+"tags": "getting-startedreasonergraql",
 "keywords": "setup, getting started, basics",
 "url": "/pages/documentation/the-basics/grakn-knowledge-model.html",
 "summary": "Introducing the basics of the Grakn knowledge model."
@@ -331,6 +342,17 @@
 "keywords": "graql",
 "url": "/pages/documentation/graql/graql-cheatsheet.html",
 "summary": "A reference card (cheatsheet) for Graql"
+}
+
+
+
+,
+{
+"title": "Graql Rules",
+"tags": "graqlreasoner",
+"keywords": "graql, reasoner",
+"url": "/pages/documentation/graql/graql-rules.html",
+"summary": "Graql Rules"
 }
 
 

@@ -3,9 +3,9 @@
     <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Graql Match Queries">
-<meta name="keywords" content="graql,  graql, query, match, GRAKN.AI, Grakn Labs, grakn, graql, grakn.ai, Mindmaps Research, Mindmaps Research Ltd, MindmapsDB, mindmaps, mindmaps graph, mindmaps.io, knowledge graph, distributed knowledge graph, development platform, developer tool, data platform, programming langauge, query langauge, database, semantic database, distributed semantic database, distributed database, graph database, semantic search, data exploration, recommendation system, knowledge management, knowledge engineering, real-time analytics, advanced analytics, reasoning engine, inference engine, expert systems, semantic applications, research engines, data management, business intelligence, big data, semantic web, semantic data, knowledge representation, automated reasoning, semantic network, knowledge ontology, semantic graph, ontology engineering, graph based knowledge representation, artificial intelligence,">
-<title>GRAKN.AI | Match Queries</title>
+<meta name="description" content="Graql Rules">
+<meta name="keywords" content="graqlreasoner,  graql, reasoner, GRAKN.AI, Grakn Labs, grakn, graql, grakn.ai, Mindmaps Research, Mindmaps Research Ltd, MindmapsDB, mindmaps, mindmaps graph, mindmaps.io, knowledge graph, distributed knowledge graph, development platform, developer tool, data platform, programming langauge, query langauge, database, semantic database, distributed semantic database, distributed database, graph database, semantic search, data exploration, recommendation system, knowledge management, knowledge engineering, real-time analytics, advanced analytics, reasoning engine, inference engine, expert systems, semantic applications, research engines, data management, business intelligence, big data, semantic web, semantic data, knowledge representation, automated reasoning, semantic network, knowledge ontology, semantic graph, ontology engineering, graph based knowledge representation, artificial intelligence,">
+<title>GRAKN.AI | Graql Rules</title>
 <link rel="stylesheet" href="/pages/css/syntax.css">
 
 
@@ -163,7 +163,7 @@
                             
                             dataSource: '/pages/search.json',
                             
-                            searchResultTemplate: '<li><a href="{url}" title="Match Queries">{title}</a></li>',
+                            searchResultTemplate: '<li><a href="{url}" title="Graql Rules">{title}</a></li>',
                             noResultsText: '<li><a class="empty">No results found</a></li>',
                             limit: 10,
                             fuzzy: true
@@ -307,7 +307,7 @@
             
             
             
-            <li class="active"><a href="/pages/documentation/graql/match-queries.html">Match Queries</a></li>
+            <li><a href="/pages/documentation/graql/match-queries.html">Match Queries</a></li>
             
             
             
@@ -598,7 +598,7 @@
         <!-- Content Column -->
         <div class="col-md-9">
             <div class="post-header">
-   <h1 class="post-title-main">Match Queries</h1>
+   <h1 class="post-title-main">Graql Rules</h1>
 </div>
 
 
@@ -606,7 +606,7 @@
 <div class="post-content">
 
    
-    <div class="summary">Graql Match Queries</div>
+    <div class="summary">Graql Rules</div>
    
 
     
@@ -638,445 +638,500 @@ $('#toc').on('click', 'a', function() {
 
     
 
-    <a target="_blank" href="https://github.com/graknlabs/docs/blob/master/pages/documentation/4-graql/match-queries.md" class="btn btn-default githubEditButton" role="button"><i class="fa fa-github fa-lg"></i> Edit me</a>
+    <a target="_blank" href="https://github.com/graknlabs/docs/blob/master/pages/documentation/4-graql/graql-rules.md" class="btn btn-default githubEditButton" role="button"><i class="fa fa-github fa-lg"></i> Edit me</a>
 
     
 
     
 
-  <p>A match query will search the graph for any subgraphs that match the given
-<a href="#variable-patterns">patterns</a>. A result is produced for each match found,
-containing any variables in the query. The results of the query can be modified with various <a href="#modifiers">modifiers</a>.</p>
+  <!--Page to comprise: 
+(1) section that talks about rules, 
+(2) description of their syntax, what is allowed in their conclusion and what is not, 
+(3) configuration options, whether to materialize or not, 
+(4) maybe cover the future options for a choice of different reasoning algorithms etc?
 
-<h2 id="variable-patterns">Variable Patterns</h2>
+?? Comparison of FC and BC?
 
-<p>A pattern is a pattern to match in the graph. Patterns can be combined into a
-disjunction (‘or’) and grouped together with curly braces. Patterns are
-separated by semicolons, each pattern is independent of the others.
-A variable pattern is a pattern describing <a href="#properties">properties</a> of a
-particular concept. The variable pattern can optionally be bound to a variable
-or an ID.</p>
+Look through documentation on internal wiki:
+http://wiki.grakn.ai/docs/mindmaps-reasoner-project-definition
+and associated pages
+-->
 
-<ul id="profileTabs" class="nav nav-tabs">
-    <li class="active"><a href="#shell" data-toggle="tab">Graql</a></li>
-    <li><a href="#java" data-toggle="tab">Java</a></li>
-</ul>
+<h2 id="rule-objects">Rule Objects</h2>
 
-<div class="tab-content">
-<div role="tabpanel" class="tab-pane active" id="shell">
-<pre>match $x isa pokemon;
+<p>We define the following hierarchy of rule objects - concepts:</p>
+
+<p>{ConceptType}&lt;–(ako)–{RuleType}
+{RuleType}&lt;–(isa)–{Inference Rule}
+{RuleType}&lt;–(isa)–{Ronstraint Rule}
+{inference rule}&lt;–(isa)–{instance of inference rule, e.g. if daughter+brother then niece}
+{constraint rule}&lt;–(isa)–{instance of constraint rule, e.g. if daughter then not married}</p>
+
+<p>We introduce a single rule object in the Object Model being able to accommodate inference rules and constraint rules:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>class Rule extends ConceptInstance - wrapped around a tinkerpop vertex class
+// to check for possible inference/satisfiability, we always evaluate if(lhs){evaluate rhs}
+// action specifies action executed on RHS pattern if expectation is not met
 {
-  $x id "Mew"
-} or {
-  ($x, $y);
-  $y isa pokemon-type, id "water";
-}</pre>
+Query (String?) LHS
+Query (String?) RHS
+
+//only for constraint rules, this may be removed after graql implements negation
+Boolean expectation {true, false}
+Boolean materialise {true, false}
+
+//specifies whether it is an inference or constraint rule
+// this inherited from Concept.java
+String type 
+
+//add an edge with label "hypothesis" from conceptType to Rule concept
+addHypothesis(ConceptType conceptType)
+
+//add an edge with label "conclusion" from Rule concept to conceptType
+addConclusion(ConceptType conceptType)
+}
+</code></pre>
 </div>
-<div role="tabpanel" class="tab-pane" id="java">
-<pre>qb.match(
-  var("x").isa("pokemon"),
-  or(
-    var("x").id("Mew"),
-    and(
-      var().rel("x").rel("y"),
-      var("y").isa("pokemon-type").id("water")
-    )
-  )
-);</pre>
-</div> <!-- tab-pane -->
-</div>
-<p><!-- tab-content --></p>
 
-<h2 id="properties">Properties</h2>
+<h2 id="rule-examples">Rule Examples</h2>
 
-<h3 id="isa">isa</h3>
-<p>Match instances that have the given type.</p>
+<h3 id="example-rule-all-swedish-women-are-pretty">Example Rule: “All Swedish women are pretty”</h3>
 
-<ul id="profileTabs" class="nav nav-tabs">
-    <li class="active"><a href="#shell1" data-toggle="tab">Graql</a></li>
-    <li><a href="#java1" data-toggle="tab">Java</a></li>
-</ul>
+<pre><code class="language-Graql">Rule:
+LHS: match
+   $x isa person;
+	 $x has gender "female";
+   $x has nationality Sweden";
 
-<div class="tab-content">
-<div role="tabpanel" class="tab-pane active" id="shell1">
-<pre>match $x isa pokemon;</pre>
-</div>
-<div role="tabpanel" class="tab-pane" id="java1">
-<pre>qb.match(var("x").isa("pokemon"));</pre>
-</div> <!-- tab-pane -->
-</div>
-<p><!-- tab-content --></p>
-
-<h3 id="id">id</h3>
-<p>Match concepts that have an <code class="highlighter-rouge">id</code> which matches the <a href="#predicates">predicate</a>.</p>
-<ul id="profileTabs" class="nav nav-tabs">
-    <li class="active"><a href="#shell2" data-toggle="tab">Graql</a></li>
-    <li><a href="#java2" data-toggle="tab">Java</a></li>
-</ul>
-
-<div class="tab-content">
-<div role="tabpanel" class="tab-pane active" id="shell2">
-<pre>
-match $x has name "Articuno";
-</pre>
-</div>
-<div role="tabpanel" class="tab-pane" id="java2">
-<pre>
-qb.match(var("x").has("name", "Articuno"));
-</pre>
-</div> <!-- tab-pane -->
-</div>
-<p><!-- tab-content --></p>
-
-<h3 id="value">value</h3>
-
-<p>Match concepts that have a <code class="highlighter-rouge">value</code>. If a <a href="#predicates">predicate</a> is provided, the resource must match that predicate.</p>
-
-<ul id="profileTabs" class="nav nav-tabs">
-    <li class="active"><a href="#shell3" data-toggle="tab">Graql</a></li>
-    <li><a href="#java3" data-toggle="tab">Java</a></li>
-</ul>
-
-<div class="tab-content">
-<div role="tabpanel" class="tab-pane active" id="shell3">
-<pre>
-match $x value contains "lightning";
-</pre>
-</div>
-<div role="tabpanel" class="tab-pane" id="java3">
-<pre>
-qb.match(var("x").value(contains("lightning")))
-</pre>
-</div> <!-- tab-pane -->
-</div>
-<p><!-- tab-content --></p>
-
-<h3 id="has">has</h3>
-
-<p>Match concepts that have a resource of <code class="highlighter-rouge">type</code>. If a <a href="#predicates">predicate</a> is provided, the resource must match that predicate.</p>
-
-<ul id="profileTabs" class="nav nav-tabs">
-    <li class="active"><a href="#shell4" data-toggle="tab">Graql</a></li>
-    <li><a href="#java4" data-toggle="tab">Java</a></li>
-</ul>
-
-<div class="tab-content">
-<div role="tabpanel" class="tab-pane active" id="shell4">
-<pre>
-match $x has pokedex-no &lt; 20;
-</pre>
-</div>
-<div role="tabpanel" class="tab-pane" id="java4">
-<pre>
-qb.match(var("x").has("pokedex-no", lt(20)));
-</pre>
-</div> <!-- tab-pane -->
-</div>
-<p><!-- tab-content --></p>
-
-<p>The above is equivalent to:</p>
-
-<ul id="profileTabs" class="nav nav-tabs">
-    <li class="active"><a href="#shell5" data-toggle="tab">Graql</a></li>
-    <li><a href="#java5" data-toggle="tab">Java</a></li>
-</ul>
-
-<div class="tab-content">
-<div role="tabpanel" class="tab-pane active" id="shell5">
-<pre>
-match
-(has-pokedex-no-owner: $x, has-pokedex-no-value: $pokedex-no) isa has-pokedex-no;
-$pokedex-no value &lt; 20;
-</pre>
-</div>
-<div role="tabpanel" class="tab-pane" id="java5">
-<pre>
-qb.match(
-  var().rel("pokedex-no-owner", "x").rel("pokedex-no-value", "pokedex-no")
-    .isa("has-pokedex-no"),
-  var("pokedex-no").value(lt(20))
-);
-
-</pre>
-</div> <!-- tab-pane -->
-</div>
-<p><!-- tab-content --></p>
-
-<h3 id="relation">relation</h3>
-
-<p>Match concepts that are relations between the given variables. If a role type is provided, the role player must be playing that role type.</p>
-
-<ul id="profileTabs" class="nav nav-tabs">
-    <li class="active"><a href="#shell6" data-toggle="tab">Graql</a></li>
-    <li><a href="#java6" data-toggle="tab">Java</a></li>
-</ul>
-
-<div class="tab-content">
-<div role="tabpanel" class="tab-pane active" id="shell6">
-<pre>
-match
-$x isa pokemon;
-(ancestor: $x, $y);
-</pre>
-</div>
-<div role="tabpanel" class="tab-pane" id="java6">
-<pre>
-qb.match(
-  var("x").isa("pokemon"),
-  var().rel("ancestor", "x").rel("y")
-);
-</pre>
-</div> <!-- tab-pane -->
-</div>
-<p><!-- tab-content --></p>
-
-<h2 id="type-properties">Type Properties</h2>
-
-<p>The following properties only apply to types.</p>
-
-<h3 id="sub">sub</h3>
-<p>Match types that are a subclass of the given type.</p>
-
-<ul id="profileTabs" class="nav nav-tabs">
-    <li class="active"><a href="#shell7" data-toggle="tab">Graql</a></li>
-    <li><a href="#java7" data-toggle="tab">Java</a></li>
-</ul>
-
-<div class="tab-content">
-<div role="tabpanel" class="tab-pane active" id="shell7">
-<pre>
-match $x sub type;
-</pre>
-</div>
-<div role="tabpanel" class="tab-pane" id="java7">
-<pre>
-qb.match(var("x").sub("type"))
-</pre>
-</div> <!-- tab-pane -->
-</div>
-<p><!-- tab-content --></p>
-
-<h3 id="has-role">has-role</h3>
-<p>Match relation types that have the given role.</p>
-
-<ul id="profileTabs" class="nav nav-tabs">
-    <li class="active"><a href="#shell8" data-toggle="tab">Graql</a></li>
-    <li><a href="#java8" data-toggle="tab">Java</a></li>
-</ul>
-
-<div class="tab-content">
-<div role="tabpanel" class="tab-pane active" id="shell8">
-<pre>
-match evolution has-role $x;
-</pre>
-</div>
-<div role="tabpanel" class="tab-pane" id="java8">
-<pre>
-qb.match(name("evolution").hasRole(var("x")));
-</pre>
-</div> <!-- tab-pane -->
-</div>
-<p><!-- tab-content --></p>
-
-<h3 id="plays-role">plays-role</h3>
-<p>Match concept types that play the given role.</p>
-<ul id="profileTabs" class="nav nav-tabs">
-    <li class="active"><a href="#shell9" data-toggle="tab">Graql</a></li>
-    <li><a href="#java9" data-toggle="tab">Java</a></li>
-</ul>
-
-<div class="tab-content">
-<div role="tabpanel" class="tab-pane active" id="shell9">
-<pre>
-match $x plays-role ancestor;
-</pre>
-</div>
-<div role="tabpanel" class="tab-pane" id="java9">
-<pre>
-qb.match(var("x").playsRole("ancestor"));
-</pre>
-</div> <!-- tab-pane -->
-</div>
-<p><!-- tab-content --></p>
-
-<h3 id="has-resource">has-resource</h3>
-<p>Match concept types that can have the given resource types.</p>
-
-<ul id="profileTabs" class="nav nav-tabs">
-    <li class="active"><a href="#shell10" data-toggle="tab">Graql</a></li>
-    <li><a href="#java10" data-toggle="tab">Java</a></li>
-</ul>
-
-<div class="tab-content">
-<div role="tabpanel" class="tab-pane active" id="shell10">
-<pre>
-match $x has-resource name;
-</pre>
-</div>
-<div role="tabpanel" class="tab-pane" id="java10">
-<pre>
-qb.match(var("x").hasResource("name"));
-</pre>
-</div> <!-- tab-pane -->
-</div>
-<p><!-- tab-content --></p>
-
-<p>The above is equivalent to:</p>
-
-<ul id="profileTabs" class="nav nav-tabs">
-    <li class="active"><a href="#shell11" data-toggle="tab">Graql</a></li>
-    <li><a href="#java11" data-toggle="tab">Java</a></li>
-</ul>
-
-<div class="tab-content">
-<div role="tabpanel" class="tab-pane active" id="shell11">
-<pre>
-match $x plays-role has-name-owner;
-</pre>
-</div>
-<div role="tabpanel" class="tab-pane" id="java11">
-<pre>
-qb.match(var("x").playsRole("has-name-owner"));
-</pre>
-</div> <!-- tab-pane -->
-</div>
-<p><!-- tab-content --></p>
-
-<h2 id="predicates">Predicates</h2>
-
-<p>A predicate is a boolean function applied to values. If a concept doesn’t have a value, all predicates are considered false.</p>
-
-<h3 id="comparators">Comparators</h3>
-
-<p>There are several standard comparators, <code class="highlighter-rouge">=</code>, <code class="highlighter-rouge">!=</code>, <code class="highlighter-rouge">&gt;</code>, <code class="highlighter-rouge">&gt;=</code>, <code class="highlighter-rouge">&lt;</code> and <code class="highlighter-rouge">&lt;=</code>. For
-longs and doubles, these sort by value. Strings are ordered lexicographically.</p>
-<ul id="profileTabs" class="nav nav-tabs">
-    <li class="active"><a href="#shell12" data-toggle="tab">Graql</a></li>
-    <li><a href="#java12" data-toggle="tab">Java</a></li>
-</ul>
-
-<div class="tab-content">
-<div role="tabpanel" class="tab-pane active" id="shell12">
-<pre>
-match $x has height = 19, has weight &gt; 1500;
-</pre>
-</div>
-<div role="tabpanel" class="tab-pane" id="java12">
-<pre>
-qb.match(var("x").has("height", 19).has("weight", gt(1500)));
-</pre>
-</div> <!-- tab-pane -->
-</div>
-<p><!-- tab-content --></p>
-
-<p>If a concept doesn’t have a value, all predicates are considered false. The query below matches everything where the predicate <code class="highlighter-rouge">&gt;10</code> is true. So, it will find all concepts with value greater than 10. However, if a concept does not have a value at all, the predicate is considered false, so it won’t appear in the results.</p>
-
-<pre><code class="language-graql">match $x value &gt;10;
+RHS: insert
+     $x has beauty-score 9;
 </code></pre>
 
-<h3 id="contains">Contains</h3>
-<p>Asks if the given string is a substring.</p>
+<p>Upon addition of this rule instance, the concept types of Person, Gender, and Nationality will be linked to it.</p>
 
-<ul id="profileTabs" class="nav nav-tabs">
-    <li class="active"><a href="#shell13" data-toggle="tab">Graql</a></li>
-    <li><a href="#java13" data-toggle="tab">Java</a></li>
-</ul>
+<p>Once an instance of Gender or Nationality is added to the graph, it can be checked for being a partial instantiation of the rule by checking whether the value of the resource is met after downloading the relevant connected Rule Instance. If it is a partial instantiation then the LHS is executed with a where chain specifying the given instance.</p>
 
-<div class="tab-content">
-<div role="tabpanel" class="tab-pane active" id="shell13">
-<pre>
-match $x has description $desc;
-$desc value contains "underground";
+<h3 id="example-rule-if-two-companies-have-the-same-location-and-their-directors-are-related-flag-them-as-suspicious">Example Rule: If two companies have the same location and their directors are related, flag them as “suspicious”</h3>
 
-</pre>
-</div>
-<div role="tabpanel" class="tab-pane" id="java13">
-<pre>
-qb.match(
-    var("x").has("description", var("desc")),
-    var("desc").value(contains("underground"))
-);
-</pre>
-</div> <!-- tab-pane -->
-</div>
-<p><!-- tab-content --></p>
+<pre><code class="language-Graql">select match
+    $x isa company;
+    $y isa company;
+    $x has address "address";
+    $y has address "address";
+    ($x, $u) isa directorship;
+    ($y, $v) isa directorship;
+    ($u, $v) select $x, $y;
 
-<h3 id="regex">Regex</h3>
-<p>Checks if the value matches a regular expression. This match is across the
-entire string, so if you want to match something within a string, you must
-surround the expression with <code class="highlighter-rouge">.*</code>.</p>
-
-<ul id="profileTabs" class="nav nav-tabs">
-    <li class="active"><a href="#shell14" data-toggle="tab">Graql</a></li>
-    <li><a href="#java14" data-toggle="tab">Java</a></li>
-</ul>
-
-<div class="tab-content">
-<div role="tabpanel" class="tab-pane active" id="shell14">
-<pre>
-match $x value /.*(fast|quick).*/;
-</pre>
-</div>
-<div role="tabpanel" class="tab-pane" id="java14">
-<pre>
-qb.match(var("x").value(regex(".*(fast|quick).*")));
-</pre>
-</div> <!-- tab-pane -->
-</div>
-<p><!-- tab-content --></p>
-
-<h2 id="modifiers">Modifiers</h2>
-
-<ul id="profileTabs" class="nav nav-tabs">
-    <li class="active"><a href="#shell16" data-toggle="tab">Graql</a></li>
-    <li><a href="#java16" data-toggle="tab">Java</a></li>
-</ul>
-
-<div class="tab-content">
-<div role="tabpanel" class="tab-pane active" id="shell16">
-<pre>
-match $x isa pokemon, has pokedex-no $no;
-select $x;
-limit 10; offset 30; distinct; order by $no asc;
-
-</pre>
-</div>
-<div role="tabpanel" class="tab-pane" id="java16">
-<pre>
-qb.match(var("x").isa("pokemon").has("pokedex-no", var("no")))
-    .select("x")
-    .limit(10)
-    .offset(30)
-    .distinct()
-    .orderBy("no", Order.asc);
-</pre>
-</div> <!-- tab-pane -->
-</div>
-<p><!-- tab-content --></p>
-
-<h3 id="distinct">distinct</h3>
-<p>Remove any duplicate results.</p>
-
-<h3 id="limit">limit</h3>
-<p>Limit the query to the given number of results.</p>
-
-<p>Note that the order in which you specify modifiers can be important. If you make a query and <code class="highlighter-rouge">limit</code> the results returned, say to 10 as in the example, then specify the <code class="highlighter-rouge">distinct</code> modifier <em>after</em> the <code class="highlighter-rouge">limit</code>, you may find that <code class="highlighter-rouge">distinct</code> removes any non-unique results, so you end up with fewer than the 10 results you expected to be returned to you. To ensure that you receive <em>exactly</em> 10 distinct results, you are better to use <code class="highlighter-rouge">distinct</code> before <code class="highlighter-rouge">limit</code>.</p>
-
-<pre><code class="language-graql">match $x isa pokemon, has pokedex-no $no;
-select $x;
-distinct; limit 10; offset 30; order by $no asc;
+insert
+    $x has flag "suspicious";
+    $y has flag "suspicious";
 </code></pre>
 
-<h3 id="offset">offset</h3>
-<p>Offset the query by the given number of results.</p>
+<p>Upon addition of this rule instance, the concept types of Company, Address and Directorship will be linked to it.</p>
 
-<h3 id="order">order</h3>
-<p>Order the results by the given variable’s degree. If a type is provided, order
-by the resource of that type on that concept. Order is ascending by default.</p>
+<h3 id="example-rule-if-a-persons-parent-has-a-brother-the-person-has-an-uncle">Example Rule: “If a Person’s parent has a brother, the person has an uncle”</h3>
 
-<h3 id="select">select</h3>
+<pre><code class="language-Graql">Rule:
+LHS: match
+  	 ($x, $y);
+     ($y, $z);
+  
+     $x isa person;
+     $y isa person;
+     $z isa person;
+     $a (child $x, parent $z) isa hasParent;
 
-<p>Indicates which variables to include in the results.</p>
+     ($z, $y) isa hasBrother select $x, $y;
+  
+RHS: insert 
+     isa hasUncle(nephew/niece $x, uncle $y);
+</code></pre>
+
+<h3 id="example-rule-transitivity-of-a-specific-relation">Example Rule: “Transitivity of a specific relation”</h3>
+
+<pre><code class="language-Graql">Rule:
+LHS: match
+  	 (roleA $x, roleB $y) isa someRelationType;
+     (roleA $y, roleB $z) isa someRelationType select $x, $z;
+     
+RHS: insert 
+		 isa someRelationType(roleA $x, roleB $z);
+</code></pre>
+
+<h3 id="example-rule-two-concepts-being-related-results-in-something">Example Rule: “Two concepts being related results in something”</h3>
+
+<pre><code class="language-Graql">Rule:
+LHS: match
+     ($x, $y)
+  
+RHS: insert
+     isa someRelationType($x, $y);
+</code></pre>
+
+<h2 id="constraint-examples">Constraint examples</h2>
+
+<h3 id="example-constraint-every-person-that-is-employed-by-a-company-must-have-a-contract-between-them">Example Constraint: “Every person that is employed by a company must have a contract between them”</h3>
+
+<pre><code class="language-Graql">Constraint:
+IF (LHS)
+        match
+        $x isa person
+        $y isa person
+        (employee $x, employer $y) isa employment
+THEN (RHS)
+        match
+        ($x, $y) isa contract ask;
+    
+expectation = true
+</code></pre>
+
+<p>Suppose the following piece of information is added:
+<code class="highlighter-rouge">
+$x = 'bob'
+</code></p>
+
+<p>We then execute the constraint LHS on ‘bob’:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">Check</span> <span class="n">whether</span> <span class="n">bob</span> <span class="n">is</span> <span class="n">an</span> <span class="n">instantiation</span> <span class="n">of</span> <span class="nl">LHS:</span>
+
+        <span class="n">Query</span><span class="o">.</span><span class="na">parser</span><span class="o">(</span><span class="s">"match
+        $x isa person;$y isa person;
+        (employee $x, employer $y) isa employment"</span><span class="o">).</span><span class="na">where</span><span class="o">(</span><span class="n">$x</span> <span class="n">id</span> <span class="err">'</span><span class="n">bob</span><span class="err">'</span><span class="o">)</span>
+       
+        <span class="n">we</span> <span class="n">also</span> <span class="n">need</span> <span class="n">to</span> <span class="n">check</span> <span class="k">for</span><span class="o">:</span>
+       
+        <span class="n">Query</span><span class="o">.</span><span class="na">parser</span><span class="o">(</span><span class="s">"match
+        $x isa person;$y isa person;
+        (employee $x, employer $y) isa employment"</span><span class="o">).</span><span class="na">where</span><span class="o">(</span><span class="n">$y</span> <span class="n">id</span> <span class="err">'</span><span class="n">bob</span><span class="err">'</span><span class="o">)</span>
+       
+        <span class="n">put</span> <span class="n">the</span> <span class="n">result</span> <span class="n">of</span> <span class="n">all</span> <span class="n">queries</span> <span class="n">above</span> <span class="n">in</span> <span class="n">to</span> <span class="n">a</span> <span class="n">list</span> <span class="n">of</span> <span class="o">(</span><span class="n">x</span><span class="o">,</span><span class="n">y</span><span class="o">)</span> <span class="n">pairs</span> <span class="n">called</span> <span class="n">LHS</span>
+<span class="n">then</span>
+<span class="n">check</span> <span class="k">if</span> <span class="n">RHS</span> <span class="n">meets</span> <span class="n">the</span> <span class="nl">expectation:</span>
+                     
+        <span class="k">for</span> <span class="n">every</span> <span class="n">item</span> <span class="n">i</span><span class="o">(</span><span class="n">x</span><span class="o">,</span><span class="n">y</span><span class="o">)</span> <span class="n">in</span> <span class="n">LHS</span>
+        <span class="n">Constraint</span><span class="o">.</span><span class="na">expectation</span> <span class="o">?=</span> <span class="n">Query</span><span class="o">.</span><span class="na">parser</span><span class="o">(</span><span class="s">"match
+        ($x, $y) isa contract ask"</span><span class="o">).</span><span class="na">where</span><span class="o">(</span><span class="n">$x</span> <span class="n">id</span> <span class="n">i</span><span class="o">.</span><span class="na">x</span><span class="o">,</span> <span class="n">$y</span> <span class="n">id</span> <span class="n">i</span><span class="o">.</span><span class="na">y</span><span class="o">);</span>
+</code></pre>
+</div>
+
+<p>Alternatively we can process data on a relation basis, say the following information is added:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>Employment(bob, alice)        
+</code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">Check</span> <span class="n">whether</span> <span class="n">added</span> <span class="n">relation</span> <span class="n">leads</span> <span class="n">to</span> <span class="n">instantiation</span> <span class="n">of</span> <span class="nl">LHS:</span>
+
+<span class="o">(</span><span class="n">x</span><span class="o">,</span> <span class="n">y</span><span class="o">)</span> <span class="o">=</span> <span class="n">Query</span><span class="o">.</span><span class="na">parser</span><span class="o">(</span><span class="n">Constraint</span><span class="o">.</span><span class="na">LHS</span><span class="o">).</span><span class="na">where</span><span class="o">(</span><span class="n">$x</span> <span class="n">id</span> <span class="err">'</span><span class="n">bob</span><span class="err">'</span><span class="o">,</span> <span class="n">$y</span> <span class="n">id</span> <span class="err">'</span><span class="n">alice</span><span class="err">'</span><span class="o">)</span>
+  
+<span class="n">Then</span> <span class="n">check</span> <span class="k">if</span> <span class="n">RHS</span> <span class="n">meets</span> <span class="n">the</span> <span class="nl">expectation:</span>
+<span class="n">Constraint</span><span class="o">.</span><span class="na">expectation</span> <span class="o">?=</span> <span class="n">Query</span><span class="o">.</span><span class="na">parser</span><span class="o">(</span><span class="n">Constraint</span><span class="o">.</span><span class="na">RHS</span><span class="o">).</span><span class="na">where</span><span class="o">(</span><span class="n">$x</span> <span class="n">id</span> <span class="n">x</span><span class="o">,</span> <span class="n">$y</span> <span class="n">id</span> <span class="n">y</span><span class="o">)</span>
+</code></pre>
+</div>
+
+<h2 id="support-of-graql-constructs">Support of Graql Constructs</h2>
+
+<h3 id="queries">Queries</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Description</th>
+      <th style="text-align: center">Example</th>
+      <th style="text-align: left">Input</th>
+      <th style="text-align: left">Body</th>
+      <th style="text-align: left">Head</th>
+      <th style="text-align: right">Level of support</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>conjunctive queries</td>
+      <td style="text-align: center">-</td>
+      <td style="text-align: left">✓</td>
+      <td style="text-align: left">✓</td>
+      <td style="text-align: left">x</td>
+      <td style="text-align: right">supported</td>
+    </tr>
+    <tr>
+      <td>disjunctive queries</td>
+      <td style="text-align: center">-</td>
+      <td style="text-align: left">✓</td>
+      <td style="text-align: left">x</td>
+      <td style="text-align: left">x</td>
+      <td style="text-align: right">supported</td>
+    </tr>
+    <tr>
+      <td>nested queries</td>
+      <td style="text-align: center">queries with multiply nested conjunctions/disjunctions</td>
+      <td style="text-align: left">✓</td>
+      <td style="text-align: left">x</td>
+      <td style="text-align: left">x</td>
+      <td style="text-align: right">supported</td>
+    </tr>
+    <tr>
+      <td>reified queries</td>
+      <td style="text-align: center">queries with complex constructs represented as variables (e.g. relations as roleplayers )</td>
+      <td style="text-align: left">✓</td>
+      <td style="text-align: left">✓</td>
+      <td style="text-align: left">x</td>
+      <td style="text-align: right">experimental support</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="variable-patterns">Variable Patterns</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Description</th>
+      <th style="text-align: left">Example</th>
+      <th style="text-align: left">Body</th>
+      <th style="text-align: left">Head</th>
+      <th style="text-align: right">Level of support</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>isa</td>
+      <td style="text-align: left">match $x isa pokemon;</td>
+      <td style="text-align: left">✓</td>
+      <td style="text-align: left">x</td>
+      <td style="text-align: right">supported</td>
+    </tr>
+    <tr>
+      <td>id</td>
+      <td style="text-align: left">match $x id “Articuno”;</td>
+      <td style="text-align: left">✓</td>
+      <td style="text-align: left">indirect only</td>
+      <td style="text-align: right">supported</td>
+    </tr>
+    <tr>
+      <td>value</td>
+      <td style="text-align: left">match $x value contains “lightning”;</td>
+      <td style="text-align: left">✓</td>
+      <td style="text-align: left">indirect only</td>
+      <td style="text-align: right">supported</td>
+    </tr>
+    <tr>
+      <td>has</td>
+      <td style="text-align: left">match $x has pokedex-no &lt; 20;</td>
+      <td style="text-align: left">✓</td>
+      <td style="text-align: left"> </td>
+      <td style="text-align: right">supported</td>
+    </tr>
+    <tr>
+      <td>relations with specified types</td>
+      <td style="text-align: left">match (ancestor: $x, descendant: $y) isa ancestorship;</td>
+      <td style="text-align: left">✓</td>
+      <td style="text-align: left">✓</td>
+      <td style="text-align: right">supported</td>
+    </tr>
+    <tr>
+      <td>relations with incomplete roles</td>
+      <td style="text-align: left">match (ancestor: $x, $y) isa ancestorship;</td>
+      <td style="text-align: left">✓</td>
+      <td style="text-align: left">✓, not recommended</td>
+      <td style="text-align: right">supported</td>
+    </tr>
+    <tr>
+      <td>relations without type</td>
+      <td style="text-align: left">match (ancestor: $x, $y);</td>
+      <td style="text-align: left">✓</td>
+      <td style="text-align: left">✓</td>
+      <td style="text-align: right">supported</td>
+    </tr>
+    <tr>
+      <td>match all relations</td>
+      <td style="text-align: left">match ($x, $y);</td>
+      <td style="text-align: left">✓</td>
+      <td style="text-align: left">x</td>
+      <td style="text-align: right">supported</td>
+    </tr>
+    <tr>
+      <td>relations with rscs in one line</td>
+      <td style="text-align: left">match (ancestor: $x, $y) isa rel-typel has resource-type ‘value’;</td>
+      <td style="text-align: left">✓</td>
+      <td style="text-align: left">x</td>
+      <td style="text-align: right">supported</td>
+    </tr>
+    <tr>
+      <td>relations with user specified var</td>
+      <td style="text-align: left">match $r ($x, $y);</td>
+      <td style="text-align: left">✓</td>
+      <td style="text-align: left">✓</td>
+      <td style="text-align: right">supported</td>
+    </tr>
+    <tr>
+      <td>relations with roles as variables</td>
+      <td style="text-align: left">match ($r: $x, $y) isa rel-type;</td>
+      <td style="text-align: left">✓</td>
+      <td style="text-align: left">✓</td>
+      <td style="text-align: right">experimental support</td>
+    </tr>
+    <tr>
+      <td>relations with type var</td>
+      <td style="text-align: left">match (ancestor: $x, $y) isa $rel;</td>
+      <td style="text-align: left">✓</td>
+      <td style="text-align: left">✓</td>
+      <td style="text-align: right">supported</td>
+    </tr>
+    <tr>
+      <td>resource comparison</td>
+      <td style="text-align: left">match $x value &gt; $y;</td>
+      <td style="text-align: left">✓</td>
+      <td style="text-align: left">x</td>
+      <td style="text-align: right">supported</td>
+    </tr>
+    <tr>
+      <td>!=</td>
+      <td style="text-align: left">match $x != $y;</td>
+      <td style="text-align: left">✓</td>
+      <td style="text-align: left">x</td>
+      <td style="text-align: right">supported</td>
+    </tr>
+    <tr>
+      <td>has-scope</td>
+      <td style="text-align: left">match ($x, $y) has-scope $z;match $x has-scope $y;</td>
+      <td style="text-align: left">✓</td>
+      <td style="text-align: left">x</td>
+      <td style="text-align: right">supported</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="type-properties">Type Properties</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Description</th>
+      <th style="text-align: left">Example</th>
+      <th style="text-align: left">Body</th>
+      <th style="text-align: left">Head</th>
+      <th style="text-align: right">Level of support</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>sub</td>
+      <td style="text-align: left">match $x sub type;</td>
+      <td style="text-align: left">✓</td>
+      <td style="text-align: left">x</td>
+      <td style="text-align: right">supported</td>
+    </tr>
+    <tr>
+      <td>plays-role</td>
+      <td style="text-align: left">match $x plays-role ancestor;</td>
+      <td style="text-align: left">✓</td>
+      <td style="text-align: left">x</td>
+      <td style="text-align: right">supported</td>
+    </tr>
+    <tr>
+      <td>has-resource</td>
+      <td style="text-align: left">match $x has-resource name;</td>
+      <td style="text-align: left">✓</td>
+      <td style="text-align: left">x</td>
+      <td style="text-align: right">supported</td>
+    </tr>
+    <tr>
+      <td>has-role</td>
+      <td style="text-align: left">match evolution has-role $x;</td>
+      <td style="text-align: left">✓</td>
+      <td style="text-align: left">x</td>
+      <td style="text-align: right">supported</td>
+    </tr>
+    <tr>
+      <td>is-abstract</td>
+      <td style="text-align: left">match $x is-abstract;</td>
+      <td style="text-align: left">✓</td>
+      <td style="text-align: left">x</td>
+      <td style="text-align: right">supported</td>
+    </tr>
+    <tr>
+      <td>datatype</td>
+      <td style="text-align: left">match $x isa resource-type, datatype string;</td>
+      <td style="text-align: left">✓</td>
+      <td style="text-align: left">x</td>
+      <td style="text-align: right">supported</td>
+    </tr>
+    <tr>
+      <td>regex</td>
+      <td style="text-align: left">match $x isa resource-type, regex /hello/;</td>
+      <td style="text-align: left">✓</td>
+      <td style="text-align: left">x</td>
+      <td style="text-align: right">supported</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="predicates">Predicates</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Description</th>
+      <th style="text-align: left">Example</th>
+      <th style="text-align: right">Level of support</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Comparators</td>
+      <td style="text-align: left">match $x has height = 19, has weight &gt; 1500;</td>
+      <td style="text-align: right">supported</td>
+    </tr>
+    <tr>
+      <td>Contains</td>
+      <td style="text-align: left">match $x has description $desc;$desc value contains “underground”;</td>
+      <td style="text-align: right">supported</td>
+    </tr>
+    <tr>
+      <td>Regex</td>
+      <td style="text-align: left">match $x value /.*(fast|quick).*/;</td>
+      <td style="text-align: right">supported</td>
+    </tr>
+    <tr>
+      <td>And and Or</td>
+      <td style="text-align: left">match $x has weight &gt;20 and &lt;30;</td>
+      <td style="text-align: right">supported</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="modifiers">Modifiers</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Description</th>
+      <th style="text-align: right">Level of support</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>limit</td>
+      <td style="text-align: right">supported</td>
+    </tr>
+    <tr>
+      <td>offset</td>
+      <td style="text-align: right">supported</td>
+    </tr>
+    <tr>
+      <td>distinct</td>
+      <td style="text-align: right">supported</td>
+    </tr>
+    <tr>
+      <td>order</td>
+      <td style="text-align: right">supported</td>
+    </tr>
+    <tr>
+      <td>select</td>
+      <td style="text-align: right">supported</td>
+    </tr>
+  </tbody>
+</table>
 
 
 
@@ -1087,6 +1142,10 @@ by the resource of that type on that concept. Order is ascending by default.</p>
         
         
         <a href="/pages/tag_graql.html" class="btn btn-default navbar-btn cursorNorm" role="button">graql</a>
+        
+        
+        
+        <a href="/pages/tag_reasoner.html" class="btn btn-default navbar-btn cursorNorm" role="button">reasoner</a>
         
         
         
@@ -1117,7 +1176,7 @@ by the resource of that type on that concept. Order is ascending by default.</p>
         <br>
         <p>© 2016 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2016 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> August 11, 2016<br/> Site last generated: Dec 9, 2016 <br />
+        <span>Page last updated:</span> December 9th 2016<br/> Site last generated: Dec 9, 2016 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">
