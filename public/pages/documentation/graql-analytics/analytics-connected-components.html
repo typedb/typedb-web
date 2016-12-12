@@ -399,6 +399,13 @@
             
             
             
+            <li><a href="/pages/documentation/graql-analytics/analytics-persist.html">Analytics Persist</a></li>
+            
+            
+            
+            
+            
+            
             <li class="active"><a href="/pages/documentation/graql-analytics/analytics-connected-components.html">Connected Components</a></li>
             
             
@@ -644,12 +651,39 @@ $('#toc').on('click', 'a', function() {
 
     
 
-  <p>The connected components algorithm can be used to find clusters of instances in the graph that are connected. The
- algorithm finds all instances (relations, resources and entities) that are connected via relations in the graph and
- gives each set a unique label. In the graph below you can see three connected components that correspond to groups of
- friends. In this graph three unique labels will be created one corresponding to each of the sets of connected instances.</p>
+  <p>The connected components algorithm can be used to find clusters of instances in the graph that are connected.
+The algorithm finds all instances (relations, resources and entities) that are connected via relations in the graph and gives each set a unique label.
+In the graph below you can see three connected components that correspond to groups of friends.
+In this graph three unique labels will be created one corresponding to each of the sets of connected instances.</p>
 
 <p><img src="/images/analytics_conn_comp.png" alt="Three connected components representing groups of friends." /></p>
+
+<p>You can call the cluster algorithm to find the clusters above using:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>compute cluster in person, knows;
+</code></pre>
+</div>
+
+<p>The results you would actually get involve 3 clusters with sizes: 5, 7, 3.
+If you want to see the actual members of the clusters you have to use the modifier <code class="highlighter-rouge">members</code>.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>compute cluster in person, knows; members;
+</code></pre>
+</div>
+
+<p>Here, the <a href="./analytics-overview.html">subgraph</a> functionality has been used to get more meaningful results, because executing the cluster algorithm without specifying a subgraph will not result in meaningful information.</p>
+
+<h3 id="persisting-the-connected-components">Persisting the Connected Components</h3>
+
+<p>When the clusters have meaning, it is useful to be able to persist it to the graph, so it is available for querying.</p>
+
+<p>For this reason we have introduced <code class="highlighter-rouge">persist</code>, which is <a href="./analytics-persist.html">documented further on a separate page</a>.</p>
+
+<p>To persist the cluster to the graph we call:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>compute cluster in person, knows; members; persist;
+</code></pre>
+</div>
 
 <h2 id="comments">Comments</h2>
 <p>Want to leave a comment? Visit <a href="https://github.com/graknlabs/docs/issues/71" target="_blank">the issues on Github for this page</a> (you’ll need a GitHub account). You are also welcome to contribute to our documentation directly via the “Edit me” button at the top of this page.</p>
@@ -693,7 +727,7 @@ $('#toc').on('click', 'a', function() {
         <br>
         <p>© 2016 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2016 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> November 24, 2016<br/> Site last generated: Dec 9, 2016 <br />
+        <span>Page last updated:</span> December 12, 2016<br/> Site last generated: Dec 12, 2016 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">

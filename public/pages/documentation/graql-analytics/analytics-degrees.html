@@ -399,6 +399,13 @@
             
             
             
+            <li><a href="/pages/documentation/graql-analytics/analytics-persist.html">Analytics Persist</a></li>
+            
+            
+            
+            
+            
+            
             <li><a href="/pages/documentation/graql-analytics/analytics-connected-components.html">Connected Components</a></li>
             
             
@@ -644,49 +651,75 @@ $('#toc').on('click', 'a', function() {
 
     
 
-  <p>What is the most important instance in my graph? Given no more context than this, the degree can provide an answer of
-sorts. The degree of an instance gives the number of other instances directly connected to it. For an entity, such as
-a person, this means the number of relations they are connected to, for example instances of a friendship. In this case
-the person with the highest degree, number of friends, is arguably the most important.</p>
-
-<h2 id="available-algorithms">Available Algorithms</h2>
-
-<table>
-  <thead>
-    <tr>
-      <th>Algorithm</th>
-      <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><a href="#degrees"><code class="highlighter-rouge">degrees</code></a></td>
-      <td>Compute the degree of the instances.</td>
-    </tr>
-    <tr>
-      <td><a href="#degrees-and-persist"><code class="highlighter-rouge">degreesAndPersist</code></a></td>
-      <td>Compute the degree of the instances and persist this in the graph.</td>
-    </tr>
-  </tbody>
-</table>
+  <p>What is the most important instance in a graph? Given no more context than this, <code class="highlighter-rouge">degrees</code> can provide an answer of
+sorts. The degree of an instance gives the number of other instances directly connected to the instance. For an entity, such as
+a <code class="highlighter-rouge">person</code>, this means the number of connections, for example instances of a <code class="highlighter-rouge">friendship</code> relationship. The <code class="highlighter-rouge">person</code> with the highest degree, or the greatest number of friends, is arguably the most “important”.</p>
 
 <h3 id="degrees">Degrees</h3>
 
-<p>The <code class="highlighter-rouge">degrees</code> algorithm computes how many edges there are attached to a given instances in the graph. A map is returned
-that displays an instance ID and its degree.</p>
+<p>The <code class="highlighter-rouge">degrees</code> algorithm computes how many edges there are attached to instances in the graph. A map is returned
+that displays an instance ID and its degree. If we call:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>compute degrees in person;
+<div class="highlighter-rouge"><pre class="highlight"><code>compute degrees;
 </code></pre>
 </div>
 
-<h3 id="degrees-and-persist">Degrees and Persist</h3>
+<p>on the graph below we expect the degrees of the people to be:</p>
 
-<p>This algorithm starts by calling <a href="#degrees"><code class="highlighter-rouge">degrees</code></a>. Instead of returning the map of results it persists each degree
-to its respective instance in the graph using a resource.</p>
+<ul>
+  <li><strong>Evangelos</strong>: 1; Evangelos has one edge; labelled “acquaintance1”</li>
+  <li><strong>Alim</strong>: 4: Alim has 4 edges; 2 labelled “writer”, and 2 labelled “acquaintance2”</li>
+  <li><strong>Eric</strong>: 2: Eric has 2 edges; 1 edge labelled “writer” and 1 labelled “acquaintance1”</li>
+</ul>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>compute degreesAndPersist in person;
+<p>We do not count the edges labelled isa, because they are connected to the types and are not considered by analytics.
+Don’t forget that the relations and comments will also have degrees.</p>
+
+<p><img src="/images/analytics_degree_full.png" alt="A simple social network." /></p>
+
+<h3 id="degrees-within-a-subgraph">Degrees Within a Subgraph</h3>
+
+<p>Consider that in this graph, people with more friends are more important. We can use the subgraph functionality to restrict the graph to only see people and who they are friends with. Once the graph has been restricted we can determine the number of friends by computing the degree:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>compute degrees in person, knows;
 </code></pre>
 </div>
+
+<p>The result will now be:</p>
+
+<ul>
+  <li><strong>Evangelos</strong>: 1</li>
+  <li><strong>Alim</strong>: 2</li>
+  <li><strong>Eric</strong>: 1</li>
+</ul>
+
+<p>Next we might be interested in who writes the most messages. In a similar way we can restrict the calculation to a different subgraph to acquire the desired information.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>compute degrees in person, writes;
+</code></pre>
+</div>
+
+<p>The answer is now different:</p>
+
+<ul>
+  <li><strong>Evangelos</strong>: 0</li>
+  <li><strong>Alim</strong>: 2</li>
+  <li><strong>Eric</strong>: 1</li>
+</ul>
+
+<h3 id="persisting-the-degrees">Persisting the Degrees</h3>
+
+<p>Sometimes we want the information above to be made available in the live system. For this reason we have introduced <code class="highlighter-rouge">persist</code>, which is <a href="./analytics-persist.html">documented further on a separate page</a>.</p>
+
+<p>To persist the degrees to the graph we call:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>compute degrees in person, knows; persist;
+</code></pre>
+</div>
+
+<p>This will result in the graph shown below, with degrees that can now be queried using Graql.</p>
+
+<p><img src="/images/analytics_persist_degrees.png" alt="A simple social network." /></p>
 
 <h2 id="comments">Comments</h2>
 <p>Want to leave a comment? Visit <a href="https://github.com/graknlabs/docs/issues/71" target="_blank">the issues on Github for this page</a> (you’ll need a GitHub account). You are also welcome to contribute to our documentation directly via the “Edit me” button at the top of this page.</p>
@@ -729,7 +762,7 @@ to its respective instance in the graph using a resource.</p>
         <br>
         <p>© 2016 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2016 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> November 24, 2016<br/> Site last generated: Dec 9, 2016 <br />
+        <span>Page last updated:</span> December 12th, 2016<br/> Site last generated: Dec 12, 2016 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">

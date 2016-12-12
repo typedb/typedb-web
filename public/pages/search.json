@@ -104,22 +104,22 @@
 
 ,
 {
-"title": "An Example of Migrating OWL to Grakn",
-"tags": "migrationexamples",
-"keywords": "migration",
-"url": "/pages/documentation/examples/OWL-migration.html",
-"summary": "A short example to illustrate migration of OWL to Grakn"
+"title": "OWL Migration to Grakn",
+"tags": "migration",
+"keywords": "setup, getting started",
+"url": "/pages/documentation/migration/OWL-migration.html",
+"summary": "This document will teach you how to load OWL into Grakn."
 }
 
 
 
 ,
 {
-"title": "OWL Migration to Grakn",
-"tags": "migration",
-"keywords": "setup, getting started",
-"url": "/pages/documentation/migration/OWL-migration.html",
-"summary": "This document will teach you how to load OWL into Grakn."
+"title": "An Example of Migrating OWL to Grakn",
+"tags": "migrationexamples",
+"keywords": "migration",
+"url": "/pages/documentation/examples/OWL-migration.html",
+"summary": "A short example to illustrate migration of OWL to Grakn"
 }
 
 
@@ -197,6 +197,17 @@
 "keywords": "",
 "url": "/pages/documentation/graql-analytics/analytics-overview.html",
 "summary": "This page provides an overview of the Graql analytics capabilities."
+}
+
+
+
+,
+{
+"title": "Persisting to the Graph",
+"tags": "analytics",
+"keywords": "",
+"url": "/pages/documentation/graql-analytics/analytics-persist.html",
+"summary": ""
 }
 
 

@@ -3,9 +3,9 @@
     <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Frequently asked questions about Grakn.">
-<meta name="keywords" content="getting-started,  troubleshooting, GRAKN.AI, Grakn Labs, grakn, graql, grakn.ai, Mindmaps Research, Mindmaps Research Ltd, MindmapsDB, mindmaps, mindmaps graph, mindmaps.io, knowledge graph, distributed knowledge graph, development platform, developer tool, data platform, programming langauge, query langauge, database, semantic database, distributed semantic database, distributed database, graph database, semantic search, data exploration, recommendation system, knowledge management, knowledge engineering, real-time analytics, advanced analytics, reasoning engine, inference engine, expert systems, semantic applications, research engines, data management, business intelligence, big data, semantic web, semantic data, knowledge representation, automated reasoning, semantic network, knowledge ontology, semantic graph, ontology engineering, graph based knowledge representation, artificial intelligence,">
-<title>GRAKN.AI | FAQ about Grakn</title>
+<meta name="description" content="">
+<meta name="keywords" content="analytics,  , GRAKN.AI, Grakn Labs, grakn, graql, grakn.ai, Mindmaps Research, Mindmaps Research Ltd, MindmapsDB, mindmaps, mindmaps graph, mindmaps.io, knowledge graph, distributed knowledge graph, development platform, developer tool, data platform, programming langauge, query langauge, database, semantic database, distributed semantic database, distributed database, graph database, semantic search, data exploration, recommendation system, knowledge management, knowledge engineering, real-time analytics, advanced analytics, reasoning engine, inference engine, expert systems, semantic applications, research engines, data management, business intelligence, big data, semantic web, semantic data, knowledge representation, automated reasoning, semantic network, knowledge ontology, semantic graph, ontology engineering, graph based knowledge representation, artificial intelligence,">
+<title>GRAKN.AI | Persisting to the Graph</title>
 <link rel="stylesheet" href="/pages/css/syntax.css">
 
 
@@ -163,7 +163,7 @@
                             
                             dataSource: '/pages/search.json',
                             
-                            searchResultTemplate: '<li><a href="{url}" title="FAQ about Grakn">{title}</a></li>',
+                            searchResultTemplate: '<li><a href="{url}" title="Persisting to the Graph">{title}</a></li>',
                             noResultsText: '<li><a class="empty">No results found</a></li>',
                             limit: 10,
                             fuzzy: true
@@ -399,7 +399,7 @@
             
             
             
-            <li><a href="/pages/documentation/graql-analytics/analytics-persist.html">Analytics Persist</a></li>
+            <li class="active"><a href="/pages/documentation/graql-analytics/analytics-persist.html">Analytics Persist</a></li>
             
             
             
@@ -508,7 +508,7 @@
             
             
             
-            <li class="active"><a href="/pages/documentation/resources/faq.html">Grakn FAQ</a></li>
+            <li><a href="/pages/documentation/resources/faq.html">Grakn FAQ</a></li>
             
             
             
@@ -605,7 +605,7 @@
         <!-- Content Column -->
         <div class="col-md-9">
             <div class="post-header">
-   <h1 class="post-title-main">FAQ about Grakn</h1>
+   <h1 class="post-title-main">Persisting to the Graph</h1>
 </div>
 
 
@@ -613,7 +613,7 @@
 <div class="post-content">
 
    
-    <div class="summary">Frequently asked questions about Grakn.</div>
+    <div class="summary"></div>
    
 
     
@@ -645,153 +645,31 @@ $('#toc').on('click', 'a', function() {
 
     
 
-    <a target="_blank" href="https://github.com/graknlabs/docs/blob/master/pages/documentation/9-resources/faq.md" class="btn btn-default githubEditButton" role="button"><i class="fa fa-github fa-lg"></i> Edit me</a>
+    <a target="_blank" href="https://github.com/graknlabs/docs/blob/master/pages/documentation/5-graql-analytics/analytics-persist.md" class="btn btn-default githubEditButton" role="button"><i class="fa fa-github fa-lg"></i> Edit me</a>
 
     
 
     
 
-  <div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> <b>Note:</b> This page contains some of the questions were are mostly commonly asked, and is updated regularly. Please feel free to use our <a href="http://discuss.grakn.ai">discussion forums</a> to ask us for help or advice.</div>
+  <p>Once you have spent the time necessary to compute something like the degree of entities in your graph it is only natural that you may want to use these values again.
+This is where the persist behaviour comes in.
+If the result of your compute query is a map from instances to values, these can be persisted in the graph at the end of the calculation.
+This functionality is currently restricted to <a href="./analytics_connected_components.html">connected components</a> and <a href="./analytics_degrees.html">degrees</a>.
+The persistence is performed in parallel, as a bulk loading task, and should scale as well as the other algorithms.</p>
 
-<h2 id="bugs-and-strange-behaviour">Bugs and strange behaviour</h2>
+<p>In order to compute the number of friends that a person has, and persist this information back in the graph we can use the following query:</p>
 
-<h3 id="why-does-grakn-hang-when-i-try-to-start-it">Why does Grakn hang when I try to start it?</h3>
-
-<p>I am running <code class="highlighter-rouge">grakn.sh start</code> but it hangs on <code class="highlighter-rouge">Starting Cassandra</code>. Why?</p>
-
-<p>This may be because you have cloned the Grakn repo into a directory which has a space in its name (e.g. <code class="highlighter-rouge">/grakn test</code>). You can build our code successfully, but when you start <code class="highlighter-rouge">grakn.sh</code>, it hangs because Cassandra needs you to have single word pathnames. Remove the spaces (e.g. <code class="highlighter-rouge">/grakn_test</code>) and try again.</p>
-
-<p>There are other possible reasons why Grakn hangs starting Cassandra. One may be that some other application is using the port 7199, which Cassandra needs.  To find out what is using port 7199:
-<code class="highlighter-rouge">lsof -i tcp:7199</code></p>
-
-<p>From there, you’ll see the PID of application using that port. Check if you can safely kill it or change its port. It may be that another instance of Cassandra is blocking it, and you can simply kill it using:
-<code class="highlighter-rouge">pkill -9 java</code></p>
-
-<p>Then try <code class="highlighter-rouge">grakn.sh start</code> again.</p>
-
-<p>Failing that, you can often find out more information by looking in the <code class="highlighter-rouge">/logs</code> directory under your Grakn installation.</p>
-
-<p>Please see the answer to the question below “Can I run Grakn on an existing Cassandra Platform?” if you are already using Cassandra and want to run Grakn on a different instance of Cassandra to our default.</p>
-
-<h3 id="why-am-i-getting-ghost-vertices">Why am I getting ghost vertices?</h3>
-
-<p>In a  transaction based environment it is possible to have one transaction removing a concept while another concurrently modifies the same concept. Both
-transactions may successfully commit if the backend is eventually consistent, e.g. [Titan Cassandra](http://s3.thinkaurelius.com/docs/titan/1.0.0/common-questions.html.</p>
-
-<p>The concept is likely to still exist with only the modified properties. When using the Titan Cassandra backend it is possible to safeguard against
-this by setting the <code class="highlighter-rouge">checkInternalVertexExistence</code> property to true. However, this will result in slower transaction as more reads will be necessary.</p>
-
-<h2 id="working-with--grakn">Working with  Grakn</h2>
-
-<h3 id="which-os-can-i-use-with-grakn">Which OS can I use with Grakn?</h3>
-
-<p>You can use Mac OS X or Linux right now. We plan to support Windows at a later date.</p>
-
-<h3 id="how-do-i-load-data-into-grakn">How do I load data into Grakn?</h3>
-
-<p>There are several ways to load data into Grakn. For small amounts of data (&lt;1000 lines), you an load it directly via the Graql shell. For example, the following loads up the Pokemon example data:</p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code>bin/graql.sh -f examples/pokemon.gql
+<div class="highlighter-rouge"><pre class="highlight"><code>compute degrees in person, knows; persist;
 </code></pre>
 </div>
 
-<p>If you have a larger file, you will need to batch load it. The file will be divided in batches that will be committed concurrently. This differs from a regular load, where the whole file is committed in a single chunk when you call commit. See the example below, which loads the Graql file FILENAME.gql, from PATH.</p>
+<p>The resulting graph is shown in the image below.
+The degree resource has been attached to each person with the number of friends they have.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>bin/graql.sh -b PATH/FILENAME.gql
-</code></pre>
-</div>
-
-<p>In order to check the status of the loading, you can open a new terminal window, navigate to the logs directory of your Grakn installation and run the command:</p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code>tail -f grakn.log
-</code></pre>
-</div>
-
-<h3 id="what-are-the-differences-between-a-batch-graph-load-and-a-normal-graph-load">What are the differences between a batch graph load and a normal graph load?</h3>
-
-<p>The batch load is faster for larger datasets because it ignores some consistency checks, on the assumption that you have pre-filtered your data. Checks ignored include:</p>
-
-<ul>
-  <li>When looking up concepts any duplicates which are found are ignored and a random one is returned.</li>
-  <li>When creating a relation it is possible for an entity to be doubly associated with a role. This is later cleaned up by engine.</li>
-  <li>Concepts with duplicate ids can be inserted.</li>
-  <li>Duplicate relations can also be inserted.</li>
-</ul>
-
-<p>Ignoring these checks allows data to be processed much faster at the risk of breaking consistency.</p>
-
-<h3 id="can-i-run-grakn-on-an-existing-cassandra-platform">Can I run Grakn on an existing Cassandra Platform?</h3>
-
-<p>By default, Grakn is shipped with TitanDB, which in turn relies on Cassandra. When you call <code class="highlighter-rouge">grakn.sh start</code>, this starts a Cassandra instance and then starts the Grakn server.  You are not bound to use our instance of Cassandra, and can make adjustments to the settings in the <code class="highlighter-rouge">.properties</code> file in the <code class="highlighter-rouge">conf/main</code> directory of the Grakn, e.g. to make Titan use your Cassandra instance.</p>
-
-<p>Specifically you should change the following parameters:</p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="c"># Host Location</span>
-storage.hostname<span class="o">=</span>127.0.0.1
-</code></pre>
-</div>
-
-<p>You can also, for example, add the following to specify a custom port:</p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code>storage.port <span class="o">=</span> 1234
-</code></pre>
-</div>
-
-<p>Please refer to the <a href="http://s3.thinkaurelius.com/docs/titan/1.0.0/titan-config-ref.html#_storage">Titan documentation</a> for more information.</p>
-
-<h3 id="do-applications-written-on-top-of-grakn-have-to-be-in-java">Do applications written on top of Grakn have to be in Java?</h3>
-
-<p>Currently, there is no official support for languages other than Java. But we are open source and would be very willing to accept proposals from our community, and work with contributors, to create bindings to other languages.</p>
-
-<h3 id="how-do-i-visualise-a-graph">How do I visualise a graph?</h3>
-
-<p>Grakn comes with a basic visualiser, with a web-interface. We appreciate any feedback you give us about it via the <a href="https://discuss.grakn.ai/t/visualise-my-data/57">discussion boards</a>.</p>
-
-<p>Once you have started Grakn, you will see a message in the console:</p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code>Started ServerConnector@7aa5814d<span class="o">{</span>HTTP/1.1,[http/1.1]<span class="o">}{</span>0.0.0.0:4567<span class="o">}</span>
-</code></pre>
-</div>
-
-<p>You can then open your browser and connect to the address printed on the console (http://0.0.0.0:4567). Select the Graql Visualiser tab and you will see a Graql shell, from which you can input queries, for example:</p>
-
-<pre><code class="language-graql">match $x isa type;
-</code></pre>
-
-<p>In result, you will see the resulting nodes and relations displayed inside the graql visualiser on the same page.</p>
-
-<h3 id="how-do-i-clear-a-graph">How do I clear a graph?</h3>
-
-<p>I want to clear the graph I’ve been experimenting with and try something with a new, different schema and dataset. How do I do it?</p>
-
-<p>If you are using the Java API, it’s a simple as:</p>
-
-<pre><code class="language-java-test-ignore">graph = Grakn.factory(Grakn.DEFAULT_URI, "my-graph").getGraph();
-graph.clear();
-</code></pre>
-
-<p>If you are using the Graql shell and have not committed what you have in the graph, you can just quit the shell and restart it, and all is clean.</p>
-
-<p>If you’ve committed, then you must currently remove your installation and re-create it.  First, call</p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code>pkill -9 java
-</code></pre>
-</div>
-
-<p>Then delete the Grakn install directory, and unzip a fresh copy from the distribution zip. It isn’t very elegant at present, and we are working on a simpler way to clear out a graph.</p>
-
-<h3 id="how-do-i-run-graql-from-a-bash-script">How do I run Graql from a bash script?</h3>
-
-<p>If you want to run Graql from a bash script, for example, to grep the results, you don’t want to have to filter out stuff the license and command prompt. The best way therefor, is to use the -e flag or -f flag, which lets you provide a query to the shell. The -e flag accepts a query, while the -f flag accepts a filename. For example:</p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code>graql.sh -e "match \$x isa movie;"
-</code></pre>
-</div>
-
-<p>Notice that you have to escape the dollars to stop the shell interpreting them. You can then pipe the output into a command or a file.</p>
+<p><img src="/images/analytics_persist_degrees.png" alt="A simple social network." /></p>
 
 <h2 id="comments">Comments</h2>
-<p>Want to leave a comment? Visit <a href="https://github.com/graknlabs/docs/issues/23" target="_blank">the issues on Github for this page</a> (you’ll need a GitHub account). You are also welcome to contribute to our documentation directly via the “Edit me” button at the top of the page.</p>
+<p>Want to leave a comment? Visit <a href="https://github.com/graknlabs/docs/issues/71" target="_blank">the issues on Github for this page</a> (you’ll need a GitHub account). You are also welcome to contribute to our documentation directly via the “Edit me” button at the top of this page.</p>
 
 
     <div class="tags">
@@ -800,7 +678,7 @@ graph.clear();
         
         
         
-        <a href="/pages/tag_getting-started.html" class="btn btn-default navbar-btn cursorNorm" role="button">getting-started</a>
+        <a href="/pages/tag_analytics.html" class="btn btn-default navbar-btn cursorNorm" role="button">analytics</a>
         
         
         
@@ -831,7 +709,7 @@ graph.clear();
         <br>
         <p>© 2016 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2016 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> September 22, 2016<br/> Site last generated: Dec 12, 2016 <br />
+        <span>Page last updated:</span> December 12th, 2016<br/> Site last generated: Dec 12, 2016 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">

@@ -399,6 +399,13 @@
             
             
             
+            <li><a href="/pages/documentation/graql-analytics/analytics-persist.html">Analytics Persist</a></li>
+            
+            
+            
+            
+            
+            
             <li><a href="/pages/documentation/graql-analytics/analytics-connected-components.html">Connected Components</a></li>
             
             
@@ -644,7 +651,7 @@ $('#toc').on('click', 'a', function() {
 
     
 
-  <div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> <b>Note:</b> Please note that this page is in progress and subject to revision.</div>
+  <div class="alert alert-danger" role="alert"><i class="fa fa-exclamation-circle"></i> <b>Warning:</b> Please note that this page is in progress and subject to revision.</div>
 
 <p>In Grakn, a graph is made of two layers: the ontology layer and the data layer.</p>
 
@@ -674,6 +681,8 @@ $('#toc').on('click', 'a', function() {
 
 <p><img src="/images/knowledge-model-fig1.png" alt="The concept types and their permitted associations via Grakn ontology constructs." /></p>
 
+<p><em>Figure 1: The concept types and their permitted associations via Grakn ontology constructs.</em></p>
+
 <!-- This section may possibly be better if moved into a different, more low level page -->
 <p>A well-formed Grakn ontology is further required to satisfy the following structural properties:</p>
 
@@ -691,6 +700,8 @@ $('#toc').on('click', 'a', function() {
 <p>For example, in Figure~2, the entity type <code class="highlighter-rouge">woman</code> inherits the constraints <code class="highlighter-rouge">has-resource name</code>, <code class="highlighter-rouge">plays-role child</code>, <code class="highlighter-rouge">plays-role m-child</code> and <code class="highlighter-rouge">plays-role mother</code> from its supertype <code class="highlighter-rouge">person</code>. Similarly, the relation type <code class="highlighter-rouge">motherhood</code> inherits the constraint <code class="highlighter-rouge">has-resource since</code> from <code class="highlighter-rouge">parenthood</code>.</p>
 
 <p><img src="/images/knowledge-model-fig2.png" alt="A sample of a Grakn ontology involving entity, relation and role types." /></p>
+
+<p><em>Figure 2: A sample of a Grakn ontology involving entity, relation and role types.</em></p>
 
 <p>Note that no other forms of inheritance are currently supported in Grakn. All the explicitly represented constraints, together with the inherited ones, form complete schema templates for particular entity and relation types, which are used to guide the data entry process and to validate the consistency of the data with respect to the ontology (see details below).</p>
 
@@ -724,6 +735,8 @@ $('#toc').on('click', 'a', function() {
 </ol>
 
 <p><img src="/images/knowledge-model-fig3.png" alt="Validation of data against the ontology." /></p>
+
+<p><em>Figure 3: Validation of data against the ontology.</em></p>
 
 <h2 id="rule-and-sub-type-inference">Rule and Sub-Type Inference</h2>
 
@@ -807,7 +820,7 @@ THEN (nephew:X, uncle:Z) isa uncle-relation;
         <br>
         <p>© 2016 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2016 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> December 7th, 2016<br/> Site last generated: Dec 9, 2016 <br />
+        <span>Page last updated:</span> December 7th, 2016<br/> Site last generated: Dec 12, 2016 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">

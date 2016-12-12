@@ -62,13 +62,13 @@
   
   
   <url>
-    <loc>http://grakn.ai/pages//documentation/examples/OWL-migration.html</loc>
+    <loc>http://grakn.ai/pages//documentation/migration/OWL-migration.html</loc>
   </url>
   
   
   
   <url>
-    <loc>http://grakn.ai/pages//documentation/migration/OWL-migration.html</loc>
+    <loc>http://grakn.ai/pages//documentation/examples/OWL-migration.html</loc>
   </url>
   
   
@@ -111,6 +111,12 @@
   
   <url>
     <loc>http://grakn.ai/pages//documentation/graql-analytics/analytics-overview.html</loc>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://grakn.ai/pages//documentation/graql-analytics/analytics-persist.html</loc>
   </url>
   
   
