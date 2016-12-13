@@ -32,3 +32,6 @@ fi
 
 echo Creating images symlink
 ln -sf pages/images public/images
+
+echo Create REST API docs symlink
+ln -sf ../../rest-api-docs public/pages/rest-api
