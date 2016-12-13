@@ -259,26 +259,47 @@
         
     
     <li>
-        <a href="#">Graph API</a>
+        <a href="#">Building an Ontology</a>
         <ul>
             
             
             
-            <li class="active"><a href="/pages/documentation/core-api/overview.html">Overview</a></li>
+            <li><a href="/pages/documentation/building-an-ontology/basic-ontology.html">Defining a Basic Ontology</a></li>
             
             
             
             
             
             
-            <li><a href="/pages/documentation/core-api/simple-schema-definition.html">Simple Schema Definition</a></li>
+            <li><a href="/pages/documentation/building-an-ontology/hierarchical-ontology.html">Defining a Hierarchical Ontology</a></li>
             
             
             
             
             
             
-            <li><a href="/pages/documentation/core-api/advanced-schema-definition.html">Advanced Schema Definition</a></li>
+            <li><a href="/pages/documentation/building-an-ontology/rule-driven-ontology.html">Defining a Rule-Driven Ontology</a></li>
+            
+            
+            
+            
+            
+            
+            <li class="active"><a href="/pages/documentation/building-an-ontology/overview.html">Overview (deprecated)</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="/pages/documentation/building-an-ontology/simple-schema-definition.html">Simple Schema (deprecated)</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="/pages/documentation/building-an-ontology/advanced-schema-definition.html">Advanced Schema (deprecated)</a></li>
             
             
             
@@ -288,7 +309,7 @@
         
     
     <li>
-        <a href="#">Graql</a>
+        <a href="#">Querying with Graql</a>
         <ul>
             
             
@@ -357,13 +378,6 @@
             
             
             <li><a href="/pages/documentation/graql/graql-cheatsheet.html">Graql Cheatsheet</a></li>
-            
-            
-            
-            
-            
-            
-            <li><a href="/pages/documentation/graql/java-graql.html">Java Graql</a></li>
             
             
             
@@ -466,6 +480,35 @@
         
     
     <li>
+        <a href="#">Developing with Java</a>
+        <ul>
+            
+            
+            
+            <li><a href="/pages/documentation/developing-with-java/java-setup.html">Java Development Setup</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="/pages/documentation/developing-with-java/graph-api.html">Graph API</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="/pages/documentation/developing-with-java/java-graql.html">Java Graql</a></li>
+            
+            
+            
+            
+        </ul>
+        
+        
+    
+    <li>
         <a href="#">Advanced Grakn</a>
         <ul>
             
@@ -544,27 +587,6 @@
             
             
             
-            <li><a href="/pages/documentation/examples/pokemon.html">Pokemon example</a></li>
-            
-            
-            
-            
-            
-            
-            <li><a href="/pages/documentation/examples/philosophers.html">Philosophers example</a></li>
-            
-            
-            
-            
-            
-            
-            <li><a href="/pages/documentation/examples/moogi.html">Moogi example</a></li>
-            
-            
-            
-            
-            
-            
             <li><a href="/pages/documentation/examples/modern.html">Modern example</a></li>
             
             
@@ -572,14 +594,14 @@
             
             
             
-            <li><a href="/pages/documentation/examples/OWL-migration.html">OWL migration</a></li>
-            
-            
-            
-            
-            
-            
             <li><a href="/pages/documentation/examples/SQL-migration.html">SQL migration</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="/pages/documentation/examples/OWL-migration.html">OWL migration</a></li>
             
             
             
@@ -652,13 +674,15 @@ $('#toc').on('click', 'a', function() {
 
     
 
-    <a target="_blank" href="https://github.com/graknlabs/docs/blob/master/pages/documentation/3-graph-api/overview.md" class="btn btn-default githubEditButton" role="button"><i class="fa fa-github fa-lg"></i> Edit me</a>
+    <a target="_blank" href="https://github.com/graknlabs/docs/blob/master/pages/documentation/3-building-an-ontology/overview.md" class="btn btn-default githubEditButton" role="button"><i class="fa fa-github fa-lg"></i> Edit me</a>
 
     
 
     
 
-  <p>If you have not yet set up the Grakn environment, please see the <a href="../get-started/setup-guide.html">Setup guide</a>. This article assumes that you are set up and have already looked at the <a href="../the-basics/quickstart-tutorial.html">Quickstart Tutorial</a> that covers Graql queries. <br />
+  <div class="alert alert-danger" role="alert"><i class="fa fa-exclamation-circle"></i> <b>Warning:</b> This page is deprecated and will soon be removed.</div>
+
+<p>If you have not yet set up the Grakn environment, please see the <a href="../get-started/setup-guide.html">Setup guide</a>. This article assumes that you are set up and have already looked at the <a href="../the-basics/quickstart-tutorial.html">Quickstart Tutorial</a> that covers Graql queries. <br />
 You can find the code below in the example code directory of the Grakn distribution zip.</p>
 
 <h2 id="introduction">Introduction</h2>
@@ -691,7 +715,7 @@ Once you have done that, a thread-bound graph can be retrieved by:</p>
 
 <h2 id="modelling-the-philosophers">Modelling The Philosophers</h2>
 
-<p>With a graph in place lets go through and repeat the <a href="../the-basics/quickstart-tutorial">Quickstart
+<p>With a graph in place lets go through and repeat the <a href="../the-basics/quickstart-tutorial.html">Quickstart
 Tutorial</a> using the Java Graph API.</p>
 
 <h3 id="entity-types">Entity Types</h3>
@@ -900,7 +924,7 @@ So, we’ll create some resource types that can be attached to a person:</p>
 </div>
 
 <h2 id="where-next">Where Next?</h2>
-<p>If you want to find out more about using the Graph API, please take a look at the documentation about how to define a <a href="../core-api/simple-schema-definition.html">simple schema</a> or an <a href="../core-api/advanced-schema-definition.html">advanced schema</a>.</p>
+<p>If you want to find out more about using the Graph API, please take a look at the documentation about how to define a <a href="./simple-schema-definition.html">simple schema</a> or an <a href="./advanced-schema-definition.html">advanced schema</a>.</p>
 
 <h2 id="comments">Comments</h2>
 <p>Want to leave a comment? Visit <a href="https://github.com/graknlabs/docs/issues/20" target="_blank">the issues on Github for this page</a> (you’ll need a GitHub account). You are also welcome to contribute to our documentation directly via the “Edit me” button at the top of the page.</p>
@@ -947,7 +971,7 @@ So, we’ll create some resource types that can be attached to a person:</p>
         <br>
         <p>© 2016 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2016 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> August 10, 2016<br/> Site last generated: Dec 12, 2016 <br />
+        <span>Page last updated:</span> August 10, 2016<br/> Site last generated: Dec 13, 2016 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">

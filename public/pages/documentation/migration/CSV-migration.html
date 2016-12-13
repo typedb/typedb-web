@@ -259,26 +259,47 @@
         
     
     <li>
-        <a href="#">Graph API</a>
+        <a href="#">Building an Ontology</a>
         <ul>
             
             
             
-            <li><a href="/pages/documentation/core-api/overview.html">Overview</a></li>
+            <li><a href="/pages/documentation/building-an-ontology/basic-ontology.html">Defining a Basic Ontology</a></li>
             
             
             
             
             
             
-            <li><a href="/pages/documentation/core-api/simple-schema-definition.html">Simple Schema Definition</a></li>
+            <li><a href="/pages/documentation/building-an-ontology/hierarchical-ontology.html">Defining a Hierarchical Ontology</a></li>
             
             
             
             
             
             
-            <li><a href="/pages/documentation/core-api/advanced-schema-definition.html">Advanced Schema Definition</a></li>
+            <li><a href="/pages/documentation/building-an-ontology/rule-driven-ontology.html">Defining a Rule-Driven Ontology</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="/pages/documentation/building-an-ontology/overview.html">Overview (deprecated)</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="/pages/documentation/building-an-ontology/simple-schema-definition.html">Simple Schema (deprecated)</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="/pages/documentation/building-an-ontology/advanced-schema-definition.html">Advanced Schema (deprecated)</a></li>
             
             
             
@@ -288,7 +309,7 @@
         
     
     <li>
-        <a href="#">Graql</a>
+        <a href="#">Querying with Graql</a>
         <ul>
             
             
@@ -357,13 +378,6 @@
             
             
             <li><a href="/pages/documentation/graql/graql-cheatsheet.html">Graql Cheatsheet</a></li>
-            
-            
-            
-            
-            
-            
-            <li><a href="/pages/documentation/graql/java-graql.html">Java Graql</a></li>
             
             
             
@@ -466,6 +480,35 @@
         
     
     <li>
+        <a href="#">Developing with Java</a>
+        <ul>
+            
+            
+            
+            <li><a href="/pages/documentation/developing-with-java/java-setup.html">Java Development Setup</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="/pages/documentation/developing-with-java/graph-api.html">Graph API</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="/pages/documentation/developing-with-java/java-graql.html">Java Graql</a></li>
+            
+            
+            
+            
+        </ul>
+        
+        
+    
+    <li>
         <a href="#">Advanced Grakn</a>
         <ul>
             
@@ -544,27 +587,6 @@
             
             
             
-            <li><a href="/pages/documentation/examples/pokemon.html">Pokemon example</a></li>
-            
-            
-            
-            
-            
-            
-            <li><a href="/pages/documentation/examples/philosophers.html">Philosophers example</a></li>
-            
-            
-            
-            
-            
-            
-            <li><a href="/pages/documentation/examples/moogi.html">Moogi example</a></li>
-            
-            
-            
-            
-            
-            
             <li><a href="/pages/documentation/examples/modern.html">Modern example</a></li>
             
             
@@ -572,14 +594,14 @@
             
             
             
-            <li><a href="/pages/documentation/examples/OWL-migration.html">OWL migration</a></li>
-            
-            
-            
-            
-            
-            
             <li><a href="/pages/documentation/examples/SQL-migration.html">SQL migration</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="/pages/documentation/examples/OWL-migration.html">OWL migration</a></li>
             
             
             
@@ -664,10 +686,10 @@ $('#toc').on('click', 'a', function() {
 <h2 id="migration-shell-script-for-csv">Migration Shell Script for CSV</h2>
 <p>The migration shell script can be found in <code class="highlighter-rouge">/bin</code> directory of your Grakn environment. Usage is specific to the type of migration being performed. For CSV:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>usage: ./migration.sh csv -template &lt;arg&gt; -input &lt;arg&gt; <span class="o">[</span>-help] <span class="o">[</span>-no] <span class="o">[</span>-separator &lt;arg&gt;] <span class="o">[</span>-batch &lt;arg&gt;] <span class="o">[</span>-uri &lt;arg&gt;] <span class="o">[</span>-keyspace &lt;arg&gt;]
+<div class="highlighter-rouge"><pre class="highlight"><code>usage: ./migration.sh csv -template &lt;arg&gt; -input &lt;arg&gt; <span class="o">[</span>-help] <span class="o">[</span>-no] <span class="o">[</span>-separator &lt;arg&gt;] <span class="o">[</span>-batch &lt;arg&gt;] <span class="o">[</span>-uri &lt;arg&gt;] <span class="o">[</span>-keyspace &lt;arg&gt;] <span class="o">[</span>-v]
 
 OPTIONS
- -b,--batch &lt;arg&gt;       number of row to load at once
+ -b,--batch &lt;arg&gt;       number of rows to load at once
  -h,--help              print usage message
  -i,--input &lt;arg&gt;       input csv file
  -k,--keyspace &lt;arg&gt;    keyspace to use
@@ -675,6 +697,7 @@ OPTIONS
  -s,--separator &lt;arg&gt;   separator of columns <span class="k">in </span>input file
  -t,--template &lt;arg&gt;    graql template to apply over data
  -u,--uri &lt;arg&gt;         uri to engine endpoint
+ -v,--verbose           print counts of migrated data.
 </code></pre>
 </div>
 
@@ -907,7 +930,7 @@ insert (pokemon-with-type: $pokemon, type-of-pokemon: $type) isa has-type;
         <br>
         <p>© 2016 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2016 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> November 2nd 2016<br/> Site last generated: Dec 12, 2016 <br />
+        <span>Page last updated:</span> November 2nd 2016<br/> Site last generated: Dec 13, 2016 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">

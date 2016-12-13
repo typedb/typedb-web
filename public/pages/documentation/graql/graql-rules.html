@@ -259,26 +259,47 @@
         
     
     <li>
-        <a href="#">Graph API</a>
+        <a href="#">Building an Ontology</a>
         <ul>
             
             
             
-            <li><a href="/pages/documentation/core-api/overview.html">Overview</a></li>
+            <li><a href="/pages/documentation/building-an-ontology/basic-ontology.html">Defining a Basic Ontology</a></li>
             
             
             
             
             
             
-            <li><a href="/pages/documentation/core-api/simple-schema-definition.html">Simple Schema Definition</a></li>
+            <li><a href="/pages/documentation/building-an-ontology/hierarchical-ontology.html">Defining a Hierarchical Ontology</a></li>
             
             
             
             
             
             
-            <li><a href="/pages/documentation/core-api/advanced-schema-definition.html">Advanced Schema Definition</a></li>
+            <li><a href="/pages/documentation/building-an-ontology/rule-driven-ontology.html">Defining a Rule-Driven Ontology</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="/pages/documentation/building-an-ontology/overview.html">Overview (deprecated)</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="/pages/documentation/building-an-ontology/simple-schema-definition.html">Simple Schema (deprecated)</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="/pages/documentation/building-an-ontology/advanced-schema-definition.html">Advanced Schema (deprecated)</a></li>
             
             
             
@@ -288,7 +309,7 @@
         
     
     <li>
-        <a href="#">Graql</a>
+        <a href="#">Querying with Graql</a>
         <ul>
             
             
@@ -357,13 +378,6 @@
             
             
             <li><a href="/pages/documentation/graql/graql-cheatsheet.html">Graql Cheatsheet</a></li>
-            
-            
-            
-            
-            
-            
-            <li><a href="/pages/documentation/graql/java-graql.html">Java Graql</a></li>
             
             
             
@@ -466,6 +480,35 @@
         
     
     <li>
+        <a href="#">Developing with Java</a>
+        <ul>
+            
+            
+            
+            <li><a href="/pages/documentation/developing-with-java/java-setup.html">Java Development Setup</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="/pages/documentation/developing-with-java/graph-api.html">Graph API</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="/pages/documentation/developing-with-java/java-graql.html">Java Graql</a></li>
+            
+            
+            
+            
+        </ul>
+        
+        
+    
+    <li>
         <a href="#">Advanced Grakn</a>
         <ul>
             
@@ -544,27 +587,6 @@
             
             
             
-            <li><a href="/pages/documentation/examples/pokemon.html">Pokemon example</a></li>
-            
-            
-            
-            
-            
-            
-            <li><a href="/pages/documentation/examples/philosophers.html">Philosophers example</a></li>
-            
-            
-            
-            
-            
-            
-            <li><a href="/pages/documentation/examples/moogi.html">Moogi example</a></li>
-            
-            
-            
-            
-            
-            
             <li><a href="/pages/documentation/examples/modern.html">Modern example</a></li>
             
             
@@ -572,14 +594,14 @@
             
             
             
-            <li><a href="/pages/documentation/examples/OWL-migration.html">OWL migration</a></li>
-            
-            
-            
-            
-            
-            
             <li><a href="/pages/documentation/examples/SQL-migration.html">SQL migration</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="/pages/documentation/examples/OWL-migration.html">OWL migration</a></li>
             
             
             
@@ -652,7 +674,7 @@ $('#toc').on('click', 'a', function() {
 
     
 
-    <a target="_blank" href="https://github.com/graknlabs/docs/blob/master/pages/documentation/4-graql/graql-rules.md" class="btn btn-default githubEditButton" role="button"><i class="fa fa-github fa-lg"></i> Edit me</a>
+    <a target="_blank" href="https://github.com/graknlabs/docs/blob/master/pages/documentation/4-querying-with-graql/graql-rules.md" class="btn btn-default githubEditButton" role="button"><i class="fa fa-github fa-lg"></i> Edit me</a>
 
     
 
@@ -806,27 +828,26 @@ $x = 'bob'
 
 <p>We then execute the constraint LHS on ‘bob’:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">Check</span> <span class="n">whether</span> <span class="n">bob</span> <span class="n">is</span> <span class="n">an</span> <span class="n">instantiation</span> <span class="n">of</span> <span class="nl">LHS:</span>
+<pre><code class="language-java-test-ignore">Check whether bob is an instantiation of LHS:
 
-        <span class="n">Query</span><span class="o">.</span><span class="na">parser</span><span class="o">(</span><span class="s">"match
+        Query.parser("match
         $x isa person;$y isa person;
-        (employee $x, employer $y) isa employment"</span><span class="o">).</span><span class="na">where</span><span class="o">(</span><span class="n">$x</span> <span class="n">id</span> <span class="err">'</span><span class="n">bob</span><span class="err">'</span><span class="o">)</span>
+        (employee $x, employer $y) isa employment").where($x id 'bob')
        
-        <span class="n">we</span> <span class="n">also</span> <span class="n">need</span> <span class="n">to</span> <span class="n">check</span> <span class="k">for</span><span class="o">:</span>
+        we also need to check for:
        
-        <span class="n">Query</span><span class="o">.</span><span class="na">parser</span><span class="o">(</span><span class="s">"match
+        Query.parser("match
         $x isa person;$y isa person;
-        (employee $x, employer $y) isa employment"</span><span class="o">).</span><span class="na">where</span><span class="o">(</span><span class="n">$y</span> <span class="n">id</span> <span class="err">'</span><span class="n">bob</span><span class="err">'</span><span class="o">)</span>
+        (employee $x, employer $y) isa employment").where($y id 'bob')
        
-        <span class="n">put</span> <span class="n">the</span> <span class="n">result</span> <span class="n">of</span> <span class="n">all</span> <span class="n">queries</span> <span class="n">above</span> <span class="n">in</span> <span class="n">to</span> <span class="n">a</span> <span class="n">list</span> <span class="n">of</span> <span class="o">(</span><span class="n">x</span><span class="o">,</span><span class="n">y</span><span class="o">)</span> <span class="n">pairs</span> <span class="n">called</span> <span class="n">LHS</span>
-<span class="n">then</span>
-<span class="n">check</span> <span class="k">if</span> <span class="n">RHS</span> <span class="n">meets</span> <span class="n">the</span> <span class="nl">expectation:</span>
+        put the result of all queries above in to a list of (x,y) pairs called LHS
+then
+check if RHS meets the expectation:
                      
-        <span class="k">for</span> <span class="n">every</span> <span class="n">item</span> <span class="n">i</span><span class="o">(</span><span class="n">x</span><span class="o">,</span><span class="n">y</span><span class="o">)</span> <span class="n">in</span> <span class="n">LHS</span>
-        <span class="n">Constraint</span><span class="o">.</span><span class="na">expectation</span> <span class="o">?=</span> <span class="n">Query</span><span class="o">.</span><span class="na">parser</span><span class="o">(</span><span class="s">"match
-        ($x, $y) isa contract ask"</span><span class="o">).</span><span class="na">where</span><span class="o">(</span><span class="n">$x</span> <span class="n">id</span> <span class="n">i</span><span class="o">.</span><span class="na">x</span><span class="o">,</span> <span class="n">$y</span> <span class="n">id</span> <span class="n">i</span><span class="o">.</span><span class="na">y</span><span class="o">);</span>
+        for every item i(x,y) in LHS
+        Constraint.expectation ?= Query.parser("match
+        ($x, $y) isa contract ask").where($x id i.x, $y id i.y);
 </code></pre>
-</div>
 
 <p>Alternatively we can process data on a relation basis, say the following information is added:</p>
 
@@ -834,14 +855,13 @@ $x = 'bob'
 </code></pre>
 </div>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">Check</span> <span class="n">whether</span> <span class="n">added</span> <span class="n">relation</span> <span class="n">leads</span> <span class="n">to</span> <span class="n">instantiation</span> <span class="n">of</span> <span class="nl">LHS:</span>
+<pre><code class="language-java-test-ignore">Check whether added relation leads to instantiation of LHS:
 
-<span class="o">(</span><span class="n">x</span><span class="o">,</span> <span class="n">y</span><span class="o">)</span> <span class="o">=</span> <span class="n">Query</span><span class="o">.</span><span class="na">parser</span><span class="o">(</span><span class="n">Constraint</span><span class="o">.</span><span class="na">LHS</span><span class="o">).</span><span class="na">where</span><span class="o">(</span><span class="n">$x</span> <span class="n">id</span> <span class="err">'</span><span class="n">bob</span><span class="err">'</span><span class="o">,</span> <span class="n">$y</span> <span class="n">id</span> <span class="err">'</span><span class="n">alice</span><span class="err">'</span><span class="o">)</span>
+(x, y) = Query.parser(Constraint.LHS).where($x id 'bob', $y id 'alice')
   
-<span class="n">Then</span> <span class="n">check</span> <span class="k">if</span> <span class="n">RHS</span> <span class="n">meets</span> <span class="n">the</span> <span class="nl">expectation:</span>
-<span class="n">Constraint</span><span class="o">.</span><span class="na">expectation</span> <span class="o">?=</span> <span class="n">Query</span><span class="o">.</span><span class="na">parser</span><span class="o">(</span><span class="n">Constraint</span><span class="o">.</span><span class="na">RHS</span><span class="o">).</span><span class="na">where</span><span class="o">(</span><span class="n">$x</span> <span class="n">id</span> <span class="n">x</span><span class="o">,</span> <span class="n">$y</span> <span class="n">id</span> <span class="n">y</span><span class="o">)</span>
+Then check if RHS meets the expectation:
+Constraint.expectation ?= Query.parser(Constraint.RHS).where($x id x, $y id y)
 </code></pre>
-</div>
 
 <h2 id="support-of-graql-constructs">Support of Graql Constructs</h2>
 
@@ -1190,7 +1210,7 @@ $x = 'bob'
         <br>
         <p>© 2016 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2016 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> December 9th 2016<br/> Site last generated: Dec 12, 2016 <br />
+        <span>Page last updated:</span> December 9th 2016<br/> Site last generated: Dec 13, 2016 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">

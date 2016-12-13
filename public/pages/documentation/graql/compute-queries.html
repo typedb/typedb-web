@@ -259,26 +259,47 @@
         
     
     <li>
-        <a href="#">Graph API</a>
+        <a href="#">Building an Ontology</a>
         <ul>
             
             
             
-            <li><a href="/pages/documentation/core-api/overview.html">Overview</a></li>
+            <li><a href="/pages/documentation/building-an-ontology/basic-ontology.html">Defining a Basic Ontology</a></li>
             
             
             
             
             
             
-            <li><a href="/pages/documentation/core-api/simple-schema-definition.html">Simple Schema Definition</a></li>
+            <li><a href="/pages/documentation/building-an-ontology/hierarchical-ontology.html">Defining a Hierarchical Ontology</a></li>
             
             
             
             
             
             
-            <li><a href="/pages/documentation/core-api/advanced-schema-definition.html">Advanced Schema Definition</a></li>
+            <li><a href="/pages/documentation/building-an-ontology/rule-driven-ontology.html">Defining a Rule-Driven Ontology</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="/pages/documentation/building-an-ontology/overview.html">Overview (deprecated)</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="/pages/documentation/building-an-ontology/simple-schema-definition.html">Simple Schema (deprecated)</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="/pages/documentation/building-an-ontology/advanced-schema-definition.html">Advanced Schema (deprecated)</a></li>
             
             
             
@@ -288,7 +309,7 @@
         
     
     <li>
-        <a href="#">Graql</a>
+        <a href="#">Querying with Graql</a>
         <ul>
             
             
@@ -357,13 +378,6 @@
             
             
             <li><a href="/pages/documentation/graql/graql-cheatsheet.html">Graql Cheatsheet</a></li>
-            
-            
-            
-            
-            
-            
-            <li><a href="/pages/documentation/graql/java-graql.html">Java Graql</a></li>
             
             
             
@@ -466,6 +480,35 @@
         
     
     <li>
+        <a href="#">Developing with Java</a>
+        <ul>
+            
+            
+            
+            <li><a href="/pages/documentation/developing-with-java/java-setup.html">Java Development Setup</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="/pages/documentation/developing-with-java/graph-api.html">Graph API</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="/pages/documentation/developing-with-java/java-graql.html">Java Graql</a></li>
+            
+            
+            
+            
+        </ul>
+        
+        
+    
+    <li>
         <a href="#">Advanced Grakn</a>
         <ul>
             
@@ -544,27 +587,6 @@
             
             
             
-            <li><a href="/pages/documentation/examples/pokemon.html">Pokemon example</a></li>
-            
-            
-            
-            
-            
-            
-            <li><a href="/pages/documentation/examples/philosophers.html">Philosophers example</a></li>
-            
-            
-            
-            
-            
-            
-            <li><a href="/pages/documentation/examples/moogi.html">Moogi example</a></li>
-            
-            
-            
-            
-            
-            
             <li><a href="/pages/documentation/examples/modern.html">Modern example</a></li>
             
             
@@ -572,14 +594,14 @@
             
             
             
-            <li><a href="/pages/documentation/examples/OWL-migration.html">OWL migration</a></li>
-            
-            
-            
-            
-            
-            
             <li><a href="/pages/documentation/examples/SQL-migration.html">SQL migration</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="/pages/documentation/examples/OWL-migration.html">OWL migration</a></li>
             
             
             
@@ -652,26 +674,38 @@ $('#toc').on('click', 'a', function() {
 
     
 
-    <a target="_blank" href="https://github.com/graknlabs/docs/blob/master/pages/documentation/4-graql/compute-queries.md" class="btn btn-default githubEditButton" role="button"><i class="fa fa-github fa-lg"></i> Edit me</a>
+    <a target="_blank" href="https://github.com/graknlabs/docs/blob/master/pages/documentation/4-querying-with-graql/compute-queries.md" class="btn btn-default githubEditButton" role="button"><i class="fa fa-github fa-lg"></i> Edit me</a>
 
     
 
     
 
-  <p>A compute query executes a <a href="https://www.quora.com/What-are-the-main-concepts-behind-Googles-Pregel">Pregel algorithm</a> to determine information about the graph in parallel. Called within the Graql shell, the general syntax is:</p>
+  <p>A compute query executes a <a href="https://www.quora.com/What-are-the-main-concepts-behind-Googles-Pregel">Pregel algorithm</a> to determine information about the graph in parallel.
+Called within the Graql shell, the general syntax is:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>compute [algorithm] in [subgraph];
+<div class="highlighter-rouge"><pre class="highlight"><code>compute [algorithm] (arguments) (in subgraph); (modifiers;)
 </code></pre>
 </div>
 
 <ul>
-  <li><code class="highlighter-rouge">algorithm</code> can be any of the <a href="#available-statistics-algorithms">available statistics algorithms</a>.</li>
+  <li><code class="highlighter-rouge">algorithm</code> can be any of the available <a href="#available-statistics-algorithms">statistics</a> or <a href="#available-graph-algorithms">graph</a>.</li>
+  <li><code class="highlighter-rouge">arguments</code> are different depending on the specific algorithm.</li>
   <li><code class="highlighter-rouge">subgraph</code> is a comma separated list of type IDs to be visited by the Pregel algorithm.</li>
+  <li><code class="highlighter-rouge">modifiers</code> some algorithms can have their behaviour modified.</li>
 </ul>
+
+<p>The specific algorithms fall into two main categories and more information is given in the sections below.
+The simplest algorithm <code class="highlighter-rouge">count</code> can be executed using this query:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>compute count;
+</code></pre>
+</div>
 
 <h2 id="subgraph">Subgraph</h2>
 
-<p>The subgraph syntax is provided to control the types that a chosen <a href="#available-algorithms">algorithm</a> operates upon. By default, the compute algorithms include instances of every type in the calculation. Using the <code class="highlighter-rouge">in</code> keyword followed by a comma separated list of types will restrict the calculations to instances of those types only.</p>
+<p>The subgraph syntax is provided to control the types that a chosen <a href="#available-algorithms">algorithm</a> operates upon.
+By default, the compute algorithms include instances of every type in the calculation.
+Using the <code class="highlighter-rouge">in</code> keyword followed by a comma separated list of types will restrict the calculations to instances of those types only.</p>
 
 <p>For example,</p>
 
@@ -679,7 +713,8 @@ $('#toc').on('click', 'a', function() {
 </code></pre>
 </div>
 
-<p>will return just the number of instances of the concept type person.</p>
+<p>will return just the number of instances of the concept type person.
+Subgraphs can be applied to all compute queries and therefore are different to arguments and modifiers.</p>
 
 <h2 id="available-statistics-algorithms">Available Statistics Algorithms</h2>
 
@@ -794,6 +829,44 @@ For example,</p>
 
 <p>Computes the sum of a given resource type, similar to <a href="#mean">mean</a>.</p>
 
+<h2 id="available-graph-algorithms">Available Graph Algorithms</h2>
+
+<p>The following algorithms all compute values based on the structure of the graph.
+A summary of the graph algorithms is given in the table below.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Algorithm</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><a href="#cluster"><code class="highlighter-rouge">cluster</code></a></td>
+      <td>Find connected clusters of instances.</td>
+    </tr>
+    <tr>
+      <td><a href="#degrees"><code class="highlighter-rouge">degrees</code></a></td>
+      <td>Find the number of related instances to each instance in the graph.</td>
+    </tr>
+    <tr>
+      <td><a href="#path"><code class="highlighter-rouge">path</code></a></td>
+      <td>Find the shortest path between two instances.</td>
+    </tr>
+  </tbody>
+</table>
+
+<!--
+For further information see the individual sections below.
+
+### Cluster
+
+### Degrees
+
+### Path
+-->
+
 <h2 id="when-to-use-aggregate-and-when-to-use-compute">When to Use <code class="highlighter-rouge">aggregate</code> and When to Use <code class="highlighter-rouge">compute</code></h2>
 
 <p><a href="./aggregate-queries.html">Aggregate queries</a> are computationally light and run single-threaded on a single machine, but are more flexible than the equivalent compute queries described above.</p>
@@ -851,7 +924,7 @@ For example,</p>
         <br>
         <p>© 2016 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2016 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> September 28, 2016<br/> Site last generated: Dec 12, 2016 <br />
+        <span>Page last updated:</span> September 28, 2016<br/> Site last generated: Dec 13, 2016 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">

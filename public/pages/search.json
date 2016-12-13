@@ -104,22 +104,22 @@
 
 ,
 {
-"title": "OWL Migration to Grakn",
-"tags": "migration",
-"keywords": "setup, getting started",
-"url": "/pages/documentation/migration/OWL-migration.html",
-"summary": "This document will teach you how to load OWL into Grakn."
+"title": "An Example of Migrating OWL to Grakn",
+"tags": "migrationexamples",
+"keywords": "migration",
+"url": "/pages/documentation/examples/OWL-migration.html",
+"summary": "A short example to illustrate migration of OWL to Grakn"
 }
 
 
 
 ,
 {
-"title": "An Example of Migrating OWL to Grakn",
-"tags": "migrationexamples",
-"keywords": "migration",
-"url": "/pages/documentation/examples/OWL-migration.html",
-"summary": "A short example to illustrate migration of OWL to Grakn"
+"title": "OWL Migration to Grakn",
+"tags": "migration",
+"keywords": "setup, getting started",
+"url": "/pages/documentation/migration/OWL-migration.html",
+"summary": "This document will teach you how to load OWL into Grakn."
 }
 
 
@@ -151,7 +151,7 @@
 "title": "Defining an Advanced Schema",
 "tags": "graph-apijavaadvanced-grakn",
 "keywords": "schema",
-"url": "/pages/documentation/core-api/advanced-schema-definition.html",
+"url": "/pages/documentation/building-an-ontology/advanced-schema-definition.html",
 "summary": "Demonstrates how to create an advanced schema for Grakn."
 }
 
@@ -258,6 +258,17 @@
 
 ,
 {
+"title": "Defining a Basic Ontology",
+"tags": "graph-apijavaadvanced-grakn",
+"keywords": "schema",
+"url": "/pages/documentation/building-an-ontology/basic-ontology.html",
+"summary": "Demonstrates how to create a basic ontology"
+}
+
+
+
+,
+{
 "title": "Compute Queries",
 "tags": "graql",
 "keywords": "graql, compute, match",
@@ -274,6 +285,17 @@
 "keywords": "graql, query, delete",
 "url": "/pages/documentation/graql/delete-queries.html",
 "summary": "Graql Delete Queries"
+}
+
+
+
+,
+{
+"title": "Java Development Setup",
+"tags": "java",
+"keywords": "java",
+"url": "/pages/documentation/developing-with-java/java-setup.html",
+"summary": "How to set up a Java GRAKN.AI environment."
 }
 
 
@@ -315,6 +337,17 @@
 
 ,
 {
+"title": "Fundamentals of the Grakn Knowledge Model",
+"tags": "advanced-grakn",
+"keywords": "schema",
+"url": "/pages/documentation/grakn-knowledge-model/fundamentals.html",
+"summary": "Details of the Grakn Knowledge Model"
+}
+
+
+
+,
+{
 "title": "Grakn Basics",
 "tags": "getting-started",
 "keywords": "setup, getting started, basics",
@@ -342,6 +375,17 @@
 "keywords": "setup, getting started, basics",
 "url": "/pages/documentation/the-basics/grakn-knowledge-model.html",
 "summary": "Introducing the basics of the Grakn knowledge model."
+}
+
+
+
+,
+{
+"title": "Graph API",
+"tags": "java",
+"keywords": "java",
+"url": "/pages/documentation/developing-with-java/graph-api.html",
+"summary": "The Graph API."
 }
 
 
@@ -392,11 +436,33 @@
 
 ,
 {
+"title": "Hierarchical Ontology",
+"tags": "javagraph-api",
+"keywords": "overview",
+"url": "/pages/documentation/building-an-ontology/hierarchical-ontology.html",
+"summary": "How to build a hierarchical ontology"
+}
+
+
+
+,
+{
 "title": "Documentation Portal",
 "tags": "getting-startedgraqljavacore-api",
 "keywords": "sample homepage",
 "url": "/pages/index",
 "summary": ""
+}
+
+
+
+,
+{
+"title": "Inheritance and the Grakn Knowledge Model",
+"tags": "advanced-grakn",
+"keywords": "schema",
+"url": "/pages/documentation/grakn-knowledge-model/inheritance.html",
+"summary": "Details of How to use Inheritance with the Grakn Knowledge Model"
 }
 
 
@@ -417,7 +483,7 @@
 "title": "Java Graql",
 "tags": "graqljava",
 "keywords": "graql, java",
-"url": "/pages/documentation/graql/java-graql.html",
+"url": "/pages/documentation/developing-with-java/java-graql.html",
 "summary": "How to construct and execute Graql queries programmatically in Java."
 }
 
@@ -458,17 +524,6 @@
 
 ,
 {
-"title": "Moogi Grakn Example",
-"tags": "getting-startedgraqlexamples",
-"keywords": "examples",
-"url": "/pages/documentation/examples/moogi.html",
-"summary": "Moogi Grakn example."
-}
-
-
-
-,
-{
 "title": "Scroll layout",
 "tags": "special_layouts",
 "keywords": "json, scrolling, scrollto, jquery plugin",
@@ -480,21 +535,10 @@
 
 ,
 {
-"title": "Graql Overview",
-"tags": "graql",
-"keywords": "graql, overview",
-"url": "/pages/documentation/graql/overview.html",
-"summary": "An introduction to Graql"
-}
-
-
-
-,
-{
 "title": "Graph API Overview",
 "tags": "javagraph-api",
 "keywords": "overview",
-"url": "/pages/documentation/core-api/overview.html",
+"url": "/pages/documentation/building-an-ontology/overview.html",
 "summary": "A basic example of how to use Grakn's Graph API."
 }
 
@@ -502,22 +546,11 @@
 
 ,
 {
-"title": "Philosophers Grakn Example",
-"tags": "getting-startedgraqlexamples",
-"keywords": "examples",
-"url": "/pages/documentation/examples/philosophers.html",
-"summary": "Philosophers Grakn example."
-}
-
-
-
-,
-{
-"title": "Pokemon Grakn Example",
-"tags": "getting-startedgraqlexamples",
-"keywords": "examples",
-"url": "/pages/documentation/examples/pokemon.html",
-"summary": "Pokemon Grakn example."
+"title": "Graql Overview",
+"tags": "graql",
+"keywords": "graql, overview",
+"url": "/pages/documentation/graql/overview.html",
+"summary": "An introduction to Graql"
 }
 
 
@@ -566,6 +599,28 @@
 
 
 
+,
+{
+"title": "Rule-Driven Ontology",
+"tags": "javagraph-api",
+"keywords": "schema",
+"url": "/pages/documentation/building-an-ontology/rule-driven-ontology.html",
+"summary": "Demonstrates how to create a rule-driven ontology for Grakn."
+}
+
+
+
+,
+{
+"title": "Rules and the Grakn Knowledge Model",
+"tags": "advanced-grakn",
+"keywords": "schema",
+"url": "/pages/documentation/grakn-knowledge-model/rules.html",
+"summary": "How to Use Rules with the Grakn Knowledge Model"
+}
+
+
+
 
 
 ,
@@ -584,7 +639,7 @@
 "title": "Defining a Schema",
 "tags": "javagraph-api",
 "keywords": "schema",
-"url": "/pages/documentation/core-api/simple-schema-definition.html",
+"url": "/pages/documentation/building-an-ontology/simple-schema-definition.html",
 "summary": "Demonstrates how to create a schema for Grakn."
 }
 

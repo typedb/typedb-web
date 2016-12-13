@@ -259,26 +259,47 @@
         
     
     <li>
-        <a href="#">Graph API</a>
+        <a href="#">Building an Ontology</a>
         <ul>
             
             
             
-            <li><a href="/pages/documentation/core-api/overview.html">Overview</a></li>
+            <li><a href="/pages/documentation/building-an-ontology/basic-ontology.html">Defining a Basic Ontology</a></li>
             
             
             
             
             
             
-            <li><a href="/pages/documentation/core-api/simple-schema-definition.html">Simple Schema Definition</a></li>
+            <li><a href="/pages/documentation/building-an-ontology/hierarchical-ontology.html">Defining a Hierarchical Ontology</a></li>
             
             
             
             
             
             
-            <li><a href="/pages/documentation/core-api/advanced-schema-definition.html">Advanced Schema Definition</a></li>
+            <li><a href="/pages/documentation/building-an-ontology/rule-driven-ontology.html">Defining a Rule-Driven Ontology</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="/pages/documentation/building-an-ontology/overview.html">Overview (deprecated)</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="/pages/documentation/building-an-ontology/simple-schema-definition.html">Simple Schema (deprecated)</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="/pages/documentation/building-an-ontology/advanced-schema-definition.html">Advanced Schema (deprecated)</a></li>
             
             
             
@@ -288,7 +309,7 @@
         
     
     <li>
-        <a href="#">Graql</a>
+        <a href="#">Querying with Graql</a>
         <ul>
             
             
@@ -357,13 +378,6 @@
             
             
             <li><a href="/pages/documentation/graql/graql-cheatsheet.html">Graql Cheatsheet</a></li>
-            
-            
-            
-            
-            
-            
-            <li><a href="/pages/documentation/graql/java-graql.html">Java Graql</a></li>
             
             
             
@@ -466,6 +480,35 @@
         
     
     <li>
+        <a href="#">Developing with Java</a>
+        <ul>
+            
+            
+            
+            <li><a href="/pages/documentation/developing-with-java/java-setup.html">Java Development Setup</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="/pages/documentation/developing-with-java/graph-api.html">Graph API</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="/pages/documentation/developing-with-java/java-graql.html">Java Graql</a></li>
+            
+            
+            
+            
+        </ul>
+        
+        
+    
+    <li>
         <a href="#">Advanced Grakn</a>
         <ul>
             
@@ -544,27 +587,6 @@
             
             
             
-            <li><a href="/pages/documentation/examples/pokemon.html">Pokemon example</a></li>
-            
-            
-            
-            
-            
-            
-            <li><a href="/pages/documentation/examples/philosophers.html">Philosophers example</a></li>
-            
-            
-            
-            
-            
-            
-            <li><a href="/pages/documentation/examples/moogi.html">Moogi example</a></li>
-            
-            
-            
-            
-            
-            
             <li><a href="/pages/documentation/examples/modern.html">Modern example</a></li>
             
             
@@ -572,14 +594,14 @@
             
             
             
-            <li><a href="/pages/documentation/examples/OWL-migration.html">OWL migration</a></li>
-            
-            
-            
-            
-            
-            
             <li><a href="/pages/documentation/examples/SQL-migration.html">SQL migration</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="/pages/documentation/examples/OWL-migration.html">OWL migration</a></li>
             
             
             
@@ -664,45 +686,50 @@ $('#toc').on('click', 'a', function() {
 
 <p>If you would like to request a particular example, please get in touch with us by leaving a comment on this page or posting a question on the discussion boards.  Our <a href="https://grakn.ai/community.html">Community page</a> lists other ways you can talk to us.</p>
 
-<h3 id="pokemonpokemonhtml"><a href="./pokemon.html">Pokemon</a></h3>
+<h3 id="genealogy-example">Genealogy Example</h3>
 
-<p>A <a href="./pokemon.html">simple example</a> to illustrate the basics of Grakn Graql statements and queries. You can also find the example within the Grakn distribution zip.</p>
+<p>The genealogy example is widely used across</p>
 
-<h3 id="philosophersphilosophershtml"><a href="./philosophers.html">Philosophers</a></h3>
-
-<p>This is a <a href="./philosophers.html">simple example</a> to illustrate the <a href="../the-basics/grakn-basics.html">basics of the object model</a>. You can also find the example within the Grakn distribution zip.</p>
-
-<h3 id="moogimoogihtml"><a href="./moogi.html">Moogi</a></h3>
-
-<p><a href="https://moogi.co">Moogi</a> is a large database of information about movies. We have provided some <a href="./moogi.html">documentation</a> and a subset of the data for you to investigate.</p>
+<!-- TO DO - Finish this -->
 
 <h3 id="modernmodernhtml"><a href="./modern.html">Modern</a></h3>
 
 <p>The <a href="./modern.html">Modern example</a> is a simple one, designed to test your knowledge of Graql.</p>
 
-<h3 id="sql-migrationsql-migrationhtml"><a href="./SQL-migration.html">SQL Migration</a></h3>
-
-<p>A common use-case is to migrate existing SQL data to a graph in Grakn. Please see the <a href="../examples/SQL-migration.html">SQL migration example</a> for an example of how to use the migrator. We also cover SQL migration in a <a href="https://blog.grakn.ai/populating-mindmapsdb-with-the-world-5b2445aee60c#">blog post</a>.</p>
-
 <h3 id="owl-migrationowl-migrationhtml"><a href="./OWL-migration.html">OWL Migration</a></h3>
 
 <p>For more information about migrating OWL to Grakn, please see the <a href="../examples/OWL-migration.html">OWL migration example</a>.</p>
 
-<h3 id="oncologists">Oncologists</h3>
+<h3 id="sql-migration">SQL Migration</h3>
 
-<p>The oncologists example walks through the basics of Grakn from a beginner’s perspective. You can find the blog posts here:</p>
+<p>A common use-case is to migrate existing SQL data to a graph in Grakn. We walk through a simple example of using the migration script as part of the documentation about <a href="../migration/SQL-migration.html">SQL migration</a>, and there is a further example of <a href="../examples/SQL-migration.html">SQL migration using the Java API</a>. We also cover SQL migration in a <a href="https://blog.grakn.ai/populating-mindmapsdb-with-the-world-5b2445aee60c#">blog post</a>.</p>
 
-<ul>
-  <li><a href="https://blog.grakn.ai/adding-semantics-to-graph-databases-with-mindmapsdb-part-1-82022bbb3b1c#.fyfw6h93a">Part 1</a></li>
-  <li><a href="https://blog.grakn.ai/adding-semantics-to-graph-databases-with-mindmapsdb-part2-833ec05bd28#.moeauu6sd">Part 2</a></li>
-  <li><a href="https://blog.grakn.ai/adding-semantics-to-graph-databases-with-mindmapsdb-part-3-5bd4c8be91ec#.1z2qtq8ms">Part 3</a></li>
-  <li><a href="https://blog.grakn.ai/adding-semantics-to-graph-databases-with-mindmapsdb-part-4-e1125e02dc85#.fc9qnj9bc">Part 4</a></li>
-</ul>
+<h3 id="csv-migration">CSV Migration</h3>
 
-<p>Sample code is here: <a href="https://github.com/mikonapoli/oncologists_ontology">https://github.com/mikonapoli/oncologists_ontology</a></p>
+<p>There is an example of CSV migration on our <a href="https://github.com/graknlabs/sample-projects/tree/master/example-csv-migration">sample projects repo</a> on Github. Please see the <a href="https://github.com/graknlabs/sample-projects/blob/master/example-csv-migration/README.md">readme file</a> to get started.</p>
+
+<p>CSV migration is also covered in a <a href="https://blog.grakn.ai/twenty-years-of-games-in-grakn-14faa974b16e#.cuox3cew2">blog post</a>.</p>
 
 <h3 id="r-and-python-bindings">R and Python bindings</h3>
-<p>It is possible to extract data from Grakn and use it as a data science tool for analysis. You can take the results of a Graql query and store the results in a dataframe or similar structure, for use with R or Python. This <a href="https://blog.grakn.ai/there-r-pandas-in-my-graph-b8b5f40a2f99#">blog post</a> explains and gives a simple example.</p>
+<p>It is possible to extract data from Grakn and use it as a data science tool for analysis. You can take the results of a Graql query and store the results in a dataframe or similar structure, for use with R or Python. This <a href="https://blog.grakn.ai/there-r-pandas-in-my-graph-b8b5f40a2f99#">blog post</a> explains and gives a simple example. A further <a href="https://blog.grakn.ai/grakn-pandas-celebrities-5854ad688a4f#.k5zucfp6f">blog post</a> uses the Python driver to examine our example movie dataset.</p>
+
+<h3 id="pokemon">Pokemon</h3>
+
+<p>The Grakn repo on Github contains <a href="https://github.com/graknlabs/grakn/blob/master/grakn-dist/src/examples/pokemon.gql">pokemon.gql</a>, which is a simple example to illustrate a basic ontology and dataset. It is currently used in our Graql documentation to illustrate how to form a range of different Graql queries.</p>
+
+<h3 id="philosophers">Philosophers</h3>
+
+<p>The Grakn repo on Github contains <a href="https://github.com/graknlabs/grakn/blob/master/grakn-dist/src/examples/philosophers.gql">philosophers.gql</a>, which contains a simple ontology and data, for use as an example.</p>
+
+<p>The <a href="https://github.com/graknlabs/sample-projects">sample-projects</a> repo on Github contains a Java project that uses the Java Graph API on the same data and ontology.</p>
+
+<h3 id="moogi-movie-database">Moogi Movie Database</h3>
+
+<p><a href="https://moogi.co">Moogi</a> is a large database of information about movies. We have provided a subset of its data to try out in our <a href="https://github.com/graknlabs/sample-datasets/tree/master/movies">sample-datasets repository</a> on Github.</p>
+
+<h2 id="where-next">Where Next?</h2>
+
+<p>If you are interested in writing an example on Grakn, maybe as a way of trying it out, please take a look at the <a href="./projects.html">Example Projects</a> page, which lists some ideas that we have for potential examples or research projects.</p>
 
 <h2 id="comments">Comments</h2>
 <p>Want to leave a comment? Visit <a href="https://github.com/graknlabs/docs/issues/27" target="_blank">the issues on Github for this page</a> (you’ll need a GitHub account). You are also welcome to contribute to our documentation directly via the “Edit me” button at the top of the page.</p>
@@ -750,7 +777,7 @@ $('#toc').on('click', 'a', function() {
         <br>
         <p>© 2016 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2016 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> September 23, 2016<br/> Site last generated: Dec 12, 2016 <br />
+        <span>Page last updated:</span> September 23, 2016<br/> Site last generated: Dec 13, 2016 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">

@@ -62,13 +62,13 @@
   
   
   <url>
-    <loc>http://grakn.ai/pages//documentation/migration/OWL-migration.html</loc>
+    <loc>http://grakn.ai/pages//documentation/examples/OWL-migration.html</loc>
   </url>
   
   
   
   <url>
-    <loc>http://grakn.ai/pages//documentation/examples/OWL-migration.html</loc>
+    <loc>http://grakn.ai/pages//documentation/migration/OWL-migration.html</loc>
   </url>
   
   
@@ -86,7 +86,7 @@
   
   
   <url>
-    <loc>http://grakn.ai/pages//documentation/core-api/advanced-schema-definition.html</loc>
+    <loc>http://grakn.ai/pages//documentation/building-an-ontology/advanced-schema-definition.html</loc>
   </url>
   
   
@@ -146,6 +146,12 @@
   
   
   <url>
+    <loc>http://grakn.ai/pages//documentation/building-an-ontology/basic-ontology.html</loc>
+  </url>
+  
+  
+  
+  <url>
     <loc>http://grakn.ai/pages//documentation/graql/compute-queries.html</loc>
   </url>
   
@@ -153,6 +159,12 @@
   
   <url>
     <loc>http://grakn.ai/pages//documentation/graql/delete-queries.html</loc>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://grakn.ai/pages//documentation/developing-with-java/java-setup.html</loc>
   </url>
   
   
@@ -178,6 +190,12 @@
   
   
   <url>
+    <loc>http://grakn.ai/pages//documentation/grakn-knowledge-model/fundamentals.html</loc>
+  </url>
+  
+  
+  
+  <url>
     <loc>http://grakn.ai/pages//documentation/the-basics/grakn-basics.html</loc>
   </url>
   
@@ -191,6 +209,12 @@
   
   <url>
     <loc>http://grakn.ai/pages//documentation/the-basics/grakn-knowledge-model.html</loc>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://grakn.ai/pages//documentation/developing-with-java/graph-api.html</loc>
   </url>
   
   
@@ -220,7 +244,19 @@
   
   
   <url>
+    <loc>http://grakn.ai/pages//documentation/building-an-ontology/hierarchical-ontology.html</loc>
+  </url>
+  
+  
+  
+  <url>
     <loc>http://grakn.ai/pages//index</loc>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://grakn.ai/pages//documentation/grakn-knowledge-model/inheritance.html</loc>
   </url>
   
   
@@ -232,7 +268,7 @@
   
   
   <url>
-    <loc>http://grakn.ai/pages//documentation/graql/java-graql.html</loc>
+    <loc>http://grakn.ai/pages//documentation/developing-with-java/java-graql.html</loc>
   </url>
   
   
@@ -256,37 +292,19 @@
   
   
   <url>
-    <loc>http://grakn.ai/pages//documentation/examples/moogi.html</loc>
-  </url>
-  
-  
-  
-  <url>
     <loc>http://grakn.ai/pages//js/mydoc_scroll.html</loc>
   </url>
   
   
   
   <url>
+    <loc>http://grakn.ai/pages//documentation/building-an-ontology/overview.html</loc>
+  </url>
+  
+  
+  
+  <url>
     <loc>http://grakn.ai/pages//documentation/graql/overview.html</loc>
-  </url>
-  
-  
-  
-  <url>
-    <loc>http://grakn.ai/pages//documentation/core-api/overview.html</loc>
-  </url>
-  
-  
-  
-  <url>
-    <loc>http://grakn.ai/pages//documentation/examples/philosophers.html</loc>
-  </url>
-  
-  
-  
-  <url>
-    <loc>http://grakn.ai/pages//documentation/examples/pokemon.html</loc>
   </url>
   
   
@@ -315,6 +333,18 @@
   
   
   
+  <url>
+    <loc>http://grakn.ai/pages//documentation/building-an-ontology/rule-driven-ontology.html</loc>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://grakn.ai/pages//documentation/grakn-knowledge-model/rules.html</loc>
+  </url>
+  
+  
+  
   
   
   <url>
@@ -324,7 +354,7 @@
   
   
   <url>
-    <loc>http://grakn.ai/pages//documentation/core-api/simple-schema-definition.html</loc>
+    <loc>http://grakn.ai/pages//documentation/building-an-ontology/simple-schema-definition.html</loc>
   </url>
   
   

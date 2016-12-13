@@ -259,26 +259,47 @@
         
     
     <li>
-        <a href="#">Graph API</a>
+        <a href="#">Building an Ontology</a>
         <ul>
             
             
             
-            <li><a href="/pages/documentation/core-api/overview.html">Overview</a></li>
+            <li><a href="/pages/documentation/building-an-ontology/basic-ontology.html">Defining a Basic Ontology</a></li>
             
             
             
             
             
             
-            <li><a href="/pages/documentation/core-api/simple-schema-definition.html">Simple Schema Definition</a></li>
+            <li><a href="/pages/documentation/building-an-ontology/hierarchical-ontology.html">Defining a Hierarchical Ontology</a></li>
             
             
             
             
             
             
-            <li><a href="/pages/documentation/core-api/advanced-schema-definition.html">Advanced Schema Definition</a></li>
+            <li><a href="/pages/documentation/building-an-ontology/rule-driven-ontology.html">Defining a Rule-Driven Ontology</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="/pages/documentation/building-an-ontology/overview.html">Overview (deprecated)</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="/pages/documentation/building-an-ontology/simple-schema-definition.html">Simple Schema (deprecated)</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="/pages/documentation/building-an-ontology/advanced-schema-definition.html">Advanced Schema (deprecated)</a></li>
             
             
             
@@ -288,7 +309,7 @@
         
     
     <li>
-        <a href="#">Graql</a>
+        <a href="#">Querying with Graql</a>
         <ul>
             
             
@@ -357,13 +378,6 @@
             
             
             <li><a href="/pages/documentation/graql/graql-cheatsheet.html">Graql Cheatsheet</a></li>
-            
-            
-            
-            
-            
-            
-            <li><a href="/pages/documentation/graql/java-graql.html">Java Graql</a></li>
             
             
             
@@ -466,6 +480,35 @@
         
     
     <li>
+        <a href="#">Developing with Java</a>
+        <ul>
+            
+            
+            
+            <li><a href="/pages/documentation/developing-with-java/java-setup.html">Java Development Setup</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="/pages/documentation/developing-with-java/graph-api.html">Graph API</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="/pages/documentation/developing-with-java/java-graql.html">Java Graql</a></li>
+            
+            
+            
+            
+        </ul>
+        
+        
+    
+    <li>
         <a href="#">Advanced Grakn</a>
         <ul>
             
@@ -544,27 +587,6 @@
             
             
             
-            <li><a href="/pages/documentation/examples/pokemon.html">Pokemon example</a></li>
-            
-            
-            
-            
-            
-            
-            <li><a href="/pages/documentation/examples/philosophers.html">Philosophers example</a></li>
-            
-            
-            
-            
-            
-            
-            <li><a href="/pages/documentation/examples/moogi.html">Moogi example</a></li>
-            
-            
-            
-            
-            
-            
             <li><a href="/pages/documentation/examples/modern.html">Modern example</a></li>
             
             
@@ -572,14 +594,14 @@
             
             
             
-            <li><a href="/pages/documentation/examples/OWL-migration.html">OWL migration</a></li>
-            
-            
-            
-            
-            
-            
             <li><a href="/pages/documentation/examples/SQL-migration.html">SQL migration</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="/pages/documentation/examples/OWL-migration.html">OWL migration</a></li>
             
             
             
@@ -659,12 +681,14 @@ $('#toc').on('click', 'a', function() {
     
 
   <h2 id="introduction">Introduction</h2>
-<p>This tutorial shows you how to populate a graph in Grakn with SQL data. If you have not yet set up the Grakn environment, please see the <a href="../get-started/setup-guide.html">setup guide</a>.</p>
+<p>This tutorial shows you how to populate a graph in Grakn with SQL data, by walking through a simple example. If you wish to follow along and have not yet set up the Grakn environment, please see the <a href="../get-started/setup-guide.html">setup guide</a>.</p>
 
 <h2 id="migration-shell-script-for-sql">Migration Shell Script for SQL</h2>
 <p>The migration shell script can be found in <code class="highlighter-rouge">/bin</code> directory of your Grakn environment. Usage is specific to the type of migration being performed. For SQL:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>usage: migration.sh sql -template &lt;arg&gt; -driver &lt;arg&gt; -user &lt;arg&gt; -pass &lt;arg&gt; -location &lt;arg&gt; <span class="o">[</span>-help] <span class="o">[</span>-no] <span class="o">[</span>-batch &lt;arg&gt;] <span class="o">[</span>-keyspace &lt;arg&gt;] <span class="o">[</span>-uri &lt;arg&gt;]
+<div class="highlighter-rouge"><pre class="highlight"><code>usage: migration.sh sql -template &lt;arg&gt; -driver &lt;arg&gt; -user &lt;arg&gt; -pass &lt;arg&gt; -location &lt;arg&gt; <span class="o">[</span>-help] <span class="o">[</span>-no] <span class="o">[</span>-batch &lt;arg&gt;] <span class="o">[</span>-keyspace &lt;arg&gt;] <span class="o">[</span>-uri &lt;arg&gt;] <span class="o">[</span>-v]
+ 
+ -b,--batch &lt;arg&gt;      number of rows to load at once
  -driver &lt;arg&gt;         JDBC driver
  -h,--help             print usage message
  -k,--keyspace &lt;arg&gt;   keyspace to use
@@ -675,14 +699,23 @@ $('#toc').on('click', 'a', function() {
  -t,--template &lt;arg&gt;   template <span class="k">for </span>the given SQL query
  -u,--uri &lt;arg&gt;        uri to engine endpoint
  -user &lt;arg&gt;           JDBC username
+  -v,--verbose         print counts of migrated data.
 </code></pre>
 </div>
 
-<p>One of the most common use cases of the migration component will be to move data from an RDBMS into Grakn. Grakn relies on the JDBC API to connect to any RDBMS that uses the SQL language. The example that follows is written in MySQL, but SQL -&gt; Grakn migration will work with any database it can connect to using a JDBC driver. This has been tested on MySQL, Oracle and PostgresQL.</p>
+<p>Grakn relies on the JDBC API to connect to any RDBMS that uses the SQL language. The example that follows is written in MySQL, but SQL to Grakn migration will work with any database it can connect to using a JDBC driver. This has been tested on MySQL, Oracle and PostgresQL.</p>
+
+<h3 id="sql-migration-basics">SQL Migration Basics</h3>
+
+<p>There are limitations on the SQL format that prevent it from expressing the semantics of the data. Grakn cannot automatically migrate and derive an ontology for your data. To have the full benefit of a knowledge graph, you must write the ontology for your dataset.</p>
+
+<p>SQL Migration makes heavy use of the Graql templating language. You should have a solid foundation in Graql templating before continuing, so please read through our <a href="../graql/graql-templating.html">templating documentation</a> to find out more.</p>
+
+<p>Once you have written an ontology for your dataset, you will template Graql statements that instruct the migrator on how the results of a SQL query can be mapped to your ontology. The SQL migrator will apply the template to each row of data in the resultant table. If you are familiar with the Graql templating language, you are aware that it replaces the indicated sections in the template with provided data. In this migrator, the column header is the key, while the content of each row at that column is the value.</p>
 
 <h3 id="sql-schema-migration">SQL Schema Migration</h3>
 
-<p>Let’s say you have an SQL table with the following schema:</p>
+<p>Let’s say you have an SQL table with the following schema for pets, with two tables. One has details of a pet (name, species etc) and the other table records events occurring to the pet, such as having a litter:</p>
 
 <div class="highlighter-rouge"><pre class="highlight"><code><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">pet</span>
 <span class="p">(</span>
@@ -708,43 +741,59 @@ $('#toc').on('click', 'a', function() {
 </code></pre>
 </div>
 
-<p>Each SQL table is mapped to one Grakn entity type. Each column of a table can be mapped as a resource type of that entity type. So the SQL tables above can be directly mapped to a Grakn schema:</p>
+<p>We can define an ontology that corresponds to the SQL tables as follows:</p>
 
 <pre><code class="language-graql-test-ignore">
 insert
+pet isa entity-type
+    has-resource name
+    has-resource owner
+    has-resource sex
+    has-resource birth
+    has-resource death
+    is-abstract;
 
-pet isa entity-type,
-	has-resource name,
-	has-resource owner,
-	has-resource species,
-	has-resource sex,
-	has-resource birth,
-	has-resource death;
+cat sub pet;
+dog sub pet;
+snake sub pet;
+hamster sub pet;
+bird sub pet;
+
+name isa resource-type datatype string;
+owner isa resource-type datatype string;
+sex isa resource-type datatype string;
+birth isa resource-type datatype string;
+death isa resource-type datatype string;
+count isa resource-type datatype long;
 
 event isa entity-type,
-	has-resource name,
-	has-resource date,
-	has-resource eventtype,
-	has-resource remark;
+    has-resource name,
+    has-resource date,
+    has-resource description;
 
 </code></pre>
 
-<p>In SQL, a <code class="highlighter-rouge">foreign key</code> is a column that references another column. The Grakn equivalent is a relationship type. Because SQL <code class="highlighter-rouge">foreign key</code> are not explicitly named, as they are in Grakn, the relation and roles have auto-generated names.</p>
+<p>The ontology is not complete at this point, as we have not included any relationship between pets and their events. In SQL, a <code class="highlighter-rouge">foreign key</code> is a column that references another column, as seen in the SQL schema line <code class="highlighter-rouge">ALTER TABLE event ADD FOREIGN KEY ( name ) REFERENCES pet ( name );</code>.</p>
 
-<p>The SQL schema line <code class="highlighter-rouge">ALTER TABLE event ADD FOREIGN KEY ( name ) REFERENCES pet ( name );</code> would be migrated as:</p>
+<p>For Grakn, we can use the following:</p>
 
 <pre><code class="language-graql-test-ignore">insert
+occurs isa relation-type
+  has-role event-occurred
+  has-role pet-in-event;
 
-event-child isa role-type;
-event-parent isa role-type;
+event-occurred isa role-type;
+pet-in-event isa role-type;
 
-event-relation isa relation-type,
- 	has-role event-child,
- 	has-role event-parent;
-
-event plays-role event-parent;
-pet plays-role event-child;
+pet plays-role pet-in-event;
+event plays-role event-occurred;
 </code></pre>
+
+<p>To load the ontology into Grakn, we create a single file that contains both sections shown above, named <code class="highlighter-rouge">ontology.gql</code>. From the Grakn installation folder, call:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>./bin/graql.sh -f ./ontology.gql
+</code></pre>
+</div>
 
 <h3 id="sql-data-migration">SQL Data Migration</h3>
 
@@ -792,63 +841,86 @@ pet plays-role event-child;
 </code></pre>
 </div>
 
-<p>Similar to how the schema is migrated, each row of data in an SQL table can be mapped to a single entity instance and each column value can be mapped as a resource.</p>
+<p>In order to migrate the pets table from the SQL database, we prepare a SQL query to extract the data:</p>
 
-<p>Another feature of the migration component is that it will turn any <code class="highlighter-rouge">primary key</code> of a row into the ID of that instance. This works for combined keys as well.</p>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">pet</span><span class="p">;</span> 
+</code></pre>
+</div>
 
-<p>This is how the first two rows of the <code class="highlighter-rouge">pet</code> and <code class="highlighter-rouge">event</code> tables would look if written in Graql:</p>
+<p>We also prepare a Graql template, <code class="highlighter-rouge">pet-template.gql</code> which creates instances for data according to the defined ontology. The template will create an entity of the appropriate pet subtype (<code class="highlighter-rouge">cat</code>, <code class="highlighter-rouge">dog</code>, <code class="highlighter-rouge">snake</code>, <code class="highlighter-rouge">hamster</code> or <code class="highlighter-rouge">bird</code>) for each row returned by the query. It will attach name, owner and sex resources to each of these entities, and if the birth and death dates are present in the data, attaches those too.</p>
 
-<pre><code class="language-graql-test-ignore">insert
+<div class="highlighter-rouge"><pre class="highlight"><code>insert
 
-$x isa pet id "Bowser",
-	has owner "Diane",
-	has species "dog",
-	has sex "m",
-	has birth "1979-08-31",
-	has death "1995-07-29";
+$x isa &lt;SPECIES&gt;
+    has name &lt;NAME&gt;
+    has owner &lt;OWNER&gt;
+    has sex &lt;SEX&gt;
+    if(BIRTH != null) do { has birth &lt;BIRTH&gt; }
+    if(DEATH != null) do { has death &lt;DEATH&gt; };
+</code></pre>
+</div>
 
-$y isa event
-	has date "1991-10-12",
-	has eventtype "kennel";
+<p>To apply the template above to the SQL query and populate the graph with the <code class="highlighter-rouge">pet</code> entities, we use Grakn migration script:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>migration.sh sql -q "SELECT * FROM pet;" -location jdbc:mysql://localhost:3306/world -user root -pass root -t ./pet-template.gql 
+</code></pre>
+</div>
+
+<p>Similarly, to migrate the events from the table, we prepare a SQL query to extract the data:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">SELECT</span> <span class="n">event</span><span class="p">.</span><span class="n">name</span> <span class="k">AS</span> <span class="n">name</span><span class="p">,</span>
+       <span class="n">event</span><span class="p">.</span><span class="n">date</span> <span class="k">AS</span> <span class="n">date</span><span class="p">,</span>
+       <span class="n">event</span><span class="p">.</span><span class="n">eventtype</span> <span class="k">AS</span> <span class="n">description</span>
+<span class="k">FROM</span> <span class="n">event</span><span class="p">;</span>
+</code></pre>
+</div>
+
+<p>We prepare a Graql template <code class="highlighter-rouge">event-template.gql</code>:</p>
+
+<pre><code class="language-graql-test-ignore">match $pet has name &lt;name&gt;
+insert $event isa event 
+  has date &lt;date&gt;
+  has description &lt;description&gt;;
+  (event-occurred: $event, pet-in-event: $pet) isa occurs;
 
 </code></pre>
 
-<p>If the value of a column is <code class="highlighter-rouge">NULL</code>, that resource is not added to the graph.</p>
+<p>To populate the graph with the <code class="highlighter-rouge">event</code> entities, we then use the Grakn migration script:</p>
 
-<p>The <code class="highlighter-rouge">name</code> column of the event instance was not migrated as a resource. This is because that column is a foreign key. The migration component will detect when one of the columns is a <code class="highlighter-rouge">foreign key</code> and create a relation between those two instances:</p>
-
-<pre><code class="language-graql-test-ignore">insert (event-child: $x, event-parent: $y) isa event-relation;
+<div class="highlighter-rouge"><pre class="highlight"><code>migration.sh sql -q "SELECT event.name AS name, event.date AS date, event.eventtype AS description FROM event;" -location jdbc:mysql://localhost:3306/world -user root -pass root -t ./pet-template.gql 
 </code></pre>
+</div>
+
+<p>Note: The SQL query is entered into the command line in quotes, although in future releases of Grakn, we plan to allow queries to be saved in a file, which can be specified with an appropriate flag.</p>
+
+<p>At this point, the SQL data has been added to a graph in Grakn, and can be queried. For example:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>match $x isa cat; # Get all cats
+match ($x, $y) isa occurs; $x isa cat; $y isa event has description "litter"; select $x; # Get all cats that have had litters of kittens
+
+</code></pre>
+</div>
 
 <h3 id="in-java">In Java</h3>
 
 <p>While the migration seems rather lengthy when written out in Graql, you only need a few lines of code to accomplish this migration in Grakn:</p>
 
-<pre><code class="language-java-test-ignore">// get the JDBC connection
+<pre><code class="language-java-test-ignore">String jdbcDBUrl = "";
+String jdbcUser = "root";
+String jdbcPass = "root"
+String KEYSPACE = "pets-example";
 
-Connection connection = DriverManager.getConnection(jdbcDBUrl, jdbcUser, jdbcPass);
+String sqlQuery = "SELECT * FROM pet;"
+File template = "./pet-template.gql"
 
-// get the Grakn connection
+// get the JDBC connection
+try(Connection connection = DriverManager.getConnection(jdbcDBUrl, jdbcUser, jdbcPass)) {
 
-GraknGraph graph = Grakn.factory(Grakn.DEFAULT_URI).getGraph("sql-test-graph");
-Loader loader = new BlockingLoader("sql-test-graph");
+    // create migrator
+    SQLMigrator migrator = new SQLMigrator(sqlQuery, template, connection);
 
-// create migrators and perform migration
-
-SQLSchemaMigrator schemaMigrator = new SQLSchemaMigrator();
-SQLDataMigrator dataMigrator = new SQLDataMigrator();
-
-schemaMigrator
-        .graph(graph)
-        .configure(connection)
-        .migrate(loader)
-        .close();
-
-dataMigrator
-        .graph(graph)
-        .configure(connection)
-        .migrate(loader)
-        .close();
+    // perform migration
+    MigrationLoader.load(KEYSPACE, migrator);
 
 </code></pre>
 
@@ -896,7 +968,7 @@ dataMigrator
         <br>
         <p>© 2016 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2016 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> November 25, 2016<br/> Site last generated: Dec 12, 2016 <br />
+        <span>Page last updated:</span> December 2016<br/> Site last generated: Dec 13, 2016 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">
