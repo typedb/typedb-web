@@ -684,41 +684,84 @@ $('#toc').on('click', 'a', function() {
 <p>The Grakn visualiser provides a graphical tool to inspect and query your graph data. This article shows how to get it up and running on a basic example and introduces the visualiser’s key features.</p>
 
 <h2 id="loading-and-visualising-a-graph">Loading and Visualising a Graph</h2>
-<p>If you have not yet set up the Grakn environment, please see the <a href="../get-started/setup-guide.html">Setup guide</a>.
-You can find the <code class="highlighter-rouge">pokemon.gql</code> example we will work with in the examples directory that is included in the Grakn download zip, or in our <a href="https://github.com/graknlabs/grakn/tree/master/grakn-dist/src/examples">Grakn repo</a>.</p>
+<p>If you have not yet set up the Grakn environment, please see the <a href="../get-started/setup-guide.html">Setup guide</a>.</p>
 
-<p>The first step is to load the Pokemon graph from the example file into the default keyspace. You need to use your terminal to do this, as the visualiser is a read-only interface to a graph.</p>
+<p>You can find the genealogy example that we will work with in the the <a href="https://github.com/graknlabs/sample-datasets/tree/master/genealogy-graph">sample-datasets repo on Github</a>.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>bin/graql.sh -f examples/pokemon.gql
+<p>The first step is to load the ontology and data into Grakn. You need to use your terminal to do this, as the visualiser is a read-only interface to a graph. Start Grakn, and load the genealogy-graph ontology. Assuming you are working in the Grakn distribution folder, and have created a subfolder within it for the genealogy-graph example called <code class="highlighter-rouge">genealogy</code>, your call will look like this:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>./bin/grakn.sh start
+./bin/graql.sh -f ./genealogy/ontology.gql -k <span class="s2">"family"</span>
 </code></pre>
 </div>
 
-<p>While in the terminal, you can test in the Graql shell that all is well. For example:</p>
+<div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> <b>Note:</b> To illustrate the use of different keyspaces, will we use a keyspace called <code class="highlighter-rouge">family</code> in this example, but you can simply use the default keyspace if you prefer, if it is not already in use, by omitting the -k argument.</div>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>bin/graql.sh
-&gt;&gt;&gt;match <span class="nv">$x</span> isa pokemon, has name <span class="nv">$n</span>; <span class="k">select</span> <span class="nv">$x</span>, <span class="nv">$n</span>; 
+<p>Then load in the data to the same keyspace</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>./bin/graql.sh -f ./genealogy/data.gql -k <span class="s2">"family"</span>
 </code></pre>
 </div>
 
-<p>Now to open the visualiser by browsing to <a href="http://localhost:4567">localhost:4567</a>.</p>
+<p>You can test in the Graql shell that all has loaded correctly. For example:</p>
 
-<p>The visualiser has 4 horizontal navigation tabs on its left hand side, below the version number.</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>./bin/graql.sh -k family
+match <span class="nv">$x</span> isa person, has identifier <span class="nv">$y</span>;
+</code></pre>
+</div>
 
-<h3 id="status">Status</h3>
-<p>The Status pane lists various configuration items and their current settings.</p>
+<p>Now open the visualiser by browsing to <a href="http://localhost:4567">localhost:4567</a>.</p>
+
+<p>The visualiser has a number of horizontal navigation tabs on its left hand side, below the version number. We will go through each of them below, but to visualise your graph at this point in the example, you need to go to the keyspace tab and select the appropriate keyspace, e.g. <code class="highlighter-rouge">family</code>.</p>
+
+<p>The main pane of your graph will be empty at this point. Click the Types button in the top right, then the Visualise button at the top right hand side of the newly opened drawer. The genealogy-graph ontology will be displayed.</p>
+
+<h2 id="working-with-the-visualiser">Working With The Visualiser</h2>
+
+<p>There are a number of horizontal tabs on the left hand side of the screen, described as follows.</p>
 
 <h3 id="graph">Graph</h3>
-<p>This is the main section of the visualiser that you will use to explore the graph. Type in a query to receive a graphical view on the data. For example, <code class="highlighter-rouge">match $x isa pokemon, has name $n; select $x, $n;limit 5;</code></p>
+<p>This is the main section of the visualiser that you will use to explore the graph. You can use the query section at the top of the main pane, then press “Submit” to visualise it. For example:</p>
 
-<p><img src="/images/pokemon-query-visualiser.jpg" alt="Pokemon query" /></p>
+<pre><code class="language-graql">match $x isa person;
+</code></pre>
 
-<p>The help pane shows a set of key combinations that you can use to further drill into the data, and the “Show Types” dropdown menu allows you to filter on specific types.</p>
+<p><img src="/images/match-$x-isa-person.png" alt="Person query" /></p>
+
+<p>The help tab on the main pane shows a set of key combinations that you can use to further drill into the data.</p>
+
+<p>Alternatively, you can use the “Types” drawer to filter on specific types. For example, clear the graph using the “Clear” button, then select “Types”, followed by “Entities” and filter on <code class="highlighter-rouge">birth</code> entities. The equivalent query will be shown in the query section at the top of the main pane, and the visualiser displays all births. You can zoom the display in and out, and move the nodes around for better visibility.</p>
+
+<p><img src="/images/match-$x-isa-birth.png" alt="Birth query" /></p>
 
 <h3 id="console">Console</h3>
 <p>You can use this console to make queries instead of running a Graql shell in your terminal.</p>
 
+<h3 id="config">Config</h3>
+
 <h3 id="documentation">Documentation</h3>
-<p>This opens a separate tab in your browser on the Grakn documentation portal.</p>
+<p>This opens a separate tab in your browser and points it to the Grakn documentation portal. It may be how you ended up on this page!</p>
+
+<h3 id="actions">Actions</h3>
+
+<h3 id="keyspaces">Keyspaces</h3>
+<p>The keyspaces that are currently in use by Grakn.</p>
+
+<!--
+### Visualiser Colour Scheme
+
+The colours used in the visualiser are as follows:
+
+| Colour | Description                                   |
+| ----------- | --------------------------------------------- |
+| Pink     | Ontology meta-types                        |
+| Blue      | Data entity                         |
+| Green     | Ontology relation-type                       |
+| Orange     | Label                        |
+| Yellow     |                         |
+|      |                         |
+
+-->
 
 <h2 id="where-next">Where Next?</h2>
 
@@ -769,7 +812,7 @@ You can find the <code class="highlighter-rouge">pokemon.gql</code> example we w
         <br>
         <p>© 2016 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2016 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> August 10, 2016<br/> Site last generated: Dec 13, 2016 <br />
+        <span>Page last updated:</span> August 10, 2016<br/> Site last generated: Dec 14, 2016 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">
