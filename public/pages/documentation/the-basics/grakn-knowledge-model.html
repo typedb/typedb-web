@@ -686,7 +686,7 @@ $('#toc').on('click', 'a', function() {
 
 <h2 id="ontology">Ontology</h2>
 
-<p>The ontology is a formal specification of all the relevant concepts and their meaningful associations in a given application domain. It allows objects and relationships to be categorised into distinct types, and for generic properties about those types to be expressed. Specifying the ontology enables logical reasoning over the represented knowledge, such as the extraction of implicit information from explicit data (inference) or discovery of inconsistencies in the data (validation).</p>
+<p>The ontology is a formal specification of all the relevant concepts and their meaningful associations in a given application domain. It allows objects and relationships to be categorised into distinct types, and for generic properties about those types to be expressed. Specifying the ontology enables automated reasoning over the represented knowledge, such as the extraction of implicit information from explicit data (inference) or discovery of inconsistencies in the data (validation).</p>
 
 <p>Grakn ontologies use four types of <code class="highlighter-rouge">concepts</code> for modeling domain knowledge:</p>
 
@@ -770,7 +770,7 @@ $('#toc').on('click', 'a', function() {
 <p><em>Figure 1: The concept types and their permitted associations via Grakn ontology constructs.</em></p>
 
 <!-- This section may possibly be better if moved into a different, more low level page -->
-<p>A well-formed Grakn ontology is required to satisfy the following structural properties (for examples see the following section):</p>
+<p>A well-formed Grakn ontology is required to satisfy the following structural properties (see examples in the following section):</p>
 
 <ul>
   <li>each concept type can have at most one direct supertype,</li>
@@ -783,7 +783,7 @@ $('#toc').on('click', 'a', function() {
 
 <p>As in object-oriented programming, the inheritance mechanism in Grakn enables subtypes to automatically take on some of the properties of their supertypes. This simplifies the construction of ontologies and helps keep them succinct. The Grakn knowledge model imposes inheritance of all <code class="highlighter-rouge">has-resource</code> and <code class="highlighter-rouge">plays-role</code> constraints on entity, relation and resource types.</p>
 
-<p>For example, in Figure 2, the entity types <code class="highlighter-rouge">woman</code> and <code class="highlighter-rouge">man</code> inherit the constraints <code class="highlighter-rouge">has-resource name</code>, <code class="highlighter-rouge">plays-role partner1</code>, <code class="highlighter-rouge">plays-role partner2</code> from their supertype <code class="highlighter-rouge">person</code>. Similarly, the relation type <code class="highlighter-rouge">marriage</code> inherits the constraint <code class="highlighter-rouge">has-resource since</code> from <code class="highlighter-rouge">partnership</code>.</p>
+<p>For example, in the ontology depicted in Figure 2, the entity types <code class="highlighter-rouge">woman</code> and <code class="highlighter-rouge">man</code> inherit the constraints <code class="highlighter-rouge">has-resource name</code>, <code class="highlighter-rouge">plays-role partner1</code>, <code class="highlighter-rouge">plays-role partner2</code> from their supertype <code class="highlighter-rouge">person</code>. Similarly, the relation type <code class="highlighter-rouge">marriage</code> inherits the constraint <code class="highlighter-rouge">has-resource since</code> from <code class="highlighter-rouge">partnership</code>.</p>
 
 <p><img src="/images/knowledge-model-fig2.png" alt="A sample of a Grakn ontology." /></p>
 
@@ -814,12 +814,12 @@ $('#toc').on('click', 'a', function() {
   <li><code class="highlighter-rouge">woman plays-role wife</code></li>
   <li><code class="highlighter-rouge">man sub person</code></li>
   <li><code class="highlighter-rouge">man plays-role husband</code></li>
-  <li><code class="highlighter-rouge">marriage sub partnership</code></li>
   <li><code class="highlighter-rouge">wife sub partner1</code></li>
   <li><code class="highlighter-rouge">husband sub partner2</code></li>
   <li><code class="highlighter-rouge">partnership has-resource since</code></li>
   <li><code class="highlighter-rouge">partnership has-role partner1</code></li>
   <li><code class="highlighter-rouge">partnership has-role partner2</code></li>
+  <li><code class="highlighter-rouge">marriage sub partnership</code></li>
   <li><code class="highlighter-rouge">marriage has-role wife</code></li>
   <li><code class="highlighter-rouge">marriage has-role husband</code></li>
 </ul>
@@ -856,7 +856,7 @@ $('#toc').on('click', 'a', function() {
 
 <h3 id="validation">Validation</h3>
 
-<p>To ensure data is correctly structured (i.e. consistent) with respect to the ontology, all data instances are validated against the ontology constraints. All the explicitly represented ontology constraints, together with the inherited ones, form complete schema templates for particular concept types, which guide the validation and, consequently, the data entry process. For example, the ontology in Figure 2, establishes the following schema templates for the concept types <code class="highlighter-rouge">woman</code> and <code class="highlighter-rouge">marriage</code>:</p>
+<p>To ensure data is correctly structured (i.e. consistent) with respect to the ontology, all data instances are validated against the ontology constraints. All the explicitly represented ontology constraints, together with the inherited ones, form complete schema templates for particular concept types, which guide the validation and, consequently, the data entry process. For example, the ontology in Figure 2 establishes the following schema templates for the concept types <code class="highlighter-rouge">woman</code> and <code class="highlighter-rouge">marriage</code>:</p>
 
 <h4 id="woman"><code class="highlighter-rouge">woman</code></h4>
 
@@ -875,20 +875,20 @@ $('#toc').on('click', 'a', function() {
   <li><code class="highlighter-rouge">has-role husband</code></li>
 </ul>
 
-<p>A data instance <code class="highlighter-rouge">$x</code> of a concept type <code class="highlighter-rouge">C</code> is valid, whenever the following conditions are satisfied:</p>
+<p>A data instance <code class="highlighter-rouge">inst</code> of a concept type <code class="highlighter-rouge">C</code> is valid, whenever the following conditions are satisfied:</p>
 
 <ul>
-  <li><code class="highlighter-rouge">$x</code> instantiates only <code class="highlighter-rouge">C</code> (and indirectly all supertypes of <code class="highlighter-rouge">C</code>),</li>
-  <li>all types of resources associated with <code class="highlighter-rouge">$x</code> belong to the schema template of <code class="highlighter-rouge">C</code>,</li>
-  <li>for every role type <code class="highlighter-rouge">R</code> that <code class="highlighter-rouge">$x</code> plays in any relation instance in the data, there is a constraint <code class="highlighter-rouge">plays-role R</code> in the schema template of <code class="highlighter-rouge">C</code>,</li>
-  <li>whenever <code class="highlighter-rouge">$x</code> is a relation instance involving the role type <code class="highlighter-rouge">R</code> there is a constraint <code class="highlighter-rouge">has-role R</code> in the schema template of <code class="highlighter-rouge">C</code>.</li>
+  <li><code class="highlighter-rouge">inst</code> instantiates only <code class="highlighter-rouge">C</code> (called the base type of <code class="highlighter-rouge">inst</code>) and indirectly all supertypes of <code class="highlighter-rouge">C</code>,</li>
+  <li>all types of resources associated with <code class="highlighter-rouge">inst</code> belong to the schema template of <code class="highlighter-rouge">C</code>,</li>
+  <li>for every role type <code class="highlighter-rouge">R</code> that <code class="highlighter-rouge">inst</code> plays in any relation instance in the data, there is a constraint <code class="highlighter-rouge">plays-role R</code> in the schema template of <code class="highlighter-rouge">C</code>,</li>
+  <li>whenever <code class="highlighter-rouge">inst</code> is a relation instance involving the role type <code class="highlighter-rouge">R</code> there is a constraint <code class="highlighter-rouge">has-role R</code> in the schema template of <code class="highlighter-rouge">C</code>.</li>
 </ul>
 
 <p>For example, data illustrated in Figure 3 violates the ontology from Figure 2, by:</p>
 
 <ol>
-  <li>associating a resource of type <code class="highlighter-rouge">maiden name</code> with an instance of the type <code class="highlighter-rouge">woman</code> (which is not allowed in the ontology).</li>
-  <li>by using an instance of the base type <code class="highlighter-rouge">person</code> in the <code class="highlighter-rouge">wife</code> role (while only those of type <code class="highlighter-rouge">woman</code> are accepted by the ontology).</li>
+  <li>associating a resource <code class="highlighter-rouge">'Smith'</code> of type <code class="highlighter-rouge">maiden-name</code> with an instance <code class="highlighter-rouge">inst1</code> of the base type <code class="highlighter-rouge">woman</code> (which is not allowed in the ontology).</li>
+  <li>by using an instance <code class="highlighter-rouge">inst2</code> of the base type <code class="highlighter-rouge">person</code> in the <code class="highlighter-rouge">husband</code> role (while only those of type <code class="highlighter-rouge">man</code> are accepted by the ontology).</li>
 </ol>
 
 <p><img src="/images/knowledge-model-fig3.png" alt="Validation of data against the ontology." /></p>
@@ -897,17 +897,19 @@ $('#toc').on('click', 'a', function() {
 
 <h2 id="rule-and-sub-type-inference">Rule and Sub-Type Inference</h2>
 
-<p>Inference is a process of extracting implicit information from explicit data instances. Grakn supports two inference mechanisms:</p>
+<p>Inference is a process of extracting implicit information from explicit data. Grakn supports two inference mechanisms:</p>
 
 <ol>
   <li>type inference, based on the semantics of the <code class="highlighter-rouge">sub</code> hierarchies included in the ontology</li>
   <li>rule-based inference involving user-defined IF-THEN rules.</li>
 </ol>
 
-<p>Both mechanisms are employed by default when querying the knowledge graph with Graql, thus supporting retrieval of both explicit and implicit information at query time.</p>
+<p>Both mechanisms can be employed when querying the knowledge graph with Graql, thus supporting retrieval of both explicit and implicit information at query time.</p>
 
 <h3 id="type-inference">Type Inference</h3>
-<p>The type inference is based on a simple graph traversal along the <code class="highlighter-rouge">sub</code> edges. Every instance of a given concept type is automatically classified as an instance of all (possibly indirect) supertypes of that type. In case of roles, every instance playing a given role is inferred to also play all its (possibly indirect) super-roles.</p>
+<p>The type inference is based on a simple graph traversal along the <code class="highlighter-rouge">sub</code> edges. Every instance of a given concept type is automatically classified as an (indirect) instance of all (possibly indirect) supertypes of that type. For example, whenever <code class="highlighter-rouge">woman sub person</code> is in the ontology, every instance of <code class="highlighter-rouge">woman</code> will be retrieved on the query <code class="highlighter-rouge">match $x isa person</code>. In case of roles, every instance playing a given role is inferred to also play all its (possibly indirect) super-roles. For example, whenever <code class="highlighter-rouge">inst</code> plays the role of wife in a relation of the type <code class="highlighter-rouge">marriage</code>, the system will infer that <code class="highlighter-rouge">inst</code> plays also the role of <code class="highlighter-rouge">partner1</code> in that relation, given the ontology from Figure 2.</p>
+
+<p>The type inference is set ON by default when querying Grakn.</p>
 
 <h3 id="rule-based-inference">Rule-Based Inference</h3>
 <p>The rule-based inference exploits a set of user-defined datalog rules and is conducted by means of the  reasoner built naitively into Grakn. Every rule is declared as an instance of a built-in Grakn type <code class="highlighter-rouge">inference-rule</code>.</p>
@@ -922,9 +924,9 @@ rhs
 </code></pre>
 </div>
 
-<p>The rule above expresses that, whenever instance $x has a mother $y and $y has a brother $z is found, one can infer that $z is an uncle of $x, while $x is a nephew of $z.</p>
+<p>The rule above expresses that, whenever instance <code class="highlighter-rouge">inst1</code> has a mother <code class="highlighter-rouge">inst2</code> in the data, and <code class="highlighter-rouge">inst2</code> has a brother <code class="highlighter-rouge">inst3</code>, one can infer that <code class="highlighter-rouge">inst3</code> is an uncle of <code class="highlighter-rouge">inst1</code>, while <code class="highlighter-rouge">inst1</code> is a nephew of <code class="highlighter-rouge">inst3</code>.</p>
 
-<p>For more detailed documentation on rules see <a href="../graql/graql-rules.html">Graql Rules</a>.</p>
+<p>The rule-based inference is set OFF by default when querying Grakn, and can be activated on request. For more detailed documentation on rules see <a href="../graql/graql-rules.html">Graql Rules</a>.</p>
 
 <h2 id="where-next">Where Next?</h2>
 <p>Our <a href="../the-basics/quickstart-tutorial.html">Quickstart Tutorial</a> will show you how to load an ontology, rules and data into Grakn using Graql, and to make basic queries.</p>
