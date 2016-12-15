@@ -558,6 +558,13 @@
             
             
             
+            <li class="active"><a href="/pages/documentation/resources/grakn-deployment-guide.html">Grakn Deployment Guide</a></li>
+            
+            
+            
+            
+            
+            
             <li><a href="/pages/documentation/resources/faq.html">Grakn FAQ</a></li>
             
             
@@ -682,6 +689,117 @@ $('#toc').on('click', 'a', function() {
 
   <h2 id="introduction">Introduction</h2>
 
+<p>This guide offers advice on how to:</p>
+
+<ul>
+  <li>run Grakn in a production environment</li>
+  <li>upgrade to the latest version of the distribution.</li>
+</ul>
+
+<p>Grakn releases from our <a href="https://github.com/graknlabs/grakn">GitHub repository</a> are self-contained packages (tar.gz/zip) containing all the components you need to run Grakn:</p>
+
+<ul>
+  <li>Grakn stack</li>
+  <li>Kafka and Zookeeper</li>
+  <li>Cassandra</li>
+</ul>
+
+<p>You can run all these components separately depending on the redundancy levels you required.</p>
+
+<h2 id="setting-up-grakn">Setting up Grakn</h2>
+
+<h3 id="standalone-grakn">Standalone Grakn</h3>
+
+<p>You can start a standalone instance of Grakn by running <code class="highlighter-rouge">grakn.sh start</code>. This will produce a working environment for importing and analysing your data.</p>
+
+<p>By default Grakn stores your data in the extracted directory, under <code class="highlighter-rouge">db/cassandra/</code> in the folder into which you unzipped the distribution zip.</p>
+
+<p>We recommend changing this to another location to make upgrading Grakn easier and faster in the future. Having changed it, you need to specify the new location in the <code class="highlighter-rouge">conf/cassandra/cassandra.yaml</code> configuration file:</p>
+
+<ul>
+  <li><code class="highlighter-rouge">data_file_directories</code>: eg. /var/lib/cassandra/data</li>
+  <li><code class="highlighter-rouge">commitlog_directory</code>: eg. /var/lib/cassandra/commitlog</li>
+  <li><code class="highlighter-rouge">saved_caches_directory</code>: eg. /var/lib/cassandra/saved_caches</li>
+</ul>
+
+<h3 id="clustered-database">Clustered Database</h3>
+
+<p>To add reliability and redudancy on the database layer, you can run Cassandra (DSE, OrientDB, other storage backends) separately and point Grakn to use the node/cluster.</p>
+
+<p>Running Cassandra requires an entire guide in itself - our brief recommendation is to have, at the minimum, a cluster of 3 nodes with replication factor (RF) 3.</p>
+
+<p>Cassandra version: 2.1.9</p>
+
+<p>Specify an external database cluster in <code class="highlighter-rouge">conf/main/grakn.properties</code>: <code class="highlighter-rouge">storage.hostname</code>: eg. 10.0.10.1,10.0.10.2,10.0.10.3</p>
+
+<p>For further information on running Cassandra, see:</p>
+
+<ul>
+  <li><a href="http://cassandra.apache.org/doc/latest/operating/index.html">Cassandra documentation</a></li>
+  <li><a href="https://d0.awsstatic.com/whitepapers/Cassandra_on_AWS.pdf">AWS Cassandra whitepaper</a></li>
+</ul>
+
+<h3 id="distributed">Distributed</h3>
+
+<p>For a fully scalable and distributed setup, you will need to run each component of Grakn in a separate cluster.
+This provides the highest level of redundancy and availability; you will want this for high throughput systems and to make the most out of Grakn.</p>
+
+<p>The database layer will need to be configured similarly to the <a href="#clustered-database">Clustered database</a> setup.</p>
+
+<p>Grakn Engine uses the <a href="https://kafka.apache.org/">Apache Kafka</a> streaming platform for distributed task execution. Kafka keeps track of its brokers’ state in <a href="https://zookeeper.apache.org/">Zookeeper</a>.</p>
+
+<p>Kafka version: 2.10-0.10.1.0</p>
+
+<p>Zookeeper version: 3.4.9</p>
+
+<p>Configure Grakn to use an external Kafka and Zookeeper cluster in <code class="highlighter-rouge">conf/main/grakn-engine.properties</code>:</p>
+
+<ul>
+  <li><code class="highlighter-rouge">tasks.kafka.bootstrap-servers</code>: eg. 10.0.20.1:9092,10.0.20.2:9092,10.0.20.3:9092</li>
+  <li><code class="highlighter-rouge">tasks.zookeeper.servers</code>: eg. 10.0.30.1:2181,10.0.30.2:2181,10.0.3.30:2181</li>
+</ul>
+
+<p>Once the configuration files are correct, you can start Grakn Engine only with <code class="highlighter-rouge">bin/grakn-engine.sh start</code>.
+Multiple instances of Grakn Engine can be started that will make use of the shared Cassandra/Kafka/Zookeeper clusters.</p>
+
+<h2 id="upgrading-grakn">Upgrading Grakn</h2>
+
+<h3 id="standalone">Standalone</h3>
+
+<h4 id="default-directory">Default directory</h4>
+<p>For the default storage directory, <code class="highlighter-rouge">db/cassandra/</code>, you need to:</p>
+
+<ul>
+  <li>stop old Grakn (<code class="highlighter-rouge">./bin/grakn.sh stop</code>)</li>
+  <li>extract the latest Grakn package into a new directory</li>
+  <li>copy the entire contents of the <code class="highlighter-rouge">db</code> directory to the new location into the new <code class="highlighter-rouge">db</code> directory</li>
+  <li>start new Grakn (<code class="highlighter-rouge">./bin/grakn.sh start</code>)</li>
+</ul>
+
+<h4 id="external-directory">External directory</h4>
+<p>If you have changed the location of data_file_directories in the <code class="highlighter-rouge">conf/cassandra/cassandra.yaml</code>, you need to:</p>
+
+<ul>
+  <li>stop old Grakn (<code class="highlighter-rouge">./bin/grakn.sh stop</code>)</li>
+  <li>extract the latest Grakn package into a new directory</li>
+  <li>amend <code class="highlighter-rouge">data_file_directories</code>, <code class="highlighter-rouge">commitlog_directory</code> and <code class="highlighter-rouge">saved_caches_directory</code> to match your custom directories</li>
+  <li>start new Grakn (<code class="highlighter-rouge">./bin/grakn.sh start</code>)</li>
+</ul>
+
+<p>You will need to amend these variables with every new version of Grakn.</p>
+
+<h3 id="distributed-1">Distributed</h3>
+
+<p>Upgrading Grakn in a distributed setup is very simple:</p>
+
+<ul>
+  <li>stop and remove old Grakn Engine (<code class="highlighter-rouge">./bin/grakn.sh stop</code>)</li>
+  <li>roll out the latest Grakn package with the correct Cassandra/Kafka/Zookeeper variables in the configuration files</li>
+  <li>start new Grakn Engine (<code class="highlighter-rouge">./bin/grakn.sh start</code>)</li>
+</ul>
+
+<p>You can perform a rolling deployment in this fashion with minimum impact on your services.</p>
+
 <h2 id="comments">Comments</h2>
 
 
@@ -722,7 +840,7 @@ $('#toc').on('click', 'a', function() {
         <br>
         <p>© 2016 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2016 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> December 8th 2016<br/> Site last generated: Dec 15, 2016 <br />
+        <span>Page last updated:</span> December 15th 2016<br/> Site last generated: Dec 15, 2016 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">
