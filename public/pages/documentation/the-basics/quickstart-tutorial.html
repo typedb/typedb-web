@@ -740,12 +740,15 @@ commit
 <h3 id="querying-data">Querying Data</h3>
 <p>Check that the data has loaded, by performing a pair of queries:</p>
 
-<pre><code class="language-graql"># Find all people in the graph
+<p>Find all people in the graph:
+<code class="highlighter-rouge">graql
 match $p isa person, has identifier $i;
+</code></p>
 
-# Find all people who are married
+<p>Find all people who are married:
+<code class="highlighter-rouge">
 match (spouse1: $x, spouse2: $y) isa marriage, has date $d; $x has identifier $xi; $y has identifier $yi;  
-</code></pre>
+</code></p>
 
 <div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> <b>Note:</b> In queries, Graql variables start with a <code class="highlighter-rouge">$</code>, which represent wildcards, and are returned as results in <code class="highlighter-rouge">match</code> queries. A variable name can contain alphanumeric characters, dashes and underscores.</div>
 

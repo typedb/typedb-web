@@ -761,12 +761,12 @@ $eStefan isa tPerson;
 
 "owl-subject-op-isAncestorOf" sub role;
 "owl-object-op-isAncestorOf" sub role;
-"op-isAncestorOf" isa relation, has-role owl-subject-op-isAncestorOf, has-role owl-object-op-isAncestorOf;
+"op-isAncestorOf" sub relation, has-role owl-subject-op-isAncestorOf, has-role owl-object-op-isAncestorOf;
 tPerson plays-role owl-subject-op-isAncestorOf, plays-role owl-object-op-isAncestorOf;
 
 "owl-subject-op-hasAncestor" sub role;
 "owl-object-op-hasAncestor" sub role;
-"op-hasAncestor" isa relation, has-role owl-subject-op-hasAncestor, has-role owl-object-op-hasAncestor;
+"op-hasAncestor" sub relation, has-role owl-subject-op-hasAncestor, has-role owl-object-op-hasAncestor;
 tPerson plays-role owl-subject-op-hasAncestor, plays-role owl-object-op-hasAncestor;
 
 "owl-subject-op-isParentOf" sub role;
