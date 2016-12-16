@@ -196,7 +196,7 @@
 
 
 <ul id="mysidebar" class="nav">
-    <li class="sidebarTitle">Grakn 0.8</li>
+    <li class="sidebarTitle">Grakn 0.9</li>
     
     
     
@@ -687,7 +687,28 @@ $('#toc').on('click', 'a', function() {
 
     
 
-  <h2 id="introduction">Introduction</h2>
+  <!--
+
+Show how to use the types to visualise the ontology
+Click and hold on a node you can change the properties that you see
+Click to see the drawer on the right
+
+### Visualiser Colour Scheme
+
+The colours used in the visualiser are as follows:
+
+| Colour | Description                                   |
+| ----------- | --------------------------------------------- |
+| Pink     | Ontology meta-types                        |
+| Blue      | Data entity                         |
+| Green     | Ontology relation-type                       |
+| Orange     | Label                        |
+| Yellow     |                         |
+|      |                         |
+
+-->
+
+<h2 id="introduction">Introduction</h2>
 <p>The Grakn visualiser provides a graphical tool to inspect and query your graph data. This article shows how to get it up and running on a basic example and introduces the visualiser’s key features.</p>
 
 <h2 id="loading-and-visualising-a-graph">Loading and Visualising a Graph</h2>
@@ -723,9 +744,13 @@ match <span class="nv">$x</span> isa person, has identifier <span class="nv">$y<
 
 <p>The main pane of your graph will be empty at this point. Click the Types button in the top right, then the Visualise button at the top right hand side of the newly opened drawer. The genealogy-graph ontology will be displayed.</p>
 
+<p><img src="/images/genealogy-ontology.png" alt="Genealogy Ontology" /></p>
+
 <h2 id="working-with-the-visualiser">Working With The Visualiser</h2>
 
 <p>There are a number of horizontal tabs on the left hand side of the screen, described as follows.</p>
+
+<h2 id="pages">Pages</h2>
 
 <h3 id="graph">Graph</h3>
 <p>This is the main section of the visualiser that you will use to explore the graph. You can use the query section at the top of the main pane, then press “Submit” to visualise it. For example:</p>
@@ -742,33 +767,24 @@ match <span class="nv">$x</span> isa person, has identifier <span class="nv">$y<
 <p><img src="/images/match-$x-isa-birth.png" alt="Birth query" /></p>
 
 <h3 id="console">Console</h3>
-<p>You can use this console to make queries instead of running a Graql shell in your terminal.</p>
+<p>You can use this console to make queries instead of running a Graql shell in your terminal. You can run <code class="highlighter-rouge">match</code> and <code class="highlighter-rouge">compute</code> queries, but because the visualiser is read-only, you cannot make insertions.</p>
 
 <h3 id="config">Config</h3>
+<p>Shows a view on the Grakn configuration file. There are also 3 inference settings:</p>
+
+<ul>
+  <li>Activate Inference - activates inference, per query.</li>
+  <li>Materialise Inference - persists the inference into the graph, per query.</li>
+  <li>Materialisation: activate and persist all inference across the graph.</li>
+</ul>
 
 <h3 id="documentation">Documentation</h3>
 <p>This opens a separate tab in your browser and points it to the Grakn documentation portal. It may be how you ended up on this page!</p>
 
-<h3 id="actions">Actions</h3>
+<h2 id="actions">Actions</h2>
 
 <h3 id="keyspaces">Keyspaces</h3>
 <p>The keyspaces that are currently in use by Grakn.</p>
-
-<!--
-### Visualiser Colour Scheme
-
-The colours used in the visualiser are as follows:
-
-| Colour | Description                                   |
-| ----------- | --------------------------------------------- |
-| Pink     | Ontology meta-types                        |
-| Blue      | Data entity                         |
-| Green     | Ontology relation-type                       |
-| Orange     | Label                        |
-| Yellow     |                         |
-|      |                         |
-
--->
 
 <h2 id="where-next">Where Next?</h2>
 
@@ -819,7 +835,7 @@ The colours used in the visualiser are as follows:
         <br>
         <p>© 2016 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2016 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> August 10, 2016<br/> Site last generated: Dec 15, 2016 <br />
+        <span>Page last updated:</span> August 10, 2016<br/> Site last generated: Dec 16, 2016 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">

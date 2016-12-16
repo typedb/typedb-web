@@ -196,7 +196,7 @@
 
 
 <ul id="mysidebar" class="nav">
-    <li class="sidebarTitle">Grakn 0.8</li>
+    <li class="sidebarTitle">Grakn 0.9</li>
     
     
     
@@ -720,17 +720,17 @@ For example, a <em>Relation Type</em> <code class="highlighter-rouge">marriage</
 This will be our first attempt:</p>
 
 <div class="highlighter-rouge"><pre class="highlight"><code>insert
-  'name' isa resource-type datatype string;
-  'person' is-abstract isa entity-type;
+  'name' sub resource datatype string;
+  'person' is-abstract sub entity;
   'man' is-abstract sub 'person';
   'woman' sub 'person';
-  'husband' isa role-type;
-  'wife' isa role-type;
+  'husband' sub role;
+  'wife' sub role;
   woman plays-role wife;
   person has-resource name;
-  'husband' isa role-type;
-  'wife' isa role-type;
-  'marriage' isa relation-type;
+  'husband' sub role;
+  'wife' sub role;
+  'marriage' sub relation;
   marriage has-role husband;
   $x has name 'Bob' isa man;
   $y has name 'Alice' isa woman;
@@ -763,18 +763,18 @@ The type ['man'] of role player ['ENTITY-man-2482cb91-1f12-40ea-b659-49d07d06ddf
 <p>Let’s fix these issues and try again:</p>
 
 <div class="highlighter-rouge"><pre class="highlight"><code>insert
-  'name' isa resource-type datatype string;
-  'person' isa entity-type;                   # Fix (4)
+  'name' sub resource datatype string;
+  'person' sub entity;                   # Fix (4)
   'man' sub 'person';
   'woman' sub 'person';
-  'husband' isa role-type;
-  'wife' isa role-type;
+  'husband' sub role;
+  'wife' sub role;
   man plays-role husband;                     # Fix (3) and part of (5)
   woman plays-role wife;
   person has-resource name;
-  'husband' isa role-type;
-  'wife' isa role-type;
-  'marriage' isa relation-type;
+  'husband' sub role;
+  'wife' sub role;
+  'marriage' sub relation;
   marriage has-role husband;
   marriage has-role wife;                     # Fix (1) and (2) and part of (5)
   $x has name 'Bob' isa man;
@@ -824,7 +824,7 @@ The type ['man'] of role player ['ENTITY-man-2482cb91-1f12-40ea-b659-49d07d06ddf
         <br>
         <p>© 2016 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2016 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> November 17, 2016<br/> Site last generated: Dec 15, 2016 <br />
+        <span>Page last updated:</span> November 17, 2016<br/> Site last generated: Dec 16, 2016 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">

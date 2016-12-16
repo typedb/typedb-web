@@ -196,7 +196,7 @@
 
 
 <ul id="mysidebar" class="nav">
-    <li class="sidebarTitle">Grakn 0.8</li>
+    <li class="sidebarTitle">Grakn 0.9</li>
     
     
     
@@ -697,13 +697,13 @@ $('#toc').on('click', 'a', function() {
 <div class="tab-content">
 <div role="tabpanel" class="tab-pane active" id="shell1">
 <pre>
-match dragon isa pokemon-type;
+match dragon sub pokemon-type;
 ask;
 </pre>
 </div>
 <div role="tabpanel" class="tab-pane" id="java1">
 <pre>
-qb.match(name("dragon").isa("pokemon-type")).ask().execute();
+qb.match(name("dragon").sub("pokemon-type")).ask().execute();
 </pre>
 </div> <!-- tab-pane -->
 </div>
@@ -748,7 +748,7 @@ qb.match(name("dragon").isa("pokemon-type")).ask().execute();
         <br>
         <p>© 2016 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2016 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> August 10, 2016<br/> Site last generated: Dec 15, 2016 <br />
+        <span>Page last updated:</span> August 10, 2016<br/> Site last generated: Dec 16, 2016 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">

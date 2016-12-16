@@ -196,7 +196,7 @@
 
 
 <ul id="mysidebar" class="nav">
-    <li class="sidebarTitle">Grakn 0.8</li>
+    <li class="sidebarTitle">Grakn 0.9</li>
     
     
     
@@ -752,7 +752,7 @@ $('#toc').on('click', 'a', function() {
 
 <pre><code class="language-graql-test-ignore">
 insert
-pet isa entity-type
+pet sub entity
     has-resource name
     has-resource owner
     has-resource sex
@@ -766,14 +766,14 @@ snake sub pet;
 hamster sub pet;
 bird sub pet;
 
-name isa resource-type datatype string;
-owner isa resource-type datatype string;
-sex isa resource-type datatype string;
-birth isa resource-type datatype string;
-death isa resource-type datatype string;
-count isa resource-type datatype long;
+name sub resource datatype string;
+owner sub resource datatype string;
+sex sub resource datatype string;
+birth sub resource datatype string;
+death sub resource datatype string;
+count sub resource datatype long;
 
-event isa entity-type,
+event sub entity,
     has-resource name,
     has-resource date,
     has-resource description;
@@ -785,12 +785,12 @@ event isa entity-type,
 <p>For Grakn, we can use the following:</p>
 
 <pre><code class="language-graql-test-ignore">insert
-occurs isa relation-type
+occurs sub relation
   has-role event-occurred
   has-role pet-in-event;
 
-event-occurred isa role-type;
-pet-in-event isa role-type;
+event-occurred sub role;
+pet-in-event sub role;
 
 pet plays-role pet-in-event;
 event plays-role event-occurred;
@@ -975,7 +975,7 @@ try(Connection connection = DriverManager.getConnection(jdbcDBUrl, jdbcUser, jdb
         <br>
         <p>© 2016 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2016 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> December 2016<br/> Site last generated: Dec 15, 2016 <br />
+        <span>Page last updated:</span> December 2016<br/> Site last generated: Dec 16, 2016 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">

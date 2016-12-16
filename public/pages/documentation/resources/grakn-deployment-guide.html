@@ -196,7 +196,7 @@
 
 
 <ul id="mysidebar" class="nav">
-    <li class="sidebarTitle">Grakn 0.8</li>
+    <li class="sidebarTitle">Grakn 0.9</li>
     
     
     
@@ -704,7 +704,7 @@ $('#toc').on('click', 'a', function() {
   <li>Cassandra</li>
 </ul>
 
-<p>You can run all these components separately depending on the redundancy levels you required.</p>
+<p>You can run all these components separately depending on the redundancy levels you require.</p>
 
 <h2 id="setting-up-grakn">Setting up Grakn</h2>
 
@@ -748,7 +748,7 @@ This provides the highest level of redundancy and availability; you will want th
 
 <p>Grakn Engine uses the <a href="https://kafka.apache.org/">Apache Kafka</a> streaming platform for distributed task execution. Kafka keeps track of its brokers’ state in <a href="https://zookeeper.apache.org/">Zookeeper</a>.</p>
 
-<p>Kafka version: 2.10-0.10.1.0</p>
+<p>Kafka version: 2.11-0.10.1.0</p>
 
 <p>Zookeeper version: 3.4.9</p>
 
@@ -793,14 +793,13 @@ Multiple instances of Grakn Engine can be started that will make use of the shar
 <p>Upgrading Grakn in a distributed setup is very simple:</p>
 
 <ul>
-  <li>stop and remove old Grakn Engine (<code class="highlighter-rouge">./bin/grakn.sh stop</code>)</li>
+  <li>stop and remove old Grakn Engine (<code class="highlighter-rouge">./bin/grakn-engine.sh stop</code>)</li>
   <li>roll out the latest Grakn package with the correct Cassandra/Kafka/Zookeeper variables in the configuration files</li>
-  <li>start new Grakn Engine (<code class="highlighter-rouge">./bin/grakn.sh start</code>)</li>
+  <li>start new Grakn Engine (<code class="highlighter-rouge">./bin/grakn-engine.sh start</code>)</li>
 </ul>
 
 <p>You can perform a rolling deployment in this fashion with minimum impact on your services.</p>
 
-<h2 id="comments">Comments</h2>
 
 
     <div class="tags">
@@ -840,7 +839,7 @@ Multiple instances of Grakn Engine can be started that will make use of the shar
         <br>
         <p>© 2016 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2016 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> December 15th 2016<br/> Site last generated: Dec 15, 2016 <br />
+        <span>Page last updated:</span> December 15th 2016<br/> Site last generated: Dec 16, 2016 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">

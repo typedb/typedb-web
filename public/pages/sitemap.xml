@@ -214,6 +214,12 @@
   
   
   <url>
+    <loc>http://grakn.ai/pages//documentation/resources/grakn-on-windows.html</loc>
+  </url>
+  
+  
+  
+  <url>
     <loc>http://grakn.ai/pages//documentation/developing-with-java/graph-api.html</loc>
   </url>
   
@@ -298,13 +304,13 @@
   
   
   <url>
-    <loc>http://grakn.ai/pages//documentation/building-an-ontology/overview.html</loc>
+    <loc>http://grakn.ai/pages//documentation/graql/overview.html</loc>
   </url>
   
   
   
   <url>
-    <loc>http://grakn.ai/pages//documentation/graql/overview.html</loc>
+    <loc>http://grakn.ai/pages//documentation/building-an-ontology/overview.html</loc>
   </url>
   
   

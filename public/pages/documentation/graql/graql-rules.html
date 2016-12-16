@@ -196,7 +196,7 @@
 
 
 <ul id="mysidebar" class="nav">
-    <li class="sidebarTitle">Grakn 0.8</li>
+    <li class="sidebarTitle">Grakn 0.9</li>
     
     
     
@@ -704,9 +704,9 @@ and associated pages
 
 <p>We define the following hierarchy of rule objects - concepts:</p>
 
-<p>{ConceptType}&lt;–(ako)–{RuleType}
-{RuleType}&lt;–(isa)–{Inference Rule}
-{RuleType}&lt;–(isa)–{Ronstraint Rule}
+<p>{ConceptType}&lt;–(sub)–{RuleType}
+{RuleType}&lt;–(sub)–{Inference Rule}
+{RuleType}&lt;–(sub)–{Ronstraint Rule}
 {inference rule}&lt;–(isa)–{instance of inference rule, e.g. if daughter+brother then niece}
 {constraint rule}&lt;–(isa)–{instance of constraint rule, e.g. if daughter then not married}</p>
 
@@ -992,7 +992,7 @@ Constraint.expectation ?= Query.parser(Constraint.RHS).where($x id x, $y id y)
     </tr>
     <tr>
       <td>relations with rscs in one line</td>
-      <td style="text-align: left">match (ancestor: $x, $y) isa rel-typel has resource-type ‘value’;</td>
+      <td style="text-align: left">match (ancestor: $x, $y) isa rel-typel has resource ‘value’;</td>
       <td style="text-align: left">✓</td>
       <td style="text-align: left">x</td>
       <td style="text-align: right">supported</td>
@@ -1092,14 +1092,14 @@ Constraint.expectation ?= Query.parser(Constraint.RHS).where($x id x, $y id y)
     </tr>
     <tr>
       <td>datatype</td>
-      <td style="text-align: left">match $x isa resource-type, datatype string;</td>
+      <td style="text-align: left">match $x isa resource, datatype string;</td>
       <td style="text-align: left">✓</td>
       <td style="text-align: left">x</td>
       <td style="text-align: right">supported</td>
     </tr>
     <tr>
       <td>regex</td>
-      <td style="text-align: left">match $x isa resource-type, regex /hello/;</td>
+      <td style="text-align: left">match $x isa resource, regex /hello/;</td>
       <td style="text-align: left">✓</td>
       <td style="text-align: left">x</td>
       <td style="text-align: right">supported</td>
@@ -1217,7 +1217,7 @@ Constraint.expectation ?= Query.parser(Constraint.RHS).where($x id x, $y id y)
         <br>
         <p>© 2016 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2016 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> December 9th 2016<br/> Site last generated: Dec 15, 2016 <br />
+        <span>Page last updated:</span> December 9th 2016<br/> Site last generated: Dec 16, 2016 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">

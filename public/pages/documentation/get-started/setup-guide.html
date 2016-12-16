@@ -196,7 +196,7 @@
 
 
 <ul id="mysidebar" class="nav">
-    <li class="sidebarTitle">Grakn 0.8</li>
+    <li class="sidebarTitle">Grakn 0.9</li>
     
     
     
@@ -691,17 +691,17 @@ $('#toc').on('click', 'a', function() {
 
 <p><a href="https://grakn.ai/download/latest"><img src="/images/download.png" alt="download" /></a></p>
 
-<p>For more information on how to download older versions of Grakn, compiling from source code, or importing Grakn Java API library as development dependency, please visit our <a href="../resources/downloads.html">Downloads page</a>.</p>
+<p>For more information on how to download older versions of GRAKN.AI, compile from source code, or import the Grakn Java API library as a development dependency, please visit our <a href="../resources/downloads.html">Downloads page</a>.</p>
 
-<h2 id="install-grakn">Install Grakn</h2>
+<h2 id="install-graknai">Install GRAKN.AI</h2>
 <div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> <b>Note:</b> <strong>Prerequisites</strong>   <br />
-Grakn requires Java 8 (Standard Edition) with the <code class="highlighter-rouge">$JAVA_HOME</code> set accordingly. If you don’t already have this installed, you can find it <a href="http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html">here</a>.<br />
+GRAKN.AI requires Java 8 (Standard Edition) with the <code class="highlighter-rouge">$JAVA_HOME</code> set accordingly. If you don’t already have this installed, you can find it <a href="http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html">here</a>.<br />
 If you intend to build Grakn, you will also need Maven 3.</div>
 
-<p>Unzip the download into your preferred location and run the following in the terminal:</p>
+<p>Unzip the download into your preferred location and run the following in the terminal to start Grakn:</p>
 
 <div class="highlighter-rouge"><pre class="highlight"><code><span class="nb">cd</span> <span class="o">[</span>your Grakn install directory]
-bin/grakn.sh start
+./bin/grakn.sh start
 </code></pre>
 </div>
 
@@ -709,20 +709,21 @@ bin/grakn.sh start
 
 <div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> <b>Note:</b> <strong>Useful commands</strong>  <br />
 To start Grakn, run <code class="highlighter-rouge">grakn.sh start</code>. <br />
-To stop Grakn, run <code class="highlighter-rouge">grakn.sh stop</code>. </div>
+To stop Grakn, run <code class="highlighter-rouge">grakn.sh stop</code>. 
+To remove all graphs from Grakn, run <code class="highlighter-rouge">grakn.sh clean</code></div>
 
-<h2 id="set-up-graql">Set up Graql</h2>
+<h2 id="test-the-graql-shell">Test the Graql Shell</h2>
 
-<p>Graql is our knowledge-oriented query language, which allows you to interface with Grakn. We will start Graql and enter a few lines to check that all is working as it should.</p>
+<p>Graql is our knowledge-oriented query language, which allows you to interface with Grakn. To test that the installation is working correctly, here we will start the Graql shell and enter a few lines of code.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>bin/graql.sh
+<div class="highlighter-rouge"><pre class="highlight"><code>./bin/graql.sh
 </code></pre>
 </div>
 
 <p>The Graql shell starts and you see a <code class="highlighter-rouge">&gt;&gt;&gt;</code> prompt. Type in the following, but don’t worry too much about what it means right now. We will go through it further in the <a href="../the-basics/quickstart-tutorial.html">Quickstart Tutorial</a>.</p>
 
-<pre><code class="language-graql">insert person isa entity-type;
-insert name isa resource-type, datatype string;
+<pre><code class="language-graql">insert person sub entity;
+insert name sub resource, datatype string;
 insert person has-resource name;
 insert isa person, has name "Topsy";
 insert isa person, has name "Tim";
@@ -749,7 +750,7 @@ $x id "ENTITY-person-afd29319-ff33-4b0c-b7e3-63d04ac81dcf" isa person; $n value 
 <p>If you do not see the above message, please check our <a href="../resources/faq.html">FAQ page</a>. If you have any questions, please ask a question on our <a href="http://discuss.grakn.ai">discussion forum</a>, or on <a href="http://stackoverflow.com">Stack Overflow</a>.</p>
 
 <h2 id="where-next">Where next?</h2>
-<p>Our <a href="../the-basics/quickstart-tutorial.html">Quickstart Tutorial</a> will show you how to load populate and query Grakn using Graql or Java.</p>
+<p>Our <a href="../the-basics/quickstart-tutorial.html">Quickstart Tutorial</a> will show you how to load populate and query Grakn using Graql.</p>
 
 <p>You can find additional example code and documentation on this portal. We are always adding more and welcome ideas and improvement suggestions. Please get in touch!</p>
 
@@ -798,7 +799,7 @@ $x id "ENTITY-person-afd29319-ff33-4b0c-b7e3-63d04ac81dcf" isa person; $n value 
         <br>
         <p>© 2016 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2016 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> August 10, 2016<br/> Site last generated: Dec 15, 2016 <br />
+        <span>Page last updated:</span> August 10, 2016<br/> Site last generated: Dec 16, 2016 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">

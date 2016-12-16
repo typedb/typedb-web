@@ -3,7 +3,7 @@
     <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="This document will teach you how to use Graql to load a schema and some data into Grakn.">
+<meta name="description" content="This document will work through a simple example using the Graql shell to show how to get started with GRAKN.AI.">
 <meta name="keywords" content="getting-startedgraql,  setup, getting started, GRAKN.AI, Grakn Labs, grakn, graql, grakn.ai, Mindmaps Research, Mindmaps Research Ltd, MindmapsDB, mindmaps, mindmaps graph, mindmaps.io, knowledge graph, distributed knowledge graph, development platform, developer tool, data platform, programming langauge, query langauge, database, semantic database, distributed semantic database, distributed database, graph database, semantic search, data exploration, recommendation system, knowledge management, knowledge engineering, real-time analytics, advanced analytics, reasoning engine, inference engine, expert systems, semantic applications, research engines, data management, business intelligence, big data, semantic web, semantic data, knowledge representation, automated reasoning, semantic network, knowledge ontology, semantic graph, ontology engineering, graph based knowledge representation, artificial intelligence,">
 <title>GRAKN.AI | Quickstart Tutorial</title>
 <link rel="stylesheet" href="/pages/css/syntax.css">
@@ -196,7 +196,7 @@
 
 
 <ul id="mysidebar" class="nav">
-    <li class="sidebarTitle">Grakn 0.8</li>
+    <li class="sidebarTitle">Grakn 0.9</li>
     
     
     
@@ -649,7 +649,7 @@
 <div class="post-content">
 
    
-    <div class="summary">This document will teach you how to use Graql to load a schema and some data into Grakn.</div>
+    <div class="summary">This document will work through a simple example using the Graql shell to show how to get started with GRAKN.AI.</div>
    
 
     
@@ -687,274 +687,98 @@ $('#toc').on('click', 'a', function() {
 
     
 
-  <div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> <b>Note:</b> This tutorial shows you how to use the Graql shell. The equivalent code, using the Graph API is described in the <a href="https://grakn.ai/pages/documentation/core-api/overview.html">Overview</a> to the Graph API.</div>
+  <h2 id="introduction">Introduction</h2>
+<p>If you have not yet set up GRAKN.AI, please <a href="../resources/downloads.html">download the latest version</a>, then start the Grakn engine and the Graql shell.</p>
 
-<h2 id="introduction">Introduction</h2>
-<p>If you have not yet set up the Grakn environment, please see the <a href="../get-started/setup-guide.html">Setup guide</a>.
-You can find the example <code class="highlighter-rouge">philosophers.gql</code> in the examples directory included in the Grakn download zip.</p>
-
-<p>We are going model how philosophers are related to each other. If you are using Graql and don’t want to type everything below to build up the schema, you can load it using:</p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code>bin/graql.sh -f examples/philosophers.gql
+<div class="highlighter-rouge"><pre class="highlight"><code>./bin/grakn.sh start
+./bin/graql.sh
 </code></pre>
 </div>
 
-<p>By the way, don’t worry if you’ve already loaded some different data into your graph. In Grakn, a graph can simultaneously contain as many schemas as you want.</p>
+<p>If you’re unsure of these steps, don’t worry. Please see the <a href="../get-started/setup-guide.html">Setup guide</a>.</p>
 
-<h2 id="concepts">Concepts</h2>
+<p>This example is loosely based on the genealogy example that we use throughout our documentation. You can find the full example, including data and ontology, in the <a href="https://github.com/graknlabs/sample-datasets/tree/master/genealogy-graph">sample-datasets repo on Github</a>. However, we are not going to load the complete data and ontology here, but we will simply show how to work with Graql to set up an ontology and add some data to a graph. This is a basic “quick start” example to illustrate addition of an ontology and some data to Grakn, using the Graql shell.</p>
 
-<p>Assuming that you are building up the graph from scratch, rather than loading it directly from the <code class="highlighter-rouge">philosophers.gql</code> file, let’s first add an entity type <code class="highlighter-rouge">person</code>:</p>
+<h2 id="using-the-graql-shell">Using the Graql Shell</h2>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>bin/graql.sh
-</code></pre>
-</div>
-<pre><code class="language-graql">insert person isa entity-type;
-</code></pre>
+<h3 id="adding-an-ontology">Adding an Ontology</h3>
 
-<p>And a resource for people’s names:</p>
+<p>We are going to add ontology concepts for some people, their notable events (when they are born, get married, have children, die) and relationships (children, parents, spouses).</p>
 
-<pre><code class="language-graql">insert name isa resource-type, datatype string;
-insert person has-resource name;
+<p>Let’s add our first concepts: an <code class="highlighter-rouge">entity-type</code> named <code class="highlighter-rouge">person</code> that has a <code class="highlighter-rouge">resource-type</code> named <code class="highlighter-rouge">identifier</code>, which is a string to hold the person’s name. 
+Copy and paste the following into the Graql shell:</p>
+
+<pre><code class="language-graql">insert person sub entity, has-resource identifier; identifier sub resource, datatype string;
 </code></pre>
 
-<p>…and now some data in the form of concept instances: in our case, a bunch of ancient Greeks…</p>
+<p>Now we will add a <code class="highlighter-rouge">relation-type</code>: a <code class="highlighter-rouge">marriage</code> which relates two <code class="highlighter-rouge">person</code> entity-types, one playing <code class="highlighter-rouge">role-type</code> of <code class="highlighter-rouge">spouse1</code> and the other playing the <code class="highlighter-rouge">role-type</code> of <code class="highlighter-rouge">spouse2</code>.  Only a <code class="highlighter-rouge">person</code> can take a role in the <code class="highlighter-rouge">marriage</code> (not a <code class="highlighter-rouge">car</code> or <code class="highlighter-rouge">dog</code> for example), so we also need to specify that to Grakn. Copy and paste each of the following lines into the Graql shell:</p>
 
-<pre><code class="language-graql">insert isa person, has name "Socrates";
-insert isa person, has name "Plato";
-insert isa person, has name "Aristotle";
-insert isa person, has name "Alexander";
+<pre><code class="language-graql">insert spouse1 sub role; spouse2 sub role; person plays-role spouse1; person plays-role spouse2;
+insert marriage sub relation, has-role spouse1, has-role spouse2, has-resource date; date sub resource datatype string;
 </code></pre>
 
-<p><img src="/images/phil.png" alt="" /></p>
+<h3 id="adding-data">Adding Data</h3>
 
-<p>So now we’ve created a simple graph, with one concept type and four
-concept instances.</p>
+<p>Now we will add some sample data to the graph, to correspond to the ontology we entered above. First, add four instances of <code class="highlighter-rouge">person</code>:</p>
 
-<div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> <b>Note:</b> Every concept needs a type, using <code class="highlighter-rouge">isa</code>. <br />   <code class="highlighter-rouge">Plato</code> <code class="highlighter-rouge">is a</code> <code class="highlighter-rouge">person</code>   <br />  <code class="highlighter-rouge">person</code> <code class="highlighter-rouge">is a</code> <code class="highlighter-rouge">entity-type</code></div>
-
-<div class="alert alert-success" role="alert"><i class="fa fa-check-square-o"></i> <b>Tip:</b> Graql shell maintains a history of past commands with the ‘up’ and ‘down’ arrows. You can also autocomplete keywords, type and variable names using tab!</div>
-
-<p>We’ll quickly check that our data has loaded:</p>
-
-<pre><code class="language-graql">match $p isa person, has name $n;
-
-$p isa person; $n value "Aristotle" isa name;
-$p isa person; $n value "Plato" isa name;
-$p isa person; $n value "Socrates" isa name;
-$p isa person; $n value "Alexander" isa name;
+<pre><code class="language-graql">insert isa person, has identifier "Andrew Smith";
+insert isa person, has identifier "Catherine Shaw";
+insert isa person, has identifier "Paula Carter";
+insert isa person, has identifier "Scott Jones";
 </code></pre>
 
-<div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> <b>Note:</b> Graql variables start with a <code class="highlighter-rouge">$</code>. They represent wildcards, and are returned as results in <code class="highlighter-rouge">match</code> queries. A variable name can contain alphanumeric characters, dashes and underscores.</div>
+<p>Now we will add an instance of <code class="highlighter-rouge">marriage</code> between two of the <code class="highlighter-rouge">person</code> instances:</p>
 
-<p>Next, let’s add some <code class="highlighter-rouge">schools</code> of thought:</p>
-
-<pre><code class="language-graql">insert school isa entity-type, has-resource name;
-insert isa school, has name "Peripateticism";
-insert isa school, has name "Platonism";
-insert isa school, has name "Idealism";
-insert isa school, has name "Cynicism";
-</code></pre>
-
-<p>And look up one:</p>
-
-<pre><code class="language-graql">match $c has name "Cynicism";
-
-$c isa school;
-</code></pre>
-
-<h2 id="a-note-on-commit">A note on commit</h2>
-<p>Nothing you have entered into the Graql shell has yet been committed to the graph, nor has it been validated. To save any changes you make to a graph, you need to type <code class="highlighter-rouge">commit</code> in the shell. It is a good habit to get into regularly committing what you have entered, so we will show this in the following example.</p>
-
-<h2 id="relations">Relations</h2>
-
-<p>How do we define a “philosopher”? Very smart people have argued for a very long time about this, but we’re going to put our fingers in our ears and say a philosopher is someone who practices a philosophy.</p>
-
-<p>A relation comprises of pairs of roles and role players. Relations and roles also have types, just like normal concepts.</p>
-
-<p>First, we define a <code class="highlighter-rouge">relation-type</code> called <code class="highlighter-rouge">practice</code> that relates a
-<code class="highlighter-rouge">role-type</code> called <code class="highlighter-rouge">philosopher</code> to a <code class="highlighter-rouge">role-type</code> called <code class="highlighter-rouge">philosophy</code>:</p>
-
-<pre><code class="language-graql">insert practice isa relation-type;
-insert philosopher isa role-type;
-insert philosophy isa role-type;
-insert practice has-role philosopher, has-role philosophy;
-</code></pre>
-
-<p>A <code class="highlighter-rouge">person</code> can have the role of <code class="highlighter-rouge">philosopher</code> and a <code class="highlighter-rouge">school</code> can have the role of <code class="highlighter-rouge">philosophy</code>:</p>
-
-<pre><code class="language-graql">insert person plays-role philosopher;
-insert school plays-role philosophy;
-</code></pre>
-
-<p>Now let’s relate some <code class="highlighter-rouge">philosophers</code> to their <code class="highlighter-rouge">philosophies</code>:</p>
-
-<pre><code class="language-graql">match $socrates has name "Socrates"; $platonism has name "Platonism"; insert (philosopher: $socrates, philosophy: $platonism) isa practice;
-match $plato has name "Plato"; $idealism has name "Idealism"; insert (philosopher: $plato, philosophy: $idealism) isa practice;
-match $plato has name "Plato"; $platonism has name "Platonism"; insert (philosopher: $plato, philosophy: $platonism) isa practice;
-match $aristotle has name "Aristotle"; $peripateticism has name "Peripateticism"; insert (philosopher: $aristotle, philosophy: $peripateticism) isa practice;
-commit;
+<pre><code class="language-graql">match $s1 has identifier "Andrew Smith"; $s2 has identifier "Catherine Shaw"; insert (spouse1: $s1, spouse2: $s2) isa marriage has date "01-01-1980";
+commit
 </code></pre>
 
 <p>The <code class="highlighter-rouge">match .... insert ...</code> syntax will perform the <code class="highlighter-rouge">insert</code> query for every result of the <code class="highlighter-rouge">match</code> query.</p>
 
-<p><img src="/images/practice.png" alt="" /></p>
+<div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> <b>Note:</b> <b>Don’t forget to <code class="highlighter-rouge">commit</code>!</b> <br /> Nothing you have entered into the Graql shell has yet been committed to the graph, nor has it been validated. To save any changes you make to a graph, you need to type <code class="highlighter-rouge">commit</code> in the shell. It is a good habit to get into regularly committing what you have entered.</div>
 
-<p>Here, <code class="highlighter-rouge">Plato</code> is playing the role of <code class="highlighter-rouge">philosopher</code>, and <code class="highlighter-rouge">Idealism</code> is playing the role of <code class="highlighter-rouge">philosophy</code>.</p>
+<h3 id="querying-data">Querying Data</h3>
+<p>Check that the data has loaded, by performing a pair of queries:</p>
 
-<p>Now we can query for all our Platonists:</p>
+<pre><code class="language-graql"># Find all people in the graph
+match $p isa person, has identifier $i;
 
-<pre><code class="language-graql">match
-$platonism has name "Platonism";
-(philosopher: $phil, $platonism) isa practice;
+# Find all people who are married
+match (spouse1: $x, spouse2: $y) isa marriage, has date $d; $x has identifier $xi; $y has identifier $yi;  
 </code></pre>
 
-<p>This returns:</p>
+<div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> <b>Note:</b> In queries, Graql variables start with a <code class="highlighter-rouge">$</code>, which represent wildcards, and are returned as results in <code class="highlighter-rouge">match</code> queries. A variable name can contain alphanumeric characters, dashes and underscores.</div>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>$phil id "Socrates" isa person;
-$phil id "Plato" isa person;
-</code></pre>
-</div>
+<h3 id="loading-the-ontology-and-data-from-file">Loading the Ontology and Data from File</h3>
 
-<div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> <b>Note:</b> This query can be read as ‘Get me philosophers in a practice relationship with Platonism’.  <br /> We didn’t specify the role of <code class="highlighter-rouge">Platonism</code> in this query, or the type of <code class="highlighter-rouge">$phil</code>, which is totally fine! <br /> Roles and types can be omitted in queries. <br /> For example, the query <code class="highlighter-rouge">match ($x, $y)</code> is a valid query (that will find <em>everything</em> in a relationship with <em>anything</em>).</div>
+<p>Above, was a quick overview to show the basics of making Graql queries on some basic data within the Graql shell. A more common use case is to load the ontology and data directly from <code class="highlighter-rouge">.gql</code> files into a graph instead of typing it all into the shell. You can find a good example of this in the <a href="./visualiser.html">Visualising a Graph</a> documentation, which takes our full genealogy data, loads it into a graph and explores it using the Grakn visualiser.</p>
 
-<p>Next let’s talk about the relationships between our philosophers. Socrates
-taught Plato, Plato taught Aristotle and Aristotle even taught Alexander the
-Great!</p>
+<p>We shall move on to look at some of the other use cases that are typical for developers working with GRAKN.AI.</p>
 
-<p>First, extend our schema:</p>
+<h2 id="data-migration">Data Migration</h2>
 
-<pre><code class="language-graql">insert education isa relation-type;
-insert teacher isa role-type;
-insert student isa role-type;
-insert education has-role teacher, has-role student;
-insert person plays-role teacher, plays-role student;
-</code></pre>
+<div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> <b>Note:</b> The text in this section is a placeholder, and will be replaced with more detail in early 2017.</div>
 
-<p>Second, our data:</p>
+<p>Migrating data in formats such as CSV, SQL and JSON into Grakn is a key use case. We discuss this in <a href="../migration/migration.html">Migration</a>.</p>
 
-<pre><code class="language-graql">match $socrates has name "Socrates"; $plato has name "Plato"; insert (teacher: $socrates, student: $plato) isa education;
-match $plato has name "Plato"; $aristotle has name "Aristotle"; insert (teacher: $plato, student: $aristotle) isa education;
-match $aristotle has name "Aristotle"; $alexander has name "Alexander"; insert (teacher: $aristotle, student: $alexander) isa education;
-commit;
-</code></pre>
+<h2 id="using-inference">Using Inference</h2>
 
-<div class="alert alert-success" role="alert"><i class="fa fa-check-square-o"></i> <b>Tip:</b> <strong>Test Yourself</strong> <br /> Try writing a query to see who taught Aristotle. Include all the roles and types (<code class="highlighter-rouge">teacher</code>, <code class="highlighter-rouge">student</code> and <code class="highlighter-rouge">education</code>), then remove them one by one to see when the results change! The answer is at the bottom of this page.</div>
+<div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> <b>Note:</b> The text in this section is a placeholder, and will be replaced with more detail in early 2017.</div>
 
-<h2 id="resources">Resources</h2>
+<p>The use of GRAKN.AI to infer new information about data lies at its core. Further information can be found in our <a href="https://blog.grakn.ai/family-matters-1bb639396a24#.525ozq2zy">“Family Matters” blog post</a> about the Genealogy data.</p>
 
-<p>Some people have special titles and epithets and we want to talk about that.
-So, we’ll create some resource types that can be attached to a person:</p>
+<h2 id="using-analytics">Using Analytics</h2>
 
-<pre><code class="language-graql">insert title isa resource-type, datatype string;
-insert epithet isa resource-type, datatype string;
-insert person has-resource title, has-resource epithet;
-</code></pre>
+<div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> <b>Note:</b> The text in this section is a placeholder, and will be replaced with more detail in early 2017.</div>
 
-<p>Let’s make Alexander “Great”!</p>
-
-<pre><code class="language-graql">match $alexander has name "Alexander"; insert $alexander has epithet "The Great";
-</code></pre>
-
-<p>This is a quick way to add a relation between <code class="highlighter-rouge">Alexander</code> and an <code class="highlighter-rouge">epithet</code> with value <code class="highlighter-rouge">"The Great"</code>.</p>
-
-<p><img src="/images/epithet.png" alt="" /></p>
-
-<p>Let’s add the rest of Alexander’s titles while we’re at it:</p>
-
-<pre><code class="language-graql">match $alexander has name "Alexander"; insert $alexander has title "Hegemon";
-match $alexander has name "Alexander"; insert $alexander has title "King of Macedon";
-match $alexander has name "Alexander"; insert $alexander has title "King of Persia";
-match $alexander has name "Alexander"; insert $alexander has title "Pharaoh of Egypt";
-match $alexander has name "Alexander"; insert $alexander has title "Lord of Asia";
-commit;
-</code></pre>
-
-<p>Using Graql, we can query for people who have titles, and list them out.</p>
-
-<pre><code class="language-graql">match isa person, has title $y, has name $n;
-
-$n value "Alexander" isa name; $y value "Shah of Persia" isa title;
-$n value "Alexander" isa name; $y value "Hegeon" isa title;
-$n value "Alexander" isa name; $y value "King of Macedon" isa title;
-$n value "Alexander" isa name; $y value "Pharaoh of Egypt" isa title;
-$n value "Alexander" isa name; $y value "Lord of Asia" isa title;
-</code></pre>
-
-<div class="alert alert-success" role="alert"><i class="fa fa-check-square-o"></i> <b>Tip:</b> <strong>Test Yourself</strong> <br /> When querying for an id, value or resource you can use predicates as well as direct values. For example, has epithet contains ‘Great’. See if you can write a query for everyone with a title containing ‘King’. The answer is at the bottom of the page.</div>
-
-<h2 id="relations-as-role-players">Relations as Role Players</h2>
-
-<p>Philosophers know lots of things. We should probably include this in our
-schema.</p>
-
-<pre><code class="language-graql">insert knowledge isa relation-type;
-insert thinker isa role-type;
-insert thought isa role-type;
-insert knowledge has-role thinker, has-role thought;
-insert fact isa entity-type, plays-role thought, has-resource name;
-insert description isa resource-type, datatype string;
-insert fact has-resource description;
-insert person plays-role thinker;
-</code></pre>
-
-<p>Aristotle knew some astronomy, Plato knew a lot about caves and Socrates didn’t really know anything at all.</p>
-
-<pre><code class="language-graql">insert has name "sun-fact" isa fact, has description "The Sun is bigger than the Earth";
-match $aristotle has name "Aristotle"; $sun-fact has name "sun-fact"; insert (thinker: $aristotle, thought: $sun-fact) isa knowledge;
-insert has name "cave-fact" isa fact, has description "Caves are mostly pretty dark";
-match $plato has name "Plato"; $cave-fact has name "cave-fact"; insert (thinker: $plato, thought: $cave-fact) isa knowledge;
-insert has name "nothing" isa fact;
-match $socrates has name "Socrates"; $nothing has name "nothing"; insert (thinker: $socrates, thought: $nothing) isa knowledge;
-commit;
-</code></pre>
-
-<p>A relation is actually just a special kind of instance. Just as
-<code class="highlighter-rouge">Socrates</code> can be a role player, relations themselves can also be role players.</p>
-
-<p>For example, Socrates knew nothing, but he also <em>knew</em> that he knew nothing!</p>
-
-<p>First, we have to state that someone can think about their own knowledge:</p>
-
-<pre><code class="language-graql">insert knowledge plays-role thought;
-commit;
-</code></pre>
-
-<p>We can now give Socrates one final piece of knowledge:</p>
-
-<pre><code class="language-graql">match $socrates has name "Socrates"; $nothing has name "nothing"; $socratesKnowsNothing ($socrates, $nothing); insert (thinker: $socrates, thought: $socratesKnowsNothing) isa knowledge;
-</code></pre>
-
-<p>Here, <code class="highlighter-rouge">socratesKnowsNothing</code> is the relation between <code class="highlighter-rouge">Socrates</code> and <code class="highlighter-rouge">nothing</code>.
-We then put <code class="highlighter-rouge">socratesKnowsNothing</code> in a <em>new</em> <code class="highlighter-rouge">knowledge</code> relation as a role
-player.</p>
-
-<p>Finally, we’ll check out everything Socrates knows:</p>
-
-<pre><code class="language-graql">&gt;&gt;&gt; match $socrates has name "Socrates"; ($socrates, $x) isa knowledge;
-$x id "fact-e387d27c-4f5e-11e6-beb8-9e71128cae77" isa fact;
-$x id "knowledge-e387d27c-4f5e-11e6-beb8-9e71128cae77" isa knowledge;
-</code></pre>
-
-<div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> <b>Note:</b> If you don’t provide an ID for something such as a relation, it will get an automatically generated ID.</div>
-
-<p><img src="/images/knowledge.png" alt="" /></p>
-
-<h2 id="test-yourself-answers">Test Yourself: Answers</h2>
-<p>We asked you to write a query to see who taught Aristotle. <br />
-Graql answers:</p>
-
-<pre><code class="language-graql">match $aristotle has name "Aristotle"; (teacher: $teach, student: $aristotle) isa education;
-</code></pre>
-
-<p>We asked you to write a query for everyone with a title containing “King”. <br />
-Answer:</p>
-
-<pre><code class="language-graql">match $king has title contains "King";
-</code></pre>
+<p>Use of Grakn Analytics is covered in <a href="../graql-analytics/analytics-overview.html">Analytics</a>.</p>
 
 <h2 id="where-next">Where Next?</h2>
 
-<p>Now you have started getting to grips with Grakn, please explore our additional <a href="../examples/examples.html">example code</a> and documentation. We are always adding more and welcome ideas and improvement suggestions. Please <a href="https://grakn.ai/community.html">get in touch</a>!</p>
+<p>This was a very high-level overview of some of the key use cases for Grakn, and has hardly touched the surface or gone into detail. Fear not, however, because 
+the rest of our developer documentation should be more in-depth! But, if you need extra information, please <a href="https://grakn.ai/community.html">get in touch</a>.</p>
+
+<p>A good place to start is to explore our additional <a href="../examples/examples.html">example code</a> and documentation.</p>
 
 <h2 id="comments">Comments</h2>
 <p>Want to leave a comment? Visit <a href="https://github.com/graknlabs/docs/issues/18" target="_blank">the issues on Github for this page</a> (you’ll need a GitHub account). You are also welcome to contribute to our documentation directly via the “Edit me” button at the top of the page.</p>
@@ -1001,7 +825,7 @@ Answer:</p>
         <br>
         <p>© 2016 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2016 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> August 10, 2016<br/> Site last generated: Dec 15, 2016 <br />
+        <span>Page last updated:</span> December 2016<br/> Site last generated: Dec 16, 2016 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">

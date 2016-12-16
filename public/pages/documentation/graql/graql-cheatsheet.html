@@ -196,7 +196,7 @@
 
 
 <ul id="mysidebar" class="nav">
-    <li class="sidebarTitle">Grakn 0.8</li>
+    <li class="sidebarTitle">Grakn 0.9</li>
     
     
     
@@ -872,7 +872,7 @@ delete $x;
 </code></pre>
 </div>
 
-<pre><code class="language-graql">insert "TV Show" isa entity-type; movie isa entity-type;
+<pre><code class="language-graql">insert "TV Show" isa entity; movie isa entity;
 </code></pre>
 
 <h2 id="type-properties">type properties</h2>
@@ -911,7 +911,7 @@ delete $x;
 
 <p>Match concepts with a resource matching a predicate.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">has</span> <span class="n">resource</span><span class="o">-</span><span class="k">type</span> <span class="p">[</span> <span class="o">=</span> <span class="o">|</span> <span class="o">!=</span> <span class="o">|</span> <span class="o">&lt;</span> <span class="o">|</span> <span class="o">&lt;=</span> <span class="o">|</span> <span class="o">&gt;=</span> <span class="o">|</span> <span class="o">&gt;</span> <span class="o">|</span> <span class="k">contains</span> <span class="p">]</span> <span class="err">{</span><span class="n">value</span><span class="err">}</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">has</span> <span class="n">resource</span> <span class="p">[</span> <span class="o">=</span> <span class="o">|</span> <span class="o">!=</span> <span class="o">|</span> <span class="o">&lt;</span> <span class="o">|</span> <span class="o">&lt;=</span> <span class="o">|</span> <span class="o">&gt;=</span> <span class="o">|</span> <span class="o">&gt;</span> <span class="o">|</span> <span class="k">contains</span> <span class="p">]</span> <span class="err">{</span><span class="n">value</span><span class="err">}</span>
 </code></pre>
 </div>
 
@@ -920,7 +920,7 @@ delete $x;
 
 <p>Match related concepts.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="p">(</span> <span class="p">[</span> <span class="p">[</span> <span class="k">role</span><span class="o">-</span><span class="k">type</span> <span class="p">]</span> <span class="k">role</span><span class="o">-</span><span class="n">player</span> <span class="p">,</span> <span class="p">...</span> <span class="p">]</span> <span class="p">)</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="p">(</span> <span class="p">[</span> <span class="p">[</span> <span class="k">role</span> <span class="p">]</span> <span class="k">role</span><span class="o">-</span><span class="n">player</span> <span class="p">,</span> <span class="p">...</span> <span class="p">]</span> <span class="p">)</span>
 </code></pre>
 </div>
 
@@ -954,20 +954,20 @@ delete $x;
 
 <h3 id="has-role">has-role</h3>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">has</span><span class="o">-</span><span class="k">role</span> <span class="k">role</span><span class="o">-</span><span class="k">type</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">has</span><span class="o">-</span><span class="k">role</span> <span class="k">role</span>
 </code></pre>
 </div>
 <p>Insert a new relation type with two role types.</p>
 
 <pre><code class="language-graql">insert
-director isa role-type;
-production-with-director isa role-type;
-directorship isa relation-type, has-role director, has-role production-with-director;
+director isa role;
+production-with-director isa role;
+directorship isa relation, has-role director, has-role production-with-director;
 </code></pre>
 
 <h3 id="plays-role">plays-role</h3>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">plays</span><span class="o">-</span><span class="k">role</span> <span class="k">role</span><span class="o">-</span><span class="k">type</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">plays</span><span class="o">-</span><span class="k">role</span> <span class="k">role</span>
 </code></pre>
 </div>
 
@@ -978,7 +978,7 @@ directorship isa relation-type, has-role director, has-role production-with-dire
 
 <h3 id="has-resource">has-resource</h3>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">has</span><span class="o">-</span><span class="n">resource</span> <span class="n">resource</span><span class="o">-</span><span class="k">type</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">has</span><span class="o">-</span><span class="n">resource</span> <span class="n">resource</span>
 </code></pre>
 </div>
 <p>Allow instances of a type to have a resource.</p>
@@ -993,7 +993,7 @@ directorship isa relation-type, has-role director, has-role production-with-dire
 </div>
 <p>Insert a new resource type with the given datatype.</p>
 
-<pre><code class="language-graql">insert name isa resource-type, datatype string;
+<pre><code class="language-graql">insert name isa resource, datatype string;
 </code></pre>
 
 
@@ -1035,7 +1035,7 @@ directorship isa relation-type, has-role director, has-role production-with-dire
         <br>
         <p>© 2016 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2016 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> August 17, 2016<br/> Site last generated: Dec 15, 2016 <br />
+        <span>Page last updated:</span> August 17, 2016<br/> Site last generated: Dec 16, 2016 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">
