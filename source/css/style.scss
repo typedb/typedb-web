@@ -124,8 +124,9 @@ html{
             align-items: center;
             margin-top: 10px;
             a{
-                font-family: 'Blender', Helvetica, Arial, sans-serif;
-                font-weight: 100;
+                font-family: 'Din', Helvetica, Arial, sans-serif;
+                font-weight: 400;
+                font-size: 0.6rem;
                 color: $white;
                 opacity: 0.8;
                 &:hover{
@@ -209,6 +210,11 @@ p{
                     font-size: 0.8rem;
                 }
             }
+            .subscribe{
+                a{
+                    font-size: 0.7rem;
+                }
+            }
         }
     }
 }
@@ -220,6 +226,11 @@ p{
             .intro{
                 p{
                     font-size: 0.9rem;
+                }
+            }
+            .subscribe{
+                a{
+                    font-size: 0.8rem;
                 }
             }
         }
@@ -255,6 +266,11 @@ p{
                     font-size: 1rem;
                 }
             }
+            .subscribe{
+                a{
+                    font-size: 0.9rem;
+                }
+            }
         }
     }
 
@@ -279,6 +295,11 @@ p{
             .intro{
                 p{
                     font-size: 1.1;
+                }
+            }
+            .subscribe{
+                a{
+                    font-size: 1rem;
                 }
             }
             .typist{
