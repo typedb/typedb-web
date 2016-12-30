@@ -39,13 +39,12 @@
                 }
 
                 a{
-                    color: $white;
+                    color: $white-fade;
                     text-decoration: none;
-                    opacity: 0.7;
                     transition: opacity 200ms ease-in-out;
 
                     &:hover{
-                        opacity: 1;
+                        color: $white;
                     }
                 }
             }

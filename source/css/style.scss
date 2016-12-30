@@ -127,10 +127,9 @@ html{
                 font-family: 'Din', Helvetica, Arial, sans-serif;
                 font-weight: 400;
                 font-size: 0.6rem;
-                color: $white;
-                opacity: 0.8;
+                color: $white-fade;
                 &:hover{
-                    opacity: 1;
+                    color: $white;
                 }
             }
         }
