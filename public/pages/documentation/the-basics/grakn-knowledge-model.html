@@ -865,22 +865,21 @@ $('#toc').on('click', 'a', function() {
 
 <p>To ensure data is correctly structured (i.e. consistent) with respect to the ontology, all data instances are validated against the ontology constraints. All the explicitly represented ontology constraints, together with the inherited ones, form complete schema templates for particular concept types, which guide the validation and, consequently, the data entry process. For example, the ontology in Figure 2 establishes the following schema templates for the concept types <code class="highlighter-rouge">woman</code> and <code class="highlighter-rouge">marriage</code>:</p>
 
-<h4 id="woman"><code class="highlighter-rouge">woman</code></h4>
+<div class="highlighter-rouge"><pre class="highlight"><code>insert
+woman sub entity;
 
-<ul>
-  <li><code class="highlighter-rouge">has-resource name</code></li>
-  <li><code class="highlighter-rouge">plays-role wife</code></li>
-  <li><code class="highlighter-rouge">plays-role partner1</code></li>
-  <li><code class="highlighter-rouge">plays-role partner2</code></li>
-</ul>
+woman has-resource name,
+	plays-role wife,
+	plays-role partner1,
+	plays-role partner2;
 
-<h4 id="marriage"><code class="highlighter-rouge">marriage</code></h4>
+marriage sub entity;
 
-<ul>
-  <li><code class="highlighter-rouge">has-resource since</code></li>
-  <li><code class="highlighter-rouge">has-role wife</code></li>
-  <li><code class="highlighter-rouge">has-role husband</code></li>
-</ul>
+marriage has-resource since,
+	has-role wife,
+	has-role husband;
+</code></pre>
+</div>
 
 <p>A data instance <code class="highlighter-rouge">inst</code> of a concept type <code class="highlighter-rouge">C</code> is valid, whenever the following conditions are satisfied:</p>
 
@@ -921,7 +920,7 @@ $('#toc').on('click', 'a', function() {
 <h3 id="rule-based-inference">Rule-Based Inference</h3>
 <p>The rule-based inference exploits a set of user-defined datalog rules and is conducted by means of the  reasoner built naitively into Grakn. Every rule is declared as an instance of a built-in Grakn type <code class="highlighter-rouge">inference-rule</code>.</p>
 
-<p>A rule is an expression of the form <code class="highlighter-rouge">lhs G1 rhs G2</code>, where <code class="highlighter-rouge">G1</code> and <code class="highlighter-rouge">G2</code> are a pair of Graql patterns. Whenever the left-hand-side (lhs) pattern <code class="highlighter-rouge">G1</code> is found in the data, the right-hand-side (rhs) pattern <code class="highlighter-rouge">G2</code> is inserted. For example:</p>
+<p>A rule is an expression of the form <code class="highlighter-rouge">lhs G1 rhs G2</code>, where <code class="highlighter-rouge">G1</code> and <code class="highlighter-rouge">G2</code> are a pair of Graql patterns. Whenever the left-hand-side (lhs) pattern <code class="highlighter-rouge">G1</code> is found in the data, the right-hand-side (rhs) pattern <code class="highlighter-rouge">G2</code> can be assumed to exist and optionally materialised (inserted). For example:</p>
 
 <div class="highlighter-rouge"><pre class="highlight"><code>lhs
 (child:$x, mother:$y) isa motherhood;
@@ -989,7 +988,7 @@ rhs
         <br>
         <p>© 2016 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2017 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> December 15th, 2016<br/> Site last generated: Jan 4, 2017 <br />
+        <span>Page last updated:</span> December 15th, 2016<br/> Site last generated: Jan 6, 2017 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">
