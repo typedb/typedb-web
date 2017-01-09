@@ -93,6 +93,17 @@
 
 ,
 {
+"title": "An Example of Migrating CSV to Grakn",
+"tags": "migrationexamples",
+"keywords": "migration",
+"url": "/pages/documentation/examples/CSV-migration.html",
+"summary": "A short example to illustrate migration of CSV to Grakn"
+}
+
+
+
+,
+{
 "title": "JSON Migration to Grakn",
 "tags": "migration",
 "keywords": "setup, getting started",
@@ -546,22 +557,22 @@
 
 ,
 {
-"title": "Graql Overview",
-"tags": "graql",
-"keywords": "graql, overview",
-"url": "/pages/documentation/graql/overview.html",
-"summary": "An introduction to Graql"
+"title": "Graph API Overview",
+"tags": "javagraph-api",
+"keywords": "overview",
+"url": "/pages/documentation/building-an-ontology/overview.html",
+"summary": "A basic example of how to use Grakn's Graph API."
 }
 
 
 
 ,
 {
-"title": "Graph API Overview",
-"tags": "javagraph-api",
-"keywords": "overview",
-"url": "/pages/documentation/building-an-ontology/overview.html",
-"summary": "A basic example of how to use Grakn's Graph API."
+"title": "Graql Overview",
+"tags": "graql",
+"keywords": "graql, overview",
+"url": "/pages/documentation/graql/overview.html",
+"summary": "An introduction to Graql"
 }
 
 
