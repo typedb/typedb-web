@@ -601,6 +601,13 @@
             
             
             
+            <li><a href="/pages/documentation/examples/CSV-migration.html">CSV migration</a></li>
+            
+            
+            
+            
+            
+            
             <li><a href="/pages/documentation/examples/SQL-migration.html">SQL migration</a></li>
             
             
@@ -687,10 +694,10 @@ $('#toc').on('click', 'a', function() {
 
     
 
-  <!--Page to comprise: 
-(1) section that talks about rules, 
-(2) description of their syntax, what is allowed in their conclusion and what is not, 
-(3) configuration options, whether to materialize or not, 
+  <!--Page to comprise:
+(1) section that talks about rules,
+(2) description of their syntax, what is allowed in their conclusion and what is not,
+(3) configuration options, whether to materialize or not,
 (4) maybe cover the future options for a choice of different reasoning algorithms etc?
 
 ?? Comparison of FC and BC?
@@ -701,222 +708,120 @@ and associated pages
 -->
 
 <h2 id="rule-objects">Rule Objects</h2>
+<p>Grakn supports Graql-native, rule-based reasoning to allow automated capture and evolution of patterns within the graph. Graql reasoning is performed at query time and is guaranteed to be complete.</p>
 
-<p>We define the following hierarchy of rule objects - concepts:</p>
+<p>The rule objects are instances of inference rule RuleType and assume the following general form:</p>
 
-<p>{ConceptType}&lt;–(sub)–{RuleType}
-{RuleType}&lt;–(sub)–{Inference Rule}
-{RuleType}&lt;–(sub)–{Ronstraint Rule}
-{inference rule}&lt;–(isa)–{instance of inference rule, e.g. if daughter+brother then niece}
-{constraint rule}&lt;–(isa)–{instance of constraint rule, e.g. if daughter then not married}</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>if [rule-body] then [rule-head]
+</code></pre>
+</div>
+<p>or in Prolog/Datalog terms:</p>
 
-<p>We introduce a single rule object in the Object Model being able to accommodate inference rules and constraint rules:</p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code>class Rule extends ConceptInstance - wrapped around a tinkerpop vertex class
-// to check for possible inference/satisfiability, we always evaluate if(lhs){evaluate rhs}
-// action specifies action executed on RHS pattern if expectation is not met
-{
-Query (String?) LHS
-Query (String?) RHS
-
-//only for constraint rules, this may be removed after graql implements negation
-Boolean expectation {true, false}
-Boolean materialise {true, false}
-
-//specifies whether it is an inference or constraint rule
-// this inherited from Concept.java
-String type 
-
-//add an edge with label "hypothesis" from conceptType to Rule concept
-addHypothesis(ConceptType conceptType)
-
-//add an edge with label "conclusion" from Rule concept to conceptType
-addConclusion(ConceptType conceptType)
-}
+<div class="highlighter-rouge"><pre class="highlight"><code>[rule-head] :- [rule-body].
 </code></pre>
 </div>
 
-<h2 id="rule-examples">Rule Examples</h2>
+<p>In logical terms, we restrict the rules to be definite Horn clauses (i.e. disjunctions of atoms with at most one unnegated atom). In our system we define both the head and the body of rules as Graql patterns. Consequently, the rules are statements of the form:</p>
 
-<h3 id="example-rule-all-swedish-women-are-pretty">Example Rule: “All Swedish women are pretty”</h3>
+<div class="highlighter-rouge"><pre class="highlight"><code>p :- q1, q2, ..., qn
+</code></pre>
+</div>
+<p>where p and q’s are atoms that each correspond to a single Graql pattern.</p>
 
-<pre><code class="language-Graql">Rule:
-LHS: match
-   $x isa person;
-	 $x has gender "female";
-   $x has nationality Sweden";
+<h2 id="graql-rule-syntax">Graql Rule Syntax</h2>
+<p>In Graql we refer to the body and the head of the rule as the left-hand- and right-hand-side of the rule respectively. Therefore in Graql terms we define rule objects in the following way:</p>
 
-RHS: insert
-     $x has beauty-score 9;
+<pre><code class="language-graql">$optional-name isa inference-rule,
+lhs {
+    ...;
+    ...;
+    ...;
+},
+rhs {
+    ...;
+};
 </code></pre>
 
-<p>Upon addition of this rule instance, the concept types of Person, Gender, and Nationality will be linked to it.</p>
+<p>In Graql the left-hand-side of the rule is required to be a conjunctive pattern, whereas the right-hand-side should contain a single pattern.</p>
 
-<p>Once an instance of Gender or Nationality is added to the graph, it can be checked for being a partial instantiation of the rule by checking whether the value of the resource is met after downloading the relevant connected Rule Instance. If it is a partial instantiation then the LHS is executed with a where chain specifying the given instance.</p>
+<p>A classic reasoning example is the ancestor example: the two Graql rules R1 and R2 stated below define the ancestor relationship which can be understood as either happening between two generations directly between a parent and a child or between three generations when the first generation hop is expressed via a parentship relation whereas the second generation hop is captured by an ancestor relation.</p>
 
-<h3 id="example-rule-if-two-companies-have-the-same-location-and-their-directors-are-related-flag-them-as-suspicious">Example Rule: If two companies have the same location and their directors are related, flag them as “suspicious”</h3>
+<pre><code class="language-graql">$R1 isa inference-rule,
+lhs {
+    (parent: $x, child: $y) isa Parent;
+},
+rhs {
+    (ancestor: $x, descendant: $y) isa Ancestor;
+};
 
-<pre><code class="language-Graql">select match
-    $x isa company;
-    $y isa company;
-    $x has address "address";
-    $y has address "address";
-    ($x, $u) isa directorship;
-    ($y, $v) isa directorship;
-    ($u, $v) select $x, $y;
-
-insert
-    $x has flag "suspicious";
-    $y has flag "suspicious";
+$R2 isa inference-rule,
+lhs {
+    (parent: $x, child: $z) isa Parent;
+    (ancestor: $z, descendant: $y) isa Ancestor;
+},
+rhs {
+    (ancestor: $x, descendant: $y) isa Ancestor;
+};
 </code></pre>
 
-<p>Upon addition of this rule instance, the concept types of Company, Address and Directorship will be linked to it.</p>
+<p>The above defined rules correspond to the following definition of Prolog/Datalog clauses:</p>
 
-<h3 id="example-rule-if-a-persons-parent-has-a-brother-the-person-has-an-uncle">Example Rule: “If a Person’s parent has a brother, the person has an uncle”</h3>
-
-<pre><code class="language-Graql">Rule:
-LHS: match
-  	 ($x, $y);
-     ($y, $z);
-  
-     $x isa person;
-     $y isa person;
-     $z isa person;
-     $a (child $x, parent $z) isa hasParent;
-
-     ($z, $y) isa hasBrother select $x, $y;
-  
-RHS: insert 
-     isa hasUncle(nephew/niece $x, uncle $y);
-</code></pre>
-
-<h3 id="example-rule-transitivity-of-a-specific-relation">Example Rule: “Transitivity of a specific relation”</h3>
-
-<pre><code class="language-Graql">Rule:
-LHS: match
-  	 (roleA $x, roleB $y) isa someRelationType;
-     (roleA $y, roleB $z) isa someRelationType select $x, $z;
-     
-RHS: insert 
-		 isa someRelationType(roleA $x, roleB $z);
-</code></pre>
-
-<h3 id="example-rule-two-concepts-being-related-results-in-something">Example Rule: “Two concepts being related results in something”</h3>
-
-<pre><code class="language-Graql">Rule:
-LHS: match
-     ($x, $y)
-  
-RHS: insert
-     isa someRelationType($x, $y);
-</code></pre>
-
-<h2 id="constraint-examples">Constraint examples</h2>
-
-<h3 id="example-constraint-every-person-that-is-employed-by-a-company-must-have-a-contract-between-them">Example Constraint: “Every person that is employed by a company must have a contract between them”</h3>
-
-<pre><code class="language-Graql">Constraint:
-IF (LHS)
-        match
-        $x isa person
-        $y isa person
-        (employee $x, employer $y) isa employment
-THEN (RHS)
-        match
-        ($x, $y) isa contract ask;
-    
-expectation = true
-</code></pre>
-
-<p>Suppose the following piece of information is added:
-<code class="highlighter-rouge">
-$x = 'bob'
-</code></p>
-
-<p>We then execute the constraint LHS on ‘bob’:</p>
-
-<pre><code class="language-java-test-ignore">Check whether bob is an instantiation of LHS:
-
-        Query.parser("match
-        $x isa person;$y isa person;
-        (employee $x, employer $y) isa employment").where($x id 'bob')
-       
-        we also need to check for:
-       
-        Query.parser("match
-        $x isa person;$y isa person;
-        (employee $x, employer $y) isa employment").where($y id 'bob')
-       
-        put the result of all queries above in to a list of (x,y) pairs called LHS
-then
-check if RHS meets the expectation:
-                     
-        for every item i(x,y) in LHS
-        Constraint.expectation ?= Query.parser("match
-        ($x, $y) isa contract ask").where($x id i.x, $y id i.y);
-</code></pre>
-
-<p>Alternatively we can process data on a relation basis, say the following information is added:</p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code>Employment(bob, alice)        
+<div class="highlighter-rouge"><pre class="highlight"><code>R1: ancestor(X, Y) :- parent(X, Y)  
+R2: ancestor(X, Y) :- parent(X, Z), ancestor(Z, Y)
 </code></pre>
 </div>
 
-<pre><code class="language-java-test-ignore">Check whether added relation leads to instantiation of LHS:
+<h3 id="rule-java-api">Rule Java API</h3>
+<p>Rule objects are instances of type inference-rule which can be retrieved by:</p>
 
-(x, y) = Query.parser(Constraint.LHS).where($x id 'bob', $y id 'alice')
-  
-Then check if RHS meets the expectation:
-Constraint.expectation ?= Query.parser(Constraint.RHS).where($x id x, $y id y)
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">RuleType</span> <span class="n">inferenceRule</span> <span class="o">=</span> <span class="n">graknGraph</span><span class="o">.</span><span class="na">getMetaRuleInference</span><span class="o">();</span>
 </code></pre>
+</div>
 
-<h2 id="support-of-graql-constructs">Support of Graql Constructs</h2>
+<p>Rule objects can be added to the graph both through the Graph API as well as through Graql. When adding rules with Graql we simply follow the Graql-defined rules with an insert statement, save as .gql file and load into graph in a standard manner. With the use of the Java API, the two rules constituting the ancestor example can be added in the following way:</p>
 
-<h3 id="queries">Queries</h3>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">Pattern</span> <span class="n">r1Body</span> <span class="o">=</span> <span class="n">var</span><span class="o">().</span><span class="na">rel</span><span class="o">(</span><span class="s">"parent"</span><span class="o">,</span> <span class="s">"x"</span><span class="o">).</span><span class="na">rel</span><span class="o">(</span><span class="s">"child"</span><span class="o">,</span> <span class="s">"y"</span><span class="o">).</span><span class="na">isa</span><span class="o">(</span><span class="s">"Parent"</span><span class="o">);</span>
+<span class="n">Pattern</span> <span class="n">r1Head</span> <span class="o">=</span> <span class="n">var</span><span class="o">().</span><span class="na">rel</span><span class="o">(</span><span class="s">"ancestor"</span><span class="o">,</span> <span class="s">"x"</span><span class="o">).</span><span class="na">rel</span><span class="o">(</span><span class="s">"descendant"</span><span class="o">,</span> <span class="s">"y"</span><span class="o">).</span><span class="na">isa</span><span class="o">(</span><span class="s">"Ancestor"</span><span class="o">);</span>
+
+<span class="n">Pattern</span> <span class="n">r2Body</span> <span class="o">=</span> <span class="n">and</span><span class="o">(</span>
+        <span class="n">var</span><span class="o">().</span><span class="na">rel</span><span class="o">(</span><span class="s">"parent"</span><span class="o">,</span> <span class="s">"x"</span><span class="o">).</span><span class="na">rel</span><span class="o">(</span><span class="s">"child"</span><span class="o">,</span> <span class="s">"y"</span><span class="o">).</span><span class="na">isa</span><span class="o">(</span><span class="s">"Parent')"</span><span class="o">),</span>
+        <span class="n">var</span><span class="o">().</span><span class="na">rel</span><span class="o">(</span><span class="s">"ancestor"</span><span class="o">,</span> <span class="s">"z"</span><span class="o">).</span><span class="na">rel</span><span class="o">(</span><span class="s">"descendant"</span><span class="o">,</span> <span class="s">"y"</span><span class="o">).</span><span class="na">isa</span><span class="o">(</span><span class="s">"Ancestor"</span><span class="o">)</span>
+<span class="o">);</span>
+<span class="n">Pattern</span> <span class="n">r2Head</span> <span class="o">=</span> <span class="n">var</span><span class="o">().</span><span class="na">rel</span><span class="o">(</span><span class="s">"ancestor"</span><span class="o">,</span> <span class="s">"x"</span><span class="o">).</span><span class="na">rel</span><span class="o">(</span><span class="s">"descendant"</span><span class="o">,</span> <span class="s">"y"</span><span class="o">).</span><span class="na">isa</span><span class="o">(</span><span class="s">"Ancestor"</span><span class="o">);</span>
+
+<span class="n">Rule</span> <span class="n">rule1</span> <span class="o">=</span> <span class="n">inferenceRule</span><span class="o">.</span><span class="na">addRule</span><span class="o">(</span><span class="n">r1Body</span><span class="o">,</span> <span class="n">r1Head</span><span class="o">);</span>
+<span class="n">Rule</span> <span class="n">rule2</span> <span class="o">=</span> <span class="n">inferenceRule</span><span class="o">.</span><span class="na">addRule</span><span class="o">(</span><span class="n">r2Body</span><span class="o">,</span> <span class="n">r2Head</span><span class="o">);</span>
+</code></pre>
+</div>
+
+<h2 id="allowed-graql-constructs-in-rules">Allowed Graql Constructs in Rules</h2>
+<p>The tables below summarise Graql constructs that are allowed to appear in LHSs
+and RHSs of rules.
+### Queries</p>
 
 <table>
   <thead>
     <tr>
       <th>Description</th>
-      <th style="text-align: center">Example</th>
-      <th style="text-align: left">Input</th>
-      <th style="text-align: left">Body</th>
-      <th style="text-align: left">Head</th>
-      <th style="text-align: right">Level of support</th>
+      <th style="text-align: left">LHS</th>
+      <th style="text-align: left">RHS</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td>conjunctive queries</td>
-      <td style="text-align: center">-</td>
+      <td>atomic queries</td>
       <td style="text-align: left">✓</td>
+      <td style="text-align: left">✓</td>
+    </tr>
+    <tr>
+      <td>conjunctive queries</td>
       <td style="text-align: left">✓</td>
       <td style="text-align: left">x</td>
-      <td style="text-align: right">supported</td>
     </tr>
     <tr>
       <td>disjunctive queries</td>
-      <td style="text-align: center">-</td>
-      <td style="text-align: left">✓</td>
       <td style="text-align: left">x</td>
       <td style="text-align: left">x</td>
-      <td style="text-align: right">supported</td>
-    </tr>
-    <tr>
-      <td>nested queries</td>
-      <td style="text-align: center">queries with multiply nested conjunctions/disjunctions</td>
-      <td style="text-align: left">✓</td>
-      <td style="text-align: left">x</td>
-      <td style="text-align: left">x</td>
-      <td style="text-align: right">supported</td>
-    </tr>
-    <tr>
-      <td>reified queries</td>
-      <td style="text-align: center">queries with complex constructs represented as variables (e.g. relations as roleplayers )</td>
-      <td style="text-align: left">✓</td>
-      <td style="text-align: left">✓</td>
-      <td style="text-align: left">x</td>
-      <td style="text-align: right">experimental support</td>
     </tr>
   </tbody>
 </table>
@@ -927,117 +832,59 @@ Constraint.expectation ?= Query.parser(Constraint.RHS).where($x id x, $y id y)
   <thead>
     <tr>
       <th>Description</th>
-      <th style="text-align: left">Example</th>
-      <th style="text-align: left">Body</th>
-      <th style="text-align: left">Head</th>
-      <th style="text-align: right">Level of support</th>
+      <th style="text-align: left">Pattern Example</th>
+      <th style="text-align: left">LHS</th>
+      <th style="text-align: left">RHS</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td>isa</td>
-      <td style="text-align: left">match $x isa pokemon;</td>
+      <td style="text-align: left">$x isa pokemon;</td>
       <td style="text-align: left">✓</td>
       <td style="text-align: left">x</td>
-      <td style="text-align: right">supported</td>
     </tr>
     <tr>
       <td>id</td>
-      <td style="text-align: left">match $x id “Articuno”;</td>
+      <td style="text-align: left">$x id “Articuno”;</td>
       <td style="text-align: left">✓</td>
       <td style="text-align: left">indirect only</td>
-      <td style="text-align: right">supported</td>
     </tr>
     <tr>
       <td>value</td>
-      <td style="text-align: left">match $x value contains “lightning”;</td>
+      <td style="text-align: left">$x value contains “lightning”;</td>
       <td style="text-align: left">✓</td>
       <td style="text-align: left">indirect only</td>
-      <td style="text-align: right">supported</td>
     </tr>
     <tr>
       <td>has</td>
-      <td style="text-align: left">match $x has pokedex-no &lt; 20;</td>
+      <td style="text-align: left">$x has pokedex-no &lt; 20;</td>
       <td style="text-align: left">✓</td>
-      <td style="text-align: left"> </td>
-      <td style="text-align: right">supported</td>
+      <td style="text-align: left">✓</td>
     </tr>
     <tr>
-      <td>relations with specified types</td>
-      <td style="text-align: left">match (ancestor: $x, descendant: $y) isa ancestorship;</td>
+      <td>relations</td>
+      <td style="text-align: left">(ancestor: $x, descendant: $y) isa ancestorship;</td>
       <td style="text-align: left">✓</td>
       <td style="text-align: left">✓</td>
-      <td style="text-align: right">supported</td>
-    </tr>
-    <tr>
-      <td>relations with incomplete roles</td>
-      <td style="text-align: left">match (ancestor: $x, $y) isa ancestorship;</td>
-      <td style="text-align: left">✓</td>
-      <td style="text-align: left">✓, not recommended</td>
-      <td style="text-align: right">supported</td>
-    </tr>
-    <tr>
-      <td>relations without type</td>
-      <td style="text-align: left">match (ancestor: $x, $y);</td>
-      <td style="text-align: left">✓</td>
-      <td style="text-align: left">✓</td>
-      <td style="text-align: right">supported</td>
-    </tr>
-    <tr>
-      <td>match all relations</td>
-      <td style="text-align: left">match ($x, $y);</td>
-      <td style="text-align: left">✓</td>
-      <td style="text-align: left">x</td>
-      <td style="text-align: right">supported</td>
-    </tr>
-    <tr>
-      <td>relations with rscs in one line</td>
-      <td style="text-align: left">match (ancestor: $x, $y) isa rel-typel has resource ‘value’;</td>
-      <td style="text-align: left">✓</td>
-      <td style="text-align: left">x</td>
-      <td style="text-align: right">supported</td>
-    </tr>
-    <tr>
-      <td>relations with user specified var</td>
-      <td style="text-align: left">match $r ($x, $y);</td>
-      <td style="text-align: left">✓</td>
-      <td style="text-align: left">✓</td>
-      <td style="text-align: right">supported</td>
-    </tr>
-    <tr>
-      <td>relations with roles as variables</td>
-      <td style="text-align: left">match ($r: $x, $y) isa rel-type;</td>
-      <td style="text-align: left">✓</td>
-      <td style="text-align: left">✓</td>
-      <td style="text-align: right">experimental support</td>
-    </tr>
-    <tr>
-      <td>relations with type var</td>
-      <td style="text-align: left">match (ancestor: $x, $y) isa $rel;</td>
-      <td style="text-align: left">✓</td>
-      <td style="text-align: left">✓</td>
-      <td style="text-align: right">supported</td>
     </tr>
     <tr>
       <td>resource comparison</td>
-      <td style="text-align: left">match $x value &gt; $y;</td>
+      <td style="text-align: left">$x value &gt; $y;</td>
       <td style="text-align: left">✓</td>
       <td style="text-align: left">x</td>
-      <td style="text-align: right">supported</td>
     </tr>
     <tr>
       <td>!=</td>
-      <td style="text-align: left">match $x != $y;</td>
+      <td style="text-align: left">$x != $y;</td>
       <td style="text-align: left">✓</td>
       <td style="text-align: left">x</td>
-      <td style="text-align: right">supported</td>
     </tr>
     <tr>
       <td>has-scope</td>
-      <td style="text-align: left">match ($x, $y) has-scope $z;match $x has-scope $y;</td>
+      <td style="text-align: left">($x, $y) has-scope $z;$x has-scope $y;</td>
       <td style="text-align: left">✓</td>
       <td style="text-align: left">x</td>
-      <td style="text-align: right">supported</td>
     </tr>
   </tbody>
 </table>
@@ -1048,128 +895,103 @@ Constraint.expectation ?= Query.parser(Constraint.RHS).where($x id x, $y id y)
   <thead>
     <tr>
       <th>Description</th>
-      <th style="text-align: left">Example</th>
-      <th style="text-align: left">Body</th>
-      <th style="text-align: left">Head</th>
-      <th style="text-align: right">Level of support</th>
+      <th style="text-align: left">Pattern Example</th>
+      <th style="text-align: left">LHS</th>
+      <th style="text-align: left">RHS</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td>sub</td>
-      <td style="text-align: left">match $x sub type;</td>
+      <td style="text-align: left">$x sub type;</td>
       <td style="text-align: left">✓</td>
       <td style="text-align: left">x</td>
-      <td style="text-align: right">supported</td>
     </tr>
     <tr>
       <td>plays-role</td>
-      <td style="text-align: left">match $x plays-role ancestor;</td>
+      <td style="text-align: left">$x plays-role ancestor;</td>
       <td style="text-align: left">✓</td>
       <td style="text-align: left">x</td>
-      <td style="text-align: right">supported</td>
     </tr>
     <tr>
       <td>has-resource</td>
-      <td style="text-align: left">match $x has-resource name;</td>
+      <td style="text-align: left">$x has-resource name;</td>
       <td style="text-align: left">✓</td>
       <td style="text-align: left">x</td>
-      <td style="text-align: right">supported</td>
     </tr>
     <tr>
       <td>has-role</td>
-      <td style="text-align: left">match evolution has-role $x;</td>
+      <td style="text-align: left">evolution has-role $x;</td>
       <td style="text-align: left">✓</td>
       <td style="text-align: left">x</td>
-      <td style="text-align: right">supported</td>
     </tr>
     <tr>
       <td>is-abstract</td>
-      <td style="text-align: left">match $x is-abstract;</td>
+      <td style="text-align: left">$x is-abstract;</td>
       <td style="text-align: left">✓</td>
       <td style="text-align: left">x</td>
-      <td style="text-align: right">supported</td>
     </tr>
     <tr>
       <td>datatype</td>
-      <td style="text-align: left">match $x isa resource, datatype string;</td>
+      <td style="text-align: left">$x isa resource, datatype string;</td>
       <td style="text-align: left">✓</td>
       <td style="text-align: left">x</td>
-      <td style="text-align: right">supported</td>
     </tr>
     <tr>
       <td>regex</td>
-      <td style="text-align: left">match $x isa resource, regex /hello/;</td>
+      <td style="text-align: left">$x isa resource, regex /hello/;</td>
       <td style="text-align: left">✓</td>
       <td style="text-align: left">x</td>
-      <td style="text-align: right">supported</td>
     </tr>
   </tbody>
 </table>
 
-<h3 id="predicates">Predicates</h3>
+<h2 id="configuration-options">Configuration options</h2>
+<p>Graql offers certain degrees of freedom in deciding how and if reasoning should be performed
+Namely it offers two options:
+- whether reasoning should be on
+- whether inferred knowledge should be materialised (persisted).</p>
+
+<p>The first option is self-explanatory. Without turning the reasoning on the rules will not be triggered and no knowledge will be inferred. The materialisation option decides whether the inferred knowledge should be persisted to the graph or stored in memory. This has huge impact on performance and for larger graphs either materialisation should be avoided or the queries
+should be limited by employing the <em>limit</em> modifier which allows termination in sensible time.</p>
+
+<p>The two settings can be controlled by providing suitable parameters to the QueryBuilder objects in the following way:</p>
+
+<h3 id="switching-reasoning-on">Switching reasoning on</h3>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>//graph is a GraknGraph instance
+QueryBuilder qb = graph.graql().infer(true);
+</code></pre>
+</div>
+
+<h3 id="switching-materialisation-on">Switching materialisation on</h3>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>//graph is a GraknGraph instance
+QueryBuilder qb = graph.graql().infer(true).materialise(true);
+</code></pre>
+</div>
+
+<p>Once the QueryBuilder has been defined, the constructed queries will obey the specified reasoning variants.
+The table below summarises the available reasoning configuration options together with their defaults.</p>
 
 <table>
   <thead>
     <tr>
-      <th>Description</th>
-      <th style="text-align: left">Example</th>
-      <th style="text-align: right">Level of support</th>
+      <th>Option</th>
+      <th style="text-align: left">Description</th>
+      <th style="text-align: left">Default</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td>Comparators</td>
-      <td style="text-align: left">match $x has height = 19, has weight &gt; 1500;</td>
-      <td style="text-align: right">supported</td>
+      <td>QueryBuilder::infer(boolean )</td>
+      <td style="text-align: left">controls whether reasoning should be turned on</td>
+      <td style="text-align: left">False/Off</td>
     </tr>
     <tr>
-      <td>Contains</td>
-      <td style="text-align: left">match $x has description $desc;$desc value contains “underground”;</td>
-      <td style="text-align: right">supported</td>
-    </tr>
-    <tr>
-      <td>Regex</td>
-      <td style="text-align: left">match $x value /.*(fast|quick).*/;</td>
-      <td style="text-align: right">supported</td>
-    </tr>
-    <tr>
-      <td>And and Or</td>
-      <td style="text-align: left">match $x has weight &gt;20 and &lt;30;</td>
-      <td style="text-align: right">supported</td>
-    </tr>
-  </tbody>
-</table>
-
-<h3 id="modifiers">Modifiers</h3>
-
-<table>
-  <thead>
-    <tr>
-      <th>Description</th>
-      <th style="text-align: right">Level of support</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>limit</td>
-      <td style="text-align: right">supported</td>
-    </tr>
-    <tr>
-      <td>offset</td>
-      <td style="text-align: right">supported</td>
-    </tr>
-    <tr>
-      <td>distinct</td>
-      <td style="text-align: right">supported</td>
-    </tr>
-    <tr>
-      <td>order</td>
-      <td style="text-align: right">supported</td>
-    </tr>
-    <tr>
-      <td>select</td>
-      <td style="text-align: right">supported</td>
+      <td>QueryBuilder::materialise(boolean )</td>
+      <td style="text-align: left">controls whether inferred knowledge should be persisted to graph</td>
+      <td style="text-align: left">False/Off</td>
     </tr>
   </tbody>
 </table>
@@ -1217,7 +1039,7 @@ Constraint.expectation ?= Query.parser(Constraint.RHS).where($x id x, $y id y)
         <br>
         <p>© 2016 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2017 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> December 9th 2016<br/> Site last generated: Jan 4, 2017 <br />
+        <span>Page last updated:</span> December 9th 2016<br/> Site last generated: Jan 10, 2017 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">

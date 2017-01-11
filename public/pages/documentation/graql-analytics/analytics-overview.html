@@ -601,6 +601,13 @@
             
             
             
+            <li><a href="/pages/documentation/examples/CSV-migration.html">CSV migration</a></li>
+            
+            
+            
+            
+            
+            
             <li><a href="/pages/documentation/examples/SQL-migration.html">SQL migration</a></li>
             
             
@@ -697,7 +704,7 @@ $('#toc').on('click', 'a', function() {
 <!-- JCS Comments: Please can you clarify "graph is not important" as I don't understand what you mean, and also provide a suitable link to more about Pregel and map reduce  ? -->
 
 <div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> <b>Note:</b> Under the hood we use implementations of the Pregel distributed graph computing
-framework and map reduce when a graph is not important. This way we can implement algorithms that will scale horizontally.</div>
+framework and/or map reduce when we need to aggregate tht result. This way we can implement algorithms that will scale horizontally.</div>
 
 <h2 id="what-can-i-do-with-analytics">What Can I do With Analytics?</h2>
 
@@ -710,7 +717,7 @@ framework and map reduce when a graph is not important. This way we can implemen
 
 <h3 id="statistics">Statistics</h3>
 
-<p>Currently you can compute the <code class="highlighter-rouge">min</code>, <code class="highlighter-rouge">max</code>, <code class="highlighter-rouge">mean</code>, <code class="highlighter-rouge">median</code>, <code class="highlighter-rouge">sd</code> (standard deviation) and <code class="highlighter-rouge">sum</code> of resources attached to entities. This
+<p>Currently you can compute the <code class="highlighter-rouge">min</code>, <code class="highlighter-rouge">max</code>, <code class="highlighter-rouge">mean</code>, <code class="highlighter-rouge">median</code>, <code class="highlighter-rouge">std</code> (standard deviation) and <code class="highlighter-rouge">sum</code> of resources attached to entities. This
 can also be achieved on a subgraph, which is a subset of the types in your dataset. For example, you can specify queries to find the mean price of cars and trucks in a graph:</p>
 
 <div class="highlighter-rouge"><pre class="highlight"><code>compute mean of price in car, truck;
@@ -774,7 +781,7 @@ the relationship between a comment and its writer.</p>
 <!-- JCS Comments: Sorry - this doesn't make sense to me. Please could you rephrase for the hard of thinking, or ping me to explain, so I can reword it when I understand? -->
 
 <div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> <b>Note:</b> The degree is the simplest measure of the importance (centrality) of a node in a graph.
-Graql if very flexible and allows us to define the subgraph in which we want to compute the degree, and therefore determine
+Graql is very flexible and allows us to define the subgraph in which we want to compute the degree, and therefore determine
 importance according to various structures in the graph.
 </div>
 
@@ -819,7 +826,7 @@ importance according to various structures in the graph.
         <br>
         <p>© 2016 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2017 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> December 12th, 2016<br/> Site last generated: Jan 4, 2017 <br />
+        <span>Page last updated:</span> December 12th, 2016<br/> Site last generated: Jan 10, 2017 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">

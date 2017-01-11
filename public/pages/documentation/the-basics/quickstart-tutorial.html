@@ -601,6 +601,13 @@
             
             
             
+            <li><a href="/pages/documentation/examples/CSV-migration.html">CSV migration</a></li>
+            
+            
+            
+            
+            
+            
             <li><a href="/pages/documentation/examples/SQL-migration.html">SQL migration</a></li>
             
             
@@ -740,15 +747,15 @@ commit
 <h3 id="querying-data">Querying Data</h3>
 <p>Check that the data has loaded, by performing a pair of queries:</p>
 
-<p>Find all people in the graph:
-<code class="highlighter-rouge">graql
-match $p isa person, has identifier $i;
-</code></p>
+<p>Find all people in the graph:</p>
 
-<p>Find all people who are married:
-<code class="highlighter-rouge">
-match (spouse1: $x, spouse2: $y) isa marriage, has date $d; $x has identifier $xi; $y has identifier $yi;  
-</code></p>
+<pre><code class="language-graql">match $p isa person, has identifier $i;
+</code></pre>
+
+<p>Find all people who are married:</p>
+
+<pre><code class="language-graql">match (spouse1: $x, spouse2: $y) isa marriage, has date $d; $x has identifier $xi; $y has identifier $yi;  
+</code></pre>
 
 <div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> <b>Note:</b> In queries, Graql variables start with a <code class="highlighter-rouge">$</code>, which represent wildcards, and are returned as results in <code class="highlighter-rouge">match</code> queries. A variable name can contain alphanumeric characters, dashes and underscores.</div>
 
@@ -828,7 +835,7 @@ the rest of our developer documentation should be more in-depth! But, if you nee
         <br>
         <p>© 2016 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2017 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> December 2016<br/> Site last generated: Jan 4, 2017 <br />
+        <span>Page last updated:</span> December 2016<br/> Site last generated: Jan 10, 2017 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">

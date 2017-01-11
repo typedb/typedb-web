@@ -37,7 +37,7 @@ for RELEASE in $RELEASES; do
     echo "Downloading ${VERSION}"
     wget --continue -q ${RELEASE} -o ${PKG_NAME}-dist-${VERSION}.tar.gz
     mkdir -p v${VERSION}
-    if [[ ! -z $(tar -tf grakn-dist-0.8.0.tar.gz grakn-dist-0.8.0/docs/rest-api/) ]]; then
+    if [[ ! -z $(tar -tf ${PKG_NAME}-dist-${VERSION}.tar.gz ${PKG_NAME}-dist-${VERSION}/docs/rest-api/) ]]; then
       tar -xf ${PKG_NAME}-dist-${VERSION}.tar.gz -C v${VERSION} ${PKG_NAME}-dist-${VERSION}/docs/rest-api/ --strip-components=3
     fi
     touch v${VERSION}/index.html
