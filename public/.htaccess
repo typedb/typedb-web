@@ -39,6 +39,8 @@ Redirect /download "https://github.com/graknlabs/grakn/releases/"
 Redirect /docs "/pages/index.html"
 Redirect /install "/pages/documentation/get-started/setup-guide.html"
 Redirect /2016-year-in-review "https://blog.grakn.ai/grakn-2016-year-in-review-e30b66adece3"
+Redirect /blog/2016-year-in-review "https://blog.grakn.ai/grakn-2016-year-in-review-e30b66adece3"
+Redirect /blog/janus-launch "https://blog.grkan.ai/"
 
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME} !-f
