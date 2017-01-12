@@ -356,6 +356,13 @@
             
             
             
+            <li><a href="/pages/documentation/graql/graql-rules.html">Graql Rules</a></li>
+            
+            
+            
+            
+            
+            
             <li><a href="/pages/documentation/graql/aggregate-queries.html">Aggregate Queries</a></li>
             
             
@@ -934,12 +941,12 @@ delete $x;
 <pre><code class="language-graql">match ($x, $y);
 </code></pre>
 
-<p>Match concepts related with a particular relation type.</p>
+<p>Match concepts related with a particular relation.</p>
 
 <pre><code class="language-graql">match ($p1, $p2) isa marriage;
 </code></pre>
 
-<p>Match two related concepts where one plays a specified role type.</p>
+<p>Match two related concepts where one plays a specified role.</p>
 
 <pre><code class="language-graql">match (director: $p, $m);
 </code></pre>
@@ -964,7 +971,7 @@ delete $x;
 <div class="highlighter-rouge"><pre class="highlight"><code><span class="n">has</span><span class="o">-</span><span class="k">role</span> <span class="k">role</span>
 </code></pre>
 </div>
-<p>Insert a new relation type with two role types.</p>
+<p>Insert a new relation with two roles.</p>
 
 <pre><code class="language-graql">insert
 director sub role;
@@ -998,7 +1005,8 @@ directorship sub relation, has-role director, has-role production-with-director;
 <div class="highlighter-rouge"><pre class="highlight"><code><span class="n">datatype</span> <span class="p">(</span> <span class="n">string</span> <span class="o">|</span> <span class="n">long</span> <span class="o">|</span> <span class="n">double</span> <span class="o">|</span> <span class="n">boolean</span> <span class="p">)</span>
 </code></pre>
 </div>
-<p>Insert a new resource type with the given datatype.</p>
+
+<p>Insert a new resource with the given datatype.</p>
 
 <pre><code class="language-graql">insert name sub resource, datatype string;
 </code></pre>
@@ -1042,7 +1050,7 @@ directorship sub relation, has-role director, has-role production-with-director;
         <br>
         <p>© 2016 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2017 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> August 17, 2016<br/> Site last generated: Jan 10, 2017 <br />
+        <span>Page last updated:</span> August 17, 2016<br/> Site last generated: Jan 12, 2017 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">

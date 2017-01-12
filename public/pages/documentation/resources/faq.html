@@ -356,6 +356,13 @@
             
             
             
+            <li><a href="/pages/documentation/graql/graql-rules.html">Graql Rules</a></li>
+            
+            
+            
+            
+            
+            
             <li><a href="/pages/documentation/graql/aggregate-queries.html">Aggregate Queries</a></li>
             
             
@@ -696,6 +703,16 @@ $('#toc').on('click', 'a', function() {
 
   <div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> <b>Note:</b> This page contains some of the questions were are mostly commonly asked, and is updated regularly. Please feel free to use our <a href="http://discuss.grakn.ai">discussion forums</a> to ask us for help or advice.</div>
 
+<h2 id="about-graknai">About GRAKN.AI</h2>
+
+<h3 id="why-did-you-develop-a-new-ontology-and-query-language">Why did you develop a new ontology and query language?</h3>
+
+<p>We are often asked why we have developed a new ontology and query language rather than use existing standards like <a href="https://en.wikipedia.org/wiki/Resource_Description_Framework">RDF</a>, <a href="https://en.wikipedia.org/wiki/Web_Ontology_Language">OWL</a> and <a href="https://en.wikipedia.org/wiki/SPARQL">SPARQL</a>.</p>
+
+<p>Our underlying data model is that of a property graph, so in principle we’re able to import and export from/to RDF if needed. However, our ontology language is designed to strike a different and better balance between expressiveness and complexity than offered by the existing OWL profiles, especially in the context of knowledge graph structures. In consequence, our query language, Graql, is aligned with our ontology formalism to enable higher level query capabilities than supported by SPARQL over an RDF data model.</p>
+
+<p>OWL is not well-suited for graph-structures. Because of its formal foundations and computational limitations it is in fact a more natural language for managing tree-shaped data instead. OWL also makes it hard to help validate consistency of data and ensure it is well-structured, and this is what knowledge graph applications require.</p>
+
 <h2 id="bugs-and-strange-behaviour">Bugs and strange behaviour</h2>
 
 <h3 id="why-does-grakn-hang-when-i-try-to-start-it">Why does Grakn hang when I try to start it?</h3>
@@ -875,7 +892,7 @@ graph.clear();
         <br>
         <p>© 2016 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2017 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> September 22, 2016<br/> Site last generated: Jan 10, 2017 <br />
+        <span>Page last updated:</span> September 22, 2016<br/> Site last generated: Jan 12, 2017 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">

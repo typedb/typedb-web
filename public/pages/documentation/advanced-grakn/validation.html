@@ -356,6 +356,13 @@
             
             
             
+            <li><a href="/pages/documentation/graql/graql-rules.html">Graql Rules</a></li>
+            
+            
+            
+            
+            
+            
             <li><a href="/pages/documentation/graql/aggregate-queries.html">Aggregate Queries</a></li>
             
             
@@ -701,25 +708,24 @@ The following consistency checks are executed upon <code class="highlighter-roug
 
 <h3 id="plays-role-validation">Plays Role Validation</h3>
 
-<p>This validation rule simply checks if an <em>Entity</em> (which is a role player in a relation) is allowed to play the role it has been allocated to. For example, this is the rule that would prevent a dog from being a driver in a car.</p>
+<p>This validation rule simply checks if an entity (which is a role player in a relation) is allowed to play the role it has been allocated to. For example, this is the rule that would prevent a dog from being a driver in a car.</p>
 
 <h3 id="type-validation">Type Validation</h3>
 
 <p>This validation rule ensures that abstract types do not have any instances. For example if we declare the type <code class="highlighter-rouge">vehicle</code> to be abstract, with <code class="highlighter-rouge">car</code> and <code class="highlighter-rouge">motorbike</code> to be sub types of <code class="highlighter-rouge">vehicle</code>, then only cars and motorbikes are allowed to have instances.</p>
 
-<h3 id="role-type-validation">Role Type Validation</h3>
+<h3 id="role-validation">Role Validation</h3>
 
-<p>This rule checks that non abstract <em>Role Types</em> are part of a <em>Relation Type</em>. For example if we declare the <em>Role Type</em> <code class="highlighter-rouge">husband</code> and forget to link it to any <code class="highlighter-rouge">Relation Type</code>, then this check will fail.</p>
+<p>This rule checks that non abstract roles are part of a relation. For example if we declare the role <code class="highlighter-rouge">husband</code> and forget to link it to any relation, then this check will fail.</p>
 
 <h3 id="relation-validation">Relation Validation</h3>
 
-<p>A relation is valid if all of the role players of the relation are allowed to play their corresponding roles. 
-This also includes checking that the relation is an instance of a valid <em>Relation Type</em>. A <em>Relation Type</em> is valid if it has at minimum two roles.</p>
+<p>A relation is valid if:</p>
 
-<h3 id="relation-type-validation">Relation Type Validation</h3>
-
-<p>This checks that non abstract relation types have at least 2 roles. 
-For example, a <em>Relation Type</em> <code class="highlighter-rouge">marriage</code> with only one role <code class="highlighter-rouge">husband</code> would fail this check.</p>
+<ul>
+  <li>all of the role players of the relation are allowed to play their corresponding roles.</li>
+  <li>it has, at minimum, two roles. For example, a <code class="highlighter-rouge">marriage</code> with only one role <code class="highlighter-rouge">husband</code> would fail this check.</li>
+</ul>
 
 <h3 id="an-example-of-validation">An Example of Validation</h3>
 
@@ -760,8 +766,8 @@ The type ['man'] of role player ['ENTITY-man-2482cb91-1f12-40ea-b659-49d07d06ddf
 <p>Lets see why:</p>
 
 <ol>
-  <li><strong>Role Type Validation</strong> failed because the role <code class="highlighter-rouge">wife</code> is not connected to any <em>Relation Type</em></li>
-  <li><strong>Relation Type Validation</strong> failed because <code class="highlighter-rouge">marriage</code> only has one role <code class="highlighter-rouge">husband</code>.</li>
+  <li><strong>Role Validation</strong> failed because the role <code class="highlighter-rouge">wife</code> is not connected to any relation</li>
+  <li><strong>Relation Validation</strong> failed because <code class="highlighter-rouge">marriage</code> only has one role <code class="highlighter-rouge">husband</code>.</li>
   <li><strong>Type Validation</strong> failed because we accidental made <code class="highlighter-rouge">man</code> abstract and we declared <code class="highlighter-rouge">Bob</code> to be an instance of <code class="highlighter-rouge">man</code>.</li>
   <li><strong>Plays Role Validation</strong> failed because we forgot to say that a <code class="highlighter-rouge">man</code> can play the role of <code class="highlighter-rouge">husband</code>.</li>
   <li><strong>Relation Validation</strong> failed because <code class="highlighter-rouge">Alice</code> is playing the role of a <code class="highlighter-rouge">wife</code> which is not part of a <code class="highlighter-rouge">marriage</code> and <code class="highlighter-rouge">Bob</code> is playing the role of a <code class="highlighter-rouge">husband</code>, which as a man he is not allowed to do.</li>
@@ -831,7 +837,7 @@ The type ['man'] of role player ['ENTITY-man-2482cb91-1f12-40ea-b659-49d07d06ddf
         <br>
         <p>© 2016 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2017 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> November 17, 2016<br/> Site last generated: Jan 10, 2017 <br />
+        <span>Page last updated:</span> November 17, 2016<br/> Site last generated: Jan 12, 2017 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">

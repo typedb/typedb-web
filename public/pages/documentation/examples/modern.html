@@ -356,6 +356,13 @@
             
             
             
+            <li><a href="/pages/documentation/graql/graql-rules.html">Graql Rules</a></li>
+            
+            
+            
+            
+            
+            
             <li><a href="/pages/documentation/graql/aggregate-queries.html">Aggregate Queries</a></li>
             
             
@@ -733,17 +740,17 @@ bin/graql.sh
   <li>there are four connections between people and software, such that the people “created” the software. Lop was created by marko, peter and josh, which ripple was created by josh.</li>
 </ul>
 
-<h3 id="entity-types">Entity Types</h3>
+<h3 id="entities">Entities</h3>
 
-<p>Here, we add person and software entity types to the graph, via the Graql shell:</p>
+<p>Here, we add person and software entities, via the Graql shell:</p>
 
 <pre><code class="language-graql">insert person sub entity;
 insert software sub entity;
 </code></pre>
 
-<h3 id="resource-types">Resource Types</h3>
+<h3 id="resources">Resources</h3>
 
-<p>To assign resources to the entities, which you can think of as attributes, we use resource types. First, we define what they are (age is a number, programming language is a string that represents the language’s name), then we allocate them to the entity in question:</p>
+<p>To assign resources to the entities, which you can think of as attributes, we use resources. First, we define what they are (age is a number, programming language is a string that represents the language’s name), then we allocate them to the entity in question:</p>
 
 <pre><code class="language-graql">insert age sub resource datatype long;
 insert name sub resource datatype string;
@@ -755,9 +762,9 @@ insert software has-resource lang has-resource name;
 insert weight sub resource datatype double;
 </code></pre>
 
-<h3 id="relation-types">Relation Types</h3>
+<h3 id="relations">Relations</h3>
 
-<p>Let’s first define the relationship between people. The diagram shows that marko knows vadas, but we don’t have any information about whether the inverse is true (though it seems likely that vadas probably also knows marko). Let’s set up a relationship called <code class="highlighter-rouge">knows</code>, which has two role-types - <code class="highlighter-rouge">knower</code> (for marko) and <code class="highlighter-rouge">known-about</code> (for vadas):</p>
+<p>Let’s first define the relationship between people. The diagram shows that marko knows vadas, but we don’t have any information about whether the inverse is true (though it seems likely that vadas probably also knows marko). Let’s set up a relationship called <code class="highlighter-rouge">knows</code>, which has two roles - <code class="highlighter-rouge">knower</code> (for marko) and <code class="highlighter-rouge">known-about</code> (for vadas):</p>
 
 <pre><code class="language-graql">insert knower sub role;
 insert known-about sub role;
@@ -766,7 +773,7 @@ insert person plays-role known-about;
 insert knows sub relation, has-role knower, has-role known-about, has-resource weight;	
 </code></pre>
 
-<p>Note that the  <code class="highlighter-rouge">knows</code> relation type also has an attribute, in the form of a resource called <code class="highlighter-rouge">weight</code> (though it’s not clear from the TinkerPop example what this represents).</p>
+<p>Note that the  <code class="highlighter-rouge">knows</code> relation also has an attribute, in the form of a resource called <code class="highlighter-rouge">weight</code> (though it’s not clear from the TinkerPop example what this represents).</p>
 
 <p>We can set up a similar relationship between software and the people that created it:</p>
 
@@ -972,7 +979,7 @@ programming sub relation
         <br>
         <p>© 2016 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2017 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> September 19, 2016<br/> Site last generated: Jan 10, 2017 <br />
+        <span>Page last updated:</span> September 19, 2016<br/> Site last generated: Jan 12, 2017 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">

@@ -356,6 +356,13 @@
             
             
             
+            <li><a href="/pages/documentation/graql/graql-rules.html">Graql Rules</a></li>
+            
+            
+            
+            
+            
+            
             <li><a href="/pages/documentation/graql/aggregate-queries.html">Aggregate Queries</a></li>
             
             
@@ -788,36 +795,36 @@ is possible to also count subsets of the instances in the graph using the <a hre
 
 <h3 id="mean">Mean</h3>
 
-<p>Computes the mean value of a given resource type. This algorithm requires the <a href="#subgraph">subgraph</a> syntax to be used.
+<p>Computes the mean value of a given resource. This algorithm requires the <a href="#subgraph">subgraph</a> syntax to be used.
 For example,</p>
 
 <div class="highlighter-rouge"><pre class="highlight"><code>compute mean of age in person;
 </code></pre>
 </div>
 
-<p>would compute the mean of the value persisted in instances of the resource type age. It is also possible to provide a
-set of resource types.</p>
+<p>would compute the mean of the value persisted in instances of the resource <code class="highlighter-rouge">age</code>. It is also possible to provide a
+set of resources.</p>
 
 <div class="highlighter-rouge"><pre class="highlight"><code>compute mean of user-rating, expert-rating in movie;
 </code></pre>
 </div>
 
-<p>which would compute the mean of the union of the instances of the two resource types.</p>
+<p>which would compute the mean of the union of the instances of the two resources.</p>
 
 <h3 id="median">Median</h3>
 
-<p>Computes the median value of a given resource type. This algorithm requires the <a href="#subgraph">subgraph</a> syntax to be used.
+<p>Computes the median value of a given resource. This algorithm requires the <a href="#subgraph">subgraph</a> syntax to be used.
 For example,</p>
 
 <div class="highlighter-rouge"><pre class="highlight"><code>compute median of age in person;
 </code></pre>
 </div>
 
-<p>would compute the median of the value persisted in instances of the resource type age.</p>
+<p>would compute the median of the value persisted in instances of the resource <code class="highlighter-rouge">age</code>.</p>
 
 <h3 id="minimum">Minimum</h3>
 
-<p>Computes the minimum value of a given resource type, similar to <a href="#mean">mean</a>.</p>
+<p>Computes the minimum value of a given resource, similar to <a href="#mean">mean</a>.</p>
 
 <div class="highlighter-rouge"><pre class="highlight"><code>compute min of age in person;
 </code></pre>
@@ -825,7 +832,7 @@ For example,</p>
 
 <h3 id="maximum">Maximum</h3>
 
-<p>Computes the maximum value of a given resource type, similar to <a href="#mean">mean</a>.</p>
+<p>Computes the maximum value of a given resource, similar to <a href="#mean">mean</a>.</p>
 
 <div class="highlighter-rouge"><pre class="highlight"><code>compute max of age in person;
 </code></pre>
@@ -833,7 +840,7 @@ For example,</p>
 
 <h3 id="standard-deviation">Standard Deviation</h3>
 
-<p>Computes the standard deviation of a given resource type, similar to <a href="#mean">mean</a>.</p>
+<p>Computes the standard deviation of a given resource, similar to <a href="#mean">mean</a>.</p>
 
 <div class="highlighter-rouge"><pre class="highlight"><code>compute std of age in person;
 </code></pre>
@@ -841,7 +848,7 @@ For example,</p>
 
 <h3 id="sum">Sum</h3>
 
-<p>Computes the sum of a given resource type, similar to <a href="#mean">mean</a>.</p>
+<p>Computes the sum of a given resource, similar to <a href="#mean">mean</a>.</p>
 
 <h2 id="available-graph-algorithms">Available Graph Algorithms</h2>
 
@@ -938,7 +945,7 @@ For further information see the individual sections below.
         <br>
         <p>© 2016 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2017 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> September 28, 2016<br/> Site last generated: Jan 10, 2017 <br />
+        <span>Page last updated:</span> September 28, 2016<br/> Site last generated: Jan 12, 2017 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">

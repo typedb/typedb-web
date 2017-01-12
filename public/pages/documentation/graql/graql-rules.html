@@ -356,6 +356,13 @@
             
             
             
+            <li class="active"><a href="/pages/documentation/graql/graql-rules.html">Graql Rules</a></li>
+            
+            
+            
+            
+            
+            
             <li><a href="/pages/documentation/graql/aggregate-queries.html">Aggregate Queries</a></li>
             
             
@@ -694,20 +701,7 @@ $('#toc').on('click', 'a', function() {
 
     
 
-  <!--Page to comprise:
-(1) section that talks about rules,
-(2) description of their syntax, what is allowed in their conclusion and what is not,
-(3) configuration options, whether to materialize or not,
-(4) maybe cover the future options for a choice of different reasoning algorithms etc?
-
-?? Comparison of FC and BC?
-
-Look through documentation on internal wiki:
-http://wiki.grakn.ai/docs/mindmaps-reasoner-project-definition
-and associated pages
--->
-
-<h2 id="rule-objects">Rule Objects</h2>
+  <h2 id="rule-objects">Rule Objects</h2>
 <p>Grakn supports Graql-native, rule-based reasoning to allow automated capture and evolution of patterns within the graph. Graql reasoning is performed at query time and is guaranteed to be complete.</p>
 
 <p>The rule objects are instances of inference rule RuleType and assume the following general form:</p>
@@ -726,10 +720,11 @@ and associated pages
 <div class="highlighter-rouge"><pre class="highlight"><code>p :- q1, q2, ..., qn
 </code></pre>
 </div>
+
 <p>where p and q’s are atoms that each correspond to a single Graql pattern.</p>
 
 <h2 id="graql-rule-syntax">Graql Rule Syntax</h2>
-<p>In Graql we refer to the body and the head of the rule as the left-hand- and right-hand-side of the rule respectively. Therefore in Graql terms we define rule objects in the following way:</p>
+<p>In Graql we refer to the body of the rule as the left-hand-side of the rule and the head as the right-hand-side of the rule. Therefore in Graql terms we define rule objects in the following way:</p>
 
 <pre><code class="language-graql">$optional-name isa inference-rule,
 lhs {
@@ -744,7 +739,7 @@ rhs {
 
 <p>In Graql the left-hand-side of the rule is required to be a conjunctive pattern, whereas the right-hand-side should contain a single pattern.</p>
 
-<p>A classic reasoning example is the ancestor example: the two Graql rules R1 and R2 stated below define the ancestor relationship which can be understood as either happening between two generations directly between a parent and a child or between three generations when the first generation hop is expressed via a parentship relation whereas the second generation hop is captured by an ancestor relation.</p>
+<p>A classic reasoning example is the ancestor example: the two Graql rules R1 and R2 stated below define the ancestor relationship which can be understood as either happening between two generations directly between a parent and a child or between three generations when the first generation hop is expressed via a parentship relation and the second generation hop is captured by an ancestor relation.</p>
 
 <pre><code class="language-graql">$R1 isa inference-rule,
 lhs {
@@ -764,6 +759,8 @@ rhs {
 };
 </code></pre>
 
+<p>When adding rules such as those defined above with Graql, we simply use an <code class="highlighter-rouge">insert</code> statement, and load the rules, saved as a <em>.gql</em> file, into the graph in a standard manner, much as for an ontology.</p>
+
 <p>The above defined rules correspond to the following definition of Prolog/Datalog clauses:</p>
 
 <div class="highlighter-rouge"><pre class="highlight"><code>R1: ancestor(X, Y) :- parent(X, Y)  
@@ -778,7 +775,7 @@ R2: ancestor(X, Y) :- parent(X, Z), ancestor(Z, Y)
 </code></pre>
 </div>
 
-<p>Rule objects can be added to the graph both through the Graph API as well as through Graql. When adding rules with Graql we simply follow the Graql-defined rules with an insert statement, save as .gql file and load into graph in a standard manner. With the use of the Java API, the two rules constituting the ancestor example can be added in the following way:</p>
+<p>Rule objects can be added to the graph both through the Graph API as well as through Graql. With the use of the Java API, the two rules constituting the ancestor example can be added in the following way:</p>
 
 <div class="highlighter-rouge"><pre class="highlight"><code><span class="n">Pattern</span> <span class="n">r1Body</span> <span class="o">=</span> <span class="n">var</span><span class="o">().</span><span class="na">rel</span><span class="o">(</span><span class="s">"parent"</span><span class="o">,</span> <span class="s">"x"</span><span class="o">).</span><span class="na">rel</span><span class="o">(</span><span class="s">"child"</span><span class="o">,</span> <span class="s">"y"</span><span class="o">).</span><span class="na">isa</span><span class="o">(</span><span class="s">"Parent"</span><span class="o">);</span>
 <span class="n">Pattern</span> <span class="n">r1Head</span> <span class="o">=</span> <span class="n">var</span><span class="o">().</span><span class="na">rel</span><span class="o">(</span><span class="s">"ancestor"</span><span class="o">,</span> <span class="s">"x"</span><span class="o">).</span><span class="na">rel</span><span class="o">(</span><span class="s">"descendant"</span><span class="o">,</span> <span class="s">"y"</span><span class="o">).</span><span class="na">isa</span><span class="o">(</span><span class="s">"Ancestor"</span><span class="o">);</span>
@@ -795,9 +792,10 @@ R2: ancestor(X, Y) :- parent(X, Z), ancestor(Z, Y)
 </div>
 
 <h2 id="allowed-graql-constructs-in-rules">Allowed Graql Constructs in Rules</h2>
-<p>The tables below summarise Graql constructs that are allowed to appear in LHSs
-and RHSs of rules.
-### Queries</p>
+<p>The tables below summarise Graql constructs that are allowed to appear in LHS
+and RHS of rules.</p>
+
+<h3 id="queries">Queries</h3>
 
 <table>
   <thead>
@@ -839,50 +837,50 @@ and RHSs of rules.
   </thead>
   <tbody>
     <tr>
-      <td>isa</td>
-      <td style="text-align: left">$x isa pokemon;</td>
+      <td><code class="highlighter-rouge">isa</code></td>
+      <td style="text-align: left"><code class="highlighter-rouge">$x isa pokemon;</code></td>
       <td style="text-align: left">✓</td>
       <td style="text-align: left">x</td>
     </tr>
     <tr>
-      <td>id</td>
-      <td style="text-align: left">$x id “Articuno”;</td>
+      <td><code class="highlighter-rouge">id</code></td>
+      <td style="text-align: left"><code class="highlighter-rouge">$x id "Articuno";</code></td>
       <td style="text-align: left">✓</td>
       <td style="text-align: left">indirect only</td>
     </tr>
     <tr>
-      <td>value</td>
-      <td style="text-align: left">$x value contains “lightning”;</td>
+      <td><code class="highlighter-rouge">value</code></td>
+      <td style="text-align: left"><code class="highlighter-rouge">$x value contains "lightning";</code></td>
       <td style="text-align: left">✓</td>
       <td style="text-align: left">indirect only</td>
     </tr>
     <tr>
-      <td>has</td>
-      <td style="text-align: left">$x has pokedex-no &lt; 20;</td>
+      <td><code class="highlighter-rouge">has</code></td>
+      <td style="text-align: left"><code class="highlighter-rouge">$x has pokedex-no &lt; 20;</code></td>
       <td style="text-align: left">✓</td>
       <td style="text-align: left">✓</td>
     </tr>
     <tr>
-      <td>relations</td>
-      <td style="text-align: left">(ancestor: $x, descendant: $y) isa ancestorship;</td>
+      <td><code class="highlighter-rouge">relation</code></td>
+      <td style="text-align: left"><code class="highlighter-rouge">(ancestor: $x, descendant: $y) isa ancestorship;</code></td>
       <td style="text-align: left">✓</td>
       <td style="text-align: left">✓</td>
     </tr>
     <tr>
       <td>resource comparison</td>
-      <td style="text-align: left">$x value &gt; $y;</td>
+      <td style="text-align: left"><code class="highlighter-rouge">$x value &gt; $y;</code></td>
       <td style="text-align: left">✓</td>
       <td style="text-align: left">x</td>
     </tr>
     <tr>
-      <td>!=</td>
-      <td style="text-align: left">$x != $y;</td>
+      <td><code class="highlighter-rouge">!=</code></td>
+      <td style="text-align: left"><code class="highlighter-rouge">$x != $y;</code></td>
       <td style="text-align: left">✓</td>
       <td style="text-align: left">x</td>
     </tr>
     <tr>
-      <td>has-scope</td>
-      <td style="text-align: left">($x, $y) has-scope $z;$x has-scope $y;</td>
+      <td><code class="highlighter-rouge">has-scope</code></td>
+      <td style="text-align: left"><code class="highlighter-rouge">($x, $y) has-scope $z;$x has-scope $y;</code></td>
       <td style="text-align: left">✓</td>
       <td style="text-align: left">x</td>
     </tr>
@@ -902,44 +900,44 @@ and RHSs of rules.
   </thead>
   <tbody>
     <tr>
-      <td>sub</td>
-      <td style="text-align: left">$x sub type;</td>
+      <td><code class="highlighter-rouge">sub</code></td>
+      <td style="text-align: left"><code class="highlighter-rouge">$x sub type;</code></td>
       <td style="text-align: left">✓</td>
       <td style="text-align: left">x</td>
     </tr>
     <tr>
-      <td>plays-role</td>
-      <td style="text-align: left">$x plays-role ancestor;</td>
+      <td><code class="highlighter-rouge">plays-role</code></td>
+      <td style="text-align: left"><code class="highlighter-rouge">$x plays-role ancestor;</code></td>
       <td style="text-align: left">✓</td>
       <td style="text-align: left">x</td>
     </tr>
     <tr>
-      <td>has-resource</td>
-      <td style="text-align: left">$x has-resource name;</td>
+      <td><code class="highlighter-rouge">has-resource</code></td>
+      <td style="text-align: left"><code class="highlighter-rouge">$x has-resource name;</code></td>
       <td style="text-align: left">✓</td>
       <td style="text-align: left">x</td>
     </tr>
     <tr>
-      <td>has-role</td>
-      <td style="text-align: left">evolution has-role $x;</td>
+      <td><code class="highlighter-rouge">has-role</code></td>
+      <td style="text-align: left"><code class="highlighter-rouge">evolution has-role $x;</code></td>
       <td style="text-align: left">✓</td>
       <td style="text-align: left">x</td>
     </tr>
     <tr>
-      <td>is-abstract</td>
-      <td style="text-align: left">$x is-abstract;</td>
+      <td><code class="highlighter-rouge">is-abstract</code></td>
+      <td style="text-align: left"><code class="highlighter-rouge">$x is-abstract;</code></td>
       <td style="text-align: left">✓</td>
       <td style="text-align: left">x</td>
     </tr>
     <tr>
-      <td>datatype</td>
-      <td style="text-align: left">$x isa resource, datatype string;</td>
+      <td><code class="highlighter-rouge">datatype</code></td>
+      <td style="text-align: left"><code class="highlighter-rouge">$x isa resource, datatype string;</code></td>
       <td style="text-align: left">✓</td>
       <td style="text-align: left">x</td>
     </tr>
     <tr>
-      <td>regex</td>
-      <td style="text-align: left">$x isa resource, regex /hello/;</td>
+      <td><code class="highlighter-rouge">regex</code></td>
+      <td style="text-align: left"><code class="highlighter-rouge">$x isa resource, regex /hello/;</code></td>
       <td style="text-align: left">✓</td>
       <td style="text-align: left">x</td>
     </tr>
@@ -947,15 +945,14 @@ and RHSs of rules.
 </table>
 
 <h2 id="configuration-options">Configuration options</h2>
-<p>Graql offers certain degrees of freedom in deciding how and if reasoning should be performed
-Namely it offers two options:
-- whether reasoning should be on
-- whether inferred knowledge should be materialised (persisted).</p>
+<p>Graql offers certain degrees of freedom in deciding how and if reasoning should be performed. Namely it offers two options:</p>
 
-<p>The first option is self-explanatory. Without turning the reasoning on the rules will not be triggered and no knowledge will be inferred. The materialisation option decides whether the inferred knowledge should be persisted to the graph or stored in memory. This has huge impact on performance and for larger graphs either materialisation should be avoided or the queries
-should be limited by employing the <em>limit</em> modifier which allows termination in sensible time.</p>
+<ul>
+  <li><strong>whether reasoning should be on</strong>. This option is self-explanatory. If the reasoning is not turned on, the rules will not be triggered and no knowledge will be inferred.</li>
+  <li><strong>whether inferred knowledge should be materialised (persisted to the graph) or stored in memory</strong>. Persisting to graph has a huge impact on performance when compared to in-memory inference, and, for larger graphs, materialisation should either be avoided or queries be limited by employing the <em>limit</em> modifier, which allows termination in sensible time.</li>
+</ul>
 
-<p>The two settings can be controlled by providing suitable parameters to the QueryBuilder objects in the following way:</p>
+<p>In Java, the two settings can be controlled by providing suitable parameters to the <code class="highlighter-rouge">QueryBuilder</code> objects in the following way:</p>
 
 <h3 id="switching-reasoning-on">Switching reasoning on</h3>
 
@@ -971,8 +968,9 @@ QueryBuilder qb = graph.graql().infer(true).materialise(true);
 </code></pre>
 </div>
 
-<p>Once the QueryBuilder has been defined, the constructed queries will obey the specified reasoning variants.
-The table below summarises the available reasoning configuration options together with their defaults.</p>
+<p>Once the <code class="highlighter-rouge">QueryBuilder</code> has been defined, the constructed queries will obey the specified reasoning variants.</p>
+
+<p>The table below summarises the available reasoning configuration options together with their defaults.</p>
 
 <table>
   <thead>
@@ -984,14 +982,14 @@ The table below summarises the available reasoning configuration options togethe
   </thead>
   <tbody>
     <tr>
-      <td>QueryBuilder::infer(boolean )</td>
+      <td><code class="highlighter-rouge">QueryBuilder::infer(boolean)</code></td>
       <td style="text-align: left">controls whether reasoning should be turned on</td>
-      <td style="text-align: left">False/Off</td>
+      <td style="text-align: left">False=Off</td>
     </tr>
     <tr>
-      <td>QueryBuilder::materialise(boolean )</td>
+      <td><code class="highlighter-rouge">QueryBuilder::materialise(boolean)</code></td>
       <td style="text-align: left">controls whether inferred knowledge should be persisted to graph</td>
-      <td style="text-align: left">False/Off</td>
+      <td style="text-align: left">False=Off</td>
     </tr>
   </tbody>
 </table>
@@ -1039,7 +1037,7 @@ The table below summarises the available reasoning configuration options togethe
         <br>
         <p>© 2016 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2017 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> December 9th 2016<br/> Site last generated: Jan 10, 2017 <br />
+        <span>Page last updated:</span> January 2017<br/> Site last generated: Jan 12, 2017 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">

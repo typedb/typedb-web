@@ -356,6 +356,13 @@
             
             
             
+            <li><a href="/pages/documentation/graql/graql-rules.html">Graql Rules</a></li>
+            
+            
+            
+            
+            
+            
             <li><a href="/pages/documentation/graql/aggregate-queries.html">Aggregate Queries</a></li>
             
             
@@ -710,15 +717,14 @@ $('#toc').on('click', 'a', function() {
 
 <h3 id="adding-an-ontology">Adding an Ontology</h3>
 
-<p>We are going to add ontology concepts for some people, their notable events (when they are born, get married, have children, die) and relationships (children, parents, spouses).</p>
+<p>We are going to add some basic ontology concepts: entities, relations, roles and resources. Our example is very simple: a <code class="highlighter-rouge">person</code> entity with a resource named <code class="highlighter-rouge">identifier</code>, which is a string to hold the person’s name.</p>
 
-<p>Let’s add our first concepts: an <code class="highlighter-rouge">entity-type</code> named <code class="highlighter-rouge">person</code> that has a <code class="highlighter-rouge">resource-type</code> named <code class="highlighter-rouge">identifier</code>, which is a string to hold the person’s name. 
-Copy and paste the following into the Graql shell:</p>
+<p>Copy and paste the following into the Graql shell:</p>
 
 <pre><code class="language-graql">insert person sub entity, has-resource identifier; identifier sub resource, datatype string;
 </code></pre>
 
-<p>Now we will add a <code class="highlighter-rouge">relation-type</code>: a <code class="highlighter-rouge">marriage</code> which relates two <code class="highlighter-rouge">person</code> entity-types, one playing <code class="highlighter-rouge">role-type</code> of <code class="highlighter-rouge">spouse1</code> and the other playing the <code class="highlighter-rouge">role-type</code> of <code class="highlighter-rouge">spouse2</code>.  Only a <code class="highlighter-rouge">person</code> can take a role in the <code class="highlighter-rouge">marriage</code> (not a <code class="highlighter-rouge">car</code> or <code class="highlighter-rouge">dog</code> for example), so we also need to specify that to Grakn. Copy and paste each of the following lines into the Graql shell:</p>
+<p>Now we will add a relation: a <code class="highlighter-rouge">marriage</code> which relates two <code class="highlighter-rouge">person</code> entities, one playing the role <code class="highlighter-rouge">spouse1</code> and the other playing the role <code class="highlighter-rouge">spouse2</code>.  Only a <code class="highlighter-rouge">person</code> can take a role in the <code class="highlighter-rouge">marriage</code> (not a <code class="highlighter-rouge">car</code> or <code class="highlighter-rouge">dog</code> for example), so we also need to specify that to Grakn. Copy and paste each of the following lines into the Graql shell:</p>
 
 <pre><code class="language-graql">insert spouse1 sub role; spouse2 sub role; person plays-role spouse1; person plays-role spouse2;
 insert marriage sub relation, has-role spouse1, has-role spouse2, has-resource date; date sub resource datatype string;
@@ -761,9 +767,9 @@ commit
 
 <h3 id="loading-the-ontology-and-data-from-file">Loading the Ontology and Data from File</h3>
 
-<p>Above, was a quick overview to show the basics of making Graql queries on some basic data within the Graql shell. A more common use case is to load the ontology and data directly from <code class="highlighter-rouge">.gql</code> files into a graph instead of typing it all into the shell. You can find a good example of this in the <a href="./visualiser.html">Visualising a Graph</a> documentation, which takes our full genealogy data, loads it into a graph and explores it using the Grakn visualiser.</p>
+<p>Above, was a quick overview to show the basics of making Graql queries on some basic data within the Graql shell. It is much more common to load the ontology and data directly from <em>.gql</em> files into a graph instead of typing it all into the shell. You can find a good example of this in the <a href="./visualiser.html">Visualising a Graph</a> documentation, which takes our full genealogy data, loads it into a graph and explores it using the Grakn visualiser. Please see the <a href="../examples/examples.html">examples section</a> of this documentation for others.</p>
 
-<p>We shall move on to look at some of the other use cases that are typical for developers working with GRAKN.AI.</p>
+<p>We shall now move on to look briefly at some of the other use cases that are typical for developers working with GRAKN.AI.</p>
 
 <h2 id="data-migration">Data Migration</h2>
 
@@ -835,7 +841,7 @@ the rest of our developer documentation should be more in-depth! But, if you nee
         <br>
         <p>© 2016 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2017 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> December 2016<br/> Site last generated: Jan 10, 2017 <br />
+        <span>Page last updated:</span> December 2016<br/> Site last generated: Jan 12, 2017 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">
