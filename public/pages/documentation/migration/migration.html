@@ -709,7 +709,7 @@ $('#toc').on('click', 'a', function() {
 
 <h3 id="sql-migration">SQL Migration</h3>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>usage: migration.sh sql -template &lt;arg&gt; -driver &lt;arg&gt; -user &lt;arg&gt; -pass &lt;arg&gt; -location &lt;arg&gt; <span class="o">[</span>-help] <span class="o">[</span>-no] <span class="o">[</span>-batch &lt;arg&gt;] <span class="o">[</span>-keyspace &lt;arg&gt;] <span class="o">[</span>-uri &lt;arg&gt;] <span class="o">[</span>-v]
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>usage: migration.sh sql -template &lt;arg&gt; -driver &lt;arg&gt; -user &lt;arg&gt; -pass &lt;arg&gt; -location &lt;arg&gt; <span class="o">[</span>-help] <span class="o">[</span>-no] <span class="o">[</span>-batch &lt;arg&gt;] <span class="o">[</span>-keyspace &lt;arg&gt;] <span class="o">[</span>-uri &lt;arg&gt;] <span class="o">[</span>-v]
 
  -b,--batch &lt;arg&gt;      number of rows to load at once
  -driver &lt;arg&gt;         JDBC driver
@@ -730,7 +730,7 @@ $('#toc').on('click', 'a', function() {
 
 <h3 id="csv-migration">CSV Migration</h3>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>usage: ./migration.sh csv -template &lt;arg&gt; -input &lt;arg&gt; <span class="o">[</span>-help] <span class="o">[</span>-no] <span class="o">[</span>-separator &lt;arg&gt;] <span class="o">[</span>-batch &lt;arg&gt;] <span class="o">[</span>-uri &lt;arg&gt;] <span class="o">[</span>-keyspace &lt;arg&gt;] <span class="o">[</span>-v]
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>usage: ./migration.sh csv -template &lt;arg&gt; -input &lt;arg&gt; <span class="o">[</span>-help] <span class="o">[</span>-no] <span class="o">[</span>-separator &lt;arg&gt;] <span class="o">[</span>-batch &lt;arg&gt;] <span class="o">[</span>-uri &lt;arg&gt;] <span class="o">[</span>-keyspace &lt;arg&gt;] <span class="o">[</span>-v]
 
 OPTIONS
  -b,--batch &lt;arg&gt;       number of rows to load at once
@@ -749,7 +749,7 @@ OPTIONS
 
 <h3 id="json-migration">JSON Migration</h3>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>usage: migration.sh json -template &lt;arg&gt; -input &lt;arg&gt; <span class="o">[</span>-help] <span class="o">[</span>-no] <span class="o">[</span>-batch &lt;arg&gt;] <span class="o">[</span>-uri &lt;arg&gt;] <span class="o">[</span>-keyspace &lt;arg&gt;] <span class="o">[</span>-v]
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>usage: migration.sh json -template &lt;arg&gt; -input &lt;arg&gt; <span class="o">[</span>-help] <span class="o">[</span>-no] <span class="o">[</span>-batch &lt;arg&gt;] <span class="o">[</span>-uri &lt;arg&gt;] <span class="o">[</span>-keyspace &lt;arg&gt;] <span class="o">[</span>-v]
 
  -b,--batch &lt;arg&gt;      number of rows to load at once
  -h,--help             print usage message
@@ -766,7 +766,7 @@ OPTIONS
 
 <h3 id="owl-migration">OWL Migration</h3>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>usage: migration.sh owl -input &lt;arg&gt; <span class="o">[</span>-help] <span class="o">[</span>-no] <span class="o">[</span>-batch &lt;arg&gt;] <span class="o">[</span>-uri &lt;arg&gt;] <span class="o">[</span>-keyspace &lt;arg&gt;] <span class="o">[</span>-v]
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>usage: migration.sh owl -input &lt;arg&gt; <span class="o">[</span>-help] <span class="o">[</span>-no] <span class="o">[</span>-batch &lt;arg&gt;] <span class="o">[</span>-uri &lt;arg&gt;] <span class="o">[</span>-keyspace &lt;arg&gt;] <span class="o">[</span>-v]
 
  -b,--batch &lt;arg&gt;      number of rows to load at once
  -h,--help             print usage message
@@ -783,7 +783,7 @@ OPTIONS
 
 <h3 id="export-from-grakn">Export from Grakn</h3>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>usage: migration.sh <span class="nb">export</span> -data -ontology <span class="o">[</span>-help] <span class="o">[</span>-no] <span class="o">[</span>-batch &lt;arg&gt;] <span class="o">[</span>-uri &lt;arg&gt;] <span class="o">[</span>-keyspace &lt;arg&gt;]
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>usage: migration.sh <span class="nb">export</span> -data -ontology <span class="o">[</span>-help] <span class="o">[</span>-no] <span class="o">[</span>-batch &lt;arg&gt;] <span class="o">[</span>-uri &lt;arg&gt;] <span class="o">[</span>-keyspace &lt;arg&gt;]
  -data                 <span class="nb">export </span>data
  -ontology             <span class="nb">export </span>ontology
  -h,--help             print usage message

@@ -732,7 +732,7 @@ The colours used in the visualiser are as follows:
 
 <p>The first step is to load the ontology and data into Grakn. You need to use your terminal to do this, as the visualiser is a read-only interface to a graph. Start Grakn, and load the genealogy-graph ontology. Assuming you are working in the Grakn distribution folder, and have created a subfolder within it for the genealogy-graph example called <code class="highlighter-rouge">genealogy</code>, your call will look like this:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>./bin/grakn.sh start
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>./bin/grakn.sh start
 ./bin/graql.sh -f ./genealogy/ontology.gql -k <span class="s2">"family"</span>
 </code></pre>
 </div>
@@ -741,13 +741,13 @@ The colours used in the visualiser are as follows:
 
 <p>Then load in the data to the same keyspace</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>./bin/graql.sh -f ./genealogy/data.gql -k <span class="s2">"family"</span>
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>./bin/graql.sh -f ./genealogy/data.gql -k <span class="s2">"family"</span>
 </code></pre>
 </div>
 
 <p>You can test in the Graql shell that all has loaded correctly. For example:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>./bin/graql.sh -k family
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>./bin/graql.sh -k family
 match <span class="nv">$x</span> isa person, has identifier <span class="nv">$y</span>;
 </code></pre>
 </div>

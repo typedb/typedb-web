@@ -703,26 +703,26 @@ $('#toc').on('click', 'a', function() {
 
   <p>The Graql shell is contained in the <code class="highlighter-rouge">bin</code> folder. After starting the Grakn server, you can load data into a graph as follows:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>bin/graql.sh -f examples/pokemon.gql
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>bin/graql.sh -f examples/pokemon.gql
 </code></pre>
 </div>
 
 <p>Then you can enter a query and press enter for it to be evaluated:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">&gt;&gt;&gt; </span>match <span class="nv">$x</span> id <span class="s2">"Pikachu"</span>;
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">&gt;&gt;&gt; </span>match <span class="nv">$x</span> id <span class="s2">"Pikachu"</span>;
 <span class="nv">$x</span> id <span class="s2">"Pikachu"</span> isa pokemon;
 </code></pre>
 </div>
 
 <p>If you already have a graph loaded, you can just execute the shell without any parameters to open a REPL (Read Evaluate Print Loop):</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>bin/graql.sh
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>bin/graql.sh
 </code></pre>
 </div>
 
 <p>To load an additional graph into a different keyspace, that is, to load a graph with a different name to any already loaded, you can specify the graph name:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>./graql.sh -k &lt;graphname&gt;
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>./graql.sh -k &lt;graphname&gt;
 </code></pre>
 </div>
 
