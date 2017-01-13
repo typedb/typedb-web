@@ -97,7 +97,7 @@
 "tags": "migrationexamples",
 "keywords": "migration",
 "url": "/pages/documentation/examples/CSV-migration.html",
-"summary": "A short example to illustrate migration of CSV to Grakn"
+"summary": "An example to illustrate migration of CSV to Grakn"
 }
 
 
@@ -115,17 +115,6 @@
 
 ,
 {
-"title": "An Example of Migrating OWL to Grakn",
-"tags": "migrationexamples",
-"keywords": "migration",
-"url": "/pages/documentation/examples/OWL-migration.html",
-"summary": "A short example to illustrate migration of OWL to Grakn"
-}
-
-
-
-,
-{
 "title": "OWL Migration to Grakn",
 "tags": "migration",
 "keywords": "setup, getting started",
@@ -137,11 +126,11 @@
 
 ,
 {
-"title": "An Example of Migrating SQL to Grakn",
-"tags": "migrationexamplesjava",
+"title": "An Example of Migrating OWL to Grakn",
+"tags": "migrationexamples",
 "keywords": "migration",
-"url": "/pages/documentation/examples/SQL-migration.html",
-"summary": "A short example to illustrate migration of SQL to Grakn"
+"url": "/pages/documentation/examples/OWL-migration.html",
+"summary": "A short example to illustrate migration of OWL to Grakn"
 }
 
 
@@ -153,6 +142,17 @@
 "keywords": "setup, getting started",
 "url": "/pages/documentation/migration/SQL-migration.html",
 "summary": "This document will teach you how to migrate SQL data into Grakn."
+}
+
+
+
+,
+{
+"title": "An Example of Migrating SQL to Grakn",
+"tags": "migrationexamplesjava",
+"keywords": "migration",
+"url": "/pages/documentation/examples/SQL-migration.html",
+"summary": "A short example to illustrate migration of SQL to Grakn"
 }
 
 
@@ -474,6 +474,17 @@
 "keywords": "sample homepage",
 "url": "/pages/index",
 "summary": ""
+}
+
+
+
+,
+{
+"title": "An Example of Inference using GRAKN.AI",
+"tags": "reasonerexamples",
+"keywords": "migration",
+"url": "/pages/documentation/examples/inference.html",
+"summary": "An example to illustrate inference using genealogy data."
 }
 
 

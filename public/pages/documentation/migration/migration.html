@@ -196,7 +196,7 @@
 
 
 <ul id="mysidebar" class="nav">
-    <li class="sidebarTitle">Grakn 0.9</li>
+    <li class="sidebarTitle">Grakn 0.10.0</li>
     
     
     
@@ -608,21 +608,28 @@
             
             
             
-            <li><a href="/pages/documentation/examples/CSV-migration.html">CSV migration</a></li>
+            <li><a href="/pages/documentation/examples/CSV-migration.html">CSV Migration</a></li>
             
             
             
             
             
             
-            <li><a href="/pages/documentation/examples/SQL-migration.html">SQL migration</a></li>
+            <li><a href="/pages/documentation/examples/SQL-migration.html">SQL Migration</a></li>
             
             
             
             
             
             
-            <li><a href="/pages/documentation/examples/OWL-migration.html">OWL migration</a></li>
+            <li><a href="/pages/documentation/examples/OWL-migration.html">OWL Migration</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="/pages/documentation/examples/inference.html">Graql Rules</a></li>
             
             
             
@@ -709,7 +716,7 @@ $('#toc').on('click', 'a', function() {
 
 <h3 id="sql-migration">SQL Migration</h3>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>usage: migration.sh sql -template &lt;arg&gt; -driver &lt;arg&gt; -user &lt;arg&gt; -pass &lt;arg&gt; -location &lt;arg&gt; <span class="o">[</span>-help] <span class="o">[</span>-no] <span class="o">[</span>-batch &lt;arg&gt;] <span class="o">[</span>-keyspace &lt;arg&gt;] <span class="o">[</span>-uri &lt;arg&gt;] <span class="o">[</span>-v]
+<div class="highlighter-rouge"><pre class="highlight"><code>usage: migration.sh sql -template &lt;arg&gt; -driver &lt;arg&gt; -user &lt;arg&gt; -pass &lt;arg&gt; -location &lt;arg&gt; <span class="o">[</span>-help] <span class="o">[</span>-no] <span class="o">[</span>-batch &lt;arg&gt;] <span class="o">[</span>-keyspace &lt;arg&gt;] <span class="o">[</span>-uri &lt;arg&gt;] <span class="o">[</span>-v]
 
  -b,--batch &lt;arg&gt;      number of rows to load at once
  -driver &lt;arg&gt;         JDBC driver
@@ -730,7 +737,7 @@ $('#toc').on('click', 'a', function() {
 
 <h3 id="csv-migration">CSV Migration</h3>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>usage: ./migration.sh csv -template &lt;arg&gt; -input &lt;arg&gt; <span class="o">[</span>-help] <span class="o">[</span>-no] <span class="o">[</span>-separator &lt;arg&gt;] <span class="o">[</span>-batch &lt;arg&gt;] <span class="o">[</span>-uri &lt;arg&gt;] <span class="o">[</span>-keyspace &lt;arg&gt;] <span class="o">[</span>-v]
+<div class="highlighter-rouge"><pre class="highlight"><code>usage: ./migration.sh csv -template &lt;arg&gt; -input &lt;arg&gt; <span class="o">[</span>-help] <span class="o">[</span>-no] <span class="o">[</span>-separator &lt;arg&gt;] <span class="o">[</span>-batch &lt;arg&gt;] <span class="o">[</span>-uri &lt;arg&gt;] <span class="o">[</span>-keyspace &lt;arg&gt;] <span class="o">[</span>-v]
 
 OPTIONS
  -b,--batch &lt;arg&gt;       number of rows to load at once
@@ -749,7 +756,7 @@ OPTIONS
 
 <h3 id="json-migration">JSON Migration</h3>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>usage: migration.sh json -template &lt;arg&gt; -input &lt;arg&gt; <span class="o">[</span>-help] <span class="o">[</span>-no] <span class="o">[</span>-batch &lt;arg&gt;] <span class="o">[</span>-uri &lt;arg&gt;] <span class="o">[</span>-keyspace &lt;arg&gt;] <span class="o">[</span>-v]
+<div class="highlighter-rouge"><pre class="highlight"><code>usage: migration.sh json -template &lt;arg&gt; -input &lt;arg&gt; <span class="o">[</span>-help] <span class="o">[</span>-no] <span class="o">[</span>-batch &lt;arg&gt;] <span class="o">[</span>-uri &lt;arg&gt;] <span class="o">[</span>-keyspace &lt;arg&gt;] <span class="o">[</span>-v]
 
  -b,--batch &lt;arg&gt;      number of rows to load at once
  -h,--help             print usage message
@@ -766,7 +773,7 @@ OPTIONS
 
 <h3 id="owl-migration">OWL Migration</h3>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>usage: migration.sh owl -input &lt;arg&gt; <span class="o">[</span>-help] <span class="o">[</span>-no] <span class="o">[</span>-batch &lt;arg&gt;] <span class="o">[</span>-uri &lt;arg&gt;] <span class="o">[</span>-keyspace &lt;arg&gt;] <span class="o">[</span>-v]
+<div class="highlighter-rouge"><pre class="highlight"><code>usage: migration.sh owl -input &lt;arg&gt; <span class="o">[</span>-help] <span class="o">[</span>-no] <span class="o">[</span>-batch &lt;arg&gt;] <span class="o">[</span>-uri &lt;arg&gt;] <span class="o">[</span>-keyspace &lt;arg&gt;] <span class="o">[</span>-v]
 
  -b,--batch &lt;arg&gt;      number of rows to load at once
  -h,--help             print usage message
@@ -783,7 +790,7 @@ OPTIONS
 
 <h3 id="export-from-grakn">Export from Grakn</h3>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>usage: migration.sh <span class="nb">export</span> -data -ontology <span class="o">[</span>-help] <span class="o">[</span>-no] <span class="o">[</span>-batch &lt;arg&gt;] <span class="o">[</span>-uri &lt;arg&gt;] <span class="o">[</span>-keyspace &lt;arg&gt;]
+<div class="highlighter-rouge"><pre class="highlight"><code>usage: migration.sh <span class="nb">export</span> -data -ontology <span class="o">[</span>-help] <span class="o">[</span>-no] <span class="o">[</span>-batch &lt;arg&gt;] <span class="o">[</span>-uri &lt;arg&gt;] <span class="o">[</span>-keyspace &lt;arg&gt;]
  -data                 <span class="nb">export </span>data
  -ontology             <span class="nb">export </span>ontology
  -h,--help             print usage message
@@ -847,7 +854,7 @@ OPTIONS
         <br>
         <p>© 2016 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2017 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> August 10, 2016<br/> Site last generated: Jan 12, 2017 <br />
+        <span>Page last updated:</span> August 10, 2016<br/> Site last generated: Jan 13, 2017 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">

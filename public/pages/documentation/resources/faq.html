@@ -196,7 +196,7 @@
 
 
 <ul id="mysidebar" class="nav">
-    <li class="sidebarTitle">Grakn 0.9</li>
+    <li class="sidebarTitle">Grakn 0.10.0</li>
     
     
     
@@ -608,21 +608,28 @@
             
             
             
-            <li><a href="/pages/documentation/examples/CSV-migration.html">CSV migration</a></li>
+            <li><a href="/pages/documentation/examples/CSV-migration.html">CSV Migration</a></li>
             
             
             
             
             
             
-            <li><a href="/pages/documentation/examples/SQL-migration.html">SQL migration</a></li>
+            <li><a href="/pages/documentation/examples/SQL-migration.html">SQL Migration</a></li>
             
             
             
             
             
             
-            <li><a href="/pages/documentation/examples/OWL-migration.html">OWL migration</a></li>
+            <li><a href="/pages/documentation/examples/OWL-migration.html">OWL Migration</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="/pages/documentation/examples/inference.html">Graql Rules</a></li>
             
             
             
@@ -751,20 +758,20 @@ this by setting the <code class="highlighter-rouge">checkInternalVertexExistence
 
 <p>There are several ways to load data into Grakn. For small amounts of data (&lt;1000 lines), you an load it directly via the Graql shell. For example, the following loads up the an example file called <code class="highlighter-rouge">family-data.gql</code>:</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>bin/graql.sh -f examples/family-data
+<div class="highlighter-rouge"><pre class="highlight"><code>bin/graql.sh -f examples/family-data
 .gql
 </code></pre>
 </div>
 
 <p>If you have a larger file, you will need to batch load it. The file will be divided in batches that will be committed concurrently. This differs from a regular load, where the whole file is committed in a single chunk when you call commit. See the example below, which loads the Graql file FILENAME.gql, from PATH.</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>bin/graql.sh -b PATH/FILENAME.gql
+<div class="highlighter-rouge"><pre class="highlight"><code>bin/graql.sh -b PATH/FILENAME.gql
 </code></pre>
 </div>
 
 <p>In order to check the status of the loading, you can open a new terminal window, navigate to the logs directory of your Grakn installation and run the command:</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>tail -f grakn.log
+<div class="highlighter-rouge"><pre class="highlight"><code>tail -f grakn.log
 </code></pre>
 </div>
 
@@ -787,14 +794,14 @@ this by setting the <code class="highlighter-rouge">checkInternalVertexExistence
 
 <p>Specifically you should change the following parameters:</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="c"># Host Location</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="c"># Host Location</span>
 storage.hostname<span class="o">=</span>127.0.0.1
 </code></pre>
 </div>
 
 <p>You can also, for example, add the following to specify a custom port:</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>storage.port <span class="o">=</span> 1234
+<div class="highlighter-rouge"><pre class="highlight"><code>storage.port <span class="o">=</span> 1234
 </code></pre>
 </div>
 
@@ -810,7 +817,7 @@ storage.hostname<span class="o">=</span>127.0.0.1
 
 <p>Once you have started Grakn, you will see a message in the console:</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>Started ServerConnector@7aa5814d<span class="o">{</span>HTTP/1.1,[http/1.1]<span class="o">}{</span>0.0.0.0:4567<span class="o">}</span>
+<div class="highlighter-rouge"><pre class="highlight"><code>Started ServerConnector@7aa5814d<span class="o">{</span>HTTP/1.1,[http/1.1]<span class="o">}{</span>0.0.0.0:4567<span class="o">}</span>
 </code></pre>
 </div>
 
@@ -835,7 +842,7 @@ graph.clear();
 
 <p>If you’ve committed, then you must currently remove your installation and re-create it.  First, call</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>pkill -9 java
+<div class="highlighter-rouge"><pre class="highlight"><code>pkill -9 java
 </code></pre>
 </div>
 
@@ -892,7 +899,7 @@ graph.clear();
         <br>
         <p>© 2016 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2017 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> September 22, 2016<br/> Site last generated: Jan 12, 2017 <br />
+        <span>Page last updated:</span> September 22, 2016<br/> Site last generated: Jan 13, 2017 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">

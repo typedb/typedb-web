@@ -68,25 +68,25 @@
   
   
   <url>
-    <loc>http://grakn.ai/pages//documentation/examples/OWL-migration.html</loc>
-  </url>
-  
-  
-  
-  <url>
     <loc>http://grakn.ai/pages//documentation/migration/OWL-migration.html</loc>
   </url>
   
   
   
   <url>
-    <loc>http://grakn.ai/pages//documentation/examples/SQL-migration.html</loc>
+    <loc>http://grakn.ai/pages//documentation/examples/OWL-migration.html</loc>
   </url>
   
   
   
   <url>
     <loc>http://grakn.ai/pages//documentation/migration/SQL-migration.html</loc>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://grakn.ai/pages//documentation/examples/SQL-migration.html</loc>
   </url>
   
   
@@ -263,6 +263,12 @@
   
   <url>
     <loc>http://grakn.ai/pages//index</loc>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://grakn.ai/pages//documentation/examples/inference.html</loc>
   </url>
   
   

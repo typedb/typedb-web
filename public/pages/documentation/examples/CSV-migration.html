@@ -3,7 +3,7 @@
     <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="A short example to illustrate migration of CSV to Grakn">
+<meta name="description" content="An example to illustrate migration of CSV to Grakn">
 <meta name="keywords" content="migrationexamples,  migration, GRAKN.AI, Grakn Labs, grakn, graql, grakn.ai, Mindmaps Research, Mindmaps Research Ltd, MindmapsDB, mindmaps, mindmaps graph, mindmaps.io, knowledge graph, distributed knowledge graph, development platform, developer tool, data platform, programming langauge, query langauge, database, semantic database, distributed semantic database, distributed database, graph database, semantic search, data exploration, recommendation system, knowledge management, knowledge engineering, real-time analytics, advanced analytics, reasoning engine, inference engine, expert systems, semantic applications, research engines, data management, business intelligence, big data, semantic web, semantic data, knowledge representation, automated reasoning, semantic network, knowledge ontology, semantic graph, ontology engineering, graph based knowledge representation, artificial intelligence,">
 <title>GRAKN.AI | An Example of Migrating CSV to Grakn</title>
 <link rel="stylesheet" href="/pages/css/syntax.css">
@@ -196,7 +196,7 @@
 
 
 <ul id="mysidebar" class="nav">
-    <li class="sidebarTitle">Grakn 0.9</li>
+    <li class="sidebarTitle">Grakn 0.10.0</li>
     
     
     
@@ -608,21 +608,28 @@
             
             
             
-            <li class="active"><a href="/pages/documentation/examples/CSV-migration.html">CSV migration</a></li>
+            <li class="active"><a href="/pages/documentation/examples/CSV-migration.html">CSV Migration</a></li>
             
             
             
             
             
             
-            <li><a href="/pages/documentation/examples/SQL-migration.html">SQL migration</a></li>
+            <li><a href="/pages/documentation/examples/SQL-migration.html">SQL Migration</a></li>
             
             
             
             
             
             
-            <li><a href="/pages/documentation/examples/OWL-migration.html">OWL migration</a></li>
+            <li><a href="/pages/documentation/examples/OWL-migration.html">OWL Migration</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="/pages/documentation/examples/inference.html">Graql Rules</a></li>
             
             
             
@@ -663,7 +670,7 @@
 <div class="post-content">
 
    
-    <div class="summary">A short example to illustrate migration of CSV to Grakn</div>
+    <div class="summary">An example to illustrate migration of CSV to Grakn</div>
    
 
     
@@ -707,11 +714,11 @@ $('#toc').on('click', 'a', function() {
 
 <p>As the blog post explains, the original data was a <a href="http://www.lenzenresearch.com/titusnarrlineage.pdf">document</a> from <a href="http://www.lenzenresearch.com/">Lenzen Research</a> that described the family history of Catherine Niesz Titus for three generations of her maternal lineage.</p>
 
-<p>In this example, we will walk through how to migrate the CSV data into Grakn, and confirm that we have succeeded using the visualiser and Graql shell to check that we can make some sample queries.</p>
+<p>In this example, we will walk through how to migrate the CSV data into Grakn, and confirm that we have succeeded using the Grakn visualiser.</p>
 
 <h2 id="genealogy-data">Genealogy Data</h2>
 
-<p>The data for this example can be found as a set of CSV files in Grakn’s <a href="https://github.com/graknlabs/sample-datasets">sample-datasets</a> repository on Github. The data was put together by our team from narrative information gleaned from the original Lenzen Research <a href="http://www.lenzenresearch.com/titusnarrlineage.pdf">document</a>, with some minor additions to facilitate some interesting queries for Grakn’s reasoner.</p>
+<p>The data for this example can be found as a set of CSV files in Grakn’s <a href="https://github.com/graknlabs/sample-datasets">sample-datasets</a> repository on Github. The data was put together by our team from narrative information gleaned from the original Lenzen Research <a href="http://www.lenzenresearch.com/titusnarrlineage.pdf">document</a>, with some minor additions to generate some interesting queries for Grakn’s reasoner.</p>
 
 <p>Let’s take a look at the <em>raw-data</em> directory in the <a href="https://github.com/graknlabs/sample-datasets/tree/master/genealogy-graph">genealogy-graph repo</a>, which contains five CSV files. These files were put together by hand by our team, mostly by <a href="https://blog.grakn.ai/@doctormiko">Michelangelo</a>.</p>
 
@@ -757,7 +764,7 @@ $('#toc').on('click', 'a', function() {
 
 <p>So, for this migration example, we will instead use <em>basic-ontology.gql</em>, which is also on the sample-datasets repository. It is a simplified ontology which represents the data imported from the CSV files described above.</p>
 
-<h3 id="entities">Entities</h3>
+<h3 id="entities-and-resources">Entities and Resources</h3>
 
 <p>The ontology contains the following entities:</p>
 
@@ -790,26 +797,29 @@ $('#toc').on('click', 'a', function() {
  		- <code class="highlighter-rouge">notes</code></li>
 </ul>
 
-<p>The ontology also contains the relationships between the entities, namely:</p>
+<h3 id="relations-and-roles">Relations and Roles</h3>
+
+<p>The ontology also describes the relations between entities, namely:</p>
 
 <ul>
-  <li>the <code class="highlighter-rouge">event-protagonist</code> relationship
-      - Has a resource <code class="highlighter-rouge">function</code> (which is of datatype string and indicate newborn, spouse, parent or deceased).
-      - Has two associated roles: <code class="highlighter-rouge">happening</code> (played by an <code class="highlighter-rouge">event</code> entity such as a <code class="highlighter-rouge">birth</code> or <code class="highlighter-rouge">wedding</code>) and <code class="highlighter-rouge">protagonist</code> (played by a <code class="highlighter-rouge">person</code> entity)</li>
+  <li>
+    <p>the <code class="highlighter-rouge">event-protagonist</code> relation, which links events to people 
+      - The role of the person in the event is described by a resource named <code class="highlighter-rouge">function</code> (which is of datatype string and indicate newborn, spouse, parent or deceased).
+      - Has two associated roles: <code class="highlighter-rouge">happening</code> (played by an <code class="highlighter-rouge">event</code> entity such as a <code class="highlighter-rouge">birth</code> or <code class="highlighter-rouge">wedding</code>) and <code class="highlighter-rouge">protagonist</code> (played by a <code class="highlighter-rouge">person</code> entity)</p>
+  </li>
+  <li>
+    <p>the <code class="highlighter-rouge">conclusion-evidence</code> relation, which links documentary evidence to an event
+      - Has two associated roles <code class="highlighter-rouge">evidence</code> (played by a <code class="highlighter-rouge">document</code>) and <code class="highlighter-rouge">conclusion</code> (played by an event such as a <code class="highlighter-rouge">wedding</code>).</p>
+  </li>
 </ul>
 
-<p>Finally, there is another relationship, which is between <code class="highlighter-rouge">document</code> and <code class="highlighter-rouge">event</code> entities:</p>
-
-<ul>
-  <li>conclusion-evidence relationship
-      - Has two associated roles <code class="highlighter-rouge">evidence</code> (played by a <code class="highlighter-rouge">document</code>) and <code class="highlighter-rouge">conclusion</code> (played by an event such as a <code class="highlighter-rouge">wedding</code>).</li>
-</ul>
+<p>Note that in this example, no relations between <code class="highlighter-rouge">person</code> entities are described. The inference of such family relationships is discussed fully in a separate example that covers <a href="./inference.html">inference using the Grakn reasoner</a>.</p>
 
 <p>To load <em>basic-ontology.gql</em> into Grakn, make sure the engine is running and choose a clean keyspace in which to work (in the example below we use the default keyspace, so we are cleaning it before we get started). Pull down the <a href="https://github.com/graknlabs/sample-datasets">sample-datasets repo</a>, and call the following from the terminal, from within the <em>genealogy-graph</em> directory:</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>&lt;location-of-Grakn-on-your-computer&gt;/bin/grakn.sh clean
-&lt;location-of-Grakn-on-your-computer&gt;/bin/grakn.sh start
-&lt;location-of-Grakn-on-your-computer&gt;/bin/graql.sh -f ./basic-ontology.gql
+<div class="highlighter-rouge"><pre class="highlight"><code>&lt;relative-path-to-Grakn&gt;/bin/grakn.sh clean
+&lt;relative-path-to-Grakn&gt;/bin/grakn.sh start
+&lt;relative-path-to-Grakn&gt;/bin/graql.sh -f ./basic-ontology.gql
 </code></pre>
 </div>
 
@@ -1003,7 +1013,7 @@ insert isa conclusion-evidence (evidence: $d0, conclusion: $e0);
 
 <p>However, for simplicity, the <em>/raw-data/</em> directory of the genealogy-graph project contains a script called <em>loader.sh</em> that calls each migration script in turn, so you can simply call the script from the terminal, from within the genealogy-graph directory, passing in the path to the Grakn <em>/bin/</em> directory.</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code> ./loader.sh &lt;location-of-Grakn-on-your-computer&gt;/bin
+<div class="highlighter-rouge"><pre class="highlight"><code> ./loader.sh &lt;location-of-Grakn-on-your-computer&gt;/bin
 </code></pre>
 </div>
 
@@ -1064,7 +1074,7 @@ insert isa conclusion-evidence (evidence: $d0, conclusion: $e0);
         <br>
         <p>© 2016 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2017 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> January 2017<br/> Site last generated: Jan 12, 2017 <br />
+        <span>Page last updated:</span> January 2017<br/> Site last generated: Jan 13, 2017 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">
