@@ -3,9 +3,9 @@
     <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="An example to illustrate inference using genealogy data.">
-<meta name="keywords" content="reasonerexamples,  migration, GRAKN.AI, Grakn Labs, grakn, graql, grakn.ai, Mindmaps Research, Mindmaps Research Ltd, MindmapsDB, mindmaps, mindmaps graph, mindmaps.io, knowledge graph, distributed knowledge graph, development platform, developer tool, data platform, programming langauge, query langauge, database, semantic database, distributed semantic database, distributed database, graph database, semantic search, data exploration, recommendation system, knowledge management, knowledge engineering, real-time analytics, advanced analytics, reasoning engine, inference engine, expert systems, semantic applications, research engines, data management, business intelligence, big data, semantic web, semantic data, knowledge representation, automated reasoning, semantic network, knowledge ontology, semantic graph, ontology engineering, graph based knowledge representation, artificial intelligence,">
-<title>GRAKN.AI | An Example of Inference using GRAKN.AI</title>
+<meta name="description" content="An introduction to Graql">
+<meta name="keywords" content="graql,  graql, overview, GRAKN.AI, Grakn Labs, grakn, graql, grakn.ai, Mindmaps Research, Mindmaps Research Ltd, MindmapsDB, mindmaps, mindmaps graph, mindmaps.io, knowledge graph, distributed knowledge graph, development platform, developer tool, data platform, programming langauge, query langauge, database, semantic database, distributed semantic database, distributed database, graph database, semantic search, data exploration, recommendation system, knowledge management, knowledge engineering, real-time analytics, advanced analytics, reasoning engine, inference engine, expert systems, semantic applications, research engines, data management, business intelligence, big data, semantic web, semantic data, knowledge representation, automated reasoning, semantic network, knowledge ontology, semantic graph, ontology engineering, graph based knowledge representation, artificial intelligence,">
+<title>GRAKN.AI | Graql Overview</title>
 <link rel="stylesheet" href="/pages/css/syntax.css">
 
 
@@ -163,7 +163,7 @@
                             
                             dataSource: '/pages/search.json',
                             
-                            searchResultTemplate: '<li><a href="{url}" title="An Example of Inference using GRAKN.AI">{title}</a></li>',
+                            searchResultTemplate: '<li><a href="{url}" title="Graql Overview">{title}</a></li>',
                             noResultsText: '<li><a class="empty">No results found</a></li>',
                             limit: 10,
                             fuzzy: true
@@ -285,7 +285,7 @@
             
             
             
-            <li><a href="/pages/documentation/building-an-ontology/overview.html">Overview (deprecated)</a></li>
+            <li><a href="/pages/documentation/building-an-ontology/ontology-overview.html">Overview (deprecated)</a></li>
             
             
             
@@ -314,7 +314,7 @@
             
             
             
-            <li><a href="/pages/documentation/graql/overview.html">Overview</a></li>
+            <li class="active"><a href="/pages/documentation/graql/graql-overview.html">Overview</a></li>
             
             
             
@@ -399,7 +399,7 @@
             
             
             
-            <li><a href="/pages/documentation/graql-analytics/analytics-overview.html">Graql Analytics Overview</a></li>
+            <li><a href="/pages/documentation/graql-analytics/analytics-overview.html">Overview</a></li>
             
             
             
@@ -449,7 +449,7 @@
             
             
             
-            <li><a href="/pages/documentation/migration/migration.html">Migrating to Grakn</a></li>
+            <li><a href="/pages/documentation/migration/migration-overview.html">Overview</a></li>
             
             
             
@@ -558,7 +558,7 @@
             
             
             
-            <li><a href="/pages/documentation/resources/resources.html">Resources</a></li>
+            <li><a href="/pages/documentation/resources/resources-overview.html">Overview</a></li>
             
             
             
@@ -594,7 +594,7 @@
             
             
             
-            <li><a href="/pages/documentation/examples/examples.html">Examples</a></li>
+            <li><a href="/pages/documentation/examples/examples-overview.html">Overview</a></li>
             
             
             
@@ -629,7 +629,7 @@
             
             
             
-            <li class="active"><a href="/pages/documentation/examples/inference.html">Graql Rules</a></li>
+            <li><a href="/pages/documentation/examples/grakn-reasoner.html">Grakn Reasoner</a></li>
             
             
             
@@ -662,7 +662,7 @@
         <!-- Content Column -->
         <div class="col-md-9">
             <div class="post-header">
-   <h1 class="post-title-main">An Example of Inference using GRAKN.AI</h1>
+   <h1 class="post-title-main">Graql Overview</h1>
 </div>
 
 
@@ -670,7 +670,7 @@
 <div class="post-content">
 
    
-    <div class="summary">An example to illustrate inference using genealogy data.</div>
+    <div class="summary">An introduction to Graql</div>
    
 
     
@@ -702,251 +702,29 @@ $('#toc').on('click', 'a', function() {
 
     
 
-    <a target="_blank" href="https://github.com/graknlabs/docs/blob/master/pages/documentation/10-examples/inference.md" class="btn btn-default githubEditButton" role="button"><i class="fa fa-github fa-lg"></i> Edit me</a>
+    <a target="_blank" href="https://github.com/graknlabs/docs/blob/master/pages/documentation/4-querying-with-graql/graql-overview.md" class="btn btn-default githubEditButton" role="button"><i class="fa fa-github fa-lg"></i> Edit me</a>
 
     
 
     
 
-  <h2 id="introduction">Introduction</h2>
+  <p>Graql allows you to query a graph in a declarative, pattern matching fashion.</p>
 
-<p>This is an example of using Grakn’s reasoner to infer information about family relationships from a simple dataset of genealogy data. The data has been used previously as the basis of a <a href="https://blog.grakn.ai/family-matters-1bb639396a24#.2e6h72y0m">blog post</a> to illustrate the fundamentals of the Grakn visualiser, reasoner and analytics components.</p>
+<p>You can execute Graql in the <a href="graql-shell.html">Graql Shell</a> or using <a href="../developing-with-java/java-graql.html">Java
+Graql</a>.</p>
 
-<p>As the blog post explained, the original data was a <a href="http://www.lenzenresearch.com/titusnarrlineage.pdf">document</a> from <a href="http://www.lenzenresearch.com/">Lenzen Research</a> that described the family history of Catherine Niesz Titus for three generations of her maternal lineage. Our team gathered together a set of CSV files containing basic information about the family, such as names, dates of birth, death and marriage, who was a parent of who, and who married who.</p>
+<h2 id="query-types">Query types</h2>
 
-<p>The full genealogy-graph example can be found on Grakn’s <a href="https://github.com/graknlabs/sample-datasets/tree/master/genealogy-graph">sample-datasets</a>. repository on Github. In this example, we will explore how to use Grakn to make inferences and find information from the data that is not explicit in the dataset.</p>
+<p>There are four types of queries, which are begun with the follow keywords:<br />
+- <a href="match-queries.html">match</a> - for matching patterns in the graph<br />
+- <a href="ask-queries.html">ask</a> - for querying if certain patterns exist in the graph<br />
+- <a href="insert-queries.html">insert</a> - for inserting types and instances<br />
+- <a href="delete-queries.html">delete</a> - for deleting types and instances  <br />
+- <a href="compute-queries.html">compute</a> - for computing useful information about your graph</p>
 
-<h2 id="example-ontology">Example Ontology</h2>
+<h2 id="cheatsheet-reference">Cheatsheet reference</h2>
+<p>If you are already familiar with Graql, you may find our <a href="graql-cheatsheet.html">cheatsheet reference</a> a helpful page to bookmark or print out!</p>
 
-<p>On GRAKN.AI, the first step when working with a dataset is to define its ontology in Graql. The ontology is a way to describe the entities and their relations, so the underlying graph can store them as nodes and edges. You can find out more in our guide to the Grakn Knowledge Model. The ontology allows Grakn to perform:</p>
-
-<ul>
-  <li>logical reasoning over the represented knowledge, such as the extraction of implicit information from explicit data (inference)</li>
-  <li>discovery of inconsistencies in the data (validation).</li>
-</ul>
-
-<p>The complete ontology for the genealogy-graph demo is in our sample-datasets repository, named <a href="https://github.com/graknlabs/sample-datasets/blob/master/genealogy-graph/ontology.gql">ontology.gql</a>.</p>
-
-<p>At a very high-level, the ontology contains the following entities:</p>
-
-<ul>
-  <li><code class="highlighter-rouge">person</code></li>
-  <li><code class="highlighter-rouge">event</code>
-    <ul>
-      <li><code class="highlighter-rouge">birth</code>, a subclass of an <code class="highlighter-rouge">event</code></li>
-      <li><code class="highlighter-rouge">death</code>, a subclass of an <code class="highlighter-rouge">event</code></li>
-      <li><code class="highlighter-rouge">wedding</code>, a subclass of an <code class="highlighter-rouge">event</code></li>
-    </ul>
-  </li>
-  <li><code class="highlighter-rouge">document</code>, which we will not consider in this example.</li>
-</ul>
-
-<p>The ontology also describes possible family relationships between <code class="highlighter-rouge">person</code> entities, such as parent/child, siblings, grandparent/grandchild, which will discuss shortly.</p>
-
-<p>In addition, there is an <code class="highlighter-rouge">event-protagonist</code> relation:</p>
-
-<ul>
-  <li>The role of the person in the event is described by a resource named <code class="highlighter-rouge">function</code> (which is of datatype string to indicate newborn, spouse, parent or deceased).</li>
-  <li>The relation two associated roles: <code class="highlighter-rouge">happening</code> (played by an <code class="highlighter-rouge">event</code> entity such as a <code class="highlighter-rouge">birth</code> or <code class="highlighter-rouge">wedding</code>) and <code class="highlighter-rouge">protagonist</code> (played by a <code class="highlighter-rouge">person</code> entity)</li>
-</ul>
-
-<p>Finally, there is another relation, which is between <code class="highlighter-rouge">document</code> and <code class="highlighter-rouge">event</code> entities, the <code class="highlighter-rouge">conclusion-evidence</code> relation, which we will not consider in this example, as it is not relevant to the concepts we are discussing.</p>
-
-<p>To load the <em>ontology.gql</em> file into Grakn, make sure the engine is running and choose a clean keyspace in which to work (in the example below we use the default keyspace, so we are cleaning it before we get started). Pull down the <a href="https://github.com/graknlabs/sample-datasets">sample-datasets repo</a>, and call the following from the terminal, from within the <em>genealogy-graph</em> directory:</p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code>&lt;relative-path-to-Grakn&gt;/bin/grakn.sh clean
-&lt;relative-path-to-Grakn&gt;/bin/grakn.sh start
-&lt;relative-path-to-Grakn&gt;/bin/graql.sh -f ./ontology.gql
-</code></pre>
-</div>
-
-<h2 id="data">Data</h2>
-
-<p>The data for this example is discussed more fully in our <a href="./CSV-migration.html">example on CSV migration</a>, which discusses how the original data is laid out in CSV files and migrated into GRAKN.AI. For the purposes of this example, we can simply load the data from a .gql file into the graph:</p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code>&lt;relative-path-to-Grakn&gt;/bin/graql.sh -f ./data.gql
-</code></pre>
-</div>
-
-<p>When the terminal prompt returns, the data will have been loaded into the default keyspace, and you can start to look it using the <a href="../the-basics/visualiser.html">Grakn visualiser</a>, by navigating to <a href="http://localhost:4567">http://localhost:4567</a> in your browser.</p>
-
-<h2 id="inferring-family-relations">Inferring Family Relations</h2>
-
-<p>By default, inference is switched off, and the only data in the graph is what we have loaded, which is a set of people, event and document entities and a set of relations between people/events and documents/events. For example, if you submit the following query to the visualiser:</p>
-
-<pre><code class="language-graql">match (child: $x, parent: $y) isa parentship;
-</code></pre>
-
-<p>You will receive no results at all. To find family relations between people, we need to:</p>
-
-<ul>
-  <li>Load a set of rules for the reasoner, which we will discuss further shortly</li>
-  <li>Activate inference.</li>
-</ul>
-
-<p>The following loads the rules for this dataset from a file called <em>rules.gql</em>:</p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code>&lt;relative-path-to-Grakn&gt;/bin/graql.sh -f ./rules.gql
-</code></pre>
-</div>
-
-<p>To activate inference in the Grakn visualiser you need to open the Config settings, found on the left hand side of the screen. When the page opens you will see the “Activate Inference” checkbox. Check it, and Grakn is ready to start building some new information about the family. Try the query again:</p>
-
-<pre><code class="language-graql">match (child: $x, parent: $y) isa parentship;
-</code></pre>
-
-<p>You should see something similar to the screenshot below in your visualiser window.</p>
-
-<p><img src="/images/match-isa-parentship.png" alt="Person query" /></p>
-
-<h2 id="inference-rules">Inference Rules</h2>
-
-<p>Inference is the process of deducing information from incomplete data. For example, given the following statements:</p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code>If grass is not an animal.
-If vegetarians only eat things which are not animals.
-If sheep only eat grass.
-</code></pre>
-</div>
-
-<p>It is possible to infer the following:</p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code>Then sheep are vegetarians.
-</code></pre>
-</div>
-
-<p>The initial statements can be seen as a set of rules with a particular structure: IF something is verified, THEN something else must be true.</p>
-
-<p>This is how the Grakn reasoner works. It checks all whether the rules in the first block can be verified and, if they can, infers the statement in the second block. The rules are written in Graql, and we call the first set of statements (the IF part or, if you prefer, the antecedent) simply the left hand side (LHS). The second part, not surprisingly, is the right hand side (RHS). Using Graql, both sides of the rule are enclosed in curly braces and preceded by, respectively, the keywords <code class="highlighter-rouge">lhs</code> and <code class="highlighter-rouge">rhs</code>.</p>
-
-<h3 id="example-1-a-parentship-relation">Example 1: A <code class="highlighter-rouge">parentship</code> relation</h3>
-
-<p>The following code is part of the set of rules in <a href="https://github.com/graknlabs/sample-datasets/blob/master/genealogy-graph/rules.gql"><em>rules.gql</em></a> that we loaded into the graph earlier.</p>
-
-<pre><code class="language-graql"># Naming the rule is optional
-
-$materializeParentChildRelations isa inference-rule
-lhs
-{$b isa birth has confidence "high";
-$rel1 (happening: $b, protagonist: $p) isa event-protagonist;
-$rel1 has function "parent";
-$rel2 (happening: $b, protagonist: $c) isa event-protagonist;
-$rel2 has function "newborn";}
-rhs
-{(parent: $p, child: $c) isa parentship;};
-</code></pre>
-
-<p>Here, the left hand side rules check these statements:</p>
-
-<ul>
-  <li>does a <code class="highlighter-rouge">birth</code> event (<code class="highlighter-rouge">$b</code>) have a <code class="highlighter-rouge">confidence</code> resource set to “high” (which means that it has been added by the Grakn migrator from CSV data, so is reliable)?</li>
-  <li>does an <code class="highlighter-rouge">event-protagonist</code> relation between this <code class="highlighter-rouge">birth</code> event (<code class="highlighter-rouge">$b</code>) and a <code class="highlighter-rouge">person</code> entity (<code class="highlighter-rouge">$p</code>) have a <code class="highlighter-rouge">function</code> resource called “parent”?</li>
-  <li>does an <code class="highlighter-rouge">event-protagonist</code> relation between this <code class="highlighter-rouge">birth</code> event (<code class="highlighter-rouge">$b</code>) and a <code class="highlighter-rouge">person</code> entity (<code class="highlighter-rouge">$c</code>) have a <code class="highlighter-rouge">function</code> resource called “newborn”?</li>
-</ul>
-
-<p>If so, the right hand side of the rules state that:</p>
-
-<ul>
-  <li>the two <code class="highlighter-rouge">person</code> entities <code class="highlighter-rouge">$p</code> and <code class="highlighter-rouge">$c</code> are in a <code class="highlighter-rouge">parentship</code> relation where <code class="highlighter-rouge">$p</code> is the parent and <code class="highlighter-rouge">$c</code> is the child.</li>
-</ul>
-
-<h3 id="example-2-specific-relations-between-parents-and-children">Example 2: Specific relations between parents and children</h3>
-
-<p>We have just described the Grakn rules to infer <code class="highlighter-rouge">parentship</code> relations between <code class="highlighter-rouge">person</code> entities, but we have not identified the specific details of the parent (are they the mother or the father?) nor of the child (a son or a daughter?). The following rules add new roles to the <code class="highlighter-rouge">parentship</code> and assign the to the appropriate entities:</p>
-
-<pre><code class="language-graql">isa inference-rule
-lhs
-{(parent: $x, child: $y) isa parentship;
-$x has gender "female";
-}
-rhs
-{(mother: $x) isa parentship;};
-
-isa inference-rule
-lhs
-{(parent: $x, child: $y) isa parentship;
-$x has gender "male";
-}
-rhs
-{(father: $x) isa parentship;};
-
-isa inference-rule
-lhs
-{(child: $x, parent: $y) isa parentship;
-$x has gender "female";
-}
-rhs
-{(daughter: $x) isa parentship;};
-
-isa inference-rule
-lhs
-{(child: $x, parent: $y) isa parentship;
-$x has gender "male";
-}
-rhs
-{(son: $x) isa parentship;};
-</code></pre>
-
-<p>The four rules can be broken down as follows:</p>
-
-<ul>
-  <li>LHS: In the <code class="highlighter-rouge">parentship</code> relation between child <code class="highlighter-rouge">$x</code> and parent <code class="highlighter-rouge">$y</code>, does <code class="highlighter-rouge">$x</code> have a <code class="highlighter-rouge">gender</code> resource that is <code class="highlighter-rouge">female</code>?
-    <ul>
-      <li>RHS: In the <code class="highlighter-rouge">parentship</code> relation, <code class="highlighter-rouge">$x</code> is in the role <code class="highlighter-rouge">daughter</code></li>
-    </ul>
-  </li>
-  <li>LHS: In the <code class="highlighter-rouge">parentship</code> relation between child <code class="highlighter-rouge">$x</code> and parent <code class="highlighter-rouge">$y</code>, does <code class="highlighter-rouge">$x</code> have a <code class="highlighter-rouge">gender</code> resource that is <code class="highlighter-rouge">male</code>?
-    <ul>
-      <li>RHS: In the <code class="highlighter-rouge">parentship</code> relation, <code class="highlighter-rouge">$x</code> is in the role <code class="highlighter-rouge">son</code></li>
-    </ul>
-  </li>
-  <li>LHS: In the <code class="highlighter-rouge">parentship</code> relation between child <code class="highlighter-rouge">$x</code> and parent <code class="highlighter-rouge">$y</code>, does <code class="highlighter-rouge">$y</code> have a <code class="highlighter-rouge">gender</code> resource that is <code class="highlighter-rouge">female</code>
-    <ul>
-      <li>RHS: In the <code class="highlighter-rouge">parentship</code> relation, <code class="highlighter-rouge">$y</code> is in the role <code class="highlighter-rouge">mother</code></li>
-    </ul>
-  </li>
-  <li>LHS: In the <code class="highlighter-rouge">parentship</code> relation between child <code class="highlighter-rouge">$x</code> and parent <code class="highlighter-rouge">$y</code>, does <code class="highlighter-rouge">$y</code> have a <code class="highlighter-rouge">gender</code> resource that is <code class="highlighter-rouge">male</code>?
-    <ul>
-      <li>RHS: In the <code class="highlighter-rouge">parentship</code> relation, <code class="highlighter-rouge">$y</code> is in the role <code class="highlighter-rouge">father</code></li>
-    </ul>
-  </li>
-</ul>
-
-<h3 id="example-3-a-grandparentship-relation">Example 3: A <code class="highlighter-rouge">grandparentship</code> relation</h3>
-
-<p>The <em>rules.gql</em> file for the genealogy dataset contains a number of rules for setting up family relationships, such as siblings, cousins, in-laws and the following, which sets up a relation called <code class="highlighter-rouge">grandparentship</code>:</p>
-
-<pre><code class="language-graql">$parentsOfParentsAreGrandparents isa inference-rule
-lhs
-{(parent:$p, child: $gc) isa parentship;
-(parent: $gp, child: $p) isa parentship;
-}
-rhs
-{(grandparent: $gp, grandchild: $gc) isa grandparentship;};
-</code></pre>
-
-<p>Here, the left hand side rules check two statements:</p>
-
-<ul>
-  <li>does <code class="highlighter-rouge">$p</code> play the <code class="highlighter-rouge">parent</code> role in a <code class="highlighter-rouge">parentship</code> relation, with (<code class="highlighter-rouge">$gc</code>) playing the <code class="highlighter-rouge">child</code> role?</li>
-  <li>does <code class="highlighter-rouge">$p</code> also play the <code class="highlighter-rouge">child</code> role in a <code class="highlighter-rouge">parentship</code> relation, with (<code class="highlighter-rouge">$gp</code>) playing the <code class="highlighter-rouge">parent</code> role?</li>
-</ul>
-
-<p>If so, the right hand side of the rules state that:</p>
-
-<ul>
-  <li><code class="highlighter-rouge">$gp</code> and <code class="highlighter-rouge">$gc</code> are in a <code class="highlighter-rouge">grandparentship</code> relation, where <code class="highlighter-rouge">$gp</code> plays the <code class="highlighter-rouge">grandparent</code> role and <code class="highlighter-rouge">$gc</code> plays the <code class="highlighter-rouge">grandchild</code> role.</li>
-</ul>
-
-<p>The rules have allowed Grakn to reason implicit relationships between three generations of family members without the information being supplied in the dataset.</p>
-
-<h2 id="where-next">Where Next?</h2>
-
-<p>This example has illustrated the basics of the inference rules used by the Grakn reasoner. Having read it, you may want to further study our documentation about <a href="../graql/graql-rules.html">Graql Rules</a> and further investigate the <a href="./CSV-migration.html">example that imports the genealogy data from CSV format into Grakn</a>.</p>
-
-<p>We will be using the genealogy data throughout our documentation. For an overview, please see our <a href="https://blog.grakn.ai/family-matters-1bb639396a24#.uelgekrn2">Family Matters</a> blog post.</p>
-
-<h2 id="comments">Comments</h2>
 
 
     <div class="tags">
@@ -955,11 +733,7 @@ rhs
         
         
         
-        <a href="/pages/tag_reasoner.html" class="btn btn-default navbar-btn cursorNorm" role="button">reasoner</a>
-        
-        
-        
-        <a href="/pages/tag_examples.html" class="btn btn-default navbar-btn cursorNorm" role="button">examples</a>
+        <a href="/pages/tag_graql.html" class="btn btn-default navbar-btn cursorNorm" role="button">graql</a>
         
         
         
@@ -990,7 +764,7 @@ rhs
         <br>
         <p>© 2016 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2017 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> January 2017<br/> Site last generated: Jan 13, 2017 <br />
+        <span>Page last updated:</span> August 10, 2016<br/> Site last generated: Jan 17, 2017 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">

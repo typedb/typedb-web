@@ -285,7 +285,7 @@
             
             
             
-            <li><a href="/pages/documentation/building-an-ontology/overview.html">Overview (deprecated)</a></li>
+            <li><a href="/pages/documentation/building-an-ontology/ontology-overview.html">Overview (deprecated)</a></li>
             
             
             
@@ -314,7 +314,7 @@
             
             
             
-            <li><a href="/pages/documentation/graql/overview.html">Overview</a></li>
+            <li><a href="/pages/documentation/graql/graql-overview.html">Overview</a></li>
             
             
             
@@ -399,7 +399,7 @@
             
             
             
-            <li><a href="/pages/documentation/graql-analytics/analytics-overview.html">Graql Analytics Overview</a></li>
+            <li><a href="/pages/documentation/graql-analytics/analytics-overview.html">Overview</a></li>
             
             
             
@@ -449,7 +449,7 @@
             
             
             
-            <li><a href="/pages/documentation/migration/migration.html">Migrating to Grakn</a></li>
+            <li><a href="/pages/documentation/migration/migration-overview.html">Overview</a></li>
             
             
             
@@ -558,7 +558,7 @@
             
             
             
-            <li><a href="/pages/documentation/resources/resources.html">Resources</a></li>
+            <li><a href="/pages/documentation/resources/resources-overview.html">Overview</a></li>
             
             
             
@@ -594,7 +594,7 @@
             
             
             
-            <li><a href="/pages/documentation/examples/examples.html">Examples</a></li>
+            <li><a href="/pages/documentation/examples/examples-overview.html">Overview</a></li>
             
             
             
@@ -629,7 +629,7 @@
             
             
             
-            <li><a href="/pages/documentation/examples/inference.html">Graql Rules</a></li>
+            <li><a href="/pages/documentation/examples/grakn-reasoner.html">Grakn Reasoner</a></li>
             
             
             
@@ -813,7 +813,7 @@ $('#toc').on('click', 'a', function() {
   </li>
 </ul>
 
-<p>Note that in this example, no relations between <code class="highlighter-rouge">person</code> entities are described. The inference of such family relationships is discussed fully in a separate example that covers <a href="./inference.html">inference using the Grakn reasoner</a>.</p>
+<p>Note that in this example, no relations between <code class="highlighter-rouge">person</code> entities are described. The inference of such family relationships is discussed fully in a separate example that covers <a href="./grakn-reasoner.html">inference using the Grakn reasoner</a>.</p>
 
 <p>To load <em>basic-ontology.gql</em> into Grakn, make sure the engine is running and choose a clean keyspace in which to work (in the example below we use the default keyspace, so we are cleaning it before we get started). Pull down the <a href="https://github.com/graknlabs/sample-datasets">sample-datasets repo</a>, and call the following from the terminal, from within the <em>genealogy-graph</em> directory:</p>
 
@@ -1009,7 +1009,7 @@ insert isa conclusion-evidence (evidence: $d0, conclusion: $e0);
 
 <h2 id="migration-script">Migration Script</h2>
 
-<p>To invoke each of the migration templates on the appropriate .CSV file, you can call the Grakn migrator <code class="highlighter-rouge">migration.sh</code>, which resides in the <em>/bin/</em> directory of the Grakn installation. Usage instructions are available as part of our <a href="../migration/migration.html">migration documentation</a>.</p>
+<p>To invoke each of the migration templates on the appropriate .CSV file, you can call the Grakn migrator <code class="highlighter-rouge">migration.sh</code>, which resides in the <em>/bin/</em> directory of the Grakn installation. Usage instructions are available as part of our <a href="../migration/migration-overview.html">migration documentation</a>.</p>
 
 <p>However, for simplicity, the <em>/raw-data/</em> directory of the genealogy-graph project contains a script called <em>loader.sh</em> that calls each migration script in turn, so you can simply call the script from the terminal, from within the genealogy-graph directory, passing in the path to the Grakn <em>/bin/</em> directory.</p>
 
@@ -1025,7 +1025,7 @@ insert isa conclusion-evidence (evidence: $d0, conclusion: $e0);
 
 <h2 id="where-next">Where Next?</h2>
 
-<p>This example has illustrated how to migrate CSV data into Grakn. Having read it, you may want to further study our documentation about <a href="../migration/migration.html">CSV migration</a> and <a href="https://grakn.ai/pages/documentation/graql/graql-templating.html">Graql templating</a>.</p>
+<p>This example has illustrated how to migrate CSV data into Grakn. Having read it, you may want to further study our documentation about <a href="../migration/CSV-migration.html">CSV migration</a> and <a href="https://grakn.ai/pages/documentation/graql/graql-templating.html">Graql templating</a>.</p>
 
 <p>We will be using the genealogy data throughout our documentation, and will shortly add further examples to illustrate the use of Grakn’s inference and analytics, but as a starting point, please see our <a href="https://blog.grakn.ai/family-matters-1bb639396a24#.uelgekrn2">Family Matters</a> blog post.</p>
 
@@ -1074,7 +1074,7 @@ insert isa conclusion-evidence (evidence: $d0, conclusion: $e0);
         <br>
         <p>© 2016 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2017 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> January 2017<br/> Site last generated: Jan 13, 2017 <br />
+        <span>Page last updated:</span> January 2017<br/> Site last generated: Jan 17, 2017 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">

@@ -115,17 +115,6 @@
 
 ,
 {
-"title": "OWL Migration to Grakn",
-"tags": "migration",
-"keywords": "setup, getting started",
-"url": "/pages/documentation/migration/OWL-migration.html",
-"summary": "This document will teach you how to load OWL into Grakn."
-}
-
-
-
-,
-{
 "title": "An Example of Migrating OWL to Grakn",
 "tags": "migrationexamples",
 "keywords": "migration",
@@ -137,11 +126,11 @@
 
 ,
 {
-"title": "SQL Migration to Grakn",
+"title": "OWL Migration to Grakn",
 "tags": "migration",
 "keywords": "setup, getting started",
-"url": "/pages/documentation/migration/SQL-migration.html",
-"summary": "This document will teach you how to migrate SQL data into Grakn."
+"url": "/pages/documentation/migration/OWL-migration.html",
+"summary": "This document will teach you how to load OWL into Grakn."
 }
 
 
@@ -153,6 +142,17 @@
 "keywords": "migration",
 "url": "/pages/documentation/examples/SQL-migration.html",
 "summary": "A short example to illustrate migration of SQL to Grakn"
+}
+
+
+
+,
+{
+"title": "SQL Migration to Grakn",
+"tags": "migration",
+"keywords": "setup, getting started",
+"url": "/pages/documentation/migration/SQL-migration.html",
+"summary": "This document will teach you how to migrate SQL data into Grakn."
 }
 
 
@@ -203,7 +203,7 @@
 
 ,
 {
-"title": "Graql Analytics",
+"title": "Analytics Overview",
 "tags": "analytics",
 "keywords": "",
 "url": "/pages/documentation/graql-analytics/analytics-overview.html",
@@ -324,10 +324,10 @@
 
 ,
 {
-"title": "Grakn Examples",
+"title": "Examples Overview",
 "tags": "getting-startedexamples",
 "keywords": "examples",
-"url": "/pages/documentation/examples/examples.html",
+"url": "/pages/documentation/examples/examples-overview.html",
 "summary": "Landing page for Grakn examples."
 }
 
@@ -403,6 +403,17 @@
 
 ,
 {
+"title": "Inference with the GRAKN.AI Reasoner",
+"tags": "reasonerexamples",
+"keywords": "migration",
+"url": "/pages/documentation/examples/grakn-reasoner.html",
+"summary": "An example to illustrate inference using genealogy data."
+}
+
+
+
+,
+{
 "title": "Graph API",
 "tags": "java",
 "keywords": "java",
@@ -419,6 +430,17 @@
 "keywords": "graql",
 "url": "/pages/documentation/graql/graql-cheatsheet.html",
 "summary": "A reference card (cheatsheet) for Graql"
+}
+
+
+
+,
+{
+"title": "Graql Overview",
+"tags": "graql",
+"keywords": "graql, overview",
+"url": "/pages/documentation/graql/graql-overview.html",
+"summary": "An introduction to Graql"
 }
 
 
@@ -480,17 +502,6 @@
 
 ,
 {
-"title": "An Example of Inference using GRAKN.AI",
-"tags": "reasonerexamples",
-"keywords": "migration",
-"url": "/pages/documentation/examples/inference.html",
-"summary": "An example to illustrate inference using genealogy data."
-}
-
-
-
-,
-{
 "title": "Inheritance and the Grakn Knowledge Model",
 "tags": "advanced-grakn",
 "keywords": "schema",
@@ -535,10 +546,10 @@
 
 ,
 {
-"title": "Migrating to Grakn",
+"title": "Migration Overview",
 "tags": "getting-startedgraqlmigration",
 "keywords": "setup, getting started",
-"url": "/pages/documentation/migration/migration.html",
+"url": "/pages/documentation/migration/migration-overview.html",
 "summary": "Landing page for documentation about loading data in different formats to populate a graph in Grakn."
 }
 
@@ -571,19 +582,8 @@
 "title": "Graph API Overview",
 "tags": "javagraph-api",
 "keywords": "overview",
-"url": "/pages/documentation/building-an-ontology/overview.html",
+"url": "/pages/documentation/building-an-ontology/ontology-overview.html",
 "summary": "A basic example of how to use Grakn's Graph API."
-}
-
-
-
-,
-{
-"title": "Graql Overview",
-"tags": "graql",
-"keywords": "graql, overview",
-"url": "/pages/documentation/graql/overview.html",
-"summary": "An introduction to Graql"
 }
 
 
@@ -623,10 +623,10 @@
 
 ,
 {
-"title": "Resources",
+"title": "Resources Overview",
 "tags": "getting-started",
 "keywords": "setup, getting started, download",
-"url": "/pages/documentation/resources/resources.html",
+"url": "/pages/documentation/resources/resources-overview.html",
 "summary": "Resources to help you learn more about graph databases."
 }
 

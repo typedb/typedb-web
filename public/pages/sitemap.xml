@@ -68,25 +68,25 @@
   
   
   <url>
-    <loc>http://grakn.ai/pages//documentation/migration/OWL-migration.html</loc>
-  </url>
-  
-  
-  
-  <url>
     <loc>http://grakn.ai/pages//documentation/examples/OWL-migration.html</loc>
   </url>
   
   
   
   <url>
-    <loc>http://grakn.ai/pages//documentation/migration/SQL-migration.html</loc>
+    <loc>http://grakn.ai/pages//documentation/migration/OWL-migration.html</loc>
   </url>
   
   
   
   <url>
     <loc>http://grakn.ai/pages//documentation/examples/SQL-migration.html</loc>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://grakn.ai/pages//documentation/migration/SQL-migration.html</loc>
   </url>
   
   
@@ -182,7 +182,7 @@
   
   
   <url>
-    <loc>http://grakn.ai/pages//documentation/examples/examples.html</loc>
+    <loc>http://grakn.ai/pages//documentation/examples/examples-overview.html</loc>
   </url>
   
   
@@ -226,6 +226,12 @@
   
   
   <url>
+    <loc>http://grakn.ai/pages//documentation/examples/grakn-reasoner.html</loc>
+  </url>
+  
+  
+  
+  <url>
     <loc>http://grakn.ai/pages//documentation/developing-with-java/graph-api.html</loc>
   </url>
   
@@ -233,6 +239,12 @@
   
   <url>
     <loc>http://grakn.ai/pages//documentation/graql/graql-cheatsheet.html</loc>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://grakn.ai/pages//documentation/graql/graql-overview.html</loc>
   </url>
   
   
@@ -268,12 +280,6 @@
   
   
   <url>
-    <loc>http://grakn.ai/pages//documentation/examples/inference.html</loc>
-  </url>
-  
-  
-  
-  <url>
     <loc>http://grakn.ai/pages//documentation/grakn-knowledge-model/inheritance.html</loc>
   </url>
   
@@ -298,7 +304,7 @@
   
   
   <url>
-    <loc>http://grakn.ai/pages//documentation/migration/migration.html</loc>
+    <loc>http://grakn.ai/pages//documentation/migration/migration-overview.html</loc>
   </url>
   
   
@@ -316,13 +322,7 @@
   
   
   <url>
-    <loc>http://grakn.ai/pages//documentation/building-an-ontology/overview.html</loc>
-  </url>
-  
-  
-  
-  <url>
-    <loc>http://grakn.ai/pages//documentation/graql/overview.html</loc>
+    <loc>http://grakn.ai/pages//documentation/building-an-ontology/ontology-overview.html</loc>
   </url>
   
   
@@ -346,7 +346,7 @@
   
   
   <url>
-    <loc>http://grakn.ai/pages//documentation/resources/resources.html</loc>
+    <loc>http://grakn.ai/pages//documentation/resources/resources-overview.html</loc>
   </url>
   
   
