@@ -21,8 +21,8 @@
             transition: margin 200ms ease-in-out, color 200ms ease-in-out;
 
             h1{
-                font-weight: 200;
-                font-family: 'Blender', Helvetica, Arial, sans-serif;
+                font-weight: 400;
+                font-family: 'Geogrotesque', Helvetica, Arial, sans-serif;
                 font-size: 1.2rem;
                 line-height: 32px;
                 margin: 0;
@@ -31,7 +31,6 @@
             }
 
             svg{
-                width: 30px;
                 height: 30px;
                 float: left;
                 margin-right: 0.4rem;
@@ -46,7 +45,7 @@
         }
 
         .menu{
-            font-family: 'Blender', Helvetica, Arial, sans-serif;
+            font-family: 'Geogrotesque', Helvetica, Arial, sans-serif;
             position: fixed;
             top: 0;
             left: 0;
@@ -121,7 +120,7 @@
 
                     a{
                         font-size: 1rem;
-                        font-weight: 200;
+                        font-weight: 400;
                         display: inline-block;
                         text-decoration: none;
                         position: relative;
@@ -212,6 +211,9 @@
                 svg{
                     use{
                         stroke: $black-brand;
+                    }
+                    .st25{
+                        fill: $black-brand;
                     }
                 }
             }

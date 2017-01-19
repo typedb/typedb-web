@@ -50,13 +50,13 @@
   
   
   <url>
-    <loc>http://grakn.ai/pages//documentation/migration/CSV-migration.html</loc>
+    <loc>http://grakn.ai/pages//documentation/examples/CSV-migration.html</loc>
   </url>
   
   
   
   <url>
-    <loc>http://grakn.ai/pages//documentation/examples/CSV-migration.html</loc>
+    <loc>http://grakn.ai/pages//documentation/migration/CSV-migration.html</loc>
   </url>
   
   
@@ -226,12 +226,6 @@
   
   
   <url>
-    <loc>http://grakn.ai/pages//documentation/examples/grakn-reasoner.html</loc>
-  </url>
-  
-  
-  
-  <url>
     <loc>http://grakn.ai/pages//documentation/developing-with-java/graph-api.html</loc>
   </url>
   
@@ -251,6 +245,12 @@
   
   <url>
     <loc>http://grakn.ai/pages//documentation/graql/graql-rules.html</loc>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://grakn.ai/pages//documentation/examples/graql-reasoning.html</loc>
   </url>
   
   
@@ -323,6 +323,12 @@
   
   <url>
     <loc>http://grakn.ai/pages//documentation/building-an-ontology/ontology-overview.html</loc>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://grakn.ai/pages//documentation/examples/pokemon.html</loc>
   </url>
   
   

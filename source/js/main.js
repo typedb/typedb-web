@@ -23,7 +23,7 @@ window.MNDMPS.App = {
         var topTypist = $("#topTypist");
 
         topTypist.typed({
-            strings: ['A Knowledge Graph Platform'],
+            strings: ['The Database for AI Applications'],
             typeSpeed: 20,
             backSpeed: 5,
             backDelay: 1500,

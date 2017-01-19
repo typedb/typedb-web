@@ -22,7 +22,7 @@
 @import 'nav';
 
 body{
-    font-family: 'DIN', Helvetica, Arial, sans-serif;
+    font-family: 'Geogrotesque', Helvetica, Arial, sans-serif;
     font-weight: 400;
 }
 
@@ -83,8 +83,8 @@ html{
 
             p{
                 text-transform: uppercase;
-                font-family: 'Blender', Helvetica, Arial, sans-serif;
-                font-weight: 200;
+                font-family: 'Geogrotesque', Helvetica, Arial, sans-serif;
+                font-weight: 400;
                 color: $white;
                 margin: 0;
                 white-space: nowrap;
@@ -124,7 +124,7 @@ html{
             align-items: center;
             margin-top: 10px;
             a{
-                font-family: 'Din', Helvetica, Arial, sans-serif;
+                font-family: 'Geogrotesque', Helvetica, Arial, sans-serif;
                 font-weight: 400;
                 font-size: 0.6rem;
                 color: $white-fade;
