@@ -276,7 +276,7 @@ a[href^="https://"]:after {
 
 h1, h2, h3, h4, h5, h6,
 span.projectTitle {
-    font-family: 'Blender', Helvetica, Arial, sans-serif;
+    font-family: 'Geogrotesque', Helvetica, Arial, sans-serif;
     font-weight: 200;
 }
 
