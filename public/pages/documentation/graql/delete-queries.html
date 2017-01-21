@@ -773,11 +773,10 @@ $('#toc').on('click', 'a', function() {
 
     
 
-  <p>A delete query will delete the specified <a href="#variable-patterns">variable
-patterns</a> for every result of the <a href="match-queries.html">match
-query</a>. If a variable pattern indicates just a variable, then
-the whole concept will be deleted. If it is more specific (such as indicating
-the <code class="highlighter-rouge">id</code> or <code class="highlighter-rouge">isa</code>) it will only delete the specified properties.</p>
+  <p>A delete query will delete the specified <a href="#variable-patterns">variable patterns</a> for every result of the <a href="match-queries.html">match query</a>. If a variable pattern indicates just a variable, then the whole concept will be deleted. If it is more specific (such as indicating the <code class="highlighter-rouge">id</code> or <code class="highlighter-rouge">isa</code>) it will only delete the specified properties.</p>
+
+<p>To follow along, or experiment further, with the examples given below, please load the <em>basic-genealogy.gql</em> file, which can be found in the <em>examples</em> directory of the Grakn installation zip, or on <a href="">Github</a>.</p>
+
 <ul id="profileTabs" class="nav nav-tabs">
     <li class="active"><a href="#shell1" data-toggle="tab">Graql</a></li>
     <li><a href="#java1" data-toggle="tab">Java</a></li>
@@ -786,12 +785,12 @@ the <code class="highlighter-rouge">id</code> or <code class="highlighter-rouge"
 <div class="tab-content">
 <div role="tabpanel" class="tab-pane active" id="shell1">
 <pre>
-match $x isa pokemon; delete $x;
+match $x isa person; delete $x;
 </pre>
 </div>
 <div role="tabpanel" class="tab-pane" id="java1">
 <pre>
-qb.match(var("x").isa("pokemon")).delete("x").execute();
+qb.match(var("x").isa("person")).delete("x").execute();
 </pre>
 </div> <!-- tab-pane -->
 </div>
@@ -799,12 +798,10 @@ qb.match(var("x").isa("pokemon")).delete("x").execute();
 
 <h2 id="variable-patterns">Variable Patterns</h2>
 
-<p>A variable pattern in a delete query describes <a href="#properties">properties</a> to
-delete on a particular concept. The variable pattern is always bound to a
+<p>A variable pattern in a delete query describes <a href="#properties">properties</a> to delete on a particular concept. The variable pattern is always bound to a
 variable name.</p>
 
-<p>If a variable pattern has no properties, then the concept itself is deleted.
-Otherwise, only the specified properties are deleted.</p>
+<p>If a variable pattern has no properties, then the concept itself is deleted. Otherwise, only the specified properties are deleted.</p>
 
 <h2 id="properties">Properties</h2>
 
@@ -818,12 +815,12 @@ Otherwise, only the specified properties are deleted.</p>
 <div class="tab-content">
 <div role="tabpanel" class="tab-pane active" id="shell2">
 <pre>
-match $x type-name "evolution"; delete $x has-role descendent;
+match $x type-name "marriage"; delete $x has-role spouse1;
 </pre>
 </div>
 <div role="tabpanel" class="tab-pane" id="java2">
 <pre>
-qb.match(var("x").name("evolution")).delete(var("x").hasRole("descendent"));
+qb.match(var("x").name("marriage")).delete(var("x").hasRole("spouse1"));
 </pre>
 </div> <!-- tab-pane -->
 </div>
@@ -840,12 +837,12 @@ qb.match(var("x").name("evolution")).delete(var("x").hasRole("descendent"));
 <div class="tab-content">
 <div role="tabpanel" class="tab-pane active" id="shell3">
 <pre>
-match $x type-name "pokemon-type"; delete $x plays-role attacking-type;
+match $x type-name "person"; delete $x plays-role sibling1;
 </pre>
 </div>
 <div role="tabpanel" class="tab-pane" id="java3">
 <pre>
-qb.match(var("x").name("pokemon-type")).delete(var("x").playsRole("attacking-type"));
+qb.match(var("x").name("person")).delete(var("x").playsRole("sibling1"));
 </pre>
 </div> <!-- tab-pane -->
 </div>
@@ -863,12 +860,12 @@ only delete resources matching that value.</p>
 <div class="tab-content">
 <div role="tabpanel" class="tab-pane active" id="shell4">
 <pre>
-match $x has name "Bulbasaur"; delete $x has weight $y;
+match $x has identifier "Mary Guthrie"; delete $x has middlename $y;
 </pre>
 </div>
 <div role="tabpanel" class="tab-pane" id="java4">
 <pre>
-qb.match(var("x").has("name", "Bulbasaur")).delete(var("x").has("weight"));
+qb.match(var("x").has("identifier", "Mary Guthrie")).delete(var("x").has("middlename"));
 </pre>
 </div> <!-- tab-pane -->
 </div>
@@ -916,7 +913,7 @@ qb.match(var("x").has("name", "Bulbasaur")).delete(var("x").has("weight"));
         <br>
         <p>© 2016 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2017 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> August 11, 2016<br/> Site last generated: Jan 19, 2017 <br />
+        <span>Page last updated:</span> August 11, 2016<br/> Site last generated: Jan 21, 2017 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">

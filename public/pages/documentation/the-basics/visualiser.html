@@ -800,27 +800,21 @@ The colours used in the visualiser are as follows:
 <h2 id="loading-and-visualising-a-graph">Loading and Visualising a Graph</h2>
 <p>If you have not yet set up the Grakn environment, please see the <a href="../get-started/setup-guide.html">Setup guide</a>.</p>
 
-<p>You can find the genealogy example that we will work with in the the <a href="https://github.com/graknlabs/sample-datasets/tree/master/genealogy-graph">sample-datasets repo on Github</a>.</p>
+<p>You can find the <em>basic-genealogy.gql</em> example that we will work with in the <em>examples</em> directory of the Grakn distribution zip. You can also find this file on <a href="">Github</a>.</p>
 
-<p>The first step is to load the ontology and data into Grakn. You need to use your terminal to do this, as the visualiser is a read-only interface to a graph. Start Grakn, and load the genealogy-graph ontology. Assuming you are working in the Grakn distribution folder, and have created a subfolder within it for the genealogy-graph example called <code class="highlighter-rouge">genealogy</code>, your call will look like this:</p>
+<p>The first step is to load the ontology and data into Grakn. You need to use your terminal to do this, as the visualiser is a read-only interface to a graph. From the terminal, start Grakn, and load the file as follows:</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>./bin/grakn.sh start
-./bin/graql.sh -f ./genealogy/ontology.gql -k <span class="s2">"family"</span>
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>&lt;relative-path-to-Grakn&gt;/bin/grakn.sh start
+&lt;relative-path-to-Grakn&gt;/bin/graql.sh -f ./examples/basic-genealogy.gql -k <span class="s2">"family"</span>
 </code></pre>
 </div>
 
 <div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> <b>Note:</b> To illustrate the use of different keyspaces, will we use a keyspace called <code class="highlighter-rouge">family</code> in this example, but you can simply use the default keyspace if you prefer, if it is not already in use, by omitting the -k argument.</div>
 
-<p>Then load in the data to the same keyspace</p>
-
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>./bin/graql.sh -f ./genealogy/data.gql -k <span class="s2">"family"</span>
-</code></pre>
-</div>
-
 <p>You can test in the Graql shell that all has loaded correctly. For example:</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>./bin/graql.sh -k family
-match <span class="nv">$x</span> isa person, has identifier <span class="nv">$y</span>;
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>&lt;relative-path-to-Grakn&gt;/bin/graql.sh -k family
+match <span class="nv">$p</span> isa person, has identifier <span class="nv">$i</span>;
 </code></pre>
 </div>
 
@@ -846,11 +840,11 @@ match <span class="nv">$x</span> isa person, has identifier <span class="nv">$y<
 
 <p><img src="/images/match-$x-isa-person.png" alt="Person query" /></p>
 
-<p>The help tab on the main pane shows a set of key combinations that you can use to further drill into the data.</p>
+<p>The help tab on the main pane shows a set of key combinations that you can use to further drill into the data. You can zoom the display in and out, and move the nodes around for better visibility.</p>
 
-<p>Alternatively, you can use the “Types” drawer to filter on specific types. For example, clear the graph using the “Clear” button, then select “Types”, followed by “Entities” and filter on <code class="highlighter-rouge">birth</code> entities. The equivalent query will be shown in the query section at the top of the main pane, and the visualiser displays all births. You can zoom the display in and out, and move the nodes around for better visibility.</p>
+<p>Alternatively, you can use the “Types” drawer to filter on specific types. For example, clear the graph using the “Clear” button, then select “Types”, followed by “Entities” and filter on <code class="highlighter-rouge">picture</code> resources. The equivalent query will be shown in the query section at the top of the main pane, and the visualiser displays all the <code class="highlighter-rouge">picture</code> resources in the graph. These resources are strings that are URLs, and you can see the information the graph stores for each by single clicking one of them, at which point a drawer slides out on the right hand side, as shown:</p>
 
-<p><img src="/images/match-$x-isa-birth.png" alt="Birth query" /></p>
+<p><img src="/images/match-$x-isa-picture.png" alt="Picture query" /></p>
 
 <h3 id="console">Console</h3>
 <p>You can use this console to make queries instead of running a Graql shell in your terminal. You can run <code class="highlighter-rouge">match</code> and <code class="highlighter-rouge">compute</code> queries, but because the visualiser is read-only, you cannot make insertions.</p>
@@ -921,7 +915,7 @@ match <span class="nv">$x</span> isa person, has identifier <span class="nv">$y<
         <br>
         <p>© 2016 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2017 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> August 10, 2016<br/> Site last generated: Jan 19, 2017 <br />
+        <span>Page last updated:</span> August 10, 2016<br/> Site last generated: Jan 21, 2017 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">

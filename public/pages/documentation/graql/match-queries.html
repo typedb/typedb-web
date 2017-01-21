@@ -773,11 +773,10 @@ $('#toc').on('click', 'a', function() {
 
     
 
-  <p>A match query will search the graph for any subgraphs that match the given pattern, returning a result for each match found. The results of the query can be modified with various <a href="#modifiers">modifiers</a>. To follow and experiment further with the examples given below, please load the genealogy-graph ontology and data, which can be found in the <em>examples</em> directory of the Grakn installation zip, or on Github in the <a href="https://github.com/graknlabs/sample-datasets/tree/master/genealogy-graph">sample-datasets repository</a>;</p>
+  <p>A match query will search the graph for any subgraphs that match the given pattern, returning a result for each match found. The results of the query can be modified with various <a href="#modifiers">modifiers</a>. To follow along, or experiment further, with the examples given below, please load the <em>basic-genealogy.gql</em> file, which can be found in the <em>examples</em> directory of the Grakn installation zip, or on <a href="">Github</a>.</p>
 
 <div class="language-bash highlighter-rouge"><pre class="highlight"><code>&lt;relative-path-to-Grakn&gt;/bin/grakn.sh start 
-&lt;relative-path-to-Grakn&gt;/bin/graql.sh -f &lt;relative-path-to-Grakn&gt;/examples/genealogy-graph/ontology.gql
-&lt;relative-path-to-Grakn&gt;/bin/graql.sh -f &lt;relative-path-to-Grakn&gt;/examples/genealogy-graph/data.gql
+&lt;relative-path-to-Grakn&gt;/bin/graql.sh -f &lt;relative-path-to-Grakn&gt;/examples/basic-genealogy.gql
 </code></pre>
 </div>
 
@@ -811,7 +810,8 @@ $('#toc').on('click', 'a', function() {
 <div class="tab-content">
 <div role="tabpanel" class="tab-pane active" id="shell2">
 <pre>
-match $x id "1216728"
+# Insert one of the system id values that were displayed from the previous query. For example:
+match $x id "1216728"; 
 </pre>
 </div>
 <div role="tabpanel" class="tab-pane" id="java2">
@@ -882,15 +882,16 @@ match $x has identifier $y; $y value contains "Bar";
 <div class="tab-content">
 <div role="tabpanel" class="tab-pane active" id="shell6">
 <pre>
-match $x isa birth; ($x, $y); 
-match $x isa birth; (happening: $x, $y); 
+match $x isa person; ($x, $y); 
+match $x isa person; (spouse1:$x, $y); 
+match $x isa person; (spouse1:$x, $y); $x has identifier $xn; $y has identifier $yn;
 </pre>
 </div>
 <div role="tabpanel" class="tab-pane" id="java6">
 <pre>
 qb.match(
-  var("x").isa("birth"),
-  var().rel("happening", "x").rel("y")
+  var("x").isa("person"),
+  var().rel("spouse1", "x").rel("y")
 );
 </pre>
 </div> <!-- tab-pane -->
@@ -899,13 +900,7 @@ qb.match(
 
 <h3 id="variable-patterns">Variable Patterns</h3>
 
-<p>A pattern is a pattern to match in the graph. Patterns can be combined into a
-disjunction (‘or’) and grouped together with curly braces. Patterns are
-separated by semicolons, each pattern is independent of the others.</p>
-
-<p>A variable pattern is a pattern describing <a href="#properties">properties</a> of a
-particular concept. The variable pattern can optionally be bound to a variable
-or an ID.</p>
+<p>Patterns can be combined into a disjunction (‘or’) and grouped together with curly braces. Patterns are separated by semicolons, and each pattern is independent of the others. The variable pattern can optionally be bound to a variable or an ID.</p>
 
 <ul id="profileTabs" class="nav nav-tabs">
     <li class="active"><a href="#shell" data-toggle="tab">Graql</a></li>
@@ -917,16 +912,7 @@ or an ID.</p>
 <pre>match $x isa person, has identifier $y; {$y value contains "Elizabeth";} or {$y value contains "Mary";};</pre>
 </div>
 <div role="tabpanel" class="tab-pane" id="java">
-<pre>qb.match(
-  var("x").isa("pokemon"),
-  or(
-    var("x").id("Mew"),
-    and(
-      var().rel("x").rel("y"),
-      var("y").isa("pokemon-type").id("water")
-    )
-  )
-);</pre>
+<pre><!--JCS TO DO --></pre>
 </div> <!-- tab-pane -->
 </div>
 <p><!-- tab-content --></p>
@@ -972,12 +958,12 @@ qb.match(var("x").sub("concept"))
 <div class="tab-content">
 <div role="tabpanel" class="tab-pane active" id="shell8">
 <pre>
-match event-protagonist has-role $x;
+match parentship has-role $x;
 </pre>
 </div>
 <div role="tabpanel" class="tab-pane" id="java8">
 <pre>
-qb.match(name("event-protagonist").hasRole(var("x")));
+qb.match(name("parentship").hasRole(var("x")));
 </pre>
 </div> <!-- tab-pane -->
 </div>
@@ -993,12 +979,12 @@ qb.match(name("event-protagonist").hasRole(var("x")));
 <div class="tab-content">
 <div role="tabpanel" class="tab-pane active" id="shell9">
 <pre>
-match $x plays-role happening;
+match $x plays-role child;
 </pre>
 </div>
 <div role="tabpanel" class="tab-pane" id="java9">
 <pre>
-qb.match(var("x").playsRole("happening"));
+qb.match(var("x").playsRole("child"));
 </pre>
 </div> <!-- tab-pane -->
 </div>
@@ -1076,7 +1062,7 @@ qb.match(var("x").has("age", gt(70));
 
 <p>If a concept doesn’t have a value, all predicates are considered false. The query below matches everything where the predicate <code class="highlighter-rouge">&gt;10</code> is true. So, it will find all concepts with value greater than 10. However, if a concept does not have a value at all, the predicate is considered false, so it won’t appear in the results.</p>
 
-<pre><code class="language-graql">match $x value &gt;30;
+<pre><code class="language-graql">match $x value &gt;10;
 </code></pre>
 
 <h3 id="contains">Contains</h3>
@@ -1150,7 +1136,7 @@ qb.match(var("x").value(regex(".*(Mary|Barbara).*")));
 <div role="tabpanel" class="tab-pane active" id="shell16">
 <pre>
 match $x isa person, has identifier $id; select $id; limit 10; offset 5; order by $id asc;
-match $x isa birth, has firstname $y; select $y; order by $y asc; distinct;
+match $x isa person, has firstname $y; select $y; order by $y asc; distinct;
 </pre>
 </div>
 <div role="tabpanel" class="tab-pane" id="java16">
@@ -1167,9 +1153,9 @@ qb.match(var("x").isa("person").has("identifier", var("id")))
 
 <p>Note that the order in which you specify modifiers can be important. If you make a query and <code class="highlighter-rouge">limit</code> the results returned, say to 10 as in the example, then specify the <code class="highlighter-rouge">distinct</code> modifier <em>after</em> the <code class="highlighter-rouge">limit</code>, you may find that <code class="highlighter-rouge">distinct</code> removes any non-unique results, so you end up with fewer than the 10 results you expected to be returned to you. To ensure that you receive <em>exactly</em> 10 distinct results, you are better to use <code class="highlighter-rouge">distinct</code> before <code class="highlighter-rouge">limit</code>.</p>
 
-<pre><code class="language-graql">match $x isa birth, has firstname $y; select $y; limit 10; distinct; order by $y asc;
+<pre><code class="language-graql">match $x isa person, has firstname $y; select $y; limit 10; distinct; order by $y asc;
 # Returns 9 results
-match $x isa birth, has firstname $y; select $y; distinct; limit 10; order by $y asc;
+match $x isa person, has firstname $y; select $y; distinct; limit 10; order by $y asc;
 # Returns 10 results
 </code></pre>
 
@@ -1215,7 +1201,7 @@ match $x isa birth, has firstname $y; select $y; distinct; limit 10; order by $y
         <br>
         <p>© 2016 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2017 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> August 11, 2016<br/> Site last generated: Jan 19, 2017 <br />
+        <span>Page last updated:</span> August 11, 2016<br/> Site last generated: Jan 21, 2017 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">

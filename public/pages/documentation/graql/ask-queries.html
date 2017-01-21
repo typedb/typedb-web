@@ -773,7 +773,7 @@ $('#toc').on('click', 'a', function() {
 
     
 
-  <p>An ask query will return whether the given <a href="match-queries.html">match query</a> has any results.</p>
+  <p>An ask query will return whether the given <a href="match-queries.html">match query</a> has any results. To follow along, or experiment further, with the examples given below, please load the <em>basic-genealogy.gql</em> file, which can be found in the <em>examples</em> directory of the Grakn installation zip, or on <a href="">Github</a>.</p>
 
 <ul id="profileTabs" class="nav nav-tabs">
     <li class="active"><a href="#shell1" data-toggle="tab">Graql</a></li>
@@ -783,13 +783,14 @@ $('#toc').on('click', 'a', function() {
 <div class="tab-content">
 <div role="tabpanel" class="tab-pane active" id="shell1">
 <pre>
-match dragon sub pokemon-type;
-ask;
+match divorce sub relation; ask;
+match marriage sub relation; ask;
 </pre>
 </div>
 <div role="tabpanel" class="tab-pane" id="java1">
 <pre>
-qb.match(name("dragon").sub("pokemon-type")).ask().execute();
+qb.match(name("divorce").sub("relation")).ask().execute();
+qb.match(name("marriage").sub("relation")).ask().execute();
 </pre>
 </div> <!-- tab-pane -->
 </div>
@@ -837,7 +838,7 @@ qb.match(name("dragon").sub("pokemon-type")).ask().execute();
         <br>
         <p>© 2016 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2017 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> August 10, 2016<br/> Site last generated: Jan 19, 2017 <br />
+        <span>Page last updated:</span> August 10, 2016<br/> Site last generated: Jan 21, 2017 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">

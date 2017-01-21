@@ -773,15 +773,17 @@ $('#toc').on('click', 'a', function() {
 
     
 
-  <h2 id="match-insert"><code class="highlighter-rouge">match-insert</code></h2>
-<p>An insert query will insert the specified <a href="#variable-patterns">variable
-patterns</a> into the graph. If a <a href="match-queries.html">match
-query</a> is provided, the query will insert the given variable
-patterns for every result of the match query.</p>
+  <p>The page documents use of the Graql <code class="highlighter-rouge">insert</code> query, which will insert a specified <a href="#variable-patterns">variable pattern</a> into the graph. To follow along, or experiment further, with the examples given below, please load the <em>basic-genealogy.gql</em> file, which can be found in the <em>examples</em> directory of the Grakn installation zip, or on <a href="">Github</a>.</p>
 
-<p>A variable pattern in an insert query describes <a href="#properties">properties</a> to
-set on a particular concept. The variable pattern can optionally be bound to a
-variable or an ID.</p>
+<div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> <b>Note:</b> If you are working in the Graql shell, don’t forget to <code class="highlighter-rouge">commit</code> to store an insertion in the graph.</div>
+
+<h2 id="match-insert"><code class="highlighter-rouge">match-insert</code></h2>
+
+<p>If a <a href="match-queries.html">match query</a> is provided, the query will insert the given variable patterns for every result of the query.
+The pattern describes <a href="#properties">properties</a> to set on a particular concept and can optionally be bound to a variable or an ID.</p>
+
+<p>In the example below, we insert additional (fictional) information for a <code class="highlighter-rouge">person</code> entity who we have matched through <code class="highlighter-rouge">identifier</code> Mary Guthrie.</p>
+
 <ul id="profileTabs" class="nav nav-tabs">
     <li class="active"><a href="#shell1" data-toggle="tab">Graql</a></li>
     <li><a href="#java1" data-toggle="tab">Java</a></li>
@@ -790,25 +792,12 @@ variable or an ID.</p>
 <div class="tab-content">
 <div role="tabpanel" class="tab-pane active" id="shell1">
 <pre>
-match
-$pk has name "Pikachu";
-insert
-$p isa pokemon, has name "Pichu", has pokedex-no 172;
-(descendent: $pk, ancestor: $p) isa evolution;
-
+match $p has identifier "Mary Guthrie"; insert $p has middlename "Mathilda"; $p has birth-date "1902-01-01"; $p has death-date "1952-01-01"; $p has age 50;
+commit;
 </pre>
 </div>
 <div role="tabpanel" class="tab-pane" id="java1">
 <pre>
-qb.match(
-    var("pk").has("name", "Pikachu")
-).insert(
-    var("p").isa("pokemon").has("name", "Pichu").has("pokedex-no", 172),
-    var().isa("evolution")
-        .rel("descendent", "pk")
-        .rel("ancestor", "p")
-).execute();
-
 </pre>
 </div> <!-- tab-pane -->
 </div>
@@ -818,6 +807,8 @@ qb.match(
 
 <h3 id="isa">isa</h3>
 
+<p>Set the type of the inserted concept.</p>
+
 <ul id="profileTabs" class="nav nav-tabs">
     <li class="active"><a href="#shell2" data-toggle="tab">Graql</a></li>
     <li><a href="#java2" data-toggle="tab">Java</a></li>
@@ -826,23 +817,21 @@ qb.match(
 <div class="tab-content">
 <div role="tabpanel" class="tab-pane active" id="shell2">
 <pre>
-insert has name "Totodile" isa pokemon;
+insert has identifier "Titus Groan" isa person;
+commit;
 </pre>
 </div>
 <div role="tabpanel" class="tab-pane" id="java2">
 <pre>
-qb.insert(var().has("name", "Totodile").isa("pokemon"));
+qb.insert(var().has("name", "Titus Groan").isa("person"));
 </pre>
 </div> <!-- tab-pane -->
 </div>
 <p><!-- tab-content --></p>
 
-<p>Set the type of this concept.</p>
-
 <h3 id="id">id</h3>
 
-<p>Create a concept with the given id, or retrieve it if one with that id exists.
-The created or retrieved concept can then be modified with further properties.</p>
+<p>It is not possible to insert a concept with the given id, as this is the job of the system. However, if you attempt to insert by id, you will retrieve a concept if one with that id already exists. The created or retrieved concept can then be modified with further properties.</p>
 
 <ul id="profileTabs" class="nav nav-tabs">
     <li class="active"><a href="#shell3" data-toggle="tab">Graql</a></li>
@@ -852,12 +841,13 @@ The created or retrieved concept can then be modified with further properties.</
 <div class="tab-content">
 <div role="tabpanel" class="tab-pane active" id="shell3">
 <pre>
-insert has name "Pikachu" isa pokemon;
+insert has id "1376496" isa person;
+commit
 </pre>
 </div>
 <div role="tabpanel" class="tab-pane" id="java3">
 <pre>
-qb.insert(var().has("name", "Pikachu").isa("pokemon"));
+qb.insert(var().has("id", "1376496").isa("person"));
 </pre>
 </div> <!-- tab-pane -->
 </div>
@@ -874,12 +864,13 @@ qb.insert(var().has("name", "Pikachu").isa("pokemon"));
 <div class="tab-content">
 <div role="tabpanel" class="tab-pane active" id="shell4">
 <pre>
-insert value "Ash" isa name;
+insert value "Ash" isa surname;
+commit
 </pre>
 </div>
 <div role="tabpanel" class="tab-pane" id="java4">
 <pre>
-qb.insert(var().value("Ash").isa("name"));
+qb.insert(var().value("Ash").isa("surname"));
 </pre>
 </div> <!-- tab-pane -->
 </div>
@@ -897,42 +888,13 @@ qb.insert(var().value("Ash").isa("name"));
 <div class="tab-content">
 <div role="tabpanel" class="tab-pane active" id="shell5">
 <pre>
-insert isa pokemon, has name "Pichu" has height 30;
+insert isa person, has identifier "Fuchsia Groan" has gender "female";
+commit
 </pre>
 </div>
 <div role="tabpanel" class="tab-pane" id="java5">
 <pre>
-qb.insert(var().isa("pokemon").has("name", "Pichu").has("height", 30));
-</pre>
-</div> <!-- tab-pane -->
-</div>
-<p><!-- tab-content --></p>
-
-<p>The above example is equivalent to:</p>
-
-<ul id="profileTabs" class="nav nav-tabs">
-    <li class="active"><a href="#shell6" data-toggle="tab">Graql</a></li>
-    <li><a href="#java6" data-toggle="tab">Java</a></li>
-</ul>
-
-<div class="tab-content">
-<div role="tabpanel" class="tab-pane active" id="shell6">
-<pre>
-insert
-$owner isa pokemon, has name "Pichu";
-$value isa height, value 30;
-
-(has-height-owner: $owner, has-height-value: $value) isa has-height;
-
-</pre>
-</div>
-<div role="tabpanel" class="tab-pane" id="java6">
-<pre>
-qb.insert(
-  var("owner").isa("pokemon").has("name", "Pichu"),
-  var("value").isa("height").value(30),
-  var().rel("has-height-owner", "owner").rel("has-height-value", "value").isa("has-height")
-);
+qb.insert(var().isa("person").has("identifier", "Fuchsia").has("gender", "female"));
 </pre>
 </div> <!-- tab-pane -->
 </div>
@@ -940,8 +902,8 @@ qb.insert(
 
 <h3 id="relation">relation</h3>
 
-<p>Make the concept a relation that relates the given role players, playing the
-given roles.</p>
+<p>Make the concept a relation that relates the given role players, playing the given roles. <br />
+<em>(With apologies to ‘Gormenghast’ fans, who will be aware that Titus and Fuchsia are siblings and thus cannot marry).</em></p>
 
 <ul id="profileTabs" class="nav nav-tabs">
     <li class="active"><a href="#shell7" data-toggle="tab">Graql</a></li>
@@ -951,23 +913,20 @@ given roles.</p>
 <div class="tab-content">
 <div role="tabpanel" class="tab-pane active" id="shell7">
 <pre>
-match
-$p has name "Pichu";
-$e has name "electric";
-insert
-(pokemon-with-type: $p, type-of-pokemon: $e) isa has-type;
+match $p1 has identifier "Titus Groan"; $p2 has identifier "Fuchsia Groan"; insert (spouse1: $p1, spouse2: $p2) isa marriage;
+commit
 </pre>
 </div>
 <div role="tabpanel" class="tab-pane" id="java7">
 <pre>
 qb.match(
-  var("p").has("name", "Pichu"),
-  var("e").has("name", "electric")
+  var("p1").has("name", "Titus Groan"),
+  var("p2").has("name", "Fuchsia Groan")
 ).insert(
   var()
-    .rel("pokemon-with-type", "p")
-    .rel("type-of-pokemon", "e")
-    .isa("has-type")
+    .rel("spouse1", "p")
+    .rel("spouse2", "e")
+    .isa("marriage")
 );
 
 </pre>
@@ -981,7 +940,7 @@ qb.match(
 
 <h3 id="sub">sub</h3>
 
-<p>Set up the hierarchy.</p>
+<p>Set up a hierarchy.</p>
 
 <ul id="profileTabs" class="nav nav-tabs">
     <li class="active"><a href="#shell8" data-toggle="tab">Graql</a></li>
@@ -991,19 +950,21 @@ qb.match(
 <div class="tab-content">
 <div role="tabpanel" class="tab-pane active" id="shell8">
 <pre>
-insert gen2-pokemon sub pokemon;
+insert man sub person;
+insert woman sub person;
 </pre>
 </div>
 <div role="tabpanel" class="tab-pane" id="java8">
 <pre>
-qb.insert(name("gen2-pokemon").sub("pokemon"));
+qb.insert(name("man").sub("person"));
+qb.insert(name("woman").sub("person"));
 </pre>
 </div> <!-- tab-pane -->
 </div>
 <p><!-- tab-content --></p>
 
 <h3 id="has-role">has-role</h3>
-<p>Add a role to this relation.</p>
+<p>Add a role to a relation.</p>
 
 <ul id="profileTabs" class="nav nav-tabs">
     <li class="active"><a href="#shell9" data-toggle="tab">Graql</a></li>
@@ -1013,14 +974,14 @@ qb.insert(name("gen2-pokemon").sub("pokemon"));
 <div class="tab-content">
 <div role="tabpanel" class="tab-pane active" id="shell9">
 <pre>
-insert trained-by sub relation, has-role trainer, has-role pokemon-trained;
+insert siblings sub relation, has-role sibling1, has-role sibling2;
 </pre>
 </div>
 <div role="tabpanel" class="tab-pane" id="java9">
 <pre>
 qb.insert(
-  name("trained-by").sub("relation")
-    .hasRole("trainer").hasRole("pokemon-trained")
+  name("siblings").sub("relation")
+    .hasRole("sibling1").hasRole("sibling2")
 );
 </pre>
 </div> <!-- tab-pane -->
@@ -1038,12 +999,14 @@ qb.insert(
 <div class="tab-content">
 <div role="tabpanel" class="tab-pane active" id="shell10">
 <pre>
-insert pokemon plays-role pokemon-trained;
+insert person plays-role sibling1;
+insert person plays-role sibling2;
 </pre>
 </div>
 <div role="tabpanel" class="tab-pane" id="java10">
 <pre>
-qb.insert(name("pokemon").playsRole("pokemon-trained"));
+qb.insert(name("person").playsRole("sibling1"));
+qb.insert(name("person").playsRole("sibling2"));
 </pre>
 </div> <!-- tab-pane -->
 </div>
@@ -1063,40 +1026,13 @@ qb.insert(name("pokemon").playsRole("pokemon-trained"));
 <div class="tab-content">
 <div role="tabpanel" class="tab-pane active" id="shell11">
 <pre>
-insert pokemon has-resource pokedex-no;
+insert person has-resource nickname;
 </pre>
-<p>The above example is equivalent to:</p>
-<pre>
-insert
-
-has-pokedex-no sub relation,
-  has-role has-pokedex-no-owner,
-  has-role has-pokedex-no-value;
-
-has-pokedex-no-owner sub role;
-has-pokedex-no-value sub role;
-
-pokemon plays-role has-pokedex-no-owner;
-pokedex-no plays-role has-pokedex-no-value;
-</pre>
-
 </div>
+
 <div role="tabpanel" class="tab-pane" id="java11">
 <pre>
-qb.insert(name("pokemon").hasResource("pokedex-no"));
-</pre>
-<p>The above example is equivalent to:</p>
-<pre>
-qb.insert(
-  name("has-pokedex-no").sub("relation")
-    .hasRole("has-pokedex-no-owner").hasRole("has-pokedex-no-value"),
-
-  name("has-pokedex-no-owner").sub("role"),
-  name("has-pokedex-no-value").sub("role"),
-
-  name("pokemon").playsRole("has-pokedex-no-owner"),
-  name("pokedex-no").playsRole("has-pokedex-no-value")
-);
+qb.insert(name("person").hasResource("nickname"));
 </pre>
 </div> <!-- tab-pane -->
 </div>
@@ -1144,7 +1080,7 @@ qb.insert(
         <br>
         <p>© 2016 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2017 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> August 10, 2016<br/> Site last generated: Jan 19, 2017 <br />
+        <span>Page last updated:</span> August 10, 2016<br/> Site last generated: Jan 21, 2017 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">
