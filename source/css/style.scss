@@ -94,7 +94,7 @@ html{
         }
 
         .intro{
-            height: 12%;
+            height: 10%;
             p{
                 color: $white;
                 text-align: center;
@@ -114,7 +114,6 @@ html{
 
             a{
                 flex: 0 1 auto;
-                margin: 0px 5px;
             }
         }
         .subscribe{
@@ -183,7 +182,7 @@ a{
 }
 
 p{
-    margin: 0 0 1rem 0;
+    margin: 0 0 0 0;
 
     &.bigText{
         font-size: 1.2rem;
@@ -286,9 +285,9 @@ p{
 
 /* Larger than desktop */
 @media (min-width: 1000px) {
-    p{
-        margin: 0 0 1.5rem 0;
-    }
+    // p{
+    //     margin: 0 0 1.5rem 0;
+    // }
     .container{
         &.title{
             .intro{
