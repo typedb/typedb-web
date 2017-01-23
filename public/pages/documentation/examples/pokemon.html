@@ -666,13 +666,6 @@
             
             
             
-            <li><a href="/pages/documentation/examples/modern.html">Modern example</a></li>
-            
-            
-            
-            
-            
-            
             <li><a href="/pages/documentation/examples/CSV-migration.html">CSV Migration</a></li>
             
             
@@ -695,6 +688,20 @@
             
             
             <li><a href="/pages/documentation/examples/graql-reasoning.html">Reasoning with Graql</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="/pages/documentation/examples/modern.html">Modern example</a></li>
+            
+            
+            
+            
+            
+            
+            <li class="active"><a href="/pages/documentation/examples/pokemon.html">Pokemon example</a></li>
             
             
             
@@ -784,7 +791,7 @@ $('#toc').on('click', 'a', function() {
 </code></pre>
 </div>
 
-<p>Here are the queries. Type each one in a separate line and see what happens! Comments are marked with a #, so you can ignore them.</p>
+<p>Here are the queries. Type each one in a separate line and see what happens. Comments are marked with a #, so you can ignore them.</p>
 
 <div class="highlighter-rouge"><pre class="highlight"><code>match $x isa pokemon;
 match $x has name "Articuno";
@@ -817,6 +824,31 @@ match $x isa pokemon, has pokedex-no $no; select $no; distinct; order by $no asc
 
 # match...insert
 match $pk has name "Pikachu"; insert $p isa pokemon, has name "Pichu", has pokedex-no 172; (descendent: $pk, ancestor: $p) isa evolution;
+match $p has name "Pichu"; $e has name "electric"; insert (pokemon-with-type: $p, type-of-pokemon: $e) isa has-type;
+
+# insert queries 
+insert has name "Totodile" isa pokemon;
+insert value "Ash" isa name;
+insert isa pokemon, has name "Pichu" has height 30;
+insert gen2-pokemon sub pokemon;
+insert trained-by sub relation, has-role trainer, has-role pokemon-trained;
+insert pokemon plays-role pokemon-trained;
+insert pokemon has-resource pokedex-no;
+
+# delete queries
+match $x has name "Bulbasaur"; delete $x has weight $y;
+
+# aggregate queries
+match $x isa pokemon; aggregate count;
+match $x isa pokemon, has weight $w; aggregate sum $w;
+match $x isa pokemon, has height $h; aggregate max $h;
+match $x isa pokemon, has name $n; aggregate min $n;
+match $x isa pokemon, has height $h; aggregate average $h;
+match $x isa pokemon, has weight $w; aggregate median $w;
+match $x isa pokemon-type; $y isa pokemon-type; (attacking-type: $x, defending-type: $y) isa super-effective; aggregate group $x;
+match $x isa pokemon, has weight $w, has height $h; aggregate (min $w as minWeight, max $h as maxHeight);
+
+
 </code></pre>
 </div>
 
@@ -865,7 +897,7 @@ match $pk has name "Pikachu"; insert $p isa pokemon, has name "Pichu", has poked
         <br>
         <p>© 2016 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2017 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> January 2017<br/> Site last generated: Jan 21, 2017 <br />
+        <span>Page last updated:</span> January 2017<br/> Site last generated: Jan 23, 2017 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">

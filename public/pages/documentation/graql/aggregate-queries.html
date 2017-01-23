@@ -666,13 +666,6 @@
             
             
             
-            <li><a href="/pages/documentation/examples/modern.html">Modern example</a></li>
-            
-            
-            
-            
-            
-            
             <li><a href="/pages/documentation/examples/CSV-migration.html">CSV Migration</a></li>
             
             
@@ -695,6 +688,20 @@
             
             
             <li><a href="/pages/documentation/examples/graql-reasoning.html">Reasoning with Graql</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="/pages/documentation/examples/modern.html">Modern example</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="/pages/documentation/examples/pokemon.html">Pokemon example</a></li>
             
             
             
@@ -773,7 +780,12 @@ $('#toc').on('click', 'a', function() {
 
     
 
-  <p>An aggregate query applies an operation onto a <a href="match-queries.html">match query</a>, to return information about the results (e.g. a count).</p>
+  <p>An aggregate query applies an operation onto a <a href="match-queries.html">match query</a>, to return information about the results (e.g. a count). To follow along, or experiment further, with the examples given below, please load the <em>basic-genealogy.gql</em> file, which can be found in the <em>examples</em> directory of the Grakn installation zip, or on <a href="">Github</a>.</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>&lt;relative-path-to-Grakn&gt;/bin/grakn.sh start 
+&lt;relative-path-to-Grakn&gt;/bin/graql.sh -f &lt;relative-path-to-Grakn&gt;/examples/basic-genealogy.gql
+</code></pre>
+</div>
 
 <h2 id="aggregate-functions">Aggregate Functions</h2>
 
@@ -784,12 +796,12 @@ $('#toc').on('click', 'a', function() {
 <div class="tab-content">
 <div role="tabpanel" class="tab-pane active" id="shell1">
 <pre>
-match $x isa pokemon; aggregate count;
+match $x isa person; aggregate count;
 </pre>
 </div>
 <div role="tabpanel" class="tab-pane" id="java1">
 <pre>
-qb.match(var("x").isa("pokemon")).aggregate(count());
+qb.match(var("x").isa("person")).aggregate(count());
 </pre>
 </div> <!-- tab-pane -->
 </div>
@@ -802,16 +814,14 @@ qb.match(var("x").isa("pokemon")).aggregate(count());
 <div class="tab-content">
 <div role="tabpanel" class="tab-pane active" id="shell1">
 <pre>
-match
-$x isa pokemon, has weight $w;
-aggregate sum $w;
+match $x isa person, has age $a; aggregate sum $a;
 </pre>
 </div>
 <div role="tabpanel" class="tab-pane" id="java1">
 <pre>
 qb.match(
-    var("x").isa("pokemon").has("weight", var("w"))
-).aggregate(sum("w"));
+    var("x").isa("person").has("age", var("a"))
+).aggregate(sum("a"));
 </pre>
 </div> <!-- tab-pane -->
 </div>
@@ -824,15 +834,13 @@ qb.match(
 <div class="tab-content">
 <div role="tabpanel" class="tab-pane active" id="shell1">
 <pre>
-match
-$x isa pokemon, has height $h;
-aggregate max $h;
+match $x isa person, has age $a; aggregate max $a;
 </pre>
 </div>
 <div role="tabpanel" class="tab-pane" id="java1">
 <pre>
 qb.match(
-    var("x").isa("pokemon").has("height", var("h"))
+    var("x").isa("person").has("age", var("a"))
 ).aggregate(max("h"));
 </pre>
 </div> <!-- tab-pane -->
@@ -846,15 +854,13 @@ qb.match(
 <div class="tab-content">
 <div role="tabpanel" class="tab-pane active" id="shell1">
 <pre>
-match
-$x isa pokemon, has name $n;
-aggregate min $n;
+match $x isa person, has firstname $n; aggregate min $n;
 </pre>
 </div>
 <div role="tabpanel" class="tab-pane" id="java1">
 <pre>
 qb.match(
-    var("x").isa("pokemon").has("name", var("n"))
+    var("x").isa("person").has("firstname", var("n"))
 ).aggregate(min("n"));
 </pre>
 </div> <!-- tab-pane -->
@@ -868,16 +874,14 @@ qb.match(
 <div class="tab-content">
 <div role="tabpanel" class="tab-pane active" id="shell1">
 <pre>
-match
-$x isa pokemon, has height $h;
-aggregate average $h;
+match $x isa person, has age $a; aggregate average $a;
 </pre>
 </div>
 <div role="tabpanel" class="tab-pane" id="java1">
 <pre>
 qb.match(
-    var("x").isa("pokemon").has("height", var("h"))
-).aggregate(average("h"));
+    var("x").isa("person").has("age", var("a"))
+).aggregate(average("a"));
 </pre>
 </div> <!-- tab-pane -->
 </div>
@@ -891,15 +895,15 @@ qb.match(
 <div role="tabpanel" class="tab-pane active" id="shell1">
 <pre>
 match
-$x isa pokemon, has weight $w;
-aggregate median $w;
+match $x isa person, has age $a; aggregate median $a;
+
 </pre>
 </div>
 <div role="tabpanel" class="tab-pane" id="java1">
 <pre>
 qb.match(
-    var("x").isa("pokemon").has("weight", var("w"))
-).aggregate(median("w"));
+    var("x").isa("person").has("age", var("a"))
+).aggregate(median("a"));
 </pre>
 </div> <!-- tab-pane -->
 </div>
@@ -915,19 +919,15 @@ aggregate operation, e.g. <code class="highlighter-rouge">count</code>.</p>
 <div class="tab-content">
 <div role="tabpanel" class="tab-pane active" id="shell1">
 <pre>
-match
-$x isa pokemon-type;
-$y isa pokemon-type;
-(attacking-type: $x, defending-type: $y) isa super-effective;
-aggregate group $x;
+match $x isa person; $y isa person; (parent: $x, child: $y) isa parentship; aggregate group $x;
 </pre>
 </div>
 <div role="tabpanel" class="tab-pane" id="java1">
 <pre>
 qb.match(
-    var("x").isa("pokemon-type"),
-    var("y").isa("pokemon-type"),
-    var().rel("attacking-type", "x").rel("defending-type", "y").isa("super-effective")
+    var("x").isa("person"),
+    var("y").isa("person"),
+    var().rel("parent", "x").rel("child", "y").isa("parentship")
 ).aggregate(group("x"));
 </pre>
 </div> <!-- tab-pane -->
@@ -941,16 +941,14 @@ qb.match(
 <div class="tab-content">
 <div role="tabpanel" class="tab-pane active" id="shell1">
 <pre>
-match
-$x isa pokemon, has weight $w, has height $h;
-aggregate (min $w as minWeight, max $h as maxHeight);
+match $x isa person, has age $a, has gender $g; aggregate (min $a as minAge, max $g as maxGender);
 </pre>
 </div>
 <div role="tabpanel" class="tab-pane" id="java1">
 <pre>
 qb.match(
-    var("x").isa("pokemon").has("weight", var("w")).has("height", var("h")),
-).aggregate(select(min("w").as("minWeight"), max("h").as("maxHeight")));
+    var("x").isa("person").has("age", var("w")).has("gender", var("h")),
+).aggregate(select(min("w").as("minAge"), max("h").as("maxGender")));
 </pre>
 </div> <!-- tab-pane -->
 </div>
@@ -962,7 +960,7 @@ qb.match(
 
 <p>For example, you can use an aggregate query to filter results by resource. The following  aggregate query, allows you to match the number of people of a particular name:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>match $x has name 'Bob'; aggregate count;
+<div class="highlighter-rouge"><pre class="highlight"><code>match $x has identifier contains "Elizabeth"; aggregate count;
 </code></pre>
 </div>
 
@@ -1016,7 +1014,7 @@ qb.match(
         <br>
         <p>© 2016 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2017 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> Tuesday 6, 2016<br/> Site last generated: Jan 21, 2017 <br />
+        <span>Page last updated:</span> Tuesday 6, 2016<br/> Site last generated: Jan 23, 2017 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">

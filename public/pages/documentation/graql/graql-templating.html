@@ -666,13 +666,6 @@
             
             
             
-            <li><a href="/pages/documentation/examples/modern.html">Modern example</a></li>
-            
-            
-            
-            
-            
-            
             <li><a href="/pages/documentation/examples/CSV-migration.html">CSV Migration</a></li>
             
             
@@ -695,6 +688,20 @@
             
             
             <li><a href="/pages/documentation/examples/graql-reasoning.html">Reasoning with Graql</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="/pages/documentation/examples/modern.html">Modern example</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="/pages/documentation/examples/pokemon.html">Pokemon example</a></li>
             
             
             
@@ -1040,41 +1047,44 @@ $x isa person has name &lt;name&gt;;
 
 <p>For example, the following loop:</p>
 
-<pre><code class="language-graql-template">insert $x isa pokemon has description &lt;name&gt;;
-    
-for (&lt;types&gt;) do {
-    $y isa pokemon-type ;
-        $y has description &lt;type-description&gt; ;
-        (pokemon-with-type: $x, type-of-pokemon: $y) isa has-type;
-}
+<pre><code class="language-graql-template">insert
+	$p isa person has identifier &lt;pid&gt;
+		has firstname &lt;name1&gt;,
+		
+		if (&lt;surname&gt; != "") do 
+		{
+		has surname &lt;surname&gt;,
+		}
 
-$y isa pokemon;
-(ancestor: $x, descendent: $y) isa evolution;
+		if (&lt;name2&gt; != "") do 
+		{
+		has middlename &lt;name2&gt;,
+		}
+		
+		if (&lt;age&gt; != "") do 
+		{
+		has age @long(&lt;age&gt;),
+		}
+
+		if (&lt;born&gt; != "") do 
+		{
+		has birth-date &lt;born&gt;,
+		}
+
+		if (&lt;dead&gt; != "") do 
+		{
+		has death-date &lt;dead&gt;,
+		}
+
+		has gender &lt;gender&gt;;
 </code></pre>
 
 <p>would result in the expanded Graql queries:</p>
 
-<pre><code class="language-graql">insert $x0 isa pokemon has description "Pikachu";
-    
-    $y0 isa pokemon-type ;
-        $y0 has description "Electric" ;
-        (pokemon-with-type: $x0, type-of-pokemon: $y0) isa has-type;
-    $y1 isa pokemon-type ;
-        $y1 has description "Mouse" ;
-        (pokemon-with-type: $x0, type-of-pokemon: $y1) isa has-type;
-
-    $y2 isa pokemon;
-    (ancestor: $x0, descendent: $y2) isa evolution; 
-</code></pre>
-
-<pre><code class="language-graql">insert $x1 isa pokemon has description "Raichu";
-    
-    $y3 isa pokemon-type ;
-        $y3 has description "Electric" ;
-        (pokemon-with-type: $x1, type-of-pokemon: $y3) isa has-type;
-
-    $y4 isa pokemon;
-    (ancestor: $x1, descendent: $y4) isa evolution; 
+<pre><code class="language-graql">...
+insert $p0 isa person has firstname "Barbara" has identifier "Barbara Newman" has surname "Newman" has gender "female";
+insert $p0 has birth-date "1811-03-06" isa person has surname "Newman" has gender "male" has death-date "1898-09-10" has identifier "Henry Newman" has age 87 has firstname "Henry";
+... 
 </code></pre>
 
 <h2 id="comments">Comments</h2>
@@ -1119,7 +1129,7 @@ $y isa pokemon;
         <br>
         <p>© 2016 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2017 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> November 4, 2016<br/> Site last generated: Jan 21, 2017 <br />
+        <span>Page last updated:</span> November 4, 2016<br/> Site last generated: Jan 23, 2017 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">

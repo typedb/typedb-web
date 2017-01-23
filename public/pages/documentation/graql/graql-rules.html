@@ -666,13 +666,6 @@
             
             
             
-            <li><a href="/pages/documentation/examples/modern.html">Modern example</a></li>
-            
-            
-            
-            
-            
-            
             <li><a href="/pages/documentation/examples/CSV-migration.html">CSV Migration</a></li>
             
             
@@ -695,6 +688,20 @@
             
             
             <li><a href="/pages/documentation/examples/graql-reasoning.html">Reasoning with Graql</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="/pages/documentation/examples/modern.html">Modern example</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="/pages/documentation/examples/pokemon.html">Pokemon example</a></li>
             
             
             
@@ -910,31 +917,31 @@ and RHS of rules.</p>
   <tbody>
     <tr>
       <td><code class="highlighter-rouge">isa</code></td>
-      <td style="text-align: left"><code class="highlighter-rouge">$x isa pokemon;</code></td>
+      <td style="text-align: left"><code class="highlighter-rouge">$x isa person;</code></td>
       <td style="text-align: left">✓</td>
       <td style="text-align: left">x</td>
     </tr>
     <tr>
       <td><code class="highlighter-rouge">id</code></td>
-      <td style="text-align: left"><code class="highlighter-rouge">$x id "Articuno";</code></td>
+      <td style="text-align: left"><code class="highlighter-rouge">$x id "264597";</code></td>
       <td style="text-align: left">✓</td>
       <td style="text-align: left">indirect only</td>
     </tr>
     <tr>
       <td><code class="highlighter-rouge">value</code></td>
-      <td style="text-align: left"><code class="highlighter-rouge">$x value contains "lightning";</code></td>
+      <td style="text-align: left"><code class="highlighter-rouge">$x value contains "Bar";</code></td>
       <td style="text-align: left">✓</td>
       <td style="text-align: left">indirect only</td>
     </tr>
     <tr>
       <td><code class="highlighter-rouge">has</code></td>
-      <td style="text-align: left"><code class="highlighter-rouge">$x has pokedex-no &lt; 20;</code></td>
+      <td style="text-align: left"><code class="highlighter-rouge">$x has age &lt; 20;</code></td>
       <td style="text-align: left">✓</td>
       <td style="text-align: left">✓</td>
     </tr>
     <tr>
       <td><code class="highlighter-rouge">relation</code></td>
-      <td style="text-align: left"><code class="highlighter-rouge">(ancestor: $x, descendant: $y) isa ancestorship;</code></td>
+      <td style="text-align: left"><code class="highlighter-rouge">(parent: $x, child: $y) isa parentship;</code></td>
       <td style="text-align: left">✓</td>
       <td style="text-align: left">✓</td>
     </tr>
@@ -979,19 +986,19 @@ and RHS of rules.</p>
     </tr>
     <tr>
       <td><code class="highlighter-rouge">plays-role</code></td>
-      <td style="text-align: left"><code class="highlighter-rouge">$x plays-role ancestor;</code></td>
+      <td style="text-align: left"><code class="highlighter-rouge">$x plays-role parent;</code></td>
       <td style="text-align: left">✓</td>
       <td style="text-align: left">x</td>
     </tr>
     <tr>
       <td><code class="highlighter-rouge">has-resource</code></td>
-      <td style="text-align: left"><code class="highlighter-rouge">$x has-resource name;</code></td>
+      <td style="text-align: left"><code class="highlighter-rouge">$x has-resource firsname;</code></td>
       <td style="text-align: left">✓</td>
       <td style="text-align: left">x</td>
     </tr>
     <tr>
       <td><code class="highlighter-rouge">has-role</code></td>
-      <td style="text-align: left"><code class="highlighter-rouge">evolution has-role $x;</code></td>
+      <td style="text-align: left"><code class="highlighter-rouge">marriage has-role $x;</code></td>
       <td style="text-align: left">✓</td>
       <td style="text-align: left">x</td>
     </tr>
@@ -1112,7 +1119,7 @@ and RHS of rules.</p>
         <br>
         <p>© 2016 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2017 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> January 2017<br/> Site last generated: Jan 21, 2017 <br />
+        <span>Page last updated:</span> January 2017<br/> Site last generated: Jan 23, 2017 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">
