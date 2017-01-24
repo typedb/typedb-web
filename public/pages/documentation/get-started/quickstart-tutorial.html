@@ -283,6 +283,13 @@
             
             
             
+            
+            
+            <li class="active"><a href="/pages/documentation/get-started/quickstart-tutorial.html">Quickstart Tutorial</a></li>
+            
+            
+            
+            
         </ul>
         
         
@@ -290,20 +297,6 @@
     <li>
         <a href="#">The Basics</a>
         <ul>
-            
-            
-            
-            <li class="active"><a href="/pages/documentation/the-basics/quickstart-tutorial.html">Quickstart Tutorial</a></li>
-            
-            
-            
-            
-            
-            
-            <li><a href="/pages/documentation/the-basics/visualiser.html">Visualising a Graph</a></li>
-            
-            
-            
             
             
             
@@ -324,7 +317,7 @@
         
     
     <li>
-        <a href="#">Building an Ontology</a>
+        <a href="#">Graql Ontology</a>
         <ul>
             
             
@@ -374,7 +367,7 @@
         
     
     <li>
-        <a href="#">Querying with Graql</a>
+        <a href="#">Graql Querying</a>
         <ul>
             
             
@@ -581,6 +574,21 @@
         
     
     <li>
+        <a href="#">Grakn Dashboard</a>
+        <ul>
+            
+            
+            
+            <li><a href="/pages/documentation/grakn-dashboard/visualiser.html">Grakn Visualiser</a></li>
+            
+            
+            
+            
+        </ul>
+        
+        
+    
+    <li>
         <a href="#">Advanced Grakn</a>
         <ul>
             
@@ -774,7 +782,7 @@ $('#toc').on('click', 'a', function() {
 
     
 
-    <a target="_blank" href="https://github.com/graknlabs/docs/blob/master/pages/documentation/1-the-basics/quickstart-tutorial.md" class="btn btn-default githubEditButton" role="button"><i class="fa fa-github fa-lg"></i> Edit me</a>
+    <a target="_blank" href="https://github.com/graknlabs/docs/blob/master/pages/documentation/0-get-started/quickstart-tutorial.md" class="btn btn-default githubEditButton" role="button"><i class="fa fa-github fa-lg"></i> Edit me</a>
 
     
 
@@ -790,25 +798,25 @@ $('#toc').on('click', 'a', function() {
 
 <p>We will first make sure we are working with a clean ‘keyspace’. From the terminal:</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>&lt;relative-path-to-Grakn&gt;/bin/grakn.sh clean
+<div class="highlighter-rouge"><pre class="highlight"><code>&lt;relative-path-to-Grakn&gt;/bin/grakn.sh clean
 </code></pre>
 </div>
 
 <p>We then start the Grakn engine:</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>&lt;relative-path-to-Grakn&gt;/bin/grakn.sh start
+<div class="highlighter-rouge"><pre class="highlight"><code>&lt;relative-path-to-Grakn&gt;/bin/grakn.sh start
 </code></pre>
 </div>
 
 <p>Finally, we load the ontology and data into Grakn, so we have a graph to work with, using the <em>basic-genealogy.gql</em> file stored in the <em>examples</em> directory of the Grakn distribution zip. You can also find this file on <a href="">Github</a>. Simply invoke the Graql shell passing the -f flag to indicate the file to load into a graph (if you are interested, please see our <a href="../graql/graql-shell.html">documentation about flags supported by the Graql shell</a>):</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>&lt;relative-path-to-Grakn&gt;/bin/graql.sh -f &lt;relative-path-to-Grakn&gt;/examples/basic-genealogy.gql
+<div class="highlighter-rouge"><pre class="highlight"><code>&lt;relative-path-to-Grakn&gt;/bin/graql.sh -f &lt;relative-path-to-Grakn&gt;/examples/basic-genealogy.gql
 </code></pre>
 </div>
 
 <h3 id="the-ontology">The Ontology</h3>
 
-<p>You can find out much more about the Grakn ontology in our documentation about the <a href="./grakn-knowledge-model.html">Grakn knowledge model</a>, which states that</p>
+<p>You can find out much more about the Grakn ontology in our documentation about the <a href="../the-basics/grakn-knowledge-model.html">Grakn knowledge model</a>, which states that</p>
 
 <blockquote>
   <p>“The ontology is a formal specification of all the relevant concepts and their meaningful associations in a given application domain. It allows objects and relationships to be categorised into distinct types, and for generic properties about those types to be expressed”.</p>
@@ -896,7 +904,7 @@ $81940536 (spouse2: $233568, spouse1: $41361488) has picture "http:\/\/1.bp.blog
 
 <p>To start the <a href="../graql/graql-shell.html">Graql shell</a>, type the following from the terminal:</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>&lt;relative-path-to-Grakn&gt;/bin/graql.sh
+<div class="highlighter-rouge"><pre class="highlight"><code>&lt;relative-path-to-Grakn&gt;/bin/graql.sh
 </code></pre>
 </div>
 
@@ -938,15 +946,15 @@ commit;
 
 <h2 id="using-the-grakn-visualiser">Using the Grakn Visualiser</h2>
 
-<p>The <a href="./visualiser.html">Grakn visualiser</a> provides a graphical tool to inspect and query your graph data. You can open the visualiser by navigating to <a href="http://localhost:4567">localhost:4567</a> in your web browser. The visualiser allows you to make queries or simply browse the types within the graph. The screenshot below shows a basic query (<code class="highlighter-rouge">match $x isa person;</code>) typed into the form at the top of the main pane, and visualised by pressing “Submit”:</p>
+<p>The <a href="../grakn-dashboard/visualiser.html">Grakn visualiser</a> provides a graphical tool to inspect and query your graph data. You can open the visualiser by navigating to <a href="http://localhost:4567">localhost:4567</a> in your web browser. The visualiser allows you to make queries or simply browse the types within the graph. The screenshot below shows a basic query (<code class="highlighter-rouge">match $x isa person;</code>) typed into the form at the top of the main pane, and visualised by pressing “Submit”:</p>
 
 <p><img src="/images/match-$x-isa-person.png" alt="Person query" /></p>
 
-<p>The help tab on the main pane shows a set of key combinations that you can use to further drill into the data. You can zoom the display in and out, and move the nodes around for better visibility. Please see our <a href="./visualiser.html">Grakn visualiser</a> documentation for further details.</p>
+<p>The help tab on the main pane shows a set of key combinations that you can use to further drill into the data. You can zoom the display in and out, and move the nodes around for better visibility. Please see our <a href="../grakn-dashboard/visualiser.html">Grakn visualiser</a> documentation for further details.</p>
 
 <h2 id="using-inference">Using Inference</h2>
 
-<p>The use of GRAKN.AI to infer new information about a dataset lies at its core. We have a <a href="../examples/grakn-reasoner.html">detailed example of using the Grakn reasoner</a> to infer information about the genealogy dataset. An additional discussion on the same topic can be found in our <a href="https://blog.grakn.ai/family-matters-1bb639396a24#.525ozq2zy">“Family Matters” blog post</a>.</p>
+<p>The use of GRAKN.AI to infer new information about a dataset lies at its core. We have a <a href="../examples/graql-reasoning.html">detailed example of using the Grakn reasoner</a> to infer information about the genealogy dataset. An additional discussion on the same topic can be found in our <a href="https://blog.grakn.ai/family-matters-1bb639396a24#.525ozq2zy">“Family Matters” blog post</a>.</p>
 
 <h2 id="using-analytics">Using Analytics</h2>
 
@@ -1009,7 +1017,7 @@ commit;
         <br>
         <p>© 2016 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2017 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> December 2016<br/> Site last generated: Jan 23, 2017 <br />
+        <span>Page last updated:</span> December 2016<br/> Site last generated: Jan 24, 2017 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">

@@ -283,6 +283,13 @@
             
             
             
+            
+            
+            <li><a href="/pages/documentation/get-started/quickstart-tutorial.html">Quickstart Tutorial</a></li>
+            
+            
+            
+            
         </ul>
         
         
@@ -290,20 +297,6 @@
     <li>
         <a href="#">The Basics</a>
         <ul>
-            
-            
-            
-            <li><a href="/pages/documentation/the-basics/quickstart-tutorial.html">Quickstart Tutorial</a></li>
-            
-            
-            
-            
-            
-            
-            <li class="active"><a href="/pages/documentation/the-basics/visualiser.html">Visualising a Graph</a></li>
-            
-            
-            
             
             
             
@@ -324,7 +317,7 @@
         
     
     <li>
-        <a href="#">Building an Ontology</a>
+        <a href="#">Graql Ontology</a>
         <ul>
             
             
@@ -374,7 +367,7 @@
         
     
     <li>
-        <a href="#">Querying with Graql</a>
+        <a href="#">Graql Querying</a>
         <ul>
             
             
@@ -581,6 +574,21 @@
         
     
     <li>
+        <a href="#">Grakn Dashboard</a>
+        <ul>
+            
+            
+            
+            <li class="active"><a href="/pages/documentation/grakn-dashboard/visualiser.html">Grakn Visualiser</a></li>
+            
+            
+            
+            
+        </ul>
+        
+        
+    
+    <li>
         <a href="#">Advanced Grakn</a>
         <ul>
             
@@ -774,7 +782,7 @@ $('#toc').on('click', 'a', function() {
 
     
 
-    <a target="_blank" href="https://github.com/graknlabs/docs/blob/master/pages/documentation/1-the-basics/visualiser.md" class="btn btn-default githubEditButton" role="button"><i class="fa fa-github fa-lg"></i> Edit me</a>
+    <a target="_blank" href="https://github.com/graknlabs/docs/blob/master/pages/documentation/8-grakn-dashboard/visualiser.md" class="btn btn-default githubEditButton" role="button"><i class="fa fa-github fa-lg"></i> Edit me</a>
 
     
 
@@ -811,7 +819,7 @@ The colours used in the visualiser are as follows:
 
 <p>The first step is to load the ontology and data into Grakn. You need to use your terminal to do this, as the visualiser is a read-only interface to a graph. From the terminal, start Grakn, and load the file as follows:</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>&lt;relative-path-to-Grakn&gt;/bin/grakn.sh start
+<div class="highlighter-rouge"><pre class="highlight"><code>&lt;relative-path-to-Grakn&gt;/bin/grakn.sh start
 &lt;relative-path-to-Grakn&gt;/bin/graql.sh -f ./examples/basic-genealogy.gql -k <span class="s2">"family"</span>
 </code></pre>
 </div>
@@ -820,7 +828,7 @@ The colours used in the visualiser are as follows:
 
 <p>You can test in the Graql shell that all has loaded correctly. For example:</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>&lt;relative-path-to-Grakn&gt;/bin/graql.sh -k family
+<div class="highlighter-rouge"><pre class="highlight"><code>&lt;relative-path-to-Grakn&gt;/bin/graql.sh -k family
 match <span class="nv">$p</span> isa person, has identifier <span class="nv">$i</span>;
 </code></pre>
 </div>
@@ -922,7 +930,7 @@ match <span class="nv">$p</span> isa person, has identifier <span class="nv">$i<
         <br>
         <p>© 2016 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2017 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> August 10, 2016<br/> Site last generated: Jan 23, 2017 <br />
+        <span>Page last updated:</span> August 10, 2016<br/> Site last generated: Jan 24, 2017 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">
