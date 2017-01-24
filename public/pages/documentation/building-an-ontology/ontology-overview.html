@@ -283,6 +283,13 @@
             
             
             
+            
+            
+            <li><a href="/pages/documentation/get-started/quickstart-tutorial.html">Quickstart Tutorial</a></li>
+            
+            
+            
+            
         </ul>
         
         
@@ -290,20 +297,6 @@
     <li>
         <a href="#">The Basics</a>
         <ul>
-            
-            
-            
-            <li><a href="/pages/documentation/the-basics/quickstart-tutorial.html">Quickstart Tutorial</a></li>
-            
-            
-            
-            
-            
-            
-            <li><a href="/pages/documentation/the-basics/visualiser.html">Visualising a Graph</a></li>
-            
-            
-            
             
             
             
@@ -324,7 +317,7 @@
         
     
     <li>
-        <a href="#">Building an Ontology</a>
+        <a href="#">Graql Ontology</a>
         <ul>
             
             
@@ -374,7 +367,7 @@
         
     
     <li>
-        <a href="#">Querying with Graql</a>
+        <a href="#">Graql Querying</a>
         <ul>
             
             
@@ -572,6 +565,21 @@
             
             
             <li><a href="/pages/documentation/developing-with-java/java-graql.html">Java Graql</a></li>
+            
+            
+            
+            
+        </ul>
+        
+        
+    
+    <li>
+        <a href="#">Grakn Dashboard</a>
+        <ul>
+            
+            
+            
+            <li><a href="/pages/documentation/grakn-dashboard/visualiser.html">Grakn Visualiser</a></li>
             
             
             
@@ -782,7 +790,7 @@ $('#toc').on('click', 'a', function() {
 
   <div class="alert alert-danger" role="alert"><i class="fa fa-exclamation-circle"></i> <b>Warning:</b> This page is deprecated and will soon be removed.</div>
 
-<p>If you have not yet set up the Grakn environment, please see the <a href="../get-started/setup-guide.html">Setup guide</a>. This article assumes that you are set up and have already looked at the <a href="../the-basics/quickstart-tutorial.html">Quickstart Tutorial</a> that covers Graql queries. <br />
+<p>If you have not yet set up the Grakn environment, please see the <a href="../get-started/setup-guide.html">Setup guide</a>. This article assumes that you are set up and have already looked at the <a href="../get-started/quickstart-tutorial.html">Quickstart Tutorial</a> that covers Graql queries. <br />
 You can find the code below in the example code directory of the Grakn distribution zip.</p>
 
 <h2 id="introduction">Introduction</h2>
@@ -815,20 +823,20 @@ Once you have done that, a thread-bound graph can be retrieved by:</p>
 
 <h2 id="modelling-the-philosophers">Modelling The Philosophers</h2>
 
-<p>With a graph in place lets go through and repeat the <a href="../the-basics/quickstart-tutorial.html">Quickstart
+<p>With a graph in place lets go through and repeat the <a href="../get-started/quickstart-tutorial.html">Quickstart
 Tutorial</a> using the Java Graph API.</p>
 
 <h3 id="entity-types">Entity Types</h3>
 
 <p>First we create some philosophers, so we define the category of <code class="highlighter-rouge">people</code>:</p>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code>    <span class="n">EntityType</span> <span class="n">person</span> <span class="o">=</span> <span class="n">graknGraph</span><span class="o">.</span><span class="na">putEntityType</span><span class="o">(</span><span class="s">"person"</span><span class="o">);</span>
+<div class="highlighter-rouge"><pre class="highlight"><code>    <span class="n">EntityType</span> <span class="n">person</span> <span class="o">=</span> <span class="n">graknGraph</span><span class="o">.</span><span class="na">putEntityType</span><span class="o">(</span><span class="s">"person"</span><span class="o">);</span>
 </code></pre>
 </div>
 
 <p>Next we specify who our people are:</p>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code>    <span class="n">ResourceType</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">name</span> <span class="o">=</span> <span class="n">graknGraph</span><span class="o">.</span><span class="na">putResourceType</span><span class="o">(</span><span class="s">"name"</span><span class="o">,</span> <span class="n">ResourceType</span><span class="o">.</span><span class="na">DataType</span><span class="o">.</span><span class="na">STRING</span><span class="o">);</span>
+<div class="highlighter-rouge"><pre class="highlight"><code>    <span class="n">ResourceType</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">name</span> <span class="o">=</span> <span class="n">graknGraph</span><span class="o">.</span><span class="na">putResourceType</span><span class="o">(</span><span class="s">"name"</span><span class="o">,</span> <span class="n">ResourceType</span><span class="o">.</span><span class="na">DataType</span><span class="o">.</span><span class="na">STRING</span><span class="o">);</span>
     <span class="n">person</span><span class="o">.</span><span class="na">hasResource</span><span class="o">(</span><span class="n">name</span><span class="o">);</span>
 
     <span class="n">Resource</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">socratesName</span>  <span class="o">=</span> <span class="n">name</span><span class="o">.</span><span class="na">putResource</span><span class="o">(</span><span class="s">"Socrates"</span><span class="o">);</span>
@@ -851,7 +859,7 @@ Tutorial</a> using the Java Graph API.</p>
 
 <p>We can query for all the people:</p>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Instances of Person:"</span><span class="o">);</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Instances of Person:"</span><span class="o">);</span>
 <span class="k">for</span> <span class="o">(</span><span class="n">Entity</span> <span class="n">i</span> <span class="o">:</span> <span class="n">person</span><span class="o">.</span><span class="na">instances</span><span class="o">())</span> <span class="o">{</span>
     <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">i</span><span class="o">.</span><span class="na">resources</span><span class="o">(</span><span class="n">name</span><span class="o">).</span><span class="na">iterator</span><span class="o">().</span><span class="na">next</span><span class="o">());</span>
 <span class="o">}</span>
@@ -860,7 +868,7 @@ Tutorial</a> using the Java Graph API.</p>
 
 <p>Next, let’s add some <code class="highlighter-rouge">schools</code> of thought:</p>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code>    <span class="n">EntityType</span> <span class="n">school</span> <span class="o">=</span> <span class="n">graknGraph</span><span class="o">.</span><span class="na">putEntityType</span><span class="o">(</span><span class="s">"school"</span><span class="o">);</span>
+<div class="highlighter-rouge"><pre class="highlight"><code>    <span class="n">EntityType</span> <span class="n">school</span> <span class="o">=</span> <span class="n">graknGraph</span><span class="o">.</span><span class="na">putEntityType</span><span class="o">(</span><span class="s">"school"</span><span class="o">);</span>
     <span class="n">school</span><span class="o">.</span><span class="na">hasResource</span><span class="o">(</span><span class="n">name</span><span class="o">);</span>
 
     <span class="n">Resource</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">peripateticismName</span>  <span class="o">=</span> <span class="n">name</span><span class="o">.</span><span class="na">putResource</span><span class="o">(</span><span class="s">"Peripateticism"</span><span class="o">);</span>
@@ -881,7 +889,7 @@ Tutorial</a> using the Java Graph API.</p>
 
 <p>And look one up:</p>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">name</span><span class="o">.</span><span class="na">getResource</span><span class="o">(</span><span class="s">"Cynicism"</span><span class="o">).</span><span class="na">owner</span><span class="o">();</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">name</span><span class="o">.</span><span class="na">getResource</span><span class="o">(</span><span class="s">"Cynicism"</span><span class="o">).</span><span class="na">owner</span><span class="o">();</span>
 </code></pre>
 </div>
 
@@ -889,7 +897,7 @@ Tutorial</a> using the Java Graph API.</p>
 
 <p>Now that we have some data lets specify how these philosophers relate to these schools. First we create the <code class="highlighter-rouge">Relation Type</code> and its <code class="highlighter-rouge">Role Types</code>:</p>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">RoleType</span> <span class="n">philosopher</span> <span class="o">=</span> <span class="n">graknGraph</span><span class="o">.</span><span class="na">putRoleType</span><span class="o">(</span><span class="s">"philosopher"</span><span class="o">);</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">RoleType</span> <span class="n">philosopher</span> <span class="o">=</span> <span class="n">graknGraph</span><span class="o">.</span><span class="na">putRoleType</span><span class="o">(</span><span class="s">"philosopher"</span><span class="o">);</span>
 <span class="n">RoleType</span> <span class="n">philosophy</span> <span class="o">=</span> <span class="n">graknGraph</span><span class="o">.</span><span class="na">putRoleType</span><span class="o">(</span><span class="s">"philosophy"</span><span class="o">);</span>
 <span class="n">RelationType</span> <span class="n">practice</span> <span class="o">=</span> <span class="n">graknGraph</span><span class="o">.</span><span class="na">putRelationType</span><span class="o">(</span><span class="s">"practice"</span><span class="o">).</span>
   <span class="n">hasRole</span><span class="o">(</span><span class="n">philosopher</span><span class="o">).</span><span class="na">hasRole</span><span class="o">(</span><span class="n">philosophy</span><span class="o">);</span>
@@ -898,7 +906,7 @@ Tutorial</a> using the Java Graph API.</p>
 
 <p>Next we can relate our philosophers and schools to each other:</p>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code>    <span class="n">practice</span><span class="o">.</span><span class="na">addRelation</span><span class="o">().</span>  
+<div class="highlighter-rouge"><pre class="highlight"><code>    <span class="n">practice</span><span class="o">.</span><span class="na">addRelation</span><span class="o">().</span>  
       <span class="n">putRolePlayer</span><span class="o">(</span><span class="n">philosopher</span><span class="o">,</span> <span class="n">socrates</span><span class="o">).</span>
       <span class="n">putRolePlayer</span><span class="o">(</span><span class="n">philosophy</span><span class="o">,</span> <span class="n">platonism</span><span class="o">);</span>
 
@@ -920,7 +928,7 @@ Tutorial</a> using the Java Graph API.</p>
 
 <p>Now we can define how our philosophers relate to each other:</p>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code>    <span class="n">RoleType</span> <span class="n">teacher</span> <span class="o">=</span> <span class="n">graknGraph</span><span class="o">.</span><span class="na">putRoleType</span><span class="o">(</span><span class="s">"teacher"</span><span class="o">);</span>
+<div class="highlighter-rouge"><pre class="highlight"><code>    <span class="n">RoleType</span> <span class="n">teacher</span> <span class="o">=</span> <span class="n">graknGraph</span><span class="o">.</span><span class="na">putRoleType</span><span class="o">(</span><span class="s">"teacher"</span><span class="o">);</span>
     <span class="n">RoleType</span> <span class="n">student</span> <span class="o">=</span> <span class="n">graknGraph</span><span class="o">.</span><span class="na">putRoleType</span><span class="o">(</span><span class="s">"student"</span><span class="o">);</span>
     <span class="n">RelationType</span> <span class="n">education</span> <span class="o">=</span> <span class="n">graknGraph</span><span class="o">.</span><span class="na">putRelationType</span><span class="o">(</span><span class="s">"education"</span><span class="o">).</span>
       <span class="n">hasRole</span><span class="o">(</span><span class="n">teacher</span><span class="o">).</span><span class="na">hasRole</span><span class="o">(</span><span class="n">student</span><span class="o">);</span>
@@ -939,7 +947,7 @@ Tutorial</a> using the Java Graph API.</p>
 <p>Some people have special titles and epithets and we want to talk about that.
 So, we’ll create some resource types that can be attached to a person:</p>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">ResourceType</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">title</span> <span class="o">=</span> <span class="n">graknGraph</span><span class="o">.</span><span class="na">putResourceType</span><span class="o">(</span><span class="s">"title"</span><span class="o">,</span> <span class="n">ResourceType</span><span class="o">.</span><span class="na">DataType</span><span class="o">.</span><span class="na">STRING</span><span class="o">);</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">ResourceType</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">title</span> <span class="o">=</span> <span class="n">graknGraph</span><span class="o">.</span><span class="na">putResourceType</span><span class="o">(</span><span class="s">"title"</span><span class="o">,</span> <span class="n">ResourceType</span><span class="o">.</span><span class="na">DataType</span><span class="o">.</span><span class="na">STRING</span><span class="o">);</span>
 <span class="n">ResourceType</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">epithet</span> <span class="o">=</span> <span class="n">graknGraph</span><span class="o">.</span><span class="na">putResourceType</span><span class="o">(</span><span class="s">"epithet"</span><span class="o">,</span> <span class="n">ResourceType</span><span class="o">.</span><span class="na">DataType</span><span class="o">.</span><span class="na">STRING</span><span class="o">);</span>
 <span class="n">person</span><span class="o">.</span><span class="na">hasResource</span><span class="o">(</span><span class="n">title</span><span class="o">).</span><span class="na">hasResource</span><span class="o">(</span><span class="n">epithet</span><span class="o">);</span>
 </code></pre>
@@ -947,7 +955,7 @@ So, we’ll create some resource types that can be attached to a person:</p>
 
 <p>Let’s make Alexander “Great”!</p>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">Resource</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">theGreat</span> <span class="o">=</span> <span class="n">epithet</span><span class="o">.</span><span class="na">putResource</span><span class="o">(</span><span class="s">"The Great"</span><span class="o">);</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">Resource</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">theGreat</span> <span class="o">=</span> <span class="n">epithet</span><span class="o">.</span><span class="na">putResource</span><span class="o">(</span><span class="s">"The Great"</span><span class="o">);</span>
 <span class="n">alexander</span><span class="o">.</span><span class="na">hasResource</span><span class="o">(</span><span class="n">theGreat</span><span class="o">);</span>
 </code></pre>
 </div>
@@ -958,7 +966,7 @@ So, we’ll create some resource types that can be attached to a person:</p>
 
 <p>Let’s add the rest of Alexander’s titles while we’re at it:</p>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">Resource</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">hegemon</span> <span class="o">=</span> <span class="n">title</span><span class="o">.</span><span class="na">putResource</span><span class="o">(</span><span class="s">"Hegemon"</span><span class="o">);</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">Resource</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">hegemon</span> <span class="o">=</span> <span class="n">title</span><span class="o">.</span><span class="na">putResource</span><span class="o">(</span><span class="s">"Hegemon"</span><span class="o">);</span>
 <span class="n">Resource</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">kingOfMacedon</span> <span class="o">=</span> <span class="n">title</span><span class="o">.</span><span class="na">putResource</span><span class="o">(</span><span class="s">"King of Macedon"</span><span class="o">);</span>
 <span class="n">Resource</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">shahOfPersia</span> <span class="o">=</span> <span class="n">title</span><span class="o">.</span><span class="na">putResource</span><span class="o">(</span><span class="s">"Shah of Persia"</span><span class="o">);</span>
 <span class="n">Resource</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">pharaohOfEgypt</span> <span class="o">=</span> <span class="n">title</span><span class="o">.</span><span class="na">putResource</span><span class="o">(</span><span class="s">"Pharaoh of Egypt"</span><span class="o">);</span>
@@ -987,7 +995,7 @@ So, we’ll create some resource types that can be attached to a person:</p>
 
 <pre><code class="language-java-test-ignore">&lt;V&gt; Collection&lt;Resource&lt;V&gt;&gt; getResourcesByValue(V value);
 </code></pre>
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="c1">//Example:</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="c1">//Example:</span>
 <span class="n">graknGraph</span><span class="o">.</span><span class="na">getResourcesByValue</span><span class="o">(</span><span class="s">"bob"</span><span class="o">);</span> <span class="c1">// Will get you all the resources with the value "bob"</span>
 </code></pre>
 </div>
@@ -996,7 +1004,7 @@ So, we’ll create some resource types that can be attached to a person:</p>
 
 <pre><code class="language-java-test-ignore">&lt;V&gt; Resource&lt;V&gt; getResource(V value);
 </code></pre>
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="c1">//For Example:</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="c1">//For Example:</span>
 <span class="n">graknGraph</span><span class="o">.</span><span class="na">getResourceType</span><span class="o">(</span><span class="s">"name"</span><span class="o">).</span><span class="na">getResource</span><span class="o">(</span><span class="s">"bob"</span><span class="o">);</span> <span class="c1">//This will return a single resource with the value bob of type name</span>
 </code></pre>
 </div>
@@ -1007,7 +1015,7 @@ So, we’ll create some resource types that can be attached to a person:</p>
 
 <pre><code class="language-java-test-ignore">Collection&lt;Resource&lt;?&gt;&gt; resources(ResourceType ... resourceTypes);
 </code></pre>
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="c1">//Example</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="c1">//Example</span>
 <span class="n">myThing</span> <span class="o">=</span> <span class="n">graknGraph</span><span class="o">.</span><span class="na">getEntityType</span><span class="o">(</span><span class="s">"pokemon"</span><span class="o">).</span><span class="na">instances</span><span class="o">().</span><span class="na">iterator</span><span class="o">().</span><span class="na">next</span><span class="o">();</span>
 <span class="n">resources</span> <span class="o">=</span> <span class="n">myThing</span><span class="o">.</span><span class="na">resources</span><span class="o">(</span><span class="n">graknGraph</span><span class="o">.</span><span class="na">getResourceType</span><span class="o">(</span><span class="s">"name"</span><span class="o">));</span>
 </code></pre>
@@ -1017,7 +1025,7 @@ So, we’ll create some resource types that can be attached to a person:</p>
 
 <p>If you have a resource you can get the entitie(s) attached to it with:</p>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">resource</span> <span class="o">=</span> <span class="n">resources</span><span class="o">.</span><span class="na">iterator</span><span class="o">().</span><span class="na">next</span><span class="o">();</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">resource</span> <span class="o">=</span> <span class="n">resources</span><span class="o">.</span><span class="na">iterator</span><span class="o">().</span><span class="na">next</span><span class="o">();</span>
 <span class="n">resource</span><span class="o">.</span><span class="na">owner</span><span class="o">();</span>
 <span class="n">resource</span><span class="o">.</span><span class="na">ownerInstances</span><span class="o">();</span>
 </code></pre>
@@ -1071,7 +1079,7 @@ So, we’ll create some resource types that can be attached to a person:</p>
         <br>
         <p>© 2016 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2017 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> August 10, 2016<br/> Site last generated: Jan 23, 2017 <br />
+        <span>Page last updated:</span> August 10, 2016<br/> Site last generated: Jan 24, 2017 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">

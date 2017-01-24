@@ -283,6 +283,13 @@
             
             
             
+            
+            
+            <li><a href="/pages/documentation/get-started/quickstart-tutorial.html">Quickstart Tutorial</a></li>
+            
+            
+            
+            
         </ul>
         
         
@@ -290,20 +297,6 @@
     <li>
         <a href="#">The Basics</a>
         <ul>
-            
-            
-            
-            <li><a href="/pages/documentation/the-basics/quickstart-tutorial.html">Quickstart Tutorial</a></li>
-            
-            
-            
-            
-            
-            
-            <li><a href="/pages/documentation/the-basics/visualiser.html">Visualising a Graph</a></li>
-            
-            
-            
             
             
             
@@ -324,7 +317,7 @@
         
     
     <li>
-        <a href="#">Building an Ontology</a>
+        <a href="#">Graql Ontology</a>
         <ul>
             
             
@@ -374,7 +367,7 @@
         
     
     <li>
-        <a href="#">Querying with Graql</a>
+        <a href="#">Graql Querying</a>
         <ul>
             
             
@@ -581,6 +574,21 @@
         
     
     <li>
+        <a href="#">Grakn Dashboard</a>
+        <ul>
+            
+            
+            
+            <li><a href="/pages/documentation/grakn-dashboard/visualiser.html">Grakn Visualiser</a></li>
+            
+            
+            
+            
+        </ul>
+        
+        
+    
+    <li>
         <a href="#">Advanced Grakn</a>
         <ul>
             
@@ -774,7 +782,7 @@ $('#toc').on('click', 'a', function() {
 
     
 
-    <a target="_blank" href="https://github.com/graknlabs/docs/blob/master/pages/documentation/10-examples/graql-rules.md" class="btn btn-default githubEditButton" role="button"><i class="fa fa-github fa-lg"></i> Edit me</a>
+    <a target="_blank" href="https://github.com/graknlabs/docs/blob/master/pages/documentation/11-examples/graql-rules.md" class="btn btn-default githubEditButton" role="button"><i class="fa fa-github fa-lg"></i> Edit me</a>
 
     
 
@@ -826,7 +834,7 @@ $('#toc').on('click', 'a', function() {
 
 <p>To load the <em>ontology.gql</em> file into Grakn, make sure the engine is running and choose a clean keyspace in which to work (in the example below we use the default keyspace, so we are cleaning it before we get started). Pull down the <a href="https://github.com/graknlabs/sample-datasets">sample-datasets repo</a>, and call the following from the terminal, from within the <em>genealogy-graph</em> directory:</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>&lt;relative-path-to-Grakn&gt;/bin/grakn.sh clean
+<div class="highlighter-rouge"><pre class="highlight"><code>&lt;relative-path-to-Grakn&gt;/bin/grakn.sh clean
 &lt;relative-path-to-Grakn&gt;/bin/grakn.sh start
 &lt;relative-path-to-Grakn&gt;/bin/graql.sh -f ./ontology.gql
 </code></pre>
@@ -836,11 +844,11 @@ $('#toc').on('click', 'a', function() {
 
 <p>The data for this example is discussed more fully in our <a href="./CSV-migration.html">example on CSV migration</a>, which discusses how the original data is laid out in CSV files and migrated into GRAKN.AI. For the purposes of this example, we can simply load the data from a .gql file into the graph:</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>&lt;relative-path-to-Grakn&gt;/bin/graql.sh -f ./data.gql
+<div class="highlighter-rouge"><pre class="highlight"><code>&lt;relative-path-to-Grakn&gt;/bin/graql.sh -f ./data.gql
 </code></pre>
 </div>
 
-<p>When the terminal prompt returns, the data will have been loaded into the default keyspace, and you can start to look it using the <a href="../the-basics/visualiser.html">Grakn visualiser</a>, by navigating to <a href="http://localhost:4567">http://localhost:4567</a> in your browser.</p>
+<p>When the terminal prompt returns, the data will have been loaded into the default keyspace, and you can start to look it using the <a href="../grakn-dashboard/visualiser.html">Grakn visualiser</a>, by navigating to <a href="http://localhost:4567">http://localhost:4567</a> in your browser.</p>
 
 <h2 id="inferring-family-relations">Inferring Family Relations</h2>
 
@@ -858,7 +866,7 @@ $('#toc').on('click', 'a', function() {
 
 <p>The following loads the rules for this dataset from a file called <em>rules.gql</em>:</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>&lt;relative-path-to-Grakn&gt;/bin/graql.sh -f ./rules.gql
+<div class="highlighter-rouge"><pre class="highlight"><code>&lt;relative-path-to-Grakn&gt;/bin/graql.sh -f ./rules.gql
 </code></pre>
 </div>
 
@@ -873,7 +881,7 @@ $('#toc').on('click', 'a', function() {
 
 <p>Alternatively, you can make queries in the graql shell. You will need to start it as follows, to switch on inference and materialisation:</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>&lt;relative-path-to-Grakn&gt;/bin/graql.sh -n -m
+<div class="highlighter-rouge"><pre class="highlight"><code>&lt;relative-path-to-Grakn&gt;/bin/graql.sh -n -m
 </code></pre>
 </div>
 
@@ -1145,7 +1153,7 @@ rhs
         <br>
         <p>© 2016 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2017 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> January 2017<br/> Site last generated: Jan 23, 2017 <br />
+        <span>Page last updated:</span> January 2017<br/> Site last generated: Jan 24, 2017 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">

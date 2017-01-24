@@ -82,22 +82,22 @@
 
 ,
 {
-"title": "An Example of Migrating CSV to Grakn",
-"tags": "migrationexamples",
-"keywords": "migration",
-"url": "/pages/documentation/examples/CSV-migration.html",
-"summary": "An example to illustrate migration of CSV to Grakn"
+"title": "CSV Migration to Grakn",
+"tags": "migration",
+"keywords": "setup, getting started",
+"url": "/pages/documentation/migration/CSV-migration.html",
+"summary": "This document will teach you how to migrate CSV data into Grakn."
 }
 
 
 
 ,
 {
-"title": "CSV Migration to Grakn",
-"tags": "migration",
-"keywords": "setup, getting started",
-"url": "/pages/documentation/migration/CSV-migration.html",
-"summary": "This document will teach you how to migrate CSV data into Grakn."
+"title": "An Example of Migrating CSV to Grakn",
+"tags": "migrationexamples",
+"keywords": "migration",
+"url": "/pages/documentation/examples/CSV-migration.html",
+"summary": "An example to illustrate migration of CSV to Grakn"
 }
 
 
@@ -626,7 +626,7 @@
 "title": "Quickstart Tutorial",
 "tags": "getting-startedgraql",
 "keywords": "setup, getting started",
-"url": "/pages/documentation/the-basics/quickstart-tutorial.html",
+"url": "/pages/documentation/get-started/quickstart-tutorial.html",
 "summary": "This document will work through a simple example using the Graql shell to show how to get started with GRAKN.AI."
 }
 
@@ -731,7 +731,7 @@
 "title": "Visualising a Grakn Graph",
 "tags": "getting-startedgraql",
 "keywords": "setup, getting started",
-"url": "/pages/documentation/the-basics/visualiser.html",
+"url": "/pages/documentation/grakn-dashboard/visualiser.html",
 "summary": "How to use the Grakn Visualiser."
 }
 

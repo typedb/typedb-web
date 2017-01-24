@@ -283,6 +283,13 @@
             
             
             
+            
+            
+            <li><a href="/pages/documentation/get-started/quickstart-tutorial.html">Quickstart Tutorial</a></li>
+            
+            
+            
+            
         </ul>
         
         
@@ -290,20 +297,6 @@
     <li>
         <a href="#">The Basics</a>
         <ul>
-            
-            
-            
-            <li><a href="/pages/documentation/the-basics/quickstart-tutorial.html">Quickstart Tutorial</a></li>
-            
-            
-            
-            
-            
-            
-            <li><a href="/pages/documentation/the-basics/visualiser.html">Visualising a Graph</a></li>
-            
-            
-            
             
             
             
@@ -324,7 +317,7 @@
         
     
     <li>
-        <a href="#">Building an Ontology</a>
+        <a href="#">Graql Ontology</a>
         <ul>
             
             
@@ -374,7 +367,7 @@
         
     
     <li>
-        <a href="#">Querying with Graql</a>
+        <a href="#">Graql Querying</a>
         <ul>
             
             
@@ -572,6 +565,21 @@
             
             
             <li><a href="/pages/documentation/developing-with-java/java-graql.html">Java Graql</a></li>
+            
+            
+            
+            
+        </ul>
+        
+        
+    
+    <li>
+        <a href="#">Grakn Dashboard</a>
+        <ul>
+            
+            
+            
+            <li><a href="/pages/documentation/grakn-dashboard/visualiser.html">Grakn Visualiser</a></li>
             
             
             
@@ -850,13 +858,13 @@ R2: ancestor(X, Y) :- parent(X, Z), ancestor(Z, Y)
 <h3 id="rule-java-api">Rule Java API</h3>
 <p>Rule objects are instances of type inference-rule which can be retrieved by:</p>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">RuleType</span> <span class="n">inferenceRule</span> <span class="o">=</span> <span class="n">graknGraph</span><span class="o">.</span><span class="na">getMetaRuleInference</span><span class="o">();</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">RuleType</span> <span class="n">inferenceRule</span> <span class="o">=</span> <span class="n">graknGraph</span><span class="o">.</span><span class="na">getMetaRuleInference</span><span class="o">();</span>
 </code></pre>
 </div>
 
 <p>Rule objects can be added to the graph both through the Graph API as well as through Graql. With the use of the Java API, the two rules constituting the ancestor example can be added in the following way:</p>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">Pattern</span> <span class="n">r1Body</span> <span class="o">=</span> <span class="n">var</span><span class="o">().</span><span class="na">rel</span><span class="o">(</span><span class="s">"parent"</span><span class="o">,</span> <span class="s">"x"</span><span class="o">).</span><span class="na">rel</span><span class="o">(</span><span class="s">"child"</span><span class="o">,</span> <span class="s">"y"</span><span class="o">).</span><span class="na">isa</span><span class="o">(</span><span class="s">"Parent"</span><span class="o">);</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">Pattern</span> <span class="n">r1Body</span> <span class="o">=</span> <span class="n">var</span><span class="o">().</span><span class="na">rel</span><span class="o">(</span><span class="s">"parent"</span><span class="o">,</span> <span class="s">"x"</span><span class="o">).</span><span class="na">rel</span><span class="o">(</span><span class="s">"child"</span><span class="o">,</span> <span class="s">"y"</span><span class="o">).</span><span class="na">isa</span><span class="o">(</span><span class="s">"Parent"</span><span class="o">);</span>
 <span class="n">Pattern</span> <span class="n">r1Head</span> <span class="o">=</span> <span class="n">var</span><span class="o">().</span><span class="na">rel</span><span class="o">(</span><span class="s">"ancestor"</span><span class="o">,</span> <span class="s">"x"</span><span class="o">).</span><span class="na">rel</span><span class="o">(</span><span class="s">"descendant"</span><span class="o">,</span> <span class="s">"y"</span><span class="o">).</span><span class="na">isa</span><span class="o">(</span><span class="s">"Ancestor"</span><span class="o">);</span>
 
 <span class="n">Pattern</span> <span class="n">r2Body</span> <span class="o">=</span> <span class="n">and</span><span class="o">(</span>
@@ -1035,14 +1043,14 @@ and RHS of rules.</p>
 
 <h3 id="switching-reasoning-on">Switching reasoning on</h3>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="c1">//graph is a GraknGraph instance</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="c1">//graph is a GraknGraph instance</span>
 <span class="n">QueryBuilder</span> <span class="n">qb</span> <span class="o">=</span> <span class="n">graph</span><span class="o">.</span><span class="na">graql</span><span class="o">().</span><span class="na">infer</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>
 </code></pre>
 </div>
 
 <h3 id="switching-materialisation-on">Switching materialisation on</h3>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="c1">//graph is a GraknGraph instance</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="c1">//graph is a GraknGraph instance</span>
 <span class="n">QueryBuilder</span> <span class="n">qb</span> <span class="o">=</span> <span class="n">graph</span><span class="o">.</span><span class="na">graql</span><span class="o">().</span><span class="na">infer</span><span class="o">(</span><span class="kc">true</span><span class="o">).</span><span class="na">materialise</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>
 </code></pre>
 </div>
@@ -1119,7 +1127,7 @@ and RHS of rules.</p>
         <br>
         <p>© 2016 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2017 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> January 2017<br/> Site last generated: Jan 23, 2017 <br />
+        <span>Page last updated:</span> January 2017<br/> Site last generated: Jan 24, 2017 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">

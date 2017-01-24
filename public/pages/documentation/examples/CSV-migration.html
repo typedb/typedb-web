@@ -283,6 +283,13 @@
             
             
             
+            
+            
+            <li><a href="/pages/documentation/get-started/quickstart-tutorial.html">Quickstart Tutorial</a></li>
+            
+            
+            
+            
         </ul>
         
         
@@ -290,20 +297,6 @@
     <li>
         <a href="#">The Basics</a>
         <ul>
-            
-            
-            
-            <li><a href="/pages/documentation/the-basics/quickstart-tutorial.html">Quickstart Tutorial</a></li>
-            
-            
-            
-            
-            
-            
-            <li><a href="/pages/documentation/the-basics/visualiser.html">Visualising a Graph</a></li>
-            
-            
-            
             
             
             
@@ -324,7 +317,7 @@
         
     
     <li>
-        <a href="#">Building an Ontology</a>
+        <a href="#">Graql Ontology</a>
         <ul>
             
             
@@ -374,7 +367,7 @@
         
     
     <li>
-        <a href="#">Querying with Graql</a>
+        <a href="#">Graql Querying</a>
         <ul>
             
             
@@ -581,6 +574,21 @@
         
     
     <li>
+        <a href="#">Grakn Dashboard</a>
+        <ul>
+            
+            
+            
+            <li><a href="/pages/documentation/grakn-dashboard/visualiser.html">Grakn Visualiser</a></li>
+            
+            
+            
+            
+        </ul>
+        
+        
+    
+    <li>
         <a href="#">Advanced Grakn</a>
         <ul>
             
@@ -774,7 +782,7 @@ $('#toc').on('click', 'a', function() {
 
     
 
-    <a target="_blank" href="https://github.com/graknlabs/docs/blob/master/pages/documentation/10-examples/CSV-migration.md" class="btn btn-default githubEditButton" role="button"><i class="fa fa-github fa-lg"></i> Edit me</a>
+    <a target="_blank" href="https://github.com/graknlabs/docs/blob/master/pages/documentation/11-examples/CSV-migration.md" class="btn btn-default githubEditButton" role="button"><i class="fa fa-github fa-lg"></i> Edit me</a>
 
     
 
@@ -885,11 +893,11 @@ $('#toc').on('click', 'a', function() {
   </li>
 </ul>
 
-<p>Note that in this example, no relations between <code class="highlighter-rouge">person</code> entities are described. The inference of such family relationships is discussed fully in a separate example that covers <a href="./grakn-reasoner.html">inference using the Grakn reasoner</a>.</p>
+<p>Note that in this example, no relations between <code class="highlighter-rouge">person</code> entities are described. The inference of such family relationships is discussed fully in a separate example that covers <a href="./graql-reasoning.html">inference using the Grakn reasoner</a>.</p>
 
 <p>To load <em>basic-ontology.gql</em> into Grakn, make sure the engine is running and choose a clean keyspace in which to work (in the example below we use the default keyspace, so we are cleaning it before we get started). Pull down the <a href="https://github.com/graknlabs/sample-datasets">sample-datasets repo</a>, and call the following from the terminal, from within the <em>genealogy-graph</em> directory:</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>&lt;relative-path-to-Grakn&gt;/bin/grakn.sh clean
+<div class="highlighter-rouge"><pre class="highlight"><code>&lt;relative-path-to-Grakn&gt;/bin/grakn.sh clean
 &lt;relative-path-to-Grakn&gt;/bin/grakn.sh start
 &lt;relative-path-to-Grakn&gt;/bin/graql.sh -f ./basic-ontology.gql
 </code></pre>
@@ -1085,11 +1093,11 @@ insert isa conclusion-evidence (evidence: $d0, conclusion: $e0);
 
 <p>However, for simplicity, the <em>/raw-data/</em> directory of the genealogy-graph project contains a script called <em>loader.sh</em> that calls each migration script in turn, so you can simply call the script from the terminal, from within the genealogy-graph directory, passing in the path to the Grakn <em>/bin/</em> directory.</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code> ./loader.sh &lt;location-of-Grakn-on-your-computer&gt;/bin
+<div class="highlighter-rouge"><pre class="highlight"><code> ./loader.sh &lt;location-of-Grakn-on-your-computer&gt;/bin
 </code></pre>
 </div>
 
-<p>The migration will take a minute or two, and the terminal will report which file it is migrating at each step. When it is complete, it will report that it is “Done migrating data”. To check that it has been successful, open the <a href="../the-basics/visualiser.html">Grakn visualiser</a> and select Types, then Entities, and choose one of those presented to you (the entities should be those described <a href="./CSV-migration.html#entities">above</a>]. The visualiser will display the entities it has imported. The screenshot below illustrates the result from selecting to see all <code class="highlighter-rouge">person</code> entities.</p>
+<p>The migration will take a minute or two, and the terminal will report which file it is migrating at each step. When it is complete, it will report that it is “Done migrating data”. To check that it has been successful, open the <a href="../grakn-dashboard/visualiser.html">Grakn visualiser</a> and select Types, then Entities, and choose one of those presented to you (the entities should be those described <a href="./CSV-migration.html#entities">above</a>]. The visualiser will display the entities it has imported. The screenshot below illustrates the result from selecting to see all <code class="highlighter-rouge">person</code> entities.</p>
 
 <p><img src="/images/match-$x-isa-person.png" alt="Person query" /></p>
 
@@ -1146,7 +1154,7 @@ insert isa conclusion-evidence (evidence: $d0, conclusion: $e0);
         <br>
         <p>© 2016 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2017 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> January 2017<br/> Site last generated: Jan 23, 2017 <br />
+        <span>Page last updated:</span> January 2017<br/> Site last generated: Jan 24, 2017 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">

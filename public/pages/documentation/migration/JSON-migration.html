@@ -283,6 +283,13 @@
             
             
             
+            
+            
+            <li><a href="/pages/documentation/get-started/quickstart-tutorial.html">Quickstart Tutorial</a></li>
+            
+            
+            
+            
         </ul>
         
         
@@ -290,20 +297,6 @@
     <li>
         <a href="#">The Basics</a>
         <ul>
-            
-            
-            
-            <li><a href="/pages/documentation/the-basics/quickstart-tutorial.html">Quickstart Tutorial</a></li>
-            
-            
-            
-            
-            
-            
-            <li><a href="/pages/documentation/the-basics/visualiser.html">Visualising a Graph</a></li>
-            
-            
-            
             
             
             
@@ -324,7 +317,7 @@
         
     
     <li>
-        <a href="#">Building an Ontology</a>
+        <a href="#">Graql Ontology</a>
         <ul>
             
             
@@ -374,7 +367,7 @@
         
     
     <li>
-        <a href="#">Querying with Graql</a>
+        <a href="#">Graql Querying</a>
         <ul>
             
             
@@ -572,6 +565,21 @@
             
             
             <li><a href="/pages/documentation/developing-with-java/java-graql.html">Java Graql</a></li>
+            
+            
+            
+            
+        </ul>
+        
+        
+    
+    <li>
+        <a href="#">Grakn Dashboard</a>
+        <ul>
+            
+            
+            
+            <li><a href="/pages/documentation/grakn-dashboard/visualiser.html">Grakn Visualiser</a></li>
             
             
             
@@ -786,7 +794,9 @@ $('#toc').on('click', 'a', function() {
 <h2 id="migration-shell-script-for-json">Migration Shell Script for JSON</h2>
 <p>The migration shell script can be found in <code class="highlighter-rouge">/bin</code> directory of your Grakn environment. Usage is specific to the type of migration being performed.</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>usage: migration.sh json -template &lt;arg&gt; -input &lt;arg&gt; <span class="o">[</span>-help] <span class="o">[</span>-no] <span class="o">[</span>-batch &lt;arg&gt;] <span class="o">[</span>-uri &lt;arg&gt;] <span class="o">[</span>-keyspace &lt;arg&gt;] <span class="o">[</span>-v]
+<div class="highlighter-rouge"><pre class="highlight"><code>usage: migration.sh json -template &lt;arg&gt; -input &lt;arg&gt; <span class="o">[</span>-help] <span class="o">[</span>-no] <span class="o">[</span>-batch &lt;arg&gt;] <span class="o">[</span>-uri &lt;arg&gt;] <span class="o">[</span>-keyspace &lt;arg&gt;] <span class="o">[</span>-v]
+ 
+OPTIONS
  -b,--batch &lt;arg&gt;      number of rows to load at once
  -h,--help             print usage message
  -i,--input &lt;arg&gt;      input json data file or directory
@@ -795,14 +805,17 @@ $('#toc').on('click', 'a', function() {
  -t,--template &lt;arg&gt;   graql template to apply over data
  -u,--uri &lt;arg&gt;        uri to engine endpoint
  -v,--verbose          print counts of migrated data.
+ 
 </code></pre>
 </div>
 
 <h2 id="json-migration-basics">JSON Migration Basics</h2>
 
-<p>Once you have written an ontology for your domain, you will template Graql statements that instruct the migrator on how your data can be mapped to your ontology.</p>
+<p>There are limitations on the JSON format that prevent it from expressing the semantics of the data, so Grakn cannot automatically migrate and derive an ontology for your data. To have the full benefit of a knowledge graph, you must write the ontology for your dataset up-front.</p>
 
-<p>JSON Migration makes heavy use of the Graql templating language. You should have a solid foundation in Graql templating before continuing, so please read through our <a href="../graql/graql-templating.html">templating documentation</a> to find out more.</p>
+<p>Once you have written an ontology for your dataset, you will template Graql statements that instruct the migrator on how your data can be mapped to your ontology. The JSON migrator will apply the template to each row of data in the JSON file, replacing the indicated sections in the template with provided data: the column header is the key and the content of each row at that column the value.</p>
+
+<div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> <b>Note:</b> JSON Migration makes heavy use of the Graql templating language. You will need a foundation in Graql templating before continuing, so please read through our <a href="../graql/graql-templating.html">templating documentation</a> to find out more.</div>
 
 <p>Approach each JSON file as though you were inserting a single query. The migrator cannot handle multiple queries per file, so take care that there is not more than one <code class="highlighter-rouge">match</code> or <code class="highlighter-rouge">insert</code> command in your template. Take a look at our <a href="./migration-overview.html">other migration guides</a> for more ideas on how to use Graql templates with data.</p>
 
@@ -812,7 +825,7 @@ $('#toc').on('click', 'a', function() {
 
 <p>As an example, let’s take some JSON:</p>
 
-<div class="language-json highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="w">
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="w">
     </span><span class="nt">"types"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="nt">"id"</span><span class="p">:</span><span class="mi">1</span><span class="s2">", "</span><span class="err">type</span><span class="s2">": "</span><span class="err">normal</span><span class="s2">" },
     {"</span><span class="err">id</span><span class="s2">":2"</span><span class="p">,</span><span class="w"> </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"fighting"</span><span class="w"> </span><span class="p">},</span><span class="w">
@@ -858,7 +871,7 @@ $x9 has description "fire" isa pokemon-type has type-id "10";
 
 <p>Once the above types are migrated, we can move on to the pokemon JSON file:</p>
 
-<div class="language-json highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="w">
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="w">
     </span><span class="nt">"pokemon"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
         </span><span class="p">{</span><span class="w">
             </span><span class="nt">"identifier"</span><span class="p">:</span><span class="s2">"Charmander"</span><span class="p">,</span><span class="w">
@@ -972,7 +985,7 @@ isa has-type (pokemon-with-type: $p2, type-of-pokemon: $2);
         <br>
         <p>© 2016 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2017 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> November 14th 2016<br/> Site last generated: Jan 23, 2017 <br />
+        <span>Page last updated:</span> November 14th 2016<br/> Site last generated: Jan 24, 2017 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">
