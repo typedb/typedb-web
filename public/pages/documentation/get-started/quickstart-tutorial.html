@@ -790,29 +790,31 @@ $('#toc').on('click', 'a', function() {
 
   <h2 id="introduction">Introduction</h2>
 
-<p>In this guide, we are going to load a single file to set up a simple graph and insert some data. This example is loosely based on the genealogy-graph example that we use throughout our documentation. You can find the full example, including data and ontology, in the <a href="https://github.com/graknlabs/sample-datasets/tree/master/genealogy-graph">sample-datasets repo on Github</a>. However, we are not going to load the complete data and ontology here: this is a basic “quick start” example to illustrate a simple ontology and some basic data.</p>
-
-<p>If you have not yet set up GRAKN.AI, please see the <a href="../get-started/setup-guide.html">Setup guide</a>.</p>
+<p>If you have not yet set up GRAKN.AI, please see the <a href="../get-started/setup-guide.html">Setup guide</a>. In this tutorial, we will load a simple ontology and some data from a file, <em>basic-genealogy.gql</em> and test it in the Graql shell and Grakn Visualiser. The <em>basic-genealogy.gql</em> file will be included in the <em>/examples</em> folder of the Grakn installation zip from the next release and onwards. It is not currently in the zip, so you will need to get it from the <a href="https://github.com/graknlabs/grakn/blob/master/grakn-dist/src/examples/basic-genealogy.gql">Grakn repo on Github</a>. In the code below, we assume that it is in the <em>/examples</em> folder.</p>
 
 <h2 id="using-the-graql-shell">Using the Graql Shell</h2>
 
-<p>We will first make sure we are working with a clean ‘keyspace’. From the terminal:</p>
+<p>The first few steps mirror those in the <a href="./setup-guide.html">Setup Guide</a>, and you can skip to <a href="./get-started.html#the-ontology">The Ontology</a> if you have already run through that example. Start Grakn and load the example graph:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>&lt;relative-path-to-Grakn&gt;/bin/grakn.sh clean
+<div class="highlighter-rouge"><pre class="highlight"><code>./bin/grakn.sh start
+./bin/graql.sh -f ./examples/basic-genealogy.gql
 </code></pre>
 </div>
 
-<p>We then start the Grakn engine:</p>
+<div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> <b>Note:</b> Above, we are invoking the Graql shell and passing the -f flag to indicate the file to load into a graph. If you are interested, please see our documentation about other <a href="https://grakn.ai/pages/documentation/graql/graql-shell.html">flags supported by the Graql shell</a>.</div>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>&lt;relative-path-to-Grakn&gt;/bin/grakn.sh start
+<p>Then start the Graql shell:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>./bin/graql.sh
 </code></pre>
 </div>
 
-<p>Finally, we load the ontology and data into Grakn, so we have a graph to work with, using the <em>basic-genealogy.gql</em> file stored in the <em>examples</em> directory of the Grakn distribution zip. You can also find this file on <a href="">Github</a>. Simply invoke the Graql shell passing the -f flag to indicate the file to load into a graph (if you are interested, please see our <a href="../graql/graql-shell.html">documentation about flags supported by the Graql shell</a>):</p>
+<p>The Graql shell starts and you see a <code class="highlighter-rouge">&gt;&gt;&gt;</code> prompt. Type in a query to check that everything is working:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>&lt;relative-path-to-Grakn&gt;/bin/graql.sh -f &lt;relative-path-to-Grakn&gt;/examples/basic-genealogy.gql
+<pre><code class="language-graql">match $x isa person, has identifier $n;
 </code></pre>
-</div>
+
+<p>You should see a printout of a number of lines of text, each of which includes a name, such as “William Sanford Titus” or “Elizabeth Niesz”.</p>
 
 <h3 id="the-ontology">The Ontology</h3>
 
@@ -1017,7 +1019,7 @@ commit;
         <br>
         <p>© 2016 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2017 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> December 2016<br/> Site last generated: Jan 24, 2017 <br />
+        <span>Page last updated:</span> January 2017<br/> Site last generated: Jan 26, 2017 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">

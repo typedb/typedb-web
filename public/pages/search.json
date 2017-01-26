@@ -717,6 +717,17 @@
 
 ,
 {
+"title": "Transaction Processing &amp; Multithreading",
+"tags": "java",
+"keywords": "java",
+"url": "/pages/documentation/developing-with-java/multithreading.html",
+"summary": "Transaction Processing & Multithreading in Java"
+}
+
+
+
+,
+{
 "title": "Grakn Data Validation",
 "tags": "advanced-grakn",
 "keywords": "validation",

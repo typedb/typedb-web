@@ -810,50 +810,49 @@ If you intend to build Grakn, you will also need Maven 3.</div>
 
 <div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> <b>Note:</b> <strong>Useful commands</strong>  <br />
 To start Grakn, run <code class="highlighter-rouge">grakn.sh start</code>. <br />
-To stop Grakn, run <code class="highlighter-rouge">grakn.sh stop</code>. 
+To stop Grakn, run <code class="highlighter-rouge">grakn.sh stop</code>.  <br />
 To remove all graphs from Grakn, run <code class="highlighter-rouge">grakn.sh clean</code></div>
 
 <h2 id="test-the-graql-shell">Test the Graql Shell</h2>
 
-<p>Graql is our knowledge-oriented query language, which allows you to interface with Grakn. To test that the installation is working correctly, here we will start the Graql shell and enter a few lines of code.</p>
+<p>To test that the installation is working correctly, we will load a simple ontology and some data from a file, <em>basic-genealogy.gql</em> and test it in the Graql shell and Grakn Visualiser. The <em>basic-genealogy.gql</em> file will be included in the <em>/examples</em> folder of the Grakn installation zip from the next release and onwards. It is not currently in the zip, so you will need to get it from the <a href="https://github.com/graknlabs/grakn/blob/master/grakn-dist/src/examples/basic-genealogy.gql">Grakn repo on Github</a>. In the code below, we assume that the file is in the <em>/examples</em> folder.</p>
+
+<p>Type in the following to load the example graph.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>./bin/graql.sh -f ./examples/basic-genealogy.gql
+</code></pre>
+</div>
+
+<p>Then type the following to start the Graql shell:</p>
 
 <div class="highlighter-rouge"><pre class="highlight"><code>./bin/graql.sh
 </code></pre>
 </div>
 
-<p>The Graql shell starts and you see a <code class="highlighter-rouge">&gt;&gt;&gt;</code> prompt. Type in the following, but don’t worry too much about what it means right now. We will go through it further in the <a href="./quickstart-tutorial.html">Quickstart Tutorial</a>.</p>
+<p>The Graql shell starts and you see a <code class="highlighter-rouge">&gt;&gt;&gt;</code> prompt. Graql is our knowledge-oriented query language, which allows you to interface with Grakn. We will type in a query to check that everything is working.</p>
 
-<pre><code class="language-graql">insert person sub entity;
-insert name sub resource, datatype string;
-insert person has-resource name;
-insert isa person, has name "Topsy";
-insert isa person, has name "Tim";
-commit
-match $x isa person, has name $n; select $x, $n;
+<pre><code class="language-graql">match $x isa person, has identifier $n;
 </code></pre>
 
-<p>Then, you should see the following (although the long strings of numbers will be different):</p>
+<p>You should see a printout of a number of lines of text, each of which includes a name, such as “William Sanford Titus” or “Elizabeth Niesz”.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>$x id "ENTITY-person-89b823a0-606d-434d-a533-1e172b90c7bc" isa person; $n value "Topsy" isa name;
-$x id "ENTITY-person-afd29319-ff33-4b0c-b7e3-63d04ac81dcf" isa person; $n value "Tim" isa name;
-</code></pre>
-</div>
+<p>If you see the above output then congratulations! You have set up Grakn.</p>
 
-<p>If you do see the above output then congratulations! You have set up Grakn.</p>
+<h2 id="test-the-visualiser">Test the Visualiser</h2>
 
-<p>You can now open <a href="http://localhost:4567">localhost:4567</a> in your browser to start the visualiser, which provides a graphical dashboard on a graph.</p>
+<p>The <a href="../grakn-dashboard/visualiser.html">Grakn visualiser</a> provides a graphical tool to inspect and query your graph data. You can open the visualiser by navigating to <a href="http://localhost:4567">localhost:4567</a> in your web browser. The visualiser allows you to make queries or simply browse the types within the graph. The screenshot below shows a basic query (<code class="highlighter-rouge">match $x isa person;</code>) typed into the form at the top of the main pane, and visualised by pressing “Submit”:</p>
 
-<p><img src="/images/topsyandtim.png" alt="Visualising a graph" /></p>
+<p><img src="/images/match-$x-isa-person.png" alt="Person query" /></p>
 
-<p>Further information about the visualiser can be found in <a href="../grakn-dashboard/visualiser.html">Visualising a Graph</a>.</p>
+<p>The help tab on the main pane shows a set of key combinations that you can use to further drill into the data. You can zoom the display in and out, and move the nodes around for better visibility. Please see our <a href="../grakn-dashboard/visualiser.html">Grakn visualiser</a> documentation for further details.</p>
 
 <h3 id="troubleshooting">Troubleshooting</h3>
-<p>If you do not see the above message, please check our <a href="../resources/faq.html">FAQ page</a>. If you have any questions, please ask a question on our <a href="http://discuss.grakn.ai">discussion forum</a>, or on <a href="http://stackoverflow.com">Stack Overflow</a>.</p>
+<p>If you do not see the above message, please check our <a href="../resources/faq.html">FAQ page</a>. If you have any questions, please ask a question on our <a href="http://discuss.grakn.ai">discussion forum</a>, on <a href="http://stackoverflow.com">Stack Overflow</a> or on our <a href="https://grakn.ai/slack.html">Slack channel</a>.</p>
 
 <h2 id="where-next">Where next?</h2>
-<p>Our <a href="./quickstart-tutorial.html">Quickstart Tutorial</a> will show you how to load populate and query Grakn using Graql.</p>
+<p>Our <a href="./quickstart-tutorial.html">Quickstart Tutorial</a> will go into more detail about using Grakn and Graql.</p>
 
-<p>You can find additional example code and documentation on this portal. We are always adding more and welcome ideas and improvement suggestions. Please get in touch!</p>
+<p>You can find additional example code and documentation on this portal. We are always adding more and welcome ideas and improvement suggestions. <a href="https://grakn.ai/community.html">Please get in touch</a>!</p>
 
 <h2 id="comments">Comments</h2>
 <p>Want to leave a comment? Visit <a href="https://github.com/graknlabs/docs/issues/16" target="_blank">the issues on Github for this page</a> (you’ll need a GitHub account). You are also welcome to contribute to our documentation directly via the “Edit me” button at the top of the page.</p>
@@ -900,7 +899,7 @@ $x id "ENTITY-person-afd29319-ff33-4b0c-b7e3-63d04ac81dcf" isa person; $n value 
         <br>
         <p>© 2016 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2017 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> August 10, 2016<br/> Site last generated: Jan 24, 2017 <br />
+        <span>Page last updated:</span> August 10, 2016<br/> Site last generated: Jan 26, 2017 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">
