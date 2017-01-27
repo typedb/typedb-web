@@ -792,6 +792,176 @@ $('#toc').on('click', 'a', function() {
 
 <h2 id="introduction">Introduction</h2>
 
+<p>In this section we are going to run through the construction of a basic ontology.
+Before starting it is worth reading through <a href="../the-basics/grakn-basics.html">Grakn Basics</a> to get a full understanding of ontology engineering.</p>
+
+<p>The process we will follow is a general guideline as to how you may start designing your ontology.
+The ontology we will be building will be used for a genealogy graph used for mapping out a family tree.</p>
+
+<p>It is worth noting that the ontology does not need to be completely finalised before loading data. 
+The ontology of a Grakn graph can be expanded even after loading data.</p>
+
+<h2 id="identifying-entity-types">Identifying Entity Types</h2>
+
+<p>The first step is about identifying the categories of things that will be in your graph.
+For example if you are modelling a retail store, valid categories may be <code class="highlighter-rouge">product</code>, <code class="highlighter-rouge">Electronics</code>, <code class="highlighter-rouge">Books</code>, etc . . . 
+It is up to you to decide the granularity of your categories.</p>
+
+<p>For our genealogy graph we know that it will mostly be filled with people.
+So we can create that entity type:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>person sub entity;
+</code></pre>
+</div>
+
+<p>Naturally we could break this up into <code class="highlighter-rouge">man</code> and <code class="highlighter-rouge">woman</code> but for this example we are going to keep things simple.</p>
+
+<h2 id="describing-entity-types">Describing Entity Types</h2>
+
+<p>Grakn provides you with the ability to attach resources to entity types. 
+These resources help in describing what a specific Entity Type is composed of.
+For example a <code class="highlighter-rouge">car</code> Entity Type could include an <code class="highlighter-rouge">engine</code>, a <code class="highlighter-rouge">licence number</code>, and a <code class="highlighter-rouge">transmission type</code> as resources which help describe that car.</p>
+
+<p>So what helps describe a <code class="highlighter-rouge">person</code>? 
+Philosophical debates aside let us go with something simple. A <code class="highlighter-rouge">person</code> typically has a <code class="highlighter-rouge">firstname</code>, a <code class="highlighter-rouge">lastname</code>, and a <code class="highlighter-rouge">gender</code>.
+We can model this and other resources that identify a person with:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>person sub entity
+    has-resource identifier
+    has-resource firstname
+    has-resource surname
+    has-resource middlename
+    has-resource picture
+    has-resource age
+    has-resource birth-date
+    has-resource death-date
+    has-resource gender;
+</code></pre>
+</div>
+
+<p>Remember we still need to specify that these things are resources:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>identifier sub resource datatype string;
+firstname sub resource datatype string;
+surname sub resource datatype string;
+middlename sub resource datatype string;
+picture sub resource datatype string;
+age sub resource datatype long;
+birth-date sub resource datatype string;
+death-date sub resource datatype string;
+gender sub resource datatype string;
+</code></pre>
+</div>
+
+<h2 id="identifying-relationships-and-their-roles">Identifying Relationships And Their Roles</h2>
+
+<p>The next step is to ask how your data is connected.
+What are the relationships between your data? 
+This can be between different Entity Types, for example, a <code class="highlighter-rouge">person</code> <strong>drives</strong> a <code class="highlighter-rouge">car</code>, or even between the same entity types, for example, a <code class="highlighter-rouge">person</code> <strong>marries</strong> another <code class="highlighter-rouge">person</code>.
+In a Grakn Graph N-ary relationships are also possible. For example, a <code class="highlighter-rouge">person</code> has a <code class="highlighter-rouge">child</code> with another <code class="highlighter-rouge">person</code>.</p>
+
+<p>So what types of relationships exist in a family tree?<br />
+For our example lets just go with <code class="highlighter-rouge">marriage</code> and <code class="highlighter-rouge">parenshiop</code>.
+The next question is what roles typically make up the relationship? 
+Well our <code class="highlighter-rouge">marriage</code>s will be between two spouses, <code class="highlighter-rouge">spouse1</code> and <code class="highlighter-rouge">spouse2</code>.
+For <code class="highlighter-rouge">parentship</code> we will say it is composed of a <code class="highlighter-rouge">parent</code> and a <code class="highlighter-rouge">child</code>.</p>
+
+<p>So now we can define these Relation Types more formally:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>marriage sub relation
+    has-role spouse1
+    has-role spouse2
+    has-resource picture;
+
+spouse1 sub role;
+spouse2 sub role;
+
+parentship sub relation
+	has-role parent
+    has-role child;
+
+parent sub role;
+child sub role;
+</code></pre>
+</div>
+
+<h2 id="allowing-roles-to-be-played">Allowing Roles To Be Played</h2>
+
+<p>Above we defined 4 roles, <code class="highlighter-rouge">spouse1</code>, <code class="highlighter-rouge">spouse2</code>, <code class="highlighter-rouge">parent</code>, and <code class="highlighter-rouge">child</code>. 
+The next step is to give our Entity Types permission to play specific roles. 
+We do this explicitly so that we don’t accidentally relate data which should not be related. 
+For example, this will prevent us from accidentally saying that a <code class="highlighter-rouge">dog</code> and a <code class="highlighter-rouge">person</code> can have a child.</p>
+
+<p>For this current example we only have one entity type which can play all our current roles so we explicitly state that with:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>person sub entity
+    plays-role parent
+    plays-role child
+    plays-role spouse1
+    plays-role spouse2
+</code></pre>
+</div>
+
+<p>and with this final statement we have completed our basic genealogy ontology.</p>
+
+<h2 id="the-complete-ontology">The Complete Ontology</h2>
+
+<p>Your final ontology will now look something like this:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code># Entities
+
+person sub entity
+    plays-role parent
+    plays-role child
+    plays-role spouse1
+    plays-role spouse2
+    has-resource identifier
+    has-resource firstname
+    has-resource surname
+    has-resource middlename
+    has-resource picture
+    has-resource age
+    has-resource birth-date
+    has-resource death-date
+    has-resource gender;
+
+# Resources
+
+identifier sub resource datatype string;
+firstname sub resource datatype string;
+surname sub resource datatype string;
+middlename sub resource datatype string;
+picture sub resource datatype string;
+age sub resource datatype long;
+birth-date sub resource datatype string;
+death-date sub resource datatype string;
+gender sub resource datatype string;
+
+# Roles and Relations
+
+marriage sub relation
+    has-role spouse1
+    has-role spouse2
+    has-resource picture;
+
+spouse1 sub role;
+spouse2 sub role;
+
+parentship sub relation
+    has-role parent
+	has-role child;
+
+parent sub role;
+child sub role;
+</code></pre>
+</div>
+
+<p>In this tutorial we described our entity type <code class="highlighter-rouge">person</code> across separate steps.
+This was done to demonstrate the typical thought process when creating an ontology.
+It is typically good practice to group entity type definitions together as above.</p>
+
+<p>Why not try loading data next and issuing some queries?</p>
+
 <h2 id="comments">Comments</h2>
 <p>Want to leave a comment? Visit <a href="https://github.com/graknlabs/docs/issues/22" target="_blank">the issues on Github for this page</a> (you’ll need a GitHub account). You are also welcome to contribute to our documentation directly via the “Edit me” button at the top of the page.</p>
 
@@ -841,7 +1011,7 @@ $('#toc').on('click', 'a', function() {
         <br>
         <p>© 2016 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2017 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> December, 2016<br/> Site last generated: Jan 26, 2017 <br />
+        <span>Page last updated:</span> December, 2016<br/> Site last generated: Jan 27, 2017 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">

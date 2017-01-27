@@ -797,7 +797,7 @@ $('#toc').on('click', 'a', function() {
 <h2 id="install-graknai">Install GRAKN.AI</h2>
 <div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> <b>Note:</b> <strong>Prerequisites</strong>   <br />
 GRAKN.AI requires Java 8 (Standard Edition) with the <code class="highlighter-rouge">$JAVA_HOME</code> set accordingly. If you don’t already have this installed, you can find it <a href="http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html">here</a>.<br />
-If you intend to build Grakn, you will also need Maven 3.</div>
+If you intend to build Grakn, or develop on top of it, you will also need Maven 3.</div>
 
 <p>Unzip the download into your preferred location and run the following in the terminal to start Grakn:</p>
 
@@ -806,7 +806,14 @@ If you intend to build Grakn, you will also need Maven 3.</div>
 </code></pre>
 </div>
 
-<p>This will start an instance of Cassandra, which serves as the supported backend for Grakn. It starts also Grakn Engine, which is an HTTP server providing batch loading, monitoring and the browser dashboard.</p>
+<p>This will start:</p>
+
+<ul>
+  <li>an instance of Cassandra, which serves as the supported backend for Grakn.</li>
+  <li>Grakn Engine, which is an HTTP server providing batch loading, monitoring and the browser dashboard.</li>
+  <li>Apache Kafka.</li>
+  <li>Apache Zookeeper.</li>
+</ul>
 
 <div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> <b>Note:</b> <strong>Useful commands</strong>  <br />
 To start Grakn, run <code class="highlighter-rouge">grakn.sh start</code>. <br />
@@ -817,13 +824,13 @@ To remove all graphs from Grakn, run <code class="highlighter-rouge">grakn.sh cl
 
 <p>To test that the installation is working correctly, we will load a simple ontology and some data from a file, <em>basic-genealogy.gql</em> and test it in the Graql shell and Grakn Visualiser. The <em>basic-genealogy.gql</em> file will be included in the <em>/examples</em> folder of the Grakn installation zip from the next release and onwards. It is not currently in the zip, so you will need to get it from the <a href="https://github.com/graknlabs/grakn/blob/master/grakn-dist/src/examples/basic-genealogy.gql">Grakn repo on Github</a>. In the code below, we assume that the file is in the <em>/examples</em> folder.</p>
 
-<p>Type in the following to load the example graph.</p>
+<p>Type in the following to load the example graph. This starts the Graql shell in non-interactive mode, loading the specified file and exiting after the load is complete.</p>
 
 <div class="highlighter-rouge"><pre class="highlight"><code>./bin/graql.sh -f ./examples/basic-genealogy.gql
 </code></pre>
 </div>
 
-<p>Then type the following to start the Graql shell:</p>
+<p>Then type the following to start the Graql shell in its interactive (REPL) mode, type:</p>
 
 <div class="highlighter-rouge"><pre class="highlight"><code>./bin/graql.sh
 </code></pre>
@@ -840,7 +847,7 @@ To remove all graphs from Grakn, run <code class="highlighter-rouge">grakn.sh cl
 
 <h2 id="test-the-visualiser">Test the Visualiser</h2>
 
-<p>The <a href="../grakn-dashboard/visualiser.html">Grakn visualiser</a> provides a graphical tool to inspect and query your graph data. You can open the visualiser by navigating to <a href="http://localhost:4567">localhost:4567</a> in your web browser. The visualiser allows you to make queries or simply browse the types within the graph. The screenshot below shows a basic query (<code class="highlighter-rouge">match $x isa person;</code>) typed into the form at the top of the main pane, and visualised by pressing “Submit”:</p>
+<p>The <a href="../grakn-dashboard/visualiser.html">Grakn visualiser</a> provides a graphical tool to inspect and query your graph data. You can open the visualiser by navigating to <a href="http://localhost:4567">localhost:4567</a> in your web browser. The visualiser allows you to make queries or simply browse the knowledge ontology within the graph. The screenshot below shows a basic query (<code class="highlighter-rouge">match $x isa person;</code>) typed into the form at the top of the main pane, and visualised by pressing “Submit”:</p>
 
 <p><img src="/images/match-$x-isa-person.png" alt="Person query" /></p>
 
@@ -899,7 +906,7 @@ To remove all graphs from Grakn, run <code class="highlighter-rouge">grakn.sh cl
         <br>
         <p>© 2016 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2017 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> August 10, 2016<br/> Site last generated: Jan 26, 2017 <br />
+        <span>Page last updated:</span> August 10, 2016<br/> Site last generated: Jan 27, 2017 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">
