@@ -788,7 +788,7 @@ $('#toc').on('click', 'a', function() {
 
     
 
-  <h2 id="lightning-summary">Lightning Summary</h2>
+  <h2 id="summary">Summary</h2>
 
 <p>This example takes a simple genealogy dataset and briefly reviews its ontology, then illustrates how to query, extend and visualise the graph, before demonstrating reasoning and analytics with Graql.</p>
 
@@ -832,20 +832,20 @@ If you are interested, please see our documentation about other <a href="https:/
 <p>For the purposes of this guide, you can think of the ontology as a schema that describes items of data and defines how they relate to one another. You need to have a basic understanding of the ontology to be able to make useful queries on the data, so let’s review the basic chunks of it that are important for our initial demonstration:</p>
 
 <pre><code class="language-graql">person sub entity
-	plays-role parent
-	plays-role child
-	plays-role spouse1
-	plays-role spouse2
+  plays-role parent
+  plays-role child
+  plays-role spouse1
+  plays-role spouse2
 
-	has-resource identifier
-	has-resource firstname
-	has-resource surname
-	has-resource middlename
-	has-resource picture
-	has-resource age
-	has-resource birth-date
-	has-resource death-date
-	has-resource gender;
+  has-resource identifier
+  has-resource firstname
+  has-resource surname
+  has-resource middlename
+  has-resource picture
+  has-resource age
+  has-resource birth-date
+  has-resource death-date
+  has-resource gender;
 
 # Resources
 
@@ -862,16 +862,16 @@ gender sub resource datatype string;
 # Roles and Relations
 
 marriage sub relation
-	has-role spouse1
-	has-role spouse2
-	has-resource picture;
+  has-role spouse1
+  has-role spouse2
+  has-resource picture;
 
 spouse1 sub role;
 spouse2 sub role;
 
 parentship sub relation
-	has-role parent
-	has-role child;
+  has-role parent
+  has-role child;
 
 parent sub role;
 child sub role;
@@ -971,8 +971,99 @@ commit
 <p>The help tab on the main pane shows a set of key combinations that you can use to further drill into the data. You can zoom the display in and out, and move the nodes around for better visibility. Please see our <a href="../grakn-dashboard/visualiser.html">Grakn visualiser</a> documentation for further details.</p>
 
 <h2 id="using-inference">Using Inference</h2>
+<p>We will move on to discuss the use of GRAKN.AI to infer new information about a dataset. For example, the ontology we discussed above, and the data we added to the graph, dealt only with a <code class="highlighter-rouge">person</code>, not a man, woman, girl or boy, and the relations we added were simple <code class="highlighter-rouge">parentship</code> relations with <code class="highlighter-rouge">parent</code> and <code class="highlighter-rouge">child</code> roles. We do not have any direct information about the nature of the parent and child in each relation - they could be father and son, father and daughter, mother and son or mother and daughter.</p>
 
-<p>We have a <a href="../examples/graql-reasoning.html">detailed example of using the Grakn reasoner</a> to infer information about the genealogy dataset. An additional discussion on the same topic can be found in our <a href="https://blog.grakn.ai/family-matters-1bb639396a24#.525ozq2zy">“Family Matters” blog post</a>.</p>
+<p>However, the <code class="highlighter-rouge">person</code> entity does have a gender resource, and we can use Grakn to infer more information about each relationship by using that property. The ontology accommodates the more specific roles of mother, father, daughter and son:</p>
+
+<pre><code class="language-graql">person 
+  plays-role son
+  plays-role daughter
+  plays-role mother
+  plays-role father
+	
+parentship sub relation
+  has-role mother
+  has-role father
+  has-role son
+  has-role daughter;
+
+mother sub parent;
+father sub parent;
+son sub child;
+daughter sub child;
+</code></pre>
+
+<div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> <b>Note:</b> You don’t need to reload the <em>basic-genealogy.gql</em> file into Grakn pick up these extra roles. We simply didn’t show this part in our earlier discussion of the ontology, to keep things as simple as possible.</div>
+
+<p>Included in <em>basic-genealogy.gql</em> are a set of Graql rules to instruct Grakn’s reasoner on how to label each parentship relation:</p>
+
+<pre><code class="language-graql">$genderizeParentships1 isa inference-rule
+lhs
+{(parent: $p, child: $c) isa parentship;
+$p has gender "male";
+$c has gender "male";
+}
+rhs
+{(father: $p, son: $c) isa parentship;};
+
+$genderizeParentships2 isa inference-rule
+lhs
+{(parent: $p, child: $c) isa parentship;
+$p has gender "male";
+$c has gender "female";
+}
+rhs
+{(father: $p, daughter: $c) isa parentship;};
+
+$genderizeParentships3 isa inference-rule
+lhs
+{(parent: $p, child: $c) isa parentship;
+$p has gender "female";
+$c has gender "male";
+}
+rhs
+{(mother: $p, son: $c) isa parentship;};
+
+$genderizeParentships4 isa inference-rule
+lhs
+{(parent: $p, child: $c) isa parentship;
+$p has gender "female";
+$c has gender "female";
+}
+rhs
+{(mother: $p, daughter: $c) isa parentship;};
+</code></pre>
+
+<p>If you’re unfamiliar with it, don’t worry too much about the syntax of the rules just now. It is sufficient to know that for each <code class="highlighter-rouge">parentship</code> relation, Graql checks whether the pattern in the first block (left hand side or lhs) can be verified and, if it can, infers the statement in the second block (right hand side or rhs) to be true, so inserts a relation between gendered parents and children.</p>
+
+<p>Let’s test it out!</p>
+
+<p>First, try making a match query to find <code class="highlighter-rouge">parentship</code> relations between fathers and sons in the Graql shell:</p>
+
+<pre><code class="language-graql">match (father: $p, son: $c) isa parentship; $p has identifier $n1; $c has identifier $n2;
+</code></pre>
+
+<p>Did you get any results? Probably not, because reasoning is not enabled by default at present, although as Grakn develops, we expect that to change. If you didn’t see any results, you need to <code class="highlighter-rouge">exit</code> the Graql shell and restart it, passing <code class="highlighter-rouge">-n and -m</code> flags to switch on reasoning (see our documentation for more information about <a href="https://grakn.ai/pages/documentation/graql/graql-shell.html">flags supported by the Graql shell</a>).</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>./bin/graql.sh -n -m
+</code></pre>
+</div>
+
+<p>Try the query again:</p>
+
+<pre><code class="language-graql">match (father: $p, son: $c) isa parentship; $p has identifier $n1; $c has identifier $n2;
+</code></pre>
+
+<p>There may be a pause, and then you should see a stream of results as Grakn infers the <code class="highlighter-rouge">parentships</code> between male <code class="highlighter-rouge">parent</code> and <code class="highlighter-rouge">child</code> entities. It is, in effect, building new information about the family which was not explicit in the dataset.</p>
+
+<p>You may want to take a look at the results of this query in the Grakn visualiser and, as for the shell, you will need to activate inference before you see any results. Browse to the visualiser at <a href="http://localhost:4567">localhost:4567</a> and open the Config settings on the left hand side of the screen. When the page opens you will see the “Activate Inference” checkbox. Check it, and try submitting the query above or a variation of it for mothers and sons, fathers and daughters etc. Or, you can even go one step further and find out fathers who have the same name as their sons:</p>
+
+<pre><code class="language-graql">match (father: $p, son: $c) isa parentship; $p has firstname $n; $c has firstname $n;
+</code></pre>
+
+<p><img src="/images/father-son-shared-names.png" alt="Father-Son Shared Names query" /></p>
+
+<p>If you want to find out more about the Graql reasoner, we have a <a href="../examples/graql-reasoning.html">detailed example</a> that uses a slightly different version of the genealogy dataset. An additional discussion on the same topic can be found in our <a href="https://blog.grakn.ai/family-matters-1bb639396a24#.525ozq2zy">“Family Matters” blog post</a>.</p>
 
 <h2 id="using-analytics">Using Analytics</h2>
 

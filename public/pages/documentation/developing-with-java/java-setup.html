@@ -790,6 +790,86 @@ $('#toc').on('click', 'a', function() {
 
   <div class="alert alert-danger" role="alert"><i class="fa fa-exclamation-circle"></i> <b>Warning:</b> Please note that this page is in progress and subject to revision.</div>
 
+<h2 id="basic-setup">Basic Setup</h2>
+
+<p>This section will discuss how to start developing with Grakn using the Java API. 
+All Grakn applications require the following maven dependency:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>&lt;dependency&gt;
+    &lt;groupId&gt;ai.grakn&lt;/groupId&gt;
+    &lt;artifactId&gt;grakn-graph&lt;/artifactId&gt;
+    &lt;version&gt;${project.version}&lt;/version&gt;
+&lt;/dependency&gt;
+</code></pre>
+</div>
+
+<p>This dependency will give you access to the Core API as well as in in memory graph which serves as a toy graph should you wish to use the stack without having to have an instance of the Grakn server running.</p>
+
+<h2 id="server-dependent-setup">Server Dependent Setup</h2>
+
+<p>If you require persistence and would like to access the entirety of the Grakn stack then it is vital to have an instance of engine running.<br />
+Please see <a href="./setup-guide.html">Setup Guide</a> on more details on how to setup a Grakn server.</p>
+
+<p>Depending on the configuration of the Grakn server your java application will require one of the following dependencies:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>&lt;dependency&gt;
+    &lt;groupId&gt;ai.grakn&lt;/groupId&gt;
+    &lt;artifactId&gt;titan-factory&lt;/artifactId&gt;
+    &lt;version&gt;${project.version}&lt;/version&gt; 
+&lt;/dependency&gt;
+</code></pre>
+</div>
+
+<p>which is used when your server is running against a Titan backend or</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>&lt;dependency&gt;
+    &lt;groupId&gt;ai.grakn&lt;/groupId&gt;
+    &lt;artifactId&gt;orientdb-factory&lt;/artifactId&gt;
+    &lt;version&gt;${project.version}&lt;/version&gt; 
+&lt;/dependency&gt;
+</code></pre>
+</div>
+
+<p>when your server is running against a OrientDB backend.</p>
+
+<p><strong>Note:</strong> The distribution package comes with a Titan backend configured out of the box. 
+OrientDB support is still in early stages of development.</p>
+
+<h2 id="initialising-a-graph">Initialising a Graph</h2>
+
+<p>You can initialise an in memory graph without having the Grakn server running with:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>GraknGraph graph = Grakn.factory(Grakn.IN_MEMORY, "keyspace").getGraph();
+</code></pre>
+</div>
+
+<p>If you are running the grakn server locally then you can initlaise a graph with:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>GraknGraph graph = Grakn.factory(Grakn.DEFAULT_URI, "keyspace").getGraph();
+</code></pre>
+</div>
+
+<p>If you are running the grakn server remotely you must initlaise the graph by providing the ip address of the server:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>GraknGraph graph = Grakn.factory("127.6.21.2", "keyspace").getGraph();
+</code></pre>
+</div>
+
+<p>The string “keyspace” uniquely identifies the graph and allows you to create different graphs.</p>
+
+<p>Please <strong>note</strong> that graph keyspaces are <strong>not</strong> case sensitive so the following two graphs are actually the same graph:</p>
+
+<p>GraknGraph graph1 = Grakn.factory(“127.6.21.2”, “keyspace”).getGraph();
+   GraknGraph graph2 = Grakn.factory(“127.6.21.2”, “KeYsPaCe”).getGraph();</p>
+
+<p>All graphs are also singletons specific to their keysoaces so be aware that in the following case:</p>
+
+<p>GraknGraph graph1 = Grakn.factory(“127.6.21.2”, “keyspace”).getGraph();
+  GraknGraph graph2 = Grakn.factory(“127.6.21.2”, “keyspace”).getGraph();
+  GraknGraph graph3 = Grakn.factory(“127.6.21.2”, “keyspace”).getGraph();</p>
+
+<p>Any changes to <code class="highlighter-rouge">graph1</code>, <code class="highlighter-rouge">graph2</code>, or <code class="highlighter-rouge">graph3</code> will all be persisted to the same graph.</p>
+
 <h2 id="comments">Comments</h2>
 <p>Want to leave a comment? Visit <a href="https://github.com/graknlabs/docs/issues/23" target="_blank">the issues on Github for this page</a> (you’ll need a GitHub account). You are also welcome to contribute to our documentation directly via the “Edit me” button at the top of the page.</p>
 
