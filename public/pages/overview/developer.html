@@ -4,8 +4,8 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="">
-<meta name="keywords" content="overviewfaq,  platform, GRAKN.AI, Grakn Labs, grakn, graql, grakn.ai, Mindmaps Research, Mindmaps Research Ltd, MindmapsDB, mindmaps, mindmaps graph, mindmaps.io, knowledge graph, distributed knowledge graph, development platform, developer tool, data platform, programming langauge, query langauge, database, semantic database, distributed semantic database, distributed database, graph database, semantic search, data exploration, recommendation system, knowledge management, knowledge engineering, real-time analytics, advanced analytics, reasoning engine, inference engine, expert systems, semantic applications, research engines, data management, business intelligence, big data, semantic web, semantic data, knowledge representation, automated reasoning, semantic network, knowledge ontology, semantic graph, ontology engineering, graph based knowledge representation, artificial intelligence,">
-<title>GRAKN.AI | Grakn Platform</title>
+<meta name="keywords" content="overview,  developer, GRAKN.AI, Grakn Labs, grakn, graql, grakn.ai, Mindmaps Research, Mindmaps Research Ltd, MindmapsDB, mindmaps, mindmaps graph, mindmaps.io, knowledge graph, distributed knowledge graph, development platform, developer tool, data platform, programming langauge, query langauge, database, semantic database, distributed semantic database, distributed database, graph database, semantic search, data exploration, recommendation system, knowledge management, knowledge engineering, real-time analytics, advanced analytics, reasoning engine, inference engine, expert systems, semantic applications, research engines, data management, business intelligence, big data, semantic web, semantic data, knowledge representation, automated reasoning, semantic network, knowledge ontology, semantic graph, ontology engineering, graph based knowledge representation, artificial intelligence,">
+<title>GRAKN.AI | Developing with Grakn</title>
 <link rel="stylesheet" href="/pages/css/syntax.css">
 
 
@@ -208,7 +208,7 @@
                         <li><a href="#">Javadoc</a></li>
                     </ul>
                 </li> -->
-                <li><a href="/pages/platform/index.html">Platform</a></li>
+                <li><a href="/pages/overview/index.html">Overview</a></li>
                 <li><a href="/pages/index.html">Documentation</a></li>
                 <li><a rel="me" href="//grakn.ai/community.html">Community</a></li>
                 <li><a rel="me" href="//discuss.grakn.ai/">Discussion</a></li>
@@ -228,7 +228,7 @@
                             
                             dataSource: '/pages/search.json',
                             
-                            searchResultTemplate: '<li><a href="{url}" title="Grakn Platform">{title}</a></li>',
+                            searchResultTemplate: '<li><a href="{url}" title="Developing with Grakn">{title}</a></li>',
                             noResultsText: '<li><a class="empty">No results found</a></li>',
                             limit: 10,
                             fuzzy: true
@@ -261,32 +261,32 @@
 
 
 <ul id="mysidebar" class="nav">
-    <li class="sidebarTitle">Grakn Platform </li>
+    <li class="sidebarTitle">Overview </li>
     
     
 
         
         <li>
             
-            <li><a href="/pages/platform/index.html">Introduction</a></li>
+            <li><a href="/pages/overview/index.html">Introduction</a></li>
             
         </li>
         
         <li>
             
-            <li><a href="/pages/platform/applications.html">System Applications</a></li>
+            <li><a href="/pages/overview/applications.html">Applications</a></li>
             
         </li>
         
         <li>
             
-            <li><a href="/pages/platform/advantages.html">Advantages</a></li>
+            <li><a href="/pages/overview/advantages.html">Advantages</a></li>
             
         </li>
         
         <li>
             
-            <li><a href="/pages/platform/developer.html">Developer</a></li>
+            <li><a href="/pages/index.html">Documentation</a></li>
             
         </li>
         
@@ -306,7 +306,7 @@
         <!-- Content Column -->
         <div class="col-md-9">
             <div class="post-header">
-   <h1 class="post-title-main">Grakn Platform</h1>
+   <h1 class="post-title-main">Developing with Grakn</h1>
 </div>
 
 
@@ -316,27 +316,6 @@
    
 
     
-    
-<!-- this handles the automatic toc. use ## for subheads to auto-generate the on-page minitoc. if you use html tags, you must supply an ID for the heading element in order for it to appear in the minitoc. -->
-<script>
-$( document ).ready(function() {
-  // Handler for .ready() called.
-
-$('#toc').toc({ minimumHeaders: 0, listType: 'ul', showSpeed: 0, headers: 'h2' });
-
-/* this offset helps account for the space taken up by the floating toolbar. */
-$('#toc').on('click', 'a', function() {
-  var target = $(this.getAttribute('href'))
-    , scroll_target = target.offset().top
-
-  $(window).scrollTop(scroll_target - 10);
-  return false
-})
-
-});
-</script>
-
-<div id="toc"></div>
 
     
 
@@ -344,69 +323,17 @@ $('#toc').on('click', 'a', function() {
 
     
 
-    
+  <p>Grakn puts the power of a knowledge graph in the hands of every developer.</p>
 
-  <h3 id="what-is-a-graph-database">What is a Graph Database?</h3>
-<p>As <a href="https://en.wikipedia.org/wiki/Graph_database">Wikipedia</a> explains, a graph database is “<em>…a database that uses graph structures for semantic queries with nodes, edges and properties to represent and store data. A key concept of the system is the graph (or edge or relationship), which directly relates data items in the store. The relationships allow data in the store to be linked together directly, and in most cases retrieved with a single operation.</em>”.</p>
+<h2 id="what-languages-can-i-use-to-work-with-grakn">What languages can I use to work with Grakn?</h2>
 
-<p>Put another way: a graph database can store, manage and query complex and highly-connected data (that is, data where there are a high number of relationships between the elements). A graph database is well-suited for uncovering common attributes and anomalies within a given volume of data, and are designed to express the relatedness of that data, allowing them to  uncover patterns that are otherwise difficult to detect.</p>
+<p>At present, you can use Java. We also have Graql, a knowledge-oriented query language, which is allows you to express complex questions in simple and short pattern matching statements.</p>
 
-<p>A graph is a structure composed of vertices and edges, which can have an arbitrary number of key/value-pairs called properties.</p>
+<p>Graql is declarative and therefore it handles the optimisation of the graph traversals needed to retrieve information.</p>
 
-<p>Vertices represent entities: discrete objects such as a person, a place, or an event.</p>
+<h2 id="how-can-i-start-developing-with-grakn">How can I start developing with Grakn?</h2>
 
-<p>Edges represent relationships between those objects. For instance, a person may know another person, have been involved in an event, or lives at a particular place.</p>
-
-<p>Properties express non-relational information about the vertices and edges. Example properties include a vertex having a name, an age and an edge having a timestamp and/or a weight.</p>
-
-<h3 id="what-is-the-difference-between-relational-databases-and-graph-databases">What is the difference between relational databases and graph databases?</h3>
-
-<p>Relational and graph databases differ in the way data is stored and accessed. The primary difference is how relationships between objects are prioritized and managed. A relational database connects entities in a secondary fashion using foreign keys, but in a graph database, the relationships between them (the ‘edges’) are of first order importance. The ability to map any-to-any relationships is what makes graph databases so powerful. A graph database can be likened to a pre-joined RDBMS.</p>
-
-<p>Graph computing can offer algorithms that support complex reasoning: path analysis, vertex clustering and ranking, subgraph identification, and more.</p>
-
-<!--
-**Temporary graphic - would need to redraw**
-![](http://www.pwc.com/content/dam/pwc/us/en/technology-forecast/2015/remapping-database-landscape/features/assets/mw-15-1351-the-power-of-graph-databases-in-public-health-modal-chart-2-modal.png)
--->
-
-<h3 id="what-is-the-difference-between-other-nosql-databases-and-graph-databases">What is the difference between other NoSQL databases and graph databases?</h3>
-
-<!--**<<< to do - Another short section to describe the difference in brief (maybe just use a diagram) >>>**
-
-**Temporary graphic - discuss and redraw**
-
-![](https://www.datastax.com/wp-content/uploads/2016/07/databases.jpg)
-
--->
-
-<h3 id="why-would-you-use-a-graph-database">Why would you use a graph database?</h3>
-
-<p>As we’ve discussed above, relationships are explicit in a graph data model.  If tracking the relationships between your data entities is a primary concern, it is often a good fit to use a graph database.</p>
-
-<p>Some common use cases for graph databases include:</p>
-
-<ul>
-  <li>Recommendation and Personalization</li>
-  <li>Security and Fraud Detection</li>
-  <li>IoT and Networking</li>
-</ul>
-
-<h3 id="why-would-you-specifically-choose-grakn">Why would you specifically choose Grakn?</h3>
-<!--
-**<<< to do - Not a promotional thing here - what is the technical reason for choosing it rather than orientdb or neo4j? What are the problems that we specifically solve? >>> **-->
-
-<h3 id="when-a-graph-database-is-not-a-good-solution">When a graph database is not a good solution</h3>
-
-<p>Much depends on your use case.  If the goal is to model or integrate large, interconnected systems, a graph store is invaluable.</p>
-
-<p>As described by <a href="http://www.pwc.com/us/en/technology-forecast/2015/remapping-database-landscape/public-health-graph--databases.html">PWC’s recent database technology forecast</a>: “<em>Depending on the use case, native graph stores can be overkill. If the immediate purpose is to capture or cache the data, then a key-value or column store is more appropriate. If the purpose is aggregation, then a document store may be best, at least for initial data ingestion. If transactional integrity and concurrency are critical requirements, then an RDBMS or a NewSQL store fits best.</em>”</p>
-
-<h3 id="database-types-compared">Database types compared</h3>
-
-<!--**Temporary graphic - discuss and redraw**   
-
-![](https://www.datastax.com/wp-content/uploads/2016/07/rdbmsgraphcompare2.jpg)-->
+<p>Grakn is an open source project, which is available now on <a href="https://github.com/graknlabs/grakn">Github</a>. Our developer documentation provides a range of guides to getting started, and can be found at <a href="https://grakn.ai/pages/index.html">grakn.ai</a>.</p>
 
 
     <div class="tags">
@@ -416,10 +343,6 @@ $('#toc').on('click', 'a', function() {
         
         
         <a href="/pages/tag_overview.html" class="btn btn-default navbar-btn cursorNorm" role="button">overview</a>
-        
-        
-        
-        <a href="/pages/tag_faq.html" class="btn btn-default navbar-btn cursorNorm" role="button">faq</a>
         
         
         
@@ -456,7 +379,7 @@ $('#toc').on('click', 'a', function() {
     <div class="col-lg-2 footer">
         <span class="footer-header">Get Started</span>
         <ul>
-            <li><a href="/pages/platform/index.html">Introduction</a></li>
+            <li><a href="/pages/overview/index.html">Introduction</a></li>
             <li><a href="/pages/documentation/get-started/setup-guide.html">Install</a></li>
             <li><a href="/pages/documentation/the-basics/quickstart-tutorial.html">Quickstart</a></li>
         </ul>

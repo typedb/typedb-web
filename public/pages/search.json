@@ -6,7 +6,18 @@
 "title": "Introduction to GRAKN.AI",
 "tags": "overview",
 "keywords": "intro",
-"url": "/pages/platform/index.html",
+"url": "/pages/overview/index.html",
+"summary": "GRAKN.AI is the database for AI. It is a database in the form of a knowledge graph that uses machine reasoning to simplify data processing challenges for AI applications."
+}
+
+
+
+,
+{
+"title": "Introduction to GRAKN.AI",
+"tags": "overview",
+"keywords": "intro",
+"url": "/pages/overview/index.html",
 "summary": "GRAKN.AI is the database for AI. It is a database in the form of a knowledge graph that uses machine reasoning to simplify data processing challenges for AI applications."
 }
 
@@ -17,7 +28,18 @@
 "title": "What can you build with Grakn?",
 "tags": "overview",
 "keywords": "applications",
-"url": "/pages/platform/applications.html",
+"url": "/pages/overview/applications.html",
+"summary": "false"
+}
+
+
+
+,
+{
+"title": "What can you build with Grakn?",
+"tags": "overview",
+"keywords": "applications",
+"url": "/pages/overview/applications.html",
 "summary": "false"
 }
 
@@ -28,7 +50,18 @@
 "title": "Why use Grakn?",
 "tags": "overview",
 "keywords": "advantages",
-"url": "/pages/platform/advantages.html",
+"url": "/pages/overview/advantages.html",
+"summary": "Grakn provides a flexible and rich data model, intelligent query language, real-time analytics, and inference capabilities"
+}
+
+
+
+,
+{
+"title": "Why use Grakn?",
+"tags": "overview",
+"keywords": "advantages",
+"url": "/pages/overview/advantages.html",
 "summary": "Grakn provides a flexible and rich data model, intelligent query language, real-time analytics, and inference capabilities"
 }
 
@@ -39,7 +72,7 @@
 "title": "Comparison with other Databases",
 "tags": "overview",
 "keywords": "comparison",
-"url": "/pages/platform/comparison.html",
+"url": "/pages/overview/comparison.html",
 "summary": "false"
 }
 
@@ -50,7 +83,7 @@
 "title": "When to use Grakn?",
 "tags": "overview",
 "keywords": "use case",
-"url": "/pages/platform/use-case.html",
+"url": "/pages/overview/use-case.html",
 "summary": "false"
 }
 
@@ -63,7 +96,7 @@
 "title": "Developing with Grakn",
 "tags": "overview",
 "keywords": "developer",
-"url": "/pages/platform/developer.html",
+"url": "/pages/overview/developer.html",
 "summary": "false"
 }
 
@@ -71,22 +104,11 @@
 
 ,
 {
-"title": "Grakn Platform",
+"title": "Grakn Overview",
 "tags": "overviewfaq",
-"keywords": "platform",
-"url": "/pages/platform/faq.html",
+"keywords": "overview",
+"url": "/pages/overview/faq.html",
 "summary": ""
-}
-
-
-
-,
-{
-"title": "CSV Migration to Grakn",
-"tags": "migration",
-"keywords": "setup, getting started",
-"url": "/pages/documentation/migration/CSV-migration.html",
-"summary": "This document will teach you how to migrate CSV data into Grakn."
 }
 
 
@@ -98,6 +120,17 @@
 "keywords": "migration",
 "url": "/pages/documentation/examples/CSV-migration.html",
 "summary": "An example to illustrate migration of CSV to Grakn"
+}
+
+
+
+,
+{
+"title": "CSV Migration to Grakn",
+"tags": "migration",
+"keywords": "setup, getting started",
+"url": "/pages/documentation/migration/CSV-migration.html",
+"summary": "This document will teach you how to migrate CSV data into Grakn."
 }
 
 
@@ -137,22 +170,22 @@
 
 ,
 {
-"title": "An Example of Migrating SQL to Grakn",
-"tags": "migrationexamplesjava",
-"keywords": "migration",
-"url": "/pages/documentation/examples/SQL-migration.html",
-"summary": "A short example to illustrate migration of SQL to Grakn"
+"title": "SQL Migration to Grakn",
+"tags": "migration",
+"keywords": "setup, getting started",
+"url": "/pages/documentation/migration/SQL-migration.html",
+"summary": "This document will teach you how to migrate SQL data into Grakn."
 }
 
 
 
 ,
 {
-"title": "SQL Migration to Grakn",
-"tags": "migration",
-"keywords": "setup, getting started",
-"url": "/pages/documentation/migration/SQL-migration.html",
-"summary": "This document will teach you how to migrate SQL data into Grakn."
+"title": "An Example of Migrating SQL to Grakn",
+"tags": "migrationexamplesjava",
+"keywords": "migration",
+"url": "/pages/documentation/examples/SQL-migration.html",
+"summary": "A short example to illustrate migration of SQL to Grakn"
 }
 
 

@@ -6,31 +6,49 @@
   
   
   <url>
-    <loc>http://grakn.ai/pages//platform/index.html</loc>
+    <loc>http://grakn.ai/pages//overview/index.html</loc>
   </url>
   
   
   
   <url>
-    <loc>http://grakn.ai/pages//platform/applications.html</loc>
+    <loc>http://grakn.ai/pages//overview/index.html</loc>
   </url>
   
   
   
   <url>
-    <loc>http://grakn.ai/pages//platform/advantages.html</loc>
+    <loc>http://grakn.ai/pages//overview/applications.html</loc>
   </url>
   
   
   
   <url>
-    <loc>http://grakn.ai/pages//platform/comparison.html</loc>
+    <loc>http://grakn.ai/pages//overview/applications.html</loc>
   </url>
   
   
   
   <url>
-    <loc>http://grakn.ai/pages//platform/use-case.html</loc>
+    <loc>http://grakn.ai/pages//overview/advantages.html</loc>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://grakn.ai/pages//overview/advantages.html</loc>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://grakn.ai/pages//overview/comparison.html</loc>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://grakn.ai/pages//overview/use-case.html</loc>
   </url>
   
   
@@ -38,25 +56,25 @@
   
   
   <url>
-    <loc>http://grakn.ai/pages//platform/developer.html</loc>
+    <loc>http://grakn.ai/pages//overview/developer.html</loc>
   </url>
   
   
   
   <url>
-    <loc>http://grakn.ai/pages//platform/faq.html</loc>
-  </url>
-  
-  
-  
-  <url>
-    <loc>http://grakn.ai/pages//documentation/migration/CSV-migration.html</loc>
+    <loc>http://grakn.ai/pages//overview/faq.html</loc>
   </url>
   
   
   
   <url>
     <loc>http://grakn.ai/pages//documentation/examples/CSV-migration.html</loc>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://grakn.ai/pages//documentation/migration/CSV-migration.html</loc>
   </url>
   
   
@@ -80,13 +98,13 @@
   
   
   <url>
-    <loc>http://grakn.ai/pages//documentation/examples/SQL-migration.html</loc>
+    <loc>http://grakn.ai/pages//documentation/migration/SQL-migration.html</loc>
   </url>
   
   
   
   <url>
-    <loc>http://grakn.ai/pages//documentation/migration/SQL-migration.html</loc>
+    <loc>http://grakn.ai/pages//documentation/examples/SQL-migration.html</loc>
   </url>
   
   
