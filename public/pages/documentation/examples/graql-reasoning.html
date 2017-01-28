@@ -834,7 +834,7 @@ $('#toc').on('click', 'a', function() {
 
 <p>To load the <em>ontology.gql</em> file into Grakn, make sure the engine is running and choose a clean keyspace in which to work (in the example below we use the default keyspace, so we are cleaning it before we get started). Pull down the <a href="https://github.com/graknlabs/sample-datasets">sample-datasets repo</a>, and call the following from the terminal, from within the <em>genealogy-graph</em> directory:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>&lt;relative-path-to-Grakn&gt;/bin/grakn.sh clean
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>&lt;relative-path-to-Grakn&gt;/bin/grakn.sh clean
 &lt;relative-path-to-Grakn&gt;/bin/grakn.sh start
 &lt;relative-path-to-Grakn&gt;/bin/graql.sh -f ./ontology.gql
 </code></pre>
@@ -844,7 +844,7 @@ $('#toc').on('click', 'a', function() {
 
 <p>The data for this example is discussed more fully in our <a href="./CSV-migration.html">example on CSV migration</a>, which discusses how the original data is laid out in CSV files and migrated into GRAKN.AI. For the purposes of this example, we can simply load the data from a .gql file into the graph:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>&lt;relative-path-to-Grakn&gt;/bin/graql.sh -f ./data.gql
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>&lt;relative-path-to-Grakn&gt;/bin/graql.sh -f ./data.gql
 </code></pre>
 </div>
 
@@ -866,7 +866,7 @@ $('#toc').on('click', 'a', function() {
 
 <p>The following loads the rules for this dataset from a file called <em>rules.gql</em>:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>&lt;relative-path-to-Grakn&gt;/bin/graql.sh -f ./rules.gql
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>&lt;relative-path-to-Grakn&gt;/bin/graql.sh -f ./rules.gql
 </code></pre>
 </div>
 
@@ -881,7 +881,7 @@ $('#toc').on('click', 'a', function() {
 
 <p>Alternatively, you can make queries in the graql shell. You will need to start it as follows, to switch on inference and materialisation:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>&lt;relative-path-to-Grakn&gt;/bin/graql.sh -n -m
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>&lt;relative-path-to-Grakn&gt;/bin/graql.sh -n -m
 </code></pre>
 </div>
 
@@ -1153,7 +1153,7 @@ rhs
         <br>
         <p>© 2016 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2017 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> January 2017<br/> Site last generated: Jan 27, 2017 <br />
+        <span>Page last updated:</span> January 2017<br/> Site last generated: Jan 28, 2017 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">
