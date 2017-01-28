@@ -25,11 +25,11 @@
 
 ,
 {
-"title": "What can you build with Grakn?",
+"title": "Why use Grakn?",
 "tags": "overview",
-"keywords": "applications",
-"url": "/pages/overview/applications.html",
-"summary": "false"
+"keywords": "advantages",
+"url": "/pages/overview/advantages.html",
+"summary": "Grakn provides a flexible and rich data model, intelligent query language, real-time analytics, and inference capabilities"
 }
 
 
@@ -58,11 +58,11 @@
 
 ,
 {
-"title": "Why use Grakn?",
+"title": "What can you build with Grakn?",
 "tags": "overview",
-"keywords": "advantages",
-"url": "/pages/overview/advantages.html",
-"summary": "Grakn provides a flexible and rich data model, intelligent query language, real-time analytics, and inference capabilities"
+"keywords": "applications",
+"url": "/pages/overview/applications.html",
+"summary": "false"
 }
 
 
