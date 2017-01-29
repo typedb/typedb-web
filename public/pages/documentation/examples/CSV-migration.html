@@ -904,7 +904,7 @@ $('#toc').on('click', 'a', function() {
 
 <p>To load <em>basic-ontology.gql</em> into Grakn, make sure the engine is running and choose a clean keyspace in which to work (in the example below we use the default keyspace, so we are cleaning it before we get started). Pull down the <a href="https://github.com/graknlabs/sample-datasets">sample-datasets repo</a>, and call the following from the terminal, from within the <em>genealogy-graph</em> directory:</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>&lt;relative-path-to-Grakn&gt;/bin/grakn.sh clean
+<div class="highlighter-rouge"><pre class="highlight"><code>&lt;relative-path-to-Grakn&gt;/bin/grakn.sh clean
 &lt;relative-path-to-Grakn&gt;/bin/grakn.sh start
 &lt;relative-path-to-Grakn&gt;/bin/graql.sh -f ./basic-ontology.gql
 </code></pre>
@@ -1100,7 +1100,7 @@ insert isa conclusion-evidence (evidence: $d0, conclusion: $e0);
 
 <p>However, for simplicity, the <em>/raw-data/</em> directory of the genealogy-graph project contains a script called <em>loader.sh</em> that calls each migration script in turn, so you can simply call the script from the terminal, from within the genealogy-graph directory, passing in the path to the Grakn <em>/bin/</em> directory.</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code> ./loader.sh &lt;location-of-Grakn-on-your-computer&gt;/bin
+<div class="highlighter-rouge"><pre class="highlight"><code> ./loader.sh &lt;location-of-Grakn-on-your-computer&gt;/bin
 </code></pre>
 </div>
 
@@ -1161,7 +1161,7 @@ insert isa conclusion-evidence (evidence: $d0, conclusion: $e0);
         <br>
         <p>© 2016 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2017 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> January 2017<br/> Site last generated: Jan 28, 2017 <br />
+        <span>Page last updated:</span> January 2017<br/> Site last generated: Jan 29, 2017 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">
