@@ -38,6 +38,7 @@ Redirect "/pages/documentation/the-basics/quickstart-tutorial.html" "/pages/docu
 Redirect /download/latest "https://github.com/graknlabs/grakn/releases/download/v0.9.0/grakn-dist-0.9.0.zip"
 Redirect /download "https://github.com/graknlabs/grakn/releases/"
 Redirect /docs "/pages/index.html"
+Redirect /overview "/pages/overview/index.html"
 Redirect /install "/pages/documentation/get-started/setup-guide.html"
 Redirect /2016-year-in-review "https://blog.grakn.ai/grakn-2016-year-in-review-e30b66adece3"
 Redirect /blog/2016-year-in-review "https://blog.grakn.ai/grakn-2016-year-in-review-e30b66adece3"
