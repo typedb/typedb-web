@@ -14,39 +14,6 @@
 
 ,
 {
-"title": "Introduction to GRAKN.AI",
-"tags": "overview",
-"keywords": "intro",
-"url": "/pages/overview/index.html",
-"summary": "GRAKN.AI is the database for AI. It is a database in the form of a knowledge graph that uses machine reasoning to simplify data processing challenges for AI applications."
-}
-
-
-
-,
-{
-"title": "Why use Grakn?",
-"tags": "overview",
-"keywords": "advantages",
-"url": "/pages/overview/advantages.html",
-"summary": "Grakn provides a flexible and rich data model, intelligent query language, real-time analytics, and inference capabilities"
-}
-
-
-
-,
-{
-"title": "What can you build with Grakn?",
-"tags": "overview",
-"keywords": "applications",
-"url": "/pages/overview/applications.html",
-"summary": "false"
-}
-
-
-
-,
-{
 "title": "Why use Grakn?",
 "tags": "overview",
 "keywords": "advantages",
@@ -115,22 +82,22 @@
 
 ,
 {
-"title": "An Example of Migrating CSV to Grakn",
-"tags": "migrationexamples",
-"keywords": "migration",
-"url": "/pages/documentation/examples/CSV-migration.html",
-"summary": "An example to illustrate migration of CSV to Grakn"
+"title": "CSV Migration to Grakn",
+"tags": "migration",
+"keywords": "setup, getting started",
+"url": "/pages/documentation/migration/CSV-migration.html",
+"summary": "This document will teach you how to migrate CSV data into Grakn."
 }
 
 
 
 ,
 {
-"title": "CSV Migration to Grakn",
-"tags": "migration",
-"keywords": "setup, getting started",
-"url": "/pages/documentation/migration/CSV-migration.html",
-"summary": "This document will teach you how to migrate CSV data into Grakn."
+"title": "An Example of Migrating CSV to Grakn",
+"tags": "migrationexamples",
+"keywords": "migration",
+"url": "/pages/documentation/examples/CSV-migration.html",
+"summary": "An example to illustrate migration of CSV to Grakn"
 }
 
 
@@ -170,22 +137,22 @@
 
 ,
 {
-"title": "SQL Migration to Grakn",
-"tags": "migration",
-"keywords": "setup, getting started",
-"url": "/pages/documentation/migration/SQL-migration.html",
-"summary": "This document will teach you how to migrate SQL data into Grakn."
+"title": "An Example of Migrating SQL to Grakn",
+"tags": "migrationexamplesjava",
+"keywords": "migration",
+"url": "/pages/documentation/examples/SQL-migration.html",
+"summary": "A short example to illustrate migration of SQL to Grakn"
 }
 
 
 
 ,
 {
-"title": "An Example of Migrating SQL to Grakn",
-"tags": "migrationexamplesjava",
-"keywords": "migration",
-"url": "/pages/documentation/examples/SQL-migration.html",
-"summary": "A short example to illustrate migration of SQL to Grakn"
+"title": "SQL Migration to Grakn",
+"tags": "migration",
+"keywords": "setup, getting started",
+"url": "/pages/documentation/migration/SQL-migration.html",
+"summary": "This document will teach you how to migrate SQL data into Grakn."
 }
 
 
