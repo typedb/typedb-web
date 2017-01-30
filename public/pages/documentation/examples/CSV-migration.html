@@ -803,11 +803,13 @@ $('#toc').on('click', 'a', function() {
 
 <p>In this example, we will walk through how to migrate the CSV data into Grakn, and confirm that we have succeeded using the Grakn visualiser.</p>
 
+<p>For a detailed overview of CSV migration, we recommend that you take a look at the Grakn documentation on <a href="https://grakn.ai/pages/documentation/migration/CSV-migration.html">CSV Migration</a> and <a href="https://grakn.ai/pages/documentation/graql/graql-templating.html">Graql templating</a>.</p>
+
 <h2 id="genealogy-data">Genealogy Data</h2>
 
-<p>The data for this example can be found as a set of CSV files in Grakn’s <a href="https://github.com/graknlabs/sample-datasets">sample-datasets</a> repository on Github. The data was put together by our team from narrative information gleaned from the original Lenzen Research <a href="http://www.lenzenresearch.com/titusnarrlineage.pdf">document</a>, with some minor additions to generate some interesting queries for Grakn’s reasoner.</p>
+<p>The data for this example can be found as a set of CSV files in the <a href="https://github.com/graknlabs/sample-projects/tree/master/example-csv-migration-genealogy">sample-projects</a> repository on Github, which is also included in the Grakn distribution zip file. The data was put together by our team from narrative information gleaned from the original Lenzen Research <a href="http://www.lenzenresearch.com/titusnarrlineage.pdf">document</a>, with some minor additions to generate some interesting queries for Grakn’s reasoner.</p>
 
-<p>Let’s take a look at the <em>raw-data</em> directory in the <a href="https://github.com/graknlabs/sample-datasets/tree/master/genealogy-graph">genealogy-graph repo</a>, which contains five CSV files. These files were put together by hand by our team, mostly by <a href="https://blog.grakn.ai/@doctormiko">Michelangelo</a>.</p>
+<p>Let’s take a look at the <em>raw-data</em> directory in the example project, which contains the CSV files. These files were put together by hand by our team, mostly by <a href="https://blog.grakn.ai/@doctormiko">Michelangelo</a>.</p>
 
 <table>
   <tbody>
@@ -816,291 +818,278 @@ $('#toc').on('click', 'a', function() {
       <td>description</td>
     </tr>
     <tr>
-      <td><a href="https://github.com/graknlabs/sample-datasets/blob/master/genealogy-graph/raw-data/people.csv"><em>people.csv</em></a></td>
+      <td><a href="https://github.com/graknlabs/sample-projects/blob/master/example-csv-migration-genealogy/raw-data/people.csv"><em>people.csv</em></a></td>
       <td>This comprehensive CSV contains information about all the individuals discussed in the Lenzen document. For each row, it lists the available information about individuals’ names, gender, birth and death dates and age at death. It also assigns each person a person ID (“pid”), which is a string containing the full name of each individual, and is used for identification of individuals in the other CSV files.</td>
     </tr>
     <tr>
-      <td><a href="https://github.com/graknlabs/sample-datasets/blob/master/genealogy-graph/raw-data/births.csv"><em>births.csv</em></a></td>
+      <td><a href="https://github.com/graknlabs/sample-projects/blob/master/example-csv-migration-genealogy/raw-data/births.csv"><em>births.csv</em></a></td>
       <td>This CSV lists the person IDs of a child and each of its parents</td>
     </tr>
     <tr>
-      <td><a href="https://github.com/graknlabs/sample-datasets/blob/master/genealogy-graph/raw-data/weddings.csv"><em>weddings.csv</em></a></td>
+      <td><a href="https://github.com/graknlabs/sample-projects/blob/master/example-csv-migration-genealogy/raw-data/weddings.csv"><em>weddings.csv</em></a></td>
       <td>This CSV comprises a row for each marriage, identifying each by a wedding ID (wid). The rows contain the person IDs of each spouse and the date of their wedding, where it is known.</td>
-    </tr>
-    <tr>
-      <td><a href="https://github.com/graknlabs/sample-datasets/blob/master/genealogy-graph/raw-data/documents.csv"><em>documents.csv</em></a></td>
-      <td>This CSV contains rows for each piece of documentary evidence used, and identifies them using a document ID. For each is recorded the type of document, its URL and description in the form of notes</td>
-    </tr>
-    <tr>
-      <td><a href="https://github.com/graknlabs/sample-datasets/blob/master/genealogy-graph/raw-data/evidences.csv"><em>evidences.csv</em></a></td>
-      <td>This CSV lists notable events that can be gleaned from the documentary evidence, and records each as a separate row. For each is noted the associated document ID, function (i.e. what happened), and the protagonists’ person ID(s).</td>
     </tr>
   </tbody>
 </table>
 
-<h2 id="example-ontology">Example Ontology</h2>
+<h3 id="ontology">Ontology</h3>
 
-<p>On GRAKN.AI, the first step when working with a new dataset is to define its ontology in Graql. The ontology is a way to describe the entities and their relationships, so the underlying graph can store them as nodes and edges. You can find out more in our guide to the Grakn Knowledge Model. The ontology allows Grakn to perform:</p>
+<p>The ontology is a way to describe the entities and their relationships, so the underlying graph can store them as nodes and edges. You can find out more in our guide to the Grakn Knowledge Model. The ontology allows Grakn to perform:</p>
 
 <ul>
   <li>logical reasoning over the represented knowledge, such as the extraction of implicit information from explicit data (inference)</li>
   <li>discovery of inconsistencies in the data (validation).</li>
 </ul>
 
-<p>The complete ontology for the genealogy-graph demo is in our sample-datasets repository, named <a href="https://github.com/graknlabs/sample-datasets/blob/master/genealogy-graph/ontology.gql">ontology.gql</a>. However, it is a bit more complex that we need for this example, because it contains definitions for what may be inferred from the CSV data, using some inference rules, by the Grakn reasoner.</p>
+<p>The ontology is shown below. There is a single entity, <code class="highlighter-rouge">person</code>, which has a number of resources and can play various roles (<code class="highlighter-rouge">parent</code>, <code class="highlighter-rouge">child</code>, <code class="highlighter-rouge">spouse1</code> and <code class="highlighter-rouge">spouse2</code>) in two possible relations (<code class="highlighter-rouge">parentship</code> and <code class="highlighter-rouge">marriage</code>).</p>
 
-<p>So, for this migration example, we will instead use <em>basic-ontology.gql</em>, which is also on the sample-datasets repository. It is a simplified ontology which represents the data imported from the CSV files described above.</p>
+<pre><code class="language-graql">insert
 
-<h3 id="entities-and-resources">Entities and Resources</h3>
+# Entities
 
-<p>The ontology contains the following entities:</p>
+person sub entity
+  plays-role parent
+  plays-role child
+  plays-role spouse1
+  plays-role spouse2
 
-<ul>
-  <li><code class="highlighter-rouge">person</code>
-    <ul>
-      <li>Has a resource <code class="highlighter-rouge">identifier</code>, which is a string representing the pid described above for the <em>people.csv</em> file, and is the full name of the person.</li>
-    </ul>
-  </li>
-  <li>
-    <p><code class="highlighter-rouge">birth</code>, which is a subclass of an <code class="highlighter-rouge">event</code> entity and adds the following string resources: 
- 		- <code class="highlighter-rouge">firstname</code>
-      - <code class="highlighter-rouge">middlename</code> (if available)
-      - <code class="highlighter-rouge">surname</code> (if available)
-      - <code class="highlighter-rouge">gender</code>
-   	- <code class="highlighter-rouge">birth-date</code> (if available)</p>
-  </li>
-  <li>
-    <p><code class="highlighter-rouge">death</code>, which is a subclass of an <code class="highlighter-rouge">event</code> entity, and adds the following resources:
- 		- <code class="highlighter-rouge">death-date</code> (if available)
- 		- <code class="highlighter-rouge">age</code> at death (if available), of datatype long</p>
-  </li>
-  <li>
-    <p><code class="highlighter-rouge">wedding</code>, which is a subclass of an <code class="highlighter-rouge">event</code> entity</p>
-  </li>
-  <li><code class="highlighter-rouge">document</code>, which has the following string resources:
- 		- <code class="highlighter-rouge">identifier</code>
- 		- <code class="highlighter-rouge">document-location</code> a URL 
- 		- <code class="highlighter-rouge">document-type</code> 
- 		- <code class="highlighter-rouge">notes</code></li>
-</ul>
+  has-resource identifier
+  has-resource firstname
+  has-resource surname
+  has-resource middlename
+  has-resource picture
+  has-resource age
+  has-resource birth-date
+  has-resource death-date
+  has-resource gender;
 
-<h3 id="relations-and-roles">Relations and Roles</h3>
+# Roles and Relations
 
-<p>The ontology also describes the relations between entities, namely:</p>
+marriage sub relation
+  has-role spouse1
+  has-role spouse2
+  has-resource picture;
 
-<ul>
-  <li>
-    <p>the <code class="highlighter-rouge">event-protagonist</code> relation, which links events to people 
-      - The role of the person in the event is described by a resource named <code class="highlighter-rouge">function</code> (which is of datatype string and indicate newborn, spouse, parent or deceased).
-      - Has two associated roles: <code class="highlighter-rouge">happening</code> (played by an <code class="highlighter-rouge">event</code> entity such as a <code class="highlighter-rouge">birth</code> or <code class="highlighter-rouge">wedding</code>) and <code class="highlighter-rouge">protagonist</code> (played by a <code class="highlighter-rouge">person</code> entity)</p>
-  </li>
-  <li>
-    <p>the <code class="highlighter-rouge">conclusion-evidence</code> relation, which links documentary evidence to an event
-      - Has two associated roles <code class="highlighter-rouge">evidence</code> (played by a <code class="highlighter-rouge">document</code>) and <code class="highlighter-rouge">conclusion</code> (played by an event such as a <code class="highlighter-rouge">wedding</code>).</p>
-  </li>
-</ul>
+spouse1 sub role;
+spouse2 sub role;
 
-<p>Note that in this example, no relations between <code class="highlighter-rouge">person</code> entities are described. The inference of such family relationships is discussed fully in a separate example that covers <a href="./graql-reasoning.html">inference using the Grakn reasoner</a>.</p>
+parentship sub relation
+  has-role parent
+  has-role child;
 
-<p>To load <em>basic-ontology.gql</em> into Grakn, make sure the engine is running and choose a clean keyspace in which to work (in the example below we use the default keyspace, so we are cleaning it before we get started). Pull down the <a href="https://github.com/graknlabs/sample-datasets">sample-datasets repo</a>, and call the following from the terminal, from within the <em>genealogy-graph</em> directory:</p>
+parent sub role;
+child sub role;
 
-<div class="highlighter-rouge"><pre class="highlight"><code>&lt;relative-path-to-Grakn&gt;/bin/grakn.sh clean
+# Resources
+
+identifier sub resource datatype string;
+firstname sub resource datatype string;
+surname sub resource datatype string;
+middlename sub resource datatype string;
+picture sub resource datatype string;
+age sub resource datatype long;
+birth-date sub resource datatype string;
+death-date sub resource datatype string;
+gender sub resource datatype string;
+</code></pre>
+
+<p>To load <em>ontology.gql</em> into Grakn, make sure the engine is running and choose a clean keyspace in which to work (here we use the default keyspace, so we are cleaning it before we get started).</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>&lt;relative-path-to-Grakn&gt;/bin/grakn.sh clean
 &lt;relative-path-to-Grakn&gt;/bin/grakn.sh start
-&lt;relative-path-to-Grakn&gt;/bin/graql.sh -f ./basic-ontology.gql
+&lt;relative-path-to-Grakn&gt;/bin/graql.sh -f ./ontology.gql
 </code></pre>
 </div>
 
-<h2 id="migration-templates">Migration Templates</h2>
+<h3 id="data-migration">Data Migration</h3>
 
-<p>Having loaded the ontology, the next steps are to populate the graph by migrating data into Grakn from the CSV files we discussed earlier. For a detailed overview of CSV migration, we recommend that you take a look at the Grakn documentation on <a href="https://grakn.ai/pages/documentation/migration/CSV-migration.html">CSV Migration</a> and <a href="https://grakn.ai/pages/documentation/graql/graql-templating.html">Graql templating</a>.</p>
+<p>Having loaded the ontology, the next steps are to populate the graph by migrating data into Grakn from CSV.</p>
 
-<p>In essence, we need to write a set of template Graql statements that instruct the Grakn migrator on how the CSV data can be mapped to the ontology. The Grakn migrator applies the template to each row of data in a CSV file, replacing the indicated sections in the template with the value from a specific cell, identified by the column header (the key). This sounds complicated, but isn’t really, as we will show.</p>
+<p>We will consider three CSV files that contain data to migrate into Grakn.</p>
 
-<p>Let’s take a look at <a href="https://github.com/graknlabs/sample-datasets/blob/master/genealogy-graph/raw-data/migrators/people-migrator.gql"><em>people-migrator.gql</em></a>, which is inside the <em>/raw-data/migrators/</em> directory of the genealogy-graph project. The template inserts person entities, birth entities, death entities and the corresponding event-protagonist relationships with function newborn and deceased. The code is applied row-by-row to the <a href="https://github.com/graknlabs/sample-datasets/blob/master/genealogy-graph/raw-data/people.csv"><em>people.csv</em></a> file. The first section is as follows:</p>
+<h4 id="peoplecsv">people.csv</h4>
+
+<p>The <em>people.csv</em> file contains details of the people that we will use to create seven <code class="highlighter-rouge">person</code> entities. Note that not all fields are available for each person, but at the very least, each row is expected to have the following:</p>
+
+<ul>
+  <li>pid (this is the person identifier, and is a string representing their full name)</li>
+  <li>first name</li>
+  <li>gender</li>
+</ul>
+
+<pre><code class="language-csv">name1,name2,surname,gender,born,dead,pid,age,picture
+Timothy,,Titus, male,,,	Timothy Titus,,	
+Mary,,Guthrie,female,,,Mary Guthrie,,	
+John,,Niesz,male,1798-01-02,1872-03-06,John Niesz,74,
+Mary,,Young,female,1798-04-09,1868-10-28,Mary Young,70,
+William,Sanford,Titus,male,1818-03-23,01/01/1905,William Sanford Titus,76,
+Elizabeth,,Niesz,female,1820-08-27,1891-12-08,Elizabeth Niesz,71,
+Mary,Melissa,Titus,female,1847-08-12,10/05/1946,Mary Melissa Titus,98,
+...
+</code></pre>
+
+<p>The migrator is a set of template Graql statements that instruct the Grakn migrator on how the CSV data can be mapped to the ontology. The Grakn migrator applies the template to each row of data in a CSV file, replacing the indicated sections in the template with the value from a specific cell, identified by the column header (the key). This sounds complicated, but isn’t really, as we will show.</p>
+
+<p>The Graql template code for the people migrator is as follows:</p>
 
 <pre><code class="language-graql-template">insert
-	$p isa person has identifier &lt;pid&gt;;
-</code></pre>
-
-<p>For each row in the CSV file, the code above inserts a <code class="highlighter-rouge">person</code> entity with an <code class="highlighter-rouge">identifier</code> resource that takes the value of the cell in that row within the column with header <code class="highlighter-rouge">pid</code>.  The resultant Graql insert statement may look something like this:</p>
-
-<pre><code class="language-graql">insert $p0 isa person has identifier "Elizabeth Niesz";
-</code></pre>
-
-<p>The following code is slightly more complex. It inserts a <code class="highlighter-rouge">birth</code> event entity, and from the row in the CSV file, takes values from:</p>
-
-<ul>
-  <li>the <code class="highlighter-rouge">name1</code> column for the <code class="highlighter-rouge">firstname</code> resource</li>
-  <li>the <code class="highlighter-rouge">gender</code> column for the <code class="highlighter-rouge">gender</code> resource</li>
-  <li>the <code class="highlighter-rouge">surname</code> column for the <code class="highlighter-rouge">surname</code> resource, if a value exists</li>
-  <li>the <code class="highlighter-rouge">name2</code> column for the <code class="highlighter-rouge">middlename</code> resource, if a value exists</li>
-  <li>the <code class="highlighter-rouge">born</code> column for the <code class="highlighter-rouge">birth-date</code> resource, if a value exists</li>
-</ul>
-
-<p>The code also creates an <code class="highlighter-rouge">event-protagonist</code> relationship between the <code class="highlighter-rouge">person</code> and the <code class="highlighter-rouge">birth</code> event, giving the relationship a <code class="highlighter-rouge">function</code> resource string <code class="highlighter-rouge">newborn</code>.</p>
-
-<pre><code class="language-graql-template">	$x isa birth has firstname &lt;name1&gt;,
-		has gender &lt;gender&gt;,
-		has confidence "high";
-	(happening: $x, protagonist: $p) isa event-protagonist,
-		has function "newborn";
-	if (&lt;surname&gt; != "") do 
-		{
-		$x has surname &lt;surname&gt;;
-		}
-	if (&lt;name2&gt; != "") do 
-		{
-		$x has middlename &lt;name2&gt;;
-		}
-	if (&lt;born&gt; != "") do 
-		{
-		$x has birth-date &lt;born&gt;;
-		}
-</code></pre>
-
-<p>The resultant Graql insertion looks as follows, for a single row of the CSV file:</p>
-
-<pre><code class="language-graql">$x0 has confidence "high" isa birth has gender "female" has firstname "Elizabeth";
-(happening: $x0, protagonist: $p0) has function "newborn" isa event-protagonist;
-$x0 has surname "Niesz";
-$x0 has birth-date "1820-08-27";
-
-</code></pre>
-
-<p>The code continues to similarly create a <code class="highlighter-rouge">death</code> event entity, and from the row in the CSV file, takes values from:</p>
-
-<ul>
-  <li>the <code class="highlighter-rouge">dead</code> column for the <code class="highlighter-rouge">death-date</code> resource, if a value exists</li>
-  <li>the <code class="highlighter-rouge">age</code> column for the <code class="highlighter-rouge">age</code> resource, if a value exists</li>
-</ul>
-
-<p>The code also creates an <code class="highlighter-rouge">event-protagonist</code> relationship between the <code class="highlighter-rouge">person</code> and the <code class="highlighter-rouge">death</code> event, giving the relationship a <code class="highlighter-rouge">function</code> resource string <code class="highlighter-rouge">deceased</code>.</p>
-
-<pre><code class="language-graql-template">	$y isa death has confidence "high";
-	(happening: $y, protagonist: $p) isa event-protagonist,
-			has function "deceased";
-	if (&lt;dead&gt; != "") do 
-		{
-		$y 	has death-date &lt;dead&gt;;
-		}
-
-	if (&lt;age&gt; != "") do 
-		{
-		$y 	has age @long(&lt;age&gt;);
-		}
+  $p isa person has identifier &lt;pid&gt;
+  has firstname &lt;name1&gt;,
 		
+  if (&lt;surname&gt; != "") do 
+    {
+    has surname &lt;surname&gt;,
+    }
+
+  if (&lt;name2&gt; != "") do 
+    {
+    has middlename &lt;name2&gt;,
+    }
+
+  if (&lt;picture&gt; != "") do 
+    {
+    has picture &lt;picture&gt;,
+    }
+
+  if (&lt;age&gt; != "") do 
+    {
+    has age @long(&lt;age&gt;),
+    }
+
+  if (&lt;born&gt; != "") do 
+    {
+    has birth-date &lt;born&gt;,
+    }
+
+  if (&lt;dead&gt; != "") do 
+    {
+    has death-date &lt;dead&gt;,
+    }
+
+  has gender &lt;gender&gt;;
 </code></pre>
 
-<p>The resulting Graql insertion code looks something like the following for a row from the CSV file:</p>
+<p>For each row in the CSV file, the template inserts a <code class="highlighter-rouge">person</code> entity with resources that take the value of the cells in that row. Where data is optional, the template checks to see if it is present before adding the resources for middlename, surname, picture, age, birth and death dates.</p>
 
-<pre><code class="language-graql">$y0 has confidence "high" isa death;
-isa event-protagonist has function "deceased" (happening: $y0, protagonist: $p0);
-$y0 has death-date "1891-12-08";
-$y0 has age 71;
+<p>Calling the Grakn migrator on the <em>people.csv</em> file using the above template (named <code class="highlighter-rouge">people-migrator.gql</code>) is performed as follows:</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>&lt;relative-path-to-Grakn&gt;/bin/migration.sh csv -i ./people.csv -t ./migrators/people-migrator.gql
+</code></pre>
+</div>
+
+<div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> <b>Note:</b> Usage instructions for the Grakn migrator are available as part of our <a href="../migration/migration-overview.html">migration documentation</a>.</div>
+
+<p>The data insertion generated by the migrator is as follows:</p>
+
+<pre><code class="language-graql">insert $p0 has death-date "1891-12-08" isa person has gender "female" has identifier "Elizabeth Niesz" has surname "Niesz" has age 71 has firstname "Elizabeth" has birth-date "1820-08-27";
+insert $p0 has identifier "William Sanford Titus" has age 76 isa person has firstname "William" has surname "Titus" has gender "male" has birth-date "1818-03-23" has middlename "Sanford" has death-date "1905-01-01";
+insert $p0 isa person has surname "Titus" has firstname "Timothy" has identifier "Timothy Titus" has gender "male";
+insert $p0 isa person has firstname "Mary" has identifier "Mary Guthrie" has surname "Guthrie" has gender "female";
+insert $p0 isa person has firstname "Mary" has death-date "1946-05-10" has surname "Titus" has age 98 has identifier "Mary Melissa Titus" has middlename "Melissa" has gender "female" has birth-date "1847-08-12";
+insert $p0 has death-date "1872-03-06" has age 74 has identifier "John Niesz" isa person has birth-date "1798-01-02" has firstname "John" has gender "male" has surname "Niesz";
+insert $p0 has identifier "Mary Young" has birth-date "1798-04-09" isa person has firstname "Mary" has death-date "1868-10-28" has surname "Young" has gender "female" has age 70;
+...
 </code></pre>
 
-<div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> <b>Note:</b> <strong>A note on the <code class="highlighter-rouge">confidence</code> resource</strong>   <br />
-The <code class="highlighter-rouge">confidence</code> resource associated with the <code class="highlighter-rouge">event</code> entity can be set to ‘high’, ‘medium’ or ‘low’. It is not used in this example, but is used by GRAKN.AI when the reasoner makes inference about the data, and will be explained further in an upcoming example. The <code class="highlighter-rouge">confidence</code> is set to ‘high’ in this example because all additions to the graph come from CSV data migration rather than through inference, so we can be confident that they are correct.</div>
+<h4 id="birthscsv">births.csv</h4>
 
-<p>Moving on to look at <a href="https://github.com/graknlabs/sample-datasets/blob/master/genealogy-graph/raw-data/migrators/births-migrator.gql"><em>births-migrator.gql</em></a>, which is applied row-by-row to the <a href="https://github.com/graknlabs/sample-datasets/blob/master/genealogy-graph/raw-data/births.csv"><em>births.csv</em></a> file.</p>
+<p>Each row of <em>births.csv</em> records a parent and child, with two rows for each of the three children listed:</p>
+
+<pre><code class="language-csv">parent,child
+Timothy Titus,William Sanford Titus
+Mary Guthrie,	William Sanford Titus
+John Niesz,Elizabeth Niesz
+Mary Young,Elizabeth Niesz
+Elizabeth Niesz,Mary Melissa Titus
+William Sanford Titus,Mary Melissa Titus
+...
+</code></pre>
+
+<p>The Graql template code for the Grakn migrator is as follows:</p>
 
 <pre><code class="language-graql-template">match
-	$c has identifier &lt;child&gt;;
-	$p1 has identifier &lt;parent1&gt;;
-	$p2 has identifier &lt;parent2&gt;;
-	$b isa birth;
-	$r (happening: $b, protagonist: $c) isa event-protagonist;
-	$r has function "newborn";
+	$c isa person has identifier &lt;child&gt;;
+	$p isa person has identifier &lt;parent&gt;;
 insert
-	$r1 (happening: $b, protagonist: $p1) isa event-protagonist
-		has function "parent";
-	$r2 (happening: $b, protagonist: $p2) isa event-protagonist,
-		has function "parent";
+	(child: $c, parent: $p) isa parentship;
+
 </code></pre>
 
-<p>For each row, the code matches the <code class="highlighter-rouge">person</code> entities identified by their names in the child, parent1 and parent2 columns of the CSV data. It then finds the <code class="highlighter-rouge">event-protagonist</code> relationship with the <code class="highlighter-rouge">function</code> resource set to be <code class="highlighter-rouge">newborn</code> that corresponds to the named child, which was added to Grakn by the people migrator. For the <code class="highlighter-rouge">birth</code> event associated with that relationship, it then inserts two new <code class="highlighter-rouge">event-protagonist</code> relationships between the <code class="highlighter-rouge">birth</code> and each of the <code class="highlighter-rouge">person</code> entities who are parents. Each of these new relationships have their <code class="highlighter-rouge">function</code> resource set to be <code class="highlighter-rouge">parent</code>.</p>
+<p>For each row in the CSV file, the template matches the child and parent cells to their corresponding <code class="highlighter-rouge">person</code> entities, and then inserts a <code class="highlighter-rouge">parentship</code> relation, placing the entities it has matched into the <code class="highlighter-rouge">child</code> and <code class="highlighter-rouge">parent</code> roles.</p>
 
-<p>From a single row of the CSV data, an example Graql insertion looks as follows:</p>
+<div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> <b>Note:</b> You must ensure that all entities exist in a graph before inserting relations.</div>
 
-<pre><code class="language-graql">match $p10 has identifier "Elizabeth Niesz"; $r0 has function "newborn"; $b0 isa birth; $r0 (happening: $b0, protagonist: $c0) isa event-protagonist; $c0 has identifier "Mary Melissa Titus"; $p20 has identifier "William Sanford Titus";
-insert $r10 has function "parent" isa event-protagonist (happening: $b0, protagonist: $p10);
-$r20 has function "parent" isa event-protagonist (happening: $b0, protagonist: $p20);
+<p>Calling the Grakn migrator on the <em>births.csv</em> file using the above template (named <code class="highlighter-rouge">births-migrator.gql</code>) is performed as follows:</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>&lt;relative-path-to-Grakn&gt;/bin/migration.sh csv -i ./births.csv -t ./migrators/births-migrator.gql
+</code></pre>
+</div>
+
+<p>The data insertion generated by the migrator is as follows:</p>
+
+<pre><code class="language-graql">match $c0 has identifier "William Sanford Titus" isa person; $p0 isa person has identifier "Timothy Titus";
+insert (child: $c0, parent: $p0) isa parentship;
+match $p0 isa person has identifier "Mary Guthrie"; $c0 has identifier "William Sanford Titus" isa person;
+insert (child: $c0, parent: $p0) isa parentship;
+match $p0 isa person has identifier "Elizabeth Niesz"; $c0 isa person has identifier "Mary Melissa Titus";
+insert (child: $c0, parent: $p0) isa parentship;
+match $c0 isa person has identifier "Mary Melissa Titus"; $p0 has identifier "William Sanford Titus" isa person;
+insert (child: $c0, parent: $p0) isa parentship;
+match $c0 isa person has identifier "Elizabeth Niesz"; $p0 has identifier "John Niesz" isa person;
+insert (child: $c0, parent: $p0) isa parentship;
+match $c0 isa person has identifier "Elizabeth Niesz"; $p0 has identifier "Mary Young" isa person;
+insert (child: $c0, parent: $p0) isa parentship;
+...
 </code></pre>
 
-<p>Moving on to look at the <a href="https://github.com/graknlabs/sample-datasets/blob/master/genealogy-graph/raw-data/migrators/weddings-migrator.gql"><em>weddings-migrator.gql</em></a>, which is applied row-by-row to the <a href="https://github.com/graknlabs/sample-datasets/blob/master/genealogy-graph/raw-data/weddings.csv"><em>weddings.csv</em></a>.</p>
+<h4 id="weddingscsv">weddings.csv</h4>
+
+<p>The <em>weddings.csv</em> file contains two columns that correspond to both spouses in a marriage, and an optional column for a photograph of the happy couple:</p>
+
+<pre><code class="language-csv">spouse1,spouse2,picture
+Timothy Titus,Mary Guthrie,
+John Niesz,Mary Young,http://1.bp.blogspot.com/-Ty9Ox8v7LUw/VKoGzIlsMII/AAAAAAAAAZw/UtkUvrujvBQ/s1600/johnandmary.jpg
+Elizabeth Niesz,William Sanford Titus,
+</code></pre>
+
+<p>The Graql template code for the migrator is as follows:</p>
 
 <pre><code class="language-graql-template">match
 	$x has identifier &lt;spouse1&gt;;
 	$y has identifier &lt;spouse2&gt;;
 insert
-	$m isa wedding,
-	has identifier &lt;wid&gt;,
-	has confidence "high";
-	if (&lt;date&gt; != null) do 
+	(spouse1: $x, spouse2: $y) isa marriage
+
+	if (&lt;picture&gt; != "") do 
 		{
-		$m has date &lt;date&gt;;
-		}
-	(happening: $m, protagonist: $x) isa event-protagonist,
-		has function "spouse";
-	(happening: $m, protagonist: $y) isa event-protagonist,
-		has function "spouse";
+		has picture &lt;picture&gt;
+		};
 </code></pre>
 
-<p>The code matches the <code class="highlighter-rouge">person</code> entities identified by their names in the spouse1 and spouse2 columns of the CSV data. For each row, it insert a <code class="highlighter-rouge">wedding</code> entity and an <code class="highlighter-rouge">event-protagonist</code> relationship for each spouse. An example of a Graql insertion for a single line of CSV data is as follows:</p>
+<p>For each row in the CSV file, the template matches the two spouse cells to their corresponding <code class="highlighter-rouge">person</code> entities, and then inserts a <code class="highlighter-rouge">marriage</code> relation, placing the entities it has matched into the <code class="highlighter-rouge">spouse1</code> and <code class="highlighter-rouge">spouse2</code> roles. If there is data in the picture cell, a <code class="highlighter-rouge">picture</code> resource is also created for the <code class="highlighter-rouge">marriage</code> relation.</p>
 
-<pre><code class="language-graql">match $y0 has identifier "William Sanford Titus"; $x0 has identifier "Elizabeth Niesz";
-insert $m0 isa wedding has confidence "high" has identifier "w01";
-$m0 has date "1845-10-21";
-(happening: $m0, protagonist: $x0) has function "spouse" isa event-protagonist;
-has function "spouse" isa event-protagonist (happening: $m0, protagonist: $y0);
+<p>Calling the Grakn migrator on the <em>weddings.csv</em> file using the above template (named <code class="highlighter-rouge">weddings-migrator.gql</code>) is performed as follows:</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>&lt;relative-path-to-Grakn&gt;/bin/migration.sh csv -i ./weddings.csv -t ./migrators/weddings-migrator.gql
 </code></pre>
+</div>
 
-<p>The <a href="https://github.com/graknlabs/sample-datasets/blob/master/genealogy-graph/raw-data/migrators/documents-migrator.gql"><em>documents-migrator.gql</em></a> is applied to each row of the <a href="https://github.com/graknlabs/sample-datasets/blob/master/genealogy-graph/raw-data/documents.csv"><em>documents.csv</em></a> file. It is a very simple template that inserts a <code class="highlighter-rouge">document</code> entity for each row of data.</p>
+<p>The Graql insertion code is as follows:</p>
 
-<pre><code class="language-graql-template">insert
-	$d isa document,
-		has document-type &lt;document-type&gt;,
-		has document-location &lt;url&gt;,
-		has identifier &lt;did&gt;,
-		has notes &lt;notes&gt;;
-</code></pre>
-
-<p>The generated Graql statements for document migration are as follows for the a single row of CSV data:</p>
-
-<pre><code class="language-graql">insert $d0 has document-type "picture" has identifier "d01" has document-location "http:\/\/www.christliebfamilyassociation.com\/images\/CatherineNieszChristlieb.jpg" has notes "Dated Picture of Catherine Niesz" isa document;
-</code></pre>
-
-<p>Finally, <a href="https://github.com/graknlabs/sample-datasets/blob/master/genealogy-graph/raw-data/migrators/evidences-migrator.gql"><em>evidences-migrator.gql</em></a> is applied row-by-row to <a href="https://github.com/graknlabs/sample-datasets/blob/master/genealogy-graph/raw-data/evidences.csv"><em>evidences.csv</em></a>.</p>
-
-<pre><code class="language-graql-template">match 
-	$d isa document has identifier &lt;document&gt;;
-	$p1 isa person has identifier &lt;protagonist1&gt;;
-	$r1 (happening: $e, protagonist: $p1); 
-		$r1 has function &lt;function&gt;;
-	if (&lt;protagonist2&gt; != "") do {
-	$p2 isa person has identifier &lt;protagonist2&gt;;
-	$r2 (happening: $e, protagonist: $p2);
-		$r2 has function &lt;function&gt;;
-	}
-insert
-	(evidence: $d, conclusion: $e) isa conclusion-evidence;
-</code></pre>
-
-<p>For each row, the template matches a <code class="highlighter-rouge">document</code> by the identifier in the document column, and likewise matches a <code class="highlighter-rouge">person</code> by the identifier in the protagonist1 column. It then matches an <code class="highlighter-rouge">event-protagonist</code> relationship according to the <code class="highlighter-rouge">person</code> and the <code class="highlighter-rouge">function</code> specified in the function column. If there is a value specified in the protagonist2 column, a second <code class="highlighter-rouge">person</code> and <code class="highlighter-rouge">event-protagonist</code> relationship are also matched). The template then inserts a <code class="highlighter-rouge">conclusion-evidence</code> relationship, using the <code class="highlighter-rouge">event</code> matched with the <code class="highlighter-rouge">event-protagonist</code> relationship(s) to be the conclusion and the matched <code class="highlighter-rouge">document</code> as the evidence.</p>
-
-<p>The Graql generated by Grakn’s <code class="highlighter-rouge">migration.sh</code> looks as follows, for a single row of CSV data:</p>
-
-<pre><code class="language-graql">match $p10 isa person has identifier "Catherine Niesz"; $d0 has identifier "d01" isa document; $r10 (happening: $e0, protagonist: $p10); $r10 has function "deceased";
-insert isa conclusion-evidence (evidence: $d0, conclusion: $e0);
+<pre><code class="language-graql">match $x0 has identifier "Timothy Titus"; $y0 has identifier "Mary Guthrie";
+insert (spouse1: $x0, spouse2: $y0) isa marriage;
+match $x0 has identifier "John Niesz"; $y0 has identifier "Mary Young";
+insert has picture "http:\/\/1.bp.blogspot.com\/-Ty9Ox8v7LUw\/VKoGzIlsMII\/AAAAAAAAAZw\/UtkUvrujvBQ\/s1600\/johnandmary.jpg" (spouse1: $x0, spouse2: $y0) isa marriage;
+match $y0 has identifier "William Sanford Titus"; $x0 has identifier "Elizabeth Niesz";
+insert (spouse1: $x0, spouse2: $y0) isa marriage;
+...
 </code></pre>
 
 <h2 id="migration-script">Migration Script</h2>
 
-<p>To invoke each of the migration templates on the appropriate .CSV file, you can call the Grakn migrator <code class="highlighter-rouge">migration.sh</code>, which resides in the <em>/bin/</em> directory of the Grakn installation. Usage instructions are available as part of our <a href="../migration/migration-overview.html">migration documentation</a>.</p>
+<p>For simplicity, the <em>/raw-data/</em> directory of the example project contains a script called <em>loader.sh</em> that calls each migration script in turn, so you can simply call the script from the terminal, passing in the path to the Grakn <em>/bin/</em> directory.</p>
 
-<p>However, for simplicity, the <em>/raw-data/</em> directory of the genealogy-graph project contains a script called <em>loader.sh</em> that calls each migration script in turn, so you can simply call the script from the terminal, from within the genealogy-graph directory, passing in the path to the Grakn <em>/bin/</em> directory.</p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code> ./loader.sh &lt;location-of-Grakn-on-your-computer&gt;/bin
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code> ./loader.sh &lt;relative-path-to-Grakn&gt;/bin
 </code></pre>
 </div>
 
@@ -1108,13 +1097,33 @@ insert isa conclusion-evidence (evidence: $d0, conclusion: $e0);
 
 <p><img src="/images/match-$x-isa-person.png" alt="Person query" /></p>
 
-<p>We have completed the data import, and the graph can now be queried. Since we have used just the basic ontology for this example, it isn’t possible to perform the inference that is described in this blog post, that uses the same data.</p>
+<p>We have completed the data import, and the graph can now be queried. For example, from the Graql shell:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>match $x isa person, has identifier $i; aggregate count;
+</code></pre>
+</div>
+
+<p>There should be 60 people in the dataset.</p>
+
+<h2 id="data-export">Data Export</h2>
+
+<p>In this example, we have imported a dataset stored in three separate CSV files into Grakn to build a simple graph. We have discussed the ontology and migration templates, and shown how to apply the templates to the CSV data using the shell migrator, using a script file <em>loader.sh</em> to automate calling the migrator on each file It is possible to export the data from Grakn, in <em>.gql</em> format, so that it can easily be loaded to a graph again without the need to migrate from CSV.</p>
+
+<p>To export the data, we use the Grakn <em>migration.sh</em> shell script again, as described in the <a href="../migration/migration-overview.html#export-from-grakn">migration documentation</a>:</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="c"># Export the ontology</span>
+&lt;relative-path-to-Grakn&gt;/migration.sh <span class="nb">export</span> -ontology &gt; ontology-export.gql
+
+<span class="c"># Export the data</span>
+&lt;relative-path-to-Grakn&gt;/migration.sh <span class="nb">export</span> -data &gt; data-export.gql
+</code></pre>
+</div>
+
+<p>Exporting data or the ontology from Grakn, into Graql, will always redirect to standard out, so above we are sending the output to an appropriately named file.</p>
 
 <h2 id="where-next">Where Next?</h2>
 
 <p>This example has illustrated how to migrate CSV data into Grakn. Having read it, you may want to further study our documentation about <a href="../migration/CSV-migration.html">CSV migration</a> and <a href="https://grakn.ai/pages/documentation/graql/graql-templating.html">Graql templating</a>.</p>
-
-<p>We will be using the genealogy data throughout our documentation, and will shortly add further examples to illustrate the use of Grakn’s inference and analytics, but as a starting point, please see our <a href="https://blog.grakn.ai/family-matters-1bb639396a24#.uelgekrn2">Family Matters</a> blog post.</p>
 
 <h2 id="comments">Comments</h2>
 <p>Want to leave a comment? Visit <a href="https://github.com/graknlabs/docs/issues/27" target="_blank">the issues on Github for this page</a> (you’ll need a GitHub account). You are also welcome to contribute to our documentation directly via the “Edit me” button at the top of the page.</p>
@@ -1161,7 +1170,7 @@ insert isa conclusion-evidence (evidence: $d0, conclusion: $e0);
         <br>
         <p>© 2016 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2017 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> January 2017<br/> Site last generated: Jan 29, 2017 <br />
+        <span>Page last updated:</span> January 2017<br/> Site last generated: Jan 30, 2017 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">

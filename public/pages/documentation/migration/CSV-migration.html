@@ -801,7 +801,7 @@ $('#toc').on('click', 'a', function() {
 <h2 id="migration-shell-script-for-csv">Migration Shell Script for CSV</h2>
 <p>The migration shell script can be found in <code class="highlighter-rouge">/bin</code> directory of your Grakn environment. Usage is specific to the type of migration being performed. For CSV:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>usage: ./migration.sh csv -template &lt;arg&gt; -input &lt;arg&gt; <span class="o">[</span>-help] <span class="o">[</span>-no] <span class="o">[</span>-separator &lt;arg&gt;] <span class="o">[</span>-batch &lt;arg&gt;] <span class="o">[</span>-uri &lt;arg&gt;] <span class="o">[</span>-keyspace &lt;arg&gt;] <span class="o">[</span>-v]
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>usage: ./migration.sh csv -template &lt;arg&gt; -input &lt;arg&gt; <span class="o">[</span>-help] <span class="o">[</span>-no] <span class="o">[</span>-separator &lt;arg&gt;] <span class="o">[</span>-batch &lt;arg&gt;] <span class="o">[</span>-uri &lt;arg&gt;] <span class="o">[</span>-keyspace &lt;arg&gt;] <span class="o">[</span>-v]
 
 OPTIONS
  -b,--batch &lt;arg&gt;       number of rows to load at once
@@ -824,9 +824,9 @@ OPTIONS
 
 <div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> <b>Note:</b> CSV Migration makes heavy use of the Graql templating language. You will need a foundation in Graql templating before continuing, so please read through our <a href="../graql/graql-templating.html">templating documentation</a> to find out more.</div>
 
-<h2 id="example-1-cars">Example 1: Cars</h2>
+<h2 id="example-cars">Example: Cars</h2>
 
-<p>Let’s take a simple example. First, the CSV:</p>
+<p>Let’s take a simple example. First, the CSV file, <em>cars.csv</em>:</p>
 
 <pre><code class="language-csv">Year,Make,Model,Description,Price
 1997,Ford,E350,"ac, abs, moon",3000.00
@@ -851,7 +851,7 @@ price sub resource datatype double;
 
 </code></pre>
 
-<p>And the Graql template:</p>
+<p>And the Graql template, <em>car-migrator.gql</em>:</p>
 
 <pre><code class="language-graql-template">insert 
 
@@ -862,9 +862,15 @@ $x isa car
     if (ne Description null) do { has description &lt;Description&gt;};
 </code></pre>
 
-<p>The template will create a <code class="highlighter-rouge">car</code> entity for each row. It will attach <code class="highlighter-rouge">year</code> and <code class="highlighter-rouge">price</code> resources to each of these entities. If the <code class="highlighter-rouge">description</code> resource is present in the data, it will attach the approriate <code class="highlighter-rouge">description</code> to the <code class="highlighter-rouge">car</code>.</p>
+<p>The template will create a <code class="highlighter-rouge">car</code> entity for each row. It will attach <code class="highlighter-rouge">year</code> and <code class="highlighter-rouge">price</code> resources to each of these entities. If the <code class="highlighter-rouge">description</code> resource is present in the data, it will attach the appropriate <code class="highlighter-rouge">description</code> to the <code class="highlighter-rouge">car</code>.</p>
 
-<p>The template is applied to each row, and the resulting Graql statement, if printed out, looks like:</p>
+<p>The template is applied to each row:</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>./&lt;grakn-install-location&gt;/bin/migration.sh csv -i ./cars.csv -t ./car-migrator.gql
+</code></pre>
+</div>
+
+<p>The resulting Graql statement, if printed out, looks like:</p>
 
 <pre><code class="language-graql">insert $x0 isa car has name "Ford" has description "ac, abs, moon" has price 3000.0 has year "1997";
 insert $x0 isa car has name "Chevy" has price 4900.0 has year "1999";
@@ -877,7 +883,7 @@ insert $x0 isa car has description "MUST SELL! air, moon roof, loaded" has price
 
 <p>The <code class="highlighter-rouge">separator</code> option allows you to specify the column separator. With this we are able to migrate a wider range of formats, including TSV.</p>
 
-<p>This file would be migrated in the same way as the previous example when you specify the <code class="highlighter-rouge">\t</code> separator:</p>
+<p>This file would be migrated in the same way as the previous example when you specify the separator using the <code class="highlighter-rouge">-s \t</code> argument:</p>
 
 <pre><code class="language-tsv">Year  Make  Model Description Price
 1997  Ford  E350  "ac  abs   moon"  3000.00
@@ -886,227 +892,8 @@ insert $x0 isa car has description "MUST SELL! air, moon roof, loaded" has price
 air  moon roof   loaded"  4799.00
 </code></pre>
 
-<h2 id="example-2-genealogy">Example 2: Genealogy</h2>
-
-<p>This example uses a simple genealogy example to demonstrate the creation of a graph by importing data from three CSV files. For simplicity, the following text uses some of the data from our larger <a href="https://github.com/graknlabs/sample-datasets/tree/master/genealogy-graph">genealogy-graph</a> example, but it is subset of that dataset for the purposes of illustrating the migration process only.</p>
-
-<h3 id="ontology">Ontology</h3>
-
-<p>A simple ontology is shown below. There is a single entity, <code class="highlighter-rouge">person</code>, which has a number of resources and can play various roles (<code class="highlighter-rouge">parent</code>, <code class="highlighter-rouge">child</code>, <code class="highlighter-rouge">spouse1</code> and <code class="highlighter-rouge">spouse2</code>) in two possible relations (<code class="highlighter-rouge">parentship</code> and <code class="highlighter-rouge">marriage</code>).</p>
-
-<pre><code class="language-graql">insert
-
-# Entities
-
-person sub entity
-	plays-role parent
-	plays-role child
-	plays-role spouse1
-	plays-role spouse2
-
-	has-resource identifier
-	has-resource firstname
-	has-resource surname
-	has-resource middlename
-	has-resource picture
-	has-resource age
-	has-resource birth-date
-	has-resource death-date
-	has-resource gender;
-
-# Roles and Relations
-
-marriage sub relation
-	has-role spouse1
-	has-role spouse2
-	has-resource picture;
-
-spouse1 sub role;
-spouse2 sub role;
-
-parentship sub relation
-	has-role parent
-	has-role child;
-
-parent sub role;
-child sub role;
-
-# Resources
-
-identifier sub resource datatype string;
-firstname sub resource datatype string;
-surname sub resource datatype string;
-middlename sub resource datatype string;
-picture sub resource datatype string;
-age sub resource datatype long;
-birth-date sub resource datatype string;
-death-date sub resource datatype string;
-gender sub resource datatype string;
-</code></pre>
-
-<h3 id="data-migration">Data Migration</h3>
-
-<p>We will consider three CSV files that contain data to migrate into Grakn.</p>
-
-<h4 id="peoplecsv">people.csv</h4>
-
-<p>The <em>people.csv</em> file contains details of the people that we will use to create seven <code class="highlighter-rouge">person</code> entities. Note that not all fields are available for each person, but at the very least, each row is expected to have the following:</p>
-
-<ul>
-  <li>pid (this is the person identifier, and is a string representing their full name)</li>
-  <li>first name</li>
-  <li>gender</li>
-</ul>
-
-<pre><code class="language-csv">name1,name2,surname,gender,born,dead,pid,age,picture
-Timothy,,Titus, male,,,	Timothy Titus,,	
-Mary,,Guthrie,female,,,Mary Guthrie,,	
-John,,Niesz,male,1798-01-02,1872-03-06,John Niesz,74,
-Mary,,Young,female,1798-04-09,1868-10-28,Mary Young,70,
-William,Sanford,Titus,male,1818-03-23,01/01/1905,William Sanford Titus,76,
-Elizabeth,,Niesz,female,1820-08-27,1891-12-08,Elizabeth Niesz,71,
-Mary,Melissa,Titus,female,1847-08-12,10/05/1946,Mary Melissa Titus,98,
-</code></pre>
-
-<p>The Graql template code for the Grakn migrator is as follows:</p>
-
-<pre><code class="language-graql-template">insert
-	$p isa person has identifier &lt;pid&gt;
-		has firstname &lt;name1&gt;,
-		
-		if (&lt;surname&gt; != "") do 
-		{
-		has surname &lt;surname&gt;,
-		}
-
-		if (&lt;name2&gt; != "") do 
-		{
-		has middlename &lt;name2&gt;,
-		}
-
-		if (&lt;picture&gt; != "") do 
-		{
-		has picture &lt;picture&gt;,
-		}
-
-		if (&lt;age&gt; != "") do 
-		{
-		has age @long(&lt;age&gt;),
-		}
-
-		if (&lt;born&gt; != "") do 
-		{
-		has birth-date &lt;born&gt;,
-		}
-
-		if (&lt;dead&gt; != "") do 
-		{
-		has death-date &lt;dead&gt;,
-		}
-
-		has gender &lt;gender&gt;;
-</code></pre>
-
-<p>For each row in the CSV file, the template inserts a <code class="highlighter-rouge">person</code> entity with resources that take the value of the cells in that row. Where data is optional, the template checks to see if it is present before adding the resources for middlename, surname, picture, age, birth and death dates.</p>
-
-<p>Calling the Grakn migrator on the <em>people.csv</em> file using the above template (named <code class="highlighter-rouge">people-migrator.gql</code>) is performed as follows:</p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code>./&lt;grakn-install-location&gt;/bin/migration.sh csv -i ./people.csv -t ./people-migrator.gql
-</code></pre>
-</div>
-
-<p>The data insertion generated by the migrator is as follows:</p>
-
-<pre><code class="language-graql">insert $p0 has death-date "1891-12-08" isa person has gender "female" has identifier "Elizabeth Niesz" has surname "Niesz" has age 71 has firstname "Elizabeth" has birth-date "1820-08-27";
-insert $p0 has identifier "William Sanford Titus" has age 76 isa person has firstname "William" has surname "Titus" has gender "male" has birth-date "1818-03-23" has middlename "Sanford" has death-date "1905-01-01";
-insert $p0 isa person has surname "Titus" has firstname "Timothy" has identifier "Timothy Titus" has gender "male";
-insert $p0 isa person has firstname "Mary" has identifier "Mary Guthrie" has surname "Guthrie" has gender "female";
-insert $p0 isa person has firstname "Mary" has death-date "1946-05-10" has surname "Titus" has age 98 has identifier "Mary Melissa Titus" has middlename "Melissa" has gender "female" has birth-date "1847-08-12";
-insert $p0 has death-date "1872-03-06" has age 74 has identifier "John Niesz" isa person has birth-date "1798-01-02" has firstname "John" has gender "male" has surname "Niesz";
-insert $p0 has identifier "Mary Young" has birth-date "1798-04-09" isa person has firstname "Mary" has death-date "1868-10-28" has surname "Young" has gender "female" has age 70;
-</code></pre>
-
-<h4 id="birthscsv">births.csv</h4>
-
-<p>Each row of <em>births.csv</em> records a parent and child, with two rows for each of the three children listed:</p>
-
-<pre><code class="language-csv">parent,child
-Timothy Titus,William Sanford Titus
-Mary Guthrie,	William Sanford Titus
-John Niesz,Elizabeth Niesz
-Mary Young,Elizabeth Niesz
-Elizabeth Niesz,Mary Melissa Titus
-William Sanford Titus,Mary Melissa Titus
-</code></pre>
-
-<p>The Graql template code for the Grakn migrator is as follows:</p>
-
-<pre><code class="language-graql-template">match
-	$c isa person has identifier &lt;child&gt;;
-	$p isa person has identifier &lt;parent&gt;;
-insert
-	(child: $c, parent: $p) isa parentship;
-
-</code></pre>
-
-<p>For each row in the CSV file, the template matches the child and parent cells to their corresponding <code class="highlighter-rouge">person</code> entities, and then inserts a <code class="highlighter-rouge">parentship</code> relation, placing the entities it has matched into the <code class="highlighter-rouge">child</code> and <code class="highlighter-rouge">parent</code> roles.</p>
-
-<div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> <b>Note:</b> You must ensure that all entities exist in a graph before inserting relations.</div>
-
-<p>The data insertion generated by the migrator is as follows:</p>
-
-<pre><code class="language-graql">match $c0 has identifier "William Sanford Titus" isa person; $p0 isa person has identifier "Timothy Titus";
-insert (child: $c0, parent: $p0) isa parentship;
-match $p0 isa person has identifier "Mary Guthrie"; $c0 has identifier "William Sanford Titus" isa person;
-insert (child: $c0, parent: $p0) isa parentship;
-match $p0 isa person has identifier "Elizabeth Niesz"; $c0 isa person has identifier "Mary Melissa Titus";
-insert (child: $c0, parent: $p0) isa parentship;
-match $c0 isa person has identifier "Mary Melissa Titus"; $p0 has identifier "William Sanford Titus" isa person;
-insert (child: $c0, parent: $p0) isa parentship;
-match $c0 isa person has identifier "Elizabeth Niesz"; $p0 has identifier "John Niesz" isa person;
-insert (child: $c0, parent: $p0) isa parentship;
-match $c0 isa person has identifier "Elizabeth Niesz"; $p0 has identifier "Mary Young" isa person;
-insert (child: $c0, parent: $p0) isa parentship;
-</code></pre>
-
-<h4 id="weddingscsv">weddings.csv</h4>
-
-<p>The <em>weddings.csv</em> file contains two columns that correspond to both spouses in a marriage, and an optional column for a photograph of the happy couple:</p>
-
-<pre><code class="language-csv">spouse1,spouse2,picture
-Timothy Titus,Mary Guthrie,
-John Niesz,Mary Young,http://1.bp.blogspot.com/-Ty9Ox8v7LUw/VKoGzIlsMII/AAAAAAAAAZw/UtkUvrujvBQ/s1600/johnandmary.jpg
-Elizabeth Niesz,William Sanford Titus,
-</code></pre>
-
-<p>The Graql template code for the migrator is as follows:</p>
-
-<pre><code class="language-graql-template">match
-	$x has identifier &lt;spouse1&gt;;
-	$y has identifier &lt;spouse2&gt;;
-insert
-	(spouse1: $x, spouse2: $y) isa marriage
-
-	if (&lt;picture&gt; != "") do 
-		{
-		has picture &lt;picture&gt;
-		};
-</code></pre>
-
-<p>For each row in the CSV file, the template matches the two spouse cells to their corresponding <code class="highlighter-rouge">person</code> entities, and then inserts a <code class="highlighter-rouge">marriage</code> relation, placing the entities it has matched into the <code class="highlighter-rouge">spouse1</code> and <code class="highlighter-rouge">spouse2</code> roles. If there is data in the picture cell, a <code class="highlighter-rouge">picture</code> resource is also created for the <code class="highlighter-rouge">marriage</code> relation.</p>
-
-<p>The Graql insertion code is as follows:</p>
-
-<pre><code class="language-graql">match $x0 has identifier "Timothy Titus"; $y0 has identifier "Mary Guthrie";
-insert (spouse1: $x0, spouse2: $y0) isa marriage;
-match $x0 has identifier "John Niesz"; $y0 has identifier "Mary Young";
-insert has picture "http:\/\/1.bp.blogspot.com\/-Ty9Ox8v7LUw\/VKoGzIlsMII\/AAAAAAAAAZw\/UtkUvrujvBQ\/s1600\/johnandmary.jpg" (spouse1: $x0, spouse2: $y0) isa marriage;
-match $y0 has identifier "William Sanford Titus"; $x0 has identifier "Elizabeth Niesz";
-insert (spouse1: $x0, spouse2: $y0) isa marriage;
-</code></pre>
-
 <h2 id="where-next">Where Next?</h2>
-<p>We have an additional, more extensive, example of <a href="../examples/CSV-migration.html">migrating genealogy data from CSV</a>. Our <a href="https://github.com/graknlabs/sample-projects">sample-projects repository on Github</a> also contains <a href="https://github.com/graknlabs/sample-projects/tree/master/example-csv-migration">an example that takes a simple CSV data file of pets</a>, and another <a href="https://github.com/graknlabs/sample-projects/tree/master/example-csv-migration-games">example for video games</a>, as described in a separate <a href="https://blog.grakn.ai/twenty-years-of-games-in-grakn-14faa974b16e#.do8tq0dm8">blog post</a>.</p>
+<p>We have an additional, more extensive, example that <a href="../examples/CSV-migration.html">migrates genealogy data from CSV</a>. Our <a href="https://github.com/graknlabs/sample-projects">sample-projects repository on Github</a> also contains <a href="https://github.com/graknlabs/sample-projects/tree/master/example-csv-migration">an example that migrates a simple CSV pets dataset</a>, and another <a href="https://github.com/graknlabs/sample-projects/tree/master/example-csv-migration-games">example for video games</a>, was described in a separate <a href="https://blog.grakn.ai/twenty-years-of-games-in-grakn-14faa974b16e#.do8tq0dm8">blog post</a>.</p>
 
 <p>You can find further documentation about migration in our API reference documentation (which is in the <code class="highlighter-rouge">/docs</code> directory of the distribution zip file, and also online <a href="https://grakn.ai/javadocs.html">here</a>.</p>
 
@@ -1151,7 +938,7 @@ insert (spouse1: $x0, spouse2: $y0) isa marriage;
         <br>
         <p>© 2016 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2017 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> November 2nd 2016<br/> Site last generated: Jan 29, 2017 <br />
+        <span>Page last updated:</span> November 2nd 2016<br/> Site last generated: Jan 30, 2017 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">

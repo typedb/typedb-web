@@ -23,7 +23,7 @@ window.MNDMPS.App = {
         var topTypist = $("#topTypist");
 
         topTypist.typed({
-            strings: ['The Database for AI Applications'],
+            strings: ['The Database for AI'],
             typeSpeed: 20,
             backSpeed: 5,
             backDelay: 1500,
