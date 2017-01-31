@@ -290,13 +290,6 @@
             
             
             
-            
-            
-            <li><a href="/pages/overview/index.html">Overview</a></li>
-            
-            
-            
-            
         </ul>
         
         
@@ -826,7 +819,7 @@ The colours used in the visualiser are as follows:
 
 <p>The first step is to load the ontology and data into Grakn. You need to use your terminal to do this, as the visualiser is a read-only interface to a graph. From the terminal, start Grakn, and load the file as follows:</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>&lt;relative-path-to-Grakn&gt;/bin/grakn.sh start
+<div class="highlighter-rouge"><pre class="highlight"><code>&lt;relative-path-to-Grakn&gt;/bin/grakn.sh start
 &lt;relative-path-to-Grakn&gt;/bin/graql.sh -f ./examples/basic-genealogy.gql -k <span class="s2">"family"</span>
 </code></pre>
 </div>
@@ -835,7 +828,7 @@ The colours used in the visualiser are as follows:
 
 <p>You can test in the Graql shell that all has loaded correctly. For example:</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>&lt;relative-path-to-Grakn&gt;/bin/graql.sh -k family
+<div class="highlighter-rouge"><pre class="highlight"><code>&lt;relative-path-to-Grakn&gt;/bin/graql.sh -k family
 match <span class="nv">$p</span> isa person, has identifier <span class="nv">$i</span>;
 </code></pre>
 </div>

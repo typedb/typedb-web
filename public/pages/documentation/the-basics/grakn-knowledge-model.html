@@ -290,13 +290,6 @@
             
             
             
-            
-            
-            <li><a href="/pages/overview/index.html">Overview</a></li>
-            
-            
-            
-            
         </ul>
         
         
@@ -801,213 +794,220 @@ $('#toc').on('click', 'a', function() {
 
 <h2 id="ontology">Ontology</h2>
 
-<p>The ontology is a formal specification of all the relevant concepts and their meaningful associations in a given application domain. It allows objects and relationships to be categorised into distinct types, and for generic properties about those types to be expressed. Specifying the ontology enables automated reasoning over the represented knowledge, such as the extraction of implicit information from explicit data (inference) or discovery of inconsistencies in the data (validation).</p>
+<p>The ontology must be clearly defined before loading data into the graph. It is a formal specification of all the relevant concepts and their meaningful associations in a given domain. It allows objects and relationships to be categorised into distinct types, and for generic properties of those types to be expressed. Specifying the ontology enables automated reasoning over the represented knowledge, such as the extraction of implicit information from explicit data (<a href="./grakn-knowledge-model.html#rule-and-sub-type-inference">inference</a>) or discovery of inconsistencies in the data (<a href="./grakn-knowledge-model.html#data-validation">validation</a>).</p>
 
-<p>Grakn ontologies use four types of <code class="highlighter-rouge">concepts</code> for modeling domain knowledge:</p>
+<p>Grakn ontologies use four types of concepts for modeling domain knowledge. The categorization of concept types is enforced in the Grakn knowledge model by declaring every concept type as a subtype (i.e. an extension) of exactly one of the four corresponding, built-in concept types:</p>
+
+<p><strong><code class="highlighter-rouge">entity</code></strong>: Objects or things in the domain. For example, <code class="highlighter-rouge">person</code>, <code class="highlighter-rouge">man</code>, <code class="highlighter-rouge">woman</code>.</p>
+
+<p><strong><code class="highlighter-rouge">relation</code></strong>: Relationships between different domain instances. For example, <code class="highlighter-rouge">marriage</code>, which is typically a relationship between two instances of entity types (<code class="highlighter-rouge">woman</code> and <code class="highlighter-rouge">man</code>), playing roles of <code class="highlighter-rouge">wife</code> and <code class="highlighter-rouge">husband</code>, respectively.</p>
+
+<p><strong><code class="highlighter-rouge">role</code></strong>: Roles involved in specific relationships. For example, <code class="highlighter-rouge">wife</code>, <code class="highlighter-rouge">husband</code>.</p>
+
+<p><strong><code class="highlighter-rouge">resource</code></strong>: Attributes associated with domain instances. For example, <code class="highlighter-rouge">name</code>.</p>
+
+<p><br /> <img src="/images/knowledge-model1.png" style="width: 600px;" /> <br /></p>
+
+<h3 id="building-an-ontology">Building an Ontology</h3>
+
+<p>In this section, we build up a simple ontology to illustrate the concept types in the Grakn knowledge model.</p>
+
+<p>We define two entities, <code class="highlighter-rouge">person</code> and <code class="highlighter-rouge">company</code>, each of which have a <code class="highlighter-rouge">name</code> resource.</p>
+
+<pre><code class="language-graql">insert
+  person sub entity,
+  has-resource name;
+  
+  company sub entity,
+  has-resource name;
+  
+  name sub resource, datatype string;
+  
+</code></pre>
+
+<p><br /> <img src="/images/knowledge-model2.png" style="width: 400px;" /> <br /></p>
+
+<p><br /></p>
+
+<p>We subtype the entities:</p>
+
+<pre><code class="language-graql">insert
+  person sub entity,
+  has-resource name;
+    
+  company sub entity,
+  has-resource name;
+  
+  customer sub person,
+  has-resource rating;
+
+  startup sub company,
+  has-resource funding;
+  
+  name sub resource, datatype string;
+  rating sub resource, datatype double;
+  funding sub resource, datatype long;
+</code></pre>
+
+<p><br /> <img src="/images/knowledge-model3.png" style="width: 400px;" /> <br /></p>
+
+<p><br /></p>
+
+<p>We introduce a relation between a <code class="highlighter-rouge">company</code> and a <code class="highlighter-rouge">person</code>:</p>
+
+<pre><code class="language-graql">insert
+  person sub entity,
+  has-resource name,
+  plays-role employee;
+    
+  company sub entity,
+  has-resource name,
+  plays-role employer;
+  
+  customer sub person,
+  has-resource rating;
+
+  startup sub company,
+  has-resource funding;
+  
+  name sub resource, datatype string;
+  rating sub resource, datatype double;
+  funding sub resource, datatype long;
+  
+  employment sub relation,
+    has-role employee, has-role employer; 	
+  employee sub role;
+  employer sub role;
+</code></pre>
+
+<p><br /> <img src="/images/knowledge-model4.png" style="width: 400px;" /> <br /></p>
+
+<p><br /></p>
+
+<p>In the simple example above, we have illustrated the four constructs that relate Grakn concept types to each other:</p>
+
+<p><strong><code class="highlighter-rouge">sub</code></strong>:  expresses that a concept type is a subtype of (i.e., inherits from) another one.</p>
 
 <ul>
-  <li><strong>Entity Types</strong>: Types of objects or things in the domain.
-    <ul>
-      <li>For example, <code class="highlighter-rouge">person</code>, <code class="highlighter-rouge">man</code>, <code class="highlighter-rouge">woman</code>.</li>
-    </ul>
-  </li>
-  <li><strong>Relation Types</strong>: Types of n-ary relationships between different domain instances.
-    <ul>
-      <li>For example, <code class="highlighter-rouge">marriage</code>, which is typically a relationship between two instances of entity types (<code class="highlighter-rouge">woman</code> and <code class="highlighter-rouge">man</code>), playing roles of <code class="highlighter-rouge">wife</code> and <code class="highlighter-rouge">husband</code>, respectively.</li>
-    </ul>
-  </li>
-  <li><strong>Role Types</strong>: Types of roles involved in specific relationships.
-    <ul>
-      <li>For example, <code class="highlighter-rouge">wife</code>, <code class="highlighter-rouge">husband</code>.</li>
-    </ul>
-  </li>
-  <li><strong>Resource Types</strong>: Types of attributes associated with domain instances.
-    <ul>
-      <li>For example, <code class="highlighter-rouge">name</code>, or <code class="highlighter-rouge">age</code>.</li>
-    </ul>
-  </li>
+  <li>For example, <code class="highlighter-rouge">customer sub person</code>, <code class="highlighter-rouge">startup sub company</code>.</li>
 </ul>
 
-<p>The categorization of concept types is effectively enforced in the Grakn knowledge model by declaring every concept type as a subtype (i.e. an extension) of exactly one of the four corresponding, built-in concept types:</p>
+<p><strong><code class="highlighter-rouge">has-resource</code></strong>: expresses that a concept type can be associated with a given resource type.</p>
 
 <ul>
-  <li><code class="highlighter-rouge">entity</code>
-    <ul>
-      <li>e.g. <code class="highlighter-rouge">person sub entity</code></li>
-    </ul>
-  </li>
-  <li><code class="highlighter-rouge">relation</code>
-    <ul>
-      <li>e.g. <code class="highlighter-rouge">marriage sub relation</code></li>
-    </ul>
-  </li>
-  <li><code class="highlighter-rouge">role</code>
-    <ul>
-      <li>e.g. <code class="highlighter-rouge">wife sub role</code></li>
-    </ul>
-  </li>
-  <li><code class="highlighter-rouge">resource</code>
-    <ul>
-      <li>e.g. <code class="highlighter-rouge">name sub resource</code></li>
-    </ul>
-  </li>
+  <li>For example, <code class="highlighter-rouge">person has-resource name</code>.</li>
 </ul>
 
-<p>Different concept types can be related to each other via four constructs (see Figure 1):</p>
+<p><strong><code class="highlighter-rouge">plays-role</code></strong>: expresses that instances of a given concept type are allowed to play a specific role.</p>
 
 <ul>
-  <li><strong>sub</strong>:  expressing that a concept type is a subtype (i.e., an extension) of another one.
-    <ul>
-      <li>For example, <code class="highlighter-rouge">woman sub person</code>, <code class="highlighter-rouge">man sub person</code>.</li>
-    </ul>
-  </li>
-  <li><strong>has-resource</strong>: expressing that a concept type can be associated with a given resource type.
-    <ul>
-      <li>For example, <code class="highlighter-rouge">person has-resource name</code>.</li>
-    </ul>
-  </li>
-  <li><strong>plays-role</strong>: expressing that instances of a given concept type are allowed to play a specific role.
-    <ul>
-      <li>For example, <code class="highlighter-rouge">woman plays-role wife</code>, <code class="highlighter-rouge">man plays-role husband</code>.</li>
-    </ul>
-  </li>
-  <li><strong>has-role</strong>: expressing that a given relation type involves a specific role.
-    <ul>
-      <li>For example, <code class="highlighter-rouge">marriage has-role wife</code>, <code class="highlighter-rouge">marriage has-role husband</code>.</li>
-    </ul>
-  </li>
+  <li>For example, <code class="highlighter-rouge">person plays-role employee</code>, <code class="highlighter-rouge">company plays-role employer</code>.</li>
 </ul>
 
-<p>Additionally, all concept types can be declared as <code class="highlighter-rouge">abstract</code>, meaning that they cannot have any direct instances. For example, <code class="highlighter-rouge">person is-abstract</code> expresses that the only instances of <code class="highlighter-rouge">person</code> can be those that belong to more specialised subtypes of <code class="highlighter-rouge">person</code>, e.g., <code class="highlighter-rouge">man</code> or <code class="highlighter-rouge">woman</code>.</p>
+<p><strong><code class="highlighter-rouge">has-role</code></strong>: expresses that a given relation type involves a specific role.</p>
 
-<p><img src="/images/knowledge-model-fig1.png" alt="The concept types and their permitted associations via Grakn ontology constructs." /></p>
+<ul>
+  <li>For example, <code class="highlighter-rouge">employment has-role employee</code>, <code class="highlighter-rouge">employment has-role employer</code>.</li>
+</ul>
 
-<p><em>Figure 1: The concept types and their permitted associations via Grakn ontology constructs.</em></p>
+<h3 id="relations">Relations</h3>
 
-<!-- This section may possibly be better if moved into a different, more low level page -->
-<p>A well-formed Grakn ontology is required to satisfy the following structural properties (see examples in the following section):</p>
+<p>Relationships are inherently non-directional and are defined in terms of roles of entities in the relation. Relations can have multiple attributes. Here we give the employment relation a date resource.</p>
+
+<pre><code class="language-graql">insert
+  person sub entity,
+  has-resource name,
+  plays-role employee;
+    
+  company sub entity,
+  has-resource name,
+  plays-role employer;  
+  
+  name sub resource, datatype string;
+  date sub resource, datatype string;
+  
+  employment sub relation,
+    has-role employee, has-role employer,
+    has-resource date; 
+    	
+  employee sub role;
+  employer sub role;
+</code></pre>
+
+<p><br /> <img src="/images/knowledge-model6.png" style="width: 400px;" /> <br /></p>
+
+<p><br /></p>
+
+<p>N-ary relationships are also allowed by Grakn. For example, a three way <code class="highlighter-rouge">employment</code> relationship that has <code class="highlighter-rouge">employer</code>, <code class="highlighter-rouge">employee</code> and <code class="highlighter-rouge">office</code> roles:</p>
+
+<pre><code class="language-graql">insert
+  employment sub relation,
+    has-role employee, 
+    has-role employer, 
+    has-role office; 
+    	
+  employee sub role;
+  employer sub role; 
+  office sub role;
+</code></pre>
+
+<p><br /> <img src="/images/knowledge-model8.png" style="width: 400px;" /> <br /></p>
+
+<h3 id="inheritance">Inheritance</h3>
+
+<p>As in object-oriented programming, the inheritance mechanism in Grakn enables subtypes to automatically take on some of the properties of their supertypes. This simplifies the construction of ontologies and helps keep them succinct.</p>
+
+<p><br />The Grakn knowledge model imposes inheritance of all <code class="highlighter-rouge">has-resource</code> and <code class="highlighter-rouge">plays-role</code> constraints on entity, relation and resource types. As a result, the entity type <code class="highlighter-rouge">customer</code> inherits <code class="highlighter-rouge">has-resource name</code> and <code class="highlighter-rouge">plays-role employee</code> from the <code class="highlighter-rouge">person</code> supertype, as shown in the diagram below.</p>
+
+<p>Likewise, the <code class="highlighter-rouge">startup</code> entity type inherits <code class="highlighter-rouge">has-role name</code> and <code class="highlighter-rouge">plays-role employer</code> from the <code class="highlighter-rouge">company</code> supertype.</p>
+
+<p><br /> <img src="/images/knowledge-model5.png" style="width: 400px;" /> <br /></p>
+
+<p><br /></p>
+
+<p>Therefore, the <code class="highlighter-rouge">employment</code> relation between a <code class="highlighter-rouge">company</code> and <code class="highlighter-rouge">person</code> is also, implicitly, between <code class="highlighter-rouge">startup</code> and <code class="highlighter-rouge">customer</code>.</p>
+
+<div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> <b>Note:</b> Concept types can be declared as <code class="highlighter-rouge">is-abstract</code>, meaning that they cannot have any direct instances. For example, <code class="highlighter-rouge">person sub entity is-abstract</code> expresses that the only instances of <code class="highlighter-rouge">person</code> can be those that belong to more specialised subtypes of <code class="highlighter-rouge">person</code>, e.g., <code class="highlighter-rouge">customer</code>.</div>
+
+<h3 id="structural-properties">Structural Properties</h3>
+<p>A well-formed Grakn ontology is required to satisfy the following structural properties:</p>
 
 <ul>
   <li>each concept type can have at most one direct supertype,</li>
   <li>each role type must be involved in exactly one relation type,</li>
-  <li>each relation type must involve at least two distinct role types, <!-- I think an example would help here--></li>
-  <li>each relation type must involve the same number of roles as its direct supertype. In such a case, every role type involved in the subtype relation must be a (possibly indirect) subtype of exactly one role type involved in the supertype relation.   <!-- definitely need an example or diagram --></li>
-</ul>
-
-<h3 id="inheritance">Inheritance</h3>
-
-<p>As in object-oriented programming, the inheritance mechanism in Grakn enables subtypes to automatically take on some of the properties of their supertypes. This simplifies the construction of ontologies and helps keep them succinct. The Grakn knowledge model imposes inheritance of all <code class="highlighter-rouge">has-resource</code> and <code class="highlighter-rouge">plays-role</code> constraints on entity, relation and resource types.</p>
-
-<p>For example, in the ontology depicted in Figure 2, the entity types <code class="highlighter-rouge">woman</code> and <code class="highlighter-rouge">man</code> inherit the constraints <code class="highlighter-rouge">has-resource name</code>, <code class="highlighter-rouge">plays-role partner1</code>, <code class="highlighter-rouge">plays-role partner2</code> from their supertype <code class="highlighter-rouge">person</code>. Similarly, the relation type <code class="highlighter-rouge">marriage</code> inherits the constraint <code class="highlighter-rouge">has-resource since</code> from <code class="highlighter-rouge">partnership</code>.</p>
-
-<p><img src="/images/knowledge-model-fig2.png" alt="A sample of a Grakn ontology." /></p>
-
-<p><em>Figure 2: An example of Grakn ontology.</em></p>
-
-<p>The ontology in Figure 2 consists of the following constraints:</p>
-
-<p><strong>Type declarations</strong> (omitted in the figure):</p>
-
-<ul>
-  <li><code class="highlighter-rouge">person sub entity</code></li>
-  <li><code class="highlighter-rouge">partnership sub relation</code></li>
-  <li><code class="highlighter-rouge">partner1 sub role</code></li>
-  <li><code class="highlighter-rouge">partner2 sub role</code></li>
-  <li><code class="highlighter-rouge">name sub resource</code></li>
-  <li><code class="highlighter-rouge">since sub resource</code></li>
-</ul>
-
-<p>Note, that because of the transitivity of the <code class="highlighter-rouge">sub</code> construct, the type declarations for the remaining concept types in the ontology follow implicitly.</p>
-
-<p><strong>Explicit constraints</strong>:</p>
-
-<ul>
-  <li><code class="highlighter-rouge">person has-resource name</code></li>
-  <li><code class="highlighter-rouge">person plays-role partner1</code></li>
-  <li><code class="highlighter-rouge">person plays-role partner2</code></li>
-  <li><code class="highlighter-rouge">woman sub person</code></li>
-  <li><code class="highlighter-rouge">woman plays-role wife</code></li>
-  <li><code class="highlighter-rouge">man sub person</code></li>
-  <li><code class="highlighter-rouge">man plays-role husband</code></li>
-  <li><code class="highlighter-rouge">wife sub partner1</code></li>
-  <li><code class="highlighter-rouge">husband sub partner2</code></li>
-  <li><code class="highlighter-rouge">partnership has-resource since</code></li>
-  <li><code class="highlighter-rouge">partnership has-role partner1</code></li>
-  <li><code class="highlighter-rouge">partnership has-role partner2</code></li>
-  <li><code class="highlighter-rouge">marriage sub partnership</code></li>
-  <li><code class="highlighter-rouge">marriage has-role wife</code></li>
-  <li><code class="highlighter-rouge">marriage has-role husband</code></li>
-</ul>
-
-<p><strong>Inherited constraints</strong>:</p>
-
-<ul>
-  <li><code class="highlighter-rouge">woman has-resource name</code></li>
-  <li><code class="highlighter-rouge">woman plays-role partner1</code></li>
-  <li><code class="highlighter-rouge">woman plays-role partner2</code></li>
-  <li><code class="highlighter-rouge">man has-resource name</code></li>
-  <li><code class="highlighter-rouge">man plays-role partner1</code></li>
-  <li><code class="highlighter-rouge">man plays-role partner2</code></li>
-  <li><code class="highlighter-rouge">marriage has-resource since</code></li>
+  <li>each relation type must involve at least two distinct role types,</li>
+  <li>each relation type must involve the same number of roles as its direct supertype. In such a case, every role type involved in the subtype relation must be a (possibly indirect) subtype of exactly one role type involved in the supertype relation.</li>
 </ul>
 
 <h2 id="data">Data</h2>
 
 <p>The data is expressed by instantiating specific types of entities, relations, and concrete resources they are associated with, and assigning roles to the instances played for particular relations. There are three types of data instances:</p>
 
-<ul>
-  <li>
-    <p><strong>Entities</strong>: instances of entity types, for example, <code class="highlighter-rouge">insert $x isa woman</code> creates an instance of the entity type <code class="highlighter-rouge">woman</code>,</p>
-  </li>
-  <li>
-    <p><strong>Relations</strong>: instances of relation types, for example, <code class="highlighter-rouge">insert (wife:$x, husband:$y) isa marriage</code> creates an instance of the relation type <code class="highlighter-rouge">marriage</code> between some instances <code class="highlighter-rouge">$x</code>, playing the role of <code class="highlighter-rouge">wife</code>, and <code class="highlighter-rouge">$y</code>, playing the role of <code class="highlighter-rouge">husband</code>.</p>
-  </li>
-  <li>
-    <p><strong>Resources</strong>: instances of resource types being associated with particular instances, for example, <code class="highlighter-rouge">insert $x has-name "Elisabeth Niesz"</code> creates an instance of the resource type <code class="highlighter-rouge">name</code> with value “Elizabeth Niesz” associated with some instance <code class="highlighter-rouge">$x</code>. The unique identifiers for all instances are defined internally within the Grakn system.</p>
-  </li>
-</ul>
+<p><strong>Entities</strong>: instances of entity types, for example, <code class="highlighter-rouge">insert $x isa person</code> creates an instance of the entity type <code class="highlighter-rouge">person</code>,</p>
 
-<p>Note, that unlike in the case of entity, relation and resource types, there are no instances of role types in the data layer.</p>
+<p><strong>Resources</strong>: instances of resource types being associated with particular instances, for example, <code class="highlighter-rouge">insert $x isa person, has name "Elisabeth Niesz"</code> creates an instance of a <code class="highlighter-rouge">person</code> with the resource type <code class="highlighter-rouge">name</code> given the value “Elizabeth Niesz”. The unique identifiers for all instances are defined internally within the Grakn system.</p>
 
-<h3 id="validation">Validation</h3>
+<p><strong>Relations</strong>: instances of relation types, for example, <code class="highlighter-rouge">insert (employee:$x, employer:$y) isa employment</code> creates an instance of the relation type <code class="highlighter-rouge">employment</code> between <code class="highlighter-rouge">$x</code>, playing the role of <code class="highlighter-rouge">employee</code>, and <code class="highlighter-rouge">$y</code>, playing the role of <code class="highlighter-rouge">employer</code>.</p>
 
-<p>To ensure data is correctly structured (i.e. consistent) with respect to the ontology, all data instances are validated against the ontology constraints. All the explicitly represented ontology constraints, together with the inherited ones, form complete schema templates for particular concept types, which guide the validation and, consequently, the data entry process. For example, the ontology in Figure 2 establishes the following schema templates for the concept types <code class="highlighter-rouge">woman</code> and <code class="highlighter-rouge">marriage</code>:</p>
+<div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> <b>Note:</b> There are no instances of role types in the data layer.</div>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>insert
-woman sub entity;
-
-woman has-resource name,
-	plays-role wife,
-	plays-role partner1,
-	plays-role partner2;
-
-marriage sub entity;
-
-marriage has-resource since,
-	has-role wife,
-	has-role husband;
+<pre><code class="language-graql">insert
+  $x isa person, has name "Elizabeth Niesz";
+  $y isa company, has name "Grakn Labs";
+  (employee: $x, employer: $y) isa employment;
 </code></pre>
-</div>
 
-<p>A data instance <code class="highlighter-rouge">inst</code> of a concept type <code class="highlighter-rouge">C</code> is valid, whenever the following conditions are satisfied:</p>
+<p><br /> <img src="/images/knowledge-model7.png" style="width: 400px;" /> <br /></p>
 
-<ul>
-  <li><code class="highlighter-rouge">inst</code> instantiates only <code class="highlighter-rouge">C</code> (called the base type of <code class="highlighter-rouge">inst</code>) and indirectly all supertypes of <code class="highlighter-rouge">C</code>,</li>
-  <li>all types of resources associated with <code class="highlighter-rouge">inst</code> belong to the schema template of <code class="highlighter-rouge">C</code>,</li>
-  <li>for every role type <code class="highlighter-rouge">R</code> that <code class="highlighter-rouge">inst</code> plays in any relation instance in the data, there is a constraint <code class="highlighter-rouge">plays-role R</code> in the schema template of <code class="highlighter-rouge">C</code>,</li>
-  <li>whenever <code class="highlighter-rouge">inst</code> is a relation instance involving the role type <code class="highlighter-rouge">R</code> there is a constraint <code class="highlighter-rouge">has-role R</code> in the schema template of <code class="highlighter-rouge">C</code>.</li>
-</ul>
+<h3 id="data-validation">Data Validation</h3>
 
-<p>For example, data illustrated in Figure 3 violates the ontology from Figure 2, by:</p>
+<p>To ensure data is correctly structured (i.e. consistent) with respect to the ontology, all data instances are validated against the ontology constraints. All the explicitly represented ontology constraints, together with the inherited ones, form complete schema templates for particular concept types, which guide the validation. The following insertion will fail, because it is attempting to form an <code class="highlighter-rouge">employment</code> relationship between two <code class="highlighter-rouge">person</code> entities, rather than a <code class="highlighter-rouge">person</code> and a <code class="highlighter-rouge">company</code>:</p>
 
-<ol>
-  <li>associating a resource <code class="highlighter-rouge">'Smith'</code> of type <code class="highlighter-rouge">maiden-name</code> with an instance <code class="highlighter-rouge">inst1</code> of the base type <code class="highlighter-rouge">woman</code> (which is not allowed in the ontology).</li>
-  <li>by using an instance <code class="highlighter-rouge">inst2</code> of the base type <code class="highlighter-rouge">person</code> in the <code class="highlighter-rouge">husband</code> role (while only those of type <code class="highlighter-rouge">man</code> are accepted by the ontology).</li>
-</ol>
-
-<p><img src="/images/knowledge-model-fig3.png" alt="Validation of data against the ontology." /></p>
-
-<p><em>Figure 3: Validation of data against the ontology.</em></p>
+<pre><code class="language-graql">insert
+  $x isa person, has name "Elizabeth Niesz";
+  $y isa person, has name "John Niesz";
+  (employee: $x, employer: $y) isa employment;
+</code></pre>
 
 <h2 id="rule-and-sub-type-inference">Rule and Sub-Type Inference</h2>
 
@@ -1021,26 +1021,44 @@ marriage has-resource since,
 <p>Both mechanisms can be employed when querying the knowledge graph with Graql, thus supporting retrieval of both explicit and implicit information at query time.</p>
 
 <h3 id="type-inference">Type Inference</h3>
-<p>The type inference is based on a simple graph traversal along the <code class="highlighter-rouge">sub</code> edges. Every instance of a given concept type is automatically classified as an (indirect) instance of all (possibly indirect) supertypes of that type. For example, whenever <code class="highlighter-rouge">woman sub person</code> is in the ontology, every instance of <code class="highlighter-rouge">woman</code> will be retrieved on the query <code class="highlighter-rouge">match $x isa person</code>. In case of roles, every instance playing a given role is inferred to also play all its (possibly indirect) super-roles. For example, whenever <code class="highlighter-rouge">inst</code> plays the role of wife in a relation of the type <code class="highlighter-rouge">marriage</code>, the system will infer that <code class="highlighter-rouge">inst</code> plays also the role of <code class="highlighter-rouge">partner1</code> in that relation, given the ontology from Figure 2.</p>
+<p>The type inference is based on a simple graph traversal along the <code class="highlighter-rouge">sub</code> edges. Every instance of a given concept type is automatically classified as an (indirect) instance of all (possibly indirect) supertypes of that type. For example, whenever <code class="highlighter-rouge">customer sub person</code> is in the ontology, every instance of <code class="highlighter-rouge">customer</code> will be retrieved on the query <code class="highlighter-rouge">match $x isa person</code>.</p>
+
+<p>Similarly for roles, every instance playing a given role is inferred to also play all its (possibly indirect) super-roles. <!--For example, whenever `inst` plays the role of wife in a relation of the type `marriage`, the system will infer that `inst` plays also the role of `partner1` in that relation, given the ontology from Figure 2.--></p>
 
 <p>The type inference is set ON by default when querying Grakn.</p>
 
 <h3 id="rule-based-inference">Rule-Based Inference</h3>
-<p>The rule-based inference exploits a set of user-defined datalog rules and is conducted by means of the  reasoner built naitively into Grakn. Every rule is declared as an instance of a built-in Grakn type <code class="highlighter-rouge">inference-rule</code>.</p>
+<p>The rule-based inference exploits a set of user-defined datalog rules and is conducted by means of the  reasoner built natively into Grakn. Every rule is declared as an instance of a built-in Grakn type <code class="highlighter-rouge">inference-rule</code>.</p>
 
 <p>A rule is an expression of the form <code class="highlighter-rouge">lhs G1 rhs G2</code>, where <code class="highlighter-rouge">G1</code> and <code class="highlighter-rouge">G2</code> are a pair of Graql patterns. Whenever the left-hand-side (lhs) pattern <code class="highlighter-rouge">G1</code> is found in the data, the right-hand-side (rhs) pattern <code class="highlighter-rouge">G2</code> can be assumed to exist and optionally materialised (inserted). For example:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>lhs
-(child:$x, mother:$y) isa motherhood;
-(sister:$y brother:$z) isa siblings;
-rhs
-(nephew:$x, uncle:$z) isa uncle-relation;
+<pre><code class="language-graql">insert
+  location sub entity;
+  
+  located-in sub relation,
+    has-role located-subject, has-role subject-location;
+    	
+  located-subject sub role;
+  subject-location sub role;
+
+  transitive-location sub rule,
+    lhs {
+      ($x, $y) isa located-in;
+      ($y, $z) isa located-in;
+    }
+    rhs {
+      ($x, $z) isa located-in;
+    }
+
 </code></pre>
-</div>
 
-<p>The rule above expresses that, whenever instance <code class="highlighter-rouge">inst1</code> has a mother <code class="highlighter-rouge">inst2</code> in the data, and <code class="highlighter-rouge">inst2</code> has a brother <code class="highlighter-rouge">inst3</code>, one can infer that <code class="highlighter-rouge">inst3</code> is an uncle of <code class="highlighter-rouge">inst1</code>, while <code class="highlighter-rouge">inst1</code> is a nephew of <code class="highlighter-rouge">inst3</code>.</p>
+<p><br /> <img src="/images/knowledge-model9.png" style="width: 600px;" /> <br /></p>
 
-<p>The rule-based inference is set OFF by default when querying Grakn, and can be activated on request. For more detailed documentation on rules see <a href="../graql/graql-rules.html">Graql Rules</a>.</p>
+<p><br /></p>
+
+<p>The rule above expresses that, if <code class="highlighter-rouge">$x</code> has a <code class="highlighter-rouge">located-in</code> relation with <code class="highlighter-rouge">$y</code>, and <code class="highlighter-rouge">$y</code> has a <code class="highlighter-rouge">located-in</code> relation with <code class="highlighter-rouge">$z</code>, then <code class="highlighter-rouge">$x</code> has a <code class="highlighter-rouge">located-in</code> relation with <code class="highlighter-rouge">$z</code>. As a concrete example: King’s Cross is in London, and London is in the UK, so one can infer that King’s Cross is in the UK.</p>
+
+<p>The rule-based inference is currently set OFF by default when querying Grakn, and can be activated as it is needed. For more detailed documentation on rules see <a href="../graql/graql-rules.html">Graql Rules</a>.</p>
 
 <h2 id="where-next">Where Next?</h2>
 <p>Our <a href="../get-started/quickstart-tutorial.html">Quickstart Tutorial</a> will show you how to load an ontology, rules and data into Grakn using Graql, and to make basic queries.</p>
@@ -1096,7 +1114,7 @@ rhs
         <br>
         <p>© 2016 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2017 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> December 15th, 2016<br/> Site last generated: Jan 31, 2017 <br />
+        <span>Page last updated:</span> January 2017<br/> Site last generated: Jan 31, 2017 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">

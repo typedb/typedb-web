@@ -290,13 +290,6 @@
             
             
             
-            
-            
-            <li><a href="/pages/overview/index.html">Overview</a></li>
-            
-            
-            
-            
         </ul>
         
         
@@ -895,7 +888,7 @@ gender sub resource datatype string;
 
 <p>To load <em>ontology.gql</em> into Grakn, make sure the engine is running and choose a clean keyspace in which to work (here we use the default keyspace, so we are cleaning it before we get started).</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>&lt;relative-path-to-Grakn&gt;/bin/grakn.sh clean
+<div class="highlighter-rouge"><pre class="highlight"><code>&lt;relative-path-to-Grakn&gt;/bin/grakn.sh clean
 &lt;relative-path-to-Grakn&gt;/bin/grakn.sh start
 &lt;relative-path-to-Grakn&gt;/bin/graql.sh -f ./ontology.gql
 </code></pre>
@@ -973,7 +966,7 @@ Mary,Melissa,Titus,female,1847-08-12,10/05/1946,Mary Melissa Titus,98,
 
 <p>Calling the Grakn migrator on the <em>people.csv</em> file using the above template (named <code class="highlighter-rouge">people-migrator.gql</code>) is performed as follows:</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>&lt;relative-path-to-Grakn&gt;/bin/migration.sh csv -i ./people.csv -t ./migrators/people-migrator.gql
+<div class="highlighter-rouge"><pre class="highlight"><code>&lt;relative-path-to-Grakn&gt;/bin/migration.sh csv -i ./people.csv -t ./migrators/people-migrator.gql
 </code></pre>
 </div>
 
@@ -1021,7 +1014,7 @@ insert
 
 <p>Calling the Grakn migrator on the <em>births.csv</em> file using the above template (named <code class="highlighter-rouge">births-migrator.gql</code>) is performed as follows:</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>&lt;relative-path-to-Grakn&gt;/bin/migration.sh csv -i ./births.csv -t ./migrators/births-migrator.gql
+<div class="highlighter-rouge"><pre class="highlight"><code>&lt;relative-path-to-Grakn&gt;/bin/migration.sh csv -i ./births.csv -t ./migrators/births-migrator.gql
 </code></pre>
 </div>
 
@@ -1070,7 +1063,7 @@ insert
 
 <p>Calling the Grakn migrator on the <em>weddings.csv</em> file using the above template (named <code class="highlighter-rouge">weddings-migrator.gql</code>) is performed as follows:</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>&lt;relative-path-to-Grakn&gt;/bin/migration.sh csv -i ./weddings.csv -t ./migrators/weddings-migrator.gql
+<div class="highlighter-rouge"><pre class="highlight"><code>&lt;relative-path-to-Grakn&gt;/bin/migration.sh csv -i ./weddings.csv -t ./migrators/weddings-migrator.gql
 </code></pre>
 </div>
 
@@ -1089,7 +1082,7 @@ insert (spouse1: $x0, spouse2: $y0) isa marriage;
 
 <p>For simplicity, the <em>/raw-data/</em> directory of the example project contains a script called <em>loader.sh</em> that calls each migration script in turn, so you can simply call the script from the terminal, passing in the path to the Grakn <em>/bin/</em> directory.</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code> ./loader.sh &lt;relative-path-to-Grakn&gt;/bin
+<div class="highlighter-rouge"><pre class="highlight"><code> ./loader.sh &lt;relative-path-to-Grakn&gt;/bin
 </code></pre>
 </div>
 
@@ -1111,7 +1104,7 @@ insert (spouse1: $x0, spouse2: $y0) isa marriage;
 
 <p>To export the data, we use the Grakn <em>migration.sh</em> shell script again, as described in the <a href="../migration/migration-overview.html#export-from-grakn">migration documentation</a>:</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="c"># Export the ontology</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="c"># Export the ontology</span>
 &lt;relative-path-to-Grakn&gt;/migration.sh <span class="nb">export</span> -ontology &gt; ontology-export.gql
 
 <span class="c"># Export the data</span>

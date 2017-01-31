@@ -80,13 +80,13 @@
   
   
   <url>
-    <loc>http://grakn.ai/pages//documentation/examples/SQL-migration.html</loc>
+    <loc>http://grakn.ai/pages//documentation/migration/SQL-migration.html</loc>
   </url>
   
   
   
   <url>
-    <loc>http://grakn.ai/pages//documentation/migration/SQL-migration.html</loc>
+    <loc>http://grakn.ai/pages//documentation/examples/SQL-migration.html</loc>
   </url>
   
   
@@ -209,6 +209,12 @@
   
   <url>
     <loc>http://grakn.ai/pages//documentation/resources/grakn-deployment-guide.html</loc>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://grakn.ai/pages//documentation/the-basics/grakn-knowledge-model.html</loc>
   </url>
   
   

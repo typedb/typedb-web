@@ -137,22 +137,22 @@
 
 ,
 {
-"title": "An Example of Migrating SQL to Grakn",
-"tags": "migrationexamplesjava",
-"keywords": "migration",
-"url": "/pages/documentation/examples/SQL-migration.html",
-"summary": "A short example to illustrate migration of SQL to Grakn"
+"title": "SQL Migration to Grakn",
+"tags": "migration",
+"keywords": "setup, getting started",
+"url": "/pages/documentation/migration/SQL-migration.html",
+"summary": "This document will teach you how to migrate SQL data into Grakn."
 }
 
 
 
 ,
 {
-"title": "SQL Migration to Grakn",
-"tags": "migration",
-"keywords": "setup, getting started",
-"url": "/pages/documentation/migration/SQL-migration.html",
-"summary": "This document will teach you how to migrate SQL data into Grakn."
+"title": "An Example of Migrating SQL to Grakn",
+"tags": "migrationexamplesjava",
+"keywords": "migration",
+"url": "/pages/documentation/examples/SQL-migration.html",
+"summary": "A short example to illustrate migration of SQL to Grakn"
 }
 
 
@@ -375,6 +375,17 @@
 "keywords": "setup, getting started, download",
 "url": "/pages/documentation/resources/grakn-deployment-guide.html",
 "summary": "A guide to setting up a production deployment of GRAKN.AI."
+}
+
+
+
+,
+{
+"title": "Grakn Knowledge Model",
+"tags": "getting-startedreasoninggraql",
+"keywords": "setup, getting started, basics",
+"url": "/pages/documentation/the-basics/grakn-knowledge-model.html",
+"summary": "Introducing the basics of the Grakn knowledge model."
 }
 
 

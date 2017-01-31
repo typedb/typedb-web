@@ -290,13 +290,6 @@
             
             
             
-            
-            
-            <li><a href="/pages/overview/index.html">Overview</a></li>
-            
-            
-            
-            
         </ul>
         
         
@@ -809,7 +802,7 @@ $('#toc').on('click', 'a', function() {
 
 <p>Once you have the SQL database loaded, you need to allow the Grakn migration default user (username: <code class="highlighter-rouge">mindmaps</code>, password: <code class="highlighter-rouge">mindmaps</code>) access, which you can do with the following command from within the MySQL shell:</p>
 
-<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">CREATE</span> <span class="k">USER</span> <span class="s1">'mindmaps'</span><span class="o">@</span><span class="s1">'localhost'</span> <span class="n">IDENTIFIED</span> <span class="k">BY</span> <span class="s1">'mindmaps'</span><span class="p">;</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">CREATE</span> <span class="k">USER</span> <span class="s1">'mindmaps'</span><span class="o">@</span><span class="s1">'localhost'</span> <span class="n">IDENTIFIED</span> <span class="k">BY</span> <span class="s1">'mindmaps'</span><span class="p">;</span>
 <span class="k">GRANT</span> <span class="k">ALL</span> <span class="k">PRIVILEGES</span> <span class="k">ON</span> <span class="o">*</span><span class="p">.</span><span class="o">*</span> <span class="k">TO</span> <span class="s1">'mindmaps'</span><span class="o">@</span><span class="s1">'localhost'</span>
 	<span class="k">WITH</span> <span class="k">GRANT</span> <span class="k">OPTION</span><span class="p">;</span>
 </code></pre>

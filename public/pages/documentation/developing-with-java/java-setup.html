@@ -290,13 +290,6 @@
             
             
             
-            
-            
-            <li><a href="/pages/overview/index.html">Overview</a></li>
-            
-            
-            
-            
         </ul>
         
         
@@ -815,7 +808,7 @@ All Grakn applications require the following maven dependency:</p>
 <h2 id="server-dependent-setup">Server Dependent Setup</h2>
 
 <p>If you require persistence and would like to access the entirety of the Grakn stack then it is vital to have an instance of engine running.<br />
-Please see <a href="./setup-guide.html">Setup Guide</a> on more details on how to setup a Grakn server.</p>
+Please see the <a href="../get-started/setup-guide.html">Setup Guide</a> on more details on how to setup a Grakn server.</p>
 
 <p>Depending on the configuration of the Grakn server your java application will require one of the following dependencies:</p>
 
@@ -866,14 +859,18 @@ OrientDB support is still in early stages of development.</p>
 
 <p>Please <strong>note</strong> that graph keyspaces are <strong>not</strong> case sensitive so the following two graphs are actually the same graph:</p>
 
-<p>GraknGraph graph1 = Grakn.factory(“127.6.21.2”, “keyspace”).getGraph();
-   GraknGraph graph2 = Grakn.factory(“127.6.21.2”, “KeYsPaCe”).getGraph();</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>   <span class="n">GraknGraph</span> <span class="n">graph1</span> <span class="o">=</span> <span class="n">Grakn</span><span class="o">.</span><span class="na">factory</span><span class="o">(</span><span class="s">"127.6.21.2"</span><span class="o">,</span> <span class="s">"keyspace"</span><span class="o">).</span><span class="na">getGraph</span><span class="o">();</span>
+   <span class="n">GraknGraph</span> <span class="n">graph2</span> <span class="o">=</span> <span class="n">Grakn</span><span class="o">.</span><span class="na">factory</span><span class="o">(</span><span class="s">"127.6.21.2"</span><span class="o">,</span> <span class="s">"KeYsPaCe"</span><span class="o">).</span><span class="na">getGraph</span><span class="o">();</span>
+</code></pre>
+</div>
 
 <p>All graphs are also singletons specific to their keysoaces so be aware that in the following case:</p>
 
-<p>GraknGraph graph1 = Grakn.factory(“127.6.21.2”, “keyspace”).getGraph();
-  GraknGraph graph2 = Grakn.factory(“127.6.21.2”, “keyspace”).getGraph();
-  GraknGraph graph3 = Grakn.factory(“127.6.21.2”, “keyspace”).getGraph();</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>  <span class="n">GraknGraph</span> <span class="n">graph1</span> <span class="o">=</span> <span class="n">Grakn</span><span class="o">.</span><span class="na">factory</span><span class="o">(</span><span class="s">"127.6.21.2"</span><span class="o">,</span> <span class="s">"keyspace"</span><span class="o">).</span><span class="na">getGraph</span><span class="o">();</span>
+  <span class="n">GraknGraph</span> <span class="n">graph2</span> <span class="o">=</span> <span class="n">Grakn</span><span class="o">.</span><span class="na">factory</span><span class="o">(</span><span class="s">"127.6.21.2"</span><span class="o">,</span> <span class="s">"keyspace"</span><span class="o">).</span><span class="na">getGraph</span><span class="o">();</span>
+  <span class="n">GraknGraph</span> <span class="n">graph3</span> <span class="o">=</span> <span class="n">Grakn</span><span class="o">.</span><span class="na">factory</span><span class="o">(</span><span class="s">"127.6.21.2"</span><span class="o">,</span> <span class="s">"keyspace"</span><span class="o">).</span><span class="na">getGraph</span><span class="o">();</span>
+</code></pre>
+</div>
 
 <p>Any changes to <code class="highlighter-rouge">graph1</code>, <code class="highlighter-rouge">graph2</code>, or <code class="highlighter-rouge">graph3</code> will all be persisted to the same graph.</p>
 
