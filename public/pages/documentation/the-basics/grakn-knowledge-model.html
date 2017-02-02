@@ -300,13 +300,6 @@
             
             
             
-            <li><a href="/pages/documentation/the-basics/grakn-basics.html">Grakn Basics</a></li>
-            
-            
-            
-            
-            
-            
             <li class="active"><a href="/pages/documentation/the-basics/grakn-knowledge-model.html">Grakn Knowledge Model</a></li>
             
             
@@ -804,7 +797,13 @@ $('#toc').on('click', 'a', function() {
 
 <p><strong><code class="highlighter-rouge">role</code></strong>: Roles involved in specific relationships. For example, <code class="highlighter-rouge">wife</code>, <code class="highlighter-rouge">husband</code>.</p>
 
-<p><strong><code class="highlighter-rouge">resource</code></strong>: Attributes associated with domain instances. For example, <code class="highlighter-rouge">name</code>.</p>
+<p><strong><code class="highlighter-rouge">resource</code></strong>: Attributes associated with domain instances. For example, <code class="highlighter-rouge">name</code>. Resources consist of primitive types and values. They are very much like “data properties” in OWL, and have the following properties:</p>
+
+<ul>
+  <li>Datatype - Indicates the datatype of the resource. For example if the resource type is age the datatype would be long.</li>
+  <li>Regex - Optional. Can be used to constrain string data types to specific regex patterns.</li>
+  <li>Unique - A boolean which indicates if the resource should be unique across the graph.</li>
+</ul>
 
 <p><br /> <img src="/images/knowledge-model1.png" style="width: 600px;" /> <br /></p>
 
@@ -1114,7 +1113,7 @@ $('#toc').on('click', 'a', function() {
         <br>
         <p>© 2016 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2017 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> January 2017<br/> Site last generated: Jan 31, 2017 <br />
+        <span>Page last updated:</span> January 2017<br/> Site last generated: Feb 2, 2017 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">

@@ -300,13 +300,6 @@
             
             
             
-            <li><a href="/pages/documentation/the-basics/grakn-basics.html">Grakn Basics</a></li>
-            
-            
-            
-            
-            
-            
             <li><a href="/pages/documentation/the-basics/grakn-knowledge-model.html">Grakn Knowledge Model</a></li>
             
             
@@ -794,7 +787,7 @@ $('#toc').on('click', 'a', function() {
 <h2 id="migration-shell-script-for-csv">Migration Shell Script for CSV</h2>
 <p>The migration shell script can be found in <code class="highlighter-rouge">/bin</code> directory of your Grakn environment. Usage is specific to the type of migration being performed. For CSV:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>usage: ./migration.sh csv -template &lt;arg&gt; -input &lt;arg&gt; <span class="o">[</span>-help] <span class="o">[</span>-no] <span class="o">[</span>-separator &lt;arg&gt;] <span class="o">[</span>-batch &lt;arg&gt;] <span class="o">[</span>-uri &lt;arg&gt;] <span class="o">[</span>-keyspace &lt;arg&gt;] <span class="o">[</span>-v]
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>usage: ./migration.sh csv -template &lt;arg&gt; -input &lt;arg&gt; <span class="o">[</span>-help] <span class="o">[</span>-no] <span class="o">[</span>-separator &lt;arg&gt;] <span class="o">[</span>-batch &lt;arg&gt;] <span class="o">[</span>-uri &lt;arg&gt;] <span class="o">[</span>-keyspace &lt;arg&gt;] <span class="o">[</span>-v]
 
 OPTIONS
  -b,--batch &lt;arg&gt;       number of rows to load at once
@@ -859,7 +852,7 @@ $x isa car
 
 <p>The template is applied to each row:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>./&lt;grakn-install-location&gt;/bin/migration.sh csv -i ./cars.csv -t ./car-migrator.gql
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>./&lt;grakn-install-location&gt;/bin/migration.sh csv -i ./cars.csv -t ./car-migrator.gql
 </code></pre>
 </div>
 
@@ -886,7 +879,7 @@ air  moon roof   loaded"  4799.00
 </code></pre>
 
 <h2 id="where-next">Where Next?</h2>
-<p>We have an additional, more extensive, example that <a href="../examples/CSV-migration.html">migrates genealogy data from CSV</a>. Our <a href="https://github.com/graknlabs/sample-projects">sample-projects repository on Github</a> also contains <a href="https://github.com/graknlabs/sample-projects/tree/master/example-csv-migration">an example that migrates a simple CSV pets dataset</a>, and another <a href="https://github.com/graknlabs/sample-projects/tree/master/example-csv-migration-games">example for video games</a>, was described in a separate <a href="https://blog.grakn.ai/twenty-years-of-games-in-grakn-14faa974b16e#.do8tq0dm8">blog post</a>.</p>
+<p>We have an additional, more extensive, example that <a href="../examples/CSV-migration.html">migrates genealogy data from CSV</a>. Our <a href="https://github.com/graknlabs/sample-projects">sample-projects repository on Github</a> also contains <a href="https://github.com/graknlabs/sample-projects/tree/master/example-csv-migration-pets">an example that migrates a simple CSV pets dataset</a>, and another <a href="https://github.com/graknlabs/sample-projects/tree/master/example-csv-migration-games">example for video games</a>, was described in a separate <a href="https://blog.grakn.ai/twenty-years-of-games-in-grakn-14faa974b16e#.do8tq0dm8">blog post</a>.</p>
 
 <p>You can find further documentation about migration in our API reference documentation (which is in the <code class="highlighter-rouge">/docs</code> directory of the distribution zip file, and also online <a href="https://grakn.ai/javadocs.html">here</a>.</p>
 
@@ -931,7 +924,7 @@ air  moon roof   loaded"  4799.00
         <br>
         <p>© 2016 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2017 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> November 2nd 2016<br/> Site last generated: Jan 31, 2017 <br />
+        <span>Page last updated:</span> November 2nd 2016<br/> Site last generated: Feb 2, 2017 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">

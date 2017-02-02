@@ -300,13 +300,6 @@
             
             
             
-            <li><a href="/pages/documentation/the-basics/grakn-basics.html">Grakn Basics</a></li>
-            
-            
-            
-            
-            
-            
             <li><a href="/pages/documentation/the-basics/grakn-knowledge-model.html">Grakn Knowledge Model</a></li>
             
             
@@ -859,14 +852,14 @@ OrientDB support is still in early stages of development.</p>
 
 <p>Please <strong>note</strong> that graph keyspaces are <strong>not</strong> case sensitive so the following two graphs are actually the same graph:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>   <span class="n">GraknGraph</span> <span class="n">graph1</span> <span class="o">=</span> <span class="n">Grakn</span><span class="o">.</span><span class="na">factory</span><span class="o">(</span><span class="s">"127.6.21.2"</span><span class="o">,</span> <span class="s">"keyspace"</span><span class="o">).</span><span class="na">getGraph</span><span class="o">();</span>
+<div class="language-java highlighter-rouge"><pre class="highlight"><code>   <span class="n">GraknGraph</span> <span class="n">graph1</span> <span class="o">=</span> <span class="n">Grakn</span><span class="o">.</span><span class="na">factory</span><span class="o">(</span><span class="s">"127.6.21.2"</span><span class="o">,</span> <span class="s">"keyspace"</span><span class="o">).</span><span class="na">getGraph</span><span class="o">();</span>
    <span class="n">GraknGraph</span> <span class="n">graph2</span> <span class="o">=</span> <span class="n">Grakn</span><span class="o">.</span><span class="na">factory</span><span class="o">(</span><span class="s">"127.6.21.2"</span><span class="o">,</span> <span class="s">"KeYsPaCe"</span><span class="o">).</span><span class="na">getGraph</span><span class="o">();</span>
 </code></pre>
 </div>
 
 <p>All graphs are also singletons specific to their keysoaces so be aware that in the following case:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>  <span class="n">GraknGraph</span> <span class="n">graph1</span> <span class="o">=</span> <span class="n">Grakn</span><span class="o">.</span><span class="na">factory</span><span class="o">(</span><span class="s">"127.6.21.2"</span><span class="o">,</span> <span class="s">"keyspace"</span><span class="o">).</span><span class="na">getGraph</span><span class="o">();</span>
+<div class="language-java highlighter-rouge"><pre class="highlight"><code>  <span class="n">GraknGraph</span> <span class="n">graph1</span> <span class="o">=</span> <span class="n">Grakn</span><span class="o">.</span><span class="na">factory</span><span class="o">(</span><span class="s">"127.6.21.2"</span><span class="o">,</span> <span class="s">"keyspace"</span><span class="o">).</span><span class="na">getGraph</span><span class="o">();</span>
   <span class="n">GraknGraph</span> <span class="n">graph2</span> <span class="o">=</span> <span class="n">Grakn</span><span class="o">.</span><span class="na">factory</span><span class="o">(</span><span class="s">"127.6.21.2"</span><span class="o">,</span> <span class="s">"keyspace"</span><span class="o">).</span><span class="na">getGraph</span><span class="o">();</span>
   <span class="n">GraknGraph</span> <span class="n">graph3</span> <span class="o">=</span> <span class="n">Grakn</span><span class="o">.</span><span class="na">factory</span><span class="o">(</span><span class="s">"127.6.21.2"</span><span class="o">,</span> <span class="s">"keyspace"</span><span class="o">).</span><span class="na">getGraph</span><span class="o">();</span>
 </code></pre>
@@ -916,7 +909,7 @@ OrientDB support is still in early stages of development.</p>
         <br>
         <p>© 2016 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2017 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> December 2016<br/> Site last generated: Jan 31, 2017 <br />
+        <span>Page last updated:</span> December 2016<br/> Site last generated: Feb 2, 2017 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">

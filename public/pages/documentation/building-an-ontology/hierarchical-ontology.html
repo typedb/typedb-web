@@ -300,13 +300,6 @@
             
             
             
-            <li><a href="/pages/documentation/the-basics/grakn-basics.html">Grakn Basics</a></li>
-            
-            
-            
-            
-            
-            
             <li><a href="/pages/documentation/the-basics/grakn-knowledge-model.html">Grakn Knowledge Model</a></li>
             
             
@@ -792,6 +785,270 @@ $('#toc').on('click', 'a', function() {
 
 <h2 id="introduction">Introduction</h2>
 
+<p>In this section we are going to expand the ontology we defined in the <a href="../building-an-ontology/basic-ontology.html">Basic Ontology</a>. 
+We are going to introduce the idea of making ontologies deeper and more meaningful by defining a hierarchy of types.</p>
+
+<p>When we left off our ontology was defined as follows:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code># Entities
+
+person sub entity
+    plays-role parent
+    plays-role child
+    plays-role spouse1
+    plays-role spouse2
+    has-resource identifier
+    has-resource firstname
+    has-resource surname
+    has-resource middlename
+    has-resource picture
+    has-resource age
+    has-resource birth-date
+    has-resource death-date
+    has-resource gender;
+
+# Resources
+
+identifier sub resource datatype string;
+firstname sub resource datatype string;
+surname sub resource datatype string;
+middlename sub resource datatype string;
+picture sub resource datatype string;
+age sub resource datatype long;
+birth-date sub resource datatype string;
+death-date sub resource datatype string;
+gender sub resource datatype string;
+
+# Roles and Relations
+
+marriage sub relation
+    has-role spouse1
+    has-role spouse2
+    has-resource picture;
+
+spouse1 sub role;
+spouse2 sub role;
+
+parentship sub relation
+    has-role parent
+	has-role child;
+
+parent sub role;
+child sub role;
+</code></pre>
+</div>
+
+<p>This ontology represents a genealogy graph which models a family tree.
+This is a very simplistic ontology with plenty of room for improvement, so lets begin.</p>
+
+<h2 id="hierarchies-of-entity-types">Hierarchies of Entity Types</h2>
+
+<p>It is possible to define entity types more granularly.
+Think of sub categories of categories.
+This enables additional details to be embedded in the ontology. 
+For example, if we have a entity type called <code class="highlighter-rouge">vehicle</code> we can break that down further by differentiating between <code class="highlighter-rouge">cars</code> and <code class="highlighter-rouge">motorbikes</code>.
+This can be done as follows:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>vehicle sub entity;
+car sub vehicle;
+motorbikes sub vehicle;
+</code></pre>
+</div>
+
+<p>In the above example we are saying that a <code class="highlighter-rouge">car</code> is a subset of the entity type <code class="highlighter-rouge">vehicle</code>. 
+This means that when adding data to our graph we can now know if we dealing with a <code class="highlighter-rouge">car</code> or a <code class="highlighter-rouge">motorbike</code>.</p>
+
+<p>So how can we use this technique to improve our existing genealogy ontology?
+We could break down <code class="highlighter-rouge">person</code> into <code class="highlighter-rouge">man</code> and <code class="highlighter-rouge">woman</code> for example.</p>
+
+<p>For the sake of making things more interesting we are going to introduce a new concept to the graph.
+A family is made up not only of people but of events which link those people together and better define their lives. 
+Events like births, weddings, funerals, and many others.
+We can model this as follows:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>event sub entity
+	is-abstract
+	plays-role conclusion
+	plays-role happening
+	has-resource degree
+	has-resource confidence
+	has-resource date
+	has-resource identifier
+	has-resource notes;
+
+wedding sub event;
+
+funeral sub event
+	has-resource birth-date;
+	
+christening sub event
+	has-resource death-date;
+
+birth sub event
+	has-resource firstname
+	has-resource middlename
+	has-resource surname
+	has-resource gender
+	has-resource birth-date;
+	
+death sub event
+  	    has-resource death-date;  
+</code></pre>
+</div>
+
+<p>Notice that for the <code class="highlighter-rouge">event</code> entity type we added <code class="highlighter-rouge">is-abstract</code>, this is an optional additional restriction to ensure we do not create any instances of <code class="highlighter-rouge">event</code>.
+This essentially forces us to use the most granular definitions provided, i.e. <code class="highlighter-rouge">birth</code>, <code class="highlighter-rouge">death</code>, etc . . .</p>
+
+<h2 id="hierarchies-of-relation-types-and-role-types">Hierarchies of Relation Types and Role Types</h2>
+
+<p>You also have the ability to design hierarchies of relation types and role types. 
+Similarly to before this enables an ontology to be deeper and more expressive.
+For example if we have a relation type called <code class="highlighter-rouge">partnership</code> between two people we can expand on this by defining more detailed partnerships; <code class="highlighter-rouge">civil-partnership</code>, <code class="highlighter-rouge">marriage</code>, <code class="highlighter-rouge">unions</code>, etc . . .</p>
+
+<p>Now lets take a look at expanding our genealogy ontology.
+When modelling a domain there are many ways of doing so. 
+For this example we are going to redo the <code class="highlighter-rouge">marriage</code> relation type so that it can provide more meaning. 
+We will do the following:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>relatives sub relation
+	is-abstract;
+
+marriage sub relatives
+	has-role spouse1
+	has-role spouse2
+    has-role husband
+    has-role wife
+    has-resource date;
+    
+spouse sub role is-abstract;
+generic-spouse sub spouse is-abstract;
+spouse1 sub generic-spouse;
+spouse2 sub generic-spouse;
+husband sub spouse;
+wife sub spouse;
+</code></pre>
+</div>
+
+<p>We have defined a new super type called <code class="highlighter-rouge">relatives</code> which enables us to link relatives together generically and we have said that marriage is a type of relative relation. 	  <br />
+We have also expanded on the roles which make up a marriage. 
+Again enabling us to be more expressive and detailed about the domain we are modelling.
+From now on we can be clear if a person is a <code class="highlighter-rouge">husband</code> or a <code class="highlighter-rouge">wife</code> or just a <code class="highlighter-rouge">spouse</code> in a marriage.</p>
+
+<p><strong>Note:</strong> The role type hierarchy we have defined. This is important because when we query for people who play the role of a <code class="highlighter-rouge">spouse</code> we will get all the <code class="highlighter-rouge">husbands</code> and <code class="highlighter-rouge">wives</code> as well.</p>
+
+<p>Lets expand this even further:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>parentship sub relatives
+   	    has-role parent
+  	has-role mother
+	has-role father
+   	    has-role child
+ 	has-role son
+	has-role daughter;
+parent sub role;
+mother sub parent;
+father sub parent;
+child sub role;
+son sub child;
+daughter sub child;
+</code></pre>
+</div>
+
+<p>Now we have provided more detail about being a parent. 
+We have also said that being a parent is a <code class="highlighter-rouge">relative</code> relation. 
+This is quite useful because when we ask for all relatives we will be getting relative’s via birth and via marriage.</p>
+
+<h2 id="wrapping-up">Wrapping up</h2>
+
+<p>We could go into far more detail regarding our genealogy graph but I will leave that to you.
+For the moment here is our more complex ontology to get you started on making your own deeper ontologies:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>## Entities
+
+person sub entity
+	plays-role spouse
+	plays-role parent
+	plays-role child
+	plays-role sibling
+	has-resource gender
+	has-resource birth-date
+	has-resource death-date
+	has-resource identifier
+	has-resource firstname
+	has-resource middlename
+	has-resource surname;
+
+gender sub resource datatype string;
+birth-date sub date;
+death-date sub date;
+name sub resource datatype string;
+firstname sub name;
+middlename sub name;
+surname sub name;
+identifier sub resource datatype string;
+
+event sub entity
+    	is-abstract
+    	plays-role conclusion
+    	plays-role happening
+    	has-resource degree
+    	has-resource confidence
+    	has-resource date
+    	has-resource identifier
+    	has-resource notes;
+
+wedding sub event;
+
+funeral sub event
+    has-resource birth-date;
+    
+christening sub event
+    has-resource death-date;
+
+birth sub event
+    has-resource firstname
+    has-resource middlename
+    has-resource surname
+    has-resource gender
+    has-resource birth-date;
+    
+death sub event
+    has-resource death-date;   	    
+
+## Relations
+
+relatives sub relation
+	is-abstract;
+
+marriage sub relatives
+	has-role spouse1
+	has-role spouse2
+	has-role husband
+	has-role wife
+	has-resource date;
+spouse sub role is-abstract;
+generic-spouse sub spouse is-abstract;
+spouse1 sub generic-spouse;
+spouse2 sub generic-spouse;
+husband sub spouse;
+wife sub spouse;
+
+parentship sub relatives
+	has-role parent
+	has-role mother
+	has-role father
+	has-role child
+	has-role son
+	has-role daughter;
+parent sub role;
+mother sub parent;
+father sub parent;
+child sub role;
+son sub child;
+daughter sub child;
+</code></pre>
+</div>
+
 <h2 id="comments">Comments</h2>
 <p>Want to leave a comment? Visit <a href="https://github.com/graknlabs/docs/issues/22" target="_blank">the issues on Github for this page</a> (you’ll need a GitHub account). You are also welcome to contribute to our documentation directly via the “Edit me” button at the top of the page.</p>
 
@@ -837,7 +1094,7 @@ $('#toc').on('click', 'a', function() {
         <br>
         <p>© 2016 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2017 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> December 2016<br/> Site last generated: Jan 31, 2017 <br />
+        <span>Page last updated:</span> December 2016<br/> Site last generated: Feb 2, 2017 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">

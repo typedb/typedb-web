@@ -300,13 +300,6 @@
             
             
             
-            <li class="active"><a href="/pages/documentation/the-basics/grakn-basics.html">Grakn Basics</a></li>
-            
-            
-            
-            
-            
-            
             <li><a href="/pages/documentation/the-basics/grakn-knowledge-model.html">Grakn Knowledge Model</a></li>
             
             
@@ -788,149 +781,9 @@ $('#toc').on('click', 'a', function() {
 
     
 
-  <div class="alert alert-danger" role="alert"><i class="fa fa-exclamation-circle"></i> <b>Warning:</b> Please note that this page is in progress and subject to revision.</div>
-
-<h2 id="schema-and-data">Schema and Data</h2>
-
-<p>In Grakn, a graph is made of two layers: the database schema (which you can also think of as an ontology) and the data layer.</p>
-
-<p><strong><em>The schema should be clearly defined before loading data into the graph.</em></strong> The schema is used to formalise the data within a specific domain. If data is about healthcare, then we need to design a schema specific to healthcare. If data is about movies, then we need to define an schema specific to the movie industry.</p>
-
-<p>Example schema concepts could include <code class="highlighter-rouge">car</code>, <code class="highlighter-rouge">person</code>, <code class="highlighter-rouge">movie</code>.</p>
-
-<p><strong><em>The data is categorised by the schema.</em></strong> It is essentially everything
-we wish to model.</p>
-
-<p>Example data concepts could include <code class="highlighter-rouge">a VW Golf TDI</code>, <code class="highlighter-rouge">Tom Cruise</code>, <code class="highlighter-rouge">Mission: Impossible</code>.</p>
-
-<h2 id="the-object-model---schema">The Object Model - Schema</h2>
-
-<p>The Grakn stack provides a formal structure to a graph database.  The following figure represents the inheritance structure of the schema elements. These are used to design our domain specific schema.</p>
-
-<p><img src="/images/ontology_object_model.png" alt="The schema object model" /></p>
-
-<h3 id="concept">Concept</h3>
-
-<p>Just as a <a href="https://en.wikipedia.org/wiki/Graph_theory">graph</a> is defined by vertices and the edges between them, in Grakn, a
-graph is defined by concepts and the relationships between those
-concepts.  Every vertex is a concept and must, at minimum, have a unique ID. This is a string that identifies the concept.</p>
-
-<h3 id="concept-type">Concept Type</h3>
-
-<p>A schema element that represents something that can have instances, and is extended into the following types:</p>
-
-<ul>
-  <li>Entity Types</li>
-  <li>Relation Types</li>
-  <li>Role Types</li>
-  <li>Resource Types</li>
-</ul>
-
-<h3 id="entity-type">Entity Type</h3>
-
-<p>An Entity Type is used to represent a category e.g. <code class="highlighter-rouge">person</code>, <code class="highlighter-rouge">vehicle</code>, <code class="highlighter-rouge">movie</code> or <code class="highlighter-rouge">country</code>.</p>
-
-<h3 id="resource-type">Resource Type</h3>
-
-<p>A Resource Type is used to represent an attribute associated with an Entity Type, e.g. <code class="highlighter-rouge">birthdate</code> or <code class="highlighter-rouge">name</code>. Resource Types are effectively properties, and consist of primitive types and values. They are very much like “data properties” in OWL.</p>
-
-<p>Resource types have the following properties:</p>
-
-<ul>
-  <li>
-    <p><strong>Datatype</strong> - Indicates the datatype of the resource. For example if the resource type is <code class="highlighter-rouge">age</code> the datatype would be <code class="highlighter-rouge">long</code>.</p>
-  </li>
-  <li>
-    <p><strong>Regex</strong> - Optional. Can be used to constrain string data types to specific regex patterns.</p>
-  </li>
-  <li>
-    <p><strong>Unique</strong> - A boolean which indicates if the resource should be unique
-across the graph.</p>
-  </li>
-</ul>
-
-<h3 id="relation-type-and-role-type">Relation Type and Role Type</h3>
-
-<p>In Grakn, the graph enables us to model complex n-ary relationships. To do this we define a Relation Type, which is used to model relationships, and an associated pair of Role Types that are used to represent the two roles within that relationship. There is one Role Type for each entity to explain fully how the two relate to one another.</p>
-
-<p>For example, to model that a <code class="highlighter-rouge">person</code> acted in a <code class="highlighter-rouge">movie</code> we need to use a Relation Type such as <code class="highlighter-rouge">has-cast</code>. The Role Type for the <code class="highlighter-rouge">person</code> is  <code class="highlighter-rouge">actor</code>, while the Role Type for the movie is <code class="highlighter-rouge">production-with-cast</code>.</p>
-
-<p>Role Types are associated with a particular Relation Type between Entity Types, and constrain it to ensure that only instances of the correct types are involved. In the movie domain, for example, the Relation Type <code class="highlighter-rouge">has-cast</code> involves a <code class="highlighter-rouge">person</code> Entity Type playing the Role Type <code class="highlighter-rouge">actor</code>. An Entity Type <code class="highlighter-rouge">dog</code> is implicitly excluded from playing the role <code class="highlighter-rouge">actor</code> - to include a dog in the cast of a movie, the <code class="highlighter-rouge">dog</code> Entity Type must explicitly be given the role <code class="highlighter-rouge">actor</code> too.</p>
-
-<p>The Role Types associated with a Relation Type can only be used for that relationship.</p>
-
-<h3 id="subclasses">Subclasses</h3>
-
-<p>Instances of the four meta-types described above can be subclassed. For example, subclasses of <code class="highlighter-rouge">person</code> (which is a subclass of the meta-type Entity) could be <code class="highlighter-rouge">man</code> and <code class="highlighter-rouge">woman</code>.  This simple subclassing allows us to expand and deepen our schema to whatever granularity of detail is needed.</p>
-
-<div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> <b>Note:</b> In Grakl, we use the shorthand <code class="highlighter-rouge">sub ('subclass')</code> when referring to sub-typing or specialisation. <br />
-For example, <code class="highlighter-rouge">man sub person</code>. <br />
-We use the shorthand <code class="highlighter-rouge">isa</code> (‘is a’) to represent the type relationship. <br />
-For example, <code class="highlighter-rouge">$x isa man</code>.
-</div>
-
-<p>For example a simple schema would be <code class="highlighter-rouge">$x</code> <code class="highlighter-rouge">isa</code> <code class="highlighter-rouge">vehicle</code> but with subclassing we could go as far as <code class="highlighter-rouge">a VW Gold TDI 2014</code> <code class="highlighter-rouge">isa</code> <code class="highlighter-rouge">VW</code> <code class="highlighter-rouge">sub</code> <code class="highlighter-rouge">car</code> <code class="highlighter-rouge">sub</code> <code class="highlighter-rouge">vehicle</code>.</p>
-
-<p>Types can have an additional property, <code class="highlighter-rouge">abstract</code>, which indicates the type cannot have direct instances. This is useful when we want to define a deeper schema. For example if we have <code class="highlighter-rouge">person</code> and its subclasses <code class="highlighter-rouge">man</code> and <code class="highlighter-rouge">woman</code>, then we may want to define <code class="highlighter-rouge">person</code> as <code class="highlighter-rouge">abstract</code> to prohibit it from having any direct instances, whereas the concrete types <code class="highlighter-rouge">man</code> and <code class="highlighter-rouge">woman</code> can have direct instances.</p>
-
-<h2 id="the-object-model---data">The Object Model - Data</h2>
-<p>The following figure represents the inheritance structure of the data elements.</p>
-
-<p><img src="/images/data_object_model.png" alt="The data object model" /></p>
-
-<h3 id="instance">Instance</h3>
-
-<p>Instances are data elements. They are named as such because they are instances of the Types described above. For example: a <code class="highlighter-rouge">BMW</code> is an instance of the Entity Type <code class="highlighter-rouge">car</code> and <code class="highlighter-rouge">09/10/1988</code> is an instance of Resource Type <code class="highlighter-rouge">date</code>.</p>
-
-<h3 id="entity">Entity</h3>
-
-<p>An instance of the Entity Type (which is known as an Entity)  represents an actual item of data. For example, Entity Type <code class="highlighter-rouge">car</code> could have Entities <code class="highlighter-rouge">a BMW</code>, <code class="highlighter-rouge">this Mercedes</code>, and <code class="highlighter-rouge">that Volkswagen</code>. Grakn enables us to model relationships between these entities, once they have been defined.</p>
-
-<h3 id="resource">Resource</h3>
-
-<p>Resources are instances of the Resource Type described above. They allow us to attribute data to a specific instance. For example, if <code class="highlighter-rouge">Alice</code> is an instance of <code class="highlighter-rouge">person</code> we could model Alice’s birthday <code class="highlighter-rouge">09/10/1988</code> as an instance of the Resource Type <code class="highlighter-rouge">birthdate</code>.  The Resource object allows us to impose some additional constraints, such as ensuring that it conforms to a regex pattern or is of a particular data type.</p>
-
-<h3 id="relation">Relation</h3>
-
-<p>A Relation represents an instance of a Relation Type. Essentially a Relation describes a relationship between instances of a specific type. For example, a Relation between <code class="highlighter-rouge">Tom Cruise</code> (isa <code class="highlighter-rouge">person</code>) and <code class="highlighter-rouge">Mission: Impossible</code> (isa <code class="highlighter-rouge">movie</code>) where <code class="highlighter-rouge">Tom Cruise</code> plays the Role Type <code class="highlighter-rouge">actor</code> and <code class="highlighter-rouge">Mission: Impossible</code> plays the Role Type <code class="highlighter-rouge">production-with-crew</code>.</p>
-
-<h2 id="an-example-graph-structure">An Example Graph Structure</h2>
-
-<h3 id="subclasses-1">Subclasses</h3>
-
-<p>Consider the following example of male and female philosopers.</p>
-
-<p><img src="/images/example_super.png" alt="Male and Female philosophers" /></p>
-
-<h3 id="roles">Roles</h3>
-<p>We can define the following structure where people can now play the roles of teachers or students:</p>
-
-<p><img src="/images/example_playsrole.png" alt="A simple example of allowing a Type to play specific Role
-Types." /></p>
-
-<h3 id="relation-types">Relation Types</h3>
-
-<p>Expanding our philosophers example we could define a Relation Type, <code class="highlighter-rouge">education</code> to encapsulate the needed roles:</p>
-
-<p><img src="/images/example_relationtype.png" alt="Expanding the example to illustrate how a relation type is linked with Role
-Types." /></p>
-
-<h3 id="defining-relations">Defining Relations</h3>
-
-<p>Finally, we can expand our philosophers example to define that Plato taught Aristotle:</p>
-
-<p><img src="/images/example_relation.png" alt="An example of a Relation. The dark blue represents the Relation which is an
-instance of
-`Education`" /></p>
-
-<div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> <b>Note:</b> When creating a relation you must ensure that the type of the Instances are allowed to play the Role Types. For example, in the above graph if we forgot to define that the Type <code class="highlighter-rouge">person</code> is allowed to play the Role <code class="highlighter-rouge">teacher</code> then the Relation between <code class="highlighter-rouge">Plato</code> and <code class="highlighter-rouge">Aristotle</code> would not be valid.</div>
-
-<!-- Removed a section on the meta ontology. We could create a separate article about this later if we think it's useful -->
+  <!-- This page is ready to be filled in - I've removed all the previous content as it was superseded by the Knowledge Model document -->
 
 <h2 id="where-next">Where Next?</h2>
-<p>Our <a href="../get-started/quickstart-tutorial.html">Quickstart Tutorial</a> will show you how to load a schema and data into Grakn using Graql.</p>
-
-<p>You can find additional example code and documentation on this portal. We are always adding more and welcome ideas and improvement suggestions. Please get in touch!</p>
 
 <h2 id="comments">Comments</h2>
 <p>Want to leave a comment? Visit <a href="https://github.com/graknlabs/docs/issues/17" target="_blank">the issues on Github for this page</a> (you’ll need a GitHub account). You are also welcome to contribute to our documentation directly via the “Edit me” button at the top of the page.</p>
@@ -973,7 +826,7 @@ instance of
         <br>
         <p>© 2016 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2017 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> August 24, 2016<br/> Site last generated: Jan 31, 2017 <br />
+        <span>Page last updated:</span> August 24, 2016<br/> Site last generated: Feb 2, 2017 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">

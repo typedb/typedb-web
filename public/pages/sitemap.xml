@@ -50,13 +50,13 @@
   
   
   <url>
-    <loc>http://grakn.ai/pages//documentation/migration/CSV-migration.html</loc>
+    <loc>http://grakn.ai/pages//documentation/examples/CSV-migration.html</loc>
   </url>
   
   
   
   <url>
-    <loc>http://grakn.ai/pages//documentation/examples/CSV-migration.html</loc>
+    <loc>http://grakn.ai/pages//documentation/migration/CSV-migration.html</loc>
   </url>
   
   
@@ -80,13 +80,13 @@
   
   
   <url>
-    <loc>http://grakn.ai/pages//documentation/migration/SQL-migration.html</loc>
+    <loc>http://grakn.ai/pages//documentation/examples/SQL-migration.html</loc>
   </url>
   
   
   
   <url>
-    <loc>http://grakn.ai/pages//documentation/examples/SQL-migration.html</loc>
+    <loc>http://grakn.ai/pages//documentation/migration/SQL-migration.html</loc>
   </url>
   
   
@@ -196,12 +196,6 @@
   
   
   <url>
-    <loc>http://grakn.ai/pages//documentation/grakn-knowledge-model/fundamentals.html</loc>
-  </url>
-  
-  
-  
-  <url>
     <loc>http://grakn.ai/pages//documentation/the-basics/grakn-basics.html</loc>
   </url>
   
@@ -250,13 +244,13 @@
   
   
   <url>
-    <loc>http://grakn.ai/pages//documentation/graql/graql-rules.html</loc>
+    <loc>http://grakn.ai/pages//documentation/examples/graql-reasoning.html</loc>
   </url>
   
   
   
   <url>
-    <loc>http://grakn.ai/pages//documentation/examples/graql-reasoning.html</loc>
+    <loc>http://grakn.ai/pages//documentation/graql/graql-rules.html</loc>
   </url>
   
   
@@ -281,12 +275,6 @@
   
   <url>
     <loc>http://grakn.ai/pages//index</loc>
-  </url>
-  
-  
-  
-  <url>
-    <loc>http://grakn.ai/pages//documentation/grakn-knowledge-model/inheritance.html</loc>
   </url>
   
   
@@ -365,12 +353,6 @@
   
   <url>
     <loc>http://grakn.ai/pages//documentation/building-an-ontology/rule-driven-ontology.html</loc>
-  </url>
-  
-  
-  
-  <url>
-    <loc>http://grakn.ai/pages//documentation/grakn-knowledge-model/rules.html</loc>
   </url>
   
   
