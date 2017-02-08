@@ -315,21 +315,21 @@
             
             
             
-            <li><a href="/pages/documentation/building-an-ontology/basic-ontology.html">Defining a Basic Ontology</a></li>
+            <li><a href="/pages/documentation/building-an-ontology/basic-ontology.html">Define a Basic Ontology</a></li>
             
             
             
             
             
             
-            <li><a href="/pages/documentation/building-an-ontology/hierarchical-ontology.html">Defining a Hierarchical Ontology</a></li>
+            <li><a href="/pages/documentation/building-an-ontology/hierarchical-ontology.html">Define a Hierarchical Ontology</a></li>
             
             
             
             
             
             
-            <li><a href="/pages/documentation/building-an-ontology/rule-driven-ontology.html">Defining a Rule-Driven Ontology</a></li>
+            <li><a href="/pages/documentation/building-an-ontology/rule-driven-ontology.html">Define a Rule-Driven Ontology</a></li>
             
             
             
@@ -360,7 +360,7 @@
         
     
     <li>
-        <a href="#">Graql Querying</a>
+        <a href="#">Graql Queries</a>
         <ul>
             
             
@@ -495,7 +495,7 @@
         
     
     <li>
-        <a href="#">Migrating to Grakn</a>
+        <a href="#">Migrate to Grakn</a>
         <ul>
             
             
@@ -538,7 +538,7 @@
         
     
     <li>
-        <a href="#">Developing with Java</a>
+        <a href="#">Develop with Java</a>
         <ul>
             
             
@@ -786,86 +786,83 @@ $('#toc').on('click', 'a', function() {
 <h2 id="basic-setup">Basic Setup</h2>
 
 <p>This section will discuss how to start developing with Grakn using the Java API. 
-All Grakn applications require the following maven dependency:</p>
+All Grakn applications require the following Maven dependency:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>&lt;dependency&gt;
-    &lt;groupId&gt;ai.grakn&lt;/groupId&gt;
-    &lt;artifactId&gt;grakn-graph&lt;/artifactId&gt;
-    &lt;version&gt;${project.version}&lt;/version&gt;
-&lt;/dependency&gt;
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="nt">&lt;dependency&gt;</span>
+    <span class="nt">&lt;groupId&gt;</span>ai.grakn<span class="nt">&lt;/groupId&gt;</span>
+    <span class="nt">&lt;artifactId&gt;</span>grakn-graph<span class="nt">&lt;/artifactId&gt;</span>
+    <span class="nt">&lt;version&gt;</span>${project.version}<span class="nt">&lt;/version&gt;</span>
+    <span class="nt">&lt;/dependency&gt;</span>
 </code></pre>
 </div>
 
-<p>This dependency will give you access to the Core API as well as in in memory graph which serves as a toy graph should you wish to use the stack without having to have an instance of the Grakn server running.</p>
+<p>This dependency will give you access to the Core API as well as an in-memory graph, which serves as a toy graph, should you wish to use the stack without having to have an instance of the Grakn server running.</p>
 
 <h2 id="server-dependent-setup">Server Dependent Setup</h2>
 
-<p>If you require persistence and would like to access the entirety of the Grakn stack then it is vital to have an instance of engine running.<br />
+<p>If you require persistence and would like to access the entirety of the Grakn stack, then it is vital to have an instance of engine running.<br />
 Please see the <a href="../get-started/setup-guide.html">Setup Guide</a> on more details on how to setup a Grakn server.</p>
 
-<p>Depending on the configuration of the Grakn server your java application will require one of the following dependencies:</p>
+<p>Depending on the configuration of the Grakn server, your Java application will require one of the following dependencies. When your server is running against a Titan backend:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>&lt;dependency&gt;
-    &lt;groupId&gt;ai.grakn&lt;/groupId&gt;
-    &lt;artifactId&gt;titan-factory&lt;/artifactId&gt;
-    &lt;version&gt;${project.version}&lt;/version&gt; 
-&lt;/dependency&gt;
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="nt">&lt;dependency&gt;</span>
+    <span class="nt">&lt;groupId&gt;</span>ai.grakn<span class="nt">&lt;/groupId&gt;</span>
+    <span class="nt">&lt;artifactId&gt;</span>titan-factory<span class="nt">&lt;/artifactId&gt;</span>
+    <span class="nt">&lt;version&gt;</span>${project.version}<span class="nt">&lt;/version&gt;</span> 
+<span class="nt">&lt;/dependency&gt;</span>
 </code></pre>
 </div>
 
-<p>which is used when your server is running against a Titan backend or</p>
+<p>When your server is running against a OrientDB backend:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>&lt;dependency&gt;
-    &lt;groupId&gt;ai.grakn&lt;/groupId&gt;
-    &lt;artifactId&gt;orientdb-factory&lt;/artifactId&gt;
-    &lt;version&gt;${project.version}&lt;/version&gt; 
-&lt;/dependency&gt;
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="nt">&lt;dependency&gt;</span>
+    <span class="nt">&lt;groupId&gt;</span>ai.grakn<span class="nt">&lt;/groupId&gt;</span>
+    <span class="nt">&lt;artifactId&gt;</span>orientdb-factory<span class="nt">&lt;/artifactId&gt;</span>
+    <span class="nt">&lt;version&gt;</span>${project.version}<span class="nt">&lt;/version&gt;</span> 
+<span class="nt">&lt;/dependency&gt;</span>
 </code></pre>
 </div>
 
-<p>when your server is running against a OrientDB backend.</p>
-
-<p><strong>Note:</strong> The distribution package comes with a Titan backend configured out of the box. 
-OrientDB support is still in early stages of development.</p>
+<div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> <b>Note:</b> The distribution package comes with a Titan backend configured out of the box. OrientDB support is still in early stages of development. </div>
 
 <h2 id="initialising-a-graph">Initialising a Graph</h2>
 
 <p>You can initialise an in memory graph without having the Grakn server running with:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>GraknGraph graph = Grakn.factory(Grakn.IN_MEMORY, "keyspace").getGraph();
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">GraknGraph</span> <span class="n">graph</span> <span class="o">=</span> <span class="n">Grakn</span><span class="o">.</span><span class="na">factory</span><span class="o">(</span><span class="n">Grakn</span><span class="o">.</span><span class="na">IN_MEMORY</span><span class="o">,</span> <span class="s">"keyspace"</span><span class="o">).</span><span class="na">getGraph</span><span class="o">();</span>
 </code></pre>
 </div>
 
-<p>If you are running the grakn server locally then you can initlaise a graph with:</p>
+<p>If you are running the Grakn server locally then you can initialise a graph with:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>GraknGraph graph = Grakn.factory(Grakn.DEFAULT_URI, "keyspace").getGraph();
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">GraknGraph</span> <span class="n">graph</span> <span class="o">=</span> <span class="n">Grakn</span><span class="o">.</span><span class="na">factory</span><span class="o">(</span><span class="n">Grakn</span><span class="o">.</span><span class="na">DEFAULT_URI</span><span class="o">,</span> <span class="s">"keyspace"</span><span class="o">).</span><span class="na">getGraph</span><span class="o">();</span>
 </code></pre>
 </div>
 
-<p>If you are running the grakn server remotely you must initlaise the graph by providing the ip address of the server:</p>
+<p>If you are running the Grakn server remotely you must initialise the graph by providing the IP address of your server:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>GraknGraph graph = Grakn.factory("127.6.21.2", "keyspace").getGraph();
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">GraknGraph</span> <span class="n">graph</span> <span class="o">=</span> <span class="n">Grakn</span><span class="o">.</span><span class="na">factory</span><span class="o">(</span><span class="s">"127.6.21.2"</span><span class="o">,</span> <span class="s">"keyspace"</span><span class="o">).</span><span class="na">getGraph</span><span class="o">();</span>
 </code></pre>
 </div>
 
 <p>The string “keyspace” uniquely identifies the graph and allows you to create different graphs.</p>
 
-<p>Please <strong>note</strong> that graph keyspaces are <strong>not</strong> case sensitive so the following two graphs are actually the same graph:</p>
+<p>Please note that graph keyspaces are <strong>not</strong> case sensitive so the following two graphs are actually the same graph:</p>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code>   <span class="n">GraknGraph</span> <span class="n">graph1</span> <span class="o">=</span> <span class="n">Grakn</span><span class="o">.</span><span class="na">factory</span><span class="o">(</span><span class="s">"127.6.21.2"</span><span class="o">,</span> <span class="s">"keyspace"</span><span class="o">).</span><span class="na">getGraph</span><span class="o">();</span>
-   <span class="n">GraknGraph</span> <span class="n">graph2</span> <span class="o">=</span> <span class="n">Grakn</span><span class="o">.</span><span class="na">factory</span><span class="o">(</span><span class="s">"127.6.21.2"</span><span class="o">,</span> <span class="s">"KeYsPaCe"</span><span class="o">).</span><span class="na">getGraph</span><span class="o">();</span>
+<div class="highlighter-rouge"><pre class="highlight"><code>    <span class="n">GraknGraph</span> <span class="n">graph1</span> <span class="o">=</span> <span class="n">Grakn</span><span class="o">.</span><span class="na">factory</span><span class="o">(</span><span class="s">"127.6.21.2"</span><span class="o">,</span> <span class="s">"keyspace"</span><span class="o">).</span><span class="na">getGraph</span><span class="o">();</span>
+    <span class="n">GraknGraph</span> <span class="n">graph2</span> <span class="o">=</span> <span class="n">Grakn</span><span class="o">.</span><span class="na">factory</span><span class="o">(</span><span class="s">"127.6.21.2"</span><span class="o">,</span> <span class="s">"KeYsPaCe"</span><span class="o">).</span><span class="na">getGraph</span><span class="o">();</span>
 </code></pre>
 </div>
 
-<p>All graphs are also singletons specific to their keysoaces so be aware that in the following case:</p>
+<p>All graphs are also singletons specific to their keyspaces so be aware that in the following case:</p>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code>  <span class="n">GraknGraph</span> <span class="n">graph1</span> <span class="o">=</span> <span class="n">Grakn</span><span class="o">.</span><span class="na">factory</span><span class="o">(</span><span class="s">"127.6.21.2"</span><span class="o">,</span> <span class="s">"keyspace"</span><span class="o">).</span><span class="na">getGraph</span><span class="o">();</span>
-  <span class="n">GraknGraph</span> <span class="n">graph2</span> <span class="o">=</span> <span class="n">Grakn</span><span class="o">.</span><span class="na">factory</span><span class="o">(</span><span class="s">"127.6.21.2"</span><span class="o">,</span> <span class="s">"keyspace"</span><span class="o">).</span><span class="na">getGraph</span><span class="o">();</span>
-  <span class="n">GraknGraph</span> <span class="n">graph3</span> <span class="o">=</span> <span class="n">Grakn</span><span class="o">.</span><span class="na">factory</span><span class="o">(</span><span class="s">"127.6.21.2"</span><span class="o">,</span> <span class="s">"keyspace"</span><span class="o">).</span><span class="na">getGraph</span><span class="o">();</span>
+<div class="highlighter-rouge"><pre class="highlight"><code>   <span class="n">GraknGraph</span> <span class="n">graph1</span> <span class="o">=</span> <span class="n">Grakn</span><span class="o">.</span><span class="na">factory</span><span class="o">(</span><span class="s">"127.6.21.2"</span><span class="o">,</span> <span class="s">"keyspace"</span><span class="o">).</span><span class="na">getGraph</span><span class="o">();</span>
+   <span class="n">GraknGraph</span> <span class="n">graph2</span> <span class="o">=</span> <span class="n">Grakn</span><span class="o">.</span><span class="na">factory</span><span class="o">(</span><span class="s">"127.6.21.2"</span><span class="o">,</span> <span class="s">"keyspace"</span><span class="o">).</span><span class="na">getGraph</span><span class="o">();</span>
+   <span class="n">GraknGraph</span> <span class="n">graph3</span> <span class="o">=</span> <span class="n">Grakn</span><span class="o">.</span><span class="na">factory</span><span class="o">(</span><span class="s">"127.6.21.2"</span><span class="o">,</span> <span class="s">"keyspace"</span><span class="o">).</span><span class="na">getGraph</span><span class="o">();</span>
 </code></pre>
 </div>
 
-<p>Any changes to <code class="highlighter-rouge">graph1</code>, <code class="highlighter-rouge">graph2</code>, or <code class="highlighter-rouge">graph3</code> will all be persisted to the same graph.</p>
+<p>any changes to <code class="highlighter-rouge">graph1</code>, <code class="highlighter-rouge">graph2</code>, or <code class="highlighter-rouge">graph3</code> will all be persisted to the same graph.</p>
 
 <h2 id="comments">Comments</h2>
 <p>Want to leave a comment? Visit <a href="https://github.com/graknlabs/docs/issues/23" target="_blank">the issues on Github for this page</a> (you’ll need a GitHub account). You are also welcome to contribute to our documentation directly via the “Edit me” button at the top of the page.</p>
@@ -909,7 +906,7 @@ OrientDB support is still in early stages of development.</p>
         <br>
         <p>© 2016 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2017 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> December 2016<br/> Site last generated: Feb 2, 2017 <br />
+        <span>Page last updated:</span> January 2017<br/> Site last generated: Feb 8, 2017 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">

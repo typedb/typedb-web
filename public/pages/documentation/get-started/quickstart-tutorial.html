@@ -315,21 +315,21 @@
             
             
             
-            <li><a href="/pages/documentation/building-an-ontology/basic-ontology.html">Defining a Basic Ontology</a></li>
+            <li><a href="/pages/documentation/building-an-ontology/basic-ontology.html">Define a Basic Ontology</a></li>
             
             
             
             
             
             
-            <li><a href="/pages/documentation/building-an-ontology/hierarchical-ontology.html">Defining a Hierarchical Ontology</a></li>
+            <li><a href="/pages/documentation/building-an-ontology/hierarchical-ontology.html">Define a Hierarchical Ontology</a></li>
             
             
             
             
             
             
-            <li><a href="/pages/documentation/building-an-ontology/rule-driven-ontology.html">Defining a Rule-Driven Ontology</a></li>
+            <li><a href="/pages/documentation/building-an-ontology/rule-driven-ontology.html">Define a Rule-Driven Ontology</a></li>
             
             
             
@@ -360,7 +360,7 @@
         
     
     <li>
-        <a href="#">Graql Querying</a>
+        <a href="#">Graql Queries</a>
         <ul>
             
             
@@ -495,7 +495,7 @@
         
     
     <li>
-        <a href="#">Migrating to Grakn</a>
+        <a href="#">Migrate to Grakn</a>
         <ul>
             
             
@@ -538,7 +538,7 @@
         
     
     <li>
-        <a href="#">Developing with Java</a>
+        <a href="#">Develop with Java</a>
         <ul>
             
             
@@ -793,7 +793,7 @@ $('#toc').on('click', 'a', function() {
 
 <p>The first few steps mirror those in the <a href="./setup-guide.html">Setup Guide</a>, and you can skip to <a href="#the-ontology">The Ontology</a> if you have already run through that example. Start Grakn and load the example graph:</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>./bin/grakn.sh start
+<div class="highlighter-rouge"><pre class="highlight"><code>./bin/grakn.sh start
 ./bin/graql.sh -f ./examples/basic-genealogy.gql
 </code></pre>
 </div>
@@ -803,7 +803,7 @@ If you are interested, please see our documentation about other <a href="https:/
 
 <p>Then start the Graql shell in its interactive (REPL) mode:</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>./bin/graql.sh
+<div class="highlighter-rouge"><pre class="highlight"><code>./bin/graql.sh
 </code></pre>
 </div>
 
@@ -822,7 +822,7 @@ If you are interested, please see our documentation about other <a href="https:/
   <p>“The ontology is a formal specification of all the relevant concepts and their meaningful associations in a given application domain. It allows objects and relationships to be categorised into distinct types, and for generic properties about those types to be expressed”.</p>
 </blockquote>
 
-<p>For the purposes of this guide, you can think of the ontology as a schema that describes items of data and defines how they relate to one another. You need to have a basic understanding of the ontology to be able to make useful queries on the data, so let’s review the basic chunks of it that are important for our initial demonstration:</p>
+<p>For the purposes of this guide, you can think of the ontology as a schema that describes items of data and defines how they relate to one another. You need to have a basic understanding of the ontology to be able to make useful queries on the data, so let’s review the chunks of it that are important for our initial demonstration:</p>
 
 <pre><code class="language-graql">insert
 
@@ -902,20 +902,20 @@ $81940536 (spouse2: $233568, spouse1: $41361488) has picture "http:\/\/1.bp.blog
 </code></pre>
 </div>
 
-<p>Don’t worry about the numbers such as <code class="highlighter-rouge">$57472</code>. These are variables in Graql, and happen to have randomly assigned numbers to make them unique. Each statement is adding either a <code class="highlighter-rouge">person</code>, a <code class="highlighter-rouge">parentship</code> or a <code class="highlighter-rouge">marriage</code> to the graph.  We will show how to add more data to the graph shortly in the Extending The Graph section. First, however, it is time to query the graph in the Graql shell.</p>
+<p>Don’t worry about the numbers such as <code class="highlighter-rouge">$57472</code>. These are variables in Graql, and happen to have randomly assigned numbers to make them unique. Each statement is adding either a <code class="highlighter-rouge">person</code>, a <code class="highlighter-rouge">parentship</code> or a <code class="highlighter-rouge">marriage</code> to the graph.  We will show how to add more data to the graph shortly in the <a href="#extending-the-graph">Extending The Graph</a> section. First, however, it is time to query the graph in the Graql shell.</p>
 
 <h2 id="querying-the-graph">Querying the Graph</h2>
 
 <p>Having started Grakn engine and the Graql shell in its interactive mode, we are ready to make a number queries. First, we will make a couple of <code class="highlighter-rouge">match</code> queries.</p>
 
-<p>Find all people in the graph, and list their <code class="highlighter-rouge">identifier</code> resources (a string that represents their full name):</p>
+<p>Find all the people in the graph, and list their <code class="highlighter-rouge">identifier</code> resources (a string that represents their full name):</p>
 
 <pre><code class="language-graql">match $p isa person, has identifier $i;
 </code></pre>
 
 <div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> <b>Note:</b> In queries, Graql variables start with a <code class="highlighter-rouge">$</code>, which represent wildcards, and are returned as results in <code class="highlighter-rouge">match</code> queries. A variable name can contain alphanumeric characters, dashes and underscores.</div>
 
-<p>Find all people who are married:</p>
+<p>Find all the people who are married:</p>
 
 <pre><code class="language-graql">match (spouse1: $x, spouse2: $y) isa marriage; $x has identifier $xi; $y has identifier $yi;  
 </code></pre>
@@ -969,7 +969,7 @@ commit
 
 <h2 id="using-inference">Using Inference</h2>
 
-<p>We will move on to discuss the use of GRAKN.AI to infer new information about a dataset. For example, the ontology we discussed above, and the data we added to the graph, dealt only with a <code class="highlighter-rouge">person</code>, not a man, woman, girl or boy, and the relations we added were simple, for example <code class="highlighter-rouge">parentship</code> relations with <code class="highlighter-rouge">parent</code> and <code class="highlighter-rouge">child</code> roles. We do not directly add information about the nature of the parent and child in each relation - they could be father and son, father and daughter, mother and son or mother and daughter.</p>
+<p>We will move on to discuss the use of GRAKN.AI to infer new information about a dataset. In the ontology, so far, we have dealt only with a person, not a man or woman, and the parentship relations were simply between parent and child roles. We did not directly add information about the nature of the parent and child in each relation - they could be father and son, father and daughter, mother and son or mother and daughter.</p>
 
 <p>However, the <code class="highlighter-rouge">person</code> entity does have a gender resource, and we can use Grakn to infer more information about each relationship by using that property. The ontology accommodates the more specific roles of mother, father, daughter and son:</p>
 
@@ -1043,7 +1043,7 @@ rhs
 
 <p>Did you get any results? Probably not, because reasoning is not enabled by default at present, although as Grakn develops, we expect that to change. If you didn’t see any results, you need to <code class="highlighter-rouge">exit</code> the Graql shell and restart it, passing <code class="highlighter-rouge">-n</code> and <code class="highlighter-rouge">-m</code> flags to switch on reasoning (see our documentation for more information about <a href="https://grakn.ai/pages/documentation/graql/graql-shell.html">flags supported by the Graql shell</a>).</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>./bin/graql.sh -n -m
+<div class="highlighter-rouge"><pre class="highlight"><code>./bin/graql.sh -n -m
 </code></pre>
 </div>
 
@@ -1061,7 +1061,7 @@ rhs
 
 <p><img src="/images/father-son-shared-names.png" alt="Father-Son Shared Names query" /></p>
 
-<p>If you want to find out more about the Graql reasoner, we have a <a href="../examples/graql-reasoning.html">detailed example</a> that uses a slightly different version of the genealogy dataset. An additional discussion on the same topic can be found in our <a href="https://blog.grakn.ai/family-matters-1bb639396a24#.525ozq2zy">“Family Matters” blog post</a>.</p>
+<p>If you want to find out more about the Graql reasoner, we have a <a href="../examples/graql-reasoning.html">detailed example</a>. An additional discussion on the same topic can be found in our <a href="https://blog.grakn.ai/family-matters-1bb639396a24#.525ozq2zy">“Family Matters” blog post</a>.</p>
 
 <h2 id="using-analytics">Using Analytics</h2>
 
@@ -1091,6 +1091,7 @@ rhs
 
 <h2 id="comments">Comments</h2>
 <p>Want to leave a comment? Visit <a href="https://github.com/graknlabs/docs/issues/17" target="_blank">the issues on Github for this page</a> (you’ll need a GitHub account). You are also welcome to contribute to our documentation directly via the “Edit me” button at the top of the page.</p>
+
 
 
     <div class="tags">
@@ -1134,7 +1135,7 @@ rhs
         <br>
         <p>© 2016 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2017 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> January 2017<br/> Site last generated: Feb 2, 2017 <br />
+        <span>Page last updated:</span> January 2017<br/> Site last generated: Feb 8, 2017 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">

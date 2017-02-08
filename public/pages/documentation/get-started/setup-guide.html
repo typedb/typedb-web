@@ -315,21 +315,21 @@
             
             
             
-            <li><a href="/pages/documentation/building-an-ontology/basic-ontology.html">Defining a Basic Ontology</a></li>
+            <li><a href="/pages/documentation/building-an-ontology/basic-ontology.html">Define a Basic Ontology</a></li>
             
             
             
             
             
             
-            <li><a href="/pages/documentation/building-an-ontology/hierarchical-ontology.html">Defining a Hierarchical Ontology</a></li>
+            <li><a href="/pages/documentation/building-an-ontology/hierarchical-ontology.html">Define a Hierarchical Ontology</a></li>
             
             
             
             
             
             
-            <li><a href="/pages/documentation/building-an-ontology/rule-driven-ontology.html">Defining a Rule-Driven Ontology</a></li>
+            <li><a href="/pages/documentation/building-an-ontology/rule-driven-ontology.html">Define a Rule-Driven Ontology</a></li>
             
             
             
@@ -360,7 +360,7 @@
         
     
     <li>
-        <a href="#">Graql Querying</a>
+        <a href="#">Graql Queries</a>
         <ul>
             
             
@@ -495,7 +495,7 @@
         
     
     <li>
-        <a href="#">Migrating to Grakn</a>
+        <a href="#">Migrate to Grakn</a>
         <ul>
             
             
@@ -538,7 +538,7 @@
         
     
     <li>
-        <a href="#">Developing with Java</a>
+        <a href="#">Develop with Java</a>
         <ul>
             
             
@@ -781,7 +781,7 @@ $('#toc').on('click', 'a', function() {
 
     
 
-  <h2 id="first-download-grakn">First: Download Grakn</h2>
+  <h2 id="first-download-graknai">First: Download GRAKN.AI</h2>
 
 <p><a href="https://grakn.ai/download/latest"><img src="/images/download.png" alt="download" /></a></p>
 
@@ -794,7 +794,7 @@ If you intend to build Grakn, or develop on top of it, you will also need Maven 
 
 <p>Unzip the download into your preferred location and run the following in the terminal to start Grakn:</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="nb">cd</span> <span class="o">[</span>your Grakn install directory]
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="nb">cd</span> <span class="o">[</span>your Grakn install directory]
 ./bin/grakn.sh start
 </code></pre>
 </div>
@@ -813,19 +813,21 @@ To start Grakn, run <code class="highlighter-rouge">grakn.sh start</code>. <br /
 To stop Grakn, run <code class="highlighter-rouge">grakn.sh stop</code>.  <br />
 To remove all graphs from Grakn, run <code class="highlighter-rouge">grakn.sh clean</code></div>
 
+<p>Grakn Engine is configured by default to use port 4567, but this can be changed, as can settings for Kafka and Zookeeper, in the <em>grakn-engine.properties</em> file, found within the <em>/conf</em> directory of the installation.</p>
+
 <h2 id="test-the-graql-shell">Test the Graql Shell</h2>
 
 <p>To test that the installation is working correctly, we will load a simple ontology and some data from a file, <em>basic-genealogy.gql</em> and test it in the Graql shell and Grakn Visualiser. The <em>basic-genealogy.gql</em> file will be included in the <em>/examples</em> folder of the Grakn installation zip from the next release and onwards. It is not currently in the zip, so you will need to get it from the <a href="https://github.com/graknlabs/grakn/blob/master/grakn-dist/src/examples/basic-genealogy.gql">Grakn repo on Github</a>. In the code below, we assume that the file is in the <em>/examples</em> folder.</p>
 
 <p>Type in the following to load the example graph. This starts the Graql shell in non-interactive mode, loading the specified file and exiting after the load is complete.</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>./bin/graql.sh -f ./examples/basic-genealogy.gql
+<div class="highlighter-rouge"><pre class="highlight"><code>./bin/graql.sh -f ./examples/basic-genealogy.gql
 </code></pre>
 </div>
 
 <p>Then type the following to start the Graql shell in its interactive (REPL) mode, type:</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>./bin/graql.sh
+<div class="highlighter-rouge"><pre class="highlight"><code>./bin/graql.sh
 </code></pre>
 </div>
 
@@ -899,7 +901,7 @@ To remove all graphs from Grakn, run <code class="highlighter-rouge">grakn.sh cl
         <br>
         <p>© 2016 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2017 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> August 10, 2016<br/> Site last generated: Feb 2, 2017 <br />
+        <span>Page last updated:</span> August 10, 2016<br/> Site last generated: Feb 8, 2017 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">

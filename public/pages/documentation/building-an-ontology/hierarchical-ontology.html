@@ -4,8 +4,8 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="How to build a hierarchical ontology">
-<meta name="keywords" content="javagraph-api,  overview, GRAKN.AI, Grakn Labs, grakn, graql, grakn.ai, Mindmaps Research, Mindmaps Research Ltd, MindmapsDB, mindmaps, mindmaps graph, mindmaps.io, knowledge graph, distributed knowledge graph, development platform, developer tool, data platform, programming langauge, query langauge, database, semantic database, distributed semantic database, distributed database, graph database, semantic search, data exploration, recommendation system, knowledge management, knowledge engineering, real-time analytics, advanced analytics, reasoning engine, inference engine, expert systems, semantic applications, research engines, data management, business intelligence, big data, semantic web, semantic data, knowledge representation, automated reasoning, semantic network, knowledge ontology, semantic graph, ontology engineering, graph based knowledge representation, artificial intelligence,">
-<title>GRAKN.AI - Hierarchical Ontology</title>
+<meta name="keywords" content="graqljavagraph-api,  overview, GRAKN.AI, Grakn Labs, grakn, graql, grakn.ai, Mindmaps Research, Mindmaps Research Ltd, MindmapsDB, mindmaps, mindmaps graph, mindmaps.io, knowledge graph, distributed knowledge graph, development platform, developer tool, data platform, programming langauge, query langauge, database, semantic database, distributed semantic database, distributed database, graph database, semantic search, data exploration, recommendation system, knowledge management, knowledge engineering, real-time analytics, advanced analytics, reasoning engine, inference engine, expert systems, semantic applications, research engines, data management, business intelligence, big data, semantic web, semantic data, knowledge representation, automated reasoning, semantic network, knowledge ontology, semantic graph, ontology engineering, graph based knowledge representation, artificial intelligence,">
+<title>GRAKN.AI - Define a Hierarchical Ontology</title>
 <link rel="stylesheet" href="/pages/css/syntax.css">
 
 
@@ -228,7 +228,7 @@
                             
                             dataSource: '/pages/search.json',
                             
-                            searchResultTemplate: '<li><a href="{url}" title="Hierarchical Ontology">{title}</a></li>',
+                            searchResultTemplate: '<li><a href="{url}" title="Define a Hierarchical Ontology">{title}</a></li>',
                             noResultsText: '<li><a class="empty">No results found</a></li>',
                             limit: 10,
                             fuzzy: true
@@ -315,21 +315,21 @@
             
             
             
-            <li><a href="/pages/documentation/building-an-ontology/basic-ontology.html">Defining a Basic Ontology</a></li>
+            <li><a href="/pages/documentation/building-an-ontology/basic-ontology.html">Define a Basic Ontology</a></li>
             
             
             
             
             
             
-            <li class="active"><a href="/pages/documentation/building-an-ontology/hierarchical-ontology.html">Defining a Hierarchical Ontology</a></li>
+            <li class="active"><a href="/pages/documentation/building-an-ontology/hierarchical-ontology.html">Define a Hierarchical Ontology</a></li>
             
             
             
             
             
             
-            <li><a href="/pages/documentation/building-an-ontology/rule-driven-ontology.html">Defining a Rule-Driven Ontology</a></li>
+            <li><a href="/pages/documentation/building-an-ontology/rule-driven-ontology.html">Define a Rule-Driven Ontology</a></li>
             
             
             
@@ -360,7 +360,7 @@
         
     
     <li>
-        <a href="#">Graql Querying</a>
+        <a href="#">Graql Queries</a>
         <ul>
             
             
@@ -495,7 +495,7 @@
         
     
     <li>
-        <a href="#">Migrating to Grakn</a>
+        <a href="#">Migrate to Grakn</a>
         <ul>
             
             
@@ -538,7 +538,7 @@
         
     
     <li>
-        <a href="#">Developing with Java</a>
+        <a href="#">Develop with Java</a>
         <ul>
             
             
@@ -735,7 +735,7 @@
         <!-- Content Column -->
         <div class="col-md-9">
             <div class="post-header">
-   <h1 class="post-title-main">Hierarchical Ontology</h1>
+   <h1 class="post-title-main">Define a Hierarchical Ontology</h1>
 </div>
 
 
@@ -785,18 +785,18 @@ $('#toc').on('click', 'a', function() {
 
 <h2 id="introduction">Introduction</h2>
 
-<p>In this section we are going to expand the ontology we defined in the <a href="../building-an-ontology/basic-ontology.html">Basic Ontology</a>. 
+<p>In this section we are going to expand the ontology we defined in the <a href="./basic-ontology.html">Basic Ontology documentation</a>, which we recommend you read before starting here. You may also find it helpful to refer to the <a href="../the-basics/grakn-knowledge-model.html">Knowledge Model</a> documentation.
 We are going to introduce the idea of making ontologies deeper and more meaningful by defining a hierarchy of types.</p>
 
-<p>When we left off our ontology was defined as follows:</p>
+<p>When we left off, our ontology looked as follows:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code># Entities
+<p><img src="/images/basic-ontology1.png" alt="Ontology" /></p>
 
-person sub entity
-    plays-role parent
-    plays-role child
-    plays-role spouse1
-    plays-role spouse2
+<pre><code class="language-graql">insert
+ 
+# Entities
+    
+  person sub entity
     has-resource identifier
     has-resource firstname
     has-resource surname
@@ -805,121 +805,110 @@ person sub entity
     has-resource age
     has-resource birth-date
     has-resource death-date
-    has-resource gender;
+    has-resource gender
+    plays-role parent
+    plays-role child
+    plays-role spouse1
+    plays-role spouse2;
 
 # Resources
 
-identifier sub resource datatype string;
-firstname sub resource datatype string;
-surname sub resource datatype string;
-middlename sub resource datatype string;
-picture sub resource datatype string;
-age sub resource datatype long;
-birth-date sub resource datatype string;
-death-date sub resource datatype string;
-gender sub resource datatype string;
+  identifier sub resource datatype string;
+  firstname sub resource datatype string;
+  surname sub resource datatype string;
+  middlename sub resource datatype string;
+  picture sub resource datatype string;
+  age sub resource datatype long;
+  birth-date sub resource datatype string;
+  death-date sub resource datatype string;
+  gender sub resource datatype string;
 
 # Roles and Relations
 
-marriage sub relation
+  marriage sub relation
     has-role spouse1
     has-role spouse2
     has-resource picture;
 
-spouse1 sub role;
-spouse2 sub role;
+  spouse1 sub role;
+  spouse2 sub role;
 
-parentship sub relation
+  parentship sub relation
     has-role parent
-	has-role child;
+    has-role child;
 
-parent sub role;
-child sub role;
+  parent sub role;
+  child sub role;
 </code></pre>
-</div>
 
 <p>This ontology represents a genealogy graph which models a family tree.
-This is a very simplistic ontology with plenty of room for improvement, so lets begin.</p>
+This is a very simplistic ontology with plenty of room for extension, so lets begin.</p>
 
 <h2 id="hierarchies-of-entity-types">Hierarchies of Entity Types</h2>
 
-<p>It is possible to define entity types more granularly.
-Think of sub categories of categories.
-This enables additional details to be embedded in the ontology. 
-For example, if we have a entity type called <code class="highlighter-rouge">vehicle</code> we can break that down further by differentiating between <code class="highlighter-rouge">cars</code> and <code class="highlighter-rouge">motorbikes</code>.
-This can be done as follows:</p>
+<p>It is possible to define entity types more granularly. Think of sub categories of categories, enabling additional details to be embedded in the ontology. 
+For example, if we have a entity type called <code class="highlighter-rouge">vehicle</code>, we can break that down further by differentiating between <code class="highlighter-rouge">cars</code> and <code class="highlighter-rouge">motorbikes</code>. This can be done as follows:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>vehicle sub entity;
+<pre><code class="language-graql">vehicle sub entity;
 car sub vehicle;
 motorbikes sub vehicle;
 </code></pre>
-</div>
 
-<p>In the above example we are saying that a <code class="highlighter-rouge">car</code> is a subset of the entity type <code class="highlighter-rouge">vehicle</code>. 
-This means that when adding data to our graph we can now know if we dealing with a <code class="highlighter-rouge">car</code> or a <code class="highlighter-rouge">motorbike</code>.</p>
+<p>In the above example we are saying that a <code class="highlighter-rouge">car</code> is a subtype of a <code class="highlighter-rouge">vehicle</code>. This means that when adding data to our graph, when we know we have a <code class="highlighter-rouge">vehicle</code>, we can also differentiate between a <code class="highlighter-rouge">car</code> and a <code class="highlighter-rouge">motorbike</code>.</p>
 
-<p>So how can we use this technique to improve our existing genealogy ontology?
-We could break down <code class="highlighter-rouge">person</code> into <code class="highlighter-rouge">man</code> and <code class="highlighter-rouge">woman</code> for example.</p>
+<p>So how can we use this technique to improve our existing genealogy ontology?</p>
 
-<p>For the sake of making things more interesting we are going to introduce a new concept to the graph.
-A family is made up not only of people but of events which link those people together and better define their lives. 
-Events like births, weddings, funerals, and many others.
-We can model this as follows:</p>
+<p>We could specialise the <code class="highlighter-rouge">person</code> entity into <code class="highlighter-rouge">man</code> and <code class="highlighter-rouge">woman</code> for example. However, for the sake of making things more interesting, we are going to introduce a new entity to the graph. A family is made up not only of people but of events, like births, weddings, funerals, and many others, which link those people together and better define their lives.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>event sub entity
-	is-abstract
-	plays-role conclusion
-	plays-role happening
-	has-resource degree
-	has-resource confidence
-	has-resource date
-	has-resource identifier
-	has-resource notes;
+<p>We can model this as follows:</p>
 
+<pre><code class="language-graql">event sub entity
+  is-abstract
+  has-resource degree
+  has-resource confidence
+  has-resource date
+  has-resource identifier
+  has-resource notes
+  plays-role conclusion
+  plays-role happening;
+    
 wedding sub event;
-
+ 
 funeral sub event
-	has-resource birth-date;
-	
+  has-resource death-date;
+    	
 christening sub event
-	has-resource death-date;
-
+  has-resource birth-date;
+    
 birth sub event
-	has-resource firstname
-	has-resource middlename
-	has-resource surname
-	has-resource gender
-	has-resource birth-date;
-	
+  has-resource firstname
+  has-resource middlename
+  has-resource surname
+  has-resource gender
+  has-resource birth-date;
+    	
 death sub event
-  	    has-resource death-date;  
+  has-resource death-date;
 </code></pre>
-</div>
 
-<p>Notice that for the <code class="highlighter-rouge">event</code> entity type we added <code class="highlighter-rouge">is-abstract</code>, this is an optional additional restriction to ensure we do not create any instances of <code class="highlighter-rouge">event</code>.
-This essentially forces us to use the most granular definitions provided, i.e. <code class="highlighter-rouge">birth</code>, <code class="highlighter-rouge">death</code>, etc . . .</p>
+<p>Notice that for the <code class="highlighter-rouge">event</code> entity type we added <code class="highlighter-rouge">is-abstract</code>, this is an optional additional restriction to ensure that we do not create any instances of <code class="highlighter-rouge">event</code>, but instead use the most granular definitions provided, i.e. <code class="highlighter-rouge">birth</code>, <code class="highlighter-rouge">death</code>, etc . . .</p>
 
 <h2 id="hierarchies-of-relation-types-and-role-types">Hierarchies of Relation Types and Role Types</h2>
 
-<p>You also have the ability to design hierarchies of relation types and role types. 
-Similarly to before this enables an ontology to be deeper and more expressive.
-For example if we have a relation type called <code class="highlighter-rouge">partnership</code> between two people we can expand on this by defining more detailed partnerships; <code class="highlighter-rouge">civil-partnership</code>, <code class="highlighter-rouge">marriage</code>, <code class="highlighter-rouge">unions</code>, etc . . .</p>
+<p>Grakn also allows you to design hierarchies of relation types and role types, enabling the ontology to be deeper and more expressive. For example, if we have a relation type called <code class="highlighter-rouge">partnership</code> between two people we can expand on this by defining more detailed partnerships; <code class="highlighter-rouge">civil-partnership</code>, <code class="highlighter-rouge">marriage</code>, <code class="highlighter-rouge">unions</code>, etc.</p>
 
-<p>Now lets take a look at expanding our genealogy ontology.
-When modelling a domain there are many ways of doing so. 
-For this example we are going to redo the <code class="highlighter-rouge">marriage</code> relation type so that it can provide more meaning. 
-We will do the following:</p>
+<p>Now lets take a look at expanding our genealogy ontology. When modelling a domain there are many ways of doing so. For this example we are going to redo the <code class="highlighter-rouge">marriage</code> relation type so that it can provide more meaning:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>relatives sub relation
-	is-abstract;
+<pre><code class="language-graql">relatives sub relation
+  is-abstract;
 
 marriage sub relatives
-	has-role spouse1
-	has-role spouse2
-    has-role husband
-    has-role wife
-    has-resource date;
-    
+  has-role spouse1
+  has-role spouse2
+  has-role husband
+  has-role wife
+  has-resource date;
+	    
 spouse sub role is-abstract;
 generic-spouse sub spouse is-abstract;
 spouse1 sub generic-spouse;
@@ -927,24 +916,20 @@ spouse2 sub generic-spouse;
 husband sub spouse;
 wife sub spouse;
 </code></pre>
-</div>
 
-<p>We have defined a new super type called <code class="highlighter-rouge">relatives</code> which enables us to link relatives together generically and we have said that marriage is a type of relative relation. 	  <br />
-We have also expanded on the roles which make up a marriage. 
-Again enabling us to be more expressive and detailed about the domain we are modelling.
-From now on we can be clear if a person is a <code class="highlighter-rouge">husband</code> or a <code class="highlighter-rouge">wife</code> or just a <code class="highlighter-rouge">spouse</code> in a marriage.</p>
-
-<p><strong>Note:</strong> The role type hierarchy we have defined. This is important because when we query for people who play the role of a <code class="highlighter-rouge">spouse</code> we will get all the <code class="highlighter-rouge">husbands</code> and <code class="highlighter-rouge">wives</code> as well.</p>
+<p>We have defined a new super type called <code class="highlighter-rouge">relatives</code> which enables us to link generic relatives together, and we have said that marriage is a type of relative relation. We have also expanded on the roles which make up a marriage, enabling us to be more expressive and detailed about the domain we are modelling.
+From now on, we can be clear if a person is a <code class="highlighter-rouge">husband</code> or a <code class="highlighter-rouge">wife</code> or just a <code class="highlighter-rouge">spouse</code> in a marriage. Note that, when we query for people who play the role of a <code class="highlighter-rouge">spouse</code> we will get all the <code class="highlighter-rouge">husbands</code> and <code class="highlighter-rouge">wives</code> as well.</p>
 
 <p>Lets expand this even further:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>parentship sub relatives
-   	    has-role parent
-  	has-role mother
-	has-role father
-   	    has-role child
- 	has-role son
-	has-role daughter;
+<pre><code class="language-graql">parentship sub relatives
+  has-role parent
+  has-role mother
+  has-role father
+  has-role child
+  has-role son
+  has-role daughter;
+    
 parent sub role;
 mother sub parent;
 father sub parent;
@@ -952,102 +937,103 @@ child sub role;
 son sub child;
 daughter sub child;
 </code></pre>
-</div>
 
 <p>Now we have provided more detail about being a parent. 
 We have also said that being a parent is a <code class="highlighter-rouge">relative</code> relation. 
-This is quite useful because when we ask for all relatives we will be getting relative’s via birth and via marriage.</p>
+This is quite useful because when we ask for all relatives we will be getting relatives via birth and via marriage.</p>
 
 <h2 id="wrapping-up">Wrapping up</h2>
 
 <p>We could go into far more detail regarding our genealogy graph but I will leave that to you.
-For the moment here is our more complex ontology to get you started on making your own deeper ontologies:</p>
+For the moment here is our more complex ontology to get you started on making your own deeper ontologies. You can find the ontology, the dataset and rules that accompany it, on Github in our <a href="https://github.com/graknlabs/sample-datasets/tree/master/genealogy-graph">sample-datasets repository</a>:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>## Entities
+<pre><code class="language-graql">insert
 
-person sub entity
-	plays-role spouse
-	plays-role parent
-	plays-role child
-	plays-role sibling
-	has-resource gender
-	has-resource birth-date
-	has-resource death-date
-	has-resource identifier
-	has-resource firstname
-	has-resource middlename
-	has-resource surname;
+# Entities
 
-gender sub resource datatype string;
-birth-date sub date;
-death-date sub date;
-name sub resource datatype string;
-firstname sub name;
-middlename sub name;
-surname sub name;
-identifier sub resource datatype string;
-
-event sub entity
-    	is-abstract
-    	plays-role conclusion
-    	plays-role happening
-    	has-resource degree
-    	has-resource confidence
-    	has-resource date
-    	has-resource identifier
-    	has-resource notes;
-
-wedding sub event;
-
-funeral sub event
+  person sub entity
+    has-resource gender
+    has-resource birth-date
+    has-resource death-date
+    has-resource identifier
+    has-resource firstname
+    has-resource middlename
+    has-resource surname
+    plays-role spouse
+    plays-role parent
+    plays-role child
+    plays-role sibling;
+        
+    gender sub resource datatype string;
+    birth-date sub date;
+    death-date sub date;
+    name sub resource datatype string;
+    firstname sub name;
+    middlename sub name;
+    surname sub name;
+    identifier sub resource datatype string;
+    
+  event sub entity
+    is-abstract
+    has-resource degree
+    has-resource confidence
+    has-resource date
+    has-resource identifier
+    has-resource notes
+    plays-role conclusion
+    plays-role happening;
+    
+  wedding sub event;
+    
+  funeral sub event
+    has-resource death-date;
+        
+  christening sub event
     has-resource birth-date;
     
-christening sub event
-    has-resource death-date;
-
-birth sub event
+  birth sub event
     has-resource firstname
     has-resource middlename
     has-resource surname
     has-resource gender
     has-resource birth-date;
-    
-death sub event
+        
+  death sub event
     has-resource death-date;   	    
-
+    
 ## Relations
-
-relatives sub relation
-	is-abstract;
-
-marriage sub relatives
-	has-role spouse1
-	has-role spouse2
-	has-role husband
-	has-role wife
-	has-resource date;
-spouse sub role is-abstract;
-generic-spouse sub spouse is-abstract;
-spouse1 sub generic-spouse;
-spouse2 sub generic-spouse;
-husband sub spouse;
-wife sub spouse;
-
-parentship sub relatives
-	has-role parent
-	has-role mother
-	has-role father
-	has-role child
-	has-role son
-	has-role daughter;
-parent sub role;
-mother sub parent;
-father sub parent;
-child sub role;
-son sub child;
-daughter sub child;
+    
+  relatives sub relation
+    is-abstract;
+    
+  marriage sub relatives
+    has-role spouse1
+    has-role spouse2
+    has-role husband
+    has-role wife
+    has-resource date;
+    
+  spouse sub role is-abstract;
+  generic-spouse sub spouse is-abstract;
+  spouse1 sub generic-spouse;
+  spouse2 sub generic-spouse;
+  husband sub spouse;   wife sub spouse;
+    
+  parentship sub relatives
+    has-role parent
+    has-role mother
+    has-role father
+    has-role child
+    has-role son
+    has-role daughter;
+  
+  parent sub role;
+  mother sub parent;
+  father sub parent;
+  child sub role;
+  son sub child;
+  daughter sub child;
 </code></pre>
-</div>
 
 <h2 id="comments">Comments</h2>
 <p>Want to leave a comment? Visit <a href="https://github.com/graknlabs/docs/issues/22" target="_blank">the issues on Github for this page</a> (you’ll need a GitHub account). You are also welcome to contribute to our documentation directly via the “Edit me” button at the top of the page.</p>
@@ -1056,6 +1042,10 @@ daughter sub child;
     <div class="tags">
         
         <b>Tags: </b>
+        
+        
+        
+        <a href="/pages/tag_graql.html" class="btn btn-default navbar-btn cursorNorm" role="button">graql</a>
         
         
         
@@ -1094,7 +1084,7 @@ daughter sub child;
         <br>
         <p>© 2016 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2017 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> December 2016<br/> Site last generated: Feb 2, 2017 <br />
+        <span>Page last updated:</span> February 2017<br/> Site last generated: Feb 8, 2017 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">

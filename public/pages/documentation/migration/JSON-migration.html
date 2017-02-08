@@ -315,21 +315,21 @@
             
             
             
-            <li><a href="/pages/documentation/building-an-ontology/basic-ontology.html">Defining a Basic Ontology</a></li>
+            <li><a href="/pages/documentation/building-an-ontology/basic-ontology.html">Define a Basic Ontology</a></li>
             
             
             
             
             
             
-            <li><a href="/pages/documentation/building-an-ontology/hierarchical-ontology.html">Defining a Hierarchical Ontology</a></li>
+            <li><a href="/pages/documentation/building-an-ontology/hierarchical-ontology.html">Define a Hierarchical Ontology</a></li>
             
             
             
             
             
             
-            <li><a href="/pages/documentation/building-an-ontology/rule-driven-ontology.html">Defining a Rule-Driven Ontology</a></li>
+            <li><a href="/pages/documentation/building-an-ontology/rule-driven-ontology.html">Define a Rule-Driven Ontology</a></li>
             
             
             
@@ -360,7 +360,7 @@
         
     
     <li>
-        <a href="#">Graql Querying</a>
+        <a href="#">Graql Queries</a>
         <ul>
             
             
@@ -495,7 +495,7 @@
         
     
     <li>
-        <a href="#">Migrating to Grakn</a>
+        <a href="#">Migrate to Grakn</a>
         <ul>
             
             
@@ -538,7 +538,7 @@
         
     
     <li>
-        <a href="#">Developing with Java</a>
+        <a href="#">Develop with Java</a>
         <ul>
             
             
@@ -785,9 +785,9 @@ $('#toc').on('click', 'a', function() {
 <p>This tutorial shows you how to populate Grakn with JSON data. If you have not yet set up the Grakn environment, please see the <a href="../get-started/setup-guide.html">setup guide</a>.</p>
 
 <h2 id="migration-shell-script-for-json">Migration Shell Script for JSON</h2>
-<p>The migration shell script can be found in <code class="highlighter-rouge">/bin</code> directory of your Grakn environment. Usage is specific to the type of migration being performed.</p>
+<p>The migration shell script can be found in <em>/bin</em> directory of your Grakn environment. We will illustrate its usage in an example below:</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>usage: migration.sh json -template &lt;arg&gt; -input &lt;arg&gt; <span class="o">[</span>-help] <span class="o">[</span>-no] <span class="o">[</span>-batch &lt;arg&gt;] <span class="o">[</span>-uri &lt;arg&gt;] <span class="o">[</span>-keyspace &lt;arg&gt;] <span class="o">[</span>-v]
+<div class="highlighter-rouge"><pre class="highlight"><code>usage: migration.sh json -template &lt;arg&gt; -input &lt;arg&gt; <span class="o">[</span>-help] <span class="o">[</span>-no] <span class="o">[</span>-batch &lt;arg&gt;] <span class="o">[</span>-uri &lt;arg&gt;] <span class="o">[</span>-keyspace &lt;arg&gt;] <span class="o">[</span>-v]
  
 OPTIONS
  -b,--batch &lt;arg&gt;      number of rows to load at once
@@ -802,23 +802,25 @@ OPTIONS
 </code></pre>
 </div>
 
+<div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> <b>Note:</b> The JSON migrator can handle either a directory or a file as the -input parameter!</div>
+
 <h2 id="json-migration-basics">JSON Migration Basics</h2>
 
-<p>There are limitations on the JSON format that prevent it from expressing the semantics of the data, so Grakn cannot automatically migrate and derive an ontology for your data. To have the full benefit of a knowledge graph, you must write the ontology for your dataset up-front.</p>
+<p>The steps to migrate the CSV to GRAKN.AI are:</p>
 
-<p>Once you have written an ontology for your dataset, you will template Graql statements that instruct the migrator on how your data can be mapped to your ontology. The JSON migrator will apply the template to each row of data in the JSON file, replacing the indicated sections in the template with provided data: the column header is the key and the content of each row at that column the value.</p>
+<ul>
+  <li>define an ontology for the data to derive the full benefit of a knowledge graph</li>
+  <li>create templated Graql to map the data to the ontology. Approach each JSON file as though you were inserting a single query, taking care that there are not more than one <code class="highlighter-rouge">match</code> or <code class="highlighter-rouge">insert</code> commands in your template.</li>
+  <li>invoke the Grakn migrator through the shell script or Java API.</li>
+</ul>
 
 <div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> <b>Note:</b> JSON Migration makes heavy use of the Graql templating language. You will need a foundation in Graql templating before continuing, so please read through our <a href="../graql/graql-templating.html">templating documentation</a> to find out more.</div>
-
-<p>Approach each JSON file as though you were inserting a single query. The migrator cannot handle multiple queries per file, so take care that there is not more than one <code class="highlighter-rouge">match</code> or <code class="highlighter-rouge">insert</code> command in your template. Take a look at our <a href="./migration-overview.html">other migration guides</a> for more ideas on how to use Graql templates with data.</p>
-
-<div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> <b>Note:</b> The JSON migrator can handle either a directory or a file as the -input parameter!</div>
 
 <h3 id="looping-over-a-json-array">Looping over a JSON array</h3>
 
 <p>As an example, let’s take some JSON:</p>
 
-<div class="language-json highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="w">
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="w">
     </span><span class="nt">"types"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="nt">"id"</span><span class="p">:</span><span class="mi">1</span><span class="s2">", "</span><span class="err">type</span><span class="s2">": "</span><span class="err">normal</span><span class="s2">" },
     {"</span><span class="err">id</span><span class="s2">":2"</span><span class="p">,</span><span class="w"> </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"fighting"</span><span class="w"> </span><span class="p">},</span><span class="w">
@@ -864,7 +866,7 @@ $x9 has description "fire" isa pokemon-type has type-id "10";
 
 <p>Once the above types are migrated, we can move on to the pokemon JSON file:</p>
 
-<div class="language-json highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="w">
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="w">
     </span><span class="nt">"pokemon"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
         </span><span class="p">{</span><span class="w">
             </span><span class="nt">"identifier"</span><span class="p">:</span><span class="s2">"Charmander"</span><span class="p">,</span><span class="w">
@@ -922,7 +924,7 @@ for(pokemon) do {
 }
 </code></pre>
 
-<p>It will resolve as:</p>
+<p>The resulting Graql statement, if printed out, looks as follows:</p>
 
 <pre><code class="language-graql">match $1 has type-id "1"; $2 has type-id "2";
 insert $p0 has height 6 has weight 85 isa pokemon has description "Charmander" has pokedex-no "4";
@@ -935,7 +937,7 @@ isa has-type (pokemon-with-type: $p2, type-of-pokemon: $2);
 </code></pre>
 
 <h2 id="where-next">Where Next?</h2>
-<p>You can find further documentation about migration in our API reference documentation (which is in the <code class="highlighter-rouge">/docs</code> directory of the distribution zip file, and also online <a href="https://grakn.ai/javadocs.html">here</a>.</p>
+<p>You can find further documentation about migration in our API reference documentation (which is in the <em>/docs</em> directory of the distribution zip file, and also online <a href="https://grakn.ai/javadocs.html">here</a>. An example of JSON migration using the Java API can be found on <a href="https://github.com/graknlabs/sample-projects/tree/master/example-json-migration">Github</a>.</p>
 
 <h2 id="comments">Comments</h2>
 <p>Want to leave a comment? Visit <a href="https://github.com/graknlabs/docs/issues/32" target="_blank">the issues on Github for this page</a> (you’ll need a GitHub account). You are also welcome to contribute to our documentation directly via the “Edit me” button at the top of the page.</p>
@@ -978,7 +980,7 @@ isa has-type (pokemon-with-type: $p2, type-of-pokemon: $2);
         <br>
         <p>© 2016 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2017 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> November 14th 2016<br/> Site last generated: Feb 2, 2017 <br />
+        <span>Page last updated:</span> February 2017<br/> Site last generated: Feb 8, 2017 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">

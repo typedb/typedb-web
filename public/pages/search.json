@@ -269,7 +269,7 @@
 
 ,
 {
-"title": "Defining a Basic Ontology",
+"title": "Define a Basic Ontology",
 "tags": "graph-apijavaadvanced-grakn",
 "keywords": "schema",
 "url": "/pages/documentation/building-an-ontology/basic-ontology.html",
@@ -480,8 +480,8 @@
 
 ,
 {
-"title": "Hierarchical Ontology",
-"tags": "javagraph-api",
+"title": "Define a Hierarchical Ontology",
+"tags": "graqljavagraph-api",
 "keywords": "overview",
 "url": "/pages/documentation/building-an-ontology/hierarchical-ontology.html",
 "summary": "How to build a hierarchical ontology"
@@ -634,7 +634,7 @@
 
 ,
 {
-"title": "Rule-Driven Ontology",
+"title": "Define a Rule-Driven Ontology",
 "tags": "javagraph-api",
 "keywords": "schema",
 "url": "/pages/documentation/building-an-ontology/rule-driven-ontology.html",

@@ -315,21 +315,21 @@
             
             
             
-            <li><a href="/pages/documentation/building-an-ontology/basic-ontology.html">Defining a Basic Ontology</a></li>
+            <li><a href="/pages/documentation/building-an-ontology/basic-ontology.html">Define a Basic Ontology</a></li>
             
             
             
             
             
             
-            <li><a href="/pages/documentation/building-an-ontology/hierarchical-ontology.html">Defining a Hierarchical Ontology</a></li>
+            <li><a href="/pages/documentation/building-an-ontology/hierarchical-ontology.html">Define a Hierarchical Ontology</a></li>
             
             
             
             
             
             
-            <li><a href="/pages/documentation/building-an-ontology/rule-driven-ontology.html">Defining a Rule-Driven Ontology</a></li>
+            <li><a href="/pages/documentation/building-an-ontology/rule-driven-ontology.html">Define a Rule-Driven Ontology</a></li>
             
             
             
@@ -360,7 +360,7 @@
         
     
     <li>
-        <a href="#">Graql Querying</a>
+        <a href="#">Graql Queries</a>
         <ul>
             
             
@@ -495,7 +495,7 @@
         
     
     <li>
-        <a href="#">Migrating to Grakn</a>
+        <a href="#">Migrate to Grakn</a>
         <ul>
             
             
@@ -538,7 +538,7 @@
         
     
     <li>
-        <a href="#">Developing with Java</a>
+        <a href="#">Develop with Java</a>
         <ul>
             
             
@@ -785,9 +785,9 @@ $('#toc').on('click', 'a', function() {
 <p>This tutorial shows you how to populate Grakn with CSV data. If you have not yet set up the Grakn environment, please see the <a href="../get-started/setup-guide.html">setup guide</a>.</p>
 
 <h2 id="migration-shell-script-for-csv">Migration Shell Script for CSV</h2>
-<p>The migration shell script can be found in <code class="highlighter-rouge">/bin</code> directory of your Grakn environment. Usage is specific to the type of migration being performed. For CSV:</p>
+<p>The migration shell script can be found in <em>/bin</em> directory of your Grakn environment. We will illustrate its usage in an example below:</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>usage: ./migration.sh csv -template &lt;arg&gt; -input &lt;arg&gt; <span class="o">[</span>-help] <span class="o">[</span>-no] <span class="o">[</span>-separator &lt;arg&gt;] <span class="o">[</span>-batch &lt;arg&gt;] <span class="o">[</span>-uri &lt;arg&gt;] <span class="o">[</span>-keyspace &lt;arg&gt;] <span class="o">[</span>-v]
+<div class="highlighter-rouge"><pre class="highlight"><code>usage: ./migration.sh csv -template &lt;arg&gt; -input &lt;arg&gt; <span class="o">[</span>-help] <span class="o">[</span>-no] <span class="o">[</span>-separator &lt;arg&gt;] <span class="o">[</span>-batch &lt;arg&gt;] <span class="o">[</span>-uri &lt;arg&gt;] <span class="o">[</span>-keyspace &lt;arg&gt;] <span class="o">[</span>-v]
 
 OPTIONS
  -b,--batch &lt;arg&gt;       number of rows to load at once
@@ -804,9 +804,13 @@ OPTIONS
 
 <h2 id="csv-migration-basics">CSV Migration Basics</h2>
 
-<p>There are limitations on the CSV format that prevent it from expressing the semantics of the data. Grakn cannot automatically migrate and derive an ontology for your data. To have the full benefit of a knowledge graph, you must write the ontology for your dataset.</p>
+<p>The steps to migrate the CSV to GRAKN.AI are:</p>
 
-<p>Once you have written an ontology for your dataset, you will template Graql statements that instruct the migrator on how your data can be mapped to your ontology. The CSV migrator will apply the template to each row of data in the CSV file, replacing the sections indicated in the template with provided data: the column header is the key and the content of each row at that column the value.</p>
+<ul>
+  <li>define an ontology for the data to derive the full benefit of a knowledge graph</li>
+  <li>create templated Graql to map the data to the ontology</li>
+  <li>invoke the Grakn migrator through the shell script or Java API. The CSV migrator will apply the template to each row of data in the CSV file, replacing the sections indicated in the template with provided data: the column header is the key and the content of each row at that column the value.</li>
+</ul>
 
 <div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> <b>Note:</b> CSV Migration makes heavy use of the Graql templating language. You will need a foundation in Graql templating before continuing, so please read through our <a href="../graql/graql-templating.html">templating documentation</a> to find out more.</div>
 
@@ -825,10 +829,10 @@ OPTIONS
 <pre><code class="language-graql">insert
 
 car sub entity
-    has-resource name
-    has-resource year
-    has-resource description
-    has-resource price;
+  has-resource name
+  has-resource year
+  has-resource description
+  has-resource price;
 
 name sub resource datatype string;
 year sub resource datatype string;
@@ -842,21 +846,21 @@ price sub resource datatype double;
 <pre><code class="language-graql-template">insert 
 
 $x isa car 
-    has name &lt;Make&gt;-&lt;Model&gt;
-    has year &lt;Year&gt;
-    has price @double(Price)
-    if (ne Description null) do { has description &lt;Description&gt;};
+  has name &lt;Make&gt;-&lt;Model&gt;
+  has year &lt;Year&gt;
+  has price @double(Price)
+  if (ne Description null) do { has description &lt;Description&gt;};
 </code></pre>
 
 <p>The template will create a <code class="highlighter-rouge">car</code> entity for each row. It will attach <code class="highlighter-rouge">year</code> and <code class="highlighter-rouge">price</code> resources to each of these entities. If the <code class="highlighter-rouge">description</code> resource is present in the data, it will attach the appropriate <code class="highlighter-rouge">description</code> to the <code class="highlighter-rouge">car</code>.</p>
 
-<p>The template is applied to each row:</p>
+<p>The template is applied to each row by calling the migration script:</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>./&lt;grakn-install-location&gt;/bin/migration.sh csv -i ./cars.csv -t ./car-migrator.gql
+<div class="highlighter-rouge"><pre class="highlight"><code>./&lt;grakn-install-location&gt;/bin/migration.sh csv -i ./cars.csv -t ./car-migrator.gql
 </code></pre>
 </div>
 
-<p>The resulting Graql statement, if printed out, looks like:</p>
+<p>The resulting Graql statement, if printed out, looks as follows:</p>
 
 <pre><code class="language-graql">insert $x0 isa car has name "Ford" has description "ac, abs, moon" has price 3000.0 has year "1997";
 insert $x0 isa car has name "Chevy" has price 4900.0 has year "1999";
@@ -869,8 +873,6 @@ insert $x0 isa car has description "MUST SELL! air, moon roof, loaded" has price
 
 <p>The <code class="highlighter-rouge">separator</code> option allows you to specify the column separator. With this we are able to migrate a wider range of formats, including TSV.</p>
 
-<p>This file would be migrated in the same way as the previous example when you specify the separator using the <code class="highlighter-rouge">-s \t</code> argument:</p>
-
 <pre><code class="language-tsv">Year  Make  Model Description Price
 1997  Ford  E350  "ac  abs   moon"  3000.00
 1999  Chevy "Venture" ""  4900.00
@@ -878,10 +880,16 @@ insert $x0 isa car has description "MUST SELL! air, moon roof, loaded" has price
 air  moon roof   loaded"  4799.00
 </code></pre>
 
+<p>This file would be migrated in the same way as the previous example when you specify the separator using the <code class="highlighter-rouge">-s \t</code> argument:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>./&lt;grakn-install-location&gt;/bin/migration.sh csv -i ./cars.tsv -t ./car-migrator.gql -s <span class="se">\t</span>
+</code></pre>
+</div>
+
 <h2 id="where-next">Where Next?</h2>
 <p>We have an additional, more extensive, example that <a href="../examples/CSV-migration.html">migrates genealogy data from CSV</a>. Our <a href="https://github.com/graknlabs/sample-projects">sample-projects repository on Github</a> also contains <a href="https://github.com/graknlabs/sample-projects/tree/master/example-csv-migration-pets">an example that migrates a simple CSV pets dataset</a>, and another <a href="https://github.com/graknlabs/sample-projects/tree/master/example-csv-migration-games">example for video games</a>, was described in a separate <a href="https://blog.grakn.ai/twenty-years-of-games-in-grakn-14faa974b16e#.do8tq0dm8">blog post</a>.</p>
 
-<p>You can find further documentation about migration in our API reference documentation (which is in the <code class="highlighter-rouge">/docs</code> directory of the distribution zip file, and also online <a href="https://grakn.ai/javadocs.html">here</a>.</p>
+<p>You can find further documentation about migration in our API reference documentation (which is in the <em>/docs</em> directory of the distribution zip file, and also online <a href="https://grakn.ai/javadocs.html">here</a>.</p>
 
 <h2 id="comments">Comments</h2>
 <p>Want to leave a comment? Visit <a href="https://github.com/graknlabs/docs/issues/32" target="_blank">the issues on Github for this page</a> (you’ll need a GitHub account). You are also welcome to contribute to our documentation directly via the “Edit me” button at the top of the page.</p>
@@ -924,7 +932,7 @@ air  moon roof   loaded"  4799.00
         <br>
         <p>© 2016 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2017 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> November 2nd 2016<br/> Site last generated: Feb 2, 2017 <br />
+        <span>Page last updated:</span> February 2017<br/> Site last generated: Feb 8, 2017 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">

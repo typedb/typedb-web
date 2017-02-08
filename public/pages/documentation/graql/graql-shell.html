@@ -315,21 +315,21 @@
             
             
             
-            <li><a href="/pages/documentation/building-an-ontology/basic-ontology.html">Defining a Basic Ontology</a></li>
+            <li><a href="/pages/documentation/building-an-ontology/basic-ontology.html">Define a Basic Ontology</a></li>
             
             
             
             
             
             
-            <li><a href="/pages/documentation/building-an-ontology/hierarchical-ontology.html">Defining a Hierarchical Ontology</a></li>
+            <li><a href="/pages/documentation/building-an-ontology/hierarchical-ontology.html">Define a Hierarchical Ontology</a></li>
             
             
             
             
             
             
-            <li><a href="/pages/documentation/building-an-ontology/rule-driven-ontology.html">Defining a Rule-Driven Ontology</a></li>
+            <li><a href="/pages/documentation/building-an-ontology/rule-driven-ontology.html">Define a Rule-Driven Ontology</a></li>
             
             
             
@@ -360,7 +360,7 @@
         
     
     <li>
-        <a href="#">Graql Querying</a>
+        <a href="#">Graql Queries</a>
         <ul>
             
             
@@ -495,7 +495,7 @@
         
     
     <li>
-        <a href="#">Migrating to Grakn</a>
+        <a href="#">Migrate to Grakn</a>
         <ul>
             
             
@@ -538,7 +538,7 @@
         
     
     <li>
-        <a href="#">Developing with Java</a>
+        <a href="#">Develop with Java</a>
         <ul>
             
             
@@ -783,7 +783,7 @@ $('#toc').on('click', 'a', function() {
 
   <p>The Graql shell is contained in the <code class="highlighter-rouge">bin</code> folder. After starting the Grakn server, as shown below, you can start the Graql shell, without any parameters, to open a REPL (Read Evaluate Print Loop):</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>&lt;relative-path-to-Grakn&gt;/bin/grakn.sh start 
+<div class="highlighter-rouge"><pre class="highlight"><code>&lt;relative-path-to-Grakn&gt;/bin/grakn.sh start 
 &lt;relative-path-to-Grakn&gt;/bin/graql.sh
 </code></pre>
 </div>
@@ -842,13 +842,13 @@ $('#toc').on('click', 'a', function() {
       <td><code class="highlighter-rouge">--materialise</code></td>
       <td><code class="highlighter-rouge">-m</code></td>
       <td>Materialise inferred results.</td>
-      <td> </td>
+      <td>Materialisation is not enabled by default at present, although as Grakn develops, we expect that to change.</td>
     </tr>
     <tr>
       <td><code class="highlighter-rouge">--infer</code></td>
       <td><code class="highlighter-rouge">-n</code></td>
       <td>Perform inference on results.</td>
-      <td> </td>
+      <td>Reasoning is not enabled by default at present, although as Grakn develops, we expect that to change.</td>
     </tr>
     <tr>
       <td><code class="highlighter-rouge">--output &lt;arg&gt;</code></td>
@@ -887,13 +887,13 @@ $('#toc').on('click', 'a', function() {
 
 <p>For example, to load some data from a file into a graph:</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>bin/graql.sh -f ./examples/mammal-dataset.gql
+<div class="highlighter-rouge"><pre class="highlight"><code>bin/graql.sh -f ./examples/mammal-dataset.gql
 </code></pre>
 </div>
 
 <p>To load data into a different graph, or keyspace, you can specify the graph name:</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>./graql.sh -k &lt;graphname&gt; -f ./examples/reptile-dataset.gql
+<div class="highlighter-rouge"><pre class="highlight"><code>./graql.sh -k &lt;graphname&gt; -f ./examples/reptile-dataset.gql
 </code></pre>
 </div>
 
@@ -1021,7 +1021,7 @@ $('#toc').on('click', 'a', function() {
         <br>
         <p>© 2016 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2017 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> January 2017<br/> Site last generated: Feb 2, 2017 <br />
+        <span>Page last updated:</span> January 2017<br/> Site last generated: Feb 8, 2017 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">
