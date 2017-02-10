@@ -334,27 +334,6 @@
             
             
             
-            
-            
-            <li><a href="/pages/documentation/building-an-ontology/ontology-overview.html">Overview (deprecated)</a></li>
-            
-            
-            
-            
-            
-            
-            <li><a href="/pages/documentation/building-an-ontology/simple-schema-definition.html">Simple Schema (deprecated)</a></li>
-            
-            
-            
-            
-            
-            
-            <li><a href="/pages/documentation/building-an-ontology/advanced-schema-definition.html">Advanced Schema (deprecated)</a></li>
-            
-            
-            
-            
         </ul>
         
         
@@ -478,13 +457,6 @@
             
             
             
-            <li><a href="/pages/documentation/graql-analytics/analytics-persist.html">Analytics Persist</a></li>
-            
-            
-            
-            
-            
-            
             <li><a href="/pages/documentation/graql-analytics/analytics-connected-components.html">Connected Components</a></li>
             
             
@@ -557,7 +529,28 @@
             
             
             
-            <li><a href="/pages/documentation/developing-with-java/java-graql.html">Java Graql</a></li>
+            <li><a href="/pages/documentation/developing-with-java/java-graql.html">Java Graql API</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="/pages/documentation/developing-with-java/migration-api.html">Migration API</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="/pages/documentation/developing-with-java/loader-api.html">Loader API</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="/pages/documentation/developing-with-java/advanced-java.html">Advanced Java Development</a></li>
             
             
             
@@ -783,6 +776,42 @@ $('#toc').on('click', 'a', function() {
 
   <div class="alert alert-danger" role="alert"><i class="fa fa-exclamation-circle"></i> <b>Warning:</b> Please note that this page is in progress and subject to revision.</div>
 
+<!--
+What is the difference between the Graph API and Java Graql API?
+Use the Graph API for:
+
+* Manipulating and inserting
+* A more efficient but advanced construction API for building API
+
+Java Graql API?
+Used for Querying - for traversals
+-->
+
+<!-- From Jo: @Filipe - please include something about rules and the graph API. This from earlier documentation - feel free to re-use or update... -->
+
+<h3 id="rule-java-api">Rule Java API</h3>
+<p>All rule instances are of type inference-rule which can be retrieved by:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">RuleType</span> <span class="n">inferenceRule</span> <span class="o">=</span> <span class="n">graknGraph</span><span class="o">.</span><span class="na">getMetaRuleInference</span><span class="o">();</span>
+</code></pre>
+</div>
+
+<p>Rule instances can be added to the graph both through the Graph API as well as through Graql. Considering the ancestor example, with the use of the Graph API we can add the rules in the following way:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">Pattern</span> <span class="n">r1Body</span> <span class="o">=</span> <span class="n">var</span><span class="o">().</span><span class="na">rel</span><span class="o">(</span><span class="s">"parent"</span><span class="o">,</span> <span class="s">"x"</span><span class="o">).</span><span class="na">rel</span><span class="o">(</span><span class="s">"child"</span><span class="o">,</span> <span class="s">"y"</span><span class="o">).</span><span class="na">isa</span><span class="o">(</span><span class="s">"Parent"</span><span class="o">);</span>
+<span class="n">Pattern</span> <span class="n">r1Head</span> <span class="o">=</span> <span class="n">var</span><span class="o">().</span><span class="na">rel</span><span class="o">(</span><span class="s">"ancestor"</span><span class="o">,</span> <span class="s">"x"</span><span class="o">).</span><span class="na">rel</span><span class="o">(</span><span class="s">"descendant"</span><span class="o">,</span> <span class="s">"y"</span><span class="o">).</span><span class="na">isa</span><span class="o">(</span><span class="s">"Ancestor"</span><span class="o">);</span>
+
+<span class="n">Pattern</span> <span class="n">r2Body</span> <span class="o">=</span> <span class="n">and</span><span class="o">(</span>
+        <span class="n">var</span><span class="o">().</span><span class="na">rel</span><span class="o">(</span><span class="s">"parent"</span><span class="o">,</span> <span class="s">"x"</span><span class="o">).</span><span class="na">rel</span><span class="o">(</span><span class="s">"child"</span><span class="o">,</span> <span class="s">"y"</span><span class="o">).</span><span class="na">isa</span><span class="o">(</span><span class="s">"Parent')"</span><span class="o">),</span>
+        <span class="n">var</span><span class="o">().</span><span class="na">rel</span><span class="o">(</span><span class="s">"ancestor"</span><span class="o">,</span> <span class="s">"z"</span><span class="o">).</span><span class="na">rel</span><span class="o">(</span><span class="s">"descendant"</span><span class="o">,</span> <span class="s">"y"</span><span class="o">).</span><span class="na">isa</span><span class="o">(</span><span class="s">"Ancestor"</span><span class="o">)</span>
+<span class="o">);</span>
+<span class="n">Pattern</span> <span class="n">r2Head</span> <span class="o">=</span> <span class="n">var</span><span class="o">().</span><span class="na">rel</span><span class="o">(</span><span class="s">"ancestor"</span><span class="o">,</span> <span class="s">"x"</span><span class="o">).</span><span class="na">rel</span><span class="o">(</span><span class="s">"descendant"</span><span class="o">,</span> <span class="s">"y"</span><span class="o">).</span><span class="na">isa</span><span class="o">(</span><span class="s">"Ancestor"</span><span class="o">);</span>
+
+<span class="n">Rule</span> <span class="n">rule1</span> <span class="o">=</span> <span class="n">inferenceRule</span><span class="o">.</span><span class="na">addRule</span><span class="o">(</span><span class="n">r1Body</span><span class="o">,</span> <span class="n">r1Head</span><span class="o">);</span>
+<span class="n">Rule</span> <span class="n">rule2</span> <span class="o">=</span> <span class="n">inferenceRule</span><span class="o">.</span><span class="na">addRule</span><span class="o">(</span><span class="n">r2Body</span><span class="o">,</span> <span class="n">r2Head</span><span class="o">);</span>
+</code></pre>
+</div>
+
 <h2 id="comments">Comments</h2>
 <p>Want to leave a comment? Visit <a href="https://github.com/graknlabs/docs/issues/23" target="_blank">the issues on Github for this page</a> (you’ll need a GitHub account). You are also welcome to contribute to our documentation directly via the “Edit me” button at the top of the page.</p>
 
@@ -825,7 +854,7 @@ $('#toc').on('click', 'a', function() {
         <br>
         <p>© 2016 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2017 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> Development 2016<br/> Site last generated: Feb 8, 2017 <br />
+        <span>Page last updated:</span> Development 2016<br/> Site last generated: Feb 10, 2017 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">

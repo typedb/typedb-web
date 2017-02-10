@@ -334,27 +334,6 @@
             
             
             
-            
-            
-            <li><a href="/pages/documentation/building-an-ontology/ontology-overview.html">Overview (deprecated)</a></li>
-            
-            
-            
-            
-            
-            
-            <li><a href="/pages/documentation/building-an-ontology/simple-schema-definition.html">Simple Schema (deprecated)</a></li>
-            
-            
-            
-            
-            
-            
-            <li><a href="/pages/documentation/building-an-ontology/advanced-schema-definition.html">Advanced Schema (deprecated)</a></li>
-            
-            
-            
-            
         </ul>
         
         
@@ -478,13 +457,6 @@
             
             
             
-            <li><a href="/pages/documentation/graql-analytics/analytics-persist.html">Analytics Persist</a></li>
-            
-            
-            
-            
-            
-            
             <li><a href="/pages/documentation/graql-analytics/analytics-connected-components.html">Connected Components</a></li>
             
             
@@ -557,7 +529,28 @@
             
             
             
-            <li class="active"><a href="/pages/documentation/developing-with-java/java-graql.html">Java Graql</a></li>
+            <li class="active"><a href="/pages/documentation/developing-with-java/java-graql.html">Java Graql API</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="/pages/documentation/developing-with-java/migration-api.html">Migration API</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="/pages/documentation/developing-with-java/loader-api.html">Loader API</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="/pages/documentation/developing-with-java/advanced-java.html">Advanced Java Development</a></li>
             
             
             
@@ -902,6 +895,50 @@ objects:</p>
 </code></pre>
 </div>
 
+<h2 id="reasoning">Reasoning</h2>
+
+<p>Reasoning can be configured using <code class="highlighter-rouge">QueryBuilder</code> objects in the following way:</p>
+
+<h3 id="switching-reasoning-on">Switching reasoning on</h3>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="c1">//graph is a GraknGraph instance</span>
+<span class="n">QueryBuilder</span> <span class="n">qb</span> <span class="o">=</span> <span class="n">graph</span><span class="o">.</span><span class="na">graql</span><span class="o">().</span><span class="na">infer</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>
+</code></pre>
+</div>
+
+<h3 id="switching-materialisation-on">Switching materialisation on</h3>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="c1">//graph is a GraknGraph instance</span>
+<span class="n">QueryBuilder</span> <span class="n">qb</span> <span class="o">=</span> <span class="n">graph</span><span class="o">.</span><span class="na">graql</span><span class="o">().</span><span class="na">infer</span><span class="o">(</span><span class="kc">true</span><span class="o">).</span><span class="na">materialise</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>
+</code></pre>
+</div>
+
+<p>Once the <code class="highlighter-rouge">QueryBuilder</code> has been defined, the constructed queries will obey the specified reasoning variants.</p>
+
+<p>The table below summarises the available reasoning configuration options together with their defaults.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Option</th>
+      <th style="text-align: left">Description</th>
+      <th style="text-align: left">Default</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="highlighter-rouge">QueryBuilder::infer(boolean)</code></td>
+      <td style="text-align: left">controls whether reasoning should be turned on</td>
+      <td style="text-align: left">False=Off</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">QueryBuilder::materialise(boolean)</code></td>
+      <td style="text-align: left">controls whether inferred knowledge should be persisted to graph</td>
+      <td style="text-align: left">False=Off</td>
+    </tr>
+  </tbody>
+</table>
+
 <h2 id="comments">Comments</h2>
 <p>Want to leave a comment? Visit <a href="https://github.com/graknlabs/docs/issues/23" target="_blank">the issues on Github for this page</a> (you’ll need a GitHub account). You are also welcome to contribute to our documentation directly via the “Edit me” button at the top of the page.</p>
 
@@ -948,7 +985,7 @@ objects:</p>
         <br>
         <p>© 2016 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2017 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> August 11, 2016<br/> Site last generated: Feb 8, 2017 <br />
+        <span>Page last updated:</span> February 2017<br/> Site last generated: Feb 10, 2017 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">

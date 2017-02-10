@@ -334,27 +334,6 @@
             
             
             
-            
-            
-            <li><a href="/pages/documentation/building-an-ontology/ontology-overview.html">Overview (deprecated)</a></li>
-            
-            
-            
-            
-            
-            
-            <li><a href="/pages/documentation/building-an-ontology/simple-schema-definition.html">Simple Schema (deprecated)</a></li>
-            
-            
-            
-            
-            
-            
-            <li><a href="/pages/documentation/building-an-ontology/advanced-schema-definition.html">Advanced Schema (deprecated)</a></li>
-            
-            
-            
-            
         </ul>
         
         
@@ -478,13 +457,6 @@
             
             
             
-            <li><a href="/pages/documentation/graql-analytics/analytics-persist.html">Analytics Persist</a></li>
-            
-            
-            
-            
-            
-            
             <li><a href="/pages/documentation/graql-analytics/analytics-connected-components.html">Connected Components</a></li>
             
             
@@ -557,7 +529,28 @@
             
             
             
-            <li><a href="/pages/documentation/developing-with-java/java-graql.html">Java Graql</a></li>
+            <li><a href="/pages/documentation/developing-with-java/java-graql.html">Java Graql API</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="/pages/documentation/developing-with-java/migration-api.html">Migration API</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="/pages/documentation/developing-with-java/loader-api.html">Loader API</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="/pages/documentation/developing-with-java/advanced-java.html">Advanced Java Development</a></li>
             
             
             
@@ -790,7 +783,7 @@ $('#toc').on('click', 'a', function() {
 <h2 id="install-graknai">Install GRAKN.AI</h2>
 <div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> <b>Note:</b> <strong>Prerequisites</strong>   <br />
 GRAKN.AI requires Java 8 (Standard Edition) with the <code class="highlighter-rouge">$JAVA_HOME</code> set accordingly. If you don’t already have this installed, you can find it <a href="http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html">here</a>.<br />
-If you intend to build Grakn, or develop on top of it, you will also need Maven 3.</div>
+If you intend to build Grakn from source code, or develop on top of it, you will also need Maven 3.</div>
 
 <p>Unzip the download into your preferred location and run the following in the terminal to start Grakn:</p>
 
@@ -817,7 +810,7 @@ To remove all graphs from Grakn, run <code class="highlighter-rouge">grakn.sh cl
 
 <h2 id="test-the-graql-shell">Test the Graql Shell</h2>
 
-<p>To test that the installation is working correctly, we will load a simple ontology and some data from a file, <em>basic-genealogy.gql</em> and test it in the Graql shell and Grakn Visualiser. The <em>basic-genealogy.gql</em> file will be included in the <em>/examples</em> folder of the Grakn installation zip from the next release and onwards. It is not currently in the zip, so you will need to get it from the <a href="https://github.com/graknlabs/grakn/blob/master/grakn-dist/src/examples/basic-genealogy.gql">Grakn repo on Github</a>. In the code below, we assume that the file is in the <em>/examples</em> folder.</p>
+<p>To test that the installation is working correctly, we will load a simple ontology and some data from a file, <em>basic-genealogy.gql</em> and test it in the Graql shell and Grakn Visualiser. The <em>basic-genealogy.gql</em> file will be included in the <em>/examples</em> folder of the Grakn installation zip from release 0.11.0 and onwards. You can also download it from the <a href="https://github.com/graknlabs/grakn/blob/master/grakn-dist/src/examples/basic-genealogy.gql">Grakn repo on Github</a>. In the code below, we assume that the file is in the <em>/examples</em> folder.</p>
 
 <p>Type in the following to load the example graph. This starts the Graql shell in non-interactive mode, loading the specified file and exiting after the load is complete.</p>
 
@@ -901,7 +894,7 @@ To remove all graphs from Grakn, run <code class="highlighter-rouge">grakn.sh cl
         <br>
         <p>© 2016 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2017 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> August 10, 2016<br/> Site last generated: Feb 8, 2017 <br />
+        <span>Page last updated:</span> August 10, 2016<br/> Site last generated: Feb 10, 2017 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">

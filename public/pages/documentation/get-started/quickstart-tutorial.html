@@ -334,27 +334,6 @@
             
             
             
-            
-            
-            <li><a href="/pages/documentation/building-an-ontology/ontology-overview.html">Overview (deprecated)</a></li>
-            
-            
-            
-            
-            
-            
-            <li><a href="/pages/documentation/building-an-ontology/simple-schema-definition.html">Simple Schema (deprecated)</a></li>
-            
-            
-            
-            
-            
-            
-            <li><a href="/pages/documentation/building-an-ontology/advanced-schema-definition.html">Advanced Schema (deprecated)</a></li>
-            
-            
-            
-            
         </ul>
         
         
@@ -478,13 +457,6 @@
             
             
             
-            <li><a href="/pages/documentation/graql-analytics/analytics-persist.html">Analytics Persist</a></li>
-            
-            
-            
-            
-            
-            
             <li><a href="/pages/documentation/graql-analytics/analytics-connected-components.html">Connected Components</a></li>
             
             
@@ -557,7 +529,28 @@
             
             
             
-            <li><a href="/pages/documentation/developing-with-java/java-graql.html">Java Graql</a></li>
+            <li><a href="/pages/documentation/developing-with-java/java-graql.html">Java Graql API</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="/pages/documentation/developing-with-java/migration-api.html">Migration API</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="/pages/documentation/developing-with-java/loader-api.html">Loader API</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="/pages/documentation/developing-with-java/advanced-java.html">Advanced Java Development</a></li>
             
             
             
@@ -787,7 +780,7 @@ $('#toc').on('click', 'a', function() {
 
 <h2 id="introduction">Introduction</h2>
 
-<p>If you have not yet set up GRAKN.AI, please see the <a href="../get-started/setup-guide.html">Setup guide</a>. In this tutorial, we will load a simple ontology and some data from a file, <em>basic-genealogy.gql</em> and test it in the Graql shell and Grakn Visualiser. The <em>basic-genealogy.gql</em> file will be included in the <em>/examples</em> folder of the Grakn installation zip from the next release and onwards. It is not currently in the zip, so you will need to get it from the <a href="https://github.com/graknlabs/grakn/blob/master/grakn-dist/src/examples/basic-genealogy.gql">Grakn repo on Github</a>. In the code below, we assume that it is in the <em>/examples</em> folder.</p>
+<p>If you have not yet set up GRAKN.AI, please see the <a href="../get-started/setup-guide.html">Setup guide</a>. In this tutorial, we will load a simple ontology and some data from a file, <em>basic-genealogy.gql</em> and test it in the Graql shell and Grakn Visualiser. The <em>basic-genealogy.gql</em> file will be included in the <em>/examples</em> folder of the Grakn installation zip from release 0.11.0 and onwards. It can also be downloaded from the <a href="https://github.com/graknlabs/grakn/blob/master/grakn-dist/src/examples/basic-genealogy.gql">Grakn repo on Github</a>. In the code below, we assume that it is in the <em>/examples</em> folder.</p>
 
 <h2 id="the-graql-shell">The Graql Shell</h2>
 
@@ -880,7 +873,7 @@ child sub role;
   <li>there is one entity, <code class="highlighter-rouge">person</code>, which represents a person in the family whose genealogy data we are studying.</li>
   <li>the <code class="highlighter-rouge">person</code> entity has a number of resources to describe aspects of them, such as their name, age, dates of birth and death, gender and a URL to a picture of them (if one exists). Those resources are all expressed as strings, except for the age, which is of datatype long.</li>
   <li>there are two relations that a <code class="highlighter-rouge">person</code> can participate in: <code class="highlighter-rouge">marriage</code> and <code class="highlighter-rouge">parentship</code></li>
-  <li>the person can play different roles in those relations, as a spouse (<code class="highlighter-rouge">spouse1</code> or <code class="highlighter-rouge">spouse2</code> - we aren’t assigning them by gender to be husband or wife at this point) and as a <code class="highlighter-rouge">parent</code> or <code class="highlighter-rouge">child</code> (again, we are not assigning a gender such as mother or father at this point).</li>
+  <li>the person can play different roles in those relations, as a spouse (<code class="highlighter-rouge">spouse1</code> or <code class="highlighter-rouge">spouse2</code> - we aren’t assigning them by gender to be husband or wife) and as a <code class="highlighter-rouge">parent</code> or <code class="highlighter-rouge">child</code> (again, we are not assigning a gender such as mother or father).</li>
   <li>the <code class="highlighter-rouge">marriage</code> relation has a resource, which is a URL to a wedding picture, if one exists.</li>
 </ul>
 
@@ -1135,7 +1128,7 @@ rhs
         <br>
         <p>© 2016 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2017 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> January 2017<br/> Site last generated: Feb 8, 2017 <br />
+        <span>Page last updated:</span> January 2017<br/> Site last generated: Feb 10, 2017 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">

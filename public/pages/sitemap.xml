@@ -50,13 +50,13 @@
   
   
   <url>
-    <loc>http://grakn.ai/pages//documentation/examples/CSV-migration.html</loc>
+    <loc>http://grakn.ai/pages//documentation/migration/CSV-migration.html</loc>
   </url>
   
   
   
   <url>
-    <loc>http://grakn.ai/pages//documentation/migration/CSV-migration.html</loc>
+    <loc>http://grakn.ai/pages//documentation/examples/CSV-migration.html</loc>
   </url>
   
   
@@ -80,13 +80,19 @@
   
   
   <url>
+    <loc>http://grakn.ai/pages//documentation/migration/SQL-migration.html</loc>
+  </url>
+  
+  
+  
+  <url>
     <loc>http://grakn.ai/pages//documentation/examples/SQL-migration.html</loc>
   </url>
   
   
   
   <url>
-    <loc>http://grakn.ai/pages//documentation/migration/SQL-migration.html</loc>
+    <loc>http://grakn.ai/pages//documentation/developing-with-java/advanced-java.html</loc>
   </url>
   
   
@@ -117,12 +123,6 @@
   
   <url>
     <loc>http://grakn.ai/pages//documentation/graql-analytics/analytics-overview.html</loc>
-  </url>
-  
-  
-  
-  <url>
-    <loc>http://grakn.ai/pages//documentation/graql-analytics/analytics-persist.html</loc>
   </url>
   
   
@@ -244,13 +244,13 @@
   
   
   <url>
-    <loc>http://grakn.ai/pages//documentation/examples/graql-reasoning.html</loc>
+    <loc>http://grakn.ai/pages//documentation/graql/graql-rules.html</loc>
   </url>
   
   
   
   <url>
-    <loc>http://grakn.ai/pages//documentation/graql/graql-rules.html</loc>
+    <loc>http://grakn.ai/pages//documentation/examples/graql-reasoning.html</loc>
   </url>
   
   
@@ -292,7 +292,19 @@
   
   
   <url>
+    <loc>http://grakn.ai/pages//documentation/developing-with-java/loader-api.html</loc>
+  </url>
+  
+  
+  
+  <url>
     <loc>http://grakn.ai/pages//documentation/graql/match-queries.html</loc>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://grakn.ai/pages//documentation/developing-with-java/migration-api.html</loc>
   </url>
   
   
@@ -394,12 +406,6 @@
   
   
   
-  
-  
-  
-  <url>
-    <loc>http://grakn.ai/pages//documentation/developing-with-java/multithreading.html</loc>
-  </url>
   
   
   

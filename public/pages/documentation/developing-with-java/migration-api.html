@@ -3,9 +3,9 @@
     <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="">
-<meta name="keywords" content="analytics,  , GRAKN.AI, Grakn Labs, grakn, graql, grakn.ai, Mindmaps Research, Mindmaps Research Ltd, MindmapsDB, mindmaps, mindmaps graph, mindmaps.io, knowledge graph, distributed knowledge graph, development platform, developer tool, data platform, programming langauge, query langauge, database, semantic database, distributed semantic database, distributed database, graph database, semantic search, data exploration, recommendation system, knowledge management, knowledge engineering, real-time analytics, advanced analytics, reasoning engine, inference engine, expert systems, semantic applications, research engines, data management, business intelligence, big data, semantic web, semantic data, knowledge representation, automated reasoning, semantic network, knowledge ontology, semantic graph, ontology engineering, graph based knowledge representation, artificial intelligence,">
-<title>GRAKN.AI - Persisting to the Graph</title>
+<meta name="description" content="The Java Migration API">
+<meta name="keywords" content="javamigration,  java, GRAKN.AI, Grakn Labs, grakn, graql, grakn.ai, Mindmaps Research, Mindmaps Research Ltd, MindmapsDB, mindmaps, mindmaps graph, mindmaps.io, knowledge graph, distributed knowledge graph, development platform, developer tool, data platform, programming langauge, query langauge, database, semantic database, distributed semantic database, distributed database, graph database, semantic search, data exploration, recommendation system, knowledge management, knowledge engineering, real-time analytics, advanced analytics, reasoning engine, inference engine, expert systems, semantic applications, research engines, data management, business intelligence, big data, semantic web, semantic data, knowledge representation, automated reasoning, semantic network, knowledge ontology, semantic graph, ontology engineering, graph based knowledge representation, artificial intelligence,">
+<title>GRAKN.AI - Migration API</title>
 <link rel="stylesheet" href="/pages/css/syntax.css">
 
 
@@ -228,7 +228,7 @@
                             
                             dataSource: '/pages/search.json',
                             
-                            searchResultTemplate: '<li><a href="{url}" title="Persisting to the Graph">{title}</a></li>',
+                            searchResultTemplate: '<li><a href="{url}" title="Migration API">{title}</a></li>',
                             noResultsText: '<li><a class="empty">No results found</a></li>',
                             limit: 10,
                             fuzzy: true
@@ -330,27 +330,6 @@
             
             
             <li><a href="/pages/documentation/building-an-ontology/rule-driven-ontology.html">Define a Rule-Driven Ontology</a></li>
-            
-            
-            
-            
-            
-            
-            <li><a href="/pages/documentation/building-an-ontology/ontology-overview.html">Overview (deprecated)</a></li>
-            
-            
-            
-            
-            
-            
-            <li><a href="/pages/documentation/building-an-ontology/simple-schema-definition.html">Simple Schema (deprecated)</a></li>
-            
-            
-            
-            
-            
-            
-            <li><a href="/pages/documentation/building-an-ontology/advanced-schema-definition.html">Advanced Schema (deprecated)</a></li>
             
             
             
@@ -478,13 +457,6 @@
             
             
             
-            <li class="active"><a href="/pages/documentation/graql-analytics/analytics-persist.html">Analytics Persist</a></li>
-            
-            
-            
-            
-            
-            
             <li><a href="/pages/documentation/graql-analytics/analytics-connected-components.html">Connected Components</a></li>
             
             
@@ -557,7 +529,28 @@
             
             
             
-            <li><a href="/pages/documentation/developing-with-java/java-graql.html">Java Graql</a></li>
+            <li><a href="/pages/documentation/developing-with-java/java-graql.html">Java Graql API</a></li>
+            
+            
+            
+            
+            
+            
+            <li class="active"><a href="/pages/documentation/developing-with-java/migration-api.html">Migration API</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="/pages/documentation/developing-with-java/loader-api.html">Loader API</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="/pages/documentation/developing-with-java/advanced-java.html">Advanced Java Development</a></li>
             
             
             
@@ -735,7 +728,7 @@
         <!-- Content Column -->
         <div class="col-md-9">
             <div class="post-header">
-   <h1 class="post-title-main">Persisting to the Graph</h1>
+   <h1 class="post-title-main">Migration API</h1>
 </div>
 
 
@@ -743,7 +736,7 @@
 <div class="post-content">
 
    
-    <div class="summary"></div>
+    <div class="summary">The Java Migration API</div>
    
 
     
@@ -775,31 +768,17 @@ $('#toc').on('click', 'a', function() {
 
     
 
-    <a target="_blank" href="https://github.com/graknlabs/docs/blob/master/pages/documentation/5-graql-analytics/analytics-persist.md" class="btn btn-default githubEditButton" role="button"><i class="fa fa-github fa-lg"></i> Edit me</a>
+    <a target="_blank" href="https://github.com/graknlabs/docs/blob/master/pages/documentation/7-developing-with-java/migration-api.md" class="btn btn-default githubEditButton" role="button"><i class="fa fa-github fa-lg"></i> Edit me</a>
 
     
 
     
 
-  <p>Once you have spent the time necessary to compute something like the degree of entities in your graph it is only natural that you may want to use these values again.
-This is where the persist behaviour comes in.
-If the result of your compute query is a map from instances to values, these can be persisted in the graph at the end of the calculation.
-This functionality is currently restricted to <a href="./analytics-connected-components.html">connected components</a> and <a href="./analytics-degrees.html">degrees</a>.
-The persistence is performed in parallel, as a bulk loading task, and should scale as well as the other algorithms.</p>
-
-<p>In order to compute the number of friends that a person has, and persist this information back in the graph we can use the following query:</p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code>compute degrees in person, knows; persist;
-</code></pre>
-</div>
-
-<p>The resulting graph is shown in the image below.
-The degree resource has been attached to each person with the number of friends they have.</p>
-
-<p><img src="/images/analytics_persist_degrees.png" alt="A simple social network." /></p>
+  <div class="alert alert-danger" role="alert"><i class="fa fa-exclamation-circle"></i> <b>Warning:</b> Please note that this page is in progress and subject to revision.</div>
 
 <h2 id="comments">Comments</h2>
-<p>Want to leave a comment? Visit <a href="https://github.com/graknlabs/docs/issues/71" target="_blank">the issues on Github for this page</a> (you’ll need a GitHub account). You are also welcome to contribute to our documentation directly via the “Edit me” button at the top of this page.</p>
+<p>Want to leave a comment? Visit <a href="https://github.com/graknlabs/docs/issues/23" target="_blank">the issues on Github for this page</a> (you’ll need a GitHub account). You are also welcome to contribute to our documentation directly via the “Edit me” button at the top of the page.</p>
+
 
 
     <div class="tags">
@@ -808,7 +787,11 @@ The degree resource has been attached to each person with the number of friends 
         
         
         
-        <a href="/pages/tag_analytics.html" class="btn btn-default navbar-btn cursorNorm" role="button">analytics</a>
+        <a href="/pages/tag_java.html" class="btn btn-default navbar-btn cursorNorm" role="button">java</a>
+        
+        
+        
+        <a href="/pages/tag_migration.html" class="btn btn-default navbar-btn cursorNorm" role="button">migration</a>
         
         
         
@@ -839,7 +822,7 @@ The degree resource has been attached to each person with the number of friends 
         <br>
         <p>© 2016 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2017 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> December 12th, 2016<br/> Site last generated: Feb 8, 2017 <br />
+        <span>Page last updated:</span> February 2017<br/> Site last generated: Feb 10, 2017 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">

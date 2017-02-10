@@ -334,27 +334,6 @@
             
             
             
-            
-            
-            <li><a href="/pages/documentation/building-an-ontology/ontology-overview.html">Overview (deprecated)</a></li>
-            
-            
-            
-            
-            
-            
-            <li><a href="/pages/documentation/building-an-ontology/simple-schema-definition.html">Simple Schema (deprecated)</a></li>
-            
-            
-            
-            
-            
-            
-            <li><a href="/pages/documentation/building-an-ontology/advanced-schema-definition.html">Advanced Schema (deprecated)</a></li>
-            
-            
-            
-            
         </ul>
         
         
@@ -478,13 +457,6 @@
             
             
             
-            <li><a href="/pages/documentation/graql-analytics/analytics-persist.html">Analytics Persist</a></li>
-            
-            
-            
-            
-            
-            
             <li><a href="/pages/documentation/graql-analytics/analytics-connected-components.html">Connected Components</a></li>
             
             
@@ -557,7 +529,28 @@
             
             
             
-            <li><a href="/pages/documentation/developing-with-java/java-graql.html">Java Graql</a></li>
+            <li><a href="/pages/documentation/developing-with-java/java-graql.html">Java Graql API</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="/pages/documentation/developing-with-java/migration-api.html">Migration API</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="/pages/documentation/developing-with-java/loader-api.html">Loader API</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="/pages/documentation/developing-with-java/advanced-java.html">Advanced Java Development</a></li>
             
             
             
@@ -839,7 +832,7 @@ OPTIONS
 <p>To migrate all of these types, we need to iterate over the array:</p>
 
 <pre><code class="language-graql-template">insert
-for(types) do {
+for(&lt;types&gt;) do {
     $x isa pokemon-type
         has description &lt;type&gt;
         has type-id &lt;id&gt;;
@@ -904,21 +897,21 @@ $x9 has description "fire" isa pokemon-type has type-id "10";
 <p>This template is rather complicated. The first <code class="highlighter-rouge">match</code> portion is necessary to look up all of the already migrated pokemon types in the graph. You can then refer to these variables in your <code class="highlighter-rouge">insert</code> statement while creating the relationships.</p>
 
 <pre><code class="language-graql-template">match
-   for(pokemon) do {
-        for(t in types) do {
+   for(&lt;pokemon&gt;) do {
+        for(t in &lt;types&gt;) do {
             $&lt;t&gt; has type-id &lt;t&gt;;
         }
    }
 
 insert
-for(pokemon) do {
+for(&lt;pokemon&gt;) do {
     $p isa pokemon
         has weight &lt;weight&gt;
         has height &lt;height&gt;
         has pokedex-no &lt;id&gt;
         has description &lt;identifier&gt;;
 
-    for(t in types) do {
+    for(t in &lt;types&gt;) do {
         (pokemon-with-type: $p, type-of-pokemon: $&lt;t&gt;) isa has-type;
     }
 }
@@ -980,7 +973,7 @@ isa has-type (pokemon-with-type: $p2, type-of-pokemon: $2);
         <br>
         <p>© 2016 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2017 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> February 2017<br/> Site last generated: Feb 8, 2017 <br />
+        <span>Page last updated:</span> February 2017<br/> Site last generated: Feb 10, 2017 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">

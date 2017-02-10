@@ -82,22 +82,22 @@
 
 ,
 {
-"title": "An Example of Migrating CSV to Grakn",
-"tags": "migrationexamples",
-"keywords": "migration",
-"url": "/pages/documentation/examples/CSV-migration.html",
-"summary": "An example to illustrate migration of CSV to Grakn"
+"title": "CSV Migration to Grakn",
+"tags": "migration",
+"keywords": "setup, getting started",
+"url": "/pages/documentation/migration/CSV-migration.html",
+"summary": "This document will teach you how to migrate CSV data into Grakn."
 }
 
 
 
 ,
 {
-"title": "CSV Migration to Grakn",
-"tags": "migration",
-"keywords": "setup, getting started",
-"url": "/pages/documentation/migration/CSV-migration.html",
-"summary": "This document will teach you how to migrate CSV data into Grakn."
+"title": "An Example of Migrating CSV to Grakn",
+"tags": "migrationexamples",
+"keywords": "migration",
+"url": "/pages/documentation/examples/CSV-migration.html",
+"summary": "An example to illustrate migration of CSV to Grakn"
 }
 
 
@@ -137,6 +137,17 @@
 
 ,
 {
+"title": "SQL Migration to Grakn",
+"tags": "migration",
+"keywords": "setup, getting started",
+"url": "/pages/documentation/migration/SQL-migration.html",
+"summary": "This document will teach you how to migrate SQL data into Grakn."
+}
+
+
+
+,
+{
 "title": "An Example of Migrating SQL to Grakn",
 "tags": "migrationexamplesjava",
 "keywords": "migration",
@@ -148,11 +159,11 @@
 
 ,
 {
-"title": "SQL Migration to Grakn",
-"tags": "migration",
-"keywords": "setup, getting started",
-"url": "/pages/documentation/migration/SQL-migration.html",
-"summary": "This document will teach you how to migrate SQL data into Grakn."
+"title": "Advanced Java Development",
+"tags": "java",
+"keywords": "java",
+"url": "/pages/documentation/developing-with-java/advanced-java.html",
+"summary": "Transaction Processing & Multithreading in Java"
 }
 
 
@@ -208,17 +219,6 @@
 "keywords": "",
 "url": "/pages/documentation/graql-analytics/analytics-overview.html",
 "summary": "This page provides an overview of the Graql analytics capabilities."
-}
-
-
-
-,
-{
-"title": "Persisting to the Graph",
-"tags": "analytics",
-"keywords": "",
-"url": "/pages/documentation/graql-analytics/analytics-persist.html",
-"summary": ""
 }
 
 
@@ -436,22 +436,22 @@
 
 ,
 {
-"title": "Reasoning with Graql",
-"tags": "reasoningexamples",
-"keywords": "migration",
-"url": "/pages/documentation/examples/graql-reasoning.html",
-"summary": "An example to illustrate inference using genealogy data."
+"title": "Graql Rules",
+"tags": "graqlreasoning",
+"keywords": "graql, reasoner",
+"url": "/pages/documentation/graql/graql-rules.html",
+"summary": "Graql Rules"
 }
 
 
 
 ,
 {
-"title": "Graql Rules",
-"tags": "graqlreasoning",
-"keywords": "graql, reasoner",
-"url": "/pages/documentation/graql/graql-rules.html",
-"summary": "Graql Rules"
+"title": "Reasoning with Graql",
+"tags": "reasoningexamples",
+"keywords": "migration",
+"url": "/pages/documentation/examples/graql-reasoning.html",
+"summary": "An example to illustrate inference using genealogy data."
 }
 
 
@@ -524,11 +524,33 @@
 
 ,
 {
+"title": "Loader API",
+"tags": "java",
+"keywords": "java",
+"url": "/pages/documentation/developing-with-java/loader-api.html",
+"summary": "The Loader API"
+}
+
+
+
+,
+{
 "title": "Match Queries",
 "tags": "graql",
 "keywords": "graql, query, match",
 "url": "/pages/documentation/graql/match-queries.html",
 "summary": "Graql Match Queries"
+}
+
+
+
+,
+{
+"title": "Migration API",
+"tags": "javamigration",
+"keywords": "java",
+"url": "/pages/documentation/developing-with-java/migration-api.html",
+"summary": "The Java Migration API"
 }
 
 
@@ -690,17 +712,6 @@
 
 
 
-
-
-
-,
-{
-"title": "Transaction Processing &amp; Multithreading",
-"tags": "java",
-"keywords": "java",
-"url": "/pages/documentation/developing-with-java/multithreading.html",
-"summary": "Transaction Processing & Multithreading in Java"
-}
 
 
 

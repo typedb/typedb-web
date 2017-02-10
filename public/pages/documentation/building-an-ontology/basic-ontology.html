@@ -334,27 +334,6 @@
             
             
             
-            
-            
-            <li><a href="/pages/documentation/building-an-ontology/ontology-overview.html">Overview (deprecated)</a></li>
-            
-            
-            
-            
-            
-            
-            <li><a href="/pages/documentation/building-an-ontology/simple-schema-definition.html">Simple Schema (deprecated)</a></li>
-            
-            
-            
-            
-            
-            
-            <li><a href="/pages/documentation/building-an-ontology/advanced-schema-definition.html">Advanced Schema (deprecated)</a></li>
-            
-            
-            
-            
         </ul>
         
         
@@ -478,13 +457,6 @@
             
             
             
-            <li><a href="/pages/documentation/graql-analytics/analytics-persist.html">Analytics Persist</a></li>
-            
-            
-            
-            
-            
-            
             <li><a href="/pages/documentation/graql-analytics/analytics-connected-components.html">Connected Components</a></li>
             
             
@@ -557,7 +529,28 @@
             
             
             
-            <li><a href="/pages/documentation/developing-with-java/java-graql.html">Java Graql</a></li>
+            <li><a href="/pages/documentation/developing-with-java/java-graql.html">Java Graql API</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="/pages/documentation/developing-with-java/migration-api.html">Migration API</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="/pages/documentation/developing-with-java/loader-api.html">Loader API</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="/pages/documentation/developing-with-java/advanced-java.html">Advanced Java Development</a></li>
             
             
             
@@ -787,7 +780,7 @@ $('#toc').on('click', 'a', function() {
 
 <p>In this section we are going to run through the construction of a basic ontology. We recommend that you refer to the <a href="../the-basics/grakn-knowledge-model.html">Knowledge Model</a> documentation before reading this page. The process we will follow is a general guideline as to how you may start designing an ontology.</p>
 
-<p>The ontology we will be building will be used for a genealogy graph used for mapping out a family tree. You can find the complete ontology, the dataset and rules that accompany it, on Github in our <a href="https://github.com/graknlabs/sample-datasets/tree/master/genealogy-graph">sample-datasets repository</a></p>
+<p>The ontology we will be building will be used for a genealogy graph used for mapping out a family tree. You can find the complete ontology, the dataset and rules that accompany it, on Github in our <a href="https://github.com/graknlabs/sample-datasets/tree/master/genealogy-graph">sample-datasets repository</a>.</p>
 
 <h2 id="identifying-entity-types">Identifying Entity Types</h2>
 
@@ -928,11 +921,15 @@ child sub role;
 
 <p><img src="/images/basic-ontology1.png" alt="Ontology" /></p>
 
-<h1 id="summary">Summary</h1>
+<h2 id="summary">Summary</h2>
 
 <p>In this tutorial we described our entity type <code class="highlighter-rouge">person</code> across separate steps. This was done to demonstrate the typical thought process when creating an ontology. It is typically good practice to group entity type definitions together as above.</p>
 
 <div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> <b>Note:</b> It is worth noting that the ontology does not need to be completely finalised before loading data. The ontology of a Grakn graph can be expanded even after loading data.</div>
+
+<h2 id="where-next">Where Next?</h2>
+
+<p>We will continue to explore the development of an ontology in the next section on defining a <a href="./hierarchical-ontology.html">hierarchical ontology</a>.</p>
 
 <h2 id="comments">Comments</h2>
 <p>Want to leave a comment? Visit <a href="https://github.com/graknlabs/docs/issues/22" target="_blank">the issues on Github for this page</a> (you’ll need a GitHub account). You are also welcome to contribute to our documentation directly via the “Edit me” button at the top of the page.</p>
@@ -983,7 +980,7 @@ child sub role;
         <br>
         <p>© 2016 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2017 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> December, 2016<br/> Site last generated: Feb 8, 2017 <br />
+        <span>Page last updated:</span> December, 2016<br/> Site last generated: Feb 10, 2017 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">

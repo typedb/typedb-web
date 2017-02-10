@@ -334,27 +334,6 @@
             
             
             
-            
-            
-            <li><a href="/pages/documentation/building-an-ontology/ontology-overview.html">Overview (deprecated)</a></li>
-            
-            
-            
-            
-            
-            
-            <li><a href="/pages/documentation/building-an-ontology/simple-schema-definition.html">Simple Schema (deprecated)</a></li>
-            
-            
-            
-            
-            
-            
-            <li><a href="/pages/documentation/building-an-ontology/advanced-schema-definition.html">Advanced Schema (deprecated)</a></li>
-            
-            
-            
-            
         </ul>
         
         
@@ -478,13 +457,6 @@
             
             
             
-            <li><a href="/pages/documentation/graql-analytics/analytics-persist.html">Analytics Persist</a></li>
-            
-            
-            
-            
-            
-            
             <li><a href="/pages/documentation/graql-analytics/analytics-connected-components.html">Connected Components</a></li>
             
             
@@ -557,7 +529,28 @@
             
             
             
-            <li><a href="/pages/documentation/developing-with-java/java-graql.html">Java Graql</a></li>
+            <li><a href="/pages/documentation/developing-with-java/java-graql.html">Java Graql API</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="/pages/documentation/developing-with-java/migration-api.html">Migration API</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="/pages/documentation/developing-with-java/loader-api.html">Loader API</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="/pages/documentation/developing-with-java/advanced-java.html">Advanced Java Development</a></li>
             
             
             
@@ -842,11 +835,11 @@ We are going to introduce the idea of making ontologies deeper and more meaningf
 </code></pre>
 
 <p>This ontology represents a genealogy graph which models a family tree.
-This is a very simplistic ontology with plenty of room for extension, so lets begin.</p>
+This is a very simplistic ontology with plenty of room for extension, so let’s begin!</p>
 
 <h2 id="hierarchies-of-entity-types">Hierarchies of Entity Types</h2>
 
-<p>It is possible to define entity types more granularly. Think of sub categories of categories, enabling additional details to be embedded in the ontology. 
+<p>It is possible to define entity types more granularly. Think of sub-categories that enable additional details to be embedded in the ontology. 
 For example, if we have a entity type called <code class="highlighter-rouge">vehicle</code>, we can break that down further by differentiating between <code class="highlighter-rouge">cars</code> and <code class="highlighter-rouge">motorbikes</code>. This can be done as follows:</p>
 
 <pre><code class="language-graql">vehicle sub entity;
@@ -854,7 +847,7 @@ car sub vehicle;
 motorbikes sub vehicle;
 </code></pre>
 
-<p>In the above example we are saying that a <code class="highlighter-rouge">car</code> is a subtype of a <code class="highlighter-rouge">vehicle</code>. This means that when adding data to our graph, when we know we have a <code class="highlighter-rouge">vehicle</code>, we can also differentiate between a <code class="highlighter-rouge">car</code> and a <code class="highlighter-rouge">motorbike</code>.</p>
+<p>In the above example we are saying that a <code class="highlighter-rouge">car</code> is a subtype (a specialised type) of a <code class="highlighter-rouge">vehicle</code>. This means that when adding data to our graph, when we know we have a <code class="highlighter-rouge">vehicle</code>, we can also differentiate between a <code class="highlighter-rouge">car</code> and a <code class="highlighter-rouge">motorbike</code>.</p>
 
 <p>So how can we use this technique to improve our existing genealogy ontology?</p>
 
@@ -910,9 +903,8 @@ marriage sub relatives
   has-resource date;
 	    
 spouse sub role is-abstract;
-generic-spouse sub spouse is-abstract;
-spouse1 sub generic-spouse;
-spouse2 sub generic-spouse;
+spouse1 sub spouse;
+spouse2 sub spouse;
 husband sub spouse;
 wife sub spouse;
 </code></pre>
@@ -939,7 +931,7 @@ daughter sub child;
 </code></pre>
 
 <p>Now we have provided more detail about being a parent. 
-We have also said that being a parent is a <code class="highlighter-rouge">relative</code> relation. 
+We have also said that being a parent is a <code class="highlighter-rouge">relatives</code> relation. 
 This is quite useful because when we ask for all relatives we will be getting relatives via birth and via marriage.</p>
 
 <h2 id="wrapping-up">Wrapping up</h2>
@@ -1014,10 +1006,10 @@ For the moment here is our more complex ontology to get you started on making yo
     has-resource date;
     
   spouse sub role is-abstract;
-  generic-spouse sub spouse is-abstract;
-  spouse1 sub generic-spouse;
-  spouse2 sub generic-spouse;
-  husband sub spouse;   wife sub spouse;
+  spouse1 sub spouse;
+  spouse2 sub spouse;
+  husband sub spouse;   
+  wife sub spouse;
     
   parentship sub relatives
     has-role parent
@@ -1034,6 +1026,12 @@ For the moment here is our more complex ontology to get you started on making yo
   son sub child;
   daughter sub child;
 </code></pre>
+
+<h2 id="where-next">Where Next?</h2>
+
+<p>We will continue to explore the development of an ontology in the next section on defining a <a href="./rule-driven-ontology.html">rule-driven ontology</a>.</p>
+
+<p>You can find the complete ontology for our genealogy graph project, the dataset and rules that accompany it, on Github in our <a href="https://github.com/graknlabs/sample-datasets/tree/master/genealogy-graph">sample-datasets repository</a>.</p>
 
 <h2 id="comments">Comments</h2>
 <p>Want to leave a comment? Visit <a href="https://github.com/graknlabs/docs/issues/22" target="_blank">the issues on Github for this page</a> (you’ll need a GitHub account). You are also welcome to contribute to our documentation directly via the “Edit me” button at the top of the page.</p>
@@ -1084,7 +1082,7 @@ For the moment here is our more complex ontology to get you started on making yo
         <br>
         <p>© 2016 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2017 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> February 2017<br/> Site last generated: Feb 8, 2017 <br />
+        <span>Page last updated:</span> February 2017<br/> Site last generated: Feb 10, 2017 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">
