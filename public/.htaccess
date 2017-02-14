@@ -35,7 +35,7 @@ RedirectMatch "^/pages/api-reference/(.*)" "/pages/documentation/api-reference/a
 Redirect "/pages/documentation/the-basics/quickstart-tutorial.html" "/pages/documentation/get-started/quickstart-tutorial.html"
 
 # Redirect for Grakn release archive
-Redirect /download/latest "https://github.com/graknlabs/grakn/releases/download/v0.9.0/grakn-dist-0.9.0.zip"
+Redirect /download/latest "https://github.com/graknlabs/grakn/releases/download/v0.11.0/grakn-dist-0.11.0.zip"
 Redirect /download "https://github.com/graknlabs/grakn/releases/"
 Redirect /docs "/pages/index.html"
 Redirect /overview "/pages/overview/index.html"
