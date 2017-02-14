@@ -774,34 +774,13 @@ $('#toc').on('click', 'a', function() {
 
     
 
-  <!--
-
-Show how to use the types to visualise the ontology
-Click and hold on a node you can change the properties that you see
-Click to see the drawer on the right
-
-### Visualiser Colour Scheme
-
-The colours used in the visualiser are as follows:
-
-| Colour | Description                                   |
-| ----------- | --------------------------------------------- |
-| Pink     | Ontology meta-types                        |
-| Blue      | Data entity                         |
-| Green     | Ontology relation                       |
-| Orange     | Label                        |
-| Yellow     |                         |
-|      |                         |
-
--->
-
-<h2 id="introduction">Introduction</h2>
+  <h2 id="introduction">Introduction</h2>
 <p>The Grakn visualiser provides a graphical tool to inspect and query your graph data. This article shows how to get it up and running on a basic example and introduces the visualiser’s key features.</p>
 
 <h2 id="loading-and-visualising-a-graph">Loading and Visualising a Graph</h2>
 <p>If you have not yet set up the Grakn environment, please see the <a href="../get-started/setup-guide.html">Setup guide</a>.</p>
 
-<p>You can find the <em>basic-genealogy.gql</em> example that we will work with in the <em>examples</em> directory of the Grakn distribution zip. You can also find this file on <a href="">Github</a>.</p>
+<p>You can find the <em>basic-genealogy.gql</em> example that we will work with in the <em>examples</em> directory of the Grakn distribution zip. You can also find this file on <a href="https://github.com/graknlabs/grakn/blob/master/grakn-dist/src/examples/basic-genealogy.gql">Github</a>.</p>
 
 <p>The first step is to load the ontology and data into Grakn. You need to use your terminal to do this, as the visualiser is a read-only interface to a graph. From the terminal, start Grakn, and load the file as follows:</p>
 
@@ -821,11 +800,17 @@ match <span class="nv">$p</span> isa person, has identifier <span class="nv">$i<
 
 <p>Now open the visualiser by browsing to <a href="http://localhost:4567">localhost:4567</a>.</p>
 
-<p>The visualiser has a number of horizontal navigation tabs on its left hand side, below the version number. We will go through each of them below, but to visualise your graph at this point in the example, you need to go to the keyspace tab and select the appropriate keyspace, e.g. <code class="highlighter-rouge">family</code>.</p>
+<p>To visualise your graph, go to the keyspace selector on the top right and select the appropriate keyspace, e.g. <code class="highlighter-rouge">family</code>.</p>
 
-<p>The main pane of your graph will be empty at this point. Click the Types button in the top right, then the Visualise button at the top right hand side of the newly opened drawer. The genealogy-graph ontology will be displayed.</p>
+<p>The main pane of your graph will be empty at this point. Click the Types dropdown in the top menu, then Entities and <code class="highlighter-rouge">person</code>. 
+The query for your selection will be displayed in the form with a default limit of 100 results applied. In this case:</p>
 
-<p><img src="/images/genealogy-ontology.png" alt="Genealogy Ontology" /></p>
+<pre><code class="language-graql">match $x isa person; offset 0; limit 100;
+</code></pre>
+
+<p>If you click and hold on any of the entities - a pop-up will open to allow you to select the labels shown on each node in the graph. In the screenshot below, we have selected to show the identifiers of each person.</p>
+
+<p><img src="/images/match-$x-isa-person.png" alt="Person query" /></p>
 
 <h2 id="working-with-the-visualiser">Working With The Visualiser</h2>
 
@@ -834,38 +819,37 @@ match <span class="nv">$p</span> isa person, has identifier <span class="nv">$i<
 <h2 id="pages">Pages</h2>
 
 <h3 id="graph">Graph</h3>
-<p>This is the main section of the visualiser that you will use to explore the graph. You can use the query section at the top of the main pane, then press “Submit” to visualise it. For example:</p>
+<p>This is the main section of the visualiser that you will use to explore the graph. You can submit queries using the form, then press “&gt;” to visualise the graph. For example:</p>
 
-<pre><code class="language-graql">match $x isa person;
+<pre><code class="language-graql">match $x isa person, has firstname "John"; 
 </code></pre>
 
-<p><img src="/images/match-$x-isa-person.png" alt="Person query" /></p>
+<p>You can zoom the display in and out, and move the nodes around for better visibility.</p>
 
-<p>The help tab on the main pane shows a set of key combinations that you can use to further drill into the data. You can zoom the display in and out, and move the nodes around for better visibility.</p>
+<p><img src="/images/john-query.png" alt="John query" /></p>
 
-<p>Alternatively, you can use the “Types” drawer to filter on specific types. For example, clear the graph using the “Clear” button, then select “Types”, followed by “Entities” and filter on <code class="highlighter-rouge">picture</code> resources. The equivalent query will be shown in the query section at the top of the main pane, and the visualiser displays all the <code class="highlighter-rouge">picture</code> resources in the graph. These resources are strings that are URLs, and you can see the information the graph stores for each by single clicking one of them, at which point a drawer slides out on the right hand side, as shown:</p>
+<p>To clear the graph, press Shift + the “Clear” button.</p>
 
-<p><img src="/images/match-$x-isa-picture.png" alt="Picture query" /></p>
+<p>We have already shown an example of how to examine <code class="highlighter-rouge">person</code> entities using the entity selector. As another example, select “Types”, followed by “Relations” and filter on <code class="highlighter-rouge">marriage</code> relations. The query will be shown in the query section at the top of the main pane, as previously, and the visualiser displays all the <code class="highlighter-rouge">marriage</code> relations in the graph.</p>
+
+<p><img src="/images/marriages.png" alt="Marriages query" /></p>
+
+<p>There are also 3 query settings, which can be changed using the ‘cog’ button:</p>
+
+<ul>
+  <li>Activate inference - activates inference, per query.</li>
+  <li>Materialise inference - persists the inference into the graph, per query.</li>
+  <li>Materialise All: activate and persist all inference across the graph.</li>
+</ul>
 
 <h3 id="console">Console</h3>
 <p>You can use this console to make queries instead of running a Graql shell in your terminal. You can run <code class="highlighter-rouge">match</code> and <code class="highlighter-rouge">compute</code> queries, but because the visualiser is read-only, you cannot make insertions.</p>
 
 <h3 id="config">Config</h3>
-<p>Shows a view on the Grakn configuration file. There are also 3 inference settings:</p>
-
-<ul>
-  <li>Activate Inference - activates inference, per query.</li>
-  <li>Materialise Inference - persists the inference into the graph, per query.</li>
-  <li>Materialisation: activate and persist all inference across the graph.</li>
-</ul>
+<p>Shows a view on the Grakn configuration file.</p>
 
 <h3 id="documentation">Documentation</h3>
 <p>This opens a separate tab in your browser and points it to the Grakn documentation portal. It may be how you ended up on this page!</p>
-
-<h2 id="actions">Actions</h2>
-
-<h3 id="keyspaces">Keyspaces</h3>
-<p>The keyspaces that are currently in use by Grakn.</p>
 
 <h2 id="where-next">Where Next?</h2>
 
