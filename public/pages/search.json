@@ -115,11 +115,11 @@
 
 ,
 {
-"title": "An Example of Migrating OWL to Grakn",
+"title": "An Example of Migrating JSON to Grakn",
 "tags": "migrationexamples",
 "keywords": "migration",
-"url": "/pages/documentation/examples/OWL-migration.html",
-"summary": "A short example to illustrate migration of OWL to Grakn"
+"url": "/pages/documentation/examples/JSON-migration.html",
+"summary": "An example to illustrate migration of JSON to Grakn"
 }
 
 
@@ -131,6 +131,17 @@
 "keywords": "setup, getting started",
 "url": "/pages/documentation/migration/OWL-migration.html",
 "summary": "This document will teach you how to load OWL into Grakn."
+}
+
+
+
+,
+{
+"title": "An Example of Migrating OWL to Grakn",
+"tags": "migrationexamples",
+"keywords": "migration",
+"url": "/pages/documentation/examples/OWL-migration.html",
+"summary": "A short example to illustrate migration of OWL to Grakn"
 }
 
 
@@ -351,7 +362,7 @@
 "title": "Grakn Basics",
 "tags": "getting-started",
 "keywords": "setup, getting started, basics",
-"url": "/pages/documentation/the-basics/grakn-basics.html",
+"url": "/pages/documentation/the-fundamentals/grakn-basics.html",
 "summary": "Introducing the basics of the Grakn object model."
 }
 
@@ -373,7 +384,7 @@
 "title": "Grakn Knowledge Model",
 "tags": "getting-startedreasoninggraql",
 "keywords": "setup, getting started, basics",
-"url": "/pages/documentation/the-basics/grakn-knowledge-model.html",
+"url": "/pages/documentation/the-fundamentals/grakn-knowledge-model.html",
 "summary": "Introducing the basics of the Grakn knowledge model."
 }
 
@@ -384,8 +395,8 @@
 "title": "Grakn Knowledge Model",
 "tags": "getting-startedreasoninggraql",
 "keywords": "setup, getting started, basics",
-"url": "/pages/documentation/the-basics/grakn-knowledge-model.html",
-"summary": "Introducing the basics of the Grakn knowledge model."
+"url": "/pages/documentation/the-fundamentals/grakn-knowledge-model.html",
+"summary": "Introducing the fundamentals of the Grakn knowledge model."
 }
 
 
@@ -436,22 +447,22 @@
 
 ,
 {
-"title": "Graql Rules",
-"tags": "graqlreasoning",
-"keywords": "graql, reasoner",
-"url": "/pages/documentation/graql/graql-rules.html",
-"summary": "Graql Rules"
+"title": "Reasoning with Graql",
+"tags": "reasoningexamples",
+"keywords": "migration",
+"url": "/pages/documentation/examples/graql-reasoning.html",
+"summary": "An example to illustrate inference using genealogy data."
 }
 
 
 
 ,
 {
-"title": "Reasoning with Graql",
-"tags": "reasoningexamples",
-"keywords": "migration",
-"url": "/pages/documentation/examples/graql-reasoning.html",
-"summary": "An example to illustrate inference using genealogy data."
+"title": "Graql Rules",
+"tags": "graqlreasoning",
+"keywords": "graql, reasoner",
+"url": "/pages/documentation/graql/graql-rules.html",
+"summary": "Graql Rules"
 }
 
 

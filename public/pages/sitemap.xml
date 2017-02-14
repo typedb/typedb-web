@@ -68,13 +68,19 @@
   
   
   <url>
-    <loc>http://grakn.ai/pages//documentation/examples/OWL-migration.html</loc>
+    <loc>http://grakn.ai/pages//documentation/examples/JSON-migration.html</loc>
   </url>
   
   
   
   <url>
     <loc>http://grakn.ai/pages//documentation/migration/OWL-migration.html</loc>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://grakn.ai/pages//documentation/examples/OWL-migration.html</loc>
   </url>
   
   
@@ -196,7 +202,7 @@
   
   
   <url>
-    <loc>http://grakn.ai/pages//documentation/the-basics/grakn-basics.html</loc>
+    <loc>http://grakn.ai/pages//documentation/the-fundamentals/grakn-basics.html</loc>
   </url>
   
   
@@ -208,13 +214,13 @@
   
   
   <url>
-    <loc>http://grakn.ai/pages//documentation/the-basics/grakn-knowledge-model.html</loc>
+    <loc>http://grakn.ai/pages//documentation/the-fundamentals/grakn-knowledge-model.html</loc>
   </url>
   
   
   
   <url>
-    <loc>http://grakn.ai/pages//documentation/the-basics/grakn-knowledge-model.html</loc>
+    <loc>http://grakn.ai/pages//documentation/the-fundamentals/grakn-knowledge-model.html</loc>
   </url>
   
   
@@ -244,13 +250,13 @@
   
   
   <url>
-    <loc>http://grakn.ai/pages//documentation/graql/graql-rules.html</loc>
+    <loc>http://grakn.ai/pages//documentation/examples/graql-reasoning.html</loc>
   </url>
   
   
   
   <url>
-    <loc>http://grakn.ai/pages//documentation/examples/graql-reasoning.html</loc>
+    <loc>http://grakn.ai/pages//documentation/graql/graql-rules.html</loc>
   </url>
   
   

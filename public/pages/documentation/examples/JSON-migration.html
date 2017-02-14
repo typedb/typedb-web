@@ -3,9 +3,9 @@
     <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Introducing the basics of the Grakn object model.">
-<meta name="keywords" content="getting-started,  setup, getting started, basics, GRAKN.AI, Grakn Labs, grakn, graql, grakn.ai, Mindmaps Research, Mindmaps Research Ltd, MindmapsDB, mindmaps, mindmaps graph, mindmaps.io, knowledge graph, distributed knowledge graph, development platform, developer tool, data platform, programming langauge, query langauge, database, semantic database, distributed semantic database, distributed database, graph database, semantic search, data exploration, recommendation system, knowledge management, knowledge engineering, real-time analytics, advanced analytics, reasoning engine, inference engine, expert systems, semantic applications, research engines, data management, business intelligence, big data, semantic web, semantic data, knowledge representation, automated reasoning, semantic network, knowledge ontology, semantic graph, ontology engineering, graph based knowledge representation, artificial intelligence,">
-<title>GRAKN.AI - Grakn Basics</title>
+<meta name="description" content="An example to illustrate migration of JSON to Grakn">
+<meta name="keywords" content="migrationexamples,  migration, GRAKN.AI, Grakn Labs, grakn, graql, grakn.ai, Mindmaps Research, Mindmaps Research Ltd, MindmapsDB, mindmaps, mindmaps graph, mindmaps.io, knowledge graph, distributed knowledge graph, development platform, developer tool, data platform, programming langauge, query langauge, database, semantic database, distributed semantic database, distributed database, graph database, semantic search, data exploration, recommendation system, knowledge management, knowledge engineering, real-time analytics, advanced analytics, reasoning engine, inference engine, expert systems, semantic applications, research engines, data management, business intelligence, big data, semantic web, semantic data, knowledge representation, automated reasoning, semantic network, knowledge ontology, semantic graph, ontology engineering, graph based knowledge representation, artificial intelligence,">
+<title>GRAKN.AI - An Example of Migrating JSON to Grakn</title>
 <link rel="stylesheet" href="/pages/css/syntax.css">
 
 
@@ -228,7 +228,7 @@
                             
                             dataSource: '/pages/search.json',
                             
-                            searchResultTemplate: '<li><a href="{url}" title="Grakn Basics">{title}</a></li>',
+                            searchResultTemplate: '<li><a href="{url}" title="An Example of Migrating JSON to Grakn">{title}</a></li>',
                             noResultsText: '<li><a class="empty">No results found</a></li>',
                             limit: 10,
                             fuzzy: true
@@ -261,7 +261,7 @@
 
 
 <ul id="mysidebar" class="nav">
-    <li class="sidebarTitle">Documentation 0.9.0</li>
+    <li class="sidebarTitle">Documentation 0.11.0</li>
     
     
     
@@ -295,12 +295,12 @@
         
     
     <li>
-        <a href="#">The Basics</a>
+        <a href="#">Grakn Fundamentals</a>
         <ul>
             
             
             
-            <li><a href="/pages/documentation/the-basics/grakn-knowledge-model.html">Grakn Knowledge Model</a></li>
+            <li><a href="/pages/documentation/the-fundamentals/grakn-knowledge-model.html">Grakn Knowledge Model</a></li>
             
             
             
@@ -728,7 +728,7 @@
         <!-- Content Column -->
         <div class="col-md-9">
             <div class="post-header">
-   <h1 class="post-title-main">Grakn Basics</h1>
+   <h1 class="post-title-main">An Example of Migrating JSON to Grakn</h1>
 </div>
 
 
@@ -736,7 +736,7 @@
 <div class="post-content">
 
    
-    <div class="summary">Introducing the basics of the Grakn object model.</div>
+    <div class="summary">An example to illustrate migration of JSON to Grakn</div>
    
 
     
@@ -768,18 +768,175 @@ $('#toc').on('click', 'a', function() {
 
     
 
-    <a target="_blank" href="https://github.com/graknlabs/docs/blob/master/pages/documentation/1-the-basics/grakn-basics.md" class="btn btn-default githubEditButton" role="button"><i class="fa fa-github fa-lg"></i> Edit me</a>
+    <a target="_blank" href="https://github.com/graknlabs/docs/blob/master/pages/documentation/11-examples/JSON-migration.md" class="btn btn-default githubEditButton" role="button"><i class="fa fa-github fa-lg"></i> Edit me</a>
 
     
 
     
 
-  <!-- This page is ready to be filled in - I've removed all the previous content as it was superseded by the Knowledge Model document -->
+  <h2 id="introduction">Introduction</h2>
+
+<p>This example looks at the migration of simple JSON data to build a graph in GRAKN.AI. The data is an invented library catalogue of a very small number of books, and illustrates how to migrate simple data and handle issues such as preventing the creation of duplicate entities. You can find the data, ontology and templates for this example in our <a href="https://github.com/graknlabs/sample-projects/tree/master/example-json-migration-library">sample projects repo</a> on Github.</p>
+
+<p>For a detailed overview of CSV migration, we recommend that you take a look at the Grakn documentation on <a href="https://grakn.ai/pages/documentation/migration/JSON-migration.html">JSON Migration</a> and <a href="https://grakn.ai/pages/documentation/graql/graql-templating.html">Graql templating</a>.</p>
+
+<h2 id="data">Data</h2>
+
+<p>The JSON data for the book catalogue is as follows:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="w">
+</span><span class="p">{</span><span class="w">
+    </span><span class="nt">"books"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"title"</span><span class="p">:</span><span class="s2">"The Gruffalo"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"id"</span><span class="p">:</span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"author"</span><span class="p">:</span><span class="s2">"Julia Donaldson"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"subject"</span><span class="p">:</span><span class="s2">"Children's Fiction"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"title"</span><span class="p">:</span><span class="s2">"The Tear Thief"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"id"</span><span class="p">:</span><span class="s2">"2"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"author"</span><span class="p">:</span><span class="s2">"Carol Ann Duffy"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"subject"</span><span class="p">:</span><span class="s2">"Children's Fiction"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"title"</span><span class="p">:</span><span class="s2">"Selected Poems"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"id"</span><span class="p">:</span><span class="s2">"3"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"author"</span><span class="p">:</span><span class="s2">"Carol Ann Duffy"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"subject"</span><span class="p">:</span><span class="s2">"Poetry"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="err">...</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+</div>
+
+<p>The <code class="highlighter-rouge">id</code> value can be considered to be unique and identify each book. However, other values cannot be assumed to be unique. In the snippet shown above, note that the author <code class="highlighter-rouge">Carol Ann Duffy</code> and subject <code class="highlighter-rouge">Children's Fiction</code> are both duplicated. It is possible that a book title may also be duplicated, although this is not shown.</p>
+
+<h3 id="ontology">Ontology</h3>
+
+<p>The ontology for the book catalogue is as follows:</p>
+
+<pre><code class="language-graql">insert
+
+# Entities
+
+book sub entity
+	has-resource bookId
+	has-resource title
+	plays-role publication-item;
+
+author sub entity
+	has-resource authorName
+	plays-role publication-author;
+
+subject sub entity
+	has-resource subjectName
+	plays-role publication-subject; 
+
+
+# Resources
+
+bookId sub resource datatype string;
+title sub resource datatype string;
+authorName sub resource datatype string;
+subjectName sub resource datatype string;
+
+# Relations and Roles
+
+publication sub relation
+	has-role publication-item
+	has-role publication-author
+	has-role publication-subject;
+
+publication-item sub role;
+publication-author sub role;
+publication-subject sub role;
+
+</code></pre>
+
+<p>Here, there are three entities, to reflect the book, author of the book and possible book subjects. There is one relation, <code class="highlighter-rouge">publication</code> which between all three entities.</p>
+
+<p>To load <em>ontology.gql</em> into Grakn, make sure the engine is running and choose a clean keyspace in which to work (here we use the default keyspace, so we are cleaning it before we get started).</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>&lt;relative-path-to-Grakn&gt;/bin/grakn.sh clean
+&lt;relative-path-to-Grakn&gt;/bin/grakn.sh start
+&lt;relative-path-to-Grakn&gt;/bin/graql.sh -f ./ontology.gql
+</code></pre>
+</div>
+
+<h3 id="data-migration">Data Migration</h3>
+
+<p>Having loaded the ontology, the next steps are to populate the graph by migrating data into Grakn, using Graql templates. There are separate templates for each entity. First, for the books:</p>
+
+<pre><code class="language-graql-template">insert
+
+for(&lt;books&gt;) do {
+    $book isa book
+        has bookId &lt;id&gt;
+        has title &lt;title&gt;;
+}
+</code></pre>
+
+<p>The authors:</p>
+
+<pre><code class="language-graql-template">insert
+
+for(&lt;books&gt;) do {
+    $author isa author
+        has authorName &lt;author&gt;;
+}
+</code></pre>
+
+<p>The subjects:</p>
+
+<pre><code class="language-graql-template">insert
+
+for(&lt;books&gt;) do {
+    $subject isa subject
+        has subjectName &lt;subject&gt;;
+}
+</code></pre>
+
+<p>Finally, a template to build the relations between the entities:</p>
+
+<pre><code class="language-graql-template">
+</code></pre>
+
+<p>To call the migration script on each template:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>./bin/migration.sh json -t ./json/book-template.gql  -i ./json/library-data.json
+./bin/migration.sh json -t ./json/author-template.gql  -i ./json/library-data.json
+./bin/migration.sh json -t ./json/subject-template.gql  -i ./json/library-data.json
+./bin/migration.sh json -t ./json/publication-template.gql  -i ./json/library-data.json
+</code></pre>
+</div>
+
+<p>The resultant Graql for the migration:</p>
+
+<pre><code class="language-graql">
+</code></pre>
+
+<h2 id="visualise-the-data">Visualise the Data</h2>
+
+<h2 id="add-borrower-data">Add Borrower Data</h2>
+
+<h2 id="data-export">Data Export</h2>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="c"># Export the ontology</span>
+&lt;relative-path-to-Grakn&gt;/migration.sh <span class="nb">export</span> -ontology &gt; ontology-export.gql
+
+<span class="c"># Export the data</span>
+&lt;relative-path-to-Grakn&gt;/migration.sh <span class="nb">export</span> -data &gt; data-export.gql
+</code></pre>
+</div>
+
+<p>Exporting data or the ontology from Grakn, into Graql, will always redirect to standard out, so above we are sending the output to an appropriately named file.</p>
 
 <h2 id="where-next">Where Next?</h2>
 
 <h2 id="comments">Comments</h2>
-<p>Want to leave a comment? Visit <a href="https://github.com/graknlabs/docs/issues/17" target="_blank">the issues on Github for this page</a> (you’ll need a GitHub account). You are also welcome to contribute to our documentation directly via the “Edit me” button at the top of the page.</p>
+<p>Want to leave a comment? Visit <a href="https://github.com/graknlabs/docs/issues/27" target="_blank">the issues on Github for this page</a> (you’ll need a GitHub account). You are also welcome to contribute to our documentation directly via the “Edit me” button at the top of the page.</p>
 
 
     <div class="tags">
@@ -788,7 +945,11 @@ $('#toc').on('click', 'a', function() {
         
         
         
-        <a href="/pages/tag_getting-started.html" class="btn btn-default navbar-btn cursorNorm" role="button">getting-started</a>
+        <a href="/pages/tag_migration.html" class="btn btn-default navbar-btn cursorNorm" role="button">migration</a>
+        
+        
+        
+        <a href="/pages/tag_examples.html" class="btn btn-default navbar-btn cursorNorm" role="button">examples</a>
         
         
         
@@ -819,7 +980,7 @@ $('#toc').on('click', 'a', function() {
         <br>
         <p>© 2016 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2017 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> August 24, 2016<br/> Site last generated: Feb 10, 2017 <br />
+        <span>Page last updated:</span> February 2017<br/> Site last generated: Feb 14, 2017 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">
