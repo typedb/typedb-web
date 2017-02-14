@@ -33,6 +33,8 @@ RewriteRule ^index.html$  "https://grakn.ai/" [R=301,L]
 # Redirect old links
 RedirectMatch "^/pages/api-reference/(.*)" "/pages/documentation/api-reference/api-reference.html"
 Redirect "/pages/documentation/the-basics/quickstart-tutorial.html" "/pages/documentation/get-started/quickstart-tutorial.html"
+# REST API docs
+RedirectMatch "^/pages/rest-api/(.*)/index.html" "/pages/rest-api/$1/engine-apis.html"
 
 # Redirect for Grakn release archive
 Redirect /download/latest "https://github.com/graknlabs/grakn/releases/download/v0.11.0/grakn-dist-0.11.0.zip"
