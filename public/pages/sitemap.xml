@@ -62,19 +62,13 @@
   
   
   <url>
-    <loc>http://grakn.ai/pages//documentation/migration/JSON-migration.html</loc>
-  </url>
-  
-  
-  
-  <url>
     <loc>http://grakn.ai/pages//documentation/examples/JSON-migration.html</loc>
   </url>
   
   
   
   <url>
-    <loc>http://grakn.ai/pages//documentation/migration/OWL-migration.html</loc>
+    <loc>http://grakn.ai/pages//documentation/migration/JSON-migration.html</loc>
   </url>
   
   
@@ -86,7 +80,7 @@
   
   
   <url>
-    <loc>http://grakn.ai/pages//documentation/migration/SQL-migration.html</loc>
+    <loc>http://grakn.ai/pages//documentation/migration/OWL-migration.html</loc>
   </url>
   
   
@@ -98,13 +92,13 @@
   
   
   <url>
-    <loc>http://grakn.ai/pages//documentation/developing-with-java/advanced-java.html</loc>
+    <loc>http://grakn.ai/pages//documentation/migration/SQL-migration.html</loc>
   </url>
   
   
   
   <url>
-    <loc>http://grakn.ai/pages//documentation/building-an-ontology/advanced-schema-definition.html</loc>
+    <loc>http://grakn.ai/pages//documentation/developing-with-java/advanced-java.html</loc>
   </url>
   
   
@@ -334,12 +328,6 @@
   
   
   <url>
-    <loc>http://grakn.ai/pages//documentation/building-an-ontology/ontology-overview.html</loc>
-  </url>
-  
-  
-  
-  <url>
     <loc>http://grakn.ai/pages//documentation/examples/pokemon.html</loc>
   </url>
   
@@ -379,12 +367,6 @@
   
   <url>
     <loc>http://grakn.ai/pages//documentation/get-started/setup-guide.html</loc>
-  </url>
-  
-  
-  
-  <url>
-    <loc>http://grakn.ai/pages//documentation/building-an-ontology/simple-schema-definition.html</loc>
   </url>
   
   

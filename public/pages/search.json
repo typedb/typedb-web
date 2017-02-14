@@ -104,17 +104,6 @@
 
 ,
 {
-"title": "JSON Migration to Grakn",
-"tags": "migration",
-"keywords": "setup, getting started",
-"url": "/pages/documentation/migration/JSON-migration.html",
-"summary": "This document will teach you how to migrate JSON data into Grakn."
-}
-
-
-
-,
-{
 "title": "An Example of Migrating JSON to Grakn",
 "tags": "migrationexamples",
 "keywords": "migration",
@@ -126,11 +115,11 @@
 
 ,
 {
-"title": "OWL Migration to Grakn",
+"title": "JSON Migration to Grakn",
 "tags": "migration",
 "keywords": "setup, getting started",
-"url": "/pages/documentation/migration/OWL-migration.html",
-"summary": "This document will teach you how to load OWL into Grakn."
+"url": "/pages/documentation/migration/JSON-migration.html",
+"summary": "This document will teach you how to migrate JSON data into Grakn."
 }
 
 
@@ -148,11 +137,11 @@
 
 ,
 {
-"title": "SQL Migration to Grakn",
+"title": "OWL Migration to Grakn",
 "tags": "migration",
 "keywords": "setup, getting started",
-"url": "/pages/documentation/migration/SQL-migration.html",
-"summary": "This document will teach you how to migrate SQL data into Grakn."
+"url": "/pages/documentation/migration/OWL-migration.html",
+"summary": "This document will teach you how to load OWL into Grakn."
 }
 
 
@@ -170,22 +159,22 @@
 
 ,
 {
-"title": "Advanced Java Development",
-"tags": "java",
-"keywords": "java",
-"url": "/pages/documentation/developing-with-java/advanced-java.html",
-"summary": "Transaction Processing & Multithreading in Java"
+"title": "SQL Migration to Grakn",
+"tags": "migration",
+"keywords": "setup, getting started",
+"url": "/pages/documentation/migration/SQL-migration.html",
+"summary": "This document will teach you how to migrate SQL data into Grakn."
 }
 
 
 
 ,
 {
-"title": "Defining an Advanced Schema",
-"tags": "graph-apijavaadvanced-grakn",
-"keywords": "schema",
-"url": "/pages/documentation/building-an-ontology/advanced-schema-definition.html",
-"summary": "Demonstrates how to create an advanced schema for Grakn."
+"title": "Advanced Java Development",
+"tags": "java",
+"keywords": "java",
+"url": "/pages/documentation/developing-with-java/advanced-java.html",
+"summary": "Transaction Processing & Multithreading in Java"
 }
 
 
@@ -601,17 +590,6 @@
 
 ,
 {
-"title": "Graph API Overview",
-"tags": "javagraph-api",
-"keywords": "overview",
-"url": "/pages/documentation/building-an-ontology/ontology-overview.html",
-"summary": "A basic example of how to use Grakn's Graph API."
-}
-
-
-
-,
-{
 "title": "Pokemon Example",
 "tags": "graqlexamples",
 "keywords": "graql, query",
@@ -685,17 +663,6 @@
 "keywords": "setup, getting started",
 "url": "/pages/documentation/get-started/setup-guide.html",
 "summary": "This document will teach you how to set up a Grakn environment, start it up and load a simple example."
-}
-
-
-
-,
-{
-"title": "Defining a Schema",
-"tags": "javagraph-api",
-"keywords": "schema",
-"url": "/pages/documentation/building-an-ontology/simple-schema-definition.html",
-"summary": "Demonstrates how to create a schema for Grakn."
 }
 
 
