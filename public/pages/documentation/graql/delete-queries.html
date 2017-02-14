@@ -866,7 +866,7 @@ match $x has identifier "Mary Guthrie"; delete $x has middlename $y;
 </div>
 <div role="tabpanel" class="tab-pane" id="java4">
 <pre>
-qb.match(var("x").has("identifier", "Mary Guthrie")).delete(var("x").has("middlename"));
+qb.match(var("x").has("identifier", "Mary Guthrie")).delete(var("x").has("middlename", var("y")));
 </pre>
 </div> <!-- tab-pane -->
 </div>
