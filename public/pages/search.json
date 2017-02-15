@@ -82,17 +82,6 @@
 
 ,
 {
-"title": "CSV Migration to Grakn",
-"tags": "migration",
-"keywords": "setup, getting started",
-"url": "/pages/documentation/migration/CSV-migration.html",
-"summary": "This document will teach you how to migrate CSV data into Grakn."
-}
-
-
-
-,
-{
 "title": "An Example of Migrating CSV to Grakn",
 "tags": "migrationexamples",
 "keywords": "migration",
@@ -104,11 +93,11 @@
 
 ,
 {
-"title": "An Example of Migrating JSON to Grakn",
-"tags": "migrationexamples",
-"keywords": "migration",
-"url": "/pages/documentation/examples/JSON-migration.html",
-"summary": "An example to illustrate migration of JSON to Grakn"
+"title": "CSV Migration to Grakn",
+"tags": "migration",
+"keywords": "setup, getting started",
+"url": "/pages/documentation/migration/CSV-migration.html",
+"summary": "This document will teach you how to migrate CSV data into Grakn."
 }
 
 
@@ -126,11 +115,11 @@
 
 ,
 {
-"title": "An Example of Migrating OWL to Grakn",
+"title": "An Example of Migrating JSON to Grakn",
 "tags": "migrationexamples",
 "keywords": "migration",
-"url": "/pages/documentation/examples/OWL-migration.html",
-"summary": "A short example to illustrate migration of OWL to Grakn"
+"url": "/pages/documentation/examples/JSON-migration.html",
+"summary": "An example to illustrate migration of JSON to Grakn"
 }
 
 
@@ -148,11 +137,11 @@
 
 ,
 {
-"title": "An Example of Migrating SQL to Grakn",
-"tags": "migrationexamplesjava",
+"title": "An Example of Migrating OWL to Grakn",
+"tags": "migrationexamples",
 "keywords": "migration",
-"url": "/pages/documentation/examples/SQL-migration.html",
-"summary": "A short example to illustrate migration of SQL to Grakn"
+"url": "/pages/documentation/examples/OWL-migration.html",
+"summary": "A short example to illustrate migration of OWL to Grakn"
 }
 
 
@@ -164,6 +153,17 @@
 "keywords": "setup, getting started",
 "url": "/pages/documentation/migration/SQL-migration.html",
 "summary": "This document will teach you how to migrate SQL data into Grakn."
+}
+
+
+
+,
+{
+"title": "An Example of Migrating SQL to Grakn",
+"tags": "migrationexamplesjava",
+"keywords": "migration",
+"url": "/pages/documentation/examples/SQL-migration.html",
+"summary": "A short example to illustrate migration of SQL to Grakn"
 }
 
 
@@ -362,7 +362,7 @@
 "title": "Grakn Deployment Guide",
 "tags": "getting-started",
 "keywords": "setup, getting started, download",
-"url": "/pages/documentation/resources/grakn-deployment-guide.html",
+"url": "/pages/documentation/deploy-grakn/grakn-deployment-guide.html",
 "summary": "A guide to setting up a production deployment of GRAKN.AI."
 }
 
@@ -601,17 +601,6 @@
 
 ,
 {
-"title": "Grakn Post Processing",
-"tags": "advanced-grakn",
-"keywords": "",
-"url": "/pages/documentation/advanced-grakn/post-processing.html",
-"summary": "This page describes post processing by the Grakn engine."
-}
-
-
-
-,
-{
 "title": "Example Projects",
 "tags": "",
 "keywords": "examples, projects",
@@ -690,17 +679,6 @@
 
 
 
-
-
-
-,
-{
-"title": "Grakn Data Validation",
-"tags": "advanced-grakn",
-"keywords": "validation",
-"url": "/pages/documentation/advanced-grakn/validation.html",
-"summary": "The page describes schema validation."
-}
 
 
 

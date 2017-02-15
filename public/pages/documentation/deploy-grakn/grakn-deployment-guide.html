@@ -3,9 +3,9 @@
     <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="This page describes post processing by the Grakn engine.">
-<meta name="keywords" content="advanced-grakn,  , GRAKN.AI, Grakn Labs, grakn, graql, grakn.ai, Mindmaps Research, Mindmaps Research Ltd, MindmapsDB, mindmaps, mindmaps graph, mindmaps.io, knowledge graph, distributed knowledge graph, development platform, developer tool, data platform, programming langauge, query langauge, database, semantic database, distributed semantic database, distributed database, graph database, semantic search, data exploration, recommendation system, knowledge management, knowledge engineering, real-time analytics, advanced analytics, reasoning engine, inference engine, expert systems, semantic applications, research engines, data management, business intelligence, big data, semantic web, semantic data, knowledge representation, automated reasoning, semantic network, knowledge ontology, semantic graph, ontology engineering, graph based knowledge representation, artificial intelligence,">
-<title>GRAKN.AI - Grakn Post Processing</title>
+<meta name="description" content="A guide to setting up a production deployment of GRAKN.AI.">
+<meta name="keywords" content="getting-started,  setup, getting started, download, GRAKN.AI, Grakn Labs, grakn, graql, grakn.ai, Mindmaps Research, Mindmaps Research Ltd, MindmapsDB, mindmaps, mindmaps graph, mindmaps.io, knowledge graph, distributed knowledge graph, development platform, developer tool, data platform, programming langauge, query langauge, database, semantic database, distributed semantic database, distributed database, graph database, semantic search, data exploration, recommendation system, knowledge management, knowledge engineering, real-time analytics, advanced analytics, reasoning engine, inference engine, expert systems, semantic applications, research engines, data management, business intelligence, big data, semantic web, semantic data, knowledge representation, automated reasoning, semantic network, knowledge ontology, semantic graph, ontology engineering, graph based knowledge representation, artificial intelligence,">
+<title>GRAKN.AI - Grakn Deployment Guide</title>
 <link rel="stylesheet" href="/pages/css/syntax.css">
 
 
@@ -228,7 +228,7 @@
                             
                             dataSource: '/pages/search.json',
                             
-                            searchResultTemplate: '<li><a href="{url}" title="Grakn Post Processing">{title}</a></li>',
+                            searchResultTemplate: '<li><a href="{url}" title="Grakn Deployment Guide">{title}</a></li>',
                             noResultsText: '<li><a class="empty">No results found</a></li>',
                             limit: 10,
                             fuzzy: true
@@ -575,19 +575,12 @@
         
     
     <li>
-        <a href="#">Advanced Grakn</a>
+        <a href="#">Deploy Grakn</a>
         <ul>
             
             
             
-            <li class="active"><a href="/pages/documentation/advanced-grakn/post-processing.html">Post Processing</a></li>
-            
-            
-            
-            
-            
-            
-            <li><a href="/pages/documentation/advanced-grakn/validation.html">Validation</a></li>
+            <li class="active"><a href="/pages/documentation/deploy-grakn/grakn-deployment-guide.html">Deploy Grakn</a></li>
             
             
             
@@ -728,7 +721,7 @@
         <!-- Content Column -->
         <div class="col-md-9">
             <div class="post-header">
-   <h1 class="post-title-main">Grakn Post Processing</h1>
+   <h1 class="post-title-main">Grakn Deployment Guide</h1>
 </div>
 
 
@@ -736,7 +729,7 @@
 <div class="post-content">
 
    
-    <div class="summary">This page describes post processing by the Grakn engine.</div>
+    <div class="summary">A guide to setting up a production deployment of GRAKN.AI.</div>
    
 
     
@@ -768,7 +761,7 @@ $('#toc').on('click', 'a', function() {
 
     
 
-    <a target="_blank" href="https://github.com/graknlabs/docs/blob/master/pages/documentation/9-advanced-grakn/post-processing.md" class="btn btn-default githubEditButton" role="button"><i class="fa fa-github fa-lg"></i> Edit me</a>
+    <a target="_blank" href="https://github.com/graknlabs/docs/blob/master/pages/documentation/8-deploy-grakn/grakn-deployment-guide.md" class="btn btn-default githubEditButton" role="button"><i class="fa fa-github fa-lg"></i> Edit me</a>
 
     
 
@@ -776,36 +769,120 @@ $('#toc').on('click', 'a', function() {
 
   <h2 id="introduction">Introduction</h2>
 
-<p>The distributed and concurrent nature of the Grakn system means that, sometimes, post processing is required to ensure the data remains consistent. This section will briefly discuss the post processing steps taken by the Grakn engine.</p>
+<p>This guide offers advice on how to:</p>
 
-<h3 id="role-player-optimisation">Role Player Optimisation</h3>
+<ul>
+  <li>run Grakn in a production environment</li>
+  <li>upgrade to the latest version of the distribution.</li>
+</ul>
 
-<p>When allocating entities as role players to multiple relations for the first time it is possible to create duplicate associations. These associations do not affect the results of any queries or computations. For example, if in a new system we process simultaneously the following three statements in different transactions:</p>
+<p>Grakn releases from our <a href="https://github.com/graknlabs/grakn">GitHub repository</a> are self-contained packages (tar.gz/zip) containing all the components you need to run Grakn:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>1. insert $x has name 'Brad Pitt' isa person; $y has name 'Fury'; (actor: $x, movie: $y) isa acted-in;
-2. insert $x has name 'Brad Pitt' isa person; $y has name 'Troy'; (actor: $x, movie: $y) isa acted-in;
-3. insert $x has name 'Brad Pitt' isa person; $y has name 'Seven'; (actor: $x, movie: $y) isa acted-in;
-</code></pre>
-</div>
+<ul>
+  <li>Grakn stack</li>
+  <li>Kafka and Zookeeper</li>
+  <li>Cassandra</li>
+</ul>
 
-<p>It is possible for the system to record that <code class="highlighter-rouge">Brad Pitt</code> is an actor multiple times. The duplications will later be resolved and merged by Grakn engine.</p>
+<p>You can run all these components separately depending on the redundancy levels you require.</p>
 
-<h3 id="merging-resources">Merging Resources</h3>
+<h2 id="setting-up-grakn">Setting up Grakn</h2>
 
-<div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> <b>Note:</b> This only happens when using a batch graph.</div>
+<h3 id="standalone-grakn">Standalone Grakn</h3>
 
-<p>When using a batch graph, many safety checks are skipped in favour of speed. One such check is the possible existence of a resource before creating it. So if the following transactions are executed simultaneously while batch loading:</p>
+<p>You can start a standalone instance of Grakn by running <code class="highlighter-rouge">grakn.sh start</code>. This will produce a working environment for importing and analysing your data.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>1. insert $a has unique-id '1'
-2. insert $b has unique-id '1'
-3. insert $c has unique-id '1'
-</code></pre>
-</div>
+<p>By default Grakn stores your data in the extracted directory, under <code class="highlighter-rouge">db/cassandra/</code> in the folder into which you unzipped the distribution zip.</p>
 
-<p>It would be possible to create multiple resources of the type <code class="highlighter-rouge">unique-id</code> with the value <code class="highlighter-rouge">1</code>. These duplicate resources are similarly merged and resolved by Grakn engine.</p>
+<p>We recommend changing this to another location to make upgrading Grakn easier and faster in the future. Having changed it, you need to specify the new location in the <code class="highlighter-rouge">conf/cassandra/cassandra.yaml</code> configuration file:</p>
+
+<ul>
+  <li><code class="highlighter-rouge">data_file_directories</code>: eg. /var/lib/cassandra/data</li>
+  <li><code class="highlighter-rouge">commitlog_directory</code>: eg. /var/lib/cassandra/commitlog</li>
+  <li><code class="highlighter-rouge">saved_caches_directory</code>: eg. /var/lib/cassandra/saved_caches</li>
+</ul>
+
+<h3 id="clustered-database">Clustered Database</h3>
+
+<p>To add reliability and redudancy on the database layer, you can run Cassandra (DSE, OrientDB, other storage backends) separately and point Grakn to use the node/cluster.</p>
+
+<p>Running Cassandra requires an entire guide in itself - our brief recommendation is to have, at the minimum, a cluster of 3 nodes with replication factor (RF) 3.</p>
+
+<p>Cassandra version: 2.1.9</p>
+
+<p>Specify an external database cluster in <code class="highlighter-rouge">conf/main/grakn.properties</code>: <code class="highlighter-rouge">storage.hostname</code>: eg. 10.0.10.1,10.0.10.2,10.0.10.3</p>
+
+<p>For further information on running Cassandra, see:</p>
+
+<ul>
+  <li><a href="http://cassandra.apache.org/doc/latest/operating/index.html">Cassandra documentation</a></li>
+  <li><a href="https://d0.awsstatic.com/whitepapers/Cassandra_on_AWS.pdf">AWS Cassandra whitepaper</a></li>
+</ul>
+
+<h3 id="distributed">Distributed</h3>
+
+<p>For a fully scalable and distributed setup, you will need to run each component of Grakn in a separate cluster.
+This provides the highest level of redundancy and availability; you will want this for high throughput systems and to make the most out of Grakn.</p>
+
+<p>The database layer will need to be configured similarly to the <a href="#clustered-database">Clustered database</a> setup.</p>
+
+<p>Grakn Engine uses the <a href="https://kafka.apache.org/">Apache Kafka</a> streaming platform for distributed task execution. Kafka keeps track of its brokers’ state in <a href="https://zookeeper.apache.org/">Zookeeper</a>.</p>
+
+<p>Kafka version: 2.10-0.10.1.0</p>
+
+<p>Zookeeper version: 3.4.9</p>
+
+<p>Configure Grakn to use an external Kafka and Zookeeper cluster in <code class="highlighter-rouge">conf/main/grakn-engine.properties</code>:</p>
+
+<ul>
+  <li><code class="highlighter-rouge">tasks.kafka.bootstrap-servers</code>: eg. 10.0.20.1:9092,10.0.20.2:9092,10.0.20.3:9092</li>
+  <li><code class="highlighter-rouge">tasks.zookeeper.servers</code>: eg. 10.0.30.1:2181,10.0.30.2:2181,10.0.3.30:2181</li>
+</ul>
+
+<p>Once the configuration files are correct, you can start Grakn Engine only with <code class="highlighter-rouge">bin/grakn-engine.sh start</code>.
+Multiple instances of Grakn Engine can be started that will make use of the shared Cassandra/Kafka/Zookeeper clusters.</p>
+
+<h2 id="upgrading-grakn">Upgrading Grakn</h2>
+
+<h3 id="standalone">Standalone</h3>
+
+<h4 id="default-directory">Default directory</h4>
+<p>For the default storage directory, <code class="highlighter-rouge">db/cassandra/</code>, you need to:</p>
+
+<ul>
+  <li>stop old Grakn (<code class="highlighter-rouge">./bin/grakn.sh stop</code>)</li>
+  <li>extract the latest Grakn package into a new directory</li>
+  <li>copy the entire contents of the <code class="highlighter-rouge">db</code> directory to the new location into the new <code class="highlighter-rouge">db</code> directory</li>
+  <li>start new Grakn (<code class="highlighter-rouge">./bin/grakn.sh start</code>)</li>
+</ul>
+
+<h4 id="external-directory">External directory</h4>
+<p>If you have changed the location of data_file_directories in the <code class="highlighter-rouge">conf/cassandra/cassandra.yaml</code>, you need to:</p>
+
+<ul>
+  <li>stop old Grakn (<code class="highlighter-rouge">./bin/grakn.sh stop</code>)</li>
+  <li>extract the latest Grakn package into a new directory</li>
+  <li>amend <code class="highlighter-rouge">data_file_directories</code>, <code class="highlighter-rouge">commitlog_directory</code> and <code class="highlighter-rouge">saved_caches_directory</code> to match your custom directories</li>
+  <li>start new Grakn (<code class="highlighter-rouge">./bin/grakn.sh start</code>)</li>
+</ul>
+
+<p>You will need to amend these variables with every new version of Grakn.</p>
+
+<h3 id="distributed-1">Distributed</h3>
+
+<p>Upgrading Grakn in a distributed setup is very simple:</p>
+
+<ul>
+  <li>stop and remove old Grakn Engine (<code class="highlighter-rouge">./bin/grakn-engine.sh stop</code>)</li>
+  <li>roll out the latest Grakn package with the correct Cassandra/Kafka/Zookeeper variables in the configuration files</li>
+  <li>start new Grakn Engine (<code class="highlighter-rouge">./bin/grakn-engine.sh start</code>)</li>
+</ul>
+
+<p>You can perform a rolling deployment in this fashion with minimum impact on your services.</p>
 
 <h2 id="comments">Comments</h2>
 <p>Want to leave a comment? Visit <a href="https://github.com/graknlabs/docs/issues/24" target="_blank">the issues on Github for this page</a> (you’ll need a GitHub account). You are also welcome to contribute to our documentation directly via the “Edit me” button at the top of the page.</p>
+
 
 
     <div class="tags">
@@ -814,7 +891,7 @@ $('#toc').on('click', 'a', function() {
         
         
         
-        <a href="/pages/tag_advanced-grakn.html" class="btn btn-default navbar-btn cursorNorm" role="button">advanced-grakn</a>
+        <a href="/pages/tag_getting-started.html" class="btn btn-default navbar-btn cursorNorm" role="button">getting-started</a>
         
         
         
@@ -845,7 +922,7 @@ $('#toc').on('click', 'a', function() {
         <br>
         <p>© 2016 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2017 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> November 17, 2016<br/> Site last generated: Feb 14, 2017 <br />
+        <span>Page last updated:</span> December 15th 2016<br/> Site last generated: Feb 15, 2017 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">

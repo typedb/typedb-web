@@ -575,19 +575,12 @@
         
     
     <li>
-        <a href="#">Advanced Grakn</a>
+        <a href="#">Deploy Grakn</a>
         <ul>
             
             
             
-            <li><a href="/pages/documentation/advanced-grakn/post-processing.html">Post Processing</a></li>
-            
-            
-            
-            
-            
-            
-            <li><a href="/pages/documentation/advanced-grakn/validation.html">Validation</a></li>
+            <li><a href="/pages/documentation/deploy-grakn/grakn-deployment-guide.html">Deploy Grakn</a></li>
             
             
             
@@ -990,13 +983,112 @@ $('#toc').on('click', 'a', function() {
 
 <h3 id="data-validation">Data Validation</h3>
 
-<p>To ensure data is correctly structured (i.e. consistent) with respect to the ontology, all data instances are validated against the ontology constraints. All the explicitly represented ontology constraints, together with the inherited ones, form complete schema templates for particular concept types, which guide the validation. The following insertion will fail, because it is attempting to form an <code class="highlighter-rouge">employment</code> relationship between two <code class="highlighter-rouge">person</code> entities, rather than a <code class="highlighter-rouge">person</code> and a <code class="highlighter-rouge">company</code>:</p>
+<p>To ensure data is correctly structured (i.e. consistent) with respect to the ontology, all data instances are validated against the ontology constraints. All the explicitly represented ontology constraints, together with the inherited ones, form complete schema templates for particular concept types, which guide the validation.</p>
+
+<p>We will consider the structural validation rules that are enforced in a Grakn graph. The following consistency checks are executed upon <code class="highlighter-rouge">commit</code> depending on what is being committed:</p>
+
+<h4 id="plays-role-validation">Plays Role Validation</h4>
+
+<p>This validation rule simply checks if an entity (which is a role player in a relation) is allowed to play the role it has been allocated to.</p>
+
+<p>The following insertion will fail, because it is attempting to form an <code class="highlighter-rouge">employment</code> relationship between two <code class="highlighter-rouge">person</code> entities, rather than a <code class="highlighter-rouge">person</code> and a <code class="highlighter-rouge">company</code>:</p>
 
 <pre><code class="language-graql">insert
   $x isa person, has name "Elizabeth Niesz";
   $y isa person, has name "John Niesz";
   (employee: $x, employer: $y) isa employment;
 </code></pre>
+
+<h4 id="type-validation">Type Validation</h4>
+
+<p>This validation rule ensures that abstract types do not have any instances. For example if we declare the type <code class="highlighter-rouge">vehicle</code> to be abstract, with <code class="highlighter-rouge">car</code> and <code class="highlighter-rouge">motorbike</code> to be sub types of <code class="highlighter-rouge">vehicle</code>, then only cars and motorbikes are allowed to have instances.</p>
+
+<h4 id="role-validation">Role Validation</h4>
+
+<p>This rule checks that non abstract roles are part of a relation. For example if we declare the role <code class="highlighter-rouge">husband</code> and forget to link it to any relation, then this check will fail.</p>
+
+<h4 id="relation-validation">Relation Validation</h4>
+
+<p>A relation is valid if:</p>
+
+<ul>
+  <li>all of the role players of the relation are allowed to play their corresponding roles.</li>
+  <li>it has, at minimum, two roles. For example, a <code class="highlighter-rouge">marriage</code> with only one role <code class="highlighter-rouge">husband</code> would fail this check.</li>
+</ul>
+
+<h4 id="an-example-of-validation">An Example of Validation</h4>
+
+<p>Let us say that we want to model a marriage between a man <code class="highlighter-rouge">Bob</code> and woman <code class="highlighter-rouge">Alice</code>.
+This will be our first attempt:</p>
+
+<pre><code class="language-graql">insert
+  person is-abstract sub entity;
+  person has-resource name;
+  name sub resource datatype string;
+  
+  man is-abstract sub person;
+  woman sub person;
+  
+  marriage sub relation;
+  marriage has-role husband;
+
+  husband sub role;
+  wife sub role;
+  
+  woman plays-role wife;
+    
+  $x has name 'Bob' isa man;
+  $y has name 'Alice' isa woman;
+  (husband: $x, wife: $y) isa marriage;
+</code></pre>
+
+<p>This first attempt was horrible as we ended up failing all the validation rules.       <br />
+On commit we will see an error similar to this:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>A structural validation error has occurred. Please correct the <span class="o">[</span><span class="sb">`</span>5<span class="sb">`</span><span class="o">]</span> errors found.
+RoleType <span class="o">[</span><span class="s1">'wife'</span><span class="o">]</span> does not have exactly one has-role connection to any RelationType.
+The abstract Type <span class="o">[</span><span class="s1">'man'</span><span class="o">]</span> should not have any instances
+Relation Type <span class="o">[</span><span class="s1">'marriage'</span><span class="o">]</span> does not have two or more roles
+The relation <span class="o">[</span><span class="s1">'RELATION-marriage-2b58b138-2c33-478c-8e8c-e7b357a20941'</span><span class="o">]</span> has an invalid structure. This is either due to having more role players than roles or the Relation Type <span class="o">[</span><span class="s1">'marriage'</span><span class="o">]</span> not having the correct has-role connection to one of the provided roles. The provided roles<span class="o">(</span><span class="s1">'2'</span><span class="o">)</span>: <span class="o">[</span><span class="s1">'husband,wife,'</span><span class="o">]</span>The provided role players<span class="o">(</span><span class="s1">'2'</span><span class="o">)</span>: <span class="o">[</span><span class="s1">'husband,wife,'</span><span class="o">]</span>
+The <span class="nb">type</span> <span class="o">[</span><span class="s1">'man'</span><span class="o">]</span> of role player <span class="o">[</span><span class="s1">'ENTITY-man-2482cb91-1f12-40ea-b659-49d07d06ddf1'</span><span class="o">]</span> is not allowed to play RoleType <span class="o">[</span><span class="s1">'husband'</span><span class="o">]</span>
+</code></pre>
+</div>
+
+<p>Lets see why:</p>
+
+<ol>
+  <li><strong>Role Validation</strong> failed because the role <code class="highlighter-rouge">wife</code> is not connected to any relation</li>
+  <li><strong>Relation Validation</strong> failed because <code class="highlighter-rouge">marriage</code> only has one role <code class="highlighter-rouge">husband</code>.</li>
+  <li><strong>Type Validation</strong> failed because we accidentally made <code class="highlighter-rouge">man</code> abstract and we declared <code class="highlighter-rouge">Bob</code> to be an instance of <code class="highlighter-rouge">man</code>.</li>
+  <li><strong>Plays Role Validation</strong> failed because we forgot to say that a <code class="highlighter-rouge">man</code> can play the role of <code class="highlighter-rouge">husband</code>.</li>
+  <li><strong>Relation Validation</strong> failed because <code class="highlighter-rouge">Alice</code> is playing the role of a <code class="highlighter-rouge">wife</code> which is not part of a <code class="highlighter-rouge">marriage</code> and <code class="highlighter-rouge">Bob</code> is playing the role of a <code class="highlighter-rouge">husband</code>, which as a man he is not allowed to do.</li>
+</ol>
+
+<p>Let’s fix these issues and try again:</p>
+
+<pre><code class="language-graql">insert
+  person is-abstract sub entity;                   
+  person has-resource name;
+  name sub resource datatype string;
+  
+  man sub person; # Fix (3)
+  woman sub person;
+  
+  marriage sub relation;
+  marriage has-role husband;
+  marriage has-role wife; # Fix (1) and (2) and part of (5)
+  
+  husband sub role;
+  wife sub role;
+  man plays-role husband; # Fix (4)
+  woman plays-role wife;  
+
+  $x has name 'Bob' isa man;
+  $y has name 'Alice' isa woman;
+  (husband: $x, wife: $y) isa marriage;
+</code></pre>
+
+<p>Now we are correctly modelling the marriage between <code class="highlighter-rouge">Alice</code> and <code class="highlighter-rouge">Bob</code>.</p>
 
 <h2 id="rule-and-sub-type-inference">Rule and Sub-Type Inference</h2>
 
@@ -1103,7 +1195,7 @@ $('#toc').on('click', 'a', function() {
         <br>
         <p>© 2016 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2017 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> January 2017<br/> Site last generated: Feb 14, 2017 <br />
+        <span>Page last updated:</span> January 2017<br/> Site last generated: Feb 15, 2017 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">

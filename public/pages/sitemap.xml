@@ -50,19 +50,13 @@
   
   
   <url>
-    <loc>http://grakn.ai/pages//documentation/migration/CSV-migration.html</loc>
-  </url>
-  
-  
-  
-  <url>
     <loc>http://grakn.ai/pages//documentation/examples/CSV-migration.html</loc>
   </url>
   
   
   
   <url>
-    <loc>http://grakn.ai/pages//documentation/examples/JSON-migration.html</loc>
+    <loc>http://grakn.ai/pages//documentation/migration/CSV-migration.html</loc>
   </url>
   
   
@@ -74,7 +68,7 @@
   
   
   <url>
-    <loc>http://grakn.ai/pages//documentation/examples/OWL-migration.html</loc>
+    <loc>http://grakn.ai/pages//documentation/examples/JSON-migration.html</loc>
   </url>
   
   
@@ -86,13 +80,19 @@
   
   
   <url>
-    <loc>http://grakn.ai/pages//documentation/examples/SQL-migration.html</loc>
+    <loc>http://grakn.ai/pages//documentation/examples/OWL-migration.html</loc>
   </url>
   
   
   
   <url>
     <loc>http://grakn.ai/pages//documentation/migration/SQL-migration.html</loc>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://grakn.ai/pages//documentation/examples/SQL-migration.html</loc>
   </url>
   
   
@@ -202,7 +202,7 @@
   
   
   <url>
-    <loc>http://grakn.ai/pages//documentation/resources/grakn-deployment-guide.html</loc>
+    <loc>http://grakn.ai/pages//documentation/deploy-grakn/grakn-deployment-guide.html</loc>
   </url>
   
   
@@ -334,12 +334,6 @@
   
   
   <url>
-    <loc>http://grakn.ai/pages//documentation/advanced-grakn/post-processing.html</loc>
-  </url>
-  
-  
-  
-  <url>
     <loc>http://grakn.ai/pages//documentation/examples/projects.html</loc>
   </url>
   
@@ -394,12 +388,6 @@
   
   
   
-  
-  
-  
-  <url>
-    <loc>http://grakn.ai/pages//documentation/advanced-grakn/validation.html</loc>
-  </url>
   
   
   

@@ -575,19 +575,12 @@
         
     
     <li>
-        <a href="#">Advanced Grakn</a>
+        <a href="#">Deploy Grakn</a>
         <ul>
             
             
             
-            <li><a href="/pages/documentation/advanced-grakn/post-processing.html">Post Processing</a></li>
-            
-            
-            
-            
-            
-            
-            <li><a href="/pages/documentation/advanced-grakn/validation.html">Validation</a></li>
+            <li><a href="/pages/documentation/deploy-grakn/grakn-deployment-guide.html">Deploy Grakn</a></li>
             
             
             
@@ -768,7 +761,7 @@ $('#toc').on('click', 'a', function() {
 
     
 
-    <a target="_blank" href="https://github.com/graknlabs/docs/blob/master/pages/documentation/12-resources/faq.md" class="btn btn-default githubEditButton" role="button"><i class="fa fa-github fa-lg"></i> Edit me</a>
+    <a target="_blank" href="https://github.com/graknlabs/docs/blob/master/pages/documentation/11-resources/faq.md" class="btn btn-default githubEditButton" role="button"><i class="fa fa-github fa-lg"></i> Edit me</a>
 
     
 
@@ -782,7 +775,7 @@ $('#toc').on('click', 'a', function() {
 
 <p>We are often asked why we have developed a new ontology and query language rather than use existing standards like <a href="https://en.wikipedia.org/wiki/Resource_Description_Framework">RDF</a>, <a href="https://en.wikipedia.org/wiki/Web_Ontology_Language">OWL</a> and <a href="https://en.wikipedia.org/wiki/SPARQL">SPARQL</a>.</p>
 
-<p>Our underlying data model is that of a property graph, so in principle we’re able to import and export from/to RDF if needed. However, our ontology language is designed to strike a different and better balance between expressiveness and complexity than offered by the existing OWL profiles, especially in the context of knowledge graph structures. In consequence, our query language, Graql, is aligned with our ontology formalism to enable higher level query capabilities than supported by SPARQL over an RDF data model.</p>
+<p>We have written a <a href="https://blog.grakn.ai/knowledge-graph-representation-grakn-ai-or-owl-506065bd3f24#.5zjvkta9u">substantial explanation</a> to this question on our blog. In summary, our underlying data model is that of a property graph, so in principle we’re able to import and export from/to RDF if needed. However, our ontology language is designed to strike a different and better balance between expressiveness and complexity than offered by the existing OWL profiles, especially in the context of knowledge graph structures. In consequence, our query language, Graql, is aligned with our ontology formalism to enable higher level query capabilities than supported by SPARQL over an RDF data model.</p>
 
 <p>OWL is not well-suited for graph-structures. Because of its formal foundations and computational limitations it is in fact a more natural language for managing tree-shaped data instead. OWL also makes it hard to help validate consistency of data and ensure it is well-structured, and this is what knowledge graph applications require.</p>
 
@@ -854,6 +847,34 @@ this by setting the <code class="highlighter-rouge">checkInternalVertexExistence
 
 <p>Ignoring these checks allows data to be processed much faster at the risk of breaking consistency.</p>
 
+<h3 id="what-is-post-processing">What is post-processing?</h3>
+
+<p>The distributed and concurrent nature of the Grakn system means that, sometimes, post processing is required to ensure the data remains consistent.</p>
+
+<p>**Role Player Optimisation **</p>
+
+<p>When allocating entities as role players to multiple relations for the first time it is possible to create duplicate associations. These associations do not affect the results of any queries or computations. For example, if in a new system we process simultaneously the following three statements in different transactions:</p>
+
+<pre><code class="language-graql">1. insert $x has name 'Brad Pitt' isa person; $y has name 'Fury'; (actor: $x, movie: $y) isa acted-in;
+2. insert $x has name 'Brad Pitt' isa person; $y has name 'Troy'; (actor: $x, movie: $y) isa acted-in;
+3. insert $x has name 'Brad Pitt' isa person; $y has name 'Seven'; (actor: $x, movie: $y) isa acted-in;
+</code></pre>
+
+<p>It is possible for the system to record that <code class="highlighter-rouge">Brad Pitt</code> is an actor multiple times. The duplications will later be resolved and merged by Grakn engine.</p>
+
+<p>**Merging Resources **</p>
+
+<div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> <b>Note:</b> This only happens when using a batch graph.</div>
+
+<p>When using a batch graph, many safety checks are skipped in favour of speed. One such check is the possible existence of a resource before creating it. So if the following transactions are executed simultaneously while batch loading:</p>
+
+<pre><code class="language-graql">1. insert $a has unique-id '1'
+2. insert $b has unique-id '1'
+3. insert $c has unique-id '1'
+</code></pre>
+
+<p>It would be possible to create multiple resources of the type <code class="highlighter-rouge">unique-id</code> with the value <code class="highlighter-rouge">1</code>. These duplicate resources are similarly merged and resolved by Grakn engine.</p>
+
 <h3 id="can-i-run-grakn-on-an-existing-cassandra-platform">Can I run Grakn on an existing Cassandra Platform?</h3>
 
 <p>By default, Grakn is shipped with TitanDB, which in turn relies on Cassandra. When you call <code class="highlighter-rouge">grakn.sh start</code>, this starts a Cassandra instance and then starts the Grakn server.  You are not bound to use our instance of Cassandra, and can make adjustments to the settings in the <code class="highlighter-rouge">.properties</code> file in the <code class="highlighter-rouge">conf/main</code> directory of the Grakn, e.g. to make Titan use your Cassandra instance.</p>
@@ -875,24 +896,11 @@ storage.hostname<span class="o">=</span>127.0.0.1
 
 <h3 id="do-applications-written-on-top-of-grakn-have-to-be-in-java">Do applications written on top of Grakn have to be in Java?</h3>
 
-<p>Currently, there is no official support for languages other than Java. But we are open source and would be very willing to accept proposals from our community, and work with contributors, to create bindings to other languages.</p>
+<p>Currently, there is no official support for languages other than Java, although you can find blog posts that describe our experiments with <a href="https://blog.grakn.ai/grakn-ai-and-haskell-c166c7cc1d23">Haskell</a>, <a href="https://blog.grakn.ai/grakn-pandas-celebrities-5854ad688a4f">Python</a> and <a href="https://blog.grakn.ai/there-r-pandas-in-my-graph-b8b5f40a2f99">R</a>. We would be very willing to accept proposals from our community and work with contributors to extend these initial offerings, and/or create bindings to other languages.</p>
 
 <h3 id="how-do-i-visualise-a-graph">How do I visualise a graph?</h3>
 
-<p>Grakn comes with a basic <a href="../grakn-dashboard/visualiser.html">visualiser</a>, with a web-interface. We appreciate any feedback you give us about it via the <a href="https://discuss.grakn.ai/t/visualise-my-data/57">discussion boards</a>.</p>
-
-<p>Once you have started Grakn, you will see a message in the console:</p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code>Started ServerConnector@7aa5814d<span class="o">{</span>HTTP/1.1,[http/1.1]<span class="o">}{</span>0.0.0.0:4567<span class="o">}</span>
-</code></pre>
-</div>
-
-<p>You can then open your browser and connect to the address printed on the console (http://0.0.0.0:4567). Select the Graql Visualiser tab and you will see a Graql shell, from which you can input queries, for example:</p>
-
-<pre><code class="language-graql">match $x sub concept;
-</code></pre>
-
-<p>In result, you will see the resulting nodes and relations displayed inside the graql visualiser on the same page.</p>
+<p>Grakn comes with a basic <a href="../grakn-dashboard/visualiser.html">visualiser</a>, with a web-interface. We appreciate any feedback you give us about it via the <a href="https://discuss.grakn.ai/t/visualise-my-data/57">discussion boards</a>. You will need to start Grakn, and then use your web browser to visit <a href="http://localhost:4567/">localhost:4567</a> to visualise a graph.  Please see the <a href="../get-started/setup-guide.html#test-the-visualiser">Get Started Guide</a> for more information about the visualiser.</p>
 
 <h3 id="how-do-i-clear-a-graph">How do I clear a graph?</h3>
 
@@ -906,13 +914,12 @@ graph.clear();
 
 <p>If you are using the Graql shell and have not committed what you have in the graph, you can just quit the shell and restart it, and all is clean.</p>
 
-<p>If you’ve committed, then you must currently remove your installation and re-create it.  First, call</p>
+<p>If you’ve committed, then you must stop Grakn and specifically clean the graph:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>pkill -9 java
+<div class="highlighter-rouge"><pre class="highlight"><code>./bin/grakn.sh stop
+./bin/grakn.sh clean
 </code></pre>
 </div>
-
-<p>Then delete the Grakn install directory, and unzip a fresh copy from the distribution zip. It isn’t very elegant at present, and we are working on a simpler way to clear out a graph.</p>
 
 <h3 id="how-do-i-run-graql-from-a-bash-script">How do I run Graql from a bash script?</h3>
 
@@ -965,7 +972,7 @@ graph.clear();
         <br>
         <p>© 2016 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2017 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> September 22, 2016<br/> Site last generated: Feb 14, 2017 <br />
+        <span>Page last updated:</span> September 22, 2016<br/> Site last generated: Feb 15, 2017 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">
