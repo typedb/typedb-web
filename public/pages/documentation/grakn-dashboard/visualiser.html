@@ -798,27 +798,64 @@ The query for your selection will be displayed in the form with a default limit 
 
 <p><img src="/images/match-$x-isa-person.png" alt="Person query" /></p>
 
+<p>To clear the graph, press Shift + the “Clear” button (the circle with the cross through it).</p>
+
+<p>You can also submit queries by typing them into the form, then pressing “&gt;” to visualise the graph. You can zoom the display in and out, and move the nodes around for better visibility. For example:</p>
+
+<pre><code class="language-graql">match $x isa person, has firstname "John"; 
+</code></pre>
+
+<p><img src="/images/john-query.png" alt="John query" /></p>
+
+<p>Note that the <code class="highlighter-rouge">offset 0; limit 100</code> values are applied automatically, but the default values can be changed.</p>
+
 <h2 id="working-with-the-visualiser">Working With The Visualiser</h2>
 
 <p>There are a number of horizontal tabs on the left hand side of the screen, described as follows.</p>
 
 <h3 id="graph">Graph</h3>
-<p>This is the main section of the visualiser that you will use to explore the graph. You can submit queries using the form, then press “&gt;” to visualise the graph. For example:</p>
-
-<pre><code class="language-graql">match $x isa person, has firstname "John"; 
-</code></pre>
-
-<p>You can zoom the display in and out, and move the nodes around for better visibility.</p>
-
-<p><img src="/images/john-query.png" alt="John query" /></p>
-
-<p>To clear the graph, press Shift + the “Clear” button (the circle with the cross through it).</p>
+<p>This is the main section of the visualiser that you will use to explore the graph.</p>
 
 <p>We have already shown an example of how to examine <code class="highlighter-rouge">person</code> entities using the entity selector. As another example, select “Types”, followed by “Relations” and filter on <code class="highlighter-rouge">marriage</code> relations. The query will be shown in the query section at the top of the main pane, as previously, and the visualiser displays all the <code class="highlighter-rouge">marriage</code> relations in the graph.</p>
 
 <p><img src="/images/marriages.png" alt="Marriages query" /></p>
 
-<p>There are also 3 query settings, which can be changed using the ‘cog’ button:</p>
+<p>A short video illustrates the process:</p>
+
+<iframe width="640" height="360" src="https://www.youtube.com/embed/OLuVwjPrhbc" frameborder="0" allowfullscreen=""></iframe>
+
+<p><br /></p>
+
+<h4 id="analytics-queries">Analytics Queries</h4>
+<p>You will notice a ‘pencil’ icon (on the far left of the horizontal icon menu at the top of the screen) that can be used to build Graql analytics queries. The following video illustrates how to build a shortest path query:</p>
+
+<iframe width="640" height="360" src="https://www.youtube.com/embed/OLuVwjPrhbc" frameborder="0" allowfullscreen=""></iframe>
+
+<p><br /></p>
+
+<p>We will walk through what is shown in the video.</p>
+
+<p>The first step is to clear the graph, then choose two people from the genealogy dataset, to determine the shortest path between them. For example, use the following query, and enter it into the form in the visualiser:</p>
+
+<pre><code class="language-graql">match $x isa person has firstname "Susan" has surname "Dudley";
+$y isa person has firstname "Barbara" has surname "Herchelroth";
+</code></pre>
+
+<ol>
+  <li>
+    <p>Submit the query by pressing “&gt;” to visualise the graph. Just the two people in question (Susan Dudley and Barbar Herchelroth) should be visible in the graph.</p>
+  </li>
+  <li>
+    <p>Use the pencil button to open the Query builders menu. We will use the first item in the drop-down, which is “Shortest Path”. Click the “Start” button, then click first one node in the graph, and then click the other node (thus connecting the two people).</p>
+  </li>
+  <li>
+    <p>Submit the shortest path query, which you will see in the form at the top of the visualiser, but pressing “&gt;”. The graph will display the relations, and nodes, that connect the two by the shortest path. If you chose Susan Dudley and Barbara Herchelroth, you should discover that Barbara is the great-grandmother of Susan’s husband.</p>
+  </li>
+</ol>
+
+<h4 id="inference">Inference</h4>
+
+<p>There are also 3 settings that can be changed using the ‘cog’ button (on the far right hand side of the horizontal icon menu at the top of the screen):</p>
 
 <ul>
   <li>Activate inference - activates inference, per query.</li>
