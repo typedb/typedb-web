@@ -617,13 +617,6 @@
             
             
             
-            <li><a href="/pages/documentation/resources/grakn-deployment-guide.html">Grakn Deployment Guide</a></li>
-            
-            
-            
-            
-            
-            
             <li><a href="/pages/documentation/resources/faq.html">Grakn FAQ</a></li>
             
             
@@ -775,10 +768,10 @@ Called within the Graql shell, the general syntax is:</p>
 </div>
 
 <ul>
-  <li><code class="highlighter-rouge">algorithm</code> can be any of the available <a href="#available-statistics-algorithms">statistics</a> or <a href="#available-graph-algorithms">graph</a>.</li>
+  <li><code class="highlighter-rouge">algorithm</code> can be any of the available <a href="#available-statistics-algorithms">statistics</a> or <a href="#available-graph-algorithms">graph</a> algorithms.</li>
   <li><code class="highlighter-rouge">arguments</code> are different depending on the specific algorithm.</li>
-  <li><code class="highlighter-rouge">subgraph</code> is a comma separated list of type IDs to be visited by the Pregel algorithm.</li>
-  <li><code class="highlighter-rouge">modifiers</code> some algorithms can have their behaviour modified.</li>
+  <li><code class="highlighter-rouge">subgraph</code> is a comma separated list of types to be visited by the Pregel algorithm.</li>
+  <li><code class="highlighter-rouge">modifiers</code> some algorithms can have their output modified.</li>
 </ul>
 
 <p>The specific algorithms fall into two main categories and more information is given in the sections below.
@@ -868,10 +861,10 @@ For example,</p>
 </code></pre>
 </div>
 
-<p>would compute the mean of the value persisted in instances of the resource <code class="highlighter-rouge">age</code>. It is also possible to provide a
-set of resources.</p>
+<p>would compute the mean value of <code class="highlighter-rouge">age</code> across all instances of the type <code class="highlighter-rouge">person</code>.
+It is also possible to provide a set of resources.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>compute mean of user-rating, expert-rating in movie;
+<div class="highlighter-rouge"><pre class="highlight"><code>compute mean of resource-a, resource-b in person;
 </code></pre>
 </div>
 
@@ -915,6 +908,12 @@ For example,</p>
 <h3 id="sum">Sum</h3>
 
 <p>Computes the sum of a given resource, similar to <a href="#mean">mean</a>.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>compute sum of age in person;
+</code></pre>
+</div>
+
+<div class="alert alert-danger" role="alert"><i class="fa fa-exclamation-circle"></i> <b>Warning:</b> When an instance has two resources of the same type attached, or two resources specified as arguments to the algorithm, statistics will include this by assuming there were two instances each with a single resource.</div>
 
 <h2 id="available-graph-algorithms">Available Graph Algorithms</h2>
 
@@ -1014,7 +1013,7 @@ For further information see the individual sections below.
         <br>
         <p>© 2016 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2017 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> September 28, 2016<br/> Site last generated: Feb 19, 2017 <br />
+        <span>Page last updated:</span> September 28, 2016<br/> Site last generated: Feb 20, 2017 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">

@@ -617,13 +617,6 @@
             
             
             
-            <li><a href="/pages/documentation/resources/grakn-deployment-guide.html">Grakn Deployment Guide</a></li>
-            
-            
-            
-            
-            
-            
             <li><a href="/pages/documentation/resources/faq.html">Grakn FAQ</a></li>
             
             
@@ -769,23 +762,21 @@ $('#toc').on('click', 'a', function() {
 
   <p>The connected components algorithm can be used to find clusters of instances in the graph that are connected.
 The algorithm finds all instances (relations, resources and entities) that are connected via relations in the graph and gives each set a unique label.
-In the graph below you can see three connected components that correspond to groups of friends.
+In the graph below you can see three connected components that correspond to people who are related through marriage.
 In this graph three unique labels will be created one corresponding to each of the sets of connected instances.</p>
 
 <p><img src="/images/analytics_conn_comp.png" alt="Three connected components representing groups of friends." /></p>
 
 <p>You can call the cluster algorithm to find the clusters above using:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>compute cluster in person, knows;
+<pre><code class="language-graql">compute cluster in person, marriage;
 </code></pre>
-</div>
 
-<p>The results you would actually get involve 3 clusters with sizes: 5, 7, 3.
+<p>The results you get involve 3 clusters with sizes: 3, 5, 3.
 If you want to see the actual members of the clusters you have to use the modifier <code class="highlighter-rouge">members</code>.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>compute cluster in person, knows; members;
+<pre><code class="language-graql">compute cluster in person, knows; members;
 </code></pre>
-</div>
 
 <p>Here, the <a href="./analytics-overview.html">subgraph</a> functionality has been used to get more meaningful results, because executing the cluster algorithm without specifying a subgraph will not result in meaningful information.</p>
 
@@ -831,7 +822,7 @@ If you want to see the actual members of the clusters you have to use the modifi
         <br>
         <p>© 2016 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2017 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> December 12, 2016<br/> Site last generated: Feb 19, 2017 <br />
+        <span>Page last updated:</span> February 2017<br/> Site last generated: Feb 20, 2017 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">

@@ -617,13 +617,6 @@
             
             
             
-            <li><a href="/pages/documentation/resources/grakn-deployment-guide.html">Grakn Deployment Guide</a></li>
-            
-            
-            
-            
-            
-            
             <li><a href="/pages/documentation/resources/faq.html">Grakn FAQ</a></li>
             
             
@@ -777,7 +770,7 @@ $('#toc').on('click', 'a', function() {
 
 <p>The first step is to load the ontology and data into Grakn. You need to use your terminal to do this, as the visualiser is a read-only interface to a graph. From the terminal, start Grakn, and load the file as follows:</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>&lt;relative-path-to-Grakn&gt;/bin/grakn.sh start
+<div class="highlighter-rouge"><pre class="highlight"><code>&lt;relative-path-to-Grakn&gt;/bin/grakn.sh start
 &lt;relative-path-to-Grakn&gt;/bin/graql.sh -f ./examples/basic-genealogy.gql -k <span class="s2">"family"</span>
 </code></pre>
 </div>
@@ -786,7 +779,7 @@ $('#toc').on('click', 'a', function() {
 
 <p>You can test in the Graql shell that all has loaded correctly. For example:</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>&lt;relative-path-to-Grakn&gt;/bin/graql.sh -k family
+<div class="highlighter-rouge"><pre class="highlight"><code>&lt;relative-path-to-Grakn&gt;/bin/graql.sh -k family
 match <span class="nv">$p</span> isa person, has identifier <span class="nv">$i</span>;
 </code></pre>
 </div>
@@ -809,8 +802,6 @@ The query for your selection will be displayed in the form with a default limit 
 
 <p>There are a number of horizontal tabs on the left hand side of the screen, described as follows.</p>
 
-<h2 id="pages">Pages</h2>
-
 <h3 id="graph">Graph</h3>
 <p>This is the main section of the visualiser that you will use to explore the graph. You can submit queries using the form, then press “&gt;” to visualise the graph. For example:</p>
 
@@ -821,7 +812,7 @@ The query for your selection will be displayed in the form with a default limit 
 
 <p><img src="/images/john-query.png" alt="John query" /></p>
 
-<p>To clear the graph, press Shift + the “Clear” button.</p>
+<p>To clear the graph, press Shift + the “Clear” button (the circle with the cross through it).</p>
 
 <p>We have already shown an example of how to examine <code class="highlighter-rouge">person</code> entities using the entity selector. As another example, select “Types”, followed by “Relations” and filter on <code class="highlighter-rouge">marriage</code> relations. The query will be shown in the query section at the top of the main pane, as previously, and the visualiser displays all the <code class="highlighter-rouge">marriage</code> relations in the graph.</p>
 
@@ -893,7 +884,7 @@ The query for your selection will be displayed in the form with a default limit 
         <br>
         <p>© 2016 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2017 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> August 10, 2016<br/> Site last generated: Feb 19, 2017 <br />
+        <span>Page last updated:</span> August 10, 2016<br/> Site last generated: Feb 20, 2017 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">

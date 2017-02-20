@@ -617,13 +617,6 @@
             
             
             
-            <li><a href="/pages/documentation/resources/grakn-deployment-guide.html">Grakn Deployment Guide</a></li>
-            
-            
-            
-            
-            
-            
             <li><a href="/pages/documentation/resources/faq.html">Grakn FAQ</a></li>
             
             
@@ -769,58 +762,47 @@ $('#toc').on('click', 'a', function() {
 
   <p>What is the most important instance in a graph? Given no more context than this, <code class="highlighter-rouge">degrees</code> can provide an answer of
 sorts. The degree of an instance gives the number of other instances directly connected to the instance. For an entity, such as
-a <code class="highlighter-rouge">person</code>, this means the number of connections, for example instances of a <code class="highlighter-rouge">friendship</code> relationship. The <code class="highlighter-rouge">person</code> with the highest degree, or the greatest number of friends, is arguably the most “important”.</p>
+a <code class="highlighter-rouge">person</code>, this means the number of connections, for example instances of a <code class="highlighter-rouge">marriage</code> relationship.
+The <code class="highlighter-rouge">person</code> with the highest degree, or the greatest number of marriages, is arguably the most “interesting”.</p>
 
 <h3 id="degrees">Degrees</h3>
 
-<p>The <code class="highlighter-rouge">degrees</code> algorithm computes how many edges there are attached to instances in the graph. A map is returned
+<p>The <code class="highlighter-rouge">degrees</code> algorithm computes how many arrows (edges) there are attached to instances in the graph. A map is returned
 that displays an instance ID and its degree. If we call:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>compute degrees;
+<pre><code class="language-graql">compute degrees;
 </code></pre>
-</div>
 
 <p>on the graph below we expect the degrees of the people to be:</p>
 
 <ul>
-  <li><strong>Evangelos</strong>: 1; Evangelos has one edge; labelled “acquaintance1”</li>
-  <li><strong>Alim</strong>: 4: Alim has 4 edges; 2 labelled “writer”, and 2 labelled “acquaintance2”</li>
-  <li><strong>Eric</strong>: 2: Eric has 2 edges; 1 edge labelled “writer” and 1 labelled “acquaintance1”</li>
+  <li><strong>Barbara Herchelroth</strong>: 3 - two marriages and a child</li>
+  <li><strong>Jacob Young</strong>: 2 - a marriage and a child</li>
+  <li><strong>Mary Young</strong>: 2 - two parents</li>
+  <li><strong>John Newman</strong>: 1 - a marriage</li>
 </ul>
 
 <p>We do not count the edges labelled isa, because they are connected to the types and are not considered by analytics.
-Don’t forget that the relations and comments will also have degrees.</p>
+Don’t forget that the relations themselves will also have degrees.</p>
 
 <p><img src="/images/analytics_degree_full.png" alt="A simple social network." /></p>
 
 <h3 id="degrees-within-a-subgraph">Degrees Within a Subgraph</h3>
 
-<p>Consider that in this graph, people with more friends are more important. We can use the subgraph functionality to restrict the graph to only see people and who they are friends with. Once the graph has been restricted we can determine the number of friends by computing the degree:</p>
+<p>Consider that in this graph, people with more marriages are more interesting.
+We can use the subgraph functionality to restrict the graph to only see people and who they are married to.
+Once the graph has been restricted we can determine the number of marriages by computing the degree:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>compute degrees in person, knows;
+<pre><code class="language-graql">compute degrees in person, marriage;
 </code></pre>
-</div>
 
 <p>The result will now be:</p>
 
 <ul>
-  <li><strong>Evangelos</strong>: 1</li>
-  <li><strong>Alim</strong>: 2</li>
-  <li><strong>Eric</strong>: 1</li>
-</ul>
-
-<p>Next we might be interested in who writes the most messages. In a similar way we can restrict the calculation to a different subgraph to acquire the desired information.</p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code>compute degrees in person, writes;
-</code></pre>
-</div>
-
-<p>The answer is now different:</p>
-
-<ul>
-  <li><strong>Evangelos</strong>: 0</li>
-  <li><strong>Alim</strong>: 2</li>
-  <li><strong>Eric</strong>: 1</li>
+  <li><strong>Barbara Herchelroth</strong>: 2</li>
+  <li><strong>Jacob Young</strong>: 1</li>
+  <li><strong>Mary Young</strong>: 0</li>
+  <li><strong>John Newman</strong>: 1</li>
 </ul>
 
 <h2 id="comments">Comments</h2>
@@ -864,7 +846,7 @@ Don’t forget that the relations and comments will also have degrees.</p>
         <br>
         <p>© 2016 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2017 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> December 12th, 2016<br/> Site last generated: Feb 19, 2017 <br />
+        <span>Page last updated:</span> February 2017<br/> Site last generated: Feb 20, 2017 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">

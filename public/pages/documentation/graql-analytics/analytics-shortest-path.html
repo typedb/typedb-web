@@ -3,7 +3,7 @@
     <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="">
+<meta name="description" content="This page introduces the shortest path functionality of analytics.">
 <meta name="keywords" content="analytics,  , GRAKN.AI, Grakn Labs, grakn, graql, grakn.ai, Mindmaps Research, Mindmaps Research Ltd, MindmapsDB, mindmaps, mindmaps graph, mindmaps.io, knowledge graph, distributed knowledge graph, development platform, developer tool, data platform, programming langauge, query langauge, database, semantic database, distributed semantic database, distributed database, graph database, semantic search, data exploration, recommendation system, knowledge management, knowledge engineering, real-time analytics, advanced analytics, reasoning engine, inference engine, expert systems, semantic applications, research engines, data management, business intelligence, big data, semantic web, semantic data, knowledge representation, automated reasoning, semantic network, knowledge ontology, semantic graph, ontology engineering, graph based knowledge representation, artificial intelligence,">
 <title>GRAKN.AI - Shortest Path</title>
 <link rel="stylesheet" href="/pages/css/syntax.css">
@@ -617,13 +617,6 @@
             
             
             
-            <li><a href="/pages/documentation/resources/grakn-deployment-guide.html">Grakn Deployment Guide</a></li>
-            
-            
-            
-            
-            
-            
             <li><a href="/pages/documentation/resources/faq.html">Grakn FAQ</a></li>
             
             
@@ -729,7 +722,7 @@
 <div class="post-content">
 
    
-    <div class="summary"></div>
+    <div class="summary">This page introduces the shortest path functionality of analytics.</div>
    
 
     
@@ -767,32 +760,36 @@ $('#toc').on('click', 'a', function() {
 
     
 
-  <p>How are two instances in the graph related?
-When starting a task you don’t always know in advance what you are looking for.
+  <h2 id="how-are-two-instances-in-the-graph-related">How are two instances in the graph related?</h2>
+<p>When starting a task you don’t always know in advance what you are looking for.
 Finding the shortest path between two instances in a graph can be a great way to explore connections because you do not need to provide any guidance.
-In the graph below I have displayed all of the people and then searched for relationships joining two of them using:</p>
+In the graph below I have displayed two specific people using the query:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>compute path from "41001152" to "20496";
+<pre><code class="language-graql">match
+$x has identifier "Barbara Shafner";
+$y has identifier "Jacob J. Niesz";
 </code></pre>
-</div>
 
-<p>You can see that the two people selected are friends of friends.
+<p>and then searched for relationships joining two of them using:</p>
+
+<pre><code class="language-graql">compute path from "id1" to "id2";
+</code></pre>
+
+<p>You can see below that the two people selected are married.
 The path query uses a scalable shortest path algorithm to determine the smallest number of relations required to get from once concept to the other.</p>
 
-<p><img src="/images/analytics_path_knows.png" alt="Shortest path between people." /></p>
+<p><img src="/images/analytics_path_marriage.png" alt="Shortest path between people." /></p>
 
 <h3 id="subgraph">Subgraph</h3>
 
 <p>If you are looking for more specific connections you can of course use the <a href="./analytics-overview.html">subgraph</a> functionality.
-In the following query only the paths through comments are investigated and the resulting graph is shown below.
-We have excluded friendships in this subgraph and now the shortest path is longer than before.</p>
+In the following query only the blood relations (parent/child relations) are investigated and the resulting graph is shown below.
+We have excluded marriage in this subgraph and as a result the shortest path is longer than before - it turns out the Barbara Shafner and Jacob J. Niesz are cousins (their mothers, Mary Young and Catherine Young, are sisters, their father being Jacob Young).</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>compute path from "20496" to "36960" in person, comment, writes, reply;
-
+<pre><code class="language-graql">compute path from "id1" to "id2" in person, parentship;
 </code></pre>
-</div>
 
-<p><img src="/images/analytics_path_comments.png" alt="Shortest path between people." /></p>
+<p><img src="/images/analytics_path_parentship.png" alt="Shortest path between people." /></p>
 
 <h2 id="comments">Comments</h2>
 <p>Want to leave a comment? Visit <a href="https://github.com/graknlabs/docs/issues/71" target="_blank">the issues on Github for this page</a> (you’ll need a GitHub account). You are also welcome to contribute to our documentation directly via the “Edit me” button at the top of this page.</p>
@@ -835,7 +832,7 @@ We have excluded friendships in this subgraph and now the shortest path is longe
         <br>
         <p>© 2016 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2017 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> December 12th, 2016<br/> Site last generated: Feb 19, 2017 <br />
+        <span>Page last updated:</span> February 2017<br/> Site last generated: Feb 20, 2017 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">

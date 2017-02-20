@@ -617,13 +617,6 @@
             
             
             
-            <li><a href="/pages/documentation/resources/grakn-deployment-guide.html">Grakn Deployment Guide</a></li>
-            
-            
-            
-            
-            
-            
             <li><a href="/pages/documentation/resources/faq.html">Grakn FAQ</a></li>
             
             
@@ -783,7 +776,7 @@ $('#toc').on('click', 'a', function() {
 
 <h3 id="csv-migration">CSV Migration</h3>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>usage: ./migration.sh csv -template &lt;arg&gt; -input &lt;arg&gt; <span class="o">[</span>-help] <span class="o">[</span>-no] <span class="o">[</span>-separator &lt;arg&gt;] <span class="o">[</span>-batch &lt;arg&gt;] <span class="o">[</span>-uri &lt;arg&gt;] <span class="o">[</span>-keyspace &lt;arg&gt;] <span class="o">[</span>-v]
+<div class="highlighter-rouge"><pre class="highlight"><code>usage: ./migration.sh csv -template &lt;arg&gt; -input &lt;arg&gt; <span class="o">[</span>-help] <span class="o">[</span>-no] <span class="o">[</span>-separator &lt;arg&gt;] <span class="o">[</span>-batch &lt;arg&gt;] <span class="o">[</span>-uri &lt;arg&gt;] <span class="o">[</span>-keyspace &lt;arg&gt;] <span class="o">[</span>-v]
 
 OPTIONS
  -b,--batch &lt;arg&gt;       number of rows to load at once
@@ -802,7 +795,7 @@ OPTIONS
 
 <h3 id="json-migration">JSON Migration</h3>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>usage: migration.sh json -template &lt;arg&gt; -input &lt;arg&gt; <span class="o">[</span>-help] <span class="o">[</span>-no] <span class="o">[</span>-batch &lt;arg&gt;] <span class="o">[</span>-uri &lt;arg&gt;] <span class="o">[</span>-keyspace &lt;arg&gt;] <span class="o">[</span>-v]
+<div class="highlighter-rouge"><pre class="highlight"><code>usage: migration.sh json -template &lt;arg&gt; -input &lt;arg&gt; <span class="o">[</span>-help] <span class="o">[</span>-no] <span class="o">[</span>-batch &lt;arg&gt;] <span class="o">[</span>-uri &lt;arg&gt;] <span class="o">[</span>-keyspace &lt;arg&gt;] <span class="o">[</span>-v]
 
  -b,--batch &lt;arg&gt;      number of rows to load at once
  -h,--help             print usage message
@@ -819,7 +812,7 @@ OPTIONS
 
 <h3 id="owl-migration">OWL Migration</h3>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>usage: migration.sh owl -input &lt;arg&gt; <span class="o">[</span>-help] <span class="o">[</span>-no] <span class="o">[</span>-batch &lt;arg&gt;] <span class="o">[</span>-uri &lt;arg&gt;] <span class="o">[</span>-keyspace &lt;arg&gt;] <span class="o">[</span>-v]
+<div class="highlighter-rouge"><pre class="highlight"><code>usage: migration.sh owl -input &lt;arg&gt; <span class="o">[</span>-help] <span class="o">[</span>-no] <span class="o">[</span>-batch &lt;arg&gt;] <span class="o">[</span>-uri &lt;arg&gt;] <span class="o">[</span>-keyspace &lt;arg&gt;] <span class="o">[</span>-v]
 
  -b,--batch &lt;arg&gt;      number of rows to load at once
  -h,--help             print usage message
@@ -836,7 +829,7 @@ OPTIONS
 
 <h3 id="sql-migration">SQL Migration</h3>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>usage: migration.sh sql -template &lt;arg&gt; -driver &lt;arg&gt; -user &lt;arg&gt; -pass &lt;arg&gt; -location &lt;arg&gt; <span class="o">[</span>-help] <span class="o">[</span>-no] <span class="o">[</span>-batch &lt;arg&gt;] <span class="o">[</span>-keyspace &lt;arg&gt;] <span class="o">[</span>-uri &lt;arg&gt;] <span class="o">[</span>-v]
+<div class="highlighter-rouge"><pre class="highlight"><code>usage: migration.sh sql -template &lt;arg&gt; -driver &lt;arg&gt; -user &lt;arg&gt; -pass &lt;arg&gt; -location &lt;arg&gt; <span class="o">[</span>-help] <span class="o">[</span>-no] <span class="o">[</span>-batch &lt;arg&gt;] <span class="o">[</span>-keyspace &lt;arg&gt;] <span class="o">[</span>-uri &lt;arg&gt;] <span class="o">[</span>-v]
 
  -b,--batch &lt;arg&gt;      number of rows to load at once
  -driver &lt;arg&gt;         JDBC driver
@@ -859,7 +852,7 @@ OPTIONS
 
 <p>It is also possible to use the migration shell script to export data from Grakn. Usage is as follows:</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>usage: migration.sh <span class="nb">export</span> -data -ontology <span class="o">[</span>-help] <span class="o">[</span>-no] <span class="o">[</span>-batch &lt;arg&gt;] <span class="o">[</span>-uri &lt;arg&gt;] <span class="o">[</span>-keyspace &lt;arg&gt;]
+<div class="highlighter-rouge"><pre class="highlight"><code>usage: migration.sh <span class="nb">export</span> -data -ontology <span class="o">[</span>-help] <span class="o">[</span>-no] <span class="o">[</span>-batch &lt;arg&gt;] <span class="o">[</span>-uri &lt;arg&gt;] <span class="o">[</span>-keyspace &lt;arg&gt;]
  -data                 <span class="nb">export </span>data
  -ontology             <span class="nb">export </span>ontology
  -h,--help             print usage message
@@ -923,7 +916,7 @@ OPTIONS
         <br>
         <p>© 2016 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2017 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> February 2017<br/> Site last generated: Feb 19, 2017 <br />
+        <span>Page last updated:</span> February 2017<br/> Site last generated: Feb 20, 2017 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">

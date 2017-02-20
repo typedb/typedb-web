@@ -617,13 +617,6 @@
             
             
             
-            <li><a href="/pages/documentation/resources/grakn-deployment-guide.html">Grakn Deployment Guide</a></li>
-            
-            
-            
-            
-            
-            
             <li><a href="/pages/documentation/resources/faq.html">Grakn FAQ</a></li>
             
             
@@ -771,9 +764,9 @@ $('#toc').on('click', 'a', function() {
 
 <h2 id="ontology">Ontology</h2>
 
-<p>The ontology must be clearly defined before loading data into the graph. It is a formal specification of all the relevant concepts and their meaningful associations in a given domain. It allows objects and relationships to be categorised into distinct types, and for generic properties of those types to be expressed. Specifying the ontology enables automated reasoning over the represented knowledge, such as the extraction of implicit information from explicit data (<a href="./grakn-knowledge-model.html#rule-and-sub-type-inference">inference</a>) or discovery of inconsistencies in the data (<a href="./grakn-knowledge-model.html#data-validation">validation</a>).</p>
+<p>In Grakn, the <a href="https://en.wikipedia.org/wiki/Ontology_(information_science)">ontology</a> is the formal specification of all the relevant concepts and their meaningful associations in a given domain. It allows objects and relationships to be categorised into distinct types, and for generic properties of those types to be expressed. Specifying the ontology enables <a href="https://en.wikipedia.org/wiki/Inference_engine">automated reasoning</a> over the represented knowledge, such as the extraction of implicit information from explicit data (<a href="./grakn-knowledge-model.html#rule-and-sub-type-inference">inference</a>) or discovery of inconsistencies in the data (<a href="./grakn-knowledge-model.html#data-validation">validation</a>).  For this reason, the ontology must be clearly defined before loading data into the graph.</p>
 
-<p>Grakn ontologies use four types of concepts for modeling domain knowledge. The categorization of concept types is enforced in the Grakn knowledge model by declaring every concept type as a subtype (i.e. an extension) of exactly one of the four corresponding, built-in concept types:</p>
+<p><a href="https://blog.grakn.ai/knowledge-graph-representation-grakn-ai-or-owl-506065bd3f24#.d6mtn9ic2">Grakn uses its our own declarative ontology language, Graql</a>, and Grakn ontologies use four types of concepts for modeling domain knowledge. The categorization of concept types is enforced in the Grakn knowledge model by declaring every concept type as a subtype (i.e. an extension) of exactly one of the four corresponding, built-in concept types:</p>
 
 <p><strong><code class="highlighter-rouge">entity</code></strong>: Objects or things in the domain. For example, <code class="highlighter-rouge">person</code>, <code class="highlighter-rouge">man</code>, <code class="highlighter-rouge">woman</code>.</p>
 
@@ -1045,7 +1038,7 @@ This will be our first attempt:</p>
 <p>This first attempt was horrible as we ended up failing all the validation rules.       <br />
 On commit we will see an error similar to this:</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>A structural validation error has occurred. Please correct the <span class="o">[</span><span class="sb">`</span>5<span class="sb">`</span><span class="o">]</span> errors found.
+<div class="highlighter-rouge"><pre class="highlight"><code>A structural validation error has occurred. Please correct the <span class="o">[</span><span class="sb">`</span>5<span class="sb">`</span><span class="o">]</span> errors found.
 RoleType <span class="o">[</span><span class="s1">'wife'</span><span class="o">]</span> does not have exactly one has-role connection to any RelationType.
 The abstract Type <span class="o">[</span><span class="s1">'man'</span><span class="o">]</span> should not have any instances
 Relation Type <span class="o">[</span><span class="s1">'marriage'</span><span class="o">]</span> does not have two or more roles
@@ -1195,7 +1188,7 @@ The <span class="nb">type</span> <span class="o">[</span><span class="s1">'man'<
         <br>
         <p>© 2016 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2017 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> January 2017<br/> Site last generated: Feb 19, 2017 <br />
+        <span>Page last updated:</span> January 2017<br/> Site last generated: Feb 20, 2017 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">

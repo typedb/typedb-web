@@ -617,13 +617,6 @@
             
             
             
-            <li><a href="/pages/documentation/resources/grakn-deployment-guide.html">Grakn Deployment Guide</a></li>
-            
-            
-            
-            
-            
-            
             <li><a href="/pages/documentation/resources/faq.html">Grakn FAQ</a></li>
             
             
@@ -770,14 +763,12 @@ $('#toc').on('click', 'a', function() {
   <p>The distributed Grakn knowledge graph presents two different ways to obtain insight on a large dataset:</p>
 
 <ul>
-  <li>It intelligently aggregates large amounts of information. Graql allows you to specify what you want, instead of how to get it, and analytics allows you to do it at scale. For example, finding out the mean number and standard deviation of vehicles owned by companies (not individuals), no matter how big the dataset.</li>
+  <li>It intelligently aggregates large amounts of information. Graql allows you to specify what you want, and analytics allows you to do it at scale. For example, finding out the mean number and standard deviation of vehicles owned by companies (not individuals), no matter how big the dataset.</li>
   <li>The structure of the graph contains valuable information about the importance of entities and also the communities they form. This is achieved by computing the number of relationships that certain entities take part in, and using this as a measure of how popular they are. An example of this can be seen on the <a href="https://moogi.co">Moogi website</a>, which uses only the structure of the graph to rank the results.</li>
 </ul>
 
-<!-- JCS Comments: Please can you clarify "graph is not important" as I don't understand what you mean, and also provide a suitable link to more about Pregel and map reduce  ? -->
-
-<div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> <b>Note:</b> Under the hood we use implementations of the Pregel distributed graph computing
-framework and/or map reduce when we need to aggregate tht result. This way we can implement algorithms that will scale horizontally.</div>
+<div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> <b>Note:</b> Under the hood we use implementations of the <a href="https://www.quora.com/What-are-the-main-concepts-behind-Googles-Pregel">Pregel algorithm</a> distributed graph computing
+framework and/or <a href="https://en.wikipedia.org/wiki/MapReduce">map reduce</a> when we need to aggregate the result. This way we can implement algorithms that will scale horizontally.</div>
 
 <h2 id="what-can-i-do-with-analytics">What Can I do With Analytics?</h2>
 
@@ -791,11 +782,10 @@ framework and/or map reduce when we need to aggregate tht result. This way we ca
 <h3 id="statistics">Statistics</h3>
 
 <p>Currently you can compute the <code class="highlighter-rouge">min</code>, <code class="highlighter-rouge">max</code>, <code class="highlighter-rouge">mean</code>, <code class="highlighter-rouge">median</code>, <code class="highlighter-rouge">std</code> (standard deviation) and <code class="highlighter-rouge">sum</code> of resources attached to entities. This
-can also be achieved on a subgraph, which is a subset of the types in your dataset. For example, you can specify queries to find the mean price of cars and trucks in a graph:</p>
+can also be achieved on a subgraph, which is a subset of the types in your dataset. For example, you can specify queries to find the mean age of people in a graph:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>compute mean of price in car, truck;
+<pre><code class="language-graql">compute mean of age in person;
 </code></pre>
-</div>
 
 <p>We cover this topic more in our documentation page on <a href="./analytics-statistics.html">statistics</a>.</p>
 
@@ -814,49 +804,53 @@ can also be achieved on a subgraph, which is a subset of the types in your datas
 <p>Graql analytics functionality is accessed via the <code class="highlighter-rouge">compute</code> query in the Graql language. In order to fully understand the
 syntax, an in-depth understanding of the graph is needed, so we will dive into some details here.</p>
 
-<p>Analytics only “sees” the instances of types, but is aware of the ontology. Therefore, if your graph has a type <code class="highlighter-rouge">car</code>
-then the instances of this: <code class="highlighter-rouge">Mike's car</code>, <code class="highlighter-rouge">Dave's car</code> and <code class="highlighter-rouge">Alice's car</code> can be counted using analytics.  Often you are not interested in the whole knowledge graph when performing calculations, and it is possible to specify a subgraph (a subset of your data to work on) to Graql. For example, a knowledge graph may contain cars, trucks, trains, people and the relationships between them, but these can be excluded by specifying a subgraph using the <code class="highlighter-rouge">in</code> keyword.  To count just cars:</p>
+<p>Analytics only “sees” the instances of types, but is aware of the ontology. Therefore, if your graph has a type <code class="highlighter-rouge">person</code>
+then the instances of this: <code class="highlighter-rouge">Jacob Young</code>, <code class="highlighter-rouge">Hermione Newman</code> and <code class="highlighter-rouge">Barbara Herchelroth</code> can be counted using analytics.
+Often you are not interested in the whole knowledge graph when performing calculations, and it is possible to specify a subgraph (a subset of your data to work on) to Graql.
+For example, a knowledge graph may contain groups, people and the relationships between them, but these can be excluded by specifying a subgraph using the <code class="highlighter-rouge">in</code> keyword.
+To count just people:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>compute count in car;
+<pre><code class="language-graql">compute count in person;
 </code></pre>
-</div>
 
-<p>Consider the simple graph below that includes types, instances and some relationships. Analytics will consider every instance in the graph, so will not consider the types <code class="highlighter-rouge">person</code>, <code class="highlighter-rouge">writes</code> and <code class="highlighter-rouge">comment</code>, (coloured in blue). To compute the count on this graph without specifying any subgraph, we call the following, which returns the number 6:</p>
+<p>Consider the simple graph below that includes types and instances (some are entities and some are relations).
+Analytics will consider every instance in the graph, and therefore, will not consider the type nodes <code class="highlighter-rouge">person</code> and <code class="highlighter-rouge">marriage</code>, (coloured in pink).
+To compute the count on this graph without specifying any subgraph, we call the following, which would return the number 4:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>compute count;
+<pre><code class="language-graql">compute count;
 </code></pre>
-</div>
 
-<p>Analytics has counted all of the instances of the types, which are specific comments, people and the nodes representing
-the relationship between a comment and its writer.</p>
+<p>Analytics has counted all of the instances of the types, which are specific people and the nodes representing
+the marriage relationship.</p>
 
 <p><img src="/images/analytics_sub_Graph.png" alt="A simple graph." /></p>
 
 <p>A subgraph is defined in analytics by using the types. For example, we could specify a subgraph that includes only
-<code class="highlighter-rouge">person</code> and <code class="highlighter-rouge">writes</code> but not <code class="highlighter-rouge">comment</code>.</p>
+<code class="highlighter-rouge">person</code> like this:</p>
 
-<!-- JCS Comments: How do we do that? -->
+<pre><code class="language-graql">compute count in person;
+</code></pre>
+
+<p>and this would return the number 3.
+The graph that analytics will now operate on can be seen below.</p>
 
 <p><img src="/images/analytics_another_sub_Graph.png" alt="A simple graph." /></p>
 
-<p>The graph that analytics will now operate on can be seen above.</p>
+<p>We may also specify a subgraph for efficiency (so we do not have to count the things we are not interested in).
+The algorithm for computing the degree is one example.
+If we execute the following query, the number of arrows (edges) attached to each node is returned:</p>
 
-<p>We may specify a subgraph for efficiency (so we do not have to count the things we are not interested in) but also because of how specific algorithms operate. The algorithm for computing the degree is one example. If we execute the following query, the number of arrows attached to each node is returned:</p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code>compute degrees in person, writes;
+<pre><code class="language-graql">compute degrees in person, marriage;
 </code></pre>
-</div>
 
-<p>In the subgraph example above this would be 2 for Dimitru and 0 for Antonio because we do not count the arrows indicating type, only arrows labelled with roles.</p>
+<p>In the example below this would be 1 for Jacob Young, 2 for Barbara Herchelroth, 1 for John Newman and 0 for the rest because we do not count the arrows indicating type, only arrows labelled with <code class="highlighter-rouge">spouse</code> roles.
+This graph also happens to include the parentship relation, but we have ignored this and only found out the number of marriages a person has taken part in for any size of graph.</p>
 
-<p>This graph also happens to include relationships between people and between messages, but we have effortlessly ignored these and found out how many messages a person has written for any size of graph.</p>
-
-<!-- JCS Comments: Sorry - this doesn't make sense to me. Please could you rephrase for the hard of thinking, or ping me to explain, so I can reword it when I understand? -->
+<p><img src="/images/analytics_degree_sub_Graph.png" alt="A simple graph." /></p>
 
 <div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> <b>Note:</b> The degree is the simplest measure of the importance (centrality) of a node in a graph.
 Graql is very flexible and allows us to define the subgraph in which we want to compute the degree, and therefore determine
-importance according to various structures in the graph.
-</div>
+importance according to various structures in the graph.</div>
 
 <h2 id="comments">Comments</h2>
 <p>Want to leave a comment? Visit <a href="https://github.com/graknlabs/docs/issues/71" target="_blank">the issues on Github for this page</a> (you’ll need a GitHub account). You are also welcome to contribute to our documentation directly via the “Edit me” button at the top of this page.</p>
@@ -899,7 +893,7 @@ importance according to various structures in the graph.
         <br>
         <p>© 2016 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2017 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> December 12th, 2016<br/> Site last generated: Feb 19, 2017 <br />
+        <span>Page last updated:</span> February 2017<br/> Site last generated: Feb 20, 2017 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">
