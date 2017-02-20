@@ -826,8 +826,8 @@ The query for your selection will be displayed in the form with a default limit 
 
 <p><br /></p>
 
-<h4 id="analytics-queries">Analytics Queries</h4>
-<p>You will notice a ‘pencil’ icon (on the far left of the horizontal icon menu at the top of the screen) that can be used to build Graql analytics queries. The following video illustrates how to build a shortest path query:</p>
+<h4 id="analytics-queries---shortest-path">Analytics Queries - Shortest Path</h4>
+<p>You will notice a ‘pencil’ icon (on the far left of the horizontal icon menu at the top of the screen) that can be used to build Graql queries. The following video illustrates how to build a shortest path query:</p>
 
 <iframe width="640" height="360" src="https://www.youtube.com/embed/OLuVwjPrhbc" frameborder="0" allowfullscreen=""></iframe>
 
@@ -843,15 +843,45 @@ $y isa person has firstname "Barbara" has surname "Herchelroth";
 
 <ol>
   <li>
-    <p>Submit the query by pressing “&gt;” to visualise the graph. Just the two people in question (Susan Dudley and Barbar Herchelroth) should be visible in the graph.</p>
+    <p>Submit the query by pressing “&gt;” to visualise the graph. Just the two people in question (Susan Dudley and Barbara Herchelroth) should be visible in the graph.</p>
   </li>
   <li>
-    <p>Use the pencil button to open the Query builders menu. We will use the first item in the drop-down, which is “Shortest Path”. Click the “Start” button, then click first one node in the graph, and then click the other node (thus connecting the two people).</p>
+    <p>Use the pencil button to open the Query Builders menu. We will use the first item in the drop-down, which is “Shortest Path”. Click the “Start” button, then click first one node in the graph, and then click the other node (thus connecting the two people).</p>
   </li>
   <li>
-    <p>Submit the shortest path query, which you will see in the form at the top of the visualiser, but pressing “&gt;”. The graph will display the relations, and nodes, that connect the two by the shortest path. If you chose Susan Dudley and Barbara Herchelroth, you should discover that Barbara is the great-grandmother of Susan’s husband.</p>
+    <p>Submit the shortest path query, which you will see in the form at the top of the visualiser, but pressing “&gt;”.</p>
   </li>
 </ol>
+
+<p>The visualiser submits a query as follows:</p>
+
+<pre><code class="language-graql">compute path from "102432" to "192584"; # (The ID values in the strings will be different for each graph)
+</code></pre>
+
+<p>The graph will display the relations, and nodes, that connect the two by the shortest path. If you chose Susan Dudley and Barbara Herchelroth, you should discover that Barbara is the great-grandmother of Susan’s husband.</p>
+
+<h4 id="explore-relations">Explore Relations</h4>
+
+<p>The Query Builder menu also has an “Explore Relations” option, which allows you to determine the relations between nodes. To illustrate that, clear the graph and submit a query as follows:</p>
+
+<pre><code class="language-graql">match $x isa person has surname "Niesz"; offset 0; limit 100; # Find everyone with surname Niesz
+</code></pre>
+
+<ol>
+  <li>
+    <p>Use the pencil button to open the Query Builders menu. We will use the “Explore Relations” option. Click the “Start” button, then click first one node in the graph, and then click another node (thus connecting two people with the same surname - it doesn’t matter too much who you choose).</p>
+  </li>
+  <li>
+    <p>Submit the shortest path query, which you will see in the form at the top of the visualiser, but pressing “&gt;”.</p>
+  </li>
+</ol>
+
+<p>The visualiser submits a query as follows (the ID values will differ for every graph):</p>
+
+<pre><code class="language-graql">match $x id "102432"; $y id "192584"; $r($x, $y); offset 0; limit 100;
+</code></pre>
+
+<p>The visualiser will display the relations between the two nodes you selected (e.g. siblings).</p>
 
 <h4 id="inference">Inference</h4>
 
