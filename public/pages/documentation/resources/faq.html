@@ -817,20 +817,20 @@ this by setting the <code class="highlighter-rouge">checkInternalVertexExistence
 
 <p>There are several ways to load data into Grakn. For small amounts of data (&lt;1000 lines), you an load it directly via the Graql shell. For example, the following loads up the an example file called <code class="highlighter-rouge">family-data.gql</code>:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>bin/graql.sh -f examples/family-data
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>bin/graql.sh -f examples/family-data
 .gql
 </code></pre>
 </div>
 
 <p>If you have a larger file, you will need to batch load it. The file will be divided in batches that will be committed concurrently. This differs from a regular load, where the whole file is committed in a single chunk when you call commit. See the example below, which loads the Graql file FILENAME.gql, from PATH.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>bin/graql.sh -b PATH/FILENAME.gql
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>bin/graql.sh -b PATH/FILENAME.gql
 </code></pre>
 </div>
 
 <p>In order to check the status of the loading, you can open a new terminal window, navigate to the logs directory of your Grakn installation and run the command:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>tail -f grakn.log
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>tail -f grakn.log
 </code></pre>
 </div>
 
@@ -881,14 +881,14 @@ this by setting the <code class="highlighter-rouge">checkInternalVertexExistence
 
 <p>Specifically you should change the following parameters:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="c"># Host Location</span>
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="c"># Host Location</span>
 storage.hostname<span class="o">=</span>127.0.0.1
 </code></pre>
 </div>
 
 <p>You can also, for example, add the following to specify a custom port:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>storage.port <span class="o">=</span> 1234
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>storage.port <span class="o">=</span> 1234
 </code></pre>
 </div>
 
@@ -916,7 +916,7 @@ graph.clear();
 
 <p>If you’ve committed, then you must stop Grakn and specifically clean the graph:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>./bin/grakn.sh stop
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>./bin/grakn.sh stop
 ./bin/grakn.sh clean
 </code></pre>
 </div>
@@ -972,7 +972,7 @@ graph.clear();
         <br>
         <p>© 2016 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2017 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> September 22, 2016<br/> Site last generated: Feb 15, 2017 <br />
+        <span>Page last updated:</span> September 22, 2016<br/> Site last generated: Feb 19, 2017 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">

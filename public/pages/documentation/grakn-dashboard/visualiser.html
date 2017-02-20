@@ -777,7 +777,7 @@ $('#toc').on('click', 'a', function() {
 
 <p>The first step is to load the ontology and data into Grakn. You need to use your terminal to do this, as the visualiser is a read-only interface to a graph. From the terminal, start Grakn, and load the file as follows:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>&lt;relative-path-to-Grakn&gt;/bin/grakn.sh start
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>&lt;relative-path-to-Grakn&gt;/bin/grakn.sh start
 &lt;relative-path-to-Grakn&gt;/bin/graql.sh -f ./examples/basic-genealogy.gql -k <span class="s2">"family"</span>
 </code></pre>
 </div>
@@ -786,7 +786,7 @@ $('#toc').on('click', 'a', function() {
 
 <p>You can test in the Graql shell that all has loaded correctly. For example:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>&lt;relative-path-to-Grakn&gt;/bin/graql.sh -k family
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>&lt;relative-path-to-Grakn&gt;/bin/graql.sh -k family
 match <span class="nv">$p</span> isa person, has identifier <span class="nv">$i</span>;
 </code></pre>
 </div>
@@ -893,7 +893,7 @@ The query for your selection will be displayed in the form with a default limit 
         <br>
         <p>© 2016 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2017 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> August 10, 2016<br/> Site last generated: Feb 15, 2017 <br />
+        <span>Page last updated:</span> August 10, 2016<br/> Site last generated: Feb 19, 2017 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">
