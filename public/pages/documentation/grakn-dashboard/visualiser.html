@@ -300,6 +300,13 @@
             
             
             
+            <li><a href="/pages/documentation/the-fundamentals/grakn-architecture.html">Grakn Architecture Overview</a></li>
+            
+            
+            
+            
+            
+            
             <li><a href="/pages/documentation/the-fundamentals/grakn-knowledge-model.html">Grakn Knowledge Model</a></li>
             
             
@@ -826,6 +833,16 @@ The query for your selection will be displayed in the form with a default limit 
 
 <p><br /></p>
 
+<h4 id="inference">Inference</h4>
+
+<p>There are 3 query settings that can be changed using the ‘cog’ button (on the far right hand side of the horizontal icon menu at the top of the screen):</p>
+
+<ul>
+  <li>Activate inference - activates inference, per query.</li>
+  <li>Materialise inference - persists the inference into the graph, per query.</li>
+  <li>Materialise All: activate and persist all inference across the graph.</li>
+</ul>
+
 <h4 id="analytics-queries---shortest-path">Analytics Queries - Shortest Path</h4>
 <p>You will notice a ‘pencil’ icon (on the far left of the horizontal icon menu at the top of the screen) that can be used to build Graql queries. The following video illustrates how to build a shortest path query:</p>
 
@@ -862,6 +879,8 @@ $y isa person has firstname "Barbara" has surname "Herchelroth";
 
 <h4 id="explore-relations">Explore Relations</h4>
 
+<div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> <b>Note:</b> Make sure to <a href="#inference">activate inference</a> before exploring relations!</div>
+
 <p>The Query Builder menu also has an “Explore Relations” option, which allows you to determine the relations between nodes. To illustrate that, clear the graph and submit a query as follows:</p>
 
 <pre><code class="language-graql">match $x isa person has surname "Niesz"; offset 0; limit 100; # Find everyone with surname Niesz
@@ -882,16 +901,6 @@ $y isa person has firstname "Barbara" has surname "Herchelroth";
 </code></pre>
 
 <p>The visualiser will display the relations between the two nodes you selected (e.g. siblings).</p>
-
-<h4 id="inference">Inference</h4>
-
-<p>There are also 3 settings that can be changed using the ‘cog’ button (on the far right hand side of the horizontal icon menu at the top of the screen):</p>
-
-<ul>
-  <li>Activate inference - activates inference, per query.</li>
-  <li>Materialise inference - persists the inference into the graph, per query.</li>
-  <li>Materialise All: activate and persist all inference across the graph.</li>
-</ul>
 
 <h3 id="console">Console</h3>
 <p>You can use this console to make queries instead of running a Graql shell in your terminal. You can run <code class="highlighter-rouge">match</code> and <code class="highlighter-rouge">compute</code> queries, but because the visualiser is read-only, you cannot make insertions.</p>
@@ -951,7 +960,7 @@ $y isa person has firstname "Barbara" has surname "Herchelroth";
         <br>
         <p>© 2016 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2017 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> August 10, 2016<br/> Site last generated: Feb 22, 2017 <br />
+        <span>Page last updated:</span> August 10, 2016<br/> Site last generated: Feb 23, 2017 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">

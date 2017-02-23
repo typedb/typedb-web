@@ -82,17 +82,6 @@
 
 ,
 {
-"title": "An Example of Migrating CSV to Grakn",
-"tags": "migrationexamples",
-"keywords": "migration",
-"url": "/pages/documentation/examples/CSV-migration.html",
-"summary": "An example to illustrate migration of CSV to Grakn"
-}
-
-
-
-,
-{
 "title": "CSV Migration to Grakn",
 "tags": "migration",
 "keywords": "setup, getting started",
@@ -104,11 +93,11 @@
 
 ,
 {
-"title": "JSON Migration to Grakn",
-"tags": "migration",
-"keywords": "setup, getting started",
-"url": "/pages/documentation/migration/JSON-migration.html",
-"summary": "This document will teach you how to migrate JSON data into Grakn."
+"title": "An Example of Migrating CSV to Grakn",
+"tags": "migrationexamples",
+"keywords": "migration",
+"url": "/pages/documentation/examples/CSV-migration.html",
+"summary": "An example to illustrate migration of CSV to Grakn"
 }
 
 
@@ -120,6 +109,17 @@
 "keywords": "migration",
 "url": "/pages/documentation/examples/JSON-migration.html",
 "summary": "An example to illustrate migration of JSON to Grakn"
+}
+
+
+
+,
+{
+"title": "JSON Migration to Grakn",
+"tags": "migration",
+"keywords": "setup, getting started",
+"url": "/pages/documentation/migration/JSON-migration.html",
+"summary": "This document will teach you how to migrate JSON data into Grakn."
 }
 
 
@@ -343,6 +343,17 @@
 }
 
 
+
+
+
+,
+{
+"title": "GRAKN.AI Architecture Overview",
+"tags": "getting-started",
+"keywords": "setup, getting started, basics",
+"url": "/pages/documentation/the-fundamentals/grakn-architecture.html",
+"summary": "Introducing the GRAKN.AI Architecture"
+}
 
 
 

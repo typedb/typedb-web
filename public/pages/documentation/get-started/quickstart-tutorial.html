@@ -300,6 +300,13 @@
             
             
             
+            <li><a href="/pages/documentation/the-fundamentals/grakn-architecture.html">Grakn Architecture Overview</a></li>
+            
+            
+            
+            
+            
+            
             <li><a href="/pages/documentation/the-fundamentals/grakn-knowledge-model.html">Grakn Knowledge Model</a></li>
             
             
@@ -1033,7 +1040,15 @@ rhs
 
 <p>There may be a pause, and then you should see a stream of results as Grakn infers the <code class="highlighter-rouge">parentships</code> between male <code class="highlighter-rouge">parent</code> and <code class="highlighter-rouge">child</code> entities. It is, in effect, building new information about the family which was not explicit in the dataset.</p>
 
-<p>You may want to take a look at the results of this query in the Grakn visualiser and, as for the shell, you will need to activate inference before you see any results. Browse to the visualiser at <a href="http://localhost:4567">localhost:4567</a> and open the Config settings on the left hand side of the screen. When the page opens you will see the “Activate Inference” checkbox. Check it, and try submitting the query above or a variation of it for mothers and sons, fathers and daughters etc. Or, you can even go one step further and find out fathers who have the same name as their sons:</p>
+<p>You may want to take a look at the results of this query in the Grakn visualiser and, as for the shell, you will need to activate inference before you see any results.</p>
+
+<ol>
+  <li>Browse to the visualiser at <a href="http://localhost:4567">localhost:4567</a>.</li>
+  <li>Open the Query settings under the cog button, which is on the far right hand side of the horizontal icon menu (at the top of the screen).</li>
+  <li>You will see the “Activate inference” checkbox. Ensure that it is checked.</li>
+</ol>
+
+<p>Now try submitting the query above or a variation of it for mothers and sons, fathers and daughters etc. Or, you can even go one step further and find out fathers who have the same name as their sons:</p>
 
 <pre><code class="language-graql">match (father: $p, son: $c) isa parentship; $p has firstname $n; $c has firstname $n;
 </code></pre>
@@ -1054,7 +1069,7 @@ rhs
 
 <p>You can take a look at the values of age at death for the person entities in the genealogy dataset as follows:</p>
 
-<pre><code class="language-graql">match $x isa person, has age $a;  offset 0; limit 100;
+<pre><code class="language-graql">match $x isa person, has age $a;
 </code></pre>
 
 <p><img src="/images/compute-mean-age.png" alt="Mean ages calculated" /></p>
@@ -1162,7 +1177,7 @@ rhs
         <br>
         <p>© 2016 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2017 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> February 2017<br/> Site last generated: Feb 22, 2017 <br />
+        <span>Page last updated:</span> February 2017<br/> Site last generated: Feb 23, 2017 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">

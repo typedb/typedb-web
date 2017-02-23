@@ -50,25 +50,25 @@
   
   
   <url>
-    <loc>http://grakn.ai/pages//documentation/examples/CSV-migration.html</loc>
-  </url>
-  
-  
-  
-  <url>
     <loc>http://grakn.ai/pages//documentation/migration/CSV-migration.html</loc>
   </url>
   
   
   
   <url>
-    <loc>http://grakn.ai/pages//documentation/migration/JSON-migration.html</loc>
+    <loc>http://grakn.ai/pages//documentation/examples/CSV-migration.html</loc>
   </url>
   
   
   
   <url>
     <loc>http://grakn.ai/pages//documentation/examples/JSON-migration.html</loc>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://grakn.ai/pages//documentation/migration/JSON-migration.html</loc>
   </url>
   
   
@@ -192,6 +192,12 @@
   </url>
   
   
+  
+  
+  
+  <url>
+    <loc>http://grakn.ai/pages//documentation/the-fundamentals/grakn-architecture.html</loc>
+  </url>
   
   
   
