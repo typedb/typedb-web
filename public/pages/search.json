@@ -82,6 +82,17 @@
 
 ,
 {
+"title": "GRAKN.AI System Properties",
+"tags": "overview",
+"keywords": "system, properties, db-engines",
+"url": "/pages/overview/system-properties.html",
+"summary": "A look-up table of GRAKN.AI's system properties"
+}
+
+
+
+,
+{
 "title": "CSV Migration to Grakn",
 "tags": "migration",
 "keywords": "setup, getting started",
@@ -126,17 +137,6 @@
 
 ,
 {
-"title": "OWL Migration to Grakn",
-"tags": "migration",
-"keywords": "setup, getting started",
-"url": "/pages/documentation/migration/OWL-migration.html",
-"summary": "This document will teach you how to load OWL into Grakn."
-}
-
-
-
-,
-{
 "title": "An Example of Migrating OWL to Grakn",
 "tags": "migrationexamples",
 "keywords": "migration",
@@ -148,11 +148,11 @@
 
 ,
 {
-"title": "SQL Migration to Grakn",
+"title": "OWL Migration to Grakn",
 "tags": "migration",
 "keywords": "setup, getting started",
-"url": "/pages/documentation/migration/SQL-migration.html",
-"summary": "This document will teach you how to migrate SQL data into Grakn."
+"url": "/pages/documentation/migration/OWL-migration.html",
+"summary": "This document will teach you how to load OWL into Grakn."
 }
 
 
@@ -164,6 +164,17 @@
 "keywords": "migration",
 "url": "/pages/documentation/examples/SQL-migration.html",
 "summary": "A short example to illustrate migration of SQL to Grakn"
+}
+
+
+
+,
+{
+"title": "SQL Migration to Grakn",
+"tags": "migration",
+"keywords": "setup, getting started",
+"url": "/pages/documentation/migration/SQL-migration.html",
+"summary": "This document will teach you how to migrate SQL data into Grakn."
 }
 
 
