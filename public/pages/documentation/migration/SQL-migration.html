@@ -773,20 +773,25 @@ $('#toc').on('click', 'a', function() {
 <h2 id="migration-shell-script-for-sql">Migration Shell Script for SQL</h2>
 <p>The migration shell script can be found in <em>/bin</em> directory of your Grakn environment. We will illustrate its usage in an example below:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>usage: migration.sh sql -template &lt;arg&gt; -driver &lt;arg&gt; -user &lt;arg&gt; -pass &lt;arg&gt; -location &lt;arg&gt; <span class="o">[</span>-help] <span class="o">[</span>-no] <span class="o">[</span>-batch &lt;arg&gt;] <span class="o">[</span>-keyspace &lt;arg&gt;] <span class="o">[</span>-uri &lt;arg&gt;] <span class="o">[</span>-v]
+<div class="highlighter-rouge"><pre class="highlight"><code>usage: migration.sh sql -template &lt;arg&gt; -driver &lt;arg&gt; -user &lt;arg&gt; -pass &lt;arg&gt; -location &lt;arg&gt; -keyspace &lt;arg&gt; <span class="o">[</span>-help] <span class="o">[</span>-no] <span class="o">[</span>-batch &lt;arg&gt;] <span class="o">[</span>-uri &lt;arg&gt;] <span class="o">[</span>-retry &lt;arg&gt;] <span class="o">[</span>-v] 
  
- -b,--batch &lt;arg&gt;      number of rows to load at once
+ -a,--active &lt;arg&gt;     Number of tasks <span class="o">(</span>batches<span class="o">)</span> running on the server at
+                       any one time. Default 25.
+ -b,--batch &lt;arg&gt;      Number of rows to execute <span class="k">in </span>one Grakn transaction.
+                       Default 25.
+ -c,--config &lt;arg&gt;     Configuration file.
  -driver &lt;arg&gt;         JDBC driver
- -h,--help             print usage message
- -k,--keyspace &lt;arg&gt;   keyspace to use
+ -h,--help             Print usage message.
+ -k,--keyspace &lt;arg&gt;   Grakn graph. Required.
  -location &lt;arg&gt;       JDBC url <span class="o">(</span>location of DB<span class="o">)</span>
- -n,--no               dry run - write to standard out
+ -n,--no               Write to standard out.
  -pass &lt;arg&gt;           JDBC password
  -q,--query &lt;arg&gt;      SQL Query
- -t,--template &lt;arg&gt;   template <span class="k">for </span>the given SQL query
- -u,--uri &lt;arg&gt;        uri to engine endpoint
+ -r,--retry &lt;arg&gt;      Retry sending tasks <span class="k">if </span>engine is not available
+ -t,--template &lt;arg&gt;   Graql template to apply to the data.
+ -u,--uri &lt;arg&gt;        Location of Grakn Engine.
  -user &lt;arg&gt;           JDBC username
-  -v,--verbose         print counts of migrated data.
+ -v,--verbose          Print counts of migrated data.
 </code></pre>
 </div>
 
@@ -1060,7 +1065,7 @@ try(Connection connection = DriverManager.getConnection(jdbcDBUrl, jdbcUser, jdb
         <br>
         <p>© 2016 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2017 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> December 2016<br/> Site last generated: Feb 24, 2017 <br />
+        <span>Page last updated:</span> December 2016<br/> Site last generated: Mar 2, 2017 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">

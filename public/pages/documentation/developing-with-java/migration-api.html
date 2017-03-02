@@ -767,7 +767,53 @@ $('#toc').on('click', 'a', function() {
 
     
 
-  <div class="alert alert-danger" role="alert"><i class="fa fa-exclamation-circle"></i> <b>Warning:</b> Please note that this page is in progress and subject to revision.</div>
+  <p>All Grakn migrators extend the <code class="highlighter-rouge">AbstractMigrator</code> class or implement the <code class="highlighter-rouge">Migrator</code> interface. The migrators are a wrapper around the <code class="highlighter-rouge">LoaderClient</code> and as such expose many of the same configuration options.</p>
+
+<h2 id="construction">Construction</h2>
+
+<p>Each migrator may have a slightly different constructor (for example, <code class="highlighter-rouge">CSV</code> and <code class="highlighter-rouge">Json</code> migration constructors accept the data file whereas <code class="highlighter-rouge">SQL</code> migration accepts the SQL JDBC connection). They should all accept a template and a data accessor.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">CSVMigrator</span> <span class="n">migrator</span> <span class="o">=</span> <span class="k">new</span> <span class="n">CSVMigrator</span><span class="o">(</span><span class="n">String</span> <span class="n">template</span><span class="o">,</span> <span class="n">File</span> <span class="n">dataFile</span><span class="o">);</span>
+</code></pre>
+</div>
+
+<h2 id="migration">Migration</h2>
+
+<p>To migrate the provided data into a graph, call the <code class="highlighter-rouge">load</code> function, providing the keyspace and location where Grakn Engine is running.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">migrator</span><span class="o">.</span><span class="na">load</span><span class="o">(</span><span class="n">String</span> <span class="n">uri</span><span class="o">,</span> <span class="n">String</span> <span class="n">keyspace</span><span class="o">);</span>
+</code></pre>
+</div>
+
+<p>Alternatively, the user can call a <code class="highlighter-rouge">load</code> method with more configuration options. The configuration options are described in more detail on the <a href="./loader-api.html">loader client API page</a>.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">migrator</span><span class="o">.</span><span class="na">load</span><span class="o">(</span><span class="n">String</span> <span class="n">uri</span><span class="o">,</span> <span class="n">String</span> <span class="n">keyspace</span><span class="o">,</span> <span class="kt">int</span> <span class="n">batchSize</span><span class="o">,</span> <span class="kt">int</span> <span class="n">numberActiveTasks</span><span class="o">,</span> <span class="kt">boolean</span> <span class="n">retry</span><span class="o">)</span>
+</code></pre>
+</div>
+
+<h2 id="termination">Termination</h2>
+
+<p>Some migrators have a <code class="highlighter-rouge">close</code> method that should be called after loading has completed. As the <code class="highlighter-rouge">load</code> method blocks the calling thread, this is easily done. A quick example of JSON migration performed from java:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">CSVMigrator</span> <span class="n">migrator</span> <span class="o">=</span> <span class="k">new</span> <span class="n">CSVMigrator</span><span class="o">(</span><span class="s">"insert $x isa person has name &lt;name&gt;"</span><span class="o">,</span> <span class="k">new</span> <span class="n">File</span><span class="o">(</span><span class="s">"people.csv"</span><span class="o">));</span>
+<span class="n">migrator</span><span class="o">.</span><span class="na">load</span><span class="o">(</span><span class="n">Grakn</span><span class="o">.</span><span class="na">DEFAULT_URI</span><span class="o">,</span> <span class="s">"genealogy"</span><span class="o">,</span> <span class="mi">10</span><span class="o">,</span> <span class="mi">10</span><span class="o">,</span> <span class="kc">false</span><span class="o">);</span>
+<span class="n">migrator</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+</code></pre>
+</div>
+
+<h2 id="examples">Examples</h2>
+
+<h3 id="json-migration">JSON Migration</h3>
+
+<p>There is an example of using the <a href="https://github.com/graknlabs/sample-projects/tree/master/example-json-migration-giphy">Java Migration API for JSON data</a> on the sample projects repository on Github.</p>
+
+<h3 id="sql-migration">SQL Migration</h3>
+
+<p>There is an example of <a href="../examples/SQL-migration.html">SQL migration using the Java API</a> discussed on this portal.</p>
+
+<h3 id="owl-migration">OWL Migration</h3>
+
+<p>There is an example of <a href="./OWL-migration.html">OWL migration using the Java API</a> on this portal.</p>
 
 <h2 id="comments">Comments</h2>
 <p>Want to leave a comment? Visit <a href="https://github.com/graknlabs/docs/issues/23" target="_blank">the issues on Github for this page</a> (you’ll need a GitHub account). You are also welcome to contribute to our documentation directly via the “Edit me” button at the top of the page.</p>
@@ -815,7 +861,7 @@ $('#toc').on('click', 'a', function() {
         <br>
         <p>© 2016 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2017 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> February 2017<br/> Site last generated: Feb 24, 2017 <br />
+        <span>Page last updated:</span> February 2017<br/> Site last generated: Mar 2, 2017 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">

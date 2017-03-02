@@ -773,17 +773,18 @@ $('#toc').on('click', 'a', function() {
 <h2 id="migration-shell-script-for-owl">Migration Shell Script for OWL</h2>
 <p>The migration shell script can be found in <em>/bin</em> directory of your Grakn environment. We will illustrate its usage in an example below:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>usage: migration.sh owl -input &lt;arg&gt; <span class="o">[</span>-help] <span class="o">[</span>-no] <span class="o">[</span>-batch &lt;arg&gt;] <span class="o">[</span>-uri &lt;arg&gt;] <span class="o">[</span>-keyspace &lt;arg&gt;] <span class="o">[</span>-v]
+<div class="highlighter-rouge"><pre class="highlight"><code>usage: migration.sh owl -input &lt;arg&gt; -keyspace &lt;arg&gt; <span class="o">[</span>-help] <span class="o">[</span>-uri &lt;arg&gt;] <span class="o">[</span>-verbose]
 
- -b,--batch &lt;arg&gt;      number of rows to load at once
- -h,--help             print usage message
- -i,--input &lt;arg&gt;      input owl file
- -k,--keyspace &lt;arg&gt;   keyspace to use
- -n,--no               dry run - write to standard out - not currently supported by the OWL migrator
- -u,--uri &lt;arg&gt;        uri to engine endpoint
- -v,--verbose          print counts of migrated data.
+ -c,--config &lt;arg&gt;     Configuration file.
+ -h,--help             Print usage message.
+ -i,--input &lt;arg&gt;      input csv file
+ -k,--keyspace &lt;arg&gt;   Grakn graph. Required.
+ -u,--uri &lt;arg&gt;        Location of Grakn Engine.
+ -v,--verbose          Print counts of migrated data.
 </code></pre>
 </div>
+
+<p>Please note: <code class="highlighter-rouge">-no</code> and <code class="highlighter-rouge">-retry</code> are not supported by OWL at the moment.</p>
 
 <p>When you have read the following, you may find our extended example of <a href="../examples/OWL-migration.html">OWL migration</a> useful.</p>
 
@@ -935,7 +936,7 @@ rhs {
         <br>
         <p>© 2016 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2017 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> August 10, 2016<br/> Site last generated: Feb 24, 2017 <br />
+        <span>Page last updated:</span> August 10, 2016<br/> Site last generated: Mar 2, 2017 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">

@@ -768,10 +768,10 @@ $('#toc').on('click', 'a', function() {
     
 
   <h2 id="introduction">Introduction</h2>
-<p>This page is an overview of how to migrate data to populate a graph in Grakn. We currently support migration of CSV, JSON, OWL and SQL data. For each type of data, the steps to migrate to GRAKN.AI are:</p>
+<p>This page introduces the concept of data migration into a Grakn graph. We currently support migration of CSV, JSON, OWL and SQL data. For each type of data, the steps to migrate to GRAKN.AI are:</p>
 
 <ul>
-  <li>define an ontology for the data</li>
+  <li>define an ontology for the data in Graql</li>
   <li>create templated Graql to map the data to the ontology</li>
   <li>invoke the Grakn migrator through the shell script or Java API.</li>
 </ul>
@@ -781,83 +781,20 @@ $('#toc').on('click', 'a', function() {
 <h2 id="migration-shell-script">Migration Shell Script</h2>
 <p>The migration shell script can be found in <em>grakn-dist/bin</em> after it has been unzipped. Usage is specific to the type of migration being performed:</p>
 
-<h3 id="csv-migration">CSV Migration</h3>
+<ul>
+  <li><a href="./CSV-migration.html">CSV migration documentation</a></li>
+  <li><a href="./JSON-migration.html">JSON migration documentation</a></li>
+  <li><a href="./OWL-migration.html">OWL migration documentation</a></li>
+  <li><a href="./SQL-migration.html">SQL migration documentation</a></li>
+</ul>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>usage: ./migration.sh csv -template &lt;arg&gt; -input &lt;arg&gt; <span class="o">[</span>-help] <span class="o">[</span>-no] <span class="o">[</span>-separator &lt;arg&gt;] <span class="o">[</span>-batch &lt;arg&gt;] <span class="o">[</span>-uri &lt;arg&gt;] <span class="o">[</span>-keyspace &lt;arg&gt;] <span class="o">[</span>-v]
+<h2 id="using-java-apis">Using Java APIs</h2>
 
-OPTIONS
- -b,--batch &lt;arg&gt;       number of rows to load at once
- -h,--help              print usage message
- -i,--input &lt;arg&gt;       input csv file
- -k,--keyspace &lt;arg&gt;    keyspace to use
- -n,--no                dry run - write to standard out
- -s,--separator &lt;arg&gt;   separator of columns <span class="k">in </span>input file
- -t,--template &lt;arg&gt;    graql template to apply over data
- -u,--uri &lt;arg&gt;         uri to engine endpoint
- -v,--verbose           print counts of migrated data.
-</code></pre>
-</div>
+<p>Check the <a href="../developing-with-java/migration-api.html">Developing With Java</a> section for more details on how to migrate data using java.</p>
 
-<p>Please see the <a href="./CSV-migration.html">CSV migration documentation</a> for further information.</p>
+<h2 id="exporting-data-from-grakn">Exporting Data from Grakn</h2>
 
-<h3 id="json-migration">JSON Migration</h3>
-
-<div class="highlighter-rouge"><pre class="highlight"><code>usage: migration.sh json -template &lt;arg&gt; -input &lt;arg&gt; <span class="o">[</span>-help] <span class="o">[</span>-no] <span class="o">[</span>-batch &lt;arg&gt;] <span class="o">[</span>-uri &lt;arg&gt;] <span class="o">[</span>-keyspace &lt;arg&gt;] <span class="o">[</span>-v]
-
- -b,--batch &lt;arg&gt;      number of rows to load at once
- -h,--help             print usage message
- -i,--input &lt;arg&gt;      input json data file or directory
- -k,--keyspace &lt;arg&gt;   keyspace to use
- -n,--no               dry run - write to standard out
- -t,--template &lt;arg&gt;   graql template to apply over data
- -u,--uri &lt;arg&gt;        uri to engine endpoint
- -v,--verbose          print counts of migrated data.
-</code></pre>
-</div>
-
-<p>Please see the <a href="./JSON-migration.html">JSON migration documentation</a> for further information.</p>
-
-<h3 id="owl-migration">OWL Migration</h3>
-
-<div class="highlighter-rouge"><pre class="highlight"><code>usage: migration.sh owl -input &lt;arg&gt; <span class="o">[</span>-help] <span class="o">[</span>-no] <span class="o">[</span>-batch &lt;arg&gt;] <span class="o">[</span>-uri &lt;arg&gt;] <span class="o">[</span>-keyspace &lt;arg&gt;] <span class="o">[</span>-v]
-
- -b,--batch &lt;arg&gt;      number of rows to load at once
- -h,--help             print usage message
- -i,--input &lt;arg&gt;      input owl file
- -k,--keyspace &lt;arg&gt;   keyspace to use
- -u,--uri &lt;arg&gt;        uri to engine endpoint
- -v,--verbose          print counts of migrated data.
-</code></pre>
-</div>
-
-<p>NOTE: <code class="highlighter-rouge">-no</code> is not supported by OWL migration at the moment</p>
-
-<p>Please see the <a href="./OWL-migration.html">OWL migration documentation</a> for further information.</p>
-
-<h3 id="sql-migration">SQL Migration</h3>
-
-<div class="highlighter-rouge"><pre class="highlight"><code>usage: migration.sh sql -template &lt;arg&gt; -driver &lt;arg&gt; -user &lt;arg&gt; -pass &lt;arg&gt; -location &lt;arg&gt; <span class="o">[</span>-help] <span class="o">[</span>-no] <span class="o">[</span>-batch &lt;arg&gt;] <span class="o">[</span>-keyspace &lt;arg&gt;] <span class="o">[</span>-uri &lt;arg&gt;] <span class="o">[</span>-v]
-
- -b,--batch &lt;arg&gt;      number of rows to load at once
- -driver &lt;arg&gt;         JDBC driver
- -h,--help             print usage message
- -k,--keyspace &lt;arg&gt;   keyspace to use
- -location &lt;arg&gt;       JDBC url <span class="o">(</span>location of DB<span class="o">)</span>
- -n,--no               dry run - write to standard out
- -pass &lt;arg&gt;           JDBC password
- -q,--query &lt;arg&gt;      SQL Query
- -t,--template &lt;arg&gt;   template <span class="k">for </span>the given SQL query
- -u,--uri &lt;arg&gt;        uri to engine endpoint
- -user &lt;arg&gt;           JDBC username
- -v,--verbose          print counts of migrated data.
-</code></pre>
-</div>
-
-<p>Please see the <a href="./SQL-migration.html">SQL migration documentation</a> for further information.</p>
-
-<h2 id="exporting-from-grakn">Exporting from Grakn</h2>
-
-<p>It is also possible to use the migration shell script to export data from Grakn. Usage is as follows:</p>
+<p>It is also possible to export data from Grakn using the migration shell script. Usage is as follows:</p>
 
 <div class="highlighter-rouge"><pre class="highlight"><code>usage: migration.sh <span class="nb">export</span> -data -ontology <span class="o">[</span>-help] <span class="o">[</span>-no] <span class="o">[</span>-batch &lt;arg&gt;] <span class="o">[</span>-uri &lt;arg&gt;] <span class="o">[</span>-keyspace &lt;arg&gt;]
  -data                 <span class="nb">export </span>data
@@ -872,7 +809,7 @@ OPTIONS
 <p>Exporting data or the ontology from Grakn, into Graql, will always redirect to standard out.</p>
 
 <h2 id="where-next">Where Next?</h2>
-<p>You can find further documentation about migration in our API reference documentation (which is in the <code class="highlighter-rouge">/docs</code> directory of the distribution zip file, and also online <a href="https://grakn.ai/javadocs.html">here</a>.</p>
+<p>You can find further documentation about migration in our API reference documentation (which is in the <em>/docs</em> directory of the distribution zip file, and also online <a href="https://grakn.ai/javadocs.html">here</a>.</p>
 
 <h2 id="comments">Comments</h2>
 <p>Want to leave a comment? Visit <a href="https://github.com/graknlabs/docs/issues/32" target="_blank">the issues on Github for this page</a> (you’ll need a GitHub account). You are also welcome to contribute to our documentation directly via the “Edit me” button at the top of the page.</p>
@@ -923,7 +860,7 @@ OPTIONS
         <br>
         <p>© 2016 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2017 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> February 2017<br/> Site last generated: Feb 24, 2017 <br />
+        <span>Page last updated:</span> February 2017<br/> Site last generated: Mar 2, 2017 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">
