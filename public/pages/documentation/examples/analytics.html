@@ -3,9 +3,9 @@
     <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="An example to illustrate Graql analytics">
+<meta name="description" content="How to use Grakn for statistical analysis">
 <meta name="keywords" content="analyticsexamples,  analytics, machine-learning, GRAKN.AI, Grakn Labs, grakn, graql, grakn.ai, Mindmaps Research, Mindmaps Research Ltd, MindmapsDB, mindmaps, mindmaps graph, mindmaps.io, knowledge graph, distributed knowledge graph, development platform, developer tool, data platform, programming langauge, query langauge, database, semantic database, distributed semantic database, distributed database, graph database, semantic search, data exploration, recommendation system, knowledge management, knowledge engineering, real-time analytics, advanced analytics, reasoning engine, inference engine, expert systems, semantic applications, research engines, data management, business intelligence, big data, semantic web, semantic data, knowledge representation, automated reasoning, semantic network, knowledge ontology, semantic graph, ontology engineering, graph based knowledge representation, artificial intelligence,">
-<title>GRAKN.AI - An Example of Graql Analytics</title>
+<title>GRAKN.AI - Using Grakn for Statistical Analysis</title>
 <link rel="stylesheet" href="/pages/css/syntax.css">
 
 
@@ -228,7 +228,7 @@
                             
                             dataSource: '/pages/search.json',
                             
-                            searchResultTemplate: '<li><a href="{url}" title="An Example of Graql Analytics">{title}</a></li>',
+                            searchResultTemplate: '<li><a href="{url}" title="Using Grakn for Statistical Analysis">{title}</a></li>',
                             noResultsText: '<li><a class="empty">No results found</a></li>',
                             limit: 10,
                             fuzzy: true
@@ -653,13 +653,6 @@
             
             
             
-            <li class="active"><a href="/pages/documentation/examples/analytics.html">Basic Analytics</a></li>
-            
-            
-            
-            
-            
-            
             <li><a href="/pages/documentation/examples/CSV-migration.html">CSV Migration</a></li>
             
             
@@ -702,7 +695,7 @@
             
             
             
-            <li><a href="/pages/documentation/examples/projects.html">Example Projects</a></li>
+            <li class="active"><a href="/pages/documentation/examples/analytics.html">Statistical Analysis</a></li>
             
             
             
@@ -728,7 +721,7 @@
         <!-- Content Column -->
         <div class="col-md-9">
             <div class="post-header">
-   <h1 class="post-title-main">An Example of Graql Analytics</h1>
+   <h1 class="post-title-main">Using Grakn for Statistical Analysis</h1>
 </div>
 
 
@@ -736,7 +729,7 @@
 <div class="post-content">
 
    
-    <div class="summary">An example to illustrate Graql analytics</div>
+    <div class="summary">How to use Grakn for statistical analysis</div>
    
 
     
@@ -776,13 +769,18 @@ $('#toc').on('click', 'a', function() {
 
   <h2 id="introduction">Introduction</h2>
 
-<p>This example illustrates the use of Graql analytics on a simple dataset, to show how it can be used to calculate statistics and illustrate the use of subgraphs to partition and study the data. The code for this example can be found on our <a href="https://github.com/graknlabs/sample-projects/tree/master/example-analytics-mtcars">sample-projects</a> repository, and is also included in the <em>examples</em> folder of the Grakn distribution from v0.12.0.</p>
+<p>This example illustrates the use of <code class="highlighter-rouge">aggregate</code> and <code class="highlighter-rouge">compute</code> queries in Graql using a simple dataset to calculate statistics. The code for the example can be found on our <a href="https://github.com/graknlabs/sample-projects/tree/master/example-analytics-mtcars">sample-projects</a> repository, and is also included in the <em>examples</em> folder of the Grakn distribution from v0.12.0.</p>
 
-<p>For a detailed overview of Graql analytics, we recommend that you take a look at the <a href="https://grakn.ai/pages/documentation/graql-analytics/analytics-overview.html">documentation</a>.</p>
+<p>For a detailed overview of calculating statistics using Graql, we recommend that you take a look at the documentation for:</p>
+
+<ul>
+  <li><a href="../graql/aggregate-queries.html">aggregate queries</a></li>
+  <li><a href="../graql/compute-queries.html">compute queries</a></li>
+</ul>
 
 <h2 id="data">Data</h2>
 
-<p>This example takes a dataset that will be familiar to students of R - <a href="https://stat.ethz.ch/R-manual/R-devel/library/datasets/html/mtcars.html">mtcars (Motor Trend Car Road Tests) data</a>.  The data was extracted from the 1974 Motor Trend US magazine, and comprises fuel consumption and 10 other aspects of automobile design and performance for 32 automobiles (1973–74 models). We have created a csv file of the data and added two columns to indicate the car maker’s name and region that the car was made in (Europe, Japan or North America).</p>
+<p>This example takes a dataset that will be familiar to students of R - <a href="https://stat.ethz.ch/R-manual/R-devel/library/datasets/html/mtcars.html">mtcars (Motor Trend Car Road Tests) data</a>.  The data was extracted from the 1974 Motor Trend US magazine, and comprises fuel consumption and 10 other aspects of automobile design and performance for 32 automobiles (1973–74 models). We have created a csv file of the data and added two columns to indicate the car maker’s name and region that the car was made in (Europe, Japan or North America). The readme file in the repository gives further information for anyone who wishes to migrate the mtcars data directly into a graph, but for the purposes of this example we provide a single data file that you can load to populate a graph.</p>
 
 <h2 id="ontology">Ontology</h2>
 
@@ -876,11 +874,47 @@ match $x isa automatic-car; $y isa european-maker;
 
 </code></pre>
 
-<p>At this point, you are ready to start investigating statistics within the data using Graql analytics.</p>
+<p>At this point, you are ready to start investigating statistics within the data using Graql <a href="../graql/aggregate-queries.html"><code class="highlighter-rouge">aggregate</code></a> and <a href="../graql/compute-queries.html"><code class="highlighter-rouge">compute</code></a> queries:</p>
 
-<h2 id="compute-queries">Compute Queries</h2>
+<h2 id="aggregate"><code class="highlighter-rouge">aggregate</code></h2>
 
-<p>Graql <a href="../graql/compute-queries.html">compute</a> queries are used to determine values such as mean, minimum and maximum. For example:</p>
+<p>You cannot make <a href="../graql/aggregate-queries.html"><code class="highlighter-rouge">aggregate</code></a> queries from within the <strong>Graph</strong> view in the Grakn visualiser, so you will need to switch views using the left hand navigation pane, from <strong>Graph</strong> to <strong>Console</strong>. This shows a read-write view on Grakn, and you can now submit queries in the usual way, via the form. Alternatively, from your terminal, you can start the Graql shell in its interactive (REPL) mode by typing <code class="highlighter-rouge">graql.sh</code> at the terminal, from within the <em>bin</em> directory of the Grakn installation.</p>
+
+<p>Here are some example <code class="highlighter-rouge">aggregate</code> queries to try:</p>
+
+<pre><code class="language-graql"># Count of all cars
+match $x isa car; aggregate count; # 32
+
+# Count American car makers
+match $x isa american-maker; aggregate count; # 6
+
+# Maximum MPG for an automatic car
+match $x isa automatic-car, has mpg $a; aggregate max $a;
+
+# Minimum HP for all cars
+match $x isa car, has hp $hp; aggregate min $hp;
+
+# Mean MPG for manual and automatic cars
+match $x isa manual-car has mpg $mpg; aggregate mean $mpg; # 24.39
+match $x isa automatic-car has mpg $mpg; aggregate mean $mpg; # 17.15
+
+# Median number of cylinders (all Mercedes cars)
+match $x isa carmaker has maker-name contains "Mercedes"; 
+$y isa car has cyl $c; (maker:$x, made:$y); aggregate median $c; # 6
+
+# Or...
+match $x has model contains "Merc", has cyl $c; aggregate median $c;# 6
+
+# Maximum number of carburetors (all Chrysler cars) 
+match $x isa carmaker has maker-name contains "Chrysler"; $y isa car has carb $c; (maker:$x, made:$y); aggregate max $c; # 4
+
+# Minimum number of gears (all cars)
+match $x isa car, has gear $g; aggregate min $g; # 3
+</code></pre>
+
+<h2 id="compute"><code class="highlighter-rouge">compute</code></h2>
+
+<p>Graql also provides <a href="../graql/compute-queries.html">compute queries</a> that can be used to determine values such as mean, minimum and maximum. These can be submitted using the <strong>Graph</strong> view on the Visualiser. For example, type each of the following into the form and submit:</p>
 
 <pre><code class="language-graql"># Number of automatic and manual cars
 compute count in automatic-car; # 19
@@ -888,18 +922,6 @@ compute count in manual-car; # 13
 
 # Number of Japanese car makers
 compute count in japanese-maker; # 4
-
-# mean mpg for automatic and manual cars
-compute mean of mpg in automatic-car; # 20.09
-compute mean of mpg in manual-car; # 20.09
-
-# Mean number of cylinders in manual and automatic cars
-compute mean of cyl in manual-car; # 6.1875
-compute mean of cyl in automatic-car; # 6.1875
-
-# Mean displacement in cars from Japanese and American car makers
-compute mean of disp in car, japanese-maker; # 230.721875
-compute mean of disp in car, american-maker; # 230.721875
 
 # Median number of cylinders (all cars)
 compute median of cyl;  # 6
@@ -911,9 +933,18 @@ compute min of gear; # 3
 compute max of carb; # 8
 </code></pre>
 
+<h2 id="when-to-use-aggregate-and-when-to-use-compute">When to Use <code class="highlighter-rouge">aggregate</code> and When to Use <code class="highlighter-rouge">compute</code>?</h2>
+
+<p>Aggregate queries are computationally light and run single-threaded on a single machine, and are more flexible than the equivalent compute query (for example, you can use an aggregate query to filter results by resource).</p>
+
+<pre><code class="language-graql">match $x has identifier contains "Elizabeth"; aggregate count;
+</code></pre>
+
+<p>Compute queries are computationally intensive and run in parallel on a cluster, so are good for big data and can be used to calculate results very fast. However, you can’t filter the results by resource in the same way as you can for an <code class="highlighter-rouge">aggregate</code> query.</p>
+
 <h2 id="where-next">Where Next?</h2>
 
-<p>If you haven’t already, we recommend that you review the documentation about <a href="https://grakn.ai/pages/documentation/graql-analytics/analytics-overview.html">Graql analytics</a> and <a href="../graql/compute-queries.html">compute queries</a>.</p>
+<p>If you haven’t already, we recommend that you review the documentation about <a href="https://grakn.ai/pages/documentation/graql-analytics/analytics-overview.html">Graql analytics</a>, since there is more to <code class="highlighter-rouge">compute</code> than just statistical analysis. Unfortunately, this example is not a good one to illustrate clusters, degrees or shortest path analytics, which is why it isn’t described here.</p>
 
 <p>This example was based on CSV data migrated into Grakn. Having read it, Yyou may want to further study our documentation about <a href="../migration/CSV-migration.html">CSV migration</a> and <a href="https://grakn.ai/pages/documentation/graql/graql-templating.html">Graql templating</a>.</p>
 

@@ -258,11 +258,11 @@
 
 ,
 {
-"title": "An Example of Graql Analytics",
+"title": "Using Grakn for Statistical Analysis",
 "tags": "analyticsexamples",
 "keywords": "analytics, machine-learning",
 "url": "/pages/documentation/examples/analytics.html",
-"summary": "An example to illustrate Graql analytics"
+"summary": "How to use Grakn for statistical analysis"
 }
 
 
