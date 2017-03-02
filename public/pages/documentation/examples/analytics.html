@@ -3,9 +3,9 @@
     <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="How to use templating on top of Graql">
-<meta name="keywords" content="graql,  graql, java, GRAKN.AI, Grakn Labs, grakn, graql, grakn.ai, Mindmaps Research, Mindmaps Research Ltd, MindmapsDB, mindmaps, mindmaps graph, mindmaps.io, knowledge graph, distributed knowledge graph, development platform, developer tool, data platform, programming langauge, query langauge, database, semantic database, distributed semantic database, distributed database, graph database, semantic search, data exploration, recommendation system, knowledge management, knowledge engineering, real-time analytics, advanced analytics, reasoning engine, inference engine, expert systems, semantic applications, research engines, data management, business intelligence, big data, semantic web, semantic data, knowledge representation, automated reasoning, semantic network, knowledge ontology, semantic graph, ontology engineering, graph based knowledge representation, artificial intelligence,">
-<title>GRAKN.AI - Graql Templating</title>
+<meta name="description" content="An example to illustrate Graql analytics">
+<meta name="keywords" content="analyticsexamples,  analytics, machine-learning, GRAKN.AI, Grakn Labs, grakn, graql, grakn.ai, Mindmaps Research, Mindmaps Research Ltd, MindmapsDB, mindmaps, mindmaps graph, mindmaps.io, knowledge graph, distributed knowledge graph, development platform, developer tool, data platform, programming langauge, query langauge, database, semantic database, distributed semantic database, distributed database, graph database, semantic search, data exploration, recommendation system, knowledge management, knowledge engineering, real-time analytics, advanced analytics, reasoning engine, inference engine, expert systems, semantic applications, research engines, data management, business intelligence, big data, semantic web, semantic data, knowledge representation, automated reasoning, semantic network, knowledge ontology, semantic graph, ontology engineering, graph based knowledge representation, artificial intelligence,">
+<title>GRAKN.AI - An Example of Graql Analytics</title>
 <link rel="stylesheet" href="/pages/css/syntax.css">
 
 
@@ -228,7 +228,7 @@
                             
                             dataSource: '/pages/search.json',
                             
-                            searchResultTemplate: '<li><a href="{url}" title="Graql Templating">{title}</a></li>',
+                            searchResultTemplate: '<li><a href="{url}" title="An Example of Graql Analytics">{title}</a></li>',
                             noResultsText: '<li><a class="empty">No results found</a></li>',
                             limit: 10,
                             fuzzy: true
@@ -414,7 +414,7 @@
             
             
             
-            <li class="active"><a href="/pages/documentation/graql/graql-templating.html">Graql Templating</a></li>
+            <li><a href="/pages/documentation/graql/graql-templating.html">Graql Templating</a></li>
             
             
             
@@ -653,7 +653,7 @@
             
             
             
-            <li><a href="/pages/documentation/examples/analytics.html">Basic Analytics</a></li>
+            <li class="active"><a href="/pages/documentation/examples/analytics.html">Basic Analytics</a></li>
             
             
             
@@ -728,7 +728,7 @@
         <!-- Content Column -->
         <div class="col-md-9">
             <div class="post-header">
-   <h1 class="post-title-main">Graql Templating</h1>
+   <h1 class="post-title-main">An Example of Graql Analytics</h1>
 </div>
 
 
@@ -736,7 +736,7 @@
 <div class="post-content">
 
    
-    <div class="summary">How to use templating on top of Graql</div>
+    <div class="summary">An example to illustrate Graql analytics</div>
    
 
     
@@ -768,322 +768,157 @@ $('#toc').on('click', 'a', function() {
 
     
 
-    <a target="_blank" href="https://github.com/graknlabs/docs/blob/master/pages/documentation/3-querying-with-graql/graql-templating.md" class="btn btn-default githubEditButton" role="button"><i class="fa fa-github fa-lg"></i> Edit me</a>
+    <a target="_blank" href="https://github.com/graknlabs/docs/blob/master/pages/documentation/10-examples/analytics.md" class="btn btn-default githubEditButton" role="button"><i class="fa fa-github fa-lg"></i> Edit me</a>
 
     
 
     
 
-  <h2 id="basic-syntax">Basic Syntax</h2>
+  <h2 id="introduction">Introduction</h2>
 
-<p>Graql templates are Graql statements with the addition of functions and variables. Graql templates are primarily used for migrating data into Grakn, although as a component of Graql, they can be used whevever writing Graql in Java. You can find more examples of their usage in the <a href="../migration/migration-overview.html">Migration</a> section of the documentation.</p>
+<p>This example illustrates the use of Graql analytics on a simple dataset, to show how it can be used to calculate statistics and illustrate the use of subgraphs to partition and study the data. The code for this example can be found on our <a href="https://github.com/graknlabs/sample-projects/tree/master/example-analytics-mtcars">sample-projects</a> repository, and is also included in the <em>examples</em> folder of the Grakn distribution from v0.12.0.</p>
 
-<div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> <b>Note:</b>  For the moment, Graql Template usage is limited to Graql Java. It will not work in the Graql shell. </div>
+<p>For a detailed overview of Graql analytics, we recommend that you take a look at the <a href="https://grakn.ai/pages/documentation/graql-analytics/analytics-overview.html">documentation</a>.</p>
 
-<p>Templates are used to expand Graql queries, given data. They allow you to control the flow of information.</p>
+<h2 id="data">Data</h2>
 
-<p>Accessing a single value:</p>
+<p>This example takes a dataset that will be familiar to students of R - <a href="https://stat.ethz.ch/R-manual/R-devel/library/datasets/html/mtcars.html">mtcars (Motor Trend Car Road Tests) data</a>.  The data was extracted from the 1974 Motor Trend US magazine, and comprises fuel consumption and 10 other aspects of automobile design and performance for 32 automobiles (1973–74 models). We have created a csv file of the data and added two columns to indicate the car maker’s name and region that the car was made in (Europe, Japan or North America).</p>
 
-<pre><code class="language-graql-template">$x isa thing has value &lt;value&gt;
+<h2 id="ontology">Ontology</h2>
+
+<p>We have provided the following ontology to represent the data, although many other variations are possible:</p>
+
+<pre><code class="language-graql">insert
+
+# Entities
+
+vehicle sub entity
+	is-abstract;
+
+car sub vehicle
+	is-abstract
+
+	has-resource model
+	has-resource mpg
+	has-resource cyl
+	has-resource disp
+	has-resource hp
+	has-resource wt
+	has-resource gear
+	has-resource carb
+	plays-role made;
+
+automatic-car sub car;
+manual-car sub car;
+
+carmaker sub entity
+	is-abstract
+	has-resource maker-name
+	plays-role maker;
+
+japanese-maker sub carmaker;
+american-maker sub carmaker;
+european-maker sub carmaker;
+
+# Resources
+
+model sub resource datatype string;
+maker-name sub resource datatype string;
+mpg sub resource datatype double;
+cyl sub resource datatype long;
+disp sub resource datatype double;
+hp sub resource datatype long;
+wt sub resource datatype double;
+gear sub resource datatype long;
+carb sub resource datatype long;
+
+# Roles and Relations
+
+manufactured sub relation
+	has-role maker
+	has-role made;
+
+maker sub role;
+made sub role;
 </code></pre>
 
-<p>Value in a nested context:</p>
+<p>To load <em>ontology.gql</em> into Grakn, make sure the engine is running and choose a clean keyspace in which to work (here we use the default keyspace, so we are cleaning it before we get started).</p>
 
-<pre><code class="language-graql-template">$x isa person has name &lt;person.name.firstName&gt;
-</code></pre>
-
-<h2 id="replacement">Replacement</h2>
-
-<p>Replacement occurs inside the <code class="highlighter-rouge">&lt;</code> <code class="highlighter-rouge">&gt;</code> characters or when executing a macro that is not a condition.</p>
-
-<div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> <b>Note:</b>  When replacing values in the output, the templating engine will automatically surround any <code class="highlighter-rouge">string</code> in quotes. It will not for any <code class="highlighter-rouge">int</code>, <code class="highlighter-rouge">double</code> or <code class="highlighter-rouge">boolean</code> </div>
-
-<p>A quick example of what the replacement looks like:</p>
-
-<pre><code class="language-graql-template">first is a &lt;string&gt;, second a &lt;long&gt;, third a &lt;double&gt;, fourth a &lt;boolean&gt;
-</code></pre>
-
-<div class="highlighter-rouge"><pre class="highlight"><code>first is a "string", second a 40, third a 0.001, fourth a false
+<div class="highlighter-rouge"><pre class="highlight"><code>&lt;relative-path-to-Grakn&gt;/bin/grakn.sh clean
+&lt;relative-path-to-Grakn&gt;/bin/grakn.sh start
+&lt;relative-path-to-Grakn&gt;/bin/graql.sh -f ./ontology.gql
 </code></pre>
 </div>
 
-<h2 id="logic">Logic</h2>
+<h2 id="data-migration">Data Migration</h2>
 
-<h3 id="expressions">Expressions</h3>
+<p>We migrated the CSV data using template Graql files, but for ease of use, we provide a single data file that you can load to populate a graph.</p>
 
-<p>Expressions can be used as the conditions in <code class="highlighter-rouge">if</code>/<code class="highlighter-rouge">elseif</code> statements or as the contents of <code class="highlighter-rouge">macro</code> statements.</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>&lt;relative-path-to-Grakn&gt;/bin/graql.sh -f ./data.gql
+</code></pre>
+</div>
 
-<h4 id="boolean-expressions">Boolean expressions</h4>
+<p>Spin up the <a href="../grakn-dashboard/visualiser.html">Grakn visualiser</a> by pointing your browser to <a href="http://localhost:4567/">http://localhost:4567/</a>. You can submit queries to check the data, or explore it using the Types dropdown menu.</p>
 
-<p>Boolean expressions operate over <code class="highlighter-rouge">true</code> and <code class="highlighter-rouge">false</code>.</p>
+<p>Some sample queries:</p>
 
-<table>
-  <thead>
-    <tr>
-      <th>Expression</th>
-      <th>Usage</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><code class="highlighter-rouge">and</code></td>
-      <td><code class="highlighter-rouge">if (&lt;this&gt; and &lt;that&gt;) do { ... }</code></td>
-    </tr>
-    <tr>
-      <td><code class="highlighter-rouge">or</code></td>
-      <td><code class="highlighter-rouge">if (&lt;this&gt; or &lt;that&gt;) do { ... }</code></td>
-    </tr>
-    <tr>
-      <td><code class="highlighter-rouge">not</code></td>
-      <td><code class="highlighter-rouge">if (not &lt;this&gt;) do { ... }</code></td>
-    </tr>
-  </tbody>
-</table>
+<pre><code class="language-graql"># Cars where the model name contains "Merc"
+match $x has model contains "Merc";
 
-<h4 id="comparisons">Comparisons</h4>
+# Cars with more than 4 gears
+match $x has gear &gt; 4;
 
-<table>
-  <thead>
-    <tr>
-      <th>Expression</th>
-      <th>Usage</th>
-      <th>Notes</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><code class="highlighter-rouge">=</code></td>
-      <td><code class="highlighter-rouge">if (&lt;this&gt; = &lt;that&gt;) do { ... }</code></td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td><code class="highlighter-rouge">!=</code></td>
-      <td><code class="highlighter-rouge">if (&lt;this&gt; != &lt;that&gt;) do { ... }</code></td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td><code class="highlighter-rouge">&gt;</code></td>
-      <td><code class="highlighter-rouge">if (&lt;this&gt; &gt; &lt;that&gt;) do { ... }</code></td>
-      <td>operates on numbers</td>
-    </tr>
-    <tr>
-      <td><code class="highlighter-rouge">&gt;=</code></td>
-      <td><code class="highlighter-rouge">if (&lt;this&gt; &gt;= &lt;that&gt;) do { ... }</code></td>
-      <td>operates on numbers</td>
-    </tr>
-    <tr>
-      <td><code class="highlighter-rouge">&lt;</code></td>
-      <td><code class="highlighter-rouge">if (&lt;this&gt; &lt; &lt;that&gt;) do { ... }</code></td>
-      <td>operates on numbers</td>
-    </tr>
-    <tr>
-      <td><code class="highlighter-rouge">&lt;=</code></td>
-      <td><code class="highlighter-rouge">if (&lt;this&gt; &lt;= &lt;that&gt;) do { ... }</code></td>
-      <td>operates on numbers</td>
-    </tr>
-  </tbody>
-</table>
+# Japanese-made cars that are manual
+match $x isa manual-car; $y isa japanese-maker;
 
-<h3 id="conditionals">Conditionals</h3>
+# European cars that are automatic
+match $x isa automatic-car; $y isa european-maker;
 
-<p><code class="highlighter-rouge">if</code>, <code class="highlighter-rouge">else</code> and <code class="highlighter-rouge">elseif</code> are the included commands that provide conditional logic.</p>
-
-<p><strong><code class="highlighter-rouge">if</code> statements</strong>:</p>
-
-<pre><code class="language-graql-template">if (&lt;surname&gt; != null)
-do { insert $x has surname &lt;surname&gt;; }
 </code></pre>
 
-<p><strong><code class="highlighter-rouge">if</code>…<code class="highlighter-rouge">else</code></strong></p>
+<p>At this point, you are ready to start investigating statistics within the data using Graql analytics.</p>
 
-<pre><code class="language-graql-template">if ( &lt;born&gt; != null) 
-do { insert $x has birth-date &lt;born&gt;; } 
-else { insert $x; }
+<h2 id="compute-queries">Compute Queries</h2>
+
+<p>Graql <a href="../graql/compute-queries.html">compute</a> queries are used to determine values such as mean, minimum and maximum. For example:</p>
+
+<pre><code class="language-graql"># Number of automatic and manual cars
+compute count in automatic-car; # 19
+compute count in manual-car; # 13
+
+# Number of Japanese car makers
+compute count in japanese-maker; # 4
+
+# mean mpg for automatic and manual cars
+compute mean of mpg in automatic-car; # 20.09
+compute mean of mpg in manual-car; # 20.09
+
+# Mean number of cylinders in manual and automatic cars
+compute mean of cyl in manual-car; # 6.1875
+compute mean of cyl in automatic-car; # 6.1875
+
+# Mean displacement in cars from Japanese and American car makers
+compute mean of disp in car, japanese-maker; # 230.721875
+compute mean of disp in car, american-maker; # 230.721875
+
+# Median number of cylinders (all cars)
+compute median of cyl;  # 6
+
+# Minimum number of gears (all cars)
+compute min of gear; # 3
+
+# Maximum number of carburetors (all cars)
+compute max of carb; # 8
 </code></pre>
 
-<h4 id="groups">Groups</h4>
+<h2 id="where-next">Where Next?</h2>
 
-<p>Parenthesis can be used to group conditionals together.</p>
+<p>If you haven’t already, we recommend that you review the documentation about <a href="https://grakn.ai/pages/documentation/graql-analytics/analytics-overview.html">Graql analytics</a> and <a href="../graql/compute-queries.html">compute queries</a>.</p>
 
-<pre><code class="language-graql-template">if( (first &lt;= second) or (not (third &lt;= second))) 
-do { insert isa y; } 
-else { insert isa z; }
-</code></pre>
-
-<h3 id="iteration">Iteration</h3>
-
-<p>Graql Templates allow you to iterate over maps or lists.</p>
-
-<p><strong>For loop over a list</strong></p>
-
-<pre><code class="language-graql-template">insert
-    for (name in &lt;names&gt;)
-    do { 
-        $x has name &lt;name&gt;; 
-    }
-</code></pre>
-
-<p><strong>For loop over a map</strong></p>
-
-<pre><code class="language-graql-template">insert $x isa person;
-    for (address in &lt;addresses&gt;) do {
-        $x has street &lt;address.street&gt;
-    };
-</code></pre>
-
-<p><strong>Enhanced <code class="highlighter-rouge">for</code> loop over a map</strong> In this type of loop it is not required to provide the item name. The properties within the <code class="highlighter-rouge">do</code> block context are inferred to be the first level children of the property in the <code class="highlighter-rouge">for</code> statement.</p>
-
-<pre><code class="language-graql-template">insert $x isa person;
-    for (&lt;addresses&gt;) do {
-        $x has street &lt;street&gt; ;
-    }
-</code></pre>
-
-<p><strong>Doubly nested <code class="highlighter-rouge">for</code></strong></p>
-
-<pre><code class="language-graql-template">insert
-
-for (&lt;people&gt;) do { 
-$x isa person has name &lt;name&gt;;
-    for (&lt;addresses&gt;) do {
-    $y isa address ;
-        $y has street &lt;street&gt; ;
-        $y has number &lt;number&gt; ;
-        ($x, $y) isa resides;
-    }
-}
-</code></pre>
-
-<h3 id="macros">Macros</h3>
-
-<p>Macros are denoted by an <code class="highlighter-rouge">@</code> symbol prefixing the name of the macro function.</p>
-
-<p><strong><code class="highlighter-rouge">noescp</code></strong>  is short for “no escape”. This function will not add quotes or escape the characters inside the value when doing replacement. Exactly one argument accepted. Returns a string.</p>
-
-<pre><code class="language-graql-template">insert $x isa @noescp(&lt;species&gt;)-species;
-</code></pre>
-
-<p><strong><code class="highlighter-rouge">int</code></strong> converts the contents of the data to an integer. Exactly one argument accepted.</p>
-
-<pre><code class="language-graql-template">match $x isa thing has value @int(&lt;value&gt;);
-</code></pre>
-
-<p><strong><code class="highlighter-rouge">long</code></strong> converts the contents of the data to an long. Exactly one argument accepted.</p>
-
-<pre><code class="language-graql-template">match $x isa thing has value @long(&lt;value&gt;);
-</code></pre>
-
-<p><strong><code class="highlighter-rouge">double</code></strong> converts the contents of the data to a double. Exactly one argument accepted.</p>
-
-<pre><code class="language-graql-template">match $x isa thing has value @double(&lt;value&gt;);
-</code></pre>
-
-<p><strong><code class="highlighter-rouge">boolean</code></strong> converts the contents of the data to a boolean. Exactly one argument accepted.</p>
-
-<pre><code class="language-graql-template">match $x isa thing has value @boolean(&lt;value&gt;);
-</code></pre>
-
-<p><strong><code class="highlighter-rouge">equals</code></strong> returns a boolean with a value specified by the gievn string. The boolean represents a <code class="highlighter-rouge">true</code> value if the string argumetn is not null and is equal, ignoring case, to the string “true”. Can be used in conditional statements. Requires at least two arguments.</p>
-
-<pre><code class="language-graql-template">insert $x isa thing value @equals(&lt;this&gt;, &lt;that&gt;, &lt;other&gt;)
-</code></pre>
-
-<pre><code class="language-graql-template">if (@equals(&lt;this&gt;, &lt;that&gt;)) do { equals }"
-</code></pre>
-
-<p><strong><code class="highlighter-rouge">date</code></strong> <code class="highlighter-rouge">(&lt;value&gt;, fromFormat, toFormat)</code> converts a date string from the given format to another format. If the third argument is missing, converts to epoch time. Date format specifications can be found <a href="https://docs.oracle.com/javase/8/docs/api/java/text/SimpleDateFormat.html">here</a>. Returns a string.</p>
-
-<pre><code class="language-graql-template">insert $x value @date(&lt;date&gt;, "mm/dd/yyyy", "dd/mm/yyyy");
-</code></pre>
-
-<pre><code class="language-graql-template">insert $x value @date(&lt;date&gt;, "mm/dd/yyyy");
-</code></pre>
-
-<p><strong><code class="highlighter-rouge">lower</code></strong> converts the contents of the data to lower case.</p>
-
-<pre><code class="language-graql-template">match $x isa thing has value @lower(&lt;value&gt;);
-</code></pre>
-
-<p><strong><code class="highlighter-rouge">upper</code></strong> converts the contents of the data to upper case.</p>
-
-<pre><code class="language-graql-template">match $x isa thing has value @upper(&lt;value&gt;);
-</code></pre>
-
-<p><strong><code class="highlighter-rouge">split</code></strong> splits the given string around the matches of the given regular expression. More information about regular expressions can be found <a href="https://docs.oracle.com/javase/8/docs/api/java/util/regex/Pattern.html#sum">here</a>. Returns a list of strings.</p>
-
-<pre><code class="language-graql-template">insert $x 
-    for (val in @split(&lt;list&gt;, ",")) do { 
-        has description &lt;val&gt;
-    };
-</code></pre>
-
-<p><strong><code class="highlighter-rouge">concat</code></strong> concatenates all of the given arguments into a single string. If the arguments are not strings, it converts them to strings before concatenating. Returns a string.</p>
-
-<pre><code class="language-graql-template">insert $x has value @concat(&lt;forname&gt;, " ", &lt;surname&gt;);
-</code></pre>
-
-<h4 id="nesting-macros">Nesting macros</h4>
-
-<p>When writing a template, you can nest macros inside other macros. When doing so, you’re usnig the results of the nested macros as arguments to the enclosing ones.</p>
-
-<p>For example, the <code class="highlighter-rouge">date</code> macro returns a string, but many people will want to convert to epoch time and store the value as a long. If that is the case you can:</p>
-
-<pre><code class="language-graql-template">insert $x value @long(@date(&lt;date&gt; "mm/dd/yyyy"));
-</code></pre>
-
-<h4 id="user-defined-macros">User-defined Macros</h4>
-
-<p>The described macros are built-in to Graql templating language. Grakn provides an interface that a user should extend in java to implement custom macros. The user should then register the created macro with the <code class="highlighter-rouge">QueryBuilder</code> class.</p>
-
-<h3 id="scopes">Scopes</h3>
-
-<p>During iteration Graql variables will be automatically suffixed with an index.</p>
-
-<p>For example, the following loop:</p>
-
-<pre><code class="language-graql-template">insert
-	$p isa person has identifier &lt;pid&gt;
-		has firstname &lt;name1&gt;,
-		
-		if (&lt;surname&gt; != "") do 
-		{
-		has surname &lt;surname&gt;,
-		}
-
-		if (&lt;name2&gt; != "") do 
-		{
-		has middlename &lt;name2&gt;,
-		}
-		
-		if (&lt;age&gt; != "") do 
-		{
-		has age @long(&lt;age&gt;),
-		}
-
-		if (&lt;born&gt; != "") do 
-		{
-		has birth-date &lt;born&gt;,
-		}
-
-		if (&lt;dead&gt; != "") do 
-		{
-		has death-date &lt;dead&gt;,
-		}
-
-		has gender &lt;gender&gt;;
-</code></pre>
-
-<p>would result in the expanded Graql queries:</p>
-
-<pre><code class="language-graql">...
-insert $p0 isa person has firstname "Barbara" has identifier "Barbara Newman" has surname "Newman" has gender "female";
-insert $p0 has birth-date "1811-03-06" isa person has surname "Newman" has gender "male" has death-date "1898-09-10" has identifier "Henry Newman" has age 87 has firstname "Henry";
-... 
-</code></pre>
+<p>This example was based on CSV data migrated into Grakn. Having read it, Yyou may want to further study our documentation about <a href="../migration/CSV-migration.html">CSV migration</a> and <a href="https://grakn.ai/pages/documentation/graql/graql-templating.html">Graql templating</a>.</p>
 
 <h2 id="comments">Comments</h2>
-<p>Want to leave a comment? Visit <a href="https://github.com/graknlabs/docs/issues/42" target="_blank">the issues on Github for this page</a> (you’ll need a GitHub account). You are also welcome to contribute to our documentation directly via the “Edit me” button at the top of the page.</p>
-
+<p>Want to leave a comment? Visit <a href="https://github.com/graknlabs/docs/issues/27" target="_blank">the issues on Github for this page</a> (you’ll need a GitHub account). You are also welcome to contribute to our documentation directly via the “Edit me” button at the top of the page.</p>
 
 
     <div class="tags">
@@ -1092,7 +927,11 @@ insert $p0 has birth-date "1811-03-06" isa person has surname "Newman" has gende
         
         
         
-        <a href="/pages/tag_graql.html" class="btn btn-default navbar-btn cursorNorm" role="button">graql</a>
+        <a href="/pages/tag_analytics.html" class="btn btn-default navbar-btn cursorNorm" role="button">analytics</a>
+        
+        
+        
+        <a href="/pages/tag_examples.html" class="btn btn-default navbar-btn cursorNorm" role="button">examples</a>
         
         
         
@@ -1123,7 +962,7 @@ insert $p0 has birth-date "1811-03-06" isa person has surname "Newman" has gende
         <br>
         <p>© 2016 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2017 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> November 4, 2016<br/> Site last generated: Mar 2, 2017 <br />
+        <span>Page last updated:</span> March 2017<br/> Site last generated: Mar 2, 2017 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">

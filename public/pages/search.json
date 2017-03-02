@@ -93,17 +93,6 @@
 
 ,
 {
-"title": "CSV Migration to Grakn",
-"tags": "migration",
-"keywords": "setup, getting started",
-"url": "/pages/documentation/migration/CSV-migration.html",
-"summary": "This document will teach you how to migrate CSV data into Grakn."
-}
-
-
-
-,
-{
 "title": "An Example of Migrating CSV to Grakn",
 "tags": "migrationexamples",
 "keywords": "migration",
@@ -115,11 +104,11 @@
 
 ,
 {
-"title": "An Example of Migrating JSON to Grakn",
-"tags": "migrationexamples",
-"keywords": "migration",
-"url": "/pages/documentation/examples/JSON-migration.html",
-"summary": "An example to illustrate migration of JSON to Grakn"
+"title": "CSV Migration to Grakn",
+"tags": "migration",
+"keywords": "setup, getting started",
+"url": "/pages/documentation/migration/CSV-migration.html",
+"summary": "This document will teach you how to migrate CSV data into Grakn."
 }
 
 
@@ -131,6 +120,17 @@
 "keywords": "setup, getting started",
 "url": "/pages/documentation/migration/JSON-migration.html",
 "summary": "This document will teach you how to migrate JSON data into Grakn."
+}
+
+
+
+,
+{
+"title": "An Example of Migrating JSON to Grakn",
+"tags": "migrationexamples",
+"keywords": "migration",
+"url": "/pages/documentation/examples/JSON-migration.html",
+"summary": "An example to illustrate migration of JSON to Grakn"
 }
 
 
@@ -159,22 +159,22 @@
 
 ,
 {
-"title": "An Example of Migrating SQL to Grakn",
-"tags": "migrationexamplesjava",
-"keywords": "migration",
-"url": "/pages/documentation/examples/SQL-migration.html",
-"summary": "A short example to illustrate migration of SQL to Grakn"
+"title": "SQL Migration to Grakn",
+"tags": "migration",
+"keywords": "setup, getting started",
+"url": "/pages/documentation/migration/SQL-migration.html",
+"summary": "This document will teach you how to migrate SQL data into Grakn."
 }
 
 
 
 ,
 {
-"title": "SQL Migration to Grakn",
-"tags": "migration",
-"keywords": "setup, getting started",
-"url": "/pages/documentation/migration/SQL-migration.html",
-"summary": "This document will teach you how to migrate SQL data into Grakn."
+"title": "An Example of Migrating SQL to Grakn",
+"tags": "migrationexamplesjava",
+"keywords": "migration",
+"url": "/pages/documentation/examples/SQL-migration.html",
+"summary": "A short example to illustrate migration of SQL to Grakn"
 }
 
 
@@ -252,6 +252,17 @@
 "keywords": "",
 "url": "/pages/documentation/graql-analytics/analytics-statistics.html",
 "summary": "This page introduces the statistics functionality of analytics."
+}
+
+
+
+,
+{
+"title": "An Example of Graql Analytics",
+"tags": "analyticsexamples",
+"keywords": "analytics, machine-learning",
+"url": "/pages/documentation/examples/analytics.html",
+"summary": "An example to illustrate Graql analytics"
 }
 
 
@@ -458,22 +469,22 @@
 
 ,
 {
-"title": "Reasoning with Graql",
-"tags": "reasoningexamples",
-"keywords": "migration",
-"url": "/pages/documentation/examples/graql-reasoning.html",
-"summary": "An example to illustrate inference using genealogy data."
+"title": "Graql Rules",
+"tags": "graqlreasoning",
+"keywords": "graql, reasoner",
+"url": "/pages/documentation/graql/graql-rules.html",
+"summary": "Graql Rules"
 }
 
 
 
 ,
 {
-"title": "Graql Rules",
-"tags": "graqlreasoning",
-"keywords": "graql, reasoner",
-"url": "/pages/documentation/graql/graql-rules.html",
-"summary": "Graql Rules"
+"title": "Reasoning with Graql",
+"tags": "reasoningexamples",
+"keywords": "migration",
+"url": "/pages/documentation/examples/graql-reasoning.html",
+"summary": "An example to illustrate inference using genealogy data."
 }
 
 
