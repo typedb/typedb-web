@@ -557,11 +557,11 @@
 
 ,
 {
-"title": "Loader API",
+"title": "Loader Client API",
 "tags": "java",
 "keywords": "java",
 "url": "/pages/documentation/developing-with-java/loader-api.html",
-"summary": "The Loader API"
+"summary": "The Loader Client API"
 }
 
 

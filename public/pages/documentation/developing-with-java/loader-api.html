@@ -3,9 +3,9 @@
     <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="The Loader API">
+<meta name="description" content="The Loader Client API">
 <meta name="keywords" content="java,  java, GRAKN.AI, Grakn Labs, grakn, graql, grakn.ai, Mindmaps Research, Mindmaps Research Ltd, MindmapsDB, mindmaps, mindmaps graph, mindmaps.io, knowledge graph, distributed knowledge graph, development platform, developer tool, data platform, programming langauge, query langauge, database, semantic database, distributed semantic database, distributed database, graph database, semantic search, data exploration, recommendation system, knowledge management, knowledge engineering, real-time analytics, advanced analytics, reasoning engine, inference engine, expert systems, semantic applications, research engines, data management, business intelligence, big data, semantic web, semantic data, knowledge representation, automated reasoning, semantic network, knowledge ontology, semantic graph, ontology engineering, graph based knowledge representation, artificial intelligence,">
-<title>GRAKN.AI - Loader API</title>
+<title>GRAKN.AI - Loader Client API</title>
 <link rel="stylesheet" href="/pages/css/syntax.css">
 
 
@@ -228,7 +228,7 @@
                             
                             dataSource: '/pages/search.json',
                             
-                            searchResultTemplate: '<li><a href="{url}" title="Loader API">{title}</a></li>',
+                            searchResultTemplate: '<li><a href="{url}" title="Loader Client API">{title}</a></li>',
                             noResultsText: '<li><a class="empty">No results found</a></li>',
                             limit: 10,
                             fuzzy: true
@@ -721,7 +721,7 @@
         <!-- Content Column -->
         <div class="col-md-9">
             <div class="post-header">
-   <h1 class="post-title-main">Loader API</h1>
+   <h1 class="post-title-main">Loader Client API</h1>
 </div>
 
 
@@ -729,7 +729,7 @@
 <div class="post-content">
 
    
-    <div class="summary">The Loader API</div>
+    <div class="summary">The Loader Client API</div>
    
 
     
@@ -767,13 +767,11 @@ $('#toc').on('click', 'a', function() {
 
     
 
-  <h2 id="loader-client">Loader Client</h2>
+  <p>The Grakn loader is a Java client for loading large quantities of data into a Grakn graph using multithreaded batch loading. The loader client operates by sending requests to the Grakn REST Tasks endpoint and polling for the status of submitted tasks, so the user no longer needs to implement these REST transactions. The loader client additionally provides a number of useful features, including batching insert queries, blocking, and callback on batch execution status. Configuration options allow the user to finely-tune batch loading settings.</p>
 
-<p>The Grakn loader is a java client for multithreaded batch loading into a Grakn graph and should be used when loading large quantities of data. The client operates by sending requests to the Grakn REST Tasks endpoint and polling for the status of submitted tasks. The user no longer needs to implement these REST transactions for themselves. The client additionally provides a number of useful features, including batching insert queries, blocking and callback on batch execution status. These configuration options allow the user to finely-tune batch loading settings.</p>
+<p>It is possible for batches of insert queries to fail upon insertion. By default, the client will not log the status of the batch execution. The user can specify a callback function to operate on the result of the batch operation and print and accumulate status information.</p>
 
-<p>It is possible for batches of insert queries to fail upon insertion and by default client will not log the status of the batch execution. The user can specify a callback function to operate on the result of the batch from the server to print and accumulate status information.</p>
-
-<p>If you are working using the Graql shell, this is also avaiable using the <code class="highlighter-rouge">-b</code> option.</p>
+<p>If you are using the <a href="../graql/graql-shell.html">Graql shell</a>, batch loading is available using the <code class="highlighter-rouge">-b</code> option.</p>
 
 <h2 id="usage">Usage</h2>
 
@@ -783,9 +781,9 @@ $('#toc').on('click', 'a', function() {
 </code></pre>
 </div>
 
-<p>The second constructor allows the user to specify a callback function to execute on completion of tasks.</p>
+<p>The second constructor additionally allows the user to specify a callback function that executes on completion of tasks.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>LoaderClient loader = new LoaderClient(String keyspace, String uri, Consumer&lt;Json&gt; onCompletionOfTask);
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">LoaderClient</span> <span class="n">loader</span> <span class="o">=</span> <span class="k">new</span> <span class="n">LoaderClient</span><span class="o">(</span><span class="n">String</span> <span class="n">keyspace</span><span class="o">,</span> <span class="n">String</span> <span class="n">uri</span><span class="o">,</span> <span class="n">Consumer</span><span class="o">&lt;</span><span class="n">Json</span><span class="o">&gt;</span> <span class="n">onCompletionOfTask</span><span class="o">);</span>
 </code></pre>
 </div>
 
@@ -801,14 +799,15 @@ $('#toc').on('click', 'a', function() {
 </code></pre>
 </div>
 
-<p>The user should call <code class="highlighter-rouge">waitToFinish</code>, which will flush the last batch of queries and block until all batches have executed.</p>
+<p>The user should call <code class="highlighter-rouge">waitToFinish()</code>, which will flush the last batch of queries and block until all batches have executed.</p>
 
 <h2 id="configuring-the-client">Configuring the client</h2>
 
 <h3 id="batch-size">Batch Size</h3>
-<p><strong>default</strong>: 25</p>
 
 <p>The batch size represents the number of tasks that will be executed in a single transaction when batch loading.</p>
+
+<p>The default batch size is <strong>25</strong>.</p>
 
 <div class="highlighter-rouge"><pre class="highlight"><code><span class="c1">// Setting the batch size to one</span>
 <span class="n">loader</span><span class="o">.</span><span class="na">setBatchSize</span><span class="o">(</span><span class="mi">1</span><span class="o">);</span>
@@ -823,7 +822,7 @@ $('#toc').on('click', 'a', function() {
 <span class="c1">// Set the batch size to five</span>
 <span class="n">loader</span><span class="o">.</span><span class="na">setBatchSize</span><span class="o">(</span><span class="mi">5</span><span class="o">);</span>
 
-<span class="c1">// All of these insert queries will be executed in one transaction</span>
+<span class="c1">// All of these insert queries will be executed in one single transaction</span>
 <span class="n">loader</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">insert</span><span class="o">);</span>
 <span class="n">loader</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">insert</span><span class="o">);</span>
 <span class="n">loader</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">insert</span><span class="o">);</span>
@@ -831,7 +830,8 @@ $('#toc').on('click', 'a', function() {
 <span class="n">loader</span><span class="o">.</span><span class="na">waitToFinish</span><span class="o">();</span>
 </code></pre>
 </div>
-<p>Flushing in the middle of adding queries will force-send batches to the server, overriding the set batch size. The following code will execute in two transactions, the first containing one insert and the second transaction containing two, even though the batch size is set to five.</p>
+
+<p>Flushing in the middle of adding queries will force-send batches to the server, overriding the set batch size. The following code will execute in two transactions, the first containing one insert and the second transaction containing two, even though the overall batch size is set to five.</p>
 
 <div class="highlighter-rouge"><pre class="highlight"><code><span class="n">loader</span><span class="o">.</span><span class="na">setBatchSize</span><span class="o">(</span><span class="mi">5</span><span class="o">);</span>
 
@@ -848,12 +848,12 @@ $('#toc').on('click', 'a', function() {
 </code></pre>
 </div>
 
-<p>This property can directly effect loading times- if you find that your data is loading too slowly, try increasing the size of the batch.</p>
+<p>This batch size property can directly effect loading times. If you find that your data is loading too slowly, try increasing the size of the batch.</p>
 
 <h3 id="number-active-tasks">Number Active Tasks</h3>
-<p><strong>default</strong>: 25</p>
-
 <p>The number of active tasks represents the capcity beyond which no additional inserts can be added without blocking.</p>
+
+<p>The default number of active tasks is <strong>25</strong>.</p>
 
 <div class="highlighter-rouge"><pre class="highlight"><code><span class="n">loader</span><span class="o">.</span><span class="na">setBatchSize</span><span class="o">(</span><span class="mi">1</span><span class="o">);</span>
 <span class="n">loader</span><span class="o">.</span><span class="na">setNumberActiveTasks</span><span class="o">(</span><span class="mi">1</span><span class="o">);</span>
@@ -872,19 +872,20 @@ $('#toc').on('click', 'a', function() {
 
 <p>Specify a callback function that will execute over the server response after batch completion.</p>
 
-<p>The server response is describes more in deatils in the REST api documentation. It will look something like:
-<code class="highlighter-rouge">json
-{
-	"creator":"ai.grakn.client.LoaderClient",
-	"runAt":"2017-02-28T10:38:07.585Z",
-	"recurring":false,
-	"className":"ai.grakn.engine.loader.LoaderTask",
-	"interval":0,
-	"id":"9118075f-afd7-48dd-b594-b49d9e2cc8d7",
-	"status":"COMPLETED",
-	"engineID":"67128a90-1112-400a-a38e-0f4a35f2c8f6"
-}
-</code></p>
+<p>The server response is describes more in deatils in the REST api documentation. It will look something like this:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="w">
+	</span><span class="nt">"creator"</span><span class="p">:</span><span class="s2">"ai.grakn.client.LoaderClient"</span><span class="p">,</span><span class="w">
+	</span><span class="nt">"runAt"</span><span class="p">:</span><span class="s2">"2017-02-28T10:38:07.585Z"</span><span class="p">,</span><span class="w">
+	</span><span class="nt">"recurring"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
+	</span><span class="nt">"className"</span><span class="p">:</span><span class="s2">"ai.grakn.engine.loader.LoaderTask"</span><span class="p">,</span><span class="w">
+	</span><span class="nt">"interval"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+	</span><span class="nt">"id"</span><span class="p">:</span><span class="s2">"9118075f-afd7-48dd-b594-b49d9e2cc8d7"</span><span class="p">,</span><span class="w">
+	</span><span class="nt">"status"</span><span class="p">:</span><span class="s2">"COMPLETED"</span><span class="p">,</span><span class="w">
+	</span><span class="nt">"engineID"</span><span class="p">:</span><span class="s2">"67128a90-1112-400a-a38e-0f4a35f2c8f6"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+</div>
 
 <p>Migration uses this callback function to track status information about the number of batches that have completed for the running migration.</p>
 
@@ -902,9 +903,9 @@ $('#toc').on('click', 'a', function() {
 <p>This callback is executed whenever a terminal response from the server is received, even if an exception was thrown. In the case of an execption, the Json argument will be either empty or contain the errored response from the server including the server-side exception.</p>
 
 <h3 id="retry-policy">Retry policy</h3>
-<p><strong>default</strong>: false</p>
-
 <p>Allows the user to specify whether the client should retry sending requests if the server cannot be reached.</p>
+
+<p>The default setting is for the retry policy to be <strong>false</strong>.</p>
 
 <div class="highlighter-rouge"><pre class="highlight"><code><span class="c1">// If the server is unavailable, the client will attempt to re-send the queries</span>
 <span class="n">loader</span><span class="o">.</span><span class="na">setRetryPolicy</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>
@@ -956,7 +957,7 @@ $('#toc').on('click', 'a', function() {
         <br>
         <p>© 2016 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2017 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> February 2017<br/> Site last generated: Mar 2, 2017 <br />
+        <span>Page last updated:</span> February 2017<br/> Site last generated: Mar 3, 2017 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">

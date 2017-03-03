@@ -834,6 +834,9 @@ this by setting the <code class="highlighter-rouge">checkInternalVertexExistence
 </code></pre>
 </div>
 
+<h3 id="i-want-to-load-a-large-amount-of-data-into-a-graph---how-do-i-do-it">I want to load a large amount of data into a graph - how do I do it?</h3>
+<p>Graql is single-threaded and doesn’t support batch-loading. You may want to use the Java <a href="../developing-with-java/loader-api.html">loader client</a>, which provides multi-threaded batch loading, or the <code class="highlighter-rouge">-b</code> flag if you are using the <a href="../graql/graql-shell.html">Graql shell</a>.</p>
+
 <h3 id="what-are-the-differences-between-a-batch-graph-load-and-a-normal-graph-load">What are the differences between a batch graph load and a normal graph load?</h3>
 
 <p>The batch load is faster for larger datasets because it ignores some consistency checks, on the assumption that you have pre-filtered your data. Checks ignored include:</p>
@@ -972,7 +975,7 @@ graph.clear();
         <br>
         <p>© 2016 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2017 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> September 22, 2016<br/> Site last generated: Mar 2, 2017 <br />
+        <span>Page last updated:</span> September 22, 2016<br/> Site last generated: Mar 3, 2017 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">
