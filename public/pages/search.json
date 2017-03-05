@@ -115,22 +115,22 @@
 
 ,
 {
-"title": "JSON Migration to Grakn",
-"tags": "migration",
-"keywords": "setup, getting started",
-"url": "/pages/documentation/migration/JSON-migration.html",
-"summary": "This document will teach you how to migrate JSON data into Grakn."
+"title": "An Example of Migrating JSON to Grakn",
+"tags": "migrationexamples",
+"keywords": "migration",
+"url": "/pages/documentation/examples/JSON-migration.html",
+"summary": "An example to illustrate migration of JSON to Grakn"
 }
 
 
 
 ,
 {
-"title": "An Example of Migrating JSON to Grakn",
-"tags": "migrationexamples",
-"keywords": "migration",
-"url": "/pages/documentation/examples/JSON-migration.html",
-"summary": "An example to illustrate migration of JSON to Grakn"
+"title": "JSON Migration to Grakn",
+"tags": "migration",
+"keywords": "setup, getting started",
+"url": "/pages/documentation/migration/JSON-migration.html",
+"summary": "This document will teach you how to migrate JSON data into Grakn."
 }
 
 

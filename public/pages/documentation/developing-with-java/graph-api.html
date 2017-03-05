@@ -785,13 +785,13 @@ Used for Querying - for traversals
 <h3 id="rule-java-api">Rule Java API</h3>
 <p>All rule instances are of type inference-rule which can be retrieved by:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">RuleType</span> <span class="n">inferenceRule</span> <span class="o">=</span> <span class="n">graknGraph</span><span class="o">.</span><span class="na">getMetaRuleInference</span><span class="o">();</span>
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">RuleType</span> <span class="n">inferenceRule</span> <span class="o">=</span> <span class="n">graknGraph</span><span class="o">.</span><span class="na">getMetaRuleInference</span><span class="o">();</span>
 </code></pre>
 </div>
 
 <p>Rule instances can be added to the graph both through the Graph API as well as through Graql. Considering the ancestor example, with the use of the Graph API we can add the rules in the following way:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">Pattern</span> <span class="n">r1Body</span> <span class="o">=</span> <span class="n">var</span><span class="o">().</span><span class="na">rel</span><span class="o">(</span><span class="s">"parent"</span><span class="o">,</span> <span class="s">"x"</span><span class="o">).</span><span class="na">rel</span><span class="o">(</span><span class="s">"child"</span><span class="o">,</span> <span class="s">"y"</span><span class="o">).</span><span class="na">isa</span><span class="o">(</span><span class="s">"Parent"</span><span class="o">);</span>
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">Pattern</span> <span class="n">r1Body</span> <span class="o">=</span> <span class="n">var</span><span class="o">().</span><span class="na">rel</span><span class="o">(</span><span class="s">"parent"</span><span class="o">,</span> <span class="s">"x"</span><span class="o">).</span><span class="na">rel</span><span class="o">(</span><span class="s">"child"</span><span class="o">,</span> <span class="s">"y"</span><span class="o">).</span><span class="na">isa</span><span class="o">(</span><span class="s">"Parent"</span><span class="o">);</span>
 <span class="n">Pattern</span> <span class="n">r1Head</span> <span class="o">=</span> <span class="n">var</span><span class="o">().</span><span class="na">rel</span><span class="o">(</span><span class="s">"ancestor"</span><span class="o">,</span> <span class="s">"x"</span><span class="o">).</span><span class="na">rel</span><span class="o">(</span><span class="s">"descendant"</span><span class="o">,</span> <span class="s">"y"</span><span class="o">).</span><span class="na">isa</span><span class="o">(</span><span class="s">"Ancestor"</span><span class="o">);</span>
 
 <span class="n">Pattern</span> <span class="n">r2Body</span> <span class="o">=</span> <span class="n">and</span><span class="o">(</span>
@@ -845,9 +845,9 @@ Used for Querying - for traversals
             London, UK, N7 8EG
         </p>
         <br>
-        <p>© 2016 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
+        <p>© 2017 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2017 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> Development 2016<br/> Site last generated: Mar 3, 2017 <br />
+        <span>Page last updated:</span> Development 2016<br/> Site last generated: Mar 5, 2017 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">

@@ -773,7 +773,7 @@ $('#toc').on('click', 'a', function() {
 <h2 id="migration-shell-script-for-csv">Migration Shell Script for CSV</h2>
 <p>The migration shell script can be found in <em>/bin</em> directory of your Grakn environment. We will illustrate its usage in an example below:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>usage: ./migration.sh csv -template &lt;arg&gt; -input &lt;arg&gt; -keyspace &lt;arg&gt; <span class="o">[</span>-help] <span class="o">[</span>-no] <span class="o">[</span>-separator &lt;arg&gt;] <span class="o">[</span>-active &lt;arg&gt;] <span class="o">[</span>-batch &lt;arg&gt;] <span class="o">[</span>-uri &lt;arg&gt;] <span class="o">[</span>-null &lt;arg&gt;] <span class="o">[</span>-quote &lt;arg&gt;] <span class="o">[</span>-r &lt;arg&gt;] <span class="o">[</span>-v]
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>usage: ./migration.sh csv -template &lt;arg&gt; -input &lt;arg&gt; -keyspace &lt;arg&gt; <span class="o">[</span>-help] <span class="o">[</span>-no] <span class="o">[</span>-separator &lt;arg&gt;] <span class="o">[</span>-active &lt;arg&gt;] <span class="o">[</span>-batch &lt;arg&gt;] <span class="o">[</span>-uri &lt;arg&gt;] <span class="o">[</span>-null &lt;arg&gt;] <span class="o">[</span>-quote &lt;arg&gt;] <span class="o">[</span>-r &lt;arg&gt;] <span class="o">[</span>-v]
 
 OPTIONS
  -a,--active &lt;arg&gt;      Number of tasks <span class="o">(</span>batches<span class="o">)</span> running on the server at
@@ -850,7 +850,7 @@ $x isa car
 
 <p>The template is applied to each row by calling the migration script:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>./&lt;grakn-install-location&gt;/bin/migration.sh csv -i ./cars.csv -t ./car-migrator.gql
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>./&lt;grakn-install-location&gt;/bin/migration.sh csv -i ./cars.csv -t ./car-migrator.gql -k grakn
 </code></pre>
 </div>
 
@@ -876,7 +876,7 @@ air  moon roof   loaded"  4799.00
 
 <p>This file would be migrated in the same way as the previous example when you specify the separator using the <code class="highlighter-rouge">-s \t</code> argument:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>./&lt;grakn-install-location&gt;/bin/migration.sh csv -i ./cars.tsv -t ./car-migrator.gql -s <span class="se">\t</span>
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>./&lt;grakn-install-location&gt;/bin/migration.sh csv -i ./cars.tsv -t ./car-migrator.gql -s <span class="se">\t</span> -k grakn
 </code></pre>
 </div>
 
@@ -924,9 +924,9 @@ air  moon roof   loaded"  4799.00
             London, UK, N7 8EG
         </p>
         <br>
-        <p>© 2016 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
+        <p>© 2017 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2017 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> February 2017<br/> Site last generated: Mar 3, 2017 <br />
+        <span>Page last updated:</span> February 2017<br/> Site last generated: Mar 5, 2017 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">

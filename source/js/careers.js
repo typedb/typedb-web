@@ -74,7 +74,7 @@ window.MNDMPS.Careers = {
                 container.classList.add('full-width');
                 container.classList.add('bg-yellow');
             }
-            
+
             container.innerHTML = wrapper;
 
             innerWrapper = container.children[0].children[0];
@@ -105,7 +105,7 @@ window.MNDMPS.Careers = {
                     <li>Equity: ' + obj.equity_min + '% — ' + obj.equity_max + '%</li>\
                 </ul>\
                 <div class="bottomLinks">\
-                    <a href="mailto:recruitment@mindmaps.io">Apply</a> or <a target="_blank" rel="nofollow" href="' + obj.angellist_url + '">Check on AngelList</a>\
+                    <a href="mailto:careers@grakn.ai">Apply</a> or <a target="_blank" rel="nofollow" href="' + obj.angellist_url + '">Check on AngelList</a>\
                 </div>';
 
             return jobBlock;
