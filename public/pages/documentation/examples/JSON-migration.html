@@ -761,7 +761,7 @@ $('#toc').on('click', 'a', function() {
 
     
 
-    <a target="_blank" href="https://github.com/graknlabs/docs/blob/master/pages/documentation/10-examples/JSON-migration-NOT-PUBLISHED.md" class="btn btn-default githubEditButton" role="button"><i class="fa fa-github fa-lg"></i> Edit me</a>
+    <a target="_blank" href="https://github.com/graknlabs/docs/blob/master/pages/documentation/11-examples/JSON-migration-NOT-PUBLISHED.md" class="btn btn-default githubEditButton" role="button"><i class="fa fa-github fa-lg"></i> Edit me</a>
 
     
 
@@ -777,7 +777,7 @@ $('#toc').on('click', 'a', function() {
 
 <p>The JSON data for the book catalogue is as follows:</p>
 
-<div class="language-json highlighter-rouge"><pre class="highlight"><code><span class="w">
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="w">
 </span><span class="p">{</span><span class="w">
     </span><span class="nt">"books"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
         </span><span class="p">{</span><span class="w">
@@ -852,7 +852,7 @@ publication-subject sub role;
 
 <p>To load <em>ontology.gql</em> into Grakn, make sure the engine is running and choose a clean keyspace in which to work (here we use the default keyspace, so we are cleaning it before we get started).</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>&lt;relative-path-to-Grakn&gt;/bin/grakn.sh clean
+<div class="highlighter-rouge"><pre class="highlight"><code>&lt;relative-path-to-Grakn&gt;/bin/grakn.sh clean
 &lt;relative-path-to-Grakn&gt;/bin/grakn.sh start
 &lt;relative-path-to-Grakn&gt;/bin/graql.sh -f ./ontology.gql
 </code></pre>
@@ -898,7 +898,7 @@ for(&lt;books&gt;) do {
 
 <p>To call the migration script on each template:</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>./bin/migration.sh json -t ./json/book-template.gql  -i ./json/library-data.json -k grakn
+<div class="highlighter-rouge"><pre class="highlight"><code>./bin/migration.sh json -t ./json/book-template.gql  -i ./json/library-data.json -k grakn
 ./bin/migration.sh json -t ./json/author-template.gql  -i ./json/library-data.json -k grakn
 ./bin/migration.sh json -t ./json/subject-template.gql  -i ./json/library-data.json -k grakn
 ./bin/migration.sh json -t ./json/publication-template.gql  -i ./json/library-data.json -k grakn
@@ -916,7 +916,7 @@ for(&lt;books&gt;) do {
 
 <h2 id="data-export">Data Export</h2>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="c"># Export the ontology</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="c"># Export the ontology</span>
 &lt;relative-path-to-Grakn&gt;/migration.sh <span class="nb">export</span> -ontology &gt; ontology-export.gql
 
 <span class="c"># Export the data</span>
@@ -973,7 +973,7 @@ for(&lt;books&gt;) do {
         <br>
         <p>© 2017 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2017 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> February 2017<br/> Site last generated: Mar 5, 2017 <br />
+        <span>Page last updated:</span> February 2017<br/> Site last generated: Mar 7, 2017 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">
