@@ -761,7 +761,7 @@ $('#toc').on('click', 'a', function() {
 
     
 
-    <a target="_blank" href="https://github.com/graknlabs/docs/blob/master/pages/documentation/10-examples/analytics.md" class="btn btn-default githubEditButton" role="button"><i class="fa fa-github fa-lg"></i> Edit me</a>
+    <a target="_blank" href="https://github.com/graknlabs/docs/blob/master/pages/documentation/11-examples/analytics.md" class="btn btn-default githubEditButton" role="button"><i class="fa fa-github fa-lg"></i> Edit me</a>
 
     
 
@@ -842,7 +842,7 @@ made sub role;
 
 <p>To load <em>ontology.gql</em> into Grakn, make sure the engine is running and choose a clean keyspace in which to work (here we use the default keyspace, so we are cleaning it before we get started).</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>&lt;relative-path-to-Grakn&gt;/bin/grakn.sh clean
+<div class="highlighter-rouge"><pre class="highlight"><code>&lt;relative-path-to-Grakn&gt;/bin/grakn.sh clean
 &lt;relative-path-to-Grakn&gt;/bin/grakn.sh start
 &lt;relative-path-to-Grakn&gt;/bin/graql.sh -f ./ontology.gql
 </code></pre>
@@ -852,7 +852,7 @@ made sub role;
 
 <p>We migrated the CSV data using template Graql files, but for ease of use, we provide a single data file that you can load to populate a graph.</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>&lt;relative-path-to-Grakn&gt;/bin/graql.sh -f ./data.gql
+<div class="highlighter-rouge"><pre class="highlight"><code>&lt;relative-path-to-Grakn&gt;/bin/graql.sh -b ./data.gql
 </code></pre>
 </div>
 
@@ -942,6 +942,15 @@ compute max of carb; # 8
 
 <p>Compute queries are computationally intensive and run in parallel on a cluster, so are good for big data and can be used to calculate results very fast. However, you can’t filter the results by resource in the same way as you can for an <code class="highlighter-rouge">aggregate</code> query.</p>
 
+<h2 id="inference">Inference</h2>
+
+<pre><code class="language-graql">
+match $x has powerful contains "TRUE" has economical contains "TRUE";
+match $x has powerful contains "TRUE" has economical contains "TRUE" has model $y;
+$x id "106584" isa manual-car; $y value "Ferrari Dino" isa model; 
+$x id "254120" isa automatic-car; $y value "Pontiac Firebird" isa model; 
+</code></pre>
+
 <h2 id="where-next">Where Next?</h2>
 
 <p>If you haven’t already, we recommend that you review the documentation about <a href="https://grakn.ai/pages/documentation/graql-analytics/analytics-overview.html">Graql analytics</a>, since there is more to <code class="highlighter-rouge">compute</code> than just statistical analysis. Unfortunately, this example is not a good one to illustrate clusters, degrees or shortest path analytics, which is why it isn’t described here.</p>
@@ -993,7 +1002,7 @@ compute max of carb; # 8
         <br>
         <p>© 2017 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2017 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> March 2017<br/> Site last generated: Mar 5, 2017 <br />
+        <span>Page last updated:</span> March 2017<br/> Site last generated: Mar 7, 2017 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">

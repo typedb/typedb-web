@@ -777,19 +777,19 @@ $('#toc').on('click', 'a', function() {
 
 <p>The loader client provides two constructors. The first accepts only the keyspace to load data into and the URI endpoint where Grakn Engine Server is running.</p>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">LoaderClient</span> <span class="n">loader</span> <span class="o">=</span> <span class="k">new</span> <span class="n">LoaderClient</span><span class="o">(</span><span class="n">String</span> <span class="n">keyspace</span><span class="o">,</span> <span class="n">String</span> <span class="n">uri</span><span class="o">);</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">LoaderClient</span> <span class="n">loader</span> <span class="o">=</span> <span class="k">new</span> <span class="n">LoaderClient</span><span class="o">(</span><span class="n">String</span> <span class="n">keyspace</span><span class="o">,</span> <span class="n">String</span> <span class="n">uri</span><span class="o">);</span>
 </code></pre>
 </div>
 
 <p>The second constructor additionally allows the user to specify a callback function that executes on completion of tasks.</p>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">LoaderClient</span> <span class="n">loader</span> <span class="o">=</span> <span class="k">new</span> <span class="n">LoaderClient</span><span class="o">(</span><span class="n">String</span> <span class="n">keyspace</span><span class="o">,</span> <span class="n">String</span> <span class="n">uri</span><span class="o">,</span> <span class="n">Consumer</span><span class="o">&lt;</span><span class="n">Json</span><span class="o">&gt;</span> <span class="n">onCompletionOfTask</span><span class="o">);</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">LoaderClient</span> <span class="n">loader</span> <span class="o">=</span> <span class="k">new</span> <span class="n">LoaderClient</span><span class="o">(</span><span class="n">String</span> <span class="n">keyspace</span><span class="o">,</span> <span class="n">String</span> <span class="n">uri</span><span class="o">,</span> <span class="n">Consumer</span><span class="o">&lt;</span><span class="n">Json</span><span class="o">&gt;</span> <span class="n">onCompletionOfTask</span><span class="o">);</span>
 </code></pre>
 </div>
 
 <p>The loader client can be thought of as an empty bucket in which to dump insert queries that will be batch-loaded into the specified graph. Batching, blocking and callbacks are all executed based on how the user has configured the client, which simplifies usage. The following code will load 100 insert queries into the graph.</p>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">InsertQuery</span> <span class="n">insert</span> <span class="o">=</span> <span class="n">insert</span><span class="o">(</span><span class="n">var</span><span class="o">().</span><span class="na">isa</span><span class="o">(</span><span class="s">"person"</span><span class="o">));</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">InsertQuery</span> <span class="n">insert</span> <span class="o">=</span> <span class="n">insert</span><span class="o">(</span><span class="n">var</span><span class="o">().</span><span class="na">isa</span><span class="o">(</span><span class="s">"person"</span><span class="o">));</span>
 
 <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">100</span><span class="o">;</span> <span class="n">i</span><span class="o">++){</span>
 	<span class="n">loader</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">insert</span><span class="o">);</span>
@@ -809,7 +809,7 @@ $('#toc').on('click', 'a', function() {
 
 <p>The default batch size is <strong>25</strong>.</p>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="c1">// Setting the batch size to one</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="c1">// Setting the batch size to one</span>
 <span class="n">loader</span><span class="o">.</span><span class="na">setBatchSize</span><span class="o">(</span><span class="mi">1</span><span class="o">);</span>
 
 <span class="c1">// Each of these insert queries will be executed in their own transaction</span>
@@ -833,7 +833,7 @@ $('#toc').on('click', 'a', function() {
 
 <p>Flushing in the middle of adding queries will force-send batches to the server, overriding the set batch size. The following code will execute in two transactions, the first containing one insert and the second transaction containing two, even though the overall batch size is set to five.</p>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">loader</span><span class="o">.</span><span class="na">setBatchSize</span><span class="o">(</span><span class="mi">5</span><span class="o">);</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">loader</span><span class="o">.</span><span class="na">setBatchSize</span><span class="o">(</span><span class="mi">5</span><span class="o">);</span>
 
 <span class="c1">// First transaction</span>
 <span class="n">loader</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">insert</span><span class="o">);</span>
@@ -855,7 +855,7 @@ $('#toc').on('click', 'a', function() {
 
 <p>The default number of active tasks is <strong>25</strong>.</p>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">loader</span><span class="o">.</span><span class="na">setBatchSize</span><span class="o">(</span><span class="mi">1</span><span class="o">);</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">loader</span><span class="o">.</span><span class="na">setBatchSize</span><span class="o">(</span><span class="mi">1</span><span class="o">);</span>
 <span class="n">loader</span><span class="o">.</span><span class="na">setNumberActiveTasks</span><span class="o">(</span><span class="mi">1</span><span class="o">);</span>
 
 <span class="c1">// First transaction</span>
@@ -874,7 +874,7 @@ $('#toc').on('click', 'a', function() {
 
 <p>The server response is describes more in deatils in the REST api documentation. It will look something like this:</p>
 
-<div class="language-json highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="w">
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="w">
 	</span><span class="nt">"creator"</span><span class="p">:</span><span class="s2">"ai.grakn.client.LoaderClient"</span><span class="p">,</span><span class="w">
 	</span><span class="nt">"runAt"</span><span class="p">:</span><span class="s2">"2017-02-28T10:38:07.585Z"</span><span class="p">,</span><span class="w">
 	</span><span class="nt">"recurring"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
@@ -889,7 +889,7 @@ $('#toc').on('click', 'a', function() {
 
 <p>Migration uses this callback function to track status information about the number of batches that have completed for the running migration.</p>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">AtomicInteger</span> <span class="n">numberBatchesCompleted</span> <span class="o">=</span> <span class="k">new</span> <span class="n">AtomicInteger</span><span class="o">(</span><span class="mi">0</span><span class="o">);</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">AtomicInteger</span> <span class="n">numberBatchesCompleted</span> <span class="o">=</span> <span class="k">new</span> <span class="n">AtomicInteger</span><span class="o">(</span><span class="mi">0</span><span class="o">);</span>
 
 <span class="n">loader</span><span class="o">.</span><span class="na">setTaskCompletionConsumer</span><span class="o">((</span><span class="n">Json</span> <span class="n">json</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="o">{</span>
 	<span class="n">Integer</span> <span class="n">completed</span> <span class="o">=</span> <span class="n">numberBatchesCompleted</span><span class="o">.</span><span class="na">incrementAndGet</span><span class="o">();</span>
@@ -907,7 +907,7 @@ $('#toc').on('click', 'a', function() {
 
 <p>The default setting is for the retry policy to be <strong>false</strong>.</p>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="c1">// If the server is unavailable, the client will attempt to re-send the queries</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="c1">// If the server is unavailable, the client will attempt to re-send the queries</span>
 <span class="n">loader</span><span class="o">.</span><span class="na">setRetryPolicy</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>
 
 <span class="c1">// The client will not attempt to resend the batch of queries if the server becomes unavailable</span>
@@ -957,7 +957,7 @@ $('#toc').on('click', 'a', function() {
         <br>
         <p>© 2017 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2017 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> February 2017<br/> Site last generated: Mar 5, 2017 <br />
+        <span>Page last updated:</span> February 2017<br/> Site last generated: Mar 7, 2017 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">

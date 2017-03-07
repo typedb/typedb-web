@@ -767,30 +767,47 @@ $('#toc').on('click', 'a', function() {
 
     
 
-  <h2 id="rule-objects">Rule Objects</h2>
-<p>Grakn supports Graql-native, rule-based reasoning to allow automated capture and evolution of patterns within the graph. Graql reasoning is performed at query time and is guaranteed to be complete.</p>
+  <h2 id="introduction">Introduction</h2>
 
-<p>The rule objects are instances of inference rule RuleType and assume the following general form:</p>
+<p>Graql uses machine reasoning to perform inference over data types, relation types, context disambiguation, implicit relationships and dynamic relationships. This allows you to discover hidden and implicit association between data instances through short and concise statements.</p>
+
+<p>The rule-based reasoning allows automated capture and evolution of patterns within the graph. Graql reasoning is performed at query time and is guaranteed to be complete.</p>
+
+<p>Thanks to the reasoning facility, common patterns in the graph can be defined and associated with existing ontology elements.
+The association happens by means of rules. This not only allows you to compress and simplify typical queries, but offers the ability to derive new non-trivial information by combining defined patterns.</p>
+
+<p>Provided reasoning is turned on, once a given query is executed, Graql will not only query the graph for exact matches but will also inspect the defined rules to check whether additional information can be found (inferred) by combining the patterns defined in the rules. The completeness property of Graql reasoning guarantees that, for a given content of the graph and the defined rule set, the query result shall contain all possible answers derived by combining database lookups and rule applications.</p>
+
+<p>In this section we shall briefly describe the logics behind the rules as well as how can we define pattern associations by suitably defined rules. You may also want to review our <a href="../examples/graql-reasoning.html">example of how to work with Graql rules</a>.</p>
+
+<h2 id="graql-rules">Graql Rules</h2>
+
+<p>Graql rules assume the following general form:</p>
 
 <div class="highlighter-rouge"><pre class="highlight"><code>if [rule-body] then [rule-head]
 </code></pre>
 </div>
-<p>or in Prolog/Datalog terms:</p>
+
+<p>People familiar with Prolog/Datalog, may recognise it as similar:</p>
 
 <div class="highlighter-rouge"><pre class="highlight"><code>[rule-head] :- [rule-body].
 </code></pre>
 </div>
 
-<p>In logical terms, we restrict the rules to be definite Horn clauses (i.e. disjunctions of atoms with at most one unnegated atom). In our system we define both the head and the body of rules as Graql patterns. Consequently, the rules are statements of the form:</p>
+<p>In logical terms, we restrict the rules to be definite Horn clauses. These can be defined either in terms of a disjunction with at most one unnegated atom or an implication with the consequent consisting of a single atom. Atoms are considered atomic first-order predicates - ones that cannot be decomposed to simpler constructs.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>p :- q1, q2, ..., qn
+<p>In our system we define both the head and the body of rules as Graql patterns. Consequently, the rules are statements of the form:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>q1 ∧ q2 ∧ ... ∧ qn → p
 </code></pre>
 </div>
 
-<p>where p and q’s are atoms that each correspond to a single Graql pattern.</p>
+<p>where qs and the p are atoms that each correspond to a single Graql statement. The left-hand-side of the statement (antecedent) then corresponds to the rule body with the right-hand-side (consequent) corresponding to the rule head.</p>
+
+<p>The implication form of Horn clauses aligns more naturally with Graql semantics as we define the rules in terms of the left-hand-side and right-hand-side which directly correspond to the antecedent and consequent of the implication respectively.</p>
 
 <h2 id="graql-rule-syntax">Graql Rule Syntax</h2>
-<p>In Graql we refer to the body of the rule as the left-hand-side of the rule and the head as the right-hand-side of the rule. Therefore in Graql terms we define rule objects in the following way:</p>
+<p>In Graql we refer to the body of the rule as the left-hand-side of the rule (antecedent of the implication) and the head as the right-hand-side of the rule (consequent of the implication). Therefore, in Graql terms, we define rule objects in the following way:</p>
 
 <pre><code class="language-graql">$optional-name isa inference-rule,
 lhs {
@@ -803,9 +820,24 @@ rhs {
 };
 </code></pre>
 
-<p>In Graql the left-hand-side of the rule is required to be a conjunctive pattern, whereas the right-hand-side should contain a single pattern.</p>
+<p>Each dotted line corresponds to a single Graql variable. The rule name is optional and can be omitted, but it is useful if we want to be able to refer to and identify particular rules in the graph. This way, as inference-rule is a concept, we can attach resources to it:</p>
 
-<p>A classic reasoning example is the ancestor example: the two Graql rules R1 and R2 stated below define the ancestor relationship which can be understood as either happening between two generations directly between a parent and a child or between three generations when the first generation hop is expressed via a parentship relation and the second generation hop is captured by an ancestor relation.</p>
+<pre><code class="language-graql">$myRule isa inference-rule,
+lhs {
+    ...;
+    ...;
+    ...;
+},
+rhs {
+    ...;
+};
+
+$myRule has description 'this is my rule';
+</code></pre>
+
+<p>In Graql the left-hand-side of the rule is required to be a <a href="https://en.wikipedia.org/wiki/Logical_conjunction">conjunctive pattern</a>, whereas the right-hand-side should contain a single pattern. If your use case requires a rule with a disjunction on the left-hand side, please notice that, when using the disjunctive normal form, it can be decomposed into series of conjunctive rules.</p>
+
+<p>A classic reasoning example is the ancestor example. Yhe two Graql rules R1 and R2 stated below define the ancestor relationship, which can be understood as either happening between two generations directly between a parent and a child or between three generations when the first generation hop is expressed via a parentship relation and the second generation hop is captured by an ancestor relation.</p>
 
 <pre><code class="language-graql">$R1 isa inference-rule,
 lhs {
@@ -827,16 +859,19 @@ rhs {
 
 <p>When adding rules such as those defined above with Graql, we simply use an <code class="highlighter-rouge">insert</code> statement, and load the rules, saved as a <em>.gql</em> file, into the graph in a standard manner, much as for an ontology.</p>
 
-<p>The above defined rules correspond to the following definition of Prolog/Datalog clauses:</p>
+<p>Defining the above rules in terms of predicates and assuming left-to-right directionality of the roles, we can summarise them in the implication form as:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>R1: ancestor(X, Y) :- parent(X, Y)  
-R2: ancestor(X, Y) :- parent(X, Z), ancestor(Z, Y)
+<div class="highlighter-rouge"><pre class="highlight"><code>R1: parent(X, Y) → ancestor(X, Y)  
+R2: parent(X, Z) ∧ ancestor(Z, Y) → ancestor(X, Y)
 </code></pre>
 </div>
 
 <h2 id="allowed-graql-constructs-in-rules">Allowed Graql Constructs in Rules</h2>
 <p>The tables below summarise Graql constructs that are allowed to appear in LHS
 and RHS of rules.</p>
+
+<p>We define atomic queries as queries that contain at most one potentially rule-resolvable statement.
+That means atomic queries contain at most one statement that can potentially appear in the right-hand-side of any rule.</p>
 
 <h3 id="queries">Queries</h3>
 
@@ -889,7 +924,7 @@ and RHS of rules.</p>
       <td><code class="highlighter-rouge">id</code></td>
       <td style="text-align: left"><code class="highlighter-rouge">$x id "264597";</code></td>
       <td style="text-align: left">✓</td>
-      <td style="text-align: left">indirect only</td>
+      <td style="text-align: left">variable needs to be bound within the RHS</td>
     </tr>
     <tr>
       <td><code class="highlighter-rouge">value</code></td>
@@ -995,6 +1030,10 @@ and RHS of rules.</p>
   <li><strong>whether inferred knowledge should be materialised (persisted to the graph) or stored in memory</strong>. Persisting to graph has a huge impact on performance when compared to in-memory inference, and, for larger graphs, materialisation should either be avoided or queries be limited by employing the <em>limit</em> modifier, which allows termination in sensible time.</li>
 </ul>
 
+<h2 id="where-next">Where Next?</h2>
+
+<p>There is a complete <a href="../examples/graql-reasoning.html">example of how to work with Graql rules</a> available, and reasoning is also discussed in our <a href="../get-started/quickstart-tutorial.html">quick start tutorial</a>.</p>
+
 <h2 id="comments">Comments</h2>
 <p>Want to leave a comment? Visit <a href="https://github.com/graknlabs/docs/issues/42" target="_blank">the issues on Github for this page</a> (you’ll need a GitHub account). You are also welcome to contribute to our documentation directly via the “Edit me” button at the top of the page.</p>
 
@@ -1041,7 +1080,7 @@ and RHS of rules.</p>
         <br>
         <p>© 2017 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2017 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> January 2017<br/> Site last generated: Mar 5, 2017 <br />
+        <span>Page last updated:</span> March 2017<br/> Site last generated: Mar 7, 2017 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">
