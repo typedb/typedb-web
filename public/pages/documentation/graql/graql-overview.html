@@ -782,27 +782,54 @@ Graql</a>.</p>
 - <a href="compute-queries.html">compute</a> - for computing useful information about your graph</p>
 
 <h2 id="reserved-keywords">Reserved keywords</h2>
-<p>Here is an alphabetical list of Graql’s reserved keywords:</p>
+
+<p>The following list Graql’s reserved keywords:</p>
+
+<h4 id="querying-and-query-modifiers">Querying and query modifiers</h4>
 
 <pre><code class="language-graql">aggregate, asc, ask
-boolean, by
+by
 compute, contains
-datatype, delete, desc, distinct, double
+delete, desc, distinct
 from
-has, has-key, has-resource, has-role, has-scope
-id, in, insert, is-abstract, isa
-lhs, limit, long
+id, in, insert
+limit
 match
-of, offset, or, order
-plays, plays-role
-regex, rhs
-select, string, sub
-to, type-name
+offset, order
+regex
+select
+to
 value
-TRUE/FALSE
 </code></pre>
 
-<p>Graql templates also use the following keywords:</p>
+<h4 id="datatypes">Datatypes</h4>
+
+<pre><code class="language-graql">datatype
+boolean, double, long, string
+true, false
+</code></pre>
+
+<h4 id="ontology-definition">Ontology definition</h4>
+
+<pre><code class="language-graql">has, has-key, has-resource, has-role, has-scope
+is-abstract, isa
+plays, plays-role
+</code></pre>
+
+<h4 id="rules-definition">Rules definition</h4>
+
+<pre><code class="language-graql">lhs, rhs
+</code></pre>
+
+<h4 id="statistics-with-compute-and-aggregate">Statistics with <code class="highlighter-rouge">compute</code> and <code class="highlighter-rouge">aggregate</code></h4>
+
+<pre><code class="language-graql">count
+group
+max, mean, median, min
+std, sum
+</code></pre>
+
+<h4 id="graql-templates">Graql templates</h4>
 
 <pre><code class="language-graql-template">and
 do
@@ -810,7 +837,7 @@ else, elseif
 for
 if, in
 not, null
-TRUE/FALSE
+true, false
 </code></pre>
 
 <h2 id="cheatsheet-reference">Cheatsheet reference</h2>
@@ -858,7 +885,7 @@ TRUE/FALSE
         <br>
         <p>© 2017 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2017 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> August 10, 2016<br/> Site last generated: Mar 7, 2017 <br />
+        <span>Page last updated:</span> March 2017<br/> Site last generated: Mar 13, 2017 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">
