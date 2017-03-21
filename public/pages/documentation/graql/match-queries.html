@@ -883,9 +883,13 @@ match $x isa person; (spouse1:$x, $y); $x has identifier $xn; $y has identifier 
 </div>
 <div role="tabpanel" class="tab-pane" id="java6">
 <pre>
+qb.match(var("x").isa("person"), var().rel("x").rel("y"));
+qb.match(var("x").isa("person"), var().rel("spouse1", "x").rel("y"));
 qb.match(
   var("x").isa("person"),
-  var().rel("spouse1", "x").rel("y")
+  var().rel("spouse1", "x").rel("x"),
+  var("x").has("identifier", var("xn")),
+  var("y").has("identifier", var("yn"))
 );
 </pre>
 </div> <!-- tab-pane -->
@@ -1203,7 +1207,7 @@ match $x isa person, has firstname $y; select $y; distinct; limit 10; order by $
         <br>
         <p>© 2017 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2017 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> August 11, 2016<br/> Site last generated: Mar 13, 2017 <br />
+        <span>Page last updated:</span> August 11, 2016<br/> Site last generated: Mar 21, 2017 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">
