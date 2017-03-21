@@ -784,7 +784,7 @@ Used for Querying - for traversals
 
 <h2 id="graph-api-vs-graql">Graph API vs Graql</h2>
 
-<p>On this page we will focus primarily on the methods provided by the <code class="highlighter-rouge">GraknGraph</code> interface. All graph mutation operations executed by Graql statements use the <code class="highlighter-rouge">GraknGraph</code> interface. So if you are primarily interested in mutating the graph, as well as doing simple concept lookups the <code class="highlighter-rouge">GraknGraph</code> interface will be sufficient.</p>
+<p>On this page we will focus primarily on the methods provided by the <code class="highlighter-rouge">GraknGraph</code> interface which is used by all graph mutation operations executed by Graql statements. If you are primarily interested in mutating the graph, as well as doing simple concept lookups the <code class="highlighter-rouge">GraknGraph</code> interface will be sufficient.</p>
 
 <p>It is also possible to interact with the graph using a Java API to form Graql queries via <code class="highlighter-rouge">GraknGraph.graql()</code>, which is discussed separately <a href="./java-graql.html">here</a>, and is best suited for advanced querying.</p>
 
@@ -856,7 +856,6 @@ child sub role;
 <span class="n">RelationType</span> <span class="n">marriage</span> <span class="o">=</span> <span class="n">graph</span><span class="o">.</span><span class="na">putRelationType</span><span class="o">(</span><span class="s">"marriage"</span><span class="o">)</span>
                             <span class="o">.</span><span class="na">hasRole</span><span class="o">(</span><span class="n">spouse1</span><span class="o">);</span>
                             <span class="o">.</span><span class="na">hasRole</span><span class="o">(</span><span class="n">spouse2</span><span class="o">);</span>
-
 </code></pre>
 </div>
 
@@ -939,7 +938,7 @@ child sub role;
 <span class="n">Entity</span> <span class="n">bob</span> <span class="o">=</span> <span class="n">person</span><span class="o">.</span><span class="na">addEntity</span><span class="o">();</span>
 <span class="n">Entity</span> <span class="n">alice</span> <span class="o">=</span> <span class="n">person</span><span class="o">.</span><span class="na">addEntity</span><span class="o">();</span>
 
-<span class="c1">//Create the actualt relationships</span>
+<span class="c1">//Create the actual relationships</span>
 <span class="n">Relation</span> <span class="n">bobAndAliceMarriage</span> <span class="o">=</span> <span class="n">marriage</span><span class="o">.</span><span class="na">addRelation</span><span class="o">().</span><span class="na">putRolePlayer</span><span class="o">(</span><span class="n">spouse1</span><span class="o">,</span> <span class="n">bob</span><span class="o">).</span><span class="na">putRolePlayer</span><span class="o">(</span><span class="n">spouse2</span><span class="o">,</span> <span class="n">alice</span><span class="o">);</span>
 </code></pre>
 </div>

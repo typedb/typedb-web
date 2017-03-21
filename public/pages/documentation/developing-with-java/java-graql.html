@@ -789,8 +789,8 @@ $('#toc').on('click', 'a', function() {
 
 <p>A <code class="highlighter-rouge">QueryBuilder</code> is constructed from a <code class="highlighter-rouge">GraknGraph</code>:</p>
 
-<pre><code class="language-java-test-ignore">GraknGraph graknGraph = Grakn.factory(Grakn.DEFAULT_URI, "my-graph").getGraph();
-QueryBuilder qb = graknGraph.graql();
+<pre><code class="language-java-test-ignore">GraknGraph graph = Grakn.factory(Grakn.IN_MEMORY, "MyGraph").getGraph();
+QueryBuilder qb = graph.graql();
 </code></pre>
 
 <p>The user can also choose to not provide a graph with <code class="highlighter-rouge">Graql.withoutGraph()</code>.
@@ -798,7 +798,7 @@ This can be useful if you need to provide the graph later (using <code class="hi
 or you only want to construct queries without executing them.</p>
 
 <p>The <code class="highlighter-rouge">QueryBuilder</code> class provides methods for building <code class="highlighter-rouge">match</code> and <code class="highlighter-rouge">insert</code>
-queries. <code class="highlighter-rouge">ask</code>, <code class="highlighter-rouge">insert</code> and <code class="highlighter-rouge">delete</code> queries can all be built from <code class="highlighter-rouge">match</code>
+queries, but <code class="highlighter-rouge">ask</code>, <code class="highlighter-rouge">insert</code> and <code class="highlighter-rouge">delete</code> queries can all be built from <code class="highlighter-rouge">match</code>
 queries.</p>
 
 <h2 id="match-queries">Match Queries</h2>
@@ -807,7 +807,7 @@ queries.</p>
 <code class="highlighter-rouge">MatchQuery</code> instance, which includes additional methods that apply modifiers
 such as <code class="highlighter-rouge">limit</code> and <code class="highlighter-rouge">distinct</code>:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">MatchQuery</span> <span class="n">query</span> <span class="o">=</span> <span class="n">qb</span><span class="o">.</span><span class="na">match</span><span class="o">(</span><span class="n">var</span><span class="o">(</span><span class="s">"x"</span><span class="o">).</span><span class="na">isa</span><span class="o">(</span><span class="s">"person"</span><span class="o">).</span><span class="na">has</span><span class="o">(</span><span class="s">"age"</span><span class="o">,</span> <span class="n">gt</span><span class="o">(</span><span class="mi">70</span><span class="o">))).</span><span class="na">limit</span><span class="o">(</span><span class="mi">50</span><span class="o">);</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">MatchQuery</span> <span class="n">query</span> <span class="o">=</span> <span class="n">qb</span><span class="o">.</span><span class="na">match</span><span class="o">(</span><span class="n">var</span><span class="o">(</span><span class="s">"x"</span><span class="o">).</span><span class="na">isa</span><span class="o">(</span><span class="s">"person"</span><span class="o">).</span><span class="na">has</span><span class="o">(</span><span class="s">"firstname"</span><span class="o">,</span> <span class="s">"Bob"</span><span class="o">)).</span><span class="na">limit</span><span class="o">(</span><span class="mi">50</span><span class="o">);</span>
 </code></pre>
 </div>
 
@@ -831,8 +831,8 @@ for requesting a single variable:</p>
 
 <h2 id="ask-queries">Ask Queries</h2>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">if</span> <span class="o">(</span><span class="n">qb</span><span class="o">.</span><span class="na">match</span><span class="o">(</span><span class="n">var</span><span class="o">().</span><span class="na">isa</span><span class="o">(</span><span class="s">"person"</span><span class="o">).</span><span class="na">has</span><span class="o">(</span><span class="s">"firstname"</span><span class="o">,</span> <span class="s">"Mary"</span><span class="o">)).</span><span class="na">ask</span><span class="o">().</span><span class="na">execute</span><span class="o">())</span> <span class="o">{</span>
-  <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"There is someone called Mary!"</span><span class="o">);</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">if</span> <span class="o">(</span><span class="n">qb</span><span class="o">.</span><span class="na">match</span><span class="o">(</span><span class="n">var</span><span class="o">().</span><span class="na">isa</span><span class="o">(</span><span class="s">"person"</span><span class="o">).</span><span class="na">has</span><span class="o">(</span><span class="s">"firstname"</span><span class="o">,</span> <span class="s">"Bob"</span><span class="o">)).</span><span class="na">ask</span><span class="o">().</span><span class="na">execute</span><span class="o">())</span> <span class="o">{</span>
+  <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"There is someone called Bob!"</span><span class="o">);</span>
 <span class="o">}</span>
 </code></pre>
 </div>
