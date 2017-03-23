@@ -324,11 +324,11 @@
 
 ,
 {
-"title": "Java Development Setup",
+"title": "Java Development Overview",
 "tags": "java",
 "keywords": "java",
 "url": "/pages/documentation/developing-with-java/java-setup.html",
-"summary": "How to set up a Java GRAKN.AI environment."
+"summary": "Overview guide for Java developers."
 }
 
 

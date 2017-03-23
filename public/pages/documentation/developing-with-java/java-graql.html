@@ -522,7 +522,7 @@
             
             
             
-            <li><a href="/pages/documentation/developing-with-java/java-setup.html">Java Development Setup</a></li>
+            <li><a href="/pages/documentation/developing-with-java/java-setup.html">Java Development Overview</a></li>
             
             
             
@@ -774,8 +774,14 @@ $('#toc').on('click', 'a', function() {
 <div class="highlighter-rouge"><pre class="highlight"><code><span class="nt">&lt;dependency&gt;</span>
   <span class="nt">&lt;groupId&gt;</span>ai.grakn<span class="nt">&lt;/groupId&gt;</span>
   <span class="nt">&lt;artifactId&gt;</span>grakn-graql<span class="nt">&lt;/artifactId&gt;</span>
-  <span class="nt">&lt;version&gt;</span>0.11.0<span class="nt">&lt;/version&gt;</span>
+  <span class="nt">&lt;version&gt;</span>${project.version}<span class="nt">&lt;/version&gt;</span>
 <span class="nt">&lt;/dependency&gt;</span>
+</code></pre>
+</div>
+
+<p>and add the following to your imports.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>import ai.grakn.graql.QueryBuilder;
 </code></pre>
 </div>
 
@@ -798,7 +804,7 @@ This can be useful if you need to provide the graph later (using <code class="hi
 or you only want to construct queries without executing them.</p>
 
 <p>The <code class="highlighter-rouge">QueryBuilder</code> class provides methods for building <code class="highlighter-rouge">match</code> and <code class="highlighter-rouge">insert</code>
-queries, but <code class="highlighter-rouge">ask</code>, <code class="highlighter-rouge">insert</code> and <code class="highlighter-rouge">delete</code> queries can all be built from <code class="highlighter-rouge">match</code>
+queries. Additionally, it is possible to build <code class="highlighter-rouge">ask</code>, <code class="highlighter-rouge">match..insert</code> and <code class="highlighter-rouge">delete</code> queries from <code class="highlighter-rouge">match</code>
 queries.</p>
 
 <h2 id="match-queries">Match Queries</h2>
@@ -970,7 +976,7 @@ objects:</p>
         <br>
         <p>© 2017 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2017 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> February 2017<br/> Site last generated: Mar 21, 2017 <br />
+        <span>Page last updated:</span> February 2017<br/> Site last generated: Mar 23, 2017 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">
