@@ -3,6 +3,17 @@
 
 
 {
+"title": "Contribute to GRAKN.AI",
+"tags": "overview",
+"keywords": "contributors, developers",
+"url": "/pages/contributors/index.html",
+"summary": "This is an area for documentation specific to contributors working on the GRAKN.AI platform, documentation or examples."
+}
+
+
+
+,
+{
 "title": "Introduction to GRAKN.AI",
 "tags": "overview",
 "keywords": "intro",
@@ -19,6 +30,17 @@
 "keywords": "advantages",
 "url": "/pages/overview/advantages.html",
 "summary": "GRAKN.AI provides a flexible and rich data model, logical integrity, optimized and intelligent querying capabilities, and graph analytics out-of-the-box."
+}
+
+
+
+,
+{
+"title": "Code of Conduct",
+"tags": "overview",
+"keywords": "contributors",
+"url": "/pages/contributors/conduct.html",
+"summary": "This is the code of conduct for everyone working with GRAKN.AI"
 }
 
 
@@ -93,22 +115,22 @@
 
 ,
 {
-"title": "CSV Migration to Grakn",
-"tags": "migration",
-"keywords": "setup, getting started",
-"url": "/pages/documentation/migration/CSV-migration.html",
-"summary": "This document will teach you how to migrate CSV data into Grakn."
+"title": "An Example of Migrating CSV to Grakn",
+"tags": "migrationexamples",
+"keywords": "migration",
+"url": "/pages/documentation/examples/CSV-migration.html",
+"summary": "An example to illustrate migration of CSV to Grakn"
 }
 
 
 
 ,
 {
-"title": "An Example of Migrating CSV to Grakn",
-"tags": "migrationexamples",
-"keywords": "migration",
-"url": "/pages/documentation/examples/CSV-migration.html",
-"summary": "An example to illustrate migration of CSV to Grakn"
+"title": "CSV Migration to Grakn",
+"tags": "migration",
+"keywords": "setup, getting started",
+"url": "/pages/documentation/migration/CSV-migration.html",
+"summary": "This document will teach you how to migrate CSV data into Grakn."
 }
 
 
@@ -137,22 +159,22 @@
 
 ,
 {
-"title": "An Example of Migrating OWL to Grakn",
-"tags": "migrationexamples",
-"keywords": "migration",
-"url": "/pages/documentation/examples/OWL-migration.html",
-"summary": "A short example to illustrate migration of OWL to Grakn"
+"title": "OWL Migration to Grakn",
+"tags": "migration",
+"keywords": "setup, getting started",
+"url": "/pages/documentation/migration/OWL-migration.html",
+"summary": "This document will teach you how to load OWL into Grakn."
 }
 
 
 
 ,
 {
-"title": "OWL Migration to Grakn",
-"tags": "migration",
-"keywords": "setup, getting started",
-"url": "/pages/documentation/migration/OWL-migration.html",
-"summary": "This document will teach you how to load OWL into Grakn."
+"title": "An Example of Migrating OWL to Grakn",
+"tags": "migrationexamples",
+"keywords": "migration",
+"url": "/pages/documentation/examples/OWL-migration.html",
+"summary": "A short example to illustrate migration of OWL to Grakn"
 }
 
 
