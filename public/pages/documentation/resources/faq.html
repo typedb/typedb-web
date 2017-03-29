@@ -700,6 +700,13 @@
             
             
             
+            
+            
+            <li><a href="/pages/documentation/examples/projects.html">Example Projects</a></li>
+            
+            
+            
+            
         </ul>
         
         
@@ -773,7 +780,7 @@ $('#toc').on('click', 'a', function() {
 
     
 
-  <div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> <b>Note:</b> This page contains some of the questions were are mostly commonly asked, and is updated regularly. Please feel free to use our <a href="http://discuss.grakn.ai">discussion forums</a> to ask us for help or advice.</div>
+  <div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> <b>Note:</b> This page contains some of the questions were are mostly commonly asked, and is updated regularly. There is also a separate <a href="../../contributors/contributor-faq.html">Contributor FAQ</a> for those collaborating with us on GRAKN.AI. You may find an answer here but, if you do not, please feel free to use our <a href="http://discuss.grakn.ai">discussion forums</a> to ask us for help or advice.</div>
 
 <h2 id="about-graknai">About GRAKN.AI</h2>
 
@@ -784,6 +791,10 @@ $('#toc').on('click', 'a', function() {
 <p>We have written a <a href="https://blog.grakn.ai/knowledge-graph-representation-grakn-ai-or-owl-506065bd3f24#.5zjvkta9u">substantial explanation</a> to this question on our blog. In summary, our underlying data model is that of a property graph, so in principle we’re able to import and export from/to RDF if needed. However, our ontology language is designed to strike a different and better balance between expressiveness and complexity than offered by the existing OWL profiles, especially in the context of knowledge graph structures. In consequence, our query language, Graql, is aligned with our ontology formalism to enable higher level query capabilities than supported by SPARQL over an RDF data model.</p>
 
 <p>OWL is not well-suited for graph-structures. Because of its formal foundations and computational limitations it is in fact a more natural language for managing tree-shaped data instead. OWL also makes it hard to help validate consistency of data and ensure it is well-structured, and this is what knowledge graph applications require.</p>
+
+<h3 id="how-can-i-contribute-to-graknai">How can I contribute to GRAKN.AI</h3>
+
+<p>There are lots of ways you can get involved! Please take a look at our <a href="../../contributors/index.html">contributor documentation</a>. You may be a Java developer and able to help us fix bugs or add new features, but if you’re not, there are still loads of projects to get into. We are always keen to see products developed on top of our platform, and have a list of <a href="../examples/projects.html">potential projects</a> you could work on using Java, Graql, a JVM-language like Groovy, or even something completely different, like Python, R or Haskell.  And if you’re not a programmer, you can still contribute. Our documentation changes regularly and needs review or translation. Please just get in touch using one of our <a href="https://grakn.ai/community.html">community channels</a>!</p>
 
 <h2 id="bugs-and-strange-behaviour">Bugs and strange behaviour</h2>
 
@@ -859,7 +870,7 @@ this by setting the <code class="highlighter-rouge">checkInternalVertexExistence
 
 <p>The distributed and concurrent nature of the Grakn system means that, sometimes, post processing is required to ensure the data remains consistent.</p>
 
-<p>**Role Player Optimisation **</p>
+<p><strong>Role Player Optimisation</strong></p>
 
 <p>When allocating entities as role players to multiple relations for the first time it is possible to create duplicate associations. These associations do not affect the results of any queries or computations. For example, if in a new system we process simultaneously the following three statements in different transactions:</p>
 
@@ -870,7 +881,7 @@ this by setting the <code class="highlighter-rouge">checkInternalVertexExistence
 
 <p>It is possible for the system to record that <code class="highlighter-rouge">Brad Pitt</code> is an actor multiple times. The duplications will later be resolved and merged by Grakn engine.</p>
 
-<p>**Merging Resources **</p>
+<p><strong>Merging Resources</strong></p>
 
 <div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> <b>Note:</b> This only happens when using a batch graph.</div>
 
@@ -980,7 +991,7 @@ graph.clear();
         <br>
         <p>© 2017 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2017 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> September 22, 2016<br/> Site last generated: Mar 28, 2017 <br />
+        <span>Page last updated:</span> September 22, 2016<br/> Site last generated: Mar 29, 2017 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">

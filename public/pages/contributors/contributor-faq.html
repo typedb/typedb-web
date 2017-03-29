@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="This is an FAQ for developers working on the GRAKN.AI platform">
 <meta name="keywords" content="overview,  contributors, GRAKN.AI, Grakn Labs, grakn, graql, grakn.ai, Mindmaps Research, Mindmaps Research Ltd, MindmapsDB, mindmaps, mindmaps graph, mindmaps.io, knowledge graph, distributed knowledge graph, development platform, developer tool, data platform, programming langauge, query langauge, database, semantic database, distributed semantic database, distributed database, graph database, semantic search, data exploration, recommendation system, knowledge management, knowledge engineering, real-time analytics, advanced analytics, reasoning engine, inference engine, expert systems, semantic applications, research engines, data management, business intelligence, big data, semantic web, semantic data, knowledge representation, automated reasoning, semantic network, knowledge ontology, semantic graph, ontology engineering, graph based knowledge representation, artificial intelligence,">
-<title>GRAKN.AI - Developer FAQ</title>
+<title>GRAKN.AI - Contributor FAQ</title>
 <link rel="stylesheet" href="/pages/css/syntax.css">
 
 
@@ -228,7 +228,7 @@
                             
                             dataSource: '/pages/search.json',
                             
-                            searchResultTemplate: '<li><a href="{url}" title="Developer FAQ">{title}</a></li>',
+                            searchResultTemplate: '<li><a href="{url}" title="Contributor FAQ">{title}</a></li>',
                             noResultsText: '<li><a class="empty">No results found</a></li>',
                             limit: 10,
                             fuzzy: true
@@ -280,13 +280,13 @@
         
         <li>
             
-            <li class="active"><a href="/pages/contributors/developer-faq.html">Developer FAQ</a></li>
+            <li class="active"><a href="/pages/contributors/contributor-faq.html">Contributor FAQ</a></li>
             
         </li>
         
         <li>
             
-            <li><a href="/pages/index.html">Back to Documentation</a></li>
+            <li><a href="/pages/index.html">Documentation</a></li>
             
         </li>
         
@@ -306,7 +306,7 @@
         <!-- Content Column -->
         <div class="col-md-9">
             <div class="post-header">
-   <h1 class="post-title-main">Developer FAQ</h1>
+   <h1 class="post-title-main">Contributor FAQ</h1>
 </div>
 
 
@@ -350,9 +350,17 @@ $('#toc').on('click', 'a', function() {
 
   <h2 id="introduction">Introduction</h2>
 
-<p>This page records technical issues that you may hit upon if you’re working on a bug fix or feature request within the GRAKN.AI platform. Feel free to edit the page (or suggest edits via Slack) if you have a ‘favourite’ issue to share with other contributing developers!</p>
+<h2 id="general-questions">General Questions</h2>
 
-<h2 id="how-do-i-resolve-this-weird-exception">How do I resolve this weird exception?</h2>
+<h3 id="how-can-i-contribute-to-graknai">How can I contribute to GRAKN.AI?</h3>
+
+<p>We are happy to receive contributions of platform or test code, example projects, bug reports, support to other community members, or documentation (fixes or translation).</p>
+
+<h2 id="developer-faqs">Developer FAQs</h2>
+
+<p>This section records technical issues that you may hit upon if you’re working on a bug fix or feature request in the GRAKN.AI codebase (that is, working on the GRAKN.AI platform). Feel free to edit the page (or suggest edits via Slack) if you have a ‘favourite’ issue to share with other contributing developers!</p>
+
+<h3 id="how-do-i-resolve-this-weird-exception">How do I resolve this weird exception?</h3>
 
 <p>I used to be able to start GraknEngineServer, but now I get this weird exception when running running the <code class="highlighter-rouge">main</code> in <code class="highlighter-rouge">GraknEngineServer</code>. Stack Overflow recommends excluding the Java servlet API for Apache spark, but then those classes are not provided from elsewhere.</p>
 
@@ -431,7 +439,7 @@ Caused by: java.lang.SecurityException: class "javax.servlet.http.HttpSessionIdL
         <br>
         <p>© 2017 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2017 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> March 2017<br/> Site last generated: Mar 28, 2017 <br />
+        <span>Page last updated:</span> March 2017<br/> Site last generated: Mar 29, 2017 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">
