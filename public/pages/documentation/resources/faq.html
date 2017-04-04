@@ -830,6 +830,18 @@ this by setting the <code class="highlighter-rouge">checkInternalVertexExistence
 
 <p>You can use Mac OS X or Linux right now. We plan to support Windows at a later date.</p>
 
+<h3 id="why-is-there-no-logger">Why is there no logger?</h3>
+
+<p>The Grakn libraries do not come bundled with a logger. If you are running GRAKN.AI and do not include on a logger dependency, you will see the following message, printed by slf4j.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>SLF4J: Failed to load class "org.slf4j.impl.StaticLoggerBinder".
+SLF4J: Defaulting to no-operation (NOP) logger implementation
+SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further details.
+</code></pre>
+</div>
+
+<p>So you need to include a logger dependnecy. In the GRAKN.AI distribution we use <a href="https://logback.qos.ch/">Logback</a>. Take a look at the <a href="https://github.com/graknlabs/grakn/blob/master/conf/main/logback.xml"><code class="highlighter-rouge">logback.xml</code></a> used in the Grakn project for an idea how to configure your own.</p>
+
 <h3 id="how-do-i-load-data-into-grakn">How do I load data into Grakn?</h3>
 
 <p>There are several ways to load data into Grakn. For small amounts of data (&lt;1000 lines), you an load it directly via the Graql shell. For example, the following loads up the an example file called <code class="highlighter-rouge">family-data.gql</code>:</p>
@@ -991,7 +1003,7 @@ graph.clear();
         <br>
         <p>© 2017 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2017 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> September 22, 2016<br/> Site last generated: Mar 29, 2017 <br />
+        <span>Page last updated:</span> September 22, 2016<br/> Site last generated: Apr 4, 2017 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">

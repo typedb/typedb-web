@@ -832,11 +832,11 @@ Please see the <a href="../get-started/setup-guide.html">Setup Guide</a> on more
   <li><a href="http://oopbook.com/java-classpath-2/classpath-in-netbeans/">Netbeans</a></li>
 </ul>
 
-<h2 id="initialising-a-graph">Initialising a Graph</h2>
+<h2 id="initialising-a-transaction-on-the-graph">Initialising a Transaction on The Graph</h2>
 
 <p>You can initialise an in memory graph without having the Grakn server running with:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">GraknGraph</span> <span class="n">graph</span> <span class="o">=</span> <span class="n">Grakn</span><span class="o">.</span><span class="na">factory</span><span class="o">(</span><span class="n">Grakn</span><span class="o">.</span><span class="na">IN_MEMORY</span><span class="o">,</span> <span class="s">"keyspace"</span><span class="o">).</span><span class="na">getGraph</span><span class="o">();</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">GraknGraph</span> <span class="n">graph</span> <span class="o">=</span> <span class="n">Grakn</span><span class="o">.</span><span class="na">session</span><span class="o">(</span><span class="n">Grakn</span><span class="o">.</span><span class="na">IN_MEMORY</span><span class="o">,</span> <span class="s">"keyspace"</span><span class="o">).</span><span class="na">open</span><span class="o">(</span><span class="n">GraknTxType</span><span class="o">.</span><span class="na">Write</span><span class="o">);</span>
 </code></pre>
 </div>
 
@@ -848,7 +848,7 @@ Please see the <a href="../get-started/setup-guide.html">Setup Guide</a> on more
 
 <p>If you are running the Grakn server remotely you must initialise the graph by providing the IP address of your server:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">GraknGraph</span> <span class="n">graph</span> <span class="o">=</span> <span class="n">Grakn</span><span class="o">.</span><span class="na">factory</span><span class="o">(</span><span class="s">"127.6.21.2"</span><span class="o">,</span> <span class="s">"keyspace"</span><span class="o">).</span><span class="na">getGraph</span><span class="o">();</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">GraknGraph</span> <span class="n">graph</span> <span class="o">=</span> <span class="n">Grakn</span><span class="o">.</span><span class="na">session</span><span class="o">(</span><span class="s">"127.6.21.2"</span><span class="o">,</span> <span class="s">"keyspace"</span><span class="o">).</span><span class="na">open</span><span class="o">(</span><span class="n">GraknTxType</span><span class="o">.</span><span class="na">Write</span><span class="o">);</span>
 </code></pre>
 </div>
 
@@ -856,20 +856,31 @@ Please see the <a href="../get-started/setup-guide.html">Setup Guide</a> on more
 
 <p>Please note that graph keyspaces are <strong>not</strong> case sensitive so the following two graphs are actually the same graph:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>    <span class="n">GraknGraph</span> <span class="n">graph1</span> <span class="o">=</span> <span class="n">Grakn</span><span class="o">.</span><span class="na">factory</span><span class="o">(</span><span class="s">"127.6.21.2"</span><span class="o">,</span> <span class="s">"keyspace"</span><span class="o">).</span><span class="na">getGraph</span><span class="o">();</span>
-    <span class="n">GraknGraph</span> <span class="n">graph2</span> <span class="o">=</span> <span class="n">Grakn</span><span class="o">.</span><span class="na">factory</span><span class="o">(</span><span class="s">"127.6.21.2"</span><span class="o">,</span> <span class="s">"KeYsPaCe"</span><span class="o">).</span><span class="na">getGraph</span><span class="o">();</span>
+<div class="highlighter-rouge"><pre class="highlight"><code>    <span class="n">GraknGraph</span> <span class="n">graph1</span> <span class="o">=</span> <span class="n">Grakn</span><span class="o">.</span><span class="na">session</span><span class="o">(</span><span class="s">"127.6.21.2"</span><span class="o">,</span> <span class="s">"keyspace"</span><span class="o">).</span><span class="na">open</span><span class="o">(</span><span class="n">GraknTxType</span><span class="o">.</span><span class="na">Write</span><span class="o">);</span>
+    <span class="n">GraknGraph</span> <span class="n">graph2</span> <span class="o">=</span> <span class="n">Grakn</span><span class="o">.</span><span class="na">session</span><span class="o">(</span><span class="s">"127.6.21.2"</span><span class="o">,</span> <span class="s">"KeYsPaCe"</span><span class="o">).</span><span class="na">open</span><span class="o">(</span><span class="n">GraknTxType</span><span class="o">.</span><span class="na">Write</span><span class="o">);</span>
 </code></pre>
 </div>
 
 <p>All graphs are also singletons specific to their keyspaces so be aware that in the following case:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>   <span class="n">GraknGraph</span> <span class="n">graph1</span> <span class="o">=</span> <span class="n">Grakn</span><span class="o">.</span><span class="na">factory</span><span class="o">(</span><span class="s">"127.6.21.2"</span><span class="o">,</span> <span class="s">"keyspace"</span><span class="o">).</span><span class="na">getGraph</span><span class="o">();</span>
-   <span class="n">GraknGraph</span> <span class="n">graph2</span> <span class="o">=</span> <span class="n">Grakn</span><span class="o">.</span><span class="na">factory</span><span class="o">(</span><span class="s">"127.6.21.2"</span><span class="o">,</span> <span class="s">"keyspace"</span><span class="o">).</span><span class="na">getGraph</span><span class="o">();</span>
-   <span class="n">GraknGraph</span> <span class="n">graph3</span> <span class="o">=</span> <span class="n">Grakn</span><span class="o">.</span><span class="na">factory</span><span class="o">(</span><span class="s">"127.6.21.2"</span><span class="o">,</span> <span class="s">"keyspace"</span><span class="o">).</span><span class="na">getGraph</span><span class="o">();</span>
+<div class="highlighter-rouge"><pre class="highlight"><code>   <span class="n">GraknGraph</span> <span class="n">graph1</span> <span class="o">=</span> <span class="n">Grakn</span><span class="o">.</span><span class="na">session</span><span class="o">(</span><span class="s">"127.6.21.2"</span><span class="o">,</span> <span class="s">"keyspace"</span><span class="o">).</span><span class="na">open</span><span class="o">(</span><span class="n">GraknTxType</span><span class="o">.</span><span class="na">Write</span><span class="o">);</span>
+   <span class="n">GraknGraph</span> <span class="n">graph2</span> <span class="o">=</span> <span class="n">Grakn</span><span class="o">.</span><span class="na">session</span><span class="o">(</span><span class="s">"127.6.21.2"</span><span class="o">,</span> <span class="s">"keyspace"</span><span class="o">).</span><span class="na">open</span><span class="o">(</span><span class="n">GraknTxType</span><span class="o">.</span><span class="na">Write</span><span class="o">);</span>
+   <span class="n">GraknGraph</span> <span class="n">graph3</span> <span class="o">=</span> <span class="n">Grakn</span><span class="o">.</span><span class="na">session</span><span class="o">(</span><span class="s">"127.6.21.2"</span><span class="o">,</span> <span class="s">"keyspace"</span><span class="o">).</span><span class="na">open</span><span class="o">(</span><span class="n">GraknTxType</span><span class="o">.</span><span class="na">Write</span><span class="o">);</span>
 </code></pre>
 </div>
 
 <p>any changes to <code class="highlighter-rouge">graph1</code>, <code class="highlighter-rouge">graph2</code>, or <code class="highlighter-rouge">graph3</code> will all be persisted to the same graph.</p>
+
+<h2 id="controlling-the-behaviour-of-graph-transactions">Controlling The Behaviour of Graph Transactions</h2>
+
+<p>When initialising a transaction on a graph it is possible to define the type of transaction with <code class="highlighter-rouge">GraknTxType</code>.    <br />
+We currently support three types of transactions:</p>
+
+<ul>
+  <li><code class="highlighter-rouge">GraknTxType.WRITE</code> - A transaction that allows mutations to be performed on the graph</li>
+  <li><code class="highlighter-rouge">GraknTxType.READ</code> - Prohibits any mutations to be performed to the graph</li>
+  <li><code class="highlighter-rouge">GraknTxType.BATCH</code> - Allows faster mutations to be performed to the graph at the cost of switching off some internal consistency checks. This option should only be used if you are certain that you are loading a clean dataset.</li>
+</ul>
 
 <h2 id="where-next">Where Next?</h2>
 
@@ -928,7 +939,7 @@ Please see the <a href="../get-started/setup-guide.html">Setup Guide</a> on more
         <br>
         <p>© 2017 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2017 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> March 2017<br/> Site last generated: Mar 29, 2017 <br />
+        <span>Page last updated:</span> March 2017<br/> Site last generated: Apr 4, 2017 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">
