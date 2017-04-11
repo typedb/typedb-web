@@ -833,10 +833,10 @@ insert software sub entity;
 
 <pre><code class="language-graql">insert age sub resource datatype long;
 insert name sub resource datatype string;
-insert person has-resource age, has-resource name;
+insert person has age, has name;
 
 insert lang sub resource datatype string;
-insert software has-resource lang has-resource name;
+insert software has lang has name;
 
 insert weight sub resource datatype double;
 </code></pre>
@@ -847,9 +847,9 @@ insert weight sub resource datatype double;
 
 <pre><code class="language-graql">insert knower sub role;
 insert known-about sub role;
-insert person plays-role knower;
-insert person plays-role known-about;
-insert knows sub relation, has-role knower, has-role known-about, has-resource weight;	
+insert person plays knower;
+insert person plays known-about;
+insert knows sub relation, relates knower, relates known-about, has weight;
 </code></pre>
 
 <p>Note that the  <code class="highlighter-rouge">knows</code> relation also has an attribute, in the form of a resource called <code class="highlighter-rouge">weight</code> (though it’s not clear from the TinkerPop example what this represents).</p>
@@ -859,10 +859,10 @@ insert knows sub relation, has-role knower, has-role known-about, has-resource w
 <pre><code class="language-graql">insert programmer sub role;
 insert programmed sub role;
 
-insert person plays-role programmer;
-insert software plays-role programmed;
+insert person plays programmer;
+insert software plays programmed;
 
-insert programming sub relation, has-role programmer, has-role programmed, has-resource weight;
+insert programming sub relation, relates programmer, relates programmed, has weight;
 </code></pre>
 
 <p>And that’s it. At this point, we have defined the schema of the graph.</p>
@@ -897,10 +897,10 @@ match $josh has name "josh"; $ripple has name "ripple"; insert (programmer: $jos
 
 <pre><code class="language-graql">&gt;&gt;&gt; match $x isa person, has name $n; select $n;
 
-$n value "vadas" isa name; 
-$n value "marko" isa name; 
-$n value "josh" isa name; 
-$n value "peter" isa name; 
+$n val "vadas" isa name;
+$n val "marko" isa name;
+$n val "josh" isa name;
+$n val "peter" isa name;
 </code></pre>
 
 <p>In Graql, a match is formed of three parts: the <code class="highlighter-rouge">match</code> statement, an optional <code class="highlighter-rouge">select</code> statement, and any other optional <a href="../graql/match-queries.html#modifiers">modifiers</a> that you choose to apply to the listing of results. Only the first part of a match query is needed: the modifier parts are optional.</p>
@@ -928,7 +928,7 @@ $x id "peter" has age "35";
 age sub resource datatype long;
 name sub resource datatype string;
 person sub entity;
-person has-resource age, has-resource name;
+person has age, has name;
 
 $marko isa person;
 $vadas isa person;
@@ -944,20 +944,20 @@ weight sub resource datatype double;
 knower sub role;
 known-about sub role;
 
-person plays-role knower;
-person plays-role known-about;
+person plays knower;
+person plays known-about;
 
 knows sub relation
-	has-role knower
-	has-role known-about
-	has-resource weight;
+	relates knower
+	relates known-about
+	has weight;
 
 (knower: $marko, known-about: $josh) isa knows has weight 1.0;
 (knower: $marko, known-about: $vadas) isa knows has weight 0.5;
 
 lang sub resource datatype string;
 software sub entity;
-software has-resource lang, has-resource name;
+software has lang, has name;
 
 $lop isa software;
 $ripple isa software;
@@ -968,13 +968,13 @@ $ripple has lang "java", has name "ripple";
 programmer sub role;
 programmed sub role;
 
-person plays-role programmer;
-software plays-role programmed;
+person plays programmer;
+software plays programmed;
 
 programming sub relation
-	has-role programmer
-	has-role programmed
-	has-resource weight;
+	relates programmer
+	relates programmed
+	has weight;
 
 
 (programmer: $marko, programmed: $lop) isa programming has weight 0.4;
@@ -1058,7 +1058,7 @@ programming sub relation
         <br>
         <p>© 2017 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2017 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> September 19, 2016<br/> Site last generated: Apr 6, 2017 <br />
+        <span>Page last updated:</span> September 19, 2016<br/> Site last generated: Apr 11, 2017 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">

@@ -796,19 +796,19 @@ We are going to introduce the idea of making ontologies deeper and more meaningf
 # Entities
     
   person sub entity
-    has-resource identifier
-    has-resource firstname
-    has-resource surname
-    has-resource middlename
-    has-resource picture
-    has-resource age
-    has-resource birth-date
-    has-resource death-date
-    has-resource gender
-    plays-role parent
-    plays-role child
-    plays-role spouse1
-    plays-role spouse2;
+    has identifier
+    has firstname
+    has surname
+    has middlename
+    has picture
+    has age
+    has birth-date
+    has death-date
+    has gender
+    plays parent
+    plays child
+    plays spouse1
+    plays spouse2;
 
 # Resources
 
@@ -825,16 +825,16 @@ We are going to introduce the idea of making ontologies deeper and more meaningf
 # Roles and Relations
 
   marriage sub relation
-    has-role spouse1
-    has-role spouse2
-    has-resource picture;
+    relates spouse1
+    relates spouse2
+    has picture;
 
   spouse1 sub role;
   spouse2 sub role;
 
   parentship sub relation
-    has-role parent
-    has-role child;
+    relates parent
+    relates child;
 
   parent sub role;
   child sub role;
@@ -863,31 +863,31 @@ motorbikes sub vehicle;
 
 <pre><code class="language-graql">event sub entity
   is-abstract
-  has-resource degree
-  has-resource confidence
-  has-resource date
-  has-resource identifier
-  has-resource notes
-  plays-role conclusion
-  plays-role happening;
+  has degree
+  has confidence
+  has date
+  has identifier
+  has notes
+  plays conclusion
+  plays happening;
     
 wedding sub event;
  
 funeral sub event
-  has-resource death-date;
+  has death-date;
     	
 christening sub event
-  has-resource birth-date;
+  has birth-date;
     
 birth sub event
-  has-resource firstname
-  has-resource middlename
-  has-resource surname
-  has-resource gender
-  has-resource birth-date;
+  has firstname
+  has middlename
+  has surname
+  has gender
+  has birth-date;
     	
 death sub event
-  has-resource death-date;
+  has death-date;
 </code></pre>
 
 <p>Notice that for the <code class="highlighter-rouge">event</code> entity type we added <code class="highlighter-rouge">is-abstract</code>, this is an optional additional restriction to ensure that we do not create any instances of <code class="highlighter-rouge">event</code>, but instead use the most granular definitions provided, i.e. <code class="highlighter-rouge">birth</code>, <code class="highlighter-rouge">death</code>, etc . . .</p>
@@ -902,11 +902,11 @@ death sub event
   is-abstract;
 
 marriage sub relatives
-  has-role spouse1
-  has-role spouse2
-  has-role husband
-  has-role wife
-  has-resource date;
+  relates spouse1
+  relates spouse2
+  relates husband
+  relates wife
+  has date;
 	    
 spouse sub role is-abstract;
 spouse1 sub spouse;
@@ -921,12 +921,12 @@ From now on, we can be clear if a person is a <code class="highlighter-rouge">hu
 <p>Lets expand this even further:</p>
 
 <pre><code class="language-graql">parentship sub relatives
-  has-role parent
-  has-role mother
-  has-role father
-  has-role child
-  has-role son
-  has-role daughter;
+  relates parent
+  relates mother
+  relates father
+  relates child
+  relates son
+  relates daughter;
     
 parent sub role;
 mother sub parent;
@@ -950,17 +950,17 @@ For the moment here is our more complex ontology to get you started on making yo
 # Entities
 
   person sub entity
-    has-resource gender
-    has-resource birth-date
-    has-resource death-date
-    has-resource identifier
-    has-resource firstname
-    has-resource middlename
-    has-resource surname
-    plays-role spouse
-    plays-role parent
-    plays-role child
-    plays-role sibling;
+    has gender
+    has birth-date
+    has death-date
+    has identifier
+    has firstname
+    has middlename
+    has surname
+    plays spouse
+    plays parent
+    plays child
+    plays sibling;
         
     gender sub resource datatype string;
     birth-date sub date;
@@ -973,31 +973,31 @@ For the moment here is our more complex ontology to get you started on making yo
     
   event sub entity
     is-abstract
-    has-resource degree
-    has-resource confidence
-    has-resource date
-    has-resource identifier
-    has-resource notes
-    plays-role conclusion
-    plays-role happening;
+    has degree
+    has confidence
+    has date
+    has identifier
+    has notes
+    plays conclusion
+    plays happening;
     
   wedding sub event;
     
   funeral sub event
-    has-resource death-date;
+    has death-date;
         
   christening sub event
-    has-resource birth-date;
+    has birth-date;
     
   birth sub event
-    has-resource firstname
-    has-resource middlename
-    has-resource surname
-    has-resource gender
-    has-resource birth-date;
+    has firstname
+    has middlename
+    has surname
+    has gender
+    has birth-date;
         
   death sub event
-    has-resource death-date;   	    
+    has death-date;   	    
     
 ## Relations
     
@@ -1005,11 +1005,11 @@ For the moment here is our more complex ontology to get you started on making yo
     is-abstract;
     
   marriage sub relatives
-    has-role spouse1
-    has-role spouse2
-    has-role husband
-    has-role wife
-    has-resource date;
+    relates spouse1
+    relates spouse2
+    relates husband
+    relates wife
+    has date;
     
   spouse sub role is-abstract;
   spouse1 sub spouse;
@@ -1018,12 +1018,12 @@ For the moment here is our more complex ontology to get you started on making yo
   wife sub spouse;
     
   parentship sub relatives
-    has-role parent
-    has-role mother
-    has-role father
-    has-role child
-    has-role son
-    has-role daughter;
+    relates parent
+    relates mother
+    relates father
+    relates child
+    relates son
+    relates daughter;
   
   parent sub role;
   mother sub parent;
@@ -1040,7 +1040,8 @@ For the moment here is our more complex ontology to get you started on making yo
 <p>You can find the complete ontology for our genealogy graph project, the dataset and rules that accompany it, on Github in our <a href="https://github.com/graknlabs/sample-datasets/tree/master/genealogy-graph">sample-datasets repository</a>.</p>
 
 <h2 id="comments">Comments</h2>
-<p>Want to leave a comment? Visit <a href="https://github.com/graknlabs/docs/issues/22" target="_blank">the issues on Github for this page</a> (you’ll need a GitHub account). You are also welcome to contribute to our documentation directly via the “Edit me” button at the top of the page.</p>
+<p>Want to leave a comment? Visit <a href="https://github.com/graknlabs/docs/issues/22" target="_blank">the issues on Github for this page</a> (you’ll need a GitHub account). You are also welcome to contribute to our documentation directly via the “Edit me” button at the top of the page.
+has</p>
 
 
     <div class="tags">
@@ -1088,7 +1089,7 @@ For the moment here is our more complex ontology to get you started on making yo
         <br>
         <p>© 2017 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2017 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> February 2017<br/> Site last generated: Apr 6, 2017 <br />
+        <span>Page last updated:</span> February 2017<br/> Site last generated: Apr 11, 2017 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">

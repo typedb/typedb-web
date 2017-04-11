@@ -856,23 +856,23 @@ $eStefan isa tPerson;
 
 "owl-subject-op-isAncestorOf" sub role;
 "owl-object-op-isAncestorOf" sub role;
-"op-isAncestorOf" sub relation, has-role owl-subject-op-isAncestorOf, has-role owl-object-op-isAncestorOf;
-tPerson plays-role owl-subject-op-isAncestorOf, plays-role owl-object-op-isAncestorOf;
+"op-isAncestorOf" sub relation, relates owl-subject-op-isAncestorOf, relates owl-object-op-isAncestorOf;
+tPerson plays owl-subject-op-isAncestorOf, plays owl-object-op-isAncestorOf;
 
 "owl-subject-op-hasAncestor" sub role;
 "owl-object-op-hasAncestor" sub role;
-"op-hasAncestor" sub relation, has-role owl-subject-op-hasAncestor, has-role owl-object-op-hasAncestor;
-tPerson plays-role owl-subject-op-hasAncestor, plays-role owl-object-op-hasAncestor;
+"op-hasAncestor" sub relation, relates owl-subject-op-hasAncestor, relates owl-object-op-hasAncestor;
+tPerson plays owl-subject-op-hasAncestor, plays owl-object-op-hasAncestor;
 
 "owl-subject-op-isParentOf" sub role;
 "owl-object-op-isParentOf" sub role;
-"op-isParentOf" sub relation, has-role owl-subject-op-isParentOf, has-role owl-object-op-isParentOf;
-tPerson plays-role owl-subject-op-isParentOf, plays-role owl-object-op-isParentOf;
+"op-isParentOf" sub relation, relates owl-subject-op-isParentOf, relates owl-object-op-isParentOf;
+tPerson plays owl-subject-op-isParentOf, plays owl-object-op-isParentOf;
 
 "owl-subject-op-hasParent" sub role;
 "owl-object-op-hasParent" sub role;
-"op-hasParent" sub relation, has-role owl-subject-op-hasParent, has-role owl-object-op-hasParent;
-tPerson plays-role owl-subject-op-hasParent, plays-role owl-object-op-hasParent;
+"op-hasParent" sub relation, relates owl-subject-op-hasParent, relates owl-object-op-hasParent;
+tPerson plays owl-subject-op-hasParent, plays owl-object-op-hasParent;
 
 (owl-subject-op-isParentOf: $eStefan, owl-object-op-isParentOf: $eWitold) isa op-isParentOf;
 
@@ -949,7 +949,7 @@ rhs {
         <br>
         <p>© 2017 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2017 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> August 10, 2016<br/> Site last generated: Apr 6, 2017 <br />
+        <span>Page last updated:</span> August 10, 2016<br/> Site last generated: Apr 11, 2017 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">

@@ -809,15 +809,15 @@ For example if you are modelling a retail store, valid categories may be <code c
 Philosophical debates aside let us go with something simple. A <code class="highlighter-rouge">person</code> typically has a <code class="highlighter-rouge">firstname</code>, a <code class="highlighter-rouge">lastname</code>, and a <code class="highlighter-rouge">gender</code>. We can model this and other resources that identify a person with:</p>
 
 <pre><code class="language-graql">person sub entity
-  has-resource identifier
-  has-resource firstname
-  has-resource surname    
-  has-resource middlename
-  has-resource picture
-  has-resource age
-  has-resource birth-date
-  has-resource death-date
-  has-resource gender;
+  has identifier
+  has firstname
+  has surname    
+  has middlename
+  has picture
+  has age
+  has birth-date
+  has death-date
+  has gender;
     
   identifier sub resource datatype string;
   firstname sub resource datatype string;
@@ -841,16 +841,16 @@ Philosophical debates aside let us go with something simple. A <code class="high
 <p>In our example, we will add <code class="highlighter-rouge">marriage</code> and <code class="highlighter-rouge">parentship</code> relationships. A <code class="highlighter-rouge">marriage</code> has two roles: <code class="highlighter-rouge">spouse1</code> and <code class="highlighter-rouge">spouse2</code>, while <code class="highlighter-rouge">parentship</code> has a <code class="highlighter-rouge">parent</code> role and a <code class="highlighter-rouge">child</code> role.</p>
 
 <pre><code class="language-graql">marriage sub relation
-  has-role spouse1
-  has-role spouse2
-  has-resource picture;
+  relates spouse1
+  relates spouse2
+  has picture;
 
 spouse1 sub role;
 spouse2 sub role;
 
 parentship sub relation
-  has-role parent
-  has-role child;
+  relates parent
+  relates child;
 
 parent sub role;
 child sub role;
@@ -863,10 +863,10 @@ child sub role;
 <p>For this current example we only have one entity type, which can play all our current roles, so we explicitly state that with:</p>
 
 <pre><code class="language-graql">person sub entity
-  plays-role parent
-  plays-role child
-  plays-role spouse1
-  plays-role spouse2
+  plays parent
+  plays child
+  plays spouse1
+  plays spouse2
 </code></pre>
 
 <p>We have now completed our basic genealogy ontology.</p>
@@ -880,19 +880,19 @@ child sub role;
  # Entities
  
   person sub entity
-    has-resource identifier
-    has-resource firstname
-    has-resource surname
-    has-resource middlename
-    has-resource picture
-    has-resource age
-    has-resource birth-date
-    has-resource death-date
-    has-resource gender
-    plays-role parent
-    plays-role child
-    plays-role spouse1
-    plays-role spouse2;
+    has identifier
+    has firstname
+    has surname
+    has middlename
+    has picture
+    has age
+    has birth-date
+    has death-date
+    has gender
+    plays parent
+    plays child
+    plays spouse1
+    plays spouse2;
 
  # Resources
 
@@ -909,16 +909,16 @@ child sub role;
  # Roles and Relations
 
   marriage sub relation
-    has-role spouse1
-    has-role spouse2
-    has-resource picture;
+    relates spouse1
+    relates spouse2
+    has picture;
 
   spouse1 sub role;
   spouse2 sub role;
 
   parentship sub relation
-    has-role parent
-    has-role child;
+    relates parent
+    relates child;
 
   parent sub role;
   child sub role;
@@ -938,7 +938,8 @@ child sub role;
 <p>We will continue to explore the development of an ontology in the next section on defining a <a href="./hierarchical-ontology.html">hierarchical ontology</a>.</p>
 
 <h2 id="comments">Comments</h2>
-<p>Want to leave a comment? Visit <a href="https://github.com/graknlabs/docs/issues/22" target="_blank">the issues on Github for this page</a> (you’ll need a GitHub account). You are also welcome to contribute to our documentation directly via the “Edit me” button at the top of the page.</p>
+<p>Want to leave a comment? Visit <a href="https://github.com/graknlabs/docs/issues/22" target="_blank">the issues on Github for this page</a> (you’ll need a GitHub account). You are also welcome to contribute to our documentation directly via the “Edit me” button at the top of the page.
+has</p>
 
 
     <div class="tags">
@@ -986,7 +987,7 @@ child sub role;
         <br>
         <p>© 2017 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2017 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> December, 2016<br/> Site last generated: Apr 6, 2017 <br />
+        <span>Page last updated:</span> December, 2016<br/> Site last generated: Apr 11, 2017 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">

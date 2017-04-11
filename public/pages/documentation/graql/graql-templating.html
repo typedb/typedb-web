@@ -790,7 +790,7 @@ $('#toc').on('click', 'a', function() {
 
 <p>Accessing a single value:</p>
 
-<pre><code class="language-graql-template">$x isa thing has value &lt;value&gt;
+<pre><code class="language-graql-template">$x isa thing has val &lt;value&gt;
 </code></pre>
 
 <p>Value in a nested context:</p>
@@ -971,27 +971,27 @@ $x isa person has name &lt;name&gt;;
 
 <p><strong><code class="highlighter-rouge">int</code></strong> converts the contents of the data to an integer. Exactly one argument accepted.</p>
 
-<pre><code class="language-graql-template">match $x isa thing has value @int(&lt;value&gt;);
+<pre><code class="language-graql-template">match $x isa thing has val @int(&lt;value&gt;);
 </code></pre>
 
 <p><strong><code class="highlighter-rouge">long</code></strong> converts the contents of the data to an long. Exactly one argument accepted.</p>
 
-<pre><code class="language-graql-template">match $x isa thing has value @long(&lt;value&gt;);
+<pre><code class="language-graql-template">match $x isa thing has val @long(&lt;value&gt;);
 </code></pre>
 
 <p><strong><code class="highlighter-rouge">double</code></strong> converts the contents of the data to a double. Exactly one argument accepted.</p>
 
-<pre><code class="language-graql-template">match $x isa thing has value @double(&lt;value&gt;);
+<pre><code class="language-graql-template">match $x isa thing has val @double(&lt;value&gt;);
 </code></pre>
 
 <p><strong><code class="highlighter-rouge">boolean</code></strong> converts the contents of the data to a boolean. Exactly one argument accepted.</p>
 
-<pre><code class="language-graql-template">match $x isa thing has value @boolean(&lt;value&gt;);
+<pre><code class="language-graql-template">match $x isa thing has val @boolean(&lt;value&gt;);
 </code></pre>
 
 <p><strong><code class="highlighter-rouge">equals</code></strong> returns a boolean with a value specified by the gievn string. The boolean represents a <code class="highlighter-rouge">true</code> value if the string argumetn is not null and is equal, ignoring case, to the string “true”. Can be used in conditional statements. Requires at least two arguments.</p>
 
-<pre><code class="language-graql-template">insert $x isa thing value @equals(&lt;this&gt;, &lt;that&gt;, &lt;other&gt;)
+<pre><code class="language-graql-template">insert $x isa thing val @equals(&lt;this&gt;, &lt;that&gt;, &lt;other&gt;)
 </code></pre>
 
 <pre><code class="language-graql-template">if (@equals(&lt;this&gt;, &lt;that&gt;)) do { equals }"
@@ -999,20 +999,20 @@ $x isa person has name &lt;name&gt;;
 
 <p><strong><code class="highlighter-rouge">date</code></strong> <code class="highlighter-rouge">(&lt;value&gt;, fromFormat, toFormat)</code> converts a date string from the given format to another format. If the third argument is missing, converts to epoch time. Date format specifications can be found <a href="https://docs.oracle.com/javase/8/docs/api/java/text/SimpleDateFormat.html">here</a>. Returns a string.</p>
 
-<pre><code class="language-graql-template">insert $x value @date(&lt;date&gt;, "mm/dd/yyyy", "dd/mm/yyyy");
+<pre><code class="language-graql-template">insert $x val @date(&lt;date&gt;, "mm/dd/yyyy", "dd/mm/yyyy");
 </code></pre>
 
-<pre><code class="language-graql-template">insert $x value @date(&lt;date&gt;, "mm/dd/yyyy");
+<pre><code class="language-graql-template">insert $x val @date(&lt;date&gt;, "mm/dd/yyyy");
 </code></pre>
 
 <p><strong><code class="highlighter-rouge">lower</code></strong> converts the contents of the data to lower case.</p>
 
-<pre><code class="language-graql-template">match $x isa thing has value @lower(&lt;value&gt;);
+<pre><code class="language-graql-template">match $x isa thing has val @lower(&lt;value&gt;);
 </code></pre>
 
 <p><strong><code class="highlighter-rouge">upper</code></strong> converts the contents of the data to upper case.</p>
 
-<pre><code class="language-graql-template">match $x isa thing has value @upper(&lt;value&gt;);
+<pre><code class="language-graql-template">match $x isa thing has val @upper(&lt;value&gt;);
 </code></pre>
 
 <p><strong><code class="highlighter-rouge">split</code></strong> splits the given string around the matches of the given regular expression. More information about regular expressions can be found <a href="https://docs.oracle.com/javase/8/docs/api/java/util/regex/Pattern.html#sum">here</a>. Returns a list of strings.</p>
@@ -1025,7 +1025,7 @@ $x isa person has name &lt;name&gt;;
 
 <p><strong><code class="highlighter-rouge">concat</code></strong> concatenates all of the given arguments into a single string. If the arguments are not strings, it converts them to strings before concatenating. Returns a string.</p>
 
-<pre><code class="language-graql-template">insert $x has value @concat(&lt;forname&gt;, " ", &lt;surname&gt;);
+<pre><code class="language-graql-template">insert $x has val @concat(&lt;forname&gt;, " ", &lt;surname&gt;);
 </code></pre>
 
 <h4 id="nesting-macros">Nesting macros</h4>
@@ -1034,7 +1034,7 @@ $x isa person has name &lt;name&gt;;
 
 <p>For example, the <code class="highlighter-rouge">date</code> macro returns a string, but many people will want to convert to epoch time and store the value as a long. If that is the case you can:</p>
 
-<pre><code class="language-graql-template">insert $x value @long(@date(&lt;date&gt; "mm/dd/yyyy"));
+<pre><code class="language-graql-template">insert $x val @long(@date(&lt;date&gt; "mm/dd/yyyy"));
 </code></pre>
 
 <h4 id="user-defined-macros">User-defined Macros</h4>
@@ -1129,7 +1129,7 @@ insert $p0 has birth-date "1811-03-06" isa person has surname "Newman" has gende
         <br>
         <p>© 2017 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2017 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> November 4, 2016<br/> Site last generated: Apr 6, 2017 <br />
+        <span>Page last updated:</span> November 4, 2016<br/> Site last generated: Apr 11, 2017 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">

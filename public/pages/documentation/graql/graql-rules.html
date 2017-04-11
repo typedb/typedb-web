@@ -940,8 +940,8 @@ That means atomic queries contain at most one statement that can potentially app
       <td style="text-align: left">variable needs to be bound within the RHS</td>
     </tr>
     <tr>
-      <td><code class="highlighter-rouge">value</code></td>
-      <td style="text-align: left"><code class="highlighter-rouge">$x value contains "Bar";</code></td>
+      <td><code class="highlighter-rouge">val</code></td>
+      <td style="text-align: left"><code class="highlighter-rouge">$x val contains "Bar";</code></td>
       <td style="text-align: left">✓</td>
       <td style="text-align: left">indirect only</td>
     </tr>
@@ -959,7 +959,7 @@ That means atomic queries contain at most one statement that can potentially app
     </tr>
     <tr>
       <td>resource comparison</td>
-      <td style="text-align: left"><code class="highlighter-rouge">$x value &gt; $y;</code></td>
+      <td style="text-align: left"><code class="highlighter-rouge">$x val &gt; $y;</code></td>
       <td style="text-align: left">✓</td>
       <td style="text-align: left">x</td>
     </tr>
@@ -997,20 +997,20 @@ That means atomic queries contain at most one statement that can potentially app
       <td style="text-align: left">x</td>
     </tr>
     <tr>
-      <td><code class="highlighter-rouge">plays-role</code></td>
-      <td style="text-align: left"><code class="highlighter-rouge">$x plays-role parent;</code></td>
+      <td><code class="highlighter-rouge">plays</code></td>
+      <td style="text-align: left"><code class="highlighter-rouge">$x plays parent;</code></td>
       <td style="text-align: left">✓</td>
       <td style="text-align: left">x</td>
     </tr>
     <tr>
-      <td><code class="highlighter-rouge">has-resource</code></td>
-      <td style="text-align: left"><code class="highlighter-rouge">$x has-resource firsname;</code></td>
+      <td><code class="highlighter-rouge">has</code></td>
+      <td style="text-align: left"><code class="highlighter-rouge">$x has firstname;</code></td>
       <td style="text-align: left">✓</td>
       <td style="text-align: left">x</td>
     </tr>
     <tr>
-      <td><code class="highlighter-rouge">has-role</code></td>
-      <td style="text-align: left"><code class="highlighter-rouge">marriage has-role $x;</code></td>
+      <td><code class="highlighter-rouge">relates</code></td>
+      <td style="text-align: left"><code class="highlighter-rouge">marriage relates $x;</code></td>
       <td style="text-align: left">✓</td>
       <td style="text-align: left">x</td>
     </tr>
@@ -1093,7 +1093,7 @@ That means atomic queries contain at most one statement that can potentially app
         <br>
         <p>© 2017 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2017 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> March 2017<br/> Site last generated: Apr 6, 2017 <br />
+        <span>Page last updated:</span> March 2017<br/> Site last generated: Apr 11, 2017 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">

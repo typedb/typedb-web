@@ -833,34 +833,34 @@ $('#toc').on('click', 'a', function() {
 # Entities
 
 person sub entity
-  plays-role parent
-  plays-role child
-  plays-role spouse1
-  plays-role spouse2
+  plays parent
+  plays child
+  plays spouse1
+  plays spouse2
 
-  has-resource identifier
-  has-resource firstname
-  has-resource surname
-  has-resource middlename
-  has-resource picture
-  has-resource age
-  has-resource birth-date
-  has-resource death-date
-  has-resource gender;
+  has identifier
+  has firstname
+  has surname
+  has middlename
+  has picture
+  has age
+  has birth-date
+  has death-date
+  has gender;
 
 # Roles and Relations
 
 marriage sub relation
-  has-role spouse1
-  has-role spouse2
-  has-resource picture;
+  relates spouse1
+  relates spouse2
+  has picture;
 
 spouse1 sub role;
 spouse2 sub role;
 
 parentship sub relation
-  has-role parent
-  has-role child;
+  relates parent
+  relates child;
 
 parent sub role;
 child sub role;
@@ -1155,7 +1155,7 @@ insert (spouse1: $x0, spouse2: $y0) isa marriage;
         <br>
         <p>© 2017 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2017 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> January 2017<br/> Site last generated: Apr 6, 2017 <br />
+        <span>Page last updated:</span> January 2017<br/> Site last generated: Apr 11, 2017 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">

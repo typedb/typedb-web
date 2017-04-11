@@ -812,7 +812,7 @@ variable name.</p>
 
 <h2 id="properties">Properties</h2>
 
-<h3 id="has-role">has-role</h3>
+<h3 id="relates">relates</h3>
 <p>Removes the given role from the relation.</p>
 <ul id="profileTabs" class="nav nav-tabs">
     <li class="active"><a href="#shell2" data-toggle="tab">Graql</a></li>
@@ -822,18 +822,18 @@ variable name.</p>
 <div class="tab-content">
 <div role="tabpanel" class="tab-pane active" id="shell2">
 <pre>
-match $x type-name "marriage"; delete $x has-role spouse1;
+match $x label marriage; delete $x relates spouse1;
 </pre>
 </div>
 <div role="tabpanel" class="tab-pane" id="java2">
 <pre>
-qb.match(var("x").name("marriage")).delete(var("x").hasRole("spouse1"));
+qb.match(var("x").label("marriage")).delete(var("x").hasRole("spouse1"));
 </pre>
 </div> <!-- tab-pane -->
 </div>
 <p><!-- tab-content --></p>
 
-<h3 id="plays-role">plays-role</h3>
+<h3 id="plays">plays</h3>
 <p>Disallows the concept type from playing the given role.</p>
 
 <ul id="profileTabs" class="nav nav-tabs">
@@ -844,12 +844,12 @@ qb.match(var("x").name("marriage")).delete(var("x").hasRole("spouse1"));
 <div class="tab-content">
 <div role="tabpanel" class="tab-pane active" id="shell3">
 <pre>
-match $x type-name "person"; delete $x plays-role sibling1;
+match $x label person; delete $x plays sibling1;
 </pre>
 </div>
 <div role="tabpanel" class="tab-pane" id="java3">
 <pre>
-qb.match(var("x").name("person")).delete(var("x").playsRole("sibling1"));
+qb.match(var("x").label("person")).delete(var("x").playsRole("sibling1"));
 </pre>
 </div> <!-- tab-pane -->
 </div>
@@ -920,7 +920,7 @@ qb.match(var("x").has("identifier", "Mary Guthrie")).delete(var("x").has("middle
         <br>
         <p>© 2017 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2017 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> August 11, 2016<br/> Site last generated: Apr 6, 2017 <br />
+        <span>Page last updated:</span> August 11, 2016<br/> Site last generated: Apr 11, 2017 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">

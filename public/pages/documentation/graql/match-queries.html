@@ -829,7 +829,7 @@ qb.match(var("x").has("id", "1216728"));
 </div>
 <p><!-- tab-content --></p>
 
-<h3 id="value">value</h3>
+<h3 id="val">val</h3>
 
 <p>Match all resources that have a value matching the given <a href="#predicates">predicate</a>.</p>
 
@@ -841,12 +841,12 @@ qb.match(var("x").has("id", "1216728"));
 <div class="tab-content">
 <div role="tabpanel" class="tab-pane active" id="shell3">
 <pre>
-match $x value contains "Bar";
+match $x val contains "Bar";
 </pre>
 </div>
 <div role="tabpanel" class="tab-pane" id="java3">
 <pre>
-qb.match(var("x").value(contains("Bar")))
+qb.match(var("x").val(contains("Bar")))
 </pre>
 </div> <!-- tab-pane -->
 </div>
@@ -920,15 +920,15 @@ qb.match(
 
 <div class="tab-content">
 <div role="tabpanel" class="tab-pane active" id="shell">
-<pre>match $x isa person, has identifier $y; {$y value contains "Elizabeth";} or {$y value contains "Mary";};</pre>
+<pre>match $x isa person, has identifier $y; {$y val contains "Elizabeth";} or {$y val contains "Mary";};</pre>
 </div>
 <div role="tabpanel" class="tab-pane" id="java">
 <pre>
 qb.match(
     var("x").isa("person").has("identifier", var("y")),
     or(
-        var("y").value(contains("Elizabeth")),
-        var("y").value(contains("Mary"))
+        var("y").val(contains("Elizabeth")),
+        var("y").val(contains("Mary"))
     )
 );
 </pre>
@@ -966,7 +966,7 @@ qb.match(var("x").sub("concept"))
 </div>
 <p><!-- tab-content --></p>
 
-<h3 id="has-role">has-role</h3>
+<h3 id="relates">relates</h3>
 <p>Match roles to a given relation.</p>
 
 <ul id="profileTabs" class="nav nav-tabs">
@@ -977,18 +977,18 @@ qb.match(var("x").sub("concept"))
 <div class="tab-content">
 <div role="tabpanel" class="tab-pane active" id="shell8">
 <pre>
-match parentship has-role $x;
+match parentship relates $x;
 </pre>
 </div>
 <div role="tabpanel" class="tab-pane" id="java8">
 <pre>
-qb.match(name("parentship").hasRole(var("x")));
+qb.match(label("parentship").hasRole(var("x")));
 </pre>
 </div> <!-- tab-pane -->
 </div>
 <p><!-- tab-content --></p>
 
-<h3 id="plays-role">plays-role</h3>
+<h3 id="plays">plays</h3>
 <p>Match concept types that play the given role.</p>
 <ul id="profileTabs" class="nav nav-tabs">
     <li class="active"><a href="#shell9" data-toggle="tab">Graql</a></li>
@@ -998,7 +998,7 @@ qb.match(name("parentship").hasRole(var("x")));
 <div class="tab-content">
 <div role="tabpanel" class="tab-pane active" id="shell9">
 <pre>
-match $x plays-role child;
+match $x plays child;
 </pre>
 </div>
 <div role="tabpanel" class="tab-pane" id="java9">
@@ -1009,7 +1009,7 @@ qb.match(var("x").playsRole("child"));
 </div>
 <p><!-- tab-content --></p>
 
-<h3 id="has-resource">has-resource</h3>
+<h3 id="has-1">has</h3>
 <p>Match concept types that can have the given resource.</p>
 
 <ul id="profileTabs" class="nav nav-tabs">
@@ -1020,7 +1020,7 @@ qb.match(var("x").playsRole("child"));
 <div class="tab-content">
 <div role="tabpanel" class="tab-pane active" id="shell10">
 <pre>
-match $x has-resource firstname; <!--JCS: Why so many duplicates?-->
+match $x has firstname; <!--JCS: Why so many duplicates?-->
 </pre>
 </div>
 <div role="tabpanel" class="tab-pane" id="java10">
@@ -1041,7 +1041,7 @@ qb.match(var("x").hasResource("firstname"));
 <div class="tab-content">
 <div role="tabpanel" class="tab-pane active" id="shell11">
 <pre>
-match $x plays-role has-firstname-owner;
+match $x plays has-firstname-owner;
 </pre>
 </div>
 <div role="tabpanel" class="tab-pane" id="java11">
@@ -1081,7 +1081,7 @@ qb.match(var("x").has("age", gt(70));
 
 <p>If a concept doesn’t have a value, all predicates are considered false. The query below matches everything where the predicate <code class="highlighter-rouge">&gt;10</code> is true. So, it will find all concepts with value greater than 10. However, if a concept does not have a value at all, the predicate is considered false, so it won’t appear in the results.</p>
 
-<pre><code class="language-graql">match $x value &gt;10;
+<pre><code class="language-graql">match $x val &gt;10;
 </code></pre>
 
 <h3 id="contains">Contains</h3>
@@ -1095,7 +1095,7 @@ qb.match(var("x").has("age", gt(70));
 <div class="tab-content">
 <div role="tabpanel" class="tab-pane active" id="shell13">
 <pre>
-match $x has identifier $id; $id value contains "Niesz";
+match $x has identifier $id; $id val contains "Niesz";
 
 </pre>
 </div>
@@ -1103,7 +1103,7 @@ match $x has identifier $id; $id value contains "Niesz";
 <pre>
 qb.match(
     var("x").has("identifier", var("id")),
-    var("id").value(contains("Niesz"))
+    var("id").val(contains("Niesz"))
 );
 </pre>
 </div> <!-- tab-pane -->
@@ -1123,12 +1123,12 @@ surround the expression with <code class="highlighter-rouge">.*</code>.</p>
 <div class="tab-content">
 <div role="tabpanel" class="tab-pane active" id="shell14">
 <pre>
-match $x value /.*(Mary|Barbara).*/;
+match $x val /.*(Mary|Barbara).*/;
 </pre>
 </div>
 <div role="tabpanel" class="tab-pane" id="java14">
 <pre>
-qb.match(var("x").value(regex(".*(Mary|Barbara).*")));
+qb.match(var("x").val(regex(".*(Mary|Barbara).*")));
 </pre>
 </div> <!-- tab-pane -->
 </div>
@@ -1220,7 +1220,7 @@ match $x isa person, has firstname $y; select $y; distinct; limit 10; order by $
         <br>
         <p>© 2017 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2017 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> August 11, 2016<br/> Site last generated: Apr 6, 2017 <br />
+        <span>Page last updated:</span> April 2017<br/> Site last generated: Apr 11, 2017 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">

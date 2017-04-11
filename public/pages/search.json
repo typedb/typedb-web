@@ -440,17 +440,6 @@
 "tags": "getting-startedreasoninggraql",
 "keywords": "setup, getting started, basics",
 "url": "/pages/documentation/the-fundamentals/grakn-knowledge-model.html",
-"summary": "Introducing the basics of the Grakn knowledge model."
-}
-
-
-
-,
-{
-"title": "Grakn Knowledge Model",
-"tags": "getting-startedreasoninggraql",
-"keywords": "setup, getting started, basics",
-"url": "/pages/documentation/the-fundamentals/grakn-knowledge-model.html",
 "summary": "Introducing the fundamentals of the Grakn knowledge model."
 }
 
@@ -502,22 +491,22 @@
 
 ,
 {
-"title": "Reasoning with Graql",
-"tags": "reasoningexamples",
-"keywords": "migration",
-"url": "/pages/documentation/examples/graql-reasoning.html",
-"summary": "An example to illustrate inference using genealogy data."
+"title": "Graql Rules",
+"tags": "graqlreasoning",
+"keywords": "graql, reasoner",
+"url": "/pages/documentation/graql/graql-rules.html",
+"summary": "Graql Rules"
 }
 
 
 
 ,
 {
-"title": "Graql Rules",
-"tags": "graqlreasoning",
-"keywords": "graql, reasoner",
-"url": "/pages/documentation/graql/graql-rules.html",
-"summary": "Graql Rules"
+"title": "Reasoning with Graql",
+"tags": "reasoningexamples",
+"keywords": "migration",
+"url": "/pages/documentation/examples/graql-reasoning.html",
+"summary": "An example to illustrate inference using genealogy data."
 }
 
 

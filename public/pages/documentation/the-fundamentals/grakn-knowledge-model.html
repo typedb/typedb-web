@@ -812,10 +812,10 @@ $('#toc').on('click', 'a', function() {
 
 <pre><code class="language-graql">insert
   person sub entity,
-  has-resource name;
+  has name;
   
   company sub entity,
-  has-resource name;
+  has name;
   
   name sub resource, datatype string;
   
@@ -829,16 +829,16 @@ $('#toc').on('click', 'a', function() {
 
 <pre><code class="language-graql">insert
   person sub entity,
-  has-resource name;
+  has name;
     
   company sub entity,
-  has-resource name;
+  has name;
   
   customer sub person,
-  has-resource rating;
+  has rating;
 
   startup sub company,
-  has-resource funding;
+  has funding;
   
   name sub resource, datatype string;
   rating sub resource, datatype double;
@@ -853,25 +853,25 @@ $('#toc').on('click', 'a', function() {
 
 <pre><code class="language-graql">insert
   person sub entity,
-  has-resource name,
-  plays-role employee;
+  has name,
+  plays employee;
     
   company sub entity,
-  has-resource name,
-  plays-role employer;
+  has name,
+  plays employer;
   
   customer sub person,
-  has-resource rating;
+  has rating;
 
   startup sub company,
-  has-resource funding;
+  has funding;
   
   name sub resource, datatype string;
   rating sub resource, datatype double;
   funding sub resource, datatype long;
   
   employment sub relation,
-    has-role employee, has-role employer; 	
+    relates employee, relates employer;
   employee sub role;
   employer sub role;
 </code></pre>
@@ -888,22 +888,22 @@ $('#toc').on('click', 'a', function() {
   <li>For example, <code class="highlighter-rouge">customer sub person</code>, <code class="highlighter-rouge">startup sub company</code>.</li>
 </ul>
 
-<p><strong><code class="highlighter-rouge">has-resource</code></strong>: expresses that a concept type can be associated with a given resource type.</p>
+<p><strong><code class="highlighter-rouge">has</code></strong>: expresses that a concept type can be associated with a given resource type.</p>
 
 <ul>
-  <li>For example, <code class="highlighter-rouge">person has-resource name</code>.</li>
+  <li>For example, <code class="highlighter-rouge">person has name</code>.</li>
 </ul>
 
-<p><strong><code class="highlighter-rouge">plays-role</code></strong>: expresses that instances of a given concept type are allowed to play a specific role.</p>
+<p><strong><code class="highlighter-rouge">plays</code></strong>: expresses that instances of a given concept type are allowed to play a specific role.</p>
 
 <ul>
-  <li>For example, <code class="highlighter-rouge">person plays-role employee</code>, <code class="highlighter-rouge">company plays-role employer</code>.</li>
+  <li>For example, <code class="highlighter-rouge">person plays employee</code>, <code class="highlighter-rouge">company plays employer</code>.</li>
 </ul>
 
-<p><strong><code class="highlighter-rouge">has-role</code></strong>: expresses that a given relation type involves a specific role.</p>
+<p><strong><code class="highlighter-rouge">relates</code></strong>: expresses that a given relation type involves a specific role.</p>
 
 <ul>
-  <li>For example, <code class="highlighter-rouge">employment has-role employee</code>, <code class="highlighter-rouge">employment has-role employer</code>.</li>
+  <li>For example, <code class="highlighter-rouge">employment relates employee</code>, <code class="highlighter-rouge">employment relates employer</code>.</li>
 </ul>
 
 <h3 id="relations">Relations</h3>
@@ -912,19 +912,19 @@ $('#toc').on('click', 'a', function() {
 
 <pre><code class="language-graql">insert
   person sub entity,
-  has-resource name,
-  plays-role employee;
+  has name,
+  plays employee;
     
   company sub entity,
-  has-resource name,
-  plays-role employer;  
+  has name,
+  plays employer;  
   
   name sub resource, datatype string;
   date sub resource, datatype string;
   
   employment sub relation,
-    has-role employee, has-role employer,
-    has-resource date; 
+    relates employee, relates employer,
+    has date; 
     	
   employee sub role;
   employer sub role;
@@ -938,9 +938,9 @@ $('#toc').on('click', 'a', function() {
 
 <pre><code class="language-graql">insert
   employment sub relation,
-    has-role employee, 
-    has-role employer, 
-    has-role office; 
+    relates employee,
+    relates employer,
+    relates office;
     	
   employee sub role;
   employer sub role; 
@@ -953,9 +953,9 @@ $('#toc').on('click', 'a', function() {
 
 <p>As in object-oriented programming, the inheritance mechanism in Grakn enables subtypes to automatically take on some of the properties of their supertypes. This simplifies the construction of ontologies and helps keep them succinct.</p>
 
-<p><br />The Grakn knowledge model imposes inheritance of all <code class="highlighter-rouge">has-resource</code> and <code class="highlighter-rouge">plays-role</code> constraints on entity, relation and resource types. As a result, the entity type <code class="highlighter-rouge">customer</code> inherits <code class="highlighter-rouge">has-resource name</code> and <code class="highlighter-rouge">plays-role employee</code> from the <code class="highlighter-rouge">person</code> supertype, as shown in the diagram below.</p>
+<p><br />The Grakn knowledge model imposes inheritance of all <code class="highlighter-rouge">has</code> and <code class="highlighter-rouge">plays</code> constraints on entity, relation and resource types. As a result, the entity type <code class="highlighter-rouge">customer</code> inherits <code class="highlighter-rouge">has name</code> and <code class="highlighter-rouge">plays employee</code> from the <code class="highlighter-rouge">person</code> supertype, as shown in the diagram below.</p>
 
-<p>Likewise, the <code class="highlighter-rouge">startup</code> entity type inherits <code class="highlighter-rouge">has-role name</code> and <code class="highlighter-rouge">plays-role employer</code> from the <code class="highlighter-rouge">company</code> supertype.</p>
+<p>Likewise, the <code class="highlighter-rouge">startup</code> entity type inherits <code class="highlighter-rouge">relates name</code> and <code class="highlighter-rouge">plays employer</code> from the <code class="highlighter-rouge">company</code> supertype.</p>
 
 <p><br /> <img src="/images/knowledge-model5.png" style="width: 400px;" /> <br /></p>
 
@@ -1036,19 +1036,19 @@ This will be our first attempt:</p>
 
 <pre><code class="language-graql">insert
   person is-abstract sub entity;
-  person has-resource name;
+  person has name;
   name sub resource datatype string;
   
   man is-abstract sub person;
   woman sub person;
   
   marriage sub relation;
-  marriage has-role husband;
+  marriage relates husband;
 
   husband sub role;
   wife sub role;
   
-  woman plays-role wife;
+  woman plays wife;
     
   $x has name 'Bob' isa man;
   $y has name 'Alice' isa woman;
@@ -1059,10 +1059,10 @@ This will be our first attempt:</p>
 On commit we will see an error similar to this:</p>
 
 <div class="highlighter-rouge"><pre class="highlight"><code>A structural validation error has occurred. Please correct the <span class="o">[</span><span class="sb">`</span>5<span class="sb">`</span><span class="o">]</span> errors found.
-RoleType <span class="o">[</span><span class="s1">'wife'</span><span class="o">]</span> does not have exactly one has-role connection to any RelationType.
+RoleType <span class="o">[</span><span class="s1">'wife'</span><span class="o">]</span> does not have exactly one relates connection to any RelationType.
 The abstract Type <span class="o">[</span><span class="s1">'man'</span><span class="o">]</span> should not have any instances
 Relation Type <span class="o">[</span><span class="s1">'marriage'</span><span class="o">]</span> does not have two or more roles
-The relation <span class="o">[</span><span class="s1">'RELATION-marriage-2b58b138-2c33-478c-8e8c-e7b357a20941'</span><span class="o">]</span> has an invalid structure. This is either due to having more role players than roles or the Relation Type <span class="o">[</span><span class="s1">'marriage'</span><span class="o">]</span> not having the correct has-role connection to one of the provided roles. The provided roles<span class="o">(</span><span class="s1">'2'</span><span class="o">)</span>: <span class="o">[</span><span class="s1">'husband,wife,'</span><span class="o">]</span>The provided role players<span class="o">(</span><span class="s1">'2'</span><span class="o">)</span>: <span class="o">[</span><span class="s1">'husband,wife,'</span><span class="o">]</span>
+The relation <span class="o">[</span><span class="s1">'RELATION-marriage-2b58b138-2c33-478c-8e8c-e7b357a20941'</span><span class="o">]</span> has an invalid structure. This is either due to having more role players than roles or the Relation Type <span class="o">[</span><span class="s1">'marriage'</span><span class="o">]</span> not having the correct relates connection to one of the provided roles. The provided roles<span class="o">(</span><span class="s1">'2'</span><span class="o">)</span>: <span class="o">[</span><span class="s1">'husband,wife,'</span><span class="o">]</span>The provided role players<span class="o">(</span><span class="s1">'2'</span><span class="o">)</span>: <span class="o">[</span><span class="s1">'husband,wife,'</span><span class="o">]</span>
 The <span class="nb">type</span> <span class="o">[</span><span class="s1">'man'</span><span class="o">]</span> of role player <span class="o">[</span><span class="s1">'ENTITY-man-2482cb91-1f12-40ea-b659-49d07d06ddf1'</span><span class="o">]</span> is not allowed to play RoleType <span class="o">[</span><span class="s1">'husband'</span><span class="o">]</span>
 </code></pre>
 </div>
@@ -1081,20 +1081,20 @@ The <span class="nb">type</span> <span class="o">[</span><span class="s1">'man'<
 
 <pre><code class="language-graql">insert
   person is-abstract sub entity;                   
-  person has-resource name;
+  person has name;
   name sub resource datatype string;
   
   man sub person; # Fix (3)
   woman sub person;
   
   marriage sub relation;
-  marriage has-role husband;
-  marriage has-role wife; # Fix (1) and (2) and part of (5)
+  marriage relates husband;
+  marriage relates wife; # Fix (1) and (2) and part of (5)
   
   husband sub role;
   wife sub role;
-  man plays-role husband; # Fix (4)
-  woman plays-role wife;  
+  man plays husband; # Fix (4)
+  woman plays wife;  
 
   $x has name 'Bob' isa man;
   $y has name 'Alice' isa woman;
@@ -1130,7 +1130,7 @@ The <span class="nb">type</span> <span class="o">[</span><span class="s1">'man'<
   location sub entity;
   
   located-in sub relation,
-    has-role located-subject, has-role subject-location;
+    relates located-subject, relates subject-location;
     	
   located-subject sub role;
   subject-location sub role;
@@ -1208,7 +1208,7 @@ The <span class="nb">type</span> <span class="o">[</span><span class="s1">'man'<
         <br>
         <p>© 2017 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2017 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> January 2017<br/> Site last generated: Apr 6, 2017 <br />
+        <span>Page last updated:</span> January 2017<br/> Site last generated: Apr 11, 2017 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">

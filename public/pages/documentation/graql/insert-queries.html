@@ -869,7 +869,7 @@ graph.commit();
 </div>
 <p><!-- tab-content --></p>
 
-<h3 id="value">value</h3>
+<h3 id="val">val</h3>
 
 <p>Set the value of the concept.</p>
 <ul id="profileTabs" class="nav nav-tabs">
@@ -880,13 +880,13 @@ graph.commit();
 <div class="tab-content">
 <div role="tabpanel" class="tab-pane active" id="shell4">
 <pre>
-insert value "Ash" isa surname;
+insert val "Ash" isa surname;
 commit
 </pre>
 </div>
 <div role="tabpanel" class="tab-pane" id="java4">
 <pre>
-qb.insert(var().value("Ash").isa("surname")).execute();
+qb.insert(var().val("Ash").isa("surname")).execute();
 graph.commit();
 </pre>
 </div> <!-- tab-pane -->
@@ -975,14 +975,14 @@ insert woman sub person;
 </div>
 <div role="tabpanel" class="tab-pane" id="java8">
 <pre>
-qb.insert(name("man").sub("person")).execute();
-qb.insert(name("woman").sub("person")).execute();
+qb.insert(label("man").sub("person")).execute();
+qb.insert(label("woman").sub("person")).execute();
 </pre>
 </div> <!-- tab-pane -->
 </div>
 <p><!-- tab-content --></p>
 
-<h3 id="has-role">has-role</h3>
+<h3 id="relates">relates</h3>
 <p>Add a role to a relation.</p>
 
 <ul id="profileTabs" class="nav nav-tabs">
@@ -993,13 +993,13 @@ qb.insert(name("woman").sub("person")).execute();
 <div class="tab-content">
 <div role="tabpanel" class="tab-pane active" id="shell9">
 <pre>
-insert siblings sub relation, has-role sibling1, has-role sibling2;
+insert siblings sub relation, relates sibling1, relates sibling2;
 </pre>
 </div>
 <div role="tabpanel" class="tab-pane" id="java9">
 <pre>
 qb.insert(
-  name("siblings").sub("relation")
+  label("siblings").sub("relation")
     .hasRole("sibling1").hasRole("sibling2")
 ).execute();
 </pre>
@@ -1007,7 +1007,7 @@ qb.insert(
 </div>
 <p><!-- tab-content --></p>
 
-<h3 id="plays-role">plays-role</h3>
+<h3 id="plays">plays</h3>
 <p>Allow the concept type to play the given role.</p>
 
 <ul id="profileTabs" class="nav nav-tabs">
@@ -1018,20 +1018,20 @@ qb.insert(
 <div class="tab-content">
 <div role="tabpanel" class="tab-pane active" id="shell10">
 <pre>
-insert person plays-role sibling1;
-insert person plays-role sibling2;
+insert person plays sibling1;
+insert person plays sibling2;
 </pre>
 </div>
 <div role="tabpanel" class="tab-pane" id="java10">
 <pre>
-qb.insert(name("person").playsRole("sibling1")).execute();
-qb.insert(name("person").playsRole("sibling2")).execute();
+qb.insert(label("person").playsRole("sibling1")).execute();
+qb.insert(label("person").playsRole("sibling2")).execute();
 </pre>
 </div> <!-- tab-pane -->
 </div>
 <p><!-- tab-content --></p>
 
-<h3 id="has-resource">has-resource</h3>
+<h3 id="has-1">has</h3>
 
 <p>Allow the concept type to have the given resource.</p>
 
@@ -1045,13 +1045,13 @@ qb.insert(name("person").playsRole("sibling2")).execute();
 <div class="tab-content">
 <div role="tabpanel" class="tab-pane active" id="shell11">
 <pre>
-insert person has-resource nickname;
+insert person has nickname;
 </pre>
 </div>
 
 <div role="tabpanel" class="tab-pane" id="java11">
 <pre>
-qb.insert(name("person").hasResource("nickname")).execute();
+qb.insert(label("person").hasResource("nickname")).execute();
 </pre>
 </div> <!-- tab-pane -->
 </div>
@@ -1060,6 +1060,7 @@ qb.insert(name("person").hasResource("nickname")).execute();
 <h2 id="comments">Comments</h2>
 <p>Want to leave a comment? Visit <a href="https://github.com/graknlabs/docs/issues/42" target="_blank">the issues on Github for this page</a> (you’ll need a GitHub account). You are also welcome to contribute to our documentation directly via the “Edit me” button at the top of the page.</p>
 
+<p>has</p>
 
 
     <div class="tags">
@@ -1099,7 +1100,7 @@ qb.insert(name("person").hasResource("nickname")).execute();
         <br>
         <p>© 2017 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2017 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> August 10, 2016<br/> Site last generated: Apr 6, 2017 <br />
+        <span>Page last updated:</span> August 10, 2016<br/> Site last generated: Apr 11, 2017 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">

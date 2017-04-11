@@ -809,23 +809,23 @@ vehicle sub entity
 car sub vehicle
 	is-abstract
 
-	has-resource model
-	has-resource mpg
-	has-resource cyl
-	has-resource disp
-	has-resource hp
-	has-resource wt
-	has-resource gear
-	has-resource carb
-	plays-role made;
+	has model
+	has mpg
+	has cyl
+	has disp
+	has hp
+	has wt
+	has gear
+	has carb
+	plays made;
 
 automatic-car sub car;
 manual-car sub car;
 
 carmaker sub entity
 	is-abstract
-	has-resource maker-name
-	plays-role maker;
+	has maker-name
+	plays maker;
 
 japanese-maker sub carmaker;
 american-maker sub carmaker;
@@ -846,8 +846,8 @@ carb sub resource datatype long;
 # Roles and Relations
 
 manufactured sub relation
-	has-role maker
-	has-role made;
+	relates maker
+	relates made;
 
 maker sub role;
 made sub role;
@@ -960,8 +960,8 @@ compute max of carb; # 8
 <pre><code class="language-graql">
 match $x has powerful contains "TRUE" has economical contains "TRUE";
 match $x has powerful contains "TRUE" has economical contains "TRUE" has model $y;
-$x id "106584" isa manual-car; $y value "Ferrari Dino" isa model; 
-$x id "254120" isa automatic-car; $y value "Pontiac Firebird" isa model; 
+$x id "106584" isa manual-car; $y val "Ferrari Dino" isa model;
+$x id "254120" isa automatic-car; $y val "Pontiac Firebird" isa model;
 </code></pre>
 
 <h2 id="where-next">Where Next?</h2>
@@ -1015,7 +1015,7 @@ $x id "254120" isa automatic-car; $y value "Pontiac Firebird" isa model;
         <br>
         <p>© 2017 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2017 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> March 2017<br/> Site last generated: Apr 6, 2017 <br />
+        <span>Page last updated:</span> March 2017<br/> Site last generated: Apr 11, 2017 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">

@@ -795,7 +795,7 @@ $('#toc').on('click', 'a', function() {
 
 <div class="highlighter-rouge"><pre class="highlight"><code>match $x isa pokemon;
 match $x has name "Articuno";
-match $x value contains "lightning";
+match $x val contains "lightning";
 match $x has pokedex-no &lt; 20;
 
 # A variable pattern query
@@ -808,15 +808,15 @@ match $x sub role; # List all roles
 match $x sub relation; # List all relations
 
 match $x isa pokemon; (ancestor: $x, $y); $x has name $xn; $y has name $yn;
-match evolution has-role $x;
-match $x plays-role ancestor;
-match $x has-resource name;
-match $x plays-role has-name-owner;
+match evolution relates $x;
+match $x plays ancestor;
+match $x has name;
+match $x plays has-name-owner;
 match $x has height = 19.0, has weight &gt; 1500.0; $x has name $name;
-match $x has description $desc; $desc value contains "underground";
+match $x has description $desc; $desc val contains "underground";
 
 # regex
-match $x value /.*(fast|quick).*/;
+match $x val /.*(fast|quick).*/;
 
 #modifiers
 match $x isa pokemon, has pokedex-no $no, has name $name; select $name, $no; order by $name asc;
@@ -828,12 +828,12 @@ match $p has name "Pichu"; $e has name "electric"; insert (pokemon-with-type: $p
 
 # insert queries 
 insert has name "Totodile" isa pokemon;
-insert value "Ash" isa name;
+insert val "Ash" isa name;
 insert isa pokemon, has name "Pichu" has height 30;
 insert gen2-pokemon sub pokemon;
-insert trained-by sub relation, has-role trainer, has-role pokemon-trained;
-insert pokemon plays-role pokemon-trained;
-insert pokemon has-resource pokedex-no;
+insert trained-by sub relation, relates trainer, relates pokemon-trained;
+insert pokemon plays pokemon-trained;
+insert pokemon has pokedex-no;
 
 # delete queries
 match $x has name "Bulbasaur"; delete $x has weight $y;
@@ -897,7 +897,7 @@ match $x isa pokemon, has weight $w, has height $h; aggregate (min $w as minWeig
         <br>
         <p>© 2017 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2017 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> January 2017<br/> Site last generated: Apr 6, 2017 <br />
+        <span>Page last updated:</span> January 2017<br/> Site last generated: Apr 11, 2017 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">

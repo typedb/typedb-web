@@ -828,17 +828,17 @@ $('#toc').on('click', 'a', function() {
 # Entities
 
 book sub entity
-	has-resource bookId
-	has-resource title
-	plays-role publication-item;
+	has bookId
+	has title
+	plays publication-item;
 
 author sub entity
-	has-resource authorName
-	plays-role publication-author;
+	has authorName
+	plays publication-author;
 
 subject sub entity
-	has-resource subjectName
-	plays-role publication-subject; 
+	has subjectName
+	plays publication-subject; 
 
 
 # Resources
@@ -851,9 +851,9 @@ subjectName sub resource datatype string;
 # Relations and Roles
 
 publication sub relation
-	has-role publication-item
-	has-role publication-author
-	has-role publication-subject;
+	relates publication-item
+	relates publication-author
+	relates publication-subject;
 
 publication-item sub role;
 publication-author sub role;
@@ -986,7 +986,7 @@ for(&lt;books&gt;) do {
         <br>
         <p>© 2017 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2017 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> February 2017<br/> Site last generated: Apr 6, 2017 <br />
+        <span>Page last updated:</span> February 2017<br/> Site last generated: Apr 11, 2017 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">

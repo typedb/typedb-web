@@ -855,11 +855,11 @@ $('#toc').on('click', 'a', function() {
 <pre><code class="language-graql-test-ignore">
 insert
 pet sub entity
-  has-resource name
-  has-resource owner
-  has-resource sex
-  has-resource birth
-  has-resource death
+  has name
+  has owner
+  has sex
+  has birth
+  has death
   is-abstract;
 
 cat sub pet;
@@ -876,9 +876,9 @@ death sub resource datatype string;
 count sub resource datatype long;
 
 event sub entity,
-  has-resource name,
-  has-resource date,
-  has-resource description;
+  has name,
+  has date,
+  has description;
 </code></pre>
 
 <p>The ontology is not complete at this point, as we have not included any relationship between pets and their events. In SQL, a <code class="highlighter-rouge">foreign key</code> is a column that references another column, as seen in the SQL schema line <code class="highlighter-rouge">ALTER TABLE event ADD FOREIGN KEY ( name ) REFERENCES pet ( name );</code>.</p>
@@ -887,14 +887,14 @@ event sub entity,
 
 <pre><code class="language-graql-test-ignore">insert
 occurs sub relation
-  has-role event-occurred
-  has-role pet-in-event;
+  relates event-occurred
+  relates pet-in-event;
 
 event-occurred sub role;
 pet-in-event sub role;
 
-pet plays-role pet-in-event;
-event plays-role event-occurred;
+pet plays pet-in-event;
+event plays event-occurred;
 </code></pre>
 
 <p>To load the ontology into Grakn, we create a single file that contains both sections shown above, named <em>ontology.gql</em>. From the Grakn installation folder, invoke the Graql shell, passing the -f flag to indicate the ontology file to load into a graph. This call starts the Graql shell in non-interactive mode, loading the specified file and exiting after the load is complete:</p>
@@ -1078,7 +1078,7 @@ try(Connection connection = DriverManager.getConnection(jdbcDBUrl, jdbcUser, jdb
         <br>
         <p>© 2017 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2017 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> December 2016<br/> Site last generated: Apr 6, 2017 <br />
+        <span>Page last updated:</span> December 2016<br/> Site last generated: Apr 11, 2017 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">
