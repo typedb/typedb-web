@@ -94,13 +94,8 @@ window.MNDMPS.Careers = {
             jobBlock.classList.add('job');
 
             jobBlock.innerHTML = '<h3>' + obj.title + '</h3>\
-                <ul>\
-                    <li>Updated on: ' + timeFormatter(obj.updated_at) + '</li>\
-                    <li>Remote: ' + (obj.remote_ok ? 'Yes' : 'No') + '</li>\
-                    <li>Type: <span class="capitalise">' + obj.job_type + '</span></li>\
-                    <li>Compensation: &pound;' + kFormatter(obj.salary_min) + ' — &pound;' + kFormatter(obj.salary_max) + '</li>\
-                    <li>Equity: ' + obj.equity_min + '% — ' + obj.equity_max + '%</li>\
-                </ul>\
+                <p> ' + obj.job_type + ', &pound;' + kFormatter(obj.salary_min) + ' — &pound;' + kFormatter(obj.salary_max) + ', ' + obj.equity_min + '% — ' + obj.equity_max + '% equity\
+                </p>\
                 <div class="text-block columned two">\
                     <p>' + obj.description.replace(/[0-9]+\.[^.]*\.(?!\s*[0-9])/g, "$&<br>").replace(/[0-9]+\./g, "<br>$&").replace(/\*/g, '<br>') + '</p>\
                 </div>\
