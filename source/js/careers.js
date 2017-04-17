@@ -94,9 +94,6 @@ window.MNDMPS.Careers = {
             jobBlock.classList.add('job');
 
             jobBlock.innerHTML = '<h3>' + obj.title + '</h3>\
-                <div class="text-block columned two">\
-                    <p>' + obj.description.replace(/[0-9]+\.[^.]*\.(?!\s*[0-9])/g, "$&<br>").replace(/[0-9]+\./g, "<br>$&").replace(/\*/g, '<br>') + '</p>\
-                </div>\
                 <ul>\
                     <li>Updated on: ' + timeFormatter(obj.updated_at) + '</li>\
                     <li>Remote: ' + (obj.remote_ok ? 'Yes' : 'No') + '</li>\
@@ -104,6 +101,9 @@ window.MNDMPS.Careers = {
                     <li>Compensation: &pound;' + kFormatter(obj.salary_min) + ' — &pound;' + kFormatter(obj.salary_max) + '</li>\
                     <li>Equity: ' + obj.equity_min + '% — ' + obj.equity_max + '%</li>\
                 </ul>\
+                <div class="text-block columned two">\
+                    <p>' + obj.description.replace(/[0-9]+\.[^.]*\.(?!\s*[0-9])/g, "$&<br>").replace(/[0-9]+\./g, "<br>$&").replace(/\*/g, '<br>') + '</p>\
+                </div>\
                 <div class="bottomLinks">\
                     <a href="mailto:careers@grakn.ai">Apply</a> or <a target="_blank" rel="nofollow" href="' + obj.angellist_url + '">Check on AngelList</a>\
                 </div>';
