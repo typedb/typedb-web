@@ -780,7 +780,9 @@ $('#toc').on('click', 'a', function() {
 
     
 
-  <h2 id="introduction">Introduction</h2>
+  <div class="alert alert-danger" role="alert"><i class="fa fa-exclamation-circle"></i> <b>Warning:</b> <b>These instructions refer to the 0.11 release of GRAKN.AI. The latest version has some differences to its look and feel, and you may find that some instructions are currently inaccurate. Apologies! We will update this information very shortly.</b></div>
+
+<h2 id="introduction">Introduction</h2>
 <p>The Grakn visualiser provides a graphical tool to inspect and query your graph data. This article shows how to get it up and running on a basic example and introduces the visualiser’s key features.</p>
 
 <h2 id="loading-and-visualising-a-graph">Loading and Visualising a Graph</h2>
@@ -827,7 +829,7 @@ The query for your selection will be displayed in the form with a default limit 
 
 <p><img src="/images/john-query.png" alt="John query" /></p>
 
-<p>Note that the <code class="highlighter-rouge">offset 0; limit 100</code> values are applied automatically, but the default values can be changed.</p>
+<p>Note that the <code class="highlighter-rouge">offset 0; limit 30</code> values are applied automatically, but the default values can be changed via the Query Settings, accessed under the cog icon at the right hand of the icon set.</p>
 
 <h2 id="working-with-the-visualiser">Working With The Visualiser</h2>
 
@@ -836,21 +838,27 @@ The query for your selection will be displayed in the form with a default limit 
 <h3 id="graph">Graph</h3>
 <p>This is the main section of the visualiser that you will use to explore the graph.</p>
 
-<p>We have already shown an example of how to examine <code class="highlighter-rouge">person</code> entities using the entity selector. As another example, select “Types”, followed by “Relations” and filter on <code class="highlighter-rouge">marriage</code> relations. The query will be shown in the query section at the top of the main pane, as previously, and the visualiser displays all the <code class="highlighter-rouge">marriage</code> relations in the graph.</p>
+<!-- TO DO - this is where text about using the visualiser should go -->
 
-<p><img src="/images/marriages.png" alt="Marriages query" /></p>
+<!--Add this back in when it works as expected
 
-<p>A short video illustrates the process:</p>
+We have already shown an example of how to examine `person` entities using the entity selector. As another example, select "Types", followed by "Relations" and filter on `marriage` relations. The query will be shown in the query section at the top of the main pane, as previously, and the visualiser displays all the `marriage` relations in the graph. 
 
-<iframe width="640" height="360" src="https://www.youtube.com/embed/OLuVwjPrhbc" frameborder="0" allowfullscreen=""></iframe>
+![Marriages query](/images/marriages.png)
 
-<p><br /></p>
+A short video illustrates the process:
+
+<iframe width="640" height="360" src="https://www.youtube.com/embed/OLuVwjPrhbc" frameborder="0" allowfullscreen></iframe>
+
+<br />
+-->
 
 <h4 id="inference">Inference</h4>
 
-<p>There are 3 query settings that can be changed using the ‘cog’ button (on the far right hand side of the horizontal icon menu at the top of the screen):</p>
+<p>There are 4 query settings that can be changed using the ‘cog’ button (on the far right hand side of the horizontal icon menu at the top of the screen):</p>
 
 <ul>
+  <li>Lock nodes position -</li>
   <li>Activate inference - activates inference, per query.</li>
   <li>Materialise inference - persists the inference into the graph, per query.</li>
   <li>Materialise All: activate and persist all inference across the graph.</li>
@@ -973,7 +981,7 @@ $y isa person has firstname "Barbara" has surname "Herchelroth";
         <br>
         <p>© 2017 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2017 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> August 10, 2016<br/> Site last generated: Apr 18, 2017 <br />
+        <span>Page last updated:</span> August 10, 2016<br/> Site last generated: Apr 21, 2017 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">

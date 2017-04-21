@@ -786,7 +786,7 @@ $('#toc').on('click', 'a', function() {
 
 <h2 id="introduction">Introduction</h2>
 
-<p>If you have not yet set up GRAKN.AI, please see the <a href="../get-started/setup-guide.html">Setup guide</a>. In this tutorial, we will load a simple ontology and some data from a file, <em>basic-genealogy.gql</em> and test it in the Graql shell and Grakn Visualiser. The <em>basic-genealogy.gql</em> file will be included in the <em>/examples</em> folder of the Grakn installation zip from release 0.11.0 and onwards. It can also be downloaded from the <a href="https://github.com/graknlabs/grakn/blob/master/grakn-dist/src/examples/basic-genealogy.gql">Grakn repo on Github</a>. In the code below, we assume that it is in the <em>/examples</em> folder.</p>
+<p>If you have not yet set up GRAKN.AI, please see the <a href="../get-started/setup-guide.html">Setup guide</a>. In this tutorial, we will load a simple ontology and some data from a file, <em>basic-genealogy.gql</em> and use the Graql shell and Grakn visualiser to illustrate some key features of GRAKN.AI.</p>
 
 <h2 id="the-graql-shell">The Graql Shell</h2>
 
@@ -933,7 +933,7 @@ $81940536 (spouse2: $233568, spouse1: $41361488) has picture "http:\/\/1.bp.blog
 
 <h2 id="extending-the-graph">Extending the Graph</h2>
 
-<p>Besides making <code class="highlighter-rouge">match</code> queries, it is also possible to <code class="highlighter-rouge">insert</code> <a href="../graql/insert-queries.html">(see further documentation)</a> and <code class="highlighter-rouge">delete</code><a href="../graql/delete-queries.html">(see further documentation)</a> items in the graph through the Graql shell. To illustrate inserting a fictional person:</p>
+<p>Besides making <code class="highlighter-rouge">match</code> queries, it is also possible to <code class="highlighter-rouge">insert</code> items <a href="../graql/insert-queries.html">(see further documentation)</a> and <code class="highlighter-rouge">delete</code> items <a href="../graql/delete-queries.html">(see further documentation)</a> through the Graql shell. To illustrate inserting a fictional person:</p>
 
 <pre><code class="language-graql">insert $g isa person has firstname "Titus" has identifier "Titus Groan" has surname "Groan" has gender "male";
 commit
@@ -1080,13 +1080,6 @@ rhs
 <pre><code class="language-graql">compute mean of age in person; # returns 78.23 (rounded to 2 decimal places)
 </code></pre>
 
-<p>You can take a look at the values of age at death for the person entities in the genealogy dataset as follows:</p>
-
-<pre><code class="language-graql">match $x isa person, has age $a;
-</code></pre>
-
-<p><img src="/images/compute-mean-age.png" alt="Mean ages calculated" /></p>
-
 <p>Other statistical values can be calculated similarly, e.g. values for <code class="highlighter-rouge">count</code>:</p>
 
 <pre><code class="language-graql">compute count in person; # 60
@@ -1120,7 +1113,7 @@ rhs
 <pre><code class="language-graql">compute path from "id1" to "id2" in person, parentship;
 </code></pre>
 
-<p>The above limits the path to blood relations (parent/child relations) thus excludes marriage. As a result, the shortest path between the two people is now longer: Barbara Shafner and Jacob J. Niesz are cousins (their mothers, Mary Young and Catherine Young, are sisters, their father being Jacob Young).</p>
+<p>The above limits the path to blood relations (parent/child relations) thus excludes marriage. As a result, the shortest path between the two people is now longer: Barbara Shafner and Jacob J. Niesz are cousins (their mothers, Mary Young and Catherine Young, are sisters, with <em>their</em> father being Jacob Young).</p>
 
 <p><img src="/images/analytics_path_parentship.png" alt="Shortest path between people" /></p>
 
@@ -1190,7 +1183,7 @@ rhs
         <br>
         <p>© 2017 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2017 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> February 2017<br/> Site last generated: Apr 18, 2017 <br />
+        <span>Page last updated:</span> February 2017<br/> Site last generated: Apr 21, 2017 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">
