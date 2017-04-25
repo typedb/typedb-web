@@ -785,11 +785,17 @@ $('#toc').on('click', 'a', function() {
 <p>This section will discuss how to start developing with Grakn using the Java API. 
 All Grakn applications require the following Maven dependency:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="nt">&lt;dependency&gt;</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="nt">&lt;properties&gt;</span>
+  <span class="nt">&lt;grakn.version&gt;</span>0.12.0<span class="nt">&lt;/grakn.version&gt;</span>
+<span class="nt">&lt;/properties&gt;</span>
+
+<span class="nt">&lt;dependencies&gt;</span>
+  <span class="nt">&lt;dependency&gt;</span>
     <span class="nt">&lt;groupId&gt;</span>ai.grakn<span class="nt">&lt;/groupId&gt;</span>
     <span class="nt">&lt;artifactId&gt;</span>grakn-graph<span class="nt">&lt;/artifactId&gt;</span>
-    <span class="nt">&lt;version&gt;</span>${project.version}<span class="nt">&lt;/version&gt;</span>
-    <span class="nt">&lt;/dependency&gt;</span>
+    <span class="nt">&lt;version&gt;</span>${grakn.version}<span class="nt">&lt;/version&gt;</span>
+  <span class="nt">&lt;/dependency&gt;</span>
+<span class="nt">&lt;/dependencies&gt;</span>
 </code></pre>
 </div>
 
@@ -805,7 +811,7 @@ Please see the <a href="../get-started/setup-guide.html">Setup Guide</a> on more
 <div class="highlighter-rouge"><pre class="highlight"><code><span class="nt">&lt;dependency&gt;</span>
     <span class="nt">&lt;groupId&gt;</span>ai.grakn<span class="nt">&lt;/groupId&gt;</span>
     <span class="nt">&lt;artifactId&gt;</span>titan-factory<span class="nt">&lt;/artifactId&gt;</span>
-    <span class="nt">&lt;version&gt;</span>${project.version}<span class="nt">&lt;/version&gt;</span> 
+    <span class="nt">&lt;version&gt;</span>${grakn.version}<span class="nt">&lt;/version&gt;</span>
 <span class="nt">&lt;/dependency&gt;</span>
 </code></pre>
 </div>
@@ -815,7 +821,7 @@ Please see the <a href="../get-started/setup-guide.html">Setup Guide</a> on more
 <div class="highlighter-rouge"><pre class="highlight"><code><span class="nt">&lt;dependency&gt;</span>
     <span class="nt">&lt;groupId&gt;</span>ai.grakn<span class="nt">&lt;/groupId&gt;</span>
     <span class="nt">&lt;artifactId&gt;</span>orientdb-factory<span class="nt">&lt;/artifactId&gt;</span>
-    <span class="nt">&lt;version&gt;</span>${project.version}<span class="nt">&lt;/version&gt;</span> 
+    <span class="nt">&lt;version&gt;</span>${grakn.version}<span class="nt">&lt;/version&gt;</span>
 <span class="nt">&lt;/dependency&gt;</span>
 </code></pre>
 </div>
@@ -823,6 +829,24 @@ Please see the <a href="../get-started/setup-guide.html">Setup Guide</a> on more
 <div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> <b>Note:</b> The distribution package comes with a Titan backend configured out of the box. OrientDB support is still in early stages of development. </div>
 
 <p>The JAR files you will need to develop with Grakn can be found inside the <code class="highlighter-rouge">lib</code> directory of the distribution zip file. All the JARs are provided with no dependencies, so using these requires you to use Maven to acquire dependencies.</p>
+
+<p>Alternatively, you may include a reference to the snapshot repository, which contains the third-party dependencies. Add the following to your <code class="highlighter-rouge">pom.xml</code>:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="nt">&lt;repositories&gt;</span>
+  <span class="c">&lt;!--Snapshot repository for 3rd party libraries --&gt;</span>
+  <span class="nt">&lt;repository&gt;</span>
+    <span class="nt">&lt;id&gt;</span>grakn-development-snapshots<span class="nt">&lt;/id&gt;</span>
+    <span class="nt">&lt;url&gt;</span>https://maven.grakn.ai/content/repositories/snapshots/<span class="nt">&lt;/url&gt;</span>
+    <span class="nt">&lt;releases&gt;</span>
+      <span class="nt">&lt;enabled&gt;</span>false<span class="nt">&lt;/enabled&gt;</span>
+    <span class="nt">&lt;/releases&gt;</span>
+    <span class="nt">&lt;snapshots&gt;</span>
+      <span class="nt">&lt;enabled&gt;</span>true<span class="nt">&lt;/enabled&gt;</span>
+    <span class="nt">&lt;/snapshots&gt;</span>
+  <span class="nt">&lt;/repository&gt;</span>
+<span class="nt">&lt;/repositories&gt;</span>
+</code></pre>
+</div>
 
 <p>Here are some links to guides for adding external jars using different IDEs:</p>
 
@@ -939,7 +963,7 @@ We currently support three types of transactions:</p>
         <br>
         <p>© 2017 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2017 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> March 2017<br/> Site last generated: Apr 21, 2017 <br />
+        <span>Page last updated:</span> March 2017<br/> Site last generated: Apr 25, 2017 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">

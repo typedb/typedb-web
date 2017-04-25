@@ -80,11 +80,11 @@
 
 ,
 {
-"title": "When to use Grakn?",
+"title": "GRAKN.AI System Properties",
 "tags": "overview",
-"keywords": "use case",
-"url": "/pages/overview/use-case.html",
-"summary": "false"
+"keywords": "system, properties, db-engines",
+"url": "/pages/overview/system-properties.html",
+"summary": "A look-up table of GRAKN.AI's system properties"
 }
 
 
@@ -93,21 +93,10 @@
 
 ,
 {
-"title": "Developing with Grakn",
-"tags": "overview",
-"keywords": "developer",
-"url": "/pages/overview/developer.html",
-"summary": "false"
-}
-
-
-
-,
-{
-"title": "Grakn Overview",
+"title": "GRAKN.AI Ideology - Simplicity and Maintainability",
 "tags": "overviewfaq",
 "keywords": "overview",
-"url": "/pages/overview/faq.html",
+"url": "/pages/overview/ideology.html",
 "summary": ""
 }
 
@@ -115,11 +104,22 @@
 
 ,
 {
-"title": "GRAKN.AI System Properties",
+"title": "GRAKN.AI FAQs",
+"tags": "overviewfaq",
+"keywords": "overview",
+"url": "/pages/overview/faqs.html",
+"summary": ""
+}
+
+
+
+,
+{
+"title": "When to use Grakn?",
 "tags": "overview",
-"keywords": "system, properties, db-engines",
-"url": "/pages/overview/system-properties.html",
-"summary": "A look-up table of GRAKN.AI's system properties"
+"keywords": "use case",
+"url": "/pages/overview/use-case.html",
+"summary": "false"
 }
 
 

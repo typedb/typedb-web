@@ -841,14 +841,14 @@ This provides the highest level of redundancy and availability; you will want th
 
 <p>Grakn Engine uses the <a href="https://kafka.apache.org/">Apache Kafka</a> streaming platform for distributed task execution. Kafka keeps track of its brokers’ state in <a href="https://zookeeper.apache.org/">Zookeeper</a>.</p>
 
-<p>Kafka version: 2.10-0.10.1.0</p>
+<p>Kafka version: 2.11-0.10.1.0</p>
 
 <p>Zookeeper version: 3.4.9</p>
 
-<p>Configure Grakn to use an external Kafka and Zookeeper cluster in <code class="highlighter-rouge">conf/main/grakn-engine.properties</code>:</p>
+<p>Configure Grakn to use an external Kafka and Zookeeper cluster in <code class="highlighter-rouge">conf/main/grakn.properties</code>:</p>
 
 <ul>
-  <li><code class="highlighter-rouge">tasks.kafka.bootstrap-servers</code>: eg. 10.0.20.1:9092,10.0.20.2:9092,10.0.20.3:9092</li>
+  <li><code class="highlighter-rouge">bootstrap-servers</code>: eg. 10.0.20.1:9092,10.0.20.2:9092,10.0.20.3:9092</li>
   <li><code class="highlighter-rouge">tasks.zookeeper.servers</code>: eg. 10.0.30.1:2181,10.0.30.2:2181,10.0.3.30:2181</li>
 </ul>
 
@@ -935,7 +935,7 @@ Multiple instances of Grakn Engine can be started that will make use of the shar
         <br>
         <p>© 2017 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2017 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> December 15th 2016<br/> Site last generated: Apr 21, 2017 <br />
+        <span>Page last updated:</span> December 15th 2016<br/> Site last generated: Apr 25, 2017 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">
