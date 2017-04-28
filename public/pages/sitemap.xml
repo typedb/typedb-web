@@ -6,13 +6,13 @@
   
   
   <url>
-    <loc>http://grakn.ai/pages//overview/index.html</loc>
+    <loc>http://grakn.ai/pages//contributors/index.html</loc>
   </url>
   
   
   
   <url>
-    <loc>http://grakn.ai/pages//contributors/index.html</loc>
+    <loc>http://grakn.ai/pages//overview/index.html</loc>
   </url>
   
   
@@ -110,13 +110,13 @@
   
   
   <url>
-    <loc>http://grakn.ai/pages//documentation/examples/SQL-migration.html</loc>
+    <loc>http://grakn.ai/pages//documentation/migration/SQL-migration.html</loc>
   </url>
   
   
   
   <url>
-    <loc>http://grakn.ai/pages//documentation/migration/SQL-migration.html</loc>
+    <loc>http://grakn.ai/pages//documentation/examples/SQL-migration.html</loc>
   </url>
   
   
@@ -311,6 +311,12 @@
   
   <url>
     <loc>http://grakn.ai/pages//documentation/graql/insert-queries.html</loc>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://grakn.ai/pages//documentation/examples/java-analytics.html</loc>
   </url>
   
   
