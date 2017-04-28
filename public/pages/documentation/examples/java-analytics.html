@@ -842,6 +842,23 @@ $('#toc').on('click', 'a', function() {
 <p>The first thing to do is connect to the running engine instance and check that the graph contains the data that we expect. This can be achieved with the following code:</p>
 
 <div class="highlighter-rouge"><pre class="highlight"><code><span class="kd">private</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">testConnection</span><span class="p">(</span><span class="o">)</span> <span class="o">{</span>
+    <span class="c1">// initialise the connection to Grakn engine</span>
+    <span class="k">try</span> <span class="o">(</span><span class="n">GraknSession</span> <span class="n">session</span> <span class="o">=</span> <span class="n">Grakn</span><span class="o">.</span><span class="na">session</span><span class="o">(</span><span class="n">Grakn</span><span class="o">.</span><span class="na">DEFAULT_URI</span><span class="o">,</span> <span class="s">"genealogy"</span><span class="o">))</span> <span class="o">{</span>
+
+        <span class="c1">// open a graph (database transaction)</span>
+        <span class="k">try</span> <span class="o">(</span><span class="n">GraknGraph</span> <span class="n">graph</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="na">open</span><span class="o">(</span><span class="n">GraknTxType</span><span class="o">.</span><span class="na">READ</span><span class="o">))</span> <span class="o">{</span>
+
+            <span class="c1">// construct a match query to find people</span>
+            <span class="n">MatchQuery</span> <span class="n">query</span> <span class="o">=</span> <span class="n">graph</span><span class="o">.</span><span class="na">graql</span><span class="o">().</span><span class="na">match</span><span class="o">(</span><span class="n">var</span><span class="o">(</span><span class="s">"x"</span><span class="o">).</span><span class="na">isa</span><span class="o">(</span><span class="s">"person"</span><span class="o">));</span>
+
+            <span class="c1">// execute the query</span>
+            <span class="n">List</span><span class="o">&lt;</span><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Concept</span><span class="o">&gt;&gt;</span> <span class="n">result</span> <span class="o">=</span> <span class="n">query</span><span class="o">.</span><span class="na">limit</span><span class="o">(</span><span class="mi">10</span><span class="o">).</span><span class="na">execute</span><span class="o">();</span>
+
+            <span class="c1">// write the results to the console</span>
+            <span class="n">result</span><span class="o">.</span><span class="na">forEach</span><span class="o">(</span><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">::</span><span class="n">println</span><span class="o">);</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
 <span class="o">}</span>
 </code></pre>
 </div>
@@ -851,11 +868,26 @@ $('#toc').on('click', 'a', function() {
 <p>Now that we have established the connection to Grakn engine works we can obtain the graph object and compute the clusters that we are interested in:</p>
 
 <div class="highlighter-rouge"><pre class="highlight"><code><span class="kd">private</span> <span class="kd">static</span> <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Set</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;&gt;</span> <span class="n">computeClusters</span><span class="o">()</span> <span class="o">{</span>
-<span class="o">}</span>
+    <span class="c1">// initialise the connection to Grakn engine</span>
+    <span class="k">try</span> <span class="o">(</span><span class="n">GraknSession</span> <span class="n">session</span> <span class="o">=</span> <span class="n">Grakn</span><span class="o">.</span><span class="na">session</span><span class="o">(</span><span class="n">Grakn</span><span class="o">.</span><span class="na">DEFAULT_URI</span><span class="o">,</span> <span class="s">"genealogy"</span><span class="o">))</span> <span class="o">{</span>
+
+        <span class="c1">// open a graph (database transaction)</span>
+        <span class="k">try</span> <span class="o">(</span><span class="n">GraknGraph</span> <span class="n">graph</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="na">open</span><span class="o">(</span><span class="n">GraknTxType</span><span class="o">.</span><span class="na">READ</span><span class="o">))</span> <span class="o">{</span>
+
+            <span class="c1">// construct the analytics cluster query</span>
+            <span class="n">ClusterQuery</span><span class="o">&lt;</span><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Set</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;&gt;&gt;</span> <span class="n">query</span> <span class="o">=</span> <span class="n">graph</span><span class="o">.</span><span class="na">graql</span><span class="o">().</span><span class="na">compute</span><span class="o">().</span><span class="na">cluster</span><span class="o">().</span><span class="na">in</span><span class="o">(</span><span class="s">"person"</span><span class="o">,</span> <span class="s">"marriage"</span><span class="o">).</span><span class="na">members</span><span class="o">();</span>
+
+            <span class="c1">// execute the analytics query</span>
+            <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Set</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;&gt;</span> <span class="n">clusters</span> <span class="o">=</span> <span class="n">query</span><span class="o">.</span><span class="na">execute</span><span class="o">();</span>
+
+            <span class="k">return</span> <span class="n">clusters</span><span class="o">;</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
 </code></pre>
 </div>
 
-<p>Here we have used the <code class="highlighter-rouge">in</code> syntax to specify that we want to compute the clusters while only considering instances of the types marriage and person. The graph that we are effectively working on can be seen in the image below. We can see three clusters, but there are more in the basic genealogy example. The code above will have found all of the clusters and returned a <code class="highlighter-rouge">Map</code> from the unique cluster label to a set containing the ids of the instances in the cluster.</p>
+<p>Here we have used the <code class="highlighter-rouge">in</code> syntax to specify that we want to compute the clusters while only considering instances of the types <code class="highlighter-rouge">marriage</code> and <code class="highlighter-rouge">person</code>. The graph that we are effectively working on can be seen in the image below. We can see three clusters, but there are more in the basic genealogy example. The code above will have found all of the clusters and returned a <code class="highlighter-rouge">Map</code> from the unique cluster label to a set containing the ids of the instances in the cluster.</p>
 
 <p>If we had not used the members syntax we would only know the size of the clusters not the members.</p>
 
@@ -872,6 +904,30 @@ limit 2;
 <p>Now that we have information about the clusters, it would be useful to add it to the graph so that we can visualise it. We can do this by creating a new entity type called <code class="highlighter-rouge">cluster</code> and a new relation type called <code class="highlighter-rouge">grouping</code> with the roles <code class="highlighter-rouge">group</code> and <code class="highlighter-rouge">member</code>. The ontology can be mutated as follows:</p>
 
 <div class="highlighter-rouge"><pre class="highlight"><code><span class="kd">private</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">mutateOntology</span><span class="p">(</span><span class="o">)</span> <span class="o">{</span>
+    <span class="c1">// initialise the connection to Grakn engine</span>
+    <span class="k">try</span> <span class="o">(</span><span class="n">GraknSession</span> <span class="n">session</span> <span class="o">=</span> <span class="n">Grakn</span><span class="o">.</span><span class="na">session</span><span class="o">(</span><span class="n">Grakn</span><span class="o">.</span><span class="na">DEFAULT_URI</span><span class="o">,</span> <span class="s">"genealogy"</span><span class="o">))</span> <span class="o">{</span>
+
+        <span class="c1">// open a graph (database transaction)</span>
+        <span class="k">try</span> <span class="o">(</span><span class="n">GraknGraph</span> <span class="n">graph</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="na">open</span><span class="o">(</span><span class="n">GraknTxType</span><span class="o">.</span><span class="na">WRITE</span><span class="o">))</span> <span class="o">{</span>
+
+            <span class="c1">// create set of vars representing the mutation</span>
+            <span class="n">Var</span> <span class="n">group</span> <span class="o">=</span> <span class="n">Graql</span><span class="o">.</span><span class="na">var</span><span class="o">(</span><span class="s">"group"</span><span class="o">).</span><span class="na">label</span><span class="o">(</span><span class="s">"group"</span><span class="o">).</span><span class="na">sub</span><span class="o">(</span><span class="s">"role"</span><span class="o">);</span>
+            <span class="n">Var</span> <span class="n">member</span> <span class="o">=</span> <span class="n">Graql</span><span class="o">.</span><span class="na">var</span><span class="o">(</span><span class="s">"member"</span><span class="o">).</span><span class="na">label</span><span class="o">(</span><span class="s">"member"</span><span class="o">).</span><span class="na">sub</span><span class="o">(</span><span class="s">"role"</span><span class="o">);</span>
+            <span class="n">Var</span> <span class="n">grouping</span> <span class="o">=</span> <span class="n">Graql</span><span class="o">.</span><span class="na">var</span><span class="o">(</span><span class="s">"grouping"</span><span class="o">).</span><span class="na">label</span><span class="o">(</span><span class="s">"grouping"</span><span class="o">).</span><span class="na">sub</span><span class="o">(</span><span class="s">"relation"</span><span class="o">).</span><span class="na">relates</span><span class="o">(</span><span class="n">group</span><span class="o">).</span><span class="na">relates</span><span class="o">(</span><span class="n">member</span><span class="o">);</span>
+            <span class="n">Var</span> <span class="n">cluster</span> <span class="o">=</span> <span class="n">Graql</span><span class="o">.</span><span class="na">var</span><span class="o">(</span><span class="s">"cluster"</span><span class="o">).</span><span class="na">label</span><span class="o">(</span><span class="s">"cluster"</span><span class="o">).</span><span class="na">sub</span><span class="o">(</span><span class="s">"entity"</span><span class="o">).</span><span class="na">plays</span><span class="o">(</span><span class="n">group</span><span class="o">);</span>
+            <span class="n">Var</span> <span class="n">personPlaysRole</span> <span class="o">=</span> <span class="n">Graql</span><span class="o">.</span><span class="na">var</span><span class="o">(</span><span class="s">"person"</span><span class="o">).</span><span class="na">label</span><span class="o">(</span><span class="s">"person"</span><span class="o">).</span><span class="na">plays</span><span class="o">(</span><span class="s">"member"</span><span class="o">);</span>
+            <span class="n">Var</span> <span class="n">marriagePlaysRole</span> <span class="o">=</span> <span class="n">Graql</span><span class="o">.</span><span class="na">var</span><span class="o">(</span><span class="s">"marriage"</span><span class="o">).</span><span class="na">label</span><span class="o">(</span><span class="s">"marriage"</span><span class="o">).</span><span class="na">plays</span><span class="o">(</span><span class="s">"member"</span><span class="o">);</span>
+
+            <span class="c1">// construct the insert query</span>
+            <span class="n">InsertQuery</span> <span class="n">query</span> <span class="o">=</span> <span class="n">graph</span><span class="o">.</span><span class="na">graql</span><span class="o">().</span><span class="na">insert</span><span class="o">(</span><span class="n">group</span><span class="o">,</span> <span class="n">member</span><span class="o">,</span> <span class="n">grouping</span><span class="o">,</span> <span class="n">cluster</span><span class="o">,</span> <span class="n">personPlaysRole</span><span class="o">,</span> <span class="n">marriagePlaysRole</span><span class="o">);</span>
+
+            <span class="c1">// execute the insert query</span>
+            <span class="n">query</span><span class="o">.</span><span class="na">execute</span><span class="o">();</span>
+
+            <span class="c1">// don't forget to commit the changes</span>
+            <span class="n">graph</span><span class="o">.</span><span class="na">commit</span><span class="o">();</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
 <span class="o">}</span>
 </code></pre>
 </div>
@@ -881,6 +937,35 @@ limit 2;
 <p>Now all that is left is to populate the graph with the clusters and grouping relationships. To do this we can create a cluster for each result from the analytics query, which can then be attached to each of the concepts returned in the set of members:</p>
 
 <div class="highlighter-rouge"><pre class="highlight"><code><span class="kd">private</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">persistClusters</span><span class="p">(</span><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Set</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;&gt;</span> <span class="n">results</span><span class="o">)</span> <span class="o">{</span>
+
+    <span class="c1">// initialise the connection to Grakn engine</span>
+    <span class="k">try</span> <span class="o">(</span><span class="n">GraknSession</span> <span class="n">session</span> <span class="o">=</span> <span class="n">Grakn</span><span class="o">.</span><span class="na">session</span><span class="o">(</span><span class="n">Grakn</span><span class="o">.</span><span class="na">DEFAULT_URI</span><span class="o">,</span> <span class="s">"genealogy"</span><span class="o">))</span> <span class="o">{</span>
+
+        <span class="c1">// iterate through results of cluster query</span>
+        <span class="n">results</span><span class="o">.</span><span class="na">forEach</span><span class="o">((</span><span class="n">clusterID</span><span class="o">,</span> <span class="n">memberSet</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="o">{</span>
+
+            <span class="c1">// open a graph (database transaction)</span>
+            <span class="k">try</span> <span class="o">(</span><span class="n">GraknGraph</span> <span class="n">graph</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="na">open</span><span class="o">(</span><span class="n">GraknTxType</span><span class="o">.</span><span class="na">WRITE</span><span class="o">))</span> <span class="o">{</span>
+
+                    <span class="c1">// collect the vars to insert</span>
+                    <span class="n">Set</span><span class="o">&lt;</span><span class="n">Var</span><span class="o">&gt;</span> <span class="n">insertVars</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashSet</span><span class="o">&lt;&gt;();</span>
+
+                    <span class="c1">// create the cluster</span>
+                    <span class="n">Var</span> <span class="n">cluster</span> <span class="o">=</span> <span class="n">Graql</span><span class="o">.</span><span class="na">var</span><span class="o">().</span><span class="na">isa</span><span class="o">(</span><span class="s">"cluster"</span><span class="o">);</span>
+                    <span class="n">insertVars</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">cluster</span><span class="o">);</span>
+
+                    <span class="c1">// attach the members</span>
+                    <span class="n">memberSet</span><span class="o">.</span><span class="na">forEach</span><span class="o">(</span><span class="n">member</span> <span class="o">-&gt;</span> <span class="o">{</span>
+                        <span class="n">Var</span> <span class="n">memberVar</span> <span class="o">=</span> <span class="n">Graql</span><span class="o">.</span><span class="na">var</span><span class="o">().</span><span class="na">id</span><span class="o">(</span><span class="n">ConceptId</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="n">member</span><span class="o">));</span>
+                        <span class="n">insertVars</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">Graql</span><span class="o">.</span><span class="na">var</span><span class="o">().</span><span class="na">isa</span><span class="o">(</span><span class="s">"grouping"</span><span class="o">).</span><span class="na">rel</span><span class="o">(</span><span class="s">"group"</span><span class="o">,</span> <span class="n">cluster</span><span class="o">).</span><span class="na">rel</span><span class="o">(</span><span class="s">"member"</span><span class="o">,</span><span class="n">memberVar</span><span class="o">));</span>
+                    <span class="o">});</span>
+
+                <span class="c1">// execute query and commit</span>
+                <span class="n">graph</span><span class="o">.</span><span class="na">graql</span><span class="o">().</span><span class="na">insert</span><span class="o">(</span><span class="n">insertVars</span><span class="o">).</span><span class="na">execute</span><span class="o">();</span>
+                <span class="n">graph</span><span class="o">.</span><span class="na">commit</span><span class="o">();</span>
+            <span class="o">}</span>
+        <span class="o">});</span>
+    <span class="o">}</span>
 <span class="o">}</span>
 </code></pre>
 </div>
@@ -899,6 +984,21 @@ limit 2;
 <p>When using the visualiser it is probably quite useful to be able to see the size of the cluster before clicking on it. In order to add this information to the graph we will use another analytics function degree. The code to compute the degree is:</p>
 
 <div class="highlighter-rouge"><pre class="highlight"><code><span class="kd">private</span> <span class="kd">static</span> <span class="n">Map</span><span class="o">&lt;</span><span class="n">Long</span><span class="o">,</span> <span class="n">Set</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;&gt;</span> <span class="n">degreeOfClusters</span><span class="o">()</span> <span class="o">{</span>
+    <span class="c1">// initialise the connection to Grakn engine</span>
+    <span class="k">try</span> <span class="o">(</span><span class="n">GraknSession</span> <span class="n">session</span> <span class="o">=</span> <span class="n">Grakn</span><span class="o">.</span><span class="na">session</span><span class="o">(</span><span class="n">Grakn</span><span class="o">.</span><span class="na">DEFAULT_URI</span><span class="o">,</span> <span class="s">"genealogy"</span><span class="o">))</span> <span class="o">{</span>
+
+        <span class="c1">// open a graph (database transaction)</span>
+        <span class="k">try</span> <span class="o">(</span><span class="n">GraknGraph</span> <span class="n">graph</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="na">open</span><span class="o">(</span><span class="n">GraknTxType</span><span class="o">.</span><span class="na">READ</span><span class="o">))</span> <span class="o">{</span>
+
+            <span class="c1">// construct the analytics cluster query</span>
+            <span class="n">DegreeQuery</span> <span class="n">query</span> <span class="o">=</span> <span class="n">graph</span><span class="o">.</span><span class="na">graql</span><span class="o">().</span><span class="na">compute</span><span class="o">().</span><span class="na">degree</span><span class="o">().</span><span class="na">in</span><span class="o">(</span><span class="s">"cluster"</span><span class="o">,</span> <span class="s">"grouping"</span><span class="o">).</span><span class="na">of</span><span class="o">(</span><span class="s">"cluster"</span><span class="o">);</span>
+
+            <span class="c1">// execute the analytics query</span>
+            <span class="n">Map</span><span class="o">&lt;</span><span class="n">Long</span><span class="o">,</span> <span class="n">Set</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;&gt;</span> <span class="n">degrees</span> <span class="o">=</span> <span class="n">query</span><span class="o">.</span><span class="na">execute</span><span class="o">();</span>
+
+            <span class="k">return</span> <span class="n">degrees</span><span class="o">;</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
 <span class="o">}</span>
 </code></pre>
 </div>
@@ -913,7 +1013,40 @@ limit 2;
 <p>As we did when computing the clusters, we need to put the information back into the graph. This time we will attach a resource called <code class="highlighter-rouge">degree</code> to the cluster entity. The ontology mutation and persisting of the degrees is performed in a single method:</p>
 
 <div class="highlighter-rouge"><pre class="highlight"><code><span class="kd">private</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">persistDegrees</span><span class="p">(</span><span class="n">Map</span><span class="o">&lt;</span><span class="n">Long</span><span class="o">,</span> <span class="n">Set</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;&gt;</span> <span class="n">degrees</span><span class="o">)</span> <span class="o">{</span>
-<span class="o">}</span>
+    <span class="c1">// initialise the connection to Grakn engine</span>
+    <span class="k">try</span> <span class="o">(</span><span class="n">GraknSession</span> <span class="n">session</span> <span class="o">=</span> <span class="n">Grakn</span><span class="o">.</span><span class="na">session</span><span class="o">(</span><span class="n">Grakn</span><span class="o">.</span><span class="na">DEFAULT_URI</span><span class="o">,</span> <span class="s">"genealogy"</span><span class="o">))</span> <span class="o">{</span>
+
+        <span class="k">try</span> <span class="o">(</span><span class="n">GraknGraph</span> <span class="n">graph</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="na">open</span><span class="o">(</span><span class="n">GraknTxType</span><span class="o">.</span><span class="na">WRITE</span><span class="o">))</span> <span class="o">{</span>
+
+            <span class="c1">// mutate the ontology</span>
+            <span class="n">Var</span> <span class="n">degree</span> <span class="o">=</span> <span class="n">Graql</span><span class="o">.</span><span class="na">var</span><span class="o">().</span><span class="na">label</span><span class="o">(</span><span class="s">"degree"</span><span class="o">).</span><span class="na">sub</span><span class="o">(</span><span class="s">"resource"</span><span class="o">).</span><span class="na">datatype</span><span class="o">(</span><span class="n">ResourceType</span><span class="o">.</span><span class="na">DataType</span><span class="o">.</span><span class="na">LONG</span><span class="o">);</span>
+            <span class="n">Var</span> <span class="n">cluster</span> <span class="o">=</span> <span class="n">Graql</span><span class="o">.</span><span class="na">var</span><span class="o">().</span><span class="na">label</span><span class="o">(</span><span class="s">"cluster"</span><span class="o">).</span><span class="na">has</span><span class="o">(</span><span class="s">"degree"</span><span class="o">);</span>
+
+            <span class="c1">// execute the query</span>
+            <span class="n">graph</span><span class="o">.</span><span class="na">graql</span><span class="o">().</span><span class="na">insert</span><span class="o">(</span><span class="n">degree</span><span class="o">,</span> <span class="n">cluster</span><span class="o">).</span><span class="na">execute</span><span class="o">();</span>
+
+            <span class="c1">// don't forget to commit</span>
+            <span class="n">graph</span><span class="o">.</span><span class="na">commit</span><span class="o">();</span>
+            <span class="o">}</span>
+
+            <span class="k">try</span> <span class="o">(</span><span class="n">GraknGraph</span> <span class="n">graph</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="na">open</span><span class="o">(</span><span class="n">GraknTxType</span><span class="o">.</span><span class="na">WRITE</span><span class="o">))</span> <span class="o">{</span>
+
+            <span class="c1">// add the degrees to the cluster</span>
+            <span class="n">Set</span><span class="o">&lt;</span><span class="n">Var</span><span class="o">&gt;</span> <span class="n">degreeMutation</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashSet</span><span class="o">&lt;&gt;();</span>
+            <span class="n">degrees</span><span class="o">.</span><span class="na">forEach</span><span class="o">((</span><span class="n">degree</span><span class="o">,</span> <span class="n">concepts</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="o">{</span>
+                <span class="n">concepts</span><span class="o">.</span><span class="na">forEach</span><span class="o">(</span><span class="n">concept</span> <span class="o">-&gt;</span> <span class="o">{</span>
+                    <span class="n">degreeMutation</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">Graql</span><span class="o">.</span><span class="na">var</span><span class="o">().</span><span class="na">id</span><span class="o">(</span><span class="n">ConceptId</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="n">concept</span><span class="o">)).</span><span class="na">has</span><span class="o">(</span><span class="s">"degree"</span><span class="o">,</span><span class="n">degree</span><span class="o">));</span>
+                <span class="o">});</span>
+            <span class="o">});</span>
+
+            <span class="c1">// execute the query</span>
+            <span class="n">graph</span><span class="o">.</span><span class="na">graql</span><span class="o">().</span><span class="na">insert</span><span class="o">(</span><span class="n">degreeMutation</span><span class="o">).</span><span class="na">execute</span><span class="o">();</span>
+
+            <span class="c1">// don't forget to commit</span>
+            <span class="n">graph</span><span class="o">.</span><span class="na">commit</span><span class="o">();</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
 </code></pre>
 </div>
 
