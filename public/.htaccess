@@ -46,6 +46,9 @@ Redirect /2016-year-in-review "https://blog.grakn.ai/grakn-2016-year-in-review-e
 Redirect /blog/2016-year-in-review "https://blog.grakn.ai/grakn-2016-year-in-review-e30b66adece3"
 Redirect /blog/janus-launch "https://blog.grakn.ai/janus-launch-22be6ac3b197"
 Redirect /blog/award "https://blog.grakn.ai/cambridge-computer-lab-ring-product-of-the-year-2017-goes-to-grakn-ai-d0d7c5ba9f55"
+Redirect /blog/biograkn "https://blog.grakn.ai/a-knowledge-graph-based-semantic-database-for-biomedical-sciences-167154319a0a"
+Redirect /blog/hypergraphs "https://blog.grakn.ai/modelling-data-with-hypergraphs-edff1e12edf0"
+Redirect /blog/2017-spring "https://blog.grakn.ai/grakn-ai-2017-spring-round-up-26c10c84e13e"
 
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME} !-f
