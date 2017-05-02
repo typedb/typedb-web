@@ -787,35 +787,43 @@ $('#toc').on('click', 'a', function() {
 
     
 
-  <p>If you have not yet set up the Grakn environment, please see the <a href="../get-started/setup-guide.html">Setup guide</a>.</p>
-
-<h2 id="introduction">Introduction</h2>
-<p>In this example, we are going to introduce the analytics package using the basic genealogy example. You can find <em>basic-genealogy.gql</em> in the <em>examples</em> directory of the Grakn distribution zip. You can also find it on <a href="https://github.com/graknlabs/grakn/blob/master/grakn-dist/src/examples/basic-genealogy.gql">Github</a>.</p>
-
-<p>The first step is to load it into Grakn using the terminal. Start Grakn, and load the file as follows:</p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code>&lt;relative-path-to-Grakn&gt;/bin/grakn.sh start
-&lt;relative-path-to-Grakn&gt;/bin/graql.sh -f ./examples/basic-genealogy.gql -k <span class="s2">"genealogy"</span>
-</code></pre>
-</div>
-
-<p>You can test in the Graql shell that all has loaded correctly. For example:</p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code>&lt;relative-path-to-Grakn&gt;/bin/graql.sh -k genealogy
-&gt;&gt;&gt;match <span class="nv">$p</span> isa person, has identifier <span class="nv">$i</span>;
-</code></pre>
-</div>
-
-<h2 id="using-java-apis-to-determine-clusters-and-degree">Using Java APIs to Determine Clusters and Degree</h2>
-
-<p>We are going to determine clusters of people who are related by marriage and how large those clusters are using two graph algorithms:</p>
+  <p>In this example, we are going to introduce the analytics package using the basic genealogy example. We will use Java APIs to determine clusters and degrees in the data - specifically we will determine clusters of people who are related by marriage and how large those clusters are using two graph algorithms:</p>
 
 <ul>
-  <li>the cluster algorithm will identify which people are related</li>
-  <li>the degree algorithm will count the size of the cluster.</li>
+  <li>the cluster algorithm - to identify which people are related</li>
+  <li>the degree algorithm - to count the size of the cluster.</li>
 </ul>
 
-<p>The maven dependencies for this project are:</p>
+<!-- TO DO - Put this back in 0.13 
+
+You can find *basic-genealogy.gql* in the *examples* directory of the Grakn distribution zip. You can also find it on [Github](https://github.com/graknlabs/grakn/blob/master/grakn-dist/src/examples/basic-genealogy.gql). 
+
+The first step is to load it into Grakn using the terminal. Start Grakn, and load the file as follows:
+
+```bash
+<relative-path-to-Grakn>/bin/grakn.sh start
+<relative-path-to-Grakn>/bin/graql.sh -f ./examples/basic-genealogy.gql -k "genealogy"
+```
+
+You can test in the Graql shell that all has loaded correctly. For example:
+
+```bash
+<relative-path-to-Grakn>/bin/graql.sh -k genealogy
+>>>match $p isa person, has identifier $i;
+```
+-->
+
+<h2 id="getting-started">Getting Started</h2>
+
+<p>If you have not yet set up the Grakn environment, please see the <a href="../get-started/setup-guide.html">Setup guide</a>.</p>
+
+<p>First, we start Grakn Engine using the terminal:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>&lt;relative-path-to-Grakn&gt;/bin/grakn.sh start
+</code></pre>
+</div>
+
+<p>The rest of the project is contained in the Java example code, which can be found on <a href="https://github.com/graknlabs/grakn/blob/master/grakn-dist/src/examples/basic-genealogy.gql">Github</a>. The maven dependencies for this project are:</p>
 
 <div class="highlighter-rouge"><pre class="highlight"><code><span class="o">&lt;</span><span class="n">dependency</span><span class="o">&gt;</span>
 <span class="o">&lt;</span><span class="n">groupId</span><span class="o">&gt;</span><span class="n">ai</span><span class="o">.</span><span class="na">grakn</span><span class="o">&lt;/</span><span class="n">groupId</span><span class="o">&gt;</span>
@@ -837,9 +845,27 @@ $('#toc').on('click', 'a', function() {
 
 <p>The Titan factory is required because engine is configured with Titan as the backend. The <code class="highlighter-rouge">slf4j-nop</code> dependency is a work around because we are using a later version of Spark. The spring framework dependency is a current bug workaround in GRAKN.AI version 0.12.0.</p>
 
+<p>First, we load the ontology and data we will be working with, which is the familiar <em>basic-genealogy.gql</em> dataset.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="kd">private</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">loadBasicGenealogy</span><span class="p">(</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">ClassLoader</span> <span class="n">classLoader</span> <span class="o">=</span> <span class="n">Main</span><span class="o">.</span><span class="na">class</span><span class="o">.</span><span class="na">getClassLoader</span><span class="o">();</span>
+    <span class="k">try</span> <span class="o">(</span><span class="n">GraknSession</span> <span class="n">session</span> <span class="o">=</span> <span class="n">Grakn</span><span class="o">.</span><span class="na">session</span><span class="o">(</span><span class="n">Grakn</span><span class="o">.</span><span class="na">DEFAULT_URI</span><span class="o">,</span> <span class="s">"genealogy"</span><span class="o">))</span> <span class="o">{</span>
+        <span class="k">try</span> <span class="o">(</span><span class="n">GraknGraph</span> <span class="n">graph</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="na">open</span><span class="o">(</span><span class="n">GraknTxType</span><span class="o">.</span><span class="na">WRITE</span><span class="o">))</span> <span class="o">{</span>
+            <span class="k">try</span> <span class="o">{</span>
+                <span class="n">graph</span><span class="o">.</span><span class="na">graql</span><span class="o">().</span><span class="na">parse</span><span class="o">(</span><span class="n">IOUtils</span><span class="o">.</span><span class="na">toString</span><span class="o">(</span><span class="n">classLoader</span><span class="o">.</span><span class="na">getResourceAsStream</span><span class="o">(</span><span class="s">"basic-genealogy.gql"</span><span class="o">))).</span><span class="na">execute</span><span class="o">();</span>
+                <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">IOException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+                    <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+            <span class="o">}</span>
+            <span class="n">graph</span><span class="o">.</span><span class="na">commit</span><span class="o">();</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre>
+</div>
+
 <h2 id="connect-to-grakn-engine">Connect to Grakn Engine</h2>
 
-<p>The first thing to do is connect to the running engine instance and check that the graph contains the data that we expect. This can be achieved with the following code:</p>
+<p>The next thing to do is connect to the running engine instance and check that the graph contains the data that we expect. This can be achieved with the following code:</p>
 
 <div class="highlighter-rouge"><pre class="highlight"><code><span class="kd">private</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">testConnection</span><span class="p">(</span><span class="o">)</span> <span class="o">{</span>
     <span class="c1">// initialise the connection to Grakn engine</span>
@@ -890,12 +916,6 @@ $('#toc').on('click', 'a', function() {
 <p>Here we have used the <code class="highlighter-rouge">in</code> syntax to specify that we want to compute the clusters while only considering instances of the types <code class="highlighter-rouge">marriage</code> and <code class="highlighter-rouge">person</code>. The graph that we are effectively working on can be seen in the image below. We can see three clusters, but there are more in the basic genealogy example. The code above will have found all of the clusters and returned a <code class="highlighter-rouge">Map</code> from the unique cluster label to a set containing the ids of the instances in the cluster.</p>
 
 <p>If we had not used the members syntax we would only know the size of the clusters not the members.</p>
-
-<pre><code class="language-graql">match
-$x isa cluster has degree 3;
-$y isa cluster has degree 5;
-limit 2;
-</code></pre>
 
 <p><img src="/images/java-analytics-1.png" alt="Visualiser UI" /></p>
 
@@ -1005,9 +1025,6 @@ limit 2;
 
 <p>The <code class="highlighter-rouge">in</code> syntax has again been used here to restrict the algorithm to the graph shown below. Further, the <code class="highlighter-rouge">of</code> syntax has been used to compute the degree for the cluster alone. What is returned from this calculation is a <code class="highlighter-rouge">Map</code> from the degree which is a <code class="highlighter-rouge">long</code> to the ids of the instances that have that degree.</p>
 
-<pre><code class="language-graql">match $x isa cluster; $y ($x);
-</code></pre>
-
 <h2 id="persist-the-degrees">Persist the Degrees</h2>
 
 <p>As we did when computing the clusters, we need to put the information back into the graph. This time we will attach a resource called <code class="highlighter-rouge">degree</code> to the cluster entity. The ontology mutation and persisting of the degrees is performed in a single method:</p>
@@ -1106,7 +1123,7 @@ limit 2;
         <br>
         <p>© 2017 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2017 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> April 2017<br/> Site last generated: Apr 28, 2017 <br />
+        <span>Page last updated:</span> April 2017<br/> Site last generated: May 2, 2017 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">
