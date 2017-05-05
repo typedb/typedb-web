@@ -1059,6 +1059,19 @@ qb.match(var("x").playsRole("has-firstname-owner"));
 </div>
 <p><!-- tab-content --></p>
 
+<h3 id="label">label</h3>
+<p>Allows you to refer to a specific types by its typename. For example:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>match $x isa $type;$type label 'person';
+</code></pre>
+</div>
+
+<p>This is equivalent to the following:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>match $x isa person;
+</code></pre>
+</div>
+
 <h2 id="predicates">Predicates</h2>
 
 <p>A predicate is a boolean function applied to values. If a concept doesn’t have a value, all predicates are considered false.</p>
@@ -1227,7 +1240,7 @@ match $x isa person, has firstname $y; select $y; distinct; limit 10; order by $
         <br>
         <p>© 2017 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2017 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> April 2017<br/> Site last generated: May 2, 2017 <br />
+        <span>Page last updated:</span> April 2017<br/> Site last generated: May 5, 2017 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">

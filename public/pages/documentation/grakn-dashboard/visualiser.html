@@ -827,7 +827,7 @@ $('#toc').on('click', 'a', function() {
 
 <h3 id="make-a-query">Make a Query</h3>
 
-<p>The main pane of your graph will be empty at this point. You can submit queries by typing them into the form in the middle of the top menu bar. You will then need to click ‘&gt;’ to visualise the graph. For example:</p>
+<p>The main pane of your graph will be empty at this point. You can submit queries by typing them into the form in the middle of the top menu bar. You will then need to click ‘&gt;’ (or <em>Enter</em>) to visualise the graph. For example:</p>
 
 <pre><code class="language-graql">match $x isa person, has firstname "John"; 
 </code></pre>
@@ -930,8 +930,8 @@ NEEDS UPDATING
 </code></pre>
 
 <ol>
-  <li>Submit the query by pressing ‘&gt;’ to visualise the graph. The two people in question (Susan Dudley and Barbara Herchelroth) should be shown.</li>
-  <li>Holding down the <em>cmd</em> key, single click on each of the two nodes.</li>
+  <li>Submit the query by pressing ‘&gt;’ (or <em>Enter</em>) to visualise the graph. The two people in question (Susan Dudley and Barbara Herchelroth) should be shown.</li>
+  <li>Holding down the <em>control</em> key, single click on each of the two nodes.</li>
   <li>Right click the mouse to bring up the Query Builder menu, and select <em>Shortest path</em> from the menu.</li>
   <li>The submission form will now contain the shortest path query for those two nodes, for example:</li>
 </ol>
@@ -939,7 +939,7 @@ NEEDS UPDATING
 <pre><code class="language-graql">compute path from "102432" to "192584"; # (The ID values in the strings will be different for each graph)
 </code></pre>
 
-<p>Submit the query as usual by clicking ‘&gt;’ and the graph will display the relations and nodes that connect the two by the shortest path. For Susan Dudley and Barbara Herchelroth, you should discover that Barbara is the great-grandmother of Susan’s husband.</p>
+<p>Submit the query as usual by clicking ‘&gt;’ (or <em>Enter</em>) and the graph will display the relations and nodes that connect the two by the shortest path. For Susan Dudley and Barbara Herchelroth, you should discover that Barbara is the great-grandmother of Susan’s husband.</p>
 
 <p><img src="/images/shortest-path.png" alt="Person query" /></p>
 
@@ -953,7 +953,7 @@ NEEDS UPDATING
 </code></pre>
 
 <ol>
-  <li>Select any two people with surname Niesz (it doesn’t matter who) by single left clicking on two nodes while holding down the <em>cmd</em> key.</li>
+  <li>Select any two people with surname Niesz (it doesn’t matter who) by single left clicking on two nodes while holding down the <em>control</em> key.</li>
   <li>Open the Query Builder menu by right clicking the mouse.</li>
   <li>The submission form will now contain a query for those two nodes, for example:</li>
 </ol>
@@ -961,7 +961,7 @@ NEEDS UPDATING
 <pre><code class="language-graql">match $x id "651472"; $y id "889000"; $r ($x, $y);
 </code></pre>
 
-<p>Submit the query as usual by clicking ‘&gt;’ and the graph will display the relations, and nodes, that connect the two. The visualiser will display the relations between the two nodes you selected (e.g. siblings).</p>
+<p>Submit the query as usual by clicking ‘&gt;’ or <em>Enter</em> and the graph will display the relations, and nodes, that connect the two. The visualiser will display the relations between the two nodes you selected (e.g. siblings).</p>
 
 <h4 id="align-nodes">Align Nodes</h4>
 
@@ -979,8 +979,10 @@ NEEDS UPDATING
 
 <h2 id="tasks">Tasks</h2>
 
+<p>The tasks page is used to monitor the asynchronous tasks run by Grakn engine, and stop them if necessary. Tasks shown are those that perform loading or post processing, which is triggered after loading. It is possible to list, filter, sort and stop tasks.</p>
+
 <h2 id="config">Config</h2>
-<p>Displays a view on the Grakn configuration file.</p>
+<p>This pane displays a view on the Grakn configuration file, showing configurable properties and their values.</p>
 
 <h2 id="documentation">Documentation</h2>
 <p>This opens a separate tab in your browser and points it to the Grakn documentation portal. It may be how you ended up on this page!</p>
@@ -1034,7 +1036,7 @@ NEEDS UPDATING
         <br>
         <p>© 2017 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2017 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> August 10, 2016<br/> Site last generated: May 2, 2017 <br />
+        <span>Page last updated:</span> August 10, 2016<br/> Site last generated: May 5, 2017 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">

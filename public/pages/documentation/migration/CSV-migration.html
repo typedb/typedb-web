@@ -857,13 +857,13 @@ price sub resource datatype double;
 
 <p>And the Graql template, <em>car-migrator.gql</em>:</p>
 
-<pre><code class="language-graql-template">insert 
+<pre><code class="language-graql-template">insert                                                                                                                             
 
-$x isa car 
-  has name &lt;Make&gt;-&lt;Model&gt;
+$x isa car
+  has name @concat(&lt;Make&gt;, "-", &lt;Model&gt;)
   has year &lt;Year&gt;
   has price @double(&lt;Price&gt;)
-  if (ne &lt;Description&gt; null) do { has description &lt;Description&gt;};
+  if (&lt;Description&gt; != "") do { has description &lt;Description&gt;};  
 </code></pre>
 
 <p>The template will create a <code class="highlighter-rouge">car</code> entity for each row. It will attach <code class="highlighter-rouge">year</code> and <code class="highlighter-rouge">price</code> resources to each of these entities. If the <code class="highlighter-rouge">description</code> resource is present in the data, it will attach the appropriate <code class="highlighter-rouge">description</code> to the <code class="highlighter-rouge">car</code>.</p>
@@ -946,7 +946,7 @@ air  moon roof   loaded"  4799.00
         <br>
         <p>© 2017 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2017 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> February 2017<br/> Site last generated: May 2, 2017 <br />
+        <span>Page last updated:</span> February 2017<br/> Site last generated: May 5, 2017 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">
