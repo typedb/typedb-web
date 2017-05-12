@@ -3,9 +3,9 @@
     <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="A guide to setting up GRAKN.AI on Windows.">
-<meta name="keywords" content="getting-started,  setup, getting started, download, GRAKN.AI, Grakn Labs, grakn, graql, grakn.ai, Mindmaps Research, Mindmaps Research Ltd, MindmapsDB, mindmaps, mindmaps graph, mindmaps.io, knowledge graph, distributed knowledge graph, development platform, developer tool, data platform, programming langauge, query langauge, database, semantic database, distributed semantic database, distributed database, graph database, semantic search, data exploration, recommendation system, knowledge management, knowledge engineering, real-time analytics, advanced analytics, reasoning engine, inference engine, expert systems, semantic applications, research engines, data management, business intelligence, big data, semantic web, semantic data, knowledge representation, automated reasoning, semantic network, knowledge ontology, semantic graph, ontology engineering, graph based knowledge representation, artificial intelligence,">
-<title>GRAKN.AI - Using GRAKN.AI on Windows</title>
+<meta name="description" content="Learn how to use the Graph API to model an ontology in Java">
+<meta name="keywords" content="getting-startedexamplesjava,  examples, GRAKN.AI, Grakn Labs, grakn, graql, grakn.ai, Mindmaps Research, Mindmaps Research Ltd, MindmapsDB, mindmaps, mindmaps graph, mindmaps.io, knowledge graph, distributed knowledge graph, development platform, developer tool, data platform, programming langauge, query langauge, database, semantic database, distributed semantic database, distributed database, graph database, semantic search, data exploration, recommendation system, knowledge management, knowledge engineering, real-time analytics, advanced analytics, reasoning engine, inference engine, expert systems, semantic applications, research engines, data management, business intelligence, big data, semantic web, semantic data, knowledge representation, automated reasoning, semantic network, knowledge ontology, semantic graph, ontology engineering, graph based knowledge representation, artificial intelligence,">
+<title>GRAKN.AI - Graph API Example</title>
 <link rel="stylesheet" href="/pages/css/syntax.css">
 
 
@@ -228,7 +228,7 @@
                             
                             dataSource: '/pages/search.json',
                             
-                            searchResultTemplate: '<li><a href="{url}" title="Using GRAKN.AI on Windows">{title}</a></li>',
+                            searchResultTemplate: '<li><a href="{url}" title="Graph API Example">{title}</a></li>',
                             noResultsText: '<li><a class="empty">No results found</a></li>',
                             limit: 10,
                             fuzzy: true
@@ -702,7 +702,7 @@
             
             
             
-            <li><a href="/pages/documentation/examples/graph-api-example.html">Graph API for Java developers</a></li>
+            <li class="active"><a href="/pages/documentation/examples/graph-api-example.html">Graph API for Java developers</a></li>
             
             
             
@@ -748,7 +748,7 @@
         <!-- Content Column -->
         <div class="col-md-9">
             <div class="post-header">
-   <h1 class="post-title-main">Using GRAKN.AI on Windows</h1>
+   <h1 class="post-title-main">Graph API Example</h1>
 </div>
 
 
@@ -756,7 +756,7 @@
 <div class="post-content">
 
    
-    <div class="summary">A guide to setting up GRAKN.AI on Windows.</div>
+    <div class="summary">Learn how to use the Graph API to model an ontology in Java</div>
    
 
     
@@ -788,17 +788,194 @@ $('#toc').on('click', 'a', function() {
 
     
 
-    <a target="_blank" href="https://github.com/graknlabs/docs/blob/master/pages/documentation/10-resources/grakn-on-windows.md" class="btn btn-default githubEditButton" role="button"><i class="fa fa-github fa-lg"></i> Edit me</a>
+    <a target="_blank" href="https://github.com/graknlabs/docs/blob/master/pages/documentation/11-examples/graph-api.md" class="btn btn-default githubEditButton" role="button"><i class="fa fa-github fa-lg"></i> Edit me</a>
 
     
 
     
 
-  <div class="alert alert-danger" role="alert"><i class="fa fa-exclamation-circle"></i> <b>Warning:</b> <strong>Please note that this page is not intended for use at present as there is no official support for Windows, although we expect it to be added later to GRAKN.AI.</strong></div>
+  <p>This example shows how to use Java in a basic example that can be extended as a template for your own projects. It shows how to get set up, then how to build up an ontology, add data and how to make some queries. The example we will build is very simple: it’s based on the genealogy dataset we have used throughout the GRAKN.AI documentation. We have kept it very simple (as close to a Hello World as you can get while still being useful as a template for creating and querying a graph). You can find it in our sample-projects repository on <a href="https://github.com/graknlabs/sample-projects/tree/master/example-graph-api-genealogy">Github</a>.</p>
 
-<h2 id="comments">Comments</h2>
-<p>Want to leave a comment? Visit <a href="https://github.com/graknlabs/docs/issues/25" target="_blank">the issues on Github for this page</a> (you’ll need a GitHub account). You are also welcome to contribute to our documentation directly via the “Edit me” button at the top of the page.</p>
+<h2 id="dependencies">Dependencies</h2>
+<p>All Grakn applications have the following Maven dependency:</p>
 
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="o">&lt;</span><span class="n">dependency</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="n">groupId</span><span class="o">&gt;</span><span class="n">ai</span><span class="o">.</span><span class="na">grakn</span><span class="o">&lt;/</span><span class="n">groupId</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="n">artifactId</span><span class="o">&gt;</span><span class="n">grakn</span><span class="o">-</span><span class="n">graph</span><span class="o">&lt;/</span><span class="n">artifactId</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="n">version</span><span class="o">&gt;</span><span class="err">$</span><span class="o">{</span><span class="n">project</span><span class="o">.</span><span class="na">version</span><span class="o">}&lt;/</span><span class="n">version</span><span class="o">&gt;</span>
+<span class="o">&lt;/</span><span class="n">dependency</span><span class="o">&gt;</span>
+</code></pre>
+</div>
+
+<p>This dependency will give you access to the Core API. Your Java application will also require the following dependency when it is running against a Titan backend, which is what is configured for you by default:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="o">&lt;</span><span class="n">dependency</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="n">groupId</span><span class="o">&gt;</span><span class="n">ai</span><span class="o">.</span><span class="na">grakn</span><span class="o">&lt;/</span><span class="n">groupId</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="n">artifactId</span><span class="o">&gt;</span><span class="n">titan</span><span class="o">-</span><span class="n">factory</span><span class="o">&lt;/</span><span class="n">artifactId</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="n">version</span><span class="o">&gt;</span><span class="err">$</span><span class="o">{</span><span class="n">project</span><span class="o">.</span><span class="na">version</span><span class="o">}&lt;/</span><span class="n">version</span><span class="o">&gt;</span>
+<span class="o">&lt;/</span><span class="n">dependency</span><span class="o">&gt;</span>
+</code></pre>
+</div>
+
+<p>If you want your server to run against a OrientDB backend instead, substitute <code class="highlighter-rouge">orientdb-factory</code> within <code class="highlighter-rouge">&lt;artifactId&gt;&lt;/artifactId&gt;</code> instead of <code class="highlighter-rouge">titan-factory</code>. Please note that, at this time, OrientDB support is still in early stages of development.</p>
+
+<h3 id="grakn-engine">Grakn Engine</h3>
+
+<p>First, make sure that you have an instance of Grakn engine running, which means that you need to run the following in the terminal:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="nb">cd</span> <span class="o">[</span>your Grakn install directory]
+./bin/grakn.sh start
+</code></pre>
+</div>
+
+<h2 id="graph-api-grakngraph">Graph API: GraknGraph</h2>
+
+<p>The Graph API, <code class="highlighter-rouge">GraknGraph</code>, is a low-level API that encapsulates the <a href="../the-fundamentals/grakn-knowledge-model.html">Grakn knowledge model</a>. It provides Java object constructs for the Grakn ontological elements (entity types, relation types, etc.) and data instances (entities, relations, etc.), allowing you to build up a graph programmatically. It is also possible to perform simple concept lookups using the graph API, which I’ll illustrate presently. First, let’s look at building up the graph.</p>
+
+<h3 id="building-theontology">Building the Ontology</h3>
+
+<p>We will look at the same ontology as is covered in the <a href="../building-an-ontology/basic-ontology.html">Basic Ontology documentation</a> using Graql, which you may already be familiar with. If you’re not, the ontology is fully specified in Graql <a href="../building-an-ontology/basic-ontology.html#the-complete-ontology">here</a>.</p>
+
+<p>First we need a <a href="../developing-with-java/java-setup.html#initialising-a-transaction-on-the-graph">graph</a>:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">GraknSession</span> <span class="n">session</span> <span class="o">=</span> <span class="n">Grakn</span><span class="o">.</span><span class="na">session</span><span class="o">(</span><span class="n">Grakn</span><span class="o">.</span><span class="na">DEFAULT_URI</span><span class="o">,</span> <span class="n">keyspace</span><span class="o">);</span>
+<span class="n">GraknGraph</span> <span class="n">graph</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="na">open</span><span class="o">(</span><span class="n">GraknTxType</span><span class="o">.</span><span class="na">WRITE</span><span class="o">)</span>
+</code></pre>
+</div>
+
+<p>Building the ontology is covered in <code class="highlighter-rouge">writeOntology()</code>. First, the method adds the resource types using putResourceType():</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">identifier</span> <span class="o">=</span> <span class="n">graph</span><span class="o">.</span><span class="na">putResourceType</span><span class="o">(</span><span class="s">"identifier"</span><span class="o">,</span> <span class="n">ResourceType</span><span class="o">.</span><span class="na">DataType</span><span class="o">.</span><span class="na">STRING</span><span class="o">);</span>
+<span class="n">name</span> <span class="o">=</span> <span class="n">graph</span><span class="o">.</span><span class="na">putResourceType</span><span class="o">(</span><span class="s">"name"</span><span class="o">,</span> <span class="n">ResourceType</span><span class="o">.</span><span class="na">DataType</span><span class="o">.</span><span class="na">STRING</span><span class="o">);</span>
+<span class="n">firstname</span> <span class="o">=</span> <span class="n">graph</span><span class="o">.</span><span class="na">putResourceType</span><span class="o">(</span><span class="s">"firstname"</span><span class="o">,</span> <span class="n">ResourceType</span><span class="o">.</span><span class="na">DataType</span><span class="o">.</span><span class="na">STRING</span><span class="o">).</span><span class="na">superType</span><span class="o">(</span><span class="n">name</span><span class="o">);</span>
+<span class="n">surname</span> <span class="o">=</span> <span class="n">graph</span><span class="o">.</span><span class="na">putResourceType</span><span class="o">(</span><span class="s">"surname"</span><span class="o">,</span> <span class="n">ResourceType</span><span class="o">.</span><span class="na">DataType</span><span class="o">.</span><span class="na">STRING</span><span class="o">).</span><span class="na">superType</span><span class="o">(</span><span class="n">name</span><span class="o">);</span>
+<span class="n">middlename</span> <span class="o">=</span> <span class="n">graph</span><span class="o">.</span><span class="na">putResourceType</span><span class="o">(</span><span class="s">"middlename"</span><span class="o">,</span> <span class="n">ResourceType</span><span class="o">.</span><span class="na">DataType</span><span class="o">.</span><span class="na">STRING</span><span class="o">).</span><span class="na">superType</span><span class="o">(</span><span class="n">name</span><span class="o">);</span>
+<span class="n">date</span> <span class="o">=</span> <span class="n">graph</span><span class="o">.</span><span class="na">putResourceType</span><span class="o">(</span><span class="s">"date"</span><span class="o">,</span> <span class="n">ResourceType</span><span class="o">.</span><span class="na">DataType</span><span class="o">.</span><span class="na">STRING</span><span class="o">);</span>
+<span class="n">birthDate</span> <span class="o">=</span> <span class="n">graph</span><span class="o">.</span><span class="na">putResourceType</span><span class="o">(</span><span class="s">"birth-date"</span><span class="o">,</span> <span class="n">ResourceType</span><span class="o">.</span><span class="na">DataType</span><span class="o">.</span><span class="na">STRING</span><span class="o">).</span><span class="na">superType</span><span class="o">(</span><span class="n">date</span><span class="o">);</span>
+<span class="n">deathDate</span> <span class="o">=</span> <span class="n">graph</span><span class="o">.</span><span class="na">putResourceType</span><span class="o">(</span><span class="s">"death-date"</span><span class="o">,</span> <span class="n">ResourceType</span><span class="o">.</span><span class="na">DataType</span><span class="o">.</span><span class="na">STRING</span><span class="o">).</span><span class="na">superType</span><span class="o">(</span><span class="n">date</span><span class="o">);</span>
+<span class="n">gender</span> <span class="o">=</span> <span class="n">graph</span><span class="o">.</span><span class="na">putResourceType</span><span class="o">(</span><span class="s">"gender"</span><span class="o">,</span> <span class="n">ResourceType</span><span class="o">.</span><span class="na">DataType</span><span class="o">.</span><span class="na">STRING</span><span class="o">);</span>
+</code></pre>
+</div>
+
+<p>Then it adds roles using <code class="highlighter-rouge">putRoleType()</code>:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">spouse</span> <span class="o">=</span> <span class="n">graph</span><span class="o">.</span><span class="na">putRoleType</span><span class="o">(</span><span class="s">"spouse"</span><span class="o">).</span><span class="na">setAbstract</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>
+<span class="n">spouse1</span> <span class="o">=</span> <span class="n">graph</span><span class="o">.</span><span class="na">putRoleType</span><span class="o">(</span><span class="s">"spouse1"</span><span class="o">).</span><span class="na">superType</span><span class="o">(</span><span class="n">spouse</span><span class="o">);</span>
+<span class="n">spouse2</span> <span class="o">=</span> <span class="n">graph</span><span class="o">.</span><span class="na">putRoleType</span><span class="o">(</span><span class="s">"spouse2"</span><span class="o">).</span><span class="na">superType</span><span class="o">(</span><span class="n">spouse</span><span class="o">);</span>
+<span class="n">parent</span> <span class="o">=</span> <span class="n">graph</span><span class="o">.</span><span class="na">putRoleType</span><span class="o">(</span><span class="s">"parent"</span><span class="o">);</span>
+<span class="n">child</span> <span class="o">=</span> <span class="n">graph</span><span class="o">.</span><span class="na">putRoleType</span><span class="o">(</span><span class="s">"child"</span><span class="o">);</span>
+</code></pre>
+</div>
+
+<p>Then to add the relation types, <code class="highlighter-rouge">putRelationType()</code>, which is followed by <code class="highlighter-rouge">relates()</code> to set the roles associated with the relation and resource() to state that it has a date resource:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">marriage</span> <span class="o">=</span> <span class="n">graph</span><span class="o">.</span><span class="na">putRelationType</span><span class="o">(</span><span class="s">"marriage"</span><span class="o">);</span>
+<span class="n">marriage</span><span class="o">.</span><span class="na">relates</span><span class="o">(</span><span class="n">spouse1</span><span class="o">).</span><span class="na">relates</span><span class="o">(</span><span class="n">spouse2</span><span class="o">);</span>
+<span class="n">marriage</span><span class="o">.</span><span class="na">resource</span><span class="o">(</span><span class="n">date</span><span class="o">);</span>
+<span class="n">parentship</span> <span class="o">=</span> <span class="n">graph</span><span class="o">.</span><span class="na">putRelationType</span><span class="o">(</span><span class="s">"parentship"</span><span class="o">);</span>
+<span class="n">parentship</span><span class="o">.</span><span class="na">relates</span><span class="o">(</span><span class="n">parent</span><span class="o">).</span><span class="na">relates</span><span class="o">(</span><span class="n">child</span><span class="o">);</span>
+</code></pre>
+</div>
+
+<p>Finally, entity types are added using <code class="highlighter-rouge">putEntityType()</code>, <code class="highlighter-rouge">plays()</code> and <code class="highlighter-rouge">resource()</code>:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">person</span> <span class="o">=</span> <span class="n">graph</span><span class="o">.</span><span class="na">putEntityType</span><span class="o">(</span><span class="s">"person"</span><span class="o">);</span>
+<span class="n">person</span><span class="o">.</span><span class="na">plays</span><span class="o">(</span><span class="n">spouse1</span><span class="o">).</span><span class="na">plays</span><span class="o">(</span><span class="n">spouse2</span><span class="o">).</span><span class="na">plays</span><span class="o">(</span><span class="n">parent</span><span class="o">).</span><span class="na">plays</span><span class="o">(</span><span class="n">child</span><span class="o">);</span>
+<span class="n">person</span><span class="o">.</span><span class="na">resource</span><span class="o">(</span><span class="n">gender</span><span class="o">);</span>
+<span class="n">person</span><span class="o">.</span><span class="na">resource</span><span class="o">(</span><span class="n">birthDate</span><span class="o">);</span>
+<span class="n">person</span><span class="o">.</span><span class="na">resource</span><span class="o">(</span><span class="n">deathDate</span><span class="o">);</span>
+<span class="n">person</span><span class="o">.</span><span class="na">resource</span><span class="o">(</span><span class="n">identifier</span><span class="o">);</span>
+<span class="n">person</span><span class="o">.</span><span class="na">resource</span><span class="o">(</span><span class="n">firstname</span><span class="o">);</span>
+<span class="n">person</span><span class="o">.</span><span class="na">resource</span><span class="o">(</span><span class="n">middlename</span><span class="o">);</span>
+<span class="n">person</span><span class="o">.</span><span class="na">resource</span><span class="o">(</span><span class="n">surname</span><span class="o">);</span>
+</code></pre>
+</div>
+
+<p>Now to commit the ontology:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">graph</span><span class="o">.</span><span class="na">commit</span><span class="o">();</span>
+</code></pre>
+</div>
+
+<h3 id="loading-data">Loading Data</h3>
+<p>Now that we have created the ontology, we can load in some data using the Graph API.</p>
+
+<p>The example project does this in <code class="highlighter-rouge">writeSampleRelation_Marriage()</code>. First it creates a person entity named homer:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="c1">// Define the resources</span>
+<span class="n">Resource</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">firstNameJohn</span> <span class="o">=</span> <span class="n">firstname</span><span class="o">.</span><span class="na">putResource</span><span class="o">(</span><span class="err">“</span><span class="n">John</span><span class="err">”</span><span class="o">);</span>
+<span class="n">Resource</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">surnameNiesz</span> <span class="o">=</span> <span class="n">surname</span><span class="o">.</span><span class="na">putResource</span><span class="o">(</span><span class="err">“</span><span class="n">Niesz</span><span class="err">”</span><span class="o">);</span>
+<span class="n">Resource</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">male</span> <span class="o">=</span> <span class="n">gender</span><span class="o">.</span><span class="na">putResource</span><span class="o">(</span><span class="err">“</span><span class="n">Male</span><span class="err">”</span><span class="o">);</span>
+<span class="c1">//Now we can create the actual husband entity</span>
+<span class="n">Entity</span> <span class="n">johnNiesz</span> <span class="o">=</span> <span class="n">person</span><span class="o">.</span><span class="na">addEntity</span><span class="o">();</span>
+<span class="c1">//Add the resources</span>
+<span class="n">johnNiesz</span><span class="o">.</span><span class="na">resource</span><span class="o">(</span><span class="n">firstNameJohn</span><span class="o">);</span>
+<span class="n">johnNiesz</span><span class="o">.</span><span class="na">resource</span><span class="o">(</span><span class="n">surnameNiesz</span><span class="o">);</span>
+<span class="n">johnNiesz</span><span class="o">.</span><span class="na">resource</span><span class="o">(</span><span class="n">male</span><span class="o">);</span>
+</code></pre>
+</div>
+
+<p>We can compare how a Graql statement maps to the Graph API. This is the equivalent in Graql:</p>
+
+<pre><code class="language-graql">insert $x isa person has firstname “John”, has surname “Niesz” has gender “male”;
+</code></pre>
+
+<p>The code goes on to create another <code class="highlighter-rouge">person</code> entity, named <code class="highlighter-rouge">maryYoung</code>, and then marries them:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">Relation</span> <span class="n">theMarriage</span> <span class="o">=</span> <span class="n">marriage</span><span class="o">.</span><span class="na">addRelation</span><span class="o">().</span><span class="na">addRolePlayer</span><span class="o">(</span><span class="n">spouse1</span><span class="o">,</span> <span class="n">johnNiesz</span><span class="o">).</span><span class="na">addRolePlayer</span><span class="o">(</span><span class="n">spouse2</span><span class="o">,</span> <span class="n">maryYoung</span><span class="o">);</span>
+<span class="n">Resource</span> <span class="n">marriageDate</span> <span class="o">=</span> <span class="n">date</span><span class="o">.</span><span class="na">putResource</span><span class="o">(</span><span class="s">"12/08/1880"</span><span class="o">);</span>
+<span class="n">theMarriage</span><span class="o">.</span><span class="na">resource</span><span class="o">(</span><span class="n">marriageDate</span><span class="o">);</span>
+</code></pre>
+</div>
+
+<h2 id="querying-the-graph-using-grakngraph">Querying the Graph Using GraknGraph</h2>
+
+<p>The <code class="highlighter-rouge">runSampleQueries()</code> method shows how to run a simple query using the <code class="highlighter-rouge">GraknGraph</code> API. For example, take the query “What are the instances of type person?”. In Graql, this is simply:</p>
+
+<pre><code class="language-graql">match $x isa person;
+</code></pre>
+
+<p>In Java:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">graph</span><span class="o">.</span><span class="na">getEntityType</span><span class="o">(</span><span class="err">“</span><span class="n">person</span><span class="err">”</span><span class="o">).</span><span class="na">instances</span><span class="o">().</span><span class="na">forEach</span><span class="o">(</span><span class="n">p</span><span class="o">-&gt;</span><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="err">“</span> <span class="err">“</span> <span class="o">+</span> <span class="n">p</span><span class="o">));</span>
+</code></pre>
+</div>
+
+<h2 id="querying-the-graph-using-querybuilder">Querying the Graph Using QueryBuilder</h2>
+
+<p>It is also possible to interact with the graph using a separate Java API that forms Graql queries. This is via <code class="highlighter-rouge">GraknGraph.graql()</code>, which returns a <code class="highlighter-rouge">QueryBuilder</code> object, discussed in the documentation. It is useful to use <code class="highlighter-rouge">QueryBuilder</code> if you want to make queries using Java, without having to construct a string containing the appropriate Graql expression. Taking the same query “What are the instances of type person?”:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">graph</span><span class="o">.</span><span class="na">graql</span><span class="o">().</span><span class="na">match</span><span class="o">(</span><span class="n">var</span><span class="o">(</span><span class="err">“</span><span class="n">x</span><span class="err">”</span><span class="o">).</span><span class="na">isa</span><span class="o">(</span><span class="err">“</span><span class="n">person</span><span class="err">”</span><span class="o">)).</span><span class="na">execute</span><span class="o">().</span><span class="na">stream</span><span class="o">().</span>
+  <span class="n">map</span><span class="o">(</span><span class="nl">Map:</span><span class="o">:</span><span class="n">entrySet</span><span class="o">).</span><span class="na">forEach</span><span class="o">(</span><span class="n">p</span><span class="o">-&gt;</span><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="err">“</span> <span class="err">“</span> <span class="o">+</span> <span class="n">p</span><span class="o">));</span>
+</code></pre>
+</div>
+
+<p>Which leads us to the common question…</p>
+
+<h2 id="when-to-use-grakngraph-and-when-to-use-querybuilder">When to use GraknGraph and when to use QueryBuilder?</h2>
+
+<p><strong>Graph API</strong>
+If you are primarily interested in mutating the graph, as well as doing simple concept lookups the Graph API will be sufficient, e.g. for
+Manipulation, such as insertions into the graph.</p>
+
+<p><strong>QueryBuilder — the “Java Graql” API</strong>
+This is best for advanced querying where traversals are involved. For example “Who is married to Homer?” is too complex a query for the Graph API. Using a <code class="highlighter-rouge">QueryBuilder</code>:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">List</span><span class="o">&lt;</span><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Concept</span><span class="o">&gt;&gt;</span> <span class="n">results</span> <span class="o">=</span> <span class="n">graph</span><span class="o">.</span><span class="na">graql</span><span class="o">().</span><span class="na">match</span><span class="o">(</span>
+  <span class="n">var</span><span class="o">(</span><span class="err">“</span><span class="n">x</span><span class="err">”</span><span class="o">).</span><span class="na">has</span><span class="o">(</span><span class="err">“</span><span class="n">firstname</span><span class="err">”</span><span class="o">,</span> <span class="err">“</span><span class="n">John</span><span class="err">”</span><span class="o">).</span><span class="na">isa</span><span class="o">(</span><span class="err">“</span><span class="n">person</span><span class="err">”</span><span class="o">),</span>
+  <span class="n">var</span><span class="o">(</span><span class="err">“</span><span class="n">y</span><span class="err">”</span><span class="o">).</span><span class="na">has</span><span class="o">(</span><span class="err">“</span><span class="n">firstname</span><span class="err">”</span><span class="o">,</span> <span class="n">var</span><span class="o">(</span><span class="err">“</span><span class="n">y_name</span><span class="err">”</span><span class="o">)).</span><span class="na">isa</span><span class="o">(</span><span class="err">“</span><span class="n">person</span><span class="err">”</span><span class="o">),</span>
+  <span class="n">var</span><span class="o">().</span><span class="na">isa</span><span class="o">(</span><span class="err">“</span><span class="n">marriage</span><span class="err">”</span><span class="o">).</span>
+  <span class="n">rel</span><span class="o">(</span><span class="err">“</span><span class="n">husband</span><span class="err">”</span><span class="o">,</span> <span class="err">“</span><span class="n">x</span><span class="err">”</span><span class="o">).</span>
+  <span class="n">rel</span><span class="o">(</span><span class="err">“</span><span class="n">wife</span><span class="err">”</span><span class="o">,</span> <span class="err">“</span><span class="n">y</span><span class="err">”</span><span class="o">)).</span><span class="na">execute</span><span class="o">();</span>
+<span class="k">for</span> <span class="o">(</span><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Concept</span><span class="o">&gt;</span> <span class="n">result</span> <span class="o">:</span> <span class="n">results</span><span class="o">)</span> <span class="o">{</span>
+  <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="err">“</span> <span class="err">“</span> <span class="o">+</span> <span class="n">result</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="err">“</span><span class="n">y_name</span><span class="err">”</span><span class="o">));</span>
+</code></pre>
+</div>
+
+<p>This example has been created, as much as anything, as a template that you can take to form the basis of your own projects. Feel free to add some more people to the graph, or make some additional queries. If you need some ideas, you’ll find extra examples of using Java Graql in the Graql documentation for match, insert, delete and aggregate queries.</p>
+
+<h2 id="where-next">Where Next?</h2>
+<p>If you haven’t already, please take a look at our <a href="../developing-with-java/java-setup.html">documentation on the Java APIs</a>, and our growing set of <a href="https://grakn.ai/javadocs.html">Javadocs</a>.</p>
 
 
     <div class="tags">
@@ -808,6 +985,14 @@ $('#toc').on('click', 'a', function() {
         
         
         <a href="/pages/tag_getting-started.html" class="btn btn-default navbar-btn cursorNorm" role="button">getting-started</a>
+        
+        
+        
+        <a href="/pages/tag_examples.html" class="btn btn-default navbar-btn cursorNorm" role="button">examples</a>
+        
+        
+        
+        <a href="/pages/tag_java.html" class="btn btn-default navbar-btn cursorNorm" role="button">java</a>
         
         
         
@@ -838,7 +1023,7 @@ $('#toc').on('click', 'a', function() {
         <br>
         <p>© 2017 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2017 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> December 2016<br/> Site last generated: May 12, 2017 <br />
+        <span>Page last updated:</span> May 2017<br/> Site last generated: May 12, 2017 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">
