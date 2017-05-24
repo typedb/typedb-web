@@ -799,7 +799,7 @@ $('#toc').on('click', 'a', function() {
 <h2 id="dependencies">Dependencies</h2>
 <p>All Grakn applications have the following Maven dependency:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="o">&lt;</span><span class="n">dependency</span><span class="o">&gt;</span>
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="o">&lt;</span><span class="n">dependency</span><span class="o">&gt;</span>
 <span class="o">&lt;</span><span class="n">groupId</span><span class="o">&gt;</span><span class="n">ai</span><span class="o">.</span><span class="na">grakn</span><span class="o">&lt;/</span><span class="n">groupId</span><span class="o">&gt;</span>
 <span class="o">&lt;</span><span class="n">artifactId</span><span class="o">&gt;</span><span class="n">grakn</span><span class="o">-</span><span class="n">graph</span><span class="o">&lt;/</span><span class="n">artifactId</span><span class="o">&gt;</span>
 <span class="o">&lt;</span><span class="n">version</span><span class="o">&gt;</span><span class="err">$</span><span class="o">{</span><span class="n">project</span><span class="o">.</span><span class="na">version</span><span class="o">}&lt;/</span><span class="n">version</span><span class="o">&gt;</span>
@@ -809,7 +809,7 @@ $('#toc').on('click', 'a', function() {
 
 <p>This dependency will give you access to the Core API. Your Java application will also require the following dependency when it is running against a Titan backend, which is what is configured for you by default:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="o">&lt;</span><span class="n">dependency</span><span class="o">&gt;</span>
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="o">&lt;</span><span class="n">dependency</span><span class="o">&gt;</span>
 <span class="o">&lt;</span><span class="n">groupId</span><span class="o">&gt;</span><span class="n">ai</span><span class="o">.</span><span class="na">grakn</span><span class="o">&lt;/</span><span class="n">groupId</span><span class="o">&gt;</span>
 <span class="o">&lt;</span><span class="n">artifactId</span><span class="o">&gt;</span><span class="n">titan</span><span class="o">-</span><span class="n">factory</span><span class="o">&lt;/</span><span class="n">artifactId</span><span class="o">&gt;</span>
 <span class="o">&lt;</span><span class="n">version</span><span class="o">&gt;</span><span class="err">$</span><span class="o">{</span><span class="n">project</span><span class="o">.</span><span class="na">version</span><span class="o">}&lt;/</span><span class="n">version</span><span class="o">&gt;</span>
@@ -823,7 +823,7 @@ $('#toc').on('click', 'a', function() {
 
 <p>First, make sure that you have an instance of Grakn engine running, which means that you need to run the following in the terminal:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="nb">cd</span> <span class="o">[</span>your Grakn install directory]
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="nb">cd</span> <span class="o">[</span>your Grakn install directory]
 ./bin/grakn.sh start
 </code></pre>
 </div>
@@ -838,14 +838,14 @@ $('#toc').on('click', 'a', function() {
 
 <p>First we need a <a href="../developing-with-java/java-setup.html#initialising-a-transaction-on-the-graph">graph</a>:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">GraknSession</span> <span class="n">session</span> <span class="o">=</span> <span class="n">Grakn</span><span class="o">.</span><span class="na">session</span><span class="o">(</span><span class="n">Grakn</span><span class="o">.</span><span class="na">DEFAULT_URI</span><span class="o">,</span> <span class="n">keyspace</span><span class="o">);</span>
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">GraknSession</span> <span class="n">session</span> <span class="o">=</span> <span class="n">Grakn</span><span class="o">.</span><span class="na">session</span><span class="o">(</span><span class="n">Grakn</span><span class="o">.</span><span class="na">DEFAULT_URI</span><span class="o">,</span> <span class="n">keyspace</span><span class="o">);</span>
 <span class="n">GraknGraph</span> <span class="n">graph</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="na">open</span><span class="o">(</span><span class="n">GraknTxType</span><span class="o">.</span><span class="na">WRITE</span><span class="o">)</span>
 </code></pre>
 </div>
 
 <p>Building the ontology is covered in <code class="highlighter-rouge">writeOntology()</code>. First, the method adds the resource types using putResourceType():</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">identifier</span> <span class="o">=</span> <span class="n">graph</span><span class="o">.</span><span class="na">putResourceType</span><span class="o">(</span><span class="s">"identifier"</span><span class="o">,</span> <span class="n">ResourceType</span><span class="o">.</span><span class="na">DataType</span><span class="o">.</span><span class="na">STRING</span><span class="o">);</span>
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">identifier</span> <span class="o">=</span> <span class="n">graph</span><span class="o">.</span><span class="na">putResourceType</span><span class="o">(</span><span class="s">"identifier"</span><span class="o">,</span> <span class="n">ResourceType</span><span class="o">.</span><span class="na">DataType</span><span class="o">.</span><span class="na">STRING</span><span class="o">);</span>
 <span class="n">name</span> <span class="o">=</span> <span class="n">graph</span><span class="o">.</span><span class="na">putResourceType</span><span class="o">(</span><span class="s">"name"</span><span class="o">,</span> <span class="n">ResourceType</span><span class="o">.</span><span class="na">DataType</span><span class="o">.</span><span class="na">STRING</span><span class="o">);</span>
 <span class="n">firstname</span> <span class="o">=</span> <span class="n">graph</span><span class="o">.</span><span class="na">putResourceType</span><span class="o">(</span><span class="s">"firstname"</span><span class="o">,</span> <span class="n">ResourceType</span><span class="o">.</span><span class="na">DataType</span><span class="o">.</span><span class="na">STRING</span><span class="o">).</span><span class="na">superType</span><span class="o">(</span><span class="n">name</span><span class="o">);</span>
 <span class="n">surname</span> <span class="o">=</span> <span class="n">graph</span><span class="o">.</span><span class="na">putResourceType</span><span class="o">(</span><span class="s">"surname"</span><span class="o">,</span> <span class="n">ResourceType</span><span class="o">.</span><span class="na">DataType</span><span class="o">.</span><span class="na">STRING</span><span class="o">).</span><span class="na">superType</span><span class="o">(</span><span class="n">name</span><span class="o">);</span>
@@ -859,7 +859,7 @@ $('#toc').on('click', 'a', function() {
 
 <p>Then it adds roles using <code class="highlighter-rouge">putRoleType()</code>:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">spouse</span> <span class="o">=</span> <span class="n">graph</span><span class="o">.</span><span class="na">putRoleType</span><span class="o">(</span><span class="s">"spouse"</span><span class="o">).</span><span class="na">setAbstract</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">spouse</span> <span class="o">=</span> <span class="n">graph</span><span class="o">.</span><span class="na">putRoleType</span><span class="o">(</span><span class="s">"spouse"</span><span class="o">).</span><span class="na">setAbstract</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>
 <span class="n">spouse1</span> <span class="o">=</span> <span class="n">graph</span><span class="o">.</span><span class="na">putRoleType</span><span class="o">(</span><span class="s">"spouse1"</span><span class="o">).</span><span class="na">superType</span><span class="o">(</span><span class="n">spouse</span><span class="o">);</span>
 <span class="n">spouse2</span> <span class="o">=</span> <span class="n">graph</span><span class="o">.</span><span class="na">putRoleType</span><span class="o">(</span><span class="s">"spouse2"</span><span class="o">).</span><span class="na">superType</span><span class="o">(</span><span class="n">spouse</span><span class="o">);</span>
 <span class="n">parent</span> <span class="o">=</span> <span class="n">graph</span><span class="o">.</span><span class="na">putRoleType</span><span class="o">(</span><span class="s">"parent"</span><span class="o">);</span>
@@ -869,7 +869,7 @@ $('#toc').on('click', 'a', function() {
 
 <p>Then to add the relation types, <code class="highlighter-rouge">putRelationType()</code>, which is followed by <code class="highlighter-rouge">relates()</code> to set the roles associated with the relation and resource() to state that it has a date resource:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">marriage</span> <span class="o">=</span> <span class="n">graph</span><span class="o">.</span><span class="na">putRelationType</span><span class="o">(</span><span class="s">"marriage"</span><span class="o">);</span>
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">marriage</span> <span class="o">=</span> <span class="n">graph</span><span class="o">.</span><span class="na">putRelationType</span><span class="o">(</span><span class="s">"marriage"</span><span class="o">);</span>
 <span class="n">marriage</span><span class="o">.</span><span class="na">relates</span><span class="o">(</span><span class="n">spouse1</span><span class="o">).</span><span class="na">relates</span><span class="o">(</span><span class="n">spouse2</span><span class="o">);</span>
 <span class="n">marriage</span><span class="o">.</span><span class="na">resource</span><span class="o">(</span><span class="n">date</span><span class="o">);</span>
 <span class="n">parentship</span> <span class="o">=</span> <span class="n">graph</span><span class="o">.</span><span class="na">putRelationType</span><span class="o">(</span><span class="s">"parentship"</span><span class="o">);</span>
@@ -879,7 +879,7 @@ $('#toc').on('click', 'a', function() {
 
 <p>Finally, entity types are added using <code class="highlighter-rouge">putEntityType()</code>, <code class="highlighter-rouge">plays()</code> and <code class="highlighter-rouge">resource()</code>:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">person</span> <span class="o">=</span> <span class="n">graph</span><span class="o">.</span><span class="na">putEntityType</span><span class="o">(</span><span class="s">"person"</span><span class="o">);</span>
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">person</span> <span class="o">=</span> <span class="n">graph</span><span class="o">.</span><span class="na">putEntityType</span><span class="o">(</span><span class="s">"person"</span><span class="o">);</span>
 <span class="n">person</span><span class="o">.</span><span class="na">plays</span><span class="o">(</span><span class="n">spouse1</span><span class="o">).</span><span class="na">plays</span><span class="o">(</span><span class="n">spouse2</span><span class="o">).</span><span class="na">plays</span><span class="o">(</span><span class="n">parent</span><span class="o">).</span><span class="na">plays</span><span class="o">(</span><span class="n">child</span><span class="o">);</span>
 <span class="n">person</span><span class="o">.</span><span class="na">resource</span><span class="o">(</span><span class="n">gender</span><span class="o">);</span>
 <span class="n">person</span><span class="o">.</span><span class="na">resource</span><span class="o">(</span><span class="n">birthDate</span><span class="o">);</span>
@@ -893,7 +893,7 @@ $('#toc').on('click', 'a', function() {
 
 <p>Now to commit the ontology:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">graph</span><span class="o">.</span><span class="na">commit</span><span class="o">();</span>
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">graph</span><span class="o">.</span><span class="na">commit</span><span class="o">();</span>
 </code></pre>
 </div>
 
@@ -902,7 +902,7 @@ $('#toc').on('click', 'a', function() {
 
 <p>The example project does this in <code class="highlighter-rouge">writeSampleRelation_Marriage()</code>. First it creates a person entity named homer:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="c1">// Define the resources</span>
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="c1">// Define the resources</span>
 <span class="n">Resource</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">firstNameJohn</span> <span class="o">=</span> <span class="n">firstname</span><span class="o">.</span><span class="na">putResource</span><span class="o">(</span><span class="err">“</span><span class="n">John</span><span class="err">”</span><span class="o">);</span>
 <span class="n">Resource</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">surnameNiesz</span> <span class="o">=</span> <span class="n">surname</span><span class="o">.</span><span class="na">putResource</span><span class="o">(</span><span class="err">“</span><span class="n">Niesz</span><span class="err">”</span><span class="o">);</span>
 <span class="n">Resource</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">male</span> <span class="o">=</span> <span class="n">gender</span><span class="o">.</span><span class="na">putResource</span><span class="o">(</span><span class="err">“</span><span class="n">Male</span><span class="err">”</span><span class="o">);</span>
@@ -922,7 +922,7 @@ $('#toc').on('click', 'a', function() {
 
 <p>The code goes on to create another <code class="highlighter-rouge">person</code> entity, named <code class="highlighter-rouge">maryYoung</code>, and then marries them:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">Relation</span> <span class="n">theMarriage</span> <span class="o">=</span> <span class="n">marriage</span><span class="o">.</span><span class="na">addRelation</span><span class="o">().</span><span class="na">addRolePlayer</span><span class="o">(</span><span class="n">spouse1</span><span class="o">,</span> <span class="n">johnNiesz</span><span class="o">).</span><span class="na">addRolePlayer</span><span class="o">(</span><span class="n">spouse2</span><span class="o">,</span> <span class="n">maryYoung</span><span class="o">);</span>
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">Relation</span> <span class="n">theMarriage</span> <span class="o">=</span> <span class="n">marriage</span><span class="o">.</span><span class="na">addRelation</span><span class="o">().</span><span class="na">addRolePlayer</span><span class="o">(</span><span class="n">spouse1</span><span class="o">,</span> <span class="n">johnNiesz</span><span class="o">).</span><span class="na">addRolePlayer</span><span class="o">(</span><span class="n">spouse2</span><span class="o">,</span> <span class="n">maryYoung</span><span class="o">);</span>
 <span class="n">Resource</span> <span class="n">marriageDate</span> <span class="o">=</span> <span class="n">date</span><span class="o">.</span><span class="na">putResource</span><span class="o">(</span><span class="s">"12/08/1880"</span><span class="o">);</span>
 <span class="n">theMarriage</span><span class="o">.</span><span class="na">resource</span><span class="o">(</span><span class="n">marriageDate</span><span class="o">);</span>
 </code></pre>
@@ -937,7 +937,7 @@ $('#toc').on('click', 'a', function() {
 
 <p>In Java:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">graph</span><span class="o">.</span><span class="na">getEntityType</span><span class="o">(</span><span class="err">“</span><span class="n">person</span><span class="err">”</span><span class="o">).</span><span class="na">instances</span><span class="o">().</span><span class="na">forEach</span><span class="o">(</span><span class="n">p</span><span class="o">-&gt;</span><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="err">“</span> <span class="err">“</span> <span class="o">+</span> <span class="n">p</span><span class="o">));</span>
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">graph</span><span class="o">.</span><span class="na">getEntityType</span><span class="o">(</span><span class="err">“</span><span class="n">person</span><span class="err">”</span><span class="o">).</span><span class="na">instances</span><span class="o">().</span><span class="na">forEach</span><span class="o">(</span><span class="n">p</span><span class="o">-&gt;</span><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="err">“</span> <span class="err">“</span> <span class="o">+</span> <span class="n">p</span><span class="o">));</span>
 </code></pre>
 </div>
 
@@ -945,7 +945,7 @@ $('#toc').on('click', 'a', function() {
 
 <p>It is also possible to interact with the graph using a separate Java API that forms Graql queries. This is via <code class="highlighter-rouge">GraknGraph.graql()</code>, which returns a <code class="highlighter-rouge">QueryBuilder</code> object, discussed in the documentation. It is useful to use <code class="highlighter-rouge">QueryBuilder</code> if you want to make queries using Java, without having to construct a string containing the appropriate Graql expression. Taking the same query “What are the instances of type person?”:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">graph</span><span class="o">.</span><span class="na">graql</span><span class="o">().</span><span class="na">match</span><span class="o">(</span><span class="n">var</span><span class="o">(</span><span class="err">“</span><span class="n">x</span><span class="err">”</span><span class="o">).</span><span class="na">isa</span><span class="o">(</span><span class="err">“</span><span class="n">person</span><span class="err">”</span><span class="o">)).</span><span class="na">execute</span><span class="o">().</span><span class="na">stream</span><span class="o">().</span>
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">graph</span><span class="o">.</span><span class="na">graql</span><span class="o">().</span><span class="na">match</span><span class="o">(</span><span class="n">var</span><span class="o">(</span><span class="err">“</span><span class="n">x</span><span class="err">”</span><span class="o">).</span><span class="na">isa</span><span class="o">(</span><span class="err">“</span><span class="n">person</span><span class="err">”</span><span class="o">)).</span><span class="na">execute</span><span class="o">().</span><span class="na">stream</span><span class="o">().</span>
   <span class="n">map</span><span class="o">(</span><span class="nl">Map:</span><span class="o">:</span><span class="n">entrySet</span><span class="o">).</span><span class="na">forEach</span><span class="o">(</span><span class="n">p</span><span class="o">-&gt;</span><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="err">“</span> <span class="err">“</span> <span class="o">+</span> <span class="n">p</span><span class="o">));</span>
 </code></pre>
 </div>
@@ -961,7 +961,7 @@ Manipulation, such as insertions into the graph.</p>
 <p><strong>QueryBuilder — the “Java Graql” API</strong>
 This is best for advanced querying where traversals are involved. For example “Who is married to Homer?” is too complex a query for the Graph API. Using a <code class="highlighter-rouge">QueryBuilder</code>:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">List</span><span class="o">&lt;</span><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Concept</span><span class="o">&gt;&gt;</span> <span class="n">results</span> <span class="o">=</span> <span class="n">graph</span><span class="o">.</span><span class="na">graql</span><span class="o">().</span><span class="na">match</span><span class="o">(</span>
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">List</span><span class="o">&lt;</span><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Concept</span><span class="o">&gt;&gt;</span> <span class="n">results</span> <span class="o">=</span> <span class="n">graph</span><span class="o">.</span><span class="na">graql</span><span class="o">().</span><span class="na">match</span><span class="o">(</span>
   <span class="n">var</span><span class="o">(</span><span class="err">“</span><span class="n">x</span><span class="err">”</span><span class="o">).</span><span class="na">has</span><span class="o">(</span><span class="err">“</span><span class="n">firstname</span><span class="err">”</span><span class="o">,</span> <span class="err">“</span><span class="n">John</span><span class="err">”</span><span class="o">).</span><span class="na">isa</span><span class="o">(</span><span class="err">“</span><span class="n">person</span><span class="err">”</span><span class="o">),</span>
   <span class="n">var</span><span class="o">(</span><span class="err">“</span><span class="n">y</span><span class="err">”</span><span class="o">).</span><span class="na">has</span><span class="o">(</span><span class="err">“</span><span class="n">firstname</span><span class="err">”</span><span class="o">,</span> <span class="n">var</span><span class="o">(</span><span class="err">“</span><span class="n">y_name</span><span class="err">”</span><span class="o">)).</span><span class="na">isa</span><span class="o">(</span><span class="err">“</span><span class="n">person</span><span class="err">”</span><span class="o">),</span>
   <span class="n">var</span><span class="o">().</span><span class="na">isa</span><span class="o">(</span><span class="err">“</span><span class="n">marriage</span><span class="err">”</span><span class="o">).</span>
@@ -1023,7 +1023,7 @@ This is best for advanced querying where traversals are involved. For example �
         <br>
         <p>© 2017 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2017 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> May 2017<br/> Site last generated: May 12, 2017 <br />
+        <span>Page last updated:</span> May 2017<br/> Site last generated: May 24, 2017 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">

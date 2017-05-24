@@ -894,7 +894,7 @@ gender sub resource datatype string;
 
 <p>To load <em>ontology.gql</em> into Grakn, make sure the engine is running and choose a clean keyspace in which to work (here we use the default keyspace, so we are cleaning it before we get started).</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>&lt;relative-path-to-Grakn&gt;/bin/grakn.sh clean
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>&lt;relative-path-to-Grakn&gt;/bin/grakn.sh clean
 &lt;relative-path-to-Grakn&gt;/bin/grakn.sh start
 &lt;relative-path-to-Grakn&gt;/bin/graql.sh -f ./ontology.gql
 </code></pre>
@@ -972,7 +972,7 @@ Mary,Melissa,Titus,female,1847-08-12,10/05/1946,Mary Melissa Titus,98,
 
 <p>Calling the Grakn migrator on the <em>people.csv</em> file using the above template (named <code class="highlighter-rouge">people-migrator.gql</code>) is performed as follows:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>&lt;relative-path-to-Grakn&gt;/bin/migration.sh csv -i ./people.csv -t ./migrators/people-migrator.gql -k grakn
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>&lt;relative-path-to-Grakn&gt;/bin/migration.sh csv -i ./people.csv -t ./migrators/people-migrator.gql -k grakn
 </code></pre>
 </div>
 
@@ -1020,7 +1020,7 @@ insert
 
 <p>Calling the Grakn migrator on the <em>births.csv</em> file using the above template (named <code class="highlighter-rouge">births-migrator.gql</code>) is performed as follows:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>&lt;relative-path-to-Grakn&gt;/bin/migration.sh csv -i ./births.csv -t ./migrators/births-migrator.gql -k grakn
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>&lt;relative-path-to-Grakn&gt;/bin/migration.sh csv -i ./births.csv -t ./migrators/births-migrator.gql -k grakn
 </code></pre>
 </div>
 
@@ -1069,7 +1069,7 @@ insert
 
 <p>Calling the Grakn migrator on the <em>weddings.csv</em> file using the above template (named <code class="highlighter-rouge">weddings-migrator.gql</code>) is performed as follows:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>&lt;relative-path-to-Grakn&gt;/bin/migration.sh csv -i ./weddings.csv -t ./migrators/weddings-migrator.gql -k grakn
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>&lt;relative-path-to-Grakn&gt;/bin/migration.sh csv -i ./weddings.csv -t ./migrators/weddings-migrator.gql -k grakn
 </code></pre>
 </div>
 
@@ -1088,7 +1088,7 @@ insert (spouse1: $x0, spouse2: $y0) isa marriage;
 
 <p>For simplicity, the <em>/raw-data/</em> directory of the example project contains a script called <em>loader.sh</em> that calls each migration script in turn, so you can simply call the script from the terminal, passing in the path to the Grakn <em>/bin/</em> directory.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code> ./loader.sh &lt;relative-path-to-Grakn&gt;/bin
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code> ./loader.sh &lt;relative-path-to-Grakn&gt;/bin
 </code></pre>
 </div>
 
@@ -1109,7 +1109,7 @@ insert (spouse1: $x0, spouse2: $y0) isa marriage;
 
 <p>To export the data, we use the Grakn <em>migration.sh</em> shell script again, as described in the <a href="../migration/migration-overview.html#export-from-grakn">migration documentation</a>:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="c"># Export the ontology</span>
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="c"># Export the ontology</span>
 &lt;relative-path-to-Grakn&gt;/migration.sh <span class="nb">export</span> -ontology &gt; ontology-export.gql
 
 <span class="c"># Export the data</span>
@@ -1168,7 +1168,7 @@ insert (spouse1: $x0, spouse2: $y0) isa marriage;
         <br>
         <p>© 2017 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2017 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> January 2017<br/> Site last generated: May 12, 2017 <br />
+        <span>Page last updated:</span> January 2017<br/> Site last generated: May 24, 2017 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">

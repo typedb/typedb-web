@@ -5,9 +5,9 @@
         <description>A Distributed Knowledge Graph</description>
         <link>http://grakn.ai/pages//</link>
         <atom:link href="http://grakn.ai/pages//feed.xml" rel="self" type="application/rss+xml"/>
-        <pubDate>Fri, 12 May 2017 11:14:05 +0100</pubDate>
-        <lastBuildDate>Fri, 12 May 2017 11:14:05 +0100</lastBuildDate>
-        <generator>Jekyll v3.0.3</generator>
+        <pubDate>Wed, 24 May 2017 19:38:38 +0100</pubDate>
+        <lastBuildDate>Wed, 24 May 2017 19:38:38 +0100</lastBuildDate>
+        <generator>Jekyll v3.4.3</generator>
         
     </channel>
 </rss>
