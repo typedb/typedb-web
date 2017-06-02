@@ -800,7 +800,22 @@ $('#toc').on('click', 'a', function() {
 
 <p>If you are using the <a href="../graql/graql-shell.html">Graql shell</a>, batch loading is available using the <code class="highlighter-rouge">-b</code> option.</p>
 
-<h2 id="usage">Usage</h2>
+<p>To use the loader client API, add the following to your pom.xml:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>&lt;dependency&gt;
+	&lt;groupId&gt;ai.grakn&lt;/groupId&gt;
+	&lt;artifactId&gt;grakn-client&lt;/artifactId&gt;
+	&lt;version&gt;${grakn.version}&lt;/version&gt;
+&lt;/dependency&gt;
+</code></pre>
+</div>
+<p>and add the following to your imports:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>import ai.grakn.client.LoaderClient;
+</code></pre>
+</div>
+
+<h1 id="basic-usage">Basic Usage</h1>
 
 <p>The loader client provides two constructors. The first accepts only the keyspace to load data into and the URI endpoint where Grakn Engine Server is running.</p>
 
@@ -828,9 +843,9 @@ $('#toc').on('click', 'a', function() {
 
 <p>The user should call <code class="highlighter-rouge">waitToFinish()</code>, which will flush the last batch of queries and block until all batches have executed.</p>
 
-<h2 id="configuring-the-client">Configuring the client</h2>
+<h1 id="configuring-the-client">Configuring the client</h1>
 
-<h3 id="batch-size">Batch Size</h3>
+<h2 id="configuring-batch-size">Configuring Batch Size</h2>
 
 <p>The batch size represents the number of tasks that will be executed in a single transaction when batch loading.</p>
 
@@ -877,7 +892,7 @@ $('#toc').on('click', 'a', function() {
 
 <p>This batch size property can directly effect loading times. If you find that your data is loading too slowly, try increasing the size of the batch.</p>
 
-<h3 id="number-active-tasks">Number Active Tasks</h3>
+<h2 id="configuring-active-tasks">Configuring Active Tasks</h2>
 <p>The number of active tasks represents the capcity beyond which no additional inserts can be added without blocking.</p>
 
 <p>The default number of active tasks is <strong>25</strong>.</p>
@@ -895,7 +910,7 @@ $('#toc').on('click', 'a', function() {
 
 <p>In the above scenario, the loader will block the calling thread when adding the second transaction. Only when the first transaction completes execution will the second transaction be sent to the server.</p>
 
-<h3 id="task-completion-callback">Task Completion Callback</h3>
+<h2 id="task-completion-callback">Task Completion Callback</h2>
 
 <p>Specify a callback function that will execute over the server response after batch completion.</p>
 
@@ -929,7 +944,7 @@ $('#toc').on('click', 'a', function() {
 
 <p>This callback is executed whenever a terminal response from the server is received, even if an exception was thrown. In the case of an execption, the Json argument will be either empty or contain the errored response from the server including the server-side exception.</p>
 
-<h3 id="retry-policy">Retry policy</h3>
+<h2 id="retry-policy">Retry policy</h2>
 <p>Allows the user to specify whether the client should retry sending requests if the server cannot be reached.</p>
 
 <p>The default setting is for the retry policy to be <strong>false</strong>.</p>
@@ -984,7 +999,7 @@ $('#toc').on('click', 'a', function() {
         <br>
         <p>© 2017 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2017 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> February 2017<br/> Site last generated: May 24, 2017 <br />
+        <span>Page last updated:</span> February 2017<br/> Site last generated: Jun 2, 2017 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">

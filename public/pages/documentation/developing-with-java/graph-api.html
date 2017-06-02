@@ -822,8 +822,8 @@ surname sub resource datatype string;
 middlename sub resource datatype string;
 picture sub resource datatype string;
 age sub resource datatype long;
-birth-date sub resource datatype string;
-death-date sub resource datatype string;
+birth-date sub resource datatype date;
+death-date sub resource datatype date;
 gender sub resource datatype string;
 </code></pre>
 
@@ -834,8 +834,8 @@ gender sub resource datatype string;
 <span class="n">ResourceType</span> <span class="n">surname</span> <span class="o">=</span> <span class="n">graph</span><span class="o">.</span><span class="na">putResourceType</span><span class="o">(</span><span class="s">"surname"</span><span class="o">,</span> <span class="n">ResourceType</span><span class="o">.</span><span class="na">DataType</span><span class="o">.</span><span class="na">STRING</span><span class="o">);</span>
 <span class="n">ResourceType</span> <span class="n">picture</span> <span class="o">=</span> <span class="n">graph</span><span class="o">.</span><span class="na">putResourceType</span><span class="o">(</span><span class="s">"picture"</span><span class="o">,</span> <span class="n">ResourceType</span><span class="o">.</span><span class="na">DataType</span><span class="o">.</span><span class="na">STRING</span><span class="o">);</span>
 <span class="n">ResourceType</span> <span class="n">age</span> <span class="o">=</span> <span class="n">graph</span><span class="o">.</span><span class="na">putResourceType</span><span class="o">(</span><span class="s">"age"</span><span class="o">,</span> <span class="n">ResourceType</span><span class="o">.</span><span class="na">DataType</span><span class="o">.</span><span class="na">LONG</span><span class="o">);</span>
-<span class="n">ResourceType</span> <span class="n">birthDate</span> <span class="o">=</span> <span class="n">graph</span><span class="o">.</span><span class="na">putResourceType</span><span class="o">(</span><span class="s">"birth-date"</span><span class="o">,</span> <span class="n">ResourceType</span><span class="o">.</span><span class="na">DataType</span><span class="o">.</span><span class="na">STRING</span><span class="o">);</span>
-<span class="n">ResourceType</span> <span class="n">deathDate</span> <span class="o">=</span> <span class="n">graph</span><span class="o">.</span><span class="na">putResourceType</span><span class="o">(</span><span class="s">"death-date"</span><span class="o">,</span> <span class="n">ResourceType</span><span class="o">.</span><span class="na">DataType</span><span class="o">.</span><span class="na">STRING</span><span class="o">);</span>
+<span class="n">ResourceType</span> <span class="n">birthDate</span> <span class="o">=</span> <span class="n">graph</span><span class="o">.</span><span class="na">putResourceType</span><span class="o">(</span><span class="s">"birth-date"</span><span class="o">,</span> <span class="n">ResourceType</span><span class="o">.</span><span class="na">DataType</span><span class="o">.</span><span class="na">DATE</span><span class="o">);</span>
+<span class="n">ResourceType</span> <span class="n">deathDate</span> <span class="o">=</span> <span class="n">graph</span><span class="o">.</span><span class="na">putResourceType</span><span class="o">(</span><span class="s">"death-date"</span><span class="o">,</span> <span class="n">ResourceType</span><span class="o">.</span><span class="na">DataType</span><span class="o">.</span><span class="na">DATE</span><span class="o">);</span>
 <span class="n">ResourceType</span> <span class="n">gender</span> <span class="o">=</span> <span class="n">graph</span><span class="o">.</span><span class="na">putResourceType</span><span class="o">(</span><span class="s">"gender"</span><span class="o">,</span> <span class="n">ResourceType</span><span class="o">.</span><span class="na">DataType</span><span class="o">.</span><span class="na">STRING</span><span class="o">);</span>
 </code></pre>
 </div>
@@ -1100,7 +1100,7 @@ rhs {
         <br>
         <p>© 2017 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2017 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> March 2017<br/> Site last generated: May 24, 2017 <br />
+        <span>Page last updated:</span> March 2017<br/> Site last generated: Jun 2, 2017 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">

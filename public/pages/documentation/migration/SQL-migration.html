@@ -977,8 +977,8 @@ $x isa &lt;SPECIES&gt;
   has name &lt;NAME&gt;
   has owner &lt;OWNER&gt;
   has sex &lt;SEX&gt;
-  if(BIRTH != null) do { has birth &lt;BIRTH&gt; }
-  if(DEATH != null) do { has death &lt;DEATH&gt; };
+  if(&lt;BIRTH&gt; != null) do { has birth &lt;BIRTH&gt; }
+  if(&lt;DEATH&gt; != null) do { has death &lt;DEATH&gt; };
 </code></pre>
 </div>
 
@@ -1001,7 +1001,7 @@ $x isa &lt;SPECIES&gt;
 
 <pre><code class="language-graql-test-ignore">match $pet has name &lt;name&gt;
 insert $event isa event 
-  has date &lt;date&gt;
+  has "date" &lt;date&gt;
   has description &lt;description&gt;;
   (event-occurred: $event, pet-in-event: $pet) isa occurs;
 
@@ -1017,8 +1017,8 @@ insert $event isa event
 
 <p>At this point, the SQL data has been added to a graph in Grakn, and can be queried. For example:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>match $x isa cat; # Get all cats
-match ($x, $y) isa occurs; $x isa cat; $y isa event has description "litter"; select $x; # Get all cats that have had litters of kittens
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>match <span class="nv">$x</span> isa cat; <span class="c"># Get all cats</span>
+match <span class="o">(</span><span class="nv">$x</span>, <span class="nv">$y</span><span class="o">)</span> isa occurs; <span class="nv">$x</span> isa cat; <span class="nv">$y</span> isa event has description <span class="s2">"litter"</span>; <span class="k">select</span> <span class="nv">$x</span>; <span class="c"># Get all cats that have had litters of kittens</span>
 
 </code></pre>
 </div>
@@ -1038,11 +1038,14 @@ File template = "./pet-template.gql"
 // get the JDBC connection
 try(Connection connection = DriverManager.getConnection(jdbcDBUrl, jdbcUser, jdbcPass)) {
 
+    Migrator migrator = Migrator.to(Grakn.DEFAULT_URI, graph.getKeyspace());
+
     // create migrator
-    SQLMigrator migrator = new SQLMigrator(sqlQuery, template, connection);
+    SQLMigrator sqlMigrator = new SQLMigrator(query, connection);
 
     // perform migration
-    MigrationLoader.load(KEYSPACE, migrator);
+    migrator.load(template, sqlMigrator.convert());
+}
 
 </code></pre>
 
@@ -1092,7 +1095,7 @@ try(Connection connection = DriverManager.getConnection(jdbcDBUrl, jdbcUser, jdb
         <br>
         <p>© 2017 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2017 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> December 2016<br/> Site last generated: May 24, 2017 <br />
+        <span>Page last updated:</span> December 2016<br/> Site last generated: Jun 2, 2017 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">

@@ -813,7 +813,7 @@ The pattern describes <a href="#properties">properties</a> to set on a particula
 <div class="tab-content">
 <div role="tabpanel" class="tab-pane active" id="shell1">
 <pre>
-match $p has identifier "Mary Guthrie"; insert $p has middlename "Mathilda"; $p has birth-date "1902-01-01"; $p has death-date "1952-01-01"; $p has age 50;
+match $p has identifier "Mary Guthrie"; insert $p has middlename "Mathilda"; $p has birth-date 1902-01-01; $p has death-date 1952-01-01; $p has age 50;
 commit;
 </pre>
 </div>
@@ -821,8 +821,8 @@ commit;
 <pre>
 qb.match(var("p").has("identifier", "Mary Guthrie"))
     .insert(var("p").has("middlename", "Mathilda"), 
-        var("p").has("birth-date", "1902-01-01"),
-        var("p").has("death-date", "1952-01-01"),
+        var("p").has("birth-date", LocalDateTime.of(1902, 1, 1, 0, 0, 0)),
+        var("p").has("death-date", LocalDateTime.of(1952, 1, 1, 0, 0, 0)),
         var("p").has("age", 50)
     ).execute();
 graph.commit();
@@ -1114,7 +1114,7 @@ qb.insert(label("person").hasResource("nickname")).execute();
         <br>
         <p>© 2017 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2017 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> August 10, 2016<br/> Site last generated: May 24, 2017 <br />
+        <span>Page last updated:</span> August 10, 2016<br/> Site last generated: Jun 2, 2017 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">

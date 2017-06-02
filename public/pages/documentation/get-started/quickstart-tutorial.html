@@ -865,8 +865,8 @@ surname sub resource datatype string;
 middlename sub resource datatype string;
 picture sub resource datatype string;
 age sub resource datatype long;
-birth-date sub resource datatype string;
-death-date sub resource datatype string;
+birth-date sub resource datatype date;
+death-date sub resource datatype date;
 gender sub resource datatype string;
 
 # Roles and Relations
@@ -968,7 +968,7 @@ commit
 
 <p>Alternatively, we can use <code class="highlighter-rouge">match...insert</code> syntax, to insert additional data associated with something already in the graph. Adding some fictional information (middle name, birth date, death date and age at death) for one of our family, Mary Guthrie:</p>
 
-<pre><code class="language-graql">match $p has identifier "Mary Guthrie"; insert $p has middlename "Mathilda"; $p has birth-date "1902-01-01"; $p has death-date "1952-01-01"; $p has age 50;
+<pre><code class="language-graql">match $p has identifier "Mary Guthrie"; insert $p has middlename "Mathilda"; $p has birth-date 1902-01-01; $p has death-date 1952-01-01; $p has age 50;
 commit
 </code></pre>
 
@@ -1197,7 +1197,7 @@ rhs
         <br>
         <p>© 2017 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2017 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> February 2017<br/> Site last generated: May 24, 2017 <br />
+        <span>Page last updated:</span> February 2017<br/> Site last generated: Jun 2, 2017 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">
