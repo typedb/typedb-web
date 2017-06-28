@@ -827,6 +827,20 @@ $('#toc').on('click', 'a', function() {
 </code></pre>
 </div>
 
+<h3 id="unsupported-symbols">Unsupported symbols</h3>
+
+<p>The templating language requires that non-alphanumeric (plus <code class="highlighter-rouge">-</code>) symbols in any data key be quoted.</p>
+
+<pre><code class="language-graql-template">insert $x has description &lt;"ple@s3D0ntD0Th!sT0Y0urself"&gt;;
+</code></pre>
+
+<p>If you need to nest keys with invalid symbols you need to quote each individual key:</p>
+
+<pre><code class="language-graql-template">insert $x has description &lt;"ple@s3".D0nt.D0."Th!s".T0.Y0urself&gt;;
+</code></pre>
+
+<p>For a list of the reserved keywords, see the bottom of this page.</p>
+
 <h2 id="logic">Logic</h2>
 
 <h3 id="expressions">Expressions</h3>
@@ -974,6 +988,19 @@ $x isa person has name &lt;name&gt;;
 }
 </code></pre>
 
+<h3 id="array-accessors">Array Accessors</h3>
+
+<p>Graql templates allow you to access an element at a specific index in a given list. This is denoted by the square brackets surrounding the desired index <code class="highlighter-rouge">[0]</code>.</p>
+
+<p><strong>Accessing the first element</strong> of an array.</p>
+<pre><code class="language-graql-template">insert $x has name &lt;names[0]&gt;;
+</code></pre>
+
+<p><strong>Two dimentional arrays</strong> where data is stored in arrays of arrays.</p>
+<pre><code class="language-graql-template">// to get the first dish in the first course of the meal 
+insert $x isa first-course has dish &lt;course[0][1]&gt;;
+</code></pre>
+
 <h3 id="macros">Macros</h3>
 
 <p>Macros are denoted by an <code class="highlighter-rouge">@</code> symbol prefixing the name of the macro function.</p>
@@ -1011,12 +1038,9 @@ $x isa person has name &lt;name&gt;;
 <pre><code class="language-graql-template">if (@equals(&lt;this&gt;, &lt;that&gt;)) do { equals }"
 </code></pre>
 
-<p><strong><code class="highlighter-rouge">date</code></strong> <code class="highlighter-rouge">(&lt;value&gt;, fromFormat, toFormat)</code> converts a date string from the given format to another format. If the third argument is missing, converts to epoch time. Date format specifications can be found <a href="https://docs.oracle.com/javase/8/docs/api/java/text/SimpleDateFormat.html">here</a>. Returns a string.</p>
+<p><strong><code class="highlighter-rouge">date</code></strong> <code class="highlighter-rouge">(&lt;value&gt;, fromFormat)</code> converts a date string from the given format to the supported Graql date format. Date format specifications can be found <a href="https://docs.oracle.com/javase/8/docs/api/java/text/SimpleDateFormat.html">here</a>. Returns a string.</p>
 
-<pre><code class="language-graql-template">insert $x val @date(&lt;date&gt;, "mm/dd/yyyy", "dd/mm/yyyy");
-</code></pre>
-
-<pre><code class="language-graql-template">insert $x val @date(&lt;date&gt;, "mm/dd/yyyy");
+<pre><code class="language-graql-template">insert $x val @date(&lt;date&gt;, "mm/dd/yyyy"d);
 </code></pre>
 
 <p><strong><code class="highlighter-rouge">lower</code></strong> converts the contents of the data to lower case.</p>
@@ -1044,11 +1068,11 @@ $x isa person has name &lt;name&gt;;
 
 <h4 id="nesting-macros">Nesting macros</h4>
 
-<p>When writing a template, you can nest macros inside other macros. When doing so, you’re usnig the results of the nested macros as arguments to the enclosing ones.</p>
+<p>When writing a template, you can nest macros inside other macros. When doing so, you’re using the results of the nested macros as arguments to the enclosing ones.</p>
 
-<p>For example, the <code class="highlighter-rouge">date</code> macro returns a string, but many people will want to convert to epoch time and store the value as a long. If that is the case you can:</p>
+<p>For example, the <code class="highlighter-rouge">split</code> macro returns strings, but people may want to convert one of the values as a long. If that is the case you can:</p>
 
-<pre><code class="language-graql-template">insert $x val @long(@date(&lt;date&gt; "mm/dd/yyyy"));
+<pre><code class="language-graql-template">insert $x val @long(@split(&lt;list&gt;, ",")[0]);
 </code></pre>
 
 <h4 id="user-defined-macros">User-defined Macros</h4>
@@ -1097,9 +1121,43 @@ $x isa person has name &lt;name&gt;;
 
 <pre><code class="language-graql">...
 insert $p0 isa person has firstname "Barbara" has identifier "Barbara Newman" has surname "Newman" has gender "female";
-insert $p0 has birth-date 1811-03-06 isa person has surname "Newman" has gender "male" has death-date 1898-09-10 has identifier "Henry Newman" has age 87 has firstname "Henry";
+insert $p1 has birth-date 1811-03-06 isa person has surname "Newman" has gender "male" has death-date 1898-09-10 has identifier "Henry Newman" has age 87 has firstname "Henry";
 ... 
 </code></pre>
+
+<h3 id="reserved-keywords">Reserved Keywords</h3>
+
+<p>The following is a list of the reserved keywords in the Graql templating language.</p>
+
+<ul>
+  <li><code class="highlighter-rouge">,</code></li>
+  <li><code class="highlighter-rouge">;</code></li>
+  <li><code class="highlighter-rouge">(</code></li>
+  <li><code class="highlighter-rouge">)</code></li>
+  <li><code class="highlighter-rouge">[</code></li>
+  <li><code class="highlighter-rouge">]</code></li>
+  <li><code class="highlighter-rouge">:</code></li>
+  <li><code class="highlighter-rouge">for</code></li>
+  <li><code class="highlighter-rouge">if</code></li>
+  <li><code class="highlighter-rouge">elseif</code></li>
+  <li><code class="highlighter-rouge">else</code></li>
+  <li><code class="highlighter-rouge">do</code></li>
+  <li><code class="highlighter-rouge">in</code></li>
+  <li><code class="highlighter-rouge">true</code></li>
+  <li><code class="highlighter-rouge">false</code></li>
+  <li><code class="highlighter-rouge">and</code></li>
+  <li><code class="highlighter-rouge">or</code></li>
+  <li><code class="highlighter-rouge">not</code></li>
+  <li><code class="highlighter-rouge">null</code></li>
+  <li><code class="highlighter-rouge">=</code></li>
+  <li><code class="highlighter-rouge">!=</code></li>
+  <li><code class="highlighter-rouge">&gt;</code></li>
+  <li><code class="highlighter-rouge">&gt;=</code></li>
+  <li><code class="highlighter-rouge">@</code></li>
+  <li><code class="highlighter-rouge">&lt;</code></li>
+  <li><code class="highlighter-rouge">&lt;=</code>
+*<code class="highlighter-rouge">"</code></li>
+</ul>
 
 <h2 id="comments">Comments</h2>
 <p>Want to leave a comment? Visit <a href="https://github.com/graknlabs/docs/issues/42" target="_blank">the issues on Github for this page</a> (you’ll need a GitHub account). You are also welcome to contribute to our documentation directly via the “Edit me” button at the top of the page.</p>
@@ -1143,7 +1201,7 @@ insert $p0 has birth-date 1811-03-06 isa person has surname "Newman" has gender 
         <br>
         <p>© 2017 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2017 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> November 4, 2016<br/> Site last generated: Jun 2, 2017 <br />
+        <span>Page last updated:</span> November 4, 2016<br/> Site last generated: Jun 29, 2017 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">

@@ -6,13 +6,13 @@
   
   
   <url>
-    <loc>http://grakn.ai/pages//contributors/index.html</loc>
+    <loc>http://grakn.ai/pages//overview/index.html</loc>
   </url>
   
   
   
   <url>
-    <loc>http://grakn.ai/pages//overview/index.html</loc>
+    <loc>http://grakn.ai/pages//contributors/index.html</loc>
   </url>
   
   
@@ -117,6 +117,12 @@
   
   <url>
     <loc>http://grakn.ai/pages//documentation/migration/SQL-migration.html</loc>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://grakn.ai/pages//documentation/migration/XML-migration.html</loc>
   </url>
   
   
@@ -280,13 +286,13 @@
   
   
   <url>
-    <loc>http://grakn.ai/pages//documentation/examples/graql-reasoning.html</loc>
+    <loc>http://grakn.ai/pages//documentation/graql/graql-rules.html</loc>
   </url>
   
   
   
   <url>
-    <loc>http://grakn.ai/pages//documentation/graql/graql-rules.html</loc>
+    <loc>http://grakn.ai/pages//documentation/examples/graql-reasoning.html</loc>
   </url>
   
   
@@ -428,6 +434,12 @@
   
   
   
+  
+  
+  
+  <url>
+    <loc>http://grakn.ai/pages//documentation/developing-with-java/task-api.html</loc>
+  </url>
   
   
   

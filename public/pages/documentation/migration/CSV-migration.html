@@ -862,6 +862,12 @@ price sub resource datatype double;
 
 </code></pre>
 
+<p>Make sure to load your ontology into the graph:</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>./&lt;grakn-install-location&gt;/bin/graql.sh -f ./ontology.gql -k grakn
+</code></pre>
+</div>
+
 <p>And the Graql template, <em>car-migrator.gql</em>:</p>
 
 <pre><code class="language-graql-template">insert                                                                                                                             
@@ -883,9 +889,9 @@ $x isa car
 
 <p>The resulting Graql statement, if printed out, looks as follows:</p>
 
-<pre><code class="language-graql">insert $x0 isa car has name "Ford" has description "ac, abs, moon" has price 3000.0 has year "1997";
-insert $x0 isa car has name "Chevy" has price 4900.0 has year "1999";
-insert $x0 isa car has description "MUST SELL! air, moon roof, loaded" has price 4799.0 has name "Jeep" has year "1996";
+<pre><code class="language-graql">insert $x0 isa car has name "Ford-E350" has year "1997" has price 3000.0 has description "ac, abs, moon";
+insert $x0 isa car has name "Chevy-Venture" has year "1999" has price 4900.0;
+insert $x0 isa car has name "Jeep-Grand Cherokee" has year "1996" has price 4799.0 has description "MUST SELL! air, moon roof, loaded";
 </code></pre>
 
 <p>You will note that the second Graql insert is missing the <code class="highlighter-rouge">description</code> resource. This is because that value is not present in the data and the template uses an <code class="highlighter-rouge">if</code> statement to check if it exists.</p>
@@ -953,7 +959,7 @@ air  moon roof   loaded"  4799.00
         <br>
         <p>© 2017 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2017 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> February 2017<br/> Site last generated: Jun 2, 2017 <br />
+        <span>Page last updated:</span> February 2017<br/> Site last generated: Jun 29, 2017 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">

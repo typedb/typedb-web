@@ -796,13 +796,15 @@ $('#toc').on('click', 'a', function() {
 
   <div class="alert alert-danger" role="alert"><i class="fa fa-exclamation-circle"></i> <b>Warning:</b> <strong>Please note that there is no official support for Windows, although we expect it to be added later to GRAKN.AI. This is a suggested workaround.</strong></div>
 
-<h2 id="running-on-bash-on-ubuntu-on-windows">Running on Bash on Ubuntu on Windows</h2>
+<h2 id="windows-support">Windows Support</h2>
 
-<p>You can run GRAKN.AI on Windows, using &lt;a href”https://msdn.microsoft.com/en-us/commandline/wsl/about” target=”_blank”&gt;Bash on Ubuntu on Windows&lt;/a&gt;</p>
+<p>GRAKN is currently not supported natively on Windows. This is due to beta status of <a href="https://issues.apache.org/jira/browse/CASSANDRA-10673">Cassandra 2.1 on Windows</a>.</p>
 
-<p>Follow the <a href="https://grakn.ai/pages/documentation/get-started/setup-guide.html" target="_blank">Grakn Setup Guide</a>.</p>
-
-<p>To install Oracle JDK8, you can use <code class="highlighter-rouge">apt-get</code> as outlined <a href="https://www.digitalocean.com/community/tutorials/how-to-install-java-with-apt-get-on-ubuntu-16-04" target="_blank">here</a></p>
+<p>Your current options are:</p>
+<ul>
+  <li>a virtual machine with Ubuntu (eg. <a href="https://www.virtualbox.org/wiki/Downloads">VirtualBox</a>)</li>
+  <li><a href="https://docs.docker.com/docker-for-windows/">Docker for Windows</a> with our <a href="https://hub.docker.com/r/graknlabs/grakn/">Docker image</a></li>
+</ul>
 
 <h2 id="comments">Comments</h2>
 <p>Want to leave a comment? Visit <a href="https://github.com/graknlabs/docs/issues/25" target="_blank">the issues on Github for this page</a> (you’ll need a GitHub account). You are also welcome to contribute to our documentation directly via the “Edit me” button at the top of the page.</p>
@@ -846,7 +848,7 @@ $('#toc').on('click', 'a', function() {
         <br>
         <p>© 2017 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2017 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> December 2016<br/> Site last generated: Jun 2, 2017 <br />
+        <span>Page last updated:</span> December 2016<br/> Site last generated: Jun 29, 2017 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">

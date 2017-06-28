@@ -3,9 +3,9 @@
     <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="An example to illustrate migration of JSON to Grakn">
-<meta name="keywords" content="migrationexamples,  migration, GRAKN.AI, Grakn Labs, grakn, graql, grakn.ai, Mindmaps Research, Mindmaps Research Ltd, MindmapsDB, mindmaps, mindmaps graph, mindmaps.io, knowledge graph, distributed knowledge graph, development platform, developer tool, data platform, programming langauge, query langauge, database, semantic database, distributed semantic database, distributed database, graph database, semantic search, data exploration, recommendation system, knowledge management, knowledge engineering, real-time analytics, advanced analytics, reasoning engine, inference engine, expert systems, semantic applications, research engines, data management, business intelligence, big data, semantic web, semantic data, knowledge representation, automated reasoning, semantic network, knowledge ontology, semantic graph, ontology engineering, graph based knowledge representation, artificial intelligence,">
-<title>GRAKN.AI - An Example of Migrating JSON to Grakn</title>
+<meta name="description" content="This document will teach you how to migrate XML data into Grakn.">
+<meta name="keywords" content="migration,  setup, getting started, GRAKN.AI, Grakn Labs, grakn, graql, grakn.ai, Mindmaps Research, Mindmaps Research Ltd, MindmapsDB, mindmaps, mindmaps graph, mindmaps.io, knowledge graph, distributed knowledge graph, development platform, developer tool, data platform, programming langauge, query langauge, database, semantic database, distributed semantic database, distributed database, graph database, semantic search, data exploration, recommendation system, knowledge management, knowledge engineering, real-time analytics, advanced analytics, reasoning engine, inference engine, expert systems, semantic applications, research engines, data management, business intelligence, big data, semantic web, semantic data, knowledge representation, automated reasoning, semantic network, knowledge ontology, semantic graph, ontology engineering, graph based knowledge representation, artificial intelligence,">
+<title>GRAKN.AI - XML Migration to Grakn</title>
 <link rel="stylesheet" href="/pages/css/syntax.css">
 
 
@@ -228,7 +228,7 @@
                             
                             dataSource: '/pages/search.json',
                             
-                            searchResultTemplate: '<li><a href="{url}" title="An Example of Migrating JSON to Grakn">{title}</a></li>',
+                            searchResultTemplate: '<li><a href="{url}" title="XML Migration to Grakn">{title}</a></li>',
                             noResultsText: '<li><a class="empty">No results found</a></li>',
                             limit: 10,
                             fuzzy: true
@@ -748,7 +748,7 @@
         <!-- Content Column -->
         <div class="col-md-9">
             <div class="post-header">
-   <h1 class="post-title-main">An Example of Migrating JSON to Grakn</h1>
+   <h1 class="post-title-main">XML Migration to Grakn</h1>
 </div>
 
 
@@ -756,7 +756,7 @@
 <div class="post-content">
 
    
-    <div class="summary">An example to illustrate migration of JSON to Grakn</div>
+    <div class="summary">This document will teach you how to migrate XML data into Grakn.</div>
    
 
     
@@ -788,175 +788,292 @@ $('#toc').on('click', 'a', function() {
 
     
 
-    <a target="_blank" href="https://github.com/graknlabs/docs/blob/master/pages/documentation/11-examples/JSON-migration-NOT-PUBLISHED.md" class="btn btn-default githubEditButton" role="button"><i class="fa fa-github fa-lg"></i> Edit me</a>
+    <a target="_blank" href="https://github.com/graknlabs/docs/blob/master/pages/documentation/5-migration/XML-migration.md" class="btn btn-default githubEditButton" role="button"><i class="fa fa-github fa-lg"></i> Edit me</a>
 
     
 
     
 
   <h2 id="introduction">Introduction</h2>
+<p>This is reference documenation for how to migrate XML data into grakn. Make sure you have set up the <a href="../get-started/setup-guide.html">Grakn environment</a> before continuing.</p>
 
-<p>This example looks at the migration of simple JSON data to build a graph in GRAKN.AI. The data is an invented library catalogue of a very small number of books, and illustrates how to migrate simple data and handle issues such as preventing the creation of duplicate entities. You can find the data, ontology and templates for this example in our <a href="https://github.com/graknlabs/sample-projects/tree/master/example-json-migration-library">sample projects repo</a> on Github.</p>
+<h2 id="migration-shell-script-for-json">Migration Shell Script for JSON</h2>
+<p>The migration shell script can be found in <em>/bin</em> directory of your Grakn environment. We will illustrate its usage in an example below:</p>
 
-<p>For a detailed overview of CSV migration, we recommend that you take a look at the Grakn documentation on <a href="https://grakn.ai/pages/documentation/migration/JSON-migration.html">JSON Migration</a> and <a href="https://grakn.ai/pages/documentation/graql/graql-templating.html">Graql templating</a>.</p>
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>usage: migration.sh xml -template &lt;arg&gt; -input &lt;arg&gt; -keyspace &lt;arg&gt; -element &lt;arg&gt; -schema &lt;arg&gt; <span class="o">[</span>-help] <span class="o">[</span>-no] <span class="o">[</span>-batch &lt;arg&gt;] <span class="o">[</span>-active &lt;arg&gt;] <span class="o">[</span>-uri &lt;arg&gt;] <span class="o">[</span>-retry &lt;arg&gt;] <span class="o">[</span>-verbose]
+ 
+OPTIONS
+ -a,--active &lt;arg&gt;     Number of tasks <span class="o">(</span>batches<span class="o">)</span> running on the server at
+                       any one time. Default 25.
+ -b,--batch &lt;arg&gt;      Number of rows to execute <span class="k">in </span>one Grakn transaction.
+                       Default 25.
+ -c,--config &lt;arg&gt;     Configuration file.
+ -e,--element &lt;arg&gt;    The name of the XML element to migrate - all others
+                       will be ignored.
+ -h,--help             Print usage message.
+ -i,--input &lt;arg&gt;      Input XML data file or directory.
+ -k,--keyspace &lt;arg&gt;   Grakn graph. Required.
+ -n,--no               Write to standard out.
+ -r,--retry &lt;arg&gt;      Retry sending tasks <span class="k">if </span>engine is not available
+ -s,--schema &lt;arg&gt;     The XML Schema file name, usually .xsd extension
+                       defining with <span class="nb">type </span>information about the data.
+ -t,--template &lt;arg&gt;   Graql template to apply to the data.
+ -u,--uri &lt;arg&gt;        Location of Grakn Engine.
+ -v,--verbose          Print counts of migrated data.
+</code></pre>
+</div>
 
-<h2 id="data">Data</h2>
+<h2 id="xml-migration-basics">XML Migration Basics</h2>
 
-<p>The JSON data for the book catalogue is as follows:</p>
+<p>The steps to migrate XML data to GRAKN.AI are:</p>
 
-<div class="language-json highlighter-rouge"><pre class="highlight"><code><span class="w">
-</span><span class="p">{</span><span class="w">
-    </span><span class="nt">"books"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+<ul>
+  <li>define an ontology for the data to derive the full benefit of a knowledge graph</li>
+  <li>create templated Graql to map the XML data to the ontology</li>
+  <li>invoke the Grakn migrator through the shell script or Java API. The XML migrator will apply the template to each instance of the specified element <code class="highlighter-rouge">-element</code>, replacing the sections indicated in the template with provided data: the XML tags are the key to be used in the brackets <code class="highlighter-rouge">&lt;&gt;</code> and the content of each tag are the value of that key.</li>
+</ul>
+
+<div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> <b>Note:</b> XML Migration makes heavy use of the Graql templating language. You will need a foundation in Graql templating before continuing, so please read through our <a href="../graql/graql-templating.html">templating documentation</a> to find out more.</div>
+
+<h2 id="xml-migration-details">XML Migration Details</h2>
+
+<p>TO work through</p>
+
+<div class="language-xml highlighter-rouge"><pre class="highlight"><code><span class="nt">&lt;PEOPLE&gt;</span>
+    <span class="nt">&lt;PERSON</span> <span class="na">BESTFRIEND=</span><span class="s">"Bob"</span><span class="nt">&gt;</span>
+        This person has many friends.
+        <span class="nt">&lt;BESTFRIEND&gt;</span>Charlie<span class="nt">&lt;/BESTFRIEND&gt;</span>
+        <span class="nt">&lt;BESTFRIEND</span> <span class="na">NAME=</span><span class="s">"Alice"</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;/PERSON&gt;</span>
+<span class="nt">&lt;/PEOPLE&gt;</span>
+</code></pre>
+</div>
+
+<p><strong>Note: the above is <em>very</em> bad XML and is only being used to illustrate the reaches of the migration language</strong></p>
+
+<p>Any input XML data will be converted into a format that Grakn migration understands, which is structurally similar to JSON.</p>
+
+<div class="language-json highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"PERSON"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
         </span><span class="p">{</span><span class="w">
-            </span><span class="nt">"title"</span><span class="p">:</span><span class="s2">"The Gruffalo"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"id"</span><span class="p">:</span><span class="s2">"1"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"author"</span><span class="p">:</span><span class="s2">"Julia Donaldson"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"subject"</span><span class="p">:</span><span class="s2">"Children's Fiction"</span><span class="w">
-        </span><span class="p">},</span><span class="w">
+            </span><span class="nt">"textContent"</span><span class="err">=</span><span class="nt">"This person has many friends."</span><span class="err">,</span><span class="w"> 
+            </span><span class="nt">"~BESTFRIEND"</span><span class="err">=</span><span class="nt">"Bob"</span><span class="err">,</span><span class="w"> 
+            </span><span class="nt">"BESTFRIEND"</span><span class="err">=[</span><span class="w">
+                </span><span class="err">{</span><span class="nt">"textContent"</span><span class="err">=</span><span class="nt">"Charlie"</span><span class="err">}</span><span class="p">,</span><span class="w"> 
+                </span><span class="p">{</span><span class="nt">"~NAME"</span><span class="err">=</span><span class="nt">"Alice"</span><span class="err">}</span><span class="w">
+            </span><span class="p">]</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="err">]</span><span class="w">
+</span><span class="err">}</span><span class="w">
+</span></code></pre>
+</div>
+
+<p>This is the Grakn migration representation of the given XML data.</p>
+
+<h3 id="xml-nodes-and-text-content">XML Nodes and Text Content</h3>
+
+<p>Nodes can be migrated using their tags as the keys in the template. To migrate that the example person has best friend “Charlie” you only need to specify the <code class="highlighter-rouge">BESTFRIEND</code> node. However, you also need to indicate that you want the inner text of that node using the <code class="highlighter-rouge">textContent</code> indicator.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>insert $x isa person has name &lt;PERSON[0].textContent&gt;;
+</code></pre>
+</div>
+
+<p>To refer to the content of a node that is the current context of the template we can use the only the <code class="highlighter-rouge">textContext</code> indicator.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>for(&lt;PERSON&gt;) do {
+    insert $x isa person has description &lt;textContent&gt;;
+}
+</code></pre>
+</div>
+
+<h3 id="xml-attributes">XML Attributes</h3>
+
+<p>Attributes are prefixed by <code class="highlighter-rouge">~</code> to differentate them from tags of the same name.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>insert $x isa person has best-friend &lt;"~BESTFRIEND"&gt;;
+</code></pre>
+</div>
+
+<p>Note that any non-alphanumeric key needs to be in quotes.</p>
+
+<p>This also works with nesting. To migrate that this person has a bestfriend “Alice” you can use the <code class="highlighter-rouge">~</code> and an array accessor:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>insert $x isa person has best-friend &lt;BESTFRIEND[1]."~NAME"&gt;;
+</code></pre>
+</div>
+
+<p>We use an array accessor <code class="highlighter-rouge">[1]</code> to get the second <code class="highlighter-rouge">BESTFRIEND</code> element using and extract their name using the <code class="highlighter-rouge">~</code> to get the value of the <code class="highlighter-rouge">NAME</code> attribute.</p>
+
+<h3 id="xml-schemas">XML Schemas</h3>
+
+<p>An XML schema is a set of descriptors that can be used to formally constrain the elements of an XML document. Providing a XML schema allows the Grakn migrator to make assumptions about the XML data not possible otherwise.</p>
+
+<p>To learn more about how to write an XML Schema, see the <a href="https://www.w3schools.com/xml/schema_intro.asp">W3 documentation</a>.</p>
+
+<h4 id="data-types">Data Types</h4>
+
+<p>There are three supported types that can be extracted from an XML schema.</p>
+
+<ul>
+  <li>boolean (xml: <code class="highlighter-rouge">type="xs:boolean"</code>)</li>
+  <li>int (xml: <code class="highlighter-rouge">type="xs:integer"</code>)</li>
+  <li>double (xml: <code class="highlighter-rouge">type="xs:double"</code>)</li>
+</ul>
+
+<p>Without a schema all values are considered as strings in the Grakn representation. By specifying the type of the data in the XML schema, you can avoid doing manual conversions in the templates.</p>
+
+<p>We do not currently support the common <code class="highlighter-rouge">date</code> type. To convert a string value into a Grakn date, see the templating <a href="../graql/graql-templating.html">date macro</a>.</p>
+
+<h4 id="arrays">Arrays</h4>
+
+<p>Without provding a schema the XML migrator will assume that there could be more than one child with the same node tag and will represent it as an array.</p>
+
+<p>Take the data:</p>
+
+<div class="language-xml highlighter-rouge"><pre class="highlight"><code><span class="nt">&lt;pets&gt;</span>
+    <span class="nt">&lt;cat&gt;</span>Larry<span class="nt">&lt;/cat&gt;</span>
+<span class="nt">&lt;/pets&gt;</span>
+</code></pre>
+</div>
+
+<p>Without a schema, the Grakn representation will assume there can be more than one child and will use an array to represent the <code class="highlighter-rouge">cats</code> node.</p>
+
+<div class="language-json highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"pets"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
         </span><span class="p">{</span><span class="w">
-            </span><span class="nt">"title"</span><span class="p">:</span><span class="s2">"The Tear Thief"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"id"</span><span class="p">:</span><span class="s2">"2"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"author"</span><span class="p">:</span><span class="s2">"Carol Ann Duffy"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"subject"</span><span class="p">:</span><span class="s2">"Children's Fiction"</span><span class="w">
-        </span><span class="p">},</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-            </span><span class="nt">"title"</span><span class="p">:</span><span class="s2">"Selected Poems"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"id"</span><span class="p">:</span><span class="s2">"3"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"author"</span><span class="p">:</span><span class="s2">"Carol Ann Duffy"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"subject"</span><span class="p">:</span><span class="s2">"Poetry"</span><span class="w">
-        </span><span class="p">},</span><span class="w">
-        </span><span class="err">...</span><span class="w">
+            </span><span class="nt">"cat"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="p">{</span><span class="w"> 
+                    </span><span class="nt">"textContent"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Larry"</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">]</span><span class="w">
+        </span><span class="p">}</span><span class="w">
     </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 </div>
 
-<p>The <code class="highlighter-rouge">id</code> value can be considered to be unique and identify each book. However, other values cannot be assumed to be unique. In the snippet shown above, note that the author <code class="highlighter-rouge">Carol Ann Duffy</code> and subject <code class="highlighter-rouge">Children's Fiction</code> are both duplicated. It is possible that a book title may also be duplicated, although this is not shown.</p>
+<p>Providing an XML schema you can specify restaints that cannot be inferred from context. This allows you to specify that there will only be one name per person.</p>
 
-<h3 id="ontology">Ontology</h3>
-
-<p>The ontology for the book catalogue is as follows:</p>
-
-<pre><code class="language-graql">insert
-
-# Entities
-
-book sub entity
-	has bookId
-	has title
-	plays publication-item;
-
-author sub entity
-	has authorName
-	plays publication-author;
-
-subject sub entity
-	has subjectName
-	plays publication-subject; 
-
-
-# Resources
-
-bookId sub resource datatype string;
-title sub resource datatype string;
-authorName sub resource datatype string;
-subjectName sub resource datatype string;
-
-# Relations and Roles
-
-publication sub relation
-	relates publication-item
-	relates publication-author
-	relates publication-subject;
-
-publication-item sub role;
-publication-author sub role;
-publication-subject sub role;
-
-</code></pre>
-
-<p>Here, there are three entities, to reflect the book, author of the book and possible book subjects. There is one relation, <code class="highlighter-rouge">publication</code> which between all three entities.</p>
-
-<p>To load <em>ontology.gql</em> into Grakn, make sure the engine is running and choose a clean keyspace in which to work (here we use the default keyspace, so we are cleaning it before we get started).</p>
-
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>&lt;relative-path-to-Grakn&gt;/bin/grakn.sh clean
-&lt;relative-path-to-Grakn&gt;/bin/grakn.sh start
-&lt;relative-path-to-Grakn&gt;/bin/graql.sh -f ./ontology.gql
+<div class="language-xml highlighter-rouge"><pre class="highlight"><code><span class="nt">&lt;xs:element</span> <span class="na">name=</span><span class="s">"pets"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;xs:complexType&gt;</span>
+      <span class="nt">&lt;xs:element</span> <span class="na">name=</span><span class="s">"cat"</span> <span class="na">type=</span><span class="s">"xs:string"</span> <span class="na">maxOccurs=</span><span class="s">"1"</span><span class="nt">/&gt;</span>
+  <span class="nt">&lt;/xs:complexType&gt;</span>
+<span class="nt">&lt;/xs:element&gt;</span> 
 </code></pre>
 </div>
 
-<h3 id="data-migration">Data Migration</h3>
+<p>These XML restraints allow the Grakn representation to be contrained as follows:</p>
 
-<p>Having loaded the ontology, the next steps are to populate the graph by migrating data into Grakn, using Graql templates. There are separate templates for each entity. First, for the books:</p>
+<div class="language-json highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"pets"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"cat"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> 
+                </span><span class="nt">"textContent"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Larry"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+</div>
 
-<pre><code class="language-graql-template">insert
+<h2 id="example-plants">Example: Plants</h2>
 
-for(&lt;books&gt;) do {
-    $book isa book
-        has bookId &lt;id&gt;
-        has title &lt;title&gt;;
-}
-</code></pre>
+<p>This example will migrate a single plant entity, along with various reosurces, from XML data into Grakn. This is a snippet of the XML data (<a href="https://www.w3schools.com/xml/plant_catalog.xml">full example</a>):</p>
 
-<p>The authors:</p>
-
-<pre><code class="language-graql-template">insert
-
-for(&lt;books&gt;) do {
-    $author isa author
-        has authorName &lt;author&gt;;
-}
-</code></pre>
-
-<p>The subjects:</p>
-
-<pre><code class="language-graql-template">insert
-
-for(&lt;books&gt;) do {
-    $subject isa subject
-        has subjectName &lt;subject&gt;;
-}
-</code></pre>
-
-<p>Finally, a template to build the relations between the entities:</p>
-
-<pre><code class="language-graql-template">
-</code></pre>
-
-<p>To call the migration script on each template:</p>
-
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>./bin/migration.sh json -t ./json/book-template.gql  -i ./json/library-data.json -k grakn
-./bin/migration.sh json -t ./json/author-template.gql  -i ./json/library-data.json -k grakn
-./bin/migration.sh json -t ./json/subject-template.gql  -i ./json/library-data.json -k grakn
-./bin/migration.sh json -t ./json/publication-template.gql  -i ./json/library-data.json -k grakn
+<div class="language-xml highlighter-rouge"><pre class="highlight"><code><span class="nt">&lt;CATALOG&gt;</span>
+    <span class="nt">&lt;PLANT&gt;</span>
+        <span class="nt">&lt;COMMON&gt;</span>Bloodroot<span class="nt">&lt;/COMMON&gt;</span>
+        <span class="nt">&lt;BOTANICAL&gt;</span>Sanguinaria canadensis<span class="nt">&lt;/BOTANICAL&gt;</span>
+        <span class="nt">&lt;ZONE&gt;</span>4<span class="nt">&lt;/ZONE&gt;</span>
+        <span class="nt">&lt;LIGHT&gt;</span>Mostly Shady<span class="nt">&lt;/LIGHT&gt;</span>
+        <span class="nt">&lt;PRICE&gt;</span>$2.44<span class="nt">&lt;/PRICE&gt;</span>
+        <span class="nt">&lt;AVAILABILITY&gt;</span>031599<span class="nt">&lt;/AVAILABILITY&gt;</span>
+    <span class="nt">&lt;/PLANT&gt;</span>
+    <span class="nt">&lt;PLANT&gt;</span>
+        <span class="nt">&lt;COMMON&gt;</span>Columbine<span class="nt">&lt;/COMMON&gt;</span>
+        <span class="nt">&lt;BOTANICAL&gt;</span>Aquilegia canadensis<span class="nt">&lt;/BOTANICAL&gt;</span>
+        <span class="nt">&lt;ZONE&gt;</span>3<span class="nt">&lt;/ZONE&gt;</span>
+        <span class="nt">&lt;LIGHT&gt;</span>Mostly Shady<span class="nt">&lt;/LIGHT&gt;</span>
+        <span class="nt">&lt;PRICE&gt;</span>$9.37<span class="nt">&lt;/PRICE&gt;</span>
+        <span class="nt">&lt;AVAILABILITY&gt;</span>030699<span class="nt">&lt;/AVAILABILITY&gt;</span>
+    <span class="nt">&lt;/PLANT&gt;</span>
+    <span class="nt">&lt;PLANT&gt;</span>
+        <span class="nt">&lt;COMMON&gt;</span>Marsh Marigold<span class="nt">&lt;/COMMON&gt;</span>
+        <span class="nt">&lt;BOTANICAL&gt;</span>Caltha palustris<span class="nt">&lt;/BOTANICAL&gt;</span>
+        <span class="nt">&lt;ZONE&gt;</span>4<span class="nt">&lt;/ZONE&gt;</span>
+        <span class="nt">&lt;LIGHT&gt;</span>Mostly Sunny<span class="nt">&lt;/LIGHT&gt;</span>
+        <span class="nt">&lt;PRICE&gt;</span>$6.81<span class="nt">&lt;/PRICE&gt;</span>
+        <span class="nt">&lt;AVAILABILITY&gt;</span>051799<span class="nt">&lt;/AVAILABILITY&gt;</span>
+    <span class="nt">&lt;/PLANT&gt;</span>
+    ...
+<span class="nt">&lt;/CATALOG&gt;</span>
 </code></pre>
 </div>
 
-<p>The resultant Graql for the migration:</p>
+<p>Our ontology contains a single plant entity and various resources that are associated with it:</p>
 
-<pre><code class="language-graql">
+<pre><code class="language-gql">insert
+
+plant sub entity
+    has common
+    has botanical
+    has zone
+    has light
+    has price
+    has availability;
+
+name sub resource datatype string;
+common sub name;
+botanical sub name;
+zone sub resource datatype string;
+light sub resource datatype string;
+price sub resource datatype double;
+availability sub resource datatype long;
 </code></pre>
 
-<h2 id="visualise-the-data">Visualise the Data</h2>
+<p>We want to insert one <code class="highlighter-rouge">plant</code> entity in the graph per <code class="highlighter-rouge">PLANT</code> tag in the XML data. This means that me must specify main element of the XML migration to be “PLANT”. In the migration script you would do so by adding the parameter: <code class="highlighter-rouge">-element PLANT</code>.</p>
 
-<h2 id="add-borrower-data">Add Borrower Data</h2>
+<p>The XML template will be applied to each of the specified elements:</p>
 
-<h2 id="data-export">Data Export</h2>
+<div class="highlighter-rouge"><pre class="highlight"><code>insert
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="c"># Export the ontology</span>
-&lt;relative-path-to-Grakn&gt;/migration.sh <span class="nb">export</span> -ontology &gt; ontology-export.gql
-
-<span class="c"># Export the data</span>
-&lt;relative-path-to-Grakn&gt;/migration.sh <span class="nb">export</span> -data &gt; data-export.gql
+$plant isa plant
+    has common &lt;COMMON[0].textContent&gt;
+    has botanical &lt;BOTANICAL[0].textContent&gt;
+    has zone &lt;ZONE[0].textContent&gt;
+    has light &lt;LIGHT[0].textContent&gt;
+    has availability @long(&lt;AVAILABILITY[0].textContent&gt;);
 </code></pre>
 </div>
 
-<p>Exporting data or the ontology from Grakn, into Graql, will always redirect to standard out, so above we are sending the output to an appropriately named file.</p>
+<p>This template contains a single insert query. As it will be applied to each element of the XML, you will have one insert query per <code class="highlighter-rouge">PLANT</code> element.</p>
+
+<p>The tirangle brackets are used to specify nested elements: in the XML <code class="highlighter-rouge">&lt;BOTANICAL&gt;</code> is a direct child of <code class="highlighter-rouge">&lt;PLANT&gt;</code> and so can be used whenever the template traversal is in the <code class="highlighter-rouge">PLANT</code> scope.</p>
+
+<p>Before running any migration you need to ensure that the ontology has been loaded to the graph:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>./&lt;grakn-install-location&gt;/bin/graql.sh -f plants-ontology.gql -k plants
+</code></pre>
+</div>
+
+<p>At this point you can run the XML migration script on the resources we have described above:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>./&lt;grakn-install-location&gt;/bin/migration.sh xml -i plants.xml -t plants-template.gql -e PLANT -k plants 
+</code></pre>
+</div>
+
+<p>Adding the <code class="highlighter-rouge">-n</code> tag to the migration script will print the resolved graql statements to system out. This is a useful tactic to get used to the Graql langauge and know exactly what is being inserted into your graph:</p>
+
+<pre><code class="language-graql">insert $plant0 isa plant has common "Bloodroot" has botanical "Sanguinaria canadensis" has zone "4" has light "Mostly Shady" has availability 31599;
+insert $plant0 isa plant has common "Columbine" has botanical "Aquilegia canadensis" has zone "3" has light "Mostly Shady" has availability 30699;
+insert $plant0 isa plant has common "Marsh Marigold" has botanical "Caltha palustris" has zone "4" has light "Mostly Sunny" has availability 51799;
+</code></pre>
 
 <h2 id="where-next">Where Next?</h2>
+<p>You can find further documentation about migration in our API reference documentation (which is in the <em>/docs</em> directory of the distribution zip file, and also online <a href="https://grakn.ai/javadocs.html">here</a>. An example of JSON migration using the Java API can be found on <a href="https://github.com/graknlabs/sample-projects/tree/master/example-json-migration-giphy">Github</a>.</p>
 
 <h2 id="comments">Comments</h2>
-<p>Want to leave a comment? Visit <a href="https://github.com/graknlabs/docs/issues/27" target="_blank">the issues on Github for this page</a> (you’ll need a GitHub account). You are also welcome to contribute to our documentation directly via the “Edit me” button at the top of the page.</p>
+<p>Want to leave a comment? Visit <a href="https://github.com/graknlabs/docs/issues/32" target="_blank">the issues on Github for this page</a> (you’ll need a GitHub account). You are also welcome to contribute to our documentation directly via the “Edit me” button at the top of the page.</p>
 
 
     <div class="tags">
@@ -966,10 +1083,6 @@ for(&lt;books&gt;) do {
         
         
         <a href="/pages/tag_migration.html" class="btn btn-default navbar-btn cursorNorm" role="button">migration</a>
-        
-        
-        
-        <a href="/pages/tag_examples.html" class="btn btn-default navbar-btn cursorNorm" role="button">examples</a>
         
         
         

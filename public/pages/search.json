@@ -3,22 +3,22 @@
 
 
 {
-"title": "Contribute to GRAKN.AI",
+"title": "Introduction to GRAKN.AI",
 "tags": "overview",
-"keywords": "contributors, developers",
-"url": "/pages/contributors/index.html",
-"summary": "This is an area for documentation specific to contributors working on the GRAKN.AI platform, documentation or examples."
+"keywords": "intro",
+"url": "/pages/overview/index.html",
+"summary": "GRAKN.AI is the database for AI. It is a database in the form of a knowledge graph that uses machine reasoning to simplify data processing challenges for AI applications."
 }
 
 
 
 ,
 {
-"title": "Introduction to GRAKN.AI",
+"title": "Contribute to GRAKN.AI",
 "tags": "overview",
-"keywords": "intro",
-"url": "/pages/overview/index.html",
-"summary": "GRAKN.AI is the database for AI. It is a database in the form of a knowledge graph that uses machine reasoning to simplify data processing challenges for AI applications."
+"keywords": "contributors, developers",
+"url": "/pages/contributors/index.html",
+"summary": "This is an area for documentation specific to contributors working on the GRAKN.AI platform, documentation or examples."
 }
 
 
@@ -208,6 +208,17 @@
 "keywords": "setup, getting started",
 "url": "/pages/documentation/migration/SQL-migration.html",
 "summary": "This document will teach you how to migrate SQL data into Grakn."
+}
+
+
+
+,
+{
+"title": "XML Migration to Grakn",
+"tags": "migration",
+"keywords": "setup, getting started",
+"url": "/pages/documentation/migration/XML-migration.html",
+"summary": "This document will teach you how to migrate XML data into Grakn."
 }
 
 
@@ -502,22 +513,22 @@
 
 ,
 {
-"title": "Reasoning with Graql",
-"tags": "reasoningexamples",
-"keywords": "migration",
-"url": "/pages/documentation/examples/graql-reasoning.html",
-"summary": "An example to illustrate inference using genealogy data."
+"title": "Graql Rules",
+"tags": "graqlreasoning",
+"keywords": "graql, reasoner",
+"url": "/pages/documentation/graql/graql-rules.html",
+"summary": "Graql Rules"
 }
 
 
 
 ,
 {
-"title": "Graql Rules",
-"tags": "graqlreasoning",
-"keywords": "graql, reasoner",
-"url": "/pages/documentation/graql/graql-rules.html",
-"summary": "Graql Rules"
+"title": "Reasoning with Graql",
+"tags": "reasoningexamples",
+"keywords": "migration",
+"url": "/pages/documentation/examples/graql-reasoning.html",
+"summary": "An example to illustrate inference using genealogy data."
 }
 
 
@@ -754,6 +765,17 @@
 
 
 
+
+
+
+,
+{
+"title": "Task Client API",
+"tags": "java",
+"keywords": "java",
+"url": "/pages/documentation/developing-with-java/task-api.html",
+"summary": "The Task Client API"
+}
 
 
 

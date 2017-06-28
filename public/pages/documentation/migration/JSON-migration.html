@@ -848,7 +848,7 @@ OPTIONS
     </span><span class="p">{</span><span class="nt">"id"</span><span class="p">:</span><span class="s2">"7"</span><span class="p">,</span><span class="w"> </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bug"</span><span class="w"> </span><span class="p">},</span><span class="w">
     </span><span class="p">{</span><span class="nt">"id"</span><span class="p">:</span><span class="s2">"8"</span><span class="p">,</span><span class="w"> </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ghost"</span><span class="w"> </span><span class="p">},</span><span class="w">
     </span><span class="p">{</span><span class="nt">"id"</span><span class="p">:</span><span class="s2">"9"</span><span class="p">,</span><span class="w"> </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"steel"</span><span class="w"> </span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="nt">"id"</span><span class="p">:</span><span class="s2">"10"</span><span class="w"> </span><span class="s2">"type"</span><span class="err">:</span><span class="w"> </span><span class="p">,</span><span class="nt">"fire"</span><span class="w"> </span><span class="err">}</span><span class="p">]</span><span class="w">
+    </span><span class="p">{</span><span class="nt">"id"</span><span class="p">:</span><span class="s2">"10"</span><span class="p">,</span><span class="w"> </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"fire"</span><span class="w"> </span><span class="p">}]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 </div>
@@ -943,14 +943,14 @@ for(&lt;pokemon&gt;) do {
 
 <p>The resulting Graql statement, if printed out, looks as follows:</p>
 
-<pre><code class="language-graql">match $1 has type-id "1"; $2 has type-id "2";
-insert $p0 has height 6 has weight 85 isa pokemon has description "Charmander" has pokedex-no "4";
-isa has-type (pokemon-with-type: $p0, type-of-pokemon: $1);
-$p1 has weight 190 has height 11 has pokedex-no "5" has description "Charmeleon" isa pokemon;
+<pre><code class="language-graql">match $2 has type-id "2"; $1 has type-id "1";
+insert $p0 isa pokemon has weight 85 has height 6 has pokedex-no 4 has description "Charmander";
+(pokemon-with-type: $p0, type-of-pokemon: $1) isa has-type;
+$p1 isa pokemon has weight 190 has height 11 has pokedex-no "5" has description "Charmeleon";
 (pokemon-with-type: $p1, type-of-pokemon: $1) isa has-type;
-$p2 has weight 905 has pokedex-no "6" has description "Charizard" isa pokemon has height 17;
-isa has-type (pokemon-with-type: $p2, type-of-pokemon: $1);
-isa has-type (pokemon-with-type: $p2, type-of-pokemon: $2);
+$p2 isa pokemon has weight 905 has height 17 has pokedex-no "6" has description "Charizard";
+(pokemon-with-type: $p2, type-of-pokemon: $1) isa has-type;
+(pokemon-with-type: $p2, type-of-pokemon: $2) isa has-type;
 </code></pre>
 
 <h2 id="where-next">Where Next?</h2>
@@ -997,7 +997,7 @@ isa has-type (pokemon-with-type: $p2, type-of-pokemon: $2);
         <br>
         <p>© 2017 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2017 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> February 2017<br/> Site last generated: Jun 2, 2017 <br />
+        <span>Page last updated:</span> February 2017<br/> Site last generated: Jun 29, 2017 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">

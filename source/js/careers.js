@@ -94,7 +94,7 @@ window.MNDMPS.Careers = {
             jobBlock.classList.add('job');
 
             jobBlock.innerHTML = '<h3>' + obj.title + '</h3>\
-                <p> Posted on ' + timeFormatter(obj.updated_at) + ': '+ obj.job_type + ', &pound;' + kFormatter(obj.salary_min) + ' — &pound;' + kFormatter(obj.salary_max) + ', ' + obj.equity_min + '% — ' + obj.equity_max + '% equity\
+                <p> Posted on ' + timeFormatter(obj.updated_at) + ': '+ obj.job_type + '\
                 <br/>\
                     <a href="mailto:careers@grakn.ai">Apply</a> or <a target="_blank" rel="nofollow" href="' + obj.angellist_url + '">Check on AngelList</a>\
                 </p>\

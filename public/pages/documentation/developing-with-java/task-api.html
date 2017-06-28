@@ -3,9 +3,9 @@
     <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="An example to illustrate migration of JSON to Grakn">
-<meta name="keywords" content="migrationexamples,  migration, GRAKN.AI, Grakn Labs, grakn, graql, grakn.ai, Mindmaps Research, Mindmaps Research Ltd, MindmapsDB, mindmaps, mindmaps graph, mindmaps.io, knowledge graph, distributed knowledge graph, development platform, developer tool, data platform, programming langauge, query langauge, database, semantic database, distributed semantic database, distributed database, graph database, semantic search, data exploration, recommendation system, knowledge management, knowledge engineering, real-time analytics, advanced analytics, reasoning engine, inference engine, expert systems, semantic applications, research engines, data management, business intelligence, big data, semantic web, semantic data, knowledge representation, automated reasoning, semantic network, knowledge ontology, semantic graph, ontology engineering, graph based knowledge representation, artificial intelligence,">
-<title>GRAKN.AI - An Example of Migrating JSON to Grakn</title>
+<meta name="description" content="The Task Client API">
+<meta name="keywords" content="java,  java, GRAKN.AI, Grakn Labs, grakn, graql, grakn.ai, Mindmaps Research, Mindmaps Research Ltd, MindmapsDB, mindmaps, mindmaps graph, mindmaps.io, knowledge graph, distributed knowledge graph, development platform, developer tool, data platform, programming langauge, query langauge, database, semantic database, distributed semantic database, distributed database, graph database, semantic search, data exploration, recommendation system, knowledge management, knowledge engineering, real-time analytics, advanced analytics, reasoning engine, inference engine, expert systems, semantic applications, research engines, data management, business intelligence, big data, semantic web, semantic data, knowledge representation, automated reasoning, semantic network, knowledge ontology, semantic graph, ontology engineering, graph based knowledge representation, artificial intelligence,">
+<title>GRAKN.AI - Task Client API</title>
 <link rel="stylesheet" href="/pages/css/syntax.css">
 
 
@@ -228,7 +228,7 @@
                             
                             dataSource: '/pages/search.json',
                             
-                            searchResultTemplate: '<li><a href="{url}" title="An Example of Migrating JSON to Grakn">{title}</a></li>',
+                            searchResultTemplate: '<li><a href="{url}" title="Task Client API">{title}</a></li>',
                             noResultsText: '<li><a class="empty">No results found</a></li>',
                             limit: 10,
                             fuzzy: true
@@ -748,7 +748,7 @@
         <!-- Content Column -->
         <div class="col-md-9">
             <div class="post-header">
-   <h1 class="post-title-main">An Example of Migrating JSON to Grakn</h1>
+   <h1 class="post-title-main">Task Client API</h1>
 </div>
 
 
@@ -756,7 +756,7 @@
 <div class="post-content">
 
    
-    <div class="summary">An example to illustrate migration of JSON to Grakn</div>
+    <div class="summary">The Task Client API</div>
    
 
     
@@ -788,175 +788,91 @@ $('#toc').on('click', 'a', function() {
 
     
 
-    <a target="_blank" href="https://github.com/graknlabs/docs/blob/master/pages/documentation/11-examples/JSON-migration-NOT-PUBLISHED.md" class="btn btn-default githubEditButton" role="button"><i class="fa fa-github fa-lg"></i> Edit me</a>
+    <a target="_blank" href="https://github.com/graknlabs/docs/blob/master/pages/documentation/6-developing-with-java/tasks-api.md" class="btn btn-default githubEditButton" role="button"><i class="fa fa-github fa-lg"></i> Edit me</a>
 
     
 
     
 
-  <h2 id="introduction">Introduction</h2>
+  <p>The Task client is a Java api for interacting with the Grakn engine tasks api. To use the tasks client API, add the following to your pom.xml:</p>
 
-<p>This example looks at the migration of simple JSON data to build a graph in GRAKN.AI. The data is an invented library catalogue of a very small number of books, and illustrates how to migrate simple data and handle issues such as preventing the creation of duplicate entities. You can find the data, ontology and templates for this example in our <a href="https://github.com/graknlabs/sample-projects/tree/master/example-json-migration-library">sample projects repo</a> on Github.</p>
-
-<p>For a detailed overview of CSV migration, we recommend that you take a look at the Grakn documentation on <a href="https://grakn.ai/pages/documentation/migration/JSON-migration.html">JSON Migration</a> and <a href="https://grakn.ai/pages/documentation/graql/graql-templating.html">Graql templating</a>.</p>
-
-<h2 id="data">Data</h2>
-
-<p>The JSON data for the book catalogue is as follows:</p>
-
-<div class="language-json highlighter-rouge"><pre class="highlight"><code><span class="w">
-</span><span class="p">{</span><span class="w">
-    </span><span class="nt">"books"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-            </span><span class="nt">"title"</span><span class="p">:</span><span class="s2">"The Gruffalo"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"id"</span><span class="p">:</span><span class="s2">"1"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"author"</span><span class="p">:</span><span class="s2">"Julia Donaldson"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"subject"</span><span class="p">:</span><span class="s2">"Children's Fiction"</span><span class="w">
-        </span><span class="p">},</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-            </span><span class="nt">"title"</span><span class="p">:</span><span class="s2">"The Tear Thief"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"id"</span><span class="p">:</span><span class="s2">"2"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"author"</span><span class="p">:</span><span class="s2">"Carol Ann Duffy"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"subject"</span><span class="p">:</span><span class="s2">"Children's Fiction"</span><span class="w">
-        </span><span class="p">},</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-            </span><span class="nt">"title"</span><span class="p">:</span><span class="s2">"Selected Poems"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"id"</span><span class="p">:</span><span class="s2">"3"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"author"</span><span class="p">:</span><span class="s2">"Carol Ann Duffy"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"subject"</span><span class="p">:</span><span class="s2">"Poetry"</span><span class="w">
-        </span><span class="p">},</span><span class="w">
-        </span><span class="err">...</span><span class="w">
-    </span><span class="p">]</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-</div>
-
-<p>The <code class="highlighter-rouge">id</code> value can be considered to be unique and identify each book. However, other values cannot be assumed to be unique. In the snippet shown above, note that the author <code class="highlighter-rouge">Carol Ann Duffy</code> and subject <code class="highlighter-rouge">Children's Fiction</code> are both duplicated. It is possible that a book title may also be duplicated, although this is not shown.</p>
-
-<h3 id="ontology">Ontology</h3>
-
-<p>The ontology for the book catalogue is as follows:</p>
-
-<pre><code class="language-graql">insert
-
-# Entities
-
-book sub entity
-	has bookId
-	has title
-	plays publication-item;
-
-author sub entity
-	has authorName
-	plays publication-author;
-
-subject sub entity
-	has subjectName
-	plays publication-subject; 
-
-
-# Resources
-
-bookId sub resource datatype string;
-title sub resource datatype string;
-authorName sub resource datatype string;
-subjectName sub resource datatype string;
-
-# Relations and Roles
-
-publication sub relation
-	relates publication-item
-	relates publication-author
-	relates publication-subject;
-
-publication-item sub role;
-publication-author sub role;
-publication-subject sub role;
-
-</code></pre>
-
-<p>Here, there are three entities, to reflect the book, author of the book and possible book subjects. There is one relation, <code class="highlighter-rouge">publication</code> which between all three entities.</p>
-
-<p>To load <em>ontology.gql</em> into Grakn, make sure the engine is running and choose a clean keyspace in which to work (here we use the default keyspace, so we are cleaning it before we get started).</p>
-
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>&lt;relative-path-to-Grakn&gt;/bin/grakn.sh clean
-&lt;relative-path-to-Grakn&gt;/bin/grakn.sh start
-&lt;relative-path-to-Grakn&gt;/bin/graql.sh -f ./ontology.gql
+<div class="highlighter-rouge"><pre class="highlight"><code>&lt;dependency&gt;
+	&lt;groupId&gt;ai.grakn&lt;/groupId&gt;
+	&lt;artifactId&gt;grakn-client&lt;/artifactId&gt;
+	&lt;version&gt;${grakn.version}&lt;/version&gt;
+&lt;/dependency&gt;
 </code></pre>
 </div>
 
-<h3 id="data-migration">Data Migration</h3>
+<p>and add the following to your imports:</p>
 
-<p>Having loaded the ontology, the next steps are to populate the graph by migrating data into Grakn, using Graql templates. There are separate templates for each entity. First, for the books:</p>
-
-<pre><code class="language-graql-template">insert
-
-for(&lt;books&gt;) do {
-    $book isa book
-        has bookId &lt;id&gt;
-        has title &lt;title&gt;;
-}
-</code></pre>
-
-<p>The authors:</p>
-
-<pre><code class="language-graql-template">insert
-
-for(&lt;books&gt;) do {
-    $author isa author
-        has authorName &lt;author&gt;;
-}
-</code></pre>
-
-<p>The subjects:</p>
-
-<pre><code class="language-graql-template">insert
-
-for(&lt;books&gt;) do {
-    $subject isa subject
-        has subjectName &lt;subject&gt;;
-}
-</code></pre>
-
-<p>Finally, a template to build the relations between the entities:</p>
-
-<pre><code class="language-graql-template">
-</code></pre>
-
-<p>To call the migration script on each template:</p>
-
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>./bin/migration.sh json -t ./json/book-template.gql  -i ./json/library-data.json -k grakn
-./bin/migration.sh json -t ./json/author-template.gql  -i ./json/library-data.json -k grakn
-./bin/migration.sh json -t ./json/subject-template.gql  -i ./json/library-data.json -k grakn
-./bin/migration.sh json -t ./json/publication-template.gql  -i ./json/library-data.json -k grakn
+<div class="highlighter-rouge"><pre class="highlight"><code>import ai.grakn.client.TaskClient;
 </code></pre>
 </div>
 
-<p>The resultant Graql for the migration:</p>
+<p>The <code class="highlighter-rouge">BatchMutatorClient</code> makes use of the <code class="highlighter-rouge">TaskClient</code>. If your intention is to load data, please see our <a href="../loader-api.html">mutator client documentation</a>.</p>
 
-<pre><code class="language-graql">
-</code></pre>
+<h1 id="basic-usage">Basic Usage</h1>
 
-<h2 id="visualise-the-data">Visualise the Data</h2>
+<p>The task client provides only one constructor that accepts the host and port where a single engine is running.</p>
 
-<h2 id="add-borrower-data">Add Borrower Data</h2>
-
-<h2 id="data-export">Data Export</h2>
-
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="c"># Export the ontology</span>
-&lt;relative-path-to-Grakn&gt;/migration.sh <span class="nb">export</span> -ontology &gt; ontology-export.gql
-
-<span class="c"># Export the data</span>
-&lt;relative-path-to-Grakn&gt;/migration.sh <span class="nb">export</span> -data &gt; data-export.gql
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">TaskClient</span> <span class="n">loader</span> <span class="o">=</span> <span class="n">TaskClient</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="n">String</span> <span class="n">host</span><span class="o">,</span> <span class="n">String</span> <span class="n">port</span><span class="o">);</span>
 </code></pre>
 </div>
 
-<p>Exporting data or the ontology from Grakn, into Graql, will always redirect to standard out, so above we are sending the output to an appropriately named file.</p>
+<h2 id="creating-a-task">Creating a task</h2>
 
-<h2 id="where-next">Where Next?</h2>
+<p>The creating of tasks requires a number of parameters:</p>
+
+<p><strong>Task Class</strong>: Type of task to execute. This task class must be available to all of the servers on which it is to run.</p>
+
+<p><strong>Creator</strong> String representing the class creating the task</p>
+
+<p><strong>Execution time</strong> Instant at which the task should be run. This can be at any time: if the time is before the current moment, the task will be run as soon as it reaches the Grakn engine executors.</p>
+
+<p><strong>Interval</strong> Duration representing how often to run the task. If null, the task will only be executed once.</p>
+
+<p><strong>Configuration</strong> Data on which to execute the task represented in a Json object</p>
+
+<p>The <code class="highlighter-rouge">TaskClient.sendTask()</code> function accepts all of the above as arguments:</p>
+
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">TaskClient</span> <span class="n">client</span> <span class="o">=</span> <span class="n">TaskClient</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="n">String</span> <span class="n">host</span><span class="o">,</span> <span class="n">String</span> <span class="n">port</span><span class="o">);</span>
+
+<span class="n">Class</span> <span class="n">taskClass</span> <span class="o">=</span> <span class="n">ShortExecutionMockTask</span><span class="o">.</span><span class="na">class</span><span class="o">;</span>
+<span class="n">String</span> <span class="n">creator</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="na">getClass</span><span class="o">().</span><span class="na">getName</span><span class="o">();</span>
+<span class="n">Instant</span> <span class="n">runAt</span> <span class="o">=</span> <span class="n">Instant</span><span class="o">.</span><span class="na">now</span><span class="o">();</span>
+<span class="n">Duration</span> <span class="n">interval</span> <span class="o">=</span> <span class="n">Duration</span><span class="o">.</span><span class="na">ofSeconds</span><span class="o">(</span><span class="mi">1</span><span class="o">);</span>
+<span class="n">Json</span> <span class="n">configuration</span> <span class="o">=</span> <span class="n">Json</span><span class="o">.</span><span class="na">nil</span><span class="o">();</span>
+
+<span class="n">TaskId</span> <span class="n">identifier</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="na">sendTask</span><span class="o">(</span><span class="n">taskClass</span><span class="o">,</span> <span class="n">creator</span><span class="o">,</span> <span class="n">runAt</span><span class="o">,</span> <span class="n">interval</span><span class="o">,</span> <span class="n">configuration</span><span class="o">);</span>
+</code></pre>
+</div>
+
+<p>This function will execute a <code class="highlighter-rouge">POST</code> request against the server that will then run the specified task asynchronously. The client is responsible for checking on the status of the task (see below).</p>
+
+<h2 id="stopping-a-task">Stopping a task</h2>
+
+<p>To stop a task, its ID must be known. This method returns a boolean indicating if the task was sucessfully stopped by the server.</p>
+
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">TaskClient</span> <span class="n">client</span> <span class="o">=</span> <span class="n">TaskClient</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="n">host</span><span class="o">,</span> <span class="n">port</span><span class="o">);</span>
+
+<span class="kt">boolean</span> <span class="n">stopped</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="na">stopTask</span><span class="o">(</span><span class="n">TaskId</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="s">"randomTaskId"</span><span class="o">);</span>
+</code></pre>
+</div>
+
+<h2 id="status-of-a-task">Status of a task</h2>
+
+<p>To check on the status of the task, its ID must be known. This method will throw an exception if the task cannot be found on the server.</p>
+
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">TaskClient</span> <span class="n">client</span> <span class="o">=</span> <span class="n">TaskClient</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="n">host</span><span class="o">,</span> <span class="n">port</span><span class="o">);</span>
+
+<span class="n">TaskStatus</span> <span class="n">status</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="na">getStatus</span><span class="o">(</span><span class="n">TaskId</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="s">"randomTaskId"</span><span class="o">));</span>
+</code></pre>
+</div>
 
 <h2 id="comments">Comments</h2>
-<p>Want to leave a comment? Visit <a href="https://github.com/graknlabs/docs/issues/27" target="_blank">the issues on Github for this page</a> (you’ll need a GitHub account). You are also welcome to contribute to our documentation directly via the “Edit me” button at the top of the page.</p>
+<p>Want to leave a comment? Visit <a href="https://github.com/graknlabs/docs/issues/23" target="_blank">the issues on Github for this page</a> (you’ll need a GitHub account). You are also welcome to contribute to our documentation directly via the “Edit me” button at the top of the page.</p>
+
 
 
     <div class="tags">
@@ -965,11 +881,7 @@ for(&lt;books&gt;) do {
         
         
         
-        <a href="/pages/tag_migration.html" class="btn btn-default navbar-btn cursorNorm" role="button">migration</a>
-        
-        
-        
-        <a href="/pages/tag_examples.html" class="btn btn-default navbar-btn cursorNorm" role="button">examples</a>
+        <a href="/pages/tag_java.html" class="btn btn-default navbar-btn cursorNorm" role="button">java</a>
         
         
         
@@ -1000,7 +912,7 @@ for(&lt;books&gt;) do {
         <br>
         <p>© 2017 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2017 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> February 2017<br/> Site last generated: Jun 29, 2017 <br />
+        <span>Page last updated:</span> June 2017<br/> Site last generated: Jun 29, 2017 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">
