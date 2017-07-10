@@ -145,8 +145,8 @@
             }
 
             .atvImg-layers{
-                -webkit-filter: grayscale(1);
-                filter: grayscale(1);
+                -webkit-filter: grayscale(0.2);
+                filter: grayscale(0.2);
                 transition: filter 400ms linear, -webkit-filter 400ms linear;
             }
 

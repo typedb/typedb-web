@@ -38,7 +38,7 @@
     position: absolute;
     width: 104%;
     height: 104%;
-    top: -2%; 
+    top: -2%;
     left: -2%;
     background-repeat: no-repeat;
     background-position: center;
@@ -49,7 +49,7 @@
 
 .atvImg-shadow {
     position: absolute;
-    top: 5%; 
+    top: 5%;
     left: 5%;
     width: 90%;
     height: 90%;
@@ -61,9 +61,9 @@
 .atvImg-shine {
     pointer-events: none;
     position: absolute;
-    top: 0; 
-    left: 0; 
-    right: 0; 
+    top: 0;
+    left: 0;
+    right: 0;
     bottom: 0;
     //border-radius: 5px;
     background: linear-gradient(135deg, rgba(255,255,255,.25) 0%,rgba(255,255,255,0) 60%);
