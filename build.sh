@@ -5,7 +5,7 @@ git pull
 # Pull in docs from graknlabs/grakn repository
 echo "Updating grakn repository"
 if [ ! -d grakn/ ]; then
-  git clone https://github.com/graknlabs/grakn/
+  git clone -b stable https://github.com/graknlabs/grakn/
 else
   git -C grakn pull
 fi
