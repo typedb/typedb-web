@@ -1,20 +1,23 @@
 #!/bin/sh
 echo Updating main repository
 git pull
-echo Updating docs submodule
-if [ ! -d docs/.git ]; then
-    git submodule init
+
+# Pull in docs from graknlabs/grakn repository
+echo "Updating grakn repository"
+if [ ! -d grakn/ ]; then
+  git clone -b stable https://github.com/graknlabs/grakn/
+else
+  git -C grakn pull
 fi
-git submodule update --remote docs
 
 #echo Building site
 #grunt ??
 
 echo Building documentation pages
 export urlprefix=/pages
-cd docs
+cd grakn/docs
 rake build
-cd ..
+cd ../..
 
 if [ -d public/pages ]; then
     echo Removing old pages
@@ -25,9 +28,9 @@ echo Copying files
 mkdir public/pages
 # OSX
 if [ $(dirname $HOME) == "/Users" ];then
-    cp -r docs/_site/* public/pages/
+    cp -r grakn/docs/_site/* public/pages/
 else
-    cp -rd docs/_site/* public/pages/
+    cp -rd grakn/docs/_site/* public/pages/
 fi
 
 echo Creating images symlink
