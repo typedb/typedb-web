@@ -800,7 +800,7 @@ $('#toc').on('click', 'a', function() {
 <h2 id="migration-shell-script-for-json">Migration Shell Script for JSON</h2>
 <p>The migration shell script can be found in <em>/bin</em> directory of your Grakn environment. We will illustrate its usage in an example below:</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>usage: migration.sh json -template &lt;arg&gt; -input &lt;arg&gt; -keyspace &lt;arg&gt; <span class="o">[</span>-help] <span class="o">[</span>-no] <span class="o">[</span>-batch &lt;arg&gt;] <span class="o">[</span>-active &lt;arg&gt;] <span class="o">[</span>-uri &lt;arg&gt;] <span class="o">[</span>-retry &lt;arg&gt;] <span class="o">[</span>-v]
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>usage: migration.sh json -template &lt;arg&gt; -input &lt;arg&gt; --keyspace &lt;arg&gt; <span class="o">[</span>-help] <span class="o">[</span>-no] <span class="o">[</span>-batch &lt;arg&gt;] <span class="o">[</span>-active &lt;arg&gt;] <span class="o">[</span>-uri &lt;arg&gt;] <span class="o">[</span>-retry &lt;arg&gt;] <span class="o">[</span>-v]
  
 OPTIONS
  -a,--active &lt;arg&gt;     Number of tasks <span class="o">(</span>batches<span class="o">)</span> running on the server at
