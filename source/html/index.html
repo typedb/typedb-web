@@ -320,17 +320,15 @@ graql>>
 match
 $x isa movie;
 $y isa person;
-$z isa movie value "Avatar";
+$z isa movie, has title "Avatar";
 ($x, $y) isa directorship;
 ($y, $z) isa directorship;
 select $x;
 
 results>>
-[
-  {"isa": "movie", "value": "Titanic"},
-  {"isa": "movie", "value": "Aliens"},
-  {"isa": "movie", "value": "Terminator 2: Judgement Day"}
-]</textarea>
+$x isa movie, has title "Titanic";
+$x isa movie, has title "Aliens";
+$x isa movie, has title "Terminator 2: Judgement Day";</textarea>
                                     <pre class="code-output">
                                         <code class="language-graql"></code>
                                     </pre>
@@ -344,17 +342,15 @@ results>>
 
 graql>>
 match
-$x isa movie;
+$x isa movie, has title $t;;
 $x has rating > 8.0;
-$x has release-date >= "01 Jan 2015";
-select $x(id, has title);
+$x has release-date >= 2015-01-01;
+select $t;
 
 results>>
-[
-  {"id": "id1234", "resources": {"title": ["Star Wars: Episode VII"]}},
-  {"id": "id4567", "resources": {"title": ["Zootopia"]}},
-  {"id": "id6789", "resources": {"title": ["The Martian"]}}
-]</textarea>
+$t isa title, val "Star Wars: Episove VII";
+$t isa title, val "Zootopia";
+$t isa title, val "The Martian";</textarea>
                                     <pre class="code-output">
                                         <code class="language-graql"></code>
                                     </pre>
@@ -369,17 +365,15 @@ graql>>
 match
 $x isa person;
 $y isa movie;
-$z isa person value "Ang Lee";
-($x, $y) isa casting;
+$z isa person has name "Ang Lee";
+($x, $y) isa has-cast;
 ($y, $z) isa directorship;
 select $x;
 
 results>>
-[
-  {"isa": "person", "value": "Suraj Sharma"},
-  {"isa": "person", "value": "Irrfan Khan"},
-  {"isa": "person", "value": "Ayush Tandon"}
-]</textarea>
+$x isa person, has name "Suraj Sharma";
+$x isa person, has name "Irrfan Khan";
+$x isa person, has name "Ayush Tandon";</textarea>
                                     <pre class="code-output">
                                         <code class="language-graql"></code>
                                     </pre>
@@ -391,10 +385,13 @@ results>>
                                     <textarea class="code-input" readonly=true># associate all slasher movies with the genre horror
 
 graql>>
-match
-$x isa movie has genre "Slasher";
 insert
-$x has genre "Horror";</textarea>
+$horror isa inference-rule
+when {
+    $x isa movie has genre "Slasher";
+} then {
+    $x has genre "Horror";
+};</textarea>
                                     <pre class="code-output">
                                         <code class="language-graql"></code>
                                     </pre>
@@ -407,9 +404,12 @@ $x has genre "Horror";</textarea>
 
 graql>>
 insert
-$x isa movie value "Big Fish";
-$y isa person value "Tim Burton";
-$z isa directorship (movie-being-directed $x, director $y);</textarea>
+$x isa movie, has title "Big Fish";
+$y isa person, has name "Tim Burton";
+(movie-being-directed $x, director $y) isa directorship;
+
+results>>
+$x isa movie, has title "Big Fish"; $y isa movie, has name "Tim Burton";</textarea>
                                     <pre class="code-output">
                                         <code class="language-graql"></code>
                                     </pre>
