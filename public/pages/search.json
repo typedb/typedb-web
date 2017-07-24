@@ -3,22 +3,22 @@
 
 
 {
-"title": "Introduction to GRAKN.AI",
+"title": "Contribute to GRAKN.AI",
 "tags": "overview",
-"keywords": "intro",
-"url": "/pages/overview/index.html",
-"summary": "GRAKN.AI is the database for AI. It is a database in the form of a knowledge graph that uses machine reasoning to simplify data processing challenges for AI applications."
+"keywords": "contributors, developers",
+"url": "/pages/contributors/index.html",
+"summary": "This is an area for documentation specific to contributors working on the GRAKN.AI platform, documentation or examples."
 }
 
 
 
 ,
 {
-"title": "Contribute to GRAKN.AI",
+"title": "Introduction to GRAKN.AI",
 "tags": "overview",
-"keywords": "contributors, developers",
-"url": "/pages/contributors/index.html",
-"summary": "This is an area for documentation specific to contributors working on the GRAKN.AI platform, documentation or examples."
+"keywords": "intro",
+"url": "/pages/overview/index.html",
+"summary": "GRAKN.AI is the database for AI. It is a database in the form of a knowledge graph that uses machine reasoning to simplify data processing challenges for AI applications."
 }
 
 
@@ -469,22 +469,22 @@
 
 ,
 {
-"title": "Graph API Example",
-"tags": "getting-startedexamplesjava",
-"keywords": "examples",
-"url": "/pages/documentation/examples/graph-api-example.html",
-"summary": "Learn how to use the Graph API to model an ontology in Java"
+"title": "Graph API",
+"tags": "java",
+"keywords": "java",
+"url": "/pages/documentation/developing-with-java/graph-api.html",
+"summary": "The Graph API."
 }
 
 
 
 ,
 {
-"title": "Graph API",
-"tags": "java",
-"keywords": "java",
-"url": "/pages/documentation/developing-with-java/graph-api.html",
-"summary": "The Graph API."
+"title": "Graph API Example",
+"tags": "getting-startedexamplesjava",
+"keywords": "examples",
+"url": "/pages/documentation/examples/graph-api-example.html",
+"summary": "Learn how to use the Graph API to model an ontology in Java"
 }
 
 
@@ -513,22 +513,22 @@
 
 ,
 {
-"title": "Graql Rules",
-"tags": "graqlreasoning",
-"keywords": "graql, reasoner",
-"url": "/pages/documentation/graql/graql-rules.html",
-"summary": "Graql Rules"
+"title": "Reasoning with Graql",
+"tags": "reasoningexamples",
+"keywords": "migration",
+"url": "/pages/documentation/examples/graql-reasoning.html",
+"summary": "An example to illustrate inference using genealogy data."
 }
 
 
 
 ,
 {
-"title": "Reasoning with Graql",
-"tags": "reasoningexamples",
-"keywords": "migration",
-"url": "/pages/documentation/examples/graql-reasoning.html",
-"summary": "An example to illustrate inference using genealogy data."
+"title": "Graql Rules",
+"tags": "graqlreasoning",
+"keywords": "graql, reasoner",
+"url": "/pages/documentation/graql/graql-rules.html",
+"summary": "Graql Rules"
 }
 
 

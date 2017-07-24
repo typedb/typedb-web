@@ -6,13 +6,13 @@
   
   
   <url>
-    <loc>http://grakn.ai/pages//overview/index.html</loc>
+    <loc>http://grakn.ai/pages//contributors/index.html</loc>
   </url>
   
   
   
   <url>
-    <loc>http://grakn.ai/pages//contributors/index.html</loc>
+    <loc>http://grakn.ai/pages//overview/index.html</loc>
   </url>
   
   
@@ -262,13 +262,13 @@
   
   
   <url>
-    <loc>http://grakn.ai/pages//documentation/examples/graph-api-example.html</loc>
+    <loc>http://grakn.ai/pages//documentation/developing-with-java/graph-api.html</loc>
   </url>
   
   
   
   <url>
-    <loc>http://grakn.ai/pages//documentation/developing-with-java/graph-api.html</loc>
+    <loc>http://grakn.ai/pages//documentation/examples/graph-api-example.html</loc>
   </url>
   
   
@@ -286,13 +286,13 @@
   
   
   <url>
-    <loc>http://grakn.ai/pages//documentation/graql/graql-rules.html</loc>
+    <loc>http://grakn.ai/pages//documentation/examples/graql-reasoning.html</loc>
   </url>
   
   
   
   <url>
-    <loc>http://grakn.ai/pages//documentation/examples/graql-reasoning.html</loc>
+    <loc>http://grakn.ai/pages//documentation/graql/graql-rules.html</loc>
   </url>
   
   

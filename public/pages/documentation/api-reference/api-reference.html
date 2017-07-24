@@ -771,7 +771,7 @@
 
   <p>Welcome to the API Reference landing page. From here, you can find the latest, and all previous, versions of our API reference.</p>
 
-<h2 id="api-reference">API Reference</h2>
+<h2 id="javadoc-reference">Javadoc Reference</h2>
 
 <p><a href="https://javadoc.io/doc/ai.grakn/grakn"><img src="https://javadoc.io/badge/ai.grakn/grakn.svg" alt="Javadocs" /></a></p>
 
@@ -781,15 +781,891 @@
 
 <div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> <b>Note:</b> Before Grakn v0.6.0, we used a different name (MindmapsDB); you can find API reference for versions of MindmapsDB from 0.1.0 - 0.5.0 <a href="https://javadoc.io/doc/io.mindmaps/mindmaps-core/0.5.0">here</a>.</div>
 
-<h2 id="rest-api">REST API</h2>
+<h2 id="api-basics">API Basics</h2>
 
-<p>We also provide documentation for our REST API, which can be found for the <a href="https://grakn.ai/pages/rest-api/latest/engine-apis.html">latest version here</a>.</p>
-
-<p>Previous versions can be found as follows:</p>
+<h4 id="request-headers">Request Headers</h4>
 
 <ul>
-  <li><a href="https://grakn.ai/pages/rest-api/v0.9.0/engine-apis.html">v0.9</a>.</li>
+  <li>
+    <p>Accept</p>
+
+    <p>Specifies the list of accepted data types to be returned by the server (i.e. that are accepted/understandable by the client).</p>
+
+    <p>Grakn uses two custom content types, <code class="highlighter-rouge">application/hal+json</code> and <code class="highlighter-rouge">application/graql+json</code> to format the results of graql queries.</p>
+
+    <p><code class="highlighter-rouge">application/graql+json</code> <a name="graqlJsonContentType"></a></p>
+
+    <div class="language-json highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="w">
+   </span><span class="nt">"x"</span><span class="p">:{</span><span class="w">
+      </span><span class="nt">"isa"</span><span class="p">:</span><span class="s2">"person"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="s2">"401584"</span><span class="w">
+   </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+    </div>
+
+    <p><code class="highlighter-rouge">application/hal+json</code> <a name="halJsonContentType"></a> provides a <a href="http://stateless.co/hal_specification.html">HAL</a> representation of a Graql query that easily allows for API navigation between graph concepts.</p>
+
+    <div class="language-json highlighter-rouge"><pre class="highlight"><code><span class="p">[</span><span class="w">
+   </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"_baseType"</span><span class="p">:</span><span class="s2">"ENTITY"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"_links"</span><span class="p">:{</span><span class="w">
+         </span><span class="nt">"explore"</span><span class="p">:[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+               </span><span class="nt">"href"</span><span class="p">:</span><span class="s2">"/dashboard/explore/401584?keyspace=grakn&amp;offsetEmbedded=0"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+         </span><span class="p">],</span><span class="w">
+         </span><span class="nt">"self"</span><span class="p">:{</span><span class="w">
+            </span><span class="nt">"href"</span><span class="p">:</span><span class="s2">"/graph/concept/401584?keyspace=grakn&amp;offsetEmbedded=0"</span><span class="w">
+         </span><span class="p">}</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nt">"_embedded"</span><span class="p">:{</span><span class="w">
+         </span><span class="nt">"isa"</span><span class="p">:[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+               </span><span class="nt">"_direction"</span><span class="p">:</span><span class="s2">"OUT"</span><span class="p">,</span><span class="w">
+               </span><span class="nt">"_baseType"</span><span class="p">:</span><span class="s2">"ENTITY_TYPE"</span><span class="p">,</span><span class="w">
+               </span><span class="nt">"_name"</span><span class="p">:</span><span class="s2">"person"</span><span class="p">,</span><span class="w">
+               </span><span class="nt">"_links"</span><span class="p">:{</span><span class="w">
+                  </span><span class="nt">"explore"</span><span class="p">:[</span><span class="w">
+                     </span><span class="p">{</span><span class="w">
+                        </span><span class="nt">"href"</span><span class="p">:</span><span class="s2">"/dashboard/explore/16632?keyspace=grakn&amp;offsetEmbedded=0"</span><span class="w">
+                     </span><span class="p">}</span><span class="w">
+                  </span><span class="p">],</span><span class="w">
+                  </span><span class="nt">"self"</span><span class="p">:{</span><span class="w">
+                     </span><span class="nt">"href"</span><span class="p">:</span><span class="s2">"/graph/concept/16632?keyspace=grakn&amp;offsetEmbedded=0"</span><span class="w">
+                  </span><span class="p">}</span><span class="w">
+               </span><span class="p">},</span><span class="w">
+               </span><span class="nt">"_id"</span><span class="p">:</span><span class="s2">"16632"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+         </span><span class="p">]</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nt">"_type"</span><span class="p">:</span><span class="s2">"person"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"_id"</span><span class="p">:</span><span class="s2">"401584"</span><span class="w">
+   </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+    </div>
+  </li>
+  <li>
+    <p>Content-type</p>
+
+    <p>Specifies the content type of the information being supplied within the request.</p>
+  </li>
 </ul>
+
+<h4 id="response-headers">Response Headers</h4>
+
+<ul>
+  <li>
+    <p>Content-type</p>
+  </li>
+  <li>
+    <p>Content-length</p>
+  </li>
+</ul>
+
+<h2 id="graphgraql"><code class="highlighter-rouge">/graph/graql</code></h2>
+
+<h4 id="post-execute"><code class="highlighter-rouge">POST /execute</code></h4>
+
+<p>Executes a graql query on the server and builds a representation for each concept in the response.</p>
+
+<p><strong>Request Headers</strong></p>
+<ul>
+  <li>Accept
+    <ul>
+      <li>application/text</li>
+      <li><a href="#halJsonContentType">application/hal+json</a></li>
+      <li><a href="#graqlJsonContentType">application/graql+json</a></li>
+    </ul>
+  </li>
+</ul>
+
+<p><strong>Request Body</strong></p>
+
+<p>Graql query that should be executed on the server.</p>
+
+<p><strong>Query Parameters</strong></p>
+
+<ul>
+  <li><strong>keyspace</strong> Keyspace where query should execute. Required.</li>
+  <li><strong>infer</strong> Enables reasoner inference on the provided query. Required.</li>
+  <li><strong>materialise</strong> Enables materialisation of reasoner results from the provided query. Required.</li>
+</ul>
+
+<p><strong>Response Headers</strong></p>
+
+<ul>
+  <li>Content-type
+    <ul>
+      <li>application/json</li>
+    </ul>
+  </li>
+</ul>
+
+<p><strong>Response JSON Object</strong></p>
+
+<ul>
+  <li><strong>response</strong> Query response from the graph formatted as specified by the provided <code class="highlighter-rouge">Accept</code> header.</li>
+  <li><strong>originalQuery</strong> Query from the Request body</li>
+</ul>
+
+<p><strong>Status Codes</strong></p>
+<ul>
+  <li>
+    <p>200</p>
+  </li>
+  <li>
+    <p>400  <em>Bad Request</em> The request or query was invalid.</p>
+
+    <p><code class="highlighter-rouge"><span class="p">{</span><span class="w"> </span><span class="err">exception</span><span class="w"> </span><span class="err">:</span><span class="w"> </span><span class="nt">"label 'human' not found"</span><span class="w"> </span><span class="err">}</span></code></p>
+  </li>
+  <li>
+    <p>401 <em>Unauthorized</em> Provided privileges are not authorized.</p>
+  </li>
+  <li>
+    <p>406 <em>Invalid Content-type</em> Unsupported content type specified in request Accept header.</p>
+
+    <p><code class="highlighter-rouge"><span class="p">{</span><span class="nt">"exception"</span><span class="p">:</span><span class="s2">"Unsupported Content-Type [*/*] requested"</span><span class="p">}</span><span class="err">⏎</span></code></p>
+  </li>
+  <li>
+    <p>422 <em>Unprocessable Entity</em> Invalid graph operation was attempted.</p>
+  </li>
+</ul>
+
+<p><strong>Request:</strong></p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>curl -X POST -H "Accept:application/text" "http://localhost:4567/graph/graql/execute?keyspace=grakn&amp;infer=false&amp;materialise=false;" --data 'match $x isa person; limit 1;'
+</code></pre>
+</div>
+
+<p><strong>Response:</strong></p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>HTTP/1.1 200 OK
+Date: Wed, 28 Jun 2017 14:24:49 GMT
+Content-Type: application/text
+Transfer-Encoding: chunked
+Server: Jetty(9.3.6.v20151106)
+
+$x id "4240" isa person; 
+</code></pre>
+</div>
+
+<h4 id="get--deprecated"><code class="highlighter-rouge">GET /</code> <em>Deprecated</em></h4>
+
+<p>Execute <strong>read-only</strong> graql queries on a Grakn graph. Read-only queries are defined as <code class="highlighter-rouge">match</code>, <code class="highlighter-rouge">compute</code>, <code class="highlighter-rouge">ask</code>, or <code class="highlighter-rouge">aggregate</code> queries that do not modify the graph.</p>
+
+<p><strong>Request Headers</strong></p>
+
+<ul>
+  <li>Accept
+    <ul>
+      <li>application/text</li>
+      <li><a href="#halJsonContentType">application/hal+json</a></li>
+      <li><a href="#graqlJsonContentType">application/graql+json</a></li>
+    </ul>
+  </li>
+</ul>
+
+<p><strong>Query Parameters</strong></p>
+
+<ul>
+  <li><strong>keyspace</strong> Keyspace where query should execute. Required.</li>
+  <li><strong>infer</strong> Enables reasoner inference on the provided query. Required.</li>
+  <li><strong>materialise</strong> Enables materialisation of reasoner results from the provided query. Required.</li>
+  <li><strong>query</strong> Graql match query to be executed. Required.</li>
+</ul>
+
+<p><strong>Response Headers</strong></p>
+
+<ul>
+  <li>Content-type
+    <ul>
+      <li>application/text</li>
+      <li><a href="#halJsonContentType">application/hal+json</a></li>
+      <li><a href="#graqlJsonContentType">application/graql+json</a></li>
+    </ul>
+  </li>
+</ul>
+
+<p><strong>Response</strong></p>
+
+<p>Query response from the graph formatted as specified by the provided <code class="highlighter-rouge">Accept</code> header.</p>
+
+<p><strong>Status Codes</strong></p>
+
+<ul>
+  <li>
+    <p>200</p>
+  </li>
+  <li>
+    <p>400  <em>Bad Request</em> The request or query was invalid.</p>
+
+    <p><code class="highlighter-rouge"><span class="p">{</span><span class="w"> </span><span class="err">exception</span><span class="w"> </span><span class="err">:</span><span class="w"> </span><span class="nt">"label 'human' not found"</span><span class="w"> </span><span class="err">}</span></code></p>
+  </li>
+  <li>
+    <p>401 <em>Unauthorized</em> Provided privileges are not authorized.</p>
+  </li>
+  <li>
+    <p>405 <em>Method Not Allowed</em> Attempted to execute a non-match query.</p>
+
+    <p><code class="highlighter-rouge"><span class="p">{</span><span class="nt">"exception"</span><span class="p">:</span><span class="s2">"Only \"read-only\" queries are allowed."</span><span class="p">}</span></code></p>
+  </li>
+  <li>
+    <p>406 <em>Invalid Content-type</em> Unsupported content type specified in request Accept header.</p>
+
+    <p><code class="highlighter-rouge"><span class="p">{</span><span class="nt">"exception"</span><span class="p">:</span><span class="s2">"Unsupported Content-Type [*/*] requested"</span><span class="p">}</span></code></p>
+  </li>
+  <li>
+    <p>422 <em>Unprocessable Entity</em> Invalid graph operation was attempted.</p>
+  </li>
+</ul>
+
+<p><strong>Request:</strong></p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>curl -H "Accept:application/graql+json" -X GET "http://localhost:4567/graph/graql?keyspace=grakn&amp;infer=false&amp;materialise=false&amp;query=match%20%24x%20isa%20person;%20limit%201;"
+</code></pre>
+</div>
+
+<p><strong>Response:</strong></p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>HTTP/1.1 200 OK
+Date: Wed, 28 Jun 2017 14:25:20 GMT
+Content-Type: application/graql+json
+Transfer-Encoding: chunked
+Server: Jetty(9.3.6.v20151106)
+
+[
+   {
+      "x":{
+         "isa":"person",
+         "id":"4240"
+      }
+   }
+]
+</code></pre>
+</div>
+
+<h4 id="post--deprecated"><code class="highlighter-rouge">POST /</code> <em>Deprecated</em></h4>
+
+<p>Execute <strong>insert</strong> graql queries on a Grakn graph.</p>
+
+<p><strong>Request Headers</strong></p>
+
+<ul>
+  <li>Accept
+    <ul>
+      <li>application/text</li>
+      <li><a href="#graqlJsonContentType">application/graql+json</a></li>
+    </ul>
+  </li>
+</ul>
+
+<p><strong>Request Body</strong></p>
+
+<p>Graql insert query that should be executed on the server.</p>
+
+<p><strong>Query Parameters</strong></p>
+
+<ul>
+  <li><strong>keyspace</strong> Keyspace where query should execute. Required.</li>
+  <li><strong>infer</strong> Enables reasoner inference on the provided query. Required.</li>
+  <li><strong>materialise</strong> Enables materialisation of reasoner results from the provided query. Required.</li>
+</ul>
+
+<p><strong>Response Headers</strong></p>
+
+<ul>
+  <li>Content-type
+    <ul>
+      <li>application/text</li>
+      <li>application/graql+json</li>
+    </ul>
+  </li>
+</ul>
+
+<p><strong>Response</strong></p>
+
+<p>Query response from the graph formatted as specified by the provided <code class="highlighter-rouge">Accept</code> header.</p>
+
+<p><strong>Status Codes</strong></p>
+
+<ul>
+  <li>
+    <p>200</p>
+  </li>
+  <li>
+    <p>400  <em>Bad Request</em> The request or query was invalid.</p>
+
+    <p><code class="highlighter-rouge"><span class="p">{</span><span class="w"> </span><span class="err">exception</span><span class="w"> </span><span class="err">:</span><span class="w"> </span><span class="nt">"label 'human' not found"</span><span class="w"> </span><span class="err">}</span></code></p>
+  </li>
+  <li>
+    <p>401 <em>Unauthorized</em> Provided privileges are not authorized.</p>
+  </li>
+  <li>
+    <p>405 <em>Method Not Allowed</em> Attempted to execute a non-insert query.</p>
+
+    <p><code class="highlighter-rouge"><span class="p">{</span><span class="nt">"exception"</span><span class="p">:</span><span class="s2">"Only INSERT queries are allowed."</span><span class="p">}</span><span class="w">  </span></code></p>
+  </li>
+  <li>
+    <p>406 <em>Invalid Content-type</em> Unsupported content type specified in request Accept header.</p>
+
+    <p><code class="highlighter-rouge"><span class="p">{</span><span class="nt">"exception"</span><span class="p">:</span><span class="s2">"Unsupported Content-Type [*/*] requested"</span><span class="p">}</span></code></p>
+  </li>
+  <li>
+    <p>422 <em>Unprocessable Entity</em> Invalid graph operation was attempted.</p>
+  </li>
+</ul>
+
+<p><strong>Request:</strong></p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>curl -X POST -H "Accept:application/text" "http://localhost:4567/graph/graql?keyspace=grakn&amp;infer=false&amp;materialise=false;" --data 'insert $x isa person;' 
+</code></pre>
+</div>
+
+<p><strong>Response:</strong></p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>HTTP/1.1 200 OK
+Date: Wed, 28 Jun 2017 14:26:32 GMT
+Content-Type: application/text
+Transfer-Encoding: chunked
+Server: Jetty(9.3.6.v20151106)
+
+$x id "40964320" isa person;
+</code></pre>
+</div>
+
+<h4 id="delete--deprecated"><code class="highlighter-rouge">DELETE /</code> <em>Deprecated</em></h4>
+
+<p>Execute <strong>delete</strong> graql queries on a Grakn graph.</p>
+
+<p><strong>Request Headers</strong></p>
+
+<ul>
+  <li>Accept
+    <ul>
+      <li>application/text</li>
+    </ul>
+  </li>
+</ul>
+
+<p><strong>Request Body</strong></p>
+
+<p>Graql delete query that should be executed on the server.</p>
+
+<p><strong>Query Parameters</strong></p>
+
+<ul>
+  <li><strong>keyspace</strong> Keyspace where query should execute. Required.</li>
+  <li><strong>infer</strong> Enables reasoner inference on the provided query. Required.</li>
+  <li><strong>materialise</strong> Enables materialisation of reasoner results from the provided query. Required.</li>
+</ul>
+
+<p><strong>Response Headers</strong></p>
+
+<ul>
+  <li>Content-type
+    <ul>
+      <li>application/text</li>
+    </ul>
+  </li>
+</ul>
+
+<p><strong>Status Codes</strong></p>
+
+<ul>
+  <li>
+    <p>200</p>
+  </li>
+  <li>
+    <p>400  <em>Bad Request</em> The request or query was invalid.</p>
+
+    <p><code class="highlighter-rouge"><span class="p">{</span><span class="w"> </span><span class="err">exception</span><span class="w"> </span><span class="err">:</span><span class="w"> </span><span class="nt">"label 'human' not found"</span><span class="w"> </span><span class="err">}</span></code></p>
+  </li>
+  <li>
+    <p>401 <em>Unauthorized</em> Provided privileges are not authorized.</p>
+  </li>
+  <li>
+    <p>405 <em>Method Not Allowed</em> Attempted to execute a non-delete query.</p>
+
+    <p><code class="highlighter-rouge"><span class="p">{</span><span class="nt">"exception"</span><span class="p">:</span><span class="s2">"Only DELETE queries are allowed."</span><span class="p">}</span><span class="w">  </span></code></p>
+  </li>
+  <li>
+    <p>422 <em>Unprocessable Entity</em> Invalid graph operation was attempted.</p>
+  </li>
+</ul>
+
+<p><strong>Request:</strong></p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>curl -X DELETE "http://localhost:4567/graph/graql?keyspace=grakn&amp;infer=false&amp;materialise=false;" --data 'match $x isa parentship; delete $x;'
+</code></pre>
+</div>
+
+<p><strong>Response:</strong></p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>HTTP/1.1 200 OK
+Date: Wed, 28 Jun 2017 14:27:04 GMT
+Content-Type: application/text
+Transfer-Encoding: chunked
+Server: Jetty(9.3.6.v20151106)
+
+{}
+</code></pre>
+</div>
+
+<h2 id="graph"><code class="highlighter-rouge">/graph</code></h2>
+
+<h4 id="get-conceptid"><code class="highlighter-rouge">GET /concept/{id}</code></h4>
+
+<p>Returns the HAL representation of the specified concept.</p>
+
+<p><strong>Request Headers</strong></p>
+
+<ul>
+  <li>Accept
+    <ul>
+      <li><a href="#halJsonContentType">application/hal+json</a></li>
+    </ul>
+  </li>
+</ul>
+
+<p><strong>Query Parameters</strong></p>
+
+<ul>
+  <li><strong>identifier</strong> Identifier of the concept. Required.</li>
+  <li><strong>keyspace</strong> Keyspace where query should execute. Required.</li>
+  <li><strong>offsetEmbedded</strong> Offset to begin at for for embedded HAL concepts. Default 0.</li>
+  <li><strong>limitEmbedded</strong> Limit on the number of embedded HAL concepts. Default -1 returns all embedded concepts.</li>
+</ul>
+
+<p><strong>Response Headers</strong></p>
+
+<ul>
+  <li>Content-type
+    <ul>
+      <li><a href="#halJsonContentType">application/hal+json</a></li>
+    </ul>
+  </li>
+</ul>
+
+<p><strong>Status Codes</strong></p>
+
+<ul>
+  <li>
+    <p>200</p>
+  </li>
+  <li>
+    <p>401 <em>Unauthorized</em> Provided privileges are not authorized.</p>
+  </li>
+  <li>
+    <p>404 <em>Not Found</em> The requested concept was not found in the specified graph.</p>
+
+    <p><code class="highlighter-rouge"><span class="p">{</span><span class="nt">"exception"</span><span class="p">:</span><span class="s2">"No concept with ID [1] exists in keyspace [grakn]"</span><span class="p">}</span></code></p>
+  </li>
+  <li>
+    <p>406 <em>Invalid Content-type</em> Unsupported content type specified in request Accept header.</p>
+
+    <p><code class="highlighter-rouge"><span class="p">{</span><span class="nt">"exception"</span><span class="p">:</span><span class="s2">"Unsupported Content-Type [notvalid] requested"</span><span class="p">}</span></code></p>
+  </li>
+</ul>
+
+<p><strong>Request:</strong></p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>curl -X DELETE "http://localhost:4567/graph/graql?keyspace=grakn&amp;infer=false&amp;materialise=false;" --data 'match $x isa parentship; delete $x;'
+</code></pre>
+</div>
+
+<p><strong>Response:</strong></p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>HTTP/1.1 200 OK
+Date: Wed, 28 Jun 2017 15:15:37 GMT
+Content-Type: application/hal+json
+Transfer-Encoding: chunked
+Server: Jetty(9.3.6.v20151106)
+
+{
+   "_baseType":"ENTITY",
+   "_links":{
+      "explore":[
+         {
+            "href":"/dashboard/explore/508000?keyspace=grakn&amp;offsetEmbedded=0"
+         }
+      ],
+      "self":{
+         "href":"/graph/concept/508000?keyspace=grakn&amp;offsetEmbedded=0"
+      }
+   },
+   "_embedded":{
+   		...
+   },
+   "_type":"person",
+   "_id":"508000"
+}
+</code></pre>
+</div>
+
+<h4 id="get-ontology"><code class="highlighter-rouge">GET /ontology</code></h4>
+
+<p>Returns all ontological concepts in the specified graph in a JSON object.</p>
+
+<p><strong>Request Headers</strong></p>
+
+<ul>
+  <li>Accept
+    <ul>
+      <li>application/json</li>
+    </ul>
+  </li>
+</ul>
+
+<p><strong>Query Parameters</strong></p>
+
+<ul>
+  <li><strong>keyspace</strong> Keyspace where query should execute. Required.</li>
+</ul>
+
+<p><strong>Response Headers</strong></p>
+
+<ul>
+  <li>Content-type
+    <ul>
+      <li>application/json</li>
+    </ul>
+  </li>
+</ul>
+
+<p><strong>Status Codes</strong></p>
+
+<ul>
+  <li>
+    <p>200</p>
+  </li>
+  <li>
+    <p>401 <em>Unauthorized</em> Provided privileges are not authorized.</p>
+  </li>
+  <li>
+    <p>406 <em>Invalid Content-type</em> Unsupported content type specified in request Accept header.</p>
+
+    <p><code class="highlighter-rouge"><span class="p">{</span><span class="nt">"exception"</span><span class="p">:</span><span class="s2">"Unsupported Content-Type [not-valid] requested"</span><span class="p">}</span></code></p>
+  </li>
+</ul>
+
+<p><strong>Request:</strong></p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>curl -X GET "http://localhost:4567/graph/ontology?keyspace=grakn"
+</code></pre>
+</div>
+
+<p><strong>Response:</strong></p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>HTTP/1.1 200 OK
+Date: Wed, 28 Jun 2017 14:27:04 GMT
+Content-Type: application/json
+Transfer-Encoding: chunked
+Server: Jetty(9.3.6.v20151106)
+
+{
+   "entities":[
+      "event",
+      "person",
+      "entity",
+      ...
+   ],
+   "roles":[
+      "wife",
+	  "spouse",
+      "husband",
+      "role",
+      ...
+   ],
+   "resources":[
+      "name",
+      "surname",
+      "resource",
+   ],
+   "relations":[
+      "marriage",
+      "relation",
+      ...
+   ]
+}
+</code></pre>
+</div>
+
+<h2 id="tasks"><code class="highlighter-rouge">/tasks</code></h2>
+
+<h4 id="get-"><code class="highlighter-rouge">GET /</code></h4>
+
+<p>Get tasks executing on the server or cluster that match all of the provided criteria. Returns a minimal amount of information: for more detailed task information see the single task GET request.</p>
+
+<p><strong>Query Parameters</strong></p>
+
+<ul>
+  <li><strong>status</strong>  Filters results to tasks of this status. Options are {<code class="highlighter-rouge">CREATED</code>, <code class="highlighter-rouge">RUNNING</code>, <code class="highlighter-rouge">COMPLETED</code>, <code class="highlighter-rouge">STOPPED</code>,<code class="highlighter-rouge">FAILED</code>}. Default returns tasks of all statuses.</li>
+  <li><strong>className</strong> Filters results to tasks of this class.  Default returns all results.</li>
+  <li><strong>creator</strong> Filters results by class that created the task. Default returns all results.</li>
+  <li><strong>limit</strong> Limit the number of entries in the returned result. Default 0 returns all results.</li>
+  <li><strong>offset</strong> Can be used in conjunction with limit for pagination. Default 0 returns all results.</li>
+</ul>
+
+<p><strong>Response Headers</strong></p>
+
+<ul>
+  <li>Content-type
+    <ul>
+      <li>application/json</li>
+    </ul>
+  </li>
+</ul>
+
+<p><strong>Status Codes</strong></p>
+
+<ul>
+  <li>200</li>
+  <li>401 <em>Unauthorized</em> Provided privileges are not authorized.</li>
+  <li>404 <em>Not Found</em> The specified task was not found on the server.</li>
+</ul>
+
+<p><strong>Request:</strong></p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>curl -X GET "http://localhost:4567/tasks" 
+</code></pre>
+</div>
+
+<p><strong>Response:</strong></p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>HTTP/1.1 200 OK
+Date: Wed, 28 Jun 2017 15:45:03 GMT
+Content-Type: application/json
+Transfer-Encoding: chunked
+Server: Jetty(9.3.6.v20151106)
+
+[
+   {
+      "creator":"ai.grakn.client.BatchMutatorClient",
+      "runAt":1498664697751,
+      "recurring":false,
+      "className":"ai.grakn.engine.loader.MutatorTask",
+      "id":"04e16459-ac56-4be5-b9d4-32ead920ce93",
+      "status":"FAILED"
+   }
+]
+</code></pre>
+</div>
+
+<h4 id="get-id"><code class="highlighter-rouge">GET /{id}</code></h4>
+
+<p>Get detailed information about the specified task that has been submitted to the server or cluster.</p>
+
+<p><em>Note:</em> If the task has been submitted but has not yet been picked up by a server executor this endpoint will return a 404.</p>
+
+<p><strong>Query Parameters</strong></p>
+
+<ul>
+  <li><strong>id</strong> Identifier of the task to retreive, previously supplied by the server. Required.</li>
+</ul>
+
+<p><strong>Response Headers</strong></p>
+
+<ul>
+  <li>Content-type
+    <ul>
+      <li>application/json</li>
+    </ul>
+  </li>
+</ul>
+
+<p><strong>Status Codes</strong></p>
+
+<ul>
+  <li>200</li>
+  <li>401 <em>Unauthorized</em> Provided privileges are not authorized.</li>
+  <li>404 <em>Not Found</em> The specified task was not found on the server.</li>
+</ul>
+
+<p><strong>Request:</strong></p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>curl -X GET "http://localhost:4567/tasks/04e16459-ac56-4be5-b9d4-32ead920ce93" 
+</code></pre>
+</div>
+
+<p><strong>Response:</strong></p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>HTTP/1.1 200 OK
+Date: Wed, 28 Jun 2017 15:57:01 GMT
+Content-Type: application/json
+Transfer-Encoding: chunked
+Server: Jetty(9.3.6.v20151106)
+
+{
+   "exception":"ai.grakn.exception.GraqlSyntaxException",
+   "creator":"ai.grakn.client.BatchMutatorClient",
+   "runAt":1498664697751,
+   "recurring":false,
+   "className":"ai.grakn.engine.loader.MutatorTask",
+   "interval":null,
+   "id":"04e16459-ac56-4be5-b9d4-32ead920ce93",
+   "stackTrace":"ai.grakn.exception.GraqlSyntaxException: syntax error at line 51: 
+   $98424 has date \"1884-10-21\" isa wedding has identifier \"w04\" has confidence \"high\";
+              ^
+              no viable alternative at input 'has date' syntax error at line 53: 
+      at ai.grakn.exception.GraqlSyntaxException.parsingError(GraqlSyntaxException.java:47)
+      at ai.grakn.graql.internal.parser.QueryParser.parseQueryFragment(QueryParser.java:242)
+      at ai.grakn.graql.internal.parser.QueryParser.parseQueryFragment(QueryParser.java:225)
+      at ai.grakn.graql.internal.parser.QueryParser.parseQuery(QueryParser.java:131)
+      at ai.grakn.graql.internal.query.QueryBuilderImpl.parse(QueryBuilderImpl.java:166)
+      at java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:193)
+      at java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:193)
+      at java.util.ArrayList$ArrayListSpliterator.forEachRemaining(ArrayList.java:1374)
+      at java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:481)
+      at java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:471)
+      at java.util.stream.ReduceOps$ReduceOp.evaluateSequential(ReduceOps.java:708)
+      at java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:234)
+      at java.util.stream.ReferencePipeline.collect(ReferencePipeline.java:499)
+      at ai.grakn.engine.loader.MutatorTask.getInserts(MutatorTask.java:108)
+      at ai.grakn.engine.loader.MutatorTask.start(MutatorTask.java:56)
+      at ai.grakn.engine.tasks.manager.StandaloneTaskManager.lambda$executeTask$2(StandaloneTaskManager.java:201)
+      at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+      at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+      at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+      at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+      at java.lang.Thread.run(Thread.java:745)
+      ",
+   "status":"FAILED",
+   "engineID":"engine1"
+}
+</code></pre>
+</div>
+
+<h4 id="put-idstop"><code class="highlighter-rouge">PUT /{id}/stop</code></h4>
+
+<p>Attempt to stop a given task from executing. Note that this does not guarantee the task will be stopped. Subsequent calls to get status are necessary to ensure the final status of the task.</p>
+
+<p><strong>Query Parameters</strong></p>
+
+<ul>
+  <li><strong>id</strong> Identifier of the task to retrieve, previously supplied by the server. Required.</li>
+</ul>
+
+<p><strong>Response Headers</strong></p>
+
+<ul>
+  <li>Content-type
+    <ul>
+      <li>application/json</li>
+    </ul>
+  </li>
+</ul>
+
+<p><strong>Status Codes</strong></p>
+
+<ul>
+  <li>200</li>
+  <li>401 <em>Unauthorized</em> Provided privileges are not authorized.</li>
+  <li>404 <em>Not Found</em> The specified task was not found on the server.</li>
+</ul>
+
+<p><strong>Request:</strong></p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>curl -X GET "http://localhost:4567/tasks/04e16459-ac56-4be5-b9d4-32ead920ce93" 
+</code></pre>
+</div>
+
+<p><strong>Response:</strong></p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>HTTP/1.1 200 OK
+Date: Wed, 28 Jun 2017 16:12:05 GMT
+Content-Type: application/json
+Transfer-Encoding: chunked
+Server: Jetty(9.3.6.v20151106)
+
+{}
+</code></pre>
+</div>
+
+<h4 id="post-tasks"><code class="highlighter-rouge">POST /tasks</code></h4>
+
+<p>Send tasks to be executed on the server or cluster.</p>
+
+<p><strong>Request Body</strong></p>
+
+<p>The request body is a JSON object containing task parameters and configurations to be executed on the server or cluster.</p>
+
+<p>This JSON object will contain a single array of object, <code class="highlighter-rouge">tasks</code>, each containing the following parameters:</p>
+
+<ul>
+  <li><strong>className</strong> Class of the task to run. Required.</li>
+  <li><strong>creator</strong> Class creating the task. Required.</li>
+  <li><strong>runAt</strong> Instant at which the task should run. This can be at any time: if the time is before the current moment, the task will be run as soon as it  reaches the Grakn engine executors. Required.</li>
+  <li><strong>interval</strong> Integer representing how often to run the task. Default is -1, the task will only be executed once.</li>
+  <li><strong>priority</strong> One of {<code class="highlighter-rouge">LOW</code>, <code class="highlighter-rouge">HIGH</code>} describing the priority of this task compared to others. Default is <code class="highlighter-rouge">LOW</code>.</li>
+  <li><strong>configuration</strong> Data on which to execute the task. Default is an empty JSON object.</li>
+</ul>
+
+<p>One of the most common uses of the tasks API is to submit batch loading tasks to be executed on a cluster. The <code class="highlighter-rouge">configuration</code> object will change depending on the type of task submitted. An example of the configuration for a <code class="highlighter-rouge">MutatorTask</code>:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="w">
+   </span><span class="nt">"tasks"</span><span class="p">:[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+         </span><span class="nt">"creator"</span><span class="p">:</span><span class="s2">"ai.grakn.client.BatchMutatorClient"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"runAt"</span><span class="p">:</span><span class="s2">"1498667812828"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"configuration"</span><span class="p">:{</span><span class="w">
+            </span><span class="nt">"keyspace"</span><span class="p">:</span><span class="s2">"grakn"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"mutations"</span><span class="p">:[</span><span class="w">
+               </span><span class="s2">"insert $p0 isa person has identifier \"Elizabeth Niesz\";
+            ],
+            "</span><span class="err">batchNumber</span><span class="s2">":0
+         },
+         "</span><span class="err">limit</span><span class="s2">":"</span><span class="mi">10000</span><span class="s2">",
+         "</span><span class="err">className</span><span class="s2">":"</span><span class="err">ai.grakn.engine.loader.MutatorTask"</span><span class="w">
+      </span><span class="err">}</span><span class="w">
+   </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+</div>
+
+<p><strong>Status Codes</strong></p>
+
+<ul>
+  <li>
+    <p>200</p>
+  </li>
+  <li>
+    <p>202 <em>Accepted</em></p>
+  </li>
+  <li>
+    <p>400 <em>Bad Request</em> Missing or malformed request body or task configuration.</p>
+
+    <p><code class="highlighter-rouge"><span class="p">{</span><span class="nt">"exception"</span><span class="p">:</span><span class="s2">"Missing mandatory parameter in body [tasks]"</span><span class="p">}</span></code></p>
+  </li>
+  <li>
+    <p>401 <em>Unauthorized</em> Provided privileges are not authorized.</p>
+  </li>
+</ul>
+
+<p><strong>Request:</strong></p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>curl -X POST "http://localhost:4567/tasks" --data '{"tasks":[{"creator":"ai.grakn.client.BatchMutatorClient","runAt":"1498667812828","configuration":{"keyspace":"grakn","mutations":["insert $p0 isa person has identifier \"Elizabeth Niesz\";"],"batchNumber":0},"limit":"10000","className":"ai.grakn.engine.loader.MutatorTask"}]}' -g 
+</code></pre>
+</div>
+
+<p><strong>Response:</strong></p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>HTTP/1.1 200 OK
+Date: Wed, 28 Jun 2017 17:05:37 GMT
+Content-Type: application/json
+Transfer-Encoding: chunked
+Server: Jetty(9.3.6.v20151106)
+
+[
+   {
+      "code":200,
+      "index":0,
+      "id":"92239608-6075-4035-a781-93847929a23f"
+   }
+]
+</code></pre>
+</div>
 
 <h2 id="feedback">Feedback</h2>
 <p>We hope you find our documentation helpful, but if you need more information, please don’t hesitate to contact us using our <a href="http://discuss.grakn.ai">discussion forums</a> or through our main <a href="http://www.grakn.ai">website</a>.</p>
@@ -843,7 +1719,7 @@
         <br>
         <p>© 2017 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2017 GRAKN.AI. All rights reserved. <br />
-         Site last generated: Jun 29, 2017 <br />
+         Site last generated: Jul 24, 2017 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">
