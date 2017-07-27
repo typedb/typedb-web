@@ -681,6 +681,13 @@
             
             
             
+            <li><a href="/pages/documentation/examples/working-with-tweets.html">Working With Tweets</a></li>
+            
+            
+            
+            
+            
+            
             <li><a href="/pages/documentation/examples/modern.html">Modern example</a></li>
             
             
@@ -822,7 +829,9 @@ For example if you are modelling a retail store, valid categories may be <code c
 <p>So what helps describe a <code class="highlighter-rouge">person</code>? 
 Philosophical debates aside let us go with something simple. A <code class="highlighter-rouge">person</code> typically has a <code class="highlighter-rouge">firstname</code>, a <code class="highlighter-rouge">lastname</code>, and a <code class="highlighter-rouge">gender</code>. We can model this and other resources that identify a person with:</p>
 
-<pre><code class="language-graql">person sub entity
+<pre><code class="language-graql">insert
+
+person sub entity
   has identifier
   has firstname
   has surname    
@@ -839,8 +848,8 @@ Philosophical debates aside let us go with something simple. A <code class="high
   middlename sub resource datatype string;
   picture sub resource datatype string;
   age sub resource datatype long;
-  birth-date sub resource datatype date;
-  death-date sub resource datatype date;
+  birth-date sub resource datatype string;
+  death-date sub resource datatype string;
   gender sub resource datatype string;    
 </code></pre>
 
@@ -854,7 +863,9 @@ Philosophical debates aside let us go with something simple. A <code class="high
 
 <p>In our example, we will add <code class="highlighter-rouge">marriage</code> and <code class="highlighter-rouge">parentship</code> relationships. A <code class="highlighter-rouge">marriage</code> has two roles: <code class="highlighter-rouge">spouse1</code> and <code class="highlighter-rouge">spouse2</code>, while <code class="highlighter-rouge">parentship</code> has a <code class="highlighter-rouge">parent</code> role and a <code class="highlighter-rouge">child</code> role.</p>
 
-<pre><code class="language-graql">marriage sub relation
+<pre><code class="language-graql">insert
+
+marriage sub relation
   relates spouse1
   relates spouse2
   has picture;
@@ -876,11 +887,13 @@ child sub role;
 
 <p>For this current example we only have one entity type, which can play all our current roles, so we explicitly state that with:</p>
 
-<pre><code class="language-graql">person sub entity
+<pre><code class="language-graql">insert
+
+person sub entity
   plays parent
   plays child
   plays spouse1
-  plays spouse2
+  plays spouse2;
 </code></pre>
 
 <p>We have now completed our basic genealogy ontology.</p>
@@ -916,8 +929,8 @@ child sub role;
   middlename sub resource datatype string;
   picture sub resource datatype string;
   age sub resource datatype long;
-  birth-date sub resource datatype date;
-  death-date sub resource datatype date;
+  birth-date sub resource datatype string;
+  death-date sub resource datatype string;
   gender sub resource datatype string;
 
  # Roles and Relations
@@ -1001,7 +1014,7 @@ has</p>
         <br>
         <p>© 2017 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2017 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> December, 2016<br/> Site last generated: Jul 24, 2017 <br />
+        <span>Page last updated:</span> December, 2016<br/> Site last generated: Jul 27, 2017 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">

@@ -681,6 +681,13 @@
             
             
             
+            <li><a href="/pages/documentation/examples/working-with-tweets.html">Working With Tweets</a></li>
+            
+            
+            
+            
+            
+            
             <li><a href="/pages/documentation/examples/modern.html">Modern example</a></li>
             
             
@@ -806,7 +813,8 @@ $y has identifier "Jacob J. Niesz";
 
 <p>and then searched for relationships joining two of them using:</p>
 
-<pre><code class="language-graql">compute path from "id1" to "id2";
+<!-- Ignoring because uses made-up IDs -->
+<pre><code class="language-graql-test-ignore">compute path from "id1" to "id2";
 </code></pre>
 
 <p>You can see below that the two people selected are married.
@@ -820,7 +828,8 @@ The path query uses a scalable shortest path algorithm to determine the smallest
 In the following query only the blood relations (parent/child relations) are investigated and the resulting graph is shown below.
 We have excluded marriage in this subgraph and as a result the shortest path is longer than before - it turns out the Barbara Shafner and Jacob J. Niesz are cousins (their mothers, Mary Young and Catherine Young, are sisters, their father being Jacob Young).</p>
 
-<pre><code class="language-graql">compute path from "id1" to "id2" in person, parentship;
+<!-- Ignoring because uses made-up IDs -->
+<pre><code class="language-graql-test-ignore">compute path from "id1" to "id2" in person, parentship;
 </code></pre>
 
 <p><img src="/images/analytics_path_parentship.png" alt="Shortest path between people" /></p>
@@ -866,7 +875,7 @@ We have excluded marriage in this subgraph and as a result the shortest path is 
         <br>
         <p>© 2017 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2017 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> February 2017<br/> Site last generated: Jul 24, 2017 <br />
+        <span>Page last updated:</span> February 2017<br/> Site last generated: Jul 27, 2017 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">

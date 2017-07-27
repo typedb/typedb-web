@@ -681,6 +681,13 @@
             
             
             
+            <li><a href="/pages/documentation/examples/working-with-tweets.html">Working With Tweets</a></li>
+            
+            
+            
+            
+            
+            
             <li><a href="/pages/documentation/examples/modern.html">Modern example</a></li>
             
             
@@ -813,19 +820,17 @@ The pattern describes <a href="#properties">properties</a> to set on a particula
 <div class="tab-content">
 <div role="tabpanel" class="tab-pane active" id="shell1">
 <pre>
-match $p has identifier "Mary Guthrie"; insert $p has middlename "Mathilda"; $p has birth-date 1902-01-01; $p has death-date 1952-01-01; $p has age 50;
-commit;
+match $p has identifier "Mary Guthrie"; insert $p has middlename "Mathilda"; $p has birth-date "1902-01-01"; $p has death-date "1952-01-01"; $p has age 50;
 </pre>
 </div>
 <div role="tabpanel" class="tab-pane" id="java1">
 <pre>
 qb.match(var("p").has("identifier", "Mary Guthrie"))
     .insert(var("p").has("middlename", "Mathilda"), 
-        var("p").has("birth-date", LocalDateTime.of(1902, 1, 1, 0, 0, 0)),
-        var("p").has("death-date", LocalDateTime.of(1952, 1, 1, 0, 0, 0)),
+        var("p").has("birth-date", LocalDateTime.of(1902, 1, 1, 0, 0, 0).toString()),
+        var("p").has("death-date", LocalDateTime.of(1952, 1, 1, 0, 0, 0).toString()),
         var("p").has("age", 50)
     ).execute();
-graph.commit();
 </pre>
 </div> <!-- tab-pane -->
 </div>
@@ -846,13 +851,11 @@ graph.commit();
 <div role="tabpanel" class="tab-pane active" id="shell2">
 <pre>
 insert has identifier "Titus Groan" isa person;
-commit;
 </pre>
 </div>
 <div role="tabpanel" class="tab-pane" id="java2">
 <pre>
 qb.insert(var().has("identifier", "Titus Groan").isa("person")).execute();
-graph.commit();
 </pre>
 </div> <!-- tab-pane -->
 </div>
@@ -870,14 +873,14 @@ graph.commit();
 <div class="tab-content">
 <div role="tabpanel" class="tab-pane active" id="shell3">
 <pre>
-insert has "id" "1376496" isa person;
-commit
+<!--test-ignore-->
+insert id "1376496" isa person;
 </pre>
 </div>
 <div role="tabpanel" class="tab-pane" id="java3">
 <pre>
-qb.insert(var().has("id", "1376496").isa("person")).execute();
-graph.commit();
+<!--test-ignore-->
+qb.insert(var().id(ConceptId.of("1376496")).isa("person")).execute();
 </pre>
 </div> <!-- tab-pane -->
 </div>
@@ -895,13 +898,11 @@ graph.commit();
 <div role="tabpanel" class="tab-pane active" id="shell4">
 <pre>
 insert val "Ash" isa surname;
-commit
 </pre>
 </div>
 <div role="tabpanel" class="tab-pane" id="java4">
 <pre>
 qb.insert(var().val("Ash").isa("surname")).execute();
-graph.commit();
 </pre>
 </div> <!-- tab-pane -->
 </div>
@@ -920,13 +921,11 @@ graph.commit();
 <div role="tabpanel" class="tab-pane active" id="shell5">
 <pre>
 insert isa person, has identifier "Fuchsia Groan" has gender "female";
-commit
 </pre>
 </div>
 <div role="tabpanel" class="tab-pane" id="java5">
 <pre>
 qb.insert(var().isa("person").has("identifier", "Fuchsia Groan").has("gender", "female")).execute();
-graph.commit();
 </pre>
 </div> <!-- tab-pane -->
 </div>
@@ -946,7 +945,6 @@ graph.commit();
 <div role="tabpanel" class="tab-pane active" id="shell7">
 <pre>
 match $p1 has identifier "Titus Groan"; $p2 has identifier "Fuchsia Groan"; insert (spouse1: $p1, spouse2: $p2) isa marriage;
-commit
 </pre>
 </div>
 <div role="tabpanel" class="tab-pane" id="java7">
@@ -960,7 +958,6 @@ qb.match(
     .rel("spouse2", "p2")
     .isa("marriage")
 ).execute();
-graph.commit();
 
 </pre>
 </div> <!-- tab-pane -->
@@ -1014,7 +1011,7 @@ insert siblings sub relation, relates sibling1, relates sibling2;
 <pre>
 qb.insert(
   label("siblings").sub("relation")
-    .hasRole("sibling1").hasRole("sibling2")
+    .relates("sibling1").relates("sibling2")
 ).execute();
 </pre>
 </div> <!-- tab-pane -->
@@ -1038,8 +1035,8 @@ insert person plays sibling2;
 </div>
 <div role="tabpanel" class="tab-pane" id="java10">
 <pre>
-qb.insert(label("person").playsRole("sibling1")).execute();
-qb.insert(label("person").playsRole("sibling2")).execute();
+qb.insert(label("person").plays("sibling1")).execute();
+qb.insert(label("person").plays("sibling2")).execute();
 </pre>
 </div> <!-- tab-pane -->
 </div>
@@ -1065,7 +1062,7 @@ insert person has nickname;
 
 <div role="tabpanel" class="tab-pane" id="java11">
 <pre>
-qb.insert(label("person").hasResource("nickname")).execute();
+qb.insert(label("person").has("nickname")).execute();
 </pre>
 </div> <!-- tab-pane -->
 </div>
@@ -1114,7 +1111,7 @@ qb.insert(label("person").hasResource("nickname")).execute();
         <br>
         <p>© 2017 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2017 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> August 10, 2016<br/> Site last generated: Jul 24, 2017 <br />
+        <span>Page last updated:</span> August 10, 2016<br/> Site last generated: Jul 27, 2017 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">

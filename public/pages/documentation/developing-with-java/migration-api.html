@@ -681,6 +681,13 @@
             
             
             
+            <li><a href="/pages/documentation/examples/working-with-tweets.html">Working With Tweets</a></li>
+            
+            
+            
+            
+            
+            
             <li><a href="/pages/documentation/examples/modern.html">Modern example</a></li>
             
             
@@ -800,33 +807,30 @@ $('#toc').on('click', 'a', function() {
 
 <p>Each migrator may have a slightly different constructor (for example, <code class="highlighter-rouge">CSV</code> and <code class="highlighter-rouge">Json</code> migration constructors accept the data file whereas <code class="highlighter-rouge">SQL</code> migration accepts the SQL JDBC connection). They should all accept a template and a data accessor.</p>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">CSVMigrator</span> <span class="n">migrator</span> <span class="o">=</span> <span class="k">new</span> <span class="n">CSVMigrator</span><span class="o">(</span><span class="n">String</span> <span class="n">template</span><span class="o">,</span> <span class="n">File</span> <span class="n">dataFile</span><span class="o">);</span>
+<!-- TODO: un-fuck these examples and stop ignoring in tests -->
+<pre><code class="language-java-test-ignore">CSVMigrator migrator = new CSVMigrator(String template, File dataFile);
 </code></pre>
-</div>
 
 <h2 id="migration">Migration</h2>
 
 <p>To migrate the provided data into a graph, call the <code class="highlighter-rouge">load</code> function, providing the keyspace and location where Grakn Engine is running.</p>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">migrator</span><span class="o">.</span><span class="na">load</span><span class="o">(</span><span class="n">String</span> <span class="n">uri</span><span class="o">,</span> <span class="n">String</span> <span class="n">keyspace</span><span class="o">);</span>
+<pre><code class="language-java-test-ignore">migrator.load(String uri, String keyspace);
 </code></pre>
-</div>
 
 <p>Alternatively, the user can call a <code class="highlighter-rouge">load</code> method with more configuration options. The configuration options are described in more detail on the <a href="./loader-api.html">loader client API page</a>.</p>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">migrator</span><span class="o">.</span><span class="na">load</span><span class="o">(</span><span class="n">String</span> <span class="n">uri</span><span class="o">,</span> <span class="n">String</span> <span class="n">keyspace</span><span class="o">,</span> <span class="kt">int</span> <span class="n">batchSize</span><span class="o">,</span> <span class="kt">int</span> <span class="n">numberActiveTasks</span><span class="o">,</span> <span class="kt">boolean</span> <span class="n">retry</span><span class="o">)</span>
+<pre><code class="language-java-test-ignore">migrator.load(String uri, String keyspace, int batchSize, int numberActiveTasks, boolean retry)
 </code></pre>
-</div>
 
 <h2 id="termination">Termination</h2>
 
 <p>Some migrators have a <code class="highlighter-rouge">close</code> method that should be called after loading has completed. As the <code class="highlighter-rouge">load</code> method blocks the calling thread, this is easily done. A quick example of JSON migration performed from java:</p>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">CSVMigrator</span> <span class="n">migrator</span> <span class="o">=</span> <span class="k">new</span> <span class="n">CSVMigrator</span><span class="o">(</span><span class="s">"insert $x isa person has name &lt;name&gt;"</span><span class="o">,</span> <span class="k">new</span> <span class="n">File</span><span class="o">(</span><span class="s">"people.csv"</span><span class="o">));</span>
-<span class="n">migrator</span><span class="o">.</span><span class="na">load</span><span class="o">(</span><span class="n">Grakn</span><span class="o">.</span><span class="na">DEFAULT_URI</span><span class="o">,</span> <span class="s">"genealogy"</span><span class="o">,</span> <span class="mi">10</span><span class="o">,</span> <span class="mi">10</span><span class="o">,</span> <span class="kc">false</span><span class="o">);</span>
-<span class="n">migrator</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+<pre><code class="language-java-test-ignore">CSVMigrator migrator = new CSVMigrator("insert $x isa person has name &lt;name&gt;", new File("people.csv"));
+migrator.load(Grakn.DEFAULT_URI, "genealogy", 10, 10, false);
+migrator.close();
 </code></pre>
-</div>
 
 <h2 id="examples">Examples</h2>
 
@@ -888,7 +892,7 @@ $('#toc').on('click', 'a', function() {
         <br>
         <p>© 2017 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2017 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> February 2017<br/> Site last generated: Jul 24, 2017 <br />
+        <span>Page last updated:</span> February 2017<br/> Site last generated: Jul 27, 2017 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">

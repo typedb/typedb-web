@@ -681,6 +681,13 @@
             
             
             
+            <li><a href="/pages/documentation/examples/working-with-tweets.html">Working With Tweets</a></li>
+            
+            
+            
+            
+            
+            
             <li><a href="/pages/documentation/examples/modern.html">Modern example</a></li>
             
             
@@ -803,36 +810,36 @@ $('#toc').on('click', 'a', function() {
 <p>Transactions in GRAKN.AI are thread bound, which means that for a specific keyspace and thread, only one transaction can be open at any time.
 The following would result in an exception because the first transaction <code class="highlighter-rouge">graph1</code> was never closed:</p>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">graph1</span> <span class="o">=</span> <span class="n">Grakn</span><span class="o">.</span><span class="na">session</span><span class="o">(</span><span class="n">Grakn</span><span class="o">.</span><span class="na">DEFAULT_URI</span><span class="o">,</span> <span class="s">"MyGraph"</span><span class="o">).</span><span class="na">open</span><span class="o">(</span><span class="n">GraknTxType</span><span class="o">.</span><span class="na">Write</span><span class="o">);</span>
-<span class="n">graph2</span> <span class="o">=</span> <span class="n">Grakn</span><span class="o">.</span><span class="na">session</span><span class="o">(</span><span class="n">Grakn</span><span class="o">.</span><span class="na">DEFAULT_URI</span><span class="o">,</span> <span class="s">"MyGraph"</span><span class="o">).</span><span class="na">open</span><span class="o">(</span><span class="n">GraknTxType</span><span class="o">.</span><span class="na">Write</span><span class="o">);</span>
+<!-- Ignored because this is designed to crash! -->
+<pre><code class="language-java-test-ignore">graph1 = Grakn.session(uri, "MyGraph").open(GraknTxType.WRITE);
+graph2 = Grakn.session(uri, "MyGraph").open(GraknTxType.WRITE);
 </code></pre>
-</div>
 
 <p>If you require multiple transactions open at the same time then you must do this on different threads. This is best illustrated with an example. Let’s say that you wish to create 100 entities of a specific type concurrently.  The following will achieve that:</p>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">GraknSession</span> <span class="n">session</span> <span class="o">=</span> <span class="n">Grakn</span><span class="o">.</span><span class="na">session</span><span class="o">(</span><span class="n">Grakn</span><span class="o">.</span><span class="na">DEFAULT_URI</span><span class="o">,</span> <span class="s">"MyGraph"</span><span class="o">);</span>
-<span class="n">Set</span><span class="o">&lt;</span><span class="n">Future</span><span class="o">&gt;</span> <span class="n">futures</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashSet</span><span class="o">&lt;&gt;();</span>
-<span class="n">ExecutorService</span> <span class="n">pool</span> <span class="o">=</span> <span class="n">Executors</span><span class="o">.</span><span class="na">newFixedThreadPool</span><span class="o">(</span><span class="mi">10</span><span class="o">);</span>
+<!-- Ignored because it contains a Java lambda, which Groovy doesn't support -->
+<pre><code class="language-java-test-ignore">GraknSession session = Grakn.session(uri, "MyGraph");
+Set&lt;Future&gt; futures = new HashSet&lt;&gt;();
+ExecutorService pool = Executors.newFixedThreadPool(10);
 
-<span class="c1">//Create sample ontology</span>
-<span class="n">GraknGraph</span> <span class="n">graph</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="na">open</span><span class="o">(</span><span class="n">GraknTxType</span><span class="o">.</span><span class="na">WRITE</span><span class="o">);</span>
-<span class="n">EntityType</span> <span class="n">entityType</span> <span class="o">=</span> <span class="n">graph</span><span class="o">.</span><span class="na">putEntityType</span><span class="o">(</span><span class="s">"Some Entity Type"</span><span class="o">);</span>
-<span class="n">graph</span><span class="o">.</span><span class="na">commit</span><span class="o">();</span>
+//Create sample ontology
+GraknGraph graph = session.open(GraknTxType.WRITE);
+EntityType entityType = graph.putEntityType("Some Entity Type");
+graph.commit();
 
-<span class="c1">//Load the data concurrently</span>
-<span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">100</span><span class="o">;</span> <span class="n">i</span> <span class="o">++){</span>
-    <span class="n">futures</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">pool</span><span class="o">.</span><span class="na">submit</span><span class="o">(()</span> <span class="o">-&gt;</span> <span class="o">{</span>
-        <span class="n">GraknGraph</span> <span class="n">innerGraph</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="na">open</span><span class="o">(</span><span class="n">GraknTxType</span><span class="o">.</span><span class="na">WRITE</span><span class="o">);</span>
-        <span class="n">entityType</span><span class="o">.</span><span class="na">addEntity</span><span class="o">();</span>
-        <span class="n">innerGraph</span><span class="o">.</span><span class="na">commit</span><span class="o">();</span>
-    <span class="o">}));</span>
-<span class="o">}</span>
+//Load the data concurrently
+for(int i = 0; i &lt; 100; i ++){
+    futures.add(pool.submit(() -&gt; {
+        GraknGraph innerGraph = session.open(GraknTxType.WRITE);
+        entityType.addEntity();
+        innerGraph.commit();
+    }));
+}
 
-<span class="k">for</span><span class="o">(</span><span class="n">Future</span> <span class="nl">f:</span> <span class="n">futures</span><span class="o">){</span>
-    <span class="n">f</span><span class="o">.</span><span class="na">get</span><span class="o">();</span>
-<span class="o">}</span>
+for(Future f: futures){
+    f.get();
+}
 </code></pre>
-</div>
 
 <p>As you can see each thread opened its own transaction to work with. We were able to safely pass <code class="highlighter-rouge">entityType</code> into different threads but this was only possible because:</p>
 
@@ -893,7 +900,7 @@ The following would result in an exception because the first transaction <code c
         <br>
         <p>© 2017 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2017 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> February 2017<br/> Site last generated: Jul 24, 2017 <br />
+        <span>Page last updated:</span> February 2017<br/> Site last generated: Jul 27, 2017 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">

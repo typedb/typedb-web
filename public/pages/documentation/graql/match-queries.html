@@ -681,6 +681,13 @@
             
             
             
+            <li><a href="/pages/documentation/examples/working-with-tweets.html">Working With Tweets</a></li>
+            
+            
+            
+            
+            
+            
             <li><a href="/pages/documentation/examples/modern.html">Modern example</a></li>
             
             
@@ -868,7 +875,7 @@ qb.match(var("x").val(contains("Bar")))
 
 <h3 id="has">has</h3>
 
-<p>Match concepts that have the resource specified. If a <a href="#predicates">predicate</a> is provided, the resource must also match that predicate.</p>
+<p>Match things that have the resource specified. If a <a href="#predicates">predicate</a> is provided, the resource must also match that predicate.</p>
 
 <ul id="profileTabs" class="nav nav-tabs">
     <li class="active"><a href="#shell4" data-toggle="tab">Graql</a></li>
@@ -884,8 +891,8 @@ match $x has identifier contains "Bar";
 </div>
 <div role="tabpanel" class="tab-pane" id="java4">
 <pre>
-qb.match(var("x").has("identifier", var("x"));
-qb.match(var("x").has("identifier", contains("Bar"));
+qb.match(var("x").has("identifier", var("x")));
+qb.match(var("x").has("identifier", contains("Bar")));
 </pre>
 </div> <!-- tab-pane -->
 </div>
@@ -893,7 +900,7 @@ qb.match(var("x").has("identifier", contains("Bar"));
 
 <h3 id="relation">relation</h3>
 
-<p>Match concepts that have a relation with the given variable. If a role is provided, the role player must be playing that role.</p>
+<p>Match things that have a relation with the given variable. If a role is provided, the role player must be playing that role.</p>
 
 <ul id="profileTabs" class="nav nav-tabs">
     <li class="active"><a href="#shell6" data-toggle="tab">Graql</a></li>
@@ -965,16 +972,16 @@ qb.match(
 <div class="tab-content">
 <div role="tabpanel" class="tab-pane active" id="shell7">
 <pre>
-match $x sub concept; # List all concepts
-match $x sub resource; # List all resources
-match $x sub entity; # List all entities
-match $x sub role; # List all roles
-match $x sub relation; # List all relations
+match $x sub thing; # List all types
+match $x sub resource; # List all resource types
+match $x sub entity; # List all entity types
+match $x sub role; # List all role types
+match $x sub relation; # List all relation types
 </pre>
 </div>
 <div role="tabpanel" class="tab-pane" id="java7">
 <pre>
-qb.match(var("x").sub("concept"))
+qb.match(var("x").sub("thing"));
 </pre>
 </div> <!-- tab-pane -->
 </div>
@@ -996,14 +1003,14 @@ match parentship relates $x;
 </div>
 <div role="tabpanel" class="tab-pane" id="java8">
 <pre>
-qb.match(label("parentship").hasRole(var("x")));
+qb.match(label("parentship").relates(var("x")));
 </pre>
 </div> <!-- tab-pane -->
 </div>
 <p><!-- tab-content --></p>
 
 <h3 id="plays">plays</h3>
-<p>Match concept types that play the given role.</p>
+<p>Match types that play the given role.</p>
 <ul id="profileTabs" class="nav nav-tabs">
     <li class="active"><a href="#shell9" data-toggle="tab">Graql</a></li>
     <li><a href="#java9" data-toggle="tab">Java</a></li>
@@ -1017,29 +1024,30 @@ match $x plays child;
 </div>
 <div role="tabpanel" class="tab-pane" id="java9">
 <pre>
-qb.match(var("x").playsRole("child"));
+qb.match(var("x").plays("child"));
 </pre>
 </div> <!-- tab-pane -->
 </div>
 <p><!-- tab-content --></p>
 
 <h3 id="has-1">has</h3>
-<p>Match concept types that can have the given resource.</p>
+<p>Match types that can have the given resource.</p>
 
 <ul id="profileTabs" class="nav nav-tabs">
     <li class="active"><a href="#shell10" data-toggle="tab">Graql</a></li>
     <li><a href="#java10" data-toggle="tab">Java</a></li>
 </ul>
 
+<!--JCS: Why so many duplicates?-->
 <div class="tab-content">
 <div role="tabpanel" class="tab-pane active" id="shell10">
 <pre>
-match $x has firstname; <!--JCS: Why so many duplicates?-->
+match $x has firstname;
 </pre>
 </div>
 <div role="tabpanel" class="tab-pane" id="java10">
 <pre>
-qb.match(var("x").hasResource("firstname"));
+qb.match(var("x").has("firstname"));
 </pre>
 </div> <!-- tab-pane -->
 </div>
@@ -1060,7 +1068,7 @@ match $x plays has-firstname-owner;
 </div>
 <div role="tabpanel" class="tab-pane" id="java11">
 <pre>
-qb.match(var("x").playsRole("has-firstname-owner"));
+qb.match(var("x").plays("has-firstname-owner"));
 </pre>
 </div> <!-- tab-pane -->
 </div>
@@ -1100,7 +1108,7 @@ match $x has age &gt; 70;
 </div>
 <div role="tabpanel" class="tab-pane" id="java12">
 <pre>
-qb.match(var("x").has("age", gt(70));
+qb.match(var("x").has("age", gt(70)));
 </pre>
 </div> <!-- tab-pane -->
 </div>
@@ -1247,7 +1255,7 @@ match $x isa person, has firstname $y; select $y; distinct; limit 10; order by $
         <br>
         <p>© 2017 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2017 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> April 2017<br/> Site last generated: Jul 24, 2017 <br />
+        <span>Page last updated:</span> April 2017<br/> Site last generated: Jul 27, 2017 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">

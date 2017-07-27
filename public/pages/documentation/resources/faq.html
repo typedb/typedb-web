@@ -681,6 +681,13 @@
             
             
             
+            <li><a href="/pages/documentation/examples/working-with-tweets.html">Working With Tweets</a></li>
+            
+            
+            
+            
+            
+            
             <li><a href="/pages/documentation/examples/modern.html">Modern example</a></li>
             
             
@@ -900,7 +907,7 @@ SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further detail
 
 <p>When allocating entities as role players to multiple relations for the first time it is possible to create duplicate associations. These associations do not affect the results of any queries or computations. For example, if in a new system we process simultaneously the following three statements in different transactions:</p>
 
-<pre><code class="language-graql">1. insert $x has name 'Brad Pitt' isa person; $y has name 'Fury'; (actor: $x, movie: $y) isa acted-in;
+<pre><code class="language-graql-test-ignore">1. insert $x has name 'Brad Pitt' isa person; $y has name 'Fury'; (actor: $x, movie: $y) isa acted-in;
 2. insert $x has name 'Brad Pitt' isa person; $y has name 'Troy'; (actor: $x, movie: $y) isa acted-in;
 3. insert $x has name 'Brad Pitt' isa person; $y has name 'Seven'; (actor: $x, movie: $y) isa acted-in;
 </code></pre>
@@ -913,7 +920,7 @@ SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further detail
 
 <p>When using a batch graph, many safety checks are skipped in favour of speed. One such check is the possible existence of a resource before creating it. So if the following transactions are executed simultaneously while batch loading:</p>
 
-<pre><code class="language-graql">1. insert $a has unique-id '1'
+<pre><code class="language-graql-test-ignore">1. insert $a has unique-id '1'
 2. insert $b has unique-id '1'
 3. insert $c has unique-id '1'
 </code></pre>
@@ -953,7 +960,7 @@ storage.hostname<span class="o">=</span>127.0.0.1
 
 <p>If you are using the Java API, it’s a simple as:</p>
 
-<pre><code class="language-java-test-ignore">graph = Grakn.factory(Grakn.DEFAULT_URI, "my-graph").getGraph();
+<pre><code class="language-java-test-ignore">graph = Grakn.session(Grakn.DEFAULT_URI, "my-graph").open(GraknTxType.WRITE);
 graph.clear();
 </code></pre>
 
@@ -1017,7 +1024,7 @@ graph.clear();
         <br>
         <p>© 2017 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2017 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> September 22, 2016<br/> Site last generated: Jul 24, 2017 <br />
+        <span>Page last updated:</span> September 22, 2016<br/> Site last generated: Jul 27, 2017 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">

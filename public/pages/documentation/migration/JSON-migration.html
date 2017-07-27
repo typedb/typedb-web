@@ -681,6 +681,13 @@
             
             
             
+            <li><a href="/pages/documentation/examples/working-with-tweets.html">Working With Tweets</a></li>
+            
+            
+            
+            
+            
+            
             <li><a href="/pages/documentation/examples/modern.html">Modern example</a></li>
             
             
@@ -800,7 +807,7 @@ $('#toc').on('click', 'a', function() {
 <h2 id="migration-shell-script-for-json">Migration Shell Script for JSON</h2>
 <p>The migration shell script can be found in <em>/bin</em> directory of your Grakn environment. We will illustrate its usage in an example below:</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>usage: migration.sh json -template &lt;arg&gt; -input &lt;arg&gt; -keyspace &lt;arg&gt; <span class="o">[</span>-help] <span class="o">[</span>-no] <span class="o">[</span>-batch &lt;arg&gt;] <span class="o">[</span>-active &lt;arg&gt;] <span class="o">[</span>-uri &lt;arg&gt;] <span class="o">[</span>-retry &lt;arg&gt;] <span class="o">[</span>-v]
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>usage: migration.sh json --template &lt;arg&gt; --input &lt;arg&gt; --keyspace &lt;arg&gt; <span class="o">[</span>--help] <span class="o">[</span>--no] <span class="o">[</span>--batch &lt;arg&gt;] <span class="o">[</span>--active &lt;arg&gt;] <span class="o">[</span>--uri &lt;arg&gt;] <span class="o">[</span>--retry &lt;arg&gt;] <span class="o">[</span>--verbose]
  
 OPTIONS
  -a,--active &lt;arg&gt;     Number of tasks <span class="o">(</span>batches<span class="o">)</span> running on the server at
@@ -837,6 +844,7 @@ OPTIONS
 
 <p>As an example, let’s take some JSON:</p>
 
+<!-- TODO: Change this from pokemon examples -->
 <div class="language-json highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="w">
     </span><span class="nt">"types"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="nt">"id"</span><span class="p">:</span><span class="s2">"1"</span><span class="p">,</span><span class="w"> </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"normal"</span><span class="w"> </span><span class="p">},</span><span class="w">
@@ -946,9 +954,9 @@ for(&lt;pokemon&gt;) do {
 <pre><code class="language-graql">match $2 has type-id "2"; $1 has type-id "1";
 insert $p0 isa pokemon has weight 85 has height 6 has pokedex-no 4 has description "Charmander";
 (pokemon-with-type: $p0, type-of-pokemon: $1) isa has-type;
-$p1 isa pokemon has weight 190 has height 11 has pokedex-no "5" has description "Charmeleon";
+$p1 isa pokemon has weight 190 has height 11 has pokedex-no 5 has description "Charmeleon";
 (pokemon-with-type: $p1, type-of-pokemon: $1) isa has-type;
-$p2 isa pokemon has weight 905 has height 17 has pokedex-no "6" has description "Charizard";
+$p2 isa pokemon has weight 905 has height 17 has pokedex-no 6 has description "Charizard";
 (pokemon-with-type: $p2, type-of-pokemon: $1) isa has-type;
 (pokemon-with-type: $p2, type-of-pokemon: $2) isa has-type;
 </code></pre>
@@ -997,7 +1005,7 @@ $p2 isa pokemon has weight 905 has height 17 has pokedex-no "6" has description 
         <br>
         <p>© 2017 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2017 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> February 2017<br/> Site last generated: Jul 24, 2017 <br />
+        <span>Page last updated:</span> February 2017<br/> Site last generated: Jul 27, 2017 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">

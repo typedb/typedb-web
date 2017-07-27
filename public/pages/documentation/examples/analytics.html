@@ -681,6 +681,13 @@
             
             
             
+            <li><a href="/pages/documentation/examples/working-with-tweets.html">Working With Tweets</a></li>
+            
+            
+            
+            
+            
+            
             <li><a href="/pages/documentation/examples/modern.html">Modern example</a></li>
             
             
@@ -856,6 +863,8 @@ hp sub resource datatype long;
 wt sub resource datatype double;
 gear sub resource datatype long;
 carb sub resource datatype long;
+powerful sub resource datatype string;
+economical sub resource datatype string;
 
 # Roles and Relations
 
@@ -983,7 +992,7 @@ compute mean of mpg in manual-car; # 24.39
 
 <h2 id="inference">Inference</h2>
 
-<pre><code class="language-graql">match $x has model $s, has powerful "TRUE" has economical "TRUE";
+<pre><code class="language-graql">&gt;&gt;&gt; match $x has model $s, has powerful "TRUE" has economical "TRUE";
 $x id "106584" isa manual-car; $y val "Ferrari Dino" isa model;
 $x id "254120" isa automatic-car; $y val "Pontiac Firebird" isa model;
 </code></pre>
@@ -1039,7 +1048,7 @@ $x id "254120" isa automatic-car; $y val "Pontiac Firebird" isa model;
         <br>
         <p>© 2017 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2017 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> March 2017<br/> Site last generated: Jul 24, 2017 <br />
+        <span>Page last updated:</span> March 2017<br/> Site last generated: Jul 27, 2017 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">

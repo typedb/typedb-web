@@ -681,6 +681,13 @@
             
             
             
+            <li><a href="/pages/documentation/examples/working-with-tweets.html">Working With Tweets</a></li>
+            
+            
+            
+            
+            
+            
             <li><a href="/pages/documentation/examples/modern.html">Modern example</a></li>
             
             
@@ -832,8 +839,8 @@ We are going to introduce the idea of making ontologies deeper and more meaningf
   middlename sub resource datatype string;
   picture sub resource datatype string;
   age sub resource datatype long;
-  birth-date sub resource datatype date;
-  death-date sub resource datatype date;
+  birth-date sub resource datatype string;
+  death-date sub resource datatype string;
   gender sub resource datatype string;
 
 # Roles and Relations
@@ -862,7 +869,9 @@ This is a very simplistic ontology with plenty of room for extension, so let’s
 <p>It is possible to define entity types more granularly. Think of sub-categories that enable additional details to be embedded in the ontology. 
 For example, if we have a entity type called <code class="highlighter-rouge">vehicle</code>, we can break that down further by differentiating between <code class="highlighter-rouge">cars</code> and <code class="highlighter-rouge">motorbikes</code>. This can be done as follows:</p>
 
-<pre><code class="language-graql">vehicle sub entity;
+<pre><code class="language-graql">insert
+
+vehicle sub entity;
 car sub vehicle;
 motorbikes sub vehicle;
 </code></pre>
@@ -912,7 +921,9 @@ death sub event
 
 <p>Now lets take a look at expanding our genealogy ontology. When modelling a domain there are many ways of doing so. For this example we are going to redo the <code class="highlighter-rouge">marriage</code> relation type so that it can provide more meaning:</p>
 
-<pre><code class="language-graql">relatives sub relation
+<pre><code class="language-graql">insert
+
+relatives sub relation
   is-abstract;
 
 marriage sub relatives
@@ -922,7 +933,7 @@ marriage sub relatives
   relates wife
   has "date";
 	    
-spouse sub role is-abstract;
+spouse sub role;
 spouse1 sub spouse;
 spouse2 sub spouse;
 husband sub spouse;
@@ -934,7 +945,9 @@ From now on, we can be clear if a person is a <code class="highlighter-rouge">hu
 
 <p>Lets expand this even further:</p>
 
-<pre><code class="language-graql">parentship sub relatives
+<pre><code class="language-graql">insert
+
+parentship sub relatives
   relates parent
   relates mother
   relates father
@@ -1025,7 +1038,7 @@ For the moment here is our more complex ontology to get you started on making yo
     relates wife
     has "date";
     
-  spouse sub role is-abstract;
+  spouse sub role;
   spouse1 sub spouse;
   spouse2 sub spouse;
   husband sub spouse;   
@@ -1103,7 +1116,7 @@ has</p>
         <br>
         <p>© 2017 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2017 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> February 2017<br/> Site last generated: Jul 24, 2017 <br />
+        <span>Page last updated:</span> February 2017<br/> Site last generated: Jul 27, 2017 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">

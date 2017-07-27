@@ -681,6 +681,13 @@
             
             
             
+            <li><a href="/pages/documentation/examples/working-with-tweets.html">Working With Tweets</a></li>
+            
+            
+            
+            
+            
+            
             <li><a href="/pages/documentation/examples/modern.html">Modern example</a></li>
             
             
@@ -808,21 +815,19 @@ $('#toc').on('click', 'a', function() {
 
 <p>and add the following to your imports.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>import ai.grakn.graql.QueryBuilder;
+<pre><code class="language-java-test-ignore">import ai.grakn.graql.QueryBuilder;
 </code></pre>
-</div>
 
 <h2 id="querybuilder">QueryBuilder</h2>
 
 <p><code class="highlighter-rouge">Graql</code> contains several useful static methods such as <code class="highlighter-rouge">var</code> and <code class="highlighter-rouge">eq</code>, so it’s recommended that you use a static import:</p>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">static</span> <span class="n">ai</span><span class="o">.</span><span class="na">grakn</span><span class="o">.</span><span class="na">graql</span><span class="o">.</span><span class="na">Graql</span><span class="o">.*;</span>
+<pre><code class="language-java-test-ignore">import static ai.grakn.graql.Graql.*;
 </code></pre>
-</div>
 
 <p>A <code class="highlighter-rouge">QueryBuilder</code> is constructed from a <code class="highlighter-rouge">GraknGraph</code>:</p>
 
-<pre><code class="language-java-test-ignore">GraknGraph graph = Grakn.factory(Grakn.IN_MEMORY, "MyGraph").getGraph();
+<pre><code class="language-java-test-ignore">GraknGraph graph = Grakn.session(Grakn.IN_MEMORY, "MyGraph").open(GraknTxType.WRITE);
 QueryBuilder qb = graph.graql();
 </code></pre>
 
@@ -920,14 +925,14 @@ objects:</p>
 <h3 id="switching-reasoning-on">Switching reasoning on</h3>
 
 <div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="c1">//graph is a GraknGraph instance</span>
-<span class="n">QueryBuilder</span> <span class="n">qb</span> <span class="o">=</span> <span class="n">graph</span><span class="o">.</span><span class="na">graql</span><span class="o">().</span><span class="na">infer</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>
+<span class="n">qb</span> <span class="o">=</span> <span class="n">graph</span><span class="o">.</span><span class="na">graql</span><span class="o">().</span><span class="na">infer</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>
 </code></pre>
 </div>
 
 <h3 id="switching-materialisation-on">Switching materialisation on</h3>
 
 <div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="c1">//graph is a GraknGraph instance</span>
-<span class="n">QueryBuilder</span> <span class="n">qb</span> <span class="o">=</span> <span class="n">graph</span><span class="o">.</span><span class="na">graql</span><span class="o">().</span><span class="na">infer</span><span class="o">(</span><span class="kc">true</span><span class="o">).</span><span class="na">materialise</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>
+<span class="n">qb</span> <span class="o">=</span> <span class="n">graph</span><span class="o">.</span><span class="na">graql</span><span class="o">().</span><span class="na">infer</span><span class="o">(</span><span class="kc">true</span><span class="o">).</span><span class="na">materialise</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>
 </code></pre>
 </div>
 
@@ -1003,7 +1008,7 @@ objects:</p>
         <br>
         <p>© 2017 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2017 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> February 2017<br/> Site last generated: Jul 24, 2017 <br />
+        <span>Page last updated:</span> February 2017<br/> Site last generated: Jul 27, 2017 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">

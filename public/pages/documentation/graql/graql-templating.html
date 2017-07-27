@@ -681,6 +681,13 @@
             
             
             
+            <li><a href="/pages/documentation/examples/working-with-tweets.html">Working With Tweets</a></li>
+            
+            
+            
+            
+            
+            
             <li><a href="/pages/documentation/examples/modern.html">Modern example</a></li>
             
             
@@ -1119,10 +1126,10 @@ insert $x isa first-course has dish &lt;course[0][1]&gt;;
 
 <p>would result in the expanded Graql queries:</p>
 
-<pre><code class="language-graql">...
+<pre><code class="language-graql"># ...
 insert $p0 isa person has firstname "Barbara" has identifier "Barbara Newman" has surname "Newman" has gender "female";
-insert $p1 has birth-date 1811-03-06 isa person has surname "Newman" has gender "male" has death-date 1898-09-10 has identifier "Henry Newman" has age 87 has firstname "Henry";
-... 
+insert $p1 has birth-date "1811-03-06" isa person has surname "Newman" has gender "male" has death-date "1898-09-10" has identifier "Henry Newman" has age 87 has firstname "Henry";
+# ...
 </code></pre>
 
 <h3 id="reserved-keywords">Reserved Keywords</h3>
@@ -1201,7 +1208,7 @@ insert $p1 has birth-date 1811-03-06 isa person has surname "Newman" has gender 
         <br>
         <p>© 2017 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2017 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> November 4, 2016<br/> Site last generated: Jul 24, 2017 <br />
+        <span>Page last updated:</span> November 4, 2016<br/> Site last generated: Jul 27, 2017 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">

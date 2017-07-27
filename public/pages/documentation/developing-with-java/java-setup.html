@@ -681,6 +681,13 @@
             
             
             
+            <li><a href="/pages/documentation/examples/working-with-tweets.html">Working With Tweets</a></li>
+            
+            
+            
+            
+            
+            
             <li><a href="/pages/documentation/examples/modern.html">Modern example</a></li>
             
             
@@ -874,38 +881,35 @@ Please see the <a href="../get-started/setup-guide.html">Setup Guide</a> on more
 
 <p>You can initialise an in memory graph without having the Grakn server running with:</p>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">GraknGraph</span> <span class="n">graph</span> <span class="o">=</span> <span class="n">Grakn</span><span class="o">.</span><span class="na">session</span><span class="o">(</span><span class="n">Grakn</span><span class="o">.</span><span class="na">IN_MEMORY</span><span class="o">,</span> <span class="s">"keyspace"</span><span class="o">).</span><span class="na">open</span><span class="o">(</span><span class="n">GraknTxType</span><span class="o">.</span><span class="na">Write</span><span class="o">);</span>
+<!-- These are ignored in tests because they connect to non-existent servers -->
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">GraknGraph</span> <span class="n">graph</span> <span class="o">=</span> <span class="n">Grakn</span><span class="o">.</span><span class="na">session</span><span class="o">(</span><span class="n">Grakn</span><span class="o">.</span><span class="na">IN_MEMORY</span><span class="o">,</span> <span class="s">"keyspace"</span><span class="o">).</span><span class="na">open</span><span class="o">(</span><span class="n">GraknTxType</span><span class="o">.</span><span class="na">WRITE</span><span class="o">);</span>
 </code></pre>
 </div>
 
 <p>If you are running the Grakn server locally then you can initialise a graph with:</p>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">GraknGraph</span> <span class="n">graph</span> <span class="o">=</span> <span class="n">Grakn</span><span class="o">.</span><span class="na">factory</span><span class="o">(</span><span class="n">Grakn</span><span class="o">.</span><span class="na">DEFAULT_URI</span><span class="o">,</span> <span class="s">"keyspace"</span><span class="o">).</span><span class="na">getGraph</span><span class="o">();</span>
+<pre><code class="language-java-test-ignore">graph = Grakn.session(Grakn.DEFAULT_URI, "keyspace").open(GraknTxType.WRITE);
 </code></pre>
-</div>
 
 <p>If you are running the Grakn server remotely you must initialise the graph by providing the IP address of your server:</p>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">GraknGraph</span> <span class="n">graph</span> <span class="o">=</span> <span class="n">Grakn</span><span class="o">.</span><span class="na">session</span><span class="o">(</span><span class="s">"127.6.21.2"</span><span class="o">,</span> <span class="s">"keyspace"</span><span class="o">).</span><span class="na">open</span><span class="o">(</span><span class="n">GraknTxType</span><span class="o">.</span><span class="na">Write</span><span class="o">);</span>
+<pre><code class="language-java-test-ignore">graph = Grakn.session("127.6.21.2", "keyspace").open(GraknTxType.WRITE);
 </code></pre>
-</div>
 
 <p>The string “keyspace” uniquely identifies the graph and allows you to create different graphs.</p>
 
 <p>Please note that graph keyspaces are <strong>not</strong> case sensitive so the following two graphs are actually the same graph:</p>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code>    <span class="n">GraknGraph</span> <span class="n">graph1</span> <span class="o">=</span> <span class="n">Grakn</span><span class="o">.</span><span class="na">session</span><span class="o">(</span><span class="s">"127.6.21.2"</span><span class="o">,</span> <span class="s">"keyspace"</span><span class="o">).</span><span class="na">open</span><span class="o">(</span><span class="n">GraknTxType</span><span class="o">.</span><span class="na">Write</span><span class="o">);</span>
-    <span class="n">GraknGraph</span> <span class="n">graph2</span> <span class="o">=</span> <span class="n">Grakn</span><span class="o">.</span><span class="na">session</span><span class="o">(</span><span class="s">"127.6.21.2"</span><span class="o">,</span> <span class="s">"KeYsPaCe"</span><span class="o">).</span><span class="na">open</span><span class="o">(</span><span class="n">GraknTxType</span><span class="o">.</span><span class="na">Write</span><span class="o">);</span>
+<pre><code class="language-java-test-ignore">    GraknGraph graph1 = Grakn.session("127.6.21.2", "keyspace").open(GraknTxType.WRITE);
+    GraknGraph graph2 = Grakn.session("127.6.21.2", "KeYsPaCe").open(GraknTxType.WRITE);
 </code></pre>
-</div>
 
 <p>All graphs are also singletons specific to their keyspaces so be aware that in the following case:</p>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code>   <span class="n">GraknGraph</span> <span class="n">graph1</span> <span class="o">=</span> <span class="n">Grakn</span><span class="o">.</span><span class="na">session</span><span class="o">(</span><span class="s">"127.6.21.2"</span><span class="o">,</span> <span class="s">"keyspace"</span><span class="o">).</span><span class="na">open</span><span class="o">(</span><span class="n">GraknTxType</span><span class="o">.</span><span class="na">Write</span><span class="o">);</span>
-   <span class="n">GraknGraph</span> <span class="n">graph2</span> <span class="o">=</span> <span class="n">Grakn</span><span class="o">.</span><span class="na">session</span><span class="o">(</span><span class="s">"127.6.21.2"</span><span class="o">,</span> <span class="s">"keyspace"</span><span class="o">).</span><span class="na">open</span><span class="o">(</span><span class="n">GraknTxType</span><span class="o">.</span><span class="na">Write</span><span class="o">);</span>
-   <span class="n">GraknGraph</span> <span class="n">graph3</span> <span class="o">=</span> <span class="n">Grakn</span><span class="o">.</span><span class="na">session</span><span class="o">(</span><span class="s">"127.6.21.2"</span><span class="o">,</span> <span class="s">"keyspace"</span><span class="o">).</span><span class="na">open</span><span class="o">(</span><span class="n">GraknTxType</span><span class="o">.</span><span class="na">Write</span><span class="o">);</span>
+<pre><code class="language-java-test-ignore">   graph1 = Grakn.session("127.6.21.2", "keyspace").open(GraknTxType.WRITE);
+   graph2 = Grakn.session("127.6.21.2", "keyspace").open(GraknTxType.WRITE);
+   graph3 = Grakn.session("127.6.21.2", "keyspace").open(GraknTxType.WRITE);
 </code></pre>
-</div>
 
 <p>any changes to <code class="highlighter-rouge">graph1</code>, <code class="highlighter-rouge">graph2</code>, or <code class="highlighter-rouge">graph3</code> will all be persisted to the same graph.</p>
 
@@ -977,7 +981,7 @@ We currently support three types of transactions:</p>
         <br>
         <p>© 2017 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2017 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> March 2017<br/> Site last generated: Jul 24, 2017 <br />
+        <span>Page last updated:</span> March 2017<br/> Site last generated: Jul 27, 2017 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">

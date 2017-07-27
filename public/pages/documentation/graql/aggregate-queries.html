@@ -681,6 +681,13 @@
             
             
             
+            <li><a href="/pages/documentation/examples/working-with-tweets.html">Working With Tweets</a></li>
+            
+            
+            
+            
+            
+            
             <li><a href="/pages/documentation/examples/modern.html">Modern example</a></li>
             
             
@@ -938,7 +945,6 @@ qb.match(
 <div class="tab-content">
 <div role="tabpanel" class="tab-pane active" id="shell6">
 <pre>
-match
 match $x isa person, has age $a; aggregate median $a;
 
 </pre>
@@ -1019,7 +1025,7 @@ qb.match(
 
 <p>Compute queries are computationally intensive and run in parallel on a cluster (so are good for big data).</p>
 
-<pre><code class="language-graql">compute count of person; 
+<pre><code class="language-graql">compute count in person;
 </code></pre>
 
 <p>Can be used to calculate the number of people in the graph very fast, but you can’t filter the results to determine the number of people with a certain name.</p>
@@ -1066,7 +1072,7 @@ qb.match(
         <br>
         <p>© 2017 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2017 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> Tuesday 6, 2016<br/> Site last generated: Jul 24, 2017 <br />
+        <span>Page last updated:</span> Tuesday 6, 2016<br/> Site last generated: Jul 27, 2017 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">

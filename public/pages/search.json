@@ -3,22 +3,22 @@
 
 
 {
-"title": "Contribute to GRAKN.AI",
+"title": "Introduction to GRAKN.AI",
 "tags": "overview",
-"keywords": "contributors, developers",
-"url": "/pages/contributors/index.html",
-"summary": "This is an area for documentation specific to contributors working on the GRAKN.AI platform, documentation or examples."
+"keywords": "intro",
+"url": "/pages/overview/index.html",
+"summary": "GRAKN.AI is the database for AI. It is a database in the form of a knowledge graph that uses machine reasoning to simplify data processing challenges for AI applications."
 }
 
 
 
 ,
 {
-"title": "Introduction to GRAKN.AI",
+"title": "Contribute to GRAKN.AI",
 "tags": "overview",
-"keywords": "intro",
-"url": "/pages/overview/index.html",
-"summary": "GRAKN.AI is the database for AI. It is a database in the form of a knowledge graph that uses machine reasoning to simplify data processing challenges for AI applications."
+"keywords": "contributors, developers",
+"url": "/pages/contributors/index.html",
+"summary": "This is an area for documentation specific to contributors working on the GRAKN.AI platform, documentation or examples."
 }
 
 
@@ -170,17 +170,6 @@
 
 ,
 {
-"title": "An Example of Migrating OWL to Grakn",
-"tags": "migrationexamples",
-"keywords": "migration",
-"url": "/pages/documentation/examples/OWL-migration.html",
-"summary": "A short example to illustrate migration of OWL to Grakn"
-}
-
-
-
-,
-{
 "title": "OWL Migration to Grakn",
 "tags": "migration",
 "keywords": "setup, getting started",
@@ -192,11 +181,11 @@
 
 ,
 {
-"title": "An Example of Migrating SQL to Grakn",
-"tags": "migrationexamplesjava",
+"title": "An Example of Migrating OWL to Grakn",
+"tags": "migrationexamples",
 "keywords": "migration",
-"url": "/pages/documentation/examples/SQL-migration.html",
-"summary": "A short example to illustrate migration of SQL to Grakn"
+"url": "/pages/documentation/examples/OWL-migration.html",
+"summary": "A short example to illustrate migration of OWL to Grakn"
 }
 
 
@@ -208,6 +197,17 @@
 "keywords": "setup, getting started",
 "url": "/pages/documentation/migration/SQL-migration.html",
 "summary": "This document will teach you how to migrate SQL data into Grakn."
+}
+
+
+
+,
+{
+"title": "An Example of Migrating SQL to Grakn",
+"tags": "migrationexamplesjava",
+"keywords": "migration",
+"url": "/pages/documentation/examples/SQL-migration.html",
+"summary": "A short example to illustrate migration of SQL to Grakn"
 }
 
 
@@ -768,6 +768,8 @@
 
 
 
+
+
 ,
 {
 "title": "Task Client API",
@@ -788,6 +790,17 @@
 "keywords": "setup, getting started",
 "url": "/pages/documentation/grakn-dashboard/visualiser.html",
 "summary": "How to use the Grakn Visualiser."
+}
+
+
+
+,
+{
+"title": "Working With Tweets",
+"tags": "analyticssocial-mediastreamingtwitterexamples",
+"keywords": "analytics, social-media, streaming, twitter",
+"url": "/pages/documentation/examples/working-with-tweets.html",
+"summary": "An example which demonstrates key Grakn concepts in a practical setting"
 }
 
 

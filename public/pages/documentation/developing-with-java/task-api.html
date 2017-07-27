@@ -681,6 +681,13 @@
             
             
             
+            <li><a href="/pages/documentation/examples/working-with-tweets.html">Working With Tweets</a></li>
+            
+            
+            
+            
+            
+            
             <li><a href="/pages/documentation/examples/modern.html">Modern example</a></li>
             
             
@@ -816,7 +823,7 @@ $('#toc').on('click', 'a', function() {
 
 <p>The task client provides only one constructor that accepts the host and port where a single engine is running.</p>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">TaskClient</span> <span class="n">loader</span> <span class="o">=</span> <span class="n">TaskClient</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="n">String</span> <span class="n">host</span><span class="o">,</span> <span class="n">String</span> <span class="n">port</span><span class="o">);</span>
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">TaskClient</span> <span class="n">loader</span> <span class="o">=</span> <span class="n">TaskClient</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="n">host</span><span class="o">,</span> <span class="n">port</span><span class="o">);</span>
 </code></pre>
 </div>
 
@@ -836,7 +843,7 @@ $('#toc').on('click', 'a', function() {
 
 <p>The <code class="highlighter-rouge">TaskClient.sendTask()</code> function accepts all of the above as arguments:</p>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">TaskClient</span> <span class="n">client</span> <span class="o">=</span> <span class="n">TaskClient</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="n">String</span> <span class="n">host</span><span class="o">,</span> <span class="n">String</span> <span class="n">port</span><span class="o">);</span>
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">TaskClient</span> <span class="n">client</span> <span class="o">=</span> <span class="n">TaskClient</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="n">host</span><span class="o">,</span> <span class="n">port</span><span class="o">);</span>
 
 <span class="n">Class</span> <span class="n">taskClass</span> <span class="o">=</span> <span class="n">ShortExecutionMockTask</span><span class="o">.</span><span class="na">class</span><span class="o">;</span>
 <span class="n">String</span> <span class="n">creator</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="na">getClass</span><span class="o">().</span><span class="na">getName</span><span class="o">();</span>
@@ -854,9 +861,7 @@ $('#toc').on('click', 'a', function() {
 
 <p>To stop a task, its ID must be known. This method returns a boolean indicating if the task was sucessfully stopped by the server.</p>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">TaskClient</span> <span class="n">client</span> <span class="o">=</span> <span class="n">TaskClient</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="n">host</span><span class="o">,</span> <span class="n">port</span><span class="o">);</span>
-
-<span class="kt">boolean</span> <span class="n">stopped</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="na">stopTask</span><span class="o">(</span><span class="n">TaskId</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="s">"randomTaskId"</span><span class="o">);</span>
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="kt">boolean</span> <span class="n">stopped</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="na">stopTask</span><span class="o">(</span><span class="n">identifier</span><span class="o">);</span>
 </code></pre>
 </div>
 
@@ -864,9 +869,7 @@ $('#toc').on('click', 'a', function() {
 
 <p>To check on the status of the task, its ID must be known. This method will throw an exception if the task cannot be found on the server.</p>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">TaskClient</span> <span class="n">client</span> <span class="o">=</span> <span class="n">TaskClient</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="n">host</span><span class="o">,</span> <span class="n">port</span><span class="o">);</span>
-
-<span class="n">TaskStatus</span> <span class="n">status</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="na">getStatus</span><span class="o">(</span><span class="n">TaskId</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="s">"randomTaskId"</span><span class="o">));</span>
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">TaskStatus</span> <span class="n">status</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="na">getStatus</span><span class="o">(</span><span class="n">identifier</span><span class="o">);</span>
 </code></pre>
 </div>
 
@@ -912,7 +915,7 @@ $('#toc').on('click', 'a', function() {
         <br>
         <p>© 2017 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2017 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> June 2017<br/> Site last generated: Jul 24, 2017 <br />
+        <span>Page last updated:</span> June 2017<br/> Site last generated: Jul 27, 2017 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">
