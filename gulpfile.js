@@ -3,7 +3,9 @@ var gulp  = require('gulp'),
     sass = require('gulp-sass'),
     closureCompiler = require('gulp-closure-compiler'),
     htmlmin = require('gulp-htmlmin'),
-    notify = require("gulp-notify");
+    notify = require("gulp-notify"),
+    concat = require('gulp-concat'),
+    isDevelopment = !!gutil.env.development;
 
 gulp.task('build-new-css', function() {
     return gulp.src('source/css/style.scss')
@@ -14,6 +16,22 @@ gulp.task('build-new-css', function() {
             message: "CSS compiled"
         }));
 });
+
+function minifyJS(){
+    return closureCompiler({
+            compilerPath: 'node_modules/google-closure-compiler/compiler.jar',
+            fileName: 'grakn.min.js',
+            compilerFlags: {
+                language_in: 'ES5',
+                compilation_level: 'SIMPLE_OPTIMIZATIONS',
+                warning_level: 'QUIET'
+            }
+        });
+}
+
+function concatJS(){
+    return concat('grakn.min.js');
+}
 
 gulp.task('build-new-js', function() {
     return gulp.src([
@@ -39,16 +57,7 @@ gulp.task('build-new-js', function() {
             'source/js/careers.js',
             'source/js/main.js'
         ])
-        .pipe(closureCompiler({
-            compilerPath: 'node_modules/google-closure-compiler/compiler.jar',
-            fileName: 'grakn.min.js',
-            compilerFlags: {
-                language_in: 'ES5',
-                //compilation_level: 'WHITESPACE_ONLY',
-                compilation_level: 'SIMPLE_OPTIMIZATIONS',
-                warning_level: 'QUIET'
-            }
-        }))
+        .pipe(isDevelopment ? concatJS() : minifyJS())
         .pipe(gulp.dest('public/js'))
         .pipe(notify({
             title: "GRAKN Website",
