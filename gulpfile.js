@@ -10,7 +10,7 @@ gulp.task('build-new-css', function() {
         .pipe(sass({outputStyle: 'compressed'}))
         .pipe(gulp.dest('public/css'))
         .pipe(notify({
-            title: "Mindmaps Website",
+            title: "GRAKN Website",
             message: "CSS compiled"
         }));
 });
@@ -41,7 +41,7 @@ gulp.task('build-new-js', function() {
         ])
         .pipe(closureCompiler({
             compilerPath: 'node_modules/google-closure-compiler/compiler.jar',
-            fileName: 'mndmps.min.js',
+            fileName: 'grakn.min.js',
             compilerFlags: {
                 language_in: 'ES5',
                 //compilation_level: 'WHITESPACE_ONLY',
@@ -51,7 +51,7 @@ gulp.task('build-new-js', function() {
         }))
         .pipe(gulp.dest('public/js'))
         .pipe(notify({
-            title: "Mindmaps Website",
+            title: "GRAKN Website",
             message: "JS compiled"
         }));
 });
@@ -73,7 +73,7 @@ gulp.task('build-html', function() {
         }))
         .pipe(gulp.dest('public'))
         .pipe(notify({
-            title: "Mindmaps Website",
+            title: "GRAKN Website",
             message: "HTML compiled"
         }));
 });
