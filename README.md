@@ -13,10 +13,15 @@ npm install
 You can build the public directory using Gulp. This builds the website but NOT the documentation.
 
 ```sh
-gulp
-
-// Probably you'll have to install gulp globally first
+// Probably you will have to install gulp globally first
 npm install gulp -g
+
+// To build the website in PRODUCTION mode (JS gets minified)
+npm run gulp
+
+// Otherwise to build the website in DEVELOPMENT mode (JS does not get minified)
+npm run gulp:dev
+
 ```
 
 ## Build and deploy documentation
