@@ -7,7 +7,7 @@
 "tags": "overview",
 "keywords": "intro",
 "url": "/pages/overview/index.html",
-"summary": "GRAKN.AI is the database for AI. It is a database in the form of a knowledge graph that uses machine reasoning to simplify data processing challenges for AI applications."
+"summary": "GRAKN.AI is the database for AI. It is a HYPER-RELATIONAL Database to store complex data, with a reasoning query language that interprets complex relationships into a higher level abstraction."
 }
 
 
@@ -29,7 +29,7 @@
 "tags": "overview",
 "keywords": "advantages",
 "url": "/pages/overview/advantages.html",
-"summary": "GRAKN.AI provides a flexible and rich data model, logical integrity, optimized and intelligent querying capabilities, and graph analytics out-of-the-box."
+"summary": "GRAKN.AI provides a flexible and rich data model, logical integrity, optimized and intelligent querying capabilities, and distributed analytics out-of-the-box."
 }
 
 
