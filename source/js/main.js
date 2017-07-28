@@ -36,8 +36,8 @@ window.MNDMPS.App = {
 
         advantagesTypist.typed({
             strings: ['match ($a, $b) isa knows;<br/>$b isa person, has name "Marco";<br/>select $a;',
-            'match ($a, $b) isa employment;<br/>$b isa company, has name "Grakn Labs";<br/>select $a;',
-            'match ($a, $b) isa knows;<br/>($b, $c) isa employment;<br/>$c isa company, has name "Grakn Labs"<br/>select $a;'],
+            'match ($a, $b) isa employment;<br/>$b isa company, has name "Grakn";<br/>select $a;',
+            'match ($a, $b) isa knows;<br/>($b, $c) isa employment;<br/>$c isa company, has name "Grakn";'],
             typeSpeed: 5,
             backSpeed: 0,
             backDelay: 5000,
