@@ -942,7 +942,7 @@
 
 <p><strong>Request:</strong></p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>curl -X POST -H "Accept:application/text" "http://localhost:4567/graph/graql/execute?keyspace=grakn&amp;infer=false&amp;materialise=false;" --data 'match $x isa person; limit 1;'
+<div class="highlighter-rouge"><pre class="highlight"><code>curl -X POST -H "Accept:application/text" "http://localhost:4567/graph/graql/execute?keyspace=grakn&infer=false&materialise=false&query=match%20\$x%20isa%20person;"
 </code></pre>
 </div>
 
