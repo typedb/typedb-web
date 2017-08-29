@@ -786,7 +786,18 @@ $('#toc').on('click', 'a', function() {
 
 });
 </script>
-
+<script>
+    $('#download-btn').on('click',function(){
+        ga('send', {
+          hitType: 'event',
+          eventCategory: 'Download_get_started',
+          eventLabel: encodeURIComponent(document.referrer)
+        });
+        }
+    );
+</script>
+    
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create','UA-72414051-1','auto');ga('require','displayfeatures');ga('send','pageview');</script>
 <div id="toc"></div>
 
     
@@ -803,7 +814,7 @@ $('#toc').on('click', 'a', function() {
 
   <h2 id="first-download-graknai">First: Download GRAKN.AI</h2>
 
-<p><a href="https://grakn.ai/download/latest"><img src="/images/download.png" alt="download" /></a></p>
+<p id="download-btn"><a href="https://grakn.ai/download/latest"><img src="/images/download.png" alt="download" /></a></p>
 
 <p>For more information on how to download older versions of GRAKN.AI, compile from source code, or import the Grakn Java API library as a development dependency, please visit our <a href="../resources/downloads.html">Downloads page</a>.</p>
 
