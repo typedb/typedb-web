@@ -300,13 +300,6 @@
             
             
             
-            <li><a href="/pages/documentation/the-fundamentals/grakn-architecture.html">Grakn Architecture Overview</a></li>
-            
-            
-            
-            
-            
-            
             <li><a href="/pages/documentation/the-fundamentals/grakn-knowledge-model.html">Grakn Knowledge Model</a></li>
             
             
@@ -317,26 +310,26 @@
         
     
     <li>
-        <a href="#">Graql Ontology</a>
+        <a href="#">Graql Schema</a>
         <ul>
             
             
             
-            <li><a href="/pages/documentation/building-an-ontology/basic-ontology.html">Define a Basic Ontology</a></li>
+            <li><a href="/pages/documentation/building-a-schema/basic-schema.html">Define a Basic Schema</a></li>
             
             
             
             
             
             
-            <li><a href="/pages/documentation/building-an-ontology/hierarchical-ontology.html">Define a Hierarchical Ontology</a></li>
+            <li><a href="/pages/documentation/building-a-schema/hierarchical-schema.html">Define a Hierarchical Schema</a></li>
             
             
             
             
             
             
-            <li><a href="/pages/documentation/building-an-ontology/rule-driven-ontology.html">Define a Rule-Driven Ontology</a></li>
+            <li><a href="/pages/documentation/building-a-schema/rule-driven-schema.html">Define a Rule-Driven Schema</a></li>
             
             
             
@@ -372,13 +365,6 @@
             
             
             
-            <li><a href="/pages/documentation/graql/ask-queries.html">Ask Queries</a></li>
-            
-            
-            
-            
-            
-            
             <li><a href="/pages/documentation/graql/delete-queries.html">Delete Queries</a></li>
             
             
@@ -387,6 +373,13 @@
             
             
             <li><a href="/pages/documentation/graql/insert-queries.html">Insert Queries</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="/pages/documentation/graql/define-queries.html">Define Queries</a></li>
             
             
             
@@ -529,7 +522,7 @@
             
             
             
-            <li><a href="/pages/documentation/developing-with-java/graph-api.html">Graph API</a></li>
+            <li><a href="/pages/documentation/developing-with-java/java-api.html">Java API</a></li>
             
             
             
@@ -709,7 +702,7 @@
             
             
             
-            <li><a href="/pages/documentation/examples/graph-api-example.html">Graph API for Java developers</a></li>
+            <li><a href="/pages/documentation/examples/java-api-example.html">API for Java developers</a></li>
             
             
             
@@ -795,16 +788,16 @@ $('#toc').on('click', 'a', function() {
 
     
 
-    <a target="_blank" href="https://github.com/graknlabs/docs/blob/master/pages/documentation/4-graql-analytics/analytics-shortest-path.md" class="btn btn-default githubEditButton" role="button"><i class="fa fa-github fa-lg"></i> Edit me</a>
+    <a target="_blank" href="https://github.com/graknlabs/grakn/tree/master/docs/pages/documentation/4-graql-analytics/analytics-shortest-path.md" class="btn btn-default githubEditButton" role="button"><i class="fa fa-github fa-lg"></i> Edit me</a>
 
     
 
     
 
-  <h2 id="how-are-two-instances-in-the-graph-related">How are two instances in the graph related?</h2>
+  <h2 id="how-are-two-instances-in-the-knowledge-base-related">How are two instances in the knowledge base related?</h2>
 <p>When starting a task you don’t always know in advance what you are looking for.
-Finding the shortest path between two instances in a graph can be a great way to explore connections because you do not need to provide any guidance.
-In the graph below I have displayed two specific people using the query:</p>
+Finding the shortest path between two instances in a knowledge base can be a great way to explore connections because you do not need to provide any guidance.
+In the knowledge base below I have displayed two specific people using the query:</p>
 
 <pre><code class="language-graql">match
 $x has identifier "Barbara Shafner";
@@ -818,14 +811,14 @@ $y has identifier "Jacob J. Niesz";
 </code></pre>
 
 <p>You can see below that the two people selected are married.
-The path query uses a scalable shortest path algorithm to determine the smallest number of relations required to get from once concept to the other.</p>
+The path query uses a scalable shortest path algorithm to determine the smallest number of relationships required to get from once concept to the other.</p>
 
 <p><img src="/images/analytics_path_marriage.png" alt="Shortest path between people" /></p>
 
 <h3 id="subgraph">Subgraph</h3>
 
 <p>If you are looking for more specific connections you can of course use the <a href="./analytics-overview.html">subgraph</a> functionality.
-In the following query only the blood relations (parent/child relations) are investigated and the resulting graph is shown below.
+In the following query only the blood relationships (parent/child relationships) are investigated and the resulting knowledge base is shown below.
 We have excluded marriage in this subgraph and as a result the shortest path is longer than before - it turns out the Barbara Shafner and Jacob J. Niesz are cousins (their mothers, Mary Young and Catherine Young, are sisters, their father being Jacob Young).</p>
 
 <!-- Ignoring because uses made-up IDs -->
@@ -922,5 +915,12 @@ We have excluded marriage in this subgraph and as a result the shortest path is 
     </div>
 
 </body>
+
+<!-- the google_analytics_id gets auto inserted from the config file -->
+
+
+
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create','UA-72414051-1','auto');ga('require','displayfeatures');ga('send','pageview');</script>
+
 
 </html>

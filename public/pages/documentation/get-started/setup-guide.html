@@ -300,13 +300,6 @@
             
             
             
-            <li><a href="/pages/documentation/the-fundamentals/grakn-architecture.html">Grakn Architecture Overview</a></li>
-            
-            
-            
-            
-            
-            
             <li><a href="/pages/documentation/the-fundamentals/grakn-knowledge-model.html">Grakn Knowledge Model</a></li>
             
             
@@ -317,26 +310,26 @@
         
     
     <li>
-        <a href="#">Graql Ontology</a>
+        <a href="#">Graql Schema</a>
         <ul>
             
             
             
-            <li><a href="/pages/documentation/building-an-ontology/basic-ontology.html">Define a Basic Ontology</a></li>
+            <li><a href="/pages/documentation/building-a-schema/basic-schema.html">Define a Basic Schema</a></li>
             
             
             
             
             
             
-            <li><a href="/pages/documentation/building-an-ontology/hierarchical-ontology.html">Define a Hierarchical Ontology</a></li>
+            <li><a href="/pages/documentation/building-a-schema/hierarchical-schema.html">Define a Hierarchical Schema</a></li>
             
             
             
             
             
             
-            <li><a href="/pages/documentation/building-an-ontology/rule-driven-ontology.html">Define a Rule-Driven Ontology</a></li>
+            <li><a href="/pages/documentation/building-a-schema/rule-driven-schema.html">Define a Rule-Driven Schema</a></li>
             
             
             
@@ -372,13 +365,6 @@
             
             
             
-            <li><a href="/pages/documentation/graql/ask-queries.html">Ask Queries</a></li>
-            
-            
-            
-            
-            
-            
             <li><a href="/pages/documentation/graql/delete-queries.html">Delete Queries</a></li>
             
             
@@ -387,6 +373,13 @@
             
             
             <li><a href="/pages/documentation/graql/insert-queries.html">Insert Queries</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="/pages/documentation/graql/define-queries.html">Define Queries</a></li>
             
             
             
@@ -529,7 +522,7 @@
             
             
             
-            <li><a href="/pages/documentation/developing-with-java/graph-api.html">Graph API</a></li>
+            <li><a href="/pages/documentation/developing-with-java/java-api.html">Java API</a></li>
             
             
             
@@ -709,7 +702,7 @@
             
             
             
-            <li><a href="/pages/documentation/examples/graph-api-example.html">Graph API for Java developers</a></li>
+            <li><a href="/pages/documentation/examples/java-api-example.html">API for Java developers</a></li>
             
             
             
@@ -795,7 +788,7 @@ $('#toc').on('click', 'a', function() {
 
     
 
-    <a target="_blank" href="https://github.com/graknlabs/docs/blob/master/pages/documentation/0-get-started/setup-guide.md" class="btn btn-default githubEditButton" role="button"><i class="fa fa-github fa-lg"></i> Edit me</a>
+    <a target="_blank" href="https://github.com/graknlabs/grakn/tree/master/docs/pages/documentation/0-get-started/setup-guide.md" class="btn btn-default githubEditButton" role="button"><i class="fa fa-github fa-lg"></i> Edit me</a>
 
     
 
@@ -803,7 +796,7 @@ $('#toc').on('click', 'a', function() {
 
   <h2 id="first-download-graknai">First: Download GRAKN.AI</h2>
 
-<p><a href="https://grakn.ai/download/latest"><img src="/images/download.png" alt="download" /></a></p>
+<p id="download-btn"><a href="https://grakn.ai/download/latest"><img src="/images/download.png" alt="download" /></a></p>
 
 <p>For more information on how to download older versions of GRAKN.AI, compile from source code, or import the Grakn Java API library as a development dependency, please visit our <a href="../resources/downloads.html">Downloads page</a>.</p>
 
@@ -813,7 +806,7 @@ GRAKN.AI requires Oracle Java 8 (Standard Edition) with the <code class="highlig
 <br /> 
 If you intend to build Grakn from source code, or develop on top of it, you will also need Maven 3.
 <br /> 
-If you are looking for information about setting up a production deployment of GRAKN.AI, please see the <a href="./deploy-grakn/grakn-deployment-guide.html">deployment guide</a>.</div>
+If you are looking for information about setting up a production deployment of GRAKN.AI, please see the <a href="../deploy-grakn/grakn-deployment-guide.html">deployment guide</a>.</div>
 
 <p>Unzip the download into your preferred location and run the following in the terminal to start Grakn:</p>
 
@@ -837,15 +830,15 @@ grakn.sh start
 <div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> <b>Note:</b> <strong>Useful commands</strong>  <br />
 To start Grakn, run <code class="highlighter-rouge">grakn.sh start</code>. <br />
 To stop Grakn, run <code class="highlighter-rouge">grakn.sh stop</code>.  <br />
-To remove all graphs from Grakn, run <code class="highlighter-rouge">grakn.sh clean</code></div>
+To remove all keyspaces from Grakn, run <code class="highlighter-rouge">grakn.sh clean</code></div>
 
 <p>Grakn Engine is configured by default to use port 4567, but this can be changed in the <em>grakn-engine.properties</em> file, found within the <em>/conf</em> directory of the installation.</p>
 
 <h2 id="test-the-graql-shell">Test the Graql Shell</h2>
 
-<p>To test that the installation is working correctly, we will load a simple ontology and some data from a file and test it in the Graql shell and Grakn visualiser. The file we will use is <em>basic-genealogy.gql</em>, which is included in the <em>/examples</em> folder of the Grakn installation zip.</p>
+<p>To test that the installation is working correctly, we will load a simple schema and some data from a file and test it in the Graql shell and Grakn visualiser. The file we will use is <em>basic-genealogy.gql</em>, which is included in the <em>/examples</em> folder of the Grakn installation zip.</p>
 
-<p>Type in the following in the terminal to load the example graph. This starts the Graql shell in non-interactive mode, loading the specified file and exiting after the load is complete.</p>
+<p>Type in the following in the terminal to load the example knowledge base. This starts the Graql shell in non-interactive mode, loading the specified file and exiting after the load is complete.</p>
 
 <div class="language-bash highlighter-rouge"><pre class="highlight"><code>./bin/graql.sh -f ./examples/basic-genealogy.gql
 </code></pre>
@@ -868,7 +861,7 @@ To remove all graphs from Grakn, run <code class="highlighter-rouge">grakn.sh cl
 
 <h2 id="test-the-visualiser">Test the Visualiser</h2>
 
-<p>The <a href="../grakn-dashboard/visualiser.html">Grakn visualiser</a> provides a graphical tool to inspect and query your graph data. You can open the visualiser by navigating to <a href="http://localhost:4567">localhost:4567</a> in your web browser. The visualiser allows you to make queries or simply browse the knowledge ontology within the graph. The screenshot below shows a basic query (<code class="highlighter-rouge">match $x isa person;</code>) typed into the form at the top of the main pane, and visualised by pressing “&gt;” to submit the query:</p>
+<p>The <a href="../grakn-dashboard/visualiser.html">Grakn visualiser</a> provides a graphical tool to inspect and query your data. You can open the visualiser by navigating to <a href="http://localhost:4567">localhost:4567</a> in your web browser. The visualiser allows you to make queries or simply browse the schema within the graph. The screenshot below shows a basic query (<code class="highlighter-rouge">match $x isa person;</code>) typed into the form at the top of the main pane, and visualised by pressing “&gt;” to submit the query:</p>
 
 <p><img src="/images/match-$x-isa-person.png" alt="Person query" /></p>
 
@@ -884,6 +877,18 @@ To remove all graphs from Grakn, run <code class="highlighter-rouge">grakn.sh cl
 
 <h2 id="comments">Comments</h2>
 <p>Want to leave a comment? Visit <a href="https://github.com/graknlabs/docs/issues/16" target="_blank">the issues on Github for this page</a> (you’ll need a GitHub account). You are also welcome to contribute to our documentation directly via the “Edit me” button at the top of the page.</p>
+
+<script>
+    $('#download-btn').on('click',function(){
+        ga('send', {
+          hitType: 'event',
+          eventCategory: 'Download_get_started',
+          eventLabel: encodeURIComponent(document.referrer)
+        });
+        }
+    );
+</script>
+
 
 
     <div class="tags">
@@ -974,5 +979,12 @@ To remove all graphs from Grakn, run <code class="highlighter-rouge">grakn.sh cl
     </div>
 
 </body>
+
+<!-- the google_analytics_id gets auto inserted from the config file -->
+
+
+
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create','UA-72414051-1','auto');ga('require','displayfeatures');ga('send','pageview');</script>
+
 
 </html>

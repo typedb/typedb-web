@@ -300,13 +300,6 @@
             
             
             
-            <li><a href="/pages/documentation/the-fundamentals/grakn-architecture.html">Grakn Architecture Overview</a></li>
-            
-            
-            
-            
-            
-            
             <li><a href="/pages/documentation/the-fundamentals/grakn-knowledge-model.html">Grakn Knowledge Model</a></li>
             
             
@@ -317,26 +310,26 @@
         
     
     <li>
-        <a href="#">Graql Ontology</a>
+        <a href="#">Graql Schema</a>
         <ul>
             
             
             
-            <li><a href="/pages/documentation/building-an-ontology/basic-ontology.html">Define a Basic Ontology</a></li>
+            <li><a href="/pages/documentation/building-a-schema/basic-schema.html">Define a Basic Schema</a></li>
             
             
             
             
             
             
-            <li><a href="/pages/documentation/building-an-ontology/hierarchical-ontology.html">Define a Hierarchical Ontology</a></li>
+            <li><a href="/pages/documentation/building-a-schema/hierarchical-schema.html">Define a Hierarchical Schema</a></li>
             
             
             
             
             
             
-            <li><a href="/pages/documentation/building-an-ontology/rule-driven-ontology.html">Define a Rule-Driven Ontology</a></li>
+            <li><a href="/pages/documentation/building-a-schema/rule-driven-schema.html">Define a Rule-Driven Schema</a></li>
             
             
             
@@ -372,13 +365,6 @@
             
             
             
-            <li><a href="/pages/documentation/graql/ask-queries.html">Ask Queries</a></li>
-            
-            
-            
-            
-            
-            
             <li><a href="/pages/documentation/graql/delete-queries.html">Delete Queries</a></li>
             
             
@@ -387,6 +373,13 @@
             
             
             <li><a href="/pages/documentation/graql/insert-queries.html">Insert Queries</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="/pages/documentation/graql/define-queries.html">Define Queries</a></li>
             
             
             
@@ -529,7 +522,7 @@
             
             
             
-            <li><a href="/pages/documentation/developing-with-java/graph-api.html">Graph API</a></li>
+            <li><a href="/pages/documentation/developing-with-java/java-api.html">Java API</a></li>
             
             
             
@@ -709,7 +702,7 @@
             
             
             
-            <li><a href="/pages/documentation/examples/graph-api-example.html">Graph API for Java developers</a></li>
+            <li><a href="/pages/documentation/examples/java-api-example.html">API for Java developers</a></li>
             
             
             
@@ -795,17 +788,17 @@ $('#toc').on('click', 'a', function() {
 
     
 
-    <a target="_blank" href="https://github.com/graknlabs/docs/blob/master/pages/documentation/4-graql-analytics/analytics-overview.md" class="btn btn-default githubEditButton" role="button"><i class="fa fa-github fa-lg"></i> Edit me</a>
+    <a target="_blank" href="https://github.com/graknlabs/grakn/tree/master/docs/pages/documentation/4-graql-analytics/analytics-overview.md" class="btn btn-default githubEditButton" role="button"><i class="fa fa-github fa-lg"></i> Edit me</a>
 
     
 
     
 
-  <p>The distributed Grakn knowledge graph presents two different ways to obtain insight on a large dataset:</p>
+  <p>The distributed Grakn knowledge base presents two different ways to obtain insight on a large dataset:</p>
 
 <ul>
   <li>It intelligently aggregates large amounts of information. Graql allows you to specify what you want, and analytics allows you to do it at scale. For example, finding out the mean number and standard deviation of vehicles owned by companies (not individuals), no matter how big the dataset.</li>
-  <li>The structure of the graph contains valuable information about the importance of entities and also the communities they form. This is achieved by computing the number of relationships that certain entities take part in, and using this as a measure of how popular they are. An example of this can be seen on the <a href="https://moogi.co">Moogi website</a>, which uses only the structure of the graph to rank the results.</li>
+  <li>The structure of the knowledge base contains valuable information about the importance of entities and also the communities they form. This is achieved by computing the number of relationships that certain entities take part in, and using this as a measure of how popular they are. An example of this can be seen on the <a href="https://moogi.co">Moogi website</a>, which uses only the structure of the graph to rank the results.</li>
 </ul>
 
 <div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> <b>Note:</b> Under the hood we use implementations of the <a href="https://www.quora.com/What-are-the-main-concepts-behind-Googles-Pregel">Pregel algorithm</a> distributed graph computing
@@ -817,13 +810,13 @@ framework and/or <a href="https://en.wikipedia.org/wiki/MapReduce">map reduce</a
 
 <ul>
   <li>computing statistics related to numeric resources</li>
-  <li>interrogating the structure of the graph.</li>
+  <li>interrogating the structure of the knowledge base.</li>
 </ul>
 
 <h3 id="statistics">Statistics</h3>
 
 <p>Currently you can compute the <code class="highlighter-rouge">min</code>, <code class="highlighter-rouge">max</code>, <code class="highlighter-rouge">mean</code>, <code class="highlighter-rouge">median</code>, <code class="highlighter-rouge">std</code> (standard deviation) and <code class="highlighter-rouge">sum</code> of resources attached to entities. This
-can also be achieved on a subgraph, which is a subset of the types in your dataset. For example, you can specify queries to find the mean age of people in a graph:</p>
+can also be achieved on a subgraph, which is a subset of the types in your dataset. For example, you can specify queries to find the mean age of people in a knowledge base:</p>
 
 <pre><code class="language-graql">compute mean of age in person;
 </code></pre>
@@ -843,20 +836,20 @@ can also be achieved on a subgraph, which is a subset of the types in your datas
 <h2 id="the-knowledge-graph-according-to-analytics">The Knowledge Graph According to Analytics</h2>
 
 <p>Graql analytics functionality is accessed via the <code class="highlighter-rouge">compute</code> query in the Graql language. In order to fully understand the
-syntax, an in-depth understanding of the graph is needed, so we will dive into some details here.</p>
+syntax, an in-depth understanding of the knowledge base is needed, so we will dive into some details here.</p>
 
-<p>Analytics only “sees” the instances of types, but is aware of the ontology. Therefore, if your graph has a type <code class="highlighter-rouge">person</code>
+<p>Analytics only “sees” the instances of types, but is aware of the schema. Therefore, if your knowledge base has a type <code class="highlighter-rouge">person</code>
 then the instances of this: <code class="highlighter-rouge">Jacob Young</code>, <code class="highlighter-rouge">Hermione Newman</code> and <code class="highlighter-rouge">Barbara Herchelroth</code> can be counted using analytics.
-Often you are not interested in the whole knowledge graph when performing calculations, and it is possible to specify a subgraph (a subset of your data to work on) to Graql.
-For example, a knowledge graph may contain groups, people and the relationships between them, but these can be excluded by specifying a subgraph using the <code class="highlighter-rouge">in</code> keyword.
+Often you are not interested in the whole knowledge base when performing calculations, and it is possible to specify a subgraph (a subset of your data to work on) to Graql.
+For example, a knowledge base may contain groups, people and the relationships between them, but these can be excluded by specifying a subgraph using the <code class="highlighter-rouge">in</code> keyword.
 To count just people:</p>
 
 <pre><code class="language-graql">compute count in person;
 </code></pre>
 
-<p>Consider the simple graph below that includes types and instances (some are entities and some are relations).
-Analytics will consider every instance in the graph, and therefore, will not consider the type nodes <code class="highlighter-rouge">person</code> and <code class="highlighter-rouge">marriage</code>, (coloured in pink).
-To compute the count on this graph without specifying any subgraph, we call the following, which would return the number 4:</p>
+<p>Consider the simple knowledge base below that includes types and instances (some are entities and some are relationships).
+Analytics will consider every instance in the knowledge base, and therefore, will not consider the type nodes <code class="highlighter-rouge">person</code> and <code class="highlighter-rouge">marriage</code>, (coloured in pink).
+To compute the count on this knowledge base without specifying any subgraph, we call the following, which would return the number 4:</p>
 
 <pre><code class="language-graql">compute count;
 </code></pre>
@@ -864,7 +857,7 @@ To compute the count on this graph without specifying any subgraph, we call the 
 <p>Analytics has counted all of the instances of the types, which are specific people and the nodes representing
 the marriage relationship.</p>
 
-<p><img src="/images/analytics_sub_Graph.png" alt="A simple graph." /></p>
+<p><img src="/images/analytics_sub_Graph.png" alt="A simple knowledge base." /></p>
 
 <p>A subgraph is defined in analytics by using the types. For example, we could specify a subgraph that includes only
 <code class="highlighter-rouge">person</code> like this:</p>
@@ -873,9 +866,9 @@ the marriage relationship.</p>
 </code></pre>
 
 <p>and this would return the number 3.
-The graph that analytics will now operate on can be seen below.</p>
+The analytics will now operate on can be seen below.</p>
 
-<p><img src="/images/analytics_another_sub_Graph.png" alt="A simple graph." /></p>
+<p><img src="/images/analytics_another_sub_Graph.png" alt="A simple knowledge base." /></p>
 
 <p>We may also specify a subgraph for efficiency (so we do not have to count the things we are not interested in).
 The algorithm for computing the degree is one example.
@@ -885,9 +878,9 @@ If we execute the following query, the number of arrows (edges) attached to each
 </code></pre>
 
 <p>In the example below this would be 1 for Jacob Young, 2 for Barbara Herchelroth, 1 for John Newman and 0 for the rest because we do not count the arrows indicating type, only arrows labelled with <code class="highlighter-rouge">spouse</code> roles.
-This graph also happens to include the parentship relation, but we have ignored this and only found out the number of marriages a person has taken part in for any size of graph.</p>
+This knowledge base also happens to include the parentship relationship, but we have ignored this and only found out the number of marriages a person has taken part in for any size of graph.</p>
 
-<p><img src="/images/analytics_degree_sub_Graph.png" alt="A simple graph." /></p>
+<p><img src="/images/analytics_degree_sub_Graph.png" alt="A simple knowledge base." /></p>
 
 <div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> <b>Note:</b> The degree is the simplest measure of the importance (centrality) of a node in a graph.
 Graql is very flexible and allows us to define the subgraph in which we want to compute the degree, and therefore determine
@@ -981,5 +974,12 @@ importance according to various structures in the graph.</div>
     </div>
 
 </body>
+
+<!-- the google_analytics_id gets auto inserted from the config file -->
+
+
+
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create','UA-72414051-1','auto');ga('require','displayfeatures');ga('send','pageview');</script>
+
 
 </html>

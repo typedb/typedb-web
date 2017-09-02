@@ -300,13 +300,6 @@
             
             
             
-            <li><a href="/pages/documentation/the-fundamentals/grakn-architecture.html">Grakn Architecture Overview</a></li>
-            
-            
-            
-            
-            
-            
             <li><a href="/pages/documentation/the-fundamentals/grakn-knowledge-model.html">Grakn Knowledge Model</a></li>
             
             
@@ -317,26 +310,26 @@
         
     
     <li>
-        <a href="#">Graql Ontology</a>
+        <a href="#">Graql Schema</a>
         <ul>
             
             
             
-            <li><a href="/pages/documentation/building-an-ontology/basic-ontology.html">Define a Basic Ontology</a></li>
+            <li><a href="/pages/documentation/building-a-schema/basic-schema.html">Define a Basic Schema</a></li>
             
             
             
             
             
             
-            <li><a href="/pages/documentation/building-an-ontology/hierarchical-ontology.html">Define a Hierarchical Ontology</a></li>
+            <li><a href="/pages/documentation/building-a-schema/hierarchical-schema.html">Define a Hierarchical Schema</a></li>
             
             
             
             
             
             
-            <li><a href="/pages/documentation/building-an-ontology/rule-driven-ontology.html">Define a Rule-Driven Ontology</a></li>
+            <li><a href="/pages/documentation/building-a-schema/rule-driven-schema.html">Define a Rule-Driven Schema</a></li>
             
             
             
@@ -372,13 +365,6 @@
             
             
             
-            <li><a href="/pages/documentation/graql/ask-queries.html">Ask Queries</a></li>
-            
-            
-            
-            
-            
-            
             <li><a href="/pages/documentation/graql/delete-queries.html">Delete Queries</a></li>
             
             
@@ -387,6 +373,13 @@
             
             
             <li><a href="/pages/documentation/graql/insert-queries.html">Insert Queries</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="/pages/documentation/graql/define-queries.html">Define Queries</a></li>
             
             
             
@@ -529,7 +522,7 @@
             
             
             
-            <li><a href="/pages/documentation/developing-with-java/graph-api.html">Graph API</a></li>
+            <li><a href="/pages/documentation/developing-with-java/java-api.html">Java API</a></li>
             
             
             
@@ -709,7 +702,7 @@
             
             
             
-            <li><a href="/pages/documentation/examples/graph-api-example.html">Graph API for Java developers</a></li>
+            <li><a href="/pages/documentation/examples/java-api-example.html">API for Java developers</a></li>
             
             
             
@@ -795,7 +788,7 @@ $('#toc').on('click', 'a', function() {
 
     
 
-    <a target="_blank" href="https://github.com/graknlabs/docs/blob/master/pages/documentation/11-examples/OWL-migration.md" class="btn btn-default githubEditButton" role="button"><i class="fa fa-github fa-lg"></i> Edit me</a>
+    <a target="_blank" href="https://github.com/graknlabs/grakn/tree/master/docs/pages/documentation/11-examples/OWL-migration.md" class="btn btn-default githubEditButton" role="button"><i class="fa fa-github fa-lg"></i> Edit me</a>
 
     
 
@@ -814,7 +807,7 @@ $('#toc').on('click', 'a', function() {
 <p>We run a few queries in the example to prove that the data has been migrated. After running the example, you should be able to answer the following questions (see the bottom of the page for answers - but please don’t peek until you’ve tried it!):</p>
 
 <ul>
-  <li>What are the Types in the Family Tree graph in Grakn?</li>
+  <li>What are the Types in the Family Tree knowledge base in Grakn?</li>
   <li>How many people are in the family tree?</li>
   <li>How many descendants does Eleanor Pringle have?</li>
   <li>Who are the great uncles of Ethel Archer?</li>
@@ -822,7 +815,7 @@ $('#toc').on('click', 'a', function() {
 
 <h2 id="test-yourself-answers">Test Yourself Answers</h2>
 
-<p><strong>What are the Types in the Family Tree graph?</strong> <br />
+<p><strong>What are the Types in the Family Tree knowledge base?</strong> <br />
 Answer:</p>
 
 <div class="highlighter-rouge"><pre class="highlight"><code>tThing
@@ -853,7 +846,7 @@ James Whitfield
 
 <h2 id="where-next">Where next?</h2>
 
-<p>After running this OWL migration, check out the <a href="../graql/graql-overview.html">Graql documentation</a> and the <a href="../developing-with-java/graph-api.html">Graph API documentation</a> for more instructions on how you can explore the family tree.</p>
+<p>After running this OWL migration, check out the <a href="../graql/graql-overview.html">Graql documentation</a> and the <a href="../developing-with-java/java-api.html">Graph API documentation</a> for more instructions on how you can explore the family tree.</p>
 
 <h2 id="comments">Comments</h2>
 <p>Want to leave a comment? Visit <a href="https://github.com/graknlabs/docs/issues/27" target="_blank">the issues on Github for this page</a> (you’ll need a GitHub account). You are also welcome to contribute to our documentation directly via the “Edit me” button at the top of the page.</p>
@@ -947,5 +940,12 @@ James Whitfield
     </div>
 
 </body>
+
+<!-- the google_analytics_id gets auto inserted from the config file -->
+
+
+
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create','UA-72414051-1','auto');ga('require','displayfeatures');ga('send','pageview');</script>
+
 
 </html>

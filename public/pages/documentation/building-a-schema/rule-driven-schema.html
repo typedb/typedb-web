@@ -3,9 +3,9 @@
     <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Introducing the GRAKN.AI Architecture">
-<meta name="keywords" content="getting-started,  setup, getting started, basics, GRAKN.AI, Grakn Labs, grakn, graql, grakn.ai, Mindmaps Research, Mindmaps Research Ltd, MindmapsDB, mindmaps, mindmaps graph, mindmaps.io, knowledge graph, distributed knowledge graph, development platform, developer tool, data platform, programming langauge, query langauge, database, semantic database, distributed semantic database, distributed database, graph database, semantic search, data exploration, recommendation system, knowledge management, knowledge engineering, real-time analytics, advanced analytics, reasoning engine, inference engine, expert systems, semantic applications, research engines, data management, business intelligence, big data, semantic web, semantic data, knowledge representation, automated reasoning, semantic network, knowledge ontology, semantic graph, ontology engineering, graph based knowledge representation, artificial intelligence,">
-<title>GRAKN.AI - GRAKN.AI Architecture Overview</title>
+<meta name="description" content="Demonstrates how to create a rule-driven schema for Grakn.">
+<meta name="keywords" content="javajava-api,  schema, GRAKN.AI, Grakn Labs, grakn, graql, grakn.ai, Mindmaps Research, Mindmaps Research Ltd, MindmapsDB, mindmaps, mindmaps graph, mindmaps.io, knowledge graph, distributed knowledge graph, development platform, developer tool, data platform, programming langauge, query langauge, database, semantic database, distributed semantic database, distributed database, graph database, semantic search, data exploration, recommendation system, knowledge management, knowledge engineering, real-time analytics, advanced analytics, reasoning engine, inference engine, expert systems, semantic applications, research engines, data management, business intelligence, big data, semantic web, semantic data, knowledge representation, automated reasoning, semantic network, knowledge ontology, semantic graph, ontology engineering, graph based knowledge representation, artificial intelligence,">
+<title>GRAKN.AI - Define a Rule-Driven Schema</title>
 <link rel="stylesheet" href="/pages/css/syntax.css">
 
 
@@ -228,7 +228,7 @@
                             
                             dataSource: '/pages/search.json',
                             
-                            searchResultTemplate: '<li><a href="{url}" title="GRAKN.AI Architecture Overview">{title}</a></li>',
+                            searchResultTemplate: '<li><a href="{url}" title="Define a Rule-Driven Schema">{title}</a></li>',
                             noResultsText: '<li><a class="empty">No results found</a></li>',
                             limit: 10,
                             fuzzy: true
@@ -300,13 +300,6 @@
             
             
             
-            <li class="active"><a href="/pages/documentation/the-fundamentals/grakn-architecture.html">Grakn Architecture Overview</a></li>
-            
-            
-            
-            
-            
-            
             <li><a href="/pages/documentation/the-fundamentals/grakn-knowledge-model.html">Grakn Knowledge Model</a></li>
             
             
@@ -317,26 +310,26 @@
         
     
     <li>
-        <a href="#">Graql Ontology</a>
+        <a href="#">Graql Schema</a>
         <ul>
             
             
             
-            <li><a href="/pages/documentation/building-an-ontology/basic-ontology.html">Define a Basic Ontology</a></li>
+            <li><a href="/pages/documentation/building-a-schema/basic-schema.html">Define a Basic Schema</a></li>
             
             
             
             
             
             
-            <li><a href="/pages/documentation/building-an-ontology/hierarchical-ontology.html">Define a Hierarchical Ontology</a></li>
+            <li><a href="/pages/documentation/building-a-schema/hierarchical-schema.html">Define a Hierarchical Schema</a></li>
             
             
             
             
             
             
-            <li><a href="/pages/documentation/building-an-ontology/rule-driven-ontology.html">Define a Rule-Driven Ontology</a></li>
+            <li class="active"><a href="/pages/documentation/building-a-schema/rule-driven-schema.html">Define a Rule-Driven Schema</a></li>
             
             
             
@@ -372,13 +365,6 @@
             
             
             
-            <li><a href="/pages/documentation/graql/ask-queries.html">Ask Queries</a></li>
-            
-            
-            
-            
-            
-            
             <li><a href="/pages/documentation/graql/delete-queries.html">Delete Queries</a></li>
             
             
@@ -387,6 +373,13 @@
             
             
             <li><a href="/pages/documentation/graql/insert-queries.html">Insert Queries</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="/pages/documentation/graql/define-queries.html">Define Queries</a></li>
             
             
             
@@ -529,7 +522,7 @@
             
             
             
-            <li><a href="/pages/documentation/developing-with-java/graph-api.html">Graph API</a></li>
+            <li><a href="/pages/documentation/developing-with-java/java-api.html">Java API</a></li>
             
             
             
@@ -709,7 +702,7 @@
             
             
             
-            <li><a href="/pages/documentation/examples/graph-api-example.html">Graph API for Java developers</a></li>
+            <li><a href="/pages/documentation/examples/java-api-example.html">API for Java developers</a></li>
             
             
             
@@ -755,7 +748,7 @@
         <!-- Content Column -->
         <div class="col-md-9">
             <div class="post-header">
-   <h1 class="post-title-main">GRAKN.AI Architecture Overview</h1>
+   <h1 class="post-title-main">Define a Rule-Driven Schema</h1>
 </div>
 
 
@@ -763,7 +756,7 @@
 <div class="post-content">
 
    
-    <div class="summary">Introducing the GRAKN.AI Architecture</div>
+    <div class="summary">Demonstrates how to create a rule-driven schema for Grakn.</div>
    
 
     
@@ -795,67 +788,29 @@ $('#toc').on('click', 'a', function() {
 
     
 
-    <a target="_blank" href="https://github.com/graknlabs/docs/blob/master/pages/documentation/1-the-fundamentals/grakn-architecture.md" class="btn btn-default githubEditButton" role="button"><i class="fa fa-github fa-lg"></i> Edit me</a>
+    <a target="_blank" href="https://github.com/graknlabs/grakn/tree/master/docs/pages/documentation/2-building-a-schema/rule-driven-schema.md" class="btn btn-default githubEditButton" role="button"><i class="fa fa-github fa-lg"></i> Edit me</a>
 
     
 
     
 
-  <p>GRAKN.AI is an AI knowledge management engine. It is a database for managing very large knowledge graphs and takes the form of a development platform, offering a tool suite for:</p>
+  <div class="alert alert-danger" role="alert"><i class="fa fa-exclamation-circle"></i> <b>Warning:</b> Please note that this page is in progress and subject to revision.</div>
 
-<ul>
-  <li>modelling and reasoning over data</li>
-  <li>computing large-scale analytics over graph-oriented, structured data.</li>
-</ul>
+<!--
+description of their syntax, what is allowed in their conclusion and what is not, 
+configuration options, whether to materialize or not
+show configuration from both graql native syntax in shell, and graql java api, 
+best practices
+supported constructs-->
 
-<p>There are two parts to GRAKN.AI: Grakn (the storage), and Graql (a  declarative, knowledge-oriented, graph query language).</p>
-
-<h2 id="grakn">Grakn</h2>
-
-<p>Grakn builds upon several major industry-standard technologies such as Apache Tinkerpop, Apache Cassandra, Apache Spark and others. At its core lies a graph database that implements the <a href="https://tinkerpop.apache.org">Apache Tinkerpop</a> APIs, making Grakn agnostic about graph data storage. Grakn’s own algorithms are scalable and capable of handling big data problems. Scalability of the system as a whole is conditioned upon the performance characteristics of the underlying database selected.</p>
-
-<p>Knowledge management in the GRAKN.AI follows the <a href="../the-fundamentals/grakn-knowledge-model.html">knowledge representation model</a>. The model is logically formalized to guarantee consistency of the data as well as soundness and completeness of the reasoning procedure. The model is defined in Java as a set of interfaces implemented on top of the Tinkerpop API. The knowledge model serves as a foundation for the knowledge-oriented language Graql, which incorporates querying, reasoning, data migration and graph analytics.</p>
-
-<h2 id="graql">Graql</h2>
-
-<p>The Graql query language makes extensive use of Gremlin. In fact, Graql queries are translated into Gremlin queries before submission to Tinkerpop for execution. Graql comes with its own syntax and can be used stand-alone via a shell. But it also has a Java API that mimics the native syntax closely. The Java API is convenient for avoiding the messiness of constructing query strings, typical for many other development stacks.</p>
-
-<p>The reasoning engine works directly with Graql constructs and performs backwards chaining via an iterative deepening algorithm. Unification as well as recursive rules are supported.</p>
-
-<p>The distributed analytics component employees massively parallel algorithms based on the Tinkerpop BSP/OLAP processing model, which in turn makes use of technologies such as Apache Hadoop and Apache Spark.</p>
-
-<h2 id="grakn-engine">Grakn Engine</h2>
-
-<p>The Grakn engine is the main server component running the platform. A client always needs an engine running before it can talk to the knowledge graph, even when the client is accessing the graph database in embedded mode. A Grakn engine process hosts several distinct services:</p>
-
-<ul>
-  <li>REST API</li>
-  <li>web-based GUI for interacting with and visualizing the graph</li>
-  <li>websockets endpoint for Graql queries</li>
-  <li>distributed background task processing peer.</li>
-</ul>
-
-<p>An engine server makes use of industry standard infrastructure packages such as an embedded HTTP server, Kafka, Zookeeper, Spark and Hadoop. Engines can be deployed in a horizontally scalable cluster. They are stateless and co-operate in a peer-to-peer fashion. They can be load-balanced and support failover, providing guarantees that any submitted task will be eventually completed. See the <a href="../deploy-grakn/grakn-deployment-guide.html">Deployment Guide</a> for more information on how to configure a GRAKN Engine or a cluster thereof.</p>
-
-<p>The following diagram shows how the various components stack together:</p>
-
-<p><img src="/images/grakn-architecture.png" alt="Architecture" /></p>
-
-<p>As a developer, you can interact with the platform in one of several ways:</p>
-
-<ul>
-  <li>Load the GRAKN.AI components in a JVM process and use the Java APIs to manipulate the knowledge graph, perform queries, kick off graph analytics jobs etc.</li>
-  <li>Visualize information through the Grakn visualiser, which is a GUI Shell.</li>
-  <li>Start a command line shell and run Graql queries in the terminal, including loading ontologies, rules and data.</li>
-  <li>Call the REST API to load data or navigate the graph following <a href="http://stateless.co/hal_specification.html">standard HAL practices</a>.</li>
-</ul>
+<h2 id="introduction">Introduction</h2>
 
 <h2 id="where-next">Where Next?</h2>
 
-<p>We recommend that you read more about the <a href="../the-fundamentals/grakn-knowledge-model.html">Grakn knowledge model</a> then get started by <a href="..get-started/setup-guide.html">setting up Grakn</a> and running through our <a href="../get-started/quickstart-tutorial.html">quickstart tutorial</a>.</p>
+<p>Further information about the syntax of Graql rules can be found in the documentation on <a href="../graql/graql-rules.html">Graql</a>.</p>
 
 <h2 id="comments">Comments</h2>
-<p>Want to leave a comment? Visit <a href="https://github.com/graknlabs/docs/issues/17" target="_blank">the issues on Github for this page</a> (you’ll need a GitHub account). You are also welcome to contribute to our documentation directly via the “Edit me” button at the top of the page.</p>
+<p>Want to leave a comment? Visit <a href="https://github.com/graknlabs/docs/issues/22" target="_blank">the issues on Github for this page</a> (you’ll need a GitHub account). You are also welcome to contribute to our documentation directly via the “Edit me” button at the top of the page.</p>
 
 
     <div class="tags">
@@ -864,7 +819,9 @@ $('#toc').on('click', 'a', function() {
         
         
         
-        <a href="/pages/tag_getting-started.html" class="btn btn-default navbar-btn cursorNorm" role="button">getting-started</a>
+        <a href="/pages/tag_java.html" class="btn btn-default navbar-btn cursorNorm" role="button">java</a>
+        
+        
         
         
         
@@ -895,7 +852,7 @@ $('#toc').on('click', 'a', function() {
         <br>
         <p>© 2017 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2017 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> February 2017<br/> Site last generated: Sep 2, 2017 <br />
+        <span>Page last updated:</span> December, 2016<br/> Site last generated: Sep 2, 2017 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">
@@ -942,5 +899,12 @@ $('#toc').on('click', 'a', function() {
     </div>
 
 </body>
+
+<!-- the google_analytics_id gets auto inserted from the config file -->
+
+
+
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create','UA-72414051-1','auto');ga('require','displayfeatures');ga('send','pageview');</script>
+
 
 </html>

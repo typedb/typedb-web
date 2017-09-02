@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="How to use the Grakn Visualiser.">
 <meta name="keywords" content="getting-startedgraql,  setup, getting started, GRAKN.AI, Grakn Labs, grakn, graql, grakn.ai, Mindmaps Research, Mindmaps Research Ltd, MindmapsDB, mindmaps, mindmaps graph, mindmaps.io, knowledge graph, distributed knowledge graph, development platform, developer tool, data platform, programming langauge, query langauge, database, semantic database, distributed semantic database, distributed database, graph database, semantic search, data exploration, recommendation system, knowledge management, knowledge engineering, real-time analytics, advanced analytics, reasoning engine, inference engine, expert systems, semantic applications, research engines, data management, business intelligence, big data, semantic web, semantic data, knowledge representation, automated reasoning, semantic network, knowledge ontology, semantic graph, ontology engineering, graph based knowledge representation, artificial intelligence,">
-<title>GRAKN.AI - Visualising a Grakn Graph</title>
+<title>GRAKN.AI - Visualising a Grakn knowledge base</title>
 <link rel="stylesheet" href="/pages/css/syntax.css">
 
 
@@ -228,7 +228,7 @@
                             
                             dataSource: '/pages/search.json',
                             
-                            searchResultTemplate: '<li><a href="{url}" title="Visualising a Grakn Graph">{title}</a></li>',
+                            searchResultTemplate: '<li><a href="{url}" title="Visualising a Grakn knowledge base">{title}</a></li>',
                             noResultsText: '<li><a class="empty">No results found</a></li>',
                             limit: 10,
                             fuzzy: true
@@ -300,13 +300,6 @@
             
             
             
-            <li><a href="/pages/documentation/the-fundamentals/grakn-architecture.html">Grakn Architecture Overview</a></li>
-            
-            
-            
-            
-            
-            
             <li><a href="/pages/documentation/the-fundamentals/grakn-knowledge-model.html">Grakn Knowledge Model</a></li>
             
             
@@ -317,26 +310,26 @@
         
     
     <li>
-        <a href="#">Graql Ontology</a>
+        <a href="#">Graql Schema</a>
         <ul>
             
             
             
-            <li><a href="/pages/documentation/building-an-ontology/basic-ontology.html">Define a Basic Ontology</a></li>
+            <li><a href="/pages/documentation/building-a-schema/basic-schema.html">Define a Basic Schema</a></li>
             
             
             
             
             
             
-            <li><a href="/pages/documentation/building-an-ontology/hierarchical-ontology.html">Define a Hierarchical Ontology</a></li>
+            <li><a href="/pages/documentation/building-a-schema/hierarchical-schema.html">Define a Hierarchical Schema</a></li>
             
             
             
             
             
             
-            <li><a href="/pages/documentation/building-an-ontology/rule-driven-ontology.html">Define a Rule-Driven Ontology</a></li>
+            <li><a href="/pages/documentation/building-a-schema/rule-driven-schema.html">Define a Rule-Driven Schema</a></li>
             
             
             
@@ -372,13 +365,6 @@
             
             
             
-            <li><a href="/pages/documentation/graql/ask-queries.html">Ask Queries</a></li>
-            
-            
-            
-            
-            
-            
             <li><a href="/pages/documentation/graql/delete-queries.html">Delete Queries</a></li>
             
             
@@ -387,6 +373,13 @@
             
             
             <li><a href="/pages/documentation/graql/insert-queries.html">Insert Queries</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="/pages/documentation/graql/define-queries.html">Define Queries</a></li>
             
             
             
@@ -529,7 +522,7 @@
             
             
             
-            <li><a href="/pages/documentation/developing-with-java/graph-api.html">Graph API</a></li>
+            <li><a href="/pages/documentation/developing-with-java/java-api.html">Java API</a></li>
             
             
             
@@ -709,7 +702,7 @@
             
             
             
-            <li><a href="/pages/documentation/examples/graph-api-example.html">Graph API for Java developers</a></li>
+            <li><a href="/pages/documentation/examples/java-api-example.html">API for Java developers</a></li>
             
             
             
@@ -755,7 +748,7 @@
         <!-- Content Column -->
         <div class="col-md-9">
             <div class="post-header">
-   <h1 class="post-title-main">Visualising a Grakn Graph</h1>
+   <h1 class="post-title-main">Visualising a Grakn knowledge base</h1>
 </div>
 
 
@@ -795,7 +788,7 @@ $('#toc').on('click', 'a', function() {
 
     
 
-    <a target="_blank" href="https://github.com/graknlabs/docs/blob/master/pages/documentation/7-grakn-dashboard/visualiser.md" class="btn btn-default githubEditButton" role="button"><i class="fa fa-github fa-lg"></i> Edit me</a>
+    <a target="_blank" href="https://github.com/graknlabs/grakn/tree/master/docs/pages/documentation/7-grakn-dashboard/visualiser.md" class="btn btn-default githubEditButton" role="button"><i class="fa fa-github fa-lg"></i> Edit me</a>
 
     
 
@@ -804,14 +797,14 @@ $('#toc').on('click', 'a', function() {
   <div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> <b>Note:</b> These instructions refer to the <b><a href="https://github.com/graknlabs/grakn/releases/tag/v0.12.1">0.12.1</a></b> release of GRAKN.AI. Later versions of the product may include some changes to the user experience, and you may find that some instructions become out-dated. We will endeavour to update information on this page as soon after a release as is possible. The instructions here refer to use of the visualiser on macOS, and screen grabs were taken in Safari.</div>
 
 <h2 id="introduction">Introduction</h2>
-<p>The Grakn visualiser provides a graphical tool to inspect and query your graph data. This article shows how to run it with a basic example and introduces the visualiser’s key features.</p>
+<p>The Grakn visualiser provides a graphical tool to inspect and query your knowledge base data. This article shows how to run it with a basic example and introduces the visualiser’s key features.</p>
 
-<h2 id="loading-an-example-graph">Loading an Example Graph</h2>
+<h2 id="loading-an-example-knowledge-base">Loading an Example Knowledge Base</h2>
 <p>If you have not yet set up the Grakn environment, please see the <a href="../get-started/setup-guide.html">Setup guide</a>.</p>
 
 <p>You can find the <em>basic-genealogy.gql</em> example that we will work with in the <em>examples</em> directory of the Grakn distribution zip. You can also find this file on <a href="https://github.com/graknlabs/grakn/blob/master/grakn-dist/src/examples/basic-genealogy.gql">Github</a>.</p>
 
-<p>The first step is to load the ontology and data into Grakn. You need to use your terminal to do this, as the visualiser is a read-only interface to a graph. From the terminal, start Grakn, and load the file as follows:</p>
+<p>The first step is to load the schema and data into Grakn. You need to use your terminal to do this, as the visualiser is a read-only interface to a knowledge base. From the terminal, start Grakn, and load the file as follows:</p>
 
 <div class="language-bash highlighter-rouge"><pre class="highlight"><code>&lt;relative-path-to-Grakn&gt;/bin/grakn.sh start
 &lt;relative-path-to-Grakn&gt;/bin/graql.sh -f ./examples/basic-genealogy.gql -k <span class="s2">"family"</span>
@@ -833,7 +826,7 @@ $('#toc').on('click', 'a', function() {
 
 <h2 id="graph-pane">Graph Pane</h2>
 
-<p>This is the default section of the visualiser, and is the main pane that you will use to explore a graph with GRAKN.AI.</p>
+<p>This is the default section of the visualiser, and is the main pane that you will use to explore a knowledge base with GRAKN.AI.</p>
 
 <p>Go to the keyspace selector at the top right and select the appropriate keyspace, e.g. <code class="highlighter-rouge">family</code>.</p>
 
@@ -841,7 +834,7 @@ $('#toc').on('click', 'a', function() {
 
 <h3 id="make-a-query">Make a Query</h3>
 
-<p>The main pane of your graph will be empty at this point. You can submit queries by typing them into the form in the middle of the top menu bar. You will then need to click ‘&gt;’ (or <em>Enter</em>) to visualise the graph. For example:</p>
+<p>The main pane of your knowledge base will be empty at this point. You can submit queries by typing them into the form in the middle of the top menu bar. You will then need to click ‘&gt;’ (or <em>Enter</em>) to visualise the knowledge base. For example:</p>
 
 <pre><code class="language-graql">match $x isa person, has firstname "John"; 
 </code></pre>
@@ -850,7 +843,7 @@ $('#toc').on('click', 'a', function() {
 
 <p>You can zoom the display in and out, and move the nodes around for better visibility.</p>
 
-<p>Alternatively, for simple visualisation, you can click the Types dropdown in the top menu to list out what is in the ontology. For our example, go to the Entities dropdown and choose <code class="highlighter-rouge">person</code>. The query specific to your selection will be displayed in the form with a default offset and result limit, which is applied by the visualiser (<code class="highlighter-rouge">offset 0; limit 30</code>).</p>
+<p>Alternatively, for simple visualisation, you can click the Types dropdown in the top menu to list out what is in the schema. For our example, go to the Entities dropdown and choose <code class="highlighter-rouge">person</code>. The query specific to your selection will be displayed in the form with a default offset and result limit, which is applied by the visualiser (<code class="highlighter-rouge">offset 0; limit 30</code>).</p>
 
 <pre><code class="language-graql">match $x isa person; offset 0; limit 30;
 </code></pre>
@@ -859,39 +852,39 @@ $('#toc').on('click', 'a', function() {
 
 <p><img src="/images/match-$x-isa-person.png" alt="Person query" /></p>
 
-<p>If you click and hold on any of the entities, a pop-up will open to allow you to select the labels shown on each node in the graph. In the screenshot below, we have selected to show the identifiers of each person.</p>
+<p>If you click and hold on any of the entities, a pop-up will open to allow you to select the labels shown on each node in the knowledge base. In the screenshot below, we have selected to show the identifiers of each person.</p>
 
 <h3 id="save-a-query">Save a Query</h3>
 
 <p>If you make a query that you think you’ll need to repeat regularly, and don’t want to type it, or copy and paste it each time, you can save your query. The small plus sign in a circle on the right hand side of the form will bring up a summary of the query, allowing you to assign it a name and save it. Saved queries can then be retrieved using the star button on the left hand side of the horizontal icon set.</p>
 
-<h3 id="clear-the-graph">Clear the Graph</h3>
+<h3 id="clear-the-knowledge-base">Clear the Knowledge Base</h3>
 <p>To clear the query from the form, press the “Clear” button (the circle with the cross through it).</p>
 
-<p>To clear the entire graph area, press Shift + the “Clear” button.</p>
+<p>To clear the entire knowledge base area, press Shift + the “Clear” button.</p>
 
 <h3 id="investigate-a-node">Investigate a Node</h3>
 
-<p>A single click on any node in the graph brings up a pane of information about the node at the top right hand side of the screen. The information displayed includes the ID of the node, its type and any resources associated with it, as shown in the figure below.</p>
+<p>A single click on any node in the knowledge base brings up a pane of information about the node at the top right hand side of the screen. The information displayed includes the ID of the node, its type and any resources associated with it, as shown in the figure below.</p>
 
 <p><img src="/images/single-click-info-pane.png" alt="Single click" /></p>
 
-<p>Holding shift and making a click on a node also brings up the resources associated with it, displaying them in the graph, as shown.</p>
+<p>Holding shift and making a click on a node also brings up the resources associated with it, displaying them in the knowledge base, as shown.</p>
 
 <p><img src="/images/shift-click.png" alt="Single click" /></p>
 
-<p>A double click on a node will bring up the relations associated with the node, as shown below.</p>
+<p>A double click on a node will bring up the relationships associated with the node, as shown below.</p>
 
 <p><img src="/images/double-click.png" alt="Double click" /></p>
 
 <h3 id="change-the-display">Change the Display</h3>
 
-<p>A single click and hold on a node in the graph brings up a pane on the lower left hand side of the screen. You can use this to show different information about a node on the graph and change the colour of the nodes.</p>
+<p>A single click and hold on a node in the knowledge base brings up a pane on the lower left hand side of the screen. You can use this to show different information about a node on the graph and change the colour of the nodes.</p>
 
 <!--Add this back in when it works as expected in release 0.13 or beyond
 ### Explore Types
 
-We have already shown an example of how to examine `person` entities using the entity selector. As another example, select "Types", followed by "Relations" and filter on `marriage` relations. The query will be shown in the query section at the top of the main pane, as previously, and the visualiser displays all the `marriage` relations in the graph. 
+We have already shown an example of how to examine `person` entities using the entity selector. As another example, select "Types", followed by "Relations" and filter on `marriage` relationships. The query will be shown in the query section at the top of the main pane, as previously, and the visualiser displays all the `marriage` relationships in the knowledge base. 
 
 ![Marriages query](/images/marriages.png)
 
@@ -905,7 +898,7 @@ We have already shown an example of how to examine `person` entities using the e
 
 <h4 id="lock-nodes-position">Lock Nodes Position</h4>
 
-<p>This option allows you to organise your nodes, lock them into position, and then use the visualiser to explore the graph, clicking to reveal connections and details about the nodes without them jumping out of place.</p>
+<p>This option allows you to organise your nodes, lock them into position, and then use the visualiser to explore the knowledge base, clicking to reveal connections and details about the nodes without them jumping out of place.</p>
 
 <p>If you want to tidy your nodes by aligning them all horizontally or vertically, you can do this through the Query Builder menu, described below. You need to first unlock the nodes so they can be automatically aligned for you.</p>
 
@@ -915,8 +908,8 @@ We have already shown an example of how to examine `person` entities using the e
 
 <ul>
   <li>Activate inference - activates inference, per query. It is off by default, but turn this on when you need to run queries that use inference.</li>
-  <li>Materialise inference - persists the inference into the graph, per query. This is off by default, but should be turned on when running a query when you want to add the results of inference back into the graph.</li>
-  <li>Materialise All: Off by default. Activates and persists all inference across the graph.</li>
+  <li>Materialise inference - persists the inference into the knowledge base, per query. This is off by default, but should be turned on when running a query when you want to add the results of inference back into the knowledge base.</li>
+  <li>Materialise All: Off by default. Activates and persists all inference across the knowledge base.</li>
 </ul>
 
 <h4 id="query-limit">Query Limit</h4>
@@ -925,7 +918,7 @@ We have already shown an example of how to examine `person` entities using the e
 
 <h3 id="query-builder-menu">Query Builder menu</h3>
 
-<p>Right-clicking the mouse brings up the Query Builder menu, which allows you to further explore the graph, as follows.</p>
+<p>Right-clicking the mouse brings up the Query Builder menu, which allows you to further explore the knowledge base, as follows.</p>
 
 <h4 id="shortest-path">Shortest Path</h4>
 <div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> <b>Note:</b> Make sure to <a href="#inference">activate inference</a> before running a shortest path query!</div>
@@ -938,31 +931,31 @@ NEEDS UPDATING
 
 <br /> -->
 
-<p>The first step is to clear the graph, then choose two people from the genealogy dataset, to determine the shortest path between them. For example, use the following query, and enter it into the form in the visualiser, to bring up two nodes:</p>
+<p>The first step is to clear the knowledge base, then choose two people from the genealogy dataset, to determine the shortest path between them. For example, use the following query, and enter it into the form in the visualiser, to bring up two nodes:</p>
 
 <pre><code class="language-graql">match $x isa person has firstname "Susan" has surname "Dudley"; $y isa person has firstname "Barbara" has surname "Herchelroth";
 </code></pre>
 
 <ol>
-  <li>Submit the query by pressing ‘&gt;’ (or <em>Enter</em>) to visualise the graph. The two people in question (Susan Dudley and Barbara Herchelroth) should be shown.</li>
+  <li>Submit the query by pressing ‘&gt;’ (or <em>Enter</em>) to visualise the knowledge base. The two people in question (Susan Dudley and Barbara Herchelroth) should be shown.</li>
   <li>Holding down the <em>control</em> key, single click on each of the two nodes.</li>
   <li>Right click the mouse to bring up the Query Builder menu, and select <em>Shortest path</em> from the menu.</li>
   <li>The submission form will now contain the shortest path query for those two nodes, for example:</li>
 </ol>
 
 <!-- Ignoring because uses made-up IDs -->
-<pre><code class="language-graql-test-ignore">compute path from "102432" to "192584"; # (The ID values in the strings will be different for each graph)
+<pre><code class="language-graql-test-ignore">compute path from "102432" to "192584"; # (The ID values in the strings will be different for each knowledge base)
 </code></pre>
 
-<p>Submit the query as usual by clicking ‘&gt;’ (or <em>Enter</em>) and the graph will display the relations and nodes that connect the two by the shortest path. For Susan Dudley and Barbara Herchelroth, you should discover that Barbara is the great-grandmother of Susan’s husband.</p>
+<p>Submit the query as usual by clicking ‘&gt;’ (or <em>Enter</em>) and the knowledge base will display the relationships and nodes that connect the two by the shortest path. For Susan Dudley and Barbara Herchelroth, you should discover that Barbara is the great-grandmother of Susan’s husband.</p>
 
 <p><img src="/images/shortest-path.png" alt="Person query" /></p>
 
 <h4 id="explore-relations">Explore Relations</h4>
 
-<div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> <b>Note:</b> Make sure to <a href="#inference">activate inference</a> before exploring relations!</div>
+<div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> <b>Note:</b> Make sure to <a href="#inference">activate inference</a> before exploring relationships!</div>
 
-<p>The Query Builder menu that is brought up from a right click of the mouse also has an “Explore Relations” option. This option allows you to determine the relations between nodes. To illustrate that, clear the graph and submit a query as follows:</p>
+<p>The Query Builder menu that is brought up from a right click of the mouse also has an “Explore Relations” option. This option allows you to determine the relationships between nodes. To illustrate that, clear and submit a query as follows:</p>
 
 <pre><code class="language-graql">match $x isa person has surname "Niesz"; offset 0; limit 100; # Find everyone with surname Niesz
 </code></pre>
@@ -976,11 +969,11 @@ NEEDS UPDATING
 <pre><code class="language-graql">match $x id "651472"; $y id "889000"; $r ($x, $y);
 </code></pre>
 
-<p>Submit the query as usual by clicking ‘&gt;’ or <em>Enter</em> and the graph will display the relations, and nodes, that connect the two. The visualiser will display the relations between the two nodes you selected (e.g. siblings).</p>
+<p>Submit the query as usual by clicking ‘&gt;’ or <em>Enter</em> and the display will show the relationships, and nodes, that connect the two. The visualiser will display the relationships between the two nodes you selected (e.g. siblings).</p>
 
 <h4 id="align-nodes">Align Nodes</h4>
 
-<p>If you want to tidy your graph to align the nodes horizontally or vertically, you can do this from the Query Builder menu.</p>
+<p>If you want to tidy your display to align the nodes horizontally or vertically, you can do this from the Query Builder menu.</p>
 
 <ol>
   <li>To select the nodes you want to tidy, you need to ‘capture’ them in a selection area. Bring up the selector by holding down <em>ctrl</em> and clicking on the blank canvas (not on a node).</li>
@@ -1098,5 +1091,12 @@ NEEDS UPDATING
     </div>
 
 </body>
+
+<!-- the google_analytics_id gets auto inserted from the config file -->
+
+
+
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create','UA-72414051-1','auto');ga('require','displayfeatures');ga('send','pageview');</script>
+
 
 </html>

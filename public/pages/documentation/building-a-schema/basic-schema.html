@@ -3,9 +3,9 @@
     <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Demonstrates how to create a rule-driven ontology for Grakn.">
-<meta name="keywords" content="javagraph-api,  schema, GRAKN.AI, Grakn Labs, grakn, graql, grakn.ai, Mindmaps Research, Mindmaps Research Ltd, MindmapsDB, mindmaps, mindmaps graph, mindmaps.io, knowledge graph, distributed knowledge graph, development platform, developer tool, data platform, programming langauge, query langauge, database, semantic database, distributed semantic database, distributed database, graph database, semantic search, data exploration, recommendation system, knowledge management, knowledge engineering, real-time analytics, advanced analytics, reasoning engine, inference engine, expert systems, semantic applications, research engines, data management, business intelligence, big data, semantic web, semantic data, knowledge representation, automated reasoning, semantic network, knowledge ontology, semantic graph, ontology engineering, graph based knowledge representation, artificial intelligence,">
-<title>GRAKN.AI - Define a Rule-Driven Ontology</title>
+<meta name="description" content="Demonstrates how to create a basic schema">
+<meta name="keywords" content="java-apijavaadvanced-grakn,  schema, GRAKN.AI, Grakn Labs, grakn, graql, grakn.ai, Mindmaps Research, Mindmaps Research Ltd, MindmapsDB, mindmaps, mindmaps graph, mindmaps.io, knowledge graph, distributed knowledge graph, development platform, developer tool, data platform, programming langauge, query langauge, database, semantic database, distributed semantic database, distributed database, graph database, semantic search, data exploration, recommendation system, knowledge management, knowledge engineering, real-time analytics, advanced analytics, reasoning engine, inference engine, expert systems, semantic applications, research engines, data management, business intelligence, big data, semantic web, semantic data, knowledge representation, automated reasoning, semantic network, knowledge ontology, semantic graph, ontology engineering, graph based knowledge representation, artificial intelligence,">
+<title>GRAKN.AI - Define a Basic Schema</title>
 <link rel="stylesheet" href="/pages/css/syntax.css">
 
 
@@ -228,7 +228,7 @@
                             
                             dataSource: '/pages/search.json',
                             
-                            searchResultTemplate: '<li><a href="{url}" title="Define a Rule-Driven Ontology">{title}</a></li>',
+                            searchResultTemplate: '<li><a href="{url}" title="Define a Basic Schema">{title}</a></li>',
                             noResultsText: '<li><a class="empty">No results found</a></li>',
                             limit: 10,
                             fuzzy: true
@@ -300,13 +300,6 @@
             
             
             
-            <li><a href="/pages/documentation/the-fundamentals/grakn-architecture.html">Grakn Architecture Overview</a></li>
-            
-            
-            
-            
-            
-            
             <li><a href="/pages/documentation/the-fundamentals/grakn-knowledge-model.html">Grakn Knowledge Model</a></li>
             
             
@@ -317,26 +310,26 @@
         
     
     <li>
-        <a href="#">Graql Ontology</a>
+        <a href="#">Graql Schema</a>
         <ul>
             
             
             
-            <li><a href="/pages/documentation/building-an-ontology/basic-ontology.html">Define a Basic Ontology</a></li>
+            <li class="active"><a href="/pages/documentation/building-a-schema/basic-schema.html">Define a Basic Schema</a></li>
             
             
             
             
             
             
-            <li><a href="/pages/documentation/building-an-ontology/hierarchical-ontology.html">Define a Hierarchical Ontology</a></li>
+            <li><a href="/pages/documentation/building-a-schema/hierarchical-schema.html">Define a Hierarchical Schema</a></li>
             
             
             
             
             
             
-            <li class="active"><a href="/pages/documentation/building-an-ontology/rule-driven-ontology.html">Define a Rule-Driven Ontology</a></li>
+            <li><a href="/pages/documentation/building-a-schema/rule-driven-schema.html">Define a Rule-Driven Schema</a></li>
             
             
             
@@ -372,13 +365,6 @@
             
             
             
-            <li><a href="/pages/documentation/graql/ask-queries.html">Ask Queries</a></li>
-            
-            
-            
-            
-            
-            
             <li><a href="/pages/documentation/graql/delete-queries.html">Delete Queries</a></li>
             
             
@@ -387,6 +373,13 @@
             
             
             <li><a href="/pages/documentation/graql/insert-queries.html">Insert Queries</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="/pages/documentation/graql/define-queries.html">Define Queries</a></li>
             
             
             
@@ -529,7 +522,7 @@
             
             
             
-            <li><a href="/pages/documentation/developing-with-java/graph-api.html">Graph API</a></li>
+            <li><a href="/pages/documentation/developing-with-java/java-api.html">Java API</a></li>
             
             
             
@@ -709,7 +702,7 @@
             
             
             
-            <li><a href="/pages/documentation/examples/graph-api-example.html">Graph API for Java developers</a></li>
+            <li><a href="/pages/documentation/examples/java-api-example.html">API for Java developers</a></li>
             
             
             
@@ -755,7 +748,7 @@
         <!-- Content Column -->
         <div class="col-md-9">
             <div class="post-header">
-   <h1 class="post-title-main">Define a Rule-Driven Ontology</h1>
+   <h1 class="post-title-main">Define a Basic Schema</h1>
 </div>
 
 
@@ -763,7 +756,7 @@
 <div class="post-content">
 
    
-    <div class="summary">Demonstrates how to create a rule-driven ontology for Grakn.</div>
+    <div class="summary">Demonstrates how to create a basic schema</div>
    
 
     
@@ -795,7 +788,7 @@ $('#toc').on('click', 'a', function() {
 
     
 
-    <a target="_blank" href="https://github.com/graknlabs/docs/blob/master/pages/documentation/2-building-an-ontology/rule-driven-ontology.md" class="btn btn-default githubEditButton" role="button"><i class="fa fa-github fa-lg"></i> Edit me</a>
+    <a target="_blank" href="https://github.com/graknlabs/grakn/tree/master/docs/pages/documentation/2-building-a-schema/basic-schema.md" class="btn btn-default githubEditButton" role="button"><i class="fa fa-github fa-lg"></i> Edit me</a>
 
     
 
@@ -803,21 +796,177 @@ $('#toc').on('click', 'a', function() {
 
   <div class="alert alert-danger" role="alert"><i class="fa fa-exclamation-circle"></i> <b>Warning:</b> Please note that this page is in progress and subject to revision.</div>
 
-<!--
-description of their syntax, what is allowed in their conclusion and what is not, 
-configuration options, whether to materialize or not
-show configuration from both graql native syntax in shell, and graql java api, 
-best practices
-supported constructs-->
-
 <h2 id="introduction">Introduction</h2>
+
+<p>In this section we are going to run through the construction of a basic schema. We recommend that you refer to the <a href="../the-fundamentals/grakn-knowledge-model.html">Knowledge Model</a> documentation before reading this page. The process we will follow is a general guideline as to how you may start designing a schema.</p>
+
+<p>The schema we will be building will be used for a genealogy knowledge base used for mapping out a family tree. You can find the complete schema, the dataset and rules that accompany it, on Github in our <a href="https://github.com/graknlabs/sample-datasets/tree/master/genealogy-knowledge-base">sample-datasets repository</a>.</p>
+
+<h2 id="identifying-entity-types">Identifying Entity Types</h2>
+
+<p>The first step is about identifying the categories of things that will be in your knowledge base.
+For example if you are modelling a retail store, valid categories may be <code class="highlighter-rouge">product</code>, <code class="highlighter-rouge">electronics</code>, <code class="highlighter-rouge">books</code>, etc.  It is up to you to decide the granularity of your categories.</p>
+
+<p>For our genealogy knowledge base we know that it will mostly be filled with people. So we can create an entity type:</p>
+
+<pre><code class="language-graql">define
+  person sub entity;
+</code></pre>
+
+<p>Naturally, we could break this up into <code class="highlighter-rouge">man</code> and <code class="highlighter-rouge">woman</code> but for this example we are going to keep things simple.</p>
+
+<h2 id="describing-entity-types">Describing Entity Types</h2>
+
+<p>Grakn provides you with the ability to attach resources to entity types. For example a <code class="highlighter-rouge">car</code> could have an <code class="highlighter-rouge">engine</code>, a <code class="highlighter-rouge">licence number</code>, and a <code class="highlighter-rouge">transmission type</code> as resources that help to describe it.</p>
+
+<p>So what helps describe a <code class="highlighter-rouge">person</code>?
+Philosophical debates aside let us go with something simple. A <code class="highlighter-rouge">person</code> typically has a <code class="highlighter-rouge">firstname</code>, a <code class="highlighter-rouge">lastname</code>, and a <code class="highlighter-rouge">gender</code>. We can model this and other resources that identify a person with:</p>
+
+<pre><code class="language-graql">define
+
+person sub entity
+  has identifier
+  has firstname
+  has surname    
+  has middlename
+  has picture
+  has age
+  has birth-date
+  has death-date
+  has gender;
+
+  identifier sub attribute datatype string;
+  name sub attribute datatype string;
+  firstname sub name datatype string;
+  surname sub name datatype string;
+  middlename sub name datatype string;
+  picture sub attribute datatype string;
+  age sub attribute datatype long;
+  "date" sub attribute datatype string;
+  birth-date sub "date" datatype string;
+  death-date sub "date" datatype string;
+  gender sub attribute datatype string;   
+</code></pre>
+
+<h2 id="supported-resource-types">Supported Resource Types</h2>
+<p>The following attribute types are supported: <code class="highlighter-rouge">string</code>, <code class="highlighter-rouge">boolean</code>, <code class="highlighter-rouge">long</code>, <code class="highlighter-rouge">double</code>, <code class="highlighter-rouge">date</code>.</p>
+
+<h2 id="identifying-relationships-and-roles">Identifying Relationships and Roles</h2>
+
+<p>The next step is to ask how your data is connected, that is, what are the relationships between your data?</p>
+
+<p>This can be between different entity types, for example, a <code class="highlighter-rouge">person</code> <strong>drives</strong> a <code class="highlighter-rouge">car</code>, or even between the same entity types, for example, a <code class="highlighter-rouge">person</code> <strong>marries</strong> another <code class="highlighter-rouge">person</code>.</p>
+
+<p>In a Grakn, N-ary relationships are also possible. For example, a <code class="highlighter-rouge">person</code> has a <code class="highlighter-rouge">child</code> with another <code class="highlighter-rouge">person</code>.</p>
+
+<p>In our example, we will add <code class="highlighter-rouge">marriage</code> and <code class="highlighter-rouge">parentship</code> relationships. A <code class="highlighter-rouge">marriage</code> has two roles: <code class="highlighter-rouge">spouse1</code> and <code class="highlighter-rouge">spouse2</code>, while <code class="highlighter-rouge">parentship</code> has a <code class="highlighter-rouge">parent</code> role and a <code class="highlighter-rouge">child</code> role.</p>
+
+<pre><code class="language-graql">define
+
+marriage sub relationship
+  relates spouse1
+  relates spouse2
+  has picture;
+
+spouse1 sub role;
+spouse2 sub role;
+
+parentship sub relationship
+  relates parent
+  relates child;
+
+parent sub role;
+child sub role;
+</code></pre>
+
+<h2 id="allowing-roles-to-be-played">Allowing Roles to be Played</h2>
+
+<p>The next step is to give our entity types permission to play specific roles.  We do this explicitly so that we don’t accidentally relate data which should not be related. For example, this will prevent us from accidentally saying that a <code class="highlighter-rouge">dog</code> and a <code class="highlighter-rouge">person</code> can have a child.</p>
+
+<p>For this current example we only have one entity type, which can play all our current roles, so we explicitly state that with:</p>
+
+<pre><code class="language-graql">define
+
+person sub entity
+  plays parent
+  plays child
+  plays spouse1
+  plays spouse2;
+</code></pre>
+
+<p>We have now completed our basic genealogy schema.</p>
+
+<h2 id="the-complete-schema">The Complete Schema</h2>
+
+<p>The final schema will now look something like this:</p>
+
+<pre><code class="language-graql">define
+
+ # Entities
+
+  person sub entity
+    has identifier
+    has firstname
+    has surname
+    has middlename
+    has picture
+    has age
+    has birth-date
+    has death-date
+    has gender
+    plays parent
+    plays child
+    plays spouse1
+    plays spouse2;
+
+ # Resources
+
+  identifier sub attribute datatype string;
+  name sub attribute datatype string;
+  firstname sub name datatype string;
+  surname sub name datatype string;
+  middlename sub name datatype string;
+  picture sub attribute datatype string;
+  age sub attribute datatype long;
+  "date" sub attribute datatype string;
+  birth-date sub "date" datatype string;
+  death-date sub "date" datatype string;
+  gender sub attribute datatype string;
+
+ # Roles and Relations
+
+  marriage sub relationship
+    relates spouse1
+    relates spouse2
+    has picture;
+
+  spouse1 sub role;
+  spouse2 sub role;
+
+  parentship sub relationship
+    relates parent
+    relates child;
+
+  parent sub role;
+  child sub role;
+
+</code></pre>
+
+<p><img src="/images/basic-schema1.png" alt="Schema" /></p>
+
+<h2 id="summary">Summary</h2>
+
+<p>In this tutorial we described our entity type <code class="highlighter-rouge">person</code> across separate steps. This was done to demonstrate the typical thought process when creating a schema. It is typically good practice to group entity type definitions together as above.</p>
+
+<div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> <b>Note:</b> It is worth noting that the schema does not need to be completely finalised before loading data. The schema of a Grakn knowledge base can be expanded even after loading data.</div>
 
 <h2 id="where-next">Where Next?</h2>
 
-<p>Further information about the syntax of Graql rules can be found in the documentation on <a href="../graql/graql-rules.html">Graql</a>.</p>
+<p>We will continue to explore the development of a schema in the next section on defining a <a href="./hierarchical-schema.html">hierarchical schema</a>.</p>
 
 <h2 id="comments">Comments</h2>
-<p>Want to leave a comment? Visit <a href="https://github.com/graknlabs/docs/issues/22" target="_blank">the issues on Github for this page</a> (you’ll need a GitHub account). You are also welcome to contribute to our documentation directly via the “Edit me” button at the top of the page.</p>
+<p>Want to leave a comment? Visit <a href="https://github.com/graknlabs/docs/issues/22" target="_blank">the issues on Github for this page</a> (you’ll need a GitHub account). You are also welcome to contribute to our documentation directly via the “Edit me” button at the top of the page.
+has</p>
 
 
     <div class="tags">
@@ -826,11 +975,13 @@ supported constructs-->
         
         
         
+        
+        
         <a href="/pages/tag_java.html" class="btn btn-default navbar-btn cursorNorm" role="button">java</a>
         
         
         
-        <a href="/pages/tag_graph-api.html" class="btn btn-default navbar-btn cursorNorm" role="button">graph-api</a>
+        <a href="/pages/tag_advanced-grakn.html" class="btn btn-default navbar-btn cursorNorm" role="button">advanced-grakn</a>
         
         
         
@@ -908,5 +1059,12 @@ supported constructs-->
     </div>
 
 </body>
+
+<!-- the google_analytics_id gets auto inserted from the config file -->
+
+
+
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create','UA-72414051-1','auto');ga('require','displayfeatures');ga('send','pageview');</script>
+
 
 </html>

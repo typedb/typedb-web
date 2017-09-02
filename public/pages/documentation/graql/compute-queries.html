@@ -300,13 +300,6 @@
             
             
             
-            <li><a href="/pages/documentation/the-fundamentals/grakn-architecture.html">Grakn Architecture Overview</a></li>
-            
-            
-            
-            
-            
-            
             <li><a href="/pages/documentation/the-fundamentals/grakn-knowledge-model.html">Grakn Knowledge Model</a></li>
             
             
@@ -317,26 +310,26 @@
         
     
     <li>
-        <a href="#">Graql Ontology</a>
+        <a href="#">Graql Schema</a>
         <ul>
             
             
             
-            <li><a href="/pages/documentation/building-an-ontology/basic-ontology.html">Define a Basic Ontology</a></li>
+            <li><a href="/pages/documentation/building-a-schema/basic-schema.html">Define a Basic Schema</a></li>
             
             
             
             
             
             
-            <li><a href="/pages/documentation/building-an-ontology/hierarchical-ontology.html">Define a Hierarchical Ontology</a></li>
+            <li><a href="/pages/documentation/building-a-schema/hierarchical-schema.html">Define a Hierarchical Schema</a></li>
             
             
             
             
             
             
-            <li><a href="/pages/documentation/building-an-ontology/rule-driven-ontology.html">Define a Rule-Driven Ontology</a></li>
+            <li><a href="/pages/documentation/building-a-schema/rule-driven-schema.html">Define a Rule-Driven Schema</a></li>
             
             
             
@@ -372,13 +365,6 @@
             
             
             
-            <li><a href="/pages/documentation/graql/ask-queries.html">Ask Queries</a></li>
-            
-            
-            
-            
-            
-            
             <li><a href="/pages/documentation/graql/delete-queries.html">Delete Queries</a></li>
             
             
@@ -387,6 +373,13 @@
             
             
             <li><a href="/pages/documentation/graql/insert-queries.html">Insert Queries</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="/pages/documentation/graql/define-queries.html">Define Queries</a></li>
             
             
             
@@ -529,7 +522,7 @@
             
             
             
-            <li><a href="/pages/documentation/developing-with-java/graph-api.html">Graph API</a></li>
+            <li><a href="/pages/documentation/developing-with-java/java-api.html">Java API</a></li>
             
             
             
@@ -709,7 +702,7 @@
             
             
             
-            <li><a href="/pages/documentation/examples/graph-api-example.html">Graph API for Java developers</a></li>
+            <li><a href="/pages/documentation/examples/java-api-example.html">API for Java developers</a></li>
             
             
             
@@ -795,13 +788,13 @@ $('#toc').on('click', 'a', function() {
 
     
 
-    <a target="_blank" href="https://github.com/graknlabs/docs/blob/master/pages/documentation/3-querying-with-graql/compute-queries.md" class="btn btn-default githubEditButton" role="button"><i class="fa fa-github fa-lg"></i> Edit me</a>
+    <a target="_blank" href="https://github.com/graknlabs/grakn/tree/master/docs/pages/documentation/3-querying-with-graql/compute-queries.md" class="btn btn-default githubEditButton" role="button"><i class="fa fa-github fa-lg"></i> Edit me</a>
 
     
 
     
 
-  <p>A compute query executes a <a href="https://www.quora.com/What-are-the-main-concepts-behind-Googles-Pregel">Pregel algorithm</a> to determine information about the graph in parallel.
+  <p>A compute query executes a <a href="https://www.quora.com/What-are-the-main-concepts-behind-Googles-Pregel">Pregel algorithm</a> to determine information about the knowledge base in parallel.
 Called within the Graql shell, the general syntax is:</p>
 
 <div class="highlighter-rouge"><pre class="highlight"><code>compute [algorithm] (arguments) (in subgraph); (modifiers;)
@@ -857,27 +850,27 @@ to you. A summary of the statistics algorithms is given in the table below.</p>
     </tr>
     <tr>
       <td><a href="#maximum"><code class="highlighter-rouge">max</code></a></td>
-      <td>Compute the maximum value of a resource.</td>
+      <td>Compute the maximum value of an attribute.</td>
     </tr>
     <tr>
       <td><a href="#mean"><code class="highlighter-rouge">mean</code></a></td>
-      <td>Compute the mean value of a resource.</td>
+      <td>Compute the mean value of an attribute.</td>
     </tr>
     <tr>
       <td><a href="#mean"><code class="highlighter-rouge">median</code></a></td>
-      <td>Compute the median value of a resource.</td>
+      <td>Compute the median value of an attribute.</td>
     </tr>
     <tr>
       <td><a href="#minimum"><code class="highlighter-rouge">min</code></a></td>
-      <td>Compute the minimum value of a resource.</td>
+      <td>Compute the minimum value of an attribute.</td>
     </tr>
     <tr>
       <td><a href="#standard-deviation"><code class="highlighter-rouge">std</code></a></td>
-      <td>Compute the standard deviation of a resource.</td>
+      <td>Compute the standard deviation of an attribute.</td>
     </tr>
     <tr>
       <td><a href="#sum"><code class="highlighter-rouge">sum</code></a></td>
-      <td>Compute the sum of a resource.</td>
+      <td>Compute the sum of an attribute.</td>
     </tr>
   </tbody>
 </table>
@@ -895,7 +888,7 @@ is possible to also count subsets of the instances in the graph using the <a hre
 
 <h3 id="mean">Mean</h3>
 
-<p>Computes the mean value of a given resource. This algorithm requires the <a href="#subgraph">subgraph</a> syntax to be used.
+<p>Computes the mean value of a given attribute. This algorithm requires the <a href="#subgraph">subgraph</a> syntax to be used.
 For example,</p>
 
 <div class="highlighter-rouge"><pre class="highlight"><code>compute mean of age in person;
@@ -905,7 +898,7 @@ For example,</p>
 <p>would compute the mean value of <code class="highlighter-rouge">age</code> across all instances of the type <code class="highlighter-rouge">person</code>.
 It is also possible to provide a set of resources.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>compute mean of resource-a, resource-b in person;
+<div class="highlighter-rouge"><pre class="highlight"><code>compute mean of attribute-a, attribute-b in person;
 </code></pre>
 </div>
 
@@ -913,18 +906,18 @@ It is also possible to provide a set of resources.</p>
 
 <h3 id="median">Median</h3>
 
-<p>Computes the median value of a given resource. This algorithm requires the <a href="#subgraph">subgraph</a> syntax to be used.
+<p>Computes the median value of a given attribute. This algorithm requires the <a href="#subgraph">subgraph</a> syntax to be used.
 For example,</p>
 
 <div class="highlighter-rouge"><pre class="highlight"><code>compute median of age in person;
 </code></pre>
 </div>
 
-<p>would compute the median of the value persisted in instances of the resource <code class="highlighter-rouge">age</code>.</p>
+<p>would compute the median of the value persisted in instances of the attribute <code class="highlighter-rouge">age</code>.</p>
 
 <h3 id="minimum">Minimum</h3>
 
-<p>Computes the minimum value of a given resource, similar to <a href="#mean">mean</a>.</p>
+<p>Computes the minimum value of a given attribute, similar to <a href="#mean">mean</a>.</p>
 
 <div class="highlighter-rouge"><pre class="highlight"><code>compute min of age in person;
 </code></pre>
@@ -932,7 +925,7 @@ For example,</p>
 
 <h3 id="maximum">Maximum</h3>
 
-<p>Computes the maximum value of a given resource, similar to <a href="#mean">mean</a>.</p>
+<p>Computes the maximum value of a given attribute, similar to <a href="#mean">mean</a>.</p>
 
 <div class="highlighter-rouge"><pre class="highlight"><code>compute max of age in person;
 </code></pre>
@@ -940,7 +933,7 @@ For example,</p>
 
 <h3 id="standard-deviation">Standard Deviation</h3>
 
-<p>Computes the standard deviation of a given resource, similar to <a href="#mean">mean</a>.</p>
+<p>Computes the standard deviation of a given attribute, similar to <a href="#mean">mean</a>.</p>
 
 <div class="highlighter-rouge"><pre class="highlight"><code>compute std of age in person;
 </code></pre>
@@ -948,13 +941,13 @@ For example,</p>
 
 <h3 id="sum">Sum</h3>
 
-<p>Computes the sum of a given resource, similar to <a href="#mean">mean</a>.</p>
+<p>Computes the sum of a given attribute, similar to <a href="#mean">mean</a>.</p>
 
 <div class="highlighter-rouge"><pre class="highlight"><code>compute sum of age in person;
 </code></pre>
 </div>
 
-<div class="alert alert-danger" role="alert"><i class="fa fa-exclamation-circle"></i> <b>Warning:</b> When an instance has two resources of the same type attached, or two resources specified as arguments to the algorithm, statistics will include this by assuming there were two instances each with a single resource.</div>
+<div class="alert alert-danger" role="alert"><i class="fa fa-exclamation-circle"></i> <b>Warning:</b> When an instance has two resources of the same type attached, or two resources specified as arguments to the algorithm, statistics will include this by assuming there were two instances each with a single attribute.</div>
 
 <h2 id="available-graph-algorithms">Available Graph Algorithms</h2>
 
@@ -998,7 +991,7 @@ For further information see the individual sections below.
 
 <p><a href="./aggregate-queries.html">Aggregate queries</a> are computationally light and run single-threaded on a single machine, but are more flexible than the equivalent compute queries described above.</p>
 
-<p>For example, you can use an aggregate query to filter results by resource. The following  aggregate query, allows you to match the number of people of a particular name:</p>
+<p>For example, you can use an aggregate query to filter results by attribute. The following  aggregate query, allows you to match the number of people of a particular name:</p>
 
 <div class="highlighter-rouge"><pre class="highlight"><code>match $x has name 'Bob'; aggregate count;
 </code></pre>
@@ -1101,5 +1094,12 @@ For further information see the individual sections below.
     </div>
 
 </body>
+
+<!-- the google_analytics_id gets auto inserted from the config file -->
+
+
+
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create','UA-72414051-1','auto');ga('require','displayfeatures');ga('send','pageview');</script>
+
 
 </html>

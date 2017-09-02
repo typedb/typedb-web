@@ -300,13 +300,6 @@
             
             
             
-            <li><a href="/pages/documentation/the-fundamentals/grakn-architecture.html">Grakn Architecture Overview</a></li>
-            
-            
-            
-            
-            
-            
             <li><a href="/pages/documentation/the-fundamentals/grakn-knowledge-model.html">Grakn Knowledge Model</a></li>
             
             
@@ -317,26 +310,26 @@
         
     
     <li>
-        <a href="#">Graql Ontology</a>
+        <a href="#">Graql Schema</a>
         <ul>
             
             
             
-            <li><a href="/pages/documentation/building-an-ontology/basic-ontology.html">Define a Basic Ontology</a></li>
+            <li><a href="/pages/documentation/building-a-schema/basic-schema.html">Define a Basic Schema</a></li>
             
             
             
             
             
             
-            <li><a href="/pages/documentation/building-an-ontology/hierarchical-ontology.html">Define a Hierarchical Ontology</a></li>
+            <li><a href="/pages/documentation/building-a-schema/hierarchical-schema.html">Define a Hierarchical Schema</a></li>
             
             
             
             
             
             
-            <li><a href="/pages/documentation/building-an-ontology/rule-driven-ontology.html">Define a Rule-Driven Ontology</a></li>
+            <li><a href="/pages/documentation/building-a-schema/rule-driven-schema.html">Define a Rule-Driven Schema</a></li>
             
             
             
@@ -372,13 +365,6 @@
             
             
             
-            <li><a href="/pages/documentation/graql/ask-queries.html">Ask Queries</a></li>
-            
-            
-            
-            
-            
-            
             <li><a href="/pages/documentation/graql/delete-queries.html">Delete Queries</a></li>
             
             
@@ -387,6 +373,13 @@
             
             
             <li><a href="/pages/documentation/graql/insert-queries.html">Insert Queries</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="/pages/documentation/graql/define-queries.html">Define Queries</a></li>
             
             
             
@@ -529,7 +522,7 @@
             
             
             
-            <li><a href="/pages/documentation/developing-with-java/graph-api.html">Graph API</a></li>
+            <li><a href="/pages/documentation/developing-with-java/java-api.html">Java API</a></li>
             
             
             
@@ -709,7 +702,7 @@
             
             
             
-            <li><a href="/pages/documentation/examples/graph-api-example.html">Graph API for Java developers</a></li>
+            <li><a href="/pages/documentation/examples/java-api-example.html">API for Java developers</a></li>
             
             
             
@@ -795,13 +788,13 @@ $('#toc').on('click', 'a', function() {
 
     
 
-    <a target="_blank" href="https://github.com/graknlabs/docs/blob/master/pages/documentation/3-querying-with-graql/match-queries.md" class="btn btn-default githubEditButton" role="button"><i class="fa fa-github fa-lg"></i> Edit me</a>
+    <a target="_blank" href="https://github.com/graknlabs/grakn/tree/master/docs/pages/documentation/3-querying-with-graql/match-queries.md" class="btn btn-default githubEditButton" role="button"><i class="fa fa-github fa-lg"></i> Edit me</a>
 
     
 
     
 
-  <p>A match query will search the graph for any subgraphs that match the given pattern, returning a result for each match found. The results of the query can be modified with various <a href="#modifiers">modifiers</a>. To follow along, or experiment further, with the examples given below, please load the <em>basic-genealogy.gql</em> file, which can be found in the <em>examples</em> directory of the Grakn installation zip, or on <a href="https://github.com/graknlabs/grakn/blob/master/grakn-dist/src/examples/basic-genealogy.gql">Github</a>.</p>
+  <p>A match query will search the knowledge base for anything that matchs the given pattern, returning a result for each match found. The results of the query can be modified with various <a href="#modifiers">modifiers</a>. To follow along, or experiment further, with the examples given below, please load the <em>basic-genealogy.gql</em> file, which can be found in the <em>examples</em> directory of the Grakn installation zip, or on <a href="https://github.com/graknlabs/grakn/blob/master/grakn-dist/src/examples/basic-genealogy.gql">Github</a>.</p>
 
 <div class="language-bash highlighter-rouge"><pre class="highlight"><code>&lt;relative-path-to-Grakn&gt;/bin/grakn.sh start 
 &lt;relative-path-to-Grakn&gt;/bin/graql.sh -f &lt;relative-path-to-Grakn&gt;/examples/basic-genealogy.gql
@@ -875,7 +868,7 @@ qb.match(var("x").val(contains("Bar")))
 
 <h3 id="has">has</h3>
 
-<p>Match things that have the resource specified. If a <a href="#predicates">predicate</a> is provided, the resource must also match that predicate.</p>
+<p>Match things that have the attribute specified. If a <a href="#predicates">predicate</a> is provided, the attribute must also match that predicate.</p>
 
 <ul id="profileTabs" class="nav nav-tabs">
     <li class="active"><a href="#shell4" data-toggle="tab">Graql</a></li>
@@ -898,9 +891,9 @@ qb.match(var("x").has("identifier", contains("Bar")));
 </div>
 <p><!-- tab-content --></p>
 
-<h3 id="relation">relation</h3>
+<h3 id="relationship">relationship</h3>
 
-<p>Match things that have a relation with the given variable. If a role is provided, the role player must be playing that role.</p>
+<p>Match things that have a relationship with the given variable. If a role is provided, the role player must be playing that role.</p>
 
 <ul id="profileTabs" class="nav nav-tabs">
     <li class="active"><a href="#shell6" data-toggle="tab">Graql</a></li>
@@ -973,10 +966,10 @@ qb.match(
 <div role="tabpanel" class="tab-pane active" id="shell7">
 <pre>
 match $x sub thing; # List all types
-match $x sub resource; # List all resource types
+match $x sub attribute; # List all attribute types
 match $x sub entity; # List all entity types
 match $x sub role; # List all role types
-match $x sub relation; # List all relation types
+match $x sub relationship; # List all relationship types
 </pre>
 </div>
 <div role="tabpanel" class="tab-pane" id="java7">
@@ -988,7 +981,7 @@ qb.match(var("x").sub("thing"));
 <p><!-- tab-content --></p>
 
 <h3 id="relates">relates</h3>
-<p>Match roles to a given relation.</p>
+<p>Match roles to a given relationship.</p>
 
 <ul id="profileTabs" class="nav nav-tabs">
     <li class="active"><a href="#shell8" data-toggle="tab">Graql</a></li>
@@ -1031,7 +1024,7 @@ qb.match(var("x").plays("child"));
 <p><!-- tab-content --></p>
 
 <h3 id="has-1">has</h3>
-<p>Match types that can have the given resource.</p>
+<p>Match types that can have the given attribute.</p>
 
 <ul id="profileTabs" class="nav nav-tabs">
     <li class="active"><a href="#shell10" data-toggle="tab">Graql</a></li>
@@ -1177,7 +1170,7 @@ qb.match(var("x").val(regex(".*(Mary|Barbara).*")));
   <li><code class="highlighter-rouge">distinct</code> - Removes any duplicate results.</li>
   <li><code class="highlighter-rouge">limit</code> - Limits the number of results returned from the query.</li>
   <li><code class="highlighter-rouge">offset</code> - Offsets the results returned from the query by the given number of results.</li>
-  <li><code class="highlighter-rouge">order</code> - Orders the results by the given variable’s degree. If a type is provided, order by the resource of that type on that concept. Order is ascending by default.</li>
+  <li><code class="highlighter-rouge">order</code> - Orders the results by the given variable’s degree. If a type is provided, order by the attribute of that type on that concept. Order is ascending by default.</li>
   <li><code class="highlighter-rouge">select</code> - Indicates which variables to include in the results.</li>
 </ul>
 
@@ -1302,5 +1295,12 @@ match $x isa person, has firstname $y; select $y; distinct; limit 10; order by $
     </div>
 
 </body>
+
+<!-- the google_analytics_id gets auto inserted from the config file -->
+
+
+
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create','UA-72414051-1','auto');ga('require','displayfeatures');ga('send','pageview');</script>
+
 
 </html>

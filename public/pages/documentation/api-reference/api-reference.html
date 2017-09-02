@@ -4,7 +4,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="">
-<meta name="keywords" content="graqljavagraph-api,  API Reference Documentation, GRAKN.AI, Grakn Labs, grakn, graql, grakn.ai, Mindmaps Research, Mindmaps Research Ltd, MindmapsDB, mindmaps, mindmaps graph, mindmaps.io, knowledge graph, distributed knowledge graph, development platform, developer tool, data platform, programming langauge, query langauge, database, semantic database, distributed semantic database, distributed database, graph database, semantic search, data exploration, recommendation system, knowledge management, knowledge engineering, real-time analytics, advanced analytics, reasoning engine, inference engine, expert systems, semantic applications, research engines, data management, business intelligence, big data, semantic web, semantic data, knowledge representation, automated reasoning, semantic network, knowledge ontology, semantic graph, ontology engineering, graph based knowledge representation, artificial intelligence,">
+<meta name="keywords" content="graqljavajava-api,  API Reference Documentation, GRAKN.AI, Grakn Labs, grakn, graql, grakn.ai, Mindmaps Research, Mindmaps Research Ltd, MindmapsDB, mindmaps, mindmaps graph, mindmaps.io, knowledge graph, distributed knowledge graph, development platform, developer tool, data platform, programming langauge, query langauge, database, semantic database, distributed semantic database, distributed database, graph database, semantic search, data exploration, recommendation system, knowledge management, knowledge engineering, real-time analytics, advanced analytics, reasoning engine, inference engine, expert systems, semantic applications, research engines, data management, business intelligence, big data, semantic web, semantic data, knowledge representation, automated reasoning, semantic network, knowledge ontology, semantic graph, ontology engineering, graph based knowledge representation, artificial intelligence,">
 <title>GRAKN.AI - Grakn API Reference</title>
 <link rel="stylesheet" href="/pages/css/syntax.css">
 
@@ -300,13 +300,6 @@
             
             
             
-            <li><a href="/pages/documentation/the-fundamentals/grakn-architecture.html">Grakn Architecture Overview</a></li>
-            
-            
-            
-            
-            
-            
             <li><a href="/pages/documentation/the-fundamentals/grakn-knowledge-model.html">Grakn Knowledge Model</a></li>
             
             
@@ -317,26 +310,26 @@
         
     
     <li>
-        <a href="#">Graql Ontology</a>
+        <a href="#">Graql Schema</a>
         <ul>
             
             
             
-            <li><a href="/pages/documentation/building-an-ontology/basic-ontology.html">Define a Basic Ontology</a></li>
+            <li><a href="/pages/documentation/building-a-schema/basic-schema.html">Define a Basic Schema</a></li>
             
             
             
             
             
             
-            <li><a href="/pages/documentation/building-an-ontology/hierarchical-ontology.html">Define a Hierarchical Ontology</a></li>
+            <li><a href="/pages/documentation/building-a-schema/hierarchical-schema.html">Define a Hierarchical Schema</a></li>
             
             
             
             
             
             
-            <li><a href="/pages/documentation/building-an-ontology/rule-driven-ontology.html">Define a Rule-Driven Ontology</a></li>
+            <li><a href="/pages/documentation/building-a-schema/rule-driven-schema.html">Define a Rule-Driven Schema</a></li>
             
             
             
@@ -372,13 +365,6 @@
             
             
             
-            <li><a href="/pages/documentation/graql/ask-queries.html">Ask Queries</a></li>
-            
-            
-            
-            
-            
-            
             <li><a href="/pages/documentation/graql/delete-queries.html">Delete Queries</a></li>
             
             
@@ -387,6 +373,13 @@
             
             
             <li><a href="/pages/documentation/graql/insert-queries.html">Insert Queries</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="/pages/documentation/graql/define-queries.html">Define Queries</a></li>
             
             
             
@@ -529,7 +522,7 @@
             
             
             
-            <li><a href="/pages/documentation/developing-with-java/graph-api.html">Graph API</a></li>
+            <li><a href="/pages/documentation/developing-with-java/java-api.html">Java API</a></li>
             
             
             
@@ -709,7 +702,7 @@
             
             
             
-            <li><a href="/pages/documentation/examples/graph-api-example.html">Graph API for Java developers</a></li>
+            <li><a href="/pages/documentation/examples/java-api-example.html">API for Java developers</a></li>
             
             
             
@@ -770,7 +763,7 @@
 
     
 
-    <a target="_blank" href="https://github.com/graknlabs/docs/blob/master/pages/documentation/9-api-reference/api-reference.md" class="btn btn-default githubEditButton" role="button"><i class="fa fa-github fa-lg"></i> Edit me</a>
+    <a target="_blank" href="https://github.com/graknlabs/grakn/tree/master/docs/pages/documentation/9-api-reference/api-reference.md" class="btn btn-default githubEditButton" role="button"><i class="fa fa-github fa-lg"></i> Edit me</a>
 
     
 
@@ -811,7 +804,7 @@
 </span></code></pre>
     </div>
 
-    <p><code class="highlighter-rouge">application/hal+json</code> <a name="halJsonContentType"></a> provides a <a href="http://stateless.co/hal_specification.html">HAL</a> representation of a Graql query that easily allows for API navigation between graph concepts.</p>
+    <p><code class="highlighter-rouge">application/hal+json</code> <a name="halJsonContentType"></a> provides a <a href="http://stateless.co/hal_specification.html">HAL</a> representation of a Graql query that easily allows for API navigation between knowledge base concepts.</p>
 
     <div class="language-json highlighter-rouge"><pre class="highlight"><code><span class="p">[</span><span class="w">
    </span><span class="p">{</span><span class="w">
@@ -823,7 +816,7 @@
             </span><span class="p">}</span><span class="w">
          </span><span class="p">],</span><span class="w">
          </span><span class="nt">"self"</span><span class="p">:{</span><span class="w">
-            </span><span class="nt">"href"</span><span class="p">:</span><span class="s2">"/graph/concept/401584?keyspace=grakn&amp;offsetEmbedded=0"</span><span class="w">
+            </span><span class="nt">"href"</span><span class="p">:</span><span class="s2">"/kb/concept/401584?keyspace=grakn&amp;offsetEmbedded=0"</span><span class="w">
          </span><span class="p">}</span><span class="w">
       </span><span class="p">},</span><span class="w">
       </span><span class="nt">"_embedded"</span><span class="p">:{</span><span class="w">
@@ -839,7 +832,7 @@
                      </span><span class="p">}</span><span class="w">
                   </span><span class="p">],</span><span class="w">
                   </span><span class="nt">"self"</span><span class="p">:{</span><span class="w">
-                     </span><span class="nt">"href"</span><span class="p">:</span><span class="s2">"/graph/concept/16632?keyspace=grakn&amp;offsetEmbedded=0"</span><span class="w">
+                     </span><span class="nt">"href"</span><span class="p">:</span><span class="s2">"/kb/concept/16632?keyspace=grakn&amp;offsetEmbedded=0"</span><span class="w">
                   </span><span class="p">}</span><span class="w">
                </span><span class="p">},</span><span class="w">
                </span><span class="nt">"_id"</span><span class="p">:</span><span class="s2">"16632"</span><span class="w">
@@ -871,7 +864,7 @@
   </li>
 </ul>
 
-<h2 id="graphgraql"><code class="highlighter-rouge">/graph/graql</code></h2>
+<h2 id="kbgraql"><code class="highlighter-rouge">/kb/graql</code></h2>
 
 <h4 id="post-execute"><code class="highlighter-rouge">POST /execute</code></h4>
 
@@ -913,7 +906,7 @@
 <p><strong>Response JSON Object</strong></p>
 
 <ul>
-  <li><strong>response</strong> Query response from the graph formatted as specified by the provided <code class="highlighter-rouge">Accept</code> header.</li>
+  <li><strong>response</strong> Query response from the knowledge base formatted as specified by the provided <code class="highlighter-rouge">Accept</code> header.</li>
   <li><strong>originalQuery</strong> Query from the Request body</li>
 </ul>
 
@@ -936,13 +929,13 @@
     <p><code class="highlighter-rouge"><span class="p">{</span><span class="nt">"exception"</span><span class="p">:</span><span class="s2">"Unsupported Content-Type [*/*] requested"</span><span class="p">}</span><span class="err">⏎</span></code></p>
   </li>
   <li>
-    <p>422 <em>Unprocessable Entity</em> Invalid graph operation was attempted.</p>
+    <p>422 <em>Unprocessable Entity</em> Invalid knowledge base operation was attempted.</p>
   </li>
 </ul>
 
 <p><strong>Request:</strong></p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>curl -X POST -H "Accept:application/text" "http://localhost:4567/graph/graql/execute?keyspace=grakn&amp;infer=false&amp;materialise=false;" --data 'match $x isa person; limit 1;'
+<div class="highlighter-rouge"><pre class="highlight"><code>curl -X POST -H "Accept:application/text" "http://localhost:4567/kb/graql/execute?keyspace=grakn&amp;infer=false&amp;materialise=false;" --data 'match $x isa person; limit 1;'
 </code></pre>
 </div>
 
@@ -960,7 +953,7 @@ $x id "4240" isa person;
 
 <h4 id="get--deprecated"><code class="highlighter-rouge">GET /</code> <em>Deprecated</em></h4>
 
-<p>Execute <strong>read-only</strong> graql queries on a Grakn graph. Read-only queries are defined as <code class="highlighter-rouge">match</code>, <code class="highlighter-rouge">compute</code>, <code class="highlighter-rouge">ask</code>, or <code class="highlighter-rouge">aggregate</code> queries that do not modify the graph.</p>
+<p>Execute <strong>read-only</strong> graql queries on a Grakn knowledge base. Read-only queries are defined as <code class="highlighter-rouge">match</code>, <code class="highlighter-rouge">compute</code> or <code class="highlighter-rouge">aggregate</code> queries that do not modify the knowledge base.</p>
 
 <p><strong>Request Headers</strong></p>
 
@@ -997,7 +990,7 @@ $x id "4240" isa person;
 
 <p><strong>Response</strong></p>
 
-<p>Query response from the graph formatted as specified by the provided <code class="highlighter-rouge">Accept</code> header.</p>
+<p>Query response from the knowledge base formatted as specified by the provided <code class="highlighter-rouge">Accept</code> header.</p>
 
 <p><strong>Status Codes</strong></p>
 
@@ -1024,13 +1017,13 @@ $x id "4240" isa person;
     <p><code class="highlighter-rouge"><span class="p">{</span><span class="nt">"exception"</span><span class="p">:</span><span class="s2">"Unsupported Content-Type [*/*] requested"</span><span class="p">}</span></code></p>
   </li>
   <li>
-    <p>422 <em>Unprocessable Entity</em> Invalid graph operation was attempted.</p>
+    <p>422 <em>Unprocessable Entity</em> Invalid knowledge base operation was attempted.</p>
   </li>
 </ul>
 
 <p><strong>Request:</strong></p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>curl -H "Accept:application/graql+json" -X GET "http://localhost:4567/graph/graql?keyspace=grakn&amp;infer=false&amp;materialise=false&amp;query=match%20%24x%20isa%20person;%20limit%201;"
+<div class="highlighter-rouge"><pre class="highlight"><code>curl -H "Accept:application/graql+json" -X GET "http://localhost:4567/kb/graql?keyspace=grakn&amp;infer=false&amp;materialise=false&amp;query=match%20%24x%20isa%20person;%20limit%201;"
 </code></pre>
 </div>
 
@@ -1055,7 +1048,7 @@ Server: Jetty(9.3.6.v20151106)
 
 <h4 id="post--deprecated"><code class="highlighter-rouge">POST /</code> <em>Deprecated</em></h4>
 
-<p>Execute <strong>insert</strong> graql queries on a Grakn graph.</p>
+<p>Execute <strong>insert</strong> graql queries on a Grakn knowledge base.</p>
 
 <p><strong>Request Headers</strong></p>
 
@@ -1093,7 +1086,7 @@ Server: Jetty(9.3.6.v20151106)
 
 <p><strong>Response</strong></p>
 
-<p>Query response from the graph formatted as specified by the provided <code class="highlighter-rouge">Accept</code> header.</p>
+<p>Query response from the knowledge base formatted as specified by the provided <code class="highlighter-rouge">Accept</code> header.</p>
 
 <p><strong>Status Codes</strong></p>
 
@@ -1120,13 +1113,13 @@ Server: Jetty(9.3.6.v20151106)
     <p><code class="highlighter-rouge"><span class="p">{</span><span class="nt">"exception"</span><span class="p">:</span><span class="s2">"Unsupported Content-Type [*/*] requested"</span><span class="p">}</span></code></p>
   </li>
   <li>
-    <p>422 <em>Unprocessable Entity</em> Invalid graph operation was attempted.</p>
+    <p>422 <em>Unprocessable Entity</em> Invalid knowledge base operation was attempted.</p>
   </li>
 </ul>
 
 <p><strong>Request:</strong></p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>curl -X POST -H "Accept:application/text" "http://localhost:4567/graph/graql?keyspace=grakn&amp;infer=false&amp;materialise=false;" --data 'insert $x isa person;' 
+<div class="highlighter-rouge"><pre class="highlight"><code>curl -X POST -H "Accept:application/text" "http://localhost:4567/kb/graql?keyspace=grakn&amp;infer=false&amp;materialise=false;" --data 'insert $x isa person;' 
 </code></pre>
 </div>
 
@@ -1144,7 +1137,7 @@ $x id "40964320" isa person;
 
 <h4 id="delete--deprecated"><code class="highlighter-rouge">DELETE /</code> <em>Deprecated</em></h4>
 
-<p>Execute <strong>delete</strong> graql queries on a Grakn graph.</p>
+<p>Execute <strong>delete</strong> graql queries on a Grakn knowledge base.</p>
 
 <p><strong>Request Headers</strong></p>
 
@@ -1198,13 +1191,13 @@ $x id "40964320" isa person;
     <p><code class="highlighter-rouge"><span class="p">{</span><span class="nt">"exception"</span><span class="p">:</span><span class="s2">"Only DELETE queries are allowed."</span><span class="p">}</span><span class="w">  </span></code></p>
   </li>
   <li>
-    <p>422 <em>Unprocessable Entity</em> Invalid graph operation was attempted.</p>
+    <p>422 <em>Unprocessable Entity</em> Invalid knowledge base operation was attempted.</p>
   </li>
 </ul>
 
 <p><strong>Request:</strong></p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>curl -X DELETE "http://localhost:4567/graph/graql?keyspace=grakn&amp;infer=false&amp;materialise=false;" --data 'match $x isa parentship; delete $x;'
+<div class="highlighter-rouge"><pre class="highlight"><code>curl -X DELETE "http://localhost:4567/kb/graql?keyspace=grakn&amp;infer=false&amp;materialise=false;" --data 'match $x isa parentship; delete $x;'
 </code></pre>
 </div>
 
@@ -1220,7 +1213,7 @@ Server: Jetty(9.3.6.v20151106)
 </code></pre>
 </div>
 
-<h2 id="graph"><code class="highlighter-rouge">/graph</code></h2>
+<h2 id="kb"><code class="highlighter-rouge">/kb</code></h2>
 
 <h4 id="get-conceptid"><code class="highlighter-rouge">GET /concept/{id}</code></h4>
 
@@ -1265,7 +1258,7 @@ Server: Jetty(9.3.6.v20151106)
     <p>401 <em>Unauthorized</em> Provided privileges are not authorized.</p>
   </li>
   <li>
-    <p>404 <em>Not Found</em> The requested concept was not found in the specified graph.</p>
+    <p>404 <em>Not Found</em> The requested concept was not found in the specified knowledge base.</p>
 
     <p><code class="highlighter-rouge"><span class="p">{</span><span class="nt">"exception"</span><span class="p">:</span><span class="s2">"No concept with ID [1] exists in keyspace [grakn]"</span><span class="p">}</span></code></p>
   </li>
@@ -1278,7 +1271,7 @@ Server: Jetty(9.3.6.v20151106)
 
 <p><strong>Request:</strong></p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>curl -X DELETE "http://localhost:4567/graph/graql?keyspace=grakn&amp;infer=false&amp;materialise=false;" --data 'match $x isa parentship; delete $x;'
+<div class="highlighter-rouge"><pre class="highlight"><code>curl -X DELETE "http://localhost:4567/kb/graql?keyspace=grakn&amp;infer=false&amp;materialise=false;" --data 'match $x isa parentship; delete $x;'
 </code></pre>
 </div>
 
@@ -1299,7 +1292,7 @@ Server: Jetty(9.3.6.v20151106)
          }
       ],
       "self":{
-         "href":"/graph/concept/508000?keyspace=grakn&amp;offsetEmbedded=0"
+         "href":"/kb/concept/508000?keyspace=grakn&amp;offsetEmbedded=0"
       }
    },
    "_embedded":{
@@ -1311,9 +1304,9 @@ Server: Jetty(9.3.6.v20151106)
 </code></pre>
 </div>
 
-<h4 id="get-ontology"><code class="highlighter-rouge">GET /ontology</code></h4>
+<h4 id="get-schema"><code class="highlighter-rouge">GET /schema</code></h4>
 
-<p>Returns all ontological concepts in the specified graph in a JSON object.</p>
+<p>Returns all schema concepts in the specified knowledge base in a JSON object.</p>
 
 <p><strong>Request Headers</strong></p>
 
@@ -1359,7 +1352,7 @@ Server: Jetty(9.3.6.v20151106)
 
 <p><strong>Request:</strong></p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>curl -X GET "http://localhost:4567/graph/ontology?keyspace=grakn"
+<div class="highlighter-rouge"><pre class="highlight"><code>curl -X GET "http://localhost:4567/kb/schema?keyspace=grakn"
 </code></pre>
 </div>
 
@@ -1390,9 +1383,9 @@ Server: Jetty(9.3.6.v20151106)
       "surname",
       "resource",
    ],
-   "relations":[
+   "relationships":[
       "marriage",
-      "relation",
+      "relationship",
       ...
    ]
 }
@@ -1695,8 +1688,6 @@ Server: Jetty(9.3.6.v20151106)
         
         
         
-        <a href="/pages/tag_graph-api.html" class="btn btn-default navbar-btn cursorNorm" role="button">graph-api</a>
-        
         
         
     </div>
@@ -1773,5 +1764,12 @@ Server: Jetty(9.3.6.v20151106)
     </div>
 
 </body>
+
+<!-- the google_analytics_id gets auto inserted from the config file -->
+
+
+
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create','UA-72414051-1','auto');ga('require','displayfeatures');ga('send','pageview');</script>
+
 
 </html>
