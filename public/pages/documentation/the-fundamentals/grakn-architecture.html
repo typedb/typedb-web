@@ -3,9 +3,9 @@
     <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Learn how to use the Java API to model a schema">
-<meta name="keywords" content="getting-startedexamplesjava,  examples, GRAKN.AI, Grakn Labs, grakn, graql, grakn.ai, Mindmaps Research, Mindmaps Research Ltd, MindmapsDB, mindmaps, mindmaps graph, mindmaps.io, knowledge graph, distributed knowledge graph, development platform, developer tool, data platform, programming langauge, query langauge, database, semantic database, distributed semantic database, distributed database, graph database, semantic search, data exploration, recommendation system, knowledge management, knowledge engineering, real-time analytics, advanced analytics, reasoning engine, inference engine, expert systems, semantic applications, research engines, data management, business intelligence, big data, semantic web, semantic data, knowledge representation, automated reasoning, semantic network, knowledge ontology, semantic graph, ontology engineering, graph based knowledge representation, artificial intelligence,">
-<title>GRAKN.AI - Java API Example</title>
+<meta name="description" content="Introducing the GRAKN.AI Architecture">
+<meta name="keywords" content="getting-started,  setup, getting started, basics, GRAKN.AI, Grakn Labs, grakn, graql, grakn.ai, Mindmaps Research, Mindmaps Research Ltd, MindmapsDB, mindmaps, mindmaps graph, mindmaps.io, knowledge graph, distributed knowledge graph, development platform, developer tool, data platform, programming langauge, query langauge, database, semantic database, distributed semantic database, distributed database, graph database, semantic search, data exploration, recommendation system, knowledge management, knowledge engineering, real-time analytics, advanced analytics, reasoning engine, inference engine, expert systems, semantic applications, research engines, data management, business intelligence, big data, semantic web, semantic data, knowledge representation, automated reasoning, semantic network, knowledge ontology, semantic graph, ontology engineering, graph based knowledge representation, artificial intelligence,">
+<title>GRAKN.AI - GRAKN.AI Architecture Overview</title>
 <link rel="stylesheet" href="/pages/css/syntax.css">
 
 
@@ -228,7 +228,7 @@
                             
                             dataSource: '/pages/search.json',
                             
-                            searchResultTemplate: '<li><a href="{url}" title="Java API Example">{title}</a></li>',
+                            searchResultTemplate: '<li><a href="{url}" title="GRAKN.AI Architecture Overview">{title}</a></li>',
                             noResultsText: '<li><a class="empty">No results found</a></li>',
                             limit: 10,
                             fuzzy: true
@@ -300,6 +300,13 @@
             
             
             
+            <li class="active"><a href="/pages/documentation/the-fundamentals/grakn-architecture.html">Grakn Architecture Overview</a></li>
+            
+            
+            
+            
+            
+            
             <li><a href="/pages/documentation/the-fundamentals/grakn-knowledge-model.html">Grakn Knowledge Model</a></li>
             
             
@@ -310,26 +317,26 @@
         
     
     <li>
-        <a href="#">Graql Schema</a>
+        <a href="#">Graql Ontology</a>
         <ul>
             
             
             
-            <li><a href="/pages/documentation/building-a-schema/basic-schema.html">Define a Basic Schema</a></li>
+            <li><a href="/pages/documentation/building-an-ontology/basic-ontology.html">Define a Basic Ontology</a></li>
             
             
             
             
             
             
-            <li><a href="/pages/documentation/building-a-schema/hierarchical-schema.html">Define a Hierarchical Schema</a></li>
+            <li><a href="/pages/documentation/building-an-ontology/hierarchical-ontology.html">Define a Hierarchical Ontology</a></li>
             
             
             
             
             
             
-            <li><a href="/pages/documentation/building-a-schema/rule-driven-schema.html">Define a Rule-Driven Schema</a></li>
+            <li><a href="/pages/documentation/building-an-ontology/rule-driven-ontology.html">Define a Rule-Driven Ontology</a></li>
             
             
             
@@ -365,6 +372,13 @@
             
             
             
+            <li><a href="/pages/documentation/graql/ask-queries.html">Ask Queries</a></li>
+            
+            
+            
+            
+            
+            
             <li><a href="/pages/documentation/graql/delete-queries.html">Delete Queries</a></li>
             
             
@@ -373,13 +387,6 @@
             
             
             <li><a href="/pages/documentation/graql/insert-queries.html">Insert Queries</a></li>
-            
-            
-            
-            
-            
-            
-            <li><a href="/pages/documentation/graql/define-queries.html">Define Queries</a></li>
             
             
             
@@ -522,7 +529,7 @@
             
             
             
-            <li><a href="/pages/documentation/developing-with-java/java-api.html">Java API</a></li>
+            <li><a href="/pages/documentation/developing-with-java/graph-api.html">Graph API</a></li>
             
             
             
@@ -702,7 +709,7 @@
             
             
             
-            <li class="active"><a href="/pages/documentation/examples/java-api-example.html">API for Java developers</a></li>
+            <li><a href="/pages/documentation/examples/graph-api-example.html">Graph API for Java developers</a></li>
             
             
             
@@ -748,7 +755,7 @@
         <!-- Content Column -->
         <div class="col-md-9">
             <div class="post-header">
-   <h1 class="post-title-main">Java API Example</h1>
+   <h1 class="post-title-main">GRAKN.AI Architecture Overview</h1>
 </div>
 
 
@@ -756,7 +763,7 @@
 <div class="post-content">
 
    
-    <div class="summary">Learn how to use the Java API to model a schema</div>
+    <div class="summary">Introducing the GRAKN.AI Architecture</div>
    
 
     
@@ -788,203 +795,67 @@ $('#toc').on('click', 'a', function() {
 
     
 
-    <a target="_blank" href="https://github.com/graknlabs/grakn/tree/master/docs/pages/documentation/11-examples/java-api.md" class="btn btn-default githubEditButton" role="button"><i class="fa fa-github fa-lg"></i> Edit me</a>
+    <a target="_blank" href="https://github.com/graknlabs/docs/blob/master/pages/documentation/1-the-fundamentals/grakn-architecture.md" class="btn btn-default githubEditButton" role="button"><i class="fa fa-github fa-lg"></i> Edit me</a>
 
     
 
     
 
-  <p>This example shows how to use Java in a basic example that can be extended as a template for your own projects. It shows how to get set up, then how to build up a schema, add data and how to make some queries. The example we will build is very simple: it’s based on the genealogy dataset we have used throughout the GRAKN.AI documentation. We have kept it very simple (as close to a Hello World as you can get while still being useful as a template for creating and querying a knowledge base). You can find it in our sample-projects repository on <a href="https://github.com/graknlabs/sample-projects/tree/master/example-java-api-genealogy">Github</a>.</p>
+  <p>GRAKN.AI is an AI knowledge management engine. It is a database for managing very large knowledge graphs and takes the form of a development platform, offering a tool suite for:</p>
 
-<h2 id="dependencies">Dependencies</h2>
-<p>All Grakn applications have the following Maven dependency:</p>
+<ul>
+  <li>modelling and reasoning over data</li>
+  <li>computing large-scale analytics over graph-oriented, structured data.</li>
+</ul>
 
-<div class="language-xml highlighter-rouge"><pre class="highlight"><code><span class="nt">&lt;dependency&gt;</span>
-<span class="nt">&lt;groupId&gt;</span>ai.grakn<span class="nt">&lt;/groupId&gt;</span>
-<span class="nt">&lt;artifactId&gt;</span>grakn-kb<span class="nt">&lt;/artifactId&gt;</span>
-<span class="nt">&lt;version&gt;</span>${project.version}<span class="nt">&lt;/version&gt;</span>
-<span class="nt">&lt;/dependency&gt;</span>
-</code></pre>
-</div>
+<p>There are two parts to GRAKN.AI: Grakn (the storage), and Graql (a  declarative, knowledge-oriented, graph query language).</p>
 
-<p>This dependency will give you access to the Core API. Your Java application will also require the following dependency when it is running against a Janus backend, which is what is configured for you by default:</p>
+<h2 id="grakn">Grakn</h2>
 
-<div class="language-xml highlighter-rouge"><pre class="highlight"><code><span class="nt">&lt;dependency&gt;</span>
-<span class="nt">&lt;groupId&gt;</span>ai.grakn<span class="nt">&lt;/groupId&gt;</span>
-<span class="nt">&lt;artifactId&gt;</span>janus-factory<span class="nt">&lt;/artifactId&gt;</span>
-<span class="nt">&lt;version&gt;</span>${project.version}<span class="nt">&lt;/version&gt;</span>
-<span class="nt">&lt;/dependency&gt;</span>
-</code></pre>
-</div>
+<p>Grakn builds upon several major industry-standard technologies such as Apache Tinkerpop, Apache Cassandra, Apache Spark and others. At its core lies a graph database that implements the <a href="https://tinkerpop.apache.org">Apache Tinkerpop</a> APIs, making Grakn agnostic about graph data storage. Grakn’s own algorithms are scalable and capable of handling big data problems. Scalability of the system as a whole is conditioned upon the performance characteristics of the underlying database selected.</p>
 
-<h3 id="grakn-engine">Grakn Engine</h3>
+<p>Knowledge management in the GRAKN.AI follows the <a href="../the-fundamentals/grakn-knowledge-model.html">knowledge representation model</a>. The model is logically formalized to guarantee consistency of the data as well as soundness and completeness of the reasoning procedure. The model is defined in Java as a set of interfaces implemented on top of the Tinkerpop API. The knowledge model serves as a foundation for the knowledge-oriented language Graql, which incorporates querying, reasoning, data migration and graph analytics.</p>
 
-<p>First, make sure that you have an instance of Grakn engine running, which means that you need to run the following in the terminal:</p>
+<h2 id="graql">Graql</h2>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="nb">cd</span> <span class="o">[</span>your Grakn install directory]
-./bin/grakn.sh start
-</code></pre>
-</div>
+<p>The Graql query language makes extensive use of Gremlin. In fact, Graql queries are translated into Gremlin queries before submission to Tinkerpop for execution. Graql comes with its own syntax and can be used stand-alone via a shell. But it also has a Java API that mimics the native syntax closely. The Java API is convenient for avoiding the messiness of constructing query strings, typical for many other development stacks.</p>
 
-<h2 id="java-api-grakntx">Java API: GraknTx</h2>
+<p>The reasoning engine works directly with Graql constructs and performs backwards chaining via an iterative deepening algorithm. Unification as well as recursive rules are supported.</p>
 
-<p>The Java API, <code class="highlighter-rouge">GraknTx</code>, is a low-level API that encapsulates the <a href="../the-fundamentals/grakn-knowledge-model.html">Grakn knowledge model</a>. It provides Java object constructs for the Grakn ontological elements (entity types, relationship types, etc.) and data instances (entities, relationships, etc.), allowing you to build up a knowledge base programmatically. It is also possible to perform simple concept lookups using the java API, which I’ll illustrate presently. First, let’s look at building up the knowledge base.</p>
+<p>The distributed analytics component employees massively parallel algorithms based on the Tinkerpop BSP/OLAP processing model, which in turn makes use of technologies such as Apache Hadoop and Apache Spark.</p>
 
-<h3 id="building-theschema">Building the Schema</h3>
+<h2 id="grakn-engine">Grakn Engine</h2>
 
-<p>We will look at the same schema as is covered in the <a href="../building-a-schema/basic-schema.html">Basic Schema documentation</a> using Graql, which you may already be familiar with. If you’re not, the schema is fully specified in Graql <a href="../building-a-schema/basic-schema.html#the-complete-schema">here</a>.</p>
+<p>The Grakn engine is the main server component running the platform. A client always needs an engine running before it can talk to the knowledge graph, even when the client is accessing the graph database in embedded mode. A Grakn engine process hosts several distinct services:</p>
 
-<p>First we need a <a href="../developing-with-java/java-setup.html#initialising-a-transaction-on-the-knowledge-base">knowledge base</a>:</p>
+<ul>
+  <li>REST API</li>
+  <li>web-based GUI for interacting with and visualizing the graph</li>
+  <li>websockets endpoint for Graql queries</li>
+  <li>distributed background task processing peer.</li>
+</ul>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">GraknSession</span> <span class="n">session</span> <span class="o">=</span> <span class="n">Grakn</span><span class="o">.</span><span class="na">session</span><span class="o">(</span><span class="n">uri</span><span class="o">,</span> <span class="n">keyspace</span><span class="o">);</span>
-<span class="n">GraknTx</span> <span class="n">tx</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="na">open</span><span class="o">(</span><span class="n">GraknTxType</span><span class="o">.</span><span class="na">WRITE</span><span class="o">)</span>
-</code></pre>
-</div>
+<p>An engine server makes use of industry standard infrastructure packages such as an embedded HTTP server, Kafka, Zookeeper, Spark and Hadoop. Engines can be deployed in a horizontally scalable cluster. They are stateless and co-operate in a peer-to-peer fashion. They can be load-balanced and support failover, providing guarantees that any submitted task will be eventually completed. See the <a href="../deploy-grakn/grakn-deployment-guide.html">Deployment Guide</a> for more information on how to configure a GRAKN Engine or a cluster thereof.</p>
 
-<p>Building the schema is covered in <code class="highlighter-rouge">writeSchema()</code>. First, the method adds the attribute types using putAttributeType():</p>
+<p>The following diagram shows how the various components stack together:</p>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">identifier</span> <span class="o">=</span> <span class="n">tx</span><span class="o">.</span><span class="na">putAttributeType</span><span class="o">(</span><span class="s">"identifier"</span><span class="o">,</span> <span class="n">AttributeType</span><span class="o">.</span><span class="na">DataType</span><span class="o">.</span><span class="na">STRING</span><span class="o">);</span>
-<span class="n">name</span> <span class="o">=</span> <span class="n">tx</span><span class="o">.</span><span class="na">putAttributeType</span><span class="o">(</span><span class="s">"name"</span><span class="o">,</span> <span class="n">AttributeType</span><span class="o">.</span><span class="na">DataType</span><span class="o">.</span><span class="na">STRING</span><span class="o">);</span>
-<span class="n">firstname</span> <span class="o">=</span> <span class="n">tx</span><span class="o">.</span><span class="na">putAttributeType</span><span class="o">(</span><span class="s">"firstname"</span><span class="o">,</span> <span class="n">AttributeType</span><span class="o">.</span><span class="na">DataType</span><span class="o">.</span><span class="na">STRING</span><span class="o">).</span><span class="na">sup</span><span class="o">(</span><span class="n">name</span><span class="o">);</span>
-<span class="n">surname</span> <span class="o">=</span> <span class="n">tx</span><span class="o">.</span><span class="na">putAttributeType</span><span class="o">(</span><span class="s">"surname"</span><span class="o">,</span> <span class="n">AttributeType</span><span class="o">.</span><span class="na">DataType</span><span class="o">.</span><span class="na">STRING</span><span class="o">).</span><span class="na">sup</span><span class="o">(</span><span class="n">name</span><span class="o">);</span>
-<span class="n">middlename</span> <span class="o">=</span> <span class="n">tx</span><span class="o">.</span><span class="na">putAttributeType</span><span class="o">(</span><span class="s">"middlename"</span><span class="o">,</span> <span class="n">AttributeType</span><span class="o">.</span><span class="na">DataType</span><span class="o">.</span><span class="na">STRING</span><span class="o">).</span><span class="na">sup</span><span class="o">(</span><span class="n">name</span><span class="o">);</span>
-<span class="n">date</span> <span class="o">=</span> <span class="n">tx</span><span class="o">.</span><span class="na">putAttributeType</span><span class="o">(</span><span class="s">"date"</span><span class="o">,</span> <span class="n">AttributeType</span><span class="o">.</span><span class="na">DataType</span><span class="o">.</span><span class="na">STRING</span><span class="o">);</span>
-<span class="n">birthDate</span> <span class="o">=</span> <span class="n">tx</span><span class="o">.</span><span class="na">putAttributeType</span><span class="o">(</span><span class="s">"birth-date"</span><span class="o">,</span> <span class="n">AttributeType</span><span class="o">.</span><span class="na">DataType</span><span class="o">.</span><span class="na">STRING</span><span class="o">).</span><span class="na">sup</span><span class="o">(</span><span class="n">date</span><span class="o">);</span>
-<span class="n">deathDate</span> <span class="o">=</span> <span class="n">tx</span><span class="o">.</span><span class="na">putAttributeType</span><span class="o">(</span><span class="s">"death-date"</span><span class="o">,</span> <span class="n">AttributeType</span><span class="o">.</span><span class="na">DataType</span><span class="o">.</span><span class="na">STRING</span><span class="o">).</span><span class="na">sup</span><span class="o">(</span><span class="n">date</span><span class="o">);</span>
-<span class="n">gender</span> <span class="o">=</span> <span class="n">tx</span><span class="o">.</span><span class="na">putAttributeType</span><span class="o">(</span><span class="s">"gender"</span><span class="o">,</span> <span class="n">AttributeType</span><span class="o">.</span><span class="na">DataType</span><span class="o">.</span><span class="na">STRING</span><span class="o">);</span>
-</code></pre>
-</div>
+<p><img src="/images/grakn-architecture.png" alt="Architecture" /></p>
 
-<p>Then it adds roles using <code class="highlighter-rouge">putRole()</code>:</p>
+<p>As a developer, you can interact with the platform in one of several ways:</p>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">spouse</span> <span class="o">=</span> <span class="n">tx</span><span class="o">.</span><span class="na">putRole</span><span class="o">(</span><span class="s">"spouse"</span><span class="o">);</span>
-<span class="n">spouse1</span> <span class="o">=</span> <span class="n">tx</span><span class="o">.</span><span class="na">putRole</span><span class="o">(</span><span class="s">"spouse1"</span><span class="o">).</span><span class="na">sup</span><span class="o">(</span><span class="n">spouse</span><span class="o">);</span>
-<span class="n">spouse2</span> <span class="o">=</span> <span class="n">tx</span><span class="o">.</span><span class="na">putRole</span><span class="o">(</span><span class="s">"spouse2"</span><span class="o">).</span><span class="na">sup</span><span class="o">(</span><span class="n">spouse</span><span class="o">);</span>
-<span class="n">parent</span> <span class="o">=</span> <span class="n">tx</span><span class="o">.</span><span class="na">putRole</span><span class="o">(</span><span class="s">"parent"</span><span class="o">);</span>
-<span class="n">child</span> <span class="o">=</span> <span class="n">tx</span><span class="o">.</span><span class="na">putRole</span><span class="o">(</span><span class="s">"child"</span><span class="o">);</span>
-</code></pre>
-</div>
-
-<p>Then to add the relationship types, <code class="highlighter-rouge">putRelationshipType()</code>, which is followed by <code class="highlighter-rouge">relates()</code> to set the roles associated with the relationship and attribute() to state that it has a date attribute:</p>
-
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">marriage</span> <span class="o">=</span> <span class="n">tx</span><span class="o">.</span><span class="na">putRelationshipType</span><span class="o">(</span><span class="s">"marriage"</span><span class="o">);</span>
-<span class="n">marriage</span><span class="o">.</span><span class="na">relates</span><span class="o">(</span><span class="n">spouse</span><span class="o">).</span><span class="na">relates</span><span class="o">(</span><span class="n">spouse1</span><span class="o">).</span><span class="na">relates</span><span class="o">(</span><span class="n">spouse2</span><span class="o">);</span>
-<span class="n">marriage</span><span class="o">.</span><span class="na">attribute</span><span class="o">(</span><span class="n">date</span><span class="o">);</span>
-<span class="n">parentship</span> <span class="o">=</span> <span class="n">tx</span><span class="o">.</span><span class="na">putRelationshipType</span><span class="o">(</span><span class="s">"parentship"</span><span class="o">);</span>
-<span class="n">parentship</span><span class="o">.</span><span class="na">relates</span><span class="o">(</span><span class="n">parent</span><span class="o">).</span><span class="na">relates</span><span class="o">(</span><span class="n">child</span><span class="o">);</span>
-</code></pre>
-</div>
-
-<p>Finally, entity types are added using <code class="highlighter-rouge">putEntityType()</code>, <code class="highlighter-rouge">plays()</code> and <code class="highlighter-rouge">attribute()</code>:</p>
-
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">person</span> <span class="o">=</span> <span class="n">tx</span><span class="o">.</span><span class="na">putEntityType</span><span class="o">(</span><span class="s">"person"</span><span class="o">);</span>
-<span class="n">person</span><span class="o">.</span><span class="na">plays</span><span class="o">(</span><span class="n">spouse1</span><span class="o">).</span><span class="na">plays</span><span class="o">(</span><span class="n">spouse2</span><span class="o">).</span><span class="na">plays</span><span class="o">(</span><span class="n">parent</span><span class="o">).</span><span class="na">plays</span><span class="o">(</span><span class="n">child</span><span class="o">);</span>
-<span class="n">person</span><span class="o">.</span><span class="na">attribute</span><span class="o">(</span><span class="n">gender</span><span class="o">);</span>
-<span class="n">person</span><span class="o">.</span><span class="na">attribute</span><span class="o">(</span><span class="n">birthDate</span><span class="o">);</span>
-<span class="n">person</span><span class="o">.</span><span class="na">attribute</span><span class="o">(</span><span class="n">deathDate</span><span class="o">);</span>
-<span class="n">person</span><span class="o">.</span><span class="na">attribute</span><span class="o">(</span><span class="n">identifier</span><span class="o">);</span>
-<span class="n">person</span><span class="o">.</span><span class="na">attribute</span><span class="o">(</span><span class="n">firstname</span><span class="o">);</span>
-<span class="n">person</span><span class="o">.</span><span class="na">attribute</span><span class="o">(</span><span class="n">middlename</span><span class="o">);</span>
-<span class="n">person</span><span class="o">.</span><span class="na">attribute</span><span class="o">(</span><span class="n">surname</span><span class="o">);</span>
-</code></pre>
-</div>
-
-<p>Now to commit the schema:</p>
-
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">tx</span><span class="o">.</span><span class="na">commit</span><span class="o">();</span>
-</code></pre>
-</div>
-
-<h3 id="loading-data">Loading Data</h3>
-<p>Now that we have created the schema, we can load in some data using the Java API.</p>
-
-<p>The example project does this in <code class="highlighter-rouge">writeSampleRelation_Marriage()</code>. First it creates a person entity named homer:</p>
-
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="c1">// After committing we need to open a new transaction</span>
-<span class="n">tx</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="na">open</span><span class="o">(</span><span class="n">GraknTxType</span><span class="o">.</span><span class="na">WRITE</span><span class="o">)</span>
-
-<span class="c1">// Define the attributes</span>
-<span class="n">Attribute</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">firstNameJohn</span> <span class="o">=</span> <span class="n">firstname</span><span class="o">.</span><span class="na">putAttribute</span><span class="o">(</span><span class="s">"John"</span><span class="o">);</span>
-<span class="n">Attribute</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">surnameNiesz</span> <span class="o">=</span> <span class="n">surname</span><span class="o">.</span><span class="na">putAttribute</span><span class="o">(</span><span class="s">"Niesz"</span><span class="o">);</span>
-<span class="n">Attribute</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">male</span> <span class="o">=</span> <span class="n">gender</span><span class="o">.</span><span class="na">putAttribute</span><span class="o">(</span><span class="s">"male"</span><span class="o">);</span>
-<span class="c1">//Now we can create the actual husband entity</span>
-<span class="n">Entity</span> <span class="n">johnNiesz</span> <span class="o">=</span> <span class="n">person</span><span class="o">.</span><span class="na">addEntity</span><span class="o">();</span>
-<span class="c1">//Add the attributes</span>
-<span class="n">johnNiesz</span><span class="o">.</span><span class="na">attribute</span><span class="o">(</span><span class="n">firstNameJohn</span><span class="o">);</span>
-<span class="n">johnNiesz</span><span class="o">.</span><span class="na">attribute</span><span class="o">(</span><span class="n">surnameNiesz</span><span class="o">);</span>
-<span class="n">johnNiesz</span><span class="o">.</span><span class="na">attribute</span><span class="o">(</span><span class="n">male</span><span class="o">);</span>
-</code></pre>
-</div>
-
-<p>We can compare how a Graql statement maps to the Java API. This is the equivalent in Graql:</p>
-
-<pre><code class="language-graql">insert $x isa person has firstname "John", has surname "Niesz" has gender "male";
-</code></pre>
-
-<p>The code goes on to create another <code class="highlighter-rouge">person</code> entity, named <code class="highlighter-rouge">maryYoung</code>, and then marries them:</p>
-
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">Entity</span> <span class="n">maryYoung</span> <span class="o">=</span> <span class="n">person</span><span class="o">.</span><span class="na">addEntity</span><span class="o">();</span>
-
-<span class="n">Relationship</span> <span class="n">theMarriage</span> <span class="o">=</span> <span class="n">marriage</span><span class="o">.</span><span class="na">addRelationship</span><span class="o">().</span><span class="na">addRolePlayer</span><span class="o">(</span><span class="n">spouse1</span><span class="o">,</span> <span class="n">johnNiesz</span><span class="o">).</span><span class="na">addRolePlayer</span><span class="o">(</span><span class="n">spouse2</span><span class="o">,</span> <span class="n">maryYoung</span><span class="o">);</span>
-<span class="n">Attribute</span> <span class="n">marriageDate</span> <span class="o">=</span> <span class="n">date</span><span class="o">.</span><span class="na">putAttribute</span><span class="o">(</span><span class="n">LocalDateTime</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="mi">1880</span><span class="o">,</span> <span class="mi">8</span><span class="o">,</span> <span class="mi">12</span><span class="o">,</span> <span class="mi">0</span><span class="o">,</span> <span class="mi">0</span><span class="o">,</span> <span class="mi">0</span><span class="o">).</span><span class="na">toString</span><span class="o">());</span>
-<span class="n">theMarriage</span><span class="o">.</span><span class="na">attribute</span><span class="o">(</span><span class="n">marriageDate</span><span class="o">);</span>
-</code></pre>
-</div>
-
-<h2 id="querying-the-knowledge-base-using-grakntx">Querying the Knowledge Base Using GraknTx</h2>
-
-<p>The <code class="highlighter-rouge">runSampleQueries()</code> method shows how to run a simple query using the <code class="highlighter-rouge">GraknTx</code> API. For example, take the query “What are the instances of type person?”. In Graql, this is simply:</p>
-
-<pre><code class="language-graql">match $x isa person;
-</code></pre>
-
-<p>In Java:</p>
-
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="k">for</span> <span class="o">(</span><span class="n">Thing</span> <span class="nl">p:</span> <span class="n">tx</span><span class="o">.</span><span class="na">getEntityType</span><span class="o">(</span><span class="s">"person"</span><span class="o">).</span><span class="na">instances</span><span class="o">())</span> <span class="o">{</span>
-    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">" "</span> <span class="o">+</span> <span class="n">p</span><span class="o">);</span>
-<span class="o">}</span>
-</code></pre>
-</div>
-
-<h2 id="querying-the-knowledge-base-using-querybuilder">Querying the Knowledge Base Using QueryBuilder</h2>
-
-<p>It is also possible to interact with the knowledge base using a separate Java API that forms Graql queries. This is via <code class="highlighter-rouge">GraknTx.graql()</code>, which returns a <code class="highlighter-rouge">QueryBuilder</code> object, discussed in the documentation. It is useful to use <code class="highlighter-rouge">QueryBuilder</code> if you want to make queries using Java, without having to construct a string containing the appropriate Graql expression. Taking the same query “What are the instances of type person?”:</p>
-
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="k">for</span> <span class="o">(</span><span class="n">Answer</span> <span class="nl">a:</span> <span class="n">tx</span><span class="o">.</span><span class="na">graql</span><span class="o">().</span><span class="na">match</span><span class="o">(</span><span class="n">var</span><span class="o">(</span><span class="s">"x"</span><span class="o">).</span><span class="na">isa</span><span class="o">(</span><span class="s">"person"</span><span class="o">)))</span> <span class="o">{</span>
-    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">" "</span> <span class="o">+</span> <span class="n">a</span><span class="o">);</span>
-<span class="o">}</span>
-</code></pre>
-</div>
-
-<p>Which leads us to the common question…</p>
-
-<h2 id="when-to-use-grakntx-and-when-to-use-querybuilder">When to use GraknTx and when to use QueryBuilder?</h2>
-
-<p><strong>Java API</strong>
-If you are primarily interested in mutating the knowledge base, as well as doing simple concept lookups the Java API will be sufficient, e.g. for
-Manipulation, such as insertions into the knowledge base.</p>
-
-<p><strong>QueryBuilder — the “Java Graql” API</strong>
-This is best for advanced querying where traversals are involved. For example “Who is married to Homer?” is too complex a query for the Java API. Using a <code class="highlighter-rouge">QueryBuilder</code>:</p>
-
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">List</span><span class="o">&lt;</span><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Concept</span><span class="o">&gt;&gt;</span> <span class="n">results</span> <span class="o">=</span> <span class="n">tx</span><span class="o">.</span><span class="na">graql</span><span class="o">().</span><span class="na">match</span><span class="o">(</span>
-  <span class="n">var</span><span class="o">(</span><span class="s">"x"</span><span class="o">).</span><span class="na">has</span><span class="o">(</span><span class="s">"firstname"</span><span class="o">,</span> <span class="s">"John"</span><span class="o">).</span><span class="na">isa</span><span class="o">(</span><span class="s">"person"</span><span class="o">),</span>
-  <span class="n">var</span><span class="o">(</span><span class="s">"y"</span><span class="o">).</span><span class="na">has</span><span class="o">(</span><span class="s">"firstname"</span><span class="o">,</span> <span class="n">var</span><span class="o">(</span><span class="s">"y_name"</span><span class="o">)).</span><span class="na">isa</span><span class="o">(</span><span class="s">"person"</span><span class="o">),</span>
-  <span class="n">var</span><span class="o">().</span><span class="na">isa</span><span class="o">(</span><span class="s">"marriage"</span><span class="o">).</span>
-  <span class="n">rel</span><span class="o">(</span><span class="s">"husband"</span><span class="o">,</span> <span class="s">"x"</span><span class="o">).</span>
-  <span class="n">rel</span><span class="o">(</span><span class="s">"wife"</span><span class="o">,</span> <span class="s">"y"</span><span class="o">)).</span><span class="na">execute</span><span class="o">();</span>
-<span class="k">for</span> <span class="o">(</span><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Concept</span><span class="o">&gt;</span> <span class="n">result</span> <span class="o">:</span> <span class="n">results</span><span class="o">)</span> <span class="o">{</span>
-  <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">" "</span> <span class="o">+</span> <span class="n">result</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">"y_name"</span><span class="o">));</span>
-<span class="o">}</span>
-
-<span class="n">tx</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
-</code></pre>
-</div>
-
-<p>This example has been created, as much as anything, as a template that you can take to form the basis of your own projects. Feel free to add some more people to the knowledge base, or make some additional queries. If you need some ideas, you’ll find extra examples of using Java Graql in the Graql documentation for match, insert, delete and aggregate queries.</p>
+<ul>
+  <li>Load the GRAKN.AI components in a JVM process and use the Java APIs to manipulate the knowledge graph, perform queries, kick off graph analytics jobs etc.</li>
+  <li>Visualize information through the Grakn visualiser, which is a GUI Shell.</li>
+  <li>Start a command line shell and run Graql queries in the terminal, including loading ontologies, rules and data.</li>
+  <li>Call the REST API to load data or navigate the graph following <a href="http://stateless.co/hal_specification.html">standard HAL practices</a>.</li>
+</ul>
 
 <h2 id="where-next">Where Next?</h2>
-<p>If you haven’t already, please take a look at our <a href="../developing-with-java/java-setup.html">documentation on the Java APIs</a>, and our growing set of <a href="https://grakn.ai/javadocs.html">Javadocs</a>.</p>
+
+<p>We recommend that you read more about the <a href="../the-fundamentals/grakn-knowledge-model.html">Grakn knowledge model</a> then get started by <a href="..get-started/setup-guide.html">setting up Grakn</a> and running through our <a href="../get-started/quickstart-tutorial.html">quickstart tutorial</a>.</p>
+
+<h2 id="comments">Comments</h2>
+<p>Want to leave a comment? Visit <a href="https://github.com/graknlabs/docs/issues/17" target="_blank">the issues on Github for this page</a> (you’ll need a GitHub account). You are also welcome to contribute to our documentation directly via the “Edit me” button at the top of the page.</p>
 
 
     <div class="tags">
@@ -994,14 +865,6 @@ This is best for advanced querying where traversals are involved. For example �
         
         
         <a href="/pages/tag_getting-started.html" class="btn btn-default navbar-btn cursorNorm" role="button">getting-started</a>
-        
-        
-        
-        <a href="/pages/tag_examples.html" class="btn btn-default navbar-btn cursorNorm" role="button">examples</a>
-        
-        
-        
-        <a href="/pages/tag_java.html" class="btn btn-default navbar-btn cursorNorm" role="button">java</a>
         
         
         
@@ -1032,7 +895,7 @@ This is best for advanced querying where traversals are involved. For example �
         <br>
         <p>© 2017 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2017 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> May 2017<br/> Site last generated: Sep 2, 2017 <br />
+        <span>Page last updated:</span> February 2017<br/> Site last generated: Sep 6, 2017 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">
@@ -1079,12 +942,5 @@ This is best for advanced querying where traversals are involved. For example �
     </div>
 
 </body>
-
-<!-- the google_analytics_id gets auto inserted from the config file -->
-
-
-
-<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create','UA-72414051-1','auto');ga('require','displayfeatures');ga('send','pageview');</script>
-
 
 </html>

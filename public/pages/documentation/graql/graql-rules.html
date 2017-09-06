@@ -300,6 +300,13 @@
             
             
             
+            <li><a href="/pages/documentation/the-fundamentals/grakn-architecture.html">Grakn Architecture Overview</a></li>
+            
+            
+            
+            
+            
+            
             <li><a href="/pages/documentation/the-fundamentals/grakn-knowledge-model.html">Grakn Knowledge Model</a></li>
             
             
@@ -310,26 +317,26 @@
         
     
     <li>
-        <a href="#">Graql Schema</a>
+        <a href="#">Graql Ontology</a>
         <ul>
             
             
             
-            <li><a href="/pages/documentation/building-a-schema/basic-schema.html">Define a Basic Schema</a></li>
+            <li><a href="/pages/documentation/building-an-ontology/basic-ontology.html">Define a Basic Ontology</a></li>
             
             
             
             
             
             
-            <li><a href="/pages/documentation/building-a-schema/hierarchical-schema.html">Define a Hierarchical Schema</a></li>
+            <li><a href="/pages/documentation/building-an-ontology/hierarchical-ontology.html">Define a Hierarchical Ontology</a></li>
             
             
             
             
             
             
-            <li><a href="/pages/documentation/building-a-schema/rule-driven-schema.html">Define a Rule-Driven Schema</a></li>
+            <li><a href="/pages/documentation/building-an-ontology/rule-driven-ontology.html">Define a Rule-Driven Ontology</a></li>
             
             
             
@@ -365,6 +372,13 @@
             
             
             
+            <li><a href="/pages/documentation/graql/ask-queries.html">Ask Queries</a></li>
+            
+            
+            
+            
+            
+            
             <li><a href="/pages/documentation/graql/delete-queries.html">Delete Queries</a></li>
             
             
@@ -373,13 +387,6 @@
             
             
             <li><a href="/pages/documentation/graql/insert-queries.html">Insert Queries</a></li>
-            
-            
-            
-            
-            
-            
-            <li><a href="/pages/documentation/graql/define-queries.html">Define Queries</a></li>
             
             
             
@@ -522,7 +529,7 @@
             
             
             
-            <li><a href="/pages/documentation/developing-with-java/java-api.html">Java API</a></li>
+            <li><a href="/pages/documentation/developing-with-java/graph-api.html">Graph API</a></li>
             
             
             
@@ -702,7 +709,7 @@
             
             
             
-            <li><a href="/pages/documentation/examples/java-api-example.html">API for Java developers</a></li>
+            <li><a href="/pages/documentation/examples/graph-api-example.html">Graph API for Java developers</a></li>
             
             
             
@@ -788,7 +795,7 @@ $('#toc').on('click', 'a', function() {
 
     
 
-    <a target="_blank" href="https://github.com/graknlabs/grakn/tree/master/docs/pages/documentation/3-querying-with-graql/graql-rules.md" class="btn btn-default githubEditButton" role="button"><i class="fa fa-github fa-lg"></i> Edit me</a>
+    <a target="_blank" href="https://github.com/graknlabs/docs/blob/master/pages/documentation/3-querying-with-graql/graql-rules.md" class="btn btn-default githubEditButton" role="button"><i class="fa fa-github fa-lg"></i> Edit me</a>
 
     
 
@@ -796,14 +803,14 @@ $('#toc').on('click', 'a', function() {
 
   <h2 id="introduction">Introduction</h2>
 
-<p>Graql uses machine reasoning to perform inference over data types, relationship types, context disambiguation, implicit relationships and dynamic relationships. This allows you to discover hidden and implicit association between data instances through short and concise statements.</p>
+<p>Graql uses machine reasoning to perform inference over data types, relation types, context disambiguation, implicit relationships and dynamic relationships. This allows you to discover hidden and implicit association between data instances through short and concise statements.</p>
 
-<p>The rule-based reasoning allows automated capture and evolution of patterns within the knowledge base. Graql reasoning is performed at query time and is guaranteed to be complete.</p>
+<p>The rule-based reasoning allows automated capture and evolution of patterns within the graph. Graql reasoning is performed at query time and is guaranteed to be complete.</p>
 
-<p>Thanks to the reasoning facility, common patterns in the knowledge base can be defined and associated with existing schema elements.
+<p>Thanks to the reasoning facility, common patterns in the graph can be defined and associated with existing ontology elements.
 The association happens by means of rules. This not only allows you to compress and simplify typical queries, but offers the ability to derive new non-trivial information by combining defined patterns.</p>
 
-<p>Provided reasoning is turned on, once a given query is executed, Graql will not only query the knowledge base for exact matches but will also inspect the defined rules to check whether additional information can be found (inferred) by combining the patterns defined in the rules. The completeness property of Graql reasoning guarantees that, for a given content of the knowledge base and the defined rule set, the query result shall contain all possible answers derived by combining database lookups and rule applications.</p>
+<p>Provided reasoning is turned on, once a given query is executed, Graql will not only query the graph for exact matches but will also inspect the defined rules to check whether additional information can be found (inferred) by combining the patterns defined in the rules. The completeness property of Graql reasoning guarantees that, for a given content of the graph and the defined rule set, the query result shall contain all possible answers derived by combining database lookups and rule applications.</p>
 
 <p>In this section we shall briefly describe the logics behind the rules as well as how can we define pattern associations by suitably defined rules. You may also want to review our <a href="../examples/graql-reasoning.html">example of how to work with Graql rules</a>.</p>
 
@@ -847,7 +854,7 @@ then {
 };
 </code></pre>
 
-<p>Each dotted line corresponds to a single Graql variable. The rule name is optional and can be omitted, but it is useful if we want to be able to refer to and identify particular rules in the knowledge base. This way, as inference-rule is a concept, we can attach resources to it:</p>
+<p>Each dotted line corresponds to a single Graql variable. The rule name is optional and can be omitted, but it is useful if we want to be able to refer to and identify particular rules in the graph. This way, as inference-rule is a concept, we can attach resources to it:</p>
 
 <pre><code class="language-graql-test-ignore">$myRule isa inference-rule,
 when {
@@ -864,7 +871,7 @@ $myRule has description 'this is my rule';
 
 <p>In Graql the “when” of the rule is required to be a <a href="https://en.wikipedia.org/wiki/Logical_conjunction">conjunctive pattern</a>, whereas the “then” should contain a single pattern. If your use case requires a rule with a disjunction on the “when”, please notice that, when using the disjunctive normal form, it can be decomposed into series of conjunctive rules.</p>
 
-<p>A classic reasoning example is the ancestor example. Yhe two Graql rules R1 and R2 stated below define the ancestor relationship, which can be understood as either happening between two generations directly between a parent and a child or between three generations when the first generation hop is expressed via a parentship relationship and the second generation hop is captured by an ancestor relationship.</p>
+<p>A classic reasoning example is the ancestor example. Yhe two Graql rules R1 and R2 stated below define the ancestor relationship, which can be understood as either happening between two generations directly between a parent and a child or between three generations when the first generation hop is expressed via a parentship relation and the second generation hop is captured by an ancestor relation.</p>
 
 <pre><code class="language-graql">insert
 
@@ -886,7 +893,7 @@ then {
 };
 </code></pre>
 
-<p>When adding rules such as those defined above with Graql, we simply use an <code class="highlighter-rouge">insert</code> statement, and load the rules, saved as a <em>.gql</em> file, into the knowledge base in a standard manner, much as for a schema.</p>
+<p>When adding rules such as those defined above with Graql, we simply use an <code class="highlighter-rouge">insert</code> statement, and load the rules, saved as a <em>.gql</em> file, into the graph in a standard manner, much as for an ontology.</p>
 
 <p>Defining the above rules in terms of predicates and assuming left-to-right directionality of the roles, we can summarise them in the implication form as:</p>
 
@@ -968,13 +975,13 @@ That means atomic queries contain at most one statement that can potentially app
       <td style="text-align: left">✓</td>
     </tr>
     <tr>
-      <td><code class="highlighter-rouge">relationship</code></td>
+      <td><code class="highlighter-rouge">relation</code></td>
       <td style="text-align: left"><code class="highlighter-rouge">(parent: $x, child: $y) isa parentship;</code></td>
       <td style="text-align: left">✓</td>
       <td style="text-align: left">✓</td>
     </tr>
     <tr>
-      <td>attribute comparison</td>
+      <td>resource comparison</td>
       <td style="text-align: left"><code class="highlighter-rouge">$x val &gt; $y;</code></td>
       <td style="text-align: left">✓</td>
       <td style="text-align: left">x</td>
@@ -1038,13 +1045,13 @@ That means atomic queries contain at most one statement that can potentially app
     </tr>
     <tr>
       <td><code class="highlighter-rouge">datatype</code></td>
-      <td style="text-align: left"><code class="highlighter-rouge">$x isa attribute, datatype string;</code></td>
+      <td style="text-align: left"><code class="highlighter-rouge">$x isa resource, datatype string;</code></td>
       <td style="text-align: left">✓</td>
       <td style="text-align: left">x</td>
     </tr>
     <tr>
       <td><code class="highlighter-rouge">regex</code></td>
-      <td style="text-align: left"><code class="highlighter-rouge">$x isa attribute, regex /hello/;</code></td>
+      <td style="text-align: left"><code class="highlighter-rouge">$x isa resource, regex /hello/;</code></td>
       <td style="text-align: left">✓</td>
       <td style="text-align: left">x</td>
     </tr>
@@ -1056,7 +1063,7 @@ That means atomic queries contain at most one statement that can potentially app
 
 <ul>
   <li><strong>whether reasoning should be on</strong>. This option is self-explanatory. If the reasoning is not turned on, the rules will not be triggered and no knowledge will be inferred.</li>
-  <li><strong>whether inferred knowledge should be materialised (persisted to the knowledge base) or stored in memory</strong>. Persisting to knowledge base has a huge impact on performance when compared to in-memory inference, and, for larger graphs, materialisation should either be avoided or queries be limited by employing the <em>limit</em> modifier, which allows termination in sensible time.</li>
+  <li><strong>whether inferred knowledge should be materialised (persisted to the graph) or stored in memory</strong>. Persisting to graph has a huge impact on performance when compared to in-memory inference, and, for larger graphs, materialisation should either be avoided or queries be limited by employing the <em>limit</em> modifier, which allows termination in sensible time.</li>
 </ul>
 
 <h2 id="where-next">Where Next?</h2>
@@ -1109,7 +1116,7 @@ That means atomic queries contain at most one statement that can potentially app
         <br>
         <p>© 2017 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2017 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> March 2017<br/> Site last generated: Sep 2, 2017 <br />
+        <span>Page last updated:</span> March 2017<br/> Site last generated: Sep 6, 2017 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">
@@ -1156,12 +1163,5 @@ That means atomic queries contain at most one statement that can potentially app
     </div>
 
 </body>
-
-<!-- the google_analytics_id gets auto inserted from the config file -->
-
-
-
-<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create','UA-72414051-1','auto');ga('require','displayfeatures');ga('send','pageview');</script>
-
 
 </html>

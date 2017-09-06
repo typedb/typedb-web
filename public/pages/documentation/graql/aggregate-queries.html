@@ -300,6 +300,13 @@
             
             
             
+            <li><a href="/pages/documentation/the-fundamentals/grakn-architecture.html">Grakn Architecture Overview</a></li>
+            
+            
+            
+            
+            
+            
             <li><a href="/pages/documentation/the-fundamentals/grakn-knowledge-model.html">Grakn Knowledge Model</a></li>
             
             
@@ -310,26 +317,26 @@
         
     
     <li>
-        <a href="#">Graql Schema</a>
+        <a href="#">Graql Ontology</a>
         <ul>
             
             
             
-            <li><a href="/pages/documentation/building-a-schema/basic-schema.html">Define a Basic Schema</a></li>
+            <li><a href="/pages/documentation/building-an-ontology/basic-ontology.html">Define a Basic Ontology</a></li>
             
             
             
             
             
             
-            <li><a href="/pages/documentation/building-a-schema/hierarchical-schema.html">Define a Hierarchical Schema</a></li>
+            <li><a href="/pages/documentation/building-an-ontology/hierarchical-ontology.html">Define a Hierarchical Ontology</a></li>
             
             
             
             
             
             
-            <li><a href="/pages/documentation/building-a-schema/rule-driven-schema.html">Define a Rule-Driven Schema</a></li>
+            <li><a href="/pages/documentation/building-an-ontology/rule-driven-ontology.html">Define a Rule-Driven Ontology</a></li>
             
             
             
@@ -365,6 +372,13 @@
             
             
             
+            <li><a href="/pages/documentation/graql/ask-queries.html">Ask Queries</a></li>
+            
+            
+            
+            
+            
+            
             <li><a href="/pages/documentation/graql/delete-queries.html">Delete Queries</a></li>
             
             
@@ -373,13 +387,6 @@
             
             
             <li><a href="/pages/documentation/graql/insert-queries.html">Insert Queries</a></li>
-            
-            
-            
-            
-            
-            
-            <li><a href="/pages/documentation/graql/define-queries.html">Define Queries</a></li>
             
             
             
@@ -522,7 +529,7 @@
             
             
             
-            <li><a href="/pages/documentation/developing-with-java/java-api.html">Java API</a></li>
+            <li><a href="/pages/documentation/developing-with-java/graph-api.html">Graph API</a></li>
             
             
             
@@ -702,7 +709,7 @@
             
             
             
-            <li><a href="/pages/documentation/examples/java-api-example.html">API for Java developers</a></li>
+            <li><a href="/pages/documentation/examples/graph-api-example.html">Graph API for Java developers</a></li>
             
             
             
@@ -788,7 +795,7 @@ $('#toc').on('click', 'a', function() {
 
     
 
-    <a target="_blank" href="https://github.com/graknlabs/grakn/tree/master/docs/pages/documentation/3-querying-with-graql/aggregate-queries.md" class="btn btn-default githubEditButton" role="button"><i class="fa fa-github fa-lg"></i> Edit me</a>
+    <a target="_blank" href="https://github.com/graknlabs/docs/blob/master/pages/documentation/3-querying-with-graql/aggregate-queries.md" class="btn btn-default githubEditButton" role="button"><i class="fa fa-github fa-lg"></i> Edit me</a>
 
     
 
@@ -802,31 +809,6 @@ $('#toc').on('click', 'a', function() {
 </div>
 
 <h2 id="aggregate-functions">Aggregate Functions</h2>
-
-<h3 id="ask">Ask</h3>
-
-<p>Whether the given <a href="match-queries.html">match query</a> has any results.</p>
-
-<ul id="profileTabs" class="nav nav-tabs">
-    <li class="active"><a href="#shell-ask" data-toggle="tab">Graql</a></li>
-    <li><a href="#java-ask" data-toggle="tab">Java</a></li>
-</ul>
-
-<div class="tab-content">
-<div role="tabpanel" class="tab-pane active" id="shell-ask">
-<pre>
-match divorce sub relationship; aggregate ask;
-match marriage sub relationship; aggregate ask;
-</pre>
-</div>
-<div role="tabpanel" class="tab-pane" id="java-ask">
-<pre>
-qb.match(label("divorce").sub("relationship")).aggregate(ask()).execute();
-qb.match(label("marriage").sub("relationship")).aggregate(ask()).execute();
-</pre>
-</div> <!-- tab-pane -->
-</div>
-<p><!-- tab-content --></p>
 
 <h3 id="count">Count</h3>
 
@@ -853,7 +835,7 @@ qb.match(var("x").isa("person")).aggregate(count());
 
 <h3 id="sum">Sum</h3>
 
-<p>Sum the given attribute variable.</p>
+<p>Sum the given resource variable.</p>
 
 <ul id="profileTabs" class="nav nav-tabs">
     <li class="active"><a href="#shell2" data-toggle="tab">Graql</a></li>
@@ -878,7 +860,7 @@ qb.match(
 
 <h3 id="max">Max</h3>
 
-<p>Find the maximum of the given attribute variable.</p>
+<p>Find the maximum of the given resource variable.</p>
 
 <ul id="profileTabs" class="nav nav-tabs">
     <li class="active"><a href="#shell3" data-toggle="tab">Graql</a></li>
@@ -903,7 +885,7 @@ qb.match(
 
 <h3 id="min">Min</h3>
 
-<p>Find the minimum of the given attribute variable.</p>
+<p>Find the minimum of the given resource variable.</p>
 
 <ul id="profileTabs" class="nav nav-tabs">
     <li class="active"><a href="#shell4" data-toggle="tab">Graql</a></li>
@@ -928,7 +910,7 @@ qb.match(
 
 <h3 id="mean">Mean</h3>
 
-<p>Find the mean (average) of the given attribute variable.</p>
+<p>Find the mean (average) of the given resource variable.</p>
 
 <ul id="profileTabs" class="nav nav-tabs">
     <li class="active"><a href="#shell5" data-toggle="tab">Graql</a></li>
@@ -953,7 +935,7 @@ qb.match(
 
 <h3 id="median">Median</h3>
 
-<p>Find the median of the given attribute variable.</p>
+<p>Find the median of the given resource variable.</p>
 
 <ul id="profileTabs" class="nav nav-tabs">
     <li class="active"><a href="#shell6" data-toggle="tab">Graql</a></li>
@@ -1036,7 +1018,7 @@ qb.match(
 
 <p>Aggregate queries are computationally light and run single-threaded on a single machine, but are more flexible than the equivalent <a href="./compute-queries.html">compute query</a>.</p>
 
-<p>For example, you can use an aggregate query to filter results by attribute. The following  aggregate query, allows you to match the number of people of a particular name:</p>
+<p>For example, you can use an aggregate query to filter results by resource. The following  aggregate query, allows you to match the number of people of a particular name:</p>
 
 <pre><code class="language-graql">match $x has identifier contains "Elizabeth"; aggregate count;
 </code></pre>
@@ -1046,7 +1028,7 @@ qb.match(
 <pre><code class="language-graql">compute count in person;
 </code></pre>
 
-<p>Can be used to calculate the number of people in the knowledge base very fast, but you can’t filter the results to determine the number of people with a certain name.</p>
+<p>Can be used to calculate the number of people in the graph very fast, but you can’t filter the results to determine the number of people with a certain name.</p>
 
 <h2 id="comments">Comments</h2>
 <p>Want to leave a comment? Visit <a href="https://github.com/graknlabs/docs/issues/42" target="_blank">the issues on Github for this page</a> (you’ll need a GitHub account). You are also welcome to contribute to our documentation directly via the “Edit me” button at the top of the page.</p>
@@ -1090,7 +1072,7 @@ qb.match(
         <br>
         <p>© 2017 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2017 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> Tuesday 6, 2016<br/> Site last generated: Sep 2, 2017 <br />
+        <span>Page last updated:</span> Tuesday 6, 2016<br/> Site last generated: Sep 6, 2017 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">
@@ -1137,12 +1119,5 @@ qb.match(
     </div>
 
 </body>
-
-<!-- the google_analytics_id gets auto inserted from the config file -->
-
-
-
-<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create','UA-72414051-1','auto');ga('require','displayfeatures');ga('send','pageview');</script>
-
 
 </html>

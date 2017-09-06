@@ -300,6 +300,13 @@
             
             
             
+            <li><a href="/pages/documentation/the-fundamentals/grakn-architecture.html">Grakn Architecture Overview</a></li>
+            
+            
+            
+            
+            
+            
             <li><a href="/pages/documentation/the-fundamentals/grakn-knowledge-model.html">Grakn Knowledge Model</a></li>
             
             
@@ -310,26 +317,26 @@
         
     
     <li>
-        <a href="#">Graql Schema</a>
+        <a href="#">Graql Ontology</a>
         <ul>
             
             
             
-            <li><a href="/pages/documentation/building-a-schema/basic-schema.html">Define a Basic Schema</a></li>
+            <li><a href="/pages/documentation/building-an-ontology/basic-ontology.html">Define a Basic Ontology</a></li>
             
             
             
             
             
             
-            <li><a href="/pages/documentation/building-a-schema/hierarchical-schema.html">Define a Hierarchical Schema</a></li>
+            <li><a href="/pages/documentation/building-an-ontology/hierarchical-ontology.html">Define a Hierarchical Ontology</a></li>
             
             
             
             
             
             
-            <li><a href="/pages/documentation/building-a-schema/rule-driven-schema.html">Define a Rule-Driven Schema</a></li>
+            <li><a href="/pages/documentation/building-an-ontology/rule-driven-ontology.html">Define a Rule-Driven Ontology</a></li>
             
             
             
@@ -365,6 +372,13 @@
             
             
             
+            <li><a href="/pages/documentation/graql/ask-queries.html">Ask Queries</a></li>
+            
+            
+            
+            
+            
+            
             <li><a href="/pages/documentation/graql/delete-queries.html">Delete Queries</a></li>
             
             
@@ -373,13 +387,6 @@
             
             
             <li><a href="/pages/documentation/graql/insert-queries.html">Insert Queries</a></li>
-            
-            
-            
-            
-            
-            
-            <li><a href="/pages/documentation/graql/define-queries.html">Define Queries</a></li>
             
             
             
@@ -522,7 +529,7 @@
             
             
             
-            <li><a href="/pages/documentation/developing-with-java/java-api.html">Java API</a></li>
+            <li><a href="/pages/documentation/developing-with-java/graph-api.html">Graph API</a></li>
             
             
             
@@ -702,7 +709,7 @@
             
             
             
-            <li><a href="/pages/documentation/examples/java-api-example.html">API for Java developers</a></li>
+            <li><a href="/pages/documentation/examples/graph-api-example.html">Graph API for Java developers</a></li>
             
             
             
@@ -788,7 +795,7 @@ $('#toc').on('click', 'a', function() {
 
     
 
-    <a target="_blank" href="https://github.com/graknlabs/grakn/tree/master/docs/pages/documentation/6-developing-with-java/development-overview.md" class="btn btn-default githubEditButton" role="button"><i class="fa fa-github fa-lg"></i> Edit me</a>
+    <a target="_blank" href="https://github.com/graknlabs/docs/blob/master/pages/documentation/6-developing-with-java/development-overview.md" class="btn btn-default githubEditButton" role="button"><i class="fa fa-github fa-lg"></i> Edit me</a>
 
     
 
@@ -806,31 +813,41 @@ All Grakn applications require the following Maven dependency:</p>
 <span class="nt">&lt;dependencies&gt;</span>
   <span class="nt">&lt;dependency&gt;</span>
     <span class="nt">&lt;groupId&gt;</span>ai.grakn<span class="nt">&lt;/groupId&gt;</span>
-    <span class="nt">&lt;artifactId&gt;</span>grakn-kb<span class="nt">&lt;/artifactId&gt;</span>
+    <span class="nt">&lt;artifactId&gt;</span>grakn-graph<span class="nt">&lt;/artifactId&gt;</span>
     <span class="nt">&lt;version&gt;</span>${grakn.version}<span class="nt">&lt;/version&gt;</span>
   <span class="nt">&lt;/dependency&gt;</span>
 <span class="nt">&lt;/dependencies&gt;</span>
 </code></pre>
 </div>
 
-<p>This dependency will give you access to the Core API as well as an in-memory knowledge base, which serves as a toy knowledge base, should you wish to use the stack without having to have an instance of the Grakn server running.</p>
+<p>This dependency will give you access to the Core API as well as an in-memory graph, which serves as a toy graph, should you wish to use the stack without having to have an instance of the Grakn server running.</p>
 
 <h2 id="server-dependent-setup">Server Dependent Setup</h2>
 
 <p>If you require persistence and would like to access the entirety of the Grakn stack, then it is vital to have an instance of engine running.<br />
 Please see the <a href="../get-started/setup-guide.html">Setup Guide</a> on more details on how to set up a Grakn server.</p>
 
-<p>Depending on the configuration of the Grakn server, your Java application will require one of the following dependencies. When your server is running against a Janus backend:</p>
+<p>Depending on the configuration of the Grakn server, your Java application will require one of the following dependencies. When your server is running against a Titan backend:</p>
 
 <div class="language-xml highlighter-rouge"><pre class="highlight"><code><span class="nt">&lt;dependency&gt;</span>
     <span class="nt">&lt;groupId&gt;</span>ai.grakn<span class="nt">&lt;/groupId&gt;</span>
-    <span class="nt">&lt;artifactId&gt;</span>janus-factory<span class="nt">&lt;/artifactId&gt;</span>
+    <span class="nt">&lt;artifactId&gt;</span>titan-factory<span class="nt">&lt;/artifactId&gt;</span>
     <span class="nt">&lt;version&gt;</span>${grakn.version}<span class="nt">&lt;/version&gt;</span>
 <span class="nt">&lt;/dependency&gt;</span>
 </code></pre>
 </div>
 
-<div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> <b>Note:</b> The distribution package comes with a Janus backend configured out of the box.</div>
+<p>When your server is running against a OrientDB backend:</p>
+
+<div class="language-xml highlighter-rouge"><pre class="highlight"><code><span class="nt">&lt;dependency&gt;</span>
+    <span class="nt">&lt;groupId&gt;</span>ai.grakn<span class="nt">&lt;/groupId&gt;</span>
+    <span class="nt">&lt;artifactId&gt;</span>orientdb-factory<span class="nt">&lt;/artifactId&gt;</span>
+    <span class="nt">&lt;version&gt;</span>${grakn.version}<span class="nt">&lt;/version&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+</code></pre>
+</div>
+
+<div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> <b>Note:</b> The distribution package comes with a Titan backend configured out of the box. OrientDB support is still in early stages of development. </div>
 
 <p>The JAR files you will need to develop with Grakn can be found inside the <code class="highlighter-rouge">lib</code> directory of the distribution zip file. All the JARs are provided with no dependencies, so using these requires you to use Maven to acquire dependencies.</p>
 
@@ -860,51 +877,51 @@ Please see the <a href="../get-started/setup-guide.html">Setup Guide</a> on more
   <li><a href="http://oopbook.com/java-classpath-2/classpath-in-netbeans/">Netbeans</a></li>
 </ul>
 
-<h2 id="initialising-a-transaction-on-the-knowledge-base">Initialising a Transaction on The knowledge base</h2>
+<h2 id="initialising-a-transaction-on-the-graph">Initialising a Transaction on The Graph</h2>
 
-<p>You can initialise an in memory knowledge base without having the Grakn server running with:</p>
+<p>You can initialise an in memory graph without having the Grakn server running with:</p>
 
 <!-- These are ignored in tests because they connect to non-existent servers -->
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">GraknTx</span> <span class="n">tx</span> <span class="o">=</span> <span class="n">Grakn</span><span class="o">.</span><span class="na">session</span><span class="o">(</span><span class="n">Grakn</span><span class="o">.</span><span class="na">IN_MEMORY</span><span class="o">,</span> <span class="s">"keyspace"</span><span class="o">).</span><span class="na">open</span><span class="o">(</span><span class="n">GraknTxType</span><span class="o">.</span><span class="na">WRITE</span><span class="o">);</span>
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">GraknGraph</span> <span class="n">graph</span> <span class="o">=</span> <span class="n">Grakn</span><span class="o">.</span><span class="na">session</span><span class="o">(</span><span class="n">Grakn</span><span class="o">.</span><span class="na">IN_MEMORY</span><span class="o">,</span> <span class="s">"keyspace"</span><span class="o">).</span><span class="na">open</span><span class="o">(</span><span class="n">GraknTxType</span><span class="o">.</span><span class="na">WRITE</span><span class="o">);</span>
 </code></pre>
 </div>
 
-<p>If you are running the Grakn server locally then you can initialise a knowledge base with:</p>
+<p>If you are running the Grakn server locally then you can initialise a graph with:</p>
 
-<pre><code class="language-java-test-ignore">tx = Grakn.session(Grakn.DEFAULT_URI, "keyspace").open(GraknTxType.WRITE);
+<pre><code class="language-java-test-ignore">graph = Grakn.session(Grakn.DEFAULT_URI, "keyspace").open(GraknTxType.WRITE);
 </code></pre>
 
-<p>If you are running the Grakn server remotely you must initialise the knowledge base by providing the IP address of your server:</p>
+<p>If you are running the Grakn server remotely you must initialise the graph by providing the IP address of your server:</p>
 
-<pre><code class="language-java-test-ignore">tx = Grakn.session("127.6.21.2", "keyspace").open(GraknTxType.WRITE);
+<pre><code class="language-java-test-ignore">graph = Grakn.session("127.6.21.2", "keyspace").open(GraknTxType.WRITE);
 </code></pre>
 
-<p>The string “keyspace” uniquely identifies the knowledge base and allows you to create different knowledge bases.</p>
+<p>The string “keyspace” uniquely identifies the graph and allows you to create different graphs.</p>
 
-<p>Please note that knowledge base keyspaces are <strong>not</strong> case sensitive so the following two knowledge bases are actually the same:</p>
+<p>Please note that graph keyspaces are <strong>not</strong> case sensitive so the following two graphs are actually the same graph:</p>
 
-<pre><code class="language-java-test-ignore">    GraknTx tx1 = Grakn.session("127.6.21.2", "keyspace").open(GraknTxType.WRITE);
-    GraknTx tx2 = Grakn.session("127.6.21.2", "KeYsPaCe").open(GraknTxType.WRITE);
+<pre><code class="language-java-test-ignore">    GraknGraph graph1 = Grakn.session("127.6.21.2", "keyspace").open(GraknTxType.WRITE);
+    GraknGraph graph2 = Grakn.session("127.6.21.2", "KeYsPaCe").open(GraknTxType.WRITE);
 </code></pre>
 
-<p>All knowledge bases are also singletons specific to their keyspaces so be aware that in the following case:</p>
+<p>All graphs are also singletons specific to their keyspaces so be aware that in the following case:</p>
 
-<pre><code class="language-java-test-ignore">   tx1 = Grakn.session("127.6.21.2", "keyspace").open(GraknTxType.WRITE);
-   tx2 = Grakn.session("127.6.21.2", "keyspace").open(GraknTxType.WRITE);
-   tx3 = Grakn.session("127.6.21.2", "keyspace").open(GraknTxType.WRITE);
+<pre><code class="language-java-test-ignore">   graph1 = Grakn.session("127.6.21.2", "keyspace").open(GraknTxType.WRITE);
+   graph2 = Grakn.session("127.6.21.2", "keyspace").open(GraknTxType.WRITE);
+   graph3 = Grakn.session("127.6.21.2", "keyspace").open(GraknTxType.WRITE);
 </code></pre>
 
-<p>any changes to <code class="highlighter-rouge">tx1</code>, <code class="highlighter-rouge">tx2</code>, or <code class="highlighter-rouge">tx3</code> will all be persisted to the same knowledge base.</p>
+<p>any changes to <code class="highlighter-rouge">graph1</code>, <code class="highlighter-rouge">graph2</code>, or <code class="highlighter-rouge">graph3</code> will all be persisted to the same graph.</p>
 
-<h2 id="controlling-the-behaviour-of-knowledge-base-transactions">Controlling The Behaviour of Knowledge Base Transactions</h2>
+<h2 id="controlling-the-behaviour-of-graph-transactions">Controlling The Behaviour of Graph Transactions</h2>
 
-<p>When initialising a transaction on a knowledge base it is possible to define the type of transaction with <code class="highlighter-rouge">GraknTxType</code>.    <br />
+<p>When initialising a transaction on a graph it is possible to define the type of transaction with <code class="highlighter-rouge">GraknTxType</code>.    <br />
 We currently support three types of transactions:</p>
 
 <ul>
-  <li><code class="highlighter-rouge">GraknTxType.WRITE</code> - A transaction that allows mutations to be performed on the knowledge base</li>
-  <li><code class="highlighter-rouge">GraknTxType.READ</code> - Prohibits any mutations to be performed to the knowledge base</li>
-  <li><code class="highlighter-rouge">GraknTxType.BATCH</code> - Allows faster mutations to be performed to the knowledge base at the cost of switching off some internal consistency checks. This option should only be used if you are certain that you are loading a clean dataset.</li>
+  <li><code class="highlighter-rouge">GraknTxType.WRITE</code> - A transaction that allows mutations to be performed on the graph</li>
+  <li><code class="highlighter-rouge">GraknTxType.READ</code> - Prohibits any mutations to be performed to the graph</li>
+  <li><code class="highlighter-rouge">GraknTxType.BATCH</code> - Allows faster mutations to be performed to the graph at the cost of switching off some internal consistency checks. This option should only be used if you are certain that you are loading a clean dataset.</li>
 </ul>
 
 <h2 id="where-next">Where Next?</h2>
@@ -912,7 +929,7 @@ We currently support three types of transactions:</p>
 <p>The pages in this section of the documentation cover some of the public APIs available to Java developers:</p>
 
 <ul>
-  <li><a href="./java-api.html">Java API</a></li>
+  <li><a href="./graph-api.html">Graph API</a></li>
   <li><a href="./java-graql.html">Java Graql</a></li>
   <li><a href="./migration-api.html">Migration API</a></li>
   <li><a href="./loader-api.html">Loader API</a></li>
@@ -920,7 +937,7 @@ We currently support three types of transactions:</p>
 
 <p>There is also a page (in progress) that discusses advanced topics in Java development, such as transactions and multi-threading.</p>
 
-<p>There is an example described in our <a href="https://blog.grakn.ai/working-with-grakn-ai-using-java-5f13f24f1269#.8df3991rw">blog</a> that discusses how to get set up to develop using Java, and how to work with the Java API.</p>
+<p>There is an example described in our <a href="https://blog.grakn.ai/working-with-grakn-ai-using-java-5f13f24f1269#.8df3991rw">blog</a> that discusses how to get set up to develop using Java, and how to work with the Graph API and Java Graql.</p>
 
 <h2 id="comments">Comments</h2>
 <p>Want to leave a comment? Visit <a href="https://github.com/graknlabs/docs/issues/23" target="_blank">the issues on Github for this page</a> (you’ll need a GitHub account). You are also welcome to contribute to our documentation directly via the “Edit me” button at the top of the page.</p>
@@ -964,7 +981,7 @@ We currently support three types of transactions:</p>
         <br>
         <p>© 2017 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2017 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> March 2017<br/> Site last generated: Sep 2, 2017 <br />
+        <span>Page last updated:</span> March 2017<br/> Site last generated: Sep 6, 2017 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">
@@ -1011,12 +1028,5 @@ We currently support three types of transactions:</p>
     </div>
 
 </body>
-
-<!-- the google_analytics_id gets auto inserted from the config file -->
-
-
-
-<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create','UA-72414051-1','auto');ga('require','displayfeatures');ga('send','pageview');</script>
-
 
 </html>

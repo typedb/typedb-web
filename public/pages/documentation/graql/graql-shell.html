@@ -300,6 +300,13 @@
             
             
             
+            <li><a href="/pages/documentation/the-fundamentals/grakn-architecture.html">Grakn Architecture Overview</a></li>
+            
+            
+            
+            
+            
+            
             <li><a href="/pages/documentation/the-fundamentals/grakn-knowledge-model.html">Grakn Knowledge Model</a></li>
             
             
@@ -310,26 +317,26 @@
         
     
     <li>
-        <a href="#">Graql Schema</a>
+        <a href="#">Graql Ontology</a>
         <ul>
             
             
             
-            <li><a href="/pages/documentation/building-a-schema/basic-schema.html">Define a Basic Schema</a></li>
+            <li><a href="/pages/documentation/building-an-ontology/basic-ontology.html">Define a Basic Ontology</a></li>
             
             
             
             
             
             
-            <li><a href="/pages/documentation/building-a-schema/hierarchical-schema.html">Define a Hierarchical Schema</a></li>
+            <li><a href="/pages/documentation/building-an-ontology/hierarchical-ontology.html">Define a Hierarchical Ontology</a></li>
             
             
             
             
             
             
-            <li><a href="/pages/documentation/building-a-schema/rule-driven-schema.html">Define a Rule-Driven Schema</a></li>
+            <li><a href="/pages/documentation/building-an-ontology/rule-driven-ontology.html">Define a Rule-Driven Ontology</a></li>
             
             
             
@@ -365,6 +372,13 @@
             
             
             
+            <li><a href="/pages/documentation/graql/ask-queries.html">Ask Queries</a></li>
+            
+            
+            
+            
+            
+            
             <li><a href="/pages/documentation/graql/delete-queries.html">Delete Queries</a></li>
             
             
@@ -373,13 +387,6 @@
             
             
             <li><a href="/pages/documentation/graql/insert-queries.html">Insert Queries</a></li>
-            
-            
-            
-            
-            
-            
-            <li><a href="/pages/documentation/graql/define-queries.html">Define Queries</a></li>
             
             
             
@@ -522,7 +529,7 @@
             
             
             
-            <li><a href="/pages/documentation/developing-with-java/java-api.html">Java API</a></li>
+            <li><a href="/pages/documentation/developing-with-java/graph-api.html">Graph API</a></li>
             
             
             
@@ -702,7 +709,7 @@
             
             
             
-            <li><a href="/pages/documentation/examples/java-api-example.html">API for Java developers</a></li>
+            <li><a href="/pages/documentation/examples/graph-api-example.html">Graph API for Java developers</a></li>
             
             
             
@@ -788,7 +795,7 @@ $('#toc').on('click', 'a', function() {
 
     
 
-    <a target="_blank" href="https://github.com/graknlabs/grakn/tree/master/docs/pages/documentation/3-querying-with-graql/graql-shell.md" class="btn btn-default githubEditButton" role="button"><i class="fa fa-github fa-lg"></i> Edit me</a>
+    <a target="_blank" href="https://github.com/graknlabs/docs/blob/master/pages/documentation/3-querying-with-graql/graql-shell.md" class="btn btn-default githubEditButton" role="button"><i class="fa fa-github fa-lg"></i> Edit me</a>
 
     
 
@@ -819,19 +826,19 @@ $('#toc').on('click', 'a', function() {
       <td><code class="highlighter-rouge">--batch &lt;arg&gt;</code></td>
       <td><code class="highlighter-rouge">-b</code></td>
       <td>A path to a file containg a query to batch load.</td>
-      <td>The REPL does not open. <br /> The resulting knowledge base is automatically committed.</td>
+      <td>The REPL does not open. <br /> The resulting graph is automatically committed.</td>
     </tr>
     <tr>
       <td><code class="highlighter-rouge">--execute &lt;arg&gt;</code></td>
       <td><code class="highlighter-rouge">-e</code></td>
       <td>A query to execute.</td>
-      <td>The REPL does not open. <br /> The resulting knowledge base is automatically committed.</td>
+      <td>The REPL does not open. <br /> The resulting graph is automatically committed.</td>
     </tr>
     <tr>
       <td><code class="highlighter-rouge">--file &lt;arg&gt;</code></td>
       <td><code class="highlighter-rouge">-f</code></td>
       <td>A path to a file containg a query to execute.</td>
-      <td>The REPL does not open. <br /> The resulting knowledge base is automatically committed.</td>
+      <td>The REPL does not open. <br /> The resulting graph is automatically committed.</td>
     </tr>
     <tr>
       <td><code class="highlighter-rouge">--help</code></td>
@@ -842,7 +849,7 @@ $('#toc').on('click', 'a', function() {
     <tr>
       <td><code class="highlighter-rouge">--keyspace &lt;arg&gt;</code></td>
       <td><code class="highlighter-rouge">-k</code></td>
-      <td>The keyspace of the knowledge base.</td>
+      <td>The keyspace of the graph.</td>
       <td> </td>
     </tr>
     <tr>
@@ -892,19 +899,54 @@ $('#toc').on('click', 'a', function() {
 
 <div class="alert alert-success" role="alert"><i class="fa fa-check-square-o"></i> <b>Tip:</b> You can see this list in the terminal by typing <code class="highlighter-rouge">graql.sh -h</code></div>
 
-<p>For example, to load some data from a file into a knowledge base:</p>
+<p>For example, to load some data from a file into a graph:</p>
 
 <div class="language-bash highlighter-rouge"><pre class="highlight"><code>bin/graql.sh -f ./examples/mammal-dataset.gql
 </code></pre>
 </div>
 
-<p>To load data into a different knowledge base, or keyspace, you can specify the name:</p>
+<p>To load data into a different graph, or keyspace, you can specify the graph name:</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>./graql.sh -k &lt;knowledge-base-name&gt; -f ./examples/reptile-dataset.gql
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>./graql.sh -k &lt;graphname&gt; -f ./examples/reptile-dataset.gql
 </code></pre>
 </div>
 
-<p>The interactive shell commits to the knowledge base only when the user types <code class="highlighter-rouge">commit</code>.</p>
+<h2 id="queries">Queries</h2>
+
+<p>The following queries are supported by the shell. Examples and additional details can be found on the corresponding documentation pages.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Query</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><a href="./match-queries.html"><code class="highlighter-rouge">match</code></a></td>
+      <td>Match a pattern in the graph. Defaults to return the first 100 results.</td>
+    </tr>
+    <tr>
+      <td><a href="./ask-queries.html"><code class="highlighter-rouge">ask</code></a></td>
+      <td>Query for a specific pattern in the graph. Returns <code class="highlighter-rouge">true</code> or <code class="highlighter-rouge">false</code>.</td>
+    </tr>
+    <tr>
+      <td><a href="./insert-queries.html"><code class="highlighter-rouge">insert</code></a></td>
+      <td>Inserts the specified concept into the graph.</td>
+    </tr>
+    <tr>
+      <td><a href="./delete-queries.html"><code class="highlighter-rouge">delete</code></a></td>
+      <td>Deletes from the graph with no output.</td>
+    </tr>
+    <tr>
+      <td><a href="./compute-queries.html"><code class="highlighter-rouge">compute</code></a></td>
+      <td>Computes analytics about the graph. Returns either a value or a map from concept to value.</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>The interactive shell commits to the graph only when the user types <code class="highlighter-rouge">commit</code>.</p>
 
 <h2 id="special-commands">Special Commands</h2>
 
@@ -924,7 +966,7 @@ $('#toc').on('click', 'a', function() {
     </tr>
     <tr>
       <td><code class="highlighter-rouge">commit</code></td>
-      <td>Commits and validates the knowledge base. If validation fails, the transaction will not commit.</td>
+      <td>Commits and validates the graph. If validation fails, the graph will not commit.</td>
     </tr>
     <tr>
       <td><code class="highlighter-rouge">edit</code></td>
@@ -997,7 +1039,7 @@ $('#toc').on('click', 'a', function() {
         <br>
         <p>© 2017 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2017 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> January 2017<br/> Site last generated: Sep 2, 2017 <br />
+        <span>Page last updated:</span> January 2017<br/> Site last generated: Sep 6, 2017 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">
@@ -1044,12 +1086,5 @@ $('#toc').on('click', 'a', function() {
     </div>
 
 </body>
-
-<!-- the google_analytics_id gets auto inserted from the config file -->
-
-
-
-<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create','UA-72414051-1','auto');ga('require','displayfeatures');ga('send','pageview');</script>
-
 
 </html>

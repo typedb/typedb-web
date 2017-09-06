@@ -300,6 +300,13 @@
             
             
             
+            <li><a href="/pages/documentation/the-fundamentals/grakn-architecture.html">Grakn Architecture Overview</a></li>
+            
+            
+            
+            
+            
+            
             <li><a href="/pages/documentation/the-fundamentals/grakn-knowledge-model.html">Grakn Knowledge Model</a></li>
             
             
@@ -310,26 +317,26 @@
         
     
     <li>
-        <a href="#">Graql Schema</a>
+        <a href="#">Graql Ontology</a>
         <ul>
             
             
             
-            <li><a href="/pages/documentation/building-a-schema/basic-schema.html">Define a Basic Schema</a></li>
+            <li><a href="/pages/documentation/building-an-ontology/basic-ontology.html">Define a Basic Ontology</a></li>
             
             
             
             
             
             
-            <li><a href="/pages/documentation/building-a-schema/hierarchical-schema.html">Define a Hierarchical Schema</a></li>
+            <li><a href="/pages/documentation/building-an-ontology/hierarchical-ontology.html">Define a Hierarchical Ontology</a></li>
             
             
             
             
             
             
-            <li><a href="/pages/documentation/building-a-schema/rule-driven-schema.html">Define a Rule-Driven Schema</a></li>
+            <li><a href="/pages/documentation/building-an-ontology/rule-driven-ontology.html">Define a Rule-Driven Ontology</a></li>
             
             
             
@@ -365,6 +372,13 @@
             
             
             
+            <li><a href="/pages/documentation/graql/ask-queries.html">Ask Queries</a></li>
+            
+            
+            
+            
+            
+            
             <li><a href="/pages/documentation/graql/delete-queries.html">Delete Queries</a></li>
             
             
@@ -373,13 +387,6 @@
             
             
             <li><a href="/pages/documentation/graql/insert-queries.html">Insert Queries</a></li>
-            
-            
-            
-            
-            
-            
-            <li><a href="/pages/documentation/graql/define-queries.html">Define Queries</a></li>
             
             
             
@@ -522,7 +529,7 @@
             
             
             
-            <li><a href="/pages/documentation/developing-with-java/java-api.html">Java API</a></li>
+            <li><a href="/pages/documentation/developing-with-java/graph-api.html">Graph API</a></li>
             
             
             
@@ -702,7 +709,7 @@
             
             
             
-            <li><a href="/pages/documentation/examples/java-api-example.html">API for Java developers</a></li>
+            <li><a href="/pages/documentation/examples/graph-api-example.html">Graph API for Java developers</a></li>
             
             
             
@@ -788,7 +795,7 @@ $('#toc').on('click', 'a', function() {
 
     
 
-    <a target="_blank" href="https://github.com/graknlabs/grakn/tree/master/docs/pages/documentation/10-resources/faq.md" class="btn btn-default githubEditButton" role="button"><i class="fa fa-github fa-lg"></i> Edit me</a>
+    <a target="_blank" href="https://github.com/graknlabs/docs/blob/master/pages/documentation/10-resources/faq.md" class="btn btn-default githubEditButton" role="button"><i class="fa fa-github fa-lg"></i> Edit me</a>
 
     
 
@@ -798,11 +805,11 @@ $('#toc').on('click', 'a', function() {
 
 <h2 id="about-graknai">About GRAKN.AI</h2>
 
-<h3 id="why-did-you-develop-a-new-query-language">Why did you develop a new query language?</h3>
+<h3 id="why-did-you-develop-a-new-ontology-and-query-language">Why did you develop a new ontology and query language?</h3>
 
-<p>We are often asked why we have developed a new schema and query language rather than use existing standards like <a href="https://en.wikipedia.org/wiki/Resource_Description_Framework">RDF</a>, <a href="https://en.wikipedia.org/wiki/Web_Ontology_Language">OWL</a> and <a href="https://en.wikipedia.org/wiki/SPARQL">SPARQL</a>.</p>
+<p>We are often asked why we have developed a new ontology and query language rather than use existing standards like <a href="https://en.wikipedia.org/wiki/Resource_Description_Framework">RDF</a>, <a href="https://en.wikipedia.org/wiki/Web_Ontology_Language">OWL</a> and <a href="https://en.wikipedia.org/wiki/SPARQL">SPARQL</a>.</p>
 
-<p>We have written a <a href="https://blog.grakn.ai/knowledge-graph-representation-grakn-ai-or-owl-506065bd3f24#.5zjvkta9u">substantial explanation</a> to this question on our blog. In summary, our underlying data model is that of a property graph, so in principle we’re able to import and export from/to RDF if needed. However, our language is designed to strike a different and better balance between expressiveness and complexity than offered by the existing OWL profiles, especially in the context of knowledge graph structures. In consequence, our query language, Graql, is aligned with our schema formalism to enable higher level query capabilities than supported by SPARQL over an RDF data model.</p>
+<p>We have written a <a href="https://blog.grakn.ai/knowledge-graph-representation-grakn-ai-or-owl-506065bd3f24#.5zjvkta9u">substantial explanation</a> to this question on our blog. In summary, our underlying data model is that of a property graph, so in principle we’re able to import and export from/to RDF if needed. However, our ontology language is designed to strike a different and better balance between expressiveness and complexity than offered by the existing OWL profiles, especially in the context of knowledge graph structures. In consequence, our query language, Graql, is aligned with our ontology formalism to enable higher level query capabilities than supported by SPARQL over an RDF data model.</p>
 
 <p>OWL is not well-suited for graph-structures. Because of its formal foundations and computational limitations it is in fact a more natural language for managing tree-shaped data instead. OWL also makes it hard to help validate consistency of data and ensure it is well-structured, and this is what knowledge graph applications require.</p>
 
@@ -833,9 +840,9 @@ $('#toc').on('click', 'a', function() {
 <h3 id="why-am-i-getting-ghost-vertices">Why am I getting ghost vertices?</h3>
 
 <p>In a  transaction based environment it is possible to have one transaction removing a concept while another concurrently modifies the same concept. Both
-transactions may successfully commit if the backend is eventually consistent, e.g. <a href="http://docs.janusgraph.org/latest/common-questions.html">Janus Cassandra</a>.</p>
+transactions may successfully commit if the backend is eventually consistent, e.g. [Titan Cassandra](http://s3.thinkaurelius.com/docs/titan/1.0.0/common-questions.html.</p>
 
-<p>The concept is likely to still exist with only the modified properties. When using the Janus Cassandra backend it is possible to safeguard against
+<p>The concept is likely to still exist with only the modified properties. When using the Titan Cassandra backend it is possible to safeguard against
 this by setting the <code class="highlighter-rouge">checkInternalVertexExistence</code> property to true. However, this will result in slower transaction as more reads will be necessary.</p>
 
 <h2 id="working-with--grakn">Working with  Grakn</h2>
@@ -876,18 +883,18 @@ SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further detail
 </code></pre>
 </div>
 
-<h3 id="i-want-to-load-a-large-amount-of-data-into-a-knowledge-base---how-do-i-do-it">I want to load a large amount of data into a knowledge base - how do I do it?</h3>
+<h3 id="i-want-to-load-a-large-amount-of-data-into-a-graph---how-do-i-do-it">I want to load a large amount of data into a graph - how do I do it?</h3>
 <p>Graql is single-threaded and doesn’t support batch-loading. You may want to use the Java <a href="../developing-with-java/loader-api.html">loader client</a>, which provides multi-threaded batch loading, or the <code class="highlighter-rouge">-b</code> flag if you are using the <a href="../graql/graql-shell.html">Graql shell</a>.</p>
 
-<h3 id="what-are-the-differences-between-a-batch-load-and-a-normal-load">What are the differences between a batch load and a normal load?</h3>
+<h3 id="what-are-the-differences-between-a-batch-graph-load-and-a-normal-graph-load">What are the differences between a batch graph load and a normal graph load?</h3>
 
 <p>The batch load is faster for larger datasets because it ignores some consistency checks, on the assumption that you have pre-filtered your data. Checks ignored include:</p>
 
 <ul>
   <li>When looking up concepts any duplicates which are found are ignored and a random one is returned.</li>
-  <li>When creating a relationship it is possible for an entity to be doubly associated with a role. This is later cleaned up by engine.</li>
+  <li>When creating a relation it is possible for an entity to be doubly associated with a role. This is later cleaned up by engine.</li>
   <li>Concepts with duplicate ids can be inserted.</li>
-  <li>Duplicate relationships can also be inserted.</li>
+  <li>Duplicate relations can also be inserted.</li>
 </ul>
 
 <p>Ignoring these checks allows data to be processed much faster at the risk of breaking consistency.</p>
@@ -898,7 +905,7 @@ SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further detail
 
 <p><strong>Role Player Optimisation</strong></p>
 
-<p>When allocating entities as role players to multiple relationships for the first time it is possible to create duplicate associations. These associations do not affect the results of any queries or computations. For example, if in a new system we process simultaneously the following three statements in different transactions:</p>
+<p>When allocating entities as role players to multiple relations for the first time it is possible to create duplicate associations. These associations do not affect the results of any queries or computations. For example, if in a new system we process simultaneously the following three statements in different transactions:</p>
 
 <pre><code class="language-graql-test-ignore">1. insert $x has name 'Brad Pitt' isa person; $y has name 'Fury'; (actor: $x, movie: $y) isa acted-in;
 2. insert $x has name 'Brad Pitt' isa person; $y has name 'Troy'; (actor: $x, movie: $y) isa acted-in;
@@ -909,9 +916,9 @@ SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further detail
 
 <p><strong>Merging Resources</strong></p>
 
-<div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> <b>Note:</b> This only happens when batch loading.</div>
+<div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> <b>Note:</b> This only happens when using a batch graph.</div>
 
-<p>When using a batch load, many safety checks are skipped in favour of speed. One such check is the possible existence of an attribute before creating it. So if the following transactions are executed simultaneously while batch loading:</p>
+<p>When using a batch graph, many safety checks are skipped in favour of speed. One such check is the possible existence of a resource before creating it. So if the following transactions are executed simultaneously while batch loading:</p>
 
 <pre><code class="language-graql-test-ignore">1. insert $a has unique-id '1'
 2. insert $b has unique-id '1'
@@ -922,7 +929,7 @@ SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further detail
 
 <h3 id="can-i-run-grakn-on-an-existing-cassandra-platform">Can I run Grakn on an existing Cassandra Platform?</h3>
 
-<p>By default, Grakn is shipped with <a href="http://janusgraph.org/">Janus Graph</a>, which in turn relies on Cassandra. When you call <code class="highlighter-rouge">grakn.sh start</code>, this starts a Cassandra instance and then starts the Grakn server.  You are not bound to use our instance of Cassandra, and can make adjustments to the settings in the <code class="highlighter-rouge">.properties</code> file in the <code class="highlighter-rouge">conf/main</code> directory of the Grakn, e.g. to make Janus use your Cassandra instance.</p>
+<p>By default, Grakn is shipped with TitanDB, which in turn relies on Cassandra. When you call <code class="highlighter-rouge">grakn.sh start</code>, this starts a Cassandra instance and then starts the Grakn server.  You are not bound to use our instance of Cassandra, and can make adjustments to the settings in the <code class="highlighter-rouge">.properties</code> file in the <code class="highlighter-rouge">conf/main</code> directory of the Grakn, e.g. to make Titan use your Cassandra instance.</p>
 
 <p>Specifically you should change the following parameters:</p>
 
@@ -937,29 +944,29 @@ storage.hostname<span class="o">=</span>127.0.0.1
 </code></pre>
 </div>
 
-<p>Please refer to the <a href="http://docs.janusgraph.org/latest/config-ref.html#_storage">Janus documentation</a> for more information.</p>
+<p>Please refer to the <a href="http://s3.thinkaurelius.com/docs/titan/1.0.0/titan-config-ref.html#_storage">Titan documentation</a> for more information.</p>
 
 <h3 id="do-applications-written-on-top-of-grakn-have-to-be-in-java">Do applications written on top of Grakn have to be in Java?</h3>
 
 <p>Currently, there is no official support for languages other than Java, although you can find blog posts that describe our experiments with <a href="https://blog.grakn.ai/grakn-ai-and-haskell-c166c7cc1d23">Haskell</a>, <a href="https://blog.grakn.ai/grakn-pandas-celebrities-5854ad688a4f">Python</a> and <a href="https://blog.grakn.ai/there-r-pandas-in-my-graph-b8b5f40a2f99">R</a>. We would be very willing to accept proposals from our community and work with contributors to extend these initial offerings, and/or create bindings to other languages.</p>
 
-<h3 id="how-do-i-visualise-a-knowledge-base">How do I visualise a knowledge base?</h3>
+<h3 id="how-do-i-visualise-a-graph">How do I visualise a graph?</h3>
 
-<p>Grakn comes with a basic <a href="../grakn-dashboard/visualiser.html">visualiser</a>, with a web-interface. We appreciate any feedback you give us about it via the <a href="https://discuss.grakn.ai/t/visualise-my-data/57">discussion boards</a>. You will need to start Grakn, and then use your web browser to visit <a href="http://localhost:4567/">localhost:4567</a> to visualise a knowledge base.  Please see the <a href="../get-started/setup-guide.html#test-the-visualiser">Get Started Guide</a> for more information about the visualiser.</p>
+<p>Grakn comes with a basic <a href="../grakn-dashboard/visualiser.html">visualiser</a>, with a web-interface. We appreciate any feedback you give us about it via the <a href="https://discuss.grakn.ai/t/visualise-my-data/57">discussion boards</a>. You will need to start Grakn, and then use your web browser to visit <a href="http://localhost:4567/">localhost:4567</a> to visualise a graph.  Please see the <a href="../get-started/setup-guide.html#test-the-visualiser">Get Started Guide</a> for more information about the visualiser.</p>
 
-<h3 id="how-do-i-clear-a-knowledge-base">How do I clear a knowledge base?</h3>
+<h3 id="how-do-i-clear-a-graph">How do I clear a graph?</h3>
 
-<p>I want to clear the knowledge base I’ve been experimenting with and try something with a new, different schema and dataset. How do I do it?</p>
+<p>I want to clear the graph I’ve been experimenting with and try something with a new, different schema and dataset. How do I do it?</p>
 
 <p>If you are using the Java API, it’s a simple as:</p>
 
-<pre><code class="language-java-test-ignore">tx = Grakn.session(Grakn.DEFAULT_URI, "my-knowledge-base").open(GraknTxType.WRITE);
-tx.clear();
+<pre><code class="language-java-test-ignore">graph = Grakn.session(Grakn.DEFAULT_URI, "my-graph").open(GraknTxType.WRITE);
+graph.clear();
 </code></pre>
 
-<p>If you are using the Graql shell and have not committed what you have in the knowledge base, you can just quit the shell and restart it, and all is clean.</p>
+<p>If you are using the Graql shell and have not committed what you have in the graph, you can just quit the shell and restart it, and all is clean.</p>
 
-<p>If you’ve committed, then you must stop Grakn and specifically clean the knowledge base:</p>
+<p>If you’ve committed, then you must stop Grakn and specifically clean the graph:</p>
 
 <div class="language-bash highlighter-rouge"><pre class="highlight"><code>./bin/grakn.sh stop
 ./bin/grakn.sh clean
@@ -1017,7 +1024,7 @@ tx.clear();
         <br>
         <p>© 2017 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2017 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> September 22, 2016<br/> Site last generated: Sep 2, 2017 <br />
+        <span>Page last updated:</span> September 22, 2016<br/> Site last generated: Sep 6, 2017 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">
@@ -1064,12 +1071,5 @@ tx.clear();
     </div>
 
 </body>
-
-<!-- the google_analytics_id gets auto inserted from the config file -->
-
-
-
-<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create','UA-72414051-1','auto');ga('require','displayfeatures');ga('send','pageview');</script>
-
 
 </html>

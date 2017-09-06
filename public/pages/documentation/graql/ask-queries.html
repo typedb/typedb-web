@@ -3,9 +3,9 @@
     <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Graql Define Queries">
-<meta name="keywords" content="graql,  graql, query, define, GRAKN.AI, Grakn Labs, grakn, graql, grakn.ai, Mindmaps Research, Mindmaps Research Ltd, MindmapsDB, mindmaps, mindmaps graph, mindmaps.io, knowledge graph, distributed knowledge graph, development platform, developer tool, data platform, programming langauge, query langauge, database, semantic database, distributed semantic database, distributed database, graph database, semantic search, data exploration, recommendation system, knowledge management, knowledge engineering, real-time analytics, advanced analytics, reasoning engine, inference engine, expert systems, semantic applications, research engines, data management, business intelligence, big data, semantic web, semantic data, knowledge representation, automated reasoning, semantic network, knowledge ontology, semantic graph, ontology engineering, graph based knowledge representation, artificial intelligence,">
-<title>GRAKN.AI - Define Queries</title>
+<meta name="description" content="Graql Ask Queries">
+<meta name="keywords" content="graql,  graql, query, ask, GRAKN.AI, Grakn Labs, grakn, graql, grakn.ai, Mindmaps Research, Mindmaps Research Ltd, MindmapsDB, mindmaps, mindmaps graph, mindmaps.io, knowledge graph, distributed knowledge graph, development platform, developer tool, data platform, programming langauge, query langauge, database, semantic database, distributed semantic database, distributed database, graph database, semantic search, data exploration, recommendation system, knowledge management, knowledge engineering, real-time analytics, advanced analytics, reasoning engine, inference engine, expert systems, semantic applications, research engines, data management, business intelligence, big data, semantic web, semantic data, knowledge representation, automated reasoning, semantic network, knowledge ontology, semantic graph, ontology engineering, graph based knowledge representation, artificial intelligence,">
+<title>GRAKN.AI - Ask Queries</title>
 <link rel="stylesheet" href="/pages/css/syntax.css">
 
 
@@ -228,7 +228,7 @@
                             
                             dataSource: '/pages/search.json',
                             
-                            searchResultTemplate: '<li><a href="{url}" title="Define Queries">{title}</a></li>',
+                            searchResultTemplate: '<li><a href="{url}" title="Ask Queries">{title}</a></li>',
                             noResultsText: '<li><a class="empty">No results found</a></li>',
                             limit: 10,
                             fuzzy: true
@@ -300,6 +300,13 @@
             
             
             
+            <li><a href="/pages/documentation/the-fundamentals/grakn-architecture.html">Grakn Architecture Overview</a></li>
+            
+            
+            
+            
+            
+            
             <li><a href="/pages/documentation/the-fundamentals/grakn-knowledge-model.html">Grakn Knowledge Model</a></li>
             
             
@@ -310,26 +317,26 @@
         
     
     <li>
-        <a href="#">Graql Schema</a>
+        <a href="#">Graql Ontology</a>
         <ul>
             
             
             
-            <li><a href="/pages/documentation/building-a-schema/basic-schema.html">Define a Basic Schema</a></li>
+            <li><a href="/pages/documentation/building-an-ontology/basic-ontology.html">Define a Basic Ontology</a></li>
             
             
             
             
             
             
-            <li><a href="/pages/documentation/building-a-schema/hierarchical-schema.html">Define a Hierarchical Schema</a></li>
+            <li><a href="/pages/documentation/building-an-ontology/hierarchical-ontology.html">Define a Hierarchical Ontology</a></li>
             
             
             
             
             
             
-            <li><a href="/pages/documentation/building-a-schema/rule-driven-schema.html">Define a Rule-Driven Schema</a></li>
+            <li><a href="/pages/documentation/building-an-ontology/rule-driven-ontology.html">Define a Rule-Driven Ontology</a></li>
             
             
             
@@ -365,6 +372,13 @@
             
             
             
+            <li class="active"><a href="/pages/documentation/graql/ask-queries.html">Ask Queries</a></li>
+            
+            
+            
+            
+            
+            
             <li><a href="/pages/documentation/graql/delete-queries.html">Delete Queries</a></li>
             
             
@@ -373,13 +387,6 @@
             
             
             <li><a href="/pages/documentation/graql/insert-queries.html">Insert Queries</a></li>
-            
-            
-            
-            
-            
-            
-            <li class="active"><a href="/pages/documentation/graql/define-queries.html">Define Queries</a></li>
             
             
             
@@ -522,7 +529,7 @@
             
             
             
-            <li><a href="/pages/documentation/developing-with-java/java-api.html">Java API</a></li>
+            <li><a href="/pages/documentation/developing-with-java/graph-api.html">Graph API</a></li>
             
             
             
@@ -702,7 +709,7 @@
             
             
             
-            <li><a href="/pages/documentation/examples/java-api-example.html">API for Java developers</a></li>
+            <li><a href="/pages/documentation/examples/graph-api-example.html">Graph API for Java developers</a></li>
             
             
             
@@ -748,7 +755,7 @@
         <!-- Content Column -->
         <div class="col-md-9">
             <div class="post-header">
-   <h1 class="post-title-main">Define Queries</h1>
+   <h1 class="post-title-main">Ask Queries</h1>
 </div>
 
 
@@ -756,7 +763,7 @@
 <div class="post-content">
 
    
-    <div class="summary">Graql Define Queries</div>
+    <div class="summary">Graql Ask Queries</div>
    
 
     
@@ -788,143 +795,30 @@ $('#toc').on('click', 'a', function() {
 
     
 
-    <a target="_blank" href="https://github.com/graknlabs/grakn/tree/master/docs/pages/documentation/3-querying-with-graql/define-queries.md" class="btn btn-default githubEditButton" role="button"><i class="fa fa-github fa-lg"></i> Edit me</a>
+    <a target="_blank" href="https://github.com/graknlabs/docs/blob/master/pages/documentation/3-querying-with-graql/ask-queries.md" class="btn btn-default githubEditButton" role="button"><i class="fa fa-github fa-lg"></i> Edit me</a>
 
     
 
     
 
-  <p>The page documents use of the Graql <code class="highlighter-rouge">define</code> query, which will define a specified <a href="#variable-patterns">variable pattern</a>
-describing a schema. To follow along, or experiment further, with the examples given below, please
-load the <em>basic-genealogy.gql</em> file, which can be found in the <em>examples</em> directory of the Grakn installation zip, or on
-<a href="https://github.com/graknlabs/grakn/blob/master/grakn-dist/src/examples/basic-genealogy.gql">Github</a>.</p>
-
-<div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> <b>Note:</b> If you are working in the Graql shell, don’t forget to <code class="highlighter-rouge">commit</code>.</div>
-
-<h2 id="properties">Properties</h2>
-
-<h3 id="id">id</h3>
-
-<p>It is not possible to define a concept with the given id, as this is the job of the system. However, if you attempt to
-define by id, you will retrieve a concept if one with that id already exists. The created or retrieved concept can then
-be modified with further properties.</p>
+  <p>An ask query will return whether the given <a href="match-queries.html">match query</a> has any results. To follow along, or experiment further, with the examples given below, please load the <em>basic-genealogy.gql</em> file, which can be found in the <em>examples</em> directory of the Grakn installation zip, or on <a href="https://github.com/graknlabs/grakn/blob/master/grakn-dist/src/examples/basic-genealogy.gql">Github</a>.</p>
 
 <ul id="profileTabs" class="nav nav-tabs">
-    <li class="active"><a href="#shell3" data-toggle="tab">Graql</a></li>
-    <li><a href="#java3" data-toggle="tab">Java</a></li>
+    <li class="active"><a href="#shell1" data-toggle="tab">Graql</a></li>
+    <li><a href="#java1" data-toggle="tab">Java</a></li>
 </ul>
 
 <div class="tab-content">
-<div role="tabpanel" class="tab-pane active" id="shell3">
+<div role="tabpanel" class="tab-pane active" id="shell1">
 <pre>
-<!--test-ignore-->
-define id "1376496" plays parent;
+match divorce sub relation; ask;
+match marriage sub relation; ask;
 </pre>
 </div>
-<div role="tabpanel" class="tab-pane" id="java3">
+<div role="tabpanel" class="tab-pane" id="java1">
 <pre>
-<!--test-ignore-->
-qb.define(var().id(ConceptId.of("1376496")).plays("parent")).execute();
-</pre>
-</div> <!-- tab-pane -->
-</div>
-<p><!-- tab-content --></p>
-
-<h3 id="sub">sub</h3>
-
-<p>Set up a hierarchy.</p>
-
-<ul id="profileTabs" class="nav nav-tabs">
-    <li class="active"><a href="#shell8" data-toggle="tab">Graql</a></li>
-    <li><a href="#java8" data-toggle="tab">Java</a></li>
-</ul>
-
-<div class="tab-content">
-<div role="tabpanel" class="tab-pane active" id="shell8">
-<pre>
-define man sub person;
-define woman sub person;
-</pre>
-</div>
-<div role="tabpanel" class="tab-pane" id="java8">
-<pre>
-qb.define(label("man").sub("person")).execute();
-qb.define(label("woman").sub("person")).execute();
-</pre>
-</div> <!-- tab-pane -->
-</div>
-<p><!-- tab-content --></p>
-
-<h3 id="relates">relates</h3>
-<p>Add a role to a relationship.</p>
-
-<ul id="profileTabs" class="nav nav-tabs">
-    <li class="active"><a href="#shell9" data-toggle="tab">Graql</a></li>
-    <li><a href="#java9" data-toggle="tab">Java</a></li>
-</ul>
-
-<div class="tab-content">
-<div role="tabpanel" class="tab-pane active" id="shell9">
-<pre>
-define siblings sub relationship, relates sibling1, relates sibling2;
-</pre>
-</div>
-<div role="tabpanel" class="tab-pane" id="java9">
-<pre>
-qb.define(
-  label("siblings").sub("relationship")
-    .relates("sibling1").relates("sibling2")
-).execute();
-</pre>
-</div> <!-- tab-pane -->
-</div>
-<p><!-- tab-content --></p>
-
-<h3 id="plays">plays</h3>
-<p>Allow the concept type to play the given role.</p>
-
-<ul id="profileTabs" class="nav nav-tabs">
-    <li class="active"><a href="#shell10" data-toggle="tab">Graql</a></li>
-    <li><a href="#java10" data-toggle="tab">Java</a></li>
-</ul>
-
-<div class="tab-content">
-<div role="tabpanel" class="tab-pane active" id="shell10">
-<pre>
-define person plays sibling1;
-define person plays sibling2;
-</pre>
-</div>
-<div role="tabpanel" class="tab-pane" id="java10">
-<pre>
-qb.define(label("person").plays("sibling1")).execute();
-qb.define(label("person").plays("sibling2")).execute();
-</pre>
-</div> <!-- tab-pane -->
-</div>
-<p><!-- tab-content --></p>
-
-<h3 id="has">has</h3>
-
-<p>Allow the concept type to have the given attribute.</p>
-
-<p>This is done by creating a specific relationship relating the concept and attribute.</p>
-
-<ul id="profileTabs" class="nav nav-tabs">
-    <li class="active"><a href="#shell11" data-toggle="tab">Graql</a></li>
-    <li><a href="#java11" data-toggle="tab">Java</a></li>
-</ul>
-
-<div class="tab-content">
-<div role="tabpanel" class="tab-pane active" id="shell11">
-<pre>
-define person has nickname;
-</pre>
-</div>
-
-<div role="tabpanel" class="tab-pane" id="java11">
-<pre>
-qb.define(label("person").has("nickname")).execute();
+qb.match(label("divorce").sub("relation")).ask().execute();
+qb.match(label("marriage").sub("relation")).ask().execute();
 </pre>
 </div> <!-- tab-pane -->
 </div>
@@ -933,7 +827,6 @@ qb.define(label("person").has("nickname")).execute();
 <h2 id="comments">Comments</h2>
 <p>Want to leave a comment? Visit <a href="https://github.com/graknlabs/docs/issues/42" target="_blank">the issues on Github for this page</a> (you’ll need a GitHub account). You are also welcome to contribute to our documentation directly via the “Edit me” button at the top of the page.</p>
 
-<p>has</p>
 
 
     <div class="tags">
@@ -973,7 +866,7 @@ qb.define(label("person").has("nickname")).execute();
         <br>
         <p>© 2017 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2017 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> August 10, 2016<br/> Site last generated: Sep 2, 2017 <br />
+        <span>Page last updated:</span> August 10, 2016<br/> Site last generated: Sep 6, 2017 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">
@@ -1020,12 +913,5 @@ qb.define(label("person").has("nickname")).execute();
     </div>
 
 </body>
-
-<!-- the google_analytics_id gets auto inserted from the config file -->
-
-
-
-<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create','UA-72414051-1','auto');ga('require','displayfeatures');ga('send','pageview');</script>
-
 
 </html>

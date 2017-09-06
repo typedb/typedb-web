@@ -300,6 +300,13 @@
             
             
             
+            <li><a href="/pages/documentation/the-fundamentals/grakn-architecture.html">Grakn Architecture Overview</a></li>
+            
+            
+            
+            
+            
+            
             <li><a href="/pages/documentation/the-fundamentals/grakn-knowledge-model.html">Grakn Knowledge Model</a></li>
             
             
@@ -310,26 +317,26 @@
         
     
     <li>
-        <a href="#">Graql Schema</a>
+        <a href="#">Graql Ontology</a>
         <ul>
             
             
             
-            <li><a href="/pages/documentation/building-a-schema/basic-schema.html">Define a Basic Schema</a></li>
+            <li><a href="/pages/documentation/building-an-ontology/basic-ontology.html">Define a Basic Ontology</a></li>
             
             
             
             
             
             
-            <li><a href="/pages/documentation/building-a-schema/hierarchical-schema.html">Define a Hierarchical Schema</a></li>
+            <li><a href="/pages/documentation/building-an-ontology/hierarchical-ontology.html">Define a Hierarchical Ontology</a></li>
             
             
             
             
             
             
-            <li><a href="/pages/documentation/building-a-schema/rule-driven-schema.html">Define a Rule-Driven Schema</a></li>
+            <li><a href="/pages/documentation/building-an-ontology/rule-driven-ontology.html">Define a Rule-Driven Ontology</a></li>
             
             
             
@@ -365,6 +372,13 @@
             
             
             
+            <li><a href="/pages/documentation/graql/ask-queries.html">Ask Queries</a></li>
+            
+            
+            
+            
+            
+            
             <li><a href="/pages/documentation/graql/delete-queries.html">Delete Queries</a></li>
             
             
@@ -373,13 +387,6 @@
             
             
             <li><a href="/pages/documentation/graql/insert-queries.html">Insert Queries</a></li>
-            
-            
-            
-            
-            
-            
-            <li><a href="/pages/documentation/graql/define-queries.html">Define Queries</a></li>
             
             
             
@@ -522,7 +529,7 @@
             
             
             
-            <li><a href="/pages/documentation/developing-with-java/java-api.html">Java API</a></li>
+            <li><a href="/pages/documentation/developing-with-java/graph-api.html">Graph API</a></li>
             
             
             
@@ -702,7 +709,7 @@
             
             
             
-            <li><a href="/pages/documentation/examples/java-api-example.html">API for Java developers</a></li>
+            <li><a href="/pages/documentation/examples/graph-api-example.html">Graph API for Java developers</a></li>
             
             
             
@@ -788,7 +795,7 @@ $('#toc').on('click', 'a', function() {
 
     
 
-    <a target="_blank" href="https://github.com/graknlabs/grakn/tree/master/docs/pages/documentation/11-examples/analytics.md" class="btn btn-default githubEditButton" role="button"><i class="fa fa-github fa-lg"></i> Edit me</a>
+    <a target="_blank" href="https://github.com/graknlabs/docs/blob/master/pages/documentation/11-examples/analytics.md" class="btn btn-default githubEditButton" role="button"><i class="fa fa-github fa-lg"></i> Edit me</a>
 
     
 
@@ -807,13 +814,13 @@ $('#toc').on('click', 'a', function() {
 
 <h2 id="data">Data</h2>
 
-<p>This example takes a dataset that will be familiar to students of R - <a href="https://stat.ethz.ch/R-manual/R-devel/library/datasets/html/mtcars.html">mtcars (Motor Trend Car Road Tests) data</a>.  The data was extracted from the 1974 Motor Trend US magazine, and comprises fuel consumption and 10 other aspects of automobile design and performance for 32 automobiles (1973–74 models). We have created a csv file of the data and added two columns to indicate the car maker’s name and region that the car was made in (Europe, Japan or North America). The readme file in the repository gives further information for anyone who wishes to migrate the mtcars data directly, but for the purposes of this example we provide a <a href="#data-migration">single data file that you can load</a> to populate a graph.</p>
+<p>This example takes a dataset that will be familiar to students of R - <a href="https://stat.ethz.ch/R-manual/R-devel/library/datasets/html/mtcars.html">mtcars (Motor Trend Car Road Tests) data</a>.  The data was extracted from the 1974 Motor Trend US magazine, and comprises fuel consumption and 10 other aspects of automobile design and performance for 32 automobiles (1973–74 models). We have created a csv file of the data and added two columns to indicate the car maker’s name and region that the car was made in (Europe, Japan or North America). The readme file in the repository gives further information for anyone who wishes to migrate the mtcars data directly into a graph, but for the purposes of this example we provide a <a href="#data-migration">single data file that you can load</a> to populate a graph.</p>
 
-<h2 id="schema">Schema</h2>
+<h2 id="ontology">Ontology</h2>
 
-<p>We have provided the following schema to represent the data, although many other variations are possible:</p>
+<p>We have provided the following ontology to represent the data, although many other variations are possible:</p>
 
-<pre><code class="language-graql">define
+<pre><code class="language-graql">insert
 
 # Entities
 
@@ -847,21 +854,21 @@ european-maker sub carmaker;
 
 # Resources
 
-model sub attribute datatype string;
-maker-name sub attribute datatype string;
-mpg sub attribute datatype double;
-cyl sub attribute datatype long;
-disp sub attribute datatype double;
-hp sub attribute datatype long;
-wt sub attribute datatype double;
-gear sub attribute datatype long;
-carb sub attribute datatype long;
-powerful sub attribute datatype string;
-economical sub attribute datatype string;
+model sub resource datatype string;
+maker-name sub resource datatype string;
+mpg sub resource datatype double;
+cyl sub resource datatype long;
+disp sub resource datatype double;
+hp sub resource datatype long;
+wt sub resource datatype double;
+gear sub resource datatype long;
+carb sub resource datatype long;
+powerful sub resource datatype string;
+economical sub resource datatype string;
 
 # Roles and Relations
 
-manufactured sub relationship
+manufactured sub relation
 	relates maker
 	relates made;
 
@@ -869,17 +876,17 @@ maker sub role;
 made sub role;
 </code></pre>
 
-<p>To load <em>schema.gql</em> into Grakn, make sure the engine is running and choose a clean keyspace in which to work (here we use the default keyspace, so we are cleaning it before we get started).</p>
+<p>To load <em>ontology.gql</em> into Grakn, make sure the engine is running and choose a clean keyspace in which to work (here we use the default keyspace, so we are cleaning it before we get started).</p>
 
 <div class="language-bash highlighter-rouge"><pre class="highlight"><code>&lt;relative-path-to-Grakn&gt;/bin/grakn.sh clean
 &lt;relative-path-to-Grakn&gt;/bin/grakn.sh start
-&lt;relative-path-to-Grakn&gt;/bin/graql.sh -f ./schema.gql
+&lt;relative-path-to-Grakn&gt;/bin/graql.sh -f ./ontology.gql
 </code></pre>
 </div>
 
 <h2 id="data-migration">Data Migration</h2>
 
-<p>We migrated the CSV data using template Graql files, but for ease of use, we provide a single data file that you can load to populate a knowledge base.</p>
+<p>We migrated the CSV data using template Graql files, but for ease of use, we provide a single data file that you can load to populate a graph.</p>
 
 <div class="language-bash highlighter-rouge"><pre class="highlight"><code>&lt;relative-path-to-Grakn&gt;/bin/graql.sh -b ./data.gql
 </code></pre>
@@ -907,7 +914,7 @@ match $x isa automatic-car has model $s; $y isa european-maker; (made: $x, maker
 
 <h2 id="aggregate"><code class="highlighter-rouge">aggregate</code></h2>
 
-<p>You cannot make <a href="../graql/aggregate-queries.html"><code class="highlighter-rouge">aggregate</code></a> queries from within the <strong>knowledge base</strong> view in the Grakn visualiser, so you will need to switch views using the left hand navigation pane, from <strong>Graph</strong> to <strong>Console</strong>. This shows a read-write view on Grakn, and you can now submit queries in the usual way, via the form. Alternatively, from your terminal, you can start the Graql shell in its interactive (REPL) mode by typing <code class="highlighter-rouge">graql.sh</code> at the terminal, from within the <em>bin</em> directory of the Grakn installation.</p>
+<p>You cannot make <a href="../graql/aggregate-queries.html"><code class="highlighter-rouge">aggregate</code></a> queries from within the <strong>Graph</strong> view in the Grakn visualiser, so you will need to switch views using the left hand navigation pane, from <strong>Graph</strong> to <strong>Console</strong>. This shows a read-write view on Grakn, and you can now submit queries in the usual way, via the form. Alternatively, from your terminal, you can start the Graql shell in its interactive (REPL) mode by typing <code class="highlighter-rouge">graql.sh</code> at the terminal, from within the <em>bin</em> directory of the Grakn installation.</p>
 
 <p>Here are some example <code class="highlighter-rouge">aggregate</code> queries to try:</p>
 
@@ -942,7 +949,7 @@ match $x isa car, has gear $g; aggregate min $g; # 3
 
 <h2 id="compute"><code class="highlighter-rouge">compute</code></h2>
 
-<p>Graql also provides <a href="../graql/compute-queries.html">compute queries</a> that can be used to determine values such as mean, minimum and maximum. These can be submitted using the <strong>graph</strong> view on the Visualiser. For example, type each of the following into the form and submit:</p>
+<p>Graql also provides <a href="../graql/compute-queries.html">compute queries</a> that can be used to determine values such as mean, minimum and maximum. These can be submitted using the <strong>Graph</strong> view on the Visualiser. For example, type each of the following into the form and submit:</p>
 
 <pre><code class="language-graql"># Number of automatic and manual cars
 compute count in automatic-car; # 19
@@ -976,12 +983,12 @@ compute mean of mpg in manual-car; # 24.39
 
 <h2 id="when-to-use-aggregate-and-when-to-use-compute">When to Use <code class="highlighter-rouge">aggregate</code> and When to Use <code class="highlighter-rouge">compute</code>?</h2>
 
-<p>Aggregate queries are computationally light and run single-threaded on a single machine, and are more flexible than the equivalent compute query (for example, you can use an aggregate query to filter results by attribute).</p>
+<p>Aggregate queries are computationally light and run single-threaded on a single machine, and are more flexible than the equivalent compute query (for example, you can use an aggregate query to filter results by resource).</p>
 
 <pre><code class="language-graql">match $x isa car has model contains "Merc"; aggregate count; # 7
 </code></pre>
 
-<p>Compute queries are computationally intensive and run in parallel on a cluster, so are good for big data and can be used to calculate results very fast. However, you can’t filter the results by attribute in the same way as you can for an <code class="highlighter-rouge">aggregate</code> query.</p>
+<p>Compute queries are computationally intensive and run in parallel on a cluster, so are good for big data and can be used to calculate results very fast. However, you can’t filter the results by resource in the same way as you can for an <code class="highlighter-rouge">aggregate</code> query.</p>
 
 <h2 id="inference">Inference</h2>
 
@@ -1041,7 +1048,7 @@ $x id "254120" isa automatic-car; $y val "Pontiac Firebird" isa model;
         <br>
         <p>© 2017 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2017 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> March 2017<br/> Site last generated: Sep 2, 2017 <br />
+        <span>Page last updated:</span> March 2017<br/> Site last generated: Sep 6, 2017 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">
@@ -1088,12 +1095,5 @@ $x id "254120" isa automatic-car; $y val "Pontiac Firebird" isa model;
     </div>
 
 </body>
-
-<!-- the google_analytics_id gets auto inserted from the config file -->
-
-
-
-<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create','UA-72414051-1','auto');ga('require','displayfeatures');ga('send','pageview');</script>
-
 
 </html>

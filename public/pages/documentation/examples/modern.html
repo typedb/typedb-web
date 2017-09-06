@@ -300,6 +300,13 @@
             
             
             
+            <li><a href="/pages/documentation/the-fundamentals/grakn-architecture.html">Grakn Architecture Overview</a></li>
+            
+            
+            
+            
+            
+            
             <li><a href="/pages/documentation/the-fundamentals/grakn-knowledge-model.html">Grakn Knowledge Model</a></li>
             
             
@@ -310,26 +317,26 @@
         
     
     <li>
-        <a href="#">Graql Schema</a>
+        <a href="#">Graql Ontology</a>
         <ul>
             
             
             
-            <li><a href="/pages/documentation/building-a-schema/basic-schema.html">Define a Basic Schema</a></li>
+            <li><a href="/pages/documentation/building-an-ontology/basic-ontology.html">Define a Basic Ontology</a></li>
             
             
             
             
             
             
-            <li><a href="/pages/documentation/building-a-schema/hierarchical-schema.html">Define a Hierarchical Schema</a></li>
+            <li><a href="/pages/documentation/building-an-ontology/hierarchical-ontology.html">Define a Hierarchical Ontology</a></li>
             
             
             
             
             
             
-            <li><a href="/pages/documentation/building-a-schema/rule-driven-schema.html">Define a Rule-Driven Schema</a></li>
+            <li><a href="/pages/documentation/building-an-ontology/rule-driven-ontology.html">Define a Rule-Driven Ontology</a></li>
             
             
             
@@ -365,6 +372,13 @@
             
             
             
+            <li><a href="/pages/documentation/graql/ask-queries.html">Ask Queries</a></li>
+            
+            
+            
+            
+            
+            
             <li><a href="/pages/documentation/graql/delete-queries.html">Delete Queries</a></li>
             
             
@@ -373,13 +387,6 @@
             
             
             <li><a href="/pages/documentation/graql/insert-queries.html">Insert Queries</a></li>
-            
-            
-            
-            
-            
-            
-            <li><a href="/pages/documentation/graql/define-queries.html">Define Queries</a></li>
             
             
             
@@ -522,7 +529,7 @@
             
             
             
-            <li><a href="/pages/documentation/developing-with-java/java-api.html">Java API</a></li>
+            <li><a href="/pages/documentation/developing-with-java/graph-api.html">Graph API</a></li>
             
             
             
@@ -702,7 +709,7 @@
             
             
             
-            <li><a href="/pages/documentation/examples/java-api-example.html">API for Java developers</a></li>
+            <li><a href="/pages/documentation/examples/graph-api-example.html">Graph API for Java developers</a></li>
             
             
             
@@ -788,7 +795,7 @@ $('#toc').on('click', 'a', function() {
 
     
 
-    <a target="_blank" href="https://github.com/graknlabs/grakn/tree/master/docs/pages/documentation/11-examples/modern.md" class="btn btn-default githubEditButton" role="button"><i class="fa fa-github fa-lg"></i> Edit me</a>
+    <a target="_blank" href="https://github.com/graknlabs/docs/blob/master/pages/documentation/11-examples/modern.md" class="btn btn-default githubEditButton" role="button"><i class="fa fa-github fa-lg"></i> Edit me</a>
 
     
 
@@ -805,7 +812,7 @@ $('#toc').on('click', 'a', function() {
 
 <p>The image above is used from the documentation provided for TinkerPop3, and licensed by the <a href="http://www.apache.org">Apache Software Foundation</a>.</p>
 
-<p>We have chosen this example as it may already be familiar, and is simple enough to demonstrate some of the fundamentals of Graql. We walk through the entities (“things”) and relationships between them and show how to represent them using Graql to define a schema. We then use Graql to add the data to the knowledge base.  The main purpose of this example, however, is to use it for practice at making sample queries on the knowledge base.</p>
+<p>We have chosen this example as it may already be familiar, and is simple enough to demonstrate some of the fundamentals of Graql. We walk through the entities (“things”) and relationships between them and show how to represent them using Graql to define a schema. We then use Graql to add the data to the graph.  The main purpose of this example, however, is to use it for practice at making sample queries on the graph.</p>
 
 <h3 id="starting-graql">Starting Graql</h3>
 
@@ -837,49 +844,49 @@ bin/graql.sh
 
 <p>Here, we add person and software entities, via the Graql shell:</p>
 
-<pre><code class="language-graql">define person sub entity;
-define software sub entity;
+<pre><code class="language-graql">insert person sub entity;
+insert software sub entity;
 </code></pre>
 
 <h3 id="resources">Resources</h3>
 
 <p>To assign resources to the entities, which you can think of as attributes, we use resources. First, we define what they are (age is a number, programming language is a string that represents the language’s name), then we allocate them to the entity in question:</p>
 
-<pre><code class="language-graql">define age sub attribute datatype long;
-define name sub attribute datatype string;
-define person has age, has name;
+<pre><code class="language-graql">insert age sub resource datatype long;
+insert name sub resource datatype string;
+insert person has age, has name;
 
-define lang sub attribute datatype string;
-define software has lang has name;
+insert lang sub resource datatype string;
+insert software has lang has name;
 
-define weight sub attribute datatype double;
+insert weight sub resource datatype double;
 </code></pre>
 
 <h3 id="relations">Relations</h3>
 
 <p>Let’s first define the relationship between people. The diagram shows that marko knows vadas, but we don’t have any information about whether the inverse is true (though it seems likely that vadas probably also knows marko). Let’s set up a relationship called <code class="highlighter-rouge">knows</code>, which has two roles - <code class="highlighter-rouge">knower</code> (for marko) and <code class="highlighter-rouge">known-about</code> (for vadas):</p>
 
-<pre><code class="language-graql">define knower sub role;
-define known-about sub role;
-define person plays knower;
-define person plays known-about;
-define knows sub relationship, relates knower, relates known-about, has weight;
+<pre><code class="language-graql">insert knower sub role;
+insert known-about sub role;
+insert person plays knower;
+insert person plays known-about;
+insert knows sub relation, relates knower, relates known-about, has weight;
 </code></pre>
 
-<p>Note that the  <code class="highlighter-rouge">knows</code> relationship also has an attribute, in the form of an attribute called <code class="highlighter-rouge">weight</code> (though it’s not clear from the TinkerPop example what this represents).</p>
+<p>Note that the  <code class="highlighter-rouge">knows</code> relation also has an attribute, in the form of a resource called <code class="highlighter-rouge">weight</code> (though it’s not clear from the TinkerPop example what this represents).</p>
 
 <p>We can set up a similar relationship between software and the people that created it:</p>
 
-<pre><code class="language-graql">define programmer sub role;
-define programmed sub role;
+<pre><code class="language-graql">insert programmer sub role;
+insert programmed sub role;
 
-define person plays programmer;
-define software plays programmed;
+insert person plays programmer;
+insert software plays programmed;
 
-define programming sub relationship, relates programmer, relates programmed, has weight;
+insert programming sub relation, relates programmer, relates programmed, has weight;
 </code></pre>
 
-<p>And that’s it. At this point, we have defined the schema of the knowledge base.</p>
+<p>And that’s it. At this point, we have defined the schema of the graph.</p>
 
 <h2 id="adding-the-data">Adding the Data</h2>
 <p>Now we have a schema, we can move on to adding in the data, which is pretty much just a typing exercise:</p>
@@ -905,9 +912,9 @@ match $josh has name "josh"; $ripple has name "ripple"; insert (programmer: $jos
 
 <p>This example is designed to get you up close and personal with Graql queries. It will run through a few basic examples, then ask you a set of “Test Yourself” questions.</p>
 
-<p>OK, so if you’ve followed the above, you should now have a schema and some data in a knowledge base. How do you go about using the knowledge base to answer your queries? That’s where the <code class="highlighter-rouge">match</code> statement comes in.</p>
+<p>OK, so if you’ve followed the above, you should now have a schema and some data in a graph. How do you go about using the graph to answer your queries? That’s where the <code class="highlighter-rouge">match</code> statement comes in.</p>
 
-<p>As with any query language, you use a variable to receive the results of the match query, which you must prefix with a <code class="highlighter-rouge">$</code>. So, to make the query “List every person in the knowledge base”, you would use the following in Graql:</p>
+<p>As with any query language, you use a variable to receive the results of the match query, which you must prefix with a <code class="highlighter-rouge">$</code>. So, to make the query “List every person in the graph”, you would use the following in Graql:</p>
 
 <pre><code class="language-graql">&gt;&gt;&gt; match $x isa person, has name $n; select $n;
 
@@ -930,7 +937,7 @@ $x id "peter" has age "35";
 </code></pre>
 
 <h2 id="complete-example">Complete Example</h2>
-<p>Here is the complete example - the code to define the schema and insert the data into a knowledge base. You can load this directly into Graql, if you don’t want to type it out for yourself. Cut and paste the Graql below and start Graql:</p>
+<p>Here is the complete example - the code to define the schema and insert the data into a graph. You can load this directly into Graql, if you don’t want to type it out for yourself. Cut and paste the Graql below and start Graql:</p>
 
 <div class="language-bash highlighter-rouge"><pre class="highlight"><code>bin/graql.sh
 </code></pre>
@@ -939,8 +946,8 @@ $x id "peter" has age "35";
 <p>Then type edit, which will open up the systems default text editor where you can paste your chunk of text. Upon exiting the editor, the Graql will execute.</p>
 
 <pre><code class="language-graql">insert 
-age sub attribute datatype long;
-name sub attribute datatype string;
+age sub resource datatype long;
+name sub resource datatype string;
 person sub entity;
 person has age, has name;
 
@@ -953,7 +960,7 @@ $josh has age 32, has name "josh";
 $vadas has age 27, has name "vadas";
 $peter has age 35, has name "peter";
 
-weight sub attribute datatype double;
+weight sub resource datatype double;
 
 knower sub role;
 known-about sub role;
@@ -961,7 +968,7 @@ known-about sub role;
 person plays knower;
 person plays known-about;
 
-knows sub relationship
+knows sub relation
 	relates knower
 	relates known-about
 	has weight;
@@ -969,7 +976,7 @@ knows sub relationship
 (knower: $marko, known-about: $josh) isa knows has weight 1.0;
 (knower: $marko, known-about: $vadas) isa knows has weight 0.5;
 
-lang sub attribute datatype string;
+lang sub resource datatype string;
 software sub entity;
 software has lang, has name;
 
@@ -985,7 +992,7 @@ programmed sub role;
 person plays programmer;
 software plays programmed;
 
-programming sub relationship
+programming sub relation
 	relates programmer
 	relates programmed
 	has weight;
@@ -1072,7 +1079,7 @@ programming sub relationship
         <br>
         <p>© 2017 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2017 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> September 19, 2016<br/> Site last generated: Sep 2, 2017 <br />
+        <span>Page last updated:</span> September 19, 2016<br/> Site last generated: Sep 6, 2017 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">
@@ -1119,12 +1126,5 @@ programming sub relationship
     </div>
 
 </body>
-
-<!-- the google_analytics_id gets auto inserted from the config file -->
-
-
-
-<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create','UA-72414051-1','auto');ga('require','displayfeatures');ga('send','pageview');</script>
-
 
 </html>

@@ -74,13 +74,13 @@
   
   
   <url>
-    <loc>http://grakn.ai/pages//documentation/migration/CSV-migration.html</loc>
+    <loc>http://grakn.ai/pages//documentation/examples/CSV-migration.html</loc>
   </url>
   
   
   
   <url>
-    <loc>http://grakn.ai/pages//documentation/examples/CSV-migration.html</loc>
+    <loc>http://grakn.ai/pages//documentation/migration/CSV-migration.html</loc>
   </url>
   
   
@@ -182,19 +182,19 @@
   
   
   <url>
-    <loc>http://grakn.ai/pages//documentation/building-a-schema/basic-schema.html</loc>
+    <loc>http://grakn.ai/pages//documentation/graql/ask-queries.html</loc>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://grakn.ai/pages//documentation/building-an-ontology/basic-ontology.html</loc>
   </url>
   
   
   
   <url>
     <loc>http://grakn.ai/pages//documentation/graql/compute-queries.html</loc>
-  </url>
-  
-  
-  
-  <url>
-    <loc>http://grakn.ai/pages//documentation/graql/define-queries.html</loc>
   </url>
   
   
@@ -232,6 +232,12 @@
   
   
   <url>
+    <loc>http://grakn.ai/pages//documentation/the-fundamentals/grakn-architecture.html</loc>
+  </url>
+  
+  
+  
+  <url>
     <loc>http://grakn.ai/pages//documentation/the-fundamentals/grakn-basics.html</loc>
   </url>
   
@@ -251,6 +257,18 @@
   
   <url>
     <loc>http://grakn.ai/pages//documentation/resources/grakn-on-windows.html</loc>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://grakn.ai/pages//documentation/developing-with-java/graph-api.html</loc>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://grakn.ai/pages//documentation/examples/graph-api-example.html</loc>
   </url>
   
   
@@ -292,7 +310,7 @@
   
   
   <url>
-    <loc>http://grakn.ai/pages//documentation/building-a-schema/hierarchical-schema.html</loc>
+    <loc>http://grakn.ai/pages//documentation/building-an-ontology/hierarchical-ontology.html</loc>
   </url>
   
   
@@ -311,18 +329,6 @@
   
   <url>
     <loc>http://grakn.ai/pages//documentation/examples/java-analytics.html</loc>
-  </url>
-  
-  
-  
-  <url>
-    <loc>http://grakn.ai/pages//documentation/developing-with-java/java-api.html</loc>
-  </url>
-  
-  
-  
-  <url>
-    <loc>http://grakn.ai/pages//documentation/examples/java-api-example.html</loc>
   </url>
   
   
@@ -394,7 +400,7 @@
   
   
   <url>
-    <loc>http://grakn.ai/pages//documentation/building-a-schema/rule-driven-schema.html</loc>
+    <loc>http://grakn.ai/pages//documentation/building-an-ontology/rule-driven-ontology.html</loc>
   </url>
   
   

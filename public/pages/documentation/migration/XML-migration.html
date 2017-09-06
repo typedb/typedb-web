@@ -300,6 +300,13 @@
             
             
             
+            <li><a href="/pages/documentation/the-fundamentals/grakn-architecture.html">Grakn Architecture Overview</a></li>
+            
+            
+            
+            
+            
+            
             <li><a href="/pages/documentation/the-fundamentals/grakn-knowledge-model.html">Grakn Knowledge Model</a></li>
             
             
@@ -310,26 +317,26 @@
         
     
     <li>
-        <a href="#">Graql Schema</a>
+        <a href="#">Graql Ontology</a>
         <ul>
             
             
             
-            <li><a href="/pages/documentation/building-a-schema/basic-schema.html">Define a Basic Schema</a></li>
+            <li><a href="/pages/documentation/building-an-ontology/basic-ontology.html">Define a Basic Ontology</a></li>
             
             
             
             
             
             
-            <li><a href="/pages/documentation/building-a-schema/hierarchical-schema.html">Define a Hierarchical Schema</a></li>
+            <li><a href="/pages/documentation/building-an-ontology/hierarchical-ontology.html">Define a Hierarchical Ontology</a></li>
             
             
             
             
             
             
-            <li><a href="/pages/documentation/building-a-schema/rule-driven-schema.html">Define a Rule-Driven Schema</a></li>
+            <li><a href="/pages/documentation/building-an-ontology/rule-driven-ontology.html">Define a Rule-Driven Ontology</a></li>
             
             
             
@@ -365,6 +372,13 @@
             
             
             
+            <li><a href="/pages/documentation/graql/ask-queries.html">Ask Queries</a></li>
+            
+            
+            
+            
+            
+            
             <li><a href="/pages/documentation/graql/delete-queries.html">Delete Queries</a></li>
             
             
@@ -373,13 +387,6 @@
             
             
             <li><a href="/pages/documentation/graql/insert-queries.html">Insert Queries</a></li>
-            
-            
-            
-            
-            
-            
-            <li><a href="/pages/documentation/graql/define-queries.html">Define Queries</a></li>
             
             
             
@@ -522,7 +529,7 @@
             
             
             
-            <li><a href="/pages/documentation/developing-with-java/java-api.html">Java API</a></li>
+            <li><a href="/pages/documentation/developing-with-java/graph-api.html">Graph API</a></li>
             
             
             
@@ -702,7 +709,7 @@
             
             
             
-            <li><a href="/pages/documentation/examples/java-api-example.html">API for Java developers</a></li>
+            <li><a href="/pages/documentation/examples/graph-api-example.html">Graph API for Java developers</a></li>
             
             
             
@@ -788,7 +795,7 @@ $('#toc').on('click', 'a', function() {
 
     
 
-    <a target="_blank" href="https://github.com/graknlabs/grakn/tree/master/docs/pages/documentation/5-migration/XML-migration.md" class="btn btn-default githubEditButton" role="button"><i class="fa fa-github fa-lg"></i> Edit me</a>
+    <a target="_blank" href="https://github.com/graknlabs/docs/blob/master/pages/documentation/5-migration/XML-migration.md" class="btn btn-default githubEditButton" role="button"><i class="fa fa-github fa-lg"></i> Edit me</a>
 
     
 
@@ -812,7 +819,7 @@ OPTIONS
                        will be ignored.
  -h,--help             Print usage message.
  -i,--input &lt;arg&gt;      Input XML data file or directory.
- -k,--keyspace &lt;arg&gt;   Grakn knowledge base. Required.
+ -k,--keyspace &lt;arg&gt;   Grakn graph. Required.
  -n,--no               Write to standard out.
  -r,--retry &lt;arg&gt;      Retry sending tasks <span class="k">if </span>engine is not available
  -s,--schema &lt;arg&gt;     The XML Schema file name, usually .xsd extension
@@ -828,8 +835,8 @@ OPTIONS
 <p>The steps to migrate XML data to GRAKN.AI are:</p>
 
 <ul>
-  <li>define a schema for the data to derive the full benefit of a knowledge base</li>
-  <li>create templated Graql to map the XML data to the schema</li>
+  <li>define an ontology for the data to derive the full benefit of a knowledge graph</li>
+  <li>create templated Graql to map the XML data to the ontology</li>
   <li>invoke the Grakn migrator through the shell script or Java API. The XML migrator will apply the template to each instance of the specified element <code class="highlighter-rouge">-element</code>, replacing the sections indicated in the template with provided data: the XML tags are the key to be used in the brackets <code class="highlighter-rouge">&lt;&gt;</code> and the content of each tag are the value of that key.</li>
 </ul>
 
@@ -1010,7 +1017,7 @@ OPTIONS
 </code></pre>
 </div>
 
-<p>Our schema contains a single plant entity and various resources that are associated with it:</p>
+<p>Our ontology contains a single plant entity and various resources that are associated with it:</p>
 
 <pre><code class="language-gql">insert
 
@@ -1022,16 +1029,16 @@ plant sub entity
     has price
     has availability;
 
-name sub attribute datatype string;
+name sub resource datatype string;
 common sub name;
 botanical sub name;
-zone sub attribute datatype string;
-light sub attribute datatype string;
-price sub attribute datatype double;
-availability sub attribute datatype long;
+zone sub resource datatype string;
+light sub resource datatype string;
+price sub resource datatype double;
+availability sub resource datatype long;
 </code></pre>
 
-<p>We want to insert one <code class="highlighter-rouge">plant</code> entity in the knowledge base per <code class="highlighter-rouge">PLANT</code> tag in the XML data. This means that me must specify main element of the XML migration to be “PLANT”. In the migration script you would do so by adding the parameter: <code class="highlighter-rouge">-element PLANT</code>.</p>
+<p>We want to insert one <code class="highlighter-rouge">plant</code> entity in the graph per <code class="highlighter-rouge">PLANT</code> tag in the XML data. This means that me must specify main element of the XML migration to be “PLANT”. In the migration script you would do so by adding the parameter: <code class="highlighter-rouge">-element PLANT</code>.</p>
 
 <p>The XML template will be applied to each of the specified elements:</p>
 
@@ -1050,9 +1057,9 @@ $plant isa plant
 
 <p>The tirangle brackets are used to specify nested elements: in the XML <code class="highlighter-rouge">&lt;BOTANICAL&gt;</code> is a direct child of <code class="highlighter-rouge">&lt;PLANT&gt;</code> and so can be used whenever the template traversal is in the <code class="highlighter-rouge">PLANT</code> scope.</p>
 
-<p>Before running any migration you need to ensure that the schema has been loaded to the knowledge base:</p>
+<p>Before running any migration you need to ensure that the ontology has been loaded to the graph:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>./&lt;grakn-install-location&gt;/bin/graql.sh -f plants-schema.gql -k plants
+<div class="highlighter-rouge"><pre class="highlight"><code>./&lt;grakn-install-location&gt;/bin/graql.sh -f plants-ontology.gql -k plants
 </code></pre>
 </div>
 
@@ -1062,7 +1069,7 @@ $plant isa plant
 </code></pre>
 </div>
 
-<p>Adding the <code class="highlighter-rouge">-n</code> tag to the migration script will print the resolved graql statements to system out. This is a useful tactic to get used to the Graql langauge and know exactly what is being inserted into your knowledge base:</p>
+<p>Adding the <code class="highlighter-rouge">-n</code> tag to the migration script will print the resolved graql statements to system out. This is a useful tactic to get used to the Graql langauge and know exactly what is being inserted into your graph:</p>
 
 <pre><code class="language-graql">insert $plant0 isa plant has common "Bloodroot" has botanical "Sanguinaria canadensis" has zone "4" has light "Mostly Shady" has availability 31599;
 insert $plant0 isa plant has common "Columbine" has botanical "Aquilegia canadensis" has zone "3" has light "Mostly Shady" has availability 30699;
@@ -1113,7 +1120,7 @@ insert $plant0 isa plant has common "Marsh Marigold" has botanical "Caltha palus
         <br>
         <p>© 2017 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2017 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> February 2017<br/> Site last generated: Sep 2, 2017 <br />
+        <span>Page last updated:</span> February 2017<br/> Site last generated: Sep 6, 2017 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">
@@ -1160,12 +1167,5 @@ insert $plant0 isa plant has common "Marsh Marigold" has botanical "Caltha palus
     </div>
 
 </body>
-
-<!-- the google_analytics_id gets auto inserted from the config file -->
-
-
-
-<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create','UA-72414051-1','auto');ga('require','displayfeatures');ga('send','pageview');</script>
-
 
 </html>
