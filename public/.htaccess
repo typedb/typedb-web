@@ -39,6 +39,7 @@ RedirectMatch "^/pages/rest-api/(.*)/index.html" "/pages/rest-api/$1/engine-apis
 # Redirect for Grakn release archive
 Redirect /download/latest "https://github.com/graknlabs/grakn/releases/download/v0.16.0/grakn-dist-0.16.0.zip"
 Redirect /download "https://github.com/graknlabs/grakn/releases/"
+Redirect /download-academy "https://d113xgfq7slps2.cloudfront.net/grakn-academy-virtualbox.zip"
 Redirect /docs "/pages/index.html"
 Redirect /overview "/pages/overview/index.html"
 Redirect /install "/pages/documentation/get-started/setup-guide.html"
