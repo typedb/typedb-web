@@ -4,7 +4,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="GRAKN.AI is the database for AI. It is a hyper-relational database for knowledge-oriented systems. Grakn enables machines to manage complex data that serves ...">
-<meta name="keywords" content="overview,  intro, GRAKN.AI, Grakn Labs, grakn, graql, grakn.ai, Mindmaps Research, Mindmaps Research Ltd, MindmapsDB, mindmaps, mindmaps graph, mindmaps.io, knowledge base, distributed knowledge base, development platform, developer tool, data platform, programming langauge, query langauge, database, semantic database, distributed semantic database, distributed database, knowledge database, semantic search, data exploration, recommendation system, knowledge management, knowledge engineering, real-time analytics, advanced analytics, reasoning engine, inference engine, expert systems, semantic applications, research engines, data management, business intelligence, big data, semantic web, semantic data, knowledge representation, automated reasoning, semantic network, knowledge schema, semantic graph, ontology engineering, graph based knowledge representation, artificial intelligence,">
+<meta name="keywords" content="overview,  intro, GRAKN.AI, Grakn Labs, grakn, graql, grakn.ai, Mindmaps Research, Mindmaps Research Ltd, MindmapsDB, mindmaps, mindmaps graph, mindmaps.io, knowledge graph, distributed knowledge graph, development platform, developer tool, data platform, programming langauge, query langauge, database, semantic database, distributed semantic database, distributed database, graph database, semantic search, data exploration, recommendation system, knowledge management, knowledge engineering, real-time analytics, advanced analytics, reasoning engine, inference engine, expert systems, semantic applications, research engines, data management, business intelligence, big data, semantic web, semantic data, knowledge representation, automated reasoning, semantic network, knowledge ontology, semantic graph, ontology engineering, graph based knowledge representation, artificial intelligence,">
 <title>GRAKN.AI - Introduction to GRAKN.AI</title>
 <link rel="stylesheet" href="/pages/css/syntax.css">
 
@@ -81,7 +81,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="0" height="0" style="display: none;">
     <symbol id="logo" viewBox="0 0 40 40" aria-labelledby="GRAKN.AI">
        <value>GRAKN.AI</value>
-       <desc>A Distributed Knowledge Base</desc>
+       <desc>A Distributed Knowledge Graph</desc>
        <polygon vector-effect="non-scaling-stroke" fill="transparent" stroke-linejoin="round" points="20,2 38,20 20,38 2,20"/>
        <polyline vector-effect="non-scaling-stroke" fill="transparent" stroke-linejoin="round" points="7.27,32.73 7.27,7.27 20,20 32.73,7.27 32.73,32.73"/>
     </symbol>
@@ -364,15 +364,15 @@
   <p>Grakn allows you to model the real world and all the hierarchies and hyper-relationships contained in it.</p>
 </blockquote>
 
-<p>Grakn’s schema modelling constructs include, but are not limited to, data type hierarchy, relation type hierarchy, bi-directional relationships, multi-type relationships, N-ary relationships, relationships in relationships, conditional relationships, virtual relationships, dynamic relationships, and so on. In other words, Grakn allows you to model the real world and all the hierarchies and hyper-relationships contained within it.</p>
+<p>Grakn’s schema/ontology modelling constructs include, but are not limited to, data type hierarchy, relation type hierarchy, bi-directional relationships, multi-type relationships, N-ary relationships, relationships in relationships, conditional relationships, virtual relationships, dynamic relationships, and so on. In other words, Grakn allows you to model the real world and all the hierarchies and hyper-relationships contained within it.</p>
 
 <blockquote>
-  <p>Grakn’s schema functions as a data schema constraint that guarantees information consistency.</p>
+  <p>Grakn’s ontology functions as a data schema constraint that guarantees information consistency.</p>
 </blockquote>
 
-<p>Grakn’s schema is flexible, allowing a data model to evolve. Later in the year, we will show how you can have a machine learning system adapt and grow your Grakn schema. Our schema is a key feature in maintaining data quality, as it functions as a data schema constraint that guarantees information consistency.</p>
+<p>Grakn’s ontology is flexible, allowing a data model to evolve. Later in the year, we will show how you can have a machine learning system adapt and grow your Grakn ontology. Our ontology is a key feature in maintaining data quality, as it functions as a data schema constraint that guarantees information consistency.</p>
 
-<p>Grakn is built using several distributed computing platforms. Grakn is designed to be sharded and replicated over a network of distributed machines.</p>
+<p>Grakn is built using several distributed computing platforms, such as Apache Cassandra, <a href="https://tinkerpop.apache.org/">Apache TinkerPop</a>, <a href="http://spark.apache.org/">Apache Spark</a>, and Apache Hadoop. Grakn is designed to be sharded and replicated over a network of distributed machines.</p>
 
 <h2 id="graql">Graql</h2>
 
@@ -384,7 +384,7 @@
 
 <p>When using legacy systems, database queries have to define the data patterns they are looking for explicitly. Graql, on the other hand, will translate a query pattern into all its logical equivalents and evaluate them against the database. This includes but is not limited to the inference of types, relationships, context, and pattern combination. In other words, Graql allows you to derive implicit information that is hidden in your dataset, as well as reduce the complexity of expressing intelligent questions. In effect, Graql helps finding new knowledge easy with concise and intuitive statements.</p>
 
-<p>Graql is also capable of performing distributed analytics as part of the language, which allows you to perform analytics over large out of the box. These types of analytics are usually not possible without developing custom distributed algorithms that are unique to every use case.</p>
+<p>Graql is also capable of performing distributed analytics as part of the language, which allows you to perform analytics over large out of the box. These types of analytics are usually not possible without developing custom distributed graph algorithms that are unique to every use case.</p>
 
 <p>One may consider Graql as an OLKP (OnLine Knowledge Processing) language, which combines both OLTP (OnLine Transaction Processing) and OLAP (OnLine Analytical Processing).</p>
 
@@ -430,7 +430,7 @@
         <br>
         <p>© 2017 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2017 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> January 2017database<br/> Site last generated: Sep 6, 2017 <br />
+        <span>Page last updated:</span> January 2017database<br/> Site last generated: Sep 12, 2017 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">

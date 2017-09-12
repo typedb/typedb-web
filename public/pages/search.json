@@ -3,22 +3,22 @@
 
 
 {
-"title": "Introduction to GRAKN.AI",
+"title": "Contribute to GRAKN.AI",
 "tags": "overview",
-"keywords": "intro",
-"url": "/pages/overview/index.html",
-"summary": "GRAKN.AI is the database for AI. It is a hyper-relational database for knowledge-oriented systems. Grakn enables machines to manage complex data that serves as a knowledge base for cognitive/AI systems."
+"keywords": "contributors, developers",
+"url": "/pages/contributors/index.html",
+"summary": "This is an area for documentation specific to contributors working on the GRAKN.AI platform, documentation or examples."
 }
 
 
 
 ,
 {
-"title": "Contribute to GRAKN.AI",
+"title": "Introduction to GRAKN.AI",
 "tags": "overview",
-"keywords": "contributors, developers",
-"url": "/pages/contributors/index.html",
-"summary": "This is an area for documentation specific to contributors working on the GRAKN.AI platform, documentation or examples."
+"keywords": "intro",
+"url": "/pages/overview/index.html",
+"summary": "GRAKN.AI is the database for AI. It is a hyper-relational database for knowledge-oriented systems. Grakn enables machines to manage complex data that serves as a knowledge base for cognitive/AI systems."
 }
 
 
@@ -126,22 +126,22 @@
 
 ,
 {
-"title": "An Example of Migrating CSV to Grakn",
-"tags": "migrationexamples",
-"keywords": "migration",
-"url": "/pages/documentation/examples/CSV-migration.html",
-"summary": "An example to illustrate migration of CSV to Grakn"
+"title": "CSV Migration to Grakn",
+"tags": "migration",
+"keywords": "setup, getting started",
+"url": "/pages/documentation/migration/CSV-migration.html",
+"summary": "This document will teach you how to migrate CSV data into Grakn."
 }
 
 
 
 ,
 {
-"title": "CSV Migration to Grakn",
-"tags": "migration",
-"keywords": "setup, getting started",
-"url": "/pages/documentation/migration/CSV-migration.html",
-"summary": "This document will teach you how to migrate CSV data into Grakn."
+"title": "An Example of Migrating CSV to Grakn",
+"tags": "migrationexamples",
+"keywords": "migration",
+"url": "/pages/documentation/examples/CSV-migration.html",
+"summary": "An example to illustrate migration of CSV to Grakn"
 }
 
 
@@ -170,17 +170,6 @@
 
 ,
 {
-"title": "OWL Migration to Grakn",
-"tags": "migration",
-"keywords": "setup, getting started",
-"url": "/pages/documentation/migration/OWL-migration.html",
-"summary": "This document will teach you how to load OWL into Grakn."
-}
-
-
-
-,
-{
 "title": "An Example of Migrating OWL to Grakn",
 "tags": "migrationexamples",
 "keywords": "migration",
@@ -192,11 +181,11 @@
 
 ,
 {
-"title": "SQL Migration to Grakn",
+"title": "OWL Migration to Grakn",
 "tags": "migration",
 "keywords": "setup, getting started",
-"url": "/pages/documentation/migration/SQL-migration.html",
-"summary": "This document will teach you how to migrate SQL data into Grakn."
+"url": "/pages/documentation/migration/OWL-migration.html",
+"summary": "This document will teach you how to load OWL into Grakn."
 }
 
 
@@ -208,6 +197,17 @@
 "keywords": "migration",
 "url": "/pages/documentation/examples/SQL-migration.html",
 "summary": "A short example to illustrate migration of SQL to Grakn"
+}
+
+
+
+,
+{
+"title": "SQL Migration to Grakn",
+"tags": "migration",
+"keywords": "setup, getting started",
+"url": "/pages/documentation/migration/SQL-migration.html",
+"summary": "This document will teach you how to migrate SQL data into Grakn."
 }
 
 
@@ -409,17 +409,6 @@
 }
 
 
-
-
-
-,
-{
-"title": "GRAKN.AI Architecture Overview",
-"tags": "getting-started",
-"keywords": "setup, getting started, basics",
-"url": "/pages/documentation/the-fundamentals/grakn-architecture.html",
-"summary": "Introducing the GRAKN.AI Architecture"
-}
 
 
 
@@ -716,17 +705,6 @@
 "keywords": "setup, getting started, download",
 "url": "/pages/documentation/resources/resources-overview.html",
 "summary": "Resources to help you learn more about graph databases."
-}
-
-
-
-,
-{
-"title": "Define a Rule-Driven Ontology",
-"tags": "javagraph-api",
-"keywords": "schema",
-"url": "/pages/documentation/building-an-ontology/rule-driven-ontology.html",
-"summary": "Demonstrates how to create a rule-driven ontology for Grakn."
 }
 
 
