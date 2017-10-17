@@ -12,7 +12,7 @@
   <priority>1.00</priority>
 </url>
 <url>
-  <loc>https://grakn.ai/pages/platform/index.html</loc>
+  <loc>https://grakn.ai/pages/overview/index.html</loc>
   <changefreq>weekly</changefreq>
   <priority>0.80</priority>
 </url>
@@ -37,17 +37,17 @@
   <priority>0.80</priority>
 </url>
 <url>
-  <loc>https://grakn.ai/pages/platform/applications.html</loc>
+  <loc>https://grakn.ai/pages/overview/applications.html</loc>
   <changefreq>weekly</changefreq>
   <priority>0.80</priority>
 </url>
 <url>
-  <loc>https://grakn.ai/pages/platform/advantages.html</loc>
+  <loc>https://grakn.ai/pages/overview/advantages.html</loc>
   <changefreq>weekly</changefreq>
   <priority>0.80</priority>
 </url>
 <url>
-  <loc>https://grakn.ai/pages/documentation/the-basics/quickstart-tutorial.html</loc>
+  <loc>https://grakn.ai/pages/documentation/get-started/quickstart-tutorial.html</loc>
   <changefreq>weekly</changefreq>
   <priority>0.80</priority>
 </url>
@@ -67,7 +67,17 @@
   <priority>0.80</priority>
 </url>
 <url>
-  <loc>https://grakn.ai/pages/platform/developer.html</loc>
+  <loc>https://grakn.ai/pages/overview/system-properties.html</loc>
+  <changefreq>weekly</changefreq>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/overview/ideology.html</loc>
+  <changefreq>weekly</changefreq>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/overview/faqs.html</loc>
   <changefreq>weekly</changefreq>
   <priority>0.64</priority>
 </url>
@@ -77,32 +87,22 @@
   <priority>0.64</priority>
 </url>
 <url>
-  <loc>https://grakn.ai/pages/documentation/the-basics/grakn-basics.html</loc>
+  <loc>https://grakn.ai/pages/documentation/the-fundamentals/grakn-knowledge-model.html</loc>
   <changefreq>weekly</changefreq>
   <priority>0.64</priority>
 </url>
 <url>
-  <loc>https://grakn.ai/pages/documentation/the-basics/visualiser.html</loc>
+  <loc>https://grakn.ai/pages/documentation/building-an-ontology/basic-ontology.html</loc>
   <changefreq>weekly</changefreq>
   <priority>0.64</priority>
 </url>
 <url>
-  <loc>https://grakn.ai/pages/documentation/core-api/overview.html</loc>
+  <loc>https://grakn.ai/pages/documentation/building-an-ontology/hierarchical-ontology.html</loc>
   <changefreq>weekly</changefreq>
   <priority>0.64</priority>
 </url>
 <url>
-  <loc>https://grakn.ai/pages/documentation/core-api/simple-schema-definition.html</loc>
-  <changefreq>weekly</changefreq>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://grakn.ai/pages/documentation/core-api/advanced-schema-definition.html</loc>
-  <changefreq>weekly</changefreq>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://grakn.ai/pages/documentation/graql/overview.html</loc>
+  <loc>https://grakn.ai/pages/documentation/graql/graql-overview.html</loc>
   <changefreq>weekly</changefreq>
   <priority>0.64</priority>
 </url>
@@ -132,6 +132,16 @@
   <priority>0.64</priority>
 </url>
 <url>
+  <loc>https://grakn.ai/pages/documentation/graql/graql-rules.html</loc>
+  <changefreq>weekly</changefreq>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/documentation/graql/aggregate-queries.html</loc>
+  <changefreq>weekly</changefreq>
+  <priority>0.64</priority>
+</url>
+<url>
   <loc>https://grakn.ai/pages/documentation/graql/compute-queries.html</loc>
   <changefreq>weekly</changefreq>
   <priority>0.64</priority>
@@ -147,12 +157,32 @@
   <priority>0.64</priority>
 </url>
 <url>
-  <loc>https://grakn.ai/pages/documentation/graql/java-graql.html</loc>
+  <loc>https://grakn.ai/pages/documentation/graql-analytics/analytics-overview.html</loc>
   <changefreq>weekly</changefreq>
   <priority>0.64</priority>
 </url>
 <url>
-  <loc>https://grakn.ai/pages/documentation/migration/migration.html</loc>
+  <loc>https://grakn.ai/pages/documentation/graql-analytics/analytics-statistics.html</loc>
+  <changefreq>weekly</changefreq>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/documentation/graql-analytics/analytics-shortest-path.html</loc>
+  <changefreq>weekly</changefreq>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/documentation/graql-analytics/analytics-degrees.html</loc>
+  <changefreq>weekly</changefreq>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/documentation/graql-analytics/analytics-connected-components.html</loc>
+  <changefreq>weekly</changefreq>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/documentation/migration/migration-overview.html</loc>
   <changefreq>weekly</changefreq>
   <priority>0.64</priority>
 </url>
@@ -177,12 +207,42 @@
   <priority>0.64</priority>
 </url>
 <url>
-  <loc>https://grakn.ai/pages/documentation/advanced-grakn/post-processing.html</loc>
+  <loc>https://grakn.ai/pages/documentation/developing-with-java/java-setup.html</loc>
   <changefreq>weekly</changefreq>
   <priority>0.64</priority>
 </url>
 <url>
-  <loc>https://grakn.ai/pages/documentation/advanced-grakn/validation.html</loc>
+  <loc>https://grakn.ai/pages/documentation/developing-with-java/graph-api.html</loc>
+  <changefreq>weekly</changefreq>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/documentation/developing-with-java/java-graql.html</loc>
+  <changefreq>weekly</changefreq>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/documentation/developing-with-java/migration-api.html</loc>
+  <changefreq>weekly</changefreq>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/documentation/developing-with-java/loader-api.html</loc>
+  <changefreq>weekly</changefreq>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/documentation/developing-with-java/advanced-java.html</loc>
+  <changefreq>weekly</changefreq>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/documentation/grakn-dashboard/visualiser.html</loc>
+  <changefreq>weekly</changefreq>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/documentation/deploy-grakn/grakn-deployment-guide.html</loc>
   <changefreq>weekly</changefreq>
   <priority>0.64</priority>
 </url>
@@ -192,7 +252,7 @@
   <priority>0.64</priority>
 </url>
 <url>
-  <loc>https://grakn.ai/pages/documentation/resources/resources.html</loc>
+  <loc>https://grakn.ai/pages/documentation/resources/resources-overview.html</loc>
   <changefreq>weekly</changefreq>
   <priority>0.64</priority>
 </url>
@@ -207,27 +267,17 @@
   <priority>0.64</priority>
 </url>
 <url>
-  <loc>https://grakn.ai/pages/documentation/examples/examples.html</loc>
+  <loc>https://grakn.ai/pages/documentation/examples/examples-overview.html</loc>
   <changefreq>weekly</changefreq>
   <priority>0.64</priority>
 </url>
 <url>
-  <loc>https://grakn.ai/pages/documentation/examples/pokemon.html</loc>
+  <loc>https://grakn.ai/pages/documentation/examples/CSV-migration.html</loc>
   <changefreq>weekly</changefreq>
   <priority>0.64</priority>
 </url>
 <url>
-  <loc>https://grakn.ai/pages/documentation/examples/philosophers.html</loc>
-  <changefreq>weekly</changefreq>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://grakn.ai/pages/documentation/examples/moogi.html</loc>
-  <changefreq>weekly</changefreq>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://grakn.ai/pages/documentation/examples/modern.html</loc>
+  <loc>https://grakn.ai/pages/documentation/examples/SQL-migration.html</loc>
   <changefreq>weekly</changefreq>
   <priority>0.64</priority>
 </url>
@@ -237,7 +287,47 @@
   <priority>0.64</priority>
 </url>
 <url>
+  <loc>https://grakn.ai/pages/documentation/examples/graql-reasoning.html</loc>
+  <changefreq>weekly</changefreq>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/documentation/examples/working-with-tweets.html</loc>
+  <changefreq>weekly</changefreq>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/documentation/examples/modern.html</loc>
+  <changefreq>weekly</changefreq>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/documentation/examples/pokemon.html</loc>
+  <changefreq>weekly</changefreq>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/documentation/examples/analytics.html</loc>
+  <changefreq>weekly</changefreq>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/documentation/examples/graph-api-example.html</loc>
+  <changefreq>weekly</changefreq>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/documentation/examples/java-analytics.html</loc>
+  <changefreq>weekly</changefreq>
+  <priority>0.64</priority>
+</url>
+<url>
   <loc>https://grakn.ai/pages/documentation/examples/projects.html</loc>
+  <changefreq>weekly</changefreq>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/contributors/index.html</loc>
   <changefreq>weekly</changefreq>
   <priority>0.64</priority>
 </url>
@@ -257,22 +347,32 @@
   <priority>0.64</priority>
 </url>
 <url>
-  <loc>https://grakn.ai/pages/platform/comparison.html</loc>
+  <loc>https://grakn.ai/pages/tag_faq.html</loc>
   <changefreq>weekly</changefreq>
   <priority>0.51</priority>
 </url>
 <url>
-  <loc>https://grakn.ai/pages/platform/use-case.html</loc>
+  <loc>https://grakn.ai/pages/contributors/conduct.html</loc>
   <changefreq>weekly</changefreq>
   <priority>0.51</priority>
 </url>
 <url>
-  <loc>https://grakn.ai/pages/platform/faq.html</loc>
+  <loc>https://grakn.ai/pages/contributors/contributor-faq.html</loc>
   <changefreq>weekly</changefreq>
   <priority>0.51</priority>
 </url>
 <url>
-  <loc>https://grakn.ai/pages/documentation/the-basics/quickstart-tutorial</loc>
+  <loc>https://grakn.ai/pages/overview/comparison.html</loc>
+  <changefreq>weekly</changefreq>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/overview/use-case.html</loc>
+  <changefreq>weekly</changefreq>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/tag_reasoning.html</loc>
   <changefreq>weekly</changefreq>
   <priority>0.51</priority>
 </url>
@@ -282,12 +382,42 @@
   <priority>0.51</priority>
 </url>
 <url>
+  <loc>https://grakn.ai/pages/tag_advanced-grakn.html</loc>
+  <changefreq>weekly</changefreq>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/images/graql-cheatsheet.pdf</loc>
+  <changefreq>weekly</changefreq>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/tag_analytics.html</loc>
+  <changefreq>weekly</changefreq>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/documentation/migration/XML-migration.html</loc>
+  <changefreq>weekly</changefreq>
+  <priority>0.51</priority>
+</url>
+<url>
   <loc>https://grakn.ai/pages/tag_migration.html</loc>
   <changefreq>weekly</changefreq>
   <priority>0.51</priority>
 </url>
 <url>
-  <loc>https://grakn.ai/pages/documentation/examples/SQL-migration.html</loc>
+  <loc>https://grakn.ai/pages/tag_examples.html</loc>
+  <changefreq>weekly</changefreq>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/documentation/the-fundamentals/grakn-basics.html</loc>
+  <changefreq>weekly</changefreq>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/documentation/resources/grakn-on-windows.html</loc>
   <changefreq>weekly</changefreq>
   <priority>0.51</priority>
 </url>
@@ -297,7 +427,12 @@
   <priority>0.51</priority>
 </url>
 <url>
-  <loc>https://grakn.ai/pages/tag_faq.html</loc>
+  <loc>https://grakn.ai/pages/documentation/developing-with-java/task-api.html</loc>
+  <changefreq>weekly</changefreq>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://grakn.ai/pages/documentation/examples/JSON-migration.html</loc>
   <changefreq>weekly</changefreq>
   <priority>0.41</priority>
 </url>
