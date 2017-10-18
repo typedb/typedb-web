@@ -67,6 +67,7 @@ window.MNDMPS.Slider = {
      */
 
     switchTab: function(event) {
+        console.log('ehi hai cliccato!');
 
         var _this = window.MNDMPS.Slider,
             data = _this._data,

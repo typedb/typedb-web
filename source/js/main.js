@@ -286,6 +286,10 @@ window.MNDMPS.App = {
 
         window.MNDMPS.Nav.init();
 
+        if (platformContainer) {
+            window.MNDMPS.Slider.init();
+        }
+
         if (careersContainer) {
             window.MNDMPS.Careers.init(careersContainer);
         }
@@ -328,10 +332,6 @@ window.MNDMPS.App = {
                 }
             }
         }, false);
-
-        if (platformContainer) {
-            window.MNDMPS.Slider.init();
-        }
 
         google.maps.event.addDomListener(window, 'load', window.MNDMPS.Map.load);
 
