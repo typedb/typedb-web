@@ -159,6 +159,7 @@
 {
     padding-bottom: 2.5rem;
     padding-top: 0;
+    top: -5rem;
 }
 
 @media (min-width: 400px) {
@@ -232,7 +233,7 @@
 
             ul{
                 li{
-                    padding-top: 12px;
+                    padding: 10px;
                     height: 38px;
                     font-size: 0.8rem;
                 }
@@ -247,11 +248,11 @@
 
 @media (min-width: 1000px) {
     .promoSlider.solutions{
-        height: 40vh;
-        max-height: 300px;
+        height: 80vh;
+        max-height: 500px;
 
         .content{
-            height: calc(100% - 60px);
+            height: 100%;
 
             ul{
                 li{
@@ -267,7 +268,7 @@
 
             ul{
                 li{
-                    padding-top: 12px;
+                    padding: 18px;
                     height: 48px;
                     font-size: 1.1rem;
                 }
