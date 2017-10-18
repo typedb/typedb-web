@@ -250,119 +250,110 @@
       <div class="container platform-wrapper">
      
       </div>
-      <div class="container full-width promoSlider-wrapper">
+      <div class="container full-width promoSlider-wrapper solutions">
          <div class=row>
             <div class="columns twelve">
-               <div class=promoSlider>
-                  <div class=content>
-                     <ul>
-                        <li>
-                            <div class="row">
-                                <div class="columns six"> 
-                                    <h3 class="centered">Commercial License</h3>
-                                    <p>
-                                        GRAKN.AI offers a commercial license for those organisations that require one to develop and distribute, including commercial distributors (OEM). 
-                                        Corporate compliance 
-                                        Intending to customise the code
-                                        Contact Us.
-                                    </p>
-                                </div>
-                                <div class="columns six">
-                                    <h3 class="centered">Community Edition</h3>
-                                    <p>
-                                        The GRAKN.AI Community Edition is a fully working knowledge base that uses the GPL v3 license. 
-                                        “Build your prototype, experiment” It is supported by an active and growing community of open source developers. 
-                                        Download Grakn.                                            
-                                    </p>
-                                </div>
-                           </div>
-                        </li>
-                        <li>
-                                <div class="row">
-                                        <div class="columns four"> 
-                                            <h3 class="centered">Schema Modeling</h3>
-                                            <p>
-                                                    Take advantage of Grakn engineers to assist you in creating the schema or ontology for your applications. We can help with defining your entities, relationships, rules, and much more. Read more.
-                                                    
-                                                    When needed? A schema modelling engagement typically happens before you begin to build your application
-                                            </p>
-                                        </div>
-                                        <div class="columns four">
-                                            <h3 class="centered">Data migration</h3>
-                                            <p>
-                                                    Migrate any existing data sources into Grakn and take advantage of our domain expertise. We can handle most data types, including SQL, JSON, CSV, XML, and much more. Read more.
-                                                    When needed? The ideal time to do this is when you are ready to start using your application in production, but migration can also be done at any stage of the lifecycle of your application.                                                                                                
-                                            </p>
-                                        </div>
-                                        <div class="columns four">
-                                                <h3 class="centered">Integration with data pipelines</h3>
-                                                <p>
-                                                        Integrate your Grakn database with existing data pipelines that you may have. Our engineers have experience in this field and can make sure this is done smoothly, convenient and hassle-free.
-                                                        
-                                                        When needed? This can happen at the beginning of the development lifecycle, or even while in production. The choice is yours.                                            
-                                                </p>
-                                            </div>
-                                   </div>
-                                   <div class="row">
-                                        <div class="columns six"> 
-                                            <h3 class="centered">Custom Deployment</h3>
-                                            <p>
-                                                    Need help deploying Grakn? Our dedicated team has experience deploying Grakn both on premise or in the cloud. We support the major cloud providers, including AWS, Google Cloud, Oracle Cloud and IBM Bluemix. 
-                                                    
-                                                    When needed? A deployment engagement typically occurs early in the development phase of a project.
-                                            </p>
-                                        </div>
-                                        <div class="columns six">
-                                            <h3 class="centered">Custom API development</h3>
-                                            <p>
-                                                    If your team has a preference for communicating with your GRAKN.AI instance, we can help to develop a custom API. This can include different language drivers or other tailored-made APIs.
-                                                    
-                                                    When needed? A custom API development engagement commonly occurs early in the planning phases of a development project.                                           
-                                            </p>
-                                        </div>
-                                   </div>
-                        </li>
-                        <li>
-                                <div class="row">
-                                        <div class="columns one centered"></div>
-                                        <div class="columns ten"> 
-                                            <h3 class="centered">Support</h3>
-                                            <p>
-                                                    With our support license, receive support from GRAKN.AI engineers throughout your entire development and production lifecycle.
-                                            </p>
-                                            <p>
-                                                    This includes guaranteed response time, guidance in building schemas, bug fixes, suggestions on how to improve your Grakn instance, and much more.                                                          
-                                            </p>
-                                        </div>
-                                        <div class="columns one centered"></div>
-                                   </div>
-                        </li>
-                        <li>
-                           
-                           <h3>Product</h3>
-                           <p>The process of drug research, synthesis, testing, and approval is incredibly time intensive and costly. These workflows produce large volumes of heterogeneous and interconnected data that unfortunately sit in silos. GRAKN.AI allows the integration of these datasets into one intelligent knowledge base. The identification of, and reasoning upon, implicit linkages that Grakn does across datasets, departments and workflow phases allows you to catapult your research years into the future.</p>
-                        </li>
-                     </ul>
-                  </div>
-                  <div class=controls>
-                     <div class=scrollbar> <span></span> </div>
-                     <ul>
+               <div class="promoSlider solutions" id="sliderScroller"> <!-- Scroller -->
+                  
+                  <div class="controls" id="sliderControls"> <!-- Controls -->
+                     <ul id="sliderTabs"> <!-- tabs -->
                         <li><span>Licensing</span></li>
                         <li><span>Consulting</span></li>
                         <li><span>Support</span></li>
                         <li><span>Product</span></li>
                      </ul>
+                     <div class="scrollbar" id="sliderScrollbar"> <span id="sliderKnob"><!-- Inside here the knob --></span> </div> <!-- Scrollbar -->                     
                   </div>
-               </div>
-            </div>
-            <div class="columns twelve">
-               <div class="centered margin-bottom">
-                  <a href=/pages/overview/applications.html class="button color-black hollow">
-                     Learn more 
-                     <svg>
-                        <use xlink:href=#arrow-right />
-                     </svg>
-                  </a>
+                  <div class="content" id="sliderContainer"> <!-- Container -->
+                    <ul id="sliderWrapper"> <!-- Wrapper -->
+                       <li>
+                           <div class="row">
+                               <div class="columns six"> 
+                                   <h3 class="centered">Commercial License</h3>
+                                   <p>
+                                       GRAKN.AI offers a commercial license for those organisations that require one to develop and distribute, including commercial distributors (OEM). 
+                                       Corporate compliance 
+                                       Intending to customise the code
+                                       Contact Us.
+                                   </p>
+                               </div>
+                               <div class="columns six">
+                                   <h3 class="centered">Community Edition</h3>
+                                   <p>
+                                       The GRAKN.AI Community Edition is a fully working knowledge base that uses the GPL v3 license. 
+                                       “Build your prototype, experiment” It is supported by an active and growing community of open source developers. 
+                                       Download Grakn.                                            
+                                   </p>
+                               </div>
+                          </div>
+                       </li>
+                       <li>
+                               <div class="row">
+                                       <div class="columns four"> 
+                                           <h3 class="centered">Schema Modeling</h3>
+                                           <p>
+                                                   Take advantage of Grakn engineers to assist you in creating the schema or ontology for your applications. We can help with defining your entities, relationships, rules, and much more. Read more.
+                                                   
+                                                   When needed? A schema modelling engagement typically happens before you begin to build your application
+                                           </p>
+                                       </div>
+                                       <div class="columns four">
+                                           <h3 class="centered">Data migration</h3>
+                                           <p>
+                                                   Migrate any existing data sources into Grakn and take advantage of our domain expertise. We can handle most data types, including SQL, JSON, CSV, XML, and much more. Read more.
+                                                   When needed? The ideal time to do this is when you are ready to start using your application in production, but migration can also be done at any stage of the lifecycle of your application.                                                                                                
+                                           </p>
+                                       </div>
+                                       <div class="columns four">
+                                               <h3 class="centered">Integration with data pipelines</h3>
+                                               <p>
+                                                       Integrate your Grakn database with existing data pipelines that you may have. Our engineers have experience in this field and can make sure this is done smoothly, convenient and hassle-free.
+                                                       
+                                                       When needed? This can happen at the beginning of the development lifecycle, or even while in production. The choice is yours.                                            
+                                               </p>
+                                           </div>
+                                  </div>
+                                  <div class="row">
+                                       <div class="columns six"> 
+                                           <h3 class="centered">Custom Deployment</h3>
+                                           <p>
+                                                   Need help deploying Grakn? Our dedicated team has experience deploying Grakn both on premise or in the cloud. We support the major cloud providers, including AWS, Google Cloud, Oracle Cloud and IBM Bluemix. 
+                                                   
+                                                   When needed? A deployment engagement typically occurs early in the development phase of a project.
+                                           </p>
+                                       </div>
+                                       <div class="columns six">
+                                           <h3 class="centered">Custom API development</h3>
+                                           <p>
+                                                   If your team has a preference for communicating with your GRAKN.AI instance, we can help to develop a custom API. This can include different language drivers or other tailored-made APIs.
+                                                   
+                                                   When needed? A custom API development engagement commonly occurs early in the planning phases of a development project.                                           
+                                           </p>
+                                       </div>
+                                  </div>
+                       </li>
+                       <li>
+                               <div class="row">
+                                       <div class="columns one centered"></div>
+                                       <div class="columns ten"> 
+                                           <h3 class="centered">Support</h3>
+                                           <p>
+                                                   With our support license, receive support from GRAKN.AI engineers throughout your entire development and production lifecycle.
+                                           </p>
+                                           <p>
+                                                   This includes guaranteed response time, guidance in building schemas, bug fixes, suggestions on how to improve your Grakn instance, and much more.                                                          
+                                           </p>
+                                       </div>
+                                       <div class="columns one centered"></div>
+                                  </div>
+                       </li>
+                       <li>
+                          
+                          <h3>Product</h3>
+                          <p>The process of drug research, synthesis, testing, and approval is incredibly time intensive and costly. These workflows produce large volumes of heterogeneous and interconnected data that unfortunately sit in silos. GRAKN.AI allows the integration of these datasets into one intelligent knowledge base. The identification of, and reasoning upon, implicit linkages that Grakn does across datasets, departments and workflow phases allows you to catapult your research years into the future.</p>
+                       </li>
+                    </ul>
+                 </div>
                </div>
             </div>
          </div>

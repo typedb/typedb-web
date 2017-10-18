@@ -284,11 +284,11 @@ window.MNDMPS.App = {
             careersContainer = document.getElementsByClassName('careers-wrapper')[0],
             docsContainer = document.getElementById('docs-wrapper');
 
-        window.MNDMPS.Nav.init();
-
         if (platformContainer) {
-            window.MNDMPS.Slider.init();
+           window.MNDMPS.Slider.init();
         }
+        
+        window.MNDMPS.Nav.init();
 
         if (careersContainer) {
             window.MNDMPS.Careers.init(careersContainer);

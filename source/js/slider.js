@@ -67,8 +67,6 @@ window.MNDMPS.Slider = {
      */
 
     switchTab: function(event) {
-        console.log('ehi hai cliccato!');
-
         var _this = window.MNDMPS.Slider,
             data = _this._data,
             tabs = [].slice.call(data.tabs.children),
@@ -234,12 +232,19 @@ window.MNDMPS.Slider = {
         var data = this._data;
 
         data.scroller = document.getElementsByClassName('promoSlider')[0];
-        data.container = data.scroller.children[0];
-        data.wrapper = data.container.children[0];
-        data.controls = data.scroller.children[1];
-        data.scrollbar = data.controls.children[0];
-        data.scrollKnob = data.scrollbar.children[0];
-        data.tabs = data.controls.children[1];
+        // data.container = data.scroller.children[0];
+        // data.wrapper = data.container.children[0];
+        // data.controls = data.scroller.children[1];
+        // data.scrollbar = data.controls.children[0];
+        // data.scrollKnob = data.scrollbar.children[0];
+        // data.tabs = data.controls.children[1];
+
+        data.container = document.getElementById('sliderContainer');
+        data.wrapper = document.getElementById('sliderWrapper');
+        data.controls = document.getElementById('sliderControls');
+        data.scrollbar = document.getElementById('sliderScrollbar');
+        data.scrollKnob = document.getElementById('sliderKnob');
+        data.tabs = document.getElementById('sliderTabs');
 
         data.scrollKnobWidth = 100/data.tabs.children.length;
         data.scrollKnob.style.width = data.scrollKnobWidth + '%';
