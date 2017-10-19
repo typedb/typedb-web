@@ -490,9 +490,9 @@ $x isa movie, has title "Big Fish"; $y isa movie, has name "Tim Burton";</textar
             <div class="row">
                 <div class="columns twelve">
                     <h2 class="centered">Building <u>AI applications</u> becomes much easier</h2>
-                    <div class="promoSlider">
-                        <div class="content">
-                            <ul>
+                    <div class="promoSlider" id="sliderScroller">
+                        <div class="content" id="sliderContainer">
+                            <ul id="sliderWrapper">
                                 <li>
                                     <svg viewBox="0 0 200 200" class="live-icon">
                                         <polygon vector-effect="non-scaling-stroke" points="100,40 142.4,57.5 160,100 142.4,142.4 100,160 57.6,142.4 40,100 57.6,57.5"/>
@@ -557,11 +557,11 @@ $x isa movie, has title "Big Fish"; $y isa movie, has name "Tim Burton";</textar
                                 </li>
                             </ul>
                         </div>
-                        <div class="controls">
-                            <div class="scrollbar">
-                                <span></span>
+                        <div class="controls" id="sliderControls">
+                            <div class="scrollbar" id="sliderScrollbar">
+                                <span id="sliderKnob"></span>
                             </div>
-                            <ul>
+                            <ul id="sliderTabs">
                                 <li><span>Semantic <i>Search</i></span></li>
                                 <li><span>Automated <i>Fraud Detection</i></span></li>
                                 <li><span>Intelligent <i>Chat Bots</i></span></li>
