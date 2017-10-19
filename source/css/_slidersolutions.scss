@@ -9,7 +9,7 @@
 
     .content{
         width: 100%;
-        height: calc(100% - 40px);
+        // height: calc(100% - 40px);
         overflow: hidden;
         padding-top: 2rem;
 
@@ -165,7 +165,7 @@
 
 @media (min-width: 400px) {
     .promoSlider.solutions{
-        height: 64vh;
+        height: 100vh;
         margin-bottom: 1rem;
 
         .content{
@@ -209,9 +209,9 @@
 
 @media (min-width: 750px) {
     .promoSlider.solutions{
-        height: 60vh;
+        height: 100vh;
         padding-bottom: 1rem;
-        max-height: 280px;
+        max-height: 3000px;
 
         .content{
             height: calc(100% - 50px);
@@ -249,8 +249,8 @@
 
 @media (min-width: 1000px) {
     .promoSlider.solutions{
-        height: 80vh;
-        max-height: 500px;
+        height: 100vh;
+        max-height: 3000px;
 
         .content{
             height: 100%;
@@ -276,4 +276,16 @@
             }
         }
     }
+}
+
+.fade-hover{
+  -webkit-transition: all .1s ease;
+    -moz-transition: all .1s ease;
+    -ms-transition: all .1s ease;
+    -o-transition: all .1s ease;
+    transition: all .1s ease;
+}
+
+.fade-hover:hover{
+    font-weight: bold;
 }
