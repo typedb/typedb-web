@@ -209,6 +209,7 @@
                     </ul>
                 </li> -->
                 <li><a href="/pages/overview/index.html">Overview</a></li>
+                <li><a href=/pages/solutions.html>Solutions</a></li>
                 <li><a href="/pages/index.html">Documentation</a></li>
                 <li><a rel="me" href="//grakn.ai/community.html">Community</a></li>
                 <li><a rel="me" href="//discuss.grakn.ai/">Discussion</a></li>
@@ -300,13 +301,6 @@
             
             
             
-            <li><a href="/pages/documentation/the-fundamentals/grakn-architecture.html">Grakn Architecture Overview</a></li>
-            
-            
-            
-            
-            
-            
             <li><a href="/pages/documentation/the-fundamentals/grakn-knowledge-model.html">Grakn Knowledge Model</a></li>
             
             
@@ -330,13 +324,6 @@
             
             
             <li><a href="/pages/documentation/building-an-ontology/hierarchical-ontology.html">Define a Hierarchical Ontology</a></li>
-            
-            
-            
-            
-            
-            
-            <li><a href="/pages/documentation/building-an-ontology/rule-driven-ontology.html">Define a Rule-Driven Ontology</a></li>
             
             
             
@@ -681,6 +668,13 @@
             
             
             
+            <li><a href="/pages/documentation/examples/working-with-tweets.html">Working With Tweets</a></li>
+            
+            
+            
+            
+            
+            
             <li><a href="/pages/documentation/examples/modern.html">Modern example</a></li>
             
             
@@ -865,8 +859,8 @@ surname sub resource datatype string;
 middlename sub resource datatype string;
 picture sub resource datatype string;
 age sub resource datatype long;
-birth-date sub resource datatype date;
-death-date sub resource datatype date;
+birth-date sub resource datatype string;
+death-date sub resource datatype string;
 gender sub resource datatype string;
 
 # Roles and Relations
@@ -968,7 +962,7 @@ commit
 
 <p>Alternatively, we can use <code class="highlighter-rouge">match...insert</code> syntax, to insert additional data associated with something already in the graph. Adding some fictional information (middle name, birth date, death date and age at death) for one of our family, Mary Guthrie:</p>
 
-<pre><code class="language-graql">match $p has identifier "Mary Guthrie"; insert $p has middlename "Mathilda"; $p has birth-date 1902-01-01; $p has death-date 1952-01-01; $p has age 50;
+<pre><code class="language-graql">match $p has identifier "Mary Guthrie"; insert $p has middlename "Mathilda"; $p has birth-date "1902-01-01"; $p has death-date "1952-01-01"; $p has age 50;
 commit
 </code></pre>
 
@@ -986,11 +980,13 @@ commit
 
 <p>However, the <code class="highlighter-rouge">person</code> entity does have a gender resource, and we can use Grakn to infer more information about each relationship by using that property. The ontology accommodates the more specific roles of mother, father, daughter and son:</p>
 
-<pre><code class="language-graql">person 
+<pre><code class="language-graql">insert
+
+person 
   plays son
   plays daughter
   plays mother
-  plays father
+  plays father;
 	
 parentship sub relation
   relates mother
@@ -1008,44 +1004,46 @@ daughter sub child;
 
 <p>Included in <em>basic-genealogy.gql</em> are a set of Graql rules to instruct Grakn’s reasoner on how to label each parentship relation:</p>
 
-<pre><code class="language-graql">$genderizeParentships1 isa inference-rule
-lhs
+<pre><code class="language-graql">insert
+
+$genderizeParentships1 isa inference-rule
+when
 {(parent: $p, child: $c) isa parentship;
 $p has gender "male";
 $c has gender "male";
 }
-rhs
+then
 {(father: $p, son: $c) isa parentship;};
 
 $genderizeParentships2 isa inference-rule
-lhs
+when
 {(parent: $p, child: $c) isa parentship;
 $p has gender "male";
 $c has gender "female";
 }
-rhs
+then
 {(father: $p, daughter: $c) isa parentship;};
 
 $genderizeParentships3 isa inference-rule
-lhs
+when
 {(parent: $p, child: $c) isa parentship;
 $p has gender "female";
 $c has gender "male";
 }
-rhs
+then
 {(mother: $p, son: $c) isa parentship;};
 
 $genderizeParentships4 isa inference-rule
-lhs
+when
 {(parent: $p, child: $c) isa parentship;
 $p has gender "female";
 $c has gender "female";
 }
-rhs
+then
 {(mother: $p, daughter: $c) isa parentship;};
 </code></pre>
 
-<p>If you’re unfamiliar with the syntax of rules, don’t worry too much about it too much just now. It is sufficient to know that, for each <code class="highlighter-rouge">parentship</code> relation, Graql checks whether the pattern in the first block (left hand side or lhs) can be verified and, if it can, infers the statement in the second block (right hand side or rhs) to be true, so inserts a relation between gendered parents and children.</p>
+<p>If you’re unfamiliar with the syntax of rules, don’t worry too much about it too much just now. It is sufficient to know that, for each <code class="highlighter-rouge">parentship</code> relation, Graql checks whether the pattern in the first block (when) can be verified and, if it can, infers the statement in the second block (then) to be true, so inserts a relation between gendered parents and children.</p>
 
 <p>Let’s test it out!</p>
 
@@ -1112,7 +1110,8 @@ rhs
 
 <p>and then search for relationships joining two of them using:</p>
 
-<pre><code class="language-graql">compute path from "id1" to "id2"; # Use the actual values of identifier for each person
+<!-- Ignoring because uses fake IDs -->
+<pre><code class="language-graql-test-ignore">compute path from "id1" to "id2"; # Use the actual values of identifier for each person
 # e.g. compute path from "114848" to "348264";
 </code></pre>
 
@@ -1124,7 +1123,8 @@ rhs
 
 <p>To narrow the path to specific relations between specific entities:</p>
 
-<pre><code class="language-graql">compute path from "id1" to "id2" in person, parentship;
+<!-- Ignoring because uses fake IDs -->
+<pre><code class="language-graql-test-ignore">compute path from "id1" to "id2" in person, parentship;
 </code></pre>
 
 <p>The above limits the path to blood relations (parent/child relations) thus excludes marriage. As a result, the shortest path between the two people is now longer: Barbara Shafner and Jacob J. Niesz are cousins (their mothers, Mary Young and Catherine Young, are sisters, with <em>their</em> father being Jacob Young).</p>
@@ -1197,7 +1197,7 @@ rhs
         <br>
         <p>© 2017 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2017 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> February 2017<br/> Site last generated: Jul 24, 2017 <br />
+        <span>Page last updated:</span> February 2017<br/> Site last generated: Sep 12, 2017 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">

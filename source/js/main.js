@@ -35,9 +35,9 @@ window.MNDMPS.App = {
         var advantagesTypist = $("#advantagesTypist");
 
         advantagesTypist.typed({
-            strings: ['match ($a, $b) isa knows;<br/>$b isa person, value "Marco";<br/>select $a(value);',
-            'match ($a, $b) isa employment;<br/>$b isa company, value "Grakn Labs";<br/>select $a(value);',
-            'match ($a, $b) isa knows;<br/>($b, $c) isa employment;<br/>$c isa company, value "Grakn Labs"<br/>select $a(value);'],
+            strings: ['match ($a, $b) isa knows;<br/>$b isa person, has name "Marco";<br/>select $a;',
+            'match ($a, $b) isa employment;<br/>$b isa company, has name "Grakn";<br/>select $a;',
+            'match ($a, $b) isa knows;<br/>($b, $c) isa employment;<br/>$c isa company, has name "Grakn";'],
             typeSpeed: 5,
             backSpeed: 0,
             backDelay: 5000,
@@ -284,6 +284,10 @@ window.MNDMPS.App = {
             careersContainer = document.getElementsByClassName('careers-wrapper')[0],
             docsContainer = document.getElementById('docs-wrapper');
 
+        if (platformContainer) {
+           window.MNDMPS.Slider.init();
+        }
+        
         window.MNDMPS.Nav.init();
 
         if (careersContainer) {
@@ -328,10 +332,6 @@ window.MNDMPS.App = {
                 }
             }
         }, false);
-
-        if (platformContainer) {
-            window.MNDMPS.Slider.init();
-        }
 
         google.maps.event.addDomListener(window, 'load', window.MNDMPS.Map.load);
 

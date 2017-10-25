@@ -209,6 +209,7 @@
                     </ul>
                 </li> -->
                 <li><a href="/pages/overview/index.html">Overview</a></li>
+                <li><a href=/pages/solutions.html>Solutions</a></li>
                 <li><a href="/pages/index.html">Documentation</a></li>
                 <li><a rel="me" href="//grakn.ai/community.html">Community</a></li>
                 <li><a rel="me" href="//discuss.grakn.ai/">Discussion</a></li>
@@ -300,13 +301,6 @@
             
             
             
-            <li><a href="/pages/documentation/the-fundamentals/grakn-architecture.html">Grakn Architecture Overview</a></li>
-            
-            
-            
-            
-            
-            
             <li><a href="/pages/documentation/the-fundamentals/grakn-knowledge-model.html">Grakn Knowledge Model</a></li>
             
             
@@ -330,13 +324,6 @@
             
             
             <li><a href="/pages/documentation/building-an-ontology/hierarchical-ontology.html">Define a Hierarchical Ontology</a></li>
-            
-            
-            
-            
-            
-            
-            <li><a href="/pages/documentation/building-an-ontology/rule-driven-ontology.html">Define a Rule-Driven Ontology</a></li>
             
             
             
@@ -681,6 +668,13 @@
             
             
             
+            <li><a href="/pages/documentation/examples/working-with-tweets.html">Working With Tweets</a></li>
+            
+            
+            
+            
+            
+            
             <li><a href="/pages/documentation/examples/modern.html">Modern example</a></li>
             
             
@@ -799,21 +793,21 @@ $('#toc').on('click', 'a', function() {
 <h2 id="dependencies">Dependencies</h2>
 <p>All Grakn applications have the following Maven dependency:</p>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="o">&lt;</span><span class="n">dependency</span><span class="o">&gt;</span>
-<span class="o">&lt;</span><span class="n">groupId</span><span class="o">&gt;</span><span class="n">ai</span><span class="o">.</span><span class="na">grakn</span><span class="o">&lt;/</span><span class="n">groupId</span><span class="o">&gt;</span>
-<span class="o">&lt;</span><span class="n">artifactId</span><span class="o">&gt;</span><span class="n">grakn</span><span class="o">-</span><span class="n">graph</span><span class="o">&lt;/</span><span class="n">artifactId</span><span class="o">&gt;</span>
-<span class="o">&lt;</span><span class="n">version</span><span class="o">&gt;</span><span class="err">$</span><span class="o">{</span><span class="n">project</span><span class="o">.</span><span class="na">version</span><span class="o">}&lt;/</span><span class="n">version</span><span class="o">&gt;</span>
-<span class="o">&lt;/</span><span class="n">dependency</span><span class="o">&gt;</span>
+<div class="language-xml highlighter-rouge"><pre class="highlight"><code><span class="nt">&lt;dependency&gt;</span>
+<span class="nt">&lt;groupId&gt;</span>ai.grakn<span class="nt">&lt;/groupId&gt;</span>
+<span class="nt">&lt;artifactId&gt;</span>grakn-graph<span class="nt">&lt;/artifactId&gt;</span>
+<span class="nt">&lt;version&gt;</span>${project.version}<span class="nt">&lt;/version&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
 </code></pre>
 </div>
 
 <p>This dependency will give you access to the Core API. Your Java application will also require the following dependency when it is running against a Titan backend, which is what is configured for you by default:</p>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="o">&lt;</span><span class="n">dependency</span><span class="o">&gt;</span>
-<span class="o">&lt;</span><span class="n">groupId</span><span class="o">&gt;</span><span class="n">ai</span><span class="o">.</span><span class="na">grakn</span><span class="o">&lt;/</span><span class="n">groupId</span><span class="o">&gt;</span>
-<span class="o">&lt;</span><span class="n">artifactId</span><span class="o">&gt;</span><span class="n">titan</span><span class="o">-</span><span class="n">factory</span><span class="o">&lt;/</span><span class="n">artifactId</span><span class="o">&gt;</span>
-<span class="o">&lt;</span><span class="n">version</span><span class="o">&gt;</span><span class="err">$</span><span class="o">{</span><span class="n">project</span><span class="o">.</span><span class="na">version</span><span class="o">}&lt;/</span><span class="n">version</span><span class="o">&gt;</span>
-<span class="o">&lt;/</span><span class="n">dependency</span><span class="o">&gt;</span>
+<div class="language-xml highlighter-rouge"><pre class="highlight"><code><span class="nt">&lt;dependency&gt;</span>
+<span class="nt">&lt;groupId&gt;</span>ai.grakn<span class="nt">&lt;/groupId&gt;</span>
+<span class="nt">&lt;artifactId&gt;</span>titan-factory<span class="nt">&lt;/artifactId&gt;</span>
+<span class="nt">&lt;version&gt;</span>${project.version}<span class="nt">&lt;/version&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
 </code></pre>
 </div>
 
@@ -838,7 +832,7 @@ $('#toc').on('click', 'a', function() {
 
 <p>First we need a <a href="../developing-with-java/java-setup.html#initialising-a-transaction-on-the-graph">graph</a>:</p>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">GraknSession</span> <span class="n">session</span> <span class="o">=</span> <span class="n">Grakn</span><span class="o">.</span><span class="na">session</span><span class="o">(</span><span class="n">Grakn</span><span class="o">.</span><span class="na">DEFAULT_URI</span><span class="o">,</span> <span class="n">keyspace</span><span class="o">);</span>
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">GraknSession</span> <span class="n">session</span> <span class="o">=</span> <span class="n">Grakn</span><span class="o">.</span><span class="na">session</span><span class="o">(</span><span class="n">uri</span><span class="o">,</span> <span class="n">keyspace</span><span class="o">);</span>
 <span class="n">GraknGraph</span> <span class="n">graph</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="na">open</span><span class="o">(</span><span class="n">GraknTxType</span><span class="o">.</span><span class="na">WRITE</span><span class="o">)</span>
 </code></pre>
 </div>
@@ -847,30 +841,30 @@ $('#toc').on('click', 'a', function() {
 
 <div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">identifier</span> <span class="o">=</span> <span class="n">graph</span><span class="o">.</span><span class="na">putResourceType</span><span class="o">(</span><span class="s">"identifier"</span><span class="o">,</span> <span class="n">ResourceType</span><span class="o">.</span><span class="na">DataType</span><span class="o">.</span><span class="na">STRING</span><span class="o">);</span>
 <span class="n">name</span> <span class="o">=</span> <span class="n">graph</span><span class="o">.</span><span class="na">putResourceType</span><span class="o">(</span><span class="s">"name"</span><span class="o">,</span> <span class="n">ResourceType</span><span class="o">.</span><span class="na">DataType</span><span class="o">.</span><span class="na">STRING</span><span class="o">);</span>
-<span class="n">firstname</span> <span class="o">=</span> <span class="n">graph</span><span class="o">.</span><span class="na">putResourceType</span><span class="o">(</span><span class="s">"firstname"</span><span class="o">,</span> <span class="n">ResourceType</span><span class="o">.</span><span class="na">DataType</span><span class="o">.</span><span class="na">STRING</span><span class="o">).</span><span class="na">superType</span><span class="o">(</span><span class="n">name</span><span class="o">);</span>
-<span class="n">surname</span> <span class="o">=</span> <span class="n">graph</span><span class="o">.</span><span class="na">putResourceType</span><span class="o">(</span><span class="s">"surname"</span><span class="o">,</span> <span class="n">ResourceType</span><span class="o">.</span><span class="na">DataType</span><span class="o">.</span><span class="na">STRING</span><span class="o">).</span><span class="na">superType</span><span class="o">(</span><span class="n">name</span><span class="o">);</span>
-<span class="n">middlename</span> <span class="o">=</span> <span class="n">graph</span><span class="o">.</span><span class="na">putResourceType</span><span class="o">(</span><span class="s">"middlename"</span><span class="o">,</span> <span class="n">ResourceType</span><span class="o">.</span><span class="na">DataType</span><span class="o">.</span><span class="na">STRING</span><span class="o">).</span><span class="na">superType</span><span class="o">(</span><span class="n">name</span><span class="o">);</span>
-<span class="n">date</span> <span class="o">=</span> <span class="n">graph</span><span class="o">.</span><span class="na">putResourceType</span><span class="o">(</span><span class="s">"date"</span><span class="o">,</span> <span class="n">ResourceType</span><span class="o">.</span><span class="na">DataType</span><span class="o">.</span><span class="na">DATE</span><span class="o">);</span>
-<span class="n">birthDate</span> <span class="o">=</span> <span class="n">graph</span><span class="o">.</span><span class="na">putResourceType</span><span class="o">(</span><span class="s">"birth-date"</span><span class="o">,</span> <span class="n">ResourceType</span><span class="o">.</span><span class="na">DataType</span><span class="o">.</span><span class="na">DATE</span><span class="o">).</span><span class="na">superType</span><span class="o">(</span><span class="n">date</span><span class="o">);</span>
-<span class="n">deathDate</span> <span class="o">=</span> <span class="n">graph</span><span class="o">.</span><span class="na">putResourceType</span><span class="o">(</span><span class="s">"death-date"</span><span class="o">,</span> <span class="n">ResourceType</span><span class="o">.</span><span class="na">DataType</span><span class="o">.</span><span class="na">DATE</span><span class="o">).</span><span class="na">superType</span><span class="o">(</span><span class="n">date</span><span class="o">);</span>
+<span class="n">firstname</span> <span class="o">=</span> <span class="n">graph</span><span class="o">.</span><span class="na">putResourceType</span><span class="o">(</span><span class="s">"firstname"</span><span class="o">,</span> <span class="n">ResourceType</span><span class="o">.</span><span class="na">DataType</span><span class="o">.</span><span class="na">STRING</span><span class="o">).</span><span class="na">sup</span><span class="o">(</span><span class="n">name</span><span class="o">);</span>
+<span class="n">surname</span> <span class="o">=</span> <span class="n">graph</span><span class="o">.</span><span class="na">putResourceType</span><span class="o">(</span><span class="s">"surname"</span><span class="o">,</span> <span class="n">ResourceType</span><span class="o">.</span><span class="na">DataType</span><span class="o">.</span><span class="na">STRING</span><span class="o">).</span><span class="na">sup</span><span class="o">(</span><span class="n">name</span><span class="o">);</span>
+<span class="n">middlename</span> <span class="o">=</span> <span class="n">graph</span><span class="o">.</span><span class="na">putResourceType</span><span class="o">(</span><span class="s">"middlename"</span><span class="o">,</span> <span class="n">ResourceType</span><span class="o">.</span><span class="na">DataType</span><span class="o">.</span><span class="na">STRING</span><span class="o">).</span><span class="na">sup</span><span class="o">(</span><span class="n">name</span><span class="o">);</span>
+<span class="n">date</span> <span class="o">=</span> <span class="n">graph</span><span class="o">.</span><span class="na">putResourceType</span><span class="o">(</span><span class="s">"date"</span><span class="o">,</span> <span class="n">ResourceType</span><span class="o">.</span><span class="na">DataType</span><span class="o">.</span><span class="na">STRING</span><span class="o">);</span>
+<span class="n">birthDate</span> <span class="o">=</span> <span class="n">graph</span><span class="o">.</span><span class="na">putResourceType</span><span class="o">(</span><span class="s">"birth-date"</span><span class="o">,</span> <span class="n">ResourceType</span><span class="o">.</span><span class="na">DataType</span><span class="o">.</span><span class="na">STRING</span><span class="o">).</span><span class="na">sup</span><span class="o">(</span><span class="n">date</span><span class="o">);</span>
+<span class="n">deathDate</span> <span class="o">=</span> <span class="n">graph</span><span class="o">.</span><span class="na">putResourceType</span><span class="o">(</span><span class="s">"death-date"</span><span class="o">,</span> <span class="n">ResourceType</span><span class="o">.</span><span class="na">DataType</span><span class="o">.</span><span class="na">STRING</span><span class="o">).</span><span class="na">sup</span><span class="o">(</span><span class="n">date</span><span class="o">);</span>
 <span class="n">gender</span> <span class="o">=</span> <span class="n">graph</span><span class="o">.</span><span class="na">putResourceType</span><span class="o">(</span><span class="s">"gender"</span><span class="o">,</span> <span class="n">ResourceType</span><span class="o">.</span><span class="na">DataType</span><span class="o">.</span><span class="na">STRING</span><span class="o">);</span>
 </code></pre>
 </div>
 
-<p>Then it adds roles using <code class="highlighter-rouge">putRoleType()</code>:</p>
+<p>Then it adds roles using <code class="highlighter-rouge">putRole()</code>:</p>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">spouse</span> <span class="o">=</span> <span class="n">graph</span><span class="o">.</span><span class="na">putRoleType</span><span class="o">(</span><span class="s">"spouse"</span><span class="o">).</span><span class="na">setAbstract</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>
-<span class="n">spouse1</span> <span class="o">=</span> <span class="n">graph</span><span class="o">.</span><span class="na">putRoleType</span><span class="o">(</span><span class="s">"spouse1"</span><span class="o">).</span><span class="na">superType</span><span class="o">(</span><span class="n">spouse</span><span class="o">);</span>
-<span class="n">spouse2</span> <span class="o">=</span> <span class="n">graph</span><span class="o">.</span><span class="na">putRoleType</span><span class="o">(</span><span class="s">"spouse2"</span><span class="o">).</span><span class="na">superType</span><span class="o">(</span><span class="n">spouse</span><span class="o">);</span>
-<span class="n">parent</span> <span class="o">=</span> <span class="n">graph</span><span class="o">.</span><span class="na">putRoleType</span><span class="o">(</span><span class="s">"parent"</span><span class="o">);</span>
-<span class="n">child</span> <span class="o">=</span> <span class="n">graph</span><span class="o">.</span><span class="na">putRoleType</span><span class="o">(</span><span class="s">"child"</span><span class="o">);</span>
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">spouse</span> <span class="o">=</span> <span class="n">graph</span><span class="o">.</span><span class="na">putRole</span><span class="o">(</span><span class="s">"spouse"</span><span class="o">);</span>
+<span class="n">spouse1</span> <span class="o">=</span> <span class="n">graph</span><span class="o">.</span><span class="na">putRole</span><span class="o">(</span><span class="s">"spouse1"</span><span class="o">).</span><span class="na">sup</span><span class="o">(</span><span class="n">spouse</span><span class="o">);</span>
+<span class="n">spouse2</span> <span class="o">=</span> <span class="n">graph</span><span class="o">.</span><span class="na">putRole</span><span class="o">(</span><span class="s">"spouse2"</span><span class="o">).</span><span class="na">sup</span><span class="o">(</span><span class="n">spouse</span><span class="o">);</span>
+<span class="n">parent</span> <span class="o">=</span> <span class="n">graph</span><span class="o">.</span><span class="na">putRole</span><span class="o">(</span><span class="s">"parent"</span><span class="o">);</span>
+<span class="n">child</span> <span class="o">=</span> <span class="n">graph</span><span class="o">.</span><span class="na">putRole</span><span class="o">(</span><span class="s">"child"</span><span class="o">);</span>
 </code></pre>
 </div>
 
 <p>Then to add the relation types, <code class="highlighter-rouge">putRelationType()</code>, which is followed by <code class="highlighter-rouge">relates()</code> to set the roles associated with the relation and resource() to state that it has a date resource:</p>
 
 <div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">marriage</span> <span class="o">=</span> <span class="n">graph</span><span class="o">.</span><span class="na">putRelationType</span><span class="o">(</span><span class="s">"marriage"</span><span class="o">);</span>
-<span class="n">marriage</span><span class="o">.</span><span class="na">relates</span><span class="o">(</span><span class="n">spouse1</span><span class="o">).</span><span class="na">relates</span><span class="o">(</span><span class="n">spouse2</span><span class="o">);</span>
+<span class="n">marriage</span><span class="o">.</span><span class="na">relates</span><span class="o">(</span><span class="n">spouse</span><span class="o">).</span><span class="na">relates</span><span class="o">(</span><span class="n">spouse1</span><span class="o">).</span><span class="na">relates</span><span class="o">(</span><span class="n">spouse2</span><span class="o">);</span>
 <span class="n">marriage</span><span class="o">.</span><span class="na">resource</span><span class="o">(</span><span class="n">date</span><span class="o">);</span>
 <span class="n">parentship</span> <span class="o">=</span> <span class="n">graph</span><span class="o">.</span><span class="na">putRelationType</span><span class="o">(</span><span class="s">"parentship"</span><span class="o">);</span>
 <span class="n">parentship</span><span class="o">.</span><span class="na">relates</span><span class="o">(</span><span class="n">parent</span><span class="o">).</span><span class="na">relates</span><span class="o">(</span><span class="n">child</span><span class="o">);</span>
@@ -902,10 +896,13 @@ $('#toc').on('click', 'a', function() {
 
 <p>The example project does this in <code class="highlighter-rouge">writeSampleRelation_Marriage()</code>. First it creates a person entity named homer:</p>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="c1">// Define the resources</span>
-<span class="n">Resource</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">firstNameJohn</span> <span class="o">=</span> <span class="n">firstname</span><span class="o">.</span><span class="na">putResource</span><span class="o">(</span><span class="err">“</span><span class="n">John</span><span class="err">”</span><span class="o">);</span>
-<span class="n">Resource</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">surnameNiesz</span> <span class="o">=</span> <span class="n">surname</span><span class="o">.</span><span class="na">putResource</span><span class="o">(</span><span class="err">“</span><span class="n">Niesz</span><span class="err">”</span><span class="o">);</span>
-<span class="n">Resource</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">male</span> <span class="o">=</span> <span class="n">gender</span><span class="o">.</span><span class="na">putResource</span><span class="o">(</span><span class="err">“</span><span class="n">Male</span><span class="err">”</span><span class="o">);</span>
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="c1">// After committing we need to open a new transaction</span>
+<span class="n">graph</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="na">open</span><span class="o">(</span><span class="n">GraknTxType</span><span class="o">.</span><span class="na">WRITE</span><span class="o">)</span>
+
+<span class="c1">// Define the resources</span>
+<span class="n">Resource</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">firstNameJohn</span> <span class="o">=</span> <span class="n">firstname</span><span class="o">.</span><span class="na">putResource</span><span class="o">(</span><span class="s">"John"</span><span class="o">);</span>
+<span class="n">Resource</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">surnameNiesz</span> <span class="o">=</span> <span class="n">surname</span><span class="o">.</span><span class="na">putResource</span><span class="o">(</span><span class="s">"Niesz"</span><span class="o">);</span>
+<span class="n">Resource</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">male</span> <span class="o">=</span> <span class="n">gender</span><span class="o">.</span><span class="na">putResource</span><span class="o">(</span><span class="s">"male"</span><span class="o">);</span>
 <span class="c1">//Now we can create the actual husband entity</span>
 <span class="n">Entity</span> <span class="n">johnNiesz</span> <span class="o">=</span> <span class="n">person</span><span class="o">.</span><span class="na">addEntity</span><span class="o">();</span>
 <span class="c1">//Add the resources</span>
@@ -917,13 +914,15 @@ $('#toc').on('click', 'a', function() {
 
 <p>We can compare how a Graql statement maps to the Graph API. This is the equivalent in Graql:</p>
 
-<pre><code class="language-graql">insert $x isa person has firstname “John”, has surname “Niesz” has gender “male”;
+<pre><code class="language-graql">insert $x isa person has firstname "John", has surname "Niesz" has gender "male";
 </code></pre>
 
 <p>The code goes on to create another <code class="highlighter-rouge">person</code> entity, named <code class="highlighter-rouge">maryYoung</code>, and then marries them:</p>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">Relation</span> <span class="n">theMarriage</span> <span class="o">=</span> <span class="n">marriage</span><span class="o">.</span><span class="na">addRelation</span><span class="o">().</span><span class="na">addRolePlayer</span><span class="o">(</span><span class="n">spouse1</span><span class="o">,</span> <span class="n">johnNiesz</span><span class="o">).</span><span class="na">addRolePlayer</span><span class="o">(</span><span class="n">spouse2</span><span class="o">,</span> <span class="n">maryYoung</span><span class="o">);</span>
-<span class="n">Resource</span> <span class="n">marriageDate</span> <span class="o">=</span> <span class="n">date</span><span class="o">.</span><span class="na">putResource</span><span class="o">(</span><span class="n">LocalDateTime</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="mi">1880</span><span class="o">,</span> <span class="mi">8</span><span class="o">,</span> <span class="mi">12</span><span class="o">,</span> <span class="mi">0</span><span class="o">,</span> <span class="mi">0</span><span class="o">,</span> <span class="mi">0</span><span class="o">));</span>
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">Entity</span> <span class="n">maryYoung</span> <span class="o">=</span> <span class="n">person</span><span class="o">.</span><span class="na">addEntity</span><span class="o">();</span>
+
+<span class="n">Relation</span> <span class="n">theMarriage</span> <span class="o">=</span> <span class="n">marriage</span><span class="o">.</span><span class="na">addRelation</span><span class="o">().</span><span class="na">addRolePlayer</span><span class="o">(</span><span class="n">spouse1</span><span class="o">,</span> <span class="n">johnNiesz</span><span class="o">).</span><span class="na">addRolePlayer</span><span class="o">(</span><span class="n">spouse2</span><span class="o">,</span> <span class="n">maryYoung</span><span class="o">);</span>
+<span class="n">Resource</span> <span class="n">marriageDate</span> <span class="o">=</span> <span class="n">date</span><span class="o">.</span><span class="na">putResource</span><span class="o">(</span><span class="n">LocalDateTime</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="mi">1880</span><span class="o">,</span> <span class="mi">8</span><span class="o">,</span> <span class="mi">12</span><span class="o">,</span> <span class="mi">0</span><span class="o">,</span> <span class="mi">0</span><span class="o">,</span> <span class="mi">0</span><span class="o">).</span><span class="na">toString</span><span class="o">());</span>
 <span class="n">theMarriage</span><span class="o">.</span><span class="na">resource</span><span class="o">(</span><span class="n">marriageDate</span><span class="o">);</span>
 </code></pre>
 </div>
@@ -937,7 +936,9 @@ $('#toc').on('click', 'a', function() {
 
 <p>In Java:</p>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">graph</span><span class="o">.</span><span class="na">getEntityType</span><span class="o">(</span><span class="err">“</span><span class="n">person</span><span class="err">”</span><span class="o">).</span><span class="na">instances</span><span class="o">().</span><span class="na">forEach</span><span class="o">(</span><span class="n">p</span><span class="o">-&gt;</span><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="err">“</span> <span class="err">“</span> <span class="o">+</span> <span class="n">p</span><span class="o">));</span>
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="k">for</span> <span class="o">(</span><span class="n">Thing</span> <span class="nl">p:</span> <span class="n">graph</span><span class="o">.</span><span class="na">getEntityType</span><span class="o">(</span><span class="s">"person"</span><span class="o">).</span><span class="na">instances</span><span class="o">())</span> <span class="o">{</span>
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">" "</span> <span class="o">+</span> <span class="n">p</span><span class="o">);</span>
+<span class="o">}</span>
 </code></pre>
 </div>
 
@@ -945,8 +946,9 @@ $('#toc').on('click', 'a', function() {
 
 <p>It is also possible to interact with the graph using a separate Java API that forms Graql queries. This is via <code class="highlighter-rouge">GraknGraph.graql()</code>, which returns a <code class="highlighter-rouge">QueryBuilder</code> object, discussed in the documentation. It is useful to use <code class="highlighter-rouge">QueryBuilder</code> if you want to make queries using Java, without having to construct a string containing the appropriate Graql expression. Taking the same query “What are the instances of type person?”:</p>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">graph</span><span class="o">.</span><span class="na">graql</span><span class="o">().</span><span class="na">match</span><span class="o">(</span><span class="n">var</span><span class="o">(</span><span class="err">“</span><span class="n">x</span><span class="err">”</span><span class="o">).</span><span class="na">isa</span><span class="o">(</span><span class="err">“</span><span class="n">person</span><span class="err">”</span><span class="o">)).</span><span class="na">execute</span><span class="o">().</span><span class="na">stream</span><span class="o">().</span>
-  <span class="n">map</span><span class="o">(</span><span class="nl">Map:</span><span class="o">:</span><span class="n">entrySet</span><span class="o">).</span><span class="na">forEach</span><span class="o">(</span><span class="n">p</span><span class="o">-&gt;</span><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="err">“</span> <span class="err">“</span> <span class="o">+</span> <span class="n">p</span><span class="o">));</span>
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="k">for</span> <span class="o">(</span><span class="n">Answer</span> <span class="nl">a:</span> <span class="n">graph</span><span class="o">.</span><span class="na">graql</span><span class="o">().</span><span class="na">match</span><span class="o">(</span><span class="n">var</span><span class="o">(</span><span class="s">"x"</span><span class="o">).</span><span class="na">isa</span><span class="o">(</span><span class="s">"person"</span><span class="o">)))</span> <span class="o">{</span>
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">" "</span> <span class="o">+</span> <span class="n">a</span><span class="o">);</span>
+<span class="o">}</span>
 </code></pre>
 </div>
 
@@ -962,13 +964,16 @@ Manipulation, such as insertions into the graph.</p>
 This is best for advanced querying where traversals are involved. For example “Who is married to Homer?” is too complex a query for the Graph API. Using a <code class="highlighter-rouge">QueryBuilder</code>:</p>
 
 <div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">List</span><span class="o">&lt;</span><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Concept</span><span class="o">&gt;&gt;</span> <span class="n">results</span> <span class="o">=</span> <span class="n">graph</span><span class="o">.</span><span class="na">graql</span><span class="o">().</span><span class="na">match</span><span class="o">(</span>
-  <span class="n">var</span><span class="o">(</span><span class="err">“</span><span class="n">x</span><span class="err">”</span><span class="o">).</span><span class="na">has</span><span class="o">(</span><span class="err">“</span><span class="n">firstname</span><span class="err">”</span><span class="o">,</span> <span class="err">“</span><span class="n">John</span><span class="err">”</span><span class="o">).</span><span class="na">isa</span><span class="o">(</span><span class="err">“</span><span class="n">person</span><span class="err">”</span><span class="o">),</span>
-  <span class="n">var</span><span class="o">(</span><span class="err">“</span><span class="n">y</span><span class="err">”</span><span class="o">).</span><span class="na">has</span><span class="o">(</span><span class="err">“</span><span class="n">firstname</span><span class="err">”</span><span class="o">,</span> <span class="n">var</span><span class="o">(</span><span class="err">“</span><span class="n">y_name</span><span class="err">”</span><span class="o">)).</span><span class="na">isa</span><span class="o">(</span><span class="err">“</span><span class="n">person</span><span class="err">”</span><span class="o">),</span>
-  <span class="n">var</span><span class="o">().</span><span class="na">isa</span><span class="o">(</span><span class="err">“</span><span class="n">marriage</span><span class="err">”</span><span class="o">).</span>
-  <span class="n">rel</span><span class="o">(</span><span class="err">“</span><span class="n">husband</span><span class="err">”</span><span class="o">,</span> <span class="err">“</span><span class="n">x</span><span class="err">”</span><span class="o">).</span>
-  <span class="n">rel</span><span class="o">(</span><span class="err">“</span><span class="n">wife</span><span class="err">”</span><span class="o">,</span> <span class="err">“</span><span class="n">y</span><span class="err">”</span><span class="o">)).</span><span class="na">execute</span><span class="o">();</span>
+  <span class="n">var</span><span class="o">(</span><span class="s">"x"</span><span class="o">).</span><span class="na">has</span><span class="o">(</span><span class="s">"firstname"</span><span class="o">,</span> <span class="s">"John"</span><span class="o">).</span><span class="na">isa</span><span class="o">(</span><span class="s">"person"</span><span class="o">),</span>
+  <span class="n">var</span><span class="o">(</span><span class="s">"y"</span><span class="o">).</span><span class="na">has</span><span class="o">(</span><span class="s">"firstname"</span><span class="o">,</span> <span class="n">var</span><span class="o">(</span><span class="s">"y_name"</span><span class="o">)).</span><span class="na">isa</span><span class="o">(</span><span class="s">"person"</span><span class="o">),</span>
+  <span class="n">var</span><span class="o">().</span><span class="na">isa</span><span class="o">(</span><span class="s">"marriage"</span><span class="o">).</span>
+  <span class="n">rel</span><span class="o">(</span><span class="s">"husband"</span><span class="o">,</span> <span class="s">"x"</span><span class="o">).</span>
+  <span class="n">rel</span><span class="o">(</span><span class="s">"wife"</span><span class="o">,</span> <span class="s">"y"</span><span class="o">)).</span><span class="na">execute</span><span class="o">();</span>
 <span class="k">for</span> <span class="o">(</span><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Concept</span><span class="o">&gt;</span> <span class="n">result</span> <span class="o">:</span> <span class="n">results</span><span class="o">)</span> <span class="o">{</span>
-  <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="err">“</span> <span class="err">“</span> <span class="o">+</span> <span class="n">result</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="err">“</span><span class="n">y_name</span><span class="err">”</span><span class="o">));</span>
+  <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">" "</span> <span class="o">+</span> <span class="n">result</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">"y_name"</span><span class="o">));</span>
+<span class="o">}</span>
+
+<span class="n">graph</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
 </code></pre>
 </div>
 
@@ -1023,7 +1028,7 @@ This is best for advanced querying where traversals are involved. For example �
         <br>
         <p>© 2017 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2017 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> May 2017<br/> Site last generated: Jul 24, 2017 <br />
+        <span>Page last updated:</span> May 2017<br/> Site last generated: Sep 12, 2017 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">

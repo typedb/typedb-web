@@ -209,6 +209,7 @@
                     </ul>
                 </li> -->
                 <li><a href="/pages/overview/index.html">Overview</a></li>
+                <li><a href=/pages/solutions.html>Solutions</a></li>
                 <li><a href="/pages/index.html">Documentation</a></li>
                 <li><a rel="me" href="//grakn.ai/community.html">Community</a></li>
                 <li><a rel="me" href="//discuss.grakn.ai/">Discussion</a></li>
@@ -300,13 +301,6 @@
             
             
             
-            <li><a href="/pages/documentation/the-fundamentals/grakn-architecture.html">Grakn Architecture Overview</a></li>
-            
-            
-            
-            
-            
-            
             <li><a href="/pages/documentation/the-fundamentals/grakn-knowledge-model.html">Grakn Knowledge Model</a></li>
             
             
@@ -330,13 +324,6 @@
             
             
             <li><a href="/pages/documentation/building-an-ontology/hierarchical-ontology.html">Define a Hierarchical Ontology</a></li>
-            
-            
-            
-            
-            
-            
-            <li><a href="/pages/documentation/building-an-ontology/rule-driven-ontology.html">Define a Rule-Driven Ontology</a></li>
             
             
             
@@ -681,6 +668,13 @@
             
             
             
+            <li><a href="/pages/documentation/examples/working-with-tweets.html">Working With Tweets</a></li>
+            
+            
+            
+            
+            
+            
             <li><a href="/pages/documentation/examples/modern.html">Modern example</a></li>
             
             
@@ -832,21 +826,21 @@ You can test in the Graql shell that all has loaded correctly. For example:
 
 <p>The rest of the project is contained in the Java example code, which can be found on <a href="https://github.com/graknlabs/grakn/blob/master/grakn-dist/src/examples/basic-genealogy.gql">Github</a>. The maven dependencies for this project are:</p>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="o">&lt;</span><span class="n">dependency</span><span class="o">&gt;</span>
-<span class="o">&lt;</span><span class="n">groupId</span><span class="o">&gt;</span><span class="n">ai</span><span class="o">.</span><span class="na">grakn</span><span class="o">&lt;/</span><span class="n">groupId</span><span class="o">&gt;</span>
-<span class="o">&lt;</span><span class="n">artifactId</span><span class="o">&gt;</span><span class="n">titan</span><span class="o">-</span><span class="n">factory</span><span class="o">&lt;/</span><span class="n">artifactId</span><span class="o">&gt;</span>
-<span class="o">&lt;</span><span class="n">version</span><span class="o">&gt;</span><span class="err">$</span><span class="o">{</span><span class="n">grakn</span><span class="o">.</span><span class="na">version</span><span class="o">}&lt;/</span><span class="n">version</span><span class="o">&gt;</span>
-<span class="o">&lt;/</span><span class="n">dependency</span><span class="o">&gt;</span>
-<span class="o">&lt;</span><span class="n">dependency</span><span class="o">&gt;</span>
-<span class="o">&lt;</span><span class="n">groupId</span><span class="o">&gt;</span><span class="n">org</span><span class="o">.</span><span class="na">slf4j</span><span class="o">&lt;/</span><span class="n">groupId</span><span class="o">&gt;</span>
-<span class="o">&lt;</span><span class="n">artifactId</span><span class="o">&gt;</span><span class="n">slf4j</span><span class="o">-</span><span class="n">nop</span><span class="o">&lt;/</span><span class="n">artifactId</span><span class="o">&gt;</span>
-<span class="o">&lt;</span><span class="n">version</span><span class="o">&gt;</span><span class="mf">1.7</span><span class="o">.</span><span class="mi">20</span><span class="o">&lt;/</span><span class="n">version</span><span class="o">&gt;</span>
-<span class="o">&lt;/</span><span class="n">dependency</span><span class="o">&gt;</span>
-<span class="o">&lt;</span><span class="n">dependency</span><span class="o">&gt;</span>
-<span class="o">&lt;</span><span class="n">groupId</span><span class="o">&gt;</span><span class="n">org</span><span class="o">.</span><span class="na">springframework</span><span class="o">.</span><span class="na">boot</span><span class="o">&lt;/</span><span class="n">groupId</span><span class="o">&gt;</span>
-<span class="o">&lt;</span><span class="n">artifactId</span><span class="o">&gt;</span><span class="n">spring</span><span class="o">-</span><span class="n">boot</span><span class="o">-</span><span class="n">starter</span><span class="o">-</span><span class="n">tomcat</span><span class="o">&lt;/</span><span class="n">artifactId</span><span class="o">&gt;</span>
-<span class="o">&lt;</span><span class="n">version</span><span class="o">&gt;</span><span class="mf">1.2</span><span class="o">.</span><span class="mi">4</span><span class="o">.</span><span class="na">RELEASE</span><span class="o">&lt;/</span><span class="n">version</span><span class="o">&gt;</span>
-<span class="o">&lt;/</span><span class="n">dependency</span><span class="o">&gt;</span>
+<div class="language-xml highlighter-rouge"><pre class="highlight"><code><span class="nt">&lt;dependency&gt;</span>
+<span class="nt">&lt;groupId&gt;</span>ai.grakn<span class="nt">&lt;/groupId&gt;</span>
+<span class="nt">&lt;artifactId&gt;</span>titan-factory<span class="nt">&lt;/artifactId&gt;</span>
+<span class="nt">&lt;version&gt;</span>${grakn.version}<span class="nt">&lt;/version&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+<span class="nt">&lt;dependency&gt;</span>
+<span class="nt">&lt;groupId&gt;</span>org.slf4j<span class="nt">&lt;/groupId&gt;</span>
+<span class="nt">&lt;artifactId&gt;</span>slf4j-nop<span class="nt">&lt;/artifactId&gt;</span>
+<span class="nt">&lt;version&gt;</span>1.7.20<span class="nt">&lt;/version&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+<span class="nt">&lt;dependency&gt;</span>
+<span class="nt">&lt;groupId&gt;</span>org.springframework.boot<span class="nt">&lt;/groupId&gt;</span>
+<span class="nt">&lt;artifactId&gt;</span>spring-boot-starter-tomcat<span class="nt">&lt;/artifactId&gt;</span>
+<span class="nt">&lt;version&gt;</span>1.2.4.RELEASE<span class="nt">&lt;/version&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
 </code></pre>
 </div>
 
@@ -854,71 +848,71 @@ You can test in the Graql shell that all has loaded correctly. For example:
 
 <p>First, we load the ontology and data we will be working with, which is the familiar <em>basic-genealogy.gql</em> dataset.</p>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="kd">private</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">loadBasicGenealogy</span><span class="o">()</span> <span class="o">{</span>
-    <span class="n">ClassLoader</span> <span class="n">classLoader</span> <span class="o">=</span> <span class="n">Main</span><span class="o">.</span><span class="na">class</span><span class="o">.</span><span class="na">getClassLoader</span><span class="o">();</span>
-    <span class="k">try</span> <span class="o">(</span><span class="n">GraknSession</span> <span class="n">session</span> <span class="o">=</span> <span class="n">Grakn</span><span class="o">.</span><span class="na">session</span><span class="o">(</span><span class="n">Grakn</span><span class="o">.</span><span class="na">DEFAULT_URI</span><span class="o">,</span> <span class="s">"genealogy"</span><span class="o">))</span> <span class="o">{</span>
-        <span class="k">try</span> <span class="o">(</span><span class="n">GraknGraph</span> <span class="n">graph</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="na">open</span><span class="o">(</span><span class="n">GraknTxType</span><span class="o">.</span><span class="na">WRITE</span><span class="o">))</span> <span class="o">{</span>
-            <span class="k">try</span> <span class="o">{</span>
-                <span class="n">graph</span><span class="o">.</span><span class="na">graql</span><span class="o">().</span><span class="na">parse</span><span class="o">(</span><span class="n">IOUtils</span><span class="o">.</span><span class="na">toString</span><span class="o">(</span><span class="n">classLoader</span><span class="o">.</span><span class="na">getResourceAsStream</span><span class="o">(</span><span class="s">"basic-genealogy.gql"</span><span class="o">))).</span><span class="na">execute</span><span class="o">();</span>
-                <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">IOException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
-                    <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
-            <span class="o">}</span>
-            <span class="n">graph</span><span class="o">.</span><span class="na">commit</span><span class="o">();</span>
-        <span class="o">}</span>
-    <span class="o">}</span>
-<span class="o">}</span>
+<!-- We ignore these examples because try-with-resources isn't valid Groovy -->
+<pre><code class="language-java-test-ignore">private static void loadBasicGenealogy() {
+    ClassLoader classLoader = Main.class.getClassLoader();
+    try (GraknSession session = Grakn.session(Grakn.DEFAULT_URI, "genealogy")) {
+        try (GraknGraph graph = session.open(GraknTxType.WRITE)) {
+            try {
+                graph.graql().parse(IOUtils.toString(classLoader.getResourceAsStream("basic-genealogy.gql"))).execute();
+                } catch (IOException e) {
+                    e.printStackTrace();
+            }
+            graph.commit();
+        }
+    }
+}
 </code></pre>
-</div>
 
 <h2 id="connect-to-grakn-engine">Connect to Grakn Engine</h2>
 
 <p>The next thing to do is connect to the running engine instance and check that the graph contains the data that we expect. This can be achieved with the following code:</p>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="kd">private</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">testConnection</span><span class="o">()</span> <span class="o">{</span>
-    <span class="c1">// initialise the connection to Grakn engine</span>
-    <span class="k">try</span> <span class="o">(</span><span class="n">GraknSession</span> <span class="n">session</span> <span class="o">=</span> <span class="n">Grakn</span><span class="o">.</span><span class="na">session</span><span class="o">(</span><span class="n">Grakn</span><span class="o">.</span><span class="na">DEFAULT_URI</span><span class="o">,</span> <span class="s">"genealogy"</span><span class="o">))</span> <span class="o">{</span>
+<!-- We ignore these examples because try-with-resources isn't valid Groovy -->
+<pre><code class="language-java-test-ignore">private static void testConnection() {
+    // initialise the connection to Grakn engine
+    try (GraknSession session = Grakn.session(Grakn.DEFAULT_URI, "genealogy")) {
 
-        <span class="c1">// open a graph (database transaction)</span>
-        <span class="k">try</span> <span class="o">(</span><span class="n">GraknGraph</span> <span class="n">graph</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="na">open</span><span class="o">(</span><span class="n">GraknTxType</span><span class="o">.</span><span class="na">READ</span><span class="o">))</span> <span class="o">{</span>
+        // open a graph (database transaction)
+        try (GraknGraph graph = session.open(GraknTxType.READ)) {
 
-            <span class="c1">// construct a match query to find people</span>
-            <span class="n">MatchQuery</span> <span class="n">query</span> <span class="o">=</span> <span class="n">graph</span><span class="o">.</span><span class="na">graql</span><span class="o">().</span><span class="na">match</span><span class="o">(</span><span class="n">var</span><span class="o">(</span><span class="s">"x"</span><span class="o">).</span><span class="na">isa</span><span class="o">(</span><span class="s">"person"</span><span class="o">));</span>
+            // construct a match query to find people
+            MatchQuery query = graph.graql().match(var("x").isa("person"));
 
-            <span class="c1">// execute the query</span>
-            <span class="n">List</span><span class="o">&lt;</span><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Concept</span><span class="o">&gt;&gt;</span> <span class="n">result</span> <span class="o">=</span> <span class="n">query</span><span class="o">.</span><span class="na">limit</span><span class="o">(</span><span class="mi">10</span><span class="o">).</span><span class="na">execute</span><span class="o">();</span>
+            // execute the query
+            List&lt;Map&lt;String, Concept&gt;&gt; result = query.limit(10).execute();
 
-            <span class="c1">// write the results to the console</span>
-            <span class="n">result</span><span class="o">.</span><span class="na">forEach</span><span class="o">(</span><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">::</span><span class="n">println</span><span class="o">);</span>
-            <span class="o">}</span>
-        <span class="o">}</span>
-    <span class="o">}</span>
-<span class="o">}</span>
+            // write the results to the console
+            result.forEach(System.out::println);
+            }
+        }
+    }
+}
 </code></pre>
-</div>
 
 <h2 id="compute-the-clusters">Compute the Clusters</h2>
 
 <p>Now that we have established the connection to Grakn engine works we can obtain the graph object and compute the clusters that we are interested in:</p>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="kd">private</span> <span class="kd">static</span> <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Set</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;&gt;</span> <span class="nf">computeClusters</span><span class="o">()</span> <span class="o">{</span>
-    <span class="c1">// initialise the connection to Grakn engine</span>
-    <span class="k">try</span> <span class="o">(</span><span class="n">GraknSession</span> <span class="n">session</span> <span class="o">=</span> <span class="n">Grakn</span><span class="o">.</span><span class="na">session</span><span class="o">(</span><span class="n">Grakn</span><span class="o">.</span><span class="na">DEFAULT_URI</span><span class="o">,</span> <span class="s">"genealogy"</span><span class="o">))</span> <span class="o">{</span>
+<!-- We ignore these examples because try-with-resources isn't valid Groovy -->
+<pre><code class="language-java-test-ignore">private static Map&lt;String, Set&lt;String&gt;&gt; computeClusters() {
+    // initialise the connection to Grakn engine
+    try (GraknSession session = Grakn.session(Grakn.DEFAULT_URI, "genealogy")) {
 
-        <span class="c1">// open a graph (database transaction)</span>
-        <span class="k">try</span> <span class="o">(</span><span class="n">GraknGraph</span> <span class="n">graph</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="na">open</span><span class="o">(</span><span class="n">GraknTxType</span><span class="o">.</span><span class="na">READ</span><span class="o">))</span> <span class="o">{</span>
+        // open a graph (database transaction)
+        try (GraknGraph graph = session.open(GraknTxType.READ)) {
 
-            <span class="c1">// construct the analytics cluster query</span>
-            <span class="n">ClusterQuery</span><span class="o">&lt;</span><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Set</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;&gt;&gt;</span> <span class="n">query</span> <span class="o">=</span> <span class="n">graph</span><span class="o">.</span><span class="na">graql</span><span class="o">().</span><span class="na">compute</span><span class="o">().</span><span class="na">cluster</span><span class="o">().</span><span class="na">in</span><span class="o">(</span><span class="s">"person"</span><span class="o">,</span> <span class="s">"marriage"</span><span class="o">).</span><span class="na">members</span><span class="o">();</span>
+            // construct the analytics cluster query
+            ClusterQuery&lt;Map&lt;String, Set&lt;String&gt;&gt;&gt; query = graph.graql().compute().cluster().in("person", "marriage").members();
 
-            <span class="c1">// execute the analytics query</span>
-            <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Set</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;&gt;</span> <span class="n">clusters</span> <span class="o">=</span> <span class="n">query</span><span class="o">.</span><span class="na">execute</span><span class="o">();</span>
+            // execute the analytics query
+            Map&lt;String, Set&lt;String&gt;&gt; clusters = query.execute();
 
-            <span class="k">return</span> <span class="n">clusters</span><span class="o">;</span>
-            <span class="o">}</span>
-        <span class="o">}</span>
-    <span class="o">}</span>
+            return clusters;
+            }
+        }
+    }
 </code></pre>
-</div>
 
 <p>Here we have used the <code class="highlighter-rouge">in</code> syntax to specify that we want to compute the clusters while only considering instances of the types <code class="highlighter-rouge">marriage</code> and <code class="highlighter-rouge">person</code>. The graph that we are effectively working on can be seen in the image below. We can see three clusters, but there are more in the basic genealogy example. The code above will have found all of the clusters and returned a <code class="highlighter-rouge">Map</code> from the unique cluster label to a set containing the ids of the instances in the cluster.</p>
 
@@ -930,72 +924,72 @@ You can test in the Graql shell that all has loaded correctly. For example:
 
 <p>Now that we have information about the clusters, it would be useful to add it to the graph so that we can visualise it. We can do this by creating a new entity type called <code class="highlighter-rouge">cluster</code> and a new relation type called <code class="highlighter-rouge">grouping</code> with the roles <code class="highlighter-rouge">group</code> and <code class="highlighter-rouge">member</code>. The ontology can be mutated as follows:</p>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="kd">private</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">mutateOntology</span><span class="o">()</span> <span class="o">{</span>
-    <span class="c1">// initialise the connection to Grakn engine</span>
-    <span class="k">try</span> <span class="o">(</span><span class="n">GraknSession</span> <span class="n">session</span> <span class="o">=</span> <span class="n">Grakn</span><span class="o">.</span><span class="na">session</span><span class="o">(</span><span class="n">Grakn</span><span class="o">.</span><span class="na">DEFAULT_URI</span><span class="o">,</span> <span class="s">"genealogy"</span><span class="o">))</span> <span class="o">{</span>
+<!-- We ignore these examples because try-with-resources isn't valid Groovy -->
+<pre><code class="language-java-test-ignore">private static void mutateOntology() {
+    // initialise the connection to Grakn engine
+    try (GraknSession session = Grakn.session(Grakn.DEFAULT_URI, "genealogy")) {
 
-        <span class="c1">// open a graph (database transaction)</span>
-        <span class="k">try</span> <span class="o">(</span><span class="n">GraknGraph</span> <span class="n">graph</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="na">open</span><span class="o">(</span><span class="n">GraknTxType</span><span class="o">.</span><span class="na">WRITE</span><span class="o">))</span> <span class="o">{</span>
+        // open a graph (database transaction)
+        try (GraknGraph graph = session.open(GraknTxType.WRITE)) {
 
-            <span class="c1">// create set of vars representing the mutation</span>
-            <span class="n">Var</span> <span class="n">group</span> <span class="o">=</span> <span class="n">Graql</span><span class="o">.</span><span class="na">var</span><span class="o">(</span><span class="s">"group"</span><span class="o">).</span><span class="na">label</span><span class="o">(</span><span class="s">"group"</span><span class="o">).</span><span class="na">sub</span><span class="o">(</span><span class="s">"role"</span><span class="o">);</span>
-            <span class="n">Var</span> <span class="n">member</span> <span class="o">=</span> <span class="n">Graql</span><span class="o">.</span><span class="na">var</span><span class="o">(</span><span class="s">"member"</span><span class="o">).</span><span class="na">label</span><span class="o">(</span><span class="s">"member"</span><span class="o">).</span><span class="na">sub</span><span class="o">(</span><span class="s">"role"</span><span class="o">);</span>
-            <span class="n">Var</span> <span class="n">grouping</span> <span class="o">=</span> <span class="n">Graql</span><span class="o">.</span><span class="na">var</span><span class="o">(</span><span class="s">"grouping"</span><span class="o">).</span><span class="na">label</span><span class="o">(</span><span class="s">"grouping"</span><span class="o">).</span><span class="na">sub</span><span class="o">(</span><span class="s">"relation"</span><span class="o">).</span><span class="na">relates</span><span class="o">(</span><span class="n">group</span><span class="o">).</span><span class="na">relates</span><span class="o">(</span><span class="n">member</span><span class="o">);</span>
-            <span class="n">Var</span> <span class="n">cluster</span> <span class="o">=</span> <span class="n">Graql</span><span class="o">.</span><span class="na">var</span><span class="o">(</span><span class="s">"cluster"</span><span class="o">).</span><span class="na">label</span><span class="o">(</span><span class="s">"cluster"</span><span class="o">).</span><span class="na">sub</span><span class="o">(</span><span class="s">"entity"</span><span class="o">).</span><span class="na">plays</span><span class="o">(</span><span class="n">group</span><span class="o">);</span>
-            <span class="n">Var</span> <span class="n">personPlaysRole</span> <span class="o">=</span> <span class="n">Graql</span><span class="o">.</span><span class="na">var</span><span class="o">(</span><span class="s">"person"</span><span class="o">).</span><span class="na">label</span><span class="o">(</span><span class="s">"person"</span><span class="o">).</span><span class="na">plays</span><span class="o">(</span><span class="s">"member"</span><span class="o">);</span>
-            <span class="n">Var</span> <span class="n">marriagePlaysRole</span> <span class="o">=</span> <span class="n">Graql</span><span class="o">.</span><span class="na">var</span><span class="o">(</span><span class="s">"marriage"</span><span class="o">).</span><span class="na">label</span><span class="o">(</span><span class="s">"marriage"</span><span class="o">).</span><span class="na">plays</span><span class="o">(</span><span class="s">"member"</span><span class="o">);</span>
+            // create set of vars representing the mutation
+            Var group = Graql.var("group").label("group").sub("role");
+            Var member = Graql.var("member").label("member").sub("role");
+            Var grouping = Graql.var("grouping").label("grouping").sub("relation").relates(group).relates(member);
+            Var cluster = Graql.var("cluster").label("cluster").sub("entity").plays(group);
+            Var personPlaysRole = Graql.var("person").label("person").plays("member");
+            Var marriagePlaysRole = Graql.var("marriage").label("marriage").plays("member");
 
-            <span class="c1">// construct the insert query</span>
-            <span class="n">InsertQuery</span> <span class="n">query</span> <span class="o">=</span> <span class="n">graph</span><span class="o">.</span><span class="na">graql</span><span class="o">().</span><span class="na">insert</span><span class="o">(</span><span class="n">group</span><span class="o">,</span> <span class="n">member</span><span class="o">,</span> <span class="n">grouping</span><span class="o">,</span> <span class="n">cluster</span><span class="o">,</span> <span class="n">personPlaysRole</span><span class="o">,</span> <span class="n">marriagePlaysRole</span><span class="o">);</span>
+            // construct the insert query
+            InsertQuery query = graph.graql().insert(group, member, grouping, cluster, personPlaysRole, marriagePlaysRole);
 
-            <span class="c1">// execute the insert query</span>
-            <span class="n">query</span><span class="o">.</span><span class="na">execute</span><span class="o">();</span>
+            // execute the insert query
+            query.execute();
 
-            <span class="c1">// don't forget to commit the changes</span>
-            <span class="n">graph</span><span class="o">.</span><span class="na">commit</span><span class="o">();</span>
-        <span class="o">}</span>
-    <span class="o">}</span>
-<span class="o">}</span>
+            // don't forget to commit the changes
+            graph.commit();
+        }
+    }
+}
 </code></pre>
-</div>
 
 <p>We also have to ensure that the existing types in the ontology can play the specified roles.</p>
 
 <p>Now all that is left is to populate the graph with the clusters and grouping relationships. To do this we can create a cluster for each result from the analytics query, which can then be attached to each of the concepts returned in the set of members:</p>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="kd">private</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">persistClusters</span><span class="o">(</span><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Set</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;&gt;</span> <span class="n">results</span><span class="o">)</span> <span class="o">{</span>
+<!-- We ignore these examples because try-with-resources isn't valid Groovy -->
+<pre><code class="language-java-test-ignore">private static void persistClusters(Map&lt;String, Set&lt;String&gt;&gt; results) {
 
-    <span class="c1">// initialise the connection to Grakn engine</span>
-    <span class="k">try</span> <span class="o">(</span><span class="n">GraknSession</span> <span class="n">session</span> <span class="o">=</span> <span class="n">Grakn</span><span class="o">.</span><span class="na">session</span><span class="o">(</span><span class="n">Grakn</span><span class="o">.</span><span class="na">DEFAULT_URI</span><span class="o">,</span> <span class="s">"genealogy"</span><span class="o">))</span> <span class="o">{</span>
+    // initialise the connection to Grakn engine
+    try (GraknSession session = Grakn.session(Grakn.DEFAULT_URI, "genealogy")) {
 
-        <span class="c1">// iterate through results of cluster query</span>
-        <span class="n">results</span><span class="o">.</span><span class="na">forEach</span><span class="o">((</span><span class="n">clusterID</span><span class="o">,</span> <span class="n">memberSet</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="o">{</span>
+        // iterate through results of cluster query
+        results.forEach((clusterID, memberSet) -&gt; {
 
-            <span class="c1">// open a graph (database transaction)</span>
-            <span class="k">try</span> <span class="o">(</span><span class="n">GraknGraph</span> <span class="n">graph</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="na">open</span><span class="o">(</span><span class="n">GraknTxType</span><span class="o">.</span><span class="na">WRITE</span><span class="o">))</span> <span class="o">{</span>
+            // open a graph (database transaction)
+            try (GraknGraph graph = session.open(GraknTxType.WRITE)) {
 
-                    <span class="c1">// collect the vars to insert</span>
-                    <span class="n">Set</span><span class="o">&lt;</span><span class="n">Var</span><span class="o">&gt;</span> <span class="n">insertVars</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashSet</span><span class="o">&lt;&gt;();</span>
+                    // collect the vars to insert
+                    Set&lt;Var&gt; insertVars = new HashSet&lt;&gt;();
 
-                    <span class="c1">// create the cluster</span>
-                    <span class="n">Var</span> <span class="n">cluster</span> <span class="o">=</span> <span class="n">Graql</span><span class="o">.</span><span class="na">var</span><span class="o">().</span><span class="na">isa</span><span class="o">(</span><span class="s">"cluster"</span><span class="o">);</span>
-                    <span class="n">insertVars</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">cluster</span><span class="o">);</span>
+                    // create the cluster
+                    Var cluster = Graql.var().isa("cluster");
+                    insertVars.add(cluster);
 
-                    <span class="c1">// attach the members</span>
-                    <span class="n">memberSet</span><span class="o">.</span><span class="na">forEach</span><span class="o">(</span><span class="n">member</span> <span class="o">-&gt;</span> <span class="o">{</span>
-                        <span class="n">Var</span> <span class="n">memberVar</span> <span class="o">=</span> <span class="n">Graql</span><span class="o">.</span><span class="na">var</span><span class="o">().</span><span class="na">id</span><span class="o">(</span><span class="n">ConceptId</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="n">member</span><span class="o">));</span>
-                        <span class="n">insertVars</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">Graql</span><span class="o">.</span><span class="na">var</span><span class="o">().</span><span class="na">isa</span><span class="o">(</span><span class="s">"grouping"</span><span class="o">).</span><span class="na">rel</span><span class="o">(</span><span class="s">"group"</span><span class="o">,</span> <span class="n">cluster</span><span class="o">).</span><span class="na">rel</span><span class="o">(</span><span class="s">"member"</span><span class="o">,</span><span class="n">memberVar</span><span class="o">));</span>
-                    <span class="o">});</span>
+                    // attach the members
+                    memberSet.forEach(member -&gt; {
+                        Var memberVar = Graql.var().id(ConceptId.of(member));
+                        insertVars.add(Graql.var().isa("grouping").rel("group", cluster).rel("member",memberVar));
+                    });
 
-                <span class="c1">// execute query and commit</span>
-                <span class="n">graph</span><span class="o">.</span><span class="na">graql</span><span class="o">().</span><span class="na">insert</span><span class="o">(</span><span class="n">insertVars</span><span class="o">).</span><span class="na">execute</span><span class="o">();</span>
-                <span class="n">graph</span><span class="o">.</span><span class="na">commit</span><span class="o">();</span>
-            <span class="o">}</span>
-        <span class="o">});</span>
-    <span class="o">}</span>
-<span class="o">}</span>
+                // execute query and commit
+                graph.graql().insert(insertVars).execute();
+                graph.commit();
+            }
+        });
+    }
+}
 </code></pre>
-</div>
 
 <p>We can now switch to the visualiser, by browsing to <a href="http://localhost:4567">localhost:4567</a>, and execute this query:</p>
 
@@ -1010,25 +1004,25 @@ You can test in the Graql shell that all has loaded correctly. For example:
 
 <p>When using the visualiser it is probably quite useful to be able to see the size of the cluster before clicking on it. In order to add this information to the graph we will use another analytics function degree. The code to compute the degree is:</p>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="kd">private</span> <span class="kd">static</span> <span class="n">Map</span><span class="o">&lt;</span><span class="n">Long</span><span class="o">,</span> <span class="n">Set</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;&gt;</span> <span class="nf">degreeOfClusters</span><span class="o">()</span> <span class="o">{</span>
-    <span class="c1">// initialise the connection to Grakn engine</span>
-    <span class="k">try</span> <span class="o">(</span><span class="n">GraknSession</span> <span class="n">session</span> <span class="o">=</span> <span class="n">Grakn</span><span class="o">.</span><span class="na">session</span><span class="o">(</span><span class="n">Grakn</span><span class="o">.</span><span class="na">DEFAULT_URI</span><span class="o">,</span> <span class="s">"genealogy"</span><span class="o">))</span> <span class="o">{</span>
+<!-- We ignore these examples because try-with-resources isn't valid Groovy -->
+<pre><code class="language-java-test-ignore">private static Map&lt;Long, Set&lt;String&gt;&gt; degreeOfClusters() {
+    // initialise the connection to Grakn engine
+    try (GraknSession session = Grakn.session(Grakn.DEFAULT_URI, "genealogy")) {
 
-        <span class="c1">// open a graph (database transaction)</span>
-        <span class="k">try</span> <span class="o">(</span><span class="n">GraknGraph</span> <span class="n">graph</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="na">open</span><span class="o">(</span><span class="n">GraknTxType</span><span class="o">.</span><span class="na">READ</span><span class="o">))</span> <span class="o">{</span>
+        // open a graph (database transaction)
+        try (GraknGraph graph = session.open(GraknTxType.READ)) {
 
-            <span class="c1">// construct the analytics cluster query</span>
-            <span class="n">DegreeQuery</span> <span class="n">query</span> <span class="o">=</span> <span class="n">graph</span><span class="o">.</span><span class="na">graql</span><span class="o">().</span><span class="na">compute</span><span class="o">().</span><span class="na">degree</span><span class="o">().</span><span class="na">in</span><span class="o">(</span><span class="s">"cluster"</span><span class="o">,</span> <span class="s">"grouping"</span><span class="o">).</span><span class="na">of</span><span class="o">(</span><span class="s">"cluster"</span><span class="o">);</span>
+            // construct the analytics cluster query
+            DegreeQuery query = graph.graql().compute().degree().in("cluster", "grouping").of("cluster");
 
-            <span class="c1">// execute the analytics query</span>
-            <span class="n">Map</span><span class="o">&lt;</span><span class="n">Long</span><span class="o">,</span> <span class="n">Set</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;&gt;</span> <span class="n">degrees</span> <span class="o">=</span> <span class="n">query</span><span class="o">.</span><span class="na">execute</span><span class="o">();</span>
+            // execute the analytics query
+            Map&lt;Long, Set&lt;String&gt;&gt; degrees = query.execute();
 
-            <span class="k">return</span> <span class="n">degrees</span><span class="o">;</span>
-        <span class="o">}</span>
-    <span class="o">}</span>
-<span class="o">}</span>
+            return degrees;
+        }
+    }
+}
 </code></pre>
-</div>
 
 <p>The <code class="highlighter-rouge">in</code> syntax has again been used here to restrict the algorithm to the graph shown below. Further, the <code class="highlighter-rouge">of</code> syntax has been used to compute the degree for the cluster alone. What is returned from this calculation is a <code class="highlighter-rouge">Map</code> from the degree which is a <code class="highlighter-rouge">long</code> to the ids of the instances that have that degree.</p>
 
@@ -1036,43 +1030,43 @@ You can test in the Graql shell that all has loaded correctly. For example:
 
 <p>As we did when computing the clusters, we need to put the information back into the graph. This time we will attach a resource called <code class="highlighter-rouge">degree</code> to the cluster entity. The ontology mutation and persisting of the degrees is performed in a single method:</p>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="kd">private</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">persistDegrees</span><span class="o">(</span><span class="n">Map</span><span class="o">&lt;</span><span class="n">Long</span><span class="o">,</span> <span class="n">Set</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;&gt;</span> <span class="n">degrees</span><span class="o">)</span> <span class="o">{</span>
-    <span class="c1">// initialise the connection to Grakn engine</span>
-    <span class="k">try</span> <span class="o">(</span><span class="n">GraknSession</span> <span class="n">session</span> <span class="o">=</span> <span class="n">Grakn</span><span class="o">.</span><span class="na">session</span><span class="o">(</span><span class="n">Grakn</span><span class="o">.</span><span class="na">DEFAULT_URI</span><span class="o">,</span> <span class="s">"genealogy"</span><span class="o">))</span> <span class="o">{</span>
+<!-- We ignore these examples because try-with-resources isn't valid Groovy -->
+<pre><code class="language-java-test-ignore">private static void persistDegrees(Map&lt;Long, Set&lt;String&gt;&gt; degrees) {
+    // initialise the connection to Grakn engine
+    try (GraknSession session = Grakn.session(Grakn.DEFAULT_URI, "genealogy")) {
 
-        <span class="k">try</span> <span class="o">(</span><span class="n">GraknGraph</span> <span class="n">graph</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="na">open</span><span class="o">(</span><span class="n">GraknTxType</span><span class="o">.</span><span class="na">WRITE</span><span class="o">))</span> <span class="o">{</span>
+        try (GraknGraph graph = session.open(GraknTxType.WRITE)) {
 
-            <span class="c1">// mutate the ontology</span>
-            <span class="n">Var</span> <span class="n">degree</span> <span class="o">=</span> <span class="n">Graql</span><span class="o">.</span><span class="na">var</span><span class="o">().</span><span class="na">label</span><span class="o">(</span><span class="s">"degree"</span><span class="o">).</span><span class="na">sub</span><span class="o">(</span><span class="s">"resource"</span><span class="o">).</span><span class="na">datatype</span><span class="o">(</span><span class="n">ResourceType</span><span class="o">.</span><span class="na">DataType</span><span class="o">.</span><span class="na">LONG</span><span class="o">);</span>
-            <span class="n">Var</span> <span class="n">cluster</span> <span class="o">=</span> <span class="n">Graql</span><span class="o">.</span><span class="na">var</span><span class="o">().</span><span class="na">label</span><span class="o">(</span><span class="s">"cluster"</span><span class="o">).</span><span class="na">has</span><span class="o">(</span><span class="s">"degree"</span><span class="o">);</span>
+            // mutate the ontology
+            Var degree = Graql.var().label("degree").sub("resource").datatype(ResourceType.DataType.LONG);
+            Var cluster = Graql.var().label("cluster").has("degree");
 
-            <span class="c1">// execute the query</span>
-            <span class="n">graph</span><span class="o">.</span><span class="na">graql</span><span class="o">().</span><span class="na">insert</span><span class="o">(</span><span class="n">degree</span><span class="o">,</span> <span class="n">cluster</span><span class="o">).</span><span class="na">execute</span><span class="o">();</span>
+            // execute the query
+            graph.graql().insert(degree, cluster).execute();
 
-            <span class="c1">// don't forget to commit</span>
-            <span class="n">graph</span><span class="o">.</span><span class="na">commit</span><span class="o">();</span>
-            <span class="o">}</span>
+            // don't forget to commit
+            graph.commit();
+            }
 
-            <span class="k">try</span> <span class="o">(</span><span class="n">GraknGraph</span> <span class="n">graph</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="na">open</span><span class="o">(</span><span class="n">GraknTxType</span><span class="o">.</span><span class="na">WRITE</span><span class="o">))</span> <span class="o">{</span>
+            try (GraknGraph graph = session.open(GraknTxType.WRITE)) {
 
-            <span class="c1">// add the degrees to the cluster</span>
-            <span class="n">Set</span><span class="o">&lt;</span><span class="n">Var</span><span class="o">&gt;</span> <span class="n">degreeMutation</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashSet</span><span class="o">&lt;&gt;();</span>
-            <span class="n">degrees</span><span class="o">.</span><span class="na">forEach</span><span class="o">((</span><span class="n">degree</span><span class="o">,</span> <span class="n">concepts</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="o">{</span>
-                <span class="n">concepts</span><span class="o">.</span><span class="na">forEach</span><span class="o">(</span><span class="n">concept</span> <span class="o">-&gt;</span> <span class="o">{</span>
-                    <span class="n">degreeMutation</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">Graql</span><span class="o">.</span><span class="na">var</span><span class="o">().</span><span class="na">id</span><span class="o">(</span><span class="n">ConceptId</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="n">concept</span><span class="o">)).</span><span class="na">has</span><span class="o">(</span><span class="s">"degree"</span><span class="o">,</span><span class="n">degree</span><span class="o">));</span>
-                <span class="o">});</span>
-            <span class="o">});</span>
+            // add the degrees to the cluster
+            Set&lt;Var&gt; degreeMutation = new HashSet&lt;&gt;();
+            degrees.forEach((degree, concepts) -&gt; {
+                concepts.forEach(concept -&gt; {
+                    degreeMutation.add(Graql.var().id(ConceptId.of(concept)).has("degree",degree));
+                });
+            });
 
-            <span class="c1">// execute the query</span>
-            <span class="n">graph</span><span class="o">.</span><span class="na">graql</span><span class="o">().</span><span class="na">insert</span><span class="o">(</span><span class="n">degreeMutation</span><span class="o">).</span><span class="na">execute</span><span class="o">();</span>
+            // execute the query
+            graph.graql().insert(degreeMutation).execute();
 
-            <span class="c1">// don't forget to commit</span>
-            <span class="n">graph</span><span class="o">.</span><span class="na">commit</span><span class="o">();</span>
-            <span class="o">}</span>
-        <span class="o">}</span>
-    <span class="o">}</span>
+            // don't forget to commit
+            graph.commit();
+            }
+        }
+    }
 </code></pre>
-</div>
 
 <p>We used a single transaction for this because it is a small graph.</p>
 
@@ -1130,7 +1124,7 @@ You can test in the Graql shell that all has loaded correctly. For example:
         <br>
         <p>© 2017 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2017 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> April 2017<br/> Site last generated: Jul 24, 2017 <br />
+        <span>Page last updated:</span> April 2017<br/> Site last generated: Sep 12, 2017 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">

@@ -7,7 +7,7 @@
 
         <meta name='viewport'    content='width=de  vice-width, initial-scale=1, maximum-scale=1, user-scalable=0' />
         <meta name='description' content='The Database for AI' />
-        <meta name='keywords'    content='Grakn Labs, grakn, graql, grakn.ai, Mindmaps Research, Mindmaps Research Ltd, MindmapsDB, mindmaps, mindmaps graph, mindmaps.io, open source, knowledge graph, distributed knowledge graph, dynamic graphs, development platform, developer tool, data platform, programming language, query language, database, semantic database, distributed semantic database, distributed database, graph database, semantic search, data exploration, recommendation system, knowledge management, knowledge engineering, graph analytics, real-time analytics, advanced analytics, reasoning engine, inference engine, expert systems, semantic applications, research engines, data management, business intelligence, big data, semantic web, semantic data, knowledge representation, machine reasoning, automated reasoning, semantic network, knowledge ontology, semantic graph, ontology engineering, graph based knowledge representation, artificial intelligence,' />
+        <meta name='keywords'    content='Grakn Labs, grakn, graql, grakn.ai, Mindmaps Research, Mindmaps Research Ltd, MindmapsDB, mindmaps, mindmaps graph, mindmaps.io, open source, relational, hyper-relational, knowledge graph, distributed knowledge graph, hypergraphs, hyper-graph, graph theory, dynamic graphs, development platform, developer tool, data platform, programming language, query language, database, semantic database, distributed semantic database, distributed database, graph database, semantic search, data exploration, recommendation system, knowledge management, knowledge engineering, graph analytics, real-time analytics, advanced analytics, reasoning engine, inference engine, expert systems, semantic applications, research engines, data management, business intelligence, big data, semantic web, semantic data, knowledge representation, machine reasoning, automated reasoning, semantic network, knowledge ontology, semantic graph, ontology engineering, graph based knowledge representation, artificial intelligence,' />
         <title>GRAKN.AI - The Database for AI</title>
 
         <meta property='og:title'       content='GRAKN.AI' />
@@ -258,6 +258,7 @@
                                 </ul>
                             </li> -->
                             <li><a href="/pages/overview/index.html">Overview</a></li>
+                            <li><a href="/pages/solutions.html">Solutions</a></li>
                             <li><a href="/pages/index.html">Documentation</a></li>
                             <li><a href="/community.html">Community</a></li>
                             <li><a rel="me" href="https://discuss.grakn.ai">Discussion</a></li>
@@ -277,7 +278,7 @@
                         <p><span id="topTypist"></span></p>
                     </div>
                     <div class="intro full-height">
-                        <p>Intelligent systems consume data that are too complex for current databases to handle. GRAKN.AI is a distributed knowledge base to store complex data, with a reasoning query language to interpret complex relationships. GRAKN.AI is the database for cognitive systems.</p>
+                        <p>AI systems process knowledge that is too complex for current databases. Grakn is a distributed <u>hyper-relational</u> database for knowledge-oriented systems, i.e. a distributed <u>knowledge base</u>.</p>
                         <!-- <p>AI systems need a knowledge base to manage their data as they produce and consume more complex information than the average software. GRAKN.AI is a distributed knowledge base with a reasoning query language that enables you to query for explicitly stored data and implicitly derived information.</p> -->
                         <!-- <p>Artificial Intelligence applications require complex data processing, as they tend to compile information from multiple sources and produce complex data output. GRAKN.AI is a database in the form of a <u>knowledge graph</u> that uses machine reasoning to simplify data processing for AI applications.</p> -->
                         <!-- <p>Highly interconnected data with heterogeneous types are a precious source of knowledge, but challenging to maintain, query, analyse and understand. GRAKN.AI is an <u>open-source</u> knowledge graph data platform that uses the power of machine reasoning to help you overcome these challenges and build intelligent systems.</p> -->
@@ -299,7 +300,7 @@
                 <div class="columns twelve">
                     <div class="editor" data-splitter="view" data-tabs="view">
                         <div class="info">
-                        <div><a rel="me" href="https://github.com/graknlabs/grakn" target="_blank"><svg><use xlink:href="#github" /></svg> Grakn 0.15 on GitHub</a>&nbsp;&nbsp;&nbsp;&nbsp;</div>
+                        <div><a rel="me" href="https://github.com/graknlabs/grakn" target="_blank"><svg><use xlink:href="#github" /></svg> Grakn 0.16 on GitHub</a>&nbsp;&nbsp;&nbsp;&nbsp;</div>
                                 <div><a href="/slack.html"><svg><use xlink:href="#slack" /></svg> Grakn on Slack</a></div>
                                     <div><a rel="me" href="https://twitter.com/graknlabs" target="_blank"><svg><use xlink:href="#twitter" /></svg> @GraknLabs on Twitter</a></div>
                         </div>
@@ -342,13 +343,13 @@ $x isa movie, has title "Terminator 2: Judgement Day";</textarea>
 
 graql>>
 match
-$x isa movie, has title $t;;
+$x isa movie, has title $t;
 $x has rating > 8.0;
 $x has release-date >= 2015-01-01;
 select $t;
 
 results>>
-$t isa title, val "Star Wars: Episove VII";
+$t isa title, val "Star Wars: Episode VII";
 $t isa title, val "Zootopia";
 $t isa title, val "The Martian";</textarea>
                                     <pre class="code-output">
@@ -441,8 +442,8 @@ $x isa movie, has title "Big Fish"; $y isa movie, has name "Tim Burton";</textar
             <div class="row">
                 <div class="columns seven">
                     <h2>Meet Grakn and Graql</h2>
-                    <p><b>Grakn</b> is a distributed knowledge base that enables machines to store and structure complex data. Grakn turns your dataset into a <b>gra</b>ph of <b>kn</b>owledge. </p>
-                    <p><b>Graql</b> is a query language that uses machine reasoning to interpret complex relationships and retrieve implicitly derived knowledge. It has a reasoning and analytics engine.</p>
+                    <p><b>Grakn</b> is a distributed <u>hyper-relational</u> database for knowledge-oriented systems. Grakn enables machines to manage complex data that serves as a knowledge base for cognitive/AI systems. </p>
+                    <p><b>Graql</b> is Grakn's reasoning (through OLTP) and analytics (through OLAP) query language. Graql is a much higher level abstraction over traditional query language - SQL, NoSQL, or Graphs.</p>
                     <div class="centered margin-bottom">
                         <a class="button color-black hollow" href="/pages/overview/index.html">Learn more <svg><use xlink:href="#arrow-right" /></svg></a>
                     </div>
@@ -454,8 +455,8 @@ $x isa movie, has title "Big Fish"; $y isa movie, has name "Tim Burton";</textar
                                 <span class="title">Graql</span>
                             </a>
                             <div class="children">
-                                <a class="title" href="/pages/overview/index.html">Analytics</a>
-                                <a class="title" href="/pages/overview/index.html">Inference</a>
+                                <a class="title" href="/pages/overview/index.html">Knowledge Inference</a>
+                                <a class="title" href="/pages/overview/index.html">Knowledge Analytics</a>
                             </div>
                         </div>
                         <div class="arrows">
@@ -477,7 +478,7 @@ $x isa movie, has title "Big Fish"; $y isa movie, has name "Tim Burton";</textar
                                 <span class="title">Grakn</span>
                             </a>
                             <div class="children">
-                                <a class="title" href="/pages/overview/index.html">Graph API</a>
+                                <a class="title" href="/pages/overview/index.html">Knowledge Storage System</a>
                             </div>
                         </div>
                     </div>
@@ -489,9 +490,9 @@ $x isa movie, has title "Big Fish"; $y isa movie, has name "Tim Burton";</textar
             <div class="row">
                 <div class="columns twelve">
                     <h2 class="centered">Building <u>AI applications</u> becomes much easier</h2>
-                    <div class="promoSlider">
-                        <div class="content">
-                            <ul>
+                    <div class="promoSlider" id="sliderScroller">
+                        <div class="content" id="sliderContainer">
+                            <ul id="sliderWrapper">
                                 <li>
                                     <svg viewBox="0 0 200 200" class="live-icon">
                                         <polygon vector-effect="non-scaling-stroke" points="100,40 142.4,57.5 160,100 142.4,142.4 100,160 57.6,142.4 40,100 57.6,57.5"/>
@@ -527,7 +528,7 @@ $x isa movie, has title "Big Fish"; $y isa movie, has name "Tim Burton";</textar
                                         <rect class="float n3 blink" x="160" y="85" width="30" height="30"/>
                                     </svg>
                                     <h3>Intelligent Chat Bots</h3>
-                                    <p>As devices have become more intelligent, the way we interact with them evolved to natural language through conversation. GRAKN.AI is the ideal platform for developing chat bots because it is capable of interpreting complex and ambiguous questions by performing inference over your knowledge graph.</p>
+                                    <p>As devices have become more intelligent, the way we interact with them evolved to natural language through conversation. GRAKN.AI is the ideal platform for developing chat bots because it is capable of interpreting complex and ambiguous questions by performing inference over your knowledge base.</p>
                                 </li>
                                 <li>
                                     <svg viewBox="0 0 200 200" class="live-icon">
@@ -542,7 +543,7 @@ $x isa movie, has title "Big Fish"; $y isa movie, has name "Tim Burton";</textar
                                         <polyline vector-effect="non-scaling-stroke" points="33.3,126.3 37.1,117.1 46.3,120.9"/>
                                     </svg>
                                     <h3>Advanced Drug Discovery</h3>
-                                    <p>The process of drug research, synthesis, testing, and approval is incredibly time intensive and costly. These workflows produce large volumes of heterogeneous and interconnected data that unfortunately sit in silos. GRAKN.AI allows the integration of these datasets into one intelligent knowledge graph. The identification of, and reasoning upon, implicit linkages that Grakn does across datasets, departments and workflow phases allows you to catapult your research years into the future.</p>
+                                    <p>The process of drug research, synthesis, testing, and approval is incredibly time intensive and costly. These workflows produce large volumes of heterogeneous and interconnected data that unfortunately sit in silos. GRAKN.AI allows the integration of these datasets into one intelligent knowledge base. The identification of, and reasoning upon, implicit linkages that Grakn does across datasets, departments and workflow phases allows you to catapult your research years into the future.</p>
                                 </li>
                                 <li>
                                     <svg viewBox="0 0 200 200" class="live-icon">
@@ -556,11 +557,11 @@ $x isa movie, has title "Big Fish"; $y isa movie, has name "Tim Burton";</textar
                                 </li>
                             </ul>
                         </div>
-                        <div class="controls">
-                            <div class="scrollbar">
-                                <span></span>
+                        <div class="controls" id="sliderControls">
+                            <div class="scrollbar" id="sliderScrollbar">
+                                <span id="sliderKnob"></span>
                             </div>
-                            <ul>
+                            <ul id="sliderTabs">
                                 <li><span>Semantic <i>Search</i></span></li>
                                 <li><span>Automated <i>Fraud Detection</i></span></li>
                                 <li><span>Intelligent <i>Chat Bots</i></span></li>
@@ -587,7 +588,7 @@ $x isa movie, has title "Big Fish"; $y isa movie, has name "Tim Burton";</textar
             <div class="row">
                 <div class="columns six">
                     <h3>Flexible and expressive model</h3>
-                    <p>Grakn allows you to model the world through a highly expressive ontology that functions as your data schema. Your ontology could flexibly evolve as your business grows.</p>
+                    <p>Grakn provides a highly expressive <i>Enhanced-Entity-Relationship</i> model as your data schema. Grakn allows your database model to constantly evolve.</p>
                     <div class="illustration">
                         <div class="advantages-flexible">
                             <div class="shape n1">
@@ -613,8 +614,8 @@ $x isa movie, has title "Big Fish"; $y isa movie, has name "Tim Burton";</textar
                     </div>
                 </div>
                 <div class="columns six">
-                    <h3>Write complex queries intuitively</h3>
-                    <p>Graql uses automated reasoning to let you express complex questions in concise and intuitive statements. The equivalent queries are much more complex in other query languages.</p>
+                    <h3>Query for complex questions intuitively</h3>
+                    <p>Graql is a much higher level of abstraction than traditional query languages. The equivalent queries are much more complex in other query languages.</p>
                     <div class="illustration">
                         <div class="advantages-code">
                             <p><span id="advantagesTypist"></span></p>
@@ -624,8 +625,8 @@ $x isa movie, has title "Big Fish"; $y isa movie, has name "Tim Burton";</textar
             </div>
             <div class="row">
                 <div class="columns six">
-                    <h3>Graph analytics as a language</h3>
-                    <p>Graql provides functionalites to perform distributed graph analytics out of the box. Analyse your data immediately without further engineering effort of building distributed algorithms.</p>
+                    <h3>Distributed analytics as a language</h3>
+                    <p>Graql provides functionalites to perform distributed analytics out of the box. Analyse your data immediately without further engineering effort of building distributed algorithms.</p>
                     <div class="illustration">
                         <div class="advantages-realtime"></div>
                     </div>

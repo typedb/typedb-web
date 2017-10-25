@@ -74,13 +74,13 @@
   
   
   <url>
-    <loc>http://grakn.ai/pages//documentation/examples/CSV-migration.html</loc>
+    <loc>http://grakn.ai/pages//documentation/migration/CSV-migration.html</loc>
   </url>
   
   
   
   <url>
-    <loc>http://grakn.ai/pages//documentation/migration/CSV-migration.html</loc>
+    <loc>http://grakn.ai/pages//documentation/examples/CSV-migration.html</loc>
   </url>
   
   
@@ -228,12 +228,6 @@
   </url>
   
   
-  
-  
-  
-  <url>
-    <loc>http://grakn.ai/pages//documentation/the-fundamentals/grakn-architecture.html</loc>
-  </url>
   
   
   
@@ -399,17 +393,13 @@
   
   
   
-  <url>
-    <loc>http://grakn.ai/pages//documentation/building-an-ontology/rule-driven-ontology.html</loc>
-  </url>
-  
-  
-  
   
   
   <url>
     <loc>http://grakn.ai/pages//documentation/get-started/setup-guide.html</loc>
   </url>
+  
+  
   
   
   
@@ -447,6 +437,12 @@
   
   <url>
     <loc>http://grakn.ai/pages//documentation/grakn-dashboard/visualiser.html</loc>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://grakn.ai/pages//documentation/examples/working-with-tweets.html</loc>
   </url>
   
   

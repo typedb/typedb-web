@@ -209,6 +209,7 @@
                     </ul>
                 </li> -->
                 <li><a href="/pages/overview/index.html">Overview</a></li>
+                <li><a href=/pages/solutions.html>Solutions</a></li>
                 <li><a href="/pages/index.html">Documentation</a></li>
                 <li><a rel="me" href="//grakn.ai/community.html">Community</a></li>
                 <li><a rel="me" href="//discuss.grakn.ai/">Discussion</a></li>
@@ -300,13 +301,6 @@
             
             
             
-            <li><a href="/pages/documentation/the-fundamentals/grakn-architecture.html">Grakn Architecture Overview</a></li>
-            
-            
-            
-            
-            
-            
             <li><a href="/pages/documentation/the-fundamentals/grakn-knowledge-model.html">Grakn Knowledge Model</a></li>
             
             
@@ -330,13 +324,6 @@
             
             
             <li><a href="/pages/documentation/building-an-ontology/hierarchical-ontology.html">Define a Hierarchical Ontology</a></li>
-            
-            
-            
-            
-            
-            
-            <li><a href="/pages/documentation/building-an-ontology/rule-driven-ontology.html">Define a Rule-Driven Ontology</a></li>
             
             
             
@@ -681,6 +668,13 @@
             
             
             
+            <li><a href="/pages/documentation/examples/working-with-tweets.html">Working With Tweets</a></li>
+            
+            
+            
+            
+            
+            
             <li><a href="/pages/documentation/examples/modern.html">Modern example</a></li>
             
             
@@ -810,20 +804,22 @@ $('#toc').on('click', 'a', function() {
 Let’s see how we can build the same ontology exclusively via the graph API.
 First we need a graph. For this example we will just use an <a href="./java-setup.html#initialising-a-graph">in-memory graph</a>:</p>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">GraknGraph</span> <span class="n">graph</span> <span class="o">=</span> <span class="n">Grakn</span><span class="o">.</span><span class="na">session</span><span class="o">(</span><span class="n">Grakn</span><span class="o">.</span><span class="na">IN_MEMORY</span><span class="o">,</span> <span class="s">"MyGraph"</span><span class="o">).</span><span class="na">open</span><span class="o">(</span><span class="n">GraknTxType</span><span class="o">.</span><span class="na">Write</span><span class="o">);</span>
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">GraknGraph</span> <span class="n">graph</span> <span class="o">=</span> <span class="n">Grakn</span><span class="o">.</span><span class="na">session</span><span class="o">(</span><span class="n">Grakn</span><span class="o">.</span><span class="na">IN_MEMORY</span><span class="o">,</span> <span class="s">"MyGraph"</span><span class="o">).</span><span class="na">open</span><span class="o">(</span><span class="n">GraknTxType</span><span class="o">.</span><span class="na">WRITE</span><span class="o">);</span>
 </code></pre>
 </div>
 
 <p>We need to define our constructs before we can use them. We will begin by defining our resource types since they are used everywhere. In Graql, they were defined as follows:</p>
 
-<pre><code class="language-graql">identifier sub resource datatype string;
+<pre><code class="language-graql">insert
+
+identifier sub resource datatype string;
 firstname sub resource datatype string;
 surname sub resource datatype string;
 middlename sub resource datatype string;
 picture sub resource datatype string;
 age sub resource datatype long;
-birth-date sub resource datatype date;
-death-date sub resource datatype date;
+birth-date sub resource datatype string;
+death-date sub resource datatype string;
 gender sub resource datatype string;
 </code></pre>
 
@@ -832,17 +828,20 @@ gender sub resource datatype string;
 <div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">ResourceType</span> <span class="n">identifier</span> <span class="o">=</span> <span class="n">graph</span><span class="o">.</span><span class="na">putResourceType</span><span class="o">(</span><span class="s">"identifier"</span><span class="o">,</span> <span class="n">ResourceType</span><span class="o">.</span><span class="na">DataType</span><span class="o">.</span><span class="na">STRING</span><span class="o">);</span>
 <span class="n">ResourceType</span> <span class="n">firstname</span> <span class="o">=</span> <span class="n">graph</span><span class="o">.</span><span class="na">putResourceType</span><span class="o">(</span><span class="s">"firstname"</span><span class="o">,</span> <span class="n">ResourceType</span><span class="o">.</span><span class="na">DataType</span><span class="o">.</span><span class="na">STRING</span><span class="o">);</span>
 <span class="n">ResourceType</span> <span class="n">surname</span> <span class="o">=</span> <span class="n">graph</span><span class="o">.</span><span class="na">putResourceType</span><span class="o">(</span><span class="s">"surname"</span><span class="o">,</span> <span class="n">ResourceType</span><span class="o">.</span><span class="na">DataType</span><span class="o">.</span><span class="na">STRING</span><span class="o">);</span>
+<span class="n">ResourceType</span> <span class="n">middlename</span> <span class="o">=</span> <span class="n">graph</span><span class="o">.</span><span class="na">putResourceType</span><span class="o">(</span><span class="s">"middlename"</span><span class="o">,</span> <span class="n">ResourceType</span><span class="o">.</span><span class="na">DataType</span><span class="o">.</span><span class="na">STRING</span><span class="o">);</span>
 <span class="n">ResourceType</span> <span class="n">picture</span> <span class="o">=</span> <span class="n">graph</span><span class="o">.</span><span class="na">putResourceType</span><span class="o">(</span><span class="s">"picture"</span><span class="o">,</span> <span class="n">ResourceType</span><span class="o">.</span><span class="na">DataType</span><span class="o">.</span><span class="na">STRING</span><span class="o">);</span>
 <span class="n">ResourceType</span> <span class="n">age</span> <span class="o">=</span> <span class="n">graph</span><span class="o">.</span><span class="na">putResourceType</span><span class="o">(</span><span class="s">"age"</span><span class="o">,</span> <span class="n">ResourceType</span><span class="o">.</span><span class="na">DataType</span><span class="o">.</span><span class="na">LONG</span><span class="o">);</span>
-<span class="n">ResourceType</span> <span class="n">birthDate</span> <span class="o">=</span> <span class="n">graph</span><span class="o">.</span><span class="na">putResourceType</span><span class="o">(</span><span class="s">"birth-date"</span><span class="o">,</span> <span class="n">ResourceType</span><span class="o">.</span><span class="na">DataType</span><span class="o">.</span><span class="na">DATE</span><span class="o">);</span>
-<span class="n">ResourceType</span> <span class="n">deathDate</span> <span class="o">=</span> <span class="n">graph</span><span class="o">.</span><span class="na">putResourceType</span><span class="o">(</span><span class="s">"death-date"</span><span class="o">,</span> <span class="n">ResourceType</span><span class="o">.</span><span class="na">DataType</span><span class="o">.</span><span class="na">DATE</span><span class="o">);</span>
+<span class="n">ResourceType</span> <span class="n">birthDate</span> <span class="o">=</span> <span class="n">graph</span><span class="o">.</span><span class="na">putResourceType</span><span class="o">(</span><span class="s">"birth-date"</span><span class="o">,</span> <span class="n">ResourceType</span><span class="o">.</span><span class="na">DataType</span><span class="o">.</span><span class="na">STRING</span><span class="o">);</span>
+<span class="n">ResourceType</span> <span class="n">deathDate</span> <span class="o">=</span> <span class="n">graph</span><span class="o">.</span><span class="na">putResourceType</span><span class="o">(</span><span class="s">"death-date"</span><span class="o">,</span> <span class="n">ResourceType</span><span class="o">.</span><span class="na">DataType</span><span class="o">.</span><span class="na">STRING</span><span class="o">);</span>
 <span class="n">ResourceType</span> <span class="n">gender</span> <span class="o">=</span> <span class="n">graph</span><span class="o">.</span><span class="na">putResourceType</span><span class="o">(</span><span class="s">"gender"</span><span class="o">,</span> <span class="n">ResourceType</span><span class="o">.</span><span class="na">DataType</span><span class="o">.</span><span class="na">STRING</span><span class="o">);</span>
 </code></pre>
 </div>
 
 <p>Now the role and relation types. In Graql:</p>
 
-<pre><code class="language-graql">marriage sub relation
+<pre><code class="language-graql">insert
+
+marriage sub relation
   relates spouse1
   relates spouse2
   has picture;
@@ -860,24 +859,26 @@ child sub role;
 
 <p>Using the Graph API:</p>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">RoleType</span> <span class="n">spouse1</span> <span class="o">=</span> <span class="n">graph</span><span class="o">.</span><span class="na">putRoleType</span><span class="o">(</span><span class="s">"spouse1"</span><span class="o">);</span>
-<span class="n">RoleType</span> <span class="n">spouse2</span> <span class="o">=</span> <span class="n">graph</span><span class="o">.</span><span class="na">putRoleType</span><span class="o">(</span><span class="s">"spouse2"</span><span class="o">);</span>
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">Role</span> <span class="n">spouse1</span> <span class="o">=</span> <span class="n">graph</span><span class="o">.</span><span class="na">putRole</span><span class="o">(</span><span class="s">"spouse1"</span><span class="o">);</span>
+<span class="n">Role</span> <span class="n">spouse2</span> <span class="o">=</span> <span class="n">graph</span><span class="o">.</span><span class="na">putRole</span><span class="o">(</span><span class="s">"spouse2"</span><span class="o">);</span>
 <span class="n">RelationType</span> <span class="n">marriage</span> <span class="o">=</span> <span class="n">graph</span><span class="o">.</span><span class="na">putRelationType</span><span class="o">(</span><span class="s">"marriage"</span><span class="o">)</span>
-                            <span class="o">.</span><span class="na">relates</span><span class="o">(</span><span class="n">spouse1</span><span class="o">);</span>
+                            <span class="o">.</span><span class="na">relates</span><span class="o">(</span><span class="n">spouse1</span><span class="o">)</span>
                             <span class="o">.</span><span class="na">relates</span><span class="o">(</span><span class="n">spouse2</span><span class="o">);</span>
-<span class="n">marriage</span><span class="o">.</span><span class="na">hasResource</span><span class="o">(</span><span class="n">picture</span><span class="o">);</span>
+<span class="n">marriage</span><span class="o">.</span><span class="na">resource</span><span class="o">(</span><span class="n">picture</span><span class="o">);</span>
                            
-<span class="n">RoleType</span> <span class="n">parent</span> <span class="o">=</span> <span class="n">graph</span><span class="o">.</span><span class="na">putRoleType</span><span class="o">(</span><span class="s">"parent"</span><span class="o">);</span>
-<span class="n">RoleType</span> <span class="n">child</span> <span class="o">=</span> <span class="n">graph</span><span class="o">.</span><span class="na">putRoleType</span><span class="o">(</span><span class="s">"child"</span><span class="o">);</span>
-<span class="n">RelationType</span> <span class="n">marriage</span> <span class="o">=</span> <span class="n">graph</span><span class="o">.</span><span class="na">putRelationType</span><span class="o">(</span><span class="s">"marriage"</span><span class="o">)</span>
-                            <span class="o">.</span><span class="na">relates</span><span class="o">(</span><span class="n">spouse1</span><span class="o">);</span>
-                            <span class="o">.</span><span class="na">relates</span><span class="o">(</span><span class="n">spouse2</span><span class="o">);</span>
+<span class="n">Role</span> <span class="n">parent</span> <span class="o">=</span> <span class="n">graph</span><span class="o">.</span><span class="na">putRole</span><span class="o">(</span><span class="s">"parent"</span><span class="o">);</span>
+<span class="n">Role</span> <span class="n">child</span> <span class="o">=</span> <span class="n">graph</span><span class="o">.</span><span class="na">putRole</span><span class="o">(</span><span class="s">"child"</span><span class="o">);</span>
+<span class="n">RelationType</span> <span class="n">parentship</span> <span class="o">=</span> <span class="n">graph</span><span class="o">.</span><span class="na">putRelationType</span><span class="o">(</span><span class="s">"parentship"</span><span class="o">)</span>
+                            <span class="o">.</span><span class="na">relates</span><span class="o">(</span><span class="n">parent</span><span class="o">)</span>
+                            <span class="o">.</span><span class="na">relates</span><span class="o">(</span><span class="n">child</span><span class="o">);</span>
 </code></pre>
 </div>
 
 <p>Now the entity types. First, in Graql:</p>
 
-<pre><code class="language-graql">person sub entity
+<pre><code class="language-graql">insert
+
+person sub entity
   has identifier
   has firstname
   has surname
@@ -896,20 +897,20 @@ child sub role;
 <p>Using the Graph API:</p>
 
 <div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">EntityType</span> <span class="n">person</span> <span class="o">=</span> <span class="n">graph</span><span class="o">.</span><span class="na">putEntityType</span><span class="o">(</span><span class="s">"person"</span><span class="o">)</span>
-                        <span class="o">.</span><span class="na">plasRole</span><span class="o">(</span><span class="n">parent</span><span class="o">)</span>
-                        <span class="o">.</span><span class="na">plasRole</span><span class="o">(</span><span class="n">child</span><span class="o">)</span>
-                        <span class="o">.</span><span class="na">plasRole</span><span class="o">(</span><span class="n">spouse1</span><span class="o">)</span>
-                        <span class="o">.</span><span class="na">plasRole</span><span class="o">(</span><span class="n">spouse2</span><span class="o">);</span>
+                        <span class="o">.</span><span class="na">plays</span><span class="o">(</span><span class="n">parent</span><span class="o">)</span>
+                        <span class="o">.</span><span class="na">plays</span><span class="o">(</span><span class="n">child</span><span class="o">)</span>
+                        <span class="o">.</span><span class="na">plays</span><span class="o">(</span><span class="n">spouse1</span><span class="o">)</span>
+                        <span class="o">.</span><span class="na">plays</span><span class="o">(</span><span class="n">spouse2</span><span class="o">);</span>
                         
-<span class="n">person</span><span class="o">.</span><span class="na">hasResource</span><span class="o">(</span><span class="n">identifier</span><span class="o">);</span>
-<span class="n">person</span><span class="o">.</span><span class="na">hasResource</span><span class="o">(</span><span class="n">firstname</span><span class="o">);</span>
-<span class="n">person</span><span class="o">.</span><span class="na">hasResource</span><span class="o">(</span><span class="n">surname</span><span class="o">);</span>
-<span class="n">person</span><span class="o">.</span><span class="na">hasResource</span><span class="o">(</span><span class="n">middlename</span><span class="o">);</span>
-<span class="n">person</span><span class="o">.</span><span class="na">hasResource</span><span class="o">(</span><span class="n">picture</span><span class="o">);</span>
-<span class="n">person</span><span class="o">.</span><span class="na">hasResource</span><span class="o">(</span><span class="n">age</span><span class="o">);</span>
-<span class="n">person</span><span class="o">.</span><span class="na">hasResource</span><span class="o">(</span><span class="n">birth</span><span class="o">-</span><span class="n">date</span><span class="o">);</span>
-<span class="n">person</span><span class="o">.</span><span class="na">hasResource</span><span class="o">(</span><span class="n">death</span><span class="o">-</span><span class="n">date</span><span class="o">);</span>
-<span class="n">person</span><span class="o">.</span><span class="na">hasResource</span><span class="o">(</span><span class="n">gender</span><span class="o">);</span>
+<span class="n">person</span><span class="o">.</span><span class="na">resource</span><span class="o">(</span><span class="n">identifier</span><span class="o">);</span>
+<span class="n">person</span><span class="o">.</span><span class="na">resource</span><span class="o">(</span><span class="n">firstname</span><span class="o">);</span>
+<span class="n">person</span><span class="o">.</span><span class="na">resource</span><span class="o">(</span><span class="n">surname</span><span class="o">);</span>
+<span class="n">person</span><span class="o">.</span><span class="na">resource</span><span class="o">(</span><span class="n">middlename</span><span class="o">);</span>
+<span class="n">person</span><span class="o">.</span><span class="na">resource</span><span class="o">(</span><span class="n">picture</span><span class="o">);</span>
+<span class="n">person</span><span class="o">.</span><span class="na">resource</span><span class="o">(</span><span class="n">age</span><span class="o">);</span>
+<span class="n">person</span><span class="o">.</span><span class="na">resource</span><span class="o">(</span><span class="n">birthDate</span><span class="o">);</span>
+<span class="n">person</span><span class="o">.</span><span class="na">resource</span><span class="o">(</span><span class="n">deathDate</span><span class="o">);</span>
+<span class="n">person</span><span class="o">.</span><span class="na">resource</span><span class="o">(</span><span class="n">gender</span><span class="o">);</span>
 </code></pre>
 </div>
 
@@ -936,8 +937,10 @@ child sub role;
 
 <p>Now the equivalent Graph API:</p>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">Resource</span> <span class="n">johnName</span> <span class="o">=</span> <span class="n">firstname</span><span class="o">.</span><span class="na">putResource</span><span class="o">(</span><span class="s">"John"</span><span class="o">);</span> <span class="c1">//Create the resource</span>
-<span class="n">person</span><span class="o">.</span><span class="na">addEntity</span><span class="o">().</span><span class="na">hasResource</span><span class="o">(</span><span class="n">johnName</span><span class="o">);</span> <span class="c1">//Link it to an entity</span>
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">graph</span> <span class="o">=</span> <span class="n">Grakn</span><span class="o">.</span><span class="na">session</span><span class="o">(</span><span class="n">Grakn</span><span class="o">.</span><span class="na">IN_MEMORY</span><span class="o">,</span> <span class="s">"MyGraph"</span><span class="o">).</span><span class="na">open</span><span class="o">(</span><span class="n">GraknTxType</span><span class="o">.</span><span class="na">WRITE</span><span class="o">);</span>
+
+<span class="n">Resource</span> <span class="n">johnName</span> <span class="o">=</span> <span class="n">firstname</span><span class="o">.</span><span class="na">putResource</span><span class="o">(</span><span class="s">"John"</span><span class="o">);</span> <span class="c1">//Create the resource</span>
+<span class="n">person</span><span class="o">.</span><span class="na">addEntity</span><span class="o">().</span><span class="na">resource</span><span class="o">(</span><span class="n">johnName</span><span class="o">);</span> <span class="c1">//Link it to an entity</span>
 </code></pre>
 </div>
 
@@ -954,7 +957,7 @@ child sub role;
 <p>With the Graph API this would be:</p>
 
 <div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="c1">//Create the resources</span>
-<span class="n">Resource</span> <span class="n">johnName</span> <span class="o">=</span> <span class="n">firstname</span><span class="o">.</span><span class="na">putResource</span><span class="o">(</span><span class="s">"John"</span><span class="o">);</span> 
+<span class="n">johnName</span> <span class="o">=</span> <span class="n">firstname</span><span class="o">.</span><span class="na">putResource</span><span class="o">(</span><span class="s">"John"</span><span class="o">);</span>
 <span class="n">Resource</span> <span class="n">maryName</span> <span class="o">=</span> <span class="n">firstname</span><span class="o">.</span><span class="na">putResource</span><span class="o">(</span><span class="s">"Mary"</span><span class="o">);</span>
 
 <span class="c1">//Create the entities</span>
@@ -962,19 +965,24 @@ child sub role;
 <span class="n">Entity</span> <span class="n">mary</span> <span class="o">=</span> <span class="n">person</span><span class="o">.</span><span class="na">addEntity</span><span class="o">();</span>
 
 <span class="c1">//Create the actual relationships</span>
-<span class="n">Relation</span> <span class="n">theMarriage</span> <span class="o">=</span> <span class="n">marriage</span><span class="o">.</span><span class="na">addRelation</span><span class="o">().</span><span class="na">putRolePlayer</span><span class="o">(</span><span class="n">spouse1</span><span class="o">,</span> <span class="n">john</span><span class="o">).</span><span class="na">putRolePlayer</span><span class="o">(</span><span class="n">spouse2</span><span class="o">,</span> <span class="n">mary</span><span class="o">);</span>
+<span class="n">Relation</span> <span class="n">theMarriage</span> <span class="o">=</span> <span class="n">marriage</span><span class="o">.</span><span class="na">addRelation</span><span class="o">().</span><span class="na">addRolePlayer</span><span class="o">(</span><span class="n">spouse1</span><span class="o">,</span> <span class="n">john</span><span class="o">).</span><span class="na">addRolePlayer</span><span class="o">(</span><span class="n">spouse2</span><span class="o">,</span> <span class="n">mary</span><span class="o">);</span>
 </code></pre>
 </div>
 
 <p>Add a picture, first using Graql:</p>
 
-<pre><code class="language-graql">$z has picture "www.LocationOfMyPicture.com";
+<pre><code class="language-graql">match
+    $x isa person has firstname "John";
+    $y isa person has firstname "Mary";
+    $z (spouse1: $x, spouse2: $y) isa marriage;
+insert
+    $z has picture "www.LocationOfMyPicture.com";
 </code></pre>
 
 <p>Now the equivalent using the Graph API:</p>
 
 <div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">Resource</span> <span class="n">weddingPicture</span> <span class="o">=</span> <span class="n">picture</span><span class="o">.</span><span class="na">putResource</span><span class="o">(</span><span class="s">"www.LocationOfMyPicture.com"</span><span class="o">);</span>
-<span class="n">theMarriage</span><span class="o">.</span><span class="na">hasResource</span><span class="o">(</span><span class="n">weddingPicture</span><span class="o">);</span>
+<span class="n">theMarriage</span><span class="o">.</span><span class="na">resource</span><span class="o">(</span><span class="n">weddingPicture</span><span class="o">);</span>
 </code></pre>
 </div>
 
@@ -992,7 +1000,7 @@ child sub role;
 <p>becomes the following with the Graph API:</p>
 
 <div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">EntityType</span> <span class="n">event</span> <span class="o">=</span> <span class="n">graph</span><span class="o">.</span><span class="na">putEntityType</span><span class="o">(</span><span class="s">"event"</span><span class="o">);</span>
-<span class="n">EntityType</span> <span class="n">wedding</span> <span class="o">=</span> <span class="n">graph</span><span class="o">.</span><span class="na">putEntityType</span><span class="o">(</span><span class="s">"event"</span><span class="o">).</span><span class="na">superType</span><span class="o">(</span><span class="n">event</span><span class="o">);</span>
+<span class="n">EntityType</span> <span class="n">wedding</span> <span class="o">=</span> <span class="n">graph</span><span class="o">.</span><span class="na">putEntityType</span><span class="o">(</span><span class="s">"wedding"</span><span class="o">).</span><span class="na">sup</span><span class="o">(</span><span class="n">event</span><span class="o">);</span>
 </code></pre>
 </div>
 
@@ -1010,51 +1018,53 @@ child sub role;
 
 <p>Rule instances can be added to the graph both through the Graph API as well as through Graql. We will consider an example:</p>
 
-<pre><code class="language-graql">$R1 isa inference-rule,
-lhs {
+<pre><code class="language-graql">insert
+
+$R1 isa inference-rule,
+when {
     (parent: $p, child: $c) isa Parent;
 },
-rhs {
+then {
     (ancestor: $p, descendant: $c) isa Ancestor;
 };
 
 $R2 isa inference-rule,
-lhs {
+when {
     (parent: $p, child: $c) isa Parent;
     (ancestor: $c, descendant: $d) isa Ancestor;
 },
-rhs {
+then {
     (ancestor: $p, descendant: $d) isa Ancestor;
 };
 </code></pre>
 
 <p>As there is more than one way to define Graql patterns through the API, there are several ways to construct rules. One options is through the Pattern factory:</p>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">Pattern</span> <span class="n">rule1LHS</span> <span class="o">=</span> <span class="n">var</span><span class="o">().</span><span class="na">rel</span><span class="o">(</span><span class="s">"parent"</span><span class="o">,</span> <span class="s">"p"</span><span class="o">).</span><span class="na">rel</span><span class="o">(</span><span class="s">"child"</span><span class="o">,</span> <span class="s">"c"</span><span class="o">).</span><span class="na">isa</span><span class="o">(</span><span class="s">"Parent"</span><span class="o">);</span>
-<span class="n">Pattern</span> <span class="n">rule1RHS</span> <span class="o">=</span> <span class="n">var</span><span class="o">().</span><span class="na">rel</span><span class="o">(</span><span class="s">"ancestor"</span><span class="o">,</span> <span class="s">"p"</span><span class="o">).</span><span class="na">rel</span><span class="o">(</span><span class="s">"descendant"</span><span class="o">,</span> <span class="s">"c"</span><span class="o">).</span><span class="na">isa</span><span class="o">(</span><span class="s">"Ancestor"</span><span class="o">);</span>
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">Pattern</span> <span class="n">rule1when</span> <span class="o">=</span> <span class="n">var</span><span class="o">().</span><span class="na">rel</span><span class="o">(</span><span class="s">"parent"</span><span class="o">,</span> <span class="s">"p"</span><span class="o">).</span><span class="na">rel</span><span class="o">(</span><span class="s">"child"</span><span class="o">,</span> <span class="s">"c"</span><span class="o">).</span><span class="na">isa</span><span class="o">(</span><span class="s">"Parent"</span><span class="o">);</span>
+<span class="n">Pattern</span> <span class="n">rule1then</span> <span class="o">=</span> <span class="n">var</span><span class="o">().</span><span class="na">rel</span><span class="o">(</span><span class="s">"ancestor"</span><span class="o">,</span> <span class="s">"p"</span><span class="o">).</span><span class="na">rel</span><span class="o">(</span><span class="s">"descendant"</span><span class="o">,</span> <span class="s">"c"</span><span class="o">).</span><span class="na">isa</span><span class="o">(</span><span class="s">"Ancestor"</span><span class="o">);</span>
 
-<span class="n">Pattern</span> <span class="n">rule2LHS</span> <span class="o">=</span> <span class="n">and</span><span class="o">(</span>
+<span class="n">Pattern</span> <span class="n">rule2when</span> <span class="o">=</span> <span class="n">and</span><span class="o">(</span>
         <span class="n">var</span><span class="o">().</span><span class="na">rel</span><span class="o">(</span><span class="s">"parent"</span><span class="o">,</span> <span class="s">"p"</span><span class="o">).</span><span class="na">rel</span><span class="o">(</span><span class="s">"child"</span><span class="o">,</span> <span class="s">"c"</span><span class="o">).</span><span class="na">isa</span><span class="o">(</span><span class="s">"Parent')"</span><span class="o">),</span>
         <span class="n">var</span><span class="o">().</span><span class="na">rel</span><span class="o">(</span><span class="s">"ancestor"</span><span class="o">,</span> <span class="s">"c"</span><span class="o">).</span><span class="na">rel</span><span class="o">(</span><span class="s">"descendant"</span><span class="o">,</span> <span class="s">"d"</span><span class="o">).</span><span class="na">isa</span><span class="o">(</span><span class="s">"Ancestor"</span><span class="o">)</span>
 <span class="o">);</span>
-<span class="n">Pattern</span> <span class="n">rule2RHS</span> <span class="o">=</span> <span class="n">var</span><span class="o">().</span><span class="na">rel</span><span class="o">(</span><span class="s">"ancestor"</span><span class="o">,</span> <span class="s">"p"</span><span class="o">).</span><span class="na">rel</span><span class="o">(</span><span class="s">"descendant"</span><span class="o">,</span> <span class="s">"d"</span><span class="o">).</span><span class="na">isa</span><span class="o">(</span><span class="s">"Ancestor"</span><span class="o">);</span>
+<span class="n">Pattern</span> <span class="n">rule2then</span> <span class="o">=</span> <span class="n">var</span><span class="o">().</span><span class="na">rel</span><span class="o">(</span><span class="s">"ancestor"</span><span class="o">,</span> <span class="s">"p"</span><span class="o">).</span><span class="na">rel</span><span class="o">(</span><span class="s">"descendant"</span><span class="o">,</span> <span class="s">"d"</span><span class="o">).</span><span class="na">isa</span><span class="o">(</span><span class="s">"Ancestor"</span><span class="o">);</span>
 </code></pre>
 </div>
 
 <p>If we have a specific <code class="highlighter-rouge">GraknGraph graph</code> already defined, we can use the Graql pattern parser:</p>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">Pattern</span> <span class="n">rule1LHS</span> <span class="o">=</span> <span class="n">and</span><span class="o">(</span><span class="n">graph</span><span class="o">.</span><span class="na">graql</span><span class="o">().</span><span class="na">parsePatterns</span><span class="o">(</span><span class="s">"(parent: $p, child: $c) isa Parent;"</span><span class="o">));</span>
-<span class="n">Pattern</span> <span class="n">rule1RHS</span> <span class="o">=</span> <span class="n">and</span><span class="o">(</span><span class="n">graph</span><span class="o">.</span><span class="na">graql</span><span class="o">().</span><span class="na">parsePatterns</span><span class="o">(</span><span class="s">"(ancestor: $p, descendant: $c) isa Ancestor;"</span><span class="o">));</span>
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">rule1when</span> <span class="o">=</span> <span class="n">and</span><span class="o">(</span><span class="n">graph</span><span class="o">.</span><span class="na">graql</span><span class="o">().</span><span class="na">parsePatterns</span><span class="o">(</span><span class="s">"(parent: $p, child: $c) isa Parent;"</span><span class="o">));</span>
+<span class="n">rule1then</span> <span class="o">=</span> <span class="n">and</span><span class="o">(</span><span class="n">graph</span><span class="o">.</span><span class="na">graql</span><span class="o">().</span><span class="na">parsePatterns</span><span class="o">(</span><span class="s">"(ancestor: $p, descendant: $c) isa Ancestor;"</span><span class="o">));</span>
 
-<span class="n">Pattern</span> <span class="n">rule2LHS</span> <span class="o">=</span> <span class="n">and</span><span class="o">(</span><span class="n">graph</span><span class="o">.</span><span class="na">graql</span><span class="o">().</span><span class="na">parsePatterns</span><span class="o">(</span><span class="s">"(parent: $p, child: $c) isa Parent;(ancestor: $c, descendant: $d) isa Ancestor;"</span><span class="o">));</span>
-<span class="n">Pattern</span> <span class="n">rule2RHS</span> <span class="o">=</span> <span class="n">and</span><span class="o">(</span><span class="n">graph</span><span class="o">.</span><span class="na">graql</span><span class="o">().</span><span class="na">parsePatterns</span><span class="o">(</span><span class="s">"(ancestor: $p, descendant: $d) isa Ancestor;"</span><span class="o">));</span>
+<span class="n">rule2when</span> <span class="o">=</span> <span class="n">and</span><span class="o">(</span><span class="n">graph</span><span class="o">.</span><span class="na">graql</span><span class="o">().</span><span class="na">parsePatterns</span><span class="o">(</span><span class="s">"(parent: $p, child: $c) isa Parent;(ancestor: $c, descendant: $d) isa Ancestor;"</span><span class="o">));</span>
+<span class="n">rule2then</span> <span class="o">=</span> <span class="n">and</span><span class="o">(</span><span class="n">graph</span><span class="o">.</span><span class="na">graql</span><span class="o">().</span><span class="na">parsePatterns</span><span class="o">(</span><span class="s">"(ancestor: $p, descendant: $d) isa Ancestor;"</span><span class="o">));</span>
 </code></pre>
 </div>
 
 <p>We conclude the rule creation with defining the rules from their constituent patterns:</p>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">Rule</span> <span class="n">rule1</span> <span class="o">=</span> <span class="n">inferenceRule</span><span class="o">.</span><span class="na">addRule</span><span class="o">(</span><span class="n">rule1LHS</span><span class="o">,</span> <span class="n">rule1RHS</span><span class="o">);</span>
-<span class="n">Rule</span> <span class="n">rule2</span> <span class="o">=</span> <span class="n">inferenceRule</span><span class="o">.</span><span class="na">addRule</span><span class="o">(</span><span class="n">rule2LHS</span><span class="o">,</span> <span class="n">rule2RHS</span><span class="o">);</span>
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">Rule</span> <span class="n">rule1</span> <span class="o">=</span> <span class="n">inferenceRule</span><span class="o">.</span><span class="na">putRule</span><span class="o">(</span><span class="n">rule1when</span><span class="o">,</span> <span class="n">rule1then</span><span class="o">);</span>
+<span class="n">Rule</span> <span class="n">rule2</span> <span class="o">=</span> <span class="n">inferenceRule</span><span class="o">.</span><span class="na">putRule</span><span class="o">(</span><span class="n">rule2when</span><span class="o">,</span> <span class="n">rule2then</span><span class="o">);</span>
 </code></pre>
 </div>
 
@@ -1100,7 +1110,7 @@ rhs {
         <br>
         <p>© 2017 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2017 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> March 2017<br/> Site last generated: Jul 24, 2017 <br />
+        <span>Page last updated:</span> March 2017<br/> Site last generated: Sep 12, 2017 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">

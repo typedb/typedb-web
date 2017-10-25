@@ -209,6 +209,7 @@
                     </ul>
                 </li> -->
                 <li><a href="/pages/overview/index.html">Overview</a></li>
+                <li><a href=/pages/solutions.html>Solutions</a></li>
                 <li><a href="/pages/index.html">Documentation</a></li>
                 <li><a rel="me" href="//grakn.ai/community.html">Community</a></li>
                 <li><a rel="me" href="//discuss.grakn.ai/">Discussion</a></li>
@@ -300,13 +301,6 @@
             
             
             
-            <li><a href="/pages/documentation/the-fundamentals/grakn-architecture.html">Grakn Architecture Overview</a></li>
-            
-            
-            
-            
-            
-            
             <li><a href="/pages/documentation/the-fundamentals/grakn-knowledge-model.html">Grakn Knowledge Model</a></li>
             
             
@@ -330,13 +324,6 @@
             
             
             <li><a href="/pages/documentation/building-an-ontology/hierarchical-ontology.html">Define a Hierarchical Ontology</a></li>
-            
-            
-            
-            
-            
-            
-            <li><a href="/pages/documentation/building-an-ontology/rule-driven-ontology.html">Define a Rule-Driven Ontology</a></li>
             
             
             
@@ -681,6 +668,13 @@
             
             
             
+            <li><a href="/pages/documentation/examples/working-with-tweets.html">Working With Tweets</a></li>
+            
+            
+            
+            
+            
+            
             <li><a href="/pages/documentation/examples/modern.html">Modern example</a></li>
             
             
@@ -872,7 +866,7 @@ If sheep only eat grass.
 
 <p>The initial statements can be seen as a set of premises. If all the premises are met we can infer a new fact (that sheep are vegatarians). If we hypothetise that sheep are vegetarians then the whole example can be expressed with a particular two-block structure: IF some premises are met, THEN a given hypothesis is true.</p>
 
-<p>This is how reasoning in Graql works. It checks whether the statements in the first block can be verified and, if they can, infers the statement in the second block. The rules are written in Graql, and we call the first set of statements (the IF part or, if you prefer, the antecedent) simply the left hand side (LHS). The second part, not surprisingly, is the right hand side (RHS). Using Graql, both sides of the rule are enclosed in curly braces and preceded by, respectively, the keywords <code class="highlighter-rouge">lhs</code> and <code class="highlighter-rouge">rhs</code>.</p>
+<p>This is how reasoning in Graql works. It checks whether the statements in the first block can be verified and, if they can, infers the statement in the second block. The rules are written in Graql, and we call the first set of statements (the IF part or, if you prefer, the antecedent) simply the “when”. The second part, not surprisingly, is the “then”. Using Graql, both sides of the rule are enclosed in curly braces and preceded by, respectively, the keywords <code class="highlighter-rouge">when</code> and <code class="highlighter-rouge">then</code>.</p>
 
 <div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> <b>Note:</b> The full documentation for writing rules in Graql is available from <a href="https://grakn.ai/pages/documentation/graql/graql-rules.html">here</a>.</div>
 
@@ -880,64 +874,66 @@ If sheep only eat grass.
 
 <p>As we saw above, it is possible for Grakn to infer the gender-specific roles (<code class="highlighter-rouge">mother</code>, <code class="highlighter-rouge">father</code>, <code class="highlighter-rouge">daughter</code>, <code class="highlighter-rouge">son</code>) that a <code class="highlighter-rouge">person</code> entity plays. It does this by applying the following rules:</p>
 
-<pre><code class="language-graql">$genderizeParentships1 isa inference-rule
-lhs
+<pre><code class="language-graql">insert
+
+$genderizeParentships1 isa inference-rule
+when
 {(parent: $p, child: $c) isa parentship;
 $p has gender "male";
 $c has gender "male";
 }
-rhs
+then
 {(father: $p, son: $c) isa parentship;};
 
 $genderizeParentships2 isa inference-rule
-lhs
+when
 {(parent: $p, child: $c) isa parentship;
 $p has gender "male";
 $c has gender "female";
 }
-rhs
+then
 {(father: $p, daughter: $c) isa parentship;};
 
 $genderizeParentships3 isa inference-rule
-lhs
+when
 {(parent: $p, child: $c) isa parentship;
 $p has gender "female";
 $c has gender "male";
 }
-rhs
+then
 {(mother: $p, son: $c) isa parentship;};
 
 $genderizeParentships4 isa inference-rule
-lhs
+when
 {(parent: $p, child: $c) isa parentship;
 $p has gender "female";
 $c has gender "female";
 }
-rhs
+then
 {(mother: $p, daughter: $c) isa parentship;};
 </code></pre>
 
 <p>The four rules can be broken down as follows:</p>
 
 <ul>
-  <li>LHS: In the <code class="highlighter-rouge">parentship</code> relation between child <code class="highlighter-rouge">$c</code> and parent <code class="highlighter-rouge">$p</code>, do they both have a <code class="highlighter-rouge">gender</code> resource that is <code class="highlighter-rouge">male</code>?
+  <li>when: In the <code class="highlighter-rouge">parentship</code> relation between child <code class="highlighter-rouge">$c</code> and parent <code class="highlighter-rouge">$p</code>, do they both have a <code class="highlighter-rouge">gender</code> resource that is <code class="highlighter-rouge">male</code>?
     <ul>
-      <li>RHS: The <code class="highlighter-rouge">parentship</code> relation is between <code class="highlighter-rouge">father</code> and <code class="highlighter-rouge">son</code></li>
+      <li>then: The <code class="highlighter-rouge">parentship</code> relation is between <code class="highlighter-rouge">father</code> and <code class="highlighter-rouge">son</code></li>
     </ul>
   </li>
-  <li>LHS: In the <code class="highlighter-rouge">parentship</code> relation between child <code class="highlighter-rouge">$c</code> and parent <code class="highlighter-rouge">$p</code>, does <code class="highlighter-rouge">$c</code> have a <code class="highlighter-rouge">gender</code> resource that is <code class="highlighter-rouge">female</code> and <code class="highlighter-rouge">$p</code> have a <code class="highlighter-rouge">gender</code> resource that is <code class="highlighter-rouge">male</code>?
+  <li>when: In the <code class="highlighter-rouge">parentship</code> relation between child <code class="highlighter-rouge">$c</code> and parent <code class="highlighter-rouge">$p</code>, does <code class="highlighter-rouge">$c</code> have a <code class="highlighter-rouge">gender</code> resource that is <code class="highlighter-rouge">female</code> and <code class="highlighter-rouge">$p</code> have a <code class="highlighter-rouge">gender</code> resource that is <code class="highlighter-rouge">male</code>?
     <ul>
-      <li>RHS: The <code class="highlighter-rouge">parentship</code> relation is between <code class="highlighter-rouge">father</code> and <code class="highlighter-rouge">daughter</code></li>
+      <li>then: The <code class="highlighter-rouge">parentship</code> relation is between <code class="highlighter-rouge">father</code> and <code class="highlighter-rouge">daughter</code></li>
     </ul>
   </li>
-  <li>LHS: In the <code class="highlighter-rouge">parentship</code> relation between child <code class="highlighter-rouge">$c</code> and parent <code class="highlighter-rouge">$p</code>, does <code class="highlighter-rouge">$c</code> have a <code class="highlighter-rouge">gender</code> resource that is <code class="highlighter-rouge">male</code> and <code class="highlighter-rouge">$p</code> have a <code class="highlighter-rouge">gender</code> resource that is <code class="highlighter-rouge">female</code>?
+  <li>when: In the <code class="highlighter-rouge">parentship</code> relation between child <code class="highlighter-rouge">$c</code> and parent <code class="highlighter-rouge">$p</code>, does <code class="highlighter-rouge">$c</code> have a <code class="highlighter-rouge">gender</code> resource that is <code class="highlighter-rouge">male</code> and <code class="highlighter-rouge">$p</code> have a <code class="highlighter-rouge">gender</code> resource that is <code class="highlighter-rouge">female</code>?
     <ul>
-      <li>RHS: The <code class="highlighter-rouge">parentship</code> relation is between <code class="highlighter-rouge">mother</code> and <code class="highlighter-rouge">son</code></li>
+      <li>then: The <code class="highlighter-rouge">parentship</code> relation is between <code class="highlighter-rouge">mother</code> and <code class="highlighter-rouge">son</code></li>
     </ul>
   </li>
-  <li>LHS: In the <code class="highlighter-rouge">parentship</code> relation between child <code class="highlighter-rouge">$c</code> and parent <code class="highlighter-rouge">$p</code>, do both have a <code class="highlighter-rouge">gender</code> resource that is <code class="highlighter-rouge">female</code>?
+  <li>when: In the <code class="highlighter-rouge">parentship</code> relation between child <code class="highlighter-rouge">$c</code> and parent <code class="highlighter-rouge">$p</code>, do both have a <code class="highlighter-rouge">gender</code> resource that is <code class="highlighter-rouge">female</code>?
     <ul>
-      <li>RHS: The <code class="highlighter-rouge">parentship</code> relation is between <code class="highlighter-rouge">mother</code> and <code class="highlighter-rouge">daughter</code></li>
+      <li>then: The <code class="highlighter-rouge">parentship</code> relation is between <code class="highlighter-rouge">mother</code> and <code class="highlighter-rouge">daughter</code></li>
     </ul>
   </li>
 </ul>
@@ -953,16 +949,18 @@ rhs
 
 <p>The <em>basic-genealogy</em> file contains a number of rules for setting up family relationships, such as siblings, cousins, in-laws and the following, which sets up a relation called <code class="highlighter-rouge">grandparentship</code>:</p>
 
-<pre><code class="language-graql">$parentsOfParentsAreGrandparents isa inference-rule
-lhs
+<pre><code class="language-graql">insert
+
+$parentsOfParentsAreGrandparents isa inference-rule
+when
 {(parent:$p, child: $gc) isa parentship;
 (parent: $gp, child: $p) isa parentship;
 }
-rhs
+then
 {(grandparent: $gp, grandchild: $gc) isa grandparentship;};
 </code></pre>
 
-<p>Here, the left hand side rules check two statements:</p>
+<p>Here, the “when” rules check two statements:</p>
 
 <ul>
   <li>does <code class="highlighter-rouge">$p</code> play the <code class="highlighter-rouge">parent</code> role in a <code class="highlighter-rouge">parentship</code> relation, with (<code class="highlighter-rouge">$gc</code>) playing the <code class="highlighter-rouge">child</code> role?</li>
@@ -977,60 +975,62 @@ rhs
 
 <p>Some additional rules can add more specifics to the <code class="highlighter-rouge">grandparentship</code> and assign the entities to the roles <code class="highlighter-rouge">grandson</code>, <code class="highlighter-rouge">granddaughter</code>, <code class="highlighter-rouge">grandmother</code> and <code class="highlighter-rouge">grandfather</code>:</p>
 
-<pre><code class="language-graql">$grandParents1 isa inference-rule
-lhs
+<pre><code class="language-graql">insert
+
+$grandParents1 isa inference-rule
+when
 {($p, son: $gc) isa parentship;
 (father: $gp, $p) isa parentship;
 }
-rhs
+then
 {(grandfather: $gp, grandson: $gc) isa grandparentship;};
 
 $grandParents2 isa inference-rule
-lhs
+when
 {($p, daughter: $gc) isa parentship;
 (father: $gp, $p) isa parentship;
 }
-rhs
+then
 {(grandfather: $gp, granddaughter: $gc) isa grandparentship;};
 
 $grandParents3 isa inference-rule
-lhs
+when
 {($p, daughter: $gc) isa parentship;
 (mother: $gp, $p) isa parentship;
 }
-rhs
+then
 {(grandmother: $gp, granddaughter: $gc) isa grandparentship;};
 
 $grandParents4 isa inference-rule
-lhs
+when
 {($p, son: $gc) isa parentship;
 (mother: $gp, $p) isa parentship;
 }
-rhs
+then
 {(grandmother: $gp, grandson: $gc) isa grandparentship;};
 </code></pre>
 
 <p>Much as above for the <code class="highlighter-rouge">parentship</code> relation, the rules can be broken down as follows:</p>
 
 <ul>
-  <li>LHS: There is a <code class="highlighter-rouge">parentship</code> relation between son <code class="highlighter-rouge">$gc</code> and parent <code class="highlighter-rouge">$p</code>, and another <code class="highlighter-rouge">parentship</code> relation where <code class="highlighter-rouge">$p</code> is now in the child role and <code class="highlighter-rouge">$gp</code> is a father.
+  <li>when: There is a <code class="highlighter-rouge">parentship</code> relation between son <code class="highlighter-rouge">$gc</code> and parent <code class="highlighter-rouge">$p</code>, and another <code class="highlighter-rouge">parentship</code> relation where <code class="highlighter-rouge">$p</code> is now in the child role and <code class="highlighter-rouge">$gp</code> is a father.
     <ul>
-      <li>RHS: The <code class="highlighter-rouge">grandparentship</code> relation is between <code class="highlighter-rouge">grandfather</code> and <code class="highlighter-rouge">grandson</code></li>
+      <li>then: The <code class="highlighter-rouge">grandparentship</code> relation is between <code class="highlighter-rouge">grandfather</code> and <code class="highlighter-rouge">grandson</code></li>
     </ul>
   </li>
-  <li>LHS: There is a <code class="highlighter-rouge">parentship</code> relation between daughter <code class="highlighter-rouge">$gc</code> and parent <code class="highlighter-rouge">$p</code>, and another <code class="highlighter-rouge">parentship</code> relation where <code class="highlighter-rouge">$p</code> is now in the child role and <code class="highlighter-rouge">$gp</code> is a father.
+  <li>when: There is a <code class="highlighter-rouge">parentship</code> relation between daughter <code class="highlighter-rouge">$gc</code> and parent <code class="highlighter-rouge">$p</code>, and another <code class="highlighter-rouge">parentship</code> relation where <code class="highlighter-rouge">$p</code> is now in the child role and <code class="highlighter-rouge">$gp</code> is a father.
     <ul>
-      <li>RHS: The <code class="highlighter-rouge">grandparentship</code> relation is between <code class="highlighter-rouge">grandfather</code> and <code class="highlighter-rouge">granddaughter</code></li>
+      <li>then: The <code class="highlighter-rouge">grandparentship</code> relation is between <code class="highlighter-rouge">grandfather</code> and <code class="highlighter-rouge">granddaughter</code></li>
     </ul>
   </li>
-  <li>LHS: There is a <code class="highlighter-rouge">parentship</code> relation between daughter <code class="highlighter-rouge">$gc</code> and parent <code class="highlighter-rouge">$p</code>, and another <code class="highlighter-rouge">parentship</code> relation where <code class="highlighter-rouge">$p</code> is now in the child role and <code class="highlighter-rouge">$gp</code> is a mother.
+  <li>when: There is a <code class="highlighter-rouge">parentship</code> relation between daughter <code class="highlighter-rouge">$gc</code> and parent <code class="highlighter-rouge">$p</code>, and another <code class="highlighter-rouge">parentship</code> relation where <code class="highlighter-rouge">$p</code> is now in the child role and <code class="highlighter-rouge">$gp</code> is a mother.
     <ul>
-      <li>RHS: The <code class="highlighter-rouge">grandparentship</code> relation is between <code class="highlighter-rouge">grandmother</code> and <code class="highlighter-rouge">granddaughter</code></li>
+      <li>then: The <code class="highlighter-rouge">grandparentship</code> relation is between <code class="highlighter-rouge">grandmother</code> and <code class="highlighter-rouge">granddaughter</code></li>
     </ul>
   </li>
-  <li>LHS: There is a <code class="highlighter-rouge">parentship</code> relation between son <code class="highlighter-rouge">$gc</code> and parent <code class="highlighter-rouge">$p</code>, and another <code class="highlighter-rouge">parentship</code> relation where <code class="highlighter-rouge">$p</code> is now in the child role and <code class="highlighter-rouge">$gp</code> is a mother.
+  <li>when: There is a <code class="highlighter-rouge">parentship</code> relation between son <code class="highlighter-rouge">$gc</code> and parent <code class="highlighter-rouge">$p</code>, and another <code class="highlighter-rouge">parentship</code> relation where <code class="highlighter-rouge">$p</code> is now in the child role and <code class="highlighter-rouge">$gp</code> is a mother.
     <ul>
-      <li>RHS: The <code class="highlighter-rouge">grandparentship</code> relation is between <code class="highlighter-rouge">grandmother</code> and <code class="highlighter-rouge">grandson</code></li>
+      <li>then: The <code class="highlighter-rouge">grandparentship</code> relation is between <code class="highlighter-rouge">grandmother</code> and <code class="highlighter-rouge">grandson</code></li>
     </ul>
   </li>
 </ul>
@@ -1048,14 +1048,16 @@ rhs
 
 <p>Another rule can be used to infer <code class="highlighter-rouge">person</code> entities who are cousins:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>$peopleWithSiblingsParentsAreCousins isa inference-rule
-lhs
+<div class="highlighter-rouge"><pre class="highlight"><code>insert
+
+$peopleWithSiblingsParentsAreCousins isa inference-rule
+when
 {
 (parent: $p, child: $c1) isa parentship;
 ($p, $p2) isa siblings;
 (parent: $p2, child: $c2) isa parentship;
 }
-rhs
+then
 {(cousin1: $c1, cousin2: $c2) isa cousins;};
 
 </code></pre>
@@ -1135,7 +1137,7 @@ rhs
         <br>
         <p>© 2017 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2017 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> February 2017<br/> Site last generated: Jul 24, 2017 <br />
+        <span>Page last updated:</span> February 2017<br/> Site last generated: Sep 12, 2017 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">

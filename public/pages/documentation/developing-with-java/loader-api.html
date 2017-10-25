@@ -209,6 +209,7 @@
                     </ul>
                 </li> -->
                 <li><a href="/pages/overview/index.html">Overview</a></li>
+                <li><a href=/pages/solutions.html>Solutions</a></li>
                 <li><a href="/pages/index.html">Documentation</a></li>
                 <li><a rel="me" href="//grakn.ai/community.html">Community</a></li>
                 <li><a rel="me" href="//discuss.grakn.ai/">Discussion</a></li>
@@ -300,13 +301,6 @@
             
             
             
-            <li><a href="/pages/documentation/the-fundamentals/grakn-architecture.html">Grakn Architecture Overview</a></li>
-            
-            
-            
-            
-            
-            
             <li><a href="/pages/documentation/the-fundamentals/grakn-knowledge-model.html">Grakn Knowledge Model</a></li>
             
             
@@ -330,13 +324,6 @@
             
             
             <li><a href="/pages/documentation/building-an-ontology/hierarchical-ontology.html">Define a Hierarchical Ontology</a></li>
-            
-            
-            
-            
-            
-            
-            <li><a href="/pages/documentation/building-an-ontology/rule-driven-ontology.html">Define a Rule-Driven Ontology</a></li>
             
             
             
@@ -681,6 +668,13 @@
             
             
             
+            <li><a href="/pages/documentation/examples/working-with-tweets.html">Working With Tweets</a></li>
+            
+            
+            
+            
+            
+            
             <li><a href="/pages/documentation/examples/modern.html">Modern example</a></li>
             
             
@@ -802,16 +796,16 @@ $('#toc').on('click', 'a', function() {
 
 <p>To use the loader client API, add the following to your pom.xml:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>&lt;dependency&gt;
-	&lt;groupId&gt;ai.grakn&lt;/groupId&gt;
-	&lt;artifactId&gt;grakn-client&lt;/artifactId&gt;
-	&lt;version&gt;${grakn.version}&lt;/version&gt;
-&lt;/dependency&gt;
+<div class="language-xml highlighter-rouge"><pre class="highlight"><code><span class="nt">&lt;dependency&gt;</span>
+	<span class="nt">&lt;groupId&gt;</span>ai.grakn<span class="nt">&lt;/groupId&gt;</span>
+	<span class="nt">&lt;artifactId&gt;</span>grakn-client<span class="nt">&lt;/artifactId&gt;</span>
+	<span class="nt">&lt;version&gt;</span>${grakn.version}<span class="nt">&lt;/version&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
 </code></pre>
 </div>
 <p>and add the following to your imports:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>import ai.grakn.client.LoaderClient;
+<div class="highlighter-rouge"><pre class="highlight"><code>import ai.grakn.client.BatchMutatorClient;
 </code></pre>
 </div>
 
@@ -819,13 +813,13 @@ $('#toc').on('click', 'a', function() {
 
 <p>The loader client provides two constructors. The first accepts only the keyspace to load data into and the URI endpoint where Grakn Engine Server is running.</p>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">LoaderClient</span> <span class="n">loader</span> <span class="o">=</span> <span class="k">new</span> <span class="n">LoaderClient</span><span class="o">(</span><span class="n">String</span> <span class="n">keyspace</span><span class="o">,</span> <span class="n">String</span> <span class="n">uri</span><span class="o">);</span>
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">BatchMutatorClient</span> <span class="n">loader</span> <span class="o">=</span> <span class="k">new</span> <span class="n">BatchMutatorClient</span><span class="o">(</span><span class="n">keyspace</span><span class="o">,</span> <span class="n">uri</span><span class="o">);</span>
 </code></pre>
 </div>
 
 <p>The second constructor additionally allows the user to specify a callback function that executes on completion of tasks.</p>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">LoaderClient</span> <span class="n">loader</span> <span class="o">=</span> <span class="k">new</span> <span class="n">LoaderClient</span><span class="o">(</span><span class="n">String</span> <span class="n">keyspace</span><span class="o">,</span> <span class="n">String</span> <span class="n">uri</span><span class="o">,</span> <span class="n">Consumer</span><span class="o">&lt;</span><span class="n">Json</span><span class="o">&gt;</span> <span class="n">onCompletionOfTask</span><span class="o">);</span>
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">loader</span> <span class="o">=</span> <span class="k">new</span> <span class="n">BatchMutatorClient</span><span class="o">(</span><span class="n">keyspace</span><span class="o">,</span> <span class="n">uri</span><span class="o">,</span> <span class="n">callback</span><span class="o">);</span>
 </code></pre>
 </div>
 
@@ -917,7 +911,7 @@ $('#toc').on('click', 'a', function() {
 <p>The server response is describes more in deatils in the REST api documentation. It will look something like this:</p>
 
 <div class="language-json highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="w">
-	</span><span class="nt">"creator"</span><span class="p">:</span><span class="s2">"ai.grakn.client.LoaderClient"</span><span class="p">,</span><span class="w">
+	</span><span class="nt">"creator"</span><span class="p">:</span><span class="s2">"ai.grakn.client.BatchMutatorClient"</span><span class="p">,</span><span class="w">
 	</span><span class="nt">"runAt"</span><span class="p">:</span><span class="s2">"2017-02-28T10:38:07.585Z"</span><span class="p">,</span><span class="w">
 	</span><span class="nt">"recurring"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
 	</span><span class="nt">"className"</span><span class="p">:</span><span class="s2">"ai.grakn.engine.loader.LoaderTask"</span><span class="p">,</span><span class="w">
@@ -931,16 +925,16 @@ $('#toc').on('click', 'a', function() {
 
 <p>Migration uses this callback function to track status information about the number of batches that have completed for the running migration.</p>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">AtomicInteger</span> <span class="n">numberBatchesCompleted</span> <span class="o">=</span> <span class="k">new</span> <span class="n">AtomicInteger</span><span class="o">(</span><span class="mi">0</span><span class="o">);</span>
+<!-- Ignored because it contains a Java lambda, which Groovy doesn't support -->
+<pre><code class="language-java-test-ignore">AtomicInteger numberBatchesCompleted = new AtomicInteger(0);
 
-<span class="n">loader</span><span class="o">.</span><span class="na">setTaskCompletionConsumer</span><span class="o">((</span><span class="n">Json</span> <span class="n">json</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="o">{</span>
-	<span class="n">Integer</span> <span class="n">completed</span> <span class="o">=</span> <span class="n">numberBatchesCompleted</span><span class="o">.</span><span class="na">incrementAndGet</span><span class="o">();</span>
-	<span class="n">String</span> <span class="n">status</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="na">at</span><span class="o">(</span><span class="s">"status"</span><span class="o">).</span><span class="na">asString</span><span class="o">();</span>
+loader.setTaskCompletionConsumer((Json json) -&gt; {
+	Integer completed = numberBatchesCompleted.incrementAndGet();
+	String status = json.at("status").asString();
 
-	<span class="n">LOG</span><span class="o">.</span><span class="na">info</span><span class="o">(</span><span class="s">"Batches completed: {}\nStatus of last batch: {}"</span><span class="o">,</span> <span class="n">completed</span><span class="o">,</span> <span class="n">status</span><span class="o">);</span>
-<span class="o">});</span>
+	LOG.info("Batches completed: {}\nStatus of last batch: {}", completed, status);
+});
 </code></pre>
-</div>
 
 <p>This callback is executed whenever a terminal response from the server is received, even if an exception was thrown. In the case of an execption, the Json argument will be either empty or contain the errored response from the server including the server-side exception.</p>
 
@@ -999,7 +993,7 @@ $('#toc').on('click', 'a', function() {
         <br>
         <p>© 2017 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2017 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> February 2017<br/> Site last generated: Jul 24, 2017 <br />
+        <span>Page last updated:</span> February 2017<br/> Site last generated: Sep 12, 2017 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">

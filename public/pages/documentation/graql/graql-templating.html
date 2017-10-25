@@ -209,6 +209,7 @@
                     </ul>
                 </li> -->
                 <li><a href="/pages/overview/index.html">Overview</a></li>
+                <li><a href=/pages/solutions.html>Solutions</a></li>
                 <li><a href="/pages/index.html">Documentation</a></li>
                 <li><a rel="me" href="//grakn.ai/community.html">Community</a></li>
                 <li><a rel="me" href="//discuss.grakn.ai/">Discussion</a></li>
@@ -300,13 +301,6 @@
             
             
             
-            <li><a href="/pages/documentation/the-fundamentals/grakn-architecture.html">Grakn Architecture Overview</a></li>
-            
-            
-            
-            
-            
-            
             <li><a href="/pages/documentation/the-fundamentals/grakn-knowledge-model.html">Grakn Knowledge Model</a></li>
             
             
@@ -330,13 +324,6 @@
             
             
             <li><a href="/pages/documentation/building-an-ontology/hierarchical-ontology.html">Define a Hierarchical Ontology</a></li>
-            
-            
-            
-            
-            
-            
-            <li><a href="/pages/documentation/building-an-ontology/rule-driven-ontology.html">Define a Rule-Driven Ontology</a></li>
             
             
             
@@ -675,6 +662,13 @@
             
             
             <li><a href="/pages/documentation/examples/graql-reasoning.html">Reasoning with Graql</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="/pages/documentation/examples/working-with-tweets.html">Working With Tweets</a></li>
             
             
             
@@ -1119,10 +1113,10 @@ insert $x isa first-course has dish &lt;course[0][1]&gt;;
 
 <p>would result in the expanded Graql queries:</p>
 
-<pre><code class="language-graql">...
+<pre><code class="language-graql"># ...
 insert $p0 isa person has firstname "Barbara" has identifier "Barbara Newman" has surname "Newman" has gender "female";
-insert $p1 has birth-date 1811-03-06 isa person has surname "Newman" has gender "male" has death-date 1898-09-10 has identifier "Henry Newman" has age 87 has firstname "Henry";
-... 
+insert $p1 has birth-date "1811-03-06" isa person has surname "Newman" has gender "male" has death-date "1898-09-10" has identifier "Henry Newman" has age 87 has firstname "Henry";
+# ...
 </code></pre>
 
 <h3 id="reserved-keywords">Reserved Keywords</h3>
@@ -1201,7 +1195,7 @@ insert $p1 has birth-date 1811-03-06 isa person has surname "Newman" has gender 
         <br>
         <p>© 2017 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2017 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> November 4, 2016<br/> Site last generated: Jul 24, 2017 <br />
+        <span>Page last updated:</span> November 4, 2016<br/> Site last generated: Sep 12, 2017 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">
