@@ -284,6 +284,10 @@ window.MNDMPS.App = {
             careersContainer = document.getElementsByClassName('careers-wrapper')[0],
             docsContainer = document.getElementById('docs-wrapper');
 
+        if (platformContainer) {
+           window.MNDMPS.Slider.init();
+        }
+        
         window.MNDMPS.Nav.init();
 
         if (careersContainer) {
@@ -328,10 +332,6 @@ window.MNDMPS.App = {
                 }
             }
         }, false);
-
-        if (platformContainer) {
-            window.MNDMPS.Slider.init();
-        }
 
         google.maps.event.addDomListener(window, 'load', window.MNDMPS.Map.load);
 

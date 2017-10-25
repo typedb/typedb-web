@@ -112,7 +112,7 @@
                 transition: transform 200ms ease-in-out;
 
                 >li{
-                    padding: 0 1rem;
+                    padding: 0 .6rem;
 
                     &:last-child{
                         margin-bottom: 20px;
@@ -526,7 +526,7 @@
             .menu{
                 >ul{
                     >li{
-                        padding: 0 1rem;
+                        padding: 0 .5rem;
 
                         &:last-child{
                             margin-left: 1rem;

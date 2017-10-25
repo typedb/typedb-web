@@ -1,33 +1,27 @@
 {
-  "name": "secu",
-  "version": "1.0.0",
-  "description": "A service to exchange password protected self-destructing messages.",
-  "main": "app.js",
+  "name": "grakn-website",
+  "version": "2.0.0",
+  "description": "Grakn Labs website",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "gulp": "gulp",
+    "gulp:dev": "gulp --development"
   },
   "repository": {
     "type": "git",
-    "url": "git@git.cybercog.su:secu/web-app.git"
+    "url": "git@github.com:graknlabs/website.git"
   },
-  "keywords": [
-    "encryption",
-    "security",
-    "privacy",
-    "messaging"
-  ],
-  "author": "CyberCog",
-  "license": "MIT",
+  "author": "Grakn Labs",
   "devDependencies": {
     "google-closure-compiler": "^20160208.7.0",
     "gulp": "^3.9.1",
     "gulp-closure-compiler": "^0.3.1",
+    "gulp-concat": "^2.6.1",
     "gulp-htmlmin": "^1.3.0",
     "gulp-notify": "^2.2.0",
-    "gulp-sass": "^2.3.2",
+    "gulp-sass": "^3.1.0",
     "gulp-util": "^3.0.8",
-    "temp-write": "^2.1.0",
+    "temp-write": "^3.3.0",
     "through": "^2.3.8",
-    "uuid": "^2.0.1"
+    "uuid": "^3.1.0"
   }
 }
