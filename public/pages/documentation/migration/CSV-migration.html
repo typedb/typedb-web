@@ -28,6 +28,24 @@
 
 <link rel="shortcut icon" href="/favicon.ico">
 
+<!-- Facebook Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '2009892122581066'); // Insert your pixel ID here.
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=2009892122581066&ev=PageView&noscript=1" alt="facebook pixel"
+/></noscript>
+<!-- DO NOT MODIFY -->
+<!-- End Facebook Pixel Code -->
+
+
+
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 <!--[if lt IE 9]>
@@ -209,7 +227,6 @@
                     </ul>
                 </li> -->
                 <li><a href="/pages/overview/index.html">Overview</a></li>
-                <li><a href=/pages/solutions.html>Solutions</a></li>
                 <li><a href="/pages/index.html">Documentation</a></li>
                 <li><a rel="me" href="//grakn.ai/community.html">Community</a></li>
                 <li><a rel="me" href="//discuss.grakn.ai/">Discussion</a></li>
@@ -256,6 +273,7 @@
         <!-- Sidebar Column -->
         <div class="col-md-3">
           
+
 
 
 
@@ -311,19 +329,26 @@
         
     
     <li>
-        <a href="#">Graql Ontology</a>
+        <a href="#">Graql Schema</a>
         <ul>
             
             
             
-            <li><a href="/pages/documentation/building-an-ontology/basic-ontology.html">Define a Basic Ontology</a></li>
+            <li><a href="/pages/documentation/building-a-schema/basic-schema.html">Define a Basic Schema</a></li>
             
             
             
             
             
             
-            <li><a href="/pages/documentation/building-an-ontology/hierarchical-ontology.html">Define a Hierarchical Ontology</a></li>
+            <li><a href="/pages/documentation/building-a-schema/hierarchical-schema.html">Define a Hierarchical Schema</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="/pages/documentation/building-a-schema/rule-driven-schema.html">Define a Rule-Driven Schema</a></li>
             
             
             
@@ -352,14 +377,14 @@
             
             
             
-            <li><a href="/pages/documentation/graql/match-queries.html">Match Queries</a></li>
+            <li><a href="/pages/documentation/graql/matches.html">Matches</a></li>
             
             
             
             
             
             
-            <li><a href="/pages/documentation/graql/ask-queries.html">Ask Queries</a></li>
+            <li><a href="/pages/documentation/graql/get-queries.html">Get Queries</a></li>
             
             
             
@@ -374,6 +399,13 @@
             
             
             <li><a href="/pages/documentation/graql/insert-queries.html">Insert Queries</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="/pages/documentation/graql/define-queries.html">Define Queries</a></li>
             
             
             
@@ -487,6 +519,13 @@
             
             
             
+            <li><a href="/pages/documentation/migration/XML-migration.html">XML Migration</a></li>
+            
+            
+            
+            
+            
+            
             <li><a href="/pages/documentation/migration/SQL-migration.html">SQL Migration</a></li>
             
             
@@ -516,7 +555,7 @@
             
             
             
-            <li><a href="/pages/documentation/developing-with-java/graph-api.html">Graph API</a></li>
+            <li><a href="/pages/documentation/developing-with-java/java-api.html">Java API</a></li>
             
             
             
@@ -696,7 +735,7 @@
             
             
             
-            <li><a href="/pages/documentation/examples/graph-api-example.html">Graph API for Java developers</a></li>
+            <li><a href="/pages/documentation/examples/java-api-example.html">API for Java developers</a></li>
             
             
             
@@ -723,6 +762,12 @@
         <li>
             
             <li><a href="/pages/contributors/index.html">Contribute to GRAKN.AI</a></li>
+            
+        </li>
+        
+        <li>
+            
+            <li><a href="/pages/academy/index.html">GRAKN Academy</a></li>
             
         </li>
         
@@ -782,7 +827,7 @@ $('#toc').on('click', 'a', function() {
 
     
 
-    <a target="_blank" href="https://github.com/graknlabs/docs/blob/master/pages/documentation/5-migration/CSV-migration.md" class="btn btn-default githubEditButton" role="button"><i class="fa fa-github fa-lg"></i> Edit me</a>
+    <a target="_blank" href="https://github.com/graknlabs/grakn/tree/master/docs/pages/documentation/5-migration/CSV-migration.md" class="btn btn-default githubEditButton" role="button"><i class="fa fa-github fa-lg"></i> Edit me</a>
 
     
 
@@ -794,36 +839,36 @@ $('#toc').on('click', 'a', function() {
 <h2 id="migration-shell-script-for-csv">Migration Shell Script for CSV</h2>
 <p>The migration shell script can be found in <em>/bin</em> directory of your Grakn environment. We will illustrate its usage in an example below:</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>usage: ./migration.sh csv -template &lt;arg&gt; -input &lt;arg&gt; -keyspace &lt;arg&gt; <span class="o">[</span>-help] <span class="o">[</span>-no] <span class="o">[</span>-separator &lt;arg&gt;] <span class="o">[</span>-active &lt;arg&gt;] <span class="o">[</span>-batch &lt;arg&gt;] <span class="o">[</span>-uri &lt;arg&gt;] <span class="o">[</span>-null &lt;arg&gt;] <span class="o">[</span>-quote &lt;arg&gt;] <span class="o">[</span>-r &lt;arg&gt;] <span class="o">[</span>-v]
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>usage: ./graql migrate csv <span class="nt">-template</span> &lt;arg&gt; <span class="nt">-input</span> &lt;arg&gt; <span class="nt">-keyspace</span> &lt;arg&gt; <span class="o">[</span><span class="nt">-help</span><span class="o">]</span> <span class="o">[</span><span class="nt">-no</span><span class="o">]</span> <span class="o">[</span><span class="nt">-separator</span> &lt;arg&gt;] <span class="o">[</span><span class="nt">-active</span> &lt;arg&gt;] <span class="o">[</span><span class="nt">-batch</span> &lt;arg&gt;] <span class="o">[</span><span class="nt">-uri</span> &lt;arg&gt;] <span class="o">[</span><span class="nt">-null</span> &lt;arg&gt;] <span class="o">[</span><span class="nt">-quote</span> &lt;arg&gt;] <span class="o">[</span><span class="nt">-r</span> &lt;arg&gt;] <span class="o">[</span><span class="nt">-v</span><span class="o">]</span>
 
 OPTIONS
- -a,--active &lt;arg&gt;      Number of tasks <span class="o">(</span>batches<span class="o">)</span> running on the server at
+ <span class="nt">-a</span>,--active &lt;arg&gt;      Number of tasks <span class="o">(</span>batches<span class="o">)</span> running on the server at
                         any one time. Default 25.
- -b,--batch &lt;arg&gt;       Number of rows to execute <span class="k">in </span>one Grakn
+ <span class="nt">-b</span>,--batch &lt;arg&gt;       Number of rows to execute <span class="k">in </span>one Grakn
                         transaction. Default 25.
- -c,--config &lt;arg&gt;      Configuration file.
- -h,--help              Print usage message.
- -i,--input &lt;arg&gt;       Input csv file.
- -k,--keyspace &lt;arg&gt;    Grakn graph. Required.
- -l,--null &lt;arg&gt;        String that will be evaluated as null.
- -n,--no                Write to standard out.
- -q,--quote &lt;arg&gt;       Character used to encapsulate values containing
+ <span class="nt">-c</span>,--config &lt;arg&gt;      Configuration file.
+ <span class="nt">-h</span>,--help              Print usage message.
+ <span class="nt">-i</span>,--input &lt;arg&gt;       Input csv file.
+ <span class="nt">-k</span>,--keyspace &lt;arg&gt;    Grakn knowledge base. Required.
+ <span class="nt">-l</span>,--null &lt;arg&gt;        String that will be evaluated as null.
+ <span class="nt">-n</span>,--no                Write to standard out.
+ <span class="nt">-q</span>,--quote &lt;arg&gt;       Character used to encapsulate values containing
                         special characters.
- -r,--retry &lt;arg&gt;       Retry sending tasks <span class="k">if </span>engine is not available
- -s,--separator &lt;arg&gt;   Separator of columns <span class="k">in </span>input file.
- -t,--template &lt;arg&gt;    Graql template to apply to the data.
- -u,--uri &lt;arg&gt;         Location of Grakn Engine.
- -v,--verbose           Print counts of migrated data.
-</code></pre>
-</div>
+ <span class="nt">-r</span>,--retry &lt;arg&gt;       Retry sending tasks <span class="k">if </span>engine is not available
+ <span class="nt">-s</span>,--separator &lt;arg&gt;   Separator of columns <span class="k">in </span>input file.
+ <span class="nt">-t</span>,--template &lt;arg&gt;    Graql template to apply to the data.
+ <span class="nt">-u</span>,--uri &lt;arg&gt;         Location of Grakn Engine.
+ <span class="nt">-v</span>,--verbose           Print counts of migrated data.
+ <span class="nt">-d</span>,--debug            Migration immediatly stops <span class="k">if </span>any transaction fails
+</code></pre></div></div>
 
 <h2 id="csv-migration-basics">CSV Migration Basics</h2>
 
 <p>The steps to migrate the CSV to GRAKN.AI are:</p>
 
 <ul>
-  <li>define an ontology for the data to derive the full benefit of a knowledge graph</li>
-  <li>create templated Graql to map the data to the ontology</li>
+  <li>define a schema for the data to derive the full benefit of a knowledge base</li>
+  <li>create templated Graql to map the data to the schema</li>
   <li>invoke the Grakn migrator through the shell script or Java API. The CSV migrator will apply the template to each row of data in the CSV file, replacing the sections indicated in the template with provided data: the column header is the key and the content of each row at that column the value.</li>
 </ul>
 
@@ -839,9 +884,9 @@ OPTIONS
 1996,Jeep,Grand Cherokee,"MUST SELL! air, moon roof, loaded",4799.00
 </code></pre>
 
-<p>Here is the ontology for the example:</p>
+<p>Here is the schema for the example:</p>
 
-<pre><code class="language-graql">insert
+<pre><code class="language-graql">define
 
 car sub entity
   has name
@@ -849,18 +894,17 @@ car sub entity
   has description
   has price;
 
-name sub resource datatype string;
-year sub resource datatype string;
-description sub resource datatype string;
-price sub resource datatype double;
+name sub attribute datatype string;
+year sub attribute datatype string;
+description sub attribute datatype string;
+price sub attribute datatype double;
 
 </code></pre>
 
-<p>Make sure to load your ontology into the graph:</p>
+<p>Make sure to load your schema into the knowledge base:</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>./&lt;grakn-install-location&gt;/bin/graql.sh -f ./ontology.gql -k grakn
-</code></pre>
-</div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>./graql console <span class="nt">-f</span> ./schema.gql <span class="nt">-k</span> grakn
+</code></pre></div></div>
 
 <p>And the Graql template, <em>car-migrator.gql</em>:</p>
 
@@ -873,13 +917,12 @@ $x isa car
   if (&lt;Description&gt; != "") do { has description &lt;Description&gt;};  
 </code></pre>
 
-<p>The template will create a <code class="highlighter-rouge">car</code> entity for each row. It will attach <code class="highlighter-rouge">year</code> and <code class="highlighter-rouge">price</code> resources to each of these entities. If the <code class="highlighter-rouge">description</code> resource is present in the data, it will attach the appropriate <code class="highlighter-rouge">description</code> to the <code class="highlighter-rouge">car</code>.</p>
+<p>The template will create a <code class="highlighter-rouge">car</code> entity for each row. It will attach <code class="highlighter-rouge">year</code> and <code class="highlighter-rouge">price</code> resources to each of these entities. If the <code class="highlighter-rouge">description</code> attribute is present in the data, it will attach the appropriate <code class="highlighter-rouge">description</code> to the <code class="highlighter-rouge">car</code>.</p>
 
 <p>The template is applied to each row by calling the migration script:</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>./&lt;grakn-install-location&gt;/bin/migration.sh csv -i ./cars.csv -t ./car-migrator.gql -k grakn
-</code></pre>
-</div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>./graql migrate csv <span class="nt">-i</span> ./cars.csv <span class="nt">-t</span> ./car-migrator.gql <span class="nt">-k</span> grakn
+</code></pre></div></div>
 
 <p>The resulting Graql statement, if printed out, looks as follows:</p>
 
@@ -888,7 +931,7 @@ insert $x0 isa car has name "Chevy-Venture" has year "1999" has price 4900.0;
 insert $x0 isa car has name "Jeep-Grand Cherokee" has year "1996" has price 4799.0 has description "MUST SELL! air, moon roof, loaded";
 </code></pre>
 
-<p>You will note that the second Graql insert is missing the <code class="highlighter-rouge">description</code> resource. This is because that value is not present in the data and the template uses an <code class="highlighter-rouge">if</code> statement to check if it exists.</p>
+<p>You will note that the second Graql insert is missing the <code class="highlighter-rouge">description</code> attribute. This is because that value is not present in the data and the template uses an <code class="highlighter-rouge">if</code> statement to check if it exists.</p>
 
 <h3 id="separator">Separator</h3>
 
@@ -903,17 +946,14 @@ air  moon roof   loaded"  4799.00
 
 <p>This file would be migrated in the same way as the previous example when you specify the separator using the <code class="highlighter-rouge">-s \t</code> argument:</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>./&lt;grakn-install-location&gt;/bin/migration.sh csv -i ./cars.tsv -t ./car-migrator.gql -s <span class="se">\t</span> -k grakn
-</code></pre>
-</div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>./graql migrate csv <span class="nt">-i</span> ./cars.tsv <span class="nt">-t</span> ./car-migrator.gql <span class="nt">-s</span> <span class="se">\t</span> <span class="nt">-k</span> grakn
+</code></pre></div></div>
 
 <h2 id="where-next">Where Next?</h2>
 <p>We have an additional, more extensive, example that <a href="../examples/CSV-migration.html">migrates genealogy data from CSV</a>. Our <a href="https://github.com/graknlabs/sample-projects">sample-projects repository on Github</a> also contains <a href="https://github.com/graknlabs/sample-projects/tree/master/example-csv-migration-pets">an example that migrates a simple CSV pets dataset</a>, and another <a href="https://github.com/graknlabs/sample-projects/tree/master/example-csv-migration-games">example for video games</a>, was described in a separate <a href="https://blog.grakn.ai/twenty-years-of-games-in-grakn-14faa974b16e#.do8tq0dm8">blog post</a>.</p>
 
 <p>You can find further documentation about migration in our API reference documentation (which is in the <em>/docs</em> directory of the distribution zip file, and also online <a href="https://grakn.ai/javadocs.html">here</a>.</p>
 
-<h2 id="comments">Comments</h2>
-<p>Want to leave a comment? Visit <a href="https://github.com/graknlabs/docs/issues/32" target="_blank">the issues on Github for this page</a> (you’ll need a GitHub account). You are also welcome to contribute to our documentation directly via the “Edit me” button at the top of the page.</p>
 
 
     <div class="tags">
@@ -953,7 +993,7 @@ air  moon roof   loaded"  4799.00
         <br>
         <p>© 2017 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2017 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> February 2017<br/> Site last generated: Sep 12, 2017 <br />
+        <span>Page last updated:</span> February 2017<br/> Site last generated: Nov 2, 2017 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">
@@ -961,7 +1001,7 @@ air  moon roof   loaded"  4799.00
         <ul>
             <li><a href="/pages/overview/index.html">Introduction</a></li>
             <li><a href="/pages/documentation/get-started/setup-guide.html">Install</a></li>
-            <li><a href="/pages/documentation/the-basics/quickstart-tutorial.html">Quickstart</a></li>
+            <li><a href="/pages/documentation/get-started/quickstart-tutorial.html">Quickstart</a></li>
         </ul>
     </div>
     <div class="col-lg-2 footer">
@@ -1000,5 +1040,12 @@ air  moon roof   loaded"  4799.00
     </div>
 
 </body>
+
+<!-- the google_analytics_id gets auto inserted from the config file -->
+
+
+
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create','UA-72414051-1','auto');ga('require','displayfeatures');ga('send','pageview');</script>
+
 
 </html>

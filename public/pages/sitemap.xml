@@ -12,7 +12,19 @@
   
   
   <url>
+    <loc>http://grakn.ai/pages//academy/index.html</loc>
+  </url>
+  
+  
+  
+  <url>
     <loc>http://grakn.ai/pages//overview/index.html</loc>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://grakn.ai/pages//academy/graql-intro.html</loc>
   </url>
   
   
@@ -24,7 +36,37 @@
   
   
   <url>
+    <loc>http://grakn.ai/pages//academy/analytics-intro.html</loc>
+  </url>
+  
+  
+  
+  <url>
     <loc>http://grakn.ai/pages//contributors/conduct.html</loc>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://grakn.ai/pages//academy/grakn-intro.html</loc>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://grakn.ai/pages//academy/loading-files.html</loc>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://grakn.ai/pages//academy/reasoner-intro.html</loc>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://grakn.ai/pages//academy/schema-elements.html</loc>
   </url>
   
   
@@ -36,13 +78,91 @@
   
   
   <url>
+    <loc>http://grakn.ai/pages//academy/conceptual-modeling-intro.html</loc>
+  </url>
+  
+  
+  
+  <url>
     <loc>http://grakn.ai/pages//contributors/contributor-faq.html</loc>
   </url>
   
   
   
   <url>
+    <loc>http://grakn.ai/pages//academy/csv-migration.html</loc>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://grakn.ai/pages//academy/get-queries.html</loc>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://grakn.ai/pages//academy/inference-rules.html</loc>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://grakn.ai/pages//academy/setup.html</loc>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://grakn.ai/pages//academy/statistics-queries.html</loc>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://grakn.ai/pages//academy/advanced-rules.html</loc>
+  </url>
+  
+  
+  
+  <url>
     <loc>http://grakn.ai/pages//overview/comparison.html</loc>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://grakn.ai/pages//academy/graph-analytics.html</loc>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://grakn.ai/pages//academy/insert-delete-queries.html</loc>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://grakn.ai/pages//academy/schema-building.html</loc>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://grakn.ai/pages//academy/xml-migration.html</loc>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://grakn.ai/pages//academy/other-queries.html</loc>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://grakn.ai/pages//academy/schema-building-continued.html</loc>
   </url>
   
   
@@ -56,7 +176,19 @@
   
   
   <url>
+    <loc>http://grakn.ai/pages//academy/graql-review.html</loc>
+  </url>
+  
+  
+  
+  <url>
     <loc>http://grakn.ai/pages//overview/ideology.html</loc>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://grakn.ai/pages//academy/schema-review.html</loc>
   </url>
   
   
@@ -74,13 +206,13 @@
   
   
   <url>
-    <loc>http://grakn.ai/pages//documentation/migration/CSV-migration.html</loc>
+    <loc>http://grakn.ai/pages//documentation/examples/CSV-migration.html</loc>
   </url>
   
   
   
   <url>
-    <loc>http://grakn.ai/pages//documentation/examples/CSV-migration.html</loc>
+    <loc>http://grakn.ai/pages//documentation/migration/CSV-migration.html</loc>
   </url>
   
   
@@ -110,13 +242,13 @@
   
   
   <url>
-    <loc>http://grakn.ai/pages//documentation/examples/SQL-migration.html</loc>
+    <loc>http://grakn.ai/pages//documentation/migration/SQL-migration.html</loc>
   </url>
   
   
   
   <url>
-    <loc>http://grakn.ai/pages//documentation/migration/SQL-migration.html</loc>
+    <loc>http://grakn.ai/pages//documentation/examples/SQL-migration.html</loc>
   </url>
   
   
@@ -182,19 +314,19 @@
   
   
   <url>
-    <loc>http://grakn.ai/pages//documentation/graql/ask-queries.html</loc>
-  </url>
-  
-  
-  
-  <url>
-    <loc>http://grakn.ai/pages//documentation/building-an-ontology/basic-ontology.html</loc>
+    <loc>http://grakn.ai/pages//documentation/building-a-schema/basic-schema.html</loc>
   </url>
   
   
   
   <url>
     <loc>http://grakn.ai/pages//documentation/graql/compute-queries.html</loc>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://grakn.ai/pages//documentation/graql/define-queries.html</loc>
   </url>
   
   
@@ -232,6 +364,12 @@
   
   
   <url>
+    <loc>http://grakn.ai/pages//documentation/graql/get-queries.html</loc>
+  </url>
+  
+  
+  
+  <url>
     <loc>http://grakn.ai/pages//documentation/the-fundamentals/grakn-basics.html</loc>
   </url>
   
@@ -251,18 +389,6 @@
   
   <url>
     <loc>http://grakn.ai/pages//documentation/resources/grakn-on-windows.html</loc>
-  </url>
-  
-  
-  
-  <url>
-    <loc>http://grakn.ai/pages//documentation/developing-with-java/graph-api.html</loc>
-  </url>
-  
-  
-  
-  <url>
-    <loc>http://grakn.ai/pages//documentation/examples/graph-api-example.html</loc>
   </url>
   
   
@@ -304,7 +430,7 @@
   
   
   <url>
-    <loc>http://grakn.ai/pages//documentation/building-an-ontology/hierarchical-ontology.html</loc>
+    <loc>http://grakn.ai/pages//documentation/building-a-schema/hierarchical-schema.html</loc>
   </url>
   
   
@@ -328,6 +454,18 @@
   
   
   <url>
+    <loc>http://grakn.ai/pages//documentation/developing-with-java/java-api.html</loc>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://grakn.ai/pages//documentation/examples/java-api-example.html</loc>
+  </url>
+  
+  
+  
+  <url>
     <loc>http://grakn.ai/pages//documentation/developing-with-java/java-graql.html</loc>
   </url>
   
@@ -340,7 +478,7 @@
   
   
   <url>
-    <loc>http://grakn.ai/pages//documentation/graql/match-queries.html</loc>
+    <loc>http://grakn.ai/pages//documentation/graql/matches.html</loc>
   </url>
   
   
@@ -359,6 +497,24 @@
   
   <url>
     <loc>http://grakn.ai/pages//documentation/examples/modern.html</loc>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://grakn.ai/pages//academy/reasoner-review.html</loc>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://grakn.ai/pages//academy/migration-review.html</loc>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://grakn.ai/pages//academy/analytics-review.html</loc>
   </url>
   
   
@@ -389,6 +545,12 @@
   
   <url>
     <loc>http://grakn.ai/pages//documentation/resources/resources-overview.html</loc>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://grakn.ai/pages//documentation/building-a-schema/rule-driven-schema.html</loc>
   </url>
   
   

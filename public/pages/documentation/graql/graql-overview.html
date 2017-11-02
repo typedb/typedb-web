@@ -28,6 +28,24 @@
 
 <link rel="shortcut icon" href="/favicon.ico">
 
+<!-- Facebook Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '2009892122581066'); // Insert your pixel ID here.
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=2009892122581066&ev=PageView&noscript=1" alt="facebook pixel"
+/></noscript>
+<!-- DO NOT MODIFY -->
+<!-- End Facebook Pixel Code -->
+
+
+
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 <!--[if lt IE 9]>
@@ -209,7 +227,6 @@
                     </ul>
                 </li> -->
                 <li><a href="/pages/overview/index.html">Overview</a></li>
-                <li><a href=/pages/solutions.html>Solutions</a></li>
                 <li><a href="/pages/index.html">Documentation</a></li>
                 <li><a rel="me" href="//grakn.ai/community.html">Community</a></li>
                 <li><a rel="me" href="//discuss.grakn.ai/">Discussion</a></li>
@@ -256,6 +273,7 @@
         <!-- Sidebar Column -->
         <div class="col-md-3">
           
+
 
 
 
@@ -311,19 +329,26 @@
         
     
     <li>
-        <a href="#">Graql Ontology</a>
+        <a href="#">Graql Schema</a>
         <ul>
             
             
             
-            <li><a href="/pages/documentation/building-an-ontology/basic-ontology.html">Define a Basic Ontology</a></li>
+            <li><a href="/pages/documentation/building-a-schema/basic-schema.html">Define a Basic Schema</a></li>
             
             
             
             
             
             
-            <li><a href="/pages/documentation/building-an-ontology/hierarchical-ontology.html">Define a Hierarchical Ontology</a></li>
+            <li><a href="/pages/documentation/building-a-schema/hierarchical-schema.html">Define a Hierarchical Schema</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="/pages/documentation/building-a-schema/rule-driven-schema.html">Define a Rule-Driven Schema</a></li>
             
             
             
@@ -352,14 +377,14 @@
             
             
             
-            <li><a href="/pages/documentation/graql/match-queries.html">Match Queries</a></li>
+            <li><a href="/pages/documentation/graql/matches.html">Matches</a></li>
             
             
             
             
             
             
-            <li><a href="/pages/documentation/graql/ask-queries.html">Ask Queries</a></li>
+            <li><a href="/pages/documentation/graql/get-queries.html">Get Queries</a></li>
             
             
             
@@ -374,6 +399,13 @@
             
             
             <li><a href="/pages/documentation/graql/insert-queries.html">Insert Queries</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="/pages/documentation/graql/define-queries.html">Define Queries</a></li>
             
             
             
@@ -487,6 +519,13 @@
             
             
             
+            <li><a href="/pages/documentation/migration/XML-migration.html">XML Migration</a></li>
+            
+            
+            
+            
+            
+            
             <li><a href="/pages/documentation/migration/SQL-migration.html">SQL Migration</a></li>
             
             
@@ -516,7 +555,7 @@
             
             
             
-            <li><a href="/pages/documentation/developing-with-java/graph-api.html">Graph API</a></li>
+            <li><a href="/pages/documentation/developing-with-java/java-api.html">Java API</a></li>
             
             
             
@@ -696,7 +735,7 @@
             
             
             
-            <li><a href="/pages/documentation/examples/graph-api-example.html">Graph API for Java developers</a></li>
+            <li><a href="/pages/documentation/examples/java-api-example.html">API for Java developers</a></li>
             
             
             
@@ -723,6 +762,12 @@
         <li>
             
             <li><a href="/pages/contributors/index.html">Contribute to GRAKN.AI</a></li>
+            
+        </li>
+        
+        <li>
+            
+            <li><a href="/pages/academy/index.html">GRAKN Academy</a></li>
             
         </li>
         
@@ -782,26 +827,26 @@ $('#toc').on('click', 'a', function() {
 
     
 
-    <a target="_blank" href="https://github.com/graknlabs/docs/blob/master/pages/documentation/3-querying-with-graql/graql-overview.md" class="btn btn-default githubEditButton" role="button"><i class="fa fa-github fa-lg"></i> Edit me</a>
+    <a target="_blank" href="https://github.com/graknlabs/grakn/tree/master/docs/pages/documentation/3-querying-with-graql/graql-overview.md" class="btn btn-default githubEditButton" role="button"><i class="fa fa-github fa-lg"></i> Edit me</a>
 
     
 
     
 
-  <p>Graql enables users to write queries against a Grakn graph leveraging the inherent semantics of the data. Concepts can be retrieved by specifying the patterns of types and relationships that identify them. Graql is declarative and therefore it handles the optimisation of the graph traversals needed to retrieve information.</p>
+  <p>Graql enables users to write queries against a Grakn knowledge base leveraging the inherent semantics of the data. Concepts can be retrieved by specifying the patterns of types and relationships that identify them. Graql is declarative and therefore it handles the optimisation of the knowledge base queries needed to retrieve information.</p>
 
 <p>You can execute Graql in the <a href="graql-shell.html">Graql Shell</a> or using <a href="../developing-with-java/java-graql.html">Java
 Graql</a>.</p>
 
 <h2 id="query-types">Query types</h2>
 
-<p>There are five types of queries, which are begun with the following keywords:</p>
+<p>There are several types of queries, which are begun with the following keywords:</p>
 <ul>
-  <li><a href="match-queries.html">match</a> - for matching patterns in the graph</li>
-  <li><a href="ask-queries.html">ask</a> - for querying if certain patterns exist in the graph</li>
-  <li><a href="insert-queries.html">insert</a> - for inserting types and instances</li>
-  <li><a href="delete-queries.html">delete</a> - for deleting types and instances</li>
-  <li><a href="compute-queries.html">compute</a> - for computing useful information about your graph</li>
+  <li><a href="get-queries.html">get</a> - for finding patterns in the knowledge base</li>
+  <li><a href="define-queries.html">define</a> - for defining schema concepts</li>
+  <li><a href="insert-queries.html">insert</a> - for inserting data</li>
+  <li><a href="delete-queries.html">delete</a> - for deleting schema concepts and data</li>
+  <li><a href="compute-queries.html">compute</a> - for computing useful information about your knowledge base</li>
 </ul>
 
 <h2 id="reserved-keywords">Reserved keywords</h2>
@@ -832,9 +877,9 @@ boolean, double, long, string, date
 true, false
 </code></pre>
 
-<h4 id="ontology-definition">Ontology definition</h4>
+<h4 id="schema-definition">Schema definition</h4>
 
-<pre><code class="language-graql-test-ignore">has, has-scope, 
+<pre><code class="language-graql-test-ignore">has,
 is-abstract, isa, 
 key,
 plays,
@@ -869,9 +914,6 @@ true, false
 
 <h2 id="cheatsheet-reference">Cheatsheet reference</h2>
 <p>If you are already familiar with Graql, you may find our <a href="graql-cheatsheet.html">cheatsheet reference</a> a helpful page to bookmark or print out!</p>
-
-<h2 id="comments">Comments</h2>
-<p>Want to leave a comment? Visit <a href="https://github.com/graknlabs/docs/issues/42" target="_blank">the issues on Github for this page</a> (you’ll need a GitHub account). You are also welcome to contribute to our documentation directly via the “Edit me” button at the top of the page.</p>
 
 
 
@@ -912,7 +954,7 @@ true, false
         <br>
         <p>© 2017 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2017 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> March 2017<br/> Site last generated: Sep 12, 2017 <br />
+        <span>Page last updated:</span> March 2017<br/> Site last generated: Nov 2, 2017 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">
@@ -920,7 +962,7 @@ true, false
         <ul>
             <li><a href="/pages/overview/index.html">Introduction</a></li>
             <li><a href="/pages/documentation/get-started/setup-guide.html">Install</a></li>
-            <li><a href="/pages/documentation/the-basics/quickstart-tutorial.html">Quickstart</a></li>
+            <li><a href="/pages/documentation/get-started/quickstart-tutorial.html">Quickstart</a></li>
         </ul>
     </div>
     <div class="col-lg-2 footer">
@@ -959,5 +1001,12 @@ true, false
     </div>
 
 </body>
+
+<!-- the google_analytics_id gets auto inserted from the config file -->
+
+
+
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create','UA-72414051-1','auto');ga('require','displayfeatures');ga('send','pageview');</script>
+
 
 </html>

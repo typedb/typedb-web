@@ -28,6 +28,24 @@
 
 <link rel="shortcut icon" href="/favicon.ico">
 
+<!-- Facebook Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '2009892122581066'); // Insert your pixel ID here.
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=2009892122581066&ev=PageView&noscript=1" alt="facebook pixel"
+/></noscript>
+<!-- DO NOT MODIFY -->
+<!-- End Facebook Pixel Code -->
+
+
+
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 <!--[if lt IE 9]>
@@ -209,7 +227,6 @@
                     </ul>
                 </li> -->
                 <li><a href="/pages/overview/index.html">Overview</a></li>
-                <li><a href=/pages/solutions.html>Solutions</a></li>
                 <li><a href="/pages/index.html">Documentation</a></li>
                 <li><a rel="me" href="//grakn.ai/community.html">Community</a></li>
                 <li><a rel="me" href="//discuss.grakn.ai/">Discussion</a></li>
@@ -256,6 +273,7 @@
         <!-- Sidebar Column -->
         <div class="col-md-3">
           
+
 
 
 
@@ -311,19 +329,26 @@
         
     
     <li>
-        <a href="#">Graql Ontology</a>
+        <a href="#">Graql Schema</a>
         <ul>
             
             
             
-            <li><a href="/pages/documentation/building-an-ontology/basic-ontology.html">Define a Basic Ontology</a></li>
+            <li><a href="/pages/documentation/building-a-schema/basic-schema.html">Define a Basic Schema</a></li>
             
             
             
             
             
             
-            <li><a href="/pages/documentation/building-an-ontology/hierarchical-ontology.html">Define a Hierarchical Ontology</a></li>
+            <li><a href="/pages/documentation/building-a-schema/hierarchical-schema.html">Define a Hierarchical Schema</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="/pages/documentation/building-a-schema/rule-driven-schema.html">Define a Rule-Driven Schema</a></li>
             
             
             
@@ -352,14 +377,14 @@
             
             
             
-            <li><a href="/pages/documentation/graql/match-queries.html">Match Queries</a></li>
+            <li><a href="/pages/documentation/graql/matches.html">Matches</a></li>
             
             
             
             
             
             
-            <li><a href="/pages/documentation/graql/ask-queries.html">Ask Queries</a></li>
+            <li><a href="/pages/documentation/graql/get-queries.html">Get Queries</a></li>
             
             
             
@@ -374,6 +399,13 @@
             
             
             <li><a href="/pages/documentation/graql/insert-queries.html">Insert Queries</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="/pages/documentation/graql/define-queries.html">Define Queries</a></li>
             
             
             
@@ -487,6 +519,13 @@
             
             
             
+            <li><a href="/pages/documentation/migration/XML-migration.html">XML Migration</a></li>
+            
+            
+            
+            
+            
+            
             <li><a href="/pages/documentation/migration/SQL-migration.html">SQL Migration</a></li>
             
             
@@ -516,7 +555,7 @@
             
             
             
-            <li><a href="/pages/documentation/developing-with-java/graph-api.html">Graph API</a></li>
+            <li><a href="/pages/documentation/developing-with-java/java-api.html">Java API</a></li>
             
             
             
@@ -696,7 +735,7 @@
             
             
             
-            <li><a href="/pages/documentation/examples/graph-api-example.html">Graph API for Java developers</a></li>
+            <li><a href="/pages/documentation/examples/java-api-example.html">API for Java developers</a></li>
             
             
             
@@ -723,6 +762,12 @@
         <li>
             
             <li><a href="/pages/contributors/index.html">Contribute to GRAKN.AI</a></li>
+            
+        </li>
+        
+        <li>
+            
+            <li><a href="/pages/academy/index.html">GRAKN Academy</a></li>
             
         </li>
         
@@ -782,7 +827,7 @@ $('#toc').on('click', 'a', function() {
 
     
 
-    <a target="_blank" href="https://github.com/graknlabs/docs/blob/master/pages/documentation/5-migration/OWL-migration.md" class="btn btn-default githubEditButton" role="button"><i class="fa fa-github fa-lg"></i> Edit me</a>
+    <a target="_blank" href="https://github.com/graknlabs/grakn/tree/master/docs/pages/documentation/5-migration/OWL-migration.md" class="btn btn-default githubEditButton" role="button"><i class="fa fa-github fa-lg"></i> Edit me</a>
 
     
 
@@ -794,16 +839,16 @@ $('#toc').on('click', 'a', function() {
 <h2 id="migration-shell-script-for-owl">Migration Shell Script for OWL</h2>
 <p>The migration shell script can be found in <em>/bin</em> directory of your Grakn environment. We will illustrate its usage in an example below:</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>usage: migration.sh owl -input &lt;arg&gt; -keyspace &lt;arg&gt; <span class="o">[</span>-help] <span class="o">[</span>-uri &lt;arg&gt;] <span class="o">[</span>-verbose]
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>usage: graql migrate owl <span class="nt">-input</span> &lt;arg&gt; <span class="nt">-keyspace</span> &lt;arg&gt; <span class="o">[</span><span class="nt">-help</span><span class="o">]</span> <span class="o">[</span><span class="nt">-uri</span> &lt;arg&gt;] <span class="o">[</span><span class="nt">-verbose</span><span class="o">]</span>
 
- -c,--config &lt;arg&gt;     Configuration file.
- -h,--help             Print usage message.
- -i,--input &lt;arg&gt;      input csv file
- -k,--keyspace &lt;arg&gt;   Grakn graph. Required.
- -u,--uri &lt;arg&gt;        Location of Grakn Engine.
- -v,--verbose          Print counts of migrated data.
-</code></pre>
-</div>
+ <span class="nt">-c</span>,--config &lt;arg&gt;     Configuration file.
+ <span class="nt">-h</span>,--help             Print usage message.
+ <span class="nt">-i</span>,--input &lt;arg&gt;      input csv file
+ <span class="nt">-k</span>,--keyspace &lt;arg&gt;   Grakn knowledge base. Required.
+ <span class="nt">-u</span>,--uri &lt;arg&gt;        Location of Grakn Engine.
+ <span class="nt">-v</span>,--verbose          Print counts of migrated data.
+ <span class="nt">-d</span>,--debug            Migration immediatly stops <span class="k">if </span>any transaction fails
+</code></pre></div></div>
 
 <p>Please note: <code class="highlighter-rouge">-no</code> and <code class="highlighter-rouge">-retry</code> are not supported by OWL at the moment.</p>
 
@@ -812,7 +857,7 @@ $('#toc').on('click', 'a', function() {
 <h2 id="example-owl-migration">Example OWL migration</h2>
 <p>Consider the following OWL ontology:</p>
 
-<div class="language-xml highlighter-rouge"><pre class="highlight"><code><span class="nt">&lt;rdf:RDF</span> <span class="na">xmlns=</span><span class="s">"http://www.co-ode.org/roberts/family-tree.owl#"</span>
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;rdf:RDF</span> <span class="na">xmlns=</span><span class="s">"http://www.co-ode.org/roberts/family-tree.owl#"</span>
      <span class="na">xml:base=</span><span class="s">"http://www.co-ode.org/roberts/family-tree.owl"</span>
      <span class="na">xmlns:rdf=</span><span class="s">"http://www.w3.org/1999/02/22-rdf-syntax-ns#"</span>
      <span class="na">xmlns:owl=</span><span class="s">"http://www.w3.org/2002/07/owl#"</span>
@@ -845,65 +890,64 @@ $('#toc').on('click', 'a', function() {
         <span class="nt">&lt;isParentOf</span> <span class="na">rdf:resource=</span><span class="s">"#Witold"</span><span class="nt">/&gt;</span>
     <span class="nt">&lt;/owl:NamedIndividual&gt;</span>
 <span class="err">&lt;</span>\rdf:RDF&gt;
-</code></pre>
-</div>
+</code></pre></div></div>
 
-<p>The ontology defines a single class (type) <code class="highlighter-rouge">Person</code> as well as two instances of the class - individuals <code class="highlighter-rouge">Witold</code> and <code class="highlighter-rouge">Stefan</code>. The ontology defines properties <code class="highlighter-rouge">hasAncestor</code> and its inverse <code class="highlighter-rouge">isAncestorOf</code> as well as <code class="highlighter-rouge">hasParent</code> and <code class="highlighter-rouge">isParentOf</code> properties. The <code class="highlighter-rouge">hasAncestor</code> property is defined as transitive and additionally defines a property chain which corresponds to the rule:</p>
+<p>The schema defines a single class (type) <code class="highlighter-rouge">Person</code> as well as two instances of the class - individuals <code class="highlighter-rouge">Witold</code> and <code class="highlighter-rouge">Stefan</code>. The schema defines properties <code class="highlighter-rouge">hasAncestor</code> and its inverse <code class="highlighter-rouge">isAncestorOf</code> as well as <code class="highlighter-rouge">hasParent</code> and <code class="highlighter-rouge">isParentOf</code> properties. The <code class="highlighter-rouge">hasAncestor</code> property is defined as transitive and additionally defines a property chain which corresponds to the rule:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>hasAncestor(X, Y) :- hasParent(X, Z), hasAncestor(Z, Y);
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>hasAncestor(X, Y) :- hasParent(X, Z), hasAncestor(Z, Y);
+</code></pre></div></div>
 
 <p>Upon migration, the OWL ontology will be mapped to Grakn. The resulting Graql statement, if printed out, looks as follows:</p>
 
-<pre><code class="language-graql">insert
-
+<pre><code class="language-graql">define
 "tPerson" sub entity;
-$eWitold isa tPerson;
-$eStefan isa tPerson;
 
 "owl-subject-op-isAncestorOf" sub role;
 "owl-object-op-isAncestorOf" sub role;
-"op-isAncestorOf" sub relation, relates owl-subject-op-isAncestorOf, relates owl-object-op-isAncestorOf;
+"op-isAncestorOf" sub relationship, relates owl-subject-op-isAncestorOf, relates owl-object-op-isAncestorOf;
 tPerson plays owl-subject-op-isAncestorOf, plays owl-object-op-isAncestorOf;
 
 "owl-subject-op-hasAncestor" sub role;
 "owl-object-op-hasAncestor" sub role;
-"op-hasAncestor" sub relation, relates owl-subject-op-hasAncestor, relates owl-object-op-hasAncestor;
+"op-hasAncestor" sub relationship, relates owl-subject-op-hasAncestor, relates owl-object-op-hasAncestor;
 tPerson plays owl-subject-op-hasAncestor, plays owl-object-op-hasAncestor;
 
 "owl-subject-op-isParentOf" sub role;
 "owl-object-op-isParentOf" sub role;
-"op-isParentOf" sub relation, relates owl-subject-op-isParentOf, relates owl-object-op-isParentOf;
+"op-isParentOf" sub relationship, relates owl-subject-op-isParentOf, relates owl-object-op-isParentOf;
 tPerson plays owl-subject-op-isParentOf, plays owl-object-op-isParentOf;
 
 "owl-subject-op-hasParent" sub role;
 "owl-object-op-hasParent" sub role;
-"op-hasParent" sub relation, relates owl-subject-op-hasParent, relates owl-object-op-hasParent;
+"op-hasParent" sub relationship, relates owl-subject-op-hasParent, relates owl-object-op-hasParent;
 tPerson plays owl-subject-op-hasParent, plays owl-object-op-hasParent;
 
+insert
+$eWitold isa tPerson;
+$eStefan isa tPerson;
 (owl-subject-op-isParentOf: $eStefan, owl-object-op-isParentOf: $eWitold) isa op-isParentOf;
 
-$inv-op-hasAncestor isa inference-rule,
+define
+inv-op-hasAncestor sub rule,
 when {
 (owl-subject-op-hasAncestor: $x, owl-object-op-hasAncestor: $y) isa hasAncestor;},
 then {
 (owl-subject-op-isAncestorOf: $y, owl-object-op-isAncestorOf: $x) isa isAncestorOf;};
 
-$inv-op-isAncestorOf isa inference-rule,
+inv-op-isAncestorOf sub rule,
 when {
 (owl-subject-op-isAncestorOf: $x, owl-object-op-isAncestorOf: $y) isa isAncestorOf;},
 then {
 (owl-subject-op-hasAncestor: $y, owl-object-op-hasAncestor: $x) isa hasAncestor;};
 
-$trst-op-hasAncestor isa inference-rule,
+trst-op-hasAncestor sub rule,
 when {
 (owl-subject-op-hasParent: $x, owl-object-op-hasParent: $z) isa hasAncestor;
 (owl-subject-op-hasAncestor: $z, owl-object-op-hasAncestor: $y) isa hasAncestor;},
 then {
 (owl-subject-op-hasAncestor: $x, owl-object-op-hasAncestor: $y) isa hasAncestor;};
 
-$pch-op-hasAncestor isa inference-rule,
+pch-op-hasAncestor sub rule,
 when {
 (owl-subject-op-hasParent: $x, owl-object-op-hasParent: $z) isa hasParent;
 (owl-subject-op-hasAncestor: $z, owl-object-op-hasAncestor: $y) isa hasAncestor;},
@@ -916,8 +960,6 @@ then {
 
 <p>Please take a look at our examples to further illustrate <a href="../examples/OWL-migration.html">OWL migration</a>.</p>
 
-<h2 id="comments">Comments</h2>
-<p>Want to leave a comment? Visit <a href="https://github.com/graknlabs/docs/issues/32" target="_blank">the issues on Github for this page</a> (you’ll need a GitHub account). You are also welcome to contribute to our documentation directly via the “Edit me” button at the top of the page.</p>
 
 
     <div class="tags">
@@ -957,7 +999,7 @@ then {
         <br>
         <p>© 2017 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2017 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> August 10, 2016<br/> Site last generated: Sep 12, 2017 <br />
+        <span>Page last updated:</span> August 10, 2016<br/> Site last generated: Nov 2, 2017 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">
@@ -965,7 +1007,7 @@ then {
         <ul>
             <li><a href="/pages/overview/index.html">Introduction</a></li>
             <li><a href="/pages/documentation/get-started/setup-guide.html">Install</a></li>
-            <li><a href="/pages/documentation/the-basics/quickstart-tutorial.html">Quickstart</a></li>
+            <li><a href="/pages/documentation/get-started/quickstart-tutorial.html">Quickstart</a></li>
         </ul>
     </div>
     <div class="col-lg-2 footer">
@@ -1004,5 +1046,12 @@ then {
     </div>
 
 </body>
+
+<!-- the google_analytics_id gets auto inserted from the config file -->
+
+
+
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create','UA-72414051-1','auto');ga('require','displayfeatures');ga('send','pageview');</script>
+
 
 </html>

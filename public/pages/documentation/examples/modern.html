@@ -28,6 +28,24 @@
 
 <link rel="shortcut icon" href="/favicon.ico">
 
+<!-- Facebook Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '2009892122581066'); // Insert your pixel ID here.
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=2009892122581066&ev=PageView&noscript=1" alt="facebook pixel"
+/></noscript>
+<!-- DO NOT MODIFY -->
+<!-- End Facebook Pixel Code -->
+
+
+
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 <!--[if lt IE 9]>
@@ -209,7 +227,6 @@
                     </ul>
                 </li> -->
                 <li><a href="/pages/overview/index.html">Overview</a></li>
-                <li><a href=/pages/solutions.html>Solutions</a></li>
                 <li><a href="/pages/index.html">Documentation</a></li>
                 <li><a rel="me" href="//grakn.ai/community.html">Community</a></li>
                 <li><a rel="me" href="//discuss.grakn.ai/">Discussion</a></li>
@@ -256,6 +273,7 @@
         <!-- Sidebar Column -->
         <div class="col-md-3">
           
+
 
 
 
@@ -311,19 +329,26 @@
         
     
     <li>
-        <a href="#">Graql Ontology</a>
+        <a href="#">Graql Schema</a>
         <ul>
             
             
             
-            <li><a href="/pages/documentation/building-an-ontology/basic-ontology.html">Define a Basic Ontology</a></li>
+            <li><a href="/pages/documentation/building-a-schema/basic-schema.html">Define a Basic Schema</a></li>
             
             
             
             
             
             
-            <li><a href="/pages/documentation/building-an-ontology/hierarchical-ontology.html">Define a Hierarchical Ontology</a></li>
+            <li><a href="/pages/documentation/building-a-schema/hierarchical-schema.html">Define a Hierarchical Schema</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="/pages/documentation/building-a-schema/rule-driven-schema.html">Define a Rule-Driven Schema</a></li>
             
             
             
@@ -352,14 +377,14 @@
             
             
             
-            <li><a href="/pages/documentation/graql/match-queries.html">Match Queries</a></li>
+            <li><a href="/pages/documentation/graql/matches.html">Matches</a></li>
             
             
             
             
             
             
-            <li><a href="/pages/documentation/graql/ask-queries.html">Ask Queries</a></li>
+            <li><a href="/pages/documentation/graql/get-queries.html">Get Queries</a></li>
             
             
             
@@ -374,6 +399,13 @@
             
             
             <li><a href="/pages/documentation/graql/insert-queries.html">Insert Queries</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="/pages/documentation/graql/define-queries.html">Define Queries</a></li>
             
             
             
@@ -487,6 +519,13 @@
             
             
             
+            <li><a href="/pages/documentation/migration/XML-migration.html">XML Migration</a></li>
+            
+            
+            
+            
+            
+            
             <li><a href="/pages/documentation/migration/SQL-migration.html">SQL Migration</a></li>
             
             
@@ -516,7 +555,7 @@
             
             
             
-            <li><a href="/pages/documentation/developing-with-java/graph-api.html">Graph API</a></li>
+            <li><a href="/pages/documentation/developing-with-java/java-api.html">Java API</a></li>
             
             
             
@@ -696,7 +735,7 @@
             
             
             
-            <li><a href="/pages/documentation/examples/graph-api-example.html">Graph API for Java developers</a></li>
+            <li><a href="/pages/documentation/examples/java-api-example.html">API for Java developers</a></li>
             
             
             
@@ -723,6 +762,12 @@
         <li>
             
             <li><a href="/pages/contributors/index.html">Contribute to GRAKN.AI</a></li>
+            
+        </li>
+        
+        <li>
+            
+            <li><a href="/pages/academy/index.html">GRAKN Academy</a></li>
             
         </li>
         
@@ -782,7 +827,7 @@ $('#toc').on('click', 'a', function() {
 
     
 
-    <a target="_blank" href="https://github.com/graknlabs/docs/blob/master/pages/documentation/11-examples/modern.md" class="btn btn-default githubEditButton" role="button"><i class="fa fa-github fa-lg"></i> Edit me</a>
+    <a target="_blank" href="https://github.com/graknlabs/grakn/tree/master/docs/pages/documentation/11-examples/modern.md" class="btn btn-default githubEditButton" role="button"><i class="fa fa-github fa-lg"></i> Edit me</a>
 
     
 
@@ -793,23 +838,19 @@ $('#toc').on('click', 'a', function() {
 <h2 id="introduction">Introduction</h2>
 <p>We have a few examples on how to work with Graql using different datasets. For example, see our <a href="https://medium.com/p/e1125e02dc85">blog posts</a> and the <a href="../get-started/quickstart-tutorial.html">Quickstart Tutorial</a> that introduces how to make Graql queries.</p>
 
-<p>This example takes a very simple example from <a href="http://tinkerpop.apache.org/docs/3.0.1-incubating/">TinkerPop3 Documentation</a>, called TinkerPop Modern. Here it is, shown diagrammatically:</p>
-
-<p><img src="/images/example-tinkerpop-modern.png" alt="" /></p>
-
-<p>The image above is used from the documentation provided for TinkerPop3, and licensed by the <a href="http://www.apache.org">Apache Software Foundation</a>.</p>
-
-<p>We have chosen this example as it may already be familiar, and is simple enough to demonstrate some of the fundamentals of Graql. We walk through the entities (“things”) and relationships between them and show how to represent them using Graql to define a schema. We then use Graql to add the data to the graph.  The main purpose of this example, however, is to use it for practice at making sample queries on the graph.</p>
+<p>The following is a simple example enough to demonstrate some of the fundamentals of Graql. 
+We walk through the entities (“things”) and relationships between them and show how to represent them using Graql to define a schema. 
+We then use Graql to add the data to the knowledge base.
+The main purpose of this example, however, is to use it for practice at making sample queries on the knowledge base.</p>
 
 <h3 id="starting-graql">Starting Graql</h3>
 
 <p>If it is not already running, start Grakn, then open a Graql shell:</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="nb">cd</span> <span class="o">[</span>your Grakn install directory]
-bin/grakn.sh start
-bin/graql.sh
-</code></pre>
-</div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd</span> <span class="o">[</span>your Grakn install directory]
+./grakn server start
+./graql console
+</code></pre></div></div>
 
 <h2 id="defining-a-schema">Defining a Schema</h2>
 
@@ -831,49 +872,49 @@ bin/graql.sh
 
 <p>Here, we add person and software entities, via the Graql shell:</p>
 
-<pre><code class="language-graql">insert person sub entity;
-insert software sub entity;
+<pre><code class="language-graql">define person sub entity;
+define software sub entity;
 </code></pre>
 
 <h3 id="resources">Resources</h3>
 
 <p>To assign resources to the entities, which you can think of as attributes, we use resources. First, we define what they are (age is a number, programming language is a string that represents the language’s name), then we allocate them to the entity in question:</p>
 
-<pre><code class="language-graql">insert age sub resource datatype long;
-insert name sub resource datatype string;
-insert person has age, has name;
+<pre><code class="language-graql">define age sub attribute datatype long;
+define name sub attribute datatype string;
+define person has age, has name;
 
-insert lang sub resource datatype string;
-insert software has lang has name;
+define lang sub attribute datatype string;
+define software has lang has name;
 
-insert weight sub resource datatype double;
+define weight sub attribute datatype double;
 </code></pre>
 
 <h3 id="relations">Relations</h3>
 
 <p>Let’s first define the relationship between people. The diagram shows that marko knows vadas, but we don’t have any information about whether the inverse is true (though it seems likely that vadas probably also knows marko). Let’s set up a relationship called <code class="highlighter-rouge">knows</code>, which has two roles - <code class="highlighter-rouge">knower</code> (for marko) and <code class="highlighter-rouge">known-about</code> (for vadas):</p>
 
-<pre><code class="language-graql">insert knower sub role;
-insert known-about sub role;
-insert person plays knower;
-insert person plays known-about;
-insert knows sub relation, relates knower, relates known-about, has weight;
+<pre><code class="language-graql">define knower sub role;
+define known-about sub role;
+define person plays knower;
+define person plays known-about;
+define knows sub relationship, relates knower, relates known-about, has weight;
 </code></pre>
 
-<p>Note that the  <code class="highlighter-rouge">knows</code> relation also has an attribute, in the form of a resource called <code class="highlighter-rouge">weight</code> (though it’s not clear from the TinkerPop example what this represents).</p>
+<p>Note that the <code class="highlighter-rouge">knows</code> relationship also has an attribute, in the form of an attribute called <code class="highlighter-rouge">weight</code>.</p>
 
 <p>We can set up a similar relationship between software and the people that created it:</p>
 
-<pre><code class="language-graql">insert programmer sub role;
-insert programmed sub role;
+<pre><code class="language-graql">define programmer sub role;
+define programmed sub role;
 
-insert person plays programmer;
-insert software plays programmed;
+define person plays programmer;
+define software plays programmed;
 
-insert programming sub relation, relates programmer, relates programmed, has weight;
+define programming sub relationship, relates programmer, relates programmed, has weight;
 </code></pre>
 
-<p>And that’s it. At this point, we have defined the schema of the graph.</p>
+<p>And that’s it. At this point, we have defined the schema of the knowledge base.</p>
 
 <h2 id="adding-the-data">Adding the Data</h2>
 <p>Now we have a schema, we can move on to adding in the data, which is pretty much just a typing exercise:</p>
@@ -899,11 +940,12 @@ match $josh has name "josh"; $ripple has name "ripple"; insert (programmer: $jos
 
 <p>This example is designed to get you up close and personal with Graql queries. It will run through a few basic examples, then ask you a set of “Test Yourself” questions.</p>
 
-<p>OK, so if you’ve followed the above, you should now have a schema and some data in a graph. How do you go about using the graph to answer your queries? That’s where the <code class="highlighter-rouge">match</code> statement comes in.</p>
+<p>OK, so if you’ve followed the above, you should now have a schema and some data in a knowledge base. How do you go about using the knowledge base to answer your queries? That’s where the <code class="highlighter-rouge">match</code> statement comes in.</p>
 
-<p>As with any query language, you use a variable to receive the results of the match query, which you must prefix with a <code class="highlighter-rouge">$</code>. So, to make the query “List every person in the graph”, you would use the following in Graql:</p>
+<p>As with any query language, you use a variable to receive the results of the get query, which you must prefix with a
+<code class="highlighter-rouge">$</code>. So, to make the query “List every person in the knowledge base”, you would use the following in Graql:</p>
 
-<pre><code class="language-graql">&gt;&gt;&gt; match $x isa person, has name $n; select $n;
+<pre><code class="language-graql">&gt;&gt;&gt; match $x isa person, has name $n; get $n;
 
 $n val "vadas" isa name;
 $n val "marko" isa name;
@@ -911,11 +953,14 @@ $n val "josh" isa name;
 $n val "peter" isa name;
 </code></pre>
 
-<p>In Graql, a match is formed of three parts: the <code class="highlighter-rouge">match</code> statement, an optional <code class="highlighter-rouge">select</code> statement, and any other optional <a href="../graql/match-queries.html#modifiers">modifiers</a> that you choose to apply to the listing of results. Only the first part of a match query is needed: the modifier parts are optional.</p>
+<p>In Graql, a match is formed of two parts: the <code class="highlighter-rouge">match</code> statement statement and any optional
+<a href="../graql/matches.html#modifiers">modifiers</a> that you choose to apply to the listing of results. Only the first
+part of a match is needed: the modifiers are optional.</p>
 
-<p>In the <code class="highlighter-rouge">match $x isa person</code> query we are not using any select or delimiters, so let’s add some now.  We can add a <code class="highlighter-rouge">select</code> statement to ask Graql to list out every person and to include their id (which is their name) and age. We use <code class="highlighter-rouge">order by</code> to modify how the results are listed out - in this case, we order them by ascending age, so the youngest person is shown first.</p>
+<p>In the <code class="highlighter-rouge">match $x isa person</code> match we are not using any modifiers, so let’s add some now. We use <code class="highlighter-rouge">order by</code> to modify
+how the results are listed out - in this case, we order them by ascending age, so the youngest person is shown first.</p>
 
-<pre><code class="language-graql">&gt;&gt;&gt; match $x isa person, has name $n, has age $a; select $n, $a; order by $a asc;
+<pre><code class="language-graql">&gt;&gt;&gt; match $x isa person, has name $n, has age $a; order by $a asc; get $n, $a;
 
 $x id "vadas" has age "27"; 
 $x id "marko" has age "29"; 
@@ -924,30 +969,26 @@ $x id "peter" has age "35";
 </code></pre>
 
 <h2 id="complete-example">Complete Example</h2>
-<p>Here is the complete example - the code to define the schema and insert the data into a graph. You can load this directly into Graql, if you don’t want to type it out for yourself. Cut and paste the Graql below and start Graql:</p>
+<p>Here is the complete example - the code to define the schema and insert the data into a knowledge base. You can load this directly into Graql, if you don’t want to type it out for yourself. Cut and paste the Graql below and start Graql:</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>bin/graql.sh
-</code></pre>
-</div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>./graql console
+</code></pre></div></div>
 
 <p>Then type edit, which will open up the systems default text editor where you can paste your chunk of text. Upon exiting the editor, the Graql will execute.</p>
 
-<pre><code class="language-graql">insert 
-age sub resource datatype long;
-name sub resource datatype string;
-person sub entity;
-person has age, has name;
+<pre><code class="language-graql">define 
+  
+age sub attribute datatype long;
+name sub attribute datatype string;
+define person sub entity
+  has age, has name;
 
-$marko isa person;
-$vadas isa person;
-$josh isa person;
-$peter isa person;
-$marko has age 29, has name "marko";
-$josh has age 32, has name "josh";
-$vadas has age 27, has name "vadas";
-$peter has age 35, has name "peter";
+insert $marko isa person, has age 29, has name "marko";
+insert $vadas isa person, has age 32, has name "josh";
+insert $josh isa person, has age 27, has name "vadas";
+insert $peter isa person, has age 35, has name "peter";
 
-weight sub resource datatype double;
+define weight sub attribute datatype double;
 
 knower sub role;
 known-about sub role;
@@ -955,40 +996,40 @@ known-about sub role;
 person plays knower;
 person plays known-about;
 
-knows sub relation
+knows sub relationship
 	relates knower
 	relates known-about
 	has weight;
 
-(knower: $marko, known-about: $josh) isa knows has weight 1.0;
-(knower: $marko, known-about: $vadas) isa knows has weight 0.5;
+match $marko has name "marko"; $josh has name "josh"; insert (knower: $marko, known-about: $josh) isa knows has weight 1.0;
+match $marko has name "marko"; $vadas has name "vadas"; insert (knower: $marko, known-about: $vadas) isa knows has weight 0.5;
 
-lang sub resource datatype string;
+define
+lang sub attribute datatype string;
 software sub entity;
 software has lang, has name;
 
-$lop isa software;
-$ripple isa software;
+insert $lop isa software, has lang "java", has name "lop";
+insert $ripple isa software, has lang "java", has name "ripple";
 
-$lop has lang "java", has name "lop";
-$ripple has lang "java", has name "ripple";
-
+define
 programmer sub role;
 programmed sub role;
 
 person plays programmer;
 software plays programmed;
 
-programming sub relation
+programming sub relationship
 	relates programmer
 	relates programmed
 	has weight;
 
 
-(programmer: $marko, programmed: $lop) isa programming has weight 0.4;
-(programmer: $peter, programmed: $lop) isa programming has weight 0.2;
-(programmer: $josh, programmed: $lop) isa programming has weight 0.4;
-(programmer: $josh, programmed: $ripple) isa programming has weight 1.0;
+match $marko has name "marko"; $lop has name "lop"; insert (programmer: $marko, programmed: $lop) isa programming has weight 0.4;
+match $peter has name "peter"; $lop has name "lop"; insert (programmer: $peter, programmed: $lop) isa programming has weight 0.2;
+match $josh has name "josh"; $lop has name "lop"; insert (programmer: $josh, programmed: $lop) isa programming has weight 0.4;
+match $josh has name "josh"; $ripple has name "ripple"; insert (programmer: $josh, programmed: $ripple) isa programming has weight 1.0;
+
 </code></pre>
 
 <h2 id="test-yourself">Test Yourself</h2>
@@ -1019,9 +1060,6 @@ programming sub relation
     <p>List everything you know about Marko</p>
   </li>
 </ol>
-
-<h2 id="comments">Comments</h2>
-<p>Want to leave a comment? Visit <a href="https://github.com/graknlabs/docs/issues/27" target="_blank">the issues on Github for this page</a> (you’ll need a GitHub account). You are also welcome to contribute to our documentation directly via the “Edit me” button at the top of the page.</p>
 
 
 
@@ -1066,7 +1104,7 @@ programming sub relation
         <br>
         <p>© 2017 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2017 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> September 19, 2016<br/> Site last generated: Sep 12, 2017 <br />
+        <span>Page last updated:</span> September 19, 2016<br/> Site last generated: Nov 2, 2017 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">
@@ -1074,7 +1112,7 @@ programming sub relation
         <ul>
             <li><a href="/pages/overview/index.html">Introduction</a></li>
             <li><a href="/pages/documentation/get-started/setup-guide.html">Install</a></li>
-            <li><a href="/pages/documentation/the-basics/quickstart-tutorial.html">Quickstart</a></li>
+            <li><a href="/pages/documentation/get-started/quickstart-tutorial.html">Quickstart</a></li>
         </ul>
     </div>
     <div class="col-lg-2 footer">
@@ -1113,5 +1151,12 @@ programming sub relation
     </div>
 
 </body>
+
+<!-- the google_analytics_id gets auto inserted from the config file -->
+
+
+
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create','UA-72414051-1','auto');ga('require','displayfeatures');ga('send','pageview');</script>
+
 
 </html>

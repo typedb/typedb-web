@@ -28,6 +28,24 @@
 
 <link rel="shortcut icon" href="/favicon.ico">
 
+<!-- Facebook Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '2009892122581066'); // Insert your pixel ID here.
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=2009892122581066&ev=PageView&noscript=1" alt="facebook pixel"
+/></noscript>
+<!-- DO NOT MODIFY -->
+<!-- End Facebook Pixel Code -->
+
+
+
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 <!--[if lt IE 9]>
@@ -209,7 +227,6 @@
                     </ul>
                 </li> -->
                 <li><a href="/pages/overview/index.html">Overview</a></li>
-                <li><a href=/pages/solutions.html>Solutions</a></li>
                 <li><a href="/pages/index.html">Documentation</a></li>
                 <li><a rel="me" href="//grakn.ai/community.html">Community</a></li>
                 <li><a rel="me" href="//discuss.grakn.ai/">Discussion</a></li>
@@ -256,6 +273,7 @@
         <!-- Sidebar Column -->
         <div class="col-md-3">
           
+
 
 
 
@@ -311,19 +329,26 @@
         
     
     <li>
-        <a href="#">Graql Ontology</a>
+        <a href="#">Graql Schema</a>
         <ul>
             
             
             
-            <li><a href="/pages/documentation/building-an-ontology/basic-ontology.html">Define a Basic Ontology</a></li>
+            <li><a href="/pages/documentation/building-a-schema/basic-schema.html">Define a Basic Schema</a></li>
             
             
             
             
             
             
-            <li><a href="/pages/documentation/building-an-ontology/hierarchical-ontology.html">Define a Hierarchical Ontology</a></li>
+            <li><a href="/pages/documentation/building-a-schema/hierarchical-schema.html">Define a Hierarchical Schema</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="/pages/documentation/building-a-schema/rule-driven-schema.html">Define a Rule-Driven Schema</a></li>
             
             
             
@@ -352,14 +377,14 @@
             
             
             
-            <li><a href="/pages/documentation/graql/match-queries.html">Match Queries</a></li>
+            <li><a href="/pages/documentation/graql/matches.html">Matches</a></li>
             
             
             
             
             
             
-            <li><a href="/pages/documentation/graql/ask-queries.html">Ask Queries</a></li>
+            <li><a href="/pages/documentation/graql/get-queries.html">Get Queries</a></li>
             
             
             
@@ -374,6 +399,13 @@
             
             
             <li><a href="/pages/documentation/graql/insert-queries.html">Insert Queries</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="/pages/documentation/graql/define-queries.html">Define Queries</a></li>
             
             
             
@@ -487,6 +519,13 @@
             
             
             
+            <li><a href="/pages/documentation/migration/XML-migration.html">XML Migration</a></li>
+            
+            
+            
+            
+            
+            
             <li><a href="/pages/documentation/migration/SQL-migration.html">SQL Migration</a></li>
             
             
@@ -516,7 +555,7 @@
             
             
             
-            <li><a href="/pages/documentation/developing-with-java/graph-api.html">Graph API</a></li>
+            <li><a href="/pages/documentation/developing-with-java/java-api.html">Java API</a></li>
             
             
             
@@ -696,7 +735,7 @@
             
             
             
-            <li><a href="/pages/documentation/examples/graph-api-example.html">Graph API for Java developers</a></li>
+            <li><a href="/pages/documentation/examples/java-api-example.html">API for Java developers</a></li>
             
             
             
@@ -723,6 +762,12 @@
         <li>
             
             <li><a href="/pages/contributors/index.html">Contribute to GRAKN.AI</a></li>
+            
+        </li>
+        
+        <li>
+            
+            <li><a href="/pages/academy/index.html">GRAKN Academy</a></li>
             
         </li>
         
@@ -782,7 +827,7 @@ $('#toc').on('click', 'a', function() {
 
     
 
-    <a target="_blank" href="https://github.com/graknlabs/docs/blob/master/pages/documentation/11-examples/graql-rules.md" class="btn btn-default githubEditButton" role="button"><i class="fa fa-github fa-lg"></i> Edit me</a>
+    <a target="_blank" href="https://github.com/graknlabs/grakn/tree/master/docs/pages/documentation/11-examples/graql-rules.md" class="btn btn-default githubEditButton" role="button"><i class="fa fa-github fa-lg"></i> Edit me</a>
 
     
 
@@ -794,75 +839,72 @@ $('#toc').on('click', 'a', function() {
 
 <p>As the blog post explained, the original data was a <a href="http://www.lenzenresearch.com/titusnarrlineage.pdf">document</a> from <a href="http://www.lenzenresearch.com/">Lenzen Research</a> that described the family history of Catherine Niesz Titus for three generations of her maternal lineage. Our team gathered together a set of CSV files containing basic information about the family, such as names, dates of birth, death and marriage, who was a parent of who, and who married who.</p>
 
-<p>The full genealogy-graph project can be found on Grakn’s <a href="https://github.com/graknlabs/sample-datasets/tree/master/genealogy-graph">sample-datasets</a> repository on Github. However, we will use a simpler ontology for this example, which is found in <em>basic-genealogy.gql</em>, located within the <em>/examples</em> folder of the Grakn installation. The file can also be found <a href="https://github.com/graknlabs/grakn/blob/master/grakn-dist/src/examples/basic-genealogy.gql">on Github</a>.</p>
+<p>The full genealogy-knowledge-base project can be found on Grakn’s <a href="https://github.com/graknlabs/sample-datasets/tree/master/genealogy-knowledge-base">sample-datasets</a> repository on Github. However, we will use a simpler schema for this example, which is found in <em>basic-genealogy.gql</em>, located within the <em>/examples</em> folder of the Grakn installation. The file can also be found <a href="https://github.com/graknlabs/grakn/blob/master/grakn-dist/src/examples/basic-genealogy.gql">on Github</a>.</p>
 
 <p>In this example, we will explore how to use Grakn to make inferences and find information from the data that is not explicit in the dataset. You can find documentation about writing rules in Graql <a href="https://grakn.ai/pages/documentation/graql/graql-rules.html">here</a>.</p>
 
-<h2 id="ontology-and-data">Ontology and Data</h2>
+<h2 id="schema-and-data">Schema and Data</h2>
 
-<p>On GRAKN.AI, the first step when working with a dataset is to define its ontology in Graql. The ontology is a way to describe the entities and their relations, so the underlying graph can store them as nodes and edges. You can find out more in our guide to the Grakn Knowledge Model. The ontology allows Grakn to perform:</p>
+<p>On GRAKN.AI, the first step when working with a dataset is to define its schema in Graql. The schema is a way to describe the entities and their relationships, so the underlying knowledge base can store them as nodes and edges. You can find out more in our guide to the Grakn Knowledge Model. The schema allows Grakn to perform:</p>
 
 <ul>
   <li>logical reasoning over the represented knowledge, such as the extraction of implicit information from explicit data (inference)</li>
   <li>discovery of inconsistencies in the data (validation).</li>
 </ul>
 
-<p>The complete ontology for the genealogy-graph demo is in <a href="https://github.com/graknlabs/grakn/blob/master/grakn-dist/src/examples/basic-genealogy.gql">basic-genealogy.gql</a>.</p>
+<p>The complete schema for the genealogy-knowledge-base demo is in <a href="https://github.com/graknlabs/grakn/blob/master/grakn-dist/src/examples/basic-genealogy.gql">basic-genealogy.gql</a>.</p>
 
-<p>The ontology contains a <code class="highlighter-rouge">person</code> entity, and a number of possible family relationships between <code class="highlighter-rouge">person</code> entities, such as parent/child, siblings, grandparent/grandchild, which we will discuss shortly. The data for this example is discussed more fully in our <a href="./CSV-migration.html">example on CSV migration</a>, which discusses how the original data is laid out in CSV files and migrated into GRAKN.AI. However, for this example, you do not need any familiarity with CSV migration or the origin of the data we are using.</p>
+<p>The schema contains a <code class="highlighter-rouge">person</code> entity, and a number of possible family relationships between <code class="highlighter-rouge">person</code> entities, such as parent/child, siblings, grandparent/grandchild, which we will discuss shortly. The data for this example is discussed more fully in our <a href="./CSV-migration.html">example on CSV migration</a>, which discusses how the original data is laid out in CSV files and migrated into GRAKN.AI. However, for this example, you do not need any familiarity with CSV migration or the origin of the data we are using.</p>
 
 <h2 id="loading-the-example">Loading the Example</h2>
 
-<p>The <em>basic-genealogy.gql</em> file contains the ontology, data and rules needed for this example. To load it into a graph, make sure the engine is running and choose a clean keyspace in which to work (in the example below we use the default keyspace, so we are cleaning it before we get started):</p>
+<p>The <em>basic-genealogy.gql</em> file contains the schema, data and rules needed for this example. To load it into a knowledge base, make sure the engine is running and choose a clean keyspace in which to work (in the example below we use the default keyspace, so we are cleaning it before we get started):</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>&lt;relative-path-to-Grakn&gt;/bin/grakn.sh clean
-&lt;relative-path-to-Grakn&gt;/bin/grakn.sh start
-&lt;relative-path-to-Grakn&gt;/bin/graql.sh -f &lt;relative-path-to-Grakn&gt;/examples/basic-genealogy.gql
-</code></pre>
-</div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>./grakn server clean
+./grakn server start
+./graql console <span class="nt">-f</span> &lt;relative-path-to-Grakn&gt;/examples/basic-genealogy.gql
+</code></pre></div></div>
 
-<p>When the terminal prompt returns, the data will have been loaded into the default keyspace, and you can start to look it using the <a href="../grakn-dashboard/visualiser.html">Grakn visualiser</a>, by navigating to <a href="http://localhost:4567">http://localhost:4567</a> in your browser. Submit a query, such as <code class="highlighter-rouge">match $x isa person</code> to check that all is well with your graph.</p>
+<p>When the terminal prompt returns, the data will have been loaded into the default keyspace, and you can start to look it using the <a href="../grakn-dashboard/visualiser.html">Grakn visualiser</a>, by navigating to <a href="http://localhost:4567">http://localhost:4567</a> in your browser. Submit a query, such as <code class="highlighter-rouge">match $x isa person</code> to check that all is well with your knowledge base.</p>
 
 <h2 id="inferring-family-relations">Inferring Family Relations</h2>
 
 <p>By default, inference is switched off, and the only information you can query Grakn about is what was directed loaded from the data. For example, if you submit the following query to the visualiser:</p>
 
-<pre><code class="language-graql">match (child: $c, parent: $p) isa parentship;
+<pre><code class="language-graql">match (child: $c, parent: $p) isa parentship; get;
 </code></pre>
 
 <p>You will receive parentship results, but if you clear the query and then submit a new query for gender-specific results, say mother-daughter relationships:</p>
 
-<pre><code class="language-graql">match (mother: $c, daughter: $p) isa parentship;
+<pre><code class="language-graql">match (mother: $c, daughter: $p) isa parentship; get;
 </code></pre>
 
-<p>You will receive no results at all. To find inferred relations between the people in our dataset, you need to activate inference in the Grakn visualiser. Open the Query settings under the cog button, which is on the far right hand side of the horizontal icon menu (at the top of the screen).</p>
+<p>You will receive no results at all. To find inferred relationships between the people in our dataset, you need to activate inference in the Grakn visualiser. Open the Query settings under the cog button, which is on the far right hand side of the horizontal icon menu (at the top of the screen).</p>
 
 <p>You will see the “Activate inference” checkbox. Check it, and Grakn is ready to start building some new information about the family. Try the query again:</p>
 
-<pre><code class="language-graql">match (mother: $c, daughter: $p) isa parentship;
+<pre><code class="language-graql">match (mother: $c, daughter: $p) isa parentship; get;
 </code></pre>
 
 <p>You should see something similar to the screenshot below in your visualiser window.</p>
 
 <p><img src="/images/match-isa-mother-daughter.png" alt="Person query" /></p>
 
-<div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> <b>Note:</b> You can alternatively make queries in the graql shell. You will need to use <code class="highlighter-rouge">./graql.sh -n</code> to enable inference when you start the shell.</div>
+<div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> <b>Note:</b> You can alternatively make queries in the graql shell. You will need to use <code class="highlighter-rouge">./graql console -n</code> to enable inference when you start the shell.</div>
 
 <h2 id="inference-rules">Inference Rules</h2>
 
 <p>Inference is the process of deducing new information from available data. For example, given the following statements:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>If grass is not an animal.
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>If grass is not an animal.
 If vegetarians only eat things which are not animals.
 If sheep only eat grass.
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>It is possible to infer the following:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>Then sheep are vegetarians.
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Then sheep are vegetarians.
+</code></pre></div></div>
 
 <p>The initial statements can be seen as a set of premises. If all the premises are met we can infer a new fact (that sheep are vegatarians). If we hypothetise that sheep are vegetarians then the whole example can be expressed with a particular two-block structure: IF some premises are met, THEN a given hypothesis is true.</p>
 
@@ -870,13 +912,13 @@ If sheep only eat grass.
 
 <div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> <b>Note:</b> The full documentation for writing rules in Graql is available from <a href="https://grakn.ai/pages/documentation/graql/graql-rules.html">here</a>.</div>
 
-<h3 id="example-1-specific-relations-between-parents-and-children">Example 1: Specific relations between parents and children</h3>
+<h3 id="example-1-specific-relationships-between-parents-and-children">Example 1: Specific relationships between parents and children</h3>
 
 <p>As we saw above, it is possible for Grakn to infer the gender-specific roles (<code class="highlighter-rouge">mother</code>, <code class="highlighter-rouge">father</code>, <code class="highlighter-rouge">daughter</code>, <code class="highlighter-rouge">son</code>) that a <code class="highlighter-rouge">person</code> entity plays. It does this by applying the following rules:</p>
 
-<pre><code class="language-graql">insert
+<pre><code class="language-graql">define
 
-$genderizeParentships1 isa inference-rule
+genderizeParentships1 sub rule
 when
 {(parent: $p, child: $c) isa parentship;
 $p has gender "male";
@@ -885,7 +927,7 @@ $c has gender "male";
 then
 {(father: $p, son: $c) isa parentship;};
 
-$genderizeParentships2 isa inference-rule
+genderizeParentships2 sub rule
 when
 {(parent: $p, child: $c) isa parentship;
 $p has gender "male";
@@ -894,7 +936,7 @@ $c has gender "female";
 then
 {(father: $p, daughter: $c) isa parentship;};
 
-$genderizeParentships3 isa inference-rule
+genderizeParentships3 sub rule
 when
 {(parent: $p, child: $c) isa parentship;
 $p has gender "female";
@@ -903,7 +945,7 @@ $c has gender "male";
 then
 {(mother: $p, son: $c) isa parentship;};
 
-$genderizeParentships4 isa inference-rule
+genderizeParentships4 sub rule
 when
 {(parent: $p, child: $c) isa parentship;
 $p has gender "female";
@@ -916,42 +958,42 @@ then
 <p>The four rules can be broken down as follows:</p>
 
 <ul>
-  <li>when: In the <code class="highlighter-rouge">parentship</code> relation between child <code class="highlighter-rouge">$c</code> and parent <code class="highlighter-rouge">$p</code>, do they both have a <code class="highlighter-rouge">gender</code> resource that is <code class="highlighter-rouge">male</code>?
+  <li>when: In the <code class="highlighter-rouge">parentship</code> relationship between child <code class="highlighter-rouge">$c</code> and parent <code class="highlighter-rouge">$p</code>, do they both have a <code class="highlighter-rouge">gender</code> attribute that is <code class="highlighter-rouge">male</code>?
     <ul>
-      <li>then: The <code class="highlighter-rouge">parentship</code> relation is between <code class="highlighter-rouge">father</code> and <code class="highlighter-rouge">son</code></li>
+      <li>then: The <code class="highlighter-rouge">parentship</code> relationship is between <code class="highlighter-rouge">father</code> and <code class="highlighter-rouge">son</code></li>
     </ul>
   </li>
-  <li>when: In the <code class="highlighter-rouge">parentship</code> relation between child <code class="highlighter-rouge">$c</code> and parent <code class="highlighter-rouge">$p</code>, does <code class="highlighter-rouge">$c</code> have a <code class="highlighter-rouge">gender</code> resource that is <code class="highlighter-rouge">female</code> and <code class="highlighter-rouge">$p</code> have a <code class="highlighter-rouge">gender</code> resource that is <code class="highlighter-rouge">male</code>?
+  <li>when: In the <code class="highlighter-rouge">parentship</code> relationship between child <code class="highlighter-rouge">$c</code> and parent <code class="highlighter-rouge">$p</code>, does <code class="highlighter-rouge">$c</code> have a <code class="highlighter-rouge">gender</code> attribute that is <code class="highlighter-rouge">female</code> and <code class="highlighter-rouge">$p</code> have a <code class="highlighter-rouge">gender</code> attribute that is <code class="highlighter-rouge">male</code>?
     <ul>
-      <li>then: The <code class="highlighter-rouge">parentship</code> relation is between <code class="highlighter-rouge">father</code> and <code class="highlighter-rouge">daughter</code></li>
+      <li>then: The <code class="highlighter-rouge">parentship</code> relationship is between <code class="highlighter-rouge">father</code> and <code class="highlighter-rouge">daughter</code></li>
     </ul>
   </li>
-  <li>when: In the <code class="highlighter-rouge">parentship</code> relation between child <code class="highlighter-rouge">$c</code> and parent <code class="highlighter-rouge">$p</code>, does <code class="highlighter-rouge">$c</code> have a <code class="highlighter-rouge">gender</code> resource that is <code class="highlighter-rouge">male</code> and <code class="highlighter-rouge">$p</code> have a <code class="highlighter-rouge">gender</code> resource that is <code class="highlighter-rouge">female</code>?
+  <li>when: In the <code class="highlighter-rouge">parentship</code> relationship between child <code class="highlighter-rouge">$c</code> and parent <code class="highlighter-rouge">$p</code>, does <code class="highlighter-rouge">$c</code> have a <code class="highlighter-rouge">gender</code> attribute that is <code class="highlighter-rouge">male</code> and <code class="highlighter-rouge">$p</code> have a <code class="highlighter-rouge">gender</code> attribute that is <code class="highlighter-rouge">female</code>?
     <ul>
-      <li>then: The <code class="highlighter-rouge">parentship</code> relation is between <code class="highlighter-rouge">mother</code> and <code class="highlighter-rouge">son</code></li>
+      <li>then: The <code class="highlighter-rouge">parentship</code> relationship is between <code class="highlighter-rouge">mother</code> and <code class="highlighter-rouge">son</code></li>
     </ul>
   </li>
-  <li>when: In the <code class="highlighter-rouge">parentship</code> relation between child <code class="highlighter-rouge">$c</code> and parent <code class="highlighter-rouge">$p</code>, do both have a <code class="highlighter-rouge">gender</code> resource that is <code class="highlighter-rouge">female</code>?
+  <li>when: In the <code class="highlighter-rouge">parentship</code> relationship between child <code class="highlighter-rouge">$c</code> and parent <code class="highlighter-rouge">$p</code>, do both have a <code class="highlighter-rouge">gender</code> attribute that is <code class="highlighter-rouge">female</code>?
     <ul>
-      <li>then: The <code class="highlighter-rouge">parentship</code> relation is between <code class="highlighter-rouge">mother</code> and <code class="highlighter-rouge">daughter</code></li>
+      <li>then: The <code class="highlighter-rouge">parentship</code> relationship is between <code class="highlighter-rouge">mother</code> and <code class="highlighter-rouge">daughter</code></li>
     </ul>
   </li>
 </ul>
 
 <p>We can use the rule to easily discover the sons who have the same name as their fathers:</p>
 
-<pre><code class="language-graql">match (father: $p, son: $c) isa parentship; $p has firstname $n; $c has firstname $n;
+<pre><code class="language-graql">match (father: $p, son: $c) isa parentship; $p has firstname $n; $c has firstname $n; get;
 </code></pre>
 
-<p>In the genealogy-graph example, there should be two results returned. William and John are names shared between father/son pairs.</p>
+<p>In the genealogy-knowledge-base example, there should be two results returned. William and John are names shared between father/son pairs.</p>
 
-<h3 id="example-2-a-grandparentship-relation">Example 2: A <code class="highlighter-rouge">grandparentship</code> relation</h3>
+<h3 id="example-2-a-grandparentship-relationship">Example 2: A <code class="highlighter-rouge">grandparentship</code> relationship</h3>
 
-<p>The <em>basic-genealogy</em> file contains a number of rules for setting up family relationships, such as siblings, cousins, in-laws and the following, which sets up a relation called <code class="highlighter-rouge">grandparentship</code>:</p>
+<p>The <em>basic-genealogy</em> file contains a number of rules for setting up family relationships, such as siblings, cousins, in-laws and the following, which sets up a relationship called <code class="highlighter-rouge">grandparentship</code>:</p>
 
-<pre><code class="language-graql">insert
+<pre><code class="language-graql">define
 
-$parentsOfParentsAreGrandparents isa inference-rule
+parentsOfParentsAreGrandparents sub rule
 when
 {(parent:$p, child: $gc) isa parentship;
 (parent: $gp, child: $p) isa parentship;
@@ -963,21 +1005,21 @@ then
 <p>Here, the “when” rules check two statements:</p>
 
 <ul>
-  <li>does <code class="highlighter-rouge">$p</code> play the <code class="highlighter-rouge">parent</code> role in a <code class="highlighter-rouge">parentship</code> relation, with (<code class="highlighter-rouge">$gc</code>) playing the <code class="highlighter-rouge">child</code> role?</li>
-  <li>does <code class="highlighter-rouge">$p</code> also play the <code class="highlighter-rouge">child</code> role in a <code class="highlighter-rouge">parentship</code> relation, with (<code class="highlighter-rouge">$gp</code>) playing the <code class="highlighter-rouge">parent</code> role?</li>
+  <li>does <code class="highlighter-rouge">$p</code> play the <code class="highlighter-rouge">parent</code> role in a <code class="highlighter-rouge">parentship</code> relationship, with (<code class="highlighter-rouge">$gc</code>) playing the <code class="highlighter-rouge">child</code> role?</li>
+  <li>does <code class="highlighter-rouge">$p</code> also play the <code class="highlighter-rouge">child</code> role in a <code class="highlighter-rouge">parentship</code> relationship, with (<code class="highlighter-rouge">$gp</code>) playing the <code class="highlighter-rouge">parent</code> role?</li>
 </ul>
 
 <p>If so, the right hand side of the rules state that:</p>
 
 <ul>
-  <li><code class="highlighter-rouge">$gp</code> and <code class="highlighter-rouge">$gc</code> are in a <code class="highlighter-rouge">grandparentship</code> relation, where <code class="highlighter-rouge">$gp</code> plays the <code class="highlighter-rouge">grandparent</code> role and <code class="highlighter-rouge">$gc</code> plays the <code class="highlighter-rouge">grandchild</code> role.</li>
+  <li><code class="highlighter-rouge">$gp</code> and <code class="highlighter-rouge">$gc</code> are in a <code class="highlighter-rouge">grandparentship</code> relationship, where <code class="highlighter-rouge">$gp</code> plays the <code class="highlighter-rouge">grandparent</code> role and <code class="highlighter-rouge">$gc</code> plays the <code class="highlighter-rouge">grandchild</code> role.</li>
 </ul>
 
 <p>Some additional rules can add more specifics to the <code class="highlighter-rouge">grandparentship</code> and assign the entities to the roles <code class="highlighter-rouge">grandson</code>, <code class="highlighter-rouge">granddaughter</code>, <code class="highlighter-rouge">grandmother</code> and <code class="highlighter-rouge">grandfather</code>:</p>
 
-<pre><code class="language-graql">insert
+<pre><code class="language-graql">define
 
-$grandParents1 isa inference-rule
+grandParents1 sub rule
 when
 {($p, son: $gc) isa parentship;
 (father: $gp, $p) isa parentship;
@@ -985,7 +1027,7 @@ when
 then
 {(grandfather: $gp, grandson: $gc) isa grandparentship;};
 
-$grandParents2 isa inference-rule
+grandParents2 sub rule
 when
 {($p, daughter: $gc) isa parentship;
 (father: $gp, $p) isa parentship;
@@ -993,7 +1035,7 @@ when
 then
 {(grandfather: $gp, granddaughter: $gc) isa grandparentship;};
 
-$grandParents3 isa inference-rule
+grandParents3 sub rule
 when
 {($p, daughter: $gc) isa parentship;
 (mother: $gp, $p) isa parentship;
@@ -1001,7 +1043,7 @@ when
 then
 {(grandmother: $gp, granddaughter: $gc) isa grandparentship;};
 
-$grandParents4 isa inference-rule
+grandParents4 sub rule
 when
 {($p, son: $gc) isa parentship;
 (mother: $gp, $p) isa parentship;
@@ -1010,47 +1052,47 @@ then
 {(grandmother: $gp, grandson: $gc) isa grandparentship;};
 </code></pre>
 
-<p>Much as above for the <code class="highlighter-rouge">parentship</code> relation, the rules can be broken down as follows:</p>
+<p>Much as above for the <code class="highlighter-rouge">parentship</code> relationship, the rules can be broken down as follows:</p>
 
 <ul>
-  <li>when: There is a <code class="highlighter-rouge">parentship</code> relation between son <code class="highlighter-rouge">$gc</code> and parent <code class="highlighter-rouge">$p</code>, and another <code class="highlighter-rouge">parentship</code> relation where <code class="highlighter-rouge">$p</code> is now in the child role and <code class="highlighter-rouge">$gp</code> is a father.
+  <li>when: There is a <code class="highlighter-rouge">parentship</code> relationship between son <code class="highlighter-rouge">$gc</code> and parent <code class="highlighter-rouge">$p</code>, and another <code class="highlighter-rouge">parentship</code> relationship where <code class="highlighter-rouge">$p</code> is now in the child role and <code class="highlighter-rouge">$gp</code> is a father.
     <ul>
-      <li>then: The <code class="highlighter-rouge">grandparentship</code> relation is between <code class="highlighter-rouge">grandfather</code> and <code class="highlighter-rouge">grandson</code></li>
+      <li>then: The <code class="highlighter-rouge">grandparentship</code> relationship is between <code class="highlighter-rouge">grandfather</code> and <code class="highlighter-rouge">grandson</code></li>
     </ul>
   </li>
-  <li>when: There is a <code class="highlighter-rouge">parentship</code> relation between daughter <code class="highlighter-rouge">$gc</code> and parent <code class="highlighter-rouge">$p</code>, and another <code class="highlighter-rouge">parentship</code> relation where <code class="highlighter-rouge">$p</code> is now in the child role and <code class="highlighter-rouge">$gp</code> is a father.
+  <li>when: There is a <code class="highlighter-rouge">parentship</code> relationship between daughter <code class="highlighter-rouge">$gc</code> and parent <code class="highlighter-rouge">$p</code>, and another <code class="highlighter-rouge">parentship</code> relationship where <code class="highlighter-rouge">$p</code> is now in the child role and <code class="highlighter-rouge">$gp</code> is a father.
     <ul>
-      <li>then: The <code class="highlighter-rouge">grandparentship</code> relation is between <code class="highlighter-rouge">grandfather</code> and <code class="highlighter-rouge">granddaughter</code></li>
+      <li>then: The <code class="highlighter-rouge">grandparentship</code> relationship is between <code class="highlighter-rouge">grandfather</code> and <code class="highlighter-rouge">granddaughter</code></li>
     </ul>
   </li>
-  <li>when: There is a <code class="highlighter-rouge">parentship</code> relation between daughter <code class="highlighter-rouge">$gc</code> and parent <code class="highlighter-rouge">$p</code>, and another <code class="highlighter-rouge">parentship</code> relation where <code class="highlighter-rouge">$p</code> is now in the child role and <code class="highlighter-rouge">$gp</code> is a mother.
+  <li>when: There is a <code class="highlighter-rouge">parentship</code> relationship between daughter <code class="highlighter-rouge">$gc</code> and parent <code class="highlighter-rouge">$p</code>, and another <code class="highlighter-rouge">parentship</code> relationship where <code class="highlighter-rouge">$p</code> is now in the child role and <code class="highlighter-rouge">$gp</code> is a mother.
     <ul>
-      <li>then: The <code class="highlighter-rouge">grandparentship</code> relation is between <code class="highlighter-rouge">grandmother</code> and <code class="highlighter-rouge">granddaughter</code></li>
+      <li>then: The <code class="highlighter-rouge">grandparentship</code> relationship is between <code class="highlighter-rouge">grandmother</code> and <code class="highlighter-rouge">granddaughter</code></li>
     </ul>
   </li>
-  <li>when: There is a <code class="highlighter-rouge">parentship</code> relation between son <code class="highlighter-rouge">$gc</code> and parent <code class="highlighter-rouge">$p</code>, and another <code class="highlighter-rouge">parentship</code> relation where <code class="highlighter-rouge">$p</code> is now in the child role and <code class="highlighter-rouge">$gp</code> is a mother.
+  <li>when: There is a <code class="highlighter-rouge">parentship</code> relationship between son <code class="highlighter-rouge">$gc</code> and parent <code class="highlighter-rouge">$p</code>, and another <code class="highlighter-rouge">parentship</code> relationship where <code class="highlighter-rouge">$p</code> is now in the child role and <code class="highlighter-rouge">$gp</code> is a mother.
     <ul>
-      <li>then: The <code class="highlighter-rouge">grandparentship</code> relation is between <code class="highlighter-rouge">grandmother</code> and <code class="highlighter-rouge">grandson</code></li>
+      <li>then: The <code class="highlighter-rouge">grandparentship</code> relationship is between <code class="highlighter-rouge">grandmother</code> and <code class="highlighter-rouge">grandson</code></li>
     </ul>
   </li>
 </ul>
 
-<p>These rules allow us to find all <code class="highlighter-rouge">grandparentship</code> relations, and further, it allows us to query, for example, which grandfather/grandson pairs share the same name:</p>
+<p>These rules allow us to find all <code class="highlighter-rouge">grandparentship</code> relationships, and further, it allows us to query, for example, which grandfather/grandson pairs share the same name:</p>
 
-<pre><code class="language-graql">match (grandfather: $x, grandson: $y) isa grandparentship; $x has firstname $n; $y has firstname $n;
+<pre><code class="language-graql">match (grandfather: $x, grandson: $y) isa grandparentship; $x has firstname $n; $y has firstname $n; get;
 </code></pre>
 
-<p>In the genealogy-graph example, there should be three results returned. George, Jacob and John are names shared between grandfather/grandson pairs.</p>
+<p>In the genealogy-knowledge-base example, there should be three results returned. George, Jacob and John are names shared between grandfather/grandson pairs.</p>
 
 <p><img src="/images/match-grandfather-grandson-names.png" alt="Person query" /></p>
 
-<h3 id="example-3-a-cousins-relation">Example 3: A <code class="highlighter-rouge">cousins</code> relation</h3>
+<h3 id="example-3-a-cousins-relationship">Example 3: A <code class="highlighter-rouge">cousins</code> relationship</h3>
 
 <p>Another rule can be used to infer <code class="highlighter-rouge">person</code> entities who are cousins:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>insert
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>define
 
-$peopleWithSiblingsParentsAreCousins isa inference-rule
+peopleWithSiblingsParentsAreCousins sub rule
 when
 {
 (parent: $p, child: $c1) isa parentship;
@@ -1060,8 +1102,7 @@ when
 then
 {(cousin1: $c1, cousin2: $c2) isa cousins;};
 
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <ul>
   <li><code class="highlighter-rouge">$p</code> is a <code class="highlighter-rouge">parent</code> and has a <code class="highlighter-rouge">child</code> <code class="highlighter-rouge">$c1</code></li>
@@ -1090,9 +1131,6 @@ then
 <p>This example has illustrated the basics of the inference rules used by Graql. Having read it, you may want to further study our documentation about <a href="../graql/graql-rules.html">Graql Rules</a> and further investigate the <a href="./CSV-migration.html">example that imports the genealogy data from CSV format into Grakn</a>.</p>
 
 <p>We will be using the genealogy data throughout our documentation. For an overview, please see our <a href="https://blog.grakn.ai/family-matters-1bb639396a24#.uelgekrn2">Family Matters</a> blog post.</p>
-
-<h2 id="comments">Comments</h2>
-<p>Want to leave a comment? Visit <a href="https://github.com/graknlabs/docs/issues/27" target="_blank">the issues on Github for this page</a> (you’ll need a GitHub account). You are also welcome to contribute to our documentation directly via the “Edit me” button at the top of the page.</p>
 
 
 
@@ -1137,7 +1175,7 @@ then
         <br>
         <p>© 2017 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2017 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> February 2017<br/> Site last generated: Sep 12, 2017 <br />
+        <span>Page last updated:</span> February 2017<br/> Site last generated: Nov 2, 2017 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">
@@ -1145,7 +1183,7 @@ then
         <ul>
             <li><a href="/pages/overview/index.html">Introduction</a></li>
             <li><a href="/pages/documentation/get-started/setup-guide.html">Install</a></li>
-            <li><a href="/pages/documentation/the-basics/quickstart-tutorial.html">Quickstart</a></li>
+            <li><a href="/pages/documentation/get-started/quickstart-tutorial.html">Quickstart</a></li>
         </ul>
     </div>
     <div class="col-lg-2 footer">
@@ -1184,5 +1222,12 @@ then
     </div>
 
 </body>
+
+<!-- the google_analytics_id gets auto inserted from the config file -->
+
+
+
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create','UA-72414051-1','auto');ga('require','displayfeatures');ga('send','pageview');</script>
+
 
 </html>

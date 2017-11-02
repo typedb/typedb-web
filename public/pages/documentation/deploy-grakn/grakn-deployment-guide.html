@@ -28,6 +28,24 @@
 
 <link rel="shortcut icon" href="/favicon.ico">
 
+<!-- Facebook Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '2009892122581066'); // Insert your pixel ID here.
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=2009892122581066&ev=PageView&noscript=1" alt="facebook pixel"
+/></noscript>
+<!-- DO NOT MODIFY -->
+<!-- End Facebook Pixel Code -->
+
+
+
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 <!--[if lt IE 9]>
@@ -209,7 +227,6 @@
                     </ul>
                 </li> -->
                 <li><a href="/pages/overview/index.html">Overview</a></li>
-                <li><a href=/pages/solutions.html>Solutions</a></li>
                 <li><a href="/pages/index.html">Documentation</a></li>
                 <li><a rel="me" href="//grakn.ai/community.html">Community</a></li>
                 <li><a rel="me" href="//discuss.grakn.ai/">Discussion</a></li>
@@ -256,6 +273,7 @@
         <!-- Sidebar Column -->
         <div class="col-md-3">
           
+
 
 
 
@@ -311,19 +329,26 @@
         
     
     <li>
-        <a href="#">Graql Ontology</a>
+        <a href="#">Graql Schema</a>
         <ul>
             
             
             
-            <li><a href="/pages/documentation/building-an-ontology/basic-ontology.html">Define a Basic Ontology</a></li>
+            <li><a href="/pages/documentation/building-a-schema/basic-schema.html">Define a Basic Schema</a></li>
             
             
             
             
             
             
-            <li><a href="/pages/documentation/building-an-ontology/hierarchical-ontology.html">Define a Hierarchical Ontology</a></li>
+            <li><a href="/pages/documentation/building-a-schema/hierarchical-schema.html">Define a Hierarchical Schema</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="/pages/documentation/building-a-schema/rule-driven-schema.html">Define a Rule-Driven Schema</a></li>
             
             
             
@@ -352,14 +377,14 @@
             
             
             
-            <li><a href="/pages/documentation/graql/match-queries.html">Match Queries</a></li>
+            <li><a href="/pages/documentation/graql/matches.html">Matches</a></li>
             
             
             
             
             
             
-            <li><a href="/pages/documentation/graql/ask-queries.html">Ask Queries</a></li>
+            <li><a href="/pages/documentation/graql/get-queries.html">Get Queries</a></li>
             
             
             
@@ -374,6 +399,13 @@
             
             
             <li><a href="/pages/documentation/graql/insert-queries.html">Insert Queries</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="/pages/documentation/graql/define-queries.html">Define Queries</a></li>
             
             
             
@@ -487,6 +519,13 @@
             
             
             
+            <li><a href="/pages/documentation/migration/XML-migration.html">XML Migration</a></li>
+            
+            
+            
+            
+            
+            
             <li><a href="/pages/documentation/migration/SQL-migration.html">SQL Migration</a></li>
             
             
@@ -516,7 +555,7 @@
             
             
             
-            <li><a href="/pages/documentation/developing-with-java/graph-api.html">Graph API</a></li>
+            <li><a href="/pages/documentation/developing-with-java/java-api.html">Java API</a></li>
             
             
             
@@ -696,7 +735,7 @@
             
             
             
-            <li><a href="/pages/documentation/examples/graph-api-example.html">Graph API for Java developers</a></li>
+            <li><a href="/pages/documentation/examples/java-api-example.html">API for Java developers</a></li>
             
             
             
@@ -723,6 +762,12 @@
         <li>
             
             <li><a href="/pages/contributors/index.html">Contribute to GRAKN.AI</a></li>
+            
+        </li>
+        
+        <li>
+            
+            <li><a href="/pages/academy/index.html">GRAKN Academy</a></li>
             
         </li>
         
@@ -782,7 +827,7 @@ $('#toc').on('click', 'a', function() {
 
     
 
-    <a target="_blank" href="https://github.com/graknlabs/docs/blob/master/pages/documentation/8-deploy-grakn/grakn-deployment-guide.md" class="btn btn-default githubEditButton" role="button"><i class="fa fa-github fa-lg"></i> Edit me</a>
+    <a target="_blank" href="https://github.com/graknlabs/grakn/tree/master/docs/pages/documentation/8-deploy-grakn/grakn-deployment-guide.md" class="btn btn-default githubEditButton" role="button"><i class="fa fa-github fa-lg"></i> Edit me</a>
 
     
 
@@ -797,27 +842,18 @@ $('#toc').on('click', 'a', function() {
   <li>upgrade to the latest version of the distribution.</li>
 </ul>
 
-<p>Grakn releases from our <a href="https://github.com/graknlabs/grakn">GitHub repository</a> are self-contained packages (tar.gz/zip) containing all the components you need to run Grakn:</p>
-
-<ul>
-  <li>Grakn stack</li>
-  <li>Kafka and Zookeeper</li>
-  <li>Cassandra</li>
-</ul>
-
-<p>You can run all these components separately depending on the redundancy levels you require.</p>
+<p>Grakn releases from our <a href="https://github.com/graknlabs/grakn">GitHub repository</a> are self-contained packages (tar.gz/zip) containing all the components you need to run Grakn.</p>
 
 <h2 id="setting-up-grakn">Setting up Grakn</h2>
 
 <h3 id="minimum-requirements">Minimum Requirements</h3>
 
-<p>Grakn can run on default Java settings (heap of 768MB, 1GB machine) if the graph is small enough. Recommended production settings are at least 4GB machine with 3GB heap.</p>
-
-<p>Cassandra will need at least 1GB of memory by itself if run on same machine.</p>
+<p>Grakn can run on default Java settings (heap of 768MB, 1GB machine) if the knowledge base is small enough. 
+Recommended production settings are at least 4GB machine with 3GB heap.</p>
 
 <h3 id="standalone-grakn">Standalone Grakn</h3>
 
-<p>You can start a standalone instance of Grakn by running <code class="highlighter-rouge">grakn.sh start</code>. This will produce a working environment for importing and analysing your data.</p>
+<p>You can start a standalone instance of Grakn by running <code class="highlighter-rouge">grakn server start</code>. This will produce a working environment for importing and analysing your data.</p>
 
 <p>By default Grakn stores your data in the extracted directory, under <code class="highlighter-rouge">db/cassandra/</code> in the folder into which you unzipped the distribution zip.</p>
 
@@ -829,45 +865,9 @@ $('#toc').on('click', 'a', function() {
   <li><code class="highlighter-rouge">saved_caches_directory</code>: eg. /var/lib/cassandra/saved_caches</li>
 </ul>
 
-<h3 id="clustered-database">Clustered Database</h3>
-
-<p>To add reliability and redudancy on the database layer, you can run Cassandra (DSE, OrientDB, other storage backends) separately and point Grakn to use the node/cluster.</p>
-
-<p>Running Cassandra requires an entire guide in itself - our brief recommendation is to have, at the minimum, a cluster of 3 nodes with replication factor (RF) 3.</p>
-
-<p>Cassandra version: 2.1.9</p>
-
-<p>Specify an external database cluster in <code class="highlighter-rouge">conf/main/grakn.properties</code>: <code class="highlighter-rouge">storage.hostname</code>: eg. 10.0.10.1,10.0.10.2,10.0.10.3</p>
-
-<p>For further information on running Cassandra, see:</p>
-
-<ul>
-  <li><a href="http://cassandra.apache.org/doc/latest/operating/index.html">Cassandra documentation</a></li>
-  <li><a href="https://d0.awsstatic.com/whitepapers/Cassandra_on_AWS.pdf">AWS Cassandra whitepaper</a></li>
-</ul>
-
 <h3 id="distributed">Distributed</h3>
 
-<p>For a fully scalable and distributed setup, you will need to run each component of Grakn in a separate cluster.
-This provides the highest level of redundancy and availability; you will want this for high throughput systems and to make the most out of Grakn.</p>
-
-<p>The database layer will need to be configured similarly to the <a href="#clustered-database">Clustered database</a> setup.</p>
-
-<p>Grakn Engine uses the <a href="https://kafka.apache.org/">Apache Kafka</a> streaming platform for distributed task execution. Kafka keeps track of its brokers’ state in <a href="https://zookeeper.apache.org/">Zookeeper</a>.</p>
-
-<p>Kafka version: 2.11-0.10.1.0</p>
-
-<p>Zookeeper version: 3.4.9</p>
-
-<p>Configure Grakn to use an external Kafka and Zookeeper cluster in <code class="highlighter-rouge">conf/main/grakn.properties</code>:</p>
-
-<ul>
-  <li><code class="highlighter-rouge">bootstrap-servers</code>: eg. 10.0.20.1:9092,10.0.20.2:9092,10.0.20.3:9092</li>
-  <li><code class="highlighter-rouge">tasks.zookeeper.servers</code>: eg. 10.0.30.1:2181,10.0.30.2:2181,10.0.3.30:2181</li>
-</ul>
-
-<p>Once the configuration files are correct, you can start Grakn Engine only with <code class="highlighter-rouge">bin/grakn-engine.sh start</code>.
-Multiple instances of Grakn Engine can be started that will make use of the shared Cassandra/Kafka/Zookeeper clusters.</p>
+<p>//TODO this section needs rewording entirely</p>
 
 <h2 id="upgrading-grakn">Upgrading Grakn</h2>
 
@@ -877,20 +877,20 @@ Multiple instances of Grakn Engine can be started that will make use of the shar
 <p>For the default storage directory, <code class="highlighter-rouge">db/cassandra/</code>, you need to:</p>
 
 <ul>
-  <li>stop old Grakn (<code class="highlighter-rouge">./bin/grakn.sh stop</code>)</li>
+  <li>stop old Grakn (<code class="highlighter-rouge">grakn server stop</code>)</li>
   <li>extract the latest Grakn package into a new directory</li>
   <li>copy the entire contents of the <code class="highlighter-rouge">db</code> directory to the new location into the new <code class="highlighter-rouge">db</code> directory</li>
-  <li>start new Grakn (<code class="highlighter-rouge">./bin/grakn.sh start</code>)</li>
+  <li>start new Grakn (<code class="highlighter-rouge">grakn server start</code>)</li>
 </ul>
 
 <h4 id="external-directory">External directory</h4>
 <p>If you have changed the location of data_file_directories in the <code class="highlighter-rouge">conf/cassandra/cassandra.yaml</code>, you need to:</p>
 
 <ul>
-  <li>stop old Grakn (<code class="highlighter-rouge">./bin/grakn.sh stop</code>)</li>
+  <li>stop old Grakn (<code class="highlighter-rouge">grakn server stop</code>)</li>
   <li>extract the latest Grakn package into a new directory</li>
   <li>amend <code class="highlighter-rouge">data_file_directories</code>, <code class="highlighter-rouge">commitlog_directory</code> and <code class="highlighter-rouge">saved_caches_directory</code> to match your custom directories</li>
-  <li>start new Grakn (<code class="highlighter-rouge">./bin/grakn.sh start</code>)</li>
+  <li>start new Grakn (<code class="highlighter-rouge">grakn server start</code>)</li>
 </ul>
 
 <p>You will need to amend these variables with every new version of Grakn.</p>
@@ -900,15 +900,12 @@ Multiple instances of Grakn Engine can be started that will make use of the shar
 <p>Upgrading Grakn in a distributed setup is very simple:</p>
 
 <ul>
-  <li>stop and remove old Grakn Engine (<code class="highlighter-rouge">./bin/grakn-engine.sh stop</code>)</li>
-  <li>roll out the latest Grakn package with the correct Cassandra/Kafka/Zookeeper variables in the configuration files</li>
-  <li>start new Grakn Engine (<code class="highlighter-rouge">./bin/grakn-engine.sh start</code>)</li>
+  <li>stop and remove old Grakn Engine (<code class="highlighter-rouge">grakn server stop grakn</code>)</li>
+  <li>roll out the latest Grakn package with the correct Redis variables in the configuration files</li>
+  <li>start new Grakn Engine (<code class="highlighter-rouge">grakn server start grakn</code>)</li>
 </ul>
 
 <p>You can perform a rolling deployment in this fashion with minimum impact on your services.</p>
-
-<h2 id="comments">Comments</h2>
-<p>Want to leave a comment? Visit <a href="https://github.com/graknlabs/docs/issues/24" target="_blank">the issues on Github for this page</a> (you’ll need a GitHub account). You are also welcome to contribute to our documentation directly via the “Edit me” button at the top of the page.</p>
 
 
 
@@ -949,7 +946,7 @@ Multiple instances of Grakn Engine can be started that will make use of the shar
         <br>
         <p>© 2017 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2017 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> December 15th 2016<br/> Site last generated: Sep 12, 2017 <br />
+        <span>Page last updated:</span> December 15th 2016<br/> Site last generated: Nov 2, 2017 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">
@@ -957,7 +954,7 @@ Multiple instances of Grakn Engine can be started that will make use of the shar
         <ul>
             <li><a href="/pages/overview/index.html">Introduction</a></li>
             <li><a href="/pages/documentation/get-started/setup-guide.html">Install</a></li>
-            <li><a href="/pages/documentation/the-basics/quickstart-tutorial.html">Quickstart</a></li>
+            <li><a href="/pages/documentation/get-started/quickstart-tutorial.html">Quickstart</a></li>
         </ul>
     </div>
     <div class="col-lg-2 footer">
@@ -996,5 +993,12 @@ Multiple instances of Grakn Engine can be started that will make use of the shar
     </div>
 
 </body>
+
+<!-- the google_analytics_id gets auto inserted from the config file -->
+
+
+
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create','UA-72414051-1','auto');ga('require','displayfeatures');ga('send','pageview');</script>
+
 
 </html>

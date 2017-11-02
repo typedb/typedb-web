@@ -3,9 +3,9 @@
     <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Demonstrates how to create a basic ontology">
-<meta name="keywords" content="graph-apijavaadvanced-grakn,  schema, GRAKN.AI, Grakn Labs, grakn, graql, grakn.ai, Mindmaps Research, Mindmaps Research Ltd, MindmapsDB, mindmaps, mindmaps graph, mindmaps.io, knowledge graph, distributed knowledge graph, development platform, developer tool, data platform, programming langauge, query langauge, database, semantic database, distributed semantic database, distributed database, graph database, semantic search, data exploration, recommendation system, knowledge management, knowledge engineering, real-time analytics, advanced analytics, reasoning engine, inference engine, expert systems, semantic applications, research engines, data management, business intelligence, big data, semantic web, semantic data, knowledge representation, automated reasoning, semantic network, knowledge ontology, semantic graph, ontology engineering, graph based knowledge representation, artificial intelligence,">
-<title>GRAKN.AI - Define a Basic Ontology</title>
+<meta name="description" content="Graql Get Queries">
+<meta name="keywords" content="graql,  graql, query, get, GRAKN.AI, Grakn Labs, grakn, graql, grakn.ai, Mindmaps Research, Mindmaps Research Ltd, MindmapsDB, mindmaps, mindmaps graph, mindmaps.io, knowledge graph, distributed knowledge graph, development platform, developer tool, data platform, programming langauge, query langauge, database, semantic database, distributed semantic database, distributed database, graph database, semantic search, data exploration, recommendation system, knowledge management, knowledge engineering, real-time analytics, advanced analytics, reasoning engine, inference engine, expert systems, semantic applications, research engines, data management, business intelligence, big data, semantic web, semantic data, knowledge representation, automated reasoning, semantic network, knowledge ontology, semantic graph, ontology engineering, graph based knowledge representation, artificial intelligence,">
+<title>GRAKN.AI - Get Queries</title>
 <link rel="stylesheet" href="/pages/css/syntax.css">
 
 
@@ -27,6 +27,24 @@
 <script src="/pages/js/customscripts.js"></script>
 
 <link rel="shortcut icon" href="/favicon.ico">
+
+<!-- Facebook Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '2009892122581066'); // Insert your pixel ID here.
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=2009892122581066&ev=PageView&noscript=1" alt="facebook pixel"
+/></noscript>
+<!-- DO NOT MODIFY -->
+<!-- End Facebook Pixel Code -->
+
+
 
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -209,7 +227,6 @@
                     </ul>
                 </li> -->
                 <li><a href="/pages/overview/index.html">Overview</a></li>
-                <li><a href=/pages/solutions.html>Solutions</a></li>
                 <li><a href="/pages/index.html">Documentation</a></li>
                 <li><a rel="me" href="//grakn.ai/community.html">Community</a></li>
                 <li><a rel="me" href="//discuss.grakn.ai/">Discussion</a></li>
@@ -229,7 +246,7 @@
                             
                             dataSource: '/pages/search.json',
                             
-                            searchResultTemplate: '<li><a href="{url}" title="Define a Basic Ontology">{title}</a></li>',
+                            searchResultTemplate: '<li><a href="{url}" title="Get Queries">{title}</a></li>',
                             noResultsText: '<li><a class="empty">No results found</a></li>',
                             limit: 10,
                             fuzzy: true
@@ -256,6 +273,7 @@
         <!-- Sidebar Column -->
         <div class="col-md-3">
           
+
 
 
 
@@ -311,19 +329,26 @@
         
     
     <li>
-        <a href="#">Graql Ontology</a>
+        <a href="#">Graql Schema</a>
         <ul>
             
             
             
-            <li class="active"><a href="/pages/documentation/building-an-ontology/basic-ontology.html">Define a Basic Ontology</a></li>
+            <li><a href="/pages/documentation/building-a-schema/basic-schema.html">Define a Basic Schema</a></li>
             
             
             
             
             
             
-            <li><a href="/pages/documentation/building-an-ontology/hierarchical-ontology.html">Define a Hierarchical Ontology</a></li>
+            <li><a href="/pages/documentation/building-a-schema/hierarchical-schema.html">Define a Hierarchical Schema</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="/pages/documentation/building-a-schema/rule-driven-schema.html">Define a Rule-Driven Schema</a></li>
             
             
             
@@ -352,14 +377,14 @@
             
             
             
-            <li><a href="/pages/documentation/graql/match-queries.html">Match Queries</a></li>
+            <li><a href="/pages/documentation/graql/matches.html">Matches</a></li>
             
             
             
             
             
             
-            <li><a href="/pages/documentation/graql/ask-queries.html">Ask Queries</a></li>
+            <li class="active"><a href="/pages/documentation/graql/get-queries.html">Get Queries</a></li>
             
             
             
@@ -374,6 +399,13 @@
             
             
             <li><a href="/pages/documentation/graql/insert-queries.html">Insert Queries</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="/pages/documentation/graql/define-queries.html">Define Queries</a></li>
             
             
             
@@ -487,6 +519,13 @@
             
             
             
+            <li><a href="/pages/documentation/migration/XML-migration.html">XML Migration</a></li>
+            
+            
+            
+            
+            
+            
             <li><a href="/pages/documentation/migration/SQL-migration.html">SQL Migration</a></li>
             
             
@@ -516,7 +555,7 @@
             
             
             
-            <li><a href="/pages/documentation/developing-with-java/graph-api.html">Graph API</a></li>
+            <li><a href="/pages/documentation/developing-with-java/java-api.html">Java API</a></li>
             
             
             
@@ -696,7 +735,7 @@
             
             
             
-            <li><a href="/pages/documentation/examples/graph-api-example.html">Graph API for Java developers</a></li>
+            <li><a href="/pages/documentation/examples/java-api-example.html">API for Java developers</a></li>
             
             
             
@@ -726,6 +765,12 @@
             
         </li>
         
+        <li>
+            
+            <li><a href="/pages/academy/index.html">GRAKN Academy</a></li>
+            
+        </li>
+        
         
         <!-- if you aren't using the accordion, uncomment this block:
            <p class="external">
@@ -742,7 +787,7 @@
         <!-- Content Column -->
         <div class="col-md-9">
             <div class="post-header">
-   <h1 class="post-title-main">Define a Basic Ontology</h1>
+   <h1 class="post-title-main">Get Queries</h1>
 </div>
 
 
@@ -750,7 +795,7 @@
 <div class="post-content">
 
    
-    <div class="summary">Demonstrates how to create a basic ontology</div>
+    <div class="summary">Graql Get Queries</div>
    
 
     
@@ -782,178 +827,59 @@ $('#toc').on('click', 'a', function() {
 
     
 
-    <a target="_blank" href="https://github.com/graknlabs/docs/blob/master/pages/documentation/2-building-an-ontology/basic-ontology.md" class="btn btn-default githubEditButton" role="button"><i class="fa fa-github fa-lg"></i> Edit me</a>
+    <a target="_blank" href="https://github.com/graknlabs/grakn/tree/master/docs/pages/documentation/3-querying-with-graql/get-queries.md" class="btn btn-default githubEditButton" role="button"><i class="fa fa-github fa-lg"></i> Edit me</a>
 
     
 
     
 
-  <div class="alert alert-danger" role="alert"><i class="fa fa-exclamation-circle"></i> <b>Warning:</b> Please note that this page is in progress and subject to revision.</div>
+  <p>A get query will search the knowledge base for anything that matches the given <a href="matches.html">match</a> part, returning a
+result for each match found. To follow along, or experiment further, with the examples given below, please load the
+<em>basic-genealogy.gql</em> file, which can be found in the <em>examples</em> directory of the Grakn installation zip, or on
+<a href="https://github.com/graknlabs/grakn/blob/master/grakn-dist/src/examples/basic-genealogy.gql">Github</a>.</p>
 
-<h2 id="introduction">Introduction</h2>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>./grakn server start 
+./graql console <span class="nt">-f</span> &lt;relative-path-to-Grakn&gt;/examples/basic-genealogy.gql
+</code></pre></div></div>
 
-<p>In this section we are going to run through the construction of a basic ontology. We recommend that you refer to the <a href="../the-fundamentals/grakn-knowledge-model.html">Knowledge Model</a> documentation before reading this page. The process we will follow is a general guideline as to how you may start designing an ontology.</p>
+<ul id="profileTabs" class="nav nav-tabs">
+    <li class="active"><a href="#shell1" data-toggle="tab">Graql</a></li>
+    <li><a href="#java1" data-toggle="tab">Java</a></li>
+</ul>
 
-<p>The ontology we will be building will be used for a genealogy graph used for mapping out a family tree. You can find the complete ontology, the dataset and rules that accompany it, on Github in our <a href="https://github.com/graknlabs/sample-datasets/tree/master/genealogy-graph">sample-datasets repository</a>.</p>
+<div class="tab-content">
+<div role="tabpanel" class="tab-pane active" id="shell1">
+<pre>match $x isa person; get;</pre>
+</div>
+<div role="tabpanel" class="tab-pane" id="java1">
+<pre>qb.match(var("x").isa("person")).get();</pre>
+</div> <!-- tab-pane -->
+</div>
+<p><!-- tab-content --></p>
 
-<h2 id="identifying-entity-types">Identifying Entity Types</h2>
+<p>You can also provide as arguments to <code class="highlighter-rouge">get</code> the variables you wish to see:</p>
 
-<p>The first step is about identifying the categories of things that will be in your graph.
-For example if you are modelling a retail store, valid categories may be <code class="highlighter-rouge">product</code>, <code class="highlighter-rouge">electronics</code>, <code class="highlighter-rouge">books</code>, etc.  It is up to you to decide the granularity of your categories.</p>
+<ul id="profileTabs" class="nav nav-tabs">
+    <li class="active"><a href="#shell1" data-toggle="tab">Graql</a></li>
+    <li><a href="#java1" data-toggle="tab">Java</a></li>
+</ul>
 
-<p>For our genealogy graph we know that it will mostly be filled with people. So we can create an entity type:</p>
+<div class="tab-content">
+<div role="tabpanel" class="tab-pane active" id="shell1">
+<pre>match $x has name $xn; ($x, mother: $y); $y has name $yn; get $xn, $yn;</pre>
+</div>
+<div role="tabpanel" class="tab-pane" id="java1">
+<pre>
+qb.match(
+    var("x").has("name", var("xn")),
+    var().rel("x").rel("mother", "y"),
+    var("y").has("name", var("yn"))
+).get("xn", "yn");
+</pre>
+</div> <!-- tab-pane -->
+</div>
+<p><!-- tab-content --></p>
 
-<pre><code class="language-graql">insert
-  person sub entity;
-</code></pre>
-
-<p>Naturally, we could break this up into <code class="highlighter-rouge">man</code> and <code class="highlighter-rouge">woman</code> but for this example we are going to keep things simple.</p>
-
-<h2 id="describing-entity-types">Describing Entity Types</h2>
-
-<p>Grakn provides you with the ability to attach resources to entity types. For example a <code class="highlighter-rouge">car</code> could have an <code class="highlighter-rouge">engine</code>, a <code class="highlighter-rouge">licence number</code>, and a <code class="highlighter-rouge">transmission type</code> as resources that help to describe it.</p>
-
-<p>So what helps describe a <code class="highlighter-rouge">person</code>? 
-Philosophical debates aside let us go with something simple. A <code class="highlighter-rouge">person</code> typically has a <code class="highlighter-rouge">firstname</code>, a <code class="highlighter-rouge">lastname</code>, and a <code class="highlighter-rouge">gender</code>. We can model this and other resources that identify a person with:</p>
-
-<pre><code class="language-graql">insert
-
-person sub entity
-  has identifier
-  has firstname
-  has surname    
-  has middlename
-  has picture
-  has age
-  has birth-date
-  has death-date
-  has gender;
-    
-  identifier sub resource datatype string;
-  firstname sub resource datatype string;
-  surname sub resource datatype string;
-  middlename sub resource datatype string;
-  picture sub resource datatype string;
-  age sub resource datatype long;
-  birth-date sub resource datatype string;
-  death-date sub resource datatype string;
-  gender sub resource datatype string;    
-</code></pre>
-
-<h2 id="identifying-relationships-and-roles">Identifying Relationships and Roles</h2>
-
-<p>The next step is to ask how your data is connected, that is, what are the relationships between your data?</p>
-
-<p>This can be between different entity types, for example, a <code class="highlighter-rouge">person</code> <strong>drives</strong> a <code class="highlighter-rouge">car</code>, or even between the same entity types, for example, a <code class="highlighter-rouge">person</code> <strong>marries</strong> another <code class="highlighter-rouge">person</code>.</p>
-
-<p>In a Grakn, N-ary relationships are also possible. For example, a <code class="highlighter-rouge">person</code> has a <code class="highlighter-rouge">child</code> with another <code class="highlighter-rouge">person</code>.</p>
-
-<p>In our example, we will add <code class="highlighter-rouge">marriage</code> and <code class="highlighter-rouge">parentship</code> relationships. A <code class="highlighter-rouge">marriage</code> has two roles: <code class="highlighter-rouge">spouse1</code> and <code class="highlighter-rouge">spouse2</code>, while <code class="highlighter-rouge">parentship</code> has a <code class="highlighter-rouge">parent</code> role and a <code class="highlighter-rouge">child</code> role.</p>
-
-<pre><code class="language-graql">insert
-
-marriage sub relation
-  relates spouse1
-  relates spouse2
-  has picture;
-
-spouse1 sub role;
-spouse2 sub role;
-
-parentship sub relation
-  relates parent
-  relates child;
-
-parent sub role;
-child sub role;
-</code></pre>
-
-<h2 id="allowing-roles-to-be-played">Allowing Roles to be Played</h2>
-
-<p>The next step is to give our entity types permission to play specific roles.  We do this explicitly so that we don’t accidentally relate data which should not be related. For example, this will prevent us from accidentally saying that a <code class="highlighter-rouge">dog</code> and a <code class="highlighter-rouge">person</code> can have a child.</p>
-
-<p>For this current example we only have one entity type, which can play all our current roles, so we explicitly state that with:</p>
-
-<pre><code class="language-graql">insert
-
-person sub entity
-  plays parent
-  plays child
-  plays spouse1
-  plays spouse2;
-</code></pre>
-
-<p>We have now completed our basic genealogy ontology.</p>
-
-<h2 id="the-complete-ontology">The Complete Ontology</h2>
-
-<p>The final ontology will now look something like this:</p>
-
-<pre><code class="language-graql">insert
- 
- # Entities
- 
-  person sub entity
-    has identifier
-    has firstname
-    has surname
-    has middlename
-    has picture
-    has age
-    has birth-date
-    has death-date
-    has gender
-    plays parent
-    plays child
-    plays spouse1
-    plays spouse2;
-
- # Resources
-
-  identifier sub resource datatype string;
-  firstname sub resource datatype string;
-  surname sub resource datatype string;
-  middlename sub resource datatype string;
-  picture sub resource datatype string;
-  age sub resource datatype long;
-  birth-date sub resource datatype string;
-  death-date sub resource datatype string;
-  gender sub resource datatype string;
-
- # Roles and Relations
-
-  marriage sub relation
-    relates spouse1
-    relates spouse2
-    has picture;
-
-  spouse1 sub role;
-  spouse2 sub role;
-
-  parentship sub relation
-    relates parent
-    relates child;
-
-  parent sub role;
-  child sub role;
-  
-</code></pre>
-
-<p><img src="/images/basic-ontology1.png" alt="Ontology" /></p>
-
-<h2 id="summary">Summary</h2>
-
-<p>In this tutorial we described our entity type <code class="highlighter-rouge">person</code> across separate steps. This was done to demonstrate the typical thought process when creating an ontology. It is typically good practice to group entity type definitions together as above.</p>
-
-<div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> <b>Note:</b> It is worth noting that the ontology does not need to be completely finalised before loading data. The ontology of a Grakn graph can be expanded even after loading data.</div>
-
-<h2 id="where-next">Where Next?</h2>
-
-<p>We will continue to explore the development of an ontology in the next section on defining a <a href="./hierarchical-ontology.html">hierarchical ontology</a>.</p>
-
-<h2 id="comments">Comments</h2>
-<p>Want to leave a comment? Visit <a href="https://github.com/graknlabs/docs/issues/22" target="_blank">the issues on Github for this page</a> (you’ll need a GitHub account). You are also welcome to contribute to our documentation directly via the “Edit me” button at the top of the page.
-has</p>
 
 
     <div class="tags">
@@ -962,15 +888,7 @@ has</p>
         
         
         
-        <a href="/pages/tag_graph-api.html" class="btn btn-default navbar-btn cursorNorm" role="button">graph-api</a>
-        
-        
-        
-        <a href="/pages/tag_java.html" class="btn btn-default navbar-btn cursorNorm" role="button">java</a>
-        
-        
-        
-        <a href="/pages/tag_advanced-grakn.html" class="btn btn-default navbar-btn cursorNorm" role="button">advanced-grakn</a>
+        <a href="/pages/tag_graql.html" class="btn btn-default navbar-btn cursorNorm" role="button">graql</a>
         
         
         
@@ -1001,7 +919,7 @@ has</p>
         <br>
         <p>© 2017 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2017 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> December, 2016<br/> Site last generated: Sep 12, 2017 <br />
+        <span>Page last updated:</span> April 2017<br/> Site last generated: Nov 2, 2017 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">
@@ -1009,7 +927,7 @@ has</p>
         <ul>
             <li><a href="/pages/overview/index.html">Introduction</a></li>
             <li><a href="/pages/documentation/get-started/setup-guide.html">Install</a></li>
-            <li><a href="/pages/documentation/the-basics/quickstart-tutorial.html">Quickstart</a></li>
+            <li><a href="/pages/documentation/get-started/quickstart-tutorial.html">Quickstart</a></li>
         </ul>
     </div>
     <div class="col-lg-2 footer">
@@ -1048,5 +966,12 @@ has</p>
     </div>
 
 </body>
+
+<!-- the google_analytics_id gets auto inserted from the config file -->
+
+
+
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create','UA-72414051-1','auto');ga('require','displayfeatures');ga('send','pageview');</script>
+
 
 </html>

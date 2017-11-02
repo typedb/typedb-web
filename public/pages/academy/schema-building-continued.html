@@ -3,9 +3,9 @@
     <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="">
-<meta name="keywords" content=" , GRAKN.AI, Grakn Labs, grakn, graql, grakn.ai, Mindmaps Research, Mindmaps Research Ltd, MindmapsDB, mindmaps, mindmaps graph, mindmaps.io, knowledge graph, distributed knowledge graph, development platform, developer tool, data platform, programming langauge, query langauge, database, semantic database, distributed semantic database, distributed database, graph database, semantic search, data exploration, recommendation system, knowledge management, knowledge engineering, real-time analytics, advanced analytics, reasoning engine, inference engine, expert systems, semantic applications, research engines, data management, business intelligence, big data, semantic web, semantic data, knowledge representation, automated reasoning, semantic network, knowledge ontology, semantic graph, ontology engineering, graph based knowledge representation, artificial intelligence,">
-<title>GRAKN.AI - Graph API pages</title>
+<meta name="description" content="In this lesson you will complete your first GRAKN schema, adding roles to what you have built in the last lesson.">
+<meta name="keywords" content="getting-startedgraql,  setup, getting started, GRAKN.AI, Grakn Labs, grakn, graql, grakn.ai, Mindmaps Research, Mindmaps Research Ltd, MindmapsDB, mindmaps, mindmaps graph, mindmaps.io, knowledge graph, distributed knowledge graph, development platform, developer tool, data platform, programming langauge, query langauge, database, semantic database, distributed semantic database, distributed database, graph database, semantic search, data exploration, recommendation system, knowledge management, knowledge engineering, real-time analytics, advanced analytics, reasoning engine, inference engine, expert systems, semantic applications, research engines, data management, business intelligence, big data, semantic web, semantic data, knowledge representation, automated reasoning, semantic network, knowledge ontology, semantic graph, ontology engineering, graph based knowledge representation, artificial intelligence,">
+<title>GRAKN.AI - Building the schema (Continued)</title>
 <link rel="stylesheet" href="/pages/css/syntax.css">
 
 
@@ -27,6 +27,24 @@
 <script src="/pages/js/customscripts.js"></script>
 
 <link rel="shortcut icon" href="/favicon.ico">
+
+<!-- Facebook Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '2009892122581066'); // Insert your pixel ID here.
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=2009892122581066&ev=PageView&noscript=1" alt="facebook pixel"
+/></noscript>
+<!-- DO NOT MODIFY -->
+<!-- End Facebook Pixel Code -->
+
+
 
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -209,7 +227,6 @@
                     </ul>
                 </li> -->
                 <li><a href="/pages/overview/index.html">Overview</a></li>
-                <li><a href=/pages/solutions.html>Solutions</a></li>
                 <li><a href="/pages/index.html">Documentation</a></li>
                 <li><a rel="me" href="//grakn.ai/community.html">Community</a></li>
                 <li><a rel="me" href="//discuss.grakn.ai/">Discussion</a></li>
@@ -229,7 +246,7 @@
                             
                             dataSource: '/pages/search.json',
                             
-                            searchResultTemplate: '<li><a href="{url}" title="Graph API pages">{title}</a></li>',
+                            searchResultTemplate: '<li><a href="{url}" title="Building the schema (Continued)">{title}</a></li>',
                             noResultsText: '<li><a class="empty">No results found</a></li>',
                             limit: 10,
                             fuzzy: true
@@ -261,32 +278,36 @@
 
 
 
+
 <ul id="mysidebar" class="nav">
-    <li class="sidebarTitle">Documentation </li>
+    <li class="sidebarTitle">Grakn Academy </li>
     
+    
+
+        
+        <li>
+            
+            <li><a href="/pages/academy/index.html">Academy home</a></li>
+            
+        </li>
+        
+        
     
     
     <li>
-        <a href="#">Get Started</a>
+        <a href="#">1. Welcome to the Academy</a>
         <ul>
             
             
             
-            <li><a href="/pages/index.html">Home</a></li>
+            <li><a href="/pages/academy/grakn-intro.html">1.1 What is Grakn</a></li>
             
             
             
             
             
             
-            <li><a href="/pages/documentation/get-started/setup-guide.html">Setup Guide</a></li>
-            
-            
-            
-            
-            
-            
-            <li><a href="/pages/documentation/get-started/quickstart-tutorial.html">Quickstart Tutorial</a></li>
+            <li><a href="/pages/academy/setup.html">1.2 Academy Setup</a></li>
             
             
             
@@ -296,12 +317,40 @@
         
     
     <li>
-        <a href="#">Grakn Fundamentals</a>
+        <a href="#">2. GRAQL language</a>
         <ul>
             
             
             
-            <li><a href="/pages/documentation/the-fundamentals/grakn-knowledge-model.html">Grakn Knowledge Model</a></li>
+            <li><a href="/pages/academy/graql-intro.html">2.1 GRAQL introduction</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="/pages/academy/get-queries.html">2.2 Get Queries</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="/pages/academy/insert-delete-queries.html">2.3 Insert and Delete queries</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="/pages/academy/other-queries.html">2.4 Other queries</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="/pages/academy/graql-review.html">Module Review</a></li>
             
             
             
@@ -311,19 +360,40 @@
         
     
     <li>
-        <a href="#">Graql Ontology</a>
+        <a href="#">3. GRAKN schemas</a>
         <ul>
             
             
             
-            <li><a href="/pages/documentation/building-an-ontology/basic-ontology.html">Define a Basic Ontology</a></li>
+            <li><a href="/pages/academy/schema-elements.html">3.1 Schema elements</a></li>
             
             
             
             
             
             
-            <li><a href="/pages/documentation/building-an-ontology/hierarchical-ontology.html">Define a Hierarchical Ontology</a></li>
+            <li><a href="/pages/academy/conceptual-modeling-intro.html">3.2 Conceptual modeling</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="/pages/academy/schema-building.html">3.3 Schema building</a></li>
+            
+            
+            
+            
+            
+            
+            <li class="active"><a href="/pages/academy/schema-building-continued.html">3.4 Schema building part II</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="/pages/academy/schema-review.html">Module Review</a></li>
             
             
             
@@ -333,82 +403,33 @@
         
     
     <li>
-        <a href="#">Graql Queries</a>
+        <a href="#">4. Loading data</a>
         <ul>
             
             
             
-            <li><a href="/pages/documentation/graql/graql-overview.html">Overview</a></li>
+            <li><a href="/pages/academy/loading-files.html">4.1 Loading files</a></li>
             
             
             
             
             
             
-            <li><a href="/pages/documentation/graql/graql-shell.html">Graql Shell</a></li>
+            <li><a href="/pages/academy/csv-migration.html">4.2 Data migration - CSV</a></li>
             
             
             
             
             
             
-            <li><a href="/pages/documentation/graql/match-queries.html">Match Queries</a></li>
+            <li><a href="/pages/academy/xml-migration.html">4.3 Data migration - XML and JSON</a></li>
             
             
             
             
             
             
-            <li><a href="/pages/documentation/graql/ask-queries.html">Ask Queries</a></li>
-            
-            
-            
-            
-            
-            
-            <li><a href="/pages/documentation/graql/delete-queries.html">Delete Queries</a></li>
-            
-            
-            
-            
-            
-            
-            <li><a href="/pages/documentation/graql/insert-queries.html">Insert Queries</a></li>
-            
-            
-            
-            
-            
-            
-            <li><a href="/pages/documentation/graql/graql-rules.html">Graql Rules</a></li>
-            
-            
-            
-            
-            
-            
-            <li><a href="/pages/documentation/graql/aggregate-queries.html">Aggregate Queries</a></li>
-            
-            
-            
-            
-            
-            
-            <li><a href="/pages/documentation/graql/compute-queries.html">Compute Queries</a></li>
-            
-            
-            
-            
-            
-            
-            <li><a href="/pages/documentation/graql/graql-templating.html">Graql Templating</a></li>
-            
-            
-            
-            
-            
-            
-            <li><a href="/pages/documentation/graql/graql-cheatsheet.html">Graql Cheatsheet</a></li>
+            <li><a href="/pages/academy/migration-review.html">Module Review</a></li>
             
             
             
@@ -418,40 +439,33 @@
         
     
     <li>
-        <a href="#">Graql Analytics</a>
+        <a href="#">5. Logic inference</a>
         <ul>
             
             
             
-            <li><a href="/pages/documentation/graql-analytics/analytics-overview.html">Overview</a></li>
+            <li><a href="/pages/academy/reasoner-intro.html">5.1 Logic inference</a></li>
             
             
             
             
             
             
-            <li><a href="/pages/documentation/graql-analytics/analytics-statistics.html">Analytics Statistics</a></li>
+            <li><a href="/pages/academy/inference-rules.html">5.2 Inference rules</a></li>
             
             
             
             
             
             
-            <li><a href="/pages/documentation/graql-analytics/analytics-shortest-path.html">Analytics Shortest Path</a></li>
+            <li><a href="/pages/academy/advanced-rules.html">5.3 Advanced reasoning</a></li>
             
             
             
             
             
             
-            <li><a href="/pages/documentation/graql-analytics/analytics-degrees.html">Analytics Degrees</a></li>
-            
-            
-            
-            
-            
-            
-            <li><a href="/pages/documentation/graql-analytics/analytics-connected-components.html">Connected Components</a></li>
+            <li><a href="/pages/academy/reasoner-review.html">Module Review</a></li>
             
             
             
@@ -461,256 +475,33 @@
         
     
     <li>
-        <a href="#">Migrate to Grakn</a>
+        <a href="#">6. Large scale analytics</a>
         <ul>
             
             
             
-            <li><a href="/pages/documentation/migration/migration-overview.html">Overview</a></li>
+            <li><a href="/pages/academy/analytics-intro.html">6.1 Distributed analytics</a></li>
             
             
             
             
             
             
-            <li><a href="/pages/documentation/migration/CSV-migration.html">CSV Migration</a></li>
+            <li><a href="/pages/academy/statistics-queries.html">6.2 Statistics queries</a></li>
             
             
             
             
             
             
-            <li><a href="/pages/documentation/migration/JSON-migration.html">JSON Migration</a></li>
+            <li><a href="/pages/academy/graph-analytics.html">6.3 Graph analytics</a></li>
             
             
             
             
             
             
-            <li><a href="/pages/documentation/migration/SQL-migration.html">SQL Migration</a></li>
-            
-            
-            
-            
-            
-            
-            <li><a href="/pages/documentation/migration/OWL-migration.html">OWL Migration</a></li>
-            
-            
-            
-            
-        </ul>
-        
-        
-    
-    <li>
-        <a href="#">Develop with Java</a>
-        <ul>
-            
-            
-            
-            <li><a href="/pages/documentation/developing-with-java/java-setup.html">Java Development Overview</a></li>
-            
-            
-            
-            
-            
-            
-            <li><a href="/pages/documentation/developing-with-java/graph-api.html">Graph API</a></li>
-            
-            
-            
-            
-            
-            
-            <li><a href="/pages/documentation/developing-with-java/java-graql.html">Java Graql API</a></li>
-            
-            
-            
-            
-            
-            
-            <li><a href="/pages/documentation/developing-with-java/migration-api.html">Migration API</a></li>
-            
-            
-            
-            
-            
-            
-            <li><a href="/pages/documentation/developing-with-java/loader-api.html">Loader API</a></li>
-            
-            
-            
-            
-            
-            
-            <li><a href="/pages/documentation/developing-with-java/advanced-java.html">Advanced Java Development</a></li>
-            
-            
-            
-            
-        </ul>
-        
-        
-    
-    <li>
-        <a href="#">Grakn Dashboard</a>
-        <ul>
-            
-            
-            
-            <li><a href="/pages/documentation/grakn-dashboard/visualiser.html">Grakn Visualiser</a></li>
-            
-            
-            
-            
-        </ul>
-        
-        
-    
-    <li>
-        <a href="#">Deploy Grakn</a>
-        <ul>
-            
-            
-            
-            <li><a href="/pages/documentation/deploy-grakn/grakn-deployment-guide.html">Deploy Grakn</a></li>
-            
-            
-            
-            
-        </ul>
-        
-        
-    
-    <li>
-        <a href="#">API Reference</a>
-        <ul>
-            
-            
-            
-            <li><a href="/pages/documentation/api-reference/api-reference.html">API Reference</a></li>
-            
-            
-            
-            
-        </ul>
-        
-        
-    
-    <li>
-        <a href="#">Resources</a>
-        <ul>
-            
-            
-            
-            <li><a href="/pages/documentation/resources/resources-overview.html">Overview</a></li>
-            
-            
-            
-            
-            
-            
-            <li><a href="/pages/documentation/resources/faq.html">Grakn FAQ</a></li>
-            
-            
-            
-            
-            
-            
-            <li><a href="/pages/documentation/resources/downloads.html">Downloads</a></li>
-            
-            
-            
-            
-        </ul>
-        
-        
-    
-    <li>
-        <a href="#">Examples</a>
-        <ul>
-            
-            
-            
-            <li><a href="/pages/documentation/examples/examples-overview.html">Overview</a></li>
-            
-            
-            
-            
-            
-            
-            <li><a href="/pages/documentation/examples/CSV-migration.html">CSV Migration</a></li>
-            
-            
-            
-            
-            
-            
-            <li><a href="/pages/documentation/examples/SQL-migration.html">SQL Migration</a></li>
-            
-            
-            
-            
-            
-            
-            <li><a href="/pages/documentation/examples/OWL-migration.html">OWL Migration</a></li>
-            
-            
-            
-            
-            
-            
-            <li><a href="/pages/documentation/examples/graql-reasoning.html">Reasoning with Graql</a></li>
-            
-            
-            
-            
-            
-            
-            <li><a href="/pages/documentation/examples/working-with-tweets.html">Working With Tweets</a></li>
-            
-            
-            
-            
-            
-            
-            <li><a href="/pages/documentation/examples/modern.html">Modern example</a></li>
-            
-            
-            
-            
-            
-            
-            <li><a href="/pages/documentation/examples/pokemon.html">Pokemon example</a></li>
-            
-            
-            
-            
-            
-            
-            <li><a href="/pages/documentation/examples/analytics.html">Statistical Analysis</a></li>
-            
-            
-            
-            
-            
-            
-            <li><a href="/pages/documentation/examples/graph-api-example.html">Graph API for Java developers</a></li>
-            
-            
-            
-            
-            
-            
-            <li><a href="/pages/documentation/examples/java-analytics.html">Analytics using Java APIs</a></li>
-            
-            
-            
-            
-            
-            
-            <li><a href="/pages/documentation/examples/projects.html">Example Projects</a></li>
+            <li><a href="/pages/academy/analytics-review.html">Module Review</a></li>
             
             
             
@@ -720,9 +511,13 @@
         
 
         
+        
+    
+
+        
         <li>
             
-            <li><a href="/pages/contributors/index.html">Contribute to GRAKN.AI</a></li>
+            <li><a href="/pages/index.html">Documentation Portal</a></li>
             
         </li>
         
@@ -742,7 +537,7 @@
         <!-- Content Column -->
         <div class="col-md-9">
             <div class="post-header">
-   <h1 class="post-title-main">Graph API pages</h1>
+   <h1 class="post-title-main">Building the schema (Continued)</h1>
 </div>
 
 
@@ -750,29 +545,8 @@
 <div class="post-content">
 
    
-
-    
-    
-<!-- this handles the automatic toc. use ## for subheads to auto-generate the on-page minitoc. if you use html tags, you must supply an ID for the heading element in order for it to appear in the minitoc. -->
-<script>
-$( document ).ready(function() {
-  // Handler for .ready() called.
-
-$('#toc').toc({ minimumHeaders: 0, listType: 'ul', showSpeed: 0, headers: 'h2' });
-
-/* this offset helps account for the space taken up by the floating toolbar. */
-$('#toc').on('click', 'a', function() {
-  var target = $(this.getAttribute('href'))
-    , scroll_target = target.offset().top
-
-  $(window).scrollTop(scroll_target - 10);
-  return false
-})
-
-});
-</script>
-
-<div id="toc"></div>
+    <div class="summary">In this lesson you will complete your first GRAKN schema, adding roles to what you have built in the last lesson.</div>
+   
 
     
 
@@ -782,421 +556,115 @@ $('#toc').on('click', 'a', function() {
 
     
 
-  <p>The following pages and posts are tagged with <button type="button" style="cursor: default" class="btn btn-default navbar-btn">graph-api</button></p>
-<table><thead><tr><th>Title</th><th>Type</th><th>Excerpt</th></tr></thead>
-    <tbody>
-    
-  
-    
-        
-     
-   
-    
-        
-     
-   
-    
-        
-     
-   
-    
-        
-     
-   
-    
-        
-     
-   
-    
-        
-     
-   
-    
-        
-     
-   
-    
-        
-     
-   
-    
-   
-    
-        
-     
-        
-     
-   
-    
-        
-     
-        
-     
-   
-    
-        
-     
-   
-    
-        
-     
-   
-    
-        
-     
-        
-     
-   
-    
-        
-     
-        
-     
-   
-    
-        
-     
-   
-    
-        
-     
-        
-     
-   
-    
-        
-     
-   
-    
-        
-     
-        
-     
-        
-     
-   
-    
-        
-     
-   
-    
-        
-     
-   
-    
-        
-     
-   
-    
-        
-     
-   
-    
-        
-     
-   
-    
-        
-     
-   
-    
-        
-     
-   
-    
-        
-     
-   
-    
-        
-     
-   
-    
-        
-     
-        
-     
-   
-    
-        
-     
-        
-     
-        
+  <h2 id="the-story-so-far">The story so far</h2>
 
-        <tr><td><a href="/pages/documentation/api-reference/api-reference.html">Grakn API Reference</a></td>
-            <td><span class="label label-default">Page</span></td>
-          <td> Welcome to the API Reference landing page. From here, you can find the latest, and all previous, versions of our API reference. Javadoc Reference  The latest version of our Javadocs API Reference documentation will always be posted at (https://grakn.ai/javadocs.html).. You can use the... </td>
-        </tr>
-        
-     
-   
-    
-        
-     
-   
-    
-        
+<p>In the <a href="/academy/schema-building.html">last lesson</a> you have started building the schema that models the example problem for the academy dataset (if you need to review the problem, <a href="/academy/graql-intro.html">here is the link</a>). If you have followed all the exercises, you should by now have a file called <code class="highlighter-rouge">schema.gql</code> that looks more or less like this:</p>
 
-        <tr><td><a href="/pages/documentation/building-an-ontology/basic-ontology.html">Define a Basic Ontology</a></td>
-            <td><span class="label label-default">Page</span></td>
-          <td> Demonstrates how to create a basic ontology </td>
-        </tr>
-        
-     
-        
-     
-        
-     
-   
-    
-        
-     
-   
-    
-        
-     
-   
-    
-        
-     
-   
-    
-        
-     
-   
-    
-        
-     
-        
-     
-   
-    
-        
-     
-   
-    
-   
-    
-        
-     
-   
-    
-        
-     
-   
-    
-        
-     
-        
-     
-        
-     
-   
-    
-        
-     
-   
-    
-        
-     
-   
-    
-        
-     
-        
-     
-        
-     
-   
-    
-        
-     
-   
-    
-        
-     
-   
-    
-        
-     
-        
-     
-   
-    
-        
-     
-        
-     
-   
-    
-        
-     
-   
-    
-        
-     
-   
-    
-        
-     
-        
-     
-        
+<pre><code class="language-graql">define
+"bond" sub entity;
+"company" sub entity;
+"oil-platform" sub entity has distance-from-coast;
+"article" sub entity has subject;
+"country" sub entity has name;
 
-        <tr><td><a href="/pages/documentation/building-an-ontology/hierarchical-ontology.html">Define a Hierarchical Ontology</a></td>
-            <td><span class="label label-default">Page</span></td>
-          <td> How to build a hierarchical ontology </td>
-        </tr>
-        
-     
-   
-    
-        
-     
-        
-     
-        
-     
-        
-     
-   
-    
-        
-     
-   
-    
-        
-     
-        
-     
-        
-     
-   
-    
-        
-     
-        
-     
-   
-    
-        
-     
-   
-    
-        
-     
-   
-    
-        
-     
-        
-     
-   
-    
-        
-     
-        
-     
-        
-     
-   
-    
-        
-     
-        
-     
-   
-    
-        
-     
-   
-    
-        
-     
-        
-     
-   
-    
-   
-    
-        
-     
-        
-     
-   
-    
-        
-     
-   
-    
-   
-    
-        
-     
-        
-     
-   
-    
-   
-    
-   
-    
-   
-    
-   
-    
-   
-    
-   
-    
-   
-    
-   
-    
-   
-    
-   
-    
-   
-    
-   
-    
-   
-    
-        
-     
-   
-    
-   
-    
-        
-     
-        
-     
-   
-    
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
-   
+"owns" sub relationship;
+"issues" sub relationship;
+"located-in" sub relationship;
 
-        
-        
+"name" sub attribute datatype string;
+"subject" sub attribute datatype string;
+"distance-from-coast" sub attribute datatype long;
+</code></pre>
 
-   </tbody>
-</table>
+<p>So far, so good, but the types that you have added to the file live on their own; to link them together, we need to add to the schema one last concept: roles. Roles help define what a relation is and what is the (wait for it) role of the entities that make a specific relation. They also help guaranteeing logical integrity (i.e. the rational correctness of your data) avoiding, for example, to have cats married to buildings in your data, unless you explicitly allow that in your schema.</p>
 
+<p>There are three steps into defining roles. Let’s examine them one by one.</p>
+
+<h2 id="defining-relationships-with-relates">Defining relationships with <strong>relates</strong></h2>
+<p>The first step is to look at our relationships one by one and think about what they need to link together. Take <code class="highlighter-rouge">owns</code>, for example: in our domain, it is used to indicate the connection between an oil-platform and the company it belongs to. There are thus two roles in the “owns” relationship (but there could be also only one or more than two): we will call them <code class="highlighter-rouge">owner</code> and <code class="highlighter-rouge">owned</code> (because the author and has no fantasy :) ). In order to specify the relation in this way, we will use the keyword <code class="highlighter-rouge">relate</code> and the definition of “owns” will then look like this:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>"owns" sub relationship relates owner relates owns;
+</code></pre></div></div>
+
+<h2 id="defining-roles">Defining roles</h2>
+<p>The second step is super easy: the role concepts related to our relationships need to be defined in our schema file. That works exactly like defining types, so you should be able to guess how to do it.</p>
+
+<h2 id="who-does-what">Who does what?</h2>
+<p>The final step is to define which concept are allowed to play which role. To do this, we use the keyword <code class="highlighter-rouge">plays</code>. Every role must be played by at least one concept type, but there is no upper limit to it. To decide which type can play which role refer back to the conceptual model. For example, we know that we want companies to play the role of owner and oil platforms to play the role of owned. The type definitions will then look like this:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>"company" sub entity plays owner;
+"oil-platform" sub entity has distance-from-coast plays owned;
+</code></pre></div></div>
+
+<p>You should know at this point that there is no specific reason to put the whole type definition on one single line, so the definition above could also be rewritten as</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>"company" sub entity
+   plays owner;
+"oil-platform" sub entity
+   has distance-from-coast
+   plays owned;
+</code></pre></div></div>
+
+<p>It really is a matter of taste.</p>
+
+<p>You are almost there: go ahead and add the relevant roles for the remaining relationships.</p>
+
+<h3 id="achievement-unlocked">Achievement Unlocked!</h3>
+<p>Your schema file should at this point look more or less like the following:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>define
+"bond" sub entity
+    plays issued;
+"company" sub entity
+    plays owner
+    plays issuer;
+"oil-platform" sub entity
+    has distance-from-coast
+    plays owned
+    plays located;
+"article" sub entity
+    has subject;
+"country" sub entity
+    has name
+    plays location;
+
+"owns" sub relationship
+    relates owner
+    relates owned;
+"issues" sub relationship
+    relates issuer
+    relates issued;
+"located-in" sub relationship
+    relates location
+    relates located;
+"owner" sub role; "owned" sub role;
+"location" sub role; "located" sub role;
+"issued" sub role; "issuer" sub role;
+
+"name" sub attribute datatype string;
+"subject" sub attribute datatype string;
+"distance-from-coast" sub attribute datatype long;
+</code></pre></div></div>
+
+<p>Congratulations! You have built your first working GRAKN schema! Of course, this is just a starting point and when you start putting data into your knowledge base you will realise that you need to extend the schema (for example you might want to allow companies to have names), but the one you have built is valid and working and could be loaded into GRAKN as is (you will learn how in the next module of the Academy).</p>
+
+<h2 id="what-next">What next?</h2>
+<p>First of all, proceed to <a href="/academy/schema-review.html">next lesson</a> to review the schema building process and to check that you remember what you have learned so far about GRAKN schemas; after that it will be time to load data and our knowledge base will start to look more and more like the one you have seen at the beginning of the Academy when you were still learning about the GRAQL basics.</p>
 
 
     <div class="tags">
+        
+        <b>Tags: </b>
+        
+        
+        
+        <a href="/pages/tag_getting-started.html" class="btn btn-default navbar-btn cursorNorm" role="button">getting-started</a>
+        
+        
+        
+        <a href="/pages/tag_graql.html" class="btn btn-default navbar-btn cursorNorm" role="button">graql</a>
+        
+        
         
     </div>
 
@@ -1225,7 +693,7 @@ $('#toc').on('click', 'a', function() {
         <br>
         <p>© 2017 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2017 GRAKN.AI. All rights reserved. <br />
-         Site last generated: Sep 12, 2017 <br />
+        <span>Page last updated:</span> September 2017<br/> Site last generated: Nov 2, 2017 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">
@@ -1233,7 +701,7 @@ $('#toc').on('click', 'a', function() {
         <ul>
             <li><a href="/pages/overview/index.html">Introduction</a></li>
             <li><a href="/pages/documentation/get-started/setup-guide.html">Install</a></li>
-            <li><a href="/pages/documentation/the-basics/quickstart-tutorial.html">Quickstart</a></li>
+            <li><a href="/pages/documentation/get-started/quickstart-tutorial.html">Quickstart</a></li>
         </ul>
     </div>
     <div class="col-lg-2 footer">
@@ -1272,5 +740,12 @@ $('#toc').on('click', 'a', function() {
     </div>
 
 </body>
+
+<!-- the google_analytics_id gets auto inserted from the config file -->
+
+
+
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create','UA-72414051-1','auto');ga('require','displayfeatures');ga('send','pageview');</script>
+
 
 </html>

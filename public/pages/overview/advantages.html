@@ -28,6 +28,24 @@
 
 <link rel="shortcut icon" href="/favicon.ico">
 
+<!-- Facebook Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '2009892122581066'); // Insert your pixel ID here.
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=2009892122581066&ev=PageView&noscript=1" alt="facebook pixel"
+/></noscript>
+<!-- DO NOT MODIFY -->
+<!-- End Facebook Pixel Code -->
+
+
+
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 <!--[if lt IE 9]>
@@ -209,7 +227,6 @@
                     </ul>
                 </li> -->
                 <li><a href="/pages/overview/index.html">Overview</a></li>
-                <li><a href=/pages/solutions.html>Solutions</a></li>
                 <li><a href="/pages/index.html">Documentation</a></li>
                 <li><a rel="me" href="//grakn.ai/community.html">Community</a></li>
                 <li><a rel="me" href="//discuss.grakn.ai/">Discussion</a></li>
@@ -256,6 +273,7 @@
         <!-- Sidebar Column -->
         <div class="col-md-3">
           
+
 
 
 
@@ -347,7 +365,7 @@
   <p>GRAKN.AI  working with complex data easymakes by providing:</p>
 
 <ul>
-  <li>an ontology that allows you to model the world and all the type hierarchies and hyper-relationships contained within it.</li>
+  <li>a schema that allows you to model the world and all the type hierarchies and hyper-relationships contained within it.</li>
   <li>a query language that uses machine reasoning for retrieving explicitly stored data and implicitly derived knowledge.</li>
 </ul>
 
@@ -357,7 +375,7 @@
   <p>Grakn allows you to model the real world.</p>
 </blockquote>
 
-<p>Grakn is a hyper-relational database, that provides an <a href="https://en.wikipedia.org/wiki/Enhanced_entity–relationship_model">Enhanced-Entity-Relational (EER)</a> schema to model extremely complex datasets. Grakn allows you to model the real world and all the hierarchies and hyper-relationships contained within it. The schema/ontology modelling constructs include but are not limited to data type hierarchy, relation type hierarchy, bi-directional relationships, multi-type relationships, N-ary relationships, relationships in relationships, conditional relationships, virtual relationships, dynamic relationships, and so on.</p>
+<p>Grakn is a hyper-relational database, that provides an <a href="https://en.wikipedia.org/wiki/Enhanced_entity–relationship_model">Enhanced-Entity-Relational (EER)</a> schema to model extremely complex datasets. Grakn allows you to model the real world and all the hierarchies and hyper-relationships contained within it. The schema modelling constructs include but are not limited to data type hierarchy, relationship type hierarchy, bi-directional relationships, multi-type relationships, N-ary relationships, relationships in relationships, conditional relationships, virtual relationships, dynamic relationships, and so on.</p>
 
 <h2 id="logical-integrity-of-information">Logical integrity of information</h2>
 
@@ -365,7 +383,7 @@
   <p>Grakn maintains higher data quality with stronger information consistency than any other database.</p>
 </blockquote>
 
-<p>Grakn’s ontology functions as a data schema constraint that guarantees the logical integrity of information stored in the database in real time. In consequence, data is maintained at a higher quality with much stronger information consistency than for any other database. Grakn allows your team to catch all data errors as soon as the data arrives in your system. In Grakn’s Enterprise solution, you can also have real-time alerts of violations of advanced business rules.</p>
+<p>Grakn’s schema functions as a data schema constraint that guarantees the logical integrity of information stored in the database in real time. In consequence, data is maintained at a higher quality with much stronger information consistency than for any other database. Grakn allows your team to catch all data errors as soon as the data arrives in your system. In Grakn’s Enterprise solution, you can also have real-time alerts of violations of advanced business rules.</p>
 
 <h2 id="flexible-data-model">Flexible data model</h2>
 
@@ -373,7 +391,7 @@
   <p>Grakn allows your database model to constantly evolve.</p>
 </blockquote>
 
-<p>Grakn’s schema/ontology is flexible. You can add new data and relation types, update type names, delete unused types, all while storing and retrieving data to and from the database. This allows your database model to constantly even when you have lots of data, building a lasting advantage as your business “learns”. In Grakn’s Enterprise solution, you can have a machine learning system to automatically adapt and grow your Grakn ontology.</p>
+<p>Grakn’s schema is flexible. You can add new data and relationship types, update type names, delete unused types, all while storing and retrieving data to and from the database. This allows your database model to constantly even when you have lots of data, building a lasting advantage as your business “learns”. In Grakn’s Enterprise solution, you can have a machine learning system to automatically adapt and grow your Grakn schema.</p>
 
 <h2 id="machine-reasoning-query-language">Machine reasoning query language</h2>
 
@@ -381,7 +399,7 @@
   <p>Graql provides an intelligent higher level abstraction over complex relationships.</p>
 </blockquote>
 
-<p>Graql is a polymorphic, knowledge-oriented query language. It allows you to query many different types simultaneously through a common supertype, and it takes into account deep contextualisation of data. Graql uses machine reasoning to perform inference over data types, relation types, context disambiguation, implicit relationships and dynamic relationships. This allows you to discover deeply hidden and implicit association between data instances through short and concise statements, as Graql provides an intelligent higher level abstraction over complex relationships.</p>
+<p>Graql is a polymorphic, knowledge-oriented query language. It allows you to query many different types simultaneously through a common supertype, and it takes into account deep contextualisation of data. Graql uses machine reasoning to perform inference over data types, relationship types, context disambiguation, implicit relationships and dynamic relationships. This allows you to discover deeply hidden and implicit association between data instances through short and concise statements, as Graql provides an intelligent higher level abstraction over complex relationships.</p>
 
 <h2 id="optimised-query-execution">Optimised query execution</h2>
 
@@ -438,7 +456,7 @@ analytics as part of the language, which allows you to perform analytics over di
         <br>
         <p>© 2017 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2017 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> January 2017<br/> Site last generated: Sep 12, 2017 <br />
+        <span>Page last updated:</span> January 2017<br/> Site last generated: Nov 2, 2017 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">
@@ -446,7 +464,7 @@ analytics as part of the language, which allows you to perform analytics over di
         <ul>
             <li><a href="/pages/overview/index.html">Introduction</a></li>
             <li><a href="/pages/documentation/get-started/setup-guide.html">Install</a></li>
-            <li><a href="/pages/documentation/the-basics/quickstart-tutorial.html">Quickstart</a></li>
+            <li><a href="/pages/documentation/get-started/quickstart-tutorial.html">Quickstart</a></li>
         </ul>
     </div>
     <div class="col-lg-2 footer">
@@ -485,5 +503,12 @@ analytics as part of the language, which allows you to perform analytics over di
     </div>
 
 </body>
+
+<!-- the google_analytics_id gets auto inserted from the config file -->
+
+
+
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create','UA-72414051-1','auto');ga('require','displayfeatures');ga('send','pageview');</script>
+
 
 </html>

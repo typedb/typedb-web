@@ -28,6 +28,24 @@
 
 <link rel="shortcut icon" href="/favicon.ico">
 
+<!-- Facebook Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '2009892122581066'); // Insert your pixel ID here.
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=2009892122581066&ev=PageView&noscript=1" alt="facebook pixel"
+/></noscript>
+<!-- DO NOT MODIFY -->
+<!-- End Facebook Pixel Code -->
+
+
+
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 <!--[if lt IE 9]>
@@ -209,7 +227,6 @@
                     </ul>
                 </li> -->
                 <li><a href="/pages/overview/index.html">Overview</a></li>
-                <li><a href=/pages/solutions.html>Solutions</a></li>
                 <li><a href="/pages/index.html">Documentation</a></li>
                 <li><a rel="me" href="//grakn.ai/community.html">Community</a></li>
                 <li><a rel="me" href="//discuss.grakn.ai/">Discussion</a></li>
@@ -256,6 +273,7 @@
         <!-- Sidebar Column -->
         <div class="col-md-3">
           
+
 
 
 
@@ -311,19 +329,26 @@
         
     
     <li>
-        <a href="#">Graql Ontology</a>
+        <a href="#">Graql Schema</a>
         <ul>
             
             
             
-            <li><a href="/pages/documentation/building-an-ontology/basic-ontology.html">Define a Basic Ontology</a></li>
+            <li><a href="/pages/documentation/building-a-schema/basic-schema.html">Define a Basic Schema</a></li>
             
             
             
             
             
             
-            <li><a href="/pages/documentation/building-an-ontology/hierarchical-ontology.html">Define a Hierarchical Ontology</a></li>
+            <li><a href="/pages/documentation/building-a-schema/hierarchical-schema.html">Define a Hierarchical Schema</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="/pages/documentation/building-a-schema/rule-driven-schema.html">Define a Rule-Driven Schema</a></li>
             
             
             
@@ -352,14 +377,14 @@
             
             
             
-            <li><a href="/pages/documentation/graql/match-queries.html">Match Queries</a></li>
+            <li><a href="/pages/documentation/graql/matches.html">Matches</a></li>
             
             
             
             
             
             
-            <li><a href="/pages/documentation/graql/ask-queries.html">Ask Queries</a></li>
+            <li><a href="/pages/documentation/graql/get-queries.html">Get Queries</a></li>
             
             
             
@@ -374,6 +399,13 @@
             
             
             <li><a href="/pages/documentation/graql/insert-queries.html">Insert Queries</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="/pages/documentation/graql/define-queries.html">Define Queries</a></li>
             
             
             
@@ -487,6 +519,13 @@
             
             
             
+            <li><a href="/pages/documentation/migration/XML-migration.html">XML Migration</a></li>
+            
+            
+            
+            
+            
+            
             <li><a href="/pages/documentation/migration/SQL-migration.html">SQL Migration</a></li>
             
             
@@ -516,7 +555,7 @@
             
             
             
-            <li><a href="/pages/documentation/developing-with-java/graph-api.html">Graph API</a></li>
+            <li><a href="/pages/documentation/developing-with-java/java-api.html">Java API</a></li>
             
             
             
@@ -696,7 +735,7 @@
             
             
             
-            <li><a href="/pages/documentation/examples/graph-api-example.html">Graph API for Java developers</a></li>
+            <li><a href="/pages/documentation/examples/java-api-example.html">API for Java developers</a></li>
             
             
             
@@ -723,6 +762,12 @@
         <li>
             
             <li><a href="/pages/contributors/index.html">Contribute to GRAKN.AI</a></li>
+            
+        </li>
+        
+        <li>
+            
+            <li><a href="/pages/academy/index.html">GRAKN Academy</a></li>
             
         </li>
         
@@ -782,7 +827,7 @@ $('#toc').on('click', 'a', function() {
 
     
 
-    <a target="_blank" href="https://github.com/graknlabs/docs/blob/master/pages/documentation/11-examples/CSV-migration.md" class="btn btn-default githubEditButton" role="button"><i class="fa fa-github fa-lg"></i> Edit me</a>
+    <a target="_blank" href="https://github.com/graknlabs/grakn/tree/master/docs/pages/documentation/11-examples/CSV-migration.md" class="btn btn-default githubEditButton" role="button"><i class="fa fa-github fa-lg"></i> Edit me</a>
 
     
 
@@ -790,7 +835,7 @@ $('#toc').on('click', 'a', function() {
 
   <h2 id="introduction">Introduction</h2>
 
-<p>This example looks at the migration of genealogy data in CSV format to build a graph in GRAKN.AI. The data is used as the basis of a <a href="https://blog.grakn.ai/family-matters-1bb639396a24#.2e6h72y0m">blog post</a> that illustrates the fundamentals of the Grakn visualiser, reasoner and analytics components.</p>
+<p>This example looks at the migration of genealogy data in CSV format to build a knowledge base in GRAKN.AI. The data is used as the basis of a <a href="https://blog.grakn.ai/family-matters-1bb639396a24#.2e6h72y0m">blog post</a> that illustrates the fundamentals of the Grakn visualiser, reasoner and analytics components.</p>
 
 <p>As the blog post explains, the original data was a <a href="http://www.lenzenresearch.com/titusnarrlineage.pdf">document</a> from <a href="http://www.lenzenresearch.com/">Lenzen Research</a> that described the family history of Catherine Niesz Titus for three generations of her maternal lineage.</p>
 
@@ -825,18 +870,18 @@ $('#toc').on('click', 'a', function() {
   </tbody>
 </table>
 
-<h3 id="ontology">Ontology</h3>
+<h3 id="schema">Schema</h3>
 
-<p>The ontology is a way to describe the entities and their relationships, so the underlying graph can store them as nodes and edges. You can find out more in our guide to the Grakn Knowledge Model. The ontology allows Grakn to perform:</p>
+<p>The schema is a way to describe the entities and their relationships, so the underlying knowledge base can store them according to the Grakn model. You can find out more in our guide to the Grakn Knowledge Model. The schema allows Grakn to perform:</p>
 
 <ul>
   <li>logical reasoning over the represented knowledge, such as the extraction of implicit information from explicit data (inference)</li>
   <li>discovery of inconsistencies in the data (validation).</li>
 </ul>
 
-<p>The ontology is shown below. There is a single entity, <code class="highlighter-rouge">person</code>, which has a number of resources and can play various roles (<code class="highlighter-rouge">parent</code>, <code class="highlighter-rouge">child</code>, <code class="highlighter-rouge">spouse1</code> and <code class="highlighter-rouge">spouse2</code>) in two possible relations (<code class="highlighter-rouge">parentship</code> and <code class="highlighter-rouge">marriage</code>).</p>
+<p>The schema is shown below. There is a single entity, <code class="highlighter-rouge">person</code>, which has a number of resources and can play various roles (<code class="highlighter-rouge">parent</code>, <code class="highlighter-rouge">child</code>, <code class="highlighter-rouge">spouse1</code> and <code class="highlighter-rouge">spouse2</code>) in two possible relationships (<code class="highlighter-rouge">parentship</code> and <code class="highlighter-rouge">marriage</code>).</p>
 
-<pre><code class="language-graql">insert
+<pre><code class="language-graql">define
 
 # Entities
 
@@ -858,7 +903,7 @@ person sub entity
 
 # Roles and Relations
 
-marriage sub relation
+marriage sub relationship
   relates spouse1
   relates spouse2
   has picture;
@@ -866,7 +911,7 @@ marriage sub relation
 spouse1 sub role;
 spouse2 sub role;
 
-parentship sub relation
+parentship sub relationship
   relates parent
   relates child;
 
@@ -875,28 +920,29 @@ child sub role;
 
 # Resources
 
-identifier sub resource datatype string;
-firstname sub resource datatype string;
-surname sub resource datatype string;
-middlename sub resource datatype string;
-picture sub resource datatype string;
-age sub resource datatype long;
-birth-date sub resource datatype string;
-death-date sub resource datatype string;
-gender sub resource datatype string;
+identifier sub attribute datatype string;
+name sub attribute datatype string;
+firstname sub name datatype string;
+surname sub name datatype string;
+middlename sub name datatype string;
+picture sub attribute datatype string;
+age sub attribute datatype long;
+"date" sub attribute datatype string;
+birth-date sub "date" datatype string;
+death-date sub "date" datatype string;
+gender sub attribute datatype string;
 </code></pre>
 
-<p>To load <em>ontology.gql</em> into Grakn, make sure the engine is running and choose a clean keyspace in which to work (here we use the default keyspace, so we are cleaning it before we get started).</p>
+<p>To load <em>schema.gql</em> into Grakn, make sure the engine is running and choose a clean keyspace in which to work (here we use the default keyspace, so we are cleaning it before we get started).</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>&lt;relative-path-to-Grakn&gt;/bin/grakn.sh clean
-&lt;relative-path-to-Grakn&gt;/bin/grakn.sh start
-&lt;relative-path-to-Grakn&gt;/bin/graql.sh -f ./ontology.gql
-</code></pre>
-</div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>./grakn server clean
+./grakn server start
+./graql console <span class="nt">-f</span> ./schema.gql
+</code></pre></div></div>
 
 <h3 id="data-migration">Data Migration</h3>
 
-<p>Having loaded the ontology, the next steps are to populate the graph by migrating data into Grakn from CSV.</p>
+<p>Having loaded the schema, the next steps are to populate the knowledge base by migrating data into Grakn from CSV.</p>
 
 <p>We will consider three CSV files that contain data to migrate into Grakn.</p>
 
@@ -921,7 +967,7 @@ Mary,Melissa,Titus,female,1847-08-12,10/05/1946,Mary Melissa Titus,98,
 ...
 </code></pre>
 
-<p>The migrator is a set of template Graql statements that instruct the Grakn migrator on how the CSV data can be mapped to the ontology. The Grakn migrator applies the template to each row of data in a CSV file, replacing the indicated sections in the template with the value from a specific cell, identified by the column header (the key). This sounds complicated, but isn’t really, as we will show.</p>
+<p>The migrator is a set of template Graql statements that instruct the Grakn migrator on how the CSV data can be mapped to the schema. The Grakn migrator applies the template to each row of data in a CSV file, replacing the indicated sections in the template with the value from a specific cell, identified by the column header (the key). This sounds complicated, but isn’t really, as we will show.</p>
 
 <p>The Graql template code for the people migrator is as follows:</p>
 
@@ -966,9 +1012,8 @@ Mary,Melissa,Titus,female,1847-08-12,10/05/1946,Mary Melissa Titus,98,
 
 <p>Calling the Grakn migrator on the <em>people.csv</em> file using the above template (named <code class="highlighter-rouge">people-migrator.gql</code>) is performed as follows:</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>&lt;relative-path-to-Grakn&gt;/bin/migration.sh csv -i ./people.csv -t ./migrators/people-migrator.gql -k grakn
-</code></pre>
-</div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>./graql migrate csv <span class="nt">-i</span> ./people.csv <span class="nt">-t</span> ./migrators/people-migrator.gql <span class="nt">-k</span> grakn
+</code></pre></div></div>
 
 <div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> <b>Note:</b> Usage instructions for the Grakn migrator are available as part of our <a href="../migration/migration-overview.html">migration documentation</a>.</div>
 
@@ -1008,15 +1053,14 @@ insert
 
 </code></pre>
 
-<p>For each row in the CSV file, the template matches the child and parent cells to their corresponding <code class="highlighter-rouge">person</code> entities, and then inserts a <code class="highlighter-rouge">parentship</code> relation, placing the entities it has matched into the <code class="highlighter-rouge">child</code> and <code class="highlighter-rouge">parent</code> roles.</p>
+<p>For each row in the CSV file, the template matches the child and parent cells to their corresponding <code class="highlighter-rouge">person</code> entities, and then inserts a <code class="highlighter-rouge">parentship</code> relationship, placing the entities it has matched into the <code class="highlighter-rouge">child</code> and <code class="highlighter-rouge">parent</code> roles.</p>
 
-<div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> <b>Note:</b> You must ensure that all entities exist in a graph before inserting relations.</div>
+<div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> <b>Note:</b> You must ensure that all entities exist in a knowledge base before inserting relationships.</div>
 
 <p>Calling the Grakn migrator on the <em>births.csv</em> file using the above template (named <code class="highlighter-rouge">births-migrator.gql</code>) is performed as follows:</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>&lt;relative-path-to-Grakn&gt;/bin/migration.sh csv -i ./births.csv -t ./migrators/births-migrator.gql -k grakn
-</code></pre>
-</div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>./graql migrate csv <span class="nt">-i</span> ./births.csv <span class="nt">-t</span> ./migrators/births-migrator.gql <span class="nt">-k</span> grakn
+</code></pre></div></div>
 
 <p>The data insertion generated by the migrator is as follows:</p>
 
@@ -1059,13 +1103,12 @@ insert
 		};
 </code></pre>
 
-<p>For each row in the CSV file, the template matches the two spouse cells to their corresponding <code class="highlighter-rouge">person</code> entities, and then inserts a <code class="highlighter-rouge">marriage</code> relation, placing the entities it has matched into the <code class="highlighter-rouge">spouse1</code> and <code class="highlighter-rouge">spouse2</code> roles. If there is data in the picture cell, a <code class="highlighter-rouge">picture</code> resource is also created for the <code class="highlighter-rouge">marriage</code> relation.</p>
+<p>For each row in the CSV file, the template matches the two spouse cells to their corresponding <code class="highlighter-rouge">person</code> entities, and then inserts a <code class="highlighter-rouge">marriage</code> relationship, placing the entities it has matched into the <code class="highlighter-rouge">spouse1</code> and <code class="highlighter-rouge">spouse2</code> roles. If there is data in the picture cell, a <code class="highlighter-rouge">picture</code> attribute is also created for the <code class="highlighter-rouge">marriage</code> relationship.</p>
 
 <p>Calling the Grakn migrator on the <em>weddings.csv</em> file using the above template (named <code class="highlighter-rouge">weddings-migrator.gql</code>) is performed as follows:</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>&lt;relative-path-to-Grakn&gt;/bin/migration.sh csv -i ./weddings.csv -t ./migrators/weddings-migrator.gql -k grakn
-</code></pre>
-</div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>./graql migrate csv <span class="nt">-i</span> ./weddings.csv <span class="nt">-t</span> ./migrators/weddings-migrator.gql <span class="nt">-k</span> grakn
+</code></pre></div></div>
 
 <p>The Graql insertion code is as follows:</p>
 
@@ -1082,15 +1125,18 @@ insert (spouse1: $x0, spouse2: $y0) isa marriage;
 
 <p>For simplicity, the <em>/raw-data/</em> directory of the example project contains a script called <em>loader.sh</em> that calls each migration script in turn, so you can simply call the script from the terminal, passing in the path to the Grakn <em>/bin/</em> directory.</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code> ./loader.sh &lt;relative-path-to-Grakn&gt;/bin
-</code></pre>
-</div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> ./loader.sh &lt;relative-path-to-Grakn&gt;/bin
+</code></pre></div></div>
 
-<p>The migration will take a minute or two, and the terminal will report which file it is migrating at each step. When it is complete, it will report that it is “Done migrating data”. To check that it has been successful, open the <a href="../grakn-dashboard/visualiser.html">Grakn visualiser</a> and select Types, then Entities, and choose one of those presented to you (the entities should be those described <a href="./CSV-migration.html#entities">above</a>]. The visualiser will display the entities it has imported. The screenshot below illustrates the result from selecting to see all <code class="highlighter-rouge">person</code> entities.</p>
+<p>The migration will take a minute or two, and the terminal will report which file it is migrating at each step. When it
+is complete, it will report that it is “Done migrating data”. To check that it has been successful, open the
+<a href="../grakn-dashboard/visualiser.html">Grakn visualiser</a> and select Types, then Entities, and choose one of those
+presented to you (the entities should be those described above. The visualiser will display the entities it has
+imported. The screenshot below illustrates the result from selecting to see all <code class="highlighter-rouge">person</code> entities.</p>
 
 <p><img src="/images/match-$x-isa-person.png" alt="Person query" /></p>
 
-<p>We have completed the data import, and the graph can now be queried. For example, from the Graql shell:</p>
+<p>We have completed the data import, and the knowledge base can now be queried. For example, from the Graql shell:</p>
 
 <pre><code class="language-graql">match $x isa person, has identifier $i; aggregate count;
 </code></pre>
@@ -1099,26 +1145,24 @@ insert (spouse1: $x0, spouse2: $y0) isa marriage;
 
 <h2 id="data-export">Data Export</h2>
 
-<p>In this example, we have imported a dataset stored in three separate CSV files into Grakn to build a simple graph. We have discussed the ontology and migration templates, and shown how to apply the templates to the CSV data using the shell migrator, using a script file <em>loader.sh</em> to automate calling the migrator on each file It is possible to export the data from Grakn, in <em>.gql</em> format, so that it can easily be loaded to a graph again without the need to migrate from CSV.</p>
+<p>In this example, we have imported a dataset stored in three separate CSV files into Grakn to build a simple knowledge base. We have discussed the schema and migration templates, and shown how to apply the templates to the CSV data using the shell migrator, using a script file <em>loader.sh</em> to automate calling the migrator on each file It is possible to export the data from Grakn, in <em>.gql</em> format, so that it can easily be loaded to a knowledge base again without the need to migrate from CSV.</p>
 
-<p>To export the data, we use the Grakn <em>migration.sh</em> shell script again, as described in the <a href="../migration/migration-overview.html#export-from-grakn">migration documentation</a>:</p>
+<p>To export the data, we use <code class="highlighter-rouge">graql migrate</code> command again, as described in the
+<a href="../migration/migration-overview.html#exporting-data-from-grakn">migration documentation</a>:</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="c"># Export the ontology</span>
-&lt;relative-path-to-Grakn&gt;/migration.sh <span class="nb">export</span> -ontology &gt; ontology-export.gql
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Export the schema</span>
+./graql migrate <span class="nb">export</span> <span class="nt">-schema</span> <span class="o">&gt;</span> schema-export.gql
 
 <span class="c"># Export the data</span>
-&lt;relative-path-to-Grakn&gt;/migration.sh <span class="nb">export</span> -data &gt; data-export.gql
-</code></pre>
-</div>
+./graql migrate <span class="nb">export</span> <span class="nt">-data</span> <span class="o">&gt;</span> data-export.gql
+</code></pre></div></div>
 
-<p>Exporting data or the ontology from Grakn, into Graql, will always redirect to standard out, so above we are sending the output to an appropriately named file.</p>
+<p>Exporting data or the schema from Grakn, into Graql, will always redirect to standard out, so above we are sending the output to an appropriately named file.</p>
 
 <h2 id="where-next">Where Next?</h2>
 
 <p>This example has illustrated how to migrate CSV data into Grakn. Having read it, you may want to further study our documentation about <a href="../migration/CSV-migration.html">CSV migration</a> and <a href="https://grakn.ai/pages/documentation/graql/graql-templating.html">Graql templating</a>.</p>
 
-<h2 id="comments">Comments</h2>
-<p>Want to leave a comment? Visit <a href="https://github.com/graknlabs/docs/issues/27" target="_blank">the issues on Github for this page</a> (you’ll need a GitHub account). You are also welcome to contribute to our documentation directly via the “Edit me” button at the top of the page.</p>
 
 
     <div class="tags">
@@ -1162,7 +1206,7 @@ insert (spouse1: $x0, spouse2: $y0) isa marriage;
         <br>
         <p>© 2017 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2017 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> January 2017<br/> Site last generated: Sep 12, 2017 <br />
+        <span>Page last updated:</span> January 2017<br/> Site last generated: Nov 2, 2017 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">
@@ -1170,7 +1214,7 @@ insert (spouse1: $x0, spouse2: $y0) isa marriage;
         <ul>
             <li><a href="/pages/overview/index.html">Introduction</a></li>
             <li><a href="/pages/documentation/get-started/setup-guide.html">Install</a></li>
-            <li><a href="/pages/documentation/the-basics/quickstart-tutorial.html">Quickstart</a></li>
+            <li><a href="/pages/documentation/get-started/quickstart-tutorial.html">Quickstart</a></li>
         </ul>
     </div>
     <div class="col-lg-2 footer">
@@ -1209,5 +1253,12 @@ insert (spouse1: $x0, spouse2: $y0) isa marriage;
     </div>
 
 </body>
+
+<!-- the google_analytics_id gets auto inserted from the config file -->
+
+
+
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create','UA-72414051-1','auto');ga('require','displayfeatures');ga('send','pageview');</script>
+
 
 </html>

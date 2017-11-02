@@ -28,6 +28,24 @@
 
 <link rel="shortcut icon" href="/favicon.ico">
 
+<!-- Facebook Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '2009892122581066'); // Insert your pixel ID here.
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=2009892122581066&ev=PageView&noscript=1" alt="facebook pixel"
+/></noscript>
+<!-- DO NOT MODIFY -->
+<!-- End Facebook Pixel Code -->
+
+
+
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 <!--[if lt IE 9]>
@@ -209,7 +227,6 @@
                     </ul>
                 </li> -->
                 <li><a href="/pages/overview/index.html">Overview</a></li>
-                <li><a href=/pages/solutions.html>Solutions</a></li>
                 <li><a href="/pages/index.html">Documentation</a></li>
                 <li><a rel="me" href="//grakn.ai/community.html">Community</a></li>
                 <li><a rel="me" href="//discuss.grakn.ai/">Discussion</a></li>
@@ -256,6 +273,7 @@
         <!-- Sidebar Column -->
         <div class="col-md-3">
           
+
 
 
 
@@ -311,19 +329,26 @@
         
     
     <li>
-        <a href="#">Graql Ontology</a>
+        <a href="#">Graql Schema</a>
         <ul>
             
             
             
-            <li><a href="/pages/documentation/building-an-ontology/basic-ontology.html">Define a Basic Ontology</a></li>
+            <li><a href="/pages/documentation/building-a-schema/basic-schema.html">Define a Basic Schema</a></li>
             
             
             
             
             
             
-            <li><a href="/pages/documentation/building-an-ontology/hierarchical-ontology.html">Define a Hierarchical Ontology</a></li>
+            <li><a href="/pages/documentation/building-a-schema/hierarchical-schema.html">Define a Hierarchical Schema</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="/pages/documentation/building-a-schema/rule-driven-schema.html">Define a Rule-Driven Schema</a></li>
             
             
             
@@ -352,14 +377,14 @@
             
             
             
-            <li><a href="/pages/documentation/graql/match-queries.html">Match Queries</a></li>
+            <li><a href="/pages/documentation/graql/matches.html">Matches</a></li>
             
             
             
             
             
             
-            <li><a href="/pages/documentation/graql/ask-queries.html">Ask Queries</a></li>
+            <li><a href="/pages/documentation/graql/get-queries.html">Get Queries</a></li>
             
             
             
@@ -374,6 +399,13 @@
             
             
             <li><a href="/pages/documentation/graql/insert-queries.html">Insert Queries</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="/pages/documentation/graql/define-queries.html">Define Queries</a></li>
             
             
             
@@ -487,6 +519,13 @@
             
             
             
+            <li><a href="/pages/documentation/migration/XML-migration.html">XML Migration</a></li>
+            
+            
+            
+            
+            
+            
             <li><a href="/pages/documentation/migration/SQL-migration.html">SQL Migration</a></li>
             
             
@@ -516,7 +555,7 @@
             
             
             
-            <li><a href="/pages/documentation/developing-with-java/graph-api.html">Graph API</a></li>
+            <li><a href="/pages/documentation/developing-with-java/java-api.html">Java API</a></li>
             
             
             
@@ -696,7 +735,7 @@
             
             
             
-            <li><a href="/pages/documentation/examples/graph-api-example.html">Graph API for Java developers</a></li>
+            <li><a href="/pages/documentation/examples/java-api-example.html">API for Java developers</a></li>
             
             
             
@@ -723,6 +762,12 @@
         <li>
             
             <li><a href="/pages/contributors/index.html">Contribute to GRAKN.AI</a></li>
+            
+        </li>
+        
+        <li>
+            
+            <li><a href="/pages/academy/index.html">GRAKN Academy</a></li>
             
         </li>
         
@@ -782,13 +827,13 @@ $('#toc').on('click', 'a', function() {
 
     
 
-    <a target="_blank" href="https://github.com/graknlabs/docs/blob/master/pages/documentation/6-developing-with-java/loader-api.md" class="btn btn-default githubEditButton" role="button"><i class="fa fa-github fa-lg"></i> Edit me</a>
+    <a target="_blank" href="https://github.com/graknlabs/grakn/tree/master/docs/pages/documentation/6-developing-with-java/loader-api.md" class="btn btn-default githubEditButton" role="button"><i class="fa fa-github fa-lg"></i> Edit me</a>
 
     
 
     
 
-  <p>The Grakn loader is a Java client for loading large quantities of data into a Grakn graph using multithreaded batch loading. The loader client operates by sending requests to the Grakn REST Tasks endpoint and polling for the status of submitted tasks, so the user no longer needs to implement these REST transactions. The loader client additionally provides a number of useful features, including batching insert queries, blocking, and callback on batch execution status. Configuration options allow the user to finely-tune batch loading settings.</p>
+  <p>The Grakn loader is a Java client for loading large quantities of data into a Grakn knowledge base using multithreaded batch loading. The loader client operates by sending requests to the Grakn REST Tasks endpoint and polling for the status of submitted tasks, so the user no longer needs to implement these REST transactions. The loader client additionally provides a number of useful features, including batching insert queries, blocking, and callback on batch execution status. Configuration options allow the user to finely-tune batch loading settings.</p>
 
 <p>It is possible for batches of insert queries to fail upon insertion. By default, the client will not log the status of the batch execution. The user can specify a callback function to operate on the result of the batch operation and print and accumulate status information.</p>
 
@@ -796,44 +841,40 @@ $('#toc').on('click', 'a', function() {
 
 <p>To use the loader client API, add the following to your pom.xml:</p>
 
-<div class="language-xml highlighter-rouge"><pre class="highlight"><code><span class="nt">&lt;dependency&gt;</span>
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;dependency&gt;</span>
 	<span class="nt">&lt;groupId&gt;</span>ai.grakn<span class="nt">&lt;/groupId&gt;</span>
 	<span class="nt">&lt;artifactId&gt;</span>grakn-client<span class="nt">&lt;/artifactId&gt;</span>
 	<span class="nt">&lt;version&gt;</span>${grakn.version}<span class="nt">&lt;/version&gt;</span>
 <span class="nt">&lt;/dependency&gt;</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 <p>and add the following to your imports:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>import ai.grakn.client.BatchMutatorClient;
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>import ai.grakn.client.BatchMutatorClient;
+</code></pre></div></div>
 
 <h1 id="basic-usage">Basic Usage</h1>
 
-<p>The loader client provides two constructors. The first accepts only the keyspace to load data into and the URI endpoint where Grakn Engine Server is running.</p>
+<p>The loader client provides two constructors. 
+The first accepts only the keyspace to load data into, the URI endpoint where Grakn Engine Server is running, a flag to enable debug mode, and the number of retries to perform should engine be unavailable for some time.</p>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">BatchMutatorClient</span> <span class="n">loader</span> <span class="o">=</span> <span class="k">new</span> <span class="n">BatchMutatorClient</span><span class="o">(</span><span class="n">keyspace</span><span class="o">,</span> <span class="n">uri</span><span class="o">);</span>
-</code></pre>
-</div>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">BatchMutatorClient</span> <span class="n">loader</span> <span class="o">=</span> <span class="k">new</span> <span class="n">BatchMutatorClient</span><span class="o">(</span><span class="n">keyspace</span><span class="o">,</span> <span class="n">uri</span><span class="o">,</span> <span class="kc">false</span><span class="o">,</span> <span class="mi">1</span><span class="o">);</span>
+</code></pre></div></div>
 
 <p>The second constructor additionally allows the user to specify a callback function that executes on completion of tasks.</p>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">loader</span> <span class="o">=</span> <span class="k">new</span> <span class="n">BatchMutatorClient</span><span class="o">(</span><span class="n">keyspace</span><span class="o">,</span> <span class="n">uri</span><span class="o">,</span> <span class="n">callback</span><span class="o">);</span>
-</code></pre>
-</div>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">loader</span> <span class="o">=</span> <span class="k">new</span> <span class="n">BatchMutatorClient</span><span class="o">(</span><span class="n">keyspace</span><span class="o">,</span> <span class="n">uri</span><span class="o">,</span> <span class="n">callback</span><span class="o">,</span> <span class="kc">false</span><span class="o">,</span> <span class="mi">1</span><span class="o">);</span>
+</code></pre></div></div>
 
-<p>The loader client can be thought of as an empty bucket in which to dump insert queries that will be batch-loaded into the specified graph. Batching, blocking and callbacks are all executed based on how the user has configured the client, which simplifies usage. The following code will load 100 insert queries into the graph.</p>
+<p>The loader client can be thought of as an empty bucket in which to dump insert queries that will be batch-loaded into the specified knowledge base. Batching, blocking and callbacks are all executed based on how the user has configured the client, which simplifies usage. The following code will load 100 insert queries into the knowledge base.</p>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">InsertQuery</span> <span class="n">insert</span> <span class="o">=</span> <span class="n">insert</span><span class="o">(</span><span class="n">var</span><span class="o">().</span><span class="na">isa</span><span class="o">(</span><span class="s">"person"</span><span class="o">));</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">InsertQuery</span> <span class="n">insert</span> <span class="o">=</span> <span class="n">insert</span><span class="o">(</span><span class="n">var</span><span class="o">().</span><span class="na">isa</span><span class="o">(</span><span class="s">"person"</span><span class="o">));</span>
 
 <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">100</span><span class="o">;</span> <span class="n">i</span><span class="o">++){</span>
 	<span class="n">loader</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">insert</span><span class="o">);</span>
 <span class="o">}</span>
 
 <span class="n">loader</span><span class="o">.</span><span class="na">waitToFinish</span><span class="o">();</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>The user should call <code class="highlighter-rouge">waitToFinish()</code>, which will flush the last batch of queries and block until all batches have executed.</p>
 
@@ -845,7 +886,7 @@ $('#toc').on('click', 'a', function() {
 
 <p>The default batch size is <strong>25</strong>.</p>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="c1">// Setting the batch size to one</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Setting the batch size to one</span>
 <span class="n">loader</span><span class="o">.</span><span class="na">setBatchSize</span><span class="o">(</span><span class="mi">1</span><span class="o">);</span>
 
 <span class="c1">// Each of these insert queries will be executed in their own transaction</span>
@@ -864,12 +905,11 @@ $('#toc').on('click', 'a', function() {
 <span class="n">loader</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">insert</span><span class="o">);</span>
 
 <span class="n">loader</span><span class="o">.</span><span class="na">waitToFinish</span><span class="o">();</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>Flushing in the middle of adding queries will force-send batches to the server, overriding the set batch size. The following code will execute in two transactions, the first containing one insert and the second transaction containing two, even though the overall batch size is set to five.</p>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">loader</span><span class="o">.</span><span class="na">setBatchSize</span><span class="o">(</span><span class="mi">5</span><span class="o">);</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">loader</span><span class="o">.</span><span class="na">setBatchSize</span><span class="o">(</span><span class="mi">5</span><span class="o">);</span>
 
 <span class="c1">// First transaction</span>
 <span class="n">loader</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">insert</span><span class="o">);</span>
@@ -881,8 +921,7 @@ $('#toc').on('click', 'a', function() {
 <span class="n">loader</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">insert</span><span class="o">);</span>
 
 <span class="n">loader</span><span class="o">.</span><span class="na">waitToFinish</span><span class="o">();</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>This batch size property can directly effect loading times. If you find that your data is loading too slowly, try increasing the size of the batch.</p>
 
@@ -891,7 +930,7 @@ $('#toc').on('click', 'a', function() {
 
 <p>The default number of active tasks is <strong>25</strong>.</p>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">loader</span><span class="o">.</span><span class="na">setBatchSize</span><span class="o">(</span><span class="mi">1</span><span class="o">);</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">loader</span><span class="o">.</span><span class="na">setBatchSize</span><span class="o">(</span><span class="mi">1</span><span class="o">);</span>
 <span class="n">loader</span><span class="o">.</span><span class="na">setNumberActiveTasks</span><span class="o">(</span><span class="mi">1</span><span class="o">);</span>
 
 <span class="c1">// First transaction</span>
@@ -899,8 +938,9 @@ $('#toc').on('click', 'a', function() {
 
 <span class="c1">// Second transaction. Block here until the first transaction completes. </span>
 <span class="n">loader</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">insert</span><span class="o">);</span>
-</code></pre>
-</div>
+
+<span class="n">loader</span><span class="o">.</span><span class="na">waitToFinish</span><span class="o">();</span>
+</code></pre></div></div>
 
 <p>In the above scenario, the loader will block the calling thread when adding the second transaction. Only when the first transaction completes execution will the second transaction be sent to the server.</p>
 
@@ -910,18 +950,17 @@ $('#toc').on('click', 'a', function() {
 
 <p>The server response is describes more in deatils in the REST api documentation. It will look something like this:</p>
 
-<div class="language-json highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="w">
-	</span><span class="nt">"creator"</span><span class="p">:</span><span class="s2">"ai.grakn.client.BatchMutatorClient"</span><span class="p">,</span><span class="w">
-	</span><span class="nt">"runAt"</span><span class="p">:</span><span class="s2">"2017-02-28T10:38:07.585Z"</span><span class="p">,</span><span class="w">
-	</span><span class="nt">"recurring"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
-	</span><span class="nt">"className"</span><span class="p">:</span><span class="s2">"ai.grakn.engine.loader.LoaderTask"</span><span class="p">,</span><span class="w">
-	</span><span class="nt">"interval"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
-	</span><span class="nt">"id"</span><span class="p">:</span><span class="s2">"9118075f-afd7-48dd-b594-b49d9e2cc8d7"</span><span class="p">,</span><span class="w">
-	</span><span class="nt">"status"</span><span class="p">:</span><span class="s2">"COMPLETED"</span><span class="p">,</span><span class="w">
-	</span><span class="nt">"engineID"</span><span class="p">:</span><span class="s2">"67128a90-1112-400a-a38e-0f4a35f2c8f6"</span><span class="w">
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+	</span><span class="s2">"creator"</span><span class="p">:</span><span class="s2">"ai.grakn.client.BatchMutatorClient"</span><span class="p">,</span><span class="w">
+	</span><span class="s2">"runAt"</span><span class="p">:</span><span class="s2">"2017-02-28T10:38:07.585Z"</span><span class="p">,</span><span class="w">
+	</span><span class="s2">"recurring"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
+	</span><span class="s2">"className"</span><span class="p">:</span><span class="s2">"ai.grakn.engine.loader.LoaderTask"</span><span class="p">,</span><span class="w">
+	</span><span class="s2">"interval"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+	</span><span class="s2">"id"</span><span class="p">:</span><span class="s2">"9118075f-afd7-48dd-b594-b49d9e2cc8d7"</span><span class="p">,</span><span class="w">
+	</span><span class="s2">"status"</span><span class="p">:</span><span class="s2">"COMPLETED"</span><span class="p">,</span><span class="w">
+	</span><span class="s2">"engineID"</span><span class="p">:</span><span class="s2">"67128a90-1112-400a-a38e-0f4a35f2c8f6"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre>
-</div>
+</span></code></pre></div></div>
 
 <p>Migration uses this callback function to track status information about the number of batches that have completed for the running migration.</p>
 
@@ -938,21 +977,12 @@ loader.setTaskCompletionConsumer((Json json) -&gt; {
 
 <p>This callback is executed whenever a terminal response from the server is received, even if an exception was thrown. In the case of an execption, the Json argument will be either empty or contain the errored response from the server including the server-side exception.</p>
 
-<h2 id="retry-policy">Retry policy</h2>
-<p>Allows the user to specify whether the client should retry sending requests if the server cannot be reached.</p>
+<h2 id="close">Close</h2>
 
-<p>The default setting is for the retry policy to be <strong>false</strong>.</p>
+<p>The loader can be closed as follows</p>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="c1">// If the server is unavailable, the client will attempt to re-send the queries</span>
-<span class="n">loader</span><span class="o">.</span><span class="na">setRetryPolicy</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>
-
-<span class="c1">// The client will not attempt to resend the batch of queries if the server becomes unavailable</span>
-<span class="n">loader</span><span class="o">.</span><span class="na">setRetryPolicy</span><span class="o">(</span><span class="kc">false</span><span class="o">);</span>
-</code></pre>
-</div>
-
-<h2 id="comments">Comments</h2>
-<p>Want to leave a comment? Visit <a href="https://github.com/graknlabs/docs/issues/23" target="_blank">the issues on Github for this page</a> (you’ll need a GitHub account). You are also welcome to contribute to our documentation directly via the “Edit me” button at the top of the page.</p>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">loader</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+</code></pre></div></div>
 
 
 
@@ -993,7 +1023,7 @@ loader.setTaskCompletionConsumer((Json json) -&gt; {
         <br>
         <p>© 2017 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2017 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> February 2017<br/> Site last generated: Sep 12, 2017 <br />
+        <span>Page last updated:</span> February 2017<br/> Site last generated: Nov 2, 2017 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">
@@ -1001,7 +1031,7 @@ loader.setTaskCompletionConsumer((Json json) -&gt; {
         <ul>
             <li><a href="/pages/overview/index.html">Introduction</a></li>
             <li><a href="/pages/documentation/get-started/setup-guide.html">Install</a></li>
-            <li><a href="/pages/documentation/the-basics/quickstart-tutorial.html">Quickstart</a></li>
+            <li><a href="/pages/documentation/get-started/quickstart-tutorial.html">Quickstart</a></li>
         </ul>
     </div>
     <div class="col-lg-2 footer">
@@ -1040,5 +1070,12 @@ loader.setTaskCompletionConsumer((Json json) -&gt; {
     </div>
 
 </body>
+
+<!-- the google_analytics_id gets auto inserted from the config file -->
+
+
+
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create','UA-72414051-1','auto');ga('require','displayfeatures');ga('send','pageview');</script>
+
 
 </html>

@@ -28,6 +28,24 @@
 
 <link rel="shortcut icon" href="/favicon.ico">
 
+<!-- Facebook Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '2009892122581066'); // Insert your pixel ID here.
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=2009892122581066&ev=PageView&noscript=1" alt="facebook pixel"
+/></noscript>
+<!-- DO NOT MODIFY -->
+<!-- End Facebook Pixel Code -->
+
+
+
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 <!--[if lt IE 9]>
@@ -209,7 +227,6 @@
                     </ul>
                 </li> -->
                 <li><a href="/pages/overview/index.html">Overview</a></li>
-                <li><a href=/pages/solutions.html>Solutions</a></li>
                 <li><a href="/pages/index.html">Documentation</a></li>
                 <li><a rel="me" href="//grakn.ai/community.html">Community</a></li>
                 <li><a rel="me" href="//discuss.grakn.ai/">Discussion</a></li>
@@ -256,6 +273,7 @@
         <!-- Sidebar Column -->
         <div class="col-md-3">
           
+
 
 
 
@@ -311,19 +329,26 @@
         
     
     <li>
-        <a href="#">Graql Ontology</a>
+        <a href="#">Graql Schema</a>
         <ul>
             
             
             
-            <li><a href="/pages/documentation/building-an-ontology/basic-ontology.html">Define a Basic Ontology</a></li>
+            <li><a href="/pages/documentation/building-a-schema/basic-schema.html">Define a Basic Schema</a></li>
             
             
             
             
             
             
-            <li><a href="/pages/documentation/building-an-ontology/hierarchical-ontology.html">Define a Hierarchical Ontology</a></li>
+            <li><a href="/pages/documentation/building-a-schema/hierarchical-schema.html">Define a Hierarchical Schema</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="/pages/documentation/building-a-schema/rule-driven-schema.html">Define a Rule-Driven Schema</a></li>
             
             
             
@@ -352,14 +377,14 @@
             
             
             
-            <li><a href="/pages/documentation/graql/match-queries.html">Match Queries</a></li>
+            <li><a href="/pages/documentation/graql/matches.html">Matches</a></li>
             
             
             
             
             
             
-            <li><a href="/pages/documentation/graql/ask-queries.html">Ask Queries</a></li>
+            <li><a href="/pages/documentation/graql/get-queries.html">Get Queries</a></li>
             
             
             
@@ -374,6 +399,13 @@
             
             
             <li><a href="/pages/documentation/graql/insert-queries.html">Insert Queries</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="/pages/documentation/graql/define-queries.html">Define Queries</a></li>
             
             
             
@@ -487,6 +519,13 @@
             
             
             
+            <li><a href="/pages/documentation/migration/XML-migration.html">XML Migration</a></li>
+            
+            
+            
+            
+            
+            
             <li><a href="/pages/documentation/migration/SQL-migration.html">SQL Migration</a></li>
             
             
@@ -516,7 +555,7 @@
             
             
             
-            <li><a href="/pages/documentation/developing-with-java/graph-api.html">Graph API</a></li>
+            <li><a href="/pages/documentation/developing-with-java/java-api.html">Java API</a></li>
             
             
             
@@ -696,7 +735,7 @@
             
             
             
-            <li><a href="/pages/documentation/examples/graph-api-example.html">Graph API for Java developers</a></li>
+            <li><a href="/pages/documentation/examples/java-api-example.html">API for Java developers</a></li>
             
             
             
@@ -723,6 +762,12 @@
         <li>
             
             <li><a href="/pages/contributors/index.html">Contribute to GRAKN.AI</a></li>
+            
+        </li>
+        
+        <li>
+            
+            <li><a href="/pages/academy/index.html">GRAKN Academy</a></li>
             
         </li>
         
@@ -782,19 +827,19 @@ $('#toc').on('click', 'a', function() {
 
     
 
-    <a target="_blank" href="https://github.com/graknlabs/docs/blob/master/pages/documentation/11-examples/working-with-tweets.md" class="btn btn-default githubEditButton" role="button"><i class="fa fa-github fa-lg"></i> Edit me</a>
+    <a target="_blank" href="https://github.com/graknlabs/grakn/tree/master/docs/pages/documentation/11-examples/working-with-tweets.md" class="btn btn-default githubEditButton" role="button"><i class="fa fa-github fa-lg"></i> Edit me</a>
 
     
 
     
 
   <h1 id="working-with-tweets">Working With Tweets</h1>
-<p>In this tutorial we will look at how to stream public tweets into Grakn’s knowledge graph. The tutorial aims to demonstrate key concepts such as receiving, inserting and querying data. Upon the completion of this tutorial, you will have learnt about these concepts:</p>
+<p>In this tutorial we will look at how to stream public tweets into Grakn’s knowledge base. The tutorial aims to demonstrate key concepts such as receiving, inserting and querying data. Upon the completion of this tutorial, you will have learnt about these concepts:</p>
 
 <ul>
-  <li>Defining a simple Grakn.ai ontology using the Java API</li>
+  <li>Defining a simple Grakn.ai schema using the Java API</li>
   <li>Streaming public tweets into the application with the <a href="http://twitter4j.org/" title="Twitter4J">Twitter4J</a> library</li>
-  <li>Inserting tweets into the knowledge graph using Grakn’s Graph API</li>
+  <li>Inserting tweets into the knowledge base using Grakn’s Java API</li>
   <li>Performing simple queries using Graql, the Grakn’s query language</li>
 </ul>
 
@@ -807,9 +852,8 @@ $('#toc').on('click', 'a', function() {
 <h2 id="bootstraping-the-skeleton-project">Bootstraping The Skeleton Project</h2>
 <p>Let’s bootstrap a new maven project! Hit the command line and run the following command to generate a new maven project:</p>
 
-<div class="language-sh highlighter-rouge"><pre class="highlight"><code>mvn archetype:generate -DgroupId<span class="o">=</span>ai.grakn -DartifactId<span class="o">=</span>twitterexample -DarchetypeArtifactId<span class="o">=</span>maven-archetype-quickstart -DinteractiveMode<span class="o">=</span><span class="nb">false</span>
-</code></pre>
-</div>
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mvn archetype:generate <span class="nt">-DgroupId</span><span class="o">=</span>ai.grakn <span class="nt">-DartifactId</span><span class="o">=</span>twitterexample <span class="nt">-DarchetypeArtifactId</span><span class="o">=</span>maven-archetype-quickstart <span class="nt">-DinteractiveMode</span><span class="o">=</span><span class="nb">false</span>
+</code></pre></div></div>
 
 <p>Now that you have basic project structure and <code class="highlighter-rouge">pom.xml</code> in place, let’s start customising them to our needs. We will add two things to the <code class="highlighter-rouge">&lt;build&gt;</code> section:</p>
 
@@ -818,7 +862,7 @@ $('#toc').on('click', 'a', function() {
   <li><code class="highlighter-rouge">maven-shade-plugin</code> configuration which points to our <code class="highlighter-rouge">Main</code> class, for creating a fat JAR.</li>
 </ol>
 
-<div class="language-xml highlighter-rouge"><pre class="highlight"><code><span class="nt">&lt;build&gt;</span>
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;build&gt;</span>
     <span class="nt">&lt;plugins&gt;</span>
         <span class="nt">&lt;plugin&gt;</span>
             <span class="nt">&lt;groupId&gt;</span>org.apache.maven.plugins<span class="nt">&lt;/groupId&gt;</span>
@@ -864,15 +908,14 @@ $('#toc').on('click', 'a', function() {
         <span class="nt">&lt;/plugin&gt;</span>
     <span class="nt">&lt;/plugins&gt;</span>
 <span class="nt">&lt;/build&gt;</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
-<p>Then continue to the <code class="highlighter-rouge">&lt;dependencies&gt;</code> section and make sure you have all the required dependencies, i.e., <code class="highlighter-rouge">grakn-graph</code>, <code class="highlighter-rouge">twitter4j-core</code>, and <code class="highlighter-rouge">twitter4j-stream</code>:</p>
+<p>Then continue to the <code class="highlighter-rouge">&lt;dependencies&gt;</code> section and make sure you have all the required dependencies, i.e., <code class="highlighter-rouge">grakn-kb</code>, <code class="highlighter-rouge">twitter4j-core</code>, and <code class="highlighter-rouge">twitter4j-stream</code>:</p>
 
-<div class="language-xml highlighter-rouge"><pre class="highlight"><code><span class="nt">&lt;dependencies&gt;</span>
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;dependencies&gt;</span>
     <span class="nt">&lt;dependency&gt;</span>
         <span class="nt">&lt;groupId&gt;</span>ai.grakn<span class="nt">&lt;/groupId&gt;</span>
-        <span class="nt">&lt;artifactId&gt;</span>grakn-graph<span class="nt">&lt;/artifactId&gt;</span>
+        <span class="nt">&lt;artifactId&gt;</span>grakn-kb<span class="nt">&lt;/artifactId&gt;</span>
         <span class="nt">&lt;version&gt;&lt;Current</span> <span class="err">Grakn</span> <span class="err">Version</span><span class="nt">&gt;&lt;/version&gt;</span>
     <span class="nt">&lt;/dependency&gt;</span>
 
@@ -888,14 +931,13 @@ $('#toc').on('click', 'a', function() {
         <span class="nt">&lt;version&gt;&lt;Current</span> <span class="err">Twitter4j</span> <span class="err">Stream</span> <span class="err">Version</span><span class="nt">&gt;&lt;/version&gt;</span>
     <span class="nt">&lt;/dependency&gt;</span>
 <span class="nt">&lt;/dependencies&gt;</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h2 id="the-main-class">The Main Class</h2>
 
 <p>Let’s kick things off by defining a <code class="highlighter-rouge">Main</code> class inside the <code class="highlighter-rouge">ai.grakn.twitterexample</code> package. Aside from Twitter credentials, it contains a few important Grakn settings.</p>
 
-<p>First, we have decided to use an <strong>in-memory graph</strong> for simplicity’s sake — working with an in-memory graph frees us from having to set up a Grakn distribution in the local machine. The in-memory graph is not for storing data and will be lost once the program finishes execution. Second, the graph will be stored in a <strong>keyspace</strong> named <code class="highlighter-rouge">twitter-example</code>.</p>
+<p>First, we have decided to use an <strong>in-memory knowledge base</strong> for simplicity’s sake — working with an in-memory knowledge base frees us from having to set up a Grakn distribution in the local machine. The in-memory graph is not for storing data and will be lost once the program finishes execution. Second, the graph will be stored in a <strong>keyspace</strong> named <code class="highlighter-rouge">twitter-example</code>.</p>
 
 <!-- A lot of these examples are not valid Groovy, so they've been ignored in tests -->
 <pre><code class="language-java-test-ignore">package ai.grakn.twitterexample;
@@ -911,7 +953,7 @@ public class Main {
   private static final String accessTokenSecret = "...";
 
   // Grakn settings
-  private static final String graphImplementation = Grakn.IN_MEMORY;
+  private static final String implementation = Grakn.IN_MEMORY;
   private static final String keyspace = "twitter-example";
 
   public static void main(String[] args) {
@@ -920,100 +962,96 @@ public class Main {
 }
 </code></pre>
 
-<p>We then define a <code class="highlighter-rouge">GraknSession</code> object in <code class="highlighter-rouge">main()</code>. Enclosing it in a <code class="highlighter-rouge">try-with-resource</code> construct is a good practice, lest we forget closing the session by calling <code class="highlighter-rouge">session.close()</code>.</p>
+<p>We then define a <code class="highlighter-rouge">GraknSession</code> object in <code class="highlighter-rouge">main()</code>. Enclosing it in a <code class="highlighter-rouge">try-with-attribute</code> construct is a good practice, lest we forget closing the session by calling <code class="highlighter-rouge">session.close()</code>.</p>
 
 <pre><code class="language-java-test-ignore">public static void main(String[] args) {
-  try (GraknSession session = Grakn.session(graphImplementation, keyspace)) {
+  try (GraknSession session = Grakn.session(implementation, keyspace)) {
     // our code will go here
   }
 }
 </code></pre>
 
-<p>Following that, another equally important object for operating on the graph is <code class="highlighter-rouge">GraknGraph</code>. After performing the operations we desire, we must not forget to commit. For convenience, let’s define a helper method which opens a <code class="highlighter-rouge">GraknGraph</code> in write mode, and commits it after executing the function <code class="highlighter-rouge">fn</code>. We will be using this function in various places throughout the tutorial.</p>
+<p>Following that, another equally important object for operating on the knowledge base is <code class="highlighter-rouge">GraknTx</code>. After performing the operations we desire, we must not forget to commit. For convenience, let’s define a helper method which opens a <code class="highlighter-rouge">GraknTx</code> in write mode, and commits it after executing the function <code class="highlighter-rouge">fn</code>. We will be using this function in various places throughout the tutorial.</p>
 
-<pre><code class="language-java-test-ignore">public class GraknTweetOntologyHelper {
-  public static void withGraknGraph(GraknSession session, Consumer&lt;GraknGraph&gt; fn) {
-    GraknGraph graphWriter = session.open(GraknTxType.WRITE);
-    fn.accept(graphWriter);
-    graphWriter.commit();
+<pre><code class="language-java-test-ignore">public class GraknTweetSchemaHelper {
+  public static void withGraknTx(GraknSession session, Consumer&lt;GraknTx&gt; fn) {
+    GraknTx tx = session.open(GraknTxType.WRITE);
+    fn.accept(tx);
+    tx.commit();
   }
 }
 </code></pre>
 
 <p>We have decided to omit exception handling to keep the tutorial simple. In production code however, it will be very important and must not be forgotten.</p>
 
-<h2 id="defining-the-ontology">Defining The Ontology</h2>
+<h2 id="defining-the-schema">Defining The Schema</h2>
 
-<p>Let’s define the ontology. As we are mainly interested in both the <strong>tweet</strong> and <strong>who posted the tweet</strong>, let us capture these concepts by defining two <strong>entity types</strong>: <code class="highlighter-rouge">user</code> and <code class="highlighter-rouge">tweet</code>.</p>
+<p>Let’s define the schema. As we are mainly interested in both the <strong>tweet</strong> and <strong>who posted the tweet</strong>, let us capture these concepts by defining two <strong>entity types</strong>: <code class="highlighter-rouge">user</code> and <code class="highlighter-rouge">tweet</code>.</p>
 
-<p>The <code class="highlighter-rouge">user</code> entity will hold the user’s actual username in a <strong>resource</strong> called <code class="highlighter-rouge">screen_name</code>, while the <code class="highlighter-rouge">tweet</code> entity will contain the user’s tweet in another resource called <code class="highlighter-rouge">text</code>. We will also define a resource <code class="highlighter-rouge">identifier</code> for the id.</p>
+<p>The <code class="highlighter-rouge">user</code> entity will hold the user’s actual username in a <strong>attribute</strong> called <code class="highlighter-rouge">screen_name</code>, while the <code class="highlighter-rouge">tweet</code> entity will contain the user’s tweet in another attribute called <code class="highlighter-rouge">text</code>. We will also define an attribute <code class="highlighter-rouge">identifier</code> for the id.</p>
 
-<p>Next we will define two <strong>roles</strong> - <code class="highlighter-rouge">posts</code> and <code class="highlighter-rouge">posted_by</code> to express that a <code class="highlighter-rouge">user</code> posts a <code class="highlighter-rouge">tweet</code>, and similarly, a <code class="highlighter-rouge">tweet</code> is posted by a <code class="highlighter-rouge">user</code>. We will tie this two roles by a <strong>relation</strong> called <code class="highlighter-rouge">user-tweet-relation</code>.</p>
+<p>Next we will define two <strong>roles</strong> - <code class="highlighter-rouge">posts</code> and <code class="highlighter-rouge">posted_by</code> to express that a <code class="highlighter-rouge">user</code> posts a <code class="highlighter-rouge">tweet</code>, and similarly, a <code class="highlighter-rouge">tweet</code> is posted by a <code class="highlighter-rouge">user</code>. We will tie this two roles by a <strong>relationship</strong> called <code class="highlighter-rouge">user-tweet-relationship</code>.</p>
 
-<p>The structure can be summarized by the following graph:</p>
+<p>The structure can be summarized by the following image:</p>
 
-<p><img src="/images/working-with-tweets-ontology.jpg" alt="Ontology" /></p>
+<p><img src="/images/working-with-tweets-schema.jpg" alt="Schema" /></p>
 
-<p>With that set, let’s define a new method <code class="highlighter-rouge">initTweetOntology</code> inside <code class="highlighter-rouge">GraknTweetOntologyHelper</code> class and define our ontology creation there.</p>
+<p>With that set, let’s define a new method <code class="highlighter-rouge">initTweetSchema</code> inside <code class="highlighter-rouge">GraknTweetSchemaHelper</code> class and define our schema creation there.</p>
 
-<pre><code class="language-java-test-ignore">public class GraknTweetOntologyHelper {
-  public static void initTweetOntology(GraknGraph graknGraph) {
+<pre><code class="language-java-test-ignore">public class GraknTweetSchemaHelper {
+  public static void initTweetSchema(GraknTx tx) {
 
   }
 }
 </code></pre>
 
-<p>Start by defining our resources:</p>
+<p>Start by defining our attributes:</p>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="c1">// resources</span>
-<span class="n">ResourceType</span> <span class="n">idType</span> <span class="o">=</span> <span class="n">graknGraph</span><span class="o">.</span><span class="na">putResourceType</span><span class="o">(</span><span class="s">"identifier"</span><span class="o">,</span> <span class="n">ResourceType</span><span class="o">.</span><span class="na">DataType</span><span class="o">.</span><span class="na">STRING</span><span class="o">);</span>
-<span class="n">ResourceType</span> <span class="n">textType</span> <span class="o">=</span> <span class="n">graknGraph</span><span class="o">.</span><span class="na">putResourceType</span><span class="o">(</span><span class="s">"text"</span><span class="o">,</span> <span class="n">ResourceType</span><span class="o">.</span><span class="na">DataType</span><span class="o">.</span><span class="na">STRING</span><span class="o">);</span>
-<span class="n">ResourceType</span> <span class="n">screenNameType</span> <span class="o">=</span> <span class="n">graknGraph</span><span class="o">.</span><span class="na">putResourceType</span><span class="o">(</span><span class="s">"screen_name"</span><span class="o">,</span> <span class="n">ResourceType</span><span class="o">.</span><span class="na">DataType</span><span class="o">.</span><span class="na">STRING</span><span class="o">);</span>
-</code></pre>
-</div>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// attributes</span>
+<span class="n">AttributeType</span> <span class="n">idType</span> <span class="o">=</span> <span class="n">tx</span><span class="o">.</span><span class="na">putAttributeType</span><span class="o">(</span><span class="s">"identifier"</span><span class="o">,</span> <span class="n">AttributeType</span><span class="o">.</span><span class="na">DataType</span><span class="o">.</span><span class="na">STRING</span><span class="o">);</span>
+<span class="n">AttributeType</span> <span class="n">textType</span> <span class="o">=</span> <span class="n">tx</span><span class="o">.</span><span class="na">putAttributeType</span><span class="o">(</span><span class="s">"text"</span><span class="o">,</span> <span class="n">AttributeType</span><span class="o">.</span><span class="na">DataType</span><span class="o">.</span><span class="na">STRING</span><span class="o">);</span>
+<span class="n">AttributeType</span> <span class="n">screenNameType</span> <span class="o">=</span> <span class="n">tx</span><span class="o">.</span><span class="na">putAttributeType</span><span class="o">(</span><span class="s">"screen_name"</span><span class="o">,</span> <span class="n">AttributeType</span><span class="o">.</span><span class="na">DataType</span><span class="o">.</span><span class="na">STRING</span><span class="o">);</span>
+</code></pre></div></div>
 
 <p>Entities:</p>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="c1">// entities</span>
-<span class="n">EntityType</span> <span class="n">tweetType</span> <span class="o">=</span> <span class="n">graknGraph</span><span class="o">.</span><span class="na">putEntityType</span><span class="o">(</span><span class="s">"tweet"</span><span class="o">);</span>
-<span class="n">EntityType</span> <span class="n">userType</span> <span class="o">=</span> <span class="n">graknGraph</span><span class="o">.</span><span class="na">putEntityType</span><span class="o">(</span><span class="s">"user"</span><span class="o">);</span>
-</code></pre>
-</div>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// entities</span>
+<span class="n">EntityType</span> <span class="n">tweetType</span> <span class="o">=</span> <span class="n">tx</span><span class="o">.</span><span class="na">putEntityType</span><span class="o">(</span><span class="s">"tweet"</span><span class="o">);</span>
+<span class="n">EntityType</span> <span class="n">userType</span> <span class="o">=</span> <span class="n">tx</span><span class="o">.</span><span class="na">putEntityType</span><span class="o">(</span><span class="s">"user"</span><span class="o">);</span>
+</code></pre></div></div>
 
-<p>Roles and relations:</p>
+<p>Roles and relationships:</p>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="c1">// roles</span>
-<span class="n">Role</span> <span class="n">postsType</span> <span class="o">=</span> <span class="n">graknGraph</span><span class="o">.</span><span class="na">putRole</span><span class="o">(</span><span class="s">"posts"</span><span class="o">);</span>
-<span class="n">Role</span> <span class="n">postedByType</span> <span class="o">=</span> <span class="n">graknGraph</span><span class="o">.</span><span class="na">putRole</span><span class="o">(</span><span class="s">"posted_by"</span><span class="o">);</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// roles</span>
+<span class="n">Role</span> <span class="n">postsType</span> <span class="o">=</span> <span class="n">tx</span><span class="o">.</span><span class="na">putRole</span><span class="o">(</span><span class="s">"posts"</span><span class="o">);</span>
+<span class="n">Role</span> <span class="n">postedByType</span> <span class="o">=</span> <span class="n">tx</span><span class="o">.</span><span class="na">putRole</span><span class="o">(</span><span class="s">"posted_by"</span><span class="o">);</span>
 
-<span class="c1">// relations</span>
-<span class="n">RelationType</span> <span class="n">userTweetRelationType</span> <span class="o">=</span> <span class="n">graknGraph</span><span class="o">.</span><span class="na">putRelationType</span><span class="o">(</span><span class="s">"user-tweet-relation"</span><span class="o">).</span><span class="na">relates</span><span class="o">(</span><span class="n">postsType</span><span class="o">).</span><span class="na">relates</span><span class="o">(</span><span class="n">postedByType</span><span class="o">);</span>
-</code></pre>
-</div>
+<span class="c1">// relationships</span>
+<span class="n">RelationshipType</span> <span class="n">userTweetRelationType</span> <span class="o">=</span> <span class="n">tx</span><span class="o">.</span><span class="na">putRelationshipType</span><span class="o">(</span><span class="s">"user-tweet-relationship"</span><span class="o">).</span><span class="na">relates</span><span class="o">(</span><span class="n">postsType</span><span class="o">).</span><span class="na">relates</span><span class="o">(</span><span class="n">postedByType</span><span class="o">);</span>
+</code></pre></div></div>
 
-<p>And finally, assign resources and roles appropriately.</p>
+<p>And finally, assign attributes and roles appropriately.</p>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="c1">// resource and relation assignments</span>
-<span class="n">tweetType</span><span class="o">.</span><span class="na">resource</span><span class="o">(</span><span class="n">idType</span><span class="o">);</span>
-<span class="n">tweetType</span><span class="o">.</span><span class="na">resource</span><span class="o">(</span><span class="n">textType</span><span class="o">);</span>
-<span class="n">userType</span><span class="o">.</span><span class="na">resource</span><span class="o">(</span><span class="n">screenNameType</span><span class="o">);</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// attribute and relationship assignments</span>
+<span class="n">tweetType</span><span class="o">.</span><span class="na">attribute</span><span class="o">(</span><span class="n">idType</span><span class="o">);</span>
+<span class="n">tweetType</span><span class="o">.</span><span class="na">attribute</span><span class="o">(</span><span class="n">textType</span><span class="o">);</span>
+<span class="n">userType</span><span class="o">.</span><span class="na">attribute</span><span class="o">(</span><span class="n">screenNameType</span><span class="o">);</span>
 <span class="n">userType</span><span class="o">.</span><span class="na">plays</span><span class="o">(</span><span class="n">postsType</span><span class="o">);</span>
 <span class="n">tweetType</span><span class="o">.</span><span class="na">plays</span><span class="o">(</span><span class="n">postedByType</span><span class="o">);</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
-<p>Now invoke the method in <code class="highlighter-rouge">main</code> so the ontology is created at the start of the application.</p>
+<p>Now invoke the method in <code class="highlighter-rouge">main</code> so the schema is created at the start of the application.</p>
 
 <pre><code class="language-java-test-ignore">public static void main(String[] args) {
-  try (GraknSession session = Grakn.session(graphImplementation, keyspace)) {
-    withGraknGraph(session, graknGraph -&gt; initTweetOntology(graknGraph)); // initialize ontology
+  try (GraknSession session = Grakn.session(implememntation, keyspace)) {
+    withGraknTx(session, tx -&gt; initTweetSchema(tx)); // initialize schema
   }
 }
 </code></pre>
 
 <h2 id="streaming-data-from-twitter">Streaming Data From Twitter</h2>
 
-<p>Now that we’re done with ontology creation, let’s develop the code for listening to the public tweet stream.</p>
+<p>Now that we’re done with schema creation, let’s develop the code for listening to the public tweet stream.</p>
 
 <p>Define a new method <code class="highlighter-rouge">listenToTwitterStreamAsync </code> and put it in a class named <code class="highlighter-rouge">AsyncTweetStreamProcessorHelper </code>.  In addition to accepting Twitter credential settings, we will also need to supply a callback <code class="highlighter-rouge">onTweetReceived</code>, will be invoked whenever the application receives a new tweet. Further down, we will use this callback for storing, querying and displaying tweets as they come.</p>
 
@@ -1094,8 +1132,8 @@ class TweetListener implements StatusListener {
 <p>Let’s wrap up this section by adding the call to <code class="highlighter-rouge">listenToTwitterStreamAsync</code> into <code class="highlighter-rouge">main</code>.</p>
 
 <pre><code class="language-java-test-ignore">public static void main(String[] args) {
-  try (GraknSession session = Grakn.session(graphImplementation, keyspace)) {
-    withGraknGraph(session, graknGraph -&gt; initTweetOntology(graknGraph)); // initialize ontology
+  try (GraknSession session = Grakn.session(implementation, keyspace)) {
+    withGraknTx(session, tx -&gt; initTweetSchema(tx)); // initialize schema
 
     listenToTwitterStreamAsync(consumerKey, consumerSecret, accessToken, accessTokenSecret, (screenName, tweet) -&gt; {
       // TODO: do something upon receiving a new tweet
@@ -1104,34 +1142,34 @@ class TweetListener implements StatusListener {
 }
 </code></pre>
 
-<h2 id="inserting-tweets-into-the-knowledge-graph">Inserting Tweets Into The Knowledge Graph</h2>
+<h2 id="inserting-tweets-into-the-knowledge-base">Inserting Tweets Into The Knowledge Base</h2>
 
-<p>At this point our little program already has a clearly defined ontology, and is able to listen to incoming tweets. However, we have yet to decide what exactly we’re going to do with them. In this section we will have a look at how to:</p>
+<p>At this point our little program already has a clearly defined schema, and is able to listen to incoming tweets. However, we have yet to decide what exactly we’re going to do with them. In this section we will have a look at how to:</p>
 
 <ol>
-  <li>Insert an incoming tweet into the knowledge graph</li>
+  <li>Insert an incoming tweet into the knowledge base</li>
   <li>Insert a user who posted the tweet, only once — we don’t want to insert the same user twice</li>
   <li>Maintain an association between a tweet and the user</li>
 </ol>
 
-<p>We will be using the graph API for inserting the data in the graph because it is lightweight and efficient.</p>
+<p>We will be using the java API for inserting the data in the knowledge base because it is lightweight and efficient.</p>
 
 <h3 id="insert-a-tweet">Insert A Tweet</h3>
 
-<p>To insert a tweet, we must create a <code class="highlighter-rouge">tweet</code> entity and a <code class="highlighter-rouge">text</code> resource to hold the tweet’s textual data, before associating said resource with the entity.</p>
+<p>To insert a tweet, we must create a <code class="highlighter-rouge">tweet</code> entity and a <code class="highlighter-rouge">text</code> attribute to hold the tweet’s textual data, before associating said attribute with the entity.</p>
 
-<p>Let’s do that with a new method. It will accept a single <code class="highlighter-rouge">String</code> and inserts it into the knowledge graph, before returning the <code class="highlighter-rouge">Entity</code> of said tweet.</p>
+<p>Let’s do that with a new method. It will accept a single <code class="highlighter-rouge">String</code> and inserts it into the knowledge base, before returning the <code class="highlighter-rouge">Entity</code> of said tweet.</p>
 
-<p>Pay attention to how we need to retrieve the <code class="highlighter-rouge">EntityTypes</code> and <code class="highlighter-rouge">ResourceTypes</code> of entity and resource we are interested in — we need them in order to perform the actual insertion.</p>
+<p>Pay attention to how we need to retrieve the <code class="highlighter-rouge">EntityTypes</code> and <code class="highlighter-rouge">AttributeTypes</code> of entity and attribute we are interested in — we need them in order to perform the actual insertion.</p>
 
-<pre><code class="language-java-test-ignore">public static Entity insertTweet(GraknGraph graknGraph, String tweet) {
-    EntityType tweetEntityType = graknGraph.getEntityType("tweet");
-    ResourceType tweetResouceType = graknGraph.getResourceType("text");
+<pre><code class="language-java-test-ignore">public static Entity insertTweet(GraknTx tx, String tweet) {
+    EntityType tweetEntityType = tx.getEntityType("tweet");
+    AttributeType tweetResouceType = tx.getAttributeType("text");
 
     Entity tweetEntity = tweetEntityType.addEntity();
-    Resource tweetResource = tweetResouceType.putResource(tweet);
+    Attribute tweetAttribute = tweetResouceType.putAttribute(tweet);
 
-    return tweetEntity.resource(tweetResource);
+    return tweetEntity.attribute(tweetAttribute);
   }
 </code></pre>
 
@@ -1139,10 +1177,10 @@ class TweetListener implements StatusListener {
 
 <p>In addition to the tweet, we also want to store who posted the tweet. A semantic we need to enforce is to insert a particular user only once, i.e., it doesn’t make sense to store the same user twice.</p>
 
-<p>Therefore, let’s add a method for checking whether we’ve previously stored a particular user. We will be using Java 8’s <code class="highlighter-rouge">Optional&lt;T&gt;</code>, where we return the <code class="highlighter-rouge">Entity</code> object of that user only if it exists in the knowledge graph. Otherwise, an <code class="highlighter-rouge">Optional.empty()</code> will be returned.</p>
+<p>Therefore, let’s add a method for checking whether we’ve previously stored a particular user. We will be using Java 8’s <code class="highlighter-rouge">Optional&lt;T&gt;</code>, where we return the <code class="highlighter-rouge">Entity</code> object of that user only if it exists in the knowledge base. Otherwise, an <code class="highlighter-rouge">Optional.empty()</code> will be returned.</p>
 
 <pre><code class="language-java-test-ignore">public static Optional&lt;Entity&gt; findUser(QueryBuilder queryBuilder, String user) {
-  MatchQuery findUser = queryBuilder.match(var("x").isa("user").has("screen_name", user)).limit(1);
+  Match findUser = queryBuilder.match(var("x").isa("user").has("screen_name", user)).limit(1);
   Iterator&lt;Concept&gt; concepts = findUser.get("x").iterator();
   if (concepts.hasNext()) {
     Entity entity = concepts.next().asEntity();
@@ -1154,20 +1192,20 @@ class TweetListener implements StatusListener {
 
 <p>And the following method for inserting a user. This one is quite similar to the one we made for inserting a tweet.</p>
 
-<pre><code class="language-java-test-ignore">public static Entity insertUser(GraknGraph graknGraph, String user) {
-  EntityType userEntityType = graknGraph.getEntityType("user");
-  ResourceType userResourceType = graknGraph.getResourceType("screen_name");
+<pre><code class="language-java-test-ignore">public static Entity insertUser(GraknTx tx, String user) {
+  EntityType userEntityType = tx.getEntityType("user");
+  AttributeType userAttributeType = tx.getAttributeType("screen_name");
   Entity userEntity = userEntityType.addEntity();
-  Resource userResource = userResourceType.putResource(user);
-  return userEntity.resource(userResource);
+  Attribute userAttribute = userAttributeType.putAttribute(user);
+  return userEntity.attribute(userAttribute);
 }
 </code></pre>
 
-<p>And finally, write a function for inserting a user only if it’s not yet there in the knowledge graph.</p>
+<p>And finally, write a function for inserting a user only if it’s not yet there in the knowledge base.</p>
 
-<pre><code class="language-java-test-ignore">public static Entity insertUserIfNotExist(GraknGraph graknGraph, String screenName) {
-  QueryBuilder qb = graknGraph.graql();
-  return findUser(qb, screenName).orElse(insertUser(graknGraph, screenName));
+<pre><code class="language-java-test-ignore">public static Entity insertUserIfNotExist(GraknTx tx, String screenName) {
+  QueryBuilder qb = tx.graql();
+  return findUser(qb, screenName).orElse(insertUser(tx, screenName));
 }
 </code></pre>
 
@@ -1175,14 +1213,14 @@ class TweetListener implements StatusListener {
 
 <p>We’re almost there with a complete tweet insertion functionality! There’s only one thing left to do which is to relate the <code class="highlighter-rouge">tweet</code> entity with the <code class="highlighter-rouge">user</code> entity. Preserving this connection is crucial, after all.</p>
 
-<p>The following function will create a relation between the user and tweet that we specify.</p>
+<p>The following function will create a relationship between the user and tweet that we specify.</p>
 
-<pre><code class="language-java-test-ignore">public static Relation insertUserTweetRelation(GraknGraph graknGraph, Entity user, Entity tweet) {
-  RelationType userTweetRelationType = graknGraph.getRelationType("user-tweet-relation");
-  RoleType postsType = graknGraph.getRoleType("posts");
-  RoleType postedByType = graknGraph.getRoleType("posted_by");
+<pre><code class="language-java-test-ignore">public static Relationship insertUserTweetRelation(GraknTx tx, Entity user, Entity tweet) {
+  RelationType userTweetRelationType = tx.getRelationType("user-tweet-relationship");
+  RoleType postsType = tx.getRoleType("posts");
+  RoleType postedByType = tx.getRoleType("posted_by");
 
-  Relation userTweetRelation = userTweetRelationType.addRelation()
+  Relationship userTweetRelation = userTweetRelationType.addRelationship()
       .addRolePlayer(postsType, user)
       .addRolePlayer(postedByType, tweet);
 
@@ -1194,21 +1232,21 @@ class TweetListener implements StatusListener {
 
 <p>Finally, let’s wrap up by defining a function of which the sole responsibility is to execute all of the methods we have defined above.</p>
 
-<pre><code class="language-java-test-ignore">public static Relation insertUserTweet(GraknGraph graknGraph, String screenName, String tweet) {
-  Entity tweetEntity = insertTweet(graknGraph, tweet);
-  Entity userEntity = insertUserIfNotExist(graknGraph, screenName);
-  return insertUserTweetRelation(graknGraph, userEntity, tweetEntity);
+<pre><code class="language-java-test-ignore">public static Relationship insertUserTweet(GraknTx tx, String screenName, String tweet) {
+  Entity tweetEntity = insertTweet(tx, tweet);
+  Entity userEntity = insertUserIfNotExist(tx, screenName);
+  return insertUserTweetRelation(tx, userEntity, tweetEntity);
 }
 </code></pre>
 
 <p>We’re done with tweet insertion functionality! Next step: querying the stored data. Before we proceed, let’s add the method we’ve just defined to the main method as shown below.</p>
 
 <pre><code class="language-java-test-ignore">public static void main(String[] args) {
-  try (GraknSession session = Grakn.session(graphImplementation, keyspace)) {
-    withGraknGraph(session, graknGraph -&gt; initTweetOntology(graknGraph)); // initialize ontology
+  try (GraknSession session = Grakn.session(implementation, keyspace)) {
+    withGraknTx(session, tx -&gt; initTweetSchema(tx)); // initialize schema
 
     listenToTwitterStreamAsync(consumerKey, consumerSecret, accessToken, accessTokenSecret, (screenName, tweet) -&gt; {
-      withGraknGraph(session, graknGraph -&gt; insertUserTweet(graknGraph, screenName, tweet)); // insert tweet
+      withGraknTx(session, tx -&gt; insertUserTweet(tx, screenName, tweet)); // insert tweet
       // TODO: perform some meaningful queries on the inserted data
     });
   }
@@ -1217,38 +1255,35 @@ class TweetListener implements StatusListener {
 
 <h2 id="crafting-simple-queries-using-graql">Crafting Simple Queries Using Graql</h2>
 
-<p>We will perform a query which will count the number of tweets a user has posted since the program started. It can be achieved by utilizing the aggregate query feature. Graql has been chosen over the graph API for this task because it is declarative and therefore much easier to use for complex queries.</p>
+<p>We will perform a query which will count the number of tweets a user has posted since the program started. It can be achieved by utilizing the aggregate query feature. Graql has been chosen over the java API for this task because it is declarative and therefore much easier to use for complex queries.</p>
 
 <p>Let’s look at how we can build it step-by-step, start by creating a <code class="highlighter-rouge">QueryBuilder</code> object which we will use to craft the query in Graql.</p>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">QueryBuilder</span> <span class="n">qb</span> <span class="o">=</span> <span class="n">graknGraph</span><span class="o">.</span><span class="na">graql</span><span class="o">();</span>
-</code></pre>
-</div>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">QueryBuilder</span> <span class="n">qb</span> <span class="o">=</span> <span class="n">tx</span><span class="o">.</span><span class="na">graql</span><span class="o">();</span>
+</code></pre></div></div>
 
 <p>Now let’s begin crafting the query. For this tutorial, let’s create a <code class="highlighter-rouge">match</code> query where we retrieve both the <code class="highlighter-rouge">user</code> and <code class="highlighter-rouge">tweet</code>.</p>
 
 <p>We will bind them into <code class="highlighter-rouge">var</code>s which will be named <code class="highlighter-rouge">user</code> and <code class="highlighter-rouge">tweet</code>, respectively. Notice how we deliberately assign the <code class="highlighter-rouge">var</code>s  identical names as the respective entity types. This is not a necessity and in practice, you are free to name them anything you want.</p>
 
-<p>Also, pay attention to how we also supply the <code class="highlighter-rouge">user-tweet-relation</code> relation as part of the condition.</p>
+<p>Also, pay attention to how we also supply the <code class="highlighter-rouge">user-tweet-relationship</code> relationship as part of the condition.</p>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">qb</span><span class="o">.</span><span class="na">match</span><span class="o">(</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">qb</span><span class="o">.</span><span class="na">match</span><span class="o">(</span>
   <span class="n">var</span><span class="o">(</span><span class="s">"user"</span><span class="o">).</span><span class="na">isa</span><span class="o">(</span><span class="s">"user"</span><span class="o">),</span>
   <span class="n">var</span><span class="o">(</span><span class="s">"tweet"</span><span class="o">).</span><span class="na">isa</span><span class="o">(</span><span class="s">"tweet"</span><span class="o">),</span>
-  <span class="n">var</span><span class="o">().</span><span class="na">rel</span><span class="o">(</span><span class="s">"posts"</span><span class="o">,</span> <span class="s">"user"</span><span class="o">).</span><span class="na">rel</span><span class="o">(</span><span class="s">"posted_by"</span><span class="o">,</span> <span class="s">"tweet"</span><span class="o">).</span><span class="na">isa</span><span class="o">(</span><span class="s">"user-tweet-relation"</span><span class="o">));</span>
-</code></pre>
-</div>
+  <span class="n">var</span><span class="o">().</span><span class="na">rel</span><span class="o">(</span><span class="s">"posts"</span><span class="o">,</span> <span class="s">"user"</span><span class="o">).</span><span class="na">rel</span><span class="o">(</span><span class="s">"posted_by"</span><span class="o">,</span> <span class="s">"tweet"</span><span class="o">).</span><span class="na">isa</span><span class="o">(</span><span class="s">"user-tweet-relationship"</span><span class="o">));</span>
+</code></pre></div></div>
 
-<p>The query we’ve just defined will return every user and tweet along with their relations. We will use it as the basis of the aggregate query.</p>
+<p>The query we’ve just defined will return every user and tweet along with their relationships. We will use it as the basis of the aggregate query.</p>
 
 <p>Let’s do some aggregation over the result here. We will supply <code class="highlighter-rouge">"user"</code> and <code class="highlighter-rouge">count()</code> as the argument for <code class="highlighter-rouge">group()</code>, which essentially tells Grakn to group the result by username, and count the number of occurences per username.</p>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">qb</span><span class="o">.</span><span class="na">match</span><span class="o">(</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">qb</span><span class="o">.</span><span class="na">match</span><span class="o">(</span>
   <span class="n">var</span><span class="o">(</span><span class="s">"user"</span><span class="o">).</span><span class="na">isa</span><span class="o">(</span><span class="s">"user"</span><span class="o">),</span>
   <span class="n">var</span><span class="o">(</span><span class="s">"tweet"</span><span class="o">).</span><span class="na">isa</span><span class="o">(</span><span class="s">"tweet"</span><span class="o">),</span>
-  <span class="n">var</span><span class="o">().</span><span class="na">rel</span><span class="o">(</span><span class="s">"posts"</span><span class="o">,</span> <span class="s">"user"</span><span class="o">).</span><span class="na">rel</span><span class="o">(</span><span class="s">"posted_by"</span><span class="o">,</span> <span class="s">"tweet"</span><span class="o">).</span><span class="na">isa</span><span class="o">(</span><span class="s">"user-tweet-relation"</span><span class="o">)</span>
+  <span class="n">var</span><span class="o">().</span><span class="na">rel</span><span class="o">(</span><span class="s">"posts"</span><span class="o">,</span> <span class="s">"user"</span><span class="o">).</span><span class="na">rel</span><span class="o">(</span><span class="s">"posted_by"</span><span class="o">,</span> <span class="s">"tweet"</span><span class="o">).</span><span class="na">isa</span><span class="o">(</span><span class="s">"user-tweet-relationship"</span><span class="o">)</span>
 <span class="o">).</span><span class="na">aggregate</span><span class="o">(</span><span class="n">group</span><span class="o">(</span><span class="s">"user"</span><span class="o">,</span> <span class="n">count</span><span class="o">()));</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>The query will now return “the number of tweet a user has posted”, which is what we want, as an object of type <code class="highlighter-rouge">Map&lt;Concept, Long&gt;</code>. To be able to conveniently iterate, we will transform it into the relatively more straightforward type <code class="highlighter-rouge">Stream&lt;Map.Entry&lt;String, Long&gt;&gt;</code>, i.e., a stream of pairs of username and tweet count.</p>
 
@@ -1256,37 +1291,37 @@ class TweetListener implements StatusListener {
   Map&lt;Concept, Long&gt; result = ((Map&lt;Concept, Long&gt;) q.execute());
 
   // map Map&lt;Concept, Long&gt; into Stream&lt;Map.Entry&lt;String, Long&gt;&gt; before returning
-  ResourceType screenNameResourceType = graknGraph.getResourceType("screen_name");
+  AttributeType screenNameAttributeType = tx.getAttributeType("screen_name");
 
   Stream&lt;Map.Entry&lt;String, Long&gt;&gt; mapped = result.entrySet().stream().map(entry -&gt; {
     Concept key = entry.getKey();
     Long value = entry.getValue();
-    String screenName = (String) key.asEntity().resources(screenNameResourceType).iterator().next().getValue();
+    String screenName = (String) key.asEntity().attributes(screenNameAttributeType).iterator().next().getValue();
     return new HashMap.SimpleImmutableEntry&lt;&gt;(screenName, value);
   });
 </code></pre>
 
 <p>Voila! Here’s how <code class="highlighter-rouge">calculateTweetCountPerUser</code> should look like.</p>
 
-<pre><code class="language-java-test-ignore">public static Stream&lt;Map.Entry&lt;String, Long&gt;&gt; calculateTweetCountPerUser(GraknGraph graknGraph) {
+<pre><code class="language-java-test-ignore">public static Stream&lt;Map.Entry&lt;String, Long&gt;&gt; calculateTweetCountPerUser(GraknTx tx) {
   // build query
-  QueryBuilder qb = graknGraph.graql();
+  QueryBuilder qb = tx.graql();
   AggregateQuery q = qb.match(
       var("user").isa("user"),
       var("tweet").isa("tweet"),
-      var().rel("posts", "user").rel("posted_by", "tweet").isa("user-tweet-relation")
+      var().rel("posts", "user").rel("posted_by", "tweet").isa("user-tweet-relationship")
       ).aggregate(group("user", count()));
 
   // execute query
   Map&lt;Concept, Long&gt; result = ((Map&lt;Concept, Long&gt;) q.execute());
 
   // map Map&lt;Concept, Long&gt; into Stream&lt;Map.Entry&lt;String, Long&gt;&gt; before returning
-  ResourceType screenNameResourceType = graknGraph.getResourceType("screen_name");
+  AttributeType screenNameAttributeType = tx.getAttributeType("screen_name");
 
   Stream&lt;Map.Entry&lt;String, Long&gt;&gt; mapped = result.entrySet().stream().map(entry -&gt; {
     Concept key = entry.getKey();
     Long value = entry.getValue();
-    String screenName = (String) key.asEntity().resources(screenNameResourceType).iterator().next().getValue();
+    String screenName = (String) key.asEntity().attributes(screenNameAttributeType).iterator().next().getValue();
     return new HashMap.SimpleImmutableEntry&lt;&gt;(screenName, value);
   });
 
@@ -1304,17 +1339,17 @@ class TweetListener implements StatusListener {
   private static final String accessTokenSecret = "...";
 
   // Grakn settings
-  private static final String graphImplementation = Grakn.IN_MEMORY;
+  private static final String implementation = Grakn.IN_MEMORY;
   private static final String keyspace = "twitter-example";
 
   public static void main(String[] args) {
-    try (GraknSession session = Grakn.session(graphImplementation, keyspace)) {
-      withGraknGraph(session, graknGraph -&gt; initTweetOntology(graknGraph)); // initialize ontology
+    try (GraknSession session = Grakn.session(mplementation, keyspace)) {
+      withGraknTx(session, tx -&gt; initTweetSchema(tx)); // initialize schema
 
       listenToTwitterStreamAsync(consumerKey, consumerSecret, accessToken, accessTokenSecret, (screenName, tweet) -&gt; {
-        withGraknGraph(session, graknGraph -&gt; {
-          insertUserTweet(graknGraph, screenName, tweet); // insert tweet
-          Stream&lt;Map.Entry&lt;String, Long&gt;&gt; result = calculateTweetCountPerUser(graknGraph); // query
+        withGraknTx(session, tx -&gt; {
+          insertUserTweet(tx, screenName, tweet); // insert tweet
+          Stream&lt;Map.Entry&lt;String, Long&gt;&gt; result = calculateTweetCountPerUser(tx); // query
           prettyPrintQueryResult(result); // display
         });
       });
@@ -1333,23 +1368,21 @@ class TweetListener implements StatusListener {
 
 <p>We’re all set! The only thing left is to run the application. Let’s do it right away.</p>
 
-<div class="language-sh highlighter-rouge"><pre class="highlight"><code>mvn package
-java -jar target/twitterexample-1.0-SNAPSHOT.jar
-</code></pre>
-</div>
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mvn package
+java <span class="nt">-jar</span> target/twitterexample-1.0-SNAPSHOT.jar
+</code></pre></div></div>
 
 <p>Watch the terminal as the application runs. You should see the following text printed everytime there’s an incoming tweet:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>------
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>------
 -- user knowl3dg3 tweeted 2 time(s).
 -- user gr4ph tweeted 1 time(s).
 -- user w1th tweeted 1 time(s).
 -- user gr4kn tweeted 1 time(s).
 ------
-</code></pre>
-</div>
+</code></pre></div></div>
 
-<p>Finally, we have shown you many useful concepts — from creating an ontology, storing data, crafting a Graql query, as well as displaying the result of the query. These are fundamental concepts that you will likely use in almost every area.</p>
+<p>Finally, we have shown you many useful concepts — from creating a schema, storing data, crafting a Graql query, as well as displaying the result of the query. These are fundamental concepts that you will likely use in almost every area.</p>
 
 
     <div class="tags">
@@ -1399,7 +1432,7 @@ java -jar target/twitterexample-1.0-SNAPSHOT.jar
         <br>
         <p>© 2017 <a href="https://grakn.ai">Grakn Labs Ltd</a></p>
         <!-- &copy;2017 GRAKN.AI. All rights reserved. <br />
-        <span>Page last updated:</span> July 2017<br/> Site last generated: Sep 12, 2017 <br />
+        <span>Page last updated:</span> July 2017<br/> Site last generated: Nov 2, 2017 <br />
         <p><img src="images/company_logo.png" alt="Company logo"/></p> -->
     </div>
     <div class="col-lg-2 footer">
@@ -1407,7 +1440,7 @@ java -jar target/twitterexample-1.0-SNAPSHOT.jar
         <ul>
             <li><a href="/pages/overview/index.html">Introduction</a></li>
             <li><a href="/pages/documentation/get-started/setup-guide.html">Install</a></li>
-            <li><a href="/pages/documentation/the-basics/quickstart-tutorial.html">Quickstart</a></li>
+            <li><a href="/pages/documentation/get-started/quickstart-tutorial.html">Quickstart</a></li>
         </ul>
     </div>
     <div class="col-lg-2 footer">
@@ -1446,5 +1479,12 @@ java -jar target/twitterexample-1.0-SNAPSHOT.jar
     </div>
 
 </body>
+
+<!-- the google_analytics_id gets auto inserted from the config file -->
+
+
+
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create','UA-72414051-1','auto');ga('require','displayfeatures');ga('send','pageview');</script>
+
 
 </html>
