@@ -1,0 +1,26 @@
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+// Imports
+@import './fonts';
+@import './colours';
+
+// Imports - Components
+
+// Imports - Containers
+@import './containers/home';
+
+
+// Libs
+
+.app {
+  font-size: 14px;
+  font-family: 'Montserrat', sans-serif;
+}
+.main {
+  min-height: 600px;
+  background-color: #f7f7f7;
+}

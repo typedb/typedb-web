@@ -1,7 +1,0 @@
-# robotstxt.org/
-
-User-Agent: *
-Disallow: /mail/
-Disallow: /download/
-
-Sitemap: https://grakn.ai/sitemap.xml
