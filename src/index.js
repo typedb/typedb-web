@@ -2,17 +2,16 @@ import React from 'react';
 import { render } from 'react-dom';
 
 import { BrowserRouter } from 'react-router-dom'
-import { createBrowserHistory } from 'history';
 
 import 'stylesheets/app.scss';
 
 import Main from './routes';
-
-const history = createBrowserHistory();
+import NavigationBar from 'components/NavigationBar';
 
 const App = () => (
-  <BrowserRouter history={history}>
+  <BrowserRouter>
     <div className="app">
+      <NavigationBar />
       <Main />
     </div>
   </BrowserRouter>

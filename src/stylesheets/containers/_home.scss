@@ -1,41 +1,4 @@
 .home {
   width: 100%;
-  height: calc(100vh - 65px);
-  //padding: 60px 0;
-  //background: linear-gradient(to left, rgba(212,228,239,1) 0%, rgba(161,192,216,0.89) 66%, rgba(134,174,204,0.89) 100%);
-  background: url('/assets/HomePage.png');
-  background-repeat: no-repeat;
-  background-size: cover;
-  &__img {
-    width: 500px;
-    margin-left: calc(50% - 400px);
-    display: inline-block;
-    vertical-align: middle;
-  }
-  &__splash {
-    display: inline-block;
-    vertical-align: middle;
-    width: 350px;
-    margin-left: -100px;
-    margin-top: -100px;
-    color: $charcoal;
-    > span {
-      display: block;
-    }
-    &__header {
-      display: block;
-      font-size: 5rem;
-      font-weight: 300;
-    }
-    &__tagline {
-      font-size: 1.5rem;
-      font-weight: 300;
-      margin-bottom: 20px;
-    }
-    &__use {
-      font-size: 0.8rem;
-      font-weight: 300;
-      
-    }
-  }
+  height: 100%;
 }

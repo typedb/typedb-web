@@ -1,0 +1,27 @@
+.nav {
+  height: 60px;
+  box-shadow: 0px 15px 73px -1px rgba(0,0,0,0.03);
+  line-height: 60px;
+  padding: 0 2rem;
+  &__logo {
+    width: 150px;
+    display: inline-block;
+    vertical-align: middle;
+    > img {
+      display: block;
+    }
+  }
+  &__links {
+    position: absolute;
+    display: inline-block;
+    vertical-align: middle;
+    right: 0;
+  }
+  &__link {
+    color: $navColour;
+    text-decoration: none;
+    font-size: 1.1rem;
+    font-weight: 600;
+    padding: 0 0.5rem;
+  }
+}
