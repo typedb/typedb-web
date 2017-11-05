@@ -24,6 +24,13 @@ const NavigationBar = () => (
           )
         })
       }
+      <a 
+        href='https://github.com/graknlabs/grakn'
+        target="_blank"
+        className="nav__link"
+      >
+      <i className="fa fa-2x fa-github" aria-hidden="true"></i>      
+      </a>
       </div>
     </div>
   </div>
