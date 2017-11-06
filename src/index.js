@@ -1,20 +1,24 @@
 import React from 'react';
 import { render } from 'react-dom';
+import { Provider } from 'react-redux';
+import { ConnectedRouter } from 'connected-react-router';
 
-import { BrowserRouter } from 'react-router-dom'
+import Main from './routes';
+import store, { history } from './store';
+
+import NavigationBar from 'components/NavigationBar';
 
 import 'stylesheets/app.scss';
 
-import Main from './routes';
-import NavigationBar from 'components/NavigationBar';
-
 const App = () => (
-  <BrowserRouter>
-    <div className="app">
-      <NavigationBar />
-      <Main />
-    </div>
-  </BrowserRouter>
+  <Provider store={store}>
+    <ConnectedRouter history={history}>
+      <div className="app">
+        <NavigationBar />
+        <Main />
+      </div>
+    </ConnectedRouter>
+  </Provider>
 );
 
 render(

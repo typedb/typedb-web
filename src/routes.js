@@ -1,7 +1,7 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
-import HomePage from 'containers/HomePage';
-import AboutPage from 'containers/AboutPage';
+import HomePage from 'pages/HomePage';
+import AboutPage from 'pages/AboutPage';
 
 const Main = () => (
   <main className="main">
