@@ -6,4 +6,5 @@ module.exports = {
   Documentation: `${docBase}index.html`,
   Discussion: 'https://discuss.grakn.ai/',
   Blog: 'https://blog.grakn.ai/',
+  Github: 'https://github.com/graknlabs/grakn',
 };

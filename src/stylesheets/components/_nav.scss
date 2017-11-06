@@ -5,8 +5,7 @@
   padding: 0 2rem;
 
   @media screen and (max-width: $smallScreen) {
-    height: 100px;
-    padding: 0 0.5rem;
+    padding: 0 1rem;
   }
 
   &__logo {
@@ -22,17 +21,17 @@
     display: inline-block;
     vertical-align: middle;
     right: 0;
-    @media screen and (max-width: $smallScreen) {
-      position: relative;
-      overflow-x: scroll;
-      max-width: 100%;
-      margin-top: -15px;
-      display: block;
-      text-align: center;
-    }
-    &::-webkit-scrollbar {
-      display: none;
-    }
+    // @media screen and (max-width: $smallScreen) {
+    //   position: relative;
+    //   overflow-x: scroll;
+    //   max-width: 100%;
+    //   margin-top: -15px;
+    //   display: block;
+    //   text-align: center;
+    // }
+    // &::-webkit-scrollbar {
+    //   display: none;
+    // }
   }
   &__link {
     color: $navColour;
@@ -43,6 +42,31 @@
     > .fa {
       display: inline;
       vertical-align: middle;
+    }
+  }
+  &__hamburger {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: white;
+    padding: 2rem 0;
+    box-shadow: 0px 15px 73px -1px rgba(0,0,0,0.05);
+    > i {
+      position: absolute;
+      right: 1rem;
+      top: 1rem;
+    }  
+    > .nav__link {
+      display: block;
+      line-height: 2.5rem;
+    }
+    &--open {
+      display: block;
+    }
+    &__button {
+      padding-top: 1rem;
     }
   }
 }
