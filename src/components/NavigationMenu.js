@@ -33,9 +33,9 @@ class NavigationMenu extends Component {
     }) 
   }
 
-  renderToggle(value) {
+  renderToggle() {
     this.setState({
-      expanded: value,
+      expanded: !this.state.expanded,
     });
   }
 
@@ -45,15 +45,22 @@ class NavigationMenu extends Component {
       'nav__hamburger': true,
       'nav__hamburger--open': this.state.expanded 
     });
+    const hamburgerButton = classNames({
+      'fa': true,
+      'fa-2x': true,
+      'nav__hamburger__button': true,
+      'fa-bars': !this.state.expanded,
+      'fa-times': this.state.expanded
+    });
 
     return (
       <div className="nav__links">
       {
         mediaType === 'small' || mediaType === 'extraSmall' ?
           <i
-            className="fa fa-2x fa-bars nav__hamburger__button"
+            className={hamburgerButton}
             aria-hidden="true"
-            onClick={() => this.renderToggle(true)}
+            onClick={() => this.renderToggle()}
           />
           :
           null        
@@ -61,11 +68,6 @@ class NavigationMenu extends Component {
       {
         mediaType === 'small' || mediaType === 'extraSmall' ?
           <div className={hamburgerClasses}>
-            <i
-              className="fa fa-2x fa-close"
-              aria-hidden="true"
-              onClick={() => this.renderToggle(false)}
-            />
             {
               this.renderLinks()
             }

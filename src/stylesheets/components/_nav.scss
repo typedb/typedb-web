@@ -1,7 +1,9 @@
+$navHeight: 90px;
+$navShadow: 0 0 26px 0 rgba(221, 221, 221, 0.64);
 .nav {
-  height: 60px;
-  box-shadow: 0px 15px 73px -1px rgba(0,0,0,0.05);
-  line-height: 60px;
+  height: $navHeight;
+  box-shadow: $navShadow ;
+  line-height: $navHeight;
   padding: 0 2rem;
 
   @media screen and (max-width: $smallScreen) {
@@ -21,52 +23,43 @@
     display: inline-block;
     vertical-align: middle;
     right: 0;
-    // @media screen and (max-width: $smallScreen) {
-    //   position: relative;
-    //   overflow-x: scroll;
-    //   max-width: 100%;
-    //   margin-top: -15px;
-    //   display: block;
-    //   text-align: center;
-    // }
-    // &::-webkit-scrollbar {
-    //   display: none;
-    // }
   }
   &__link {
     color: $navColour;
     text-decoration: none;
-    font-size: 1.1rem;
+    font-size: 0.9rem;
     font-weight: 600;
-    padding: 0 0.5rem;
+    padding: 0 1rem;
     > .fa {
       display: inline;
       vertical-align: middle;
+      color: black;
     }
   }
   &__hamburger {
     display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
+    margin-top: 95px;
     width: 100%;
     background-color: white;
-    padding: 2rem 0;
-    box-shadow: 0px 15px 73px -1px rgba(0,0,0,0.05);
-    > i {
-      position: absolute;
-      right: 1rem;
-      top: 1rem;
-    }  
+    padding: 1rem 0;
+    box-shadow: $navShadow;
     > .nav__link {
       display: block;
       line-height: 2.5rem;
+      user-select: none;
+      margin-left: 1rem;
+      margin-right: 1rem;
+      > .fa {
+        display: block;
+        padding-top: 0.5rem;
+      }
     }
     &--open {
       display: block;
     }
     &__button {
-      padding-top: 1rem;
+      padding-top: 2rem;
+      float: right;    
     }
   }
 }
