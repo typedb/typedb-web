@@ -5,7 +5,10 @@ $navShadow: 0 0 26px 0 rgba(221, 221, 221, 0.64);
   box-shadow: $navShadow ;
   line-height: $navHeight;
   padding: 0 2rem;
-
+  position: fixed;
+  width: stretch;
+  background-color: white;
+  z-index: 100;
   @media screen and (max-width: $smallScreen) {
     padding: 0 1rem;
   }
@@ -25,7 +28,7 @@ $navShadow: 0 0 26px 0 rgba(221, 221, 221, 0.64);
     right: 0;
   }
   &__link {
-    color: $navColour;
+    color: $textNav;
     text-decoration: none;
     font-size: 0.9rem;
     font-weight: 600;
@@ -43,6 +46,7 @@ $navShadow: 0 0 26px 0 rgba(221, 221, 221, 0.64);
     background-color: white;
     padding: 1rem 0;
     box-shadow: $navShadow;
+    text-align: right;
     > .nav__link {
       display: block;
       line-height: 2.5rem;
