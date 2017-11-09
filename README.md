@@ -16,4 +16,4 @@ this starts the docs server at port :3002
 To build the documentation pages and the website
 ```npm run build ```
 The deployment of the documentation and the website happens on two different servers - this is so they can exist as parallel entities with the former being redirected to a *docs.grakn.ai/* subdomain.
-``` npm run start:prod``` 
+``` npm run production``` 
