@@ -63,8 +63,8 @@ const HomePage = () => (
           </div>
         </div>
       </div>
-      <div className="home__features__circle" />
-    </section>
+      <div className="home__features__circle"><img src="/assets/svg/bot.svg" alt="grakn bot" /></div>
+     </section>
     <section className="home__features home__features--alternate">
       <div className="home__features__container container home__container">
         <div className="home__features__item">
