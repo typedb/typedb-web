@@ -1,0 +1,96 @@
+.footer {
+  background-color: $backgroundPurple;
+  &__container {
+    padding: 70px 0;
+    text-align: center;
+    width: 90%;
+    margin: 0 auto;
+    @media screen and (max-width: $smallScreen) {
+      width: 80%;
+    }
+  }
+
+  &__block {
+    display: inline-block;
+    width: 20%;
+    vertical-align: top;    
+    &__header {
+      font-size: 16px;
+      color: $textCharcoal;
+      padding-bottom: 1rem;
+      font-weight: 600;
+    }
+    &__links {
+      > a {
+        font-size: 16px;
+        color: $textLight;
+        display: block;
+        line-height: 2.6;
+        text-decoration: none;
+        > img {
+          width: 28px;
+          display: inline-block;
+          vertical-align: middle;
+          margin-right: 0.5rem;
+        }
+        > i {
+          font-size: 25px;
+          display: inline-block;
+          vertical-align: middle;
+          margin-right: 1rem;
+        }
+      }
+      &--github {
+        font-weight: 300;
+        > img {
+          width: 38px !important;
+        }
+        > strong {
+          font-weight: 600;
+          color: black;
+          text-decoration: underline;
+        }
+      }
+      &--slack {
+        font-weight: 300;
+        > img {
+          margin-right: 0.8rem !important;
+        }
+        > strong {
+          font-weight: 600;
+          color: $textRed;
+          text-decoration: underline;
+        }
+      }
+
+      &--address {
+        line-height: 2.0;
+        font-size: 16px;
+        color: $textLight;
+        > span {
+          display: block;
+          > i {
+            font-size: 25px;
+            margin-right: 0.8rem;
+          }
+        }
+        > a {
+          color: $textBlue;
+          display: block;
+          text-decoration: none;
+        }      
+      }
+    }
+    @media screen and (max-width: $smallScreen) {
+      width: 50%;
+      padding-bottom: 50px;
+    }
+  }
+  &__block:nth-child(1) {
+    @media screen and (max-width: $smallScreen) {
+      display: block;
+      width: 100%;
+      padding-bottom: 50px;
+    }
+  }
+}

@@ -63,6 +63,7 @@ const HomePage = () => (
           </div>
         </div>
       </div>
+      <div className="home__features__circle" />
     </section>
     <section className="home__features home__features--alternate">
       <div className="home__features__container container home__container">

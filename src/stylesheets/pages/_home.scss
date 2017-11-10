@@ -61,7 +61,7 @@
       }
       &__community {
         display: block;
-        color: #50bcf4;
+        color: $textBlue;
         padding-top: 1rem;        
       }
     }
@@ -98,10 +98,10 @@
             color: black;
           }
           > .slack-link {
-            color: #d30d0c;            
+            color: $textRed;            
           }
           > .twitter-link {
-            color: #52abeb;
+            color: $textBlue;
           }
         }
       }
@@ -109,13 +109,16 @@
   }
 
   &__features {
-    
+    position: relative;
     &__container {
       padding-top: 70px;
       padding-bottom: 70px;
     }
     &--coloured {
       background: $backgroundPurple;
+      > .home__features__container {
+        padding-bottom: 140px;
+      }
     }
     &--alternate {
       > .home__features__container {
@@ -129,7 +132,16 @@
         width: 100%;
       }
     }
-
+    &__circle {
+      width: 120px;
+      height: 120px;
+      background-color: #ffffff;
+      box-shadow: 4.9px 4.9px 30px 0 rgba(150, 134, 255, 0.2);
+      border-radius: 50%;
+      position: absolute;
+      bottom: -60px;
+      left: calc(50% - 60px);
+    }
     &__item {
       display: block;
       padding-top: 100px;
@@ -235,7 +247,7 @@
       width: 100%;
       margin: auto;
       > strong {
-        color: $textRed;
+        color: $textPink;
         font-weight: 600;
       }
     }

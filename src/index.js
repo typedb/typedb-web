@@ -7,6 +7,7 @@ import Main from './routes';
 import store, { history } from './store';
 
 import NavigationBar from 'components/NavigationBar';
+import Footer from 'components/Footer';
 
 import 'stylesheets/app.scss';
 
@@ -16,6 +17,7 @@ const App = () => (
       <div className="app">
         <NavigationBar />
         <Main />
+        <Footer />
       </div>
     </ConnectedRouter>
   </Provider>
