@@ -200,12 +200,51 @@
       &__img {
         > img {
           max-width: 100%;
+          margin: 0 auto;
+          display: block;
         }
         @media screen and (max-width: $smallScreen) {
           margin-top: 50px;          
           order: 2;
         }
       }
+    }
+  }
+
+  &__world {
+    min-height:800px;
+    background-image: url('/assets/img/map.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 1rem;
+    flex-direction: column;
+    @media screen and (max-width: $smallScreen) {
+      min-height: 400px;
+    }
+    &__headline {
+      display: block;
+      margin: 0 auto;
+      color: #fff;
+      font-weight: 600;
+      font-size: 48px;
+      text-align: center;
+      width: 100%;
+      margin: auto;
+      > strong {
+        color: $textRed;
+        font-weight: 600;
+      }
+    }
+    &__link {
+      color: white;
+      font-size: 16px;
+      font-weight: 600;
+      line-height: 1.2;
+      text-align: center;
     }
   }
 }

@@ -94,6 +94,10 @@ const HomePage = () => (
         </div>
       </div>
     </section>
+    <section className="home__world">
+      <span className="home__world__headline">THE WORLD NEEDS TO<strong>GRAKN</strong></span>
+      <Link to="/community" className="home__world__link">Join the Grakn open source community around the world</Link>
+    </section>
   </div>
 );
 
