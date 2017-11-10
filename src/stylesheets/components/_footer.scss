@@ -12,8 +12,9 @@
 
   &__block {
     display: inline-block;
-    width: 20%;
-    vertical-align: top;    
+    width: 15%;
+    vertical-align: top;
+    text-align: left;
     &__header {
       font-size: 16px;
       color: $textCharcoal;
@@ -37,11 +38,12 @@
           font-size: 25px;
           display: inline-block;
           vertical-align: middle;
-          margin-right: 0.7rem;
+          margin-right: 1rem;
         }
       }
       &--github {
         font-weight: 300;
+        margin-left: -10px;
         > img {
           width: 38px !important;
         }
@@ -53,6 +55,7 @@
       }
       &--slack {
         font-weight: 300;
+        margin-left: -4px;        
         > img {
           margin-right: 0.8rem !important;
         }
@@ -71,26 +74,38 @@
           display: block;
           > i {
             font-size: 25px;
-            margin-right: 0.8rem;
+            margin-right: 1rem;
+            vertical-align: middle;
+            padding-left: 5px;
           }
+        }
+        > span:nth-child(2) {
+          margin-left: 2.2rem;
         }
         > a {
           color: $textBlue;
           display: block;
           text-decoration: none;
+          margin-left: 2.2rem;
         }      
       }
     }
     @media screen and (max-width: $smallScreen) {
-      width: 50%;
+      width: 60%;
       padding-bottom: 50px;
     }
   }
   &__block:nth-child(1) {
+    width: 30%;
     @media screen and (max-width: $smallScreen) {
       display: block;
       width: 100%;
       padding-bottom: 50px;
+    }
+  }
+  &__block:nth-child(3),&__block:nth-child(5) {
+    @media screen and (max-width: $smallScreen) {
+      width: 40%;
     }
   }
 }
