@@ -187,7 +187,7 @@ const HomePage = () => (
           
           <TabList className="home__usecases__tablist">
             <Tab className="home__usecases__tablist__item" selectedClassName="home__usecases__tablist__item--selected">
-              <img src="/assets/svg/bots.svg" alt="bots"/>       
+              <img src="/assets/svg/bot-tab.svg" alt="bots"/>       
               <span className="home__usecase__tablist__item__text home__usecase__tablist__item__text--bots">Intelligent Bots</span>
             </Tab>
             <Tab className="home__usecases__tablist__item" selectedClassName="home__usecases__tablist__item--selected">
