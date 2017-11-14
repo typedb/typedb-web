@@ -1,6 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import graknRoutes from 'config/graknRoutes'
+import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
+
+import graknRoutes from 'config/graknRoutes';
+
 const HomePage = () => (
   <div className="home">
     <section className="home__splash">
@@ -93,6 +96,113 @@ const HomePage = () => (
             Strong abstraction over low-level constructs, enabling you to express questions at a higher level and let the system figure out how to do the navigation            </span>
           </div>
         </div>
+      </div>
+    </section>
+    <section className="home__usecases">
+      <div className="home__usecases__container container home__container">
+        <span className="home__usecases__header">
+          <strong>Grakn</strong> can helps every domain with complex networks of information
+        </span>
+        <Tabs className="home__usecases__tabcontainer">
+          <TabPanel className="home__usecases__tabpanel">
+            <div className="home__usecases__tabpanel__container">
+              <div className="home__usecases__tabpanel__img">
+                <img src="/assets/img/bots.png" alt="bots"/>
+              </div>
+              <div className="home__usecases__tabpanel__text">
+                <span className="home__usecases__tabpanel__text__title">
+                Intelligent Bots
+                </span>
+                <span className="home__usecases__tabpanel__text__content">
+                As devices have become more intelligent, the way we interact with them evolved to natural language through conversation. GRAKN.AI is the ideal platform for developing chat bots because it is capable of interpreting complex and ambiguous questions by performing inference over your knowledge base.
+                </span>
+                <Link to="/">Learn More</Link>
+              </div>
+            </div>
+          </TabPanel>
+          <TabPanel className="home__usecases__tabpanel">
+            <div className="home__usecases__tabpanel__container">
+              <div className="home__usecases__tabpanel__img">
+                <img src="/assets/img/search.png" alt="search"/>
+              </div>
+              <div className="home__usecases__tabpanel__text">
+                <span className="home__usecases__tabpanel__text__title">
+                Semantic Search
+                </span>
+                <span className="home__usecases__tabpanel__text__content">
+                With ever more massive volumes of stored data, it becomes increasingly difficult for organizations to effectively search for relevant results. By using a search platform that understands a query’s intent and the meaning of its terms, data’s meaning can be unlocked, and organizations can free themselves.
+                </span>
+                <Link to="/">Learn More</Link>
+              </div>
+            </div>
+          </TabPanel>
+          <TabPanel className="home__usecases__tabpanel">
+            <div className="home__usecases__tabpanel__container">
+              <div className="home__usecases__tabpanel__img">
+                <img src="/assets/img/financial_services.png" alt="financial services "/>
+              </div>
+              <div className="home__usecases__tabpanel__text">
+                <span className="home__usecases__tabpanel__text__title">
+                Financial Services
+                </span>
+                <span className="home__usecases__tabpanel__text__content">
+                Across the financial service industry, changes in technology, policy, and geopolitics have radically altered the data landscape in the past few years. By taking advantage of the most cutting-edge data infrastructure technologies, financial service firms can take full strategic advantage of the changing data landscape.
+                </span>
+                <Link to="/">Learn More</Link>
+              </div>
+            </div>
+          </TabPanel>
+          <TabPanel className="home__usecases__tabpanel">
+            <div className="home__usecases__tabpanel__container">
+              <div className="home__usecases__tabpanel__img">
+                <img src="/assets/img/health_life.png" alt="Health Science"/>
+              </div>
+              <div className="home__usecases__tabpanel__text">
+                <span className="home__usecases__tabpanel__text__title">
+                Health and Life Science
+                </span>
+                <span className="home__usecases__tabpanel__text__content">
+                From pharmaceutical R&D and biomedical research to frontline healthcare delivery, the contemporary health and life science industries rely on data to power insight and improve care. Yet, despite advances in scientific knowledge and healthcare technologies, effective use of data remains a challenge.
+                </span>
+                <Link to="/">Learn More</Link>
+              </div>
+            </div>
+          </TabPanel>
+          <TabPanel className="home__usecases__tabpanel">
+            <div className="home__usecases__tabpanel__container">
+              <div className="home__usecases__tabpanel__img">
+                <img src="/assets/img/security.png" alt="Security"/>
+              </div>
+              <div className="home__usecases__tabpanel__text">
+                <span className="home__usecases__tabpanel__text__title">
+                Security
+                </span>
+                <span className="home__usecases__tabpanel__text__content">
+                As technology permeates deeper into every aspect of our lives—with constant digital footprints and interconnected devices proliferating—the growth in potential damage and disruption from bad actors grows. Both individuals and firms must leverage their digital defences against an onslaught of increasingly.
+                </span>
+                <Link to="/">Learn More</Link>
+              </div>
+            </div>
+          </TabPanel>
+          
+          <TabList className="home__usecases__tablist">
+            <Tab className="home__usecases__tablist__item" selectedClassName="home__usecases__tablist__item--selected">
+              1
+            </Tab>
+            <Tab className="home__usecases__tablist__item" selectedClassName="home__usecases__tablist__item--selected">
+              2
+            </Tab>
+            <Tab className="home__usecases__tablist__item" selectedClassName="home__usecases__tablist__item--selected">
+              3
+            </Tab>
+            <Tab className="home__usecases__tablist__item" selectedClassName="home__usecases__tablist__item--selected">
+              4
+            </Tab>
+            <Tab className="home__usecases__tablist__item" selectedClassName="home__usecases__tablist__item--selected">
+              5
+            </Tab>
+          </TabList>
+        </Tabs>
       </div>
     </section>
     <section className="home__world">
