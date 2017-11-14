@@ -187,19 +187,19 @@ const HomePage = () => (
           
           <TabList className="home__usecases__tablist">
             <Tab className="home__usecases__tablist__item" selectedClassName="home__usecases__tablist__item--selected">
-              1
+              <span className="home__usecase__tablist__item__text">Intelligent Bots</span>
             </Tab>
             <Tab className="home__usecases__tablist__item" selectedClassName="home__usecases__tablist__item--selected">
-              2
+              <span className="home__usecase__tablist__item__text">Semantic Search</span>         
             </Tab>
             <Tab className="home__usecases__tablist__item" selectedClassName="home__usecases__tablist__item--selected">
-              3
+              <span className="home__usecase__tablist__item__text">Financial Services</span>       
             </Tab>
             <Tab className="home__usecases__tablist__item" selectedClassName="home__usecases__tablist__item--selected">
-              4
+              <span className="home__usecase__tablist__item__text">Health & Life Science</span>           
             </Tab>
             <Tab className="home__usecases__tablist__item" selectedClassName="home__usecases__tablist__item--selected">
-              5
+              <span className="home__usecase__tablist__item__text">Security</span>   
             </Tab>
           </TabList>
         </Tabs>
