@@ -188,23 +188,23 @@ const HomePage = () => (
           <TabList className="home__usecases__tablist">
             <Tab className="home__usecases__tablist__item" selectedClassName="home__usecases__tablist__item--selected">
               <img src="/assets/svg/bots.svg" alt="bots"/>       
-              <span className="home__usecase__tablist__item__text">Intelligent Bots</span>
+              <span className="home__usecase__tablist__item__text home__usecase__tablist__item__text--bots">Intelligent Bots</span>
             </Tab>
             <Tab className="home__usecases__tablist__item" selectedClassName="home__usecases__tablist__item--selected">
               <img src="/assets/svg/search.svg" alt="search"/>             
-              <span className="home__usecase__tablist__item__text">Semantic Search</span>         
+              <span className="home__usecase__tablist__item__text home__usecase__tablist__item__text--search">Semantic Search</span>         
             </Tab>
             <Tab className="home__usecases__tablist__item" selectedClassName="home__usecases__tablist__item--selected">
               <img src="/assets/svg/services.svg" alt="services"/>                      
-              <span className="home__usecase__tablist__item__text">Financial Services</span>       
+              <span className="home__usecase__tablist__item__text home__usecase__tablist__item__text--services">Financial Services</span>       
             </Tab>
             <Tab className="home__usecases__tablist__item" selectedClassName="home__usecases__tablist__item--selected">
               <img src="/assets/svg/science.svg" alt="science"/>                        
-              <span className="home__usecase__tablist__item__text">Health & Life Science</span>           
+              <span className="home__usecase__tablist__item__text home__usecase__tablist__item__text--science">Health & Life Science</span>           
             </Tab>
             <Tab className="home__usecases__tablist__item" selectedClassName="home__usecases__tablist__item--selected">
               <img src="/assets/svg/security.svg" alt="security"/>                                
-              <span className="home__usecase__tablist__item__text">Security</span>   
+              <span className="home__usecase__tablist__item__text home__usecase__tablist__item__text--security">Security</span>   
             </Tab>
           </TabList>
         </Tabs>

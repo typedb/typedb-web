@@ -358,11 +358,44 @@
         line-height: 1.22;
         color: #848494;        
         &--selected {
-          color: $textBlue;
           border-radius: 5px 5px 0 0;
-          border-bottom: 1px solid $textBlue;
           background-color: #414859;
-          box-shadow: 0 0 17px 0 rgba(50, 46, 46, 0.25);        
+          box-shadow: 0 0 17px 0 rgba(50, 46, 46, 0.25);
+          > img {
+            filter: invert(0) !important;
+          }
+          > .home__usecase__tablist__item__text {
+            &--bots {
+              color: #46CD90;
+            }            
+            &--search {
+              color: $textPurple;
+            }            
+            &--services {
+              color: #F75E62;
+            }            
+            &--science {
+              color: #21B5FA;
+            }
+            &--security {
+              color: #40ED79;
+            }            
+          }
+          &:nth-child(1) {
+            border-bottom: 1px solid #46CD90;            
+          }      
+          &:nth-child(2) {
+            border-bottom: 1px solid $textPurple;            
+          }      
+          &:nth-child(3) {
+            border-bottom: 1px solid #F75E62;            
+          }      
+          &:nth-child(4) {
+            border-bottom: 1px solid #21B5FA;            
+          }      
+          &:nth-child(5) {
+            border-bottom: 1px solid #40ED79;            
+          }      
         }
         > span {
           @media screen and (max-width: $smallScreen) {
@@ -372,10 +405,12 @@
         > img {
           width: 34px;
           padding-bottom: 0.8rem;
+          filter: invert(0.6);
           @media screen and (max-width: $smallScreen) {
             padding-bottom: 0;
           }
         }
+        
       }
     }
   }
