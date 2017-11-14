@@ -10,7 +10,8 @@
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage",
     "eslint": "eslint .",
-    "build": "rm -rf ./dist && cross-env NODE_ENV=production webpack --config ./webpack.production.js --progress --profile --colors"
+    "build": "rm -rf ./dist && cross-env NODE_ENV=production webpack --config ./webpack.production.js --progress --profile --colors",
+    "postinstall": "yarn run build"
   },
   "jest": {
     "moduleDirectories": [
