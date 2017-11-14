@@ -104,7 +104,7 @@ const HomePage = () => (
           <strong>Grakn</strong> can helps every domain with complex networks of information
         </span>
         <Tabs className="home__usecases__tabcontainer">
-          <TabPanel className="home__usecases__tabpanel">
+          <TabPanel className="home__usecases__tabpanel" selectedClassName="home__usecases__tabpanel--selected">
             <div className="home__usecases__tabpanel__container">
               <div className="home__usecases__tabpanel__img">
                 <img src="/assets/img/bots.png" alt="bots"/>
@@ -120,7 +120,7 @@ const HomePage = () => (
               </div>
             </div>
           </TabPanel>
-          <TabPanel className="home__usecases__tabpanel">
+          <TabPanel className="home__usecases__tabpanel" selectedClassName="home__usecases__tabpanel--selected">
             <div className="home__usecases__tabpanel__container">
               <div className="home__usecases__tabpanel__img">
                 <img src="/assets/img/search.png" alt="search"/>
@@ -136,7 +136,7 @@ const HomePage = () => (
               </div>
             </div>
           </TabPanel>
-          <TabPanel className="home__usecases__tabpanel">
+          <TabPanel className="home__usecases__tabpanel" selectedClassName="home__usecases__tabpanel--selected">
             <div className="home__usecases__tabpanel__container">
               <div className="home__usecases__tabpanel__img">
                 <img src="/assets/img/financial_services.png" alt="financial services "/>
@@ -152,7 +152,7 @@ const HomePage = () => (
               </div>
             </div>
           </TabPanel>
-          <TabPanel className="home__usecases__tabpanel">
+          <TabPanel className="home__usecases__tabpanel" selectedClassName="home__usecases__tabpanel--selected">
             <div className="home__usecases__tabpanel__container">
               <div className="home__usecases__tabpanel__img">
                 <img src="/assets/img/health_life.png" alt="Health Science"/>
@@ -168,7 +168,7 @@ const HomePage = () => (
               </div>
             </div>
           </TabPanel>
-          <TabPanel className="home__usecases__tabpanel">
+          <TabPanel className="home__usecases__tabpanel" selectedClassName="home__usecases__tabpanel--selected">
             <div className="home__usecases__tabpanel__container">
               <div className="home__usecases__tabpanel__img">
                 <img src="/assets/img/security.png" alt="Security"/>
