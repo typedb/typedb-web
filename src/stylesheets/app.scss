@@ -9,6 +9,10 @@ body, html {
 @import './colours';
 @import './breakpoints';
 
+// Imports - external libs
+@import "~slick-carousel/slick/slick.css";
+//@import "~slick-carousel/slick/slick-theme.css";
+
 // Imports - Components
 @import './components/nav';
 @import './components/footer';

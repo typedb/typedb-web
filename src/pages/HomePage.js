@@ -1,8 +1,26 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
+import Slider from 'react-slick';
 
 import graknRoutes from 'config/graknRoutes';
+const prodSectionSettings = {
+  dots: true,
+  infinite: true,
+  speed: 500,
+  slidesToShow: 4,
+  slidesToScroll: 4,
+  arrows: false,
+  initialSlide: 2,
+  centerMode: true,
+  className: 'home__production__slider',
+  responsive: [
+     { breakpoint: 400, settings: {   centerMode: false,  slidesToShow: 1, slidesToScroll: 1    } },
+     { breakpoint: 768, settings: { slidesToShow: 1, slidesToScroll: 1 } },
+     { breakpoint: 1200, settings: { slidesToShow: 2, slidesToScroll: 2 } },
+     { breakpoint: 1500, settings: { slidesToShow: 3, slidesToScroll: 3 } }
+  ]
+};
 
 const HomePage = () => (
   <div className="home">
@@ -96,6 +114,47 @@ const HomePage = () => (
             Strong abstraction over low-level constructs, enabling you to express questions at a higher level and let the system figure out how to do the navigation            </span>
           </div>
         </div>
+      </div>
+    </section>
+    <section className="home__production">
+      <span className="home__production__headline home__header container home__container">
+        Simplify your data architecture and scale your knowledge base into production 
+      </span>
+      <Slider {...prodSectionSettings}>
+        <div className="home__production__slider__item">
+          <div className="home__production__slider__item__container">
+            <span className="home__production__slider__item__header"><i className="fa fa-check" aria-hidden="true"/>Full-string indexing</span>
+            <span className="home__production__slider__item__text">Advanced full-text search capabilities, by enabling powerful string matching techniques over any body of text</span>
+          </div>
+        </div>
+        <div className="home__production__slider__item">
+          <div className="home__production__slider__item__container">
+            <span className="home__production__slider__item__header"><i className="fa fa-check" aria-hidden="true"/>Scalabale Storage</span>   
+            <span className="home__production__slider__item__text">A scalable system designed to be partitioned and replicated over a network of distributed machines</span>          
+          </div>
+        </div>
+        <div className="home__production__slider__item">
+          <div className="home__production__slider__item__container">
+            <span className="home__production__slider__item__header"><i className="fa fa-check" aria-hidden="true"/>Elastic throughput</span>         
+            <span className="home__production__slider__item__text">Read and write throughput scales linearly as new machines are added to the Grakn cluster, without  any downtime</span>                    
+          </div>
+        </div>
+        <div className="home__production__slider__item">
+          <div className="home__production__slider__item__container">
+            <span className="home__production__slider__item__header"><i className="fa fa-check" aria-hidden="true"/>Extensible Schema</span>                  
+            <span className="home__production__slider__item__text">Schema definition can be updated and extended flexibly, during runtime, without any need for database migration</span>                       
+          </div>
+        </div>
+        <div className="home__production__slider__item">
+          <div className="home__production__slider__item__container">
+            <span className="home__production__slider__item__header"><i className="fa fa-check" aria-hidden="true"/>Secured Authentication </span>                  
+            <span className="home__production__slider__item__text">Ensuring only authenticated access and appropriately privileged users are allowed to access specific datasets</span>                       
+          </div>
+        </div>       
+      </Slider>
+      <div className="home__production__buttons">
+        <Link to="/">INSTALL</Link>
+        <Link to="/">READ MORE</Link>
       </div>
     </section>
     <section className="home__usecases">
