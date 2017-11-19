@@ -157,6 +157,13 @@ const HomePage = () => (
         <Link to="/">READ MORE</Link>
       </div>
     </section>
+    <section className="home__deployment">
+      <div className="home__deployment__container container home__container">
+      <span className="home__deployment__headline home__header">
+        Deploy and run <strong>Grakn</strong> on premise, or any cloud platform
+      </span>
+      </div>
+    </section>
     <section className="home__usecases">
       <div className="home__usecases__container container home__container">
         <span className="home__usecases__header">
