@@ -15,12 +15,37 @@ const prodSectionSettings = {
   centerMode: true,
   className: 'home__production__slider',
   responsive: [
-     { breakpoint: 400, settings: {   centerMode: false,  slidesToShow: 1, slidesToScroll: 1    } },
-     { breakpoint: 768, settings: { slidesToShow: 1, slidesToScroll: 1 } },
+     { breakpoint: 568, settings: {   centerMode: false,  slidesToShow: 1, slidesToScroll: 1    } },
+     { breakpoint: 768, settings: { centerMode: false, slidesToShow: 2, slidesToScroll: 2 } },
      { breakpoint: 1200, settings: { slidesToShow: 2, slidesToScroll: 2 } },
      { breakpoint: 1500, settings: { slidesToShow: 3, slidesToScroll: 3 } }
   ]
 };
+
+const deploymentSettings = {
+  dots: true,
+  infinite: false,
+  speed: 500,
+  slidesToShow: 2,
+  slidesToScroll: 2,
+  arrows: false,
+  initialSlide: 1,
+  centerMode: true,
+  className: 'home__deployment__items--slider',
+  responsive: [
+     { breakpoint: 400, settings: {   slidesToShow: 1, slidesToScroll: 1    } },
+     { breakpoint: 768, settings: { slidesToShow: 2, slidesToScroll: 2 } },
+  ]
+}
+
+const deploymentOptions = [
+  { name: 'Google Cloud Platform', url: '/assets/img/cloud_platform.png'},
+  { name: 'Oracle', url: '/assets/img/oracle.png'},
+  { name: 'IBM Bluemix', url: '/assets/img/IBM.png'},
+  { name: 'Microsoft Azure', url: '/assets/img/azure.png'},
+  { name: 'premise', url: '/assets/img/on_premise.png'},
+  { name: 'Amazon Web Services', url: '/assets/img/amazon.png'}
+];
 
 const HomePage = () => (
   <div className="home">
@@ -159,9 +184,45 @@ const HomePage = () => (
     </section>
     <section className="home__deployment">
       <div className="home__deployment__container container home__container">
-      <span className="home__deployment__headline home__header">
-        Deploy and run <strong>Grakn</strong> on premise, or any cloud platform
-      </span>
+        <span className="home__deployment__headline home__header">
+          Deploy and run <strong>Grakn</strong> on premise, or any cloud platform
+        </span>
+        <div className="home__deployment__items--desktop">
+          <div className="home__deployment__items--desktop__row">
+          {
+            deploymentOptions.slice(0,3).map((item, index) => {
+              return (
+                <div className="home__deployment__items__item">
+                  <img src={item.url} alt={item.name} />
+                </div>
+              )
+            })
+          }
+          </div>
+          <div className="home__deployment__items--desktop__row">
+          {
+            deploymentOptions.slice(3,).map((item, index) => {
+              return (
+                <div className="home__deployment__items__item">
+                  <img src={item.url} alt={item.name} />
+                </div>
+              )
+            })
+          }
+          </div>
+        </div>
+        <Slider {...deploymentSettings}>
+          {
+            deploymentOptions.map((item, index) => {
+              return (
+                <div className="home__deployment__items__item home__deployment__items__item--slider">
+                  <img src={item.url} alt={item.name} />
+                </div>
+              )
+            })
+          }
+        </Slider>
+        <Link to="/" className="home__deployment__link">Choose your deployment option</Link>
       </div>
     </section>
     <section className="home__usecases">
