@@ -367,11 +367,6 @@
         > :nth-child(1) {
           border-bottom: 2px solid #f2f6fa;          
         }
-        > :nth-child(2) {
-          > :nth-child(2) {
-            box-shadow: 0 0 19px 0 rgba(204, 204, 204, 0.43);
-          }
-        }
       }
       &--slider {
         display: none;
@@ -388,6 +383,7 @@
         display: flex !important;
         flex-direction: column;
         justify-content: center;
+        cursor: pointer;
         > img {
           align-self: center;
           max-width: 80%;
@@ -395,6 +391,9 @@
         &--slider {
           border: 2px solid #f2f6fa;
           height: 200px;
+        }
+        &:hover {
+          box-shadow: 0 0 19px 0 rgba(204, 204, 204, 0.43);
         }
       }
     }
@@ -451,6 +450,10 @@
         flex-grow: 1;
         align-items: center;
         justify-content: center;
+        order: 1;
+        @media screen and (max-width: $smallScreen) {
+          order: 2;
+        }
       }
       &__container {
         @media screen and (max-width: $smallScreen) {
@@ -517,9 +520,13 @@
       flex-direction: row;
       width: 100%;
       height: 110px;
+      order: 2;
+      background-color: transparent;
       @media screen and (max-width: $smallScreen) {
-        margin-top: 30px;
+        order: 1;
+        margin-bottom: 30px;
         height: 70px;
+        background-color: #2f3543;
       }
       &__item {
         display: flex;
@@ -561,19 +568,44 @@
             }            
           }
           &:nth-child(1) {
-            border-bottom: 1px solid #46CD90;            
+            border-top: none;
+            border-bottom: 1px solid #46CD90;
+            @media screen and (max-width: $smallScreen) {
+              border-bottom: none;
+              border-top: 1px solid #46CD90;
+            }            
           }      
           &:nth-child(2) {
-            border-bottom: 1px solid $textPurple;            
+            border-top: none;            
+            border-bottom: 1px solid $textPurple;
+            @media screen and (max-width: $smallScreen) {
+              border-bottom: none;
+              border-top: 1px solid $textPurple;
+            }           
           }      
           &:nth-child(3) {
-            border-bottom: 1px solid #F75E62;            
+            border-top: none;            
+            border-bottom: 1px solid #F75E62;
+            @media screen and (max-width: $smallScreen) {
+              border-bottom: none;
+              border-top: 1px solid #F75E62;
+            }            
           }      
           &:nth-child(4) {
-            border-bottom: 1px solid #21B5FA;            
+            border-top: none;            
+            border-bottom: 1px solid #21B5FA;  
+            @media screen and (max-width: $smallScreen) {
+              border-bottom: none;
+              border-top: 1px solid #21B5FA;
+            }          
           }      
           &:nth-child(5) {
-            border-bottom: 1px solid #40ED79;            
+            border-top: none;            
+            border-bottom: 1px solid #40ED79; 
+            @media screen and (max-width: $smallScreen) {
+              border-bottom: none;
+              border-top: 1px solid #40ED79;
+            }           
           }      
         }
         > span {
