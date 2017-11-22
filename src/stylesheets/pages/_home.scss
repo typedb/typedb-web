@@ -51,6 +51,7 @@
         line-height: 1.8;
         @media screen and (max-width: $smallScreen) {
           font-size: 16px;
+          font-weight: 400;
         }
       }
       &__install {
@@ -593,7 +594,7 @@
         height: 70px;
         background-color: #2f3543;
         width: 100vw;
-        margin-left: -5%;
+        margin-left: -6%;
       }
       &__item {
         display: flex;
@@ -609,7 +610,10 @@
         font-weight: 600;
         line-height: 1.22;
         color: #848494;
-        outline: none;        
+        outline: none;
+        @media screen and (max-width: $smallScreen) {
+          border-bottom: 1px solid $textLight;
+        }     
         &--selected {
           border-radius: 5px 5px 0 0;
           background-color: #414859;
@@ -636,43 +640,23 @@
           }
           &:nth-child(1) {
             border-top: none;
-            border-bottom: 1px solid #46CD90;
-            @media screen and (max-width: $smallScreen) {
-              border-bottom: none;
-              border-top: 1px solid #46CD90;
-            }            
+            border-bottom: 1px solid #46CD90;         
           }      
           &:nth-child(2) {
             border-top: none;            
-            border-bottom: 1px solid $textPurple;
-            @media screen and (max-width: $smallScreen) {
-              border-bottom: none;
-              border-top: 1px solid $textPurple;
-            }           
+            border-bottom: 1px solid $textPurple;       
           }      
           &:nth-child(3) {
             border-top: none;            
-            border-bottom: 1px solid #F75E62;
-            @media screen and (max-width: $smallScreen) {
-              border-bottom: none;
-              border-top: 1px solid #F75E62;
-            }            
+            border-bottom: 1px solid #F75E62;         
           }      
           &:nth-child(4) {
             border-top: none;            
-            border-bottom: 1px solid #21B5FA;  
-            @media screen and (max-width: $smallScreen) {
-              border-bottom: none;
-              border-top: 1px solid #21B5FA;
-            }          
+            border-bottom: 1px solid #21B5FA;          
           }      
           &:nth-child(5) {
             border-top: none;            
-            border-bottom: 1px solid #40ED79; 
-            @media screen and (max-width: $smallScreen) {
-              border-bottom: none;
-              border-top: 1px solid #40ED79;
-            }           
+            border-bottom: 1px solid #40ED79;           
           }      
         }
         > span {
