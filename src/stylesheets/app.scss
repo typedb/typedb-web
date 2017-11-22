@@ -30,7 +30,12 @@ body, html {
 .main {
   height: 100%;
 }
-
+iframe {
+  min-height: calc(100vh - 90px);
+  width: 100%;
+  border: none;
+  overflow-y: hidden;
+}
 .container {
   position: relative;
   max-width: $mediumScreen;

@@ -11,7 +11,7 @@ const Footer = () => (
             <img src="/assets/svg/github.svg" alt="github"/>
             <strong>Grakn 0.17</strong> on Github
           </Link>
-          <Link to="/" className="footer__block__links--slack">
+          <Link to="/slack" className="footer__block__links--slack">
             <img src="/assets/svg/slack-mark.svg" alt="slack"/>        
             <strong>Grakn</strong> on Slack
           </Link>
