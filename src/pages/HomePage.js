@@ -15,8 +15,7 @@ const prodSectionSettings = {
   centerMode: true,
   className: 'home__production__slider',
   responsive: [
-     { breakpoint: 568, settings: {   centerMode: false,  slidesToShow: 1, slidesToScroll: 1    } },
-     { breakpoint: 768, settings: { centerMode: false, slidesToShow: 2, slidesToScroll: 2 } },
+     { breakpoint: 768, settings: { centerMode: true, slidesToShow: 1, slidesToScroll: 1, infinite: false } },
      { breakpoint: 1200, settings: { slidesToShow: 2, slidesToScroll: 2 } },
      { breakpoint: 1500, settings: { slidesToShow: 3, slidesToScroll: 3 } }
   ]
@@ -66,7 +65,7 @@ const HomePage = () => (
           <span><a className="github-link" href={graknRoutes.github} target="_blank" >Grakn 0.17</a> on Github</span>
         </div>
         <div className="home__links__container__item">
-          <img src="/assets/svg/slack.svg" alt="slack" />
+          <img src="/assets/svg/slack-mark.svg" alt="slack" />
           <span><Link className="slack-link" to="/slack">Grakn</Link> on Slack</span>
         </div>
         <div className="home__links__container__item">
@@ -339,7 +338,7 @@ const HomePage = () => (
     </section>
     <section className="home__world">
       <div className="home__world__container container home__container">         
-        <span className="home__world__headline">THE WORLD NEEDS TO<strong>GRAKN</strong></span>
+        <span className="home__world__headline">THE WORLD NEEDS TO <strong>GRAKN</strong></span>
         <Link to="/community" className="home__world__link">Join the Grakn open source community around the world</Link>
       </div>
     </section>

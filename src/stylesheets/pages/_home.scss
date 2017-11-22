@@ -17,6 +17,9 @@
     > strong {
       font-weight: 600;
     }
+    @media screen and (max-width: $smallScreen) {
+      font-size: 22px;
+    }
   }
   &__splash {
     min-height:900px;
@@ -36,6 +39,9 @@
         > strong {
           font-weight: 600;
         }
+        @media screen and (max-width: $smallScreen) {
+          font-size: 32px;
+        }
       }
       &__tag {
         padding-top: 1rem;
@@ -43,6 +49,9 @@
         color: $textLight;
         font-weight: 300;
         line-height: 1.8;
+        @media screen and (max-width: $smallScreen) {
+          font-size: 16px;
+        }
       }
       &__install {
         text-decoration: none;
@@ -58,11 +67,17 @@
           margin-left: 1rem;
           color: #92a7b4;
         }
+        @media screen and (max-width: $smallScreen) {
+          font-size: 14px;
+        }
       }
       &__community {
         display: block;
         color: $textBlue;
-        padding-top: 1rem;        
+        padding-top: 1rem;  
+        @media screen and (max-width: $smallScreen) {
+          font-size: 14px;
+        }      
       }
     }
   }
@@ -91,6 +106,9 @@
           padding-top: 0.5rem;
           font-size: 16px;
           color: $textExtraLight;
+          @media screen and (max-width: $smallScreen) {
+            font-size: 11px;
+          }
           > a {
             font-weight: 600;
           }
@@ -113,11 +131,17 @@
     &__container {
       padding-top: 70px;
       padding-bottom: 70px;
+      @media screen and (max-width: $smallScreen) {
+        padding-top: 50px;
+      }
     }
     &--coloured {
       background: $backgroundPurple;
       > .home__features__container {
         padding-bottom: 140px;
+        @media screen and (max-width: $smallScreen) {
+          padding-bottom: 120px;
+        }
       }
     }
     &--alternate {
@@ -153,7 +177,7 @@
       display: block;
       padding-top: 100px;
       @media screen and (max-width: $smallScreen) {
-        padding-top: 50px;
+        padding-top: 35px;
         display: flex;
         flex-flow: column;
       }
@@ -203,6 +227,10 @@
           font-size: 20px;
           font-weight: 600;
           color: $textCharcoal;
+          @media screen and (max-width: $smallScreen) {
+            margin-top: 20px;
+            font-size: 16px;
+          }
         }
 
         &__paragraph {
@@ -211,6 +239,9 @@
           color: $textLight;
           text-align: left;
           line-height: 1.8;
+          @media screen and (max-width: $smallScreen) {
+            font-size: 14px;
+          }
         }
         @media screen and (max-width: $smallScreen) {
           order: 1;
@@ -242,14 +273,21 @@
       width: 60%;
       text-align: center;
       @media screen and (max-width: $smallScreen) {
-        padding-top: 70px;
+        padding-top: 40px;
         width: 90%;
       }
     }
     &__slider {
       padding-top: 70px;
       padding-bottom: 50px;
+      margin: auto;
+      @media screen and (max-width: $smallScreen) {
+        padding-bottom: 30px;
+      }
       &__item {
+        @media screen and (max-width: $smallScreen) {
+          margin: 0 5px;
+        }
        &__container {
         width: 320px;
         height: 180px;
@@ -261,8 +299,8 @@
         padding-right: 15px;
         padding-bottom: 30px;
         @media screen and (max-width: $smallScreen) {
-          width: 220px;
-          height: 220px;
+          width: auto;
+          padding-left: 15px;
         }
        }
        &__header {
@@ -284,7 +322,16 @@
            display: inline-block;
            vertical-align: middle;
            line-height: 32px;
+           @media screen and (max-width: $smallScreen) {
+              margin-right: 0.5rem;
+              width: 20px;
+              height: 20px;
+              line-height: 20px;
+            }
          }
+         @media screen and (max-width: $smallScreen) {
+          font-size: 16px;
+        }
        }
        &__text {
         font-size: 16px;
@@ -292,6 +339,9 @@
         text-align: left;
         color: $textLight;
         display: block;
+        @media screen and (max-width: $smallScreen) {
+          font-size: 14px;
+        }
        }
       }
     }
@@ -315,7 +365,9 @@
         @media screen and (max-width: $smallScreen) {
           display: block;
           margin: 0 auto;
-        }
+          font-size: 14px;
+          width: 100%;
+        }       
       }
       > a:nth-child(1) {
         background-color: $textPink;
@@ -370,7 +422,7 @@
       }
       &--slider {
         display: none;
-        padding: 70px 0;
+        padding: 50px 0;
         @media screen and (max-width: $smallScreen) {
           display: block;
         }
@@ -405,6 +457,9 @@
       font-weight: 600;
       font-size: 16px;
       color: $textPurple;
+      @media screen and (max-width: $smallScreen) {
+        font-size: 14px;
+      }
     }
   }
   &__usecases {
@@ -433,8 +488,9 @@
         ;
       }
       @media screen and (max-width: $smallScreen) {
+        font-size: 22px;
         width: 100%;
-        margin-bottom: 50px;     
+        margin-bottom: 20px;     
       }
     }
     &__tabcontainer {
@@ -496,6 +552,9 @@
           line-height: 1.2;
           text-align: left;
           color: #ffffff;
+          @media screen and (max-width: $smallScreen) {
+            font-size: 16px;
+          }
         }
         &__content {
           padding-top: 0.8rem;
@@ -503,12 +562,18 @@
           line-height: 1.8;
           text-align: left;
           color: #848494;
+          @media screen and (max-width: $smallScreen) {
+            font-size: 14px;
+          }
         }
         > a {
           color: $textPurple;
           font-size: 16px;
           font-weight: 600;
           padding-top: 1.8rem;
+          @media screen and (max-width: $smallScreen) {
+            font-size: 14px;
+          }
         }
       }
     }
@@ -527,6 +592,8 @@
         margin-bottom: 30px;
         height: 70px;
         background-color: #2f3543;
+        width: 100vw;
+        margin-left: -5%;
       }
       &__item {
         display: flex;
@@ -660,6 +727,9 @@
         color: $textPink;
         font-weight: 600;
       }
+      @media screen and (max-width: $smallScreen) {
+        font-size: 30px;
+      }
     }
     &__link {
       color: white;
@@ -667,6 +737,9 @@
       font-weight: 600;
       line-height: 1.2;
       text-align: center;
+      @media screen and (max-width: $smallScreen) {
+        font-size: 14px;
+      }
     }
   }
 }
@@ -680,6 +753,9 @@
     width: 300px;
     padding-left: 0;
     margin: 0 auto;
+    @media screen and (max-width: $smallScreen) {
+      padding-top: 30px;
+    }
     > li {
       display: inline-block;
       vertical-align: middle;
