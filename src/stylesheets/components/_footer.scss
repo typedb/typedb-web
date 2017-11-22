@@ -28,6 +28,9 @@
         display: block;
         line-height: 2.6;
         text-decoration: none;
+        @media screen and (max-width: $smallScreen) {
+          font-size: 14px;
+        }
         > img {
           width: 28px;
           display: inline-block;
@@ -70,6 +73,9 @@
         line-height: 2.0;
         font-size: 16px;
         color: $textLight;
+        @media screen and (max-width: $smallScreen) {
+          font-size: 14px;
+        }
         > span {
           display: block;
           > i {
