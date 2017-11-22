@@ -8,17 +8,20 @@ import store, { history } from './store';
 
 import NavigationBar from 'components/NavigationBar';
 import Footer from 'components/Footer';
+import ScrollRestoration from 'components/ScrollRestoration';
 
 import 'stylesheets/app.scss';
 
 const App = () => (
   <Provider store={store}>
     <ConnectedRouter history={history}>
-      <div className="app">
-        <NavigationBar />
-        <Main />
-        <Footer />
-      </div>
+      <ScrollRestoration>
+        <div className="app">
+          <NavigationBar />
+          <Main />
+          <Footer />
+        </div>
+      </ScrollRestoration>
     </ConnectedRouter>
   </Provider>
 );
