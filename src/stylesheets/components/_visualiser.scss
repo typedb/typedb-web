@@ -1,0 +1,41 @@
+.visualiser {
+  width: 900px;
+  margin: 0 auto;
+  position: absolute;
+  bottom: -287px;
+  height: 574px;
+  background-color: #2f3544;
+  border-radius: 5px;
+  box-shadow: 1.7px 6.8px 30px 0 rgba(119, 119, 119, 0.7);
+  margin-left: calc(50% - 450px);
+  @media screen and (max-width: $smallScreen) {
+    width: 90%;
+    margin-left: 5%;
+  }
+  &__tabs {
+    &__list {
+      display: flex;
+      padding: 0;
+      margin: 0;
+      height: 60px;
+      background: black;
+      border-radius: 5px 5px 0 0;
+      line-height: 60px;
+      list-style: none;
+      &__item {
+        width: 20%;
+        font-size: 14px;
+        font-weight: 600;
+        letter-spacing: 0.8px;
+        text-align: center;
+        color: #4a4d52;
+        font-weight: 400;
+        cursor: pointer;
+        &--active {
+          color: #7897f5;
+          border-bottom: 1px solid #7897f5;         
+        }
+      }
+    }
+  }
+}
