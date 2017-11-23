@@ -27,6 +27,22 @@
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
+    position: relative;
+    &__visualiser {
+      width: 900px;
+      margin: 0 auto;
+      position: absolute;
+      bottom: -287px;
+      height: 574px;
+      background-color: #2f3544;
+      border-radius: 5px;
+      box-shadow: 1.7px 6.8px 30px 0 rgba(119, 119, 119, 0.7);
+      margin-left: calc(50% - 450px);
+      @media screen and (max-width: $smallScreen) {
+        width: 90%;
+        margin-left: 5%;
+      }
+    }
     &__text {
       padding-top: 180px;
       text-align: center;

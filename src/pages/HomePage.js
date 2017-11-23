@@ -55,8 +55,9 @@ const HomePage = () => (
         <a className="home__splash__text__install" href={graknRoutes.download} target="_blank">
         Install Grakn<i className="fa fa-arrow-right" aria-hidden="true"></i>
         </a>
-        <Link className="home__splash__text__community" to="/community">Join our Community!</Link>        
+        <Link className="home__splash__text__community" to="/community">Join our Community!</Link>
       </div>
+      <div className="home__splash__visualiser">Graph</div>            
     </section>
     <section className="home__links">
       <div className="home__links__container container home__container">
@@ -70,7 +71,7 @@ const HomePage = () => (
         </div>
         <div className="home__links__container__item">
           <img src="/assets/svg/twitter_1.svg" alt="twitter" />
-          <span><a className="twitter-link" href={graknRoutes.twitter} target="_blank">@GraknLabs</a> on Slack</span>
+          <span><a className="twitter-link" href={graknRoutes.twitter} target="_blank">@GraknLabs</a> on Twitter</span>
         </div>
       </div>
     </section>

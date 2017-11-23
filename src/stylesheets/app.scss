@@ -36,7 +36,7 @@ iframe {
   width: 100%;
   border: none;
   overflow-y: hidden;
-  @media screen and (max-width: $smallScreen){
+  @media screen and (max-width: $smallScreen) {
     min-height: 700px;
   }
 }
