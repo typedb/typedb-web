@@ -57,7 +57,17 @@ const HomePage = () => (
         </a>
         <Link className="home__splash__text__community" to="/community">Join our Community!</Link>
       </div>
-      <div className="home__splash__visualiser">Graph</div>            
+      <div className="home__splash__visualiser">
+        <Tabs className="home__splash__visualiser__tabs">
+          <TabList className="home__splash__visualiser__tabs__list">
+            <Tab className="home__splash__visualiser__tabs__list__item" selectedClassName="home__splash__visualiser__tabs__list__item--active">Movies</Tab>
+            <Tab className="home__splash__visualiser__tabs__list__item" selectedClassName="home__splash__visualiser__tabs__list__item--active">Titles</Tab>
+            <Tab className="home__splash__visualiser__tabs__list__item" selectedClassName="home__splash__visualiser__tabs__list__item--active">Casts</Tab>
+            <Tab className="home__splash__visualiser__tabs__list__item" selectedClassName="home__splash__visualiser__tabs__list__item--active">Horror</Tab>
+            <Tab className="home__splash__visualiser__tabs__list__item" selectedClassName="home__splash__visualiser__tabs__list__item--active">Directorship</Tab>
+          </TabList>
+        </Tabs>
+      </div>            
     </section>
     <section className="home__links">
       <div className="home__links__container container home__container">
@@ -192,7 +202,7 @@ const HomePage = () => (
           {
             deploymentOptions.slice(0,3).map((item, index) => {
               return (
-                <div className="home__deployment__items__item">
+                <div className="home__deployment__items__item" key={`${index}--develop`}>
                   <img src={item.url} alt={item.name} />
                 </div>
               )

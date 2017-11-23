@@ -22,7 +22,7 @@
     }
   }
   &__splash {
-    min-height:900px;
+    min-height:1000px;
     background-image: url('/assets/img/header.png');
     background-repeat: no-repeat;
     background-size: cover;
@@ -41,6 +41,33 @@
       @media screen and (max-width: $smallScreen) {
         width: 90%;
         margin-left: 5%;
+      }
+      &__tabs {
+        height: 574px;
+        &__list {
+          display: flex;
+          padding: 0;
+          margin: 0;
+          height: 60px;
+          background: black;
+          border-radius: 5px 5px 0 0;
+          line-height: 60px;
+          list-style: none;
+          &__item {
+            width: 20%;
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: 0.8px;
+            text-align: center;
+            color: #4a4d52;
+            font-weight: 400;
+            cursor: pointer;
+            &--active {
+              color: #7897f5;
+              border-bottom: 1px solid #7897f5;         
+            }
+          }
+        }
       }
     }
     &__text {

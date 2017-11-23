@@ -11,7 +11,6 @@ body, html {
 
 // Imports - external libs
 @import "~slick-carousel/slick/slick.css";
-//@import "~slick-carousel/slick/slick-theme.css";
 
 // Imports - Components
 @import './components/nav';
@@ -19,6 +18,7 @@ body, html {
 
 // Imports - Containers
 @import './pages/home';
+@import './pages/slack';
 
 
 // Libs
@@ -30,16 +30,7 @@ body, html {
 .main {
   height: 100%;
 }
-iframe {
-  margin-top: 90px;
-  min-height: 800px;
-  width: 100%;
-  border: none;
-  overflow-y: hidden;
-  @media screen and (max-width: $smallScreen) {
-    min-height: 700px;
-  }
-}
+
 .container {
   position: relative;
   max-width: $mediumScreen;
