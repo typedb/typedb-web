@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import classNames from 'classnames';
+import Split from 'split.js';
 
 const graphs = [
   {
@@ -28,6 +29,21 @@ class Visualiser extends Component {
     this.change = this.change.bind(this);
   }
 
+  componentDidMount() {
+    Split(['#visualiser-code', '#visualiser-graph'], {
+      sizes: [50, 50],
+      gutterSize: 14,
+      gutter: (index, direction) => {
+        const gutter = document.createElement('div');
+        const img = document.createElement('img');
+        img.src = '/assets/img/split-toggle.png';
+        img.ondrag = gutter.ondrag;
+        gutter.className = `gutter gutter-${direction}`;
+        gutter.appendChild(img);
+        return gutter
+      }
+    });
+  }
   change(i) {
     this.setState({
       selected: i,
@@ -50,6 +66,14 @@ class Visualiser extends Component {
             })
           }
         </ul>
+        <div className=" visualiser__content">
+          <div id="visualiser-code" className="visualiser__content__code">
+            CODE CODE CODE
+          </div>
+          <div id="visualiser-graph" className="visualiser__content__graph">
+            Graph Graph
+          </div>
+        </div>
       </div>
     )
   }

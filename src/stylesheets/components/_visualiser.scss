@@ -38,4 +38,28 @@
       }
     }
   }
+  &__content {
+    height: calc(100% - 60px);
+    border-radius: 0 0 5px 5px;
+    > div {
+      display: inline-block;
+      vertical-align: middle;
+      height: 100%;
+    }
+    &__graph {
+      background-color: #3b4254;;
+    }
+  }
+}
+
+.gutter {
+  background-color: #505e72;
+  background-repeat: no-repeat;
+  background-position: 50%;
+  border-radius: 5px;
+  > img {
+    position: absolute;
+    top: 256px;
+    margin-left: -18px;
+  }
 }
