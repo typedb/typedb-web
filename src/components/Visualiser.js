@@ -1,51 +1,18 @@
 import React, { Component } from 'react';
 import classNames from 'classnames';
 import Split from 'split.js';
-
+import { keys } from 'lodash';
 
 const Prism = require('prismjs');
 const graqlHighlighter = require('helpers/prism-graql.js').graql;
-
-const graphs = [
-  {
-    key: 'Movies'
-  },
-  {
-    key: 'Titles'
-  },
-  {
-    key: 'Casts'
-  },
-  {
-    key: 'Horror'
-  },
-  {
-    key: 'Directorship'
-  },
-];
-
-const code = `# get movies directed by the director of the movie Avatar
-
-graql>>
-match
-$x isa movie;
-$y isa person;
-$z isa movie, has title "Avatar";
-($x, $y) isa directorship;
-($y, $z) isa directorship;
-select $x;
-
-results>>
-$x isa movie, has title "Titanic";
-$x isa movie, has title "Aliens";
-$x isa movie, has title "Terminator 2: Judgement Day";`
+const visualiserItems = require('config/visualiserItems');
 
 
 class Visualiser extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      selected: 0
+      selected: keys(visualiserItems)[0],
     };
     this.change = this.change.bind(this);
   }
@@ -65,7 +32,6 @@ class Visualiser extends Component {
         return gutter
       },
     });
-    
   }
   change(i) {
     this.setState({
@@ -74,26 +40,26 @@ class Visualiser extends Component {
   }
 
   render() {
-    const code_created = Prism.highlight(code, graqlHighlighter)
+    const code = Prism.highlight(visualiserItems[this.state.selected], graqlHighlighter)
     return (
       <div className="visualiser">
         <ul className=" visualiser__tabs__list">
           {
-            graphs.map((item, index) => {
+            keys(visualiserItems).map((item, index) => {
               const classes =  classNames({
                 'visualiser__tabs__list__item': true,
-                'visualiser__tabs__list__item--active': this.state.selected === index
+                'visualiser__tabs__list__item--active': this.state.selected === item
               });
               return (
-                <li className={classes} onClick={() => this.change(index)} key={`${index}__visualiser__key`}>{item.key}</li>
+                <li className={classes} onClick={() => this.change(item)} key={`${index}__visualiser__key`}>{item}</li>
               )
             })
           }
         </ul>
         <div className=" visualiser__content">
           <div id="visualiser-code" className="visualiser__content__code">
-              <pre>
-                <code dangerouslySetInnerHTML={{__html: code_created}}/>
+             <pre>
+                <code dangerouslySetInnerHTML={{__html: code}}/>
               </pre>
           </div>
           <div id="visualiser-graph" className="visualiser__content__graph">
