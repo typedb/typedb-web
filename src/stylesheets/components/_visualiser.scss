@@ -22,7 +22,9 @@
       border-radius: 5px 5px 0 0;
       line-height: 60px;
       list-style: none;
+      overflow-x: scroll;
       &__item {
+        min-width: 100px;
         width: 20%;
         font-size: 14px;
         font-weight: 600;
@@ -47,16 +49,20 @@
       height: 100%;
     }
     &__graph {
-      background-color: #3b4254;;
+      background-color: #3b4254;
     }
     &__code {
+      overflow-x: hidden;                        
       > pre {
         padding: 1rem 2rem;
         > code {
           //Default colour for everything.
           color: #8c8c92;
           font-size: 18px;
-          line-height: 1.43;          
+          line-height: 1.43;
+          @media screen and (max-width: $smallScreen){
+            font-size: 12px;
+          }        
         }
       }
     }

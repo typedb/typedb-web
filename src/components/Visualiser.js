@@ -54,6 +54,7 @@ class Visualiser extends Component {
     Split(['#visualiser-code', '#visualiser-graph'], {
       sizes: [50, 50],
       gutterSize: 14,
+      snapOffset: 0,      
       gutter: (index, direction) => {
         const gutter = document.createElement('div');
         const img = document.createElement('img');
@@ -62,7 +63,7 @@ class Visualiser extends Component {
         gutter.className = `gutter gutter-${direction}`;
         gutter.appendChild(img);
         return gutter
-      }
+      },
     });
     
   }
