@@ -22,12 +22,15 @@
     }
   }
   &__splash {
-    min-height:1000px;
+    min-height:100vh;
     background-image: url('/assets/img/header.png');
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
     position: relative;
+    @media screen and (max-width: $smallScreen) {
+      min-height: 900px;
+    }
     &__text {
       padding-top: 180px;
       text-align: center;
