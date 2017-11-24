@@ -28,3 +28,20 @@
     src: url('/assets/fonts/opensans/OpenSans-ExtraBold.ttf');
     font-weight: 800;
 }
+
+//Ubuntu Mono
+@font-face {
+    font-family: 'Ubuntu Mono';
+    src: url('/assets/fonts/ubuntumono/UbuntuMono-Light.ttf');
+    font-weight: 300;
+}
+@font-face {
+    font-family: 'Ubuntu Mono';
+    src: url('/assets/fonts/ubuntumono/UbuntuMono-Regular.ttf');
+    font-weight: 400;
+}
+@font-face {
+    font-family: 'Ubuntu Mono';
+    src: url('/assets/fonts/ubuntumono/UbuntuMono-Bold.ttf');
+    font-weight: 700;
+}

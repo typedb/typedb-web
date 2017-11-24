@@ -25,7 +25,7 @@
       overflow-x: scroll;
       &__item {
         min-width: 100px;
-        width: 20%;
+        width: 100%;
         font-size: 14px;
         font-weight: 600;
         letter-spacing: 0.8px;
@@ -55,14 +55,15 @@
       overflow-x: hidden;                        
       > pre {
         padding: 1rem 2rem;
+        font-family: 'Ubuntu Mono' !important;                
         > code {
           //Default colour for everything.
           color: #8c8c92;
           font-size: 18px;
-          line-height: 1.43;
+          line-height: 1.23;
           @media screen and (max-width: $smallScreen){
             font-size: 12px;
-          }        
+          }
         }
       }
     }

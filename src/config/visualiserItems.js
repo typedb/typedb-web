@@ -1,64 +1,94 @@
 module.exports = {
-Movies: `# get movies directed by the director of the movie Avatar
-graql>>
+Inference: `
+# Reasoning OLTP
+
 match
-$x isa movie;
-$y isa person;
-$z isa movie, has title "Avatar";
-($x, $y) isa directorship;
-($y, $z) isa directorship;
-select $x;
 
-results>>
-$x isa movie, has title "Titanic";
-$x isa movie, has title "Aliens";
-$x isa movie, has title "Terminator 2: Judgement Day";`,
-Titles: `# get the id and title of highly-rated movies released in 2015 or later
+$a isa person;
+$b isa country, has name "UK";
+($a, $b) isa lives-in;
 
-graql>>
-match
-$x isa movie, has title $t;
-$x has rating > 8.0;
-$x has release-date >= 2015-01-01;
-select $t;
+get;`,
+Analytics: `# Analytics OLAP
 
-results>>
-$t isa title, val "Star Wars: Episode VII";
-$t isa title, val "Zootopia";
-$t isa title, val "The Martian";`,
-Casts: `# get the people in the cast of movies directed by Ang Lee
+compute path from "user123" to "user345";`,
 
-graql>>
-match
+ER: `# Entity-Relationship
+
+define
+
+person sub entity,
+	has name,
+	plays employee;
+
+company sub  entity,
+	has name,
+	plays employer;
+
+employment sub relationship,
+	relates employee,
+	relates employer;
+
+name sub attribute,
+	datatype string;
+
+commit `,
+Ternary: `
+# Ternary Relationships
+
+insert
+
 $x isa person;
-$y isa movie;
-$z isa person has name "Ang Lee";
-($x, $y) isa has-cast;
-($y, $z) isa directorship;
-select $x;
+$y isa movie, has title "Titanic";
+$z isa figure;
+($x, $y, $z) isa cast,
+	has billing-number $b;
 
-results>>
-$x isa person, has name "Suraj Sharma";
-$x isa person, has name "Irrfan Khan";
-$x isa person, has name "Ayush Tandon";`,
-Horror: `# associate all slasher movies with the genre horror
+commit`,
+Nested: `
+# Nested Relationships
 
-graql>>
 insert
-$horror isa inference-rule
+
+$a isa person, has name "Alice";
+$b isa person, has name "Bob";
+$m (wife: $a, husband: $b);
+
+$c isa city, has name "London";
+($m, $c) isa located-in;
+
+commit`,
+Rules: `
+# Schema Rules
+
+define
+
+transitive-location sub rule,
 when {
-    $x isa movie has genre "Slasher";
-} then {
-    $x has genre "Horror";
-};`,
-Directorship: `# add the movie Big Fish with director Tim Burton
+	(located: $x, locating: $y);
+	(located: $y, locating: $z);
+}
+then {
+	(located: $x, locating: $z);
+}
 
-graql>>
-insert
-$x isa movie, has title "Big Fish";
-$y isa person, has name "Tim Burton";
-(movie-being-directed $x, director $y) isa directorship;
+commit `,
+Types: `
+# Type Hierarchies
 
-results>>
-$x isa movie, has title "Big Fish"; $y isa movie, has name "Tim Burton";`
+define
+
+person sub entity,
+	has first-name,
+	has last-name;
+
+student sub person;
+undergrad sub student;
+postgrad sub student;
+
+teacher sub person;
+supervisor sub teacher;
+professor sub teacher;
+
+commit`
 }
