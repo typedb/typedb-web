@@ -683,24 +683,24 @@
   }
 
   &__world {
-    min-height:450px;
+    min-height:480px;
     background-image: linear-gradient(91deg, #4d5575, #36405a);
     @media screen and (max-width: $smallScreen) {
-      min-height: 300px;
+      min-height: 200px;
     }
     &__container {
-      background-image: url('/assets/img/map_transparent.png');
+      background-image: url('/assets/img/graknmap.png');
       background-repeat: no-repeat;
-      background-size: 80%;
+      background-size: contain;
       background-position: center;
       display: flex;
       align-items: center;
-      justify-content: center;
       flex-direction: column;
-      min-height: 450px;
-      padding-bottom: 2rem;
+      min-height: 480px;
+      padding-bottom: 3rem;
       @media screen and (max-width: $smallScreen) {
-        min-height: 300px;
+        min-height: 200px;
+        padding-bottom: 2rem;
       }  
     }
     &__headline {
@@ -711,13 +711,15 @@
       font-size: 48px;
       text-align: center;
       width: 100%;
-      margin: auto;
+      margin-bottom: auto;
+      padding-top: 4rem;
       > strong {
         color: $textPink;
         font-weight: 600;
       }
       @media screen and (max-width: $smallScreen) {
-        font-size: 30px;
+        font-size: 24px;
+        padding-top: 2rem;
       }
     }
     &__link {
@@ -727,7 +729,7 @@
       line-height: 1.2;
       text-align: center;
       @media screen and (max-width: $smallScreen) {
-        font-size: 14px;
+        font-size: 12px;
       }
     }
   }
