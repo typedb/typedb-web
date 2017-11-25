@@ -1,4 +1,4 @@
-$navHeight: 90px;
+$navHeight: 70px;
 $navShadow: 0 0 26px 0 rgba(221, 221, 221, 0.64);
 .nav {
   height: $navHeight;
@@ -30,8 +30,8 @@ $navShadow: 0 0 26px 0 rgba(221, 221, 221, 0.64);
   &__link {
     color: $textNav;
     text-decoration: none;
-    font-size: 0.9rem;
-    font-weight: 600;
+    font-size: 1.1rem;
+    font-weight: 400;
     padding: 0 1rem;
     > .fa {
       display: inline;
@@ -41,7 +41,8 @@ $navShadow: 0 0 26px 0 rgba(221, 221, 221, 0.64);
   }
   &__hamburger {
     display: none;
-    margin-top: 95px;
+    margin-top: 75px;
+    margin-left: 11px;
     width: 100%;
     background-color: white;
     padding: 1rem 0;
@@ -62,7 +63,7 @@ $navShadow: 0 0 26px 0 rgba(221, 221, 221, 0.64);
       display: block;
     }
     &__button {
-      padding-top: 2rem;
+      padding-top: 1.4rem;
       float: right;    
     }
   }

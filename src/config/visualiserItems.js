@@ -9,11 +9,13 @@ $b isa country, has name "UK";
 ($a, $b) isa lives-in;
 
 get;`,
-Analytics: `# Analytics OLAP
+Analytics: `
+# Analytics OLAP
 
 compute path from "user123" to "user345";`,
 
-ER: `# Entity-Relationship
+ER: `
+# Entity-Relationship
 
 define
 

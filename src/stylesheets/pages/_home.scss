@@ -682,7 +682,7 @@
   }
 
   &__world {
-    min-height:600px;
+    min-height:450px;
     background-image: linear-gradient(91deg, #4d5575, #36405a);
     @media screen and (max-width: $smallScreen) {
       min-height: 300px;
@@ -690,13 +690,13 @@
     &__container {
       background-image: url('/assets/img/map_transparent.png');
       background-repeat: no-repeat;
-      background-size: contain;
+      background-size: 80%;
       background-position: center;
       display: flex;
       align-items: center;
       justify-content: center;
       flex-direction: column;
-      min-height: 600px;
+      min-height: 450px;
       padding-bottom: 2rem;
       @media screen and (max-width: $smallScreen) {
         min-height: 300px;

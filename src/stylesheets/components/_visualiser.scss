@@ -54,13 +54,17 @@
     &__code {
       overflow-x: hidden;                        
       > pre {
-        padding: 1rem 2rem;
-        font-family: 'Ubuntu Mono' !important;                
+        margin-top: 0;
+        padding: 0rem 1.5rem;
+        font-family: 'Ubuntu' !important;
+        font-weight: 400 !important;          
         > code {
           //Default colour for everything.
           color: #8c8c92;
           font-size: 18px;
           line-height: 1.23;
+          font-family: 'Ubuntu' !important;
+          font-weight: 400 !important;   
           @media screen and (max-width: $smallScreen){
             font-size: 12px;
           }
@@ -89,11 +93,16 @@
 .token.prolog,
 .token.doctype,
 .token.cdata {
-    color: #505e72;
+    color: #636c79;
+    font-style: italic !important;
 }
 
 .token.punctuation {
     color: #f8f8f2;
+}
+
+.token.system {
+  color: #db57f4;
 }
 
 .token.special {

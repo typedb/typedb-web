@@ -29,19 +29,37 @@
     font-weight: 800;
 }
 
-//Ubuntu Mono
+// Ubuntu Mono
 @font-face {
-    font-family: 'Ubuntu Mono';
-    src: url('/assets/fonts/ubuntumono/UbuntuMono-Light.ttf');
-    font-weight: 300;
-}
-@font-face {
-    font-family: 'Ubuntu Mono';
-    src: url('/assets/fonts/ubuntumono/UbuntuMono-Regular.ttf');
+    font-family: 'Ubuntu';
+    src: url('/assets/fonts/ubuntu/UbuntuMono-Regular.ttf');
     font-weight: 400;
 }
 @font-face {
-    font-family: 'Ubuntu Mono';
-    src: url('/assets/fonts/ubuntumono/UbuntuMono-Bold.ttf');
+    font-family: 'Ubuntu';
+    src: url('/assets/fonts/ubuntu/UbuntuMono-Italic.ttf');
+    font-weight: 400;
+    font-style: italic;
+}
+
+// Titilium Web
+@font-face {
+    font-family: 'Titillium';
+    src: url('/assets/fonts/titillium/TitilliumWeb-Light.ttf');
+    font-weight: 300;
+}
+@font-face {
+    font-family: 'Titillium';
+    src: url('/assets/fonts/titillium/TitilliumWeb-Regular.ttf');
+    font-weight: 400;
+}
+@font-face {
+    font-family: 'Titillium';
+    src: url('/assets/fonts/titillium/TitilliumWeb-SemiBold.ttf');
+    font-weight: 600;
+}
+@font-face {
+    font-family: 'Titillium';
+    src: url('/assets/fonts/titillium/TitilliumWeb-Bold.ttf');
     font-weight: 700;
 }

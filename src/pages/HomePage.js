@@ -7,16 +7,17 @@ import Visualiser from 'components/Visualiser';
 import graknRoutes from 'config/graknRoutes';
 const prodSectionSettings = {
   dots: true,
-  infinite: true,
+  infinite: false,
   speed: 500,
   slidesToShow: 4,
   slidesToScroll: 4,
   arrows: false,
   initialSlide: 2,
-  centerMode: true,
+  centerMode: false,
+  swipeToSlide: true,
   className: 'home__production__slider',
   responsive: [
-     { breakpoint: 768, settings: { centerMode: true, slidesToShow: 1, slidesToScroll: 1, infinite: false } },
+     { breakpoint: 768, settings: { centerMode: true, slidesToShow: 1, slidesToScroll: 1 } },
      { breakpoint: 1200, settings: { slidesToShow: 2, slidesToScroll: 2 } },
      { breakpoint: 1500, settings: { slidesToShow: 3, slidesToScroll: 3 } }
   ]
@@ -31,6 +32,7 @@ const deploymentSettings = {
   arrows: false,
   initialSlide: 1,
   centerMode: true,
+  swipeToSlide: true,
   className: 'home__deployment__items--slider',
   responsive: [
      { breakpoint: 400, settings: {   slidesToShow: 1, slidesToScroll: 1    } },
