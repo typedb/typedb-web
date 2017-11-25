@@ -142,6 +142,10 @@ const HomePage = () => (
             Strong abstraction over low-level constructs, enabling you to express questions at a higher level and let the system figure out how to do the navigation            </span>
           </div>
         </div>
+        <div className="home__features__buttons">
+          <Link to="/">INSTALL</Link>
+          <Link to="/">LEARN MORE</Link>
+        </div>
       </div>
     </section>
     <section className="home__production">
@@ -180,10 +184,6 @@ const HomePage = () => (
           </div>
         </div>       
       </Slider>
-      <div className="home__production__buttons">
-        <Link to="/">INSTALL</Link>
-        <Link to="/">READ MORE</Link>
-      </div>
     </section>
     <section className="home__deployment">
       <div className="home__deployment__container container home__container">
