@@ -78,7 +78,7 @@
       }
       &__community {
         display: block;
-        color: $textBlue;
+        color: $textPurple;
         padding-top: 1rem;
         font-size: 18px;
         @media screen and (max-width: $smallScreen) {
@@ -491,7 +491,7 @@
       margin: 0 auto;
       > strong {
         color: $textPurple;
-        font-weight: 400;
+        font-weight: 600;
       }
       @media screen and (max-width: $smallScreen) {
         font-size: 22px;
