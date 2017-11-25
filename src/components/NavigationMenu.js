@@ -16,12 +16,16 @@ class NavigationMenu extends Component {
   
   renderLinks() {
     return Object.keys(navRoutes).map((key) => {
+      const linkClasses = classNames({
+        'nav__link': true,
+        'nav__link--animated': key !== 'Github',
+      });
       return (
         <a
         key={`${key}__link`}
         href={navRoutes[key]}
         target="_blank"
-        className="nav__link"
+        className={linkClasses}
         >
         { key !== 'Github'?
           key
