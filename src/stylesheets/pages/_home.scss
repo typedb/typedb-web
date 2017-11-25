@@ -79,7 +79,8 @@
       &__community {
         display: block;
         color: $textBlue;
-        padding-top: 1rem;  
+        padding-top: 1rem;
+        font-size: 18px;
         @media screen and (max-width: $smallScreen) {
           font-size: 14px;
         }      
@@ -109,7 +110,7 @@
         > span {
           display: block;
           padding-top: 0.5rem;
-          font-size: 16px;
+          font-size: 18px;
           color: $textExtraLight;
           @media screen and (max-width: $smallScreen) {
             font-size: 11px;
@@ -459,8 +460,8 @@
       margin: 0 auto;
       text-align: center;
       line-height: 1.2;
-      font-weight: 600;
-      font-size: 16px;
+      font-weight: 400;
+      font-size: 18px;
       color: $textPurple;
       @media screen and (max-width: $smallScreen) {
         font-size: 14px;
@@ -490,7 +491,7 @@
       margin: 0 auto;
       > strong {
         color: $textPurple;
-        ;
+        font-weight: 400;
       }
       @media screen and (max-width: $smallScreen) {
         font-size: 22px;
@@ -562,7 +563,8 @@
           }
         }
         &__content {
-          padding-top: 0.8rem;
+          padding-top: 1.2rem;
+          padding-bottom: 1.2rem;
           font-size: 18px;
           line-height: 1.8;
           text-align: left;
@@ -573,9 +575,8 @@
         }
         > a {
           color: $textPurple;
-          font-size: 16px;
-          font-weight: 600;
-          padding-top: 1.8rem;
+          font-size: 18px;
+          font-weight: 400;
           @media screen and (max-width: $smallScreen) {
             font-size: 14px;
           }
@@ -721,8 +722,8 @@
     }
     &__link {
       color: white;
-      font-size: 16px;
-      font-weight: 600;
+      font-size: 18px;
+      font-weight: 400;
       line-height: 1.2;
       text-align: center;
       @media screen and (max-width: $smallScreen) {

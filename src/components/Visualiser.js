@@ -63,7 +63,7 @@ class Visualiser extends Component {
               </pre>
           </div>
           <div id="visualiser-graph" className="visualiser__content__graph">
-            Graph Graph
+            Graph
           </div>
         </div>
       </div>

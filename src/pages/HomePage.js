@@ -231,7 +231,7 @@ const HomePage = () => (
     <section className="home__usecases">
       <div className="home__usecases__container container home__container">
         <span className="home__usecases__header">
-          <strong>Grakn</strong> can helps every domain with complex networks of information
+          <strong>Grakn</strong> helps every domain with complex networks of information
         </span>
         <Tabs className="home__usecases__tabcontainer">
           <TabPanel className="home__usecases__tabpanel" selectedClassName="home__usecases__tabpanel--selected">
