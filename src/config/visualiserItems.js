@@ -1,19 +1,4 @@
 module.exports = {
-Inference: `
-# Reasoning OLTP
-
-match
-
-$a isa person;
-$b isa country, has name "UK";
-($a, $b) isa lives-in;
-
-get;`,
-Analytics: `
-# Analytics OLAP
-
-compute path from "user123" to "user345";`,
-
 ER: `
 # Entity-Relationship
 
@@ -35,6 +20,24 @@ name sub attribute,
 	datatype string;
 
 commit `,
+Types: `
+# Type Hierarchies
+
+define
+
+person sub entity,
+	has first-name,
+	has last-name;
+
+student sub person;
+undergrad sub student;
+postgrad sub student;
+
+teacher sub person;
+supervisor sub teacher;
+professor sub teacher;
+
+commit`,
 Ternary: `
 # Ternary Relationships
 
@@ -75,22 +78,18 @@ then {
 }
 
 commit `,
-Types: `
-# Type Hierarchies
+Inference: `
+# Reasoning OLTP
 
-define
+match
 
-person sub entity,
-	has first-name,
-	has last-name;
+$a isa person;
+$b isa country, has name "UK";
+($a, $b) isa lives-in;
 
-student sub person;
-undergrad sub student;
-postgrad sub student;
+get;`,
+Analytics: `
+# Analytics OLAP
 
-teacher sub person;
-supervisor sub teacher;
-professor sub teacher;
-
-commit`
+compute path from "user123" to "user345";`
 }
