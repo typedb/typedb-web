@@ -697,10 +697,10 @@
       align-items: center;
       flex-direction: column;
       min-height: 480px;
-      padding-bottom: 3rem;
+      padding: 3rem 0;
       @media screen and (max-width: $smallScreen) {
         min-height: 200px;
-        padding-bottom: 2rem;
+        padding: 2rem 0;
       }  
     }
     &__headline {
@@ -712,14 +712,12 @@
       text-align: center;
       width: 100%;
       margin-bottom: auto;
-      padding-top: 4rem;
       > strong {
         color: $textPink;
         font-weight: 600;
       }
       @media screen and (max-width: $smallScreen) {
         font-size: 24px;
-        padding-top: 2rem;
       }
     }
     &__link {
