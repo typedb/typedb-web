@@ -12,7 +12,7 @@ const prodSectionSettings = {
   slidesToShow: 5,
   slidesToScroll: 5,
   arrows: false,
-  initialSlide: 1,
+  initialSlide: 0,
   centerMode: false,
   swipeToSlide: true,
   className: 'home__production__slider',
@@ -31,13 +31,30 @@ const deploymentSettings = {
   slidesToShow: 2,
   slidesToScroll: 2,
   arrows: false,
-  initialSlide: 1,
+  initialSlide: 0,
   centerMode: true,
   swipeToSlide: true,
   className: 'home__deployment__items--slider',
   responsive: [
      { breakpoint: 400, settings: {   slidesToShow: 1, slidesToScroll: 1    } },
      { breakpoint: 768, settings: { slidesToShow: 2, slidesToScroll: 2 } },
+  ]
+}
+
+const testimonialsSettings = {
+  dots: true,
+  infinite: false,
+  speed: 500,
+  slidesToShow: 3,
+  slidesToScroll: 3,
+  arrows: false,
+  initialSlide: 0,
+  centerMode: false,
+  swipeToSlide: true,
+  className: 'home__reviews__slider',
+  responsive: [
+     { breakpoint: 768, settings: { slidesToShow: 1, slidesToScroll: 1} },
+     { breakpoint: 1300, settings: { slidesToShow: 2, slidesToScroll: 2 } },
   ]
 }
 
@@ -49,6 +66,12 @@ const deploymentOptions = [
   { name: 'premise', url: '/assets/img/on_premise.png'},
   { name: 'Amazon Web Services', url: '/assets/img/amazon.png'}
 ];
+
+const testimonials = [
+  {name: 'John Doe', company: 'Corp Inc.', img: '/assets/img/testimonials_1.png', review: '“Nulla ut sem lacus. Morbi dapibus lacus eu pharetra blandit. Donec arcu turpis, viverra eu volutpat ac. Phasellus consectetur vestibulum. Vestibulum lectust.”'},
+  {name: 'Random Adam', company: 'Corp Inc.', img: '/assets/img/testimonials_2.png', review: '“Nulla ut sem lacus. Morbi dapibus lacus eu pharetra blandit. Donec arcu turpis, viverra eu volutpat ac. Phasellus consectetur vestibulum. Vestibulum lectust.”'},
+  {name: 'Alpha Sam', company: 'Corp Inc.', img: '/assets/img/testimonials_3.png', review: '“Nulla ut sem lacus. Morbi dapibus lacus eu pharetra blandit. Donec arcu turpis, viverra eu volutpat ac. Phasellus consectetur vestibulum. Vestibulum lectust.”'}
+]
 
 const HomePage = () => (
   <div className="home">
@@ -343,6 +366,30 @@ const HomePage = () => (
           </TabList>
         </Tabs>
       </div>
+    </section>
+    <section className="home__reviews">
+        <div className="home__reviews__container container home__container">
+          <img className="home__reviews__headerimg" src="/assets/svg/testimonials.svg" alt="testimonials" />
+          <Slider {...testimonialsSettings}>
+            {
+              testimonials.map((item, index) => {
+                return (
+                  <div className="home__reviews__item" key={`${index}__testimonals`}>
+                    <div className="home__reviews__item__text">{item.review}</div>
+                    <div className="home__reviews__item__details">
+                      <div className="home__reviews__item__details__img"><img src={item.img} alt={`${item.name}'s picture`} /></div>
+                      <div className="home__reviews__item__details__text">
+                        <span>{item.name}</span>
+                        <span>{item.company}</span>
+                      </div>
+                    </div>
+                  </div>
+                )
+              })
+            }
+          </Slider>
+          <Link to="/" className="button button--red">Schedule a call with our team</Link>
+        </div>
     </section>
     <section className="home__world">
       <div className="home__world__container container home__container">         
