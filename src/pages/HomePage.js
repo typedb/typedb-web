@@ -68,7 +68,7 @@ const deploymentOptions = [
 ];
 
 const testimonials = [
-  {name: 'John Doe', company: 'Corp Inc.', img: '/assets/img/testimonials_1.png', review: '“Nulla ut sem lacus. Morbi dapibus lacus eu pharetra blandit. Donec arcu turpis, viverra eu volutpat ac. Phasellus consectetur vestibulum. Vestibulum lectust.”'},
+  {name: 'John Doe', company: 'Corp Inc.', img: '/assets/img/Testimonials_1.png', review: '“Nulla ut sem lacus. Morbi dapibus lacus eu pharetra blandit. Donec arcu turpis, viverra eu volutpat ac. Phasellus consectetur vestibulum. Vestibulum lectust.”'},
   {name: 'Random Adam', company: 'Corp Inc.', img: '/assets/img/testimonials_2.png', review: '“Nulla ut sem lacus. Morbi dapibus lacus eu pharetra blandit. Donec arcu turpis, viverra eu volutpat ac. Phasellus consectetur vestibulum. Vestibulum lectust.”'},
   {name: 'Alpha Sam', company: 'Corp Inc.', img: '/assets/img/testimonials_3.png', review: '“Nulla ut sem lacus. Morbi dapibus lacus eu pharetra blandit. Donec arcu turpis, viverra eu volutpat ac. Phasellus consectetur vestibulum. Vestibulum lectust.”'}
 ]
