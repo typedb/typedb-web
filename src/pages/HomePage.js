@@ -9,17 +9,18 @@ const prodSectionSettings = {
   dots: true,
   infinite: false,
   speed: 500,
-  slidesToShow: 4,
-  slidesToScroll: 4,
+  slidesToShow: 5,
+  slidesToScroll: 5,
   arrows: false,
-  initialSlide: 2,
+  initialSlide: 1,
   centerMode: false,
   swipeToSlide: true,
   className: 'home__production__slider',
   responsive: [
-     { breakpoint: 768, settings: { centerMode: true, slidesToShow: 1, slidesToScroll: 1 } },
-     { breakpoint: 1200, settings: { slidesToShow: 2, slidesToScroll: 2 } },
-     { breakpoint: 1500, settings: { slidesToShow: 3, slidesToScroll: 3 } }
+     { breakpoint: 500, settings: { centerMode: true, slidesToShow: 1, slidesToScroll: 1 } },
+     { breakpoint: 1000, settings: { centerMode: true, slidesToShow: 2, slidesToScroll: 2 } },
+     { breakpoint: 1500, settings: { slidesToShow: 3, slidesToScroll: 3 } },
+     { breakpoint: 2000, settings: { slidesToShow: 4, slidesToScroll: 4 } }
   ]
 };
 
