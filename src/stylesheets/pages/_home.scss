@@ -155,47 +155,6 @@
         padding-top: 40px !important;
       }
     }
-    &__buttons {
-      width: 50%;
-      display: block;
-      margin: 0 auto;
-      text-align: center;
-      padding-top: 100px;
-      > a {
-        display: inline-block;
-        padding: 0;
-        width: 170px;
-        height: 50px;
-        border-radius: 5px;
-        line-height: 50px;
-        text-decoration: none;
-        font-size: 16px;
-        font-weight: 600;
-        margin: 0;
-        @media screen and (max-width: $smallScreen) {
-          display: block;
-          margin: 0 auto;
-          font-size: 14px;
-          width: 100%;
-        }       
-      }
-      > a:nth-child(1) {
-        background-color: $textPink;
-        color: white;
-        margin-bottom: 0;
-        @media screen and (max-width: $smallScreen) {
-          margin-bottom: 1rem;
-        }
-      }
-      > a:nth-child(2) {
-        color: $textPink;
-        border: 1px solid $textPink;
-        margin-left: 20px;
-        @media screen and (max-width: $smallScreen) {
-          margin-left: auto; 
-        }
-      }
-    }
     &__headline {
       width: 50%;
       text-align: center;
@@ -207,7 +166,7 @@
       width: 120px;
       height: 120px;
       background-color: #ffffff;
-      box-shadow: 4.9px 4.9px 30px 0 rgba(150, 134, 255, 0.2);
+      box-shadow: 2px 2px 10px 0 rgba(150, 134, 255, 0.2);
       border-radius: 50%;
       position: absolute;
       bottom: -60px;
@@ -266,12 +225,24 @@
             background-color: #46cd90;
           }
         }
-
+        > a {
+          color: $textPurple;
+          font-size: 18px;
+          font-weight: 400;
+          padding-top: 10px;
+          display: block;
+          @media screen and (max-width: $smallScreen) {
+            font-size: 14px;
+          }
+          &:hover {
+            color: $textDarkPurple;
+          }
+        }
         &__headline {
           display: block;
           margin-top: 30px;
           margin-bottom: 10px;
-          font-size: 20px;
+          font-size: 22px;
           font-weight: 600;
           color: $textCharcoal;
           @media screen and (max-width: $smallScreen) {
@@ -282,13 +253,14 @@
 
         &__paragraph {
           display: block;
-          font-size: 16px;
+          font-size: 18px;
           color: $textLight;
           text-align: left;
           line-height: 1.8;
           @media screen and (max-width: $smallScreen) {
             font-size: 14px;
           }
+          
         }
         @media screen and (max-width: $smallScreen) {
           order: 1;
@@ -309,20 +281,22 @@
   }
 
   &__production {
-    min-height: 550px;
-    background-image: url('/assets/img/background_2.png');
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: right top;
+    // background-image: url('/assets/img/background_2.png');
+    // background-repeat: no-repeat;
+    // background-size: cover;
+    // background-position: center;
+    background: $backgroundPurple;
+    padding-top: 70px;    
+    padding-bottom: 70px;  
     @media screen and (max-width: $smallScreen) {
-      background-position: center;
+     // background-position: center;
+      padding-top: 50px;      
+      padding-bottom: 50px;
     }
     &__headline {
-      padding-top: 100px;
-      width: 60%;
+      width: 50%;
       text-align: center;
       @media screen and (max-width: $smallScreen) {
-        padding-top: 40px;
         width: 90%;
       }
     }
@@ -337,7 +311,7 @@
           margin: 0 5px;
         }
        &__container {
-        width: 320px;
+        width: 300px;
         height: 160px;
         background-color: #ffffff;
         box-shadow: 4.9px 4.9px 20px 0 rgba(204, 204, 204, 0.25);
@@ -396,6 +370,11 @@
   &__deployment {
     padding-top: 70px;
     padding-bottom: 70px;
+    @media screen and (max-width: $smallScreen) {
+      // background-position: center;
+       padding-top: 50px;      
+       padding-bottom: 50px;
+     }
     &__headline {
       width: 50%;
       text-align: center;
@@ -417,17 +396,17 @@
             width: 33%;            
           }
           > :nth-child(2) {
-            border-left: 2px solid #f2f6fa;
-            border-right: 2px solid #f2f6fa;
+            border-left: 1px solid #f2f6fa;
+            border-right: 1px solid #f2f6fa;
           }
         }
         > :nth-child(1) {
-          border-bottom: 2px solid #f2f6fa;          
+          border-bottom: 1px solid #f2f6fa;          
         }
       }
       &--slider {
         display: none;
-        padding: 50px 0;
+        padding: 50px 0 30px 0;
         @media screen and (max-width: $smallScreen) {
           display: block;
         }
@@ -450,20 +429,8 @@
           height: 200px;
         }
         &:hover {
-          box-shadow: 0 0 19px 0 rgba(204, 204, 204, 0.43);
+          border: 1px solid $borderColor;
         }
-      }
-    }
-    &__link {
-      display: block;
-      margin: 0 auto;
-      text-align: center;
-      line-height: 1.2;
-      font-weight: 400;
-      font-size: 18px;
-      color: $textPurple;
-      @media screen and (max-width: $smallScreen) {
-        font-size: 14px;
       }
     }
   }
@@ -495,7 +462,8 @@
       @media screen and (max-width: $smallScreen) {
         font-size: 22px;
         width: 100%;
-        margin-bottom: 20px;     
+        margin-bottom: 20px;
+        padding-top: 50px;    
       }
     }
     &__tabcontainer {
@@ -578,6 +546,9 @@
           font-weight: 400;
           @media screen and (max-width: $smallScreen) {
             font-size: 14px;
+          }
+          &:hover {
+            color: $textDarkPurple;
           }
         }
       }
@@ -685,7 +656,7 @@
     min-height:480px;
     background-image: linear-gradient(91deg, #4d5575, #36405a);
     @media screen and (max-width: $smallScreen) {
-      min-height: 200px;
+      min-height: 170px;
     }
     &__container {
       background-image: url('/assets/img/graknmap.png');
@@ -698,8 +669,8 @@
       min-height: 480px;
       padding: 3rem 0;
       @media screen and (max-width: $smallScreen) {
-        min-height: 200px;
-        padding: 2rem 0;
+        min-height: 170px;
+        padding: 1rem 0;
       }  
     }
     &__headline {
@@ -711,13 +682,13 @@
       text-align: center;
       width: 100%;
       margin-bottom: auto;
-      padding-top: 1rem;
+      padding-top: 0;
       > strong {
         color: $textPink;
         font-weight: 600;
       }
       @media screen and (max-width: $smallScreen) {
-        font-size: 24px;
+        font-size: 20px;
       }
     }
     &__link {
@@ -738,7 +709,7 @@
   &-dots {
     list-style: none;
     text-align: center;
-    padding-top: 60px;
+    padding-top: 40px;
     width: 300px;
     padding-left: 0;
     margin: 0 auto;

@@ -1,0 +1,28 @@
+.button {
+  display: block;
+  padding: 0 1rem;
+  width: fit-content;
+  height: 50px;
+  border-radius: 5px;
+  line-height: 50px;
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: 600;
+  margin: 0 auto;
+  @media screen and (max-width: $smallScreen) {
+    font-size: 14px;
+  }       
+  &--red {
+    background-color: $textPink;
+    color: white;
+  }
+  &--transparent {
+    color: $textPink;
+    border: 1px solid $textPink;
+    &:hover {
+      color: white;
+      background-color: $textPink;
+    }
+  }
+
+}

@@ -2,13 +2,13 @@ $navHeight: 70px;
 $navShadow: 0 0 26px 0 rgba(221, 221, 221, 0.64);
 .nav {
   height: $navHeight;
-  box-shadow: $navShadow ;
   line-height: $navHeight;
   padding: 0 2rem;
   position: fixed;
   width: stretch;
   background-color: white;
   z-index: 100;
+  border-bottom: 1px solid $borderColor;
   @media screen and (max-width: $smallScreen) {
     padding: 0 1rem;
   }

@@ -93,6 +93,7 @@ const HomePage = () => (
             <span className="home__features__item__text__paragraph">
             Enhanced Entity-Relationship schema, with constructs to define hyper-objects, hyper-relations and functions, to build complex knowledge models
             </span>
+            <Link to="/">Learn More</Link>                        
           </div>
           <div className="home__features__item__img">
             <img src="/assets/img/hyper-expressive_schema.png" alt="Hyper Expressive Schema" />
@@ -110,6 +111,7 @@ const HomePage = () => (
             <span className="home__features__item__text__paragraph">
             Automatic deduction of data types and relationships during runtime (OLTP), enabling the retrieval of implicit associations between points
             </span>
+            <Link to="/">Learn More</Link>                        
           </div>
         </div>
       </div>
@@ -124,7 +126,9 @@ const HomePage = () => (
             </div>
             <span className="home__features__item__text__headline">Distributed analytics</span>
             <span className="home__features__item__text__paragraph">
-            Automated Pregel and MapReduce distributed algorithms abstracted as a language (OLAP), enabling large scale computation through database queries            </span>
+            Automated Pregel and MapReduce distributed algorithms abstracted as a language (OLAP), enabling large scale computation through database queries
+            </span>
+            <Link to="/">Learn More</Link>                        
           </div>
           <div className="home__features__item__img">
             <img src="/assets/img/distributed_analytics.png" alt="Distributed Analytics" />
@@ -140,12 +144,10 @@ const HomePage = () => (
             </div>
             <span className="home__features__item__text__headline">High-level query language</span>
             <span className="home__features__item__text__paragraph">
-            Strong abstraction over low-level constructs, enabling you to express questions at a higher level and let the system figure out how to do the navigation            </span>
+            Strong abstraction over low-level constructs, enabling you to express questions at a higher level and let the system figure out how to do the navigation
+            </span>
+            <Link to="/">Learn More</Link>            
           </div>
-        </div>
-        <div className="home__features__buttons">
-          <Link to="/">INSTALL</Link>
-          <Link to="/">LEARN MORE</Link>
         </div>
       </div>
     </section>
@@ -185,6 +187,7 @@ const HomePage = () => (
           </div>
         </div>       
       </Slider>
+      <Link to="/" className="button button--transparent">Learn More</Link>      
     </section>
     <section className="home__deployment">
       <div className="home__deployment__container container home__container">
@@ -226,7 +229,7 @@ const HomePage = () => (
             })
           }
         </Slider>
-        <Link to="/" className="home__deployment__link">Choose your deployment option</Link>
+        <Link to="/" className="button button--transparent">Choose your deployment option</Link>
       </div>
     </section>
     <section className="home__usecases">
