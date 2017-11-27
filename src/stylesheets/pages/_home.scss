@@ -314,7 +314,9 @@
     background-repeat: no-repeat;
     background-size: cover;
     background-position: right top;
-
+    @media screen and (max-width: $smallScreen) {
+      background-position: center;
+    }
     &__headline {
       padding-top: 100px;
       width: 60%;
@@ -709,6 +711,7 @@
       text-align: center;
       width: 100%;
       margin-bottom: auto;
+      padding-top: 1rem;
       > strong {
         color: $textPink;
         font-weight: 600;
