@@ -76,7 +76,7 @@ const testimonials = [
 const HomePage = () => (
   <div className="home">
     <section className="home__splash">
-      <div className="home__splash__text container home__container">
+      <div className="home__splash__text container section__container">
         <span className="home__splash__text__headline home__header">THE <strong>DATABASE</strong> FOR AI</span>
         <span className="home__splash__text__tag">AI systems process knowledge that is too complex for current databases. Grakn is a distributed hyper-relational database for knowledge-oriented systems, i.e. a distributed knowledge base.</span>
         <a className="home__splash__text__install" href={graknRoutes.download} target="_blank">
@@ -87,7 +87,7 @@ const HomePage = () => (
       <Visualiser />            
     </section>
     <section className="home__links">
-      <div className="home__links__container container home__container">
+      <div className="home__links__container container section__container">
         <div className="home__links__container__item">
           <img src="/assets/svg/github.svg" alt="github" />
           <span><a className="github-link" href={graknRoutes.github} target="_blank" >Grakn 0.17</a> on Github</span>
@@ -103,7 +103,7 @@ const HomePage = () => (
       </div>
     </section>
     <section className="home__features home__features--coloured">
-      <div className="home__features__container container home__container">
+      <div className="home__features__container container section__container">
         <span className="home__features__headline home__header">
           <strong>Grakn</strong> is a hyper-relational database for knowledge-oriented systems
         </span>
@@ -141,7 +141,7 @@ const HomePage = () => (
       <div className="home__features__circle"><img src="/assets/svg/bot.svg" alt="grakn bot" /></div>
      </section>
     <section className="home__features home__features--alternate">
-      <div className="home__features__container container home__container">
+      <div className="home__features__container container section__container">
         <div className="home__features__item">
           <div className="home__features__item__text">
             <div className="home__features__item__text__logo home__features__item__text__logo--blue">
@@ -175,7 +175,7 @@ const HomePage = () => (
       </div>
     </section>
     <section className="home__production">
-      <span className="home__production__headline home__header container home__container">
+      <span className="home__production__headline home__header container section__container">
         Simplify your data architecture and scale your knowledge base into production 
       </span>
       <Slider {...prodSectionSettings}>
@@ -213,7 +213,7 @@ const HomePage = () => (
       <Link to="/" className="button button--transparent">Learn More</Link>      
     </section>
     <section className="home__deployment">
-      <div className="home__deployment__container container home__container">
+      <div className="home__deployment__container container section__container">
         <span className="home__deployment__headline home__header">
           Deploy and run <strong>Grakn</strong> on premise, or any cloud platform
         </span>
@@ -256,7 +256,7 @@ const HomePage = () => (
       </div>
     </section>
     <section className="home__usecases">
-      <div className="home__usecases__container container home__container">
+      <div className="home__usecases__container container section__container">
         <span className="home__usecases__header">
           <strong>Grakn</strong> helps every domain with complex networks of information
         </span>
@@ -368,7 +368,7 @@ const HomePage = () => (
       </div>
     </section>
     <section className="home__reviews">
-        <div className="home__reviews__container container home__container">
+        <div className="home__reviews__container container section__container">
           <img className="home__reviews__headerimg" src="/assets/svg/testimonials.svg" alt="testimonials" />
           <Slider {...testimonialsSettings}>
             {
@@ -392,7 +392,7 @@ const HomePage = () => (
         </div>
     </section>
     <section className="home__world">
-      <div className="home__world__container container home__container">         
+      <div className="home__world__container container section__container">         
         <span className="home__world__headline">THE WORLD NEEDS TO <strong>GRAKN</strong></span>
         <Link to="/community" className="home__world__link">Join the Grakn open source community around the world</Link>
       </div>

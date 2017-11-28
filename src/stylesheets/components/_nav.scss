@@ -65,7 +65,8 @@ $navShadow: 0 0 26px 0 rgba(221, 221, 221, 0.64);
     width: 100%;
     background-color: white;
     padding: 1rem 0;
-    box-shadow: $navShadow;
+    border: 1px solid $borderColor;
+    border-radius: 5px;
     text-align: right;
     > .nav__link {
       display: block;

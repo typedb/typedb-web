@@ -1,13 +1,6 @@
 .home {
   width: 100%;
   height: 100%;
-  &__container {
-    width: 80%;
-    margin: 0 auto;
-    @media screen and (max-width: $smallScreen) {
-      width: 90%;
-    }
-  }
   &__header {
     display: block;
     margin: 0 auto;

@@ -1,0 +1,20 @@
+.app {
+  font-size: 14px;
+  font-family: 'Titillium';
+  letter-spacing: 0.2px;
+}
+.main {
+  height: 100%;
+}
+
+.container {
+  position: relative;
+  max-width: $mediumScreen;
+  margin: 0 auto;
+}
+.section__container {
+  margin: 0 auto;
+  @media screen and (max-width: $mediumScreen) {
+    width: 90%;
+  }
+}

@@ -8,6 +8,7 @@ body, html {
 @import './fonts';
 @import './colours';
 @import './breakpoints';
+@import './universal';
 
 // Imports - external libs
 @import "~slick-carousel/slick/slick.css";
@@ -21,22 +22,6 @@ body, html {
 // Imports - Containers
 @import './pages/home';
 @import './pages/slack';
+@import './pages/about';
 
 
-// Libs
-
-.app {
-  font-size: 14px;
-  //font-family: 'Open Sans', sans-serif;
-  font-family: 'Titillium';
-  letter-spacing: 0.2px;
-}
-.main {
-  height: 100%;
-}
-
-.container {
-  position: relative;
-  max-width: $mediumScreen;
-  margin: 0 auto;
-}
