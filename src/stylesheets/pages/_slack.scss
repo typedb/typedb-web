@@ -1,6 +1,6 @@
 iframe {
-  margin-top: 90px;
-  min-height: 800px;
+  margin-top: $navHeight;
+  min-height: calc(100vh - #{$navHeight});
   width: 100%;
   border: none;
   overflow-y: hidden;
