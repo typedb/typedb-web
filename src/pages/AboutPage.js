@@ -1,4 +1,5 @@
 import React from 'react';
+const teamInfo = require('config/teamInfo').team;
 
 const AboutPage = () => (
   <div className="about">
@@ -15,6 +16,26 @@ const AboutPage = () => (
             <span className="about__team__text__col2">We're a growing team of talented engineers and technology entrepreneurs based in London. Our team members come from diverse and accomplished backgrounds, from various countries and many different walks of life. Our skills span across Finance, Computer Science, Engineering, Computational Neurodynamics, Machine Learning, Scientific Computing, Applied Mathematics, Optimisation, Knowledge Representation and Automated Reasoning.</span>
           </div>
       </div>      
+    </section>
+    <section className="about__members">
+      <div className="container section__container">
+        <div className="multi-resize-column">
+          {
+            teamInfo.map((member, index) => {
+              return (
+                <div className="about__members__item multi-resize-column__item" key={`${index}__about`}>
+                  <img src={member.img} alt={`${member.name} image`} />
+                  <a className="about__members__item__info" href={member.social} target="_blank">
+                    <span className="about__members__item__info__name">{member.name}</span>
+                    <span className="about__members__item__info__position">{member.position}</span>
+                    <span className="about__members__item__info__education">{member.education}</span>
+                  </a>
+                </div>
+              );
+            })
+          }
+        </div>
+      </div>
     </section>
   </div>
 );

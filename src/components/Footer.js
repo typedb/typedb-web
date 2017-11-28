@@ -60,7 +60,7 @@ const Footer = () => (
         <div className="footer__block__links">
           <Link to="/">Blog</Link>
           <Link to="/">Careers</Link>
-          <Link to="/">About</Link>
+          <Link to="/about">About</Link>
         </div>
       </div>
     </div>
