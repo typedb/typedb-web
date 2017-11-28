@@ -114,4 +114,9 @@
       width: 40%;
     }
   }
+  &__block:nth-child(4),&__block:nth-child(5) {
+    @media screen and (max-width: $smallScreen) {
+      padding-bottom: 0;
+    }
+  }
 }
