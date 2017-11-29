@@ -20,7 +20,6 @@ module.exports = {
   output: {
     filename: '[hash].js',
   },
-  devtool: 'source-map',
   plugins: [
     lodashModulePlugin,
     htmlWebpackPlugin, 

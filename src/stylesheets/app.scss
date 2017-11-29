@@ -1,8 +1,12 @@
+// Imports - external libs
+@import "~slick-carousel/slick/slick.css";
+
 body, html {
   margin: 0;
   padding: 0;
   height: 100%;
 }
+
 
 // Imports
 @import './fonts';
@@ -10,8 +14,7 @@ body, html {
 @import './breakpoints';
 @import './universal';
 
-// Imports - external libs
-@import "~slick-carousel/slick/slick.css";
+
 
 // Imports - Components
 @import './components/nav';
