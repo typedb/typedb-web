@@ -12,6 +12,7 @@
     }
     @media screen and (max-width: $smallScreen) {
       font-size: 22px;
+      width: 100%;
     }
   }
   &__splash {
@@ -650,13 +651,23 @@
     @media screen and (max-width: $smallScreen) {
       padding: 50px 0;
     }
+    &__header {
+      position: relative;
+      > span {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+      }
+    }
     &__headerimg {
       max-width: 160px;
       display: block;
       margin: 0 auto;
     }
     &__slider {
-      padding: 50px 0 30px 0;
+      padding: 0px 0 30px 0;
       .home__reviews__item:nth-child(2) {
         margin: 0 42px;
         @media screen and (max-width: 1300px){
@@ -675,6 +686,7 @@
       }
       @media screen and (max-width: $smallScreen){
         height: 250px;
+        width: 280px !important;
       }
       &__text {
         height: calc(100% - 122px);
@@ -692,6 +704,9 @@
         width: 298px;
         margin: 0 auto;
         border-radius: 0 0 5px 5px;
+        @media screen and (max-width: $smallScreen){
+          width: 278px;
+        }
         &__img, &__text {
           display: inline-block;
           vertical-align: middle;

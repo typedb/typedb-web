@@ -16,6 +16,7 @@ const prodSectionSettings = {
   centerMode: false,
   swipeToSlide: true,
   className: 'home__production__slider',
+  variableWidth: true,
   responsive: [
      { breakpoint: 500, settings: { centerMode: true, slidesToShow: 1, slidesToScroll: 1 } },
      { breakpoint: 1000, settings: { centerMode: true, slidesToShow: 2, slidesToScroll: 2 } },
@@ -52,6 +53,7 @@ const testimonialsSettings = {
   centerMode: false,
   swipeToSlide: true,
   className: 'home__reviews__slider',
+  variableWidth: true,
   responsive: [
      { breakpoint: 768, settings: { slidesToShow: 1, slidesToScroll: 1} },
      { breakpoint: 1300, settings: { slidesToShow: 2, slidesToScroll: 2 } },
@@ -369,7 +371,12 @@ const HomePage = () => (
     </section>
     <section className="home__reviews">
         <div className="home__reviews__container container section__container">
-          <img className="home__reviews__headerimg" src="/assets/svg/testimonials.svg" alt="testimonials" />
+          <div className="home__reviews__header">
+            <img className="home__reviews__headerimg" src="/assets/svg/testimonials.svg" alt="testimonials" />
+            <span className="home__header">
+              Building on the shoulders of <strong>Grakn</strong>
+            </span>
+          </div>
           <Slider {...testimonialsSettings}>
             {
               testimonials.map((item, index) => {

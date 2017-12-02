@@ -58,7 +58,7 @@ module.exports = {
     },
     {
       name: 'Harjyot Singh',
-      position: 'Software Engineer',
+      position: 'Web Engineer',
       education: 'BSc in Artificial Intelligence, University of Edinburgh',
       img: '/assets/img/team_photos/harjyot.png',      
       social: 'https://www.linkedin.com/in/harjyot7'
