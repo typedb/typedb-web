@@ -18,7 +18,7 @@ class NavigationMenu extends Component {
     return Object.keys(navRoutes).map((key) => {
       const linkClasses = classNames({
         'nav__link': true,
-        'nav__link--animated': key !== 'Github',
+        'animated__link': key !== 'Github',
       });
       return (
         <a
