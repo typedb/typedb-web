@@ -10,16 +10,15 @@ const prodSectionSettings = {
   infinite: false,
   speed: 500,
   slidesToShow: 5,
-  slidesToScroll: 1,
+  slidesToScroll: 4,
   arrows: false,
-  initialSlide: 2,
-  swipeToSlide: true,
+  initialSlide: 0,
   className: 'home__production__slider',
   variableWidth: true,
-  centerMode: true,
+  centerMode: false,
   responsive: [
      { breakpoint: 500, settings: { centerMode: false, slidesToShow: 1, slidesToScroll: 1 } },
-     { breakpoint: 1000, settings: { slidesToShow: 3, slidesToScroll: 1 } },
+     { breakpoint: 1000, settings: { slidesToShow: 3, slidesToScroll: 2 } },
   ]
 };
 
@@ -40,23 +39,6 @@ const deploymentSettings = {
   ]
 }
 
-const testimonialsSettings = {
-  dots: true,
-  infinite: false,
-  speed: 500,
-  slidesToShow: 3,
-  slidesToScroll: 1,
-  arrows: false,
-  initialSlide: 1,
-  swipeToSlide: true,
-  centerMode: true,
-  className: 'home__reviews__slider',
-  variableWidth: true,
-  responsive: [
-     { breakpoint: 768, settings: { slidesToShow: 1, slidesToScroll: 1, centerMode: false} },
-     { breakpoint: 1300, settings: { slidesToShow: 2, slidesToScroll: 1 } },
-  ]
-}
 
 const deploymentOptions = [
   { name: 'Google Cloud Platform', url: '/assets/img/cloud_platform.png'},
@@ -399,7 +381,7 @@ const HomePage = () => (
               Building on the shoulders of <strong>Grakn</strong>
             </span>
           </div>
-          <Slider {...testimonialsSettings}>
+          <div className="home__reviews__items">
             {
               testimonials.map((item, index) => {
                 return (
@@ -416,7 +398,7 @@ const HomePage = () => (
                 )
               })
             }
-          </Slider>
+          </div>
           <Link to="/" className="button button--red">Schedule a call with our team</Link>
         </div>
     </section>

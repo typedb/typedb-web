@@ -297,6 +297,8 @@
     &__slider {
       padding-top: 50px;
       padding-bottom: 30px;
+      padding-left: 30px;
+      padding-right: 30px;
       margin: 0 auto;
       @media screen and (max-width: $smallScreen) {
         padding-bottom: 30px;
@@ -681,14 +683,28 @@
         margin-left: 0 !important;
       }
     }
+    &__items {
+      margin-bottom: 30px;
+      > div:nth-child(2) {
+        @media screen and (max-width: $mediumScreen) {
+          margin-top: 30px;
+          margin-bottom: 30px;
+        }
+      }
+    }
     &__item {
       width: 300px !important;
       height: 320px;
       border: 1px solid $borderColor;
       border-radius: 5px;
       margin: 0 10px;
-      @media screen and (max-width: 1300px){
-       margin: 0 5px;
+      display: inline-block;
+      vertical-align: top;
+      
+      @media screen and (max-width: $mediumScreen) {
+        margin-left: auto;
+        margin-right: auto;
+        display: block;
       }
       @media screen and (max-width: $smallScreen){
         height: 250px;
@@ -708,6 +724,7 @@
       &__details {
         background-color: $backgroundPurple;
         width: 298px;
+        height: 92px;
         margin: 0 auto;
         border-radius: 0 0 5px 5px;
         @media screen and (max-width: $smallScreen){
