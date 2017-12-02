@@ -395,7 +395,11 @@
           display: flex;
           flex-direction: row;
           > div {
-            width: 33%;            
+            width: 33%;
+            border: 1px solid white;
+            &:hover {
+              border: 1px solid $borderColor;
+            }            
           }
           > :nth-child(2) {
             border-left: 1px solid #f2f6fa;
@@ -429,9 +433,6 @@
         &--slider {
           border: 2px solid #f2f6fa;
           height: 200px;
-        }
-        &:hover {
-          border: 1px solid $borderColor;
         }
       }
     }
