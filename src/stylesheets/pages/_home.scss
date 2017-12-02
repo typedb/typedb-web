@@ -295,27 +295,35 @@
       }
     }
     &__slider {
-      padding-top: 70px;
+      padding-top: 50px;
       padding-bottom: 30px;
+      margin: 0 auto;
       @media screen and (max-width: $smallScreen) {
         padding-bottom: 30px;
       }
       &__item {
+        width: 320px;
+        height: 220px;
+        margin: 0 20px;
+        position: relative;
+        background-color: #ffffff;
+        border: 1px solid $borderColor;
+        position: relative;
+        border-radius: 5px;
         @media screen and (max-width: $smallScreen) {
+          width: 260px;
           margin: 0 5px;
+          height: 200px;
         }
        &__container {
-        width: 300px;
-        height: 160px;
-        background-color: #ffffff;
-        box-shadow: 4.9px 4.9px 20px 0 rgba(204, 204, 204, 0.25);
-        margin: 0 auto;
+        height: 100%;
+       // margin: 0 auto;
         padding: 1.5rem 1.5rem;
 
-        @media screen and (max-width: $smallScreen) {
-          width: auto;
-          padding-left: 15px;
-        }
+        // @media screen and (max-width: $smallScreen) {
+        //   width: auto;
+        //   padding-left: 15px;
+        // }
        }
        &__header {
          display: block;
@@ -668,11 +676,8 @@
     }
     &__slider {
       padding: 0px 0 30px 0;
-      .home__reviews__item:nth-child(2) {
-        margin: 0 42px;
-        @media screen and (max-width: 1300px){
-          margin: 0;
-        }
+      .home__reviews__item:nth-child(1) {
+        margin-left: 0 !important;
       }
     }
     &__item {
@@ -680,9 +685,9 @@
       height: 320px;
       border: 1px solid $borderColor;
       border-radius: 5px;
-      margin: auto;
+      margin: 0 10px;
       @media screen and (max-width: 1300px){
-       margin: 0 10px;
+       margin: 0 5px;
       }
       @media screen and (max-width: $smallScreen){
         height: 250px;

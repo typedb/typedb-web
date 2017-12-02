@@ -10,18 +10,16 @@ const prodSectionSettings = {
   infinite: false,
   speed: 500,
   slidesToShow: 5,
-  slidesToScroll: 5,
+  slidesToScroll: 1,
   arrows: false,
-  initialSlide: 0,
-  centerMode: false,
+  initialSlide: 2,
   swipeToSlide: true,
   className: 'home__production__slider',
   variableWidth: true,
+  centerMode: true,
   responsive: [
-     { breakpoint: 500, settings: { centerMode: true, slidesToShow: 1, slidesToScroll: 1 } },
-     { breakpoint: 1000, settings: { centerMode: true, slidesToShow: 2, slidesToScroll: 2 } },
-     { breakpoint: 1500, settings: { slidesToShow: 3, slidesToScroll: 3 } },
-     { breakpoint: 2000, settings: { slidesToShow: 4, slidesToScroll: 4 } }
+     { breakpoint: 500, settings: { centerMode: false, slidesToShow: 1, slidesToScroll: 1 } },
+     { breakpoint: 1000, settings: { slidesToShow: 3, slidesToScroll: 1 } },
   ]
 };
 
@@ -38,7 +36,7 @@ const deploymentSettings = {
   className: 'home__deployment__items--slider',
   responsive: [
      { breakpoint: 400, settings: {   slidesToShow: 1, slidesToScroll: 1    } },
-     { breakpoint: 768, settings: { slidesToShow: 2, slidesToScroll: 2 } },
+     { breakpoint: 768, settings: { slidesToShow: 2, slidesToScroll: 1 } },
   ]
 }
 
@@ -47,16 +45,16 @@ const testimonialsSettings = {
   infinite: false,
   speed: 500,
   slidesToShow: 3,
-  slidesToScroll: 3,
+  slidesToScroll: 1,
   arrows: false,
-  initialSlide: 0,
-  centerMode: false,
+  initialSlide: 1,
   swipeToSlide: true,
+  centerMode: true,
   className: 'home__reviews__slider',
   variableWidth: true,
   responsive: [
-     { breakpoint: 768, settings: { slidesToShow: 1, slidesToScroll: 1} },
-     { breakpoint: 1300, settings: { slidesToShow: 2, slidesToScroll: 2 } },
+     { breakpoint: 768, settings: { slidesToShow: 1, slidesToScroll: 1, centerMode: false} },
+     { breakpoint: 1300, settings: { slidesToShow: 2, slidesToScroll: 1 } },
   ]
 }
 
