@@ -209,6 +209,30 @@ const HomePage = () => (
             <span className="home__production__slider__item__text">Ensuring only authenticated access and appropriately privileged users are allowed to access specific datasets</span>                       
           </div>
         </div>       
+        <div className="home__production__slider__item">
+          <div className="home__production__slider__item__container">
+            <span className="home__production__slider__item__header"><i className="fa fa-check" aria-hidden="true"/>Migration Tools</span>                  
+            <span className="home__production__slider__item__text">Tools to help migrate large datasets from various formats and database sources, easily and quickly</span>                       
+          </div>
+        </div>       
+        <div className="home__production__slider__item">
+          <div className="home__production__slider__item__container">
+            <span className="home__production__slider__item__header"><i className="fa fa-check" aria-hidden="true"/>Dedicated IDE</span>                  
+            <span className="home__production__slider__item__text">An integrated development environment for knowledge engineering and modelling at scale</span>                       
+          </div>
+        </div>       
+        <div className="home__production__slider__item">
+          <div className="home__production__slider__item__container">
+            <span className="home__production__slider__item__header"><i className="fa fa-check" aria-hidden="true"/>Monitoring</span>                  
+            <span className="home__production__slider__item__text">Monitor your database performance in real-time through a dedicated and configurable dashboard</span>                       
+          </div>
+        </div>       
+        <div className="home__production__slider__item">
+          <div className="home__production__slider__item__container">
+            <span className="home__production__slider__item__header"><i className="fa fa-check" aria-hidden="true"/>Cluster Management</span>                  
+            <span className="home__production__slider__item__text">Easily deploy and scale your database with tools that automate the of provisioning your cluster</span>                       
+          </div>
+        </div>       
       </Slider>
       <Link to="/" className="button button--transparent">Learn More</Link>      
     </section>
