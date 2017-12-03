@@ -4,6 +4,7 @@ import HomePage from 'pages/HomePage';
 import AboutPage from 'pages/AboutPage';
 import SlackPage from 'pages/SlackPage';
 import CareersPage from 'pages/CareersPage';
+import CommunityPage from 'pages/CommunityPage';
 
 const Main = () => (
   <main className="main">
@@ -12,6 +13,7 @@ const Main = () => (
       <Route exact path="/about" component={AboutPage} />
       <Route exact path="/slack" component={SlackPage} />
       <Route exact path="/careers" component={CareersPage} />
+      <Route exact path="/community" component={CommunityPage} />
     </Switch>
   </main>
 );

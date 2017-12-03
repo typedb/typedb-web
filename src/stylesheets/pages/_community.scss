@@ -1,0 +1,80 @@
+.community {
+  padding-top: $navHeight;
+  &__splash {
+    height: 400px;
+    background-image: linear-gradient(91deg, #4d5575, #36405a);
+    &__container {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-content: center;
+      background-image: url('/assets/img/graknmap.png');
+      background-repeat: no-repeat;
+      background-size: contain;
+      background-position: center;
+      > span {
+        display: block;
+        font-size: 42px;
+        text-align: center;
+        color: white;
+        @media screen and (max-width: $smallScreen) {
+          font-size: 32px;
+        }
+      }
+    }
+  }
+  &__content {
+    padding: 50px 0;
+    &__header {
+      display: block;      
+      text-align: center;
+      font-size: 32px;
+      padding-bottom: 30px;
+      @media screen and (max-width: $smallScreen) {
+        font-size: 24px;
+      }
+    }
+    &__links {
+      padding: 30px 0;
+      &__col:nth-child(1) {
+        width: 60%;
+        margin-right: 10%;
+        @media screen and (max-width: $smallScreen) {
+          margin-right: 0;
+          width: 100%;
+        }
+      }
+      &__col:nth-child(2) {
+        width: 30%;
+        @media screen and (max-width: $smallScreen) {
+          width: 100% !important;
+        }
+      }
+      &__col {
+        display: inline-block;
+        vertical-align: top;
+        @media screen and (max-width: $smallScreen) {
+          display: block;
+        }
+        &__item {
+          padding-bottom: 2.5rem;
+          > span {
+            display: block;
+            font-size: 16px;
+            @media screen and (max-width: $smallScreen) {
+              font-size: 14px;
+            }
+          }
+          &__header {
+            font-size: 24px !important;
+            padding-bottom: 1rem;
+            @media screen and (max-width: $smallScreen) {
+              font-size: 20px !important;;
+            }
+          }
+        }
+      }
+    }
+  }
+}
