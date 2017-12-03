@@ -60,7 +60,7 @@ const HomePage = () => (
     <section className="home__splash">
       <div className="home__splash__text container section__container">
         <span className="home__splash__text__headline home__header">THE <strong>DATABASE</strong> FOR AI</span>
-        <span className="home__splash__text__tag">AI systems process knowledge that is too complex for current databases. Grakn is a distributed hyper-relational database for knowledge-oriented systems, i.e. a distributed knowledge base.</span>
+        <span className="home__splash__text__tag">Grakn is a hyper-relational database for knowledge engineering. Rooted Knowledge Representation and  Automated Reasoning, Grakn provides the knowledge base foundation for intelligent/cognitive systems.</span>
         <a className="home__splash__text__install" href={graknRoutes.download} target="_blank">
         Install Grakn<i className="fa fa-arrow-right" aria-hidden="true"></i>
         </a>
@@ -94,7 +94,7 @@ const HomePage = () => (
             <div className="home__features__item__text__logo home__features__item__text__logo--red">
               <img src="/assets/svg/schema.svg" alt="schema" />
             </div>
-            <span className="home__features__item__text__headline">Hyper-expressive schema</span>
+            <span className="home__features__item__text__headline">Knowledge schema</span>
             <span className="home__features__item__text__paragraph">
             Enhanced Entity-Relationship schema, with constructs to define hyper-objects, hyper-relations and functions, to build complex knowledge models
             </span>
@@ -112,7 +112,7 @@ const HomePage = () => (
             <div className="home__features__item__text__logo home__features__item__text__logo--purple">
               <img src="/assets/svg/inference.svg" alt="inference" />
             </div>
-            <span className="home__features__item__text__headline">Real-time inference</span>
+            <span className="home__features__item__text__headline">Logical Reasoning</span>
             <span className="home__features__item__text__paragraph">
             Automatic deduction of data types and relationships during runtime (OLTP), enabling the retrieval of implicit associations between points
             </span>
@@ -147,7 +147,7 @@ const HomePage = () => (
             <div className="home__features__item__text__logo home__features__item__text__logo--green">
               <img src="/assets/svg/high_level.svg" alt="high level" />
             </div>
-            <span className="home__features__item__text__headline">High-level query language</span>
+            <span className="home__features__item__text__headline">High-level language</span>
             <span className="home__features__item__text__paragraph">
             Strong abstraction over low-level constructs, enabling you to express questions at a higher level and let the system figure out how to do the navigation
             </span>
@@ -264,7 +264,7 @@ const HomePage = () => (
     <section className="home__usecases">
       <div className="home__usecases__container container section__container">
         <span className="home__usecases__header">
-          <strong>Grakn</strong> helps every domain with complex networks of information
+          <strong>Grakn</strong> can help every domain with complex networks of information
         </span>
         <Tabs className="home__usecases__tabcontainer">
           <TabPanel className="home__usecases__tabpanel" selectedClassName="home__usecases__tabpanel--selected">
