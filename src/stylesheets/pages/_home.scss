@@ -555,6 +555,7 @@
     &__tablist {
       margin: 0;
       padding: 0;
+      padding-bottom: 2px;
       list-style: none;
       display: flex;
       flex-direction: row;
@@ -569,6 +570,7 @@
         background-color: #2f3543;
         width: 100vw;
         margin-left: -6%;
+        padding: 0;
       }
       &__item {
         display: flex;
