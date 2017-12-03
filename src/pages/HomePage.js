@@ -87,7 +87,7 @@ const HomePage = () => (
     <section className="home__features home__features--coloured">
       <div className="home__features__container container section__container">
         <span className="home__features__headline home__header">
-          <strong>Grakn</strong> is a hyper-relational database for knowledge-oriented systems
+          <strong>Grakn</strong> is a hyper-relational database for knowledge engineering
         </span>
         <div className="home__features__item">
           <div className="home__features__item__text">

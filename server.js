@@ -70,8 +70,8 @@ function handleMailChimpInvite(userEmail, userName, userSurname) {
       .send({
           "coc": 0,
           "merge_fields": {
-              "FNAME": userName || "",
-              "LNAME": userSurname || ""
+              "FNAME": userName? userName : "",
+              "LNAME": userSurname? userSurname : ""
           },
           "email_address": userEmail,
           "status": "subscribed"
@@ -113,8 +113,6 @@ app.post('/invite/tp', function(req, res) {
       return;
   }
   handleTPInvite(req.body.email, req.body.name, req.body.surname);
-  // handleMailChimpInvite(req.body.email, req.body.name, req.body.surname);
-  // handleGraknForumInvite(req.body.email);
 
   res.header("Access-Control-Allow-Origin", "*");
   res.status(200).send("Invite successfully sent");
@@ -126,7 +124,6 @@ app.post('/invite/mailchimp', function(req, res) {
       return;
   }
   handleMailChimpInvite(req.body.email, req.body.name, req.body.surname);
-  // handleGraknForumInvite(req.body.email);
 
   res.header("Access-Control-Allow-Origin", "*");
   res.status(200).send("Invite successfully sent");

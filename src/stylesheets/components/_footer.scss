@@ -1,7 +1,8 @@
 .footer {
   background-color: $backgroundPurple;
+  
   &__container {
-    padding: 70px 0;
+    padding: 40px 0;
     text-align: center;
     width: 90%;
     margin: 0 auto;
@@ -9,7 +10,67 @@
       width: 80%;
     }
   }
-
+  .footer__container:nth-child(1) {
+    padding-bottom: 0;
+  }
+  
+  &__social {
+    &__buttons {
+      display: inline-block;
+      vertical-align: middle;
+      width: 60%;
+      padding-bottom: 0;
+      text-align: left;
+      @media screen and (max-width: $smallScreen) {
+        display: block;
+        width: 100%;
+        text-align: center;
+        padding-bottom: 1rem;
+      }
+      > a {
+        display: inline-block;
+        position: relative;
+        width: 44px;
+        height: 44px;
+        background-color: white;
+        text-align: center;
+        font-size: 1.2rem;
+        border-radius: 5px;
+        border: 1px solid $borderColor;
+        color: $textCharcoal;
+        margin-right: 0.5rem;
+        > i {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+        }
+      }
+    }
+    &__signup {
+      display: inline-block;
+      width: fit-content;
+      vertical-align: middle;
+      @media screen and (max-width: $smallScreen) {
+        display: block;
+      }
+      > * {
+        display: inline-block;
+        vertical-align: middle;      
+      }
+      > input {
+        height: 44px;
+        width: 200px;
+        font-size: 0.8rem;
+        color: $textLight;
+        padding: 0 0.5rem;
+      }
+      > button {
+        height: 44px;
+        font-size: 0.8rem;
+      }
+    }
+  }
   &__block {
     display: inline-block;
     width: 15%;

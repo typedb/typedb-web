@@ -239,6 +239,7 @@
           font-size: 22px;
           font-weight: 600;
           color: $textCharcoal;
+          text-transform: uppercase;                
           @media screen and (max-width: $smallScreen) {
             margin-top: 20px;
             font-size: 16px;
@@ -380,7 +381,7 @@
        padding-bottom: 50px;
      }
     &__headline {
-      width: 50%;
+      width: 45%;
       text-align: center;
       @media screen and (max-width: $smallScreen){
         width: 100%;
