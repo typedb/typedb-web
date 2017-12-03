@@ -94,7 +94,7 @@ const HomePage = () => (
             <div className="home__features__item__text__logo home__features__item__text__logo--red">
               <img src="/assets/svg/schema.svg" alt="schema" />
             </div>
-            <span className="home__features__item__text__headline">Knowledge schema</span>
+            <span className="home__features__item__text__headline">Knowledge Schema</span>
             <span className="home__features__item__text__paragraph">
             Enhanced Entity-Relationship schema, with constructs to define hyper-objects, hyper-relations and functions, to build complex knowledge models
             </span>
@@ -112,7 +112,7 @@ const HomePage = () => (
             <div className="home__features__item__text__logo home__features__item__text__logo--purple">
               <img src="/assets/svg/inference.svg" alt="inference" />
             </div>
-            <span className="home__features__item__text__headline">Logical Reasoning</span>
+            <span className="home__features__item__text__headline">Logical Inference</span>
             <span className="home__features__item__text__paragraph">
             Automatic deduction of data types and relationships during runtime (OLTP), enabling the retrieval of implicit associations between points
             </span>
@@ -129,7 +129,7 @@ const HomePage = () => (
             <div className="home__features__item__text__logo home__features__item__text__logo--blue">
               <img src="/assets/svg/analytics.svg" alt="analytics" />
             </div>
-            <span className="home__features__item__text__headline">Distributed analytics</span>
+            <span className="home__features__item__text__headline">Distributed Analytics</span>
             <span className="home__features__item__text__paragraph">
             Automated Pregel and MapReduce distributed algorithms abstracted as a language (OLAP), enabling large scale computation through database queries
             </span>
@@ -147,7 +147,7 @@ const HomePage = () => (
             <div className="home__features__item__text__logo home__features__item__text__logo--green">
               <img src="/assets/svg/high_level.svg" alt="high level" />
             </div>
-            <span className="home__features__item__text__headline">High-level language</span>
+            <span className="home__features__item__text__headline">Higher-level Language</span>
             <span className="home__features__item__text__paragraph">
             Strong abstraction over low-level constructs, enabling you to express questions at a higher level and let the system figure out how to do the navigation
             </span>

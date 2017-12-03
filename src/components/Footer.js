@@ -1,23 +1,20 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { singleNewsletter } from 'actions/invitations';
 
 class Footer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      input: 'Enter Email'
+      input: ''
     }
     this.handleEmailChange = this.handleEmailChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
   }
   handleEmailChange(e) {
     this.setState({
       input: e.target.value,
     });
-  }
-  handleSubmit() {
-    this.props.onSubscribeSubmit(this.state.input);
   }
   render() {
     return (
@@ -32,7 +29,7 @@ class Footer extends Component {
         </div>
         <div className="footer__social__signup">
           <input type="text" value={this.state.input} onChange={(e) => this.handleEmailChange(e)}/>
-          <button className="button--red" onClick={() => this.handleSubmit()}>Subscribe</button>
+          <button className="button--red" onClick={() => this.props.onSubscribeSubmit(this.state.input)}>Subscribe</button>
         </div>
       </div>
       <div className="container footer__container">
@@ -103,7 +100,7 @@ class Footer extends Component {
 
 const mapDispatchToProps = (dispatch) => (
   {
-    onSubscribeSubmit: (val) => dispatch(this.props.subscribeSubmit(val))
+    onSubscribeSubmit: (val) => dispatch(singleNewsletter(val))
   }
 )
-export default Footer;
+export default connect(null, mapDispatchToProps)(Footer);

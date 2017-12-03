@@ -16,6 +16,14 @@ app.use(bodyParser.urlencoded({
 app.use('/assets', express.static(path.join(__dirname, 'assets')));
 app.use('/', express.static(dist));
 
+app.use(function(req, res, next) {
+    if ('OPTIONS' == req.method) {
+      res.header("Access-Control-Allow-Origin", req.headers.origin);
+      res.header("Access-Control-Allow-Headers", "Grakn-Origin, X-Requested-With, Content-Type, Accept");
+      res.header("Access-Control-Allow-Methods", "POST, GET");      
+    }
+    next();
+});
 function handleSlackInvite(userEmail) {
   unirest.post('https://grakn-slackin.herokuapp.com/invite')
       .headers({
@@ -104,7 +112,7 @@ app.post('/invite/slack', function(req, res) {
   handleSlackInvite(req.body.email);
 
   res.header("Access-Control-Allow-Origin", "*");
-  res.status(200).send("Invite successfully sent");
+  res.status(200).send(JSON.stringify({ msg: "success" }));
 });
 
 app.post('/invite/tp', function(req, res) {
@@ -115,7 +123,7 @@ app.post('/invite/tp', function(req, res) {
   handleTPInvite(req.body.email, req.body.name, req.body.surname);
 
   res.header("Access-Control-Allow-Origin", "*");
-  res.status(200).send("Invite successfully sent");
+  res.status(200).send(JSON.stringify({ msg: "success" }));
 });
 
 app.post('/invite/mailchimp', function(req, res) {
@@ -126,7 +134,7 @@ app.post('/invite/mailchimp', function(req, res) {
   handleMailChimpInvite(req.body.email, req.body.name, req.body.surname);
 
   res.header("Access-Control-Allow-Origin", "*");
-  res.status(200).send("Invite successfully sent");
+  res.status(200).send(JSON.stringify({ msg: "success" }));
 });
 
 app.post('/invite/forum', function(req, res) {
@@ -137,7 +145,7 @@ app.post('/invite/forum', function(req, res) {
   handleGraknForumInvite(req.body.email);
 
   res.header("Access-Control-Allow-Origin", "*");
-  res.status(200).send("Invite successfully sent");
+  res.status(200).send(JSON.stringify({ msg: "success" }));
 });
 
 app.get('*', (req, res) => {

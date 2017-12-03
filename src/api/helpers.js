@@ -3,7 +3,8 @@ import fetch from 'isomorphic-fetch';
 require('es6-promise').polyfill();
 
 const defaultHeaders = {
-  'Access-Control-Allow-Origin':'*',
+  'Content-Type': 'application/json',
+  Accept: 'application/json',  
 };
 
 const handleHttpErrors = (response) => {

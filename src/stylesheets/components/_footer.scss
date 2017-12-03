@@ -15,10 +15,10 @@
   }
   
   &__social {
+    text-align: left;
     &__buttons {
       display: inline-block;
       vertical-align: middle;
-      width: 60%;
       padding-bottom: 0;
       text-align: left;
       @media screen and (max-width: $smallScreen) {
@@ -49,14 +49,19 @@
     }
     &__signup {
       display: inline-block;
-      width: fit-content;
+      width: auto;
       vertical-align: middle;
+      float: right;
       @media screen and (max-width: $smallScreen) {
         display: block;
+        margin: 0 auto;
+        float: none;
+        width: 100%;
       }
       > * {
         display: inline-block;
-        vertical-align: middle;      
+        vertical-align: middle;
+        outline: none;  
       }
       > input {
         height: 44px;
@@ -64,10 +69,16 @@
         font-size: 0.8rem;
         color: $textLight;
         padding: 0 0.5rem;
+        @media screen and (max-width: $smallScreen){
+          width: calc(100% - 120px);
+        }
       }
       > button {
-        height: 44px;
+        height: 47px;
         font-size: 0.8rem;
+        min-width: 100px;
+        border-radius: 0 5px 5px 0;
+        border: none;
       }
     }
   }

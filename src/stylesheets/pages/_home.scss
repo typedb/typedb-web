@@ -228,9 +228,6 @@
           @media screen and (max-width: $smallScreen) {
             font-size: 14px;
           }
-          &:hover {
-            color: $textDarkPurple;
-          }
         }
         &__headline {
           display: block;
@@ -239,7 +236,6 @@
           font-size: 22px;
           font-weight: 600;
           color: $textCharcoal;
-          text-transform: uppercase;                
           @media screen and (max-width: $smallScreen) {
             margin-top: 20px;
             font-size: 16px;
@@ -552,9 +548,6 @@
           font-weight: 400;
           @media screen and (max-width: $smallScreen) {
             font-size: 14px;
-          }
-          &:hover {
-            color: $textDarkPurple;
           }
         }
       }
