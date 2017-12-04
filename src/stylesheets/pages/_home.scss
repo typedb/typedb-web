@@ -588,7 +588,7 @@
         color: #848494;
         outline: none;
         @media screen and (max-width: $smallScreen) {
-          border-bottom: 1px solid $textLight;
+          border-bottom: 2px solid $textLight;
         }     
         &--selected {
           border-radius: 5px 5px 0 0;
@@ -616,23 +616,23 @@
           }
           &:nth-child(1) {
             border-top: none;
-            border-bottom: 1px solid #46CD90;         
+            border-bottom: 2px solid #46CD90;         
           }      
           &:nth-child(2) {
             border-top: none;            
-            border-bottom: 1px solid $textPurple;       
+            border-bottom: 2px solid $textPurple;       
           }      
           &:nth-child(3) {
             border-top: none;            
-            border-bottom: 1px solid #F75E62;         
+            border-bottom: 2px solid #F75E62;         
           }      
           &:nth-child(4) {
             border-top: none;            
-            border-bottom: 1px solid #21B5FA;          
+            border-bottom: 2px solid #21B5FA;          
           }      
           &:nth-child(5) {
             border-top: none;            
-            border-bottom: 1px solid #40ED79;           
+            border-bottom: 2px solid #40ED79;           
           }      
         }
         > span {
