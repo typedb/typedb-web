@@ -17,18 +17,22 @@ window.MNDMPS.Graph = {
         maxNodeFont: 12,
         nodePadding: 5,
         colors: {
-            'default':       '#bbbcbc',
-            'instance':      '#a1d884',
-            'entity-type':   '#ff7878',
-            'active':        '#77dd77',
-            'relation':      '#77dd77',
-            'relation-type': '#bfc0d1',
-            'resource':      '#a1d884',
-            'resource-type': '#ff7878',
-            'role-type':     '#ffb96d',
-            'meta':          '#5bc2e7',
-            'dark-bg':       '#383838',
-            'light-bg':      '#ffffff'
+            'default':            '#bbbcbc',
+            'instance':           '#a1d884', //green light
+
+            'entity-type':        '#77dd77', //green
+            'entity':             '#77dd77', //green
+
+            'relationship-type':  '#5bc2e7', //blue
+            'relationship':       '#5bc2e7', //blue
+
+            'attribute-type':     '#ff7878', //red
+            'attribute':          '#ff7878', //red
+
+            'active':             '#ffb96d', //orange
+            'meta':               '#bfc0d1',
+            'dark-bg':            '#383838',
+            'light-bg':           '#ffffff'
         }
     },
 
