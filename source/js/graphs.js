@@ -377,7 +377,7 @@ window.MNDMPS.Graph._data.homepageGraphs = [
                 type: 'entity',
                 text: 'person: Leonardo',
                 r: 10,
-                cx: 50,
+                cx: 60,
                 cy: 20
             },
             {
@@ -391,7 +391,7 @@ window.MNDMPS.Graph._data.homepageGraphs = [
                 type: 'relationship',
                 text: 'cast',
                 r: 8,
-                cx: 35,
+                cx: 40,
                 cy: 25
             },
             {
