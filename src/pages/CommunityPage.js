@@ -27,6 +27,13 @@ class CommunityPage extends Component {
         <section className="community__content">
           <div className="container section__container">
             <span className="community__content__header">Subscribe to our newsletter</span>
+            <div className="community__content__form">
+              <span>Stay updated with our community news and development releases!</span>
+              <input type="text" defaultValue="Email" />              
+              <input type="text" defaultValue="First Name" />              
+              <input type="text" defaultValue="Last Name" />
+              <button className="button--red" onClick={() => console.log('newsletter')}>Subscribe</button>             
+            </div>
             <div className="community__content__links">
               <div className="community__content__links__col">
                 <div className="community__content__links__col__item">

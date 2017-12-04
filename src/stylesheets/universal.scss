@@ -19,6 +19,11 @@
   }
 }
 
+button {
+  font-family: 'Titillium';
+  letter-spacing: 0.2px;
+ }
+
 @mixin multiResponsiveColumns($min-width, $gutter, $last-equal: false, $max-cols: 5) {
   .multi-resize-column {
     display: flex;
