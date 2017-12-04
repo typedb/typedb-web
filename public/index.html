@@ -81,11 +81,11 @@ commit</textarea> <pre class=code-output>
 
 insert
 
-$x isa person;
+$x isa person, has name "Leonardo";
 $y isa movie, has title "Titanic";
-$z isa figure;
+$z isa figure, has name "Jack";
 ($x, $y, $z) isa cast,
-	has billing-number $b;
+	has billing-number 1;
 
 commit</textarea> <pre class=code-output>
                                         <code class=language-graql></code>
@@ -98,7 +98,7 @@ $b isa person, has name "Bob";
 $m (wife: $a, husband: $b);
 
 $c isa city, has name "London";
-($m, $c) isa located-in;
+(located: $m, locating: $c) isa location;
 
 commit</textarea> <pre class=code-output>
                                         <code class=language-graql></code>
