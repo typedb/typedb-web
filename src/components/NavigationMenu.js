@@ -29,7 +29,6 @@ class NavigationMenu extends Component {
         <a
         key={`${key}__link`}
         href={navRoutes[key]}
-        target="_blank"
         className={linkClasses}
         >
         { key !== 'Github'?
