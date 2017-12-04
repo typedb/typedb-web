@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { newsletter } from 'actions/invitations';
 
 const graknRoutes = require('config/graknRoutes');
 
@@ -13,9 +15,12 @@ class CommunityPage extends Component {
     }
     this.handleChange = this.handleChange.bind(this);
   }
-  handleChange() {
-    console.log("not implemented");
+  handleChange(key, val) {
+    this.setState({
+      [key]: val
+    });
   }
+
   render() {
     return (
       <div className="community">
@@ -29,10 +34,10 @@ class CommunityPage extends Component {
             <span className="community__content__header">Subscribe to our newsletter</span>
             <div className="community__content__form">
               <span>Stay updated with our community news and development releases!</span>
-              <input type="text" placeholder="Email" />              
-              <input type="text" placeholder="First Name" />              
-              <input type="text" placeholder="Last Name" />
-              <button className="button--red" onClick={() => console.log('newsletter')}>Subscribe</button>             
+              <input type="text" placeholder="Email" value={this.state.email} onChange={(e) => this.handleChange('email', e.target.value)}/>              
+              <input type="text" placeholder="First Name" value={this.state.name} onChange={(e) => this.handleChange('name', e.target.value)}/>              
+              <input type="text" placeholder="Last Name" value={this.state.surname} onChange={(e) => this.handleChange('surname', e.target.value)}/>
+              <button className="button--red" onClick={() => this.props.onSubmitNewsletter(this.state)}>Subscribe</button>             
             </div>
             <div className="community__content__links">
               <div className="community__content__links__col">
@@ -92,4 +97,11 @@ class CommunityPage extends Component {
     )
   }
 }
-export default CommunityPage;
+
+const mapDispatchToProps = (dispatch) => (
+  {
+    onSubmitNewsletter: (obj) => dispatch(newsletter(obj))
+  }
+)
+
+export default connect(null, mapDispatchToProps)(CommunityPage);

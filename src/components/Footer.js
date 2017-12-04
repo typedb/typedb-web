@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { singleNewsletter } from 'actions/invitations';
+import { newsletter } from 'actions/invitations';
 
 const graknRoutes = require('config/graknRoutes');
 
@@ -30,7 +30,7 @@ class Footer extends Component {
         </div>
         <div className="footer__social__signup">
           <input type="text" value={this.state.input} onChange={(e) => this.handleEmailChange(e)} placeholder="Subscribe to our newsletter"/>
-          <button className="button--red" onClick={() => this.props.onSubscribeSubmit(this.state.input)}>Subscribe</button>
+          <button className="button--red" onClick={() => this.props.onSubscribeSubmit({email: this.state.input})}>Subscribe</button>
         </div>
       </div>
       <div className="container footer__container">
@@ -101,7 +101,7 @@ class Footer extends Component {
 
 const mapDispatchToProps = (dispatch) => (
   {
-    onSubscribeSubmit: (val) => dispatch(singleNewsletter(val))
+    onSubscribeSubmit: (obj) => dispatch(newsletter(obj))
   }
 )
 export default connect(null, mapDispatchToProps)(Footer);

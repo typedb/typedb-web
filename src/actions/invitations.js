@@ -1,9 +1,6 @@
 import api from 'api';
 
-export function singleNewsletter(email) {
-  const obj = {
-    email: email
-  };
+export function newsletter(obj) {
   return (dispatch) => new Promise((resolve, reject) => {
     api.signupNewsletter(obj).then((data) => {
       resolve();
