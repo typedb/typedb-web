@@ -1,5 +1,9 @@
+const docBase = 'http://grakn-docs.herokuapp.com/';
+
 module.exports = {
-  download: 'https://github.com/graknlabs/grakn/releases/latest',
+  download: `${docBase}/documentation/get-started/setup-guide.html`,
+  docs: docBase,
+  quickstart: `${docBase}/documentation/get-started/quickstart-tutorial.html`,
   github: 'https://github.com/graknlabs/grakn',
   twitter: 'https://twitter.com/graknlabs',
   stack: 'https://stackoverflow.com/questions/tagged/graql+or+grakn',

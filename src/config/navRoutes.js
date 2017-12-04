@@ -1,4 +1,4 @@
-const docBase = process.env.NODE_ENV === 'production'? 'https://docs.grakn.ai/' : 'http://grakn-docs.herokuapp.com/';
+const docBase = 'http://grakn-docs.herokuapp.com/';
 
 module.exports = {
   Overview: `${docBase}overview/index.html`,

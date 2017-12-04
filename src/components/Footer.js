@@ -63,15 +63,15 @@ class Footer extends Component {
           <div className="footer__block__header">GET STARTED</div>
           <div className="footer__block__links">
             <Link to="/">Product</Link>
-            <Link to="/">Install</Link>
-            <Link to="/">Quickstart</Link>
+            <a href={graknRoutes.download} target="_blank">Install</a>
+            <a href={graknRoutes.quickstart} target="_blank">Quickstart</a>
           </div>
         </div>
         <div className="footer__block">
           <div className="footer__block__header">RESOURCES</div>
           <div className="footer__block__links">
-            <Link to="/">Documentation</Link>
-            <Link to="/">Github</Link>
+            <a href={graknRoutes.docs} target="_blank">Documentation</a>          
+            <a href={graknRoutes.github} target="_blank">Github</a>                    
             <Link to="/">Javadocs</Link>
             <Link to="/community">Community</Link>
           </div>
