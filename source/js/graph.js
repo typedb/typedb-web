@@ -29,10 +29,11 @@ window.MNDMPS.Graph = {
             'attribute-type':     '#ff7878', //red
             'attribute':          '#ff7878', //red
 
-            'active':             '#ffb96d', //orange
+            'active':             '#5bc2e7', //blue
             'meta':               '#bfc0d1',
             'dark-bg':            '#383838',
             'light-bg':           '#ffffff'
+            //'#ffb96d', //orange
         }
     },
 
@@ -456,7 +457,7 @@ window.MNDMPS.Graph = {
                 return d.text;
             });
 
-        this.addArrowheads(graphName, ['default', 'relation']);
+        this.addArrowheads(graphName, ['default', 'relation', 'active']);
 
         if (htmlNode.offsetWidth > 0 || htmlNode.offsetHeight > 0) {
             setTimeout(function() {

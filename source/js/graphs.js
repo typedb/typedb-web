@@ -257,8 +257,8 @@ window.MNDMPS.Graph._data.homepageGraphs = [
             }
         ],
         edges: [
-            {source: 0, target: 1, text: 'located'},
-            {source: 0, target: 3, text: 'locating'},
+            {source: 0, target: 1, text: 'located', type: "active"},
+            {source: 0, target: 3, text: 'locating', type: "active"},
             {source: 4, target: 1, text: 'located'},
             {source: 4, target: 2, text: 'locating'},
             {source: 5, target: 2, text: 'located'},
