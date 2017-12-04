@@ -72,7 +72,7 @@ class Footer extends Component {
           <div className="footer__block__links">
             <a href={graknRoutes.docs} target="_blank">Documentation</a>          
             <a href={graknRoutes.github} target="_blank">Github</a>                    
-            <Link to="/">Javadocs</Link>
+            <a href={graknRoutes.javadocs} target="_blank">Javadocs</a>                    
             <Link to="/community">Community</Link>
           </div>
         </div>

@@ -11,5 +11,6 @@ module.exports = {
   discuss: 'https://discuss.grakn.ai/',
   meetups: 'https://www.meetup.com/_caidi/',
   blog: 'https://blog.grakn.ai/',
-  linkedin: 'http://linkedin.com/organization/graknlabs'
+  linkedin: 'http://linkedin.com/organization/graknlabs',
+  javadocs: 'https://javadoc.io/doc/ai.grakn/grakn/0.17.1'
 };
