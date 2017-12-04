@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { singleNewsletter } from 'actions/invitations';
 
+const graknRoutes = require('config/graknRoutes');
+
 class Footer extends Component {
   constructor(props) {
     super(props);
@@ -21,14 +23,13 @@ class Footer extends Component {
       <div className="footer">
       <div className="container footer__container footer__social">
         <div className="footer__social__buttons">
-          <a href="" target="_blank"><i className="fa fa-twitter" /></a>
-          <a href="" target="_blank"><i className="fa fa-facebook-f" /></a>
-          <a href="" target="_blank"><i className="fa fa-google-plus" /></a>
-          <a href="" target="_blank"><i className="fa fa-linkedin" /></a>
-          <a href="" target="_blank"><i className="fa fa-github" /></a>
+          <a href={graknRoutes.twitter} target="_blank"><i className="fa fa-twitter" /></a>
+          <a href={graknRoutes.facebook} target="_blank"><i className="fa fa-facebook-f" /></a>
+          <a href={graknRoutes.linkedin} target="_blank"><i className="fa fa-linkedin" /></a>
+          <a href={graknRoutes.github} target="_blank"><i className="fa fa-github" /></a>
         </div>
         <div className="footer__social__signup">
-          <input type="text" value={this.state.input} onChange={(e) => this.handleEmailChange(e)}/>
+          <input type="text" value={this.state.input} onChange={(e) => this.handleEmailChange(e)} placeholder="Subscribe to our newsletter"/>
           <button className="button--red" onClick={() => this.props.onSubscribeSubmit(this.state.input)}>Subscribe</button>
         </div>
       </div>
@@ -36,10 +37,10 @@ class Footer extends Component {
         <div className="footer__block">
           <div className="footer__block__header">GET IN TOUCH</div>
           <div className="footer__block__links">
-            <Link to="/" className="footer__block__links--github">
+            <a href={graknRoutes.github} target="_blank" className="footer__block__links--github">
               <img src="/assets/svg/github.svg" alt="github"/>
               <strong>Grakn 0.17</strong> on Github
-            </Link>
+            </a>
             <Link to="/slack" className="footer__block__links--slack">
               <img src="/assets/svg/slack-mark.svg" alt="slack"/>        
               <strong>Grakn</strong> on Slack
@@ -72,23 +73,23 @@ class Footer extends Component {
             <Link to="/">Documentation</Link>
             <Link to="/">Github</Link>
             <Link to="/">Javadocs</Link>
-            <Link to="/">Community</Link>
+            <Link to="/community">Community</Link>
           </div>
         </div>
         <div className="footer__block">
           <div className="footer__block__header">COMMUNITY</div>
           <div className="footer__block__links">
-            <Link to="/">Discussion</Link>
-            <Link to="/">Stackoverflow</Link>
-            <Link to="/">Slack</Link>
-            <Link to="/">Twitter</Link>
+            <a href={graknRoutes.discuss} target="_blank"> Discussion</a>
+            <a href={graknRoutes.stack} target="_blank">Stackoverflow</a>
+            <Link to="/slack">Slack</Link>
+            <a href={graknRoutes.twitter} target="_blank">Twitter</a>
           </div>
         </div>
         <div className="footer__block">
           <div className="footer__block__header">COMPANY</div>
           <div className="footer__block__links">
-            <Link to="/">Blog</Link>
-            <Link to="/">Careers</Link>
+            <a href={graknRoutes.blog} target="_blank">Blog</a>          
+            <Link to="/careers">Careers</Link>
             <Link to="/about">About</Link>
           </div>
         </div>

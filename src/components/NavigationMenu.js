@@ -22,7 +22,7 @@ class NavigationMenu extends Component {
       });
       if (key === 'Community') {
         return (
-          <Link to={navRoutes[key]} className={linkClasses}>{key}</Link>
+          <Link key={`${key}__link`} to={navRoutes[key]} className={linkClasses}>{key}</Link>
         )
       }
       return (

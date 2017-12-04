@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
 const graknRoutes = require('config/graknRoutes');
-console.log(graknRoutes);
+
 class CommunityPage extends Component {
   constructor(props) {
     super(props);
@@ -29,9 +29,9 @@ class CommunityPage extends Component {
             <span className="community__content__header">Subscribe to our newsletter</span>
             <div className="community__content__form">
               <span>Stay updated with our community news and development releases!</span>
-              <input type="text" defaultValue="Email" />              
-              <input type="text" defaultValue="First Name" />              
-              <input type="text" defaultValue="Last Name" />
+              <input type="text" placeholder="Email" />              
+              <input type="text" placeholder="First Name" />              
+              <input type="text" placeholder="Last Name" />
               <button className="button--red" onClick={() => console.log('newsletter')}>Subscribe</button>             
             </div>
             <div className="community__content__links">

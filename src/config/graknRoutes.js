@@ -5,5 +5,7 @@ module.exports = {
   stack: 'https://stackoverflow.com/questions/tagged/graql+or+grakn',
   facebook: 'https://www.facebook.com/groups/1913787625527508/',
   discuss: 'https://discuss.grakn.ai/',
-  meetups: 'https://www.meetup.com/_caidi/'
+  meetups: 'https://www.meetup.com/_caidi/',
+  blog: 'https://blog.grakn.ai/',
+  linkedin: 'http://linkedin.com/organization/graknlabs'
 };
