@@ -1,4 +1,4 @@
-const docBase = 'http://grakn-docs.herokuapp.com/';
+const docBase = 'https://docs.grakn.ai/';
 
 module.exports = {
   Overview: `${docBase}overview/index.html`,
