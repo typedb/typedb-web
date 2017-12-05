@@ -72,7 +72,7 @@ const HomePage = () => (
       <div className="home__links__container container section__container">
         <div className="home__links__container__item">
           <img src="/assets/svg/github.svg" alt="github" />
-          <span><a className="github-link" href={graknRoutes.github} target="_blank" >Grakn 0.17</a> on Github</span>
+          <span><a className="github-link" href={graknRoutes.github} target="_blank" >Grakn</a> on Github</span>
         </div>
         <div className="home__links__container__item">
           <img src="/assets/svg/slack-mark.svg" alt="slack" />
