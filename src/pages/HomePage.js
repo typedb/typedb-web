@@ -61,7 +61,7 @@ const HomePage = () => (
       <div className="home__splash__text container section__container">
         <span className="home__splash__text__headline home__header">THE <strong>DATABASE</strong> FOR AI</span>
         <span className="home__splash__text__tag">Grakn is a hyper-relational database for knowledge engineering. Rooted in Knowledge Representation and  Automated Reasoning, Grakn provides the knowledge base foundation for intelligent/cognitive systems.</span>
-        <a className="home__splash__text__install" href={graknRoutes.download} target="_blank">
+        <a className="home__splash__text__install" href={graknRoutes.download}>
         Install Grakn<i className="fa fa-arrow-right" aria-hidden="true"></i>
         </a>
         <Link className="home__splash__text__community" to="/community">Join our Community!</Link>
