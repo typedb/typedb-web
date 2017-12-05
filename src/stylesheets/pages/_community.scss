@@ -1,5 +1,6 @@
 .community {
   padding-top: $navHeight;
+ 
   &__splash {
     height: 400px;
     background-image: linear-gradient(91deg, #4d5575, #36405a);
@@ -97,6 +98,9 @@
             font-size: 16px;
             @media screen and (max-width: $smallScreen) {
               font-size: 14px;
+            }
+            > a {
+              color: $textPurple;              
             }
           }
           &__header {
