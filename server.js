@@ -115,6 +115,7 @@ app.post('/invite/slack', function(req, res) {
   res.status(200).send(JSON.stringify({ msg: "success" }));
 });
 
+
 app.post('/invite/tp', function(req, res) {
   if (req.body.email == undefined) {
       res.status(400).send('No "email" field provided');
@@ -125,6 +126,7 @@ app.post('/invite/tp', function(req, res) {
   res.header("Access-Control-Allow-Origin", "*");
   res.status(200).send(JSON.stringify({ msg: "success" }));
 });
+
 
 app.post('/invite/mailchimp', function(req, res) {
   if (req.body.email == undefined) {
@@ -137,6 +139,7 @@ app.post('/invite/mailchimp', function(req, res) {
   res.status(200).send(JSON.stringify({ msg: "success" }));
 });
 
+
 app.post('/invite/forum', function(req, res) {
   if (req.body.email == undefined) {
       res.status(400).send('No "email" field provided');
@@ -148,9 +151,18 @@ app.post('/invite/forum', function(req, res) {
   res.status(200).send(JSON.stringify({ msg: "success" }));
 });
 
+
+app.get('/pages/*', (req, res) => {
+    const redirectUrl = req.path.replace('/pages', 'https://docs.grakn.ai')
+    console.log(redirectUrl);
+    res.redirect(redirectUrl);
+});
+
+
 app.get('*', (req, res) => {
   res.sendFile(path.join(dist, 'index.html'));
 });
+
 
 app.listen(port, (error) => {
   if (error) {
