@@ -40,7 +40,7 @@ class Visualiser extends Component {
   }
 
   render() {
-    const code = Prism.highlight(visualiserItems[this.state.selected], graqlHighlighter)
+    const code = Prism.highlight(visualiserItems[this.state.selected].code, graqlHighlighter)
     return (
       <div className="visualiser">
         <ul className=" visualiser__tabs__list">

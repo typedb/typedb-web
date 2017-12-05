@@ -1,5 +1,5 @@
 module.exports = {
-ER: `
+ER:{ code: `
 # Entity-Relationship
 
 define
@@ -8,7 +8,7 @@ person sub entity,
 	has name,
 	plays employee;
 
-company sub  entity,
+company sub entity,
 	has name,
 	plays employer;
 
@@ -19,8 +19,8 @@ employment sub relationship,
 name sub attribute,
 	datatype string;
 
-commit `,
-Types: `
+commit `},
+Types: { code: `
 # Type Hierarchies
 
 define
@@ -37,20 +37,20 @@ teacher sub person;
 supervisor sub teacher;
 professor sub teacher;
 
-commit`,
-Ternary: `
+commit ` },
+Ternary: { code: `
 # Ternary Relationships
 
 insert
 
-$x isa person;
+$x isa person, has name "Leonardo";
 $y isa movie, has title "Titanic";
-$z isa figure;
+$z isa figure, has name "Jack";
 ($x, $y, $z) isa cast,
-	has billing-number $b;
+	has billing-number 1;
 
-commit`,
-Nested: `
+commit `},
+Nested: { code:`
 # Nested Relationships
 
 insert
@@ -60,10 +60,10 @@ $b isa person, has name "Bob";
 $m (wife: $a, husband: $b);
 
 $c isa city, has name "London";
-($m, $c) isa located-in;
+(located: $m, locating: $c) isa location;
 
-commit`,
-Rules: `
+commit`},
+Rules: { code:`
 # Schema Rules
 
 define
@@ -77,19 +77,29 @@ then {
 	(located: $x, locating: $z);
 }
 
-commit `,
-Inference: `
+commit `},
+Inference: { code: `
 # Reasoning OLTP
 
 match
 
 $a isa person;
 $b isa country, has name "UK";
-($a, $b) isa lives-in;
+($a, $b) isa location;
 
-get;`,
-Analytics: `
+get $a;
+
+results>>
+
+$a isa teacher, has name "Alice";
+$a isa postgrad, has name "Bob";` },
+Analytics: { code:`
 # Analytics OLAP
 
-compute path from "user123" to "user345";`
+compute cluster in movie, cast, person; member;
+
+results>>
+
+"Titanic": {"Titanic", "Kate", "Leonardo"}
+"Al Pacino": {"Al Pacino", "Godfather", "Scarface"}`}
 }
