@@ -39,7 +39,7 @@ class Footer extends Component {
           <div className="footer__block__links">
             <a href={graknRoutes.github} target="_blank" className="footer__block__links--github">
               <img src="/assets/svg/github.svg" alt="github"/>
-              <strong>Grakn 0.17</strong> on Github
+              <strong>Grakn</strong> on Github
             </a>
             <Link to="/slack" className="footer__block__links--slack">
               <img src="/assets/svg/slack-mark.svg" alt="slack"/>        
@@ -63,14 +63,14 @@ class Footer extends Component {
           <div className="footer__block__header">GET STARTED</div>
           <div className="footer__block__links">
             <Link to="/">Product</Link>
-            <a href={graknRoutes.download} target="_blank">Install</a>
-            <a href={graknRoutes.quickstart} target="_blank">Quickstart</a>
+            <a href={graknRoutes.download}>Install</a>
+            <a href={graknRoutes.quickstart}>Quickstart</a>
           </div>
         </div>
         <div className="footer__block">
           <div className="footer__block__header">RESOURCES</div>
           <div className="footer__block__links">
-            <a href={graknRoutes.docs} target="_blank">Documentation</a>          
+            <a href={graknRoutes.docs}>Documentation</a>          
             <a href={graknRoutes.github} target="_blank">Github</a>                    
             <a href={graknRoutes.javadocs} target="_blank">Javadocs</a>                    
             <Link to="/community">Community</Link>
@@ -79,7 +79,7 @@ class Footer extends Component {
         <div className="footer__block">
           <div className="footer__block__header">COMMUNITY</div>
           <div className="footer__block__links">
-            <a href={graknRoutes.discuss} target="_blank"> Discussion</a>
+            <a href={graknRoutes.discuss}> Discussion</a>
             <a href={graknRoutes.stack} target="_blank">Stackoverflow</a>
             <Link to="/slack">Slack</Link>
             <a href={graknRoutes.twitter} target="_blank">Twitter</a>
@@ -88,7 +88,7 @@ class Footer extends Component {
         <div className="footer__block">
           <div className="footer__block__header">COMPANY</div>
           <div className="footer__block__links">
-            <a href={graknRoutes.blog} target="_blank">Blog</a>          
+            <a href={graknRoutes.blog}>Blog</a>          
             <Link to="/careers">Careers</Link>
             <Link to="/about">About</Link>
           </div>
