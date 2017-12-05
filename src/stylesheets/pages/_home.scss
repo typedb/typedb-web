@@ -1,6 +1,7 @@
 .home {
   width: 100%;
   height: 100%;
+  //padding-top: $navHeight;
   &__header {
     display: block;
     margin: 0 auto;
@@ -11,17 +12,19 @@
       font-weight: 600;
     }
     @media screen and (max-width: $smallScreen) {
-      font-size: 22px;
+      font-size: 20px;
       width: 100%;
     }
   }
   &__splash {
-    min-height:100vh;
+    //height:calc(100vh - #{$navHeight});
+    height: 100vh;
+    position: relative;
+    //background-color: #f4f5fb;
     background-image: url('/assets/img/header2.png');
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
-    position: relative;
     @media screen and (max-width: $smallScreen) {
       min-height: 900px;
     }
@@ -437,7 +440,7 @@
     }
   }
   &__usecases {
-    min-height:800px;
+    min-height:700px;
     background-image: url('/assets/img/background.png');
     background-repeat: no-repeat;
     background-size: cover;
@@ -445,7 +448,7 @@
     &__container {
       display: flex;
       flex-direction: column;
-      min-height: 800px;
+      min-height: 700px;
     }
     &__header {
       font-size: 30px;
@@ -502,10 +505,16 @@
           width: 100%;
           order: 2;
         }
+        
         > img {
           max-width: 100%;
           display: block;
           margin: 0 auto;
+        }
+        &--scaled {
+          > img {
+            max-width: 90%;
+          }
         }
       }
       &__text {
@@ -681,7 +690,8 @@
       }
     }
     &__items {
-      margin-bottom: 50px;
+      padding-top: 10px;
+      margin-bottom: 70px;
       text-align: center;
       > div:nth-child(2) {
         @media screen and (max-width: $mediumScreen) {

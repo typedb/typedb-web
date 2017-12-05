@@ -85,7 +85,7 @@
   }
   &__block {
     display: inline-block;
-    width: 15%;
+    width: 18%;
     vertical-align: top;
     text-align: left;
     &__header {
@@ -175,13 +175,17 @@
     }
   }
   &__block:nth-child(1) {
-    width: 40%;
+    width: 36%;
     @media screen and (max-width: $smallScreen) {
       display: block;
       width: 100%;
       padding-bottom: 50px;
     }
   }
+  &__block:nth-child(5) {
+    width: 10%;
+  }
+
   &__block:nth-child(3),&__block:nth-child(5) {
     @media screen and (max-width: $smallScreen) {
       width: 40%;

@@ -301,7 +301,7 @@ const HomePage = () => (
           </TabPanel>
           <TabPanel className="home__usecases__tabpanel" selectedClassName="home__usecases__tabpanel--selected">
             <div className="home__usecases__tabpanel__container">
-              <div className="home__usecases__tabpanel__img">
+              <div className="home__usecases__tabpanel__img home__usecases__tabpanel__img--scaled">
                 <img src="/assets/img/financial_services.png" alt="financial services "/>
               </div>
               <div className="home__usecases__tabpanel__text">
@@ -333,7 +333,7 @@ const HomePage = () => (
           </TabPanel>
           <TabPanel className="home__usecases__tabpanel" selectedClassName="home__usecases__tabpanel--selected">
             <div className="home__usecases__tabpanel__container">
-              <div className="home__usecases__tabpanel__img">
+              <div className="home__usecases__tabpanel__img home__usecases__tabpanel__img--scaled">
                 <img src="/assets/img/security.png" alt="Security"/>
               </div>
               <div className="home__usecases__tabpanel__text">
