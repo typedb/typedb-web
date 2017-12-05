@@ -25,12 +25,9 @@
         }
       }
       &__link {
-        color: $textPink;
+        color: $textPurple;
         display: block;
         padding-top: 1rem;
-        &:hover {
-          color: $textRed;
-        }
       }
       &__description {
         padding: 1rem 0;

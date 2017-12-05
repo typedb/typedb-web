@@ -27,7 +27,7 @@ class CareersPage extends Component {
                     <section className="careers__list__item" key={`${index}_careers`}>
                       <div className="container section__container">
                         <span className="careers__list__item__title">{item.title}</span>
-                        <a className="careers__list__item__link" href={item.angellist_url} target="__blank">Check on Angelist</a>
+                        <a className="careers__list__item__link animated__link animated__link--purple" href={item.angellist_url} target="__blank">Check on Angelist</a>
                         <div className="careers__list__item__description"
                           dangerouslySetInnerHTML={{__html: item.description.replace(/[*]/g, '').replace(/(?:\r\n|\r|\n)/g, '<br />')}}
                         />
