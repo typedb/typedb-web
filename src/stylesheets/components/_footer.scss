@@ -45,6 +45,15 @@
           left: 50%;
           transform: translate(-50%, -50%);
         }
+        > .fa-twitter {
+          color: #00B6F1;
+        }
+        > .fa-facebook-f {
+          color: #3B5998;
+        }
+        > .fa-linkedin {
+          color: #007BB6;
+        }
       }
     }
     &__signup {
