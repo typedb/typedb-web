@@ -69,7 +69,6 @@ module.exports = {
               sourceMap: true,
             }
           },
-          'resolve-url-loader'
         ],
       },
       { test: /\.html$/, loader: 'html-loader' }
