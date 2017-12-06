@@ -54,7 +54,6 @@ class Visualiser extends Component {
 
         },
         margin: 10,
-        shape: 'box',
         fixed: true
       },
       edges: {
@@ -95,6 +94,10 @@ class Visualiser extends Component {
           color: {
             background: '#667fc9'
           },
+          font: {
+            color: 'white',
+            vadjust: -45            
+          }
         },
         'relationship-type': {
           shape: 'diamond',
@@ -102,17 +105,19 @@ class Visualiser extends Component {
           color: {
             background: '#667fc9'
           },
+          font: {
+            color: 'white',
+            vadjust: -45
+          }
         },
         attribute: {
-          shape: 'oval',
-          size: 50,
+          shape: 'ellipse',
           color: {
             background: '#f3bd60'
           }
         },
         'attribute-type': {
-          shape: 'oval',
-          size: 50,          
+          shape: 'ellipse',
           color: {
             background: '#f3bd60'
           }
@@ -125,11 +130,13 @@ class Visualiser extends Component {
     });
     this.setState({
       network: network,
-    },this.drawGraph(visualiserItems[this.state.selected].graph, network));
+    },function() {
+      this.drawGraph(visualiserItems[this.state.selected].graph)
+    });
   }
 
-  drawGraph(dataset,alternateNetwork) {
-    const network = alternateNetwork? alternateNetwork : this.state.network;
+  drawGraph(dataset,) {
+    const network = this.state.network;
     const nodes = [];
     const edges = [];
     const container = this.graphContainer;
@@ -154,8 +161,9 @@ class Visualiser extends Component {
       edges: new vis.DataSet(edges),
     };
     network.setData(g);
-    network.redraw();
     network.fit();
+    network.redraw();
+    //network.fit();
   }
 
   render() {
