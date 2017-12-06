@@ -24,7 +24,6 @@ class Visualiser extends Component {
   }
 
   componentDidMount() {
-    this.initializeGraph();    
     Split(['#visualiser-code', '#visualiser-graph'], {
       sizes: [50, 50],
       gutterSize: 14,
@@ -38,7 +37,9 @@ class Visualiser extends Component {
         gutter.appendChild(img);
         return gutter
       },
-    });
+    })
+    ;
+    this.initializeGraph();
   }
   change(i) {
     this.setState({
