@@ -41,7 +41,8 @@ class Visualiser extends Component {
     const options = {
       interaction: {
         selectable: false,
-        zoomView: false
+        zoomView: false,
+        dragView: false
       },
       nodes: {
         borderWidth: 0,
