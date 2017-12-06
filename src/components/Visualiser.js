@@ -24,21 +24,20 @@ class Visualiser extends Component {
   }
 
   componentDidMount() {
-    Split(['#visualiser-code', '#visualiser-graph'], {
-      sizes: [50, 50],
-      gutterSize: 14,
-      snapOffset: 0,      
-      gutter: (index, direction) => {
-        const gutter = document.createElement('div');
-        const img = document.createElement('img');
-        img.src = '/assets/img/split-toggle.png';
-        img.ondrag = gutter.ondrag;
-        gutter.className = `gutter gutter-${direction}`;
-        gutter.appendChild(img);
-        return gutter
-      },
-    })
-    ;
+    // Split(['#visualiser-code', '#visualiser-graph'], {
+    //   sizes: [50, 50],
+    //   gutterSize: 14,
+    //   snapOffset: 0,      
+    //   gutter: (index, direction) => {
+    //     const gutter = document.createElement('div');
+    //     const img = document.createElement('img');
+    //     img.src = '/assets/img/split-toggle.png';
+    //     img.ondrag = gutter.ondrag;
+    //     gutter.className = `gutter gutter-${direction}`;
+    //     gutter.appendChild(img);
+    //     return gutter
+    //   },
+    // });
     this.initializeGraph();
   }
   change(i) {
@@ -185,6 +184,7 @@ class Visualiser extends Component {
              <pre>
                 <code dangerouslySetInnerHTML={{__html: code}}/>
               </pre>
+              <div className="visualiser__content__code__handle" />
           </div>
           <div id="visualiser-graph" className="visualiser__content__graph" ref={(container) => this.graphContainer = container}>
           </div>
