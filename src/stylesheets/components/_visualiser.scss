@@ -58,8 +58,8 @@
     &__code {
       overflow-x: hidden;
       position: absolute;
-      width: 40%;
-      z-index: 100;
+      width: 45%;
+      z-index: 10;
       background-color: rgb(47, 53, 67);               
       > pre {
         display: inline-block;
@@ -67,7 +67,8 @@
         margin-top: 0;
         padding: 0rem 1.5rem;
         font-family: 'Ubuntu' !important;
-        font-weight: 400 !important;          
+        font-weight: 400 !important;
+        width: inherit;         
         > code {
           //Default colour for everything.
           color: #8c8c92;
