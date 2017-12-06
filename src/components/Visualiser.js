@@ -172,6 +172,7 @@ class Visualiser extends Component {
             enable={ {top:false, right:true, bottom:false, left:false, topRight:false, bottomRight:false, bottomLeft:false, topLeft:false }}
             minWidth='5%'
             maxWidth='95%'
+            handleWrapperClass="resizer__handle"
             >
              <pre>
                 <code dangerouslySetInnerHTML={{__html: code}}/>

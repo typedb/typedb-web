@@ -95,16 +95,10 @@
   }
 }
 
-.gutter {
-  background-color: #505e72;
-  background-repeat: no-repeat;
-  background-position: 50%;
-  border-radius: 5px;
-  position: relative;
-  > img {
-    position: absolute;
-    top: 180px;
-    margin-left: -18px;
+.resizer__handle {
+  > div {
+    background-color: #505e72;
+    width: 14px !important;   
   }
 }
 
