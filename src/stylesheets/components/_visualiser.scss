@@ -57,7 +57,8 @@
     }
     &__code {
       overflow-x: hidden;
-      position: absolute;
+      position: absolute !important;
+      height: 100% !important;
       width: 45%;
       z-index: 10;
       background-color: rgb(47, 53, 67);               

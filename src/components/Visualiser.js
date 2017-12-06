@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import classNames from 'classnames';
-import Split from 'split.js';
 import { keys } from 'lodash';
 
 import vis from 'vis';
-
+import Resizable from 're-resizable';
 const Prism = require('prismjs');
 const graqlHighlighter = require('helpers/prism-graql.js').graql;
 const visualiserItems = require('config/visualiserItems');
@@ -24,22 +23,9 @@ class Visualiser extends Component {
   }
 
   componentDidMount() {
-    // Split(['#visualiser-code', '#visualiser-graph'], {
-    //   sizes: [50, 50],
-    //   gutterSize: 14,
-    //   snapOffset: 0,      
-    //   gutter: (index, direction) => {
-    //     const gutter = document.createElement('div');
-    //     const img = document.createElement('img');
-    //     img.src = '/assets/img/split-toggle.png';
-    //     img.ondrag = gutter.ondrag;
-    //     gutter.className = `gutter gutter-${direction}`;
-    //     gutter.appendChild(img);
-    //     return gutter
-    //   },
-    // });
     this.initializeGraph();
   }
+
   change(i) {
     this.setState({
       selected: i,
@@ -180,12 +166,17 @@ class Visualiser extends Component {
           }
         </ul>
         <div className=" visualiser__content">
-          <div id="visualiser-code" className="visualiser__content__code">
+          <Resizable 
+            id="visualiser-code" 
+            className="visualiser__content__code"
+            enable={ {top:false, right:true, bottom:false, left:false, topRight:false, bottomRight:false, bottomLeft:false, topLeft:false }}
+            minWidth='5%'
+            maxWidth='95%'
+            >
              <pre>
                 <code dangerouslySetInnerHTML={{__html: code}}/>
               </pre>
-              <div className="visualiser__content__code__handle" />
-          </div>
+          </Resizable>
           <div id="visualiser-graph" className="visualiser__content__graph" ref={(container) => this.graphContainer = container}>
           </div>
         </div>
