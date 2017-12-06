@@ -55,22 +55,74 @@ class Visualiser extends Component {
     }
     const options = {
       nodes: {
-        borderWidth: 1,
+        borderWidth: 0,
         size: 10,
-        color: {
-          background: '#667fc9'
-        },
         font: {
           color: '#000',
+          size: 16,
+          face: 'Ubuntu'
 
         },
+        margin: 10,
         shape: 'box',
         fixed: true
       },
       edges: {
-        color: 'white',
+        color: '#576484',
+        dashes: true,
         arrows: 'to',
+        smooth: {
+          enabled: false
+        },
+        font: {
+          color: '#7182ae',
+          size: 16,
+          face: 'Ubuntu',
+          strokeWidth: 0,
+          background: '#3b4254'
+
+        },
       },
+      groups: {
+        entity: {
+          shape: 'box',
+          color: {
+            background: '#f3bd60'
+          },
+        },
+        'entity-type': {
+          shape: 'box',
+          color: {
+            background: '#667fc9'
+          },
+        },
+        relationship: {
+          shape: 'diamond',
+          size: 30,          
+          color: {
+            background: '#f8765f'
+          },
+        },
+        'relationship-type': {
+          shape: 'diamond',
+          size: 30,
+          color: {
+            background: '#667fc9'
+          },
+        },
+        attribute: {
+          shape: 'oval',
+          color: {
+            background: '#46cd90'
+          }
+        },
+        'attribute-type': {
+          shape: 'oval',
+          color: {
+            background: '#576484'
+          }
+        }
+      }
     };
     const network = new vis.Network(container, g, options);
     network.on('resize', function() {
