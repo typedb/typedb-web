@@ -39,11 +39,15 @@ class Visualiser extends Component {
       edges: new vis.DataSet(),
     }
     const options = {
+      interaction: {
+        selectable: false,
+        zoomView: false
+      },
       nodes: {
         borderWidth: 0,
         size: 10,
         font: {
-          color: '#000',
+          color: '#2f3544',
           size: 16,
           face: 'Ubuntu'
 
@@ -53,9 +57,12 @@ class Visualiser extends Component {
         fixed: true
       },
       edges: {
-        color: '#576484',
-        dashes: true,
+        color: {
+          color: '#576484'
+        },
+        dashes: [2,5],
         arrows: 'to',
+        width: 2,
         smooth: {
           enabled: false
         },
@@ -72,20 +79,20 @@ class Visualiser extends Component {
         entity: {
           shape: 'box',
           color: {
-            background: '#f3bd60'
+            background: '#46cd90'
           },
         },
         'entity-type': {
           shape: 'box',
           color: {
-            background: '#667fc9'
+            background: '#46cd90'
           },
         },
         relationship: {
           shape: 'diamond',
           size: 30,          
           color: {
-            background: '#f8765f'
+            background: '#667fc9'
           },
         },
         'relationship-type': {
@@ -97,14 +104,16 @@ class Visualiser extends Component {
         },
         attribute: {
           shape: 'oval',
+          size: 50,
           color: {
-            background: '#46cd90'
+            background: '#f3bd60'
           }
         },
         'attribute-type': {
           shape: 'oval',
+          size: 50,          
           color: {
-            background: '#576484'
+            background: '#f3bd60'
           }
         }
       }
@@ -128,8 +137,8 @@ class Visualiser extends Component {
         id: index,
         group: item.type,
         label: item.text,
-        x: (item.cx / 100 ) * container.offsetWidth,
-        y: (item.cy / 100 ) * 514
+        x: ((item.cx  / 100 ) * container.offsetWidth) - 200,
+        y: ((item.cy  / 100 ) * 514) 
       });
     });
     dataset.edges.map((item, index) => {
