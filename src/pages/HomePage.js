@@ -64,7 +64,6 @@ const HomePage = () => (
         <a className="home__splash__text__install" href={graknRoutes.download}>
         Install Grakn<i className="fa fa-arrow-right" aria-hidden="true"></i>
         </a>
-        <Link className="home__splash__text__community" to="/community">Join our Community!</Link>
       </div>
       <Visualiser />            
     </section>

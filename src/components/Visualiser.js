@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import classNames from 'classnames';
 import { keys } from 'lodash';
-import { connect } from 'react-redux';
 import vis from 'vis';
 import Resizable from 're-resizable';
 import { setTimeout } from 'timers';
@@ -197,8 +196,6 @@ class Visualiser extends Component {
           }
         </ul>
         <div className=" visualiser__content">
-        {
-          this.props.browser && !this.props.browser.lessThan.medium?
           <Resizable 
             id="visualiser-code" 
             className="visualiser__content__code"
@@ -214,26 +211,7 @@ class Visualiser extends Component {
             <pre>
                 <code dangerouslySetInnerHTML={{__html: code}}/>
               </pre>
-          </Resizable>
-          :
-          <Resizable 
-          id="visualiser-code" 
-          className="visualiser__content__code"
-          enable={{top:false, right:false, bottom:true, left:false, topRight:false, bottomRight:false, bottomLeft:false, topLeft:false }}
-          defaultSize= {{
-            width: '100%',
-            height: '50%'
-          }}
-          minHeight='10%'
-          maxHeight='90%'
-          handleWrapperClass="resizer__handle--mobile"
-          >
-          <pre>
-              <code dangerouslySetInnerHTML={{__html: code}}/>
-            </pre>
-        </Resizable>
-        }
-          
+          </Resizable>          
           <div id="visualiser-graph" className="visualiser__content__graph" ref={(container) => this.graphContainer = container}>
           </div>
         </div>
@@ -242,9 +220,4 @@ class Visualiser extends Component {
   }
 }
 
-const mapStateToProps = (state) => (
-  {
-    browser: state.browser,
-  }
-)
-export default connect(mapStateToProps, null)(Visualiser);
+export default Visualiser;

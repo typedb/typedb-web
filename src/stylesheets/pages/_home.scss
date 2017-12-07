@@ -1,7 +1,7 @@
 .home {
   width: 100%;
   height: 100%;
-  //padding-top: $navHeight;
+  padding-top: 65px;
   &__header {
     display: block;
     margin: 0 auto;
@@ -18,19 +18,22 @@
   }
   &__splash {
     //height:calc(100vh - #{$navHeight});
-    height: 100vh;
+    height: calc(100vh - 60px);
     position: relative;
     //background-color: #f4f5fb;
-    background-image: url('/assets/img/header2.png');
+    background-image: url('/assets/img/bg.png');
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
     @media screen and (max-width: $smallScreen) {
-      min-height: 900px;
+      min-height: 800px;
     }
     &__text {
-      padding-top: 180px;
+      padding-top: 70px;
       text-align: center;
+      @media screen and (max-width: $smallScreen) {
+        padding-top: 50px;
+      }
       > span {
         display: block;
         margin: 0 auto;
@@ -41,17 +44,17 @@
           font-weight: 600;
         }
         @media screen and (max-width: $smallScreen) {
-          font-size: 32px;
+          font-size: 28px;
         }
       }
       &__tag {
-        padding-top: 1rem;
+        padding-top: 0;
         font-size: 20px;
         color: $textLight;
         font-weight: 300;
         line-height: 1.8;
         @media screen and (max-width: $smallScreen) {
-          font-size: 16px;
+          font-size: 14px;
           font-weight: 400;
         }
       }
@@ -62,7 +65,7 @@
         color: white;
         width: 210px;
         display: block;
-        margin: 37px auto 0 auto;
+        margin: 1rem auto 0 auto;
         padding: 0.8rem 0;
         border-radius: 5px;
         > .fa {
@@ -87,10 +90,13 @@
 
   &__links {
     position: relative;
-    min-height: 500px;
+    min-height: 385px;
+    @media screen and (max-width: $smallScreen) {
+      min-height: 365px; // For the moment will replace with a carousel soon
+    }
     &__container {
       width: 60%;
-      padding-top: 350px;
+      padding-top: 220px;
       @media screen and (max-width: $smallScreen) {
         width: 90%; // For the moment will replace with a carousel soon
       }
