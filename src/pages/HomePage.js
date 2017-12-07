@@ -106,7 +106,7 @@ const HomePage = () => (
         </div>
         <div className="home__features__item">
           <div className="home__features__item__img">
-            <img src="/assets/img/real-time_inference.png" alt="Real Time Inference" />
+            <img src="/assets/svg/real-time-inference.svg" alt="Real Time Inference" />
           </div>
           <div className="home__features__item__text">
             <div className="home__features__item__text__logo home__features__item__text__logo--purple">
@@ -141,7 +141,7 @@ const HomePage = () => (
         </div>
         <div className="home__features__item">
           <div className="home__features__item__img">
-            <img src="/assets/img/high-level_query.png" alt="High Query Language" />
+            <img src="/assets/svg/high-level-query.svg" alt="High Query Language" />
           </div>
           <div className="home__features__item__text">
             <div className="home__features__item__text__logo home__features__item__text__logo--green">
