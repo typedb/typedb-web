@@ -457,14 +457,14 @@ graph: {
 					type: 'entity',
 					text: 'person: Leonardo',
 					r: 10,
-					cx: 60,
+					cx: 70,
 					cy: 20
 			},
 			{
 					type: 'entity',
 					text: 'person: Al Pacino',
 					r: 10,
-					cx: 80,
+					cx: 90,
 					cy: 20
 			},
 			{
