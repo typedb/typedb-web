@@ -158,7 +158,7 @@ class Visualiser extends Component {
         id: index,
         group: item.type,
         label: item.text,
-        x: (item.cx  / 100 ) * (width - 50) ,
+        x: ((item.cx - 15) / 100 ) * width ,
         y: (item.cy  / 100 ) * height
       });
     });
