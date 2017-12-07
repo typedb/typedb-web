@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import classNames from 'classnames';
 import { keys } from 'lodash';
-
+import { connect } from 'react-redux';
 import vis from 'vis';
 import Resizable from 're-resizable';
 const Prism = require('prismjs');
@@ -149,17 +149,16 @@ class Visualiser extends Component {
     const container = this.graphContainer;
     let width = 900;
     let height = 514;
-    if (container.offsetWidth && container.offsetWidth < width) {
+    if (container.clientWidth && container.clientWidth < width) {
       width = container.offsetWidth;
     }
-
     dataset.nodes.map((item, index) => {
       nodes.push({
         id: index,
         group: item.type,
         label: item.text,
-        x: ((item.cx  / 100 ) * width) ,
-        y: ((item.cy  / 100 ) * height) 
+        x: (item.cx  / 100 ) * (width - 50) ,
+        y: (item.cy  / 100 ) * height
       });
     });
     dataset.edges.map((item, index) => {
@@ -179,7 +178,8 @@ class Visualiser extends Component {
   }
 
   render() {
-    const code = Prism.highlight(visualiserItems[this.state.selected].code, graqlHighlighter)
+    const code = Prism.highlight(visualiserItems[this.state.selected].code, graqlHighlighter);
+
     return (
       <div className="visualiser">
         <ul className=" visualiser__tabs__list">
@@ -196,10 +196,12 @@ class Visualiser extends Component {
           }
         </ul>
         <div className=" visualiser__content">
+        {
+          this.props.browser && !this.props.browser.lessThan.medium?
           <Resizable 
             id="visualiser-code" 
             className="visualiser__content__code"
-            enable={ {top:false, right:true, bottom:false, left:false, topRight:false, bottomRight:false, bottomLeft:false, topLeft:false }}
+            enable={{top:false, right:true, bottom:false, left:false, topRight:false, bottomRight:false, bottomLeft:false, topLeft:false }}
             defaultSize= {{
               width: '50%',
               height: '100%'
@@ -208,10 +210,29 @@ class Visualiser extends Component {
             maxWidth='95%'
             handleWrapperClass="resizer__handle"
             >
-             <pre>
+            <pre>
                 <code dangerouslySetInnerHTML={{__html: code}}/>
               </pre>
           </Resizable>
+          :
+          <Resizable 
+          id="visualiser-code" 
+          className="visualiser__content__code"
+          enable={{top:false, right:false, bottom:true, left:false, topRight:false, bottomRight:false, bottomLeft:false, topLeft:false }}
+          defaultSize= {{
+            width: '100%',
+            height: '50%'
+          }}
+          minHeight='10%'
+          maxHeight='90%'
+          handleWrapperClass="resizer__handle--mobile"
+          >
+          <pre>
+              <code dangerouslySetInnerHTML={{__html: code}}/>
+            </pre>
+        </Resizable>
+        }
+          
           <div id="visualiser-graph" className="visualiser__content__graph" ref={(container) => this.graphContainer = container}>
           </div>
         </div>
@@ -220,4 +241,9 @@ class Visualiser extends Component {
   }
 }
 
-export default Visualiser;
+const mapStateToProps = (state) => (
+  {
+    browser: state.browser,
+  }
+)
+export default connect(mapStateToProps, null)(Visualiser);
