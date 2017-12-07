@@ -133,13 +133,11 @@ class Visualiser extends Component {
       }
     };
     const network = new vis.Network(container, g, options);
-    network.on('resize', function() {
-      network.fit();
-    });
+
     this.setState({
       network: network,
     },function() {
-      this.drawGraph()
+      this.drawGraph();
     });
   }
 
@@ -177,9 +175,7 @@ class Visualiser extends Component {
     };
     network.setData(g);
     network.setSize(width, height);
-    network.fit();
     network.redraw();
-   // 
   }
 
   render() {
@@ -204,6 +200,10 @@ class Visualiser extends Component {
             id="visualiser-code" 
             className="visualiser__content__code"
             enable={ {top:false, right:true, bottom:false, left:false, topRight:false, bottomRight:false, bottomLeft:false, topLeft:false }}
+            defaultSize= {{
+              width: '50%',
+              height: '100%'
+            }}
             minWidth='5%'
             maxWidth='95%'
             handleWrapperClass="resizer__handle"
