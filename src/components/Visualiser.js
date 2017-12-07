@@ -103,7 +103,6 @@ class Visualiser extends Component {
             background: '#667fc9'
           },
           font: {
-            color: 'white',
             vadjust: -45            
           }
         },
@@ -114,7 +113,6 @@ class Visualiser extends Component {
             background: '#667fc9'
           },
           font: {
-            color: 'white',
             vadjust: -45
           }
         },

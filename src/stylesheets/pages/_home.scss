@@ -76,15 +76,6 @@
           font-size: 14px;
         }
       }
-      &__community {
-        display: block;
-        color: $textPurple;
-        padding-top: 1rem;
-        font-size: 18px;
-        @media screen and (max-width: $smallScreen) {
-          font-size: 14px;
-        }      
-      }
     }
   }
 
@@ -92,13 +83,14 @@
     position: relative;
     min-height: 385px;
     @media screen and (max-width: $smallScreen) {
-      min-height: 365px; // For the moment will replace with a carousel soon
+      min-height: 320px; // For the moment will replace with a carousel soon
     }
     &__container {
       width: 60%;
       padding-top: 220px;
       @media screen and (max-width: $smallScreen) {
-        width: 90%; // For the moment will replace with a carousel soon
+        width: 90%; 
+        padding-top: 170px;
       }
       &__item {
         width: 33.33%;

@@ -14,6 +14,9 @@
     width: 90%;
     margin-left: 5%;
   }
+  @media screen and (max-width: $smallScreen) {
+    bottom: -140px;
+  }
   &__tabs {
     &__list {
       display: flex;
