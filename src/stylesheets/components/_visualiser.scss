@@ -8,7 +8,7 @@
   border-radius: 5px;
   box-shadow: 2px 2px 15px 0px rgba(119, 119, 119, 0.7);
   margin-left: calc(50% - 450px);
-  @media screen and (max-width: $smallScreen) {
+  @media screen and (max-width: $mediumScreen) {
     width: 90%;
     margin-left: 5%;
   }
@@ -63,8 +63,7 @@
       z-index: 10;
       background-color: rgb(47, 53, 67);               
       > pre {
-        display: inline-block;
-        vertical-align: top;
+        display: block;
         margin-top: 0;
         padding: 0rem 1.5rem;
         font-family: 'Ubuntu' !important;
@@ -82,15 +81,7 @@
           }
         }
       }
-      &__handle {
-        display: inline-block;
-        width: 10px;
-        height: 100%;
-        vertical-align: top;
-        background-color: #505e72;
-        cursor: col-resize;
-        float: right;
-      }
+
     }
   }
 }

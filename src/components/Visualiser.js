@@ -24,12 +24,19 @@ class Visualiser extends Component {
 
   componentDidMount() {
     this.initializeGraph();
+    window.addEventListener('resize', this.drawGraph);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.drawGraph);
   }
 
   change(i) {
     this.setState({
       selected: i,
-    }, this.drawGraph(visualiserItems[i].graph));
+    }, function() {
+      this.drawGraph()
+    });
   }
 
   initializeGraph() {
@@ -39,6 +46,7 @@ class Visualiser extends Component {
       edges: new vis.DataSet(),
     }
     const options = {
+      autoResize: false,
       interaction: {
         selectable: false,
         zoomView: false,
@@ -131,22 +139,29 @@ class Visualiser extends Component {
     this.setState({
       network: network,
     },function() {
-      this.drawGraph(visualiserItems[this.state.selected].graph)
+      this.drawGraph()
     });
   }
 
-  drawGraph(dataset,) {
+  drawGraph() {
     const network = this.state.network;
+    const dataset = visualiserItems[this.state.selected].graph;
     const nodes = [];
     const edges = [];
     const container = this.graphContainer;
+    let width = 900;
+    let height = 514;
+    if (container.offsetWidth && container.offsetWidth < width) {
+      width = container.offsetWidth;
+    }
+
     dataset.nodes.map((item, index) => {
       nodes.push({
         id: index,
         group: item.type,
         label: item.text,
-        x: ((item.cx  / 100 ) * container.offsetWidth) - 200,
-        y: ((item.cy  / 100 ) * 514) 
+        x: ((item.cx  / 100 ) * width) ,
+        y: ((item.cy  / 100 ) * height) 
       });
     });
     dataset.edges.map((item, index) => {
@@ -161,9 +176,10 @@ class Visualiser extends Component {
       edges: new vis.DataSet(edges),
     };
     network.setData(g);
+    network.setSize(width, height);
     network.fit();
     network.redraw();
-    //network.fit();
+   // 
   }
 
   render() {
