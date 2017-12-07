@@ -5,6 +5,7 @@ import { keys } from 'lodash';
 import { connect } from 'react-redux';
 import vis from 'vis';
 import Resizable from 're-resizable';
+import { setTimeout } from 'timers';
 const Prism = require('prismjs');
 const graqlHighlighter = require('helpers/prism-graql.js').graql;
 const visualiserItems = require('config/visualiserItems');
@@ -137,7 +138,7 @@ class Visualiser extends Component {
     this.setState({
       network: network,
     },function() {
-      this.drawGraph();
+      setTimeout(this.drawGraph, 300);
     });
   }
 
