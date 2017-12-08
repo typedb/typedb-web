@@ -17,17 +17,14 @@
     }
   }
   &__splash {
-    //height:calc(100vh - #{$navHeight});
     height: calc(100vh - 60px);
+    min-height: 800px;    
     position: relative;
-    //background-color: #f4f5fb;
     background-image: url('/assets/img/bg.png');
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
-    @media screen and (max-width: $smallScreen) {
-      min-height: 800px;
-    }
+
     &__text {
       padding-top: 70px;
       text-align: center;
@@ -108,10 +105,14 @@
           font-size: 18px;
           color: $textExtraLight;
           @media screen and (max-width: $smallScreen) {
-            font-size: 11px;
+            font-size: 12px;
           }
           > a {
+            display: inline-block;
             font-weight: 600;
+            @media screen and (max-width: $smallScreen) {
+              display: block;
+            }
           }
           > .github-link {
             color: black;
