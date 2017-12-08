@@ -24,6 +24,8 @@ app.use(function(req, res, next) {
     }
     next();
 });
+
+
 function handleSlackInvite(userEmail) {
   unirest.post('https://grakn-slackin.herokuapp.com/invite')
       .headers({
@@ -39,6 +41,7 @@ function handleSlackInvite(userEmail) {
           console.log(response.body);
       });
 }
+
 
 function handleTPInvite(userEmail, userName, userSurname) {
   unirest.post('https://work.grakn.ai/api/v1/UserStories?access_token=NTQ6Rm1XMEY4Z2VoelU4WE1PVjJGSVdiU3VSYktaNGJneG1naVVLZ2pyYjJzST0=&format=json')
@@ -65,6 +68,7 @@ function handleTPInvite(userEmail, userName, userSurname) {
       });
 }
 
+
 function handleMailChimpInvite(userEmail, userName, userSurname) {
   unirest.post('https://us8.api.mailchimp.com/3.0/lists/3742a20dc0/members/')
       .headers({
@@ -90,6 +94,7 @@ function handleMailChimpInvite(userEmail, userName, userSurname) {
       });
 }
 
+
 function handleGraknForumInvite(userEmail) {
   unirest.post('https://discuss.grakn.ai/invites?api_key=298220c1f63076c58c642d4701ed384833dbaac8fb0ccf9411f52505ed527605&api_username=haikal')
     .headers({
@@ -103,6 +108,7 @@ function handleGraknForumInvite(userEmail) {
         console.log(response.body);
     });
 }
+
 
 app.post('/invite/slack', function(req, res) {
   if (req.body.email == undefined) {
@@ -149,6 +155,21 @@ app.post('/invite/forum', function(req, res) {
 
   res.header("Access-Control-Allow-Origin", "*");
   res.status(200).send(JSON.stringify({ msg: "success" }));
+});
+
+
+app.post('/invite/all', function(req, res) {
+    if (req.body.email == undefined) {
+        res.status(400).send('No "email" field provided');
+        return;
+    }
+    handleSlackInvite(req.body.email);
+    handleTPInvite(req.body.email, req.body.name, req.body.surname);
+    handleMailChimpInvite(req.body.email, req.body.name, req.body.surname);
+    handleGraknForumInvite(req.body.email);
+
+    res.header("Access-Control-Allow-Origin", "*");
+    res.status(200).send(JSON.stringify({ msg: "success" }));    
 });
 
 
