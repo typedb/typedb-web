@@ -2,9 +2,11 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import classNames from 'classnames';
 import { keys } from 'lodash';
+import { connect } from 'react-redux';
+
 import vis from 'vis';
 import Resizable from 're-resizable';
-import { setTimeout } from 'timers';
+
 const Prism = require('prismjs');
 const graqlHighlighter = require('helpers/prism-graql.js').graql;
 const visualiserItems = require('config/visualiserItems');
@@ -27,6 +29,11 @@ class Visualiser extends Component {
     window.addEventListener('resize', this.drawGraph);
   }
 
+  componentDidUpdate(prevProps) {
+    if ((this.props.media.is.extraSmall && !prevProps.media.is.extraSmall) || (!this.props.media.is.extraSmall && prevProps.media.is.extraSmall)) {
+      this.initializeGraph();
+    }
+  }
   componentWillUnmount() {
     window.removeEventListener('resize', this.drawGraph);
   }
@@ -40,7 +47,7 @@ class Visualiser extends Component {
   }
 
   initializeGraph() {
-    const container = this.graphContainer;    
+    const container = this.graphContainer;
     const g = {
       nodes: new vis.DataSet(),
       edges: new vis.DataSet(),
@@ -54,14 +61,13 @@ class Visualiser extends Component {
       },
       nodes: {
         borderWidth: 0,
-        size: 10,
         font: {
           color: '#2f3544',
-          size: 16,
+          size: this.props.media && this.props.media.is.extraSmall? 8 : 16,
           face: 'Ubuntu'
 
         },
-        margin: 10,
+        margin: this.props.media && this.props.media.is.extraSmall? 2 : 10,
         fixed: true
       },
       edges: {
@@ -76,7 +82,7 @@ class Visualiser extends Component {
         },
         font: {
           color: '#7182ae',
-          size: 16,
+          size: this.props.media && this.props.media.is.extraSmall? 10 : 16,
           face: 'Ubuntu',
           strokeWidth: 0,
           background: '#3b4254'
@@ -98,22 +104,22 @@ class Visualiser extends Component {
         },
         relationship: {
           shape: 'diamond',
-          size: 30,          
+          size: this.props.media && this.props.media.is.extraSmall? 10 : 30,          
           color: {
             background: '#667fc9'
           },
           font: {
-            vadjust: -45            
+            vadjust: this.props.media && this.props.media.is.extraSmall? -20 : -45           
           }
         },
         'relationship-type': {
           shape: 'diamond',
-          size: 30,
+          size: this.props.media && this.props.media.is.extraSmall? 10 : 30,
           color: {
             background: '#667fc9'
           },
           font: {
-            vadjust: -45
+            vadjust: this.props.media && this.props.media.is.extraSmall? -20 : -45
           }
         },
         attribute: {
@@ -218,4 +224,10 @@ class Visualiser extends Component {
   }
 }
 
-export default Visualiser;
+const mapStateToProps = (state) => (
+  {
+    media: state.browser
+  }
+);
+
+export default connect(mapStateToProps, null)(Visualiser);
