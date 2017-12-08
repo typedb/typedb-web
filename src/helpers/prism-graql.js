@@ -41,8 +41,8 @@
           alias: 'number'
       },
       operator: {
-          pattern: /=|!=|>|<|>=|<=|contains|regex/,
-          alias: 'operator'
+        pattern: /=|;|\.|\+|\-|\*|,|\(|\)|:|{|}|!=|>|<|>=|<=|contains|regex/,
+        alias: 'operator'
       }
     }
   };
