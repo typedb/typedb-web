@@ -141,7 +141,7 @@ class Visualiser extends Component {
     this.setState({
       network: network,
     },function() {
-      setTimeout(this.drawGraph, 300);
+      setTimeout(this.drawGraph, 1000);
     });
   }
 
