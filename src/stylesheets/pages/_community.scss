@@ -62,11 +62,14 @@
         border: 1px solid $borderColor;
         padding: 0 0.5rem;
         font-size: 0.8rem;
+        height: 34px;
       }
       > button {
         font-size: 1rem;
         min-width: 120px;
         height: 38px;
+        border: none;
+        border-radius: 5px;
       }
     }
     &__links {
