@@ -61,11 +61,13 @@
     }
     &__signup {
       display: inline-block;
+      position: relative;
       width: auto;
       vertical-align: middle;
       float: right;
       border: 1px solid $borderColor;
       border-radius: 6px;
+      overflow-y: hidden;  
       @media screen and (max-width: $smallScreen) {
         display: block;
         margin: 0 auto;
@@ -77,7 +79,7 @@
         vertical-align: top;
         appearance: none;
         border: none;
-        outline: none;  
+        outline: none;
       }
       > input {
         height: 45px;
@@ -88,15 +90,16 @@
         border-radius: 6px;
         padding-bottom: 2px;
         @media screen and (max-width: $smallScreen){
-          width: calc(100% - 130px);
+          width: calc(100% - 134px);
         }
       }
       > button {
         height: 47px;
         font-size: 0.8rem;
-        min-width: 100px;
+        width: 102px;
         border-radius: 0 5px 5px 0;
-        margin-left: -2px;
+        float: right;
+        cursor: pointer;
       }
     }
   }
