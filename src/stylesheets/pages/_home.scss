@@ -274,10 +274,6 @@
   }
 
   &__production {
-    // background-image: url('/assets/img/background_2.png');
-    // background-repeat: no-repeat;
-    // background-size: cover;
-    // background-position: center;
     background: $backgroundPurple;
     padding-top: 70px;    
     padding-bottom: 70px;  
@@ -294,18 +290,11 @@
       }
     }
     &__slider {
-      padding-top: 50px;
-      padding-bottom: 30px;
-      padding-left: 30px;
-      padding-right: 30px;
-      margin: 0 auto;
-      @media screen and (max-width: $smallScreen) {
-        padding-bottom: 30px;
-      }
+
       &__item {
-        width: 320px;
+        width: 280px;
         height: 220px;
-        margin: 0 20px;
+        margin: 0 10px;
         position: relative;
         background-color: #ffffff;
         border: 1px solid $borderColor;
@@ -316,37 +305,34 @@
           margin: 0 5px;
           height: 200px;
         }
+        @media screen and (max-width: 400px) {
+          width: 220px;
+          height: 220px;
+        }
        &__container {
         height: 100%;
-       // margin: 0 auto;
         padding: 1.5rem 1.5rem;
-
-        // @media screen and (max-width: $smallScreen) {
-        //   width: auto;
-        //   padding-left: 15px;
-        // }
        }
        &__header {
          display: block;
-         font-size: 20px;
+         font-size: 18px;
          font-weight: 600;
          line-height: 1.2;
          text-align: left;
          color: $textCharcoal;
-         padding-bottom: 1rem;
+         padding-bottom: 0.8rem;
          > i {
            height: 32px;
            width: 32px;
            border-radius: 50%;
            color: white;
            background-color: #54abed;
-           margin-right: 1.1rem;
+           margin-right: 0.6rem;
            text-align: center;
            display: inline-block;
            vertical-align: middle;
            line-height: 32px;
            @media screen and (max-width: $smallScreen) {
-              margin-right: 0.5rem;
               width: 20px;
               height: 20px;
               line-height: 20px;
@@ -387,10 +373,10 @@
     }
     &__items {
       &--desktop {
-        padding: 70px 0;
+        padding: 50px 0;
         width: 100%;
         @media screen and (max-width: $smallScreen) {
-          display: none;
+          padding: 30px 0;
         }
         &__row {
           display: flex;
@@ -411,16 +397,7 @@
           border-bottom: 1px solid #f2f6fa;          
         }
       }
-      &--slider {
-        display: none;
-        padding: 50px 0 30px 0;
-        @media screen and (max-width: $smallScreen) {
-          display: block;
-        }
-        > .slide-dots {
-          padding-top: 0px;
-        }
-      }
+ 
       &__item {
         height: 130px;
         display: flex !important;
@@ -689,18 +666,10 @@
       }
     }
     &__items {
-      padding-top: 10px;
-      margin-bottom: 70px;
-      text-align: center;
-      > div:nth-child(2) {
-        @media screen and (max-width: $mediumScreen) {
-          margin-top: 30px;
-          margin-bottom: 30px;
-        }
-      }
+      padding-top: 0px !important;
     }
     &__item {
-      width: 300px !important;
+      width: 280px;
       height: 320px;
       border: 1px solid $borderColor;
       border-radius: 5px;
@@ -708,14 +677,9 @@
       display: inline-block;
       vertical-align: top;
       
-      @media screen and (max-width: $mediumScreen) {
-        margin-left: auto;
-        margin-right: auto;
-        display: block;
-      }
       @media screen and (max-width: $smallScreen){
-        height: 250px;
-        width: 280px !important;
+        height: 260px;
+        width: 260px;
       }
       &__text {
         height: calc(100% - 122px);
@@ -730,13 +694,13 @@
       }
       &__details {
         background-color: $backgroundPurple;
-        width: 298px;
+        width: 278px;
         height: 92px;
         margin: 0 auto;
         border-radius: 0 0 5px 5px;
         text-align: left;
         @media screen and (max-width: $smallScreen){
-          width: 278px;
+          width: 258px;
         }
         &__img, &__text {
           display: inline-block;
@@ -808,45 +772,6 @@
       text-align: center;
       @media screen and (max-width: $smallScreen) {
         font-size: 12px;
-      }
-    }
-  }
-}
-
-// Universal Updates
-.slick {
-  &-dots {
-    list-style: none;
-    text-align: center;
-    padding-top: 40px;
-    width: 300px;
-    padding-left: 0;
-    margin: 0 auto;
-    @media screen and (max-width: $smallScreen) {
-      padding-top: 30px;
-    }
-    > li {
-      display: inline-block;
-      vertical-align: middle;
-      cursor: pointer;
-      > button {
-        width: 10px;
-        height: 10px;
-        border-radius: 50%;
-        opacity: 0.6;
-        background-color: #54abed;
-        outline: none;
-        margin: 0 0.5rem;
-        padding: 0;
-        color: transparent;
-        border: none;
-      }
-    }
-    .slick-active {
-      padding-bottom: 2px;
-      > button {
-        width: 14px;
-        height: 14px;
       }
     }
   }

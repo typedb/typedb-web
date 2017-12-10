@@ -1,43 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
-import Slider from 'react-slick';
 import Visualiser from 'components/Visualiser';
-
+import PagingComponent from 'components/PagingComponent';
 import graknRoutes from 'config/graknRoutes';
-const prodSectionSettings = {
-  dots: true,
-  infinite: false,
-  speed: 500,
-  slidesToShow: 5,
-  slidesToScroll: 4,
-  arrows: false,
-  initialSlide: 0,
-  className: 'home__production__slider',
-  variableWidth: true,
-  centerMode: false,
-  responsive: [
-     { breakpoint: 500, settings: { centerMode: false, slidesToShow: 1, slidesToScroll: 1 } },
-     { breakpoint: 1000, settings: { slidesToShow: 3, slidesToScroll: 2 } },
-  ]
-};
-
-const deploymentSettings = {
-  dots: true,
-  infinite: false,
-  speed: 500,
-  slidesToShow: 2,
-  slidesToScroll: 2,
-  arrows: false,
-  initialSlide: 0,
-  centerMode: true,
-  swipeToSlide: true,
-  className: 'home__deployment__items--slider',
-  responsive: [
-     { breakpoint: 400, settings: {   slidesToShow: 1, slidesToScroll: 1    } },
-     { breakpoint: 768, settings: { slidesToShow: 2, slidesToScroll: 1 } },
-  ]
-}
 
 
 const deploymentOptions = [
@@ -159,62 +125,64 @@ const HomePage = () => (
       <span className="home__production__headline home__header container section__container">
         Simplify your data architecture and scale your knowledge base into production 
       </span>
-      <Slider {...prodSectionSettings}>
-        <div className="home__production__slider__item">
-          <div className="home__production__slider__item__container">
-            <span className="home__production__slider__item__header"><i className="fa fa-check" aria-hidden="true"/>Full-string indexing</span>
-            <span className="home__production__slider__item__text">Advanced full-text search capabilities, by enabling powerful string matching techniques over any body of text</span>
+      <div className="home__production__container container section__container">
+        <PagingComponent>
+          <div className="home__production__slider__item">
+            <div className="home__production__slider__item__container">
+              <span className="home__production__slider__item__header"><i className="fa fa-check" aria-hidden="true"/>Full-string indexing</span>
+              <span className="home__production__slider__item__text">Advanced full-text search capabilities, by enabling powerful string matching techniques over any body of text</span>
+            </div>
           </div>
-        </div>
-        <div className="home__production__slider__item">
-          <div className="home__production__slider__item__container">
-            <span className="home__production__slider__item__header"><i className="fa fa-check" aria-hidden="true"/>Scalabale Storage</span>   
-            <span className="home__production__slider__item__text">A scalable system designed to be partitioned and replicated over a network of distributed machines</span>          
+          <div className="home__production__slider__item">
+            <div className="home__production__slider__item__container">
+              <span className="home__production__slider__item__header"><i className="fa fa-check" aria-hidden="true"/>Scalabale Storage</span>   
+              <span className="home__production__slider__item__text">A scalable system designed to be partitioned and replicated over a network of distributed machines</span>          
+            </div>
           </div>
-        </div>
-        <div className="home__production__slider__item">
-          <div className="home__production__slider__item__container">
-            <span className="home__production__slider__item__header"><i className="fa fa-check" aria-hidden="true"/>Elastic throughput</span>         
-            <span className="home__production__slider__item__text">Read and write throughput scales linearly as new machines are added to the Grakn cluster, without  any downtime</span>                    
+          <div className="home__production__slider__item">
+            <div className="home__production__slider__item__container">
+              <span className="home__production__slider__item__header"><i className="fa fa-check" aria-hidden="true"/>Elastic throughput</span>         
+              <span className="home__production__slider__item__text">Read and write throughput scales linearly as new machines are added to the Grakn cluster, without  any downtime</span>                    
+            </div>
           </div>
-        </div>
-        <div className="home__production__slider__item">
-          <div className="home__production__slider__item__container">
-            <span className="home__production__slider__item__header"><i className="fa fa-check" aria-hidden="true"/>Extensible Schema</span>                  
-            <span className="home__production__slider__item__text">Schema definition can be updated and extended flexibly, during runtime, without any need for database migration</span>                       
+          <div className="home__production__slider__item">
+            <div className="home__production__slider__item__container">
+              <span className="home__production__slider__item__header"><i className="fa fa-check" aria-hidden="true"/>Extensible Schema</span>                  
+              <span className="home__production__slider__item__text">Schema definition can be updated and extended flexibly, during runtime, without any need for database migration</span>                       
+            </div>
           </div>
-        </div>
-        <div className="home__production__slider__item">
-          <div className="home__production__slider__item__container">
-            <span className="home__production__slider__item__header"><i className="fa fa-check" aria-hidden="true"/>Secured Authentication </span>                  
-            <span className="home__production__slider__item__text">Ensuring only authenticated access and appropriately privileged users are allowed to access specific datasets</span>                       
-          </div>
-        </div>       
-        <div className="home__production__slider__item">
-          <div className="home__production__slider__item__container">
-            <span className="home__production__slider__item__header"><i className="fa fa-check" aria-hidden="true"/>Migration Tools</span>                  
-            <span className="home__production__slider__item__text">Tools to help migrate large datasets from various formats and database sources, easily and quickly</span>                       
-          </div>
-        </div>       
-        <div className="home__production__slider__item">
-          <div className="home__production__slider__item__container">
-            <span className="home__production__slider__item__header"><i className="fa fa-check" aria-hidden="true"/>Dedicated IDE</span>                  
-            <span className="home__production__slider__item__text">An integrated development environment for knowledge engineering and modelling at scale</span>                       
-          </div>
-        </div>       
-        <div className="home__production__slider__item">
-          <div className="home__production__slider__item__container">
-            <span className="home__production__slider__item__header"><i className="fa fa-check" aria-hidden="true"/>Monitoring</span>                  
-            <span className="home__production__slider__item__text">Monitor your database performance in real-time through a dedicated and configurable dashboard</span>                       
-          </div>
-        </div>       
-        <div className="home__production__slider__item">
-          <div className="home__production__slider__item__container">
-            <span className="home__production__slider__item__header"><i className="fa fa-check" aria-hidden="true"/>Cluster Management</span>                  
-            <span className="home__production__slider__item__text">Easily deploy and scale your database with tools that automate the of provisioning your cluster</span>                       
-          </div>
-        </div>       
-      </Slider>
+          <div className="home__production__slider__item">
+            <div className="home__production__slider__item__container">
+              <span className="home__production__slider__item__header"><i className="fa fa-check" aria-hidden="true"/>Secured Authentication </span>                  
+              <span className="home__production__slider__item__text">Ensuring only authenticated access and appropriately privileged users are allowed to access specific datasets</span>                       
+            </div>
+          </div>       
+          <div className="home__production__slider__item">
+            <div className="home__production__slider__item__container">
+              <span className="home__production__slider__item__header"><i className="fa fa-check" aria-hidden="true"/>Migration Tools</span>                  
+              <span className="home__production__slider__item__text">Tools to help migrate large datasets from various formats and database sources, easily and quickly</span>                       
+            </div>
+          </div>       
+          <div className="home__production__slider__item">
+            <div className="home__production__slider__item__container">
+              <span className="home__production__slider__item__header"><i className="fa fa-check" aria-hidden="true"/>Dedicated IDE</span>                  
+              <span className="home__production__slider__item__text">An integrated development environment for knowledge engineering and modelling at scale</span>                       
+            </div>
+          </div>       
+          <div className="home__production__slider__item">
+            <div className="home__production__slider__item__container">
+              <span className="home__production__slider__item__header"><i className="fa fa-check" aria-hidden="true"/>Monitoring</span>                  
+              <span className="home__production__slider__item__text">Monitor your database performance in real-time through a dedicated and configurable dashboard</span>                       
+            </div>
+          </div>       
+          <div className="home__production__slider__item">
+            <div className="home__production__slider__item__container">
+              <span className="home__production__slider__item__header"><i className="fa fa-check" aria-hidden="true"/>Cluster Management</span>                  
+              <span className="home__production__slider__item__text">Easily deploy and scale your database with tools that automate the of provisioning your cluster</span>                       
+            </div>
+          </div>       
+        </PagingComponent>
+      </div>
       <Link to="/" className="button button--transparent">Learn More</Link>      
     </section>
     <section className="home__deployment">
@@ -246,17 +214,6 @@ const HomePage = () => (
           }
           </div>
         </div>
-        <Slider {...deploymentSettings}>
-          {
-            deploymentOptions.map((item, index) => {
-              return (
-                <div className="home__deployment__items__item home__deployment__items__item--slider" key={`${index}__deployment`}>
-                  <img src={item.url} alt={item.name} />
-                </div>
-              )
-            })
-          }
-        </Slider>
         <Link to="/" className="button button--transparent">Choose your deployment option</Link>
       </div>
     </section>
@@ -380,7 +337,7 @@ const HomePage = () => (
               Building on the shoulders of <strong>Grakn</strong>
             </span>
           </div>
-          <div className="home__reviews__items">
+          <PagingComponent className="home__reviews__items">
             {
               testimonials.map((item, index) => {
                 return (
@@ -397,7 +354,7 @@ const HomePage = () => (
                 )
               })
             }
-          </div>
+          </PagingComponent>
           <Link to="/" className="button button--red">Schedule a call with our team</Link>
         </div>
     </section>

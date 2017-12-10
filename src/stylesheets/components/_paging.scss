@@ -1,0 +1,52 @@
+.paging-component {
+  position: relative;
+  padding: 50px 0;
+  width: 100%;
+  @media screen and (max-width: $smallScreen) {
+    padding: 30px 0;
+  }
+  &__button {
+    display: inline-block;
+    vertical-align: middle;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    outline: none;
+    position: relative;
+    cursor: pointer;
+    background-color: white;
+    color: $textNav;
+    border: 1px solid $borderColor;
+    &:disabled {
+      background-color: $backgroundPurple;
+    }
+    > i {
+      display: block;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      padding-top: 2px;
+    }
+    &--left {
+      > i {
+        padding-right: 2px;
+      }
+    }
+    &--right {
+      > i {
+        padding-left: 1px;
+      }
+    }
+  }
+  &__content {
+    display: inline-block;
+    vertical-align: middle;
+    text-align: center;
+    width: calc(100% - 60px);
+    > * {
+      display: inline-block;
+      vertical-align: middle;
+    }
+  }
+}
