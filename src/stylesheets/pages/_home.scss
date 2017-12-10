@@ -274,20 +274,28 @@
   }
 
   &__production {
-    background: $backgroundPurple;
-    padding-top: 70px;    
-    padding-bottom: 70px;  
+    position: relative;
+    padding-bottom: 70px;
     @media screen and (max-width: $smallScreen) {
-     // background-position: center;
-      padding-top: 50px;      
       padding-bottom: 50px;
     }
     &__headline {
       width: 40%;
       text-align: center;
+      padding-top: 70px;    
       @media screen and (max-width: $smallScreen) {
+        padding-top: 50px;
         width: 90%;
       }
+    }
+    &__button {
+      z-index: 2;
+    }
+    > img {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
     }
     &__slider {
 

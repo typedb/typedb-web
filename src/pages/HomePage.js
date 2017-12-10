@@ -122,6 +122,7 @@ const HomePage = () => (
       </div>
     </section>
     <section className="home__production">
+      <img src="/assets/img/background_2.png" alt="background curved" />
       <span className="home__production__headline home__header container section__container">
         Simplify your data architecture and scale your knowledge base into production 
       </span>
@@ -183,7 +184,7 @@ const HomePage = () => (
           </div>       
         </PagingComponent>
       </div>
-      <Link to="/" className="button button--transparent">Learn More</Link>      
+      <Link to="/" className="button button--transparent home__production__button">Learn More</Link>      
     </section>
     <section className="home__deployment">
       <div className="home__deployment__container container section__container">
