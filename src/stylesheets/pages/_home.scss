@@ -480,13 +480,21 @@
           margin-top: 30px;
           width: 100%;
           order: 2;
+          display: flex;
+          height: 300px;
+          justify-content: center;
+          align-items: center; 
         }
         
         > img {
           max-width: 100%;
           display: block;
           margin: 0 auto;
+          @media screen and (max-width: $smallScreen){
+            width: 300px;
+          }
         }
+        
         &--scaled {
           > img {
             max-width: 90%;
@@ -552,7 +560,6 @@
         order: 1;
         margin-bottom: 30px;
         height: 70px;
-        background-color: #2f3543;
         width: 100vw;
         margin-left: -6%;
         padding: 0;
@@ -631,6 +638,7 @@
           filter: invert(0.6);
           @media screen and (max-width: $smallScreen) {
             padding-bottom: 0;
+
           }
         }
         
