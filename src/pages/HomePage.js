@@ -123,10 +123,10 @@ const HomePage = () => (
     </section>
     <section className="home__production">
       <img src="/assets/img/background_2.png" alt="background curved" />
-      <span className="home__production__headline home__header container section__container">
-        Simplify your data architecture and scale your knowledge base into production 
-      </span>
       <div className="home__production__container container section__container">
+        <span className="home__production__headline home__header container section__container">
+          Simplify your data architecture and scale your knowledge base into production 
+        </span>
         <PagingComponent>
           <div className="home__production__slider__item">
             <div className="home__production__slider__item__container">
