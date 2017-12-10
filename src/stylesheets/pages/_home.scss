@@ -306,7 +306,7 @@
           height: 200px;
         }
         @media screen and (max-width: 400px) {
-          width: 220px;
+          width: 210px;
           height: 220px;
         }
        &__container {
@@ -494,7 +494,7 @@
             width: 300px;
           }
         }
-        
+
         &--scaled {
           > img {
             max-width: 90%;
@@ -689,6 +689,10 @@
         height: 260px;
         width: 260px;
       }
+      @media screen and (max-width: 400px){
+        height: 290px;
+        width: 210px;
+      }
       &__text {
         height: calc(100% - 122px);
         line-height: 1.67;
@@ -709,6 +713,9 @@
         text-align: left;
         @media screen and (max-width: $smallScreen){
           width: 258px;
+        }
+        @media screen and (max-width: 400px){
+          width: 208px;
         }
         &__img, &__text {
           display: inline-block;
