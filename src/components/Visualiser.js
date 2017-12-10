@@ -104,22 +104,22 @@ class Visualiser extends Component {
         },
         relationship: {
           shape: 'diamond',
-          size: this.props.media && this.props.media.is.extraSmall? 10 : 30,          
+          size: this.props.media && this.props.media.is.extraSmall? 20 : 50,          
           color: {
             background: '#667fc9'
           },
           font: {
-            vadjust: this.props.media && this.props.media.is.extraSmall? -20 : -45           
+            vadjust: this.props.media && this.props.media.is.extraSmall? -30 : -65           
           }
         },
         'relationship-type': {
           shape: 'diamond',
-          size: this.props.media && this.props.media.is.extraSmall? 10 : 30,
+          size: this.props.media && this.props.media.is.extraSmall? 30 : 50,
           color: {
             background: '#667fc9'
           },
           font: {
-            vadjust: this.props.media && this.props.media.is.extraSmall? -20 : -45
+            vadjust: this.props.media && this.props.media.is.extraSmall? -40 : -65
           }
         },
         attribute: {

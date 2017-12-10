@@ -64,6 +64,8 @@
       width: auto;
       vertical-align: middle;
       float: right;
+      border: 1px solid $borderColor;
+      border-radius: 6px;
       @media screen and (max-width: $smallScreen) {
         display: block;
         margin: 0 auto;
@@ -72,15 +74,19 @@
       }
       > * {
         display: inline-block;
-        vertical-align: middle;
+        vertical-align: top;
+        appearance: none;
+        border: none;
         outline: none;  
       }
       > input {
-        height: 44px;
+        height: 45px;
         width: 200px;
         font-size: 0.8rem;
         color: $textLight;
-        padding: 0 0.5rem;
+        padding: 0 1rem;
+        border-radius: 6px;
+        padding-bottom: 2px;
         @media screen and (max-width: $smallScreen){
           width: calc(100% - 120px);
         }
@@ -90,7 +96,6 @@
         font-size: 0.8rem;
         min-width: 100px;
         border-radius: 0 5px 5px 0;
-        border: none;
         margin-left: -2px;
       }
     }
