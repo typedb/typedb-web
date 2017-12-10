@@ -47,7 +47,7 @@ class Footer extends Component {
             </Link>
             <Link to="/">
               <i className="fa fa-phone" aria-hidden="true" />
-              Schedule a Call
+              Get in touch
             </Link>
             <div className="footer__block__links--address">
               <span> 

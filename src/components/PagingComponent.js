@@ -1,4 +1,5 @@
 import React , { Component } from 'react';
+import classNames from 'classnames';
 
 class PagingComponent extends Component {
   constructor(props){
@@ -64,9 +65,19 @@ class PagingComponent extends Component {
     const pageElements = this.props.children.slice((this.state.activePage-1)*this.state.stepSize, ((this.state.activePage-1)*this.state.stepSize)+this.state.stepSize);
     const overrideClasses = this.props.className || '';
     const classes = [overrideClasses, 'paging-component'].join(" ");
+    const leftButtonClasses = classNames({
+      'paging-component__button': true,
+      'paging-component__button--left': true,
+      'paging-component__button--hidden': this.state.pages == 1,
+    });
+    const rightButtonClasses = classNames({
+      'paging-component__button': true,
+      'paging-component__button--right': true,
+      'paging-component__button--hidden': this.state.pages == 1,
+    });
     return (
       <div className={classes}>
-        <button className="paging-component__button paging-component__button--left" onClick={() => this.prevPage()} disabled={this.state.activePage == 1}>
+        <button className={leftButtonClasses} onClick={() => this.prevPage()} disabled={this.state.activePage == 1}>
           <i className="fa fa-chevron-left" aria-hidden="true" />
         </button>
         <div className="paging-component__content">
@@ -76,7 +87,7 @@ class PagingComponent extends Component {
             })
           }
         </div>
-        <button className="paging-component__button paging-component__button--right" onClick={() => this.nextPage()}  disabled={this.state.activePage == this.state.pages}>
+        <button className={rightButtonClasses} onClick={() => this.nextPage()}  disabled={this.state.activePage == this.state.pages}>
           <i className="fa fa-chevron-right" aria-hidden="true" />
         </button>
       </div>

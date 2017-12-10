@@ -19,6 +19,10 @@
     border: 1px solid $borderColor;
     &:disabled {
       background-color: $backgroundPurple;
+      opacity: 0.5;
+    }
+    &--hidden {
+      display: none;
     }
     > i {
       display: block;

@@ -355,7 +355,7 @@ const HomePage = () => (
               })
             }
           </PagingComponent>
-          <Link to="/" className="button button--red">Get in touch</Link>
+          <Link to="/" className="button button--red">Get in touch with our team</Link>
         </div>
     </section>
     <section className="home__world">
