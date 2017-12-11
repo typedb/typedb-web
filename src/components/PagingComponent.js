@@ -42,6 +42,7 @@ class PagingComponent extends Component {
     this.setState({
       pages,
       stepSize,
+      activePage: 1,
     });
   }
 
