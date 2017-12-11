@@ -106,7 +106,7 @@
 }
 
 .vis-network > canvas {
-  touch-action:inherit !important;
+  touch-action:pan-y !important;
 }
  /* Prism CSS */
  .token.comment,

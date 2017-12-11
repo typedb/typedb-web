@@ -81,6 +81,7 @@
     "re-resizable": "^4.1.0",
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
+    "react-ga": "^2.3.5",
     "react-modal": "^2.3.2",
     "react-redux": "^5.0.6",
     "react-router": "^4.1.1",
