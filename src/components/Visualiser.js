@@ -67,7 +67,7 @@ class Visualiser extends Component {
           face: 'Ubuntu'
 
         },
-        margin: this.props.media && this.props.media.is.extraSmall? 2 : 10,
+        margin: this.props.media && this.props.media.is.extraSmall? 4 : 10,
         fixed: true
       },
       edges: {
