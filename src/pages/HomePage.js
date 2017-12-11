@@ -63,7 +63,7 @@ const HomePage = () => (
             <span className="home__features__item__text__paragraph">
             Enhanced Entity-Relationship schema, with constructs to define hyper-objects, hyper-relations and functions, to build complex knowledge models
             </span>
-            <Link to="/" className="animated__link animated__link--purple">Learn More</Link>                        
+              <a href={graknRoutes.overview} className="animated__link animated__link--purple">Learn More</a>                        
           </div>
           <div className="home__features__item__img">
             <img src="/assets/img/hyper-expressive_schema.png" alt="Hyper Expressive Schema" />
@@ -81,7 +81,7 @@ const HomePage = () => (
             <span className="home__features__item__text__paragraph">
             Automatic deduction of data types and relationships during runtime (OLTP), enabling the retrieval of implicit associations between points
             </span>
-            <Link to="/" className="animated__link animated__link--purple">Learn More</Link>                        
+            <a href={graknRoutes.overview} className="animated__link animated__link--purple">Learn More</a>                                    
           </div>
         </div>
       </div>
@@ -98,7 +98,7 @@ const HomePage = () => (
             <span className="home__features__item__text__paragraph">
             Automated Pregel and MapReduce distributed algorithms abstracted as a language (OLAP), enabling large scale computation through database queries
             </span>
-            <Link to="/" className="animated__link animated__link--purple">Learn More</Link>                        
+            <a href={graknRoutes.overview} className="animated__link animated__link--purple">Learn More</a>                        
           </div>
           <div className="home__features__item__img">
             <img src="/assets/img/distributed_analytics.png" alt="Distributed Analytics" />
@@ -116,7 +116,7 @@ const HomePage = () => (
             <span className="home__features__item__text__paragraph">
             Strong abstraction over low-level constructs, enabling you to express questions at a higher level and let the system figure out how to do the navigation
             </span>
-            <Link to="/" className="animated__link animated__link--purple">Learn More</Link>            
+            <a href={graknRoutes.overview} className="animated__link animated__link--purple">Learn More</a>                        
           </div>
         </div>
       </div>
@@ -215,7 +215,7 @@ const HomePage = () => (
           }
           </div>
         </div>
-        <Link to="/" className="button button--transparent">Choose your deployment option</Link>
+        <a href="mailto:info@grakn.ai" className="button button--transparent">Choose your deployment option</a>
       </div>
     </section>
     <section className="home__usecases">
@@ -236,7 +236,6 @@ const HomePage = () => (
                 <span className="home__usecases__tabpanel__text__content">
                 As devices have become more intelligent, the way we interact with them evolved to natural language through conversation. GRAKN.AI is the ideal platform for developing chat bots because it is capable of interpreting complex and ambiguous questions by performing inference over your knowledge base.
                 </span>
-                <Link to="/" className="animated__link animated__link--purple">Learn More</Link>
               </div>
             </div>
           </TabPanel>
@@ -252,7 +251,6 @@ const HomePage = () => (
                 <span className="home__usecases__tabpanel__text__content">
                 With ever more massive volumes of stored data, it becomes increasingly difficult for organizations to effectively search for relevant results. By using a search platform that understands a query’s intent and the meaning of its terms, data’s meaning can be unlocked, and organizations can free themselves.
                 </span>
-                <Link to="/" className="animated__link animated__link--purple">Learn More</Link>
               </div>
             </div>
           </TabPanel>
@@ -268,7 +266,6 @@ const HomePage = () => (
                 <span className="home__usecases__tabpanel__text__content">
                 Across the financial service industry, changes in technology, policy, and geopolitics have radically altered the data landscape in the past few years. By taking advantage of the most cutting-edge data infrastructure technologies, financial service firms can take full strategic advantage of the changing data landscape.
                 </span>
-                <Link to="/" className="animated__link animated__link--purple">Learn More</Link>
               </div>
             </div>
           </TabPanel>
@@ -284,7 +281,6 @@ const HomePage = () => (
                 <span className="home__usecases__tabpanel__text__content">
                 From pharmaceutical R&D and biomedical research to frontline healthcare delivery, the contemporary health and life science industries rely on data to power insight and improve care. Yet, despite advances in scientific knowledge and healthcare technologies, effective use of data remains a challenge.
                 </span>
-                <Link to="/" className="animated__link animated__link--purple">Learn More</Link>
               </div>
             </div>
           </TabPanel>
@@ -300,7 +296,6 @@ const HomePage = () => (
                 <span className="home__usecases__tabpanel__text__content">
                 As technology permeates deeper into every aspect of our lives—with constant digital footprints and interconnected devices proliferating—the growth in potential damage and disruption from bad actors grows. Both individuals and firms must leverage their digital defences against an onslaught of increasingly.
                 </span>
-                <Link to="/" className="animated__link animated__link--purple">Learn More</Link>
               </div>
             </div>
           </TabPanel>
