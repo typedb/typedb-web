@@ -10,13 +10,14 @@ import CommunityPage from 'pages/CommunityPage';
 import NoPage from 'pages/NoPage';
 
 class Main extends Component {
+
   componentDidMount() {
-    ReactGA.initialize('UA-72414051-1'); 
+    ReactGA.initialize('UA-72414051-1');
+    ReactGA.pageview(this.props.path);    
   }
 
   componentWillReceiveProps(newProps) {
     if (this.props.path !== newProps.path) {
-      console.log("Path changed");
       ReactGA.pageview(newProps.path);
     }
   }
