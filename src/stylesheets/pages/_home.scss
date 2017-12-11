@@ -706,7 +706,7 @@
         height: calc(100% - 122px);
         line-height: 1.67;
         font-size: 16px;
-        text-align: center;
+        text-align: left;
         color: $textCharcoal;
         padding: 30px 10px 0 10px;
         @media screen and (max-width: $smallScreen){
@@ -745,6 +745,7 @@
           }
         }
         &__text {
+          
           > * {
             display: block;
             font-size: 16px;
