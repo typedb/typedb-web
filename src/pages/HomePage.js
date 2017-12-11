@@ -195,7 +195,7 @@ const HomePage = () => (
           {
             deploymentOptions.slice(0,3).map((item, index) => {
               return (
-                <div className="home__deployment__items__item" key={`${index}--develop`}>
+                <div className="home__deployment__items__item" key={`${index}--develop`} onClick={() => location.href='mailto:enterprise@grakn.ai'}>
                   <img src={item.url} alt={item.name} />
                 </div>
               )
