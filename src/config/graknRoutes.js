@@ -3,6 +3,7 @@ const docBase = 'https://docs.grakn.ai/';
 module.exports = {
   download: `${docBase}/documentation/get-started/setup-guide.html`,
   docs: docBase,
+  overview: `${docBase}/overview/index.html`,
   quickstart: `${docBase}/documentation/get-started/quickstart-tutorial.html`,
   github: 'https://github.com/graknlabs/grakn',
   twitter: 'https://twitter.com/graknlabs',

@@ -45,10 +45,10 @@ class Footer extends Component {
               <img src="/assets/svg/slack-mark.svg" alt="slack"/>        
               <strong>Grakn</strong> on Slack
             </Link>
-            <Link to="/">
+            <a href="mailto:info@grakn.ai">
               <i className="fa fa-phone" aria-hidden="true" />
               Get in touch
-            </Link>
+            </a>
             <div className="footer__block__links--address">
               <span> 
                 <i className="fa fa-map-marker" aria-hidden="true" />
@@ -62,7 +62,7 @@ class Footer extends Component {
         <div className="footer__block">
           <div className="footer__block__header">GET STARTED</div>
           <div className="footer__block__links">
-            <Link to="/">Product</Link>
+            <a href={graknRoutes.overview}>Product</a>
             <a href={graknRoutes.download}>Install</a>
             <a href={graknRoutes.quickstart}>Quickstart</a>
           </div>
