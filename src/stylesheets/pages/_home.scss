@@ -705,12 +705,12 @@
       &__text {
         height: calc(100% - 122px);
         line-height: 1.67;
-        font-size: 18px;
+        font-size: 16px;
         text-align: center;
         color: $textCharcoal;
         padding: 30px 10px 0 10px;
         @media screen and (max-width: $smallScreen){
-          font-size: 14px;
+          font-size: 12px;
         }
       }
       &__details {
@@ -729,6 +729,20 @@
         &__img, &__text {
           display: inline-block;
           vertical-align: middle;
+        }
+        &__img {
+          width: 80px;
+          margin-right: 1rem;
+          position: relative;
+          height: 100%;
+          > img {
+            width: 70%;
+            display: block;
+            border-radius: 50%;
+            margin: 0 auto;
+            margin-top: 1rem;
+            border: 1px solid $borderColor;
+          }
         }
         &__text {
           > * {

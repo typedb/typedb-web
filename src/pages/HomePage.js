@@ -16,9 +16,9 @@ const deploymentOptions = [
 ];
 
 const testimonials = [
-  {name: 'John Doe', company: 'Corp Inc.', img: '/assets/img/Testimonials_1.png', review: '“Nulla ut sem lacus. Morbi dapibus lacus eu pharetra blandit. Donec arcu turpis, viverra eu volutpat ac. Phasellus consectetur vestibulum. Vestibulum lectust.”'},
-  {name: 'Random Adam', company: 'Corp Inc.', img: '/assets/img/testimonials_2.png', review: '“Nulla ut sem lacus. Morbi dapibus lacus eu pharetra blandit. Donec arcu turpis, viverra eu volutpat ac. Phasellus consectetur vestibulum. Vestibulum lectust.”'},
-  {name: 'Alpha Sam', company: 'Corp Inc.', img: '/assets/img/testimonials_3.png', review: '“Nulla ut sem lacus. Morbi dapibus lacus eu pharetra blandit. Donec arcu turpis, viverra eu volutpat ac. Phasellus consectetur vestibulum. Vestibulum lectust.”'}
+  {name: 'Michael Bishop', company: 'CTO Alpha Vertex', img: '/assets/img/bishop.jpg', review: '“Grakn has significantly streamlined our knowledge engineering process. Grakn’s expressive schema allows us to verify the logical consistency of patterns detected by our learning algorithms and improve its accuracy”'},
+  {name: 'Radouane Oudrhiri', company: 'CTO Eagle Genomics', img: '/assets/img/oudrhiri.jpg', review: '“Grakn\'s query language, Graql, should be the de facto language for any graph representation because of two things: the semantic expressiveness of the language and the optimisation of the query traversal.”'},
+  {name: 'Radouane Oudrhiri', company: 'CTO Eagle Genomics', img: '/assets/img/oudrhiri.jpg', review: '“Grakn\'s query language, Graql, should be the de facto language for any graph representation because of two things: the semantic expressiveness of the language and the optimisation of the query traversal.”'},
 ]
 
 const HomePage = () => (
@@ -130,12 +130,6 @@ const HomePage = () => (
         <PagingComponent>
           <div className="home__production__slider__item">
             <div className="home__production__slider__item__container">
-              <span className="home__production__slider__item__header"><i className="fa fa-check" aria-hidden="true"/>Full-string indexing</span>
-              <span className="home__production__slider__item__text">Advanced full-text search capabilities, by enabling powerful string matching techniques over any body of text</span>
-            </div>
-          </div>
-          <div className="home__production__slider__item">
-            <div className="home__production__slider__item__container">
               <span className="home__production__slider__item__header"><i className="fa fa-check" aria-hidden="true"/>Scalabale Storage</span>   
               <span className="home__production__slider__item__text">A scalable system designed to be partitioned and replicated over a network of distributed machines</span>          
             </div>
@@ -157,7 +151,13 @@ const HomePage = () => (
               <span className="home__production__slider__item__header"><i className="fa fa-check" aria-hidden="true"/>Secured Authentication </span>                  
               <span className="home__production__slider__item__text">Ensuring only authenticated access and appropriately privileged users are allowed to access specific datasets</span>                       
             </div>
-          </div>       
+          </div>
+          <div className="home__production__slider__item">
+            <div className="home__production__slider__item__container">
+              <span className="home__production__slider__item__header"><i className="fa fa-check" aria-hidden="true"/>Full-string indexing</span>
+              <span className="home__production__slider__item__text">Advanced full-text search capabilities, by enabling powerful string matching techniques over any body of text</span>
+            </div>
+          </div>
           <div className="home__production__slider__item">
             <div className="home__production__slider__item__container">
               <span className="home__production__slider__item__header"><i className="fa fa-check" aria-hidden="true"/>Migration Tools</span>                  
@@ -184,7 +184,7 @@ const HomePage = () => (
           </div>       
         </PagingComponent>
       </div>
-      <Link to="/" className="button button--transparent home__production__button">Learn More</Link>      
+      <a href={graknRoutes.overview} className="button button--transparent home__production__button">Learn More</a>      
     </section>
     <section className="home__deployment">
       <div className="home__deployment__container container section__container">
@@ -215,7 +215,7 @@ const HomePage = () => (
           }
           </div>
         </div>
-        <a href="mailto:info@grakn.ai" className="button button--transparent">Choose your deployment option</a>
+        <a href="mailto:enterprise@grakn.ai" className="button button--transparent">Choose your deployment option</a>
       </div>
     </section>
     <section className="home__usecases">
@@ -351,7 +351,7 @@ const HomePage = () => (
               })
             }
           </PagingComponent>
-          <a href="mailto:info@grakn.ai" className="button button--red">Get in touch with our team</a>
+          <a href="mailto:enterprise@grakn.ai" className="button button--red">Get in touch with our team</a>
         </div>
     </section>
     <section className="home__world">
