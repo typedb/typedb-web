@@ -105,7 +105,9 @@
   }
 }
 
-
+.vis-network > canvas {
+  touch-action:inherit !important;
+}
  /* Prism CSS */
  .token.comment,
  .token.prolog,
