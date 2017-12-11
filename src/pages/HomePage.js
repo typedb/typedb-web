@@ -356,7 +356,7 @@ const HomePage = () => (
               })
             }
           </PagingComponent>
-          <Link to="/" className="button button--red">Get in touch with our team</Link>
+          <a href="mailto:info@grakn.ai" className="button button--red">Get in touch with our team</a>
         </div>
     </section>
     <section className="home__world">

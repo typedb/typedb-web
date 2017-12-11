@@ -1,10 +1,11 @@
 import React from 'react';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, Redirect } from 'react-router-dom';
 import HomePage from 'pages/HomePage';
 import AboutPage from 'pages/AboutPage';
 import SlackPage from 'pages/SlackPage';
 import CareersPage from 'pages/CareersPage';
 import CommunityPage from 'pages/CommunityPage';
+import NoPage from 'pages/NoPage';
 
 const Main = () => (
   <main className="main">
@@ -14,6 +15,7 @@ const Main = () => (
       <Route exact path="/slack" component={SlackPage} />
       <Route exact path="/careers" component={CareersPage} />
       <Route exact path="/community" component={CommunityPage} />
+      <Route component={NoPage} />
     </Switch>
   </main>
 );
