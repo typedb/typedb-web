@@ -175,10 +175,15 @@ app.post('/invite/all', function(req, res) {
 
 app.get('/pages/*', (req, res) => {
     const redirectUrl = req.path.replace('/pages', 'https://docs.grakn.ai')
-    console.log(redirectUrl);
-    res.redirect(redirectUrl);
+    res.redirect(301, redirectUrl);
 });
 
+app.get('*.html', (req, res) => {
+    const redirected_path = req.path.replace('.html','');
+    const protocol = req.protocol;
+    const host = req.get('host');
+    res.redirect(301, `${protocol}://${host}${redirected_path}`)
+});
 
 app.get('*', (req, res) => {
   res.sendFile(path.join(dist, 'index.html'));
