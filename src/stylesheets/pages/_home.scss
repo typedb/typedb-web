@@ -675,12 +675,7 @@
       display: block;
       margin: 0 auto;
     }
-    &__slider {
-      padding: 0px 0 30px 0;
-      .home__reviews__item:nth-child(1) {
-        margin-left: 0 !important;
-      }
-    }
+
     &__items {
       padding-top: 0px !important;
     }
@@ -702,12 +697,12 @@
         width: 210px;
       }
       &__text {
-        height: calc(100% - 122px);
+        height: calc(100% - 132px);
         line-height: 1.67;
         font-size: 16px;
         text-align: left;
         color: $textCharcoal;
-        padding: 30px 10px 0 10px;
+        padding: 1.2rem;
         @media screen and (max-width: $smallScreen){
           font-size: 12px;
         }
@@ -731,7 +726,7 @@
         }
         &__img {
           width: 80px;
-          margin-right: 1rem;
+          margin-right: 0.5rem;
           position: relative;
           height: 100%;
           > img {
