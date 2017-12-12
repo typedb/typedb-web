@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import Visualiser from 'components/Visualiser';
 import PagingComponent from 'components/PagingComponent';
+import Testimonials from 'components/Testimonials';
 import graknRoutes from 'config/graknRoutes';
 
 
@@ -14,12 +15,6 @@ const deploymentOptions = [
   { name: 'premise', url: '/assets/img/on_premise.png'},
   { name: 'Amazon Web Services', url: '/assets/img/amazon.png'}
 ];
-
-const testimonials = [
-  {name: 'Michael Bishop', company: 'CTO, Alpha Vertex', img: '/assets/img/bishop.jpg', review: '“Grakn significantly streamlines our knowledge engineering process. Grakn’s expressive schema allows us to verify the logical consistency of patterns detected by our learning algorithms and improve accuracy”'},
-  {name: 'Radouane Oudrhiri', company: 'CTO, Eagle Genomics', img: '/assets/img/oudrhiri.jpg', review: '“Grakn\'s query language, Graql, should be the de facto language for any graph representation because of two things: the semantic expressiveness of the language and the optimisation of query execution.”'},
-  {name: 'Gunnar Kleemann', company: 'Co-Founder, Berkeley Data Science Group', img: '/assets/img/gunnar.jpg', review: '“When working with network structures, such as Biology, interactions between objects are complex and nuanced. Grakn interprets these structures natively, and allow us to discover novel answers very quickly.”'},
-]
 
 const HomePage = () => (
   <div className="home">
@@ -325,35 +320,7 @@ const HomePage = () => (
         </Tabs>
       </div>
     </section>
-    <section className="home__reviews">
-        <div className="home__reviews__container container section__container">
-          <div className="home__reviews__header">
-            <img className="home__reviews__headerimg" src="/assets/svg/testimonials.svg" alt="testimonials" />
-            <span className="home__header">
-              Building on the shoulders of <strong>Grakn</strong>
-            </span>
-          </div>
-          <PagingComponent className="home__reviews__items">
-            {
-              testimonials.map((item, index) => {
-                return (
-                  <div className="home__reviews__item" key={`${index}__testimonals`}>
-                    <div className="home__reviews__item__text">{item.review}</div>
-                    <div className="home__reviews__item__details">
-                      <div className="home__reviews__item__details__img"><img src={item.img} alt={`${item.name}'s picture`} /></div>
-                      <div className="home__reviews__item__details__text">
-                        <span>{item.name}</span>
-                        <span>{item.company}</span>
-                      </div>
-                    </div>
-                  </div>
-                )
-              })
-            }
-          </PagingComponent>
-          <a href="mailto:enterprise@grakn.ai" className="button button--red">Get in touch with our team</a>
-        </div>
-    </section>
+    <Testimonials />
     <section className="home__world">
       <div className="home__world__container container section__container">         
         <span className="home__world__headline">THE WORLD NEEDS TO <strong>GRAKN</strong></span>
