@@ -8,16 +8,17 @@ import graknRoutes from 'config/graknRoutes';
 
 const deploymentOptions = [
   { name: 'Google Cloud Platform', url: '/assets/img/cloud_platform.png'},
-  { name: 'Oracle', url: '/assets/img/oracle.png'},
-  { name: 'IBM Bluemix', url: '/assets/img/IBM.png'},
-  { name: 'Microsoft Azure', url: '/assets/img/azure.png'},
+  //{ name: 'Oracle', url: '/assets/img/oracle.png'},
+  //{ name: 'IBM Bluemix', url: '/assets/img/IBM.png'},
+  //{ name: 'Microsoft Azure', url: '/assets/img/azure.png'},
   { name: 'premise', url: '/assets/img/on_premise.png'},
   { name: 'Amazon Web Services', url: '/assets/img/amazon.png'}
 ];
 
 const testimonials = [
-  {name: 'Michael Bishop', company: 'CTO Alpha Vertex', img: '/assets/img/bishop.jpg', review: '“Grakn significantly streamlines our knowledge engineering process. Grakn’s expressive schema allows us to verify the logical consistency of patterns detected by our learning algorithms and improve accuracy”'},
-  {name: 'Radouane Oudrhiri', company: 'CTO Eagle Genomics', img: '/assets/img/oudrhiri.jpg', review: '“Grakn\'s query language, Graql, should be the de facto language for any graph representation because of two things: the semantic expressiveness of the language and the optimisation of query execution.”'},
+  {name: 'Michael Bishop', company: 'CTO, Alpha Vertex', img: '/assets/img/bishop.jpg', review: '“Grakn significantly streamlines our knowledge engineering process. Grakn’s expressive schema allows us to verify the logical consistency of patterns detected by our learning algorithms and improve accuracy”'},
+  {name: 'Radouane Oudrhiri', company: 'CTO, Eagle Genomics', img: '/assets/img/oudrhiri.jpg', review: '“Grakn\'s query language, Graql, should be the de facto language for any graph representation because of two things: the semantic expressiveness of the language and the optimisation of query execution.”'},
+  {name: 'Gunnar Kleemann', company: 'Co-Founder, Berkeley Data Science Group', img: '/assets/img/gunnar.jpg', review: '“When working with network structures, such as Biology, interactions between objects are complex and nuanced. Grakn interprets these structures natively, and allow us to discover novel answers very quickly.”'},
 ]
 
 const HomePage = () => (

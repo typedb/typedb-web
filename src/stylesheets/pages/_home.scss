@@ -739,10 +739,10 @@
           }
         }
         &__text {
-          
+          width: calc(100% - 90px);
+          font-size: 14px;
           > * {
             display: block;
-            font-size: 16px;
             @media screen and (max-width: $smallScreen){
               font-size: 12px;
             }            
