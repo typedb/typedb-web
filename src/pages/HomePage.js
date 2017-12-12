@@ -189,7 +189,7 @@ const HomePage = () => (
     <section className="home__deployment">
       <div className="home__deployment__container container section__container">
         <span className="home__deployment__headline home__header">
-          Deploy and run <strong>Grakn</strong> on premise, or any cloud platform
+          Run <strong>Grakn</strong> on premise, or in the cloud
         </span>
         <div className="home__deployment__items--desktop">
           <div className="home__deployment__items--desktop__row">
