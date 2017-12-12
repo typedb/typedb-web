@@ -42,7 +42,7 @@ const ServicesPage = () => (
                 </span>
               </div>
             </div>
-            <a href="mailto:enterprise@grakn,ai" className="services__features__item__text__button button button--transparent home__production__button">Get in touch</a>                  
+            <a href="mailto:enterprise@grakn.ai" className="services__features__item__text__button button button--transparent ">Get in touch</a>                  
           </div>
           <div className="services__features__item__img">
             <img src="/assets/svg/learning.svg" alt="Services learning" />
@@ -80,7 +80,7 @@ const ServicesPage = () => (
                 </span>
               </div>
             </div>
-            <a href="mailto:enterprise@grakn,ai" className="services__features__item__text__button button button--transparent home__production__button">Get in touch</a>                  
+            <a href="mailto:enterprise@grakn.ai" className="services__features__item__text__button button button--transparent ">Get in touch</a>                  
           </div>
         </div>
 
@@ -113,7 +113,7 @@ const ServicesPage = () => (
                 </span>
               </div>
             </div>
-            <a href="mailto:enterprise@grakn,ai" className="services__features__item__text__button button button--transparent home__production__button">Get in touch</a>                  
+            <a href="mailto:enterprise@grakn.ai" className="services__features__item__text__button button button--transparent ">Get in touch</a>                  
           </div>
           <div className="services__features__item__img">
             <img src="/assets/svg/migration.svg" alt="Migration" />
@@ -147,10 +147,53 @@ const ServicesPage = () => (
                 </span>
               </div>
             </div>
-            <a href="mailto:enterprise@grakn,ai" className="services__features__item__text__button button button--transparent home__production__button">Get in touch</a>                  
+            <a href="mailto:enterprise@grakn.ai" className="services__features__item__text__button button button--transparent ">Get in touch</a>                  
           </div>
         </div>
 
+      </div>
+    </section>
+    <section className="services__features services__features--single">
+    <div className="services__features__container container section__container">
+     
+      <div className="services__features__item">
+        <div className="services__features__item__text">
+          <span className="services__features__item__text__headline">Deployment and Scaling</span>
+          <span className="services__features__item__text__paragraph">
+          As you focus building your application and your business, let us help you with deploying and scaling your infrastructure. Have our experienced engineers makes sure your infrastructure is state of the art, meets all your system requirements and scales as your company grows, as you launch your business into the future!
+          </span>
+          <div className="services__features__item__text__list">
+            <div className="services__features__item__text__list__col">
+              <span className="services__features__item__text__list__col__item services__features__item__text__list__col__item--light-blue">
+                <i className="fa fa-check" aria-hidden={true} />
+                <span>On-premise cluster deployment</span>
+              </span>
+              <span className="services__features__item__text__list__col__item services__features__item__text__list__col__item--light-blue">
+                <i className="fa fa-check" aria-hidden={true} />
+                <span>Cloud-based deployment</span>
+              </span>
+            </div>
+            <div className="services__features__item__text__list__col">
+              <span className="services__features__item__text__list__col__item services__features__item__text__list__col__item--light-blue">
+                <i className="fa fa-check" aria-hidden={true} />
+                <span>Cluster configuration & optimisation</span>
+              </span>
+            </div>
+          </div>
+          <a href="mailto:enterprise@grakn.ai" className="services__features__item__text__button button button--transparent ">Get in touch</a>                  
+        </div>
+        <div className="services__features__item__img">
+          <img src="/assets/svg/deployment.svg" alt="Deployment" />
+        </div>
+      </div>
+     </div>
+     <div className="services__features__circle"><img src="/assets/svg/bot.svg" alt="grakn bot" /></div>     
+    </section>
+    <section className="services__alive">
+      <div className="services__alive__container container section__container">
+        <span className="services__alive__header">IT’S ALIVE!</span>
+        <span className="services__alive__tag">Now your knowledge base is alive and working for you and your business. Rest assured, we still have your back! Get Grakn Enterprise support to make sure no issue will ever get in the way of your business.</span>
+        <a href="mailto:enterprise@grakn.ai" className="services__alive__button button button--red">Get Support</a>                          
       </div>
     </section>
     <Testimonials />

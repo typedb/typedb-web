@@ -56,6 +56,27 @@
       background-repeat: no-repeat;
       background-size: cover;
     }
+    &--single {
+      padding-bottom: 120px;
+    }
+    &__circle {
+      width: 120px;
+      height: 120px;
+      background-color: #ffffff;
+      box-shadow: 2px 2px 10px 0 rgba(150, 134, 255, 0.2);
+      border-radius: 50%;
+      position: absolute;
+      bottom: -60px;
+      left: calc(50% - 60px);
+      z-index: 5;
+      > img {
+          width: 48px;
+          top: 60px;
+          display: block;
+          margin: 0 auto;
+          margin-top: 36px;
+      }
+    }
     &__container {
       > :nth-child(1) {
         padding-top: 0;
@@ -187,6 +208,14 @@
                   }
                 }
               }
+              &--light-blue {
+                > i {
+                  background-color: #d7f2ff;
+                  &::before {
+                    color: #21b5fb;
+                  }
+                }
+              }
             }
           }
         }
@@ -210,6 +239,48 @@
           order: 2;
         }
       }
+    }
+  }
+  &__alive {
+    position: relative;
+    padding-top: 110px;
+    background-image: url('/assets/svg/services_alive.svg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    height: 400px;
+    @media screen and (max-width: $smallScreen) {
+      padding-top: 90px;
+      height: 300px !important;
+      background-position: left;
+    }
+    &__header {
+      text-align: center;
+      display: block;
+      font-weight: 600;
+      color: $textCharcoal;
+      font-size: 30px;
+      @media screen and (max-width: $smallScreen) {
+        font-size: 22px;
+      }
+    }
+    &__tag {
+      text-align: center;
+      display: block;
+      padding-top: 0.8rem;
+      width: 60%;
+      color: $textLight;
+      font-size: 18px;
+      margin: 0 auto;
+      line-height: 1.8;
+      @media screen and (max-width: $smallScreen) {
+        width: 100%;
+        font-size: 14px;
+      }
+    }
+    &__button {
+      direction: block;
+      margin-top: 3rem;
     }
   }
 }
