@@ -1,33 +1,30 @@
+
 body, html {
   margin: 0;
   padding: 0;
   height: 100%;
 }
 
+// Imports - external libs
+@import '~slick-carousel/slick/slick.css';
+
 // Imports
 @import './fonts';
 @import './colours';
 @import './breakpoints';
+@import './universal';
 
 // Imports - Components
 @import './components/nav';
+@import './components/footer';
+@import './components/buttons';
+@import './components/visualiser';
+@import './components/paging';
 
 // Imports - Containers
 @import './pages/home';
-
-
-// Libs
-
-.app {
-  font-size: 14px;
-  font-family: 'Open Sans', sans-serif;
-}
-.main {
-  height: 100%;
-}
-
-.container {
-  position: relative;
-  max-width: $largeScreen;
-  margin: 0 auto;
-}
+@import './pages/slack';
+@import './pages/about';
+@import './pages/careers';
+@import './pages/community';
+@import './pages/nopage';

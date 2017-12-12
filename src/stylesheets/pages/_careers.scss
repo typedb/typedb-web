@@ -1,0 +1,44 @@
+.careers {
+  padding-top: $navHeight;
+  min-height: calc(100vh - #{$navHeight});
+  &__heading {
+    display: block;
+    font-size: 32px;
+    padding: 30px 0;
+    @media screen and (max-width: $smallScreen) {
+      font-size: 24px;
+    }
+  }
+  &__list {
+    &__item {
+      padding: 50px 0;
+      font-size: 16px;
+      @media screen and (max-width: $mediumScreen){
+        font-size: 14px;
+      }
+      &__title {
+        font-size: 22px;
+        display: block;
+        font-weight: 600;
+        @media screen and (max-width: $smallScreen) {
+          font-size: 16px;
+        }
+      }
+      &__link {
+        color: $textPurple;
+        display: block;
+        padding-top: 1rem;
+      }
+      &__description {
+        padding: 1rem 0;
+        column-count: 2;
+        @media screen and (max-width: $mediumScreen){
+          column-count: 1;
+        }
+      }
+    }
+    &__item:nth-child(2n + 1) {
+      background-color: $backgroundPurple;
+    }
+  }
+}

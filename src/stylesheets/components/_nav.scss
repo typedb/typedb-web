@@ -1,17 +1,20 @@
-$navHeight: 90px;
+$navHeight: 70px;
 $navShadow: 0 0 26px 0 rgba(221, 221, 221, 0.64);
 .nav {
   height: $navHeight;
-  box-shadow: $navShadow ;
   line-height: $navHeight;
   padding: 0 2rem;
-
+  position: fixed;
+  width: stretch;
+  background-color: white;
+  z-index: 100;
+  border-bottom: 1px solid $borderColor;
   @media screen and (max-width: $smallScreen) {
     padding: 0 1rem;
   }
 
   &__logo {
-    width: 150px;
+    width: 160px;
     display: inline-block;
     vertical-align: middle;
     > img {
@@ -25,11 +28,13 @@ $navShadow: 0 0 26px 0 rgba(221, 221, 221, 0.64);
     right: 0;
   }
   &__link {
-    color: $navColour;
+    color: $textNav;
     text-decoration: none;
-    font-size: 0.9rem;
-    font-weight: 600;
-    padding: 0 1rem;
+    font-size: 16px;
+    font-weight: 400;
+    margin: 0 10px;
+    position: relative;
+    text-align: left;
     > .fa {
       display: inline;
       vertical-align: middle;
@@ -38,11 +43,14 @@ $navShadow: 0 0 26px 0 rgba(221, 221, 221, 0.64);
   }
   &__hamburger {
     display: none;
-    margin-top: 95px;
+    margin-top: 75px;
+    margin-left: 11px;
     width: 100%;
     background-color: white;
     padding: 1rem 0;
-    box-shadow: $navShadow;
+    border: 1px solid $borderColor;
+    border-radius: 5px;
+    text-align: right;
     > .nav__link {
       display: block;
       line-height: 2.5rem;
@@ -58,7 +66,7 @@ $navShadow: 0 0 26px 0 rgba(221, 221, 221, 0.64);
       display: block;
     }
     &__button {
-      padding-top: 2rem;
+      padding-top: 1.4rem;
       float: right;    
     }
   }

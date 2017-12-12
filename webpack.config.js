@@ -20,7 +20,6 @@ module.exports = {
   output: {
     filename: '[hash].js',
   },
-  devtool: 'source-map',
   plugins: [
     lodashModulePlugin,
     htmlWebpackPlugin, 
@@ -35,9 +34,6 @@ module.exports = {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
         loader: 'babel-loader',
-        query: {
-          presets: ['es2015', 'react']
-        },
       },
       {
         test: /\.(png|svg)$/,
@@ -73,7 +69,6 @@ module.exports = {
               sourceMap: true,
             }
           },
-          'resolve-url-loader'
         ],
       },
       { test: /\.html$/, loader: 'html-loader' }
@@ -82,5 +77,6 @@ module.exports = {
   devServer: {
     historyApiFallback: true,
     port: 3000,
+    disableHostCheck: true,    
   }
 };

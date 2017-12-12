@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import classNames from 'classnames';
-
+import { Link } from 'react-router-dom';
 import navRoutes from 'config/navRoutes';
 
 class NavigationMenu extends Component {
@@ -16,12 +16,20 @@ class NavigationMenu extends Component {
   
   renderLinks() {
     return Object.keys(navRoutes).map((key) => {
+      const linkClasses = classNames({
+        'nav__link': true,
+        'animated__link': key !== 'Github',
+      });
+      if (key === 'Community') {
+        return (
+          <Link key={`${key}__link`} to={navRoutes[key]} className={linkClasses}>{key}</Link>
+        )
+      }
       return (
         <a
         key={`${key}__link`}
         href={navRoutes[key]}
-        target="_blank"
-        className="nav__link"
+        className={linkClasses}
         >
         { key !== 'Github'?
           key

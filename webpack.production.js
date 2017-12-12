@@ -2,7 +2,6 @@ const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const CompressionPlugin = require('compression-webpack-plugin');
 const LodashModuleReplacementPlugin = require('lodash-webpack-plugin');
 
 const autoprefixer = require('autoprefixer');
@@ -16,7 +15,6 @@ const definePlugin = new webpack.DefinePlugin({
   }
 });
 const uglifyPlugin = new webpack.optimize.UglifyJsPlugin({ compress: { warnings: false } });
-const compressionPlugin = new CompressionPlugin();
 
 const lodashModulePlugin = new LodashModuleReplacementPlugin({
   shorthands: true,
@@ -31,14 +29,12 @@ module.exports = {
     filename: '[hash].js',
     path: path.join(__dirname, 'dist')
   },
-  devtool: 'cheap-source-map',
   plugins: [
     lodashModulePlugin,
     stylesheetsPlugin,
     htmlWebpackPlugin,
     definePlugin,
     uglifyPlugin,
-    compressionPlugin
   ],
   resolve: {
     modules: ['node_modules', path.join(__dirname, 'src')]
@@ -49,9 +45,6 @@ module.exports = {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
         loader: 'babel-loader',
-        query: {
-          presets: ['es2015', 'react']
-        },
       },
       {
         test: /\.(png|svg)$/,
@@ -59,36 +52,21 @@ module.exports = {
       },
       {
         test: /\.(css|scss)$/,
-        use: [
-          {
-            loader: 'style-loader',
-            options: {
-              sourceMap: true,
-            }
-          },
-          {
-            loader: 'css-loader',
-            options: {
-              sourceMap: true,
-            }
-          },
-          {
-            loader: 'postcss-loader',
-            options: {
-              sourceMap: true,
-              plugins: () => [
-                autoprefixer(['last 2 versions']),
-              ],
+        use: stylesheetsPlugin.extract({
+          fallback: 'style-loader',
+          use: [
+            'css-loader',
+            {
+              loader: 'postcss-loader',
+              options: {
+                plugins: () => [
+                  autoprefixer(['last 2 versions']),
+                ],
+              },
             },
-          },
-          {
-            loader: 'sass-loader',
-            options: {
-              sourceMap: true,
-            }
-          },
-          'resolve-url-loader'          
-        ],
+            'sass-loader',
+          ]
+        })
       },
       { test: /\.html$/, loader: 'html-loader' }
     ]

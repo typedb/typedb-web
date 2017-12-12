@@ -1,0 +1,81 @@
+.app {
+  font-size: 14px;
+  font-family: 'Titillium';
+  letter-spacing: 0.2px;
+  overflow-x: hidden;
+}
+.main {
+  height: 100%;
+}
+
+.container {
+  position: relative;
+  max-width: $mediumScreen;
+  margin: 0 auto;
+}
+.section__container {
+  margin: 0 auto;
+  @media screen and (max-width: $mediumScreen) {
+    width: 90%;
+  }
+}
+
+button, input {
+  font-family: 'Titillium';
+  letter-spacing: 0.2px;
+ }
+
+@mixin multiResponsiveColumns($min-width, $gutter, $last-equal: false, $max-cols: 5) {
+  .multi-resize-column {
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: -$gutter;
+    margin-top: -$gutter;
+
+    &__item {
+      flex: 1 0 $min-width;
+      margin-left: $gutter;
+      margin-top: $gutter;
+
+      @if $last-equal {
+        @for $i from 2 through $max-cols {
+          $screen-width: ($min-width*$i)+($gutter*$i);
+          $column-width: (100%/$i);
+          @media (min-width: $screen-width) {
+            max-width: calc(#{$column-width} - #{$gutter});
+          }
+        }
+    
+        $column-width: (100%/$max-cols);
+        @media (min-width: $min-width*$max-cols) {
+            min-width: calc(#{$column-width} - #{$gutter});
+        }
+      }
+    }
+  }
+}
+
+.animated__link {
+  position: relative;
+  width: fit-content;
+  text-decoration: none;
+  &:before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: $textNav;
+    visibility: hidden;
+    transform: scaleX(0);
+    transition: all 0.3s ease-in-out 0s;
+  }
+  &--purple:before{
+    background-color: $textPurple;
+  }
+  &:hover:before {
+    visibility: visible;
+    transform: scaleX(1);      
+  }
+}

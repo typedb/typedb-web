@@ -1,0 +1,197 @@
+.visualiser {
+  width: 900px;
+  margin: 0 auto;
+  position: absolute;
+  bottom: -180px;
+  height: 574px;
+  background-color: #2f3544;
+  border-radius: 5px;
+  box-shadow: 2px 2px 15px 0px rgba(119, 119, 119, 0.7);
+  margin-left: calc(50% - 450px);
+  overflow-x: hidden;
+  user-select: none;
+  @media screen and (max-width: $mediumScreen) {
+    width: 90%;
+    margin-left: 5%;
+  }
+  @media screen and (max-width: $smallScreen) {
+    bottom: -140px;
+  }
+  &__tabs {
+    &__list {
+      display: flex;
+      padding: 0;
+      margin: 0;
+      height: 60px;
+      background: black;
+      border-radius: 5px 5px 0 0;
+      line-height: 60px;
+      list-style: none;
+      overflow-x: scroll;
+      &__item {
+        min-width: 100px;
+        width: 100%;
+        font-size: 14px;
+        font-weight: 600;
+        letter-spacing: 0.8px;
+        text-align: center;
+        color: #4a4d52;
+        font-weight: 400;
+        cursor: pointer;
+        &--active {
+          color: #7897f5;
+          border-bottom: 1px solid #7897f5;         
+        }
+      }
+    }
+  }
+  &__content {
+    height: calc(100% - 60px);
+    border-radius: 0 0 5px 5px;
+    position: relative;
+    > div {
+      display: block;
+      height: 100%;
+    }
+    &__graph {
+      background-color: #3b4254;
+      border-radius: 0 0 5px 0;
+      color: transparent;
+      width: 100%;
+      z-index: -1;
+    }
+    &__code {
+      overflow-x: hidden;
+      position: absolute !important;
+      z-index: 10;
+      background-color: rgb(47, 53, 67);
+      > pre {
+        display: block;
+        margin-top: 0;
+        padding: 0rem 1.5rem;
+        font-family: 'Ubuntu' !important;
+        font-weight: 400 !important;
+        width: inherit;         
+        > code {
+          //Default colour for everything.
+          color: #8c8c92;
+          font-size: 18px;
+          line-height: 1.23;
+          font-family: 'Ubuntu' !important;
+          font-weight: 400 !important;   
+          @media screen and (max-width: $smallScreen){
+            font-size: 14px;
+          }
+        }
+      }
+
+    }
+  }
+}
+
+.resizer__handle {
+  > div {
+    background-color: #505e72;
+    width: 14px !important;
+    &:after {
+      content: url(/assets/img/split-toggle.png);
+    }
+  }
+  &--mobile {
+    > div {
+      background-color: #505e72;
+      height: 14px !important;
+    }
+  }
+}
+
+.vis-network > canvas {
+  touch-action:pan-y !important;
+}
+ /* Prism CSS */
+ .token.comment,
+ .token.prolog,
+ .token.doctype,
+ .token.cdata {
+     color: #636c79;
+     font-style: italic !important;
+ }
+ 
+ .token.punctuation {
+     color: #f8f8f2;
+ }
+ 
+ .token.system {
+   color: #f176f1;
+ }
+ 
+ .token.special {
+   color: white;
+ }
+ .token.property,
+ .token.tag,
+ .token.constant,
+ .token.symbol,
+ .token.deleted {
+     color: #f92672;
+ }
+ 
+ 
+ .token.boolean,
+ .token.number {
+     color: #ae81ff;
+ }
+ 
+ .token.selector,
+ .token.attr-name,
+ .token.string,
+ .token.char,
+ .token.builtin,
+ .token.inserted {
+     color: #a6e22e;
+ }
+ 
+ .token.operator,
+ .token.entity,
+ .token.url,
+ .language-css .token.string,
+ .style .token.string {
+     color: #f8f8f2;
+ }
+ .token.operator {
+     color: #7897f2;
+ }
+ .token.string {
+   color: #46cc90;
+ }
+ 
+ .token.atrule,
+ .token.attr-value,
+ .token.function {
+   color: #f2bd5f;
+ }
+ 
+ .token.keyword {
+     color: #7897f2;
+ }
+ 
+ .token.variable {
+     color: #f8765f;
+ }
+ 
+ .token.regex,
+ .token.important {
+     color: #fd971f;
+ }
+ 
+ .token.important,
+ .token.bold {
+     font-weight: bold;
+ }
+ .token.italic {
+     font-style: italic;
+ }
+ 
+ .token.entity {
+     cursor: help;
+ }
