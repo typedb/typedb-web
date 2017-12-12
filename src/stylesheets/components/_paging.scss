@@ -48,6 +48,9 @@
     vertical-align: middle;
     text-align: center;
     width: calc(100% - 60px);
+    &--full {
+      width: 100%;
+    }
     > * {
       display: inline-block;
       vertical-align: middle;

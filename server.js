@@ -25,7 +25,7 @@ app.use(function(req, res, next) {
     next();
 });
 
-
+// API
 function handleSlackInvite(userEmail) {
   unirest.post('https://grakn-slackin.herokuapp.com/invite')
       .headers({
@@ -173,6 +173,7 @@ app.post('/invite/all', function(req, res) {
 });
 
 
+// Redirects
 app.get('/pages/*', (req, res) => {
     const redirectUrl = req.path.replace('/pages', 'https://docs.grakn.ai')
     res.redirect(301, redirectUrl);
@@ -185,6 +186,36 @@ app.get('*.html', (req, res) => {
     res.redirect(301, `${protocol}://${host}${redirected_path}`)
 });
 
+app.get('/download/latest', (req, res) => {
+    res.redirect(302, 'https://github.com/graknlabs/grakn/releases/download/v0.18.0/grakn-dist-0.18.0.zip');
+});
+
+app.get('/download', (req, res) => {
+    res.redirect(302, 'https://github.com/graknlabs/grakn/releases/');
+});
+
+app.get('/download-academy', (req, res) => {
+    res.redirect(302, 'https://d113xgfq7slps2.cloudfront.net/grakn-academy-virtualbox.zip');
+});
+
+app.get('/docs', (req, res) => {
+    res.redirect(301, 'https://docs.grakn.ai');
+});
+
+app.get('/academy', (req, res) => {
+    res.redirect(301, 'https://docs.grakn.ai/academy');
+});
+
+app.get('/overview', (req, res) => {
+    res.redirect(301, 'https://docs.grakn.ai/overview');
+});
+
+app.get('/install', (req, res) => {
+    res.redirect(301, 'https://docs.grakn.ai/documentation/get-started/setup-guide.html');
+});
+
+
+// Render Application
 app.get('*', (req, res) => {
   res.sendFile(path.join(dist, 'index.html'));
 });

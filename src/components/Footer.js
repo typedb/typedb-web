@@ -45,7 +45,7 @@ class Footer extends Component {
               <img src="/assets/svg/slack-mark.svg" alt="slack"/>        
               <strong>Grakn</strong> on Slack
             </Link>
-            <a href="mailto:info@grakn.ai">
+            <a href="mailto:enterprise@grakn.ai">
               <i className="fa fa-phone" aria-hidden="true" />
               Get in touch
             </a>

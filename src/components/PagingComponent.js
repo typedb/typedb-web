@@ -42,6 +42,7 @@ class PagingComponent extends Component {
     this.setState({
       pages,
       stepSize,
+      activePage: 1,
     });
   }
 
@@ -75,12 +76,16 @@ class PagingComponent extends Component {
       'paging-component__button--right': true,
       'paging-component__button--hidden': this.state.pages == 1,
     });
+    const contentClasses = classNames({
+      "paging-component__content": true,
+      "paging-component__content--full": this.state.pages == 1,
+    })
     return (
       <div className={classes}>
         <button className={leftButtonClasses} onClick={() => this.prevPage()} disabled={this.state.activePage == 1}>
           <i className="fa fa-chevron-left" aria-hidden="true" />
         </button>
-        <div className="paging-component__content">
+        <div className={contentClasses}>
           {
             pageElements.map((item, index) => {
               return item;

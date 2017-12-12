@@ -93,7 +93,7 @@
   > div {
     background-color: #505e72;
     width: 14px !important;
-    &:after {
+    &:before {
       content: url(/assets/img/split-toggle.png);
     }
   }
