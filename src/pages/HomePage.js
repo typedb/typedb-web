@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import Visualiser from 'components/Visualiser';
 import PagingComponent from 'components/PagingComponent';
+import Testimonials from 'components/Testimonials';
 import graknRoutes from 'config/graknRoutes';
 
 
@@ -15,12 +16,6 @@ const deploymentOptions = [
   { name: 'Amazon Web Services', url: '/assets/img/amazon.png'}
 ];
 
-const testimonials = [
-  {name: 'Michael Bishop', company: 'CTO, Alpha Vertex', img: '/assets/img/bishop.jpg', review: '“Grakn significantly streamlines our knowledge engineering process. Grakn’s expressive schema allows us to verify the logical consistency of patterns detected by our learning algorithms and improve accuracy”'},
-  {name: 'Radouane Oudrhiri', company: 'CTO, Eagle Genomics', img: '/assets/img/oudrhiri.jpg', review: '“Grakn\'s query language, Graql, should be the de facto language for any graph representation because of two things: the semantic expressiveness of the language and the optimisation of query execution.”'},
-  {name: 'Gunnar Kleemann', company: 'Co-Founder, Berkeley Data Science Group', img: '/assets/img/gunnar.jpg', review: '“When working with network structures, such as Biology, interactions between objects are complex and nuanced. Grakn interprets these structures natively, and allow us to discover novel answers very quickly.”'},
-]
-
 const HomePage = () => (
   <div className="home">
     <section className="home__splash">
@@ -28,7 +23,7 @@ const HomePage = () => (
         <span className="home__splash__text__headline home__header">THE <strong>DATABASE</strong> FOR AI</span>
         <span className="home__splash__text__tag">Grakn is a hyper-relational database for knowledge engineering. Rooted in Knowledge Representation and  Automated Reasoning, Grakn provides the knowledge base foundation for intelligent/cognitive systems.</span>
         <a className="home__splash__text__install" href={graknRoutes.download}>
-        Install Grakn<i className="fa fa-arrow-right" aria-hidden="true"></i>
+        Install Grakn<i className="fa fa-arrow-right" aria-hidden={true}></i>
         </a>
       </div>
       <Visualiser />            
@@ -130,55 +125,55 @@ const HomePage = () => (
         <PagingComponent>
           <div className="home__production__slider__item">
             <div className="home__production__slider__item__container">
-              <span className="home__production__slider__item__header"><i className="fa fa-check" aria-hidden="true"/>Scalabale Storage</span>   
+              <span className="home__production__slider__item__header"><i className="fa fa-check" aria-hidden={true}/>Scalabale Storage</span>   
               <span className="home__production__slider__item__text">A scalable system designed to be partitioned and replicated over a network of distributed machines</span>          
             </div>
           </div>
           <div className="home__production__slider__item">
             <div className="home__production__slider__item__container">
-              <span className="home__production__slider__item__header"><i className="fa fa-check" aria-hidden="true"/>Elastic throughput</span>         
+              <span className="home__production__slider__item__header"><i className="fa fa-check" aria-hidden={true}/>Elastic throughput</span>         
               <span className="home__production__slider__item__text">Read and write throughput scales linearly as new machines are added to the Grakn cluster, without  any downtime</span>                    
             </div>
           </div>
           <div className="home__production__slider__item">
             <div className="home__production__slider__item__container">
-              <span className="home__production__slider__item__header"><i className="fa fa-check" aria-hidden="true"/>Extensible Schema</span>                  
+              <span className="home__production__slider__item__header"><i className="fa fa-check" aria-hidden={true}/>Extensible Schema</span>                  
               <span className="home__production__slider__item__text">Schema definition can be updated and extended flexibly, during runtime, without any need for database migration</span>                       
             </div>
           </div>
           <div className="home__production__slider__item">
             <div className="home__production__slider__item__container">
-              <span className="home__production__slider__item__header"><i className="fa fa-check" aria-hidden="true"/>Secured Authentication </span>                  
+              <span className="home__production__slider__item__header"><i className="fa fa-check" aria-hidden={true}/>Secured Authentication </span>                  
               <span className="home__production__slider__item__text">Ensuring only authenticated access and appropriately privileged users are allowed to access specific datasets</span>                       
             </div>
           </div>
           <div className="home__production__slider__item">
             <div className="home__production__slider__item__container">
-              <span className="home__production__slider__item__header"><i className="fa fa-check" aria-hidden="true"/>Full-string indexing</span>
+              <span className="home__production__slider__item__header"><i className="fa fa-check" aria-hidden={true}/>Full-string indexing</span>
               <span className="home__production__slider__item__text">Advanced full-text search capabilities, by enabling powerful string matching techniques over any body of text</span>
             </div>
           </div>
           <div className="home__production__slider__item">
             <div className="home__production__slider__item__container">
-              <span className="home__production__slider__item__header"><i className="fa fa-check" aria-hidden="true"/>Migration Tools</span>                  
+              <span className="home__production__slider__item__header"><i className="fa fa-check" aria-hidden={true}/>Migration Tools</span>                  
               <span className="home__production__slider__item__text">Tools to help migrate large datasets from various formats and database sources, easily and quickly</span>                       
             </div>
           </div>       
           <div className="home__production__slider__item">
             <div className="home__production__slider__item__container">
-              <span className="home__production__slider__item__header"><i className="fa fa-check" aria-hidden="true"/>Dedicated IDE</span>                  
+              <span className="home__production__slider__item__header"><i className="fa fa-check" aria-hidden={true}/>Dedicated IDE</span>                  
               <span className="home__production__slider__item__text">An integrated development environment for knowledge engineering and modelling at scale</span>                       
             </div>
           </div>       
           <div className="home__production__slider__item">
             <div className="home__production__slider__item__container">
-              <span className="home__production__slider__item__header"><i className="fa fa-check" aria-hidden="true"/>Monitoring</span>                  
+              <span className="home__production__slider__item__header"><i className="fa fa-check" aria-hidden={true}/>Monitoring</span>                  
               <span className="home__production__slider__item__text">Monitor your database performance in real-time through a dedicated and configurable dashboard</span>                       
             </div>
           </div>       
           <div className="home__production__slider__item">
             <div className="home__production__slider__item__container">
-              <span className="home__production__slider__item__header"><i className="fa fa-check" aria-hidden="true"/>Cluster Management</span>                  
+              <span className="home__production__slider__item__header"><i className="fa fa-check" aria-hidden={true}/>Cluster Management</span>                  
               <span className="home__production__slider__item__text">Easily deploy and scale your database with tools that automate the of provisioning your cluster</span>                       
             </div>
           </div>       
@@ -325,35 +320,7 @@ const HomePage = () => (
         </Tabs>
       </div>
     </section>
-    <section className="home__reviews">
-        <div className="home__reviews__container container section__container">
-          <div className="home__reviews__header">
-            <img className="home__reviews__headerimg" src="/assets/svg/testimonials.svg" alt="testimonials" />
-            <span className="home__header">
-              Building on the shoulders of <strong>Grakn</strong>
-            </span>
-          </div>
-          <PagingComponent className="home__reviews__items">
-            {
-              testimonials.map((item, index) => {
-                return (
-                  <div className="home__reviews__item" key={`${index}__testimonals`}>
-                    <div className="home__reviews__item__text">{item.review}</div>
-                    <div className="home__reviews__item__details">
-                      <div className="home__reviews__item__details__img"><img src={item.img} alt={`${item.name}'s picture`} /></div>
-                      <div className="home__reviews__item__details__text">
-                        <span>{item.name}</span>
-                        <span>{item.company}</span>
-                      </div>
-                    </div>
-                  </div>
-                )
-              })
-            }
-          </PagingComponent>
-          <a href="mailto:enterprise@grakn.ai" className="button button--red">Get in touch with our team</a>
-        </div>
-    </section>
+    <Testimonials />
     <section className="home__world">
       <div className="home__world__container container section__container">         
         <span className="home__world__headline">THE WORLD NEEDS TO <strong>GRAKN</strong></span>

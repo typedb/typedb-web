@@ -1,0 +1,104 @@
+.testimonials {
+  padding-bottom: 70px;
+  padding-top: 10px;
+  @media screen and (max-width: $smallScreen) {
+    padding-bottom: 50px;
+  }
+  &__header {
+    position: relative;
+    > span {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+    }
+  }
+  &__headerimg {
+    max-width: 160px;
+    display: block;
+    margin: 0 auto;
+  }
+
+  &__items {
+    padding-top: 0px !important;
+  }
+  &__item {
+    width: 280px;
+    height: 320px;
+    border: 1px solid $borderColor;
+    border-radius: 5px;
+    margin: 0 10px;
+    display: inline-block;
+    vertical-align: top;
+    
+    @media screen and (max-width: $smallScreen){
+      height: 260px;
+      width: 260px;
+    }
+    @media screen and (max-width: 400px){
+      height: 290px;
+      width: 210px;
+    }
+    &__text {
+      height: calc(100% - 132px);
+      line-height: 1.67;
+      font-size: 16px;
+      text-align: left;
+      color: $textCharcoal;
+      padding: 1.2rem;
+      @media screen and (max-width: $smallScreen){
+        font-size: 12px;
+      }
+    }
+    &__details {
+      background-color: $backgroundPurple;
+      width: 278px;
+      height: 92px;
+      margin: 0 auto;
+      border-radius: 0 0 5px 5px;
+      text-align: left;
+      @media screen and (max-width: $smallScreen){
+        width: 258px;
+      }
+      @media screen and (max-width: 400px){
+        width: 208px;
+      }
+      &__img, &__text {
+        display: inline-block;
+        vertical-align: middle;
+      }
+      &__img {
+        width: 80px;
+        margin-right: 0.5rem;
+        position: relative;
+        height: 100%;
+        > img {
+          width: 70%;
+          display: block;
+          border-radius: 50%;
+          margin: 0 auto;
+          margin-top: 1rem;
+          border: 1px solid $borderColor;
+        }
+      }
+      &__text {
+        width: calc(100% - 90px);
+        font-size: 14px;
+        > * {
+          display: block;
+          @media screen and (max-width: $smallScreen){
+            font-size: 12px;
+          }            
+        }
+        > span:nth-child(1) {
+          color: $textCharcoal;
+          font-weight: 600;
+        }
+        > span:nth-child(2) {
+          color: $textLight;
+        }
+      }
+    }
+  }
+}

@@ -5,9 +5,6 @@ body, html {
   height: 100%;
 }
 
-// Imports - external libs
-@import '~slick-carousel/slick/slick.css';
-
 // Imports
 @import './fonts';
 @import './colours';
@@ -20,6 +17,7 @@ body, html {
 @import './components/buttons';
 @import './components/visualiser';
 @import './components/paging';
+@import './components/testimonials';
 
 // Imports - Containers
 @import './pages/home';
@@ -28,3 +26,4 @@ body, html {
 @import './pages/careers';
 @import './pages/community';
 @import './pages/nopage';
+@import './pages/services';
