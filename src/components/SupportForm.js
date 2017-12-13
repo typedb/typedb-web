@@ -28,6 +28,10 @@ class SupportForm extends Component {
     this.handleSubmit = this.handleSubmit.bind(this)
   }
 
+  shouldComponentUpdate(nextProps, nextState) {
+    return false;
+  }
+
   handleSubmit(e) {
     e.preventDefault();
     const formValues = this.form.getValues();
