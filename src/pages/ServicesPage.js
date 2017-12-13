@@ -201,6 +201,7 @@ const ServicesPage = () => (
     <section className="services__support">
       <div className="services__support__container container section__container">
         <span className="services__support__header">Get in touch with our team!</span>
+        <SupportForm />
       </div>
     </section>
   </div>

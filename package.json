@@ -91,9 +91,12 @@
     "redux-responsive": "^4.3.4",
     "redux-thunk": "^2.2.0",
     "sass-loader": "^6.0.6",
+    "shallow-equal": "^1.0.0",
     "style-loader": "^0.18.0",
     "unirest": "^0.5.1",
     "url-loader": "^0.5.9",
+    "uuid": "^3.1.0",
+    "validator": "^9.2.0",
     "vis": "^4.21.0",
     "webpack": "2.6.0"
   }

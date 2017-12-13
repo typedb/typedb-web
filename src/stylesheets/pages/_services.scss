@@ -296,8 +296,10 @@
       color: white;
       font-size: 32px;
       font-weight: 300;
+      padding-bottom: 50px;
       @media screen and (max-width: $smallScreen) {
         font-size: 22px;
+        padding-bottom: 30px;
       }
     }
   }
