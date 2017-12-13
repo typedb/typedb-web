@@ -21,12 +21,31 @@ const email = (value) => {
 class SupportForm extends Component {
   constructor(props){
     super(props);
+    this.state = {
+      checkboxes: []
+    }
+    this.onUpdateCheckbox = this.onUpdateCheckbox.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this)
   }
 
   handleSubmit(e) {
     e.preventDefault();
-    console.log(this.form.getValues());
+    const formValues = this.form.getValues();
+    formValues.aois = this.state.checkboxes;
+    console.log(formValues);
+  }
+
+  onUpdateCheckbox(e) {
+    let checkboxes = this.state.checkboxes;
+    if(e.target.checked) {
+      checkboxes.push(e.target.value);
+    }
+    else {
+      checkboxes = checkboxes.filter(elem => elem !== e.target.value);
+    }
+    this.setState({
+      checkboxes,
+    });
   }
 
   render() {
@@ -35,13 +54,13 @@ class SupportForm extends Component {
         <Form ref={c => { this.form = c }}>
           <div className="support-form__row">
             <div className="support-form__row__item">
-              <label>
+              <label className="support-form__label">
                 First Name
               </label>
               <Input className="support-form__input" placeholder='Enter your First Name' name='firstname' validations={[required]}/>
             </div>
             <div className="support-form__row__item">
-              <label>
+              <label className="support-form__label">
                 Last Name
               </label>
               <Input className="support-form__input" placeholder='Enter your Last Name' name='lastname' validations={[required]}/>
@@ -49,13 +68,13 @@ class SupportForm extends Component {
           </div>
           <div className="support-form__row">
             <div className="support-form__row__item">
-              <label>
+              <label className="support-form__label">
                 Email
               </label>
               <Input className="support-form__input" placeholder='Enter your email' name='email' validations={[required, email]}/>
             </div>
             <div className="support-form__row__item">
-              <label>
+              <label className="support-form__label">
                 Phone Number
               </label>
               <Input className="support-form__input" placeholder='Enter your Phone Number' name='phone' validations={[required]}/>
@@ -63,13 +82,13 @@ class SupportForm extends Component {
           </div>
           <div className="support-form__row">
             <div className="support-form__row__item">
-              <label>
+              <label className="support-form__label">
                 Company
               </label>
               <Input className="support-form__input" placeholder='Enter your company' name='company' validations={[required]}/>
             </div>
             <div className="support-form__row__item">
-              <label>
+              <label className="support-form__label">
                 Job Function
               </label>
               <Select className="support-form__input support-form__input__select" value='' name='job' validations={[required]}>
@@ -91,20 +110,47 @@ class SupportForm extends Component {
           </div>
           <div className="support-form__row">
             <div className="support-form__row__item">
-              <label>
+              <label className="support-form__label">
                 Stage of development
               </label>
               <Select className="support-form__input support-form__input__select" value='' name='stage' validations={[required]}>
-              <option value=''>Choose your stage</option>
-              <option value='discovery'>Discovery phase</option>
-              <option value='installed'>Just installed</option>
-              <option value='development'>Development</option>
-              <option value='testing'>Testing and Optimisation</option>
-              <option value='production'> Live in production</option>
-            </Select>
+                <option value=''>Choose your stage</option>
+                <option value='discovery'>Discovery phase</option>
+                <option value='installed'>Just installed</option>
+                <option value='development'>Development</option>
+                <option value='testing'>Testing and Optimisation</option>
+                <option value='production'> Live in production</option>
+              </Select>
+              <label className="support-form__label support-form__label--modified">
+              Please select all areas you’re interested in:
+              </label>
+                <div className="support-form__input__group">
+                  <input className="support-form__input support-form__input__checkbox" value="training" type="checkbox" onChange={e => this.onUpdateCheckbox(e)}/>
+                  <label className="support-form__label support-form__label--checkbox" name="aoi">Training</label>
+                </div>
+                <div className="support-form__input__group">
+                  <input className="support-form__input support-form__input__checkbox" value="modelling" type="checkbox" onChange={e => this.onUpdateCheckbox(e)}/>
+                  <label className="support-form__label support-form__label--checkbox" name="aoi">Modelling</label>
+                </div>
+                <div className="support-form__input__group">
+                  <input className="support-form__input support-form__input__checkbox" value="migration" type="checkbox" onChange={e => this.onUpdateCheckbox(e)}/>
+                  <label className="support-form__label support-form__label--checkbox" name="aoi">Migration</label>
+                </div>
+                <div className="support-form__input__group">
+                  <input className="support-form__input support-form__input__checkbox" value="deployment" type="checkbox" onChange={e => this.onUpdateCheckbox(e)}/>
+                  <label className="support-form__label support-form__label--checkbox" name="aoi">Deployment</label>
+                </div>
+                <div className="support-form__input__group">
+                  <input className="support-form__input support-form__input__checkbox" value="migration" type="checkbox" onChange={e => this.onUpdateCheckbox(e)}/>
+                  <label className="support-form__label support-form__label--checkbox" name="aoi">Migration</label>
+                </div>
+                <div className="support-form__input__group">
+                  <input className="support-form__input support-form__input__checkbox" value="support" type="checkbox" onChange={e => this.onUpdateCheckbox(e)}/>
+                  <label className="support-form__label support-form__label--checkbox" name="aoi">Support</label>
+                </div>
               </div>
               <div className="support-form__row__item">
-              <label>
+              <label className="support-form__label">
               Tell us a little bit more about how we can help you
               </label>
               <TextArea className="support-form__input support-form__input__textarea" placeholder="Enter your message" name='more'/>           
