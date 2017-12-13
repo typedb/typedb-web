@@ -244,15 +244,18 @@
   &__alive {
     position: relative;
     padding-top: 110px;
-    background-image: url('/assets/svg/services_alive.svg');
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
-    height: 400px;
+    height: 300px;
+    > img {
+      position: absolute;
+      top: 0;
+      width: 100%;
+      @media screen and (max-width: $smallScreen) {
+        height: 100%;
+        width: auto;
+      }
+    }
     @media screen and (max-width: $smallScreen) {
       padding-top: 90px;
-      height: 300px !important;
-      background-position: left;
     }
     &__header {
       text-align: center;
@@ -280,7 +283,7 @@
     }
     &__button {
       direction: block;
-      margin-top: 3rem;
+      margin-top: 2rem;
     }
   }
 
