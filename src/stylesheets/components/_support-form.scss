@@ -1,18 +1,84 @@
 .support-form {
+  display: block;
   background-color: white;
+  width: 75%;
+  margin: 0 auto;
   border-radius: 5px;
   padding: 50px;
   @media screen and (max-width: $smallScreen){
-    padding: 20px;
+    width: initial;
+    padding: 30px 20px;
+  }
+  &__button {
+    margin-top: 2rem;
+    outline: none;
+    width: 300px;
+    font-weight: 300;
+    text-transform: uppercase;
+    cursor: pointer;
+    @media screen and (max-width: $smallScreen){
+      width: 100%;
+    }
+    &:disabled {
+      background-color: $textLight;
+      cursor: not-allowed;
+    }
+  }
+  &__error {
+    font-size: 14px;
+    color: $textRed;
+    font-weight: 600px;
+  }
+  &__input {
+    display: block;
+    height: 50px;
+    border: 1px solid $borderColor;
+    border-radius: 5px;
+    font-size: 14px;
+    width: calc(100% - 2rem);
+    outline: none;
+    padding: 0 1rem;
+    color: #b9bcc9;
+    background-color: white;
+    &::placeholder{
+      color: #b9bcc9;
+    }
+    &--invalid {
+      border: 1px solid $textRed;
+    }
+    &__select {
+      width: 100%;
+      appearance: none;
+    }
+    &__textarea {
+      height: 150px;
+      resize: none;
+      padding-top: 1rem;
+      padding-bottom: 1rem;
+    }
   }
   &__row {
     padding-bottom: 1.6rem;
+    &--modified {
+      padding-bottom: 0;
+    }
     &__item {
       display: inline-block;
+      vertical-align: top;
       width: calc(50% - 30px);
       @media screen and (max-width: $smallScreen){
         width: 100%;
         display: block;
+      }
+      > label {
+        font-size: 14px;
+        color: $textCharcoal;
+        text-transform: uppercase;
+        padding-bottom: 0.5rem;
+        display: block;
+        @media screen and (max-width: $smallScreen) {
+          display: none;
+        }
       }
     }
     > div:nth-child(2) {

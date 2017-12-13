@@ -5,7 +5,7 @@ import control from 'components/FormValidationComponents/hocs/control';
 const Input = ({ error, isChanged, isUsed, ...props }) => (
   <div>
     <input {...props} {...( isChanged && isUsed && error ? {
-      className: `is-invalid-input ${props.className}`
+      className: `support-form__input--invalid ${props.className}`
     } : { className: props.className } )} />
     {isChanged && isUsed && error}
   </div>
