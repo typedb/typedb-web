@@ -244,7 +244,7 @@
   &__alive {
     position: relative;
     padding-top: 110px;
-    height: 300px;
+    height: 400px;
     > img {
       position: absolute;
       top: 0;
@@ -256,6 +256,7 @@
     }
     @media screen and (max-width: $smallScreen) {
       padding-top: 90px;
+      height: 300px;
     }
     &__header {
       text-align: center;

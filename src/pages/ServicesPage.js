@@ -191,7 +191,7 @@ const ServicesPage = () => (
      <div className="services__features__circle"><img src="/assets/svg/bot.svg" alt="grakn bot" /></div>     
     </section>
     <section className="services__alive">
-      <img src="/assets/svg/services_alive.svg" />
+      <img src="/assets/svg/services_alive.svg" alt="Its alive background"/>
       <div className="services__alive__container container section__container">
         <span className="services__alive__header">IT’S ALIVE!</span>
         <span className="services__alive__tag">Now your knowledge base is alive and working for you and your business. Rest assured, we still have your back! Get Grakn Enterprise support to make sure no issue will ever get in the way of your business.</span>
