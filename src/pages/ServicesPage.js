@@ -1,5 +1,6 @@
 import React from 'react';
 import Testimonials from 'components/Testimonials';
+import SupportForm from 'components/SupportForm';
 
 const ServicesPage = () => (
   <div className="services">
@@ -197,6 +198,11 @@ const ServicesPage = () => (
       </div>
     </section>
     <Testimonials />
+    <section className="services__support">
+      <div className="services__support__container container section__container">
+        <span className="services__support__header">Get in touch with our team!</span>
+      </div>
+    </section>
   </div>
 );
 
