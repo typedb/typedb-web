@@ -1,10 +1,10 @@
 const docBase = 'https://docs.grakn.ai/';
 
 module.exports = {
-  download: `${docBase}/documentation/get-started/setup-guide.html`,
+  download: `${docBase}docs/get-started/setup-guide`,
   docs: docBase,
-  overview: `${docBase}/overview/index.html`,
-  quickstart: `${docBase}/documentation/get-started/quickstart-tutorial.html`,
+  overview: `${docBase}overview/`,
+  quickstart: `${docBase}documentation/get-started/quickstart-tutorial`,
   github: 'https://github.com/graknlabs/grakn',
   twitter: 'https://twitter.com/graknlabs',
   stack: 'https://stackoverflow.com/questions/tagged/graql+or+grakn',
