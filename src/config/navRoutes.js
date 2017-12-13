@@ -1,4 +1,4 @@
-const docBase = 'https://docs.grakn.ai/';
+const docBase = 'https://dev.grakn.ai/';
 
 module.exports = {
   Overview: `${docBase}overview/`,

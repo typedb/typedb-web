@@ -8,6 +8,8 @@ const app = express();
 const port = process.env.PORT ? process.env.PORT : 3001;
 const dist = path.join(__dirname, 'dist');
 
+const docsBase = 'https://dev.grakn.ai';
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
     extended: false
@@ -175,7 +177,7 @@ app.post('/invite/all', function(req, res) {
 
 // Redirects
 app.get('/pages/*', (req, res) => {
-    const redirectUrl = req.path.replace('/pages', 'https://docs.grakn.ai')
+    const redirectUrl = req.path.replace('/pages', docsBase)
     res.redirect(301, redirectUrl);
 });
 
@@ -203,19 +205,19 @@ app.get('/javadocs', (req, res) => {
 });
 
 app.get('/docs', (req, res) => {
-    res.redirect(301, 'https://docs.grakn.ai');
+    res.redirect(301, docsBase);
 });
 
 app.get('/academy', (req, res) => {
-    res.redirect(301, 'https://docs.grakn.ai/academy');
+    res.redirect(301, `${docsBase}/academy`);
 });
 
 app.get('/overview', (req, res) => {
-    res.redirect(301, 'https://docs.grakn.ai/overview');
+    res.redirect(301, `${docsBase}/overview`);
 });
 
 app.get('/install', (req, res) => {
-    res.redirect(301, 'https://docs.grakn.ai/documentation/get-started/setup-guide.html');
+    res.redirect(301, `${docsBase}/docs/get-started/setup-guide.html`);
 });
 
 
