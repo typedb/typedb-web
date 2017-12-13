@@ -198,6 +198,10 @@ app.get('/download-academy', (req, res) => {
     res.redirect(302, 'https://d113xgfq7slps2.cloudfront.net/grakn-academy-virtualbox.zip');
 });
 
+app.get('/javadocs', (req, res) => {
+    res.redirect(302, 'https://javadoc.io/doc/ai.grakn/grakn');
+});
+
 app.get('/docs', (req, res) => {
     res.redirect(301, 'https://docs.grakn.ai');
 });
