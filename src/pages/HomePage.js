@@ -56,9 +56,9 @@ const HomePage = () => (
             </div>
             <span className="home__features__item__text__headline">Knowledge Schema</span>
             <span className="home__features__item__text__paragraph">
-            Enhanced Entity-Relationship schema, with constructs to define hyper-objects, hyper-relations and functions, to build complex knowledge models
+            Enhanced Entity-Relationship schema–with constructs to define hyper-objects, hyper-relations and functions–to build complex knowledge models
             </span>
-              <a href={graknRoutes.overview} className="animated__link animated__link--purple">Learn More</a>                        
+            <a href={graknRoutes.overview} className="animated__link animated__link--purple">Learn More</a>                        
           </div>
           <div className="home__features__item__img">
             <img src="/assets/img/hyper-expressive_schema.png" alt="Hyper Expressive Schema" />
@@ -144,7 +144,7 @@ const HomePage = () => (
           <div className="home__production__slider__item">
             <div className="home__production__slider__item__container">
               <span className="home__production__slider__item__header"><i className="fa fa-check" aria-hidden={true}/>Secured Authentication </span>                  
-              <span className="home__production__slider__item__text">Ensuring only authenticated access and appropriately privileged users are allowed to access specific datasets</span>                       
+              <span className="home__production__slider__item__text">Ensuring not only authenticated access but also that only appropriately privileged users are allowed to access specific datasets</span>                       
             </div>
           </div>
           <div className="home__production__slider__item">
@@ -221,6 +221,34 @@ const HomePage = () => (
         <Tabs className="home__usecases__tabcontainer">
           <TabPanel className="home__usecases__tabpanel" selectedClassName="home__usecases__tabpanel--selected">
             <div className="home__usecases__tabpanel__container">
+              <div className="home__usecases__tabpanel__img home__usecases__tabpanel__img--scaled">
+                <img src="/assets/img/financial_services.png" alt="financial services "/>
+              </div>
+              <div className="home__usecases__tabpanel__text">
+                <span className="home__usecases__tabpanel__text__title">
+                Financial Services
+                </span>
+                <span className="home__usecases__tabpanel__text__content">
+                Financial Services Across the financial service industry, changes in technology, policy, and geopolitics have radically altered the data landscape in the past few years. By taking advantage of Grakn’s cutting edge knowledge base technology, financial service firms can take full strategic advantage of the changing data landscape.                </span>
+              </div>
+            </div>
+          </TabPanel>
+          <TabPanel className="home__usecases__tabpanel" selectedClassName="home__usecases__tabpanel--selected">
+            <div className="home__usecases__tabpanel__container">
+              <div className="home__usecases__tabpanel__img">
+                <img src="/assets/img/health_life.png" alt="Health Science"/>
+              </div>
+              <div className="home__usecases__tabpanel__text">
+                <span className="home__usecases__tabpanel__text__title">
+                Health and Life Science
+                </span>
+                <span className="home__usecases__tabpanel__text__content">
+                Health and Life Science From pharmaceutical R&D and biomedical research to frontline healthcare delivery, the contemporary health and life science industries rely on data to power insight and improve care. Using Grakn to effectively manage data can help organisations advance scientific research and deliver best practice medicine.                </span>
+              </div>
+            </div>
+          </TabPanel>
+          <TabPanel className="home__usecases__tabpanel" selectedClassName="home__usecases__tabpanel--selected">
+            <div className="home__usecases__tabpanel__container">
               <div className="home__usecases__tabpanel__img">
                 <img src="/assets/img/bots.png" alt="bots"/>
               </div>
@@ -244,37 +272,7 @@ const HomePage = () => (
                 Semantic Search
                 </span>
                 <span className="home__usecases__tabpanel__text__content">
-                With ever more massive volumes of stored data, it becomes increasingly difficult for organizations to effectively search for relevant results. By using a search platform that understands a query’s intent and the meaning of its terms, data’s meaning can be unlocked, and organizations can free themselves.
-                </span>
-              </div>
-            </div>
-          </TabPanel>
-          <TabPanel className="home__usecases__tabpanel" selectedClassName="home__usecases__tabpanel--selected">
-            <div className="home__usecases__tabpanel__container">
-              <div className="home__usecases__tabpanel__img home__usecases__tabpanel__img--scaled">
-                <img src="/assets/img/financial_services.png" alt="financial services "/>
-              </div>
-              <div className="home__usecases__tabpanel__text">
-                <span className="home__usecases__tabpanel__text__title">
-                Financial Services
-                </span>
-                <span className="home__usecases__tabpanel__text__content">
-                Across the financial service industry, changes in technology, policy, and geopolitics have radically altered the data landscape in the past few years. By taking advantage of the most cutting-edge data infrastructure technologies, financial service firms can take full strategic advantage of the changing data landscape.
-                </span>
-              </div>
-            </div>
-          </TabPanel>
-          <TabPanel className="home__usecases__tabpanel" selectedClassName="home__usecases__tabpanel--selected">
-            <div className="home__usecases__tabpanel__container">
-              <div className="home__usecases__tabpanel__img">
-                <img src="/assets/img/health_life.png" alt="Health Science"/>
-              </div>
-              <div className="home__usecases__tabpanel__text">
-                <span className="home__usecases__tabpanel__text__title">
-                Health and Life Science
-                </span>
-                <span className="home__usecases__tabpanel__text__content">
-                From pharmaceutical R&D and biomedical research to frontline healthcare delivery, the contemporary health and life science industries rely on data to power insight and improve care. Yet, despite advances in scientific knowledge and healthcare technologies, effective use of data remains a challenge.
+                Effective search for relevant results is becoming increasingly difficult as volumes of data grow. By using Grakn to power a search platform that understands a query’s intent and the meaning of its terms, data’s meaning can be unlocked, and organizations can free themselves from being lost in data.         
                 </span>
               </div>
             </div>
@@ -289,7 +287,7 @@ const HomePage = () => (
                 Security
                 </span>
                 <span className="home__usecases__tabpanel__text__content">
-                As technology permeates deeper into every aspect of our lives—with constant digital footprints and interconnected devices proliferating—the growth in potential damage and disruption from bad actors grows. Both individuals and firms must leverage their digital defences against an onslaught of increasingly.
+                Security As technology permeates deeper into every aspect of our lives—with constant digital footprints and interconnected devices proliferating—the growth in potential damage and disruption from bad actors grows. Grakn allows firms to leverage their digital defences against increasingly sophisticated cyber criminals.
                 </span>
               </div>
             </div>
@@ -297,20 +295,20 @@ const HomePage = () => (
           
           <TabList className="home__usecases__tablist">
             <Tab className="home__usecases__tablist__item" selectedClassName="home__usecases__tablist__item--selected">
-              <img src="/assets/svg/bot-tab.svg" alt="bots"/>       
-              <span className="home__usecase__tablist__item__text home__usecase__tablist__item__text--bots">Intelligent Bots</span>
-            </Tab>
-            <Tab className="home__usecases__tablist__item" selectedClassName="home__usecases__tablist__item--selected">
-              <img src="/assets/svg/search.svg" alt="search"/>             
-              <span className="home__usecase__tablist__item__text home__usecase__tablist__item__text--search">Semantic Search</span>         
-            </Tab>
-            <Tab className="home__usecases__tablist__item" selectedClassName="home__usecases__tablist__item--selected">
               <img src="/assets/svg/services.svg" alt="services"/>                      
               <span className="home__usecase__tablist__item__text home__usecase__tablist__item__text--services">Financial Services</span>       
             </Tab>
             <Tab className="home__usecases__tablist__item" selectedClassName="home__usecases__tablist__item--selected">
               <img src="/assets/svg/science.svg" alt="science"/>                        
               <span className="home__usecase__tablist__item__text home__usecase__tablist__item__text--science">Health & Life Science</span>           
+            </Tab>
+            <Tab className="home__usecases__tablist__item" selectedClassName="home__usecases__tablist__item--selected">
+              <img src="/assets/svg/bot-tab.svg" alt="bots"/>       
+              <span className="home__usecase__tablist__item__text home__usecase__tablist__item__text--bots">Intelligent Bots</span>
+            </Tab>
+            <Tab className="home__usecases__tablist__item" selectedClassName="home__usecases__tablist__item--selected">
+              <img src="/assets/svg/search.svg" alt="search"/>             
+              <span className="home__usecase__tablist__item__text home__usecase__tablist__item__text--search">Semantic Search</span>         
             </Tab>
             <Tab className="home__usecases__tablist__item" selectedClassName="home__usecases__tablist__item--selected">
               <img src="/assets/svg/security.svg" alt="security"/>                                
@@ -324,7 +322,7 @@ const HomePage = () => (
     <section className="home__world">
       <div className="home__world__container container section__container">         
         <span className="home__world__headline">THE WORLD NEEDS TO <strong>GRAKN</strong></span>
-        <Link to="/community" className="home__world__link">Join the Grakn open source community around the world</Link>
+        <Link to="/community" className="home__world__link">Join the Grakn community around the world</Link>
       </div>
     </section>
   </div>
