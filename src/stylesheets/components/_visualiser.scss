@@ -17,6 +17,9 @@
   @media screen and (max-width: $smallScreen) {
     bottom: -140px;
   }
+  @media screen and (min-height: 1000px) {
+    bottom: -80px;
+  }
   &__tabs {
     &__list {
       display: flex;

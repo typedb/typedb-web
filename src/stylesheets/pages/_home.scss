@@ -23,7 +23,7 @@
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
-
+    max-height: 1200px;
     &__text {
       padding-top: 135px;
       text-align: center;
@@ -81,12 +81,18 @@
     @media screen and (max-width: $smallScreen) {
       min-height: 340px; // For the moment will replace with a carousel soon
     }
+    @media screen and (min-height: 1000px) {
+      min-height: 305px;
+    }
     &__container {
       width: 60%;
-      padding-top: 240px;
+      padding-top: 220px;
       @media screen and (max-width: $smallScreen) {
         width: 90%; 
         padding-top: 190px;
+      }
+      @media screen and (min-height: 1000px) {
+        padding-top: 120px;
       }
       &__item {
         width: 33.33%;
