@@ -5,6 +5,57 @@ import SupportForm from 'components/SupportForm';
 
 const graknRoutes = require('config/graknRoutes');
 
+const comparisson = [
+  { item: 'Access to Grakn Community', enterprise: 'true', premium: 'true'},
+  { item: 'Support hours', enterprise: '24x7', premium: '10x5'},
+  { item: 'Response time', enterprise: '1 business day', premium: '1 business day'},
+  { item: 'Urgent ticket SLA', enterprise: '1 hour', premium: '1 hour'},
+  { item: 'Priority queueing', enterprise: 'true', premium: 'true'},
+  { item: 'Direct access to our engineers', enterprise: 'true', premium: 'true'},
+  { item: 'Release upgrades', enterprise: 'true', premium: 'true'},
+  { item: 'Bug Patches', enterprise: 'true', premium: 'true'},
+  { item: 'Hot fixes and bug escalation', enterprise: 'true', premium: 'false'},
+  { item: 'Architecture and performance reviews', enterprise: 'true', premium: 'false'},
+  { item: 'Migration and capacity Planning', enterprise: 'true', premium: 'false'},
+  { item: 'Launch day assistance', enterprise: 'true', premium: 'false'}
+];
+
+const renderTable = () => {
+  return (
+    <div className="support-page__comparisson__table">
+      <div className="support-page__comparisson__table__header">
+        <span className="support-page__comparisson__table__header__item support-page__comparisson__table__header__item--empty" />
+        <span className="support-page__comparisson__table__header__item">Premium Support</span>
+        <span className="support-page__comparisson__table__header__item">Enterprise Support</span>
+      </div>
+    {
+      comparisson.map((elem, index) => {
+        let premiumContent = '';
+        let enterpriseContent = '';        
+        if (elem.premium === 'true') {
+          premiumContent = <i className="fa fa-check support-page__comparisson__table__row__item__green" />;
+        }
+        else if (elem.premium !== 'false') {
+          premiumContent = elem.premium;
+        }
+        if (elem.enterprise === 'true') {
+          enterpriseContent = <i className="fa fa-check support-page__comparisson__table__row__item__purple" />;
+        }
+        else if (elem.enterprise !== 'false') {
+          enterpriseContent = elem.premium;
+        }
+        return (
+          <div className="support-page__comparisson__table__row" key={`${elem.item}__table__desktop`}>
+            <span className="support-page__comparisson__table__row__item">{elem.item}</span>
+            <span className="support-page__comparisson__table__row__item">{premiumContent}</span>
+            <span className="support-page__comparisson__table__row__item">{enterpriseContent}</span>
+          </div>
+        );
+      })
+    }
+    </div>
+  )
+}
 const SupportPage = () => (
   <div className="support-page">
     <section className="support-page__splash">
@@ -42,6 +93,14 @@ const SupportPage = () => (
           </span>
           <a href="" className="animated__link animated__link--purple support-page__features__item__link">Learn more</a>
         </div>
+      </div>
+    </section>
+    <section className="support-page__comparisson">
+      <img src="/assets/img/support-curve.png" alt="support comparisson background" />
+      <div className="support-page__comparisson__container container section__container">
+        <span className="support-page__comparisson__header">Suspendisse <strong>cursus ligula</strong> sed est rhoncus, in iaculis sapien portal</span>
+        {renderTable()}
+        <a href="mailto: enterprise@grakn.ai" className="button button--red">Contact sales to upgrade your support plan</a>
       </div>
     </section>
     <Testimonials />
