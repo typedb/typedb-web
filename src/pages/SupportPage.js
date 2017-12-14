@@ -56,6 +56,46 @@ const renderTable = () => {
     </div>
   )
 }
+
+const renderTableMobile = () => {
+  return (
+    <div className="support-page__comparisson__table__mobile">
+    {
+      comparisson.map((elem, index) => {
+        let premiumContent = '';
+        let enterpriseContent = '';        
+        if (elem.premium === 'true') {
+          premiumContent = 'Yes';
+        }
+        else if (elem.premium !== 'false') {
+          premiumContent = elem.premium;
+        }
+        if (elem.enterprise === 'true') {
+          enterpriseContent = 'Yes';
+        }
+        else if (elem.enterprise !== 'false') {
+          enterpriseContent = elem.premium;
+        }
+        return (
+          <div className="support-page__comparisson__table__mobile__row" key={`${elem.item}__table__desktop`}>
+            <span className="support-page__comparisson__table__mobile__row__item">{elem.item}</span>
+            <div className="support-page__comparisson__table__mobile__row__item support-page__comparisson__table__mobile__row__item--split">
+              <span>Premium Support</span>
+              <span>{premiumContent}</span>
+            </div>
+            <div className="support-page__comparisson__table__mobile__row__item support-page__comparisson__table__mobile__row__item--split">
+              <span>Enterprise Support</span>
+              <span>{enterpriseContent}</span>
+            </div>
+          </div>
+        );
+      })
+    }
+    </div>
+  );
+}
+
+
 const SupportPage = () => (
   <div className="support-page">
     <section className="support-page__splash">
@@ -100,6 +140,7 @@ const SupportPage = () => (
       <div className="support-page__comparisson__container container section__container">
         <span className="support-page__comparisson__header">Suspendisse <strong>cursus ligula</strong> sed est rhoncus, in iaculis sapien portal</span>
         {renderTable()}
+        {renderTableMobile()}
         <a href="mailto: enterprise@grakn.ai" className="button button--red">Contact sales to upgrade your support plan</a>
       </div>
     </section>
