@@ -25,10 +25,15 @@
     background-position: center;
     max-height: 1200px;
     &__text {
-      padding-top: 135px;
       text-align: center;
-      @media screen and (max-width: $smallScreen) {
-        padding-top: 110px;
+      @media screen and (min-height: 1000px) {
+        padding-top: calc((1000px - 394px)/3.5) !important;
+      }
+      @media screen and (max-height: 1000px) {
+        padding-top: calc((100vh - 394px)/4);        
+      }
+      @media screen and (max-height: 800px) {
+        padding-top: 110px;        
       }
       > span {
         display: block;
