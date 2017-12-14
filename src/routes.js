@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { capitalize } from 'lodash';
 import ReactGA from 'react-ga';
 import HomePage from 'pages/HomePage';
 import AboutPage from 'pages/AboutPage';
@@ -12,17 +13,32 @@ import SupportPage from 'pages/SupportPage';
 import NoPage from 'pages/NoPage';
 
 class Main extends Component {
+  constructor(props) {
+    super(props);
+    this.updatePageTitle = this.updatePageTitle.bind(this);
+  }
 
   componentDidMount() {
     ReactGA.initialize('UA-72414051-1');
-    ReactGA.pageview(this.props.path);    
+    ReactGA.pageview(this.props.path);
+    this.updatePageTitle();
   }
 
-  componentWillReceiveProps(newProps) {
-    if (this.props.path !== newProps.path) {
-      ReactGA.pageview(newProps.path);
+  componentDidUpdate(oldProps) {
+    if (this.props.path !== oldProps.path) {
+      ReactGA.pageview(this.props.path);
+      this.updatePageTitle();
     }
   }
+
+  updatePageTitle() {
+    let documentTitle = 'GRAKN.AI - The Database for AI';
+    if (this.props.path !== '/') {
+      documentTitle = `GRAKN.AI | ${capitalize(this.props.path.substr(1))}`
+    }
+    document.title = documentTitle;
+  }
+
   render() {
     return (
       <main className="main">
