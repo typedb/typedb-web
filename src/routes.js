@@ -8,6 +8,7 @@ import SlackPage from 'pages/SlackPage';
 import CareersPage from 'pages/CareersPage';
 import CommunityPage from 'pages/CommunityPage';
 import ServicesPage from 'pages/ServicesPage';
+import SupportPage from 'pages/SupportPage';
 import NoPage from 'pages/NoPage';
 
 class Main extends Component {
@@ -31,6 +32,7 @@ class Main extends Component {
           <Route exact path="/slack" component={SlackPage} />
           <Route exact path="/careers" component={CareersPage} />
           <Route exact path="/community" component={CommunityPage} />
+          <Route exact path="/support" component={SupportPage} />
           <Route exact path="/services" component={ServicesPage} />
           <Route component={NoPage} />
         </Switch>
