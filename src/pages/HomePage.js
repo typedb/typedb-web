@@ -120,7 +120,7 @@ const HomePage = () => (
       <img src="/assets/img/background_2.png" alt="background curved" />
       <div className="home__production__container container section__container">
         <span className="home__production__headline home__header container section__container">
-          Simplify your data architecture and scale your knowledge base into production 
+        Scale your knowledge base into production with Grakn <strong>KBMS</strong> and <strong>Workbase</strong>    
         </span>
         <PagingComponent>
           <div className="home__production__slider__item">
