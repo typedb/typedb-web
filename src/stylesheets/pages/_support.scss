@@ -32,6 +32,7 @@ $tablePurple:#796de3;
         width: 50%;
         line-height: 1.3;
         font-weight: 300;
+        color: $textCharcoal;
         > strong {
           font-weight: 600;
         }
@@ -69,7 +70,7 @@ $tablePurple:#796de3;
   }
 
   &__features {
-    padding: 70px 0;
+    padding: 90px 0;
     @media screen and (max-width: $smallScreen) {
       padding: 50px 0;
     }
@@ -145,8 +146,8 @@ $tablePurple:#796de3;
       }
     }
     &__container {
-      padding-top: 70px;
-      padding-bottom: 70px;
+      padding-top: 90px;
+      padding-bottom: 90px;
       @media screen and (max-width: $smallScreen) {
         padding-top: 50px;
         padding-bottom: 50px;

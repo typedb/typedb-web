@@ -22,6 +22,7 @@
       }
       &__header {
         font-size: 42px;
+        color: $textCharcoal;
         > strong {
           font-weight: 600;
         }
@@ -47,7 +48,7 @@
 
   &__features {
     position: relative;
-    padding: 70px 0;
+    padding: 90px 0;
     @media screen and (max-width: $smallScreen) {
       padding: 50px 0;
     }
@@ -289,7 +290,7 @@
   }
 
   &__support {
-    padding: 70px 0;
+    padding: 90px 0;
     background-color: #353a49;
     @media screen and (max-width: $smallScreen) {
       padding: 50px 0;     
