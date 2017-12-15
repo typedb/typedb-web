@@ -288,24 +288,4 @@
       margin-top: 2rem;
     }
   }
-
-  &__support {
-    padding: 90px 0;
-    background-color: #353a49;
-    @media screen and (max-width: $smallScreen) {
-      padding: 50px 0;     
-    }
-    &__header {
-      display: block;
-      text-align: center;
-      color: white;
-      font-size: 32px;
-      font-weight: 300;
-      padding-bottom: 50px;
-      @media screen and (max-width: $smallScreen) {
-        font-size: 22px;
-        padding-bottom: 30px;
-      }
-    }
-  }
 }

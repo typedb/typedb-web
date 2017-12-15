@@ -29,13 +29,6 @@ module.exports = {
       social: 'https://linkedin.com/in/christianjakenfelds'
     },
     {
-      name: 'Dr. Domenico Corapi',
-      position: 'Lead Engineer',
-      education: 'PhD in Computer Science, Imperial College London',
-      img: '/assets/img/team_photos/domenico.png',      
-      social: 'https://linkedin.com/in/dcorapi'
-    },
-    {
       name: 'Dr. Filipe Teixeira',
       position: 'Lead Engineer',
       education: 'PhD in Computational Neurodynamics, Imperial College London',
@@ -59,7 +52,7 @@ module.exports = {
     {
       name: 'Harjyot Singh',
       position: 'Web Engineer',
-      education: 'BSc in Artificial Intelligence, University of Edinburgh',
+      education: 'BSc in Artificial Intelligence & Computer Science, University of Edinburgh',
       img: '/assets/img/team_photos/harjyot.png',      
       social: 'https://www.linkedin.com/in/harjyot7'
     },
@@ -104,20 +97,6 @@ module.exports = {
       education: 'MPhil in Urban Studies, University of Cambridge',
       img: '/assets/img/team_photos/nick.png',      
       social: 'https://linkedin.com/in/nicholas-d-700411145'
-    },
-    {
-      name: 'Nicolas Powell',
-      position: 'ML Intern Engineer',
-      education: 'BS in Mathematical and Computational Science, Stanford University',
-      img: '/assets/img/team_photos/nicolas.png',      
-      social: 'https://linkedin.com/in/nicolas-powell-6b744989'
-    },
-    {
-      name: 'Oscar Darwin',
-      position: 'ML Intern Engineer',
-      education: 'BA in Maths and Computer Science, University of Oxford',
-      img: '/assets/img/team_photos/oscar.png',      
-      social: 'https://linkedin.com/in/oscar-darwin-44189076'
     },
     {
       name: 'Thanh Pham',

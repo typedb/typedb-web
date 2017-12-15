@@ -145,9 +145,9 @@ const SupportPage = () => (
       </div>
     </section>
     <Testimonials />
-    <section className="services__support">
-      <div className="services__support__container container section__container">
-        <span className="services__support__header">Get in touch with our team!</span>
+    <section className="support-form__section">
+      <div className="support-form__section__container container section__container">
+        <span className="support-form__section__header">Get in touch with our team!</span>
         <SupportForm />
       </div>
     </section>
