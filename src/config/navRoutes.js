@@ -29,6 +29,5 @@ module.exports = {
   Github: {
     type: 'single',
     link: 'https://github.com/graknlabs/grakn',
-    icon: true
   },
 };
