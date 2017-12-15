@@ -138,7 +138,7 @@ const SupportPage = () => (
     <section className="support-page__comparisson">
       <img src="/assets/img/support-curve.png" alt="support comparisson background" />
       <div className="support-page__comparisson__container container section__container">
-        <span className="support-page__comparisson__header">Suspendisse <strong>cursus ligula</strong> sed est rhoncus, in iaculis sapien portal</span>
+        <span className="support-page__comparisson__header">headline for support table: Whatever stage and size of your company is, we got a support plan that fits your team</span>
         {renderTable()}
         {renderTableMobile()}
         <a href="mailto: enterprise@grakn.ai" className="button button--red">Contact sales to upgrade your support plan</a>
