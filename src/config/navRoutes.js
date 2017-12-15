@@ -2,6 +2,10 @@
 const graknRoutes = require('config/graknRoutes');
 
 module.exports = {
+  Overview: {
+    type: 'single',
+    link: `${graknRoutes.overview}`
+  },
   Enterprise: {
     type: 'multi',
     links: {
@@ -12,7 +16,6 @@ module.exports = {
   Developer: {
     type: 'multi',
     links: {
-      Overview: `${graknRoutes.overview}`,
       Academy: `${graknRoutes.academy}`,
       Docs: `${graknRoutes.docs}`,
       Community: '/community'
