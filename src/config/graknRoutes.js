@@ -4,6 +4,7 @@ module.exports = {
   download: `${docBase}/docs/get-started/setup-guide`,
   docs: docBase,
   overview: `${docBase}/overview/`,
+  academy: `${docBase}/academy/`,
   quickstart: `${docBase}/documentation/get-started/quickstart-tutorial`,
   github: 'https://github.com/graknlabs/grakn',
   twitter: 'https://twitter.com/graknlabs',
