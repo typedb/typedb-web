@@ -189,7 +189,7 @@ app.get('*.html', (req, res) => {
 });
 
 app.get('/download/latest', (req, res) => {
-    res.redirect(302, 'https://github.com/graknlabs/grakn/releases/download/v0.18.0/grakn-dist-0.18.0.zip');
+    res.redirect(302, 'https://github.com/graknlabs/grakn/releases/download/v1.0.0/grakn-dist-1.0.0.zip');
 });
 
 app.get('/download', (req, res) => {
