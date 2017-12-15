@@ -35,39 +35,114 @@ $navShadow: 0 0 26px 0 rgba(221, 221, 221, 0.64);
     margin: 0 10px;
     position: relative;
     text-align: left;
+    cursor: pointer;
     > .fa {
       display: inline;
       vertical-align: middle;
       color: black;
     }
+    &__dropdown {
+      position: relative;
+      display: inline-block;
+      .fa {
+        padding-left: 0.5rem;
+        vertical-align: top;
+        color: $textCharcoal;
+      }
+      &__content {
+        display: none;
+        position: absolute;
+        background-color: #393F4C;
+        top: calc(#{$navHeight} - 20px);
+        width: fit-content;
+        border-radius: 5px;
+        padding: 1rem 0.8rem;
+        padding-bottom: 0;
+        right: 0;
+        &__item {
+          display: block;
+          line-height: 1;
+          padding-bottom: 4px;
+          margin-bottom: 1rem;
+          color: white;     
+          font-size: 14px;
+          font-weight: 300;     
+        }
+      }
+      &:hover {
+        .nav__link__dropdown__content {
+          display: block;
+        }
+      }
+    }
   }
   &__hamburger {
-    display: none;
-    margin-top: 75px;
-    margin-left: 11px;
-    width: 100%;
-    background-color: white;
-    padding: 1rem 0;
-    border: 1px solid $borderColor;
-    border-radius: 5px;
-    text-align: right;
+    display: block;
+    transform: translateX(100%);
+    transition: transform 0.2s ease-in-out;
+    position: fixed;
+    left: 0;
+    right: 0;
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: $navHeight;
+    border-bottom: 1px solid $borderColor;
+    background: white;
+    padding: 1rem 10px 0 1rem;
     > .nav__link {
       display: block;
-      line-height: 2.5rem;
       user-select: none;
-      margin-left: 1rem;
-      margin-right: 1rem;
-      > .fa {
+      line-height: 1;
+      padding-bottom: 4px;
+      margin-bottom: 1rem;
+      > &__icon {
         display: block;
         padding-top: 0.5rem;
       }
     }
     &--open {
       display: block;
+      transform: translateX(0%);
+      
     }
     &__button {
       padding-top: 1.4rem;
       float: right;    
+    }
+    &__secondary {
+      display: block;
+      min-height: 210px;
+      transform: translateX(100%);
+      transition: transform 0.2s ease-in-out;
+      position: fixed;
+      left: 0;
+      right: 0;
+      margin-left: 0;
+      margin-right: 0;
+      margin-top: $navHeight;
+      border-bottom: 1px solid $borderColor;
+      background: white;
+      padding: 1rem 10px 0 1rem;
+      > .nav__link {
+        display: block;
+        user-select: none;
+        line-height: 1;
+        padding-bottom: 4px;
+        margin-bottom: 1rem;
+        > &__icon {
+          display: block;
+          padding-top: 0.5rem;
+        }
+      }
+      &--open {
+        transform: translateX(0%);        
+      }
+      &__back {
+        > i {
+          color: $textCharcoal !important;
+          margin-right: 0.5rem;
+        }
+      }
     }
   }
 }

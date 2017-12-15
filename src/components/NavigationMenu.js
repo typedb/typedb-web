@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import classNames from 'classnames';
+import { map } from 'lodash';
 import { Link } from 'react-router-dom';
 import navRoutes from 'config/navRoutes';
 
@@ -8,42 +9,95 @@ class NavigationMenu extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      expanded: false
+      expanded: false,
+      secondaryActive: false,
+      activePrimary: null,
     }
     this.renderLinks = this.renderLinks.bind(this);
     this.renderToggle = this.renderToggle.bind(this);
   }
   
-  renderLinks() {
+  renderLinks(hamburger) {
     return Object.keys(navRoutes).map((key) => {
+      const value = navRoutes[key];
       const linkClasses = classNames({
         'nav__link': true,
-        'animated__link': key !== 'Github',
+        'nav__link__dropdown': value.type !== 'single',
+        'animated__link': value.type === 'single' && key !== 'Github',
       });
-      if (key === 'Community') {
+      // 
+      if (value.type === 'single') {
         return (
-          <Link key={`${key}__link`} to={navRoutes[key]} className={linkClasses}>{key}</Link>
+          <a
+          key={`${key}__link`}
+          href={value.link}
+          className={linkClasses}
+          >
+          { key !== 'Github'?
+            key
+            :
+            <i className="fa fa-2x fa-github nav__link__icon" aria-hidden="true"></i> 
+          }              
+          </a>
         )
       }
-      return (
-        <a
-        key={`${key}__link`}
-        href={navRoutes[key]}
-        className={linkClasses}
-        >
-        { key !== 'Github'?
-          key
-          :
-          <i className="fa fa-2x fa-github" aria-hidden="true"></i> 
-        }              
-        </a>
-      )
-    }) 
+      else {
+        const subLinks = value.links;        
+        return (
+          <div
+          className={linkClasses}
+          onClick={
+            () => {
+              if(hamburger) {
+                this.setState({
+                  secondaryActive: true,
+                  activePrimary: key
+                });
+              }
+            }
+          }
+          >
+          {key}
+          {
+            hamburger?
+              <i className="fa fa-caret-right" aria-hidden={true} />
+            :
+              <i className="fa fa-caret-down" aria-hidden={true} />
+
+          }
+          {
+            hamburger?
+              null
+              :
+              <div className="nav__link__dropdown__content">
+              {
+                Object.keys(subLinks).map((key) => {
+                  if (key === 'Community' || key === 'Services' || key === 'Support') {
+                      return (
+                        <Link key={`${key}__link`} to={subLinks[key]} className='nav__link nav__link__dropdown__content__item animated__link'>{key}</Link>
+                      )
+                  }
+                  else {
+                    return (
+                      <a key={`${key}__link`} href={subLinks[key]} className='nav__link nav__link__dropdown__content__item animated__link'>{key}</a>
+                    )
+                  }
+                })
+              }
+            </div>
+          }
+          </div>
+        );
+      }
+    }); 
+    console.log(navRoutes);
   }
 
   renderToggle() {
     this.setState({
       expanded: !this.state.expanded,
+      secondaryActive: false,
+      activePrimary: null,
     });
   }
 
@@ -52,6 +106,10 @@ class NavigationMenu extends Component {
     const hamburgerClasses = classNames({
       'nav__hamburger': true,
       'nav__hamburger--open': this.state.expanded 
+    });
+    const hamburgerSecondaryClasses = classNames({
+      'nav__hamburger__secondary': true,
+      'nav__hamburger__secondary--open': this.state.secondaryActive 
     });
     const hamburgerButton = classNames({
       'fa': true,
@@ -77,11 +135,44 @@ class NavigationMenu extends Component {
         mediaType === 'small' || mediaType === 'extraSmall' ?
           <div className={hamburgerClasses}>
             {
-              this.renderLinks()
+              this.renderLinks(true)
             }
           </div>
           :
-          this.renderLinks()      
+          this.renderLinks(false)      
+      }
+      {
+        mediaType === 'small' || mediaType === 'extraSmall' ?
+          <div className={hamburgerSecondaryClasses}>
+            <span className="nav__link nav__hamburger__secondary__back"
+            onClick={() => this.setState({
+              secondaryActive: false,
+              activePrimary: false
+            })}
+            >
+              <i className="fa fa-chevron-left" aria-hidden={true} />Back
+            </span>
+            {
+              this.state.activePrimary?
+                Object.keys(navRoutes[this.state.activePrimary].links).map((key, index) => {
+                  const subLinks = navRoutes[this.state.activePrimary].links;
+                  if (key === 'Community' || key === 'Services' || key === 'Support') {
+                    return (
+                      <Link key={`${key}__link`} to={subLinks[key]} className='nav__link animated__link'>{key}</Link>
+                    )
+                  }
+                  else {
+                    return (
+                      <a key={`${key}__link`} href={subLinks[key]} className='nav__link animated__link'>{key}</a>
+                    )
+                  }
+                })
+                :
+                null
+            }
+          </div>
+          :
+          null     
       }
       </div>
     )
