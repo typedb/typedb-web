@@ -23,7 +23,7 @@ class NavigationMenu extends Component {
       const linkClasses = classNames({
         'nav__link': true,
         'nav__link__dropdown': value.type !== 'single',
-        'animated__link': value.type === 'single' && key !== 'Github',
+        'animated__link': value.type === 'single' && key !== 'Github' && !hamburger,
       });
       // 
       if (value.type === 'single') {
@@ -158,12 +158,12 @@ class NavigationMenu extends Component {
                   const subLinks = navRoutes[this.state.activePrimary].links;
                   if (key === 'Community' || key === 'Services' || key === 'Support') {
                     return (
-                      <Link key={`${key}__link`} to={subLinks[key]} className='nav__link animated__link'>{key}</Link>
+                      <Link key={`${key}__link`} to={subLinks[key]} className='nav__link'>{key}</Link>
                     )
                   }
                   else {
                     return (
-                      <a key={`${key}__link`} href={subLinks[key]} className='nav__link animated__link'>{key}</a>
+                      <a key={`${key}__link`} href={subLinks[key]} className='nav__link'>{key}</a>
                     )
                   }
                 })

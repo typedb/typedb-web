@@ -9,10 +9,17 @@ $navShadow: 0 0 26px 0 rgba(221, 221, 221, 0.64);
   background-color: white;
   z-index: 100;
   border-bottom: 1px solid $borderColor;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   @media screen and (max-width: $smallScreen) {
     padding: 0 1rem;
   }
-
+  > .container {
+    width: 100%;
+    line-height: 1.2;
+  }
   &__logo {
     width: 160px;
     display: inline-block;
@@ -22,6 +29,7 @@ $navShadow: 0 0 26px 0 rgba(221, 221, 221, 0.64);
     }
   }
   &__links {
+    padding-top: 4px;
     position: absolute;
     display: inline-block;
     vertical-align: middle;
@@ -53,19 +61,20 @@ $navShadow: 0 0 26px 0 rgba(221, 221, 221, 0.64);
       &__content {
         display: none;
         position: absolute;
-        background-color: #393F4C;
-        top: calc(#{$navHeight} - 20px);
+        background-color: white;
+        top: 25px;
         width: fit-content;
         border-radius: 5px;
         padding: 1rem 0.8rem;
         padding-bottom: 0;
         right: 0;
+        border: 1px solid $borderColor;
         &__item {
           display: block;
           line-height: 1;
           padding-bottom: 4px;
           margin-bottom: 1rem;
-          color: white;     
+          color: $textNav;
           font-size: 14px;
           font-weight: 300;     
         }
@@ -87,6 +96,7 @@ $navShadow: 0 0 26px 0 rgba(221, 221, 221, 0.64);
     margin-left: 0;
     margin-right: 0;
     margin-top: $navHeight;
+    top: 0;
     border-top: 1px solid $borderColor;
     border-bottom: 1px solid $borderColor;
     background: white;
@@ -110,7 +120,6 @@ $navShadow: 0 0 26px 0 rgba(221, 221, 221, 0.64);
       
     }
     &__button {
-      padding-top: 1.4rem;
       float: right;    
     }
     &__secondary {
@@ -128,6 +137,7 @@ $navShadow: 0 0 26px 0 rgba(221, 221, 221, 0.64);
       border-bottom: 1px solid $borderColor;
       background: white;
       padding: 1rem 10px 0 1rem;
+      top: 0;
       > .nav__link {
         display: block;
         user-select: none;
