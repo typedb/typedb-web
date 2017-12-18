@@ -18,7 +18,7 @@ $navShadow: 0 0 26px 0 rgba(221, 221, 221, 0.64);
   }
   > .container {
     width: 100%;
-    line-height: 1.2;
+    height: 100%;
   }
   &__logo {
     width: 160px;
@@ -29,7 +29,6 @@ $navShadow: 0 0 26px 0 rgba(221, 221, 221, 0.64);
     }
   }
   &__links {
-    padding-top: 4px;
     position: absolute;
     display: inline-block;
     vertical-align: middle;
@@ -50,6 +49,9 @@ $navShadow: 0 0 26px 0 rgba(221, 221, 221, 0.64);
       vertical-align: middle;
       color: black;
     }
+    &__inline {
+      line-height: 1.2;
+    }
     &__dropdown {
       position: relative;
       display: inline-block;
@@ -62,7 +64,7 @@ $navShadow: 0 0 26px 0 rgba(221, 221, 221, 0.64);
         display: none;
         position: absolute;
         background-color: white;
-        top: 25px;
+        top: 50px;
         width: fit-content;
         border-radius: 5px;
         padding: 1rem 0.8rem;
@@ -79,7 +81,7 @@ $navShadow: 0 0 26px 0 rgba(221, 221, 221, 0.64);
           font-weight: 300;     
         }
       }
-      &:hover {
+      &:hover, &:active {
         .nav__link__dropdown__content {
           display: block;
         }
@@ -120,7 +122,8 @@ $navShadow: 0 0 26px 0 rgba(221, 221, 221, 0.64);
       
     }
     &__button {
-      float: right;    
+      float: right;
+      padding-top: 20px;
     }
     &__secondary {
       display: block;
