@@ -191,9 +191,9 @@ const HomePage = () => (
           {
             deploymentOptions.slice(0,3).map((item, index) => {
               return (
-                <div className="home__deployment__items__item" key={`${index}--develop`} onClick={() => location.href='mailto:enterprise@grakn.ai'}>
+                <Link to="/deployment" className="home__deployment__items__item" key={`${index}--develop`}>
                   <img src={item.url} alt={item.name} />
-                </div>
+                </Link>
               )
             })
           }
@@ -210,7 +210,7 @@ const HomePage = () => (
           }
           </div>
         </div>
-        <a href="mailto:enterprise@grakn.ai" className="button button--transparent">Choose your deployment option</a>
+        <Link to='/deployment' className="button button--transparent">Choose your deployment option</Link>
       </div>
     </section>
     <section className="home__usecases">

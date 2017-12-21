@@ -379,7 +379,6 @@
     padding-top: 90px;
     padding-bottom: 90px;
     @media screen and (max-width: $smallScreen) {
-      // background-position: center;
        padding-top: 50px;      
        padding-bottom: 50px;
      }
@@ -400,21 +399,14 @@
         &__row {
           display: flex;
           flex-direction: row;
-          > div {
-            width: 33%;
-            border: 1px solid white;
-            &:hover {
-              border: 1px solid $borderColor;
-            }            
-          }
           > :nth-child(2) {
             border-left: 1px solid #f2f6fa;
             border-right: 1px solid #f2f6fa;
           }
         }
-        > :nth-child(1) {
-          border-bottom: 1px solid #f2f6fa;          
-        }
+        // > :nth-child(1) {
+        //   border-bottom: 1px solid #f2f6fa;          
+        // }
       }
  
       &__item {
@@ -423,14 +415,16 @@
         flex-direction: column;
         justify-content: center;
         cursor: pointer;
+        flex-basis: 0;
+        flex-grow: 1;
+        border: 1px solid white;        
         > img {
           align-self: center;
           max-width: 80%;
         }
-        &--slider {
-          border: 2px solid #f2f6fa;
-          height: 200px;
-        }
+        &:hover {
+          border: 1px solid $borderColor;
+        } 
       }
     }
   }

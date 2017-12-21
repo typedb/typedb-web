@@ -5,6 +5,8 @@ const testimonials = [
   {name: 'Michael Bishop', company: 'CTO, Alpha Vertex', img: '/assets/img/testimonials/bishop.jpg', review: '“Grakn significantly streamlines our knowledge engineering process. Grakn’s expressive schema allows us to verify the logical consistency of patterns detected by our learning algorithms and improve accuracy”'},
   {name: 'Radouane Oudrhiri', company: 'CTO, Eagle Genomics', img: '/assets/img/testimonials/oudrhiri.jpg', review: '“Grakn\'s query language, Graql, should be the de facto language for any graph representation because of two things: the semantic expressiveness of the language and the optimisation of query execution.”'},
   {name: 'Gunnar Kleemann', company: 'Co-Founder, Berkeley Data Science Group', img: '/assets/img/testimonials/gunnar.jpg', review: '“When working with network structures, such as gene networks, interactions between objects are complex and nuanced. Grakn interprets these structures natively, and allow us to discover novel answers very quickly”'},
+  {name: 'Enzo Martoglio', company: 'AI Architect, Infosys', img: '/assets/img/testimonials/enzo.jpg', review: '“No business-centric implementation of AI can avoid having a knowledge base at its core. Grakn is one of the few companies developing this tool that any AI business solution will require.”'},
+  {name: 'Samuel Pouyt', company: 'Software Architect, European Respiratory Society', img: '/assets/img/testimonials/samuel.jpg', review: '“Whether it is for content recommendation, managing GDPR or text classification, more I use GRAKN.AI, more I discover suited use cases. Power and simplicity make it an everyday tool.”'},
 ];
 
 const Testimonials = () => (
