@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import classNames from 'classnames';
-import { map } from 'lodash';
 import { Link } from 'react-router-dom';
 import navRoutes from 'config/navRoutes';
 

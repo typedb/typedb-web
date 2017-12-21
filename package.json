@@ -74,6 +74,7 @@
     "lodash": "^4.17.4",
     "moment": "^2.18.1",
     "node-sass": "^4.5.3",
+    "nodemailer": "^4.4.1",
     "null-loader": "^0.1.1",
     "postcss-loader": "^2.0.6",
     "prismjs": "^1.8.4",

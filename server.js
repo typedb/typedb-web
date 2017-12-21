@@ -2,13 +2,22 @@ const path = require('path');
 const express = require('express');
 const bodyParser = require('body-parser');
 const unirest = require('unirest');
+const nodemailer = require('nodemailer');
 
 const app = express();
 
 const port = process.env.PORT ? process.env.PORT : 3001;
 const dist = path.join(__dirname, 'dist');
-
 const docsBase = 'https://dev.grakn.ai';
+const mailman = 'mailman@grakn.ai';
+
+const transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+        user: mailman,
+        pass: process.env.SUPPORT_PASS
+    }
+});
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
@@ -26,6 +35,7 @@ app.use(function(req, res, next) {
     }
     next();
 });
+
 
 // API
 function handleSlackInvite(userEmail) {
@@ -172,6 +182,24 @@ app.post('/invite/all', function(req, res) {
 
     res.header("Access-Control-Allow-Origin", "*");
     res.status(200).send(JSON.stringify({ msg: "success" }));    
+});
+
+
+app.post('/api/support', function(req, res) {
+    res.header("Access-Control-Allow-Origin", "*");
+    const mailOptions = {
+        from: mailman, 
+        to: 'harjyot@grakn.ai', 
+        subject: 'Support Form Request', 
+        text: JSON.stringify(req.body),
+    };
+   transporter.sendMail(mailOptions, (err, info) => {
+        if (err) {
+            console.log(err);
+            res.status(500).send(JSON.stringify({msg: "Form submission failed! Try Again.."}));
+        }
+        res.status(200).send(JSON.stringify({ msg: "Form Submitted Successfully," }));        
+    });
 });
 
 

@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
 import validator from 'validator';
+import { connect } from 'react-redux';
+
 import Form from 'components/FormValidationComponents/components/form';
 import Input from 'components/FormValidationComponents/components/input';
 import Select from 'components/FormValidationComponents/components/select';
 import TextArea from 'components/FormValidationComponents/components/textarea';
 import Button from 'components/FormValidationComponents/components/button';
+import { sendSupport } from 'actions/support';
 
 const required = (value) => {
   if (!value.toString().trim().length) {
@@ -36,7 +39,7 @@ class SupportForm extends Component {
     e.preventDefault();
     const formValues = this.form.getValues();
     formValues.aois = this.state.checkboxes;
-    console.log(formValues);
+    this.props.send(formValues);
   }
 
   onUpdateCheckbox(e) {
@@ -146,4 +149,10 @@ class SupportForm extends Component {
   }
 }
 
-export default SupportForm;
+const mapDispatchToProps = (dispatch) => (
+  {
+    send: (data) => dispatch(sendSupport(data)),
+  }
+);
+
+export default connect(null, mapDispatchToProps)(SupportForm);
