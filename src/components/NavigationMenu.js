@@ -47,6 +47,7 @@ class NavigationMenu extends Component {
         return (
           <div
           className={linkClasses}
+          key={`${key}__link`}          
           onClick={
             () => {
               if(hamburger) {
