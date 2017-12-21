@@ -9,6 +9,9 @@
   font-size: 18px;
   font-weight: 600;
   margin: 0 auto;
+  cursor: pointer;
+  outline: none;
+  border: none;
   @media screen and (max-width: $smallScreen) {
     font-size: 14px;
   }       
@@ -27,5 +30,9 @@
       background-color: $textPink;
     }
   }
+}
 
+button {
+  outline: none;
+  border: none;
 }
