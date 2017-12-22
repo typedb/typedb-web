@@ -115,7 +115,7 @@ class SupportPage extends Component {
             <div className="support-page__splash__text">
               <span className="support-page__splash__text__header">Focus on your <strong>business,</strong> not infrastructure</span>
               <span className="support-page__splash__text__tag">From development to production, we’re with you every step of the way,  so you can focus on building your application and your business</span>
-              <button className="button support-page__splash__text__button" onClick={() => this.scroll()}>Get help now</button>
+              <button className="button support-page__splash__text__button" onClick={() => this.scroll()}>Let us help</button>
             </div>
           </div>
         </section>

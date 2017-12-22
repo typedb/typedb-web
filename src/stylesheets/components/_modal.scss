@@ -1,0 +1,47 @@
+.ReactModal {
+  &__Overlay {
+    z-index: 20;
+    background-color: rgba(0, 0, 0, 0.75) !important;
+  }
+
+  &__Body--open {
+    overflow: hidden;
+  }
+  &__Closebtn {
+    right: 1rem;
+    top: 1rem;
+    display: block;
+    text-align: right;
+    padding: 1rem;
+    cursor: pointer;
+    &:before {
+      font-size: 1.5rem;
+      color: $textCharcoal;  
+    }
+  }
+
+  &__Content {
+    border-radius: 5px !important;
+    top: 50% !important;
+    left: 50% !important;
+    width: $smallScreen;
+    transform: translate(-50%, -50%);    
+    height: fit-content;
+    padding: 0 !important;
+    bottom: 0 !important;
+    right: 0 !important;
+    @media screen and (max-width: $smallScreen) {
+      width: 90%;
+      height: calc(100vh - 2*(#{$navHeight} + 20px));      
+    }
+    @media screen and (max-height: $smallScreen) {
+      height: calc(100vh - 2*(#{$navHeight} + 20px));
+    }
+    > .support-form {
+      width: 80%;
+      padding-left: 0;
+      padding-right: 0;
+      padding-top: 25px;
+    }
+  }
+}

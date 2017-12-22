@@ -1,0 +1,16 @@
+import React from 'react';
+import Modal from 'react-modal';
+import SupportForm from 'components/SupportForm';
+
+const SupportFormModal = ({isOpen, onClose}) => (
+  <Modal
+    isOpen={isOpen}
+    shouldCloseOnOverlayClick={true}
+    ariaHideApp={false}
+  > 
+    <i className="fa fa-times ReactModal__Closebtn" onClick={() => onClose()}/>
+    <SupportForm />
+  </Modal>
+);
+
+export default SupportFormModal;
