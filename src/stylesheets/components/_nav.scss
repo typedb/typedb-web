@@ -123,7 +123,7 @@ $navShadow: 0 0 26px 0 rgba(221, 221, 221, 0.64);
     }
     &__button {
       float: right;
-      padding-top: 20px;
+      padding: 0;
     }
     &__secondary {
       display: block;
@@ -162,6 +162,22 @@ $navShadow: 0 0 26px 0 rgba(221, 221, 221, 0.64);
           margin-right: 0.5rem;
         }
       }
+    }
+  }
+}
+
+.hamburger {
+  &-box {
+    padding-top: 22px;
+  }
+  &-inner {
+    height: 2px;
+    width: 35px;
+    color: $textCharcoal;    
+    &:before, &:after {
+      height: 2px;
+      width: 35px;    
+      color: $textCharcoal;      
     }
   }
 }

@@ -113,22 +113,25 @@ class NavigationMenu extends Component {
       'nav__hamburger__secondary--open': this.state.secondaryActive 
     });
     const hamburgerButton = classNames({
-      'fa': true,
-      'fa-2x': true,
       'nav__hamburger__button': true,
-      'fa-bars': !this.state.expanded,
-      'fa-times': this.state.expanded
+      'hamburger': true,
+      'hamburger--collapse': true,
+      'is-active': this.state.expanded
     });
 
     return (
       <div className="nav__links">
       {
         mediaType === 'small' || mediaType === 'extraSmall' ?
-          <i
+          <button
             className={hamburgerButton}
             aria-hidden="true"
             onClick={() => this.renderToggle()}
-          />
+          >
+          <span className="hamburger-box">
+            <span className="hamburger-inner"></span>
+          </span>
+          </button>
           :
           null        
       }
