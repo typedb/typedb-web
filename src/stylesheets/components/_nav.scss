@@ -124,6 +124,9 @@ $navShadow: 0 0 26px 0 rgba(221, 221, 221, 0.64);
     &__button {
       float: right;
       padding: 0;
+      margin-top: 24px;
+      line-height: 1;
+      height: fit-content;
     }
     &__secondary {
       display: block;
@@ -167,9 +170,6 @@ $navShadow: 0 0 26px 0 rgba(221, 221, 221, 0.64);
 }
 
 .hamburger {
-  &-box {
-    padding-top: 22px;
-  }
   &-inner {
     height: 2px;
     width: 35px;
