@@ -1,3 +1,5 @@
+$supportFormColor: #b9bcc9;
+
 .support-form {
   display: block;
   background-color: white;
@@ -37,10 +39,10 @@
     width: calc(100% - 2rem);
     outline: none;
     padding: 0 1rem;
-    color: #b9bcc9;
+    color: $supportFormColor;
     background-color: white;
     &::placeholder{
-      color: #b9bcc9;
+      color: $supportFormColor;
     }
     &--invalid {
       border: 1px solid $textRed;
@@ -72,7 +74,7 @@
   }
   &__label {
     font-size: 14px;
-    color: #b9bcc9;
+    color: $supportFormColor;
     text-transform: uppercase;
     padding-bottom: 0.5rem;
     display: block;
@@ -100,9 +102,22 @@
       display: inline-block;
       vertical-align: top;
       width: calc(50% - 30px);
+      position: relative;
       @media screen and (max-width: $smallScreen){
         width: 100%;
         display: block;
+      }
+      &__select {
+          &:before {
+            content: '\f0d7';
+            font-family: FontAwesome;
+            color: $supportFormColor;
+            display: inline-block;
+            position: absolute;
+            right: 18px;
+            top: 18px;
+            pointer-events: none;
+          }
       }
     }
     > div:nth-child(2) {

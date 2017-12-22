@@ -79,7 +79,7 @@ class SupportForm extends Component {
             <div className="support-form__row__item">
               <Input className="support-form__input" placeholder='Company' name='company' validations={[required]}/>
             </div>
-            <div className="support-form__row__item">
+            <div className="support-form__row__item support-form__row__item__select">
               <Select className="support-form__input support-form__input__select" value='' name='job' validations={[required]}>
                 <option value=''>Job function</option>
                 <option value='software enginner'>Software Engineer</option>
@@ -98,7 +98,7 @@ class SupportForm extends Component {
             </div>
           </div>
           <div className="support-form__row">
-            <div className="support-form__row__item">
+            <div className="support-form__row__item support-form__row__item__select">
               <Select className="support-form__input support-form__input__select" value='' name='stage' validations={[required]}>
                 <option value=''>Stage of development</option>
                 <option value='discovery'>Discovery phase</option>
