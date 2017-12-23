@@ -60,6 +60,9 @@
       > strong {
         font-weight: 600;
       }
+      @media screen and (max-width: $smallScreen) {
+        font-size: 20px;
+      }
     }
     &__buttons {
       display: block;
@@ -75,6 +78,9 @@
         width: 200px;
         text-align: center;
         font-size: 16px;
+        @media screen and (max-width: $smallScreen) {
+          font-size: 14px;
+        }
         @media screen and (max-width: $smallScreen){
           display: block;
         }
