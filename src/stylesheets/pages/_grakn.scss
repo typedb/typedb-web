@@ -1,0 +1,187 @@
+.grakn-page {
+  padding-top: $navHeight;
+  &__splash {
+    height: 100vh;
+    width: 100%;
+    background-image: url('/assets/svg/grakn-splash.svg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    @media screen and (max-width: $smallScreen) {
+      height: 400px;
+    }
+    &__text {
+      padding-top: 85px;
+      text-align: center;
+      @media screen and (max-width: $smallScreen) {
+        padding-top: 50px;
+      }
+      > span {
+        display: block;
+        margin: 0 auto;
+      }
+      &__header {
+        font-size: 42px;
+        color: $textCharcoal;
+        font-weight: 600;
+        > strong {
+          font-weight: 600;
+        }
+        @media screen and (max-width: $smallScreen) {
+          font-size: 28px;
+        }
+      }
+      &__tag {
+        padding-top: 0;
+        font-size: 20px;
+        color: $textLight;
+        font-weight: 300;
+        line-height: 1.4;
+        width: 60%;
+        @media screen and (max-width: $smallScreen) {
+          font-size: 14px;
+          font-weight: 400;
+          width: 100%;
+        }
+      }
+    }
+  }
+
+  &__links {
+    padding-bottom: 120px;
+    background-image: url('/assets/svg/grakn-links-bg.svg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    @media screen and (max-width: $smallScreen) {
+      padding-bottom: 90px;
+      background-position: right;
+    }
+    &__grid {
+      margin: 0 auto;
+      min-height: 100%;
+      display: flex;
+      flex-wrap: wrap;
+      flex-direction: row;
+      @media screen and (max-width: $smallScreen) {
+        flex-direction: column;
+      }
+      > div {
+        display: block; 
+        width: calc(50% - 20px);  
+        margin: 10px;
+        @media screen and (max-width: $smallScreen) {
+          max-width: 500px;
+          width: 100%;
+          margin-left: auto;
+          margin-right: auto;
+        }
+      }
+    }
+
+    &__paging {
+      display: none;
+      @media screen and (max-width: $smallScreen) {
+        display: block;
+      }
+    }
+    &__item {
+      width: auto;
+      padding: 30px;
+      box-sizing: border-box;
+      background-color: white;
+      border: solid 1px #e6e8f4;
+      border-radius: 5px;
+  
+      &--paging {
+        display: inline-block;
+      }
+      > div {
+        display: inline-block;
+        vertical-align: middle;
+      }
+      &__img {
+        width: 25%;
+        margin-right: 5%;
+        > img {
+          max-width: 90%;
+        }
+      }
+      &__details {
+        width: 70%;
+        text-align: left;
+        &__header {
+          display: block;
+          font-weight: 600;
+          color: $textCharcoal;
+          font-size: 20px;
+          padding-bottom: 0.5rem;
+          @media screen and (max-width: $smallScreen) {
+            font-size: 16px;
+          }
+        }
+        &__text {
+          font-size: 16px;
+          color: $textLight;
+          @media screen and (max-width: $smallScreen) {
+            font-size: 14px;
+          }
+          > a {
+            display: inline-block;
+            vertical-align: bottom;
+            width: fit-content;
+          }
+        }
+      }
+    }
+  }
+
+  &__graql {
+    padding-bottom: 90px;
+    @media screen and (max-width: $smallScreen) {
+      padding-bottom: 50px;
+    }
+
+    &__container {
+      > div {
+        display: inline-block;
+        vertical-align: middle;
+        width: calc(50% - 20px);
+        @media screen and (max-width: $smallScreen) {
+          width: 100%;
+          display: block;
+        }
+      }
+    }
+    &__text {
+      margin-right: 20px;
+      @media screen and (max-width: $smallScreen) {
+        padding-bottom: 30px;
+        margin-right: 0;
+      }
+      &__header {
+        display: block;
+        font-size: 30px;
+        color: $textCharcoal;
+        font-weight: 600;
+        padding-bottom: 1rem;
+        @media screen and (max-width: $smallScreen) {
+          font-size: 20px;
+        }
+      }
+      &__paragraph {
+        display: block;
+        font-size: 18px;
+        color: $textLight;
+        @media screen and (max-width: $smallScreen) {
+          font-size: 14px;
+        }
+      }
+    }
+    &__img {
+     > img {
+      max-width: 100%;
+     }
+    }
+  }
+}

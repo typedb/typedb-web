@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import PagingComponent from './PagingComponent';
+import PagingComponent from 'components/PagingComponent';
 
 const testimonials = [
   {name: 'Michael Bishop', company: 'CTO, Alpha Vertex', img: '/assets/img/testimonials/bishop.jpg', review: '“Grakn significantly streamlines our knowledge engineering process. Grakn’s expressive schema allows us to verify the logical consistency of patterns detected by our learning algorithms and improve accuracy”'},
