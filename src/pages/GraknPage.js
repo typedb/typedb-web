@@ -84,6 +84,45 @@ const GraknPage = () => (
         </div>
       </div>
     </section>
+    <section className="grakn-page__features">
+      <div className="grakn-page__features__circle"><img src="/assets/svg/bot.svg" alt="grakn bot" /></div>
+      <div className="grakn-page__features__container container section__container">
+        <div className="grakn-page__features__col">
+          <div className="grakn-page__features__col__item grakn-page__features__col__item--red">
+            <img src="/assets/svg/schema.svg" alt="Schema" className="grakn-page__features__col__item__img"/>
+            <span className="grakn-page__features__col__item__header">Knowledge Schema</span>
+            <span className="grakn-page__features__col__item__text">
+            Grakn provides an enhanced entity-relationship schema to model complex datasets. The schema allows users to model type hierarchies, hyper-entities, hyper-relationships and rules. The schema can be updated and extended at any time in the database lifecycle. Hyper-entities are entities with multiple instances of a given attribute, and hyper-relationships are nested relationships, cardinality-restricted relationships, or relationships between any number of entities. This enables the creation of complex knowledge models that can evolve flexibly.
+            </span>
+          </div>
+          <div className="grakn-page__features__col__item grakn-page__features__col__item--blue">
+            <img src="/assets/svg/analytics.svg" alt="Analytics" className="grakn-page__features__col__item__img"/>
+            <span className="grakn-page__features__col__item__header">Distributed Analytics</span>
+            <span className="grakn-page__features__col__item__text">
+            Grakn’s query language performs distributed Pregel and MapReduce (BSP) algorithms abstracted as OLAP queries.[6] These types of queries usually require custom development of distributed algorithms for every use case. However, Grakn creates an abstraction of these distributed algorithms and incorporates them as part of the language API. This enables large scale computation of BSP algorithms through a declarative language without the need of implementing the algorithms.
+            </span>
+          </div>
+        </div>
+        <div className="grakn-page__features__col__divider">
+          <img src="/assets/svg/grakn-divider.svg" alt="Divider" />
+        </div>
+        <div className="grakn-page__features__col">
+          <div className="grakn-page__features__col__item grakn-page__features__col__item--purple">
+            <img src="/assets/svg/inference.svg" alt="Inference" className="grakn-page__features__col__item__img"/>
+            <span className="grakn-page__features__col__item__header">Logical Inference</span>
+            <span className="grakn-page__features__col__item__text">
+            Grakn’s query language performs logical inference through deductive reasoning of entity types and relationships, in order to infer implicit facts, associations and conclusions in real-time, during runtime of OLTP queries.[5] The inference is performed through entity and relationship type reasoning, as well as rule-based reasoning. This allows the discovery of facts that would otherwise be too hard to find, the abstraction of complex relationships into its simper conclusion, as well as translation of higher level queries into lower level and more complex data representation.
+            </span>
+          </div>
+          <div className="grakn-page__features__col__item grakn-page__features__col__item--green">
+            <img src="/assets/svg/high_level.svg" alt="High Level" className="grakn-page__features__col__item__img"/>
+            <span className="grakn-page__features__col__item__header">Higher-Level Language</span>
+            <span className="grakn-page__features__col__item__text">
+            With the expressivity of the schema, inference through OLTP and distributed algorithms through OLAP, Grakn provides strong abstraction over low-level data constructs and complicated relationships through its query language. The language provides a higher-level schema, OLTP, and OLAP query language, that makes working with complex data a lot easier. When developers can achieve more by writing less code, productivity rate increases by orders of magnitude.            </span>
+          </div>
+        </div>
+      </div>
+    </section>
   </div>
 );
 
