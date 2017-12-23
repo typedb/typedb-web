@@ -13,7 +13,7 @@ $tablePurple:#796de3;
     background-image: url('/assets/img/support-splash.png');
     background-repeat: no-repeat;
     background-size: cover;
-    background-position: center;
+    background-position: bottom;
     @media screen and (max-width: $smallScreen) {
       height: 400px;
     }

@@ -6,7 +6,7 @@
     background-image: url('/assets/svg/services-splash.svg');
     background-repeat: no-repeat;
     background-size: cover;
-    background-position: center;
+    background-position: bottom;
     @media screen and (max-width: $smallScreen) {
       height: 400px;
     }
