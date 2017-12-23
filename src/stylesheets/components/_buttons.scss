@@ -22,6 +22,12 @@
       background-color: $textRed;
     }
   }
+
+  &--charcoal {
+    background-color: $textCharcoal;
+    color: white;
+  }
+  
   &--transparent {
     color: $textPink;
     border: 1px solid $textPink;

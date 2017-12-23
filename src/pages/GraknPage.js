@@ -1,5 +1,5 @@
 import React from 'react';
-import PagingComponent from 'components/PagingComponent';
+import { Link } from 'react-router-dom';
 const graknRoutes = require('config/graknRoutes');
 
 const GraknPage = () => (
@@ -13,6 +13,13 @@ const GraknPage = () => (
       </div>
     </section>
     <section className="grakn-page__github">
+      <div className="grakn-page__github__container container section__container">
+        <span className="grakn-page__github__header"><strong>Grakn</strong> and <strong>Graql</strong> is open source!</span>
+        <div className="grakn-page__github__buttons">
+          <a href={graknRoutes.download} className="button button--red">INSTALL</a>
+          <a href={graknRoutes.github} className="button button--transparent">STAR ON GITHUB <i className="fa fa-2x fa-github" /></a>
+        </div>
+      </div>
     </section>
     <section className="grakn-page__links">
       <div className="grakn-page__links__container container section__container">
@@ -120,6 +127,16 @@ const GraknPage = () => (
             <span className="grakn-page__features__col__item__text">
             With the expressivity of the schema, inference through OLTP and distributed algorithms through OLAP, Grakn provides strong abstraction over low-level data constructs and complicated relationships through its query language. The language provides a higher-level schema, OLTP, and OLAP query language, that makes working with complex data a lot easier. When developers can achieve more by writing less code, productivity rate increases by orders of magnitude.            </span>
           </div>
+        </div>
+      </div>
+      <div className="grakn-page__kbms">
+        <div className="grakn-page__features__circle grakn-page__features__circle--kbms"><img src="/assets/svg/grakn-KBMS.svg" alt="Grakn KBMS" /></div>
+        <div className="grakn-page__kbms__container container section__container">
+          <span className="grakn-page__kbms__header">Meet Grakn KBMS and Workbase</span>
+          <span className="grakn-page__kbms__text">
+          The distributed knowledge base management system, designed to scale with growth of your data and application workload, equipped with all the functionalities you need to deploy and operate in a production environment.
+          </span>
+          <Link to="/kbms" className="grakn-page__kbms__button button button--charcoal">Learn More</Link>
         </div>
       </div>
     </section>
