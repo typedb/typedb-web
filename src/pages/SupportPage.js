@@ -127,7 +127,6 @@ class SupportPage extends Component {
               <span className="support-page__features__item__text">
                 We are committed to making sure your business succeeds. Whether your application is an emerging startup or a fortune 500 company, we got your back.
               </span>
-              <a href="" className="animated__link animated__link--purple support-page__features__item__link">Learn more</a>          
             </div>
             <div className="support-page__features__item">
               <img src="/assets/svg/support_resources.svg" className="support-page__features__item__img" alt="Grakn Resources" />
@@ -135,15 +134,13 @@ class SupportPage extends Component {
               <span className="support-page__features__item__text">
               Engage with the Grakn <Link to="/community" className="animated__link animated__link--purple">community</Link> from around the world, and make sure you make the best of our <a href={graknRoutes.discuss} className="animated__link animated__link--purple">documentation portal</a> and the <a href={graknRoutes.discuss} className="animated__link animated__link--purple">discussion forum.</a>
               </span>
-              <a href="" className="animated__link animated__link--purple support-page__features__item__link">Learn more</a>          
             </div>
             <div className="support-page__features__item">
               <img src="/assets/svg/support_services.svg" className="support-page__features__item__img" alt="Grakn Services" />
               <span className="support-page__features__item__header">Services</span>
               <span className="support-page__features__item__text">
-              Extend your team by collaborating with our experienced knowledge engineers at Grakn Labs. We’re ready to help you in every way we can.
+              Extend your team by collaborating with our experienced knowledge engineers at Grakn Labs. We’re ready to help you in every way we can. <a href="" className="animated__link animated__link--purple support-page__features__item__link">Learn more</a>
               </span>
-              <a href="" className="animated__link animated__link--purple support-page__features__item__link">Learn more</a>
             </div>
           </div>
         </section>
@@ -156,7 +153,7 @@ class SupportPage extends Component {
             <span className="button button--red" onClick={() => this.scroll()}>Contact sales to upgrade your support plan</span>
           </div>
         </section>
-        <Testimonials buttonCallback={this.scroll}/>
+        <Testimonials hidden={true}/>
         <section className="support-form__section" ref={(elem) => this.supportform = elem}>
           <div className="support-form__section__container container section__container">
             <span className="support-form__section__header">Get in touch with our team!</span>

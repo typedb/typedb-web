@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import Testimonials from 'components/Testimonials';
 import SupportForm from 'components/SupportForm';
 
@@ -205,10 +206,10 @@ class ServicesPage extends Component {
           <div className="services__alive__container container section__container">
             <span className="services__alive__header">IT’S ALIVE!</span>
             <span className="services__alive__tag">Now your knowledge base is alive and working for you and your business. Rest assured, we still have your back! Get Grakn Enterprise support to make sure no issue will ever get in the way of your business.</span>
-            <span className="services__alive__button button button--red" onClick={() => this.scroll()}>Get Support</span>                          
+            <Link className="services__alive__button button button--red" to="/support">Get Support</Link>                          
           </div>
         </section>
-        <Testimonials buttonCallback={this.scroll}/>
+        <Testimonials hidden={true}/>
         <section className="support-form__section" ref={(elem) => this.supportform = elem}>
           <div className="support-form__section__container container section__container">
             <span className="support-form__section__header">Get in touch with our team!</span>

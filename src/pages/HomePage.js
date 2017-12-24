@@ -73,7 +73,7 @@ class HomePage extends Component {
                 </div>
                 <span className="home__features__item__text__headline">Knowledge Schema</span>
                 <span className="home__features__item__text__paragraph">
-                Enhanced Entity-Relationship schema–with constructs to define hyper-objects, hyper-relations and functions–to build complex knowledge models
+                Enhanced Entity-Relationship schema, with constructs to define hyper-objects, hyper-relations and functions, to build complex knowledge models
                 </span>
                 <a href={graknRoutes.overview} className="animated__link animated__link--purple">Learn More</a>                        
               </div>
@@ -196,7 +196,7 @@ class HomePage extends Component {
               </div>       
             </PagingComponent>
           </div>
-          <a href={graknRoutes.overview} className="button button--transparent home__production__button">Learn More</a>      
+          <Link to="/kbms" className="button button--transparent home__production__button">Learn More</Link>      
         </section>
         <section className="home__deployment">
           <div className="home__deployment__container container section__container">

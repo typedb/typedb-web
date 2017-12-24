@@ -169,6 +169,8 @@
         margin-right: 5%;
         > img {
           max-width: 90%;
+          display: block;
+          margin: 0 auto;
         }
       }
       &__details {
@@ -321,7 +323,6 @@
         padding: 45px 30px;
         box-sizing: border-box;
         @media screen and (max-width: $mediumScreen) {
-          max-width: 450px;
           width: 100%;
           margin-left: auto;
           margin-right: auto;

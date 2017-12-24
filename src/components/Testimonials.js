@@ -10,7 +10,18 @@ const testimonials = [
   {name: 'Samuel Pouyt', company: 'Software Architect, European Respiratory Society', img: '/assets/img/testimonials/samuel.jpg', review: '“Whether it is for content recommendation, managing GDPR or text classification, more I use GRAKN.AI, more I discover suited use cases. Power and simplicity make it an everyday tool.”'},
 ];
 
-const Testimonials = ({ buttonCallback }) => (
+const renderButton = (buttonCallback, hidden ) => {
+  if (hidden) {
+    return null;
+  }
+  else if(buttonCallback) {
+    return <span className="button button--red" onClick={() => buttonCallback()}>Get in touch with our team</span>
+  }
+  else {
+    return <Link to="/support" className="button button--red">Get in touch with our team</Link>
+  }
+}
+const Testimonials = ({ buttonCallback, hidden }) => (
   <section className="testimonials">
     <div className="testimonials__container container section__container">
       <div className="testimonials__header">
@@ -38,10 +49,7 @@ const Testimonials = ({ buttonCallback }) => (
         }
       </PagingComponent>
       {
-        buttonCallback?
-          <span className="button button--red" onClick={() => buttonCallback()}>Get in touch with our team</span>
-          :
-          <Link to="/support" className="button button--red">Get in touch with our team</Link>
+        renderButton(buttonCallback, hidden)
       }
     </div>
   </section>
