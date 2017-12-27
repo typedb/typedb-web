@@ -1,3 +1,189 @@
 .deployment-page {
   padding-top: $navHeight;
+  &__splash {
+    height: 500px;
+    width: 100%;
+    background-image: url('/assets/svg/deployment-splash.svg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: bottom;
+    @media screen and (max-width: $smallScreen) {
+      height: 400px;
+    }
+    &__text {
+      padding-top: 85px;
+      text-align: center;
+      @media screen and (max-width: $smallScreen) {
+        padding-top: 50px;
+      }
+      > span {
+        display: block;
+        margin: 0 auto;
+      }
+      &__header {
+        font-size: 42px;
+        color: $textCharcoal;
+        > strong {
+          font-weight: 600;
+        }
+        @media screen and (max-width: $smallScreen) {
+          font-size: 28px;
+        }
+      }
+      &__tag {
+        padding-top: 0;
+        font-size: 20px;
+        color: $textLight;
+        font-weight: 300;
+        line-height: 1.4;
+        width: 100%;
+        @media screen and (max-width: $smallScreen) {
+          font-size: 14px;
+          font-weight: 400;
+        }
+      }
+    }
+  }
+
+  &__info {
+    padding: 90px 0;
+    @media screen and (max-width: $smallScreen) {
+      padding: 50px 0;
+    }
+    &__container {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      @media screen and (max-width: $smallScreen) {
+        flex-direction: column;
+        > div {
+          width: 100%;
+        }
+      }
+    }
+    &__details {
+      width: 45%;
+      &__button {
+        display: block;
+        margin: 1rem 0 0 0 !important;
+        font-size: 16px;
+        @media screen and (max-width: $smallScreen) {
+          font-size: 12px;
+          margin: 1rem auto 0 auto !important;
+        }
+      }
+      &__text {
+        color: $textLight;
+        line-height: 1.8;
+        font-size: 20px;
+        > strong {
+          color: $textCharcoal;
+          font-weight: 600;
+        }
+        @media screen and (max-width: $smallScreen) {
+          font-size: 16px;
+        }
+      }
+      @media screen and (max-width: $smallScreen) {
+        order: 2;
+        margin-top: 30px;
+      }
+    }
+    &__img {
+      width: 45%;
+      margin-left: 10%;
+      > img {
+        max-width: 100%;
+        display: block;
+        margin: 0 auto;
+      }
+      @media screen and (max-width: $smallScreen) {
+        order: 1;
+        margin: 0;
+      }
+    }
+  }
+
+  &__kbms {
+    position: relative;
+    padding: 0 0 90px 0;
+    > img {
+      position: absolute;
+      z-index: -1;
+      top: 0;
+      bottom: 0;
+      right: 0;
+      left: 0;
+      width: 100%;
+    }
+    &__buttons {
+      width: fit-content;
+      margin: 0 auto;
+      display: flex;
+      @media screen and (max-width: $smallScreen) {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+      > * {
+        min-width: 100px;
+        text-align: center;
+      }
+      > :nth-child(1) {
+        margin-right: 10px;
+        @media screen and (max-width: $smallScreen) {
+          margin: 0 auto 1rem auto;
+        }
+      }
+      > :nth-child(2) {
+        margin-left: 10px;
+        @media screen and (max-width: $smallScreen) {
+          margin: 0 auto;
+        }
+      }
+    }
+  }
+
+  &__coming {
+    padding: 0 0 90px 0;
+    position: relative;
+    min-height: 650px;
+    @media screen and (max-width: $smallScreen) {
+      padding: 0 0 50px 0;
+      min-height: 250px;
+    }
+    > .button {
+      position: absolute;
+      bottom: 90px;
+      left: 50%;
+      min-width: 200px;
+      text-align: center;
+      transform: translateX(-50%);
+      @media screen and (max-width: $smallScreen) {
+        bottom: 50px;
+      }
+    }
+    > img {
+      position: absolute;
+      z-index: -1;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      width: 100%;
+    }
+    &__header {
+      display: block;
+      margin: 0 auto;
+      font-weight: 300;
+      color: #4a4c52;
+      font-size: 30px;
+      text-align: center;
+      width: 70%;
+      @media screen and (max-width: $smallScreen) {
+        font-size: 20px;
+        width: 100%;
+      }
+    }
+  }
 }

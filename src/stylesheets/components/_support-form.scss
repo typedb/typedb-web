@@ -148,6 +148,21 @@ $supportFormColor: #a8a9b0;
         font-size: 22px;
         padding-bottom: 30px;
       }
+      &--with-tag {
+        padding-bottom: 0.8rem;
+      }
+    }
+    &__tag {
+      display: block;
+      font-size: 20px;
+      margin-bottom: 3rem;
+      font-weight: 300;
+      color: $textLight;
+      text-align: center;
+      @media screen and (max-width: $smallScreen) {
+        font-size: 16px;
+        margin-bottom: 2rem;
+      }
     }
   }
 }
