@@ -69,7 +69,9 @@ $navShadow: 0 0 26px 0 rgba(221, 221, 221, 0.64);
         border-radius: 5px;
         padding: 1rem 0.8rem;
         padding-bottom: 0;
-        right: 0;
+        left: 0;
+        text-align: left;
+        min-width: 80px;
         border: 1px solid $borderColor;
         &__item {
           display: block;
