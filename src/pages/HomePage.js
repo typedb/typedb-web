@@ -6,7 +6,7 @@ import PagingComponent from 'components/PagingComponent';
 import SupportFormModal from 'components/SupportFormModal';
 import Testimonials from 'components/Testimonials';
 import graknRoutes from 'config/graknRoutes';
-
+import KBMSFeatures from 'components/KBMSFeatures';
 
 const deploymentOptions = [
   { name: 'Google Cloud Platform', url: '/assets/img/cloud_platform.png'},
@@ -139,62 +139,7 @@ class HomePage extends Component {
             <span className="home__production__headline home__header container section__container">
             Scale your knowledge base into production with Grakn <strong>KBMS</strong> and <strong>Workbase</strong>    
             </span>
-            <PagingComponent>
-              <div className="home__production__slider__item">
-                <div className="home__production__slider__item__container">
-                  <span className="home__production__slider__item__header"><i className="fa fa-check" aria-hidden={true}/>Scalabale Storage</span>   
-                  <span className="home__production__slider__item__text">A scalable system designed to be partitioned and replicated over a network of distributed machines</span>          
-                </div>
-              </div>
-              <div className="home__production__slider__item">
-                <div className="home__production__slider__item__container">
-                  <span className="home__production__slider__item__header"><i className="fa fa-check" aria-hidden={true}/>Elastic throughput</span>         
-                  <span className="home__production__slider__item__text">Read and write throughput scales linearly as new machines are added to the Grakn cluster, without  any downtime</span>                    
-                </div>
-              </div>
-              <div className="home__production__slider__item">
-                <div className="home__production__slider__item__container">
-                  <span className="home__production__slider__item__header"><i className="fa fa-check" aria-hidden={true}/>Extensible Schema</span>                  
-                  <span className="home__production__slider__item__text">Schema definition can be updated and extended flexibly, during runtime, without any need for database migration</span>                       
-                </div>
-              </div>
-              <div className="home__production__slider__item">
-                <div className="home__production__slider__item__container">
-                  <span className="home__production__slider__item__header"><i className="fa fa-check" aria-hidden={true}/>Secured Authentication </span>                  
-                  <span className="home__production__slider__item__text">Ensuring not only authenticated access but also that only appropriately privileged users are allowed to access specific datasets</span>                       
-                </div>
-              </div>
-              <div className="home__production__slider__item">
-                <div className="home__production__slider__item__container">
-                  <span className="home__production__slider__item__header"><i className="fa fa-check" aria-hidden={true}/>Full-string indexing</span>
-                  <span className="home__production__slider__item__text">Advanced full-text search capabilities, by enabling powerful string matching techniques over any body of text</span>
-                </div>
-              </div>
-              <div className="home__production__slider__item">
-                <div className="home__production__slider__item__container">
-                  <span className="home__production__slider__item__header"><i className="fa fa-check" aria-hidden={true}/>Migration Tools</span>                  
-                  <span className="home__production__slider__item__text">Tools to help migrate large datasets from various formats and database sources, easily and quickly</span>                       
-                </div>
-              </div>       
-              <div className="home__production__slider__item">
-                <div className="home__production__slider__item__container">
-                  <span className="home__production__slider__item__header"><i className="fa fa-check" aria-hidden={true}/>Dedicated IDE</span>                  
-                  <span className="home__production__slider__item__text">An integrated development environment for knowledge engineering and modelling at scale</span>                       
-                </div>
-              </div>       
-              <div className="home__production__slider__item">
-                <div className="home__production__slider__item__container">
-                  <span className="home__production__slider__item__header"><i className="fa fa-check" aria-hidden={true}/>Monitoring</span>                  
-                  <span className="home__production__slider__item__text">Monitor your database performance in real-time through a dedicated and configurable dashboard</span>                       
-                </div>
-              </div>       
-              <div className="home__production__slider__item">
-                <div className="home__production__slider__item__container">
-                  <span className="home__production__slider__item__header"><i className="fa fa-check" aria-hidden={true}/>Cluster Management</span>                  
-                  <span className="home__production__slider__item__text">Easily deploy and scale your database with tools that automate the of provisioning your cluster</span>                       
-                </div>
-              </div>       
-            </PagingComponent>
+            <KBMSFeatures />
           </div>
           <Link to="/kbms" className="button button--transparent home__production__button">Learn More</Link>      
         </section>

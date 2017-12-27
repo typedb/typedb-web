@@ -1,0 +1,56 @@
+.kbms-features {
+
+  &__item {
+    width: 280px;
+    height: 280px;
+    margin: 0 10px;
+    position: relative;
+    background-color: #ffffff;
+    border: 1px solid $borderColor;
+    position: relative;
+    border-radius: 5px;
+    box-sizing: border-box;
+    @media screen and (max-width: $smallScreen) {
+      width: 260px;
+      margin: 0 5px;
+      height: 200px;
+    }
+    @media screen and (max-width: 400px) {
+      width: 210px;
+      height: 220px;
+    }
+   &__container {
+    height: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+   }
+   &__logo {
+     > img {
+       width: 35px;
+     }
+     padding-bottom: 1rem;
+   }
+   &__header {
+     display: block;
+     font-size: 18px;
+     font-weight: 600;
+     line-height: 1.2;
+     text-align: center;
+     color: $textCharcoal;
+     padding-bottom: 0.8rem;
+     @media screen and (max-width: $smallScreen) {
+      font-size: 16px;
+    }
+   }
+   &__text {
+    font-size: 16px;
+    line-height: 1.8;
+    text-align: center;
+    color: $textLight;
+    display: block;
+    @media screen and (max-width: $smallScreen) {
+      font-size: 14px;
+    }
+   }
+  }
+}

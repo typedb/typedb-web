@@ -11,6 +11,7 @@ import CommunityPage from 'pages/CommunityPage';
 import ServicesPage from 'pages/ServicesPage';
 import SupportPage from 'pages/SupportPage';
 import GraknPage from 'pages/GraknPage';
+import DeploymentPage from 'pages/DeploymentPage';
 import NoPage from 'pages/NoPage';
 import ComingSoon from 'pages/ComingSoon';
 
@@ -54,7 +55,7 @@ class Main extends Component {
           <Route exact path="/services" component={ServicesPage} />
           <Route exact path="/grakn" component={GraknPage} />
           <Route exact path="/kbms" component={ComingSoon} />
-          <Route exact path="/deployment" component={ComingSoon} />
+          <Route exact path="/deployment" component={DeploymentPage} />
           <Route component={NoPage} />
         </Switch>
       </main>
