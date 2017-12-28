@@ -128,6 +128,33 @@
     @media screen and (max-width: $mediumScreen) {
       padding: 50px 0;
     }
+    &__buttons {
+      width: fit-content;
+      margin: 0 auto;
+      display: flex;
+      margin-top: 50px;
+      @media screen and (max-width: $smallScreen) {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+      > * {
+        min-width: 100px;
+        text-align: center;
+      }
+      > :nth-child(1) {
+        margin-right: 10px;
+        @media screen and (max-width: $smallScreen) {
+          margin: 0 auto 1rem auto;
+        }
+      }
+      > :nth-child(2) {
+        margin-left: 10px;
+        @media screen and (max-width: $smallScreen) {
+          margin: 0 auto;
+        }
+      }
+    }
     &__header {
       display: block;
       padding-bottom: 90px;
@@ -147,14 +174,6 @@
       }
     }
     &__container {
-      > div {
-        display: inline-block;
-        vertical-align: middle;
-        @media screen and (max-width: $mediumScreen) {
-          width: 100%;
-          display: block;
-        }
-      }
       > div:nth-child(2) {
         @media screen and (max-width: $mediumScreen) {
           margin-bottom: 30px;
@@ -163,8 +182,13 @@
     }
     &__col {
       width: 45%;
-      display: flex;
-      flex-direction: column;
+      display: inline-block;
+      vertical-align: middle;
+      @media screen and (max-width: $mediumScreen) {
+        width: 100%;
+        display: block;
+      }
+      
       div:last-child {
         margin-bottom: 0 !important;
       }
@@ -173,6 +197,12 @@
       }
       &__divider {
         width: 10%;
+        display: inline-block;
+        vertical-align: middle;
+        @media screen and (max-width: $mediumScreen) {
+          width: 100%;
+          display: block;
+        }
         > img {
           display: block;
           margin: 0 auto;

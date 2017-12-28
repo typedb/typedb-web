@@ -172,6 +172,10 @@ const KBMSPage = () => (
           </div>
 
         </div>
+        <div className="kbms-page__features__buttons">
+          <a href="" className="button button--red">GET KBMS</a>
+          <a href="" className="button button--transparent">GET WORKBASE</a>
+        </div>
       </div>
     </section>
   </div>

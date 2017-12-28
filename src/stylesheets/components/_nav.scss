@@ -72,6 +72,7 @@ $navShadow: 0 0 26px 0 rgba(221, 221, 221, 0.64);
         left: 0;
         text-align: left;
         min-width: 80px;
+        width: 100%;
         border: 1px solid $borderColor;
         &__item {
           display: block;
