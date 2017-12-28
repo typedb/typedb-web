@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="90px" height="90px" viewBox="0 0 90 90" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 48.1 (47250) - http://www.bohemiancoding.com/sketch -->
+    <title>noun_924836_cc</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="50%" y1="100%" x2="50%" y2="0%" id="linearGradient-1">
+            <stop stop-color="#BFF5DC" offset="0%"></stop>
+            <stop stop-color="#9CE9C5" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="linearGradient-2">
+            <stop stop-color="#46CD90" offset="0%"></stop>
+            <stop stop-color="#6AD8A6" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="50%" y1="-34.1698023%" x2="50%" y2="50%" id="linearGradient-3">
+            <stop stop-color="#42CA8C" offset="0%"></stop>
+            <stop stop-color="#9DE9C6" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="KBMS-Copy" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" transform="translate(-336.000000, -1279.000000)">
+        <g id="noun_924836_cc" transform="translate(381.000000, 1324.000000) scale(1, -1) translate(-381.000000, -1324.000000) translate(336.000000, 1279.000000)" fill-rule="nonzero">
+            <rect id="Rectangle-path" fill="url(#linearGradient-1)" x="0" y="66.477" width="23.523" height="23.523" rx="6"></rect>
+            <rect id="Rectangle-path" fill="url(#linearGradient-1)" x="33.238" y="66.477" width="23.523" height="23.523" rx="6"></rect>
+            <rect id="Rectangle-path" fill="url(#linearGradient-2)" x="33.238" y="0" width="23.523" height="23.523" rx="6"></rect>
+            <rect id="Rectangle-path" fill="url(#linearGradient-1)" x="66.477" y="66.477" width="23.523" height="23.523" rx="6"></rect>
+            <rect id="Rectangle-path" fill="url(#linearGradient-3)" x="43.467" y="23.523" width="3.067" height="42.954"></rect>
+            <path d="M79.773,66.477 L76.705,66.477 L76.705,46.534 L11.933,46.534 L11.933,66.477 L8.864,66.477 L8.864,45 C8.864,44.153 9.552,43.466 10.399,43.466 L78.239,43.466 C79.087,43.466 79.774,44.154 79.774,45 L79.774,66.477 L79.773,66.477 Z" id="Shape" fill="#9DE9C6"></path>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,256 @@
+.kbms-page {
+  padding-top: $navHeight;
+  &__splash {
+    position: relative;
+    height: 700px;
+    width: 100%;
+    background-image: url('/assets/svg/kbms-splash.svg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: bottom;
+    @media screen and (max-width: $smallScreen) {
+      height: 400px;
+    }
+    &__kbms {
+      max-width: 100%;
+      position: absolute;
+      bottom: -250px;
+      max-width: $mediumScreen;
+      left: 50%;
+      transform: translateX(-50%);
+      box-sizing: border-box;
+      border-radius: 5px;
+      @media screen and (max-width: $mediumScreen){
+        width: 90%;
+        bottom: -200px;
+      }
+      @media screen and (max-width: $extraSmallScreen){
+        bottom: -100px;
+      }
+    }
+    &__text {
+      padding-top: 85px;
+      text-align: center;
+      @media screen and (max-width: $smallScreen) {
+        padding-top: 50px;
+      }
+      > span {
+        display: block;
+        margin: 0 auto;
+      }
+      &__header {
+        font-size: 42px;
+        color: $textCharcoal;
+        > strong {
+          font-weight: 600;
+        }
+        @media screen and (max-width: $smallScreen) {
+          font-size: 28px;
+        }
+      }
+      &__tag {
+        padding-top: 0;
+        font-size: 20px;
+        color: $textLight;
+        font-weight: 300;
+        line-height: 1.7;
+        width: 70%;
+        @media screen and (max-width: $smallScreen) {
+          font-size: 14px;
+          font-weight: 400;
+          width: 100%;
+        }
+      }
+    }
+  }
+
+  &__info {
+    &__container {
+      padding-top: 350px;
+      display: flex;
+      flex-direction: row;
+      @media screen and (max-width: $mediumScreen){
+        padding-top: 250px;
+      }
+      @media screen and (max-width: $extraSmallScreen){
+        padding-top: 150px;
+      }
+      @media screen and (max-width: $smallScreen) {
+        flex-direction: column;
+      }
+      > div:nth-child(2), div:nth-child(3) {
+        @media screen and (max-width: $smallScreen) {
+          margin-top: 50px;
+        }
+      }
+    }
+    &__item {
+      flex-basis: 0;
+      flex-grow: 1;
+      display: inline-block;
+      vertical-align: top;
+      > img {
+        display: block;
+        margin: 0 auto;
+        margin-bottom: 1rem;
+        max-height: 90px; 
+      }
+      &__header {
+        font-size: 22px;
+        text-align: center;
+        color: $textCharcoal;
+        font-weight: 600;
+        display: block;
+        padding-bottom: 1rem;
+        @media screen and (max-width: $smallScreen) {
+          font-size: 16px;
+        }
+      }
+      &__text {
+        display: block;
+        text-align: center;
+        font-size: 18px;
+        color: $textLight;
+        line-height: 1.7;
+        @media screen and (max-width: $smallScreen) {
+          font-size: 14px;
+        }
+      }
+    }
+  }
+  &__features {
+    padding: 90px 0;
+    background-image: url('/assets/img/kbms-features-bg.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: top;
+    position: relative;
+    @media screen and (max-width: $mediumScreen) {
+      padding: 50px 0;
+    }
+    &__header {
+      display: block;
+      padding-bottom: 90px;
+      font-size: 34px;
+      color: $textCharcoal;
+      text-align: center;
+      width: 80%;
+      margin: 0 auto;
+      > strong {
+        font-weight: 600;
+        color: #7969e6;
+      }
+      @media screen and (max-width: $mediumScreen) {
+        width: 100%;
+        font-size: 24px;
+        padding-bottom: 50px;
+      }
+    }
+    &__container {
+      > div {
+        display: inline-block;
+        vertical-align: middle;
+        @media screen and (max-width: $mediumScreen) {
+          width: 100%;
+          display: block;
+        }
+      }
+      > div:nth-child(2) {
+        @media screen and (max-width: $mediumScreen) {
+          margin-bottom: 30px;
+        }
+      }
+    }
+    &__col {
+      width: 45%;
+      display: flex;
+      flex-direction: column;
+      div:last-child {
+        margin-bottom: 0 !important;
+      }
+      @media screen and (max-width: $mediumScreen) {
+        width: 100%;
+      }
+      &__divider {
+        width: 10%;
+        > img {
+          display: block;
+          margin: 0 auto;
+          max-width: 50%;
+        }
+        @media screen and (max-width: $mediumScreen) {
+          display: none !important;
+        }
+      }
+      &__item {
+        width: auto;
+        padding: 30px;
+        box-sizing: border-box;
+        background-color: white;
+        border: solid 1px #e6e8f4;
+        border-radius: 5px;
+        margin-bottom: 50px;
+        height: 180px;
+        @media screen and (max-width: $mediumScreen) {
+          margin-bottom: 30px;
+          height: 160px;
+        }
+        &--purple {
+          border: 1px solid #8f85e8;
+        }
+        &--red {
+          border: 1px solid #fa7677;
+        }
+        &--yellow {
+          border: 1px solid #93ecc3;
+        }
+        &--green {
+          border: 1px solid #fccb94;
+        }
+        &--blue {
+          border: 1px solid #93dcff;
+        }
+
+        > div {
+          display: inline-block;
+          vertical-align: middle;
+        }
+        &__img {
+          width: 15%;
+          margin-right: 5%;
+          > img {
+            max-width: 90%;
+            display: block;
+            margin: 0 auto;
+          }
+        }
+        &__details {
+          width: 80%;
+          text-align: left;
+          &__header {
+            display: block;
+            font-weight: 600;
+            color: $textCharcoal;
+            font-size: 20px;
+            padding-bottom: 0.5rem;
+            @media screen and (max-width: $smallScreen) {
+              font-size: 16px;
+            }
+          }
+          &__text {
+            font-size: 16px;
+            color: $textLight;
+            @media screen and (max-width: $smallScreen) {
+              font-size: 14px;
+            }
+            > a {
+              display: inline-block;
+              vertical-align: bottom;
+              width: fit-content;
+            }
+          }
+        }
+      }
+    }
+  }
+}

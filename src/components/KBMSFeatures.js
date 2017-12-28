@@ -27,7 +27,7 @@ const KBMSFeatures = () => (
     <div className="kbms-features__item">
       <div className="kbms-features__item__container">
         <div className="kbms-features__item__logo"><img src="/assets/svg/kbms-secured.svg" alt="Secured Authentication" /></div>
-        <span className="kbms-features__item__header">Secured Authentication </span>                  
+        <span className="kbms-features__item__header">Secured Authentication</span>                  
         <span className="kbms-features__item__text">Ensuring not only authenticated access but also that only appropriately privileged users are allowed to access specific datasets</span>                       
       </div>
     </div>

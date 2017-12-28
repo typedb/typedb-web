@@ -12,6 +12,7 @@ import ServicesPage from 'pages/ServicesPage';
 import SupportPage from 'pages/SupportPage';
 import GraknPage from 'pages/GraknPage';
 import DeploymentPage from 'pages/DeploymentPage';
+import KBMSPage from 'pages/KBMSPage';
 import NoPage from 'pages/NoPage';
 import ComingSoon from 'pages/ComingSoon';
 import {FinanceUseCasePage, HealthUseCasePage, SemanticUseCasePage, BotsUseCasePage, SecurityUseCasePage} from 'pages/UseCasePages';
@@ -56,7 +57,7 @@ class Main extends Component {
           <Route exact path="/support" component={SupportPage} />
           <Route exact path="/services" component={ServicesPage} />
           <Route exact path="/grakn" component={GraknPage} />
-          <Route exact path="/kbms" component={ComingSoon} />
+          <Route exact path="/kbms" component={KBMSPage} />
           <Route exact path="/deployment" component={DeploymentPage} />
           <Route path="/usecase-finance" component={FinanceUseCasePage} />
           <Route path="/usecase-health" component={HealthUseCasePage} />
