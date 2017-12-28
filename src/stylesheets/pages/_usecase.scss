@@ -1,0 +1,106 @@
+.usecase-page {
+  padding-top: $navHeight;
+  &__list {
+    padding-top: $navHeight;
+  }
+  &__splash {
+    height: 550px;
+    width: 100%;
+    background-image: url('/assets/svg/usecase-splash.svg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: left;
+    @media screen and (max-width: $smallScreen) {
+      height: 400px;
+      background-position: left;
+    }
+    &__text {
+      padding-top: 85px;
+      text-align: center;
+      @media screen and (max-width: $smallScreen) {
+        padding-top: 50px;
+      }
+      > span {
+        display: block;
+        margin: 0 auto;
+      }
+      &__header {
+        font-size: 42px;
+        color: white;
+        width: 50%;
+        > strong {
+          font-weight: 600;
+        }
+        @media screen and (max-width: $smallScreen) {
+          font-size: 28px;
+          width: 100%;
+        }
+      }
+    }
+  }
+  &__info {
+    padding: 0 0 90px 0;
+    @media screen and (max-width: $smallScreen) {
+      padding: 0 0 50px 0;
+    }
+    &__container {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      @media screen and (max-width: $smallScreen) {
+        flex-direction: column;
+        > div {
+          width: 100%;
+        }
+      }
+    }
+    &__details {
+      width: 55%;
+      &__header {
+        color: $textCharcoal;
+        font-size: 24px;
+        font-weight: 600;
+        padding-bottom: 1rem;
+        @media screen and (max-width: $smallScreen) {
+          font-size: 18px;
+        }
+      }
+      &__text {
+        color: $textLight;
+        line-height: 1.8;
+        font-size: 18px;
+        > strong {
+          color: $textCharcoal;
+          font-weight: 600;
+        }
+        @media screen and (max-width: $smallScreen) {
+          font-size: 14px;
+        }
+      }
+      @media screen and (max-width: $smallScreen) {
+        order: 2;
+        margin-top: 30px;
+      }
+    }
+    &__img {
+      width: 35%;
+      margin-left: 10%;
+      > img {
+        max-width: 100%;
+        display: block;
+        margin: 0 auto;
+      }
+      @media screen and (max-width: $smallScreen) {
+        order: 1;
+        margin: 0;
+      }
+    }
+  }
+
+  // > .testimonials {
+  //   background-image: url('/assets/svg/usecase-testimonial-bg.svg');
+  //   background-repeat: no-repeat;
+  //   background-size: cover;
+  //   background-position: center center;
+  // }
+}

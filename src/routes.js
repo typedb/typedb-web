@@ -14,6 +14,8 @@ import GraknPage from 'pages/GraknPage';
 import DeploymentPage from 'pages/DeploymentPage';
 import NoPage from 'pages/NoPage';
 import ComingSoon from 'pages/ComingSoon';
+import {FinanceUseCasePage, HealthUseCasePage, SemanticUseCasePage, BotsUseCasePage, SecurityUseCasePage} from 'pages/UseCasePages';
+
 
 class Main extends Component {
   constructor(props) {
@@ -56,6 +58,11 @@ class Main extends Component {
           <Route exact path="/grakn" component={GraknPage} />
           <Route exact path="/kbms" component={ComingSoon} />
           <Route exact path="/deployment" component={DeploymentPage} />
+          <Route path="/usecase-finance" component={FinanceUseCasePage} />
+          <Route path="/usecase-health" component={HealthUseCasePage} />
+          <Route path="/usecase-search" component={SemanticUseCasePage} />
+          <Route path="/usecase-bots" component={BotsUseCasePage} />
+          <Route path="/usecase-security" component={SecurityUseCasePage} />
           <Route component={NoPage} />
         </Switch>
       </main>
