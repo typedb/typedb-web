@@ -1,16 +1,39 @@
 
 const graknRoutes = require('config/graknRoutes');
 
-module.exports = {
+export const internalRoutes =  [
+  'Services', 'Support', 'The Grakn', 'The KBMS', 'Deployment', 'Community', 'About', 'Careers', 'Financial Services',
+  'Health & Life Sciences', 'Intelligent Bots', 'Semantic Search', 'Security'
+];
+
+export const navRoutes = {
   Overview: {
     type: 'single',
-    link: `${graknRoutes.overview}`
+    link: `${graknRoutes.overview}`,
+  },
+  Database: {
+    type: 'multi',
+    links: {
+      'The Grakn': '/grakn',
+      'The KBMS': '/kbms',
+    }
   },
   Enterprise: {
     type: 'multi',
     links: {
+      Deployment: '/deployment',
       Services: '/services',
       Support: '/support'
+    }
+  },
+  'Use Cases': {
+    type: 'multi',
+    links: {
+      'Financial Services': '/usecase-finance',
+      'Health & Life Sciences': '/usecase-health',
+      'Intelligent Bots': '/usecase-bots',
+      'Semantic Search': '/usecase-search',
+      'Security': '/usecase-security'
     }
   },
   Developer: {

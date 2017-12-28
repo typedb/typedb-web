@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import classNames from 'classnames';
 import { Link } from 'react-router-dom';
-import navRoutes from 'config/navRoutes';
+import { navRoutes, internalRoutes } from 'config/navRoutes';
 
 class NavigationMenu extends Component {
   constructor(props) {
@@ -27,6 +27,28 @@ class NavigationMenu extends Component {
       });
       // 
       if (value.type === 'single') {
+        if(internalRoutes.indexOf(key) !==-1 ) {
+          return (
+            <Link
+              key={`${key}__link`}
+              to={value.link}
+              className={linkClasses}
+              onClick={
+                () => {
+                  if(hamburger) {
+                    this.setState({
+                      secondaryActive: false,
+                      activePrimary: null,
+                      expanded: false
+                    });
+                  }
+                }
+              }
+              >
+              {key}      
+              </Link>
+          )
+        }
         return (
           <a
           key={`${key}__link`}
@@ -73,7 +95,7 @@ class NavigationMenu extends Component {
               <div className="nav__link__dropdown__content">
               {
                 Object.keys(subLinks).map((key) => {
-                  if (key === 'Community' || key === 'Services' || key === 'Support') {
+                  if (internalRoutes.indexOf(key) !==-1 ) {
                       return (
                         <Link key={`${key}__link`} to={subLinks[key]} className='nav__link nav__link__dropdown__content__item animated__link'>{key}</Link>
                       )
@@ -122,7 +144,7 @@ class NavigationMenu extends Component {
     return (
       <div className="nav__links">
       {
-        mediaType === 'small' || mediaType === 'extraSmall' ?
+        mediaType=== 'medium' || mediaType === 'small' || mediaType === 'extraSmall' ?
           <button
             className={hamburgerButton}
             aria-hidden="true"
@@ -136,7 +158,7 @@ class NavigationMenu extends Component {
           null        
       }
       {
-        mediaType === 'small' || mediaType === 'extraSmall' ?
+        mediaType=== 'medium' || mediaType === 'small' || mediaType === 'extraSmall' ?
           <div className={hamburgerClasses}>
             {
               this.renderLinks(true)
@@ -146,7 +168,7 @@ class NavigationMenu extends Component {
           this.renderLinks(false)      
       }
       {
-        mediaType === 'small' || mediaType === 'extraSmall' ?
+        mediaType=== 'medium' || mediaType === 'small' || mediaType === 'extraSmall' ?
           <div className={hamburgerSecondaryClasses}>
             <span className="nav__link nav__hamburger__secondary__back"
             onClick={() => this.setState({
@@ -160,7 +182,7 @@ class NavigationMenu extends Component {
               this.state.activePrimary?
                 Object.keys(navRoutes[this.state.activePrimary].links).map((key, index) => {
                   const subLinks = navRoutes[this.state.activePrimary].links;
-                  if (key === 'Community' || key === 'Services' || key === 'Support') {
+                  if (internalRoutes.indexOf(key) !==-1 ) {
                     return (
                       <Link 
                         key={`${key}__link`}
