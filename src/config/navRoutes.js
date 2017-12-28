@@ -11,13 +11,13 @@ export const navRoutes = {
     type: 'single',
     link: `${graknRoutes.overview}`,
   },
-  Database: {
-    type: 'multi',
-    links: {
-      'The Grakn': '/grakn',
-      'The KBMS': '/kbms',
-    }
-  },
+  // Database: {
+  //   type: 'multi',
+  //   links: {
+  //     'The Grakn': '/grakn',
+  //     'The KBMS': '/kbms',
+  //   }
+  // },
   Enterprise: {
     type: 'multi',
     links: {
