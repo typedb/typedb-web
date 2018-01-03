@@ -42,13 +42,15 @@ class CommunityPage extends Component {
             <div className="community__content__links">
               <div className="community__content__links__col">
                 <div className="community__content__links__col__item">
-                  <span className="community__content__links__col__item__header">Talk to us on Slack</span>
+                  <span className="community__content__links__col__item__header"><img src="/assets/svg/slack-mark.svg" alt="Slack"/>Talk to us on Slack</span>
                   <span className="community__content__links__col__item__text">
                   We’d love to help you get up to speed with Grakn. Get in touch with the team and community on our <Link to="/slack" className="animated__link animated__link--purple">Slack Channel</Link>
                   </span>                  
                 </div>
                 <div className="community__content__links__col__item">
-                  <span className="community__content__links__col__item__header">Get involved on GitHub
+                  <span className="community__content__links__col__item__header">
+                  <i className="fa fa-github" aria-hidden={true} />
+                  Get involved on GitHub
                   </span>
                   <span className="community__content__links__col__item__text">
                   Report a bug, request new features, submit a patch and follow our development on our <a href={graknRoutes.github} target="_blank" className="animated__link animated__link--purple">GitHub Repository</a>
@@ -57,21 +59,27 @@ class CommunityPage extends Component {
               </div>
               <div className="community__content__links__row">
                 <div className="community__content__links__row__col community__content__links__col__item">
-                  <span className="community__content__links__col__item__header">Start a discussion                  
+                  <span className="community__content__links__col__item__header">
+                  <img src="/assets/svg/grakn-discussion.svg" alt="Discussion" />
+                  Start a discussion                  
                   </span>
                   <span className="community__content__links__col__item__text">
                   When you’re stuck on a problem, often the most effective remedy is to collaborate. Ask your question on <a href={graknRoutes.stack} target="_blank" className="animated__link animated__link--purple">Stackoverflow</a> or discuss your problem in our <a href={graknRoutes.discuss} className="animated__link animated__link--purple">Discussion Forum</a>.
                   </span>                  
                 </div>
                 <div className=" community__content__links__row__col community__content__links__col__item">
-                  <span className="community__content__links__col__item__header">Join our Facebook Group                  
+                  <span className="community__content__links__col__item__header">
+                  <i className="fa fa-facebook" aria-hidden={true} />
+                  Join our Facebook Group                  
                   </span>
                   <span className="community__content__links__col__item__text">
                   We love to stay up to date with things happening within our community. Join our <a href={graknRoutes.facebook} target="_blank" className="animated__link animated__link--purple">Facebook Group</a> and meet the rest of our community members.
                   </span>                  
                 </div>
                 <div className="community__content__links__row__col community__content__links__col__item">
-                  <span className="community__content__links__col__item__header">Build with Grakn                  
+                  <span className="community__content__links__col__item__header">
+                  <img src="/assets/svg/bot.svg" alt="Grakn" />
+                  Build with Grakn                  
                   </span>
                   <span className="community__content__links__col__item__text">
                   We have a growing list of project ideas. If you need inspiration and want to build something cool, take a look at our <a href="https://dev.grakn.ai/documentation/examples/projects.html" target="_blank" className="animated__link animated__link--purple">suggestions</a> or send us your own ideas via the <a href={graknRoutes.github} target="_blank" className="animated__link animated__link--purple">Discussion Forum.</a>

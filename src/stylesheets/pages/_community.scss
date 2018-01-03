@@ -150,6 +150,22 @@
             @media screen and (max-width: $smallScreen) {
               font-size: 20px !important;;
             }
+            > img {
+              display: inline-block;
+              height: 30px;
+              vertical-align: middle;
+              padding-right: 1rem;
+            }
+            > .fa {
+              padding-right: 1rem;
+              font-size: 30px;
+              &-facebook {
+                color: #3b5999;
+              }
+              &-github {
+                color: black;
+              }
+            }
           }
         }
       }
