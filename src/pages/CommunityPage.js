@@ -83,6 +83,17 @@ class CommunityPage extends Component {
         </section>
         <section className="community__fancy">
           <div className="community__fancy__container container section__container">
+            <div className="community__fancy__item">
+              <span className="community__fancy__item__header community__fancy__item__header--green">Join our Meetups!</span>
+              <span className="community__fancy__item__text">
+              Learn how graph technologies could help you work more intelligently with highly interconnected data. We will talk about best practices in complex data modelling, graph visualisation, graph analytics, graph deployments in the cloud, as well as their applications for intelligent systems and AI applications. Join our <a href={graknRoutes.meetups} className="animated__link animated__link--purple">meetups</a>.
+              </span>
+            </div>
+            <div className="community__fancy__item">
+              <span className="community__fancy__item__header community__fancy__item__header--purple">Become a Graqler!</span>
+              <span className="community__fancy__item__text">
+              For every application you develop with Grakn, if you share its story with us, you'll get a free t-shirt and GRAKN.AI stickers. If you blog/host it online, we'll send you our hoodie too!              </span>
+            </div>
           </div>
         </section>
       </div>

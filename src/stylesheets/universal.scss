@@ -65,6 +65,7 @@ button, input, select, label {
   position: relative;
   width: fit-content;
   text-decoration: none;
+  cursor: pointer;
   &:before {
     content: "";
     position: absolute;
