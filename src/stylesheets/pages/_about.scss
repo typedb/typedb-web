@@ -1,36 +1,56 @@
 .about {
   padding-top: $navHeight;
   &__splash {
+    position: relative;
     height: 400px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
-    background-color: rgba(0,0,0,0.6);
-    background-image: url('/assets/img/London.png');
+    background-image: url('/assets/svg/about-splash.svg');
     background-size: cover;
-    background-position: center;
+    background-position: center bottom;
     background-repeat: no-repeat;
     color: white;
     &__text {
-      font-size: 42px;
+      font-size: 40px;
       display: block;
+      margin: 0 auto;
       @media screen and (max-width: $smallScreen) {
-        font-size: 32px;
+        font-size: 30px;
+      }
+    }
+    &__circle {
+      width: 120px;
+      height: 120px;
+      background-color: #ffffff;
+      box-shadow: 2px 2px 10px 0 rgba(150, 134, 255, 0.2);
+      border-radius: 50%;
+      position: absolute;
+      bottom: -60px;
+      left: calc(50% - 60px);
+      > img {
+          width: 48px;
+          top: 60px;
+          display: block;
+          margin: 0 auto;
+          margin-top: 36px;
       }
     }
   }
   &__team {
-    padding: 70px 0;
+    padding: 120px 0;
     @media screen and (max-width: $smallScreen) {
-      padding: 50px 0;
+      padding: 90px 0;
     }
     &__header {
       display: block;      
       text-align: center;
-      font-size: 24px;
-      padding-bottom: 30px;
+      font-size: 30px;
+      padding-bottom: 50px;
+      color: $textCharcoal;
+      font-weight: 600;
       @media screen and (max-width: $smallScreen) {
         font-size: 24px;
       }
@@ -39,22 +59,42 @@
       font-size: 16px;
       > span {
         display: inline-block;
-        vertical-align: top;
-        width: 48%;
-        @media screen and (max-width: $smallScreen) {
+        vertical-align: middle;
+        width: 46%;
+        background-color:  #f3f4fa;
+        border-radius: 6px;
+        border: solid 1px #e8eaf4;
+        padding: 50px;
+        box-sizing: border-box;
+        line-height: 1.8;
+        color: $textLight;
+        font-size: 18px;
+        @media screen and (max-width: $mediumScreen) {
           width: 100%;
           display: block;
-          margin: 0;
           font-size: 14px;
         }
       }
-      &__col1 {
-        margin-right: 2%;
+      &__divider {
+        width: 8%;
+        display: inline-block;
+        vertical-align: middle;
+        @media screen and (max-width: $mediumScreen) {
+          width: 100%;
+          display: block;
+        }
+        > img {
+          display: block;
+          margin: 0 auto;
+          max-width: 50%;
+        }
+        @media screen and (max-width: $mediumScreen) {
+          display: none !important;
+        }
       }
       &__col2 {
-        margin-left: 2%;
-        @media screen and (max-width: $smallScreen) {
-          padding-top: 1.2rem;
+        @media screen and (max-width: $mediumScreen) {
+          margin-top: 1.2rem;
         }
       }
     }

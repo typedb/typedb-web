@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="62px" height="352px" viewBox="0 0 62 352" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 48.1 (47250) - http://www.bohemiancoding.com/sketch -->
+    <title>Group 4</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="50%" y1="2.16579861%" x2="50%" y2="100%" id="linearGradient-1">
+            <stop stop-color="#8F85E8" stop-opacity="0" offset="0%"></stop>
+            <stop stop-color="#8F88E7" offset="29.1780599%"></stop>
+            <stop stop-color="#93EAC4" offset="72.827691%"></stop>
+            <stop stop-color="#93ECC3" stop-opacity="0" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="about-copy-4" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" transform="translate(-769.000000, -760.000000)">
+        <g id="Group-4" transform="translate(770.000000, 752.000000)">
+            <rect id="Rectangle-5" fill="url(#linearGradient-1)" x="29" y="0" width="2" height="360" rx="1"></rect>
+            <circle id="Oval" stroke="#D2CDF8" fill="#EAE8FF" cx="30" cy="180" r="30"></circle>
+            <circle id="Oval-4" fill="#8F85E8" cx="30" cy="180" r="4"></circle>
+        </g>
+    </g>
+</svg>

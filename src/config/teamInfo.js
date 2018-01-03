@@ -71,13 +71,6 @@ module.exports = {
       social: 'https://linkedin.com/in/kasperpiskorski'
     },
     {
-      name: 'Michele Orsi',
-      position: 'Lead Engineer',
-      education: 'MSc in Software Engineering, University of Bologna',
-      img: '/assets/img/team_photos/michele.png',      
-      social: 'https://linkedin.com/in/michele-orsi'
-    },
-    {
       name: 'Marco Scoppetta',
       position: 'Software Engineer',
       education: 'MSc in Engineering of Computing Systems, Politecnico di Milano',
