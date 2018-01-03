@@ -2,90 +2,120 @@
   padding-top: $navHeight;
  
   &__splash {
-    height: 400px;
-    background-image: linear-gradient(91deg, #4d5575, #36405a);
+    height: 450px;
+    background-image: url('/assets/svg/community-splash.svg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: left center;
+    @media screen and (max-width: $smallScreen) {
+      background-position: 10% center;
+      height: 300px;
+    }
     &__container {
       height: 100%;
       display: flex;
       flex-direction: column;
       justify-content: center;
-      align-content: center;
-      background-image: url('/assets/img/graknmap.png');
-      background-repeat: no-repeat;
-      background-size: contain;
-      background-position: center;
+      align-content: flex-start;
+      position: relative;
       > span {
         display: block;
         font-size: 42px;
-        text-align: center;
+        text-align: left;
         color: white;
+        width: 50%;
+        line-height: 1.5;
+        font-weight: 300;
+        > strong {
+          font-weight: 600;
+        }
         @media screen and (max-width: $smallScreen) {
-          font-size: 32px;
+          font-size: 24px;
+          width: 100%;
+          text-align: center;
         }
       }
-    }
-  }
-  &__content {
-    padding: 50px 0;
-    &__header {
-      display: block;      
-      text-align: center;
-      font-size: 32px;
-      padding-bottom: 30px;
-      @media screen and (max-width: $smallScreen) {
-        font-size: 24px;
-      }
+      
     }
     &__form {
       text-align: center;
       padding-bottom: 1rem;
-      > span {
+      position: absolute;
+      right: 0;
+      bottom: -350px;
+      width: 45%;
+      right: 0;
+      background-color: #f5f7fb;
+      z-index: 1;
+      border: solid 1px #e6e8f4;
+      padding: 50px;
+      box-sizing: border-box;
+      border-radius: 6px;
+      @media screen and (max-width: $smallScreen) {
+        bottom: -440px;
+        width: 100%;
+      }
+      @media screen and (max-width: $extraSmallScreen) {
+        bottom: -480px;
+      }
+      &__header {
+        font-size: 28px;
+        display: block;
+        color: $textCharcoal;
+        padding-bottom: 1rem;
+        font-weight: 600;
+        @media screen and (max-width: $smallScreen) {
+          font-size: 20px;
+        }
+      }
+      &__tag {
         font-size: 18px;
         display: block;
-        padding-bottom: 0.8rem;
+        padding-bottom: 30px;
+        color: $textLight;
         @media screen and (max-width: $smallScreen) {
           font-size: 14px;
         }
       }
       > input,
       > button {
-        display: inline-block;
-        vertical-align: middle;
-        height: 2rem;
+        display: block;
+        height: 50px;
         margin-bottom: 1rem;
-
+        width: 100%;
+        box-sizing: border-box;
+        border: solid 1px #dde1ed;
+        border-radius: 6px;
       }
       > input {
-        min-width: 200px;
-        margin-right: 1rem;
         outline: none;
-        border: 1px solid $borderColor;
         padding: 0 0.5rem;
         font-size: 0.8rem;
-        height: 34px;
+        margin-bottom: 30px;
       }
       > button {
+        margin-top: 50px;
         font-size: 1rem;
-        min-width: 120px;
-        height: 38px;
         border: none;
         border-radius: 5px;
+        margin-bottom: 0;
       }
     }
+  }
+  &__content {
+    padding: 90px 0;
+    @media screen and (max-width: $smallScreen) {
+      padding-top: 490px;
+    }
+    @media screen and (max-width: $extraSmallScreen) {
+      padding-top: 530px;
+    }
     &__links {
-      padding: 30px 0;
       &__col:nth-child(1) {
-        width: 60%;
-        margin-right: 10%;
+        width: 50%;
         @media screen and (max-width: $smallScreen) {
           margin-right: 0;
           width: 100%;
-        }
-      }
-      &__col:nth-child(2) {
-        width: 30%;
-        @media screen and (max-width: $smallScreen) {
-          width: 100% !important;
         }
       }
       &__col {
@@ -99,22 +129,54 @@
           > span {
             display: block;
             font-size: 16px;
+            width: 90%;
+            color: $textLight;
+            font-weight: 400;
+            line-height: 1.8;
             @media screen and (max-width: $smallScreen) {
               font-size: 14px;
+              width: 100%;
             }
             > a {
               color: $textPurple;              
             }
           }
           &__header {
-            font-size: 24px !important;
+            font-size: 22px !important;
             padding-bottom: 1rem;
+            color: $textCharcoal !important;
+            font-weight: 600 !important;
+            width: 100% !important;
             @media screen and (max-width: $smallScreen) {
               font-size: 20px !important;;
             }
           }
         }
       }
+
+      &__row {
+        padding-top: 50px;
+        display: flex;
+        flex-direction: row;
+        @media screen and (max-width: $smallScreen) {
+          flex-direction: column;
+          padding-top: 0;
+        }
+        &__col {
+          flex-basis: 0;
+          flex-grow: 1;
+        }
+      }
     }
+  }
+
+  &__fancy {
+    position: relative;
+    padding: 90px 0;
+    background-image: url('/assets/img/community-fancy.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center top;
+    height: 400px;
   }
 }
