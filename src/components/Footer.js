@@ -52,7 +52,7 @@ class Footer extends Component {
             <div className="footer__block__links--address">
               <span> 
                 <i className="fa fa-map-marker" aria-hidden="true" />
-                Unit 22, 8 Hornsey Street
+                Unit 22, 8 Hornsey St.
               </span>
               <span> London N7 8EG, UK </span>
               <a href="mailto:info@grakn.ai">info@grakn.ai</a>
