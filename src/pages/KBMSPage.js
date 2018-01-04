@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const KBMSPage = () => (
   <div className="kbms-page">
@@ -172,10 +173,7 @@ const KBMSPage = () => (
           </div>
 
         </div>
-        <div className="kbms-page__features__buttons">
-          <a href="" className="button button--red">GET KBMS</a>
-          <a href="" className="button button--transparent">GET WORKBASE</a>
-        </div>
+        <Link to="/deployment" className="kbms-page__features__button button button--red">GET KBMS</Link>
       </div>
     </section>
   </div>

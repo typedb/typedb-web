@@ -129,32 +129,38 @@
     @media screen and (max-width: $mediumScreen) {
       padding: 50px 0;
     }
-    &__buttons {
-      width: fit-content;
-      margin: 0 auto;
-      display: flex;
+    // &__buttons {
+    //   width: fit-content;
+    //   margin: 0 auto;
+    //   display: flex;
+    //   margin-top: 50px;
+    //   @media screen and (max-width: $smallScreen) {
+    //     flex-direction: column;
+    //     justify-content: center;
+    //     align-items: center;
+    //   }
+    //   > * {
+    //     min-width: 100px;
+    //     text-align: center;
+    //   }
+    //   > :nth-child(1) {
+    //     margin-right: 10px;
+    //     @media screen and (max-width: $smallScreen) {
+    //       margin: 0 auto 1rem auto;
+    //     }
+    //   }
+    //   > :nth-child(2) {
+    //     margin-left: 10px;
+    //     @media screen and (max-width: $smallScreen) {
+    //       margin: 0 auto;
+    //     }
+    //   }
+    // }
+    &__button {
+      display: block;
       margin-top: 50px;
-      @media screen and (max-width: $smallScreen) {
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-      }
-      > * {
-        min-width: 100px;
-        text-align: center;
-      }
-      > :nth-child(1) {
-        margin-right: 10px;
-        @media screen and (max-width: $smallScreen) {
-          margin: 0 auto 1rem auto;
-        }
-      }
-      > :nth-child(2) {
-        margin-left: 10px;
-        @media screen and (max-width: $smallScreen) {
-          margin: 0 auto;
-        }
-      }
+      width: 160px;
+      text-align: center;
     }
     &__header {
       display: block;
