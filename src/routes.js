@@ -39,7 +39,10 @@ class Main extends Component {
 
   updatePageTitle() {
     let documentTitle = 'GRAKN.AI - The Database for AI';
-    if (this.props.path !== '/') {
+    if (this.props.path === '/kbms') {
+      documentTitle = `GRAKN.AI | KBMS`
+    }
+    else if (this.props.path !== '/') {
       documentTitle = `GRAKN.AI | ${capitalize(this.props.path.substr(1))}`
     }
     document.title = documentTitle;
