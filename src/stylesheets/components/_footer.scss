@@ -105,7 +105,7 @@
   }
   &__block {
     display: inline-block;
-    width: 18%;
+    width: 15%;
     vertical-align: top;
     text-align: left;
     &__header {
@@ -195,23 +195,22 @@
     }
   }
   &__block:nth-child(1) {
-    width: 36%;
+    width: 30%;
     @media screen and (max-width: $smallScreen) {
-      display: block;
-      width: 100%;
-      padding-bottom: 50px;
+      width: 60%;
     }
   }
-  &__block:nth-child(5) {
+
+  &__block:nth-child(6) {
     width: 10%;
   }
 
-  &__block:nth-child(3),&__block:nth-child(5) {
+  &__block:nth-child(2), &__block:nth-child(4),&__block:nth-child(6) {
     @media screen and (max-width: $smallScreen) {
       width: 40%;
     }
   }
-  &__block:nth-child(4),&__block:nth-child(5) {
+  &__block:nth-child(5),&__block:nth-child(6) {
     @media screen and (max-width: $smallScreen) {
       padding-bottom: 0;
     }

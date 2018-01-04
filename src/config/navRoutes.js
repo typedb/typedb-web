@@ -22,13 +22,13 @@ export const navRoutes = {
       Support: '/support'
     }
   },
-  'Use Cases': {
+  'Use Case': {
     type: 'multi',
     links: {
-      'Financial Services': '/usecase-finance',
-      'Health & Life Sciences': '/usecase-health',
       'Intelligent Bots': '/usecase-bots',
       'Semantic Search': '/usecase-search',
+      'Financial Services': '/usecase-finance',
+      'Health & Life Sciences': '/usecase-health',
       'Security': '/usecase-security'
     }
   },

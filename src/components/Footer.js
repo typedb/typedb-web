@@ -60,29 +60,40 @@ class Footer extends Component {
           </div>
         </div>
         <div className="footer__block">
-          <div className="footer__block__header">GET STARTED</div>
+          <div className="footer__block__header">DATABASE</div>
           <div className="footer__block__links">
-            <a href={graknRoutes.overview}>Product</a>
-            <a href={graknRoutes.download}>Install</a>
+            <Link to="/grakn">The Grakn</Link>
+            <Link to="/kbms">The KBMS</Link>
             <a href={graknRoutes.quickstart}>Quickstart</a>
+            <a href={graknRoutes.download}>Install</a>
           </div>
         </div>
         <div className="footer__block">
-          <div className="footer__block__header">RESOURCES</div>
+          <div className="footer__block__header">ENTERPRISE</div>
           <div className="footer__block__links">
-            <a href={graknRoutes.docs}>Documentation</a>          
-            <a href={graknRoutes.github} target="_blank">Github</a>                    
-            <a href={graknRoutes.javadocs} target="_blank">Javadocs</a>                    
+            <Link to="/deployment">Deployment</Link>
+            <Link to="/services">Services</Link>
+            <Link to="/support">Support</Link>
+          </div>
+        </div>
+        <div className="footer__block">
+          <div className="footer__block__header">USE CASE</div>
+          <div className="footer__block__links">
+            <Link to="/usecase-bots">Intelligent Bots</Link>
+            <Link to="/usecase-search">Semantic Search</Link>
+            <Link to="/usecase-finance">Financial Services</Link>
+            <Link to="/usecase-health">Life Sciences</Link>
+            <Link to="/usecase-security">Security</Link>
+          </div>
+        </div>
+        <div className="footer__block">
+          <div className="footer__block__header">DEVELOPER</div>
+          <div className="footer__block__links">
+            <a href={graknRoutes.academy}>Academy</a>
+            <a href={graknRoutes.docs}>Documentation</a>
             <Link to="/community">Community</Link>
-          </div>
-        </div>
-        <div className="footer__block">
-          <div className="footer__block__header">COMMUNITY</div>
-          <div className="footer__block__links">
-            <a href={graknRoutes.discuss}> Discussion</a>
-            <a href={graknRoutes.stack} target="_blank">Stackoverflow</a>
-            <Link to="/slack">Slack</Link>
-            <a href={graknRoutes.twitter} target="_blank">Twitter</a>
+            <a href={graknRoutes.discuss}>Discuss</a>
+            <a href={graknRoutes.github}>Github</a>
           </div>
         </div>
         <div className="footer__block">
