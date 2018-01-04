@@ -20,6 +20,7 @@
       transform: translateX(-50%);
       box-sizing: border-box;
       border-radius: 5px;
+      box-shadow: 2px 2px 15px 0px rgba(119, 119, 119, 0.7);
       @media screen and (max-width: $mediumScreen){
         width: 90%;
         bottom: -200px;

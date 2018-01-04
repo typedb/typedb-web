@@ -7,10 +7,6 @@ export const internalRoutes =  [
 ];
 
 export const navRoutes = {
-  Overview: {
-    type: 'single',
-    link: `${graknRoutes.overview}`,
-  },
   Database: {
     type: 'multi',
     links: {
