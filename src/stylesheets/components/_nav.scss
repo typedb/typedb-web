@@ -65,14 +65,13 @@ $navShadow: 0 0 26px 0 rgba(221, 221, 221, 0.64);
         position: absolute;
         background-color: white;
         top: 50px;
-        width: fit-content;
+        width: max-content;
         border-radius: 5px;
         padding: 1rem 0.8rem;
         padding-bottom: 0;
         left: 0;
         text-align: left;
         min-width: 80px;
-        width: 100%;
         border: 1px solid $borderColor;
         &__item {
           display: block;

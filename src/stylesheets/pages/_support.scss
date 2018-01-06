@@ -36,6 +36,9 @@ $tablePurple:#796de3;
         > strong {
           font-weight: 600;
         }
+        @media screen and (max-width: $mediumScreen) {
+          width: 60%;
+        }
         @media screen and (max-width: $smallScreen) {
           font-size: 28px;
           width: 100%;
@@ -146,10 +149,8 @@ $tablePurple:#796de3;
       }
     }
     &__container {
-      padding-top: 50px;
       padding-bottom: 90px;
       @media screen and (max-width: $smallScreen) {
-        padding-top: 50px;
         padding-bottom: 50px;
       }
     }
@@ -159,7 +160,7 @@ $tablePurple:#796de3;
       font-weight: 300;
       color: $textCharcoal;
       font-size: 30px;
-      width: 50%;
+      width: 80%;
       text-align: center;
       > strong {
         font-weight: 600;

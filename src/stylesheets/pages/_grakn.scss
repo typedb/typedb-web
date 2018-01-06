@@ -205,7 +205,14 @@
   &__graql {
     padding: 90px 0;
    // background-color: white;
+   @media screen and (max-width: $smallScreen) {
+      padding: 50px 0;
+    }
     &__container {
+      @media screen and (max-width: $smallScreen) {
+        display: flex;
+        flex-direction: column;
+      }
       > div {
         display: inline-block;
         vertical-align: middle;
@@ -240,11 +247,18 @@
           font-size: 14px;
         }
       }
+      @media screen and (max-width: $smallScreen) {
+        order: 2;
+        }
     }
     &__img {
      > img {
       max-width: 100%;
      }
+     @media screen and (max-width: $smallScreen) {
+        margin-bottom: 40px;
+        order: 1;
+      }
     }
   }
 

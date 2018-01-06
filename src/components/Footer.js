@@ -39,7 +39,7 @@ class Footer extends Component {
           <div className="footer__block__links">
             <a href={graknRoutes.github} target="_blank" className="footer__block__links--github">
               <img src="/assets/svg/github.svg" alt="github"/>
-              <strong>Grakn</strong> on Github
+              <strong>Grakn 1.0</strong> on Github
             </a>
             <Link to="/slack" className="footer__block__links--slack">
               <img src="/assets/svg/slack-mark.svg" alt="slack"/>        

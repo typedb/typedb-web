@@ -215,6 +215,7 @@
           border-radius: 10px;
           border: transparent;
           color: white;
+          display: block;
           > img {
             max-width: 100%;
           }
@@ -230,6 +231,9 @@
           &--green {
             background-color: #46cd90;
           }
+          @media screen and (max-width: $smallScreen) {
+            display: inline-block;
+          }
         }
         > a {
           color: $textPurple;
@@ -243,13 +247,16 @@
         }
         &__headline {
           display: block;
-          margin-top: 30px;
+          margin-top: 20px;
           margin-bottom: 10px;
           font-size: 22px;
           font-weight: 600;
           color: $textCharcoal;
           @media screen and (max-width: $smallScreen) {
-            margin-top: 20px;
+            margin-top: 10px;
+            margin-left: 1rem;
+            display: inline-block;
+            vertical-align: top;
             font-size: 16px;
           }
         }
@@ -266,7 +273,7 @@
           
         }
         @media screen and (max-width: $smallScreen) {
-          order: 1;
+          order: 2;
         }
       }
       &__img {
@@ -276,8 +283,8 @@
           display: block;
         }
         @media screen and (max-width: $smallScreen) {
-          margin-top: 50px;          
-          order: 2;
+          margin-bottom: 40px;          
+          order: 1;
         }
       }
     }

@@ -56,7 +56,7 @@ const GraknPage = () => (
             <div className="grakn-page__links__item__details">
               <span className="grakn-page__links__item__details__header">Discussion</span>
               <div className="grakn-page__links__item__details__text">
-              When you’re stuck on a problem, often the most effective remedy is to collaborate. Ask your question on <a href={graknRoutes.stack} className="animated__link animated__link--charcoal animated__link--italic">StackOverflow</a> or discuss it in our <a href={graknRoutes.discuss} className="animated__link animated__link--charcoal animated__link--italic">Discussion forum.</a>
+              When you’re stuck on a problem, often the most effective remedy is to collaborate. Ask your question on <a href={graknRoutes.stack} className="animated__link animated__link--purple">StackOverflow</a> or discuss it in our <a href={graknRoutes.discuss} className="animated__link animated__link--purple">Discussion forum.</a>
               </div>
             </div>
           </div>

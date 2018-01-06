@@ -1,12 +1,12 @@
 .services {
   padding-top: $navHeight;
   &__splash {
-    height: 700px;
+    height: 750px;
     width: 100%;
     background-image: url('/assets/svg/services-splash.svg');
     background-repeat: no-repeat;
     background-size: cover;
-    background-position: bottom;
+    background-position: center;
     @media screen and (max-width: $smallScreen) {
       height: 400px;
     }
@@ -221,7 +221,7 @@
           }
         }
         @media screen and (max-width: $smallScreen) {
-          order: 1;
+          order: 2;
         }
       }
       &__img {
@@ -236,8 +236,8 @@
           display: block;
         }
         @media screen and (max-width: $smallScreen) {
-          margin-top: 50px;          
-          order: 2;
+          margin-bottom: 40px;          
+          order: 1;
         }
       }
     }
