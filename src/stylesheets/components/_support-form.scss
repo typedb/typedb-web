@@ -65,7 +65,19 @@ $supportFormColor: #a8a9b0;
       }
     }
     &__group {
-      display: block;
+      flex-basis: 0;
+      flex-grow: 1;
+      display: inline-block;
+      @media screen and (max-width: $mediumScreen) {
+        display: block;
+      }
+      &__row {
+        display: flex;
+        flex-direction: row;
+        @media screen and (max-width: $mediumScreen) {
+          display: block;
+        }
+      }
       > * {
         display: inline-block;
         vertical-align: top;
