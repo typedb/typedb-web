@@ -9,7 +9,7 @@ import graknRoutes from 'config/graknRoutes';
 import KBMSFeatures from 'components/KBMSFeatures';
 
 const deploymentOptions = [
-  { name: 'Google Cloud Platform', url: '/assets/img/cloud_platform.png'},
+  { name: 'Google Cloud Platform', url: '/assets/img/google-cloud.png'},
   //{ name: 'Oracle', url: '/assets/img/oracle.png'},
   //{ name: 'IBM Bluemix', url: '/assets/img/IBM.png'},
   //{ name: 'Microsoft Azure', url: '/assets/img/azure.png'},
