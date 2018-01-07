@@ -107,6 +107,7 @@
   &__kbms {
     position: relative;
     padding: 0 0 90px 0;
+    display: none !important;
     > img {
       position: absolute;
       z-index: -1;
@@ -180,11 +181,14 @@
       margin: 0 auto;
       font-weight: 300;
       color: #4a4c52;
-      font-size: 30px;
+      font-size: 40px;
       text-align: center;
       width: 80%;
+      > strong {
+        font-weight: 400;
+      }
       @media screen and (max-width: $smallScreen) {
-        font-size: 20px;
+        font-size: 24px;
         width: 100%;
       }
     }

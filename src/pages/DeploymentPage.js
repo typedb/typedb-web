@@ -51,9 +51,8 @@ class DeploymentPage extends Component {
 
         <section className="deployment-page__coming">
           <div className="deployment-page__coming__container container section__container">
-            <span className="deployment-page__coming__header">The first Distributed <strong>Knowledge Base Management System</strong> Natively built the for the cloud</span>
+            <span className="deployment-page__coming__header"><strong>Coming Soon!</strong></span>
             <img src="assets/img/logo.png" alt="logo" />
-            <span className="deployment-page__coming__tag">Coming Soon!</span>
             <span className="button button--red " onClick={() => this.scroll()}>Get in touch</span>                  
           </div>
         </section>
