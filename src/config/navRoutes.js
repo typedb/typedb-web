@@ -42,11 +42,11 @@ export const navRoutes = {
   },
   Discuss: {
     type: 'single',
-    link: 'https://discuss.grakn.ai/',
+    link: `${graknRoutes.discuss}`,
   },
   Blog: {
     type: 'single',
-    link: 'https://discuss.grakn.ai/'
+    link: `${graknRoutes.blog}`
   },
   Github: {
     type: 'single',
