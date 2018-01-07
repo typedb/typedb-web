@@ -209,7 +209,7 @@ class ServicesPage extends Component {
             <Link className="services__alive__button button button--red" to="/support">Get Support</Link>                          
           </div>
         </section>
-        <Testimonials hidden={true}/>
+        <Testimonials buttonCallback={this.scroll}/>
         <section className="support-form__section" ref={(elem) => this.supportform = elem}>
           <div className="support-form__section__container container section__container">
             <span className="support-form__section__header">Get in touch with our team!</span>
