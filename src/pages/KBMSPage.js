@@ -6,8 +6,10 @@ const KBMSPage = () => (
     <section className="kbms-page__splash">
       <div className="kbms-page__splash__container container section__container">
         <div className="kbms-page__splash__text">
-          <span className="kbms-page__splash__text__header">Meet <strong>Grakn KBMS</strong> and <strong>Workbase</strong></span>
-          <span className="kbms-page__splash__text__tag">Grakn KBMS is the Knowledge Base Management System designed to scale with your enterprise, and Workbase is the visual platform to control everything from development to production</span>
+          <span className="kbms-page__splash__text__header">Grakn Enterprise <strong>KBMS</strong> and <strong>Workbase</strong></span>
+          <span className="kbms-page__splash__text__tag">
+          Grakn Enterprise KBMS is the Knowledge Base Management System designed to scale with your business, and Workbase is the visual platform to control everything from development to production
+          </span>
         </div>
         </div>
       <img className="kbms-page__splash__kbms" src="/assets/img/kbms-preview.png" alt="KBMS Preview" />
@@ -42,7 +44,7 @@ const KBMSPage = () => (
     <section className="kbms-page__features">
       <div className="kbms-page__features__container container section__container">
         <span className="kbms-page__features__header">
-        <strong>Simplify your data</strong> architecture and scale your knowledge base into production
+        Simplify your data architecture and scale your knowledge base into production
         </span>
         <div className="kbms-page__features__col">
 
@@ -53,7 +55,7 @@ const KBMSPage = () => (
             <div className="kbms-page__features__col__item__details">
               <span className="kbms-page__features__col__item__details__header">Scalabale Storage</span>
               <div className="kbms-page__features__col__item__details__text">
-              A scalable system designed to be partitioned and replicated over a network of distributed machines              
+              A scalable system designed to be partitioned and replicated over a network of distributed machines working together
               </div>
             </div>
           </div>
@@ -77,7 +79,7 @@ const KBMSPage = () => (
             <div className="kbms-page__features__col__item__details">
               <span className="kbms-page__features__col__item__details__header">Secured Authentication</span>
               <div className="kbms-page__features__col__item__details__text">
-              Ensuring not only authenticated access but also that only appropriately privileged users are allowed to access specific datasets              
+              Ensuring authenticated access and also only appropriately privileged users are allowed to access specific datasets
               </div>
             </div>
           </div>

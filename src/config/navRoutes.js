@@ -6,6 +6,10 @@ export const internalRoutes =  [
   'Health & Life Sciences', 'Intelligent Bots', 'Semantic Search', 'Security'
 ];
 
+export const externalRoutes = [
+  'Github', 'Blog'
+];
+
 export const navRoutes = {
   Database: {
     type: 'multi',
@@ -50,6 +54,6 @@ export const navRoutes = {
   },
   Github: {
     type: 'single',
-    link: 'https://github.com/graknlabs/grakn',
+    link: `${graknRoutes.github}`,
   },
 };

@@ -153,8 +153,8 @@
 
     &__container {
       > img {
-        padding-top: 50px;
-        padding-bottom: 30px;
+        padding-top: 70px;
+        padding-bottom: 50px;
         display: block;
         margin: 0 auto;
         animation:spin 4s linear infinite;      
@@ -182,7 +182,7 @@
       color: #4a4c52;
       font-size: 30px;
       text-align: center;
-      width: 70%;
+      width: 80%;
       @media screen and (max-width: $smallScreen) {
         font-size: 20px;
         width: 100%;

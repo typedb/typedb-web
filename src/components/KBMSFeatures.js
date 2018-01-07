@@ -7,7 +7,7 @@ const KBMSFeatures = () => (
       <div className="kbms-features__item__container">
         <div className="kbms-features__item__logo"><img src="/assets/svg/kbms-storage.svg" alt="Scalable Storage" /></div>
         <span className="kbms-features__item__header">Scalabale Storage</span>   
-        <span className="kbms-features__item__text">A scalable system designed to be partitioned and replicated over a network of distributed machines</span>          
+        <span className="kbms-features__item__text">A scalable system designed to be partitioned and replicated over a network of distributed machines working together</span>          
       </div>
     </div>
     <div className="kbms-features__item">
@@ -28,7 +28,7 @@ const KBMSFeatures = () => (
       <div className="kbms-features__item__container">
         <div className="kbms-features__item__logo"><img src="/assets/svg/kbms-secured.svg" alt="Secured Authentication" /></div>
         <span className="kbms-features__item__header">Secured Authentication</span>                  
-        <span className="kbms-features__item__text">Ensuring not only authenticated access but also that only appropriately privileged users are allowed to access specific datasets</span>                       
+        <span className="kbms-features__item__text">Ensuring authenticated access and also only appropriately privileged users are allowed to access specific datasets</span>                       
       </div>
     </div>
     <div className="kbms-features__item">

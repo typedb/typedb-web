@@ -56,7 +56,7 @@ const GraknPage = () => (
             <div className="grakn-page__links__item__details">
               <span className="grakn-page__links__item__details__header">Discussion</span>
               <div className="grakn-page__links__item__details__text">
-              When you’re stuck on a problem, often the most effective remedy is to collaborate. Ask your question on <a href={graknRoutes.stack} className="animated__link animated__link--purple">StackOverflow</a> or discuss it in our <a href={graknRoutes.discuss} className="animated__link animated__link--purple">Discussion forum.</a>
+              When you’re stuck, the most effective remedy is to collaborate. Ask your question on <a href={graknRoutes.stack} className="animated__link animated__link--purple">StackOverflow</a> or discuss it in our <a href={graknRoutes.discuss} className="animated__link animated__link--purple">Discussion forum.</a>
               </div>
             </div>
           </div>
@@ -132,10 +132,9 @@ const GraknPage = () => (
       <div className="grakn-page__kbms">
         <div className="grakn-page__features__circle grakn-page__features__circle--kbms"><img src="/assets/svg/grakn-KBMS.svg" alt="Grakn KBMS" /></div>
         <div className="grakn-page__kbms__container container section__container">
-          <span className="grakn-page__kbms__header">Meet Grakn KBMS and Workbase</span>
+          <span className="grakn-page__kbms__header">MEET GRAKN ENTERPRISE KBMS AND WORKBASE</span>
           <span className="grakn-page__kbms__text">
-          The distributed knowledge base management system, designed to scale with growth of your data and application workload, equipped with all the functionalities you need to deploy and operate in a production environment.
-          </span>
+          The enterprise knowledge base management system is designed to scale with the growth of your data and application workload, equipped with all the functionalities you need to deploy and operate in a production environment.          </span>
           <Link to="/kbms" className="grakn-page__kbms__button button button--charcoal">Learn More</Link>
         </div>
       </div>

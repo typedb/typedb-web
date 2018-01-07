@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import classNames from 'classnames';
 import { Link } from 'react-router-dom';
-import { navRoutes, internalRoutes } from 'config/navRoutes';
+import { navRoutes, internalRoutes, externalRoutes } from 'config/navRoutes';
 
 class NavigationMenu extends Component {
   constructor(props) {
@@ -54,6 +54,7 @@ class NavigationMenu extends Component {
           key={`${key}__link`}
           href={value.link}
           className={linkClasses}
+          target={externalRoutes.indexOf(key) !== -1? '_blank': '_self'}
           >
           { key !== 'Github'?
             key
@@ -102,7 +103,12 @@ class NavigationMenu extends Component {
                   }
                   else {
                     return (
-                      <a key={`${key}__link`} href={subLinks[key]} className='nav__link nav__link__dropdown__content__item animated__link'>{key}</a>
+                      <a key={`${key}__link`} href={subLinks[key]} 
+                      className='nav__link nav__link__dropdown__content__item animated__link'
+                      target={externalRoutes.indexOf(key) !== -1? '_blank': '_self'}
+                      >
+                      {key}
+                      </a>
                     )
                   }
                 })
@@ -206,7 +212,8 @@ class NavigationMenu extends Component {
                   }
                   else {
                     return (
-                      <a key={`${key}__link`} href={subLinks[key]} className='nav__link'>{key}</a>
+                      <a key={`${key}__link`} href={subLinks[key]} className='nav__link' target={externalRoutes.indexOf(key) !== -1? '_blank': '_self'}
+                      >{key}</a>
                     )
                   }
                 })

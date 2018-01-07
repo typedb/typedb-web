@@ -50,7 +50,8 @@ $navShadow: 0 0 26px 0 rgba(221, 221, 221, 0.64);
       color: black;
     }
     &__inline {
-      line-height: 1.2;
+      line-height: 1;
+      padding-bottom: 5px;
     }
     &__dropdown {
       position: relative;
@@ -67,7 +68,7 @@ $navShadow: 0 0 26px 0 rgba(221, 221, 221, 0.64);
         top: 50px;
         width: max-content;
         border-radius: 5px;
-        padding: 1rem 0.8rem;
+        padding: 0.9rem 0.5rem;
         padding-bottom: 0;
         left: 0;
         text-align: left;

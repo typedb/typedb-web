@@ -19,7 +19,7 @@
       left: 50%;
       transform: translateX(-50%);
       box-sizing: border-box;
-      border-radius: 5px;
+      border-radius: 8px;
       box-shadow: 2px 2px 15px 0px rgba(119, 119, 119, 0.7);
       @media screen and (max-width: $mediumScreen){
         width: 90%;
@@ -55,7 +55,6 @@
         color: $textLight;
         font-weight: 300;
         line-height: 1.7;
-        width: 70%;
         @media screen and (max-width: $smallScreen) {
           font-size: 14px;
           font-weight: 400;
@@ -94,7 +93,7 @@
         display: block;
         margin: 0 auto;
         margin-bottom: 1rem;
-        max-height: 90px; 
+        height: 90px; 
       }
       &__header {
         font-size: 22px;
@@ -113,8 +112,11 @@
         font-size: 18px;
         color: $textLight;
         line-height: 1.7;
+        width: 90%;
+        margin: 0 auto;
         @media screen and (max-width: $smallScreen) {
           font-size: 14px;
+          width: 100%;
         }
       }
     }
