@@ -60,7 +60,7 @@ class Footer extends Component {
           </div>
         </div>
         <div className="footer__block">
-          <div className="footer__block__header">DATABASE</div>
+          <div className="footer__block__header">PRODUCTS</div>
           <div className="footer__block__links">
             <Link to="/grakn">The Grakn</Link>
             <Link to="/kbms">The KBMS</Link>
@@ -69,7 +69,7 @@ class Footer extends Component {
           </div>
         </div>
         <div className="footer__block">
-          <div className="footer__block__header">ENTERPRISE</div>
+          <div className="footer__block__header">SOLUTIONS</div>
           <div className="footer__block__links">
             <Link to="/deployment">Deployment</Link>
             <Link to="/services">Services</Link>
@@ -77,7 +77,7 @@ class Footer extends Component {
           </div>
         </div>
         <div className="footer__block">
-          <div className="footer__block__header">USE CASE</div>
+          <div className="footer__block__header">USE CASES</div>
           <div className="footer__block__links">
             <Link to="/usecase-bots">Intelligent Bots</Link>
             <Link to="/usecase-search">Semantic Search</Link>

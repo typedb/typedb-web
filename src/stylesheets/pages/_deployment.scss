@@ -154,8 +154,8 @@
 
     &__container {
       > img {
-        padding-top: 70px;
-        padding-bottom: 50px;
+        padding-top: 90px;
+        padding-bottom: 70px;
         display: block;
         margin: 0 auto;
         animation:spin 4s linear infinite;      
@@ -185,7 +185,7 @@
       text-align: center;
       width: 80%;
       > strong {
-        font-weight: 400;
+        font-weight: 600;
       }
       @media screen and (max-width: $smallScreen) {
         font-size: 24px;

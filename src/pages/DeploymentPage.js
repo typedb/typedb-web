@@ -28,7 +28,7 @@ class DeploymentPage extends Component {
           <div className="deployment-page__info__container container section__container">
             <div className="deployment-page__info__details">
               <div className="deployment-page__info__details__text">
-              <strong>Grakn KBMS</strong> is the Knowledge Base Management System designed to scale with your enterprise. Whether you have a dataset, application workload, or user request, the Grakn KBMS will scale with your business. With all the tools you need to take you from development to production and scale, Grakn KBMS allows you to simplify your data architecture, while maintaining full control over your knowledge base.
+              <strong>Grakn KBMS</strong> is the enterprise Knowledge Base Management System designed to scale with your enterprise. Whether you have a growing dataset, application workload, or user request, the Grakn KBMS will scale with your business. With all the tools you need to take you from development to production and scale, Grakn KBMS allows you to simplify your data architecture while maintaining full control over your knowledge base.
               </div>
               <Link to="/kbms" className="button button--transparent deployment-page__info__details__button">LEARN MORE ABOUT GRAKN KBMS</Link>
             </div>
@@ -51,7 +51,7 @@ class DeploymentPage extends Component {
 
         <section className="deployment-page__coming">
           <div className="deployment-page__coming__container container section__container">
-            <span className="deployment-page__coming__header"><strong>Coming Soon!</strong></span>
+            <span className="deployment-page__coming__header"><strong>Grakn KBMS</strong> is Coming Soon!</span>
             <img src="assets/img/logo.png" alt="logo" />
             <span className="button button--red " onClick={() => this.scroll()}>Get in touch</span>                  
           </div>

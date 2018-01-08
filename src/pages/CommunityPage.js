@@ -94,7 +94,7 @@ class CommunityPage extends Component {
             <div className="community__fancy__item">
               <span className="community__fancy__item__header community__fancy__item__header--green">Join our Meetups!</span>
               <span className="community__fancy__item__text">
-              Learn how graph technologies could help you work more intelligently with highly interconnected data. We will talk about best practices in complex data modelling, graph visualisation, graph analytics, graph deployments in the cloud, as well as their applications for intelligent systems and AI applications. Join our <a href={graknRoutes.meetups} className="animated__link animated__link--purple">meetups</a>.
+              Learn how Grakn can help you build your knowledge base platform. We discuss the best practices in complex data modelling, logical reasoning, distributed analytics, cloud deployments, as well as knowledge base applications for cognitive and intelligent systems.Join our <a href={graknRoutes.meetups} className="animated__link animated__link--purple">Grakn meetups</a>.
               </span>
             </div>
             <div className="community__fancy__item">

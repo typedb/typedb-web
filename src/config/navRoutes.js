@@ -11,14 +11,14 @@ export const externalRoutes = [
 ];
 
 export const navRoutes = {
-  Database: {
+  Products: {
     type: 'multi',
     links: {
       'The Grakn': '/grakn',
       'The KBMS': '/kbms',
     }
   },
-  Enterprise: {
+  Solutions: {
     type: 'multi',
     links: {
       Deployment: '/deployment',
@@ -26,7 +26,7 @@ export const navRoutes = {
       Support: '/support'
     }
   },
-  'Use Case': {
+  'Use Cases': {
     type: 'multi',
     links: {
       'Intelligent Bots': '/usecase-bots',
@@ -40,9 +40,12 @@ export const navRoutes = {
     type: 'multi',
     links: {
       Academy: `${graknRoutes.academy}`,
-      Docs: `${graknRoutes.docs}`,
-      Community: '/community'
+      Documentation: `${graknRoutes.docs}`,
     }
+  },
+  Community: {
+    type: 'single',
+    link: '/community',
   },
   Discuss: {
     type: 'single',
