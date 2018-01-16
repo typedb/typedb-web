@@ -189,9 +189,22 @@ app.post('/api/support', function(req, res) {
     res.header("Access-Control-Allow-Origin", "*");
     const mailOptions = {
         from: mailman, 
-        to: 'harjyot@grakn.ai', 
+        to: 'enterprise@grakn.ai', 
         subject: 'Support Form Request', 
+        replyTo: req.body.email,
         text: JSON.stringify(req.body),
+        html:
+        `
+         <h3>Support Form Content</h3>
+         <div>Name: ${req.body.firstname} ${req.body.lastname}</div>
+         <div>Company: ${req.body.company}</div>
+         <div>Position: ${req.body.job}</div>
+         <div>Email: ${req.body.email}</div>
+         <div>Phone: ${req.body.phone}</div>
+         <div>Stage of Development: ${req.body.stage}</div>
+         <div>Areas of Interest: ${req.body.aois}</div>
+         <div>Additional: ${req.body.more}</div>
+        `
     };
    transporter.sendMail(mailOptions, (err, info) => {
         if (err) {
