@@ -83,7 +83,7 @@ const GraknPage = () => (
           Grakn and Graql
           </span>
           <span className="grakn-page__graql__text__paragraph">
-          Grakn is a hyper-relational database for knowledge engineering, i.e. a knowledge base. Being a distributed system, Grakn is design to be sharded and replicated over a network of computers. Under the hood, Grakn has built an expressive knowledge representation system with a transactional query interface, Graql. Graql is Grakn’s reasoning (through OLTP) and analytics (through OLAP) declarative query language. 
+          Grakn is a hyper-relational database for knowledge engineering, i.e. a knowledge base. Being a distributed system, Grakn is design to be sharded and replicated over a network of computers. Under the hood, Grakn has built an expressive <a href="https://en.wikipedia.org/wiki/Knowledge_representation_and_reasoning" target="_blank" className="animated__link animated__link--purple">knowledge representation system</a> with a transactional query interface, Graql. Graql is Grakn’s reasoning (through <a href="https://en.wikipedia.org/wiki/Online_transaction_processing" target="_blank" className="animated__link animated__link--purple">OLTP</a>) and analytics (through <a href="https://en.wikipedia.org/wiki/Online_analytical_processing" target="_blank" className="animated__link animated__link--purple">OLAP</a>) declarative query language. 
           </span>
         </div>
         <div className="grakn-page__graql__img">
