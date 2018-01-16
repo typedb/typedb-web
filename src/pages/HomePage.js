@@ -73,7 +73,7 @@ class HomePage extends Component {
                 </div>
                 <span className="home__features__item__text__headline">Knowledge Schema</span>
                 <span className="home__features__item__text__paragraph">
-                Enhanced Entity-Relationship schema, with constructs to define hyper-objects, hyper-relations and functions, to build complex knowledge models
+                Enhanced Entity-Relationship schema, with constructs to define hyper-entities, hyper-relations and rules, to build complex knowledge models.
                 </span>
                 <Link to="/grakn" className="animated__link animated__link--purple">Learn More</Link>                                    
               </div>
@@ -91,7 +91,7 @@ class HomePage extends Component {
                 </div>
                 <span className="home__features__item__text__headline">Logical Inference</span>
                 <span className="home__features__item__text__paragraph">
-                Automatic deduction of data types and relationships during runtime (OLTP), enabling the retrieval of implicit associations between points
+                Automatic deduction of data types and relationships during runtime (OLTP), enabling the retrieval of hidden associations between data points.
                 </span>
                 <Link to="/grakn" className="animated__link animated__link--purple">Learn More</Link>                                    
               </div>
@@ -108,7 +108,7 @@ class HomePage extends Component {
                 </div>
                 <span className="home__features__item__text__headline">Distributed Analytics</span>
                 <span className="home__features__item__text__paragraph">
-                Automated Pregel and MapReduce distributed algorithms abstracted as a language (OLAP), enabling large scale computation through database queries
+                Automated Pregel and MapReduce distributed algorithms abstracted as a language (OLAP), enabling large-scale analytics computation through simple queries.
                 </span>
                 <Link to="/grakn" className="animated__link animated__link--purple">Learn More</Link>                                    
               </div>
@@ -124,9 +124,9 @@ class HomePage extends Component {
                 <div className="home__features__item__text__logo home__features__item__text__logo--green">
                   <img src="/assets/svg/high_level.svg" alt="high level" />
                 </div>
-                <span className="home__features__item__text__headline">Higher-level Language</span>
+                <span className="home__features__item__text__headline">Higher-Level Language</span>
                 <span className="home__features__item__text__paragraph">
-                Strong abstraction over low-level constructs, enabling you to express questions at a higher level and let the system figure out how to do the navigation
+                Strong abstraction over low-level patterns, enabling simpler expressions of complex questions, while the system figures out the most optimal query execution.
                 </span>
                 <Link to="/grakn" className="animated__link animated__link--purple">Learn More</Link>                                    
               </div>
