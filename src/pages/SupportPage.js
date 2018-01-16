@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import Testimonials from 'components/Testimonials';
 import SupportForm from 'components/SupportForm';
 
+const zenscroll = require('zenscroll');
 const graknRoutes = require('config/graknRoutes');
 
 const comparisson = [
@@ -104,7 +105,8 @@ class SupportPage extends Component {
   }
 
   scroll() {
-    this.supportform.scrollIntoView({behavior: 'smooth'});
+    //this.supportform.scrollIntoView({behavior: 'smooth'});
+    zenscroll.intoView(this.supportform);
   }
 
   render() {

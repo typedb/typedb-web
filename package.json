@@ -99,6 +99,7 @@
     "uuid": "^3.1.0",
     "validator": "^9.2.0",
     "vis": "^4.21.0",
-    "webpack": "2.6.0"
+    "webpack": "2.6.0",
+    "zenscroll": "^4.0.0"
   }
 }

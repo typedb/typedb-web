@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import Testimonials from 'components/Testimonials';
 import SupportForm from 'components/SupportForm';
 
+const zenscroll = require('zenscroll');
+
 class ServicesPage extends Component {
   constructor(props) {
     super(props);
@@ -10,7 +12,7 @@ class ServicesPage extends Component {
   }
 
   scroll() {
-    this.supportform.scrollIntoView({behavior: 'smooth'});    
+    zenscroll.intoView(this.supportform);
   }
   render() {
     return (
