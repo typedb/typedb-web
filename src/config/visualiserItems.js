@@ -442,8 +442,16 @@ compute cluster in movie, cast, person; member;
 
 results>>
 
-"Titanic": {"Titanic", "Kate", "Leonardo"}
-"Al Pacino": {"Al Pacino", "Godfather", "Scarface"}`,
+"Titanic": {
+	"Titanic", 
+	"Kate", 
+	"Leonardo"
+}
+"Al Pacino": {
+	"Al Pacino", 
+	"Godfather", 
+	"Scarface"
+}`,
 graph: {
 	nodes: [
 			{

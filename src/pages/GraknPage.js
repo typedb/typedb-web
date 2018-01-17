@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 const graknRoutes = require('config/graknRoutes');
+import GraknPageCodeBlock from 'components/GraknPageCodeBlock';
 
 const GraknPage = () => (
   <div className="grakn-page">
@@ -10,6 +11,7 @@ const GraknPage = () => (
           <h1 className="grakn-page__splash__text__header">Meet Grakn and Graql</h1>
           <span className="grakn-page__splash__text__tag">Grakn is a hyper-relational database for knowledge engineering,<br /> and Graql is Grakn’s query language.</span>
         </div>
+        <GraknPageCodeBlock />
       </div>
     </section>
     <section className="grakn-page__github">
