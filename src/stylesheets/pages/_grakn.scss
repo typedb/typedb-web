@@ -550,6 +550,10 @@
             box-sizing: border-box;
             overflow-x: scroll;
             height: 100%;
+            font-family: 'Ubuntu' !important;
+            > code {
+              font-family: 'Ubuntu' !important;
+            }
           }
         }
       }
