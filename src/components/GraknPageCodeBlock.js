@@ -37,7 +37,7 @@ class GraknPageCodeBlock extends Component {
           <div className="grakn-page-code__content__dets">
             <div className="grakn-page-code__content__dets__text">
               <span className="grakn-page-code__content__dets__text__header">{selected}</span>
-              <span className="grakn-page-code__content__dets__text__paragraph">{graknCodeItems[selected].text}</span>
+              <div className="grakn-page-code__content__dets__text__paragraph" dangerouslySetInnerHTML={{__html: graknCodeItems[selected].text}} />
             </div>
             <div className="grakn-page-code__content__dets__buttons">
             {
