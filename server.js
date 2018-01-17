@@ -9,10 +9,11 @@ const app = express();
 const port = process.env.PORT ? process.env.PORT : 3001;
 const dist = path.join(__dirname, 'dist');
 const docsBase = 'https://dev.grakn.ai';
-const mailman = 'mailman@grakn.ai';
+const mailman = 'postmaster@mail.grakn.ai';
 
 const transporter = nodemailer.createTransport({
-    service: 'gmail',
+    host: 'smtp.mailgun.org',
+    port: 587,
     auth: {
         user: mailman,
         pass: process.env.SUPPORT_PASS
