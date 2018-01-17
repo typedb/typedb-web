@@ -67,8 +67,9 @@ function handleTPInvite(userEmail, userName, userSurname) {
               "Id": 16395
           },
           "Tags": "Community",
-    "Team": 276,
-    "ResponsibleTeam": 276,
+          "AssignedTeams":{
+              "Team":276
+          },
           "CustomFields": [{
               "Name": "Email",
               "Value": userEmail
@@ -140,7 +141,7 @@ app.post('/invite/tp', function(req, res) {
       res.status(400).send('No "email" field provided');
       return;
   }
-  handleTPInvite(req.body.email, req.body.name, req.body.surname);
+  handleTPInvite(req.body.email, req.body.firstname, req.body.surname);
 
   res.header("Access-Control-Allow-Origin", "*");
   res.status(200).send(JSON.stringify({ msg: "success" }));
@@ -152,7 +153,7 @@ app.post('/invite/mailchimp', function(req, res) {
       res.status(400).send('No "email" field provided');
       return;
   }
-  handleMailChimpInvite(req.body.email, req.body.name, req.body.surname);
+  handleMailChimpInvite(req.body.email, req.body.firstname, req.body.surname);
 
   res.header("Access-Control-Allow-Origin", "*");
   res.status(200).send(JSON.stringify({ msg: "success" }));
@@ -177,8 +178,8 @@ app.post('/invite/all', function(req, res) {
         return;
     }
     handleSlackInvite(req.body.email);
-    handleTPInvite(req.body.email, req.body.name, req.body.surname);
-    handleMailChimpInvite(req.body.email, req.body.name, req.body.surname);
+    handleTPInvite(req.body.email, req.body.firstname, req.body.surname);
+    handleMailChimpInvite(req.body.email, req.body.firstname, req.body.surname);
     handleGraknForumInvite(req.body.email);
 
     res.header("Access-Control-Allow-Origin", "*");
