@@ -61,9 +61,13 @@ class GraknPageCodeBlock extends Component {
               <span className="grakn-page-code__content__editor__header__file">{`${selected}.gql`}</span>
             </div>
             <div className="grakn-page-code__content__editor__content">
-            <pre>
-              <code dangerouslySetInnerHTML={{__html: code}}/>
-            </pre>
+              <pre>
+                <code dangerouslySetInnerHTML={{__html: code}}/>
+              </pre>
+            </div>
+            <div className="grakn-page-code__content__editor__footer">
+              <img src="assets/svg/grakn-code-block.svg" className="grakn-page-code__content__editor__footer__img" />
+              <span className="grakn-page-code__content__editor__footer__text">Graql</span>
             </div>
           </div>
         </div>

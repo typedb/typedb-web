@@ -3,8 +3,8 @@ const visualiserItems = require('config/visualiserItems');
 module.exports = {
   ER: {
     code: `${visualiserItems.ER.code}`,
-    text: `Grakn allows you to model your domain using the well-known Entity-Relationship model at its full expressivity. It is composed of entity types - which classify independent things of interest, relationship types - how things relate to each other, and attribute types - which represent the properties that something can have.
-    <br><br> Unlike other modelling languages, Grakn allows you to define hyper-entities, hyper-relations, and rules to build complex knowledge models.`
+    text: `Grakn allows you to model your domain using the well-known Entity-Relationship model at its full expressivity. It is composed of entity types, relationship types, and attribute types.
+    <br><br>Unlike other modelling languages, Grakn allows you to define hyper-entities, hyper-relations, and rules to build complex knowledge models. `
   },
   Types: {
     code: `${visualiserItems.Types.code}`,
@@ -18,12 +18,12 @@ module.exports = {
   },
   Inference: {
     code: `${visualiserItems.Inference.code}`,
-    text: `Grakn’s inference facility enables you to transform one query into another logically equivalent version of itself, and along the way, discover new conclusions that could be derived from your data. This happens through two mechanisms: type-based and rule-based inference.
-    <br><br>Not only it allows you to uncover relationships that would otherwise be hidden, but it also enables the abstraction of complex patterns into simple queries.`
+    text: `Grakn’s inference facility translates one query into all of its other interpretation. This happens through two mechanisms: type-based and rule-based inference.
+    <br><br>Not only it derives new conclusions and uncovers relationships that would otherwise be hidden, but it also enables the abstraction of complex patterns into simple queries.`
   },
   Analytics: {
     code: `${visualiserItems.Analytics.code}`,
-    text: `Distributed analytics is a set of scalable algorithms that allows you perform computation over large amounts of data in a distributed fashion. They tend to belong to either the family of MapReduce or Pregel algorithms (BSP). Ofen, this requires challenging implementation of the algorithms.
+    text: `Distributed analytics is a set of scalable algorithms that allows you perform computation over large amounts of data in a distributed fashion. They tend to belong to the family of MapReduce or Pregel algorithms (BSP). Ofen, this requires challenging implementation of the algorithms.
     <br><br>In Grakn, these distributed analytics algorithms are built-in as native functionalities of the language.`
   },
 }

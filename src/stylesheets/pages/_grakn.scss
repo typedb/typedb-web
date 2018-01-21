@@ -435,7 +435,7 @@
   &-code {
     position: absolute;
     bottom: -180px;
-    min-height: 480px;
+    min-height: 500px;
     width: 100%;
     border-radius: 8px;
 	  background-color: #f3f4fa;
@@ -475,14 +475,14 @@
       position: relative;
       width: 100%;
       box-sizing: border-box;
-      padding: 0 60px;
+      padding: 0 50px;
       min-height: 400px;
       @media screen and (max-width: $mediumScreen) {
         padding: 0 30px;
       }
       &__editor {
         position: absolute;
-        height: 520px;
+        height: 540px;
         top: -80px;
         width: calc(50% - 60px);
         left: 50%;
@@ -535,22 +535,41 @@
             width: calc(50% + 66px);
           }
         }
+        &__footer {
+          width: 100%;
+          height: 25px;
+          background-color: #545573;
+          &__text {
+            position: absolute;
+            right: 0;
+            padding: 0 30px;
+            border-left: 1px solid #727D97;
+            color: $textLight;
+          }
+          &__img {
+            display: inline-block;
+            padding: 6px 0 10px 0;
+            margin-left: 15px;
 
+          }
+        }
         &__content {
           position: relative;
           width: 100%;
           box-sizing: border-box;
-          height: calc(100% - 40px);
+          height: calc(100% - 65px);
           background-color: #2f3544;
           color: white;
 
           > pre {
             margin: 0;
-            padding: 20px;
+            padding: 20px 30px;
             box-sizing: border-box;
             overflow-x: scroll;
             height: 100%;
             font-family: 'Ubuntu' !important;
+            font-size: 16px;
+            line-height: 1.3;
             > code {
               font-family: 'Ubuntu' !important;
             }
@@ -575,13 +594,14 @@
           height: calc(100% - 40px);
           display: flex;
           flex-direction: column;
-          justify-content: center;
+          justify-content: flex-start;
           &__header {
             line-height: 1.1;
             color: $textPurple;
             font-size: 24px;
             font-weight: 600;
             padding-bottom: 1rem;
+            padding-top: 50px;
             @media screen and (max-width: $mediumScreen) {
               font-size: 20px;
             }
