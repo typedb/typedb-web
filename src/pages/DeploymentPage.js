@@ -32,7 +32,7 @@ class DeploymentPage extends Component {
               <div className="deployment-page__info__details__text">
               <strong>Grakn KBMS</strong> is the enterprise Knowledge Base Management System designed to scale with your enterprise. Whether you have a growing dataset, application workload, or user request, the Grakn KBMS will scale with your business. With all the tools you need to take you from development to production and scale, Grakn KBMS allows you to simplify your data architecture while maintaining full control over your knowledge base.
               </div>
-              <Link to="/kbms" className="button button--transparent deployment-page__info__details__button">LEARN MORE ABOUT GRAKN KBMS</Link>
+              <Link to="/grakn-kbms" className="button button--transparent deployment-page__info__details__button">LEARN MORE ABOUT GRAKN KBMS</Link>
             </div>
             <div className="deployment-page__info__img">
               <img src="/assets/svg/deployment-info.svg" alt="Deployment Info" />

@@ -23,7 +23,8 @@ class NavigationMenu extends Component {
         'nav__link': true,
         'nav__link__inline': value.type === 'single',
         'nav__link__dropdown': value.type !== 'single',
-        'animated__link': value.type === 'single' && key !== 'Github' && !hamburger,
+        'animated__link': value.type === 'single' && key !== 'Github' && key !== 'Download 1.0'  && !hamburger,
+        'nav__link__button': key === 'Download 1.0'
       });
       // 
       if (value.type === 'single') {

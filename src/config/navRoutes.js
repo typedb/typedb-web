@@ -2,7 +2,7 @@
 const graknRoutes = require('config/graknRoutes');
 
 export const internalRoutes =  [
-  'Services', 'Support', 'The Grakn', 'The KBMS', 'Deployment', 'Community', 'About', 'Careers', 'Financial Services',
+  'Services', 'Support', 'Grakn Core', 'Grakn KBMS & Workbase', 'Deployment', 'Community', 'About', 'Careers', 'Financial Services',
   'Health & Life Sciences', 'Intelligent Bots', 'Semantic Search', 'Security'
 ];
 
@@ -11,11 +11,15 @@ export const externalRoutes = [
 ];
 
 export const navRoutes = {
+  'Download 1.0': {
+    type: 'single',
+    link: `${graknRoutes.download}`,
+  },
   Products: {
     type: 'multi',
     links: {
-      'The Grakn': '/grakn',
-      'The KBMS': '/kbms',
+      'Grakn Core': '/grakn-core',
+      'Grakn KBMS & Workbase': '/grakn-kbms',
     }
   },
   Solutions: {
@@ -26,30 +30,27 @@ export const navRoutes = {
       Support: '/support'
     }
   },
-  'Use Cases': {
-    type: 'multi',
-    links: {
-      'Intelligent Bots': '/usecase-bots',
-      'Semantic Search': '/usecase-search',
-      'Financial Services': '/usecase-finance',
-      'Health & Life Sciences': '/usecase-health',
-      'Security': '/usecase-security'
-    }
-  },
+  // 'Use Cases': {
+  //   type: 'multi',
+  //   links: {
+  //     'Intelligent Bots': '/usecase-bots',
+  //     'Semantic Search': '/usecase-search',
+  //     'Financial Services': '/usecase-finance',
+  //     'Health & Life Sciences': '/usecase-health',
+  //     'Security': '/usecase-security'
+  //   }
+  // },
   Developer: {
     type: 'multi',
     links: {
       Academy: `${graknRoutes.academy}`,
       Documentation: `${graknRoutes.docs}`,
+      Discussion: `${graknRoutes.discuss}`
     }
   },
   Community: {
     type: 'single',
     link: '/community',
-  },
-  Discuss: {
-    type: 'single',
-    link: `${graknRoutes.discuss}`,
   },
   Blog: {
     type: 'single',

@@ -135,7 +135,7 @@ const GraknPage = () => (
           <span className="grakn-page__kbms__header">MEET GRAKN ENTERPRISE KBMS AND WORKBASE</span>
           <span className="grakn-page__kbms__text">
           The enterprise knowledge base management system is designed to scale with the growth of your data and application workload, equipped with all the functionalities you need to deploy and operate in a production environment.          </span>
-          <Link to="/kbms" className="grakn-page__kbms__button button button--charcoal">Learn More</Link>
+          <Link to="/grakn-kbms" className="grakn-page__kbms__button button button--charcoal">Learn More</Link>
         </div>
       </div>
     </section>

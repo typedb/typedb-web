@@ -62,8 +62,8 @@ class Footer extends Component {
         <div className="footer__block">
           <div className="footer__block__header">PRODUCTS</div>
           <div className="footer__block__links">
-            <Link to="/grakn">The Grakn</Link>
-            <Link to="/kbms">The KBMS</Link>
+            <Link to="/grakn-core">Grakn Core</Link>
+            <Link to="/grakn-kbms">Grakn KBMS</Link>
             <a href={graknRoutes.quickstart}>Quickstart</a>
             <a href={graknRoutes.download}>Install</a>
           </div>

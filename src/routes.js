@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { capitalize } from 'lodash';
+import { startCase } from 'lodash';
 import ReactGA from 'react-ga';
 import HomePage from 'pages/HomePage';
 import AboutPage from 'pages/AboutPage';
@@ -39,11 +39,8 @@ class Main extends Component {
 
   updatePageTitle() {
     let documentTitle = 'GRAKN.AI - The Database for AI';
-    if (this.props.path === '/kbms') {
-      documentTitle = `GRAKN.AI | KBMS`
-    }
-    else if (this.props.path !== '/') {
-      documentTitle = `GRAKN.AI | ${capitalize(this.props.path.substr(1))}`
+    if (this.props.path !== '/') {
+      documentTitle = `GRAKN.AI | ${startCase(this.props.path.substr(1))}`
     }
     document.title = documentTitle;
   }
@@ -59,8 +56,8 @@ class Main extends Component {
           <Route exact path="/community" component={CommunityPage} />
           <Route exact path="/support" component={SupportPage} />
           <Route exact path="/services" component={ServicesPage} />
-          <Route exact path="/grakn" component={GraknPage} />
-          <Route exact path="/kbms" component={KBMSPage} />
+          <Route exact path="/grakn-core" component={GraknPage} />
+          <Route exact path="/grakn-kbms" component={KBMSPage} />
           <Route exact path="/deployment" component={DeploymentPage} />
           <Route path="/usecase-finance" component={FinanceUseCasePage} />
           <Route path="/usecase-health" component={HealthUseCasePage} />

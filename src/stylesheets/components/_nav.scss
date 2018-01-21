@@ -53,6 +53,16 @@ $navShadow: 0 0 26px 0 rgba(221, 221, 221, 0.64);
       line-height: 1;
       padding-bottom: 5px;
     }
+    &__button {
+      color: $textGreen;
+      border: 1px solid $textGreen;
+      padding: 10px 15px;
+      border-radius: 5px;
+      &:hover {
+        background-color: $textGreen;
+        color: white;
+      }
+    }
     &__dropdown {
       position: relative;
       display: inline-block;
@@ -65,7 +75,7 @@ $navShadow: 0 0 26px 0 rgba(221, 221, 221, 0.64);
         display: none;
         position: absolute;
         background-color: white;
-        top: 50px;
+        top: 55px;
         width: max-content;
         border-radius: 5px;
         padding: 0.9rem 0.5rem;
@@ -74,6 +84,7 @@ $navShadow: 0 0 26px 0 rgba(221, 221, 221, 0.64);
         text-align: left;
         min-width: 80px;
         border: 1px solid $borderColor;
+        margin-left: -12px;
         &__item {
           display: block;
           line-height: 1;
@@ -81,7 +92,8 @@ $navShadow: 0 0 26px 0 rgba(221, 221, 221, 0.64);
           margin-bottom: 1rem;
           color: $textNav;
           font-size: 14px;
-          font-weight: 300;     
+          font-weight: 300;
+          margin-left: 7px;
         }
       }
       &:hover, &:active {
@@ -113,7 +125,11 @@ $navShadow: 0 0 26px 0 rgba(221, 221, 221, 0.64);
       padding-bottom: 4px;
       margin-bottom: 1rem;
       width: inherit;
-      
+      &__button {
+        padding: 10px 15px;
+        width: max-content;
+        margin-left: 0px;
+      }
       > &__icon {
         display: block;
         padding-top: 0.5rem;
@@ -133,7 +149,7 @@ $navShadow: 0 0 26px 0 rgba(221, 221, 221, 0.64);
     }
     &__secondary {
       display: block;
-      min-height: 304px;
+      min-height: 286px;
       transform: translateX(100%);
       transition: transform 0.2s ease-in-out;
       position: fixed;

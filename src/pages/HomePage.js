@@ -7,6 +7,7 @@ import SupportFormModal from 'components/SupportFormModal';
 import Testimonials from 'components/Testimonials';
 import graknRoutes from 'config/graknRoutes';
 import KBMSFeatures from 'components/KBMSFeatures';
+import ReactGA from 'react-ga';
 
 const deploymentOptions = [
   { name: 'Google Cloud Platform', url: '/assets/img/google-cloud.png'},
@@ -39,9 +40,9 @@ class HomePage extends Component {
           <div className="home__splash__text container section__container">
             <span className="home__splash__text__headline home__header">THE <strong>DATABASE</strong> FOR AI</span>
             <span className="home__splash__text__tag">Grakn is a hyper-relational database for knowledge engineering. Rooted in Knowledge Representation and  Automated Reasoning, Grakn provides the knowledge base foundation for intelligent/cognitive systems.</span>
-            <a className="home__splash__text__install" href={graknRoutes.download}>
-            Install Grakn 1.0<i className="fa fa-arrow-right" aria-hidden={true}></i>
-            </a>
+            <Link to="/grakn-core" className="home__splash__text__install" >
+            Learn more<i className="fa fa-arrow-right" aria-hidden={true}></i>
+            </Link>
           </div>
           <Visualiser />            
         </section>
@@ -75,7 +76,7 @@ class HomePage extends Component {
                 <span className="home__features__item__text__paragraph">
                 Enhanced Entity-Relationship schema, with constructs to define hyper-entities, hyper-relations and rules, to build complex knowledge models.
                 </span>
-                <Link to="/grakn" className="animated__link animated__link--purple">Learn More</Link>                                    
+                <Link to="/grakn-core" className="animated__link animated__link--purple">Learn More</Link>                                    
               </div>
               <div className="home__features__item__img">
                 <img src="/assets/img/hyper-expressive_schema.png" alt="Hyper Expressive Schema" />
@@ -93,7 +94,7 @@ class HomePage extends Component {
                 <span className="home__features__item__text__paragraph">
                 Automatic deduction of data types and relationships during runtime (OLTP), enabling the retrieval of hidden associations between data points.
                 </span>
-                <Link to="/grakn" className="animated__link animated__link--purple">Learn More</Link>                                    
+                <Link to="/grakn-core" className="animated__link animated__link--purple">Learn More</Link>                                    
               </div>
             </div>
           </div>
@@ -110,7 +111,7 @@ class HomePage extends Component {
                 <span className="home__features__item__text__paragraph">
                 Automated Pregel and MapReduce distributed algorithms abstracted as a language (OLAP), enabling large-scale analytics computation through simple queries.
                 </span>
-                <Link to="/grakn" className="animated__link animated__link--purple">Learn More</Link>                                    
+                <Link to="/grakn-core" className="animated__link animated__link--purple">Learn More</Link>                                    
               </div>
               <div className="home__features__item__img">
                 <img src="/assets/img/distributed_analytics.png" alt="Distributed Analytics" />
@@ -128,7 +129,7 @@ class HomePage extends Component {
                 <span className="home__features__item__text__paragraph">
                 Strong abstraction over low-level patterns, enabling simpler expressions of complex questions, while the system figures out the most optimal query execution.
                 </span>
-                <Link to="/grakn" className="animated__link animated__link--purple">Learn More</Link>                                    
+                <Link to="/grakn-core" className="animated__link animated__link--purple">Learn More</Link>                                    
               </div>
             </div>
           </div>
@@ -141,7 +142,7 @@ class HomePage extends Component {
             </span>
             <KBMSFeatures />
           </div>
-          <Link to="/kbms" className="button button--transparent home__production__button">Learn More</Link>      
+          <Link to="/grakn-kbms" className="button button--transparent home__production__button">Learn More</Link>      
         </section>
         <section className="home__deployment">
           <div className="home__deployment__container container section__container">
@@ -153,7 +154,8 @@ class HomePage extends Component {
               {
                 deploymentOptions.slice(0,3).map((item, index) => {
                   return (
-                    <Link to="/deployment" className="home__deployment__items__item" key={`${index}--develop`}>
+                    <Link to="/deployment" className="home__deployment__items__item" key={`${index}--develop`}
+                    >
                       <img src={item.url} alt={item.name} />
                     </Link>
                   )
