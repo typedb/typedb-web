@@ -22,7 +22,7 @@ class DeploymentPage extends Component {
           <div className="deployment-page__splash__container container section__container">
             <div className="deployment-page__splash__text">
               <span className="deployment-page__splash__text__header">Grakn KBMS in the <strong>Cloud</strong> and <strong>On-Premise</strong></span>
-              <span className="deployment-page__splash__text__tag">Easily deploy and manage Grakn KBMS on one machine, or a thousand node cluster</span>
+              <span className="deployment-page__splash__text__tag">Easily deploy and manage Grakn KBMS on one machine, or a thousand-node cluster</span>
             </div>
           </div>
         </section>
@@ -32,8 +32,11 @@ class DeploymentPage extends Component {
               <div className="deployment-page__info__details__text">
               <strong>Grakn KBMS</strong> is the enterprise Knowledge Base Management System designed to scale with your enterprise. Whether you have a growing dataset, application workload, or user request, the Grakn KBMS will scale with your business. With all the tools you need to take you from development to production and scale, Grakn KBMS allows you to simplify your data architecture while maintaining full control over your knowledge base.
               </div>
-              <Link to="/grakn-kbms" className="button button--transparent deployment-page__info__details__button">LEARN MORE ABOUT GRAKN KBMS</Link>
-            </div>
+              <div className="deployment-page__info__details__buttons">
+                <Link to="/grakn-kbms" className="button button--red deployment-page__info__details__buttons__item">Learn about Grakn KBMS</Link>
+                <span onClick={() => this.scroll()} className="button button--transparent deployment-page__info__details__button__item">Get On-Premise</span>
+              </div>
+              </div>
             <div className="deployment-page__info__img">
               <img src="/assets/svg/deployment-info.svg" alt="Deployment Info" />
             </div>
@@ -53,7 +56,7 @@ class DeploymentPage extends Component {
 
         <section className="deployment-page__coming">
           <div className="deployment-page__coming__container container section__container">
-            <span className="deployment-page__coming__header"><strong>Grakn KBMS</strong> is Coming Soon!</span>
+            <span className="deployment-page__coming__header"><strong>Grakn KBMS</strong> in the Cloud is Coming Soon!</span>
             <img src="assets/img/logo.png" alt="logo" />
             <span className="button button--red " onClick={() => this.scroll()}>Get in touch</span>                  
           </div>

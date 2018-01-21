@@ -36,7 +36,7 @@
         color: $textLight;
         font-weight: 300;
         line-height: 1.4;
-        width: 100%;
+        width: 50%;
         @media screen and (max-width: $smallScreen) {
           font-size: 14px;
           font-weight: 400;
@@ -61,6 +61,8 @@
         }
       }
     }
+    
+
     &__details {
       width: 45%;
       &__button {
@@ -87,6 +89,37 @@
       @media screen and (max-width: $smallScreen) {
         order: 2;
         margin-top: 30px;
+      }
+      &__buttons {
+        width: fit-content;
+        display: flex;
+        margin-top: 20px;
+        box-sizing: border-box;
+        @media screen and (max-width: $mediumScreen) {
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          width: 100%;
+        }
+        > * {
+          text-align: center;
+          box-sizing: border-box;
+          font-size: 14px;
+        }
+        > :nth-child(1) {
+          margin-right: 10px;
+          @media screen and (max-width: $mediumScreen) {
+            margin: 0 auto 1rem auto;
+            width: 100%;
+          }
+        }
+        > :nth-child(2) {
+          margin-left: 10px;
+          @media screen and (max-width: $mediumScreen) {
+            margin: 0 auto;
+            width: 100%;
+          }
+        }
       }
     }
     &__img {
@@ -154,8 +187,8 @@
 
     &__container {
       > img {
-        padding-top: 90px;
-        padding-bottom: 70px;
+        padding-top: 110px;
+        padding-bottom: 90px;
         display: block;
         margin: 0 auto;
         animation:spin 4s linear infinite;      

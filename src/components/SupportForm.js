@@ -92,16 +92,16 @@ class SupportForm extends Component {
                 <option value='academic'>Academic (Student, Teacher, Professor)</option>
                 <option value='other'>Other</option>
               </Select>            
-          </div>
+            </div>
             <div className="support-form__row__item support-form__row__item__select">
-            <Select className="support-form__input support-form__input__select" value='' name='stage' validations={[required]}>
-              <option value=''>Stage of development</option>
-              <option value='discovery'>Discovery phase</option>
-              <option value='installed'>Just installed</option>
-              <option value='development'>Development</option>
-              <option value='testing'>Testing and Optimisation</option>
-              <option value='production'> Live in production</option>
-            </Select>
+              <Select className="support-form__input support-form__input__select" value='' name='stage' validations={[required]}>
+                <option value=''>Stage of development</option>
+                <option value='discovery'>Discovery phase</option>
+                <option value='installed'>Just installed</option>
+                <option value='development'>Development</option>
+                <option value='testing'>Testing and Optimisation</option>
+                <option value='production'> Live in production</option>
+              </Select>
             </div>
           </div>
           <div className="support-form__row">
