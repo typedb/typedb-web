@@ -7,18 +7,18 @@ const zenscroll = require('zenscroll');
 const graknRoutes = require('config/graknRoutes');
 
 const comparisson = [
-  { item: 'Access to Grakn Community', enterprise: 'true', premium: 'true'},
-  { item: 'Support hours', enterprise: '24x7', premium: '10x5'},
-  { item: 'Response time', enterprise: '1 business day', premium: '1 business day'},
-  { item: 'Urgent ticket SLA', enterprise: '1 hour', premium: '1 hour'},
-  { item: 'Priority queueing', enterprise: 'true', premium: 'true'},
-  { item: 'Direct access to our engineers', enterprise: 'true', premium: 'true'},
-  { item: 'Release upgrades', enterprise: 'true', premium: 'true'},
-  { item: 'Bug Patches', enterprise: 'true', premium: 'true'},
-  { item: 'Hot fixes and bug escalation', enterprise: 'true', premium: 'false'},
-  { item: 'Architecture and performance reviews', enterprise: 'true', premium: 'false'},
-  { item: 'Migration and capacity Planning', enterprise: 'true', premium: 'false'},
-  { item: 'Launch day assistance', enterprise: 'true', premium: 'false'}
+  { item: 'Access to Grakn Community', advance: 'true', premium: 'true'},
+  { item: 'Support hours', advance: '24x7', premium: '10x5'},
+  { item: 'Response time', advance: '1 business day', premium: '1 business day'},
+  { item: 'Urgent ticket SLA', advance: '1 hour', premium: '1 hour'},
+  { item: 'Priority queueing', advance: 'true', premium: 'true'},
+  { item: 'Direct access to our engineers', advance: 'true', premium: 'true'},
+  { item: 'Release upgrades', advance: 'true', premium: 'true'},
+  { item: 'Bug Patches', advance: 'true', premium: 'true'},
+  { item: 'Hot fixes and bug escalation', advance: 'true', premium: 'false'},
+  { item: 'Architecture and performance reviews', advance: 'true', premium: 'false'},
+  { item: 'Migration and capacity Planning', advance: 'true', premium: 'false'},
+  { item: 'Launch day assistance', advance: 'true', premium: 'false'}
 ];
 
 class SupportPage extends Component {
@@ -35,29 +35,29 @@ class SupportPage extends Component {
         <div className="support-page__comparisson__table__header">
           <span className="support-page__comparisson__table__header__item support-page__comparisson__table__header__item--empty" />
           <span className="support-page__comparisson__table__header__item">Premium Support</span>
-          <span className="support-page__comparisson__table__header__item">Enterprise Support</span>
+          <span className="support-page__comparisson__table__header__item">Advance Support</span>
         </div>
       {
         comparisson.map((elem, index) => {
           let premiumContent = '';
-          let enterpriseContent = '';        
+          let advanceContent = '';        
           if (elem.premium === 'true') {
             premiumContent = <i className="fa fa-check support-page__comparisson__table__row__item__green" />;
           }
           else if (elem.premium !== 'false') {
             premiumContent = elem.premium;
           }
-          if (elem.enterprise === 'true') {
-            enterpriseContent = <i className="fa fa-check support-page__comparisson__table__row__item__purple" />;
+          if (elem.advance === 'true') {
+            advanceContent = <i className="fa fa-check support-page__comparisson__table__row__item__purple" />;
           }
-          else if (elem.enterprise !== 'false') {
-            enterpriseContent = elem.premium;
+          else if (elem.advance !== 'false') {
+            advanceContent = elem.premium;
           }
           return (
             <div className="support-page__comparisson__table__row" key={`${elem.item}__table__desktop`}>
               <span className="support-page__comparisson__table__row__item">{elem.item}</span>
               <span className="support-page__comparisson__table__row__item">{premiumContent}</span>
-              <span className="support-page__comparisson__table__row__item">{enterpriseContent}</span>
+              <span className="support-page__comparisson__table__row__item">{advanceContent}</span>
             </div>
           );
         })
@@ -72,18 +72,18 @@ class SupportPage extends Component {
       {
         comparisson.map((elem, index) => {
           let premiumContent = '';
-          let enterpriseContent = '';        
+          let advanceContent = '';        
           if (elem.premium === 'true') {
             premiumContent = 'Yes';
           }
           else if (elem.premium !== 'false') {
             premiumContent = elem.premium;
           }
-          if (elem.enterprise === 'true') {
-            enterpriseContent = 'Yes';
+          if (elem.advance === 'true') {
+            advanceContent = 'Yes';
           }
-          else if (elem.enterprise !== 'false') {
-            enterpriseContent = elem.premium;
+          else if (elem.advance !== 'false') {
+            advanceContent = elem.premium;
           }
           return (
             <div className="support-page__comparisson__table__mobile__row" key={`${elem.item}__table__desktop`}>
@@ -93,8 +93,8 @@ class SupportPage extends Component {
                 <span>{premiumContent}</span>
               </div>
               <div className="support-page__comparisson__table__mobile__row__item support-page__comparisson__table__mobile__row__item--split">
-                <span>Enterprise Support</span>
-                <span>{enterpriseContent}</span>
+                <span>advance Support</span>
+                <span>{advanceContent}</span>
               </div>
             </div>
           );
