@@ -202,7 +202,7 @@ app.post('/api/support', function(req, res) {
          <div>Company: ${req.body.company}</div>
          <div>Position: ${req.body.job}</div>
          <div>Email: ${req.body.email}</div>
-         <div>Phone: ${req.body.phone}</div>
+         <div>Product: ${req.body.product}</div>
          <div>Stage of Development: ${req.body.stage}</div>
          <div>Areas of Interest: ${req.body.aois}</div>
          <div>Additional: ${req.body.more}</div>

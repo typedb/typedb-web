@@ -72,13 +72,10 @@ class SupportForm extends Component {
               <Input className="support-form__input" placeholder='Email' name='email' validations={[required, email]}/>
             </div>
             <div className="support-form__row__item">
-              <Input className="support-form__input" placeholder='Phone Number' name='phone' validations={[required]}/>
+              <Input className="support-form__input" placeholder='Company' name='company' validations={[required]}/>
             </div>
           </div>
           <div className="support-form__row">
-            <div className="support-form__row__item">
-              <Input className="support-form__input" placeholder='Company' name='company' validations={[required]}/>
-            </div>
             <div className="support-form__row__item support-form__row__item__select">
               <Select className="support-form__input support-form__input__select" value='' name='job' validations={[required]}>
                 <option value=''>Job function</option>
@@ -94,18 +91,26 @@ class SupportForm extends Component {
                 <option value='business development'>Business Development Manager</option>
                 <option value='academic'>Academic (Student, Teacher, Professor)</option>
                 <option value='other'>Other</option>
-              </Select>
+              </Select>            
+          </div>
+            <div className="support-form__row__item support-form__row__item__select">
+            <Select className="support-form__input support-form__input__select" value='' name='stage' validations={[required]}>
+              <option value=''>Stage of development</option>
+              <option value='discovery'>Discovery phase</option>
+              <option value='installed'>Just installed</option>
+              <option value='development'>Development</option>
+              <option value='testing'>Testing and Optimisation</option>
+              <option value='production'> Live in production</option>
+            </Select>
             </div>
           </div>
           <div className="support-form__row">
             <div className="support-form__row__item support-form__row__item__select">
-              <Select className="support-form__input support-form__input__select" value='' name='stage' validations={[required]}>
-                <option value=''>Stage of development</option>
-                <option value='discovery'>Discovery phase</option>
-                <option value='installed'>Just installed</option>
-                <option value='development'>Development</option>
-                <option value='testing'>Testing and Optimisation</option>
-                <option value='production'> Live in production</option>
+              <Select className="support-form__input support-form__input__select" value='' name='product' validations={[required]}>
+                <option value=''>Product</option>
+                <option value='core'>Grakn Core</option>
+                <option value='kbms'>Grakn KBMS</option>
+                <option value='workbase'>Grakn Workbase</option>
               </Select>
               <label className="support-form__label support-form__label--modified">
               Please select all areas you’re interested in:
