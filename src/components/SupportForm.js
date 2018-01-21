@@ -114,7 +114,7 @@ class SupportForm extends Component {
                 <option value='services'>Professional Services</option>
               </Select>
               <label className="support-form__label support-form__label--modified">
-              Please select all areas you’re interested in:
+              Select all areas you’re interested in:
               </label>
                 <div className="support-form__input__group__row">
                   <div className="support-form__input__group">
