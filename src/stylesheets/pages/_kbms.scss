@@ -140,21 +140,26 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
+        width: 100%;
       }
       > * {
         min-width: 100px;
         text-align: center;
+        box-sizing: border-box;
       }
       > :nth-child(1) {
         margin-right: 10px;
         @media screen and (max-width: $smallScreen) {
           margin: 0 auto 1rem auto;
+          width: 100%;
+          
         }
       }
       > :nth-child(2) {
         margin-left: 10px;
         @media screen and (max-width: $smallScreen) {
           margin: 0 auto;
+          width: 100%;
         }
       }
     }
