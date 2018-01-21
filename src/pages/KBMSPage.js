@@ -193,8 +193,8 @@ class KBMSPage extends Component {
     
             </div>
             <div className="kbms-page__features__buttons">
-              <Link to="/deployment" className="button button--red">GET KBMS</Link>
-              <span className="button button--transparent" onClick={() => this.switchSupportModal()}>GET WORKBASE</span>
+              <span className="button button--red" onClick={() => this.switchSupportModal()}>Get KBMS / Workbase</span>
+              <Link to="/deployment" className="button button--transparent">Cloud Deployment</Link>
             </div>
           </div>
         </section>
