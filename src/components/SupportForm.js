@@ -111,6 +111,7 @@ class SupportForm extends Component {
                 <option value='core'>Grakn Core</option>
                 <option value='kbms'>Grakn KBMS</option>
                 <option value='workbase'>Grakn Workbase</option>
+                <option value='services'>Professional Services</option>
               </Select>
               <label className="support-form__label support-form__label--modified">
               Please select all areas you’re interested in:
