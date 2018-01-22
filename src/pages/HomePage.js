@@ -40,7 +40,13 @@ class HomePage extends Component {
           <div className="home__splash__text container section__container">
             <span className="home__splash__text__headline home__header">THE <strong>DATABASE</strong> FOR AI</span>
             <span className="home__splash__text__tag">Grakn is a hyper-relational database for knowledge engineering. Rooted in Knowledge Representation and  Automated Reasoning, Grakn provides the knowledge base foundation for intelligent/cognitive systems.</span>
-            <Link to="/grakn-core" className="home__splash__text__install" >
+            <Link to="/grakn-core" className="home__splash__text__install" onClick={() => {
+              ReactGA.initialize('UA-72414051-1');
+              ReactGA.event({
+                category: 'Home-Link-Grakn-Splash',
+                action: 'Button Click',
+              });
+            }}>
             Learn more<i className="fa fa-arrow-right" aria-hidden={true}></i>
             </Link>
           </div>
@@ -76,7 +82,15 @@ class HomePage extends Component {
                 <span className="home__features__item__text__paragraph">
                 Enhanced Entity-Relationship schema, with constructs to define hyper-entities, hyper-relations and rules, to build complex knowledge models.
                 </span>
-                <Link to="/grakn-core" className="animated__link animated__link--purple">Learn More</Link>                                    
+                <Link to="/grakn-core" className="animated__link animated__link--purple"
+                onClick={() => {
+                  ReactGA.initialize('UA-72414051-1');
+                  ReactGA.event({
+                    category: 'Home-Link-Grakn-Learn-More',
+                    action: 'Button Click',
+                  });
+                }}
+                >Learn More</Link>                                    
               </div>
               <div className="home__features__item__img">
                 <img src="/assets/img/hyper-expressive_schema.png" alt="Hyper Expressive Schema" />
@@ -94,7 +108,15 @@ class HomePage extends Component {
                 <span className="home__features__item__text__paragraph">
                 Automatic deduction of data types and relationships during runtime (OLTP), enabling the retrieval of hidden associations between data points.
                 </span>
-                <Link to="/grakn-core" className="animated__link animated__link--purple">Learn More</Link>                                    
+                <Link to="/grakn-core" className="animated__link animated__link--purple"
+                onClick={() => {
+                  ReactGA.initialize('UA-72414051-1');
+                  ReactGA.event({
+                    category: 'Home-Link-Grakn-Learn-More',
+                    action: 'Button Click',
+                  });
+                }}
+                >Learn More</Link>                                    
               </div>
             </div>
           </div>
@@ -111,7 +133,15 @@ class HomePage extends Component {
                 <span className="home__features__item__text__paragraph">
                 Automated Pregel and MapReduce distributed algorithms abstracted as a language (OLAP), enabling large-scale analytics computation through simple queries.
                 </span>
-                <Link to="/grakn-core" className="animated__link animated__link--purple">Learn More</Link>                                    
+                <Link to="/grakn-core" className="animated__link animated__link--purple"
+                onClick={() => {
+                  ReactGA.initialize('UA-72414051-1');
+                  ReactGA.event({
+                    category: 'Home-Link-Grakn-Learn-More',
+                    action: 'Button Click',
+                  });
+                }}
+                >Learn More</Link>                                    
               </div>
               <div className="home__features__item__img">
                 <img src="/assets/img/distributed_analytics.png" alt="Distributed Analytics" />
@@ -129,7 +159,15 @@ class HomePage extends Component {
                 <span className="home__features__item__text__paragraph">
                 Strong abstraction over low-level patterns, enabling simpler expressions of complex questions, while the system figures out the most optimal query execution.
                 </span>
-                <Link to="/grakn-core" className="animated__link animated__link--purple">Learn More</Link>                                    
+                <Link to="/grakn-core" className="animated__link animated__link--purple"
+                onClick={() => {
+                  ReactGA.initialize('UA-72414051-1');
+                  ReactGA.event({
+                    category: 'Home-Link-Grakn-Learn-More',
+                    action: 'Button Click',
+                  });
+                }}
+                >Learn More</Link>                                    
               </div>
             </div>
           </div>
@@ -142,7 +180,14 @@ class HomePage extends Component {
             </span>
             <KBMSFeatures />
           </div>
-          <Link to="/grakn-kbms" className="button button--transparent home__production__button">Learn More</Link>      
+          <Link to="/grakn-kbms" className="button button--transparent home__production__button"
+          onClick={() => {
+            ReactGA.initialize('UA-72414051-1');
+            ReactGA.event({
+              category: 'Home-Link-KBMS-Learn-More',
+              action: 'Button Click',
+            });
+          }}>Learn More</Link>      
         </section>
         <section className="home__deployment">
           <div className="home__deployment__container container section__container">
@@ -174,7 +219,15 @@ class HomePage extends Component {
               }
               </div>
             </div>
-            <Link to='/deployment' className="button button--transparent">Choose your deployment option</Link>
+            <Link to='/deployment' className="button button--transparent"
+            onClick={() => {
+              ReactGA.initialize('UA-72414051-1');
+              ReactGA.event({
+                category: 'Home-Link-Deployment-Learn-More',
+                action: 'Button Click',
+              });
+            }}
+            >Choose your deployment option</Link>
           </div>
         </section>
         <section className="home__usecases">
@@ -287,7 +340,15 @@ class HomePage extends Component {
         <section className="home__world">
           <div className="home__world__container container section__container">         
             <span className="home__world__headline">THE WORLD NEEDS TO <strong>GRAKN</strong></span>
-            <Link to="/community" className="home__world__link">Join the Grakn community around the world</Link>
+            <Link to="/community" className="home__world__link"
+            onClick={() => {
+              ReactGA.initialize('UA-72414051-1');
+              ReactGA.event({
+                category: 'Home-Link-Community-Learn-More',
+                action: 'Button Click',
+              });
+            }}
+            >Join the Grakn community around the world</Link>
           </div>
         </section>
       </div>
