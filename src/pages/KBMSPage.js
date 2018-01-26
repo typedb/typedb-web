@@ -120,7 +120,7 @@ class KBMSPage extends Component {
                 <div className="kbms-page__features__col__item__details">
                   <span className="kbms-page__features__col__item__details__header">Cluster Management</span>
                   <div className="kbms-page__features__col__item__details__text">
-                  Easily deploy and scale your database with tools that automate the of provisioning your cluster              
+                  Easily deploy and scale your database with tools that automate the provisioning of your cluster              
                   </div>
                 </div>
               </div>

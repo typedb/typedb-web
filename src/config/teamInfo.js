@@ -8,25 +8,11 @@ module.exports = {
       social: 'https://linkedin.com/in/haikalpribadi'
     },
     {
-      name: 'Precy Kwan, CPA',
-      position: 'Chief Operating Officer',
-      education: 'MPhil in Land Economy, University of Cambridge',
-      img: '/assets/img/team_photos/precy2.png',      
-      social: 'https://linkedin.com/in/precykwan'
-    },
-    {
       name: 'Tomas Sabat',
       position: 'Chief Revenue Officer',
       education: 'MPhil in Politics, University of Cambridge',
       img: '/assets/img/team_photos/tomas.png',      
       social: 'https://linkedin.com/in/tomás-sabat-83265841'
-    },
-    {
-      name: 'Christian Jakenfelds',
-      position: 'Head of Sales',
-      education: 'BSc in Biochemistry, Imperial College London',
-      img: '/assets/img/team_photos/christian.png',      
-      social: 'https://linkedin.com/in/christianjakenfelds'
     },
     {
       name: 'Dr. Filipe Teixeira',
@@ -76,27 +62,6 @@ module.exports = {
       education: 'MSc in Engineering of Computing Systems, Politecnico di Milano',
       img: '/assets/img/team_photos/marco2.png',      
       social: 'https://linkedin.com/in/marcoscoppetta'
-    },
-    {
-      name: 'Dr. Michelangelo B.',
-      position: 'Knowledge Engineer',
-      education: 'PhD in Discrete Mathematics, University of Naples',
-      img: '/assets/img/team_photos/miko.png',      
-      social: 'https://linkedin.com/in/michelangelobucci'
-    },
-    {
-      name: 'Nick Dillon',
-      position: 'Business Operations',
-      education: 'MPhil in Urban Studies, University of Cambridge',
-      img: '/assets/img/team_photos/nick.png',      
-      social: 'https://linkedin.com/in/nicholas-d-700411145'
-    },
-    {
-      name: 'Thanh Pham',
-      position: 'Cluster Engineer',
-      education: 'MSc in Financial Mathematics, Cass Business School',
-      img: '/assets/img/team_photos/thanh.png',      
-      social: 'https://linkedin.com/in/thanh-pham-bb506115'
     },
   ]
 }
