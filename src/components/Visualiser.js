@@ -4,7 +4,7 @@ import classNames from 'classnames';
 import { keys } from 'lodash';
 import { connect } from 'react-redux';
 
-import vis from 'vis';
+import vis from 'vis-grakn';
 import Resizable from 're-resizable';
 
 const Prism = require('prismjs');
@@ -54,10 +54,43 @@ class Visualiser extends Component {
     }
     const options = {
       autoResize: false,
-      interaction: {
+      interaction:{
+        dragNodes:true,
+        dragView: false,
+        hideEdgesOnDrag: false,
+        hideNodesOnDrag: false,
+        hover: false,
+        hoverConnectedEdges: false,
+        keyboard: {
+          enabled: false,
+          speed: {x: 10, y: 10, zoom: 0.02},
+          bindToWindow: true
+        },
+        multiselect: false,
+        navigationButtons: false,
         selectable: false,
-        zoomView: false,
-        dragView: false
+        selectConnectedEdges: false,
+        tooltipDelay: 300,
+        zoomView: false
+      },
+      physics:{
+        enabled: true,
+        forceAtlas2Based: {
+          gravitationalConstant: -50,
+          centralGravity: 0.01,
+          springConstant: 0.03,
+          springLength: 200,
+          damping: 0.3,
+          avoidOverlap: 0.4
+        },
+        repulsion: {
+          centralGravity: 0.2,
+          springLength: 200,
+          springConstant: 0.2,
+          nodeDistance: 150,
+          damping: 0.3
+        },
+        solver: 'forceAtlas2Based',
       },
       nodes: {
         borderWidth: 0,
@@ -67,14 +100,13 @@ class Visualiser extends Component {
           face: 'Ubuntu'
 
         },
-        margin: this.props.media && this.props.media.is.extraSmall? 4 : 10,
-        fixed: true
+        fixed: false,
       },
       edges: {
         color: {
           color: '#576484'
         },
-        dashes: [2,5],
+        dashes: true,
         arrows: 'to',
         width: 2,
         smooth: {
@@ -93,45 +125,83 @@ class Visualiser extends Component {
         entity: {
           shape: 'box',
           color: {
-            background: '#46cd90'
+            background: '#3dce8c'
           },
+          margin: {
+            top: 10,
+            bottom: 10,
+            left: 20,
+            right: 20
+          },
+          chosen: {
+            node: function(values, id, selected, hovering) {
+              values.color = '#3dce8c';
+            }
+          }
         },
         'entity-type': {
           shape: 'box',
           color: {
-            background: '#46cd90'
+            background: '#3dce8c'
           },
+          margin: {
+            top: 10,
+            bottom: 10,
+            left: 20,
+            right: 20
+          },
+          chosen: {
+            node: function(values, id, selected, hovering) {
+              values.color = '#3dce8c';
+            }
+          }
         },
         relationship: {
           shape: 'diamond',
-          size: this.props.media && this.props.media.is.extraSmall? 20 : 50,          
           color: {
-            background: '#667fc9'
+            background: '#796de3'
           },
-          font: {
-            vadjust: this.props.media && this.props.media.is.extraSmall? -30 : -65           
+          margin: 5,
+          chosen: {
+            node: function(values, id, selected, hovering) {
+              values.color = '#796de3';
+            }
           }
         },
         'relationship-type': {
           shape: 'diamond',
-          size: this.props.media && this.props.media.is.extraSmall? 30 : 50,
           color: {
-            background: '#667fc9'
+            background: '#796de3'
           },
-          font: {
-            vadjust: this.props.media && this.props.media.is.extraSmall? -40 : -65
+          margin: 5,
+          chosen: {
+            node: function(values, id, selected, hovering) {
+              values.color = '#796de3';
+            }
           }
         },
         attribute: {
-          shape: 'ellipse',
+          shape: 'circle',
           color: {
-            background: '#f3bd60'
+            background: '#f3bd5f'
+          },
+          margin: 10,
+          chosen: {
+            node: function(values, id, selected, hovering) {
+              values.color = '#f3bd5f';
+            }
           }
         },
         'attribute-type': {
-          shape: 'ellipse',
+          shape: 'circle',
           color: {
-            background: '#f3bd60'
+            background: '#f3bd5f'
+          },
+          margin: 10,
+          chosen: {
+            node: function(values, id, selected, hovering) {
+              values.color = '#f3bd5f';
+            }
           }
         }
       }
@@ -161,7 +231,7 @@ class Visualiser extends Component {
         id: index,
         group: item.type,
         label: item.text,
-        x: ((item.cx - 15) / 100 ) * width ,
+        x: ((item.cx - 20) / 100 ) * width ,
         y: (item.cy  / 100 ) * height
       });
     });
