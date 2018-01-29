@@ -192,7 +192,7 @@ class HomePage extends Component {
         <section className="home__deployment">
           <div className="home__deployment__container container section__container">
             <span className="home__deployment__headline home__header">
-            Deploy Grakn KBMS <strong>on-premise</strong>, or in the <strong>cloud</strong>
+            Deploy Grakn KBMS <strong>on-premise</strong>,<br />or in the <strong>cloud</strong>
             </span>
             <div className="home__deployment__items--desktop">
               <div className="home__deployment__items--desktop__row">
