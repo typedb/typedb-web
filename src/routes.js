@@ -3,6 +3,7 @@ import { Switch, Route, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { startCase } from 'lodash';
 import ReactGA from 'react-ga';
+import { Helmet } from 'react-helmet';
 import HomePage from 'pages/HomePage';
 import AboutPage from 'pages/AboutPage';
 import SlackPage from 'pages/SlackPage';
@@ -21,33 +22,30 @@ import {FinanceUseCasePage, HealthUseCasePage, SemanticUseCasePage, BotsUseCaseP
 class Main extends Component {
   constructor(props) {
     super(props);
-    this.updatePageTitle = this.updatePageTitle.bind(this);
   }
 
   componentDidMount() {
     ReactGA.initialize('UA-72414051-1');
     ReactGA.pageview(this.props.path);
-    this.updatePageTitle();
   }
 
   componentDidUpdate(oldProps) {
     if (this.props.path !== oldProps.path) {
       ReactGA.pageview(this.props.path);
-      this.updatePageTitle();
     }
   }
 
-  updatePageTitle() {
+  render() {
     let documentTitle = 'GRAKN.AI - The Database for AI';
     if (this.props.path !== '/') {
       documentTitle = `${startCase(this.props.path.substr(1))} | GRAKN.AI`
     }
-    document.title = documentTitle;
-  }
-
-  render() {
     return (
       <main className="main">
+        <Helmet>
+          <title>{documentTitle}</title>
+          <link rel="canonical" href={`https://grakn.ai${this.props.path}`} />
+        </Helmet>
         <Switch>
           <Route exact path="/" component={HomePage} />
           <Route exact path="/about" component={AboutPage} />
