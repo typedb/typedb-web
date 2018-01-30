@@ -3,6 +3,7 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const LodashModuleReplacementPlugin = require('lodash-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 const autoprefixer = require('autoprefixer');
 
@@ -35,6 +36,13 @@ module.exports = {
     htmlWebpackPlugin,
     definePlugin,
     uglifyPlugin,
+    new CopyWebpackPlugin([
+      {
+        context: path.join(__dirname, 'src'),
+        from: './sitemap.xml',
+        to: path.join(__dirname, 'dist'),
+      }
+    ])
   ],
   resolve: {
     modules: ['node_modules', path.join(__dirname, 'src')]

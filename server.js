@@ -263,6 +263,10 @@ app.get('/install', (req, res) => {
     res.redirect(301, `${docsBase}/docs/get-started/setup-guide.html`);
 });
 
+// Render Sitemap
+app.get("/sitemap.xml", (req, res) => {
+    res.sendFile(path.join(dist, 'sitemap.xml'));
+})
 
 // Render Application
 app.get('*', (req, res) => {
