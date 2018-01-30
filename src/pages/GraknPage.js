@@ -8,7 +8,7 @@ const GraknPage = () => (
     <section className="grakn-page__splash">
       <div className="grakn-page__splash__container container section__container">
         <div className="grakn-page__splash__text">
-          <h1 className="grakn-page__splash__text__header">Meet Grakn and Graql</h1>
+          <h1 className="grakn-page__splash__text__header">Meet <strong>Grakn</strong> and <strong>Graql</strong></h1>
           <span className="grakn-page__splash__text__tag">Grakn is a hyper-relational database for knowledge engineering,<br /> and Graql is Grakn’s query language.</span>
         </div>
         <GraknPageCodeBlock />

@@ -20,7 +20,7 @@ class ServicesPage extends Component {
         <section className="services__splash">
           <div className="services__splash__container container section__container">
             <div className="services__splash__text">
-              <span className="services__splash__text__header">From Zero to Hero</span>
+              <h1 className="services__splash__text__header">From Zero to Hero</h1>
               <span className="services__splash__text__tag">For every step of your knowledge engineering journey, we’re here to help you achieve your goals</span>
             </div>
           </div>

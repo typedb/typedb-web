@@ -5,7 +5,7 @@ const AboutPage = () => (
   <div className="about">
     <section className="about__splash">
       <div className="container section__container">
-        <span className="about__splash__text">The de facto database for AI and Cognitive Systems</span>
+        <h1 className="about__splash__text">The de facto database for AI and Cognitive Systems</h1>
       </div>
       <div className="about__splash__circle"><img src="/assets/svg/bot.svg" alt="grakn bot" /></div>      
     </section>

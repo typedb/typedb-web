@@ -26,7 +26,7 @@ class CommunityPage extends Component {
       <div className="community">
         <section className="community__splash">
           <div className="community__splash__container container section__container">
-            <span>Get in <strong>touch</strong> with Grakn developers and community</span>
+            <h1>Get in <strong>touch</strong> with Grakn developers and community</h1>
             <div className="community__splash__form">
               <span className="community__splash__form__header">Subscribe to our newsletter</span>
               <span className="community__splash__form__tag">Stay updated with our community news and development releases!</span>

@@ -23,7 +23,7 @@ class UseCase extends Component {
       <div className="usecase-page">
         <section className="usecase-page__splash">
           <div className="usecase-page__splash__text">
-            <span className="usecase-page__splash__text__header"><strong>Grakn helps</strong> every domain with complex networks of information </span>
+            <h1 className="usecase-page__splash__text__header"><strong>Grakn helps</strong> every domain with complex networks of information </h1>
           </div>
         </section>
         <section className="usecase-page__info">

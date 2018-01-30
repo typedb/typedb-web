@@ -21,7 +21,7 @@ class DeploymentPage extends Component {
         <section className="deployment-page__splash">
           <div className="deployment-page__splash__container container section__container">
             <div className="deployment-page__splash__text">
-              <span className="deployment-page__splash__text__header">Grakn KBMS in the <strong>Cloud</strong> and <strong>On-Premise</strong></span>
+              <h1 className="deployment-page__splash__text__header">Grakn KBMS in the <strong>Cloud</strong> and <strong>On-Premise</strong></h1>
               <span className="deployment-page__splash__text__tag">Easily deploy and manage Grakn KBMS on one machine, or a thousand-node cluster</span>
             </div>
           </div>
