@@ -18,6 +18,17 @@ import NoPage from 'pages/NoPage';
 import ComingSoon from 'pages/ComingSoon';
 import {FinanceUseCasePage, HealthUseCasePage, SemanticUseCasePage, BotsUseCasePage, SecurityUseCasePage} from 'pages/UseCasePages';
 
+const metaDescription = {
+'/': "Grakn is a hyper-relational database for knowledge engineering. Rooted in Knowledge Representation and Automated Reasoning, Grakn provides the knowledge base foundation for intelligent/cognitive systems.",
+'/grakn-core':"Grakn is a hyper-relational database for knowledge engineering, and Graql is Grakn’s query language.",
+'/grakn-kbms':"Grakn Enterprise KBMS is the Knowledge Base Management System designed to scale with your business, and Workbase is the visual platform to control everything from development to production.",
+'/deployment':"Easily deploy and manage Grakn KBMS on one machine, or a thousand-node cluster.",
+'/services':"For every step of your knowledge engineering journey, we provide professional services to help you achieve your development goals.",
+'/support':"From development to production, we can support you every step of the way, so you can focus on building your application and your business",
+'/community':"Get in touch with Grakn developers and join our global community",
+'/about': "Learn more about the Grakn Team",
+'/slack': "Join the Grakn Slack Channel",
+}
 
 class Main extends Component {
   constructor(props) {
@@ -45,6 +56,12 @@ class Main extends Component {
         <Helmet>
           <title>{documentTitle}</title>
           <link rel="canonical" href={`https://grakn.ai${this.props.path}`} />
+          {
+            metaDescription[this.props.path] ?
+              <meta name="description" content={metaDescription[this.props.path]} />
+              :
+              null
+          }
         </Helmet>
         <Switch>
           <Route exact path="/" component={HomePage} />
