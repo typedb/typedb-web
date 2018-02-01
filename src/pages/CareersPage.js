@@ -3,6 +3,14 @@ import { connect } from 'react-redux';
 import { fetchCareers } from 'actions/careers';
 import classNames from 'classnames';
 
+const splitTwo = (arr) => {
+  const leftEnd= Math.ceil(arr.length/2);
+  return ({
+    left: arr.slice(0,leftEnd),
+    right: arr.slice(leftEnd)
+  });
+}
+
 class CareersPage extends Component {
   componentDidMount() {
     this.props.onFetchCareers();
@@ -11,34 +19,162 @@ class CareersPage extends Component {
   render() {
     return (
       <div className="careers">
-        <div className="careers__container">
-        <span className="careers__heading container section__container">Careers</span>
-        {
-          this.props.careers.loading?
-          null
-          :
-          <div className="careers__list">
-            {
-              this.props.careers.items.length == 0?
-                <div>No Jobs available</div>
-                :
-                this.props.careers.items.sort((a,b) => new Date(b.updated_at) - new Date(a.updated_at)).map((item, index) => {
-                  return (
-                    <section className="careers__list__item" key={`${index}_careers`}>
-                      <div className="container section__container">
-                        <span className="careers__list__item__title">{item.title}</span>
-                        <a className="careers__list__item__link animated__link animated__link--purple" href={item.angellist_url} target="__blank">Check on Angelist</a>
-                        <div className="careers__list__item__description"
-                          dangerouslySetInnerHTML={{__html: item.description.replace(/[*]/g, '').replace(/(?:\r\n|\r|\n)/g, '<br />')}}
-                        />
-                      </div>
-                    </section>
-                  )
-                })
-            }
+        <section className="careers__splash">
+          <div className="container section__container">
+            <h1 className="careers__splash__text">Careers</h1>
           </div>
+        </section>
+        <section className="careers__intro">
+          <div className="container section__container careers__intro__container">
+            <div className="careers__intro__text">
+            <span>Intelligent Systems consume data that are too complex for current databases to handle. GRAKN.AI is a database for complex and intelligent systems, that uses a knowledge representation system to structure complex data and reasoning engine to infer and interpret complex relationships.
+            <br /> <br />
+            We're a team of 16 talented engineers from Cambridge, Oxford, Imperial, Stanford and other world-class universities, and we're based in London. We've developed a database in the form of a distributed knowledge base that reasons over data in real-time, called GRAKN.AI. it enables machines to handle complex data and derive knowledge that is too complex for human cognition to uncover.
+            </span>
+            </div>
+            <div className="careers__intro__img">
+              <img src="/assets/svg/careers-intro.svg" alt="Careers intro" />
+            </div>
+          </div>
+        </section>
+        {
+          this.props.careers.items.map((item, index) => {
+            return (
+              <section className="careers__job" key={`careers__job__${index}`}>
+                <div className="container section__container careers__job__container">
+                  <div className="careers__job__logo">
+                    <img src={item.logo} alt="Job Image" />
+                  </div>
+                  <span className="careers__job__title" style={{color: item.theme.main}}>
+                    {item.title}
+                  </span>
+                  <span className="careers__job__intro">
+                    {item.intro}
+                  </span>
+                  <div className="careers__job__list">
+                  {
+                    item.responsibilities?
+                    <div className="careers__job__list__section">
+                      <span className="careers__job__list__section__title">Responsibilities</span>
+                      <div className="careers__job__list__section__items">
+                        <div className="careers__job__list__section__items__col">
+                          {
+                            item.responsibilities.slice(0, Math.ceil(item.responsibilities.length/2)).map((listItem, listItemIndex) => {
+                              return (
+                                <div 
+                                key={`careers__job__${item.title}__responsibilities__${listItemIndex}`} 
+                                className="careers__job__list__section__items__col__item"
+                                >
+                                <i className="fa fa-check" aria-hidden={true} style={{color: item.theme.main, backgroundColor: item.theme.secondary}}/>
+                                <span>{listItem}</span>
+                                </div>
+                              )
+                            })
+                          }
+                        </div>
+                        <div className="careers__job__list__section__items__col">
+                          {
+                            item.responsibilities.slice(Math.ceil(item.responsibilities.length/2)).map((listItem, listItemIndex) => {
+                              return (
+                                <div 
+                                key={`careers__job__${item.title}__responsibilities__${listItemIndex}`} 
+                                className="careers__job__list__section__items__col__item"
+                                >
+                                <i className="fa fa-check" aria-hidden={true} style={{color: item.theme.main, backgroundColor: item.theme.secondary}}/>
+                                <span>{listItem}</span>
+                                </div>                              )
+                            })
+                          }
+                        </div>
+                      </div>
+                    </div>
+                    :
+                    null
+                    }
+                    {
+                      item.required?
+                      <div className="careers__job__list__section">
+                        <span className="careers__job__list__section__title">Required Skills</span>
+                        <div className="careers__job__list__section__items">
+                          <div className="careers__job__list__section__items__col">
+                            {
+                              item.required.slice(0, Math.ceil(item.required.length/2)).map((listItem, listItemIndex) => {
+                                return (
+                                  <div 
+                                  key={`careers__job__${item.title}__required__${listItemIndex}`} 
+                                  className="careers__job__list__section__items__col__item"
+                                  >
+                                  <i className="fa fa-check" aria-hidden={true} style={{color: item.theme.main, backgroundColor: item.theme.secondary}}/>
+                                  <span>{listItem}</span>
+                                  </div>
+                                )
+                              })
+                            }
+                          </div>
+                          <div className="careers__job__list__section__items__col">
+                            {
+                              item.required.slice(Math.ceil(item.required.length/2)).map((listItem, listItemIndex) => {
+                                return (
+                                  <div 
+                                  key={`careers__job__${item.title}__required__${listItemIndex}`} 
+                                  className="careers__job__list__section__items__col__item"
+                                  >
+                                  <i className="fa fa-check" aria-hidden={true} style={{color: item.theme.main, backgroundColor: item.theme.secondary}}/>
+                                  <span>{listItem}</span>
+                                  </div>                              )
+                              })
+                            }
+                          </div>
+                        </div>
+                      </div>
+                      :
+                      null
+                    }
+                    {
+                      item.bonus?
+                      <div className="careers__job__list__section">
+                        <span className="careers__job__list__section__title">Bonus Skills</span>
+                        <div className="careers__job__list__section__items">
+                          <div className="careers__job__list__section__items__col">
+                            {
+                              item.bonus.slice(0, Math.ceil(item.bonus.length/2)).map((listItem, listItemIndex) => {
+                                return (
+                                  <div 
+                                  key={`careers__job__${item.title}__bonus__${listItemIndex}`} 
+                                  className="careers__job__list__section__items__col__item"
+                                  >
+                                  <i className="fa fa-check" aria-hidden={true} style={{color: item.theme.main, backgroundColor: item.theme.secondary}}/>
+                                  <span>{listItem}</span>
+                                  </div>
+                                )
+                              })
+                            }
+                          </div>
+                          <div className="careers__job__list__section__items__col">
+                            {
+                              item.bonus.slice(Math.ceil(item.bonus.length/2)).map((listItem, listItemIndex) => {
+                                return (
+                                  <div 
+                                  key={`careers__job__${item.title}__bonus__${listItemIndex}`} 
+                                  className="careers__job__list__section__items__col__item"
+                                  >
+                                  <i className="fa fa-check" aria-hidden={true} style={{color: item.theme.main, backgroundColor: item.theme.secondary}}/>
+                                  <span>{listItem}</span>
+                                  </div>                              )
+                              })
+                            }
+                          </div>
+                        </div>
+                      </div>
+                      :
+                      null
+                    }
+                  </div>
+                </div>
+              </section>
+            )
+          })
         }
-        </div>
       </div>
     );  
   }
