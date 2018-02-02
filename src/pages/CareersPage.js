@@ -27,10 +27,9 @@ class CareersPage extends Component {
         <section className="careers__intro">
           <div className="container section__container careers__intro__container">
             <div className="careers__intro__text">
-            <span>Intelligent Systems consume data that are too complex for current databases to handle. GRAKN.AI is a database for complex and intelligent systems, that uses a knowledge representation system to structure complex data and reasoning engine to infer and interpret complex relationships.
+            <span>Cognitive/Intelligent Systems consume data that are too complex for current databases to handle. GRAKN.AI is a hyper-relational database that allows you to perform knowledge engineering to manage this complexity. Through Knowledge Representation and Automated Reasoning techniques, Grakn provides the knowledge base foundation for these systems.
             <br /> <br />
-            We're a team of 16 talented engineers from Cambridge, Oxford, Imperial, Stanford and other world-class universities, and we're based in London. We've developed a database in the form of a distributed knowledge base that reasons over data in real-time, called GRAKN.AI. it enables machines to handle complex data and derive knowledge that is too complex for human cognition to uncover.
-            </span>
+            We're a team of talented engineers from world leading universities, and we're based in London. We've developed a distributed knowledge base that reasons over complex data in real-time and derives knowledge that is too complex for human cognition to uncover. Five years from now, we believe Grakn will be in the hands of every developer as a de facto database for building cognitive and intelligent systems.            </span>
             </div>
             <div className="careers__intro__img">
               <img src="/assets/svg/careers-intro.svg" alt="Careers intro" />
