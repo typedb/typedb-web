@@ -4,9 +4,10 @@
     height: 750px;
     width: 100%;
     background-image: url('/assets/svg/services-splash.svg');
-    background-repeat: no-repeat;
-    background-size: cover;
+    background-repeat: repeat-x;
+    background-size: contain;
     background-position: center;
+    margin: 0;
     @media screen and (max-width: $smallScreen) {
       height: 400px;
     }
