@@ -17,7 +17,7 @@ import KBMSPage from 'pages/KBMSPage';
 import NoPage from 'pages/NoPage';
 import ComingSoon from 'pages/ComingSoon';
 import {FinanceUseCasePage, HealthUseCasePage, SemanticUseCasePage, BotsUseCasePage, SecurityUseCasePage} from 'pages/UseCasePages';
-import DownloadCenterPage from 'pages/DownloadCenterPage';
+import DownloadCentrePage from 'pages/DownloadCentrePage';
 
 const metaDescription = {
 '/': "Grakn is a hyper-relational database for knowledge engineering. Rooted in Knowledge Representation and Automated Reasoning, Grakn provides the knowledge base foundation for intelligent/cognitive systems.",
@@ -75,7 +75,7 @@ class Main extends Component {
           <Route exact path="/grakn-core" component={GraknPage} />
           <Route exact path="/grakn-kbms" component={KBMSPage} />
           <Route exact path="/deployment" component={DeploymentPage} />
-          <Route exact path="/download" component={DownloadCenterPage} />
+          <Route exact path="/download" component={DownloadCentrePage} />
           <Route path="/usecase-finance" component={FinanceUseCasePage} />
           <Route path="/usecase-health" component={HealthUseCasePage} />
           <Route path="/usecase-search" component={SemanticUseCasePage} />

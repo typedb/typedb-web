@@ -22,7 +22,7 @@ const languageDrivers = [
   }
 ];
 
-class DownloadCenterPage extends Component {
+class DownloadCentrePage extends Component {
   constructor(props) {
     super(props);
     this.scroll = this.scroll.bind(this);
@@ -130,4 +130,4 @@ class DownloadCenterPage extends Component {
   }
 }
 
-export default DownloadCenterPage;
+export default DownloadCentrePage;
