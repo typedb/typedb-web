@@ -231,13 +231,13 @@ app.get('*.html', (req, res) => {
     res.redirect(301, `${protocol}://${host}${redirected_path}`)
 });
 
-app.get('/download/latest', (req, res) => {
-    res.redirect(302, 'https://github.com/graknlabs/grakn/releases/download/v1.0.0/grakn-dist-1.0.0.zip');
-});
+// app.get('/download/latest', (req, res) => {
+//     res.redirect(302, 'https://github.com/graknlabs/grakn/releases/download/v1.0.0/grakn-dist-1.0.0.zip');
+// });
 
-app.get('/download', (req, res) => {
-    res.redirect(302, 'https://github.com/graknlabs/grakn/releases/');
-});
+// app.get('/download', (req, res) => {
+//     res.redirect(302, 'https://github.com/graknlabs/grakn/releases/');
+// });
 
 app.get('/download-academy', (req, res) => {
     res.redirect(302, 'https://d113xgfq7slps2.cloudfront.net/grakn-academy-virtualbox.zip');
