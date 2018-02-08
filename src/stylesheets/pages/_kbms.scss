@@ -9,7 +9,7 @@
     background-size: cover;
     background-position: bottom;
     @media screen and (max-width: $smallScreen) {
-      height: 400px;
+      height: 450px;
     }
     &__kbms {
       max-width: 100%;
@@ -46,8 +46,17 @@
         > strong {
           font-weight: 600;
         }
+        > br {
+          display: none;
+        }
         @media screen and (max-width: $smallScreen) {
           font-size: 28px;
+          
+        }
+        @media screen and (max-width: $extraSmallScreen) {
+          > br {
+            display: block;
+          }
         }
       }
       &__tag {
@@ -60,6 +69,7 @@
           font-size: 14px;
           font-weight: 400;
           width: 100%;
+          
         }
       }
     }
