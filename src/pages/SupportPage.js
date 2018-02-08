@@ -51,7 +51,7 @@ class SupportPage extends Component {
             advanceContent = <i className="fa fa-check support-page__comparisson__table__row__item__purple" />;
           }
           else if (elem.advance !== 'false') {
-            advanceContent = elem.premium;
+            advanceContent = elem.advance;
           }
           return (
             <div className="support-page__comparisson__table__row" key={`${elem.item}__table__desktop`}>
@@ -83,7 +83,7 @@ class SupportPage extends Component {
             advanceContent = 'Yes';
           }
           else if (elem.advance !== 'false') {
-            advanceContent = elem.premium;
+            advanceContent = elem.advance;
           }
           return (
             <div className="support-page__comparisson__table__mobile__row" key={`${elem.item}__table__desktop`}>
@@ -93,7 +93,7 @@ class SupportPage extends Component {
                 <span>{premiumContent}</span>
               </div>
               <div className="support-page__comparisson__table__mobile__row__item support-page__comparisson__table__mobile__row__item--split">
-                <span>advance Support</span>
+                <span>Advance Support</span>
                 <span>{advanceContent}</span>
               </div>
             </div>
