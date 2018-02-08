@@ -92,6 +92,9 @@
         background-color: #f3f4fa;
         &__content {
           padding: 40px;
+          @media screen and (max-width: $smallScreen){
+            padding: 40px 20px;
+          }
           &__text {
             color: #80889e;
             font-size: 18px;
@@ -167,9 +170,14 @@
               &__content {
                 background-color: white;
                 padding: 30px;
+                @media screen and (max-width: $smallScreen){
+                  padding: 30px 15px;
+                }
                 > .button {
                   margin-top: 1rem;
                   min-width: 200px;
+                  box-sizing: border-box;
+                  
                 }
                 &__github {
                   border: solid 1px #c3c8d2;
@@ -186,6 +194,9 @@
                     background-color: white;
                     border: solid 1px #c3c8d2;
                     color: $textCharcoal;
+                  }
+                  @media screen and (max-width: $smallScreen) {
+                    margin-left: 0;
                   }
                 }
                 &__selectgroup {
