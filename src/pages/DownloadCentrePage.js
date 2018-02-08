@@ -196,8 +196,8 @@ class DownloadCentrePage extends Component {
                 <div className="downloads__splash__main__tabpanel__content">
                   <span className="downloads__splash__main__tabpanel__content__text">
                   Grakn is a hyper-relational database for knowledge engineering, i.e. a knowledge base. Graql is Grakn’s
-                  reasoning (through <a href="https://en.wikipedia.org/wiki/Online_transaction_processing" target="_blank" className="animated__link animated__link--purple">OLTP</a>) and analytics (through <a href="https://en.wikipedia.org/wiki/Online_analytical_processing" target="_blank" className="animated__link animated__link--purple">OLAP</a>) declarative query language. 
-                  <Link to="/grakn-core" className="animated__link animated__link--purple">Learn more</Link>
+                  reasoning (through OLTP) and analytics (through OLAP) declarative query language. 
+                  <Link to="/grakn-core" className="animated__link animated__link--purple"> Learn more</Link>
                   </span>
                   <span className="downloads__splash__main__tabpanel__content__release">Current Stable Release: <strong>Grakn Core 1.0</strong></span>
                   <span className="downloads__splash__main__tabpanel__content__release"><strong>14 December 2017</strong>  <a href="https://github.com/graknlabs/grakn/releases/tag/v1.0.0" target="_blank" className="animated__link animated__link--purple">Release Notes</a></span>
@@ -293,8 +293,8 @@ class DownloadCentrePage extends Component {
               <TabPanel className="downloads__splash__main__tabpanel">
                 <div className="downloads__splash__main__tabpanel__content">
                   <span className="downloads__splash__main__tabpanel__content__text">
-                    Grakn Enterprise KBMS is the Knowledge Base Management System designed to scale with your business.
-                    <Link to="/grakn-kbms" className="animated__link animated__link--purple">Learn more</Link>
+                    Grakn Enterprise KBMS is the Knowledge Base Management System designed to scale with your business.<br />
+                    <Link to="/grakn-kbms" className="animated__link animated__link--purple"> Learn more</Link>
                   </span>
                   {this.renderTable(KBMScomparisson)}
                   {this.renderTableMobile(KBMScomparisson)}
@@ -305,7 +305,7 @@ class DownloadCentrePage extends Component {
               <div className="downloads__splash__main__tabpanel__content">
                 <span className="downloads__splash__main__tabpanel__content__text">
                 Workbase is an Integrated Development Environment to perform knowledge engineering at scale, and control everything in your knowledge base from development to production.
-                <Link to="/grakn-kbms" className="animated__link animated__link--purple">Learn more</Link>
+                <Link to="/grakn-kbms" className="animated__link animated__link--purple"> Learn more</Link>
                 </span>
                 {this.renderTable(WorkbaseComparisson, "For Grakn Core", "For Grakn KBMS")}
                 {this.renderTableMobile(WorkbaseComparisson, "For Grakn Core", "For Grakn KBMS")}

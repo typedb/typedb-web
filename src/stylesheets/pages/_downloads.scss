@@ -98,9 +98,8 @@
             display: block;
             line-height: 1.67;
             margin-bottom: 1rem;
-            width: 85%;
+            width: 100%;
             @media screen and (max-width: $smallScreen){
-              width: 100%;
               font-size: 14px;
             }
           }
