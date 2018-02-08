@@ -18,7 +18,7 @@ const GraknPage = () => (
       <div className="grakn-page__github__container container section__container">
         <span className="grakn-page__github__header"><strong>Grakn</strong> and <strong>Graql</strong> is open source!</span>
         <div className="grakn-page__github__buttons">
-          <a href={graknRoutes.download} className="button button--red">INSTALL</a>
+          <Link to="/download" className="button button--red">INSTALL</Link>
           <a href={graknRoutes.github} className="button button--transparent">STAR ON GITHUB <i className="fa fa-2x fa-github" /></a>
         </div>
       </div>

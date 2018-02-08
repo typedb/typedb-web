@@ -1,8 +1,15 @@
-import React, { Component } from 'react';
+import React, { Component, version } from 'react';
+import { Link } from 'react-router-dom';
+import { keys } from 'lodash';
 import SupportForm from 'components/SupportForm';
 
 const zenscroll = require('zenscroll');
 const graknRoutes = require('config/graknRoutes');
+import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
+
+
+import Form from 'components/FormValidationComponents/components/form';
+import Select from 'components/FormValidationComponents/components/select';
 
 const languageDrivers = [
   {
@@ -22,25 +29,292 @@ const languageDrivers = [
   }
 ];
 
+const KBMScomparisson = [
+  { item: 'Dedicated IDE (Workbase)', advance: 'true', premium: 'true'},
+  { item: 'Scalable Storage', advance: 'true', premium: 'true'},
+  { item: 'Elastic Throughput', advance: 'true', premium: 'true'},
+  { item: 'Cluster Management', advance: 'true', premium: 'true'},
+  { item: 'Perfomance Monitoring', advance: 'true', premium: 'true'},
+  { item: 'Secured Authentication', advance: 'true', premium: 'true'},
+  { item: 'Backup and Recovery', advance: 'true', premium: 'false'},
+  { item: 'Advance Migration Tools', advance: 'true', premium: 'false'},
+  { item: 'Custom Access Rights', advance: 'true', premium: 'false'},
+  { item: 'Full-text Search', advance: 'true', premium: 'false'},
+  { item: 'Support Hours', advance: '24x7', premium: '10x7'},
+  { item: 'Response Times', advance: 'Within 1 Business Day', premium: 'Within 1 Business Day'},
+  { item: 'Critical ticket SLA', advance: '2 Hours', premium: '2 Hours'},
+];
+
+const WorkbaseComparisson = [
+  { item: 'Visual Schema Designer', advance: 'true', premium: 'true'},
+  { item: 'Query Visualisation & Development', advance: 'true', premium: 'true'},
+  { item: 'Database Migration Tools', advance: 'true', premium: 'false'},
+  { item: 'User Management Portal', advance: 'true', premium: 'false'},
+  { item: 'Cluster Performance Monitoring', advance: 'true', premium: 'false'},
+  { item: 'Cluster Administration', advance: 'true', premium: 'false'},
+]
+
+const graknCoreVersions = {
+  '1.0.0': {
+    'Linux': 'https://github.com/graknlabs/grakn/releases/download/v1.0.0/grakn-dist-1.0.0.tar.gz',
+    'Mac OS X': 'https://github.com/graknlabs/grakn/releases/download/v1.0.0/grakn-dist-1.0.0.tar.gz'
+  },
+  '0.18.0': {
+    'Linux': 'https://github.com/graknlabs/grakn/releases/download/v0.18.0/grakn-dist-0.18.0.tar.gz',
+    'Mac OS X': 'https://github.com/graknlabs/grakn/releases/download/v0.18.0/grakn-dist-0.18.0.tar.gz'
+  }
+}
+
 class DownloadCentrePage extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      versionCore: '',
+      platformCore: '',
+    }
     this.scroll = this.scroll.bind(this);
+    this.renderTableMobile = this.renderTableMobile.bind(this);
+    this.renderTable = this.renderTable.bind(this);
+    this.switchVersion = this.switchVersion.bind(this);
+    this.switchPlatform = this.switchPlatform.bind(this);
   }
 
   scroll() {
     zenscroll.intoView(this.supportform);
   }
 
+  switchVersion(versionCore) {
+    this.setState({
+      versionCore,
+    });
+  }
+
+  switchPlatform(platformCore) {
+    this.setState({
+      platformCore,
+    });
+  }
+
+  renderTable(table, title1="Premium", title2="Advance") {
+    return (
+      <div className="support-page__comparisson__table">
+        <div className="support-page__comparisson__table__header">
+          <span className="support-page__comparisson__table__header__item support-page__comparisson__table__header__item--empty" />
+          <span className="support-page__comparisson__table__header__item">{title1}</span>
+          <span className="support-page__comparisson__table__header__item">{title2}</span>
+        </div>
+      {
+        table.map((elem, index) => {
+          let premiumContent = '';
+          let advanceContent = '';        
+          if (elem.premium === 'true') {
+            premiumContent = <i className="fa fa-check support-page__comparisson__table__row__item__green" />;
+          }
+          else if (elem.premium !== 'false') {
+            premiumContent = elem.premium;
+          }
+          if (elem.advance === 'true') {
+            advanceContent = <i className="fa fa-check support-page__comparisson__table__row__item__purple" />;
+          }
+          else if (elem.advance !== 'false') {
+            advanceContent = elem.advance;
+          }
+          return (
+            <div className="support-page__comparisson__table__row" key={`${elem.item}__table__desktop`}>
+              <span className="support-page__comparisson__table__row__item">{elem.item}</span>
+              <span className="support-page__comparisson__table__row__item">{premiumContent}</span>
+              <span className="support-page__comparisson__table__row__item">{advanceContent}</span>
+            </div>
+          );
+        })
+      }
+      </div>
+    )
+  }
+
+  renderTableMobile(table, title1="Premium", title2="Advance")  {
+    return (
+      <div className="support-page__comparisson__table__mobile">
+      {
+        table.map((elem, index) => {
+          let premiumContent = '';
+          let advanceContent = '';        
+          if (elem.premium === 'true') {
+            premiumContent = 'Yes';
+          }
+          else if (elem.premium !== 'false') {
+            premiumContent = elem.premium;
+          }
+          if (elem.advance === 'true') {
+            advanceContent = 'Yes';
+          }
+          else if (elem.advance !== 'false') {
+            advanceContent = elem.advance;
+          }
+          return (
+            <div className="support-page__comparisson__table__mobile__row" key={`${elem.item}__table__desktop`}>
+              <span className="support-page__comparisson__table__mobile__row__item">{elem.item}</span>
+              <div className="support-page__comparisson__table__mobile__row__item support-page__comparisson__table__mobile__row__item--split">
+                <span>{title1}</span>
+                <span>{premiumContent}</span>
+              </div>
+              <div className="support-page__comparisson__table__mobile__row__item support-page__comparisson__table__mobile__row__item--split">
+                <span>{title2}</span>
+                <span>{advanceContent}</span>
+              </div>
+            </div>
+          );
+        })
+      }
+      </div>
+    );
+  }
+
   render() {
     return (
       <div className="downloads">
       <section className="downloads__splash">
+        <img src="/assets/svg/download-splash.svg" alt="Download splash background" />
         <div className="downloads__splash__container container section__container">
           <div className="downloads__splash__text">
             <h1 className="downloads__splash__text__header"><strong>Grakn Download Centre</strong></h1>
           </div>
+          <div className="downloads__splash__main">
+            <Tabs>
+              <TabList className="downloads__splash__main__tablist">
+                <Tab className="downloads__splash__main__tablist__tab" selectedClassName="downloads__splash__main__tablist__tab--active">
+                  Grakn Core
+                </Tab>
+                <Tab className="downloads__splash__main__tablist__tab" selectedClassName="downloads__splash__main__tablist__tab--active">
+                  Grakn KBMS
+                </Tab>
+                <Tab className="downloads__splash__main__tablist__tab" selectedClassName="downloads__splash__main__tablist__tab--active">
+                  Grakn Workbase
+                </Tab>
+              </TabList>
+              <TabPanel className="downloads__splash__main__tabpanel">
+                <div className="downloads__splash__main__tabpanel__content">
+                  <span className="downloads__splash__main__tabpanel__content__text">
+                  Grakn is a hyper-relational database for knowledge engineering, i.e. a knowledge base. Graql is Grakn’s
+                  reasoning (through <a href="https://en.wikipedia.org/wiki/Online_transaction_processing" target="_blank" className="animated__link animated__link--purple">OLTP</a>) and analytics (through <a href="https://en.wikipedia.org/wiki/Online_analytical_processing" target="_blank" className="animated__link animated__link--purple">OLAP</a>) declarative query language. 
+                  <Link to="/grakn-core" className="animated__link animated__link--purple">Learn more</Link>
+                  </span>
+                  <span className="downloads__splash__main__tabpanel__content__release">Current Stable Release: <strong>Grakn Core 1.0</strong></span>
+                  <span className="downloads__splash__main__tabpanel__content__release"><strong>14 December 2017</strong>  <a href="https://github.com/graknlabs/grakn/releases/tag/v1.0.0" target="_blank" className="animated__link animated__link--purple">Release Notes</a></span>
+                  <div className="downloads__splash__main__tabpanel__content__core__col downloads__splash__main__tabpanel__content__core__col--first">
+                    <div className="downloads__splash__main__tabpanel__content__core__col__header downloads__splash__main__tabpanel__content__core__col__header--green">
+                    Open Source
+                    </div>
+                    <div className="downloads__splash__main__tabpanel__content__core__col__content">
+                      <div className="downloads__splash__main__tabpanel__content__core__col__content__checkbox">
+                        <i className="fa fa-check" aria-hidden={true} style={{color: '#3dce8c', backgroundColor: ' #cbf3e1'}}/>
+                        <div>
+                          <strong>AGPL v3.0 License</strong>
+                          <span>Deploy and operate your Grakn Core knowledge base
+                          immediately. Grakn Core is licensed under AGPL so
+                          that you can start developing quickly and adopt Grakn within your solution in no time.</span>
+                        </div>
+                      </div>
+                      <a className="button button--transparent downloads__splash__main__tabpanel__content__core__col__content__github" href={graknRoutes.github}>CONTRIBUTE ON GITHUB <i className="fa fa-2x fa-github" aria-hidden={true} /> </a>
+                      <div className="downloads__splash__main__tabpanel__content__core__col__content__packagemanager">
+                        <span>Package Manager: </span>
+                        <a className="animated__link animated__link--purple" href={graknRoutes.quickstart}>Instructions for installing with Homebrew</a>
+                        <a className="animated__link animated__link--purple" href={graknRoutes.quickstart}>Instructions for installing with APT</a>
+                      </div>
+                      <Form className="downloads__splash__main__tabpanel__content__core__col__content__selectgroup">
+                      <Select value={this.state.platformCore} name='platform' onChange={(e) => this.switchPlatform(e.target.value)}>
+                        <option value=''>Platform</option>
+                        <option value='Linux'>Linux</option>
+                        <option value='Mac OS X'>Mac OS X</option>
+                      </Select>
+                      <Select value={this.state.versionCore} name='version' onChange={(e) => this.switchVersion(e.target.value)}>
+                        <option value=''>Version</option>
+                        {
+                          keys(graknCoreVersions).map((item, index) => {
+                          return (
+                            <option value={item} key={`${item}--version-download`}>{item}</option>
+                          )
+                        })
+                        }
+                      </Select>
+                      </Form>
+                      {
+                        this.state.versionCore !== '' & this.state.platformCore !== ''?
+                          <a href={graknCoreVersions[this.state.versionCore][this.state.platformCore]}
+                            className="button button--red downloads__splash__main__tabpanel__content__download"
+                          >
+                          Download
+                          </a>
+                          :
+                          <span className="button button--red downloads__splash__main__tabpanel__content__download downloads__splash__main__tabpanel__content__download--disabled">Download</span>
+                      }
+                    </div>
+                  </div>
+                  
+                  <div className="downloads__splash__main__tabpanel__content__core__col">
+                    <div className="downloads__splash__main__tabpanel__content__core__col__header downloads__splash__main__tabpanel__content__core__col__header--purple">
+                    Commercial
+                    </div>
+                    <div className="downloads__splash__main__tabpanel__content__core__col__content">
+                      <div className="downloads__splash__main__tabpanel__content__core__col__content__checkbox">
+                        <i className="fa fa-check" aria-hidden={true} style={{color: '#7d72e5', backgroundColor: '#dfddff'}}/>
+                        <div>
+                          <strong>Commercial License</strong>
+                          <span>If you want to freely integrate Grakn Core into your
+                          product, and satisfy all of your organisation&#39;s
+                          requirements, the commercial license gives you that
+                          piece of mind.</span>
+                        </div>
+                      </div>
+                      <div className="downloads__splash__main__tabpanel__content__core__col__content__checkbox">
+                        <i className="fa fa-check" aria-hidden={true} style={{color: '#7d72e5', backgroundColor: '#dfddff'}}/>
+                        <div>
+                          <strong>Core Support</strong>
+                          <span>Get direct support from our engineers. From
+                          development to production, we’re with you every step of the way, so you can focus on building your
+                          application and your business.</span>
+                        </div>
+                      </div>
+                      <div className="downloads__splash__main__tabpanel__content__core__col__content__checkbox">
+                        <i className="fa fa-check" aria-hidden={true} style={{color: '#7d72e5', backgroundColor: '#dfddff'}}/>
+                        <div>
+                          <strong>Feature Requests</strong>
+                          <span>As you develop on Grakn, you may find additional
+                          features that you wish Grakn provides. We have a
+                          long list of these features to develop, but we can
+                          prioritise developing the ones you need.</span>
+                        </div>
+                      </div>
+                      <span className="button button--red downloads__splash__main__tabpanel__content__button" onClick={() => this.scroll()}>Get in touch</span>
+                    </div>
+                  </div>
+                </div>
+              </TabPanel>
+              <TabPanel className="downloads__splash__main__tabpanel">
+                <div className="downloads__splash__main__tabpanel__content">
+                  <span className="downloads__splash__main__tabpanel__content__text">
+                    Grakn Enterprise KBMS is the Knowledge Base Management System designed to scale with your business.
+                    <Link to="/grakn-kbms" className="animated__link animated__link--purple">Learn more</Link>
+                  </span>
+                  {this.renderTable(KBMScomparisson)}
+                  {this.renderTableMobile(KBMScomparisson)}
+                  <span className="button button--red downloads__splash__main__tabpanel__content__button" onClick={() => this.scroll()}>Get in touch</span>
+                </div>
+              </TabPanel>
+              <TabPanel className="downloads__splash__main__tabpanel">
+              <div className="downloads__splash__main__tabpanel__content">
+                <span className="downloads__splash__main__tabpanel__content__text">
+                Workbase is an Integrated Development Environment to perform knowledge engineering at scale, and control everything in your knowledge base from development to production.
+                <Link to="/grakn-kbms" className="animated__link animated__link--purple">Learn more</Link>
+                </span>
+                {this.renderTable(WorkbaseComparisson, "For Grakn Core", "For Grakn KBMS")}
+                {this.renderTableMobile(WorkbaseComparisson, "For Grakn Core", "For Grakn KBMS")}
+                <span className="button button--red downloads__splash__main__tabpanel__content__button" onClick={() => this.scroll()}>Get in touch</span>
+              </div>
+              </TabPanel>
+            </Tabs>
           </div>
+        </div>
       </section>
       <section className="downloads__language">
           <div className="downloads__language__container container section__container">
