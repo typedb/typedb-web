@@ -1,7 +1,7 @@
 const docBase = 'https://dev.grakn.ai';
 
 module.exports = {
-  download: `${docBase}/docs/get-started/setup-guide`,
+  setup: `${docBase}/docs/get-started/setup-guide`,
   docs: docBase,
   overview: `${docBase}/overview/`,
   academy: `${docBase}/academy/`,

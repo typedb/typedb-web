@@ -35,7 +35,7 @@ class DeploymentPage extends Component {
               </div>
               <div className="deployment-page__info__details__buttons">
                 <Link to="/grakn-kbms" className="button button--red deployment-page__info__details__buttons__item">Learn about Grakn KBMS</Link>
-                <span onClick={() => this.scroll()} className="button button--transparent deployment-page__info__details__button__item">Get On-Premise</span>
+                <Link to="/download" className="button button--transparent deployment-page__info__details__button__item">Get On-Premise</Link>
               </div>
               </div>
             <div className="deployment-page__info__img">

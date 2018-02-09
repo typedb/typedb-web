@@ -78,13 +78,16 @@
           font-weight: 600;
           cursor: pointer;
           border-radius: 6px 6px 0 0;
+          border-right: 1px solid #e8eaf4;
           @media screen and (max-width: $smallScreen) {
             border-radius: 0;
+            border-bottom: 1px solid #e8eaf4;
           }
           &--active {
             color: $textCharcoal;
             background-color: #f3f4fa;
             outline: none;
+            border: none;
           }
         }
       }
@@ -248,7 +251,7 @@
                   }
                 }
                 &__packagemanager {
-                  padding: 50px 0 30px 0;
+                  padding: 50px 0 55px 0;
                   > span {
                     font-size: 18px;
                     color: $textCharcoal;

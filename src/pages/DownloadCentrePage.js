@@ -69,7 +69,7 @@ class DownloadCentrePage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      versionCore: '',
+      versionCore: keys(graknCoreVersions)[0],
       platformCore: '',
     }
     this.scroll = this.scroll.bind(this);
@@ -84,6 +84,15 @@ class DownloadCentrePage extends Component {
     zenscroll.to(this.supportform);   
   }
 
+  componentDidMount() {
+    let OSName="";
+    if (navigator.appVersion.indexOf("Win")!=-1) OSName="";
+    if (navigator.appVersion.indexOf("Mac")!=-1) OSName="Mac OS X";
+    if (navigator.appVersion.indexOf("X11")!=-1) OSName="Linux";
+    if (navigator.appVersion.indexOf("Linux")!=-1) OSName="Linux";
+    this.switchPlatform(OSName);
+  }
+  
   switchVersion(versionCore) {
     this.setState({
       versionCore,
@@ -96,7 +105,7 @@ class DownloadCentrePage extends Component {
     });
   }
 
-  renderTable(table, title1="Premium", title2="Advance") {
+  renderTable(table, title1="Premium", title2="Advanced") {
     return (
       <div className="support-page__comparisson__table">
         <div className="support-page__comparisson__table__header">
@@ -133,7 +142,7 @@ class DownloadCentrePage extends Component {
     )
   }
 
-  renderTableMobile(table, title1="Premium", title2="Advance")  {
+  renderTableMobile(table, title1="Premium", title2="Advanced")  {
     return (
       <div className="support-page__comparisson__table__mobile">
       {
@@ -216,15 +225,14 @@ class DownloadCentrePage extends Component {
                           that you can start developing quickly and adopt Grakn within your solution in no time.</span>
                         </div>
                       </div>
-                      <a className="button button--transparent downloads__splash__main__tabpanel__content__core__col__content__github" href={graknRoutes.github}>CONTRIBUTE ON GITHUB <i className="fa fa-2x fa-github" aria-hidden={true} /> </a>
+                      <a className="button button--transparent downloads__splash__main__tabpanel__content__core__col__content__github" href={graknRoutes.github} target="_blank">STAR ON GITHUB <i className="fa fa-2x fa-github" aria-hidden={true} /> </a>
                       <div className="downloads__splash__main__tabpanel__content__core__col__content__packagemanager">
                         <span>Package Manager: </span>
-                        <a className="animated__link animated__link--purple" href={graknRoutes.quickstart}>Instructions for installing with Homebrew</a>
-                        <a className="animated__link animated__link--purple" href={graknRoutes.quickstart}>Instructions for installing with APT</a>
+                        <a className="animated__link animated__link--purple" href={graknRoutes.setup}>Instructions for installing with Homebrew</a>
                       </div>
                       <Form className="downloads__splash__main__tabpanel__content__core__col__content__selectgroup">
                       <Select value={this.state.platformCore} name='platform' onChange={(e) => this.switchPlatform(e.target.value)}>
-                        <option value=''>Platform</option>
+                        <option value=''>Operating System</option>
                         <option value='Linux'>Linux</option>
                         <option value='Mac OS X'>Mac OS X</option>
                       </Select>
@@ -396,7 +404,7 @@ class DownloadCentrePage extends Component {
         <section className="support-form__section" ref={(elem) => this.supportform = elem}>
           <div className="support-form__section__container container section__container">
             <span className="support-form__section__header support-form__section__header--with-tag">Get your Grakn!</span>
-            <span className="support-form__section__tag">Get your Grakn commercial licenses and we’ll help you quickly get up to speed.</span>
+            <span className="support-form__section__tag">Get your Grakn commercial license and we’ll help you quickly get up to speed.</span>
             <SupportForm />
           </div>
         </section>
