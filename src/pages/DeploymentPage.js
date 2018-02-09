@@ -12,7 +12,8 @@ class DeploymentPage extends Component {
   }
 
   scroll() {
-    zenscroll.intoView(this.supportform);   
+    zenscroll.setup(1000, 50);
+    zenscroll.to(this.supportform);   
   }
 
   render() {

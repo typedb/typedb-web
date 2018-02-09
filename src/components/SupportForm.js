@@ -116,6 +116,7 @@ class SupportForm extends Component {
               <label className="support-form__label support-form__label--modified">
               Select all areas you’re interested in:
               </label>
+              <div className="support-form__input__group__row">
                   <div className="support-form__input__group">
                     <input className="support-form__input support-form__input__checkbox" value="training" type="checkbox" onChange={e => this.onUpdateCheckbox(e)}/>
                     <label className="support-form__label support-form__label--checkbox" name="aoi">Training</label>
@@ -124,6 +125,8 @@ class SupportForm extends Component {
                     <input className="support-form__input support-form__input__checkbox" value="modelling" type="checkbox" onChange={e => this.onUpdateCheckbox(e)}/>
                     <label className="support-form__label support-form__label--checkbox" name="aoi">Modelling</label>
                   </div>
+              </div>
+              <div className="support-form__input__group__row">
                   <div className="support-form__input__group">
                     <input className="support-form__input support-form__input__checkbox" value="migration" type="checkbox" onChange={e => this.onUpdateCheckbox(e)}/>
                     <label className="support-form__label support-form__label--checkbox" name="aoi">Migration</label>
@@ -132,6 +135,8 @@ class SupportForm extends Component {
                     <input className="support-form__input support-form__input__checkbox" value="customapi" type="checkbox" onChange={e => this.onUpdateCheckbox(e)}/>
                     <label className="support-form__label support-form__label--checkbox" name="aoi">Custom API</label>
                   </div>
+              </div>
+              <div className="support-form__input__group__row">
                   <div className="support-form__input__group">
                     <input className="support-form__input support-form__input__checkbox" value="deployment" type="checkbox" onChange={e => this.onUpdateCheckbox(e)}/>
                     <label className="support-form__label support-form__label--checkbox" name="aoi">Deployment</label>
@@ -140,6 +145,8 @@ class SupportForm extends Component {
                     <input className="support-form__input support-form__input__checkbox" value="support" type="checkbox" onChange={e => this.onUpdateCheckbox(e)}/>
                     <label className="support-form__label support-form__label--checkbox" name="aoi">Support</label>
                   </div>
+              </div>
+              <div className="support-form__input__group__row">
                   <div className="support-form__input__group">
                     <input className="support-form__input support-form__input__checkbox" value="licensing" type="checkbox" onChange={e => this.onUpdateCheckbox(e)}/>
                     <label className="support-form__label support-form__label--checkbox" name="aoi">Licensing</label>
@@ -148,9 +155,9 @@ class SupportForm extends Component {
                     <input className="support-form__input support-form__input__checkbox" value="cloud" type="checkbox" onChange={e => this.onUpdateCheckbox(e)}/>
                     <label className="support-form__label support-form__label--checkbox" name="aoi">Cloud</label>
                   </div>
+                </div>
               </div>
               <div className="support-form__row__item">
-
                 <TextArea className="support-form__input support-form__input__textarea" placeholder="Tell us a little bit more about how we can help you" name='more'/>           
               </div>
           </div>

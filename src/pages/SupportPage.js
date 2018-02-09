@@ -105,8 +105,8 @@ class SupportPage extends Component {
   }
 
   scroll() {
-    //this.supportform.scrollIntoView({behavior: 'smooth'});
-    zenscroll.intoView(this.supportform);
+    zenscroll.setup(1000, 50);
+    zenscroll.to(this.supportform);   
   }
 
   render() {
