@@ -27,6 +27,7 @@ const metaDescription = {
 '/services':"For every step of your knowledge engineering journey, we provide professional services to help you achieve your development goals.",
 '/support':"From development to production, we can support you every step of the way, so you can focus on building your application and your business",
 '/community':"Get in touch with Grakn developers and join our global community",
+'/download': 'Download Grakn Core, Grakn KBMS or Grakn Workbase.',
 '/about': "Learn more about the Grakn Team",
 '/slack': "Join the Grakn Slack Channel",
 }
@@ -66,7 +67,9 @@ class Main extends Component {
         </Helmet>
         <Switch>
           <Route exact path="/" component={HomePage} />
-          <Route exact path="/about" component={AboutPage} />
+          {
+            // <Route exact path="/about" component={AboutPage} />
+          }
           <Route exact path="/slack" component={SlackPage} />
           <Route exact path="/careers" component={CareersPage} />
           <Route exact path="/community" component={CommunityPage} />
