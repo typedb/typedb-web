@@ -35,7 +35,7 @@ class DeploymentPage extends Component {
               </div>
               <div className="deployment-page__info__details__buttons">
                 <Link to="/grakn-kbms" className="button button--red deployment-page__info__details__buttons__item">Learn about Grakn KBMS</Link>
-                <Link to={{pathname: "/download", state: {selectDownloadTab: 1}}} className="button button--transparent deployment-page__info__details__button__item">Get On-Premise</Link>
+                <Link to={{pathname: "/download", hash:'#kbms'}} className="button button--transparent deployment-page__info__details__button__item">Get On-Premise</Link>
               </div>
               </div>
             <div className="deployment-page__info__img">

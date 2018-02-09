@@ -199,7 +199,7 @@ class KBMSPage extends Component {
     
             </div>
             <div className="kbms-page__features__buttons">
-              <Link className="button button--red" to={{pathname: "/download", state: {selectDownloadTab: 1}}}>Get KBMS / Workbase</Link>
+              <Link className="button button--red" to={{pathname: "/download", hash:'#kbms'}}>Get KBMS / Workbase</Link>
               <Link to="/deployment" className="button button--transparent">Cloud Deployment</Link>
             </div>
           </div>

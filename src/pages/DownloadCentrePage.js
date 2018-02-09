@@ -181,6 +181,15 @@ class DownloadCentrePage extends Component {
   }
 
   render() {
+    let initialIndex = 0;
+    if (this.props.location.hash === "#kbms") {
+      initialIndex = 1;
+      console.log("heya")
+    }
+    if (this.props.location.hash === "#workbase") {
+      initialIndex = 2;
+    }
+    
     return (
       <div className="downloads">
       <section className="downloads__splash">
@@ -190,7 +199,7 @@ class DownloadCentrePage extends Component {
             <h1 className="downloads__splash__text__header"><strong>Grakn Download Centre</strong></h1>
           </div>
           <div className="downloads__splash__main">
-            <Tabs defaultIndex={this.props.location.state? this.props.location.state.selectDownloadTab : 0}>
+            <Tabs defaultIndex={initialIndex}>
               <TabList className="downloads__splash__main__tablist">
                 <Tab className="downloads__splash__main__tablist__tab" selectedClassName="downloads__splash__main__tablist__tab--active">
                   Grakn Core

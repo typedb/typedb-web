@@ -26,7 +26,7 @@ class ServicesPage extends Component {
             </div>
           </div>
         </section>
-        <section className="services__features">
+        <section className="services__features services__features--nopad">
           <div className="services__features__container container section__container">
           
             <div className="services__features__item">

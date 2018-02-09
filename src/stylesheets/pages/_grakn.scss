@@ -11,6 +11,9 @@
     @media screen and (max-width: $smallScreen) {
       height: 600px;
     }
+    @media screen and (min-width: 2000px) {
+      height: 1000px;
+    }
     &__container {
       height: inherit;
     }
@@ -403,6 +406,9 @@
     background-position: top center;
     height: 450px;
     position: relative;
+    @media screen and (max-width: $smallScreen) {
+      height: 500px;
+    }
     &__container {
       padding-top: 120px;
       padding-bottom: 90px;
@@ -592,7 +598,7 @@
           height: 300px;
         }
         @media screen and (max-width: $smallScreen) {
-          height: 400px;
+          height: auto;
         }
         &__text {
           height: calc(100% - 40px);
@@ -620,6 +626,7 @@
             }
             @media screen and (max-width: $smallScreen) {
               font-size: 12px;
+              padding-bottom: 30px;
             }
           }
         }

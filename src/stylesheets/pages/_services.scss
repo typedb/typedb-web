@@ -54,6 +54,12 @@
     @media screen and (max-width: $smallScreen) {
       padding: 50px 0;
     }
+    &--nopad {
+      padding: 0 0 90px 0;
+      @media screen and (max-width: $smallScreen) {
+        padding: 0 0 50px 0;
+      }
+    }
     &--alternate {
       background-image: url('/assets/svg/services_features.svg');
       background-repeat: no-repeat;
@@ -155,7 +161,7 @@
             }
             &__item {
               display: block;
-              color: $textCharcoal;
+              color: $textLight;
               font-size: 16px;
               padding-bottom: 0.5rem;
               @media screen and (max-width: $smallScreen) {
