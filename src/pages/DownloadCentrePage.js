@@ -92,7 +92,7 @@ class DownloadCentrePage extends Component {
     if (navigator.appVersion.indexOf("Linux")!=-1) OSName="Linux";
     this.switchPlatform(OSName);
   }
-  
+
   switchVersion(versionCore) {
     this.setState({
       versionCore,
@@ -190,7 +190,7 @@ class DownloadCentrePage extends Component {
             <h1 className="downloads__splash__text__header"><strong>Grakn Download Centre</strong></h1>
           </div>
           <div className="downloads__splash__main">
-            <Tabs>
+            <Tabs defaultIndex={this.props.location.state? this.props.location.state.selectDownloadTab : 0}>
               <TabList className="downloads__splash__main__tablist">
                 <Tab className="downloads__splash__main__tablist__tab" selectedClassName="downloads__splash__main__tablist__tab--active">
                   Grakn Core
