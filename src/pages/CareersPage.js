@@ -36,7 +36,7 @@ class CareersPage extends Component {
             </div>
           </div>
         </section>
-        {
+        { 
           this.props.careers.items.map((item, index) => {
             return (
               <section className="careers__job" key={`careers__job__${index}`}>
@@ -44,7 +44,7 @@ class CareersPage extends Component {
                   <div className="careers__job__logo">
                     <img src={item.logo} alt="Job Image" />
                   </div>
-                  <span className="careers__job__title" style={{color: item.theme.main}}>
+                  <span className="careers__job__title" style={{color: item.maintheme}}>
                     {item.title}
                   </span>
                   <span className="careers__job__intro">
@@ -58,13 +58,13 @@ class CareersPage extends Component {
                       <div className="careers__job__list__section__items">
                         <div className="careers__job__list__section__items__col">
                           {
-                            item.responsibilities.slice(0, Math.ceil(item.responsibilities.length/2)).map((listItem, listItemIndex) => {
+                            item.responsibilities.split('\n').slice(0, Math.ceil(item.responsibilities.split('\n').length/2)).map((listItem, listItemIndex) => {
                               return (
                                 <div 
                                 key={`careers__job__${item.title}__responsibilities__${listItemIndex}`} 
                                 className="careers__job__list__section__items__col__item"
                                 >
-                                <i className="fa fa-check" aria-hidden={true} style={{color: item.theme.main, backgroundColor: item.theme.secondary}}/>
+                                <i className="fa fa-check" aria-hidden={true} style={{color: item.maintheme, backgroundColor: item.secondarytheme}}/>
                                 <span>{listItem}</span>
                                 </div>
                               )
@@ -73,13 +73,13 @@ class CareersPage extends Component {
                         </div>
                         <div className="careers__job__list__section__items__col">
                           {
-                            item.responsibilities.slice(Math.ceil(item.responsibilities.length/2)).map((listItem, listItemIndex) => {
+                            item.responsibilities.split('\n').slice(Math.ceil(item.responsibilities.split('\n').length/2)).map((listItem, listItemIndex) => {
                               return (
                                 <div 
                                 key={`careers__job__${item.title}__responsibilities__${listItemIndex}`} 
                                 className="careers__job__list__section__items__col__item"
                                 >
-                                <i className="fa fa-check" aria-hidden={true} style={{color: item.theme.main, backgroundColor: item.theme.secondary}}/>
+                                <i className="fa fa-check" aria-hidden={true} style={{color: item.maintheme, backgroundColor: item.secondarytheme}}/>
                                 <span>{listItem}</span>
                                 </div>                              )
                             })
@@ -97,13 +97,13 @@ class CareersPage extends Component {
                         <div className="careers__job__list__section__items">
                           <div className="careers__job__list__section__items__col">
                             {
-                              item.required.slice(0, Math.ceil(item.required.length/2)).map((listItem, listItemIndex) => {
+                              item.required.split('\n').slice(0, Math.ceil(item.required.split('\n').length/2)).map((listItem, listItemIndex) => {
                                 return (
                                   <div 
                                   key={`careers__job__${item.title}__required__${listItemIndex}`} 
                                   className="careers__job__list__section__items__col__item"
                                   >
-                                  <i className="fa fa-check" aria-hidden={true} style={{color: item.theme.main, backgroundColor: item.theme.secondary}}/>
+                                  <i className="fa fa-check" aria-hidden={true} style={{color: item.maintheme, backgroundColor: item.secondarytheme}}/>
                                   <span>{listItem}</span>
                                   </div>
                                 )
@@ -112,13 +112,13 @@ class CareersPage extends Component {
                           </div>
                           <div className="careers__job__list__section__items__col">
                             {
-                              item.required.slice(Math.ceil(item.required.length/2)).map((listItem, listItemIndex) => {
+                              item.required.split('\n').slice(Math.ceil(item.required.split('\n').length/2)).map((listItem, listItemIndex) => {
                                 return (
                                   <div 
                                   key={`careers__job__${item.title}__required__${listItemIndex}`} 
                                   className="careers__job__list__section__items__col__item"
                                   >
-                                  <i className="fa fa-check" aria-hidden={true} style={{color: item.theme.main, backgroundColor: item.theme.secondary}}/>
+                                  <i className="fa fa-check" aria-hidden={true} style={{color: item.maintheme, backgroundColor: item.secondarytheme}}/>
                                   <span>{listItem}</span>
                                   </div>                              )
                               })
@@ -136,13 +136,13 @@ class CareersPage extends Component {
                         <div className="careers__job__list__section__items">
                           <div className="careers__job__list__section__items__col">
                             {
-                              item.bonus.slice(0, Math.ceil(item.bonus.length/2)).map((listItem, listItemIndex) => {
+                              item.bonus.split('\n').slice(0, Math.ceil(item.bonus.split('\n').length/2)).map((listItem, listItemIndex) => {
                                 return (
                                   <div 
                                   key={`careers__job__${item.title}__bonus__${listItemIndex}`} 
                                   className="careers__job__list__section__items__col__item"
                                   >
-                                  <i className="fa fa-check" aria-hidden={true} style={{color: item.theme.main, backgroundColor: item.theme.secondary}}/>
+                                  <i className="fa fa-check" aria-hidden={true} style={{color: item.maintheme, backgroundColor: item.secondarytheme}}/>
                                   <span>{listItem}</span>
                                   </div>
                                 )
@@ -151,13 +151,13 @@ class CareersPage extends Component {
                           </div>
                           <div className="careers__job__list__section__items__col">
                             {
-                              item.bonus.slice(Math.ceil(item.bonus.length/2)).map((listItem, listItemIndex) => {
+                              item.bonus.split('\n').slice(Math.ceil(item.bonus.split('\n').length/2)).map((listItem, listItemIndex) => {
                                 return (
                                   <div 
                                   key={`careers__job__${item.title}__bonus__${listItemIndex}`} 
                                   className="careers__job__list__section__items__col__item"
                                   >
-                                  <i className="fa fa-check" aria-hidden={true} style={{color: item.theme.main, backgroundColor: item.theme.secondary}}/>
+                                  <i className="fa fa-check" aria-hidden={true} style={{color: item.maintheme, backgroundColor: item.secondarytheme}}/>
                                   <span>{listItem}</span>
                                   </div>                              )
                               })
@@ -173,7 +173,7 @@ class CareersPage extends Component {
               </section>
             )
           })
-        }
+         }
       </div>
     );  
   }

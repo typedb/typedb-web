@@ -19,8 +19,8 @@ const receivedCareers = (payload) => {
 export function fetchCareers() {
   return (dispatch) => new Promise((resolve, reject) => {
     dispatch(fetchingCareers());
-    api.getCareers().then((data) => {
-      dispatch(receivedCareers(data.jobs));
+    api.getCareers().then((response) => {
+      dispatch(receivedCareers(response.data));
     })
     .catch((errors) => {
       reject(errors);
