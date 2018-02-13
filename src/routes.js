@@ -67,9 +67,7 @@ class Main extends Component {
         </Helmet>
         <Switch>
           <Route exact path="/" component={HomePage} />
-          {
-            // <Route exact path="/about" component={AboutPage} />
-          }
+          <Route exact path="/about" component={AboutPage} />
           <Route exact path="/slack" component={SlackPage} />
           <Route exact path="/careers" component={CareersPage} />
           <Route exact path="/community" component={CommunityPage} />
