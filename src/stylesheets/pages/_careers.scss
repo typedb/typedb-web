@@ -11,7 +11,7 @@
     background-repeat: no-repeat;
     color: white;
     @media screen and (max-width: $smallScreen) {
-      background-position: left bottom;
+      background-position: 20% bottom;
     }
     &__text {
       padding-top: 150px;
