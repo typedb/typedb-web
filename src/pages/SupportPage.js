@@ -10,7 +10,7 @@ const comparisson = [
   { item: 'Access to Grakn Community', advance: 'true', premium: 'true'},
   { item: 'Support hours', advance: '24x7', premium: '10x5'},
   { item: 'Response time', advance: '1 business day', premium: '1 business day'},
-  { item: 'Urgent ticket SLA', advance: '1 hour', premium: '1 hour'},
+  { item: 'Urgent ticket SLA', advance: '2 hours', premium: '2 hours'},
   { item: 'Priority queueing', advance: 'true', premium: 'true'},
   { item: 'Direct access to our engineers', advance: 'true', premium: 'true'},
   { item: 'Release upgrades', advance: 'true', premium: 'true'},
