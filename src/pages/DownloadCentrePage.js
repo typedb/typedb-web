@@ -366,7 +366,7 @@ class DownloadCentrePage extends Component {
                 <div className="grakn-page__links__item__details">
                   <span className="grakn-page__links__item__details__header">Get Started</span>
                   <div className="grakn-page__links__item__details__text">
-                  Whether you are new to programming or an experienced developer, it’s easy to learn and use Grakn. Get set up a matter of minutes. Go to <a href={graknRoutes.quickstart} className="animated__link animated__link--purple">quickstart tutorial</a>
+                  Whether you are new to programming or an experienced developer, it’s easy to learn and use Grakn. Get set up a matter of minutes. Go to <a href={graknRoutes.quickstart} className="animated__link animated__link--purple">quickstart tutorial.</a>
                   </div>
                 </div>
               </div>
@@ -378,7 +378,7 @@ class DownloadCentrePage extends Component {
                 <div className="grakn-page__links__item__details">
                   <span className="grakn-page__links__item__details__header">Documentation</span>
                   <div className="grakn-page__links__item__details__text">
-                  Documentation for Grakn’s development library and Graql language API, along with tutorials and guides, are available online. Visit our <a href={graknRoutes.docs} className="animated__link animated__link--purple">documentation portal</a>
+                  Documentation for Grakn’s development library and Graql language API, along with tutorials and guides, are available online. Visit our <a href={graknRoutes.docs} className="animated__link animated__link--purple">documentation portal.</a>
                   </div>
                 </div>
               </div>
