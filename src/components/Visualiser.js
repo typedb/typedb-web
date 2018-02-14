@@ -77,7 +77,7 @@ class Visualiser extends Component {
         enabled: true,
         forceAtlas2Based: {
           gravitationalConstant: -50,
-          centralGravity: 0.01,
+          centralGravity: 0.015,
           springConstant: 0.03,
           springLength: 200,
           damping: 0.3,
