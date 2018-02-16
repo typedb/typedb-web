@@ -52,11 +52,11 @@
       box-sizing: border-box;
       border-radius: 6px;
       @media screen and (max-width: $smallScreen) {
-        bottom: -440px;
+        bottom: -540px;
         width: 100%;
       }
       @media screen and (max-width: $extraSmallScreen) {
-        bottom: -480px;
+        bottom: -580px;
       }
       &__header {
         font-size: 28px;

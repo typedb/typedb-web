@@ -32,6 +32,7 @@ class Footer extends Component {
           <input type="text" value={this.state.input} onChange={(e) => this.handleEmailChange(e)} placeholder="Subscribe to our newsletter"/>
           <button className="button--red" onClick={() => this.props.onSubscribeSubmit({email: this.state.input})}>Subscribe</button>
         </div>
+        <span className="support-form__consent support-form__consent--footer">By submitting your personal data, you consent to emails from Grakn. See our <Link to="/privacy-policy" className="animated__link animated__link--purple">Privacy Policy</Link></span>
       </div>
       <div className="container footer__container">
         <div className="footer__block">

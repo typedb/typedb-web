@@ -33,7 +33,8 @@ class CommunityPage extends Component {
               <input type="text" placeholder="Email" value={this.state.email} onChange={(e) => this.handleChange('email', e.target.value)}/>              
               <input type="text" placeholder="First Name" value={this.state.name} onChange={(e) => this.handleChange('name', e.target.value)}/>              
               <input type="text" placeholder="Last Name" value={this.state.surname} onChange={(e) => this.handleChange('surname', e.target.value)}/>
-              <button className="button--red" onClick={() => this.props.onSubmitNewsletter(this.state)}>Subscribe</button>             
+              <button className="button--red" onClick={() => this.props.onSubmitNewsletter(this.state)}>Subscribe</button>
+              <span className="support-form__consent">By submitting your personal data, you consent to emails from Grakn. See our <Link to="/privacy-policy" className="animated__link animated__link--purple">Privacy Policy</Link></span>           
             </div>
           </div>
         </section>

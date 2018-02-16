@@ -11,6 +11,22 @@ $supportFormColor: #a8a9b0;
     width: initial;
     padding: 30px 20px;
   }
+  &__consent {
+    display: block;
+    width: 100%;
+    margin: 0 auto;
+    box-sizing: border-box;
+    text-align: center;
+    padding-top: 30px;
+    color: $textLight;
+    font-family: 'Titillium';
+    &--footer {
+      width: fit-content;
+      margin-right: 0;
+      font-size: 10px;
+      padding: 0;
+    }
+  }
   &__button {
     margin-top: 1rem;
     outline: none;

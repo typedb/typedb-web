@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import validator from 'validator';
 import { connect } from 'react-redux';
-
+import { Link } from 'react-router-dom';
 import Form from 'components/FormValidationComponents/components/form';
 import Input from 'components/FormValidationComponents/components/input';
 import Select from 'components/FormValidationComponents/components/select';
@@ -165,6 +165,7 @@ class SupportForm extends Component {
             <Button className="button button--red support-form__button" >Submit</Button>
           </div>          
         </Form>
+        <span className="support-form__consent">By submitting your personal data, you consent to emails from Grakn. See our <Link to="/privacy-policy" className="animated__link animated__link--purple">Privacy Policy</Link></span>
       </div>
     );
   }
