@@ -18,6 +18,7 @@ import NoPage from 'pages/NoPage';
 import ComingSoon from 'pages/ComingSoon';
 import {FinanceUseCasePage, HealthUseCasePage, SemanticUseCasePage, BotsUseCasePage, SecurityUseCasePage} from 'pages/UseCasePages';
 import DownloadCentrePage from 'pages/DownloadCentrePage';
+import PrivacyPolicyPage from 'pages/PrivacyPolicyPage';
 import { fetchDownloads } from 'actions/downloads';
 
 const metaDescription = {
@@ -84,6 +85,7 @@ class Main extends Component {
           <Route path="/usecase-search" component={SemanticUseCasePage} />
           <Route path="/usecase-bots" component={BotsUseCasePage} />
           <Route path="/usecase-security" component={SecurityUseCasePage} />
+          <Route exact path="/privacy-policy" component={PrivacyPolicyPage} />
           <Route component={NoPage} />
         </Switch>
       </main>
