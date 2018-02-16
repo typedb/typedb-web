@@ -82,6 +82,7 @@
     "prop-types": "^15.6.0",
     "re-resizable": "^4.1.0",
     "react": "^15.5.4",
+    "react-cookie-banner": "^3.0.0",
     "react-dom": "^15.5.4",
     "react-ga": "^2.3.5",
     "react-helmet": "^5.2.0",

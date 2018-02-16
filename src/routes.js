@@ -18,7 +18,6 @@ import NoPage from 'pages/NoPage';
 import ComingSoon from 'pages/ComingSoon';
 import {FinanceUseCasePage, HealthUseCasePage, SemanticUseCasePage, BotsUseCasePage, SecurityUseCasePage} from 'pages/UseCasePages';
 import DownloadCentrePage from 'pages/DownloadCentrePage';
-
 import { fetchDownloads } from 'actions/downloads';
 
 const metaDescription = {

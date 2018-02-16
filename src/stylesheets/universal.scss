@@ -104,3 +104,35 @@ button, input, select, label, textarea {
     transform: scaleX(1);      
   }
 }
+
+.cookie-banner {
+  position: fixed !important;
+  bottom: 0;
+  background: rgba(47, 53, 67, 0.89) !important;
+  min-height: 70px !important;
+  font-family: 'Titillium' !important;
+  font-size: 16px;
+  text-align: left !important;
+  width: 100vw;
+  z-index: 20000;
+  .cookie-message {
+    padding: 25px 30px;
+    width: calc(100% - 100px) !important;
+    display: inline-block;
+    box-sizing: border-box;
+    color: white;
+    vertical-align: middle;
+  }
+  .button-close {
+    background: transparent !important;
+    border: 1px solid white !important;
+    border-radius: 7px !important;
+    color: white !important;
+    width: 80px !important;
+    height: 40px;
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 16px;
+    cursor: pointer;
+  }
+}
