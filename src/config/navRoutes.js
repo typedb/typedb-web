@@ -3,7 +3,7 @@ const graknRoutes = require('config/graknRoutes');
 
 export const internalRoutes =  [
   'Services', 'Support', 'Grakn Core', 'Grakn KBMS & Workbase', 'Deployment', 'Community', 'About', 'Careers', 'Financial Services',
-  'Health & Life Sciences', 'Intelligent Bots', 'Semantic Search', 'Security', 'Download 1.0'
+  'Health & Life Sciences', 'Intelligent Bots', 'Semantic Search', 'Security', 'Download'
 ];
 
 export const externalRoutes = [
@@ -11,7 +11,7 @@ export const externalRoutes = [
 ];
 
 export const navRoutes = {
-  'Download 1.0': {
+  'Download': {
     type: 'single',
     link: `/download`,
   },

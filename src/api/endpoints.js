@@ -5,5 +5,6 @@ export default {
   careers: `${cmsBase}/careers/rows${cmsAccessTokenTag}`,
   newsletter: `${serverBase}/invite/mailchimp`,
   support: `${serverBase}/api/support`,
-  team: `${cmsBase}/team/rows${cmsAccessTokenTag}`
+  team: `${cmsBase}/team/rows${cmsAccessTokenTag}`,
+  downloads: `${cmsBase}/version/rows${cmsAccessTokenTag}`
 };

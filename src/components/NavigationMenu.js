@@ -23,10 +23,12 @@ class NavigationMenu extends Component {
         'nav__link': true,
         'nav__link__inline': value.type === 'single',
         'nav__link__dropdown': value.type !== 'single',
-        'animated__link': value.type === 'single' && key !== 'Github' && key !== 'Download 1.0'  && !hamburger,
-        'nav__link__button': key === 'Download 1.0'
+        'animated__link': value.type === 'single' && key !== 'Github' && key !== 'Download'  && !hamburger,
+        'nav__link__button': key === 'Download'
       });
-      // 
+      if(key == 'Download' && this.props.downloads.length > 0){
+        key = key + ' ' + this.props.downloads.filter(item => item.latest === 'True' && item.product ==='core')[0].version;
+      }
       if (value.type === 'single') {
         if(internalRoutes.indexOf(key) !==-1 ) {
           return (
@@ -233,6 +235,7 @@ class NavigationMenu extends Component {
 const mapStateToProps = (state) => (
   {
     mediaType: state.browser.mediaType,
+    downloads: state.downloads.items,
   }
 )
 

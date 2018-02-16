@@ -19,6 +19,8 @@ import ComingSoon from 'pages/ComingSoon';
 import {FinanceUseCasePage, HealthUseCasePage, SemanticUseCasePage, BotsUseCasePage, SecurityUseCasePage} from 'pages/UseCasePages';
 import DownloadCentrePage from 'pages/DownloadCentrePage';
 
+import { fetchDownloads } from 'actions/downloads';
+
 const metaDescription = {
 '/': "Grakn is a hyper-relational database for knowledge engineering. Rooted in Knowledge Representation and Automated Reasoning, Grakn provides the knowledge base foundation for intelligent/cognitive systems.",
 '/grakn-core':"Grakn is a hyper-relational database for knowledge engineering, and Graql is Grakn’s query language.",
@@ -40,6 +42,7 @@ class Main extends Component {
   componentDidMount() {
     ReactGA.initialize('UA-72414051-1');
     ReactGA.pageview(this.props.path);
+    this.props.onFetchDownloads();
   }
 
   componentDidUpdate(oldProps) {
@@ -94,4 +97,11 @@ const mapStateToProps = (state) => (
     path: state.router.location.pathname,
   }
 );
-export default connect(mapStateToProps)(Main);
+
+const mapDispatchToProps = (dispatch) => (
+  {
+    onFetchDownloads: () => dispatch(fetchDownloads())
+  }
+)
+
+export default connect(mapStateToProps, mapDispatchToProps)(Main);

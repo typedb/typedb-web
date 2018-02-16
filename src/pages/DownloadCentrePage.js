@@ -1,8 +1,8 @@
 import React, { Component, version } from 'react';
 import { Link } from 'react-router-dom';
 import { keys } from 'lodash';
+import { connect } from 'react-redux';
 import SupportForm from 'components/SupportForm';
-
 const zenscroll = require('zenscroll');
 const graknRoutes = require('config/graknRoutes');
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
@@ -189,7 +189,6 @@ class DownloadCentrePage extends Component {
     if (this.props.location.hash === "#workbase") {
       initialIndex = 2;
     }
-    
     return (
       <div className="downloads">
       <section className="downloads__splash">
@@ -422,4 +421,9 @@ class DownloadCentrePage extends Component {
   }
 }
 
-export default DownloadCentrePage;
+const mapStateToProps = (state) => (
+  {
+    downloads: state.downloads.items
+  }
+)
+export default connect(mapStateToProps)(DownloadCentrePage);
