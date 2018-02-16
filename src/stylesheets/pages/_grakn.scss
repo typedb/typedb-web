@@ -570,11 +570,12 @@
           height: calc(100% - 65px);
           background-color: #2f3544;
           color: white;
-
+          
           > pre {
             margin: 0;
             padding: 20px 30px;
             box-sizing: border-box;
+            display: inline-block;
             overflow-x: scroll;
             height: 100%;
             font-family: 'Ubuntu' !important;
@@ -583,6 +584,17 @@
             > code {
               font-family: 'Ubuntu' !important;
             }
+          }
+          >pre:nth-child(1) {
+            width: 30px;
+            padding: 2px 3px;
+            background-color: #2a2f3b;
+            display: inline-block;
+            white-space: pre-line;
+            text-align: center;
+            color: #8a94af;
+            font-size: 16px;
+            opacity: 0.4;
           }
         }
       }
