@@ -28,6 +28,7 @@ const App = () => (
             cookie="user-has-accepted-cookies"
             dismissOnScroll={false}
             disableStyle={true}
+            buttonMessage="OK"
           />
         </div>
       </ScrollRestoration>
