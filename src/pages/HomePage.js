@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import Visualiser from 'components/Visualiser';
 import PagingComponent from 'components/PagingComponent';
@@ -56,7 +57,7 @@ class HomePage extends Component {
           <div className="home__links__container container section__container">
             <div className="home__links__container__item">
               <img src="/assets/svg/github.svg" alt="github" />
-              <span><a className="github-link" href={graknRoutes.github} target="_blank" >Grakn 1.0</a> on Github</span>
+              <span><a className="github-link" href={graknRoutes.github} target="_blank" >Grakn {this.props.downloads.length > 0 ? this.props.downloads.filter(item => item.latest==="True")[0].version : null}</a> on Github</span>
             </div>
             <div className="home__links__container__item">
               <img src="/assets/svg/slack-mark.svg" alt="slack" />
@@ -356,4 +357,9 @@ class HomePage extends Component {
   }
 }
 
-export default HomePage;
+const mapStateToProps = (state) => (
+  {
+    downloads: state.downloads.items
+  }
+);
+export default connect(mapStateToProps)(HomePage);

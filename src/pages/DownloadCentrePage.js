@@ -54,22 +54,11 @@ const WorkbaseComparisson = [
   { item: 'Cluster Administration', advance: 'true', premium: 'false'},
 ]
 
-const graknCoreVersions = {
-  '1.0.0': {
-    'Linux': 'https://github.com/graknlabs/grakn/releases/download/v1.0.0/grakn-dist-1.0.0.tar.gz',
-    'Mac OS X': 'https://github.com/graknlabs/grakn/releases/download/v1.0.0/grakn-dist-1.0.0.tar.gz'
-  },
-  '0.18.0': {
-    'Linux': 'https://github.com/graknlabs/grakn/releases/download/v0.18.0/grakn-dist-0.18.0.tar.gz',
-    'Mac OS X': 'https://github.com/graknlabs/grakn/releases/download/v0.18.0/grakn-dist-0.18.0.tar.gz'
-  }
-}
-
 class DownloadCentrePage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      versionCore: keys(graknCoreVersions)[0],
+      versionCore: this.props.downloads.length > 0? this.props.downloads.filter(item => item.latest === 'True' && item.product ==='core')[0].version: '',
       platformCore: '',
     }
     this.scroll = this.scroll.bind(this);
@@ -87,12 +76,18 @@ class DownloadCentrePage extends Component {
   componentDidMount() {
     let OSName="";
     if (navigator.appVersion.indexOf("Win")!=-1) OSName="";
-    if (navigator.appVersion.indexOf("Mac")!=-1) OSName="Mac OS X";
-    if (navigator.appVersion.indexOf("X11")!=-1) OSName="Linux";
-    if (navigator.appVersion.indexOf("Linux")!=-1) OSName="Linux";
+    if (navigator.appVersion.indexOf("Mac")!=-1) OSName="mac_os_x";
+    if (navigator.appVersion.indexOf("X11")!=-1) OSName="linux";
+    if (navigator.appVersion.indexOf("Linux")!=-1) OSName="linux";
     this.switchPlatform(OSName);
   }
 
+  componentWillReceiveProps(newProps){
+    if(this.props.downloads.length != newProps.downloads.length && newProps.downloads.length > 0) {
+      const versionCore = newProps.downloads.filter(item => item.latest === 'True' && item.product ==='core')[0].version;
+      this.switchVersion(versionCore);
+    }
+  }
   switchVersion(versionCore) {
     this.setState({
       versionCore,
@@ -184,7 +179,6 @@ class DownloadCentrePage extends Component {
     let initialIndex = 0;
     if (this.props.location.hash === "#kbms") {
       initialIndex = 1;
-      console.log("heya")
     }
     if (this.props.location.hash === "#workbase") {
       initialIndex = 2;
@@ -217,8 +211,8 @@ class DownloadCentrePage extends Component {
                   reasoning (through OLTP) and analytics (through OLAP) declarative query language. 
                   <Link to="/grakn-core" className="animated__link animated__link--purple"> Learn more</Link>
                   </span>
-                  <span className="downloads__splash__main__tabpanel__content__release">Current Stable Release: <strong>Grakn Core 1.0</strong></span>
-                  <span className="downloads__splash__main__tabpanel__content__release"><strong>14 December 2017</strong>  <a href="https://github.com/graknlabs/grakn/releases/tag/v1.0.0" target="_blank" className="animated__link animated__link--purple">Release Notes</a></span>
+                  <span className="downloads__splash__main__tabpanel__content__release">Current Stable Release: <strong>Grakn Core {this.props.downloads.length > 0 ? this.props.downloads.filter(item => item.latest==="True")[0].version : null}</strong></span>
+                  <span className="downloads__splash__main__tabpanel__content__release"><strong>{this.props.downloads.length > 0 ? this.props.downloads.filter(item => item.latest==="True")[0].date : ''}</strong>  <a href={this.props.downloads.length > 0 ? this.props.downloads.filter(item => item.latest==="True")[0].releasenotes : ''} target="_blank" className="animated__link animated__link--purple">Release Notes</a></span>
                   <div className="downloads__splash__main__tabpanel__content__core__col downloads__splash__main__tabpanel__content__core__col--first">
                     <div className="downloads__splash__main__tabpanel__content__core__col__header downloads__splash__main__tabpanel__content__core__col__header--green">
                     Open Source
@@ -241,23 +235,23 @@ class DownloadCentrePage extends Component {
                       <Form className="downloads__splash__main__tabpanel__content__core__col__content__selectgroup">
                       <Select value={this.state.platformCore} name='platform' onChange={(e) => this.switchPlatform(e.target.value)}>
                         <option value=''>Operating System</option>
-                        <option value='Linux'>Linux</option>
-                        <option value='Mac OS X'>Mac OS X</option>
+                        <option value='linux'>Linux</option>
+                        <option value='mac_os_x'>Mac OS X</option>
                       </Select>
                       <Select value={this.state.versionCore} name='version' onChange={(e) => this.switchVersion(e.target.value)}>
                         <option value=''>Version</option>
                         {
-                          keys(graknCoreVersions).map((item, index) => {
+                          this.props.downloads.map((item, index) => {
                           return (
-                            <option value={item} key={`${item}--version-download`}>{item}</option>
+                            <option value={item.version} key={`${item.version}--version-download`}>{item.version}</option>
                           )
                         })
                         }
                       </Select>
                       </Form>
                       {
-                        this.state.versionCore !== '' & this.state.platformCore !== ''?
-                          <a href={graknCoreVersions[this.state.versionCore][this.state.platformCore]}
+                        this.state.versionCore !== '' && this.state.platformCore !== '' && this.props.downloads.length > 0 ?
+                          <a href={this.props.downloads.filter(item => item.version === this.state.versionCore)[0][this.state.platformCore]}
                             className="button button--red downloads__splash__main__tabpanel__content__download"
                           >
                           Download

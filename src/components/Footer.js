@@ -39,7 +39,7 @@ class Footer extends Component {
           <div className="footer__block__links">
             <a href={graknRoutes.github} target="_blank" className="footer__block__links--github">
               <img src="/assets/svg/github.svg" alt="github"/>
-              <strong>Grakn 1.0</strong> on Github
+              <strong>Grakn {this.props.downloads.length> 0? this.props.downloads.filter(item => item.latest === 'True' && item.product ==='core')[0].version: ''}</strong> on Github
             </a>
             <Link to="/slack" className="footer__block__links--slack">
               <img src="/assets/svg/slack-mark.svg" alt="slack"/>        
@@ -110,9 +110,15 @@ class Footer extends Component {
   }
 }
 
+const mapStateToProps = (state) => (
+  {
+    downloads: state.downloads.items
+  }
+)
+
 const mapDispatchToProps = (dispatch) => (
   {
     onSubscribeSubmit: (obj) => dispatch(newsletter(obj))
   }
 )
-export default connect(null, mapDispatchToProps)(Footer);
+export default connect(mapStateToProps, mapDispatchToProps)(Footer);

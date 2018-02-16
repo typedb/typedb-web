@@ -122,7 +122,6 @@ class NavigationMenu extends Component {
         );
       }
     }); 
-    console.log(navRoutes);
   }
 
   renderToggle() {
