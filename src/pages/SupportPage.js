@@ -35,7 +35,7 @@ class SupportPage extends Component {
         <div className="support-page__comparisson__table__header">
           <span className="support-page__comparisson__table__header__item support-page__comparisson__table__header__item--empty" />
           <span className="support-page__comparisson__table__header__item">Premium Support</span>
-          <span className="support-page__comparisson__table__header__item">Advance Support</span>
+          <span className="support-page__comparisson__table__header__item">Advanced Support</span>
         </div>
       {
         comparisson.map((elem, index) => {
@@ -93,7 +93,7 @@ class SupportPage extends Component {
                 <span>{premiumContent}</span>
               </div>
               <div className="support-page__comparisson__table__mobile__row__item support-page__comparisson__table__mobile__row__item--split">
-                <span>Advance Support</span>
+                <span>Advanced Support</span>
                 <span>{advanceContent}</span>
               </div>
             </div>
