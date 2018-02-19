@@ -229,7 +229,7 @@ class Visualiser extends Component {
      }
  
      const handleMouseMove = (e) =>{ 
-      if ((time + 20 - Date.now()) < 0) {
+      if ((time + 10 - Date.now()) < 0) {
        const x = e.pageX - elOffset(visualiserCode).left; // offsetleft
        visualiserCode.style.width = (x-50)+'px';
        time = Date.now();
