@@ -213,6 +213,36 @@ class Visualiser extends Component {
     },function() {
       setTimeout(this.drawGraph, 1000);
     });
+
+     // Move handle code
+     const handle = document.getElementById('handle');
+     const visualiserCode = document.getElementById('visualiser-code');
+     const elOffset = (el)=>{
+       const rect = el.getBoundingClientRect();
+       
+       return {
+         top: rect.top + document.body.scrollTop,
+         left: rect.left + document.body.scrollLeft
+       }
+     }
+ 
+     const handleMouseMove = (e) =>{ 
+       const x = e.pageX - elOffset(visualiserCode).left; // offsetleft
+       visualiserCode.style.width = (x-50)+'px';
+     };
+
+
+     // When user clicks on handle bind handleMouseMove
+     const handleMouseDown  = ()=>{
+       document.addEventListener('mousemove', handleMouseMove);
+     };
+ 
+     handle.addEventListener('mousedown', handleMouseDown);
+ 
+     document.onmouseup = (e) => {
+       document.removeEventListener('mousemove', handleMouseMove);
+     };
+     //---------
   }
 
   drawGraph() {
@@ -269,23 +299,11 @@ class Visualiser extends Component {
             })
           }
         </ul>
-        <div className=" visualiser__content">
-          <Resizable 
-            id="visualiser-code" 
-            className="visualiser__content__code"
-            enable={{top:false, right:true, bottom:false, left:false, topRight:false, bottomRight:false, bottomLeft:false, topLeft:false }}
-            defaultSize= {{
-              width: '50%',
-              height: '100%'
-            }}
-            minWidth='5%'
-            maxWidth='95%'
-            handleWrapperClass="resizer__handle"
-            >
-            <pre>
-                <code dangerouslySetInnerHTML={{__html: code}}/>
-              </pre>
-          </Resizable>          
+        <div className="visualiser__content">
+          <div className="visualiser__content__code">
+            <pre id="visualiser-code"><code dangerouslySetInnerHTML={{__html: code}}/></pre>
+            <div id="handle" className="visualiser__content__code__handle"></div>
+          </div>
           <div id="visualiser-graph" className="visualiser__content__graph" ref={(container) => this.graphContainer = container}>
           </div>
         </div>

@@ -53,7 +53,8 @@
     border-radius: 0 0 5px 5px;
     position: relative;
     > div {
-      display: block;
+      display: flex;
+      flex-flow: row;
       height: 100%;
     }
     &__graph {
@@ -69,6 +70,7 @@
       z-index: 10;
       background-color: rgb(47, 53, 67);
       border-radius: 0 0 0 5px;
+      max-width: 98%;
       > pre {
         display: block;
         margin-top: 0;
@@ -88,7 +90,11 @@
           }
         }
       }
-
+      &__handle{
+        background-color: yellow;
+        width: 20px;
+        cursor: pointer;
+      }
     }
   }
 }
