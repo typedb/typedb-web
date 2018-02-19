@@ -11,6 +11,8 @@ const Prism = require('prismjs');
 const graqlHighlighter = require('helpers/prism-graql.js').graql;
 const visualiserItems = require('config/visualiserItems');
 
+var time = Date.now();
+
 
 class Visualiser extends Component {
   constructor(props) {
@@ -227,20 +229,23 @@ class Visualiser extends Component {
      }
  
      const handleMouseMove = (e) =>{ 
+      if ((time + 20 - Date.now()) < 0) {
        const x = e.pageX - elOffset(visualiserCode).left; // offsetleft
        visualiserCode.style.width = (x-50)+'px';
+       time = Date.now();
+      }
      };
 
 
      // When user clicks on handle bind handleMouseMove
      const handleMouseDown  = ()=>{
-       document.addEventListener('mousemove', handleMouseMove);
+       document.addEventListener('mousemove', handleMouseMove, false);
      };
  
-     handle.addEventListener('mousedown', handleMouseDown);
+     handle.addEventListener('mousedown', handleMouseDown, false);
  
      document.onmouseup = (e) => {
-       document.removeEventListener('mousemove', handleMouseMove);
+       document.removeEventListener('mousemove', handleMouseMove, false);
      };
      //---------
   }
