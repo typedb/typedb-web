@@ -21,10 +21,20 @@ $supportFormColor: #a8a9b0;
     color: $textLight;
     font-family: 'Titillium';
     &--footer {
-      width: fit-content;
-      margin-right: 0;
+      display: inline-block;
+      width: 220px;
+      vertical-align: bottom;
+      text-align: right;
+      float: right;
+      padding-right: 1rem;
+      padding-top: 10px;
       font-size: 10px;
-      padding: 0;
+      @media screen and (max-width: $smallScreen) {
+        display: block;
+        width: 100%;
+        text-align: center;
+        margin-bottom: 1rem;
+      }
     }
   }
   &__button {
