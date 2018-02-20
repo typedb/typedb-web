@@ -82,19 +82,31 @@ class KBMSPage extends Component {
                   </div>
                 </div>
               </div>
-    
+
               <div className="kbms-page__features__col__item kbms-page__features__col__item--red">
-                <div className="kbms-page__features__col__item__img">
-                  <img src="/assets/svg/kbms-schema.svg" alt="Extensible Schema" />
-                </div>
-                <div className="kbms-page__features__col__item__details">
-                  <span className="kbms-page__features__col__item__details__header">Extensible Schema</span>
-                  <div className="kbms-page__features__col__item__details__text">
-                  Schema definition can be updated and extended flexibly, during runtime, without any need for database migration              
-                  </div>
+              <div className="kbms-page__features__col__item__img">
+              <img src="/assets/svg/kbms-cluster.svg" alt="Cluster Management" />
+              </div>
+              <div className="kbms-page__features__col__item__details">
+                <span className="kbms-page__features__col__item__details__header">Cluster Management</span>
+                <div className="kbms-page__features__col__item__details__text">
+                Easily deploy and scale your database with tools that automate the provisioning of your cluster              
                 </div>
               </div>
-    
+            </div>
+
+             { // <div className="kbms-page__features__col__item kbms-page__features__col__item--red">
+              //   <div className="kbms-page__features__col__item__img">
+              //     <img src="/assets/svg/kbms-schema.svg" alt="Extensible Schema" />
+              //   </div>
+              //   <div className="kbms-page__features__col__item__details">
+              //     <span className="kbms-page__features__col__item__details__header">Extensible Schema</span>
+              //     <div className="kbms-page__features__col__item__details__text">
+              //     Schema definition can be updated and extended flexibly, during runtime, without any need for database migration              
+              //     </div>
+              //   </div>
+              // </div>
+              }
               <div className="kbms-page__features__col__item kbms-page__features__col__item--yellow">
                 <div className="kbms-page__features__col__item__img">
                   <img src="/assets/svg/kbms-secured.svg" alt="Secured Authentication" />
@@ -106,8 +118,21 @@ class KBMSPage extends Component {
                   </div>
                 </div>
               </div>
-    
+              
               <div className="kbms-page__features__col__item kbms-page__features__col__item--green">
+                <div className="kbms-page__features__col__item__img">
+                <img src="/assets/svg/kbms-tools.svg" alt="Migration Tools" />
+                </div>
+                <div className="kbms-page__features__col__item__details">
+                  <span className="kbms-page__features__col__item__details__header">Migration Tools</span>
+                  <div className="kbms-page__features__col__item__details__text">
+                  Tools to help migrate large datasets from various formats and database sources, easily and quickly              
+                  </div>
+                </div>
+              </div>
+
+              {
+                /* <div className="kbms-page__features__col__item kbms-page__features__col__item--green">
                 <div className="kbms-page__features__col__item__img">
                 <img src="/assets/svg/kbms-IDE.svg" alt="Dedicated IDE" />
                 </div>
@@ -117,19 +142,20 @@ class KBMSPage extends Component {
                   An integrated development environment for knowledge engineering and modelling at scale              
                   </div>
                 </div>
+              </div> */
+            }
+            
+            <div className="kbms-page__features__col__item kbms-page__features__col__item--blue">
+              <div className="kbms-page__features__col__item__img">
+              <img src="/assets/svg/kbms-search.svg" alt="Full-text Search" />
               </div>
-    
-              <div className="kbms-page__features__col__item kbms-page__features__col__item--blue">
-                <div className="kbms-page__features__col__item__img">
-                <img src="/assets/svg/kbms-cluster.svg" alt="Cluster Management" />
-                </div>
-                <div className="kbms-page__features__col__item__details">
-                  <span className="kbms-page__features__col__item__details__header">Cluster Management</span>
-                  <div className="kbms-page__features__col__item__details__text">
-                  Easily deploy and scale your database with tools that automate the provisioning of your cluster              
-                  </div>
+              <div className="kbms-page__features__col__item__details">
+                <span className="kbms-page__features__col__item__details__header">Full-text Search</span>
+                <div className="kbms-page__features__col__item__details__text">
+                Advanced full-text search capabilities, by enabling powerful string matching techniques over any body of text
                 </div>
               </div>
+            </div>
     
             </div>
             <div className="kbms-page__features__col__divider">
@@ -149,19 +175,8 @@ class KBMSPage extends Component {
                 </div>
               </div>
     
-              <div className="kbms-page__features__col__item kbms-page__features__col__item--red">
-                <div className="kbms-page__features__col__item__img">
-                <img src="/assets/svg/kbms-search.svg" alt="Full-text Search" />
-                </div>
-                <div className="kbms-page__features__col__item__details">
-                  <span className="kbms-page__features__col__item__details__header">Full-text Search</span>
-                  <div className="kbms-page__features__col__item__details__text">
-                  Advanced full-text search capabilities, by enabling powerful string matching techniques over any body of text
-                  </div>
-                </div>
-              </div>
     
-              <div className="kbms-page__features__col__item kbms-page__features__col__item--yellow">
+              <div className="kbms-page__features__col__item kbms-page__features__col__item--red">
                 <div className="kbms-page__features__col__item__img">
                 <img src="/assets/svg/kbms-performance.svg" alt="Performance Monitoring" />
                 </div>
@@ -172,18 +187,30 @@ class KBMSPage extends Component {
                   </div>
                 </div>
               </div>
-    
-              <div className="kbms-page__features__col__item kbms-page__features__col__item--green">
+
+              <div className="kbms-page__features__col__item kbms-page__features__col__item--yellow">
                 <div className="kbms-page__features__col__item__img">
-                <img src="/assets/svg/kbms-tools.svg" alt="Migration Tools" />
+                <img src="/assets/svg/kbms-access.svg" alt="Custom Access" />
                 </div>
                 <div className="kbms-page__features__col__item__details">
-                  <span className="kbms-page__features__col__item__details__header">Migration Tools</span>
+                  <span className="kbms-page__features__col__item__details__header">Custom Access Rights</span>
                   <div className="kbms-page__features__col__item__details__text">
-                  Tools to help migrate large datasets from various formats and database sources, easily and quickly              
+                  Granular restrictions on user access rights to different groups of datasets within the database, as defined by the schema                   </div>
+                </div>
+              </div>
+
+              <div className="kbms-page__features__col__item kbms-page__features__col__item--green">
+                <div className="kbms-page__features__col__item__img">
+                <img src="/assets/svg/kbms-backup.svg" alt="Backup" />
+                </div>
+                <div className="kbms-page__features__col__item__details">
+                  <span className="kbms-page__features__col__item__details__header">Backup and Recovery</span>
+                  <div className="kbms-page__features__col__item__details__text">
+                  Protect your database from data loss through automatic periodic backups and reconstruction tools 
                   </div>
                 </div>
               </div>
+    
     
               <div className="kbms-page__features__col__item kbms-page__features__col__item--blue">
                 <div className="kbms-page__features__col__item__img">
