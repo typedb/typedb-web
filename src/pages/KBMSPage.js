@@ -31,7 +31,7 @@ class KBMSPage extends Component {
             <div className="kbms-page__splash__text">
               <h1 className="kbms-page__splash__text__header">Grakn Enterprise <strong>KBMS</strong><br /> and <strong>Workbase</strong></h1>
               <span className="kbms-page__splash__text__tag">
-              Grakn Enterprise KBMS is the Knowledge Base Management System designed to scale with your business, and Workbase is the visual platform to control everything from development to production
+              Grakn Enterprise KBMS is the Knowledge Base Management System designed to scale with your enterprise, and Workbase is the visual platform to control everything from development to production
               </span>
             </div>
             </div>
