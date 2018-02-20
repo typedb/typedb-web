@@ -323,8 +323,11 @@
           height: 150px;
         }
         &--none {
-          width: auto;
+          width: auto !important;
           max-width: 100%;
+          margin: 0 auto;
+          height: 80% !important;
+          padding-top: 5%;
         }
       }
       &__place {
