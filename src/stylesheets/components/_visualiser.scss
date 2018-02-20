@@ -91,20 +91,23 @@
       }
       &__slider{
         background-color: #505e72;
-        width: 15px;
+        width: 12px;
         height: 100%;
         position: absolute;
         right: 0px;
-        user-select: none;
+        border-radius: 5px;
+        cursor: col-resize;
         &__handle{
           position: absolute;
           width: 25px;
           height: 25px;
           user-select: none;
           cursor: col-resize;
-          background-color: yellow;
-          left: -5px;
+          left: -19px;
           top: 40%;
+          > img {
+            user-select: none;
+          }
         }
       }
     }

@@ -220,6 +220,7 @@ class Visualiser extends Component {
 
      // Move slider code
      const handle = document.getElementById('handle');
+     const slider = document.getElementById('slider');
      const visualiserCode = document.getElementById('visualiser-code');
      const elOffset = (el)=>{
        const rect = el.getBoundingClientRect();
@@ -239,13 +240,22 @@ class Visualiser extends Component {
      // When user clicks on handle bind handleMouseMove
      const handleMouseDown  = ()=>{
        document.addEventListener('mousemove', throttledHandler, false);
+       document.addEventListener('touchmove', throttledHandler, false);
      };
  
      handle.addEventListener('mousedown', handleMouseDown, false);
- 
+     slider.addEventListener('mousedown', handleMouseDown, false);
+
+     handle.addEventListener('touchstart', handleMouseDown, false);
+     slider.addEventListener('touchstart', handleMouseDown, false);
+
+
      document.onmouseup = (e) => {
        document.removeEventListener('mousemove', throttledHandler, false);
      };
+     document.ontouchend = (e) => {
+      document.removeEventListener('touchmove', throttledHandler, false);
+    };
   }
 
   drawGraph() {
@@ -306,7 +316,9 @@ class Visualiser extends Component {
           <div className="visualiser__content__code">
             <pre id="visualiser-code"><code dangerouslySetInnerHTML={{__html: code}}/></pre>
             <div id="slider" className="visualiser__content__code__slider">
-                <div id="handle" className="visualiser__content__code__slider__handle"></div>
+                <div id="handle" className="visualiser__content__code__slider__handle">
+                  <img src="/assets/img/split-toggle.png" draggable="false"/>
+                </div>
             </div>
           </div>
           <div id="visualiser-graph" className="visualiser__content__graph" ref={(container) => this.graphContainer = container}>
