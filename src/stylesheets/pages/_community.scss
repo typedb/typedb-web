@@ -188,68 +188,50 @@
 
   &__fancy {
     position: relative;
-    padding: 0 0 120px 0;
+    padding: 0 0 50px 0;
     background-image: url('/assets/img/community-fancy.png');
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center top;
-    &__container {
-      > div:nth-child(1) {
-        margin-right: 2.5%;
-        @media screen and (max-width: $smallScreen) {
-          margin-right: 0;
-        }
-      }
-      > div:nth-child(2) {
-        margin-left: 2.5%;
-        @media screen and (max-width: $smallScreen) {
-          margin-left: 0;
-          margin-top: 30px;
-        }
-      }
-    }
+
     &__item {
+      width: 280px;
+      height: 157px;
+      border-radius: 5px;
+      margin: 0 10px;
       display: inline-block;
       vertical-align: top;
-      width: 47.5%;
-      padding: 50px;
-      background-color: white;
-      border-radius: 6px;
-      border: solid 1px #e6e8f4;
-      box-sizing: border-box;
-      min-height: 313px;
-      @media screen and (max-width: $smallScreen) {
+      background-color: #fefefe;
+      margin-bottom: 20px;
+      @media screen and (max-width: $smallScreen){
+        width: 260px;
+      }
+      @media screen and (max-width: 400px){
+        width: 210px;
+      }
+      > a {
         display: block;
+        position: relative;
+      }
+      > a > img {
         width: 100%;
         height: 100%;
-        min-height: fit-content;
-      }
-      &__header {
         display: block;
-        font-size: 22px;
-        line-height: 1.2;
-        padding-bottom: 1rem;
-        font-weight: 600;
-        &--green {
-          color: #3dce8c;
-        }
-        &--purple {
-          color: #21b5fb;
-        }
-        @media screen and (max-width: $smallScreen) {
-          font-size: 16px;
-        }
+        border-radius: 5px;
+        filter: brightness(60%);
       }
-      &__text {
-        display: block;
-        line-height: 1.8;
-        font-size: 16px;
-        color: $textLight;
-        @media screen and (max-width: $smallScreen) {
-          font-size: 14px;
-        }
+      > a > span {
+        color: white;
+        font-size: 24px;
+        text-transform: uppercase;
+        font-weight: 500;
+        text-decoration: none !important;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
       }
-    }
+    }  
   }
   &__events {
     padding: 90px 0;

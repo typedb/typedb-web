@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { newsletter } from 'actions/invitations';
 import { fetchEvents } from 'actions/events';
+import { fetchMeetups } from 'actions/meetups';
 import PagingComponent from 'components/PagingComponent';
 const graknRoutes = require('config/graknRoutes');
 import { sortBy } from 'lodash';
@@ -21,6 +22,7 @@ class CommunityPage extends Component {
   
   componentDidMount() {
     this.props.onGetEvents();
+    this.props.onGetMeetups();
   }
 
   handleChange(key, val) {
@@ -99,19 +101,25 @@ class CommunityPage extends Component {
           </div>
         </section>
         <section className="community__fancy">
-          <div className="community__fancy__container container section__container">
-            <div className="community__fancy__item">
-              <span className="community__fancy__item__header community__fancy__item__header--green">Join our Meetups!</span>
-              <span className="community__fancy__item__text">
-              Learn how Grakn can help you build your knowledge base platform. We discuss the best practices in complex data modelling, logical reasoning, distributed analytics, cloud deployments, as well as knowledge base applications for cognitive and intelligent systems.Join our <a href={graknRoutes.meetups} className="animated__link animated__link--purple">Grakn meetups</a>.
-              </span>
-            </div>
-            <div className="community__fancy__item">
-              <span className="community__fancy__item__header community__fancy__item__header--purple">Become a Graqler!</span>
-              <span className="community__fancy__item__text">
-              For every application you develop with Grakn, if you share its story with us, you'll get a free t-shirt and GRAKN.AI stickers. If you blog/host it online, we'll send you our hoodie too!              </span>
-            </div>
-          </div>
+          {
+            this.props.meetups.length > 0?
+            <PagingComponent className="community__fancy__container container section__container">
+            {
+              this.props.meetups.map((item, index) => {
+                return (
+                  <div className="community__fancy__item" key={`${index}__meetups`}>
+                    <a href={item.link} target="_blank">
+                      <img src={`https://cms.grakn.ai/${item.img.data.url}`} alt={item.name} />
+                      <span>{item.name}</span>
+                    </a>
+                  </div>
+                )
+              })
+            }
+            </PagingComponent>
+            :
+            null
+          }   
         </section>
         <section className="community__events">
           <div className="community__events__container container section__container">
@@ -156,6 +164,7 @@ class CommunityPage extends Component {
 const mapStateToProps = (state) => (
   {
     events: state.events.items,
+    meetups: state.meetups.items,
   }
 );
 
@@ -163,6 +172,7 @@ const mapDispatchToProps = (dispatch) => (
   {
     onSubmitNewsletter: (obj) => dispatch(newsletter(obj)),
     onGetEvents: () => dispatch(fetchEvents()),
+    onGetMeetups: () => dispatch(fetchMeetups()),
   }
 );
 
