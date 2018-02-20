@@ -6,5 +6,6 @@ export default {
   newsletter: `${serverBase}/invite/mailchimp`,
   support: `${serverBase}/api/support`,
   team: `${cmsBase}/team/rows${cmsAccessTokenTag}`,
-  downloads: `${cmsBase}/version/rows${cmsAccessTokenTag}`
+  downloads: `${cmsBase}/version/rows${cmsAccessTokenTag}`,
+  events: `${cmsBase}/events/rows${cmsAccessTokenTag}`
 };

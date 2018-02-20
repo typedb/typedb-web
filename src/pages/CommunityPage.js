@@ -2,9 +2,12 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { newsletter } from 'actions/invitations';
-
+import { fetchEvents } from 'actions/events';
+import PagingComponent from 'components/PagingComponent';
 const graknRoutes = require('config/graknRoutes');
+import { sortBy } from 'lodash';
 
+const moment = require('moment');
 class CommunityPage extends Component {
   constructor(props) {
     super(props);
@@ -15,6 +18,11 @@ class CommunityPage extends Component {
     }
     this.handleChange = this.handleChange.bind(this);
   }
+  
+  componentDidMount() {
+    this.props.onGetEvents();
+  }
+
   handleChange(key, val) {
     this.setState({
       [key]: val
@@ -105,15 +113,57 @@ class CommunityPage extends Component {
             </div>
           </div>
         </section>
+        <section className="community__events">
+          <div className="community__events__container container section__container">
+          <span className="kbms-page__features__header">
+            Events
+          </span> 
+          {
+            this.props.events.length > 0?
+            <div className="community__events__items">
+            {
+              sortBy(this.props.events, function(o) { return new moment(o.date).format('YYYYMMDD'); }).reverse().map((item, index) => {
+                return (
+                  <div className="community__events__item" key={`${index}__events`}>
+                    <div className="community__events__item__img">
+                      {
+                        item.img?
+                        <img src={item.img} alt="" />
+                        :
+                        <img src='/assets/img/logo.png' alt="" className="community__events__item__img--none"/>
+                      }
+                    </div>
+                    <div className="community__events__item__title">{item.title}</div>
+                    <div className="community__events__item__description">{item.description}</div>
+                    <a className="animated__link animated__link--purple community__events__item__link" href={item.link}>Go to event</a>
+                    <div className="community__events__item__place"><strong>Place:</strong> {item.address}</div>
+                    <div className="community__events__item__place"><strong>When:</strong> {item.date}</div>
+                  </div>
+                )
+              })
+            }
+          </div>
+          :
+          null
+          }
+          </div>
+        </section>
       </div>
     )
   }
 }
 
+const mapStateToProps = (state) => (
+  {
+    events: state.events.items,
+  }
+);
+
 const mapDispatchToProps = (dispatch) => (
   {
-    onSubmitNewsletter: (obj) => dispatch(newsletter(obj))
+    onSubmitNewsletter: (obj) => dispatch(newsletter(obj)),
+    onGetEvents: () => dispatch(fetchEvents()),
   }
-)
+);
 
-export default connect(null, mapDispatchToProps)(CommunityPage);
+export default connect(mapStateToProps, mapDispatchToProps)(CommunityPage);
