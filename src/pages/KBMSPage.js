@@ -78,7 +78,7 @@ class KBMSPage extends Component {
                 <div className="kbms-page__features__col__item__details">
                   <span className="kbms-page__features__col__item__details__header">Scalabale Storage</span>
                   <div className="kbms-page__features__col__item__details__text">
-                  A scalable system designed to be partitioned and replicated over a network of distributed machines working together
+                  A scalable system designed to be partitioned and replicated over a network of distributed machines
                   </div>
                 </div>
               </div>
@@ -90,7 +90,7 @@ class KBMSPage extends Component {
               <div className="kbms-page__features__col__item__details">
                 <span className="kbms-page__features__col__item__details__header">Cluster Management</span>
                 <div className="kbms-page__features__col__item__details__text">
-                Easily deploy and scale your database with tools that automate the provisioning of your cluster              
+                Easily deploy and scale your database with tools that automate the provisioning of your cluster
                 </div>
               </div>
             </div>
@@ -114,7 +114,7 @@ class KBMSPage extends Component {
                 <div className="kbms-page__features__col__item__details">
                   <span className="kbms-page__features__col__item__details__header">Secured Authentication</span>
                   <div className="kbms-page__features__col__item__details__text">
-                  Ensuring authenticated access and also only appropriately privileged users are allowed to access specific datasets
+                  Ensuring only authenticated access and appropriately privileged users are allowed to access the database
                   </div>
                 </div>
               </div>
@@ -126,7 +126,7 @@ class KBMSPage extends Component {
                 <div className="kbms-page__features__col__item__details">
                   <span className="kbms-page__features__col__item__details__header">Migration Tools</span>
                   <div className="kbms-page__features__col__item__details__text">
-                  Tools to help migrate large datasets from various formats and database sources, easily and quickly              
+                  Tools to help migrate large datasets from various formats and database sources, easily and quickly
                   </div>
                 </div>
               </div>
@@ -152,7 +152,7 @@ class KBMSPage extends Component {
               <div className="kbms-page__features__col__item__details">
                 <span className="kbms-page__features__col__item__details__header">Full-text Search</span>
                 <div className="kbms-page__features__col__item__details__text">
-                Advanced full-text search capabilities, by enabling powerful string matching techniques over any body of text
+                Advanced full-text search capabilities, by enabling powerful string matching techniques over any body of text 
                 </div>
               </div>
             </div>
@@ -170,7 +170,7 @@ class KBMSPage extends Component {
                 <div className="kbms-page__features__col__item__details">
                   <span className="kbms-page__features__col__item__details__header">Elastic Throughput</span>
                   <div className="kbms-page__features__col__item__details__text">
-                  Read and write throughput scales linearly as new machines are added to the Grakn cluster, without  any downtime              
+                  Read and write throughput scales linearly as new machines are added to the Grakn cluster, without any downtime
                   </div>
                 </div>
               </div>
@@ -183,7 +183,7 @@ class KBMSPage extends Component {
                 <div className="kbms-page__features__col__item__details">
                   <span className="kbms-page__features__col__item__details__header">Performance Monitoring</span>
                   <div className="kbms-page__features__col__item__details__text">
-                  Monitor your database performance in real-time through a dedicated and configurable dashboard              
+                  Monitor your database performance in real-time through a dedicated and configurable dashboard
                   </div>
                 </div>
               </div>
@@ -219,7 +219,7 @@ class KBMSPage extends Component {
                 <div className="kbms-page__features__col__item__details">
                   <span className="kbms-page__features__col__item__details__header">Enterprise Grade Support</span>
                   <div className="kbms-page__features__col__item__details__text">
-                  Access to advance support SLA with faster response time and problem resolution
+                  Access to advance support SLA with faster response time and problem resolution. <Link to="/support" className="animated__link animated__link--purple">Learn more</Link>
                   </div>
                 </div>
               </div>
