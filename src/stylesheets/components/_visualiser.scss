@@ -62,22 +62,21 @@
       border-radius: 0 0 5px 0;
       color: transparent;
       width: 100%;
-      z-index: -1;
     }
     &__code {
-      overflow-x: hidden;
       position: absolute !important;
-      z-index: 10;
       background-color: rgb(47, 53, 67);
       border-radius: 0 0 0 5px;
       max-width: 98%;
+      z-index: 10;
       > pre {
         display: block;
         margin-top: 0;
         padding: 0rem 1.5rem;
         font-family: 'Ubuntu' !important;
         font-weight: 400 !important;
-        width: inherit;         
+        width: inherit;
+        overflow-x: hidden;    
         > code {
           //Default colour for everything.
           color: #8c8c92;
@@ -90,10 +89,23 @@
           }
         }
       }
-      &__handle{
-        background-color: yellow;
-        width: 20px;
-        cursor: pointer;
+      &__slider{
+        background-color: #505e72;
+        width: 15px;
+        height: 100%;
+        position: absolute;
+        right: 0px;
+        user-select: none;
+        &__handle{
+          position: absolute;
+          width: 25px;
+          height: 25px;
+          user-select: none;
+          cursor: col-resize;
+          background-color: yellow;
+          left: -5px;
+          top: 40%;
+        }
       }
     }
   }

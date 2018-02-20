@@ -3,16 +3,13 @@ import ReactDOM from 'react-dom';
 import classNames from 'classnames';
 import { keys } from 'lodash';
 import { connect } from 'react-redux';
+import _ from 'lodash';
 
 import vis from 'vis-grakn';
-import Resizable from 're-resizable';
 
 const Prism = require('prismjs');
 const graqlHighlighter = require('helpers/prism-graql.js').graql;
 const visualiserItems = require('config/visualiserItems');
-
-var time = Date.now();
-
 
 class Visualiser extends Component {
   constructor(props) {
@@ -216,12 +213,16 @@ class Visualiser extends Component {
       setTimeout(this.drawGraph, 1000);
     });
 
-     // Move handle code
+    this.handleSliderEvents();
+  }
+
+  handleSliderEvents(){
+
+     // Move slider code
      const handle = document.getElementById('handle');
      const visualiserCode = document.getElementById('visualiser-code');
      const elOffset = (el)=>{
        const rect = el.getBoundingClientRect();
-       
        return {
          top: rect.top + document.body.scrollTop,
          left: rect.left + document.body.scrollLeft
@@ -229,25 +230,22 @@ class Visualiser extends Component {
      }
  
      const handleMouseMove = (e) =>{ 
-      if ((time + 10 - Date.now()) < 0) {
        const x = e.pageX - elOffset(visualiserCode).left; // offsetleft
-       visualiserCode.style.width = (x-50)+'px';
-       time = Date.now();
-      }
+       visualiserCode.style.width = (x-55)+'px';      
      };
 
+     const throttledHandler = _.throttle(handleMouseMove, 30, { 'leading': false });
 
      // When user clicks on handle bind handleMouseMove
      const handleMouseDown  = ()=>{
-       document.addEventListener('mousemove', handleMouseMove, false);
+       document.addEventListener('mousemove', throttledHandler, false);
      };
  
      handle.addEventListener('mousedown', handleMouseDown, false);
  
      document.onmouseup = (e) => {
-       document.removeEventListener('mousemove', handleMouseMove, false);
+       document.removeEventListener('mousemove', throttledHandler, false);
      };
-     //---------
   }
 
   drawGraph() {
@@ -307,7 +305,9 @@ class Visualiser extends Component {
         <div className="visualiser__content">
           <div className="visualiser__content__code">
             <pre id="visualiser-code"><code dangerouslySetInnerHTML={{__html: code}}/></pre>
-            <div id="handle" className="visualiser__content__code__handle"></div>
+            <div id="slider" className="visualiser__content__code__slider">
+                <div id="handle" className="visualiser__content__code__slider__handle"></div>
+            </div>
           </div>
           <div id="visualiser-graph" className="visualiser__content__graph" ref={(container) => this.graphContainer = container}>
           </div>
