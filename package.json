@@ -80,7 +80,6 @@
     "postcss-loader": "^2.0.6",
     "prismjs": "^1.8.4",
     "prop-types": "^15.6.0",
-    "re-resizable": "^4.1.0",
     "react": "^15.5.4",
     "react-cookie-banner": "^3.0.0",
     "react-dom": "^15.5.4",
