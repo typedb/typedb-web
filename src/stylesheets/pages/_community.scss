@@ -188,12 +188,20 @@
 
   &__fancy {
     position: relative;
-    padding: 0 0 50px 0;
-    background-image: url('/assets/img/community-fancy.png');
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center top;
-
+    padding: 90px 0;
+    background-color: #f3f4fa;
+    @media screen and (max-width: $smallScreen) {
+      padding: 50px 0;
+    }
+    &__container {
+      padding-bottom: 0 !important;
+      @media screen and (max-width: $smallScreen) {
+        width: 90% !important;
+      }
+      > .kbms-page__features__header {
+        padding-bottom: 0 !important;
+      }
+    }
     &__item {
       width: 280px;
       height: 157px;
@@ -203,22 +211,23 @@
       vertical-align: top;
       background-color: #fefefe;
       margin-bottom: 20px;
+
       @media screen and (max-width: $smallScreen){
         width: 260px;
       }
       @media screen and (max-width: 400px){
-        width: 210px;
+        width: 250px;
       }
       > a {
         display: block;
         position: relative;
+        height: 100%;
       }
       > a > img {
         width: 100%;
         height: 100%;
         display: block;
         border-radius: 5px;
-        filter: brightness(60%);
       }
       > a > span {
         color: white;
@@ -227,9 +236,13 @@
         font-weight: 500;
         text-decoration: none !important;
         position: absolute;
-        top: 50%;
-        left: 50%;
+        bottom: -23px;
+        width: 100%;
+        padding: 5px 0;
+        background-color: rgba(0,0,0, 0.5);
+        border-radius: 0 0 5px 5px;
         transform: translate(-50%, -50%);
+
       }
     }  
   }
@@ -244,7 +257,7 @@
     }
     &__item {
       width: 280px;
-      height: 400px;
+      height: 310px;
       border: 1px solid $borderColor;
       border-radius: 5px;
       margin: 0 10px;
@@ -252,12 +265,7 @@
       vertical-align: top;
       background-color: #fefefe;
       margin-bottom: 20px;
-      @media screen and (max-width: $smallScreen){
-        width: 260px;
-      }
-      @media screen and (max-width: 400px){
-        width: 210px;
-      }
+
       &__link {
         font-size: 13px;
         text-align: left;
@@ -270,7 +278,7 @@
         color: $textCharcoal;
         font-weight: 600;
         text-align: left;
-        padding: 15px 25px;
+        padding: 15px 15px 5px 15px;
         @media screen and (max-width: $smallScreen) {
           font-size: 12px;
         }
@@ -281,7 +289,7 @@
         font-size: 13px;
         color: $textLight;
         text-align: left;
-        padding: 0 25px;
+        padding: 0 15px;
         max-height: 3rem;
         line-height: 1.7;
         overflow: hidden;
@@ -295,14 +303,14 @@
         }
       }
       &__img {
-        height: 150px;
+        height: 135px;
         width: 100%;
         border-bottom: 1px solid $borderColor;
         > img {
           display: block;
           border-radius: 5px 5px 0 0;
           width: 100%;
-          height: 150px;
+          height: 135px;
         }
         &--none {
           width: auto !important;
@@ -317,8 +325,7 @@
         font-size: 13px;
         color: $textCharcoal;
         text-align: left;
-        padding: 10px 25px;
-        padding-bottom: 0;
+        padding: 10px 15px 15px 15px;
         > strong {
           color: #21b5fb;
         }

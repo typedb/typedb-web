@@ -101,6 +101,11 @@ class CommunityPage extends Component {
           </div>
         </section>
         <section className="community__fancy">
+          <div className="container community__fancy__container">
+          <span className="kbms-page__features__header">
+            Join Grakn Engineers around the world
+          </span> 
+          </div>
           {
             this.props.meetups.length > 0?
             <PagingComponent className="community__fancy__container container section__container">
@@ -136,16 +141,14 @@ class CommunityPage extends Component {
                     <div className="community__events__item__img">
                       {
                         item.img?
-                        <img src={item.img} alt="" />
+                        <img src={`https://cms.grakn.ai/${item.img.data.url}`} alt="" />
                         :
                         <img src='/assets/img/logo.png' alt="" className="community__events__item__img--none"/>
                       }
                     </div>
                     <div className="community__events__item__title">{item.title}</div>
                     <div className="community__events__item__description">{item.description}</div>
-                    <a className="animated__link animated__link--purple community__events__item__link" href={item.link}>Go to event</a>
-                    <div className="community__events__item__place"><strong>Place:</strong> {item.address}</div>
-                    <div className="community__events__item__place"><strong>When:</strong> {item.date}</div>
+                    <div className="community__events__item__place"><strong>{item.date}:</strong> {item.address}</div>
                   </div>
                 )
               })
