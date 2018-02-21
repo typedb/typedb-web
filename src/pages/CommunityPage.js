@@ -35,8 +35,7 @@ class CommunityPage extends Component {
     const today  = moment();
     const upcomingEvents = this.props.events.length> 0? this.props.events.filter(item => today.isSameOrBefore(item.date)) : []
     const pastEvents = this.props.events.length > 0? this.props.events.filter(item => today.isSameOrAfter(item.date)) : []
-    console.log(upcomingEvents);
-    console.log(pastEvents);
+   
     return (
       <div className="community">
         <section className="community__splash">
@@ -156,7 +155,7 @@ class CommunityPage extends Component {
                     </div>
                     <div className="community__events__item__title">{item.title}</div>
                     <div className="community__events__item__description">{item.description}</div>
-                    <div className="community__events__item__place"><strong>{moment(item.date).format("DD MMMM YYYY")}:</strong> {item.address}</div>
+                    <div className="community__events__item__place"><strong>{moment(item.date).format("DD MMMM YYYY")}:</strong> {item.address}, {item.city}, {item.country}</div>
                   </a>
                 )
               })
@@ -189,7 +188,7 @@ class CommunityPage extends Component {
                     </div>
                     <div className="community__events__item__title">{item.title}</div>
                     <div className="community__events__item__description">{item.description}</div>
-                    <div className="community__events__item__place"><strong>{moment(item.date).format("DD MMMM YYYY")}:</strong> {item.address}</div>
+                    <div className="community__events__item__place"><strong>{moment(item.date).format("DD MMMM YYYY")}:</strong> {item.address}, {item.city}, {item.country}</div>
                   </a>
                 )
               })
