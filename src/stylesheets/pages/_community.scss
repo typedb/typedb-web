@@ -105,10 +105,10 @@
   &__content {
     padding: 90px 0;
     @media screen and (max-width: $smallScreen) {
-      padding-top: 490px;
+      padding-top: 590px;
     }
     @media screen and (max-width: $extraSmallScreen) {
-      padding-top: 530px;
+      padding-top: 630px;
     }
     &__links {
       &__col:nth-child(1) {
@@ -204,6 +204,12 @@
       > .kbms-page__features__header {
         padding-bottom: 0 !important;
         color: white;
+        > br {
+          display: none;
+          @media screen and (max-width: $smallScreen){
+            display: inline;
+          }
+        }
       }
     }
     &__newlink {

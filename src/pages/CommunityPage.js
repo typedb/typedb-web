@@ -59,7 +59,7 @@ class CommunityPage extends Component {
                 <div className="community__content__links__col__item">
                   <span className="community__content__links__col__item__header"><img src="/assets/svg/slack-mark.svg" alt="Slack"/>Talk to us on Slack</span>
                   <span className="community__content__links__col__item__text">
-                  We’d love to help you get up to speed with Grakn. Get in touch with the team and community on our <Link to="/slack" className="animated__link animated__link--purple">Slack Channel</Link>
+                  We’d love to help you get up to speed with Grakn. Get in touch with the team and community on our <Link to="/slack" className="animated__link animated__link--purple">Slack Channel.</Link>
                   </span>                  
                 </div>
                 <div className="community__content__links__col__item">
@@ -68,7 +68,7 @@ class CommunityPage extends Component {
                   Get involved on GitHub
                   </span>
                   <span className="community__content__links__col__item__text">
-                  Report a bug, request new features, submit a patch and follow our development on our <a href={graknRoutes.github} target="_blank" className="animated__link animated__link--purple">GitHub Repository</a>
+                  Report a bug, request new features, submit a patch and follow our development on our <a href={graknRoutes.github} target="_blank" className="animated__link animated__link--purple">GitHub Repository.</a>
                   </span>                  
                 </div>
               </div>
@@ -107,7 +107,7 @@ class CommunityPage extends Component {
         <section className="community__fancy">
           <div className="container community__fancy__container">
           <span className="kbms-page__features__header">
-            Join Grakn engineers around the world
+            Join Grakn engineers<br/> around the world
           </span> 
           </div>
           {
