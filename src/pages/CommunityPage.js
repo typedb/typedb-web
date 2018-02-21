@@ -143,9 +143,9 @@ class CommunityPage extends Component {
             upcomingEvents.length > 0?
             <PagingComponent className="community__events__items">
             {
-              sortBy(upcomingEvents, function(o) { return new moment(o.date).format('YYYYMMDD'); }).reverse().map((item, index) => {
+              sortBy(upcomingEvents, function(o) { return new moment(o.date).format('YYYYMMDD'); }).map((item, index) => {
                 return (
-                  <div className="community__events__item" key={`${index}__events`}>
+                  <a className="community__events__item" key={`${index}__events`} href={item.link} target="_blank">
                     <div className="community__events__item__img">
                       {
                         item.img?
@@ -156,8 +156,8 @@ class CommunityPage extends Component {
                     </div>
                     <div className="community__events__item__title">{item.title}</div>
                     <div className="community__events__item__description">{item.description}</div>
-                    <div className="community__events__item__place"><strong>{item.date}:</strong> {item.address}</div>
-                  </div>
+                    <div className="community__events__item__place"><strong>{moment(item.date).format("DD MMMM YYYY")}:</strong> {item.address}</div>
+                  </a>
                 )
               })
             }
@@ -178,7 +178,7 @@ class CommunityPage extends Component {
             {
               sortBy(pastEvents, function(o) { return new moment(o.date).format('YYYYMMDD'); }).reverse().map((item, index) => {
                 return (
-                  <div className="community__events__item" key={`${index}__events`}>
+                  <a className="community__events__item" key={`${index}__events`} href={item.link} target="_blank">
                     <div className="community__events__item__img">
                       {
                         item.img?
@@ -189,8 +189,8 @@ class CommunityPage extends Component {
                     </div>
                     <div className="community__events__item__title">{item.title}</div>
                     <div className="community__events__item__description">{item.description}</div>
-                    <div className="community__events__item__place"><strong>{item.date}:</strong> {item.address}</div>
-                  </div>
+                    <div className="community__events__item__place"><strong>{moment(item.date).format("DD MMMM YYYY")}:</strong> {item.address}</div>
+                  </a>
                 )
               })
             }

@@ -211,7 +211,7 @@
       padding-top: 15px;
       font-size: 20px;
       margin: 0 auto;
-      color: #978ae2 !important;
+      color: #a291ff !important;
     }
     &__item {
       width: 280px;
@@ -275,6 +275,8 @@
       text-align: center;
     }
     &__item {
+      text-decoration: none !important;
+      cursor: pointer;
       width: 280px;
       height: 310px;
       border: 1px solid $borderColor;
@@ -302,6 +304,7 @@
         font-weight: 600;
         text-align: left;
         padding: 15px 15px 5px 15px;
+        height: calc(2rem + 10px);
         @media screen and (max-width: $smallScreen) {
           font-size: 12px;
         }
