@@ -208,10 +208,8 @@
     }
     &__newlink {
       display: block;
-      padding-top: 15px;
-      font-size: 20px;
       margin: 0 auto;
-      color: #a291ff !important;
+      margin-top: 30px;
     }
     &__item {
       width: 280px;
@@ -304,7 +302,7 @@
         font-weight: 600;
         text-align: left;
         padding: 15px 15px 5px 15px;
-        height: calc(2rem + 10px);
+        height: calc(2rem + 12px);
         @media screen and (max-width: $smallScreen) {
           font-size: 12px;
         }

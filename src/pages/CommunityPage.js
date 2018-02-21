@@ -130,7 +130,7 @@ class CommunityPage extends Component {
             null
           }
           <div className="container">
-            <a href="mailto:community@grakn.ai?subject=We would like to start a new Meetup group" className="animated__link animated__link--purple community__fancy__newlink">Start a new meetup group!</a>
+            <a href="mailto:community@grakn.ai?subject=We would like to start a new Meetup group" className="button button--transparent community__fancy__newlink">Start a new group in your city!</a>
           </div>
         </section>
         <section className="community__events community__events--upcoming">
