@@ -53,7 +53,8 @@
     border-radius: 0 0 5px 5px;
     position: relative;
     > div {
-      display: block;
+      display: flex;
+      flex-flow: row;
       height: 100%;
     }
     &__graph {
@@ -61,21 +62,21 @@
       border-radius: 0 0 5px 0;
       color: transparent;
       width: 100%;
-      z-index: -1;
     }
     &__code {
-      overflow-x: hidden;
       position: absolute !important;
-      z-index: 10;
       background-color: rgb(47, 53, 67);
       border-radius: 0 0 0 5px;
+      max-width: 98%;
+      z-index: 10;
       > pre {
         display: block;
         margin-top: 0;
         padding: 0rem 1.5rem;
         font-family: 'Ubuntu' !important;
         font-weight: 400 !important;
-        width: inherit;         
+        width: inherit;
+        overflow-x: hidden;    
         > code {
           //Default colour for everything.
           color: #8c8c92;
@@ -88,26 +89,31 @@
           }
         }
       }
-
+      &__slider{
+        background-color: #505e72;
+        width: 12px;
+        height: 100%;
+        position: absolute;
+        right: 0px;
+        border-radius: 5px;
+        cursor: col-resize;
+        &__handle{
+          position: absolute;
+          width: 25px;
+          height: 25px;
+          user-select: none;
+          cursor: col-resize;
+          left: -19px;
+          top: 40%;
+          > img {
+            user-select: none;
+          }
+        }
+      }
     }
   }
 }
 
-.resizer__handle {
-  > div {
-    background-color: #505e72;
-    width: 18px !important;
-    &:before {
-      content: url(/assets/img/split-toggle.png);
-    }
-  }
-  &--mobile {
-    > div {
-      background-color: #505e72;
-      height: 14px !important;
-    }
-  }
-}
 
 .vis-network > canvas {
   touch-action:pan-y !important;

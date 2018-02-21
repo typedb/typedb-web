@@ -3,14 +3,13 @@ import ReactDOM from 'react-dom';
 import classNames from 'classnames';
 import { keys } from 'lodash';
 import { connect } from 'react-redux';
+import _ from 'lodash';
 
 import vis from 'vis-grakn';
-import Resizable from 're-resizable';
 
 const Prism = require('prismjs');
 const graqlHighlighter = require('helpers/prism-graql.js').graql;
 const visualiserItems = require('config/visualiserItems');
-
 
 class Visualiser extends Component {
   constructor(props) {
@@ -213,6 +212,50 @@ class Visualiser extends Component {
     },function() {
       setTimeout(this.drawGraph, 1000);
     });
+
+    this.handleSliderEvents();
+  }
+
+  handleSliderEvents(){
+
+     // Move slider code
+     const handle = document.getElementById('handle');
+     const slider = document.getElementById('slider');
+     const visualiserCode = document.getElementById('visualiser-code');
+     const elOffset = (el)=>{
+       const rect = el.getBoundingClientRect();
+       return {
+         top: rect.top + document.body.scrollTop,
+         left: rect.left + document.body.scrollLeft
+       }
+     }
+ 
+     const handleMouseMove = (e) =>{ 
+       const x = e.pageX - elOffset(visualiserCode).left; // offsetleft
+       visualiserCode.style.width = (x-55)+'px';      
+     };
+
+     const throttledHandler = _.throttle(handleMouseMove, 30, { 'leading': false });
+
+     // When user clicks on handle bind handleMouseMove
+     const handleMouseDown  = ()=>{
+       document.addEventListener('mousemove', throttledHandler, false);
+       document.addEventListener('touchmove', throttledHandler, false);
+     };
+ 
+     handle.addEventListener('mousedown', handleMouseDown, false);
+     slider.addEventListener('mousedown', handleMouseDown, false);
+
+     handle.addEventListener('touchstart', handleMouseDown, false);
+     slider.addEventListener('touchstart', handleMouseDown, false);
+
+
+     document.onmouseup = (e) => {
+       document.removeEventListener('mousemove', throttledHandler, false);
+     };
+     document.ontouchend = (e) => {
+      document.removeEventListener('touchmove', throttledHandler, false);
+    };
   }
 
   drawGraph() {
@@ -269,23 +312,15 @@ class Visualiser extends Component {
             })
           }
         </ul>
-        <div className=" visualiser__content">
-          <Resizable 
-            id="visualiser-code" 
-            className="visualiser__content__code"
-            enable={{top:false, right:true, bottom:false, left:false, topRight:false, bottomRight:false, bottomLeft:false, topLeft:false }}
-            defaultSize= {{
-              width: '50%',
-              height: '100%'
-            }}
-            minWidth='5%'
-            maxWidth='95%'
-            handleWrapperClass="resizer__handle"
-            >
-            <pre>
-                <code dangerouslySetInnerHTML={{__html: code}}/>
-              </pre>
-          </Resizable>          
+        <div className="visualiser__content">
+          <div className="visualiser__content__code">
+            <pre id="visualiser-code"><code dangerouslySetInnerHTML={{__html: code}}/></pre>
+            <div id="slider" className="visualiser__content__code__slider">
+                <div id="handle" className="visualiser__content__code__slider__handle">
+                  <img src="/assets/img/split-toggle.png" draggable="false"/>
+                </div>
+            </div>
+          </div>
           <div id="visualiser-graph" className="visualiser__content__graph" ref={(container) => this.graphContainer = container}>
           </div>
         </div>
