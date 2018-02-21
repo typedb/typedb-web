@@ -189,7 +189,7 @@
   &__fancy {
     position: relative;
     padding: 90px 0;
-    background-image: url(http://localhost:3000/assets/img/background.png);
+    background-image: url('/assets/img/background.png');
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
