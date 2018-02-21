@@ -188,65 +188,149 @@
 
   &__fancy {
     position: relative;
-    padding: 0 0 120px 0;
-    background-image: url('/assets/img/community-fancy.png');
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center top;
+    padding: 90px 0;
+    background-color: #f3f4fa;
+    @media screen and (max-width: $smallScreen) {
+      padding: 50px 0;
+    }
     &__container {
-      > div:nth-child(1) {
-        margin-right: 2.5%;
-        @media screen and (max-width: $smallScreen) {
-          margin-right: 0;
-        }
+      padding-bottom: 0 !important;
+      @media screen and (max-width: $smallScreen) {
+        width: 90% !important;
       }
-      > div:nth-child(2) {
-        margin-left: 2.5%;
-        @media screen and (max-width: $smallScreen) {
-          margin-left: 0;
-          margin-top: 30px;
-        }
+      > .kbms-page__features__header {
+        padding-bottom: 0 !important;
       }
     }
     &__item {
+      width: 280px;
+      height: 157px;
+      border-radius: 5px;
+      margin: 0 10px;
       display: inline-block;
       vertical-align: top;
-      width: 47.5%;
-      padding: 50px;
-      background-color: white;
-      border-radius: 6px;
-      border: solid 1px #e6e8f4;
-      box-sizing: border-box;
-      min-height: 313px;
-      @media screen and (max-width: $smallScreen) {
+      background-color: #fefefe;
+      margin-bottom: 20px;
+
+      @media screen and (max-width: $smallScreen){
+        width: 260px;
+      }
+      @media screen and (max-width: 400px){
+        width: 250px;
+      }
+      > a {
         display: block;
+        position: relative;
+        height: 100%;
+      }
+      > a > img {
         width: 100%;
         height: 100%;
-        min-height: fit-content;
-      }
-      &__header {
         display: block;
-        font-size: 22px;
-        line-height: 1.2;
-        padding-bottom: 1rem;
+        border-radius: 5px;
+      }
+      > a > span {
+        color: white;
+        font-size: 24px;
+        text-transform: uppercase;
+        font-weight: 500;
+        text-decoration: none !important;
+        position: absolute;
+        bottom: -23px;
+        width: 100%;
+        padding: 5px 0;
+        background-color: rgba(0,0,0, 0.5);
+        border-radius: 0 0 5px 5px;
+        transform: translate(-50%, -50%);
+
+      }
+    }  
+  }
+  &__events {
+    padding: 90px 0;
+    @media screen and (max-width: $smallScreen) {
+      padding: 50px 0;
+    }
+    &__items {
+      padding-top: 0px !important;
+      text-align: center;
+    }
+    &__item {
+      width: 280px;
+      height: 310px;
+      border: 1px solid $borderColor;
+      border-radius: 5px;
+      margin: 0 10px;
+      display: inline-block;
+      vertical-align: top;
+      background-color: #fefefe;
+      margin-bottom: 20px;
+
+      &__link {
+        font-size: 13px;
+        text-align: left;
+        display: block;
+        margin: 4px 25px 0 25px;
+      }
+      &__title {
+        display: block;
+        font-size: 14px;
+        color: $textCharcoal;
         font-weight: 600;
-        &--green {
-          color: #3dce8c;
+        text-align: left;
+        padding: 15px 15px 5px 15px;
+        @media screen and (max-width: $smallScreen) {
+          font-size: 12px;
         }
-        &--purple {
+      }
+
+      &__description {
+        display: -webkit-box;
+        font-size: 13px;
+        color: $textLight;
+        text-align: left;
+        padding: 0 15px;
+        max-height: 3rem;
+        line-height: 1.7;
+        overflow: hidden;
+        width: 100%;
+        box-sizing: border-box;
+        text-overflow: ellipsis;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 2;
+        @media screen and (max-width: $smallScreen) {
+          font-size: 11px;
+        }
+      }
+      &__img {
+        height: 135px;
+        width: 100%;
+        border-bottom: 1px solid $borderColor;
+        > img {
+          display: block;
+          border-radius: 5px 5px 0 0;
+          width: 100%;
+          height: 135px;
+        }
+        &--none {
+          width: auto !important;
+          max-width: 100%;
+          margin: 0 auto;
+          height: 80% !important;
+          padding-top: 5%;
+        }
+      }
+      &__place {
+        display: block;
+        font-size: 13px;
+        color: $textCharcoal;
+        text-align: left;
+        padding: 10px 15px 15px 15px;
+        > strong {
           color: #21b5fb;
         }
         @media screen and (max-width: $smallScreen) {
-          font-size: 16px;
-        }
-      }
-      &__text {
-        display: block;
-        line-height: 1.8;
-        font-size: 16px;
-        color: $textLight;
-        @media screen and (max-width: $smallScreen) {
-          font-size: 14px;
+          font-size: 12px;
         }
       }
     }
