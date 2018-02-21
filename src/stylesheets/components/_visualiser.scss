@@ -114,21 +114,6 @@
   }
 }
 
-.resizer__handle {
-  > div {
-    background-color: #505e72;
-    width: 18px !important;
-    &:before {
-      content: url(/assets/img/split-toggle.png);
-    }
-  }
-  &--mobile {
-    > div {
-      background-color: #505e72;
-      height: 14px !important;
-    }
-  }
-}
 
 .vis-network > canvas {
   touch-action:pan-y !important;
