@@ -189,7 +189,10 @@
   &__fancy {
     position: relative;
     padding: 90px 0;
-    background-color: #f3f4fa;
+    background-image: url(http://localhost:3000/assets/img/background.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
     @media screen and (max-width: $smallScreen) {
       padding: 50px 0;
     }
@@ -200,7 +203,15 @@
       }
       > .kbms-page__features__header {
         padding-bottom: 0 !important;
+        color: white;
       }
+    }
+    &__newlink {
+      display: block;
+      padding-top: 15px;
+      font-size: 20px;
+      margin: 0 auto;
+      color: #978ae2 !important;
     }
     &__item {
       width: 280px;
@@ -251,6 +262,14 @@
     @media screen and (max-width: $smallScreen) {
       padding: 50px 0;
     }
+    &--upcoming {
+      background-color: #f3f4fa;
+    }
+    &__container {
+      > .kbms-page__features__header {
+        padding-bottom: 50px !important;
+      }
+    }
     &__items {
       padding-top: 0px !important;
       text-align: center;
@@ -264,8 +283,12 @@
       display: inline-block;
       vertical-align: top;
       background-color: #fefefe;
-      margin-bottom: 20px;
-
+      @media screen and (max-width: $smallScreen){
+        width: 260px;
+      }
+      @media screen and (max-width: 400px){
+        width: 250px;
+      }
       &__link {
         font-size: 13px;
         text-align: left;
@@ -306,17 +329,18 @@
         height: 135px;
         width: 100%;
         border-bottom: 1px solid $borderColor;
+        overflow: hidden;
         > img {
           display: block;
           border-radius: 5px 5px 0 0;
           width: 100%;
-          height: 135px;
+          min-height: 135px;
         }
         &--none {
           width: auto !important;
           max-width: 100%;
           margin: 0 auto;
-          height: 80% !important;
+          height: 100px !important;
           padding-top: 5%;
         }
       }

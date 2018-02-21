@@ -32,6 +32,11 @@ class CommunityPage extends Component {
   }
 
   render() {
+    const today  = moment();
+    const upcomingEvents = this.props.events.length> 0? this.props.events.filter(item => today.isSameOrBefore(item.date)) : []
+    const pastEvents = this.props.events.length > 0? this.props.events.filter(item => today.isSameOrAfter(item.date)) : []
+    console.log(upcomingEvents);
+    console.log(pastEvents);
     return (
       <div className="community">
         <section className="community__splash">
@@ -103,7 +108,7 @@ class CommunityPage extends Component {
         <section className="community__fancy">
           <div className="container community__fancy__container">
           <span className="kbms-page__features__header">
-            Join Grakn Engineers around the world
+            Join Grakn engineers around the world
           </span> 
           </div>
           {
@@ -124,18 +129,21 @@ class CommunityPage extends Component {
             </PagingComponent>
             :
             null
-          }   
+          }
+          <div className="container">
+            <a href="mailto:community@grakn.ai?subject=We would like to start a new Meetup group" className="animated__link animated__link--purple community__fancy__newlink">Start a new meetup group!</a>
+          </div>
         </section>
-        <section className="community__events">
+        <section className="community__events community__events--upcoming">
           <div className="community__events__container container section__container">
           <span className="kbms-page__features__header">
-            Events
+            Upcoming Events
           </span> 
           {
-            this.props.events.length > 0?
-            <div className="community__events__items">
+            upcomingEvents.length > 0?
+            <PagingComponent className="community__events__items">
             {
-              sortBy(this.props.events, function(o) { return new moment(o.date).format('YYYYMMDD'); }).reverse().map((item, index) => {
+              sortBy(upcomingEvents, function(o) { return new moment(o.date).format('YYYYMMDD'); }).reverse().map((item, index) => {
                 return (
                   <div className="community__events__item" key={`${index}__events`}>
                     <div className="community__events__item__img">
@@ -153,7 +161,40 @@ class CommunityPage extends Component {
                 )
               })
             }
+          </PagingComponent>
+          :
+          null
+          }
           </div>
+        </section>
+        <section className="community__events community__events--past">
+          <div className="community__events__container container section__container">
+          <span className="kbms-page__features__header">
+            Past Events
+          </span> 
+          {
+            pastEvents.length > 0?
+            <PagingComponent className="community__events__items">
+            {
+              sortBy(pastEvents, function(o) { return new moment(o.date).format('YYYYMMDD'); }).reverse().map((item, index) => {
+                return (
+                  <div className="community__events__item" key={`${index}__events`}>
+                    <div className="community__events__item__img">
+                      {
+                        item.img?
+                        <img src={`https://cms.grakn.ai/${item.img.data.url}`} alt="" />
+                        :
+                        <img src='/assets/img/logo.png' alt="" className="community__events__item__img--none"/>
+                      }
+                    </div>
+                    <div className="community__events__item__title">{item.title}</div>
+                    <div className="community__events__item__description">{item.description}</div>
+                    <div className="community__events__item__place"><strong>{item.date}:</strong> {item.address}</div>
+                  </div>
+                )
+              })
+            }
+          </PagingComponent>
           :
           null
           }
