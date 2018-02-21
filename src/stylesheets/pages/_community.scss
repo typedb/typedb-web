@@ -198,7 +198,7 @@
     }
     &__container {
       padding-bottom: 0 !important;
-      @media screen and (max-width: $smallScreen) {
+      @media screen and (max-width: $mediumScreen) {
         width: 90% !important;
       }
       > .kbms-page__features__header {
