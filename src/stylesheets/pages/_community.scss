@@ -355,11 +355,12 @@
       &__place {
         display: block;
         font-size: 13px;
-        color: $textCharcoal;
+        color: $textLight;
         text-align: left;
         padding: 10px 15px 15px 15px;
         > strong {
           color: #21b5fb;
+          font-weight: 400;
         }
         @media screen and (max-width: $smallScreen) {
           font-size: 12px;

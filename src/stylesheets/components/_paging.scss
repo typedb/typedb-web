@@ -60,13 +60,12 @@
       opacity: 0; 
       display: inline-block !important;
       position: absolute !important;
-      margin-left: 999999px;
+      margin-left: 9999px;
       &--active {
-        opacity: 1;
         position: relative !important;
         margin: 0 auto;
         transition: opacity 0.5s ease-in-out;
-        -webkit-transition: opacity 0.5s ease-in-out;
+        opacity: 1;
       }
     }
   }
