@@ -76,7 +76,10 @@
         font-family: 'Ubuntu' !important;
         font-weight: 400 !important;
         width: inherit;
-        overflow-x: hidden;    
+        overflow-x: hidden;
+        &.auto-slide{
+          transition: all 0.2s ease;
+        }
         > code {
           //Default colour for everything.
           color: #8c8c92;
