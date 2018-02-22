@@ -217,22 +217,20 @@ class Visualiser extends Component {
   }
 
   handleSliderEvents(){
-
      // Move slider code
      const handle = document.getElementById('handle');
      const slider = document.getElementById('slider');
      const visualiserCode = document.getElementById('visualiser-code');
-     const elOffset = (el)=>{
-       const rect = el.getBoundingClientRect();
-       return {
-         top: rect.top + document.body.scrollTop,
-         left: rect.left + document.body.scrollLeft
-       }
-     }
+     const visualiserGraph = document.getElementById('visualiser-graph');
+     const visualiserContent = document.getElementById('visualiser-content');
+
+     // When page loaded set visualiserCode width value so that all the following transitions won't be laggy
+    window.onload = function () { visualiserCode.style.width = (visualiserCode.offsetWidth-50)+'px'; }
+
  
      const handleMouseMove = (e) =>{ 
-       const x = e.pageX - elOffset(visualiserCode).left; // offsetleft
-       visualiserCode.style.width = (x-55)+'px';      
+       const x = e.pageX - visualiserCode.getBoundingClientRect().left; // offsetleft
+       visualiserCode.style.width = (x-45)+'px';      
      };
 
      const throttledHandler = _.throttle(handleMouseMove, 30, { 'leading': false });
@@ -242,13 +240,25 @@ class Visualiser extends Component {
        document.addEventListener('mousemove', throttledHandler, false);
        document.addEventListener('touchmove', throttledHandler, false);
      };
- 
+
+     const resizeVisualiserCode = (percentage) => {
+       // adding a class which has an eased transition
+       visualiserCode.classList.add("auto-slide");
+       visualiserCode.style.width = (visualiserContent.offsetWidth * (percentage/100))+'px';
+       setTimeout(()=>{ visualiserCode.classList.remove("auto-slide"); }, 250);
+      };
+
+    // When clicking on area with code, slider will slide to the right to open up space for the code
+     visualiserCode.addEventListener('click', () => resizeVisualiserCode(75));
+     // When clicking on area with graph, slider will slide to the left to open up space for the graph
+     visualiserGraph.addEventListener('click', () => resizeVisualiserCode(8));
+
+
      handle.addEventListener('mousedown', handleMouseDown, false);
      slider.addEventListener('mousedown', handleMouseDown, false);
 
      handle.addEventListener('touchstart', handleMouseDown, false);
      slider.addEventListener('touchstart', handleMouseDown, false);
-
 
      document.onmouseup = (e) => {
        document.removeEventListener('mousemove', throttledHandler, false);
@@ -312,7 +322,7 @@ class Visualiser extends Component {
             })
           }
         </ul>
-        <div className="visualiser__content">
+        <div className="visualiser__content" id="visualiser-content">
           <div className="visualiser__content__code">
             <pre id="visualiser-code"><code dangerouslySetInnerHTML={{__html: code}}/></pre>
             <div id="slider" className="visualiser__content__code__slider">
