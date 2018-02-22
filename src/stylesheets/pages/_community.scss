@@ -218,21 +218,11 @@
       margin-top: 30px;
     }
     &__item {
-      width: 280px;
       height: 157px;
       border-radius: 5px;
-      margin: 0 10px;
-      display: inline-block;
-      vertical-align: top;
       background-color: #fefefe;
       margin-bottom: 20px;
 
-      @media screen and (max-width: $smallScreen){
-        width: 260px;
-      }
-      @media screen and (max-width: 400px){
-        width: 250px;
-      }
       > a {
         display: block;
         position: relative;
@@ -282,20 +272,11 @@
     &__item {
       text-decoration: none !important;
       cursor: pointer;
-      width: 280px;
       height: 310px;
       border: 1px solid $borderColor;
       border-radius: 5px;
-      margin: 0 10px;
-      display: inline-block;
-      vertical-align: top;
       background-color: #fefefe;
-      @media screen and (max-width: $smallScreen){
-        width: 260px;
-      }
-      @media screen and (max-width: 400px){
-        width: 250px;
-      }
+      
       &__link {
         font-size: 13px;
         text-align: left;

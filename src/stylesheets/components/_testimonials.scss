@@ -24,21 +24,14 @@
     padding-top: 0px !important;
   }
   &__item {
-    width: 280px;
     height: 320px;
     border: 1px solid $borderColor;
-    border-radius: 5px;
-    margin: 0 10px;
-    display: inline-block;
-    vertical-align: top;
-    
+    border-radius: 5px;    
     @media screen and (max-width: $smallScreen){
       height: 260px;
-      width: 260px;
     }
     @media screen and (max-width: 400px){
       height: 290px;
-      width: 210px;
     }
     &__text {
       height: calc(100% - 132px);
@@ -62,7 +55,10 @@
         width: 258px;
       }
       @media screen and (max-width: 400px){
-        width: 208px;
+        width: 238px;
+      }
+      @media screen and (max-width: 350px){
+        width: 198px !important;
       }
       &__img, &__text {
         display: inline-block;

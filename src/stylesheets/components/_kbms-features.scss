@@ -1,22 +1,14 @@
 .kbms-features {
 
   &__item {
-    width: 280px;
     height: 280px;
-    margin: 0 10px;
-    position: relative;
     background-color: #ffffff;
     border: 1px solid  #e6e8f4;
-    position: relative;
     border-radius: 5px;
-    box-sizing: border-box;
     @media screen and (max-width: $smallScreen) {
-      width: 260px;
-      margin: 0 5px;
       height: 240px;
     }
     @media screen and (max-width: 400px) {
-      width: 210px;
       height: 280px;
     }
    &__container {
