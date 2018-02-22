@@ -73,11 +73,6 @@ const PrivacyPolicyPage = () => (
       <span className="privacy-policy__text">
       Grakn Labs Ltd (“We”) take a proactive approach to user privacy and ensure the necessary steps are taken to protect the privacy of its users throughout their visiting experience. This website complies to all UK national laws and requirements for user privacy
       </span>
-
-      <h3 className="privacy-policy__header">The Website</h3>
-      <span className="privacy-policy__text">
-      Grakn Labs Ltd (“We”) take a proactive approach to user privacy and ensure the necessary steps are taken to protect the privacy of its users throughout their visiting experience. This website complies to all UK national laws and requirements for user privacy
-      </span>
       <h3 className="privacy-policy__header">Use of Cookies</h3>
       <span className="privacy-policy__text">
       This website uses cookies to better the users experience while visiting the website. Where applicable this website uses a cookie control system allowing the user on their first visit to the website to allow or disallow the use of cookies on their computer / device. This complies with recent legislation requirements for websites to obtain explicit consent from users before leaving behind or reading files such as cookies on a user's computer / device.
