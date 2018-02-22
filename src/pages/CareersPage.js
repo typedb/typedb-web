@@ -30,6 +30,8 @@ class CareersPage extends Component {
             <span>Cognitive/Intelligent Systems consume data that are too complex for current databases to handle. GRAKN.AI is a hyper-relational database that allows you to perform knowledge engineering to manage this complexity. Through Knowledge Representation and Automated Reasoning techniques, Grakn provides the knowledge base foundation for these systems.
             <br /> <br />
             We're a team of talented engineers from world leading universities, and we're based in London. We've developed a distributed knowledge base that reasons over complex data in real-time and derives knowledge that is too complex for human cognition to uncover. Five years from now, we believe Grakn will be in the hands of every developer as a de facto database for building cognitive and intelligent systems.            </span>
+            <br />
+            If you would like to join our team​ for any of the positions below, write to us at <a href="mailto:careers@grakn.ai" className="animated__link animated__link--purple">careers@grakn.ai</a> and tell us a little bit about yourself.
             </div>
             <div className="careers__intro__img">
               <img src="/assets/svg/careers-intro.svg" alt="Careers intro" />
