@@ -63,7 +63,8 @@ class PagingComponent extends Component {
   }
 
   render () {
-    const pageElements = this.props.children.slice((this.state.activePage-1)*this.state.stepSize, ((this.state.activePage-1)*this.state.stepSize)+this.state.stepSize);
+    const lowerBound = (this.state.activePage-1)*this.state.stepSize;
+    const upperBound = ((this.state.activePage-1)*this.state.stepSize)+this.state.stepSize;
     const overrideClasses = this.props.className || '';
     const classes = [overrideClasses, 'paging-component'].join(" ");
     const leftButtonClasses = classNames({
@@ -87,8 +88,20 @@ class PagingComponent extends Component {
         </button>
         <div className={contentClasses}>
           {
-            pageElements.map((item, index) => {
-              return item;
+            this.props.children.map((item, index) => {
+              const childClasses = classNames(
+                item.props.className,
+                {
+                  'paging-component__content__item--active': index < upperBound && index >= lowerBound,
+                  'paging-component__content__item': true,
+                });
+                const newChild = React.cloneElement(
+                  item,
+                  {className: childClasses,
+                    key: `${index}__${item.props.className.split(' ').join('_')}`
+                  }
+                );
+              return newChild;
             })
           }
         </div>
