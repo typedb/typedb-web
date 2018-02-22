@@ -37,7 +37,7 @@ class CareersPage extends Component {
           </div>
         </section>
         { 
-          this.props.careers.items.map((item, index) => {
+          this.props.careers.items.sort((a,b) => a.sort - b.sort).map((item, index) => {
             return (
               <section className="careers__job" key={`careers__job__${index}`}>
                 <div className="container section__container careers__job__container">

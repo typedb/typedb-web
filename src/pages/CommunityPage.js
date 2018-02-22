@@ -114,7 +114,7 @@ class CommunityPage extends Component {
             this.props.meetups.length > 0?
             <PagingComponent className="community__fancy__container container section__container">
             {
-              this.props.meetups.map((item, index) => {
+              this.props.meetups.sort((a,b) => a.sort - b.sort).map((item, index) => {
                 return (
                   <div className="community__fancy__item" key={`${index}__meetups`}>
                     <a href={item.link} target="_blank">
