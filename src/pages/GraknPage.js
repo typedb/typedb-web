@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 const graknRoutes = require('config/graknRoutes');
 import GraknPageCodeBlock from 'components/GraknPageCodeBlock';
+import ReactGA from 'react-ga';
 
 const GraknPage = () => (
   <div className="grakn-page">
@@ -18,8 +19,23 @@ const GraknPage = () => (
       <div className="grakn-page__github__container container section__container">
         <span className="grakn-page__github__header"><strong>Grakn</strong> and <strong>Graql</strong> is open source!</span>
         <div className="grakn-page__github__buttons">
-          <Link to="/download" className="button button--red">INSTALL</Link>
-          <a href={graknRoutes.github} className="button button--transparent">STAR ON GITHUB <i className="fa fa-2x fa-github" /></a>
+          <Link to="/download" className="button button--red"
+          onClick={() => {
+            ReactGA.initialize('UA-72414051-1');
+            ReactGA.event({
+              category: 'Grakn_Links_Install_DownloadPage',
+              action: 'Button Click',
+            });
+          }}>INSTALL</Link>
+          <a href={graknRoutes.github} className="button button--transparent"
+          onClick={() => {
+            ReactGA.initialize('UA-72414051-1');
+            ReactGA.event({
+              category: 'Grakn_Links_Star_Github',
+              action: 'Button Click',
+            });
+          }}
+          >STAR ON GITHUB <i className="fa fa-2x fa-github" /></a>
         </div>
       </div>
     </section>
@@ -135,7 +151,13 @@ const GraknPage = () => (
           <span className="grakn-page__kbms__header">MEET GRAKN ENTERPRISE KBMS AND WORKBASE</span>
           <span className="grakn-page__kbms__text">
           The enterprise knowledge base management system is designed to scale with the growth of your data and application workload, equipped with all the functionalities you need to deploy and operate in a production environment.          </span>
-          <Link to="/grakn-kbms" className="grakn-page__kbms__button button button--charcoal">Learn More</Link>
+          <Link to="/grakn-kbms" className="grakn-page__kbms__button button button--charcoal"onClick={() => {
+            ReactGA.initialize('UA-72414051-1');
+            ReactGA.event({
+              category: 'Grakn_Enterprise_LearnMore_KBMSPage',
+              action: 'Button Click',
+            });
+          }}>Learn More</Link>
         </div>
       </div>
     </section>
