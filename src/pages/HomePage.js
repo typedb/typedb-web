@@ -44,7 +44,7 @@ class HomePage extends Component {
             <Link to="/grakn-core" className="home__splash__text__install" onClick={() => {
               ReactGA.initialize('UA-72414051-1');
               ReactGA.event({
-                category: 'Home-Link-Grakn-Splash',
+                category: 'Home_Splash_LearnMore_GraknPage',
                 action: 'Button Click',
               });
             }}>
@@ -87,7 +87,7 @@ class HomePage extends Component {
                 onClick={() => {
                   ReactGA.initialize('UA-72414051-1');
                   ReactGA.event({
-                    category: 'Home-Link-Grakn-Learn-More',
+                    category: 'Home_Features_LearnMore1_GraknPage',
                     action: 'Button Click',
                   });
                 }}
@@ -113,7 +113,7 @@ class HomePage extends Component {
                 onClick={() => {
                   ReactGA.initialize('UA-72414051-1');
                   ReactGA.event({
-                    category: 'Home-Link-Grakn-Learn-More',
+                    category: 'Home_Features_LearnMore2_GraknPage',
                     action: 'Button Click',
                   });
                 }}
@@ -138,7 +138,7 @@ class HomePage extends Component {
                 onClick={() => {
                   ReactGA.initialize('UA-72414051-1');
                   ReactGA.event({
-                    category: 'Home-Link-Grakn-Learn-More',
+                    category: 'Home_Features_LearnMore3GraknPage',
                     action: 'Button Click',
                   });
                 }}
@@ -164,7 +164,7 @@ class HomePage extends Component {
                 onClick={() => {
                   ReactGA.initialize('UA-72414051-1');
                   ReactGA.event({
-                    category: 'Home-Link-Grakn-Learn-More',
+                    category: 'Home_Features_LearnMore4_GraknPage',
                     action: 'Button Click',
                   });
                 }}
@@ -185,7 +185,7 @@ class HomePage extends Component {
           onClick={() => {
             ReactGA.initialize('UA-72414051-1');
             ReactGA.event({
-              category: 'Home-Link-KBMS-Learn-More',
+              category: 'Home_Carousel_LearnMore_KBMSPage',
               action: 'Button Click',
             });
           }}>Learn More</Link>      
@@ -224,7 +224,7 @@ class HomePage extends Component {
             onClick={() => {
               ReactGA.initialize('UA-72414051-1');
               ReactGA.event({
-                category: 'Home-Link-Deployment-Learn-More',
+                category: 'Home_Deployment_ChooseYourButton_DeploymentPage',
                 action: 'Button Click',
               });
             }}
@@ -345,7 +345,7 @@ class HomePage extends Component {
             onClick={() => {
               ReactGA.initialize('UA-72414051-1');
               ReactGA.event({
-                category: 'Home-Link-Community-Learn-More',
+                category: 'Home_Map_LearnMore_CommunityPage',
                 action: 'Button Click',
               });
             }}
