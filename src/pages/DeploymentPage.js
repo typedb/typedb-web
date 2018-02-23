@@ -2,6 +2,7 @@ import React , { Component } from 'react';
 import { Link } from 'react-router-dom';
 import KBMSFeatures from 'components/KBMSFeatures';
 import SupportForm from 'components/SupportForm';
+import ReactGA from 'react-ga';
 
 const zenscroll = require('zenscroll');
 
@@ -34,8 +35,21 @@ class DeploymentPage extends Component {
               <strong>Grakn KBMS</strong> is the enterprise Knowledge Base Management System designed to scale with your enterprise. Whether you have a growing dataset, application workload, or user request, the Grakn KBMS will scale with your business. With all the tools you need to take you from development to production and scale, Grakn KBMS allows you to simplify your data architecture while maintaining full control over your knowledge base.
               </div>
               <div className="deployment-page__info__details__buttons">
-                <Link to="/grakn-kbms" className="button button--red deployment-page__info__details__buttons__item">Learn about Grakn KBMS</Link>
-                <Link to={{pathname: "/download", hash:'#kbms'}} className="button button--transparent deployment-page__info__details__button__item">Get On-Premise</Link>
+                <Link to="/grakn-kbms" className="button button--red deployment-page__info__details__buttons__item" onClick={() => {
+                  ReactGA.initialize('UA-72414051-1');
+                  ReactGA.event({
+                    category: 'Deployment_Info_LearnMore_KBMSPage',
+                    action: 'Button Click',
+                  });
+                }}>Learn about Grakn KBMS</Link>
+                <Link to={{pathname: "/download", hash:'#kbms'}} className="button button--transparent deployment-page__info__details__button__item"
+                onClick={() => {
+                  ReactGA.initialize('UA-72414051-1');
+                  ReactGA.event({
+                    category: 'Deployment_Info_OnPremise_DownloadPage',
+                    action: 'Button Click',
+                  });
+                }}>Get On-Premise</Link>
               </div>
               </div>
             <div className="deployment-page__info__img">
