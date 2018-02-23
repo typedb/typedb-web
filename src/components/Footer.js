@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { newsletter } from 'actions/invitations';
+import ReactGA from 'react-ga';
 
 const graknRoutes = require('config/graknRoutes');
 
@@ -23,10 +24,38 @@ class Footer extends Component {
       <div className="footer">
       <div className="container footer__container footer__social">
         <div className="footer__social__buttons">
-          <a href={graknRoutes.twitter} target="_blank"><i className="fa fa-twitter" /></a>
-          <a href={graknRoutes.facebook} target="_blank"><i className="fa fa-facebook-f" /></a>
-          <a href={graknRoutes.linkedin} target="_blank"><i className="fa fa-linkedin" /></a>
-          <a href={graknRoutes.github} target="_blank"><i className="fa fa-github" /></a>
+          <a href={graknRoutes.twitter} target="_blank"
+          onClick={() => {
+            ReactGA.initialize('UA-72414051-1');
+            ReactGA.event({
+              category: 'Footer_Social_Button_Twitter',
+              action: 'Button Click',
+            });
+          }}><i className="fa fa-twitter" /></a>
+          <a href={graknRoutes.facebook} target="_blank"
+          onClick={() => {
+            ReactGA.initialize('UA-72414051-1');
+            ReactGA.event({
+              category: 'Footer_Social_Button_Facebook',
+              action: 'Button Click',
+            });
+          }}><i className="fa fa-facebook-f" /></a>
+          <a href={graknRoutes.linkedin} target="_blank"
+          onClick={() => {
+            ReactGA.initialize('UA-72414051-1');
+            ReactGA.event({
+              category: 'Footer_Social_Button_LinkedIn',
+              action: 'Button Click',
+            });
+          }}><i className="fa fa-linkedin" /></a>
+          <a href={graknRoutes.github} target="_blank"
+          onClick={() => {
+            ReactGA.initialize('UA-72414051-1');
+            ReactGA.event({
+              category: 'Footer_Social_Button_Github',
+              action: 'Button Click',
+            });
+          }}><i className="fa fa-github" /></a>
         </div>
         <div className="footer__social__signup">
           <input type="text" value={this.state.input} onChange={(e) => this.handleEmailChange(e)} placeholder="Subscribe to our newsletter"/>

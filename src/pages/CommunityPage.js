@@ -131,7 +131,8 @@ class CommunityPage extends Component {
             null
           }
           <div className="container">
-            <a href="mailto:community@grakn.ai?subject=We would like to start a new Meetup group" className="button button--transparent community__fancy__newlink" onClick={() => {
+            <a href="mailto:community@grakn.ai?subject=We would like to start a new Meetup group" className="button button--transparent community__fancy__newlink"
+            onClick={() => {
               ReactGA.initialize('UA-72414051-1');
               ReactGA.event({
                 category: 'Community_Meetups_StartNew_Mail',
