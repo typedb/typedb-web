@@ -7,6 +7,7 @@ import { fetchMeetups } from 'actions/meetups';
 import PagingComponent from 'components/PagingComponent';
 const graknRoutes = require('config/graknRoutes');
 import { sortBy } from 'lodash';
+import ReactGA from 'react-ga';
 
 const moment = require('moment');
 class CommunityPage extends Component {
@@ -130,7 +131,13 @@ class CommunityPage extends Component {
             null
           }
           <div className="container">
-            <a href="mailto:community@grakn.ai?subject=We would like to start a new Meetup group" className="button button--transparent community__fancy__newlink">Start a new group in your city!</a>
+            <a href="mailto:community@grakn.ai?subject=We would like to start a new Meetup group" className="button button--transparent community__fancy__newlink" onClick={() => {
+              ReactGA.initialize('UA-72414051-1');
+              ReactGA.event({
+                category: 'Community_Meetups_StartNew_Mail',
+                action: 'Button Click',
+              });
+            }}>Start a new group in your city!</a>
           </div>
         </section>
         <section className="community__events community__events--upcoming">
