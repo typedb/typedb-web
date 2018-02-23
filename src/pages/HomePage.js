@@ -57,15 +57,35 @@ class HomePage extends Component {
           <div className="home__links__container container section__container">
             <div className="home__links__container__item">
               <img src="/assets/svg/github.svg" alt="github" />
-              <span><a className="github-link" href={graknRoutes.github} target="_blank" >Grakn {this.props.downloads.length > 0 ? this.props.downloads.filter(item => item.latest==="True")[0].version : null}</a> on Github</span>
+              <span><a className="github-link" href={graknRoutes.github} target="_blank"
+              onClick={() => {
+                ReactGA.initialize('UA-72414051-1');
+                ReactGA.event({
+                  category: 'Home_Splash_Button_Github',
+                  action: 'Button Click',
+                });
+              }}>Grakn {this.props.downloads.length > 0 ? this.props.downloads.filter(item => item.latest==="True")[0].version : null}</a> on Github</span>
             </div>
             <div className="home__links__container__item">
               <img src="/assets/svg/slack-mark.svg" alt="slack" />
-              <span><Link className="slack-link" to="/slack">Grakn</Link> on Slack</span>
+              <span><Link className="slack-link" to="/slack" onClick={() => {
+                ReactGA.initialize('UA-72414051-1');
+                ReactGA.event({
+                  category: 'Home_Splash_Button_Slack',
+                  action: 'Button Click',
+                });
+              }}>Grakn</Link> on Slack</span>
             </div>
             <div className="home__links__container__item">
               <img src="/assets/svg/twitter_1.svg" alt="twitter" />
-              <span><a className="twitter-link" href={graknRoutes.twitter} target="_blank">@GraknLabs</a> on Twitter</span>
+              <span><a className="twitter-link" href={graknRoutes.twitter} target="_blank"
+              onClick={() => {
+                ReactGA.initialize('UA-72414051-1');
+                ReactGA.event({
+                  category: 'Home_Splash_Button_Twitter',
+                  action: 'Button Click',
+                });
+              }}>@GraknLabs</a> on Twitter</span>
             </div>
           </div>
         </section>

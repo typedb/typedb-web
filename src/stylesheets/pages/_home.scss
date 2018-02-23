@@ -84,7 +84,6 @@
   &__links {
     position: relative;
     min-height: 405px;
-    z-index: -2;
     @media screen and (max-width: $smallScreen) {
       min-height: 340px; // For the moment will replace with a carousel soon
     }
