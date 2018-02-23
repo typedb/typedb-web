@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 import SupportFormModal from 'components/SupportFormModal';
+import ReactGA from 'react-ga';
+
 class KBMSPage extends Component {
   constructor(props) {
     super(props);
@@ -226,8 +228,21 @@ class KBMSPage extends Component {
     
             </div>
             <div className="kbms-page__features__buttons">
-              <Link className="button button--red" to={{pathname: "/download", hash:'#kbms'}}>Get KBMS / Workbase</Link>
-              <Link to="/deployment" className="button button--transparent">Cloud Deployment</Link>
+              <Link className="button button--red" to={{pathname: "/download", hash:'#kbms'}} onClick={() => {
+                ReactGA.initialize('UA-72414051-1');
+                ReactGA.event({
+                  category: 'KBMS_Features_GET_KBMSPage',
+                  action: 'Button Click',
+                });
+              }}>Get KBMS / Workbase</Link>
+              <Link to="/deployment" className="button button--transparent"
+              onClick={() => {
+                ReactGA.initialize('UA-72414051-1');
+                ReactGA.event({
+                  category: 'KBMS_Features_Cloud_DeploymentPage',
+                  action: 'Button Click',
+                });
+              }}>Cloud Deployment</Link>
             </div>
           </div>
         </section>
