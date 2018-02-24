@@ -43,15 +43,17 @@ class Main extends Component {
   
   render() {
     let documentTitle = 'GRAKN.AI - The Database for AI';
-    // if (this.props.path !== '/') {
-    //   documentTitle = `${startCase(this.props.path.substr(1))} | GRAKN.AI`
-    // }
-    let routes = routeOptions.routes.map(({ path, component, exact }, i) =>
-            <Route key={Math.random() + 'ROUTE_'} exact={exact} path={path} component={component} />
-        );
+    if (this.props.path !== '/') {
+      documentTitle = `${startCase(this.props.path.substr(1))} | GRAKN.AI`
+    }
+    console.log(this.props)
+    let routes = routeOptions.routes.map(({ path, component, exact }, i) => {
+          return (<Route key={Math.random() + 'ROUTE_'} exact={exact} path={path} component={component} />)
+    });
     let redirects = routeOptions.redirects.map(({ from, to, status }, i) =>
         <RedirectWithStatus key={Math.random() + 'REDIRECT_'} from={from} to={to} status={status} />
     );
+    console.log(routes);
     return (
       <main className="main">
         <Helmet>
@@ -86,7 +88,6 @@ class Main extends Component {
           // <Route component={NoPage} />
          }
          {routes}
-         {redirects}
         </Switch>
       </main>
     )
@@ -105,4 +106,4 @@ const mapDispatchToProps = (dispatch) => (
   }
 )
 
-export default connect(null, mapDispatchToProps)(Main);
+export default connect(mapStateToProps, mapDispatchToProps)(Main);

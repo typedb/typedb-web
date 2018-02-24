@@ -7,7 +7,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 const autoprefixer = require('autoprefixer');
 
-const stylesheetsPlugin = new ExtractTextPlugin('[hash].css');
+const stylesheetsPlugin = new ExtractTextPlugin('bundle.css');
 const htmlWebpackPlugin = new HtmlWebpackPlugin({ template: 'index.html' });
 const definePlugin = new webpack.DefinePlugin({
   __DEV__: JSON.stringify(JSON.parse(process.env.NODE_ENV === 'development' || 'false')),
@@ -27,7 +27,7 @@ module.exports = {
   entry: './index',
   output: {
     publicPath: '/',
-    filename: '[hash].js',
+    filename: 'bundle.js',
     path: path.join(__dirname, 'dist')
   },
   plugins: [

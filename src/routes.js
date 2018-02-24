@@ -19,7 +19,7 @@ export default {
       {
           path: '/',
           component: HomePage,
-          exact: false
+          exact: true
       },
       {
           path: '/about',

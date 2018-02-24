@@ -1,11 +1,10 @@
 import React from 'react';
-import { hydrate } from 'react-dom';
+import { render } from 'react-dom';
 import { Provider } from 'react-redux';
 import { ConnectedRouter } from 'connected-react-router';
 
 import store, { history } from './store';
 import App from './App';
-import { BrowserRouter } from 'react-router-dom'
 
 import 'stylesheets/app.scss';
 
@@ -17,7 +16,7 @@ const Client = () => (
   </Provider>
 );
 
-hydrate(
+render(
   <Client />,
   document.getElementById('react')
 );

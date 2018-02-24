@@ -284,6 +284,13 @@ app.get("/sitemap.xml", (req, res) => {
     res.sendFile(path.join(dist, 'sitemap.xml'));
 })
 
+app.get("/bundle.js", (req, res) => {
+    res.sendFile(path.join(dist, 'bundle.js'));
+})
+app.get("/bundle.css", (req, res) => {
+    res.sendFile(path.join(dist, 'bundle.css'));
+})
+
 // Render Application
 // app.get('*', (req, res) => {
 //   res.sendFile(path.join(dist, 'index.html'));
@@ -303,15 +310,15 @@ app.get('*', async (req, res) => {
 						path,
 						exact,
 						strict: false
-					}
+					} 
 				)
 				return foundPath;
 			}) || {};
         // safety check for valid component, if no component we initialize an empty shell.
-        console.log(context);
 		if (!component)
 			component = {};
-		// safety check for fetchData function, if no function we give it an empty promise
+        // safety check for fetchData function, if no function we give it an empty promise
+        console.log(component)
 		if (!component.fetchData)
 			component.fetchData = () => new Promise(resolve => resolve());
 		// meat and bones of our isomorphic application: grabbing async data
@@ -337,8 +344,8 @@ app.get('*', async (req, res) => {
 			//if 404 then send our custom 404 page with initial state and meta data, this is needed for status code 404
 			res.status(404).send(renderFullPage(html, preloadedState, helmetData))
 		else
-			//else send down page with initial state and meta data
-			res.send(renderFullPage(html, preloadedState, helmetData))
+            //else send down page with initial state and meta data
+            res.send(renderFullPage(html, preloadedState, helmetData));
 	} catch (error) {
         console.log(error);
 		res.status(400).send(renderFullPage('An error occured.', {}, {}));
@@ -354,9 +361,7 @@ app.listen(port, (error) => {
 });
 
 function renderFullPage(html, preloadedState, helmet) {
-    console.log(html);
-    return 
-    `
+    return `
     <!DOCTYPE html>
         <html>
         <head>
@@ -404,6 +409,7 @@ function renderFullPage(html, preloadedState, helmet) {
             <script async defer src="https://grakn-slackin.herokuapp.com/slackin.js?large"></script>
             <!-- Fontawesome -->
             <script src="https://use.fontawesome.com/d35ca7539a.js"></script>
+            <link href="/bundle.css" rel="stylesheet">
             </head>
         <body>
             <div id="react">${html}</div>
@@ -444,6 +450,7 @@ function renderFullPage(html, preloadedState, helmet) {
             <!-- Start of HubSpot Embed Code -->
             <script type="text/javascript" id="hs-script-loader" async defer src="//js.hs-scripts.com/4332244.js"></script>
             <!-- End of HubSpot Embed Code --> 
+            <script type="text/javascript" src="/bundle.js"></script></body>
         </body>
         </html>
     `
