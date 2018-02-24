@@ -14,12 +14,18 @@ import reducer from 'reducers';
 // in the store enhancer below
 export const history = createBrowserHistory();
 
+let preloadedState = {};
+if (typeof window != 'undefined' && window.__PRELOADED_STATE__) {
+    preloadedState = window.__PRELOADED_STATE__;
+    delete window.__PRELOADED_STATE__;
+}
+
 const router = routerMiddleware(history)
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const composeEnhancers = (typeof window != 'undefined') ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose : compose;;
 
 const store = createStore(
   connectRouter(history)(reducer),
-  undefined,
+  preloadedState,
   composeEnhancers(
     responsiveStoreEnhancer,
     applyMiddleware(thunk, router),

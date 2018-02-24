@@ -4,6 +4,22 @@ const bodyParser = require('body-parser');
 const unirest = require('unirest');
 const nodemailer = require('nodemailer');
 
+// New Imports
+import React from 'react';
+import ReactDOM from 'react-dom/server';
+import helmet from 'react-helmet';
+import { render } from 'react-dom';
+import { Provider } from 'react-redux';
+import { createStore, applyMiddleware } from 'redux';
+import { StaticRouter , matchPath } from 'react-router';
+import thunk from 'redux-thunk';
+import { ConnectedRouter } from 'connected-react-router';
+
+import routeBank from 'routes';
+import reducers from 'reducers';
+import App from 'App';
+
+// New Imports Over
 const app = express();
 
 const port = process.env.PORT ? process.env.PORT : 3001;
@@ -269,8 +285,64 @@ app.get("/sitemap.xml", (req, res) => {
 })
 
 // Render Application
-app.get('*', (req, res) => {
-  res.sendFile(path.join(dist, 'index.html'));
+// app.get('*', (req, res) => {
+//   res.sendFile(path.join(dist, 'index.html'));
+// });
+
+
+app.get('*', async (req, res) => {
+	try {
+		//create new redux store on each request
+		const store = createStore(reducers, {}, applyMiddleware(thunk));
+		let foundPath = null;
+		// match request url to our React Router paths and grab component
+		let { path, component } = routeBank.routes.find(
+			({ path, exact }) => {
+				foundPath = matchPath(req.url,
+					{
+						path,
+						exact,
+						strict: false
+					}
+				)
+				return foundPath;
+			}) || {};
+        // safety check for valid component, if no component we initialize an empty shell.
+        console.log(context);
+		if (!component)
+			component = {};
+		// safety check for fetchData function, if no function we give it an empty promise
+		if (!component.fetchData)
+			component.fetchData = () => new Promise(resolve => resolve());
+		// meat and bones of our isomorphic application: grabbing async data
+		await component.fetchData({ store, params: (foundPath ? foundPath.params : {}) });
+		//get store state (js object of entire store)
+		let preloadedState = store.getState();
+		//context is used by react router, empty by default
+		let context = {};
+		const html = ReactDOM.renderToString(
+			<Provider store={store}>
+				<StaticRouter context={context} location={req.url}>
+					<App />
+				</StaticRouter>
+			</Provider>
+		)
+		//render helmet data aka meta data in <head></head>
+		const helmetData = helmet.renderStatic();
+		//check context for url, if url exists then react router has ran into a redirect
+		if (context.url)
+			//process redirect through express by redirecting
+			res.redirect(context.status, 'http://' + req.headers.host + context.url);
+		else if (foundPath && foundPath.path == '/404')
+			//if 404 then send our custom 404 page with initial state and meta data, this is needed for status code 404
+			res.status(404).send(renderFullPage(html, preloadedState, helmetData))
+		else
+			//else send down page with initial state and meta data
+			res.send(renderFullPage(html, preloadedState, helmetData))
+	} catch (error) {
+        console.log(error);
+		res.status(400).send(renderFullPage('An error occured.', {}, {}));
+	}
 });
 
 
@@ -280,3 +352,99 @@ app.listen(port, (error) => {
   }
   console.info('Express is listening on port %s.', port); // eslint-disable-line no-console
 });
+
+function renderFullPage(html, preloadedState, helmet) {
+    console.log(html);
+    return 
+    `
+    <!DOCTYPE html>
+        <html>
+        <head>
+            <meta charset="utf-8" />
+            <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+            <meta http-equiv='content-type' content='text/html; charset=utf-8' />
+
+            <meta name='viewport'    content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0' />
+            <meta name='keywords'    content='Grakn Labs, grakn, graql, grakn.ai, grakn KBMS, grakn Workbase, Mindmaps Research, Mindmaps Research Ltd, MindmapsDB, mindmaps, mindmaps graph, mindmaps.io, open source, relational, hyper-relational, knowledge graph, distributed knowledge graph, hypergraphs, hyper-graph, graph theory, dynamic graphs, development platform, developer tool, data platform, programming language, query language, database, semantic database, distributed semantic database, distributed database, graph database, semantic search, data exploration, recommendation system, knowledge management, knowledge engineering, graph analytics, real-time analytics, advanced analytics, reasoning engine, inference engine, expert systems, semantic applications, research engines, data management, business intelligence, big data, semantic web, semantic data, knowledge representation, machine reasoning, automated reasoning, semantic network, knowledge ontology, semantic graph, ontology engineering, graph based knowledge representation, artificial intelligence,' />
+
+            <title>GRAKN.AI - The Database for AI</title>
+
+            <!-- Google Verification -->
+            <meta name="google-site-verification" content="aJEgad4wRD2eSBDYLHv8gC45GKIT8bjBslrnf_BfhuE" />
+
+            <meta property='og:title'       content='GRAKN.AI' />
+            <meta property='og:type'        content='website' />
+            <meta property='og:image'       content='assets/img/logo.png' />
+            <meta property='og:url'         content='https://grakn.ai' />
+            <meta property='og:site_name'   content='GRAKN.AI' />
+            <meta property='og:description' content='The Database for AI' />
+            <meta property='og:email'       content='info@grakn.ai' />
+            <meta name='theme-color' content='#ffffff' />
+            ${helmet.title.toString()}
+            ${helmet.meta.toString()}
+            ${helmet.link.toString()}
+            <link rel='icon' href='assets/favicon.ico' />
+            
+            <meta name="msapplication-TileColor" content="#ffffff" />
+            <meta name="msapplication-TileImage" content="assets/img/metro/mstile-144x144.png" />
+            <meta name="msapplication-square70x70logo" content="assets/img/metro/mstile-70x70.png" />
+            <meta name="msapplication-square150x150logo" content="assets/img/metro/mstile-150x150.png" />
+            <meta name="msapplication-wide310x150logo" content="assets/img/metro/mstile-310x150.png" />
+            <meta name="msapplication-square310x310logo" content="assets/img/metro/mstile-310x310.png" />
+
+            <link rel="apple-touch-icon" sizes="57x57"   href="assets/img/apple/apple-touch-icon-57x57.png" />
+            <link rel="apple-touch-icon" sizes="114x114" href="assets/img/apple/apple-touch-icon-114x114.png" />
+            <link rel="apple-touch-icon" sizes="72x72"   href="assets/img/apple/apple-touch-icon-72x72.png" />
+            <link rel="apple-touch-icon" sizes="144x144" href="assets/img/apple/apple-touch-icon-144x144.png" />
+            <link rel="apple-touch-icon" sizes="60x60"   href="assets/img/apple/apple-touch-icon-60x60.png" />
+            <link rel="apple-touch-icon" sizes="120x120" href="assets/img/apple/apple-touch-icon-120x120.png" />
+            <link rel="apple-touch-icon" sizes="76x76"   href="assets/img/apple/apple-touch-icon-76x76.png" />
+            <link rel="apple-touch-icon" sizes="152x152" href="assets/imgapple/apple-touch-icon-152x152.png" />
+
+            <script async defer src="https://grakn-slackin.herokuapp.com/slackin.js?large"></script>
+            <!-- Fontawesome -->
+            <script src="https://use.fontawesome.com/d35ca7539a.js"></script>
+            </head>
+        <body>
+            <div id="react">${html}</div>
+            <script>
+            // WARNING: See the following for security issues around embedding JSON in HTML:
+            // http://redux.js.org/docs/recipes/ServerRendering.html#security-considerations
+            window.__PRELOADED_STATE__ = ${JSON.stringify(preloadedState).replace(/</g, '\\u003c')}
+            </script>
+            <script type="application/ld+json">
+            {
+            "@context": "http://schema.org",
+            "@type": "Organization",
+            "url": "http://grakn.ai",
+            "logo": "http://grakn.ai/assets/img/logo.png",
+            "sameAs": [
+                "https://twitter.com/graknlabs",
+                "https://www.facebook.com/groups/1913787625527508/",
+                "http://linkedin.com/organization/graknlabs",
+                "https://en.wikipedia.org/wiki/GRAKN.AI",
+                "https://github.com/graknlabs/grakn",
+                "https://stackoverflow.com/questions/tagged/graql+or+grakn",
+                "https://blog.grakn.ai/"
+            ]
+            }
+            </script>
+            <!-- Hotjar Tracking Code for www.grakn.ai -->
+            <script>
+            (function(h,o,t,j,a,r){
+                h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+                h._hjSettings={hjid:775902,hjsv:6};
+                a=o.getElementsByTagName('head')[0];
+                r=o.createElement('script');r.async=1;
+                r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+                a.appendChild(r);
+            })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+            </script>
+            <!-- End of Hotjar Tracking Code --> 
+            <!-- Start of HubSpot Embed Code -->
+            <script type="text/javascript" id="hs-script-loader" async defer src="//js.hs-scripts.com/4332244.js"></script>
+            <!-- End of HubSpot Embed Code --> 
+        </body>
+        </html>
+    `
+}
