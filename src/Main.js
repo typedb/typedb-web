@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Switch, Route, Redirect } from 'react-router-dom';
+import { Switch, Route, Redirect } from 'react-router';
 import { connect } from 'react-redux';
 import { startCase } from 'lodash';
 import ReactGA from 'react-ga';
@@ -46,12 +46,9 @@ class Main extends Component {
     if (this.props.location.pathname !== '/') {
       documentTitle = `${startCase(this.props.location.pathname.substr(1))} | GRAKN.AI`
     }
-    let routes = routeOptions.routes.map(({ path, component, exact }, i) => {
+    let routes = routeOptions[0].routes.map(({ path, component, exact }, i) => {
           return (<Route key={`ROUTE_${i}`} exact={exact} path={path} component={component} />)
     });
-    let redirects = routeOptions.redirects.map(({ from, to, status }, i) =>
-        <RedirectWithStatus key={`REDIRECT_${i}`} from={from} to={to} status={status} />
-    );
     return (
       <main className="main">
         <Helmet>
@@ -86,7 +83,6 @@ class Main extends Component {
           // <Route component={NoPage} />
          }
          {routes}
-         {redirects}
         </Switch>
       </main>
     )

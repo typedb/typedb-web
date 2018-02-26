@@ -14,94 +14,94 @@ import {FinanceUseCasePage, HealthUseCasePage, SemanticUseCasePage, BotsUseCaseP
 import DownloadCentrePage from 'pages/DownloadCentrePage';
 import PrivacyPolicyPage from 'pages/PrivacyPolicyPage';
 
-export default {
-  routes: [
-      {
-          path: '/',
-          component: HomePage,
-          exact: true
-      },
-      {
-          path: '/about',
-          component: AboutPage,
-          exact: true
-      },
-      {
-          path: '/slack',
-          component: SlackPage,
-          exact: true
-      },
-      {
-          path: '/careers',
-          component: CareersPage,
-          exact: true
-      },
-      {
-          path: '/community',
-          component: CommunityPage,
-          exact: true
-      },
-      {
-          path: '/services',
-          component: ServicesPage,
-          exact: true
-      },
-      {
-          path: '/deployment',
-          component: DeploymentPage,
-          exact: true
-      },
-      {
-          path: '/support',
-          component: SupportPage,
-          exact: true
-      },
-      {
-          path: '/download',
-          component: DownloadCentrePage,
-          exact: true
-      },
-      {
-          path: '/grakn-core',
-          component: GraknPage,
-          exact: true
-      },
-      {
-          path: '/grakn-kbms',
-          component: KBMSPage,
-          exact: true
-      },
-      {
-          path: '/usecase-finance',
-          component: FinanceUseCasePage,
-          exact: true
-      },
-      {
-          path: '/usecase-health',
-          component: HealthUseCasePage,
-          exact: true
-      },
-      {
-          path: '/usecase-bots',
-          component: BotsUseCasePage,
-          exact: true
-      },
-      {
-          path: '/usecase-search',
-          component: SemanticUseCasePage,
-          exact: true
-      },
-      {
-          path: '/usecase-security',
-          component: SecurityUseCasePage,
-          exact: true
-      },
-      {
-          path: '/privacy-policy',
-          component: PrivacyPolicyPage,
-          exact: true
-      },
-  ],
-  redirects: [
-  ]
-} 
+export default [
+    {
+        routes: [
+            {
+                path: '/',
+                component: HomePage,
+                exact: true
+            },
+            {
+                path: '/about',
+                component: AboutPage,
+                exact: true
+            },
+            {
+                path: '/slack',
+                component: SlackPage,
+                exact: true
+            },
+            {
+                path: '/careers',
+                component: CareersPage,
+                exact: true
+            },
+            {
+                path: '/community',
+                component: CommunityPage,
+                exact: true
+            },
+            {
+                path: '/services',
+                component: ServicesPage,
+                exact: true
+            },
+            {
+                path: '/deployment',
+                component: DeploymentPage,
+                exact: true
+            },
+            {
+                path: '/support',
+                component: SupportPage,
+                exact: true
+            },
+            {
+                path: '/download',
+                component: DownloadCentrePage,
+                exact: true
+            },
+            {
+                path: '/grakn-core',
+                component: GraknPage,
+                exact: true
+            },
+            {
+                path: '/grakn-kbms',
+                component: KBMSPage,
+                exact: true
+            },
+            {
+                path: '/usecase-finance',
+                component: FinanceUseCasePage,
+                exact: true
+            },
+            {
+                path: '/usecase-health',
+                component: HealthUseCasePage,
+                exact: true
+            },
+            {
+                path: '/usecase-bots',
+                component: BotsUseCasePage,
+                exact: true
+            },
+            {
+                path: '/usecase-search',
+                component: SemanticUseCasePage,
+                exact: true
+            },
+            {
+                path: '/usecase-security',
+                component: SecurityUseCasePage,
+                exact: true
+            },
+            {
+                path: '/privacy-policy',
+                component: PrivacyPolicyPage,
+                exact: true
+            },
+        ]
+    }
+]

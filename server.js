@@ -3,7 +3,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const unirest = require('unirest');
 const nodemailer = require('nodemailer');
-
+const urlParser = require('url');
 // New Imports
 import React from 'react';
 import ReactDOM from 'react-dom/server';
@@ -12,11 +12,14 @@ import { render } from 'react-dom';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import { StaticRouter , matchPath } from 'react-router';
+import { ConnectedRouter, push } from 'react-router-redux';
+import { matchRoutes, renderRoutes } from 'react-router-config';
+import qs from 'qs';
+
 import thunk from 'redux-thunk';
-import { ConnectedRouter } from 'connected-react-router';
 
 import routeBank from 'routes';
-import reducers from 'reducers';
+import configureStore from 'store';
 import App from 'App';
 
 // New Imports Over
@@ -291,74 +294,65 @@ app.get("/bundle.css", (req, res) => {
     res.sendFile(path.join(dist, 'bundle.css'));
 })
 
+app.get("/service-worker.js", (req, res) => {
+    res.sendStatus(200);
+})
+
 // Render Application
 // app.get('*', (req, res) => {
 //   res.sendFile(path.join(dist, 'index.html'));
 // });
 
 
-app.get('*', async (req, res) => {
-	try {
-		//create new redux store on each request
-		const store = createStore(reducers, {}, applyMiddleware(thunk));
-		let foundPath = null;
-		// match request url to our React Router paths and grab component
-		let { path, component } = routeBank.routes.find(
-			({ path, exact }) => {
-				foundPath = matchPath(req.url,
-					{
-						path,
-						exact,
-						strict: false
-					} 
-				)
-				return foundPath;
-			}) || {};
-        // safety check for valid component, if no component we initialize an empty shell.
-		if (!component)
-			component = {};
-        // safety check for fetchData function, if no function we give it an empty promise
-        console.log(component)
-		if (!component.fetchData)
-			component.fetchData = () => new Promise(resolve => resolve());
-		// meat and bones of our isomorphic application: grabbing async data
-		await component.fetchData({ store, params: (foundPath ? foundPath.params : {}) });
-		//get store state (js object of entire store)
-		let preloadedState = store.getState();
-		//context is used by react router, empty by default
-		let context = {};
-		const html = ReactDOM.renderToString(
-			<Provider store={store}>
-				<StaticRouter context={context} location={req.url}>
-					<App />
-				</StaticRouter>
-			</Provider>
-		)
-		//render helmet data aka meta data in <head></head>
-		const helmetData = helmet.renderStatic();
-		//check context for url, if url exists then react router has ran into a redirect
-		if (context.url)
-			//process redirect through express by redirecting
-			res.redirect(context.status, 'http://' + req.headers.host + context.url);
-		else if (foundPath && foundPath.path == '/404')
-			//if 404 then send our custom 404 page with initial state and meta data, this is needed for status code 404
-			res.status(404).send(renderFullPage(html, preloadedState, helmetData))
-		else
-            //else send down page with initial state and meta data
-            res.send(renderFullPage(html, preloadedState, helmetData));
-	} catch (error) {
-        console.log(error);
-		res.status(400).send(renderFullPage('An error occured.', {}, {}));
-	}
+app.get('*', (req, res) => {
+    const { store, history } = configureStore(true);
+    store.dispatch(push(req.url));
+    loadRouteDependencies(req.url, store)
+    .then((data) => {
+      let bundle;
+      const toRender = ReactDOM.renderToString((
+        <Provider store={store}>
+          <ConnectedRouter history={history}>
+            <App />
+          </ConnectedRouter>
+        </Provider>
+      ));
+      // once everything is fully rendered, get a copy of the current redux state
+      // to send to the client so it can pick up where the server left off
+      const preloadedState = store.getState();
+      res.status(200).send(renderFullPage(toRender, preloadedState, helmet.renderStatic()));
+    })
+    .catch((err) => {
+      console.error(err);
+    });
 });
 
 
-app.listen(port, (error) => {
-  if (error) {
-    console.log(error); // eslint-disable-line no-console
-  }
-  console.info('Express is listening on port %s.', port); // eslint-disable-line no-console
-});
+function loadRouteDependencies(location, store) {
+    // matchRoutes from 'react-router-config' handles this nicely
+    const currentRoute = matchRoutes(routeBank, location);
+  
+    const need = currentRoute.map(({ route, match }) => {
+      // once the route is matched, iterate through each component
+      // looking for a `static loadData()` method
+      // (you'll find these in the data-dependent `/src/views/` components)
+      if (route.component) {
+        return route.component.loadData ?
+          // the following will be passed into each component's `loadData` method:
+          route.component.loadData(
+            store,
+            match,
+            location,
+              // query params are stored in the same place as dynamic child routes,
+              // but the key will be '0'
+            qs.parse(match.params['0'], { ignoreQueryPrefix: true })
+          ) :
+          Promise.resolve(null);
+      }
+      Promise.resolve(null);
+    });
+    return Promise.all(need);
+};
 
 function renderFullPage(html, preloadedState, helmet) {
     return `
@@ -372,8 +366,6 @@ function renderFullPage(html, preloadedState, helmet) {
             <meta name='viewport'    content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0' />
             <meta name='keywords'    content='Grakn Labs, grakn, graql, grakn.ai, grakn KBMS, grakn Workbase, Mindmaps Research, Mindmaps Research Ltd, MindmapsDB, mindmaps, mindmaps graph, mindmaps.io, open source, relational, hyper-relational, knowledge graph, distributed knowledge graph, hypergraphs, hyper-graph, graph theory, dynamic graphs, development platform, developer tool, data platform, programming language, query language, database, semantic database, distributed semantic database, distributed database, graph database, semantic search, data exploration, recommendation system, knowledge management, knowledge engineering, graph analytics, real-time analytics, advanced analytics, reasoning engine, inference engine, expert systems, semantic applications, research engines, data management, business intelligence, big data, semantic web, semantic data, knowledge representation, machine reasoning, automated reasoning, semantic network, knowledge ontology, semantic graph, ontology engineering, graph based knowledge representation, artificial intelligence,' />
 
-            <title>GRAKN.AI - The Database for AI</title>
-
             <!-- Google Verification -->
             <meta name="google-site-verification" content="aJEgad4wRD2eSBDYLHv8gC45GKIT8bjBslrnf_BfhuE" />
 
@@ -386,8 +378,6 @@ function renderFullPage(html, preloadedState, helmet) {
             <meta property='og:email'       content='info@grakn.ai' />
             <meta name='theme-color' content='#ffffff' />
             ${helmet.title.toString()}
-            ${helmet.meta.toString()}
-            ${helmet.link.toString()}
             <link rel='icon' href='assets/favicon.ico' />
             
             <meta name="msapplication-TileColor" content="#ffffff" />
@@ -449,9 +439,16 @@ function renderFullPage(html, preloadedState, helmet) {
             <!-- End of Hotjar Tracking Code --> 
             <!-- Start of HubSpot Embed Code -->
             <script type="text/javascript" id="hs-script-loader" async defer src="//js.hs-scripts.com/4332244.js"></script>
-            <!-- End of HubSpot Embed Code --> 
-            <script type="text/javascript" src="/bundle.js"></script></body>
+            <!-- End of HubSpot Embed Code -->
+            <script type="text/javascript" src="/bundle.js"></script>
         </body>
         </html>
     `
 }
+
+app.listen(port, (error) => {
+    if (error) {
+        console.log(error); // eslint-disable-line no-console
+    }
+    console.info('Express is listening on port %s.', port); // eslint-disable-line no-console
+});
