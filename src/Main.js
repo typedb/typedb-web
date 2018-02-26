@@ -43,17 +43,15 @@ class Main extends Component {
   
   render() {
     let documentTitle = 'GRAKN.AI - The Database for AI';
-    if (this.props.path !== '/') {
-      documentTitle = `${startCase(this.props.path.substr(1))} | GRAKN.AI`
+    if (this.props.location.pathname !== '/') {
+      documentTitle = `${startCase(this.props.location.pathname.substr(1))} | GRAKN.AI`
     }
-    console.log(this.props)
     let routes = routeOptions.routes.map(({ path, component, exact }, i) => {
-          return (<Route key={Math.random() + 'ROUTE_'} exact={exact} path={path} component={component} />)
+          return (<Route key={`ROUTE_${i}`} exact={exact} path={path} component={component} />)
     });
     let redirects = routeOptions.redirects.map(({ from, to, status }, i) =>
-        <RedirectWithStatus key={Math.random() + 'REDIRECT_'} from={from} to={to} status={status} />
+        <RedirectWithStatus key={`REDIRECT_${i}`} from={from} to={to} status={status} />
     );
-    console.log(routes);
     return (
       <main className="main">
         <Helmet>
@@ -88,17 +86,13 @@ class Main extends Component {
           // <Route component={NoPage} />
          }
          {routes}
+         {redirects}
         </Switch>
       </main>
     )
   }
 };
 
-const mapStateToProps = (state) => (
-  {
-    path: state.router.location.pathname,
-  }
-);
 
 const mapDispatchToProps = (dispatch) => (
   {
@@ -106,4 +100,4 @@ const mapDispatchToProps = (dispatch) => (
   }
 )
 
-export default connect(mapStateToProps, mapDispatchToProps)(Main);
+export default connect(null, mapDispatchToProps)(Main);

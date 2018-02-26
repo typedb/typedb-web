@@ -7,7 +7,10 @@ const autoprefixer = require('autoprefixer');
 
 const htmlWebpackPlugin = new HtmlWebpackPlugin({ template: 'index.html' });
 const definePlugin = new webpack.DefinePlugin({
-  __DEV__: JSON.stringify(JSON.parse(process.env.NODE_ENV === 'development' || 'true'))
+  __DEV__: JSON.stringify(JSON.parse(process.env.NODE_ENV === 'development' || 'true')),
+  'process.env': {
+    BROWSER: true,
+  }
 });
 
 const lodashModulePlugin = new LodashModuleReplacementPlugin({

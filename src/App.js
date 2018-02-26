@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import { connect } from 'react-redux';
 import NavigationBar from 'components/NavigationBar';
 import Footer from 'components/Footer';
 import ScrollRestoration from 'components/ScrollRestoration';
@@ -8,7 +8,6 @@ import Main from './Main';
 
 class App extends Component {
   render() {
-    console.log(this.props);
     return (
       <ScrollRestoration>
         <div className="app">
@@ -30,4 +29,9 @@ class App extends Component {
   }
 }
 
-export default App;
+const mapStateToProps = (state) => (
+  {
+    location: state.router.location,
+  }
+);
+export default connect(mapStateToProps)(App);
