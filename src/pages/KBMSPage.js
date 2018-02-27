@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { Helmet } from 'react-helmet';
 import SupportFormModal from 'components/SupportFormModal';
 import ReactGA from 'react-ga';
 
@@ -22,12 +21,6 @@ class KBMSPage extends Component {
   render() {
     return (
       <div className="kbms-page">
-        <Helmet>
-          {
-            // Override Page Title
-          }
-          <title>Grakn KBMS | GRAKN.AI</title>
-        </Helmet>
         <section className="kbms-page__splash">
           <div className="kbms-page__splash__container container section__container">
             <div className="kbms-page__splash__text">

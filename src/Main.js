@@ -58,7 +58,10 @@ class Main extends Component {
   render() {
     let documentTitle = 'GRAKN.AI - The Database for AI';
     if (this.props.location.pathname !== '/') {
-      documentTitle = `${startCase(this.props.location.pathname.substr(1))} | GRAKN.AI`
+      documentTitle = `${startCase(this.props.location.pathname.substr(1))} | GRAKN.AI`;
+    }
+    if (this.props.location.pathname === '/grakn-kbms') {
+      documentTitle = 'Grakn KBMS | GRAKN.AI';
     }
     let routes = routeOptions[0].routes.map(({ path, component, exact }, i) => {
           return (<Route key={`ROUTE_${i}`} exact={exact} path={path} component={component} />)
