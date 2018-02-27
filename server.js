@@ -337,9 +337,9 @@ function loadRouteDependencies(location, store) {
       // looking for a `static loadData()` method
       // (you'll find these in the data-dependent `/src/views/` components)
       if (route.component) {
-        return route.component.loadData ?
+        return route.component.fetchData ?
           // the following will be passed into each component's `loadData` method:
-          route.component.loadData(
+          route.component.fetchData(
             store,
             match,
             location,
@@ -438,7 +438,7 @@ function renderFullPage(html, preloadedState, helmet) {
             <!-- Start of HubSpot Embed Code -->
             <script type="text/javascript" id="hs-script-loader" async defer src="//js.hs-scripts.com/4332244.js"></script>
             <!-- End of HubSpot Embed Code -->
-            <!-- <script type="text/javascript" src="/bundle.js"></script> -->
+            <script type="text/javascript" src="/bundle.js"></script>
         </body>
         </html>
     `

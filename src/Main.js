@@ -54,9 +54,6 @@ class Main extends Component {
     }
   }
 
-  static fetchData ({ store }) {
-    return store.dispatch(fetchDownloads());
-  }
   
   render() {
     let documentTitle = 'GRAKN.AI - The Database for AI';
