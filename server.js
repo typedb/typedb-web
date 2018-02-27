@@ -369,17 +369,15 @@ function renderFullPage(html, preloadedState, helmet) {
             <!-- Google Verification -->
             <meta name="google-site-verification" content="aJEgad4wRD2eSBDYLHv8gC45GKIT8bjBslrnf_BfhuE" />
 
-            <meta property='og:title'       content='GRAKN.AI' />
             <meta property='og:type'        content='website' />
-            <meta property='og:image'       content='assets/img/logo.png' />
-            <meta property='og:url'         content='https://grakn.ai' />
             <meta property='og:site_name'   content='GRAKN.AI' />
-            <meta property='og:description' content='The Database for AI' />
             <meta property='og:email'       content='info@grakn.ai' />
             <meta name='theme-color' content='#ffffff' />
             ${helmet.title.toString()}
+            ${helmet.meta.toString()}
+            ${helmet.title.toString()}
+
             <link rel='icon' href='assets/favicon.ico' />
-            
             <meta name="msapplication-TileColor" content="#ffffff" />
             <meta name="msapplication-TileImage" content="assets/img/metro/mstile-144x144.png" />
             <meta name="msapplication-square70x70logo" content="assets/img/metro/mstile-70x70.png" />
@@ -440,7 +438,7 @@ function renderFullPage(html, preloadedState, helmet) {
             <!-- Start of HubSpot Embed Code -->
             <script type="text/javascript" id="hs-script-loader" async defer src="//js.hs-scripts.com/4332244.js"></script>
             <!-- End of HubSpot Embed Code -->
-            <script type="text/javascript" src="/bundle.js"></script>
+            <!-- <script type="text/javascript" src="/bundle.js"></script> -->
         </body>
         </html>
     `
