@@ -54,7 +54,7 @@ class Visualiser extends Component {
     const options = {
       autoResize: false,
       interaction:{
-        dragNodes:true,
+        dragNodes:false,
         dragView: false,
         hideEdgesOnDrag: false,
         hideNodesOnDrag: false,
@@ -74,22 +74,22 @@ class Visualiser extends Component {
       },
       physics:{
         enabled: true,
-        forceAtlas2Based: {
-          gravitationalConstant: -50,
-          centralGravity: 0.015,
-          springConstant: 0.03,
-          springLength: 200,
-          damping: 0.3,
-          avoidOverlap: 0.4
-        },
-        repulsion: {
-          centralGravity: 0.2,
-          springLength: 200,
-          springConstant: 0.2,
-          nodeDistance: 150,
-          damping: 0.3
-        },
-        solver: 'forceAtlas2Based',
+        // forceAtlas2Based: {
+        //   gravitationalConstant: -50,
+        //   centralGravity: 0.015,
+        //   springConstant: 0.03,
+        //   springLength: 200,
+        //   damping: 0.3,
+        //   avoidOverlap: 0.4
+        // },
+        // repulsion: {
+        //   centralGravity: 0.2,
+        //   springLength: 200,
+        //   springConstant: 0.2,
+        //   nodeDistance: 150,
+        //   damping: 0.3
+        // },
+       // solver: 'forceAtlas2Based',
       },
       nodes: {
         borderWidth: 0,
@@ -99,13 +99,13 @@ class Visualiser extends Component {
           face: 'Ubuntu'
 
         },
-        fixed: false,
+        fixed: true,
       },
       edges: {
         color: {
           color: '#576484'
         },
-        dashes: true,
+        dashes: false,
         arrows: 'to',
         width: 2,
         smooth: {
@@ -172,7 +172,7 @@ class Visualiser extends Component {
           color: {
             background: '#796de3'
           },
-          margin: 5,
+          margin: 1,
           chosen: {
             node: function(values, id, selected, hovering) {
               values.color = '#796de3';
@@ -180,7 +180,7 @@ class Visualiser extends Component {
           }
         },
         attribute: {
-          shape: 'circle',
+          shape: 'ellipse',
           color: {
             background: '#f3bd5f'
           },
@@ -192,7 +192,7 @@ class Visualiser extends Component {
           }
         },
         'attribute-type': {
-          shape: 'circle',
+          shape: 'ellipse',
           color: {
             background: '#f3bd5f'
           },
@@ -269,6 +269,7 @@ class Visualiser extends Component {
   }
 
   drawGraph() {
+    console.log("called");
     const network = this.state.network;
     const dataset = visualiserItems[this.state.selected].graph;
     const nodes = [];
