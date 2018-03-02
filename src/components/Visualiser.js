@@ -269,7 +269,6 @@ class Visualiser extends Component {
   }
 
   drawGraph() {
-    console.log("called");
     const network = this.state.network;
     const dataset = visualiserItems[this.state.selected].graph;
     const nodes = [];
