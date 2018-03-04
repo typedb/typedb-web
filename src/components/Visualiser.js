@@ -158,24 +158,24 @@ class Visualiser extends Component {
         relationship: {
           shape: 'diamond',
           color: {
-            background: '#796de3'
+            background: '#8f82fc'
           },
           margin: 5,
           chosen: {
             node: function(values, id, selected, hovering) {
-              values.color = '#796de3';
+              values.color = '#8f82fc';
             }
           }
         },
         'relationship-type': {
           shape: 'diamond',
           color: {
-            background: '#796de3'
+            background: '#8f82fc'
           },
           margin: 1,
           chosen: {
             node: function(values, id, selected, hovering) {
-              values.color = '#796de3';
+              values.color = '#8f82fc';
             }
           }
         },
@@ -227,10 +227,10 @@ class Visualiser extends Component {
      // When page loaded set visualiserCode width value so that all the following transitions won't be laggy
     window.onload = function () { visualiserCode.style.width = (visualiserCode.offsetWidth-50)+'px'; }
 
- 
-     const handleMouseMove = (e) =>{ 
+
+     const handleMouseMove = (e) =>{
        const x = e.pageX - visualiserCode.getBoundingClientRect().left; // offsetleft
-       visualiserCode.style.width = (x-45)+'px';      
+       visualiserCode.style.width = (x-45)+'px';
      };
 
      const throttledHandler = _.throttle(handleMouseMove, 30, { 'leading': false });
