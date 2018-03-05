@@ -351,6 +351,7 @@ class Visualiser extends Component {
             25
             26
             27
+            28
             </pre>
             <pre id="visualiser-code"><code dangerouslySetInnerHTML={{__html: code}}/></pre>
             <div id="slider" className="visualiser__content__code__slider">

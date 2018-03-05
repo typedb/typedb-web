@@ -63,8 +63,8 @@ $tablePurple:#796de3;
         color: white;
         margin-left: 0;
         background-color: #393f4c;
+        text-align: center;
         @media screen and (max-width: $smallScreen) {
-          width: 140px;
           margin-top: 2rem;
           margin-left: auto;
         }
