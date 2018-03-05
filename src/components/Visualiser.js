@@ -324,6 +324,34 @@ class Visualiser extends Component {
         </ul>
         <div className="visualiser__content" id="visualiser-content">
           <div className="visualiser__content__code">
+          <pre>
+            1
+            2
+            3
+            4
+            5
+            6
+            7
+            8
+            9
+            10
+            11
+            12
+            13
+            14
+            15
+            16
+            17 
+            18 
+            19 
+            20 
+            21 
+            22 
+            23
+            25
+            26
+            27
+            </pre>
             <pre id="visualiser-code"><code dangerouslySetInnerHTML={{__html: code}}/></pre>
             <div id="slider" className="visualiser__content__code__slider">
                 <div id="handle" className="visualiser__content__code__slider__handle">
