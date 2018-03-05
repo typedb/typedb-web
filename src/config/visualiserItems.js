@@ -443,13 +443,13 @@ compute cluster in movie, cast, person; member;
 results>>
 
 "Titanic": {
-	"Titanic", 
-	"Kate", 
+	"Titanic",
+	"Kate",
 	"Leonardo"
 }
 "Al Pacino": {
-	"Al Pacino", 
-	"Godfather", 
+	"Al Pacino",
+	"Godfather",
 	"Scarface"
 }`,
 graph: {
@@ -465,22 +465,22 @@ graph: {
 					type: 'entity',
 					text: 'person: Leonardo',
 					r: 10,
-					cx: 70,
+					cx: 55,
 					cy: 20
 			},
 			{
 					type: 'entity',
 					text: 'person: Al Pacino',
 					r: 10,
-					cx: 90,
+					cx: 80,
 					cy: 20
 			},
 			{
 					type: 'relationship',
 					text: 'cast',
 					r: 8,
-					cx: 40,
-					cy: 25
+					cx: 37,
+					cy: 35
 			},
 			{
 					type: 'relationship',
