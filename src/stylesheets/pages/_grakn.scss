@@ -1,7 +1,7 @@
 .grakn-page {
   padding-top: $navHeight;
   &__splash {
-    height: 800px;  
+    height: 800px;
     width: 100%;
     background-image: url('/assets/svg/grakn-splash.svg');
     background-repeat: no-repeat;
@@ -155,8 +155,8 @@
         flex-direction: column;
       }
       > div {
-        display: block; 
-        width: calc(50% - 20px);  
+        display: block;
+        width: calc(50% - 20px);
         margin: 10px;
         @media screen and (max-width: $smallScreen) {
           max-width: 500px;
@@ -174,7 +174,7 @@
       background-color: white;
       border: solid 1px #e6e8f4;
       border-radius: 5px;
-  
+
       > div {
         display: inline-block;
         vertical-align: middle;
@@ -368,7 +368,7 @@
         &--green {
           border: solid 1px #a3edcc;
         }
-        
+
         &__img {
           position: absolute;
           top: -30px;
@@ -524,20 +524,20 @@
                 content: '.';
                 visibility: hidden;
             }
-    
+
           }
           &__fake-btn:nth-child(1) {
             background-color: #f75e62;
             border: none;
-          } 
+          }
           &__fake-btn:nth-child(2) {
             background-color: #fece60;
             border: none;
-          } 
+          }
           &__fake-btn:nth-child(3) {
             background-color: #46cd90;
             border: none;
-          } 
+          }
           &__file {
             display: inline-block;
             text-align: center;
@@ -570,10 +570,10 @@
           height: calc(100% - 65px);
           background-color: #2f3544;
           color: white;
-          
+
           > pre {
             margin: 0;
-            padding: 0 15px 20px 30px;
+            padding: 0 10px 20px 10px;
             box-sizing: border-box;
             display: inline-block;
             vertical-align: top;
