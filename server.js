@@ -51,7 +51,7 @@ app.use(function(req, res, next) {
     if ('OPTIONS' == req.method) {
       res.header("Access-Control-Allow-Origin", req.headers.origin);
       res.header("Access-Control-Allow-Headers", "Grakn-Origin, X-Requested-With, Content-Type, Accept");
-      res.header("Access-Control-Allow-Methods", "POST, GET");      
+      res.header("Access-Control-Allow-Methods", "POST, GET");
     }
     next();
 });
@@ -202,16 +202,16 @@ app.post('/invite/all', function(req, res) {
     handleGraknForumInvite(req.body.email);
 
     res.header("Access-Control-Allow-Origin", "*");
-    res.status(200).send(JSON.stringify({ msg: "success" }));    
+    res.status(200).send(JSON.stringify({ msg: "success" }));
 });
 
 
 app.post('/api/support', function(req, res) {
     res.header("Access-Control-Allow-Origin", "*");
     const mailOptions = {
-        from: mailman, 
-        to: 'enterprise@grakn.ai', 
-        subject: 'Support Form Request', 
+        from: mailman,
+        to: 'enterprise@grakn.ai',
+        subject: 'Support Form Request',
         replyTo: req.body.email,
         text: JSON.stringify(req.body),
         html:
@@ -232,7 +232,7 @@ app.post('/api/support', function(req, res) {
             console.log(err);
             res.status(500).send(JSON.stringify({msg: "Form submission failed! Try Again.."}));
         }
-        res.status(200).send(JSON.stringify({ msg: "Form Submitted Successfully," }));        
+        res.status(200).send(JSON.stringify({ msg: "Form Submitted Successfully," }));
     });
 });
 
@@ -280,6 +280,10 @@ app.get('/overview', (req, res) => {
 
 app.get('/install', (req, res) => {
     res.redirect(301, `${docsBase}/docs/get-started/setup-guide.html`);
+});
+
+app.get('/grakn-kbms', (req, res) => {
+    res.redirect(301, `/grakn-kgms`);
 });
 
 // Render Sitemap
@@ -331,7 +335,7 @@ app.get('*', (req, res) => {
 function loadRouteDependencies(location, store) {
     // matchRoutes from 'react-router-config' handles this nicely
     const currentRoute = matchRoutes(routeBank, location);
-  
+
     const need = currentRoute.map(({ route, match }) => {
       // once the route is matched, iterate through each component
       // looking for a `static loadData()` method
@@ -434,7 +438,7 @@ function renderFullPage(html, preloadedState, helmet) {
                 a.appendChild(r);
             })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
             </script>
-            <!-- End of Hotjar Tracking Code --> 
+            <!-- End of Hotjar Tracking Code -->
             <!-- Start of HubSpot Embed Code -->
             <script type="text/javascript" id="hs-script-loader" async defer src="//js.hs-scripts.com/4332244.js"></script>
             <!-- End of HubSpot Embed Code -->
