@@ -2,24 +2,9 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import Testimonials from 'components/Testimonials';
 import SupportForm from 'components/SupportForm';
-
+import { connect } from 'react-redux';
 const zenscroll = require('zenscroll');
 const graknRoutes = require('config/graknRoutes');
-
-const comparisson = [
-  { item: 'Access to Grakn Community', advance: 'true', premium: 'true'},
-  { item: 'Support hours', advance: '24x7', premium: '10x5'},
-  { item: 'Response time', advance: '1 business day', premium: '1 business day'},
-  { item: 'Urgent ticket SLA', advance: '2 hours', premium: '2 hours'},
-  { item: 'Priority queueing', advance: 'true', premium: 'true'},
-  { item: 'Direct access to our engineers', advance: 'true', premium: 'true'},
-  { item: 'Release upgrades', advance: 'true', premium: 'true'},
-  { item: 'Bug Patches', advance: 'true', premium: 'true'},
-  { item: 'Hot fixes and bug escalation', advance: 'true', premium: 'false'},
-  { item: 'Architecture and performance reviews', advance: 'true', premium: 'false'},
-  { item: 'Migration and capacity Planning', advance: 'true', premium: 'false'},
-  { item: 'Launch day assistance', advance: 'true', premium: 'false'}
-];
 
 class SupportPage extends Component {
   constructor(props) {
@@ -29,7 +14,7 @@ class SupportPage extends Component {
     this.scroll = this.scroll.bind(this);
   }
 
-  renderTable() {
+  renderTable(comparisson) {
     return (
       <div className="support-page__comparisson__table">
         <div className="support-page__comparisson__table__header">
@@ -66,7 +51,7 @@ class SupportPage extends Component {
     )
   }
 
-  renderTableMobile()  {
+  renderTableMobile(comparisson)  {
     return (
       <div className="support-page__comparisson__table__mobile">
       {
@@ -150,8 +135,8 @@ class SupportPage extends Component {
           <img src="/assets/img/support-curve.png" alt="support comparisson background" />
           <div className="support-page__comparisson__container container section__container">
             <span className="support-page__comparisson__header">Whatever stage and size of your company is, we got a support plan that fits your team</span>
-            {this.renderTable()}
-            {this.renderTableMobile()}
+            {this.renderTable(this.props.supportTable.sort((a,b) => a.sort - b.sort))}
+            {this.renderTableMobile(this.props.supportTable.sort((a,b) => a.sort - b.sort))}
             <span className="button button--red" onClick={() => this.scroll()}>Contact sales to upgrade your support plan</span>
           </div>
         </section>
@@ -168,4 +153,9 @@ class SupportPage extends Component {
 }
 
 
-export default SupportPage;
+const mapStateToProps = (state) => (
+  {
+    supportTable: state.supportTable.items
+  }
+)
+export default connect(mapStateToProps)(SupportPage);
