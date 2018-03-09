@@ -5,6 +5,12 @@ import { startCase } from 'lodash';
 import ReactGA from 'react-ga';
 import { Helmet } from 'react-helmet';
 import { fetchDownloads } from 'actions/downloads';
+import { fetchDeployment } from 'actions/deployment';
+import { fetchTestimonials } from 'actions/testimonials';
+import { fetchKbmsfeatures } from 'actions/kbmsfeatures';
+import { fetchSupporttable } from 'actions/supportTable';
+import { fetchKbmstable } from 'actions/kbmsTable';
+import { fetchWorkbasetable } from 'actions/workbaseTable';
 import routeOptions from './routes';
 
 const metaDescription = {
@@ -46,6 +52,12 @@ class Main extends Component {
     ReactGA.initialize('UA-72414051-1');
     ReactGA.pageview(this.props.location.pathname);
     this.props.onFetchDownloads();
+    this.props.onFetchTestimonials();
+    this.props.onFetchDeployment();
+    this.props.onFetchKbmsfeatures();
+    this.props.onFetchSupporttable();
+    this.props.onFetchWorkbasetable();
+    this.props.onFetchKbmstable();
   }
 
   componentDidUpdate(oldProps) {
@@ -103,7 +115,14 @@ class Main extends Component {
 
 const mapDispatchToProps = (dispatch) => (
   {
-    onFetchDownloads: () => dispatch(fetchDownloads())
+    onFetchDownloads: () => dispatch(fetchDownloads()),
+    onFetchTestimonials: () => dispatch(fetchTestimonials()),
+    onFetchDeployment: () => dispatch(fetchDeployment()),
+    onFetchKbmsfeatures: () => dispatch(fetchKbmsfeatures()),
+    onFetchSupporttable: () => dispatch(fetchSupporttable()),
+    onFetchWorkbasetable: () => dispatch(fetchWorkbasetable()),
+    onFetchKbmstable: () => dispatch(fetchKbmstable()),
+
   }
 )
 

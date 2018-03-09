@@ -6,6 +6,12 @@ import team from './team';
 import downloads from './downloads';
 import events from './events';
 import meetups from './meetups';
+import testimonials from './testimonials';
+import kbmsfeatures from './kbmsfeatures';
+import deployment from './deployment';
+import supportTable from './supportTable';
+import kbmsTable from './kbmsTable';
+import workbaseTable from './workbaseTable';
 
 export default combineReducers({
   browser: responsiveStateReducer,
@@ -14,5 +20,11 @@ export default combineReducers({
   team,
   downloads,
   events,
-  meetups
+  meetups,
+  testimonials,
+  kbmsfeatures,
+  deployment,
+  supportTable,
+  kbmsTable,
+  workbaseTable
 })
