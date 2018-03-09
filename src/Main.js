@@ -53,11 +53,11 @@ class Main extends Component {
     ReactGA.pageview(this.props.location.pathname);
     this.props.onFetchDownloads();
     this.props.onFetchTestimonials();
-    this.props.onFetchDeployment();
-    this.props.onFetchKbmsfeatures();
-    this.props.onFetchSupporttable();
-    this.props.onFetchWorkbasetable();
-    this.props.onFetchKbmstable();
+    // this.props.onFetchDeployment();
+    // this.props.onFetchKbmsfeatures();
+    // this.props.onFetchSupporttable();
+    // this.props.onFetchWorkbasetable();
+    // this.props.onFetchKbmstable();
   }
 
   componentDidUpdate(oldProps) {
