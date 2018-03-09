@@ -29,31 +29,6 @@ const languageDrivers = [
   }
 ];
 
-const KBMScomparisson = [
-  { item: 'Dedicated IDE (Workbase)', advance: 'true', premium: 'true'},
-  { item: 'Scalable Storage', advance: 'true', premium: 'true'},
-  { item: 'Elastic Throughput', advance: 'true', premium: 'true'},
-  { item: 'Cluster Management', advance: 'true', premium: 'true'},
-  { item: 'Perfomance Monitoring', advance: 'true', premium: 'true'},
-  { item: 'Secured Authentication', advance: 'true', premium: 'true'},
-  { item: 'Backup and Recovery', advance: 'true', premium: 'false'},
-  { item: 'Advance Migration Tools', advance: 'true', premium: 'false'},
-  { item: 'Custom Access Rights', advance: 'true', premium: 'false'},
-  { item: 'Full-text Search', advance: 'true', premium: 'false'},
-  { item: 'Support Hours', advance: '24x7', premium: '10x7'},
-  { item: 'Response Times', advance: 'Within 1 Business Day', premium: 'Within 1 Business Day'},
-  { item: 'Critical ticket SLA', advance: '2 Hours', premium: '2 Hours'},
-];
-
-const WorkbaseComparisson = [
-  { item: 'Visual Schema Designer', advance: 'true', premium: 'true'},
-  { item: 'Query Visualisation & Development', advance: 'true', premium: 'true'},
-  { item: 'Database Migration Tools', advance: 'true', premium: 'false'},
-  { item: 'User Management Portal', advance: 'true', premium: 'false'},
-  { item: 'Cluster Performance Monitoring', advance: 'true', premium: 'false'},
-  { item: 'Cluster Administration', advance: 'true', premium: 'false'},
-]
-
 class DownloadCentrePage extends Component {
   constructor(props) {
     super(props);
@@ -307,8 +282,8 @@ class DownloadCentrePage extends Component {
                     Grakn Enterprise KBMS is the Knowledge Base Management System designed to scale with your business.<br />
                     <Link to="/grakn-kbms" className="animated__link animated__link--purple"> Learn more</Link>
                   </span>
-                  {this.renderTable(KBMScomparisson)}
-                  {this.renderTableMobile(KBMScomparisson)}
+                  {this.renderTable(this.props.kbmsTable.sort((a,b) => a.sort - b.sort))}
+                  {this.renderTableMobile(this.props.kbmsTable.sort((a,b) => a.sort - b.sort))}
                   <span className="button button--red downloads__splash__main__tabpanel__content__button" onClick={() => this.scroll()}>Get in touch</span>
                 </div>
               </TabPanel>
@@ -318,8 +293,8 @@ class DownloadCentrePage extends Component {
                 Workbase is an Integrated Development Environment to perform knowledge engineering at scale, and control everything in your knowledge base from development to production.
                 <Link to="/grakn-kbms" className="animated__link animated__link--purple"> Learn more</Link>
                 </span>
-                {this.renderTable(WorkbaseComparisson, "For Grakn Core", "For Grakn KBMS")}
-                {this.renderTableMobile(WorkbaseComparisson, "For Grakn Core", "For Grakn KBMS")}
+                {this.renderTable(this.props.workbaseTable.sort((a,b) => a.sort - b.sort), "For Grakn Core", "For Grakn KBMS")}
+                {this.renderTableMobile(this.props.workbaseTable.sort((a,b) => a.sort - b.sort), "For Grakn Core", "For Grakn KBMS")}
                 <span className="button button--red downloads__splash__main__tabpanel__content__button" onClick={() => this.scroll()}>Get in touch</span>
               </div>
               </TabPanel>
@@ -417,7 +392,9 @@ class DownloadCentrePage extends Component {
 
 const mapStateToProps = (state) => (
   {
-    downloads: state.downloads.items
+    downloads: state.downloads.items,
+    workbaseTable: state.workbaseTable.items,
+    kbmsTable: state.kbmsTable.items,
   }
 )
 export default connect(mapStateToProps)(DownloadCentrePage);
