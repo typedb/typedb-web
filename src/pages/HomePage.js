@@ -10,15 +10,6 @@ import graknRoutes from 'config/graknRoutes';
 import KBMSFeatures from 'components/KBMSFeatures';
 import ReactGA from 'react-ga';
 
-const deploymentOptions = [
-  { name: 'Google Cloud Platform', url: '/assets/img/google-cloud.png'},
-  //{ name: 'Oracle', url: '/assets/img/oracle.png'},
-  //{ name: 'IBM Bluemix', url: '/assets/img/IBM.png'},
-  //{ name: 'Microsoft Azure', url: '/assets/img/azure.png'},
-  { name: 'premise', url: '/assets/img/on_premise.png'},
-  { name: 'Amazon Web Services', url: '/assets/img/amazon.png'}
-];
-
 class HomePage extends Component {
   constructor(props) {
     super(props);
@@ -218,11 +209,11 @@ class HomePage extends Component {
             <div className="home__deployment__items--desktop">
               <div className="home__deployment__items--desktop__row">
               {
-                deploymentOptions.slice(0,3).map((item, index) => {
+                this.props.deployment.sort((a,b) => a.sort - b.sort).map((item, index) => {
                   return (
                     <Link to="/deployment" className="home__deployment__items__item" key={`${index}--develop`}
                     >
-                      <img src={item.url} alt={item.name} />
+                      <img src={item.img} alt={item.name} />
                     </Link>
                   )
                 })
@@ -379,7 +370,8 @@ class HomePage extends Component {
 
 const mapStateToProps = (state) => (
   {
-    downloads: state.downloads.items
+    downloads: state.downloads.items,
+    deployment: state.deployment.items,
   }
 );
 export default connect(mapStateToProps)(HomePage);

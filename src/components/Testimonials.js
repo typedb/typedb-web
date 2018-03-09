@@ -27,7 +27,7 @@ const Testimonials = ({ buttonCallback, hidden, testimonials }) => (
         testimonials.length > 0?
         <PagingComponent className="testimonials__items">
         {
-          testimonials.map((item, index) => {
+          testimonials.sort((a,b) => a.sort - b.sort).map((item, index) => {
             return (
               <div className="testimonials__item" key={`${index}__testimonals`}>
                 <div className="testimonials__item__text">{item.review}</div>
