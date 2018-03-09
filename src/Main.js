@@ -54,7 +54,7 @@ class Main extends Component {
     this.props.onFetchDownloads();
     this.props.onFetchTestimonials();
     this.props.onFetchDeployment();
-    // this.props.onFetchKbmsfeatures();
+    this.props.onFetchKbmsfeatures();
     this.props.onFetchSupporttable();
     this.props.onFetchWorkbasetable();
     this.props.onFetchKbmstable();

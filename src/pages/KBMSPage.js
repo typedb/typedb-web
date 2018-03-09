@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import classNames from 'classnames';
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import SupportFormModal from 'components/SupportFormModal';
 import ReactGA from 'react-ga';
@@ -64,162 +66,73 @@ class KBMSPage extends Component {
             <span className="kbms-page__features__header">
             Simplify your data architecture and scale your knowledge base into production
             </span>
-            <div className="kbms-page__features__col">
-    
-              <div className="kbms-page__features__col__item kbms-page__features__col__item--purple">
-                <div className="kbms-page__features__col__item__img">
-                <img src="/assets/svg/kbms-storage.svg" alt="Scalable Storage" />
-                </div>
-                <div className="kbms-page__features__col__item__details">
-                  <span className="kbms-page__features__col__item__details__header">Scalabale Storage</span>
-                  <div className="kbms-page__features__col__item__details__text">
-                  A scalable system designed to be partitioned and replicated over a network of distributed machines
-                  </div>
-                </div>
+            {
+              this.props.kbmsfeatures.length > 0?
+              <div className="kbms-page__features__col">
+                  {
+                    this.props.kbmsfeatures.sort((a,b) => a.sort - b.sort).slice(0, Math.ceil(this.props.kbmsfeatures.length / 2) ).map((item, index) => {
+                      const parentClass = classNames({
+                        'kbms-page__features__col__item': true,
+                        'kbms-page__features__col__item--purple': index == 0,
+                        'kbms-page__features__col__item--red': index == 1,
+                        'kbms-page__features__col__item--yellow': index == 2,
+                        'kbms-page__features__col__item--green': index == 3,
+                        'kbms-page__features__col__item--blue': index == 4,
+                      });
+                      return (
+                        <div className={parentClass} key={`${item.name}__key__kbms`}>
+                          <div className="kbms-page__features__col__item__img">
+                          <img src={item.img} alt={item.name} />
+                          </div>
+                          <div className="kbms-page__features__col__item__details">
+                            <span className="kbms-page__features__col__item__details__header">{item.name}</span>
+                            <div className="kbms-page__features__col__item__details__text">
+                            {item.description}
+                            </div>
+                          </div>
+                        </div>
+                      )
+                    })
+                  }
               </div>
-
-              <div className="kbms-page__features__col__item kbms-page__features__col__item--red">
-              <div className="kbms-page__features__col__item__img">
-              <img src="/assets/svg/kbms-cluster.svg" alt="Cluster Management" />
-              </div>
-              <div className="kbms-page__features__col__item__details">
-                <span className="kbms-page__features__col__item__details__header">Cluster Management</span>
-                <div className="kbms-page__features__col__item__details__text">
-                Easily deploy and scale your database with tools that automate the provisioning of your cluster
-                </div>
-              </div>
-            </div>
-
-             { // <div className="kbms-page__features__col__item kbms-page__features__col__item--red">
-              //   <div className="kbms-page__features__col__item__img">
-              //     <img src="/assets/svg/kbms-schema.svg" alt="Extensible Schema" />
-              //   </div>
-              //   <div className="kbms-page__features__col__item__details">
-              //     <span className="kbms-page__features__col__item__details__header">Extensible Schema</span>
-              //     <div className="kbms-page__features__col__item__details__text">
-              //     Schema definition can be updated and extended flexibly, during runtime, without any need for database migration              
-              //     </div>
-              //   </div>
-              // </div>
-              }
-              <div className="kbms-page__features__col__item kbms-page__features__col__item--yellow">
-                <div className="kbms-page__features__col__item__img">
-                  <img src="/assets/svg/kbms-secured.svg" alt="Secured Authentication" />
-                </div>
-                <div className="kbms-page__features__col__item__details">
-                  <span className="kbms-page__features__col__item__details__header">Secured Authentication</span>
-                  <div className="kbms-page__features__col__item__details__text">
-                  Ensuring only authenticated access and appropriately privileged users are allowed to access the database
-                  </div>
-                </div>
-              </div>
-              
-              <div className="kbms-page__features__col__item kbms-page__features__col__item--green">
-                <div className="kbms-page__features__col__item__img">
-                <img src="/assets/svg/kbms-tools.svg" alt="Migration Tools" />
-                </div>
-                <div className="kbms-page__features__col__item__details">
-                  <span className="kbms-page__features__col__item__details__header">Migration Tools</span>
-                  <div className="kbms-page__features__col__item__details__text">
-                  Tools to help migrate large datasets from various formats and database sources, easily and quickly
-                  </div>
-                </div>
-              </div>
-
-              {
-                /* <div className="kbms-page__features__col__item kbms-page__features__col__item--green">
-                <div className="kbms-page__features__col__item__img">
-                <img src="/assets/svg/kbms-IDE.svg" alt="Dedicated IDE" />
-                </div>
-                <div className="kbms-page__features__col__item__details">
-                  <span className="kbms-page__features__col__item__details__header">Dedicated IDE</span>
-                  <div className="kbms-page__features__col__item__details__text">
-                  An integrated development environment for knowledge engineering and modelling at scale              
-                  </div>
-                </div>
-              </div> */
+              :
+              null
             }
-            
-            <div className="kbms-page__features__col__item kbms-page__features__col__item--blue">
-              <div className="kbms-page__features__col__item__img">
-              <img src="/assets/svg/kbms-search.svg" alt="Full-text Search" />
-              </div>
-              <div className="kbms-page__features__col__item__details">
-                <span className="kbms-page__features__col__item__details__header">Full-text Search</span>
-                <div className="kbms-page__features__col__item__details__text">
-                Advanced full-text search capabilities, by enabling powerful string matching techniques over any body of text 
-                </div>
-              </div>
-            </div>
-    
-            </div>
             <div className="kbms-page__features__col__divider">
               <img src="/assets/svg/kbms-divider.svg" alt="Divider" />
             </div>
-            <div className="kbms-page__features__col">
-            
-            <div className="kbms-page__features__col__item kbms-page__features__col__item--purple">
-                <div className="kbms-page__features__col__item__img">
-                <img src="/assets/svg/kbms-elastic.svg" alt="Elastic Throughput" />
-                </div>
-                <div className="kbms-page__features__col__item__details">
-                  <span className="kbms-page__features__col__item__details__header">Elastic Throughput</span>
-                  <div className="kbms-page__features__col__item__details__text">
-                  Read and write throughput scales linearly as new machines are added to the Grakn cluster, without any downtime
-                  </div>
-                </div>
+            {
+              this.props.kbmsfeatures.length > 1?
+              <div className="kbms-page__features__col">
+              {
+                this.props.kbmsfeatures.sort((a,b) => a.sort - b.sort).slice(Math.ceil(this.props.kbmsfeatures.length / 2) ).map((item, index) => {
+                  const parentClass = classNames({
+                    'kbms-page__features__col__item': true,
+                    'kbms-page__features__col__item--purple': index == 0,
+                    'kbms-page__features__col__item--red': index == 1,
+                    'kbms-page__features__col__item--yellow': index == 2,
+                    'kbms-page__features__col__item--green': index == 3,
+                    'kbms-page__features__col__item--blue': index == 4,
+                  });
+                  return (
+                    <div className={parentClass} key={`${item.name}__key__kbms`}>
+                      <div className="kbms-page__features__col__item__img">
+                      <img src={item.img} alt={item.name} />
+                      </div>
+                      <div className="kbms-page__features__col__item__details">
+                        <span className="kbms-page__features__col__item__details__header">{item.name}</span>
+                        <div className="kbms-page__features__col__item__details__text">
+                        {item.description}
+                        </div>
+                      </div>
+                    </div>
+                  )
+                })
+              }
               </div>
-    
-    
-              <div className="kbms-page__features__col__item kbms-page__features__col__item--red">
-                <div className="kbms-page__features__col__item__img">
-                <img src="/assets/svg/kbms-performance.svg" alt="Performance Monitoring" />
-                </div>
-                <div className="kbms-page__features__col__item__details">
-                  <span className="kbms-page__features__col__item__details__header">Performance Monitoring</span>
-                  <div className="kbms-page__features__col__item__details__text">
-                  Monitor your database performance in real-time through a dedicated and configurable dashboard
-                  </div>
-                </div>
-              </div>
-
-              <div className="kbms-page__features__col__item kbms-page__features__col__item--yellow">
-                <div className="kbms-page__features__col__item__img">
-                <img src="/assets/svg/kbms-access.svg" alt="Custom Access" />
-                </div>
-                <div className="kbms-page__features__col__item__details">
-                  <span className="kbms-page__features__col__item__details__header">Custom Access Rights</span>
-                  <div className="kbms-page__features__col__item__details__text">
-                  Granular restrictions on user access rights to different groups of datasets within the database, as defined by the schema                   </div>
-                </div>
-              </div>
-
-              <div className="kbms-page__features__col__item kbms-page__features__col__item--green">
-                <div className="kbms-page__features__col__item__img">
-                <img src="/assets/svg/kbms-backup.svg" alt="Backup" />
-                </div>
-                <div className="kbms-page__features__col__item__details">
-                  <span className="kbms-page__features__col__item__details__header">Backup and Recovery</span>
-                  <div className="kbms-page__features__col__item__details__text">
-                  Protect your database from data loss through automatic periodic backups and reconstruction tools 
-                  </div>
-                </div>
-              </div>
-    
-    
-              <div className="kbms-page__features__col__item kbms-page__features__col__item--blue">
-                <div className="kbms-page__features__col__item__img">
-                <img src="/assets/svg/kbms-enterprise.svg" alt="Enterprise Grade Support" />
-                </div>
-                <div className="kbms-page__features__col__item__details">
-                  <span className="kbms-page__features__col__item__details__header">Enterprise Grade Support</span>
-                  <div className="kbms-page__features__col__item__details__text">
-                  Access to advance support SLA with faster response time and problem resolution. <Link to="/support" className="animated__link animated__link--purple">Learn more</Link>
-                  </div>
-                </div>
-              </div>
-    
-            </div>
+              :
+              null
+            }        
             <div className="kbms-page__features__buttons">
               <Link className="button button--red" to={{pathname: "/download", hash:'#kbms'}} onClick={() => {
                 ReactGA.initialize('UA-72414051-1');
@@ -245,4 +158,10 @@ class KBMSPage extends Component {
   }
 }
 
-export default KBMSPage;
+const mapStateToProps = (state) => (
+  {
+    kbmsfeatures: state.kbmsfeatures.items
+  }
+)
+
+export default connect(mapStateToProps)(KBMSPage);
