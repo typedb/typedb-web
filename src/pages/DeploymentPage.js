@@ -1,6 +1,6 @@
 import React , { Component } from 'react';
 import { Link } from 'react-router-dom';
-import KBMSFeatures from 'components/KBMSFeatures';
+import KGMSFeatures from 'components/KGMSFeatures';
 import SupportForm from 'components/SupportForm';
 import ReactGA from 'react-ga';
 
@@ -23,8 +23,8 @@ class DeploymentPage extends Component {
         <section className="deployment-page__splash">
           <div className="deployment-page__splash__container container section__container">
             <div className="deployment-page__splash__text">
-              <h1 className="deployment-page__splash__text__header">Grakn KBMS in the <strong>Cloud</strong> and <strong>On-Premise</strong></h1>
-              <span className="deployment-page__splash__text__tag">Easily deploy and manage Grakn KBMS on one machine, or a thousand-node cluster</span>
+              <h1 className="deployment-page__splash__text__header">Grakn KGMS in the <strong>Cloud</strong> and <strong>On-Premise</strong></h1>
+              <span className="deployment-page__splash__text__tag">Easily deploy and manage Grakn KGMS on one machine, or a thousand-node cluster</span>
             </div>
           </div>
         </section>
@@ -32,17 +32,17 @@ class DeploymentPage extends Component {
           <div className="deployment-page__info__container container section__container">
             <div className="deployment-page__info__details">
               <div className="deployment-page__info__details__text">
-              <strong>Grakn KBMS</strong> is the enterprise Knowledge Base Management System designed to scale with your enterprise. Whether you have a growing dataset, application workload, or user request, the Grakn KBMS will scale with your business. With all the tools you need to take you from development to production and scale, Grakn KBMS allows you to simplify your data architecture while maintaining full control over your knowledge base.
+              <strong>Grakn KGMS</strong> is the enterprise Knowledge Base Management System designed to scale with your enterprise. Whether you have a growing dataset, application workload, or user request, the Grakn KGMS will scale with your business. With all the tools you need to take you from development to production and scale, Grakn KGMS allows you to simplify your data architecture while maintaining full control over your knowledge base.
               </div>
               <div className="deployment-page__info__details__buttons">
-                <Link to="/grakn-kbms" className="button button--red deployment-page__info__details__buttons__item" onClick={() => {
+                <Link to="/grakn-kgms" className="button button--red deployment-page__info__details__buttons__item" onClick={() => {
                   ReactGA.initialize('UA-72414051-1');
                   ReactGA.event({
-                    category: 'Deployment_Info_LearnMore_KBMSPage',
+                    category: 'Deployment_Info_LearnMore_KGMSPage',
                     action: 'Button Click',
                   });
-                }}>Learn about Grakn KBMS</Link>
-                <Link to={{pathname: "/download", hash:'#kbms'}} className="button button--transparent deployment-page__info__details__button__item"
+                }}>Learn about Grakn KGMS</Link>
+                <Link to={{pathname: "/download", hash:'#kgms'}} className="button button--transparent deployment-page__info__details__button__item"
                 onClick={() => {
                   ReactGA.initialize('UA-72414051-1');
                   ReactGA.event({
@@ -58,11 +58,11 @@ class DeploymentPage extends Component {
           </div>
         </section>
 
-        <section className="deployment-page__kbms">
-          <img src="/assets/img/deployment-kbms-bg.png" alt="KBMS Background" />
-          <div className="deployment-page__kbms__container container section__container">
-            <KBMSFeatures />
-            <div className="deployment-page__kbms__buttons">
+        <section className="deployment-page__kgms">
+          <img src="/assets/img/deployment-kgms-bg.png" alt="KGMS Background" />
+          <div className="deployment-page__kgms__container container section__container">
+            <KGMSFeatures />
+            <div className="deployment-page__kgms__buttons">
               <a href="" className="button button--transparent">IN THE CLOUD</a>
               <a href="" className="button button--red">ON PREMISE</a>
             </div>
@@ -71,7 +71,7 @@ class DeploymentPage extends Component {
 
         <section className="deployment-page__coming">
           <div className="deployment-page__coming__container container section__container">
-            <span className="deployment-page__coming__header"><strong>Grakn KBMS</strong> in the Cloud is Coming Soon!</span>
+            <span className="deployment-page__coming__header"><strong>Grakn KGMS</strong> in the Cloud is Coming Soon!</span>
             <img src="assets/img/logo.png" alt="logo" />
             <span className="button button--red " onClick={() => this.scroll()}>Get in touch</span>                  
           </div>
@@ -79,8 +79,8 @@ class DeploymentPage extends Component {
 
         <section className="support-form__section" ref={(elem) => this.supportform = elem}>
           <div className="support-form__section__container container section__container">
-            <span className="support-form__section__header support-form__section__header--with-tag">Get Grakn KBMS for the cloud or on-premise</span>
-            <span className="support-form__section__tag">Get in touch with our team for KBMS Enterprise License and we’ll help you get everything set up.</span>
+            <span className="support-form__section__header support-form__section__header--with-tag">Get Grakn KGMS for the cloud or on-premise</span>
+            <span className="support-form__section__tag">Get in touch with our team for KGMS Enterprise License and we’ll help you get everything set up.</span>
             <SupportForm />
           </div>
         </section>

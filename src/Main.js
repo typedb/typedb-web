@@ -7,22 +7,22 @@ import { Helmet } from 'react-helmet';
 import { fetchDownloads } from 'actions/downloads';
 import { fetchDeployment } from 'actions/deployment';
 import { fetchTestimonials } from 'actions/testimonials';
-import { fetchKbmsfeatures } from 'actions/kbmsfeatures';
+import { fetchKgmsfeatures } from 'actions/kgmsfeatures';
 import { fetchSupporttable } from 'actions/supportTable';
-import { fetchKbmstable } from 'actions/kbmsTable';
+import { fetchKgmstable } from 'actions/kgmsTable';
 import { fetchWorkbasetable } from 'actions/workbaseTable';
 import routeOptions from './routes';
 
 const metaDescription = {
 '/': "Grakn is a hyper-relational database for knowledge engineering. Rooted in Knowledge Representation and Automated Reasoning, Grakn provides the knowledge base foundation for intelligent/cognitive systems.",
 '/grakn-core':"Grakn is a hyper-relational database for knowledge engineering, and Graql is Grakn’s query language.",
-'/grakn-kbms':"Grakn Enterprise KBMS is the Knowledge Base Management System designed to scale with your business, and Workbase is the visual platform to control everything from development to production.",
-'/deployment':"Easily deploy and manage Grakn KBMS on one machine, or a thousand-node cluster.",
+'/grakn-kgms':"Grakn Enterprise KGMS is the Knowledge Base Management System designed to scale with your business, and Workbase is the visual platform to control everything from development to production.",
+'/deployment':"Easily deploy and manage Grakn KGMS on one machine, or a thousand-node cluster.",
 '/services':"For every step of your knowledge engineering journey, we provide professional services to help you achieve your development goals.",
 '/support':"From development to production, we can support you every step of the way, so you can focus on building your application and your business",
 '/careers':"We're a team of talented engineers, and we're building the next generation database for cognitive and intelligent systems. Join us.",
 '/community':"Get in touch with Grakn developers and join our global community",
-'/download': 'Download Grakn Core, Grakn KBMS or Grakn Workbase.',
+'/download': 'Download Grakn Core, Grakn KGMS or Grakn Workbase.',
 '/about': "Learn more about the Grakn Team",
 '/slack': "Join the Grakn Slack Channel",
 '/privacy-policy': "Grakn's Privacy Policy",
@@ -31,7 +31,7 @@ const metaDescription = {
 const ogImages = {
 '/': "/assets/img/og/og-home-min.png",
 '/grakn-core':"/assets/img/og/og-core-min.png",
-'/grakn-kbms':"/assets/img/og/og-kbms-min.png",
+'/grakn-kgms':"/assets/img/og/og-kgms-min.png",
 '/deployment':"/assets/img/og/og-deploy-min.png",
 '/services':"/assets/img/og/og-services-min.png",
 '/support':"/assets/img/og/og-support-min.png",
@@ -54,10 +54,10 @@ class Main extends Component {
     this.props.onFetchDownloads();
     this.props.onFetchTestimonials();
     this.props.onFetchDeployment();
-    this.props.onFetchKbmsfeatures();
+    this.props.onFetchKgmsfeatures();
     this.props.onFetchSupporttable();
     this.props.onFetchWorkbasetable();
-    this.props.onFetchKbmstable();
+    this.props.onFetchKgmstable();
   }
 
   componentDidUpdate(oldProps) {
@@ -66,14 +66,14 @@ class Main extends Component {
     }
   }
 
-  
+
   render() {
     let documentTitle = 'GRAKN.AI - The Database for AI';
     if (this.props.location.pathname !== '/') {
       documentTitle = `${startCase(this.props.location.pathname.substr(1))} | GRAKN.AI`;
     }
-    if (this.props.location.pathname === '/grakn-kbms') {
-      documentTitle = 'Grakn KBMS | GRAKN.AI';
+    if (this.props.location.pathname === '/grakn-kgms') {
+      documentTitle = 'Grakn KGMS | GRAKN.AI';
     }
     let routes = routeOptions[0].routes.map(({ path, component, exact }, i) => {
           return (<Route key={`ROUTE_${i}`} exact={exact} path={path} component={component} />)
@@ -118,10 +118,10 @@ const mapDispatchToProps = (dispatch) => (
     onFetchDownloads: () => dispatch(fetchDownloads()),
     onFetchTestimonials: () => dispatch(fetchTestimonials()),
     onFetchDeployment: () => dispatch(fetchDeployment()),
-    onFetchKbmsfeatures: () => dispatch(fetchKbmsfeatures()),
+    onFetchKgmsfeatures: () => dispatch(fetchKgmsfeatures()),
     onFetchSupporttable: () => dispatch(fetchSupporttable()),
     onFetchWorkbasetable: () => dispatch(fetchWorkbasetable()),
-    onFetchKbmstable: () => dispatch(fetchKbmstable()),
+    onFetchKgmstable: () => dispatch(fetchKgmstable()),
 
   }
 )

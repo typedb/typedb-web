@@ -11,9 +11,9 @@ export default {
   events: `${cmsBase}/events/rows${cmsAccessTokenTag}`,
   meetups: `${cmsBase}/meetups/rows${cmsAccessTokenTag}`,
   testimonials: `${cmsBase}/testimonials/rows${cmsAccessTokenTag}`,
-  kbmsfeatures: `${cmsBase}/kbmsfeatures/rows${cmsAccessTokenTag}`,
+  kgmsfeatures: `${cmsBase}/kbmsfeatures/rows${cmsAccessTokenTag}`,
   deployment: `${cmsBase}/deployment/rows${cmsAccessTokenTag}`,
   supporttable: `${cmsBase}/supporttable/rows${cmsAccessTokenTag}`,
-  kbmstable: `${cmsBase}/kbmstable/rows${cmsAccessTokenTag}`,
+  kgmstable: `${cmsBase}/kbmstable/rows${cmsAccessTokenTag}`,
   workbasetable: `${cmsBase}/workbasetable/rows${cmsAccessTokenTag}`
 };

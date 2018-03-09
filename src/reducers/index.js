@@ -7,10 +7,10 @@ import downloads from './downloads';
 import events from './events';
 import meetups from './meetups';
 import testimonials from './testimonials';
-import kbmsfeatures from './kbmsfeatures';
+import kgmsfeatures from './kgmsfeatures';
 import deployment from './deployment';
 import supportTable from './supportTable';
-import kbmsTable from './kbmsTable';
+import kgmsTable from './kgmsTable';
 import workbaseTable from './workbaseTable';
 
 export default combineReducers({
@@ -22,9 +22,9 @@ export default combineReducers({
   events,
   meetups,
   testimonials,
-  kbmsfeatures,
+  kgmsfeatures,
   deployment,
   supportTable,
-  kbmsTable,
+  kgmsTable,
   workbaseTable
 })

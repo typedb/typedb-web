@@ -7,7 +7,7 @@ import PagingComponent from 'components/PagingComponent';
 import SupportFormModal from 'components/SupportFormModal';
 import Testimonials from 'components/Testimonials';
 import graknRoutes from 'config/graknRoutes';
-import KBMSFeatures from 'components/KBMSFeatures';
+import KGMSFeatures from 'components/KGMSFeatures';
 import ReactGA from 'react-ga';
 
 class HomePage extends Component {
@@ -188,15 +188,15 @@ class HomePage extends Component {
           <img src="/assets/img/background_2.png" alt="background curved" />
           <div className="home__production__container container section__container">
             <span className="home__production__headline home__header container section__container">
-            Scale your enterprise knowledge base with Grakn <strong>KBMS</strong> and <strong>Workbase</strong>    
+            Scale your enterprise knowledge base with Grakn <strong>KGMS</strong> and <strong>Workbase</strong>    
             </span>
-            <KBMSFeatures />
+            <KGMSFeatures />
           </div>
-          <Link to="/grakn-kbms" className="button button--transparent home__production__button"
+          <Link to="/grakn-kgms" className="button button--transparent home__production__button"
           onClick={() => {
             ReactGA.initialize('UA-72414051-1');
             ReactGA.event({
-              category: 'Home_Carousel_LearnMore_KBMSPage',
+              category: 'Home_Carousel_LearnMore_KGMSPage',
               action: 'Button Click',
             });
           }}>Learn More</Link>      
@@ -204,7 +204,7 @@ class HomePage extends Component {
         <section className="home__deployment">
           <div className="home__deployment__container container section__container">
             <span className="home__deployment__headline home__header">
-            Deploy Grakn KBMS <strong>on-premise</strong>,<br />or in the <strong>cloud</strong>
+            Deploy Grakn KGMS <strong>on-premise</strong>,<br />or in the <strong>cloud</strong>
             </span>
             <div className="home__deployment__items--desktop">
               <div className="home__deployment__items--desktop__row">

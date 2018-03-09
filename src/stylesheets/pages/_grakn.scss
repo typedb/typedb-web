@@ -301,7 +301,7 @@
           margin: 0 auto;
           margin-top: 36px;
       }
-      &--kbms {
+      &--kgms {
         > img {
           margin-top: 20px;
         }
@@ -399,8 +399,8 @@
     }
   }
 
-  &__kbms {
-    background-image: url('/assets/img/grakn-kbms-bg.png');
+  &__kgms {
+    background-image: url('/assets/img/grakn-kgms-bg.png');
     background-repeat: no-repeat;
     background-size: cover;
     background-position: top center;

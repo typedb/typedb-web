@@ -145,16 +145,16 @@ const GraknPage = () => (
           </div>
         </div>
       </div>
-      <div className="grakn-page__kbms">
-        <div className="grakn-page__features__circle grakn-page__features__circle--kbms"><img src="/assets/svg/grakn-KBMS.svg" alt="Grakn KBMS" /></div>
-        <div className="grakn-page__kbms__container container section__container">
-          <span className="grakn-page__kbms__header">MEET GRAKN ENTERPRISE KBMS AND WORKBASE</span>
-          <span className="grakn-page__kbms__text">
+      <div className="grakn-page__kgms">
+        <div className="grakn-page__features__circle grakn-page__features__circle--kgms"><img src="/assets/svg/grakn-KGMS.svg" alt="Grakn KGMS" /></div>
+        <div className="grakn-page__kgms__container container section__container">
+          <span className="grakn-page__kgms__header">MEET GRAKN ENTERPRISE KGMS AND WORKBASE</span>
+          <span className="grakn-page__kgms__text">
           The enterprise knowledge base management system is designed to scale with the growth of your data and application workload, equipped with all the functionalities you need to deploy and operate in a production environment.          </span>
-          <Link to="/grakn-kbms" className="grakn-page__kbms__button button button--charcoal"onClick={() => {
+          <Link to="/grakn-kgms" className="grakn-page__kgms__button button button--charcoal"onClick={() => {
             ReactGA.initialize('UA-72414051-1');
             ReactGA.event({
-              category: 'Grakn_Enterprise_LearnMore_KBMSPage',
+              category: 'Grakn_Enterprise_LearnMore_KGMSPage',
               action: 'Button Click',
             });
           }}>Learn More</Link>

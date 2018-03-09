@@ -109,7 +109,7 @@ class SupportForm extends Component {
               <Select className="support-form__input support-form__input__select" value='' name='product' validations={[required]}>
                 <option value=''>Product</option>
                 <option value='core'>Grakn Core</option>
-                <option value='kbms'>Grakn KBMS</option>
+                <option value='kgms'>Grakn KGMS</option>
                 <option value='workbase'>Grakn Workbase</option>
                 <option value='services'>Professional Services</option>
               </Select>

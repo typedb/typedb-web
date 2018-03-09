@@ -152,7 +152,7 @@ class DownloadCentrePage extends Component {
 
   render() {
     let initialIndex = 0;
-    if (this.props.location.hash === "#kbms") {
+    if (this.props.location.hash === "#kgms") {
       initialIndex = 1;
     }
     if (this.props.location.hash === "#workbase") {
@@ -173,7 +173,7 @@ class DownloadCentrePage extends Component {
                   Grakn Core
                 </Tab>
                 <Tab className="downloads__splash__main__tablist__tab" selectedClassName="downloads__splash__main__tablist__tab--active">
-                  Grakn KBMS
+                  Grakn KGMS
                 </Tab>
                 <Tab className="downloads__splash__main__tablist__tab" selectedClassName="downloads__splash__main__tablist__tab--active">
                   Grakn Workbase
@@ -279,11 +279,11 @@ class DownloadCentrePage extends Component {
               <TabPanel className="downloads__splash__main__tabpanel">
                 <div className="downloads__splash__main__tabpanel__content">
                   <span className="downloads__splash__main__tabpanel__content__text">
-                    Grakn Enterprise KBMS is the Knowledge Base Management System designed to scale with your business.<br />
-                    <Link to="/grakn-kbms" className="animated__link animated__link--purple"> Learn more</Link>
+                    Grakn Enterprise KGMS is the Knowledge Base Management System designed to scale with your business.<br />
+                    <Link to="/grakn-kgms" className="animated__link animated__link--purple"> Learn more</Link>
                   </span>
-                  {this.renderTable(this.props.kbmsTable.sort((a,b) => a.sort - b.sort))}
-                  {this.renderTableMobile(this.props.kbmsTable.sort((a,b) => a.sort - b.sort))}
+                  {this.renderTable(this.props.kgmsTable.sort((a,b) => a.sort - b.sort))}
+                  {this.renderTableMobile(this.props.kgmsTable.sort((a,b) => a.sort - b.sort))}
                   <span className="button button--red downloads__splash__main__tabpanel__content__button" onClick={() => this.scroll()}>Get in touch</span>
                 </div>
               </TabPanel>
@@ -291,10 +291,10 @@ class DownloadCentrePage extends Component {
               <div className="downloads__splash__main__tabpanel__content">
                 <span className="downloads__splash__main__tabpanel__content__text">
                 Workbase is an Integrated Development Environment to perform knowledge engineering at scale, and control everything in your knowledge base from development to production.
-                <Link to="/grakn-kbms" className="animated__link animated__link--purple"> Learn more</Link>
+                <Link to="/grakn-kgms" className="animated__link animated__link--purple"> Learn more</Link>
                 </span>
-                {this.renderTable(this.props.workbaseTable.sort((a,b) => a.sort - b.sort), "For Grakn Core", "For Grakn KBMS")}
-                {this.renderTableMobile(this.props.workbaseTable.sort((a,b) => a.sort - b.sort), "For Grakn Core", "For Grakn KBMS")}
+                {this.renderTable(this.props.workbaseTable.sort((a,b) => a.sort - b.sort), "For Grakn Core", "For Grakn KGMS")}
+                {this.renderTableMobile(this.props.workbaseTable.sort((a,b) => a.sort - b.sort), "For Grakn Core", "For Grakn KGMS")}
                 <span className="button button--red downloads__splash__main__tabpanel__content__button" onClick={() => this.scroll()}>Get in touch</span>
               </div>
               </TabPanel>
@@ -394,7 +394,7 @@ const mapStateToProps = (state) => (
   {
     downloads: state.downloads.items,
     workbaseTable: state.workbaseTable.items,
-    kbmsTable: state.kbmsTable.items,
+    kgmsTable: state.kgmsTable.items,
   }
 )
 export default connect(mapStateToProps)(DownloadCentrePage);

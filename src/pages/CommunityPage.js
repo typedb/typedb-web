@@ -107,7 +107,7 @@ class CommunityPage extends Component {
         </section>
         <section className="community__fancy">
           <div className="container community__fancy__container">
-          <span className="kbms-page__features__header">
+          <span className="kgms-page__features__header">
             Join Grakn engineers<br/> around the world
           </span> 
           </div>
@@ -143,7 +143,7 @@ class CommunityPage extends Component {
         </section>
         <section className="community__events community__events--upcoming">
           <div className="community__events__container container section__container">
-          <span className="kbms-page__features__header">
+          <span className="kgms-page__features__header">
             Upcoming Events
           </span> 
           {
@@ -176,7 +176,7 @@ class CommunityPage extends Component {
         </section>
         <section className="community__events community__events--past">
           <div className="community__events__container container section__container">
-          <span className="kbms-page__features__header">
+          <span className="kgms-page__features__header">
             Past Events
           </span> 
           {

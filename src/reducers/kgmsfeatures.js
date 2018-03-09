@@ -1,17 +1,17 @@
-import { FETCH_KBMSFEATURES, RECEIVED_KBMSFEATURES } from 'actions/kbmsfeatures';
+import { FETCH_KGMSFEATURES, RECEIVED_KGMSFEATURES } from 'actions/kgmsfeatures';
 
 const initialState = {
   loading: false,
   items: []
 };
 
-export default function kbmsfeatures(state = initialState, action) {
+export default function kgmsfeatures(state = initialState, action) {
   switch (action.type) {
-    case FETCH_KBMSFEATURES:
+    case FETCH_KGMSFEATURES:
       return { ...state,
         loading: true
       }
-    case RECEIVED_KBMSFEATURES:
+    case RECEIVED_KGMSFEATURES:
       return {
         ...state,
         loading: false,

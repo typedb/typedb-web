@@ -2,7 +2,7 @@
 const graknRoutes = require('config/graknRoutes');
 
 export const internalRoutes =  [
-  'Services', 'Support', 'Grakn Core', 'Grakn KBMS & Workbase', 'Deployment', 'Community', 'About', 'Careers', 'Financial Services',
+  'Services', 'Support', 'Grakn Core', 'Grakn KGMS & Workbase', 'Deployment', 'Community', 'About', 'Careers', 'Financial Services',
   'Health & Life Sciences', 'Intelligent Bots', 'Semantic Search', 'Security', 'Download'
 ];
 
@@ -19,7 +19,7 @@ export const navRoutes = {
     type: 'multi',
     links: {
       'Grakn Core': '/grakn-core',
-      'Grakn KBMS & Workbase': '/grakn-kbms',
+      'Grakn KGMS & Workbase': '/grakn-kgms',
     }
   },
   Solutions: {

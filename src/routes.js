@@ -7,7 +7,7 @@ import ServicesPage from 'pages/ServicesPage';
 import SupportPage from 'pages/SupportPage';
 import GraknPage from 'pages/GraknPage';
 import DeploymentPage from 'pages/DeploymentPage';
-import KBMSPage from 'pages/KBMSPage';
+import KGMSPage from 'pages/KGMSPage';
 import NoPage from 'pages/NoPage';
 import ComingSoon from 'pages/ComingSoon';
 import {FinanceUseCasePage, HealthUseCasePage, SemanticUseCasePage, BotsUseCasePage, SecurityUseCasePage} from 'pages/UseCasePages';
@@ -68,8 +68,8 @@ export default [
                 exact: true
             },
             {
-                path: '/grakn-kbms',
-                component: KBMSPage,
+                path: '/grakn-kgms',
+                component: KGMSPage,
                 exact: true
             },
             {

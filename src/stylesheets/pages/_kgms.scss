@@ -1,17 +1,17 @@
-.kbms-page {
+.kgms-page {
   padding-top: $navHeight;
   &__splash {
     position: relative;
     height: 700px;
     width: 100%;
-    background-image: url('/assets/svg/kbms-splash.svg');
+    background-image: url('/assets/svg/kgms-splash.svg');
     background-repeat: no-repeat;
     background-size: cover;
     background-position: bottom;
     @media screen and (max-width: $smallScreen) {
       height: 450px;
     }
-    &__kbms {
+    &__kgms {
       max-width: 100%;
       position: absolute;
       bottom: -250px;
@@ -134,7 +134,7 @@
   }
   &__features {
     padding: 90px 0;
-    background-image: url('/assets/img/kbms-features-bg.png');
+    background-image: url('/assets/img/kgms-features-bg.png');
     background-repeat: no-repeat;
     background-size: cover;
     background-position: top;
