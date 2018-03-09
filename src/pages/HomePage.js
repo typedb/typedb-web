@@ -219,17 +219,6 @@ class HomePage extends Component {
                 })
               }
               </div>
-              <div className="home__deployment__items--desktop__row">
-              {
-                deploymentOptions.slice(3,).map((item, index) => {
-                  return (
-                    <div className="home__deployment__items__item" key={`${index}__develop`}>
-                      <img src={item.url} alt={item.name} />
-                    </div>
-                  )
-                })
-              }
-              </div>
             </div>
             <Link to='/deployment' className="button button--transparent"
             onClick={() => {
