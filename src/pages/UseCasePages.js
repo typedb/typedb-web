@@ -4,7 +4,7 @@ import UseCase from 'templates/UseCase';
 export const FinanceUseCasePage = () => (
   <UseCase 
     title="Financial Services"
-    text="Across the financial service industry, changes in technology, policy, and geopolitics have radically altered the data landscape in the past few years. By taking advantage of the most cutting-edge data infrastructure technologies, financial service firms can take full strategic advantage of the changing data landscape.<br /> <br />GRAKN.AI provides the ideal technical solution to model all the complex, hyper-relationships that characterise contemporary markets, allowing firms to power cutting-edge financial service applications.  From automating insurance claims and pricing premiums optimally, to regulatory compliance in investment activity and fraud detection, Grakn’s distributed knowledge base and powerful, built-in analytics can keep financial service firms savvy and competitive."
+    text="Across the financial service industry, changes in technology, policy, and geopolitics have radically altered the data landscape in the past few years. By taking advantage of the most cutting-edge data infrastructure technologies, financial service firms can take full strategic advantage of the changing data landscape.<br /> <br />GRAKN.AI provides the ideal technical solution to model all the complex, hyper-relationships that characterise contemporary markets, allowing firms to power cutting-edge financial service applications.  From automating insurance claims and pricing premiums optimally, to regulatory compliance in investment activity and fraud detection, Grakn’s distributed knowledge graph and powerful, built-in analytics can keep financial service firms savvy and competitive."
     img="/assets/svg/usecase-finance.svg"
   />
 );
@@ -20,7 +20,7 @@ export const HealthUseCasePage = () => (
 export const SemanticUseCasePage = () => (
   <UseCase 
     title="Semantic Search"
-    text="With ever more massive volumes of stored data, it becomes increasingly difficult for organizations to effectively search for relevant results. By using a search platform that understands a query’s intent and the meaning of its terms, data’s meaning can be unlocked, and organizations can free themselves from the burden of ineffective search.<br /> <br />This is true everywhere from contextualized and comprehensive searching for relevant linkages in legal and medical contexts, to robust exploration of large, heterogeneous, multi-source data sets in academic and government research contexts. GRAKN.AI’s distributed knowledge base provides the database technology needed for developing sophisticated semantic search applications. "
+    text="With ever more massive volumes of stored data, it becomes increasingly difficult for organizations to effectively search for relevant results. By using a search platform that understands a query’s intent and the meaning of its terms, data’s meaning can be unlocked, and organizations can free themselves from the burden of ineffective search.<br /> <br />This is true everywhere from contextualized and comprehensive searching for relevant linkages in legal and medical contexts, to robust exploration of large, heterogeneous, multi-source data sets in academic and government research contexts. GRAKN.AI’s distributed knowledge graph provides the database technology needed for developing sophisticated semantic search applications. "
     img="/assets/svg/usecase-semantic.svg"
   />
 );
@@ -28,7 +28,7 @@ export const SemanticUseCasePage = () => (
 export const BotsUseCasePage = () => (
   <UseCase 
     title="Intelligent Bots"
-    text="With recent advances in natural language processing technology, intelligent chat bots are beginning to revolutionise industries as diverse as retail, banking, and travel, along with many more. Yet, in order to deliver their full potential, chatbots must be able to efficiently and accurately contextualise user queries, and therefore must possess real knowledge in their conversational interactions. <br /> <br />GRAKN.AI provides exactly the kind of databases needed to manage the complex datasets of knowledge-oriented systems like chatbots. By using its pioneering distributed knowledge base as a backend, developers will be able to build chatbots that readily disambiguate queries, retrieve context-specific knowledge, and generate the most useful possible responses for each user."
+    text="With recent advances in natural language processing technology, intelligent chat bots are beginning to revolutionise industries as diverse as retail, banking, and travel, along with many more. Yet, in order to deliver their full potential, chatbots must be able to efficiently and accurately contextualise user queries, and therefore must possess real knowledge in their conversational interactions. <br /> <br />GRAKN.AI provides exactly the kind of databases needed to manage the complex datasets of knowledge-oriented systems like chatbots. By using its pioneering distributed knowledge graph as a backend, developers will be able to build chatbots that readily disambiguate queries, retrieve context-specific knowledge, and generate the most useful possible responses for each user."
     img="/assets/svg/usecase-bots.svg"
   />
 );

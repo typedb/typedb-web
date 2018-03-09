@@ -14,9 +14,9 @@ import { fetchWorkbasetable } from 'actions/workbaseTable';
 import routeOptions from './routes';
 
 const metaDescription = {
-'/': "Grakn is a hyper-relational database for knowledge engineering. Rooted in Knowledge Representation and Automated Reasoning, Grakn provides the knowledge base foundation for intelligent/cognitive systems.",
-'/grakn-core':"Grakn is a hyper-relational database for knowledge engineering, and Graql is Grakn’s query language.",
-'/grakn-kgms':"Grakn Enterprise KGMS is the Knowledge Base Management System designed to scale with your business, and Workbase is the visual platform to control everything from development to production.",
+'/': "Grakn is a knowledge graph - a database to organise complex networks of data and make it queryable.",
+'/grakn-core':"Grakn is a knowledge graph, and Graql is the query language.",
+'/grakn-kgms':"Grakn Enterprise KGMS is the Knowledge Graph Management System designed to scale with your business, and Workbase is the visual platform to control everything from development to production.",
 '/deployment':"Easily deploy and manage Grakn KGMS on one machine, or a thousand-node cluster.",
 '/services':"For every step of your knowledge engineering journey, we provide professional services to help you achieve your development goals.",
 '/support':"From development to production, we can support you every step of the way, so you can focus on building your application and your business",
@@ -68,7 +68,7 @@ class Main extends Component {
 
 
   render() {
-    let documentTitle = 'GRAKN.AI - The Database for AI';
+    let documentTitle = 'GRAKN.AI - The Knowledge Graph';
     if (this.props.location.pathname !== '/') {
       documentTitle = `${startCase(this.props.location.pathname.substr(1))} | GRAKN.AI`;
     }

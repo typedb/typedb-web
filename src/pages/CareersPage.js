@@ -27,9 +27,9 @@ class CareersPage extends Component {
         <section className="careers__intro">
           <div className="container section__container careers__intro__container">
             <div className="careers__intro__text">
-            <span>Cognitive/Intelligent Systems consume data that are too complex for current databases to handle. GRAKN.AI is a hyper-relational database that allows you to perform knowledge engineering to manage this complexity. Through Knowledge Representation and Automated Reasoning techniques, Grakn provides the knowledge base foundation for these systems.
+            <span>Cognitive/Intelligent Systems consume data that are too complex for current databases to handle. GRAKN.AI is the knowledge graph that allows you to perform knowledge engineering to manage this complexity. Through Knowledge Representation and Automated Reasoning techniques, Grakn provides the knowledge foundation for these systems.
             <br /> <br />
-            We're a team of talented engineers from world leading universities, and we're based in London. We've developed a distributed knowledge base that reasons over complex data in real-time and derives knowledge that is too complex for human cognition to uncover. Five years from now, we believe Grakn will be in the hands of every developer as a de facto database for building cognitive and intelligent systems.            </span>
+            We're a team of talented engineers from world leading universities, and we're based in London. We've developed a distributed knowledge graph that reasons over complex data in real-time and derives knowledge that is too complex for human cognition to uncover. Five years from now, we believe Grakn will be in the hands of every developer as a de facto database for building cognitive and intelligent systems.            </span>
             <br />
             If you would like to join our team​ for any of the positions below, write to us at <a href="mailto:careers@grakn.ai" className="animated__link animated__link--purple">careers@grakn.ai</a> and tell us a little bit about yourself.
             </div>
@@ -38,7 +38,7 @@ class CareersPage extends Component {
             </div>
           </div>
         </section>
-        { 
+        {
           this.props.careers.items.sort((a,b) => a.sort - b.sort).map((item, index) => {
             return (
               <section className="careers__job" key={`careers__job__${index}`}>
@@ -62,8 +62,8 @@ class CareersPage extends Component {
                           {
                             item.responsibilities.split('\n').slice(0, Math.ceil(item.responsibilities.split('\n').length/2)).map((listItem, listItemIndex) => {
                               return (
-                                <div 
-                                key={`careers__job__${item.title}__responsibilities__${listItemIndex}`} 
+                                <div
+                                key={`careers__job__${item.title}__responsibilities__${listItemIndex}`}
                                 className="careers__job__list__section__items__col__item"
                                 >
                                 <i className="fa fa-check" aria-hidden={true} style={{color: item.maintheme, backgroundColor: item.secondarytheme}}/>
@@ -77,8 +77,8 @@ class CareersPage extends Component {
                           {
                             item.responsibilities.split('\n').slice(Math.ceil(item.responsibilities.split('\n').length/2)).map((listItem, listItemIndex) => {
                               return (
-                                <div 
-                                key={`careers__job__${item.title}__responsibilities__${listItemIndex}`} 
+                                <div
+                                key={`careers__job__${item.title}__responsibilities__${listItemIndex}`}
                                 className="careers__job__list__section__items__col__item"
                                 >
                                 <i className="fa fa-check" aria-hidden={true} style={{color: item.maintheme, backgroundColor: item.secondarytheme}}/>
@@ -101,8 +101,8 @@ class CareersPage extends Component {
                             {
                               item.required.split('\n').slice(0, Math.ceil(item.required.split('\n').length/2)).map((listItem, listItemIndex) => {
                                 return (
-                                  <div 
-                                  key={`careers__job__${item.title}__required__${listItemIndex}`} 
+                                  <div
+                                  key={`careers__job__${item.title}__required__${listItemIndex}`}
                                   className="careers__job__list__section__items__col__item"
                                   >
                                   <i className="fa fa-check" aria-hidden={true} style={{color: item.maintheme, backgroundColor: item.secondarytheme}}/>
@@ -116,8 +116,8 @@ class CareersPage extends Component {
                             {
                               item.required.split('\n').slice(Math.ceil(item.required.split('\n').length/2)).map((listItem, listItemIndex) => {
                                 return (
-                                  <div 
-                                  key={`careers__job__${item.title}__required__${listItemIndex}`} 
+                                  <div
+                                  key={`careers__job__${item.title}__required__${listItemIndex}`}
                                   className="careers__job__list__section__items__col__item"
                                   >
                                   <i className="fa fa-check" aria-hidden={true} style={{color: item.maintheme, backgroundColor: item.secondarytheme}}/>
@@ -140,8 +140,8 @@ class CareersPage extends Component {
                             {
                               item.bonus.split('\n').slice(0, Math.ceil(item.bonus.split('\n').length/2)).map((listItem, listItemIndex) => {
                                 return (
-                                  <div 
-                                  key={`careers__job__${item.title}__bonus__${listItemIndex}`} 
+                                  <div
+                                  key={`careers__job__${item.title}__bonus__${listItemIndex}`}
                                   className="careers__job__list__section__items__col__item"
                                   >
                                   <i className="fa fa-check" aria-hidden={true} style={{color: item.maintheme, backgroundColor: item.secondarytheme}}/>
@@ -155,8 +155,8 @@ class CareersPage extends Component {
                             {
                               item.bonus.split('\n').slice(Math.ceil(item.bonus.split('\n').length/2)).map((listItem, listItemIndex) => {
                                 return (
-                                  <div 
-                                  key={`careers__job__${item.title}__bonus__${listItemIndex}`} 
+                                  <div
+                                  key={`careers__job__${item.title}__bonus__${listItemIndex}`}
                                   className="careers__job__list__section__items__col__item"
                                   >
                                   <i className="fa fa-check" aria-hidden={true} style={{color: item.maintheme, backgroundColor: item.secondarytheme}}/>
@@ -177,7 +177,7 @@ class CareersPage extends Component {
           })
          }
       </div>
-    );  
+    );
   }
 }
 

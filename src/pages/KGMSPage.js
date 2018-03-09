@@ -28,7 +28,7 @@ class KGMSPage extends Component {
             <div className="kgms-page__splash__text">
               <h1 className="kgms-page__splash__text__header">Grakn Enterprise <strong>KGMS</strong><br /> and <strong>Workbase</strong></h1>
               <span className="kgms-page__splash__text__tag">
-              Grakn Enterprise KGMS is the Knowledge Base Management System designed to scale with your enterprise, and Workbase is the visual platform to control everything from development to production
+              Grakn Enterprise KGMS is the Knowledge Graph Management System designed to scale with your enterprise, and Workbase is the visual platform to control everything from development to production
               </span>
             </div>
             </div>
@@ -41,14 +41,14 @@ class KGMSPage extends Component {
               <img src="/assets/svg/kgms-simplicity.svg" alt="Simplicity" />
               <span className="kgms-page__info__item__header">Simplicity</span>
               <span className="kgms-page__info__item__text">
-              Simplify your system architecture by having Grakn take care of everything knowledge base related
+              Simplify your system architecture by having Grakn take care of everything knowledge graph related
               </span>
             </div>
             <div className="kgms-page__info__item">
               <img src="/assets/svg/kgms-scale.svg" alt="Scale" />
               <span className="kgms-page__info__item__header">Scale</span>
               <span className="kgms-page__info__item__text">
-              Rest assured that Grakn’s knowledge base will scale with the growth of your data and system workload
+              Rest assured that Grakn’s knowledge graph will scale with the growth of your data and system workload
               </span>
             </div>
             <div className="kgms-page__info__item">
@@ -64,7 +64,7 @@ class KGMSPage extends Component {
         <section className="kgms-page__features">
           <div className="kgms-page__features__container container section__container">
             <span className="kgms-page__features__header">
-            Simplify your data architecture and scale your knowledge base into production
+            Simplify your data architecture and scale your knowledge graph into production
             </span>
             {
               this.props.kgmsfeatures.length > 0?

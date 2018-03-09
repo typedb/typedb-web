@@ -10,7 +10,7 @@ const GraknPage = () => (
       <div className="grakn-page__splash__container container section__container">
         <div className="grakn-page__splash__text">
           <h1 className="grakn-page__splash__text__header">Meet <strong>Grakn</strong> and <strong>Graql</strong></h1>
-          <span className="grakn-page__splash__text__tag">Grakn is a hyper-relational database for knowledge engineering,<br /> and Graql is Grakn’s query language.</span>
+          <span className="grakn-page__splash__text__tag">Grakn is the knowledge graph, and Graql is the query language.</span>
         </div>
         <GraknPageCodeBlock />
       </div>
@@ -90,7 +90,7 @@ const GraknPage = () => (
               </div>
             </div>
           </div>
-          
+
         </div>
       </div>
     </section>
@@ -101,7 +101,7 @@ const GraknPage = () => (
           Grakn and Graql
           </span>
           <span className="grakn-page__graql__text__paragraph">
-          Grakn is a hyper-relational database for knowledge engineering, i.e. a knowledge base. Being a distributed system, Grakn is design to be sharded and replicated over a network of computers. Under the hood, Grakn has built an expressive <a href="https://en.wikipedia.org/wiki/Knowledge_representation_and_reasoning" target="_blank" className="animated__link animated__link--purple">knowledge representation system</a> with a transactional query interface, Graql. Graql is Grakn’s reasoning (through <a href="https://en.wikipedia.org/wiki/Online_transaction_processing" target="_blank" className="animated__link animated__link--purple">OLTP</a>) and analytics (through <a href="https://en.wikipedia.org/wiki/Online_analytical_processing" target="_blank" className="animated__link animated__link--purple">OLAP</a>) declarative query language. 
+          Grakn is the knowledge graph engine to organise complex networks of data and making it queryable by performing knowledge engineering. Rooted in Knowledge Representation and Automated Reasoning, Grakn provides the knowledge foundation for cognitive and intelligent (e.g. AI) systems, by providing an intelligent language for modelling, transactions and analytics. Being a distributed database, Grakn is design to scale over a network of computers through partitioning and replication.
           </span>
         </div>
         <div className="grakn-page__graql__img">
@@ -150,7 +150,7 @@ const GraknPage = () => (
         <div className="grakn-page__kgms__container container section__container">
           <span className="grakn-page__kgms__header">MEET GRAKN ENTERPRISE KGMS AND WORKBASE</span>
           <span className="grakn-page__kgms__text">
-          The enterprise knowledge base management system is designed to scale with the growth of your data and application workload, equipped with all the functionalities you need to deploy and operate in a production environment.          </span>
+          The enterprise knowledge graph management system is designed to scale with the growth of your data and application workload, equipped with all the functionalities you need to deploy and operate in a production environment.          </span>
           <Link to="/grakn-kgms" className="grakn-page__kgms__button button button--charcoal"onClick={() => {
             ReactGA.initialize('UA-72414051-1');
             ReactGA.event({

@@ -30,8 +30,8 @@ class HomePage extends Component {
       <div className="home">
         <section className="home__splash">
           <div className="home__splash__text container section__container">
-            <h1 className="home__splash__text__headline home__header">THE <strong>DATABASE</strong> FOR AI</h1>
-            <span className="home__splash__text__tag">Grakn is a hyper-relational database for knowledge engineering. Rooted in Knowledge Representation and  Automated Reasoning, Grakn provides the knowledge base foundation for intelligent/cognitive systems.</span>
+            <h1 className="home__splash__text__headline home__header"><strong>THE KNOWLEDGE GRAPH</strong></h1>
+            <span className="home__splash__text__tag">A database to organise complex networks of data and make it queryable</span>
             <Link to="/grakn-core" className="home__splash__text__install" onClick={() => {
               ReactGA.initialize('UA-72414051-1');
               ReactGA.event({
@@ -42,7 +42,7 @@ class HomePage extends Component {
             Learn more<i className="fa fa-arrow-right" aria-hidden={true}></i>
             </Link>
           </div>
-          <Visualiser />            
+          <Visualiser />
         </section>
         <section className="home__links">
           <div className="home__links__container container section__container">
@@ -83,7 +83,7 @@ class HomePage extends Component {
         <section className="home__features home__features--coloured">
           <div className="home__features__container container section__container">
             <span className="home__features__headline home__header">
-              <strong>Grakn</strong> is a hyper-relational database for knowledge engineering
+              A unified <strong>knowledge representation</strong> for intelligent systems
             </span>
             <div className="home__features__item">
               <div className="home__features__item__text">
@@ -102,7 +102,7 @@ class HomePage extends Component {
                     action: 'Button Click',
                   });
                 }}
-                >Learn More</Link>                                    
+                >Learn More</Link>
               </div>
               <div className="home__features__item__img">
                 <img src="/assets/img/hyper-expressive_schema.png" alt="Hyper Expressive Schema" />
@@ -128,7 +128,7 @@ class HomePage extends Component {
                     action: 'Button Click',
                   });
                 }}
-                >Learn More</Link>                                    
+                >Learn More</Link>
               </div>
             </div>
           </div>
@@ -153,7 +153,7 @@ class HomePage extends Component {
                     action: 'Button Click',
                   });
                 }}
-                >Learn More</Link>                                    
+                >Learn More</Link>
               </div>
               <div className="home__features__item__img">
                 <img src="/assets/img/distributed_analytics.png" alt="Distributed Analytics" />
@@ -179,7 +179,7 @@ class HomePage extends Component {
                     action: 'Button Click',
                   });
                 }}
-                >Learn More</Link>                                    
+                >Learn More</Link>
               </div>
             </div>
           </div>
@@ -188,7 +188,7 @@ class HomePage extends Component {
           <img src="/assets/img/background_2.png" alt="background curved" />
           <div className="home__production__container container section__container">
             <span className="home__production__headline home__header container section__container">
-            Scale your enterprise knowledge base with Grakn <strong>KGMS</strong> and <strong>Workbase</strong>    
+            Scale your enterprise Knowledge Graph with Grakn <strong>KGMS</strong> and <strong>Workbase</strong>
             </span>
             <KGMSFeatures />
           </div>
@@ -199,7 +199,7 @@ class HomePage extends Component {
               category: 'Home_Carousel_LearnMore_KGMSPage',
               action: 'Button Click',
             });
-          }}>Learn More</Link>      
+          }}>Learn More</Link>
         </section>
         <section className="home__deployment">
           <div className="home__deployment__container container section__container">
@@ -247,7 +247,7 @@ class HomePage extends Component {
                     Financial Services
                     </span>
                     <span className="home__usecases__tabpanel__text__content">
-                    Financial Services Across the financial service industry, changes in technology, policy, and geopolitics have radically altered the data landscape in the past few years. By taking advantage of Grakn’s cutting edge knowledge base technology, financial service firms can take full strategic advantage of the changing data landscape.                </span>
+                    Financial Services Across the financial service industry, changes in technology, policy, and geopolitics have radically altered the data landscape in the past few years. By taking advantage of Grakn’s cutting edge knowledge graph technology, financial service firms can take full strategic advantage of the changing data landscape.                </span>
                   </div>
                 </div>
               </TabPanel>
@@ -275,7 +275,7 @@ class HomePage extends Component {
                     Intelligent Bots
                     </span>
                     <span className="home__usecases__tabpanel__text__content">
-                    As devices have become more intelligent, the way we interact with them evolved to natural language through conversation. GRAKN.AI is the ideal platform for developing chat bots because it is capable of interpreting complex and ambiguous questions by performing inference over your knowledge base.
+                    As devices have become more intelligent, the way we interact with them evolved to natural language through conversation. GRAKN.AI is the ideal platform for developing chat bots because it is capable of interpreting complex and ambiguous questions by performing inference over your knowledge graph.
                     </span>
                   </div>
                 </div>
@@ -290,7 +290,7 @@ class HomePage extends Component {
                     Semantic Search
                     </span>
                     <span className="home__usecases__tabpanel__text__content">
-                    Effective search for relevant results is becoming increasingly difficult as volumes of data grow. By using Grakn to power a search platform that understands a query’s intent and the meaning of its terms, data’s meaning can be unlocked, and organizations can free themselves from being lost in data.         
+                    Effective search for relevant results is becoming increasingly difficult as volumes of data grow. By using Grakn to power a search platform that understands a query’s intent and the meaning of its terms, data’s meaning can be unlocked, and organizations can free themselves from being lost in data.
                     </span>
                   </div>
                 </div>
@@ -310,27 +310,27 @@ class HomePage extends Component {
                   </div>
                 </div>
               </TabPanel>
-              
+
               <TabList className="home__usecases__tablist">
                 <Tab className="home__usecases__tablist__item" selectedClassName="home__usecases__tablist__item--selected">
-                  <img src="/assets/svg/services.svg" alt="services"/>                      
-                  <span className="home__usecase__tablist__item__text home__usecase__tablist__item__text--services">Financial Services</span>       
+                  <img src="/assets/svg/services.svg" alt="services"/>
+                  <span className="home__usecase__tablist__item__text home__usecase__tablist__item__text--services">Financial Services</span>
                 </Tab>
                 <Tab className="home__usecases__tablist__item" selectedClassName="home__usecases__tablist__item--selected">
-                  <img src="/assets/svg/science.svg" alt="science"/>                        
-                  <span className="home__usecase__tablist__item__text home__usecase__tablist__item__text--science">Health & Life Science</span>           
+                  <img src="/assets/svg/science.svg" alt="science"/>
+                  <span className="home__usecase__tablist__item__text home__usecase__tablist__item__text--science">Health & Life Science</span>
                 </Tab>
                 <Tab className="home__usecases__tablist__item" selectedClassName="home__usecases__tablist__item--selected">
-                  <img src="/assets/svg/bot-tab.svg" alt="bots"/>       
+                  <img src="/assets/svg/bot-tab.svg" alt="bots"/>
                   <span className="home__usecase__tablist__item__text home__usecase__tablist__item__text--bots">Intelligent Bots</span>
                 </Tab>
                 <Tab className="home__usecases__tablist__item" selectedClassName="home__usecases__tablist__item--selected">
-                  <img src="/assets/svg/search.svg" alt="search"/>             
-                  <span className="home__usecase__tablist__item__text home__usecase__tablist__item__text--search">Semantic Search</span>         
+                  <img src="/assets/svg/search.svg" alt="search"/>
+                  <span className="home__usecase__tablist__item__text home__usecase__tablist__item__text--search">Semantic Search</span>
                 </Tab>
                 <Tab className="home__usecases__tablist__item" selectedClassName="home__usecases__tablist__item--selected">
-                  <img src="/assets/svg/security.svg" alt="security"/>                                
-                  <span className="home__usecase__tablist__item__text home__usecase__tablist__item__text--security">Security</span>   
+                  <img src="/assets/svg/security.svg" alt="security"/>
+                  <span className="home__usecase__tablist__item__text home__usecase__tablist__item__text--security">Security</span>
                 </Tab>
               </TabList>
             </Tabs>
@@ -339,7 +339,7 @@ class HomePage extends Component {
         <Testimonials buttonCallback={this.switchSupportModal} />
         <SupportFormModal isOpen={this.state.supportModal} onClose={this.switchSupportModal}/>
         <section className="home__world">
-          <div className="home__world__container container section__container">         
+          <div className="home__world__container container section__container">
             <span className="home__world__headline">THE WORLD NEEDS TO <strong>GRAKN</strong></span>
             <Link to="/community" className="home__world__link"
             onClick={() => {

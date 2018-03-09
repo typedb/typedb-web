@@ -45,7 +45,7 @@ class DownloadCentrePage extends Component {
 
   scroll() {
     zenscroll.setup(1000, 50);
-    zenscroll.to(this.supportform);   
+    zenscroll.to(this.supportform);
   }
 
   componentDidMount() {
@@ -86,7 +86,7 @@ class DownloadCentrePage extends Component {
       {
         table.map((elem, index) => {
           let premiumContent = '';
-          let advanceContent = '';        
+          let advanceContent = '';
           if (elem.premium === 'true') {
             premiumContent = <i className="fa fa-check support-page__comparisson__table__row__item__green" />;
           }
@@ -118,7 +118,7 @@ class DownloadCentrePage extends Component {
       {
         table.map((elem, index) => {
           let premiumContent = '';
-          let advanceContent = '';        
+          let advanceContent = '';
           if (elem.premium === 'true') {
             premiumContent = 'Yes';
           }
@@ -182,8 +182,8 @@ class DownloadCentrePage extends Component {
               <TabPanel className="downloads__splash__main__tabpanel">
                 <div className="downloads__splash__main__tabpanel__content">
                   <span className="downloads__splash__main__tabpanel__content__text">
-                  Grakn is a hyper-relational database for knowledge engineering, i.e. a knowledge base. Graql is Grakn’s
-                  reasoning (through OLTP) and analytics (through OLAP) declarative query language. 
+                  Grakn is a knowledge graph to organise complex networks of data and make it queryable. Graql is Grakn’s
+                  reasoning (through OLTP) and analytics (through OLAP) declarative query language.
                   <Link to="/grakn-core" className="animated__link animated__link--purple"> Learn more</Link>
                   </span>
                   <span className="downloads__splash__main__tabpanel__content__release">Current Stable Release: <strong>Grakn Core {this.props.downloads.length > 0 ? this.props.downloads.filter(item => item.latest==="True")[0].version : null}</strong></span>
@@ -197,7 +197,7 @@ class DownloadCentrePage extends Component {
                         <i className="fa fa-check" aria-hidden={true} style={{color: '#3dce8c', backgroundColor: ' #cbf3e1'}}/>
                         <div>
                           <strong>AGPL v3.0 License</strong>
-                          <span>Deploy and operate your Grakn Core knowledge base
+                          <span>Deploy and operate your Grakn Core knowledge graph
                           immediately. Grakn Core is licensed under AGPL so
                           that you can start developing quickly and adopt Grakn within your solution in no time.</span>
                         </div>
@@ -236,7 +236,7 @@ class DownloadCentrePage extends Component {
                       }
                     </div>
                   </div>
-                  
+
                   <div className="downloads__splash__main__tabpanel__content__core__col">
                     <div className="downloads__splash__main__tabpanel__content__core__col__header downloads__splash__main__tabpanel__content__core__col__header--purple">
                     Commercial
@@ -279,7 +279,7 @@ class DownloadCentrePage extends Component {
               <TabPanel className="downloads__splash__main__tabpanel">
                 <div className="downloads__splash__main__tabpanel__content">
                   <span className="downloads__splash__main__tabpanel__content__text">
-                    Grakn Enterprise KGMS is the Knowledge Base Management System designed to scale with your business.<br />
+                    Grakn Enterprise KGMS is the Knowledge Graph Management System designed to scale with your business.<br />
                     <Link to="/grakn-kgms" className="animated__link animated__link--purple"> Learn more</Link>
                   </span>
                   {this.renderTable(this.props.kgmsTable.sort((a,b) => a.sort - b.sort))}
@@ -290,7 +290,7 @@ class DownloadCentrePage extends Component {
               <TabPanel className="downloads__splash__main__tabpanel">
               <div className="downloads__splash__main__tabpanel__content">
                 <span className="downloads__splash__main__tabpanel__content__text">
-                Workbase is an Integrated Development Environment to perform knowledge engineering at scale, and control everything in your knowledge base from development to production.
+                Workbase is an Integrated Development Environment to perform knowledge engineering at scale, and control everything in your knowledge graph from development to production.
                 <Link to="/grakn-kgms" className="animated__link animated__link--purple"> Learn more</Link>
                 </span>
                 {this.renderTable(this.props.workbaseTable.sort((a,b) => a.sort - b.sort), "For Grakn Core", "For Grakn KGMS")}
@@ -374,7 +374,7 @@ class DownloadCentrePage extends Component {
                   </div>
                 </div>
               </div>
-              
+
             </div>
           </div>
         </section>

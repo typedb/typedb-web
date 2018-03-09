@@ -32,7 +32,7 @@ class DeploymentPage extends Component {
           <div className="deployment-page__info__container container section__container">
             <div className="deployment-page__info__details">
               <div className="deployment-page__info__details__text">
-              <strong>Grakn KGMS</strong> is the enterprise Knowledge Base Management System designed to scale with your enterprise. Whether you have a growing dataset, application workload, or user request, the Grakn KGMS will scale with your business. With all the tools you need to take you from development to production and scale, Grakn KGMS allows you to simplify your data architecture while maintaining full control over your knowledge base.
+              <strong>Grakn KGMS</strong> is the enterprise Knowledge Graph Management System designed to scale with your enterprise. Whether you have a growing dataset, application workload, or user request, the Grakn KGMS will scale with your business. With all the tools you need to take you from development to production and scale, Grakn KGMS allows you to simplify your data architecture while maintaining full control over your knowledge graph.
               </div>
               <div className="deployment-page__info__details__buttons">
                 <Link to="/grakn-kgms" className="button button--red deployment-page__info__details__buttons__item" onClick={() => {
