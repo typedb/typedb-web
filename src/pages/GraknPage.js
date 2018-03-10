@@ -101,7 +101,7 @@ const GraknPage = () => (
           Grakn and Graql
           </span>
           <span className="grakn-page__graql__text__paragraph">
-          Grakn is the knowledge graph engine to organise complex networks of data and making it queryable by performing knowledge engineering. Rooted in Knowledge Representation and Automated Reasoning, Grakn provides the knowledge foundation for cognitive and intelligent (e.g. AI) systems, by providing an intelligent language for modelling, transactions and analytics. Being a distributed database, Grakn is design to scale over a network of computers through partitioning and replication.
+          Grakn is the knowledge graph engine to organise complex networks of data and making it queryable by performing knowledge engineering. Rooted in Knowledge Representation and Automated Reasoning, Grakn provides the knowledge foundation for cognitive and intelligent (e.g. AI) systems, by providing an intelligent language for modelling, transactions and analytics. Being a distributed database, Grakn is designed to scale over a network of computers through partitioning and replication.
           </span>
         </div>
         <div className="grakn-page__graql__img">
