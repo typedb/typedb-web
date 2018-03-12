@@ -11,6 +11,19 @@ $supportFormColor: #a8a9b0;
     width: initial;
     padding: 30px 20px;
   }
+  &__text {
+    display: block;
+    width: 100%;
+    margin: 0 auto;
+    box-sizing: border-box;
+    text-align: center;
+    padding-bottom: 30px;
+    color: $textLight;
+    font-family: 'Titillium';
+    @media screen and (max-width: $smallScreen) {
+      font-size: 14px;
+    }
+  }
   &__consent {
     display: block;
     width: 100%;
@@ -20,6 +33,9 @@ $supportFormColor: #a8a9b0;
     padding-top: 30px;
     color: $textLight;
     font-family: 'Titillium';
+    @media screen and (max-width: $smallScreen) {
+      font-size: 14px;
+    }
     &--footer {
       display: inline-block;
       width: 220px;

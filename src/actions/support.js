@@ -27,3 +27,16 @@ export function sendSupport(obj) {
     });
   });
 }
+
+export function sendHubspot(obj) {
+  return (dispatch) => new Promise((resolve, reject) => {
+    dispatch(sendingSupport());
+    api.sendHubspot(obj).then((data) => {
+      dispatch(successSupport(data.msg));
+    })
+    .catch((errors) => {
+      reject(errors);
+    });
+  });
+  console.log(obj)
+}

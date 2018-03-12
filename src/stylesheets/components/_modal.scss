@@ -1,6 +1,6 @@
 .ReactModal {
   &__Overlay {
-    z-index: 20;
+    z-index: 100;
     background-color: rgba(0, 0, 0, 0.75) !important;
   }
 
@@ -32,16 +32,50 @@
     right: 0 !important;
     @media screen and (max-width: $smallScreen) {
       width: 90%;
-      height: calc(100vh - 2*(#{$navHeight} + 20px));      
+      height: 90%;      
     }
-    @media screen and (max-height: $smallScreen) {
-      height: calc(100vh - 2*(#{$navHeight} + 20px));
+    @media screen and (max-height: $mediumScreen) {
+      max-height: 90%;
     }
     > .support-form {
       width: 80%;
       padding-left: 0;
       padding-right: 0;
-      padding-top: 25px;
+      padding-top: 30px;
+      padding-bottom: 30px;
+    }
+    &__splash {
+      height: 200px;
+      position: relative;
+      background-image: url(http://localhost:3000/assets/svg/community-splash.svg);
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: left center;
+      &__container {
+        top: 50% !important;
+        left: 50% !important;
+        transform: translate(-50%, -50%);    
+        position: absolute;
+        text-align: center;
+        width: 100%;
+        > span {
+          display: block;
+          font-family: 'Titillium' !important;
+          color:white;
+        }
+      }
+      &__header {
+        font-size: 30px;
+        @media screen and (max-width: $smallScreen) {
+          font-size: 16px;
+        }
+      }
+      &__text {
+        font-size: 18px;
+        @media screen and (max-width: $smallScreen) {
+          font-size: 14px;
+        }
+      }
     }
   }
 }

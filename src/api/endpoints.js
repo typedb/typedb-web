@@ -6,6 +6,7 @@ export default {
   careers: `${cmsBase}/careers/rows${cmsAccessTokenTag}`,
   newsletter: `${serverBase}/invite/mailchimp`,
   support: `${serverBase}/api/support`,
+  hubspot: `${serverBase}/api/hubspot`,
   team: `${cmsBase}/team/rows${cmsAccessTokenTag}`,
   downloads: `${cmsBase}/version/rows${cmsAccessTokenTag}`,
   events: `${cmsBase}/events/rows${cmsAccessTokenTag}`,
@@ -15,5 +16,5 @@ export default {
   deployment: `${cmsBase}/deployment/rows${cmsAccessTokenTag}`,
   supporttable: `${cmsBase}/supporttable/rows${cmsAccessTokenTag}`,
   kgmstable: `${cmsBase}/kbmstable/rows${cmsAccessTokenTag}`,
-  workbasetable: `${cmsBase}/workbasetable/rows${cmsAccessTokenTag}`
+  workbasetable: `${cmsBase}/workbasetable/rows${cmsAccessTokenTag}`,
 };

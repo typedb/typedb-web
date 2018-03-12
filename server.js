@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const unirest = require('unirest');
 const nodemailer = require('nodemailer');
 const urlParser = require('url');
+const querystring = require('querystring');
 // New Imports
 import React from 'react';
 import ReactDOM from 'react-dom/server';
@@ -236,6 +237,24 @@ app.post('/api/support', function(req, res) {
     });
 });
 
+app.post('/api/hubspot', function(req, res ){
+    const postData = querystring.stringify(req.body);
+    console.log(postData);
+    unirest.post('https://forms.hubspot.com/uploads/form/v2/4332244/0e3ea363-5f45-44fe-b291-be815a1ca4fc')
+    .headers({
+        'Content-Type': 'application/x-www-form-urlencoded'
+    })
+    .send(postData)
+    .end(function(response) {
+        console.log(response);
+        if (!response.error) {
+            res.status(200).send(JSON.stringify({ msg: "Form Submitted Successfully," }));
+        }
+        else {
+            res.status(400).send(JSON.stringify({msg: 'Bad Request'}));
+        }
+    });
+})
 
 // Redirects
 app.get('/pages/*', (req, res) => {

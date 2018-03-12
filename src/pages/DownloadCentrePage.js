@@ -6,7 +6,7 @@ import SupportForm from 'components/SupportForm';
 const zenscroll = require('zenscroll');
 const graknRoutes = require('config/graknRoutes');
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
-
+import DownloadSuccessModal from 'components/DownloadSuccessModal';
 
 import Form from 'components/FormValidationComponents/components/form';
 import Select from 'components/FormValidationComponents/components/select';
@@ -35,17 +35,25 @@ class DownloadCentrePage extends Component {
     this.state = {
       versionCore: this.props.downloads.length > 0? this.props.downloads.filter(item => item.latest === 'True' && item.product ==='core')[0].version: '',
       platformCore: '',
+      downloadModal: false,
     }
     this.scroll = this.scroll.bind(this);
     this.renderTableMobile = this.renderTableMobile.bind(this);
     this.renderTable = this.renderTable.bind(this);
     this.switchVersion = this.switchVersion.bind(this);
     this.switchPlatform = this.switchPlatform.bind(this);
+    this.switchModal = this.switchModal.bind(this);
   }
 
   scroll() {
     zenscroll.setup(1000, 50);
     zenscroll.to(this.supportform);
+  }
+
+  switchModal() {
+    this.setState({
+      downloadModal: !this.state.downloadModal,
+    })
   }
 
   componentDidMount() {
@@ -226,8 +234,11 @@ class DownloadCentrePage extends Component {
                       </Form>
                       {
                         this.state.versionCore !== '' && this.state.platformCore !== '' && this.props.downloads.length > 0 ?
-                          <a href={this.props.downloads.filter(item => item.version === this.state.versionCore)[0][this.state.platformCore]}
+
+                          <a 
+                            onClick={() => this.switchModal()}
                             className="button button--red downloads__splash__main__tabpanel__content__download"
+                            href={this.props.downloads.filter(item => item.version === this.state.versionCore)[0][this.state.platformCore]}
                           >
                           Download
                           </a>
@@ -385,6 +396,7 @@ class DownloadCentrePage extends Component {
             <SupportForm />
           </div>
         </section>
+        <DownloadSuccessModal isOpen={this.state.downloadModal} onClose={() => this.switchModal()} />
       </div>
     )
   }
