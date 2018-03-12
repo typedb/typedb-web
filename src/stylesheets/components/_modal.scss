@@ -47,7 +47,7 @@
     &__splash {
       height: 200px;
       position: relative;
-      background-image: url(http://localhost:3000/assets/svg/community-splash.svg);
+      background-image: url('/assets/svg/community-splash.svg');
       background-repeat: no-repeat;
       background-size: cover;
       background-position: left center;
