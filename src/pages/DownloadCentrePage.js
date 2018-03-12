@@ -166,6 +166,7 @@ class DownloadCentrePage extends Component {
     if (this.props.location.hash === "#workbase") {
       initialIndex = 2;
     }
+    const downloadLocation = this.state.versionCore !== '' && this.state.platformCore !== '' && this.props.downloads.length > 0 ? this.props.downloads.filter(item => item.version === this.state.versionCore)[0][this.state.platformCore] : '';
     return (
       <div className="downloads">
       <section className="downloads__splash">
@@ -235,13 +236,17 @@ class DownloadCentrePage extends Component {
                       {
                         this.state.versionCore !== '' && this.state.platformCore !== '' && this.props.downloads.length > 0 ?
 
-                          <a 
-                            onClick={() => this.switchModal()}
+                          <span
+                            onClick={() => {
+                              this.switchModal();
+                              setTimeout(function() {
+                                window.location.href = downloadLocation;
+                              }, 3000)
+                            }}
                             className="button button--red downloads__splash__main__tabpanel__content__download"
-                            href={this.props.downloads.filter(item => item.version === this.state.versionCore)[0][this.state.platformCore]}
                           >
                           Download
-                          </a>
+                          </span>
                           :
                           <span className="button button--red downloads__splash__main__tabpanel__content__download downloads__splash__main__tabpanel__content__download--disabled">Download</span>
                       }
