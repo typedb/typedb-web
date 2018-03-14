@@ -104,7 +104,7 @@
     "url-loader": "^0.5.9",
     "uuid": "^3.1.0",
     "validator": "^9.2.0",
-    "vis-grakn": "4.21.6",
+    "vis-grakn": "4.21.7",
     "webpack": "2.6.0",
     "zenscroll": "^4.0.0"
   }

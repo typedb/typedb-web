@@ -239,7 +239,7 @@ app.post('/api/support', function(req, res) {
 
 app.post('/api/hubspot', function(req, res ){
     const postData = querystring.stringify(req.body);
-    console.log(postData);
+    handleMailChimpInvite(req.body.email, req.body.firstname, req.body.lastname);
     unirest.post('https://forms.hubspot.com/uploads/form/v2/4332244/0e3ea363-5f45-44fe-b291-be815a1ca4fc')
     .headers({
         'Content-Type': 'application/x-www-form-urlencoded'
@@ -269,13 +269,9 @@ app.get('*.html', (req, res) => {
     res.redirect(301, `${protocol}://${host}${redirected_path}`)
 });
 
-// app.get('/download/latest', (req, res) => {
-//     res.redirect(302, 'https://github.com/graknlabs/grakn/releases/download/v1.0.0/grakn-dist-1.0.0.zip');
-// });
-
-// app.get('/download', (req, res) => {
-//     res.redirect(302, 'https://github.com/graknlabs/grakn/releases/');
-// });
+app.get('/download/latest', (req, res) => {
+    res.redirect(302, 'https://grakn.ai/download');
+});
 
 app.get('/download-academy', (req, res) => {
     res.redirect(302, 'https://d113xgfq7slps2.cloudfront.net/grakn-academy-virtualbox.zip');
