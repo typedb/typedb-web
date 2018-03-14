@@ -1,8 +1,9 @@
-import { FETCH_DOWNLOADS, RECEIVED_DOWNLOADS } from 'actions/downloads';
+import { FETCH_DOWNLOADS, RECEIVED_DOWNLOADS, DOWNLOAD_COUNT } from 'actions/downloads';
 
 const initialState = {
   loading: false,
-  items: []
+  items: [],
+  download_count: null,
 };
 
 export default function careers(state = initialState, action) {
@@ -16,6 +17,11 @@ export default function careers(state = initialState, action) {
         ...state,
         loading: false,
         items: action.payload,
+      }
+    case DOWNLOAD_COUNT:
+      return {
+        ...state,
+        download_count: action.payload
       }
     default:
       return state;

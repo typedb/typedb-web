@@ -37,6 +37,10 @@
         color: $textLight;
         font-weight: 300;
         line-height: 1.7;
+        > strong {
+          font-weight: 600;
+          color: $textCharcoal;
+        }
         @media screen and (max-width: $smallScreen) {
           font-size: 14px;
           font-weight: 400;

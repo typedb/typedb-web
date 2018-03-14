@@ -7,7 +7,6 @@ const zenscroll = require('zenscroll');
 const graknRoutes = require('config/graknRoutes');
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import DownloadSuccessModal from 'components/DownloadSuccessModal';
-
 import Form from 'components/FormValidationComponents/components/form';
 import Select from 'components/FormValidationComponents/components/select';
 
@@ -174,6 +173,7 @@ class DownloadCentrePage extends Component {
         <div className="downloads__splash__container container section__container">
           <div className="downloads__splash__text">
             <h1 className="downloads__splash__text__header"><strong>Grakn Download Centre</strong></h1>
+            <span className="downloads__splash__text__tag"><strong>{this.props.downloadCount}</strong> downloads across the world</span>
           </div>
           <div className="downloads__splash__main">
             <Tabs defaultIndex={initialIndex}>
@@ -410,6 +410,7 @@ class DownloadCentrePage extends Component {
 const mapStateToProps = (state) => (
   {
     downloads: state.downloads.items,
+    downloadCount: state.downloads.download_count,
     workbaseTable: state.workbaseTable.items,
     kgmsTable: state.kgmsTable.items,
   }

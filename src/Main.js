@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { startCase } from 'lodash';
 import ReactGA from 'react-ga';
 import { Helmet } from 'react-helmet';
-import { fetchDownloads } from 'actions/downloads';
+import { fetchDownloads, fetchDownloadCount } from 'actions/downloads';
 import { fetchDeployment } from 'actions/deployment';
 import { fetchTestimonials } from 'actions/testimonials';
 import { fetchKgmsfeatures } from 'actions/kgmsfeatures';
@@ -58,6 +58,7 @@ class Main extends Component {
     this.props.onFetchSupporttable();
     this.props.onFetchWorkbasetable();
     this.props.onFetchKgmstable();
+    this.props.onFetchDownloadCount();
   }
 
   componentDidUpdate(oldProps) {
@@ -122,6 +123,7 @@ const mapDispatchToProps = (dispatch) => (
     onFetchSupporttable: () => dispatch(fetchSupporttable()),
     onFetchWorkbasetable: () => dispatch(fetchWorkbasetable()),
     onFetchKgmstable: () => dispatch(fetchKgmstable()),
+    onFetchDownloadCount: () => dispatch(fetchDownloadCount()),
 
   }
 )
