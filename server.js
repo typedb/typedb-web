@@ -109,8 +109,8 @@ function handleMailChimpInvite(userEmail, userName, userSurname) {
           'Content-Type': 'application/json'
       })
       .auth({
-          user: 'GraknLabs',
-          pass: '023643a9dd794a291a676defa42ef588-us8',
+          user: 'haikal',
+          pass: '5e7b3a7503eff7fdd336c095b128d139-us8',
           sendImmediately: true
       })
       .send({
@@ -238,7 +238,14 @@ app.post('/api/support', function(req, res) {
 });
 
 app.post('/api/hubspot', function(req, res ){
-    const postData = querystring.stringify(req.body);
+    const params = req.body;
+    params.hs_context = {
+        'ipAddress': req.headers['x-forwarded-for'] || req.connection.remoteAddress,
+        'pageUrl': 'https://grakn.ai/download',
+        'pageName': 'Download Center'
+    }
+    console.log(params)
+    const postData = querystring.stringify(params);
     handleMailChimpInvite(req.body.email, req.body.firstname, req.body.lastname);
     unirest.post('https://forms.hubspot.com/uploads/form/v2/4332244/0e3ea363-5f45-44fe-b291-be815a1ca4fc')
     .headers({
@@ -246,7 +253,6 @@ app.post('/api/hubspot', function(req, res ){
     })
     .send(postData)
     .end(function(response) {
-        console.log(response);
         if (!response.error) {
             res.status(200).send(JSON.stringify({ msg: "Form Submitted Successfully," }));
         }
