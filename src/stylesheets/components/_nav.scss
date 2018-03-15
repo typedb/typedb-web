@@ -71,6 +71,25 @@ $navShadow: 0 0 26px 0 rgba(221, 221, 221, 0.64);
         vertical-align: top;
         color: $textCharcoal;
       }
+      &__mobile {
+        max-height: 0;
+        opacity: 0;
+        border: 1px solid $borderColor;
+        border-radius: 6px;
+        box-sizing: border-box;
+        &--active {
+          margin-top: 18px;
+          max-height: 500px;
+          opacity: 1;
+          transition: max-height 0.4s ease-out;
+          a:nth-child(1) {
+            padding-top: 1rem;
+          }
+          > a {
+            margin-left: 1rem;
+          }
+        }
+      }
       &__content {
         display: none;
         position: absolute;

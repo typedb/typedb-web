@@ -68,7 +68,12 @@ class NavigationMenu extends Component {
         )
       }
       else {
-        const subLinks = value.links;        
+        const subLinks = value.links;
+        const subMenuClassnames = classNames({
+          'nav__link__dropdown__content': !hamburger,
+          'nav__link__dropdown__mobile': hamburger,
+          'nav__link__dropdown__mobile--active': this.state.activePrimary === key 
+        })        
         return (
           <div
           className={linkClasses}
@@ -77,8 +82,7 @@ class NavigationMenu extends Component {
             () => {
               if(hamburger) {
                 this.setState({
-                  secondaryActive: true,
-                  activePrimary: key
+                  activePrimary: this.state.activePrimary === key? null : key,
                 });
               }
             }
@@ -92,11 +96,7 @@ class NavigationMenu extends Component {
               <i className="fa fa-caret-down" aria-hidden={true} />
 
           }
-          {
-            hamburger?
-              null
-              :
-              <div className="nav__link__dropdown__content">
+          <div className={subMenuClassnames}>
               {
                 Object.keys(subLinks).map((key) => {
                   if (internalRoutes.indexOf(key) !==-1 ) {
@@ -117,7 +117,6 @@ class NavigationMenu extends Component {
                 })
               }
             </div>
-          }
           </div>
         );
       }
@@ -177,52 +176,53 @@ class NavigationMenu extends Component {
       }
       {
         mediaType=== 'medium' || mediaType === 'small' || mediaType === 'extraSmall' ?
-          <div className={hamburgerSecondaryClasses}>
-            <span className="nav__link nav__hamburger__secondary__back"
-            onClick={() => this.setState({
-              secondaryActive: false,
-              activePrimary: false
-            })}
-            >
-              <i className="fa fa-chevron-left" aria-hidden={true} />Back
-            </span>
-            {
-              this.state.activePrimary?
-                Object.keys(navRoutes[this.state.activePrimary].links).map((key, index) => {
-                  const subLinks = navRoutes[this.state.activePrimary].links;
-                  if (internalRoutes.indexOf(key) !==-1 ) {
-                    return (
-                      <Link 
-                        key={`${key}__link`}
-                        to={subLinks[key]}
-                        className='nav__link'
-                        onClick={
-                          () => {
-                            if(hamburger) {
-                              this.setState({
-                                secondaryActive: false,
-                                activePrimary: null,
-                                expanded: false
-                              });
-                            }
-                          }
-                        }
-                      >
-                      {key}
-                      </Link>
-                    )
-                  }
-                  else {
-                    return (
-                      <a key={`${key}__link`} href={subLinks[key]} className='nav__link' target={externalRoutes.indexOf(key) !== -1? '_blank': '_self'}
-                      >{key}</a>
-                    )
-                  }
-                })
-                :
-                null
-            }
-          </div>
+          // <div className={hamburgerSecondaryClasses}>
+          //   <span className="nav__link nav__hamburger__secondary__back"
+          //   onClick={() => this.setState({
+          //     secondaryActive: false,
+          //     activePrimary: false
+          //   })}
+          //   >
+          //     <i className="fa fa-chevron-left" aria-hidden={true} />Back
+          //   </span>
+          //   {
+          //     this.state.activePrimary?
+          //       Object.keys(navRoutes[this.state.activePrimary].links).map((key, index) => {
+          //         const subLinks = navRoutes[this.state.activePrimary].links;
+          //         if (internalRoutes.indexOf(key) !==-1 ) {
+          //           return (
+          //             <Link 
+          //               key={`${key}__link`}
+          //               to={subLinks[key]}
+          //               className='nav__link'
+          //               onClick={
+          //                 () => {
+          //                   if(hamburger) {
+          //                     this.setState({
+          //                       secondaryActive: false,
+          //                       activePrimary: null,
+          //                       expanded: false
+          //                     });
+          //                   }
+          //                 }
+          //               }
+          //             >
+          //             {key}
+          //             </Link>
+          //           )
+          //         }
+          //         else {
+          //           return (
+          //             <a key={`${key}__link`} href={subLinks[key]} className='nav__link' target={externalRoutes.indexOf(key) !== -1? '_blank': '_self'}
+          //             >{key}</a>
+          //           )
+          //         }
+          //       })
+          //       :
+          //       null
+          //   }
+          // </div>
+          null
           :
           null     
       }
