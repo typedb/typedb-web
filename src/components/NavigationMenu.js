@@ -76,8 +76,8 @@ class NavigationMenu extends Component {
         })
         const arrowClasses = classNames({
           'fa': true,
-          'fa-caret-right': hamburger && !this.state.activePrimary,
-          'fa-caret-down': !hamburger || ( hamburger && this.state.activePrimary),
+          'fa-caret-right': hamburger && this.state.activePrimary !== key,
+          'fa-caret-down': !hamburger || ( hamburger && this.state.activePrimary === key),
         })
         return (
           <div
