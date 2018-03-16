@@ -254,7 +254,7 @@ app.post('/api/hubspot', function(req, res ){
     .send(postData)
     .end(function(response) {
         if (!response.error) {
-            res.status(200).send(JSON.stringify({ msg: "Form Submitted Successfully," }));
+            res.status(200).send(JSON.stringify({ msg: "Thank you for signing up to our newsletter!" }));
         }
         else {
             res.status(400).send(JSON.stringify({msg: 'Bad Request'}));

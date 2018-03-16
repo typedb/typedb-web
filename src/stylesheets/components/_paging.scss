@@ -22,7 +22,10 @@
       opacity: 0.5;
     }
     &--hidden {
-      display: none;
+      visibility: hidden;
+    }
+    &--invisible {
+      visibility: hidden;
     }
     > i {
       display: block;

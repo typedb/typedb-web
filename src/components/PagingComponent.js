@@ -12,10 +12,14 @@ class PagingComponent extends Component {
     this.nextPage = this.nextPage.bind(this);
     this.prevPage = this.prevPage.bind(this);
     this.initialisePages = this.initialisePages.bind(this);
+    this.setupAuto = this.setupAuto.bind(this);
   }
 
   componentDidMount() {
     this.initialisePages();
+    if(this.props.auto) {
+      this.setupAuto();
+    }
     window.addEventListener('resize', this.initialisePages);
   }
 
@@ -52,6 +56,11 @@ class PagingComponent extends Component {
         activePage: this.state.activePage + 1
       });
     }
+    else {
+      this.setState({
+        activePage: 1,
+      });
+    }
   }
 
   prevPage() {
@@ -60,6 +69,14 @@ class PagingComponent extends Component {
         activePage: this.state.activePage - 1
       });
     }
+  }
+
+  setupAuto() {
+    const next = this.nextPage;
+    const intervalTime = this.props.timeOut? this.props.timeOut : 5000;
+    setInterval(function() {
+      next();
+    }, intervalTime);
   }
 
   render () {
@@ -71,11 +88,13 @@ class PagingComponent extends Component {
       'paging-component__button': true,
       'paging-component__button--left': true,
       'paging-component__button--hidden': this.state.pages == 1,
+      'paging-component__button--invisible': this.props.auto
     });
     const rightButtonClasses = classNames({
       'paging-component__button': true,
       'paging-component__button--right': true,
       'paging-component__button--hidden': this.state.pages == 1,
+      'paging-component__button--invisible': this.props.auto
     });
     const contentClasses = classNames({
       "paging-component__content": true,
@@ -105,9 +124,9 @@ class PagingComponent extends Component {
             })
           }
         </div>
-        <button className={rightButtonClasses} onClick={() => this.nextPage()}  disabled={this.state.activePage == this.state.pages}>
-          <i className="fa fa-chevron-right" aria-hidden="true" />
-        </button>
+          <button className={rightButtonClasses} onClick={() => this.nextPage()}  disabled={this.state.activePage == this.state.pages}>
+            <i className="fa fa-chevron-right" aria-hidden="true" />
+          </button>
       </div>
     )
   }
