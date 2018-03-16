@@ -174,58 +174,6 @@ class NavigationMenu extends Component {
           :
           this.renderLinks(false)      
       }
-      {
-        mediaType=== 'medium' || mediaType === 'small' || mediaType === 'extraSmall' ?
-          // <div className={hamburgerSecondaryClasses}>
-          //   <span className="nav__link nav__hamburger__secondary__back"
-          //   onClick={() => this.setState({
-          //     secondaryActive: false,
-          //     activePrimary: false
-          //   })}
-          //   >
-          //     <i className="fa fa-chevron-left" aria-hidden={true} />Back
-          //   </span>
-          //   {
-          //     this.state.activePrimary?
-          //       Object.keys(navRoutes[this.state.activePrimary].links).map((key, index) => {
-          //         const subLinks = navRoutes[this.state.activePrimary].links;
-          //         if (internalRoutes.indexOf(key) !==-1 ) {
-          //           return (
-          //             <Link 
-          //               key={`${key}__link`}
-          //               to={subLinks[key]}
-          //               className='nav__link'
-          //               onClick={
-          //                 () => {
-          //                   if(hamburger) {
-          //                     this.setState({
-          //                       secondaryActive: false,
-          //                       activePrimary: null,
-          //                       expanded: false
-          //                     });
-          //                   }
-          //                 }
-          //               }
-          //             >
-          //             {key}
-          //             </Link>
-          //           )
-          //         }
-          //         else {
-          //           return (
-          //             <a key={`${key}__link`} href={subLinks[key]} className='nav__link' target={externalRoutes.indexOf(key) !== -1? '_blank': '_self'}
-          //             >{key}</a>
-          //           )
-          //         }
-          //       })
-          //       :
-          //       null
-          //   }
-          // </div>
-          null
-          :
-          null     
-      }
       </div>
     )
   }

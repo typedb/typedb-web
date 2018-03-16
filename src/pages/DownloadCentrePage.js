@@ -9,6 +9,7 @@ import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import DownloadSuccessModal from 'components/DownloadSuccessModal';
 import Form from 'components/FormValidationComponents/components/form';
 import Select from 'components/FormValidationComponents/components/select';
+import { push } from 'react-router-redux';
 
 const languageDrivers = [
   {
@@ -176,7 +177,18 @@ class DownloadCentrePage extends Component {
             <span className="downloads__splash__text__tag"><strong>{this.props.downloadCount? this.props.downloadCount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","): null}</strong> downloads across the world</span>
           </div>
           <div className="downloads__splash__main">
-            <Tabs defaultIndex={initialIndex}>
+            <Tabs defaultIndex={initialIndex}
+            onSelect={i => {
+              let url = '/download'
+              if (i === 1) {
+                url = url+'#kgms'
+              }
+              else if (i === 2) {
+                url = url+'#workbase'
+              }
+              this.props.onUpdateTab(url)
+            }}
+            >
               <TabList className="downloads__splash__main__tablist">
                 <Tab className="downloads__splash__main__tablist__tab" selectedClassName="downloads__splash__main__tablist__tab--active">
                   Grakn Core
@@ -184,7 +196,8 @@ class DownloadCentrePage extends Component {
                 <Tab className="downloads__splash__main__tablist__tab" selectedClassName="downloads__splash__main__tablist__tab--active">
                   Grakn KGMS
                 </Tab>
-                <Tab className="downloads__splash__main__tablist__tab" selectedClassName="downloads__splash__main__tablist__tab--active">
+                <Tab className="downloads__splash__main__tablist__tab" selectedClassName="downloads__splash__main__tablist__tab--active"
+                >
                   Grakn Workbase
                 </Tab>
               </TabList>
@@ -407,6 +420,12 @@ class DownloadCentrePage extends Component {
   }
 }
 
+const mapDispatchToProps = (dispatch) => (
+  {
+    onUpdateTab: (url) => dispatch(push(url))
+  }
+)
+
 const mapStateToProps = (state) => (
   {
     downloads: state.downloads.items,
@@ -415,4 +434,4 @@ const mapStateToProps = (state) => (
     kgmsTable: state.kgmsTable.items,
   }
 )
-export default connect(mapStateToProps)(DownloadCentrePage);
+export default connect(mapStateToProps, mapDispatchToProps)(DownloadCentrePage);
