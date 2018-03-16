@@ -11,6 +11,7 @@ import { fetchKgmsfeatures } from 'actions/kgmsfeatures';
 import { fetchSupporttable } from 'actions/supportTable';
 import { fetchKgmstable } from 'actions/kgmsTable';
 import { fetchWorkbasetable } from 'actions/workbaseTable';
+import { fetchCompanies } from 'actions/companies';
 import routeOptions from './routes';
 
 const metaDescription = {
@@ -59,6 +60,7 @@ class Main extends Component {
     this.props.onFetchWorkbasetable();
     this.props.onFetchKgmstable();
     this.props.onFetchDownloadCount();
+    this.props.onFetchCompanies();
   }
 
   componentDidUpdate(oldProps) {
@@ -124,7 +126,7 @@ const mapDispatchToProps = (dispatch) => (
     onFetchWorkbasetable: () => dispatch(fetchWorkbasetable()),
     onFetchKgmstable: () => dispatch(fetchKgmstable()),
     onFetchDownloadCount: () => dispatch(fetchDownloadCount()),
-
+    onFetchCompanies: () => dispatch(fetchCompanies())
   }
 )
 

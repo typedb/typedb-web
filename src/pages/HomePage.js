@@ -8,6 +8,7 @@ import SupportFormModal from 'components/SupportFormModal';
 import Testimonials from 'components/Testimonials';
 import graknRoutes from 'config/graknRoutes';
 import KGMSFeatures from 'components/KGMSFeatures';
+import CompanyLogos from 'components/CompanyLogos';
 import ReactGA from 'react-ga';
 
 class HomePage extends Component {
@@ -337,6 +338,11 @@ class HomePage extends Component {
           </div>
         </section>
         <Testimonials buttonCallback={this.switchSupportModal} />
+        {
+          /* Comment out to get the company logos component
+          <CompanyLogos />
+          */
+        }
         <SupportFormModal isOpen={this.state.supportModal} onClose={this.switchSupportModal}/>
         <section className="home__world">
           <div className="home__world__container container section__container">
