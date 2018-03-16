@@ -2,15 +2,15 @@
   background-color: #f3f4fa;
   &__item {
     position: relative;
-    height: 80px;
+    height: 100px;
     > img {
-      max-width: 70%;
+      max-width: 90%;
       max-height: 100px;
       position: absolute;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      opacity: 0.4;
+      opacity: 0.6;
     }
   }
 }

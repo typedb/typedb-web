@@ -339,8 +339,8 @@ class HomePage extends Component {
         </section>
         <Testimonials buttonCallback={this.switchSupportModal} />
         {
-          /* Comment out to get the company logos component
-          <CompanyLogos />
+          /* Comment out to get the company logos component - remove this to get it working
+            <CompanyLogos />
           */
         }
         <SupportFormModal isOpen={this.state.supportModal} onClose={this.switchSupportModal}/>

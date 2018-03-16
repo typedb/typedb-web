@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import Testimonials from 'components/Testimonials';
 import SupportForm from 'components/SupportForm';
+import CompanyLogos from 'components/CompanyLogos';
 
 const zenscroll = require('zenscroll');
 
@@ -213,6 +214,9 @@ class ServicesPage extends Component {
           </div>
         </section>
         <Testimonials buttonCallback={this.scroll}/>
+        {
+         // <CompanyLogos />
+        }
         <section className="support-form__section" ref={(elem) => this.supportform = elem}>
           <div className="support-form__section__container container section__container">
             <span className="support-form__section__header">Get in touch with our team!</span>

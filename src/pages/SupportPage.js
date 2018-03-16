@@ -5,6 +5,7 @@ import SupportForm from 'components/SupportForm';
 import { connect } from 'react-redux';
 const zenscroll = require('zenscroll');
 const graknRoutes = require('config/graknRoutes');
+import CompanyLogos from 'components/CompanyLogos';
 
 class SupportPage extends Component {
   constructor(props) {
@@ -141,6 +142,9 @@ class SupportPage extends Component {
           </div>
         </section>
         <Testimonials buttonCallback={this.scroll}/>
+        {
+          // <CompanyLogos />
+        }
         <section className="support-form__section" ref={(elem) => this.supportform = elem}>
           <div className="support-form__section__container container section__container">
             <span className="support-form__section__header">Get in touch with our team!</span>
