@@ -73,7 +73,12 @@ class NavigationMenu extends Component {
           'nav__link__dropdown__content': !hamburger,
           'nav__link__dropdown__mobile': hamburger,
           'nav__link__dropdown__mobile--active': this.state.activePrimary === key 
-        })        
+        })
+        const arrowClasses = classNames({
+          'fa': true,
+          'fa-caret-right': hamburger && !this.state.activePrimary,
+          'fa-caret-down': !hamburger || ( hamburger && this.state.activePrimary),
+        })
         return (
           <div
           className={linkClasses}
@@ -89,13 +94,7 @@ class NavigationMenu extends Component {
           }
           >
           {key}
-          {
-            hamburger?
-              <i className="fa fa-caret-right" aria-hidden={true} />
-            :
-              <i className="fa fa-caret-down" aria-hidden={true} />
-
-          }
+          <i className={arrowClasses} aria-hidden={true} />
           <div className={subMenuClassnames}>
               {
                 Object.keys(subLinks).map((key) => {
