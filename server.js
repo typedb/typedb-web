@@ -233,7 +233,7 @@ app.post('/api/support', function(req, res) {
             console.log(err);
             res.status(500).send(JSON.stringify({msg: "Form submission failed! Try Again.."}));
         }
-        res.status(200).send(JSON.stringify({ msg: "Form Submitted Successfully," }));
+        res.status(200).send(JSON.stringify({ msg: "Thank you for submitting the support form! A member of our team will be in touch shortly." }));
     });
 });
 
