@@ -12,6 +12,7 @@ import deployment from './deployment';
 import supportTable from './supportTable';
 import kgmsTable from './kgmsTable';
 import workbaseTable from './workbaseTable';
+import companies from './companies';
 
 export default combineReducers({
   browser: responsiveStateReducer,
@@ -26,5 +27,6 @@ export default combineReducers({
   deployment,
   supportTable,
   kgmsTable,
-  workbaseTable
+  workbaseTable,
+  companies
 })

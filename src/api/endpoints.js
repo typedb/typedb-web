@@ -16,6 +16,7 @@ export default {
   deployment: `${cmsBase}/deployment/rows${cmsAccessTokenTag}`,
   supporttable: `${cmsBase}/supporttable/rows${cmsAccessTokenTag}`,
   kgmstable: `${cmsBase}/kbmstable/rows${cmsAccessTokenTag}`,
+  companies: `${cmsBase}/companies/rows${cmsAccessTokenTag}`,
   workbasetable: `${cmsBase}/workbasetable/rows${cmsAccessTokenTag}`,
   downloadCount: 'https://api.github.com/repos/graknlabs/grakn/releases'
 };
