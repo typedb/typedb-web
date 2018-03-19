@@ -41,12 +41,12 @@
     }
   }
   &__team {
-    padding: 120px 0;
+    padding: 120px 0 70px 0;
     @media screen and (max-width: $smallScreen) {
       padding: 90px 0;
     }
     &__header {
-      display: block;      
+      display: block;
       text-align: center;
       font-size: 30px;
       padding-bottom: 50px;
@@ -106,6 +106,17 @@
     //@include multiResponsiveColumns(170px, 10px, true, 5);
     padding-bottom: 70px;
     text-align: center;
+    &__header {
+      display: block;
+      text-align: center;
+      font-size: 30px;
+      padding-bottom: 50px;
+      color: $textCharcoal;
+      font-weight: 600;
+      @media screen and (max-width: $smallScreen) {
+        font-size: 24px;
+      }
+    }
     &__item {
       height: 240px;
       width: 180px;
@@ -139,7 +150,8 @@
         padding: 0.8rem;
         transform: translate(0, calc(100% - 3rem));
         transition: background-color 200ms ease-in-out, transform 200ms ease-in-out;
-        background-color: rgba(0,0,0,0.4);          
+        background-color: rgba(0,0,0,0.4);
+        text-align: left;
         &:hover {
           transform: translate(0, 0);
         }

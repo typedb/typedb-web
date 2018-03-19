@@ -20,7 +20,7 @@ class AboutPage extends Component {
         </section>
         <section className="about__team">
           <div className="container section__container">
-              <span className="about__team__header">Team</span>
+              <span className="about__team__header">About Us</span>
               <div className="about__team__text">
                 <span className="about__team__text__col1">Grakn enables the world to organise complex networks of data that serves as the knowledge foundation of intelligent systems. Grakn provides the knowledge engineering tools to turn rich datasets into a body of knowledge, becoming the de facto database for intelligent systems. We're a team with big ambitions, and our competitions are fierce. However, no database company tackles the problem of data complexity as we do.</span>
                 <div className="about__team__text__divider">
@@ -32,6 +32,7 @@ class AboutPage extends Component {
         </section>
         <section className="about__members">
           <div className="container section__container">
+            <span className="about__members__header">Core Team</span>
             <div className="multi-resize-column">
               {
                 this.props.team.items.map((member, index) => {
