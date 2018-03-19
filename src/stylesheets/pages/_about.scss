@@ -103,20 +103,27 @@
   }
 
   &__members {
-    @include multiResponsiveColumns(170px, 10px, true, 5);
+    //@include multiResponsiveColumns(170px, 10px, true, 5);
     padding-bottom: 70px;
+    text-align: center;
     &__item {
       height: 240px;
+      width: 180px;
+      display: inline-block;
+      margin: 5px 5px;
       background-color: white;
       position: relative;
       overflow-y: hidden;
+      @media screen and (max-width: 500px) {
+        width: 100%;
+      }
       > img {
         display: block;
         margin: 0 auto;
         width: 100%;
         height: 100%;
-        @media screen and (max-width: 359px) {
-          width: 55%;
+        @media screen and (max-width: 500px) {
+          width: 180px;
           margin-left: 0;
           display: inline-block;
           vertical-align: top;
@@ -136,16 +143,6 @@
         &:hover {
           transform: translate(0, 0);
         }
-        @media screen and (max-width: 359px) {
-          padding-top: 0;
-          position: relative;
-          width: 35%;
-          margin-left: 0;
-          display: inline-block;
-          vertical-align: top;
-          color: black;
-          transform: translate(0,0);
-        }
         > span {
           display: block;
           font-size: 14px;
@@ -156,6 +153,19 @@
         }
         &__education {
           margin-bottom: 0.3rem;
+        }
+        @media screen and (max-width: 500px) {
+          padding-top: 0;
+          position: relative;
+          width: calc(100% - 220px);
+          margin-left: 0;
+          display: inline-block;
+          vertical-align: top;
+          color: black;
+          transform: translate(0,0);
+          background-color: white;
+          text-align: left;
+          font-size: 12px;
         }
       }
     }

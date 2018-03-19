@@ -106,6 +106,7 @@
     "validator": "^9.2.0",
     "vis-grakn": "4.21.7",
     "webpack": "2.6.0",
+    "yarn": "1.5.1",
     "zenscroll": "^4.0.0"
   }
 }
