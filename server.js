@@ -109,7 +109,7 @@ function handleMailChimpInvite(userEmail, userName, userSurname) {
           'Content-Type': 'application/json'
       })
       .auth({
-          user: 'haikal',
+          user: 'haikalpribadi',
           pass: '5e7b3a7503eff7fdd336c095b128d139-us8',
           sendImmediately: true
       })
