@@ -32,9 +32,9 @@ class KGMSPage extends Component {
               </span>
             </div>
             </div>
-          <img className="kgms-page__splash__kgms" src="/assets/img/kgms-preview.png" alt="KGMS Preview" />
+          <img className="kgms-page__splash__kgms" src="/assets/img/workbase-preview.png" alt="KGMS Preview" />
         </section>
-    
+
         <section className="kgms-page__info">
           <div className="kgms-page__info__container container section__container">
             <div className="kgms-page__info__item">
@@ -60,7 +60,7 @@ class KGMSPage extends Component {
             </div>
           </div>
         </section>
-    
+
         <section className="kgms-page__features">
           <div className="kgms-page__features__container container section__container">
             <span className="kgms-page__features__header">
@@ -132,7 +132,7 @@ class KGMSPage extends Component {
               </div>
               :
               null
-            }        
+            }
             <div className="kgms-page__features__buttons">
               <Link className="button button--red" to={{pathname: "/download", hash:'#kgms'}} onClick={() => {
                 ReactGA.initialize('UA-72414051-1');
