@@ -355,7 +355,7 @@ class HomePage extends Component {
                 action: 'Button Click',
               });
             }}
-            >Join the Grakn community around the world</Link>
+            >Join Grakn engineers around the world</Link>
           </div>
         </section>
       </div>
