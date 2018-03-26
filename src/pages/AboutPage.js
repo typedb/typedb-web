@@ -35,7 +35,7 @@ class AboutPage extends Component {
             <span className="about__members__header">Core Team</span>
             <div className="multi-resize-column">
               {
-                this.props.team.items.map((member, index) => {
+                this.props.team.items.sort((a,b) => a.sort - b.sort).map((member, index) => {
                   return (
                     <div className="about__members__item multi-resize-column__item" key={`${index}__about`}>
                       <img src={member.img} alt={`${member.name} image`} />
