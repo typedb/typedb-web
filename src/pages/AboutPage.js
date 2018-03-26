@@ -26,7 +26,7 @@ class AboutPage extends Component {
                 <div className="about__team__text__divider">
                   <img src="/assets/svg/about-divider.svg" alt="Divider" />
                 </div>
-                <span className="about__team__text__col2">We're a growing team of talented engineers and technology entrepreneurs based in London. Our team members come from diverse and accomplished backgrounds, from various countries and many different walks of life. Our skills span across Finance, Computer Science, Engineering, Machine Learning, Physics, Scientific Computing, Applied Mathematics, Constraint Optimisation, Robotics, Knowledge Representation and Automated Reasoning.</span>
+                <span className="about__team__text__col2">We're a growing team of talented engineers and technology entrepreneurs based in London. Our team members come from diverse and accomplished backgrounds, from various countries and many different walks of life. Our skills span across Computer Science, Engineering, Machine Learning, Physics, Scientific Computing, Mathematics, Optimisation, Robotics, Knowledge Representation and Automated Reasoning.</span>
               </div>
           </div>
         </section>
