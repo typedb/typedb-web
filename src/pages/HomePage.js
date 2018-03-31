@@ -117,9 +117,9 @@ class HomePage extends Component {
                 <div className="home__features__item__text__logo home__features__item__text__logo--purple">
                   <img src="/assets/svg/inference.svg" alt="inference" />
                 </div>
-                <span className="home__features__item__text__headline">Logical Inference</span>
+                <span className="home__features__item__text__headline">Automated Reasoning</span>
                 <span className="home__features__item__text__paragraph">
-                Automatic deduction of data types and relationships during runtime (OLTP), enabling the retrieval of hidden associations between data points.
+                Automatic deduction of data patterns and relationships during runtime (OLTP), enabling the retrieval of implied/hidden associations between data points.
                 </span>
                 <Link to="/grakn-core" className="animated__link animated__link--purple"
                 onClick={() => {
