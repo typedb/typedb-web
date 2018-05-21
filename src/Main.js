@@ -8,6 +8,7 @@ import { fetchDownloads, fetchDownloadCount } from 'actions/downloads';
 import { fetchDeployment } from 'actions/deployment';
 import { fetchTestimonials } from 'actions/testimonials';
 import { fetchKgmsfeatures } from 'actions/kgmsfeatures';
+import { fetchCloudproviders } from 'actions/cloudproviders';
 import { fetchSupporttable } from 'actions/supportTable';
 import { fetchKgmstable } from 'actions/kgmsTable';
 import { fetchWorkbasetable } from 'actions/workbaseTable';
@@ -56,6 +57,7 @@ class Main extends Component {
     this.props.onFetchTestimonials();
     this.props.onFetchDeployment();
     this.props.onFetchKgmsfeatures();
+    this.props.onFetchCloudproviders();
     this.props.onFetchSupporttable();
     this.props.onFetchWorkbasetable();
     this.props.onFetchKgmstable();
@@ -122,6 +124,7 @@ const mapDispatchToProps = (dispatch) => (
     onFetchTestimonials: () => dispatch(fetchTestimonials()),
     onFetchDeployment: () => dispatch(fetchDeployment()),
     onFetchKgmsfeatures: () => dispatch(fetchKgmsfeatures()),
+    onFetchCloudproviders: () => dispatch(fetchCloudproviders()),
     onFetchSupporttable: () => dispatch(fetchSupporttable()),
     onFetchWorkbasetable: () => dispatch(fetchWorkbasetable()),
     onFetchKgmstable: () => dispatch(fetchKgmstable()),

@@ -9,6 +9,7 @@ export default {
   getMeetups: () => makeRequest(endpoints.meetups).then((data) => data),
   getTestimonials: () => makeRequest(endpoints.testimonials).then((data) => data),
   getKgmsfeatures: () => makeRequest(endpoints.kgmsfeatures).then((data) => data),
+  getCloudproviders: () => makeRequest(endpoints.cloudproviders).then((data) => data),
   getDeployment: () => makeRequest(endpoints.deployment).then((data) => data),
   getSupporttable: () => makeRequest(endpoints.supporttable).then((data) => data),
   getKgmstable: () => makeRequest(endpoints.kgmstable).then((data) => data),

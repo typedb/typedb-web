@@ -1,5 +1,6 @@
 import React , { Component } from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 import KGMSFeatures from 'components/KGMSFeatures';
 import SupportForm from 'components/SupportForm';
 import ReactGA from 'react-ga';
@@ -69,10 +70,67 @@ class DeploymentPage extends Component {
           </div>
         </section>
 
-        <section className="deployment-page__coming">
-          <div className="deployment-page__coming__container container section__container">
-            <span className="deployment-page__coming__header"><strong>Grakn KGMS</strong> in the Cloud is Coming Soon!</span>
-            <img src="assets/img/logo.png" alt="logo" />
+        <section className="deployment-page__deploy">
+          <div className="grakn-page__features__circle"><img src="/assets/svg/bot.svg" alt="grakn bot" /></div>
+          <div className="deployment-page__deploy__container container section__container">
+            <span className="deployment-page__deploy__header">Deploy <strong>Grakn KGMS</strong> in the Cloud today!</span>
+            <span className="deployment-page__deploy__tag">Deploy Grakn KGMS on any of your favourite cloud provider and pay only for what you use with our simple and easy pricing model.
+            Sign up below and learn more about each of the leading cloud providers.</span>
+            {
+              this.props.cloudproviders.length > 0 ?
+              <div className="deployment-page__deploy__col">{
+                    this.props.cloudproviders.sort((a,b) => a.sort - b.sort).filter((item, index)=> (index % 2 == 0)).map((item, index) => {
+                      return (
+                        <div className="deployment-page__deploy__col__item" key={`${item.name}__key__deployment`}>
+                          <div className="deployment-page__deploy__col__item__img">
+                          <img src={item.img} alt={item.name} />
+                          </div>
+                          <div className="deployment-page__deploy__col__item__details">
+                            <span className="deployment-page__deploy__col__item__details__header">{item.name}</span>
+                            <div className="deployment-page__deploy__col__item__details__text">
+                            {item.description}
+                            </div>
+                          </div>
+                          {item.available == 1 ?
+                            <div className="deployment-page__deploy__col__item__deploy-button"><span>DEPLOY</span></div>
+                            :
+                            <div className="deployment-page__deploy__col__item__deploy-button"><span>COMING SOON</span></div>
+                          }
+                        </div>
+                      )
+                    })
+                  }</div>
+              :
+              null
+            }
+            <div className="deployment-page__deploy__col__divider"></div>
+            {
+              this.props.cloudproviders.length > 0 ?
+              <div className="deployment-page__deploy__col">{
+                    this.props.cloudproviders.sort((a,b) => a.sort - b.sort).filter((item, index)=> (index % 2 !== 0)).map((item, index) => {
+                      return (
+                        <div className="deployment-page__deploy__col__item" key={`${item.name}__key__deployment`}>
+                          <div className="deployment-page__deploy__col__item__img">
+                          <img src={item.img} alt={item.name} />
+                          </div>
+                          <div className="deployment-page__deploy__col__item__details">
+                            <span className="deployment-page__deploy__col__item__details__header">{item.name}</span>
+                            <div className="deployment-page__deploy__col__item__details__text">
+                            {item.description}
+                            </div>
+                          </div>
+                          {item.available == 1 ?
+                            <div className="deployment-page__deploy__col__item__deploy-button"><span>DEPLOY</span></div>
+                            :
+                            <div className="deployment-page__deploy__col__item__deploy-button"><span>COMING SOON</span></div>
+                          }
+                        </div>
+                      )
+                    })
+                  }</div>
+              :
+              null
+            }
             <span className="button button--red " onClick={() => this.scroll()}>Get in touch</span>                  
           </div>
         </section>
@@ -89,4 +147,10 @@ class DeploymentPage extends Component {
   }
 }
 
-export default DeploymentPage;
+const mapStateToProps = (state) => (
+  {
+    cloudproviders: state.cloudproviders.items
+  }
+)
+
+export default connect(mapStateToProps)(DeploymentPage);

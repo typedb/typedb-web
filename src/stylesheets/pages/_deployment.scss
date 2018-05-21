@@ -180,21 +180,15 @@
     }
   }
 
-  &__coming {
-    padding: 0 0 90px 0;
+  &__deploy {
+    padding: 110px 0 90px 0;
     position: relative;
+    background-image: url('/assets/img/deployment-deploy-bg.png');
     @media screen and (max-width: $smallScreen) {
-      padding: 0 0 50px 0;
+      padding: 70px 0 50px 0;
     }
 
     &__container {
-      > img {
-        padding-top: 110px;
-        padding-bottom: 90px;
-        display: block;
-        margin: 0 auto;
-        animation:spin 4s linear infinite;      
-      }
       > .button {
         min-width: 180px;
         text-align: center;
@@ -204,9 +198,11 @@
       display: block;
       margin: 0 auto;
       text-align: center;
-      font-size: 24px;
+      font-size: 20px;
       color: $textCharcoal;
+      font-weight: 300;
       padding-bottom: 30px;
+      width: 80%;
       @media screen and (max-width: $smallScreen) {
         font-size: 18px;
       }
@@ -225,6 +221,107 @@
       @media screen and (max-width: $smallScreen) {
         font-size: 24px;
         width: 100%;
+      }
+    }
+    
+    &__col {
+      width: 47%;
+      display: inline-block;
+      vertical-align: top;
+      margin-top: 30px;
+      margin-bottom: 30px;
+      @media screen and (max-width: $mediumScreen) {
+        width: 100%;
+        display: block;
+      }
+    
+      @media screen and (max-width: $mediumScreen) {
+        width: 100%;
+      }
+      &__divider {
+        width: 6%;
+        display: inline-block;
+        vertical-align: middle;
+        @media screen and (max-width: $mediumScreen) {
+          width: 100%;
+          display: block;
+        }
+        > img {
+          display: block;
+          margin: 0 auto;
+          max-width: 50%;
+        }
+        @media screen and (max-width: $mediumScreen) {
+          display: none !important;
+        }
+      }
+      &__item {
+        width: auto;
+        padding: 10px;
+        box-sizing: border-box;
+        background-color: white;
+        border: solid 1px #e6e8f4;
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        border-radius: 5px;
+        margin-bottom: 50px;
+        @media screen and (max-width: $mediumScreen) {
+          margin-bottom: 30px;
+          height: 180px;
+        }
+        &--purple {
+          border: 1px solid #8f85e8;
+        }
+        &--red {
+          border: 1px solid #fa7677;
+        }
+        &--yellow {
+          border: 1px solid #93ecc3;
+        }
+        &--green {
+          border: 1px solid #fccb94;
+        }
+        &--blue {
+          border: 1px solid #93dcff;
+        }
+
+        &__img {
+          width: 15%;
+          margin-right: 5%;
+          > img {
+            max-width: 90%;
+            display: block;
+            margin: 0 auto;
+          }
+        }
+        &__details {
+          width: 50%;
+          text-align: left;
+          &__header {
+            display: block;
+            font-weight: 600;
+            color: $textCharcoal;
+            font-size: 20px;
+            @media screen and (max-width: $smallScreen) {
+              font-size: 16px;
+            }
+          }
+          &__text {
+            font-size: 16px;
+            color: $textLight;
+            @media screen and (max-width: $smallScreen) {
+              font-size: 14px;
+            }
+            > a {
+              display: inline-block;
+              vertical-align: bottom;
+              width: fit-content;
+            }
+          }
+        }
+        &__deploy-button{
+        }
       }
     }
   }

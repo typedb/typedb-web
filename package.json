@@ -21,7 +21,7 @@
       "^.+\\.(css)$": "identity-obj-proxy"
     }
   },
-  "author": "Harjyot Singh",
+  "author": "Grakn Labs",
   "license": "ISC",
   "devDependencies": {
     "babel-eslint": "^7.2.3",
