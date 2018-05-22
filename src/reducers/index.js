@@ -8,6 +8,7 @@ import events from './events';
 import meetups from './meetups';
 import testimonials from './testimonials';
 import kgmsfeatures from './kgmsfeatures';
+import cloudproviders from './cloudproviders';
 import deployment from './deployment';
 import supportTable from './supportTable';
 import kgmsTable from './kgmsTable';
@@ -24,6 +25,7 @@ export default combineReducers({
   meetups,
   testimonials,
   kgmsfeatures,
+  cloudproviders,
   deployment,
   supportTable,
   kgmsTable,
