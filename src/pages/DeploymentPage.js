@@ -92,9 +92,9 @@ class DeploymentPage extends Component {
                             </div>
                           </div>
                           {item.available == 1 ?
-                            <div className="deployment-page__deploy__col__item__deploy-button"><span>DEPLOY</span></div>
+                            <a href={item.link} target="_blank"><div className="deployment-page__deploy__col__item__deploy-button" style={{backgroundColor: item.colour}}>DEPLOY</div></a>
                             :
-                            <div className="deployment-page__deploy__col__item__deploy-button"><span>COMING SOON</span></div>
+                            <div className="deployment-page__deploy__col__item__deploy-button__disabled"><span>COMING SOON</span></div>
                           }
                         </div>
                       )
@@ -120,9 +120,9 @@ class DeploymentPage extends Component {
                             </div>
                           </div>
                           {item.available == 1 ?
-                            <div className="deployment-page__deploy__col__item__deploy-button"><span>DEPLOY</span></div>
+                            <a href={item.link} target="_blank"><div className="deployment-page__deploy__col__item__deploy-button" style={{backgroundColor: item.colour}}>DEPLOY</div></a>
                             :
-                            <div className="deployment-page__deploy__col__item__deploy-button"><span>COMING SOON</span></div>
+                            <div className="deployment-page__deploy__col__item__deploy-button disabled"><span>COMING SOON</span></div>
                           }
                         </div>
                       )
