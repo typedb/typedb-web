@@ -94,7 +94,7 @@ class DeploymentPage extends Component {
                           {item.available == 1 ?
                             <a href={item.link} target="_blank"><div className="deployment-page__deploy__col__item__deploy-button" style={{backgroundColor: item.colour}}>DEPLOY</div></a>
                             :
-                            <div className="deployment-page__deploy__col__item__deploy-button__disabled"><span>COMING SOON</span></div>
+                            <div className="deployment-page__deploy__col__item__deploy-button disabled"><span>COMING SOON</span></div>
                           }
                         </div>
                       )
