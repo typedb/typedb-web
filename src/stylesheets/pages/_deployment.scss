@@ -186,6 +186,7 @@
     background-image: url('/assets/img/deployment-deploy-bg.png');
     @media screen and (max-width: $smallScreen) {
       padding: 70px 0 50px 0;
+      margin-top: 40px;
     }
 
     &__container {

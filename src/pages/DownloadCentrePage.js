@@ -159,9 +159,9 @@ class DownloadCentrePage extends Component {
   }
 
   render() {
-    let initialIndex = 0;
-    if (this.props.location.hash === "#kgms") {
-      initialIndex = 1;
+    let initialIndex = 1;
+    if (this.props.location.hash === "#core") {
+      initialIndex = 0;
     }
     if (this.props.location.hash === "#workbase") {
       initialIndex = 2;
@@ -180,8 +180,8 @@ class DownloadCentrePage extends Component {
             <Tabs defaultIndex={initialIndex}
             onSelect={i => {
               let url = '/download'
-              if (i === 1) {
-                url = url+'#kgms'
+              if (i === 0) {
+                url = url+'#core'
               }
               else if (i === 2) {
                 url = url+'#workbase'
@@ -313,7 +313,10 @@ class DownloadCentrePage extends Component {
                   </span>
                   {this.renderTable(this.props.kgmsTable.sort((a,b) => a.sort - b.sort))}
                   {this.renderTableMobile(this.props.kgmsTable.sort((a,b) => a.sort - b.sort))}
-                  <span className="button button--red downloads__splash__main__tabpanel__content__button" onClick={() => this.scroll()}>Get in touch</span>
+                  <div className="downloads__splash__main__tabpanel__content__footer">
+                    <Link to="/deployment" className="button button--red downloads__splash__main__tabpanel__content__footer__button">Cloud Deployment</Link>
+                    <span className="button button--transparent downloads__splash__main__tabpanel__content__footer__button" onClick={() => this.scroll()}>Get in touch</span>
+                  </div>
                 </div>
               </TabPanel>
               <TabPanel className="downloads__splash__main__tabpanel">
