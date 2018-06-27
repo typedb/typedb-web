@@ -126,9 +126,20 @@
               font-size: 14px;
             }
           }
-          &__button {
-            min-width: 180px;
-            text-align: center;
+          &__footer {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            @media screen and (max-width: $smallScreen){
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+            }
+            &__button {
+              min-width: 180px;
+              text-align: center;
+              margin: 10px;
+            }
           }
           &__download {
             text-align: center;
