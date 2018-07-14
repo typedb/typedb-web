@@ -33,7 +33,7 @@
         padding-top: calc((100vh - 394px)/4);
       }
       @media screen and (max-height: 800px) {
-        padding-top: 110px;
+        padding-top: 120px;
       }
       > span {
         display: block;
@@ -41,37 +41,32 @@
       }
       &__headline {
         font-size: 36px;
-        > strong {
-          font-weight: 500;
-        }
+        font-weight: 500;
         @media screen and (max-width: $mediumScreen) {
           font-size: 28px;
-          > strong {
-            font-weight: 600;
-          }
         }
         @media screen and (max-width: $smallScreen) {
           font-size: 25px;
         }
         @media screen and (max-width: $smallerScreen) {
           font-size: 19px;
+          font-weight: 600;
         }
         @media screen and (max-width: $extraSmallScreen) {
           font-size: 26px;
+          font-weight: 400;
           width: 320px;
           margin: 0 auto;
-          > strong {
-            font-weight: 500;
-          }
         }
-        @media screen and (max-width: $extraSmallScreen) {
-          font-size: 22px;
+        @media screen and (max-width: $superSmallScreen) {
+          font-size: 12px;
+          font-weight: 400;
           width: 280px;
           margin: 0 auto;
         }
       }
       &__tag {
-        padding-top: 0;
+        padding-top: 0px;
         font-size: 20px;
         color: $textCharcoal;
         font-weight: 300;
