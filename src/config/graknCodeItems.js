@@ -4,7 +4,7 @@ module.exports = {
   ER: {
     code: `${visualiserItems.ER.code}`,
     text: `Grakn allows you to model your domain using the well-known Entity-Relationship model at its full expressivity. It is composed of entity types, relationship types, and attribute types.
-    <br><br>Unlike other modelling languages, Grakn allows you to define hyper-entities, hyper-relations, and rules to build complex knowledge models. `
+    <br><br>Unlike other modelling languages, Grakn allows you to define type hierarchies, hyper-entities, hyper-relations, and rules to build rich knowledge models. `
   },
   Types: {
     code: `${visualiserItems.Types.code}`,

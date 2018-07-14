@@ -14,12 +14,17 @@
     background-repeat: no-repeat;
     color: white;
     &__text {
-      font-size: 40px;
+      font-size: 36px;
       display: block;
       margin: 0 auto;
       font-weight: 300;
+      @media screen and (max-width: $mediumScreen) {
+        font-size: 26px;
+      }
       @media screen and (max-width: $smallScreen) {
-        font-size: 30px;
+        font-size: 22px;
+        width: 360px;
+        margin: 0 auto;
       }
     }
     &__circle {

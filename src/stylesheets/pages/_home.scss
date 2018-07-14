@@ -17,7 +17,7 @@
   }
   &__splash {
     height: 100vh;
-    min-height: 800px;    
+    min-height: 800px;
     position: relative;
     background-image: url('/assets/svg/BG-HD.svg');
     background-repeat: no-repeat;
@@ -30,22 +30,28 @@
         padding-top: calc((1000px - 394px)/3.5) !important;
       }
       @media screen and (max-height: 1000px) {
-        padding-top: calc((100vh - 394px)/4);        
+        padding-top: calc((100vh - 394px)/4);
       }
       @media screen and (max-height: 800px) {
-        padding-top: 110px;        
+        padding-top: 110px;
       }
       > span {
         display: block;
         margin: 0 auto;
       }
       &__headline {
-        font-size: 42px;
+        font-size: 32px;
         > strong {
           font-weight: 600;
         }
-        @media screen and (max-width: $smallScreen) {
+        @media screen and (max-width: $mediumScreen) {
           font-size: 28px;
+        }
+        @media screen and (max-width: $smallScreen) {
+          font-size: 19px;
+        }
+        @media screen and (max-width: $extraSmallScreen) {
+          font-size: 15px;
         }
       }
       &__tag {
@@ -54,8 +60,16 @@
         color: $textCharcoal;
         font-weight: 300;
         line-height: 1.8;
+        @media screen and (max-width: $mediumScreen) {
+          font-size: 16px;
+          font-weight: 400;
+        }
         @media screen and (max-width: $smallScreen) {
           font-size: 14px;
+          font-weight: 400;
+        }
+        @media screen and (max-width: $extraSmallScreen) {
+          font-size: 11px;
           font-weight: 400;
         }
       }
@@ -93,7 +107,7 @@
       width: 60%;
       padding-top: 220px;
       @media screen and (max-width: $smallScreen) {
-        width: 90%; 
+        width: 90%;
         padding-top: 190px;
       }
       @media screen and (min-height: 1000px) {
@@ -128,7 +142,7 @@
             color: black;
           }
           > .slack-link {
-            color: $textRed;            
+            color: $textRed;
           }
           > .twitter-link {
             color: $textBlue;
@@ -162,7 +176,7 @@
       }
     }
     &__headline {
-      width: 50%;
+      width: 55%;
       text-align: center;
       @media screen and (max-width: $smallScreen) {
         width: 100%;
@@ -226,7 +240,7 @@
             background-color: #796de3;
           }
           &--blue {
-            background-color: #21b5fa;            
+            background-color: #21b5fa;
           }
           &--green {
             background-color: #46cd90;
@@ -270,7 +284,7 @@
           @media screen and (max-width: $smallScreen) {
             font-size: 14px;
           }
-          
+
         }
         @media screen and (max-width: $smallScreen) {
           order: 2;
@@ -283,7 +297,7 @@
           display: block;
         }
         @media screen and (max-width: $smallScreen) {
-          margin-bottom: 40px;          
+          margin-bottom: 40px;
           order: 1;
         }
       }
@@ -299,7 +313,7 @@
     &__headline {
       width: 60%;
       text-align: center;
-     // padding-top: 70px;    
+     // padding-top: 70px;
       @media screen and (max-width: $smallScreen) {
        // padding-top: 50px;
         width: 90%;
@@ -321,7 +335,7 @@
     padding-top: 90px;
     padding-bottom: 90px;
     @media screen and (max-width: $smallScreen) {
-       padding-top: 50px;      
+       padding-top: 50px;
        padding-bottom: 50px;
      }
     &__headline {
@@ -347,10 +361,10 @@
           }
         }
         // > :nth-child(1) {
-        //   border-bottom: 1px solid #f2f6fa;          
+        //   border-bottom: 1px solid #f2f6fa;
         // }
       }
- 
+
       &__item {
         height: 130px;
         display: flex !important;
@@ -359,7 +373,7 @@
         cursor: pointer;
         flex-basis: 0;
         flex-grow: 1;
-        border: 1px solid white;        
+        border: 1px solid white;
         > img {
           align-self: center;
           max-width: 80%;
@@ -367,7 +381,7 @@
         }
         &:hover {
           border: 1px solid $borderColor;
-        } 
+        }
       }
     }
   }
@@ -400,7 +414,7 @@
         font-size: 22px;
         width: 100%;
         margin-bottom: 20px;
-        padding-top: 50px;    
+        padding-top: 50px;
       }
     }
     &__tabcontainer {
@@ -439,9 +453,9 @@
           display: flex;
           height: 150px;
           justify-content: center;
-          align-items: center; 
+          align-items: center;
         }
-        
+
         > img {
           max-width: 100%;
           display: block;
@@ -537,7 +551,7 @@
         outline: none;
         @media screen and (max-width: $smallScreen) {
           border-bottom: 2px solid $textLight;
-        }     
+        }
         &--selected {
           border-radius: 5px 5px 0 0;
           background-color: #414859;
@@ -548,40 +562,40 @@
           > .home__usecase__tablist__item__text {
             &--bots {
               color: #46CD90;
-            }            
+            }
             &--search {
               color: $textPurple;
-            }            
+            }
             &--services {
               color: #F75E62;
-            }            
+            }
             &--science {
               color: #21B5FA;
             }
             &--security {
               color: #40ED79;
-            }            
+            }
           }
           &:nth-child(1) {
             border-top: none;
-            border-bottom: 2px solid #46CD90;         
-          }      
+            border-bottom: 2px solid #46CD90;
+          }
           &:nth-child(2) {
-            border-top: none;            
-            border-bottom: 2px solid $textPurple;       
-          }      
+            border-top: none;
+            border-bottom: 2px solid $textPurple;
+          }
           &:nth-child(3) {
-            border-top: none;            
-            border-bottom: 2px solid #F75E62;         
-          }      
+            border-top: none;
+            border-bottom: 2px solid #F75E62;
+          }
           &:nth-child(4) {
-            border-top: none;            
-            border-bottom: 2px solid #21B5FA;          
-          }      
+            border-top: none;
+            border-bottom: 2px solid #21B5FA;
+          }
           &:nth-child(5) {
-            border-top: none;            
-            border-bottom: 2px solid #40ED79;           
-          }      
+            border-top: none;
+            border-bottom: 2px solid #40ED79;
+          }
         }
         > span {
           @media screen and (max-width: $smallScreen) {
@@ -597,7 +611,7 @@
 
           }
         }
-        
+
       }
     }
   }
@@ -626,7 +640,7 @@
       @media screen and (max-width: $smallScreen) {
         min-height: 170px;
         padding: 40px 0;
-      }  
+      }
     }
     &__headline {
       display: block;

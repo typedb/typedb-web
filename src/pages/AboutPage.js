@@ -14,7 +14,7 @@ class AboutPage extends Component {
       <div className="about">
         <section className="about__splash">
           <div className="container section__container">
-            <h1 className="about__splash__text">We enable the world to organise complex networks of data</h1>
+            <h1 className="about__splash__text">We push the boundary of intelligent systems one step forward</h1>
           </div>
           <div className="about__splash__circle"><img src="/assets/svg/bot.svg" alt="grakn bot" /></div>
         </section>

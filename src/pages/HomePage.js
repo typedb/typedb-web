@@ -31,8 +31,8 @@ class HomePage extends Component {
       <div className="home">
         <section className="home__splash">
           <div className="home__splash__text container section__container">
-            <h1 className="home__splash__text__headline home__header"><strong>THE KNOWLEDGE GRAPH</strong></h1>
-            <span className="home__splash__text__tag">A database to organise complex networks of data and make it queryable</span>
+            <h1 className="home__splash__text__headline home__header"><strong>Building intelligent systems start from the database</strong></h1>
+            <span className="home__splash__text__tag">Grakn is a database that turns complex data into a <u>knowlege graph</u></span>
             <Link to="/grakn-core" className="home__splash__text__install" onClick={() => {
               ReactGA.initialize('UA-72414051-1');
               ReactGA.event({
@@ -84,7 +84,7 @@ class HomePage extends Component {
         <section className="home__features home__features--coloured">
           <div className="home__features__container container section__container">
             <span className="home__features__headline home__header">
-              A unified <strong>knowledge representation</strong> for intelligent systems
+              Intelligent systems need a unified <strong>knowledge representation</strong>
             </span>
             <div className="home__features__item">
               <div className="home__features__item__text">
@@ -93,7 +93,7 @@ class HomePage extends Component {
                 </div>
                 <span className="home__features__item__text__headline">Knowledge Schema</span>
                 <span className="home__features__item__text__paragraph">
-                Enhanced Entity-Relationship schema, with constructs to define hyper-entities, hyper-relations and rules, to build complex knowledge models.
+                An insanely intuitive &amp; expressive data schema, with constructs to define hierarchies, hyper-entities, hyper-relations and rules, to build rich knowledge models.
                 </span>
                 <Link to="/grakn-core" className="animated__link animated__link--purple"
                 onClick={() => {
@@ -119,7 +119,7 @@ class HomePage extends Component {
                 </div>
                 <span className="home__features__item__text__headline">Automated Reasoning</span>
                 <span className="home__features__item__text__paragraph">
-                Automatic deduction of data patterns and relationships during runtime (OLTP), enabling the retrieval of implied/hidden associations between data points.
+                An intelligent language that performs logical inference of data types, relationshis, attributes and complex patterns, during runtime, and over distributed &amp; persisted data.
                 </span>
                 <Link to="/grakn-core" className="animated__link animated__link--purple"
                 onClick={() => {
@@ -170,7 +170,7 @@ class HomePage extends Component {
                 </div>
                 <span className="home__features__item__text__headline">Higher-Level Language</span>
                 <span className="home__features__item__text__paragraph">
-                Strong abstraction over low-level patterns, enabling simpler expressions of complex questions, while the system figures out the most optimal query execution.
+                Strong abstraction over low-level patterns, enabling simpler expressions of complex constructs, while the system figures out the most optimal query execution.
                 </span>
                 <Link to="/grakn-core" className="animated__link animated__link--purple"
                 onClick={() => {
