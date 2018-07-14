@@ -57,11 +57,17 @@
           font-size: 19px;
         }
         @media screen and (max-width: $extraSmallScreen) {
-          font-size: 28px;
-          width: 360px;
+          font-size: 26px;
+          width: 320px;
+          margin: 0 auto;
           > strong {
             font-weight: 500;
           }
+        }
+        @media screen and (max-width: $extraSmallScreen) {
+          font-size: 22px;
+          width: 280px;
+          margin: 0 auto;
         }
       }
       &__tag {
@@ -71,15 +77,19 @@
         font-weight: 300;
         line-height: 1.8;
         @media screen and (max-width: $mediumScreen) {
-          font-size: 16px;
+          font-size: 18px;
           font-weight: 400;
         }
         @media screen and (max-width: $smallScreen) {
-          font-size: 14px;
+          font-size: 16px;
           font-weight: 400;
         }
         @media screen and (max-width: $extraSmallScreen) {
-          font-size: 11px;
+          font-size: 14px;
+          font-weight: 400;
+        }
+        @media screen and (max-width: $superSmallScreen) {
+          font-size: 12px;
           font-weight: 400;
         }
       }
