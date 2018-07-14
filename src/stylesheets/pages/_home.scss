@@ -40,18 +40,28 @@
         margin: 0 auto;
       }
       &__headline {
-        font-size: 32px;
+        font-size: 36px;
         > strong {
           font-weight: 500;
         }
         @media screen and (max-width: $mediumScreen) {
           font-size: 28px;
+          > strong {
+            font-weight: 600;
+          }
         }
         @media screen and (max-width: $smallScreen) {
+          font-size: 25px;
+        }
+        @media screen and (max-width: $smallerScreen) {
           font-size: 19px;
         }
         @media screen and (max-width: $extraSmallScreen) {
-          font-size: 14px;
+          font-size: 28px;
+          width: 360px;
+          > strong {
+            font-weight: 500;
+          }
         }
       }
       &__tag {
