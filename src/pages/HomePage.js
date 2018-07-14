@@ -31,7 +31,7 @@ class HomePage extends Component {
       <div className="home">
         <section className="home__splash">
           <div className="home__splash__text container section__container">
-            <h1 className="home__splash__text__headline home__header"><strong>Building intelligent systems start from the database</strong></h1>
+            <h1 className="home__splash__text__headline home__header"><strong>Building intelligent systems starts at the database</strong></h1>
             <span className="home__splash__text__tag">Grakn is a database that turns complex data into a <u>knowlege graph</u></span>
             <Link to="/grakn-core" className="home__splash__text__install" onClick={() => {
               ReactGA.initialize('UA-72414051-1');
