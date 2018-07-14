@@ -144,7 +144,7 @@ class HomePage extends Component {
                 </div>
                 <span className="home__features__item__text__headline">Distributed Analytics</span>
                 <span className="home__features__item__text__paragraph">
-                Automated Pregel and MapReduce distributed algorithms abstracted as a language (OLAP), enabling large-scale analytics computation through simple queries.
+                Out-of-the-box distrubted analytics (Pregel and MapReduce) algorithms, accessible through the language through simple queries.
                 </span>
                 <Link to="/grakn-core" className="animated__link animated__link--purple"
                 onClick={() => {
