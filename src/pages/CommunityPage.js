@@ -80,7 +80,7 @@ class CommunityPage extends Component {
                   Start a discussion
                   </span>
                   <span className="community__content__links__col__item__text">
-                  When you’re stuck on a problem, often the most effective remedy is to collaborate. Ask your question on <a href={graknRoutes.stack} target="_blank" className="animated__link animated__link--purple">Stackoverflow</a> or discuss your problem in our <a href={graknRoutes.discuss} className="animated__link animated__link--purple">Discussion Forum</a>.
+                  When you’re stuck on a problem, often the most effective remedy is to collaborate. Ask your question on <a href={graknRoutes.stack} target="_blank" className="animated__link animated__link--purple">Stackoverflow</a> or discuss your problem in our <a href={graknRoutes.discuss} target="_blank" className="animated__link animated__link--purple">Discussion Forum</a>.
                   </span>
                 </div>
                 <div className=" community__content__links__row__col community__content__links__col__item">
@@ -98,7 +98,7 @@ class CommunityPage extends Component {
                   Build with Grakn
                   </span>
                   <span className="community__content__links__col__item__text">
-                  We have a growing list of project ideas. If you need inspiration and want to build something cool, take a look at our <a href="https://dev.grakn.ai/documentation/examples/projects.html" target="_blank" className="animated__link animated__link--purple">suggestions</a> or send us your own ideas via the <a href={graknRoutes.github} target="_blank" className="animated__link animated__link--purple">Discussion Forum.</a>
+                  We have a growing list of project ideas. If you need inspiration and want to build something cool, take a look at our <a href="https://dev.grakn.ai/documentation/examples/projects.html" target="_blank" className="animated__link animated__link--purple">suggestions</a> or send us your own ideas via the <a href={graknRoutes.discuss} target="_blank" className="animated__link animated__link--purple">Discussion Forum.</a>
                   </span>
                 </div>
               </div>
