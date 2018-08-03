@@ -217,7 +217,7 @@ app.post('/api/support', function(req, res) {
         text: JSON.stringify(req.body),
         html:
         `
-         <h3>Support Form Content</h3>
+         <h3>Getting in touch with Grakn!</h3>
          <div>Name: ${req.body.firstname} ${req.body.lastname}</div>
          <div>Company: ${req.body.company}</div>
          <div>Position: ${req.body.job}</div>
