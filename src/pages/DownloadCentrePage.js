@@ -14,17 +14,17 @@ import { push } from 'react-router-redux';
 const languageDrivers = [
   {
     url: 'http://dev.grakn.ai/docs/java-library/setup',
-    name: 'Grakn-java',
+    name: 'Grakn Java Client',
     img: '/assets/svg/java-logo.svg'
   },
   {
-    url: 'https://github.com/graknlabs/grakn-python',
-    name: 'Grakn-python',
+    url: 'https://pypi.org/project/grakn/',
+    name: 'Grakn Python Client',
     img: '/assets/svg/python-logo.svg'
   },
   {
-    url: 'https://github.com/graknlabs/grakn-node',
-    name: 'Grakn-node',
+    url: 'https://www.npmjs.com/package/grakn',
+    name: 'Grakn Node.js Client',
     img: '/assets/svg/nodejs-logo.svg'
   }
 ];
@@ -300,7 +300,7 @@ class DownloadCentrePage extends Component {
                           prioritise developing the ones you need.</span>
                         </div>
                       </div>
-                      <span className="button button--red downloads__splash__main__tabpanel__content__button" onClick={() => this.scroll()}>Get in touch</span>
+                      <span className="button button--transparent downloads__splash__main__tabpanel__content__button" onClick={() => this.scroll()}>Get in touch</span>
                     </div>
                   </div>
                 </div>
@@ -344,7 +344,7 @@ class DownloadCentrePage extends Component {
               {
                 languageDrivers.map((item, index) => {
                   return (
-                    <a href={item.url} className="downloads__language__items__item" key={`${index}--language--driver`}
+                    <a href={item.url} target="_blank" className="downloads__language__items__item" key={`${index}--language--driver`}
                     >
                       <img src={item.img} alt={item.name} />
                     </a>
