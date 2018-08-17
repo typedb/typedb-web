@@ -18,12 +18,6 @@ class Form extends Component {
       <form ref={r => this.form = r } {...props} />
     )
   }
-
-  reset() {
-    if (this.form) {
-      this.form.reset();
-    }
-  }
 }
 
 export default form(Form);
