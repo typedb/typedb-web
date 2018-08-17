@@ -78,7 +78,7 @@ class SupportForm extends Component {
   render() {
     return (
       <div className="support-form" onSubmit={this.handleSubmit}>
-        <Form ref={c => { this.form = c }} id="supportForm">
+        <Form ref={c => { this.form = c }}>
           <div className="support-form__row">
             <div className="support-form__row__item">
               <Input className="support-form__input" placeholder='First Name' name='firstname' value={this.state.firstName} validations={[required]}/>
