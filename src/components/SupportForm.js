@@ -7,7 +7,7 @@ import Input from 'components/FormValidationComponents/components/input';
 import Select from 'components/FormValidationComponents/components/select';
 import TextArea from 'components/FormValidationComponents/components/textarea';
 import Button from 'components/FormValidationComponents/components/button';
-import { sendSupport } from 'actions/support';
+import api from 'api';
 
 const required = (value) => {
   if (!value.toString().trim().length) {
@@ -25,34 +25,54 @@ class SupportForm extends Component {
   constructor(props){
     super(props);
     this.state = {
-      checkboxes: []
+      submitted: false,
+      firstName: undefined,
+      lastName: undefined,
+      email: undefined,
+      company: undefined,
+      moreInfo: undefined,
     }
+    this.checkboxes= [];
     this.onUpdateCheckbox = this.onUpdateCheckbox.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this)
   }
 
-  shouldComponentUpdate(nextProps, nextState) {
-    return false;
+  onSuccess() {
+    this.form.hideErrors();
+    this.setState({submitted:true});
+    this.clearForm();
+    if (this.props.onSuccess) { setTimeout(()=>{this.props.onSuccess()},2000); }
   }
 
   handleSubmit(e) {
     e.preventDefault();
     const formValues = this.form.getValues();
-    formValues.aois = this.state.checkboxes;
-    this.props.send(formValues);
+    formValues.aois = this.checkboxes;
+    api.sendSupport(formValues)
+    .then(()=>{ this.onSuccess(e);})
+    .catch((e)=>{ console.log(e);})
   }
 
   onUpdateCheckbox(e) {
-    let checkboxes = this.state.checkboxes;
+    let checkboxes = this.checkboxes;
     if(e.target.checked) {
       checkboxes.push(e.target.value);
     }
     else {
       checkboxes = checkboxes.filter(elem => elem !== e.target.value);
     }
+  }
+
+  clearForm() {
     this.setState({
-      checkboxes,
-    });
+      firstName: "",
+      lastName: "",
+      email: "",
+      company: "",
+      moreInfo: "",
+    })
+    this.checkboxes = [];
+    document.querySelectorAll('input[type=checkbox]').forEach( el => el.checked = false );
   }
 
   render() {
@@ -61,18 +81,18 @@ class SupportForm extends Component {
         <Form ref={c => { this.form = c }}>
           <div className="support-form__row">
             <div className="support-form__row__item">
-              <Input className="support-form__input" placeholder='First Name' name='firstname' validations={[required]}/>
+              <Input className="support-form__input" placeholder='First Name' name='firstname' value={this.state.firstName} validations={[required]}/>
             </div>
             <div className="support-form__row__item">
-              <Input className="support-form__input" placeholder='Last Name' name='lastname' validations={[required]}/>
+              <Input className="support-form__input" placeholder='Last Name' name='lastname' value={this.state.lastName}   validations={[required]}/>
             </div>
           </div>
           <div className="support-form__row">
             <div className="support-form__row__item">
-              <Input className="support-form__input" placeholder='Email' name='email' validations={[required, email]}/>
+              <Input className="support-form__input" placeholder='Email' name='email' value={this.state.email}  validations={[required, email]}/>
             </div>
             <div className="support-form__row__item">
-              <Input className="support-form__input" placeholder='Company' name='company' validations={[required]}/>
+              <Input className="support-form__input" placeholder='Company' name='company' value={this.state.company}  validations={[required]}/>
             </div>
           </div>
           <div className="support-form__row">
@@ -158,11 +178,11 @@ class SupportForm extends Component {
                 </div>
               </div>
               <div className="support-form__row__item">
-                <TextArea className="support-form__input support-form__input__textarea" placeholder="Tell us a little bit more about how we can help you" name='more'/>           
+                <TextArea className="support-form__input support-form__input__textarea" placeholder="Tell us a little bit more about how we can help you" name='more' value={this.state.moreInfo}/>           
               </div>
           </div>
           <div className="support-form__row support-form__row--modified">
-            <Button className="button button--red support-form__button" >Submit</Button>
+            <Button submitted={this.state.submitted} className={"button button--"+(this.state.submitted ? 'green' : 'red')+" support-form__button"}>{(this.state.submitted ? 'Message Sent!' : 'Submit')}</Button>
           </div>          
         </Form>
         <span className="support-form__consent">By submitting your personal data, you consent to emails from Grakn. See our <Link to="/privacy-policy" className="animated__link animated__link--purple">Privacy Policy</Link></span>
@@ -171,10 +191,4 @@ class SupportForm extends Component {
   }
 }
 
-const mapDispatchToProps = (dispatch) => (
-  {
-    send: (data) => dispatch(sendSupport(data)),
-  }
-);
-
-export default connect(null, mapDispatchToProps)(SupportForm);
+export default connect(null)(SupportForm);

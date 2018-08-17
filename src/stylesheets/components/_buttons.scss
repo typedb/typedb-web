@@ -23,6 +23,11 @@
     }
   }
 
+  &--green {
+    background-color: $textGreen;
+    color: white;
+  }
+
   &--charcoal {
     background-color: $textCharcoal;
     color: white;

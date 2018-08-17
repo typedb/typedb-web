@@ -2,9 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import button from 'components/FormValidationComponents/hocs/button';
 
-const Button = ({ hasErrors, ...props }) => {
+const Button = ({ hasErrors, submitted, ...props }) => {
   return (
-    <button {...props} disabled={hasErrors} />
+    <button {...props} disabled={hasErrors || submitted} />
   );
 };
 
