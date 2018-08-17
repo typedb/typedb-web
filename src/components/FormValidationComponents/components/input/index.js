@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import control from 'components/FormValidationComponents/hocs/control';
 
-const Input = ({ error, isChanged, isUsed, ...props }) => (
+const Input = ({ error, isChanged, isUsed, submitted, ...props }) => (
   <div>
     <input {...props} {...( isChanged && isUsed && error ? {
       className: `support-form__input--invalid ${props.className}`

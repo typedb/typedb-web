@@ -5,7 +5,6 @@ import { Link } from 'react-router-dom';
 import Form from 'components/FormValidationComponents/components/form';
 import Input from 'components/FormValidationComponents/components/input';
 import Select from 'components/FormValidationComponents/components/select';
-import TextArea from 'components/FormValidationComponents/components/textarea';
 import Button from 'components/FormValidationComponents/components/button';
 import { sendHubspot } from 'actions/support';
 

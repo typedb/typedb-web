@@ -234,17 +234,25 @@ export default function form (WrappedComponent) {
       }
     };
 
-    hideError = (component) => {
+    hideErrors = () => {
       this.setState(state => ({
         byId: {
           ...state.byId,
-          [component.id]: {
-            ...omit(state.byId[component.id], 'error'),
-            isChanged: false,
-            isUsed: false
-          }
+          ...Object.keys(state.byName).reduce((byId, name) => {
+            state.byName[name].reduce((components, id) => {
+              byId[id] = {
+                ...state.byId[id],
+                isChanged: false,
+                isUsed: false
+              };
+
+              return components;
+            }, {});
+
+            return byId;
+          }, {})
         }
-      }));
+      }), this._setErrors);
     };
 
     render() {
@@ -255,7 +263,7 @@ export default function form (WrappedComponent) {
           validateAll={this.validateAll}
           getValues={this.getValues}
           showError={this.showError}
-          hideError={this.hideError}
+          hideErrors={this.hideErrors}
         />
       )
     }
