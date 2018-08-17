@@ -25,6 +25,7 @@ class SupportForm extends Component {
   constructor(props){
     super(props);
     this.state = {
+      buttonLabel: 'Submit',
       submitted: false,
       firstName: undefined,
       lastName: undefined,
@@ -39,12 +40,14 @@ class SupportForm extends Component {
 
   onSuccess() {
     this.form.hideErrors();
-    this.setState({submitted:true});
+    this.setState({submitted:true, buttonLabel: 'Message Sent!'});
     this.clearForm();
     if (this.props.onSuccess) { setTimeout(()=>{this.props.onSuccess()},2000); }
   }
 
   handleSubmit(e) {
+    this.setState({buttonLabel: 'Sending...'});
+    this.form.hideErrors();
     e.preventDefault();
     const formValues = this.form.getValues();
     formValues.aois = this.checkboxes;
@@ -182,7 +185,7 @@ class SupportForm extends Component {
               </div>
           </div>
           <div className="support-form__row support-form__row--modified">
-            <Button submitted={this.state.submitted} className={"button button--"+(this.state.submitted ? 'green' : 'red')+" support-form__button"}>{(this.state.submitted ? 'Message Sent!' : 'Submit')}</Button>
+            <Button submitted={this.state.submitted} className={"button button--"+(this.state.submitted ? 'green' : 'red')+" support-form__button"}>{(this.state.buttonLabel)}</Button>
           </div>          
         </Form>
         <span className="support-form__consent">By submitting your personal data, you consent to emails from Grakn. See our <Link to="/privacy-policy" className="animated__link animated__link--purple">Privacy Policy</Link></span>
