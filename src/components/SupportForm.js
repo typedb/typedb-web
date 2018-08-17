@@ -102,7 +102,7 @@ class SupportForm extends Component {
             <div className="support-form__row__item support-form__row__item__select">
               <Select className="support-form__input support-form__input__select" value='' name='job' validations={[required]}>
                 <option value=''>Job function</option>
-                <option value='software enginner'>Software Engineer</option>
+                <option value='software engineer'>Software Engineer</option>
                 <option value='director'>Director / Development Manager</option>
                 <option value='it operations'>IT/Dev Operations</option>
                 <option value='software architect'>Software Architect</option>
