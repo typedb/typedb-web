@@ -58,7 +58,7 @@ class DownloadCentrePage extends Component {
 
   componentDidMount() {
     let OSName="";
-    if (navigator.appVersion.indexOf("Win")!=-1) OSName="windows";
+    if (navigator.appVersion.indexOf("Win")!=-1) OSName="";
     if (navigator.appVersion.indexOf("Mac")!=-1) OSName="mac_os_x";
     if (navigator.appVersion.indexOf("X11")!=-1) OSName="linux";
     if (navigator.appVersion.indexOf("Linux")!=-1) OSName="linux";
@@ -174,7 +174,9 @@ class DownloadCentrePage extends Component {
         <div className="downloads__splash__container container section__container">
           <div className="downloads__splash__text">
             <h1 className="downloads__splash__text__header"><strong>Grakn Download Centre</strong></h1>
-            <span className="downloads__splash__text__tag"><strong>{this.props.downloadCount? this.props.downloadCount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","): null}</strong> downloads across the world</span>
+            {
+              //<span className="downloads__splash__text__tag"><strong>{this.props.downloadCount? this.props.downloadCount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","): null}</strong> downloads across the world</span>
+            }
           </div>
           <div className="downloads__splash__main">
             <Tabs defaultIndex={initialIndex}
@@ -234,7 +236,6 @@ class DownloadCentrePage extends Component {
                         <option value=''>Operating System</option>
                         <option value='linux'>Linux</option>
                         <option value='mac_os_x'>Mac OS X</option>
-                        <option value='windows'>Windows</option>
                       </Select>
                       <Select value={this.state.versionCore} name='version' onChange={(e) => this.switchVersion(e.target.value)}>
                         <option value=''>Version</option>
