@@ -58,7 +58,7 @@ class DownloadCentrePage extends Component {
 
   componentDidMount() {
     let OSName="";
-    if (navigator.appVersion.indexOf("Win")!=-1) OSName="";
+    if (navigator.appVersion.indexOf("Win")!=-1) OSName="windows";
     if (navigator.appVersion.indexOf("Mac")!=-1) OSName="mac_os_x";
     if (navigator.appVersion.indexOf("X11")!=-1) OSName="linux";
     if (navigator.appVersion.indexOf("Linux")!=-1) OSName="linux";
@@ -234,6 +234,7 @@ class DownloadCentrePage extends Component {
                         <option value=''>Operating System</option>
                         <option value='linux'>Linux</option>
                         <option value='mac_os_x'>Mac OS X</option>
+                        <option value='windows'>Windows</option>
                       </Select>
                       <Select value={this.state.versionCore} name='version' onChange={(e) => this.switchVersion(e.target.value)}>
                         <option value=''>Version</option>
