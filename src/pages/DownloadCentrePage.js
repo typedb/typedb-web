@@ -228,7 +228,6 @@ class DownloadCentrePage extends Component {
                       </div>
                       <a className="button button--transparent downloads__splash__main__tabpanel__content__core__col__content__github" href={graknRoutes.github} target="_blank">STAR ON GITHUB <i className="fa fa-2x fa-github" aria-hidden={true} /> </a>
                       <div className="downloads__splash__main__tabpanel__content__core__col__content__packagemanager">
-                        <span>Other Downloads/Installations:</span>
                         <a className="animated__link animated__link--purple" href={graknRoutes.setup}>Download and install with Homebrew</a>
                         <a className="animated__link animated__link--purple" href="https://github.com/graknlabs/grakn/releases" target="_blank">Download older releases from GitHub</a>
                       </div>
