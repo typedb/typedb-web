@@ -58,7 +58,7 @@ class DownloadCentrePage extends Component {
 
   componentDidMount() {
     let OSName="";
-    if (navigator.appVersion.indexOf("Win")!=-1) OSName="";
+    if (navigator.appVersion.indexOf("Win")!=-1) OSName="windows";
     if (navigator.appVersion.indexOf("Mac")!=-1) OSName="mac_os_x";
     if (navigator.appVersion.indexOf("X11")!=-1) OSName="linux";
     if (navigator.appVersion.indexOf("Linux")!=-1) OSName="linux";
@@ -228,14 +228,16 @@ class DownloadCentrePage extends Component {
                       </div>
                       <a className="button button--transparent downloads__splash__main__tabpanel__content__core__col__content__github" href={graknRoutes.github} target="_blank">STAR ON GITHUB <i className="fa fa-2x fa-github" aria-hidden={true} /> </a>
                       <div className="downloads__splash__main__tabpanel__content__core__col__content__packagemanager">
-                        <span>Package Manager: </span>
-                        <a className="animated__link animated__link--purple" href={graknRoutes.setup}>Instructions for installing with Homebrew</a>
+                        <span>Other Downloads/Installations:</span>
+                        <a className="animated__link animated__link--purple" href={graknRoutes.setup}>Download and install with Homebrew</a>
+                        <a className="animated__link animated__link--purple" href="https://github.com/graknlabs/grakn/releases" target="_blank">Download older releases from GitHub</a>
                       </div>
                       <Form className="downloads__splash__main__tabpanel__content__core__col__content__selectgroup">
                       <Select value={this.state.platformCore} name='platform' onChange={(e) => this.switchPlatform(e.target.value)}>
                         <option value=''>Operating System</option>
                         <option value='linux'>Linux</option>
                         <option value='mac_os_x'>Mac OS X</option>
+                        <option value='windows'>Windows</option>
                       </Select>
                       <Select value={this.state.versionCore} name='version' onChange={(e) => this.switchVersion(e.target.value)}>
                         <option value=''>Version</option>
@@ -256,7 +258,7 @@ class DownloadCentrePage extends Component {
                               this.switchModal();
                               setTimeout(function() {
                                 window.location.href = downloadLocation;
-                              }, 3000)
+                              })
                             }}
                             className="button button--red downloads__splash__main__tabpanel__content__download"
                           >
