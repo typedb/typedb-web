@@ -5,7 +5,7 @@ $navShadow: 0 0 26px 0 rgba(221, 221, 221, 0.64);
   line-height: $navHeight;
   padding: 0 2rem;
   position: fixed;
-  width: stretch;
+  width: 100vw;
   background-color: white;
   z-index: 100;
   border-bottom: 1px solid $borderColor;
@@ -68,7 +68,6 @@ $navShadow: 0 0 26px 0 rgba(221, 221, 221, 0.64);
       display: inline-block;
       .fa {
         padding-left: 0.5rem;
-        vertical-align: top;
         color: $textCharcoal;
       }
       &__mobile {
