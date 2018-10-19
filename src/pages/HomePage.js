@@ -119,7 +119,7 @@ class HomePage extends Component {
                 </div>
                 <span className="home__features__item__text__headline">Automated Reasoning</span>
                 <span className="home__features__item__text__paragraph">
-                An intelligent language that performs logical inference of data types, relationshis, attributes and complex patterns, during runtime, and over distributed &amp; persisted data.
+                An intelligent language that performs logical inference of data types, relationships, attributes and complex patterns, during runtime, and over distributed &amp; persisted data.
                 </span>
                 <Link to="/grakn-core" className="animated__link animated__link--purple"
                 onClick={() => {
@@ -144,7 +144,7 @@ class HomePage extends Component {
                 </div>
                 <span className="home__features__item__text__headline">Distributed Analytics</span>
                 <span className="home__features__item__text__paragraph">
-                Out-of-the-box distrubted analytics (Pregel and MapReduce) algorithms, accessible through the language through simple queries.
+                Out-of-the-box distributed analytics (Pregel and MapReduce) algorithms, accessible through the language through simple queries.
                 </span>
                 <Link to="/grakn-core" className="animated__link animated__link--purple"
                 onClick={() => {
@@ -248,7 +248,8 @@ class HomePage extends Component {
                     Financial Services
                     </span>
                     <span className="home__usecases__tabpanel__text__content">
-                    Financial Services Across the financial service industry, changes in technology, policy, and geopolitics have radically altered the data landscape in the past few years. By taking advantage of Grakn’s cutting edge knowledge graph technology, financial service firms can take full strategic advantage of the changing data landscape.                </span>
+                    Across the financial service industry, changes in technology, policy, and geopolitics have radically altered the data landscape in the past few years. By taking advantage of Grakn's cutting-edge knowledge graph technology, financial service firms can take full strategic advantage of the changing data landscape.
+                    </span>
                   </div>
                 </div>
               </TabPanel>
@@ -262,7 +263,8 @@ class HomePage extends Component {
                     Health and Life Science
                     </span>
                     <span className="home__usecases__tabpanel__text__content">
-                    Health and Life Science From pharmaceutical R&D and biomedical research to frontline healthcare delivery, the contemporary health and life science industries rely on data to power insight and improve care. Using Grakn to effectively manage data can help organisations advance scientific research and deliver best practice medicine.                </span>
+                    From pharmaceutical R&D and biomedical research to frontline healthcare delivery, contemporary health and life science industries rely on data to power insight and improve care. Using Grakn to effectively manage data can help organisations advance scientific research and deliver best practice medicine.
+                    </span>
                   </div>
                 </div>
               </TabPanel>
@@ -291,7 +293,7 @@ class HomePage extends Component {
                     Semantic Search
                     </span>
                     <span className="home__usecases__tabpanel__text__content">
-                    Effective search for relevant results is becoming increasingly difficult as volumes of data grow. By using Grakn to power a search platform that understands a query’s intent and the meaning of its terms, data’s meaning can be unlocked, and organizations can free themselves from being lost in data.
+                    Performing an effective search for relevant results is becoming increasingly difficult as volumes of data grow. By using Grakn to power a search platform that understands a query’s intent and the meaning of its terms, data’s meaning can be unlocked, and organizations can free themselves from being lost in data.
                     </span>
                   </div>
                 </div>
@@ -306,7 +308,7 @@ class HomePage extends Component {
                     Security
                     </span>
                     <span className="home__usecases__tabpanel__text__content">
-                    Security As technology permeates deeper into every aspect of our lives—with constant digital footprints and interconnected devices proliferating—the growth in potential damage and disruption from bad actors grows. Grakn allows firms to leverage their digital defences against increasingly sophisticated cyber criminals.
+                    As technology permeates deeper into every aspect of our lives—with constant digital footprints and interconnected devices proliferating—the growth in potential damage and disruption from bad actors grows. Grakn allows firms to leverage their digital defences against increasingly sophisticated cyber criminals.
                     </span>
                   </div>
                 </div>
