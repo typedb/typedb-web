@@ -34,7 +34,7 @@ class ServicesPage extends Component {
               <div className="services__features__item__text">
                 <span className="services__features__item__text__headline">Learning and Training</span>
                 <span className="services__features__item__text__paragraph">
-                  Become a Grakn expert in a matter of days. With trainings worldwide, learn from experienced Grakn engineers to go from understanding project goals and development strategy, to engineering the most scalable knowledge graph for you, your team, your business.
+                  Become a Grakn expert in a matter of days. With trainings worldwide, learn from experienced Grakn engineers to go from understanding project goals and development strategy, to engineering the most scalable knowledge graph for you, your team and your business.
                 </span>
                 <div className="services__features__item__text__list">
                   <div className="services__features__item__text__list__col">
@@ -176,7 +176,7 @@ class ServicesPage extends Component {
             <div className="services__features__item__text">
               <span className="services__features__item__text__headline">Deployment and Scaling</span>
               <span className="services__features__item__text__paragraph">
-              As you focus building your application and your business, let us help you with deploying and scaling your infrastructure. Have our experienced engineers makes sure your infrastructure is state of the art, meets all your system requirements and scales as your company grows, as you launch your business into the future!
+              As you focus building your application and your business, let us help you with deploying and scaling your infrastructure. Have our experienced engineers make sure your infrastructure is state of the art, meets all your system requirements and scales as your company grows, as you launch your business into the future!
               </span>
               <div className="services__features__item__text__list">
                 <div className="services__features__item__text__list__col">
