@@ -50,7 +50,7 @@ const GraknPage = () => (
             <div className="grakn-page__links__item__details">
               <span className="grakn-page__links__item__details__header">Get Started</span>
               <div className="grakn-page__links__item__details__text">
-              Whether you are new to programming or an experienced developer, it’s easy to learn and use Grakn. Get set up a matter of minutes. Go to <a href={graknRoutes.quickstart} className="animated__link animated__link--purple">quickstart tutorial.</a>
+              Whether you are new to programming or an experienced developer, it's easy to learn and use Grakn. Get set up in a matter of minutes. Go to a <a href={graknRoutes.quickstart} className="animated__link animated__link--purple">quickstart tutorial</a>.
               </div>
             </div>
           </div>
@@ -86,7 +86,7 @@ const GraknPage = () => (
             <div className="grakn-page__links__item__details">
               <span className="grakn-page__links__item__details__header">Join the Academy!</span>
               <div className="grakn-page__links__item__details__text">
-              Learn everything from the basic foundations to advanced topics of knowledge engineering and be an expert in the field. Join <a href={graknRoutes.academy} className="animated__link animated__link--purple">Grakn Academy.</a>
+              Learn everything from the basic foundations to advanced topics of knowledge engineering and become an expert in the field. Join <a href={graknRoutes.academy} className="animated__link animated__link--purple">Grakn Academy</a>.
               </div>
             </div>
           </div>
