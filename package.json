@@ -73,7 +73,7 @@
     "jquery": "^3.2.1",
     "lodash": "^4.17.4",
     "moment": "^2.20.1",
-    "node-sass": "^4.5.3",
+    "node-sass": "^4.9.4",
     "nodemailer": "^4.4.1",
     "null-loader": "^0.1.1",
     "postcss-loader": "^2.0.6",
