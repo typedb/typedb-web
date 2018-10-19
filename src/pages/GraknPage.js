@@ -141,7 +141,8 @@ const GraknPage = () => (
             <img src="/assets/svg/high_level.svg" alt="High Level" className="grakn-page__features__col__item__img"/>
             <span className="grakn-page__features__col__item__header">Higher-Level Language</span>
             <span className="grakn-page__features__col__item__text">
-            With the expressivity of the schema, inference through <a href="https://en.wikipedia.org/wiki/Online_transaction_processing" target="_blank" className="animated__link animated__link--purple">OLTP</a> and distributed algorithms through <a href="https://en.wikipedia.org/wiki/Online_analytical_processing" target="_blank" className="animated__link animated__link--purple">OLAP</a>, Grakn’s language provides a strong abstraction over low-level data constructs and complex relationships. Graql not only simplifies and reduce lines of code, but it also automatically performs optimisation of query execution.  When developers can achieve so much more by writing even less code, productivity rate increases by orders of magnitude. </span>
+            With the expressivity of the schema, inference through <a href="https://en.wikipedia.org/wiki/Online_transaction_processing" target="_blank" className="animated__link animated__link--purple">OLTP</a> and distributed algorithms through <a href="https://en.wikipedia.org/wiki/Online_analytical_processing" target="_blank" className="animated__link animated__link--purple">OLAP</a>, Grakn's language provides a strong abstraction over low-level data constructs and complex relationships. Graql not only simplifies and reduces lines of code, but it also automatically performs optimisation of query execution. When developers can achieve so much more by writing even less code, productivity rates increase by orders of magnitude.
+            </span>
           </div>
         </div>
       </div>
