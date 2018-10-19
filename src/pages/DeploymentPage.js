@@ -33,7 +33,7 @@ class DeploymentPage extends Component {
           <div className="deployment-page__info__container container section__container">
             <div className="deployment-page__info__details">
               <div className="deployment-page__info__details__text">
-              <strong>Grakn KGMS</strong> is the enterprise Knowledge Graph Management System designed to scale with your enterprise. Whether you have a growing dataset, application workload, or user request, the Grakn KGMS will scale with your business. With all the tools you need to take you from development to production and scale, Grakn KGMS allows you to simplify your data architecture while maintaining full control over your knowledge graph.
+              <strong>Grakn KGMS</strong> is the enterprise Knowledge Graph Management System designed to scale with your enterprise. Whether you have a growing dataset, application workload, or user request, Grakn KGMS will scale with your business. With all the tools you need to take you from development to production and scale, Grakn KGMS allows you to simplify your data architecture while maintaining full control over your knowledge graph.
               </div>
               <div className="deployment-page__info__details__buttons">
                 <Link to="/grakn-kgms" className="button button--red deployment-page__info__details__buttons__item" onClick={() => {
@@ -138,7 +138,7 @@ class DeploymentPage extends Component {
         <section className="support-form__section" ref={(elem) => this.supportform = elem}>
           <div className="support-form__section__container container section__container">
             <span className="support-form__section__header support-form__section__header--with-tag">Get Grakn KGMS for the cloud or on-premise</span>
-            <span className="support-form__section__tag">Get in touch with our team for KGMS Enterprise License and we’ll help you get everything set up.</span>
+            <span className="support-form__section__tag">Get in touch with our team and we'll help you get everything set up.</span>
             <SupportForm />
           </div>
         </section>
