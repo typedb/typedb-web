@@ -188,7 +188,7 @@ class SupportForm extends Component {
             <Button submitted={this.state.submitted} className={"button button--"+(this.state.submitted ? 'green' : 'red')+" support-form__button"}>{(this.state.buttonLabel)}</Button>
           </div>          
         </Form>
-        <span className="support-form__consent">By submitting your personal data, you consent to emails from Grakn. See our <Link to="/privacy-policy" className="animated__link animated__link--purple">Privacy Policy</Link></span>
+        <span className="support-form__consent">By submitting your personal data, you consent to emails from Grakn. See our <Link to="/privacy-policy" className="animated__link animated__link--purple">Privacy Policy</Link>.</span>
       </div>
     );
   }
