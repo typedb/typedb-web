@@ -13,7 +13,7 @@ module.exports = {
   },
   Rules: {
     code: `${visualiserItems.Rules.code}`,
-    text: `Grakn allows you to define rules in your knowledge schema, which extends the expressivity of your model as it enables the system to derive new conclusions when a certain logical form in your dataset is satisfied
+    text: `Grakn allows you to define rules in your knowledge schema, which extends the expressivity of your model as it enables the system to derive new conclusions when a certain logical form in your dataset is satisfied.
     <br><br>Like functions in programming, that rules can chain itself to another, creating abstractions of behaviour at the data level.`
   },
   Inference: {
