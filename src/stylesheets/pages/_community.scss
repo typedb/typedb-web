@@ -274,9 +274,12 @@
       text-decoration: none !important;
       cursor: pointer;
       height: 310px;
-      border: 1px solid $borderColor;
       border-radius: 5px;
       background-color: #fefefe;
+
+      &--active {
+        border: 1px solid $borderColor;
+      }
       
       &__link {
         font-size: 13px;

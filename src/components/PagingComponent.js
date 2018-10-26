@@ -112,6 +112,7 @@ class PagingComponent extends Component {
                 item.props.className,
                 {
                   'paging-component__content__item--active': index < upperBound && index >= lowerBound,
+                  [item.props.className + "--active"]: index < upperBound && index >= lowerBound,
                   'paging-component__content__item': true,
                 });
                 const newChild = React.cloneElement(
