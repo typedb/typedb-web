@@ -281,7 +281,7 @@ class DownloadCentrePage extends Component {
                           <span>If you want to freely integrate Grakn Core into your
                           product, and satisfy all of your organisation&#39;s
                           requirements, the commercial license gives you that
-                          piece of mind.</span>
+                          peace of mind.</span>
                         </div>
                       </div>
                       <div className="downloads__splash__main__tabpanel__content__core__col__content__checkbox">
