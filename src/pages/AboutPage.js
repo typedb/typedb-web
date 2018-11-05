@@ -30,7 +30,7 @@ class AboutPage extends Component {
               </div>
           </div>
         </section>
-        <section className="about__members">
+        {/* <section className="about__members">
           <div className="container section__container">
             <span className="about__members__header">Core Team</span>
             <div className="multi-resize-column">
@@ -50,7 +50,7 @@ class AboutPage extends Component {
               }
             </div>
           </div>
-        </section>
+        </section> */}
       </div>
     )
   }
