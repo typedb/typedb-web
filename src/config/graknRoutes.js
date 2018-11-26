@@ -15,5 +15,5 @@ module.exports = {
   blog: 'https://blog.grakn.ai/',
   linkedin: 'http://linkedin.com/organization/graknlabs',
   javadocs: 'https://javadoc.io/doc/ai.grakn/grakn',
-  supportDesk: 'https://work.grakn.ai/helpdesk/'
+  supportDesk: 'https://support.grakn.ai'
 };

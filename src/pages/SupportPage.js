@@ -26,7 +26,7 @@ class SupportPage extends Component {
       {
         comparisson.map((elem, index) => {
           let premiumContent = '';
-          let advanceContent = '';        
+          let advanceContent = '';
           if (elem.premium === 'true') {
             premiumContent = <i className="fa fa-check support-page__comparisson__table__row__item__green" />;
           }
@@ -58,7 +58,7 @@ class SupportPage extends Component {
       {
         comparisson.map((elem, index) => {
           let premiumContent = '';
-          let advanceContent = '';        
+          let advanceContent = '';
           if (elem.premium === 'true') {
             premiumContent = 'Yes';
           }
@@ -92,7 +92,7 @@ class SupportPage extends Component {
 
   scroll() {
     zenscroll.setup(1000, 50);
-    zenscroll.to(this.supportform);   
+    zenscroll.to(this.supportform);
   }
 
   render() {
