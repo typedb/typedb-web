@@ -85,20 +85,26 @@ class CommunityPage extends Component {
                 </div>
                 <div className=" community__content__links__row__col community__content__links__col__item">
                   <span className="community__content__links__col__item__header">
-                  <i className="fa fa-facebook" aria-hidden={true} />
-                  Join our Facebook Group
+                  <i className="fa fa-comments" aria-hidden={true} />
+                  Stay Connected
                   </span>
                   <span className="community__content__links__col__item__text">
-                  We love to stay up to date with things happening within our community. Join our <a href={graknRoutes.facebook} target="_blank" className="animated__link animated__link--purple">Facebook Group</a> and meet the rest of our community members.
+                  Don't miss any Grakn moment! Connect with us online by following us on
+                  <a href={graknRoutes.twitter} target="_blank" className="animated__link animated__link--purple"> Twitter </a>
+                  and join our groups on
+                  <a href={graknRoutes.facebook} target="_blank" className="animated__link animated__link--purple"> Facebook </a>
+                  and
+                  <a href={graknRoutes.linkedin} target="_blank" className="animated__link animated__link--purple"> LinkedIn</a>.
                   </span>
                 </div>
                 <div className="community__content__links__row__col community__content__links__col__item">
                   <span className="community__content__links__col__item__header">
-                  <img src="/assets/svg/bot.svg" alt="Grakn" />
-                  Build with Grakn
+                  {/* <img src="/assets/svg/bot.svg" alt="Grakn" /> */}
+                  <i className="fa fa-file-text" aria-hidden={true} />
+                  Share What You've Built
                   </span>
                   <span className="community__content__links__col__item__text">
-                  We have a growing list of project ideas. If you need inspiration and want to build something cool, take a look at our <a href="https://dev.grakn.ai/documentation/examples/projects.html" target="_blank" className="animated__link animated__link--purple">suggestions</a> or send us your own ideas via the <a href={graknRoutes.discuss} target="_blank" className="animated__link animated__link--purple">Discussion Forum.</a>
+                  Built something cool with Grakn? We'd love to share your project! Get in touch with us via <a href="mailto:info@grakn.ai" className="animated__link animated__link--purple">email</a> or <Link to="/slack" className="animated__link animated__link--purple">Slack</Link> to become a writer or speaker at our events and we'll spread the word about what you've built!
                   </span>
                 </div>
               </div>

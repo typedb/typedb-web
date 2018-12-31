@@ -1,6 +1,6 @@
 .community {
   padding-top: $navHeight;
- 
+
   &__splash {
     height: 450px;
     background-image: url('/assets/svg/community-splash.svg');
@@ -35,7 +35,7 @@
           text-align: center;
         }
       }
-      
+
     }
     &__form {
       text-align: center;
@@ -138,7 +138,7 @@
               width: 100%;
             }
             > a {
-              color: $textPurple;              
+              color: $textPurple;
             }
           }
           &__header {
@@ -164,6 +164,12 @@
               }
               &-github {
                 color: black;
+              }
+              &-file-text {
+                color: #f6b93b;
+              }
+              &-comments {
+                color: #1e3799;
               }
             }
           }
@@ -252,7 +258,7 @@
         transform: translate(-50%, -50%);
 
       }
-    }  
+    }
   }
   &__events {
     padding: 90px 0;
@@ -281,7 +287,7 @@
       &--active {
         border: 1px solid $borderColor;
       }
-      
+
       &__link {
         font-size: 13px;
         text-align: left;

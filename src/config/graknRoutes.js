@@ -12,7 +12,7 @@ module.exports = {
   discuss: 'https://discuss.grakn.ai/',
   meetups: 'https://www.meetup.com/pro/graknlabs/',
   blog: 'https://blog.grakn.ai/',
-  linkedin: 'http://linkedin.com/organization/graknlabs',
-  javadocs: 'https://javadoc.io/doc/ai.grakn/grakn',
+  linkedin: 'https://www.linkedin.com/groups/13657731/',
+  javadocs: `${docBase}/docs/client-api/java`,
   supportDesk: 'https://support.grakn.ai'
 };
