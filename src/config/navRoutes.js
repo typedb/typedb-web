@@ -43,7 +43,6 @@ export const navRoutes = {
   Developer: {
     type: 'multi',
     links: {
-      Academy: `${graknRoutes.academy}`,
       Documentation: `${graknRoutes.docs}`,
       Discussion: `${graknRoutes.discuss}`
     }

@@ -72,7 +72,7 @@ class Footer extends Component {
               <strong>Grakn {this.props.downloads.length> 0? this.props.downloads.filter(item => item.latest === 'True' && item.product ==='core')[0].version: ''}</strong> on Github
             </a>
             <Link to="/slack" className="footer__block__links--slack">
-              <img src="/assets/svg/slack-mark.svg" alt="slack"/>        
+              <img src="/assets/svg/slack-mark.svg" alt="slack"/>
               <strong>Grakn</strong> on Slack
             </Link>
             <a href="mailto:enterprise@grakn.ai">
@@ -80,7 +80,7 @@ class Footer extends Component {
               Get in touch
             </a>
             <div className="footer__block__links--address">
-              <span> 
+              <span>
                 <i className="fa fa-map-marker" aria-hidden="true" />
                 Unit 22, 8 Hornsey St.
               </span>
@@ -119,7 +119,6 @@ class Footer extends Component {
         <div className="footer__block">
           <div className="footer__block__header">DEVELOPER</div>
           <div className="footer__block__links">
-            <a href={graknRoutes.academy}>Academy</a>
             <a href={graknRoutes.docs}>Documentation</a>
             <Link to="/community">Community</Link>
             <a href={graknRoutes.discuss}>Discuss</a>
@@ -129,7 +128,7 @@ class Footer extends Component {
         <div className="footer__block">
           <div className="footer__block__header">COMPANY</div>
           <div className="footer__block__links">
-            <a href={graknRoutes.blog} target="_blank">Blog</a>          
+            <a href={graknRoutes.blog} target="_blank">Blog</a>
             <Link to="/careers">Careers</Link>
             <Link to="/about">About</Link>
           </div>

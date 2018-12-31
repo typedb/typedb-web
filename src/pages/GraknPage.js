@@ -57,36 +57,12 @@ const GraknPage = () => (
 
           <div className="grakn-page__links__item">
             <div className="grakn-page__links__item__img">
-              <img src="/assets/svg/grakn-documentation.svg" alt="Documentation" />
-            </div>
-            <div className="grakn-page__links__item__details">
-              <span className="grakn-page__links__item__details__header">Documentation</span>
-              <div className="grakn-page__links__item__details__text">
-              Documentation for Grakn’s development library and Graql language API, along with tutorials and guides, are available online. Visit our <a href={graknRoutes.docs} className="animated__link animated__link--purple">documentation portal.</a>
-              </div>
-            </div>
-          </div>
-
-          <div className="grakn-page__links__item">
-            <div className="grakn-page__links__item__img">
               <img src="/assets/svg/grakn-discussion.svg" alt="Discussion" />
             </div>
             <div className="grakn-page__links__item__details">
               <span className="grakn-page__links__item__details__header">Discussion</span>
               <div className="grakn-page__links__item__details__text">
               When you’re stuck, the most effective remedy is to collaborate. Ask your question on <a href={graknRoutes.stack} className="animated__link animated__link--purple">StackOverflow</a> or discuss it in our <a href={graknRoutes.discuss} className="animated__link animated__link--purple">Discussion forum.</a>
-              </div>
-            </div>
-          </div>
-
-          <div className="grakn-page__links__item">
-            <div className="grakn-page__links__item__img">
-              <img src="/assets/svg/grakn-academy.svg" alt="Academy" />
-            </div>
-            <div className="grakn-page__links__item__details">
-              <span className="grakn-page__links__item__details__header">Join the Academy!</span>
-              <div className="grakn-page__links__item__details__text">
-              Learn everything from the basic foundations to advanced topics of knowledge engineering and become an expert in the field. Join <a href={graknRoutes.academy} className="animated__link animated__link--purple">Grakn Academy</a>.
               </div>
             </div>
           </div>
