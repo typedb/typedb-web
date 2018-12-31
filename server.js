@@ -280,23 +280,23 @@ app.get('/download/latest', (req, res) => {
 });
 
 app.get('/download-academy', (req, res) => {
-    res.redirect(302, 'https://d113xgfq7slps2.cloudfront.net/grakn-academy-virtualbox.zip');
+    res.redirect(302, docsBase);
 });
 
 app.get('/javadocs', (req, res) => {
-    res.redirect(302, 'https://javadoc.io/doc/ai.grakn/grakn');
+    res.redirect(302, `${docsBase}/client-api/java`);
 });
 
-app.get('/docs', (req, res) => {
+app.get('/docs/*', (req, res) => {
     res.redirect(301, docsBase);
 });
 
-app.get('/academy', (req, res) => {
+app.get('/academy/*', (req, res) => {
     res.redirect(301, `${docsBase}/academy`);
 });
 
 app.get('/overview', (req, res) => {
-    res.redirect(301, `${docsBase}/overview`);
+    res.redirect(301, `${docsBase}`);
 });
 
 app.get('/install', (req, res) => {
