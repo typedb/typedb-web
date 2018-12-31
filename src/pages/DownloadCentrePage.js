@@ -10,7 +10,7 @@ import DownloadSuccessModal from 'components/DownloadSuccessModal';
 import Form from 'components/FormValidationComponents/components/form';
 import Select from 'components/FormValidationComponents/components/select';
 import { push } from 'react-router-redux';
-import * as qs from 'query-string';
+import * as qs from 'querystring';
 
 
 const languageDrivers = [
@@ -60,7 +60,7 @@ class DownloadCentrePage extends Component {
 
   componentDidMount() {
     let OSName = "";
-    const params = qs.parse(this.props.location.search, { ignoreQueryPrefix: true });
+    const params = qs.parse(this.props.location.search.split("?")[1]);
     if (params["os"] != undefined) {
       OSName = params.os;
     } else {
