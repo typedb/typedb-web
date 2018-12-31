@@ -10,7 +10,7 @@ import DownloadSuccessModal from 'components/DownloadSuccessModal';
 import Form from 'components/FormValidationComponents/components/form';
 import Select from 'components/FormValidationComponents/components/select';
 import { push } from 'react-router-redux';
-import * as qs from 'query-string';
+const qs = require('query-string');
 
 const languageDrivers = [
   {
