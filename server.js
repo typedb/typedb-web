@@ -300,7 +300,7 @@ app.get('/overview', (req, res) => {
 });
 
 app.get('/install', (req, res) => {
-    res.redirect(301, `${docsBase}/docs/get-started/setup-guide.html`);
+    res.redirect(301, `${docsBase}/docs/running-grakn/install-and-run`);
 });
 
 app.get('/grakn-kbms', (req, res) => {

@@ -10,21 +10,20 @@ import DownloadSuccessModal from 'components/DownloadSuccessModal';
 import Form from 'components/FormValidationComponents/components/form';
 import Select from 'components/FormValidationComponents/components/select';
 import { push } from 'react-router-redux';
-import * as qs from 'query-string';
 
 const languageDrivers = [
   {
-    url: 'http://dev.grakn.ai/docs/java-library/setup',
+    url: 'http://dev.grakn.ai/docs/client-api/java',
     name: 'Grakn Java Client',
     img: '/assets/svg/java-logo.svg'
   },
   {
-    url: 'https://pypi.org/project/grakn/',
+    url: 'http://dev.grakn.ai/docs/client-api/python',
     name: 'Grakn Python Client',
     img: '/assets/svg/python-logo.svg'
   },
   {
-    url: 'https://www.npmjs.com/package/grakn',
+    url: 'http://dev.grakn.ai/docs/client-api/nodejs',
     name: 'Grakn Node.js Client',
     img: '/assets/svg/nodejs-logo.svg'
   }
@@ -59,15 +58,10 @@ class DownloadCentrePage extends Component {
 
   componentDidMount() {
     let OSName = "";
-    const params = qs.parse(this.props.location.search);
-    if ("os" in params) {
-      OSName = params.os;
-    } else {
-      if (navigator.appVersion.indexOf("Win")!=-1) OSName="windows";
-      if (navigator.appVersion.indexOf("Mac")!=-1) OSName="mac_os_x";
-      if (navigator.appVersion.indexOf("X11")!=-1) OSName="linux";
-      if (navigator.appVersion.indexOf("Linux")!=-1) OSName="linux";
-    }
+    if (navigator.appVersion.indexOf("Win")!=-1) OSName="windows";
+    if (navigator.appVersion.indexOf("Mac")!=-1) OSName="mac_os_x";
+    if (navigator.appVersion.indexOf("X11")!=-1) OSName="linux";
+    if (navigator.appVersion.indexOf("Linux")!=-1) OSName="linux";
     this.switchPlatform(OSName);
   }
 
@@ -235,7 +229,6 @@ class DownloadCentrePage extends Component {
                       <a className="button button--transparent downloads__splash__main__tabpanel__content__core__col__content__github" href={graknRoutes.github} target="_blank">STAR ON GITHUB <i className="fa fa-2x fa-github" aria-hidden={true} /> </a>
                       <div className="downloads__splash__main__tabpanel__content__core__col__content__packagemanager">
                         <a className="animated__link animated__link--purple" href={graknRoutes.setup}>Download and install with Homebrew</a>
-                        <a className="animated__link animated__link--purple" href="https://github.com/graknlabs/grakn/releases" target="_blank">Download older releases from GitHub</a>
                       </div>
                       <Form className="downloads__splash__main__tabpanel__content__core__col__content__selectgroup">
                       <Select value={this.state.platformCore} name='platform' onChange={(e) => this.switchPlatform(e.target.value)}>

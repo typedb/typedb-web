@@ -1,7 +1,7 @@
 const docBase = 'https://dev.grakn.ai';
 
 module.exports = {
-  setup: `${docBase}/docs/get-started/setup-guide`,
+  setup: `${docBase}/docs/running-grakn/install-and-run#using-homebrew`,
   docs: docBase,
   overview: `${docBase}/overview/`,
   academy: `${docBase}/academy/`,
