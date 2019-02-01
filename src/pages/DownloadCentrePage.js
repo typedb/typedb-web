@@ -90,7 +90,7 @@ class DownloadCentrePage extends Component {
     });
   }
 
-  renderTable(table, title1="Premium", title2="Advanced") {
+  renderTable(table, title1="Premium", title2="Advanced (coming soon)") {
     return (
       <div className="support-page__comparisson__table">
         <div className="support-page__comparisson__table__header">
@@ -127,7 +127,7 @@ class DownloadCentrePage extends Component {
     )
   }
 
-  renderTableMobile(table, title1="Premium", title2="Advanced")  {
+  renderTableMobile(table, title1="Premium", title2="Advanced (coming soon)")  {
     return (
       <div className="support-page__comparisson__table__mobile">
       {
@@ -334,8 +334,8 @@ class DownloadCentrePage extends Component {
                 Workbase is an Integrated Development Environment to perform knowledge engineering at scale, and control everything in your knowledge graph from development to production.
                 <Link to="/grakn-kgms" className="animated__link animated__link--purple"> Learn more</Link>
                 </span>
-                {this.renderTable(this.props.workbaseTable.sort((a,b) => a.sort - b.sort), "For Grakn Core", "For Grakn KGMS")}
-                {this.renderTableMobile(this.props.workbaseTable.sort((a,b) => a.sort - b.sort), "For Grakn Core", "For Grakn KGMS")}
+                {this.renderTable(this.props.workbaseTable.sort((a,b) => a.sort - b.sort), "For Grakn Core", "For Grakn KGMS (coming soon)")}
+                {this.renderTableMobile(this.props.workbaseTable.sort((a,b) => a.sort - b.sort), "For Grakn Core", "For Grakn KGMS (coming soon)")}
                 <a href="https://github.com/graknlabs/workbase/releases" target="_blank" className="button button--red downloads__splash__main__tabpanel__content__download">Download</a>
               </div>
               </TabPanel>
