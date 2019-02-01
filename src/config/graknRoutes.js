@@ -5,7 +5,7 @@ module.exports = {
   docs: docBase,
   overview: `${docBase}/overview/`,
   quickstart: `${docBase}/docs/general/quickstart`,
-  github: 'https://github.com/graknlabs/grakn',
+  github: 'https://github.com/graknlabs',
   twitter: 'https://twitter.com/graknlabs',
   stack: 'https://stackoverflow.com/questions/tagged/graql+or+grakn',
   facebook: 'https://www.facebook.com/groups/1913787625527508/',
