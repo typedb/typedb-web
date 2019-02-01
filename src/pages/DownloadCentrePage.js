@@ -336,7 +336,7 @@ class DownloadCentrePage extends Component {
                 </span>
                 {this.renderTable(this.props.workbaseTable.sort((a,b) => a.sort - b.sort), "For Grakn Core", "For Grakn KGMS")}
                 {this.renderTableMobile(this.props.workbaseTable.sort((a,b) => a.sort - b.sort), "For Grakn Core", "For Grakn KGMS")}
-                <a href="https://github.com/graknlabs/grakn/releases" target="_blank" className="button button--red downloads__splash__main__tabpanel__content__download">Download</a>
+                <a href="https://github.com/graknlabs/workbase/releases" target="_blank" className="button button--red downloads__splash__main__tabpanel__content__download">Download</a>
               </div>
               </TabPanel>
             </Tabs>
