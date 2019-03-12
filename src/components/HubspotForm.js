@@ -6,7 +6,7 @@ import Form from 'components/FormValidationComponents/components/form';
 import Input from 'components/FormValidationComponents/components/input';
 import Select from 'components/FormValidationComponents/components/select';
 import Button from 'components/FormValidationComponents/components/button';
-import { sendHubspot } from 'actions/support';
+import { sendHubspot, sendSupport } from 'actions/support';
 
 const required = (value) => {
   if (!value.toString().trim().length) {
@@ -75,7 +75,7 @@ class HubspotForm extends Component {
                 <option value='business development'>Business Development Manager</option>
                 <option value='academic'>Academic (Student, Teacher, Professor)</option>
                 <option value='other'>Other</option>
-              </Select>            
+              </Select>
             </div>
             <div className="support-form__row__item support-form__row__item__select">
               <Select className="support-form__input support-form__input__select" value='' name='country' validations={[required]}>
@@ -339,7 +339,7 @@ class HubspotForm extends Component {
           </div>
           <div className="support-form__row support-form__row--modified">
             <Button className="button button--red support-form__button" >Submit</Button>
-          </div>          
+          </div>
         </Form>
         <span className="support-form__consent">By submitting your personal data, you consent to emails from Grakn. See our <Link to="/privacy-policy" className="animated__link animated__link--purple">Privacy Policy</Link></span>
       </div>
@@ -349,7 +349,10 @@ class HubspotForm extends Component {
 
 const mapDispatchToProps = (dispatch) => (
   {
-    send: (data) => dispatch(sendHubspot(data)),
+    send: (data) => {
+      dispatch(sendHubspot(data));
+      dispatch(sendSupport(data));
+    },
   }
 );
 

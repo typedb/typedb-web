@@ -8,7 +8,7 @@ const SupportFormModal = ({isOpen, onClose}) => (
     shouldCloseOnOverlayClick={true}
     onRequestClose={onClose}
     ariaHideApp={false}
-  > 
+  >
     <i className="fa fa-times ReactModal__Closebtn" onClick={() => onClose()}/>
     <SupportForm onSuccess={onClose} />
   </Modal>

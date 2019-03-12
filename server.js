@@ -5,6 +5,8 @@ const unirest = require('unirest');
 const nodemailer = require('nodemailer');
 const urlParser = require('url');
 const querystring = require('querystring');
+const cors = require('cors');
+
 // New Imports
 import React from 'react';
 import ReactDOM from 'react-dom/server';
@@ -27,6 +29,7 @@ import App from 'App';
 const app = express();
 
 const port = process.env.PORT ? process.env.PORT : 3001;
+
 const dist = path.join(__dirname, 'dist');
 const docsBase = 'https://dev.grakn.ai';
 const mailman = 'postmaster@mail.grakn.ai';
@@ -39,6 +42,8 @@ const transporter = nodemailer.createTransport({
         pass: process.env.SUPPORT_PASS
     }
 });
+
+app.use(cors())
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
@@ -208,33 +213,38 @@ app.post('/invite/all', function(req, res) {
 
 
 app.post('/api/support', function(req, res) {
-    res.header("Access-Control-Allow-Origin", "*");
-    const mailOptions = {
-        from: mailman,
-        to: 'enterprise@grakn.ai',
-        subject: 'Getting in touch with Grakn!',
-        replyTo: req.body.email,
-        text: JSON.stringify(req.body),
-        html:
-        `
-         <h3>Getting in touch with Grakn!</h3>
-         <div>Name: ${req.body.firstname} ${req.body.lastname}</div>
-         <div>Company: ${req.body.company}</div>
-         <div>Position: ${req.body.job}</div>
-         <div>Email: ${req.body.email}</div>
-         <div>Product: ${req.body.product}</div>
-         <div>Stage of Development: ${req.body.stage}</div>
-         <div>Areas of Interest: ${req.body.aois}</div>
-         <div>Additional: ${req.body.more}</div>
-        `
-    };
-   transporter.sendMail(mailOptions, (err, info) => {
-        if (err) {
-            console.log(err);
-            res.status(500).send(JSON.stringify({msg: "Form submission failed! Try Again.."}));
-        }
-        res.status(200).send(JSON.stringify({ msg: "Thank you for submitting the support form! A member of our team will be in touch shortly." }));
-    });
+    try {
+        res.header("Access-Control-Allow-Origin", "*");
+        const mailOptions = {
+            from: mailman,
+            to: 'enterprise@grakn.ai',
+            subject: 'Getting in touch with Grakn!',
+            replyTo: req.body.email,
+            text: JSON.stringify(req.body),
+            html:
+            `
+             <h3>Getting in touch with Grakn!</h3>
+             <div>Name: ${req.body.firstname} ${req.body.lastname}</div>
+             <div>Company: ${req.body.company}</div>
+             <div>Position: ${req.body.job}</div>
+             <div>Email: ${req.body.email}</div>
+             <div>Product: ${req.body.product}</div>
+             <div>Stage of Development: ${req.body.stage}</div>
+             <div>Areas of Interest: ${req.body.aois}</div>
+             <div>Additional: ${req.body.more}</div>
+            `
+        };
+        transporter.sendMail(mailOptions, (err, info) => {
+            if (err) {
+                console.log(err);
+                res.status(500).send(JSON.stringify({msg: "Form submission failed! Try Again.."}));
+                return false;
+            }
+            res.status(200).send(JSON.stringify({ msg: "Thank you for submitting the support form! A member of our team will be in touch shortly." }));
+        });
+    } catch (e) {
+        console.log(e);
+    }
 });
 
 app.post('/api/hubspot', function(req, res ){

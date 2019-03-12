@@ -114,7 +114,7 @@ class SupportForm extends Component {
                 <option value='business development'>Business Development Manager</option>
                 <option value='academic'>Academic (Student, Teacher, Professor)</option>
                 <option value='other'>Other</option>
-              </Select>            
+              </Select>
             </div>
             <div className="support-form__row__item support-form__row__item__select">
               <Select className="support-form__input support-form__input__select" value='' name='stage' validations={[required]}>
@@ -181,12 +181,12 @@ class SupportForm extends Component {
                 </div>
               </div>
               <div className="support-form__row__item">
-                <TextArea className="support-form__input support-form__input__textarea" placeholder="Tell us a little bit more about how we can help you" name='more' value={this.state.moreInfo}/>           
+                <TextArea className="support-form__input support-form__input__textarea" placeholder="Tell us a little bit more about how we can help you" name='more' value={this.state.moreInfo}/>
               </div>
           </div>
           <div className="support-form__row support-form__row--modified">
             <Button submitted={this.state.submitted} className={"button button--"+(this.state.submitted ? 'green' : 'red')+" support-form__button"}>{(this.state.buttonLabel)}</Button>
-          </div>          
+          </div>
         </Form>
         <span className="support-form__consent">By submitting your personal data, you consent to emails from Grakn. See our <Link to="/privacy-policy" className="animated__link animated__link--purple">Privacy Policy</Link>.</span>
       </div>
