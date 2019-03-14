@@ -218,12 +218,12 @@ app.post('/api/support', function(req, res) {
         const mailOptions = {
             from: mailman,
             to: 'enterprise@grakn.ai',
-            subject: 'Getting in touch with Grakn!',
+            subject: ${req.body.emailTitle } ,
             replyTo: req.body.email,
             text: JSON.stringify(req.body),
             html:
             `
-             <h3>Getting in touch with Grakn!</h3>
+             <h3> ${req.body.emailTitle } </h3>
              <div>Name: ${req.body.firstname} ${req.body.lastname}</div>
              <div>Company: ${req.body.company}</div>
              <div>Position: ${req.body.job}</div>

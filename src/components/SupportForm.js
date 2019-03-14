@@ -51,7 +51,7 @@ class SupportForm extends Component {
     e.preventDefault();
     const formValues = this.form.getValues();
     formValues.aois = this.checkboxes;
-    api.sendSupport(formValues)
+    api.sendSupport({ ...formValues, emailTitle: "Getting in touch with Grakn!" })
     .then(()=>{ this.onSuccess(e);})
     .catch((e)=>{ console.log(e);})
   }

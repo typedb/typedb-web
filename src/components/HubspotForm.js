@@ -351,7 +351,7 @@ const mapDispatchToProps = (dispatch) => (
   {
     send: (data) => {
       dispatch(sendHubspot(data));
-      dispatch(sendSupport(data));
+      dispatch(sendSupport({ ...data, emailTitle: "New Newsletter Signup!" }));
     },
   }
 );
