@@ -218,7 +218,7 @@ app.post('/api/support', function(req, res) {
         const mailOptions = {
             from: mailman,
             to: 'enterprise@grakn.ai',
-            subject: ${req.body.emailTitle } ,
+            subject: req.body.emailTitle ,
             replyTo: req.body.email,
             text: JSON.stringify(req.body),
             html:
