@@ -43,8 +43,6 @@ const transporter = nodemailer.createTransport({
     }
 });
 
-app.use(cors())
-
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
     extended: false
@@ -52,6 +50,20 @@ app.use(bodyParser.urlencoded({
 
 app.use('/assets', express.static(path.join(__dirname, 'assets')));
 app.use('/', express.static(dist));
+
+const whitelist = [
+    'http://localhost:4005', 'http://dev.grakn.ai',
+    'http://localhost:3000', 'http://grakn.ai']
+const corsOptions = {
+  origin: function (origin, callback) {
+    if (whitelist.indexOf(origin) !== -1 || !origin) {
+      callback(null, true)
+    } else {
+      callback(new Error('Not allowed by CORS'))
+    }
+  }
+}
+app.use(cors(corsOptions));
 
 app.use(function(req, res, next) {
     if ('OPTIONS' == req.method) {
@@ -64,6 +76,22 @@ app.use(function(req, res, next) {
 
 
 // API
+app.get('/searchDocs', function(req, res) {
+    if (req.query.q == undefined) {
+        res.status(400).send('No "query" provided');
+    }
+
+    const params = "cx=" + process.env.CSE_ID +
+                   "&key=" + process.env.CSE_API_KEY +
+                   "&q=" + req.query.q
+
+    unirest.get("https://www.googleapis.com/customsearch/v1?" + params)
+        .end(function(response) {
+            res.status(200).send(response.body);
+        });
+});
+
+
 function handleSlackInvite(userEmail) {
   unirest.post('https://grakn-slackin.herokuapp.com/invite')
       .headers({
