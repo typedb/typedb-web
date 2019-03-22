@@ -43,6 +43,14 @@ const transporter = nodemailer.createTransport({
     }
 });
 
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({
+    extended: false
+}));
+
+app.use('/assets', express.static(path.join(__dirname, 'assets')));
+app.use('/', express.static(dist));
+
 const whitelist = [
     'http://localhost:4005', 'http://dev.grakn.ai',
     'http://localhost:3000', 'http://grakn.ai']
@@ -56,14 +64,6 @@ const corsOptions = {
   }
 }
 app.use(cors(corsOptions));
-
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({
-    extended: false
-}));
-
-app.use('/assets', express.static(path.join(__dirname, 'assets')));
-app.use('/', express.static(dist));
 
 app.use(function(req, res, next) {
     if ('OPTIONS' == req.method) {
