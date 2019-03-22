@@ -52,7 +52,7 @@ app.use('/assets', express.static(path.join(__dirname, 'assets')));
 app.use('/', express.static(dist));
 
 const whitelist = [
-    'http://localhost:4005', 'http://dev.grakn.ai',
+    'http://localhost:4005', 'http://grakn-web-dev-wip.herokuapp.com', 'http://dev.grakn.ai',
     'http://localhost:3000', 'http://grakn.ai']
 const corsOptions = {
   origin: function (origin, callback) {
