@@ -235,7 +235,13 @@ class DownloadCentrePage extends Component {
                       </div>
                       <a className="button button--transparent downloads__splash__main__tabpanel__content__core__col__content__github" href={graknRoutes.github} target="_blank">STAR ON GITHUB <i className="fa fa-2x fa-github" aria-hidden={true} /> </a>
                       <div className="downloads__splash__main__tabpanel__content__core__col__content__packagemanager">
-                        <a className="animated__link animated__link--purple" href={graknRoutes.setup}>Download and install with Homebrew</a>
+                      Download and install with:
+                      <ul>
+                        <li><a className="animated__link animated__link--purple" href={graknRoutes.homebrew}>Homebrew</a></li>
+                        <li><a className="animated__link animated__link--purple" href={graknRoutes.rpm}>RPM</a></li>
+                        <li><a className="animated__link animated__link--purple" href={graknRoutes.debian}>APT</a></li>
+                        <li><a className="animated__link animated__link--purple" href={graknRoutes.homebrew}>Docker</a></li>
+                      </ul>
                       </div>
                       <Form className="downloads__splash__main__tabpanel__content__core__col__content__selectgroup">
                       <Select value={this.state.platformCore} name='platform' onChange={(e) => this.switchPlatform(e.target.value)}>
