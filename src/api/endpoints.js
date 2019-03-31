@@ -19,6 +19,7 @@ export default {
   kgmstable: `${cmsBase}/kbmstable/rows${cmsAccessTokenTag}`,
   companies: `${cmsBase}/companies/rows${cmsAccessTokenTag}`,
   workbasetable: `${cmsBase}/workbasetable/rows${cmsAccessTokenTag}`,
+  track: `${serverBase}/track`,
 
   downloadCount: 'https://api.github.com/repos/graknlabs/grakn/releases'
 };

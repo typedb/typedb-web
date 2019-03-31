@@ -7,6 +7,8 @@ import Input from 'components/FormValidationComponents/components/input';
 import Select from 'components/FormValidationComponents/components/select';
 import Button from 'components/FormValidationComponents/components/button';
 import { sendHubspot, sendSupport } from 'actions/support';
+import api from 'api';
+import Cookies from 'js-cookie';
 
 const required = (value) => {
   if (!value.toString().trim().length) {
@@ -352,6 +354,12 @@ const mapDispatchToProps = (dispatch) => (
     send: (data) => {
       dispatch(sendHubspot(data));
       dispatch(sendSupport({ ...data, emailTitle: "New Newsletter Signup!" }));
+
+      api.track({
+        "utk": Cookies.get('hubspotutk'),
+        "platform": "website",
+        "action": "contactFormSubmission"
+      });
     },
   }
 );

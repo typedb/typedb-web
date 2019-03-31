@@ -8,6 +8,7 @@ import Select from 'components/FormValidationComponents/components/select';
 import TextArea from 'components/FormValidationComponents/components/textarea';
 import Button from 'components/FormValidationComponents/components/button';
 import api from 'api';
+import Cookies from 'js-cookie';
 
 const required = (value) => {
   if (!value.toString().trim().length) {
@@ -46,14 +47,21 @@ class SupportForm extends Component {
   }
 
   handleSubmit(e) {
-    this.setState({buttonLabel: 'Sending...'});
+    // this.setState({buttonLabel: 'Sending...'});
     this.form.hideErrors();
     e.preventDefault();
     const formValues = this.form.getValues();
     formValues.aois = this.checkboxes;
-    api.sendSupport({ ...formValues, emailTitle: "Getting in touch with Grakn!" })
-    .then(()=>{ this.onSuccess(e);})
-    .catch((e)=>{ console.log(e);})
+
+    // api.sendSupport({ ...formValues, emailTitle: "Getting in touch with Grakn!" })
+    // .then(()=>{ this.onSuccess(e);})
+    // .catch((e)=>{ console.log(e);})
+
+    api.track({
+      "utk": Cookies.get('hubspotutk'),
+      "platform": "website",
+      "action": "contactFormSubmission"
+    });
   }
 
   onUpdateCheckbox(e) {
