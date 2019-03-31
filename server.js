@@ -6,6 +6,7 @@ const nodemailer = require('nodemailer');
 const urlParser = require('url');
 const querystring = require('querystring');
 const cors = require('cors');
+import scores from './trackScores';
 
 // New Imports
 import React from 'react';
@@ -91,6 +92,71 @@ app.get('/searchDocs', function(req, res) {
         .end(function(response) {
             res.status(200).send(response.body);
         });
+});
+
+app.post('/track', function(req, res) {
+    const keyParam = "hapikey=" + process.env.HAPIKEY;
+    const { utk, platform, action } = req.body;
+    let currentScore;
+
+    let failureMessage;
+
+    if (utk == undefined || platform == undefined || action == undefined) {
+        failureMessage = "At least one parameter is missing. Check the server logs.";
+        res.status(400).send({ status: "failure", message: failureMessage })
+        console.log(failureMessage);
+        console.log(`Received parameters are: utk: ${utk}, platform: ${platform}, action: ${action}`)
+        return false;
+    }
+
+    if (process.env.HAPIKEY == undefined) {
+        failureMessage = "Hubspot API key is missing.";
+        res.status(400).send({ status: "failure", message: "Hubspot API key is missing." })
+        console.log(failureMessage);
+        return false;
+    }
+
+    setTimeout(function() {
+        unirest.get(`https://api.hubapi.com/contacts/v1/contact/utk/${utk}/profile?${keyParam}&property=score`)
+            .end(function(response) {
+                if (! response.body["is-contact"]) {
+                    const failureMessage = "Contact has not yet been identified by Hubspot.";
+                    res.status(400).send({ status: "failure", message: failureMessage })
+                    console.log(failureMessage);
+                    return false;
+                } else if (! response.body.properties.score) {
+                    currentScore = 0;
+                } else if (response.body.properties.score.value){
+                    currentScore = response.body.properties.score.value;
+                }
+
+                const vid = response.body.vid
+                const newScore = Math.round((parseFloat(currentScore) + scores[platform][action]) * 1000) / 1000;
+
+                unirest.post(`https://api.hubapi.com/contacts/v1/contact/vid/${vid}/profile?${keyParam}`)
+                    .headers({'Accept': 'application/json', 'Content-Type': 'application/json'})
+                    .send({
+                        "properties": [
+                            {
+                              "property": "score",
+                              "value": newScore
+                            }
+                        ]
+                    })
+                    .end(function(response) {
+                        const statusType = response.statusType;
+                        if (statusType == 1 || statusType == 2) {
+                            const successMessage = "Score added successfully."
+                            res.status(200).send({ status: "success", message: successMessage })
+                            console.log(successMessage)
+                        } else {
+                            console.log("Something went wrong:")
+                            console.log(response.body.message)
+                            res.status(400).send({ status: "failure", message: "Something went wrong. Check the server logs." })
+                        }
+                    });
+            });
+    }, 10000)
 });
 
 
@@ -284,7 +350,6 @@ app.post('/api/hubspot', function(req, res ){
         'pageUrl': 'https://grakn.ai/download',
         'pageName': 'Download Center'
     }
-    console.log(params)
     const postData = querystring.stringify(params);
     handleMailChimpInvite(req.body.email, req.body.firstname, req.body.lastname);
     unirest.post('https://forms.hubspot.com/uploads/form/v2/4332244/0e3ea363-5f45-44fe-b291-be815a1ca4fc')
