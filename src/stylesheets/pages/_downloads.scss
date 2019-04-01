@@ -202,7 +202,7 @@
                   border: solid 1px #c3c8d2;
                   font-weight: 300;
                   color: $textCharcoal;
-                  margin-left: 35px;
+                  margin-left: 30px;
                   margin-top: 0 !important;
                   > i {
                     display: inline-block;
@@ -267,31 +267,30 @@
                   }
                 }
                 &__packagemanager {
-                  padding: 50px 0 55px 0;
+                  padding: 26px 0;
+                  ul {
+                    padding: 0 25px;
+                    margin: 5px 0;
+                  }
                   > span {
-                    font-size: 18px;
+                    font-size: 14px;
                     color: $textCharcoal;
                     font-weight: 400;
                     display: block;
                     margin-bottom: 8px;
-                    @media screen and (max-width: $smallScreen) {
-                      font-size: 16px;
-                    }
-                  }
-                  > a {
-                    font-size: 16px;
-                    display: block;
-                    line-height: 1.67;
-                    @media screen and (max-width: $smallScreen) {
-                      font-size: 14px;
-                    }
 
+                    > a {
+                      font-size: 14px;
+                      font-weight: 600;
+                      line-height: 1.67;
+                    }
                   }
                 }
                 &__checkbox {
                   padding-bottom: 1rem;
                   > i {
                     margin-right: 10px;
+                    margin-top: 5px;
                     padding: 4px;
                     border-radius: 50%;
                     font-weight: 300;
