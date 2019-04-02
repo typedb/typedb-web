@@ -47,7 +47,7 @@ class SupportForm extends Component {
   }
 
   handleSubmit(e) {
-    // this.setState({buttonLabel: 'Sending...'});
+    this.setState({buttonLabel: 'Sending...'});
     this.form.hideErrors();
     e.preventDefault();
     const formValues = this.form.getValues();
