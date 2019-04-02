@@ -96,7 +96,7 @@ app.get('/searchDocs', function(req, res) {
 
 app.post('/track', function(req, res) {
     const keyParam = "hapikey=" + process.env.HAPIKEY;
-    const { utk, platform, action } = req.body;
+    let { delay, utk, platform, action } = req.body;
     let currentScore;
 
     let failureMessage;
@@ -115,6 +115,9 @@ app.post('/track', function(req, res) {
         console.log(failureMessage);
         return false;
     }
+
+    delay = delay || 0;
+    delay = delay * 1000
 
     setTimeout(function() {
         unirest.get(`https://api.hubapi.com/contacts/v1/contact/utk/${utk}/profile?${keyParam}&property=score`)
@@ -156,7 +159,7 @@ app.post('/track', function(req, res) {
                         }
                     });
             });
-    }, 10000)
+    }, delay)
 });
 
 
@@ -345,24 +348,39 @@ app.post('/api/support', function(req, res) {
 
 app.post('/api/hubspot', function(req, res ){
     const params = req.body;
-    params.hs_context = {
-        'ipAddress': req.headers['x-forwarded-for'] || req.connection.remoteAddress,
-        'pageUrl': 'https://grakn.ai/download',
-        'pageName': 'Download Center'
+
+    let formParams = { "fields": [] }
+
+    for (const paramTitle in params) {
+        if (paramTitle != "utk") {
+            formParams.fields.push({
+                "name": paramTitle,
+                "value": params[paramTitle]
+            });
+        }
     }
-    const postData = querystring.stringify(params);
+
+    formParams.context = {
+        "hutk": params.utk,
+        "pageUri": "http://localhost:3000/download#core",
+        "pageName": "Newsletter Subscription | GRAKN.AI"
+    }
+
+
+    formParams = JSON.stringify(formParams);
     handleMailChimpInvite(req.body.email, req.body.firstname, req.body.lastname);
-    unirest.post('https://forms.hubspot.com/uploads/form/v2/4332244/0e3ea363-5f45-44fe-b291-be815a1ca4fc')
+    unirest.post('https://api.hsforms.com/submissions/v3/integration/submit/4332244/0e3ea363-5f45-44fe-b291-be815a1ca4fc')
     .headers({
-        'Content-Type': 'application/x-www-form-urlencoded'
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
     })
-    .send(postData)
+    .send(formParams)
     .end(function(response) {
         if (!response.error) {
             res.status(200).send(JSON.stringify({ msg: "Thank you for signing up to our newsletter!" }));
         }
         else {
-            res.status(400).send(JSON.stringify({msg: 'Bad Request'}));
+            res.status(400).send(JSON.stringify({ msg: 'Bad Request' }));
         }
     });
 })
