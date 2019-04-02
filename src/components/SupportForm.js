@@ -53,14 +53,15 @@ class SupportForm extends Component {
     const formValues = this.form.getValues();
     formValues.aois = this.checkboxes;
 
-    // api.sendSupport({ ...formValues, emailTitle: "Getting in touch with Grakn!" })
-    // .then(()=>{ this.onSuccess(e);})
-    // .catch((e)=>{ console.log(e);})
+    api.sendSupport({ ...formValues, emailTitle: "Getting in touch with Grakn!" })
+    .then(()=>{ this.onSuccess(e);})
+    .catch((e)=>{ console.log(e);})
 
     api.track({
       "utk": Cookies.get('hubspotutk'),
       "platform": "website",
-      "action": "contactFormSubmission"
+      "action": "contactFormSubmission",
+      "delay": 10
     });
   }
 
