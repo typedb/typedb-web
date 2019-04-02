@@ -7,6 +7,8 @@ import Input from 'components/FormValidationComponents/components/input';
 import Select from 'components/FormValidationComponents/components/select';
 import Button from 'components/FormValidationComponents/components/button';
 import { sendHubspot, sendSupport } from 'actions/support';
+import api from 'api';
+import Cookies from 'js-cookie';
 
 const required = (value) => {
   if (!value.toString().trim().length) {
@@ -42,7 +44,7 @@ class HubspotForm extends Component {
     return (
       <div className="support-form" onSubmit={this.handleSubmit}>
         <span className="support-form__text">Stay up-to-date by signing up to our newsletter. Be the first to know about product releases, upcoming events, webinars, online courses, and more.</span>
-        <Form ref={c => { this.form = c }}>
+        <Form className="newsletter" ref={c => { this.form = c }}>
           <div className="support-form__row">
             <div className="support-form__row__item">
               <Input className="support-form__input" placeholder='First Name' name='firstname' validations={[required]}/>
@@ -53,7 +55,7 @@ class HubspotForm extends Component {
           </div>
           <div className="support-form__row">
             <div className="support-form__row__item">
-              <Input className="support-form__input" placeholder='Email' name='email' validations={[required, email]}/>
+              <Input className="support-form__input" type='email' placeholder='Email' name='email' validations={[required, email]}/>
             </div>
             <div className="support-form__row__item">
               <Input className="support-form__input" placeholder='Company' name='company' validations={[required]}/>
@@ -61,7 +63,7 @@ class HubspotForm extends Component {
           </div>
           <div className="support-form__row">
             <div className="support-form__row__item support-form__row__item__select">
-              <Select className="support-form__input support-form__input__select" value='' name='job' validations={[required]}>
+              <Select className="support-form__input support-form__input__select" value='' name='jobtitle' validations={[required]}>
                 <option value=''>Job function</option>
                 <option value='software enginner'>Software Engineer</option>
                 <option value='director'>Director / Development Manager</option>
@@ -338,7 +340,7 @@ class HubspotForm extends Component {
             </div>
           </div>
           <div className="support-form__row support-form__row--modified">
-            <Button className="button button--red support-form__button" >Submit</Button>
+            <Button type='submit' className="button button--red support-form__button" >Submit</Button>
           </div>
         </Form>
         <span className="support-form__consent">By submitting your personal data, you consent to emails from Grakn. See our <Link to="/privacy-policy" className="animated__link animated__link--purple">Privacy Policy</Link></span>
@@ -350,8 +352,15 @@ class HubspotForm extends Component {
 const mapDispatchToProps = (dispatch) => (
   {
     send: (data) => {
-      dispatch(sendHubspot(data));
+      dispatch(sendHubspot({ utk: Cookies.get('hubspotutk'), ...data }));
       dispatch(sendSupport({ ...data, emailTitle: "New Newsletter Signup!" }));
+
+      api.track({
+        "utk": Cookies.get('hubspotutk'),
+        "platform": "website",
+        "action": "contactFormSubmission",
+        "delay": 10
+      });
     },
   }
 );

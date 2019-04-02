@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import TrackedPage from './TrackedPage';
 import { Link } from 'react-router-dom';
 import Testimonials from 'components/Testimonials';
 import SupportForm from 'components/SupportForm';
@@ -14,10 +15,11 @@ class ServicesPage extends Component {
 
   scroll() {
     zenscroll.setup(1000, 50);
-    zenscroll.to(this.supportform);   
+    zenscroll.to(this.supportform);
   }
   render() {
     return (
+      <TrackedPage>
       <div className="services">
         <section className="services__splash">
           <div className="services__splash__container container section__container">
@@ -29,7 +31,7 @@ class ServicesPage extends Component {
         </section>
         <section className="services__features services__features--nopad">
           <div className="services__features__container container section__container">
-          
+
             <div className="services__features__item">
               <div className="services__features__item__text">
                 <span className="services__features__item__text__headline">Learning and Training</span>
@@ -58,13 +60,13 @@ class ServicesPage extends Component {
                     </span>
                   </div>
                 </div>
-                <span className="services__features__item__text__button button button--transparent " onClick={() => this.scroll()}>Get in touch</span>                  
+                <span className="services__features__item__text__button button button--transparent " onClick={() => this.scroll()}>Get in touch</span>
               </div>
               <div className="services__features__item__img">
                 <img src="/assets/svg/learning.svg" alt="Services learning" />
               </div>
             </div>
-    
+
             <div className="services__features__item">
               <div className="services__features__item__img">
                 <img src="/assets/svg/knowledge.svg" alt="Knowledge" />
@@ -96,20 +98,20 @@ class ServicesPage extends Component {
                     </span>
                   </div>
                 </div>
-                <span className="services__features__item__text__button button button--transparent " onClick={() => this.scroll()}>Get in touch</span>                  
+                <span className="services__features__item__text__button button button--transparent " onClick={() => this.scroll()}>Get in touch</span>
               </div>
             </div>
-    
+
           </div>
         </section>
         <section className="services__features services__features--alternate">
           <div className="services__features__container container section__container">
-          
+
             <div className="services__features__item">
               <div className="services__features__item__text">
                 <span className="services__features__item__text__headline">Migration and Integration</span>
                 <span className="services__features__item__text__paragraph">
-                Migrating over from your current databases is not something to fear. The process can be smooth and painless, and we can help you with that. We can help integrate your data streams into your new Grakn knowledge graph, no matter how big the throughput is.            
+                Migrating over from your current databases is not something to fear. The process can be smooth and painless, and we can help you with that. We can help integrate your data streams into your new Grakn knowledge graph, no matter how big the throughput is.
                 </span>
                 <div className="services__features__item__text__list">
                   <div className="services__features__item__text__list__col">
@@ -129,13 +131,13 @@ class ServicesPage extends Component {
                     </span>
                   </div>
                 </div>
-                  <span className="services__features__item__text__button button button--transparent " onClick={() => this.scroll()}>Get in touch</span>                  
+                  <span className="services__features__item__text__button button button--transparent " onClick={() => this.scroll()}>Get in touch</span>
                 </div>
               <div className="services__features__item__img">
                 <img src="/assets/svg/migration.svg" alt="Migration" />
               </div>
             </div>
-    
+
             <div className="services__features__item">
               <div className="services__features__item__img">
                 <img src="/assets/svg/APIs.svg" alt="Custom APIs" />
@@ -163,15 +165,15 @@ class ServicesPage extends Component {
                     </span>
                   </div>
                 </div>
-                <span className="services__features__item__text__button button button--transparent " onClick={() => this.scroll()}>Get in touch</span>                  
+                <span className="services__features__item__text__button button button--transparent " onClick={() => this.scroll()}>Get in touch</span>
               </div>
             </div>
-    
+
           </div>
         </section>
         <section className="services__features services__features--single">
         <div className="services__features__container container section__container">
-        
+
           <div className="services__features__item">
             <div className="services__features__item__text">
               <span className="services__features__item__text__headline">Deployment and Scaling</span>
@@ -196,27 +198,25 @@ class ServicesPage extends Component {
                   </span>
                 </div>
               </div>
-              <span className="services__features__item__text__button button button--transparent " onClick={() => this.scroll()}>Get in touch</span>                  
+              <span className="services__features__item__text__button button button--transparent " onClick={() => this.scroll()}>Get in touch</span>
             </div>
             <div className="services__features__item__img">
               <img src="/assets/svg/deployment.svg" alt="Deployment" />
             </div>
           </div>
         </div>
-        <div className="services__features__circle"><img src="/assets/svg/bot.svg" alt="grakn bot" /></div>     
+        <div className="services__features__circle"><img src="/assets/svg/bot.svg" alt="grakn bot" /></div>
         </section>
         <section className="services__alive">
           <img src="/assets/svg/services_alive.svg" alt="Its alive background"/>
           <div className="services__alive__container container section__container">
             <span className="services__alive__header">IT’S ALIVE!</span>
             <span className="services__alive__tag">Now your knowledge graph is alive and working for you and your business. Rest assured, we still have your back! Get Grakn Enterprise support to make sure no issue will ever get in the way of your business.</span>
-            <Link className="services__alive__button button button--red" to="/support">Get Support</Link>                          
+            <Link className="services__alive__button button button--red" to="/support">Get Support</Link>
           </div>
         </section>
         <Testimonials buttonCallback={this.scroll}/>
-        {
-         // <CompanyLogos />
-        }
+        {/* <CompanyLogos /> */}
         <section className="support-form__section" ref={(elem) => this.supportform = elem}>
           <div className="support-form__section__container container section__container">
             <span className="support-form__section__header">Get in touch with our team!</span>
@@ -224,9 +224,10 @@ class ServicesPage extends Component {
           </div>
         </section>
       </div>
+      </TrackedPage>
     );
   }
 }
-  
+
 
 export default ServicesPage;
