@@ -1,33 +1,29 @@
-const path = require('path');
-const express = require('express');
-const bodyParser = require('body-parser');
-const unirest = require('unirest');
-const nodemailer = require('nodemailer');
-const urlParser = require('url');
-const querystring = require('querystring');
-const cors = require('cors');
-import scores from './trackScores';
-
-// New Imports
 import React from 'react';
 import ReactDOM from 'react-dom/server';
+import routeBank from 'routes';
+
+import path from 'path';
+import express from 'express';
+import bodyParser from 'body-parser';
+import unirest from 'unirest';
+import nodemailer from 'nodemailer';
+import cors from 'cors';
+
 import helmet from 'react-helmet';
-import { render } from 'react-dom';
 import { Provider } from 'react-redux';
-import { createStore, applyMiddleware } from 'redux';
-import { StaticRouter , matchPath } from 'react-router';
 import { ConnectedRouter, push } from 'react-router-redux';
-import { matchRoutes, renderRoutes } from 'react-router-config';
+import { matchRoutes } from 'react-router-config';
 import qs from 'qs';
 
-import thunk from 'redux-thunk';
-
-import routeBank from 'routes';
 import configureStore from 'store';
 import App from 'App';
 
+import scores from './tracker/scores';
+import hs from './tracker/hubspot';
+
 // New Imports Over
 const app = express();
+
 
 const port = process.env.PORT ? process.env.PORT : 3001;
 
@@ -94,74 +90,137 @@ app.get('/searchDocs', function(req, res) {
         });
 });
 
-app.post('/track', function(req, res) {
-    const keyParam = "hapikey=" + process.env.HAPIKEY;
-    let { delay, utk, platform, action } = req.body;
-    let currentScore;
+const pickUndefined = (payload) => {
+    let missing = [];
+    for (const key in payload) {
+        if (payload[key] == undefined) {
+            missing.push(key);
+        }
+    }
+    return missing;
+};
 
-    let failureMessage;
+app.post('/discussEvent', async function(req, res) {
+    const apiKey = process.env.HAPIKEY;
+    const discussEvent = req.headers["x-discourse-event"];
 
-    if (utk == undefined || platform == undefined || action == undefined) {
-        failureMessage = "At least one parameter is missing. Check the server logs.";
-        res.status(400).send({ status: "failure", message: failureMessage })
-        console.log(failureMessage);
-        console.log(`Received parameters are: utk: ${utk}, platform: ${platform}, action: ${action}`)
+    pickUndefined({ apiKey });
+    const missingPayload = pickUndefined({ apiKey });
+    if (missingPayload.length > 0) {
+        res.status(400).send({ status: "failure", message: missingPayload + " are undefined." });
         return false;
     }
 
-    if (process.env.HAPIKEY == undefined) {
-        failureMessage = "Hubspot API key is missing.";
-        res.status(400).send({ status: "failure", message: "Hubspot API key is missing." })
-        console.log(failureMessage);
-        return false;
-    }
+    let userId, hsDiscussId, newScore;
+    switch (discussEvent) {
+        case "user_created":
+            userId = req.body.user.id;
+            hsDiscussId = `discuss_${userId}`;
 
-    delay = delay || 0;
-    delay = delay * 1000
+            const emails = [req.body.user.email];
+            if (req.body.user.user_fields["1"].indexOf("@") > -1) {
+                emails.push(req.body.user.user_fields["1"]);
+            }
 
-    setTimeout(function() {
-        unirest.get(`https://api.hubapi.com/contacts/v1/contact/utk/${utk}/profile?${keyParam}&property=score`)
-            .end(function(response) {
-                if (! response.body["is-contact"]) {
-                    const failureMessage = "Contact has not yet been identified by Hubspot.";
-                    res.status(400).send({ status: "failure", message: failureMessage })
-                    console.log(failureMessage);
-                    return false;
-                } else if (! response.body.properties.score) {
-                    currentScore = 0;
-                } else if (response.body.properties.score.value){
-                    currentScore = response.body.properties.score.value;
+            let scoreProp;
+            for (const email of emails) {
+                try {
+                    scoreProp = await hs.getContactProp(apiKey, "score", ["email", email]);
+                } catch (e) {
+                    res.status(400).send({ status: "failure", message: e });
+                    return;
                 }
 
-                const vid = response.body.vid
-                const newScore = Math.round((parseFloat(currentScore) + scores[platform][action]) * 1000) / 1000;
+                if (scoreProp.vid) {
+                    break;
+                }
+            }
 
-                unirest.post(`https://api.hubapi.com/contacts/v1/contact/vid/${vid}/profile?${keyParam}`)
-                    .headers({'Accept': 'application/json', 'Content-Type': 'application/json'})
-                    .send({
-                        "properties": [
-                            {
-                              "property": "score",
-                              "value": newScore
-                            }
-                        ]
-                    })
-                    .end(function(response) {
-                        const statusType = response.statusType;
-                        if (statusType == 1 || statusType == 2) {
-                            const successMessage = "Score added successfully."
-                            res.status(200).send({ status: "success", message: successMessage })
-                            console.log(successMessage)
-                        } else {
-                            console.log("Something went wrong:")
-                            console.log(response.body.message)
-                            res.status(400).send({ status: "failure", message: "Something went wrong. Check the server logs." })
-                        }
-                    });
-            });
-    }, delay)
+            if (scoreProp.vid) {
+                const currentScore = scoreProp.value;
+                newScore = Math.round((parseFloat(currentScore) + scores["discuss"]["signup"]) * 1000) / 1000;
+            } else {
+                res.status(400).send({ status: "failure", message: "Contact not found!" });
+                return;
+            }
+
+            try {
+                await hs.setContactProp(apiKey, { "score": newScore }, [ "vid", scoreProp.vid ]);
+                res.status(200).send({ status: "success", message: "Contact's score has been updated." });
+            } catch (e) {
+                res.status(400).send({ status: "failure", message: e });
+                return;
+            }
+            break;
+        case "topic_created":
+            userId = req.body.topic.created_by.id;
+            hsDiscussId = `discuss_${userId}`;
+
+            let contact;
+            try {
+                contact = await hs.getContactByProp(apiKey, ["discuss_id", hsDiscussId ], ["discuss_id", "score"], "1274600");
+            } catch (e) {
+                res.status(400).send({ status: "failure", message: e });
+                return;
+            }
+
+            if (contact) {
+                const currentScore = contact.properties.score.value;
+                newScore = Math.round((parseFloat(currentScore) + scores["discuss"]["topicCreation"]) * 1000) / 1000;
+            } else {
+                res.status(400).send({ status: "failure", message: "Contact not found!" });
+                return;
+            }
+
+
+            try {
+                await hs.setContactProp(apiKey, { "score": newScore }, [ "vid", contact.vid ]);
+                res.status(200).send({ status: "success", message: "Contact's score has been updated." });
+            } catch (e) {
+                res.status(400).send({ status: "failure", message: e });
+                return;
+            }
+            break;
+        default:
+            return;
+    }
 });
 
+app.post('/track', async function(req, res) {
+    const apiKey = process.env.HAPIKEY;
+    let { delay, utk, platform, action } = req.body;
+
+    const missingPayload = pickUndefined({ utk, platform, action, apiKey });
+    if (missingPayload.length > 0) {
+        res.status(400).send({ status: "failure", message: missingPayload + " are undefined." });
+        return false;
+    }
+
+    let scoreProp;
+    try {
+        scoreProp = await hs.getContactProp(apiKey, "score", [ "utk", utk ], delay);
+    } catch (e) {
+        res.status(400).send({ status: "failure", message: e });
+        return false;
+    }
+
+    let newScore;
+    if (scoreProp.vid) {
+        const currentScore = scoreProp.value;
+        newScore = Math.round((parseFloat(currentScore) + scores[platform][action]) * 1000) / 1000;
+    } else {
+        res.status(400).send({ status: "failure", message: "Contact not found!" });
+        return;
+    }
+
+    try {
+        await hs.setContactProp(apiKey, { "score": newScore }, [ "vid", scoreProp.vid ]);
+        res.status(200).send({ status: "success", message: "Contact's score has been updated." });
+    } catch (e) {
+        res.status(400).send({ status: "failure", message: e });
+        return;
+    }
+});
 
 function handleSlackInvite(userEmail) {
   unirest.post('https://grakn-slackin.herokuapp.com/invite')

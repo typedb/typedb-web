@@ -51,6 +51,7 @@
   },
   "dependencies": {
     "autoprefixer": "^7.1.4",
+    "axios": "^0.18.0",
     "babel": "^6.23.0",
     "babel-cli": "^6.24.1",
     "babel-core": "^6.24.1",
@@ -60,6 +61,7 @@
     "body-parser": "^1.18.2",
     "classnames": "^2.2.5",
     "compression-webpack-plugin": "^0.4.0",
+    "cookie-parser": "^1.4.4",
     "cors": "^2.8.5",
     "cross-env": "^5.0.5",
     "css-loader": "^0.28.2",
