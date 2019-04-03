@@ -161,7 +161,7 @@ app.post('/discussEvent', async function(req, res) {
 
             let contact;
             try {
-                contact = await hs.getContactByProp(apiKey, ["discuss_id", hsDiscussId ], ["discuss_id", "score"], "1274600");
+                contact = await hs.getContactByProp(apiKey, ["discuss_id", hsDiscussId ], ["discuss_id", "score"]);
             } catch (e) {
                 res.status(400).send({ status: "failure", message: e });
                 return;
