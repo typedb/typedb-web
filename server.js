@@ -6,6 +6,9 @@ import path from 'path';
 import express from 'express';
 import bodyParser from 'body-parser';
 import unirest from 'unirest';
+import axios from 'axios';
+import Joi from 'joi';
+
 import nodemailer from 'nodemailer';
 import cors from 'cors';
 
@@ -136,16 +139,16 @@ app.post('/discussEvent', async function(req, res) {
                 }
             }
 
-            if (scoreProp.vid) {
-                const currentScore = scoreProp.value;
-                newScore = Math.round((parseFloat(currentScore) + scores["discuss"]["signup"]) * 1000) / 1000;
-            } else {
-                res.status(400).send({ status: "failure", message: "Contact not found!" });
-                return;
-            }
-
             try {
-                await hs.setContactProp(apiKey, { "score": newScore }, [ "vid", scoreProp.vid ]);
+                await axios.post(
+                    req.protocol + '://' + req.get('host') + "/track",
+                    {
+                        vid: scoreProp.vid,
+                        platform: "discuss",
+                        action: "signup"
+                    }
+                )
+
                 res.status(200).send({ status: "success", message: "Contact's score has been updated." });
             } catch (e) {
                 res.status(400).send({ status: "failure", message: e });
@@ -164,17 +167,16 @@ app.post('/discussEvent', async function(req, res) {
                 return;
             }
 
-            if (contact) {
-                const currentScore = contact.properties.score.value;
-                newScore = Math.round((parseFloat(currentScore) + scores["discuss"]["topicCreation"]) * 1000) / 1000;
-            } else {
-                res.status(400).send({ status: "failure", message: "Contact not found!" });
-                return;
-            }
-
-
             try {
-                await hs.setContactProp(apiKey, { "score": newScore }, [ "vid", contact.vid ]);
+                await axios.post(
+                    req.protocol + '://' + req.get('host') + "/track",
+                    {
+                        vid: contact.vid,
+                        platform: "discuss",
+                        action: "topicCreation"
+                    }
+                )
+
                 res.status(200).send({ status: "success", message: "Contact's score has been updated." });
             } catch (e) {
                 res.status(400).send({ status: "failure", message: e });
@@ -188,17 +190,29 @@ app.post('/discussEvent', async function(req, res) {
 
 app.post('/track', async function(req, res) {
     const apiKey = process.env.HAPIKEY;
-    let { delay, utk, platform, action } = req.body;
+    let { delay, vid, utk, platform, action } = req.body;
 
-    const missingPayload = pickUndefined({ utk, platform, action, apiKey });
-    if (missingPayload.length > 0) {
-        res.status(400).send({ status: "failure", message: missingPayload + " are undefined." });
+    const payloadValidator = Joi.object().keys({
+        platform: Joi.string().required().valid(Object.keys(scores)),
+        action: Joi.string().required(),
+        utk: Joi.string(),
+        vid: Joi.number()
+    }).xor('utk', 'vid');
+
+    const validationResult = (Joi.validate(req.body, payloadValidator))
+
+    if (validationResult.error) {
+        res.status(400).send({ status: "failure", details: validationResult.error.details });
         return false;
     }
 
     let scoreProp;
     try {
-        scoreProp = await hs.getContactProp(apiKey, "score", [ "utk", utk ], delay);
+        if (vid) {
+            scoreProp = await hs.getContactProp(apiKey, "score", [ "vid", vid ], delay);
+        } else if (utk) {
+            scoreProp = await hs.getContactProp(apiKey, "score", [ "utk", utk ], delay);
+        }
     } catch (e) {
         res.status(400).send({ status: "failure", message: e });
         return false;
@@ -218,7 +232,7 @@ app.post('/track', async function(req, res) {
         res.status(200).send({ status: "success", message: "Contact's score has been updated." });
     } catch (e) {
         res.status(400).send({ status: "failure", message: e });
-        return;
+        throw e;
     }
 });
 
