@@ -95,105 +95,7 @@ app.get('/searchDocs', function(req, res) {
         });
 });
 
-const pickUndefined = (payload) => {
-    let missing = [];
-    for (const key in payload) {
-        if (payload[key] == undefined) {
-            missing.push(key);
-        }
-    }
-    return missing;
-};
-
-app.post('/discussEvent', async function(req, res) {
-    const apiKey = process.env.HAPIKEY;
-    const discussEvent = req.headers["x-discourse-event"];
-
-    pickUndefined({ apiKey });
-    const missingPayload = pickUndefined({ apiKey });
-    if (missingPayload.length > 0) {
-        res.status(400).send({ status: "failure", message: missingPayload + " are undefined." });
-        return false;
-    }
-
-    let userId, hsDiscussId, newScore;
-    switch (discussEvent) {
-        case "user_created":
-            userId = req.body.user.id;
-            hsDiscussId = `discuss_${userId}`;
-
-            const emails = [req.body.user.email];
-            if (req.body.user.user_fields["1"].indexOf("@") > -1) {
-                emails.push(req.body.user.user_fields["1"]);
-            }
-
-            let scoreProp;
-            for (const email of emails) {
-                try {
-                    scoreProp = await hs.getContactProp(apiKey, "score", ["email", email]);
-                } catch (e) {
-                    res.status(400).send({ status: "failure", message: e });
-                    return;
-                }
-
-                if (scoreProp.vid) {
-                    break;
-                }
-            }
-
-            try {
-                await axios.post(
-                    req.protocol + '://' + req.get('host') + "/track",
-                    {
-                        vid: scoreProp.vid,
-                        platform: "discuss",
-                        action: "signup"
-                    }
-                )
-
-                res.status(200).send({ status: "success", message: "Contact's score has been updated." });
-            } catch (e) {
-                res.status(400).send({ status: "failure", message: e });
-                return;
-            }
-            break;
-        case "topic_created":
-            userId = req.body.topic.created_by.id;
-            hsDiscussId = `discuss_${userId}`;
-
-            let contact;
-            try {
-                contact = await hs.getContactByProp(apiKey, ["discuss_id", hsDiscussId ], ["discuss_id", "score"]);
-            } catch (e) {
-                res.status(400).send({ status: "failure", message: e });
-                return;
-            }
-
-            try {
-                await axios.post(
-                    req.protocol + '://' + req.get('host') + "/track",
-                    {
-                        vid: contact.vid,
-                        platform: "discuss",
-                        action: "topicCreation"
-                    }
-                )
-
-                res.status(200).send({ status: "success", message: "Contact's score has been updated." });
-            } catch (e) {
-                res.status(400).send({ status: "failure", message: e });
-                return;
-            }
-            break;
-        default:
-            return;
-    }
-});
-
-app.post('/track', async function(req, res) {
-    const apiKey = process.env.HAPIKEY;
-    let { delay, vid, utk, platform, action } = req.body;
-
+const updateHubspotScore = async (trackPayload) => {
     const payloadValidator = Joi.object().keys({
         platform: Joi.string().required().valid(Object.keys(scores)),
         action: Joi.string().required(),
@@ -201,41 +103,95 @@ app.post('/track', async function(req, res) {
         vid: Joi.number()
     }).xor('utk', 'vid');
 
-    const validationResult = (Joi.validate(req.body, payloadValidator))
+    const validationResult = Joi.validate(trackPayload, payloadValidator);
+    if (validationResult.error) { return { status: 400, message: validationResult.error.details }; }
 
-    if (validationResult.error) {
-        res.status(400).send({ status: "failure", details: validationResult.error.details });
-        return false;
-    }
-
-    let scoreProp;
+    let {vid, utk, platform, action } = trackPayload;
     try {
+        let scoreProp;
         if (vid) {
-            scoreProp = await hs.getContactProp(apiKey, "score", [ "vid", vid ], delay);
+            scoreProp = await hs.getContactProp("score", [ "vid", vid ]);
         } else if (utk) {
-            scoreProp = await hs.getContactProp(apiKey, "score", [ "utk", utk ], delay);
+            scoreProp = await hs.getContactProp("score", [ "utk", utk ]);
         }
-    } catch (e) {
-        res.status(400).send({ status: "failure", message: e });
-        return false;
-    }
 
-    let newScore;
-    if (scoreProp.vid) {
-        const currentScore = scoreProp.value;
-        newScore = Math.round((parseFloat(currentScore) + scores[platform][action]) * 1000) / 1000;
-    } else {
-        res.status(400).send({ status: "failure", message: "Contact not found!" });
-        return;
-    }
+        let newScore;
+        if (scoreProp) {
+            const currentScore = scoreProp.value || 0;
+            newScore = Math.round((parseFloat(currentScore) + scores[platform][action]) * 1000) / 1000;
+        } else {
+            res.status(404).send({ status: 404, message: "Contact not found!" });
+            return;
+        }
 
-    try {
-        await hs.setContactProp(apiKey, { "score": newScore }, [ "vid", scoreProp.vid ]);
-        res.status(200).send({ status: "success", message: "Contact's score has been updated." });
+        await hs.setContactProp({ "score": newScore }, [ "vid", scoreProp.vid ]);
+        return { status: 200, message: "Contact's score has been updated." };
     } catch (e) {
-        res.status(400).send({ status: "failure", message: e });
-        throw e;
+        return { status: e.status, message: e.message };
     }
+}
+
+// target endpoint for webhooks at discuss.grakn.ai
+app.post('/discussEvent', async function(req, res) {
+    const discussEvent = req.headers["x-discourse-event"];
+
+    switch (discussEvent) {
+        case "user_created":
+            // to be added as the value of `discuss_id` on the Hubspot account of the new Discuss user.
+            // used to identify the Discuss user on Hubspot for future actions (e.g. topic_creation)
+            const newHsDiscussId = `discuss_${req.body.user.id}`;
+
+            try {
+                const primaryEmail = req.body.user.email;
+                const secondaryEmail = req.body.user.user_fields["1"].indexOf("@") > -1 ? req.body.user.user_fields["1"] : undefined;
+
+                let vidProp = await hs.getContactProp("vid", ["email", primaryEmail]);
+
+                if (! vidProp && secondaryEmail) {
+                    // no Hubspot contact owns the primaryEmail. Try looking up the secondaryEmail now
+                    vidProp = await hs.getContactProp("vid", ["email", secondaryEmail]);
+                }
+
+                if (vidProp) {
+                    // there is a Hubspot contact with either the primaryEmail or the secondaryEmail
+                    await hs.setContactProp({ "discuss_id": newHsDiscussId }, [ "vid", vidProp.vid ]);
+                    const response = await updateHubspotScore({ vid: vidProp.vid, platform: "discuss", action: "signup" });
+                    res.status(response.status).send({ status: response.status, message: response.message });
+                    return;
+                }
+            } catch (e) {
+                res.status(e.status).send({ status: e.status, message: e.message });
+                return;
+            }
+        case "topic_created":
+            // used to look up the author of the newly created topic among Hubspot contacts
+            const hsDiscussId = `discuss_${req.body.topic.created_by.id}`;
+
+            try {
+                const contact = await hs.getContactByProp(["discuss_id", hsDiscussId ], ["discuss_id", "score"]);
+                if (contact) {
+                    const response = await updateHubspotScore({ vid: contact.vid, platform: "discuss", action: "topicCreation" });
+                    res.status(response.status).send({ status: response.status, message: response.message });
+                    return;
+                } else {
+                    res.status(404).send({ status: 404, message: "Contact not found!" });
+                    return;
+                }
+            } catch (e) {
+                res.status(e.status).send({ status: e.status, message: e.message });
+                return;
+            }
+        default:
+            res.status(400).send({ status: 400, message: `${discussEvent} is not handled.` });
+            return;
+    }
+});
+
+// target endpoint for clients: grakn.ai, dev.grakn.ai and discuss.grakn.ai
+app.post('/track', async function(req, res) {
+    const response = await updateHubspotScore(req.body);
+    res.status(response.status).send({ status: response.status, message: response.message });
+    return;
 });
 
 function handleSlackInvite(userEmail) {
