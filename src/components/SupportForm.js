@@ -60,8 +60,7 @@ class SupportForm extends Component {
     api.track({
       "utk": Cookies.get('hubspotutk'),
       "platform": "website",
-      "action": "contactFormSubmission",
-      "delay": 10
+      "action": "contactFormSubmission"
     });
   }
 

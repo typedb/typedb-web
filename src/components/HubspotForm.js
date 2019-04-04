@@ -358,8 +358,7 @@ const mapDispatchToProps = (dispatch) => (
       api.track({
         "utk": Cookies.get('hubspotutk'),
         "platform": "website",
-        "action": "contactFormSubmission",
-        "delay": 10
+        "action": "contactFormSubmission"
       });
     },
   }
