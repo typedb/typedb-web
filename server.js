@@ -96,11 +96,13 @@ app.get('/searchDocs', function(req, res) {
 });
 
 const updateHubspotScore = async (trackPayload) => {
+    console.log("track call - payload: ", JSON.stringify(trackPayload));
+
     const payloadValidator = Joi.object().keys({
         platform: Joi.string().required().valid(Object.keys(scores)),
         action: Joi.string().required(),
-        utk: Joi.string(),
-        vid: Joi.number()
+        utk: Joi.string(), // Hubspot token stored as a cookie in the contact's browser
+        vid: Joi.number() // HUbspot contact id
     }).xor('utk', 'vid');
 
     const validationResult = Joi.validate(trackPayload, payloadValidator);
@@ -120,8 +122,7 @@ const updateHubspotScore = async (trackPayload) => {
             const currentScore = scoreProp.value || 0;
             newScore = Math.round((parseFloat(currentScore) + scores[platform][action]) * 1000) / 1000;
         } else {
-            res.status(404).send({ status: 404, message: "Contact not found!" });
-            return;
+            return { status: 404, message: "Contact not found!" };
         }
 
         await hs.setContactProp({ "score": newScore }, [ "vid", scoreProp.vid ]);
@@ -156,42 +157,38 @@ app.post('/discussEvent', async function(req, res) {
                     // there is a Hubspot contact with either the primaryEmail or the secondaryEmail
                     await hs.setContactProp({ "discuss_id": newHsDiscussId }, [ "vid", vidProp.vid ]);
                     const response = await updateHubspotScore({ vid: vidProp.vid, platform: "discuss", action: "signup" });
-                    res.status(response.status).send({ status: response.status, message: response.message });
-                    return;
+                    console.log("track call - success: ", JSON.stringify({ status: 200, message: response.message }));
+                    res.status(200).send({ status: 200, message: response.message });
                 }
             } catch (e) {
+                console.log("track call - failure: ", JSON.stringify({ status: e.status, message: e.message }));
                 res.status(e.status).send({ status: e.status, message: e.message });
-                return;
             }
+            break;
         case "topic_created":
             // used to look up the author of the newly created topic among Hubspot contacts
             const hsDiscussId = `discuss_${req.body.topic.created_by.id}`;
 
             try {
                 const contact = await hs.getContactByProp(["discuss_id", hsDiscussId ], ["discuss_id", "score"]);
-                if (contact) {
-                    const response = await updateHubspotScore({ vid: contact.vid, platform: "discuss", action: "topicCreation" });
-                    res.status(response.status).send({ status: response.status, message: response.message });
-                    return;
-                } else {
-                    res.status(404).send({ status: 404, message: "Contact not found!" });
-                    return;
-                }
+                const response = await updateHubspotScore({ vid: contact.vid, platform: "discuss", action: "topicCreation" });
+                console.log("track call - success: ", JSON.stringify({ status: 200, message: response.message }));
+                res.status(200).send({ status: 200, message: response.message });
             } catch (e) {
+                console.log("track call - failure: ", JSON.stringify({ status: e.status, message: e.message }));
                 res.status(e.status).send({ status: e.status, message: e.message });
-                return;
             }
+            break;
         default:
             res.status(400).send({ status: 400, message: `${discussEvent} is not handled.` });
-            return;
     }
 });
 
 // target endpoint for clients: grakn.ai, dev.grakn.ai and discuss.grakn.ai
-app.post('/track', async function(req, res) {
+app.post('/hsengt', async function(req, res) {
     const response = await updateHubspotScore(req.body);
+    console.log("track call - " + (response.status == 200 ? "success" : "failure"), JSON.stringify({ status: response.status, message: response.message }))
     res.status(response.status).send({ status: response.status, message: response.message });
-    return;
 });
 
 function handleSlackInvite(userEmail) {

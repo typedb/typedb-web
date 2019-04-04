@@ -19,7 +19,7 @@ const getContactProp = async (prop, findBy) => {
             }
         }
     } catch (e) {
-        throw { status: e.response.statusCode, message: e.response.statusText };
+        throw { status: e.response.status, message: e.response.statusText };
     }
 
     return false;
@@ -61,12 +61,12 @@ const getContactByProp = async (propValue, props, offset = 0) => {
             }
         }
         if (response.data["has-more"]) {
-            return await getContactByProp(propValue, props, response.data["vid-offset"]);
+            return getContactByProp(propValue, props, response.data["vid-offset"]);
         } else {
-            return false;
+            throw { status: e.response.status, message: e.response.statusText };
         }
     } catch (e) {
-        throw { status: e.response.statusCode, message: e.response.statusText };
+        throw { status: e.response.status, message: e.response.statusText };
     }
 };
 
