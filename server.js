@@ -54,6 +54,8 @@ app.use('/', express.static(dist));
 const whitelist = [
     'http://localhost:4005', 'http://grakn-web-dev-wip.herokuapp.com', 'http://dev.grakn.ai',
     'https://localhost:4005', 'https://grakn-web-dev-wip.herokuapp.com', 'https://dev.grakn.ai',
+    'http://discuss.grakn.ai',
+    'https://discuss.grakn.ai',
     'http://localhost:3000', 'http://grakn-web-staging.herokuapp.com', 'http://grakn.ai',
     'https://localhost:3000', 'https://grakn-web-staging.herokuapp.com', 'https://grakn.ai']
 const corsOptions = {
