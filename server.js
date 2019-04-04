@@ -157,11 +157,11 @@ app.post('/discussEvent', async function(req, res) {
                     // there is a Hubspot contact with either the primaryEmail or the secondaryEmail
                     await hs.setContactProp({ "discuss_id": newHsDiscussId }, [ "vid", vidProp.vid ]);
                     const response = await updateHubspotScore({ vid: vidProp.vid, platform: "discuss", action: "signup" });
-                    console.log("track call - success: ", JSON.stringify({ status: 200, message: response.message }));
+                    console.log(`track call from ${req.get('host')} - success: `, JSON.stringify({ status: 200, message: response.message }));
                     res.status(200).send({ status: 200, message: response.message });
                 }
             } catch (e) {
-                console.log("track call - failure: ", JSON.stringify({ status: e.status, message: e.message }));
+                console.log(`track call from ${req.get('host')} - failure: `, JSON.stringify({ status: e.status, message: e.message }));
                 res.status(e.status).send({ status: e.status, message: e.message });
             }
             break;
@@ -172,10 +172,10 @@ app.post('/discussEvent', async function(req, res) {
             try {
                 const contact = await hs.getContactByProp(["discuss_id", hsDiscussId ], ["discuss_id", "score"]);
                 const response = await updateHubspotScore({ vid: contact.vid, platform: "discuss", action: "topicCreation" });
-                console.log("track call - success: ", JSON.stringify({ status: 200, message: response.message }));
+                console.log(`track call from ${req.get('host')} - success: `, JSON.stringify({ status: 200, message: response.message }));
                 res.status(200).send({ status: 200, message: response.message });
             } catch (e) {
-                console.log("track call - failure: ", JSON.stringify({ status: e.status, message: e.message }));
+                console.log(`track call from ${req.get('host')} - failure: `, JSON.stringify({ status: e.status, message: e.message }));
                 res.status(e.status).send({ status: e.status, message: e.message });
             }
             break;
@@ -187,7 +187,9 @@ app.post('/discussEvent', async function(req, res) {
 // target endpoint for clients: grakn.ai, dev.grakn.ai and discuss.grakn.ai
 app.post('/hsengt', async function(req, res) {
     const response = await updateHubspotScore(req.body);
-    console.log("track call - " + (response.status == 200 ? "success" : "failure"), JSON.stringify({ status: response.status, message: response.message }))
+    console.log(
+        "track call from " + req.get('host') + " - " + (response.status == 200 ? "success" : "failure"),
+        JSON.stringify({ status: response.status, message: response.message }))
     res.status(response.status).send({ status: response.status, message: response.message });
 });
 
