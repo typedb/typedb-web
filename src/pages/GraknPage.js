@@ -19,7 +19,7 @@ const GraknPage = () => (
       </section>
       <section className="grakn-page__github">
         <div className="grakn-page__github__container container section__container">
-          <span className="grakn-page__github__header"><strong>Grakn</strong> and <strong>Graql</strong> is open source!</span>
+          <span className="grakn-page__github__header"><strong>Grakn</strong> and <strong>Graql</strong> are open source!</span>
           <div className="grakn-page__github__buttons">
             <Link to="/download" className="button button--red"
               onClick={() => {
