@@ -5,19 +5,19 @@ ER:{ code: `
 define
 
 person sub entity,
-	has name,
-	plays employee;
+  has name,
+  plays employee;
 
 company sub entity,
-	has name,
-	plays employer;
+  has name,
+  plays employer;
 
-employment sub relationship,
-	relates employee,
-	relates employer;
+employment sub relation,
+  relates employee,
+  relates employer;
 
 name sub attribute,
-	datatype string;
+  datatype string;
 
 commit `,
 graph: {
@@ -65,8 +65,8 @@ Types: { code: `
 define
 
 person sub entity,
-	has first-name,
-	has last-name;
+  has first-name,
+  has last-name;
 
 student sub person;
 undergrad sub student;
@@ -147,8 +147,7 @@ insert
 $x isa person, has name "Leonardo";
 $y isa movie, has title "Titanic";
 $z isa figure, has name "Jack";
-($x, $y, $z) isa cast,
-	has billing-number 1;
+($x, $y, $z) isa cast, has billing-number 1;
 
 commit `,
 graph: {
@@ -262,13 +261,13 @@ Rules: { code:`
 define
 
 transitive-location sub rule,
-when {
-	(located: $x, locating: $y);
-	(located: $y, locating: $z);
-}
-then {
-	(located: $x, locating: $z);
-}
+  when {
+    (located: $x, locating: $y);
+    (located: $y, locating: $z);
+  },
+  then {
+    (located: $x, locating: $z);
+  }
 
 commit `,
 graph: {
@@ -330,14 +329,12 @@ Inference: { code: `
 # Reasoning OLTP
 
 match
-
-$a isa person;
-$b isa country, has name "UK";
-($a, $b) isa location;
-
+  $a isa person;
+  $b isa country, has name "UK";
+  ($a, $b) isa location;
 get $a;
 
-results>>
+## results>>
 
 $a isa teacher, has name "Alice";
 $a isa postgrad, has name "Bob";`,
@@ -438,19 +435,19 @@ graph: {
 Analytics: { code:`
 # Analytics OLAP
 
-compute cluster in movie, cast, person; member;
+compute cluster in movie, cast, person;
 
-results>>
+## results>>
 
 "Titanic": {
-	"Titanic",
-	"Kate",
-	"Leonardo"
+  "Titanic",
+  "Kate",
+  "Leonardo"
 }
 "Al Pacino": {
-	"Al Pacino",
-	"Godfather",
-	"Scarface"
+  "Al Pacino",
+  "Godfather",
+  "Scarface"
 }`,
 graph: {
 	nodes: [
