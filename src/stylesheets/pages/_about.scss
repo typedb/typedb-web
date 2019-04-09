@@ -18,7 +18,7 @@
       display: block;
       margin: 0 auto;
       font-weight: 300;
-      @media screen and (max-width: $mediumScreen) {
+      @media screen and (max-width: $mediumScreenWidth) {
         font-size: 26px;
       }
       @media screen and (max-width: $smallScreen) {
@@ -75,7 +75,7 @@
         line-height: 1.8;
         color: $textLight;
         font-size: 18px;
-        @media screen and (max-width: $mediumScreen) {
+        @media screen and (max-width: $mediumScreenWidth) {
           width: 100%;
           display: block;
           font-size: 14px;
@@ -85,7 +85,7 @@
         width: 8%;
         display: inline-block;
         vertical-align: middle;
-        @media screen and (max-width: $mediumScreen) {
+        @media screen and (max-width: $mediumScreenWidth) {
           width: 100%;
           display: block;
         }
@@ -94,12 +94,12 @@
           margin: 0 auto;
           max-width: 50%;
         }
-        @media screen and (max-width: $mediumScreen) {
+        @media screen and (max-width: $mediumScreenWidth) {
           display: none !important;
         }
       }
       &__col2 {
-        @media screen and (max-width: $mediumScreen) {
+        @media screen and (max-width: $mediumScreenWidth) {
           border-top: none !important;
           margin-top: -70px;
         }

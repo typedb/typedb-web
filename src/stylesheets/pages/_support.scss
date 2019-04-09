@@ -36,7 +36,7 @@ $tablePurple:#796de3;
         > strong {
           font-weight: 600;
         }
-        @media screen and (max-width: $mediumScreen) {
+        @media screen and (max-width: $mediumScreenWidth) {
           width: 60%;
         }
         @media screen and (max-width: $smallScreen) {
