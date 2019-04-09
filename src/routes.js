@@ -8,6 +8,7 @@ import SupportPage from 'pages/SupportPage';
 import GraknPage from 'pages/GraknPage';
 import DeploymentPage from 'pages/DeploymentPage';
 import KGMSPage from 'pages/KGMSPage';
+import BiomedLandingPage from 'pages/landingpages/Biomed';
 import NoPage from 'pages/NoPage';
 import ComingSoon from 'pages/ComingSoon';
 import {FinanceUseCasePage, HealthUseCasePage, SemanticUseCasePage, BotsUseCasePage, SecurityUseCasePage} from 'pages/UseCasePages';
@@ -70,6 +71,11 @@ export default [
             {
                 path: '/grakn-kgms',
                 component: KGMSPage,
+                exact: true
+            },
+            {
+                path: '/biomed',
+                component: BiomedLandingPage,
                 exact: true
             },
             {

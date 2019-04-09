@@ -1,0 +1,254 @@
+.o-landingpage {
+    padding-top: 70px;
+}
+.o-landingpage-header {
+    height: 700px;
+    width: 100%;
+    position: relative;
+
+    background-image: url(http://localhost:3000/assets/svg/kgms-splash.svg);
+    background-position: bottom;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    .m-landingpage-header-callToAction {
+        padding-top: 85px;
+        text-align: center;
+
+        h1 {
+            color: #4a4c52;
+            font-weight: 400;
+            font-size: 42px;
+            white-space: pre-line;
+        }
+
+        h2 {
+            color: #52545b;
+            font-weight: 300;
+            font-size: 30px;
+            white-space: pre-line;
+        }
+
+        a.a-landingpage-header-action {
+            margin-top: 20px;
+
+            font-weight: 400;
+            font-size: 20px;
+        }
+    }
+
+    $landingPage-briefCopy-margin: 50px;
+    .o-landingPage-briefCopy {
+        max-width: $mediumScreenWidth;
+        margin: 85px auto 0 auto;
+        padding: $landingPage-briefCopy-margin;
+        box-sizing: border-box;
+
+        background-color: #F3F4FA;
+        border: 1px solid #E8EAF4;
+        -webkit-border-radius: 5px;
+        -moz-border-radius: 5px;
+        border-radius: 5px;
+
+        .m-landingPage-briefCopy-text {
+            width: calc(60% - #{$landingPage-briefCopy-margin});
+            display: inline-block;
+            margin-right: 50px;
+            vertical-align: top;
+
+            h3 {
+                font-size: 19px;
+                font-weight: 500;
+            }
+
+            p { white-space: pre-line; }
+
+            a.a-landingpage-briefCopy-action {
+                height: 40px;
+                margin: 30px 0 0 0;
+
+                font-weight: 400;
+                font-size: 16px;
+                line-height: 40px;
+            }
+        }
+
+        .m-landingPage-briefCopy-media {
+            height: 200px;
+            width: 40%;
+            display: inline-block;
+            margin-top: 43px;
+            overflow: hidden;
+            position: relative;
+
+            -webkit-border-radius: 5px;
+            -moz-border-radius: 5px;
+            border-radius: 5px;
+
+            iframe, object, embed {
+                height: 100%;
+                width: 100%;
+                position: absolute;
+                top: 0; left: 0;
+
+                border: none;
+            }
+        }
+    }
+}
+
+.o-landingpage-sneakPeek {
+    margin: 100px auto 0 auto;
+    max-width: $mediumScreenWidth;
+
+    h2 {
+        font-size: 30px;
+        font-weight: 500;
+        text-align: center;
+    }
+
+    img {
+        width: 100%;
+    }
+}
+
+
+
+$landingPage-propositions-margin: 25px;
+
+.o-landingpage-propositionsBg {
+    background-image: url("/assets/svg/landingpage-propositions-bg.svg"), url("/assets/svg/plain_bg.svg");
+    background-position: bottom, top;
+    background-repeat: no-repeat, no-repeat;
+}
+
+.o-landingpage-propositions {
+    margin: 0 auto;
+    padding: 50px 0;
+    max-width: $mediumScreenWidth;
+
+    .o-landingPage-propositionCategory {
+        margin: 50px 0;
+
+        &:first-child { margin-top: 0; }
+        &:last-child { margin-bottom: 0; }
+
+        h2 {
+            margin-bottom: 25px;
+            font-size: 30px;
+            font-weight: 500;
+            text-align: center;
+
+        }
+
+        .m-landingPage-proposition {
+            width: calc((100% - (2 * #{$landingPage-propositions-margin})) / 3);
+            background-color: #fff;
+            border: 1px solid #E6E8F4;
+            -webkit-border-radius: 5px;
+            -moz-border-radius: 5px;
+            border-radius: 5px;
+            box-sizing: border-box;
+            display: inline-block;
+            margin-right: $landingPage-propositions-margin;
+            padding: 25px;
+            vertical-align: top;
+
+            &:last-child { margin-right: 0; }
+
+            h3 {
+                width: 100%;
+
+                font-size: 20px;
+                text-align: center;
+                font-weight: 500;
+                white-space: pre-line;
+            }
+
+            p {
+                font-size: 16px;
+                text-align: center;
+            }
+        }
+    }
+}
+
+$landingPage-testimonial-margin: 100px;
+.o-landingpage-testimonials {
+    margin: 50px auto;
+    max-width: $mediumScreenWidth;
+
+    background-color: #fff;
+
+    .m-landingPage-testimonial {
+        width: calc((100% - (2 * #{$landingPage-propositions-margin})) / 3);
+        display: inline-block;
+        margin-right: $landingPage-propositions-margin;
+
+        text-align: center;
+
+        &:last-child { margin-right: 0; }
+
+        p { font-size: 16px; }
+    }
+}
+
+.o-landingpage-footer {
+    // height: 500px;
+    width: 100%;
+    position: relative;
+
+
+    &:before {
+        background: url(http://localhost:3000/assets/svg/kgms-splash.svg) 0 0 no-repeat;
+        background-position: bottom;
+        background-repeat: no-repeat;
+        background-size: cover;
+        content: "";
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        // top: -50%;
+        // left: -50%;
+        z-index: -1;
+        // background: url(background.png) 0 0 repeat;
+        -webkit-transform: rotate(180deg);
+        -moz-transform: rotate(180deg);
+        -ms-transform: rotate(180deg);
+        -o-transform: rotate(180deg);
+        transform: rotate(180deg);
+    }
+
+    .m-landingpage-footer-callToAction {
+        padding: 65px 0;
+        text-align: center;
+
+        h1 {
+            color: #fff;
+            font-weight: 400;
+            font-size: 42px;
+            white-space: pre-line;
+            text-shadow: 0px 1px 1px #000000;
+        }
+
+        h2 {
+            color: #52545b;
+            font-weight: 300;
+            font-size: 30px;
+            white-space: pre-line;
+        }
+
+        .m-landingpage-footer-actions {
+            margin-top: 30px;
+            a {
+                display: inline-block;
+                margin-left: 20px;
+
+                font-weight: 400;
+                font-size: 20px;
+
+                &:first-child { margin-left: 0;}
+            }
+        }
+    }
+}
