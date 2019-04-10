@@ -25,20 +25,41 @@ const email = (value) => {
 class HubspotForm extends Component {
   constructor(props){
     super(props);
+    this.state = {
+      buttonLabel: 'Submit',
+      submitted: false,
+      firstName: undefined,
+      lastName: undefined,
+      email: undefined,
+      company: undefined,
+      phone: undefined,
+    }
     this.handleSubmit = this.handleSubmit.bind(this)
   }
 
   shouldComponentUpdate(nextProps, nextState) {
-    return false;
+    return true;
   }
 
   handleSubmit(e) {
     e.preventDefault();
+    this.form.hideErrors();
     const formValues = this.form.getValues();
     this.props.send(formValues);
+    this.setState({submitted: true, buttonLabel: "Subscription was successful."});
+    this.clearForm();
     this.props.onSubmit();
   }
 
+  clearForm() {
+    this.setState({
+      firstName: "",
+      lastName: "",
+      email: "",
+      company: "",
+      phone: "",
+    })
+  }
 
   render() {
     return (
@@ -47,18 +68,18 @@ class HubspotForm extends Component {
         <Form className="newsletter" ref={c => { this.form = c }}>
           <div className="support-form__row">
             <div className="support-form__row__item">
-              <Input className="support-form__input" placeholder='First Name' name='firstname' validations={[required]}/>
+              <Input className="support-form__input" placeholder='First Name' name='firstname' validations={[required]} value={this.state.firstName} />
             </div>
             <div className="support-form__row__item">
-              <Input className="support-form__input" placeholder='Last Name' name='lastname' validations={[required]}/>
+              <Input className="support-form__input" placeholder='Last Name' name='lastname' validations={[required]} value={this.state.lastName} />
             </div>
           </div>
           <div className="support-form__row">
             <div className="support-form__row__item">
-              <Input className="support-form__input" type='email' placeholder='Email' name='email' validations={[required, email]}/>
+              <Input className="support-form__input" type='email' placeholder='Email' name='email' validations={[required, email]} value={this.state.email}/>
             </div>
             <div className="support-form__row__item">
-              <Input className="support-form__input" placeholder='Company' name='company' validations={[required]}/>
+              <Input className="support-form__input" placeholder='Company' name='company' validations={[required]} value={this.state.company}/>
             </div>
           </div>
           <div className="support-form__row">
@@ -336,11 +357,11 @@ class HubspotForm extends Component {
           </div>
           <div className="support-form__row">
             <div className="support-form__row__item">
-              <Input className="support-form__input" placeholder='Phone' name='phone'/>
+              <Input className="support-form__input" placeholder='Phone' name='phone' value={this.state.phone}/>
             </div>
           </div>
           <div className="support-form__row support-form__row--modified">
-            <Button type='submit' className="button button--red support-form__button" >Submit</Button>
+            <Button submitted={this.state.submitted} className={"button button--"+(this.state.submitted ? 'green' : 'red')+" support-form__button"}>{(this.state.buttonLabel)}</Button>
           </div>
         </Form>
         <span className="support-form__consent">By submitting your personal data, you consent to emails from Grakn. See our <Link to="/privacy-policy" className="animated__link animated__link--purple">Privacy Policy</Link></span>
