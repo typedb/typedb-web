@@ -1,7 +1,7 @@
 import * as React from "react";
 import { connect } from 'react-redux';
 import LandingPage from "../../../factories/landingPage";
-
+import LeadCaptureForm from "./LeadCaptureForm";
 
 class BiomedLandingPage extends React.Component {
     render() {
@@ -9,23 +9,29 @@ class BiomedLandingPage extends React.Component {
             header: {
                 headline: "Biomedical Knowledge Graphs",
                 // subHeadline: "I'm sub-headline",
-                action: {
-                    title: "Try BioGrakn for free",
-                    url: "I'm an action link"
-                }
+                actions: [
+                    {
+                        title: "Try BioGrakn for free",
+                        url: "https://github.com/graknlabs/biograkn/tree/master",
+                        isPrimary: true
+                    }
+                ]
             },
             briefCopy: {
                 title: "Accelerating Biomedical Knowledge Discovery with Grakn",
                 description: "Systems biology produces a tremendous amount of heterogeneous data which present challenges in their integration due to their complex nature and rich semantics. However, analysing large volumes of biological data through traditional database systems is troublesome and challenging.\n\nWith Grakn, working with biological data becomes much easier to accelerate the knowledge discovery process.",
                 action: {
                     title: "Download White Paper",
-                    url: "Download White Paper"
+                    form: {
+                        title: "Download BioGrakn White Paper",
+                        downloadPath: "src/pages/landingpage/Biomed/downloads/Grakn-Intro-in-Biotech.pdf"
+                    }
                 },
                 videoUrl: "https://www.youtube.com/embed/Mc1VXKYJEpk"
             },
             sneakPeek: {
                 title: "Discover and Explain New Connections in Complex Networks of Data",
-                url: "https://cms.grakn.ai/storage/uploads/716f2c6fb8777c3c0e6179cc6fd65d14.png"
+                url: "src/pages/landingpage/Biomed/images/sneak-peek.png"
             },
             propositions: [
                 {
@@ -39,12 +45,12 @@ class BiomedLandingPage extends React.Component {
                         {
                             title: "Contexualise Newly \nGenerated Insights",
                             // icon: "I'm the icon for proposition A",
-                            description: "Your research moves much faster with Grakn because it enables you to iteratively and quickly contextualise newly generated insights in order to understand how it interact and connects with all of your other data sources. "
+                            description: "Your research moves much faster with Grakn because it enables you to iteratively and quickly contextualise newly generated insights in order to understand how it interact and connects with all of your other data sources ............................... ............................"
                         },
                         {
                             title: "Explain New Connections \nin Complex Networks",
                             // icon: "I'm the icon for proposition A",
-                            description: "Grakn finds new connections and insights in your data through its in-built automated reasoning engine. For every insight, the knowledge graph will give you full explainability of the internal mechanics in human terms."
+                            description: "Grakn finds new connections and insights in your data through its in-built automated reasoning engine. For every insight, the knowledge graph will give you full explainability of the internal mechanics in human terms ....................................... ......................."
                         }
                     ]
                 },
@@ -59,40 +65,55 @@ class BiomedLandingPage extends React.Component {
                         {
                             title: "Too Complex to Model",
                             // icon: "I'm the icon for proposition B",
-                            description: "Current languages only allow you to query for explicitly stored data, making verbose queries hard to simplify. Grakn performs automated reasoning of entity and relationship types to perform real-time inference of implicit facts and associations during runtime of OLTP queries. This allows the discovery of new insights in your data."
+                            description: "Current languages only allow you to query for explicitly stored data, making verbose queries hard to simplify. Grakn performs automated reasoning of entity and relationship types to perform real-time inference of implicit facts and associations during runtime of OLTP queries. This allows the discovery of ........................."
                         },
                         {
                             title: "Too Expensive Analytics",
                             // icon: "I'm the icon for proposition B",
-                            description: "Automated distributed algorithms (BSP) are expensive and not reusable between data models. Grakn makes big data frameworks easy to use, so you don’t have to worry about the underlying distributed system. Just use Grakn’s analytical methods that come as part of the language."
+                            description: "Automated distributed algorithms (BSP) are expensive and not reusable between data models. Grakn makes big data frameworks easy to use, so you don’t have to worry about the underlying distributed system. Just use Grakn’s analytical methods that come as part of the language ..................."
                         }
                     ]
                 }
             ],
             testimonials: [
                 {
-                    image: "/src/pages/landingpages/Biomed/images/testimonial_lifebit.png",
+                    image: "src/pages/landingpage/Biomed/images/testimonial_lifebit.png",
                     description: "Description for the Lifebit case study.",
-                    action: {
-                        title: "Download Case Study",
-                        url: "Download Case Study"
-                    }
+                    actions: [
+                        {
+                            title: "Download Case Study",
+                            form: {
+                                title: "Download Case Study of Lifebit",
+                                downloadPath: "src/pages/landingpage/Biomed/downloads/Case-study-Lifebit.pdf"
+                            }
+                        }
+                    ]
                 },
                 {
-                    image: "/src/pages/landingpages/Biomed/images/testimonial_lifebit.png",
-                    description: "Description for the Lifebit case study.",
-                    action: {
-                        title: "Download Case Study",
-                        url: "Download Case Study"
-                    }
+                    image: "src/pages/landingpage/Biomed/images/testimonial_ust.png",
+                    description: "Description for the UST case study.",
+                    actions: [
+                        {
+                            title: "Download Case Study",
+                            form: {
+                                title: "Download Case Study of UST",
+                                downloadPath: "src/pages/landingpage/Biomed/downloads/Case-study-UST.pdf"
+                            }
+                        }
+                    ]
                 },
                 {
-                    image: "/src/pages/landingpages/Biomed/images/testimonial_lifebit.png",
-                    description: "Description for the Lifebit case study.",
-                    action: {
-                        title: "Download Case Study",
-                        url: "Download Case Study"
-                    }
+                    image: "src/pages/landingpage/Biomed/images/testimonial_infosys.png",
+                    description: "Description for the InfoSys case study.",
+                    actions: [
+                        {
+                            title: "Download Case Study",
+                            form: {
+                                title: "Download Case Study of InfoSys",
+                                downloadPath: "src/pages/landingpage/Biomed/downloads/Case-study-Infosys.pdf"
+                            }
+                        }
+                    ]
                 },
             ],
             footer: {
@@ -101,30 +122,25 @@ class BiomedLandingPage extends React.Component {
                 actions: [
                     {
                         title: "Download BioGrakn",
-                        url: "Download BioGrakn",
+                        url: "https://github.com/graknlabs/biograkn/tree/master",
                         isPrimary: true
                     },
                     {
                         title: "Download White Paper",
-                        url: "Download White Paper",
-                        isPrimary: true
+                        form: {
+                            title: "Download BioGrakn White Paper",
+                            downloadPath: "src/pages/landingpage/Biomed/downloads/Grakn-Intro-in-Biotech.pdf",
+                        }
                     }
                 ]
             }
         };
 
-        return <LandingPage data={factoryData} />;
+        return <LandingPage data={factoryData} LeadCaptureForm={LeadCaptureForm} />;
     }
 }
 
-const mapStateToProps = (state) => (
-    {
-    }
-);
-
-const mapDispatchToProps = (dispatch) => (
-    {
-    }
-);
+const mapStateToProps = (state) => ({});
+const mapDispatchToProps = (dispatch) => ({});
 
 export default connect(mapStateToProps, mapDispatchToProps)(BiomedLandingPage);

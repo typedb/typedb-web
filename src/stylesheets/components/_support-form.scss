@@ -1,6 +1,14 @@
 $supportFormColor: #a8a9b0;
 
 .support-form {
+  h1.title {
+    margin: -2rem 0 2rem 0;
+    font-family: 'Titillium';
+    text-align: center;
+    font-weight: 500;
+    color: #4c4c4c;
+  }
+
   display: block;
   background-color: white;
   width: 75%;
@@ -105,7 +113,7 @@ $supportFormColor: #a8a9b0;
       width: 20px;
       height: 20px;
       &:checked {
-        background: #3dce8c;        
+        background: #3dce8c;
       }
     }
     &__group {
@@ -116,7 +124,7 @@ $supportFormColor: #a8a9b0;
       }
       &__row {
         display: flex;
-        
+
         > div {
           flex-basis: 0;
           flex-grow: 1;
@@ -187,7 +195,7 @@ $supportFormColor: #a8a9b0;
     background-size: cover;
     background-position: center;
     @media screen and (max-width: $smallScreen) {
-      padding: 50px 0;     
+      padding: 50px 0;
     }
     &__header {
       display: block;

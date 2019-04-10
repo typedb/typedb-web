@@ -1,6 +1,52 @@
+
+@mixin landingpage-actions($margin-top, $font-size: 20px, $line-height: 50px) {
+    margin-top: $margin-top;
+    a {
+        display: inline-block;
+        margin-left: 20px;
+
+        font-weight: 400;
+        font-size: $font-size;
+        line-height: $line-height;
+        height: $line-height;
+
+        &:first-child { margin-left: 0;}
+    }
+}
+
 .o-landingpage {
     padding-top: 70px;
+
+    h1, h2, h3, p {
+        width: 100%;
+        white-space: pre-line;
+        text-align: center;
+    }
+
+    h1 {
+        color: #444;
+        font-weight: 500;
+        font-size: 42px;
+    }
+
+    h2 {
+        color: #4c4c4c;
+        font-weight: 500;
+        font-size: 30px;
+    }
+
+    h3 {
+        color: #555;
+        font-size: 19px;
+        font-weight: 500;
+    }
+
+    p {
+        color: #5d5d5d;
+        font-size: 16px;
+    }
 }
+
 .o-landingpage-header {
     height: 700px;
     width: 100%;
@@ -15,26 +61,7 @@
         padding-top: 85px;
         text-align: center;
 
-        h1 {
-            color: #4a4c52;
-            font-weight: 400;
-            font-size: 42px;
-            white-space: pre-line;
-        }
-
-        h2 {
-            color: #52545b;
-            font-weight: 300;
-            font-size: 30px;
-            white-space: pre-line;
-        }
-
-        a.a-landingpage-header-action {
-            margin-top: 20px;
-
-            font-weight: 400;
-            font-size: 20px;
-        }
+        .m-landingpage-header-actions { @include landingpage-actions(20px); }
     }
 
     $landingPage-briefCopy-margin: 50px;
@@ -56,12 +83,7 @@
             margin-right: 50px;
             vertical-align: top;
 
-            h3 {
-                font-size: 19px;
-                font-weight: 500;
-            }
-
-            p { white-space: pre-line; }
+            h3, p { text-align: left; }
 
             a.a-landingpage-briefCopy-action {
                 height: 40px;
@@ -102,20 +124,22 @@
     max-width: $mediumScreenWidth;
 
     h2 {
-        font-size: 30px;
+        margin-bottom: 25px;
         font-weight: 500;
-        text-align: center;
     }
-
     img {
         width: 100%;
+        -webkit-border-radius: 5px;
+        -moz-border-radius: 5px;
+        border-radius: 5px;
+        -webkit-box-shadow: 0px 0px 40px 3px rgba(0,0,0,0.46);
+        -moz-box-shadow: 0px 0px 40px 3px rgba(0,0,0,0.46);
+        box-shadow: 0px 0px 40px 3px rgba(0,0,0,0.46);
     }
 }
 
 
-
 $landingPage-propositions-margin: 25px;
-
 .o-landingpage-propositionsBg {
     background-image: url("/assets/svg/landingpage-propositions-bg.svg"), url("/assets/svg/plain_bg.svg");
     background-position: bottom, top;
@@ -133,13 +157,9 @@ $landingPage-propositions-margin: 25px;
         &:first-child { margin-top: 0; }
         &:last-child { margin-bottom: 0; }
 
-        h2 {
-            margin-bottom: 25px;
-            font-size: 30px;
-            font-weight: 500;
-            text-align: center;
-
-        }
+        h2 { margin-bottom: 25px; }
+        h3 { font-weight: 600; }
+        p { margin-bottom: 0; }
 
         .m-landingPage-proposition {
             width: calc((100% - (2 * #{$landingPage-propositions-margin})) / 3);
@@ -155,20 +175,6 @@ $landingPage-propositions-margin: 25px;
             vertical-align: top;
 
             &:last-child { margin-right: 0; }
-
-            h3 {
-                width: 100%;
-
-                font-size: 20px;
-                text-align: center;
-                font-weight: 500;
-                white-space: pre-line;
-            }
-
-            p {
-                font-size: 16px;
-                text-align: center;
-            }
         }
     }
 }
@@ -189,18 +195,16 @@ $landingPage-testimonial-margin: 100px;
 
         &:last-child { margin-right: 0; }
 
-        p { font-size: 16px; }
+        .m-landingpage-testimonials-actions { @include landingpage-actions(20px, 16px, 40px); }
     }
 }
 
 .o-landingpage-footer {
-    // height: 500px;
     width: 100%;
     position: relative;
 
-
-    &:before {
-        background: url(http://localhost:3000/assets/svg/kgms-splash.svg) 0 0 no-repeat;
+    &:before { // rotating the background image by 180 degree
+        background: url(http://localhost:3000/assets/svg/kgms-splash.svg) 0 0;
         background-position: bottom;
         background-repeat: no-repeat;
         background-size: cover;
@@ -208,10 +212,7 @@ $landingPage-testimonial-margin: 100px;
         position: absolute;
         width: 100%;
         height: 100%;
-        // top: -50%;
-        // left: -50%;
         z-index: -1;
-        // background: url(background.png) 0 0 repeat;
         -webkit-transform: rotate(180deg);
         -moz-transform: rotate(180deg);
         -ms-transform: rotate(180deg);
@@ -225,30 +226,9 @@ $landingPage-testimonial-margin: 100px;
 
         h1 {
             color: #fff;
-            font-weight: 400;
-            font-size: 42px;
-            white-space: pre-line;
             text-shadow: 0px 1px 1px #000000;
         }
 
-        h2 {
-            color: #52545b;
-            font-weight: 300;
-            font-size: 30px;
-            white-space: pre-line;
-        }
-
-        .m-landingpage-footer-actions {
-            margin-top: 30px;
-            a {
-                display: inline-block;
-                margin-left: 20px;
-
-                font-weight: 400;
-                font-size: 20px;
-
-                &:first-child { margin-left: 0;}
-            }
-        }
+        .m-landingpage-footer-actions { @include landingpage-actions(30px); }
     }
 }

@@ -5,7 +5,39 @@ class LandingPage extends React.Component {
 		super(props);
 
 		this.state = {
-		};
+            showLeadCaptureForm: false,
+            captureFormDownloadPath: "",
+            captureFormTitle: ""
+        };
+
+        this.showLeadCaptureForm = this.showLeadCaptureForm.bind(this)
+        this.hideLeadCaptureForm = this.hideLeadCaptureForm.bind(this)
+    }
+
+    renderActions(actions, className) {
+        return (
+            <div className={`m-landingpage-${className}-actions`}>
+                {actions.map((action, index) => {
+                    const actionClass = "button button" + (action.isPrimary ? "--red" : "--white");
+                    if (action.form) {
+                        return <a key={index} className={actionClass} onClick={() => this.showLeadCaptureForm(action.form)}>{action.title}</a>
+                    } else if (action.url) {
+                        return <a key={index} className={actionClass} href={action.url} target={action.url.indexOf("http") > -1 ? "_blank" : "_self"} >{action.title}</a>
+                    }
+                })}
+            </div>
+        )
+    }
+
+    showLeadCaptureForm(form) {
+        this.setState({ showLeadCaptureForm: true });
+        this.setState({ captureFormTitle: form.title });
+        this.setState({ captureFormDownloadPath: form.downloadPath });
+    }
+
+    hideLeadCaptureForm() {
+        this.setState({ showLeadCaptureForm: false });
+        this.setState({ captureFormDownloadPath: "" })
     }
 
     render() {
@@ -18,22 +50,26 @@ class LandingPage extends React.Component {
             footer
         } = this.props.data;
 
+        const LeadCaptureForm = this.props.LeadCaptureForm;
 
         return (
             <div className="o-landingpage">
+                <LeadCaptureForm isOpen={this.state.showLeadCaptureForm} onClose={() => this.hideLeadCaptureForm()} downloadPath={this.state.captureFormDownloadPath} title={this.state.captureFormTitle} />
+
                 {header && (
                     <div className="o-landingpage-header">
                         <div className="m-landingpage-header-callToAction">
                             <h1>{header.headline}</h1>
                             {header.subHeadline && <h2>{header.subHeadline}</h2>}
-                            <a className="a-landingpage-header-action button button--red" href={header.action.url}>{header.action.title}</a>
+                            {this.renderActions(header.actions, "header")}
                         </div>
                         {briefCopy && (
                             <div className="o-landingPage-briefCopy">
                                 <div className="m-landingPage-briefCopy-text">
-                                <h3>{briefCopy.title}</h3>
-                                <p>{briefCopy.description}</p>
-                                <a className="a-landingpage-briefCopy-action button button--transparent" href={briefCopy.action.url}>{briefCopy.action.title}</a>
+                                    <h3>{briefCopy.title}</h3>
+                                    <p>{briefCopy.description}</p>
+                                    {briefCopy.action.form && <a className="a-landingpage-briefCopy-action button button--transparent" onClick={() => this.showLeadCaptureForm(briefCopy.action.form)}>{briefCopy.action.title}</a>}
+                                    {briefCopy.action.url && <a className="a-landingpage-briefCopy-action button button--transparent" href={briefCopy.action.url}>{briefCopy.action.title}</a>}
                                 </div>
                                 <div className="m-landingPage-briefCopy-media">
                                     <iframe src={briefCopy.videoUrl} frameBorder="0" allowFullScreen></iframe>
@@ -80,9 +116,9 @@ class LandingPage extends React.Component {
                         {testimonials.map((testimonial, index) => {
                             return (
                                 <div key={index} className='m-landingPage-testimonial'>
-                                    <img height="80px" src="/src/pages/landingpages/Biomed/images/testimonial_lifebit.png" />
+                                    <img height="80px" src={testimonial.image} />
                                     <p>{testimonial.description}</p>
-                                    <a className="a-landingpage-briefCopy-action button button--transparent" href={testimonial.action.url}>{testimonial.action.title}</a>
+                                    {this.renderActions(testimonial.actions, "testimonials")}
                                 </div>
                             );
                         })}
@@ -94,14 +130,7 @@ class LandingPage extends React.Component {
                         <div className="m-landingpage-footer-callToAction">
                             <h1>{footer.headline}</h1>
                             {footer.subHeadline && <h2>{footer.subHeadline}</h2>}
-                            <div className="m-landingpage-footer-actions">
-                                {footer.actions.map((action, index) => {
-                                    const actionClass = "button button" + (action.isPrimary ? "--red" : "--transparent");
-                                    return (
-                                        <a key={index} className={actionClass} href={action.url}>{action.title}</a>
-                                    )
-                                })}
-                            </div>
+                            {this.renderActions(footer.actions, "footer")}
                         </div>
                     </div>
                 )}
