@@ -55,9 +55,11 @@ class DownloadCentrePage extends Component {
   }
 
   switchModal() {
-    this.setState({
-      downloadModal: !this.state.downloadModal,
-    })
+    setTimeout(() => {
+      this.setState({
+        downloadModal: !this.state.downloadModal,
+      })
+    }, 3000);
   }
 
   componentDidMount() {
@@ -269,7 +271,9 @@ class DownloadCentrePage extends Component {
 
                               <span
                                 onClick={() => {
-                                  this.switchModal();
+                                  this.setState({
+                                    downloadModal: true,
+                                  })
                                   setTimeout(function () {
                                     window.location.href = downloadLocation;
                                   });
