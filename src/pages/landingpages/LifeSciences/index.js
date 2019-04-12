@@ -4,7 +4,7 @@ import LandingPage from "../../../factories/landingPage";
 import LeadCaptureForm from "./LeadCaptureForm";
 import TrackedPage from "../../TrackedPage";
 
-class BiotechLandingPage extends React.Component {
+class LifeSciencesLandingPage extends React.Component {
     render() {
         const factoryData = {
             header: {
@@ -25,14 +25,14 @@ class BiotechLandingPage extends React.Component {
                     title: "Download White Paper",
                     form: {
                         title: "Download BioGrakn White Paper",
-                        downloadPath: "src/pages/landingpages/Biotech/downloads/Grakn-Intro-in-Biotech.pdf"
+                        downloadPath: "src/pages/landingpages/LifeSciences/downloads/Grakn-Intro-in-Biotech.pdf"
                     }
                 },
                 videoUrl: "https://www.youtube.com/embed/videoseries?list=PLtEF8_xCPklYpxH6d_AIlVqhboWO-o3y9"
             },
             sneakPeek: {
                 title: "Discover and Explain New Connections in Complex Networks of Data",
-                url: "src/pages/landingpages/Biotech/images/sneak-peek.png"
+                url: "src/pages/landingpages/LifeSciences/images/sneak-peek.png"
             },
             propositions: [
                 {
@@ -78,7 +78,7 @@ class BiotechLandingPage extends React.Component {
             ],
             testimonials: [
                 {
-                    image: "src/pages/landingpages/Biotech/images/testimonial_lifebit.png",
+                    image: "src/pages/landingpages/LifeSciences/images/testimonial_lifebit.png",
                     description: "Learn how Lifebit provides suggestions how to run genomic analyses in the cloud.",
                     imageUrl: "https://lifebit.ai/",
                     actions: [
@@ -86,13 +86,13 @@ class BiotechLandingPage extends React.Component {
                             title: "Download",
                             form: {
                                 title: "Download the Lifebit Case Study",
-                                downloadPath: "src/pages/landingpages/Biotech/downloads/Case-study-Lifebit.pdf"
+                                downloadPath: "src/pages/landingpages/LifeSciences/downloads/Case-study-Lifebit.pdf"
                             }
                         }
                     ]
                 },
                 {
-                    image: "src/pages/landingpages/Biotech/images/testimonial_ust.png",
+                    image: "src/pages/landingpages/LifeSciences/images/testimonial_ust.png",
                     description: "Discover how UST uses Grakn to create a health care benefits chatbot.",
                     imageUrl: "https://www.ust-global.com/",
                     actions: [
@@ -100,13 +100,13 @@ class BiotechLandingPage extends React.Component {
                             title: "Download",
                             form: {
                                 title: "Download the UST Case Study",
-                                downloadPath: "src/pages/landingpages/Biotech/downloads/Case-study-UST.pdf"
+                                downloadPath: "src/pages/landingpages/LifeSciences/downloads/Case-study-UST.pdf"
                             }
                         }
                     ]
                 },
                 {
-                    image: "src/pages/landingpages/Biotech/images/testimonial_infosys.png",
+                    image: "src/pages/landingpages/LifeSciences/images/testimonial_infosys.png",
                     description: "Find out how Infosys leverages Grakn for Data Lineage and Metadata Management.",
                     imageUrl: "https://www.infosys.com/",
                     actions: [
@@ -114,7 +114,7 @@ class BiotechLandingPage extends React.Component {
                             title: "Download",
                             form: {
                                 title: "Download the InfoSys Case Study",
-                                downloadPath: "src/pages/landingpages/Biotech/downloads/Case-study-Infosys.pdf"
+                                downloadPath: "src/pages/landingpages/LifeSciences/downloads/Case-study-Infosys.pdf"
                             }
                         }
                     ]
@@ -133,7 +133,7 @@ class BiotechLandingPage extends React.Component {
                         title: "Download White Paper",
                         form: {
                             title: "Download BioGrakn White Paper",
-                            downloadPath: "src/pages/landingpages/Biotech/downloads/Grakn-Intro-in-Biotech.pdf"
+                            downloadPath: "src/pages/landingpages/LifeSciences/downloads/Grakn-Intro-in-Biotech.pdf"
                         }
                     }
                 ]
@@ -141,7 +141,7 @@ class BiotechLandingPage extends React.Component {
         };
 
         return (
-            <TrackedPage pageTitle="Biotech">
+            <TrackedPage pageTitle="Life Sciences">
                <LandingPage data={factoryData} LeadCaptureForm={LeadCaptureForm} hubspotFormId="a1fc9340-6621-46e0-b0d0-1d5349eb1bbf" />
             </TrackedPage>
         )
@@ -151,4 +151,4 @@ class BiotechLandingPage extends React.Component {
 const mapStateToProps = (state) => ({});
 const mapDispatchToProps = (dispatch) => ({});
 
-export default connect(mapStateToProps, mapDispatchToProps)(BiotechLandingPage);
+export default connect(mapStateToProps, mapDispatchToProps)(LifeSciencesLandingPage);

@@ -8,7 +8,7 @@ import SupportPage from 'pages/SupportPage';
 import GraknPage from 'pages/GraknPage';
 import DeploymentPage from 'pages/DeploymentPage';
 import KGMSPage from 'pages/KGMSPage';
-import BiotechLandingPage from 'pages/landingpages/Biotech';
+import LifeSciencesLandingPage from 'pages/landingpages/LifeSciences';
 import NoPage from 'pages/NoPage';
 import ComingSoon from 'pages/ComingSoon';
 import {FinanceUseCasePage, HealthUseCasePage, SemanticUseCasePage, BotsUseCasePage, SecurityUseCasePage} from 'pages/UseCasePages';
@@ -74,8 +74,8 @@ export default [
                 exact: true
             },
             {
-                path: '/biotechnology',
-                component: BiotechLandingPage,
+                path: '/lifesciences',
+                component: LifeSciencesLandingPage,
                 exact: true
             },
             {

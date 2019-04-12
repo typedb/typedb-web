@@ -101,31 +101,64 @@ const getUpdatedHubspotPlatformActivities = (platform, action, subject, activiti
         case "website":
             switch (action) {
                 case "visit":
+                    console.log("visit");
                     const websiteVisitedPage = subject;
-                    if (activities.visits[websiteVisitedPage]) {
-                        activities.visits[websiteVisitedPage].times += 1;
-                        activities.visits[websiteVisitedPage].last = now;
+                    if (activities.visit[websiteVisitedPage]) {
+                        activities.visit[websiteVisitedPage].times += 1;
+                        activities.visit[websiteVisitedPage].last = now;
                     } else {
-                        activities.visits[websiteVisitedPage] = { times: 1, first: now, last: now };
+                        activities.visit[websiteVisitedPage] = { times: 1, first: now, last: now };
                     }
                     break;
                 case "download":
                     const websiteDownloadedDocument = subject;
-                    if (activities.downloads[websiteDownloadedDocument]) {
-                        activities.downloads[websiteDownloadedDocument].push(now);
+                    if (activities.download[websiteDownloadedDocument]) {
+                        activities.download[websiteDownloadedDocument].push(now);
                     } else {
-                        activities.downloads[websiteDownloadedDocument] = [now];
+                        activities.download[websiteDownloadedDocument] = [now];
                     }
                     break;
                 case "formSubmission":
                     const websiteFormTitle = subject;
                     const websiteFormPage = subjectSpecificData.pageTitle;
 
-                    if (activities.forms[websiteFormTitle]) {
-                        activities.forms[websiteFormTitle].push({ page: websiteFormPage, when: now });
+                    if (activities.formSubmission[websiteFormTitle]) {
+                        activities.formSubmission[websiteFormTitle].push({ page: websiteFormPage, when: now });
                     } else {
-                        activities.forms[websiteFormTitle] = [{ page: websiteFormPage, when: now }];
+                        activities.formSubmission[websiteFormTitle] = [{ page: websiteFormPage, when: now }];
                     }
+            }
+            break;
+        case "documentation":
+            switch (action) {
+                case "visit":
+                    const docsVisitedPage = subject;
+                    if (activities.visit[docsVisitedPage]) {
+                        activities.visit[docsVisitedPage].times += 1;
+                        activities.visit[docsVisitedPage].last = now;
+                    } else {
+                        activities.visit[docsVisitedPage] = { times: 1, first: now, last: now };
+                    }
+                    break;
+            }
+            break;
+        case "discuss":
+            switch (action) {
+                case "signup":
+                    const discussVisitedPage = subject;
+
+                    break;
+                case "topicCreation":
+                    break;
+                case "visit":
+                    // const docsVisitedPage = subject;
+                    // if (activities.visit[docsVisitedPage]) {
+                    //     activities.visit[docsVisitedPage].times += 1;
+                    //     activities.visit[docsVisitedPage].last = now;
+                    // } else {
+                    //     activities.visit[docsVisitedPage] = { times: 1, first: now, last: now };
+                    // }
+                    break;
             }
             break;
     }
@@ -148,7 +181,8 @@ const updateHubspotScore = async (trackPayload) => {
     const validationResult = Joi.validate(trackPayload, payloadValidator);
     if (validationResult.error) { return { status: 400, message: validationResult.error.details }; }
 
-    let {vid, utk, platform, action, subject, subjectSpecific } = trackPayload;
+    let { vid, utk, platform, action, subject, subjectSpecific } = trackPayload;
+
     try {
         let engagementProps;
         if (vid) {
@@ -168,7 +202,9 @@ const updateHubspotScore = async (trackPayload) => {
             }
 
             // update the platform activities
-            const currentActivities = JSON.parse(engagementProps[`${platform}_activities`] || '{ "visits": {}, "downloads": {}, "forms": {} }');
+            const defaultActivities = {};
+            for (const action in scores[platform]) { defaultActivities[action] = {}; }
+            const currentActivities = JSON.parse(engagementProps[`${platform}_activities`] || JSON.stringify(defaultActivities));
             newActivities = getUpdatedHubspotPlatformActivities(platform, action, subject, currentActivities, subjectSpecific);
         } else {
             return { status: 404, message: "Contact not found!" };
@@ -446,7 +482,7 @@ app.post('/api/hubspot', function(req, res ){
     formParams.context = {
         "hutk": params.utk,
         "pageUri": "https://grakn.ai/biotech",
-        "pageName": "Biotech | GRAKN.AI"
+        "pageName": "GRAKN.AI"
     }
 
     console.log(targetFormId);
