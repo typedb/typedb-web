@@ -16,6 +16,7 @@
   }
   &--red {
     background-color: $textPink;
+    border: 1px solid $textPink;
     color: white;
     &:hover {
       background-color: $textRed;

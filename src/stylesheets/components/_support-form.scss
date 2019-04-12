@@ -65,7 +65,7 @@ $supportFormColor: #a8a9b0;
   &__button {
     margin-top: 1rem;
     outline: none;
-    width: 300px;
+    min-width: 300px;
     font-weight: 300;
     text-transform: uppercase;
     cursor: pointer;

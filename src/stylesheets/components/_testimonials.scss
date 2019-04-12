@@ -26,7 +26,7 @@
   &__item {
     height: 320px;
     border: 1px solid $borderColor;
-    border-radius: 5px;    
+    border-radius: 5px;
     @media screen and (max-width: $smallScreen){
       height: 260px;
     }
@@ -85,7 +85,7 @@
           display: block;
           @media screen and (max-width: $smallScreen){
             font-size: 12px;
-          }            
+          }
         }
         > span:nth-child(1) {
           color: $textCharcoal;
