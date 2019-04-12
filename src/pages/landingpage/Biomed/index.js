@@ -25,8 +25,7 @@ class BiotechLandingPage extends React.Component {
                     title: "Download White Paper",
                     form: {
                         title: "Download BioGrakn White Paper",
-                        downloadPath: "src/pages/landingpage/Biomed/downloads/Grakn-Intro-in-Biotech.pdf",
-                        hubspotId: "0e3ea363-5f45-44fe-b291-be815a1ca4fc"
+                        downloadPath: "src/pages/landingpage/Biomed/downloads/Grakn-Intro-in-Biotech.pdf"
                     }
                 },
                 videoUrl: "https://www.youtube.com/embed/videoseries?list=PLtEF8_xCPklYpxH6d_AIlVqhboWO-o3y9"
@@ -42,17 +41,17 @@ class BiotechLandingPage extends React.Component {
                         {
                             title: "Fast Ingestion and \nIntegration of Data",
                             // icon: "I'm the icon for proposition A",
-                            description: "Grakn works with any type of data, wherever it comes from. Grakn’s expressive query language enables you to create your own knowledge graphs by ingesting and integrating heterogeneous heterogeneous biomedical data sets in an intuitive and flexible way."
+                            description: "Grakn works with any type of data, wherever it comes from. Grakn's expressive query language enables you to create your own semantically rich knowledge graphs by ingesting and integrating extremely heterogeneous biomedical data sets in an intuitive and flexible way."
                         },
                         {
                             title: "Contexualise Newly \nGenerated Insights",
                             // icon: "I'm the icon for proposition A",
-                            description: "Your research moves much faster with Grakn because it enables you to iteratively and quickly contextualise newly generated insights in order to understand how it interact and connects with all of your other data sources ............................... ............................"
+                            description: "With Grakn, your development moves magnitudes faster because it enables you to iteratively and quickly contextualise newly generated insights in order to understand how it interacts and connects with all your data sources. Grakn becomes your unified representation of knowledge."
                         },
                         {
                             title: "Explain New Connections \nin Complex Networks",
                             // icon: "I'm the icon for proposition A",
-                            description: "Grakn finds new connections and insights in your data through its in-built automated reasoning engine. For every insight, the knowledge graph will give you full explainability of the internal mechanics in human terms ....................................... ......................."
+                            description: "Grakn discovers new connections and uncovers hidden insights within your data through its in-built automated deductive reasoning engine. Rather than being a black box, Grakn gives you full explainability of every single insight and the internal mechanics in human understandable terms."
                         }
                     ]
                 },
@@ -62,17 +61,17 @@ class BiotechLandingPage extends React.Component {
                         {
                             title: "Too Complex to Model",
                             // icon: "I'm the icon for proposition B",
-                            description: "Current modelling techniques are only based on binary relationships which makes it difficult to model complex domains. Grakn’s hyper-relational data model solves this. Using hyper-relationships, hyper-entities and type hierarchies, you will easily be able to create complex knowledge models that can evolve flexibly."
+                            description: "Current modelling techniques are only based on binary relationships which makes it difficult to model complex domains. Grakn's hyper-relational data model solves this. Using hyper-relationships, hyper-entities and type hierarchies, you will easily be able to create complex knowledge models that can evolve flexibly."
                         },
                         {
-                            title: "Too Complex to Model",
+                            title: "Too Complex to Query",
                             // icon: "I'm the icon for proposition B",
-                            description: "Current languages only allow you to query for explicitly stored data, making verbose queries hard to simplify. Grakn performs automated reasoning of entity and relationship types to perform real-time inference of implicit facts and associations during runtime of OLTP queries. This allows the discovery of ........................."
+                            description: "Current languages only allow you to query for explicitly stored data, making verbose queries hard to simplify. Grakn performs automated reasoning of entity and relationship types to perform real-time inference of implicit facts and associations during query runtime. This allows you to uncover hidden insights."
                         },
                         {
                             title: "Too Expensive Analytics",
                             // icon: "I'm the icon for proposition B",
-                            description: "Automated distributed algorithms (BSP) are expensive and not reusable between data models. Grakn makes big data frameworks easy to use, so you don’t have to worry about the underlying distributed system. Just use Grakn’s analytical methods that come as part of the language ..................."
+                            description: "Automated distributed algorithms (BSP) are expensive and not reusable between data models (Pregel, MapReduce). Grakn makes big data frameworks easy to use, so you don't have to worry about the underlying distributed system. Just use Grakn's analytical methods that come built-in as part of the language."
                         }
                     ]
                 }
@@ -80,7 +79,8 @@ class BiotechLandingPage extends React.Component {
             testimonials: [
                 {
                     image: "src/pages/landingpage/Biomed/images/testimonial_lifebit.png",
-                    description: "Description for the Lifebit case study.",
+                    description: "Learn how Lifebit provides suggestions how to run genomic analyses in the cloud.",
+                    imageUrl: "https://lifebit.ai/",
                     actions: [
                         {
                             title: "Download",
@@ -93,7 +93,8 @@ class BiotechLandingPage extends React.Component {
                 },
                 {
                     image: "src/pages/landingpage/Biomed/images/testimonial_ust.png",
-                    description: "Description for the UST case study.",
+                    description: "Discover how UST uses Grakn to create a health care benefits chatbot.",
+                    imageUrl: "https://www.ust-global.com/",
                     actions: [
                         {
                             title: "Download",
@@ -106,7 +107,8 @@ class BiotechLandingPage extends React.Component {
                 },
                 {
                     image: "src/pages/landingpage/Biomed/images/testimonial_infosys.png",
-                    description: "Description for the InfoSys case study.",
+                    description: "Find out how Infosys leverages Grakn for Data Lineage and Metadata Management.",
+                    imageUrl: "https://www.infosys.com/",
                     actions: [
                         {
                             title: "Download",

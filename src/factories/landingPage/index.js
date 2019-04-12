@@ -134,7 +134,13 @@ class LandingPage extends React.Component {
                         {testimonials.map((testimonial, index) => {
                             return (
                                 <div key={index} className='m-landingPage-testimonial'>
-                                    <img height="80px" src={testimonial.image} />
+                                    {testimonial.imageUrl  && (
+                                        <a href={testimonial.imageUrl} target="_blanks">
+                                           <img height="80px" src={testimonial.image} />
+                                        </a>
+                                    )}
+                                    {!testimonial.imageUrl && <img height="80px" src={testimonial.image} />}
+
                                     <p>{testimonial.description}</p>
                                     {this.renderActions(testimonial.actions, "testimonials")}
                                 </div>
