@@ -83,7 +83,7 @@ class LeadCaptureForm extends Component {
                     "action": "formSubmission",
                     "subject": "Download",
                     "subjectSpecific": {
-                        "pageTitle": "Biotech Landing Page"
+                        "pageTitle": "Life Sciences Landing Page"
                     }
                 }).then(() => { Cookies.set(`known`, true); });
 

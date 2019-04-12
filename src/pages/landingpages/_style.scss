@@ -170,7 +170,7 @@
 .o-landingpage-sneakPeek {
     margin: 0 auto;
     max-width: $mediumScreenWidth;
-    padding-top: 100px;
+    padding: 100px 0 50px 0;
 
     h2 {
         box-sizing: border-box;
@@ -199,9 +199,12 @@
 
 $landingPage-propositions-margin: 25px;
 .o-landingpage-propositionsBg {
-    background-image: url("/assets/svg/landingpage-propositions-bg.svg"), url("/assets/svg/plain_bg.svg");
-    background-position: bottom, top;
-    background-repeat: no-repeat, no-repeat;
+    // height: 100vh;
+    position: relative;
+    background-image: url(/assets/svg/landingpage-propositions-bg.svg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: bottom;
 }
 
 .o-landingpage-propositions {
@@ -213,7 +216,13 @@ $landingPage-propositions-margin: 25px;
         margin: 50px 0;
 
         &:first-child { margin-top: 0; }
-        &:last-child { margin-bottom: 0; }
+        &:last-child {
+            margin-bottom: 0;
+            h2 {
+                color: #3b3b3b;
+                text-shadow: 0px 1px 0px rgba(255, 255, 255, 0.5);
+            }
+        }
 
         h2 { margin-bottom: 25px; }
         h3 { font-weight: 600; }
