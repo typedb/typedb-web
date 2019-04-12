@@ -245,7 +245,7 @@ class DownloadCentrePage extends Component {
                               <li><a className="animated__link animated__link--purple" href={graknRoutes.homebrew}>Homebrew</a></li>
                               <li><a className="animated__link animated__link--purple" href={graknRoutes.rpm}>RPM</a></li>
                               <li><a className="animated__link animated__link--purple" href={graknRoutes.debian}>APT</a></li>
-                              <li><a className="animated__link animated__link--purple" href={graknRoutes.homebrew}>Docker</a></li>
+                              <li><a className="animated__link animated__link--purple" href={graknRoutes.docker}>Docker</a></li>
                             </ul>
                           </div>
                           <Form className="downloads__splash__main__tabpanel__content__core__col__content__selectgroup">
