@@ -48,8 +48,7 @@ app.use(bodyParser.urlencoded({
 }));
 
 app.use('/assets', express.static(path.join(__dirname, 'assets')));
-app.use('/src/pages/landingpages/**/*.png', express.static(path.join(__dirname, 'public')));
-app.use('/src/pages/landingpages/**/*.pdf', express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'src/pages/landingpages/')));
 app.use('/', express.static(dist));
 
 const whitelist = [
