@@ -98,7 +98,7 @@ class SupportPage extends Component {
 
   render() {
     return (
-      <TrackedPage>
+      <TrackedPage pageTitle="Support">
         <div className="support-page">
           <section className="support-page__splash">
             <div className="support-page__splash__container container section__container">
@@ -152,7 +152,7 @@ class SupportPage extends Component {
           <section className="support-form__section" ref={(elem) => this.supportform = elem}>
             <div className="support-form__section__container container section__container">
               <span className="support-form__section__header">Get in touch with our team!</span>
-              <SupportForm />
+              <SupportForm pageTitle="Support" />
             </div>
           </section>
         </div>

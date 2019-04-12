@@ -1,13 +1,16 @@
 import * as React from "react";
+import Cookies from 'js-cookie';
+import api from "../../api";
 
 class LandingPage extends React.Component {
     constructor(props) {
-		super(props);
+        super(props);
 
-		this.state = {
+        this.state = {
             showLeadCaptureForm: false,
             captureFormDownloadPath: "",
-            captureFormTitle: ""
+            captureFormTitle: "",
+            requiresFormToDownload: !Cookies.get('known')
         };
 
         this.showLeadCaptureForm = this.showLeadCaptureForm.bind(this)
@@ -20,13 +23,27 @@ class LandingPage extends React.Component {
                 {actions.map((action, index) => {
                     const actionClass = "button button" + (action.isPrimary ? "--red" : "--white");
                     if (action.form) {
-                        return <a key={index} className={actionClass} onClick={() => this.showLeadCaptureForm(action.form)}>{action.title}</a>
+                        return <a key={index} className={actionClass} onClick={() => this.renderDownload(action.form)}>{action.title}</a>
                     } else if (action.url) {
                         return <a key={index} className={actionClass} href={action.url} target={action.url.indexOf("http") > -1 ? "_blank" : "_self"} >{action.title}</a>
                     }
                 })}
             </div>
         )
+    }
+
+    renderDownload(form) {
+        if (this.state.requiresFormToDownload) {
+            this.showLeadCaptureForm(form);
+        } else {
+            api.track({
+                "utk": Cookies.get('hubspotutk'),
+                "platform": "website",
+                "action": "download",
+                "subject": form.title.replace("Download the ", "").replace("Download ", "")
+            }).then(() => { Cookies.set('known', true) });
+            window.open(form.downloadPath, "_blank");
+        }
     }
 
     showLeadCaptureForm(form) {
@@ -37,11 +54,12 @@ class LandingPage extends React.Component {
 
     hideLeadCaptureForm() {
         this.setState({ showLeadCaptureForm: false });
-        this.setState({ captureFormDownloadPath: "" })
+        this.setState({ captureFormTitle: "" });
+        this.setState({ captureFormDownloadPath: "" });
     }
 
     render() {
-		const {
+        const {
             header,
             briefCopy,
             sneakPeek,
@@ -54,7 +72,7 @@ class LandingPage extends React.Component {
 
         return (
             <div className="o-landingpage">
-                <LeadCaptureForm isOpen={this.state.showLeadCaptureForm} onClose={() => this.hideLeadCaptureForm()} downloadPath={this.state.captureFormDownloadPath} title={this.state.captureFormTitle} />
+                <LeadCaptureForm isOpen={this.state.showLeadCaptureForm} onClose={() => this.hideLeadCaptureForm()} downloadPath={this.state.captureFormDownloadPath} title={this.state.captureFormTitle} hubspotId={this.props.hubspotFormId} />
 
                 {header && (
                     <div className="o-landingpage-header">
@@ -64,15 +82,17 @@ class LandingPage extends React.Component {
                             {this.renderActions(header.actions, "header")}
                         </div>
                         {briefCopy && (
-                            <div className="o-landingPage-briefCopy">
-                                <div className="m-landingPage-briefCopy-text">
-                                    <h3>{briefCopy.title}</h3>
-                                    <p>{briefCopy.description}</p>
-                                    {briefCopy.action.form && <a className="a-landingpage-briefCopy-action button button--transparent" onClick={() => this.showLeadCaptureForm(briefCopy.action.form)}>{briefCopy.action.title}</a>}
-                                    {briefCopy.action.url && <a className="a-landingpage-briefCopy-action button button--transparent" href={briefCopy.action.url}>{briefCopy.action.title}</a>}
-                                </div>
-                                <div className="m-landingPage-briefCopy-media">
-                                    <iframe src={briefCopy.videoUrl} frameBorder="0" allowFullScreen></iframe>
+                            <div className="o-landingPage-briefCopy-wrapper ">
+                                <div className="o-landingPage-briefCopy">
+                                    <div className="m-landingPage-briefCopy-text">
+                                        <h3>{briefCopy.title}</h3>
+                                        <p>{briefCopy.description}</p>
+                                        {briefCopy.action.form && <a className="a-landingpage-briefCopy-action button button--transparent" onClick={() => this.renderDownload(briefCopy.action.form)}>{briefCopy.action.title}</a>}
+                                        {briefCopy.action.url && <a className="a-landingpage-briefCopy-action button button--transparent" href={briefCopy.action.url}>{briefCopy.action.title}</a>}
+                                    </div>
+                                    <div className="m-landingPage-briefCopy-media">
+                                        <iframe src={briefCopy.videoUrl} frameBorder="0" allowFullScreen></iframe>
+                                    </div>
                                 </div>
                             </div>
                         )}
@@ -97,9 +117,7 @@ class LandingPage extends React.Component {
                                             return (
                                                 <div key={index} className="m-landingPage-proposition">
                                                     <h3>{proposition.title}</h3>
-                                                    {proposition.icon && (
-                                                        <img src={proposition.icon}/>
-                                                    )}
+                                                    {proposition.icon && <img src={proposition.icon} /> }
                                                     <p>{proposition.description}</p>
                                                 </div>
                                             );

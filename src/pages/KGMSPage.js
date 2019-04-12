@@ -23,7 +23,7 @@ class KGMSPage extends Component {
 
   render() {
     return (
-      <TrackedPage>
+      <TrackedPage pageTitle="KGMS">
         <div className="kgms-page">
           <section className="kgms-page__splash">
             <div className="kgms-page__splash__container container section__container">
@@ -154,7 +154,7 @@ class KGMSPage extends Component {
               </div>
             </div>
           </section>
-          <SupportFormModal isOpen={this.state.supportModal} onClose={this.switchSupportModal} />
+          <SupportFormModal pageTitle="KGMS" isOpen={this.state.supportModal} onClose={this.switchSupportModal} />
         </div>
       </TrackedPage>
     );

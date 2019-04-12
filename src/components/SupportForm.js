@@ -23,7 +23,7 @@ const email = (value) => {
 };
 
 class SupportForm extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
     this.state = {
       buttonLabel: 'Submit',
@@ -34,39 +34,43 @@ class SupportForm extends Component {
       company: undefined,
       moreInfo: undefined,
     }
-    this.checkboxes= [];
+    this.checkboxes = [];
     this.onUpdateCheckbox = this.onUpdateCheckbox.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this)
   }
 
   onSuccess() {
     this.form.hideErrors();
-    this.setState({submitted:true, buttonLabel: 'Message Sent!'});
+    this.setState({ submitted: true, buttonLabel: 'Message Sent!' });
     this.clearForm();
-    if (this.props.onSuccess) { setTimeout(()=>{this.props.onSuccess()},2000); }
+    if (this.props.onSuccess) { setTimeout(() => { this.props.onSuccess() }, 2000); }
   }
 
   handleSubmit(e) {
-    this.setState({buttonLabel: 'Sending...'});
+    this.setState({ buttonLabel: 'Sending...' });
     this.form.hideErrors();
     e.preventDefault();
     const formValues = this.form.getValues();
     formValues.aois = this.checkboxes;
 
     api.sendSupport({ ...formValues, emailTitle: "Getting in touch with Grakn!" })
-    .then(()=>{ this.onSuccess(e);})
-    .catch((e)=>{ console.log(e);})
+      .then(() => { this.onSuccess(e); })
+      .catch((e) => { console.log(e); })
 
     api.track({
       "utk": Cookies.get('hubspotutk'),
       "platform": "website",
-      "action": "contactFormSubmission"
-    });
+      "action": "formSubmission",
+      "subject": "contact",
+      "subjectSpecific": {
+        "pageTitle": this.props.pageTitle
+      }
+    }).then(() => { Cookies.set(`known`, true); });
   }
 
   onUpdateCheckbox(e) {
     let checkboxes = this.checkboxes;
-    if(e.target.checked) {
+    if (e.target.checked) {
       checkboxes.push(e.target.value);
     }
     else {
@@ -83,7 +87,7 @@ class SupportForm extends Component {
       moreInfo: "",
     })
     this.checkboxes = [];
-    document.querySelectorAll('input[type=checkbox]').forEach( el => el.checked = false );
+    document.querySelectorAll('input[type=checkbox]').forEach(el => el.checked = false);
   }
 
   render() {
@@ -92,18 +96,18 @@ class SupportForm extends Component {
         <Form ref={c => { this.form = c }}>
           <div className="support-form__row">
             <div className="support-form__row__item">
-              <Input className="support-form__input" placeholder='First Name' name='firstname' value={this.state.firstName} validations={[required]}/>
+              <Input className="support-form__input" placeholder='First Name' name='firstname' value={this.state.firstName} validations={[required]} />
             </div>
             <div className="support-form__row__item">
-              <Input className="support-form__input" placeholder='Last Name' name='lastname' value={this.state.lastName}   validations={[required]}/>
+              <Input className="support-form__input" placeholder='Last Name' name='lastname' value={this.state.lastName} validations={[required]} />
             </div>
           </div>
           <div className="support-form__row">
             <div className="support-form__row__item">
-              <Input className="support-form__input" placeholder='Email' name='email' value={this.state.email}  validations={[required, email]}/>
+              <Input className="support-form__input" placeholder='Email' name='email' value={this.state.email} validations={[required, email]} />
             </div>
             <div className="support-form__row__item">
-              <Input className="support-form__input" placeholder='Company' name='company' value={this.state.company}  validations={[required]}/>
+              <Input className="support-form__input" placeholder='Company' name='company' value={this.state.company} validations={[required]} />
             </div>
           </div>
           <div className="support-form__row">
@@ -145,55 +149,55 @@ class SupportForm extends Component {
                 <option value='services'>Professional Services</option>
               </Select>
               <label className="support-form__label support-form__label--modified">
-              Select all areas you’re interested in:
+                Select all areas you’re interested in:
               </label>
               <div className="support-form__input__group__row">
-                  <div className="support-form__input__group">
-                    <input className="support-form__input support-form__input__checkbox" value="training" type="checkbox" onChange={e => this.onUpdateCheckbox(e)}/>
-                    <label className="support-form__label support-form__label--checkbox" name="aoi">Training</label>
-                  </div>
-                  <div className="support-form__input__group">
-                    <input className="support-form__input support-form__input__checkbox" value="modelling" type="checkbox" onChange={e => this.onUpdateCheckbox(e)}/>
-                    <label className="support-form__label support-form__label--checkbox" name="aoi">Modelling</label>
-                  </div>
-              </div>
-              <div className="support-form__input__group__row">
-                  <div className="support-form__input__group">
-                    <input className="support-form__input support-form__input__checkbox" value="migration" type="checkbox" onChange={e => this.onUpdateCheckbox(e)}/>
-                    <label className="support-form__label support-form__label--checkbox" name="aoi">Migration</label>
-                  </div>
-                  <div className="support-form__input__group">
-                    <input className="support-form__input support-form__input__checkbox" value="customapi" type="checkbox" onChange={e => this.onUpdateCheckbox(e)}/>
-                    <label className="support-form__label support-form__label--checkbox" name="aoi">Custom API</label>
-                  </div>
-              </div>
-              <div className="support-form__input__group__row">
-                  <div className="support-form__input__group">
-                    <input className="support-form__input support-form__input__checkbox" value="deployment" type="checkbox" onChange={e => this.onUpdateCheckbox(e)}/>
-                    <label className="support-form__label support-form__label--checkbox" name="aoi">Deployment</label>
-                  </div>
-                  <div className="support-form__input__group">
-                    <input className="support-form__input support-form__input__checkbox" value="support" type="checkbox" onChange={e => this.onUpdateCheckbox(e)}/>
-                    <label className="support-form__label support-form__label--checkbox" name="aoi">Support</label>
-                  </div>
-              </div>
-              <div className="support-form__input__group__row">
-                  <div className="support-form__input__group">
-                    <input className="support-form__input support-form__input__checkbox" value="licensing" type="checkbox" onChange={e => this.onUpdateCheckbox(e)}/>
-                    <label className="support-form__label support-form__label--checkbox" name="aoi">Licensing</label>
-                  </div>
-                  <div className="support-form__input__group">
-                    <input className="support-form__input support-form__input__checkbox" value="cloud" type="checkbox" onChange={e => this.onUpdateCheckbox(e)}/>
-                    <label className="support-form__label support-form__label--checkbox" name="aoi">Cloud</label>
-                  </div>
+                <div className="support-form__input__group">
+                  <input className="support-form__input support-form__input__checkbox" value="training" type="checkbox" onChange={e => this.onUpdateCheckbox(e)} />
+                  <label className="support-form__label support-form__label--checkbox" name="aoi">Training</label>
+                </div>
+                <div className="support-form__input__group">
+                  <input className="support-form__input support-form__input__checkbox" value="modelling" type="checkbox" onChange={e => this.onUpdateCheckbox(e)} />
+                  <label className="support-form__label support-form__label--checkbox" name="aoi">Modelling</label>
                 </div>
               </div>
-              <div className="support-form__row__item">
-                <TextArea className="support-form__input support-form__input__textarea" placeholder="Tell us a little bit more about how we can help you" name='more' value={this.state.moreInfo}/>
+              <div className="support-form__input__group__row">
+                <div className="support-form__input__group">
+                  <input className="support-form__input support-form__input__checkbox" value="migration" type="checkbox" onChange={e => this.onUpdateCheckbox(e)} />
+                  <label className="support-form__label support-form__label--checkbox" name="aoi">Migration</label>
+                </div>
+                <div className="support-form__input__group">
+                  <input className="support-form__input support-form__input__checkbox" value="customapi" type="checkbox" onChange={e => this.onUpdateCheckbox(e)} />
+                  <label className="support-form__label support-form__label--checkbox" name="aoi">Custom API</label>
+                </div>
               </div>
+              <div className="support-form__input__group__row">
+                <div className="support-form__input__group">
+                  <input className="support-form__input support-form__input__checkbox" value="deployment" type="checkbox" onChange={e => this.onUpdateCheckbox(e)} />
+                  <label className="support-form__label support-form__label--checkbox" name="aoi">Deployment</label>
+                </div>
+                <div className="support-form__input__group">
+                  <input className="support-form__input support-form__input__checkbox" value="support" type="checkbox" onChange={e => this.onUpdateCheckbox(e)} />
+                  <label className="support-form__label support-form__label--checkbox" name="aoi">Support</label>
+                </div>
+              </div>
+              <div className="support-form__input__group__row">
+                <div className="support-form__input__group">
+                  <input className="support-form__input support-form__input__checkbox" value="licensing" type="checkbox" onChange={e => this.onUpdateCheckbox(e)} />
+                  <label className="support-form__label support-form__label--checkbox" name="aoi">Licensing</label>
+                </div>
+                <div className="support-form__input__group">
+                  <input className="support-form__input support-form__input__checkbox" value="cloud" type="checkbox" onChange={e => this.onUpdateCheckbox(e)} />
+                  <label className="support-form__label support-form__label--checkbox" name="aoi">Cloud</label>
+                </div>
+              </div>
+            </div>
+            <div className="support-form__row__item">
+              <TextArea className="support-form__input support-form__input__textarea" placeholder="Tell us a little bit more about how we can help you" name='more' value={this.state.moreInfo} />
+            </div>
           </div>
           <div className="support-form__row support-form__row--modified">
-            <Button submitted={this.state.submitted} className={"button button--"+(this.state.submitted ? 'green' : 'red')+" support-form__button"}>{(this.state.buttonLabel)}</Button>
+            <Button submitted={this.state.submitted} className={"button button--" + (this.state.submitted ? 'green' : 'red') + " support-form__button"}>{(this.state.buttonLabel)}</Button>
           </div>
         </Form>
         <span className="support-form__consent">By submitting your personal data, you consent to emails from Grakn. See our <Link to="/privacy-policy" className="animated__link animated__link--purple">Privacy Policy</Link>.</span>

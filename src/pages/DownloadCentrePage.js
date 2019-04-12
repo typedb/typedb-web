@@ -177,7 +177,7 @@ class DownloadCentrePage extends Component {
     }
     const downloadLocation = this.state.versionCore !== '' && this.state.platformCore !== '' && this.props.downloads.length > 0 ? this.props.downloads.filter(item => item.version === this.state.versionCore)[0][this.state.platformCore] : '';
     return (
-      <TrackedPage>
+      <TrackedPage pageTitle="Download Center">
         <div className="downloads">
           <section className="downloads__splash">
             <img src="/assets/svg/download-splash.svg" alt="Download splash background" />
@@ -276,8 +276,9 @@ class DownloadCentrePage extends Component {
                                   api.track({
                                     "utk": Cookies.get('hubspotutk'),
                                     "platform": "website",
-                                    "action": "graknDownload"
-                                  });
+                                    "action": "download",
+                                    "subject": "Grakn"
+                                  }).then(() => { Cookies.set('known', true) });
                                 }}
                                 className="button button--red downloads__splash__main__tabpanel__content__download"
                               >
@@ -413,7 +414,7 @@ class DownloadCentrePage extends Component {
             <div className="support-form__section__container container section__container">
               <span className="support-form__section__header support-form__section__header--with-tag">Get your Grakn!</span>
               <span className="support-form__section__tag">Get your Grakn commercial license and we’ll help you quickly get up to speed.</span>
-              <SupportForm />
+              <SupportForm pageTitle="Download Center" />
             </div>
           </section>
           <DownloadSuccessModal isOpen={this.state.downloadModal} onClose={() => this.switchModal()} />

@@ -6,7 +6,7 @@ import GraknPageCodeBlock from 'components/GraknPageCodeBlock';
 import ReactGA from 'react-ga';
 
 const GraknPage = () => (
-  <TrackedPage>
+  <TrackedPage pageTitle="Grakn">
     <div className="grakn-page">
       <section className="grakn-page__splash">
         <div className="grakn-page__splash__container container section__container">

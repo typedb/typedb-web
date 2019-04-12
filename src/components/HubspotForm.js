@@ -23,7 +23,7 @@ const email = (value) => {
 };
 
 class HubspotForm extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
     this.handleSubmit = this.handleSubmit.bind(this)
   }
@@ -47,18 +47,18 @@ class HubspotForm extends Component {
         <Form className="newsletter" ref={c => { this.form = c }}>
           <div className="support-form__row">
             <div className="support-form__row__item">
-              <Input className="support-form__input" placeholder='First Name' name='firstname' validations={[required]}/>
+              <Input className="support-form__input" placeholder='First Name' name='firstname' validations={[required]} />
             </div>
             <div className="support-form__row__item">
-              <Input className="support-form__input" placeholder='Last Name' name='lastname' validations={[required]}/>
+              <Input className="support-form__input" placeholder='Last Name' name='lastname' validations={[required]} />
             </div>
           </div>
           <div className="support-form__row">
             <div className="support-form__row__item">
-              <Input className="support-form__input" type='email' placeholder='Email' name='email' validations={[required, email]}/>
+              <Input className="support-form__input" type='email' placeholder='Email' name='email' validations={[required, email]} />
             </div>
             <div className="support-form__row__item">
-              <Input className="support-form__input" placeholder='Company' name='company' validations={[required]}/>
+              <Input className="support-form__input" placeholder='Company' name='company' validations={[required]} />
             </div>
           </div>
           <div className="support-form__row">
@@ -336,7 +336,7 @@ class HubspotForm extends Component {
           </div>
           <div className="support-form__row">
             <div className="support-form__row__item">
-              <Input className="support-form__input" placeholder='Phone' name='phone'/>
+              <Input className="support-form__input" placeholder='Phone' name='phone' />
             </div>
           </div>
           <div className="support-form__row support-form__row--modified">
@@ -352,14 +352,28 @@ class HubspotForm extends Component {
 const mapDispatchToProps = (dispatch) => (
   {
     send: (data) => {
-      dispatch(sendHubspot({ utk: Cookies.get('hubspotutk'), ...data }));
-      dispatch(sendSupport({ ...data, emailTitle: "New Newsletter Signup!" }));
+      dispatch(sendHubspot({
+        targetFormId: "0e3ea363-5f45-44fe-b291-be815a1ca4fc",
+        utk: Cookies.get('hubspotutk'),
+        ...data
+      })
+      );
+
+      dispatch(sendSupport({
+        ...data,
+        emailTitle: "New Newsletter Signup!"
+      })
+      );
 
       api.track({
         "utk": Cookies.get('hubspotutk'),
         "platform": "website",
-        "action": "contactFormSubmission"
-      });
+        "action": "formSubmission",
+        "subject": "newsletter",
+        "subjectSpecific": {
+          "pageTitle": "Grakn"
+        }
+      }).then(() => { Cookies.set(`known`, true); });
     },
   }
 );

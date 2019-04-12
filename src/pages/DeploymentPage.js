@@ -21,7 +21,7 @@ class DeploymentPage extends Component {
 
   render() {
     return (
-      <TrackedPage>
+      <TrackedPage pageTitle="Deployment">
         <div className="deployment-page">
           <section className="deployment-page__splash">
             <div className="deployment-page__splash__container container section__container">
@@ -141,7 +141,7 @@ class DeploymentPage extends Component {
             <div className="support-form__section__container container section__container">
               <span className="support-form__section__header support-form__section__header--with-tag">Get Grakn KGMS for the cloud or on-premise</span>
               <span className="support-form__section__tag">Get in touch with our team and we'll help you get everything set up.</span>
-              <SupportForm />
+              <SupportForm pageTitle="Deployment" />
             </div>
           </section>
         </div>

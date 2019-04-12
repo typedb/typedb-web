@@ -2,8 +2,9 @@ import * as React from "react";
 import { connect } from 'react-redux';
 import LandingPage from "../../../factories/landingPage";
 import LeadCaptureForm from "./LeadCaptureForm";
+import TrackedPage from "../../TrackedPage";
 
-class BiomedLandingPage extends React.Component {
+class BiotechLandingPage extends React.Component {
     render() {
         const factoryData = {
             header: {
@@ -11,8 +12,8 @@ class BiomedLandingPage extends React.Component {
                 // subHeadline: "I'm sub-headline",
                 actions: [
                     {
-                        title: "Try BioGrakn for free",
-                        url: "https://github.com/graknlabs/biograkn/tree/master",
+                        title: "Try BioGrakn for Free",
+                        url: "https://github.com/graknlabs/biograkn/releases",
                         isPrimary: true
                     }
                 ]
@@ -24,10 +25,11 @@ class BiomedLandingPage extends React.Component {
                     title: "Download White Paper",
                     form: {
                         title: "Download BioGrakn White Paper",
-                        downloadPath: "src/pages/landingpage/Biomed/downloads/Grakn-Intro-in-Biotech.pdf"
+                        downloadPath: "src/pages/landingpage/Biomed/downloads/Grakn-Intro-in-Biotech.pdf",
+                        hubspotId: "0e3ea363-5f45-44fe-b291-be815a1ca4fc"
                     }
                 },
-                videoUrl: "https://www.youtube.com/embed/Mc1VXKYJEpk"
+                videoUrl: "https://www.youtube.com/embed/videoseries?list=PLtEF8_xCPklYpxH6d_AIlVqhboWO-o3y9"
             },
             sneakPeek: {
                 title: "Discover and Explain New Connections in Complex Networks of Data",
@@ -81,9 +83,9 @@ class BiomedLandingPage extends React.Component {
                     description: "Description for the Lifebit case study.",
                     actions: [
                         {
-                            title: "Download Case Study",
+                            title: "Download",
                             form: {
-                                title: "Download Case Study of Lifebit",
+                                title: "Download the Lifebit Case Study",
                                 downloadPath: "src/pages/landingpage/Biomed/downloads/Case-study-Lifebit.pdf"
                             }
                         }
@@ -94,9 +96,9 @@ class BiomedLandingPage extends React.Component {
                     description: "Description for the UST case study.",
                     actions: [
                         {
-                            title: "Download Case Study",
+                            title: "Download",
                             form: {
-                                title: "Download Case Study of UST",
+                                title: "Download the UST Case Study",
                                 downloadPath: "src/pages/landingpage/Biomed/downloads/Case-study-UST.pdf"
                             }
                         }
@@ -107,9 +109,9 @@ class BiomedLandingPage extends React.Component {
                     description: "Description for the InfoSys case study.",
                     actions: [
                         {
-                            title: "Download Case Study",
+                            title: "Download",
                             form: {
-                                title: "Download Case Study of InfoSys",
+                                title: "Download the InfoSys Case Study",
                                 downloadPath: "src/pages/landingpage/Biomed/downloads/Case-study-Infosys.pdf"
                             }
                         }
@@ -117,30 +119,34 @@ class BiomedLandingPage extends React.Component {
                 },
             ],
             footer: {
-                headline: "Accelarate  Your Biomedical Research With Grakn",
+                headline: "Accelerate Your Biomedical Research With Grakn",
                 // subHeadline: "I'm sub-headline",
                 actions: [
                     {
                         title: "Download BioGrakn",
-                        url: "https://github.com/graknlabs/biograkn/tree/master",
+                        url: "https://github.com/graknlabs/biograkn/releases",
                         isPrimary: true
                     },
                     {
                         title: "Download White Paper",
                         form: {
                             title: "Download BioGrakn White Paper",
-                            downloadPath: "src/pages/landingpage/Biomed/downloads/Grakn-Intro-in-Biotech.pdf",
+                            downloadPath: "src/pages/landingpage/Biomed/downloads/Grakn-Intro-in-Biotech.pdf"
                         }
                     }
                 ]
             }
         };
 
-        return <LandingPage data={factoryData} LeadCaptureForm={LeadCaptureForm} />;
+        return (
+            <TrackedPage pageTitle="Biotech">
+               <LandingPage data={factoryData} LeadCaptureForm={LeadCaptureForm} hubspotFormId="a1fc9340-6621-46e0-b0d0-1d5349eb1bbf" />
+            </TrackedPage>
+        )
     }
 }
 
 const mapStateToProps = (state) => ({});
 const mapDispatchToProps = (dispatch) => ({});
 
-export default connect(mapStateToProps, mapDispatchToProps)(BiomedLandingPage);
+export default connect(mapStateToProps, mapDispatchToProps)(BiotechLandingPage);

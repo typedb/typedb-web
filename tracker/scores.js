@@ -1,10 +1,18 @@
 export default {
     "website": {
         "visit": 0.2,
-        "contactFormSubmission": 1,
-        "whitepaperDownload": 1,
-        "graknDownload": 1,
-        "newsletterSubscription": 1
+        "formSubmission": {
+            "contact": 1,
+            "newsletter": 1,
+            "download": 1,
+        },
+        "download": {
+            "Grakn": 1,
+            "BioGrakn White Paper": 1,
+            "Lifebit Case Study": 1,
+            "UST Case Study": 1,
+            "InfoSys Case Study": 1,
+        }
     },
     "documentation": {
         "visit": 0.3

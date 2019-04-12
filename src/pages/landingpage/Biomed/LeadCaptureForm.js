@@ -25,14 +25,22 @@ class LeadCaptureForm extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            buttonLabel: 'Download White Paper',
+            buttonLabel: "",
             submitted: false,
             firstName: undefined,
             lastName: undefined,
             email: undefined,
-            company: undefined,
+            company: undefined
         }
         this.handleSubmit = this.handleSubmit.bind(this)
+    }
+
+    componentWillUpdate() {
+        if (this.state.buttonLabel == "") {
+            this.setState({
+                buttonLabel: this.props.title
+            });
+        }
     }
 
     onSuccess() {
@@ -41,41 +49,50 @@ class LeadCaptureForm extends Component {
         this.clearForm();
         setTimeout(() => {
             this.props.onClose();
-
         }, 2000);
     }
 
     handleSubmit(e) {
-        const downloadPath = this.props.downloadPath;
-        this.setState({ buttonLabel: 'Sending...' });
-        this.form.hideErrors();
         e.preventDefault();
+
+        this.setState({ buttonLabel: 'Sending...' });
+
+        this.form.hideErrors();
         const formValues = this.form.getValues();
-        formValues.aois = this.checkboxes;
+        const downloadPath = this.props.downloadPath;
 
-        this.onSuccess(e);
-        setTimeout(function () {
-            window.location.href = downloadPath;
-          });
-        // api.sendSupport({ ...formValues, emailTitle: "Getting in touch with Grakn!" })
-        //     .then(() => { this.onSuccess(e); })
-        //     .catch((e) => { console.log(e); })
+        setTimeout(function () { window.open(downloadPath, "_blank"); });
+        api.track({
+            "utk": Cookies.get('hubspotutk'),
+            "platform": "website",
+            "action": "download",
+            "subject": this.props.title.replace("Download ", "").replace("Download the ", "")
+        }).then(() => { Cookies.set('known', true) });
 
-        // api.track({
-        //     "utk": Cookies.get('hubspotutk'),
-        //     "platform": "website",
-        //     "action": "contactFormSubmission"
-        // });
-    }
+        api.sendHubspot({
+            targetFormId: this.props.hubspotId,
+            utk: Cookies.get('hubspotutk'),
+            ...formValues
+        })
+            .then(() => {
+                this.onSuccess();
 
-    onUpdateCheckbox(e) {
-        let checkboxes = this.checkboxes;
-        if (e.target.checked) {
-            checkboxes.push(e.target.value);
-        }
-        else {
-            checkboxes = checkboxes.filter(elem => elem !== e.target.value);
-        }
+                api.track({
+                    "utk": Cookies.get('hubspotutk'),
+                    "platform": "website",
+                    "action": "formSubmission",
+                    "subject": "Download",
+                    "subjectSpecific": {
+                        "pageTitle": "Biotech Landing Page"
+                    }
+                }).then(() => { Cookies.set(`known`, true); });
+
+                // api.sendSupport({
+                //     ...formValues,
+                //     emailTitle: "New Newsletter Signup!"
+                // });
+            })
+            .catch((e) => { console.log(e); });
     }
 
     clearForm() {
@@ -84,10 +101,7 @@ class LeadCaptureForm extends Component {
             lastName: "",
             email: "",
             company: "",
-            moreInfo: "",
         })
-        this.checkboxes = [];
-        document.querySelectorAll('input[type=checkbox]').forEach(el => el.checked = false);
     }
 
     render() {
@@ -120,7 +134,7 @@ class LeadCaptureForm extends Component {
                         </div>
                         <div className="support-form__row">
                             <div className="support-form__row__item support-form__row__item__select">
-                                <Select className="support-form__input support-form__input__select" value='' name='job' validations={[required]}>
+                                <Select className="support-form__input support-form__input__select" value='' name='job_function' validations={[required]}>
                                     <option value=''>Job function</option>
                                     <option value='software engineer'>Software Engineer</option>
                                     <option value='director'>Director / Development Manager</option>
@@ -141,10 +155,9 @@ class LeadCaptureForm extends Component {
                             <Button submitted={this.state.submitted} className={"button button--" + (this.state.submitted ? 'green' : 'red') + " support-form__button"}>{(this.state.buttonLabel)}</Button>
                         </div>
                     </Form>
-                    <span className="support-form__consent">By submitting your personal data, you consent to emails from Grakn. See our <Link to="/privacy-policy" className="animated__link animated__link--purple">Privacy Policy</Link>.</span>
+                    <span className="support-form__consent">By submitting your personal data, you consent to emails from Grakn. See our <Link to="/privacy-policy" className="animated__link animated__link--purple" target="_blank">Privacy Policy</Link>.</span>
                 </div>
 
-                {/* <SupportForm onSuccess={() => this.props.onClose()} /> */}
             </Modal>
         );
     }

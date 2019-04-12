@@ -11,7 +11,7 @@ class AboutPage extends Component {
 
   render() {
     return (
-      <TrackedPage>
+      <TrackedPage pageTitle="About">
         <div className="about">
           <section className="about__splash">
             <div className="container section__container">

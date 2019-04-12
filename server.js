@@ -94,37 +94,89 @@ app.get('/searchDocs', function(req, res) {
         });
 });
 
+const getUpdatedHubspotPlatformActivities = (platform, action, subject, activities, subjectSpecificData) => {
+    const now = new Date().toLocaleString();
+    switch (platform) {
+        case "website":
+            switch (action) {
+                case "visit":
+                    const websiteVisitedPage = subject;
+                    if (activities.visits[websiteVisitedPage]) {
+                        activities.visits[websiteVisitedPage].times += 1;
+                        activities.visits[websiteVisitedPage].last = now;
+                    } else {
+                        activities.visits[websiteVisitedPage] = { times: 1, first: now, last: now };
+                    }
+                    break;
+                case "download":
+                    const websiteDownloadedDocument = subject;
+                    if (activities.downloads[websiteDownloadedDocument]) {
+                        activities.downloads[websiteDownloadedDocument].push(now);
+                    } else {
+                        activities.downloads[websiteDownloadedDocument] = [now];
+                    }
+                    break;
+                case "formSubmission":
+                    const websiteFormTitle = subject;
+                    const websiteFormPage = subjectSpecificData.pageTitle;
+
+                    if (activities.forms[websiteFormTitle]) {
+                        activities.forms[websiteFormTitle].push({ page: websiteFormPage, when: now });
+                    } else {
+                        activities.forms[websiteFormTitle] = [{ page: websiteFormPage, when: now }];
+                    }
+            }
+            break;
+    }
+
+    return activities;
+};
+
 const updateHubspotScore = async (trackPayload) => {
     console.log("track call - payload: ", JSON.stringify(trackPayload));
 
     const payloadValidator = Joi.object().keys({
         platform: Joi.string().required().valid(Object.keys(scores)),
         action: Joi.string().required(),
+        subject: Joi.string().required(),
         utk: Joi.string(), // Hubspot token stored as a cookie in the contact's browser
-        vid: Joi.number() // HUbspot contact id
+        vid: Joi.number(), // HUbspot contact id
+        subjectSpecific: Joi.object()
     }).xor('utk', 'vid');
 
     const validationResult = Joi.validate(trackPayload, payloadValidator);
     if (validationResult.error) { return { status: 400, message: validationResult.error.details }; }
 
-    let {vid, utk, platform, action } = trackPayload;
+    let {vid, utk, platform, action, subject, subjectSpecific } = trackPayload;
     try {
-        let scoreProp;
+        let engagementProps;
         if (vid) {
-            scoreProp = await hs.getContactProp("score", [ "vid", vid ]);
+            engagementProps = await hs.getContactProps(["score", `${platform}_activities`], [ "vid", vid ]);
         } else if (utk) {
-            scoreProp = await hs.getContactProp("score", [ "utk", utk ]);
+            engagementProps = await hs.getContactProps(["score", `${platform}_activities`], [ "utk", utk ]);
         }
 
-        let newScore;
-        if (scoreProp) {
-            const currentScore = scoreProp.value || 0;
-            newScore = Math.round((parseFloat(currentScore) + scores[platform][action]) * 1000) / 1000;
+        let newScore, newActivities;
+        if (engagementProps) {
+            // calculate the new score
+            const currentScore = engagementProps.score || 0;
+            if (scores[platform][action][subject]) {
+                newScore = Math.round((parseFloat(currentScore) + scores[platform][action][subject]) * 1000) / 1000;
+            } else {
+                newScore = Math.round((parseFloat(currentScore) + scores[platform][action]) * 1000) / 1000;
+            }
+
+            // update the platform activities
+            const currentActivities = JSON.parse(engagementProps[`${platform}_activities`] || '{ "visits": {}, "downloads": {}, "forms": {} }');
+            newActivities = getUpdatedHubspotPlatformActivities(platform, action, subject, currentActivities, subjectSpecific);
         } else {
             return { status: 404, message: "Contact not found!" };
         }
 
-        await hs.setContactProp({ "score": newScore }, [ "vid", scoreProp.vid ]);
+        const newProps = { "score": newScore };
+        newProps[`${platform}_activities`] = JSON.stringify(newActivities, null, 4);
+        await hs.setContactProps(newProps, [ "vid", engagementProps.vid ]);
+
         return { status: 200, message: "Contact's score has been updated." };
     } catch (e) {
         return { status: e.status, message: e.message };
@@ -145,16 +197,16 @@ app.post('/discussEvent', async function(req, res) {
                 const primaryEmail = req.body.user.email;
                 const secondaryEmail = req.body.user.user_fields["1"].indexOf("@") > -1 ? req.body.user.user_fields["1"] : undefined;
 
-                let vidProp = await hs.getContactProp("vid", ["email", primaryEmail]);
+                let vidProp = await hs.getContactProps(["vid"], ["email", primaryEmail]);
 
                 if (! vidProp && secondaryEmail) {
                     // no Hubspot contact owns the primaryEmail. Try looking up the secondaryEmail now
-                    vidProp = await hs.getContactProp("vid", ["email", secondaryEmail]);
+                    vidProp = await hs.getContactProps(["vid"], ["email", secondaryEmail]);
                 }
 
                 if (vidProp) {
                     // there is a Hubspot contact with either the primaryEmail or the secondaryEmail
-                    await hs.setContactProp({ "discuss_id": newHsDiscussId }, [ "vid", vidProp.vid ]);
+                    await hs.setContactProps({ "discuss_id": newHsDiscussId }, [ "vid", vidProp.vid ]);
                     const response = await updateHubspotScore({ vid: vidProp.vid, platform: "discuss", action: "signup" });
                     console.log(`track call from ${req.get('host')}${req.originalUrl} - success: `, JSON.stringify({ status: 200, message: response.message }));
                     res.status(200).send({ status: 200, message: response.message });
@@ -377,11 +429,12 @@ app.post('/api/support', function(req, res) {
 
 app.post('/api/hubspot', function(req, res ){
     const params = req.body;
+    const targetFormId = params.targetFormId
 
     let formParams = { "fields": [] }
 
     for (const paramTitle in params) {
-        if (paramTitle != "utk") {
+        if (paramTitle != "utk" && paramTitle != "targetFormId") {
             formParams.fields.push({
                 "name": paramTitle,
                 "value": params[paramTitle]
@@ -391,14 +444,16 @@ app.post('/api/hubspot', function(req, res ){
 
     formParams.context = {
         "hutk": params.utk,
-        "pageUri": "http://localhost:3000/download#core",
-        "pageName": "Newsletter Subscription | GRAKN.AI"
+        "pageUri": "https://grakn.ai/biotech",
+        "pageName": "Biotech | GRAKN.AI"
     }
+
+    console.log(targetFormId);
 
 
     formParams = JSON.stringify(formParams);
-    handleMailChimpInvite(req.body.email, req.body.firstname, req.body.lastname);
-    unirest.post('https://api.hsforms.com/submissions/v3/integration/submit/4332244/0e3ea363-5f45-44fe-b291-be815a1ca4fc')
+    // handleMailChimpInvite(req.body.email, req.body.firstname, req.body.lastname);
+    unirest.post('https://api.hsforms.com/submissions/v3/integration/submit/4332244/' + targetFormId)
     .headers({
         'Accept': 'application/json',
         'Content-Type': 'application/json'
@@ -409,7 +464,8 @@ app.post('/api/hubspot', function(req, res ){
             res.status(200).send(JSON.stringify({ msg: "Thank you for signing up to our newsletter!" }));
         }
         else {
-            res.status(400).send(JSON.stringify({ msg: 'Bad Request' }));
+            console.log(response)
+            res.status(400).send(JSON.stringify({ msg: "Bad Request" }));
         }
     });
 })
