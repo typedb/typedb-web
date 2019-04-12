@@ -106,16 +106,12 @@ class Footer extends Component {
             <Link to="/support">Support</Link>
           </div>
         </div>
-        <div className="footer__block">
+        {/* <div className="footer__block">
           <div className="footer__block__header">USE CASES</div>
           <div className="footer__block__links">
-            <Link to="/usecase-bots">Intelligent Bots</Link>
-            <Link to="/usecase-search">Semantic Search</Link>
-            <Link to="/usecase-finance">Financial Services</Link>
-            <Link to="/usecase-health">Life Sciences</Link>
-            <Link to="/usecase-security">Security</Link>
+            <Link to="/biotechnology">Biotechnology</Link>
           </div>
-        </div>
+        </div> */}
         <div className="footer__block">
           <div className="footer__block__header">DEVELOPER</div>
           <div className="footer__block__links">

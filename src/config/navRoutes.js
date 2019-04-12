@@ -30,16 +30,12 @@ export const navRoutes = {
       Support: '/support'
     }
   },
-  // 'Use Cases': {
-  //   type: 'multi',
-  //   links: {
-  //     'Intelligent Bots': '/usecase-bots',
-  //     'Semantic Search': '/usecase-search',
-  //     'Financial Services': '/usecase-finance',
-  //     'Health & Life Sciences': '/usecase-health',
-  //     'Security': '/usecase-security'
-  //   }
-  // },
+  'Use Cases': {
+    type: 'multi',
+    links: {
+      'Biotechnology': '/biotechnology',
+    }
+  },
   Developer: {
     type: 'multi',
     links: {

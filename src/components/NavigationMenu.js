@@ -15,7 +15,7 @@ class NavigationMenu extends Component {
     this.renderLinks = this.renderLinks.bind(this);
     this.renderToggle = this.renderToggle.bind(this);
   }
-  
+
   renderLinks(hamburger) {
     return Object.keys(navRoutes).map((key) => {
       const value = navRoutes[key];
@@ -48,7 +48,7 @@ class NavigationMenu extends Component {
                 }
               }
               >
-              {key}      
+              {key}
               </Link>
           )
         }
@@ -62,8 +62,8 @@ class NavigationMenu extends Component {
           { key !== 'Github'?
             key
             :
-            <i className="fa fa-2x fa-github nav__link__icon" aria-hidden="true"></i> 
-          }              
+            <i className="fa fa-2x fa-github nav__link__icon" aria-hidden="true"></i>
+          }
           </a>
         )
       }
@@ -72,7 +72,7 @@ class NavigationMenu extends Component {
         const subMenuClassnames = classNames({
           'nav__link__dropdown__content': !hamburger,
           'nav__link__dropdown__mobile': hamburger,
-          'nav__link__dropdown__mobile--active': this.state.activePrimary === key 
+          'nav__link__dropdown__mobile--active': this.state.activePrimary === key
         })
         const arrowClasses = classNames({
           'fa': true,
@@ -82,7 +82,7 @@ class NavigationMenu extends Component {
         return (
           <div
           className={linkClasses}
-          key={`${key}__link`}          
+          key={`${key}__link`}
           onClick={
             () => {
               if(hamburger) {
@@ -105,7 +105,7 @@ class NavigationMenu extends Component {
                   }
                   else {
                     return (
-                      <a key={`${key}__link`} href={subLinks[key]} 
+                      <a key={`${key}__link`} href={subLinks[key]}
                       className='nav__link nav__link__dropdown__content__item animated__link'
                       target={externalRoutes.indexOf(key) !== -1? '_blank': '_self'}
                       >
@@ -119,7 +119,7 @@ class NavigationMenu extends Component {
           </div>
         );
       }
-    }); 
+    });
   }
 
   renderToggle() {
@@ -134,11 +134,11 @@ class NavigationMenu extends Component {
     const  { mediaType } = this.props;
     const hamburgerClasses = classNames({
       'nav__hamburger': true,
-      'nav__hamburger--open': this.state.expanded 
+      'nav__hamburger--open': this.state.expanded
     });
     const hamburgerSecondaryClasses = classNames({
       'nav__hamburger__secondary': true,
-      'nav__hamburger__secondary--open': this.state.secondaryActive 
+      'nav__hamburger__secondary--open': this.state.secondaryActive
     });
     const hamburgerButton = classNames({
       'nav__hamburger__button': true,
@@ -161,7 +161,7 @@ class NavigationMenu extends Component {
           </span>
           </button>
           :
-          null        
+          null
       }
       {
         mediaType=== 'medium' || mediaType === 'small' || mediaType === 'extraSmall' ?
@@ -171,7 +171,7 @@ class NavigationMenu extends Component {
             }
           </div>
           :
-          this.renderLinks(false)      
+          this.renderLinks(false)
       }
       </div>
     )

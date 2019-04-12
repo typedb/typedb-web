@@ -74,7 +74,7 @@ export default [
                 exact: true
             },
             {
-                path: '/biotech',
+                path: '/biotechnology',
                 component: BiotechLandingPage,
                 exact: true
             },
