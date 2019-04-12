@@ -145,19 +145,20 @@ const getUpdatedHubspotPlatformActivities = (platform, action, subject, activiti
         case "discuss":
             switch (action) {
                 case "signup":
-                    const discussVisitedPage = subject;
-
+                    activities.signup = now;
                     break;
                 case "topicCreation":
+                    const discussCreatedTopic = subject;
+                    activities.topicCreation[discussCreatedTopic] = now;
                     break;
                 case "visit":
-                    // const docsVisitedPage = subject;
-                    // if (activities.visit[docsVisitedPage]) {
-                    //     activities.visit[docsVisitedPage].times += 1;
-                    //     activities.visit[docsVisitedPage].last = now;
-                    // } else {
-                    //     activities.visit[docsVisitedPage] = { times: 1, first: now, last: now };
-                    // }
+                    const discussVisitedTopic = subject;
+                    if (activities.visit[discussVisitedTopic]) {
+                        activities.visit[discussVisitedTopic].times += 1;
+                        activities.visit[discussVisitedTopic].last = now;
+                    } else {
+                        activities.visit[discussVisitedTopic] = { times: 1, first: now, last: now };
+                    }
                     break;
             }
             break;
@@ -172,7 +173,7 @@ const updateHubspotScore = async (trackPayload) => {
     const payloadValidator = Joi.object().keys({
         platform: Joi.string().required().valid(Object.keys(scores)),
         action: Joi.string().required(),
-        subject: Joi.string().required(),
+        subject: Joi.string(),
         utk: Joi.string(), // Hubspot token stored as a cookie in the contact's browser
         vid: Joi.number(), // HUbspot contact id
         subjectSpecific: Joi.object()
@@ -232,19 +233,23 @@ app.post('/discussEvent', async function(req, res) {
 
             try {
                 const primaryEmail = req.body.user.email;
-                const secondaryEmail = req.body.user.user_fields["1"].indexOf("@") > -1 ? req.body.user.user_fields["1"] : undefined;
 
-                let vidProp = await hs.getContactProps(["vid"], ["email", primaryEmail]);
+                let vidProp = await hs.getContactProps([], ["email", primaryEmail]);
 
-                if (! vidProp && secondaryEmail) {
+                if (! vidProp && req.body.user.user_fields["1"] != null) {
                     // no Hubspot contact owns the primaryEmail. Try looking up the secondaryEmail now
-                    vidProp = await hs.getContactProps(["vid"], ["email", secondaryEmail]);
+                    const secondaryEmail = req.body.user.user_fields["1"].indexOf("@") > -1 ? req.body.user.user_fields["1"] : undefined;
+                    vidProp = await hs.getContactProps([], ["email", secondaryEmail]);
                 }
 
                 if (vidProp) {
                     // there is a Hubspot contact with either the primaryEmail or the secondaryEmail
                     await hs.setContactProps({ "discuss_id": newHsDiscussId }, [ "vid", vidProp.vid ]);
-                    const response = await updateHubspotScore({ vid: vidProp.vid, platform: "discuss", action: "signup" });
+                    const response = await updateHubspotScore({
+                        vid: vidProp.vid,
+                        platform: "discuss",
+                        action: "signup"
+                    });
                     console.log(`track call from ${req.get('host')}${req.originalUrl} - success: `, JSON.stringify({ status: 200, message: response.message }));
                     res.status(200).send({ status: 200, message: response.message });
                 }
@@ -259,7 +264,12 @@ app.post('/discussEvent', async function(req, res) {
 
             try {
                 const contact = await hs.getContactByProp(["discuss_id", hsDiscussId ], ["discuss_id", "score"]);
-                const response = await updateHubspotScore({ vid: contact.vid, platform: "discuss", action: "topicCreation" });
+                const response = await updateHubspotScore({
+                    vid: contact.vid,
+                    platform: "discuss",
+                    action: "topicCreation",
+                    subject: req.body.topic.title
+                });
                 console.log(`track call from ${req.get('host')}${req.originalUrl} - success: `, JSON.stringify({ status: 200, message: response.message }));
                 res.status(200).send({ status: 200, message: response.message });
             } catch (e) {
@@ -484,9 +494,6 @@ app.post('/api/hubspot', function(req, res ){
         "pageUri": "https://grakn.ai/biotech",
         "pageName": "GRAKN.AI"
     }
-
-    console.log(targetFormId);
-
 
     formParams = JSON.stringify(formParams);
     // handleMailChimpInvite(req.body.email, req.body.firstname, req.body.lastname);

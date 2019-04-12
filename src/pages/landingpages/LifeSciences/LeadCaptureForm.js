@@ -81,16 +81,16 @@ class LeadCaptureForm extends Component {
                     "utk": Cookies.get('hubspotutk'),
                     "platform": "website",
                     "action": "formSubmission",
-                    "subject": "Download",
+                    "subject": "download",
                     "subjectSpecific": {
                         "pageTitle": "Life Sciences Landing Page"
                     }
                 }).then(() => { Cookies.set(`known`, true); });
 
-                // api.sendSupport({
-                //     ...formValues,
-                //     emailTitle: "New Newsletter Signup!"
-                // });
+                api.sendSupport({
+                    ...formValues,
+                    emailTitle: "New Newsletter Signup!"
+                });
             })
             .catch((e) => { console.log(e); });
     }
