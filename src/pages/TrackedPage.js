@@ -8,8 +8,9 @@ export default class TrackedPage extends Component {
         api.track({
             "utk": Cookies.get('hubspotutk'),
             "platform": "website",
-            "action": "visit"
-        });
+            "action": "visit",
+            "subject": this.props.pageTitle
+        }).then(() => { Cookies.set(`known`, true); });
     }
 
     render() {

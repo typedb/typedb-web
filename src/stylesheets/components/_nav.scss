@@ -7,6 +7,7 @@ $navShadow: 0 0 26px 0 rgba(221, 221, 221, 0.64);
   position: fixed;
   width: 100vw;
   background-color: white;
+  box-sizing: border-box;
   z-index: 100;
   border-bottom: 1px solid $borderColor;
   display: flex;
@@ -15,6 +16,7 @@ $navShadow: 0 0 26px 0 rgba(221, 221, 221, 0.64);
   align-items: center;
   @media screen and (max-width: $smallScreen) {
     padding: 0 1rem;
+    box-sizing: border-box;
   }
   > .container {
     width: 100%;

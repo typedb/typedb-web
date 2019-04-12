@@ -23,7 +23,7 @@ const email = (value) => {
 };
 
 class HubspotForm extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
     this.state = {
       buttonLabel: 'Submit',
@@ -373,14 +373,28 @@ class HubspotForm extends Component {
 const mapDispatchToProps = (dispatch) => (
   {
     send: (data) => {
-      dispatch(sendHubspot({ utk: Cookies.get('hubspotutk'), ...data }));
-      dispatch(sendSupport({ ...data, emailTitle: "New Newsletter Signup!" }));
+      dispatch(sendHubspot({
+        targetFormId: "0e3ea363-5f45-44fe-b291-be815a1ca4fc",
+        utk: Cookies.get('hubspotutk'),
+        ...data
+      })
+      );
+
+      dispatch(sendSupport({
+        ...data,
+        emailTitle: "New Newsletter Signup!"
+      })
+      );
 
       api.track({
         "utk": Cookies.get('hubspotutk'),
         "platform": "website",
-        "action": "contactFormSubmission"
-      });
+        "action": "formSubmission",
+        "subject": "newsletter",
+        "subjectSpecific": {
+          "pageTitle": "Grakn"
+        }
+      }).then(() => { Cookies.set(`known`, true); });
     },
   }
 );

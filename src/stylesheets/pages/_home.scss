@@ -42,7 +42,7 @@
       &__headline {
         font-size: 36px;
         font-weight: 500;
-        @media screen and (max-width: $mediumScreen) {
+        @media screen and (max-width: $mediumScreenWidth) {
           font-size: 28px;
         }
         @media screen and (max-width: $smallScreen) {
@@ -71,7 +71,7 @@
         color: $textCharcoal;
         font-weight: 300;
         line-height: 1.8;
-        @media screen and (max-width: $mediumScreen) {
+        @media screen and (max-width: $mediumScreenWidth) {
           font-size: 18px;
           font-weight: 400;
         }

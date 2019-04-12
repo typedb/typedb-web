@@ -29,7 +29,7 @@ class HomePage extends Component {
 
   render() {
     return (
-      <TrackedPage>
+      <TrackedPage pageTitle="Home">
         <div className="home">
           <section className="home__splash">
             <div className="home__splash__text container section__container">
@@ -347,7 +347,7 @@ class HomePage extends Component {
               <CompanyLogos />
             */
           }
-          <SupportFormModal isOpen={this.state.supportModal} onClose={this.switchSupportModal} />
+          <SupportFormModal pageTitle="Home" isOpen={this.state.supportModal} onClose={this.switchSupportModal} />
           <section className="home__world">
             <div className="home__world__container container section__container">
               <span className="home__world__headline">THE WORLD NEEDS TO <strong>GRAKN</strong></span>

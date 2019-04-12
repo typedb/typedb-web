@@ -39,7 +39,7 @@ class CommunityPage extends Component {
     const pastEvents = this.props.events.length > 0 ? this.props.events.filter(item => today.isSameOrAfter(item.date)) : []
 
     return (
-      <TrackedPage>
+      <TrackedPage pageTitle="Community">
         <div className="community">
           <section className="community__splash">
             <div className="community__splash__container container section__container">

@@ -204,7 +204,7 @@
     }
     &__container {
       padding-bottom: 0 !important;
-      @media screen and (max-width: $mediumScreen) {
+      @media screen and (max-width: $mediumScreenWidth) {
         width: 90% !important;
       }
       > .kgms-page__features__header {

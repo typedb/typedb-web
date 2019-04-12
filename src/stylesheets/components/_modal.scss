@@ -34,7 +34,7 @@
       width: 90%;
       height: 90%;      
     }
-    @media screen and (max-height: $mediumScreen) {
+    @media screen and (max-height: $mediumScreenWidth) {
       max-height: 90%;
     }
     > .support-form {

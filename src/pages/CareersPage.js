@@ -19,7 +19,7 @@ class CareersPage extends Component {
 
   render() {
     return (
-      <TrackedPage>
+      <TrackedPage pageTitle="Careers">
         <div className="careers">
           <section className="careers__splash">
             <div className="container section__container">

@@ -1,0 +1,316 @@
+
+@mixin landingpage-actions($margin-top, $font-size: 20px, $line-height: 50px) {
+    margin-top: $margin-top;
+    a {
+        display: inline-block;
+        margin-left: 20px;
+
+        font-weight: 400;
+        font-size: $font-size;
+        line-height: $line-height;
+        height: $line-height;
+
+        &:first-child {
+            margin-left: 0;
+            @media screen and (max-width: 510px) {
+                margin-left: auto;
+                margin-bottom: 20px;
+            }
+        }
+
+        @media screen and (max-width: 510px) {
+            display: block;
+            width: calc(100% - 80px) !important;
+        }
+    }
+}
+
+.o-landingpage {
+    padding-top: 70px;
+
+    h1, h2, h3, p {
+        width: 100%;
+        white-space: pre-line;
+        text-align: center;
+    }
+
+    h1 {
+        color: #444;
+        font-weight: 500;
+        font-size: 42px;
+
+    }
+
+    h2 {
+        color: #4c4c4c;
+        font-weight: 500;
+        font-size: 30px;
+    }
+
+    h3 {
+        color: #555;
+        font-size: 19px;
+        font-weight: 500;
+    }
+
+    p {
+        color: #5d5d5d;
+        font-size: 16px;
+    }
+}
+
+.o-landingpage-header {
+    height: auto;
+    width: 100%;
+    position: relative;
+
+    background-image: url(http://localhost:3000/assets/svg/kgms-splash.svg);
+    background-position: bottom;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    .m-landingpage-header-callToAction {
+        padding-top: 85px;
+        text-align: center;
+
+        .m-landingpage-header-actions { @include landingpage-actions(20px); }
+    }
+
+    $landingPage-briefCopy-margin: 50px;
+    .o-landingPage-briefCopy-wrapper {
+        max-width: $mediumScreenWidth;
+        margin: 85px auto 0 auto;
+    }
+    .o-landingPage-briefCopy {
+        margin: 0 20px;
+        padding: $landingPage-briefCopy-margin;
+        box-sizing: border-box;
+
+        background-color: #F3F4FA;
+        border: 1px solid #E8EAF4;
+        -webkit-border-radius: 5px;
+        -moz-border-radius: 5px;
+        border-radius: 5px;
+
+        .m-landingPage-briefCopy-text {
+            width: calc(65% - #{$landingPage-briefCopy-margin});
+            display: inline-block;
+            margin-right: 50px;
+            vertical-align: top;
+
+            h3, p { text-align: left; }
+
+            h3 {
+                @media screen and (max-width: 920px) {
+                    padding-top: 20px;
+                    text-align: center;
+                }
+            }
+
+            p {
+                @media screen and (max-width: 920px) { text-align: center; }
+            }
+
+            a.a-landingpage-briefCopy-action {
+                height: 40px;
+                margin: 30px 0 0 0;
+
+                font-weight: 400;
+                font-size: 16px;
+                line-height: 40px;
+
+                @media screen and (max-width: 920px) { margin: 30px auto 0 auto; }
+            }
+
+            @media screen and (max-width: 920px) {
+                width: 100%;
+                display: table-footer-group;
+
+            }
+        }
+
+        .m-landingPage-briefCopy-media {
+            height: 200px;
+            width: 35%;
+            display: inline-block;
+            margin-top: 43px;
+            overflow: hidden;
+            position: relative;
+
+            -webkit-border-radius: 5px;
+            -moz-border-radius: 5px;
+            border-radius: 5px;
+
+            iframe, object, embed {
+                height: 100%;
+                width: 100%;
+                position: absolute;
+                top: 0; left: 0;
+
+                border: none;
+            }
+
+            @media screen and (max-width: 920px) {
+                width: 100%;
+                display: table-header-group;
+
+                iframe {
+                    position: relative;
+                }
+            }
+        }
+
+        @media screen and (max-width: 920px) {
+            display: table;
+            padding: 25px;
+        }
+    }
+}
+
+.o-landingpage-sneakPeek {
+    margin: 0 auto;
+    max-width: $mediumScreenWidth;
+    padding-top: 100px;
+
+    h2 {
+        box-sizing: border-box;
+        margin-bottom: 25px;
+        padding: 0 20px;
+
+        font-weight: 500;
+    }
+
+    img {
+        width: calc(100% - 40px);
+        margin: 0 20px;
+        -webkit-border-radius: 5px;
+        -moz-border-radius: 5px;
+        border-radius: 5px;
+        -webkit-box-shadow: 0px 0px 40px 3px rgba(0,0,0,0.46);
+        -moz-box-shadow: 0px 0px 40px 3px rgba(0,0,0,0.46);
+        box-shadow: 0px 0px 40px 3px rgba(0,0,0,0.46);
+    }
+
+    @media screen and (max-width: 920px) {
+        padding-top: 50px;
+    }
+}
+
+
+$landingPage-propositions-margin: 25px;
+.o-landingpage-propositionsBg {
+    background-image: url("/assets/svg/landingpage-propositions-bg.svg"), url("/assets/svg/plain_bg.svg");
+    background-position: bottom, top;
+    background-repeat: no-repeat, no-repeat;
+}
+
+.o-landingpage-propositions {
+    margin: 0 auto;
+    padding: 50px 0;
+    max-width: $mediumScreenWidth;
+
+    .o-landingPage-propositionCategory {
+        margin: 50px 0;
+
+        &:first-child { margin-top: 0; }
+        &:last-child { margin-bottom: 0; }
+
+        h2 { margin-bottom: 25px; }
+        h3 { font-weight: 600; }
+        p { margin-bottom: 0; }
+
+        .m-landingPage-proposition {
+            width: calc((100% - (2 * #{$landingPage-propositions-margin})) / 3);
+            background-color: #fff;
+            border: 1px solid #E6E8F4;
+            -webkit-border-radius: 5px;
+            -moz-border-radius: 5px;
+            border-radius: 5px;
+            box-sizing: border-box;
+            display: inline-block;
+            margin-right: $landingPage-propositions-margin;
+            padding: 25px;
+            vertical-align: top;
+
+            &:last-child { margin-right: 0; }
+
+            @media screen and (max-width: 920px) {
+                width: calc(100% - 40px) !important;
+                margin: 10px 20px;
+            }
+        }
+    }
+
+}
+
+$landingPage-testimonial-margin: 100px;
+.o-landingpage-testimonials {
+    margin: 50px auto;
+    max-width: $mediumScreenWidth;
+
+    background-color: #fff;
+
+    .m-landingPage-testimonial {
+        width: calc((100% - (2 * #{$landingPage-propositions-margin})) / 3);
+        display: inline-block;
+        margin-right: $landingPage-propositions-margin;
+
+        text-align: center;
+
+        &:last-child {
+            margin-right: 0;
+
+            @media screen and (max-width: 920px) {
+                margin-bottom: 0;
+            }
+        }
+
+        .m-landingpage-testimonials-actions { @include landingpage-actions(20px, 16px, 40px); }
+
+        @media screen and (max-width: 920px) {
+            width: calc(100% - 40px) !important;
+            margin: 50px 20px;
+        }
+    }
+}
+
+.o-landingpage-footer {
+    width: 100%;
+    position: relative;
+
+    &:before { // rotating the background image by 180 degree
+        background: url(http://localhost:3000/assets/svg/kgms-splash.svg) 0 0;
+        background-position: bottom;
+        background-repeat: no-repeat;
+        background-size: cover;
+        content: "";
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        -webkit-transform: rotate(180deg);
+        -moz-transform: rotate(180deg);
+        -ms-transform: rotate(180deg);
+        -o-transform: rotate(180deg);
+        transform: rotate(180deg);
+    }
+
+    .m-landingpage-footer-callToAction {
+        padding: 65px 0;
+        text-align: center;
+
+        h1 {
+            box-sizing: border-box;
+            padding: 0 20px;
+            color: #fff;
+            text-shadow: 0px 1px 1px #000000;
+
+            @media screen and (max-width: 864px) {
+                color: #361154;
+                text-shadow: none;
+            }
+        }
+
+        .m-landingpage-footer-actions { @include landingpage-actions(30px); }
+    }
+}

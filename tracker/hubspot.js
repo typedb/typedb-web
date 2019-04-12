@@ -2,20 +2,31 @@ import 'babel-polyfill';
 import axios from 'axios';
 
 
-const getContactProp = async (prop, findBy) => {
+const getContactProps = async (props, findBy) => {
     const key = process.env.HAPIKEY;
-    const params = `hapikey=${key}&property=score&propertyMode=value_only&formSubmissionMode=none`
+    let params = `hapikey=${key}&&propertyMode=value_only&formSubmissionMode=none`
+
+    for (const prop of props) { params += "&property=" + prop; }
 
     try {
         // take 3 attempts (each attempt 3 seconds apart) to retrieve the contact
         for (let i = 0; i < 3; i++) {
             await new Promise(resolve => setTimeout(resolve, 3000));
             let response = await axios.get(`https://api.hubapi.com/contacts/v1/contact/${findBy[0]}/${findBy[1]}/profile?${params}`);
+            const result = {};
             if (response.data["is-contact"]) {
-                // the property we're looking for may not be associated with the found contact, if so
-                // set prop's value as undefined
-                const propValue = response.data.properties[prop] ? response.data.properties[prop].value : undefined;
-                return { "vid": response.data.vid, value: propValue };
+                result.vid = response.data.vid;
+
+                for (const prop of props) {
+                    // the property we're looking for may not be associated with the found contact, if so
+                    // set prop's value as undefined
+                    if (response.data.properties[prop]) {
+                        result[prop] = response.data.properties[prop].value;
+                    } else {
+                        result[prop] = undefined;
+                    }
+                }
+                return result;
             }
         }
     } catch (e) {
@@ -25,7 +36,7 @@ const getContactProp = async (prop, findBy) => {
     return false;
 };
 
-const setContactProp = async (propValues, findBy) => {
+const setContactProps = async (propValues, findBy) => {
     const key = process.env.HAPIKEY;
     const params = `hapikey=${key}`;
 
@@ -71,7 +82,7 @@ const getContactByProp = async (propValue, props, offset = 0) => {
 };
 
 export default {
-    getContactProp,
-    setContactProp,
+    getContactProps,
+    setContactProps,
     getContactByProp
 }

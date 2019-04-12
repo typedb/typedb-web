@@ -13,9 +13,10 @@
   border: none;
   @media screen and (max-width: $smallScreen) {
     font-size: 14px;
-  }       
+  }
   &--red {
     background-color: $textPink;
+    border: 1px solid $textPink;
     color: white;
     &:hover {
       background-color: $textRed;
@@ -31,7 +32,18 @@
     background-color: $textCharcoal;
     color: white;
   }
-  
+
+  &--white {
+    background-color: #fff;
+    border: 1px solid $textPink;
+    color: $textPink;
+
+    &:hover {
+      color: white;
+      background-color: $textPink;
+    }
+  }
+
   &--transparent {
     color: $textPink;
     border: 1px solid $textPink;

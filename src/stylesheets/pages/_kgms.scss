@@ -15,13 +15,13 @@
       max-width: 100%;
       position: absolute;
       bottom: -250px;
-      max-width: $mediumScreen;
+      max-width: $mediumScreenWidth;
       left: 50%;
       transform: translateX(-50%);
       box-sizing: border-box;
       border-radius: 8px;
       box-shadow: 2px 2px 15px 0px rgba(119, 119, 119, 0.7);
-      @media screen and (max-width: $mediumScreen){
+      @media screen and (max-width: $mediumScreenWidth){
         width: 90%;
         bottom: -200px;
       }
@@ -80,7 +80,7 @@
       padding-top: 350px;
       display: flex;
       flex-direction: row;
-      @media screen and (max-width: $mediumScreen){
+      @media screen and (max-width: $mediumScreenWidth){
         padding-top: 250px;
       }
       @media screen and (max-width: $extraSmallScreen){
@@ -139,7 +139,7 @@
     background-size: cover;
     background-position: top;
     position: relative;
-    @media screen and (max-width: $mediumScreen) {
+    @media screen and (max-width: $mediumScreenWidth) {
       padding: 50px 0;
     }
     &__buttons {
@@ -191,7 +191,7 @@
       > strong {
         font-weight: 600;
       }
-      @media screen and (max-width: $mediumScreen) {
+      @media screen and (max-width: $mediumScreenWidth) {
         width: 100%;
         font-size: 24px;
         padding-bottom: 50px;
@@ -199,7 +199,7 @@
     }
     &__container {
       > div:nth-child(2) {
-        @media screen and (max-width: $mediumScreen) {
+        @media screen and (max-width: $mediumScreenWidth) {
           margin-bottom: 30px;
         }
       }
@@ -208,7 +208,7 @@
       width: 45%;
       display: inline-block;
       vertical-align: middle;
-      @media screen and (max-width: $mediumScreen) {
+      @media screen and (max-width: $mediumScreenWidth) {
         width: 100%;
         display: block;
       }
@@ -216,14 +216,14 @@
       div:last-child {
         margin-bottom: 0 !important;
       }
-      @media screen and (max-width: $mediumScreen) {
+      @media screen and (max-width: $mediumScreenWidth) {
         width: 100%;
       }
       &__divider {
         width: 10%;
         display: inline-block;
         vertical-align: middle;
-        @media screen and (max-width: $mediumScreen) {
+        @media screen and (max-width: $mediumScreenWidth) {
           width: 100%;
           display: block;
         }
@@ -232,7 +232,7 @@
           margin: 0 auto;
           max-width: 50%;
         }
-        @media screen and (max-width: $mediumScreen) {
+        @media screen and (max-width: $mediumScreenWidth) {
           display: none !important;
         }
       }
@@ -245,7 +245,7 @@
         border-radius: 5px;
         margin-bottom: 50px;
         height: 180px;
-        @media screen and (max-width: $mediumScreen) {
+        @media screen and (max-width: $mediumScreenWidth) {
           margin-bottom: 30px;
           height: 180px;
         }
