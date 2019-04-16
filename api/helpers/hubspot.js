@@ -1,7 +1,21 @@
 import 'babel-polyfill';
 import axios from 'axios';
 import engagement from './engagement';
+import MongoClient from 'mongodb';
 
+
+const getHsContactsCollection = async () => {
+    const mongodbUri = process.env.MONGODB_URI || 'mongodb://localhost:27017/';
+    const dbInstanceName = 'heroku_k5z2zm9h';
+
+    try {
+        const client = await MongoClient.connect(mongodbUri);
+        const db = client.db(dbInstanceName);
+        return db.collection('hs_contacts');
+    } catch (e) {
+        throw e;
+    }
+};
 
 const getContactProps = async (props, findBy) => {
     const key = process.env.HAPIKEY;
@@ -31,7 +45,7 @@ const getContactProps = async (props, findBy) => {
             }
         }
     } catch (e) {
-        throw { status: e.response.status, message: e.response.statusText };
+        return false;
     }
 
     return false;
@@ -82,45 +96,86 @@ const getContactByProp = async (propValue, props, offset = 0) => {
     }
 };
 
+const getUpdatedScore = (currentScore, platform, action, subject) => {
+    const scores = engagement.scores;
+
+    let newScore;
+    if (scores[platform][action][subject]) {
+        newScore = Math.round((parseFloat(currentScore) + scores[platform][action][subject]) * 1000) / 1000;
+    } else {
+        newScore = Math.round((parseFloat(currentScore) + scores[platform][action]) * 1000) / 1000;
+    }
+
+    return newScore;
+}
+
+const getDefaultActivities = (platform) => {
+    const scores = engagement.scores;
+    const defaultActivities = {};
+
+    for (const action in scores[platform]) { defaultActivities[action] = {}; }
+
+    return defaultActivities;
+}
+
 const updateEngagement = async (trackPayload) => {
     console.log("track call - payload: ", JSON.stringify(trackPayload));
 
     let { vid, utk, platform, action, subject, subjectSpecific } = trackPayload;
-    const scores = engagement.scores;
 
     try {
         let engagementProps;
         if (vid) {
-            engagementProps = await getContactProps(["score", `${platform}_activities`], [ "vid", vid ]);
+            engagementProps = await getContactProps(["score", `${platform}_activities`], ["vid", vid]);
         } else if (utk) {
-            engagementProps = await getContactProps(["score", `${platform}_activities`], [ "utk", utk ]);
+            engagementProps = await getContactProps(["score", `${platform}_activities`], ["utk", utk]);
         }
 
-        let newScore, newActivities;
-        if (engagementProps) {
+        if (engagementProps) { // contact exists on hubspot (identified)
             // calculate the new score
             const currentScore = engagementProps.score || 0;
-            if (scores[platform][action][subject]) {
-                newScore = Math.round((parseFloat(currentScore) + scores[platform][action][subject]) * 1000) / 1000;
-            } else {
-                newScore = Math.round((parseFloat(currentScore) + scores[platform][action]) * 1000) / 1000;
-            }
+            const newScore = getUpdatedScore(currentScore, platform, action, subject);
 
             // update the platform activities
-            const defaultActivities = {};
-            for (const action in scores[platform]) { defaultActivities[action] = {}; }
-            const currentActivities = JSON.parse(engagementProps[`${platform}_activities`] || JSON.stringify(defaultActivities));
-            newActivities = engagement.updatedPlatformActivities(platform, action, subject, currentActivities, subjectSpecific);
-        } else {
-            return { status: 404, message: "Contact not found!" };
+            const currentActivities = JSON.parse(engagementProps[`${platform}_activities`] || JSON.stringify(getDefaultActivities(platform)));
+            const newActivities = engagement.updatedPlatformActivities(currentActivities, platform, action, subject, subjectSpecific);
+
+            const newProps = { "score": newScore };
+            newProps[`${platform}_activities`] = JSON.stringify(newActivities, null, 4);
+
+            await setContactProps(newProps, ["vid", engagementProps.vid]);
+
+            // deleting the contact from the hs_contacts (db) collection
+            // we continue to track this contact using the hubspot API
+            const hsContacts = await getHsContactsCollection();
+            await hsContacts.deleteOne({ $or: [ { utk }, { vid } ] });
+
+            return { status: 200, message: "Contact's score has been updated." };
+        } else { // contact does NOT exist on hubspot (anonymous)
+            const hsContacts = await getHsContactsCollection();
+            const contact = await hsContacts.findOne({ $or: [ { utk }, { vid } ] });
+
+            let currentScore, currentActivities;
+            if (contact) {
+                currentScore = contact.score;
+                currentActivities = contact[`${platform}_activities`];
+            } else { // contact is not found in db. using default values.
+                currentScore = 0;
+                currentActivities = getDefaultActivities(platform);
+            }
+
+            const newScore = getUpdatedScore(currentScore, platform, action, subject);
+            const newActivities = engagement.updatedPlatformActivities(currentActivities, platform, action, subject, subjectSpecific);
+            const updateBody = { score: newScore, utk, vid };
+            updateBody[`${platform}_activities`] = newActivities;
+
+            // if found, updates the contact, otherwise creates a new one
+            await hsContacts.update({ $or: [ { utk }, { vid } ] }, updateBody, { upsert: true });
+
+            return { status: 200, message: "Contact was tracked anonymously" };
         }
-
-        const newProps = { "score": newScore };
-        newProps[`${platform}_activities`] = JSON.stringify(newActivities, null, 4);
-        await setContactProps(newProps, [ "vid", engagementProps.vid ]);
-
-        return { status: 200, message: "Contact's score has been updated." };
     } catch (e) {
+        console.log(e);
         return { status: e.status, message: e.message };
     }
 }

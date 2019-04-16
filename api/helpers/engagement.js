@@ -30,7 +30,7 @@ const scores = {
 
 // TODO: we ought to write tests for this
 // updates `activities` based on the given specific action on the given platform
-const updatedPlatformActivities = (platform, action, subject, activities, subjectSpecificData) => {
+const updatedPlatformActivities = (activities, platform, action, subject, subjectSpecificData) => {
     const now = new Date().toLocaleString();
 
     switch (platform) {
