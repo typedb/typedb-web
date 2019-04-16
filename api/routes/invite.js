@@ -33,7 +33,7 @@ router.post(
             {
                 auth: {
                     username: 'haikalpribadi',
-                    password: '5e7b3a7503eff7fdd336c095b128d139-us8'
+                    password: process.env.MAILCHIMP_TOKeN
                 }
             }
         )
