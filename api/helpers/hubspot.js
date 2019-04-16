@@ -66,6 +66,7 @@ const setContactProps = async (propValues, findBy) => {
     try {
         await axios.post(`https://api.hubapi.com/contacts/v1/contact/${findBy[0]}/${findBy[1]}/profile?${params}`, payload);
     } catch (e) {
+        console.log(e);
         throw { status: e.response.statusText, message: e.response.statusText };
     }
 };
@@ -131,17 +132,48 @@ const updateEngagement = async (trackPayload) => {
             engagementProps = await getContactProps(["score", `${platform}_activities`], ["utk", utk]);
         }
 
-        if (engagementProps) { // contact exists on hubspot (identified)
-            // calculate the new score
-            const currentScore = engagementProps.score || 0;
-            const newScore = getUpdatedScore(currentScore, platform, action, subject);
+        if (engagementProps) { // contact exists on hubspot (i.e. identified)
+            let currentScore = engagementProps.score || 0;
 
-            // update the platform activities
-            const currentActivities = JSON.parse(engagementProps[`${platform}_activities`] || JSON.stringify(getDefaultActivities(platform)));
-            const newActivities = engagement.updatedPlatformActivities(currentActivities, platform, action, subject, subjectSpecific);
+            let newProps;
+            if (currentScore > 0) { // contact has been tracked via Hubspot API for a while (i.e. non-existent in the hs_contacts db)
+                const newScore = getUpdatedScore(currentScore, platform, action, subject);
 
-            const newProps = { "score": newScore };
-            newProps[`${platform}_activities`] = JSON.stringify(newActivities, null, 4);
+                const currentActivities = JSON.parse(engagementProps[`${platform}_activities`] || JSON.stringify(getDefaultActivities(platform)));
+                const newActivities = engagement.updatedPlatformActivities(currentActivities, platform, action, subject, subjectSpecific);
+
+                // preparing the Hubspot update payload
+                newProps = { "score": newScore };
+                newProps[`${platform}_activities`] = JSON.stringify(newActivities, null, 4);
+            } else { // the contact is identified for the first time, default values must be those stored within the hs_contacts db
+                const hsContacts = await getHsContactsCollection();
+                const contact = await hsContacts.findOne({ $or: [ { utk }, { vid } ] });
+
+                let currentScore, currentActivities;
+                if (contact) {
+                    currentScore = contact.score || 0;
+                    currentActivities = contact[`${platform}_activities`] || getDefaultActivities(platform);
+                } else {
+                    currentScore = 0;
+                    currentActivities = getDefaultActivities(platform);
+                }
+
+                newScore = getUpdatedScore(currentScore, platform, action, subject);
+                newActivities = engagement.updatedPlatformActivities(currentActivities, platform, action, subject, subjectSpecific);
+
+                // preparing the Hubspot update payload
+                newProps = { "score": newScore };
+                newProps[`${platform}_activities`] = JSON.stringify(newActivities, null, 4);
+
+                // including the rest of anonymously-tracked data
+                for (const plat in engagement.scores) {
+                    if (plat != platform && contact != null) {
+                        newProps[`${plat}_activities`] = JSON.stringify(contact[`${plat}_activities`] || getDefaultActivities(plat), null, 4);
+                    } else if (plat != platform) {
+                        newProps[`${plat}_activities`] = JSON.stringify(getDefaultActivities(plat), null, 4);
+                    }
+                }
+            }
 
             await setContactProps(newProps, ["vid", engagementProps.vid]);
 
@@ -151,31 +183,35 @@ const updateEngagement = async (trackPayload) => {
             await hsContacts.deleteOne({ $or: [ { utk }, { vid } ] });
 
             return { status: 200, message: "Contact's score has been updated." };
-        } else { // contact does NOT exist on hubspot (anonymous)
+        } else { // contact does NOT exist on hubspot (i.e. anonymous)
             const hsContacts = await getHsContactsCollection();
             const contact = await hsContacts.findOne({ $or: [ { utk }, { vid } ] });
 
             let currentScore, currentActivities;
             if (contact) {
                 currentScore = contact.score;
-                currentActivities = contact[`${platform}_activities`];
-            } else { // contact is not found in db. using default values.
+                currentActivities = contact[`${platform}_activities`] || getDefaultActivities(platform);
+            } else { // contact is not found in the hs_contacts db. using default values.
                 currentScore = 0;
                 currentActivities = getDefaultActivities(platform);
             }
 
             const newScore = getUpdatedScore(currentScore, platform, action, subject);
             const newActivities = engagement.updatedPlatformActivities(currentActivities, platform, action, subject, subjectSpecific);
-            const updateBody = { score: newScore, utk, vid };
-            updateBody[`${platform}_activities`] = newActivities;
 
-            // if found, updates the contact, otherwise creates a new one
-            await hsContacts.update({ $or: [ { utk }, { vid } ] }, updateBody, { upsert: true });
+            if (contact) { // update the existing contact in hs_contacts db
+                const updateBody = { utk, vid, score: newScore };
+                updateBody[`${platform}_activities`] = newActivities;
+                await hsContacts.updateOne({ $or: [ { utk }, { vid } ] }, { $set: updateBody });
+            } else { // insert the new contact in hs_contacts db
+                const insertBody = { utk, vid, score: newScore };
+                insertBody[`${platform}_activities`] = newActivities;
+                await hsContacts.insertOne(insertBody);
+            }
 
             return { status: 200, message: "Contact was tracked anonymously" };
         }
     } catch (e) {
-        console.log(e);
         return { status: e.status, message: e.message };
     }
 }

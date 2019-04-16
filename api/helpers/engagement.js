@@ -21,10 +21,6 @@ const scores = {
         "signup": 1,
         "visit": 0.1,
         "topicCreation": 2,
-    },
-    "slack": {
-        "signup": 1,
-        "message": 0.1
     }
 }
 
