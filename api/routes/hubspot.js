@@ -19,6 +19,7 @@ router.post(
         }
     }),
     (req, res) => {
+        console.log(`hubspot/recordContact call from ${req.get('host')} - payload`, JSON.stringify(req.body));
         const { ref, formFields } = req.body;
         const { targetFormId, utk, pageUri, pageName } = ref;
 

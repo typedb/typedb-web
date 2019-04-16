@@ -15,7 +15,10 @@ router.post(
         }
     }),
     (req, res) => {
+        console.log(`mailchimp invite call from ${req.get('host')} - payload`, JSON.stringify(req.body));
+
         const { email, firstname, surname } = req.body;
+
         axios.post(
             'https://us8.api.mailchimp.com/3.0/lists/3742a20dc0/members/',
             {
@@ -45,7 +48,7 @@ router.post(
             .catch((e) => {
                 console.log(e.response.data)
                 console.log(
-                    "Mailchimp invite call from " + req.get('host') + " - failure: ",
+                    "mailchimp invite call from " + req.get('host') + " - failure: ",
                     JSON.stringify({ status: e.response.data.status, message: e.response.data.detail })
                 )
                 res.status(e.response.data.status).send({ status: e.response.data.status, message: e.response.data.detail });

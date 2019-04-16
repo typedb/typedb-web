@@ -14,6 +14,8 @@ router.post(
         }).unknown()
     }),
     (req, res) => {
+        console.log(`email/enterprise call from ${req.get('host')} - payload`, JSON.stringify(req.body));
+
         const { emailTitle, email, firstname, lastname, company, job, product, stage, aois, more } = req.body;
 
         const mailOptions = {
@@ -47,11 +49,11 @@ router.post(
 
         transporter.sendMail(mailOptions, (e, info) => {
             if (e) {
-                console.log(`Sending the email ${emailTitle} to ${email} failed.`, e);
+                console.log(`Sending the email ${emailTitle} to ${mailOptions.from} failed.`, e);
                 res.status(500).send(JSON.stringify({msg: "Form submission failed! Try Again.."}));
                 return false;
             }
-            console.log(`Sending the email [${emailTitle}] to [${email}] succeeded.`);
+            console.log(`Sending the email [${emailTitle}] to [${mailOptions.from}] succeeded.`);
             res.status(200).send(JSON.stringify({ msg: "Thank you for submitting the support form! A member of our team will be in touch shortly." }));
         });
     }

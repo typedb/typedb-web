@@ -62,12 +62,34 @@ class LeadCaptureForm extends Component {
         const downloadPath = this.props.downloadPath;
 
         setTimeout(function () { window.open(downloadPath, "_blank"); });
+
         api.track({
             "utk": Cookies.get('hubspotutk'),
             "platform": "website",
             "action": "download",
             "subject": this.props.title.replace("Download ", "").replace("Download the ", "")
         }).then(() => { Cookies.set('known', true) });
+
+        api.signupNewsletter({
+            email: formValues.email,
+            firstname: formValues.firstname,
+            lastname: formValues.lastname,
+        });
+
+        api.track({
+            "utk": Cookies.get('hubspotutk'),
+            "platform": "website",
+            "action": "formSubmission",
+            "subject": "download",
+            "subjectSpecific": {
+                "pageTitle": "Life Sciences Landing Page"
+            }
+        }).then(() => { Cookies.set(`known`, true); });
+
+        api.sendSupport({
+            ...formValues,
+            emailTitle: "New Newsletter Signup!"
+        });
 
         api.sendHubspot({
             targetFormId: this.props.hubspotId,
@@ -76,27 +98,6 @@ class LeadCaptureForm extends Component {
         })
             .then(() => {
                 this.onSuccess();
-
-                api.signupNewsletter({
-                    email: obj.formFields.email,
-                    firstname: obj.formFields.firstname || obj.formFields.firstName,
-                    lastname: obj.formFields.lastname || obj.formFields.lastName,
-                });
-
-                api.track({
-                    "utk": Cookies.get('hubspotutk'),
-                    "platform": "website",
-                    "action": "formSubmission",
-                    "subject": "download",
-                    "subjectSpecific": {
-                        "pageTitle": "Life Sciences Landing Page"
-                    }
-                }).then(() => { Cookies.set(`known`, true); });
-
-                api.sendSupport({
-                    ...formValues,
-                    emailTitle: "New Newsletter Signup!"
-                });
             })
             .catch((e) => { console.log(e); });
     }
