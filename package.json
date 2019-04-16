@@ -4,8 +4,8 @@
   "description": "Grakn AI's Website",
   "scripts": {
     "start": "webpack-dev-server --hot",
-    "server": "cross-env NODE_ENV=production NODE_PATH=./src babel-watch server",
-    "production": "cross-env NODE_ENV=production NODE_PATH=./src babel-node server",
+    "server": "cross-env NODE_ENV=production NODE_PATH=./src babel-watch api/server",
+    "production": "cross-env NODE_ENV=production NODE_PATH=./src babel-node api/server",
     "test": "jest",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage",
@@ -68,6 +68,7 @@
     "enzyme": "^2.8.2",
     "es6-promise": "^4.1.1",
     "express": "^4.15.3",
+    "express-validation": "^1.0.2",
     "extract-text-webpack-plugin": "2.1.0",
     "file-loader": "^0.11.2",
     "history": "^4.6.1",

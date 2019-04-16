@@ -1,5 +1,6 @@
 import 'babel-polyfill';
 import axios from 'axios';
+import engagement from './engagement';
 
 
 const getContactProps = async (props, findBy) => {
@@ -81,8 +82,52 @@ const getContactByProp = async (propValue, props, offset = 0) => {
     }
 };
 
+const updateEngagement = async (trackPayload) => {
+    console.log("track call - payload: ", JSON.stringify(trackPayload));
+
+    let { vid, utk, platform, action, subject, subjectSpecific } = trackPayload;
+    const scores = engagement.scores;
+
+    try {
+        let engagementProps;
+        if (vid) {
+            engagementProps = await getContactProps(["score", `${platform}_activities`], [ "vid", vid ]);
+        } else if (utk) {
+            engagementProps = await getContactProps(["score", `${platform}_activities`], [ "utk", utk ]);
+        }
+
+        let newScore, newActivities;
+        if (engagementProps) {
+            // calculate the new score
+            const currentScore = engagementProps.score || 0;
+            if (scores[platform][action][subject]) {
+                newScore = Math.round((parseFloat(currentScore) + scores[platform][action][subject]) * 1000) / 1000;
+            } else {
+                newScore = Math.round((parseFloat(currentScore) + scores[platform][action]) * 1000) / 1000;
+            }
+
+            // update the platform activities
+            const defaultActivities = {};
+            for (const action in scores[platform]) { defaultActivities[action] = {}; }
+            const currentActivities = JSON.parse(engagementProps[`${platform}_activities`] || JSON.stringify(defaultActivities));
+            newActivities = engagement.updatedPlatformActivities(platform, action, subject, currentActivities, subjectSpecific);
+        } else {
+            return { status: 404, message: "Contact not found!" };
+        }
+
+        const newProps = { "score": newScore };
+        newProps[`${platform}_activities`] = JSON.stringify(newActivities, null, 4);
+        await setContactProps(newProps, [ "vid", engagementProps.vid ]);
+
+        return { status: 200, message: "Contact's score has been updated." };
+    } catch (e) {
+        return { status: e.status, message: e.message };
+    }
+}
+
 export default {
     getContactProps,
     setContactProps,
-    getContactByProp
+    getContactByProp,
+    updateEngagement
 }

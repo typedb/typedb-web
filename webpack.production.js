@@ -8,7 +8,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const autoprefixer = require('autoprefixer');
 
 const stylesheetsPlugin = new ExtractTextPlugin('bundle.css');
-//const htmlWebpackPlugin = new HtmlWebpackPlugin({ template: 'index.html' });
+const htmlWebpackPlugin = new HtmlWebpackPlugin({ template: 'index.html' });
 const definePlugin = new webpack.DefinePlugin({
   __DEV__: JSON.stringify(JSON.parse(process.env.NODE_ENV === 'development' || 'false')),
   'process.env': {
@@ -34,7 +34,7 @@ module.exports = {
   plugins: [
     lodashModulePlugin,
     stylesheetsPlugin,
-  //  htmlWebpackPlugin,
+   htmlWebpackPlugin,
     definePlugin,
     uglifyPlugin,
     new CopyWebpackPlugin([
@@ -57,7 +57,7 @@ module.exports = {
       },
       {
         test: /\.(png|svg)$/,
-        loader: 'url-loader?limit=100000',        
+        loader: 'url-loader?limit=100000',
       },
       {
         test: /\.(css|scss)$/,

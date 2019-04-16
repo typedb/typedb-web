@@ -5,7 +5,7 @@ const LodashModuleReplacementPlugin = require('lodash-webpack-plugin');
 
 const autoprefixer = require('autoprefixer');
 
-const htmlWebpackPlugin = new HtmlWebpackPlugin({ template: 'index.html' });
+const htmlWebpackPlugin = new HtmlWebpackPlugin({ template: './index.html' });
 const definePlugin = new webpack.DefinePlugin({
   __DEV__: JSON.stringify(JSON.parse(process.env.NODE_ENV === 'development' || 'true')),
   'process.env': {
@@ -25,7 +25,7 @@ module.exports = {
   },
   plugins: [
     lodashModulePlugin,
-    htmlWebpackPlugin, 
+    // htmlWebpackPlugin,
     definePlugin
   ],
   resolve: {
@@ -40,7 +40,7 @@ module.exports = {
       },
       {
         test: /\.(png|svg)$/,
-        loader: 'url-loader?limit=100000',        
+        loader: 'url-loader?limit=100000',
       },
       {
         test: /\.(css|scss)$/,
@@ -77,9 +77,10 @@ module.exports = {
       { test: /\.html$/, loader: 'html-loader' }
     ]
   },
+  plugins: [htmlWebpackPlugin],
   devServer: {
     historyApiFallback: true,
     port: 3000,
-    disableHostCheck: true,    
+    disableHostCheck: true,
   }
 };

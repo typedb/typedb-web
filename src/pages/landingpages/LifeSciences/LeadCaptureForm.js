@@ -77,6 +77,12 @@ class LeadCaptureForm extends Component {
             .then(() => {
                 this.onSuccess();
 
+                api.signupNewsletter({
+                    email: obj.formFields.email,
+                    firstname: obj.formFields.firstname || obj.formFields.firstName,
+                    lastname: obj.formFields.lastname || obj.formFields.lastName,
+                });
+
                 api.track({
                     "utk": Cookies.get('hubspotutk'),
                     "platform": "website",

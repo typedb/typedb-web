@@ -102,7 +102,7 @@ class LandingPage extends React.Component {
                 {sneakPeek && (
                     <div className="o-landingpage-sneakPeek">
                         <h2>{sneakPeek.title}</h2>
-                        <img alt="A Sneak Peak" src={sneakPeek.url} />
+                        <img alt="A Sneak Peak" src={sneakPeek.url} width="100%" height="auto" />
                     </div>
                 )}
 
@@ -139,7 +139,7 @@ class LandingPage extends React.Component {
                                            <img height="80px" src={testimonial.image} />
                                         </a>
                                     )}
-                                    {!testimonial.imageUrl && <img height="80px" src={testimonial.image} />}
+                                    {!testimonial.imageUrl && <img height="80px" width="auto" src={testimonial.image} />}
 
                                     <p>{testimonial.description}</p>
                                     {this.renderActions(testimonial.actions, "testimonials")}
