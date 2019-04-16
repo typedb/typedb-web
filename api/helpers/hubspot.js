@@ -6,7 +6,7 @@ import MongoClient from 'mongodb';
 
 const getHsContactsCollection = async () => {
     const mongodbUri = process.env.MONGODB_URI || 'mongodb://localhost:27017/';
-    const dbInstanceName = 'heroku_bzdlhmzm';
+    const dbInstanceName = 'heroku_k5z2zm9h';
 
     try {
         const client = await MongoClient.connect(mongodbUri);
