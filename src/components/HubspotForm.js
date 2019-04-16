@@ -46,7 +46,7 @@ class HubspotForm extends Component {
     this.form.hideErrors();
     const formValues = this.form.getValues();
 
-    sendHubspot({
+    api.sendHubspot({
       ref: {
         targetFormId: "0e3ea363-5f45-44fe-b291-be815a1ca4fc",
         utk: Cookies.get('hubspotutk'),
