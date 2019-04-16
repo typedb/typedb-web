@@ -92,9 +92,13 @@ class LeadCaptureForm extends Component {
         });
 
         api.sendHubspot({
-            targetFormId: this.props.hubspotId,
-            utk: Cookies.get('hubspotutk'),
-            ...formValues
+            ref: {
+                targetFormId: this.props.hubspotId,
+                utk: Cookies.get('hubspotutk'),
+                pageUri: 'https://grakn.ai/lifesciences',
+                pageName: 'Life Sciences'
+            },
+            formFields: { ...formValues }
         })
             .then(() => {
                 this.onSuccess();

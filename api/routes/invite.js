@@ -38,7 +38,6 @@ router.post(
             }
         )
             .then((response) => {
-                console.log(response)
                 console.log(
                     "Mailchimp invite call from " + req.get('host') + " - success: ",
                     JSON.stringify({ status: response.status, message: response.statusText })
@@ -46,7 +45,6 @@ router.post(
                 res.status(200).send({ status: 200, message: "Mailchimp invite was sent successfully" })
             })
             .catch((e) => {
-                console.log(e.response.data)
                 console.log(
                     "mailchimp invite call from " + req.get('host') + " - failure: ",
                     JSON.stringify({ status: e.response.data.status, message: e.response.data.detail })

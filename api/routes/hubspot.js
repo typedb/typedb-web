@@ -32,6 +32,10 @@ router.post(
             formParams
         )
             .then((response) => {
+                console.log(
+                    `hubspot/recordContact call from ${req.get('host')} - success`,
+                    JSON.stringify({ status: response.status, message: "Form details were successfully stored in the Hubspot form." })
+                );
                 res.status(200).send(JSON.stringify({ status: response.status, message: "Form details were successfully stored in the Hubspot form." }));
             })
             .catch((e) => {
