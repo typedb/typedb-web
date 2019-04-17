@@ -47,7 +47,7 @@ const getContactProps = async (props, findBy) => {
             }
         }
     } catch (e) {
-        console.log("api - retrieving contact's props - failure", e.response);
+        console.log("api - retrieving contact's props - failure", e.response.data);
         return false;
     }
 
@@ -69,9 +69,9 @@ const setContactProps = async (propValues, findBy) => {
 
     try {
         const response = await axios.post(`https://api.hubapi.com/contacts/v1/contact/${findBy[0]}/${findBy[1]}/profile?${params}`, payload);
-        console.log("api - updating contact's props - success", response);
+        console.log("api - updating contact's props - success", response.data);
     } catch (e) {
-        console.log("api - updating contact's props - failure", e.response);
+        console.log("api - updating contact's props - failure", e.response.data);
         throw { status: e.response.status, message: e.response.statusText };
     }
 };
@@ -186,6 +186,7 @@ const updateEngagement = async (trackPayload) => {
             // we continue to track this contact using the hubspot API
             const hsContacts = await getHsContactsCollection();
             await hsContacts.deleteOne({ $or: [ { utk }, { vid } ] });
+            console.log("db - deleting contact in db - identifier", utk || vid)
 
             return { status: 200, message: "Contact's score has been updated." };
         } else { // contact does NOT exist on hubspot (i.e. anonymous)
