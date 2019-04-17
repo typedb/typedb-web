@@ -14,7 +14,7 @@ router.get(
         const params = `cx=${process.env.CSE_ID}&key=${process.env.CSE_API_KEY}&q=${req.query.q}`;
 
         axios.get('https://www.googleapis.com/customsearch/v1?' + params)
-            .then((response) => res.status(200).send(response.body))
+            .then((response) => res.status(200).send(response.data))
             .catch((e) => {
                 res.status(e.response.status).send(e.response.statusText);
             });
