@@ -19,9 +19,10 @@ const getHsContactsCollection = async () => {
 
 const getContactProps = async (props, findBy) => {
     const key = process.env.HAPIKEY;
-    let params = `hapikey=${key}&&propertyMode=value_only&formSubmissionMode=none`
+    let params = `hapikey=${key}&propertyMode=value_only&formSubmissionMode=none`
 
     for (const prop of props) { params += "&property=" + prop; }
+    console.log("api - retrieving contact's props - props", props);
 
     try {
         // take 3 attempts (each attempt 3 seconds apart) to retrieve the contact
@@ -41,10 +42,12 @@ const getContactProps = async (props, findBy) => {
                         result[prop] = undefined;
                     }
                 }
+                console.log("api - retrieving contact's props - success", result);
                 return result;
             }
         }
     } catch (e) {
+        console.log("api - retrieving contact's props - failure", e.response);
         return false;
     }
 
@@ -62,12 +65,14 @@ const setContactProps = async (propValues, findBy) => {
             "value": propValues[prop]
         });
     }
+    console.log("api - updating contact's props - payload", payload);
 
     try {
-        await axios.post(`https://api.hubapi.com/contacts/v1/contact/${findBy[0]}/${findBy[1]}/profile?${params}`, payload);
+        const response = await axios.post(`https://api.hubapi.com/contacts/v1/contact/${findBy[0]}/${findBy[1]}/profile?${params}`, payload);
+        console.log("api - updating contact's props - success", response);
     } catch (e) {
-        console.log(e);
-        throw { status: e.response.statusText, message: e.response.statusText };
+        console.log("api - updating contact's props - failure", e.response);
+        throw { status: e.response.status, message: e.response.statusText };
     }
 };
 
