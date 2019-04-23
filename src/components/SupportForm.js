@@ -51,21 +51,32 @@ class SupportForm extends Component {
     this.form.hideErrors();
     e.preventDefault();
     const formValues = this.form.getValues();
-    formValues.aois = this.checkboxes;
+    formValues.aois = this.checkboxes.join(",");
+
+    api.sendHubspot({
+      ref: {
+        targetFormId: "c627860e-93d2-4dd3-9a2e-d77aee5f1088",
+        utk: Cookies.get('hubspotutk'),
+        pageUri: this.props.pageUri,
+        pageName: this.props.pageTitle
+      },
+      formFields: { ...formValues }
+    }).then(() => {
+      console.log("sent hubspot")
+      api.track({
+        "utk": Cookies.get('hubspotutk'),
+        "platform": "website",
+        "action": "formSubmission",
+        "subject": "contact",
+        "subjectSpecific": {
+          "pageTitle": this.props.pageTitle
+        }
+      }).then(() => { Cookies.set(`known`, true); });
+    });
 
     api.sendSupport({ ...formValues, emailTitle: "Getting in touch with Grakn!" })
       .then(() => { this.onSuccess(e); })
       .catch((e) => { console.log(e); })
-
-    api.track({
-      "utk": Cookies.get('hubspotutk'),
-      "platform": "website",
-      "action": "formSubmission",
-      "subject": "contact",
-      "subjectSpecific": {
-        "pageTitle": this.props.pageTitle
-      }
-    }).then(() => { Cookies.set(`known`, true); });
   }
 
   onUpdateCheckbox(e) {
@@ -129,7 +140,7 @@ class SupportForm extends Component {
               </Select>
             </div>
             <div className="support-form__row__item support-form__row__item__select">
-              <Select className="support-form__input support-form__input__select" value='' name='stage' validations={[required]}>
+              <Select className="support-form__input support-form__input__select" value='' name='stage_of_development' validations={[required]}>
                 <option value=''>Stage of development</option>
                 <option value='discovery'>Discovery phase</option>
                 <option value='installed'>Just installed</option>
@@ -193,7 +204,7 @@ class SupportForm extends Component {
               </div>
             </div>
             <div className="support-form__row__item">
-              <TextArea className="support-form__input support-form__input__textarea" placeholder="Tell us a little bit more about how we can help you" name='more' value={this.state.moreInfo} />
+              <TextArea className="support-form__input support-form__input__textarea" placeholder="Tell us a little bit more about how we can help you" name='tell_us_a_little_bit_more_about_how_we_can_help_you' value={this.state.moreInfo} />
             </div>
           </div>
           <div className="support-form__row support-form__row--modified">

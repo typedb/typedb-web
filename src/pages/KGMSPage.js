@@ -154,7 +154,7 @@ class KGMSPage extends Component {
               </div>
             </div>
           </section>
-          <SupportFormModal pageTitle="KGMS" isOpen={this.state.supportModal} onClose={this.switchSupportModal} />
+          <SupportFormModal pageTitle="KGMS" pageUri="https://grakn.ai/grakn-kgms" isOpen={this.state.supportModal} onClose={this.switchSupportModal} />
         </div>
       </TrackedPage>
     );

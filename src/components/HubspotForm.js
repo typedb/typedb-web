@@ -54,6 +54,16 @@ class HubspotForm extends Component {
         pageName: 'Download Center'
       },
       formFields: { ...formValues }
+    }).then(() => {
+      api.track({
+        "utk": Cookies.get('hubspotutk'),
+        "platform": "website",
+        "action": "formSubmission",
+        "subject": "newsletter",
+        "subjectSpecific": {
+          "pageTitle": "Download Center"
+        }
+      }).then(() => { Cookies.set(`known`, true); });
     });
 
     api.signupNewsletter({
@@ -66,16 +76,6 @@ class HubspotForm extends Component {
       emailTitle: "New Newsletter Signup!",
       ...formValues
     });
-
-    api.track({
-      "utk": Cookies.get('hubspotutk'),
-      "platform": "website",
-      "action": "formSubmission",
-      "subject": "newsletter",
-      "subjectSpecific": {
-        "pageTitle": "Download Center"
-      }
-    }).then(() => { Cookies.set(`known`, true); });
 
 
     this.setState({ submitted: true, buttonLabel: "Subscription was successful." });

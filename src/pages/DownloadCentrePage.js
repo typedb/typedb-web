@@ -418,7 +418,7 @@ class DownloadCentrePage extends Component {
             <div className="support-form__section__container container section__container">
               <span className="support-form__section__header support-form__section__header--with-tag">Get your Grakn!</span>
               <span className="support-form__section__tag">Get your Grakn commercial license and we’ll help you quickly get up to speed.</span>
-              <SupportForm pageTitle="Download Center" />
+              <SupportForm pageTitle="Download Center" pageUri="https://grakn.ai/download" />
             </div>
           </section>
           <DownloadSuccessModal isOpen={this.state.downloadModal} onClose={() => this.switchModal()} />
