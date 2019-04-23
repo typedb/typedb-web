@@ -41,9 +41,9 @@ router.post(
             .catch((e) => {
                 console.log(
                     "hubspot form submission call from " + req.get('host') + " - failure",
-                    JSON.stringify({ status: e.response.status, message: e.response.data.errors })
+                    JSON.stringify({ status: e.response.status, message: e.response.data.message })
                 );
-                res.status(200).send(JSON.stringify({ status: e.response.status, message: e.response.data.errors }));
+                res.status(200).send(JSON.stringify({ status: e.response.status, message: e.response.data }));
             });
     }
 );

@@ -152,7 +152,7 @@ class SupportPage extends Component {
           <section className="support-form__section" ref={(elem) => this.supportform = elem}>
             <div className="support-form__section__container container section__container">
               <span className="support-form__section__header">Get in touch with our team!</span>
-              <SupportForm pageTitle="Support" />
+              <SupportForm pageTitle="Support"  pageUri="https://grakn.ai/support" />
             </div>
           </section>
         </div>

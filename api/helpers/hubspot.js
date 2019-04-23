@@ -6,7 +6,7 @@ import MongoClient from 'mongodb';
 
 const getHsContactsCollection = async () => {
     const mongodbUri = process.env.MONGODB_URI || 'mongodb://localhost:27017/';
-    const dbInstanceName = 'heroku_k5z2zm9h';
+    const dbInstanceName = process.env.MONGODB_NAME;
 
     try {
         const client = await MongoClient.connect(mongodbUri);
@@ -51,7 +51,7 @@ const getContactProps = async (props, findBy) => {
         return false;
     }
 
-    return false;
+    return true;
 };
 
 const setContactProps = async (propValues, findBy) => {
@@ -129,6 +129,8 @@ const updateEngagement = async (trackPayload) => {
 
     let { vid, utk, platform, action, subject, subjectSpecific } = trackPayload;
 
+    const hsContacts = await getHsContactsCollection();
+
     try {
         let engagementProps;
         if (vid) {
@@ -151,7 +153,6 @@ const updateEngagement = async (trackPayload) => {
                 newProps = { "score": newScore };
                 newProps[`${platform}_activities`] = JSON.stringify(newActivities, null, 4);
             } else { // the contact is identified for the first time, default values must be those stored within the hs_contacts db
-                const hsContacts = await getHsContactsCollection();
                 const contact = await hsContacts.findOne({ $or: [ { utk }, { vid } ] });
 
                 let currentScore, currentActivities;
@@ -163,8 +164,8 @@ const updateEngagement = async (trackPayload) => {
                     currentActivities = getDefaultActivities(platform);
                 }
 
-                newScore = getUpdatedScore(currentScore, platform, action, subject);
-                newActivities = engagement.updatedPlatformActivities(currentActivities, platform, action, subject, subjectSpecific);
+                const newScore = getUpdatedScore(currentScore, platform, action, subject);
+                const newActivities = engagement.updatedPlatformActivities(currentActivities, platform, action, subject, subjectSpecific);
 
                 // preparing the Hubspot update payload
                 newProps = { "score": newScore };
@@ -178,19 +179,22 @@ const updateEngagement = async (trackPayload) => {
                         newProps[`${plat}_activities`] = JSON.stringify(getDefaultActivities(plat), null, 4);
                     }
                 }
+
+                // adding the identified vid of the contact
+                // so that we can delete the contact by its vid, after we're certain it's stored on hubspot
+                await hsContacts.updateOne({ utk }, { $set: { vid: engagementProps.vid }});
             }
 
             await setContactProps(newProps, ["vid", engagementProps.vid]);
 
             // deleting the contact from the hs_contacts (db) collection
             // we continue to track this contact using the hubspot API
-            const hsContacts = await getHsContactsCollection();
-            await hsContacts.deleteOne({ $or: [ { utk }, { vid } ] });
             console.log("db - deleting contact in db - identifier", utk || vid)
+            await hsContacts.deleteOne({vid: engagementProps.vid});
 
             return { status: 200, message: "Contact's score has been updated." };
         } else { // contact does NOT exist on hubspot (i.e. anonymous)
-            const hsContacts = await getHsContactsCollection();
+            // const hsContacts = await getHsContactsCollection();
             const contact = await hsContacts.findOne({ $or: [ { utk }, { vid } ] });
 
             let currentScore, currentActivities;

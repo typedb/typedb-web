@@ -347,7 +347,7 @@ class HomePage extends Component {
               <CompanyLogos />
             */
           }
-          <SupportFormModal pageTitle="Home" isOpen={this.state.supportModal} onClose={this.switchSupportModal} />
+          <SupportFormModal pageTitle="Home" pageUri="https://grakn.ai" isOpen={this.state.supportModal} onClose={this.switchSupportModal} />
           <section className="home__world">
             <div className="home__world__container container section__container">
               <span className="home__world__headline">THE WORLD NEEDS TO <strong>GRAKN</strong></span>
