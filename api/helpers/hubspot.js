@@ -153,7 +153,7 @@ const updateEngagement = async (trackPayload) => {
                 newProps = { "score": newScore };
                 newProps[`${platform}_activities`] = JSON.stringify(newActivities, null, 4);
             } else { // the contact is identified for the first time, default values must be those stored within the hs_contacts db
-                const contact = await hsContacts.findOne({ $or: [ { utk }, { vid } ] });
+                const contact = await hsContacts.findOne({ utk });
 
                 let currentScore, currentActivities;
                 if (contact) {
@@ -195,7 +195,7 @@ const updateEngagement = async (trackPayload) => {
             return { status: 200, message: "Contact's score has been updated." };
         } else { // contact does NOT exist on hubspot (i.e. anonymous)
             // const hsContacts = await getHsContactsCollection();
-            const contact = await hsContacts.findOne({ $or: [ { utk }, { vid } ] });
+            const contact = await hsContacts.findOne({ utk });
 
             let currentScore, currentActivities;
             if (contact) {
@@ -212,7 +212,7 @@ const updateEngagement = async (trackPayload) => {
             if (contact) { // update the existing contact in hs_contacts db
                 const updateBody = { utk, vid, score: newScore };
                 updateBody[`${platform}_activities`] = newActivities;
-                await hsContacts.updateOne({ $or: [ { utk }, { vid } ] }, { $set: updateBody });
+                await hsContacts.updateOne({ { utk }, { $set: updateBody });
             } else { // insert the new contact in hs_contacts db
                 const insertBody = { utk, vid, score: newScore };
                 insertBody[`${platform}_activities`] = newActivities;
