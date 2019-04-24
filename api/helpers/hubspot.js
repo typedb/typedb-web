@@ -212,7 +212,7 @@ const updateEngagement = async (trackPayload) => {
             if (contact) { // update the existing contact in hs_contacts db
                 const updateBody = { utk, vid, score: newScore };
                 updateBody[`${platform}_activities`] = newActivities;
-                await hsContacts.updateOne({ { utk }, { $set: updateBody });
+                await hsContacts.updateOne({ utk }, { $set: updateBody });
             } else { // insert the new contact in hs_contacts db
                 const insertBody = { utk, vid, score: newScore };
                 insertBody[`${platform}_activities`] = newActivities;
