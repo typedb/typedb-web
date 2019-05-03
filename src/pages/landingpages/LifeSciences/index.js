@@ -13,7 +13,7 @@ class LifeSciencesLandingPage extends React.Component {
                 actions: [
                     {
                         title: "Try BioGrakn for Free",
-                        url: "https://github.com/graknlabs/biograkn/releases",
+                        url: "https://github.com/graknlabs/biograkn",
                         isPrimary: true
                     }
                 ]
