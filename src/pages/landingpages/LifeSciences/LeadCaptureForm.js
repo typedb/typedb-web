@@ -30,7 +30,7 @@ class LeadCaptureForm extends Component {
             firstName: undefined,
             lastName: undefined,
             email: undefined,
-            company: undefined
+            company: undefined,
         }
         this.handleSubmit = this.handleSubmit.bind(this)
     }
@@ -125,6 +125,7 @@ class LeadCaptureForm extends Component {
                 shouldCloseOnOverlayClick={true}
                 onRequestClose={this.props.onClose}
                 ariaHideApp={false}
+                style={{content: { minHeight: '520px' }}}
             >
                 <i className="fa fa-times ReactModal__Closebtn" onClick={() => this.props.onClose()} />
                 <div className="support-form" onSubmit={this.handleSubmit}>
