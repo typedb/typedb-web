@@ -10,7 +10,8 @@ class LandingPage extends React.Component {
             showLeadCaptureForm: false,
             captureFormDownloadPath: "",
             captureFormTitle: "",
-            requiresFormToDownload: !Cookies.get('known')
+            requiresFormToDownload: !Cookies.get('known'),
+            isVisitorKnown: false,
         };
 
         this.showLeadCaptureForm = this.showLeadCaptureForm.bind(this)
@@ -32,8 +33,12 @@ class LandingPage extends React.Component {
         )
     }
 
+    setVisitorKnown() {
+        this.setState({ isVisitorKnown: true });
+    }
+
     renderDownload(form) {
-        if (this.state.requiresFormToDownload) {
+        if (this.state.requiresFormToDownload && !this.state.isVisitorKnown) {
             this.showLeadCaptureForm(form);
         } else {
             api.track({
@@ -41,7 +46,10 @@ class LandingPage extends React.Component {
                 "platform": "website",
                 "action": "download",
                 "subject": form.title.replace("Download the ", "").replace("Download ", "")
-            }).then(() => { Cookies.set('known', true) });
+            }).then(() => {
+                Cookies.set('known', true);
+                this.setState({ isVisitorKnown: true });
+            });
             window.open(form.downloadPath, "_blank");
         }
     }
@@ -72,7 +80,7 @@ class LandingPage extends React.Component {
 
         return (
             <div className="o-landingpage">
-                <LeadCaptureForm isOpen={this.state.showLeadCaptureForm} onClose={() => this.hideLeadCaptureForm()} downloadPath={this.state.captureFormDownloadPath} title={this.state.captureFormTitle} hubspotId={this.props.hubspotFormId} />
+                <LeadCaptureForm isOpen={this.state.showLeadCaptureForm} onClose={() => this.hideLeadCaptureForm()} onSuccessfulSubmission={() => this.setVisitorKnown()} downloadPath={this.state.captureFormDownloadPath} title={this.state.captureFormTitle} hubspotId={this.props.hubspotFormId} />
 
                 {header && (
                     <div className="o-landingpage-header">
