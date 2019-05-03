@@ -84,7 +84,10 @@ class LeadCaptureForm extends Component {
             "subjectSpecific": {
                 "pageTitle": "Life Sciences Landing Page"
             }
-        }).then(() => { Cookies.set(`known`, true); });
+        }).then(() => {
+            Cookies.set(`known`, true);
+            this.props.onSuccessfulSubmission();
+        });
 
         api.sendSupport({
             ...formValues,
