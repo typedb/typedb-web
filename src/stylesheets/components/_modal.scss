@@ -16,7 +16,7 @@
     cursor: pointer;
     &:before {
       font-size: 1.5rem;
-      color: $textCharcoal;  
+      color: $textCharcoal;
     }
   }
 
@@ -25,14 +25,14 @@
     top: 50% !important;
     left: 50% !important;
     width: $smallScreen;
-    transform: translate(-50%, -50%);    
+    transform: translate(-50%, -50%);
     height: fit-content;
     padding: 0 !important;
     bottom: 0 !important;
     right: 0 !important;
     @media screen and (max-width: $smallScreen) {
       width: 90%;
-      height: 90%;      
+      height: 100%;
     }
     @media screen and (max-height: $mediumScreenWidth) {
       max-height: 90%;
@@ -54,7 +54,7 @@
       &__container {
         top: 50% !important;
         left: 50% !important;
-        transform: translate(-50%, -50%);    
+        transform: translate(-50%, -50%);
         position: absolute;
         text-align: center;
         width: 100%;
