@@ -126,7 +126,7 @@ class LifeSciencesLandingPage extends React.Component {
                 actions: [
                     {
                         title: "Download BioGrakn",
-                        url: "https://github.com/graknlabs/biograkn/releases",
+                        url: "https://github.com/graknlabs/biograkn",
                         isPrimary: true
                     },
                     {
