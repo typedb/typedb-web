@@ -63,18 +63,13 @@ class LeadCaptureForm extends Component {
 
         setTimeout(function () { window.open(downloadPath, "_blank"); });
 
-        api.track({
-            "utk": Cookies.get('hubspotutk'),
-            "platform": "website",
-            "action": "download",
-            "subject": this.props.title.replace("Download ", "").replace("Download the ", "")
-        }).then(() => { Cookies.set('known', true) });
-
         api.signupNewsletter({
             email: formValues.email,
             firstname: formValues.firstname,
             lastname: formValues.lastname,
         });
+
+        const downloadedDocument = this.props.title.replace("Download ", "").replace("Download the ", "");
 
         api.track({
             "utk": Cookies.get('hubspotutk'),
@@ -87,6 +82,13 @@ class LeadCaptureForm extends Component {
         }).then(() => {
             Cookies.set(`known`, true);
             this.props.onSuccessfulSubmission();
+
+            api.track({
+                "utk": Cookies.get('hubspotutk'),
+                "platform": "website",
+                "action": "download",
+                "subject": downloadedDocument
+            }).then(() => { Cookies.set('known', true) });
         });
 
         api.sendSupport({
@@ -125,7 +127,7 @@ class LeadCaptureForm extends Component {
                 shouldCloseOnOverlayClick={true}
                 onRequestClose={this.props.onClose}
                 ariaHideApp={false}
-                style={{content: { minHeight: '520px' }}}
+                style={{ content: { minHeight: '520px' } }}
             >
                 <i className="fa fa-times ReactModal__Closebtn" onClick={() => this.props.onClose()} />
                 <div className="support-form" onSubmit={this.handleSubmit}>
