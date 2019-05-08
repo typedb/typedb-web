@@ -4,11 +4,11 @@ import LandingPage from "../../../factories/landingPage";
 import LeadCaptureForm from "../LeadCaptureForm";
 import TrackedPage from "../../TrackedPage";
 
-class LifeSciencesLandingPage extends React.Component {
+class PrecisionMedicineLandingPage extends React.Component {
     render() {
         const factoryData = {
             header: {
-                headline: "Biomedical Knowledge Graphs",
+                headline: "Precision Medicine Knowledge Graphs",
                 // subHeadline: "I'm sub-headline",
                 actions: [
                     {
@@ -19,39 +19,39 @@ class LifeSciencesLandingPage extends React.Component {
                 ]
             },
             briefCopy: {
-                title: "Accelerating Biomedical Knowledge Discovery with Grakn",
-                description: "Systems biology produces a tremendous amount of heterogeneous data which present challenges in their integration due to their complex nature and rich semantics. However, analysing large volumes of biological data through traditional database systems is troublesome and challenging.\n\nWith Grakn, working with biological data becomes much easier to accelerate the knowledge discovery process.",
+                title: "Discover Early Diagnoses and Relevant Therapeutic Regimes",
+                description: "One of the biggest challenges in our current state of medicine is to provide relevant, personalised and precise diagnoses and treatments. Rather than treating all patients the same, the opportunity is to fully take into account a person’s demographics and genetic profile while treating them.\n\nWith Grakn, the promise of Precision Medicine gets much closer, faster, easier. ",
                 action: {
-                    title: "Download White Paper",
-                    form: {
-                        title: "Download BioGrakn White Paper",
-                        downloadPath: "src/pages/landingpages/downloads/Grakn-Intro-in-Biotech.pdf"
-                    }
+                    // title: "Download White Paper",
+                    // form: {
+                    //     title: "Download BioGrakn White Paper",
+                    //     downloadPath: "src/pages/landingpages/LifeSciences/downloads/Grakn-Intro-in-Biotech.pdf"
+                    // }
                 },
-                videoUrl: "https://www.youtube.com/embed/videoseries?list=PLtEF8_xCPklYpxH6d_AIlVqhboWO-o3y9"
+                videoUrl: "https://www.youtube.com/embed/videoseries?list=PLtEF8_xCPklbAvt0CGEYPH2F9tCgdfr7V"
             },
             sneakPeek: {
-                title: "Discover and Explain New Connections in Complex Networks of Data",
-                url: "src/pages/landingpages/LifeSciences/images/sneak-peek.png"
+                title: "Building a Precision Medicine Knowledge Graph is Easy",
+                url: "src/pages/landingpages/PrecisionMedicine/images/sneak-peek.png"
             },
             propositions: [
                 {
-                    title: "Grakn Makes it Easy to work with Biomedical Data",
+                    title: "Grakn Makes it Easy",
                     items: [
                         {
                             title: "Fast Ingestion and \nIntegration of Data",
                             // icon: "I'm the icon for proposition A",
-                            description: "Grakn works with any type of data, wherever it comes from. Grakn's expressive query language enables you to create your own semantically rich knowledge graphs by ingesting and integrating extremely heterogeneous biomedical data sets in an intuitive and flexible way."
+                            description: "Grakn works with any type of data, wherever it comes from. Grakn's expressive query language enables you to create your own semantically rich knowledge graphs by ingesting and integrating extremely heterogeneous patient profiles and biomedical data sets in an intuitive and flexible way."
                         },
                         {
-                            title: "Contexualise Newly \nGenerated Insights",
+                            title: "Contexualise Relations within your data",
                             // icon: "I'm the icon for proposition A",
-                            description: "With Grakn, your development moves magnitudes faster because it enables you to iteratively and quickly contextualise newly generated insights in order to understand how it interacts and connects with all your data sources. Grakn becomes your unified representation of knowledge."
+                            description: "With Grakn, your development moves magnitudes faster because it enables you to iteratively and quickly contextualise newly generated insights in order to understand how it interacts and connects with all your data sources. Grakn becomes your unified representation of contextualised knowledge."
                         },
                         {
-                            title: "Explain New Connections \nin Complex Networks",
+                            title: "Discover and Explain New Connections \nin Complex Networks",
                             // icon: "I'm the icon for proposition A",
-                            description: "Grakn discovers new connections and uncovers hidden insights within your data through its in-built automated deductive reasoning engine. Rather than being a black box, Grakn gives you full explainability of every single insight and the internal mechanics in human understandable terms."
+                            description: "Grakn discovers new connections and uncovers hidden insights within your data through its in-built automated deductive reasoning engine. Rather than being a black box, Grakn gives you full explainability of every single insight such as early diagnoses or relevant therapeutic regimes."
                         }
                     ]
                 },
@@ -141,7 +141,7 @@ class LifeSciencesLandingPage extends React.Component {
         };
 
         return (
-            <TrackedPage pageTitle="Life Sciences">
+            <TrackedPage pageTitle="Precision Medicine">
                <LandingPage data={factoryData} LeadCaptureForm={LeadCaptureForm} hubspotFormId="a1fc9340-6621-46e0-b0d0-1d5349eb1bbf" />
             </TrackedPage>
         )
@@ -151,4 +151,4 @@ class LifeSciencesLandingPage extends React.Component {
 const mapStateToProps = (state) => ({});
 const mapDispatchToProps = (dispatch) => ({});
 
-export default connect(mapStateToProps, mapDispatchToProps)(LifeSciencesLandingPage);
+export default connect(mapStateToProps, mapDispatchToProps)(PrecisionMedicineLandingPage);
