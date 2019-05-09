@@ -16,7 +16,7 @@ router.post(
     (req, res) => {
         console.log(`email/enterprise call from ${req.get('host')} - payload`, JSON.stringify(req.body));
 
-        const { emailTitle, email, firstname, lastname, company, job, product, stage_of_development, aois, tell_us_a_little_bit_more_about_how_we_can_help_you } = req.body;
+        const { emailTitle, email, firstname, lastname, company, job, job_function, product, stage_of_development, aois, tell_us_a_little_bit_more_about_how_we_can_help_you } = req.body;
 
         const mailOptions = {
             from: 'postmaster@mail.grakn.ai',
@@ -29,7 +29,7 @@ router.post(
              <h3> ${emailTitle} </h3>
              <div>Name: ${firstname || ""} ${lastname || ""}</div>
              <div>Company: ${company || ""}</div>
-             <div>Position: ${job || ""}</div>
+             <div>Position: ${job || job_function || ""}</div>
              <div>Email: ${email}</div>
              <div>Product: ${product || ""}</div>
              <div>Stage of Development: ${stage_of_development || ""}</div>
