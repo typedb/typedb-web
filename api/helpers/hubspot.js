@@ -19,9 +19,10 @@ const getHsContactsCollection = async () => {
 
 const getContactProps = async (props, findBy) => {
     const key = process.env.HAPIKEY;
-    let params = `hapikey=${key}&&propertyMode=value_only&formSubmissionMode=none`
+    let params = `hapikey=${key}&propertyMode=value_only&formSubmissionMode=none`
 
     for (const prop of props) { params += "&property=" + prop; }
+    console.log("api - retrieving contact's props - props", props);
 
     try {
         // take 3 attempts (each attempt 3 seconds apart) to retrieve the contact
@@ -41,11 +42,12 @@ const getContactProps = async (props, findBy) => {
                         result[prop] = undefined;
                     }
                 }
+                console.log("api - retrieving contact's props - success", result);
                 return result;
             }
         }
     } catch (e) {
-        console.log(e.response.data);
+        console.log("api - retrieving contact's props - failure", e.response.data);
         return false;
     }
 
@@ -63,11 +65,14 @@ const setContactProps = async (propValues, findBy) => {
             "value": propValues[prop]
         });
     }
+    console.log("api - updating contact's props - payload", payload);
 
     try {
-        await axios.post(`https://api.hubapi.com/contacts/v1/contact/${findBy[0]}/${findBy[1]}/profile?${params}`, payload);
+        const response = await axios.post(`https://api.hubapi.com/contacts/v1/contact/${findBy[0]}/${findBy[1]}/profile?${params}`, payload);
+        console.log("api - updating contact's props - success", response.data);
     } catch (e) {
-        throw { status: e.response.statusText, message: e.response.statusText };
+        console.log("api - updating contact's props - failure", e.response.data);
+        throw { status: e.response.status, message: e.response.statusText };
     }
 };
 
@@ -148,7 +153,7 @@ const updateEngagement = async (trackPayload) => {
                 newProps = { "score": newScore };
                 newProps[`${platform}_activities`] = JSON.stringify(newActivities, null, 4);
             } else { // the contact is identified for the first time, default values must be those stored within the hs_contacts db
-                const contact = await hsContacts.findOne({ $or: [ { utk }, { vid } ] });
+                const contact = await hsContacts.findOne({ utk });
 
                 let currentScore, currentActivities;
                 if (contact) {
@@ -184,12 +189,13 @@ const updateEngagement = async (trackPayload) => {
 
             // deleting the contact from the hs_contacts (db) collection
             // we continue to track this contact using the hubspot API
+            console.log("db - deleting contact in db - identifier", utk || vid)
             await hsContacts.deleteOne({vid: engagementProps.vid});
 
             return { status: 200, message: "Contact's score has been updated." };
         } else { // contact does NOT exist on hubspot (i.e. anonymous)
             // const hsContacts = await getHsContactsCollection();
-            const contact = await hsContacts.findOne({ $or: [ { utk }, { vid } ] });
+            const contact = await hsContacts.findOne({ utk });
 
             let currentScore, currentActivities;
             if (contact) {
@@ -206,7 +212,7 @@ const updateEngagement = async (trackPayload) => {
             if (contact) { // update the existing contact in hs_contacts db
                 const updateBody = { utk, vid, score: newScore };
                 updateBody[`${platform}_activities`] = newActivities;
-                await hsContacts.updateOne({ $or: [ { utk }, { vid } ] }, { $set: updateBody });
+                await hsContacts.updateOne({ utk }, { $set: updateBody });
             } else { // insert the new contact in hs_contacts db
                 const insertBody = { utk, vid, score: newScore };
                 insertBody[`${platform}_activities`] = newActivities;
