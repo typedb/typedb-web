@@ -22,11 +22,11 @@ class PrecisionMedicineLandingPage extends React.Component {
                 title: "Discover Early Diagnoses and Relevant Therapeutic Regimes",
                 description: "One of the biggest challenges in our current state of medicine is to provide relevant, personalised and precise diagnoses and treatments. Rather than treating all patients the same, the opportunity is to fully take into account a person’s demographics and genetic profile while treating them.\n\nWith Grakn, the promise of Precision Medicine gets much closer, faster, easier. ",
                 action: {
-                    // title: "Download White Paper",
-                    // form: {
-                    //     title: "Download BioGrakn White Paper",
-                    //     downloadPath: "src/pages/landingpages/LifeSciences/downloads/Grakn-Intro-in-Biotech.pdf"
-                    // }
+                    title: "Download White Paper",
+                    form: {
+                        title: "Download Precision Medicine White Paper",
+                        downloadPath: "src/pages/landingpages/downloads/Precision-Medicine.pdf"
+                    }
                 },
                 videoUrl: "https://www.youtube.com/embed/videoseries?list=PLtEF8_xCPklbAvt0CGEYPH2F9tCgdfr7V"
             },
