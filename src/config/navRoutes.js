@@ -34,6 +34,8 @@ export const navRoutes = {
     type: 'multi',
     links: {
       'Life Sciences': '/lifesciences',
+      'Precicion Medicine': '/precisionmedicine',
+      'Text Mining': '/textmining',
     }
   },
   Developer: {
