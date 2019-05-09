@@ -7,6 +7,10 @@ import TrackedPage from "../../TrackedPage";
 class TextMiningLandingPage extends React.Component {
     render() {
         const factoryData = {
+            pageInfo: {
+                title: "Text Mining",
+                url: "https://grakn.ai/textmining",
+            },
             header: {
                 headline: "Text Mined Knowledge Graphs",
                 // subHeadline: "I'm sub-headline",

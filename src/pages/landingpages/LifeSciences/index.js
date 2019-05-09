@@ -7,6 +7,10 @@ import TrackedPage from "../../TrackedPage";
 class LifeSciencesLandingPage extends React.Component {
     render() {
         const factoryData = {
+            pageInfo: {
+                title: "Life Sciences",
+                url: "https://grakn.ai/lifesciences",
+            },
             header: {
                 headline: "Biomedical Knowledge Graphs",
                 // subHeadline: "I'm sub-headline",

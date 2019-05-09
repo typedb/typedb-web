@@ -70,6 +70,8 @@ class LeadCaptureForm extends Component {
         });
 
         const downloadedDocument = this.props.title.replace("Download ", "").replace("Download the ", "");
+        const pageTitle = this.props.pageInfo.title;
+        const pageUrl = this.props.pageInfo.url;
 
         api.track({
             "utk": Cookies.get('hubspotutk'),
@@ -77,7 +79,7 @@ class LeadCaptureForm extends Component {
             "action": "formSubmission",
             "subject": "download",
             "subjectSpecific": {
-                "pageTitle": "Life Sciences Landing Page"
+                "pageTitle": pageTitle
             }
         }).then(() => {
             Cookies.set(`known`, true);
@@ -100,8 +102,8 @@ class LeadCaptureForm extends Component {
             ref: {
                 targetFormId: this.props.hubspotId,
                 utk: Cookies.get('hubspotutk'),
-                pageUri: 'https://grakn.ai/lifesciences',
-                pageName: 'Life Sciences'
+                pageUri: pageUrl,
+                pageName: pageTitle
             },
             formFields: { ...formValues }
         })

@@ -68,6 +68,7 @@ class LandingPage extends React.Component {
 
     render() {
         const {
+            pageInfo,
             header,
             briefCopy,
             sneakPeek,
@@ -80,7 +81,14 @@ class LandingPage extends React.Component {
 
         return (
             <div className="o-landingpage">
-                <LeadCaptureForm isOpen={this.state.showLeadCaptureForm} onClose={() => this.hideLeadCaptureForm()} onSuccessfulSubmission={() => this.setVisitorKnown()} downloadPath={this.state.captureFormDownloadPath} title={this.state.captureFormTitle} hubspotId={this.props.hubspotFormId} />
+                <LeadCaptureForm
+                    isOpen={this.state.showLeadCaptureForm}
+                    onClose={() => this.hideLeadCaptureForm()}
+                    onSuccessfulSubmission={() => this.setVisitorKnown()}
+                    downloadPath={this.state.captureFormDownloadPath}
+                    title={this.state.captureFormTitle}
+                    hubspotId={this.props.hubspotFormId}
+                    pageInfo={pageInfo} />
 
                 {header && (
                     <div className="o-landingpage-header">
