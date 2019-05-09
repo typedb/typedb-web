@@ -22,11 +22,11 @@ class TextMiningLandingPage extends React.Component {
                 title: "Going Beyond Text Mining",
                 description: "Text is the medium used to store the tremendous wealth of scientific knowledge regarding the world we live in. However, with its ever increasing magnitude and throughput; analysing this unstructured data has become an impossibly tedious task. This has led to the rise of Text Mining and Natural Language Processing (NLP) techniques and tools as the go-to for examining and processing large amounts of natural text data.\n\nBut once we have some text mined output, what to we do then? Do these text mining techniques simply produce the insights we are trying to uncover?\n\nGrakn, addressed these questions in a simple and intuitive manner.",
                 action: {
-                    // title: "Download White Paper",
-                    // form: {
-                    //     title: "Download BioGrakn White Paper",
-                    //     downloadPath: "src/pages/landingpages/LifeSciences/downloads/Grakn-Intro-in-Biotech.pdf"
-                    // }
+                    title: "Download White Paper",
+                    form: {
+                        title: "Download Text Mining White Paper",
+                        downloadPath: "src/pages/landingpages/downloads/Text-Mining.pdf"
+                    }
                 },
                 videoUrl: "https://www.youtube.com/embed/cG6KRSc_WBk"
             },
