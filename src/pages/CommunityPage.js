@@ -131,9 +131,9 @@ class CommunityPage extends Component {
               <div className="community__splash__form">
                 <span className="community__splash__form__header">Subscribe to our newsletter</span>
                 <span className="community__splash__form__tag">Stay updated with our community news and development releases!</span>
-                <input type="text" placeholder="Email" value={this.state.email} onChange={(e) => this.handleChange('email', e.target.value)} />
-                <input type="text" placeholder="First Name" value={this.state.name} onChange={(e) => this.handleChange('name', e.target.value)} />
-                <input type="text" placeholder="Last Name" value={this.state.surname} onChange={(e) => this.handleChange('surname', e.target.value)} />
+                <input type="text" name="email" placeholder="Email" value={this.state.email} onChange={(e) => this.handleChange('email', e.target.value)} />
+                <input type="text" name="firstname" placeholder="First Name" value={this.state.name} onChange={(e) => this.handleChange('name', e.target.value)} />
+                <input type="text" name="lastname" placeholder="Last Name" value={this.state.surname} onChange={(e) => this.handleChange('surname', e.target.value)} />
                 <button className={"button--" + (this.state.subscribed ? "green" : "red")} onClick={() => this.onSubmitNewsletter()}>{this.state.subscriptionButtonLabel}</button>
                 <span className="support-form__consent">By submitting your personal data, you consent to emails from Grakn. See our <Link to="/privacy-policy" className="animated__link animated__link--purple">Privacy Policy</Link></span>
               </div>
