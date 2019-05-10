@@ -95,7 +95,7 @@ class LeadCaptureForm extends Component {
 
         api.sendSupport({
             ...formValues,
-            emailTitle: "New Newsletter Signup!"
+            emailTitle: pageTitle + " Form Submission"
         });
 
         api.sendHubspot({

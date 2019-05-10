@@ -16,7 +16,21 @@ router.post(
     (req, res) => {
         console.log(`email/enterprise call from ${req.get('host')} - payload`, JSON.stringify(req.body));
 
-        const { emailTitle, email, firstname, lastname, company, job, job_function, product, stage_of_development, aois, tell_us_a_little_bit_more_about_how_we_can_help_you } = req.body;
+        const { emailTitle, email, firstname, lastname, company, job, job_function, jobtitle, product, stage_of_development, aois, tell_us_a_little_bit_more_about_how_we_can_help_you } = req.body;
+
+        const emailBody = `
+        <h3> ${emailTitle} </h3>
+        <div>Name: ${firstname || ""} ${lastname || ""}</div>
+        ${company ? "<div>Company:" + company + "</div>" : ""}
+        ${job || job_function || jobtitle ? "<div>Position:" + job || job_function || jobtitle + "</div>" : ""}
+        <div>Email: ${email}</div>
+        ${product ? "<div>Product: " + product + "</div>" : ""}
+        ${stage_of_development ? "<div>Stage of Development:" + stage_of_development + "/div>" : ""}
+        ${aois ? "<div>Areas of Interest: " + aois + "</div>" : ""}
+        ${tell_us_a_little_bit_more_about_how_we_can_help_you ? "<div>Additional: " + tell_us_a_little_bit_more_about_how_we_can_help_you + "</div>" : ""}
+        `
+
+        console.log(emailBody);
 
         const mailOptions = {
             from: 'postmaster@mail.grakn.ai',
@@ -24,18 +38,7 @@ router.post(
             subject: emailTitle,
             replyTo: email,
             text: JSON.stringify(req.body),
-            html:
-            `
-             <h3> ${emailTitle} </h3>
-             <div>Name: ${firstname || ""} ${lastname || ""}</div>
-             <div>Company: ${company || ""}</div>
-             <div>Position: ${job || job_function || ""}</div>
-             <div>Email: ${email}</div>
-             <div>Product: ${product || ""}</div>
-             <div>Stage of Development: ${stage_of_development || ""}</div>
-             <div>Areas of Interest: ${aois || ""}</div>
-             <div>Additional: ${tell_us_a_little_bit_more_about_how_we_can_help_you || ""}</div>
-            `
+            html: emailBody
         };
 
         const transporter = nodemailer.createTransport({

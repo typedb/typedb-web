@@ -22,7 +22,7 @@ const email = (value) => {
   }
 };
 
-class SupportForm extends Component {
+class ContactForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -217,4 +217,4 @@ class SupportForm extends Component {
   }
 }
 
-export default connect(null)(SupportForm);
+export default connect(null)(ContactForm);

@@ -9,15 +9,27 @@ import PagingComponent from 'components/PagingComponent';
 const graknRoutes = require('config/graknRoutes');
 import { sortBy } from 'lodash';
 import ReactGA from 'react-ga';
+import api from 'api';
+import Cookies from 'js-cookie';
+import validator from 'validator';
+
 
 const moment = require('moment');
+
+const email = (value) => {
+  if (!validator.isEmail(value)) {
+    return <span className="support-form__error">{value} is not a valid email.</span>;
+  }
+};
 class CommunityPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
       name: '',
       surname: '',
-      email: ''
+      email: '',
+      subscriptionButtonLabel: 'Subscribe',
+      subscribed: false
     }
     this.handleChange = this.handleChange.bind(this);
   }
@@ -25,12 +37,84 @@ class CommunityPage extends Component {
   componentDidMount() {
     this.props.onGetEvents();
     this.props.onGetMeetups();
+    console.log(this.props);
   }
 
   handleChange(key, val) {
     this.setState({
-      [key]: val
+      [key]: val,
+      subscriptionButtonLabel: "Subscribe",
     });
+  }
+
+  onSubmitNewsletter() {
+    console.log(this.state);
+  }
+
+  onSubmitNewsletter() {
+    const formValues = this.state;
+
+    if (!validator.isEmail(formValues.email)) {
+      this.setState({
+        subscriptionButtonLabel: "Email is invalid!",
+        subscribed: false,
+      });
+      return false;
+    }
+
+    if (!formValues.name.toString().trim().length || !formValues.surname.toString().trim().length) {
+      this.setState({
+        subscriptionButtonLabel: "First Name & Last Name are required!",
+        subscribed: false,
+      });
+      return false;
+    }
+
+    api.sendHubspot({
+      ref: {
+        targetFormId: "0e3ea363-5f45-44fe-b291-be815a1ca4fc",
+        utk: Cookies.get('hubspotutk'),
+        pageUri: 'https://grakn.ai/community',
+        pageName: 'Community'
+      },
+      formFields: { ...formValues }
+    }).then(() => {
+      api.track({
+        "utk": Cookies.get('hubspotutk'),
+        "platform": "website",
+        "action": "formSubmission",
+        "subject": "newsletter",
+        "subjectSpecific": {
+          "pageTitle": "Community"
+        }
+      }).then(() => { Cookies.set(`known`, true); });
+    });
+
+    api.signupNewsletter({
+      email: formValues.email,
+      firstname: formValues.firstname,
+      lastname: formValues.lastname
+    });
+
+    api.sendSupport({
+      emailTitle: "New Newsletter Signup!",
+      ...formValues
+    });
+
+
+    this.clearForm();
+    this.setState({
+      subscriptionButtonLabel: "Subscription was successful",
+      subscribed: true,
+    })
+  }
+
+  clearForm() {
+    this.setState({
+      name: "",
+      surname: "",
+      email: ""
+    })
   }
 
   render() {
@@ -50,7 +134,7 @@ class CommunityPage extends Component {
                 <input type="text" placeholder="Email" value={this.state.email} onChange={(e) => this.handleChange('email', e.target.value)} />
                 <input type="text" placeholder="First Name" value={this.state.name} onChange={(e) => this.handleChange('name', e.target.value)} />
                 <input type="text" placeholder="Last Name" value={this.state.surname} onChange={(e) => this.handleChange('surname', e.target.value)} />
-                <button className="button--red" onClick={() => this.props.onSubmitNewsletter(this.state)}>Subscribe</button>
+                <button className={"button--" + (this.state.subscribed ? "green" : "red")} onClick={() => this.onSubmitNewsletter()}>{this.state.subscriptionButtonLabel}</button>
                 <span className="support-form__consent">By submitting your personal data, you consent to emails from Grakn. See our <Link to="/privacy-policy" className="animated__link animated__link--purple">Privacy Policy</Link></span>
               </div>
             </div>

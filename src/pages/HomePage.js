@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import Visualiser from 'components/Visualiser';
 import PagingComponent from 'components/PagingComponent';
-import SupportFormModal from 'components/SupportFormModal';
+import ContactFormModal from 'components/ContactFormModal';
 import Testimonials from 'components/Testimonials';
 import graknRoutes from 'config/graknRoutes';
 import KGMSFeatures from 'components/KGMSFeatures';
@@ -347,7 +347,7 @@ class HomePage extends Component {
               <CompanyLogos />
             */
           }
-          <SupportFormModal pageTitle="Home" pageUri="https://grakn.ai" isOpen={this.state.supportModal} onClose={this.switchSupportModal} />
+          <ContactFormModal pageTitle="Home" pageUri="https://grakn.ai" isOpen={this.state.supportModal} onClose={this.switchSupportModal} />
           <section className="home__world">
             <div className="home__world__container container section__container">
               <span className="home__world__headline">THE WORLD NEEDS TO <strong>GRAKN</strong></span>

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Testimonials from 'components/Testimonials';
-import SupportFormModal from 'components/SupportFormModal';
+import ContactFormModal from 'components/ContactFormModal';
 
 class UseCase extends Component {
   constructor(props) {
@@ -40,7 +40,7 @@ class UseCase extends Component {
           </div>
         </section>
         <Testimonials buttonCallback={this.switchSupportModal} />
-        <SupportFormModal isOpen={this.state.supportModal} onClose={this.switchSupportModal}/>
+        <ContactFormModal isOpen={this.state.supportModal} onClose={this.switchSupportModal}/>
       </div>
     )
   }

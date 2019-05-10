@@ -1,6 +1,6 @@
 import React from 'react';
 import Modal from 'react-modal';
-import HubspotForm from 'components/HubspotForm';
+import NewsletterForm from 'components/NewsletterForm';
 
 const DownloadSuccessModal = ({isOpen, onClose}) => (
   <Modal
@@ -15,7 +15,7 @@ const DownloadSuccessModal = ({isOpen, onClose}) => (
       <span className="ReactModal__Content__splash__text">Your download will begin shortly.</span>
     </div>
     </section>
-    <HubspotForm onSubmit={onClose}/>
+    <NewsletterForm onSubmit={onClose}/>
   </Modal>
 );
 

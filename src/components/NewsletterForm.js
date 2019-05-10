@@ -6,7 +6,6 @@ import Form from 'components/FormValidationComponents/components/form';
 import Input from 'components/FormValidationComponents/components/input';
 import Select from 'components/FormValidationComponents/components/select';
 import Button from 'components/FormValidationComponents/components/button';
-import { sendHubspot, sendSupport } from 'actions/support';
 import api from 'api';
 import Cookies from 'js-cookie';
 
@@ -22,7 +21,7 @@ const email = (value) => {
   }
 };
 
-class HubspotForm extends Component {
+class NewsletterForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -404,4 +403,4 @@ class HubspotForm extends Component {
 
 const mapDispatchToProps = (dispatch) => ({});
 
-export default connect(null, mapDispatchToProps)(HubspotForm);
+export default connect(null, mapDispatchToProps)(NewsletterForm);

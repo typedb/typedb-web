@@ -3,7 +3,7 @@ import TrackedPage from './TrackedPage';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import KGMSFeatures from 'components/KGMSFeatures';
-import SupportForm from 'components/SupportForm';
+import ContactForm from 'components/ContactForm';
 import ReactGA from 'react-ga';
 
 const zenscroll = require('zenscroll');
@@ -141,7 +141,7 @@ class DeploymentPage extends Component {
             <div className="support-form__section__container container section__container">
               <span className="support-form__section__header support-form__section__header--with-tag">Get Grakn KGMS for the cloud or on-premise</span>
               <span className="support-form__section__tag">Get in touch with our team and we'll help you get everything set up.</span>
-              <SupportForm pageTitle="Deployment" pageUri="https://grakn.ai/deployment"/>
+              <ContactForm pageTitle="Deployment" pageUri="https://grakn.ai/deployment"/>
             </div>
           </section>
         </div>

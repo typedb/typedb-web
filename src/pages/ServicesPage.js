@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import TrackedPage from './TrackedPage';
 import { Link } from 'react-router-dom';
 import Testimonials from 'components/Testimonials';
-import SupportForm from 'components/SupportForm';
+import ContactForm from 'components/ContactForm';
 import CompanyLogos from 'components/CompanyLogos';
 
 const zenscroll = require('zenscroll');
@@ -220,7 +220,7 @@ class ServicesPage extends Component {
         <section className="support-form__section" ref={(elem) => this.supportform = elem}>
           <div className="support-form__section__container container section__container">
             <span className="support-form__section__header">Get in touch with our team!</span>
-            <SupportForm pageTitle="Services"  pageUri="https://grakn.ai/services" />
+            <ContactForm pageTitle="Services"  pageUri="https://grakn.ai/services" />
           </div>
         </section>
       </div>

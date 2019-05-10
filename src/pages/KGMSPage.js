@@ -3,7 +3,7 @@ import TrackedPage from './TrackedPage';
 import classNames from 'classnames';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import SupportFormModal from 'components/SupportFormModal';
+import ContactFormModal from 'components/ContactFormModal';
 import ReactGA from 'react-ga';
 
 class KGMSPage extends Component {
@@ -154,7 +154,7 @@ class KGMSPage extends Component {
               </div>
             </div>
           </section>
-          <SupportFormModal pageTitle="KGMS" pageUri="https://grakn.ai/grakn-kgms" isOpen={this.state.supportModal} onClose={this.switchSupportModal} />
+          <ContactFormModal pageTitle="KGMS" pageUri="https://grakn.ai/grakn-kgms" isOpen={this.state.supportModal} onClose={this.switchSupportModal} />
         </div>
       </TrackedPage>
     );

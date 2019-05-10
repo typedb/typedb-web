@@ -3,7 +3,7 @@ import TrackedPage from './TrackedPage';
 import { Link } from 'react-router-dom';
 import { keys } from 'lodash';
 import { connect } from 'react-redux';
-import SupportForm from 'components/SupportForm';
+import ContactForm from 'components/ContactForm';
 const zenscroll = require('zenscroll');
 const graknRoutes = require('config/graknRoutes');
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
@@ -418,7 +418,7 @@ class DownloadCentrePage extends Component {
             <div className="support-form__section__container container section__container">
               <span className="support-form__section__header support-form__section__header--with-tag">Get your Grakn!</span>
               <span className="support-form__section__tag">Get your Grakn commercial license and we’ll help you quickly get up to speed.</span>
-              <SupportForm pageTitle="Download Center" pageUri="https://grakn.ai/download" />
+              <ContactForm pageTitle="Download Center" pageUri="https://grakn.ai/download" />
             </div>
           </section>
           <DownloadSuccessModal isOpen={this.state.downloadModal} onClose={() => this.switchModal()} />

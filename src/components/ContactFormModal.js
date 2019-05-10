@@ -1,8 +1,8 @@
 import React from 'react';
 import Modal from 'react-modal';
-import SupportForm from 'components/SupportForm';
+import ContactForm from 'components/ContactForm';
 
-const SupportFormModal = ({pageTitle, pageUri, isOpen, onClose}) => (
+const ContactFormModal = ({pageTitle, pageUri, isOpen, onClose}) => (
   <Modal
     isOpen={isOpen}
     shouldCloseOnOverlayClick={true}
@@ -10,8 +10,8 @@ const SupportFormModal = ({pageTitle, pageUri, isOpen, onClose}) => (
     ariaHideApp={false}
   >
     <i className="fa fa-times ReactModal__Closebtn" onClick={() => onClose()}/>
-    <SupportForm pageTitle={pageTitle} pageUri={pageUri} onSuccess={onClose} />
+    <ContactForm pageTitle={pageTitle} pageUri={pageUri} onSuccess={onClose} />
   </Modal>
 );
 
-export default SupportFormModal;
+export default ContactFormModal;
