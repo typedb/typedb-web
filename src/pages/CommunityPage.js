@@ -1,17 +1,19 @@
 import React, { Component } from 'react';
-import TrackedPage from './TrackedPage';
+
+import Cookies from 'js-cookie';
 import { Link } from 'react-router-dom';
+import PagingComponent from 'components/PagingComponent';
+import ReactGA from 'react-ga';
+import TrackedPage from './TrackedPage';
+import api from 'api';
 import { connect } from 'react-redux';
-import { newsletter } from 'actions/invitations';
 import { fetchEvents } from 'actions/events';
 import { fetchMeetups } from 'actions/meetups';
-import PagingComponent from 'components/PagingComponent';
-const graknRoutes = require('config/graknRoutes');
+import { newsletter } from 'actions/invitations';
 import { sortBy } from 'lodash';
-import ReactGA from 'react-ga';
-import api from 'api';
-import Cookies from 'js-cookie';
 import validator from 'validator';
+
+const graknRoutes = require('config/graknRoutes');
 
 
 const moment = require('moment');
@@ -25,8 +27,8 @@ class CommunityPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: '',
-      surname: '',
+      firstname: '',
+      lastname: '',
       email: '',
       subscriptionButtonLabel: 'Subscribe',
       subscribed: false
@@ -44,11 +46,8 @@ class CommunityPage extends Component {
     this.setState({
       [key]: val,
       subscriptionButtonLabel: "Subscribe",
+      subscribed: false,
     });
-  }
-
-  onSubmitNewsletter() {
-    console.log(this.state);
   }
 
   onSubmitNewsletter() {
@@ -62,7 +61,7 @@ class CommunityPage extends Component {
       return false;
     }
 
-    if (!formValues.name.toString().trim().length || !formValues.surname.toString().trim().length) {
+    if (!formValues.firstname.toString().trim().length || !formValues.lastname.toString().trim().length) {
       this.setState({
         subscriptionButtonLabel: "First Name & Last Name are required!",
         subscribed: false,
@@ -111,8 +110,8 @@ class CommunityPage extends Component {
 
   clearForm() {
     this.setState({
-      name: "",
-      surname: "",
+      firstname: "",
+      lastname: "",
       email: ""
     })
   }
@@ -132,8 +131,8 @@ class CommunityPage extends Component {
                 <span className="community__splash__form__header">Subscribe to our newsletter</span>
                 <span className="community__splash__form__tag">Stay updated with our community news and development releases!</span>
                 <input type="text" name="email" placeholder="Email" value={this.state.email} onChange={(e) => this.handleChange('email', e.target.value)} />
-                <input type="text" name="firstname" placeholder="First Name" value={this.state.name} onChange={(e) => this.handleChange('name', e.target.value)} />
-                <input type="text" name="lastname" placeholder="Last Name" value={this.state.surname} onChange={(e) => this.handleChange('surname', e.target.value)} />
+                <input type="text" name="firstname" placeholder="First Name" value={this.state.firstname} onChange={(e) => this.handleChange('firstname', e.target.value)} />
+                <input type="text" name="lastname" placeholder="Last Name" value={this.state.lastname} onChange={(e) => this.handleChange('lastname', e.target.value)} />
                 <button className={"button--" + (this.state.subscribed ? "green" : "red")} onClick={() => this.onSubmitNewsletter()}>{this.state.subscriptionButtonLabel}</button>
                 <span className="support-form__consent">By submitting your personal data, you consent to emails from Grakn. See our <Link to="/privacy-policy" className="animated__link animated__link--purple">Privacy Policy</Link></span>
               </div>

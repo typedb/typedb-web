@@ -1,7 +1,7 @@
-import express from 'express';
-import validate from 'express-validation';
 import Joi from 'joi';
+import express from 'express';
 import nodemailer from 'nodemailer';
+import validate from 'express-validation';
 
 const router = express.Router();
 
@@ -20,7 +20,7 @@ router.post(
 
         const emailBody = `
         <h3> ${emailTitle} </h3>
-        <div>Name: ${firstname || ""} ${lastname || ""}</div>
+        <div>Name: ${firstname} ${lastname}</div>
         ${company ? "<div>Company:" + company + "</div>" : ""}
         ${job || job_function || jobtitle ? "<div>Position:" + job || job_function || jobtitle + "</div>" : ""}
         <div>Email: ${email}</div>
@@ -29,8 +29,6 @@ router.post(
         ${aois ? "<div>Areas of Interest: " + aois + "</div>" : ""}
         ${tell_us_a_little_bit_more_about_how_we_can_help_you ? "<div>Additional: " + tell_us_a_little_bit_more_about_how_we_can_help_you + "</div>" : ""}
         `
-
-        console.log(emailBody);
 
         const mailOptions = {
             from: 'postmaster@mail.grakn.ai',
