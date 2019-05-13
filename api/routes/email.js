@@ -22,10 +22,10 @@ router.post(
         <h3> ${emailTitle} </h3>
         <div>Name: ${firstname} ${lastname}</div>
         ${company ? "<div>Company:" + company + "</div>" : ""}
-        ${job || job_function || jobtitle ? "<div>Position:" + job || job_function || jobtitle + "</div>" : ""}
+        ${job || job_function || jobtitle ? "<div>Position: " + job || job_function || jobtitle + "</div>" : ""}
         <div>Email: ${email}</div>
         ${product ? "<div>Product: " + product + "</div>" : ""}
-        ${stage_of_development ? "<div>Stage of Development:" + stage_of_development + "/div>" : ""}
+        ${stage_of_development ? "<div>Stage of Development: " + stage_of_development + "</div>" : ""}
         ${aois ? "<div>Areas of Interest: " + aois + "</div>" : ""}
         ${tell_us_a_little_bit_more_about_how_we_can_help_you ? "<div>Additional: " + tell_us_a_little_bit_more_about_how_we_can_help_you + "</div>" : ""}
         `
