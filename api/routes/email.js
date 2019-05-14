@@ -18,11 +18,20 @@ router.post(
 
         const { emailTitle, email, firstname, lastname, company, job, job_function, jobtitle, product, stage_of_development, aois, tell_us_a_little_bit_more_about_how_we_can_help_you } = req.body;
 
+        // FIXME: make input names consistent (requires clean up on Hubspot)
+        const positions = [job, job_function, jobtitle];
+        const definedPositions = positions.filter(position => position !== undefined);
+
+        let position;
+        if (definedPositions.length) {
+            position = definedPositions[0];
+        }
+
         const emailBody = `
         <h3> ${emailTitle} </h3>
         <div>Name: ${firstname} ${lastname}</div>
-        ${company ? "<div>Company:" + company + "</div>" : ""}
-        ${job || job_function || jobtitle ? "<div>Position: " + job || job_function || jobtitle + "</div>" : ""}
+        ${company ? "<div>Company: " + company + "</div>" : ""}
+        ${position ? "<div>Position: " + position + "</div>" : ""}
         <div>Email: ${email}</div>
         ${product ? "<div>Product: " + product + "</div>" : ""}
         ${stage_of_development ? "<div>Stage of Development: " + stage_of_development + "</div>" : ""}
