@@ -62,6 +62,12 @@ class DownloadCentrePage extends Component {
     }, 3000);
   }
 
+  closeModal() {
+    this.setState({
+      downloadModal: !this.state.downloadModal,
+    });
+  }
+
   componentDidMount() {
     let OSName = "";
     const params = qs.parse(this.props.location.search.split("?")[1]);
@@ -421,7 +427,7 @@ class DownloadCentrePage extends Component {
               <ContactForm pageTitle="Download Center" pageUri="https://grakn.ai/download" />
             </div>
           </section>
-          <DownloadSuccessModal isOpen={this.state.downloadModal} onClose={() => this.switchModal()} />
+          <DownloadSuccessModal isOpen={this.state.downloadModal} onSuccess={() => this.switchModal()} onClose={() => this.closeModal()} />
         </div>
       </TrackedPage>
     )

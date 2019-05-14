@@ -2,7 +2,7 @@ import React from 'react';
 import Modal from 'react-modal';
 import NewsletterForm from 'components/NewsletterForm';
 
-const DownloadSuccessModal = ({isOpen, onClose}) => (
+const DownloadSuccessModal = ({isOpen, onClose, onSuccess}) => (
   <Modal
     isOpen={isOpen}
     shouldCloseOnOverlayClick={true}
@@ -15,7 +15,7 @@ const DownloadSuccessModal = ({isOpen, onClose}) => (
       <span className="ReactModal__Content__splash__text">Your download will begin shortly.</span>
     </div>
     </section>
-    <NewsletterForm onSubmit={onClose}/>
+    <NewsletterForm onSubmit={onSuccess}/>
   </Modal>
 );
 
