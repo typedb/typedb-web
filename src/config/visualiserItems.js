@@ -261,13 +261,13 @@ Rules: { code:`
 define
 
 transitive-location sub rule,
-  when {
-    (located: $x, locating: $y);
-    (located: $y, locating: $z);
-  },
-  then {
-    (located: $x, locating: $z);
-  }
+when {
+  (located: $x, locating: $y);
+  (located: $y, locating: $z);
+},
+then {
+  (located: $x, locating: $z);
+}
 
 commit `,
 graph: {
@@ -329,9 +329,9 @@ Inference: { code: `
 # Reasoning OLTP
 
 match
-  $a isa person;
-  $b isa country, has name "UK";
-  ($a, $b) isa location;
+$a isa person;
+$b isa country, has name "UK";
+($a, $b) isa location;
 get $a;
 
 ## results>>
