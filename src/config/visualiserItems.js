@@ -267,7 +267,7 @@ when {
 },
 then {
   (located: $x, locating: $z);
-}
+};
 
 commit `,
 graph: {
@@ -439,16 +439,8 @@ compute cluster in movie, cast, person;
 
 ## results>>
 
-"Titanic": {
-  "Titanic",
-  "Kate",
-  "Leonardo"
-}
-"Al Pacino": {
-  "Al Pacino",
-  "Godfather",
-  "Scarface"
-}`,
+{"Titanic", "Kate", "Leonardo"}
+{"Al Pacino", "Godfather", "Scarface"}`,
 graph: {
 	nodes: [
 			{
