@@ -136,8 +136,8 @@ class TextMiningLandingPage extends React.Component {
                     {
                         title: "Download White Paper",
                         form: {
-                            title: "Download BioGrakn White Paper",
-                            downloadPath: "src/pages/landingpages/downloads/Grakn-Intro-in-Biotech.pdf"
+                            title: "Download Text Mining White Paper",
+                            downloadPath: "src/pages/landingpages/downloads/Text-Mining.pdf"
                         }
                     }
                 ]

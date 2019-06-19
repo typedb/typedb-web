@@ -136,8 +136,8 @@ class PrecisionMedicineLandingPage extends React.Component {
                     {
                         title: "Download White Paper",
                         form: {
-                            title: "Download BioGrakn White Paper",
-                            downloadPath: "src/pages/landingpages/downloads/Grakn-Intro-in-Biotech.pdf"
+                            title: "Download Precision Medicine White Paper",
+                            downloadPath: "src/pages/landingpages/downloads/Precision-Medicine.pdf"
                         }
                     }
                 ]
