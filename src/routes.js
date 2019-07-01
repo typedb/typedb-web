@@ -11,6 +11,7 @@ import KGMSPage from 'pages/KGMSPage';
 import LifeSciencesLandingPage from 'pages/landingpages/LifeSciences';
 import PrecisionMedicineLandingPage from 'pages/landingpages/PrecisionMedicine';
 import TextMiningLandingPage from 'pages/landingpages/TextMining';
+import DrugDiscoveryLandingPage from 'pages/landingpages/DrugDiscovery';
 import NoPage from 'pages/NoPage';
 import ComingSoon from 'pages/ComingSoon';
 import {FinanceUseCasePage, HealthUseCasePage, SemanticUseCasePage, BotsUseCasePage, SecurityUseCasePage} from 'pages/UseCasePages';
@@ -88,6 +89,11 @@ export default [
             {
                 path: '/textmining',
                 component: TextMiningLandingPage,
+                exact: true
+            },
+            {
+                path: '/drugdiscovery',
+                component: DrugDiscoveryLandingPage,
                 exact: true
             },
             {

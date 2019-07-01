@@ -36,6 +36,7 @@ export const navRoutes = {
       'Life Sciences': '/lifesciences',
       'Precision Medicine': '/precisionmedicine',
       'Text Mining': '/textmining',
+      'Drug Discovery': '/drugdiscovery',
     }
   },
   Developer: {
