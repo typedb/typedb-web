@@ -32,7 +32,7 @@ class LifeSciencesLandingPage extends React.Component {
                         downloadPath: "src/pages/landingpages/downloads/Drug-Discovery.pdf"
                     }
                 },
-                // videoUrl: "https://www.youtube.com/embed/videoseries?list=PLtEF8_xCPklYpxH6d_AIlVqhboWO-o3y9"
+                videoUrl: "https://www.youtube.com/embed/videoseries?list=PLtEF8_xCPklaVh4tUL2zcO06tfEkbFNPs"
             },
             sneakPeek: {
                 title: "Building a Drug Discovery Knowledge Graph is Easy",
