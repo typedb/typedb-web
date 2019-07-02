@@ -9,7 +9,7 @@ class LifeSciencesLandingPage extends React.Component {
         const factoryData = {
             pageInfo: {
                 title: "Drug Discovery",
-                url: "https://grakn.ai/drugdiscovery",
+                url: "https://grakn.ai/drug-discovery",
             },
             header: {
                 headline: "Drug Discovery Knowledge Graphs",
@@ -24,7 +24,7 @@ class LifeSciencesLandingPage extends React.Component {
             },
             briefCopy: {
                 title: "Accelerating Drug Discovery with Grakn",
-                description: "Combinatorial chemistry has produced a huge amount of chemical libraries and data banks which include prospective drugs. Despite all of this progress, the fundamental problem still remains: how do we take advantage of this data to identify the prospective nature of a compound as a vital drug? Traditional methodologies fail to provide a solution to this.\n\nGrakn, however, provide the framework which can make drug discovery much more efficient, effective and approachable. This radical advancement in technology can model biological knowledge complexity as it is found at its core. With concepts such as hyper relationships, type hierarchies, automated reasoning and analytics we can finally model, represent, and query biological knowledge at an unprecedented scale.",
+                description: "Combinatorial chemistry has produced a huge amount of chemical libraries and data banks which include prospective drugs. Despite all of this progress, the fundamental problem still remains: how do we take advantage of this data to identify the prospective nature of a compound as a vital drug?\n\nGrakn, however, provides the framework which can make drug discovery much more efficient, effective and approachable. With concepts such as hyper relationships, type hierarchies, automated reasoning and analytics we can finally model, represent, and query biological knowledge at an unprecedented scale.",
                 action: {
                     title: "Download White Paper",
                     form: {
@@ -40,7 +40,7 @@ class LifeSciencesLandingPage extends React.Component {
             },
             propositions: [
                 {
-                    title: "Grakn Makes it Easy",
+                    title: "Grakn Makes it Easy to work with Biomedical Data",
                     items: [
                         {
                             title: "Fast Ingestion and \nIntegration of Data",

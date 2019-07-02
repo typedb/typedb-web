@@ -9,7 +9,7 @@ class PrecisionMedicineLandingPage extends React.Component {
         const factoryData = {
             pageInfo: {
                 title: "Precision Medicine",
-                url: "https://grakn.ai/precisionmedicine",
+                url: "https://grakn.ai/precision-medicine",
             },
             header: {
                 headline: "Precision Medicine Knowledge Graphs",
@@ -40,7 +40,7 @@ class PrecisionMedicineLandingPage extends React.Component {
             },
             propositions: [
                 {
-                    title: "Grakn Makes it Easy",
+                    title: "Grakn Makes it Easy to work with Biomedical Data",
                     items: [
                         {
                             title: "Fast Ingestion and \nIntegration of Data",

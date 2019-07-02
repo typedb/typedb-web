@@ -9,7 +9,7 @@ class TextMiningLandingPage extends React.Component {
         const factoryData = {
             pageInfo: {
                 title: "Text Mining",
-                url: "https://grakn.ai/textmining",
+                url: "https://grakn.ai/text-mining",
             },
             header: {
                 headline: "Text Mined Knowledge Graphs",
@@ -24,7 +24,7 @@ class TextMiningLandingPage extends React.Component {
             },
             briefCopy: {
                 title: "Going Beyond Text Mining",
-                description: "Text is the medium used to store the tremendous wealth of scientific knowledge regarding the world we live in. However, with its ever increasing magnitude and throughput; analysing this unstructured data has become an impossibly tedious task. This has led to the rise of Text Mining and Natural Language Processing (NLP) techniques and tools as the go-to for examining and processing large amounts of natural text data.\n\nBut once we have some text mined output, what to we do then? Do these text mining techniques simply produce the insights we are trying to uncover?\n\nGrakn, addressed these questions in a simple and intuitive manner.",
+                description: "Text is the medium used to store the tremendous wealth of scientific knowledge regarding the world we live in. However, with its ever increasing magnitude and throughput; analysing this unstructured data has become an impossibly tedious task. This has led to the rise of Text Mining and Natural Language Processing techniques and tools as the go-to for examining and processing large amounts of natural text data.\n\nBut once we have some text mined output, what to we do then? Do these text mining techniques simply produce the insights we are trying to uncover?\n\nGrakn, addressed these questions in a simple and intuitive manner.",
                 action: {
                     title: "Download White Paper",
                     form: {

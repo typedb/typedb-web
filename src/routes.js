@@ -82,17 +82,17 @@ export default [
                 exact: true
             },
             {
-                path: '/precisionmedicine',
+                path: '/precision-medicine',
                 component: PrecisionMedicineLandingPage,
                 exact: true
             },
             {
-                path: '/textmining',
+                path: '/text-mining',
                 component: TextMiningLandingPage,
                 exact: true
             },
             {
-                path: '/drugdiscovery',
+                path: '/drug-discovery',
                 component: DrugDiscoveryLandingPage,
                 exact: true
             },
