@@ -4,15 +4,15 @@ import LandingPage from "../../../factories/landingPage";
 import LeadCaptureForm from "../LeadCaptureForm";
 import TrackedPage from "../../TrackedPage";
 
-class TextMiningLandingPage extends React.Component {
+class LifeSciencesLandingPage extends React.Component {
     render() {
         const factoryData = {
             pageInfo: {
-                title: "Text Mining",
-                url: "https://grakn.ai/text-mining",
+                title: "Drug Discovery",
+                url: "https://grakn.ai/drug-discovery",
             },
             header: {
-                headline: "Text Mined Knowledge Graphs",
+                headline: "Drug Discovery Knowledge Graphs",
                 // subHeadline: "I'm sub-headline",
                 actions: [
                     {
@@ -23,39 +23,39 @@ class TextMiningLandingPage extends React.Component {
                 ]
             },
             briefCopy: {
-                title: "Going Beyond Text Mining",
-                description: "Text is the medium used to store the tremendous wealth of scientific knowledge regarding the world we live in. However, with its ever increasing magnitude and throughput; analysing this unstructured data has become an impossibly tedious task. This has led to the rise of Text Mining and Natural Language Processing techniques and tools as the go-to for examining and processing large amounts of natural text data.\n\nBut once we have some text mined output, what to we do then? Do these text mining techniques simply produce the insights we are trying to uncover?\n\nGrakn, addressed these questions in a simple and intuitive manner.",
+                title: "Accelerating Drug Discovery with Grakn",
+                description: "Combinatorial chemistry has produced a huge amount of chemical libraries and data banks which include prospective drugs. Despite all of this progress, the fundamental problem still remains: how do we take advantage of this data to identify the prospective nature of a compound as a vital drug?\n\nGrakn, however, provides the framework which can make drug discovery much more efficient, effective and approachable. With concepts such as hyper relationships, type hierarchies, automated reasoning and analytics we can finally model, represent, and query biological knowledge at an unprecedented scale.",
                 action: {
                     title: "Download White Paper",
                     form: {
-                        title: "Download Text Mining White Paper",
-                        downloadPath: "src/pages/landingpages/downloads/Text-Mining.pdf"
+                        title: "Download Drug Discovery White Paper",
+                        downloadPath: "src/pages/landingpages/downloads/Drug-Discovery.pdf"
                     }
                 },
-                videoUrl: "https://www.youtube.com/embed/cG6KRSc_WBk"
+                videoUrl: "https://www.youtube.com/embed/videoseries?list=PLtEF8_xCPklaVh4tUL2zcO06tfEkbFNPs"
             },
             sneakPeek: {
-                title: "Building a Text Mined Knowledge Graph is Easy",
-                url: "src/pages/landingpages/TextMining/images/sneak-peek.png"
+                title: "Building a Drug Discovery Knowledge Graph is Easy",
+                url: "src/pages/landingpages/DrugDiscovery/images/sneak-peek.png"
             },
             propositions: [
                 {
-                    title: "Grakn Makes it Easy",
+                    title: "Grakn Makes it Easy to work with Biomedical Data",
                     items: [
                         {
                             title: "Fast Ingestion and \nIntegration of Data",
                             // icon: "I'm the icon for proposition A",
-                            description: "Grakn works with any type of data, wherever it comes from. Grakn's expressive query language enables you to create your own semantically rich knowledge graphs by ingesting and integrating extremely heterogeneous text mined output in an intuitive and flexible way."
+                            description: "Grakn works with any type of data, wherever it comes from. Grakn's expressive query language enables you to create your own semantically rich knowledge graphs by ingesting and integrating extremely heterogeneous biomedical data sets in an intuitive and flexible way."
                         },
                         {
-                            title: "Contexualise Relations within your data",
+                            title: "Contexualise Newly \nGenerated Insights",
                             // icon: "I'm the icon for proposition A",
-                            description: "Grakn enables you to iteratively and quickly contextualise newly generated insights in order to understand how it interacts and connects with all your data sources. Grakn becomes your unified representation of contextualised Text Mined knowledge."
+                            description: "With Grakn, your development moves magnitudes faster because it enables you to iteratively and quickly contextualise newly generated insights in order to understand how it interacts and connects with all your data sources. Grakn becomes your unified representation of knowledge."
                         },
                         {
-                            title: "Discover and Explain New Insights",
+                            title: "Explain New Connections \nin Complex Networks",
                             // icon: "I'm the icon for proposition A",
-                            description: "Grakn discovers new connections and uncovers hidden insights within your text mined output through its in-built automated deductive reasoning engine. Rather than being a black box, Grakn gives you full explainability of every single insights contained across text in a scalable and efficient way."
+                            description: "Grakn discovers new connections and uncovers hidden insights within your data through its in-built automated deductive reasoning engine. Grakn gives you full explainability of every single insights such as identification of potential targets and potential drug candidates"
                         }
                     ]
                 },
@@ -136,8 +136,8 @@ class TextMiningLandingPage extends React.Component {
                     {
                         title: "Download White Paper",
                         form: {
-                            title: "Download Text Mining White Paper",
-                            downloadPath: "src/pages/landingpages/downloads/Text-Mining.pdf"
+                            title: "Download Drug Discovery White Paper",
+                            downloadPath: "src/pages/landingpages/downloads/Drug-Discovery.pdf"
                         }
                     }
                 ]
@@ -145,7 +145,7 @@ class TextMiningLandingPage extends React.Component {
         };
 
         return (
-            <TrackedPage pageTitle="Text Mining">
+            <TrackedPage pageTitle="Drug Discovery">
                <LandingPage data={factoryData} LeadCaptureForm={LeadCaptureForm} hubspotFormId="a1fc9340-6621-46e0-b0d0-1d5349eb1bbf" />
             </TrackedPage>
         )
@@ -155,4 +155,4 @@ class TextMiningLandingPage extends React.Component {
 const mapStateToProps = (state) => ({});
 const mapDispatchToProps = (dispatch) => ({});
 
-export default connect(mapStateToProps, mapDispatchToProps)(TextMiningLandingPage);
+export default connect(mapStateToProps, mapDispatchToProps)(LifeSciencesLandingPage);
