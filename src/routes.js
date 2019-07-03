@@ -12,6 +12,7 @@ import LifeSciencesLandingPage from 'pages/landingpages/LifeSciences';
 import PrecisionMedicineLandingPage from 'pages/landingpages/PrecisionMedicine';
 import TextMiningLandingPage from 'pages/landingpages/TextMining';
 import DrugDiscoveryLandingPage from 'pages/landingpages/DrugDiscovery';
+import MachineLearningLandingPage from 'pages/landingpages/MachineLearning';
 import NoPage from 'pages/NoPage';
 import ComingSoon from 'pages/ComingSoon';
 import {FinanceUseCasePage, HealthUseCasePage, SemanticUseCasePage, BotsUseCasePage, SecurityUseCasePage} from 'pages/UseCasePages';
@@ -94,6 +95,11 @@ export default [
             {
                 path: '/drug-discovery',
                 component: DrugDiscoveryLandingPage,
+                exact: true
+            },
+            {
+                path: '/machine-learning',
+                component: MachineLearningLandingPage,
                 exact: true
             },
             {
