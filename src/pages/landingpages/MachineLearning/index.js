@@ -32,7 +32,7 @@ class MachineLearningLandingPage extends React.Component {
                         downloadPath: "src/pages/landingpages/downloads/Knowledge-Graph-Convolutional-Networks.pdf"
                     }
                 },
-                videoUrl: "https://www.youtube.com/watch?v=JlcGfwb6CDE"
+                videoUrl: "https://www.youtube.com/embed/JlcGfwb6CDE"
             },
             sneakPeek: {
                 title: "Build Embeddings or Make Predictions",
@@ -45,7 +45,7 @@ class MachineLearningLandingPage extends React.Component {
                         {
                             title: "Data Agnostic",
                             // icon: "I'm the icon for proposition A",
-                            description: "KGCNs have a generic method with simple network architecture. You can quickly use this to learn over any kind of data stored in GRAKN."
+                            description: "KGCNs have a generic method with a simple network architecture. You can quickly use this to learn over any kind of data stored in GRAKN. It is no longer necessary to build a new network for each use case."
                         },
                         {
                             title: "Customisable Objective",
@@ -53,7 +53,7 @@ class MachineLearningLandingPage extends React.Component {
                             description: "KGCNs have been designed to be tailored to your needs. The TensorFlow pipeline can be customised to optimise for any objective. Directly build models for the tasks you want to perform."
                         },
                         {
-                            title: "Combine Learning and Reasoning",
+                            title: "Learning with Reasoning",
                             // icon: "I'm the icon for proposition A",
                             description: "KGCNs use GRAKN’s built-in reasoner, combined with a neural network to predict new elements in a knowledge graph. Find new attributes, discover new relations, or build generic embeddings of GRAKN Concepts."
                         }
@@ -61,7 +61,7 @@ class MachineLearningLandingPage extends React.Component {
                 },
             ],
             footer: {
-                headline: "Start learning over you knowledge graph",
+                headline: "Start learning over your GRAKN knowledge graph",
                 // subHeadline: "I'm sub-headline",
                 actions: [
                     {
