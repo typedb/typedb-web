@@ -37,6 +37,7 @@ export const navRoutes = {
       'Precision Medicine': '/precision-medicine',
       'Text Mining': '/text-mining',
       'Drug Discovery': '/drug-discovery',
+      'Machine Learning': '/machine-learning', 
     }
   },
   Developer: {
