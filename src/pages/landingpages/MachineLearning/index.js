@@ -8,16 +8,16 @@ class MachineLearningLandingPage extends React.Component {
     render() {
         const factoryData = {
             pageInfo: {
-                title: "Precision Medicine",
+                title: "Machine Learning",
                 url: "https://grakn.ai/machine-learning",
             },
             header: {
-                headline: "Precision Medicine Knowledge Graphs",
+                headline: "Machine Learning for Knowledge Graphs",
                 // subHeadline: "I'm sub-headline",
                 actions: [
                     {
-                        title: "Try BioGrakn for Free",
-                        url: "https://github.com/graknlabs/biograkn",
+                        title: "Install kglib",
+                        url: "https://github.com/graknlabs/kglib",
                         isPrimary: true
                     }
                 ]
@@ -36,7 +36,7 @@ class MachineLearningLandingPage extends React.Component {
             },
             sneakPeek: {
                 title: "Build Embeddings or Make Predictions",
-                url: "src/pages/landingpages/PrecisionMedicine/images/sneak-peek.png"
+                url: "src/pages/landingpages/MachineLearning/images/sneak-peek.png"
             },
             propositions: [
                 {
