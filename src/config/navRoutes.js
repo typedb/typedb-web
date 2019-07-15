@@ -33,11 +33,11 @@ export const navRoutes = {
   'Use Cases': {
     type: 'multi',
     links: {
-      'Life Sciences': '/lifesciences',
-      'Precision Medicine': '/precision-medicine',
+      'Machine Learning': '/machine-learning',
       'Text Mining': '/text-mining',
+      'Life Sciences': '/lifesciences',
       'Drug Discovery': '/drug-discovery',
-      'Machine Learning': '/machine-learning', 
+      'Precision Medicine': '/precision-medicine',
     }
   },
   Developer: {
