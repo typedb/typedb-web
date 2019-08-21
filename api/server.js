@@ -17,6 +17,14 @@ const app = express();
 // securing cross origin access
 app.use(cors(corsOptions));
 
+// redirect to https
+app.use(function (req, res, next) {
+    if (!req.secure) {
+        return res.redirect(['https://', req.get('Host'), req.url].join(''));
+    }
+    next();
+});
+
 // exposing assets publicly - order matters
 const distPath = path.join(__dirname, '../dist');
 app.use('/assets', express.static(path.join(__dirname, '../assets')));
