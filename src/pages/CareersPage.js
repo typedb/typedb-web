@@ -29,7 +29,7 @@ class CareersPage extends Component {
           <section className="careers__intro">
             <div className="container section__container careers__intro__container">
               <div className="careers__intro__text">
-                <span>Cognitive/Intelligent Systems consume data that are too complex for current databases to handle. GRAKN.AI is the knowledge graph that allows you to perform knowledge engineering to manage this complexity. Through Knowledge Representation and Automated Reasoning techniques, Grakn provides the knowledge foundation for these systems.
+                <span>Cognitive/Intelligent Systems consume data that are too complex for current databases to handle. Grakn is the knowledge graph that allows you to perform knowledge engineering to manage this complexity. Through Knowledge Representation and Automated Reasoning techniques, Grakn provides the knowledge foundation for these systems.
             <br /> <br />
                   We're a team of talented engineers from world leading universities, and we're based in London. We've developed a distributed knowledge graph that reasons over complex data in real-time and derives knowledge that is too complex for human cognition to uncover. Five years from now, we believe Grakn will be in the hands of every developer as a de facto database for building cognitive and intelligent systems.            </span>
                 <br />
