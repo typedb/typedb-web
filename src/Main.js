@@ -73,7 +73,7 @@ class Main extends Component {
 
 
   render() {
-    let documentTitle = 'Grakn: the knowledge graph';
+    let documentTitle = 'Grakn: The Knowledge Graph';
     if (this.props.location.pathname !== '/') {
       documentTitle = `${startCase(this.props.location.pathname.substr(1))} | grakn`;
     }
