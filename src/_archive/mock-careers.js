@@ -1,10 +1,10 @@
-module.exports = 
+module.exports =
 {"jobs":[
   {
     title: 'Web Engineer',
     link: 'https://angel.co/graknlabs/jobs/139818-web-engineer',
     intro: `
-    As a Web Engineer, you will be developing the web platforms of our advanced graph analysis visualisation dashboard, Grakn Workbase (a knowledge IDE), Grakn Academy, Developer Platform, Community Discussion Forum, and all other web platforms in the company. At Grakn, we believe that the best web platform is the key to providing an excellent user experience for our community. You will work closely with the CEO and a graphic designer and will be responsible for the UI/UX research, requirements analysis, planning, web development, testing and delivery of all web components within GRAKN.AI. 
+    As a Web Engineer, you will be developing the web platforms of our advanced graph analysis visualisation dashboard, Grakn Workbase (a knowledge IDE), Grakn Academy, Developer Platform, Community Discussion Forum, and all other web platforms in the company. At Grakn, we believe that the best web platform is the key to providing an excellent user experience for our community. You will work closely with the CEO and a graphic designer and will be responsible for the UI/UX research, requirements analysis, planning, web development, testing and delivery of all web components within Grakn Labs. 
     `,
     required: [
       'Academic background from a world top university - minimum Bachelors (2:1) from a computing-related field and an aptitude for data visualisation and web development.',

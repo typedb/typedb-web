@@ -83,7 +83,7 @@ const PrivacyPolicyPage = () => (
       <br /><br />
       This website uses tracking software to monitor its visitors to better understand how they use it. This software is provided by Google Analytics and Hotjar which uses cookies to track visitor usage. The software will save a cookie to your computer’s hard drive in order to track and monitor your engagement and usage of the website, but will not store, save or collect personal information. For further information, you can read Google's privacy policy <a href="https://www.google.com/policies/privacy/" className="animated__link animated__link--purple" target="_blank">here</a>, and Hotjar’s privacy policy <a href="https://www.hotjar.com/privacy" className="animated__link animated__link--purple" target="_blank">here</a>.
       <br /> <br />
-      The cookies used by GRAKN.AI website are described in the list below. 
+      The cookies used by Grakn website are described in the list below. 
       </span>
       {renderTable(tableCookie, "Name", "Purpose")}
       {renderTableMobile(tableCookie, "Name", "Purpose")}
@@ -153,7 +153,7 @@ const PrivacyPolicyPage = () => (
         <a href="https://dev.twitter.com/overview/terms/agreement-and-policy" className="animated__link animated__link--purple privacy-policy__link" target="_blank">Developer Agreement & Policy | Twitter Developers
         </a>
       </span>
-      
+
       <h3 className="privacy-policy__header">We may update this Policy</h3>
       <span className="privacy-policy__text">
       From time to time we may change our privacy policies. We will notify you of any material changes to our Policy as required by law. We will also post an updated copy on our website. Please check our site periodically for updates.

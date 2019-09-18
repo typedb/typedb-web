@@ -280,7 +280,7 @@ class HomePage extends Component {
                         Intelligent Bots
                     </span>
                       <span className="home__usecases__tabpanel__text__content">
-                        As devices have become more intelligent, the way we interact with them evolved to natural language through conversation. GRAKN.AI is the ideal platform for developing chat bots because it is capable of interpreting complex and ambiguous questions by performing inference over your knowledge graph.
+                        As devices have become more intelligent, the way we interact with them evolved to natural language through conversation. Grakn is the ideal platform for developing chat bots because it is capable of interpreting complex and ambiguous questions by performing inference over your knowledge graph.
                     </span>
                     </div>
                   </div>

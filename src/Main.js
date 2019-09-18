@@ -73,12 +73,12 @@ class Main extends Component {
 
 
   render() {
-    let documentTitle = 'GRAKN.AI - The Knowledge Graph';
+    let documentTitle = 'Grakn: The Knowledge Graph';
     if (this.props.location.pathname !== '/') {
-      documentTitle = `${startCase(this.props.location.pathname.substr(1))} | GRAKN.AI`;
+      documentTitle = `${startCase(this.props.location.pathname.substr(1))} | grakn`;
     }
     if (this.props.location.pathname === '/grakn-kgms') {
-      documentTitle = 'Grakn KGMS | GRAKN.AI';
+      documentTitle = 'Grakn KGMS | Grakn';
     }
     let routes = routeOptions[0].routes.map(({ path, component, exact }, i) => {
           return (<Route key={`ROUTE_${i}`} exact={exact} path={path} component={component} />)

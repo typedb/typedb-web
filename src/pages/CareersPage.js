@@ -29,11 +29,12 @@ class CareersPage extends Component {
           <section className="careers__intro">
             <div className="container section__container careers__intro__container">
               <div className="careers__intro__text">
-                <span>Cognitive/Intelligent Systems consume data that are too complex for current databases to handle. GRAKN.AI is the knowledge graph that allows you to perform knowledge engineering to manage this complexity. Through Knowledge Representation and Automated Reasoning techniques, Grakn provides the knowledge foundation for these systems.
-            <br /> <br />
-                  We're a team of talented engineers from world leading universities, and we're based in London. We've developed a distributed knowledge graph that reasons over complex data in real-time and derives knowledge that is too complex for human cognition to uncover. Five years from now, we believe Grakn will be in the hands of every developer as a de facto database for building cognitive and intelligent systems.            </span>
-                <br />
-                If you would like to join our team​ for any of the positions below, write to us at <a href="mailto:careers@grakn.ai" className="animated__link animated__link--purple">careers@grakn.ai</a> and tell us a little bit about yourself.
+                <span>Grakn Labs is a team of people driven by a purpose: to solve the world's most complex problems, through knowledge engineering. We are the inventors of the Grakn knowledge-base and the Graql query language. Our technology helps organisations in various industries, including Life Sciences, Defence & Security, Financial Services and Robotics, to build intelligent systems that we believe will change the world. From financial analytics to drug discovery, cyber threat detection to robotics disaster recovery, our technology empowers engineers around the world to tackle a higher order of complexity in knowledge, and solve the world's most complex problems.
+                <br /> <br />
+                In 2017, we were awarded Product of the Year by the University of Cambridge. After only a few years, our pioneering community has grown to 5K+ engineers, spread across 10+ countries around the globe -- and we're still counting. To continue pursuing this vision, we need to build a team of individuals who are not just the best and brightest in what they do, but also driven by a strong sense of purpose and compassion for the world.
+                <br /> <br />
+                If you would like to join our team​ for any of the positions below, submit your application through our <a href="https://boards.greenhouse.io/graknlabs" className="animated__link animated__link--purple" target="_blank">application portal</a> and tell us a little bit about yourself.
+                </span>
             </div>
               <div className="careers__intro__img">
                 <img src="/assets/svg/careers-intro.svg" alt="Careers intro" />
