@@ -1,37 +1,39 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import NavigationBar from 'components/NavigationBar';
-import Footer from 'components/Footer';
-import ScrollRestoration from 'components/ScrollRestoration';
-import CookieBanner from 'react-cookie-banner';
-import Main from './Main';
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import NavigationBar from "components/NavigationBar";
+import Footer from "components/Footer";
+import ScrollRestoration from "components/ScrollRestoration";
+import CookieBanner from "react-cookie-banner";
+import Main from "./Main";
+import BannerCosmos from "./banners/BannerCosmos";
 
 class App extends Component {
   render() {
     return (
       <ScrollRestoration>
-        <div className="app">
-          <NavigationBar />
-          <Main { ...this.props}/>
-          <Footer />
-          <CookieBanner
-            className="cookie-banner"
-            message="We use cookies to provide to improve the user experience on our website. If you want to know more about it, you can read more about our privacy policy.            "
-            onAccept={() => {}}
-            cookie="user-has-accepted-cookies"
-            dismissOnScroll={false}
-            disableStyle={true}
-            buttonMessage="OK"
-          />
+        <div>
+          <BannerCosmos />
+          <div className="app">
+            <NavigationBar />
+            <Main {...this.props} />
+            <Footer />
+            <CookieBanner
+              className="cookie-banner"
+              message="We use cookies to provide to improve the user experience on our website. If you want to know more about it, you can read more about our privacy policy.            "
+              onAccept={() => {}}
+              cookie="user-has-accepted-cookies"
+              dismissOnScroll={false}
+              disableStyle={true}
+              buttonMessage="OK"
+            />
+          </div>
         </div>
       </ScrollRestoration>
-    )
+    );
   }
 }
 
-const mapStateToProps = (state) => (
-  {
-    location: state.router.location,
-  }
-);
+const mapStateToProps = state => ({
+  location: state.router.location
+});
 export default connect(mapStateToProps)(App);
