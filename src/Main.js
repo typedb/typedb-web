@@ -104,7 +104,7 @@ class Main extends Component {
           }
           {
             ogImages[this.props.location.pathname] ?
-              <meta property="og:image" content={ogImages[this.props.location.pathname]} />
+              <meta property="og:image" content={`https://grakn.ai${ogImages[this.props.location.pathname]}`} />
               :
               null
           }
