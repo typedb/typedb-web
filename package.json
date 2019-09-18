@@ -85,6 +85,7 @@
     "nodemailer": "^4.4.1",
     "null-loader": "^0.1.1",
     "postcss-loader": "^2.0.6",
+    "prerender-node": "^3.2.5",
     "prismjs": "^1.8.4",
     "prop-types": "^15.6.0",
     "querystring": "^0.2.0",

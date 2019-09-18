@@ -14,6 +14,8 @@ import redirectRouter from './routes/redirect';
 
 const app = express();
 
+app.use(require('prerender-node'));
+
 // securing cross origin access
 app.use(cors(corsOptions));
 
