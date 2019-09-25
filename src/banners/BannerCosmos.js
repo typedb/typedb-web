@@ -15,6 +15,7 @@ class BannerCosmos extends React.Component {
     }
 
     this.handleBannerClose = this.handleBannerClose.bind(this);
+    this.handleBannerClick = this.handleBannerClick.bind(this);
   }
 
   handleBannerClose() {
@@ -23,21 +24,27 @@ class BannerCosmos extends React.Component {
     document.body.classList.remove('banner-showing');
   }
 
+  handleBannerClick(e) {
+    if (e.target.classList.contains('banner-btn-close')) return false;
+    window.open("https://grakncosmos.com");
+    this.handleBannerClose();
+  }
+
   render() {
     return (
-      <div>
+      <div onClick={(e) => this.handleBannerClick(e)}>
         {this.state.isBannerDisplayed && (
           <div className="banner-cosmos-container">
             <div className="banner-bg" />
             <div className="banner-content">
-              <a href="https://grakncosmos.com" target="_blank"><img className="banner-logo content-item" src="/assets/img/banners/cosmos/banner-cosmos-logo.svg"/></a>
-              <p className="banner-text banner-text--color-white content-item">The conference of people changing the universe with Grakn</p>
-              <p className="banner-text banner-text--color-brand content-item"> 6-7th of February 2020</p>
+              <img className="banner-logo content-item" src="/assets/img/banners/cosmos/banner-cosmos-logo.svg"/>
+              <p className="banner-text banner-text--color-white content-item">The conference of people changing the universe with Grakn | <span className="banner-text banner-text--color-brand">6-7th of February 2020</span></p>
+              {/* <p className="banner-text banner-text--color-brand content-item"> 6-7th of February 2020</p> */}
               <div className="tablet-text">
                 <p className="banner-text banner-text--color-white">The conference of people changing the universe with Grakn</p>
                 <p className="banner-text banner-text--color-brand">6-7th of February 2020</p>
               </div>
-              <div className="banner-button content-item"><a href="https://grakncosmos.com" target="_blank">Get Tickets</a></div>
+              <div className="banner-button content-item">Get Tickets</div>
             </div>
             <div
               className="banner-btn-close"

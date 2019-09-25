@@ -29,6 +29,8 @@ body.banner-showing {
   height: 65px;
   width: 100%;
 
+  cursor: pointer;
+
   position: fixed;
   z-index: 999;
 
@@ -166,17 +168,19 @@ body.banner-showing {
       }
     }
 
-    .banner-content .banner-text {
-      .banner-text {
-        font-size: 17px;
-        line-height: 10px;
-        text-align: center;
-      }
-      display: block;
-    }
+    // .banner-content .banner-text {
+    //   .banner-text {
+    //     font-size: 17px;
+    //     line-height: 10px;
+    //     text-align: center;
+    //   }
+    //   display: block;
+    // }
 
     .banner-content .tablet-text {
-      display: none;
+      .banner-text {
+        margin-top: 17px;
+      }
     }
 
     .content-item {
