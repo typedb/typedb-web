@@ -27,7 +27,6 @@ class BannerCosmos extends React.Component {
   handleBannerClick(e) {
     if (e.target.classList.contains('banner-btn-close')) return false;
     window.open("https://grakncosmos.com");
-    this.handleBannerClose();
   }
 
   render() {
