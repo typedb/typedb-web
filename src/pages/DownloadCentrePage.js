@@ -370,9 +370,9 @@ class DownloadCentrePage extends Component {
           </section>
           <section className="downloads__language">
             <div className="downloads__language__container container section__container">
-              <span className="downloads__language__headline home__header">
+              <p className="downloads__language__headline downloads__splash__text__header" style={{margin: '0 auto'}}>
                 Develop with <strong>Grakn</strong>,<br />in a language of <strong>your choice</strong>
-              </span>
+              </p>
               <div className="downloads__language__items--desktop">
                 <div className="downloads__language__items--desktop__row">
                   {
