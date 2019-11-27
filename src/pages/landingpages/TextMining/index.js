@@ -146,7 +146,7 @@ class TextMiningLandingPage extends React.Component {
 
         return (
             <TrackedPage pageTitle="Text Mining">
-               <LandingPage data={factoryData} LeadCaptureForm={LeadCaptureForm} hubspotFormId="a1fc9340-6621-46e0-b0d0-1d5349eb1bbf" />
+               <LandingPage data={factoryData} LeadCaptureForm={LeadCaptureForm} hubspotFormId="89945ea8-efbb-47c7-82c6-ed252f826da8" />
             </TrackedPage>
         )
     }
