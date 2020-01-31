@@ -143,9 +143,9 @@ class CommunityPage extends Component {
               <div className="community-page__content__links">
                 <div className="community-page__content__links__col">
                   <div className="community-page__content__links__col__item">
-                    <span className="community-page__content__links__col__item__header"><img src="/assets/svg/slack-mark.svg" alt="Slack" />Talk to us on Slack</span>
+                    <span className="community-page__content__links__col__item__header"><img src="/assets/svg/discord-mark.svg" alt="Discord" style={{height: "38px", marginLeft: "-5px", paddingRight: "0.5rem"}}/>Grakn Labs on Discord</span>
                     <span className="community-page__content__links__col__item__text">
-                      We’d love to help you get up to speed with Grakn. Get in touch with the team and community on our <Link to="/slack" className="animated__link animated__link--purple">Slack Channel.</Link>
+                      We’d love to help you get up to speed with Grakn. Get in touch with the team and community on <Link to="/discord" className="animated__link animated__link--purple">Discord.</Link>
                     </span>
                   </div>
                   <div className="community-page__content__links__col__item">
@@ -189,7 +189,7 @@ class CommunityPage extends Component {
                       Share What You've Built
                   </span>
                     <span className="community-page__content__links__col__item__text">
-                      Built something cool with Grakn? We'd love to share your project! Get in touch with us via <a href="mailto:info@grakn.ai" className="animated__link animated__link--purple">email</a> or <Link to="/slack" className="animated__link animated__link--purple">Slack</Link> to become a writer or speaker at our events and we'll spread the word about what you've built!
+                      Built something cool with Grakn? We'd love to share your project! Get in touch with us via <a href="mailto:info@grakn.ai" className="animated__link animated__link--purple">email</a> or <Link to="/discord" className="animated__link animated__link--purple">Discord</Link> to become a writer or speaker at our events and we'll spread the word about what you've built!
                   </span>
                   </div>
                 </div>

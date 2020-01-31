@@ -61,14 +61,14 @@ class HomePage extends Component {
                   }}>Grakn {this.props.downloads.length > 0 ? this.props.downloads.filter(item => item.latest === "True")[0].version : null}</a> on Github</span>
               </div>
               <div className="home-page__links__container__item">
-                <img src="/assets/svg/slack-mark.svg" alt="slack" />
-                <span><Link className="slack-link" to="/slack" onClick={() => {
+                <img src="/assets/svg/discord-mark.svg" alt="discord" />
+                <span><Link className="discord-link" to="/discord" onClick={() => {
                   ReactGA.initialize('UA-72414051-1');
                   ReactGA.event({
-                    category: 'Home-page_Splash_Button_Slack',
+                    category: 'Home-page_Splash_Button_Discord',
                     action: 'Button Click',
                   });
-                }}>Grakn</Link> on Slack</span>
+                }}>Grakn</Link> on Discord</span>
               </div>
               <div className="home-page__links__container__item">
                 <img src="/assets/svg/twitter_1.svg" alt="twitter" />

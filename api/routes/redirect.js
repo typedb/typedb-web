@@ -11,6 +11,10 @@ router.get('*.html', (req, res) => {
 });
 // router.get("/service-worker.js", (req, res) => res.sendStatus(200));
 
+// discord | slack
+router.get('/slack', (req, res) => res.redirect(302, '/discord'));
+router.get('/discord', (req, res) => res.redirect(302, 'https://discord.gg/graknlabs'));
+
 // website
 router.get('/download/latest', (req, res) => res.redirect(302, 'https://grakn.ai/download'));
 router.get('/grakn-kbms', (req, res) => res.redirect(301, `/grakn-kgms`));

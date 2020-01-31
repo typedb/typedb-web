@@ -26,7 +26,7 @@ const metaDescription = {
 '/community':"Get in touch with Grakn developers and join our global community",
 '/download': 'Download Grakn Core, Grakn KGMS or Grakn Workbase.',
 '/about': "Learn more about the Grakn Team",
-'/slack': "Join the Grakn Slack Channel",
+'/discord': "Join Grakn on Discord",
 '/privacy-policy': "Grakn's Privacy Policy",
 }
 
@@ -41,7 +41,7 @@ const ogImages = {
 '/community':"/assets/img/og/og-community-min.png",
 '/download': '/assets/img/og/og-download-min.png',
 '/about': "/assets/img/og/og-about-min.png",
-'/slack': "/assets/img/og/og-slack-min.png",
+'/discord': "/assets/img/og/og-discord-min.png",
 '/privacy-policy': "/assets/img/og/og-privacy-min.png",
 }
 

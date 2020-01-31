@@ -1,6 +1,6 @@
 import HomePage from 'pages/HomePage';
 import AboutPage from 'pages/AboutPage';
-import SlackPage from 'pages/SlackPage';
+// import SlackPage from 'pages/SlackPage';
 import CareersPage from 'pages/CareersPage';
 import CommunityPage from 'pages/CommunityPage';
 import ServicesPage from 'pages/ServicesPage';
@@ -32,11 +32,11 @@ export default [
                 component: AboutPage,
                 exact: true
             },
-            {
-                path: '/slack',
-                component: SlackPage,
-                exact: true
-            },
+            // {
+            //     path: '/slack',
+            //     component: SlackPage,
+            //     exact: true
+            // },
             {
                 path: '/careers',
                 component: CareersPage,

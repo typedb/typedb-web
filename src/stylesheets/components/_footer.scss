@@ -149,11 +149,12 @@
           text-decoration: underline;
         }
       }
-      &--slack {
+      &--discord {
         font-weight: 300;
-        margin-left: -4px;        
+        margin-left: -10px;        
         > img {
-          margin-right: 0.8rem !important;
+          width: 38px !important;
+          // margin-right: 1rem !important;
         }
         > strong {
           font-weight: 600;
