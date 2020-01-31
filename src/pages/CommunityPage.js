@@ -145,7 +145,7 @@ class CommunityPage extends Component {
                   <div className="community-page__content__links__col__item">
                     <span className="community-page__content__links__col__item__header"><img src="/assets/svg/discord-mark.svg" alt="Discord" style={{height: "38px", marginLeft: "-5px", paddingRight: "0.5rem"}}/>Grakn Labs on Discord</span>
                     <span className="community-page__content__links__col__item__text">
-                      We’d love to help you get up to speed with Grakn. Get in touch with the team and community on <Link to="/discord" className="animated__link animated__link--purple">Discord.</Link>
+                      We’d love to help you get up to speed with Grakn. Get in touch with the team and community on <a href="https://grakn.ai/discord" className="animated__link animated__link--purple">Discord.</a>
                     </span>
                   </div>
                   <div className="community-page__content__links__col__item">

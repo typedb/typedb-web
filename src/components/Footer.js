@@ -71,10 +71,10 @@ class Footer extends Component {
               <img src="/assets/svg/github.svg" alt="github"/>
               <strong>Grakn {this.props.downloads.length> 0? this.props.downloads.filter(item => item.latest === 'True' && item.product ==='core')[0].version: ''}</strong> on Github
             </a>
-            <Link to="/discord" className="footer__block__links--discord">
+            <a href="https://grakn.ai/discord" className="footer__block__links--discord">
               <img src="/assets/svg/discord-mark.svg" alt="discord"/>
               <strong>Grakn</strong> on Discord
-            </Link>
+            </a>
             <a href="mailto:enterprise@grakn.ai">
               <i className="fa fa-phone" aria-hidden="true" />
               Get in touch
