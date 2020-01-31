@@ -143,7 +143,7 @@ class CommunityPage extends Component {
               <div className="community-page__content__links">
                 <div className="community-page__content__links__col">
                   <div className="community-page__content__links__col__item">
-                    <span className="community-page__content__links__col__item__header"><img src="/assets/svg/discord-mark.svg" alt="Discord" style={{height: "38px", marginLeft: "-5px", paddingRight: "0.5rem"}}/>Grakn Labs on Discord</span>
+                    <span className="community-page__content__links__col__item__header"><img src="/assets/svg/discord-mark.svg" alt="Discord" style={{height: "38px", marginLeft: "-5px", paddingRight: "0.5rem"}}/>Talk to us on Discord</span>
                     <span className="community-page__content__links__col__item__text">
                       We’d love to help you get up to speed with Grakn. Get in touch with the team and community on <a href="https://grakn.ai/discord" className="animated__link animated__link--purple">Discord.</a>
                     </span>
