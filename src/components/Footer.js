@@ -73,7 +73,7 @@ class Footer extends Component {
             </a>
             <a href="https://grakn.ai/discord" className="footer__block__links--discord">
               <img src="/assets/svg/discord-mark.svg" alt="discord"/>
-              <strong>Grakn</strong> on Discord
+              <strong>Grakn Labs</strong> on Discord
             </a>
             <a href="mailto:enterprise@grakn.ai">
               <i className="fa fa-phone" aria-hidden="true" />

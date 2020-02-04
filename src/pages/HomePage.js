@@ -68,7 +68,7 @@ class HomePage extends Component {
                     category: 'Home-page_Splash_Button_Discord',
                     action: 'Button Click',
                   });
-                }}>Grakn</a> on Discord</span>
+                }}>Grakn Labs</a> on Discord</span>
               </div>
               <div className="home-page__links__container__item">
                 <img src="/assets/svg/twitter_1.svg" alt="twitter" />

@@ -26,7 +26,7 @@ const metaDescription = {
 '/community':"Get in touch with Grakn developers and join our global community",
 '/download': 'Download Grakn Core, Grakn KGMS or Grakn Workbase.',
 '/about': "Learn more about the Grakn Team",
-'/discord': "Join Grakn on Discord",
+'/discord': "Join Grakn Labs on Discord",
 '/privacy-policy': "Grakn's Privacy Policy",
 }
 
