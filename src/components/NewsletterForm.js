@@ -65,12 +65,6 @@ class NewsletterForm extends Component {
       }).then(() => { Cookies.set(`known`, true); });
     });
 
-    api.signupNewsletter({
-      email: formValues.email,
-      firstname: formValues.firstname,
-      lastname: formValues.lastname
-    });
-
     api.sendSupport({
       emailTitle: "New Newsletter Signup!",
       ...formValues

@@ -15,7 +15,6 @@ export default {
   getKgmstable: () => makeRequest(endpoints.kgmstable).then((data) => data),
   getWorkbasetable: () => makeRequest(endpoints.workbasetable).then((data) => data),
   getCompanies: () => makeRequest(endpoints.companies).then((data) => data),
-  signupNewsletter: (body) => makeRequest(endpoints.newsletter, 'POST', JSON.stringify(body)).then((data) => data),
   sendSupport: (body) => makeRequest(endpoints.support, 'POST', JSON.stringify(body)).then((data) => data),
   sendHubspot: (body) => makeRequest(endpoints.hubspot, 'POST',  JSON.stringify(body)).then((data) => data),
   getDownloadCount: (body) => makeRequest(endpoints.downloadCount).then((data) => data),

@@ -63,12 +63,6 @@ class LeadCaptureForm extends Component {
 
         setTimeout(function () { window.open(downloadPath, "_blank"); });
 
-        api.signupNewsletter({
-            email: formValues.email,
-            firstname: formValues.firstname,
-            lastname: formValues.lastname,
-        });
-
         const downloadedDocument = this.props.title.replace("Download ", "").replace("Download the ", "");
         const pageTitle = this.props.pageInfo.title;
         const pageUrl = this.props.pageInfo.url;

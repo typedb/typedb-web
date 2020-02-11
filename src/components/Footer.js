@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
+import Cookies from 'js-cookie';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { newsletter } from 'actions/invitations';
+import api from 'api';
 import ReactGA from 'react-ga';
 
 const graknRoutes = require('config/graknRoutes');
@@ -19,6 +20,34 @@ class Footer extends Component {
       input: e.target.value,
     });
   }
+
+  onSubscribeSubmit(email) {
+    api.sendHubspot({
+      ref: {
+        targetFormId: "0e3ea363-5f45-44fe-b291-be815a1ca4fc",
+        utk: Cookies.get('hubspotutk'),
+        pageUri: 'https://grakn.ai',
+        pageName: 'Footer'
+      },
+      formFields: { email }
+    }).then(() => {
+      api.track({
+        "utk": Cookies.get('hubspotutk'),
+        "platform": "website",
+        "action": "formSubmission",
+        "subject": "newsletter",
+        "subjectSpecific": {
+          "pageTitle": "Footer"
+        }
+      }).then(() => { Cookies.set(`known`, true); });
+    });
+
+    api.sendSupport({
+      emailTitle: "New Newsletter Signup!",
+      email
+    });
+  }
+  
   render() {
     return (
       <div className="footer">
@@ -59,7 +88,7 @@ class Footer extends Component {
         </div>
         <div className="footer__social__signup">
           <input type="text" value={this.state.input} onChange={(e) => this.handleEmailChange(e)} placeholder="Subscribe to our newsletter"/>
-          <button className="button--red" onClick={() => this.props.onSubscribeSubmit({email: this.state.input})}>Subscribe</button>
+          <button className="button--red" onClick={() => this.onSubscribeSubmit(this.state.input)}>Subscribe</button>
         </div>
         <span className="support-form__consent support-form__consent--footer">By submitting your personal data, you consent to emails from Grakn. See our <Link to="/privacy-policy" className="animated__link animated__link--purple">Privacy Policy</Link></span>
       </div>
@@ -141,9 +170,5 @@ const mapStateToProps = (state) => (
   }
 )
 
-const mapDispatchToProps = (dispatch) => (
-  {
-    onSubscribeSubmit: (obj) => dispatch(newsletter(obj))
-  }
-)
+const mapDispatchToProps = (dispatch) => ({})
 export default connect(mapStateToProps, mapDispatchToProps)(Footer);

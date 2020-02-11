@@ -9,7 +9,6 @@ import api from 'api';
 import { connect } from 'react-redux';
 import { fetchEvents } from 'actions/events';
 import { fetchMeetups } from 'actions/meetups';
-import { newsletter } from 'actions/invitations';
 import { sortBy } from 'lodash';
 import validator from 'validator';
 
@@ -87,12 +86,6 @@ class CommunityPage extends Component {
           "pageTitle": "Community"
         }
       }).then(() => { Cookies.set(`known`, true); });
-    });
-
-    api.signupNewsletter({
-      email: formValues.email,
-      firstname: formValues.firstname,
-      lastname: formValues.lastname
     });
 
     api.sendSupport({
@@ -313,7 +306,6 @@ const mapStateToProps = (state) => (
 
 const mapDispatchToProps = (dispatch) => (
   {
-    onSubmitNewsletter: (obj) => dispatch(newsletter(obj)),
     onGetEvents: () => dispatch(fetchEvents()),
     onGetMeetups: () => dispatch(fetchMeetups()),
   }

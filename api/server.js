@@ -7,7 +7,6 @@ import corsOptions from './cors';
 import genericRouter from './routes/generic';
 import docsRouter from './routes/docs';
 import discussRouter from './routes/discuss';
-import inviteRouter from './routes/invite';
 import emailRouter from './routes/email';
 import hubspotRouter from './routes/hubspot';
 import redirectRouter from './routes/redirect';
@@ -46,7 +45,6 @@ app.use('/', genericRouter);
 app.use('/', docsRouter);
 app.use('/', discussRouter);
 app.use('/hubspot', hubspotRouter);
-app.use('/invite', inviteRouter);
 app.use('/email', emailRouter);
 
 // rendering index.html on initial load of the Grakn website - order matters
