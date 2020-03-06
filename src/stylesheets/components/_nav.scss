@@ -27,7 +27,9 @@ $navShadow: 0 0 26px 0 rgba(221, 221, 221, 0.64);
     display: inline-block;
     vertical-align: middle;
     > img {
+      height: 31px;
       display: block;
+      margin-bottom: 4px;
     }
   }
   &__links {
