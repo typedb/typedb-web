@@ -5,7 +5,8 @@ class BannerCosmos extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      isBannerDisplayed: !Cookies.get("closed-cosmos-banner")
+      // isBannerDisplayed: !Cookies.get("closed-cosmos-banner")
+      isBannerDisplayed: false
     };
 
     if (this.state.isBannerDisplayed) {
