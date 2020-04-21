@@ -67,9 +67,9 @@ class EventPage extends React.Component {
 
             <div className="m-event-updates">
               <p>
-                Get updtes from the team and stay connected to the community.
+                Get updates from the team and stay connected to the community.
               </p>
-              <a className="button button--transparent">Stat tuned</a>
+              <a className="button button--transparent">Stay tuned</a>
             </div>
 
             <div className="m-event-share-links">
