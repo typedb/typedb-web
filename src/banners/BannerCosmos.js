@@ -5,8 +5,7 @@ class BannerCosmos extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      // isBannerDisplayed: !Cookies.get("closed-cosmos-banner")
-      isBannerDisplayed: false
+      isBannerDisplayed: !Cookies.get("closed-cosmos-banner")
     };
 
     if (this.state.isBannerDisplayed) {
@@ -20,7 +19,7 @@ class BannerCosmos extends React.Component {
   }
 
   handleBannerClose() {
-    Cookies.set("closed-cosmos-banner", true);
+    Cookies.set("closed-cosmos-banner", true, { expires: 60 });
     this.setState({ isBannerDisplayed: false });
     document.body.classList.remove('banner-showing');
   }
@@ -44,7 +43,7 @@ class BannerCosmos extends React.Component {
                 <p className="banner-text banner-text--color-white">The conference of people changing the universe with Grakn</p>
                 <p className="banner-text banner-text--color-brand">6-7th of February 2020</p>
               </div>
-              <div className="banner-button content-item">Get Tickets</div>
+              <div className="banner-button content-item">Watch Sessions</div>
             </div>
             <div
               className="banner-btn-close"
