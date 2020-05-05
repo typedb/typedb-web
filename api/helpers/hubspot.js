@@ -5,7 +5,7 @@ import MongoClient from 'mongodb';
 
 
 const getHsContactsCollection = async () => {
-    const mongodbUri = process.env.MONGODB_URI || 'mongodb://localhost:27017/';
+    const mongodbUri = process.env.MONGODB_URI || 'mongodb://localhost:27017/?retryWrites=false';
     const dbInstanceName = process.env.MONGODB_NAME;
 
     try {
