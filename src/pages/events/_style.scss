@@ -72,6 +72,7 @@ $tag-color-nlp: #ff6969;
 $tag-color-robotics: #198efc;
 $tag-color-security: #bd70ff;
 $tag-color-telecom: #3ec1d4;
+$tag-color-graql: #8e44ad;
 
 .o-event-details {
     flex-grow: 1;
@@ -178,6 +179,13 @@ $tag-color-telecom: #3ec1d4;
                 border-color: $tag-color-telecom;
                 p {
                     color: $tag-color-telecom;
+                }
+            }
+
+            &.graql {
+                border-color: $tag-color-graql;
+                p {
+                    color: $tag-color-graql;
                 }
             }
         }
@@ -360,6 +368,7 @@ $tag-color-telecom: #3ec1d4;
     .o-event-other {
         width: 200px;
         margin-right: 30px;
+        text-decoration: none;
 
         img {
             width: 100%;

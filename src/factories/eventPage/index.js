@@ -45,7 +45,7 @@ class EventPage extends React.Component {
   }
 
   getLowerSidebarContent(slots) {
-      const upcomingDates = slots.filter((slot) => slot.date > Date.now());
+      const upcomingDates = slots.splice(1).filter((slot) => slot.date > Date.now());
       return (
         <div>
             {upcomingDates.length > 0 && <div className="o-event-dates">
@@ -77,11 +77,11 @@ class EventPage extends React.Component {
                 <i className="facebook fa fa-facebook-square"></i>
               </a>
 
-              <a onClick={() => this.openShareWindow("https://twitter.com/intent/tweet", "Tweet")}>
+              <a onClick={() => this.openShareWindow(`https://twitter.com/intent/tweet?url=${location.href}`, "Tweet")}>
                 <i className="twitter fa fa-twitter-square"></i>
               </a>
 
-              <a onClick={() => this.openShareWindow("https://www.linkedin.com/shareArticle?mini=true&url=" + window.location, "Share on LinkedIn")}>
+              <a onClick={() => this.openShareWindow(`https://www.linkedin.com/shareArticle?mini=true&url=${location.href}&source=grakn.ai`, "Share on LinkedIn")}>
                 <i className="linkedin fa fa-linkedin-square"></i>
               </a>
             </div>
@@ -169,7 +169,7 @@ class EventPage extends React.Component {
             {otherEvents.map((event, index) => {
               const nextImmediateDate = event.slots.find((slot) => slot.date >= Date.now()).date;
               return (
-                <div key={index} className="o-event-other">
+                <a href={event.path} className="o-event-other">
                   <img src={event.imageUrl} />
                   <h3>{event.title}</h3>
                   <div className="o-event-other-details">
@@ -182,7 +182,7 @@ class EventPage extends React.Component {
                         <span className="text">Grakn Labs Online</span>
                     </div>
                   </div>
-                </div>
+                </a>
               );
             })}
           </div>
