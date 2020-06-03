@@ -9,11 +9,16 @@ class EventPage extends React.Component {
 
     this.openShareWindow = this.openShareWindow.bind(this);
     this.getUpperSidebarContent = this.getUpperSidebarContent.bind(this);
+    this.getSortedSlots = this.getSortedSlots.bind(this);
   }
 
   openShareWindow(url, title) {
     window.open(url, title, "width=600,height=600");
     return false;
+  }
+
+  getSortedSlots() {
+    return this.props.event.slots.sort((a, b) => a.date - b.date);
   }
 
   getUpperSidebarContent(slots, imageUrl) {
@@ -45,13 +50,13 @@ class EventPage extends React.Component {
   }
 
   getLowerSidebarContent(slots) {
-      const upcomingDates = slots.splice(1).filter((slot) => slot.date > Date.now());
+      const upcomingDates = this.getSortedSlots().filter((slot) => slot.date > Date.now()).splice(1);
       return (
         <div>
             {upcomingDates.length > 0 && <div className="o-event-dates">
                 <h2>Can't make it?</h2>
                 <h3>Join an upcoming date below.</h3>
-              {slots.filter((slot) => slot.date > Date.now()).slice(0, 3).map((slot, index) => {
+              {upcomingDates.slice(0, 3).map((slot, index) => {
                 return (
                   <a
                     href={slot.rsvpUrl}
@@ -169,7 +174,7 @@ class EventPage extends React.Component {
             {otherEvents.map((event, index) => {
               const nextImmediateDate = event.slots.find((slot) => slot.date >= Date.now()).date;
               return (
-                <a href={event.path} className="o-event-other">
+                <a href={event.path} className="o-event-other" key={index}>
                   <img src={event.imageUrl} />
                   <h3>{event.title}</h3>
                   <div className="o-event-other-details">
