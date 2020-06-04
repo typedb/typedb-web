@@ -74,7 +74,7 @@ class EventPage extends React.Component {
               <p>
                 Get updates from the team and stay connected to the community.
               </p>
-              <a className="button button--transparent">Stay tuned</a>
+              <a href="/community" className="button button--transparent">Stay tuned</a>
             </div>
 
             <div className="m-event-share-links">
@@ -180,7 +180,7 @@ class EventPage extends React.Component {
                   <div className="o-event-other-details">
                     <div className="m-event-other-detail">
                         <i className="icon fa fa-calendar-o"></i>
-                        <span className="text">{strftime("%d %B - %I:%M %p", nextImmediateDate)} <span style={{fontSize: "12px"}}>GMT+1</span></span>
+                        <span className="text">{strftime("%d %b - %H:%M", nextImmediateDate)} <span style={{fontSize: "12px"}}>GMT+1</span></span>
                     </div>
                     <div className="m-event-other-detail">
                         <i className="icon fa fa-map-marker"></i>
