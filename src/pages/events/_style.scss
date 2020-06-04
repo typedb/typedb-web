@@ -219,7 +219,7 @@ $tag-color-graql: #8e44ad;
 }
 
 .o-event-sidebar {
-    min-width: 310px;
+    min-width: 320px;
 }
 
 .a-event-image {
@@ -300,9 +300,15 @@ $tag-color-graql: #8e44ad;
         display: flex;
         align-items: center;
         justify-content: space-evenly;
+        padding: 0 10px;
+        box-sizing: border-box;
+
+        .text {
+            min-width: 160px;
+        }
 
         .icon {
-            font-size: 23px;
+            font-size: 20px;
         }
 
         &:hover {

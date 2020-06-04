@@ -64,7 +64,7 @@ class EventPage extends React.Component {
                     className="m-event-date button button--transparent"
                   >
                     <i className="icon fa fa-calendar-o"></i>
-                    <span className="text">{strftime("%d %B - %I:%M %p", slot.date)} <span style={{fontSize: "12px"}}>GMT+1</span></span>
+                    <span className="text">{strftime("%d %b - %H:%M", slot.date)} <span style={{fontSize: "12px"}}>GMT+1</span></span>
                   </a>
                 );
               })}
