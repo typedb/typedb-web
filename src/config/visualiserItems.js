@@ -17,7 +17,7 @@ employment sub relation,
   relates employer;
 
 name sub attribute,
-  datatype string;
+  value string;
 
 commit `,
 graph: {
