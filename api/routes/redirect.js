@@ -13,7 +13,7 @@ router.get('*.html', (req, res) => {
 
 // discord | slack
 router.get('/slack', (req, res) => res.redirect(302, '/discord'));
-router.get('/discord', (req, res) => res.redirect(302, 'https://discord.gg/graknlabs'));
+router.get('/discord', (req, res) => res.redirect(302, 'https://discord.gg/grakn'));
 
 // website
 router.get('/download/latest', (req, res) => res.redirect(302, 'https://grakn.ai/download'));
