@@ -33,6 +33,8 @@ const distPath = path.join(__dirname, '../dist');
 app.use('/assets', express.static(path.join(__dirname, '../assets')));
 // ُTODO: when the website is refactored, this next line shouldn't be needed anymore
 app.use('/src/pages/landingpages', express.static(path.join(__dirname, '../src/pages/landingpages')));
+app.use('/src/pages/events', express.static(path.join(__dirname, '../src/pages/events')));
+
 app.use('/', express.static(distPath));
 
 // parse application/json and application/x-www-form-urlencode
