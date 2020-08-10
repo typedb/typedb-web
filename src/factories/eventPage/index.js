@@ -9,7 +9,7 @@ class EventPage extends React.Component {
 
     this.openShareWindow = this.openShareWindow.bind(this);
     this.getUpperSidebarContent = this.getUpperSidebarContent.bind(this);
-    this.getSortedSlots = this.getSortedSlots.bind(this);
+    this.getFutureSortedSlots = this.getFutureSortedSlots.bind(this);
   }
 
   openShareWindow(url, title) {
@@ -17,40 +17,53 @@ class EventPage extends React.Component {
     return false;
   }
 
-  getSortedSlots() {
-    return this.props.event.slots.sort((a, b) => a.date - b.date);
+  getFutureSortedSlots() {
+    return this.props.event.slots.sort((a, b) => a.date - b.date).filter((slot) => slot.date > Date.now());
   }
 
-  getUpperSidebarContent(slots, imageUrl) {
+  getUpperSidebarContent(imageUrl) {
+      const immediateUpcomingSlot = this.getFutureSortedSlots()[0];
       return (
           <div>
             <img className="a-event-image" src={imageUrl} />
-            <div className="o-event-timelocation">
-                <div className="m-event-date">
-                    <i className="icon fa fa-calendar-o"></i>
-                    <span className="text">{strftime("%A, %d %B", slots[0].date)}</span>
+            {immediateUpcomingSlot && (
+              <div>
+                <div className="o-event-timelocation">
+                    <div className="m-event-date">
+                        <i className="icon fa fa-calendar-o"></i>
+                        <span className="text">{strftime("%A, %d %B", immediateUpcomingSlot.date)}</span>
+                    </div>
+                    <div className="a-event-time">
+                        <span className="text">{strftime("%I:%M %p", immediateUpcomingSlot.date)} <span style={{fontSize: "14px"}}>GMT+1</span></span>
+                    </div>
+                    <hr />
+                    <div className="m-event-location">
+                        <i className="icon fa fa-map-marker"></i>
+                        <span className="text">Grakn Labs Online</span>
+                    </div>
                 </div>
-                <div className="a-event-time">
-                    <span className="text">{strftime("%I:%M %p", slots[0].date)} <span style={{fontSize: "14px"}}>GMT+1</span></span>
+                
+                <div className="a-event-attendBtn">
+                    <a href={immediateUpcomingSlot.rsvpUrl} className="a-event-attendBtn button button--red">
+                        Attend
+                    </a>
                 </div>
-                <hr />
-                <div className="m-event-location">
-                    <i className="icon fa fa-map-marker"></i>
-                    <span className="text">Grakn Labs Online</span>
-                </div>
+              </div>
+            )}
+
+            {!immediateUpcomingSlot && (
+              <div className="m-event-updates m-event-updates--noaction">
+                <p>
+                  We're working on the next date. Check back for updates.
+                </p>
             </div>
-            
-            <div className="a-event-attendBtn">
-                <a href={slots[0].rsvpUrl} className="a-event-attendBtn button button--red">
-                    Attend
-                </a>
-            </div>
+            )}
         </div>
       );
   }
 
-  getLowerSidebarContent(slots) {
-      const upcomingDates = this.getSortedSlots().filter((slot) => slot.date > Date.now()).splice(1);
+  getLowerSidebarContent() {
+      const upcomingDates = this.getFutureSortedSlots().splice(1);
       return (
         <div>
             {upcomingDates.length > 0 && <div className="o-event-dates">
@@ -99,11 +112,9 @@ class EventPage extends React.Component {
       title,
       path,
       tags,
-      type,
       description,
       speaker,
       imageUrl,
-      slots,
     } = this.props.event;
 
     const otherEvents = this.props.allEvents.filter((event) => {
@@ -133,7 +144,7 @@ class EventPage extends React.Component {
             )}
 
             <div className="o-event-mobile-upperSidebar">
-                {this.getUpperSidebarContent(slots, imageUrl)}
+                {this.getUpperSidebarContent(imageUrl)}
             </div>
 
             <h2 style={{ marginTop: "20px" }}>Description</h2>
@@ -156,14 +167,14 @@ class EventPage extends React.Component {
             </div>
 
             <div className="o-event-mobile-lowerSidebar">
-                {this.getLowerSidebarContent(slots, imageUrl)}
+                {this.getLowerSidebarContent()}
             </div>
           </div>
 
 
           <div className="o-event-sidebar">
-            {this.getUpperSidebarContent(slots, imageUrl)}
-            {this.getLowerSidebarContent(slots)}
+            {this.getUpperSidebarContent(imageUrl)}
+            {this.getLowerSidebarContent()}
           </div>
         </div>
 
