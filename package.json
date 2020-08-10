@@ -81,7 +81,7 @@
     "lodash": "^4.17.4",
     "moment": "^2.20.1",
     "mongodb": "^3.2.3",
-    "node-sass": "^4.9.4",
+    "node-sass": "^4.14.1",
     "nodemailer": "^4.4.1",
     "null-loader": "^0.1.1",
     "postcss-loader": "^2.0.6",

@@ -34,8 +34,8 @@ export const navRoutes = {
     type: 'multi',
     links: {
       'Machine Learning': '/machine-learning',
-      'Financial Services': '/financial-services',
       'Text Mining': '/text-mining',
+      'Financial Services': '/financial-services',
       'Life Sciences': '/lifesciences',
       'Drug Discovery': '/drug-discovery',
       'Precision Medicine': '/precision-medicine',

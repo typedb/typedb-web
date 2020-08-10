@@ -32,7 +32,7 @@ class FinancialServicesLandingPage extends React.Component {
                         downloadPath: "src/pages/landingpages/downloads/Financial-Services-MDM.pdf"
                     }
                 },
-                videoUrl: "https://www.youtube.com/embed/JlcGfwb6CDE"
+                videoUrl: "https://www.youtube.com/embed/cVjjnquz4-o" 
             },
             sneakPeek: {
                 title: "Discover and Explain New Connections in Complex Networks of Data",
