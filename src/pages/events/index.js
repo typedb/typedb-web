@@ -52,29 +52,21 @@ const eventsData = [
     imageUrl: "src/pages/events/images/event-intro-to-kg.jpeg",
     slots: [
       {
-        date: new Date("June 04 2020 18:30"),
+        date: new Date("August 13 2020 18:30"),
         rsvpUrl: "https://zoom.us/webinar/register/WN_TRNpROP-R7mG-wkf5QjHWA",
       },
       {
-        date: new Date("June 11 2020 18:30"),
+        date: new Date("August 27 2020 18:30"),
         rsvpUrl: "https://zoom.us/webinar/register/WN_TRNpROP-R7mG-wkf5QjHWA",
       },
       {
-        date: new Date("June 18 2020 18:30"),
+        date: new Date("September 10 2020 18:30"),
         rsvpUrl: "https://zoom.us/webinar/register/WN_TRNpROP-R7mG-wkf5QjHWA",
       },
       {
-        date: new Date("June 25 2020 18:30"),
+        date: new Date("September 24 2020 18:30"),
         rsvpUrl: "https://zoom.us/webinar/register/WN_TRNpROP-R7mG-wkf5QjHWA",
       },
-      {
-        date: new Date("July 02 2020 18:30"),
-        rsvpUrl: "https://zoom.us/webinar/register/WN_TRNpROP-R7mG-wkf5QjHWA",
-      },
-      {
-        date: new Date("July 09 2020 18:30"),
-        rsvpUrl: "https://zoom.us/webinar/register/WN_TRNpROP-R7mG-wkf5QjHWA",
-      }
     ],
     speaker: speakers.tomasSabat
   },
@@ -93,20 +85,12 @@ const eventsData = [
     imageUrl: "src/pages/events/images/event-intro-to-kg.jpeg",
     slots: [
       {
-        date: new Date("June 09 2020 16:30"),
-        rsvpUrl: "https://us02web.zoom.us/webinar/register/WN_tgNmzvOtRza3d-K7jfi4iA",
-      },
-      {
-        date: new Date("July 15 2020 16:30"),
-        rsvpUrl: "https://us02web.zoom.us/webinar/register/WN_UpbEswCPQlCKUCYv87HlZA",
-      },
-      {
-        date: new Date("August 11  2020 16:30"),
+        date: new Date("August 18 2020 16:30"),
         rsvpUrl: "https://us02web.zoom.us/webinar/register/WN_m9ClAIFkRDiZ7tziS1fZZA",
       },
       {
-        date: new Date("September 02  2020 16:30"),
-        rsvpUrl: "https://us02web.zoom.us/webinar/register/WN_m9ClAIFkRDiZ7tziS1fZZA",
+        date: new Date("September 09 2020 16:30"),
+        rsvpUrl: "https://us02web.zoom.us/webinar/register/WN_DPpCGTP5Q7ex0kciaSvV7Q",
       },
     ],
     speaker: speakers.jamesFletcher
@@ -126,12 +110,12 @@ const eventsData = [
     imageUrl: "src/pages/events/images/event-intro-to-kg.jpeg",
     slots: [
       {
-        date: new Date("June 10 2020 12:30"),
-        rsvpUrl: "https://zoom.us/webinar/register/WN_2Hog2n86TnuSTwcaUk8a_A",
+        date: new Date("August 25 2020 16:30"),
+        rsvpUrl: "https://us02web.zoom.us/webinar/register/WN_OLshO8mwQLazlwxvO7Lbkg",
       },
       {
-        date: new Date("July 21 2020 18:30"),
-        rsvpUrl: "https://us02web.zoom.us/webinar/register/WN_t7ehO8K7QoC0B9l4FBRbmw",
+        date: new Date("September 15 2020 18:30"),
+        rsvpUrl: "https://us02web.zoom.us/webinar/register/WN_KLOdSPQLS4Wz46yYnRi89w",
       },
     ],
     speaker: speakers.tomasSabat
@@ -149,8 +133,8 @@ const eventsData = [
     imageUrl: "src/pages/events/images/event-intro-to-kg.jpeg",
     slots: [
       {
-        date: new Date("June 16 2020 16:30"),
-        rsvpUrl: "https://zoom.us/webinar/register/WN_D9mK_i3tQY2Js5dYw1kthw",
+        date: new Date("September 22 2020 18:30"),
+        rsvpUrl: "https://us02web.zoom.us/webinar/register/WN_6HjsvIdkRNecHhosb4veUg",
       },
       {
         date: new Date("July 28 2020 18:30"),
@@ -180,8 +164,8 @@ const eventsData = [
         rsvpUrl: "https://zoom.us/webinar/register/WN_J23_-ccVQH6nYclU9jkgog",
       },
       {
-        date: new Date("July 14 2020 16:30"),
-        rsvpUrl: "https://us02web.zoom.us/webinar/register/WN_msz1m9ozTiC4csETWSvzPg",
+        date: new Date("September 29th 2020 18:30"),
+        rsvpUrl: " ",
       },
       {
         date: new Date("September 01 2020 16:30"),
