@@ -218,12 +218,13 @@ $tag-color-graql: #8e44ad;
     }
 }
 
+$sidebar-width: 330px;
 .o-event-sidebar {
-    min-width: 320px;
+    min-width: $sidebar-width;
 }
 
 .a-event-image {
-    width: 310px;
+    width: $sidebar-width;
     height: 100%;
     border-radius: 5px;
     margin-bottom: 20px;

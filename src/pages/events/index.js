@@ -154,12 +154,35 @@ const eventsData = [
     imageUrl: "src/pages/events/images/event-drug-discovery.png",
     slots: [
       {
+        date: new Date("September 22 2020 16:30"),
+        rsvpUrl: "https://us02web.zoom.us/webinar/register/WN_6HjsvIdkRNecHhosb4veUg",
+      },
+      {
         date: new Date("October 7 2020 16:30"),
         rsvpUrl: "https://us02web.zoom.us/webinar/register/WN_F_eqlc7qR5KjXBDrmUetkg",
       },
       {
         date: new Date("November 9 2020 16:30"),
         rsvpUrl: "https://us02web.zoom.us/webinar/register/WN_RN_t7I-RQiSqZ7-IH6Xrmw",
+      },
+    ],
+    speaker: speakers.tomasSabat
+  },
+
+  {
+    title: "Grakn for Lifesciences | BioGrakn Covid Knowledge Graph",
+    path: "/webinar-biograkn",
+    rsvpUrl: "https://us02web.zoom.us/webinar/register/WN_b-Qs0KsEQlChwVJLaAVvqw",
+    tags: [tags.grakndev, tags.nlp, tags.lifesciences],
+    type: types.webinar,
+    description: `We’re excited to release an open source knowledge graph to speed up the research into Covid-19. Our goal is to provide a way for researchers to easily analyse and query large amounts of data and papers related to the virus.
+
+    BioGrakn Covid makes it easy to quickly trace information sources and identify articles and the information therein. This first release includes entities extracted from Covid-19 papers, and from additional datasets including, proteins, genes, disease-gene associations, coronavirus proteins, protein expression, biological pathways, and drugs.`,
+    imageUrl: "src/pages/events/images/event-drug-discovery.png",
+    slots: [
+      {
+        date: new Date("September 03 2020 16:30"),
+        rsvpUrl: "https://us02web.zoom.us/webinar/register/WN_b-Qs0KsEQlChwVJLaAVvqw",
       },
     ],
     speaker: speakers.tomasSabat
