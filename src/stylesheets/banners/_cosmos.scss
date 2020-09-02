@@ -4,7 +4,7 @@ body.banner-showing {
 		margin-top: $bannerHeight;
   }
   
-  [class$="-page"], .o-landingpage {
+  [class$="-page"], .o-landingpage, .o-eventpage {
     padding-top: $navHeight + $bannerHeight;
   }
 
@@ -19,7 +19,7 @@ body.banner-showing {
       margin-top: $bannerHeight + $navHeight;
     }
 
-    [class$="-page"], .o-landingpage {
+    [class$="-page"], .o-landingpage, .o-eventpage {
       padding-top: $navHeight + $bannerHeight;
     }
   }
