@@ -45,12 +45,12 @@ const speakers = {
       "Konrad is a senior engineer at GSK and has been in the Grakn Community for some time now. His contributions to the BioGrakn Covid project are focused on expanding the datasets and providing domain knowledge for the schema/model."
   },
   KimWager: {
-  fullName: "Kim Wager",
-  imageUrl: "src/pages/events/images/speaker-kim-wager.jpeg",
-  bio:
+    fullName: "Kim Wager",
+    imageUrl: "src/pages/events/images/speaker-kim-wager.jpeg",
+    bio:
       "Kim is a Communications Consultant at Oxford PharmaGenesis. Following on from his academic career, he is focused on rare diseases, particularly lysosomal storage disorders."
   },
-    }
+  };
 
 const eventsData = [
   {
