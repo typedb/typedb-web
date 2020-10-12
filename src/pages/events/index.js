@@ -7,18 +7,18 @@ const tags = {
   finance: "#finance",
   grakndev: "#grakndev",
   iot: "#iot",
-  lifesciences: "#lifesciences",
+  lifesciences: "#life-sciences",
   ml: "#ml",
   nlp: "#nlp",
   robotics: "#robotics",
   security: "#security",
   telecom: "#telecom",
   graql: "#graql",
-  masterdatamgmt: "master data management",
+  masterdatamgmt: "#master-data-management",
   customer360: "customer 360",
-  antimoneylaundering: "anti-money laundering",
-  comparison: "comparison",
-  rdf: "rdf"
+  antimoneylaundering: "#anti-money-laundering",
+  comparison: "#comparison",
+  rdf: "#rdf"
 };
 
 const types = {
@@ -37,8 +37,20 @@ const speakers = {
     imageUrl: "src/pages/events/images/speaker-james-fletcher.jpeg",
     bio:
       "James is the Principal Scientist at Grakn, primarily working on educating the world on how to use a knowledge graph such as Grakn to build cognitive/intelligent systems. For this, he is implementing examples as templates and ideas for how clients and community members can innovative in their own specific projects. With a background in Computer Vision, having co-founded his own startup in veterinary diagnostics, James's priority is to research the new kinds of intelligent systems that are enabled by using Grakn as a knowledge graph.",
-  }
-}
+  },
+  KonradMysliwiec: {
+    fullName: "Konrad Mysliwiec",
+    imageUrl: "",
+    bio:
+      "Konrad is a senior engineer at GSK and has been in the Grakn Community for some time now. His contributions to the BioGrakn Covid project are focused on expanding the datasets and providing domain knowledge for the schema/model."
+  },
+  KimWager: {
+    fullName: "Kim Wager",
+    imageUrl: "src/pages/events/images/speaker-kim-wager.jpeg",
+    bio:
+      "Kim is a Communications Consultant at Oxford PharmaGenesis. Following on from his academic career, he is focused on rare diseases, particularly lysosomal storage disorders."
+  },
+  };
 
 const eventsData = [
   {
@@ -170,12 +182,14 @@ const eventsData = [
   },
 
   {
-    title: "Grakn for Lifesciences | BioGrakn Covid Knowledge Graph",
+    title: "Introducing a Covid-19 Knowledge Graph | BioGrakn",
     path: "/webinar-biograkn",
     rsvpUrl: "https://us02web.zoom.us/webinar/register/WN_b-Qs0KsEQlChwVJLaAVvqw",
     tags: [tags.grakndev, tags.nlp, tags.lifesciences],
     type: types.webinar,
-    description: `We’re excited to release an open source knowledge graph to speed up the research into Covid-19. Our goal is to provide a way for researchers to easily analyse and query large amounts of data and papers related to the virus.
+    description: `In partnership with our community members, Konrad Mysliwiec - Sr. Engineer GSK - and Kim Wager - Oxford Pharmagenosis - we’re excited to release an open source knowledge graph to speed up the research into Covid-19. 
+    
+    Our goal is to provide a way for researchers to easily analyse and query large amounts of data and papers related to the virus.
 
     BioGrakn Covid makes it easy to quickly trace information sources and identify articles and the information therein. This first release includes entities extracted from Covid-19 papers, and from additional datasets including, proteins, genes, disease-gene associations, coronavirus proteins, protein expression, biological pathways, and drugs.`,
     imageUrl: "src/pages/events/images/event-drug-discovery.png",

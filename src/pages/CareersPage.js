@@ -33,7 +33,7 @@ class CareersPage extends Component {
                 <br /> <br />
                 In 2017, we were awarded Product of the Year by the University of Cambridge. After only a few years, our pioneering community has grown to 5K+ engineers, spread across 10+ countries around the globe -- and we're still counting. To continue pursuing this vision, we need to build a team of individuals who are not just the best and brightest in what they do, but also driven by a strong sense of purpose and compassion for the world.
                 <br /> <br />
-                If you would like to join our team​ for any of the positions below, submit your application through our <a href="https://boards.greenhouse.io/graknlabs" className="animated__link animated__link--purple" target="_blank">application portal</a> and tell us a little bit about yourself.
+                If you would like to join our team​ for any of the positions below, submit your application through our <a href="https://apply.workable.com/grakn/" className="animated__link animated__link--purple" target="_blank">application portal</a> and tell us a little bit about yourself.
                 </span>
             </div>
               <div className="careers__intro__img">
