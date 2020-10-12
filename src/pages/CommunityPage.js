@@ -11,6 +11,7 @@ import { fetchEvents } from 'actions/events';
 import { fetchMeetups } from 'actions/meetups';
 import { sortBy } from 'lodash';
 import validator from 'validator';
+import events from './events';
 
 const graknRoutes = require('config/graknRoutes');
 
@@ -111,7 +112,16 @@ class CommunityPage extends Component {
 
   render() {
     const today = moment();
-    const upcomingEvents = this.props.events.length > 0 ? this.props.events.filter(item => today.isSameOrBefore(item.date)) : []
+    const upcomingEvents = events.filter(event => event.slots && event.slots.some(slot => slot.date >= Date.now())).map(event => {
+      const updatedEvent = event;
+      event.date = event.slots.sort((a, b) => a.date - b.date)[0].date
+      // delete event.slots;
+      return updatedEvent
+    });
+
+    console.log(upcomingEvents);
+    // console.log(upcomingEventss);
+    // const upcomingEvents = this.props.events.length > 0 ? this.props.events.filter(item => today.isSameOrBefore(item.date)) : []
     const pastEvents = this.props.events.length > 0 ? this.props.events.filter(item => today.isSameOrAfter(item.date)) : []
 
     return (
@@ -227,27 +237,27 @@ class CommunityPage extends Component {
           </section>
           <section className="community__events community__events--upcoming">
             <div className="community__events__container container section__container">
-              <span className="kgms-page__features__header">
+              <span className="kgms-page__features__header" style={{padding: '40px 0'}}>
                 Upcoming Events
-          </span>
+              </span>
               {
                 upcomingEvents.length > 0 ?
                   <PagingComponent className="community-page__events__items">
                     {
                       sortBy(upcomingEvents, function (o) { return new moment(o.date).format('YYYYMMDD'); }).map((item, index) => {
                         return (
-                          <a className="community-page__events__item" key={`${index}__events`} href={item.link} target="_blank">
+                          <a className="community-page__events__item" key={`${index}__events`} href={item.path} target="_blank">
                             <div className="community-page__events__item__img">
                               {
-                                item.img ?
-                                  <img src={`https://cms.grakn.ai/${item.img.data.url}`} alt="" />
+                                item.imageUrl ?
+                                  <img src={item.imageUrl} alt="" />
                                   :
                                   <img src='/assets/img/logo.png' alt="" className="community__events__item__img--none" />
                               }
                             </div>
                             <div className="community-page__events__item__title">{item.title}</div>
                             <div className="community-page__events__item__description">{item.description}</div>
-                            <div className="community-page__events__item__place"><strong>{moment(item.date).format("DD MMMM YYYY")}:</strong> {item.address}, {item.city}, {item.country}</div>
+                            <div className="community-page__events__item__place"><strong>{moment(item.date).format("DD MMMM YYYY")}</strong></div>
                           </a>
                         )
                       })
@@ -258,7 +268,7 @@ class CommunityPage extends Component {
               }
             </div>
           </section>
-          <section className="community-page__events community-page__events--past">
+          {/* <section className="community-page__events community-page__events--past">
             <div className="community-page__events__container container section__container">
               <span className="kgms-page__features__header">
                 Past Events
@@ -290,7 +300,7 @@ class CommunityPage extends Component {
                   null
               }
             </div>
-          </section>
+          </section> */}
         </div>
       </TrackedPage>
     )

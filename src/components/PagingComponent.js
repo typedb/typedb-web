@@ -68,6 +68,10 @@ class PagingComponent extends Component {
       this.setState({
         activePage: this.state.activePage - 1
       });
+    } else {
+      this.setState({
+        activePage: this.state.pages,
+      });
     }
   }
 
@@ -102,7 +106,7 @@ class PagingComponent extends Component {
     })
     return (
       <div className={classes}>
-        <button className={leftButtonClasses} onClick={() => this.prevPage()} disabled={this.state.activePage == 1}>
+        <button className={leftButtonClasses} onClick={() => this.prevPage()}>
           <i className="fa fa-chevron-left" aria-hidden="true" />
         </button>
         <div className={contentClasses}>
@@ -125,7 +129,7 @@ class PagingComponent extends Component {
             })
           }
         </div>
-          <button className={rightButtonClasses} onClick={() => this.nextPage()}  disabled={this.state.activePage == this.state.pages}>
+          <button className={rightButtonClasses} onClick={() => this.nextPage()}>
             <i className="fa fa-chevron-right" aria-hidden="true" />
           </button>
       </div>
