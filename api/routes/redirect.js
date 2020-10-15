@@ -22,10 +22,8 @@ router.get("/sitemap.xml", (req, res) => res.sendFile(path.join(dist, 'sitemap.x
 
 // docs
 const docsBase = 'https://dev.grakn.ai/docs';
-router.get('/pages/*', (req, res) => {
-    const redirectUrl = req.path.replace('/pages', docsBase)
-    res.redirect(301, redirectUrl);
-});
+
+router.get('/pages/*', (req, res) => res.redirect(302, docsBase));
 router.get('/download-academy', (req, res) => res.redirect(302, docsBase));
 router.get('/javadocs', (req, res) => res.redirect(302, `${docsBase}/client-api/java`));
 router.get('/docs/*', (req, res) => res.redirect(301, docsBase) );
