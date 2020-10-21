@@ -88,6 +88,22 @@ const eventsData = [
         date: new Date("October 22 2020 18:30"),
         rsvpUrl: "https://zoom.us/webinar/register/WN_TRNpROP-R7mG-wkf5QjHWA",
       },
+      {
+        date: new Date("November 05 2020 18:30"),
+        rsvpUrl: "https://zoom.us/webinar/register/WN_TRNpROP-R7mG-wkf5QjHWA",
+      },
+      {
+        date: new Date("November 19 2020 18:30"),
+        rsvpUrl: "https://zoom.us/webinar/register/WN_TRNpROP-R7mG-wkf5QjHWA",
+      },
+      {
+        date: new Date("December 03 2020 18:30"),
+        rsvpUrl: "https://zoom.us/webinar/register/WN_TRNpROP-R7mG-wkf5QjHWA",
+      },
+      {
+        date: new Date("December 17 2020 18:30"),
+        rsvpUrl: "https://zoom.us/webinar/register/WN_TRNpROP-R7mG-wkf5QjHWA",
+      },
     ],
     speaker: speakers.tomasSabat
   },
@@ -203,7 +219,7 @@ const eventsData = [
   },
 
   {
-    title: "Beyond SQL | comparing SQL to Graql",
+    title: "Comparing SQL to Graql",
     path: "/webinar-sql-to-graql",
     rsvpUrl: "https://us02web.zoom.us/webinar/register/WN_OTB-9fQQTRGJJHSsjXr9ZA",
     tags: [tags.grakndev, tags.graql, tags.comparison],
