@@ -93,15 +93,15 @@ const eventsData = [
         rsvpUrl: "https://zoom.us/webinar/register/WN_TRNpROP-R7mG-wkf5QjHWA",
       },
       {
-        date: new Date("November 19 2020 18:30"),
+        date: new Date("November 19 2020 16:30"),
         rsvpUrl: "https://zoom.us/webinar/register/WN_TRNpROP-R7mG-wkf5QjHWA",
       },
       {
-        date: new Date("December 03 2020 18:30"),
+        date: new Date("December 03 2020 16:30"),
         rsvpUrl: "https://zoom.us/webinar/register/WN_TRNpROP-R7mG-wkf5QjHWA",
       },
       {
-        date: new Date("December 17 2020 18:30"),
+        date: new Date("December 17 2020 16:30"),
         rsvpUrl: "https://zoom.us/webinar/register/WN_TRNpROP-R7mG-wkf5QjHWA",
       },
     ],
