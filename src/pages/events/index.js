@@ -130,7 +130,7 @@ const eventsData = [
         rsvpUrl: "https://us02web.zoom.us/webinar/register/WN_XMoe9MA9QyOPtblokyGO0A",
       },
       {
-        date: new Date("November 17 2020 16:30"),
+        date: new Date("November 23 2020 16:30"),
         rsvpUrl: "https://us02web.zoom.us/webinar/register/WN_uZMOU3k-TwuUJtKaHOWj5w",
       },
     ],
@@ -246,7 +246,7 @@ const eventsData = [
         rsvpUrl: "https://us02web.zoom.us/webinar/register/WN_g3pGCdEmS1OgdMd7ov66QQ",
       },
       {
-        date: new Date("November 16 2020 16:30"),
+        date: new Date("November 17 2020 16:30"),
         rsvpUrl: "https://us02web.zoom.us/webinar/register/WN_axly5fllS9WBVwbE47QQ0g"
       },
     ],
