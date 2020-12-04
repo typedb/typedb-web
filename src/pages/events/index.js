@@ -18,7 +18,8 @@ const tags = {
   customer360: "customer 360",
   antimoneylaundering: "#anti-money-laundering",
   comparison: "#comparison",
-  rdf: "#rdf"
+  rdf: "#rdf",
+  lpg: "#labeled-property-graph"
 };
 
 const types = {
@@ -104,6 +105,22 @@ const eventsData = [
         date: new Date("December 17 2020 16:30"),
         rsvpUrl: "https://zoom.us/webinar/register/WN_TRNpROP-R7mG-wkf5QjHWA",
       },
+      {
+        date: new Date("January 07 2021 16:30"),
+        rsvpUrl: "https://us02web.zoom.us/webinar/register/WN_TRNpROP-R7mG-wkf5QjHWA",
+      },
+      {
+        date: new Date("January 21 2021 16:30"),
+        rsvpUrl: "https://us02web.zoom.us/webinar/register/WN_TRNpROP-R7mG-wkf5QjHWA",
+      },
+      {
+        date: new Date("February 04 2021 16:30"),
+        rsvpUrl: "https://us02web.zoom.us/webinar/register/WN_TRNpROP-R7mG-wkf5QjHWA",
+      },
+      {
+        date: new Date("February 18 2021 16:30"),
+        rsvpUrl: "https://us02web.zoom.us/webinar/register/WN_TRNpROP-R7mG-wkf5QjHWA",
+      },
     ],
     speaker: speakers.tomasSabat
   },
@@ -132,6 +149,10 @@ const eventsData = [
       {
         date: new Date("November 23 2020 16:30"),
         rsvpUrl: "https://us02web.zoom.us/webinar/register/WN_uZMOU3k-TwuUJtKaHOWj5w",
+      },
+      {
+        date: new Date("January 12 2021 16:30"),
+        rsvpUrl: "https://us02web.zoom.us/webinar/register/WN_hHpo4qsoRdawbTL9yHrKOA",
       },
     ],
     speaker: speakers.jamesFletcher
@@ -166,6 +187,10 @@ const eventsData = [
         date: new Date("November 4 2020 16:30"),
         rsvpUrl: "https://us02web.zoom.us/webinar/register/WN_jELKOqj0QcKg8JrZuXUAlQ"
       },
+      {
+        date: new Date("January 13 2021 16:30"),
+        rsvpUrl: "https://us02web.zoom.us/webinar/register/WN_FLHd9D0yTuO4P8jNtqUFgA"
+      },
     ],
     speaker: speakers.tomasSabat
   },
@@ -193,6 +218,10 @@ const eventsData = [
         date: new Date("November 9 2020 16:30"),
         rsvpUrl: "https://us02web.zoom.us/webinar/register/WN_RN_t7I-RQiSqZ7-IH6Xrmw",
       },
+      {
+        date: new Date("January 14 2021 16:30"),
+        rsvpUrl: "https://us02web.zoom.us/webinar/register/WN_1fd2-u6SQeG_u_f0dH_GVA"
+      },
     ],
     speaker: speakers.tomasSabat
   },
@@ -214,8 +243,13 @@ const eventsData = [
         date: new Date("September 03 2020 16:30"),
         rsvpUrl: "https://us02web.zoom.us/webinar/register/WN_b-Qs0KsEQlChwVJLaAVvqw",
       },
+      {
+        date: new Date("January 19 2021 16:30"),
+        rsvpUrl: "https://us02web.zoom.us/webinar/register/WN_0UPL8HpaQCyZmZaAiujBrg"
+      },
     ],
-    speaker: speakers.tomasSabat
+    speaker: speakers.tomasSabat,
+    speaker: speakers.KonradMysliwiec
   },
 
   {
@@ -248,6 +282,10 @@ const eventsData = [
       {
         date: new Date("November 17 2020 16:30"),
         rsvpUrl: "https://us02web.zoom.us/webinar/register/WN_axly5fllS9WBVwbE47QQ0g"
+      },
+      {
+        date: new Date("December 15 2020 16:30"),
+        rsvpUrl: "https://us02web.zoom.us/webinar/register/WN_DksK519RQ1CJxMqfxgLWJA"
       },
     ],
     speaker: speakers.tomasSabat
@@ -317,6 +355,28 @@ const eventsData = [
       {
         date: new Date("November 18 2020 16:30"),
         rsvpUrl: "https://us02web.zoom.us/webinar/register/WN_GMFHykrYTFig36MFskZvhA"
+      },
+      {
+        date: new Date("December 14 2020 16:30"),
+        rsvpUrl: "https://us02web.zoom.us/webinar/register/WN_WB4WAUOqQb-bEO59uJm1Qw"
+      },
+    ],
+    speaker: speakers.tomasSabat
+  },
+  {
+    title: "Comparing Labeled Property Graphs to Grakn",
+    path: "/webinar-grakn-vs-graph-database",
+    rsvpUrl: "https://us02web.zoom.us/webinar/register/WN_ZHx3v4ZKQHmhk-WYEMNjtA",
+    tags: [tags.comparison, tags.grakndev, tags.lpg],
+    type: types.webinar,
+    description: `Graph databases have matured into mainstream technologies and deliver tremendous value to organisations across any industry. They are more flexible than traditional relational databases as they enable us to leverage the relationships in our data in a way relational databases cannot do. In the time of AI and Big Data, this creates opportunities for any organisation. However, developing with graph databases requires us to overcome plenty of challenges when it comes to data modelling, maintaining consistency of our data among others. 
+    
+    In this talk, we discuss how Grakn compares to labelled property graphs, and how it addresses these challenges. While both technologies share similarities, they are fundamentally different. We'll cover how to read & write data, how to model complex domains and we'll also look at Grakn's ability to perform machine reasoning at scale.`,
+    imageUrl: "src/pages/events/images/event-sql.jpeg",
+    slots: [
+      {
+        date: new Date("December 16 2020 16:30"),
+        rsvpUrl: "https://us02web.zoom.us/webinar/register/WN_ZHx3v4ZKQHmhk-WYEMNjtA",
       },
     ],
     speaker: speakers.tomasSabat
