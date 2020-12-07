@@ -248,8 +248,7 @@ const eventsData = [
         rsvpUrl: "https://us02web.zoom.us/webinar/register/WN_0UPL8HpaQCyZmZaAiujBrg"
       },
     ],
-    speaker: speakers.tomasSabat,
-    speaker: speakers.KonradMysliwiec
+    speaker: speakers.tomasSabat
   },
 
   {
