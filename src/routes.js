@@ -16,6 +16,7 @@ import TextMiningLandingPage from "pages/landingpages/TextMining";
 import DrugDiscoveryLandingPage from "pages/landingpages/DrugDiscovery";
 import MachineLearningLandingPage from "pages/landingpages/MachineLearning";
 import FinancialServicesLandingPage from 'pages/landingpages/FinancialServices';
+import RoboticsLandingPage from 'pages/landingpages/Robotics';
 
 import {
   FinanceUseCasePage,
@@ -107,9 +108,14 @@ const routes = [
       exact: true,
     },
     {
-        path: '/financial-services',
+        path: "/financial-services",
         component: FinancialServicesLandingPage,
         exact: true
+    },
+    {
+      path: "/robotics",
+      component: RoboticsLandingPage,
+      exact: true
     },
     {
       path: "/usecase-finance",

@@ -36,6 +36,7 @@ export const navRoutes = {
       'Machine Learning': '/machine-learning',
       'Text Mining': '/text-mining',
       'Financial Services': '/financial-services',
+      'Robotics': '/robotics',
       'Life Sciences': '/lifesciences',
       'Drug Discovery': '/drug-discovery',
       'Precision Medicine': '/precision-medicine',
