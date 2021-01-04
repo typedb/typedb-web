@@ -21,7 +21,7 @@ router.get('/grakn-kbms', (req, res) => res.redirect(301, `/grakn-kgms`));
 router.get("/sitemap.xml", (req, res) => res.sendFile(path.join(dist, 'sitemap.xml')));
 
 // docs
-const docsBase = 'https://dev.grakn.ai/docs';
+const docsBase = 'https://docs.grakn.ai/docs';
 
 router.get('/pages/*', (req, res) => res.redirect(302, docsBase));
 router.get('/download-academy', (req, res) => res.redirect(302, docsBase));

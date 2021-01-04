@@ -17,17 +17,17 @@ import Cookies from 'js-cookie';
 
 const languageDrivers = [
   {
-    url: 'http://dev.grakn.ai/docs/client-api/java',
+    url: 'http://docs.grakn.ai/docs/client-api/java',
     name: 'Grakn Java Client',
     img: '/assets/svg/java-logo.svg'
   },
   {
-    url: 'http://dev.grakn.ai/docs/client-api/python',
+    url: 'http://docs.grakn.ai/docs/client-api/python',
     name: 'Grakn Python Client',
     img: '/assets/svg/python-logo.svg'
   },
   {
-    url: 'http://dev.grakn.ai/docs/client-api/nodejs',
+    url: 'http://docs.grakn.ai/docs/client-api/nodejs',
     name: 'Grakn Node.js Client',
     img: '/assets/svg/nodejs-logo.svg'
   }

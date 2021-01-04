@@ -6,7 +6,7 @@ const corsDevAllowedOrigins = [
 ]
 
 const corsProdAllowedOrigins = [
-    'http://dev.grakn.ai', 'https://dev.grakn.ai',
+    'http://docs.grakn.ai', 'https://docs.grakn.ai',
     'http://discuss.grakn.ai', 'http://discuss.grakn.ai',
     'http://grakn.ai', 'https://grakn.ai'
 ]

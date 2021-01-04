@@ -1,4 +1,4 @@
-const docBase = 'https://dev.grakn.ai';
+const docBase = 'https://docs.grakn.ai';
 
 module.exports = {
   homebrew: `${docBase}/docs/running-grakn/install-and-run?tab=mac-os-x#using-homebrew`,
