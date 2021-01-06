@@ -57,7 +57,7 @@ const eventsData = [
   {
     title: "Introduction to Knowledge Graphs with Grakn and Graql",
     path: "/introtograkn",
-    rsvpUrl: "https://zoom.us/webinar/register/WN_TRNpROP-R7mG-wkf5QjHWA",
+    rsvpUrl: "https://us02web.zoom.us/webinar/register/WN_ku4crZw7Svaf3rbZXh3ywA",
     tags: [tags.graql, tags.grakndev],
     type: types.webinar,
     description: `Cognitive/AI systems process knowledge that is far too complex for current databases. They require an expressive data model and an intelligent query language to perform knowledge engineering over complex datasets.
@@ -106,20 +106,28 @@ const eventsData = [
         rsvpUrl: "https://zoom.us/webinar/register/WN_TRNpROP-R7mG-wkf5QjHWA",
       },
       {
-        date: new Date("January 07 2021 16:30"),
-        rsvpUrl: "https://us02web.zoom.us/webinar/register/WN_TRNpROP-R7mG-wkf5QjHWA",
-      },
-      {
         date: new Date("January 21 2021 16:30"),
-        rsvpUrl: "https://us02web.zoom.us/webinar/register/WN_TRNpROP-R7mG-wkf5QjHWA",
+        rsvpUrl: "https://us02web.zoom.us/webinar/register/WN_ku4crZw7Svaf3rbZXh3ywA",
       },
       {
-        date: new Date("February 04 2021 16:30"),
-        rsvpUrl: "https://us02web.zoom.us/webinar/register/WN_TRNpROP-R7mG-wkf5QjHWA",
+        date: new Date("February 21 2021 16:30"),
+        rsvpUrl: "https://us02web.zoom.us/webinar/register/WN_ku4crZw7Svaf3rbZXh3ywA",
       },
       {
-        date: new Date("February 18 2021 16:30"),
-        rsvpUrl: "https://us02web.zoom.us/webinar/register/WN_TRNpROP-R7mG-wkf5QjHWA",
+        date: new Date("March 21 2021 16:30"),
+        rsvpUrl: "https://us02web.zoom.us/webinar/register/WN_ku4crZw7Svaf3rbZXh3ywA",
+      },
+      {
+        date: new Date("April 21 2021 16:30"),
+        rsvpUrl: "https://us02web.zoom.us/webinar/register/WN_ku4crZw7Svaf3rbZXh3ywA",
+      },
+      {
+        date: new Date("May 21 2021 16:30"),
+        rsvpUrl: "https://us02web.zoom.us/webinar/register/WN_ku4crZw7Svaf3rbZXh3ywA",
+      },
+      {
+        date: new Date("June 21 2021 16:30"),
+        rsvpUrl: "https://us02web.zoom.us/webinar/register/WN_ku4crZw7Svaf3rbZXh3ywA",
       },
     ],
     speaker: speakers.tomasSabat
