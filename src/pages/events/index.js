@@ -19,11 +19,13 @@ const tags = {
   antimoneylaundering: "#anti-money-laundering",
   comparison: "#comparison",
   rdf: "#rdf",
-  lpg: "#labeled-property-graph"
+  lpg: "#labeled-property-graph",
+  skills: "#skills",
 };
 
 const types = {
   webinar: "webinar",
+  academy: "academy",
 };
 
 const speakers = {
@@ -159,8 +161,12 @@ const eventsData = [
         rsvpUrl: "https://us02web.zoom.us/webinar/register/WN_uZMOU3k-TwuUJtKaHOWj5w",
       },
       {
-        date: new Date("January 12 2021 16:30"),
+        date: new Date("February 17 2021 16:30"),
         rsvpUrl: "https://us02web.zoom.us/webinar/register/WN_hHpo4qsoRdawbTL9yHrKOA",
+      },
+      {
+        date: new Date("March 11 2021 16:30"),
+        rsvpUrl: "https://us02web.zoom.us/webinar/register/WN_bH5pPFB9R7KbJvuckCUsqA",
       },
     ],
     speaker: speakers.jamesFletcher
@@ -189,15 +195,19 @@ const eventsData = [
       },
       {
         date: new Date("October 6 2020 16:30"),
-        rsvpUrl: "https://us02web.zoom.us/webinar/register/WN_wGt2gKbBRhi8MJfE6G5G4A"
+        rsvpUrl: "https://us02web.zoom.us/webinar/register/WN_wGt2gKbBRhi8MJfE6G5G4A",
       },
       {
         date: new Date("November 4 2020 16:30"),
-        rsvpUrl: "https://us02web.zoom.us/webinar/register/WN_jELKOqj0QcKg8JrZuXUAlQ"
+        rsvpUrl: "https://us02web.zoom.us/webinar/register/WN_jELKOqj0QcKg8JrZuXUAlQ",
       },
       {
         date: new Date("January 13 2021 16:30"),
-        rsvpUrl: "https://us02web.zoom.us/webinar/register/WN_FLHd9D0yTuO4P8jNtqUFgA"
+        rsvpUrl: "https://us02web.zoom.us/webinar/register/WN_FLHd9D0yTuO4P8jNtqUFgA",
+      },
+      {
+        date: new Date("February 09 2021 16:30"),
+        rsvpUrl: "https://us02web.zoom.us/webinar/register/WN_TJQTa2K1TAaZFCJqojVAqQ",
       },
     ],
     speaker: speakers.tomasSabat
@@ -253,8 +263,12 @@ const eventsData = [
       },
       {
         date: new Date("January 19 2021 16:30"),
-        rsvpUrl: "https://us02web.zoom.us/webinar/register/WN_0UPL8HpaQCyZmZaAiujBrg"
+        rsvpUrl: "https://us02web.zoom.us/webinar/register/WN_0UPL8HpaQCyZmZaAiujBrg",
       },
+      {
+        date: new Date("February 03 2021 16:30"),
+        rsvpUrl: "https://us02web.zoom.us/webinar/register/WN_hjfwA--WQDm94MwEPmCQOw", 
+      }
     ],
     speaker: speakers.tomasSabat
   },
@@ -288,11 +302,19 @@ const eventsData = [
       },
       {
         date: new Date("November 17 2020 16:30"),
-        rsvpUrl: "https://us02web.zoom.us/webinar/register/WN_axly5fllS9WBVwbE47QQ0g"
+        rsvpUrl: "https://us02web.zoom.us/webinar/register/WN_axly5fllS9WBVwbE47QQ0g",
       },
       {
         date: new Date("December 15 2020 16:30"),
-        rsvpUrl: "https://us02web.zoom.us/webinar/register/WN_DksK519RQ1CJxMqfxgLWJA"
+        rsvpUrl: "https://us02web.zoom.us/webinar/register/WN_DksK519RQ1CJxMqfxgLWJA",
+      },
+      {
+        date: new Date("January 26 2021 16:30"),
+        rsvpUrl: "https://us02web.zoom.us/webinar/register/WN_-3C8QOxaTn6cQjdQrmmaXg",
+      },
+      {
+        date: new Date("February 25 2021 16:30"),
+        rsvpUrl: "https://us02web.zoom.us/webinar/register/WN_YZ-b-ALYR8qMxrgRbbwKzA",
       },
     ],
     speaker: speakers.tomasSabat
@@ -323,11 +345,15 @@ const eventsData = [
       },
       {
         date: new Date("October 14 2020 16:30"),
-        rsvpUrl: "https://us02web.zoom.us/webinar/register/WN_d8GoWQmJSbuffzQe3p4TVw"
+        rsvpUrl: "https://us02web.zoom.us/webinar/register/WN_d8GoWQmJSbuffzQe3p4TVw",
       },
       {
         date: new Date("November 3 2020 16:30"),
-        rsvpUrl: "https://us02web.zoom.us/webinar/register/WN_X46h0o3RRtuyrgzgcUdDrg"
+        rsvpUrl: "https://us02web.zoom.us/webinar/register/WN_X46h0o3RRtuyrgzgcUdDrg",
+      },
+      {
+        date: new Date("March 09 2021 16:30"),
+        rsvpUrl: "https://us02web.zoom.us/webinar/register/WN_sO7db1hkTk6lBGa6U8l64w",
       },
     ],
     speaker: speakers.tomasSabat
@@ -361,11 +387,19 @@ const eventsData = [
       },
       {
         date: new Date("November 18 2020 16:30"),
-        rsvpUrl: "https://us02web.zoom.us/webinar/register/WN_GMFHykrYTFig36MFskZvhA"
+        rsvpUrl: "https://us02web.zoom.us/webinar/register/WN_GMFHykrYTFig36MFskZvhA",
       },
       {
         date: new Date("December 14 2020 16:30"),
-        rsvpUrl: "https://us02web.zoom.us/webinar/register/WN_WB4WAUOqQb-bEO59uJm1Qw"
+        rsvpUrl: "https://us02web.zoom.us/webinar/register/WN_WB4WAUOqQb-bEO59uJm1Qw",
+      },
+      {
+        date: new Date("January 27 2021 16:30"),
+        rsvpUrl: "https://us02web.zoom.us/webinar/register/WN_8f-Z5vnARWesVMWsg4Qg6Q",
+      }, 
+      {
+        date: new Date("February 23 2021 16:30"),
+        rsvpUrl: "https://us02web.zoom.us/webinar/register/WN_Z64rN_rvTmi7w41m623wAA",
       },
     ],
     speaker: speakers.tomasSabat
@@ -384,6 +418,112 @@ const eventsData = [
       {
         date: new Date("December 16 2020 16:30"),
         rsvpUrl: "https://us02web.zoom.us/webinar/register/WN_ZHx3v4ZKQHmhk-WYEMNjtA",
+      },
+      {
+        date: new Date("January 28 2021 16:30"),
+        rsvpUrl: "https://us02web.zoom.us/webinar/register/WN_8xthde3ARK6xqIKZc-28-g",
+      },
+      {
+        date: new Date("February 24 2021 16:30"),
+        rsvpUrl: "https://us02web.zoom.us/webinar/register/WN_iLHXEvOlS5Ksp_6HRmKAcA",
+      },
+    ],
+    speaker: speakers.tomasSabat
+  },
+
+  {
+    title: "Grakn Academy | Getting Started and Schema Design",
+    path: "/academy-getting-started",
+    rsvpUrl: "https://us02web.zoom.us/meeting/register/tZ0kd-CvrDIjHtwcIWHuPmCg8d5sZxENWjQx",
+    tags: [tags.grakndev, tags.graql, tags.skills],
+    type: types.academy,
+    description: `Good for:
+    Beginners to Grakn and Graql.
+    Those who have been using Grakn and want a refresher on schema and Graql.
+    Experienced data analysts and software engineers.
+    Those who want to better represent their domain in a model that allows for logical reasoning at the database level.
+    
+    Description:
+    In this Grakn Academy, we will start by gaining an understanding of the fundamental components of the Grakn software. We will see how we can download, install, run, perform all basic database operations, all the way to deploying the database for development, demonstration and production.
+    Then we will explore what schema looks like within Grakn, starting with clarifying the motivation for schema, the conceptual schema of Grakn, and its relationship to the Enhanced Entity-Relationship model.
+    
+    Takeaways:
+    - Understanding of fundamental components of Grakn and how to download, install, run on your computer.
+    - Be able to articulate why schema is so beneficial when using Grakn, why we use one and how it enables a more expressive model.
+    - Write a Grakn schema in Graql.`,
+    imageUrl: "src/pages/events/images/event-intro-to-kg.jpeg",
+    slots: [
+      {
+        date: new Date("February 10 2021 16:30"),
+        rsvpUrl: "https://us02web.zoom.us/meeting/register/tZ0kd-CvrDIjHtwcIWHuPmCg8d5sZxENWjQx",
+      },
+      {
+        date: new Date("March 03 2021 16:30"),
+        rsvpUrl: "https://us02web.zoom.us/meeting/register/tZAlcuqsqTItG9W9gve4sx958_GyoPiqPVjx",
+      },
+    ],
+    speaker: speakers.tomasSabat
+  },
+  {
+    title: "Grakn Academy | Knowledge Modelling Principles",
+    path: "/academy-knowledge-modelling",
+    rsvpUrl: "https://us02web.zoom.us/meeting/register/tZIvfuyoqTksHNz4hienaVEFHAXZb-FhHh_l",
+    tags: [tags.grakndev, tags.graql, tags.skills],
+    type: types.academy,
+    description: `Good for:
+    Engineers, scientists, analysts and strategists
+    Those in a technical field working with or close to complex datasets, models and domains
+    Anyone curious about the power of Grakn’s knowledge base (knowledge graph) for their domain
+    Innovators and builders who want to model knowledge, the world around them, in a way and in a system that allows for logical reasoning and inferred relationships at the database level
+    
+    Description:
+    We start this training with an exploration into what schema looks like within Grakn, starting with clarifying the motivation for schema, the conceptual schema of Grakn, and its relationship to the Enhanced Entity-Relationship model.
+    Then we break things down a bit more philosophically. What does it mean to model a knowledge domain - specifically when modelling in Grakn which allows for a much closer representation to true domain.
+    
+    Takeaways:
+    - Be able to articulate why schema is so beneficial when using Grakn, why we use one and how it enables a more expressive model.
+    - Write a Grakn schema in Graql.
+    - Practice modelling one of your own domains and begin to write the model in Graql`,
+    imageUrl: "src/pages/events/images/event-intro-to-kg.jpeg",
+    slots: [
+      {
+        date: new Date("February 11 2021 16:30"),
+        rsvpUrl: "https://us02web.zoom.us/meeting/register/tZIvfuyoqTksHNz4hienaVEFHAXZb-FhHh_l",
+      },
+      {
+        date: new Date("March 04 2021 16:30"),
+        rsvpUrl: "https://us02web.zoom.us/meeting/register/tZcpdeyqqjwsH9xg22vim8WaZchR-KqZYq6W",
+      },
+    ],
+    speaker: speakers.tomasSabat
+  },
+  {
+    title: "Grakn Academy | Automated Reasoning and Rules",
+    path: "/academy-reasoning",
+    rsvpUrl: "https://us02web.zoom.us/meeting/register/tZwocu-grj8vGNP-o-gUWDunruwpPrjd0Ojg",
+    tags: [tags.grakndev, tags.graql, tags.skills],
+    type: types.academy,
+    description: `Good for:
+    Beginners to Grakn and Graql.
+    Those who have been using Grakn and want a refresher on reasoning in Grakn.
+    Experienced data analysts and software engineers.
+    Those who want to better represent their domain in a model that allows for logical reasoning at the database level.
+    
+    Description:
+    Grakn is capable of reasoning over data via pre-defined rules. Graql rules look for a given pattern in the dataset and when found, create the given queryable relation (only for the time being of the given transaction). Automated reasoning provided by rules is performed at query (run) time. Rules not only allow shortening and simplifying commonly-used queries but also enable knowledge discovery and implementation of business logic at the database level.
+    Takeaways:
+    - Understanding of fundamental components of Grakn's reasoning engine and how to write rules for your domain.
+    - Write at least 1 rule for your domain
+    - Utilise the rule you wrote in a query`,
+    imageUrl: "src/pages/events/images/event-intro-to-kg.jpeg",
+    slots: [
+      {
+        date: new Date("February 15 2021 16:30"),
+        rsvpUrl: "https://us02web.zoom.us/meeting/register/tZwocu-grj8vGNP-o-gUWDunruwpPrjd0Ojg",
+      },
+      {
+        date: new Date("March 08 2021 16:30"),
+        rsvpUrl: "https://us02web.zoom.us/meeting/register/tZAocOGpqD0qGt3WsNfnUhWm3JqZyEdUlVsu",
       },
     ],
     speaker: speakers.tomasSabat

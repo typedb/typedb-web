@@ -73,6 +73,13 @@ $tag-color-robotics: #198efc;
 $tag-color-security: #bd70ff;
 $tag-color-telecom: #3ec1d4;
 $tag-color-graql: #8e44ad;
+$tag-color-masterdatamgmt: #c92fa2;
+$tag-color-customer360: #2ff1d1;
+$tag-color-antimoneylaundering: #462fc9;
+$tag-color-comparison: #67c92f;
+$tag-color-rdf: #000000;
+$tag-color-lpg: #e604ee;
+$tag-color-skills: #fc9b0a;
 
 .o-event-details {
     flex-grow: 1;
@@ -186,6 +193,48 @@ $tag-color-graql: #8e44ad;
                 border-color: $tag-color-graql;
                 p {
                     color: $tag-color-graql;
+                }
+            }
+            &.masterdatamgmt {
+                border-color: $tag-color-masterdatamgmt;
+                p {
+                    color: $tag-color-masterdatamgmt;
+                }
+            }
+            &.customer360 {
+                border-color: $tag-color-customer360;
+                p {
+                    color: $tag-color-customer360;
+                }
+            }
+            &.antimoneylaundering {
+                border-color: $tag-color-antimoneylaundering;
+                p {
+                    color: $tag-color-antimoneylaundering;
+                }
+            }
+            &.comparison {
+                border-color: $tag-color-comparison;
+                p {
+                    color: $tag-color-comparison;
+                }
+            }
+            &.rdf {
+                border-color: $tag-color-rdf;
+                p {
+                    color: $tag-color-rdf;
+                }
+            }
+            &.lpg {
+                border-color: $tag-color-lpg;
+                p {
+                    color: $tag-color-lpg;
+                }
+            }
+            &.skills {
+                border-color: $tag-color-skills;
+                p {
+                    color: $tag-color-skills;
                 }
             }
         }
