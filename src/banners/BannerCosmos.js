@@ -37,8 +37,8 @@ class BannerCosmos extends React.Component {
             <div className="banner-bg" />
             <div className="banner-content">
               <img className="banner-logo content-item" src="/assets/img/banners/orbit/grakn-orbit-2021.svg"/>
-              <p className="banner-text banner-text--color-white content-item">The conference by the Grakn Community, for the Grakn Community | <span className="banner-text banner-text--color-brand">6-7th of February 2020</span></p>
-              {/* <p className="banner-text banner-text--color-brand content-item"> 6-7th of February 2020</p> */}
+              <p className="banner-text banner-text--color-white content-item">The conference by the Grakn Community, for the Grakn Community | <span className="banner-text banner-text--color-brand">21-22nd of April 2021</span></p>
+              {/* <p className="banner-text banner-text--color-brand content-item"> 21-22nd of April 2021</p> */}
               <div className="tablet-text">
                 <p className="banner-text banner-text--color-white">The conference by the Grakn Community, for the Grakn Community</p>
                 <p className="banner-text banner-text--color-brand">21-22nd of April 2021</p>
