@@ -29,11 +29,17 @@ const types = {
 };
 
 const speakers = {
+  danielCrowe: {
+    fullName: "Daniel Crowe",
+    imageUrl: "src/pages/events/images/speaker-daniel-crowe.jpeg",
+    bio:
+      "Daniel is the Global Community and Partnerships manager at Grakn Labs, turning conversation into action he is dedicated to empowering and supporting the Grakn Community. He works directly with Grakn's open-source and enterprise users, to accelerate their development, deepen their skills in Grakn and Graql, so they can fulfil their potential with Grakn and change the world. Daniel loves to talk about modelling, schema design, applications in new industries and turning vision into actionable, achievable steps.",
+  },
   tomasSabat: {
     fullName: "Tomás Sabat",
     imageUrl: "src/pages/events/images/speaker-tomas-sabat.jpeg",
     bio:
-      "Tomás is the Chief Operating Officer at Grakn Labs, dedicated to building a distributed Knowledge Graph for intelligent systems. He works directly with Grakn's open source and enterprise users so they can fulfil their potential with Grakn and change the world. He focuses mainly in finance, life sciences and robotics.",
+      "Tomás is the Chief Operating Officer at Grakn Labs, dedicated to building a distributed Knowledge Graph for intelligent systems. He works directly with Grakn's open-source and enterprise users so they can fulfil their potential with Grakn and change the world. He focuses mainly in finance, life sciences and robotics.",
   },
   jamesFletcher: {
     fullName: "James Fletcher",
@@ -43,7 +49,7 @@ const speakers = {
   },
   KonradMysliwiec: {
     fullName: "Konrad Mysliwiec",
-    imageUrl: "",
+    imageUrl: "src/pages/events/images/speaker-konrad-my.jpeg",
     bio:
       "Konrad is a senior engineer at GSK and has been in the Grakn Community for some time now. His contributions to the BioGrakn Covid project are focused on expanding the datasets and providing domain knowledge for the schema/model."
   },
@@ -58,9 +64,9 @@ const speakers = {
 const eventsData = [
   {
     title: "Introduction to Knowledge Graphs with Grakn and Graql",
-    path: "/introtograkn",
+    path: "/webinar-intro-to-grakn",
     rsvpUrl: "https://us02web.zoom.us/webinar/register/WN_ku4crZw7Svaf3rbZXh3ywA",
-    tags: [tags.graql, tags.grakndev],
+    tags: [tags.graql, tags.grakndev, tags.skills],
     type: types.webinar,
     description: `Cognitive/AI systems process knowledge that is far too complex for current databases. They require an expressive data model and an intelligent query language to perform knowledge engineering over complex datasets.
 
@@ -112,27 +118,31 @@ const eventsData = [
         rsvpUrl: "https://us02web.zoom.us/webinar/register/WN_ku4crZw7Svaf3rbZXh3ywA",
       },
       {
-        date: new Date("February 21 2021 16:30"),
+        date: new Date("February 18 2021 16:30"),
         rsvpUrl: "https://us02web.zoom.us/webinar/register/WN_ku4crZw7Svaf3rbZXh3ywA",
       },
       {
-        date: new Date("March 21 2021 16:30"),
+        date: new Date("March 18 2021 16:30"),
         rsvpUrl: "https://us02web.zoom.us/webinar/register/WN_ku4crZw7Svaf3rbZXh3ywA",
       },
       {
-        date: new Date("April 21 2021 16:30"),
+        date: new Date("April 15 2021 16:30"),
         rsvpUrl: "https://us02web.zoom.us/webinar/register/WN_ku4crZw7Svaf3rbZXh3ywA",
       },
       {
-        date: new Date("May 21 2021 16:30"),
+        date: new Date("May 20 2021 16:30"),
         rsvpUrl: "https://us02web.zoom.us/webinar/register/WN_ku4crZw7Svaf3rbZXh3ywA",
       },
       {
-        date: new Date("June 21 2021 16:30"),
+        date: new Date("June 17 2021 16:30"),
+        rsvpUrl: "https://us02web.zoom.us/webinar/register/WN_ku4crZw7Svaf3rbZXh3ywA",
+      },
+      {
+        date: new Date("July 15 2021 16:30"),
         rsvpUrl: "https://us02web.zoom.us/webinar/register/WN_ku4crZw7Svaf3rbZXh3ywA",
       },
     ],
-    speaker: speakers.tomasSabat
+    speaker: speakers.danielCrowe
   },
 
   {
@@ -209,6 +219,10 @@ const eventsData = [
         date: new Date("February 09 2021 16:30"),
         rsvpUrl: "https://us02web.zoom.us/webinar/register/WN_TJQTa2K1TAaZFCJqojVAqQ",
       },
+      {
+        date: new Date("March 10 2021 16:30"),
+        rsvpUrl: "https://us02web.zoom.us/webinar/register/WN_8RZyOeVbRw-MwizkVa2UCQ",
+      },
     ],
     speaker: speakers.tomasSabat
   },
@@ -240,6 +254,10 @@ const eventsData = [
         date: new Date("January 14 2021 16:30"),
         rsvpUrl: "https://us02web.zoom.us/webinar/register/WN_1fd2-u6SQeG_u_f0dH_GVA"
       },
+      {
+        date: new Date("March 17 2021 16:30"),
+        rsvpUrl: "https://us02web.zoom.us/webinar/register/WN_TT9kn0BqTQOZjOpNDzobwQ",
+      },
     ],
     speaker: speakers.tomasSabat
   },
@@ -270,7 +288,7 @@ const eventsData = [
         rsvpUrl: "https://us02web.zoom.us/webinar/register/WN_hjfwA--WQDm94MwEPmCQOw", 
       }
     ],
-    speaker: speakers.tomasSabat
+    speaker: speakers.KonradMysliwiec
   },
 
   {
@@ -462,7 +480,7 @@ const eventsData = [
         rsvpUrl: "https://us02web.zoom.us/meeting/register/tZAlcuqsqTItG9W9gve4sx958_GyoPiqPVjx",
       },
     ],
-    speaker: speakers.tomasSabat
+    speaker: speakers.danielCrowe
   },
   {
     title: "Grakn Academy | Knowledge Modelling Principles",
@@ -495,7 +513,7 @@ const eventsData = [
         rsvpUrl: "https://us02web.zoom.us/meeting/register/tZcpdeyqqjwsH9xg22vim8WaZchR-KqZYq6W",
       },
     ],
-    speaker: speakers.tomasSabat
+    speaker: speakers.danielCrowe
   },
   {
     title: "Grakn Academy | Automated Reasoning and Rules",
@@ -526,7 +544,7 @@ const eventsData = [
         rsvpUrl: "https://us02web.zoom.us/meeting/register/tZAocOGpqD0qGt3WsNfnUhWm3JqZyEdUlVsu",
       },
     ],
-    speaker: speakers.tomasSabat
+    speaker: speakers.danielCrowe
   },
 ];
 
