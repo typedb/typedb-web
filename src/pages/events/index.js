@@ -370,7 +370,7 @@ const eventsData = [
         rsvpUrl: "https://us02web.zoom.us/webinar/register/WN_X46h0o3RRtuyrgzgcUdDrg",
       },
       {
-        date: new Date("March 09 2021 16:30"),
+        date: new Date("March 11 2021 16:30"),
         rsvpUrl: "https://us02web.zoom.us/webinar/register/WN_sO7db1hkTk6lBGa6U8l64w",
       },
     ],
