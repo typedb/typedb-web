@@ -286,6 +286,10 @@ const eventsData = [
       {
         date: new Date("February 03 2021 16:30"),
         rsvpUrl: "https://us02web.zoom.us/webinar/register/WN_hjfwA--WQDm94MwEPmCQOw", 
+      },
+      {
+        date: new Date("March 31 2021 16:30"),
+        rsvpUrl: "https://us02web.zoom.us/webinar/register/WN_hjfwA--WQDm94MwEPmCQOw", 
       }
     ],
     speaker: speakers.KonradMysliwiec
