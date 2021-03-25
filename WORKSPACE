@@ -18,12 +18,12 @@ load("@io_bazel_rules_kotlin//kotlin:kotlin.bzl", "kotlin_repositories", "kt_reg
 kotlin_repositories()
 kt_register_toolchains()
 
-# Load //builder/python
-load("@graknlabs_dependencies//builder/python:deps.bzl", python_deps = "deps")
-python_deps()
+load("//dependencies/maven:artifacts.bzl", graknlabs_web_main_artifacts = "artifacts")
 
-# Load //tool/common
-load("@graknlabs_dependencies//tool/common:deps.bzl", "graknlabs_dependencies_ci_pip",
-graknlabs_dependencies_tool_maven_artifacts = "maven_artifacts")
-graknlabs_dependencies_ci_pip()
-
+###############
+# Load @maven #
+###############
+load("@graknlabs_dependencies//library/maven:rules.bzl", "maven")
+maven(
+    graknlabs_web_main_artifacts
+)

@@ -1,1 +1,8 @@
-
+@maven//:org_jetbrains_annotations
+@maven//:org_jetbrains_annotations_13_0
+@maven//:org_jetbrains_kotlin_kotlin_stdlib
+@maven//:org_jetbrains_kotlin_kotlin_stdlib_1_4_30
+@maven//:org_jetbrains_kotlin_kotlin_stdlib_common
+@maven//:org_jetbrains_kotlin_kotlin_stdlib_common_1_4_30
+@maven//:org_jetbrains_kotlin_kotlin_stdlib_jdk7
+@maven//:org_jetbrains_kotlin_kotlin_stdlib_jdk7_1_4_30
