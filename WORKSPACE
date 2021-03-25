@@ -7,6 +7,10 @@ workspace(name = "graknlabs_web_main")
 load("//dependencies/graknlabs:repositories.bzl", "graknlabs_dependencies")
 graknlabs_dependencies()
 
+# Load //builder/java
+load("@graknlabs_dependencies//builder/java:deps.bzl", java_deps = "deps")
+java_deps()
+
 # Load //builder/kotlin
 load("@graknlabs_dependencies//builder/kotlin:deps.bzl", kotlin_deps = "deps")
 kotlin_deps()
