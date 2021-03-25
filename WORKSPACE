@@ -18,7 +18,36 @@ load("@io_bazel_rules_kotlin//kotlin:kotlin.bzl", "kotlin_repositories", "kt_reg
 kotlin_repositories()
 kt_register_toolchains()
 
+############################
+# Load @graknlabs_web_main #
+############################
+
 load("//dependencies/maven:artifacts.bzl", graknlabs_web_main_artifacts = "artifacts")
+
+# Load rules_scala()
+load("//dependencies/play:dependencies.bzl", "rules_scala_dependencies")
+rules_scala_dependencies()
+
+load("@io_bazel_rules_scala//scala:toolchains.bzl", "scala_register_toolchains")
+scala_register_toolchains()
+
+load("@io_bazel_rules_scala//scala:scala.bzl", "scala_repositories")
+scala_repositories()
+
+# Load rules_play_routes()
+load("//dependencies/play:dependencies.bzl", "rules_play_routes_dependencies")
+rules_play_routes_dependencies()
+
+load("@io_bazel_rules_play_routes//:workspace.bzl", "play_routes_repositories")
+play_routes_repositories("2.7")
+
+load("@play_routes//:defs.bzl", play_routes_pinned_maven_install = "pinned_maven_install")
+play_routes_pinned_maven_install()
+
+bind(
+  name = "default-play-routes-compiler-cli",
+  actual = "@io_bazel_rules_play_routes//default-compiler-clis:scala_2_12_play_2_7"
+)
 
 ###############
 # Load @maven #
