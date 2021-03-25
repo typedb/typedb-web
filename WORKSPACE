@@ -18,6 +18,20 @@ load("@io_bazel_rules_kotlin//kotlin:kotlin.bzl", "kotlin_repositories", "kt_reg
 kotlin_repositories()
 kt_register_toolchains()
 
+#####################################################################
+# Load @graknlabs_bazel_distribution from (@graknlabs_dependencies) #
+#####################################################################
+
+load("@graknlabs_dependencies//distribution:deps.bzl", "graknlabs_bazel_distribution")
+graknlabs_bazel_distribution()
+
+load("@bazel_tools//tools/build_defs/repo:git.bzl", "git_repository")
+git_repository(
+    name = "io_bazel_skydoc",
+    remote = "https://github.com/graknlabs/skydoc.git",
+    branch = "experimental-skydoc-allow-dep-on-bazel-tools",
+)
+
 ############################
 # Load @graknlabs_web_main #
 ############################
