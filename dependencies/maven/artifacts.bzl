@@ -12,5 +12,6 @@ artifacts = [
   "com.typesafe.play:play-streams_2.12",
   "com.typesafe.play:play-ws_2.12",
   "com.typesafe.play:twirl-api_2.12",
+  "javax.inject:javax.inject",
   "org.jetbrains.kotlin:kotlin-stdlib-jdk7",
 ]

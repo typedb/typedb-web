@@ -1,15 +1,12 @@
 package grakn.web
 
-class FileController(basedir: java.nio.file.Path) : Controller() {
+import play.mvc.Controller
+import java.nio.file.Path
 
-    private val basedir: java.nio.file.Path
+class FileController(private val basedir: Path) : Controller() {
 
-    init {
-        this.basedir = basedir
-    }
-
-    fun serve(file: String, defaultFile: String?): Result {
-        val path: java.nio.file.Path = basedir.resolve(if (!file.isEmpty()) file else defaultFile)
+    fun serve(file: String, defaultFile: String): play.mvc.Result {
+        val path: Path = basedir.resolve(if (file.isNotEmpty()) file else defaultFile)
         return if (path.toFile().exists()) {
             ok(path)
         } else {

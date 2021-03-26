@@ -7,6 +7,7 @@ kt_jvm_binary(
     main_class = "grakn.web.ServerKt",
     srcs = glob(["*.kt"]),
     deps = [
+        ":server-routes-lib",
         "@maven//:com_typesafe_akka_akka_actor_typed_2_12",
         "@maven//:com_typesafe_akka_akka_stream_2_12",
         "@maven//:com_typesafe_play_filters_helpers_2_12",
@@ -22,9 +23,17 @@ kt_jvm_binary(
     ]
 )
 
-play_routes(
-  name = "server-routes-file",
-  srcs = ["routes"],
-  include_play_imports = True,
-  generate_reverse_router = True,
+scala_library(
+  name = "server-routes-lib",
+  srcs = ["routes", "FileController.kt"],
+  deps = [
+      "@maven//:com_typesafe_akka_akka_actor_typed_2_12",
+      "@maven//:com_typesafe_play_play_2_12",
+      "@maven//:com_typesafe_play_play_guice_2_12",
+      "@maven//:com_typesafe_play_play_java_2_12",
+      "@maven//:com_typesafe_play_play_server_2_12",
+      "@maven//:com_typesafe_play_twirl_api_2_12",
+      "@maven//:javax_inject_javax_inject",
+    ],
 )
+
