@@ -14,27 +14,30 @@ kt_jvm_binary(
         "@maven//:com_typesafe_play_play_2_12",
         "@maven//:com_typesafe_play_play_server_2_12",
         "@maven//:org_jetbrains_kotlin_kotlin_stdlib_jdk7",
+        "@maven//:org_slf4j_slf4j_api",
     ],
+    data = ["index.html"],
     resources = ["application.conf"],
     resource_strip_prefix = "server",
     runtime_deps = [
-      "@maven//:com_typesafe_play_play_akka_http_server_2_12",
-      "@maven//:com_typesafe_play_build_link"
+        "@maven//:com_typesafe_play_play_akka_http_server_2_12",
+        "@maven//:com_typesafe_play_build_link",
+        "@maven//:ch_qos_logback_logback_classic",
     ]
 )
 
 kt_jvm_library(
-  name = "file-controller",
-  srcs = ["FileController.kt"],
-  deps = [
-      "@maven//:com_typesafe_akka_akka_actor_typed_2_12",
-      "@maven//:com_typesafe_play_play_2_12",
-      "@maven//:com_typesafe_play_play_guice_2_12",
-      "@maven//:com_typesafe_play_play_java_2_12",
-      "@maven//:com_typesafe_play_play_server_2_12",
-      "@maven//:com_typesafe_play_twirl_api_2_12",
-      "@maven//:com_fasterxml_jackson_core_jackson_databind",
-      "@maven//:javax_inject_javax_inject",
+    name = "file-controller",
+    srcs = ["FileController.kt"],
+    deps = [
+        "@maven//:com_typesafe_akka_akka_actor_typed_2_12",
+        "@maven//:com_typesafe_play_play_2_12",
+        "@maven//:com_typesafe_play_play_guice_2_12",
+        "@maven//:com_typesafe_play_play_java_2_12",
+        "@maven//:com_typesafe_play_play_server_2_12",
+        "@maven//:com_typesafe_play_twirl_api_2_12",
+        "@maven//:com_fasterxml_jackson_core_jackson_databind",
+        "@maven//:javax_inject_javax_inject",
     ],
 )
 
