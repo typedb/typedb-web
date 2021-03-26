@@ -1,4 +1,6 @@
 artifacts = [
+  "com.typesafe.akka:akka-stream_2.12",
+  "com.typesafe.akka:akka-actor-typed_2.12",
   "com.typesafe.play:build-link",
   "com.typesafe.play:filters-helpers_2.12",
   "com.typesafe.play:play_2.12",
