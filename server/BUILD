@@ -1,5 +1,4 @@
-load("@io_bazel_rules_kotlin//kotlin:kotlin.bzl", "kt_jvm_binary")
-load("@io_bazel_rules_scala//scala:scala.bzl", "scala_library", "scala_binary", "scala_test")
+load("@io_bazel_rules_kotlin//kotlin:kotlin.bzl", "kt_jvm_binary", "kt_jvm_library")
 load("@io_bazel_rules_play_routes//play-routes:play-routes.bzl", "play_routes")
 
 kt_jvm_binary(
@@ -23,9 +22,9 @@ kt_jvm_binary(
     ]
 )
 
-scala_library(
+kt_jvm_library(
   name = "server-routes-lib",
-  srcs = ["routes", "FileController.kt"],
+  srcs = [":server-routes-file", "FileController.kt"],
   deps = [
       "@maven//:com_typesafe_akka_akka_actor_typed_2_12",
       "@maven//:com_typesafe_play_play_2_12",
@@ -33,7 +32,14 @@ scala_library(
       "@maven//:com_typesafe_play_play_java_2_12",
       "@maven//:com_typesafe_play_play_server_2_12",
       "@maven//:com_typesafe_play_twirl_api_2_12",
+      "@maven//:com_fasterxml_jackson_core_jackson_databind",
       "@maven//:javax_inject_javax_inject",
     ],
 )
 
+play_routes(
+  name = "server-routes-file",
+  srcs = ["routes"],
+  include_play_imports = True,
+  generate_reverse_router = True,
+)

@@ -13,5 +13,7 @@ artifacts = [
   "com.typesafe.play:play-ws_2.12",
   "com.typesafe.play:twirl-api_2.12",
   "javax.inject:javax.inject",
+  "com.fasterxml.jackson.core:jackson-core",
+  "com.fasterxml.jackson.core:jackson-databind",
   "org.jetbrains.kotlin:kotlin-stdlib-jdk7",
 ]
