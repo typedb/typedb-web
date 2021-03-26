@@ -1,10 +1,12 @@
 package grakn.web
 
-import play.api.Application
-import play.api.ApplicationLoader
-import play.api.BuiltInComponentsFromContext
-import play.api.NoHttpFiltersComponents
-import play.api.routing.Router
+
+import play.Application
+import play.ApplicationLoader
+import play.BuiltInComponentsFromContext
+import play.filters.components.NoHttpFiltersComponents
+import play.routing.Router
+import router.Routes
 import java.nio.file.Paths
 
 fun main() {
