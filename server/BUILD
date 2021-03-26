@@ -4,7 +4,7 @@ load("@io_bazel_rules_play_routes//play-routes:play-routes.bzl", "play_routes")
 kt_jvm_binary(
     name = "server",
     main_class = "grakn.web.ServerKt",
-    srcs = glob(["*.kt"]),
+    srcs = ["Server.kt"],
     deps = [
         ":server-routes-lib",
         "@maven//:com_typesafe_akka_akka_actor_typed_2_12",
@@ -41,5 +41,5 @@ play_routes(
   name = "server-routes-file",
   srcs = ["routes"],
   include_play_imports = True,
-  generate_reverse_router = True,
+  generate_reverse_router = False,
 )
