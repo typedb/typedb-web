@@ -1,18 +1,15 @@
 job "website" {
-  # Specify this job should run in the region named "us". Regions
-  # are defined by the Nomad servers' configuration.
+  # TODO: Change this
   region = "us"
 
-  # Spread the tasks in this job between us-west-1 and us-east-1.
+  # TODO: Change this
   datacenters = ["us-west-1", "us-east-1"]
 
   type = "service"
 
-  # Specify this job to have rolling updates, two-at-a-time, with
-  # 30 second intervals.
   update {
     stagger      = "30s"
-    max_parallel = 2
+    max_parallel = 1
   }
 
 
@@ -39,9 +36,8 @@ job "website" {
     }
 
     task "main" {
-      driver = "docker"
+      driver = "java"
 
-      # Configuration is specific to each driver.
       config {
         image = "hashicorp/web-frontend"
       }
