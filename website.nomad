@@ -39,10 +39,15 @@ job "website" {
       driver = "java"
 
       config {
-        image = "hashicorp/web-frontend"
+        jar_path = "local/server/server.jar"
+      }
+
+      artifact {
+        source = "https://storage.googleapis.com/vaticle-engineers-test/server.tar.gz"
       }
 
       env {
+        SERVER_ROOT = "local/server"
       }
 
       resources {

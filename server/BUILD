@@ -1,10 +1,25 @@
 load("@io_bazel_rules_kotlin//kotlin:kotlin.bzl", "kt_jvm_binary", "kt_jvm_library")
 load("@io_bazel_rules_scala//scala:scala.bzl", "scala_library", "scala_binary", "scala_test")
 load("@io_bazel_rules_play_routes//play-routes:play-routes.bzl", "play_routes")
+load("@graknlabs_bazel_distribution//common:rules.bzl", "assemble_targz")
 
-kt_jvm_binary(
+assemble_targz(
+    name = "server-tar-gz",
+    additional_files = {
+        "//server:index.html": "index.html",
+        "//server:server_deploy.jar": "server.jar",
+    },
+    output_filename = "server",
+)
+
+java_binary(
     name = "server",
     main_class = "grakn.web.ServerKt",
+    runtime_deps = [":server-lib"]
+)
+
+kt_jvm_library(
+    name = "server-lib",
     srcs = ["Server.kt"],
     deps = [
         ":server-routes-lib",
@@ -16,7 +31,6 @@ kt_jvm_binary(
         "@maven//:org_jetbrains_kotlin_kotlin_stdlib_jdk7",
         "@maven//:org_slf4j_slf4j_api",
     ],
-    data = ["index.html"],
     resources = ["application.conf"],
     resource_strip_prefix = "server",
     runtime_deps = [

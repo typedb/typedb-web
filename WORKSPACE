@@ -32,6 +32,12 @@ git_repository(
     branch = "experimental-skydoc-allow-dep-on-bazel-tools",
 )
 
+load("@graknlabs_bazel_distribution//common:deps.bzl", "rules_pkg")
+rules_pkg()
+
+load("@rules_pkg//:deps.bzl", "rules_pkg_dependencies")
+rules_pkg_dependencies()
+
 ############################
 # Load @graknlabs_web_main #
 ############################
