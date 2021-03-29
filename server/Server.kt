@@ -29,7 +29,7 @@ class PlayApplicationLoader : ApplicationLoader {
 
 class PlayComponent(context: ApplicationLoader.Context?) : BuiltInComponentsFromContext(context), NoHttpFiltersComponents {
     override fun router(): Router {
-        val pages = FileController(Paths.get(".").resolve(System.getenv("SERVER_ROOT") ?: ""))
+        val pages = FileController(Paths.get(".").resolve(System.getenv("SERVER_ROOT") ?: "").toAbsolutePath())
         return Routes(scalaHttpErrorHandler(), pages).asJava()
     }
 }

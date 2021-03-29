@@ -1,9 +1,7 @@
 job "website" {
-  # TODO: Change this
-  region = "us"
+  region = "global"
 
-  # TODO: Change this
-  datacenters = ["us-west-1", "us-east-1"]
+  datacenters = ["dc1"]
 
   type = "service"
 
@@ -11,7 +9,6 @@ job "website" {
     stagger      = "30s"
     max_parallel = 1
   }
-
 
   group "main" {
     count = 1
