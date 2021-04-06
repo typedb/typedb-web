@@ -5,6 +5,12 @@ terraform {
   }
 }
 
+provider "google" {
+  project = "vaticle-web-prod"
+  region  = "us-central1"
+  zone    = "us-central1-c"
+}
+
 resource "google_compute_address" "web_main_static_ip" {
   name = "web-main-static-ip"
 }
