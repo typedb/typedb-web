@@ -6,7 +6,7 @@ terraform {
 }
 
 resource "google_compute_address" "web_main_static_ip" {
-  name = "web_main_static_ip"
+  name = "web-main-static-ip"
 }
 
 resource "google_compute_instance" "web_main" {
