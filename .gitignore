@@ -8,3 +8,5 @@
 
 # Bazel
 bazel-*
+
+/local
