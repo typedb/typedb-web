@@ -7,8 +7,8 @@ terraform {
 
 provider "google" {
   project = "vaticle-web-prod"
-  region  = "us-central1"
-  zone    = "us-central1-c"
+  region  = "europe-west1"
+  zone    = "europe-west1-b"
 }
 
 resource "google_compute_address" "web_main_static_ip" {
