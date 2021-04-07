@@ -15,14 +15,14 @@ resource "google_compute_address" "web_main_static_ip" {
   name = "web-main-static-ip"
 }
 
-resource "google_compute_instance" "web_main" {
-  name                      = "web-main"
+resource "google_compute_instance" "web_nomad_server" {
+  name                      = "web-nomad-server"
   machine_type              = "n1-standard-2"
   allow_stopping_for_update = true
 
   boot_disk {
     initialize_params {
-      image = "ubuntu-os-cloud/ubuntu-2004-lts"
+      image = "website/nomad-server"
     }
   }
 
