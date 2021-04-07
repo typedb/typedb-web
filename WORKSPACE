@@ -25,6 +25,9 @@ kt_register_toolchains()
 load("@graknlabs_dependencies//distribution:deps.bzl", "graknlabs_bazel_distribution")
 graknlabs_bazel_distribution()
 
+load("@graknlabs_bazel_distribution//packer:deps.bzl", deploy_packer_dependencies="deps")
+deploy_packer_dependencies()
+
 load("@bazel_tools//tools/build_defs/repo:git.bzl", "git_repository")
 git_repository(
     name = "io_bazel_skydoc",
