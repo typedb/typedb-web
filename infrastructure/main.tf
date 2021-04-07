@@ -14,7 +14,6 @@ provider "google" {
 resource "google_compute_disk" "web_nomad_server_disk" {
   name  = "web-nomad-server-disk"
   type  = "pd-ssd"
-  image = "vaticle-web-prod/nomad-server"
   physical_block_size_bytes = 4096
 }
 
@@ -24,7 +23,15 @@ resource "google_compute_instance" "web_nomad_server" {
   allow_stopping_for_update = true
 
   boot_disk {
+    initialize_params {
+      image = "vaticle-web-prod/nomad-server"
+    }
+    device_name = "boot"
+  }
+
+  attached_disk {
     source = google_compute_disk.web_nomad_server_disk.name
+    device_name = "nomad"
   }
 
   service_account {
@@ -43,6 +50,11 @@ resource "google_compute_instance" "web_nomad_server" {
       nat_ip = google_compute_address.web_main_static_ip.address
     }
   }
+
+  metadata_startup_script = templatefile("${path.module}/startup-nomad.sh", {
+    persisted_disk_name = "/dev/disk/by-id/google-${}"
+    persisted_mount_point = "/mnt/${}"
+  })
 }
 
 resource "google_compute_address" "web_main_static_ip" {
