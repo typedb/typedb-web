@@ -11,9 +11,11 @@ provider "google" {
   zone    = "europe-west1-b"
 }
 
-resource "google_compute_address" "web_main_static_ip" {
-  name = "web-main-static-ip"
-  region  = "europe-west1"
+resource "google_compute_disk" "web_nomad_server_disk" {
+  name  = "web-nomad-server-disk"
+  type  = "pd-ssd"
+  image = "vaticle-web-prod/nomad-server"
+  physical_block_size_bytes = 4096
 }
 
 resource "google_compute_instance" "web_nomad_server" {
@@ -22,9 +24,7 @@ resource "google_compute_instance" "web_nomad_server" {
   allow_stopping_for_update = true
 
   boot_disk {
-    initialize_params {
-      image = "vaticle-web-prod/nomad-server"
-    }
+    source = google_compute_disk.web_nomad_server_disk.name
   }
 
   service_account {
@@ -43,4 +43,9 @@ resource "google_compute_instance" "web_nomad_server" {
       nat_ip = google_compute_address.web_main_static_ip.address
     }
   }
+}
+
+resource "google_compute_address" "web_main_static_ip" {
+  name = "web-main-static-ip"
+  region  = "europe-west1"
 }
