@@ -23,7 +23,7 @@ resource "google_compute_instance" "web_nomad_server" {
 
   boot_disk {
     initialize_params {
-      image = "vaticle-web-prod/website"
+      image = "vaticle-web-prod/nomad-server"
     }
   }
 
