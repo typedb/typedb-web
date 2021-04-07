@@ -2,9 +2,9 @@
 
 set -ex
 
-sudo mkdir -p ${persisted_mount_point}
 FS_TYPE=\$(blkid -o value -s TYPE ${persisted_disk_name})
 [ -z "\$FS_TYPE" ] && mkfs.ext4 ${persisted_disk_name} || true
+sudo mkdir -p ${persisted_mount_point}
 sudo mount -t ext4 ${persisted_disk_name} ${persisted_mount_point}
 
 cat > /etc/systemd/system/nomad.service  << EOF
