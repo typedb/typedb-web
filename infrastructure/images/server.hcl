@@ -1,5 +1,5 @@
-bind_addr = "0.0.0.0"
 data_dir = "/mnt/nomad-server"
+bind_addr = "0.0.0.0"
 
 server {
   enabled = true

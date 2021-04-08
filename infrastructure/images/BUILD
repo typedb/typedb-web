@@ -20,3 +20,23 @@ deploy_packer(
     target = ":assemble-gcp-nomad-server",
     overwrite = True,
 )
+
+assemble_gcp(
+    name = "assemble-gcp-nomad-client",
+    install = "//infrastructure/images:install-nomad-client.sh",
+    files = {
+        "client.hcl": "client.hcl"
+    },
+    project_id = "vaticle-web-prod",
+    disable_default_service_account = True,
+    image_name = "nomad-client",
+    source_image_family = "ubuntu-2004-lts",
+    image_family = "website",
+    zone = "europe-west1-b"
+)
+
+deploy_packer(
+    name = "deploy-gcp-nomad-client",
+    target = ":assemble-gcp-nomad-client",
+    overwrite = True,
+)
