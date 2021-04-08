@@ -12,3 +12,5 @@ bazel-*
 local
 
 .terraform
+
+pages/node_modules

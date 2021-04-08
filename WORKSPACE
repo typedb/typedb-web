@@ -65,6 +65,21 @@ bind(
   actual = "@io_bazel_rules_play_routes//default-compiler-clis:scala_2_12_play_2_7"
 )
 
+# Load //builder/nodejs
+load("@graknlabs_dependencies//builder/nodejs:deps.bzl", nodejs_deps = "deps")
+nodejs_deps()
+load("@build_bazel_rules_nodejs//:index.bzl", "node_repositories", "npm_install")
+
+node_repositories(
+    package_json = ["//pages:package.json"],
+)
+
+npm_install(
+    name = "npm",
+    package_json = "//pages:package.json",
+    package_lock_json = "//pages:package-lock.json",
+)
+
 ###############
 # Load @maven #
 ###############

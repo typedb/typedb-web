@@ -15,7 +15,11 @@ java_binary(
     name = "server",
     main_class = "grakn.web.server.Server",
     runtime_deps = [":server-lib"],
-    data = ["index.html"],
+    data = [
+        "index.html",
+        "14eb5b9f72cbc47eff7f26d8574e7e54.otf",
+        "bundle.0d8eae89aa639ece6e73.js",
+    ],
 )
 
 java_library(
