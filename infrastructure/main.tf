@@ -46,7 +46,7 @@ resource "google_compute_instance" "web_nomad_server" {
     network = "default"
   }
 
-  metadata_startup_script = "${path.module}/startup-nomad-server.sh"
+  metadata_startup_script = "sudo systemctl start nomad-server.service"
 }
 
 resource "google_compute_instance" "web_nomad_client" {
@@ -73,6 +73,6 @@ resource "google_compute_instance" "web_nomad_client" {
     network = "default"
   }
 
-  metadata_startup_script = "${path.module}/startup-nomad-client.sh"
+  metadata_startup_script = "sudo systemctl start nomad-client.service"
 }
 
