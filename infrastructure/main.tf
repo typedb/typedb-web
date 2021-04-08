@@ -20,7 +20,6 @@ resource "google_compute_disk" "web_nomad_server_disk" {
 resource "google_compute_instance" "web_nomad_server" {
   name                      = "web-nomad-server"
   machine_type              = "n1-standard-2"
-  allow_stopping_for_update = true
 
   boot_disk {
     initialize_params {
@@ -45,19 +44,35 @@ resource "google_compute_instance" "web_nomad_server" {
 
   network_interface {
     network = "default"
-
-    access_config {
-      nat_ip = google_compute_address.web_main_static_ip.address
-    }
   }
 
-  metadata_startup_script = templatefile("${path.module}/startup-nomad-server.sh", {
-    persisted_disk_name = "/dev/disk/by-id/google-nomad-server"
-    persisted_mount_point = "/mnt/nomad-server"
-  })
+  metadata_startup_script = "${path.module}/startup-nomad-server.sh"
 }
 
-resource "google_compute_address" "web_main_static_ip" {
-  name = "web-main-static-ip"
-  region  = "europe-west1"
+resource "google_compute_instance" "web_nomad_client" {
+  name                      = "web-nomad-client"
+  machine_type              = "n1-standard-2"
+
+  boot_disk {
+    initialize_params {
+      image = "vaticle-web-prod/nomad-client"
+    }
+    device_name = "boot"
+  }
+
+  service_account {
+    email = "grabl-prod@vaticle-web-prod.iam.gserviceaccount.com"
+    scopes = [
+      "https://www.googleapis.com/auth/logging.write",
+      "https://www.googleapis.com/auth/monitoring",
+      "https://www.googleapis.com/auth/cloud-platform",
+    ]
+  }
+
+  network_interface {
+    network = "default"
+  }
+
+  metadata_startup_script = "${path.module}/startup-nomad-client.sh"
 }
+
