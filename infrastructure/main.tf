@@ -31,7 +31,7 @@ resource "google_compute_instance" "web_nomad_server" {
 
   attached_disk {
     source = google_compute_disk.web_nomad_server_disk.name
-    device_name = "nomad"
+    device_name = "nomad-server"
   }
 
   service_account {
@@ -52,8 +52,8 @@ resource "google_compute_instance" "web_nomad_server" {
   }
 
   metadata_startup_script = templatefile("${path.module}/startup-nomad-server.sh", {
-    persisted_disk_name = "/dev/disk/by-id/google-nomad"
-    persisted_mount_point = "/mnt/nomad"
+    persisted_disk_name = "/dev/disk/by-id/google-nomad-server"
+    persisted_mount_point = "/mnt/nomad-server"
   })
 }
 
