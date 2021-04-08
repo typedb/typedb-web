@@ -4,7 +4,9 @@ load("@graknlabs_bazel_distribution//gcp:rules.bzl", "assemble_gcp")
 assemble_gcp(
     name = "assemble-gcp-nomad-server",
     install = "//infrastructure/images:install-nomad-server.sh",
-    files = {},
+    files = {
+        "server.hcl": "server.hcl"
+    },
     project_id = "vaticle-web-prod",
     disable_default_service_account = True,
     image_name = "nomad-server",
