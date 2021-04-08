@@ -1,4 +1,3 @@
-load("@io_bazel_rules_kotlin//kotlin:kotlin.bzl", "kt_jvm_binary", "kt_jvm_library")
 load("@io_bazel_rules_scala//scala:scala.bzl", "scala_library", "scala_binary", "scala_test")
 load("@io_bazel_rules_play_routes//play-routes:play-routes.bzl", "play_routes")
 load("@graknlabs_bazel_distribution//common:rules.bzl", "assemble_targz")
@@ -14,14 +13,16 @@ assemble_targz(
 
 java_binary(
     name = "server",
-    main_class = "grakn.web.ServerKt",
-    runtime_deps = [":server-lib"]
+    main_class = "grakn.web.server.Server",
+    runtime_deps = [":server-lib"],
+    data = ["index.html"],
 )
 
-kt_jvm_library(
+java_library(
     name = "server-lib",
-    srcs = ["Server.kt"],
+    srcs = ["Server.java"],
     deps = [
+        ":file-controller",
         ":server-routes-lib",
         "@maven//:com_typesafe_akka_akka_actor_typed_2_12",
         "@maven//:com_typesafe_akka_akka_stream_2_12",
@@ -40,9 +41,9 @@ kt_jvm_library(
     ]
 )
 
-kt_jvm_library(
+java_library(
     name = "file-controller",
-    srcs = ["FileController.kt"],
+    srcs = ["FileController.java"],
     deps = [
         "@maven//:com_typesafe_akka_akka_actor_typed_2_12",
         "@maven//:com_typesafe_play_play_2_12",
