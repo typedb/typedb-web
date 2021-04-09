@@ -17,8 +17,6 @@ job "web-main" {
       port "http" {
         static = 80
       }
-
-      port "https" {}
     }
 
     service {

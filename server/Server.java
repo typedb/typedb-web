@@ -17,7 +17,7 @@ public class Server {
     }
 
     private static void configurePlayFramework(Class<?> applicationLoader) {
-        System.setProperty("http.port", "8080");
+        System.setProperty("http.port", "80");
         System.setProperty("play.application.loader", applicationLoader.getName());
         System.setProperty("play.http.secret.key", "grakn-web-main");
         System.setProperty("play.server.provider", "play.core.server.AkkaHttpServerProvider");
