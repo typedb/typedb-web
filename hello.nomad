@@ -1,4 +1,4 @@
-job "website" {
+job "hello" {
   region = "global"
 
   datacenters = ["dc1"]
@@ -10,7 +10,7 @@ job "website" {
     max_parallel = 1
   }
 
-  group "main" {
+  group "hello" {
     count = 1
 
     network {
@@ -32,19 +32,15 @@ job "website" {
       }
     }
 
-    task "main" {
+    task "hello" {
       driver = "java"
 
       config {
-        jar_path = "local/server/server.jar"
+        jar_path = "local/hello.jar"
       }
 
       artifact {
-        source = "https://storage.googleapis.com/vaticle-engineers-test/server.tar.gz"
-      }
-
-      env {
-        SERVER_ROOT = "local/server"
+        source = "https://storage.googleapis.com/vaticle-engineers-test/hello.tar.gz"
       }
 
       resources {
