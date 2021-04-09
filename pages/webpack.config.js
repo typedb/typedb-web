@@ -40,11 +40,13 @@ module.exports = {
       {
         test: /\.(png|svg|jpe?g|gif|otf)$/,
         use: 'file-loader'
-      }
+      },
     ],
+  },
+  devServer: {
+    historyApiFallback: true,
   },
   watchOptions: {
     ignored: /node_modules/
   },
-  devtool: 'source-map'
 };

@@ -1,0 +1,54 @@
+@import url('https://fonts.googleapis.com/css2?family=Titillium+Web:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700&family=Ubuntu+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+$color-white: #FFF;
+$color-purple-500: #261C5E;
+$color-purple-600: #1D1354;
+
+$default-background: $color-purple-600;
+$default-text-color: $color-white;
+
+@font-face {
+  font-family: 'OCRAStd';
+  src: url('../assets/fonts/OCRAStd.otf');
+  font-weight: normal;
+}
+
+html, body {
+  height: 100%;
+  background-color: $default-background;
+  color: $default-text-color;
+  font-size: 14px;
+
+  // smoother edges on browsers running on Mac OS
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  font-family: 'Titillium Web', Geneva, Tahoma, sans-serif;
+
+  margin: 0;
+
+  * {
+    box-sizing: border-box;
+  }
+
+  &.with-hidden-scrollbar::-webkit-scrollbar {
+    width: 0;
+    background: transparent;
+  }
+}
+
+#root {
+  height: 100%;
+}
+
+.page-header-toolbar > :not(:first-child) {
+  margin-left: 35px;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  } to {
+    transform: rotate(360deg);
+  }
+}

@@ -5,7 +5,7 @@ export const useStyles = makeStyles({
     root: {
         height: '100%',
         '& a': {
-            color: '#00FF00',
+            color: '#FFF',
             textDecoration: 'none',
         },
         '& *::-webkit-scrollbar': {
