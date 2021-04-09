@@ -1,25 +1,11 @@
 load("@io_bazel_rules_scala//scala:scala.bzl", "scala_library", "scala_binary", "scala_test")
 load("@io_bazel_rules_play_routes//play-routes:play-routes.bzl", "play_routes")
-load("@graknlabs_bazel_distribution//common:rules.bzl", "assemble_targz")
-
-assemble_targz(
-    name = "server-tar-gz",
-    additional_files = {
-        "//server:index.html": "index.html",
-        "//server:server_deploy.jar": "server.jar",
-    },
-    output_filename = "server",
-)
 
 java_binary(
-    name = "server",
+    name = "server-bin",
     main_class = "grakn.web.server.Server",
     runtime_deps = [":server-lib"],
-    data = [
-        "index.html",
-        "14eb5b9f72cbc47eff7f26d8574e7e54.otf",
-        "bundle.0d8eae89aa639ece6e73.js",
-    ],
+    visibility = ["//visibility:public"],
 )
 
 java_library(

@@ -39,9 +39,9 @@ public class Server {
 
         @Override
         public Router router() {
-            String serverRoot = System.getenv("SERVER_ROOT");
-            if (serverRoot == null) serverRoot = "server";
-            FileController pages = new FileController(Paths.get(".").resolve(serverRoot).toAbsolutePath());
+            String pagesRoot = System.getenv("PAGES_ROOT");
+            if (pagesRoot == null) pagesRoot = ".";
+            FileController pages = new FileController(Paths.get(pagesRoot).toAbsolutePath());
             return new Routes(scalaHttpErrorHandler(), pages).asJava();
         }
     }
