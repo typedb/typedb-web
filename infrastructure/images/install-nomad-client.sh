@@ -2,6 +2,8 @@
 
 set -ex
 
+sudo apt install -qy openjdk-11-jdk
+
 sudo mkdir -p /etc/nomad-client
 sudo mv /tmp/deployment/client.hcl /etc/nomad-client/client.hcl
 

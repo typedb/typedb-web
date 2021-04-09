@@ -49,8 +49,30 @@ resource "google_compute_instance" "web_nomad_server" {
   metadata_startup_script = "sudo systemctl start nomad-server.service"
 }
 
-resource "google_compute_instance" "web_nomad_client" {
-  name                      = "web-nomad-client"
+resource "google_compute_network" "web_main_network" {
+  name = "web-main-network"
+}
+
+resource "google_compute_address" "web_main_static_ip" {
+  name = "web-main-static-ip"
+}
+
+resource "google_compute_firewall" "web_main_firewall" {
+  name    = "web-main-firewall"
+  network = google_compute_network.web_main_network.name
+
+  allow {
+    protocol = "icmp"
+  }
+
+  allow {
+    protocol = "tcp"
+    ports    = ["80"]
+  }
+}
+
+resource "google_compute_instance" "web_main_nomad_client" {
+  name                      = "web-main-nomad-client"
   machine_type              = "n1-standard-2"
 
   boot_disk {
@@ -70,7 +92,11 @@ resource "google_compute_instance" "web_nomad_client" {
   }
 
   network_interface {
-    network = "default"
+    network = google_compute_network.web_main_network.name
+
+    access_config {
+      nat_ip = google_compute_address.web_main_static_ip.address
+    }
   }
 
   metadata_startup_script = "sudo systemctl start nomad-client.service"
