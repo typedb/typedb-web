@@ -11,10 +11,27 @@ provider "google" {
   zone    = "europe-west1-b"
 }
 
+resource "google_compute_network" "web_network" {
+  name = "web-network"
+}
+
+resource "google_compute_firewall" "web_nomad_firewall" {
+  name    = "web-nomad-firewall"
+  network = google_compute_network.web_network.name
+
+  allow {
+    protocol = "icmp"
+  }
+
+  allow {
+    protocol = "tcp"
+    ports    = ["22", "4646", "4647", "4648"]
+  }
+}
+
 resource "google_compute_disk" "web_nomad_server_disk" {
   name  = "web-nomad-server-disk"
   type  = "pd-ssd"
-  physical_block_size_bytes = 4096
 }
 
 resource "google_compute_instance" "web_nomad_server" {
@@ -43,14 +60,10 @@ resource "google_compute_instance" "web_nomad_server" {
   }
 
   network_interface {
-    network = "default"
+    network = google_compute_network.web_network.name
   }
 
   metadata_startup_script = "sudo systemctl start nomad-server.service"
-}
-
-resource "google_compute_network" "web_main_network" {
-  name = "web-main-network"
 }
 
 resource "google_compute_address" "web_main_static_ip" {
@@ -59,16 +72,14 @@ resource "google_compute_address" "web_main_static_ip" {
 
 resource "google_compute_firewall" "web_main_firewall" {
   name    = "web-main-firewall"
-  network = google_compute_network.web_main_network.name
-
-  allow {
-    protocol = "icmp"
-  }
+  network = google_compute_network.web_network.name
 
   allow {
     protocol = "tcp"
     ports    = ["80"]
   }
+
+  target_tags = ["web-main"]
 }
 
 resource "google_compute_instance" "web_main_nomad_client" {
@@ -92,13 +103,14 @@ resource "google_compute_instance" "web_main_nomad_client" {
   }
 
   network_interface {
-    network = google_compute_network.web_main_network.name
+    network = google_compute_network.web_network.name
 
     access_config {
       nat_ip = google_compute_address.web_main_static_ip.address
     }
   }
 
+  tags = ["web-main"]
+
   metadata_startup_script = "sudo systemctl start nomad-client.service"
 }
-
