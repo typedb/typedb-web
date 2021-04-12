@@ -19,22 +19,12 @@ job "web-main" {
       }
     }
 
-    service {
-      port = "http"
-
-      check {
-        type     = "http"
-        path     = "/health"
-        interval = "10s"
-        timeout  = "2s"
-      }
-    }
-
     task "web-main" {
       driver = "java"
 
       config {
         jar_path = "local/web-main/server.jar"
+        jvm_options = ["-Dpidfile.path=/dev/null"]
       }
 
       artifact {
@@ -47,7 +37,7 @@ job "web-main" {
 
       resources {
         cpu    = 500
-        memory = 128
+        memory = 1024
       }
     }
   }
