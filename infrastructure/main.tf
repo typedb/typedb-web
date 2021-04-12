@@ -25,6 +25,7 @@ resource "google_compute_firewall" "web_nomad_firewall" {
 
   allow {
     protocol = "tcp"
+    # TODO: Restrict these nomad ports for public access
     ports    = ["22", "4646", "4647", "4648"]
   }
 }
