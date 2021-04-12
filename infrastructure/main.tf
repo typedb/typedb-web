@@ -1,7 +1,7 @@
 # TODO:
+# Deploy nomad through bazel
 # Getting artifact through repo.ai
 # Use HTTPS
-# Deploy nomad through bazel
 # Restrict nomad ports for public access
 # Parameterize some of these hard coded values?
 terraform {

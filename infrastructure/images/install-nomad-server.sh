@@ -3,7 +3,7 @@
 set -ex
 
 sudo mkdir -p /etc/nomad-server
-sudo mv /tmp/deployment/server.hcl /etc/nomad-server/server.hcl
+sudo mv /tmp/deployment/nomad-server.hcl /etc/nomad-server/config.hcl
 
 curl -fsSL https://apt.releases.hashicorp.com/gpg | sudo apt-key add -
 sudo apt-add-repository "deb [arch=amd64] https://apt.releases.hashicorp.com $(lsb_release -cs) main"
@@ -47,7 +47,7 @@ Requires=network-online.target nomad-server-disk.mount
 After=network-online.target nomad-server-disk.mount
 [Service]
 Type=simple
-ExecStart=sudo nomad agent -config /etc/nomad-server/server.hcl
+ExecStart=sudo nomad agent -config /etc/nomad-server/config.hcl
 Restart=on-failure
 RestartSec=10
 [Install]
