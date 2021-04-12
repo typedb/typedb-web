@@ -4,6 +4,10 @@ set -ex
 
 sudo apt install -qy openjdk-11-jdk
 
+curl -L -o cni-plugins.tgz https://github.com/containernetworking/plugins/releases/download/v0.9.1/cni-plugins-linux-amd64-v0.9.1.tgz
+sudo mkdir -p /opt/cni/bin
+sudo tar -C /opt/cni/bin -xzf cni-plugins.tgz
+
 sudo mkdir -p /etc/nomad-client
 sudo mv /tmp/deployment/client.hcl /etc/nomad-client/client.hcl
 

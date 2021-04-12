@@ -1,3 +1,4 @@
+# TODO: Bind job always to the same machine with same IP
 job "web-main" {
   region = "global"
 
@@ -14,8 +15,10 @@ job "web-main" {
     count = 1
 
     network {
+      mode = "bridge"
       port "http" {
         static = 80
+        to = 8080
       }
     }
 
