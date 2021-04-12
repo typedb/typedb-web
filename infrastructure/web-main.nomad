@@ -1,4 +1,3 @@
-# TODO: Bind job always to the same machine with same IP
 job "web-main" {
   region = "global"
 

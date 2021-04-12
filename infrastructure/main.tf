@@ -4,6 +4,7 @@
 # Use HTTPS
 # Restrict nomad ports for public access
 # Parameterize some of these hard coded values?
+# Bind job always to the same machine with same IP
 terraform {
   backend "gcs" {
     bucket  = "vaticle-web-prod-terraform-state"
