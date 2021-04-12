@@ -2,6 +2,7 @@
 # Use HTTPS
 # Deploy nomad through bazel
 # Restrict nomad ports for public access
+# Parameterize some of these hard coded values?
 terraform {
   backend "gcs" {
     bucket  = "vaticle-web-prod-terraform-state"
