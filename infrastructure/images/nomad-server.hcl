@@ -5,3 +5,6 @@ server {
   enabled = true
   bootstrap_expect = 1
 }
+
+region = "uk"
+datacenter = "uk"

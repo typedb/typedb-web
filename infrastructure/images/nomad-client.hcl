@@ -5,3 +5,6 @@ client {
   enabled = true
   servers = ["web-nomad-server:4647"]
 }
+
+region = "uk"
+datacenter = "uk"

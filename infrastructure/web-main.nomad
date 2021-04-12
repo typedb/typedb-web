@@ -1,7 +1,7 @@
 job "web-main" {
-  region = "global"
+  region = "uk"
 
-  datacenters = ["dc1"]
+  datacenters = ["uk"]
 
   type = "service"
 
