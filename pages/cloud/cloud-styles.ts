@@ -2,10 +2,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import { vaticleTheme } from "../styles/theme";
 
 export const cloudPageStyles = makeStyles({
-    layoutMain: {
-        paddingTop: '4px',
-    },
-
     defaultSection: {
         maxWidth: '1160px',
         margin: '0 auto',

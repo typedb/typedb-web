@@ -56,17 +56,6 @@ export const pageHeaderStyles = makeStyles({
         border: 0,
         backgroundColor: '#FFF',
     },
-
-    menuToggler: {
-        minWidth: 110,
-        height: headerHeight,
-        padding: 0,
-        justifyContent: 'flex-end',
-    },
-
-    profileMenuItem: {
-        height: 27,
-    },
 });
 
 export const pageFooterStyles = makeStyles({

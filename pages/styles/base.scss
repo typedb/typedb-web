@@ -41,6 +41,7 @@ html, body {
   height: 100%;
 }
 
+/* TODO: This style should be defined in common/ui/layout/layout-styles.ts */
 .page-header-toolbar > :not(:first-child) {
   margin-left: 35px;
 }

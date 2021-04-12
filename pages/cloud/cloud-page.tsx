@@ -1,12 +1,15 @@
 import React from 'react';
-import { DefaultLayout } from "../common/ui/layout/default-layout";
 import { cloudPageStyles } from "./cloud-styles";
+import { DefaultLayout } from "../common/ui/layout/default-layout";
+import { AppProps } from "../index/App";
 
-export const CloudPage: React.FC = () => {
+interface CloudPageProps extends AppProps {}
+
+export const CloudPage: React.FC<CloudPageProps> = ({graknVersion}) => {
     const classes = cloudPageStyles();
 
     return (
-        <DefaultLayout classes={{ main: classes.layoutMain }}>
+        <DefaultLayout graknVersion={graknVersion}>
             <section className={classes.defaultSection}>
                 <h1 className={classes.h1}>Grakn Cluster in the Cloud and On-Premise</h1>
                 <p className={classes.largeText}>

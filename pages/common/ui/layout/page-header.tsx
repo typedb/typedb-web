@@ -55,6 +55,7 @@ const HeaderMenuItem: React.FC = ({children}) => {
     return <Typography className={classes.linkText}>{children}</Typography>;
 }
 
+// TODO: Integrate <Link to='x'> into HeaderLink so we can write e.g. <HeaderLink to="/cloud">Cloud</HeaderLink>
 const HeaderLink: React.FC = ({children}) => {
     const classes = pageHeaderStyles();
 

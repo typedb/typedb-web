@@ -1,15 +1,17 @@
 import React from 'react';
 import { useStyles } from './styles';
-import Router from './Router';
+import { Router } from "./Router";
 
-const App: React.FC = () => {
+export interface AppProps {
+    graknVersion: string;
+}
+
+export const App: React.FC<AppProps> = ({graknVersion}) => {
     const ownClasses = useStyles();
 
     return (
         <div className={ownClasses.root}>
-            <Router />
+            <Router graknVersion={graknVersion} />
         </div>
     );
 };
-
-export default App;
