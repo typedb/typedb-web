@@ -1,19 +1,28 @@
+import clsx from 'clsx';
 import React from 'react';
+import PageFooter from './page-footer';
 import { defaultLayoutStyles } from './layout-styles';
 import { PageHeader } from "./page-header";
-import { PageFooter } from "./page-footer";
 
 interface DefaultLayoutProps {
-    graknVersion: string;
+    classes?: Partial<Record<'main', string>>;
+    navigation?: React.ReactNode;
 }
 
-export const DefaultLayout: React.FC<DefaultLayoutProps> = ({children, graknVersion}) => {
+export const DefaultLayout: React.FC<DefaultLayoutProps> = ({
+    classes,
+    children,
+    navigation
+}) => {
     const ownClasses = defaultLayoutStyles();
 
     return (
         <>
-            <PageHeader graknVersion={graknVersion} />
-            <main className={ownClasses.main}>{children}</main>
+            <PageHeader graknVersion={"2.0.1"} />
+            <main className={clsx(ownClasses.main, classes?.main)}>
+                {navigation}
+                {children}
+            </main>
             <PageFooter />
         </>
     );

@@ -51,8 +51,6 @@ declare module '@material-ui/core/styles/createMuiTheme' {
     }
 }
 
-// TODO: We probably don't need all of this anymore - but Material UI uses bits of it and we use other bits of it
-//       to standardise shared styles.
 export const vaticleTheme = {
     spacing: createSpacing(5),
     palette: {

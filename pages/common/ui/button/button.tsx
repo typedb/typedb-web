@@ -28,6 +28,8 @@ const defaultProps: Required<Pick<BaseButtonProps, 'size' | 'type' | 'htmlAttrs'
     htmlAttrs: { type: 'button' },
 };
 
+export const displayName = 'BaseButton';
+
 export type BaseButtonFinalProps = React.PropsWithChildren<BaseButtonProps & typeof defaultProps>;
 
 export const VaticleButton: React.FC<BaseButtonProps> = props => {
@@ -49,6 +51,7 @@ export const VaticleButton: React.FC<BaseButtonProps> = props => {
             href={href}
             startIcon={startIcon}
             endIcon={endIcon}
+            disableFocusRipple
             disableElevation
             onClick={onClick}
             {...linkProps}

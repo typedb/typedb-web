@@ -1,7 +1,7 @@
 import React from 'react';
 import { pageFooterStyles } from "./layout-styles";
 
-export const PageFooter: React.FC = () => {
+const PageFooter: React.FC = () => {
     const styles = pageFooterStyles();
     return (
         <footer className={styles.root}>
@@ -9,3 +9,5 @@ export const PageFooter: React.FC = () => {
         </footer>
     );
 };
+
+export default PageFooter;

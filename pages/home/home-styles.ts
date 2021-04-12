@@ -2,6 +2,10 @@ import { makeStyles } from '@material-ui/core/styles';
 import { vaticleTheme } from "../styles/theme";
 
 export const homePageStyles = makeStyles({
+    layoutMain: {
+        paddingTop: '4px',
+    },
+
     defaultSection: {
         maxWidth: '1160px',
         margin: '0 auto',
@@ -39,7 +43,6 @@ export const homePageStyles = makeStyles({
         height: '160px',
     },
 
-    // TODO: Is there a better way of mimicking the :first-child CSS selector in MaterialUI?
     mainLink: {
         flex: 1,
         display: 'flex',

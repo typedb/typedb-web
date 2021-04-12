@@ -1,20 +1,18 @@
 import React from 'react';
 import { homePageStyles } from "./home-styles";
 import { VaticleAtom } from '../common/ui/images/vaticle-atom';
+import { DefaultLayout } from "../common/ui/layout/default-layout";
 import { discordUrl, githubUrl, twitterUrl } from "../common/urls";
 import { faDiscord, faGithub, faTwitter } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { VaticleButton } from "../common/ui/button/button";
-import { DefaultLayout } from "../common/ui/layout/default-layout";
-import { AppProps } from "../index/App";
 
-interface HomePageProps extends AppProps {}
-
-export const HomePage: React.FC<HomePageProps> = ({graknVersion}) => {
+export const HomePage: React.FC = () => {
     const classes = homePageStyles();
+    const graknVersion = "2.0.1";
 
     return (
-        <DefaultLayout graknVersion={graknVersion}>
+        <DefaultLayout classes={{ main: classes.layoutMain }}>
             <section className={classes.defaultSection}>
                 <div className={classes.atom}>
                     <VaticleAtom/>
