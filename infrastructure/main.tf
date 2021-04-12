@@ -1,4 +1,5 @@
 # TODO:
+# Getting artifact through repo.ai
 # Use HTTPS
 # Deploy nomad through bazel
 # Restrict nomad ports for public access
@@ -12,8 +13,8 @@ terraform {
 
 provider "google" {
   project = "vaticle-web-prod"
-  region  = "europe-west1"
-  zone    = "europe-west1-b"
+  region  = "europe-west2"
+  zone    = "europe-west2-b"
 }
 
 resource "google_compute_network" "web_network" {
