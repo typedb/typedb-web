@@ -9,7 +9,7 @@ sudo mkdir -p /opt/cni/bin
 sudo tar -C /opt/cni/bin -xzf cni-plugins.tgz
 
 sudo mkdir -p /etc/nomad-client
-sudo mv /tmp/deployment/client.hcl /etc/nomad-client/client.hcl
+sudo mv /tmp/deployment/nomad-client.hcl /etc/nomad-client/config.hcl
 
 sudo mkdir /mnt/nomad-client
 
@@ -25,7 +25,7 @@ Requires=network-online.target
 After=network-online.target
 [Service]
 Type=simple
-ExecStart=sudo nomad agent -config /etc/nomad-client/client.hcl
+ExecStart=sudo nomad agent -config /etc/nomad-client/config.hcl
 Restart=on-failure
 RestartSec=10
 [Install]

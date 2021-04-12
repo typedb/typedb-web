@@ -5,7 +5,7 @@ assemble_gcp(
     name = "assemble-gcp-nomad-server",
     install = "//infrastructure/images:install-nomad-server.sh",
     files = {
-        "server.hcl": "server.hcl"
+        "nomad-server.hcl": "nomad-server.hcl"
     },
     project_id = "vaticle-web-prod",
     disable_default_service_account = True,
@@ -25,7 +25,7 @@ assemble_gcp(
     name = "assemble-gcp-nomad-client",
     install = "//infrastructure/images:install-nomad-client.sh",
     files = {
-        "client.hcl": "client.hcl"
+        "nomad-client.hcl": "nomad-client.hcl"
     },
     project_id = "vaticle-web-prod",
     disable_default_service_account = True,

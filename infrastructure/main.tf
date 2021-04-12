@@ -1,9 +1,10 @@
 # TODO:
+# Deploy nomad through bazel
 # Getting artifact through repo.ai
 # Use HTTPS
-# Deploy nomad through bazel
 # Restrict nomad ports for public access
 # Parameterize some of these hard coded values?
+# Bind job always to the same machine with same IP
 terraform {
   backend "gcs" {
     bucket  = "vaticle-web-prod-terraform-state"
@@ -21,8 +22,8 @@ resource "google_compute_network" "web_network" {
   name = "web-network"
 }
 
-resource "google_compute_firewall" "web_nomad_firewall" {
-  name    = "web-nomad-firewall"
+resource "google_compute_firewall" "web-firewall" {
+  name    = "web-firewall"
   network = google_compute_network.web_network.name
 
   allow {
@@ -35,13 +36,13 @@ resource "google_compute_firewall" "web_nomad_firewall" {
   }
 }
 
-resource "google_compute_disk" "web_nomad_server_disk" {
-  name  = "web-nomad-server-disk"
+resource "google_compute_disk" "nomad_server_disk" {
+  name  = "nomad-server-disk"
   type  = "pd-ssd"
 }
 
-resource "google_compute_instance" "web_nomad_server" {
-  name                      = "web-nomad-server"
+resource "google_compute_instance" "nomad_server" {
+  name                      = "nomad-server"
   machine_type              = "n1-standard-2"
 
   boot_disk {
@@ -52,7 +53,7 @@ resource "google_compute_instance" "web_nomad_server" {
   }
 
   attached_disk {
-    source = google_compute_disk.web_nomad_server_disk.name
+    source = google_compute_disk.nomad_server_disk.name
     device_name = "nomad-server"
   }
 
@@ -88,8 +89,8 @@ resource "google_compute_firewall" "web_main_firewall" {
   target_tags = ["web-main"]
 }
 
-resource "google_compute_instance" "web_main_nomad_client" {
-  name                      = "web-main-nomad-client"
+resource "google_compute_instance" "web_main" {
+  name                      = "web-main"
   machine_type              = "n1-standard-2"
 
   boot_disk {

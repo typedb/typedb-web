@@ -1,8 +1,7 @@
-# TODO: Bind job always to the same machine with same IP
 job "web-main" {
-  region = "global"
+  region = "uk"
 
-  datacenters = ["dc1"]
+  datacenters = ["uk"]
 
   type = "service"
 
