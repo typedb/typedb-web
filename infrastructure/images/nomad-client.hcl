@@ -12,3 +12,12 @@ client {
 acl {
   enabled = true
 }
+
+tls {
+  http = true
+  rpc  = true
+
+  ca_file   = "/mnt/nomad-client/nomad-ca.pem"
+  cert_file = "/mnt/nomad-client/client.pem"
+  key_file  = "/mnt/nomad-client/client-key.pem"
+}

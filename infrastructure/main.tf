@@ -105,10 +105,7 @@ resource "google_compute_instance" "nomad_server" {
 
   tags = ["nomad-server"]
 
-  metadata_startup_script = <<EOF
-sudo systemctl start nomad-server.service
-nomad acl bootstrap > /mnt/nomad-server/token
-EOF
+  metadata_startup_script = file("${path.module}/start-nomad-server.sh")
 }
 
 resource "google_compute_address" "web_main_static_ip" {
@@ -157,5 +154,5 @@ resource "google_compute_instance" "web_main" {
 
   tags = ["nomad-client", "web-main"]
 
-  metadata_startup_script = "sudo systemctl start nomad-client.service"
+  metadata_startup_script = file("${path.module}/start-nomad-client.sh")
 }
