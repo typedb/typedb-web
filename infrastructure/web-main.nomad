@@ -39,8 +39,8 @@ job "web-main" {
       }
 
       resources {
-        cpu    = 500
-        memory = 1024
+        cpu    = 1000
+        memory = 2048
       }
     }
   }
