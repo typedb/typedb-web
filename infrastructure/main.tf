@@ -1,5 +1,4 @@
 # TODO:
-# Deploy nomad through Bazel
 # Getting versioned artifact through repo.ai
 # Use HTTPS for nomad
 # Use HTTPS for web-main
