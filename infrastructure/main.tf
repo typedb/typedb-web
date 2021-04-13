@@ -65,8 +65,8 @@ resource "google_compute_address" "nomad_server_static_ip" {
   name = "nomad-server-static-ip"
 }
 
-resource "google_compute_disk" "nomad_server_disk" {
-  name  = "nomad-server-disk"
+resource "google_compute_disk" "nomad_server_additional" {
+  name  = "nomad-server-additional"
   type  = "pd-ssd"
 }
 
@@ -82,7 +82,7 @@ resource "google_compute_instance" "nomad_server" {
   }
 
   attached_disk {
-    source = google_compute_disk.nomad_server_disk.name
+    source = google_compute_disk.nomad_server_additional.name
     device_name = "nomad-server"
   }
 

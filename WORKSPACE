@@ -21,13 +21,6 @@ graknlabs_bazel_distribution()
 load("@graknlabs_bazel_distribution//packer:deps.bzl", deploy_packer_dependencies="deps")
 deploy_packer_dependencies()
 
-load("@bazel_tools//tools/build_defs/repo:git.bzl", "git_repository")
-git_repository(
-    name = "io_bazel_skydoc",
-    remote = "https://github.com/graknlabs/skydoc.git",
-    branch = "experimental-skydoc-allow-dep-on-bazel-tools",
-)
-
 load("@graknlabs_bazel_distribution//common:deps.bzl", "rules_pkg")
 rules_pkg()
 
@@ -51,6 +44,13 @@ load("@io_bazel_rules_scala//scala:scala.bzl", "scala_repositories")
 scala_repositories()
 
 # Load rules_play_routes()
+load("@bazel_tools//tools/build_defs/repo:git.bzl", "git_repository")
+git_repository(
+    name = "io_bazel_skydoc",
+    remote = "https://github.com/graknlabs/skydoc.git",
+    branch = "experimental-skydoc-allow-dep-on-bazel-tools",
+)
+
 load("//dependencies/play:dependencies.bzl", "rules_play_routes_dependencies")
 rules_play_routes_dependencies()
 
