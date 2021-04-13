@@ -8,3 +8,7 @@ client {
   enabled = true
   servers = ["nomad-server:4647"]
 }
+
+acl {
+  enabled = true
+}
