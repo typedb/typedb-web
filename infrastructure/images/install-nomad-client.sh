@@ -8,10 +8,9 @@ curl -L -o cni-plugins.tgz https://github.com/containernetworking/plugins/releas
 sudo mkdir -p /opt/cni/bin
 sudo tar -C /opt/cni/bin -xzf cni-plugins.tgz
 
-sudo mkdir -p /etc/nomad-client
-sudo mv /tmp/deployment/nomad-client.hcl /etc/nomad-client/config.hcl
-
-sudo mkdir /mnt/nomad-client
+sudo mkdir -p /mnt/nomad-client
+sudo mkdir -p /mnt/nomad-client/data
+sudo mv /tmp/deployment/nomad-client.hcl /mnt/nomad-client/config.hcl
 
 curl -fsSL https://apt.releases.hashicorp.com/gpg | sudo apt-key add -
 sudo apt-add-repository "deb [arch=amd64] https://apt.releases.hashicorp.com $(lsb_release -cs) main"
@@ -25,7 +24,7 @@ Requires=network-online.target
 After=network-online.target
 [Service]
 Type=simple
-ExecStart=sudo nomad agent -config /etc/nomad-client/config.hcl
+ExecStart=sudo nomad agent -config /mnt/nomad-client/config.hcl
 Restart=on-failure
 RestartSec=10
 [Install]

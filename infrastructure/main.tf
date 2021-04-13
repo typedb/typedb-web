@@ -1,10 +1,11 @@
 # TODO:
-# Deploy nomad through bazel
-# Getting artifact through repo.ai
+# Deploy nomad through Bazel
+# Getting versioned artifact through repo.ai
 # Use HTTPS for nomad
 # Use HTTPS for web-main
 # Parameterize some of these hard coded values?
 # Bind job always to the same machine with same IP
+# Make nomad image versioned
 terraform {
   backend "gcs" {
     bucket  = "vaticle-web-prod-terraform-state"
@@ -83,7 +84,7 @@ resource "google_compute_instance" "nomad_server" {
 
   attached_disk {
     source = google_compute_disk.nomad_server_additional.name
-    device_name = "nomad-server"
+    device_name = "nomad-server-additional"
   }
 
   service_account {

@@ -1,7 +1,7 @@
 region = "uk"
 datacenter = "uk"
 
-data_dir = "/mnt/nomad-server"
+data_dir = "/mnt/nomad-server/data"
 bind_addr = "0.0.0.0"
 
 server {
