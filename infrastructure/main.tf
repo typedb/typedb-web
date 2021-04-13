@@ -1,8 +1,8 @@
 # TODO:
 # Deploy nomad through bazel
 # Getting artifact through repo.ai
-# Use HTTPS
-# Restrict nomad ports for public access
+# Use HTTPS for nomad
+# Use HTTPS for web-main
 # Parameterize some of these hard coded values?
 # Bind job always to the same machine with same IP
 terraform {
@@ -22,7 +22,7 @@ resource "google_compute_network" "web_network" {
   name = "web-network"
 }
 
-resource "google_compute_firewall" "web-firewall" {
+resource "google_compute_firewall" "web_firewall" {
   name    = "web-firewall"
   network = google_compute_network.web_network.name
 
@@ -32,8 +32,37 @@ resource "google_compute_firewall" "web-firewall" {
 
   allow {
     protocol = "tcp"
-    ports    = ["22", "4646", "4647", "4648"]
+    ports    = ["22"]
   }
+}
+
+resource "google_compute_firewall" "nomad_server_http_firewall" {
+  name    = "nomad-server-http-firewall"
+  network = google_compute_network.web_network.name
+
+  allow {
+    protocol = "tcp"
+    ports    = ["4646"]
+  }
+
+  target_tags = ["nomad-server"]
+}
+
+resource "google_compute_firewall" "nomad_server_rpc_firewall" {
+  name    = "nomad-server-rpc-firewall"
+  network = google_compute_network.web_network.name
+
+  allow {
+    protocol = "tcp"
+    ports    = ["4647"]
+  }
+
+  target_tags = ["nomad-server"]
+  source_tags = ["nomad-client"]
+}
+
+resource "google_compute_address" "nomad_server_static_ip" {
+  name = "nomad-server-static-ip"
 }
 
 resource "google_compute_disk" "nomad_server_disk" {
@@ -68,7 +97,13 @@ resource "google_compute_instance" "nomad_server" {
 
   network_interface {
     network = google_compute_network.web_network.name
+
+    access_config {
+      nat_ip = google_compute_address.nomad_server_static_ip.address
+    }
   }
+
+  tags = ["nomad-server"]
 
   metadata_startup_script = "sudo systemctl start nomad-server.service"
 }
@@ -117,7 +152,7 @@ resource "google_compute_instance" "web_main" {
     }
   }
 
-  tags = ["web-main"]
+  tags = ["nomad-client", "web-main"]
 
   metadata_startup_script = "sudo systemctl start nomad-client.service"
 }

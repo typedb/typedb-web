@@ -1,3 +1,6 @@
+region = "uk"
+datacenter = "uk"
+
 data_dir = "/mnt/nomad-server"
 bind_addr = "0.0.0.0"
 
@@ -5,6 +8,3 @@ server {
   enabled = true
   bootstrap_expect = 1
 }
-
-region = "uk"
-datacenter = "uk"
