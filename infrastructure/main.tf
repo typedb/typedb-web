@@ -1,8 +1,8 @@
 # TODO:
-# Getting versioned artifact through repo.ai
 # Use HTTPS for web-main
-# Parameterize some of these hard coded values?
+# Getting versioned artifact through repo.ai
 # Bind job always to the same machine with same IP
+# Parameterize some of these hard coded values?
 # Make nomad UI accessible in browser
 # Make nomad image versioned
 terraform {
