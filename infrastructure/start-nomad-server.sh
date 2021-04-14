@@ -29,4 +29,5 @@ sudo mv server-key.pem $ROOT_FOLDER/server-key.pem
 
 sudo systemctl enable nomad-server.service
 sudo systemctl start nomad-server.service
+sleep 30s
 nomad acl bootstrap -address=https://127.0.0.1:4646 -ca-cert=$ROOT_FOLDER/nomad-ca.pem > $ROOT_FOLDER/token
