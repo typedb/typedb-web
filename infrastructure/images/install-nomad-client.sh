@@ -23,7 +23,7 @@ sudo mkdir -p $ROOT_FOLDER
 sudo mkdir -p $ROOT_FOLDER/data
 sudo mv /tmp/deployment/nomad-client.hcl $ROOT_FOLDER/config.hcl
 
-cat > /etc/systemd/system/nomad-client.service  << EOF
+cat > /etc/systemd/system/nomad-client.service << EOF
 [Unit]
 Description=Nomad Server
 Wants=network.target
@@ -31,7 +31,8 @@ Requires=network-online.target
 After=network-online.target
 [Service]
 Type=simple
-ExecStart=sudo nomad agent -config $ROOT_FOLDER/config.hcl
+EnvironmentFile=$ROOT_FOLDER/environment
+ExecStart=/bin/bash -c "sudo nomad agent -config $ROOT_FOLDER/config.hcl -node-class \$NODE_CLASS"
 Restart=on-failure
 RestartSec=10
 [Install]

@@ -27,5 +27,7 @@ echo '{}' | cfssl gencert -ca=$ROOT_FOLDER/nomad-ca.pem -ca-key=$ROOT_FOLDER/nom
 sudo mv client.pem $ROOT_FOLDER/client.pem
 sudo mv client-key.pem $ROOT_FOLDER/client-key.pem
 
+echo "NODE_CLASS=${NODE_CLASS}" >> $ROOT_FOLDER/environment
+
 sudo systemctl enable nomad-client.service
 sudo systemctl start nomad-client.service

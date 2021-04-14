@@ -49,7 +49,7 @@ Type=ext4
 WantedBy=multi-user.target
 EOF
 
-cat > /etc/systemd/system/nomad-server.service  << EOF
+cat > /etc/systemd/system/nomad-server.service << EOF
 [Unit]
 Description=Nomad Server
 Wants=network.target

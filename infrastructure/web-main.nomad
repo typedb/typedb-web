@@ -5,6 +5,11 @@ job "web-main" {
 
   type = "service"
 
+  constraint {
+    attribute = "${node.class}"
+    value     = "web-main"
+  }
+
   update {
     stagger      = "30s"
     max_parallel = 1
