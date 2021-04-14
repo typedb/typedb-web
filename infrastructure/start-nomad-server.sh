@@ -26,6 +26,8 @@ echo '{}' | cfssl gencert -ca=$ROOT_FOLDER/nomad-ca.pem -ca-key=$ROOT_FOLDER/nom
     -config=cfssl.json -hostname="server.uk.nomad,localhost,127.0.0.1" - | cfssljson -bare server
 sudo mv server.pem $ROOT_FOLDER/server.pem
 sudo mv server-key.pem $ROOT_FOLDER/server-key.pem
+sudo ls -al $ROOT_FOLDER
+sudo ls -al $ROOT_FOLDER/data
 
 sudo systemctl start nomad-server.service
 nomad acl bootstrap > $ROOT_FOLDER/token
