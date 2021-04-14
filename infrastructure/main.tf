@@ -3,6 +3,7 @@
 # Use HTTPS for web-main
 # Parameterize some of these hard coded values?
 # Bind job always to the same machine with same IP
+# Make nomad UI accessible in browser
 # Make nomad image versioned
 terraform {
   backend "gcs" {
