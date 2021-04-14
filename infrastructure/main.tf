@@ -1,6 +1,5 @@
 # TODO:
 # Getting versioned artifact through repo.ai
-# Use HTTPS for nomad
 # Use HTTPS for web-main
 # Parameterize some of these hard coded values?
 # Bind job always to the same machine with same IP
