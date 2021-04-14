@@ -17,9 +17,12 @@ public class Server {
     }
 
     private static void configurePlayFramework(Class<?> applicationLoader) {
+//        System.setProperty("https.port", "8080");
+//        System.setProperty("play.server.https.keyStore.path", keystorePath);
+//        System.setProperty("play.server.https.keyStore.password", keystorePassword);
         System.setProperty("http.port", "8080");
         System.setProperty("play.application.loader", applicationLoader.getName());
-        System.setProperty("play.http.secret.key", "grakn-web-main");
+        System.setProperty("play.http.secret.key", "web-main");
         System.setProperty("play.server.provider", "play.core.server.AkkaHttpServerProvider");
     }
 
