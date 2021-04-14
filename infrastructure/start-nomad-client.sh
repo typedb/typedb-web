@@ -17,7 +17,7 @@ cat > cfssl.json << EOF
   "signing": {
     "default": {
       "expiry": "87600h",
-      "usages": ["signing", "key encipherment", "client auth"]
+      "usages": ["signing", "key encipherment", "server auth", "client auth"]
     }
   }
 }
@@ -27,4 +27,5 @@ echo '{}' | cfssl gencert -ca=$ROOT_FOLDER/nomad-ca.pem -ca-key=$ROOT_FOLDER/nom
 sudo mv client.pem $ROOT_FOLDER/client.pem
 sudo mv client-key.pem $ROOT_FOLDER/client-key.pem
 
+sudo systemctl enable nomad-client.service
 sudo systemctl start nomad-client.service

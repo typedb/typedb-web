@@ -39,4 +39,4 @@ WantedBy=multi-user.target
 EOF
 
 sudo systemctl daemon-reload
-sudo systemctl enable nomad-client.service
+sudo systemctl disable nomad-client.service

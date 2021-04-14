@@ -18,7 +18,7 @@ sudo mkdir -p $ROOT_FOLDER
 sudo mkdir -p $ROOT_FOLDER/data
 sudo mv /tmp/deployment/nomad-server.hcl $ROOT_FOLDER/config.hcl
 
-cat > /tmp/format-nomad-server-additional.sh << EOF
+cat > /usr/bin/format-nomad-server-additional.sh << EOF
 #!/usr/bin/env bash
 FS_TYPE=$(blkid -o value -s TYPE /dev/disk/by-id/google-nomad-server-additional)
 [ -z "$FS_TYPE" ] && sudo mkfs.ext4 /dev/disk/by-id/google-nomad-server-additional || true
@@ -32,10 +32,11 @@ Requires=/dev/disk/by-id/google-nomad-server-additional
 [Service]
 Type=oneshot
 RemainAfterExit=yes
-ExecStart=/bin/bash /tmp/format-nomad-server-additional.sh
+ExecStart=/bin/bash /usr/bin/format-nomad-server-additional.sh
 EOF
 
-cat > /etc/systemd/system/nomad-server-additional.mount << EOF
+MOUNT_SCRIPT=$(systemd-escape -p --suffix=mount $ROOT_FOLDER/data)
+cat > /etc/systemd/system/$MOUNT_SCRIPT << EOF
 [Unit]
 Description=Mount nomad server additional disk
 Requires=format-nomad-server-additional.service
@@ -52,8 +53,8 @@ cat > /etc/systemd/system/nomad-server.service  << EOF
 [Unit]
 Description=Nomad Server
 Wants=network.target
-Requires=network-online.target nomad-server-additional.mount
-After=network-online.target nomad-server-additional.mount
+Requires=network-online.target $MOUNT_SCRIPT
+After=network-online.target $MOUNT_SCRIPT
 [Service]
 Type=simple
 ExecStart=sudo nomad agent -config $ROOT_FOLDER/config.hcl
@@ -64,5 +65,5 @@ WantedBy=multi-user.target
 EOF
 
 sudo systemctl daemon-reload
-sudo systemctl enable nomad-server-additional.mount
-sudo systemctl enable nomad-server.service
+sudo systemctl enable $MOUNT_SCRIPT
+sudo systemctl disable nomad-server.service
