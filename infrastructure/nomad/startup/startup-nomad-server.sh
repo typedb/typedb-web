@@ -103,7 +103,7 @@ sudo mv nomad-server-key.pem $ROOT_FOLDER/nomad-server-key.pem
 
 sudo systemctl daemon-reload
 sudo systemctl enable format-nomad-server-additional.service
-sudo systemctl enable $(systemd-escape -p --suffix=mount $ROOT_FOLDER/data)
+sudo systemctl enable $MOUNT_SCRIPT
 sudo systemctl enable nomad-server.service
 sudo systemctl start nomad-server.service
 sleep 30s
