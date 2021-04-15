@@ -23,9 +23,9 @@ cat > cfssl.json << EOF
 }
 EOF
 echo '{}' | cfssl gencert -ca=$ROOT_FOLDER/nomad-ca.pem -ca-key=$ROOT_FOLDER/nomad-ca-key.pem \
-    -config=cfssl.json -hostname="client.uk.nomad,localhost,127.0.0.1" - | cfssljson -bare client
-sudo mv client.pem $ROOT_FOLDER/client.pem
-sudo mv client-key.pem $ROOT_FOLDER/client-key.pem
+    -config=cfssl.json -hostname="client.uk.nomad,localhost,127.0.0.1" - | cfssljson -bare nomad-client
+sudo mv nomad-client.pem $ROOT_FOLDER/nomad-client.pem
+sudo mv nomad-client-key.pem $ROOT_FOLDER/nomad-client-key.pem
 
 echo "NODE_CLASS=${NODE_CLASS}" >> $ROOT_FOLDER/environment
 

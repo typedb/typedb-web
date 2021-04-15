@@ -18,6 +18,6 @@ tls {
   rpc  = true
 
   ca_file   = "/mnt/nomad-server/nomad-ca.pem"
-  cert_file = "/mnt/nomad-server/server.pem"
-  key_file  = "/mnt/nomad-server/server-key.pem"
+  cert_file = "/mnt/nomad-server/nomad-server.pem"
+  key_file  = "/mnt/nomad-server/nomad-server-key.pem"
 }

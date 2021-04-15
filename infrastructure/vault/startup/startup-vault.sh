@@ -10,7 +10,6 @@ sudo systemctl enable vault.service
 sudo systemctl start vault.service
 
 sleep 30s
-export VAULT_ADDR='http://127.0.0.1:8200'
 vault operator init > $ROOT_FOLDER/token
 for i in $(seq 3) ;
 do

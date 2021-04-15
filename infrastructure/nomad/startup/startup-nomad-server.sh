@@ -23,9 +23,9 @@ cat > cfssl.json << EOF
 }
 EOF
 echo '{}' | cfssl gencert -ca=$ROOT_FOLDER/nomad-ca.pem -ca-key=$ROOT_FOLDER/nomad-ca-key.pem \
-    -config=cfssl.json -hostname="server.uk.nomad,localhost,127.0.0.1" - | cfssljson -bare server
-sudo mv server.pem $ROOT_FOLDER/server.pem
-sudo mv server-key.pem $ROOT_FOLDER/server-key.pem
+    -config=cfssl.json -hostname="server.uk.nomad,localhost,127.0.0.1" - | cfssljson -bare nomad-server
+sudo mv nomad-server.pem $ROOT_FOLDER/nomad-server.pem
+sudo mv nomad-server-key.pem $ROOT_FOLDER/nomad-server-key.pem
 
 sudo systemctl enable format-nomad-server-additional.service
 sudo systemctl enable $(systemd-escape -p --suffix=mount $ROOT_FOLDER/data)
