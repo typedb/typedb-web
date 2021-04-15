@@ -3,7 +3,7 @@ load("@graknlabs_bazel_distribution//gcp:rules.bzl", "assemble_gcp")
 
 assemble_gcp(
     name = "assemble-gcp-nomad-server",
-    install = "//infrastructure/images:install-nomad-server.sh",
+    install = "//infrastructure/nomad/images:install-nomad-server.sh",
     files = {
         "nomad-server.hcl": "nomad-server.hcl"
     },
@@ -23,7 +23,7 @@ deploy_packer(
 
 assemble_gcp(
     name = "assemble-gcp-nomad-client",
-    install = "//infrastructure/images:install-nomad-client.sh",
+    install = "//infrastructure/nomad/images:install-nomad-client.sh",
     files = {
         "nomad-client.hcl": "nomad-client.hcl"
     },

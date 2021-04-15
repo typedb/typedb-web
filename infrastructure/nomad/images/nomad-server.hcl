@@ -7,7 +7,6 @@ bind_addr = "0.0.0.0"
 server {
   enabled = true
   bootstrap_expect = 1
-  encrypt = "y4q2dq5fDgr0J3CFMxoDAwnebpi+hMSW9re9TrLGP+c="
 }
 
 acl {
