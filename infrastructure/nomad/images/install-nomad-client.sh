@@ -17,27 +17,3 @@ sudo mv cfssljson_linux-amd64 /usr/local/bin/cfssljson
 curl -fsSL https://apt.releases.hashicorp.com/gpg | sudo apt-key add -
 sudo apt-add-repository "deb [arch=amd64] https://apt.releases.hashicorp.com $(lsb_release -cs) main"
 sudo apt-get update && sudo apt-get install nomad -y
-
-ROOT_FOLDER=/mnt/nomad-client
-sudo mkdir -p $ROOT_FOLDER
-sudo mkdir -p $ROOT_FOLDER/data
-sudo mv /tmp/deployment/nomad-client.hcl $ROOT_FOLDER/config.hcl
-
-cat > /etc/systemd/system/nomad-client.service << EOF
-[Unit]
-Description=Nomad Server
-Wants=network.target
-Requires=network-online.target
-After=network-online.target
-[Service]
-Type=simple
-EnvironmentFile=$ROOT_FOLDER/environment
-ExecStart=/bin/bash -c "sudo nomad agent -config $ROOT_FOLDER/config.hcl -node-class \$NODE_CLASS"
-Restart=on-failure
-RestartSec=10
-[Install]
-WantedBy=multi-user.target
-EOF
-
-sudo systemctl daemon-reload
-sudo systemctl disable nomad-client.service

@@ -8,7 +8,7 @@ sudo mkdir -p $ROOT_FOLDER/data
 
 cat > $ROOT_FOLDER/config.hcl << EOF
 storage "raft" {
-  path    = "/mnt/vault/data"
+  path    = "$ROOT_FOLDER/data"
   node_id = "node"
 }
 
