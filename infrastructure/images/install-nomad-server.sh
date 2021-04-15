@@ -65,5 +65,6 @@ WantedBy=multi-user.target
 EOF
 
 sudo systemctl daemon-reload
-sudo systemctl enable $MOUNT_SCRIPT
+sudo systemctl disable format-nomad-server-additional.service
+sudo systemctl disable $MOUNT_SCRIPT
 sudo systemctl disable nomad-server.service
