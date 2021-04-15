@@ -6,7 +6,7 @@
 terraform {
   backend "gcs" {
     bucket  = "vaticle-web-prod-terraform-state"
-    prefix  = "terraform/state"
+    prefix  = "terraform/nomad"
   }
 }
 
@@ -16,27 +16,9 @@ provider "google" {
   zone    = "europe-west2-b"
 }
 
-resource "google_compute_network" "web_network" {
-  name = "web-network"
-}
-
-resource "google_compute_firewall" "web_firewall" {
-  name    = "web-firewall"
-  network = google_compute_network.web_network.name
-
-  allow {
-    protocol = "icmp"
-  }
-
-  allow {
-    protocol = "tcp"
-    ports    = ["22"]
-  }
-}
-
 resource "google_compute_firewall" "nomad_server_http_firewall" {
   name    = "nomad-server-http-firewall"
-  network = google_compute_network.web_network.name
+  network = "default"
 
   allow {
     protocol = "tcp"
@@ -48,7 +30,7 @@ resource "google_compute_firewall" "nomad_server_http_firewall" {
 
 resource "google_compute_firewall" "nomad_server_rpc_firewall" {
   name    = "nomad-server-rpc-firewall"
-  network = google_compute_network.web_network.name
+  network = "default"
 
   allow {
     protocol = "tcp"
@@ -94,7 +76,7 @@ resource "google_compute_instance" "nomad_server" {
   }
 
   network_interface {
-    network = google_compute_network.web_network.name
+    network = "default"
 
     access_config {
       nat_ip = google_compute_address.nomad_server_static_ip.address
@@ -112,7 +94,7 @@ resource "google_compute_address" "web_main_static_ip" {
 
 resource "google_compute_firewall" "web_main_firewall" {
   name    = "web-main-firewall"
-  network = google_compute_network.web_network.name
+  network = "default"
 
   allow {
     protocol = "tcp"
@@ -143,7 +125,7 @@ resource "google_compute_instance" "web_main" {
   }
 
   network_interface {
-    network = google_compute_network.web_network.name
+    network = "default"
 
     access_config {
       nat_ip = google_compute_address.web_main_static_ip.address

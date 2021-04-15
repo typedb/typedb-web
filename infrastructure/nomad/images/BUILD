@@ -11,8 +11,8 @@ assemble_gcp(
     disable_default_service_account = True,
     image_name = "nomad-server",
     source_image_family = "ubuntu-2004-lts",
-    image_family = "website",
-    zone = "europe-west1-b"
+    image_family = "web",
+    zone = "europe-west2-b"
 )
 
 deploy_packer(
@@ -31,8 +31,8 @@ assemble_gcp(
     disable_default_service_account = True,
     image_name = "nomad-client",
     source_image_family = "ubuntu-2004-lts",
-    image_family = "website",
-    zone = "europe-west1-b"
+    image_family = "web",
+    zone = "europe-west2-b"
 )
 
 deploy_packer(
