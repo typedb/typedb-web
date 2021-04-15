@@ -85,7 +85,7 @@ resource "google_compute_instance" "nomad_server" {
 
   tags = ["nomad-server"]
 
-  metadata_startup_script = file("${path.module}/startup/nomad-server.sh")
+  metadata_startup_script = file("${path.module}/startup/startup-nomad-server.sh")
 }
 
 resource "google_compute_address" "web_main_static_ip" {
@@ -134,7 +134,7 @@ resource "google_compute_instance" "web_main" {
 
   tags = ["nomad-client", "web-main"]
 
-  metadata_startup_script = templatefile("${path.module}/startup/nomad-client.sh", {
+  metadata_startup_script = templatefile("${path.module}/startup/startup-nomad-client.sh", {
     NODE_CLASS = "web-main"
   })
 }

@@ -67,6 +67,5 @@ resource "google_compute_instance" "vault" {
 
   tags = ["vault"]
 
-  metadata_startup_script = file("${path.module}/startup/vault.sh")
+  metadata_startup_script = file("${path.module}/startup/startup-vault.sh")
 }
-
