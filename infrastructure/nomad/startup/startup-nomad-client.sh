@@ -50,11 +50,7 @@ EOF
 
 for SECRET in nomad-ca nomad-ca-key
 do
-  curl -s "https://secretmanager.googleapis.com/v1/projects/vaticle-web-prod/secrets/$SECRET/versions/latest:access" \
-    --request "GET" \
-    --header "authorization: Bearer $(gcloud auth print-access-token)" \
-    --header "content-type: application/json" \
-    --header "x-goog-user-project: vaticle-web-prod" | jq -r '.payload.data' | base64 -d | sudo tee "$ROOT_FOLDER/$SECRET.pem" >/dev/null
+  gcloud secrets versions access latest --secret=$SECRET | sudo tee "$ROOT_FOLDER/$SECRET.pem" >/dev/null
 done
 cat > cfssl.json << EOF
 {

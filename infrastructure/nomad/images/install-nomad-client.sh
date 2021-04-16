@@ -2,7 +2,6 @@
 
 set -ex
 
-sudo snap install jq
 sudo apt install -qy openjdk-11-jdk
 
 curl -L -o cni-plugins.tgz https://github.com/containernetworking/plugins/releases/download/v0.9.1/cni-plugins-linux-amd64-v0.9.1.tgz
