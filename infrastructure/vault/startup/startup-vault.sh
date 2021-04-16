@@ -13,11 +13,12 @@ storage "raft" {
 }
 
 listener "tcp" {
-  address     = "0.0.0.0:8200"
-  tls_disable = true
+  address       = "0.0.0.0:8200"
+  tls_cert_file = "$ROOT_FOLDER/vault.pem"
+  tls_key_file  = "$ROOT_FOLDER/vault-key.pem"
 }
 
-api_addr = "http://0.0.0.0:8200"
+api_addr = "https://0.0.0.0:8200"
 cluster_addr = "https://127.0.0.1:8201"
 disable_mlock = true
 ui = true
@@ -69,6 +70,11 @@ RestartSec=10
 WantedBy=multi-user.target
 EOF
 
+openssl req -x509 -newkey rsa:4096 -nodes -subj "/CN=$(hostname)" -days 3650 -addext "subjectAltName=DNS:$(hostname),DNS:localhost,IP:127.0.0.1" \
+  -keyout $ROOT_FOLDER/vault-key.pem -out $ROOT_FOLDER/vault.pem
+gcloud secrets delete --quiet vault-ca || true
+gcloud secrets create vault-ca --data-file=$ROOT_FOLDER/vault.pem
+
 sudo systemctl daemon-reload
 sudo systemctl enable format-vault-additional.service
 sudo systemctl enable $MOUNT_SCRIPT
@@ -76,9 +82,16 @@ sudo systemctl enable vault.service
 sudo systemctl start vault.service
 
 sleep 30s
-vault operator init > $ROOT_FOLDER/token
-for i in $(seq 3) ;
+export VAULT_CACERT=$ROOT_FOLDER/vault.pem
+vault operator init > $ROOT_FOLDER/init
+for i in $(seq 5) ;
 do
-  UNSEAL_KEY=$(cat $ROOT_FOLDER/token | awk "/Unseal Key $i/ { print \$4 }")
+  UNSEAL_KEY=$(cat $ROOT_FOLDER/init | awk "/Unseal Key $i/ { print \$4 }")
+  echo $UNSEAL_KEY >> $ROOT_FOLDER/unseal-keys
   vault operator unseal $UNSEAL_KEY
 done
+TOKEN=$(cat $ROOT_FOLDER/init | awk "/Initial Root Token/ { print \$4 }")
+echo $TOKEN >> $ROOT_FOLDER/token
+gcloud secrets delete --quiet vault-token || true
+gcloud secrets create vault-token --data-file=$ROOT_FOLDER/token
+rm -f $ROOT_FOLDER/init
