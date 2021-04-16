@@ -41,6 +41,24 @@ job "web-main" {
 
       env {
         PAGES_ROOT = "local/web-main/pages"
+        KEYSTORE_FILE = "local/keystore.jks"
+      }
+
+      template {
+        data = <<EOH
+{{ with secret "web-main/keystore" }}
+{{- .Data.keystore -}}
+{{ end }}
+EOH
+        destination   = "local/keystore.jks"
+      }
+
+      template {
+        data = <<EOH
+KEYSTORE_PASSWORD="{{with secret "web-main/keystore-password"}}{{.Data.value}}{{end}}"
+EOH
+        destination   = "local/keystore-password"
+        env = true
       }
 
       resources {

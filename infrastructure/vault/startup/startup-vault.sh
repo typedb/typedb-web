@@ -97,5 +97,6 @@ sleep 30s
 export VAULT_TOKEN=$(cat $ROOT_FOLDER/token)
 cfssl print-defaults csr | cfssl gencert -initca - | cfssljson -bare nomad-ca
 vault secrets enable -path=nomad kv
-vault kv put nomad/nomad-ca nomad_ca=@nomad-ca.pem nomad_ca_key=@nomad-ca-key.pem
+vault kv put nomad/nomad-ca value=@nomad-ca.pem
+vault kv put nomad/nomad-ca-key value=@nomad-ca-key.pem
 rm -f nomad-ca*

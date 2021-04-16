@@ -30,6 +30,12 @@ tls {
   cert_file = "$ROOT_FOLDER/nomad-server.pem"
   key_file  = "$ROOT_FOLDER/nomad-server-key.pem"
 }
+
+vault {
+  enabled = true
+  address = "https://vault:8200"
+  ca_file = "$ROOT_FOLDER/vault-ca.pem"
+}
 EOF
 
 cat > /usr/bin/format-nomad-server-additional.sh << EOF
@@ -71,7 +77,7 @@ Requires=network-online.target $MOUNT_SCRIPT
 After=network-online.target $MOUNT_SCRIPT
 [Service]
 Type=simple
-ExecStart=sudo nomad agent -config $ROOT_FOLDER/config.hcl
+ExecStart=bash -c 'sudo nomad agent -config $ROOT_FOLDER/config.hcl -vault-token \$(cat $ROOT_FOLDER/vault-token)'
 Restart=on-failure
 RestartSec=10
 [Install]
@@ -83,8 +89,8 @@ gcloud compute scp --zone=europe-west2-b vault:/mnt/vault/token $ROOT_FOLDER/vau
 export VAULT_ADDR=https://vault:8200
 export VAULT_CACERT=$ROOT_FOLDER/vault-ca.pem
 export VAULT_TOKEN=$(cat $ROOT_FOLDER/vault-token)
-vault kv get -format=json nomad/nomad-ca | jq -r '.data.nomad_ca' | sudo tee "$ROOT_FOLDER/nomad-ca.pem" >/dev/null
-vault kv get -format=json nomad/nomad-ca | jq -r '.data.nomad_ca_key' | sudo tee "$ROOT_FOLDER/nomad-ca-key.pem" >/dev/null
+vault kv get -format=json nomad/nomad-ca | jq -r '.data.value' | sudo tee "$ROOT_FOLDER/nomad-ca.pem" >/dev/null
+vault kv get -format=json nomad/nomad-ca-key | jq -r '.data.value' | sudo tee "$ROOT_FOLDER/nomad-ca-key.pem" >/dev/null
 
 cat > cfssl.json << EOF
 {
