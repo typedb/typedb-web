@@ -48,10 +48,14 @@ RestartSec=10
 WantedBy=multi-user.target
 EOF
 
-for SECRET in nomad-ca nomad-ca-key
-do
-  gcloud secrets versions access latest --secret=$SECRET | sudo tee "$ROOT_FOLDER/$SECRET.pem" >/dev/null
-done
+gcloud compute scp --zone=europe-west2-b vault:/mnt/vault/vault.pem $ROOT_FOLDER/vault-ca.pem >/dev/null 2>&1
+gcloud compute scp --zone=europe-west2-b vault:/mnt/vault/token $ROOT_FOLDER/vault-token >/dev/null 2>&1
+export VAULT_ADDR=https://vault:8200
+export VAULT_CACERT=$ROOT_FOLDER/vault-ca.pem
+export VAULT_TOKEN=$(cat $ROOT_FOLDER/vault-token)
+vault kv get -format=json nomad/nomad-ca | jq -r '.data.nomad_ca' | sudo tee "$ROOT_FOLDER/nomad-ca.pem" >/dev/null
+vault kv get -format=json nomad/nomad-ca | jq -r '.data.nomad_ca_key' | sudo tee "$ROOT_FOLDER/nomad-ca-key.pem" >/dev/null
+
 cat > cfssl.json << EOF
 {
   "signing": {

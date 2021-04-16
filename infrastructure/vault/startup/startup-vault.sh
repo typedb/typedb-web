@@ -70,10 +70,8 @@ RestartSec=10
 WantedBy=multi-user.target
 EOF
 
-openssl req -x509 -newkey rsa:4096 -nodes -subj "/CN=$(hostname)" -days 3650 -addext "subjectAltName=DNS:$(hostname),DNS:localhost,IP:127.0.0.1" \
+openssl req -x509 -newkey rsa:4096 -nodes -subj "/CN=vault" -days 3650 -addext "subjectAltName=DNS:vault,DNS:localhost,IP:127.0.0.1" \
   -keyout $ROOT_FOLDER/vault-key.pem -out $ROOT_FOLDER/vault.pem
-gcloud secrets delete --quiet vault-ca || true
-gcloud secrets create vault-ca --data-file=$ROOT_FOLDER/vault.pem
 
 sudo systemctl daemon-reload
 sudo systemctl enable format-vault-additional.service
@@ -82,6 +80,7 @@ sudo systemctl enable vault.service
 sudo systemctl start vault.service
 
 sleep 30s
+export VAULT_ADDR=https://127.0.0.1:8200
 export VAULT_CACERT=$ROOT_FOLDER/vault.pem
 vault operator init > $ROOT_FOLDER/init
 for i in $(seq 5) ;
@@ -92,6 +91,11 @@ do
 done
 TOKEN=$(cat $ROOT_FOLDER/init | awk "/Initial Root Token/ { print \$4 }")
 echo $TOKEN >> $ROOT_FOLDER/token
-gcloud secrets delete --quiet vault-token || true
-gcloud secrets create vault-token --data-file=$ROOT_FOLDER/token
 rm -f $ROOT_FOLDER/init
+
+sleep 30s
+export VAULT_TOKEN=$(cat $ROOT_FOLDER/token)
+cfssl print-defaults csr | cfssl gencert -initca - | cfssljson -bare nomad-ca
+vault secrets enable -path=nomad kv
+vault kv put nomad/nomad-ca nomad_ca=@nomad-ca.pem nomad_ca_key=@nomad-ca-key.pem
+rm -f nomad-ca*

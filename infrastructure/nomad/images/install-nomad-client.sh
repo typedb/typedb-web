@@ -2,6 +2,7 @@
 
 set -ex
 
+sudo snap install jq
 sudo apt install -qy openjdk-11-jdk
 
 curl -L -o cni-plugins.tgz https://github.com/containernetworking/plugins/releases/download/v0.9.1/cni-plugins-linux-amd64-v0.9.1.tgz
@@ -15,4 +16,4 @@ sudo mv cfssljson_linux-amd64 /usr/local/bin/cfssljson
 
 curl -fsSL https://apt.releases.hashicorp.com/gpg | sudo apt-key add -
 sudo apt-add-repository "deb [arch=amd64] https://apt.releases.hashicorp.com $(lsb_release -cs) main"
-sudo apt-get update && sudo apt-get install nomad -y
+sudo apt-get update && sudo apt-get install nomad vault -y
