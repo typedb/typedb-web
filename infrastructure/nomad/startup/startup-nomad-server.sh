@@ -107,4 +107,4 @@ sudo systemctl enable $MOUNT_SCRIPT
 sudo systemctl enable nomad-server.service
 sudo systemctl start nomad-server.service
 sleep 30s
-nomad acl bootstrap -address=https://127.0.0.1:4646 -ca-cert=$ROOT_FOLDER/nomad-ca.pem > $ROOT_FOLDER/token
+nomad acl bootstrap -address=https://127.0.0.1:4646 -ca-cert=$ROOT_FOLDER/nomad-ca.pem | awk '/Secret ID/ {print $4}' > $ROOT_FOLDER/token
