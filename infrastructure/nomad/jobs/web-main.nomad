@@ -21,8 +21,8 @@ job "web-main" {
     network {
       mode = "bridge"
 
-      port "http" {
-        static = 80
+      port "https" {
+        static = 443
         to = 8080
       }
     }

@@ -12,17 +12,16 @@ import java.nio.file.Paths;
 public class Server {
 
     public static void main(String[] args) {
-        configurePlayFramework(PlayApplicationLoader.class);
+        configurePlayFramework();
         ProdServerStart.main(new String[] {});
     }
 
-    private static void configurePlayFramework(Class<?> applicationLoader) {
-//        System.setProperty("https.port", "8080");
-//        System.setProperty("play.server.https.keyStore.path", keystorePath);
-//        System.setProperty("play.server.https.keyStore.password", keystorePassword);
-        System.setProperty("http.port", "8080");
-        System.setProperty("play.application.loader", applicationLoader.getName());
+    private static void configurePlayFramework() {
+        System.setProperty("https.port", "8080");
+        System.setProperty("play.server.https.keyStore.path", Paths.get(System.getenv("KEYSTORE_FILE")).toAbsolutePath().toString());
+        System.setProperty("play.server.https.keyStore.password", System.getenv("KEYSTORE_PASSWORD"));
         System.setProperty("play.http.secret.key", "web-main");
+        System.setProperty("play.application.loader", PlayApplicationLoader.class.getName());
         System.setProperty("play.server.provider", "play.core.server.AkkaHttpServerProvider");
     }
 

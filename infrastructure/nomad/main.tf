@@ -100,7 +100,7 @@ resource "google_compute_firewall" "web_main_firewall" {
 
   allow {
     protocol = "tcp"
-    ports    = ["80"]
+    ports    = ["443"]
   }
 
   target_tags = ["web-main"]
