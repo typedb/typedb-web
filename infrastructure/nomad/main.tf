@@ -1,7 +1,5 @@
 # TODO:
-# Parameterize some of these hard coded values?
 # Make nomad image versioned
-# Change all set -ex to set -e
 terraform {
   backend "gcs" {
     bucket  = "vaticle-web-prod-terraform-state"
