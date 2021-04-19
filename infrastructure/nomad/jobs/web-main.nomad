@@ -39,25 +39,22 @@ job "web-main" {
         source = "https://storage.googleapis.com/vaticle-engineers-test/web-main.tar.gz"
       }
 
-      env {
-        PAGES_ROOT = "local/web-main/pages"
-        KEYSTORE_FILE = "local/keystore.jks"
-      }
-
       template {
         data = <<EOH
-{{ with secret "web-main/keystore" }}
-{{- .Data.value -}}
-{{ end }}
+{{ with secret "web-main/keystore" }}{{ .Data.value | base64Decode }}{{ end }}
 EOH
         destination   = "local/keystore.jks"
       }
 
       template {
         data = <<EOH
+LOCAL_PORT="8080"
+PAGES_ROOT="local/web-main/pages"
+KEYSTORE_FILE="local/keystore.jks"
 KEYSTORE_PASSWORD="{{ with secret "web-main/keystore-password" }}{{ .Data.value }}{{ end }}"
+APPLICATION_SECRET="{{ with secret "web-main/application-secret" }}{{ .Data.value }}{{ end }}"
 EOH
-        destination   = "local/keystore-password"
+        destination   = "local/environment"
         env = true
       }
 

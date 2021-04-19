@@ -61,6 +61,12 @@ export VAULT_CACERT=$ROOT_FOLDER/vault-ca.pem
 export VAULT_TOKEN=$(cat $ROOT_FOLDER/vault-token)
 vault kv get -format=json nomad/nomad-ca | jq -r '.data.value' | sudo tee "$ROOT_FOLDER/nomad-ca.pem" >/dev/null
 vault kv get -format=json nomad/nomad-ca-key | jq -r '.data.value' | sudo tee "$ROOT_FOLDER/nomad-ca-key.pem" >/dev/null
+cat > policy.hcl << EOF
+path "web-main/*" {
+  capabilities = ["read"]
+}
+EOF
+vault policy write web-main policy.hcl
 
 cat > cfssl.json << EOF
 {
