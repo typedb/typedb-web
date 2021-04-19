@@ -1,5 +1,4 @@
 # TODO:
-# Generate configuration at startup time
 # Getting versioned artifact through repo.ai
 # Parameterize some of these hard coded values?
 # Make nomad image versioned
