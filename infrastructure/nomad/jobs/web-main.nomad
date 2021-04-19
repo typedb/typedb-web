@@ -47,7 +47,7 @@ job "web-main" {
       template {
         data = <<EOH
 {{ with secret "web-main/keystore" }}
-{{- .Data.data.value -}}
+{{- .Data.value -}}
 {{ end }}
 EOH
         destination   = "local/keystore.jks"
@@ -55,10 +55,14 @@ EOH
 
       template {
         data = <<EOH
-KEYSTORE_PASSWORD="{{ with secret "web-main/keystore-password" }}{{ .Data.data.value }}{{ end }}"
+KEYSTORE_PASSWORD="{{ with secret "web-main/keystore-password" }}{{ .Data.value }}{{ end }}"
 EOH
         destination   = "local/keystore-password"
         env = true
+      }
+
+      vault {
+        policies = ["web-main"]
       }
 
       resources {
