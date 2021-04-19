@@ -6,7 +6,7 @@ assemble_gcp(
     install = "//infrastructure/vault/images:install-vault.sh",
     project_id = "vaticle-web-prod",
     disable_default_service_account = True,
-    image_name = "vault",
+    image_name = "vault-{{user `version`}}",
     source_image_family = "ubuntu-2004-lts",
     image_family = "web",
     zone = "europe-west2-b"
@@ -15,5 +15,4 @@ assemble_gcp(
 deploy_packer(
     name = "deploy-gcp-vault",
     target = ":assemble-gcp-vault",
-    overwrite = True,
 )

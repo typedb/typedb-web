@@ -1,5 +1,3 @@
-# TODO:
-# Make nomad image versioned
 terraform {
   backend "gcs" {
     bucket  = "vaticle-web-prod-terraform-state"

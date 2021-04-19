@@ -6,7 +6,7 @@ assemble_gcp(
     install = "//infrastructure/nomad/images:install-nomad-server.sh",
     project_id = "vaticle-web-prod",
     disable_default_service_account = True,
-    image_name = "nomad-server",
+    image_name = "nomad-server-{{user `version`}}",
     source_image_family = "ubuntu-2004-lts",
     image_family = "web",
     zone = "europe-west2-b"
@@ -15,7 +15,6 @@ assemble_gcp(
 deploy_packer(
     name = "deploy-gcp-nomad-server",
     target = ":assemble-gcp-nomad-server",
-    overwrite = True,
 )
 
 assemble_gcp(
@@ -23,7 +22,7 @@ assemble_gcp(
     install = "//infrastructure/nomad/images:install-nomad-client.sh",
     project_id = "vaticle-web-prod",
     disable_default_service_account = True,
-    image_name = "nomad-client",
+    image_name = "nomad-client-{{user `version`}}",
     source_image_family = "ubuntu-2004-lts",
     image_family = "web",
     zone = "europe-west2-b"
@@ -32,5 +31,4 @@ assemble_gcp(
 deploy_packer(
     name = "deploy-gcp-nomad-client",
     target = ":assemble-gcp-nomad-client",
-    overwrite = True,
 )
