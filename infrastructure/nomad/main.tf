@@ -51,7 +51,7 @@ resource "google_compute_instance" "nomad_server" {
 
   boot_disk {
     initialize_params {
-      image = "vaticle-web-prod/nomad-server"
+      image = "vaticle-web-prod/nomad-server-2c045b5b75bda2d726274cdbca3d4967708209b2"
     }
     device_name = "boot"
   }
@@ -105,7 +105,7 @@ resource "google_compute_instance" "web_main" {
 
   boot_disk {
     initialize_params {
-      image = "vaticle-web-prod/nomad-client"
+      image = "vaticle-web-prod/nomad-client-2c045b5b75bda2d726274cdbca3d4967708209b2"
     }
     device_name = "boot"
   }

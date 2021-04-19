@@ -38,7 +38,7 @@ resource "google_compute_instance" "vault" {
 
   boot_disk {
     initialize_params {
-      image = "vaticle-web-prod/vault"
+      image = "vaticle-web-prod/vault-2c045b5b75bda2d726274cdbca3d4967708209b2"
     }
     device_name = "boot"
   }
