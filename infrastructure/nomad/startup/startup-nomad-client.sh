@@ -47,7 +47,7 @@ Requires=network-online.target
 After=network-online.target
 [Service]
 Type=simple
-ExecStart=sudo nomad agent -config $ROOT_FOLDER/config.hcl
+ExecStart=bash -c 'sudo nomad agent -config $ROOT_FOLDER/config.hcl -vault-token \$(cat $ROOT_FOLDER/vault-token)'
 Restart=on-failure
 RestartSec=10
 [Install]
