@@ -31,12 +31,12 @@ job "web-main" {
       driver = "java"
 
       config {
-        jar_path = "local/web-main/server.jar"
+        jar_path = "local/web-main-${VERSION}/server.jar"
         jvm_options = ["-Dpidfile.path=/dev/null"]
       }
 
       artifact {
-        source = "https://storage.googleapis.com/vaticle-engineers-test/web-main.tar.gz"
+        source = "https://repo.grakn.ai/repository/artifact-snapshot/graknlabs_web_main/${VERSION}/web-main-${VERSION}.tar.gz"
       }
 
       template {
@@ -49,7 +49,7 @@ EOH
       template {
         data = <<EOH
 LOCAL_PORT="8080"
-PAGES_ROOT="local/web-main/pages"
+PAGES_ROOT="local/web-main-${VERSION}/pages"
 KEYSTORE_FILE="local/keystore.jks"
 KEYSTORE_PASSWORD="{{ with secret "web-main/keystore-password" }}{{ .Data.value }}{{ end }}"
 APPLICATION_SECRET="{{ with secret "web-main/application-secret" }}{{ .Data.value }}{{ end }}"
