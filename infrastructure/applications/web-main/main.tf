@@ -33,7 +33,7 @@ resource "google_compute_instance" "web_main" {
 
   boot_disk {
     initialize_params {
-      image = "vaticle-web-prod/nomad-client-2c045b5b75bda2d726274cdbca3d4967708209b2"
+      image = "vaticle-web-prod/nomad-client-77101614b940b872a97efa8ecca7783b2e4471a2"
     }
     device_name = "boot"
   }
