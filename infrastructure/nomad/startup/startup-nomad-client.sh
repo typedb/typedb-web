@@ -16,7 +16,7 @@ bind_addr = "0.0.0.0"
 client {
   enabled    = true
   servers    = ["nomad-server:4647"]
-  node_class = "${NODE_CLASS}"
+  node_class = "${APPLICATION}"
 }
 
 acl {
@@ -61,12 +61,13 @@ export VAULT_CACERT=$ROOT_FOLDER/vault-ca.pem
 export VAULT_TOKEN=$(cat $ROOT_FOLDER/vault-token)
 vault kv get -format=json nomad/nomad-ca | jq -r '.data.value' | sudo tee "$ROOT_FOLDER/nomad-ca.pem" >/dev/null
 vault kv get -format=json nomad/nomad-ca-key | jq -r '.data.value' | sudo tee "$ROOT_FOLDER/nomad-ca-key.pem" >/dev/null
+vault secrets enable -path=${APPLICATION} kv || true
 cat > policy.hcl << EOF
-path "web-main/*" {
+path "${APPLICATION}/*" {
   capabilities = ["read"]
 }
 EOF
-vault policy write web-main policy.hcl
+vault policy write ${APPLICATION} policy.hcl || true
 
 cat > cfssl.json << EOF
 {

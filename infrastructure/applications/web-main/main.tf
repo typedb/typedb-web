@@ -1,3 +1,16 @@
+terraform {
+  backend "gcs" {
+    bucket  = "vaticle-web-prod-terraform-state"
+    prefix  = "terraform/applications/web-main"
+  }
+}
+
+provider "google" {
+  project = "vaticle-web-prod"
+  region  = "europe-west2"
+  zone    = "europe-west2-b"
+}
+
 resource "google_compute_address" "web_main_static_ip" {
   name = "web-main-static-ip"
 }
@@ -44,7 +57,7 @@ resource "google_compute_instance" "web_main" {
 
   tags = ["nomad-client", "web-main"]
 
-  metadata_startup_script = templatefile("${path.module}/../nomad/startup/startup-nomad-client.sh", {
-    NODE_CLASS = "web-main"
+  metadata_startup_script = templatefile("${path.module}/../../nomad/startup/startup-nomad-client.sh", {
+    APPLICATION = "web-main"
   })
 }
