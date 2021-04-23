@@ -26,7 +26,7 @@ class BannerCosmos extends React.Component {
 
   handleBannerClick(e) {
     if (e.target.classList.contains('banner-btn-close')) return false;
-    window.open("https://community.grakn.ai/grakn-orbit-2021?utm_source=homepage&utm_medium=banner&utm_campaign=orbit-2021");
+    window.open("https://youtube.com/c/vaticle");
   }
 
   render() {
@@ -36,14 +36,12 @@ class BannerCosmos extends React.Component {
           <div className="banner-cosmos-container">
             <div className="banner-bg" />
             <div className="banner-content">
-              <img className="banner-logo content-item" src="/assets/img/banners/orbit/grakn-orbit-2021.svg"/>
-              <p className="banner-text banner-text--color-white content-item">The conference by the Grakn Community, for the Grakn Community | <span className="banner-text banner-text--color-brand">21-22nd of April 2021</span></p>
-              {/* <p className="banner-text banner-text--color-brand content-item"> 21-22nd of April 2021</p> */}
+              <div className="banner-filler content-item"></div>
+              <p className="banner-text banner-text--color-white content-item">Grakn Labs is now Vaticle, and Grakn and Graql are now TypeDB and TypeQL</p>
               <div className="tablet-text">
-                <p className="banner-text banner-text--color-white">The conference by the Grakn Community, for the Grakn Community</p>
-                <p className="banner-text banner-text--color-brand">21-22nd of April 2021</p>
+                <p className="banner-text banner-text--color-white">Grakn Labs is now Vaticle, and Grakn and Graql are now TypeDB and TypeQL</p>
               </div>
-              <div className="banner-button content-item">Register Now</div>
+              <div className="banner-button content-item">Watch Keynote</div>
             </div>
             <div
               className="banner-btn-close"
