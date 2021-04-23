@@ -127,6 +127,7 @@ body.banner-showing {
 
     background-image: url("/assets/img/banners/banner-close.svg");
     background-repeat: no-repeat;
+    background-size: contain;
     cursor: pointer;
 
     position: absolute;
