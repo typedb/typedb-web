@@ -30,7 +30,9 @@ job "forum" {
     task "forum" {
       driver = "docker"
 
-      image = "ruigrakn/discourse:app"
+      config {
+        image = "ruigrakn/discourse:app"
+      }
 
       resources {
         cpu    = 1000
