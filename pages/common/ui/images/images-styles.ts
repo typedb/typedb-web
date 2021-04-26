@@ -5,22 +5,22 @@ export const vaticleAtomStyles = makeStyles({
     },
 
     green: {
-        animation: "spin 44s linear infinite",
+        animation: "spin 120s linear infinite",
         transformOrigin: "center",
     },
 
     yellow: {
-        animation: "spin 40s linear infinite reverse",
+        animation: "spin 110s linear infinite reverse",
         transformOrigin: "center",
     },
 
     red: {
-        animation: "spin 36s linear infinite",
+        animation: "spin 100s linear infinite",
         transformOrigin: "center",
     },
 
     pink: {
-        animation: "spin 32s linear infinite reverse",
+        animation: "spin 90s linear infinite reverse",
         transformOrigin: "center",
     },
 });
