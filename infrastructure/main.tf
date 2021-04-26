@@ -27,6 +27,17 @@ resource "google_compute_firewall" "web_main_firewall" {
   target_tags = ["web-main"]
 }
 
+data "http" "startup_script_template" {
+  url = "https://raw.githubusercontent.com/vaticle/web-infrastructure/master/nomad/startup/startup-nomad-client.sh"
+}
+
+data "template_file" "web_main_startup_script" {
+  template = data.http.startup_script_template.body
+  vars = {
+    APPLICATION = "web-main"
+  }
+}
+
 resource "google_compute_instance" "web_main" {
   name                      = "web-main"
   machine_type              = "n1-standard-2"
@@ -57,7 +68,5 @@ resource "google_compute_instance" "web_main" {
 
   tags = ["nomad-client", "web-main"]
 
-  metadata_startup_script = templatefile("${path.module}/../../nomad/startup/startup-nomad-client.sh", {
-    APPLICATION = "web-main"
-  })
+  metadata_startup_script = data.template_file.web_main_startup_script.rendered
 }
