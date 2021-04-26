@@ -4,8 +4,9 @@ workspace(name = "graknlabs_web_main")
 # Load @graknlabs_dependencies #
 ################################
 
-load("//dependencies/graknlabs:repositories.bzl", "graknlabs_dependencies")
+load("//dependencies/graknlabs:repositories.bzl", "graknlabs_dependencies", "graknlabs_web_infrastructure")
 graknlabs_dependencies()
+graknlabs_web_infrastructure()
 
 # Load //builder/java
 load("@graknlabs_dependencies//builder/java:deps.bzl", java_deps = "deps")

@@ -5,7 +5,7 @@ load("@graknlabs_bazel_distribution//artifact:rules.bzl", "deploy_artifact")
 assemble_targz(
     name = "web-main",
     additional_files = {
-        "//server:server-bin_deploy.jar": "server.jar",
+        "@graknlabs_web_infrastructure//server:server-bin_deploy.jar": "server.jar",
     },
     targets = [
         "//pages:pages",
