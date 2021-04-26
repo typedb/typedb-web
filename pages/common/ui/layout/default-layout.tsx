@@ -18,7 +18,7 @@ export const DefaultLayout: React.FC<DefaultLayoutProps> = ({
 
     return (
         <>
-            <PageHeader graknVersion={"2.0.1"} />
+            <PageHeader typeDBVersion={"2.0.1"} />
             <main className={clsx(ownClasses.main, classes?.main)}>
                 {navigation}
                 <div className={ownClasses.pageContent}>

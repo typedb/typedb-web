@@ -14,7 +14,13 @@ export const homePageStyles = makeStyles({
         marginTop: 80,
     },
 
+    diagramAndCaptionSection: {
+        textAlign: "start",
+    },
+
     h1: vaticleTheme.h1,
+
+    h2: vaticleTheme.h2,
 
     largeText: {
         margin: '0 auto',
@@ -23,6 +29,13 @@ export const homePageStyles = makeStyles({
         fontWeight: 300,
         lineHeight: '34px',
         maxWidth: '960px',
+    },
+
+    mediumText: {
+        marginTop: 16,
+        fontSize: 16,
+        lineHeight: "28px",
+        fontWeight: 300,
     },
 
     mainLinks: {
@@ -68,4 +81,46 @@ export const homePageStyles = makeStyles({
     corporateLogos: {
         width: "100%",
     },
+
+    buttonAfterText: {
+        marginTop: 40,
+    },
+
+    actionList: {
+        display: "flex",
+        justifyContent: "center",
+    },
+
+    firstButtonListItem: {},
+
+    buttonListItem: {
+        marginLeft: 40,
+    },
+
+    sectionToggle: {
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+    },
+
+    sectionToggleIconContainer: {
+        width: 80,
+        height: 80,
+        borderRadius: 5,
+        backgroundColor: vaticleTheme.palette.purple["500"],
+        display: "inline-flex",
+    },
+
+    sectionToggleIcon: {
+        width: 45,
+        height: 45,
+        margin: "auto",
+    },
+
+    sectionToggleTitle: {
+        marginTop: 27,
+        fontSize: 16,
+        lineHeight: "28px",
+        fontWeight: 300,
+    }
 });

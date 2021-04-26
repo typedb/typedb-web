@@ -7,12 +7,13 @@ import VaticleLogo from "../../../assets/images/vaticle-logo.svg";
 import { pageHeaderStyles } from "./layout-styles";
 import { GithubButton } from "../button/github-button";
 import { VaticleButton } from "../button/button";
+import { downloadTypeDBUrl } from "../../urls";
 
 interface PageHeaderProps {
-    graknVersion: string;
+    typeDBVersion: string;
 }
 
-export const PageHeader: React.FC<PageHeaderProps> = ({graknVersion}) => {
+export const PageHeader: React.FC<PageHeaderProps> = ({typeDBVersion}) => {
     const classes = pageHeaderStyles();
 
     return (
@@ -40,8 +41,8 @@ export const PageHeader: React.FC<PageHeaderProps> = ({graknVersion}) => {
                     <HeaderLink>Cloud</HeaderLink>
                 </Link>
 
-                <a href="https://grakn.ai/download" target="_blank">
-                    <VaticleButton size="small" type="secondary">Download {graknVersion}</VaticleButton>
+                <a href={downloadTypeDBUrl} target="_blank">
+                    <VaticleButton size="small" type="secondary">Download {typeDBVersion}</VaticleButton>
                 </a>
                 <GithubButton/>
             </Toolbar>

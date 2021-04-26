@@ -119,7 +119,12 @@ export const vaticleTheme = {
         fontSize: 32,
         lineHeight: "56px",
         color: '#02DAC9',
-        marginTop: '80px',
+        fontWeight: 400,
+    },
+    h2: {
+        fontSize: 32,
+        lineHeight: "56px",
+        color: '#FFF',
         fontWeight: 400,
     },
     p: {
