@@ -13,10 +13,8 @@ export const HomePage: React.FC = () => {
 
     return (
         <DefaultLayout classes={{ main: classes.layoutMain }}>
-            <section className={classes.defaultSection}>
-                <div className={classes.atom}>
-                    <VaticleAtom/>
-                </div>
+            <section className={classes.sectionMarginLarge}>
+                <VaticleAtom/>
                 <h1 className={classes.h1}>Vaticle TypeDB: a strongly-typed database</h1>
                 <p className={classes.largeText}>
                     Vaticle TypeDB is a database with a rich and logical type system. TypeDB empowers you to build
@@ -24,7 +22,7 @@ export const HomePage: React.FC = () => {
                 </p>
             </section>
 
-            <section className={classes.defaultSection}>
+            <section className={classes.sectionMarginSmall}>
                 <div className={classes.mainLinks}>
                     <a href={githubUrl} target="_blank" className={classes.firstMainLink}>
                         <FontAwesomeIcon className={classes.mainLinkIcon} icon={faGithub} />
@@ -44,6 +42,23 @@ export const HomePage: React.FC = () => {
                         </a>
                     </div>
                 </div>
+            </section>
+
+            <section className={classes.sectionMarginLarge}>
+                <img src="../assets/images/corporate-logos.png" alt="" className={classes.corporateLogos}/>
+            </section>
+
+            <section className={classes.sectionMarginLarge}>
+                <h1 className={classes.h1}>Strong type systems make complex problems easier to tackle</h1>
+                <p className={classes.largeText}>
+                    Vaticle TypeDB provides a strong type system for developers to break down complex problems into
+                    meaningful and logical systems. Through TypeQL, TypeDB provide strong abstractions over
+                    low-level and complex data patterns.
+                </p>
+            </section>
+
+            <section className={classes.sectionMarginSmall}>
+                
             </section>
         </DefaultLayout>
     );

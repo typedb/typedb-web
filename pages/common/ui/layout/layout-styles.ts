@@ -11,25 +11,22 @@ export const defaultLayoutStyles = makeStyles({
         width: '100%',
         textAlign: 'center',
     },
+
+    pageContent: {
+        width: "1160px",
+        margin: "0 auto",
+    },
 });
 
 export const pageHeaderStyles = makeStyles({
-    root: {
-        width: '100%',
-        maxWidth: '100%',
-        height: headerHeight,
-        backgroundColor: '#100718'
-        // backgroundColor: vaticleTheme.palette.purple[700],
-    },
-
     appBar: {
         position: "static",
+        height: headerHeight,
         backgroundColor: vaticleTheme.palette.purple[500],
     },
 
     toolbar: {
-        paddingLeft: 50,
-        paddingRight: 50,
+        margin: "auto 50px",
     },
 
     content: {
@@ -38,8 +35,9 @@ export const pageHeaderStyles = makeStyles({
     },
 
     logo: {
-        width: 128,
-        height: 37,
+        width: 125,
+        height: 38,
+        marginTop: -2,
     },
 
     filler: {
@@ -47,7 +45,7 @@ export const pageHeaderStyles = makeStyles({
     },
 
     linkText: {
-        fontSize: 16,
+        fontSize: "18px",
     },
 
     linkUnderline: {

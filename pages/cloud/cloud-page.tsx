@@ -7,7 +7,7 @@ export const CloudPage: React.FC = () => {
 
     return (
         <DefaultLayout classes={{ main: classes.layoutMain }}>
-            <section className={classes.defaultSection}>
+            <section className={classes.defaultSubsection}>
                 <h1 className={classes.h1}>Grakn Cluster in the Cloud and On-Premise</h1>
                 <p className={classes.largeText}>
                     Easily deploy and manage Grakn Cluster on one machine, or a thousand-node cluster

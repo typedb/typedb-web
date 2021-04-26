@@ -6,14 +6,12 @@ export const homePageStyles = makeStyles({
         paddingTop: '4px',
     },
 
-    defaultSection: {
-        maxWidth: '1160px',
-        margin: '0 auto',
-        marginTop: '80px',
+    sectionMarginLarge: {
+        marginTop: 160,
     },
 
-    atom: {
-        marginTop: '160px',
+    sectionMarginSmall: {
+        marginTop: 80,
     },
 
     h1: vaticleTheme.h1,
@@ -65,5 +63,9 @@ export const homePageStyles = makeStyles({
 
     downloadGraknButton: {
         height: '72px !important',
+    },
+
+    corporateLogos: {
+        width: "100%",
     },
 });

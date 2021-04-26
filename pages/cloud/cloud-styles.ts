@@ -6,7 +6,7 @@ export const cloudPageStyles = makeStyles({
         paddingTop: '4px',
     },
 
-    defaultSection: {
+    defaultSubsection: {
         maxWidth: '1160px',
         margin: '0 auto',
         marginTop: '80px',

@@ -21,7 +21,9 @@ export const DefaultLayout: React.FC<DefaultLayoutProps> = ({
             <PageHeader graknVersion={"2.0.1"} />
             <main className={clsx(ownClasses.main, classes?.main)}>
                 {navigation}
-                {children}
+                <div className={ownClasses.pageContent}>
+                    {children}
+                </div>
             </main>
             <PageFooter />
         </>
