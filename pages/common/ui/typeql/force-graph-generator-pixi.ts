@@ -3,6 +3,7 @@ import * as PIXI from "pixi.js";
 // @ts-ignore
 import FontFaceObserver from "fontfaceobserver";
 import { Viewport } from 'pixi-viewport';
+import { Point, Rect, rectIncomingLineIntersect } from "./geometry";
 
 export function runForceGraphPixi(container: Element, linksData: any[], nodesData: any[], nodeHoverTooltip: any) {
     const links = linksData.map((d) => Object.assign({}, d));
@@ -178,10 +179,12 @@ export function runForceGraphPixi(container: Element, linksData: any[], nodesDat
         visualLinks.alpha = 1;
 
         links.forEach((link) => {
-            let { source, target } = link;
+            const { source, target } = link;
             visualLinks.lineStyle(1, 0x91B3FF);
             visualLinks.moveTo(source.x, source.y);
-            visualLinks.lineTo(target.x, target.y);
+            const targetRect: Rect = {x: target.x - 50, y: target.y - 16, w: 100, h: 32};
+            const lineTarget: Point | false = rectIncomingLineIntersect(source, targetRect);
+            if (lineTarget) visualLinks.lineTo(lineTarget.x, lineTarget.y);
         });
 
         visualLinks.endFill();
