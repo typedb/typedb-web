@@ -29,7 +29,6 @@ nodejs_binary(
     data = [
         "@npm//webpack-cli",
         "@npm//babel-loader",
-        "@npm//eslint-plugin-prettier",
         "@npm//babel-eslint",
         "@npm//sass-loader",
         "@npm//html-webpack-plugin"

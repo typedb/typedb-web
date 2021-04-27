@@ -20,22 +20,14 @@ module.exports = {
     extends: [
         'plugin:react/recommended',
         'plugin:@typescript-eslint/recommended',
-        'prettier',
-        'prettier/@typescript-eslint',
-        'prettier/react',
         'plugin:import/errors',
         'plugin:import/warnings',
         'plugin:import/typescript',
         'plugin:import/react',
     ],
-    plugins: ['prettier', '@typescript-eslint'],
+    plugins: ['@typescript-eslint'],
     ignorePatterns: ['node_modules/', 'react-pages/', 'webpack.config.js'],
     rules: {
-        /**
-         * Prettier Rules
-         */
-        'prettier/prettier': 'error',
-
         /**
          * Javascript Rules
          */
