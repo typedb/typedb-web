@@ -3,7 +3,7 @@ import * as PIXI from "pixi.js";
 // @ts-ignore
 import FontFaceObserver from "fontfaceobserver";
 import { Viewport } from 'pixi-viewport';
-import { Point, Rect, rectIncomingLineIntersect } from "./geometry";
+import { arrowhead, Point, Rect, rectIncomingLineIntersect } from "./geometry";
 
 export function runForceGraphPixi(container: Element, linksData: any[], nodesData: any[], nodeHoverTooltip: any) {
     const links = linksData.map((d) => Object.assign({}, d));
@@ -184,10 +184,20 @@ export function runForceGraphPixi(container: Element, linksData: any[], nodesDat
             visualLinks.moveTo(source.x, source.y);
             const targetRect: Rect = {x: target.x - 50, y: target.y - 16, w: 100, h: 32};
             const lineTarget: Point | false = rectIncomingLineIntersect(source, targetRect);
-            if (lineTarget) visualLinks.lineTo(lineTarget.x, lineTarget.y);
+            if (lineTarget) {
+                visualLinks.lineTo(lineTarget.x, lineTarget.y);
+                const arrow = arrowhead({ from: source, to: lineTarget });
+                if (arrow) {
+                    console.log(arrow);
+                    visualLinks.moveTo(arrow[0].x, arrow[0].y);
+                    visualLinks.beginFill(0x91B3FF);
+                    const points: PIXI.Point[] = [];
+                    for (const pt of arrow) points.push(new PIXI.Point(pt.x, pt.y));
+                    visualLinks.drawPolygon(points);
+                    visualLinks.endFill();
+                }
+            }
         });
-
-        visualLinks.endFill();
     }
 
     // Listen for tick events to render the nodes as they update in your Canvas or SVG.

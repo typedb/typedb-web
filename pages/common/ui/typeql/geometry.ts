@@ -75,3 +75,21 @@ export function rectIncomingLineIntersect(sourcePoint: Point, targetRect: Rect) 
 
     return false;
 }
+
+export function arrowhead(line: Line): Polygon | null {
+    // first compute normalised vector for the line
+    let [dx, dy] = [line.to.x - line.from.x, line.to.y - line.from.y];
+    let l = Math.sqrt(dx * dx + dy * dy);
+
+    if (l === 0) return null; // if length is 0 - can't render arrows
+
+    let [nx, ny] = [dx/l, dy/l]; // normal vector in the direction of the line with length 1
+    let [arrowLength, arrowWingsLength] = [6, 2];
+    let [ex, ey] = [line.from.x + nx * l, line.from.y + ny * l]; // arrow endpoint
+    let [sx, sy] = [line.from.x + nx * (l - arrowLength), line.from.y + ny * (l - arrowLength)]; // wingtip offsets from line
+    let [topX, topY] = [-ny, nx]; // orthogonal vector to the line vector
+
+    return [{x: ex, y: ey},
+        {x: sx + topX * arrowWingsLength, y: sy + topY * arrowWingsLength},
+        {x: sx - topX * arrowWingsLength, y: sy - topY * arrowWingsLength}];
+}
