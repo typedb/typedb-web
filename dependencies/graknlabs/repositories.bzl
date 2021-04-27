@@ -11,5 +11,5 @@ def graknlabs_web_infrastructure():
     git_repository(
         name = "graknlabs_web_infrastructure",
         remote = "https://github.com/vaticle/web-infrastructure",
-        commit = "510aac828197e5119cffeb099ba682d172e744e6", # sync-marker: do not remove this comment, this is used for sync-dependencies by @graknlabs_dependencies
+        commit = "7446c1e21ddfb0d0582f975bd7bf927910cac290", # sync-marker: do not remove this comment, this is used for sync-dependencies by @graknlabs_dependencies
     )
