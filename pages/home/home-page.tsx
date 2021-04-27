@@ -12,10 +12,14 @@ import FinanceIcon from "../assets/icons/finance-icon.svg";
 import RoboticsIcon from "../assets/icons/robotics-icon.svg";
 import NLPIcon from "../assets/icons/nlp-icon.svg";
 import clsx from "clsx";
+import { ForceGraph } from "../common/ui/typeql/force-graph";
+import { testData } from "../common/ui/typeql/test-data";
 
 export const HomePage: React.FC = () => {
     const classes = homePageStyles();
     const typeDBVersion = "2.0.1";
+
+    const nodeHoverTooltip = React.useCallback((node) => `<div><b>${node.name}</b></div>`, []);
 
     return (
         <DefaultLayout classes={{ main: classes.layoutMain }}>
@@ -74,6 +78,7 @@ export const HomePage: React.FC = () => {
                     and also type hierarchies, roles, and rules, allowing you to build expressive datasets
                     based-on logical and object-oriented principles.
                 </p>
+                <ForceGraph linksData={testData.links} nodesData={testData.nodes} nodeHoverTooltip={nodeHoverTooltip} />
                 <VaticleButton size="small" type="secondary" classes={{"root": classes.buttonAfterText}}>Learn More</VaticleButton>
             </section>
 

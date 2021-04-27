@@ -1,0 +1,50 @@
+export const testData = {
+    "nodes": [{
+        "id": 1,
+        "name": "person",
+        "encoding": "entity"
+    }, {
+        "id": 2,
+        "name": "student",
+        "encoding": "entity"
+    }, {
+        "id": 3,
+        "name": "teacher",
+        "encoding": "entity"
+    }, {
+        "id": 4,
+        "name": "undergrad",
+        "encoding": "entity"
+    }, {
+        "id": 5,
+        "name": "postgrad",
+        "encoding": "entity"
+    }, {
+        "id": 6,
+        "name": "supervisor",
+        "encoding": "entity"
+    }, {
+        "id": 7,
+        "name": "professor",
+        "encoding": "entity"
+    }],
+    "links": [{
+        "source": 2,
+        "target": 1
+    }, {
+        "source": 3,
+        "target": 1
+    }, {
+        "source": 4,
+        "target": 2
+    }, {
+        "source": 5,
+        "target": 2
+    }, {
+        "source": 6,
+        "target": 3
+    }, {
+        "source": 7,
+        "target": 3
+    }]
+};
