@@ -3,8 +3,9 @@ import { makeStyles } from "@material-ui/core";
 export const forceGraphStyles = makeStyles({
     container: {
         marginTop: 40,
-        width: "100%",
-        height: 600,
+        width: 660,
+        maxWidth: "100%",
+        height: 400,
         position: "relative",
         backgroundColor: "#0E053F",
         boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.6)",
