@@ -1,4 +1,4 @@
-package grakn.web.server;
+package grakn.web_main.server;
 
 import play.mvc.Controller;
 import play.mvc.Result;

@@ -1,1 +1,1 @@
-GET     /$file<.*>     grakn.web.server.FileController.serve(file, default="index.html")
+GET     /$file<.*>     grakn.web_main.server.FileController.serve(file, default="index.html")
