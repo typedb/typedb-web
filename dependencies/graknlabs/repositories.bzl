@@ -6,10 +6,3 @@ def graknlabs_dependencies():
         remote = "https://github.com/graknlabs/dependencies",
         commit = "54b40951d3f0c19235693e52ebfb8b988583acdb", # sync-marker: do not remove this comment, this is used for sync-dependencies by @graknlabs_dependencies
     )
-
-def graknlabs_web_infrastructure():
-    git_repository(
-        name = "graknlabs_web_infrastructure",
-        remote = "https://github.com/vaticle/web-infrastructure",
-        commit = "7446c1e21ddfb0d0582f975bd7bf927910cac290", # sync-marker: do not remove this comment, this is used for sync-dependencies by @graknlabs_dependencies
-    )

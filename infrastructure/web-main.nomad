@@ -41,7 +41,7 @@ job "web-main" {
 
       template {
         data = <<EOH
-{{ with secret "web-main/keystore" }}{{ .Data.value | base64Decode }}{{ end }}
+{{ with secret "web/keystore" }}{{ .Data.value | base64Decode }}{{ end }}
 EOH
         destination   = "local/keystore.jks"
       }
@@ -51,7 +51,7 @@ EOH
 LOCAL_PORT="8080"
 PAGES_ROOT="local/web-main-${VERSION}/pages"
 KEYSTORE_FILE="local/keystore.jks"
-KEYSTORE_PASSWORD="{{ with secret "web-main/keystore-password" }}{{ .Data.value }}{{ end }}"
+KEYSTORE_PASSWORD="{{ with secret "web/keystore-password" }}{{ .Data.value }}{{ end }}"
 APPLICATION_SECRET="{{ with secret "web-main/application-secret" }}{{ .Data.value }}{{ end }}"
 EOH
         destination   = "local/environment"

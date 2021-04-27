@@ -35,6 +35,7 @@ data "template_file" "web_main_startup_script" {
   template = data.http.startup_script_template.body
   vars = {
     APPLICATION = "web-main"
+    SECRET = "web web-main"
   }
 }
 
