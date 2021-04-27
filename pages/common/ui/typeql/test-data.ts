@@ -2,31 +2,38 @@ export const testData = {
     "nodes": [{
         "id": 1,
         "name": "person",
-        "encoding": "entity"
+        "encoding": "entity",
+        "fy": 100,
     }, {
         "id": 2,
         "name": "student",
-        "encoding": "entity"
+        "encoding": "entity",
+        "fy": 200,
     }, {
         "id": 3,
         "name": "teacher",
-        "encoding": "entity"
+        "encoding": "entity",
+        "fy": 200,
     }, {
         "id": 4,
         "name": "undergrad",
-        "encoding": "entity"
+        "encoding": "entity",
+        "fy": 300,
     }, {
         "id": 5,
         "name": "postgrad",
-        "encoding": "entity"
+        "encoding": "entity",
+        "fy": 300,
     }, {
         "id": 6,
         "name": "supervisor",
-        "encoding": "entity"
+        "encoding": "entity",
+        "fy": 300,
     }, {
         "id": 7,
         "name": "professor",
-        "encoding": "entity"
+        "encoding": "entity",
+        "fy": 300,
     }],
     "links": [{
         "source": 2,

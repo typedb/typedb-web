@@ -91,11 +91,11 @@ export function runForceGraphPixi(container: Element, linksData: any[], nodesDat
     const simulation = d3.forceSimulation(nodes)
         .force("link", d3.forceLink(links) // This force provides links between nodes
             .id((d: any) => d.id) // This sets the node id accessor to the specified function. If not specified, will default to the index of a node.
-            .distance(120)
+            .distance(70)
         )
-        .force("charge", d3.forceManyBody().strength(-500)) // This adds repulsion (if it's negative) between nodes.
+        .force("charge", d3.forceManyBody().strength(-100)) // This adds repulsion (if it's negative) between nodes.
         .force("center", d3.forceCenter(width / 2, height / 2))
-        .force("collision", d3.forceCollide().radius((d: any) => d.radius).iterations(2))
+        .force("collision", d3.forceCollide().radius(70).iterations(2))
         .velocityDecay(0.8);
 
     /*
