@@ -23,6 +23,12 @@ export const HomePage: React.FC = () => {
 
     return (
         <DefaultLayout classes={{ main: classes.layoutMain }}>
+            <section className={classes.sectionMarginSmall}>
+                <p className={classes.underDevelopment}>
+                    This site is currently under development - please use <a href="https://grakn.ai" className={classes.underDevelopmentLink}>https://grakn.ai</a>
+                </p>
+            </section>
+
             <section className={classes.sectionMarginLarge}>
                 <VaticleAtom/>
             </section>

@@ -14,6 +14,19 @@ export const homePageStyles = makeStyles({
         marginTop: 80,
     },
 
+    underDevelopment: {
+        maxWidth: 800,
+        padding: "16px",
+        border: `2px solid ${vaticleTheme.palette.green["200"]}`,
+        borderRadius: 5,
+        margin: "0 auto",
+        fontSize: 16,
+    },
+
+    underDevelopmentLink: {
+        color: `${vaticleTheme.palette.green["200"]} !important`,
+    },
+
     diagramAndCaptionSection: {
         textAlign: "start",
     },
