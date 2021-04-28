@@ -54,7 +54,7 @@ export const homePageStyles = makeStyles({
     mainLinks: {
         width: '100%',
         display: 'flex',
-        border: `1px solid ${vaticleTheme.palette.purple[250]}`,
+        border: `1px solid ${vaticleTheme.palette.purple[300]}`,
         borderRadius: 11,
     },
 
@@ -74,7 +74,7 @@ export const homePageStyles = makeStyles({
         justifyContent: 'center',
         alignItems: 'center',
         height: '160px',
-        borderLeft: `1px solid ${vaticleTheme.palette.purple[250]}`,
+        borderLeft: `1px solid ${vaticleTheme.palette.purple[300]}`,
     },
 
     mainLinkIcon: {
@@ -83,6 +83,7 @@ export const homePageStyles = makeStyles({
     },
 
     mainLinkCaption: {
+        color: "#FFF",
         marginTop: '8px',
         fontSize: 16,
     },
@@ -111,6 +112,7 @@ export const homePageStyles = makeStyles({
     },
 
     sectionToggle: {
+        width: 185,
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
@@ -120,7 +122,7 @@ export const homePageStyles = makeStyles({
         width: 80,
         height: 80,
         borderRadius: 5,
-        backgroundColor: vaticleTheme.palette.purple["500"],
+        backgroundColor: vaticleTheme.palette.purple[600],
         display: "inline-flex",
     },
 

@@ -1,5 +1,5 @@
-export const testData = {
-    "nodes": [{
+export const studentHierarchyGraph = {
+    "vertices": [{
         "id": 1,
         "name": "person",
         "encoding": "entity",
@@ -35,7 +35,7 @@ export const testData = {
         "encoding": "entity",
         "fy": 300,
     }],
-    "links": [{
+    "edges": [{
         "source": 2,
         "target": 1
     }, {

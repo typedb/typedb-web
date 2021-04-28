@@ -1,6 +1,6 @@
 import React from 'react';
 import { useStyles } from './styles';
-import Router from './Router';
+import Router from './router';
 
 const App: React.FC = () => {
     const ownClasses = useStyles();

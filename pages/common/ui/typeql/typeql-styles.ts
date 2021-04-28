@@ -1,6 +1,6 @@
 import { makeStyles } from "@material-ui/core";
 
-export const forceGraphStyles = makeStyles({
+export const typeQLVisualiserStyles = makeStyles({
     container: {
         marginTop: 40,
         width: 660,

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Button, { ButtonClassKey } from '@material-ui/core/Button';
+import { Link as Anchor, ButtonClassKey } from '@material-ui/core';
 import clsx from 'clsx';
 
 import { Link } from 'react-router-dom';
@@ -16,6 +16,7 @@ export interface BaseButtonProps {
     endIcon?: React.ReactNode;
     onClick?: React.MouseEventHandler;
     disabled?: boolean;
+    target?: string;
     htmlAttrs?: {
         type?: 'submit' | 'button';
         download?: string;
@@ -28,36 +29,18 @@ const defaultProps: Required<Pick<BaseButtonProps, 'size' | 'type' | 'htmlAttrs'
     htmlAttrs: { type: 'button' },
 };
 
-export const displayName = 'BaseButton';
-
 export type BaseButtonFinalProps = React.PropsWithChildren<BaseButtonProps & typeof defaultProps>;
 
 export const VaticleButton: React.FC<BaseButtonProps> = props => {
-    const { children, classes, href, to, size, type, startIcon, endIcon, onClick, disabled, htmlAttrs } = props as BaseButtonFinalProps;
+    const { children, classes, href, to, size, type, onClick, htmlAttrs, target } = props as BaseButtonFinalProps;
 
     const ownClasses = buttonStyles({ size, type });
 
     const linkProps = Boolean(to) ? { component: Link, to } : {};
 
     return (
-        <Button
-            classes={{
-                root: clsx(ownClasses.root, classes?.root),
-                label: clsx(ownClasses.label, classes?.label),
-                startIcon: classes?.startIcon,
-                endIcon: classes?.endIcon,
-            }}
-            disabled={disabled}
-            href={href}
-            startIcon={startIcon}
-            endIcon={endIcon}
-            disableFocusRipple
-            disableElevation
-            onClick={onClick}
-            {...linkProps}
-            {...htmlAttrs}
-        >
+        <Anchor classes={{ root: clsx(ownClasses.root, classes?.root) }} href={href} onClick={onClick} target={target} {...linkProps} {...htmlAttrs}>
             {children}
-        </Button>
+        </Anchor>
     );
 };

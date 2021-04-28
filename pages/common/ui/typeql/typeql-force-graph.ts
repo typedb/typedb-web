@@ -5,9 +5,9 @@ import FontFaceObserver from "fontfaceobserver";
 import { Viewport } from 'pixi-viewport';
 import { arrowhead, midpoint, Rect, rectIncomingLineIntersect } from "./geometry";
 
-export function runForceGraphPixi(container: Element, linksData: any[], nodesData: any[], nodeHoverTooltip: any) {
-    const links = linksData.map((d) => Object.assign({}, d));
-    const nodes = nodesData.map((d) => Object.assign({}, d));
+export function runTypeQLForceGraph(container: Element, edgesData: any[], verticesData: any[]) {
+    const links = edgesData.map((d) => Object.assign({}, d));
+    const nodes = verticesData.map((d) => Object.assign({}, d));
 
     const containerRect = container.getBoundingClientRect();
     const height = containerRect.height;
@@ -15,32 +15,6 @@ export function runForceGraphPixi(container: Element, linksData: any[], nodesDat
     let dragged = false;
 
     container.innerHTML = "";
-
-    // Add the tooltip element to the graph
-    const tooltip = document.querySelector("#graph-tooltip");
-    if (!tooltip) {
-        const tooltipDiv = document.createElement("div");
-        // tooltipDiv.classList.add(classes.tooltip);
-        tooltipDiv.style.opacity = "0";
-        tooltipDiv.id = "graph-tooltip";
-        document.body.appendChild(tooltipDiv);
-    }
-    const div = d3.select("#graph-tooltip");
-
-    const addTooltip = (hoverTooltip: any, d: { name: any; }, x: any, y: number) => {
-        div
-            .transition()
-            .duration(200)
-            .style("opacity", 0.9);
-        div
-            .html(hoverTooltip(d))
-            .style("left", `${x}px`)
-            .style("top", `${y - 28}px`);
-    };
-
-    const removeTooltip = () => {
-        div.transition().duration(200).style("opacity", 0);
-    };
 
     function onDragStart(this: any, evt: any) {
         viewport.plugins.pause('drag');
@@ -83,6 +57,8 @@ export function runForceGraphPixi(container: Element, linksData: any[], nodesDat
 
         interaction: app.renderer.plugins.interaction // the interaction module is important for wheel to work properly when renderer.view is placed or scaled
     });
+    const baseWidth = 660;
+    if (width < baseWidth) viewport.scaled = width / baseWidth; // TODO: currently doesn't update when screen is resized and made bigger
 
     app.stage.addChild(viewport);
 
@@ -146,20 +122,6 @@ export function runForceGraphPixi(container: Element, linksData: any[], nodesDat
         // create hit area, needed for interactivity
         node.gfx.hitArea = new PIXI.RoundedRectangle(-50, -16, 100, 32, 3);
 
-        // show tooltip when mouse is over node
-        node.gfx.on('mouseover', (mouseData: any) => {
-            addTooltip(nodeHoverTooltip,
-                { name },
-                mouseData.data.originalEvent.pageX,
-                mouseData.data.originalEvent.pageY
-            );
-        });
-
-        // make circle half-transparent when mouse leaves
-        node.gfx.on('mouseout',() => {
-            removeTooltip();
-        });
-
         ubuntuMono.load().then(() => {
             const text = new PIXI.Text(name, {
                 fontSize: 16,
@@ -192,16 +154,6 @@ export function runForceGraphPixi(container: Element, linksData: any[], nodesDat
 
         linksGFX.clear();
         linksGFX.removeChildren();
-
-        // ubuntuMono.load().then(() => {
-        //     const text = new PIXI.Text(name, {
-        //         fontSize: 16,
-        //         fontFamily: "Ubuntu Mono",
-        //         fill: '#09022F',
-        //     });
-        //     text.anchor.set(0.5);
-        //     node.gfx.addChild(text);
-        // });
 
         links.forEach((link) => {
             const { source, target } = link;

@@ -41,9 +41,7 @@ export const PageHeader: React.FC<PageHeaderProps> = ({typeDBVersion}) => {
                     <HeaderLink>Cloud</HeaderLink>
                 </Link>
 
-                <a href={downloadTypeDBUrl} target="_blank">
-                    <VaticleButton size="small" type="secondary">Download {typeDBVersion}</VaticleButton>
-                </a>
+                <VaticleButton size="small" type="secondary" href={downloadTypeDBUrl} target="_blank">Download {typeDBVersion}</VaticleButton>
                 <GithubButton/>
             </Toolbar>
         </AppBar>

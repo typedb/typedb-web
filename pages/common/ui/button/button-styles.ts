@@ -9,21 +9,21 @@ const typeColorMap = {
     primary: {
         background: vaticleTheme.palette.green[200],
         border: 'transparent',
-        label: vaticleTheme.palette.purple[500],
+        label: vaticleTheme.palette.purple[600],
         hoverBackground: vaticleTheme.palette.green[500],
         hoverBorder: 'transparent',
-        hoverLabel: vaticleTheme.palette.purple[600],
+        hoverLabel: vaticleTheme.palette.purple[700],
         disabledBackground: Color(vaticleTheme.palette.green[200]).alpha(0.2).string(),
-        disabledLabel: vaticleTheme.palette.purple[500],
+        disabledLabel: vaticleTheme.palette.purple[600],
     },
     secondary: {
-        background: vaticleTheme.palette.purple[500],
+        background: vaticleTheme.palette.purple[600],
         border: vaticleTheme.palette.green[300],
         label: vaticleTheme.palette.green[200],
         hoverBackground: vaticleTheme.palette.green[300],
         hoverBorder: vaticleTheme.palette.green[200],
-        hoverLabel: vaticleTheme.palette.purple[600],
-        disabledBackground: Color(vaticleTheme.palette.purple[400]).alpha(0.6).string(),
+        hoverLabel: vaticleTheme.palette.purple[700],
+        disabledBackground: Color(vaticleTheme.palette.purple[500]).alpha(0.6).string(),
         disabledLabel: Color(vaticleTheme.palette.green[200]).alpha(0.6).string(),
     },
 };
@@ -32,27 +32,30 @@ export const buttonStyles = makeStyles({
     root: {
         height: 40,
         border: (props: StyleProps) => `1px solid ${typeColorMap[props.type].border}`,
-        padding: '0 21px',
+        padding: '6px 16px',
         borderRadius: 5,
-        color: (props: StyleProps) => typeColorMap[props.type].label,
         backgroundColor: (props: StyleProps) => typeColorMap[props.type].background,
-
-        '&:hover': {
-            backgroundColor: (props: StyleProps) => typeColorMap[props.type].hoverBackground,
-            color: (props: StyleProps) => typeColorMap[props.type].hoverLabel,
-            borderColor: (props: StyleProps) => typeColorMap[props.type].hoverBorder,
-        }
-    },
-
-    label: {
+        transition: "background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,border 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;",
+        display: "inline-flex",
+        alignItems: "center",
+        color: (props: StyleProps) => typeColorMap[props.type].label,
         fontSize: (props: StyleProps) => vaticleTheme.typography.fontSize[props.size],
         fontWeight: 600,
-        textTransform: "none",
         lineHeight: '24px',
 
         '& p, & svg': {
             lineHeight: '14px',
         },
+
+        '&:hover': {
+            backgroundColor: (props: StyleProps) => typeColorMap[props.type].hoverBackground,
+            color: (props: StyleProps) => typeColorMap[props.type].hoverLabel,
+            borderColor: (props: StyleProps) => typeColorMap[props.type].hoverBorder,
+        },
+
+        '& a': {
+            color: (props: StyleProps) => typeColorMap[props.type].label,
+        }
     },
 });
 

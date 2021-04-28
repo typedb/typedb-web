@@ -12,20 +12,19 @@ import FinanceIcon from "../assets/icons/finance-icon.svg";
 import RoboticsIcon from "../assets/icons/robotics-icon.svg";
 import NLPIcon from "../assets/icons/nlp-icon.svg";
 import clsx from "clsx";
-import { ForceGraph } from "../common/ui/typeql/force-graph";
-import { testData } from "../common/ui/typeql/test-data";
+import { TypeQLVisualiser } from "../common/ui/typeql/typeql-visualiser";
+import { studentHierarchyGraph } from "../common/ui/typeql/graphs/student-hierarchy";
 
 export const HomePage: React.FC = () => {
     const classes = homePageStyles();
     const typeDBVersion = "2.0.1";
 
-    const nodeHoverTooltip = React.useCallback((node) => `<div><b>${node.name}</b></div>`, []);
-
     return (
         <DefaultLayout classes={{ main: classes.layoutMain }}>
             <section className={classes.sectionMarginSmall}>
                 <p className={classes.underDevelopment}>
-                    This site is currently under development - please use <a href="https://grakn.ai" className={classes.underDevelopmentLink}>https://grakn.ai</a>
+                    This site is currently under development - please use
+                    <a href="https://grakn.ai" className={classes.underDevelopmentLink}>https://grakn.ai</a>
                 </p>
             </section>
 
@@ -56,9 +55,10 @@ export const HomePage: React.FC = () => {
                         <div className={classes.mainLinkCaption}>Twitter</div>
                     </a>
                     <div className={classes.mainLink}>
-                        <a href="https://grakn.ai/download" target="_blank">
-                            <VaticleButton classes={{root: classes.downloadGraknButton}} size="small" type="primary">Download {typeDBVersion}</VaticleButton>
-                        </a>
+                        <VaticleButton classes={{root: classes.downloadGraknButton}} size="small" type="primary"
+                                       href="https://grakn.ai/download" target="_blank">
+                            Download {typeDBVersion}
+                        </VaticleButton>
                     </div>
                 </div>
             </section>
@@ -84,7 +84,7 @@ export const HomePage: React.FC = () => {
                     and also type hierarchies, roles, and rules, allowing you to build expressive datasets
                     based-on logical and object-oriented principles.
                 </p>
-                <ForceGraph linksData={testData.links} nodesData={testData.nodes} nodeHoverTooltip={nodeHoverTooltip} />
+                <TypeQLVisualiser data={studentHierarchyGraph} />
                 <VaticleButton size="small" type="secondary" classes={{"root": classes.buttonAfterText}}>Learn More</VaticleButton>
             </section>
 
@@ -112,9 +112,9 @@ export const HomePage: React.FC = () => {
 
             <section className={classes.sectionMarginSmall}>
                 <div className={classes.actionList}>
-                    <a href={downloadTypeDBUrl} target="_blank" className={classes.firstButtonListItem}>
-                        <VaticleButton size="small" type="primary">Download {typeDBVersion}</VaticleButton>
-                    </a>
+                    <VaticleButton size="small" type="primary" href={downloadTypeDBUrl} target="_blank" classes={{root: classes.firstButtonListItem}}>
+                        Download {typeDBVersion}
+                    </VaticleButton>
                     <a href={githubUrl} target="_blank" className={classes.buttonListItem}>
                         <VaticleButton size="small" type="primary">Fork/Star on GitHub</VaticleButton>
                     </a>
@@ -146,6 +146,15 @@ export const HomePage: React.FC = () => {
                     <SectionToggle title="Robotics" icon={RoboticsIcon}/>
                     <SectionToggle title="NLP" icon={NLPIcon}/>
                 </div>
+            </section>
+
+            <section className={classes.sectionMarginLarge}>
+                <h1 className={classes.h1}>Scale your database with Vaticle TypeDB Cluster</h1>
+                <p className={classes.largeText}>
+                    Vaticle TypeDB Cluster is the distributed database designed to scale with your enterprise. Whether
+                    you have a growing dataset, application workload, or user request, TypeDB Cluster will provide the
+                    tools you need to take you from development to production and scale.
+                </p>
             </section>
 
         </DefaultLayout>

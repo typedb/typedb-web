@@ -4,10 +4,12 @@ import Color from 'color';
 export const useStyles = makeStyles({
     root: {
         height: '100%',
-        '& a': {
-            color: '#FFF',
+
+        '& a, & a:hover': {
+            cursor: "pointer",
             textDecoration: 'none',
         },
+
         '& *::-webkit-scrollbar': {
             width: 5,
             height: 3,

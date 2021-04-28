@@ -14,6 +14,7 @@ export const defaultLayoutStyles = makeStyles({
 
     pageContent: {
         width: "1160px",
+        maxWidth: "calc(100vw - 40px)",
         margin: "0 auto",
     },
 });
@@ -22,7 +23,7 @@ export const pageHeaderStyles = makeStyles({
     appBar: {
         position: "static",
         height: headerHeight,
-        backgroundColor: vaticleTheme.palette.purple[500],
+        backgroundColor: vaticleTheme.palette.purple[600],
     },
 
     toolbar: {
@@ -46,6 +47,7 @@ export const pageHeaderStyles = makeStyles({
 
     linkText: {
         fontSize: "18px",
+        color: "#FFF",
     },
 
     linkUnderline: {
