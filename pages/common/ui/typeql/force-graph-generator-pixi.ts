@@ -3,7 +3,7 @@ import * as PIXI from "pixi.js";
 // @ts-ignore
 import FontFaceObserver from "fontfaceobserver";
 import { Viewport } from 'pixi-viewport';
-import { arrowhead, Point, Rect, rectIncomingLineIntersect } from "./geometry";
+import { arrowhead, midpoint, Rect, rectIncomingLineIntersect } from "./geometry";
 
 export function runForceGraphPixi(container: Element, linksData: any[], nodesData: any[], nodeHoverTooltip: any) {
     const links = linksData.map((d) => Object.assign({}, d));
@@ -77,8 +77,8 @@ export function runForceGraphPixi(container: Element, linksData: any[], nodesDat
     const viewport = new Viewport({
         screenWidth: width,
         screenHeight: height,
-        worldWidth: width * 4,
-        worldHeight: height * 4,
+        worldWidth: width,
+        worldHeight: height,
         passiveWheel: false,
 
         interaction: app.renderer.plugins.interaction // the interaction module is important for wheel to work properly when renderer.view is placed or scaled
@@ -87,7 +87,7 @@ export function runForceGraphPixi(container: Element, linksData: any[], nodesDat
     app.stage.addChild(viewport);
 
     // activate plugins
-    viewport.drag().pinch().wheel().decelerate().clampZoom({ minWidth: width / 4, minHeight: height / 4 });
+    // viewport.drag().pinch().wheel().decelerate().clampZoom({ minWidth: width, minHeight: height });
 
     const simulation = d3.forceSimulation(nodes)
         .force("link", d3.forceLink(links) // This force provides links between nodes
@@ -99,12 +99,21 @@ export function runForceGraphPixi(container: Element, linksData: any[], nodesDat
         .force("collision", d3.forceCollide().radius(70).iterations(2))
         .velocityDecay(0.8);
 
+    simulation.on("end", () => {
+        simulation.force("link", null);
+        simulation.force("charge", null);
+        simulation.force("center", null);
+        simulation.force("collision", null);
+    });
+
     /*
      Implementation
      */
 
-    let visualLinks = new PIXI.Graphics();
-    viewport.addChild(visualLinks);
+    let linksGFX = new PIXI.Graphics();
+    viewport.addChild(linksGFX);
+
+    const ubuntuMono = new FontFaceObserver("Ubuntu Mono");
 
     nodes.forEach((node: {name: string, gfx: PIXI.Graphics}) => {
         const boundDrag = onDragMove.bind(node);
@@ -151,18 +160,25 @@ export function runForceGraphPixi(container: Element, linksData: any[], nodesDat
             removeTooltip();
         });
 
-        const font = new FontFaceObserver("Ubuntu Mono");
-        font.load().then(() => {
+        ubuntuMono.load().then(() => {
             const text = new PIXI.Text(name, {
                 fontSize: 16,
                 fontFamily: "Ubuntu Mono",
                 fill: '#09022F',
             });
             text.anchor.set(0.5);
-            text.resolution = 2;
             node.gfx.addChild(text);
         });
     });
+
+    const edgeLabelStyle: Partial<PIXI.ITextStyle> = {
+        fontSize: 14,
+        fontFamily: "Ubuntu Mono",
+        fill: '#91B3FF',
+    };
+    const subLabel = new PIXI.Text("sub", edgeLabelStyle);
+    const subLabelMetrics = PIXI.TextMetrics.measureText("sub", subLabel.style as any);
+    console.log(subLabelMetrics);
 
     const ticked = () => {
         nodes.forEach((node) => {
@@ -170,31 +186,63 @@ export function runForceGraphPixi(container: Element, linksData: any[], nodesDat
             gfx.position = new PIXI.Point(x, y);
         });
 
-        for (let i = visualLinks.children.length - 1; i >= 0; i--) {
-            visualLinks.children[i].destroy();
+        for (let i = linksGFX.children.length - 1; i >= 0; i--) {
+            linksGFX.children[i].destroy();
         }
 
-        visualLinks.clear();
-        visualLinks.removeChildren();
-        visualLinks.alpha = 1;
+        linksGFX.clear();
+        linksGFX.removeChildren();
+
+        // ubuntuMono.load().then(() => {
+        //     const text = new PIXI.Text(name, {
+        //         fontSize: 16,
+        //         fontFamily: "Ubuntu Mono",
+        //         fill: '#09022F',
+        //     });
+        //     text.anchor.set(0.5);
+        //     node.gfx.addChild(text);
+        // });
 
         links.forEach((link) => {
             const { source, target } = link;
-            visualLinks.lineStyle(1, 0x91B3FF);
-            visualLinks.moveTo(source.x, source.y);
-            const targetRect: Rect = {x: target.x - 50, y: target.y - 16, w: 100, h: 32};
-            const lineTarget: Point | false = rectIncomingLineIntersect(source, targetRect);
-            if (lineTarget) {
-                visualLinks.lineTo(lineTarget.x, lineTarget.y);
-                const arrow = arrowhead({ from: source, to: lineTarget });
+            linksGFX.lineStyle(1, 0x91B3FF);
+            const sourceRect: Rect = {x: source.x - 54, y: source.y - 20, w: 108, h: 40};
+            const targetRect: Rect = {x: target.x - 54, y: target.y - 20, w: 108, h: 40};
+            const lineSource = rectIncomingLineIntersect(target, sourceRect);
+            const lineTarget = rectIncomingLineIntersect(source, targetRect);
+            if (lineSource && lineTarget) {
+                // Draw edge label
+                const centrePoint = midpoint({from: lineSource, to: lineTarget});
+                const edgeLabel = new PIXI.Text("sub", edgeLabelStyle);
+                edgeLabel.anchor.set(0.5);
+                edgeLabel.position.set(centrePoint.x, centrePoint.y);
+                linksGFX.addChild(edgeLabel);
+
+                // Draw line parts
+                const labelRect: Rect = {
+                    x: centrePoint.x - subLabelMetrics.width / 2 - 2,
+                    y: centrePoint.y - subLabelMetrics.height / 2 - 2,
+                    w: subLabelMetrics.width + 4,
+                    h: subLabelMetrics.height + 4,
+                };
+                linksGFX.moveTo(lineSource.x, lineSource.y);
+                const linePart1Target = rectIncomingLineIntersect(lineSource, labelRect);
+                if (linePart1Target) linksGFX.lineTo(linePart1Target.x, linePart1Target.y);
+                const linePart2Source = rectIncomingLineIntersect(lineTarget, labelRect);
+                if (linePart2Source) {
+                    linksGFX.moveTo(linePart2Source.x, linePart2Source.y);
+                    linksGFX.lineTo(lineTarget.x, lineTarget.y);
+                }
+
+                // Draw arrowhead
+                const arrow = arrowhead({ from: lineSource, to: lineTarget });
                 if (arrow) {
-                    console.log(arrow);
-                    visualLinks.moveTo(arrow[0].x, arrow[0].y);
-                    visualLinks.beginFill(0x91B3FF);
+                    linksGFX.moveTo(arrow[0].x, arrow[0].y);
+                    linksGFX.beginFill(0x91B3FF);
                     const points: PIXI.Point[] = [];
                     for (const pt of arrow) points.push(new PIXI.Point(pt.x, pt.y));
-                    visualLinks.drawPolygon(points);
-                    visualLinks.endFill();
+                    linksGFX.drawPolygon(points);
+                    linksGFX.endFill();
                 }
             }
         });
@@ -209,7 +257,7 @@ export function runForceGraphPixi(container: Element, linksData: any[], nodesDat
             nodes.forEach((node) => {
                 node.gfx.clear();
             });
-            visualLinks.clear();
+            linksGFX.clear();
         }
     };
 }

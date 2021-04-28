@@ -17,6 +17,10 @@ export interface Rect {
 
 export type Polygon = Point[];
 
+export function midpoint(line: Line): Point {
+    return {x: (line.from.x + line.to.x) / 2, y: (line.from.y + line.to.y) / 2};
+}
+
 // line intercept math by Paul Bourke http://paulbourke.net/geometry/pointlineplane/
 // Determine the intersection point of two line segments
 // Return FALSE if the lines don't intersect
