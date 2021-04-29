@@ -100,19 +100,25 @@ export const homePageStyles = makeStyles({
         marginTop: 40,
     },
 
-    actionList: {
-        display: "flex",
+    mainActionList: {
+        display: "grid",
         justifyContent: "center",
+        gridTemplateColumns: "repeat(auto-fit, 240px)",
+        gridGap: "30px 40px",
     },
 
-    firstButtonListItem: {},
+    sectionToggleGroup: {
+        display: "grid",
+        justifyContent: "center",
+        gridTemplateColumns: "repeat(auto-fit, 185px)",
+        gridRowGap: "24px",
 
-    buttonListItem: {
-        marginLeft: 40,
+        "@media(max-width: 767px)": {
+            gridTemplateColumns: "repeat(auto-fit, 176px)",
+        },
     },
 
     sectionToggle: {
-        width: 185,
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
@@ -124,12 +130,32 @@ export const homePageStyles = makeStyles({
         borderRadius: 5,
         backgroundColor: vaticleTheme.palette.purple[600],
         display: "inline-flex",
+        justifyContent: "center",
+        alignItems: "center",
+        border: "1px solid transparent",
+        transition: "border-color 200ms ease",
+        cursor: "pointer",
+
+        "&:hover": {
+            borderColor: vaticleTheme.palette.green[300],
+        },
+
+        "& svg": {
+            width: 45,
+            height: 45,
+
+            "& g, & ellipse, & circle, & path": {
+                stroke: "#FFF",
+            },
+        }
     },
 
-    sectionToggleIcon: {
-        width: 45,
-        height: 45,
-        margin: "auto",
+    sectionToggleIconContainerSelected: {
+        "& svg": {
+            "& g, & ellipse, & circle, & path": {
+                stroke: vaticleTheme.palette.green[300],
+            },
+        },
     },
 
     sectionToggleTitle: {

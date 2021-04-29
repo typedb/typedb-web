@@ -6,14 +6,10 @@ import { discordUrl, downloadTypeDBUrl, githubUrl, twitterUrl } from "../common/
 import { faDiscord, faGithub, faTwitter } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { VaticleButton } from "../common/ui/button/button";
-import LifeSciencesIcon from "../assets/icons/life-sciences-icon.svg";
-import SecurityIcon from "../assets/icons/security-icon.svg";
-import FinanceIcon from "../assets/icons/finance-icon.svg";
-import RoboticsIcon from "../assets/icons/robotics-icon.svg";
-import NLPIcon from "../assets/icons/nlp-icon.svg";
 import clsx from "clsx";
 import { TypeQLVisualiser } from "../common/ui/typeql/typeql-visualiser";
 import { studentHierarchyGraph } from "../common/ui/typeql/graphs/student-hierarchy";
+import { IndustrySection } from './industry-section';
 
 export const HomePage: React.FC = () => {
     const classes = homePageStyles();
@@ -23,8 +19,7 @@ export const HomePage: React.FC = () => {
         <DefaultLayout classes={{ main: classes.layoutMain }}>
             <section className={classes.sectionMarginSmall}>
                 <p className={classes.underDevelopment}>
-                    This site is currently under development - please use
-                    <a href="https://grakn.ai" className={classes.underDevelopmentLink}>https://grakn.ai</a>
+                    This site is currently under development - please use <a href="https://grakn.ai" className={classes.underDevelopmentLink}>https://grakn.ai</a>
                 </p>
             </section>
 
@@ -111,13 +106,9 @@ export const HomePage: React.FC = () => {
             </section>
 
             <section className={classes.sectionMarginSmall}>
-                <div className={classes.actionList}>
-                    <VaticleButton size="small" type="primary" href={downloadTypeDBUrl} target="_blank" classes={{root: classes.firstButtonListItem}}>
-                        Download {typeDBVersion}
-                    </VaticleButton>
-                    <a href={githubUrl} target="_blank" className={classes.buttonListItem}>
-                        <VaticleButton size="small" type="primary">Fork/Star on GitHub</VaticleButton>
-                    </a>
+                <div className={classes.mainActionList}>
+                    <VaticleButton size="small" type="primary" href={downloadTypeDBUrl} target="_blank">Download {typeDBVersion}</VaticleButton>
+                    <VaticleButton size="small" type="primary" href={githubUrl} target="_blank">Fork/Star on GitHub</VaticleButton>
                 </div>
             </section>
 
@@ -129,24 +120,7 @@ export const HomePage: React.FC = () => {
                         allowFullScreen className={classes.sectionMarginSmall}/>
             </section>
 
-            <section className={classes.sectionMarginLarge}>
-                <h2 className={classes.h2}>Health and Life Science</h2>
-                <p className={classes.largeText}>
-                    From pharmaceutical R&D and biomedical research to frontline healthcare delivery, contemporary
-                    health and life science industries rely on data to power insight and improve care. Using Vaticle
-                    to effectively manage data can help organisations advance scientific research and deliver best
-                    practice medicine.
-                </p>
-                <VaticleButton size="small" type="secondary" classes={{"root": classes.buttonAfterText}}>Learn More</VaticleButton>
-
-                <div className={clsx(classes.sectionMarginSmall, classes.actionList)}>
-                    <SectionToggle title="Health and Life Sciences" icon={LifeSciencesIcon}/>
-                    <SectionToggle title="Defence & Security" icon={SecurityIcon}/>
-                    <SectionToggle title="Financial Services" icon={FinanceIcon}/>
-                    <SectionToggle title="Robotics" icon={RoboticsIcon}/>
-                    <SectionToggle title="NLP" icon={NLPIcon}/>
-                </div>
-            </section>
+            <IndustrySection className={classes.sectionMarginLarge}/>
 
             <section className={classes.sectionMarginLarge}>
                 <h1 className={classes.h1}>Scale your database with Vaticle TypeDB Cluster</h1>
@@ -160,21 +134,3 @@ export const HomePage: React.FC = () => {
         </DefaultLayout>
     );
 };
-
-interface SectionToggleProps {
-    title: string;
-    icon: React.FC<React.SVGAttributes<SVGElement>>;
-}
-
-const SectionToggle: React.FC<SectionToggleProps> = ({title, icon}) => {
-    const classes = homePageStyles();
-
-    return (
-        <div className={classes.sectionToggle}>
-            <div className={classes.sectionToggleIconContainer}>
-                {React.createElement(icon, {className: classes.sectionToggleIcon})}
-            </div>
-            <p className={classes.sectionToggleTitle}>{title}</p>
-        </div>
-    );
-}

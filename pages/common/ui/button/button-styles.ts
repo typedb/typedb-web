@@ -38,6 +38,7 @@ export const buttonStyles = makeStyles({
         transition: "background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,border 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;",
         display: "inline-flex",
         alignItems: "center",
+        justifyContent: "center",
         color: (props: StyleProps) => typeColorMap[props.type].label,
         fontSize: (props: StyleProps) => vaticleTheme.typography.fontSize[props.size],
         fontWeight: 600,
