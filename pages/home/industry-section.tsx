@@ -23,6 +23,7 @@ export const IndustrySection: React.FC<IndustrySectionProps> = ({className}) => 
         return selectedIndustry === industry;
     }
 
+    // TODO: Restructure to follow Cluster section's model
     const allIndustries: [IndustryName, React.FC<any>][] = [
         ["Health and Life Sciences", LifeSciencesIcon],
         ["Defence & Security", SecurityIcon],

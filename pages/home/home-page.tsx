@@ -11,6 +11,7 @@ import { TypeQLVisualiser } from "../common/ui/typeql/typeql-visualiser";
 import { studentHierarchyGraph } from "../common/ui/typeql/graphs/student-hierarchy";
 import { IndustrySection } from './industry-section';
 import { ClusterSection } from "./cluster-section";
+import { TestimonialsSection } from "./testimonials-section";
 
 export const HomePage: React.FC = () => {
     const classes = homePageStyles();
@@ -124,6 +125,8 @@ export const HomePage: React.FC = () => {
             <IndustrySection className={classes.sectionMarginLarge}/>
 
             <ClusterSection className={classes.sectionMarginLarge}/>
+
+            <TestimonialsSection className={classes.sectionMarginLarge}/>
 
         </DefaultLayout>
     );

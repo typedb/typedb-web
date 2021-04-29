@@ -129,6 +129,7 @@ export function runTypeQLForceGraph(container: Element, edgesData: any[], vertic
                 fill: '#09022F',
             });
             text.anchor.set(0.5);
+            text.resolution = 2;
             node.gfx.addChild(text);
         });
     });
@@ -166,6 +167,7 @@ export function runTypeQLForceGraph(container: Element, edgesData: any[], vertic
                 // Draw edge label
                 const centrePoint = midpoint({from: lineSource, to: lineTarget});
                 const edgeLabel = new PIXI.Text("sub", edgeLabelStyle);
+                edgeLabel.resolution = 2;
                 edgeLabel.anchor.set(0.5);
                 edgeLabel.position.set(centrePoint.x, centrePoint.y);
                 linksGFX.addChild(edgeLabel);

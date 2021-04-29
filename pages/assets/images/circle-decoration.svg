@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="90px" height="90px" viewBox="0 0 90 90" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <g id="Home" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round">
+        <g id="Home-Desktop" transform="translate(-1315.000000, -6335.000000)" stroke="#02DAC9">
+            <g id="desktop/reviews" transform="translate(-20.000000, 6122.000000)">
+                <g id="testimonials-desktop" transform="translate(0.000000, 214.000000)">
+                    <g id="desktop/testimonials-1-line" transform="translate(1200.000000, 0.000000)">
+                        <g id="decor" transform="translate(136.000000, 0.000000)">
+                            <path d="M0,44 C0,68.300529 19.699471,88 44,88 M73.3660862,76.7668848 C82.34873,68.7111121 88,57.0155185 88,44 M73.9793403,11.7935631 C66.1220193,4.47633225 55.5837614,0 44,0" id="Shape"></path>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

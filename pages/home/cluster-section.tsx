@@ -13,10 +13,8 @@ export interface ClusterSectionProps {
     className?: string;
 }
 
-type ClusterFeatureName = "High Availability" | "Elastic Throughput" | "Secure Authentication" | "Enterprise Support" | "Cluster Management" | "Backup and Recovery";
-
 interface ClusterFeature {
-    name: ClusterFeatureName;
+    name: string;
     description: string;
     icon: React.FC;
     linkTo?: string;
@@ -64,8 +62,9 @@ export const ClusterSection: React.FC<ClusterSectionProps> = ({className}) => {
             </p>
 
             <div className={clsx(classes.featurePanelList, classes.sectionMarginSmall)}>
-                {allFeatures.map(({name, description, icon}) => (
+                {allFeatures.map(({name, description, icon, comingSoon}) => (
                     <a className={classes.featurePanel}>
+                        {comingSoon && <div className={classes.featurePanelBanner}>coming soon</div>}
                         {React.createElement(icon)}
                         <h3 className={clsx(classes.h3, classes.textMarginLarge)}>{name}</h3>
                         <p className={clsx(classes.mediumText, classes.textMarginSmall)}>{description}</p>

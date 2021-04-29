@@ -68,6 +68,12 @@ export const homePageStyles = makeStyles({
         fontWeight: 300,
     },
 
+    smallText: {
+        fontSize: 14,
+        lineHeight: "21px",
+        fontWeight: 400,
+    },
+
     mainLinks: {
         width: '100%',
         display: 'flex',
@@ -200,9 +206,112 @@ export const homePageStyles = makeStyles({
         padding: "32px 40px",
         border: "1px solid transparent",
         transition: "border-color 100ms ease",
+        position: "relative",
 
         "&:hover": {
             borderColor: vaticleTheme.palette.green[300],
         },
+    },
+
+    featurePanelBanner: {
+        position: "absolute",
+        top: 0,
+        right: 0,
+        width: 100,
+        height: 32,
+        borderRadius: 5,
+        backgroundColor: vaticleTheme.palette.purple["400"],
+        display: "inline-flex",
+        justifyContent: "center",
+        fontSize: 14,
+        lineHeight: "28px",
+        fontWeight: 400,
+    },
+
+    testimonialCarousel: {
+        height: 368,
+        display: "flex",
+        justifyContent: "center",
+        overflow: "hidden",
+    },
+
+    testimonialContainer: {
+        flex: "1 0 400px",
+        padding: "0 20px",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "flex-end",
+        position: "relative",
+    },
+
+    testimonialCompanyLogo: {
+        position: "absolute",
+        top: 6,
+        left: 0,
+        right: 0,
+        margin: "0 auto",
+        width: 76,
+        height: 76,
+        backgroundColor: vaticleTheme.palette.purple["700"],
+        borderRadius: 38,
+    },
+
+    testimonialCompanyLogoDecoration: {
+        position: "absolute",
+        top: 0,
+        left: 0,
+        right: 0,
+        margin: "0 auto",
+        width: 88,
+        height: 88,
+        borderRadius: 44,
+    },
+
+    testimonial: {
+        height: 324,
+        backgroundColor: vaticleTheme.palette.purple["600"],
+        borderRadius: 5,
+        display: "flex",
+        flexDirection: "column",
+        padding: "0 20px",
+        textAlign: "start",
+    },
+
+    testimonialBody: {
+        marginTop: 58,
+    },
+
+    testimonialDivider: {
+        marginTop: 16,
+        height: 0,
+        width: 320,
+        border: `1px solid ${vaticleTheme.palette.purple["450"]}`,
+    },
+
+    testimonialPerson: {
+        marginTop: 16,
+        display: "flex",
+    },
+
+    testimonialAvatar: {
+        height: 48,
+        width: 48,
+        borderRadius: 5,
+    },
+
+    testimonialPersonDetails: {
+        marginLeft: 16,
+    },
+
+    testimonialPersonName: {
+        fontSize: 18,
+        lineHeight: "26px",
+        fontWeight: 500,
+    },
+
+    testimonialPersonJob: {
+        fontSize: 14,
+        lineHeight: "23px",
+        fontWeight: 300,
     },
 });
