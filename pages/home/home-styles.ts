@@ -8,10 +8,26 @@ export const homePageStyles = makeStyles({
 
     sectionMarginLarge: {
         marginTop: 160,
+
+        "@media(max-width: 767px)": {
+            marginTop: 120,
+        },
     },
 
     sectionMarginSmall: {
         marginTop: 80,
+
+        "@media(max-width: 767px)": {
+            marginTop: 60,
+        },
+    },
+
+    textMarginLarge: {
+        marginTop: 16,
+    },
+
+    textMarginSmall: {
+        marginTop: 8,
     },
 
     underDevelopment: {
@@ -35,6 +51,8 @@ export const homePageStyles = makeStyles({
 
     h2: vaticleTheme.h2,
 
+    h3: vaticleTheme.h3,
+
     largeText: {
         margin: '0 auto',
         marginTop: '16px',
@@ -45,7 +63,6 @@ export const homePageStyles = makeStyles({
     },
 
     mediumText: {
-        marginTop: 16,
         fontSize: 16,
         lineHeight: "28px",
         fontWeight: 300,
@@ -133,7 +150,7 @@ export const homePageStyles = makeStyles({
         justifyContent: "center",
         alignItems: "center",
         border: "1px solid transparent",
-        transition: "border-color 200ms ease",
+        transition: "border-color 100ms ease",
         cursor: "pointer",
 
         "&:hover": {
@@ -163,5 +180,29 @@ export const homePageStyles = makeStyles({
         fontSize: 16,
         lineHeight: "28px",
         fontWeight: 300,
-    }
+    },
+
+    featurePanelList: {
+        display: "grid",
+        justifyContent: "center",
+        gridTemplateColumns: "repeat(auto-fit, 360px)",
+        gridTemplateRows: "repeat(auto-fit, 260px)",
+        gridGap: "40px 40px",
+
+        "@media(max-width: 767px)": {
+            gridTemplateColumns: "repeat(auto-fit, 335px)",
+        },
+    },
+
+    featurePanel: {
+        backgroundColor: vaticleTheme.palette.purple["600"],
+        borderRadius: 5,
+        padding: "32px 40px",
+        border: "1px solid transparent",
+        transition: "border-color 100ms ease",
+
+        "&:hover": {
+            borderColor: vaticleTheme.palette.green[300],
+        },
+    },
 });

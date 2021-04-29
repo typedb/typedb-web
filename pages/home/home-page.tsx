@@ -10,6 +10,7 @@ import clsx from "clsx";
 import { TypeQLVisualiser } from "../common/ui/typeql/typeql-visualiser";
 import { studentHierarchyGraph } from "../common/ui/typeql/graphs/student-hierarchy";
 import { IndustrySection } from './industry-section';
+import { ClusterSection } from "./cluster-section";
 
 export const HomePage: React.FC = () => {
     const classes = homePageStyles();
@@ -51,7 +52,7 @@ export const HomePage: React.FC = () => {
                     </a>
                     <div className={classes.mainLink}>
                         <VaticleButton classes={{root: classes.downloadGraknButton}} size="small" type="primary"
-                                       href="https://grakn.ai/download" target="_blank">
+                                       href={downloadTypeDBUrl} target="_blank">
                             Download {typeDBVersion}
                         </VaticleButton>
                     </div>
@@ -73,7 +74,7 @@ export const HomePage: React.FC = () => {
 
             <section className={clsx(classes.sectionMarginSmall, classes.diagramAndCaptionSection)}>
                 <h2 className={classes.h2}>Expressivity</h2>
-                <p className={classes.mediumText}>
+                <p className={clsx(classes.mediumText, classes.textMarginLarge)}>
                     Vaticle TypeDB allows you to model your domain through the well-known Entity-Relationship model,
                     but at its fullest expressivity. It's composed of entity, relationship, and attribute types,
                     and also type hierarchies, roles, and rules, allowing you to build expressive datasets
@@ -85,7 +86,7 @@ export const HomePage: React.FC = () => {
 
             <section className={clsx(classes.sectionMarginLarge, classes.diagramAndCaptionSection)}>
                 <h2 className={classes.h2}>Safety</h2>
-                <p className={classes.mediumText}>
+                <p className={clsx(classes.mediumText, classes.textMarginLarge)}>
                     Types provide a way to describe the logical structures of your data, allowing Vaticle TypeDB
                     to validate that your code is inserting data correctly. Data validation goes beyond static type
                     checking, and includes logical validations of inferrable data patterns. With strict type-checking
@@ -96,7 +97,7 @@ export const HomePage: React.FC = () => {
 
             <section className={clsx(classes.sectionMarginLarge, classes.diagramAndCaptionSection)}>
                 <h2 className={classes.h2}>Simplicity</h2>
-                <p className={classes.mediumText}>
+                <p className={clsx(classes.mediumText, classes.textMarginLarge)}>
                     Vaticle TypeDB derives all possible interpretations of a query, through type-based and
                     rule-based inference. Complex and verbose data patterns can be queried through simple and
                     intuitive TypeQL queries. TypeDB also optimises the traversal path of query execution.
@@ -122,14 +123,7 @@ export const HomePage: React.FC = () => {
 
             <IndustrySection className={classes.sectionMarginLarge}/>
 
-            <section className={classes.sectionMarginLarge}>
-                <h1 className={classes.h1}>Scale your database with Vaticle TypeDB Cluster</h1>
-                <p className={classes.largeText}>
-                    Vaticle TypeDB Cluster is the distributed database designed to scale with your enterprise. Whether
-                    you have a growing dataset, application workload, or user request, TypeDB Cluster will provide the
-                    tools you need to take you from development to production and scale.
-                </p>
-            </section>
+            <ClusterSection className={classes.sectionMarginLarge}/>
 
         </DefaultLayout>
     );

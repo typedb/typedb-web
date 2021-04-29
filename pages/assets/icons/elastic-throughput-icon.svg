@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="55px" height="53px" viewBox="0 0 55 53" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Elastic Throughput</title>
+    <defs>
+        <filter id="filter-1">
+            <feColorMatrix in="SourceGraphic" type="matrix" values="0 0 0 0 0.007843 0 0 0 0 0.854902 0 0 0 0 0.788235 0 0 0 1.000000 0"></feColorMatrix>
+        </filter>
+    </defs>
+    <g id="Home" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Home-Desktop" transform="translate(-932.000000, -5393.000000)">
+            <g id="scale-knowledge" transform="translate(0.000000, 5030.000000)">
+                <g id="Elastic-Troughput" transform="translate(780.000000, 332.000000)">
+                    <g id="icon" transform="translate(57.000000, 32.000000)" filter="url(#filter-1)">
+                        <g transform="translate(96.000000, 0.000000)" id="Elastic-Troughput" stroke="#FFFFFF">
+                            <path d="M1.81188398e-13,-9.23705556e-14 C7.13944444,6.82666667 10.7091667,15.36 10.7091667,25.6 C10.7091667,35.84 7.13944444,44.3733333 1.81188398e-13,51.2" id="Path-13" stroke-linecap="round"></path>
+                            <path d="M42,0 C49.1394444,6.82666667 52.7091667,15.36 52.7091667,25.6 C52.7091667,35.84 49.1394444,44.3733333 42,51.2" id="Path-13-Copy" stroke-linecap="round" transform="translate(47.354583, 25.600000) scale(-1, 1) translate(-47.354583, -25.600000) "></path>
+                            <line x1="26.2943618" y1="18.4895536" x2="13.1066693" y2="31.9569212" id="Path-60" stroke-linecap="round" transform="translate(19.654734, 25.306160) rotate(135.000000) translate(-19.654734, -25.306160) "></line>
+                            <ellipse id="Oval" stroke-width="0.8773632" fill="#FFFFFF" transform="translate(19.703139, 34.916472) rotate(135.000000) translate(-19.703139, -34.916472) " cx="19.7031387" cy="34.9164721" rx="1.76199235" ry="1.75912421"></ellipse>
+                            <polyline id="Path-61" stroke-linecap="round" transform="translate(19.625193, 21.090851) rotate(135.000000) translate(-19.625193, -21.090851) " points="16.2696786 17.4416522 16.0369124 24.7400494 23.2134729 24.7400494"></polyline>
+                            <line x1="40.2612305" y1="20.3720843" x2="27.073538" y2="33.8394519" id="Path-60" stroke-linecap="round" transform="translate(33.621603, 27.188691) rotate(316.000000) translate(-33.621603, -27.188691) "></line>
+                            <ellipse id="Oval" stroke-width="0.8773632" fill="#FFFFFF" transform="translate(33.740929, 17.578997) rotate(316.000000) translate(-33.740929, -17.578997) " cx="33.7409288" cy="17.5789974" rx="1.76199235" ry="1.75912421"></ellipse>
+                            <polyline id="Path-61" stroke-linecap="round" transform="translate(33.577573, 31.403873) rotate(316.000000) translate(-33.577573, -31.403873) " points="30.2220586 27.7546747 29.9892924 35.0530719 37.1658529 35.0530719"></polyline>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="50px" height="54px" viewBox="0 0 50 54" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Cluster Management</title>
+    <g id="Home" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Home-Desktop" transform="translate(-935.000000, -5693.000000)" stroke="#FFFFFF">
+            <g id="scale-knowledge" transform="translate(0.000000, 5030.000000)">
+                <g id="Cluster-Management" transform="translate(780.000000, 632.000000)">
+                    <g id="cluster-management" transform="translate(37.000000, 0.000000)">
+                        <g id="icon" transform="translate(118.000000, 32.000000)">
+                            <g id="Cluster-Management" transform="translate(0.528358, 0.400000)">
+                                <circle id="Oval" cx="24.9253731" cy="25.9820896" r="22.161194"></circle>
+                                <circle id="Oval" fill="#261C5E" cx="24.6821533" cy="3.82089552" r="3.82089552"></circle>
+                                <circle id="Oval" fill="#261C5E" transform="translate(43.543411, 14.710448) rotate(60.000000) translate(-43.543411, -14.710448) " cx="43.543411" cy="14.7104478" r="3.82089552"></circle>
+                                <circle id="Oval" fill="#261C5E" transform="translate(43.543411, 36.489552) rotate(120.000000) translate(-43.543411, -36.489552) " cx="43.543411" cy="36.4895522" r="3.82089552"></circle>
+                                <circle id="Oval" fill="#261C5E" transform="translate(24.682153, 47.379104) rotate(180.000000) translate(-24.682153, -47.379104) " cx="24.6821533" cy="47.3791045" r="3.82089552"></circle>
+                                <circle id="Oval" fill="#261C5E" transform="translate(5.820896, 36.489552) rotate(240.000000) translate(-5.820896, -36.489552) " cx="5.82089552" cy="36.4895522" r="3.82089552"></circle>
+                                <circle id="Oval" fill="#261C5E" transform="translate(5.820896, 14.710448) rotate(300.000000) translate(-5.820896, -14.710448) " cx="5.82089552" cy="14.7104478" r="3.82089552"></circle>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

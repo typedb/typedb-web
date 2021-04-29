@@ -13,17 +13,17 @@ export interface IndustrySectionProps {
     className?: string;
 }
 
-type Industry = "Health and Life Sciences" | "Defence & Security" | "Financial Services" | "Robotics" | "NLP";
+type IndustryName = "Health and Life Sciences" | "Defence & Security" | "Financial Services" | "Robotics" | "NLP";
 
 export const IndustrySection: React.FC<IndustrySectionProps> = ({className}) => {
     const classes = homePageStyles();
-    const [selectedIndustry, setSelectedIndustry] = useState<Industry>("Health and Life Sciences");
+    const [selectedIndustry, setSelectedIndustry] = useState<IndustryName>("Health and Life Sciences");
 
-    const isSelected = (industry: Industry) => {
+    const isSelected = (industry: IndustryName) => {
         return selectedIndustry === industry;
     }
 
-    const allIndustries: [Industry, React.FC<any>][] = [
+    const allIndustries: [IndustryName, React.FC<any>][] = [
         ["Health and Life Sciences", LifeSciencesIcon],
         ["Defence & Security", SecurityIcon],
         ["Financial Services", FinanceIcon],
@@ -102,9 +102,9 @@ export const IndustrySection: React.FC<IndustrySectionProps> = ({className}) => 
 }
 
 interface SectionToggleProps {
-    title: Industry;
+    title: IndustryName;
     icon: React.FC<React.SVGAttributes<SVGElement>>;
-    binding: (title: Industry) => void;
+    binding: (title: IndustryName) => void;
     selected: boolean;
 }
 
