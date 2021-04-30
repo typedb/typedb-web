@@ -228,11 +228,19 @@ export const homePageStyles = makeStyles({
         fontWeight: 400,
     },
 
-    testimonialCarousel: {
-        height: 368,
+    carouselContainer: {
+        width: "100%",
+        overflow: "hidden",
+    },
+
+    carousel: {
         display: "flex",
         justifyContent: "center",
-        overflow: "hidden",
+    },
+
+    testimonialCarousel: {
+        height: 368,
+        transition: "transform 300ms ease",
     },
 
     testimonialContainer: {
@@ -246,14 +254,14 @@ export const homePageStyles = makeStyles({
 
     testimonialCompanyLogo: {
         position: "absolute",
-        top: 6,
+        top: 8,
         left: 0,
         right: 0,
         margin: "0 auto",
-        width: 76,
-        height: 76,
+        width: 72,
+        height: 72,
         backgroundColor: vaticleTheme.palette.purple["700"],
-        borderRadius: 38,
+        borderRadius: "50%",
     },
 
     testimonialCompanyLogoDecoration: {
@@ -264,7 +272,7 @@ export const homePageStyles = makeStyles({
         margin: "0 auto",
         width: 88,
         height: 88,
-        borderRadius: 44,
+        borderRadius: "50%",
     },
 
     testimonial: {
@@ -306,12 +314,69 @@ export const homePageStyles = makeStyles({
     testimonialPersonName: {
         fontSize: 18,
         lineHeight: "26px",
-        fontWeight: 500,
+        fontWeight: 600,
     },
 
     testimonialPersonJob: {
         fontSize: 14,
         lineHeight: "23px",
         fontWeight: 300,
+    },
+
+    carouselControlPanel: {
+        margin: "0 auto",
+        marginTop: 40,
+        width: 335,
+        display: "flex",
+        justifyContent: "space-between",
+        alignItems: "center",
+    },
+
+    leftChevron: {
+        width: 10,
+        height: 10,
+        border: `1px none ${vaticleTheme.palette.purple["50"]}`,
+        borderTopStyle: "solid",
+        borderLeftStyle: "solid",
+        transform: "rotate(-45deg)",
+        marginLeft: 3,
+    },
+
+    rightChevron: {
+        width: 10,
+        height: 10,
+        border: `1px none ${vaticleTheme.palette.purple["50"]}`,
+        borderTopStyle: "solid",
+        borderRightStyle: "solid",
+        transform: "rotate(45deg)",
+        marginRight: 3,
+    },
+
+    iconDisabled: {
+        opacity: .38,
+    },
+
+    carouselPips: {
+        display: "flex",
+        justifyContent: "space-between",
+        alignItems: "center",
+    },
+
+    carouselPip: {
+        width: 8,
+        height: 8,
+        borderRadius: 4,
+        backgroundColor: vaticleTheme.palette.purple["400"],
+        transition: "transform 100ms ease, background-color 100ms ease, margin-top 100ms ease",
+    },
+
+    carouselPipGap: {
+        marginLeft: 20,
+    },
+
+    carouselPipSelected: {
+        transform: "scale(1.375)",
+        marginTop: 1.5,
+        backgroundColor: vaticleTheme.palette.green["300"],
     },
 });

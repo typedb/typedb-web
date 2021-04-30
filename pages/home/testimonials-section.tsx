@@ -1,9 +1,10 @@
 import { homePageStyles } from "./home-styles";
-import React from "react";
+import React, { useState } from "react";
 import clsx from "clsx";
 import HighAvailabilityIcon from "../assets/icons/high-availability-icon.svg";
 import ClusterManagementIcon from "../assets/icons/cluster-management-icon.svg";
 import CircleDecoration from "../assets/images/circle-decoration.svg";
+import { VaticleIconButton } from "../common/ui/button/icon-button";
 
 export interface TestimonialsSectionProps {
     className?: string;
@@ -20,16 +21,16 @@ interface Testimonial {
 
 export const TestimonialsSection: React.FC<TestimonialsSectionProps> = ({className}) => {
     const classes = homePageStyles();
+    const [selectedIndex, setSelectedIndex] = useState(1);
 
-    const allTestimonials: Testimonial[] = [{
+    const testimonials: Testimonial[] = [{
         companyName: "Vaticle",
         companyLogo: ClusterManagementIcon,
         personName: "Ganeshwara Hananda",
         jobTitle: "Lead Engineer",
         avatarURL: "https://avatars.githubusercontent.com/u/464164?v=4",
         body: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin id justo sagittis,
-        semper enim sit amet, rutrum ligula. Aenean fermentum a felis sit amet lacinia. Duis sed finibus metus.
-        Mauris venenatis ex non nunc eleifend, at pharetra leo tristique.`,
+        semper enim sit amet, rutrum ligula. Aenean fermentum a felis sit amet lacinia. Duis sed finibus metus.`,
     }, {
         companyName: "Vaticle",
         companyLogo: HighAvailabilityIcon,
@@ -68,26 +69,46 @@ export const TestimonialsSection: React.FC<TestimonialsSectionProps> = ({classNa
         <section className={className}>
             <h1 className={classes.h1}>Become the pioneer of your industry</h1>
 
-            <div className={clsx(classes.testimonialCarousel, classes.sectionMarginSmall)}>
-                {allTestimonials.map(({companyName, companyLogo, personName, jobTitle, avatarURL, body}) => (
-                    <div className={classes.testimonialContainer}>
-                        {React.createElement(companyLogo, {className: classes.testimonialCompanyLogo})}
-                        <CircleDecoration className={classes.testimonialCompanyLogoDecoration}/>
+            <div className={classes.carouselContainer}>
+                <div className={clsx(classes.carousel, classes.testimonialCarousel, classes.sectionMarginSmall)}
+                     style={{transform: `translateX(${(((testimonials.length - 1) / 2) - selectedIndex) * 400}px)`}}>
+                    {testimonials.map(({companyName, companyLogo, personName, jobTitle, avatarURL, body}) => (
+                        <div className={classes.testimonialContainer}>
+                            {React.createElement(companyLogo, {className: classes.testimonialCompanyLogo})}
+                            <CircleDecoration className={classes.testimonialCompanyLogoDecoration}/>
 
-                        <div className={classes.testimonial}>
-                            <p className={clsx(classes.testimonialBody, classes.mediumText)}>{body}</p>
-                            <hr className={classes.testimonialDivider}/>
+                            <div className={classes.testimonial}>
+                                <p className={clsx(classes.testimonialBody, classes.mediumText)}>{body}</p>
+                                <hr className={classes.testimonialDivider}/>
 
-                            <div className={classes.testimonialPerson}>
-                                <img src={avatarURL} alt={personName} className={classes.testimonialAvatar}/>
-                                <div className={classes.testimonialPersonDetails}>
-                                    <p className={classes.testimonialPersonName}>{personName}</p>
-                                    <p className={classes.testimonialPersonJob}>{jobTitle}, {companyName}</p>
+                                <div className={classes.testimonialPerson}>
+                                    <img src={avatarURL} alt={personName} className={classes.testimonialAvatar}/>
+                                    <div className={classes.testimonialPersonDetails}>
+                                        <p className={classes.testimonialPersonName}>{personName}</p>
+                                        <p className={classes.testimonialPersonJob}>{jobTitle}, {companyName}</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                ))}
+                    ))}
+                </div>
+            </div>
+
+            <div className={classes.carouselControlPanel}>
+                <VaticleIconButton disabled={selectedIndex === 0} onClick={() => setSelectedIndex(selectedIndex - 1)}>
+                    <div className={clsx(classes.leftChevron, selectedIndex === 0 && classes.iconDisabled)}/>
+                </VaticleIconButton>
+
+                <div className={classes.carouselPips}>
+                    {testimonials.map((_, idx) => (
+                        <a className={clsx(classes.carouselPip, idx > 0 && classes.carouselPipGap, idx === selectedIndex && classes.carouselPipSelected)}
+                           onClick={() => setSelectedIndex(idx)}/>
+                    ))}
+                </div>
+
+                <VaticleIconButton disabled={selectedIndex === testimonials.length - 1} onClick={() => setSelectedIndex(selectedIndex + 1)}>
+                    <div className={clsx(classes.rightChevron, selectedIndex === testimonials.length - 1 && classes.iconDisabled)}/>
+                </VaticleIconButton>
             </div>
         </section>
     );

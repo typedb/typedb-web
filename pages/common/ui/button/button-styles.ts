@@ -66,3 +66,25 @@ export const githubButtonStyles = makeStyles({
         fontSize: 36,
     },
 });
+
+export const iconButtonStyles = makeStyles({
+    root: {
+        width: 45,
+        height: 45,
+        borderRadius: "50%",
+        border: "1px solid transparent",
+        transition: "border-color 100ms ease",
+        backgroundColor: vaticleTheme.palette.purple["600"],
+        display: "inline-flex",
+        justifyContent: "center",
+        alignItems: "center",
+
+        "&:hover": {
+            borderColor: vaticleTheme.palette.green["300"],
+        },
+    },
+
+    disabled: {
+        pointerEvents: "none",
+    },
+});
