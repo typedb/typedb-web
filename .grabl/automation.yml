@@ -24,4 +24,6 @@ release:
       image: graknlabs-ubuntu-20.04
       dependencies: [deploy-artifact]
       command: |
+        echo $NOMAD_CACERT_BASE64 | base64 -d > /tmp/nomad-ca.pem
+        export NOMAD_CACERT=/tmp/nomad-ca.pem
         nomad job run infrastructure/web-main.nomad
