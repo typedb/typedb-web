@@ -10,9 +10,6 @@ build:
         bazel build //...
 
 release:
-  filter:
-    owner: graknlabs
-    branch: master
   deployment:
     deploy-artifact:
       image: graknlabs-ubuntu-20.04
