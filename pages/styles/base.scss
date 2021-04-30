@@ -3,6 +3,7 @@
 $color-white: #FFF;
 $color-purple-600: #261C5E;
 $color-purple-700: #1D1354;
+$color-green-300: #02DAC9;
 
 $default-background: $color-purple-700;
 $default-text-color: $color-white;
@@ -39,6 +40,16 @@ html, body {
 
 #root {
   height: 100%;
+}
+
+section {
+  width: 1160px;
+  max-width: calc(100vw - 40px);
+  margin: 0 auto;
+}
+
+p a {
+  color: $color-green-300;
 }
 
 .page-header-toolbar > :not(:first-child) {

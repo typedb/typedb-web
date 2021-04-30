@@ -7,7 +7,7 @@ import VaticleLogo from "../../../assets/images/vaticle-logo.svg";
 import { pageHeaderStyles } from "./layout-styles";
 import { GithubButton } from "../button/github-button";
 import { VaticleButton } from "../button/button";
-import { downloadTypeDBUrl } from "../../urls";
+import { downloadTypeDBURL } from "../../urls";
 
 interface PageHeaderProps {
     typeDBVersion: string;
@@ -41,7 +41,7 @@ export const PageHeader: React.FC<PageHeaderProps> = ({typeDBVersion}) => {
                     <HeaderLink>Cloud</HeaderLink>
                 </Link>
 
-                <VaticleButton size="small" type="secondary" href={downloadTypeDBUrl} target="_blank">Download {typeDBVersion}</VaticleButton>
+                <VaticleButton size="small" type="secondary" href={downloadTypeDBURL} target="_blank">Download {typeDBVersion}</VaticleButton>
                 <GithubButton/>
             </Toolbar>
         </AppBar>

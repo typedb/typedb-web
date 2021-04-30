@@ -2,76 +2,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import { vaticleTheme } from "../styles/theme";
 
 export const homePageStyles = makeStyles({
-    layoutMain: {
-        paddingTop: '4px',
-    },
-
-    sectionMarginLarge: {
-        marginTop: 160,
-
-        "@media(max-width: 767px)": {
-            marginTop: 120,
-        },
-    },
-
-    sectionMarginSmall: {
-        marginTop: 80,
-
-        "@media(max-width: 767px)": {
-            marginTop: 60,
-        },
-    },
-
-    textMarginLarge: {
-        marginTop: 16,
-    },
-
-    textMarginSmall: {
-        marginTop: 8,
-    },
-
-    underDevelopment: {
-        maxWidth: 800,
-        padding: "16px",
-        border: `2px solid ${vaticleTheme.palette.green["200"]}`,
-        borderRadius: 5,
-        margin: "0 auto",
-        fontSize: 16,
-    },
-
-    underDevelopmentLink: {
-        color: `${vaticleTheme.palette.green["200"]} !important`,
-    },
-
-    diagramAndCaptionSection: {
+    diagramAndCaption: {
         textAlign: "start",
-    },
-
-    h1: vaticleTheme.h1,
-
-    h2: vaticleTheme.h2,
-
-    h3: vaticleTheme.h3,
-
-    largeText: {
-        margin: '0 auto',
-        marginTop: '16px',
-        fontSize: '20px',
-        fontWeight: 300,
-        lineHeight: '34px',
-        maxWidth: '960px',
-    },
-
-    mediumText: {
-        fontSize: 16,
-        lineHeight: "28px",
-        fontWeight: 300,
-    },
-
-    smallText: {
-        fontSize: 14,
-        lineHeight: "21px",
-        fontWeight: 400,
     },
 
     mainLinks: {
@@ -103,6 +35,15 @@ export const homePageStyles = makeStyles({
     mainLinkIcon: {
         color: '#FFF !important',
         fontSize: 66,
+    },
+
+    mainLinkIconCircle: {
+        width: "60px !important",
+        height: 60,
+        borderRadius: "50%",
+        color: vaticleTheme.palette.purple["700"],
+        backgroundColor: "#FFF",
+        padding: "14px 13px 14px 15px",
     },
 
     mainLinkCaption: {
@@ -378,5 +319,9 @@ export const homePageStyles = makeStyles({
         transform: "scale(1.375)",
         marginTop: 1.5,
         backgroundColor: vaticleTheme.palette.green["300"],
+    },
+
+    communitySection: {
+        width: 1220,
     },
 });

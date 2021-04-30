@@ -5,6 +5,7 @@ import HighAvailabilityIcon from "../assets/icons/high-availability-icon.svg";
 import ClusterManagementIcon from "../assets/icons/cluster-management-icon.svg";
 import CircleDecoration from "../assets/images/circle-decoration.svg";
 import { VaticleIconButton } from "../common/ui/button/icon-button";
+import { commonStyles } from "../common/ui/common-styles";
 
 export interface TestimonialsSectionProps {
     className?: string;
@@ -20,7 +21,7 @@ interface Testimonial {
 }
 
 export const TestimonialsSection: React.FC<TestimonialsSectionProps> = ({className}) => {
-    const classes = homePageStyles();
+    const classes = Object.assign({}, commonStyles(), homePageStyles());
     const [selectedIndex, setSelectedIndex] = useState(1);
 
     const testimonials: Testimonial[] = [{
@@ -57,7 +58,7 @@ export const TestimonialsSection: React.FC<TestimonialsSectionProps> = ({classNa
         varius dapibus placerat. Nullam egestas ex nisl, placerat tempor turpis laoreet eget. Donec facilisis diam quis dui varius eleifend.`,
     }, {
         companyName: "Vaticle",
-        companyLogo: ClusterManagementIcon,
+        companyLogo: HighAvailabilityIcon,
         personName: "Ganeshwara Hananda",
         jobTitle: "Lead Engineer",
         avatarURL: "https://avatars.githubusercontent.com/u/464164?v=4",

@@ -11,12 +11,6 @@ export const defaultLayoutStyles = makeStyles({
         width: '100%',
         textAlign: 'center',
     },
-
-    pageContent: {
-        width: "1160px",
-        maxWidth: "calc(100vw - 40px)",
-        margin: "0 auto",
-    },
 });
 
 export const pageHeaderStyles = makeStyles({
@@ -71,14 +65,74 @@ export const pageHeaderStyles = makeStyles({
 
 export const pageFooterStyles = makeStyles({
     root: {
-        height: footerHeight,
-        width: '100%',
-        padding: '5px 0',
-        // padding: vaticleTheme.spacing(5, 0),
+        marginTop: 80,
+        backgroundColor: vaticleTheme.palette.purple["800"],
     },
-    image: {
-        width: 165,
-        display: 'block',
-        margin: '0 auto',
-    }
+
+    content: {
+        paddingTop: 150,
+        paddingBottom: 132,
+    },
+
+    newsletterSection: {
+        display: "flex",
+    },
+
+    social: {
+        flex: "0 0 380px",
+        display: "flex",
+        alignItems: "center",
+    },
+
+    socialLink: {
+        "&:not(:first-child)": {
+            marginLeft: 20,
+        },
+    },
+
+    socialIcon: {
+        width: "40px !important",
+        height: 40,
+        fontSize: 40,
+        borderRadius: 5,
+        color: vaticleTheme.palette.purple["700"],
+        backgroundColor: "#FFF",
+    },
+
+    socialIconTwitter: {
+        padding: "6px",
+    },
+
+    socialIconFacebook: {
+        color: "#FFF",
+        backgroundColor: vaticleTheme.palette.purple["700"],
+        width: "46px !important",
+        height: 46,
+        fontSize: 44,
+    },
+
+    socialIconLinkedIn: {
+        padding: "4px",
+    },
+
+    socialIconGithub: {
+        padding: "4px",
+    },
+
+    subscribePanel: {
+        display: "flex",
+    },
+
+    personalDataNotice: {
+        width: 327,
+        fontSize: 16,
+        lineHeight: "24px",
+        fontWeight: 400,
+    },
+
+    separator: {
+        marginTop: 67,
+        height: 0,
+        border: `1px solid ${vaticleTheme.palette.purple["450"]}`,
+    },
 });

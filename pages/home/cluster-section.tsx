@@ -8,6 +8,7 @@ import EnterpriseSupportIcon from "../assets/icons/enterprise-support-icon.svg";
 import ClusterManagementIcon from "../assets/icons/cluster-management-icon.svg";
 import BackupAndRecoveryIcon from "../assets/icons/backup-and-recovery-icon.svg";
 import { VaticleButton } from "../common/ui/button/button";
+import { commonStyles } from "../common/ui/common-styles";
 
 export interface ClusterSectionProps {
     className?: string;
@@ -22,7 +23,7 @@ interface ClusterFeature {
 }
 
 export const ClusterSection: React.FC<ClusterSectionProps> = ({className}) => {
-    const classes = homePageStyles();
+    const classes = Object.assign({}, commonStyles(), homePageStyles());
 
     const allFeatures: ClusterFeature[] = [{
         name: "High Availability",

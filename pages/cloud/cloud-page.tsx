@@ -1,12 +1,13 @@
 import React from 'react';
 import { DefaultLayout } from "../common/ui/layout/default-layout";
 import { cloudPageStyles } from "./cloud-styles";
+import { commonStyles } from "../common/ui/common-styles";
 
 export const CloudPage: React.FC = () => {
-    const classes = cloudPageStyles();
+    const classes = Object.assign({}, commonStyles(), cloudPageStyles());
 
     return (
-        <DefaultLayout classes={{ main: classes.layoutMain }}>
+        <DefaultLayout>
             <section className={classes.defaultSubsection}>
                 <h1 className={classes.h1}>Grakn Cluster in the Cloud and On-Premise</h1>
                 <p className={classes.largeText}>
