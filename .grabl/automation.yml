@@ -1,4 +1,5 @@
 config:
+  version-candidate: VERSION
   dependencies:
     dependencies: [build]
 
