@@ -48,8 +48,21 @@ section {
   margin: 0 auto;
 }
 
+a p {
+  color: #FFF;
+}
+
 p a {
   color: $color-green-300;
+}
+
+input[type="text"], input[type="email"] {
+  font-family: 'Titillium Web', Geneva, Tahoma, sans-serif;
+  padding: 6px 10px;
+}
+
+address {
+  font-style: normal;
 }
 
 .page-header-toolbar > :not(:first-child) {

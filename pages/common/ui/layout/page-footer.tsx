@@ -1,11 +1,12 @@
 import React from 'react';
 import { pageFooterStyles } from "./layout-styles";
 import { commonStyles } from "../common-styles";
-import { facebookURL, githubURL, linkedInURL, twitterURL } from "../../urls";
+import { discordURL, facebookURL, githubURL, linkedInURL, twitterURL } from "../../urls";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faFacebookSquare, faGithub, faLinkedin, faTwitter } from "@fortawesome/free-brands-svg-icons";
+import { faDiscord, faFacebookSquare, faGithub, faLinkedin, faTwitter, IconDefinition } from "@fortawesome/free-brands-svg-icons";
 import clsx from "clsx";
 import { VaticleButton } from "../button/button";
+import { faMapMarkerAlt, faPhoneAlt } from "@fortawesome/pro-solid-svg-icons";
 
 export const PageFooter: React.FC = () => {
     const classes = Object.assign({}, commonStyles(), pageFooterStyles());
@@ -16,35 +17,114 @@ export const PageFooter: React.FC = () => {
                 <section>
                     <div className={classes.newsletterSection}>
                         <div className={classes.social}>
-                            <a href={twitterURL} target="_blank" className={classes.socialLink}>
+                            <a href={twitterURL} target="_blank">
                                 <FontAwesomeIcon className={clsx(classes.socialIcon, classes.socialIconTwitter)} icon={faTwitter} />
                             </a>
-                            <a href={facebookURL} target="_blank" className={classes.socialLink}>
+                            <a href={facebookURL} target="_blank" className={classes.socialLinkFacebook}>
                                 <FontAwesomeIcon className={clsx(classes.socialIcon, classes.socialIconFacebook)} icon={faFacebookSquare} />
                             </a>
-                            <a href={linkedInURL} target="_blank" className={classes.socialLink}>
+                            <a href={linkedInURL} target="_blank" className={classes.socialLinkLinkedIn}>
                                 <FontAwesomeIcon className={clsx(classes.socialIcon, classes.socialIconLinkedIn)} icon={faLinkedin} />
                             </a>
-                            <a href={githubURL} target="_blank" className={classes.socialLink}>
+                            <a href={githubURL} target="_blank" className={classes.socialLinkGithub}>
                                 <FontAwesomeIcon className={clsx(classes.socialIcon, classes.socialIconGithub)} icon={faGithub} />
                             </a>
                         </div>
 
-                        <div className={classes.subscribePanel}>
+                        <div className={classes.subscribe}>
                             <p className={classes.personalDataNotice}>
-                                By submitting your personal data, you consent to emails from Vaticle. <a>See our Privacy Policy</a>
+                                Subscribe to our newsletter here. By submitting your personal data, you consent to emails from Vaticle. <a>See our Privacy Policy</a>
                             </p>
-                            <VaticleButton type="primary">Subscribe</VaticleButton>
+                            <input type="email" placeholder="Email address" className={classes.subscribeEmail}/>
+                            <VaticleButton size="small" type="primary" className={classes.subscribeButton}>Subscribe</VaticleButton>
                         </div>
                     </div>
 
                     <hr className={classes.separator}/>
                 </section>
 
-                <section>
-
+                <section className={classes.sectionMarginSmall}>
+                    <nav className={classes.linksSection}>
+                        <div className={classes.contact}>
+                            <h3 className={classes.h3}>Get in Touch</h3>
+                            <ul className={classes.linkList}>
+                                <FooterLink href={githubURL} target="_blank" icon={faGithub}>Vaticle on GitHub</FooterLink>
+                                <FooterLink href={discordURL} target="_blank" icon={faDiscord}>Vaticle on Discord</FooterLink>
+                                <FooterLink icon={faPhoneAlt}>Get in touch</FooterLink>
+                                <FooterLink icon={faMapMarkerAlt} type="address" classes={{anchor: classes.linkTwoLine}}>
+                                    3rd floor, East, 47-50 Margaret St,
+                                    London W1W 8SE, UK
+                                </FooterLink>
+                            </ul>
+                        </div>
+                        <div className={classes.siteMap}>
+                            <div>
+                                <h3 className={classes.h3}>Products</h3>
+                                <ul className={classes.linkList}>
+                                    <FooterLink>TypeDB</FooterLink>
+                                    <FooterLink>TypeDB Cluster</FooterLink>
+                                    <FooterLink>Quickstart</FooterLink>
+                                    <FooterLink>Install</FooterLink>
+                                </ul>
+                            </div>
+                            <div>
+                                <h3 className={classes.h3}>Solutions</h3>
+                                <ul className={classes.linkList}>
+                                    <FooterLink>Deployment</FooterLink>
+                                    <FooterLink>Services</FooterLink>
+                                    <FooterLink>Support</FooterLink>
+                                </ul>
+                            </div>
+                            <div>
+                                <h3 className={classes.h3}>Developer</h3>
+                                <ul className={classes.linkList}>
+                                    <FooterLink>Documentation</FooterLink>
+                                    <FooterLink>Community</FooterLink>
+                                    <FooterLink>Discuss</FooterLink>
+                                    <FooterLink href={githubURL} target="_blank">GitHub</FooterLink>
+                                </ul>
+                            </div>
+                            <div>
+                                <h3 className={classes.h3}>Company</h3>
+                                <ul className={classes.linkList}>
+                                    <FooterLink>Blog</FooterLink>
+                                    <FooterLink>Careers</FooterLink>
+                                    <FooterLink>About</FooterLink>
+                                </ul>
+                            </div>
+                        </div>
+                    </nav>
                 </section>
             </div>
         </footer>
+    );
+};
+
+interface FooterLinkProps {
+    href?: string;
+    // linkTo?: string;
+    target?: string;
+    icon?: IconDefinition;
+    type?: "address";
+    classes?: Partial<{ anchor: string }>;
+}
+
+const FooterLink: React.FC<FooterLinkProps> = ({children, href, target, icon, type, classes}) => {
+    const ownClasses = Object.assign({}, commonStyles(), pageFooterStyles());
+
+    return (
+        <li>
+            <a href={href} target={target} className={clsx(ownClasses.link, classes?.anchor)}>
+                {icon &&
+                <span className={ownClasses.linkIconContainer}>
+                    <FontAwesomeIcon className={ownClasses.linkIcon} icon={icon} />
+                </span>}
+                {type === "address" ?
+                <address className={ownClasses.linkText}>
+                    {children}
+                </address> :
+                <p className={ownClasses.linkText}>{children}</p>}
+            </a>
+        </li>
     );
 };

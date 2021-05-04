@@ -5,7 +5,7 @@ import Color from "color";
 
 type StyleProps = Pick<BaseButtonFinalProps, 'size' | 'type'>;
 
-const typeColorMap = {
+export const buttonPalette = {
     primary: {
         background: vaticleTheme.palette.green[200],
         border: 'transparent',
@@ -17,7 +17,7 @@ const typeColorMap = {
         disabledLabel: vaticleTheme.palette.purple[600],
     },
     secondary: {
-        background: vaticleTheme.palette.purple[600],
+        background: "transparent",
         border: vaticleTheme.palette.green[300],
         label: vaticleTheme.palette.green[200],
         hoverBackground: vaticleTheme.palette.green[300],
@@ -31,15 +31,14 @@ const typeColorMap = {
 export const buttonStyles = makeStyles({
     root: {
         height: 40,
-        border: (props: StyleProps) => `1px solid ${typeColorMap[props.type].border}`,
-        padding: '6px 16px',
+        border: (props: StyleProps) => `1px solid ${buttonPalette[props.type].border}`,
         borderRadius: 5,
-        backgroundColor: (props: StyleProps) => typeColorMap[props.type].background,
+        backgroundColor: (props: StyleProps) => buttonPalette[props.type].background,
         transition: "background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,border 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;",
         display: "inline-flex",
         alignItems: "center",
         justifyContent: "center",
-        color: (props: StyleProps) => typeColorMap[props.type].label,
+        color: (props: StyleProps) => buttonPalette[props.type].label,
         fontSize: (props: StyleProps) => vaticleTheme.typography.fontSize[props.size],
         fontWeight: 600,
         lineHeight: '24px',
@@ -49,14 +48,18 @@ export const buttonStyles = makeStyles({
         },
 
         '&:hover': {
-            backgroundColor: (props: StyleProps) => typeColorMap[props.type].hoverBackground,
-            color: (props: StyleProps) => typeColorMap[props.type].hoverLabel,
-            borderColor: (props: StyleProps) => typeColorMap[props.type].hoverBorder,
+            backgroundColor: (props: StyleProps) => buttonPalette[props.type].hoverBackground,
+            color: (props: StyleProps) => buttonPalette[props.type].hoverLabel,
+            borderColor: (props: StyleProps) => buttonPalette[props.type].hoverBorder,
         },
 
         '& a': {
-            color: (props: StyleProps) => typeColorMap[props.type].label,
+            color: (props: StyleProps) => buttonPalette[props.type].label,
         }
+    },
+
+    childDiv: {
+        margin: '6px 16px',
     },
 });
 

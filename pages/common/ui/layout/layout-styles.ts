@@ -1,5 +1,6 @@
 import { makeStyles } from '@material-ui/core';
 import { vaticleTheme } from "../../../styles/theme";
+import { buttonPalette } from "../button/button-styles";
 
 const headerHeight = 80;
 const footerHeight = 65;
@@ -84,17 +85,23 @@ export const pageFooterStyles = makeStyles({
         alignItems: "center",
     },
 
-    socialLink: {
-        "&:not(:first-child)": {
-            marginLeft: 20,
-        },
+    socialLinkFacebook: {
+        marginLeft: 22,
+    },
+
+    socialLinkLinkedIn: {
+        marginLeft: 19,
+    },
+
+    socialLinkGithub: {
+        marginLeft: 22,
     },
 
     socialIcon: {
         width: "40px !important",
         height: 40,
         fontSize: 40,
-        borderRadius: 5,
+        borderRadius: 4,
         color: vaticleTheme.palette.purple["700"],
         backgroundColor: "#FFF",
     },
@@ -112,27 +119,103 @@ export const pageFooterStyles = makeStyles({
     },
 
     socialIconLinkedIn: {
-        padding: "4px",
+        color: "#FFF",
+        backgroundColor: vaticleTheme.palette.purple["700"],
+        width: "46px !important",
+        height: 46,
+        fontSize: 44,
     },
 
     socialIconGithub: {
         padding: "4px",
     },
 
-    subscribePanel: {
+    subscribe: {
+        flex: 1,
         display: "flex",
+        alignItems: "center",
     },
 
     personalDataNotice: {
-        width: 327,
+        width: 430,
         fontSize: 16,
         lineHeight: "24px",
         fontWeight: 400,
+    },
+
+    subscribeEmail: {
+        marginLeft: 20,
+        flex: 2,
+        height: 40,
+        border: `1px solid ${buttonPalette.secondary.border}`,
+        borderTopLeftRadius: 5,
+        borderBottomLeftRadius: 5,
+        backgroundColor: "transparent",
+        color: buttonPalette.secondary.label,
+        fontSize: vaticleTheme.typography.fontSize.small,
+        fontWeight: 300
+    },
+
+    subscribeButton: {
+        flex: 1,
+        borderTopLeftRadius: 0,
+        borderBottomLeftRadius: 0,
     },
 
     separator: {
         marginTop: 67,
         height: 0,
         border: `1px solid ${vaticleTheme.palette.purple["450"]}`,
+    },
+
+    linksSection: {
+        display: "flex",
+    },
+
+    linkList: {
+        marginTop: 32,
+    },
+
+    link: {
+        margin: "5px 0",
+        height: 40,
+        padding: "5px 0",
+        display: "inline-flex",
+        alignItems: "center",
+    },
+
+    linkTwoLine: {
+        margin: "19px 0",
+    },
+
+    linkIconContainer: {
+        width: 30,
+        marginRight: 30,
+        display: "inline-flex",
+        justifyContent: "center",
+        alignItems: "center",
+    },
+
+    linkIcon: {
+        color: '#FFF !important',
+        fontSize: 30,
+    },
+
+    linkText: {
+        maxWidth: 240,
+        fontSize: 16,
+        lineHeight: "28px",
+        fontWeight: 400,
+    },
+
+    contact: {
+        flex: "0 0 380px",
+    },
+
+    siteMap: {
+        flex: 1,
+        display: "flex",
+        justifyContent: "space-between",
+        alignItems: "flex-start",
     },
 });

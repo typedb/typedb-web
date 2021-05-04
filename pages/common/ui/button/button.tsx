@@ -37,7 +37,9 @@ export const VaticleButton: React.FC<BaseButtonProps> = props => {
 
     return (
         <a className={clsx(ownClasses.root, className)} href={href} onClick={onClick} target={target} {...linkProps} {...htmlAttrs}>
-            {children}
+            <div className={ownClasses.childDiv}>
+                {children}
+            </div>
         </a>
     );
 };

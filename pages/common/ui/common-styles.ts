@@ -24,6 +24,8 @@ export const commonStyles = makeStyles({
 
     h3: vaticleTheme.h3,
 
+    h4: vaticleTheme.h4,
+
     textMarginLarge: {
         marginTop: 16,
     },

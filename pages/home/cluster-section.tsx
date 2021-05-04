@@ -67,7 +67,7 @@ export const ClusterSection: React.FC<ClusterSectionProps> = ({className}) => {
                     <a className={classes.featurePanel}>
                         {comingSoon && <div className={classes.featurePanelBanner}>coming soon</div>}
                         {React.createElement(icon)}
-                        <h3 className={clsx(classes.h3, classes.textMarginLarge)}>{name}</h3>
+                        <h4 className={clsx(classes.h4, classes.textMarginLarge)}>{name}</h4>
                         <p className={clsx(classes.mediumText, classes.textMarginSmall)}>{description}</p>
                     </a>
                 ))}
