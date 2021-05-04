@@ -37,6 +37,7 @@ data "template_file" "web_main_startup_script" {
   vars = {
     APPLICATION = "web-main"
     SECRET = "web"
+    EXTRA_SCRIPT = ""
   }
 }
 
