@@ -11,6 +11,7 @@ provider "google" {
   zone    = "europe-west2-b"
 }
 
+# WARNING: Destroy this resource will not guarantee terraform allocate the same IP address after apply
 resource "google_compute_address" "web_main_static_ip" {
   name = "web-main-static-ip"
 }
