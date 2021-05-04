@@ -21,7 +21,7 @@ public class Server {
         System.setProperty("https.port", System.getenv("LOCAL_PORT"));
         System.setProperty("play.server.https.keyStore.path", Paths.get(System.getenv("KEYSTORE_FILE")).toAbsolutePath().toString());
         System.setProperty("play.server.https.keyStore.password", System.getenv("KEYSTORE_PASSWORD"));
-        System.setProperty("play.http.secret.key", System.getenv("APPLICATION_SECRET"));
+        System.setProperty("play.http.secret.key", "t49XLcJXzfHk6ZoFh4Um");
         System.setProperty("play.application.loader", PlayApplicationLoader.class.getName());
         System.setProperty("play.server.provider", "play.core.server.AkkaHttpServerProvider");
     }
