@@ -5,9 +5,6 @@ java_binary(
     name = "server-bin",
     main_class = "grakn.web_main.server.Server",
     runtime_deps = [":server-lib"],
-    data = [
-        "//server/conf:web-main-local.properties",
-    ],
     visibility = ["//visibility:public"],
 )
 

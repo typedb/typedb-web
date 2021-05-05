@@ -3,7 +3,7 @@ load("@graknlabs_dependencies//distribution:deployment.bzl", "deployment")
 load("@graknlabs_bazel_distribution//artifact:rules.bzl", "deploy_artifact")
 
 WEB_MAIN_DIST_ADDITIONAL_FILES = {
-    "//server/conf:web-main.properties": "server/conf/web-main.properties",
+    "//server/resources/conf:web-main.properties": "resources/conf/web-main.properties",
     "//server:server-bin_deploy.jar": "server.jar",
 }
 

@@ -7,26 +7,26 @@ import play.core.server.ProdServerStart;
 import play.filters.components.NoHttpFiltersComponents;
 import play.routing.Router;
 import router.Routes;
+
 import java.nio.file.Paths;
 import java.util.Optional;
-
-import static grakn.web_main.server.ServerProperties.parseCommandLine;
-import static grakn.web_main.server.ServerProperties.parseProperties;
 
 public class Server {
 
     public static void main(String[] args) {
-        Optional<RunOptions> options = parseCommandLine(parseProperties(), args);
-        if (options.isEmpty()) System.exit(0);
-        configurePlayFramework(options.get());
+        Optional<CommandLineOptions> commandLineOptions = CommandLineOptions.parse(args);
+        if (commandLineOptions.isEmpty()) System.exit(1);
+        Resources resources = new Resources(commandLineOptions.get().resourcesDir());
+        ServerProperties properties = ServerProperties.parse(resources.getPropertiesFile());
+        configurePlayFramework(properties);
         ProdServerStart.main(new String[] {});
     }
 
-    private static void configurePlayFramework(RunOptions options) {
+    private static void configurePlayFramework(ServerProperties properties) {
         System.setProperty("http.port", "disabled");
-        System.setProperty("https.port", String.valueOf(options.localPort()));
-        System.setProperty("play.server.https.keyStore.path", Paths.get(options.keystoreFile()).toAbsolutePath().toString());
-        System.setProperty("play.server.https.keyStore.password", options.keystorePassword());
+        System.setProperty("https.port", String.valueOf(properties.localPort()));
+        System.setProperty("play.server.https.keyStore.path", Paths.get(properties.keystoreFile()).toAbsolutePath().toString());
+        System.setProperty("play.server.https.keyStore.password", properties.keystorePassword());
         System.setProperty("play.http.secret.key", "t49XLcJXzfHk6ZoFh4Um");
         System.setProperty("play.application.loader", PlayApplicationLoader.class.getName());
         System.setProperty("play.server.provider", "play.core.server.AkkaHttpServerProvider");
