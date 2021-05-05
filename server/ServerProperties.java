@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.util.Map;
 import java.util.Properties;
 
+import static java.lang.Boolean.parseBoolean;
 import static java.lang.Integer.parseInt;
 
 public class ServerProperties extends Properties {
@@ -17,6 +18,10 @@ public class ServerProperties extends Properties {
 
     public int localPort() {
         return parseInt(getProperty("local.port", String.valueOf(ServerDefaults.DEFAULT_LOCAL_PORT)));
+    }
+
+    public boolean useHTTP() {
+        return parseBoolean(getProperty("use.http", String.valueOf(ServerDefaults.DEFAULT_USE_HTTP)));
     }
 
     public String keystoreFile() {

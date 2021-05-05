@@ -17,6 +17,11 @@ public class CommandLineOptions {
             description = "Resource directory root")
     private String resourcesDir;
 
+    @CommandLine.Option(descriptionKey = "pages",
+            names = {"--pages"},
+            description = "Pages directory root")
+    private String pagesDir;
+
     public Path resourcesDir() {
         if (resourcesDir != null) {
             return Path.of(resourcesDir);
@@ -26,8 +31,21 @@ public class CommandLineOptions {
         }
     }
 
+    public Path pagesDir() {
+        if (pagesDir != null) {
+            return Path.of(pagesDir);
+        } else {
+            LOG.warn("'--pages' was not set at the command line. The default page path, '{}', will be used.", defaultPagesDir());
+            return defaultPagesDir();
+        }
+    }
+
     private static Path defaultResourcesDir() {
-        return Paths.get(System.getProperty("user.dir"));
+        return Paths.get(System.getProperty("user.dir")).resolve("resources");
+    }
+
+    private static Path defaultPagesDir() {
+        return Paths.get(System.getProperty("user.dir")).resolve("pages");
     }
 
     public static Optional<CommandLineOptions> parse(String[] args) {
