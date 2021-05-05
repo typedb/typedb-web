@@ -5,12 +5,15 @@ java_binary(
     name = "server-bin",
     main_class = "grakn.web_main.server.Server",
     runtime_deps = [":server-lib"],
+    data = [
+        "//server/conf:web-main-local.properties",
+    ],
     visibility = ["//visibility:public"],
 )
 
 java_library(
     name = "server-lib",
-    srcs = ["Server.java"],
+    srcs = glob(["*.java"]),
     deps = [
         ":file-controller",
         ":server-routes-lib",
@@ -19,10 +22,13 @@ java_library(
         "@maven//:com_typesafe_play_filters_helpers_2_12",
         "@maven//:com_typesafe_play_play_2_12",
         "@maven//:com_typesafe_play_play_server_2_12",
+        "@maven//:info_picocli_picocli",
         "@maven//:org_jetbrains_kotlin_kotlin_stdlib_jdk7",
         "@maven//:org_slf4j_slf4j_api",
     ],
-    resources = ["application.conf"],
+    resources = [
+        "application.conf",
+    ],
     resource_strip_prefix = "server",
     runtime_deps = [
         "@maven//:com_typesafe_play_play_akka_http_server_2_12",

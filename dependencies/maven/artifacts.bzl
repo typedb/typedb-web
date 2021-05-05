@@ -18,4 +18,5 @@ artifacts = [
     "org.jetbrains.kotlin:kotlin-stdlib-jdk7",
     "org.slf4j:slf4j-api",
     "ch.qos.logback:logback-classic",
+    "info.picocli:picocli",
 ]
