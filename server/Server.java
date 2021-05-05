@@ -1,5 +1,6 @@
 package grakn.web_main.server;
 
+import controllers.Default;
 import play.Application;
 import play.ApplicationLoader;
 import play.BuiltInComponentsFromContext;
@@ -58,7 +59,8 @@ public class Server {
             String pagesRoot = System.getProperty("pages.root");
             if (pagesRoot == null) pagesRoot = ".";
             FileController pages = new FileController(Paths.get(pagesRoot).toAbsolutePath());
-            return new Routes(scalaHttpErrorHandler(), pages).asJava();
+            Default defaultController = new Default();
+            return new Routes(scalaHttpErrorHandler(), defaultController, pages).asJava();
         }
     }
 }
