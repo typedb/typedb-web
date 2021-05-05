@@ -1,18 +1,33 @@
 package grakn.web_main.server;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import picocli.CommandLine;
 
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Optional;
 
 public class CommandLineOptions {
+
+    private static final Logger LOG = LoggerFactory.getLogger(CommandLineOptions.class);
 
     @CommandLine.Option(descriptionKey = "resources",
             names = {"--resources"},
             description = "Resource directory root")
     private String resourcesDir;
 
-    public String resourcesDir() {
-        return resourcesDir;
+    public Path resourcesDir() {
+        if (resourcesDir != null) {
+            return Path.of(resourcesDir);
+        } else {
+            LOG.warn("'--resources' was not set at the command line. The default resource path, '{}', will be used.", defaultResourcesDir());
+            return defaultResourcesDir();
+        }
+    }
+
+    private static Path defaultResourcesDir() {
+        return Paths.get(System.getProperty("user.dir"));
     }
 
     public static Optional<CommandLineOptions> parse(String[] args) {
