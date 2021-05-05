@@ -33,7 +33,7 @@ job "web-main" {
       config {
         jar_path = "local/web-main-${VERSION}/server.jar"
         jvm_options = ["-Dpidfile.path=/dev/null"]
-        args = ["--resources=local/web-main-${VERSION}/resources"]
+        args = ["--resources=local/web-main-${VERSION}/resources", "--pages=local/web-main-${VERSION}/pages"]
       }
 
       artifact {
@@ -50,7 +50,6 @@ EOH
       template {
         data = <<EOH
 LOCAL_PORT="8080"
-PAGES_ROOT="local/web-main-${VERSION}/pages"
 KEYSTORE_FILE="local/keystore.jks"
 KEYSTORE_PASSWORD="{{ with secret "web/keystore-password" }}{{ .Data.value }}{{ end }}"
 EOH
