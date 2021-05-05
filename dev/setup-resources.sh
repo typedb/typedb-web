@@ -6,6 +6,6 @@ mkdir resources
 cd resources
 mkdir conf
 cd conf
-echo "local.port=8080
-use.http=true" > web-main.properties
+echo "environment=local
+local.port=8080" > web-main.properties
 cd ../../..

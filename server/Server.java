@@ -23,11 +23,12 @@ public class Server {
 
         ServerProperties properties = ServerProperties.parse(resources.getPropertiesFile());
         configurePlayFramework(properties);
+
         ProdServerStart.main(new String[] {});
     }
 
     private static void configurePlayFramework(ServerProperties properties) {
-        if (properties.useHTTP()) {
+        if (properties.environment().equals("local")) {
             System.setProperty("http.port", String.valueOf(properties.localPort()));
         } else {
             System.setProperty("https.port", String.valueOf(properties.localPort()));
