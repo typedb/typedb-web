@@ -11,7 +11,6 @@ job "web-main" {
   }
 
   update {
-    max_parallel = 1
     auto_revert  = true
   }
 
