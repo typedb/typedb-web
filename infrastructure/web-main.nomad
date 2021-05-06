@@ -12,6 +12,7 @@ job "web-main" {
 
   update {
     max_parallel = 1
+    min_healthy_time = "1m"
     auto_revert  = true
   }
 
