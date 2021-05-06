@@ -17,7 +17,6 @@ module.exports = {
     modules: [__dirname, "node_modules"],
     extensions: ["*", ".js", ".jsx", ".tsx", ".ts"],
   },
-  devtool: 'source-map',
   module: {
     rules: [
       {
@@ -42,11 +41,5 @@ module.exports = {
         use: 'file-loader'
       },
     ],
-  },
-  devServer: {
-    historyApiFallback: true,
-  },
-  watchOptions: {
-    ignored: /node_modules/
   },
 };

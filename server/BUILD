@@ -14,6 +14,7 @@ java_library(
     deps = [
         ":file-controller",
         ":server-routes-lib",
+        "//server/api",
         "@maven//:com_typesafe_akka_akka_actor_typed_2_12",
         "@maven//:com_typesafe_akka_akka_stream_2_12",
         "@maven//:com_typesafe_play_filters_helpers_2_12",
@@ -44,7 +45,6 @@ java_library(
         "@maven//:com_typesafe_play_play_java_2_12",
         "@maven//:com_typesafe_play_play_server_2_12",
         "@maven//:com_typesafe_play_twirl_api_2_12",
-        "@maven//:com_fasterxml_jackson_core_jackson_databind",
         "@maven//:javax_inject_javax_inject",
     ],
 )
@@ -62,13 +62,13 @@ scala_library(
   srcs = [ ":server-routes-file" ],
   deps = [
       ":file-controller",
+      "//server/api",
       "@maven//:com_typesafe_akka_akka_actor_typed_2_12",
       "@maven//:com_typesafe_play_play_2_12",
       "@maven//:com_typesafe_play_play_guice_2_12",
       "@maven//:com_typesafe_play_play_java_2_12",
       "@maven//:com_typesafe_play_play_server_2_12",
       "@maven//:com_typesafe_play_twirl_api_2_12",
-      "@maven//:com_fasterxml_jackson_core_jackson_databind",
       "@maven//:javax_inject_javax_inject",
     ],
 )

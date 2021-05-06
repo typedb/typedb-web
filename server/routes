@@ -1,3 +1,5 @@
+GET     /api/typedb/version     grakn.web_main.server.api.TypeDBController.version()
+
 GET     /discord       controllers.Default.redirect(to = "https://discord.gg/grakn")
 
 GET     /$file<.*>     grakn.web_main.server.FileController.serve(file, default="index.html")

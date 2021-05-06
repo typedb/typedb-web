@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { homePageStyles } from "./home-styles";
 import { VaticleAtom } from '../common/ui/images/vaticle-atom';
 import { DefaultLayout } from "../common/ui/layout/default-layout";
@@ -13,10 +13,19 @@ import { IndustrySection } from './industry-section';
 import { ClusterSection } from "./cluster-section";
 import { TestimonialsSection } from "./testimonials-section";
 import { commonStyles } from "../common/ui/common-styles";
+import { getTypeDBVersion } from "../api/typedb-service";
 
 export const HomePage: React.FC = () => {
     const classes = Object.assign({}, commonStyles(), homePageStyles());
-    const typeDBVersion = "2.0.1";
+    const [typeDBVersion, setTypeDBVersion] = useState("");
+    useEffect(() => {
+        getTypeDBVersion().then(version => {
+            setTypeDBVersion(version);
+        }, error => {
+            console.error(error);
+            setTypeDBVersion("TypeDB");
+        });
+    }, []);
 
     return (
         <DefaultLayout>

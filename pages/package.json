@@ -3,8 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "start": "webpack-dev-server --hot --open",
-    "build": "webpack --config webpack.config.js --mode production"
+    "start": "webpack-dev-server --config webpack.serve.js --hot --open",
+    "build": "webpack --config webpack.build.js"
   },
   "dependencies": {
     "@babel/runtime": "^7.10.5",
@@ -60,6 +60,7 @@
     "typescript": "^3.9.6",
     "webpack": "^4.43.0",
     "webpack-cli": "^3.3.12",
-    "webpack-dev-server": "^3.11.0"
+    "webpack-dev-server": "^3.11.0",
+    "webpack-merge": "^5.7.3"
   }
 }

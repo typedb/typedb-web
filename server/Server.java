@@ -1,6 +1,7 @@
 package grakn.web_main.server;
 
 import controllers.Default;
+import grakn.web_main.server.api.TypeDBController;
 import play.Application;
 import play.ApplicationLoader;
 import play.BuiltInComponentsFromContext;
@@ -28,6 +29,7 @@ public class Server {
     }
 
     private static void configurePlayFramework(ServerProperties properties) {
+        System.setProperty("environment", properties.environment());
         if (properties.environment().equals("local")) {
             System.setProperty("http.port", String.valueOf(properties.localPort()));
         } else {
@@ -57,11 +59,15 @@ public class Server {
 
         @Override
         public Router router() {
+            TypeDBController typeDBController = new TypeDBController();
+
+            Default defaultController = new Default();
+
             String pagesRoot = System.getProperty("pages.root");
             if (pagesRoot == null) pagesRoot = ".";
             FileController pages = new FileController(Paths.get(pagesRoot).toAbsolutePath());
-            Default defaultController = new Default();
-            return new Routes(scalaHttpErrorHandler(), defaultController, pages).asJava();
+
+            return new Routes(scalaHttpErrorHandler(), typeDBController, defaultController, pages).asJava();
         }
     }
 }

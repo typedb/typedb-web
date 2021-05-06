@@ -1,4 +1,5 @@
 artifacts = [
+    "com.eclipsesource.minimal-json:minimal-json",
     "com.typesafe.akka:akka-stream_2.12",
     "com.typesafe.akka:akka-actor-typed_2.12",
     "com.typesafe.play:build-link",
