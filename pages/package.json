@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "webpack-dev-server --config webpack.serve.js --hot --open",
-    "build": "webpack --config webpack.build.js"
+    "build": "webpack --mode production"
   },
   "dependencies": {
     "@babel/runtime": "^7.10.5",
