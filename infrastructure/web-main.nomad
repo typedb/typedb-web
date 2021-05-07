@@ -11,8 +11,10 @@ job "web-main" {
   }
 
   update {
-    auto_revert  = true
     canary = 1
+    min_healthy_time = "1m"
+    auto_revert = true
+    auto_promote = true
   }
 
   group "web-main" {
