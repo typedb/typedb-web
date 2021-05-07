@@ -7,7 +7,7 @@ import FetchIcon from "../../../assets/icons/fetch-icon.svg";
 import { TypeQLCode } from "./typeql-code";
 
 interface VisualiserProps {
-    codeLines: string[];
+    code: string;
     data: TypeDBGraph;
 }
 
@@ -16,7 +16,7 @@ export interface TypeDBGraph {
     vertices: any[];
 }
 
-export const TypeQLVisualiser: React.FC<VisualiserProps> = ({ data }) => {
+export const TypeQLVisualiser: React.FC<VisualiserProps> = ({ code, data }) => {
     const graphPaneRef: React.MutableRefObject<any> = React.useRef(null);
     const classes = typeQLVisualiserStyles();
 
@@ -37,7 +37,7 @@ export const TypeQLVisualiser: React.FC<VisualiserProps> = ({ data }) => {
                 <MacOSWindowDots/>
             </div>
             <div className={classes.codeAndGraph}>
-                <TypeQLCode lines={[]}/>
+                <TypeQLCode code={code}/>
                 <div ref={graphPaneRef} className={classes.graphPane} />
             </div>
             <div className={classes.footer}>

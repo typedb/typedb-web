@@ -7,7 +7,7 @@ import { faDiscord, faGithub, faTwitter } from "@fortawesome/free-brands-svg-ico
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { VaticleButton } from "../common/ui/button/button";
 import clsx from "clsx";
-import { studentHierarchyGraph } from "../common/ui/typeql/graphs/student-hierarchy";
+import { studentHierarchyCode, studentHierarchyGraph } from "../common/ui/typeql/samples/student-hierarchy";
 import { IndustrySection } from './industry-section';
 import { ClusterSection } from "./cluster-section";
 import { TestimonialsSection } from "./testimonials-section";
@@ -73,21 +73,21 @@ export const HomePage: React.FC = () => {
                 </p>
 
                 <TypeQLExample className={classes.sectionMarginSmall} visualiserPosition="left"
-                               visualiserData={studentHierarchyGraph} title="Expressivity"
+                               code={studentHierarchyCode} graphData={studentHierarchyGraph} title="Expressivity"
                                body="Vaticle TypeDB allows you to model your domain through the well-known Entity-Relationship model,
                                      but at its fullest expressivity. It's composed of entity, relationship, and attribute types,
                                      and also type hierarchies, roles, and rules, allowing you to build expressive datasets
                                      based-on logical and object-oriented principles."/>
 
                 <TypeQLExample className={classes.sectionMarginLarge} visualiserPosition="right"
-                               visualiserData={studentHierarchyGraph} title="Safety"
+                               code={studentHierarchyCode} graphData={studentHierarchyGraph} title="Safety"
                                body="Types provide a way to describe the logical structures of your data, allowing Vaticle TypeDB
                                      to validate that your code is inserting data correctly. Data validation goes beyond static type
                                      checking, and includes logical validations of inferrable data patterns. With strict type-checking
                                      errors, you have a dataset that you can trust."/>
 
                 <TypeQLExample className={classes.sectionMarginLarge} visualiserPosition="left"
-                               visualiserData={studentHierarchyGraph} title="Simplicity"
+                               code={studentHierarchyCode} graphData={studentHierarchyGraph} title="Simplicity"
                                body="Vaticle TypeDB derives all possible interpretations of a query, through type-based and
                                      rule-based inference. Complex and verbose data patterns can be queried through simple and
                                      intuitive TypeQL queries. TypeDB also optimises the traversal path of query execution.

@@ -71,6 +71,7 @@ export const vaticleTheme = {
             800: '#180F49',
             850: '#140B44',
             900: '#0E053F',
+            1000: '#07053A',
         },
         green: {
             100: '#52FACE',
@@ -83,6 +84,7 @@ export const vaticleTheme = {
         },
         blue: {
             100: '#91B3FF',
+            200: '#888DCA',
         },
         yellow: {
             100: '#FFE4A7',

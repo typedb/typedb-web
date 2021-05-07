@@ -9,16 +9,17 @@ export interface TypeQLExampleProps {
     className?: string;
     title: string;
     body: string;
-    visualiserData: TypeDBGraph;
+    code: string;
+    graphData: TypeDBGraph;
     visualiserPosition: "left" | "right";
 }
 
-export const TypeQLExample: React.FC<TypeQLExampleProps> = ({className, title, body, visualiserData, visualiserPosition}) => {
+export const TypeQLExample: React.FC<TypeQLExampleProps> = ({className, title, body, code, graphData, visualiserPosition}) => {
     const classes = Object.assign({}, commonStyles(), homePageStyles());
 
     return (
         <div className={clsx(classes.diagramAndCaption, visualiserPosition === "left" ? classes.visualiserLeft : classes.visualiserRight, className)}>
-            <TypeQLVisualiser codeLines={[]} data={visualiserData} />
+            <TypeQLVisualiser code={code} data={graphData} />
             <div className={visualiserPosition === "left" ? classes.diagramCaptionSpacingLeft : classes.diagramCaptionSpacingRight}>
                 <h2 className={classes.h2}>{title}</h2>
                 <p className={clsx(classes.mediumText, classes.textMarginLarge)}>{body}</p>

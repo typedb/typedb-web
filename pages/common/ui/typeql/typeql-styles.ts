@@ -4,20 +4,17 @@ import { vaticleTheme } from "../../../styles/theme";
 export const typeQLVisualiserStyles = makeStyles({
     container: {
         width: 660,
-        maxWidth: "60%",
+        maxWidth: "100%",
         height: 400,
         flexShrink: 0,
         display: "flex",
         flexDirection: "column",
-
-        "@media(max-width: 1024px)": {
-            maxWidth: "100%",
-        },
     },
 
     header: {
         height: 24,
         borderRadius: "5px 5px 0 0",
+        borderBottom: `1px solid ${vaticleTheme.palette.purple["1000"]}`,
         backgroundColor: vaticleTheme.palette.purple["850"],
         display: "flex",
         alignItems: "center",
@@ -36,9 +33,40 @@ export const typeQLVisualiserStyles = makeStyles({
         bottom: 0,
         width: "50%",
         zIndex: 50,
-        resize: "horizontal",
-        overflow: "auto",
         backgroundColor: vaticleTheme.palette.purple["850"],
+        overflow: "hidden",
+        touchAction: "none",
+        boxSizing: "border-box",
+        display: "flex",
+        fontSize: 16,
+        lineHeight: "24px",
+    },
+
+    lineNumbersSection: {
+        flex: "0 0 40px",
+        borderRight: `1px solid ${vaticleTheme.palette.purple["1000"]}`,
+        textAlign: "center",
+        fontFamily: "\"Ubuntu Mono\", monospace",
+        color: vaticleTheme.palette.blue["200"],
+    },
+
+    lineNumbers: {
+        margin: "6px 0 8px",
+        display: "flex",
+        flexDirection: "column",
+    },
+
+    codeSection: {
+        width: 620,
+    },
+
+    codeArea: {
+        margin: "6px 20px 8px",
+    },
+
+    code: {
+        fontFamily: "\"Ubuntu Mono\", monospace",
+        display: "inline-block",
     },
 
     graphPane: {

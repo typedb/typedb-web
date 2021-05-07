@@ -1,3 +1,17 @@
+export const studentHierarchyCode = `
+define
+person sub entity,
+  owns name,
+  plays employment:employee;
+company sub entity,
+  owns name,
+  plays employment:employer;
+employment sub relation,
+  relates employee,
+  relates employer;
+name sub attribute,
+  value string;`;
+
 export const studentHierarchyGraph = {
     "vertices": [{
         "id": 1,
