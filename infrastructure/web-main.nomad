@@ -12,6 +12,7 @@ job "web-main" {
 
   update {
     auto_revert  = true
+    canary = 1
   }
 
   group "web-main" {
