@@ -46,7 +46,7 @@ export const IndustrySection: React.FC<IndustrySectionProps> = ({className}) => 
                     to effectively manage data can help organisations advance scientific research and deliver best
                     practice medicine.
                 </p>
-                <VaticleButton size="small" type="secondary" className={classes.buttonAfterText}>Learn More</VaticleButton>
+                <VaticleButton size="small" type="secondary" className={clsx(classes.buttonAfterText, classes.learnMore)}>Learn More</VaticleButton>
             </>}
 
             {selectedIndustry === "Defence & Security" &&
@@ -57,7 +57,7 @@ export const IndustrySection: React.FC<IndustrySectionProps> = ({className}) => 
                     suscipit dictum justo suscipit ut. Mauris sed placerat justo. Aenean placerat vitae sapien
                     scelerisque rutrum. Etiam mollis odio lorem, ut sollicitudin massa auctor quis.
                 </p>
-                <VaticleButton size="small" type="secondary" className={classes.buttonAfterText}>Learn More</VaticleButton>
+                <VaticleButton size="small" type="secondary" className={clsx(classes.buttonAfterText, classes.learnMore)}>Learn More</VaticleButton>
             </>}
 
             {selectedIndustry === "Financial Services" &&
@@ -68,7 +68,7 @@ export const IndustrySection: React.FC<IndustrySectionProps> = ({className}) => 
                     tempor lacus a dui dapibus, eget sodales velit lacinia. Mauris at dignissim nisi. Nam quis convallis
                     quam, nec mollis lectus.
                 </p>
-                <VaticleButton size="small" type="secondary" className={classes.buttonAfterText}>Learn More</VaticleButton>
+                <VaticleButton size="small" type="secondary" className={clsx(classes.buttonAfterText, classes.learnMore)}>Learn More</VaticleButton>
             </>}
 
             {selectedIndustry === "Robotics" &&
@@ -79,7 +79,7 @@ export const IndustrySection: React.FC<IndustrySectionProps> = ({className}) => 
                     ac turpis egestas. Maecenas interdum nunc accumsan tortor maximus ornare. In hac habitasse platea
                     dictumst. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.
                 </p>
-                <VaticleButton size="small" type="secondary" className={classes.buttonAfterText}>Learn More</VaticleButton>
+                <VaticleButton size="small" type="secondary" className={clsx(classes.buttonAfterText, classes.learnMore)}>Learn More</VaticleButton>
             </>}
 
             {selectedIndustry === "NLP" &&
@@ -90,7 +90,7 @@ export const IndustrySection: React.FC<IndustrySectionProps> = ({className}) => 
                     Aliquam urna augue, mollis ut cursus non, egestas egestas libero. Nullam eget rhoncus lorem.
                     Maecenas aliquam libero dui, in porta urna mollis eu.
                 </p>
-                <VaticleButton size="small" type="secondary" className={classes.buttonAfterText}>Learn More</VaticleButton>
+                <VaticleButton size="small" type="secondary" className={clsx(classes.buttonAfterText, classes.learnMore)}>Learn More</VaticleButton>
             </>}
 
 

@@ -1,9 +1,57 @@
 import { makeStyles } from '@material-ui/core/styles';
 import { vaticleTheme } from "../styles/theme";
 
+// TODO: Break this object down by Component
 export const homePageStyles = makeStyles({
     diagramAndCaption: {
         textAlign: "start",
+        display: "flex",
+        justifyContent: "space-between",
+        alignItems: "center",
+
+        "@media(max-width: 1024px)": {
+            flexDirection: "column",
+            alignItems: "flex-start",
+            maxWidth: 660,
+            marginLeft: "auto",
+            marginRight: "auto",
+        },
+    },
+
+    visualiserLeft: {
+        "@media(min-width: 1025px)": {
+            flexDirection: "row",
+        },
+    },
+
+    visualiserRight: {
+        "@media(min-width: 1025px)": {
+            flexDirection: "row-reverse",
+        },
+    },
+
+    diagramCaptionSpacingLeft: {
+        "@media(min-width: 1025px)": {
+            marginLeft: 40,
+        },
+
+        "@media(max-width: 1024px)": {
+            marginTop: 40,
+        },
+    },
+
+    diagramCaptionSpacingRight: {
+        "@media(min-width: 1025px)": {
+            marginRight: 40,
+        },
+
+        "@media(max-width: 1024px)": {
+            marginTop: 40,
+        },
+    },
+
+    learnMore: {
+        width: 160,
     },
 
     mainLinks: {

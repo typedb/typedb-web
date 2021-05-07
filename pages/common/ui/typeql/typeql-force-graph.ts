@@ -1,3 +1,7 @@
+/*
+ Source: https://levelup.gitconnected.com/creating-a-force-graph-using-react-d3-and-pixijs-95616051aba
+ */
+
 import * as d3 from "d3";
 import * as PIXI from "pixi.js";
 // @ts-ignore

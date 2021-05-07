@@ -67,4 +67,28 @@ export const commonStyles = makeStyles({
     underDevelopmentLink: {
         color: `${vaticleTheme.palette.green["200"]} !important`,
     },
+
+    hideDesktop: {
+        "@media(min-width: 1025px)": {
+            display: "none",
+        },
+    },
+
+    showDesktop: {
+        "@media(max-width: 1024px)": {
+            display: "none",
+        },
+    },
+
+    hideMobile: {
+        "@media(max-width: 767px)": {
+            display: "none",
+        },
+    },
+
+    showMobile: {
+        "@media(min-width: 768px)": {
+            display: "none",
+        },
+    },
 });

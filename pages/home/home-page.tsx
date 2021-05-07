@@ -7,13 +7,13 @@ import { faDiscord, faGithub, faTwitter } from "@fortawesome/free-brands-svg-ico
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { VaticleButton } from "../common/ui/button/button";
 import clsx from "clsx";
-import { TypeQLVisualiser } from "../common/ui/typeql/typeql-visualiser";
 import { studentHierarchyGraph } from "../common/ui/typeql/graphs/student-hierarchy";
 import { IndustrySection } from './industry-section';
 import { ClusterSection } from "./cluster-section";
 import { TestimonialsSection } from "./testimonials-section";
 import { commonStyles } from "../common/ui/common-styles";
 import { getTypeDBVersion } from "../api/typedb-service";
+import { TypeQLExample } from "./typeql-example";
 
 export const HomePage: React.FC = () => {
     const classes = Object.assign({}, commonStyles(), homePageStyles());
@@ -72,39 +72,26 @@ export const HomePage: React.FC = () => {
                     low-level and complex data patterns.
                 </p>
 
-                <div className={clsx(classes.sectionMarginSmall, classes.diagramAndCaption)}>
-                    <h2 className={classes.h2}>Expressivity</h2>
-                    <p className={clsx(classes.mediumText, classes.textMarginLarge)}>
-                        Vaticle TypeDB allows you to model your domain through the well-known Entity-Relationship model,
-                        but at its fullest expressivity. It's composed of entity, relationship, and attribute types,
-                        and also type hierarchies, roles, and rules, allowing you to build expressive datasets
-                        based-on logical and object-oriented principles.
-                    </p>
-                    <TypeQLVisualiser data={studentHierarchyGraph} />
-                    <VaticleButton size="small" type="secondary" className={classes.buttonAfterText}>Learn More</VaticleButton>
-                </div>
+                <TypeQLExample className={classes.sectionMarginSmall} visualiserPosition="left"
+                               visualiserData={studentHierarchyGraph} title="Expressivity"
+                               body="Vaticle TypeDB allows you to model your domain through the well-known Entity-Relationship model,
+                                     but at its fullest expressivity. It's composed of entity, relationship, and attribute types,
+                                     and also type hierarchies, roles, and rules, allowing you to build expressive datasets
+                                     based-on logical and object-oriented principles."/>
 
-                <div className={clsx(classes.sectionMarginLarge, classes.diagramAndCaption)}>
-                    <h2 className={classes.h2}>Safety</h2>
-                    <p className={clsx(classes.mediumText, classes.textMarginLarge)}>
-                        Types provide a way to describe the logical structures of your data, allowing Vaticle TypeDB
-                        to validate that your code is inserting data correctly. Data validation goes beyond static type
-                        checking, and includes logical validations of inferrable data patterns. With strict type-checking
-                        errors, you have a dataset that you can trust.
-                    </p>
-                    <VaticleButton size="small" type="secondary" className={classes.buttonAfterText}>Learn More</VaticleButton>
-                </div>
+                <TypeQLExample className={classes.sectionMarginLarge} visualiserPosition="right"
+                               visualiserData={studentHierarchyGraph} title="Safety"
+                               body="Types provide a way to describe the logical structures of your data, allowing Vaticle TypeDB
+                                     to validate that your code is inserting data correctly. Data validation goes beyond static type
+                                     checking, and includes logical validations of inferrable data patterns. With strict type-checking
+                                     errors, you have a dataset that you can trust."/>
 
-                <div className={clsx(classes.sectionMarginLarge, classes.diagramAndCaption)}>
-                    <h2 className={classes.h2}>Simplicity</h2>
-                    <p className={clsx(classes.mediumText, classes.textMarginLarge)}>
-                        Vaticle TypeDB derives all possible interpretations of a query, through type-based and
-                        rule-based inference. Complex and verbose data patterns can be queried through simple and
-                        intuitive TypeQL queries. TypeDB also optimises the traversal path of query execution.
-                        As a result, TypeDB significantly reduces complexity of applications.
-                    </p>
-                    <VaticleButton size="small" type="secondary" className={classes.buttonAfterText}>Learn More</VaticleButton>
-                </div>
+                <TypeQLExample className={classes.sectionMarginLarge} visualiserPosition="left"
+                               visualiserData={studentHierarchyGraph} title="Simplicity"
+                               body="Vaticle TypeDB derives all possible interpretations of a query, through type-based and
+                                     rule-based inference. Complex and verbose data patterns can be queried through simple and
+                                     intuitive TypeQL queries. TypeDB also optimises the traversal path of query execution.
+                                     As a result, TypeDB significantly reduces complexity of applications."/>
 
                 <div className={clsx(classes.mainActionList, classes.sectionMarginSmall)}>
                     <VaticleButton size="small" type="primary" href={downloadTypeDBURL} target="_blank">Download {typeDBVersion}</VaticleButton>
