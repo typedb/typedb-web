@@ -29,13 +29,13 @@ export function runTypeQLForceGraph(container: Element, edgesData: any[], vertic
         this.dragging = true;
     }
 
-    function onDragEnd(this: any, evt: any) {
-        evt.stopPropagation();
-        if(!evt.active) simulation.alphaTarget(0);
-        this.alpha = 1;
-        this.dragging = false;
-        this.isOver = false;
-        this.eventData = null;
+    function onDragEnd(this: any, gfx: any) {
+        gfx.alpha = 1;
+        gfx.dragging = false;
+        gfx.isOver = false;
+        gfx.eventData = null;
+        delete this.fx;
+        delete this.fy;
         viewport.plugins.resume('drag');
     }
 
@@ -43,8 +43,8 @@ export function runTypeQLForceGraph(container: Element, edgesData: any[], vertic
         if (gfx.dragging) {
             dragged = true;
             const newPosition = gfx.eventData.getLocalPosition(gfx.parent);
-            this.x = newPosition.x;
-            this.y = newPosition.y;
+            this.fx = newPosition.x;
+            this.fy = newPosition.y;
         }
     }
 
@@ -114,7 +114,8 @@ export function runTypeQLForceGraph(container: Element, edgesData: any[], vertic
     const ubuntuMono = new FontFaceObserver("Ubuntu Mono");
 
     nodes.forEach((node: {text: string, gfx: PIXI.Graphics}) => {
-        const boundDrag = onDragMove.bind(node);
+        const boundDragMove = onDragMove.bind(node);
+        const boundDragEnd = onDragEnd.bind(node);
         const { text } = node;
         node.gfx = new PIXI.Graphics();
         node.gfx.lineStyle(0);
@@ -131,10 +132,10 @@ export function runTypeQLForceGraph(container: Element, edgesData: any[], vertic
             })
             .on('mousedown', onDragStart)
             // events for drag end
-            .on('mouseup', onDragEnd)
-            .on('mouseupoutside', onDragEnd)
+            .on('mouseup', () => boundDragEnd(node.gfx))
+            .on('mouseupoutside', () => boundDragEnd(node.gfx))
             // events for drag move
-            .on('mousemove', () => boundDrag(node.gfx));
+            .on('mousemove', () => boundDragMove(node.gfx));
 
         viewport.addChild(node.gfx);
 
