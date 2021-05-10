@@ -1,7 +1,7 @@
 import { makeStyles } from '@material-ui/core';
 import Color from 'color';
 
-export const useStyles = makeStyles({
+export const indexStyles = makeStyles({
     root: {
         height: '100%',
 

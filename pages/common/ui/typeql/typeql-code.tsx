@@ -2,6 +2,8 @@ import React, { useEffect } from "react";
 import interact from "interactjs";
 import { typeQLVisualiserStyles } from "./typeql-styles";
 import PanelSlider from "../../../assets/images/panel-slider.svg";
+import clsx from "clsx";
+import Prism from "prismjs";
 
 interface TypeQLCodeProps {
     code: string;
@@ -31,6 +33,8 @@ export const TypeQLCode: React.FC<TypeQLCodeProps> = ({ code }) => {
             .on("resizeend", (event) => {
                 event.target.style["user-select"] = "text";
             });
+
+        Prism.highlightAll();
     }, []);
 
     return (
@@ -42,7 +46,7 @@ export const TypeQLCode: React.FC<TypeQLCodeProps> = ({ code }) => {
             </div>
             <div className={classes.codeSection}>
                 <pre className={classes.codeArea}>
-                    <code className={classes.code}>{code}</code>
+                    <code className={clsx("language-typeql", classes.code)}>{code}</code>
                 </pre>
                 <PanelSlider className={classes.panelSlider}/>
             </div>

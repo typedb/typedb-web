@@ -1,12 +1,12 @@
 import React from 'react';
-import { useStyles } from './styles';
+import { indexStyles } from './index-styles';
 import Router from './router';
 
 const App: React.FC = () => {
-    const ownClasses = useStyles();
+    const classes = indexStyles();
 
     return (
-        <div className={ownClasses.root}>
+        <div className={classes.root}>
             <Router />
         </div>
     );
