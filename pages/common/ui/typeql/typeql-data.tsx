@@ -9,8 +9,8 @@ export interface TypeQLVertex {
     id: number;
     name: string;
     encoding: TypeQLVertexEncoding;
-    cx: number;
-    cy: number;
+    x: number;
+    y: number;
 }
 
 type TypeQLEdgeEncoding = "sub";

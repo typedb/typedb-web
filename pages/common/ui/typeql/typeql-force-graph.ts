@@ -82,12 +82,12 @@ export function runTypeQLForceGraph(container: Element, graphData: TypeQLGraph) 
             .id((d: any) => d.id) // This sets the node id accessor to the specified function. If not specified, will default to the index of a node.
             .distance(function(d: any) {
                 var source = {
-                    x: width * d.source.cx / 100,
-                    y: height * d.source.cy / 100,
+                    x: width * d.source.x / 100,
+                    y: height * d.source.y / 100,
                 },
                 target = {
-                    x: width * d.target.cx / 100,
-                    y: height * d.target.cy / 100,
+                    x: width * d.target.x / 100,
+                    y: height * d.target.y / 100,
                 };
 
                 return Math.sqrt(Math.pow(source.x - target.x, 2) + Math.pow(source.y - target.y, 2));
@@ -95,8 +95,8 @@ export function runTypeQLForceGraph(container: Element, graphData: TypeQLGraph) 
         )
         .force("charge", d3.forceManyBody().strength(-10)) // This adds repulsion (if it's negative) between nodes.
         // .force("center", d3.forceCenter(width / 2, height / 2))
-        .force("x", d3.forceX().x((d: any) => width * d.cx / 100).strength(1))
-        .force("y", d3.forceY().y((d: any) => height * d.cy / 100).strength(1))
+        .force("x", d3.forceX().x((d: any) => width * d.x / 100).strength(1))
+        .force("y", d3.forceY().y((d: any) => height * d.y / 100).strength(1))
         // .force("collision", d3.forceCollide().radius(30).iterations(2))
         .velocityDecay(0.8);
 
