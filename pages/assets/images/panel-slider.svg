@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="352px" viewBox="0 0 24 352" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <g id="Home" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Home-Desktop" transform="translate(-709.000000, -2042.000000)">
+            <g id="tackle-complex" transform="translate(0.000000, 1720.000000)">
+                <g id="type-system" transform="translate(380.000000, 298.000000)">
+                    <g id="Code" transform="translate(0.000000, 23.000000)">
+                        <g id="slider" transform="translate(329.000000, 1.000000)">
+                            <rect fill="#1D1354" x="8" y="0.5" width="8" height="351" rx="4"></rect>
+                            <circle id="Oval" fill="#1D1354" cx="12" cy="189" r="12"></circle>
+                            <rect id="line" fill="#FFFFFF" x="7" y="186" width="10" height="2" rx="1"></rect>
+                            <rect id="line" fill="#FFFFFF" x="9" y="190" width="8" height="2" rx="1"></rect>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

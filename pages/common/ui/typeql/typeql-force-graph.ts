@@ -8,10 +8,14 @@ import * as PIXI from "pixi.js";
 import FontFaceObserver from "fontfaceobserver";
 import { Viewport } from 'pixi-viewport';
 import { arrowhead, midpoint, Rect, rectIncomingLineIntersect } from "./geometry";
+import { TypeQLEdge, TypeQLGraph, TypeQLVertex } from "./typeql-data";
 
-export function runTypeQLForceGraph(container: Element, edgesData: any[], verticesData: any[]) {
-    const links = edgesData.map((d) => Object.assign({}, d));
-    const nodes = verticesData.map((d) => Object.assign({}, d));
+type Link = d3.SimulationLinkDatum<any> & TypeQLEdge & { gfx?: PIXI.Graphics };
+type Node = d3.SimulationNodeDatum & TypeQLVertex & { gfx?: PIXI.Graphics };
+
+export function runTypeQLForceGraph(container: Element, graphData: TypeQLGraph) {
+    const links: Link[] = graphData.edges.map((d) => Object.assign({}, d));
+    const nodes: Node[] = graphData.vertices.map((d) => Object.assign({}, d));
 
     const containerRect = container.getBoundingClientRect();
     const height = containerRect.height;
@@ -55,8 +59,8 @@ export function runTypeQLForceGraph(container: Element, edgesData: any[], vertic
     const viewport = new Viewport({
         screenWidth: width,
         screenHeight: height,
-        worldWidth: width / 10,
-        worldHeight: height / 10,
+        worldWidth: width,
+        worldHeight: height,
         passiveWheel: false,
 
         interaction: app.renderer.plugins.interaction // the interaction module is important for wheel to work properly when renderer.view is placed or scaled
@@ -67,41 +71,41 @@ export function runTypeQLForceGraph(container: Element, edgesData: any[], vertic
     app.stage.addChild(viewport);
 
     // activate plugins
-    viewport.drag({ factor: .33 })
-        .pinch({ factor: .5 })
-        .clampZoom({ minScale: .4, maxScale: 2.5 })
-        .wheel()
-        .decelerate();
+    // viewport.drag({ factor: .33 })
+    //     .pinch({ factor: .5 })
+    //     .clampZoom({ minScale: .4, maxScale: 2.5 })
+    //     .wheel()
+    //     .decelerate();
 
-    // CURRENT SIMULATION CODE
     const simulation = d3.forceSimulation(nodes)
         .force("link", d3.forceLink(links) // This force provides links between nodes
             .id((d: any) => d.id) // This sets the node id accessor to the specified function. If not specified, will default to the index of a node.
             .distance(function(d: any) {
                 var source = {
-                        x: (6.6) * d.source.cx,
-                        y: (3.2) * d.source.cy
-                    },
-                    target = {
-                        x: (6.6) * d.target.cx,
-                        y: (3.2) * d.target.cy
-                    };
+                    x: width * d.source.cx / 100,
+                    y: height * d.source.cy / 100,
+                },
+                target = {
+                    x: width * d.target.cx / 100,
+                    y: height * d.target.cy / 100,
+                };
 
                 return Math.sqrt(Math.pow(source.x - target.x, 2) + Math.pow(source.y - target.y, 2));
             })
         )
         .force("charge", d3.forceManyBody().strength(-10)) // This adds repulsion (if it's negative) between nodes.
-        .force("center", d3.forceCenter(width / 2, height / 2))
-        .force("x", d3.forceX().x((d: any) => 6.6 * d.cx).strength(.25))
-        .force("y", d3.forceY().y((d: any) => 3.2 * d.cy).strength(.25))
+        // .force("center", d3.forceCenter(width / 2, height / 2))
+        .force("x", d3.forceX().x((d: any) => width * d.cx / 100).strength(1))
+        .force("y", d3.forceY().y((d: any) => height * d.cy / 100).strength(1))
         // .force("collision", d3.forceCollide().radius(30).iterations(2))
-        // .velocityDecay(0.8);
+        .velocityDecay(0.8);
 
     // simulation.on("end", () => {
     //     simulation.force("link", null);
     //     simulation.force("charge", null);
     //     simulation.force("center", null);
-    //     simulation.force("collision", null);
+    //     simulation.force("x", null);
+    //     simulation.force("y", null);
     // });
 
     /*
@@ -113,10 +117,10 @@ export function runTypeQLForceGraph(container: Element, edgesData: any[], vertic
 
     const ubuntuMono = new FontFaceObserver("Ubuntu Mono");
 
-    nodes.forEach((node: {text: string, gfx: PIXI.Graphics}) => {
+    nodes.forEach((node) => {
         const boundDragMove = onDragMove.bind(node);
         const boundDragEnd = onDragEnd.bind(node);
-        const { text } = node;
+        const { name } = node;
         node.gfx = new PIXI.Graphics();
         node.gfx.lineStyle(0);
         node.gfx.beginFill(0xFFA9E8);
@@ -146,7 +150,7 @@ export function runTypeQLForceGraph(container: Element, edgesData: any[], vertic
         node.gfx.hitArea = new PIXI.RoundedRectangle(-50, -16, 100, 32, 3);
 
         ubuntuMono.load().then(() => {
-            const text1 = new PIXI.Text(text, {
+            const text1 = new PIXI.Text(name, {
                 fontSize: 16,
                 fontFamily: "Ubuntu Mono",
                 fill: '#09022F',
@@ -164,12 +168,11 @@ export function runTypeQLForceGraph(container: Element, edgesData: any[], vertic
     };
     const subLabel = new PIXI.Text("sub", edgeLabelStyle);
     const subLabelMetrics = PIXI.TextMetrics.measureText("sub", subLabel.style as any);
-    console.log(subLabelMetrics);
 
     const ticked = () => {
         nodes.forEach((node) => {
             let { x, y, gfx } = node;
-            gfx.position = new PIXI.Point(x, y);
+            gfx.position.set(x, y);
         });
 
         for (let i = linksGFX.children.length - 1; i >= 0; i--) {

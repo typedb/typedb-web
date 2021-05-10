@@ -33,7 +33,7 @@ export const typeQLVisualiserStyles = makeStyles({
         bottom: 0,
         width: "50%",
         zIndex: 50,
-        backgroundColor: vaticleTheme.palette.purple["850"],
+        backgroundColor: "transparent",
         overflow: "hidden",
         touchAction: "none",
         boxSizing: "border-box",
@@ -44,6 +44,7 @@ export const typeQLVisualiserStyles = makeStyles({
 
     lineNumbersSection: {
         flex: "0 0 40px",
+        backgroundColor: vaticleTheme.palette.purple["850"],
         borderRight: `1px solid ${vaticleTheme.palette.purple["1000"]}`,
         textAlign: "center",
         fontFamily: "\"Ubuntu Mono\", monospace",
@@ -57,16 +58,29 @@ export const typeQLVisualiserStyles = makeStyles({
     },
 
     codeSection: {
-        width: 620,
+        width: "calc(100% - 40px)",
+        height: "100%",
     },
 
     codeArea: {
-        margin: "6px 20px 8px",
+        width: "calc(100% - 12px)",
+        marginRight: 12,
+        backgroundColor: vaticleTheme.palette.purple["850"],
+        padding: "6px 0 8px 20px",
     },
 
     code: {
         fontFamily: "\"Ubuntu Mono\", monospace",
         display: "inline-block",
+        width: "100%",
+        overflow: "hidden",
+    },
+
+    panelSlider: {
+        position: "absolute",
+        top: 0,
+        right: 0,
+        zIndex: 50,
     },
 
     graphPane: {

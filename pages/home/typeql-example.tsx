@@ -3,14 +3,15 @@ import { VaticleButton } from "../common/ui/button/button";
 import React from "react";
 import clsx from "clsx";
 import { commonStyles } from "../common/ui/common-styles";
-import { TypeDBGraph, TypeQLVisualiser } from "../common/ui/typeql/typeql-visualiser";
+import { TypeQLVisualiser } from "../common/ui/typeql/typeql-visualiser";
+import { TypeQLGraph } from "../common/ui/typeql/typeql-data";
 
 export interface TypeQLExampleProps {
     className?: string;
     title: string;
     body: string;
     code: string;
-    graphData: TypeDBGraph;
+    graphData: TypeQLGraph;
     visualiserPosition: "left" | "right";
 }
 

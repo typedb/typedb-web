@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import interact from "interactjs";
 import { typeQLVisualiserStyles } from "./typeql-styles";
+import PanelSlider from "../../../assets/images/panel-slider.svg";
 
 interface TypeQLCodeProps {
     code: string;
@@ -18,7 +19,7 @@ export const TypeQLCode: React.FC<TypeQLCodeProps> = ({ code }) => {
                 listeners: {
                     move: (event) => {
                         let width = event.rect.width;
-                        if (width < 40) width = 40;
+                        if (width < 52) width = 52;
                         if (width > 620) width = 620;
                         event.target.style.width = `${width}px`;
                     }
@@ -43,6 +44,7 @@ export const TypeQLCode: React.FC<TypeQLCodeProps> = ({ code }) => {
                 <pre className={classes.codeArea}>
                     <code className={classes.code}>{code}</code>
                 </pre>
+                <PanelSlider className={classes.panelSlider}/>
             </div>
         </div>
     );

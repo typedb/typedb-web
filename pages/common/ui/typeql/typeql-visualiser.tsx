@@ -1,35 +1,31 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { runTypeQLForceGraph } from "./typeql-force-graph";
 import { typeQLVisualiserStyles } from "./typeql-styles";
 import MacOSWindowDots from "../../../assets/images/macos-window-dots.svg";
 import BranchIcon from "../../../assets/icons/branch-icon.svg";
 import FetchIcon from "../../../assets/icons/fetch-icon.svg";
 import { TypeQLCode } from "./typeql-code";
+import { TypeQLGraph } from "./typeql-data";
 
 interface VisualiserProps {
     code: string;
-    data: TypeDBGraph;
-}
-
-export interface TypeDBGraph {
-    edges: any[];
-    vertices: any[];
+    data: TypeQLGraph;
 }
 
 export const TypeQLVisualiser: React.FC<VisualiserProps> = ({ code, data }) => {
     const graphPaneRef: React.MutableRefObject<any> = React.useRef(null);
     const classes = typeQLVisualiserStyles();
 
-    React.useEffect(() => {
+    useEffect(() => {
         let destroyFn;
 
         if (graphPaneRef.current) {
-            const { destroy } = runTypeQLForceGraph(graphPaneRef.current, data.edges, data.vertices);
+            const { destroy } = runTypeQLForceGraph(graphPaneRef.current, data);
             destroyFn = destroy;
         }
 
         return destroyFn;
-    }, [data.edges, data.vertices]);
+    }, [data]);
 
     return (
         <div className={classes.container}>
