@@ -9,7 +9,7 @@ export const homePageStyles = makeStyles({
         justifyContent: "space-between",
         alignItems: "center",
 
-        "@media(max-width: 1024px)": {
+        "@media(max-width: 1199px)": {
             flexDirection: "column",
             alignItems: "flex-start",
             maxWidth: 660,
@@ -19,33 +19,33 @@ export const homePageStyles = makeStyles({
     },
 
     visualiserLeft: {
-        "@media(min-width: 1025px)": {
+        "@media(min-width: 1200px)": {
             flexDirection: "row",
         },
     },
 
     visualiserRight: {
-        "@media(min-width: 1025px)": {
+        "@media(min-width: 1200px)": {
             flexDirection: "row-reverse",
         },
     },
 
     diagramCaptionSpacingLeft: {
-        "@media(min-width: 1025px)": {
+        "@media(min-width: 1200px)": {
             marginLeft: 40,
         },
 
-        "@media(max-width: 1024px)": {
+        "@media(max-width: 1199px)": {
             marginTop: 40,
         },
     },
 
     diagramCaptionSpacingRight: {
-        "@media(min-width: 1025px)": {
+        "@media(min-width: 1200px)": {
             marginRight: 40,
         },
 
-        "@media(max-width: 1024px)": {
+        "@media(max-width: 1199px)": {
             marginTop: 40,
         },
     },
@@ -115,8 +115,12 @@ export const homePageStyles = makeStyles({
     mainActionList: {
         display: "grid",
         justifyContent: "center",
-        gridTemplateColumns: "repeat(auto-fit, 240px)",
+        gridTemplateColumns: "repeat(auto-fit, 224px)",
         gridGap: "30px 40px",
+    },
+
+    clusterAction: {
+        width: 224,
     },
 
     sectionToggleGroup: {

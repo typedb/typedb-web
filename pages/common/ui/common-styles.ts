@@ -69,13 +69,13 @@ export const commonStyles = makeStyles({
     },
 
     hideDesktop: {
-        "@media(min-width: 1025px)": {
+        "@media(min-width: 1200px)": {
             display: "none",
         },
     },
 
     showDesktop: {
-        "@media(max-width: 1024px)": {
+        "@media(max-width: 1199px)": {
             display: "none",
         },
     },
