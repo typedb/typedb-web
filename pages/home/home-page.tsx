@@ -14,6 +14,7 @@ import { TestimonialsSection } from "./testimonials-section";
 import { commonStyles } from "../common/ui/common-styles";
 import { getTypeDBVersion } from "../api/typedb-service";
 import { TypeQLExample } from "./typeql-example";
+import { transitiveLocationCode, transitiveLocationGraph } from "../common/ui/typeql/samples/transitive-location";
 
 export const HomePage: React.FC = () => {
     const classes = Object.assign({}, commonStyles(), homePageStyles());
@@ -80,7 +81,7 @@ export const HomePage: React.FC = () => {
                                      based-on logical and object-oriented principles."/>
 
                 <TypeQLExample className={classes.sectionMarginLarge} visualiserPosition="right"
-                               code={studentHierarchyCode} graphData={studentHierarchyGraph} title="Safety"
+                               code={transitiveLocationCode} graphData={transitiveLocationGraph} title="Safety"
                                body="Types provide a way to describe the logical structures of your data, allowing Vaticle TypeDB
                                      to validate that your code is inserting data correctly. Data validation goes beyond static type
                                      checking, and includes logical validations of inferrable data patterns. With strict type-checking

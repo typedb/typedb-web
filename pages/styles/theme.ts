@@ -88,9 +88,11 @@ export const vaticleTheme = {
         },
         yellow: {
             100: '#FFE4A7',
+            200: '#FFDC92',
         },
         pink: {
-            100: '#F28DD7',
+            100: '#FFA9E8',
+            200: '#F28DD7',
         },
         grey: {
             100: fade('#A391C3', 0.17),

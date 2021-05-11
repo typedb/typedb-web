@@ -7,22 +7,115 @@ import * as PIXI from "pixi.js";
 // @ts-ignore
 import FontFaceObserver from "fontfaceobserver";
 import { Viewport } from 'pixi-viewport';
-import { arrowhead, midpoint, Rect, rectIncomingLineIntersect } from "./geometry";
+import { arrowhead, diamondIncomingLineIntersect, midpoint, Rect, rectIncomingLineIntersect } from "./geometry";
 import { TypeQLEdge, TypeQLGraph, TypeQLVertex } from "./typeql-data";
+import { typeQLGraphColours as colours, typeQLGraphColoursHex as coloursHex, typeQLGraphStyles as styles } from "./typeql-styles";
 
-type Link = d3.SimulationLinkDatum<any> & TypeQLEdge & { gfx?: PIXI.Graphics };
-type Node = d3.SimulationNodeDatum & TypeQLVertex & { gfx?: PIXI.Graphics };
+type Edge = d3.SimulationLinkDatum<Vertex> & TypeQLEdge & { gfx?: PIXI.Graphics };
+type Vertex = d3.SimulationNodeDatum & TypeQLVertex & { gfx?: PIXI.Graphics };
 
 export function runTypeQLForceGraph(container: Element, graphData: TypeQLGraph) {
-    const links: Link[] = graphData.edges.map((d) => Object.assign({}, d));
-    const nodes: Node[] = graphData.vertices.map((d) => Object.assign({}, d));
-
-    const containerRect = container.getBoundingClientRect();
-    const height = containerRect.height;
-    const width = containerRect.width;
+    const { width, height } = container.getBoundingClientRect();
+    const edges: Edge[] = graphData.edges.map((d) => Object.assign({}, d));
+    const vertices: Vertex[] = graphData.vertices.map((d) => Object.assign({}, d));
     let dragged = false;
 
+    const app = new PIXI.Application({ width, height, antialias: !0, backgroundAlpha: 0, resolution: 1 });
     container.innerHTML = "";
+    container.appendChild(app.view);
+
+    const viewport = new Viewport({
+        screenWidth: width,
+        screenHeight: height,
+        worldWidth: width,
+        worldHeight: height,
+        passiveWheel: false,
+
+        interaction: app.renderer.plugins.interaction // the interaction module is important for wheel to work properly when renderer.view is placed or scaled
+    });
+    const baseWidth = 660;
+    if (width < baseWidth) viewport.scaled = width / baseWidth; // TODO: currently doesn't update when screen is resized and made bigger
+    app.stage.addChild(viewport);
+
+    // activate plugins
+    // viewport.drag({ factor: .33 })
+    //     .pinch({ factor: .5 })
+    //     .clampZoom({ minScale: .4, maxScale: 2.5 })
+    //     .wheel()
+    //     .decelerate();
+
+    const simulation = createForceSimulation(vertices, edges, width, height);
+
+    const ubuntuMono = new FontFaceObserver("Ubuntu Mono") as { load: () => Promise<any> };
+
+    vertices.forEach((vertex) => {
+        const boundDragMove = onDragMove.bind(vertex);
+        const boundDragEnd = onDragEnd.bind(vertex);
+        renderVertex(vertex, ubuntuMono);
+
+        vertex.gfx
+            .on('click', (e: Event) => {
+                if (!dragged) {
+                    e.stopPropagation();
+                }
+                dragged = false;
+            })
+            .on('mousedown', onDragStart)
+            .on('mouseup', () => boundDragEnd(vertex.gfx))
+            .on('mouseupoutside', () => boundDragEnd(vertex.gfx))
+            .on('mousemove', () => boundDragMove(vertex.gfx));
+        vertex.gfx.interactive = true;
+        vertex.gfx.buttonMode = true;
+
+        viewport.addChild(vertex.gfx);
+    });
+
+    const edgeLabelStyle: Partial<PIXI.ITextStyle> = {
+        fontSize: styles.edgeLabel.fontSize,
+        fontFamily: styles.fontFamily,
+        fill: coloursHex.edge,
+    };
+
+    const edgeLabelMetrics: {[label: string]: PIXI.TextMetrics} = {};
+    for (const edge of edges) {
+        if (edgeLabelMetrics[edge.label]) continue;
+        const linkLabel = new PIXI.Text(edge.label, edgeLabelStyle);
+        edgeLabelMetrics[edge.label] = PIXI.TextMetrics.measureText(edge.label, linkLabel.style as any);
+    }
+
+    const edgesGFX = new PIXI.Graphics();
+    viewport.addChild(edgesGFX);
+
+    const onTick = () => {
+        vertices.forEach((vertex) => {
+            let { x, y, gfx } = vertex;
+            gfx.position.set(x, y);
+        });
+
+        for (let i = edgesGFX.children.length - 1; i >= 0; i--) {
+            edgesGFX.children[i].destroy();
+        }
+
+        edgesGFX.clear();
+        edgesGFX.removeChildren();
+
+        edges.forEach((edge) => {
+            renderEdge(edge, edgesGFX, edgeLabelStyle, edgeLabelMetrics);
+        });
+    }
+
+    // Listen for tick events to render the nodes as they update in your Canvas or SVG.
+    simulation.on("tick", onTick);
+
+    return {
+        destroy: () => {
+            simulation.stop();
+            vertices.forEach((vertex) => {
+                vertex.gfx.clear();
+            });
+            edgesGFX.clear();
+        }
+    };
 
     function onDragStart(this: any, evt: any) {
         viewport.plugins.pause('drag');
@@ -51,193 +144,134 @@ export function runTypeQLForceGraph(container: Element, graphData: TypeQLGraph) 
             this.fy = newPosition.y;
         }
     }
+}
 
-    const app = new PIXI.Application({ width, height, antialias: !0, backgroundAlpha: 0, resolution: 1 });
-    container.appendChild(app.view);
-
-    // create viewport
-    const viewport = new Viewport({
-        screenWidth: width,
-        screenHeight: height,
-        worldWidth: width,
-        worldHeight: height,
-        passiveWheel: false,
-
-        interaction: app.renderer.plugins.interaction // the interaction module is important for wheel to work properly when renderer.view is placed or scaled
-    });
-    const baseWidth = 660;
-    if (width < baseWidth) viewport.scaled = width / baseWidth; // TODO: currently doesn't update when screen is resized and made bigger
-
-    app.stage.addChild(viewport);
-
-    // activate plugins
-    // viewport.drag({ factor: .33 })
-    //     .pinch({ factor: .5 })
-    //     .clampZoom({ minScale: .4, maxScale: 2.5 })
-    //     .wheel()
-    //     .decelerate();
-
-    const simulation = d3.forceSimulation(nodes)
-        .force("link", d3.forceLink(links) // This force provides links between nodes
+function createForceSimulation(vertices: Vertex[], edges: Edge[], width: number, height: number) {
+    return d3.forceSimulation(vertices)
+        .force("link", d3.forceLink(edges) // This force provides links between nodes
             .id((d: any) => d.id) // This sets the node id accessor to the specified function. If not specified, will default to the index of a node.
-            .distance(function(d: any) {
+            .distance(function (d: any) {
                 var source = {
-                    x: width * d.source.x / 100,
-                    y: height * d.source.y / 100,
-                },
-                target = {
-                    x: width * d.target.x / 100,
-                    y: height * d.target.y / 100,
-                };
+                        x: width * d.source.x / 100,
+                        y: height * d.source.y / 100,
+                    },
+                    target = {
+                        x: width * d.target.x / 100,
+                        y: height * d.target.y / 100,
+                    };
 
                 return Math.sqrt(Math.pow(source.x - target.x, 2) + Math.pow(source.y - target.y, 2));
             })
         )
         .force("charge", d3.forceManyBody().strength(-10)) // This adds repulsion (if it's negative) between nodes.
-        // .force("center", d3.forceCenter(width / 2, height / 2))
         .force("x", d3.forceX().x((d: any) => width * d.x / 100).strength(1))
         .force("y", d3.forceY().y((d: any) => height * d.y / 100).strength(1))
-        // .force("collision", d3.forceCollide().radius(30).iterations(2))
         .velocityDecay(0.8);
+}
 
-    // simulation.on("end", () => {
-    //     simulation.force("link", null);
-    //     simulation.force("charge", null);
-    //     simulation.force("center", null);
-    //     simulation.force("x", null);
-    //     simulation.force("y", null);
-    // });
+function renderVertex(vertex: Vertex, fontFace: { load: () => Promise<any> }) {
+    vertex.gfx = new PIXI.Graphics();
+    vertex.gfx.lineStyle(0);
+    vertex.gfx.beginFill(colours[vertex.encoding]);
 
-    /*
-     Implementation
-     */
-
-    let linksGFX = new PIXI.Graphics();
-    viewport.addChild(linksGFX);
-
-    const ubuntuMono = new FontFaceObserver("Ubuntu Mono");
-
-    nodes.forEach((node) => {
-        const boundDragMove = onDragMove.bind(node);
-        const boundDragEnd = onDragEnd.bind(node);
-        const { name } = node;
-        node.gfx = new PIXI.Graphics();
-        node.gfx.lineStyle(0);
-        node.gfx.beginFill(0xFFA9E8);
-        node.gfx.drawRoundedRect(-50, -16, 100, 32, 3);
-        node.gfx.endFill();
-        node.gfx
-            // events for click
-            .on('click', (e: Event) => {
-                if (!dragged) {
-                    e.stopPropagation();
-                }
-                dragged = false;
-            })
-            .on('mousedown', onDragStart)
-            // events for drag end
-            .on('mouseup', () => boundDragEnd(node.gfx))
-            .on('mouseupoutside', () => boundDragEnd(node.gfx))
-            // events for drag move
-            .on('mousemove', () => boundDragMove(node.gfx));
-
-        viewport.addChild(node.gfx);
-
-        node.gfx.interactive = true;
-        node.gfx.buttonMode = true;
-
-        // create hit area, needed for interactivity
-        node.gfx.hitArea = new PIXI.RoundedRectangle(-50, -16, 100, 32, 3);
-
-        ubuntuMono.load().then(() => {
-            const text1 = new PIXI.Text(name, {
-                fontSize: 16,
-                fontFamily: "Ubuntu Mono",
-                fill: '#09022F',
-            });
-            text1.anchor.set(0.5);
-            text1.resolution = 2;
-            node.gfx.addChild(text1);
-        });
-    });
-
-    const edgeLabelStyle: Partial<PIXI.ITextStyle> = {
-        fontSize: 14,
-        fontFamily: "Ubuntu Mono",
-        fill: '#91B3FF',
-    };
-    const subLabel = new PIXI.Text("sub", edgeLabelStyle);
-    const subLabelMetrics = PIXI.TextMetrics.measureText("sub", subLabel.style as any);
-
-    const ticked = () => {
-        nodes.forEach((node) => {
-            let { x, y, gfx } = node;
-            gfx.position.set(x, y);
-        });
-
-        for (let i = linksGFX.children.length - 1; i >= 0; i--) {
-            linksGFX.children[i].destroy();
-        }
-
-        linksGFX.clear();
-        linksGFX.removeChildren();
-
-        links.forEach((link) => {
-            const { source, target } = link;
-            linksGFX.lineStyle(1, 0x91B3FF);
-            const sourceRect: Rect = {x: source.x - 54, y: source.y - 20, w: 108, h: 40};
-            const targetRect: Rect = {x: target.x - 54, y: target.y - 20, w: 108, h: 40};
-            const lineSource = rectIncomingLineIntersect(target, sourceRect);
-            const lineTarget = rectIncomingLineIntersect(source, targetRect);
-            if (lineSource && lineTarget) {
-                // Draw edge label
-                const centrePoint = midpoint({from: lineSource, to: lineTarget});
-                const edgeLabel = new PIXI.Text("sub", edgeLabelStyle);
-                edgeLabel.resolution = 2;
-                edgeLabel.anchor.set(0.5);
-                edgeLabel.position.set(centrePoint.x, centrePoint.y);
-                linksGFX.addChild(edgeLabel);
-
-                // Draw line parts
-                const labelRect: Rect = {
-                    x: centrePoint.x - subLabelMetrics.width / 2 - 2,
-                    y: centrePoint.y - subLabelMetrics.height / 2 - 2,
-                    w: subLabelMetrics.width + 4,
-                    h: subLabelMetrics.height + 4,
-                };
-                linksGFX.moveTo(lineSource.x, lineSource.y);
-                const linePart1Target = rectIncomingLineIntersect(lineSource, labelRect);
-                if (linePart1Target) linksGFX.lineTo(linePart1Target.x, linePart1Target.y);
-                const linePart2Source = rectIncomingLineIntersect(lineTarget, labelRect);
-                if (linePart2Source) {
-                    linksGFX.moveTo(linePart2Source.x, linePart2Source.y);
-                    linksGFX.lineTo(lineTarget.x, lineTarget.y);
-                }
-
-                // Draw arrowhead
-                const arrow = arrowhead({ from: lineSource, to: lineTarget });
-                if (arrow) {
-                    linksGFX.moveTo(arrow[0].x, arrow[0].y);
-                    linksGFX.beginFill(0x91B3FF);
-                    const points: PIXI.Point[] = [];
-                    for (const pt of arrow) points.push(new PIXI.Point(pt.x, pt.y));
-                    linksGFX.drawPolygon(points);
-                    linksGFX.endFill();
-                }
-            }
-        });
+    switch (vertex.encoding) {
+        case "entity":
+            vertex.gfx.drawRoundedRect(-vertex.width / 2, -vertex.height / 2, vertex.width, vertex.height, 3);
+            vertex.gfx.hitArea = new PIXI.RoundedRectangle(-vertex.width / 2, -vertex.height / 2, vertex.width, vertex.height, 3);
+            break;
+        case "relation":
+            const leftArc = { x: 8, y: 4, r: 6 };
+            const topArc = { x: 6, y: 3, r: 6 };
+            vertex.gfx.moveTo(-vertex.width / 2 + leftArc.x, -leftArc.y);
+            vertex.gfx.lineTo(-topArc.x, -vertex.height / 2 + topArc.y);
+            vertex.gfx.arcTo(0, -vertex.height / 2, topArc.x, -vertex.height / 2 + topArc.y, topArc.r);
+            vertex.gfx.lineTo(vertex.width / 2 - leftArc.x, -leftArc.y);
+            vertex.gfx.arcTo(vertex.width / 2, 0, vertex.width / 2 - leftArc.x, leftArc.y, leftArc.r);
+            vertex.gfx.lineTo(topArc.x, vertex.height / 2 - topArc.y);
+            vertex.gfx.arcTo(0, vertex.height / 2, -topArc.x, vertex.height / 2 - topArc.y, topArc.r);
+            vertex.gfx.lineTo(-vertex.width / 2 + leftArc.x, leftArc.y);
+            vertex.gfx.arcTo(-vertex.width / 2, 0, -vertex.width / 2 + leftArc.x, -leftArc.y, leftArc.r);
+            vertex.gfx.hitArea = new PIXI.Polygon([
+                new PIXI.Point(-vertex.width / 2, 0),
+                new PIXI.Point(0, -vertex.height / 2),
+                new PIXI.Point(vertex.width / 2, 0),
+                new PIXI.Point(0, vertex.height / 2)
+            ]);
+            break;
     }
+    vertex.gfx.endFill();
 
-    // Listen for tick events to render the nodes as they update in your Canvas or SVG.
-    simulation.on("tick", ticked);
+    fontFace.load().then(() => {
+        const text1 = new PIXI.Text(vertex.text, {
+            fontSize: styles.vertexLabel.fontSize,
+            fontFamily: styles.fontFamily,
+            fill: coloursHex.vertexLabel,
+        });
+        text1.anchor.set(0.5);
+        text1.resolution = 2;
+        vertex.gfx.addChild(text1);
+    });
+}
 
-    return {
-        destroy: () => {
-            simulation.stop();
-            nodes.forEach((node) => {
-                node.gfx.clear();
-            });
-            linksGFX.clear();
+function renderEdge(edge: Edge, edgesGFX: PIXI.Graphics, edgeLabelStyle: Partial<PIXI.ITextStyle>, edgeLabelMetrics: { [p: string]: PIXI.TextMetrics }) {
+    const [source, target] = [edge.source as Vertex, edge.target as Vertex];
+    const [lineSource, lineTarget] = [edgeEndpoint(target, source), edgeEndpoint(source, target)];
+    if (lineSource && lineTarget) {
+        const { label } = edge;
+        edgesGFX.lineStyle(1, colours.edge);
+        // Draw edge label
+        const centrePoint = midpoint({ from: lineSource, to: lineTarget });
+        const edgeLabel = new PIXI.Text(label, edgeLabelStyle);
+        edgeLabel.resolution = 2;
+        edgeLabel.anchor.set(0.5);
+        edgeLabel.position.set(centrePoint.x, centrePoint.y);
+        edgesGFX.addChild(edgeLabel);
+
+        // Draw line parts
+        const metrics = edgeLabelMetrics[label];
+        const labelRect: Rect = {
+            x: centrePoint.x - metrics.width / 2 - 2,
+            y: centrePoint.y - metrics.height / 2 - 2,
+            w: metrics.width + 4,
+            h: metrics.height + 4,
+        };
+        edgesGFX.moveTo(lineSource.x, lineSource.y);
+        const linePart1Target = rectIncomingLineIntersect(lineSource, labelRect);
+        if (linePart1Target) edgesGFX.lineTo(linePart1Target.x, linePart1Target.y);
+        const linePart2Source = rectIncomingLineIntersect(lineTarget, labelRect);
+        if (linePart2Source) {
+            edgesGFX.moveTo(linePart2Source.x, linePart2Source.y);
+            edgesGFX.lineTo(lineTarget.x, lineTarget.y);
         }
-    };
+
+        // Draw arrowhead
+        const arrow = arrowhead({ from: lineSource, to: lineTarget });
+        if (arrow) {
+            edgesGFX.moveTo(arrow[0].x, arrow[0].y);
+            edgesGFX.beginFill(colours.edge);
+            const points: PIXI.Point[] = [];
+            for (const pt of arrow) points.push(new PIXI.Point(pt.x, pt.y));
+            edgesGFX.drawPolygon(points);
+            edgesGFX.endFill();
+        }
+    }
+}
+
+/*
+ * Find the endpoint of an edge drawn from `source` to `target`
+ */
+function edgeEndpoint(source: Vertex, target: Vertex): false | {x: number, y: number} {
+    switch (target.encoding) {
+        case "entity":
+        case "relation":
+            const targetRect: Rect = {
+                x: target.x - target.width / 2 - 4, y: target.y - target.height / 2 - 4,
+                w: target.width + 8, h: target.height + 8
+            };
+            if (target.encoding === "entity") {
+                return rectIncomingLineIntersect(source, targetRect);
+            } else { // if target.encoding === "relation"
+                return diamondIncomingLineIntersect(source, targetRect);
+            }
+    }
 }

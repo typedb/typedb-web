@@ -9,11 +9,11 @@ https://prismjs.com/download.html#themes=prism */
 
 $color-blue-100: #91B3FF;
 $color-yellow-100: #FFE4A7;
-$color-pink-100: #F28DD7;
+$color-pink-200: #F28DD7;
 
 code[class*="language-"],
 pre[class*="language-"] {
-    color: $color-pink-100;
+    color: $color-pink-200;
 }
 
 .token.comment,
@@ -73,7 +73,7 @@ pre[class*="language-"] {
 .token.regex,
 .token.important,
 .token.variable {
-    color: #e90;
+    color: #FFA187;
 }
 
 .token.important,

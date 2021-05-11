@@ -21,9 +21,11 @@ export function midpoint(line: Line): Point {
     return {x: (line.from.x + line.to.x) / 2, y: (line.from.y + line.to.y) / 2};
 }
 
-// line intercept math by Paul Bourke http://paulbourke.net/geometry/pointlineplane/
-// Determine the intersection point of two line segments
-// Return FALSE if the lines don't intersect
+/*
+ * line intercept math by Paul Bourke http://paulbourke.net/geometry/pointlineplane/
+ * Determine the intersection point of two line segments
+ * Return FALSE if the lines don't intersect
+ */
 export function lineIntersect(line1: Line, line2: Line) {
     const {x: x1, y: y1} = line1.from;
     const {x: x2, y: y2} = line1.to;
@@ -52,7 +54,7 @@ export function lineIntersect(line1: Line, line2: Line) {
 }
 
 /*
- Find intersection point of a line from `sourcePoint` to the centre of `targetRect`, with the edge of `targetRect`
+ * Find intersection point of a line from `sourcePoint` to the centre of `targetRect`, with the edge of `targetRect`
  */
 export function rectIncomingLineIntersect(sourcePoint: Point, targetRect: Rect) {
     const {x: px, y: py} = sourcePoint;
@@ -78,6 +80,29 @@ export function rectIncomingLineIntersect(sourcePoint: Point, targetRect: Rect) 
     }
 
     return false;
+}
+
+/*
+ * Find intersection point of a line from `sourcePoint` to the centre of `targetDiamond`, with the edge of `targetDiamond`
+ */
+export function diamondIncomingLineIntersect(sourcePoint: Point, targetDiamond: Rect) {
+    const {x: px, y: py} = sourcePoint;
+    const {x: dx, y: dy, w: dw, h: dh} = targetDiamond;
+
+    let edgeToCheck: Line;
+    const centre = {x: dx + dw/2, y: dy + dh/2};
+    const centreLeft = {x: dx, y: dy + dh/2};
+    const topCentre = {x: dx+dw/2, y: dy};
+    const centreRight = {x: dx+dw, y: dy+dh/2};
+    const bottomCentre = {x: dx+dw/2, y: dy+dh};
+    const incomingLine = {from: {x: px, y: py}, to: centre};
+
+    if (px <= centre.x && py <= centre.y) edgeToCheck = {from: centreLeft, to: topCentre};
+    else if (px > centre.x && py <= centre.y) edgeToCheck = {from: topCentre, to: centreRight};
+    else if (px > centre.x && py > centre.y) edgeToCheck = {from: centreRight, to: bottomCentre};
+    else edgeToCheck = {from: bottomCentre, to: centreLeft};
+
+    return lineIntersect(incomingLine, edgeToCheck);
 }
 
 export function arrowhead(line: Line): Polygon | null {

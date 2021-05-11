@@ -59,11 +59,11 @@ export const typeQLVisualiserStyles = makeStyles({
 
     codeSection: {
         width: "calc(100% - 40px)",
-        height: "100%",
     },
 
     codeArea: {
         width: "calc(100% - 12px)",
+        height: "100%",
         marginRight: 12,
         backgroundColor: vaticleTheme.palette.purple["850"],
         padding: "6px 0 8px 20px",
@@ -123,3 +123,30 @@ export const typeQLVisualiserStyles = makeStyles({
         marginTop: -1,
     },
 });
+
+const blue100 = 0x91B3FF;
+const pink100 = 0xFFA9E8;
+const yellow200 = 0xFFDC92;
+
+export const typeQLGraphColours = {
+    entity: pink100,
+    relation: yellow200,
+    edge: blue100,
+};
+
+export const typeQLGraphColoursHex = {
+    vertexLabel: "#09022F",
+    edge: vaticleTheme.palette.blue["100"],
+};
+
+export const typeQLGraphStyles = {
+    fontFamily: "Ubuntu Mono",
+
+    vertexLabel: {
+        fontSize: 16,
+    },
+
+    edgeLabel: {
+        fontSize: 14,
+    },
+};

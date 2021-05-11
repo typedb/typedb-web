@@ -3,20 +3,20 @@ export interface TypeQLGraph {
     edges: TypeQLEdge[];
 }
 
-type TypeQLVertexEncoding = "entity";
+type TypeQLVertexEncoding = "entity" | "relation";
 
 export interface TypeQLVertex {
     id: number;
-    name: string;
+    text: string;
     encoding: TypeQLVertexEncoding;
     x: number;
     y: number;
+    width: number;
+    height: number;
 }
-
-type TypeQLEdgeEncoding = "sub";
 
 export interface TypeQLEdge {
     source: number;
     target: number;
-    encoding: TypeQLEdgeEncoding;
+    label: string;
 }
