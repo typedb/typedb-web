@@ -15,6 +15,7 @@ import { commonStyles } from "../common/ui/common-styles";
 import { getTypeDBVersion } from "../api/typedb-service";
 import { TypeQLExample } from "./typeql-example";
 import { transitiveLocationCode, transitiveLocationGraph } from "../common/ui/typeql/samples/transitive-location";
+import { locationDataCode, locationDataGraph } from "../common/ui/typeql/samples/location-data";
 
 export const HomePage: React.FC = () => {
     const classes = Object.assign({}, commonStyles(), homePageStyles());
@@ -88,7 +89,7 @@ export const HomePage: React.FC = () => {
                                      errors, you have a dataset that you can trust."/>
 
                 <TypeQLExample className={classes.sectionMarginLarge} visualiserPosition="left"
-                               code={studentHierarchyCode} graphData={studentHierarchyGraph} title="Simplicity"
+                               code={locationDataCode} graphData={locationDataGraph} title="Simplicity"
                                body="Vaticle TypeDB derives all possible interpretations of a query, through type-based and
                                      rule-based inference. Complex and verbose data patterns can be queried through simple and
                                      intuitive TypeQL queries. TypeDB also optimises the traversal path of query execution.

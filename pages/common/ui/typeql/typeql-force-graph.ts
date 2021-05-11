@@ -163,7 +163,7 @@ function createForceSimulation(vertices: Vertex[], edges: Edge[], width: number,
                 return Math.sqrt(Math.pow(source.x - target.x, 2) + Math.pow(source.y - target.y, 2));
             })
         )
-        .force("charge", d3.forceManyBody().strength(-10)) // This adds repulsion (if it's negative) between nodes.
+        .force("charge", d3.forceManyBody().strength(-100)) // This adds repulsion (if it's negative) between nodes.
         .force("x", d3.forceX().x((d: any) => width * d.x / 100).strength(1))
         .force("y", d3.forceY().y((d: any) => height * d.y / 100).strength(1))
         .velocityDecay(0.8);
