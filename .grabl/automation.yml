@@ -15,8 +15,8 @@ release:
     deploy-artifact:
       image: graknlabs-ubuntu-20.04
       command: |
-        export DEPLOY_ARTIFACT_USERNAME=$REPO_GRAKN_USERNAME
-        export DEPLOY_ARTIFACT_PASSWORD=$REPO_GRAKN_PASSWORD
+        export DEPLOY_ARTIFACT_USERNAME=$REPO_VATICLE_USERNAME
+        export DEPLOY_ARTIFACT_PASSWORD=$REPO_VATICLE_PASSWORD
         bazel run --define version=$(git rev-parse HEAD) //:deploy-web-main -- snapshot
     deploy-production:
       image: graknlabs-ubuntu-20.04
