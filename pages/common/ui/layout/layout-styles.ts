@@ -90,6 +90,7 @@ export const pageHeaderStyles = makeStyles({
 
     mainMenu: {
         position: "fixed",
+        zIndex: 500,
         width: "100%",
         backgroundColor: vaticleTheme.palette.purple["600"],
         display: "flex",
