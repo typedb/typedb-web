@@ -18,10 +18,20 @@ export const pageHeaderStyles = makeStyles({
     appBar: {
         height: headerHeight,
         backgroundColor: vaticleTheme.palette.purple[600],
+        boxShadow: "0px 2px 4px -1px rgba(0,0,0,0.2),0px 4px 5px 0px rgba(0,0,0,0.14),0px 1px 10px 0px rgba(0,0,0,0.12)",
+        top: 0,
+        left: "auto",
+        right: 0,
+        position: "fixed",
+        width: "100%",
+        display: "flex",
+        zIndex: 1100,
     },
 
     toolbar: {
         margin: "auto 50px",
+        display: "flex",
+        alignItems: "center",
     },
 
     content: {
@@ -41,6 +51,7 @@ export const pageHeaderStyles = makeStyles({
 
     linkText: {
         fontSize: "18px",
+        lineHeight: 1.5,
         color: "#FFF",
     },
 

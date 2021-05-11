@@ -17,8 +17,8 @@ export const PageHeader: React.FC<PageHeaderProps> = ({typeDBVersion}) => {
     const classes = pageHeaderStyles();
 
     return (
-        <AppBar className={classes.appBar}>
-            <Toolbar className={`${classes.toolbar} page-header-toolbar`}>
+        <header className={classes.appBar}>
+            <nav className={`${classes.toolbar} page-header-toolbar`}>
                 <Link to="/">
                     <IconButton edge="start">
                         <VaticleLogo className={classes.logo}/>
@@ -43,15 +43,15 @@ export const PageHeader: React.FC<PageHeaderProps> = ({typeDBVersion}) => {
 
                 <VaticleButton size="small" type="secondary" href={downloadTypeDBURL} target="_blank">Download {typeDBVersion}</VaticleButton>
                 <GithubButton/>
-            </Toolbar>
-        </AppBar>
+            </nav>
+        </header>
     );
 };
 
 const HeaderMenuItem: React.FC = ({children}) => {
     const classes = pageHeaderStyles();
 
-    return <Typography className={classes.linkText}>{children}</Typography>;
+    return <p className={classes.linkText}>{children}</p>;
 }
 
 const HeaderLink: React.FC = ({children}) => {
@@ -59,7 +59,7 @@ const HeaderLink: React.FC = ({children}) => {
 
     return (
         <div>
-            <Typography className={classes.linkText}>{children}</Typography>
+            <p className={classes.linkText}>{children}</p>
             <hr className={classes.linkUnderline}/>
         </div>
     );
