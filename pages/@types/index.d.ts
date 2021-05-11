@@ -3,4 +3,4 @@ declare module '*.svg' {
     export default content;
 }
 
-type GenericObject = Record<string, any>;
+declare module '*.png';

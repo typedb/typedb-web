@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { AppBar, IconButton, Toolbar, Typography } from '@material-ui/core';
+import { IconButton } from '@material-ui/core';
 import React from 'react';
 
 import VaticleLogo from "../../../assets/images/vaticle-logo.svg";

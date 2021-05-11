@@ -16,6 +16,8 @@ import { getTypeDBVersion } from "../api/typedb-service";
 import { TypeQLExample } from "./typeql-example";
 import { transitiveLocationCode, transitiveLocationGraph } from "../common/ui/typeql/samples/transitive-location";
 import { locationDataCode, locationDataGraph } from "../common/ui/typeql/samples/location-data";
+import CorporateLogos from "../assets/images/corporate-logos.png";
+import VaticleWorld from "../assets/images/vaticle-world.svg";
 
 export const HomePage: React.FC = () => {
     const classes = Object.assign({}, commonStyles(), homePageStyles());
@@ -63,7 +65,7 @@ export const HomePage: React.FC = () => {
             </section>
 
             <section className={classes.sectionMarginLarge}>
-                <img src="../assets/images/corporate-logos.png" alt="" className={classes.corporateLogos}/>
+                <img src={CorporateLogos} alt="" className={classes.corporateLogos}/>
             </section>
 
             <section className={classes.sectionMarginLarge}>
@@ -117,7 +119,7 @@ export const HomePage: React.FC = () => {
 
             <section className={clsx(classes.communitySection, classes.sectionMarginLarge)}>
                 <h1 className={classes.h1}>Join the global movement of the Vaticle Community</h1>
-                <img className={classes.sectionMarginSmall} src="../assets/images/vaticle-world.svg" alt="Vaticle Community" />
+                <VaticleWorld className={classes.sectionMarginSmall}/>
                 <VaticleButton size="small" type="primary" className={classes.sectionMarginSmall}>Join the Vaticle Community around the world</VaticleButton>
             </section>
 
