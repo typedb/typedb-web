@@ -74,8 +74,8 @@ export const ClusterSection: React.FC<ClusterSectionProps> = ({className}) => {
             </div>
 
             <div className={clsx(classes.mainActionList, classes.sectionMarginSmall)}>
-                <VaticleButton size="small" type="secondary" className={classes.learnMore}>Learn More</VaticleButton>
-                <VaticleButton size="small" type="primary" to="/cloud">Cloud Deployment</VaticleButton>
+                <VaticleButton size="small" type="secondary" className={classes.clusterAction}>Learn More</VaticleButton>
+                <VaticleButton size="small" type="primary" to="/cloud" className={classes.clusterAction}>Cloud Deployment</VaticleButton>
             </div>
         </section>
     );
