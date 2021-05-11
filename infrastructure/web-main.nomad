@@ -10,12 +10,12 @@ job "web-main" {
     value     = "web-main"
   }
 
-  update {
-    canary = 1
-    min_healthy_time = "1m"
-    auto_revert = true
-    auto_promote = true
-  }
+//  update {
+//    canary = 1
+//    min_healthy_time = "1m"
+//    auto_revert = true
+//    auto_promote = true
+//  }
 
   group "web-main" {
     count = 1
