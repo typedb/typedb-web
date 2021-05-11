@@ -30,9 +30,29 @@ export const pageHeaderStyles = makeStyles({
 
     toolbar: {
         margin: "auto 50px",
+        flex: 1,
+        display: "flex",
+        alignItems: "center",
+
+        "@media(max-width: 1199px)": {
+            margin: "auto 32px",
+            justifyContent: "space-between",
+        },
+    },
+
+    desktopItems: {
+        flex: 1,
         display: "flex",
         alignItems: "center",
     },
+
+    toolbarItem: {
+        "@media(min-width: 1200px)": {
+            marginLeft: 35,
+        },
+    },
+
+    toolbarFirstItem: {},
 
     content: {
         height: headerHeight,
@@ -46,12 +66,13 @@ export const pageHeaderStyles = makeStyles({
     },
 
     filler: {
-        flexGrow: 1,
+        flex: 1,
     },
 
     linkText: {
         fontSize: "18px",
         lineHeight: 1.5,
+        padding: "12px 0",
         color: "#FFF",
     },
 
@@ -62,15 +83,45 @@ export const pageHeaderStyles = makeStyles({
         backgroundColor: '#FFF',
     },
 
-    menuToggler: {
-        minWidth: 110,
-        height: headerHeight,
-        padding: 0,
-        justifyContent: 'flex-end',
+    hamburger: {
+        color: "#FFF",
+        fontSize: 32,
     },
 
-    profileMenuItem: {
-        height: 27,
+    mainMenu: {
+        position: "fixed",
+        width: "100%",
+        backgroundColor: vaticleTheme.palette.purple["600"],
+        display: "flex",
+        justifyContent: "space-between",
+        padding: "24px 32px",
+    },
+
+    siteSectionsMenu: {
+
+    },
+
+    otherLinksMenu: {
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "flex-end",
+    },
+
+    externalLinksMenu: {
+        marginTop: 12,
+        display: "flex",
+        alignItems: "center",
+    },
+
+    externalLinksMenuItem: {
+        marginLeft: 32,
+    },
+
+    internalLinksMenu: {
+        marginTop: 20,
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "flex-end",
     },
 });
 
