@@ -16,7 +16,6 @@ export const defaultLayoutStyles = makeStyles({
 
 export const pageHeaderStyles = makeStyles({
     appBar: {
-        position: "static",
         height: headerHeight,
         backgroundColor: vaticleTheme.palette.purple[600],
     },
