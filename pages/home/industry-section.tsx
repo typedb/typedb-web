@@ -9,14 +9,11 @@ import { LifeSciencesIcon } from "../common/ui/images/life-sciences-icon";
 import { vaticleTheme } from "../styles/theme";
 import { RoboticsIcon } from "../common/ui/images/robotics-icon";
 import { commonStyles } from "../common/ui/common-styles";
-
-export interface IndustrySectionProps {
-    className?: string;
-}
+import { ClassProps } from "../common/class-props";
 
 type IndustryName = "Health and Life Sciences" | "Defence & Security" | "Financial Services" | "Robotics" | "NLP";
 
-export const IndustrySection: React.FC<IndustrySectionProps> = ({className}) => {
+export const IndustrySection: React.FC<ClassProps> = ({className}) => {
     const classes = Object.assign({}, commonStyles(), homePageStyles());
     const [selectedIndustry, setSelectedIndustry] = useState<IndustryName>("Health and Life Sciences");
 

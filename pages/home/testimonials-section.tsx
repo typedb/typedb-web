@@ -6,10 +6,7 @@ import ClusterManagementIcon from "../assets/icons/cluster-management-icon.svg";
 import CircleDecoration from "../assets/images/circle-decoration.svg";
 import { VaticleIconButton } from "../common/ui/button/icon-button";
 import { commonStyles } from "../common/ui/common-styles";
-
-export interface TestimonialsSectionProps {
-    className?: string;
-}
+import { ClassProps } from "../common/class-props";
 
 interface Testimonial {
     companyName: string;
@@ -20,7 +17,7 @@ interface Testimonial {
     body: string;
 }
 
-export const TestimonialsSection: React.FC<TestimonialsSectionProps> = ({className}) => {
+export const TestimonialsSection: React.FC<ClassProps> = ({className}) => {
     const classes = Object.assign({}, commonStyles(), homePageStyles());
     const [selectedIndex, setSelectedIndex] = useState(1);
 

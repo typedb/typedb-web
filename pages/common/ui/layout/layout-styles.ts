@@ -4,11 +4,12 @@ import { buttonPalette } from "../button/button-styles";
 
 const headerHeight = 80;
 const footerHeight = 65;
+const headerBoxShadow = "2px 2px 4px -1px rgba(0,0,0,0.2),2px 4px 5px 0px rgba(0,0,0,0.14),2px 1px 10px 0px rgba(0,0,0,0.12)";
 
 export const defaultLayoutStyles = makeStyles({
     main: {
-        minHeight: `calc(100% - ${headerHeight}px - ${footerHeight}px)`,
-        margin: '0 auto',
+        minHeight: `calc(100% - ${footerHeight}px)`,
+        margin: `${headerHeight}px auto 0`,
         width: '100%',
         textAlign: 'center',
     },
@@ -18,7 +19,7 @@ export const pageHeaderStyles = makeStyles({
     appBar: {
         height: headerHeight,
         backgroundColor: vaticleTheme.palette.purple[600],
-        boxShadow: "0px 2px 4px -1px rgba(0,0,0,0.2),0px 4px 5px 0px rgba(0,0,0,0.14),0px 1px 10px 0px rgba(0,0,0,0.12)",
+        boxShadow: headerBoxShadow,
         top: 0,
         left: "auto",
         right: 0,
@@ -35,7 +36,7 @@ export const pageHeaderStyles = makeStyles({
         alignItems: "center",
 
         "@media(max-width: 1199px)": {
-            margin: "auto 32px",
+            margin: "auto 17px auto 32px",
             justifyContent: "space-between",
         },
     },
@@ -90,32 +91,86 @@ export const pageHeaderStyles = makeStyles({
 
     mainMenu: {
         position: "fixed",
-        zIndex: 500,
+        zIndex: 1500,
+        boxShadow: headerBoxShadow,
         width: "100%",
-        backgroundColor: vaticleTheme.palette.purple["600"],
+        height: 0,
+        overflow: "hidden",
+        backgroundColor: vaticleTheme.palette.purple["800"],
+        transition: "height 350ms ease-in-out, width 350ms ease-in-out, margin-left 250ms ease-out",
+
+        "&.invisible": {
+            visibility: "hidden",
+        },
+
+        "&.open": {
+            "@media(min-width: 768px)": {
+                height: 405,
+            },
+
+            "@media(max-width: 767px)": {
+                marginLeft: 0,
+            }
+        },
+
+        "@media(max-width: 767px)": {
+            width: 195,
+            height: `calc(100vh - ${headerHeight}px)`,
+            marginLeft: -195,
+        },
+    },
+
+    mainMenuContent: {
+        margin: "24px 32px",
         display: "flex",
         justifyContent: "space-between",
-        padding: "24px 32px",
+
+        "@media(max-width: 767px)": {
+            flexDirection: "column",
+            justifyContent: "flex-start",
+            marginRight: 10,
+        },
     },
 
-    siteSectionsMenu: {
+    sitemapMenu: {
 
     },
 
-    otherLinksMenu: {
+    linksMenu: {
         display: "flex",
         flexDirection: "column",
         alignItems: "flex-end",
+
+        "@media(max-width: 767px)": {
+            flexDirection: "column-reverse",
+            alignItems: "flex-start",
+        },
     },
 
     externalLinksMenu: {
         marginTop: 12,
         display: "flex",
         alignItems: "center",
+
+        "@media(max-width: 767px)": {
+            flexDirection: "column-reverse",
+            alignItems: "flex-start",
+            marginTop: 28,
+        },
     },
 
-    externalLinksMenuItem: {
-        marginLeft: 32,
+    externalLinksGithub: {
+        "@media(min-width: 1200px)": {
+            marginLeft: 35,
+        },
+
+        "@media (min-width: 768px) and (max-width: 1199px)": {
+            marginLeft: 32,
+        },
+
+        "@media(max-width: 767px)": {
+            marginBottom: 24,
+        },
     },
 
     internalLinksMenu: {
@@ -123,6 +178,11 @@ export const pageHeaderStyles = makeStyles({
         display: "flex",
         flexDirection: "column",
         alignItems: "flex-end",
+
+        "@media(max-width: 767px)": {
+            marginTop: 16,
+            alignItems: "flex-start",
+        },
     },
 });
 

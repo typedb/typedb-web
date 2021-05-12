@@ -4,9 +4,9 @@ import clsx from 'clsx';
 import { Link } from 'react-router-dom';
 import { SizeIndicator } from '../../../styles/theme';
 import { buttonStyles } from './button-styles';
+import { ClassProps } from "../../class-props";
 
-export interface BaseButtonProps {
-    className?: string;
+export interface BaseButtonProps extends ClassProps {
     href?: string;
     to?: string;
     type?: 'primary' | 'secondary';

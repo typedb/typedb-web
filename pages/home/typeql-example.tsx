@@ -5,9 +5,9 @@ import clsx from "clsx";
 import { commonStyles } from "../common/ui/common-styles";
 import { TypeQLVisualiser } from "../common/ui/typeql/typeql-visualiser";
 import { TypeQLGraph } from "../common/ui/typeql/typeql-data";
+import { ClassProps } from "../common/class-props";
 
-export interface TypeQLExampleProps {
-    className?: string;
+export interface TypeQLExampleProps extends ClassProps {
     title: string;
     body: string;
     code: string;

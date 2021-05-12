@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { IconButton } from '@material-ui/core';
-import React from 'react';
+import React, { useState } from 'react';
 
 import VaticleLogo from "../../../assets/images/vaticle-logo.svg";
 
@@ -9,9 +9,8 @@ import { GithubButton } from "../button/github-button";
 import { VaticleButton } from "../button/button";
 import { downloadTypeDBURL } from "../../urls";
 import clsx from 'clsx';
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBars } from "@fortawesome/pro-solid-svg-icons";
 import { commonStyles } from "../common-styles";
+import { HamburgerCollapse } from "react-animated-burgers/lib";
 
 interface PageHeaderProps {
     typeDBVersion: string;
@@ -19,6 +18,30 @@ interface PageHeaderProps {
 
 export const PageHeader: React.FC<PageHeaderProps> = ({typeDBVersion}) => {
     const classes = Object.assign({}, commonStyles(), pageHeaderStyles());
+
+    const [menuOpen, setMenuOpen] = useState(false);
+    const [menuInvisible, setMenuInvisible] = useState(true);
+    const [menuLocked, setMenuLocked] = useState(false);
+
+    const toggleMenuOpen = () => {
+        if (menuLocked) return;
+
+        if (menuOpen) {
+            setMenuOpen(false);
+            setMenuLocked(true);
+            setTimeout(() => {
+                setMenuInvisible(true);
+                setMenuLocked(false);
+            }, 400);
+        } else { // if (!menuOpen)
+            setMenuOpen(true);
+            setMenuInvisible(false);
+            setMenuLocked(true);
+            setTimeout(() => {
+                setMenuLocked(false);
+            }, 400);
+        }
+    };
 
     return (
         <>
@@ -31,63 +54,77 @@ export const PageHeader: React.FC<PageHeaderProps> = ({typeDBVersion}) => {
                     </Link>
 
                     <div className={clsx(classes.desktopItems, classes.showDesktop)}>
-                        <HeaderMenuItem>Databases</HeaderMenuItem>
-                        <HeaderMenuItem>Solutions</HeaderMenuItem>
-                        <HeaderMenuItem>Use Cases</HeaderMenuItem>
-                        <HeaderMenuItem>Developer</HeaderMenuItem>
-                        <HeaderMenuItem>Conference</HeaderMenuItem>
-                        <HeaderMenuItem>Community</HeaderMenuItem>
-                        <HeaderMenuItem>Blog</HeaderMenuItem>
+                        <Sitemap/>
 
                         <div className={classes.filler}/>
 
-                        <HeaderLink>Contact</HeaderLink>
-                        <HeaderLink>Support</HeaderLink>
-                        <Link to="/cloud">
-                            <HeaderLink>Cloud</HeaderLink>
-                        </Link>
-
-                        <VaticleButton size="small" type="secondary" href={downloadTypeDBURL} target="_blank" className={classes.toolbarItem}>Download {typeDBVersion}</VaticleButton>
-                        <div className={classes.toolbarItem}>
-                            <GithubButton/>
-                        </div>
+                        <InternalLinks/>
+                        <ExternalLinks typeDBVersion={typeDBVersion}/>
                     </div>
 
-                    <IconButton edge="end" className={clsx(classes.toolbarItem, classes.hideDesktop)}>
-                        <FontAwesomeIcon className={classes.hamburger} icon={faBars} />
-                    </IconButton>
+                    <HamburgerCollapse className={clsx(classes.toolbarItem, classes.hideDesktop)}
+                                       barColor="#FFF" isActive={menuOpen} toggleButton={() => toggleMenuOpen()}/>
                 </nav>
             </header>
-            <nav className={classes.mainMenu}>
-                <div className={classes.siteSectionsMenu}>
-                    <HeaderMenuItem>Databases</HeaderMenuItem>
-                    <HeaderMenuItem>Solutions</HeaderMenuItem>
-                    <HeaderMenuItem>Use Cases</HeaderMenuItem>
-                    <HeaderMenuItem>Developer</HeaderMenuItem>
-                    <HeaderMenuItem>Conference</HeaderMenuItem>
-                    <HeaderMenuItem>Community</HeaderMenuItem>
-                    <HeaderMenuItem>Blog</HeaderMenuItem>
-                </div>
-
-                <div className={classes.otherLinksMenu}>
-                    <div className={classes.externalLinksMenu}>
-                        <VaticleButton size="small" type="secondary" href={downloadTypeDBURL} target="_blank" className={classes.toolbarItem}>Download {typeDBVersion}</VaticleButton>
-                        <div className={classes.externalLinksMenuItem}>
-                            <GithubButton/>
-                        </div>
+            <nav className={clsx(classes.mainMenu, classes.hideDesktop, menuOpen && "open", menuInvisible && "invisible")}>
+                <div className={classes.mainMenuContent}>
+                    <div className={classes.sitemapMenu}>
+                        <Sitemap/>
                     </div>
-                    <div className={classes.internalLinksMenu}>
-                        <HeaderLink>Contact</HeaderLink>
-                        <HeaderLink>Support</HeaderLink>
-                        <Link to="/cloud">
-                            <HeaderLink>Cloud</HeaderLink>
-                        </Link>
+
+                    <div className={classes.linksMenu}>
+                        <div className={classes.externalLinksMenu}>
+                            <ExternalLinks typeDBVersion={typeDBVersion}/>
+                        </div>
+                        <div className={classes.internalLinksMenu}>
+                            <InternalLinks/>
+                        </div>
                     </div>
                 </div>
             </nav>
         </>
     );
 };
+
+const Sitemap: React.FC = () => (
+    <>
+        <HeaderMenuItem>Databases</HeaderMenuItem>
+        <HeaderMenuItem>Solutions</HeaderMenuItem>
+        <HeaderMenuItem>Use Cases</HeaderMenuItem>
+        <HeaderMenuItem>Developer</HeaderMenuItem>
+        <HeaderMenuItem>Conference</HeaderMenuItem>
+        <HeaderMenuItem>Community</HeaderMenuItem>
+        <HeaderMenuItem>Blog</HeaderMenuItem>
+    </>
+);
+
+interface ExternalLinksProps {
+    typeDBVersion: string;
+}
+
+const ExternalLinks: React.FC<ExternalLinksProps> = ({typeDBVersion}) => {
+    const classes = pageHeaderStyles();
+
+    return (
+        <>
+            <VaticleButton size="small" type="secondary" href={downloadTypeDBURL} target="_blank"
+                           className={classes.toolbarItem}>Download {typeDBVersion}</VaticleButton>
+            <div className={classes.externalLinksGithub}>
+                <GithubButton/>
+            </div>
+        </>
+    );
+}
+
+const InternalLinks: React.FC = () => (
+    <>
+        <HeaderLink>Contact</HeaderLink>
+        <HeaderLink>Support</HeaderLink>
+        <Link to="/cloud">
+            <HeaderLink>Cloud</HeaderLink>
+        </Link>
+    </>
+);
 
 const HeaderMenuItem: React.FC = ({children}) => {
     const classes = pageHeaderStyles();

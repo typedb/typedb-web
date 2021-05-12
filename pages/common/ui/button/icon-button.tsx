@@ -1,9 +1,9 @@
 import React from 'react';
 import { iconButtonStyles } from './button-styles';
 import clsx from "clsx";
+import { ClassProps } from "../../class-props";
 
-export interface VaticleIconButtonProps {
-    className?: string;
+export interface VaticleIconButtonProps extends ClassProps {
     onClick?: React.MouseEventHandler;
     disabled?: boolean;
 }

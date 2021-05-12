@@ -9,10 +9,7 @@ import ClusterManagementIcon from "../assets/icons/cluster-management-icon.svg";
 import BackupAndRecoveryIcon from "../assets/icons/backup-and-recovery-icon.svg";
 import { VaticleButton } from "../common/ui/button/button";
 import { commonStyles } from "../common/ui/common-styles";
-
-export interface ClusterSectionProps {
-    className?: string;
-}
+import { ClassProps } from "../common/class-props";
 
 interface ClusterFeature {
     name: string;
@@ -22,7 +19,7 @@ interface ClusterFeature {
     comingSoon?: true;
 }
 
-export const ClusterSection: React.FC<ClusterSectionProps> = ({className}) => {
+export const ClusterSection: React.FC<ClassProps> = ({className}) => {
     const classes = Object.assign({}, commonStyles(), homePageStyles());
 
     const allFeatures: ClusterFeature[] = [{
