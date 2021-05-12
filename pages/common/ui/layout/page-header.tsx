@@ -73,11 +73,11 @@ export const PageHeader: React.FC<PageHeaderProps> = ({typeDBVersion}) => {
                     </div>
 
                     <div className={classes.linksMenu}>
-                        <div className={classes.externalLinksMenu}>
-                            <ExternalLinks typeDBVersion={typeDBVersion}/>
-                        </div>
                         <div className={classes.internalLinksMenu}>
                             <InternalLinks/>
+                        </div>
+                        <div className={classes.externalLinksMenu}>
+                            <ExternalLinks typeDBVersion={typeDBVersion}/>
                         </div>
                     </div>
                 </div>

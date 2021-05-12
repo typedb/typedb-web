@@ -9,6 +9,10 @@ export const typeQLVisualiserStyles = makeStyles({
         flexShrink: 0,
         display: "flex",
         flexDirection: "column",
+
+        "@media(max-width: 479px)": {
+            height: 204,
+        },
     },
 
     header: {

@@ -91,13 +91,13 @@ export const pageHeaderStyles = makeStyles({
 
     mainMenu: {
         position: "fixed",
-        zIndex: 1500,
+        zIndex: 500,
         boxShadow: headerBoxShadow,
         width: "100%",
         height: 0,
         overflow: "hidden",
         backgroundColor: vaticleTheme.palette.purple["800"],
-        transition: "height 350ms ease-in-out, width 350ms ease-in-out, margin-left 250ms ease-out",
+        transition: "height 350ms ease-in-out, width 350ms ease-in-out, margin-left 350ms ease-out",
 
         "&.invisible": {
             visibility: "hidden",
@@ -114,9 +114,9 @@ export const pageHeaderStyles = makeStyles({
         },
 
         "@media(max-width: 767px)": {
-            width: 195,
+            width: "100vw",
             height: `calc(100vh - ${headerHeight}px)`,
-            marginLeft: -195,
+            marginLeft: "-100vw",
         },
     },
 
@@ -142,7 +142,6 @@ export const pageHeaderStyles = makeStyles({
         alignItems: "flex-end",
 
         "@media(max-width: 767px)": {
-            flexDirection: "column-reverse",
             alignItems: "flex-start",
         },
     },
@@ -150,12 +149,11 @@ export const pageHeaderStyles = makeStyles({
     externalLinksMenu: {
         marginTop: 12,
         display: "flex",
-        alignItems: "center",
+        flexDirection: "column-reverse",
+        alignItems: "flex-end",
 
         "@media(max-width: 767px)": {
-            flexDirection: "column-reverse",
             alignItems: "flex-start",
-            marginTop: 28,
         },
     },
 
@@ -164,17 +162,12 @@ export const pageHeaderStyles = makeStyles({
             marginLeft: 35,
         },
 
-        "@media (min-width: 768px) and (max-width: 1199px)": {
-            marginLeft: 32,
-        },
-
-        "@media(max-width: 767px)": {
+        "@media(max-width: 1199px)": {
             marginBottom: 24,
         },
     },
 
     internalLinksMenu: {
-        marginTop: 20,
         display: "flex",
         flexDirection: "column",
         alignItems: "flex-end",

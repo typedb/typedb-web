@@ -1,9 +1,10 @@
 import clsx from 'clsx';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { defaultLayoutStyles } from './layout-styles';
 import { PageHeader } from "./page-header";
 import { commonStyles } from "../common-styles";
 import { PageFooter } from "./page-footer";
+import { getTypeDBVersion } from "../../../api/typedb-service";
 
 interface DefaultLayoutProps {
     classes?: Partial<Record<'main', string>>;
@@ -17,9 +18,19 @@ export const DefaultLayout: React.FC<DefaultLayoutProps> = ({
 }) => {
     const ownClasses = Object.assign({}, commonStyles(), defaultLayoutStyles());
 
+    const [typeDBVersion, setTypeDBVersion] = useState("");
+    useEffect(() => {
+        getTypeDBVersion().then(version => {
+            setTypeDBVersion(version);
+        }, error => {
+            console.error(error);
+            setTypeDBVersion("TypeDB");
+        });
+    }, []);
+
     return (
         <>
-            <PageHeader typeDBVersion={"2.0.1"}/>
+            <PageHeader typeDBVersion={typeDBVersion}/>
             <main className={clsx(ownClasses.main, classes?.main)}>
                 {navigation}
                 <article>
