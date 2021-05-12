@@ -34,7 +34,9 @@ export const HomePage: React.FC = () => {
     return (
         <DefaultLayout>
             <section className={classes.sectionMarginLarge}>
-                <VaticleAtom/>
+                <div className={classes.vaticleAtomContainer}>
+                    <VaticleAtom/>
+                </div>
 
                 <h1 className={clsx(classes.h1, classes.sectionMarginSmall)}>Vaticle TypeDB: a strongly-typed database</h1>
                 <p className={classes.largeText}>

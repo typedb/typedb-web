@@ -3,6 +3,10 @@ import { vaticleTheme } from "../styles/theme";
 
 // TODO: Break this object down by Component
 export const homePageStyles = makeStyles({
+    vaticleAtomContainer: {
+        width: "100%",
+    },
+
     diagramAndCaption: {
         textAlign: "start",
         display: "flex",

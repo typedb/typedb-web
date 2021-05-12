@@ -6,7 +6,7 @@ export const VaticleAtom: React.FC = (props) => {
     const classes = vaticleAtomStyles();
 
     return (
-        <svg width={480} height={480} xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink"{...props}>
+        <svg width={480} height={480} xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" className={classes.root} {...props}>
             <defs>
                 <circle id="vaticle-atom_svg__a" cx={62} cy={62} r={62} />
             </defs>

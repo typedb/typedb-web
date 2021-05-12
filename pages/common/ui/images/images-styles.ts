@@ -2,6 +2,10 @@ import { makeStyles } from '@material-ui/core';
 
 export const vaticleAtomStyles = makeStyles({
     root: {
+        "@media(max-width: 767px)": {
+            marginLeft: "50%",
+            transform: "translateX(-50%) scale(.667)",
+        },
     },
 
     green: {
