@@ -5,6 +5,28 @@ import { vaticleTheme } from "../styles/theme";
 export const homePageStyles = makeStyles({
     vaticleAtomContainer: {
         width: "100%",
+
+        "@media(min-width: 768px)": {
+            marginTop: 160,
+        },
+    },
+
+    vaticleTypeDB: {
+        "@media(max-width: 767px)": {
+            marginTop: -30,
+        },
+
+        "@media(max-width: 479px)": {
+            display: "none",
+        },
+    },
+
+    vaticleTypeDBMobile: {
+        marginTop: -30,
+
+        "@media(min-width: 480px)": {
+            display: "none",
+        },
     },
 
     diagramAndCaption: {
@@ -60,9 +82,16 @@ export const homePageStyles = makeStyles({
 
     mainLinks: {
         width: '100%',
+        marginLeft: "auto",
+        marginRight: "auto",
         display: 'flex',
         border: `1px solid ${vaticleTheme.palette.purple[300]}`,
         borderRadius: 11,
+
+        "@media(max-width: 767px)": {
+            width: 288,
+            display: "block",
+        },
     },
 
     firstMainLink: {
@@ -81,7 +110,14 @@ export const homePageStyles = makeStyles({
         justifyContent: 'center',
         alignItems: 'center',
         height: '160px',
-        borderLeft: `1px solid ${vaticleTheme.palette.purple[300]}`,
+
+        "@media(min-width: 768px)": {
+            borderLeft: `1px solid ${vaticleTheme.palette.purple[300]}`,
+        },
+
+        "@media(max-width: 767px)": {
+            borderTop: `1px solid ${vaticleTheme.palette.purple["300"]}`,
+        },
     },
 
     mainLinkIcon: {

@@ -36,11 +36,16 @@ export const commonStyles = makeStyles({
 
     largeText: {
         margin: '0 auto',
-        marginTop: '16px',
-        fontSize: '20px',
+        marginTop: 16,
+        fontSize: 20,
         fontWeight: 300,
         lineHeight: '34px',
         maxWidth: '960px',
+
+        "@media(max-width: 767px)": {
+            fontSize: 18,
+            lineHeight: "28px",
+        },
     },
 
     mediumText: {

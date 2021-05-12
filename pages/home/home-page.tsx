@@ -33,12 +33,16 @@ export const HomePage: React.FC = () => {
 
     return (
         <DefaultLayout>
-            <section className={classes.sectionMarginLarge}>
+            <section>
                 <div className={classes.vaticleAtomContainer}>
                     <VaticleAtom/>
                 </div>
 
-                <h1 className={clsx(classes.h1, classes.sectionMarginSmall)}>Vaticle TypeDB: a strongly-typed database</h1>
+                <h1 className={clsx(classes.vaticleTypeDB, classes.h1, classes.sectionMarginSmall)}>Vaticle TypeDB: a strongly-typed database</h1>
+                <h1 className={clsx(classes.vaticleTypeDBMobile, classes.h1)}>
+                    Vaticle TypeDB: a<br/>
+                    strongly-typed database
+                </h1>
                 <p className={classes.largeText}>
                     Vaticle TypeDB is a database with a rich and logical type system. TypeDB empowers you to build
                     complex systems easily, using TypeQL as its query language.
