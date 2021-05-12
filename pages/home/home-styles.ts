@@ -145,7 +145,90 @@ export const homePageStyles = makeStyles({
     },
 
     corporateLogos: {
-        width: "100%",
+        display: "grid",
+        gridTemplateColumns: "repeat(auto-fit, minmax(195px, 1fr))",
+        placeItems: "center center",
+        gap: "65px 40px",
+
+        "@media(max-width: 767px)": {
+            gridTemplateColumns: "repeat(auto-fit, minmax(150px, 1fr))",
+            gap: 30,
+        },
+    },
+
+    berkeleyLogo: {
+        width: 163,
+        "@media(max-width: 767px)": { width: 145 },
+    },
+
+    aresGeneticsLogo: {
+        width: 199,
+        "@media(max-width: 767px)": { width: 145 },
+    },
+
+    deutscheTelekomLogo: {
+        width: 185,
+        "@media(max-width: 767px)": { width: 145 },
+    },
+
+    dunnhumbyLogo: {
+        width: 184,
+        "@media(max-width: 767px)": { width: 145 },
+    },
+
+    openCTILogo: {
+        width: 186,
+        "@media(max-width: 767px)": { width: 145 },
+    },
+
+    capcoLogo: {
+        width: 128,
+        "@media(max-width: 767px)": { width: 114 },
+    },
+
+    infosysLogo: {
+        width: 167,
+        "@media(max-width: 767px)": { width: 114 },
+    },
+
+    livingMatrixLogo: {
+        width: 185,
+        "@media(max-width: 767px)": { width: 145 },
+    },
+
+    taxfixLogo: {
+        width: 150,
+        "@media(max-width: 767px)": { width: 145 },
+    },
+
+    maunaLogo: {
+        width: 177,
+        "@media(max-width: 767px)": { width: 145 },
+    },
+
+    tnoLogo: {
+        width: 185,
+        "@media(max-width: 767px)": { width: 151 },
+    },
+
+    ustGlobalLogo: {
+        width: 185,
+        "@media(max-width: 767px)": { width: 145 },
+    },
+
+    googleLogo: {
+        width: 192,
+        "@media(max-width: 767px)": { width: 145 },
+    },
+
+    rasaLogo: {
+        width: 112,
+        "@media(max-width: 767px)": { width: 106 },
+    },
+
+    ciscoLogo: {
+        width: 120,
+        "@media(max-width: 767px)": { width: 94 },
     },
 
     buttonAfterText: {
@@ -156,7 +239,7 @@ export const homePageStyles = makeStyles({
         display: "grid",
         justifyContent: "center",
         gridTemplateColumns: "repeat(auto-fit, 224px)",
-        gridGap: "30px 40px",
+        gap: "30px 40px",
     },
 
     clusterAction: {
@@ -167,7 +250,7 @@ export const homePageStyles = makeStyles({
         display: "grid",
         justifyContent: "center",
         gridTemplateColumns: "repeat(auto-fit, 185px)",
-        gridRowGap: "24px",
+        rowGap: "24px",
 
         "@media(max-width: 767px)": {
             gridTemplateColumns: "repeat(auto-fit, 176px)",
@@ -226,7 +309,7 @@ export const homePageStyles = makeStyles({
         justifyContent: "center",
         gridTemplateColumns: "repeat(auto-fit, 360px)",
         gridTemplateRows: "repeat(auto-fit, 260px)",
-        gridGap: "40px 40px",
+        gap: 40,
 
         "@media(max-width: 767px)": {
             gridTemplateColumns: "repeat(auto-fit, 335px)",

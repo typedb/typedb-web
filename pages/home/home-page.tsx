@@ -16,7 +16,21 @@ import { getTypeDBVersion } from "../api/typedb-service";
 import { TypeQLExample } from "./typeql-example";
 import { transitiveLocationCode, transitiveLocationGraph } from "../common/ui/typeql/samples/transitive-location";
 import { locationDataCode, locationDataGraph } from "../common/ui/typeql/samples/location-data";
-import CorporateLogos from "../assets/images/corporate-logos.png";
+import AresGeneticsLogo from "../assets/images/logo-ares-genetics.png";
+import BerkeleyLogo from "../assets/images/logo-berkeley.png";
+import CapcoLogo from "../assets/images/logo-capco.png";
+import CiscoLogo from "../assets/images/logo-cisco.png";
+import DeutscheTelekomLogo from "../assets/images/logo-deutsche-telekom.png";
+import DunnhumbyLogo from "../assets/images/logo-dunnhumby.png";
+import GoogleLogo from "../assets/images/logo-google.png";
+import InfosysLogo from "../assets/images/logo-infosys.png";
+import LivingMatrixLogo from "../assets/images/logo-living-matrix.png";
+import MaunaLogo from "../assets/images/logo-mauna.png";
+import OpenCTILogo from "../assets/images/logo-opencti.png";
+import RASALogo from "../assets/images/logo-rasa.png";
+import TaxfixLogo from "../assets/images/logo-taxfix.png";
+import TNOLogo from "../assets/images/logo-tno-innovation.png";
+import USTGlobalLogo from "../assets/images/logo-ust-global.png";
 import VaticleWorld from "../assets/images/vaticle-world.svg";
 
 export const HomePage: React.FC = () => {
@@ -70,8 +84,22 @@ export const HomePage: React.FC = () => {
                 </div>
             </section>
 
-            <section className={classes.sectionMarginLarge}>
-                <img src={CorporateLogos} alt="" className={classes.corporateLogos}/>
+            <section className={clsx(classes.corporateLogos, classes.sectionMarginLarge)}>
+                <img src={BerkeleyLogo} alt="Berkeley Data Science Group" className={classes.berkeleyLogo}/>
+                <img src={AresGeneticsLogo} alt="Ares Genetics" className={classes.aresGeneticsLogo}/>
+                <img src={DeutscheTelekomLogo} alt="Deutsche Telekom" className={classes.deutscheTelekomLogo}/>
+                <img src={CapcoLogo} alt="CAPCO" className={classes.capcoLogo}/>
+                <img src={DunnhumbyLogo} alt="Dunnhumby" className={classes.dunnhumbyLogo}/>
+                <img src={OpenCTILogo} alt="OpenCTI" className={classes.openCTILogo}/>
+                <img src={InfosysLogo} alt="Infosys" className={classes.infosysLogo}/>
+                <img src={LivingMatrixLogo} alt="LivingMatrix" className={classes.livingMatrixLogo}/>
+                <img src={TaxfixLogo} alt="Taxfix" className={classes.taxfixLogo}/>
+                <img src={MaunaLogo} alt="Mauna" className={classes.maunaLogo}/>
+                <img src={TNOLogo} alt="TNO" className={classes.tnoLogo}/>
+                <img src={USTGlobalLogo} alt="USTGlobal" className={classes.ustGlobalLogo}/>
+                <img src={GoogleLogo} alt="Google" className={classes.googleLogo}/>
+                <img src={RASALogo} alt="RASA" className={classes.rasaLogo}/>
+                <img src={CiscoLogo} alt="Cisco" className={classes.ciscoLogo}/>
             </section>
 
             <section className={classes.sectionMarginLarge}>
