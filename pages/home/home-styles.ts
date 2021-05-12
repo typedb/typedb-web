@@ -152,7 +152,7 @@ export const homePageStyles = makeStyles({
 
         "@media(max-width: 767px)": {
             gridTemplateColumns: "repeat(auto-fit, minmax(150px, 1fr))",
-            gap: 30,
+            gap: "30px 20px",
         },
     },
 
