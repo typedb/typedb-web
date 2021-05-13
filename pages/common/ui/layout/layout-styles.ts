@@ -188,16 +188,33 @@ export const pageFooterStyles = makeStyles({
     content: {
         paddingTop: 150,
         paddingBottom: 132,
+
+        "@media(max-width: 767px)": {
+            paddingTop: 60,
+            paddingBottom: 55,
+        },
     },
 
     newsletterSection: {
         display: "flex",
+
+        "@media(max-width: 1199px)": {
+            flexDirection: "column-reverse",
+            alignItems: "center",
+        },
     },
 
     social: {
-        flex: "0 0 380px",
         display: "flex",
         alignItems: "center",
+
+        "@media(min-width: 1200px)": {
+            flex: "0 0 380px",
+        },
+
+        "@media(max-width: 1199px)": {
+            marginTop: 44,
+        },
     },
 
     socialLinkFacebook: {
@@ -249,13 +266,31 @@ export const pageFooterStyles = makeStyles({
         flex: 1,
         display: "flex",
         alignItems: "center",
+
+        "@media(max-width: 1199px)": {
+            width: 800,
+            maxWidth: "calc(100vw - 40px)",
+        },
+
+        "@media(max-width: 767px)": {
+            flexDirection: "column",
+        },
     },
 
     personalDataNotice: {
         width: 430,
+        maxWidth: "calc(100vw - 40px)",
         fontSize: 16,
         lineHeight: "24px",
         fontWeight: 400,
+    },
+
+    subscribeActionBlock: {
+        minWidth: 320,
+
+        "@media(max-width: 767px)": {
+            marginTop: 30,
+        },
     },
 
     subscribeEmail: {
@@ -285,18 +320,38 @@ export const pageFooterStyles = makeStyles({
 
     linksSection: {
         display: "flex",
+
+        "@media(max-width: 767px)": {
+            flexDirection: "column",
+        },
     },
 
     linkList: {
         marginTop: 32,
+
+        "@media(max-width: 767px)": {
+            marginTop: 30,
+        },
     },
 
-    link: {
+    contactLink: {
         margin: "5px 0",
         height: 40,
         padding: "5px 0",
         display: "inline-flex",
         alignItems: "center",
+    },
+
+    sitemapLink: {
+        margin: "5px 0",
+        height: 40,
+        padding: "5px 0",
+        display: "inline-flex",
+        alignItems: "center",
+
+        "@media(max-width: 767px)": {
+            margin: 0,
+        },
     },
 
     linkTwoLine: {
@@ -306,6 +361,7 @@ export const pageFooterStyles = makeStyles({
     linkIconContainer: {
         width: 30,
         marginRight: 30,
+        flexShrink: 0,
         display: "inline-flex",
         justifyContent: "center",
         alignItems: "center",
@@ -324,13 +380,36 @@ export const pageFooterStyles = makeStyles({
     },
 
     contact: {
-        flex: "0 0 380px",
+        flex: "0 0 360px",
+
+        "@media(max-width: 1199px)": {
+            flex: .5,
+        },
     },
 
     siteMap: {
         flex: 1,
-        display: "flex",
-        justifyContent: "space-between",
-        alignItems: "flex-start",
+
+        "@media(min-width: 768px)": {
+            marginLeft: 20,
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "flex-start",
+        },
+
+        "@media(max-width: 767px)": {
+            marginTop: 30,
+            display: "grid",
+            gridTemplateColumns: "1fr 1fr",
+            rowGap: 25,
+        },
+    },
+
+    siteMapSection: {
+        marginTop: 32,
+
+        "@media(max-width: 767px)": {
+            marginTop: 14,
+        },
     },
 });

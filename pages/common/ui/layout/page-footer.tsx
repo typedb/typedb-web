@@ -35,8 +35,10 @@ export const PageFooter: React.FC = () => {
                             <p className={classes.personalDataNotice}>
                                 Subscribe to our newsletter here. By submitting your personal data, you consent to emails from Vaticle. <a>See our Privacy Policy</a>
                             </p>
-                            <input type="email" placeholder="Email address" className={classes.subscribeEmail}/>
-                            <VaticleButton size="small" type="primary" className={classes.subscribeButton}>Subscribe</VaticleButton>
+                            <div className={classes.subscribeActionBlock}>
+                                <input type="email" placeholder="Email address" className={classes.subscribeEmail}/>
+                                <VaticleButton size="small" type="primary" className={classes.subscribeButton}>Subscribe</VaticleButton>
+                            </div>
                         </div>
                     </div>
 
@@ -48,19 +50,19 @@ export const PageFooter: React.FC = () => {
                         <div className={classes.contact}>
                             <h3 className={classes.h3}>Get in Touch</h3>
                             <ul className={classes.linkList}>
-                                <FooterLink href={githubURL} target="_blank" icon={faGithub}>Vaticle on GitHub</FooterLink>
-                                <FooterLink href={discordURL} target="_blank" icon={faDiscord}>Vaticle on Discord</FooterLink>
-                                <FooterLink icon={faPhoneAlt}>Get in touch</FooterLink>
-                                <FooterLink icon={faMapMarkerAlt} type="address" classes={{anchor: classes.linkTwoLine}}>
+                                <ContactDetail href={githubURL} target="_blank" icon={faGithub}>Vaticle on GitHub</ContactDetail>
+                                <ContactDetail href={discordURL} target="_blank" icon={faDiscord}>Vaticle on Discord</ContactDetail>
+                                <ContactDetail icon={faPhoneAlt}>Get in touch</ContactDetail>
+                                <ContactDetail icon={faMapMarkerAlt} type="address" classes={{anchor: classes.linkTwoLine}}>
                                     3rd floor, East, 47-50 Margaret St,
                                     London W1W 8SE, UK
-                                </FooterLink>
+                                </ContactDetail>
                             </ul>
                         </div>
                         <div className={classes.siteMap}>
                             <div>
                                 <h3 className={classes.h3}>Products</h3>
-                                <ul className={classes.linkList}>
+                                <ul className={classes.siteMapSection}>
                                     <FooterLink>TypeDB</FooterLink>
                                     <FooterLink>TypeDB Cluster</FooterLink>
                                     <FooterLink>Quickstart</FooterLink>
@@ -69,7 +71,7 @@ export const PageFooter: React.FC = () => {
                             </div>
                             <div>
                                 <h3 className={classes.h3}>Solutions</h3>
-                                <ul className={classes.linkList}>
+                                <ul className={classes.siteMapSection}>
                                     <FooterLink>Deployment</FooterLink>
                                     <FooterLink>Services</FooterLink>
                                     <FooterLink>Support</FooterLink>
@@ -77,7 +79,7 @@ export const PageFooter: React.FC = () => {
                             </div>
                             <div>
                                 <h3 className={classes.h3}>Developer</h3>
-                                <ul className={classes.linkList}>
+                                <ul className={classes.siteMapSection}>
                                     <FooterLink>Documentation</FooterLink>
                                     <FooterLink>Community</FooterLink>
                                     <FooterLink>Discuss</FooterLink>
@@ -86,7 +88,7 @@ export const PageFooter: React.FC = () => {
                             </div>
                             <div>
                                 <h3 className={classes.h3}>Company</h3>
-                                <ul className={classes.linkList}>
+                                <ul className={classes.siteMapSection}>
                                     <FooterLink>Blog</FooterLink>
                                     <FooterLink>Careers</FooterLink>
                                     <FooterLink>About</FooterLink>
@@ -104,17 +106,20 @@ interface FooterLinkProps {
     href?: string;
     // linkTo?: string;
     target?: string;
+}
+
+interface ContactDetailProps extends FooterLinkProps {
     icon?: IconDefinition;
     type?: "address";
     classes?: Partial<{ anchor: string }>;
 }
 
-const FooterLink: React.FC<FooterLinkProps> = ({children, href, target, icon, type, classes}) => {
+const ContactDetail: React.FC<ContactDetailProps> = ({children, href, target, icon, type, classes}) => {
     const ownClasses = Object.assign({}, commonStyles(), pageFooterStyles());
 
     return (
         <li>
-            <a href={href} target={target} className={clsx(ownClasses.link, classes?.anchor)}>
+            <a href={href} target={target} className={clsx(ownClasses.contactLink, classes?.anchor)}>
                 {icon &&
                 <span className={ownClasses.linkIconContainer}>
                     <FontAwesomeIcon className={ownClasses.linkIcon} icon={icon} />
@@ -124,6 +129,18 @@ const FooterLink: React.FC<FooterLinkProps> = ({children, href, target, icon, ty
                     {children}
                 </address> :
                 <p className={ownClasses.linkText}>{children}</p>}
+            </a>
+        </li>
+    );
+};
+
+const FooterLink: React.FC<FooterLinkProps> = ({children, href, target}) => {
+    const ownClasses = Object.assign({}, commonStyles(), pageFooterStyles());
+
+    return (
+        <li>
+            <a href={href} target={target} className={ownClasses.sitemapLink}>
+                <p className={ownClasses.linkText}>{children}</p>
             </a>
         </li>
     );
