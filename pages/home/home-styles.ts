@@ -281,6 +281,20 @@ export const homePageStyles = makeStyles({
 
     buttonAfterText: {
         marginTop: 40,
+
+        "@media(max-width: 767px)": {
+            marginTop: 30,
+        },
+    },
+
+    videoPlayer: {
+        width: 760,
+        height: 451,
+
+        "@media(max-width: 800px)": {
+            width: "calc(100vw - 40px)",
+            height: "calc((100vw - 40px) * .6)",
+        },
     },
 
     mainActionList: {

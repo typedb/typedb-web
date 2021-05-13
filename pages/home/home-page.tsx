@@ -73,10 +73,9 @@ export const HomePage: React.FC = () => {
 
             <section className={classes.sectionMarginLarge}>
                 <h1 className={classes.h1}>Empower your organisation to solve complex problems</h1>
-                <iframe width="760" height="451" src="https://www.youtube.com/embed/DbnS1feTyOs"
-                        title="YouTube video player" frameBorder="0"
+                <iframe src="https://www.youtube.com/embed/DbnS1feTyOs" title="YouTube video player" frameBorder="0"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowFullScreen className={classes.sectionMarginSmall}/>
+                        allowFullScreen className={clsx(classes.videoPlayer, classes.sectionMarginSmall)}/>
             </section>
 
             <IndustrySection className={classes.sectionMarginLarge}/>
