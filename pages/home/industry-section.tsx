@@ -2,9 +2,9 @@ import { homePageStyles } from "./home-styles";
 import { VaticleButton } from "../common/ui/button/button";
 import React, { useState } from "react";
 import clsx from "clsx";
-import SecurityIcon from "../assets/icons/security-icon.svg";
-import FinanceIcon from "../assets/icons/finance-icon.svg";
-import NLPIcon from "../assets/icons/nlp-icon.svg";
+import SecurityIcon from "../assets/icons/security.svg";
+import FinanceIcon from "../assets/icons/finance.svg";
+import NLPIcon from "../assets/icons/nlp.svg";
 import { LifeSciencesIcon } from "../common/ui/images/life-sciences-icon";
 import { vaticleTheme } from "../styles/theme";
 import { RoboticsIcon } from "../common/ui/images/robotics-icon";
@@ -37,7 +37,7 @@ export const IndustrySection: React.FC<ClassProps> = ({className}) => {
 
             {selectedIndustry === "Health and Life Sciences" &&
             <>
-                <p className={classes.largeText}>
+                <p className={clsx(classes.industryDescription, classes.largeText)}>
                     From pharmaceutical R&D and biomedical research to frontline healthcare delivery, contemporary
                     health and life science industries rely on data to power insight and improve care. Using Vaticle
                     to effectively manage data can help organisations advance scientific research and deliver best
@@ -48,7 +48,7 @@ export const IndustrySection: React.FC<ClassProps> = ({className}) => {
 
             {selectedIndustry === "Defence & Security" &&
             <>
-                <p className={classes.largeText}>
+              <p className={clsx(classes.industryDescription, classes.largeText)}>
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas quis purus pellentesque,
                     tincidunt nisi quis, vehicula purus. Nullam egestas dui nisi. Morbi ultrices lacus justo,
                     suscipit dictum justo suscipit ut. Mauris sed placerat justo. Aenean placerat vitae sapien
@@ -59,7 +59,7 @@ export const IndustrySection: React.FC<ClassProps> = ({className}) => {
 
             {selectedIndustry === "Financial Services" &&
             <>
-                <p className={classes.largeText}>
+              <p className={clsx(classes.industryDescription, classes.largeText)}>
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla dictum massa nec est porta, eu congue
                     odio rhoncus. Nulla sed risus nisi. Donec et tincidunt sapien. Pellentesque in malesuada erat. Duis
                     tempor lacus a dui dapibus, eget sodales velit lacinia. Mauris at dignissim nisi. Nam quis convallis
@@ -70,7 +70,7 @@ export const IndustrySection: React.FC<ClassProps> = ({className}) => {
 
             {selectedIndustry === "Robotics" &&
             <>
-                <p className={classes.largeText}>
+              <p className={clsx(classes.industryDescription, classes.largeText)}>
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut porta diam vitae nunc aliquet, id
                     dignissim nibh commodo. Pellentesque habitant morbi tristique senectus et netus et malesuada fames
                     ac turpis egestas. Maecenas interdum nunc accumsan tortor maximus ornare. In hac habitasse platea
@@ -81,7 +81,7 @@ export const IndustrySection: React.FC<ClassProps> = ({className}) => {
 
             {selectedIndustry === "NLP" &&
             <>
-                <p className={classes.largeText}>
+              <p className={clsx(classes.industryDescription, classes.largeText)}>
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris porta sapien luctus lacus
                     sollicitudin tincidunt. Vivamus ultricies massa vitae felis cursus, ac elementum erat tincidunt.
                     Aliquam urna augue, mollis ut cursus non, egestas egestas libero. Nullam eget rhoncus lorem.
@@ -89,7 +89,6 @@ export const IndustrySection: React.FC<ClassProps> = ({className}) => {
                 </p>
                 <VaticleButton size="small" type="secondary" className={clsx(classes.buttonAfterText, classes.learnMore)}>Learn More</VaticleButton>
             </>}
-
 
             <div className={clsx(classes.sectionMarginSmall, classes.sectionToggleGroup)}>
                 {allIndustries.map(([title, icon]) => (

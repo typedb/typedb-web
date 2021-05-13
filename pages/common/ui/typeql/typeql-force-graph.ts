@@ -14,8 +14,8 @@ import { typeQLGraphColours as colours, typeQLGraphColoursHex as coloursHex, typ
 type Edge = d3.SimulationLinkDatum<Vertex> & TypeQLEdge & { gfx?: PIXI.Graphics };
 type Vertex = d3.SimulationNodeDatum & TypeQLVertex & { gfx?: PIXI.Graphics };
 
-export function runTypeQLForceGraph(container: Element, graphData: TypeQLGraph) {
-    const { width, height } = container.getBoundingClientRect();
+export function runTypeQLForceGraph(container: HTMLElement, graphData: TypeQLGraph) {
+    const [width, height] = [container.offsetWidth, container.offsetHeight];
     const edges: Edge[] = graphData.edges.map((d) => Object.assign({}, d));
     const vertices: Vertex[] = graphData.vertices.map((d) => Object.assign({}, d));
     let dragged = false;

@@ -61,8 +61,12 @@ export const homePageStyles = makeStyles({
             marginLeft: 40,
         },
 
-        "@media(max-width: 1199px)": {
+        "@media (min-width: 768px) and (max-width: 1199px)": {
             marginTop: 40,
+        },
+
+        "@media(max-width: 767px)": {
+            marginTop: 30,
         },
     },
 
@@ -71,13 +75,22 @@ export const homePageStyles = makeStyles({
             marginRight: 40,
         },
 
-        "@media(max-width: 1199px)": {
+        "@media (min-width: 768px) and (max-width: 1199px)": {
             marginTop: 40,
+        },
+
+        "@media(max-width: 767px)": {
+            marginTop: 30,
         },
     },
 
     learnMore: {
         width: 160,
+
+        "@media(max-width: 767px)": {
+            marginLeft: "auto",
+            marginRight: "auto",
+        },
     },
 
     mainLinks: {
@@ -231,6 +244,41 @@ export const homePageStyles = makeStyles({
         "@media(max-width: 767px)": { width: 94 },
     },
 
+    chinaMerchantsBankLogo: {
+        width: 185,
+        "@media(max-width: 767px)": { width: 145 },
+    },
+
+    eagleGenomicsLogo: {
+        width: 185,
+        "@media(max-width: 767px)": { width: 145 },
+    },
+
+    flipkartLogo: {
+        width: 185,
+        "@media(max-width: 767px)": { width: 145 },
+    },
+
+    genentechLogo: {
+        width: 185,
+        "@media(max-width: 767px)": { width: 145 },
+    },
+
+    rairHealthLogo: {
+        width: 185,
+        "@media(max-width: 767px)": { width: 145 },
+    },
+
+    rheosMedicinesLogo: {
+        width: 185,
+        "@media(max-width: 767px)": { width: 145 },
+    },
+
+    rocheLogo: {
+        width: 185,
+        "@media(max-width: 767px)": { width: 145 },
+    },
+
     buttonAfterText: {
         marginTop: 40,
     },
@@ -244,6 +292,14 @@ export const homePageStyles = makeStyles({
 
     clusterAction: {
         width: 224,
+    },
+
+    industryDescription: {
+        height: 136,
+
+        "@media(max-width: 479px)": {
+            height: 280,
+        },
     },
 
     sectionToggleGroup: {
@@ -370,12 +426,12 @@ export const homePageStyles = makeStyles({
 
     testimonialCompanyLogo: {
         position: "absolute",
-        top: 8,
+        top: 5,
         left: 0,
         right: 0,
         margin: "0 auto",
-        width: 72,
-        height: 72,
+        width: 78,
+        height: 78,
         backgroundColor: vaticleTheme.palette.purple["700"],
         borderRadius: "50%",
     },
@@ -431,12 +487,6 @@ export const homePageStyles = makeStyles({
         fontSize: 18,
         lineHeight: "26px",
         fontWeight: 600,
-    },
-
-    testimonialPersonJob: {
-        fontSize: 14,
-        lineHeight: "23px",
-        fontWeight: 300,
     },
 
     carouselControlPanel: {

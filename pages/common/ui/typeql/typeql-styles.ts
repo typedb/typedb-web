@@ -4,14 +4,16 @@ import { vaticleTheme } from "../../../styles/theme";
 export const typeQLVisualiserStyles = makeStyles({
     container: {
         width: 660,
-        maxWidth: "100%",
         height: 400,
         flexShrink: 0,
         display: "flex",
         flexDirection: "column",
 
-        "@media(max-width: 479px)": {
-            height: 204,
+        "@media(max-width: 767px)": {
+            marginLeft: "50%",
+            transform: "translateX(-50%) scale(.54)",
+            marginTop: -92, // (1 - scale) * height / 2
+            marginBottom: -92,
         },
     },
 

@@ -1,12 +1,12 @@
 import { homePageStyles } from "./home-styles";
 import React from "react";
 import clsx from "clsx";
-import HighAvailabilityIcon from "../assets/icons/high-availability-icon.svg";
-import ElasticThroughputIcon from "../assets/icons/elastic-throughput-icon.svg";
-import FingerprintIcon from "../assets/icons/fingerprint-icon.svg";
-import EnterpriseSupportIcon from "../assets/icons/enterprise-support-icon.svg";
-import ClusterManagementIcon from "../assets/icons/cluster-management-icon.svg";
-import BackupAndRecoveryIcon from "../assets/icons/backup-and-recovery-icon.svg";
+import HighAvailabilityIcon from "../assets/icons/high-availability.svg";
+import ElasticThroughputIcon from "../assets/icons/elastic-throughput.svg";
+import FingerprintIcon from "../assets/icons/fingerprint.svg";
+import EnterpriseSupportIcon from "../assets/icons/enterprise-support.svg";
+import ClusterManagementIcon from "../assets/icons/cluster-management.svg";
+import BackupAndRecoveryIcon from "../assets/icons/backup-and-recovery.svg";
 import { VaticleButton } from "../common/ui/button/button";
 import { commonStyles } from "../common/ui/common-styles";
 import { ClassProps } from "../common/class-props";

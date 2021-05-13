@@ -139,6 +139,11 @@ export const vaticleTheme = {
         lineHeight: "56px",
         color: '#FFF',
         fontWeight: 400,
+
+        "@media(max-width: 767px)": {
+            fontSize: 24,
+            lineHeight: "36px",
+        },
     },
     h3: {
         fontSize: 28,

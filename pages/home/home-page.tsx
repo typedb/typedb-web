@@ -7,31 +7,14 @@ import { faDiscord, faGithub, faTwitter } from "@fortawesome/free-brands-svg-ico
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { VaticleButton } from "../common/ui/button/button";
 import clsx from "clsx";
-import { studentHierarchyCode, studentHierarchyGraph } from "../common/ui/typeql/samples/student-hierarchy";
 import { IndustrySection } from './industry-section';
 import { ClusterSection } from "./cluster-section";
 import { TestimonialsSection } from "./testimonials-section";
 import { commonStyles } from "../common/ui/common-styles";
 import { getTypeDBVersion } from "../api/typedb-service";
-import { TypeQLExample } from "./typeql-example";
-import { transitiveLocationCode, transitiveLocationGraph } from "../common/ui/typeql/samples/transitive-location";
-import { locationDataCode, locationDataGraph } from "../common/ui/typeql/samples/location-data";
-import AresGeneticsLogo from "../assets/logos/ares-genetics.png";
-import BerkeleyLogo from "../assets/logos/berkeley.png";
-import CapcoLogo from "../assets/logos/capco.png";
-import CiscoLogo from "../assets/logos/cisco.png";
-import DeutscheTelekomLogo from "../assets/logos/deutsche-telekom.png";
-import DunnhumbyLogo from "../assets/logos/dunnhumby.png";
-import GoogleLogo from "../assets/logos/google.png";
-import InfosysLogo from "../assets/logos/infosys.png";
-import LivingMatrixLogo from "../assets/logos/living-matrix.png";
-import MaunaLogo from "../assets/logos/mauna.png";
-import OpenCTILogo from "../assets/logos/opencti.png";
-import RASALogo from "../assets/logos/rasa.png";
-import TaxfixLogo from "../assets/logos/taxfix.png";
-import TNOLogo from "../assets/logos/tno.png";
-import USTGlobalLogo from "../assets/logos/ust-global.png";
 import VaticleWorld from "../assets/graphics/vaticle-world.svg";
+import { CorporateLogosSection } from "./corporate-logos-section";
+import { TypeQLExamplesSection } from "./typeql-examples-section";
 
 export const HomePage: React.FC = () => {
     const classes = Object.assign({}, commonStyles(), homePageStyles());
@@ -84,58 +67,9 @@ export const HomePage: React.FC = () => {
                 </div>
             </section>
 
-            <section className={clsx(classes.corporateLogos, classes.sectionMarginLarge)}>
-                <img src={BerkeleyLogo} alt="Berkeley Data Science Group" className={classes.berkeleyLogo}/>
-                <img src={AresGeneticsLogo} alt="Ares Genetics" className={classes.aresGeneticsLogo}/>
-                <img src={DeutscheTelekomLogo} alt="Deutsche Telekom" className={classes.deutscheTelekomLogo}/>
-                <img src={CapcoLogo} alt="CAPCO" className={classes.capcoLogo}/>
-                <img src={DunnhumbyLogo} alt="Dunnhumby" className={classes.dunnhumbyLogo}/>
-                <img src={OpenCTILogo} alt="OpenCTI" className={classes.openCTILogo}/>
-                <img src={InfosysLogo} alt="Infosys" className={classes.infosysLogo}/>
-                <img src={LivingMatrixLogo} alt="LivingMatrix" className={classes.livingMatrixLogo}/>
-                <img src={TaxfixLogo} alt="Taxfix" className={classes.taxfixLogo}/>
-                <img src={MaunaLogo} alt="Mauna" className={classes.maunaLogo}/>
-                <img src={TNOLogo} alt="TNO" className={classes.tnoLogo}/>
-                <img src={USTGlobalLogo} alt="USTGlobal" className={classes.ustGlobalLogo}/>
-                <img src={GoogleLogo} alt="Google" className={classes.googleLogo}/>
-                <img src={RASALogo} alt="RASA" className={classes.rasaLogo}/>
-                <img src={CiscoLogo} alt="Cisco" className={classes.ciscoLogo}/>
-            </section>
+            <CorporateLogosSection className={classes.sectionMarginLarge}/>
 
-            <section className={classes.sectionMarginLarge}>
-                <h1 className={classes.h1}>Strong type systems make complex problems easier to tackle</h1>
-                <p className={classes.largeText}>
-                    Vaticle TypeDB provides a strong type system for developers to break down complex problems into
-                    meaningful and logical systems. Through TypeQL, TypeDB provide strong abstractions over
-                    low-level and complex data patterns.
-                </p>
-
-                <TypeQLExample className={classes.sectionMarginSmall} visualiserPosition="left"
-                               code={studentHierarchyCode} graphData={studentHierarchyGraph} title="Expressivity"
-                               body="Vaticle TypeDB allows you to model your domain through the well-known Entity-Relationship model,
-                                     but at its fullest expressivity. It's composed of entity, relationship, and attribute types,
-                                     and also type hierarchies, roles, and rules, allowing you to build expressive datasets
-                                     based-on logical and object-oriented principles."/>
-
-                <TypeQLExample className={classes.sectionMarginLarge} visualiserPosition="right"
-                               code={transitiveLocationCode} graphData={transitiveLocationGraph} title="Safety"
-                               body="Types provide a way to describe the logical structures of your data, allowing Vaticle TypeDB
-                                     to validate that your code is inserting data correctly. Data validation goes beyond static type
-                                     checking, and includes logical validations of inferrable data patterns. With strict type-checking
-                                     errors, you have a dataset that you can trust."/>
-
-                <TypeQLExample className={classes.sectionMarginLarge} visualiserPosition="left"
-                               code={locationDataCode} graphData={locationDataGraph} title="Simplicity"
-                               body="Vaticle TypeDB derives all possible interpretations of a query, through type-based and
-                                     rule-based inference. Complex and verbose data patterns can be queried through simple and
-                                     intuitive TypeQL queries. TypeDB also optimises the traversal path of query execution.
-                                     As a result, TypeDB significantly reduces complexity of applications."/>
-
-                <div className={clsx(classes.mainActionList, classes.sectionMarginSmall)}>
-                    <VaticleButton size="small" type="primary" href={downloadTypeDBURL} target="_blank">Download {typeDBVersion}</VaticleButton>
-                    <VaticleButton size="small" type="primary" href={githubURL} target="_blank">Fork/Star on GitHub</VaticleButton>
-                </div>
-            </section>
+            <TypeQLExamplesSection className={classes.sectionMarginLarge} typeDBVersion={typeDBVersion}/>
 
             <section className={classes.sectionMarginLarge}>
                 <h1 className={classes.h1}>Empower your organisation to solve complex problems</h1>

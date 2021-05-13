@@ -28,6 +28,10 @@ export const commonStyles = makeStyles({
 
     textMarginLarge: {
         marginTop: 16,
+
+        "@media(max-width: 767px)": {
+            marginTop: 8,
+        },
     },
 
     textMarginSmall: {
@@ -52,12 +56,17 @@ export const commonStyles = makeStyles({
         fontSize: 16,
         lineHeight: "28px",
         fontWeight: 300,
+
+        "@media(max-width: 767px)": {
+            fontSize: 14,
+            lineHeight: "23px",
+        },
     },
 
     smallText: {
         fontSize: 14,
-        lineHeight: "21px",
-        fontWeight: 400,
+        lineHeight: "23px",
+        fontWeight: 300,
     },
 
     underDevelopment: {
