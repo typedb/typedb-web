@@ -63,6 +63,12 @@ export const commonStyles = makeStyles({
         },
     },
 
+    mediumTextUnscaled: {
+        fontSize: 16,
+        lineHeight: "28px",
+        fontWeight: 300,
+    },
+
     smallText: {
         fontSize: 14,
         lineHeight: "23px",

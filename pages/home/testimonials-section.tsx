@@ -1,20 +1,24 @@
 import { homePageStyles } from "./home-styles";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import clsx from "clsx";
 import CircleDecoration from "../assets/graphics/circle-decoration.svg";
 import { VaticleIconButton } from "../common/ui/button/icon-button";
 import { commonStyles } from "../common/ui/common-styles";
 import { ClassProps } from "../common/class-props";
-import FlipkartCircleLogo from "../assets/logos/flipkart-circle.svg";
-import FredericCorralAvatar from "../assets/images/frederic-corral.jpg";
+import FredericCorralAvatar from "../assets/images/frederic-corral.png";
 import JonThompsonAvatar from "../assets/images/jon-thompson.jpg";
 import JorisSijsAvatar from "../assets/images/joris-sijs.jpeg";
 import NikSharmaAvatar from "../assets/images/nik-sharma.jpg";
 import RamAnveshAvatar from "../assets/images/ram-anvesh.jpg";
+import FlipkartCircleLogo from "../assets/logos/flipkart-circle.png";
+import FiveAClairCircleLogo from "../assets/logos/5a-clair-circle.png";
+import BioCortexCircleLogo from "../assets/logos/biocortex-circle.png";
+import GravrCircleLogo from "../assets/logos/gravr-circle.png";
+import TNOCircleLogo from "../assets/logos/tno-circle.png";
 
 interface Testimonial {
     companyName: string;
-    companyLogo: React.FC<any>;
+    companyLogo: string;
     personName: string;
     jobTitle: string;
     avatar: string;
@@ -24,6 +28,12 @@ interface Testimonial {
 export const TestimonialsSection: React.FC<ClassProps> = ({className}) => {
     const classes = Object.assign({}, commonStyles(), homePageStyles());
     const [selectedIndex, setSelectedIndex] = useState(1);
+    const [mobile, setMobile] = useState(window.matchMedia("(max-width: 767px)").matches);
+
+    useEffect(() => {
+        const newMobile = window.matchMedia("(max-width: 767px)").matches;
+        if (mobile != newMobile) setMobile(newMobile);
+    }, [window.innerWidth]);
 
     const testimonials: Testimonial[] = [{
         companyName: "Flipkart",
@@ -35,33 +45,33 @@ export const TestimonialsSection: React.FC<ClassProps> = ({className}) => {
         semantic schema, TypeDB solves all our modelling problems so that we can focus more on solving higher level
         problems instead of tweaking traditional graph databases to fit our use cases.`,
     }, {
-        companyName: "A5",
-        companyLogo: FlipkartCircleLogo,
+        companyName: "5a Solutions",
+        companyLogo: FiveAClairCircleLogo,
         personName: "Frederic Corral",
-        jobTitle: "",
+        jobTitle: "Business Analyst R&D",
         avatar: FredericCorralAvatar,
         body: `TypeDB is the only solution that makes it possible to unify data from different IT systems into one
         knowledge graph based on an industry ontology. This is a giant step to enable data exploration for enterprises.`,
     }, {
         companyName: "TNO",
-        companyLogo: FlipkartCircleLogo,
+        companyLogo: TNOCircleLogo,
         personName: "Joris Sijs",
-        jobTitle: "",
+        jobTitle: "Senior Research Lead",
         avatar: JorisSijsAvatar,
         body: `TypeDB makes it easy for our robots to operate autonomously in the real world by being the centre of their
         understanding. TypeDB makes it easy to incorporate expert knowledge and advanced reasoning into its knowledge base.`,
     }, {
         companyName: "BioCortex",
-        companyLogo: FlipkartCircleLogo,
+        companyLogo: BioCortexCircleLogo,
         personName: "Nik Sharma",
         jobTitle: "Founder & CEO",
         avatar: NikSharmaAvatar,
         body: `For developers, TypeDB is really easy to work with. Its unique and expressive type system enables us to
         spend less time data modelling. We can easily integrate complex biomedical datasets. TypeDB provides us the
-        backbone to our therapeutics platform to cure neurodegenerative deceases.`,
+        backbone to our therapeutics platform to cure neurodegenerative diseases.`,
     }, {
         companyName: "Gravr",
-        companyLogo: FlipkartCircleLogo,
+        companyLogo: GravrCircleLogo,
         personName: "Jon Thompson",
         jobTitle: "Founder",
         avatar: JonThompsonAvatar,
@@ -76,10 +86,10 @@ export const TestimonialsSection: React.FC<ClassProps> = ({className}) => {
 
             <div className={classes.carouselContainer}>
                 <div className={clsx(classes.carousel, classes.testimonialCarousel, classes.sectionMarginSmall)}
-                     style={{transform: `translateX(${(((testimonials.length - 1) / 2) - selectedIndex) * 400}px)`}}>
+                     style={{transform: `translateX(${(((testimonials.length - 1) / 2) - selectedIndex) * (mobile ? 360 : 400)}px)`}}>
                     {testimonials.map(({companyName, companyLogo, personName, jobTitle, avatar, body}) => (
                         <div className={classes.testimonialContainer}>
-                            {React.createElement(companyLogo, {className: classes.testimonialCompanyLogo})}
+                            <img src={companyLogo} alt={companyName} className={classes.testimonialCompanyLogo}/>
                             <CircleDecoration className={classes.testimonialCompanyLogoDecoration}/>
 
                             <div className={classes.testimonial}>
@@ -90,7 +100,7 @@ export const TestimonialsSection: React.FC<ClassProps> = ({className}) => {
                                     <img src={avatar} alt={personName} className={classes.testimonialAvatar}/>
                                     <div className={classes.testimonialPersonDetails}>
                                         <p className={classes.testimonialPersonName}>{personName}</p>
-                                        <p className={classes.smallText}>{jobTitle}, {companyName}</p>
+                                        <p className={classes.testimonialPersonJob}>{jobTitle}, {companyName}</p>
                                     </div>
                                 </div>
                             </div>

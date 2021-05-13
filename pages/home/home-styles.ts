@@ -383,6 +383,7 @@ export const homePageStyles = makeStyles({
 
         "@media(max-width: 767px)": {
             gridTemplateColumns: "repeat(auto-fit, 335px)",
+            gap: 30,
         },
     },
 
@@ -425,8 +426,12 @@ export const homePageStyles = makeStyles({
     },
 
     testimonialCarousel: {
-        height: 368,
+        height: 416,
         transition: "transform 300ms ease",
+
+        "@media(max-width: 767px)": {
+            height: 388,
+        },
     },
 
     testimonialContainer: {
@@ -436,6 +441,10 @@ export const homePageStyles = makeStyles({
         flexDirection: "column",
         justifyContent: "flex-end",
         position: "relative",
+
+        "@media(max-width: 767px)": {
+            flexBasis: "360px",
+        },
     },
 
     testimonialCompanyLogo: {
@@ -462,23 +471,32 @@ export const homePageStyles = makeStyles({
     },
 
     testimonial: {
-        height: 324,
+        height: 372,
         backgroundColor: vaticleTheme.palette.purple["600"],
         borderRadius: 5,
         display: "flex",
         flexDirection: "column",
         padding: "0 20px",
         textAlign: "start",
+
+        "@media(max-width: 767px)": {
+            height: 344,
+        },
     },
 
     testimonialBody: {
         marginTop: 58,
+        height: 196, // lineHeight * 7
+
+        "@media(max-width: 767px)": {
+            height: 168,
+        },
     },
 
     testimonialDivider: {
         marginTop: 16,
         height: 0,
-        width: 320,
+        width: "100%",
         border: `1px solid ${vaticleTheme.palette.purple["450"]}`,
     },
 
@@ -501,6 +519,18 @@ export const homePageStyles = makeStyles({
         fontSize: 18,
         lineHeight: "26px",
         fontWeight: 600,
+    },
+
+    testimonialPersonJob: {
+        fontSize: 16,
+        lineHeight: "28px",
+        fontWeight: 300,
+
+        "@media(max-width: 767px)": {
+            fontSize: 14,
+            lineHeight: "24px",
+            fontWeight: 400,
+        },
     },
 
     carouselControlPanel: {
@@ -562,5 +592,9 @@ export const homePageStyles = makeStyles({
 
     communitySection: {
         width: 1220,
+    },
+
+    vaticleWorld: {
+        maxWidth: "calc(100vw - 40px)",
     },
 });

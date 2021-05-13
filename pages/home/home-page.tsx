@@ -86,7 +86,7 @@ export const HomePage: React.FC = () => {
 
             <section className={clsx(classes.communitySection, classes.sectionMarginLarge)}>
                 <h1 className={classes.h1}>Join the global movement of the Vaticle Community</h1>
-                <VaticleWorld className={classes.sectionMarginSmall}/>
+                <VaticleWorld className={clsx(classes.vaticleWorld, classes.sectionMarginSmall)}/>
                 <VaticleButton size="small" type="primary" className={classes.sectionMarginSmall}>Join the Vaticle Community around the world</VaticleButton>
             </section>
 
