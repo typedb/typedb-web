@@ -8,12 +8,6 @@ $color-green-300: #02DAC9;
 $default-background: $color-purple-700;
 $default-text-color: $color-white;
 
-@font-face {
-  font-family: 'OCRAStd';
-  src: url('../assets/fonts/OCRAStd.otf');
-  font-weight: normal;
-}
-
 html, body {
   height: 100%;
   background-color: $default-background;

@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import { IconButton } from '@material-ui/core';
 import React, { useState } from 'react';
 
-import VaticleLogo from "../../../assets/images/vaticle-logo.svg";
+import VaticleLogo from "../../../assets/logos/vaticle.svg";
 
 import { pageHeaderStyles } from "./layout-styles";
 import { GithubButton } from "../button/github-button";

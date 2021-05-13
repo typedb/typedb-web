@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import interact from "interactjs";
 import { typeQLVisualiserStyles } from "./typeql-styles";
-import PanelSlider from "../../../assets/images/panel-slider.svg";
+import PanelSlider from "../../../assets/graphics/panel-slider.svg";
 import clsx from "clsx";
 import Prism from "prismjs";
 

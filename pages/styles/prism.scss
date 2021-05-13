@@ -10,6 +10,7 @@ https://prismjs.com/download.html#themes=prism */
 $color-blue-100: #91B3FF;
 $color-yellow-100: #FFE4A7;
 $color-pink-200: #F28DD7;
+$color-green-250: #55EAE2;
 
 code[class*="language-"],
 pre[class*="language-"] {
@@ -48,7 +49,7 @@ pre[class*="language-"] {
 .token.char,
 .token.builtin,
 .token.inserted {
-    color: #690;
+    color: $color-green-250;
 }
 
 .token.operator,

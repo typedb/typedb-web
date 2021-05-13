@@ -2,7 +2,7 @@ import { createMuiTheme, fade } from '@material-ui/core/styles';
 import { Overrides } from '@material-ui/core/styles/overrides';
 import createSpacing, { Spacing } from '@material-ui/core/styles/createSpacing';
 
-export type SizeIndicator = 'smallest' | 'smaller' | 'small' | 'large' | 'larger' | 'largest';
+export type SizeIndicator = 'smallest' | 'smaller' | 'small' | 'medium' | 'large' | 'larger' | 'largest';
 type SizeIndicatorMap = Record<SizeIndicator, number>;
 
 export type ColorCodeMap = Record<number, string>;
@@ -17,16 +17,14 @@ export interface VaticleTheme {
         red: ColorCodeMap;
         blue: ColorCodeMap;
         yellow: ColorCodeMap;
+        pink: ColorCodeMap;
         grey: ColorCodeMap;
     };
 
     typography: {
         fontFamily: {
             main: string;
-            fixedWidth: {
-                variationA: string;
-                variationB: string;
-            };
+            fixedWidth: string;
         };
         htmlFontSize: number;
         fontSize: Partial<SizeIndicatorMap>;
@@ -76,6 +74,7 @@ export const vaticleTheme = {
         green: {
             100: '#52FACE',
             200: '#3CEDE0',
+            250: '#55EAE2',
             300: '#02DAC9',
             500: '#0B939F',
         },
@@ -111,10 +110,7 @@ export const vaticleTheme = {
     typography: {
         fontFamily: {
             main: 'Titillium Web',
-            fixedWidth: {
-                variationA: 'Ubuntu Mono',
-                variationB: 'OCRAStd',
-            },
+            fixedWidth: 'Ubuntu Mono',
         },
         htmlFontSize: 12,
         fontSize: {
@@ -170,12 +166,6 @@ export const vaticleMuiTheme = createMuiTheme({
         fontFamily: 'Titillium Web',
     },
     vaticle: vaticleTheme,
-    // props: {
-    //     MuiButtonBase: {
-    //         // No more ripple, on the whole application
-    //         disableRipple: true,
-    //     },
-    // },
     overrides: {
         MuiSelect: {
             select: {

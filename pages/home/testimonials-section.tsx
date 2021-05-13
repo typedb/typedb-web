@@ -1,9 +1,9 @@
 import { homePageStyles } from "./home-styles";
 import React, { useState } from "react";
 import clsx from "clsx";
-import HighAvailabilityIcon from "../assets/icons/high-availability-icon.svg";
-import ClusterManagementIcon from "../assets/icons/cluster-management-icon.svg";
-import CircleDecoration from "../assets/images/circle-decoration.svg";
+import HighAvailabilityIcon from "../assets/icons/high-availability.svg";
+import ClusterManagementIcon from "../assets/icons/cluster-management.svg";
+import CircleDecoration from "../assets/graphics/circle-decoration.svg";
 import { VaticleIconButton } from "../common/ui/button/icon-button";
 import { commonStyles } from "../common/ui/common-styles";
 import { ClassProps } from "../common/class-props";
