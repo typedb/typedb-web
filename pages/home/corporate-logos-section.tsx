@@ -11,6 +11,7 @@ import TNOLogo from "../assets/logos/tno.png";
 import EagleGenomicsLogo from "../assets/logos/eagle-genomics.png";
 import RAIRHealthLogo from "../assets/logos/rair-health.png";
 import RheosMedicinesLogo from "../assets/logos/rheos-medicines.png";
+import NestleHealthScienceLogo from "../assets/logos/nestle-health-science.png";
 
 export const CorporateLogosSection: React.FC<ClassProps> = ({className}) => {
     const classes = Object.assign({}, commonStyles(), homePageStyles());
@@ -25,6 +26,7 @@ export const CorporateLogosSection: React.FC<ClassProps> = ({className}) => {
             <img src={EagleGenomicsLogo} alt="Eagle Genomics" className={classes.eagleGenomicsLogo}/>
             <img src={RAIRHealthLogo} alt="RAIR Health" className={classes.rairHealthLogo}/>
             <img src={RheosMedicinesLogo} alt="Rheos Medicines" className={classes.rheosMedicinesLogo}/>
+            <img src={NestleHealthScienceLogo} alt="Nestle Health Science" className={classes.nestleHealthScienceLogo}/>
         </section>
     );
 }

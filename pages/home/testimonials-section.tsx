@@ -9,11 +9,11 @@ import JonThompsonAvatar from "../assets/images/jon-thompson.jpg";
 import JorisSijsAvatar from "../assets/images/joris-sijs.jpeg";
 import NikSharmaAvatar from "../assets/images/nik-sharma.jpg";
 import RamAnveshAvatar from "../assets/images/ram-anvesh.jpg";
-import FlipkartCircleLogo from "../assets/logos/flipkart-circle.png";
-import FiveAClairCircleLogo from "../assets/logos/5a-clair-circle.png";
-import BioCortexCircleLogo from "../assets/logos/biocortex-circle.png";
-import GravrCircleLogo from "../assets/logos/gravr-circle.png";
-import TNOCircleLogo from "../assets/logos/tno-circle.png";
+import FlipkartSquareLogo from "../assets/logos/flipkart-square-white.png";
+import FiveASquareLogo from "../assets/logos/5a-square-white.png";
+import BioCortexSquareLogo from "../assets/logos/biocortex-square-white.png";
+import GravrSquareLogo from "../assets/logos/gravr-square-white.png";
+import TNOSquareLogo from "../assets/logos/tno-square-white.png";
 
 interface Testimonial {
     companyName: string;
@@ -35,7 +35,7 @@ export const TestimonialsSection: React.FC<ClassProps> = ({className}) => {
 
     const testimonials: Testimonial[] = [{
         companyName: "Flipkart",
-        companyLogo: FlipkartCircleLogo,
+        companyLogo: FlipkartSquareLogo,
         personName: "Ram Anvesh",
         jobTitle: "Software Engineer",
         avatar: RamAnveshAvatar,
@@ -44,7 +44,7 @@ export const TestimonialsSection: React.FC<ClassProps> = ({className}) => {
         problems instead of tweaking traditional graph databases to fit our use cases.`,
     }, {
         companyName: "5a Solutions",
-        companyLogo: FiveAClairCircleLogo,
+        companyLogo: FiveASquareLogo,
         personName: "Frederic Corral",
         jobTitle: "Business Analyst R&D",
         avatar: FredericCorralAvatar,
@@ -52,7 +52,7 @@ export const TestimonialsSection: React.FC<ClassProps> = ({className}) => {
         knowledge graph based on an industry ontology. This is a giant step to enable data exploration for enterprises.`,
     }, {
         companyName: "TNO",
-        companyLogo: TNOCircleLogo,
+        companyLogo: TNOSquareLogo,
         personName: "Joris Sijs",
         jobTitle: "Senior Research Lead",
         avatar: JorisSijsAvatar,
@@ -60,7 +60,7 @@ export const TestimonialsSection: React.FC<ClassProps> = ({className}) => {
         understanding. TypeDB makes it easy to incorporate expert knowledge and advanced reasoning into its knowledge base.`,
     }, {
         companyName: "BioCortex",
-        companyLogo: BioCortexCircleLogo,
+        companyLogo: BioCortexSquareLogo,
         personName: "Nik Sharma",
         jobTitle: "Founder & CEO",
         avatar: NikSharmaAvatar,
@@ -69,7 +69,7 @@ export const TestimonialsSection: React.FC<ClassProps> = ({className}) => {
         backbone to our therapeutics platform to cure neurodegenerative diseases.`,
     }, {
         companyName: "Gravr",
-        companyLogo: GravrCircleLogo,
+        companyLogo: GravrSquareLogo,
         personName: "Jon Thompson",
         jobTitle: "Founder",
         avatar: JonThompsonAvatar,

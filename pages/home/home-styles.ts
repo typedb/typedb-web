@@ -274,6 +274,11 @@ export const homePageStyles = makeStyles({
         "@media(max-width: 767px)": { width: 145 },
     },
 
+    nestleHealthScienceLogo: {
+        width: 185,
+        "@media(max-width: 767px)": { width: 145 },
+    },
+
     rocheLogo: {
         width: 185,
         "@media(max-width: 767px)": { width: 145 },
@@ -521,8 +526,8 @@ export const homePageStyles = makeStyles({
         margin: "0 auto",
         width: 78,
         height: 78,
-        backgroundColor: vaticleTheme.palette.purple["700"],
         borderRadius: "50%",
+        border: `5px solid ${vaticleTheme.palette.purple["700"]}`,
     },
 
     testimonialCompanyLogoDecoration: {
