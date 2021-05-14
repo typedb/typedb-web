@@ -415,35 +415,72 @@ export const homePageStyles = makeStyles({
         fontWeight: 400,
     },
 
+    testimonialsSection: {
+        width: 1200,
+    },
+
     carouselContainer: {
-        width: "100%",
         overflow: "hidden",
+        boxSizing: "border-box",
+        position: "relative",
     },
 
     carousel: {
-        display: "flex",
-        justifyContent: "center",
+        display: "block",
+        position: "absolute",
+
+        "&:hover": {
+            animationPlayState: "paused",
+        },
+    },
+
+    testimonialCarouselContainer: {
+        height: 416,
+        width: "100%",
+    },
+
+    "@keyframes testimonials": {
+        "0%": { left: 0 },
+        "18%": { left: 0 },
+        "20%": { left: -400 },
+        "38%": { left: -400 },
+        "40%": { left: -800 },
+        "58%": { left: -800 },
+        "60%": { left: -1200 },
+        "78%": { left: -1200 },
+        "80%": { left: -1600 },
+        "98%": { left: -1600 },
+        "100%": { left: -2000 },
     },
 
     testimonialCarousel: {
+        width: 4000, // item width * (# of items) * 2
         height: 416,
-        transition: "transform 300ms ease",
+        animation: "$testimonials 15s linear infinite",
 
         "@media(max-width: 767px)": {
+            width: 3600,
             height: 388,
         },
     },
 
+    carouselHalf: {
+        float: "left",
+        width: "50%",
+        height: "100%",
+    },
+
     testimonialContainer: {
-        flex: "1 0 400px",
+        width: 400,
+        height: "100%",
         padding: "0 20px",
-        display: "flex",
+        display: "inline-flex",
         flexDirection: "column",
         justifyContent: "flex-end",
         position: "relative",
 
         "@media(max-width: 767px)": {
-            flexBasis: "360px",
+            width: 360,
         },
     },
 

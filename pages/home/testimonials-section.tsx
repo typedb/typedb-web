@@ -33,7 +33,7 @@ export const TestimonialsSection: React.FC<ClassProps> = ({className}) => {
     useEffect(() => {
         const newMobile = window.matchMedia("(max-width: 767px)").matches;
         if (mobile != newMobile) setMobile(newMobile);
-    }, [window.innerWidth]);
+    }, [window.innerWidth]); // TODO: resizing window doesn't seem to trigger this hook
 
     const testimonials: Testimonial[] = [{
         companyName: "Flipkart",
@@ -81,12 +81,14 @@ export const TestimonialsSection: React.FC<ClassProps> = ({className}) => {
     }];
 
     return (
-        <section className={className}>
+        <section className={clsx(className, classes.testimonialsSection)}>
             <h1 className={classes.h1}>Become the pioneer of your industry</h1>
 
-            <div className={classes.carouselContainer}>
-                <div className={clsx(classes.carousel, classes.testimonialCarousel, classes.sectionMarginSmall)}
-                     style={{transform: `translateX(${(((testimonials.length - 1) / 2) - selectedIndex) * (mobile ? 360 : 400)}px)`}}>
+            <div className={clsx(classes.carouselContainer, classes.testimonialCarouselContainer, classes.sectionMarginSmall)}>
+                <div className={clsx(classes.carousel, classes.testimonialCarousel)}
+                     /*style={{transform: `translateX(${(((testimonials.length - 1) / 2) - selectedIndex) * (mobile ? 360 : 400)}px)`}}*/>
+                    {[0, 0].map(() => (
+                    <span className={classes.carouselHalf}>
                     {testimonials.map(({companyName, companyLogo, personName, jobTitle, avatar, body}) => (
                         <div className={classes.testimonialContainer}>
                             <img src={companyLogo} alt={companyName} className={classes.testimonialCompanyLogo}/>
@@ -104,8 +106,8 @@ export const TestimonialsSection: React.FC<ClassProps> = ({className}) => {
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    ))}
+                        </div>))}
+                    </span>))}
                 </div>
             </div>
 
