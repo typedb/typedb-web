@@ -73,24 +73,20 @@ export const vaticleTheme = {
         },
         green: {
             100: '#52FACE',
-            200: '#3CEDE0',
-            250: '#55EAE2',
             300: '#02DAC9',
             500: '#0B939F',
         },
         red: {
-            100: '#FF7078',
+            100: '#FF8888',
         },
         blue: {
-            100: '#91B3FF',
+            100: '#86AAFF',
             200: '#888DCA',
         },
         yellow: {
-            100: '#FFE4A7',
-            200: '#FFDC92',
+            300: '#F6C94C',
         },
         pink: {
-            100: '#FFA9E8',
             200: '#F28DD7',
         },
         grey: {

@@ -33,8 +33,6 @@ export function runTypeQLForceGraph(container: HTMLElement, graphData: TypeQLGra
 
         interaction: app.renderer.plugins.interaction // the interaction module is important for wheel to work properly when renderer.view is placed or scaled
     });
-    const baseWidth = 660;
-    if (width < baseWidth) viewport.scaled = width / baseWidth; // TODO: currently doesn't update when screen is resized and made bigger
     app.stage.addChild(viewport);
 
     // activate plugins
@@ -47,6 +45,34 @@ export function runTypeQLForceGraph(container: HTMLElement, graphData: TypeQLGra
     const simulation = createForceSimulation(vertices, edges, width, height);
 
     const ubuntuMono = new FontFaceObserver("Ubuntu Mono") as { load: () => Promise<any> };
+
+    function onDragStart(this: any, evt: any) {
+        viewport.plugins.pause('drag');
+        simulation.alphaTarget(0.3).restart();
+        this.isDown = true;
+        this.eventData = evt.data;
+        this.alpha = 0.5;
+        this.dragging = true;
+    }
+
+    function onDragEnd(this: any, gfx: any) {
+        gfx.alpha = 1;
+        gfx.dragging = false;
+        gfx.isOver = false;
+        gfx.eventData = null;
+        delete this.fx;
+        delete this.fy;
+        viewport.plugins.resume('drag');
+    }
+
+    function onDragMove(this: any, gfx: any) {
+        if (gfx.dragging) {
+            dragged = true;
+            const newPosition = gfx.eventData.getLocalPosition(gfx.parent);
+            this.fx = newPosition.x;
+            this.fy = newPosition.y;
+        }
+    }
 
     vertices.forEach((vertex) => {
         const boundDragMove = onDragMove.bind(vertex);
@@ -116,34 +142,6 @@ export function runTypeQLForceGraph(container: HTMLElement, graphData: TypeQLGra
             edgesGFX.clear();
         }
     };
-
-    function onDragStart(this: any, evt: any) {
-        viewport.plugins.pause('drag');
-        simulation.alphaTarget(0.3).restart();
-        this.isDown = true;
-        this.eventData = evt.data;
-        this.alpha = 0.5;
-        this.dragging = true;
-    }
-
-    function onDragEnd(this: any, gfx: any) {
-        gfx.alpha = 1;
-        gfx.dragging = false;
-        gfx.isOver = false;
-        gfx.eventData = null;
-        delete this.fx;
-        delete this.fy;
-        viewport.plugins.resume('drag');
-    }
-
-    function onDragMove(this: any, gfx: any) {
-        if (gfx.dragging) {
-            dragged = true;
-            const newPosition = gfx.eventData.getLocalPosition(gfx.parent);
-            this.fx = newPosition.x;
-            this.fy = newPosition.y;
-        }
-    }
 }
 
 function createForceSimulation(vertices: Vertex[], edges: Edge[], width: number, height: number) {
@@ -208,7 +206,7 @@ function renderVertex(vertex: Vertex, fontFace: { load: () => Promise<any> }) {
             fill: coloursHex.vertexLabel,
         });
         text1.anchor.set(0.5);
-        text1.resolution = 2;
+        text1.resolution = window.devicePixelRatio * 2;
         vertex.gfx.addChild(text1);
     });
 }
@@ -222,7 +220,7 @@ function renderEdge(edge: Edge, edgesGFX: PIXI.Graphics, edgeLabelStyle: Partial
         // Draw edge label
         const centrePoint = midpoint({ from: lineSource, to: lineTarget });
         const edgeLabel = new PIXI.Text(label, edgeLabelStyle);
-        edgeLabel.resolution = 2;
+        edgeLabel.resolution = window.devicePixelRatio * 2;
         edgeLabel.anchor.set(0.5);
         edgeLabel.position.set(centrePoint.x, centrePoint.y);
         edgesGFX.addChild(edgeLabel);

@@ -130,13 +130,13 @@ export const typeQLVisualiserStyles = makeStyles({
     },
 });
 
-const blue100 = 0x91B3FF;
-const pink100 = 0xFFA9E8;
-const yellow200 = 0xFFDC92;
+const blue100 = 0x86AAFF;
+const pink200 = 0xF28DD7;
+const yellow300 = 0xF6C94C;
 
 export const typeQLGraphColours = {
-    entity: pink100,
-    relation: yellow200,
+    entity: pink200,
+    relation: yellow300,
     edge: blue100,
 };
 

@@ -75,17 +75,41 @@ export const commonStyles = makeStyles({
         fontWeight: 300,
     },
 
+    buttonAfterText: {
+        marginTop: 40,
+
+        "@media(max-width: 767px)": {
+            marginTop: 30,
+        },
+    },
+
+    learnMore: {
+        width: 160,
+
+        "@media(max-width: 767px)": {
+            marginLeft: "auto",
+            marginRight: "auto",
+        },
+    },
+
+    mainActionList: {
+        display: "grid",
+        justifyContent: "center",
+        gridTemplateColumns: "repeat(auto-fit, 224px)",
+        gap: "30px 40px",
+    },
+
     underDevelopment: {
         maxWidth: 800,
         padding: "16px",
-        border: `2px solid ${vaticleTheme.palette.green["200"]}`,
+        border: `2px solid ${vaticleTheme.palette.green["300"]}`,
         borderRadius: 5,
         margin: "0 auto",
         fontSize: 16,
     },
 
     underDevelopmentLink: {
-        color: `${vaticleTheme.palette.green["200"]} !important`,
+        color: `${vaticleTheme.palette.green["300"]} !important`,
     },
 
     hideDesktop: {

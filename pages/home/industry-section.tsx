@@ -1,4 +1,4 @@
-import { homePageStyles } from "./home-styles";
+import { homePageIndustryStyles } from "./home-styles";
 import { VaticleButton } from "../common/ui/button/button";
 import React, { useState } from "react";
 import clsx from "clsx";
@@ -14,7 +14,7 @@ import { ClassProps } from "../common/class-props";
 type IndustryName = "Health and Life Sciences" | "Defence & Security" | "Financial Services" | "Robotics" | "NLP";
 
 export const IndustrySection: React.FC<ClassProps> = ({className}) => {
-    const classes = Object.assign({}, commonStyles(), homePageStyles());
+    const classes = Object.assign({}, commonStyles(), homePageIndustryStyles());
     const [selectedIndustry, setSelectedIndustry] = useState<IndustryName>("Health and Life Sciences");
 
     const isSelected = (industry: IndustryName) => {
@@ -30,7 +30,6 @@ export const IndustrySection: React.FC<ClassProps> = ({className}) => {
         ["NLP", NLPIcon],
     ];
 
-    // TODO: We should enforce that all sections have the same height - perhaps by laying them side by side
     return (
         <section className={className}>
             <h2 className={classes.h2}>{selectedIndustry}</h2>
@@ -106,7 +105,7 @@ interface SectionToggleProps {
 }
 
 export const SectionToggle: React.FC<SectionToggleProps> = ({title, icon, binding, selected}) => {
-    const classes = homePageStyles();
+    const classes = homePageIndustryStyles();
 
     return (
         <div className={classes.sectionToggle}>

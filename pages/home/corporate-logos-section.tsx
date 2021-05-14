@@ -1,7 +1,7 @@
 import clsx from "clsx";
 import React from "react";
 import { commonStyles } from "../common/ui/common-styles";
-import { homePageStyles } from "./home-styles";
+import { homePageCorporateLogosStyles } from "./home-styles";
 import { ClassProps } from "../common/class-props";
 import FlipkartLogo from "../assets/logos/flipkart.png";
 import RocheLogo from "../assets/logos/roche.png";
@@ -14,7 +14,7 @@ import RheosMedicinesLogo from "../assets/logos/rheos-medicines.png";
 import NestleHealthScienceLogo from "../assets/logos/nestle-health-science.png";
 
 export const CorporateLogosSection: React.FC<ClassProps> = ({className}) => {
-    const classes = Object.assign({}, commonStyles(), homePageStyles());
+    const classes = Object.assign({}, commonStyles(), homePageCorporateLogosStyles());
 
     return (
         <section className={clsx(className, classes.corporateLogos)}>

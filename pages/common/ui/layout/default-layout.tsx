@@ -1,29 +1,19 @@
-import clsx from 'clsx';
 import React, { useEffect, useState } from 'react';
 import { defaultLayoutStyles } from './layout-styles';
 import { PageHeader } from "./page-header";
 import { commonStyles } from "../common-styles";
 import { PageFooter } from "./page-footer";
 import { getTypeDBVersion } from "../../../api/typedb-service";
+import { legacySiteURL } from "../../urls";
 
-interface DefaultLayoutProps {
-    classes?: Partial<Record<'main', string>>;
-    navigation?: React.ReactNode;
-}
-
-export const DefaultLayout: React.FC<DefaultLayoutProps> = ({
-    classes,
-    children,
-    navigation
-}) => {
+export const DefaultLayout: React.FC = ({ children }) => {
     const ownClasses = Object.assign({}, commonStyles(), defaultLayoutStyles());
 
     const [typeDBVersion, setTypeDBVersion] = useState("");
     useEffect(() => {
         getTypeDBVersion().then(version => {
             setTypeDBVersion(version);
-        }, error => {
-            console.error(error);
+        }, _error => {
             setTypeDBVersion("TypeDB");
         });
     }, []);
@@ -31,12 +21,11 @@ export const DefaultLayout: React.FC<DefaultLayoutProps> = ({
     return (
         <>
             <PageHeader typeDBVersion={typeDBVersion}/>
-            <main className={clsx(ownClasses.main, classes?.main)}>
-                {navigation}
+            <main className={ownClasses.main}>
                 <article>
                     <section className={ownClasses.sectionMarginSmall}>
                         <p className={ownClasses.underDevelopment}>
-                            This site is currently under development - please use <a href="https://grakn.ai" className={ownClasses.underDevelopmentLink}>https://grakn.ai</a>
+                            This site is currently under development - please use <a href={legacySiteURL} className={ownClasses.underDevelopmentLink}>{legacySiteURL}</a>
                         </p>
                     </section>
                     {children}

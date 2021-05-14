@@ -7,10 +7,11 @@ https://prismjs.com/download.html#themes=prism */
  * Modified by alexjpwalker
  */
 
-$color-blue-100: #91B3FF;
-$color-yellow-100: #FFE4A7;
+$color-blue-100: #86AAFF;
+$color-yellow-300: #F6C94C;
 $color-pink-200: #F28DD7;
-$color-green-250: #55EAE2;
+$color-green-300: #02DAC9;
+$color-red-100: #FF8888;
 
 code[class*="language-"],
 pre[class*="language-"] {
@@ -40,7 +41,7 @@ pre[class*="language-"] {
 .token.symbol,
 .token.deleted,
 .token.super {
-    color: $color-yellow-100;
+    color: $color-yellow-300;
 }
 
 .token.selector,
@@ -49,7 +50,7 @@ pre[class*="language-"] {
 .token.char,
 .token.builtin,
 .token.inserted {
-    color: $color-green-250;
+    color: $color-green-300;
 }
 
 .token.operator,
@@ -74,7 +75,7 @@ pre[class*="language-"] {
 .token.regex,
 .token.important,
 .token.variable {
-    color: #FFA187;
+    color: $color-red-100;
 }
 
 .token.important,

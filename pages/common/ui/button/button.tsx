@@ -33,7 +33,7 @@ export const VaticleButton: React.FC<BaseButtonProps> = props => {
 
     const ownClasses = buttonStyles({ size, type });
 
-    const linkProps = Boolean(to) ? { component: Link, to } : {};
+    const linkProps = to ? { component: Link, to } : {};
 
     return (
         <a className={clsx(ownClasses.root, className)} href={href} onClick={onClick} target={target} {...linkProps} {...htmlAttrs}>

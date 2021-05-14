@@ -22,8 +22,7 @@ export const HomePage: React.FC = () => {
     useEffect(() => {
         getTypeDBVersion().then(version => {
             setTypeDBVersion(version);
-        }, error => {
-            console.error(error);
+        }, _error => {
             setTypeDBVersion("TypeDB");
         });
     }, []);

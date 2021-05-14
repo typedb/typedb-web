@@ -8,10 +8,10 @@ export const CloudPage: React.FC = () => {
 
     return (
         <DefaultLayout>
-            <section className={classes.defaultSubsection}>
-                <h1 className={classes.h1}>Grakn Cluster in the Cloud and On-Premise</h1>
+            <section className={classes.sectionMarginSmall}>
+                <h1 className={classes.h1}>TypeDB Cluster in the Cloud and On-Premise</h1>
                 <p className={classes.largeText}>
-                    Easily deploy and manage Grakn Cluster on one machine, or a thousand-node cluster
+                    Easily deploy and manage TypeDB Cluster on one machine, or a thousand-node cluster
                 </p>
             </section>
         </DefaultLayout>

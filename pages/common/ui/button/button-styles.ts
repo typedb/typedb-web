@@ -69,8 +69,7 @@ export const githubButtonStyles = makeStyles({
         fontSize: 36,
     },
 });
-
-export const iconButtonStyles = makeStyles({
+makeStyles({
     root: {
         width: 45,
         height: 45,

@@ -84,15 +84,6 @@ export const homePageStyles = makeStyles({
         },
     },
 
-    learnMore: {
-        width: 160,
-
-        "@media(max-width: 767px)": {
-            marginLeft: "auto",
-            marginRight: "auto",
-        },
-    },
-
     mainLinks: {
         width: '100%',
         marginLeft: "auto",
@@ -157,6 +148,26 @@ export const homePageStyles = makeStyles({
         height: '72px !important',
     },
 
+    videoPlayer: {
+        width: 760,
+        height: 451,
+
+        "@media(max-width: 800px)": {
+            width: "calc(100vw - 40px)",
+            height: "calc((100vw - 40px) * .6)",
+        },
+    },
+
+    communitySection: {
+        width: 1220,
+    },
+
+    vaticleWorld: {
+        maxWidth: "calc(100vw - 40px)",
+    },
+});
+
+export const homePageCorporateLogosStyles = makeStyles({
     corporateLogos: {
         display: "grid",
         gridTemplateColumns: "repeat(auto-fit, minmax(195px, 1fr))",
@@ -169,79 +180,9 @@ export const homePageStyles = makeStyles({
         },
     },
 
-    berkeleyLogo: {
-        width: 163,
-        "@media(max-width: 767px)": { width: 145 },
-    },
-
-    aresGeneticsLogo: {
-        width: 199,
-        "@media(max-width: 767px)": { width: 145 },
-    },
-
-    deutscheTelekomLogo: {
-        width: 185,
-        "@media(max-width: 767px)": { width: 145 },
-    },
-
-    dunnhumbyLogo: {
-        width: 184,
-        "@media(max-width: 767px)": { width: 145 },
-    },
-
-    openCTILogo: {
-        width: 186,
-        "@media(max-width: 767px)": { width: 145 },
-    },
-
-    capcoLogo: {
-        width: 128,
-        "@media(max-width: 767px)": { width: 114 },
-    },
-
-    infosysLogo: {
-        width: 167,
-        "@media(max-width: 767px)": { width: 114 },
-    },
-
-    livingMatrixLogo: {
-        width: 185,
-        "@media(max-width: 767px)": { width: 145 },
-    },
-
-    taxfixLogo: {
-        width: 150,
-        "@media(max-width: 767px)": { width: 145 },
-    },
-
-    maunaLogo: {
-        width: 177,
-        "@media(max-width: 767px)": { width: 145 },
-    },
-
     tnoLogo: {
         width: 185,
         "@media(max-width: 767px)": { width: 151 },
-    },
-
-    ustGlobalLogo: {
-        width: 185,
-        "@media(max-width: 767px)": { width: 145 },
-    },
-
-    googleLogo: {
-        width: 192,
-        "@media(max-width: 767px)": { width: 145 },
-    },
-
-    rasaLogo: {
-        width: 112,
-        "@media(max-width: 767px)": { width: 106 },
-    },
-
-    ciscoLogo: {
-        width: 120,
-        "@media(max-width: 767px)": { width: 94 },
     },
 
     chinaMerchantsBankLogo: {
@@ -283,36 +224,9 @@ export const homePageStyles = makeStyles({
         width: 185,
         "@media(max-width: 767px)": { width: 145 },
     },
+});
 
-    buttonAfterText: {
-        marginTop: 40,
-
-        "@media(max-width: 767px)": {
-            marginTop: 30,
-        },
-    },
-
-    videoPlayer: {
-        width: 760,
-        height: 451,
-
-        "@media(max-width: 800px)": {
-            width: "calc(100vw - 40px)",
-            height: "calc((100vw - 40px) * .6)",
-        },
-    },
-
-    mainActionList: {
-        display: "grid",
-        justifyContent: "center",
-        gridTemplateColumns: "repeat(auto-fit, 224px)",
-        gap: "30px 40px",
-    },
-
-    clusterAction: {
-        width: 224,
-    },
-
+export const homePageIndustryStyles = makeStyles({
     industryDescription: {
         height: 136,
 
@@ -386,7 +300,9 @@ export const homePageStyles = makeStyles({
         lineHeight: "28px",
         fontWeight: 300,
     },
+});
 
+export const homePageClusterStyles = makeStyles({
     featurePanelList: {
         display: "grid",
         justifyContent: "center",
@@ -428,6 +344,12 @@ export const homePageStyles = makeStyles({
         fontWeight: 400,
     },
 
+    clusterAction: {
+        width: 224,
+    },
+});
+
+export const homePageTestimonialsStyles = makeStyles({
     testimonialsSection: {
         width: "100vw",
         maxWidth: "100vw",
@@ -620,13 +542,5 @@ export const homePageStyles = makeStyles({
             marginTop: 2,
             fontWeight: 400,
         },
-    },
-
-    communitySection: {
-        width: 1220,
-    },
-
-    vaticleWorld: {
-        maxWidth: "calc(100vw - 40px)",
     },
 });

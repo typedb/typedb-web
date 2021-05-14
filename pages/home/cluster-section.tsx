@@ -1,4 +1,4 @@
-import { homePageStyles } from "./home-styles";
+import { homePageClusterStyles } from "./home-styles";
 import React from "react";
 import clsx from "clsx";
 import HighAvailabilityIcon from "../assets/icons/high-availability.svg";
@@ -20,7 +20,7 @@ interface ClusterFeature {
 }
 
 export const ClusterSection: React.FC<ClassProps> = ({className}) => {
-    const classes = Object.assign({}, commonStyles(), homePageStyles());
+    const classes = Object.assign({}, commonStyles(), homePageClusterStyles());
 
     const allFeatures: ClusterFeature[] = [{
         name: "High Availability",

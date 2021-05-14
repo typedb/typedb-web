@@ -1,4 +1,3 @@
-import { homePageStyles } from "./home-styles";
 import React, { useEffect, useState } from "react";
 import clsx from "clsx";
 import CircleDecoration from "../assets/graphics/circle-decoration.svg";
@@ -22,6 +21,7 @@ import AlphaVertexSquareLogo from "../assets/logos/alpha-vertex-square-white.png
 import EagleGenomicsSquareLogo from "../assets/logos/eagle-genomics-square-white.png";
 import EuropeanRespiratorySocietySquareLogo from "../assets/logos/european-respiratory-society-square-white.png";
 import InfosysSquareLogo from "../assets/logos/infosys-square-white.png";
+import { homePageTestimonialsStyles } from "./home-styles";
 
 interface Testimonial {
     companyName: string;
@@ -33,7 +33,7 @@ interface Testimonial {
 }
 
 export const TestimonialsSection: React.FC<ClassProps> = ({className}) => {
-    const classes = Object.assign({}, commonStyles(), homePageStyles());
+    const classes = Object.assign({}, commonStyles(), homePageTestimonialsStyles());
     const [mobile, setMobile] = useState(window.matchMedia("(max-width: 767px)").matches);
 
     useEffect(() => {

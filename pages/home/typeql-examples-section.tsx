@@ -1,6 +1,5 @@
 import { ClassProps } from "../common/class-props";
 import { commonStyles } from "../common/ui/common-styles";
-import { homePageStyles } from "./home-styles";
 import { TypeQLExample } from "./typeql-example";
 import { studentHierarchyCode, studentHierarchyGraph } from "../common/ui/typeql/samples/student-hierarchy";
 import { transitiveLocationCode, transitiveLocationGraph } from "../common/ui/typeql/samples/transitive-location";
@@ -15,7 +14,7 @@ interface TypeQLExamplesSectionProps extends ClassProps {
 }
 
 export const TypeQLExamplesSection: React.FC<TypeQLExamplesSectionProps> = ({className, typeDBVersion}) => {
-    const classes = Object.assign({}, commonStyles(), homePageStyles());
+    const classes = Object.assign({}, commonStyles());
 
     return (
         <section className={className}>
