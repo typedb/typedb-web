@@ -311,6 +311,14 @@ export const homePageStyles = makeStyles({
     industryDescription: {
         height: 136,
 
+        "@media(max-width: 900px)": {
+            height: 170,
+        },
+
+        "@media(max-width: 767px)": {
+            height: 196,
+        },
+
         "@media(max-width: 479px)": {
             height: 280,
         },
@@ -416,7 +424,8 @@ export const homePageStyles = makeStyles({
     },
 
     testimonialsSection: {
-        width: 1200,
+        width: "100vw",
+        maxWidth: "100vw",
     },
 
     carouselContainer: {
@@ -453,6 +462,20 @@ export const homePageStyles = makeStyles({
         "100%": { left: -2000 },
     },
 
+    "@keyframes testimonialsMobile": {
+        "0%": { left: 0 },
+        "18%": { left: 0 },
+        "20%": { left: -360 },
+        "38%": { left: -360 },
+        "40%": { left: -720 },
+        "58%": { left: -720 },
+        "60%": { left: -1080 },
+        "78%": { left: -1080 },
+        "80%": { left: -1440 },
+        "98%": { left: -1440 },
+        "100%": { left: -1800 },
+    },
+
     testimonialCarousel: {
         width: 4000, // item width * (# of items) * 2
         height: 416,
@@ -461,6 +484,7 @@ export const homePageStyles = makeStyles({
         "@media(max-width: 767px)": {
             width: 3600,
             height: 388,
+            animationName: "$testimonialsMobile",
         },
     },
 
@@ -468,6 +492,11 @@ export const homePageStyles = makeStyles({
         float: "left",
         width: "50%",
         height: "100%",
+        transform: "translateX(calc(-1000px + 50vw))",
+
+        "@media(max-width: 767px)": {
+            transform: "translateX(calc(-900px + 50vw))",
+        },
     },
 
     testimonialContainer: {
