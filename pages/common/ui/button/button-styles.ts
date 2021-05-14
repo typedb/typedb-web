@@ -7,24 +7,24 @@ type StyleProps = Pick<BaseButtonFinalProps, 'size' | 'type'>;
 
 export const buttonPalette = {
     primary: {
-        background: vaticleTheme.palette.green[200],
+        background: vaticleTheme.palette.green[300],
         border: 'transparent',
-        label: vaticleTheme.palette.purple[600],
+        label: vaticleTheme.palette.purple[700],
         hoverBackground: vaticleTheme.palette.green[500],
         hoverBorder: 'transparent',
         hoverLabel: vaticleTheme.palette.purple[700],
-        disabledBackground: Color(vaticleTheme.palette.green[200]).alpha(0.2).string(),
-        disabledLabel: vaticleTheme.palette.purple[600],
+        disabledBackground: Color(vaticleTheme.palette.green[300]).alpha(0.2).string(),
+        disabledLabel: vaticleTheme.palette.purple[700],
     },
     secondary: {
         background: "transparent",
         border: vaticleTheme.palette.green[300],
-        label: vaticleTheme.palette.green[200],
+        label: vaticleTheme.palette.green[300],
         hoverBackground: vaticleTheme.palette.green[300],
-        hoverBorder: vaticleTheme.palette.green[200],
+        hoverBorder: vaticleTheme.palette.green[300],
         hoverLabel: vaticleTheme.palette.purple[700],
         disabledBackground: Color(vaticleTheme.palette.purple[500]).alpha(0.6).string(),
-        disabledLabel: Color(vaticleTheme.palette.green[200]).alpha(0.6).string(),
+        disabledLabel: Color(vaticleTheme.palette.green[300]).alpha(0.6).string(),
     },
 };
 
