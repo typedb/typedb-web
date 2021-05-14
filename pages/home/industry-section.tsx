@@ -48,44 +48,43 @@ export const IndustrySection: React.FC<ClassProps> = ({className}) => {
 
             {selectedIndustry === "Defence & Security" &&
             <>
-              <p className={clsx(classes.industryDescription, classes.largeText)}>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas quis purus pellentesque,
-                    tincidunt nisi quis, vehicula purus. Nullam egestas dui nisi. Morbi ultrices lacus justo,
-                    suscipit dictum justo suscipit ut. Mauris sed placerat justo. Aenean placerat vitae sapien
-                    scelerisque rutrum. Etiam mollis odio lorem, ut sollicitudin massa auctor quis.
+                <p className={clsx(classes.industryDescription, classes.largeText)}>
+                    As technology permeates deeper into every aspect of our lives—with constant digital footprints and
+                    interconnected devices proliferating—the growth in potential damage and disruption from bad actors
+                    grows. TypeDB allows firms to leverage their digital defences against increasingly sophisticated
+                    cyber criminals.
                 </p>
                 <VaticleButton size="small" type="secondary" className={clsx(classes.buttonAfterText, classes.learnMore)}>Learn More</VaticleButton>
             </>}
 
             {selectedIndustry === "Financial Services" &&
             <>
-              <p className={clsx(classes.industryDescription, classes.largeText)}>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla dictum massa nec est porta, eu congue
-                    odio rhoncus. Nulla sed risus nisi. Donec et tincidunt sapien. Pellentesque in malesuada erat. Duis
-                    tempor lacus a dui dapibus, eget sodales velit lacinia. Mauris at dignissim nisi. Nam quis convallis
-                    quam, nec mollis lectus.
+                <p className={clsx(classes.industryDescription, classes.largeText)}>
+                    Across the financial service industry, changes in technology, policy, and geopolitics have radically
+                    altered the data landscape in the past few years. By taking advantage of Vaticle's cutting-edge
+                    database technology, financial service firms can take full strategic advantage of the changing
+                    data landscape.
                 </p>
                 <VaticleButton size="small" type="secondary" className={clsx(classes.buttonAfterText, classes.learnMore)}>Learn More</VaticleButton>
             </>}
 
             {selectedIndustry === "Robotics" &&
             <>
-              <p className={clsx(classes.industryDescription, classes.largeText)}>
+                <p className={clsx(classes.industryDescription, classes.largeText)}>
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut porta diam vitae nunc aliquet, id
                     dignissim nibh commodo. Pellentesque habitant morbi tristique senectus et netus et malesuada fames
                     ac turpis egestas. Maecenas interdum nunc accumsan tortor maximus ornare. In hac habitasse platea
-                    dictumst. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.
+                    dictumst himenaeos.
                 </p>
                 <VaticleButton size="small" type="secondary" className={clsx(classes.buttonAfterText, classes.learnMore)}>Learn More</VaticleButton>
             </>}
 
             {selectedIndustry === "NLP" &&
             <>
-              <p className={clsx(classes.industryDescription, classes.largeText)}>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris porta sapien luctus lacus
-                    sollicitudin tincidunt. Vivamus ultricies massa vitae felis cursus, ac elementum erat tincidunt.
-                    Aliquam urna augue, mollis ut cursus non, egestas egestas libero. Nullam eget rhoncus lorem.
-                    Maecenas aliquam libero dui, in porta urna mollis eu.
+                <p className={clsx(classes.industryDescription, classes.largeText)}>
+                    As devices have become more intelligent, the way we interact with them evolved to natural language
+                    through conversation. TypeDB is the ideal platform for developing chat bots because it is capable of
+                    interpreting complex and ambiguous questions by performing inference over your data.
                 </p>
                 <VaticleButton size="small" type="secondary" className={clsx(classes.buttonAfterText, classes.learnMore)}>Learn More</VaticleButton>
             </>}

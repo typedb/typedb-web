@@ -9,11 +9,19 @@ import JonThompsonAvatar from "../assets/images/jon-thompson.jpg";
 import JorisSijsAvatar from "../assets/images/joris-sijs.jpeg";
 import NikSharmaAvatar from "../assets/images/nik-sharma.jpg";
 import RamAnveshAvatar from "../assets/images/ram-anvesh.jpg";
+import EnzoMartoglioAvatar from "../assets/images/enzo-martoglio.jpg";
+import MichaelBishopAvatar from "../assets/images/michael-bishop.jpg";
+import RadouaneOudrhiriAvatar from "../assets/images/radouane-oudrhiri.jpg";
+import SamuelPouytAvatar from "../assets/images/samuel-pouyt.jpg";
 import FlipkartSquareLogo from "../assets/logos/flipkart-square-white.png";
 import FiveASquareLogo from "../assets/logos/5a-square-white.png";
 import BioCortexSquareLogo from "../assets/logos/biocortex-square-white.png";
 import GravrSquareLogo from "../assets/logos/gravr-square-white.png";
 import TNOSquareLogo from "../assets/logos/tno-square-white.png";
+import AlphaVertexSquareLogo from "../assets/logos/alpha-vertex-square-white.png";
+import EagleGenomicsSquareLogo from "../assets/logos/eagle-genomics-square-white.png";
+import EuropeanRespiratorySocietySquareLogo from "../assets/logos/european-respiratory-society-square-white.png";
+import InfosysSquareLogo from "../assets/logos/infosys-square-white.png";
 
 interface Testimonial {
     companyName: string;
@@ -76,6 +84,38 @@ export const TestimonialsSection: React.FC<ClassProps> = ({className}) => {
         body: `TypeDB performs complicated logic queries at blazing speeds. Its strongly typed data model elegantly
         represents virtually any domain, and enforces well-formed models and data consistency - which is why we picked
         TypeDB to power Gravr, our general-purpose knowledge app.`,
+    }, {
+        companyName: "Alpha Vertex",
+        companyLogo: AlphaVertexSquareLogo,
+        personName: "Michael Bishop",
+        jobTitle: "CTO",
+        avatar: MichaelBishopAvatar,
+        body: `TypeDB significantly streamlines our knowledge engineering process. TypeDB’s expressive schema allows us
+        to verify the logical consistency of patterns detected by our learning algorithms and improve accuracy.`,
+    }, {
+        companyName: "Eagle Genomics",
+        companyLogo: EagleGenomicsSquareLogo,
+        personName: "Radouane Oudrhiri",
+        jobTitle: "CTO",
+        avatar: RadouaneOudrhiriAvatar,
+        body: `TypeDB's query language, TypeQL, should be the de facto language for any graph representation because of
+        two things: the semantic expressiveness of the language and the optimisation of query execution.`,
+    }, {
+        companyName: "Infosys",
+        companyLogo: InfosysSquareLogo,
+        personName: "Enzo Martoglio",
+        jobTitle: "AI Architect",
+        avatar: EnzoMartoglioAvatar,
+        body: `No business-centric implementation of AI can avoid having a Knowledge Graph at its core. TypeDB is one
+        of the few companies developing this tool that any AI business solution will require.`,
+    }, {
+        companyName: "European Respiratory Society",
+        companyLogo: EuropeanRespiratorySocietySquareLogo,
+        personName: "Samuel Pouyt",
+        jobTitle: "Software Architect",
+        avatar: SamuelPouytAvatar,
+        body: `Whether it is for content recommendation, managing GDPR, or text classification, the more I use TypeDB,
+        the more I discover suitable use cases. Its power and simplicity make it an everyday tool.`,
     }];
 
     return (
