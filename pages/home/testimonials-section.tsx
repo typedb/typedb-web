@@ -2,7 +2,6 @@ import { homePageStyles } from "./home-styles";
 import React, { useEffect, useState } from "react";
 import clsx from "clsx";
 import CircleDecoration from "../assets/graphics/circle-decoration.svg";
-import { VaticleIconButton } from "../common/ui/button/icon-button";
 import { commonStyles } from "../common/ui/common-styles";
 import { ClassProps } from "../common/class-props";
 import FredericCorralAvatar from "../assets/images/frederic-corral.png";
@@ -27,7 +26,6 @@ interface Testimonial {
 
 export const TestimonialsSection: React.FC<ClassProps> = ({className}) => {
     const classes = Object.assign({}, commonStyles(), homePageStyles());
-    const [selectedIndex, setSelectedIndex] = useState(1);
     const [mobile, setMobile] = useState(window.matchMedia("(max-width: 767px)").matches);
 
     useEffect(() => {
@@ -85,8 +83,7 @@ export const TestimonialsSection: React.FC<ClassProps> = ({className}) => {
             <h1 className={classes.h1}>Become the pioneer of your industry</h1>
 
             <div className={clsx(classes.carouselContainer, classes.testimonialCarouselContainer, classes.sectionMarginSmall)}>
-                <div className={clsx(classes.carousel, classes.testimonialCarousel)}
-                     /*style={{transform: `translateX(${(((testimonials.length - 1) / 2) - selectedIndex) * (mobile ? 360 : 400)}px)`}}*/>
+                <div className={clsx(classes.carousel, classes.testimonialCarousel)}>
                     {[0, 0].map(() => (
                     <span className={classes.carouselHalf}>
                     {testimonials.map(({companyName, companyLogo, personName, jobTitle, avatar, body}) => (
@@ -109,23 +106,6 @@ export const TestimonialsSection: React.FC<ClassProps> = ({className}) => {
                         </div>))}
                     </span>))}
                 </div>
-            </div>
-
-            <div className={classes.carouselControlPanel}>
-                <VaticleIconButton disabled={selectedIndex === 0} onClick={() => setSelectedIndex(selectedIndex - 1)}>
-                    <div className={clsx(classes.leftChevron, selectedIndex === 0 && classes.iconDisabled)}/>
-                </VaticleIconButton>
-
-                <div className={classes.carouselPips}>
-                    {testimonials.map((_, idx) => (
-                        <a className={clsx(classes.carouselPip, idx > 0 && classes.carouselPipGap, idx === selectedIndex && classes.carouselPipSelected)}
-                           onClick={() => setSelectedIndex(idx)}/>
-                    ))}
-                </div>
-
-                <VaticleIconButton disabled={selectedIndex === testimonials.length - 1} onClick={() => setSelectedIndex(selectedIndex + 1)}>
-                    <div className={clsx(classes.rightChevron, selectedIndex === testimonials.length - 1 && classes.iconDisabled)}/>
-                </VaticleIconButton>
             </div>
         </section>
     );

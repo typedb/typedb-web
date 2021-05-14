@@ -570,63 +570,6 @@ export const homePageStyles = makeStyles({
         },
     },
 
-    carouselControlPanel: {
-        margin: "0 auto",
-        marginTop: 40,
-        width: 335,
-        display: "flex",
-        justifyContent: "space-between",
-        alignItems: "center",
-    },
-
-    leftChevron: {
-        width: 10,
-        height: 10,
-        border: `1px none ${vaticleTheme.palette.purple["50"]}`,
-        borderTopStyle: "solid",
-        borderLeftStyle: "solid",
-        transform: "rotate(-45deg)",
-        marginLeft: 3,
-    },
-
-    rightChevron: {
-        width: 10,
-        height: 10,
-        border: `1px none ${vaticleTheme.palette.purple["50"]}`,
-        borderTopStyle: "solid",
-        borderRightStyle: "solid",
-        transform: "rotate(45deg)",
-        marginRight: 3,
-    },
-
-    iconDisabled: {
-        opacity: .38,
-    },
-
-    carouselPips: {
-        display: "flex",
-        justifyContent: "space-between",
-        alignItems: "center",
-    },
-
-    carouselPip: {
-        width: 8,
-        height: 8,
-        borderRadius: 4,
-        backgroundColor: vaticleTheme.palette.purple["400"],
-        transition: "transform 100ms ease, background-color 100ms ease, margin-top 100ms ease",
-    },
-
-    carouselPipGap: {
-        marginLeft: 20,
-    },
-
-    carouselPipSelected: {
-        transform: "scale(1.375)",
-        marginTop: 1.5,
-        backgroundColor: vaticleTheme.palette.green["300"],
-    },
-
     communitySection: {
         width: 1220,
     },
