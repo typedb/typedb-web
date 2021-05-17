@@ -185,11 +185,6 @@ export const homePageCorporateLogosStyles = makeStyles({
         "@media(max-width: 767px)": { width: 151 },
     },
 
-    chinaMerchantsBankLogo: {
-        width: 185,
-        "@media(max-width: 767px)": { width: 145 },
-    },
-
     eagleGenomicsLogo: {
         width: 185,
         "@media(max-width: 767px)": { width: 145 },
