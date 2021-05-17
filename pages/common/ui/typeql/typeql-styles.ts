@@ -20,7 +20,7 @@ export const typeQLVisualiserStyles = makeStyles({
     header: {
         height: 24,
         borderRadius: "5px 5px 0 0",
-        borderBottom: `1px solid ${vaticleTheme.palette.purple["1000"]}`,
+        borderBottom: `1px solid ${vaticleTheme.palette.purple["1000"]}`, // TODO: this colour is not in the palette
         backgroundColor: vaticleTheme.palette.purple["850"],
         display: "flex",
         alignItems: "center",
@@ -95,7 +95,7 @@ export const typeQLVisualiserStyles = makeStyles({
         left: 0,
         bottom: 0,
         right: 0,
-        backgroundColor: vaticleTheme.palette.purple["900"],
+        backgroundColor: vaticleTheme.palette.purple["900"], // TODO: this colour is not in the palette
     },
 
     footer: {
@@ -108,7 +108,7 @@ export const typeQLVisualiserStyles = makeStyles({
         padding: "0 8px",
         fontSize: 12,
         fontWeight: 600,
-        color: vaticleTheme.palette.purple["350"],
+        color: vaticleTheme.palette.purple["350"], // TODO: this colour is not in the palette
     },
 
     footerEnd: {

@@ -336,7 +336,7 @@ export const homePageClusterStyles = makeStyles({
         width: 100,
         height: 32,
         borderRadius: 5,
-        backgroundColor: vaticleTheme.palette.purple["400"],
+        backgroundColor: vaticleTheme.palette.purple["400"], // TODO: this colour is not in the palette
         display: "inline-flex",
         justifyContent: "center",
         fontSize: 14,
@@ -506,7 +506,7 @@ export const homePageTestimonialsStyles = makeStyles({
         marginTop: 16,
         height: 0,
         width: "100%",
-        border: `1px solid ${vaticleTheme.palette.purple["450"]}`,
+        border: `1px solid ${vaticleTheme.palette.purple["450"]}`, // TODO: this colour is not in the palette
     },
 
     testimonialPerson: {

@@ -23,7 +23,7 @@ export const buttonPalette = {
         hoverBackground: vaticleTheme.palette.green[300],
         hoverBorder: vaticleTheme.palette.green[300],
         hoverLabel: vaticleTheme.palette.purple[700],
-        disabledBackground: Color(vaticleTheme.palette.purple[500]).alpha(0.6).string(),
+        disabledBackground: Color(vaticleTheme.palette.purple[700]).alpha(0.6).string(),
         disabledLabel: Color(vaticleTheme.palette.green[300]).alpha(0.6).string(),
     },
 };
