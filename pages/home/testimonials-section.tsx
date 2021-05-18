@@ -56,8 +56,9 @@ export const TestimonialsSection: React.FC<ClassProps> = ({className}) => {
         personName: "Frederic Corral",
         jobTitle: "Business Analyst R&D",
         avatar: FredericCorralAvatar,
-        body: `TypeDB is the only solution that makes it possible to unify data from different IT systems into one
-        knowledge graph based on an industry ontology. This is a giant step to enable data exploration for enterprises.`,
+        body: `TypeDB has enabled us to unify data from different IT systems, such as PLM, ERP, MES into a knowledge
+        graph based on an industry ontology, which would be a giant step into data exploration, usage, and sharing for
+        business operations.`,
     }, {
         companyName: "TNO",
         companyLogo: TNOSquareLogo,
