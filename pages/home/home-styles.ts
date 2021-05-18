@@ -384,12 +384,12 @@ export const homePageTestimonialsStyles = makeStyles({
     },
 
     testimonialCarousel: {
-        width: testimonialWidth * 16, // item width * (# of items) * 2
+        width: testimonialWidth * 24, // item width * (# of items) * 3
         height: 416,
-        animation: "$testimonials 96s linear infinite", // (# of items) * 3s
+        animation: "$testimonials 96s linear infinite", // (# of items) * 12s
 
         "@media(max-width: 767px)": {
-            width: testimonialWidthMobile * 16,
+            width: testimonialWidthMobile * 24,
             height: 388,
             animationName: "$testimonialsMobile",
         },
@@ -397,13 +397,8 @@ export const homePageTestimonialsStyles = makeStyles({
 
     carouselHalf: {
         float: "left",
-        width: "50%",
+        width: "33.3334%",
         height: "100%",
-        transform: "translateX(calc(-1000px + 50vw))",
-
-        "@media(max-width: 767px)": {
-            transform: "translateX(calc(-900px + 50vw))",
-        },
     },
 
     testimonialContainer: {

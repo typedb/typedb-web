@@ -99,7 +99,7 @@ export const TestimonialsSection: React.FC<ClassProps> = ({className}) => {
         body: `No business-centric implementation of AI can avoid having a Knowledge Graph at its core. TypeDB is one
         of the few companies developing this tool that any AI business solution will require.`,
     }, {
-        companyName: "European Respiratory Society",
+        companyName: "ERS",
         companyLogo: EuropeanRespiratorySocietySquareLogo,
         personName: "Samuel Pouyt",
         jobTitle: "Software Architect",
@@ -114,7 +114,7 @@ export const TestimonialsSection: React.FC<ClassProps> = ({className}) => {
 
             <div className={clsx(classes.carouselContainer, classes.testimonialCarouselContainer, classes.sectionMarginSmall)}>
                 <div className={clsx(classes.carousel, classes.testimonialCarousel)}>
-                    {[0, 0].map(() => (
+                    {[0, 0, 0].map(() => (
                     <span className={classes.carouselHalf}>
                     {testimonials.map(({companyName, companyLogo, personName, jobTitle, avatar, body}) => (
                         <div className={classes.testimonialContainer}>
