@@ -1,6 +1,9 @@
 import { makeStyles } from '@material-ui/core/styles';
 import { vaticleTheme } from "../styles/theme";
 
+const testimonialWidth = 400;
+const testimonialWidthMobile = 360;
+
 // TODO: Break this object down by Component
 export const homePageStyles = makeStyles({
     vaticleAtomContainer: {
@@ -372,55 +375,21 @@ export const homePageTestimonialsStyles = makeStyles({
 
     "@keyframes testimonials": {
         "0%": { left: 0 },
-        "10.0%": { left: 0 },
-        "11.1%": { left: -400 },
-        "21.1%": { left: -400 },
-        "22.2%": { left: -800 },
-        "32.2%": { left: -800 },
-        "33.3%": { left: -1200 },
-        "43.3%": { left: -1200 },
-        "44.4%": { left: -1600 },
-        "54.4%": { left: -1600 },
-        "55.5%": { left: -2000 },
-        "65.6%": { left: -2000 },
-        "66.7%": { left: -2400 },
-        "76.7%": { left: -2400 },
-        "77.8%": { left: -2800 },
-        "87.8%": { left: -2800 },
-        "88.9%": { left: -3200 },
-        "98.9%": { left: -3200 },
-        "100%": { left: -3600 },
+        "100%": { left: -testimonialWidth * 8 },
     },
 
     "@keyframes testimonialsMobile": {
         "0%": { left: 0 },
-        "10.0%": { left: 0 },
-        "11.1%": { left: -360 },
-        "21.1%": { left: -360 },
-        "22.2%": { left: -720 },
-        "32.2%": { left: -720 },
-        "33.3%": { left: -1080 },
-        "43.3%": { left: -1080 },
-        "44.4%": { left: -1440 },
-        "54.4%": { left: -1440 },
-        "55.5%": { left: -1800 },
-        "65.6%": { left: -1800 },
-        "66.7%": { left: -2160 },
-        "76.7%": { left: -2160 },
-        "77.8%": { left: -2520 },
-        "87.8%": { left: -2520 },
-        "88.9%": { left: -2880 },
-        "98.9%": { left: -2880 },
-        "100%": { left: -3240 },
+        "100%": { left: -testimonialWidthMobile * 8 },
     },
 
     testimonialCarousel: {
-        width: 7200, // item width * (# of items) * 2
+        width: testimonialWidth * 16, // item width * (# of items) * 2
         height: 416,
-        animation: "$testimonials 24s linear infinite", // (# of items) * 3s
+        animation: "$testimonials 96s linear infinite", // (# of items) * 3s
 
         "@media(max-width: 767px)": {
-            width: 6480,
+            width: testimonialWidthMobile * 16,
             height: 388,
             animationName: "$testimonialsMobile",
         },
@@ -438,7 +407,7 @@ export const homePageTestimonialsStyles = makeStyles({
     },
 
     testimonialContainer: {
-        width: 400,
+        width: testimonialWidth,
         height: "100%",
         padding: "0 20px",
         display: "inline-flex",
@@ -447,7 +416,7 @@ export const homePageTestimonialsStyles = makeStyles({
         position: "relative",
 
         "@media(max-width: 767px)": {
-            width: 360,
+            width: testimonialWidthMobile,
         },
     },
 

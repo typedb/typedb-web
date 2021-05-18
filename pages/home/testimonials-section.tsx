@@ -3,7 +3,6 @@ import clsx from "clsx";
 import CircleDecoration from "../assets/graphics/circle-decoration.svg";
 import { commonStyles } from "../common/ui/common-styles";
 import { ClassProps } from "../common/class-props";
-import FredericCorralAvatar from "../assets/images/frederic-corral.png";
 import JonThompsonAvatar from "../assets/images/jon-thompson.jpg";
 import JorisSijsAvatar from "../assets/images/joris-sijs.jpeg";
 import NikSharmaAvatar from "../assets/images/nik-sharma.jpg";
@@ -13,7 +12,6 @@ import MichaelBishopAvatar from "../assets/images/michael-bishop.jpg";
 import RadouaneOudrhiriAvatar from "../assets/images/radouane-oudrhiri.jpg";
 import SamuelPouytAvatar from "../assets/images/samuel-pouyt.jpg";
 import FlipkartSquareLogo from "../assets/logos/flipkart-square-white.png";
-import FiveASquareLogo from "../assets/logos/5a-square-white.png";
 import BioCortexSquareLogo from "../assets/logos/biocortex-square-white.png";
 import GravrSquareLogo from "../assets/logos/gravr-square-white.png";
 import TNOSquareLogo from "../assets/logos/tno-square-white.png";
@@ -50,15 +48,6 @@ export const TestimonialsSection: React.FC<ClassProps> = ({className}) => {
         body: `With its simple yet immensely powerful query language, native support for n-ary relationships and focus on
         semantic schema, TypeDB solves all our modelling problems so that we can focus more on solving higher level
         problems instead of tweaking traditional graph databases to fit our use cases.`,
-    }, {
-        companyName: "5a Solutions",
-        companyLogo: FiveASquareLogo,
-        personName: "Frederic Corral",
-        jobTitle: "Business Analyst R&D",
-        avatar: FredericCorralAvatar,
-        body: `TypeDB has enabled us to unify data from different IT systems, such as PLM, ERP, MES into a knowledge
-        graph based on an industry ontology, which would be a giant step into data exploration, usage, and sharing for
-        business operations.`,
     }, {
         companyName: "TNO",
         companyLogo: TNOSquareLogo,
