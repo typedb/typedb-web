@@ -87,3 +87,12 @@ load("@vaticle_dependencies//library/maven:rules.bzl", "maven")
 maven(
     vaticle_web_main_artifacts
 )
+
+##################################################
+# Create @vaticle_typedb_protocol_workspace_refs #
+##################################################
+
+load("@vaticle_bazel_distribution//common:rules.bzl", "workspace_refs")
+workspace_refs(
+    name = "vaticle_web_main_workspace_refs"
+)
