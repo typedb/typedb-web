@@ -21,11 +21,11 @@
 3. Deploy the new version of web-main to `repo.vaticle.com`.
 
     ```
-   DEPLOY_ARTIFACT_USERNAME=<username> DEPLOY_ARTIFACT_PASSWORD=<password> bazel run --define version=(git rev-parse HEAD) //:deploy-web-main -- snapshot
+   DEPLOY_ARTIFACT_USERNAME=<username> DEPLOY_ARTIFACT_PASSWORD=<password> bazel run --define version=$(cat VERSION) //:deploy-web-main -- snapshot
     ```
    
 4. Run the new web-main application through nomad.
 
     ```
-   VERSION=(git rev-parse HEAD) envsubst <web-main.nomad | nomad job run -
+   VERSION=$(cat VERSION) envsubst <web-main.nomad | nomad job run -
     ```
