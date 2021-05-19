@@ -18,7 +18,7 @@
    vault kv put web-main/application-secret value=$(cat application-secret)
     ```
  
-3. Deploy the new version of web-main to `repo.grakn.ai`.
+3. Deploy the new version of web-main to `repo.vaticle.com`.
 
     ```
    DEPLOY_ARTIFACT_USERNAME=<username> DEPLOY_ARTIFACT_PASSWORD=<password> bazel run --define version=(git rev-parse HEAD) //:deploy-web-main -- snapshot
