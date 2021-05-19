@@ -7,7 +7,7 @@ load("@vaticle_bazel_distribution//maven:rules.bzl", "assemble_maven", "deploy_m
 
 assemble_maven(
     name = "assemble-maven",
-    target = ":server-bin_deploy.jar",
+    target = ":server-lib",
     version_overrides = version(artifacts_org = artifacts),
     workspace_refs = "@vaticle_web_main_workspace_refs//:refs.json"
 )
