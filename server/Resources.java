@@ -1,4 +1,4 @@
-package grakn.web.server;
+package com.vaticle.web.main.server;
 
 import java.io.File;
 import java.nio.file.Path;

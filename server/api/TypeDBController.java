@@ -1,10 +1,10 @@
-package grakn.web.server.api;
+package com.vaticle.web.main.server.api;
 
 import com.eclipsesource.json.JsonObject;
 import play.mvc.Controller;
 import play.mvc.Result;
 
-import static grakn.web.server.api.APIUtils.okResult;
+import static com.vaticle.web.main.server.api.APIUtils.okResult;
 
 public class TypeDBController extends Controller {
     public Result version() {

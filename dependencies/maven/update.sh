@@ -16,4 +16,4 @@
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 #
 
-bazel run @graknlabs_dependencies//library/maven:update
+bazel run @vaticle_dependencies//library/maven:update

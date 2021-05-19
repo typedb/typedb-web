@@ -1,37 +1,37 @@
-workspace(name = "graknlabs_web_main")
+workspace(name = "vaticle_web_main")
 
 ################################
-# Load @graknlabs_dependencies #
+# Load @vaticle_dependencies #
 ################################
 
-load("//dependencies/graknlabs:repositories.bzl", "graknlabs_dependencies")
-graknlabs_dependencies()
+load("//dependencies/vaticle:repositories.bzl", "vaticle_dependencies")
+vaticle_dependencies()
 
 # Load //builder/java
-load("@graknlabs_dependencies//builder/java:deps.bzl", java_deps = "deps")
+load("@vaticle_dependencies//builder/java:deps.bzl", java_deps = "deps")
 java_deps()
 
 #####################################################################
-# Load @graknlabs_bazel_distribution from (@graknlabs_dependencies) #
+# Load @vaticle_bazel_distribution from (@vaticle_dependencies) #
 #####################################################################
 
-load("@graknlabs_dependencies//distribution:deps.bzl", "graknlabs_bazel_distribution")
-graknlabs_bazel_distribution()
+load("@vaticle_dependencies//distribution:deps.bzl", "vaticle_bazel_distribution")
+vaticle_bazel_distribution()
 
-load("@graknlabs_bazel_distribution//packer:deps.bzl", deploy_packer_dependencies="deps")
+load("@vaticle_bazel_distribution//packer:deps.bzl", deploy_packer_dependencies="deps")
 deploy_packer_dependencies()
 
-load("@graknlabs_bazel_distribution//common:deps.bzl", "rules_pkg")
+load("@vaticle_bazel_distribution//common:deps.bzl", "rules_pkg")
 rules_pkg()
 
 load("@rules_pkg//:deps.bzl", "rules_pkg_dependencies")
 rules_pkg_dependencies()
 
 ############################
-# Load @graknlabs_web_main #
+# Load @vaticle_web_main #
 ############################
 
-load("//dependencies/maven:artifacts.bzl", graknlabs_web_main_artifacts = "artifacts")
+load("//dependencies/maven:artifacts.bzl", vaticle_web_main_artifacts = "artifacts")
 
 # Load rules_scala()
 load("//dependencies/play:dependencies.bzl", "rules_scala_dependencies")
@@ -47,7 +47,7 @@ scala_repositories()
 load("@bazel_tools//tools/build_defs/repo:git.bzl", "git_repository")
 git_repository(
     name = "io_bazel_skydoc",
-    remote = "https://github.com/graknlabs/skydoc.git",
+    remote = "https://github.com/vaticle/skydoc.git",
     branch = "experimental-skydoc-allow-dep-on-bazel-tools",
 )
 
@@ -66,7 +66,7 @@ bind(
 )
 
 # Load //builder/nodejs
-load("@graknlabs_dependencies//builder/nodejs:deps.bzl", nodejs_deps = "deps")
+load("@vaticle_dependencies//builder/nodejs:deps.bzl", nodejs_deps = "deps")
 nodejs_deps()
 load("@build_bazel_rules_nodejs//:index.bzl", "node_repositories", "npm_install")
 
@@ -83,7 +83,7 @@ npm_install(
 ###############
 # Load @maven #
 ###############
-load("@graknlabs_dependencies//library/maven:rules.bzl", "maven")
+load("@vaticle_dependencies//library/maven:rules.bzl", "maven")
 maven(
-    graknlabs_web_main_artifacts
+    vaticle_web_main_artifacts
 )

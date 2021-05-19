@@ -1,4 +1,4 @@
-package grakn.web.server;
+package com.vaticle.web.main.server;
 
 import play.mvc.Controller;
 import play.mvc.Result;

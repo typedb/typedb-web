@@ -1,7 +1,7 @@
-package grakn.web.server;
+package com.vaticle.web.main.server;
 
 import controllers.Default;
-import grakn.web.server.api.TypeDBController;
+import com.vaticle.web.main.server.api.TypeDBController;
 import play.Application;
 import play.ApplicationLoader;
 import play.BuiltInComponentsFromContext;

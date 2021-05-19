@@ -3,7 +3,7 @@ load("@io_bazel_rules_play_routes//play-routes:play-routes.bzl", "play_routes")
 
 java_binary(
     name = "server-bin",
-    main_class = "grakn.web.server.Server",
+    main_class = "com.vaticle.web.main.server.Server",
     runtime_deps = [":server-lib"],
     visibility = ["//visibility:public"],
 )

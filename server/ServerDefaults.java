@@ -1,4 +1,4 @@
-package grakn.web.server;
+package com.vaticle.web.main.server;
 
 public class ServerDefaults {
     public static final int DEFAULT_LOCAL_PORT = 8080;

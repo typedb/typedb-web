@@ -1,4 +1,4 @@
-package grakn.web.server;
+package com.vaticle.web.main.server;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
