@@ -10,8 +10,9 @@ java_binary(
 
 java_library(
     name = "server-lib",
-    srcs = glob(["*.java"]),
+    srcs = ["Server.java"],
     deps = [
+        ":server-misc",
         ":file-controller",
         ":server-routes-lib",
         "//server/api",
@@ -31,6 +32,18 @@ java_library(
     runtime_deps = [
         "@maven//:com_typesafe_play_play_akka_http_server_2_12",
         "@maven//:com_typesafe_play_build_link",
+        "@maven//:ch_qos_logback_logback_classic",
+    ],
+)
+
+java_library(
+    name = "server-misc",
+    srcs = ["CommandLineOptions.java", "Resources.java", "ServerDefaults.java", "ServerProperties.java"],
+    deps = [
+        "@maven//:info_picocli_picocli",
+        "@maven//:org_slf4j_slf4j_api",
+    ],
+    runtime_deps = [
         "@maven//:ch_qos_logback_logback_classic",
     ],
 )

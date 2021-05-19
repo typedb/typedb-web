@@ -12,12 +12,6 @@ build:
 
 release:
   deployment:
-    deploy-maven-release:
-      image: vaticle-ubuntu-20.04
-      command: |
-        export DEPLOY_MAVEN_USERNAME=$REPO_VATICLE_USERNAME
-        export DEPLOY_MAVEN_PASSWORD=$REPO_VATICLE_PASSWORD
-        bazel run --define version=$(cat VERSION) //server:deploy-maven -- release
     deploy-artifact-release:
       image: vaticle-ubuntu-20.04
       command: |
