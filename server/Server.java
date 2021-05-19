@@ -19,7 +19,7 @@ public class Server {
         Optional<CommandLineOptions> commandLineOptions = CommandLineOptions.parse(args);
         if (commandLineOptions.isEmpty()) System.exit(1);
 
-        Resources resources = new Resources(commandLineOptions.get().resourcesDir());
+        Resources resources = new Resources(commandLineOptions.get().resourcesDir(), Paths.get("conf", "web-main.properties"));
         System.setProperty("pages.root", commandLineOptions.get().pagesDir().toString());
 
         ServerProperties properties = ServerProperties.parse(resources.getPropertiesFile());

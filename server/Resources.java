@@ -6,12 +6,14 @@ import java.nio.file.Path;
 public class Resources {
 
     private final Path resourcesDir;
+    private final Path propertyFile;
 
-    public Resources(Path resourcesDir) {
+    public Resources(Path resourcesDir, Path propertyFile) {
         this.resourcesDir = resourcesDir;
+        this.propertyFile = propertyFile;
     }
 
     public File getPropertiesFile() {
-        return resourcesDir.resolve("conf/web-main.properties").toFile();
+        return resourcesDir.resolve(propertyFile).toFile();
     }
 }
