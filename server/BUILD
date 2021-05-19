@@ -50,7 +50,8 @@ java_library(
         "@maven//:com_typesafe_play_play_akka_http_server_2_12",
         "@maven//:com_typesafe_play_build_link",
         "@maven//:ch_qos_logback_logback_classic",
-    ]
+    ],
+    tags = ["maven_coordinates=com.vaticle.typedb:server-lib:{pom_version}"],
 )
 
 java_library(
@@ -89,4 +90,5 @@ scala_library(
       "@maven//:com_typesafe_play_twirl_api_2_12",
       "@maven//:javax_inject_javax_inject",
     ],
+    tags = ["maven_coordinates=com.vaticle.typedb:server-routes-lib:{pom_version}"],
 )
