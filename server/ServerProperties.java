@@ -1,4 +1,4 @@
-package grakn.web_main.server;
+package grakn.web.server;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

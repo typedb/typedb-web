@@ -1,7 +1,7 @@
-package grakn.web_main.server;
+package grakn.web.server;
 
 import controllers.Default;
-import grakn.web_main.server.api.TypeDBController;
+import grakn.web.server.api.TypeDBController;
 import play.Application;
 import play.ApplicationLoader;
 import play.BuiltInComponentsFromContext;

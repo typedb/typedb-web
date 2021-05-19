@@ -1,4 +1,4 @@
-package grakn.web_main.server;
+package grakn.web.server;
 
 import java.io.File;
 import java.nio.file.Path;
