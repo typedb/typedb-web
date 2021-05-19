@@ -39,7 +39,7 @@ job "web-main" {
       }
 
       artifact {
-        source = "https://repo.vaticle.com/repository/artifact-snapshot/vaticle_web_main/${VERSION}/web-main-${VERSION}.tar.gz"
+        source = "https://repo.vaticle.com/repository/artifact/vaticle_web_main/${VERSION}/web-main-${VERSION}.tar.gz"
       }
 
       template {
