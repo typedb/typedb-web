@@ -46,6 +46,7 @@ java_library(
     runtime_deps = [
         "@maven//:ch_qos_logback_logback_classic",
     ],
+    visibility = ["//visibility:public"],
 )
 
 java_library(
@@ -60,6 +61,7 @@ java_library(
         "@maven//:com_typesafe_play_twirl_api_2_12",
         "@maven//:javax_inject_javax_inject",
     ],
+    visibility = ["//visibility:public"],
 )
 
 play_routes(
