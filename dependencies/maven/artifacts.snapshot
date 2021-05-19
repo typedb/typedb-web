@@ -1,11 +1,17 @@
 @maven//:aopalliance_aopalliance
 @maven//:aopalliance_aopalliance_1_0
+@maven//:ch_qos_logback_logback_classic
+@maven//:ch_qos_logback_logback_classic_1_2_3
+@maven//:ch_qos_logback_logback_core
+@maven//:ch_qos_logback_logback_core_1_2_3
+@maven//:com_eclipsesource_minimal_json_minimal_json
+@maven//:com_eclipsesource_minimal_json_minimal_json_0_9_5
 @maven//:com_fasterxml_jackson_core_jackson_annotations
-@maven//:com_fasterxml_jackson_core_jackson_annotations_2_10_2
+@maven//:com_fasterxml_jackson_core_jackson_annotations_2_10_4
 @maven//:com_fasterxml_jackson_core_jackson_core
-@maven//:com_fasterxml_jackson_core_jackson_core_2_10_2
+@maven//:com_fasterxml_jackson_core_jackson_core_2_10_4
 @maven//:com_fasterxml_jackson_core_jackson_databind
-@maven//:com_fasterxml_jackson_core_jackson_databind_2_10_2
+@maven//:com_fasterxml_jackson_core_jackson_databind_2_10_4
 @maven//:com_fasterxml_jackson_dataformat_jackson_dataformat_cbor
 @maven//:com_fasterxml_jackson_dataformat_jackson_dataformat_cbor_2_10_2
 @maven//:com_fasterxml_jackson_datatype_jackson_datatype_jdk8
@@ -96,6 +102,8 @@
 @maven//:com_typesafe_play_twirl_api_2_12_1_5_0
 @maven//:com_typesafe_ssl_config_core_2_12
 @maven//:com_typesafe_ssl_config_core_2_12_0_4_1
+@maven//:info_picocli_picocli
+@maven//:info_picocli_picocli_4_3_2
 @maven//:io_jsonwebtoken_jjwt
 @maven//:io_jsonwebtoken_jjwt_0_9_1
 @maven//:io_netty_netty_buffer
@@ -157,4 +165,4 @@
 @maven//:org_slf4j_jul_to_slf4j
 @maven//:org_slf4j_jul_to_slf4j_1_7_29
 @maven//:org_slf4j_slf4j_api
-@maven//:org_slf4j_slf4j_api_1_7_30
+@maven//:org_slf4j_slf4j_api_1_7_28
