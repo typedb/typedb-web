@@ -11,6 +11,13 @@ vaticle_dependencies()
 load("@vaticle_dependencies//builder/java:deps.bzl", java_deps = "deps")
 java_deps()
 
+# Load //builder/kotlin
+load("@vaticle_dependencies//builder/kotlin:deps.bzl", kotlin_deps = "deps")
+kotlin_deps()
+load("@io_bazel_rules_kotlin//kotlin:kotlin.bzl", "kotlin_repositories", "kt_register_toolchains")
+kotlin_repositories()
+kt_register_toolchains()
+
 #####################################################################
 # Load @vaticle_bazel_distribution from (@vaticle_dependencies) #
 #####################################################################
