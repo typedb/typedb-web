@@ -2,8 +2,9 @@
 
 bazel build //...
 mkdir local
-cp bazel-bin/pages/pages-dev.tar.gz local/pages-dev.tar.gz
+cp bazel-bin/web/pages-dev.tar.gz local/pages-dev.tar.gz
 cd local
 tar -xf pages-dev.tar.gz
+mv dist pages
 rm -f pages-dev.tar.gz
 cd ..

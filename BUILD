@@ -11,7 +11,7 @@ assemble_targz(
     name = "web-main-dev",
     additional_files = WEB_MAIN_DIST_ADDITIONAL_FILES,
     targets = [
-        "//pages:pages-dev",
+        "//web:pages-dev",
     ],
     output_filename = "web-main-dev"
 )
@@ -20,7 +20,7 @@ assemble_targz(
     name = "web-main",
     additional_files = WEB_MAIN_DIST_ADDITIONAL_FILES,
     targets = [
-        "//pages:pages",
+        "//web:pages",
     ],
     output_filename = "web-main"
 )

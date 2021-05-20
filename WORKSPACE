@@ -78,13 +78,13 @@ nodejs_deps()
 load("@build_bazel_rules_nodejs//:index.bzl", "node_repositories", "npm_install")
 
 node_repositories(
-    package_json = ["//pages:package.json"],
+    package_json = ["//web:package.json"],
 )
 
 npm_install(
     name = "npm",
-    package_json = "//pages:package.json",
-    package_lock_json = "//pages:package-lock.json",
+    package_json = "//web:package.json",
+    package_lock_json = "//web:package-lock.json",
 )
 
 ###############

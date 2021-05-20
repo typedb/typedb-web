@@ -3,10 +3,10 @@ sh_binary(
     srcs = ["setup-pages.sh"],
     deps = [],
     args = [
-        "$(rootpath //pages:pages-dev)",
+        "$(rootpath //web:pages-dev)",
     ],
     data = [
-        "//pages:pages-dev",
+        "//web:pages-dev",
     ]
 )
 

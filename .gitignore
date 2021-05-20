@@ -9,9 +9,9 @@
 # Bazel
 bazel-*
 
+node_modules
+
 local
+dist
 
 .terraform*
-
-pages/node_modules
-pages/pages

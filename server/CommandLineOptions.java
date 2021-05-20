@@ -45,7 +45,7 @@ public class CommandLineOptions {
     }
 
     private static Path defaultPagesDir() {
-        return Paths.get(System.getProperty("user.dir")).resolve("pages");
+        return Paths.get(System.getProperty("user.dir")).resolve("web/pages");
     }
 
     public static Optional<CommandLineOptions> parse(String[] args) {
