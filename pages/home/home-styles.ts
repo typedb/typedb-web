@@ -147,7 +147,7 @@ export const homePageStyles = makeStyles({
         fontSize: 16,
     },
 
-    downloadGraknButton: {
+    downloadTypeDBButton: {
         height: '72px !important',
     },
 

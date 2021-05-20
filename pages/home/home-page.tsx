@@ -58,7 +58,7 @@ export const HomePage: React.FC = () => {
                         <div className={classes.mainLinkCaption}>Twitter</div>
                     </a>
                     <div className={classes.mainLink}>
-                        <VaticleButton className={classes.downloadGraknButton} size="small" type="primary"
+                        <VaticleButton className={classes.downloadTypeDBButton} size="small" type="primary"
                                        href={downloadTypeDBURL} target="_blank">
                             Download {typeDBVersion}
                         </VaticleButton>
