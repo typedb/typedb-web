@@ -1,5 +1,5 @@
 import { makeStyles } from '@material-ui/core';
-import { vaticleTheme } from "../../../styles/theme";
+import { vaticleTheme } from "../../styles/theme";
 import { buttonPalette } from "../button/button-styles";
 
 const headerHeight = 80;

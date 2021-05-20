@@ -355,7 +355,6 @@ export const homePageTestimonialsStyles = makeStyles({
 
     carouselContainer: {
         overflow: "hidden",
-        boxSizing: "border-box",
         position: "relative",
     },
 

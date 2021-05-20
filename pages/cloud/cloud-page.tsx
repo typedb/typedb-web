@@ -1,7 +1,7 @@
 import React from 'react';
-import { DefaultLayout } from "../common/ui/layout/default-layout";
+import { DefaultLayout } from "../common/layout/default-layout";
 import { cloudPageStyles } from "./cloud-styles";
-import { commonStyles } from "../common/ui/common-styles";
+import { commonStyles } from "../common/common-styles";
 
 export const CloudPage: React.FC = () => {
     const classes = Object.assign({}, commonStyles(), cloudPageStyles());

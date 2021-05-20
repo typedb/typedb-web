@@ -1,5 +1,5 @@
 import { makeStyles } from "@material-ui/core";
-import { vaticleTheme } from "../../../styles/theme";
+import { vaticleTheme } from "../../styles/theme";
 
 export const typeQLVisualiserStyles = makeStyles({
     container: {
@@ -42,7 +42,6 @@ export const typeQLVisualiserStyles = makeStyles({
         backgroundColor: "transparent",
         overflow: "hidden",
         touchAction: "none",
-        boxSizing: "border-box",
         display: "flex",
         fontSize: 16,
         lineHeight: "24px",

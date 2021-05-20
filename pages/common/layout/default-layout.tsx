@@ -3,8 +3,8 @@ import { defaultLayoutStyles } from './layout-styles';
 import { PageHeader } from "./page-header";
 import { commonStyles } from "../common-styles";
 import { PageFooter } from "./page-footer";
-import { getTypeDBVersion } from "../../../api/typedb-service";
-import { legacySiteURL } from "../../urls";
+import { getTypeDBVersion } from "../../api/typedb-service";
+import { legacySiteURL } from "../urls";
 
 export const DefaultLayout: React.FC = ({ children }) => {
     const ownClasses = Object.assign({}, commonStyles(), defaultLayoutStyles());

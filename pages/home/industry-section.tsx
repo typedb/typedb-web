@@ -1,14 +1,14 @@
 import { homePageIndustryStyles } from "./home-styles";
-import { VaticleButton } from "../common/ui/button/button";
+import { VaticleButton } from "../common/button/button";
 import React, { useState } from "react";
 import clsx from "clsx";
 import SecurityIcon from "../assets/icons/security.svg";
 import FinanceIcon from "../assets/icons/finance.svg";
 import NLPIcon from "../assets/icons/nlp.svg";
-import { LifeSciencesIcon } from "../common/ui/images/life-sciences-icon";
+import { LifeSciencesIcon } from "../common/images/life-sciences-icon";
 import { vaticleTheme } from "../styles/theme";
-import { RoboticsIcon } from "../common/ui/images/robotics-icon";
-import { commonStyles } from "../common/ui/common-styles";
+import { RoboticsIcon } from "../common/images/robotics-icon";
+import { commonStyles } from "../common/common-styles";
 import { ClassProps } from "../common/class-props";
 
 type IndustryName = "Health and Life Sciences" | "Defence & Security" | "Financial Services" | "Robotics" | "NLP";

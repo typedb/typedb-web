@@ -7,8 +7,8 @@ import FingerprintIcon from "../assets/icons/fingerprint.svg";
 import EnterpriseSupportIcon from "../assets/icons/enterprise-support.svg";
 import ClusterManagementIcon from "../assets/icons/cluster-management.svg";
 import BackupAndRecoveryIcon from "../assets/icons/backup-and-recovery.svg";
-import { VaticleButton } from "../common/ui/button/button";
-import { commonStyles } from "../common/ui/common-styles";
+import { VaticleButton } from "../common/button/button";
+import { commonStyles } from "../common/common-styles";
 import { ClassProps } from "../common/class-props";
 
 interface ClusterFeature {

@@ -1,10 +1,10 @@
 import { homePageStyles } from "./home-styles";
-import { VaticleButton } from "../common/ui/button/button";
+import { VaticleButton } from "../common/button/button";
 import React from "react";
 import clsx from "clsx";
-import { commonStyles } from "../common/ui/common-styles";
-import { TypeQLVisualiser } from "../common/ui/typeql/typeql-visualiser";
-import { TypeQLGraph } from "../common/ui/typeql/typeql-data";
+import { commonStyles } from "../common/common-styles";
+import { TypeQLVisualiser } from "../common/typeql/typeql-visualiser";
+import { TypeQLGraph } from "../common/typeql/typeql-data";
 import { ClassProps } from "../common/class-props";
 
 export interface TypeQLExampleProps extends ClassProps {

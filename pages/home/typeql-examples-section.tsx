@@ -1,11 +1,11 @@
 import { ClassProps } from "../common/class-props";
-import { commonStyles } from "../common/ui/common-styles";
+import { commonStyles } from "../common/common-styles";
 import { TypeQLExample } from "./typeql-example";
-import { studentHierarchyCode, studentHierarchyGraph } from "../common/ui/typeql/samples/student-hierarchy";
-import { transitiveLocationCode, transitiveLocationGraph } from "../common/ui/typeql/samples/transitive-location";
-import { locationDataCode, locationDataGraph } from "../common/ui/typeql/samples/location-data";
+import { studentHierarchyCode, studentHierarchyGraph } from "../common/typeql/samples/student-hierarchy";
+import { transitiveLocationCode, transitiveLocationGraph } from "../common/typeql/samples/transitive-location";
+import { locationDataCode, locationDataGraph } from "../common/typeql/samples/location-data";
 import clsx from "clsx";
-import { VaticleButton } from "../common/ui/button/button";
+import { VaticleButton } from "../common/button/button";
 import { downloadTypeDBURL, githubURL } from "../common/urls";
 import React from "react";
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import { pageFooterStyles } from "./layout-styles";
 import { commonStyles } from "../common-styles";
-import { discordURL, facebookURL, githubURL, linkedInURL, twitterURL } from "../../urls";
+import { discordURL, facebookURL, githubURL, linkedInURL, twitterURL } from "../urls";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faDiscord, faFacebookSquare, faGithub, faLinkedin, faTwitter, IconDefinition } from "@fortawesome/free-brands-svg-icons";
 import clsx from "clsx";

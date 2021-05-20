@@ -26,11 +26,6 @@ html, body {
   * {
     box-sizing: border-box;
   }
-
-  &.with-hidden-scrollbar::-webkit-scrollbar {
-    width: 0;
-    background: transparent;
-  }
 }
 
 #root {
@@ -58,12 +53,4 @@ input[type="text"], input[type="email"] {
 
 address {
   font-style: normal;
-}
-
-@keyframes spin {
-  from {
-    transform: rotate(0deg);
-  } to {
-    transform: rotate(360deg);
-  }
 }

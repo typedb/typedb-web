@@ -1,54 +1,19 @@
-import { createMuiTheme, fade } from '@material-ui/core/styles';
-import { Overrides } from '@material-ui/core/styles/overrides';
-import createSpacing, { Spacing } from '@material-ui/core/styles/createSpacing';
+import { createMuiTheme } from '@material-ui/core/styles';
+import createSpacing from '@material-ui/core/styles/createSpacing';
 
 export type SizeIndicator = 'smallest' | 'smaller' | 'small' | 'medium' | 'large' | 'larger' | 'largest';
-type SizeIndicatorMap = Record<SizeIndicator, number>;
-
-export type ColorCodeMap = Record<number, string>;
-
-export interface VaticleTheme {
-    spacing: Spacing;
-
-    palette: {
-        purple: ColorCodeMap;
-        green: ColorCodeMap;
-        white: ColorCodeMap;
-        red: ColorCodeMap;
-        blue: ColorCodeMap;
-        yellow: ColorCodeMap;
-        pink: ColorCodeMap;
-        grey: ColorCodeMap;
-    };
-
-    typography: {
-        fontFamily: {
-            main: string;
-            fixedWidth: string;
-        };
-        htmlFontSize: number;
-        fontSize: Partial<SizeIndicatorMap>;
-    };
-
-    shape: {
-        borderRadius: Partial<SizeIndicatorMap>;
-    };
-
-    overrides: Overrides;
-}
-
-type VaticleThemeOptions = Partial<VaticleTheme>;
 
 declare module '@material-ui/core/styles/createMuiTheme' {
     interface Theme {
-        vaticle: VaticleTheme;
+        vaticle: any;
     }
 
     interface ThemeOptions {
-        vaticle?: VaticleThemeOptions;
+        vaticle?: any;
     }
 }
 
+// TODO: Colours used solely in illustrations should not be listed here
 export const vaticleTheme = {
     spacing: createSpacing(5),
     palette: {
@@ -90,7 +55,7 @@ export const vaticleTheme = {
             200: '#F28DD7',
         },
         grey: {
-            100: fade('#A391C3', 0.17),
+            300: '#7F83AF',
         },
     },
     shape: {
@@ -162,34 +127,5 @@ export const vaticleTheme = {
 };
 
 export const vaticleMuiTheme = createMuiTheme({
-    spacing: 5,
-    typography: {
-        fontFamily: 'Titillium Web',
-    },
     vaticle: vaticleTheme,
-    overrides: {
-        MuiSelect: {
-            select: {
-                '&:focus': {
-                    backgroundColor: 'overriden',
-                    borderRadius: 'overriden',
-                },
-            },
-        },
-        MuiButton: {
-            root: {
-                '&:hover': {
-                    backgroundColor: 'overriden',
-                },
-            },
-            contained: {
-                '&:hover': {
-                    backgroundColor: 'overriden',
-                },
-                '& > $disabled': {
-                    backgroundColor: 'overriden',
-                },
-            },
-        },
-    },
 });

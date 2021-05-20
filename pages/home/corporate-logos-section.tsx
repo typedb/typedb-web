@@ -1,6 +1,6 @@
 import clsx from "clsx";
 import React from "react";
-import { commonStyles } from "../common/ui/common-styles";
+import { commonStyles } from "../common/common-styles";
 import { homePageCorporateLogosStyles } from "./home-styles";
 import { ClassProps } from "../common/class-props";
 import FlipkartLogo from "../assets/logos/flipkart.png";

@@ -1,6 +1,6 @@
 import { makeStyles } from '@material-ui/core/styles';
 import { BaseButtonFinalProps } from './button';
-import { vaticleTheme } from "../../../styles/theme";
+import { vaticleTheme } from "../../styles/theme";
 import Color from "color";
 
 type StyleProps = Pick<BaseButtonFinalProps, 'size' | 'type'>;

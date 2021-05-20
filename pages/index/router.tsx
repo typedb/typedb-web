@@ -1,7 +1,7 @@
-import { BrowserRouter, Route, Switch, RouteProps } from 'react-router-dom';
+import { BrowserRouter, Route, RouteProps, Switch } from 'react-router-dom';
 import React, { useEffect } from 'react';
-import { CloudPage } from "../../cloud/cloud-page";
-import { HomePage } from '../../home/home-page';
+import { CloudPage } from "../cloud/cloud-page";
+import { HomePage } from '../home/home-page';
 
 interface VaticleRouteProps extends RouteProps {
     title: string;
@@ -16,7 +16,7 @@ const VaticleRoute: React.FC<VaticleRouteProps> = props => {
     return <Route {...rest} />;
 };
 
-const Router: React.FC = () => {
+export const Router: React.FC = () => {
     return (
         <BrowserRouter>
             <Switch>
@@ -26,5 +26,3 @@ const Router: React.FC = () => {
         </BrowserRouter>
     );
 };
-
-export default Router;

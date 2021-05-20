@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
 import { runTypeQLForceGraph } from "./typeql-force-graph";
 import { typeQLVisualiserStyles } from "./typeql-styles";
-import MacOSWindowDots from "../../../assets/graphics/macos-window-dots.svg";
-import BranchIcon from "../../../assets/icons/git-branch.svg";
-import FetchIcon from "../../../assets/icons/git-fetch.svg";
+import MacOSWindowDots from "../../assets/graphics/macos-window-dots.svg";
+import BranchIcon from "../../assets/icons/git-branch.svg";
+import FetchIcon from "../../assets/icons/git-fetch.svg";
 import { TypeQLCode } from "./typeql-code";
 import { TypeQLGraph } from "./typeql-data";
 

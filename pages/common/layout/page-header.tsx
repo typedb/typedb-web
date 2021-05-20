@@ -2,12 +2,12 @@ import { Link } from 'react-router-dom';
 import { IconButton } from '@material-ui/core';
 import React, { useState } from 'react';
 
-import VaticleLogo from "../../../assets/logos/vaticle.svg";
+import VaticleLogo from "../assets/logos/vaticle.svg";
 
 import { pageHeaderStyles } from "./layout-styles";
 import { GithubButton } from "../button/github-button";
 import { VaticleButton } from "../button/button";
-import { downloadTypeDBURL } from "../../urls";
+import { downloadTypeDBURL } from "../urls";
 import clsx from 'clsx';
 import { commonStyles } from "../common-styles";
 import { HamburgerCollapse } from "react-animated-burgers/lib";

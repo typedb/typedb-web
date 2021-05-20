@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import clsx from "clsx";
 import CircleDecoration from "../assets/graphics/circle-decoration.svg";
-import { commonStyles } from "../common/ui/common-styles";
+import { commonStyles } from "../common/common-styles";
 import { ClassProps } from "../common/class-props";
 import JonThompsonAvatar from "../assets/images/jon-thompson.jpg";
 import JorisSijsAvatar from "../assets/images/joris-sijs.jpeg";

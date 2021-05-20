@@ -2,9 +2,9 @@ import * as React from 'react';
 import clsx from 'clsx';
 
 import { Link } from 'react-router-dom';
-import { SizeIndicator } from '../../../styles/theme';
+import { SizeIndicator } from '../../styles/theme';
 import { buttonStyles } from './button-styles';
-import { ClassProps } from "../../class-props";
+import { ClassProps } from "../class-props";
 
 export interface BaseButtonProps extends ClassProps {
     href?: string;

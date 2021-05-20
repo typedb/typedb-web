@@ -1,5 +1,5 @@
 import { makeStyles } from '@material-ui/core/styles';
-import { vaticleTheme } from "../../styles/theme";
+import { vaticleTheme } from "../styles/theme";
 
 export const commonStyles = makeStyles({
     sectionMarginLarge: {
