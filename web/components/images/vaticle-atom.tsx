@@ -2,6 +2,7 @@ import React from 'react';
 
 import { vaticleAtomStyles } from "./images-styles";
 
+// TODO: replace the "orange" with red
 export const VaticleAtom: React.FC = (props) => {
     const classes = vaticleAtomStyles();
 

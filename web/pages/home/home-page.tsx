@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { homePageStyles } from "./home-styles";
 import { VaticleAtom } from '../../components/images/vaticle-atom';
-import { DefaultLayout } from "../../components/layout/default-layout";
 import { discordURL, downloadTypeDBURL, githubURL, twitterURL } from "../../components/urls";
 import { faDiscord, faGithub, faTwitter } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -15,6 +14,7 @@ import { getTypeDBVersion } from "../api/typedb-service";
 import VaticleWorld from "../assets/graphics/vaticle-world.svg";
 import { CorporateLogosSection } from "./corporate-logos-section";
 import { TypeQLExamplesSection } from "./typeql-examples-section";
+import { DefaultLayout } from "vaticle-web-components/layout/default-layout";
 
 export const HomePage: React.FC = () => {
     const classes = Object.assign({}, vaticleStyles(), homePageStyles());
