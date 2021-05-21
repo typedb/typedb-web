@@ -1,20 +1,20 @@
 import React, { useEffect, useState } from 'react';
 import { homePageStyles } from "./home-styles";
-import { VaticleAtom } from '../../components/images/vaticle-atom';
-import { discordURL, downloadTypeDBURL, githubURL, twitterURL } from "../../components/urls";
+import { VaticleAtom } from 'vaticle-web-components/dist/images/vaticle-atom';
+import { discordURL, downloadTypeDBURL, githubURL, twitterURL } from "vaticle-web-components/dist/urls";
 import { faDiscord, faGithub, faTwitter } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { VaticleButton } from "../../components/button/button";
+import { VaticleButton } from "vaticle-web-components/dist/button/button";
 import clsx from "clsx";
 import { IndustrySection } from './industry-section';
 import { ClusterSection } from "./cluster-section";
 import { TestimonialsSection } from "./testimonials-section";
-import { vaticleStyles } from "../../components/styles/vaticle-styles";
+import { vaticleStyles } from "vaticle-web-components/dist/styles/vaticle-styles";
 import { getTypeDBVersion } from "../api/typedb-service";
 import VaticleWorld from "../assets/graphics/vaticle-world.svg";
 import { CorporateLogosSection } from "./corporate-logos-section";
 import { TypeQLExamplesSection } from "./typeql-examples-section";
-import { DefaultLayout } from "vaticle-web-components/layout/default-layout";
+import { DefaultLayout } from "vaticle-web-components/dist/layout/default-layout";
 
 export const HomePage: React.FC = () => {
     const classes = Object.assign({}, vaticleStyles(), homePageStyles());

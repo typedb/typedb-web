@@ -1,19 +1,16 @@
 const path = require("path");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
-  entry: "pages/index.tsx",
+  entry: "src/index.ts",
   output: {
     path: path.resolve(__dirname, "dist"),
-    publicPath: '/',
-    filename: "bundle.[hash].js",
+    libraryTarget: "umd",
+    library: "vaticle-web-components",
+    filename: "index.js",
   },
   plugins: [
     new CleanWebpackPlugin(),
-    new HtmlWebpackPlugin({
-      template: "pages/index.html",
-    }),
   ],
   resolve: {
     modules: [__dirname, "node_modules"],

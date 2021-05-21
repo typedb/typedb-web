@@ -1,15 +1,15 @@
 import { homePageIndustryStyles } from "./home-styles";
-import { VaticleButton } from "../../components/button/button";
+import { VaticleButton } from "vaticle-web-components/dist/button/button";
 import React, { useState } from "react";
 import clsx from "clsx";
 import SecurityIcon from "../assets/icons/security.svg";
 import FinanceIcon from "../assets/icons/finance.svg";
 import NLPIcon from "../assets/icons/nlp.svg";
-import { LifeSciencesIcon } from "../../components/images/life-sciences-icon";
-import { vaticleTheme } from "../../components/styles/theme";
-import { RoboticsIcon } from "../../components/images/robotics-icon";
-import { vaticleStyles } from "../../components/styles/vaticle-styles";
-import { ClassProps } from "../../components/class-props";
+import { LifeSciencesIcon } from "vaticle-web-components/dist/images/life-sciences-icon";
+import { vaticleTheme } from "vaticle-web-components/dist/styles/theme";
+import { RoboticsIcon } from "vaticle-web-components/dist/images/robotics-icon";
+import { vaticleStyles } from "vaticle-web-components/dist/styles/vaticle-styles";
+import { ClassProps } from "vaticle-web-components/dist/class-props";
 
 type IndustryName = "Health and Life Sciences" | "Defence & Security" | "Financial Services" | "Robotics" | "NLP";
 

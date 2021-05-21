@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import "../components/styles/prism.scss";
-import '../components/styles/reset.css';
-import '../components/styles/base.scss';
-import { installPrismTypeQL } from "../components/typeql/prism-typeql";
+import "vaticle-web-components/dist/assets/css/prism.scss";
+import "vaticle-web-components/dist/assets/css/reset.css";
+import "vaticle-web-components/dist/assets/css/base.scss";
+import { installPrismTypeQL } from "vaticle-web-components/dist/typeql/prism-typeql";
 import { VaticleWebApp } from "./app";
 
 installPrismTypeQL();

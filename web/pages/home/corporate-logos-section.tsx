@@ -1,8 +1,8 @@
 import clsx from "clsx";
 import React from "react";
-import { vaticleStyles } from "../../components/styles/vaticle-styles";
+import { vaticleStyles } from "vaticle-web-components/dist/styles/vaticle-styles";
 import { homePageCorporateLogosStyles } from "./home-styles";
-import { ClassProps } from "../../components/class-props";
+import { ClassProps } from "vaticle-web-components/dist/class-props";
 import FlipkartLogo from "../assets/logos/flipkart.png";
 import RocheLogo from "../assets/logos/roche.png";
 import GenentechLogo from "../assets/logos/genentech.png";

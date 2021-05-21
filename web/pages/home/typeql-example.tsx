@@ -1,11 +1,11 @@
 import { homePageStyles } from "./home-styles";
-import { VaticleButton } from "../../components/button/button";
+import { VaticleButton } from "vaticle-web-components/dist/button/button";
 import React from "react";
 import clsx from "clsx";
-import { vaticleStyles } from "../../components/styles/vaticle-styles";
-import { TypeQLVisualiser } from "../../components/typeql/typeql-visualiser";
-import { TypeQLGraph } from "../../components/typeql/typeql-data";
-import { ClassProps } from "../../components/class-props";
+import { vaticleStyles } from "vaticle-web-components/dist/styles/vaticle-styles";
+import { TypeQLVisualiser } from "vaticle-web-components/dist/typeql/typeql-visualiser";
+import { TypeQLGraph } from "vaticle-web-components/dist/typeql/typeql-data";
+import { ClassProps } from "vaticle-web-components/dist/class-props";
 
 export interface TypeQLExampleProps extends ClassProps {
     title: string;
