@@ -10,6 +10,7 @@ ts_project(
     ]),
     tsconfig = "tsconfig.json",
     declaration = True,
+    emit_declaration_only = True,
     deps = [
         "@npm//@fortawesome/free-brands-svg-icons",
         "@npm//@fortawesome/pro-solid-svg-icons",

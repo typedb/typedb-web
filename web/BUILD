@@ -33,6 +33,7 @@ nodejs_binary(
         "@npm//babel-loader",
         "@npm//babel-eslint",
         "@npm//sass-loader",
+        "@npm//clean-webpack-plugin",
         "@npm//html-webpack-plugin"
     ],
     entry_point = "@npm//:node_modules/webpack-cli/bin/cli.js",
