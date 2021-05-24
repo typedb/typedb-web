@@ -24,4 +24,4 @@ release:
       command: |
         echo $NOMAD_CACERT_BASE64 | base64 -d > /tmp/nomad-ca.pem
         export NOMAD_CACERT=/tmp/nomad-ca.pem
-        VERSION=$(cat VERSION) envsubst <infrastructure/web-main.nomad | nomad job run -
+        VERSION=$(cat VERSION) COMMIT=$(git rev-parse HEAD) envsubst <infrastructure/web-main.nomad | nomad job run -
