@@ -23,7 +23,8 @@
     "noUnusedParameters": false,
     "outDir": "dist"
   },
-  "include": [
-    "src"
+  "exclude": [
+    "dist",
+    "webpack.config.js"
   ]
 }

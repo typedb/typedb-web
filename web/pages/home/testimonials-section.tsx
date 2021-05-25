@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import clsx from "clsx";
 import CircleDecoration from "../assets/graphics/circle-decoration.svg";
-import { vaticleStyles } from "vaticle-web-components/dist/styles/vaticle-styles";
-import { ClassProps } from "vaticle-web-components/dist/class-props";
+import { vaticleStyles } from "../../common/styles/vaticle-styles";
+import { ClassProps } from "../../common/class-props";
 import JonThompsonAvatar from "../assets/images/jon-thompson.jpg";
 import JorisSijsAvatar from "../assets/images/joris-sijs.jpeg";
 import NikSharmaAvatar from "../assets/images/nik-sharma.jpg";

@@ -1,5 +1,5 @@
 import { makeStyles } from '@material-ui/core/styles';
-import { vaticleTheme } from "vaticle-web-components/dist/styles/theme";
+import { vaticleTheme } from "../../common/styles/theme";
 
 const testimonialWidth = 400;
 const testimonialWidthMobile = 360;

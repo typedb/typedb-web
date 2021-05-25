@@ -1,15 +1,14 @@
 {
   "presets": [
+    "@babel/preset-env",
     "@babel/preset-typescript",
-    "@babel/preset-react",
-    "@babel/preset-env"
+    "@babel/preset-react"
   ],
-  "plugins": [
-    "inline-react-svg",
+  "plugins": [ "inline-react-svg", 
     ["@babel/plugin-transform-runtime",
       {
         "regenerator": true
       }
     ]
-  ]
+  ] 
 }

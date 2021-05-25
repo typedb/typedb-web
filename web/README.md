@@ -1,6 +1,6 @@
-# Vaticle Website Pages
+# Vaticle Main Website Pages
 
-These pages were built using [React.js](https://reactjs.org/).
+The pages are built using [React.js](https://reactjs.org/).
 
 These instructions are for setting up a local development environment for the website pages.
 
@@ -12,13 +12,31 @@ npm install
 ## Run local dev server
 
 ```shell script
-cd pages
+cd web/pages
 npm start
 ```
 
-## Development notes
 
-### SVG styling
+# Vaticle Website Common Library
+
+The common library is also built using React.
+
+The Main Website depends on the source files directly and compiles them as part of its regular Webpack build. Other Vaticle-owned websites, such as Docs, depend on the Common Library as an `npm` package.
+
+## Build npm package (WIP)
+
+```shell script
+cd web/common
+./build.sh
+mv build/package.json ./package.json
+npm publish
+mv ./package.json build/package.json
+```
+
+
+# Development notes
+
+## SVG styling
 
 If you need to style specific parts of an SVG, use a tool such as `svgr` to first create a React component from the SVG:
 

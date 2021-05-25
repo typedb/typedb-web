@@ -1,20 +1,20 @@
 import React, { useEffect, useState } from 'react';
 import { homePageStyles } from "./home-styles";
-import { VaticleAtom } from 'vaticle-web-components/dist/images/vaticle-atom';
-import { discordURL, downloadTypeDBURL, githubURL, twitterURL } from "vaticle-web-components/dist/urls";
+import { VaticleAtom } from "../../common/images/vaticle-atom";
+import { discordURL, downloadTypeDBURL, githubURL, twitterURL } from "../../common/urls";
 import { faDiscord, faGithub, faTwitter } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { VaticleButton } from "vaticle-web-components/dist/button/button";
+import { VaticleButton } from "../../common/button/button";
 import clsx from "clsx";
 import { IndustrySection } from './industry-section';
 import { ClusterSection } from "./cluster-section";
 import { TestimonialsSection } from "./testimonials-section";
-import { vaticleStyles } from "vaticle-web-components/dist/styles/vaticle-styles";
+import { vaticleStyles } from "../../common/styles/vaticle-styles";
 import { getTypeDBVersion } from "../api/typedb-service";
 import VaticleWorld from "../assets/graphics/vaticle-world.svg";
 import { CorporateLogosSection } from "./corporate-logos-section";
 import { TypeQLExamplesSection } from "./typeql-examples-section";
-import { DefaultLayout } from "vaticle-web-components/dist/layout/default-layout";
+import { DefaultLayout } from "../../common/layout/default-layout";
 
 export const HomePage: React.FC = () => {
     const classes = Object.assign({}, vaticleStyles(), homePageStyles());
@@ -69,13 +69,6 @@ export const HomePage: React.FC = () => {
             <CorporateLogosSection className={classes.sectionMarginLarge}/>
 
             <TypeQLExamplesSection className={classes.sectionMarginLarge} typeDBVersion={typeDBVersion}/>
-
-            <section className={classes.sectionMarginLarge}>
-                <h1 className={classes.h1}>Empower your organisation to solve complex problems</h1>
-                <iframe src="https://www.youtube.com/embed/DbnS1feTyOs" title="YouTube video player" frameBorder="0"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowFullScreen className={clsx(classes.videoPlayer, classes.sectionMarginSmall)}/>
-            </section>
 
             <IndustrySection className={classes.sectionMarginLarge}/>
 

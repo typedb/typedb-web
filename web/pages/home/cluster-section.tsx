@@ -7,9 +7,9 @@ import FingerprintIcon from "../assets/icons/fingerprint.svg";
 import EnterpriseSupportIcon from "../assets/icons/enterprise-support.svg";
 import ClusterManagementIcon from "../assets/icons/cluster-management.svg";
 import BackupAndRecoveryIcon from "../assets/icons/backup-and-recovery.svg";
-import { VaticleButton } from "vaticle-web-components/dist/button/button";
-import { vaticleStyles } from "vaticle-web-components/dist/styles/vaticle-styles";
-import { ClassProps } from "vaticle-web-components/dist/class-props";
+import { VaticleButton } from "../../common/button/button";
+import { vaticleStyles } from "../../common/styles/vaticle-styles";
+import { ClassProps } from "../../common/class-props";
 
 interface ClusterFeature {
     name: string;

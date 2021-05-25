@@ -1,5 +1,5 @@
 {
-  "name": "vaticle-web-components",
+  "name": "vaticle-web-common",
   "version": "0.1.8",
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
@@ -32,18 +32,6 @@
   "homepage": "https://github.com/vaticle/web-main#readme",
   "publishConfig": {
     "registry": "https://repo.vaticle.com/repository/npm-snapshot/"
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
   },
   "devDependencies": {
     "@babel/cli": "^7.14.3",

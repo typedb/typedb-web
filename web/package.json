@@ -27,8 +27,7 @@
     "react-animated-burgers": "^1.2.8",
     "react-dom": "^16.13.1",
     "react-router-dom": "^5.2.0",
-    "styled-components": "^4.4.1",
-    "vaticle-web-components": "https://repo.vaticle.com/repository/npm-snapshot/vaticle-web-components/-/vaticle-web-components-0.1.8.tgz"
+    "styled-components": "^4.4.1"
   },
   "devDependencies": {
     "@babel/cli": "^7.14.3",

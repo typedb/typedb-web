@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
-// import { DefaultLayout } from "vaticle-web-components/dist/layout/default-layout";
+// import { DefaultLayout } from "../../common/layout/default-layout";
 // import { cloudPageStyles } from "./cloud-styles";
-// import { vaticleStyles } from "vaticle-web-components/dist/styles/vaticle-styles";
+// import { vaticleStyles } from "../../common/styles/vaticle-styles";
 // import { getTypeDBVersion } from "../api/typedb-service";
 
 export const CloudPage: React.FC = () => {

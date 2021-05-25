@@ -114,25 +114,25 @@ export const vaticleStyles = makeStyles({
 
     hideDesktop: {
         "@media(min-width: 1200px)": {
-            display: "none",
+            display: "none !important",
         },
     },
 
     showDesktop: {
         "@media(max-width: 1199px)": {
-            display: "none",
+            display: "none !important",
         },
     },
 
     hideMobile: {
         "@media(max-width: 767px)": {
-            display: "none",
+            display: "none !important",
         },
     },
 
     showMobile: {
         "@media(min-width: 768px)": {
-            display: "none",
+            display: "none !important",
         },
     },
 });

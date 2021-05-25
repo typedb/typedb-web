@@ -1,15 +1,15 @@
 import { homePageIndustryStyles } from "./home-styles";
-import { VaticleButton } from "vaticle-web-components/dist/button/button";
+import { VaticleButton } from "../../common/button/button";
 import React, { useState } from "react";
 import clsx from "clsx";
 import SecurityIcon from "../assets/icons/security.svg";
 import FinanceIcon from "../assets/icons/finance.svg";
 import NLPIcon from "../assets/icons/nlp.svg";
-import { LifeSciencesIcon } from "vaticle-web-components/dist/images/life-sciences-icon";
-import { vaticleTheme } from "vaticle-web-components/dist/styles/theme";
-import { RoboticsIcon } from "vaticle-web-components/dist/images/robotics-icon";
-import { vaticleStyles } from "vaticle-web-components/dist/styles/vaticle-styles";
-import { ClassProps } from "vaticle-web-components/dist/class-props";
+import { LifeSciencesIcon } from "../../common/images/life-sciences-icon";
+import { vaticleTheme } from "../../common/styles/theme";
+import { RoboticsIcon } from "../../common/images/robotics-icon";
+import { vaticleStyles } from "../../common/styles/vaticle-styles";
+import { ClassProps } from "../../common/class-props";
 
 type IndustryName = "Health and Life Sciences" | "Defence & Security" | "Financial Services" | "Robotics" | "NLP";
 
@@ -32,7 +32,8 @@ export const IndustrySection: React.FC<ClassProps> = ({className}) => {
 
     return (
         <section className={className}>
-            <h2 className={classes.h2}>{selectedIndustry}</h2>
+            <h1 className={classes.h1}>Empower your organisation to solve complex problems</h1>
+            <h2 className={clsx(classes.h2, classes.sectionMarginSmall)}>{selectedIndustry}</h2>
 
             {selectedIndustry === "Health and Life Sciences" &&
             <>

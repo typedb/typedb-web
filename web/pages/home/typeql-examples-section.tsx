@@ -1,12 +1,12 @@
-import { ClassProps } from "vaticle-web-components/dist/class-props";
-import { vaticleStyles } from "vaticle-web-components/dist/styles/vaticle-styles";
+import { ClassProps } from "../../common/class-props";
+import { vaticleStyles } from "../../common/styles/vaticle-styles";
 import { TypeQLExample } from "./typeql-example";
-import { studentHierarchyCode, studentHierarchyGraph } from "vaticle-web-components/dist/typeql/samples/student-hierarchy";
-import { transitiveLocationCode, transitiveLocationGraph } from "vaticle-web-components/dist/typeql/samples/transitive-location";
-import { locationDataCode, locationDataGraph } from "vaticle-web-components/dist/typeql/samples/location-data";
+import { studentHierarchyCode, studentHierarchyGraph } from "../../common/typeql/samples/student-hierarchy";
+import { transitiveLocationCode, transitiveLocationGraph } from "../../common/typeql/samples/transitive-location";
+import { locationDataCode, locationDataGraph } from "../../common/typeql/samples/location-data";
 import clsx from "clsx";
-import { VaticleButton } from "vaticle-web-components/dist/button/button";
-import { downloadTypeDBURL, githubURL } from "vaticle-web-components/dist/urls";
+import { VaticleButton } from "../../common/button/button";
+import { downloadTypeDBURL, githubURL } from "../../common/urls";
 import React from "react";
 
 interface TypeQLExamplesSectionProps extends ClassProps {

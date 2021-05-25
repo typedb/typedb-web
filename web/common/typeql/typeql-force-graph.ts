@@ -200,15 +200,21 @@ function renderVertex(vertex: Vertex, fontFace: { load: () => Promise<any> }) {
     vertex.gfx.endFill();
 
     fontFace.load().then(() => {
-        const text1 = new PIXI.Text(vertex.text, {
-            fontSize: styles.vertexLabel.fontSize,
-            fontFamily: styles.fontFamily,
-            fill: coloursHex.vertexLabel,
-        });
-        text1.anchor.set(0.5);
-        text1.resolution = window.devicePixelRatio * 2;
-        vertex.gfx.addChild(text1);
+        renderVertexText(vertex, false);
+    }, () => {
+        renderVertexText(vertex, true);
     });
+}
+
+function renderVertexText(vertex: Vertex, useFallbackFont: boolean) {
+    const text1 = new PIXI.Text(vertex.text, {
+        fontSize: styles.vertexLabel.fontSize,
+        fontFamily: useFallbackFont ? styles.fontFamilyFallback : styles.fontFamily,
+        fill: coloursHex.vertexLabel,
+    });
+    text1.anchor.set(0.5);
+    text1.resolution = window.devicePixelRatio * 2;
+    vertex.gfx.addChild(text1);
 }
 
 function renderEdge(edge: Edge, edgesGFX: PIXI.Graphics, edgeLabelStyle: Partial<PIXI.ITextStyle>, edgeLabelMetrics: { [p: string]: PIXI.TextMetrics }) {

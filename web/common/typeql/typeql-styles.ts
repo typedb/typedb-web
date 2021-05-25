@@ -146,6 +146,7 @@ export const typeQLGraphColoursHex = {
 
 export const typeQLGraphStyles = {
     fontFamily: "Ubuntu Mono",
+    fontFamilyFallback: "monospace",
 
     vertexLabel: {
         fontSize: 16,
