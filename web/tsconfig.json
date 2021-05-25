@@ -21,7 +21,7 @@
     "noUnusedLocals": false,
     "noUnusedParameters": false,
     "incremental": true,
-    "outDir": "./dist/"
+    "outDir": "./pages/"
   },
   "exclude": [
     "node_modules"

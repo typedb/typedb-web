@@ -12,7 +12,7 @@ assemble_react(
     name = "pages-dev",
     srcs = [":content"],
     package_dir = "web",
-    webpack_output_path = "dist",
+    webpack_output_path = "pages",
     visibility = ["//visibility:public"],
     react_build_mode = "development",
 )
@@ -21,7 +21,7 @@ assemble_react(
     name = "pages",
     srcs = [":content"],
     package_dir = "web",
-    webpack_output_path = "dist",
+    webpack_output_path = "pages",
     visibility = ["//visibility:public"],
     react_build_mode = "production",
 )
