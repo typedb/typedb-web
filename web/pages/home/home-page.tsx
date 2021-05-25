@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { homePageStyles } from "./home-styles";
 import { VaticleAtom } from "../../common/images/vaticle-atom";
-import { discordURL, downloadTypeDBURL, githubURL, twitterURL } from "../../common/urls";
 import { faDiscord, faGithub, faTwitter } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { VaticleButton } from "../../common/button/button";
@@ -15,6 +14,7 @@ import VaticleWorld from "../assets/graphics/vaticle-world.svg";
 import { CorporateLogosSection } from "./corporate-logos-section";
 import { TypeQLExamplesSection } from "./typeql-examples-section";
 import { DefaultLayout } from "../../common/layout/default-layout";
+import { urls } from "../../common/urls";
 
 export const HomePage: React.FC = () => {
     const classes = Object.assign({}, vaticleStyles(), homePageStyles());
@@ -45,21 +45,21 @@ export const HomePage: React.FC = () => {
                 </p>
 
                 <div className={clsx(classes.mainLinks, classes.sectionMarginSmall)}>
-                    <a href={githubURL} target="_blank" className={classes.firstMainLink}>
+                    <a href={urls.social.github} target="_blank" className={classes.firstMainLink}>
                         <FontAwesomeIcon className={classes.mainLinkIcon} icon={faGithub} />
                         <div className={classes.mainLinkCaption}>GitHub</div>
                     </a>
-                    <a href={discordURL} target="_blank" className={classes.mainLink}>
+                    <a href={urls.social.discord} target="_blank" className={classes.mainLink}>
                         <FontAwesomeIcon className={classes.mainLinkIcon} icon={faDiscord} />
                         <div className={classes.mainLinkCaption}>Discord</div>
                     </a>
-                    <a href={twitterURL} target="_blank" className={classes.mainLink}>
+                    <a href={urls.social.twitter} target="_blank" className={classes.mainLink}>
                         <FontAwesomeIcon className={classes.mainLinkIconCircle} icon={faTwitter} />
                         <div className={classes.mainLinkCaption}>Twitter</div>
                     </a>
                     <div className={classes.mainLink}>
                         <VaticleButton className={classes.downloadTypeDBButton} size="small" type="primary"
-                                       href={downloadTypeDBURL} target="_blank">
+                                       href={urls.downloadTypeDB} target="_blank">
                             Download {typeDBVersion}
                         </VaticleButton>
                     </div>

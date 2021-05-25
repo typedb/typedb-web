@@ -373,13 +373,13 @@ export const pageFooterStyles = makeStyles({
         },
     },
 
-    siteMap: {
+    allOtherLinks: {
         flex: 1,
 
         "@media(min-width: 768px)": {
             marginLeft: 20,
             display: "flex",
-            justifyContent: "space-between",
+            justifyContent: "space-around",
             alignItems: "flex-start",
         },
 
@@ -391,7 +391,7 @@ export const pageFooterStyles = makeStyles({
         },
     },
 
-    siteMapSection: {
+    linkBlock: {
         marginTop: 32,
 
         "@media(max-width: 767px)": {

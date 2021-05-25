@@ -6,8 +6,8 @@ import { transitiveLocationCode, transitiveLocationGraph } from "../../common/ty
 import { locationDataCode, locationDataGraph } from "../../common/typeql/samples/location-data";
 import clsx from "clsx";
 import { VaticleButton } from "../../common/button/button";
-import { downloadTypeDBURL, githubURL } from "../../common/urls";
 import React from "react";
+import { urls } from "../../common/urls";
 
 interface TypeQLExamplesSectionProps extends ClassProps {
     typeDBVersion: string;
@@ -47,8 +47,8 @@ export const TypeQLExamplesSection: React.FC<TypeQLExamplesSectionProps> = ({cla
                                      As a result, TypeDB significantly reduces complexity of applications."/>
 
             <div className={clsx(classes.mainActionList, classes.sectionMarginSmall)}>
-                <VaticleButton size="small" type="primary" href={downloadTypeDBURL} target="_blank">Download {typeDBVersion}</VaticleButton>
-                <VaticleButton size="small" type="primary" href={githubURL} target="_blank">Fork/Star on GitHub</VaticleButton>
+                <VaticleButton size="small" type="primary" href={urls.downloadTypeDB} target="_blank">Download {typeDBVersion}</VaticleButton>
+                <VaticleButton size="small" type="primary" href={urls.social.github} target="_blank">Fork/Star on GitHub</VaticleButton>
             </div>
         </section>
     );

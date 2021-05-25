@@ -7,10 +7,10 @@ import VaticleLogo from "../assets/logos/vaticle.svg";
 import { pageHeaderStyles } from "./layout-styles";
 import { GithubButton } from "../button/github-button";
 import { VaticleButton } from "../button/button";
-import { downloadTypeDBURL, supportPlatformURL } from "../urls";
 import clsx from 'clsx';
 import { HamburgerCollapse } from "react-animated-burgers/lib";
 import { vaticleStyles } from "../styles/vaticle-styles";
+import { urls } from "../urls";
 
 interface PageHeaderProps {
     typeDBVersion: string;
@@ -103,8 +103,8 @@ const ExternalLinks: React.FC<ExternalLinksProps> = ({typeDBVersion}) => {
     return (
         <>
             <ExternalLink>Contact</ExternalLink>
-            <ExternalLink href={supportPlatformURL} target="_blank">Support</ExternalLink>
-            <VaticleButton size="small" type="secondary" href={downloadTypeDBURL} target="_blank"
+            <ExternalLink href={urls.support} target="_blank">Support</ExternalLink>
+            <VaticleButton size="small" type="secondary" href={urls.downloadTypeDB} target="_blank"
                            className={clsx(classes.toolbarItem, classes.externalLinksDownload)}>Download {typeDBVersion}</VaticleButton>
             <div className={classes.externalLinksGithub}>
                 <GithubButton/>

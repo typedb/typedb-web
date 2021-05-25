@@ -1,12 +1,12 @@
 import React from 'react';
 import { pageFooterStyles } from "./layout-styles";
-import { discordURL, facebookURL, githubURL, linkedInURL, twitterURL } from "../urls";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faDiscord, faFacebookSquare, faGithub, faLinkedin, faTwitter, IconDefinition } from "@fortawesome/free-brands-svg-icons";
 import clsx from "clsx";
 import { VaticleButton } from "../button/button";
 import { faMapMarkerAlt, faPhoneAlt } from "@fortawesome/pro-solid-svg-icons";
 import { vaticleStyles } from "../styles/vaticle-styles";
+import { urls } from "../urls";
 
 export const PageFooter: React.FC = () => {
     const classes = Object.assign({}, vaticleStyles(), pageFooterStyles());
@@ -17,16 +17,16 @@ export const PageFooter: React.FC = () => {
                 <section>
                     <div className={classes.newsletterSection}>
                         <div className={classes.social}>
-                            <a href={twitterURL} target="_blank">
+                            <a href={urls.social.twitter} target="_blank">
                                 <FontAwesomeIcon className={clsx(classes.socialIcon, classes.socialIconTwitter)} icon={faTwitter} />
                             </a>
-                            <a href={facebookURL} target="_blank" className={classes.socialLinkFacebook}>
+                            <a href={urls.social.facebook} target="_blank" className={classes.socialLinkFacebook}>
                                 <FontAwesomeIcon className={clsx(classes.socialIcon, classes.socialIconFacebook)} icon={faFacebookSquare} />
                             </a>
-                            <a href={linkedInURL} target="_blank" className={classes.socialLinkLinkedIn}>
+                            <a href={urls.social.linkedIn} target="_blank" className={classes.socialLinkLinkedIn}>
                                 <FontAwesomeIcon className={clsx(classes.socialIcon, classes.socialIconLinkedIn)} icon={faLinkedin} />
                             </a>
-                            <a href={githubURL} target="_blank" className={classes.socialLinkGithub}>
+                            <a href={urls.social.github} target="_blank" className={classes.socialLinkGithub}>
                                 <FontAwesomeIcon className={clsx(classes.socialIcon, classes.socialIconGithub)} icon={faGithub} />
                             </a>
                         </div>
@@ -50,8 +50,8 @@ export const PageFooter: React.FC = () => {
                         <div className={classes.contact}>
                             <h3 className={classes.h3}>Get in Touch</h3>
                             <ul className={classes.linkList}>
-                                <ContactDetail href={githubURL} target="_blank" icon={faGithub}>Vaticle on GitHub</ContactDetail>
-                                <ContactDetail href={discordURL} target="_blank" icon={faDiscord}>Vaticle on Discord</ContactDetail>
+                                <ContactDetail href={urls.social.github} target="_blank" icon={faGithub}>Vaticle on GitHub</ContactDetail>
+                                <ContactDetail href={urls.social.discord} target="_blank" icon={faDiscord}>Vaticle on Discord</ContactDetail>
                                 <ContactDetail icon={faPhoneAlt}>Get in touch</ContactDetail>
                                 <ContactDetail icon={faMapMarkerAlt} type="address" classes={{anchor: classes.linkTwoLine}}>
                                     3rd floor, East, 47-50 Margaret St,
@@ -59,39 +59,27 @@ export const PageFooter: React.FC = () => {
                                 </ContactDetail>
                             </ul>
                         </div>
-                        <div className={classes.siteMap}>
+                        <div className={classes.allOtherLinks}>
                             <div>
-                                <h3 className={classes.h3}>Products</h3>
-                                <ul className={classes.siteMapSection}>
-                                    <FooterLink>TypeDB</FooterLink>
-                                    <FooterLink>TypeDB Cluster</FooterLink>
-                                    <FooterLink>Quickstart</FooterLink>
-                                    <FooterLink>Install</FooterLink>
-                                </ul>
-                            </div>
-                            <div>
-                                <h3 className={classes.h3}>Solutions</h3>
-                                <ul className={classes.siteMapSection}>
-                                    <FooterLink>Deployment</FooterLink>
-                                    <FooterLink>Services</FooterLink>
-                                    <FooterLink>Support</FooterLink>
+                                <h3 className={classes.h3}>TypeDB</h3>
+                                <ul className={classes.linkBlock}>
+                                    <FooterLink href={urls.docs.typeDBQuickstart}>Quickstart</FooterLink>
+                                    <FooterLink href={urls.downloadTypeDB}>Install</FooterLink>
+                                    <FooterLink href={urls.support} target="_blank">Support</FooterLink>
                                 </ul>
                             </div>
                             <div>
                                 <h3 className={classes.h3}>Developer</h3>
-                                <ul className={classes.siteMapSection}>
-                                    <FooterLink>Documentation</FooterLink>
-                                    <FooterLink>Community</FooterLink>
-                                    <FooterLink>Discuss</FooterLink>
-                                    <FooterLink href={githubURL} target="_blank">GitHub</FooterLink>
+                                <ul className={classes.linkBlock}>
+                                    <FooterLink href={urls.docs.home}>Documentation</FooterLink>
+                                    <FooterLink href={urls.discuss}>Discuss</FooterLink>
+                                    <FooterLink href={urls.social.github} target="_blank">GitHub</FooterLink>
                                 </ul>
                             </div>
                             <div>
                                 <h3 className={classes.h3}>Company</h3>
-                                <ul className={classes.siteMapSection}>
-                                    <FooterLink>Blog</FooterLink>
-                                    <FooterLink>Careers</FooterLink>
-                                    <FooterLink>About</FooterLink>
+                                <ul className={classes.linkBlock}>
+                                    <FooterLink href={urls.blog}>Blog</FooterLink>
                                 </ul>
                             </div>
                         </div>
