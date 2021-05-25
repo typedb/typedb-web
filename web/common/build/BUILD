@@ -3,6 +3,7 @@ load("@vaticle_bazel_distribution//npm:rules.bzl", "assemble_npm", "deploy_npm")
 load("@vaticle_dependencies//distribution:deployment.bzl", "deployment", "deployment_private")
 load("@npm//@bazel/typescript:index.bzl", "ts_project")
 
+# TODO: We don't currently use this for anything - either salvage or delete it
 ts_project(
     name = "components",
     srcs = glob([

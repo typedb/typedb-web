@@ -92,7 +92,7 @@ export const PageFooter: React.FC = () => {
 
 interface FooterLinkProps {
     href?: string;
-    // linkTo?: string;
+    // to?: string;
     target?: string;
 }
 
