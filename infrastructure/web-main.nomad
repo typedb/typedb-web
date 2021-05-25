@@ -10,13 +10,6 @@ job "web-main" {
     value     = "web-main"
   }
 
-//  update {
-//    canary = 1
-//    min_healthy_time = "1m"
-//    auto_revert = true
-//    auto_promote = true
-//  }
-
   group "web-main" {
     count = 1
 
@@ -66,6 +59,10 @@ EOH
       resources {
         cpu    = 1000
         memory = 2048
+      }
+
+      meta {
+        commit = "${COMMIT}"
       }
     }
   }
