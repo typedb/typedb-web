@@ -28,7 +28,7 @@ job "web-main" {
       config {
         jar_path = "local/web-main-${VERSION}/server.jar"
         jvm_options = ["-Dpidfile.path=/dev/null"]
-        args = ["--resources=local/web-main-${VERSION}/resources", "--pages=local/web-main-${VERSION}/pages"]
+        args = ["--resources=local/web-main-${VERSION}/resources", "--pages=local/web-main-${VERSION}/dist"]
       }
 
       artifact {
