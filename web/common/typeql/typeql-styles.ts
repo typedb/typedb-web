@@ -1,6 +1,8 @@
 import { makeStyles } from "@material-ui/core";
 import { vaticleTheme } from "../styles/theme";
 
+const borderBlack = "#07053A";
+
 export const typeQLVisualiserStyles = makeStyles({
     container: {
         width: 660,
@@ -18,13 +20,8 @@ export const typeQLVisualiserStyles = makeStyles({
     },
 
     header: {
-        height: 24,
-        borderRadius: "5px 5px 0 0",
-        borderBottom: `1px solid ${vaticleTheme.palette.purple["1000"]}`, // TODO: this colour is not in the palette
-        backgroundColor: vaticleTheme.palette.purple["850"],
         display: "flex",
-        alignItems: "center",
-        padding: "0 8px",
+        borderBottom: `1px solid ${borderBlack}`,
     },
 
     codeAndGraph: {
@@ -49,11 +46,11 @@ export const typeQLVisualiserStyles = makeStyles({
 
     lineNumbersSection: {
         flex: "0 0 40px",
-        backgroundColor: vaticleTheme.palette.purple["850"],
-        borderRight: `1px solid ${vaticleTheme.palette.purple["1000"]}`,
+        backgroundColor: "#140B44",
+        borderRight: `1px solid ${borderBlack}`,
         textAlign: "center",
         fontFamily: "\"Ubuntu Mono\", monospace",
-        color: vaticleTheme.palette.blue["200"],
+        color: "#888DCA",
     },
 
     lineNumbers: {
@@ -70,7 +67,7 @@ export const typeQLVisualiserStyles = makeStyles({
         width: "calc(100% - 12px)",
         height: "100%",
         marginRight: 12,
-        backgroundColor: vaticleTheme.palette.purple["850"],
+        backgroundColor: "#140B44",
         padding: "6px 0 8px 20px",
     },
 
@@ -94,38 +91,7 @@ export const typeQLVisualiserStyles = makeStyles({
         left: 0,
         bottom: 0,
         right: 0,
-        backgroundColor: vaticleTheme.palette.purple["900"], // TODO: this colour is not in the palette
-    },
-
-    footer: {
-        height: 24,
-        borderRadius: "0 0 5px 5px",
-        backgroundColor: vaticleTheme.palette.purple["850"],
-        display: "flex",
-        justifyContent: "space-between",
-        alignItems: "center",
-        padding: "0 8px",
-        fontSize: 12,
-        fontWeight: 600,
-        color: vaticleTheme.palette.purple["350"], // TODO: this colour is not in the palette
-    },
-
-    footerEnd: {
-        display: "flex",
-        alignItems: "center",
-    },
-
-    footerText: {
-        marginTop: -2,
-    },
-
-    footerEndIcon: {
-        marginLeft: 8,
-    },
-
-    footerEndCaption: {
-        marginLeft: 4,
-        marginTop: -1,
+        backgroundColor: "#0E053F",
     },
 });
 
@@ -141,7 +107,7 @@ export const typeQLGraphColours = {
 
 export const typeQLGraphColoursHex = {
     vertexLabel: "#09022F",
-    edge: vaticleTheme.palette.blue["100"],
+    edge: "86AAFF",
 };
 
 export const typeQLGraphStyles = {

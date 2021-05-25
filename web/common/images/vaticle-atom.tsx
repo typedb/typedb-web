@@ -2,7 +2,6 @@ import React from 'react';
 
 import { vaticleAtomStyles } from "./images-styles";
 
-// TODO: replace the "orange" with red
 export const VaticleAtom: React.FC = (props) => {
     const classes = vaticleAtomStyles();
 
@@ -36,13 +35,13 @@ export const VaticleAtom: React.FC = (props) => {
                 <circle stroke="#1C4A97" strokeWidth={0.4} cx={240} cy={240} r={210.022}/>
                 <path d="M240 47.2c23.757 0 46.511 4.297 67.526 12.156a191.712 191.712 0 0119.842 8.73 192.568 192.568 0 0116.68 9.571C397.431 111.943 432.8 171.841 432.8 240c0 53.24-21.58 101.44-56.47 136.33-34.89 34.89-83.09 56.47-136.33 56.47-53.24 0-101.44-21.58-136.33-56.47C68.78 341.44 47.2 293.24 47.2 240c0-53.24 21.58-101.44 56.47-136.33C138.56 68.78 186.76 47.2 240 47.2z"
                     stroke="#F6C94C" strokeWidth={0.4} className={classes.yellow}/>
-                <path d="M240 407c92.508 0 167.5-74.992 167.5-167.5" stroke="#F97F51" strokeWidth={0.6} className={classes.red}/>
-                <path d="M237 72c-58.559 0-110.12 29.96-140.19 75.389" stroke="#F97F51" strokeLinecap="round" className={classes.red}/>
+                <path d="M240 407c92.508 0 167.5-74.992 167.5-167.5" stroke="#F66B65" strokeWidth={0.6} className={classes.red}/>
+                <path d="M237 72c-58.559 0-110.12 29.96-140.19 75.389" stroke="#F66B65" strokeLinecap="round" className={classes.red}/>
                 <path d="M61.707 312.813a192.11 192.11 0 008.996 19.015m11.717 18.924a194.067 194.067 0 0051.732 50.33m203.196 5.896a193.276 193.276 0 0017.674-11.612m16.458-13.614c20.257-18.727 36.492-41.742 47.262-67.602m-69.81-233.833a192.935 192.935 0 00-18.856-11.315m-20.19-9.154C288.354 51.55 264.958 47 240.5 47"
                     stroke="#F6C94C" strokeWidth={2} className={classes.yellow}/>
                 <path fill="#02DAC9" d="M467.513 169.82l1.854 5.706-5.706 1.854-1.855-5.706z" className={classes.green}/>
-                <circle stroke="#F97F51" strokeWidth={0.6} cx={248} cy={73} r={10.3} className={classes.red} />
-                <circle fill="#F97F51" cx={248} cy={73} r={3} className={classes.red} />
+                <circle stroke="#F66B65" strokeWidth={0.6} cx={248} cy={73} r={10.3} className={classes.red} />
+                <circle fill="#F66B65" cx={248} cy={73} r={3} className={classes.red} />
                 <path d="M136.824 145.37a140.275 140.275 0 00-22.661 33.198C105.092 197.115 100 217.963 100 240m12.387 57.658a140.279 140.279 0 0028.008 40.723 140.337 140.337 0 0040.501 28.568M240 380c15.385 0 30.19-2.482 44.038-7.067M353 322.666a139.53 139.53 0 0020.68-40.95M380 240c0-14.247-2.128-27.997-6.084-40.949a139.299 139.299 0 00-14.902-32.814m-29.978-34.282a139.888 139.888 0 00-38.328-22.49C274.985 103.354 257.884 100 240 100m-39.27 5.582a139.25 139.25 0 00-33.504 14.795"
                     stroke="#F28DD7" strokeWidth={2.5} className={classes.pink}/>
                 <circle fill="#F28DD7" cx={343} cy={145} r={6} className={classes.pink} />

@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 bazel build //...
-mkdir local
+mkdir -p local
 cp bazel-bin/web/pages-dev.tar.gz local/pages-dev.tar.gz
 cd local
 rm -rf pages

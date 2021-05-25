@@ -96,7 +96,7 @@ export const pageHeaderStyles = makeStyles({
         width: "100%",
         height: 0,
         overflow: "hidden",
-        backgroundColor: vaticleTheme.palette.purple["800"], // TODO: this colour is not in the palette
+        backgroundColor: vaticleTheme.palette.purple["800"],
         transition: "height 350ms ease-in-out, width 350ms ease-in-out, margin-left 350ms ease-out",
 
         "&.invisible": {
@@ -168,7 +168,7 @@ export const pageHeaderStyles = makeStyles({
 export const pageFooterStyles = makeStyles({
     root: {
         marginTop: 80,
-        backgroundColor: vaticleTheme.palette.purple["800"], // TODO: this colour is not in the palette
+        backgroundColor: vaticleTheme.palette.purple["800"],
     },
 
     content: {
@@ -301,7 +301,7 @@ export const pageFooterStyles = makeStyles({
     separator: {
         marginTop: 67,
         height: 0,
-        border: `1px solid ${vaticleTheme.palette.purple["450"]}`, // TODO: this colour is not in the palette
+        border: `1px solid ${vaticleTheme.palette.purple["450"]}`,
     },
 
     linksSection: {

@@ -1,11 +1,7 @@
 #!/usr/bin/env bash
 
-mkdir local
-cd local
-mkdir resources
-cd resources
-mkdir conf
-cd conf
+mkdir -p local/resources/conf
+cd local/resources/conf
 echo "environment=local
 local.port=8080" > web-main.properties
 cd ../../..

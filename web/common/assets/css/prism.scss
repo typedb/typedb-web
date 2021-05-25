@@ -1,11 +1,11 @@
 /* PrismJS 1.23.0 https://prismjs.com/download.html#themes=prism */
 
-$color-blue-100: #86AAFF;
-$color-yellow-300: #F6C94C;
+$color-blue: #7BA0FF;
+$color-yellow: #FFE4A7;
 $color-pink-200: #F28DD7;
-$color-green-300: #02DAC9;
-$color-red-100: #FF8888;
-$color-grey-300: #7F83AF;
+$color-green: #55EAE2;
+$color-orange: #FFA187;
+$color-grey: #7F83AF;
 
 code[class*="language-"],
 pre[class*="language-"] {
@@ -13,22 +13,22 @@ pre[class*="language-"] {
 }
 
 .token.comment {
-    color: $color-grey-300;
+    color: $color-grey;
 }
 
 .token.super {
-    color: $color-yellow-300;
+    color: $color-yellow;
 }
 
 .token.string {
-    color: $color-green-300;
+    color: $color-green;
 }
 
 .token.operator,
 .token.keyword {
-    color: $color-blue-100;
+    color: $color-blue;
 }
 
 .token.variable {
-    color: $color-red-100;
+    color: $color-orange;
 }

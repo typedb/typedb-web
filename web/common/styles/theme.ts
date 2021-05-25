@@ -14,48 +14,29 @@ declare module '@material-ui/core/styles/createMuiTheme' {
 }
 
 // TODO: Colours used solely in illustrations should not be listed here
+// TODO: We really need to break down this structure - our colours have proper names, we shouldn't conform to MaterialUI
 export const vaticleTheme = {
     spacing: createSpacing(5),
     palette: {
-        white: {
-            200: '#F5F2FF',
-        },
         purple: {
-            50: '#E9DBFF',
-            100: '#A391C3',
-            200: '#9482CF',
-            300: '#544899',
-            350: '#484B72',
-            400: '#392D7F',
-            450: '#372E6A',
-            500: '#2C2349',
-            600: '#261C5E',
-            700: '#1D1354',
-            800: '#180F49',
-            850: '#140B44',
-            900: '#0E053F',
-            1000: '#07053A',
+            300: '#544899', // Purple 6
+            400: '#392D7F', // Purple 5
+            450: '#372E6A', // Purple 4
+            600: '#261C5E', // Purple 3
+            700: '#1D1354', // Purple 2
+            800: '#180F49', // Purple 1
         },
         green: {
-            100: '#52FACE',
-            300: '#02DAC9',
-            500: '#0B939F',
+            300: '#02DAC9', // Green
         },
         red: {
-            100: '#FF8888',
-        },
-        blue: {
-            100: '#86AAFF',
-            200: '#888DCA',
+            100: '#F66B65', // Red
         },
         yellow: {
-            300: '#F6C94C',
+            300: '#F6C94C', // Yellow
         },
         pink: {
-            200: '#F28DD7',
-        },
-        grey: {
-            300: '#7F83AF',
+            200: '#F28DD7', // Pink
         },
     },
     shape: {
