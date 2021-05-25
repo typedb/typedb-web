@@ -105,7 +105,8 @@ export const pageHeaderStyles = makeStyles({
 
         "&.open": {
             "@media(min-width: 768px)": {
-                height: 405,
+                height: 295,
+                // height: 405,
             },
 
             "@media(max-width: 767px)": {
@@ -146,14 +147,9 @@ export const pageHeaderStyles = makeStyles({
         },
     },
 
-    externalLinksMenu: {
-        marginTop: 12,
-        display: "flex",
-        flexDirection: "column-reverse",
-        alignItems: "flex-end",
-
-        "@media(max-width: 767px)": {
-            alignItems: "flex-start",
+    externalLinksDownload: {
+        "@media(max-width: 1199px)": {
+            order: 99,
         },
     },
 
@@ -163,18 +159,8 @@ export const pageHeaderStyles = makeStyles({
         },
 
         "@media(max-width: 1199px)": {
+            marginTop: 24,
             marginBottom: 24,
-        },
-    },
-
-    internalLinksMenu: {
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "flex-end",
-
-        "@media(max-width: 767px)": {
-            marginTop: 16,
-            alignItems: "flex-start",
         },
     },
 });

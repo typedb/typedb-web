@@ -20,7 +20,7 @@ export const VaticleRouter: React.FC = () => {
     return (
         <BrowserRouter>
             <Switch>
-                <VaticleRoute path="/cloud" title="Cloud" component={CloudPage}/>
+                {/*<VaticleRoute path="/cloud" title="Cloud" component={CloudPage}/>*/}
                 <VaticleRoute path="/" title="Home" component={HomePage} />
             </Switch>
         </BrowserRouter>

@@ -1,13 +1,13 @@
 import { Link } from 'react-router-dom';
 import { IconButton } from '@material-ui/core';
-import React, { useState } from 'react';
+import React, { MouseEventHandler, useState } from 'react';
 
 import VaticleLogo from "../assets/logos/vaticle.svg";
 
 import { pageHeaderStyles } from "./layout-styles";
 import { GithubButton } from "../button/github-button";
 import { VaticleButton } from "../button/button";
-import { downloadTypeDBURL } from "../urls";
+import { downloadTypeDBURL, supportPlatformURL } from "../urls";
 import clsx from 'clsx';
 import { HamburgerCollapse } from "react-animated-burgers/lib";
 import { vaticleStyles } from "../styles/vaticle-styles";
@@ -58,7 +58,6 @@ export const PageHeader: React.FC<PageHeaderProps> = ({typeDBVersion}) => {
 
                         <div className={classes.filler}/>
 
-                        <InternalLinks/>
                         <ExternalLinks typeDBVersion={typeDBVersion}/>
                     </div>
 
@@ -73,12 +72,7 @@ export const PageHeader: React.FC<PageHeaderProps> = ({typeDBVersion}) => {
                     </div>
 
                     <div className={classes.linksMenu}>
-                        <div className={classes.internalLinksMenu}>
-                            <InternalLinks/>
-                        </div>
-                        <div className={classes.externalLinksMenu}>
-                            <ExternalLinks typeDBVersion={typeDBVersion}/>
-                        </div>
+                        <ExternalLinks typeDBVersion={typeDBVersion}/>
                     </div>
                 </div>
             </nav>
@@ -86,15 +80,16 @@ export const PageHeader: React.FC<PageHeaderProps> = ({typeDBVersion}) => {
     );
 };
 
+// TODO: Add sitemap once most of the linked pages are implemented
 const Sitemap: React.FC = () => (
     <>
-        <HeaderMenuItem>Databases</HeaderMenuItem>
-        <HeaderMenuItem>Solutions</HeaderMenuItem>
-        <HeaderMenuItem>Use Cases</HeaderMenuItem>
-        <HeaderMenuItem>Developer</HeaderMenuItem>
-        <HeaderMenuItem>Conference</HeaderMenuItem>
-        <HeaderMenuItem>Community</HeaderMenuItem>
-        <HeaderMenuItem>Blog</HeaderMenuItem>
+        {/*<HeaderMenuItem>Databases</HeaderMenuItem>*/}
+        {/*<HeaderMenuItem>Solutions</HeaderMenuItem>*/}
+        {/*<HeaderMenuItem>Use Cases</HeaderMenuItem>*/}
+        {/*<HeaderMenuItem>Developer</HeaderMenuItem>*/}
+        {/*<HeaderMenuItem>Conference</HeaderMenuItem>*/}
+        {/*<HeaderMenuItem>Community</HeaderMenuItem>*/}
+        {/*<HeaderMenuItem>Blog</HeaderMenuItem>*/}
     </>
 );
 
@@ -107,24 +102,16 @@ const ExternalLinks: React.FC<ExternalLinksProps> = ({typeDBVersion}) => {
 
     return (
         <>
+            <ExternalLink>Contact</ExternalLink>
+            <ExternalLink href={supportPlatformURL} target="_blank">Support</ExternalLink>
             <VaticleButton size="small" type="secondary" href={downloadTypeDBURL} target="_blank"
-                           className={classes.toolbarItem}>Download {typeDBVersion}</VaticleButton>
+                           className={clsx(classes.toolbarItem, classes.externalLinksDownload)}>Download {typeDBVersion}</VaticleButton>
             <div className={classes.externalLinksGithub}>
                 <GithubButton/>
             </div>
         </>
     );
-}
-
-const InternalLinks: React.FC = () => (
-    <>
-        <HeaderLink>Contact</HeaderLink>
-        <HeaderLink>Support</HeaderLink>
-        <Link to="/cloud">
-            <HeaderLink>Cloud</HeaderLink>
-        </Link>
-    </>
-);
+};
 
 const HeaderMenuItem: React.FC = ({children}) => {
     const classes = pageHeaderStyles();
@@ -132,7 +119,21 @@ const HeaderMenuItem: React.FC = ({children}) => {
     return <p className={clsx(classes.toolbarItem, classes.linkText)}>{children}</p>;
 }
 
-const HeaderLink: React.FC = ({children}) => {
+interface ExternalLinkProps {
+    href?: string;
+    target?: string;
+    onClick?: MouseEventHandler<HTMLAnchorElement>;
+}
+
+const ExternalLink: React.FC<ExternalLinkProps> = ({children, href, target, onClick}) => {
+    return (
+        <a href={href} target={target} onClick={onClick}>
+            <ExternalLinkText>{children}</ExternalLinkText>
+        </a>
+    );
+}
+
+const ExternalLinkText: React.FC = ({children}) => {
     const classes = pageHeaderStyles();
 
     return (
