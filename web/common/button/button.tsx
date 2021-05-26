@@ -13,6 +13,7 @@ export interface BaseButtonProps extends ClassProps {
     size?: SizeIndicator;
     onClick?: React.MouseEventHandler;
     disabled?: boolean;
+    comingSoon?: true;
     target?: string;
     htmlAttrs?: {
         type?: 'submit' | 'button';
@@ -29,15 +30,15 @@ const defaultProps: Required<Pick<BaseButtonProps, 'size' | 'type' | 'htmlAttrs'
 export type BaseButtonFinalProps = React.PropsWithChildren<BaseButtonProps & typeof defaultProps>;
 
 export const VaticleButton: React.FC<BaseButtonProps> = props => {
-    const { children, className, href, to, size, type, onClick, htmlAttrs, target } = props as BaseButtonFinalProps;
+    const { children, className, href, to, size, type, onClick, htmlAttrs, target, disabled, comingSoon } = props as BaseButtonFinalProps;
 
-    const ownClasses = buttonStyles({ size, type });
+    const classes = buttonStyles({ size, type });
 
     const linkProps = to ? { component: Link, to } : {};
 
     return (
-        <a className={clsx(ownClasses.root, className)} href={href} onClick={onClick} target={target} {...linkProps} {...htmlAttrs}>
-            <div className={ownClasses.childDiv}>
+        <a className={clsx(classes.root, disabled && classes.disable, className)} href={href} onClick={onClick} target={target} title={comingSoon && "coming soon"} {...linkProps} {...htmlAttrs}>
+            <div className={classes.childDiv}>
                 {children}
             </div>
         </a>

@@ -10,7 +10,7 @@ export const buttonPalette = {
         background: vaticleTheme.palette.green[300],
         border: 'transparent',
         label: vaticleTheme.palette.purple[700],
-        hoverBackground: vaticleTheme.palette.green[500],
+        hoverBackground: "#0B939F",
         hoverBorder: 'transparent',
         hoverLabel: vaticleTheme.palette.purple[700],
         disabledBackground: Color(vaticleTheme.palette.green[300]).alpha(0.2).string(),
@@ -29,6 +29,11 @@ export const buttonPalette = {
 };
 
 export const buttonStyles = makeStyles({
+    disable: {
+        opacity: () => .5,
+        cursor: () => "default !important",
+    },
+
     root: {
         height: 40,
         border: (props: StyleProps) => `1px solid ${buttonPalette[props.type].border}`,
@@ -47,7 +52,7 @@ export const buttonStyles = makeStyles({
             lineHeight: '14px',
         },
 
-        '&:hover': {
+        '&:hover:not($disable)': {
             backgroundColor: (props: StyleProps) => buttonPalette[props.type].hoverBackground,
             color: (props: StyleProps) => buttonPalette[props.type].hoverLabel,
             borderColor: (props: StyleProps) => buttonPalette[props.type].hoverBorder,
@@ -67,26 +72,5 @@ export const githubButtonStyles = makeStyles({
     root: {
         color: '#FFF !important',
         fontSize: 36,
-    },
-});
-makeStyles({
-    root: {
-        width: 45,
-        height: 45,
-        borderRadius: "50%",
-        border: "1px solid transparent",
-        transition: "border-color 100ms ease",
-        backgroundColor: vaticleTheme.palette.purple["600"],
-        display: "inline-flex",
-        justifyContent: "center",
-        alignItems: "center",
-
-        "&:hover": {
-            borderColor: vaticleTheme.palette.green["300"],
-        },
-    },
-
-    disabled: {
-        pointerEvents: "none",
     },
 });

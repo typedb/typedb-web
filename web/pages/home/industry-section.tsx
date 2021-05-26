@@ -33,7 +33,7 @@ export const IndustrySection: React.FC<ClassProps> = ({className}) => {
     return (
         <section className={className}>
             <h1 className={classes.h1}>Empower your organisation to solve complex problems</h1>
-            <h2 className={clsx(classes.h2, classes.sectionMarginSmall)}>{selectedIndustry}</h2>
+            <h3 className={clsx(classes.h3, classes.textMarginLarge)}>{selectedIndustry}</h3>
 
             {selectedIndustry === "Health and Life Sciences" &&
             <>
@@ -43,7 +43,7 @@ export const IndustrySection: React.FC<ClassProps> = ({className}) => {
                     to effectively manage data can help organisations advance scientific research and deliver best
                     practice medicine.
                 </p>
-                <VaticleButton size="small" type="secondary" className={clsx(classes.buttonAfterText, classes.learnMore)}>Learn More</VaticleButton>
+                <VaticleButton size="small" type="secondary" disabled={true} comingSoon={true} className={clsx(classes.buttonAfterText, classes.learnMore)}>Learn More</VaticleButton>
             </>}
 
             {selectedIndustry === "Defence & Security" &&
@@ -54,7 +54,7 @@ export const IndustrySection: React.FC<ClassProps> = ({className}) => {
                     grows. TypeDB allows firms to leverage their digital defences against increasingly sophisticated
                     cyber criminals.
                 </p>
-                <VaticleButton size="small" type="secondary" className={clsx(classes.buttonAfterText, classes.learnMore)}>Learn More</VaticleButton>
+                <VaticleButton size="small" type="secondary" disabled={true} comingSoon={true} className={clsx(classes.buttonAfterText, classes.learnMore)}>Learn More</VaticleButton>
             </>}
 
             {selectedIndustry === "Financial Services" &&
@@ -65,7 +65,7 @@ export const IndustrySection: React.FC<ClassProps> = ({className}) => {
                     database technology, financial service firms can take full strategic advantage of the changing
                     data landscape.
                 </p>
-                <VaticleButton size="small" type="secondary" className={clsx(classes.buttonAfterText, classes.learnMore)}>Learn More</VaticleButton>
+                <VaticleButton size="small" type="secondary" disabled={true} comingSoon={true} className={clsx(classes.buttonAfterText, classes.learnMore)}>Learn More</VaticleButton>
             </>}
 
             {selectedIndustry === "Robotics" &&
@@ -76,7 +76,7 @@ export const IndustrySection: React.FC<ClassProps> = ({className}) => {
                     ac turpis egestas. Maecenas interdum nunc accumsan tortor maximus ornare. In hac habitasse platea
                     dictumst himenaeos.
                 </p>
-                <VaticleButton size="small" type="secondary" className={clsx(classes.buttonAfterText, classes.learnMore)}>Learn More</VaticleButton>
+                <VaticleButton size="small" type="secondary" disabled={true} comingSoon={true} className={clsx(classes.buttonAfterText, classes.learnMore)}>Learn More</VaticleButton>
             </>}
 
             {selectedIndustry === "NLP" &&
@@ -86,7 +86,7 @@ export const IndustrySection: React.FC<ClassProps> = ({className}) => {
                     through conversation. TypeDB is the ideal platform for developing chat bots because it is capable of
                     interpreting complex and ambiguous questions by performing inference over your data.
                 </p>
-                <VaticleButton size="small" type="secondary" className={clsx(classes.buttonAfterText, classes.learnMore)}>Learn More</VaticleButton>
+                <VaticleButton size="small" type="secondary" disabled={true} comingSoon={true} className={clsx(classes.buttonAfterText, classes.learnMore)}>Learn More</VaticleButton>
             </>}
 
             <div className={clsx(classes.sectionMarginSmall, classes.sectionToggleGroup)}>
