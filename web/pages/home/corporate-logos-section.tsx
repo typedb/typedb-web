@@ -10,6 +10,7 @@ import AstraZenecaLogo from "../assets/logos/purple/astrazeneca.png";
 import AustinCapitalDataLogo from "../assets/logos/purple/austin-capital-data.png";
 import BayerLogo from "../assets/logos/purple/bayer.png";
 import BioCortexLogo from "../assets/logos/purple/biocortex.png";
+import CapgeminiLogo from "../assets/logos/purple/capgemini.png";
 import ClearskyCybersecurityLogo from "../assets/logos/purple/clearsky-cybersecurity.png";
 import DataSpartanLogo from "../assets/logos/purple/dataspartan.png";
 import DigicustLogo from "../assets/logos/purple/digicust.png";
@@ -21,7 +22,7 @@ import GenentechLogo from "../assets/logos/purple/genentech.png";
 import IBMLogo from "../assets/logos/purple/ibm.png";
 import IceLabLogo from "../assets/logos/purple/ice-lab.png";
 import MedasLogo from "../assets/logos/purple/medas.png";
-import NestleHealthScienceLogo from "../assets/logos/purple/nestle-health-science.png";
+import NestleLogo from "../assets/logos/purple/nestle.png";
 import OxfordPharmagenesisLogo from "../assets/logos/purple/oxford-pharmagenesis.png";
 import QRGeneticsLogo from "../assets/logos/purple/qr-genetics.png";
 import RAIRHealthLogo from "../assets/logos/purple/rair-health.png";
@@ -54,8 +55,8 @@ export const CorporateLogosSection: React.FC<ClassProps> = ({className}) => {
         logo: GenentechLogo,
         altText: "Genentech",
     }, {
-        logo: NestleHealthScienceLogo,
-        altText: "Nestle Health Science",
+        logo: NestleLogo,
+        altText: "Nestle",
     }, {
         logo: AstraZenecaLogo,
         altText: "AstraZeneca",
@@ -131,6 +132,9 @@ export const CorporateLogosSection: React.FC<ClassProps> = ({className}) => {
     }, {
         logo: FIDELogo,
         altText: "Fide PBC",
+    }, {
+        logo: CapgeminiLogo,
+        altText: "Capgemini",
     }];
 
     return (
