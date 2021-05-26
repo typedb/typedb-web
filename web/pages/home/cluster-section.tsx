@@ -52,9 +52,9 @@ export const ClusterSection: React.FC<ClassProps> = ({className}) => {
 
     return (
         <section className={className}>
-            <h1 className={classes.h1}>Scale your database with Vaticle TypeDB Cluster</h1>
+            <h1 className={classes.h1}>Scale your database with TypeDB Cluster</h1>
             <p className={classes.largeText}>
-                Vaticle TypeDB Cluster is the distributed database designed to scale with your enterprise. Whether
+                TypeDB Cluster is the distributed database designed to scale with your enterprise. Whether
                 you have a growing dataset, application workload, or user request, TypeDB Cluster will provide the
                 tools you need to take you from development to production and scale.
             </p>
