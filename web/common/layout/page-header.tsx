@@ -83,6 +83,8 @@ export const PageHeader: React.FC<PageHeaderProps> = ({typeDBVersion}) => {
 // TODO: Add sitemap once most of the linked pages are implemented
 const Sitemap: React.FC = () => (
     <>
+        <HeaderMenuItem href={urls.docs.home}>Documentation</HeaderMenuItem>
+        <HeaderMenuItem href={urls.forum}>Forum</HeaderMenuItem>
         {/*<HeaderMenuItem>Databases</HeaderMenuItem>*/}
         {/*<HeaderMenuItem>Solutions</HeaderMenuItem>*/}
         {/*<HeaderMenuItem>Use Cases</HeaderMenuItem>*/}
@@ -113,19 +115,19 @@ const ExternalLinks: React.FC<ExternalLinksProps> = ({typeDBVersion}) => {
     );
 };
 
-const HeaderMenuItem: React.FC = ({children}) => {
-    const classes = pageHeaderStyles();
-
-    return <p className={clsx(classes.toolbarItem, classes.linkText)}>{children}</p>;
-}
-
-interface ExternalLinkProps {
+interface HeaderLinkProps {
     href?: string;
     target?: string;
     onClick?: MouseEventHandler<HTMLAnchorElement>;
 }
 
-const ExternalLink: React.FC<ExternalLinkProps> = ({children, href, target, onClick}) => {
+const HeaderMenuItem: React.FC<HeaderLinkProps> = ({children, href, target}) => {
+    const classes = pageHeaderStyles();
+
+    return <a href={href} target={target} className={clsx(classes.toolbarItem, classes.linkText)}>{children}</a>;
+}
+
+const ExternalLink: React.FC<HeaderLinkProps> = ({children, href, target, onClick}) => {
     return (
         <a href={href} target={target} onClick={onClick}>
             <ExternalLinkText>{children}</ExternalLinkText>

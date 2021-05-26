@@ -72,7 +72,7 @@ export const PageFooter: React.FC = () => {
                                 <h3 className={classes.h3}>Developer</h3>
                                 <ul className={classes.linkBlockList}>
                                     <FooterLink href={urls.docs.home}>Documentation</FooterLink>
-                                    <FooterLink href={urls.discuss}>Discuss</FooterLink>
+                                    <FooterLink href={urls.forum}>Forum</FooterLink>
                                     <FooterLink href={urls.social.github} target="_blank">GitHub</FooterLink>
                                 </ul>
                             </div>
