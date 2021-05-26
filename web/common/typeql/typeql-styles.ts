@@ -95,19 +95,19 @@ export const typeQLVisualiserStyles = makeStyles({
     },
 });
 
-const blue100 = 0x86AAFF;
+const blue = 0x86AAFF;
 const pink200 = 0xF28DD7;
 const yellow300 = 0xF6C94C;
 
 export const typeQLGraphColours = {
     entity: pink200,
     relation: yellow300,
-    edge: blue100,
+    edge: blue,
 };
 
 export const typeQLGraphColoursHex = {
     vertexLabel: "#09022F",
-    edge: "86AAFF",
+    edge: "#86AAFF",
 };
 
 export const typeQLGraphStyles = {
