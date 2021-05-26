@@ -196,7 +196,7 @@ export const homePageCorporateLogosStyles = makeStyles({
 
 export const homePageIndustryStyles = makeStyles({
     industryDescription: {
-        height: 136,
+        height: 102,
 
         "@media(max-width: 900px)": {
             height: 170,

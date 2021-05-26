@@ -13,7 +13,7 @@ export const buttonPalette = {
         hoverBackground: "#0B939F",
         hoverBorder: 'transparent',
         hoverLabel: vaticleTheme.palette.purple[700],
-        disabledBackground: Color(vaticleTheme.palette.green[300]).alpha(0.2).string(),
+        disabledBackground: vaticleTheme.palette.purple[300],
         disabledLabel: vaticleTheme.palette.purple[700],
     },
     secondary: {
@@ -23,15 +23,16 @@ export const buttonPalette = {
         hoverBackground: vaticleTheme.palette.green[300],
         hoverBorder: vaticleTheme.palette.green[300],
         hoverLabel: vaticleTheme.palette.purple[700],
-        disabledBackground: Color(vaticleTheme.palette.purple[700]).alpha(0.6).string(),
-        disabledLabel: Color(vaticleTheme.palette.green[300]).alpha(0.6).string(),
+        disabledBackground: "transparent",
+        disabledLabel: vaticleTheme.palette.purple[300],
     },
 };
 
 export const buttonStyles = makeStyles({
     disable: {
-        opacity: () => .5,
-        cursor: () => "default !important",
+        color: (props: StyleProps) => `${buttonPalette[props.type].disabledLabel} !important`,
+        borderColor: () => `${vaticleTheme.palette.purple[300]} !important`,
+        backgroundColor: (props: StyleProps) => `${buttonPalette[props.type].disabledBackground} !important`,
     },
 
     root: {

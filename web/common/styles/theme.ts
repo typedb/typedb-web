@@ -19,6 +19,7 @@ export const vaticleTheme = {
     spacing: createSpacing(5),
     palette: {
         purple: {
+            200: '#A488CA', // Purple 7
             300: '#544899', // Purple 6
             400: '#392D7F', // Purple 5
             450: '#372E6A', // Purple 4
