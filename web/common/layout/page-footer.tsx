@@ -112,12 +112,10 @@ const ContactDetail: React.FC<ContactDetailProps> = ({children, href, target, ic
                 <span className={ownClasses.linkIconContainer}>
                     <FontAwesomeIcon className={ownClasses.linkIcon} icon={icon} />
                 </span>}
-                <p className={ownClasses.linkText}>
                 {type === "address" ?
-                    <address className={ownClasses.linkText}>
-                        {children}
-                    </address> : <>{children}</>}
-                </p>
+                <address className={ownClasses.linkText}>
+                    {children}
+                </address> : <p className={ownClasses.linkText}>{children}</p>}
             </a>
         </li>
     );
