@@ -11,11 +11,11 @@ import { RoboticsIcon } from "../../common/images/robotics-icon";
 import { vaticleStyles } from "../../common/styles/vaticle-styles";
 import { ClassProps } from "../../common/class-props";
 
-type IndustryName = "Health and Life Sciences" | "Defence & Security" | "Financial Services" | "Robotics" | "NLP";
+type IndustryName = "Health & Life Sciences" | "Defence & Security" | "Financial Services" | "Robotics" | "NLP";
 
 export const IndustrySection: React.FC<ClassProps> = ({className}) => {
     const classes = Object.assign({}, vaticleStyles(), homePageIndustryStyles());
-    const [selectedIndustry, setSelectedIndustry] = useState<IndustryName>("Health and Life Sciences");
+    const [selectedIndustry, setSelectedIndustry] = useState<IndustryName>("Health & Life Sciences");
 
     const isSelected = (industry: IndustryName) => {
         return selectedIndustry === industry;
@@ -23,7 +23,7 @@ export const IndustrySection: React.FC<ClassProps> = ({className}) => {
 
     // TODO: Restructure to follow Cluster section's model
     const allIndustries: [IndustryName, React.FC<any>][] = [
-        ["Health and Life Sciences", LifeSciencesIcon],
+        ["Health & Life Sciences", LifeSciencesIcon],
         ["Defence & Security", SecurityIcon],
         ["Financial Services", FinanceIcon],
         ["Robotics", RoboticsIcon],
@@ -35,7 +35,7 @@ export const IndustrySection: React.FC<ClassProps> = ({className}) => {
             <h1 className={classes.h1}>Empower your organisation to solve complex problems</h1>
             <h3 className={clsx(classes.h3, classes.textMarginLarge)}>{selectedIndustry}</h3>
 
-            {selectedIndustry === "Health and Life Sciences" &&
+            {selectedIndustry === "Health & Life Sciences" &&
             <>
                 <p className={clsx(classes.industryDescription, classes.largeText)}>
                     From pharmaceutical R&D and biomedical research to frontline healthcare delivery, contemporary
