@@ -2,28 +2,26 @@
 
 The pages are built using [React.js](https://reactjs.org/).
 
-These instructions are for setting up a local development environment for the website pages.
+These instructions are for setting up a local development environment for the website pages. This is the fastest way to develop the page content. If you want a back-end server running, see `server/README.md`.
 
-## First-time setup
-```shell script
-npm install
-```
-
-## Run local dev server
+### Run local dev server
 
 ```shell script
-cd web/pages
+bazel build //...
+cd web
 npm start
 ```
 
 
 # Vaticle Website Common Library
 
-The common library is also built using React.
+Contains components used by both the Main Website and the Docs Website.
 
-The Main Website depends on the source files directly and compiles them as part of its regular Webpack build. Other Vaticle-owned websites, such as Docs, depend on the Common Library as an `npm` package.
+The common library is built using React.
 
-## Build npm package (WIP)
+The Main Website depends on the source files directly and compiles them as part of its regular Webpack build. Other Vaticle-owned websites, such as Docs, depend on the common library as an `npm` package.
+
+### Build npm package (WIP)
 
 ```shell script
 cd web/common
