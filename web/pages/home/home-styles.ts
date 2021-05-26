@@ -183,44 +183,14 @@ export const homePageCorporateLogosStyles = makeStyles({
         },
     },
 
-    tnoLogo: {
-        width: 185,
-        "@media(max-width: 767px)": { width: 151 },
-    },
+    corporateLogo: {
+        maxWidth: 185,
+        maxHeight: 70,
 
-    eagleGenomicsLogo: {
-        width: 185,
-        "@media(max-width: 767px)": { width: 145 },
-    },
-
-    flipkartLogo: {
-        width: 185,
-        "@media(max-width: 767px)": { width: 145 },
-    },
-
-    genentechLogo: {
-        width: 185,
-        "@media(max-width: 767px)": { width: 145 },
-    },
-
-    rairHealthLogo: {
-        width: 185,
-        "@media(max-width: 767px)": { width: 145 },
-    },
-
-    rheosMedicinesLogo: {
-        width: 185,
-        "@media(max-width: 767px)": { width: 145 },
-    },
-
-    nestleHealthScienceLogo: {
-        width: 185,
-        "@media(max-width: 767px)": { width: 145 },
-    },
-
-    rocheLogo: {
-        width: 185,
-        "@media(max-width: 767px)": { width: 145 },
+        "@media(max-width: 767px)": {
+            maxWidth: 145,
+            maxHeight: 55,
+        },
     },
 });
 

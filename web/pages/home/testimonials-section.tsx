@@ -11,14 +11,14 @@ import EnzoMartoglioAvatar from "../assets/images/enzo-martoglio.jpg";
 import MichaelBishopAvatar from "../assets/images/michael-bishop.jpg";
 import RadouaneOudrhiriAvatar from "../assets/images/radouane-oudrhiri.jpg";
 import SamuelPouytAvatar from "../assets/images/samuel-pouyt.jpg";
-import FlipkartSquareLogo from "../assets/logos/flipkart-square-white.png";
-import BioCortexSquareLogo from "../assets/logos/biocortex-square-white.png";
-import GravrSquareLogo from "../assets/logos/gravr-square-white.png";
-import TNOSquareLogo from "../assets/logos/tno-square-white.png";
-import AlphaVertexSquareLogo from "../assets/logos/alpha-vertex-square-white.png";
-import EagleGenomicsSquareLogo from "../assets/logos/eagle-genomics-square-white.png";
-import EuropeanRespiratorySocietySquareLogo from "../assets/logos/european-respiratory-society-square-white.png";
-import InfosysSquareLogo from "../assets/logos/infosys-square-white.png";
+import FlipkartSquareLogo from "../assets/logos/squarewhite/flipkart-square-white.png";
+import BioCortexSquareLogo from "../assets/logos/squarewhite/biocortex-square-white.png";
+import GravrSquareLogo from "../assets/logos/squarewhite/gravr-square-white.png";
+import TNOSquareLogo from "../assets/logos/squarewhite/tno-square-white.png";
+import AlphaVertexSquareLogo from "../assets/logos/squarewhite/alpha-vertex-square-white.png";
+import EagleGenomicsSquareLogo from "../assets/logos/squarewhite/eagle-genomics-square-white.png";
+import EuropeanRespiratorySocietySquareLogo from "../assets/logos/squarewhite/european-respiratory-society-square-white.png";
+import InfosysSquareLogo from "../assets/logos/squarewhite/infosys-square-white.png";
 import { homePageTestimonialsStyles } from "./home-styles";
 
 interface Testimonial {
