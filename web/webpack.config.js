@@ -13,6 +13,7 @@ module.exports = {
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
       template: "pages/index.html",
+      favicon: "common/assets/logos/favicon.png",
     }),
   ],
   resolve: {
