@@ -264,7 +264,7 @@ export const pageFooterStyles = makeStyles({
     },
 
     personalDataNotice: {
-        width: 430,
+        width: 330,
         maxWidth: "calc(100vw - 40px)",
         fontSize: 16,
         lineHeight: "24px",
@@ -272,7 +272,9 @@ export const pageFooterStyles = makeStyles({
     },
 
     subscribeActionBlock: {
+        flex: 1,
         minWidth: 320,
+        display: "flex",
 
         "@media(max-width: 767px)": {
             marginTop: 30,
@@ -379,7 +381,7 @@ export const pageFooterStyles = makeStyles({
         "@media(min-width: 768px)": {
             marginLeft: 20,
             display: "flex",
-            justifyContent: "space-around",
+            justifyContent: "flex-end",
             alignItems: "flex-start",
         },
 
@@ -392,6 +394,14 @@ export const pageFooterStyles = makeStyles({
     },
 
     linkBlock: {
+        "@media(min-width: 768px)": {
+            "&:not(:first-child)": {
+                marginLeft: 104,
+            },
+        },
+    },
+
+    linkBlockList: {
         marginTop: 32,
 
         "@media(max-width: 767px)": {

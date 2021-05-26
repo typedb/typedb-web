@@ -33,7 +33,7 @@ export const PageFooter: React.FC = () => {
 
                         <div className={classes.subscribe}>
                             <p className={classes.personalDataNotice}>
-                                Subscribe to our newsletter here. By submitting your personal data, you consent to emails from Vaticle. <a>See our Privacy Policy</a>
+                                By submitting your personal data, you consent to emails from Vaticle. <a>See our Privacy Policy</a>
                             </p>
                             <div className={classes.subscribeActionBlock}>
                                 <input type="email" placeholder="Email address" className={classes.subscribeEmail}/>
@@ -53,33 +53,33 @@ export const PageFooter: React.FC = () => {
                                 <ContactDetail href={urls.social.github} target="_blank" icon={faGithub}>Vaticle on GitHub</ContactDetail>
                                 <ContactDetail href={urls.social.discord} target="_blank" icon={faDiscord}>Vaticle on Discord</ContactDetail>
                                 <ContactDetail icon={faPhoneAlt}>Get in touch</ContactDetail>
-                                <ContactDetail icon={faMapMarkerAlt} type="address" classes={{anchor: classes.linkTwoLine}}>
+                                <ContactDetail href={urls.officeLocation} target="_blank" icon={faMapMarkerAlt} type="address" classes={{anchor: classes.linkTwoLine}}>
                                     3rd floor, East, 47-50 Margaret St,
                                     London W1W 8SE, UK
                                 </ContactDetail>
                             </ul>
                         </div>
                         <div className={classes.allOtherLinks}>
-                            <div>
+                            <div className={classes.linkBlock}>
                                 <h3 className={classes.h3}>TypeDB</h3>
-                                <ul className={classes.linkBlock}>
+                                <ul className={classes.linkBlockList}>
                                     <FooterLink href={urls.docs.typeDBQuickstart}>Quickstart</FooterLink>
                                     <FooterLink href={urls.downloadTypeDB}>Install</FooterLink>
                                     <FooterLink href={urls.support} target="_blank">Support</FooterLink>
                                 </ul>
                             </div>
-                            <div>
+                            <div className={classes.linkBlock}>
                                 <h3 className={classes.h3}>Developer</h3>
-                                <ul className={classes.linkBlock}>
+                                <ul className={classes.linkBlockList}>
                                     <FooterLink href={urls.docs.home}>Documentation</FooterLink>
                                     <FooterLink href={urls.discuss}>Discuss</FooterLink>
                                     <FooterLink href={urls.social.github} target="_blank">GitHub</FooterLink>
                                 </ul>
                             </div>
-                            <div>
+                            <div className={classes.linkBlock}>
                                 <h3 className={classes.h3}>Company</h3>
-                                <ul className={classes.linkBlock}>
-                                    <FooterLink href={urls.blog}>Blog</FooterLink>
+                                <ul className={classes.linkBlockList}>
+                                    <FooterLink href={urls.blog} target="_blank">Blog</FooterLink>
                                 </ul>
                             </div>
                         </div>
@@ -112,11 +112,12 @@ const ContactDetail: React.FC<ContactDetailProps> = ({children, href, target, ic
                 <span className={ownClasses.linkIconContainer}>
                     <FontAwesomeIcon className={ownClasses.linkIcon} icon={icon} />
                 </span>}
+                <p className={ownClasses.linkText}>
                 {type === "address" ?
-                <address className={ownClasses.linkText}>
-                    {children}
-                </address> :
-                <p className={ownClasses.linkText}>{children}</p>}
+                    <address className={ownClasses.linkText}>
+                        {children}
+                    </address> : <>{children}</>}
+                </p>
             </a>
         </li>
     );
