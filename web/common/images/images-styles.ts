@@ -9,22 +9,22 @@ export const vaticleAtomStyles = makeStyles({
     },
 
     green: {
-        animation: "$spin 240s linear infinite",
+        animation: "$spin 320s linear infinite",
         transformOrigin: "center",
     },
 
     yellow: {
-        animation: "$spin 220s linear infinite reverse",
+        animation: "$spin 160s linear infinite reverse",
         transformOrigin: "center",
     },
 
     red: {
-        animation: "$spin 200s linear infinite",
+        animation: "$spin 160s linear infinite",
         transformOrigin: "center",
     },
 
     pink: {
-        animation: "$spin 180s linear infinite reverse",
+        animation: "$spin 320s linear infinite reverse",
         transformOrigin: "center",
     },
 

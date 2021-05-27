@@ -10,7 +10,7 @@ export const homePageStyles = makeStyles({
         width: "100%",
 
         "@media(min-width: 768px)": {
-            marginTop: 160,
+            marginTop: 180,
         },
     },
 

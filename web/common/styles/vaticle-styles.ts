@@ -99,19 +99,6 @@ export const vaticleStyles = makeStyles({
         gap: "30px 40px",
     },
 
-    underDevelopment: {
-        maxWidth: 800,
-        padding: "16px",
-        border: `2px solid ${vaticleTheme.palette.green["300"]}`,
-        borderRadius: 5,
-        margin: "0 auto",
-        fontSize: 16,
-    },
-
-    underDevelopmentLink: {
-        color: `${vaticleTheme.palette.green["300"]} !important`,
-    },
-
     hideDesktop: {
         "@media(min-width: 1200px)": {
             display: "none !important",

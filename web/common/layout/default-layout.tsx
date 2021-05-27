@@ -17,11 +17,6 @@ export const DefaultLayout: React.FC<DefaultLayoutProps> = ({ children, typeDBVe
             <PageHeader typeDBVersion={typeDBVersion}/>
             <main className={ownClasses.main}>
                 <article>
-                    <section className={ownClasses.sectionMarginSmall}>
-                        <p className={ownClasses.underDevelopment}>
-                            This site is currently under development - please use <a href={urls.legacySite} className={ownClasses.underDevelopmentLink}>{urls.legacySite}</a>
-                        </p>
-                    </section>
                     {children}
                 </article>
             </main>
