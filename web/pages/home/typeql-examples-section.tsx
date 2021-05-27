@@ -48,7 +48,7 @@ export const TypeQLExamplesSection: React.FC<TypeQLExamplesSectionProps> = ({cla
 
             <div className={clsx(classes.mainActionList, classes.sectionMarginSmall)}>
                 <VaticleButton size="small" type="primary" href={urls.downloadTypeDB} target="_blank">Download {typeDBVersion}</VaticleButton>
-                <VaticleButton size="small" type="primary" href={urls.social.github} target="_blank">Fork/Star on GitHub</VaticleButton>
+                <VaticleButton size="small" type="primary" href={urls.github.typedb} target="_blank">Fork/Star on GitHub</VaticleButton>
             </div>
         </section>
     );

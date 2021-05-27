@@ -20,4 +20,8 @@ export const urls = {
         facebook: "https://www.facebook.com/VaticleHQ/",
         linkedIn: "https://www.linkedin.com/company/vaticle/",
     },
+
+    github: {
+        typedb: "https://github.com/vaticle/typedb"
+    }
 };
