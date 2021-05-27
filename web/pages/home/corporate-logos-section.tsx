@@ -188,7 +188,7 @@ export const CorporateLogosSection: React.FC<ClassProps> = ({className}) => {
     }, []);
 
     const performTransition = () => {
-        const despawningIndex = Math.floor(Math.random() * state.visibleLogos.length);
+        const despawningIndex = selectDespawnIndex();
         const spawningIndex = Math.floor(Math.random() * state.hiddenLogos.length);
         despawningLogo = state.visibleLogos[despawningIndex];
         spawningLogo = state.hiddenLogos[spawningIndex];
@@ -212,11 +212,14 @@ export const CorporateLogosSection: React.FC<ClassProps> = ({className}) => {
         }, 900);
     };
 
-    const selectDespawnTarget = () => {
-        const rand = Math.random();
+    const selectDespawnIndex: () => number = () => {
+        let n = Math.random() * state.visibleLogos.reduce((total, next) => total + (1 / next.weight), 0);
         for (let i = 0; i < state.visibleLogos.length; i++) {
-
+            const logo = state.visibleLogos[i];
+            if ((1 / logo.weight) > n) return i;
+            else n -= (1 / logo.weight);
         }
+        return 0; // probably best to return something in case of a rounding error
     };
 
     return (
