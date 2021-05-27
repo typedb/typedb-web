@@ -1,6 +1,6 @@
 import { TypeQLGraph } from "../typeql-data";
 
-export const locationDataCode = `
+export const inferenceExampleCode = `
 match
 $a isa person;
 $b isa country, has name "UK";
@@ -13,7 +13,7 @@ get $a;
 $a isa teacher, has name "Alice";
 $a isa postgrad, has name "Bob";`;
 
-export const locationDataGraph: TypeQLGraph = {
+export const inferenceExampleGraph: TypeQLGraph = {
     "vertices": [{
         "id": 1,
         "text": "teacher: Alice",

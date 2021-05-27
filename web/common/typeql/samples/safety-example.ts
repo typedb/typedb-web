@@ -1,6 +1,6 @@
 import { TypeQLGraph } from "../typeql-data";
 
-export const transitiveLocationCode = `
+export const safetyExampleCode = `
 define
 
 rule transitive-location: when {
@@ -10,7 +10,7 @@ rule transitive-location: when {
   (located: $x, locating: $z) isa location;
 };`;
 
-export const transitiveLocationGraph: TypeQLGraph = {
+export const safetyExampleGraph: TypeQLGraph = {
     "vertices": [{
         "id": 1,
         "text": "ward: King's Cross",

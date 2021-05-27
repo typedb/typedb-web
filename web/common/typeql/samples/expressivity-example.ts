@@ -1,6 +1,6 @@
 import { TypeQLGraph } from "../typeql-data";
 
-export const studentHierarchyCode = `
+export const expressivityExampleCode = `
 define
 person sub entity,
   owns name,
@@ -14,7 +14,7 @@ employment sub relation,
 name sub attribute,
   value string;`;
 
-export const studentHierarchyGraph: TypeQLGraph = {
+export const expressivityExampleGraph: TypeQLGraph = {
     "vertices": [{
         "id": 1,
         "text": "person",

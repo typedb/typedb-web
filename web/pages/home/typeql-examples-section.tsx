@@ -1,9 +1,9 @@
 import { ClassProps } from "../../common/class-props";
 import { vaticleStyles } from "../../common/styles/vaticle-styles";
 import { TypeQLExample } from "./typeql-example";
-import { studentHierarchyCode, studentHierarchyGraph } from "../../common/typeql/samples/student-hierarchy";
-import { transitiveLocationCode, transitiveLocationGraph } from "../../common/typeql/samples/transitive-location";
-import { locationDataCode, locationDataGraph } from "../../common/typeql/samples/location-data";
+import { expressivityExampleCode, expressivityExampleGraph } from "../../common/typeql/samples/expressivity-example";
+import { safetyExampleCode, safetyExampleGraph } from "../../common/typeql/samples/safety-example";
+import { inferenceExampleCode, inferenceExampleGraph } from "../../common/typeql/samples/inference-example";
 import clsx from "clsx";
 import { VaticleButton } from "../../common/button/button";
 import React from "react";
@@ -26,21 +26,21 @@ export const TypeQLExamplesSection: React.FC<TypeQLExamplesSectionProps> = ({cla
             </p>
 
             <TypeQLExample className={classes.sectionMarginSmall} visualiserPosition="left"
-                           code={studentHierarchyCode} graphData={studentHierarchyGraph} title="Expressivity"
+                           code={expressivityExampleCode} graphData={expressivityExampleGraph} title="Expressivity"
                            body="TypeDB allows you to model your domain based on logical and object-oriented principles.
                                      Composed of entity, relationship, and attribute types, as well as type hierarchies,
                                      roles, and rules, TypeDB allows you to think higher-level as opposed to join-tables,
                                      columns, vertices, edges, and properties."/>
 
             <TypeQLExample className={classes.sectionMarginSmall} visualiserPosition="right"
-                           code={transitiveLocationCode} graphData={transitiveLocationGraph} title="Safety"
+                           code={safetyExampleCode} graphData={safetyExampleGraph} title="Safety"
                            body="Types provide a way to describe the logical structures of your data, allowing TypeDB
                                      to validate that your code is inserting and querying data correctly. Query validation
                                      goes beyond static type checking, and includes logical validations of meaningless queries.
                                      With strict type-checking errors, you have a dataset that you can trust."/>
 
             <TypeQLExample className={classes.sectionMarginSmall} visualiserPosition="left"
-                           code={locationDataCode} graphData={locationDataGraph} title="Inference"
+                           code={inferenceExampleCode} graphData={inferenceExampleGraph} title="Inference"
                            body="TypeDB encodes the domain schema and data for logical interpretation by a type-based and
                                      rule-based reasoning engine – it enables type-inference and rule-inference that creates
                                      logical abstractions of data. Complex and verbose data patterns can be queried through
