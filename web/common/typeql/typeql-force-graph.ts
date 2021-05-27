@@ -248,7 +248,7 @@ function renderEdge(edge: Edge, edgesGFX: PIXI.Graphics, edgeLabelStyle: Partial
         const arrow = arrowhead({ from: lineSource, to: lineTarget });
         if (arrow) {
             edgesGFX.moveTo(arrow[0].x, arrow[0].y);
-            edgesGFX.beginFill(colours.edge, edge.error ? colours.error : colours.edge);
+            edgesGFX.beginFill(edge.error ? colours.error : colours.edge);
             const points: PIXI.Point[] = [];
             for (const pt of arrow) points.push(new PIXI.Point(pt.x, pt.y));
             edgesGFX.drawPolygon(points);
