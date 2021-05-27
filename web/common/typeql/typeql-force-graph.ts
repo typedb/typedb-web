@@ -117,10 +117,8 @@ export function runTypeQLForceGraph(container: HTMLElement, graphData: TypeQLGra
             const edgeLabelStyle: Partial<PIXI.ITextStyle> = {
                 fontSize: styles.edgeLabel.fontSize,
                 fontFamily: styles.fontFamily,
+                fill: edge.error ? colours.error : colours.edge,
             };
-
-            if (edge.error) edgeLabelStyle.fill = colours.error;
-            else edgeLabelStyle.fill = colours.edge;
             const linkLabel = new PIXI.Text(edge.label, edgeLabelStyle);
             edgeLabelMetrics[edge.label] = PIXI.TextMetrics.measureText(edge.label, linkLabel.style as any);
 
@@ -220,8 +218,7 @@ function renderEdge(edge: Edge, edgesGFX: PIXI.Graphics, edgeLabelStyle: Partial
     const [lineSource, lineTarget] = [edgeEndpoint(target, source), edgeEndpoint(source, target)];
     if (lineSource && lineTarget) {
         const { label } = edge;
-        if (edge.error) edgesGFX.lineStyle(1, colours.error);
-        else edgesGFX.lineStyle(1, colours.edge);
+        edgesGFX.lineStyle(1, edge.error ? colours.error : colours.edge);
         // Draw edge label
         const centrePoint = midpoint({ from: lineSource, to: lineTarget });
         const edgeLabel = new PIXI.Text(label, edgeLabelStyle);
@@ -251,8 +248,7 @@ function renderEdge(edge: Edge, edgesGFX: PIXI.Graphics, edgeLabelStyle: Partial
         const arrow = arrowhead({ from: lineSource, to: lineTarget });
         if (arrow) {
             edgesGFX.moveTo(arrow[0].x, arrow[0].y);
-            if (edge.error) edgesGFX.beginFill(colours.error);
-            else edgesGFX.beginFill(colours.edge);
+            edgesGFX.beginFill(colours.edge, edge.error ? colours.error : colours.edge);
             const points: PIXI.Point[] = [];
             for (const pt of arrow) points.push(new PIXI.Point(pt.x, pt.y));
             edgesGFX.drawPolygon(points);
