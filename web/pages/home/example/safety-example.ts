@@ -5,7 +5,7 @@ match
 
 $a isa person, has name "Alice";
 $b isa person, has name "Bob";
-($a, $b) isa employment; # invalid relation
+($a, $b) isa employment;
 $d isa company, has name "DataCo";
 ($b, $o) isa marriage; # invalid relation
 
