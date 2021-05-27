@@ -8,7 +8,6 @@ import AcchaLogo from "../assets/logos/purple/accha.png";
 import AriwontoLogo from "../assets/logos/purple/ariwonto.png";
 import AstraZenecaLogo from "../assets/logos/purple/astrazeneca.png";
 import AustinCapitalDataLogo from "../assets/logos/purple/austin-capital-data.png";
-import BayerLogo from "../assets/logos/purple/bayer.png";
 import BioCortexLogo from "../assets/logos/purple/biocortex.png";
 import CapgeminiLogo from "../assets/logos/purple/capgemini.png";
 import ClearskyCybersecurityLogo from "../assets/logos/purple/clearsky-cybersecurity.png";
@@ -168,9 +167,21 @@ export const CorporateLogosSection: React.FC<ClassProps> = ({className}) => {
         weight: 1,
     }];
 
+    const cellWidth = () => styleVars.cellWidth[window.matchMedia("(max-width: 767px)").matches ? "mobile" : "desktop"];
+    const cellSpacing = () => styleVars.rowSpacing[window.matchMedia("(max-width: 767px)").matches ? "mobile" : "desktop"]
+    const availableWidth = () => Math.min(window.innerWidth - 40, 1160);
+    const computeRowSize = () => Math.floor((availableWidth() + cellSpacing()) / (cellWidth() + cellSpacing()));
+    const [rowSize, setRowSize] = useState(computeRowSize());
+
+    const visibleItemCount = (rowSize: number) => {
+        if (rowSize === 4) return 16;
+        else if (rowSize === 2) return 14;
+        else return 15;
+    }
+
     const [logoState, setLogoState] = useState({
-        visibleLogos: logos.slice(0, 15),
-        hiddenLogos: logos.slice(15),
+        visibleLogos: logos.slice(0, visibleItemCount(computeRowSize())),
+        hiddenLogos: logos.slice(visibleItemCount(computeRowSize())),
         transitionIndex: -1,
         spawning: false,
     });
@@ -179,52 +190,68 @@ export const CorporateLogosSection: React.FC<ClassProps> = ({className}) => {
         setLogoState(Object.assign({}, logoState, newLogoState));
     };
 
-    const cellWidth = () => styleVars.cellWidth[window.matchMedia("(max-width: 767px)").matches ? "mobile" : "desktop"];
-    const cellSpacing = () => styleVars.rowSpacing[window.matchMedia("(max-width: 767px)").matches ? "mobile" : "desktop"]
-    const availableWidth = () => Math.min(window.innerWidth - 40, 1160);
-
-    const computeRowSize = () => Math.floor((availableWidth() + cellSpacing()) / (cellWidth() + cellSpacing()));
-
-    const [rowSize, setRowSize] = useState(computeRowSize());
-
     useEffect(() => {
         const newRowSize = computeRowSize();
         if (newRowSize != rowSize) {
             setRowSize(newRowSize);
+            const delta = visibleItemCount(newRowSize) - visibleItemCount(rowSize);
+            if (!delta) return;
+            updateLogoState({
+                spawning: false,
+                transitionIndex: -1,
+                visibleLogos: logos.slice(0, visibleItemCount(computeRowSize())),
+                hiddenLogos: logos.slice(visibleItemCount(computeRowSize())),
+            });
         }
     }, [window.innerWidth]);
 
     let despawningIndex, spawningIndex, spawningLogo, despawningLogo;
 
-    useEffect(() => {
-        setInterval(() => {
-            performTransition();
-        }, 2000);
-    }, []);
+    const transitionInterval = 2000;
 
-    const performTransition = () => {
+    useEffect(() => {
+        const interval = setInterval(() => {
+            beginTransition();
+        }, transitionInterval);
+        let interval2;
+        const timeout = setTimeout(() => {
+            interval2 = setInterval(() => {
+                endTransition();
+            }, transitionInterval);
+        }, 900);
+        return () => {
+            clearTimeout(timeout);
+            clearInterval(interval);
+            clearInterval(interval2);
+        }
+    }, [rowSize]);
+
+    const beginTransition = () => {
         despawningIndex = selectDespawnIndex();
         spawningIndex = Math.floor(Math.random() * logoState.hiddenLogos.length);
         despawningLogo = logoState.visibleLogos[despawningIndex];
         spawningLogo = logoState.hiddenLogos[spawningIndex];
+
         updateLogoState({
             spawning: false,
             transitionIndex: despawningIndex,
+            suppressTransition: false,
         });
-        setTimeout(() => {
-            const newVisibleLogos = [];
-            const newHiddenLogos = [];
-            logoState.visibleLogos[despawningIndex] = spawningLogo;
-            newVisibleLogos.push(...logoState.visibleLogos);
-            logoState.hiddenLogos[spawningIndex] = despawningLogo;
-            newHiddenLogos.push(...logoState.hiddenLogos);
-            updateLogoState({
-                spawning: true,
-                transitionIndex: despawningIndex,
-                visibleLogos: newVisibleLogos,
-                hiddenLogos: newHiddenLogos,
-            });
-        }, 900);
+    };
+
+    const endTransition = () => {
+        const newVisibleLogos = [];
+        const newHiddenLogos = [];
+        logoState.visibleLogos[despawningIndex] = spawningLogo;
+        newVisibleLogos.push(...logoState.visibleLogos);
+        logoState.hiddenLogos[spawningIndex] = despawningLogo;
+        newHiddenLogos.push(...logoState.hiddenLogos);
+        updateLogoState({
+            spawning: true,
+            transitionIndex: despawningIndex,
+            visibleLogos: newVisibleLogos,
+            hiddenLogos: newHiddenLogos,
+        });
     };
 
     const selectDespawnIndex: () => number = () => {
