@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { vaticleStyles } from "../../common/styles/vaticle-styles";
 import { homePageCorporateLogosStyles } from "./home-styles";
 import { ClassProps } from "../../common/class-props";
@@ -40,6 +40,7 @@ import ZeissLogo from "../assets/logos/purple/zeiss.png";
 interface CorporateLogoData {
     logo: string;
     altText: string;
+    weight: number;
 }
 
 export const CorporateLogosSection: React.FC<ClassProps> = ({className}) => {
@@ -48,104 +49,187 @@ export const CorporateLogosSection: React.FC<ClassProps> = ({className}) => {
     const logos: CorporateLogoData[] = [{
         logo: FlipkartLogo,
         altText: "Flipkart",
+        weight: 3,
     }, {
         logo: RocheLogo,
         altText: "Roche",
+        weight: 3,
     }, {
         logo: GenentechLogo,
         altText: "Genentech",
+        weight: 3,
     }, {
         logo: NestleLogo,
         altText: "Nestle",
+        weight: 3,
     }, {
         logo: AstraZenecaLogo,
         altText: "AstraZeneca",
+        weight: 3,
     }, {
         logo: EagleGenomicsLogo,
         altText: "Eagle Genomics",
-    }, {
-        logo: RAIRHealthLogo,
-        altText: "RAIR Health",
-    }, {
-        logo: RheosMedicinesLogo,
-        altText: "Rheos Medicines",
-    }, {
-        logo: TNOLogo,
-        altText: "TNO",
-    }, {
-        logo: RollsRoyceLogo,
-        altText: "Rolls-Royce",
-    }, {
-        logo: DigicustLogo,
-        altText: "Digicust",
-    }, {
-        logo: RowzzyLogo,
-        altText: "Rowzzy",
-    }, {
-        logo: OxfordPharmagenesisLogo,
-        altText: "Oxford Pharmagenesis",
-    }, {
-        logo: ClearskyCybersecurityLogo,
-        altText: "Clearsky Cybersecurity",
-    }, {
-        logo: TripudioLogo,
-        altText: "Tripudio",
-    }, {
-        logo: AcchaLogo,
-        altText: "Accha",
-    }, {
-        logo: WeLevelLogo,
-        altText: "welevel.academy",
-    }, {
-        logo: TwoSixLogo,
-        altText: "two six labs",
-    }, {
-        logo: QRGeneticsLogo,
-        altText: "QR Genetics",
-    }, {
-        logo: DataSpartanLogo,
-        altText: "Dataspartan",
-    }, {
-        logo: BioCortexLogo,
-        altText: "BioCortex",
-    }, {
-        logo: MedasLogo,
-        altText: "Medas Solutions",
-    }, {
-        logo: IceLabLogo,
-        altText: "Ice Lab",
-    }, {
-        logo: AriwontoLogo,
-        altText: "Ariwonto",
-    }, {
-        logo: AustinCapitalDataLogo,
-        altText: "Austin Capital Data",
-    }, {
-        logo: GeminosLogo,
-        altText: "Geminos",
-    }, {
-        logo: ZeissLogo,
-        altText: "Zeiss",
-    }, {
-        logo: SixPointSixLogo,
-        altText: "6point6",
-    }, {
-        logo: FIDELogo,
-        altText: "Fide PBC",
+        weight: 1,
     }, {
         logo: CapgeminiLogo,
         altText: "Capgemini",
+        weight: 3,
+    }, {
+        logo: RheosMedicinesLogo,
+        altText: "Rheos Medicines",
+        weight: 1,
+    }, {
+        logo: TNOLogo,
+        altText: "TNO",
+        weight: 1,
+    }, {
+        logo: RollsRoyceLogo,
+        altText: "Rolls-Royce",
+        weight: 3,
+    }, {
+        logo: DigicustLogo,
+        altText: "Digicust",
+        weight: 1,
+    }, {
+        logo: RowzzyLogo,
+        altText: "Rowzzy",
+        weight: 1,
+    }, {
+        logo: OxfordPharmagenesisLogo,
+        altText: "Oxford Pharmagenesis",
+        weight: 3,
+    }, {
+        logo: ClearskyCybersecurityLogo,
+        altText: "Clearsky Cybersecurity",
+        weight: 2,
+    }, {
+        logo: TripudioLogo,
+        altText: "Tripudio",
+        weight: 3,
+    }, {
+        logo: AcchaLogo,
+        altText: "Accha",
+        weight: 1,
+    }, {
+        logo: WeLevelLogo,
+        altText: "welevel.academy",
+        weight: 1,
+    }, {
+        logo: TwoSixLogo,
+        altText: "two six labs",
+        weight: 1,
+    }, {
+        logo: QRGeneticsLogo,
+        altText: "QR Genetics",
+        weight: 1,
+    }, {
+        logo: DataSpartanLogo,
+        altText: "Dataspartan",
+        weight: 1,
+    }, {
+        logo: BioCortexLogo,
+        altText: "BioCortex",
+        weight: 1,
+    }, {
+        logo: MedasLogo,
+        altText: "Medas Solutions",
+        weight: 1,
+    }, {
+        logo: IceLabLogo,
+        altText: "Ice Lab",
+        weight: 1,
+    }, {
+        logo: AriwontoLogo,
+        altText: "Ariwonto",
+        weight: 1,
+    }, {
+        logo: AustinCapitalDataLogo,
+        altText: "Austin Capital Data",
+        weight: 1,
+    }, {
+        logo: GeminosLogo,
+        altText: "Geminos",
+        weight: 1,
+    }, {
+        logo: ZeissLogo,
+        altText: "Zeiss",
+        weight: 1,
+    }, {
+        logo: SixPointSixLogo,
+        altText: "6point6",
+        weight: 1,
+    }, {
+        logo: FIDELogo,
+        altText: "Fide PBC",
+        weight: 1,
+    }, {
+        logo: RAIRHealthLogo,
+        altText: "RAIR Health",
+        weight: 1,
     }];
+
+    const [state, setState] = useState({
+        visibleLogos: logos.slice(0, 15),
+        hiddenLogos: logos.slice(15),
+        transitionIndex: -1,
+        spawning: false,
+    });
+
+    const updateState = (newState) => {
+        setState(Object.assign({}, state, newState));
+    };
+
+    let spawningLogo, despawningLogo;
+
+    useEffect(() => {
+        setInterval(() => {
+            performTransition();
+        }, 2000);
+    }, []);
+
+    const performTransition = () => {
+        const despawningIndex = Math.floor(Math.random() * state.visibleLogos.length);
+        const spawningIndex = Math.floor(Math.random() * state.hiddenLogos.length);
+        despawningLogo = state.visibleLogos[despawningIndex];
+        spawningLogo = state.hiddenLogos[spawningIndex];
+        updateState({
+            spawning: false,
+            transitionIndex: despawningIndex,
+        });
+        setTimeout(() => {
+            const newVisibleLogos = [];
+            const newHiddenLogos = [];
+            state.visibleLogos[despawningIndex] = spawningLogo;
+            newVisibleLogos.push(...state.visibleLogos);
+            state.hiddenLogos[spawningIndex] = despawningLogo;
+            newHiddenLogos.push(...state.hiddenLogos);
+            updateState({
+                spawning: true,
+                transitionIndex: despawningIndex,
+                visibleLogos: newVisibleLogos,
+                hiddenLogos: newHiddenLogos,
+            });
+        }, 900);
+    };
+
+    const selectDespawnTarget = () => {
+        const rand = Math.random();
+        for (let i = 0; i < state.visibleLogos.length; i++) {
+
+        }
+    };
 
     return (
         <section className={clsx(className, classes.corporateLogos)}>
-        {logos.map(({logo, altText}) => (
-            <CorporateLogo logo={logo} altText={altText} className={classes.corporateLogo}/>
+        {state.visibleLogos.map(({logo, altText}, idx) => (
+            <div className={classes.corporateLogoContainer}>
+                <CorporateLogo logo={logo} altText={altText} className={clsx(classes.corporateLogo, idx === state.transitionIndex && (state.spawning ? classes.corporateLogoFadeIn : classes.corporateLogoFadeOut))}/>
+            </div>
         ))}
         </section>
     );
 }
 
-const CorporateLogo: React.FC<CorporateLogoData & ClassProps> = ({logo, altText, className}) => {
+const CorporateLogo: React.FC<Partial<CorporateLogoData> & ClassProps> = ({logo, altText, className}) => {
     return <img src={logo} alt={altText} className={className}/>
 }

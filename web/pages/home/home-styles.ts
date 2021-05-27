@@ -183,14 +183,46 @@ export const homePageCorporateLogosStyles = makeStyles({
         },
     },
 
+    corporateLogoContainer: {
+        width: 185,
+        height: 70,
+        display: "flex",
+
+        "@media(max-width: 767px)": {
+            width: 145,
+            height: 55,
+        },
+    },
+
     corporateLogo: {
         maxWidth: 185,
         maxHeight: 70,
+        margin: "auto",
 
         "@media(max-width: 767px)": {
             maxWidth: 145,
             maxHeight: 55,
         },
+    },
+
+    corporateLogoFadeIn: {
+        animation: "$fadeIn ease-in-out .7s",
+        animationFillMode: "both",
+    },
+
+    corporateLogoFadeOut: {
+        animation: "$fadeOut ease-in-out .7s",
+        animationFillMode: "both",
+    },
+
+    "@keyframes fadeIn": {
+        "0%": { opacity: 0 },
+        "100%": { opacity: 1 },
+    },
+
+    "@keyframes fadeOut": {
+        "0%": { opacity: 1 },
+        "100%": { opacity: 0 },
     },
 });
 
