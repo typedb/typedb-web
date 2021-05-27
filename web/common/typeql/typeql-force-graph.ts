@@ -9,7 +9,7 @@ import FontFaceObserver from "fontfaceobserver";
 import { Viewport } from 'pixi-viewport';
 import { arrowhead, diamondIncomingLineIntersect, midpoint, Rect, rectIncomingLineIntersect } from "./geometry";
 import { TypeQLEdge, TypeQLGraph, TypeQLVertex } from "./typeql-data";
-import { typeQLGraphColours as colours, typeQLGraphColoursHex as coloursHex, typeQLGraphStyles as styles } from "./typeql-styles";
+import { typeQLGraphColours as colours, typeQLGraphStyles as styles } from "./typeql-styles";
 
 type Edge = d3.SimulationLinkDatum<Vertex> & TypeQLEdge & { gfx?: PIXI.Graphics };
 type Vertex = d3.SimulationNodeDatum & TypeQLVertex & { gfx?: PIXI.Graphics };
@@ -96,19 +96,6 @@ export function runTypeQLForceGraph(container: HTMLElement, graphData: TypeQLGra
         viewport.addChild(vertex.gfx);
     });
 
-    const edgeLabelStyle: Partial<PIXI.ITextStyle> = {
-        fontSize: styles.edgeLabel.fontSize,
-        fontFamily: styles.fontFamily,
-        fill: coloursHex.edge,
-    };
-
-    const edgeLabelMetrics: {[label: string]: PIXI.TextMetrics} = {};
-    for (const edge of edges) {
-        if (edgeLabelMetrics[edge.label]) continue;
-        const linkLabel = new PIXI.Text(edge.label, edgeLabelStyle);
-        edgeLabelMetrics[edge.label] = PIXI.TextMetrics.measureText(edge.label, linkLabel.style as any);
-    }
-
     const edgesGFX = new PIXI.Graphics();
     viewport.addChild(edgesGFX);
 
@@ -124,8 +111,19 @@ export function runTypeQLForceGraph(container: HTMLElement, graphData: TypeQLGra
 
         edgesGFX.clear();
         edgesGFX.removeChildren();
+        const edgeLabelMetrics: {[label: string]: PIXI.TextMetrics} = {};
 
         edges.forEach((edge) => {
+            const edgeLabelStyle: Partial<PIXI.ITextStyle> = {
+                fontSize: styles.edgeLabel.fontSize,
+                fontFamily: styles.fontFamily,
+            };
+
+            if (edge.error) edgeLabelStyle.fill = colours.error;
+            else edgeLabelStyle.fill = colours.edge;
+            const linkLabel = new PIXI.Text(edge.label, edgeLabelStyle);
+            edgeLabelMetrics[edge.label] = PIXI.TextMetrics.measureText(edge.label, linkLabel.style as any);
+
             renderEdge(edge, edgesGFX, edgeLabelStyle, edgeLabelMetrics);
         });
     }
@@ -210,7 +208,7 @@ function renderVertexText(vertex: Vertex, useFallbackFont: boolean) {
     const text1 = new PIXI.Text(vertex.text, {
         fontSize: styles.vertexLabel.fontSize,
         fontFamily: useFallbackFont ? styles.fontFamilyFallback : styles.fontFamily,
-        fill: coloursHex.vertexLabel,
+        fill: colours.vertexLabel,
     });
     text1.anchor.set(0.5);
     text1.resolution = window.devicePixelRatio * 2;
@@ -222,7 +220,8 @@ function renderEdge(edge: Edge, edgesGFX: PIXI.Graphics, edgeLabelStyle: Partial
     const [lineSource, lineTarget] = [edgeEndpoint(target, source), edgeEndpoint(source, target)];
     if (lineSource && lineTarget) {
         const { label } = edge;
-        edgesGFX.lineStyle(1, colours.edge);
+        if (edge.error) edgesGFX.lineStyle(1, colours.error);
+        else edgesGFX.lineStyle(1, colours.edge);
         // Draw edge label
         const centrePoint = midpoint({ from: lineSource, to: lineTarget });
         const edgeLabel = new PIXI.Text(label, edgeLabelStyle);
@@ -252,7 +251,8 @@ function renderEdge(edge: Edge, edgesGFX: PIXI.Graphics, edgeLabelStyle: Partial
         const arrow = arrowhead({ from: lineSource, to: lineTarget });
         if (arrow) {
             edgesGFX.moveTo(arrow[0].x, arrow[0].y);
-            edgesGFX.beginFill(colours.edge);
+            if (edge.error) edgesGFX.beginFill(colours.error);
+            else edgesGFX.beginFill(colours.edge);
             const points: PIXI.Point[] = [];
             for (const pt of arrow) points.push(new PIXI.Point(pt.x, pt.y));
             edgesGFX.drawPolygon(points);

@@ -99,17 +99,15 @@ const blue = 0x86AAFF;
 const pink = 0xF28DD7;
 const yellow = 0xF6C94C;
 const red = 0xF66B65;
+const black = 0x09022F;
 
 export const typeQLGraphColours = {
     entity: pink,
     relation: yellow,
     attribute: red,
     edge: blue,
-};
-
-export const typeQLGraphColoursHex = {
-    vertexLabel: "#09022F",
-    edge: "#86AAFF",
+    error: red,
+    vertexLabel: black,
 };
 
 export const typeQLGraphStyles = {

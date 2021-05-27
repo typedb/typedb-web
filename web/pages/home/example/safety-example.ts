@@ -25,7 +25,7 @@ export const safetyExampleGraph: TypeQLGraph = {
         "height": 32,
     }, {
         "id": 2,
-        "text": "employment",
+        "text": "marriage",
         "encoding": "relation",
         "x": 55,
         "y": 20,
@@ -59,13 +59,11 @@ export const safetyExampleGraph: TypeQLGraph = {
     "edges": [{
         "source": 2,
         "target": 1,
-        "label": "employee",
-        "error": true,
+        "label": "wife",
     }, {
         "source": 2,
         "target": 3,
-        "label": "employer",
-        "error": true,
+        "label": "husband",
     }, {
         "source": 4,
         "target": 3,
