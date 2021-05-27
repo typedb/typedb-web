@@ -1,88 +1,80 @@
 import {TypeQLGraph} from "../../../common/typeql/typeql-data";
 
 export const safetyExampleCode = `
-define
+match
 
-rule transitive-location: when {
-  (located: $x, locating: $y) isa location;
-  (located: $y, locating: $z) isa location;
-} then {
-  (located: $x, locating: $z) isa location;
-};`;
+$a isa person, has name "Alice";
+$b isa person, has name "Bob";
+($a, $b) isa employment; # invalid relation
+$d isa company, has name "DataCo";
+($b, $o) isa marriage; # invalid relation
+
+>>
+
+ERROR: unsatisfiable query detected during type resolution
+`;
 
 export const safetyExampleGraph: TypeQLGraph = {
     "vertices": [{
         "id": 1,
-        "text": "ward: King's Cross",
         "encoding": "entity",
+        "text": "person: Alice",
         "x": 20,
-        "y": 50,
-        "width": 156,
+        "y": 20,
+        "width": 130,
         "height": 32,
     }, {
         "id": 2,
-        "text": "city: London",
-        "encoding": "entity",
-        "x": 50,
-        "y": 50,
-        "width": 156,
-        "height": 32,
-    }, {
-        "id": 3,
-        "text": "country: UK",
-        "encoding": "entity",
-        "x": 80,
-        "y": 50,
-        "width": 156,
-        "height": 32,
-    }, {
-        "id": 4,
-        "text": "location",
+        "text": "employment",
         "encoding": "relation",
-        "x": 50,
+        "x": 55,
         "y": 20,
         "width": 105,
         "height": 66,
     }, {
-        "id": 5,
-        "text": "location",
+        "id": 3,
+        "encoding": "entity",
+        "text": "person: Bob",
+        "x": 80,
+        "y": 50,
+        "width": 130,
+        "height": 32,
+    }, {
+        "id": 4,
+        "text": "marriage",
         "encoding": "relation",
-        "x": 35,
+        "x": 55,
         "y": 80,
-        "width": 105,
+        "width": 120,
         "height": 66,
     }, {
-        "id": 6,
-        "text": "location",
-        "encoding": "relation",
-        "x": 65,
+        "id": 5,
+        "encoding": "entity",
+        "text": "company: DataCo",
+        "x": 20,
         "y": 80,
-        "width": 105,
-        "height": 66,
+        "width": 130,
+        "height": 32,
     }],
     "edges": [{
-        "source": 4,
+        "source": 2,
         "target": 1,
-        "label": "located",
+        "label": "employee",
+        "error": true,
+    }, {
+        "source": 2,
+        "target": 3,
+        "label": "employer",
+        "error": true,
     }, {
         "source": 4,
         "target": 3,
-        "label": "locating",
+        "label": "wife",
+        "error": true,
     }, {
-        "source": 5,
-        "target": 1,
-        "label": "located",
-    }, {
-        "source": 5,
-        "target": 2,
-        "label": "locating",
-    }, {
-        "source": 6,
-        "target": 2,
-        "label": "located",
-    }, {
-        "source": 6,
-        "target": 3,
-        "label": "locating",
+        "source": 4,
+        "target": 5,
+        "label": "husband",
+        "error": true,
     }]
 };

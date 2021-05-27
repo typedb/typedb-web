@@ -3,7 +3,7 @@ export interface TypeQLGraph {
     edges: TypeQLEdge[];
 }
 
-type TypeQLVertexEncoding = "entity" | "relation";
+type TypeQLVertexEncoding = "entity" | "relation" | "attribute";
 
 export interface TypeQLVertex {
     id: number;
@@ -19,4 +19,5 @@ export interface TypeQLEdge {
     source: number;
     target: number;
     label: string;
+    error?: boolean;
 }
