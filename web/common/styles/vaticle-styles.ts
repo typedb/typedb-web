@@ -2,6 +2,14 @@ import { makeStyles } from '@material-ui/core/styles';
 import { vaticleTheme } from "./theme";
 
 export const vaticleStyles = makeStyles({
+    firstSection: {
+        marginTop: 180,
+
+        "@media(max-width: 767px)": {
+            marginTop: 140,
+        },
+    },
+
     sectionMarginLarge: {
         marginTop: 160,
 

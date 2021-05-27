@@ -9,8 +9,8 @@ export const homePageStyles = makeStyles({
     vaticleAtomContainer: {
         width: "100%",
 
-        "@media(min-width: 768px)": {
-            marginTop: 180,
+        "@media(max-width: 767px)": {
+            marginTop: -60,
         },
     },
 

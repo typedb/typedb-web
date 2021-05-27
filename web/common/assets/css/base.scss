@@ -21,11 +21,14 @@ html, body {
   font-family: 'Titillium Web', Geneva, Tahoma, sans-serif;
 
   margin: 0;
-  overflow-x: hidden;
 
   * {
     box-sizing: border-box;
   }
+}
+
+body {
+  overflow-x: hidden;
 }
 
 #root {

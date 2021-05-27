@@ -29,7 +29,7 @@ export const HomePage: React.FC = () => {
 
     return (
         <DefaultLayout typeDBVersion={typeDBVersion}>
-            <section>
+            <section className={classes.firstSection}>
                 <div className={classes.vaticleAtomContainer}>
                     <VaticleAtom/>
                 </div>
@@ -58,8 +58,7 @@ export const HomePage: React.FC = () => {
                         <div className={classes.mainLinkCaption}>Twitter</div>
                     </a>
                     <div className={classes.mainLink}>
-                        <VaticleButton className={classes.downloadTypeDBButton} size="small" type="primary"
-                                       href={urls.downloadTypeDB} target="_blank">
+                        <VaticleButton className={classes.downloadTypeDBButton} size="small" type="primary" to="/download">
                             Download {typeDBVersion}
                         </VaticleButton>
                     </div>

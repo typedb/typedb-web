@@ -27,6 +27,7 @@ const defaultProps: Required<Pick<BaseButtonProps, 'size' | 'type' | 'htmlAttrs'
     htmlAttrs: { type: 'button' },
 };
 
+// TODO: This type structure is not necessary and should be aligned with rest of codebase
 export type BaseButtonFinalProps = React.PropsWithChildren<BaseButtonProps & typeof defaultProps>;
 
 export const VaticleButton: React.FC<BaseButtonProps> = props => {
@@ -34,10 +35,18 @@ export const VaticleButton: React.FC<BaseButtonProps> = props => {
 
     const classes = buttonStyles({ size, type });
 
-    const linkProps = to ? { component: Link, to } : {};
+    if (to) {
+        return (
+            <Link to={to} className={clsx(classes.root, disabled && classes.disable, className)} title={comingSoon && "coming soon"}>
+                <div className={classes.childDiv}>
+                    {children}
+                </div>
+            </Link>
+        )
+    }
 
     return (
-        <a className={clsx(classes.root, disabled && classes.disable, className)} href={href} onClick={onClick} target={target} title={comingSoon && "coming soon"} {...linkProps} {...htmlAttrs}>
+        <a className={clsx(classes.root, disabled && classes.disable, className)} href={href} onClick={onClick} target={target} title={comingSoon && "coming soon"} {...htmlAttrs}>
             <div className={classes.childDiv}>
                 {children}
             </div>

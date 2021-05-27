@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { DefaultLayout } from "../../common/layout/default-layout";
-import { cloudPageStyles } from "./cloud-styles";
+import { downloadPageStyles } from "./download-styles";
 import { vaticleStyles } from "../../common/styles/vaticle-styles";
 import { getTypeDBVersion } from "../api/typedb-service";
 
-export const CloudPage: React.FC = () => {
-    const classes = Object.assign({}, vaticleStyles(), cloudPageStyles());
+export const DownloadPage: React.FC = () => {
+    const classes = Object.assign({}, vaticleStyles(), downloadPageStyles());
 
     const [typeDBVersion, setTypeDBVersion] = useState("TypeDB");
     useEffect(() => {
@@ -16,11 +16,11 @@ export const CloudPage: React.FC = () => {
 
     return (
         <DefaultLayout typeDBVersion={typeDBVersion}>
-            <section className={classes.sectionMarginSmall}>
-                <h1 className={classes.h1}>TypeDB Cluster in the Cloud and On-Premise</h1>
-                <p className={classes.largeText}>
-                    Easily deploy and manage TypeDB Cluster on one machine, or a thousand-node cluster
-                </p>
+            <section className={classes.firstSection}>
+                <h1 className={classes.h1}>TypeDB Download Centre</h1>
+                <div className={classes.sectionMarginSmall}>
+
+                </div>
             </section>
         </DefaultLayout>
     );

@@ -106,7 +106,7 @@ const ExternalLinks: React.FC<ExternalLinksProps> = ({typeDBVersion}) => {
         <>
             <ExternalLink>Contact</ExternalLink>
             <ExternalLink href={urls.support} target="_blank">Support</ExternalLink>
-            <VaticleButton size="small" type="secondary" href={urls.downloadTypeDB} target="_blank"
+            <VaticleButton size="small" type="secondary" to="/download"
                            className={clsx(classes.toolbarItem, classes.externalLinksDownload)}>Download {typeDBVersion}</VaticleButton>
             <div className={classes.externalLinksGithub}>
                 <GithubButton/>
