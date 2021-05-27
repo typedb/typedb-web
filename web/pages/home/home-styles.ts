@@ -170,16 +170,33 @@ export const homePageStyles = makeStyles({
     },
 });
 
-export const homePageCorporateLogosStyles = makeStyles({
+export const corporateLogosStyleVars = {
+    cellWidth: {
+        desktop: 195,
+        mobile: 150,
+    },
+
+    rowSpacing: {
+        desktop: 40,
+        mobile: 20,
+    },
+
+    columnSpacing: {
+        desktop: 65,
+        mobile: 30,
+    },
+};
+
+export const corporateLogosStyles = makeStyles({
     corporateLogos: {
         display: "grid",
-        gridTemplateColumns: "repeat(auto-fit, minmax(195px, 1fr))",
+        gridTemplateColumns: `repeat(auto-fit, minmax(${corporateLogosStyleVars.cellWidth.desktop}px, 1fr))`,
         placeItems: "center center",
-        gap: "65px 40px",
+        gap: `${corporateLogosStyleVars.columnSpacing.desktop}px ${corporateLogosStyleVars.rowSpacing.desktop}px`,
 
         "@media(max-width: 767px)": {
-            gridTemplateColumns: "repeat(auto-fit, minmax(150px, 1fr))",
-            gap: "30px 20px",
+            gridTemplateColumns: `repeat(auto-fit, minmax(${corporateLogosStyleVars.cellWidth.mobile}px, 1fr))`,
+            gap: `${corporateLogosStyleVars.columnSpacing.mobile}px ${corporateLogosStyleVars.rowSpacing.mobile}px`,
         },
     },
 

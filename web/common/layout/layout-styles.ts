@@ -91,6 +91,7 @@ export const pageHeaderStyles = makeStyles({
 
     mainMenu: {
         position: "fixed",
+        top: headerHeight,
         zIndex: 500,
         boxShadow: headerBoxShadow,
         width: "100%",
@@ -134,7 +135,8 @@ export const pageHeaderStyles = makeStyles({
     },
 
     sitemapMenu: {
-
+        display: "flex",
+        flexDirection: "column",
     },
 
     linksMenu: {

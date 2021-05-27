@@ -1,7 +1,7 @@
 import clsx from "clsx";
 import React, { useEffect, useState } from "react";
 import { vaticleStyles } from "../../common/styles/vaticle-styles";
-import { homePageCorporateLogosStyles } from "./home-styles";
+import { corporateLogosStyles, corporateLogosStyleVars as styleVars } from "./home-styles";
 import { ClassProps } from "../../common/class-props";
 import SixPointSixLogo from "../assets/logos/purple/6point6.png";
 import AcchaLogo from "../assets/logos/purple/accha.png";
@@ -44,7 +44,7 @@ interface CorporateLogoData {
 }
 
 export const CorporateLogosSection: React.FC<ClassProps> = ({className}) => {
-    const classes = Object.assign({}, vaticleStyles(), homePageCorporateLogosStyles());
+    const classes = Object.assign({}, vaticleStyles(), corporateLogosStyles());
 
     const logos: CorporateLogoData[] = [{
         logo: FlipkartLogo,
@@ -168,16 +168,31 @@ export const CorporateLogosSection: React.FC<ClassProps> = ({className}) => {
         weight: 1,
     }];
 
-    const [state, setState] = useState({
+    const [logoState, setLogoState] = useState({
         visibleLogos: logos.slice(0, 15),
         hiddenLogos: logos.slice(15),
         transitionIndex: -1,
         spawning: false,
     });
 
-    const updateState = (newState) => {
-        setState(Object.assign({}, state, newState));
+    const updateLogoState = (newLogoState) => {
+        setLogoState(Object.assign({}, logoState, newLogoState));
     };
+
+    const cellWidth = () => styleVars.cellWidth[window.matchMedia("(max-width: 767px)").matches ? "mobile" : "desktop"];
+    const cellSpacing = () => styleVars.rowSpacing[window.matchMedia("(max-width: 767px)").matches ? "mobile" : "desktop"]
+    const availableWidth = () => Math.min(window.innerWidth - 40, 1160);
+
+    const computeRowSize = () => Math.floor((availableWidth() + cellSpacing()) / (cellWidth() + cellSpacing()));
+
+    const [rowSize, setRowSize] = useState(computeRowSize());
+
+    useEffect(() => {
+        const newRowSize = computeRowSize();
+        if (newRowSize != rowSize) {
+            setRowSize(newRowSize);
+        }
+    }, [window.innerWidth]);
 
     let despawningIndex, spawningIndex, spawningLogo, despawningLogo;
 
@@ -189,21 +204,21 @@ export const CorporateLogosSection: React.FC<ClassProps> = ({className}) => {
 
     const performTransition = () => {
         despawningIndex = selectDespawnIndex();
-        spawningIndex = Math.floor(Math.random() * state.hiddenLogos.length);
-        despawningLogo = state.visibleLogos[despawningIndex];
-        spawningLogo = state.hiddenLogos[spawningIndex];
-        updateState({
+        spawningIndex = Math.floor(Math.random() * logoState.hiddenLogos.length);
+        despawningLogo = logoState.visibleLogos[despawningIndex];
+        spawningLogo = logoState.hiddenLogos[spawningIndex];
+        updateLogoState({
             spawning: false,
             transitionIndex: despawningIndex,
         });
         setTimeout(() => {
             const newVisibleLogos = [];
             const newHiddenLogos = [];
-            state.visibleLogos[despawningIndex] = spawningLogo;
-            newVisibleLogos.push(...state.visibleLogos);
-            state.hiddenLogos[spawningIndex] = despawningLogo;
-            newHiddenLogos.push(...state.hiddenLogos);
-            updateState({
+            logoState.visibleLogos[despawningIndex] = spawningLogo;
+            newVisibleLogos.push(...logoState.visibleLogos);
+            logoState.hiddenLogos[spawningIndex] = despawningLogo;
+            newHiddenLogos.push(...logoState.hiddenLogos);
+            updateLogoState({
                 spawning: true,
                 transitionIndex: despawningIndex,
                 visibleLogos: newVisibleLogos,
@@ -213,9 +228,9 @@ export const CorporateLogosSection: React.FC<ClassProps> = ({className}) => {
     };
 
     const selectDespawnIndex: () => number = () => {
-        let n = Math.random() * state.visibleLogos.reduce((total, next) => total + (1 / next.weight), 0);
-        for (let i = 0; i < state.visibleLogos.length; i++) {
-            const logo = state.visibleLogos[i];
+        let n = Math.random() * logoState.visibleLogos.reduce((total, next) => total + (1 / next.weight), 0);
+        for (let i = 0; i < logoState.visibleLogos.length; i++) {
+            const logo = logoState.visibleLogos[i];
             if ((1 / logo.weight) > n) return i;
             else n -= (1 / logo.weight);
         }
@@ -224,9 +239,9 @@ export const CorporateLogosSection: React.FC<ClassProps> = ({className}) => {
 
     return (
         <section className={clsx(className, classes.corporateLogos)}>
-        {state.visibleLogos.map(({logo, altText}, idx) => (
+        {logoState.visibleLogos.map(({logo, altText}, idx) => (
             <div className={classes.corporateLogoContainer}>
-                <CorporateLogo logo={logo} altText={altText} className={clsx(classes.corporateLogo, idx === state.transitionIndex && (state.spawning ? classes.corporateLogoFadeIn : classes.corporateLogoFadeOut))}/>
+                <CorporateLogo logo={logo} altText={altText} className={clsx(classes.corporateLogo, idx === logoState.transitionIndex && (logoState.spawning ? classes.corporateLogoFadeIn : classes.corporateLogoFadeOut))}/>
             </div>
         ))}
         </section>
