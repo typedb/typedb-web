@@ -69,7 +69,7 @@ export const CorporateLogosSection: React.FC<ClassProps> = ({className}) => {
     }, {
         logo: EagleGenomicsLogo,
         altText: "Eagle Genomics",
-        weight: 1,
+        weight: 2,
     }, {
         logo: CapgeminiLogo,
         altText: "Capgemini",
@@ -77,11 +77,11 @@ export const CorporateLogosSection: React.FC<ClassProps> = ({className}) => {
     }, {
         logo: RheosMedicinesLogo,
         altText: "Rheos Medicines",
-        weight: 1,
+        weight: 2,
     }, {
         logo: TNOLogo,
         altText: "TNO",
-        weight: 1,
+        weight: 2,
     }, {
         logo: RollsRoyceLogo,
         altText: "Rolls-Royce",
@@ -97,7 +97,7 @@ export const CorporateLogosSection: React.FC<ClassProps> = ({className}) => {
     }, {
         logo: OxfordPharmagenesisLogo,
         altText: "Oxford Pharmagenesis",
-        weight: 3,
+        weight: 2,
     }, {
         logo: ClearskyCybersecurityLogo,
         altText: "Clearsky Cybersecurity",
@@ -105,7 +105,7 @@ export const CorporateLogosSection: React.FC<ClassProps> = ({className}) => {
     }, {
         logo: TripudioLogo,
         altText: "Tripudio",
-        weight: 3,
+        weight: 2,
     }, {
         logo: AcchaLogo,
         altText: "Accha",
@@ -179,7 +179,7 @@ export const CorporateLogosSection: React.FC<ClassProps> = ({className}) => {
         setState(Object.assign({}, state, newState));
     };
 
-    let spawningLogo, despawningLogo;
+    let despawningIndex, spawningIndex, spawningLogo, despawningLogo;
 
     useEffect(() => {
         setInterval(() => {
@@ -188,8 +188,8 @@ export const CorporateLogosSection: React.FC<ClassProps> = ({className}) => {
     }, []);
 
     const performTransition = () => {
-        const despawningIndex = selectDespawnIndex();
-        const spawningIndex = Math.floor(Math.random() * state.hiddenLogos.length);
+        despawningIndex = selectDespawnIndex();
+        spawningIndex = Math.floor(Math.random() * state.hiddenLogos.length);
         despawningLogo = state.visibleLogos[despawningIndex];
         spawningLogo = state.hiddenLogos[spawningIndex];
         updateState({
