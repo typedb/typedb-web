@@ -1,4 +1,4 @@
-import { TypeQLGraph } from "../typeql-data";
+import {TypeQLGraph} from "../../../common/typeql/typeql-data";
 
 export const inferenceExampleCode = `
 match
