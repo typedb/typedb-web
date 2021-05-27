@@ -36,8 +36,8 @@ export const HomePage: React.FC = () => {
 
                 <h1 className={clsx(classes.typeDBIntro, classes.h1, classes.sectionMarginSmall)}>Introducing TypeDB: a strongly-typed database</h1>
                 <h1 className={clsx(classes.typeDBIntroMobile, classes.h1)}>
-                    Introducing TypeDB: a<br/>
-                    strongly-typed database
+                    Introducing TypeDB:<br/>
+                    a strongly-typed database
                 </h1>
                 <p className={clsx(classes.largeText, classes.typeDBIntroBody)}>
                     TypeDB is a database with a rich and logical type system. TypeDB empowers you to build
@@ -77,10 +77,10 @@ export const HomePage: React.FC = () => {
             <TestimonialsSection className={classes.sectionMarginLarge}/>
 
             <section className={clsx(classes.communitySection, classes.sectionMarginLarge)}>
-                <h1 className={classes.h1}>Join the global movement of the Vaticle Community</h1>
+                <h1 className={classes.h1}>Join the Vaticle community around the world</h1>
                 <VaticleWorld className={clsx(classes.vaticleWorld, classes.sectionMarginSmall)}/>
                 <VaticleButton size="small" type="primary" disabled={true} comingSoon={true} className={classes.sectionMarginSmall}>
-                    Join the Vaticle Community<span className={classes.hideMobile}> around the world</span>
+                    Join the Vaticle community<span className={classes.hideMobile}> around the world</span>
                 </VaticleButton>
             </section>
 

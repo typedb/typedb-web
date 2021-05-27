@@ -21,13 +21,13 @@ export const TypeQLExamplesSection: React.FC<TypeQLExamplesSectionProps> = ({cla
             <h1 className={classes.h1}>Strong type systems make complex problems easier to tackle</h1>
             <p className={classes.largeText}>
                 TypeDB provides a strong type system for developers to break down complex problems into
-                meaningful and logical systems. Through TypeQL, TypeDB provide strong abstractions over
+                meaningful and logical systems. Through TypeQL, TypeDB provide powerful abstractions over
                 low-level and complex data patterns.
             </p>
 
             <TypeQLExample className={classes.sectionMarginSmall} visualiserPosition="left"
                            code={studentHierarchyCode} graphData={studentHierarchyGraph} title="Expressivity"
-                           body="TypeDB allows you to model your domain based-on logical and object-oriented principles.
+                           body="TypeDB allows you to model your domain based on logical and object-oriented principles.
                                      Composed of entity, relationship, and attribute types, as well as type hierarchies,
                                      roles, and rules, TypeDB allows you to think higher-level as opposed to join-tables,
                                      columns, vertices, edges, and properties."/>
