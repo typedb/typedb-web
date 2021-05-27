@@ -14,7 +14,7 @@ export const homePageStyles = makeStyles({
         },
     },
 
-    vaticleTypeDB: {
+    typeDBIntro: {
         "@media(max-width: 767px)": {
             marginTop: -30,
         },
@@ -24,12 +24,16 @@ export const homePageStyles = makeStyles({
         },
     },
 
-    vaticleTypeDBMobile: {
+    typeDBIntroMobile: {
         marginTop: -30,
 
         "@media(min-width: 480px)": {
             display: "none",
         },
+    },
+
+    typeDBIntroBody: {
+        maxWidth: "650px !important",
     },
 
     diagramAndCaption: {

@@ -34,12 +34,12 @@ export const HomePage: React.FC = () => {
                     <VaticleAtom/>
                 </div>
 
-                <h1 className={clsx(classes.vaticleTypeDB, classes.h1, classes.sectionMarginSmall)}>Introducing TypeDB: a strongly-typed database</h1>
-                <h1 className={clsx(classes.vaticleTypeDBMobile, classes.h1)}>
+                <h1 className={clsx(classes.typeDBIntro, classes.h1, classes.sectionMarginSmall)}>Introducing TypeDB: a strongly-typed database</h1>
+                <h1 className={clsx(classes.typeDBIntroMobile, classes.h1)}>
                     Introducing TypeDB: a<br/>
                     strongly-typed database
                 </h1>
-                <p className={classes.largeText}>
+                <p className={clsx(classes.largeText, classes.typeDBIntroBody)}>
                     TypeDB is a database with a rich and logical type system. TypeDB empowers you to build
                     complex systems easily, using TypeQL as its query language.
                 </p>
