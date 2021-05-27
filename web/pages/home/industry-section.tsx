@@ -90,10 +90,8 @@ export const SectionToggle: React.FC<SectionToggleProps> = ({industry, binding, 
 
     return (
         <div className={classes.sectionToggle}>
-            <div className={clsx(classes.sectionToggleIconContainer, selected ? classes.sectionToggleIconContainerSelected : undefined)} onClick={() => binding(industry)}>
-                {React.createElement(industry.icon, {
-                    color: selected ? vaticleTheme.palette.green[300] : "#FFF"
-                })}
+            <div className={clsx(classes.sectionToggleIconContainer, selected && classes.sectionToggleIconContainerSelected)} onClick={() => binding(industry)}>
+                <industry.icon color={selected ? vaticleTheme.palette.green[300] : "#FFF"}/>
             </div>
             <p className={classes.sectionToggleTitle}>{industry.name}</p>
         </div>
