@@ -102,5 +102,17 @@ export const downloadPageProductStyles = makeStyles({
         padding: "35px 64px 35px 30px",
     },
 
+    comparisonBlockHeading: {
+        position: "relative",
+    },
+
+    comparisonBlockHeadingCheck: {
+        position: "absolute",
+    },
+
+    comparisonBlockContent: {
+        marginLeft: 34, // item body's (right padding) - (left padding)
+    },
+
     // comparisonBlockItem
 });

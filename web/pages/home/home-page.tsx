@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { homePageStyles } from "./home-styles";
-import { VaticleAtom } from "../../common/images/vaticle-atom";
+import { VaticleAtom } from "../images/vaticle-atom";
 import { faDiscord, faGithub, faTwitter } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { VaticleButton } from "../../common/button/button";

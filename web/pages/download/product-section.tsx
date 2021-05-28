@@ -64,7 +64,7 @@ const TypeDBTab: React.FC = () => {
 
     const items: [ComparisonBlockItem, ComparisonBlockItem] = [{
         title: "Open Source",
-        content: () => <p>AGPL v3.0 License</p>,
+        content: TypeDBOpenSource,
     }, {
         title: "Commercial",
         content: () => <p>Commercial License</p>,
@@ -82,10 +82,19 @@ const TypeDBTab: React.FC = () => {
 }
 
 const TypeDBOpenSource: React.FC = () => {
-    const classes = downloadPageProductStyles();
+    const classes = Object.assign({}, vaticleStyles(), downloadPageProductStyles());
 
     return (
-        <p>AGPL v3.0 License</p>
+        <>
+            <div className={classes.comparisonBlockHeading}>
+                <span className={clsx(classes.check, classes.checkGreen, classes.comparisonBlockHeadingCheck)}/>
+                <h5 className={clsx(classes.h5, classes.comparisonBlockContent)}>AGPL v3.0 License</h5>
+            </div>
+            <p className={clsx(classes.comparisonBlockContent, classes.mediumText, classes.textMarginLarge)}>
+                Deploy and operate your Grakn Core knowledge graph immediately. Grakn Core is licensed under AGPL so
+                that you can start developing quickly and adopt Grakn within your solution in no time.
+            </p>
+        </>
     );
 }
 

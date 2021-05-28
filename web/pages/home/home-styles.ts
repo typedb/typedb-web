@@ -299,9 +299,6 @@ export const homePageIndustryStyles = makeStyles({
         },
 
         "& svg": {
-            width: 45,
-            height: 45,
-
             "& g, & ellipse, & circle, & path": {
                 stroke: "#FFF",
             },
@@ -311,7 +308,7 @@ export const homePageIndustryStyles = makeStyles({
     sectionToggleIconContainerSelected: {
         "& svg": {
             "& g, & ellipse, & circle, & path": {
-                stroke: vaticleTheme.palette.green[300],
+                stroke: `${vaticleTheme.palette.green[300]} !important`,
             },
         },
     },
