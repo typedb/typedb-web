@@ -106,17 +106,18 @@ export const typeQLVisualiserStyles = makeStyles({
     }
 });
 
-const blue = 0x86AAFF;
+const green = 0x02DAC9;
 const pink = 0xF28DD7;
 const yellow = 0xF6C94C;
 const red = 0xF66B65;
+const blue = 0x7BA0FF;
 const black = 0x09022F;
 
 export const typeQLGraphColours = {
     entity: pink,
     relation: yellow,
-    attribute: red,
-    edge: blue,
+    attribute: blue,
+    edge: green,
     error: red,
     vertexLabel: black,
 };
