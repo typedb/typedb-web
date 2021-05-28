@@ -77,6 +77,8 @@ export const downloadPageProductStyles = makeStyles({
 
     comparisonBlockItem: {
         flex: 1,
+        display: "flex",
+        flexDirection: "column",
     },
 
     comparisonBlockItemTitle: {
@@ -98,8 +100,10 @@ export const downloadPageProductStyles = makeStyles({
     },
 
     comparisonBlockItemBody: {
-        backgroundColor: "#0E053F",
+        flex: 1,
+        backgroundColor: vaticleTheme.palette.purple["800"],
         padding: "35px 64px 35px 30px",
+        textAlign: "start",
     },
 
     comparisonBlockHeading: {
@@ -108,6 +112,7 @@ export const downloadPageProductStyles = makeStyles({
 
     comparisonBlockHeadingCheck: {
         position: "absolute",
+        top: 8,
     },
 
     comparisonBlockContent: {

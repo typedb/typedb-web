@@ -20,6 +20,7 @@
     "d3": "^6.7.0",
     "fontfaceobserver": "^2.1.0",
     "interactjs": "^1.10.11",
+    "moment": "^2.29.1",
     "pixi-viewport": "^4.30.2",
     "pixi.js": "^6.0.2",
     "prismjs": "^1.23.0",

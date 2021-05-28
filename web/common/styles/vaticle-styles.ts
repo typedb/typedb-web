@@ -112,8 +112,8 @@ export const vaticleStyles = makeStyles({
     },
 
     check: {
-        height: 19,
-        width: 10,
+        height: 16,
+        width: 8,
         borderRight: "2px solid #FFF",
         borderBottom: "2px solid #FFF",
         transform: "rotate(45deg)",

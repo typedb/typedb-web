@@ -15,6 +15,7 @@ export const DefaultLayout: React.FC<DefaultLayoutProps> = ({ children, typeDBVe
     return (
         <>
             <PageHeader typeDBVersion={typeDBVersion}/>
+            <div className={ownClasses.underDevelopmentRibbon}>under development</div>
             <main className={ownClasses.main}>
                 <article>
                     {children}

@@ -13,6 +13,21 @@ export const defaultLayoutStyles = makeStyles({
         width: '100%',
         textAlign: 'center',
     },
+
+    underDevelopmentRibbon: {
+        position: "fixed",
+        width: 170,
+        height: 28,
+        fontSize: 14,
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        color: vaticleTheme.palette.purple["800"],
+        backgroundColor: vaticleTheme.palette.green["300"],
+        top: 110,
+        right: 0,
+        transform: "translateX(30px) rotate(40deg)",
+    },
 });
 
 export const pageHeaderStyles = makeStyles({
