@@ -32,10 +32,9 @@ export const IndustrySection: React.FC<ClassProps> = ({className}) => {
     }, {
         name: "Defence & Security",
         icon: SecurityIcon,
-        description: `As technology permeates deeper into every aspect of our lives—with constant digital footprints and
-                    interconnected devices proliferating—the growth in potential damage and disruption from bad actors
-                    grows. TypeDB allows firms to leverage their digital defences against increasingly sophisticated
-                    cyber criminals.`
+        description: `In this internet era, defence and security means connecting anything and everything, to uncover
+                    pieces of information that are deliberately hidden. TypeDB allows defence organisations to easily aggregate, 
+                    and interrogate these networks in real-time and stay two-steps ahead of bad actors, while avoiding critically costly mistakes.`
     }, {
         name: "Financial Services",
         icon: FinanceIcon,
