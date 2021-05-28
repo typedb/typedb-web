@@ -54,8 +54,8 @@ export const IndustrySection: React.FC<ClassProps> = ({className}) => {
         icon: MachineLearningIcon,
         description: `Heterogeneous data holds significant inherent context. TypeDB enables ML systems to leverage this 
                     context, and utilise this critical information to improve the accuracy and versatility of ML models. 
-                    TypeDB enables ML systems to accumulate and re-use highly contextual knowledge, and continuously build 
-                    upon the knowledge base.`
+                    TypeDB enables ML systems to accumulate datasets as one centralised, reusable, and highly contextualised 
+                    knowledge base.`
     }];
 
     const [selectedIndustry, setSelectedIndustry] = useState<Industry>(allIndustries[0]);
