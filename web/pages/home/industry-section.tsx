@@ -53,9 +53,10 @@ export const IndustrySection: React.FC<ClassProps> = ({className}) => {
     }, {
         name: "Machine Learning",
         icon: MachineLearningIcon,
-        description: `As devices have become more intelligent, the way we interact with them evolved to natural language
-                    through conversation. TypeDB is the ideal platform for developing chat bots because it is capable of
-                    interpreting complex and ambiguous questions by performing inference over your data.`
+        description: `Heterogeneous data holds significant inherent context. TypeDB enables ML systems to leverage this 
+                    context, and utilise this critical information to improve the accuracy and versatility of the ML models. 
+                    TypeDB enables ML systems to accumulate and re-use highly contextual knowledge, and continuously build 
+                    upon the knowledge base.`
     }];
 
     const [selectedIndustry, setSelectedIndustry] = useState<Industry>(allIndustries[0]);
