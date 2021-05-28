@@ -45,7 +45,7 @@ export const HomePage: React.FC = () => {
                 </p>
 
                 <div className={clsx(classes.mainLinks, classes.sectionMarginSmall)}>
-                    <a href={urls.social.github} target="_blank" className={classes.firstMainLink}>
+                    <a href={urls.social.github} target="_blank" className={clsx(classes.mainLink, classes.firstMainLink)}>
                         <FontAwesomeIcon className={classes.mainLinkIcon} icon={faGithub} />
                         <div className={classes.mainLinkCaption}>GitHub</div>
                     </a>

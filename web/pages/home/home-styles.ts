@@ -106,12 +106,13 @@ export const homePageStyles = makeStyles({
     },
 
     firstMainLink: {
-        flex: 1,
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'center',
-        height: '160px',
+        "@media(min-width: 768px)": {
+            borderLeftStyle: "none !important",
+        },
+
+        "@media(max-width: 767px)": {
+            borderTopStyle: "none !important",
+        },
     },
 
     mainLink: {
@@ -120,10 +121,10 @@ export const homePageStyles = makeStyles({
         flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'center',
-        height: '160px',
+        height: 160,
 
         "@media(min-width: 768px)": {
-            borderLeft: `1px solid ${vaticleTheme.palette.purple[300]}`,
+            borderLeft: `1px solid ${vaticleTheme.palette.purple["300"]}`,
         },
 
         "@media(max-width: 767px)": {

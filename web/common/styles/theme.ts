@@ -100,6 +100,16 @@ export const vaticleTheme = {
         color: "#FFF",
         fontWeight: 400,
     },
+    h5: {
+        fontSize: 20,
+        lineHeight: "34px",
+        fontWeight: 600,
+    },
+    h6: {
+        fontSize: 16,
+        lineHeight: "24px",
+        fontWeight: 600,
+    },
     p: {
         large: {
             color: '#FFF',

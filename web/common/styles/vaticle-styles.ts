@@ -34,6 +34,10 @@ export const vaticleStyles = makeStyles({
 
     h4: vaticleTheme.h4,
 
+    h5: vaticleTheme.h5,
+
+    h6: vaticleTheme.h6,
+
     textMarginLarge: {
         marginTop: 16,
 
@@ -105,6 +109,22 @@ export const vaticleStyles = makeStyles({
         justifyContent: "center",
         gridTemplateColumns: "repeat(auto-fit, 224px)",
         gap: "30px 40px",
+    },
+
+    check: {
+        height: 20,
+        width: 10,
+        borderRight: "2px solid #FFF",
+        borderBottom: "2px solid #FFF",
+        transform: "rotate(45deg)",
+    },
+
+    checkGreen: {
+        borderColor: `${vaticleTheme.palette.green["300"]} !important`,
+    },
+
+    checkPurple: {
+        borderColor: "#8069F5 !important",
     },
 
     hideDesktop: {

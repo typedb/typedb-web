@@ -30,8 +30,9 @@ export const ProductSection: React.FC<ClassProps> = ({className}) => {
     return (
         <section className={className}>
             <div className={classes.tabGroup}>
-            {allProducts.map(product => (
-                <Tab product={product} binding={setSelectedProduct} selected={product === selectedProduct}/>
+            {allProducts.map((product, idx) => (
+                <Tab product={product} binding={setSelectedProduct} first={idx === 0} last={idx === allProducts.length - 1}
+                     selected={product.name === selectedProduct.name}/>
             ))}
             </div>
             <selectedProduct.content/>
@@ -43,23 +44,89 @@ export const ProductSection: React.FC<ClassProps> = ({className}) => {
 interface TabProps {
     product: Product;
     binding: (product: Product) => void;
+    first?: boolean;
+    last?: boolean;
     selected: boolean;
 }
 
-export const Tab: React.FC<TabProps> = ({product, binding, selected}) => {
+const Tab: React.FC<TabProps> = ({product, binding, first, last, selected}) => {
+    const classes = Object.assign({}, vaticleStyles(), downloadPageProductStyles());
+
+    return (
+        <a className={clsx(classes.tabItem, classes.h5, first && classes.firstTabItem, last && classes.lastTabItem, selected && classes.tabItemSelected)} onClick={() => binding(product)}>
+            {product.name}
+        </a>
+    );
+}
+
+const TypeDBTab: React.FC = () => {
+    const classes = Object.assign({}, vaticleStyles(), downloadPageProductStyles());
+
+    const items: [ComparisonBlockItem, ComparisonBlockItem] = [{
+        title: "Open Source",
+        content: () => <p>AGPL v3.0 License</p>,
+    }, {
+        title: "Commercial",
+        content: () => <p>Commercial License</p>,
+    }];
+
+    return (
+        <>
+            <p className={classes.largeText}>
+                Grakn is a knowledge graph to organise complex networks of data and make it queryable. Graql is Grakn’s
+                reasoning (through OLTP) and analytics (through OLAP) declarative query language. <a>Learn more</a>
+            </p>
+            <ComparisonBlock items={items} className={classes.sectionMarginSmall}/>
+        </>
+    );
+}
+
+const TypeDBOpenSource: React.FC = () => {
     const classes = downloadPageProductStyles();
 
-    return <a className={clsx(classes.tabItem, selected && classes.tabItemSelected)} onClick={() => binding(product)}>{product.name}</a>;
+    return (
+        <p>AGPL v3.0 License</p>
+    );
 }
 
-export const TypeDBTab: React.FC = () => {
-    return <p>TypeDB Core</p>;
-}
-
-export const TypeDBClusterTab: React.FC = () => {
+const TypeDBClusterTab: React.FC = () => {
     return <p>TypeDB Cluster</p>;
 }
 
-export const TypeDBWorkbaseTab: React.FC = () => {
+const TypeDBWorkbaseTab: React.FC = () => {
     return <p>TypeDB Workbase</p>;
+}
+
+interface ComparisonBlockItem {
+    title: string;
+    content: React.FC<any>;
+}
+
+interface ComparisonBlockProps {
+    items: [ComparisonBlockItem, ComparisonBlockItem]
+}
+
+const ComparisonBlock: React.FC<ComparisonBlockProps & ClassProps> = ({items: [item1, item2], className}) => {
+    const classes = Object.assign({}, vaticleStyles(), downloadPageProductStyles());
+
+    return (
+        <div className={clsx(classes.comparisonBlock, className)}>
+            <div className={classes.comparisonBlockItem}>
+                <div className={clsx(classes.comparisonBlockItemTitle, classes.comparisonBlockItem1Title)}>
+                    <h6 className={classes.h6}>{item1.title}</h6>
+                </div>
+                <div className={clsx(classes.comparisonBlockItemBody)}>
+                    <item1.content/>
+                </div>
+            </div>
+            <div className={classes.comparisonBlockItem}>
+                <div className={clsx(classes.comparisonBlockItemTitle, classes.comparisonBlockItem2Title)}>
+                    <h6 className={classes.h6}>{item2.title}</h6>
+                </div>
+                <div className={clsx(classes.comparisonBlockItemBody)}>
+                    <item2.content/>
+                </div>
+            </div>
+        </div>
+    );
 }

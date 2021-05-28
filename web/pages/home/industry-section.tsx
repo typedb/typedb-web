@@ -72,7 +72,7 @@ export const IndustrySection: React.FC<ClassProps> = ({className}) => {
 
             <div className={clsx(classes.sectionMarginSmall, classes.sectionToggleGroup)}>
             {allIndustries.map(industry => (
-                <SectionToggle industry={industry} binding={setSelectedIndustry} selected={industry === selectedIndustry}/>
+                <SectionToggle industry={industry} binding={setSelectedIndustry} selected={industry.name === selectedIndustry.name}/>
             ))}
             </div>
         </section>
@@ -91,7 +91,7 @@ export const SectionToggle: React.FC<SectionToggleProps> = ({industry, binding, 
     return (
         <div className={classes.sectionToggle}>
             <div className={clsx(classes.sectionToggleIconContainer, selected && classes.sectionToggleIconContainerSelected)} onClick={() => binding(industry)}>
-                <industry.icon color={selected ? vaticleTheme.palette.green[300] : "#FFF"}/>
+                <industry.icon color={selected ? `${vaticleTheme.palette.green[300]} !important` : "#FFF"}/>
             </div>
             <p className={classes.sectionToggleTitle}>{industry.name}</p>
         </div>
