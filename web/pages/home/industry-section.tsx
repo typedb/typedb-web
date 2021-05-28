@@ -26,7 +26,7 @@ export const IndustrySection: React.FC<ClassProps> = ({className}) => {
         name: "Health & Life Sciences",
         icon: LifeSciencesIcon,
         description: `From pharmaceutical R&D and biomedical research to frontline healthcare delivery, contemporary
-                    health and life science industries rely on data to power insight and improve care. Using Vaticle
+                    health and life science industries rely on data to power insight and improve care. Using TypeDB
                     to effectively manage data can help organisations advance scientific research and deliver best
                     practice medicine.`
     }, {
@@ -39,10 +39,10 @@ export const IndustrySection: React.FC<ClassProps> = ({className}) => {
     }, {
         name: "Financial Services",
         icon: FinanceIcon,
-        description: `Across the financial service industry, changes in technology, policy, and geopolitics have radically
-                    altered the data landscape in the past few years. By taking advantage of Vaticle's cutting-edge
-                    database technology, financial service firms can take full strategic advantage of the changing
-                    data landscape.`
+        description: `TypeDB is the solution for enterprises to aggregate all of their disparate data sources, which would 
+                    otherwise be a very complex task. By breaking down data silos, TypeDB allows organisations to unify
+                    their data in one place, and generate new insights and discover new revenue streams, 
+                    such as Customer 360 and Master Mata Management.`
     }, {
         name: "Telecommunications",
         icon: TelecommunicationsIcon,
@@ -54,7 +54,7 @@ export const IndustrySection: React.FC<ClassProps> = ({className}) => {
         name: "Machine Learning",
         icon: MachineLearningIcon,
         description: `Heterogeneous data holds significant inherent context. TypeDB enables ML systems to leverage this 
-                    context, and utilise this critical information to improve the accuracy and versatility of the ML models. 
+                    context, and utilise this critical information to improve the accuracy and versatility of ML models. 
                     TypeDB enables ML systems to accumulate and re-use highly contextual knowledge, and continuously build 
                     upon the knowledge base.`
     }];
