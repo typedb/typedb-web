@@ -5,6 +5,7 @@ $color-yellow: #FFE4A7;
 $color-pink-200: #F28DD7;
 $color-green: #55EAE2;
 $color-orange: #FFA187;
+$color-red: #F66B65;
 $color-grey: #7F83AF;
 
 code[class*="language-"],
@@ -31,4 +32,12 @@ pre[class*="language-"] {
 
 .token.variable {
     color: $color-orange;
+}
+
+.token.special {
+    color: $color-blue;
+}
+
+.token.error {
+    color: $color-red;
 }

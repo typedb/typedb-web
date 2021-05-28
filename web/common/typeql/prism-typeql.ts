@@ -14,6 +14,10 @@ export function installPrismTypeQL() {
             pattern: /#.*/,
             alias: 'comment'
         },
+        error: {
+            pattern: /ERROR:.*/,
+            alias: 'error'
+        },
         string: {
             pattern: /".*?"/,
             alias: 'string'
@@ -29,7 +33,7 @@ export function installPrismTypeQL() {
             lookbehind: true
         },
         special: {
-            pattern: /typeql>|results>|\.\.\./
+            pattern: /typeql>>|answers>>|\.\.\./
         },
         variable: {
             pattern: /\$[-a-zA-Z_0-9]+/,

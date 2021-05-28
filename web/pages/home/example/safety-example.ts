@@ -9,7 +9,7 @@ $b isa person, has name "Bob";
 $d isa company, has name "DataCo";
 ($b, $o) isa marriage; # invalid relation
 
->>
+answers>>
 
 ERROR: unsatisfiable query detected during type resolution
 `;

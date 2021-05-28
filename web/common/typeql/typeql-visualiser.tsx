@@ -33,6 +33,7 @@ export const TypeQLVisualiser: React.FC<VisualiserProps> = ({ code, data }) => {
             </div>
             <div className={classes.codeAndGraph}>
                 <TypeQLCode code={code}/>
+                <div className={classes.graphPaneBG} />
                 <div ref={graphPaneRef} className={classes.graphPane} />
             </div>
             <div>
