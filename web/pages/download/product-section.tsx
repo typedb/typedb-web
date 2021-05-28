@@ -1,12 +1,14 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useState } from "react";
 import clsx from "clsx";
 import { vaticleStyles } from "../../common/styles/vaticle-styles";
 import { ClassProps } from "../../common/class-props";
 import { downloadPageProductStyles } from "./download-styles";
 import moment from "moment";
-import { Context } from "../state/storage";
 import { useTypeDBVersion } from "../state/typedb-version";
+import { VaticleButton } from "../../common/button/button";
+import { urls } from "../../common/urls";
 
+// TODO: This file has too many components and should be broken up
 type ProductName = "TypeDB" | "TypeDB Cluster" | "TypeDB Workbase";
 
 interface Product {
@@ -21,13 +23,9 @@ interface ProductSectionProps extends ClassProps {
 export const ProductSection: React.FC<ProductSectionProps> = ({className, latestTypeDBVersion}) => {
     const classes = Object.assign({}, vaticleStyles(), downloadPageProductStyles());
 
-    useEffect(() => {
-        allProducts[0].content = () => <TypeDBTab latestVersion={latestTypeDBVersion}/>
-    }, [latestTypeDBVersion]);
-
     const allProducts: Product[] = [{
         name: "TypeDB",
-        content: () => <TypeDBTab latestVersion={latestTypeDBVersion}/>,
+        content: TypeDBTab,
     }, {
         name: "TypeDB Cluster",
         content: TypeDBClusterTab,
@@ -70,29 +68,21 @@ const Tab: React.FC<TabProps> = ({product, binding, first, last, selected}) => {
     );
 }
 
-interface TypeDBTabProps {
-    latestVersion: string;
-}
-
-const TypeDBTab: React.FC<TypeDBTabProps> = ({latestVersion}) => {
+const TypeDBTab: React.FC = () => {
     const classes = Object.assign({}, vaticleStyles(), downloadPageProductStyles());
-
-    useEffect(() => {
-        console.log(`TypeDBTab: ` + latestVersion);
-    }, [latestVersion]);
 
     const items: [ComparisonBlockItem, ComparisonBlockItem] = [{
         title: "Open Source",
-        content: () => <TypeDBOpenSource latestVersion={latestVersion} latestReleaseDate={new Date()}/>,
+        content: () => <TypeDBOpenSource latestReleaseDate={new Date("2021-05-25")}/>,
     }, {
         title: "Commercial",
-        content: () => <p>Commercial License</p>,
+        content: () => <p/>,
     }];
 
     return (
         <>
             <p className={classes.largeText}>
-                Grakn is a knowledge graph to organise complex networks of data and make it queryable. Graql is Grakn’s
+                TypeDB is a knowledge graph to organise complex networks of data and make it queryable. TypeQL is TypeDB’s
                 reasoning (through OLTP) and analytics (through OLAP) declarative query language. <a>Learn more</a>
             </p>
             <ComparisonBlock items={items} className={classes.sectionMarginSmall}/>
@@ -101,29 +91,14 @@ const TypeDBTab: React.FC<TypeDBTabProps> = ({latestVersion}) => {
 }
 
 interface TypeDBOpenSourceProps {
-    latestVersion: string;
     latestReleaseDate: Date;
 }
 
-const TypeDBOpenSource: React.FC<TypeDBOpenSourceProps> = ({latestVersion, latestReleaseDate}) => {
+const TypeDBOpenSource: React.FC<TypeDBOpenSourceProps> = ({latestReleaseDate}) => {
     const classes = Object.assign({}, vaticleStyles(), downloadPageProductStyles());
 
     const latestReleaseDateFormatted = moment(latestReleaseDate).format("Do [of] MMMM YYYY");
-
-    useEffect(() => {
-        console.log(`TypeDBOpenSource: ` + latestVersion);
-    }, [latestVersion]);
-
-    const {state, dispatch} = useContext(Context);
-    useEffect(() => {
-        console.log(`TypeDBOpenSource (from Context): ` + state.typeDBVersion);
-    }, [state.typeDBVersion]);
-
     const typeDBVersion = useTypeDBVersion()[0];
-
-    // window.addEventListener(null, "setTypeDBVersion", (e) => {
-    //     setTypeDBVersion(e.data);
-    // });
 
     return (
         <>
@@ -132,24 +107,27 @@ const TypeDBOpenSource: React.FC<TypeDBOpenSourceProps> = ({latestVersion, lates
                 <h5 className={clsx(classes.h5, classes.comparisonBlockContent)}>AGPL v3.0 License</h5>
             </div>
             <p className={clsx(classes.comparisonBlockContent, classes.mediumText, classes.textMarginLarge)}>
-                Deploy and operate your Grakn Core knowledge graph immediately. Grakn Core is licensed under AGPL so
-                that you can start developing quickly and adopt Grakn within your solution in no time.
+                Deploy and operate your TypeDB knowledge graph immediately. TypeDB is licensed under AGPL so
+                that you can start developing quickly and adopt TypeDB within your solution in no time.
             </p>
             <p className={clsx(classes.comparisonBlockContent, classes.mediumText, classes.textMarginLarge)}>
-                Current Stable Release: <strong>TypeDB Core {typeDBVersion}</strong>
+                Current Stable Release: <strong>TypeDB {typeDBVersion}</strong>
                 <br/>
                 <strong>{latestReleaseDateFormatted}</strong> <a>Release Notes</a>
             </p>
+            <div className={clsx(classes.comparisonBlockContent, classes.mainActionList, classes.sectionMarginSmall)}>
+                <VaticleButton size="small" type="primary" href={urls.github.typedbReleases} target="_blank">Download</VaticleButton>
+            </div>
         </>
     );
 }
 
 const TypeDBClusterTab: React.FC = () => {
-    return <p>TypeDB Cluster</p>;
+    return <p/>;
 }
 
 const TypeDBWorkbaseTab: React.FC = () => {
-    return <p>TypeDB Workbase</p>;
+    return <p/>;
 }
 
 interface ComparisonBlockItem {

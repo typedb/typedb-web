@@ -26,7 +26,7 @@ export const PageFooter: React.FC = () => {
                             <a href={urls.social.linkedIn} target="_blank" className={classes.socialLinkLinkedIn}>
                                 <FontAwesomeIcon className={clsx(classes.socialIcon, classes.socialIconLinkedIn)} icon={faLinkedin} />
                             </a>
-                            <a href={urls.social.github} target="_blank" className={classes.socialLinkGithub}>
+                            <a href={urls.github.home} target="_blank" className={classes.socialLinkGithub}>
                                 <FontAwesomeIcon className={clsx(classes.socialIcon, classes.socialIconGithub)} icon={faGithub} />
                             </a>
                         </div>
@@ -50,7 +50,7 @@ export const PageFooter: React.FC = () => {
                         <div className={classes.contact}>
                             <h3 className={classes.h3}>Get in Touch</h3>
                             <ul className={classes.linkList}>
-                                <ContactDetail href={urls.social.github} target="_blank" icon={faGithub}>Vaticle on GitHub</ContactDetail>
+                                <ContactDetail href={urls.github.home} target="_blank" icon={faGithub}>Vaticle on GitHub</ContactDetail>
                                 <ContactDetail href={urls.social.discord} target="_blank" icon={faDiscord}>Vaticle on Discord</ContactDetail>
                                 <ContactDetail icon={faPhoneAlt}>Get in touch</ContactDetail>
                                 <ContactDetail href={urls.officeLocation} target="_blank" icon={faMapMarkerAlt} type="address" classes={{anchor: classes.linkTwoLine}}>
@@ -73,7 +73,7 @@ export const PageFooter: React.FC = () => {
                                 <ul className={classes.linkBlockList}>
                                     <FooterLink href={urls.docs.home}>Documentation</FooterLink>
                                     <FooterLink href={urls.forum}>Forum</FooterLink>
-                                    <FooterLink href={urls.social.github} target="_blank">GitHub</FooterLink>
+                                    <FooterLink href={urls.github.home} target="_blank">GitHub</FooterLink>
                                 </ul>
                             </div>
                             <div className={classes.linkBlock}>

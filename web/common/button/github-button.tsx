@@ -8,7 +8,7 @@ export const GithubButton: React.FC = () => {
     const classes = githubButtonStyles();
 
     return (
-        <a href={urls.social.github} className={classes.root} target="_blank">
+        <a href={urls.github.home} className={classes.root} target="_blank">
             <FontAwesomeIcon icon={faGithub} />
         </a>
     );

@@ -1,4 +1,5 @@
 const docsURL = "https://docs.vaticle.com/docs";
+const githubURL = "https://github.com/vaticle";
 
 export const urls = {
     legacySite: "https://grakn.ai",
@@ -14,7 +15,6 @@ export const urls = {
     },
 
     social: {
-        github: "https://github.com/vaticle",
         discord: "https://vaticle.com/discord",
         twitter: "https://twitter.com/VaticleHQ",
         facebook: "https://www.facebook.com/VaticleHQ/",
@@ -22,6 +22,8 @@ export const urls = {
     },
 
     github: {
-        typedb: "https://github.com/vaticle/typedb"
+        home: githubURL,
+        typedb: `${githubURL}/typedb`,
+        typedbReleases: `${githubURL}/typedb/releases/`,
     }
 };

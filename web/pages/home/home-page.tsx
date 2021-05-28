@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { homePageStyles } from "./home-styles";
 import { VaticleAtom } from "../images/vaticle-atom";
 import { faDiscord, faGithub, faTwitter } from "@fortawesome/free-brands-svg-icons";
@@ -15,12 +15,13 @@ import { CorporateLogosSection } from "./corporate-logos-section";
 import { TypeQLExamplesSection } from "./typeql-examples-section";
 import { DefaultLayout } from "../../common/layout/default-layout";
 import { urls } from "../../common/urls";
+import { useTypeDBVersion } from "../state/typedb-version";
 
 export const HomePage: React.FC = () => {
     const classes = Object.assign({}, vaticleStyles(), homePageStyles());
 
-    // TODO: Ideally we don't do this for every page
-    const [typeDBVersion, setTypeDBVersion] = useState("TypeDB");
+    // TODO: This code shouldn't be duplicated on every page
+    const [typeDBVersion, setTypeDBVersion] = useTypeDBVersion();
     useEffect(() => {
         getTypeDBVersion().then(version => {
             setTypeDBVersion(version);
@@ -45,7 +46,7 @@ export const HomePage: React.FC = () => {
                 </p>
 
                 <div className={clsx(classes.mainLinks, classes.sectionMarginSmall)}>
-                    <a href={urls.social.github} target="_blank" className={clsx(classes.mainLink, classes.firstMainLink)}>
+                    <a href={urls.github.home} target="_blank" className={clsx(classes.mainLink, classes.firstMainLink)}>
                         <FontAwesomeIcon className={classes.mainLinkIcon} icon={faGithub} />
                         <div className={classes.mainLinkCaption}>GitHub</div>
                     </a>
