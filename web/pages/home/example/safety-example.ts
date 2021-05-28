@@ -7,7 +7,7 @@ $a isa person, has name "Alice";
 $b isa person, has name "Bob";
 ($a, $b) isa marriage;
 $d isa company, has name "DataCo";
-($b, $o) isa marriage; # invalid relation
+($b, $d) isa marriage; # invalid relation
 
 answers>>
 
