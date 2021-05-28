@@ -26,7 +26,7 @@ export const IndustrySection: React.FC<ClassProps> = ({className}) => {
         name: "Health & Life Sciences",
         icon: LifeSciencesIcon,
         description: `Systems biology produces a tremendous amount of heterogeneous data which are complex by nature and 
-                    rich with semantics. TypeDB accelerates the knowledge discovery process in Health & Life Sciences, 
+                    rich with semantics. TypeDB accelerates the knowledge discovery process in Health & Life Sciences 
                     by simplifying the integration of data, contextualising newly generated insights, and explaining 
                     patterns in complex networks.`
     }, {
@@ -40,8 +40,8 @@ export const IndustrySection: React.FC<ClassProps> = ({className}) => {
         icon: FinanceIcon,
         description: `TypeDB is the solution for enterprises to aggregate all of their disparate data sources, which would 
                     otherwise be a very complex task. By breaking down data silos, TypeDB allows organisations to unify
-                    their data in one place, and generate new insights and discover new revenue streams, 
-                    such as Customer 360 and Master Mata Management.`
+                    their data in one place, generate new insights, and discover new revenue streams, such as Customer 360 
+                    and Master Mata Management.`
     }, {
         name: "Telecommunications",
         icon: TelecommunicationsIcon,
