@@ -4,14 +4,14 @@ import React, { useState } from "react";
 import clsx from "clsx";
 import SecurityIcon from "../assets/icons/security.svg";
 import FinanceIcon from "../assets/icons/finance.svg";
-import NLPIcon from "../assets/icons/nlp.svg";
+import TelecommunicationsIcon from "../assets/icons/telecommunications.svg";
+import MachineLearningIcon from "../assets/icons/machine-learning.svg";
 import { LifeSciencesIcon } from "../../common/images/life-sciences-icon";
 import { vaticleTheme } from "../../common/styles/theme";
-import { RoboticsIcon } from "../../common/images/robotics-icon";
 import { vaticleStyles } from "../../common/styles/vaticle-styles";
 import { ClassProps } from "../../common/class-props";
 
-type IndustryName = "Health & Life Sciences" | "Defence & Security" | "Financial Services" | "Robotics" | "NLP";
+type IndustryName = "Health & Life Sciences" | "Defence & Security" | "Financial Services" | "Telecommunications" | "Machine Learning";
 
 interface Industry {
     name: IndustryName;
@@ -44,15 +44,15 @@ export const IndustrySection: React.FC<ClassProps> = ({className}) => {
                     database technology, financial service firms can take full strategic advantage of the changing
                     data landscape.`
     }, {
-        name: "Robotics",
-        icon: RoboticsIcon,
-        description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut porta diam vitae nunc aliquet, id
+        name: "Telecommunications",
+        icon: TelecommunicationsIcon,
+        description: `Lorem ipsum dolors sit amet, consectetur adipiscing elit. Ut porta diam vitae nunc aliquet, id
                     dignissim nibh commodo. Pellentesque habitant morbi tristique senectus et netus et malesuada fames
                     ac turpis egestas. Maecenas interdum nunc accumsan tortor maximus ornare. In hac habitasse platea
                     dictumst himenaeos.`
     }, {
-        name: "NLP",
-        icon: NLPIcon,
+        name: "Machine Learning",
+        icon: MachineLearningIcon,
         description: `As devices have become more intelligent, the way we interact with them evolved to natural language
                     through conversation. TypeDB is the ideal platform for developing chat bots because it is capable of
                     interpreting complex and ambiguous questions by performing inference over your data.`
