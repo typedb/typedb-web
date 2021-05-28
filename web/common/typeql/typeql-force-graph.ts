@@ -7,7 +7,14 @@ import * as PIXI from "pixi.js";
 // @ts-ignore
 import FontFaceObserver from "fontfaceobserver";
 import { Viewport } from 'pixi-viewport';
-import { arrowhead, diamondIncomingLineIntersect, midpoint, Rect, rectIncomingLineIntersect } from "./geometry";
+import {
+    arrowhead,
+    diamondIncomingLineIntersect, Ellipse,
+    ellipseIncomingLineIntersect,
+    midpoint,
+    Rect,
+    rectIncomingLineIntersect
+} from "./geometry";
 import { TypeQLEdge, TypeQLGraph, TypeQLVertex } from "./typeql-data";
 import { typeQLGraphColours as colours, typeQLGraphStyles as styles } from "./typeql-styles";
 
@@ -188,6 +195,10 @@ function renderVertex(vertex: Vertex, fontFace: { load: () => Promise<any> }) {
                 new PIXI.Point(0, vertex.height / 2)
             ]);
             break;
+        case "attribute":
+            vertex.gfx.drawEllipse(0, 0, vertex.width / 2, vertex.height / 2);
+            vertex.gfx.hitArea = new PIXI.Ellipse(0, 0, vertex.width / 2, vertex.height / 2);
+            break;
     }
     vertex.gfx.endFill();
 
@@ -274,5 +285,8 @@ function edgeEndpoint(source: Vertex, target: Vertex): false | {x: number, y: nu
             } else { // if target.encoding === "relation"
                 return diamondIncomingLineIntersect(source, targetRect);
             }
+        case "attribute":
+            const targetEllipse: Ellipse = { x: target.x, y: target.y, hw: target.width / 2 + 2, hh: target.height / 2 + 2 };
+            return ellipseIncomingLineIntersect(source, targetEllipse);
     }
 }

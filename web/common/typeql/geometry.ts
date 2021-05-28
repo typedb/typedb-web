@@ -15,6 +15,15 @@ export interface Rect {
     h: number;
 }
 
+export interface Ellipse {
+    x: number;
+    y: number;
+    /** half-width */
+    hw: number;
+    /** half-height */
+    hh: number;
+}
+
 export type Polygon = Point[];
 
 export function midpoint(line: Line): Point {
@@ -103,6 +112,21 @@ export function diamondIncomingLineIntersect(sourcePoint: Point, targetDiamond: 
     else edgeToCheck = {from: bottomCentre, to: centreLeft};
 
     return lineIntersect(incomingLine, edgeToCheck);
+}
+
+export function ellipseIncomingLineIntersect(sourcePoint: Point, targetEllipse: Ellipse): Point {
+    let {x: px, y: py} = sourcePoint;
+    const {x, y, hw: a, hh: b} = targetEllipse; // ellipse has centre (x,y) and semiaxes of lengths [a,b]
+
+    // translate structure to centre ellipse at origin
+    px -= x;
+    py -= y;
+
+    // compute intersection points: +-(x0, y0)
+    let x0 = (a * b * px) / Math.sqrt(a*a * py*py + b*b * px*px);
+    let y0 = (a * b * py) / Math.sqrt(a*a * py*py + b*b * px*px);
+
+    return {x: x0+x, y: y0+y};
 }
 
 export function arrowhead(line: Line): Polygon | null {
