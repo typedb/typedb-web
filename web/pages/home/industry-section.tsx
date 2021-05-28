@@ -46,10 +46,10 @@ export const IndustrySection: React.FC<ClassProps> = ({className}) => {
     }, {
         name: "Telecommunications",
         icon: TelecommunicationsIcon,
-        description: `Lorem ipsum dolors sit amet, consectetur adipiscing elit. Ut porta diam vitae nunc aliquet, id
-                    dignissim nibh commodo. Pellentesque habitant morbi tristique senectus et netus et malesuada fames
-                    ac turpis egestas. Maecenas interdum nunc accumsan tortor maximus ornare. In hac habitasse platea
-                    dictumst himenaeos.`
+        description: `The Telecommunications industry has the most complex networks of interconnected data points. Modelling 
+                    and querying these networks are challenging, and the cost of mistakes are too high. TypeDB allows 
+                    telecommunication providers to build robust models to capture entire networks of systems that did not have
+                    visibility before.`
     }, {
         name: "Machine Learning",
         icon: MachineLearningIcon,
