@@ -64,7 +64,7 @@ export function runTypeQLForceGraph(container: HTMLElement, graphData: TypeQLGra
         simulation.alphaTarget(0.3).restart();
         this.isDown = true;
         this.eventData = evt.data;
-        this.alpha = 0.5;
+        this.alpha = 0.75;
         this.dragging = true;
     }
 
