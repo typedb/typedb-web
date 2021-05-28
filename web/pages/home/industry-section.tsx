@@ -25,10 +25,10 @@ export const IndustrySection: React.FC<ClassProps> = ({className}) => {
     const allIndustries: Industry[] = [{
         name: "Health & Life Sciences",
         icon: LifeSciencesIcon,
-        description: `From pharmaceutical R&D and biomedical research to frontline healthcare delivery, contemporary
-                    health and life science industries rely on data to power insight and improve care. Using TypeDB
-                    to effectively manage data can help organisations advance scientific research and deliver best
-                    practice medicine.`
+        description: `Systems biology produces a tremendous amount of heterogeneous data which are complex by nature and 
+                    rich with semantics. TypeDB accelerates the knowledge discovery process in Health & Life Sciences, 
+                    by simplifying the integration of data, contextualising newly generated insights, and explaining 
+                    patterns in complex networks.`
     }, {
         name: "Defence & Security",
         icon: SecurityIcon,
