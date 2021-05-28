@@ -22,7 +22,7 @@ export const TypeQLCode: React.FC<TypeQLCodeProps> = ({ code }) => {
                     move: (event) => {
                         let width = event.rect.width;
                         if (width < 110) width = 110;
-                        if (width > 630) width = 630;
+                        if (width > 600) width = 600;
                         event.target.style.width = `${width}px`;
                     }
                 }

@@ -41,10 +41,10 @@ export const TypeQLExamplesSection: React.FC<TypeQLExamplesSectionProps> = ({cla
 
             <TypeQLExample className={classes.sectionMarginSmall} visualiserPosition="left"
                            code={inferenceExampleCode} graphData={inferenceExampleGraph} title="Inference"
-                           body="TypeDB encodes the domain schema and data for logical interpretation by a type-based and
-                                     rule-based reasoning engine – it enables type-inference and rule-inference that creates
-                                     logical abstractions of data. Complex and verbose data patterns can be queried through
-                                     simple and intuitive TypeQL queries."/>
+                           body="TypeDB encodes your data for logical interpretation by a reasoning engine. It enables
+                                     type-inference and rule-inference that creates logical abstractions of data.
+                                     This allows the discovery of facts and patterns that would otherwise be too hard to
+                                     find, and complex queries become much simpler."/>
 
             <div className={clsx(classes.mainActionList, classes.sectionMarginSmall)}>
                 <VaticleButton size="small" type="primary" to="/download">Download {typeDBVersion}</VaticleButton>
