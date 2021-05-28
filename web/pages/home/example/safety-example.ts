@@ -45,7 +45,7 @@ export const safetyExampleGraph: TypeQLGraph = {
         "encoding": "relation",
         "x": 55,
         "y": 80,
-        "width": 120,
+        "width": 105,
         "height": 66,
     }, {
         "id": 5,

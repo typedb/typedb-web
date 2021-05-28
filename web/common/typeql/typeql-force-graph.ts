@@ -14,6 +14,12 @@ import { typeQLGraphColours as colours, typeQLGraphStyles as styles } from "./ty
 type Edge = d3.SimulationLinkDatum<Vertex> & TypeQLEdge & { gfx?: PIXI.Graphics };
 type Vertex = d3.SimulationNodeDatum & TypeQLVertex & { gfx?: PIXI.Graphics };
 
+const edgeLabelMetrics: {[label: string]: PIXI.TextMetrics} = {};
+const edgeLabelStyle: Partial<PIXI.ITextStyle> = {
+    fontSize: styles.edgeLabel.fontSize,
+    fontFamily: styles.fontFamily,
+};
+
 export function runTypeQLForceGraph(container: HTMLElement, graphData: TypeQLGraph) {
     const [width, height] = [container.offsetWidth, container.offsetHeight];
     const edges: Edge[] = graphData.edges.map((d) => Object.assign({}, d));
@@ -111,18 +117,8 @@ export function runTypeQLForceGraph(container: HTMLElement, graphData: TypeQLGra
 
         edgesGFX.clear();
         edgesGFX.removeChildren();
-        const edgeLabelMetrics: {[label: string]: PIXI.TextMetrics} = {};
-
         edges.forEach((edge) => {
-            const edgeLabelStyle: Partial<PIXI.ITextStyle> = {
-                fontSize: styles.edgeLabel.fontSize,
-                fontFamily: styles.fontFamily,
-                fill: edge.error ? colours.error : colours.edge,
-            };
-            const linkLabel = new PIXI.Text(edge.label, edgeLabelStyle);
-            edgeLabelMetrics[edge.label] = PIXI.TextMetrics.measureText(edge.label, linkLabel.style as any);
-
-            renderEdge(edge, edgesGFX, edgeLabelStyle, edgeLabelMetrics);
+            renderEdge(edge, edgesGFX);
         });
     }
 
@@ -213,27 +209,32 @@ function renderVertexText(vertex: Vertex, useFallbackFont: boolean) {
     vertex.gfx.addChild(text1);
 }
 
-function renderEdge(edge: Edge, edgesGFX: PIXI.Graphics, edgeLabelStyle: Partial<PIXI.ITextStyle>, edgeLabelMetrics: { [p: string]: PIXI.TextMetrics }) {
+function renderEdge(edge: Edge, edgesGFX: PIXI.Graphics) {
     const [source, target] = [edge.source as Vertex, edge.target as Vertex];
     const [lineSource, lineTarget] = [edgeEndpoint(target, source), edgeEndpoint(source, target)];
+    const edgeColour = edge.error ? colours.error : colours.edge;
     if (lineSource && lineTarget) {
         const { label } = edge;
-        edgesGFX.lineStyle(1, edge.error ? colours.error : colours.edge);
+        edgesGFX.lineStyle(1, edgeColour);
         // Draw edge label
         const centrePoint = midpoint({ from: lineSource, to: lineTarget });
         const edgeLabel = new PIXI.Text(label, edgeLabelStyle);
+        edgeLabel.style.fill = edgeColour
         edgeLabel.resolution = window.devicePixelRatio * 2;
         edgeLabel.anchor.set(0.5);
         edgeLabel.position.set(centrePoint.x, centrePoint.y);
         edgesGFX.addChild(edgeLabel);
 
         // Draw line parts
-        const metrics = edgeLabelMetrics[label];
+        if (!edgeLabelMetrics[edge.label]) {
+            const linkLabel = new PIXI.Text(edge.label, edgeLabelStyle);
+            edgeLabelMetrics[edge.label] = PIXI.TextMetrics.measureText(edge.label, linkLabel.style as any);
+        }
         const labelRect: Rect = {
-            x: centrePoint.x - metrics.width / 2 - 2,
-            y: centrePoint.y - metrics.height / 2 - 2,
-            w: metrics.width + 4,
-            h: metrics.height + 4,
+            x: centrePoint.x - edgeLabelMetrics[label].width / 2 - 2,
+            y: centrePoint.y - edgeLabelMetrics[label].height / 2 - 2,
+            w: edgeLabelMetrics[label].width + 4,
+            h: edgeLabelMetrics[label].height + 4,
         };
         edgesGFX.moveTo(lineSource.x, lineSource.y);
         const linePart1Target = rectIncomingLineIntersect(lineSource, labelRect);
@@ -248,7 +249,7 @@ function renderEdge(edge: Edge, edgesGFX: PIXI.Graphics, edgeLabelStyle: Partial
         const arrow = arrowhead({ from: lineSource, to: lineTarget });
         if (arrow) {
             edgesGFX.moveTo(arrow[0].x, arrow[0].y);
-            edgesGFX.beginFill(edge.error ? colours.error : colours.edge);
+            edgesGFX.beginFill(edgeColour);
             const points: PIXI.Point[] = [];
             for (const pt of arrow) points.push(new PIXI.Point(pt.x, pt.y));
             edgesGFX.drawPolygon(points);
