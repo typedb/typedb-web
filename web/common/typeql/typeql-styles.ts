@@ -107,8 +107,8 @@ export const typeQLVisualiserStyles = makeStyles({
 });
 
 const green = 0x02DAC9;
-const pink = 0xF28DD7;
-const yellow = 0xF6C94C;
+const pink = 0xFFA9E8;
+const yellow = 0xFFE4A7;
 const red = 0xF66B65;
 const blue = 0x7BA0FF;
 const black = 0x09022F;
@@ -117,7 +117,8 @@ export const typeQLGraphColours = {
     entity: pink,
     relation: yellow,
     attribute: blue,
-    edge: green,
+    edge: blue,
+    inferred: green,
     error: red,
     vertexLabel: black,
 };

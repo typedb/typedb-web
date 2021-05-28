@@ -4,6 +4,7 @@ export interface TypeQLGraph {
 }
 
 type TypeQLVertexEncoding = "entity" | "relation" | "attribute";
+type TypeQLEdgeHighlight = "inferred" | "error";
 
 export interface TypeQLVertex {
     id: number;
@@ -19,5 +20,5 @@ export interface TypeQLEdge {
     source: number;
     target: number;
     label: string;
-    error?: boolean;
+    highlight?: TypeQLEdgeHighlight;
 }

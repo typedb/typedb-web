@@ -68,11 +68,11 @@ export const safetyExampleGraph: TypeQLGraph = {
         "source": 4,
         "target": 3,
         "label": "wife",
-        "error": true,
+        "highlight": "error",
     }, {
         "source": 4,
         "target": 5,
         "label": "husband",
-        "error": true,
+        "highlight": "error",
     }]
 };

@@ -223,7 +223,8 @@ function renderVertexText(vertex: Vertex, useFallbackFont: boolean) {
 function renderEdge(edge: Edge, edgesGFX: PIXI.Graphics) {
     const [source, target] = [edge.source as Vertex, edge.target as Vertex];
     const [lineSource, lineTarget] = [edgeEndpoint(target, source), edgeEndpoint(source, target)];
-    const edgeColour = edge.error ? colours.error : colours.edge;
+    const edgeColour = edge.highlight ? colours[edge.highlight] : colours.edge;
+
     if (lineSource && lineTarget) {
         const { label } = edge;
         edgesGFX.lineStyle(1, edgeColour);

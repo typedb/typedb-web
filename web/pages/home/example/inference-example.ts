@@ -83,17 +83,21 @@ export const inferenceExampleGraph: TypeQLGraph = {
         "source": 4,
         "target": 3,
         "label": "located",
+        "highlight": "inferred",
     }, {
         "source": 4,
         "target": 5,
         "label": "locating",
+        "highlight": "inferred",
     }, {
         "source": 6,
         "target": 5,
         "label": "located",
+        "highlight": "inferred",
     }, {
         "source": 6,
         "target": 7,
         "label": "locating",
+        "highlight": "inferred",
     }]
 };
