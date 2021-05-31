@@ -3,11 +3,11 @@ import {TypeQLGraph} from "../../../common/typeql/typeql-data";
 export const safetyExampleCode = `
 match
 
-$a isa person, has name "Alice";
-$b isa person, has name "Bob";
-($a, $b) isa marriage;
-$d isa company, has name "DataCo";
-($b, $d) isa marriage; # invalid relation
+$alice isa person, has name "Alice";
+$bob isa person, has name "Bob";
+($alice, $bob) isa marriage;
+$dataCo isa company, has name "DataCo";
+($bob, $dataCo) isa marriage; # invalid relation
 
 answers>>
 

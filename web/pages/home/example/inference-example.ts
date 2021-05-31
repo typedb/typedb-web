@@ -3,15 +3,15 @@ import {TypeQLGraph} from "../../../common/typeql/typeql-data";
 export const inferenceExampleCode = `
 match
 
-$a isa person;
-$b isa country, has name "UK";
-($a, $b) isa location;
-get $a;
+$person isa person;
+$uk isa country, has name "UK";
+($person, $uk) isa location;
+get $person;
 
 answers>>
 
-$a isa teacher, has name "Alice";
-$a isa postgrad, has name "Bob";`;
+$person isa teacher, has name "Alice";
+$person isa postgrad, has name "Bob";`;
 
 export const inferenceExampleGraph: TypeQLGraph = {
     "vertices": [{
