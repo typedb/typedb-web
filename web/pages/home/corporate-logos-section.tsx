@@ -34,7 +34,7 @@ import TripudioLogo from "../assets/logos/purple/tripudio.png";
 import TwoSixLogo from "../assets/logos/purple/twosix.png";
 import UCSFLogo from "../assets/logos/purple/ucsf.png";
 import WeLevelLogo from "../assets/logos/purple/welevel.png";
-import ZeissLogo from "../assets/logos/purple/zeiss.png";
+import ZessLogo from "../assets/logos/purple/zess.png";
 
 interface CorporateLogoData {
     logo: string;
@@ -150,8 +150,8 @@ export const CorporateLogosSection: React.FC<ClassProps> = ({className}) => {
         altText: "Geminos",
         weight: 1,
     }, {
-        logo: ZeissLogo,
-        altText: "Zeiss",
+        logo: ZessLogo,
+        altText: "Zess",
         weight: 1,
     }, {
         logo: SixPointSixLogo,
