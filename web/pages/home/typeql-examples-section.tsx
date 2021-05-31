@@ -30,7 +30,7 @@ export const TypeQLExamplesSection: React.FC<TypeQLExamplesSectionProps> = ({cla
                            body="TypeDB allows you to model your domain based on logical and object-oriented principles.
                                      Composed of entity, relationship, and attribute types, as well as type hierarchies,
                                      roles, and rules, TypeDB allows you to think higher-level as opposed to join-tables,
-                                     columns, vertices, edges, and properties."/>
+                                     columns, documents, vertices, edges, and properties."/>
 
             <TypeQLExample className={classes.sectionMarginSmall} visualiserPosition="right"
                            code={safetyExampleCode} graphData={safetyExampleGraph} title="Safety"

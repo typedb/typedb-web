@@ -36,7 +36,7 @@ export const ClusterSection: React.FC<ClassProps> = ({className}) => {
         icon: FingerprintIcon,
     }, {
         name: "Enterprise Support",
-        description: "Access to advance support SLA with faster response time and problem resolution.",
+        description: "Access to advanced support SLA with faster response time and problem resolution.",
         icon: EnterpriseSupportIcon,
     }, {
         name: "Cluster Management",

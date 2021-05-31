@@ -96,7 +96,7 @@ export const TestimonialsSection: React.FC<ClassProps> = ({className}) => {
         personName: "Enzo Martoglio",
         jobTitle: "AI Architect",
         avatar: EnzoMartoglioAvatar,
-        body: `No business-centric implementation of AI can avoid having a Knowledge Graph at its core. TypeDB is one
+        body: `No business-centric implementation of AI can avoid having a Knowledge Graph at its core. Vaticle is one
         of the few companies developing this tool that any AI business solution will require.`,
     }, {
         companyName: "ERS",
