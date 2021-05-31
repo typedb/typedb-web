@@ -34,7 +34,8 @@ export const IndustrySection: React.FC<ClassProps> = ({className}) => {
         icon: SecurityIcon,
         description: `In this internet era, defence and security means connecting anything and everything, to uncover
                     pieces of information that are deliberately hidden. TypeDB allows defence organisations to easily aggregate, 
-                    and interrogate these networks in real-time and stay two-steps ahead of bad actors, while avoiding critically costly mistakes.`
+                    and interrogate these networks in real-time and stay two-steps ahead of bad actors, while avoiding critical, 
+                    and costly mistakes.`
     }, {
         name: "Financial Services",
         icon: FinanceIcon,
