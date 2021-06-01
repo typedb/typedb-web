@@ -19,7 +19,7 @@ export const DownloadPage: React.FC = () => {
     return (
         <DefaultLayout typeDBVersion={typeDBVersion}>
             <section className={classes.firstSection}>
-                <h1 className={classes.h1}>Vaticle Download Centre</h1>
+                <h1 className={classes.h1}>Download Centre</h1>
                 <ProductSection latestTypeDBVersion={typeDBVersion} className={classes.sectionMarginSmall}/>
             </section>
         </DefaultLayout>
