@@ -4,7 +4,7 @@ import { buttonPalette } from "../button/button-styles";
 
 const headerHeight = 80;
 const footerHeight = 65;
-const headerBoxShadow = "2px 2px 4px -1px rgba(0,0,0,0.2),2px 4px 5px 0px rgba(0,0,0,0.14),2px 1px 10px 0px rgba(0,0,0,0.12)";
+const headerBoxShadow = "2px 2px 1px -1px rgba(0,0,0,0.2),2px 2px 3px 0px rgba(0,0,0,0.14),2px 1px 5px 0px rgba(0,0,0,0.12)";
 
 export const defaultLayoutStyles = makeStyles({
     main: {
@@ -16,6 +16,7 @@ export const defaultLayoutStyles = makeStyles({
 
     underDevelopmentRibbon: {
         position: "fixed",
+        zIndex: 350,
         width: 170,
         height: 28,
         fontSize: 14,

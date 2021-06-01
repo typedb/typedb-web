@@ -7,6 +7,9 @@ import moment from "moment";
 import { useTypeDBVersion } from "../state/typedb-version";
 import { VaticleButton } from "../../common/button/button";
 import { urls } from "../../common/urls";
+import { createStyles, FormControl, InputBase, Select, Theme, withStyles } from "@material-ui/core";
+import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+import { vaticleTheme } from "../../common/styles/theme";
 
 // TODO: This file has too many components and should be broken up
 type ProductName = "TypeDB" | "TypeDB Cluster" | "TypeDB Workbase";
@@ -100,27 +103,97 @@ const TypeDBOpenSource: React.FC<TypeDBOpenSourceProps> = ({latestReleaseDate}) 
     const latestReleaseDateFormatted = moment(latestReleaseDate).format("Do [of] MMMM YYYY");
     const typeDBVersion = useTypeDBVersion()[0];
 
+    const [selectedOS, setSelectedOS] = useState("Mac OS X");
+    const [selectedVersion, setSelectedVersion] = useState("2.1.1");
+
     return (
         <>
             <div className={classes.comparisonBlockHeading}>
                 <span className={clsx(classes.check, classes.checkGreen, classes.comparisonBlockHeadingCheck)}/>
                 <h5 className={clsx(classes.h5, classes.comparisonBlockContent)}>AGPL v3.0 License</h5>
             </div>
+
             <p className={clsx(classes.comparisonBlockContent, classes.mediumText, classes.textMarginLarge)}>
                 Deploy and operate your TypeDB knowledge graph immediately. TypeDB is licensed under AGPL so
                 that you can start developing quickly and adopt TypeDB within your solution in no time.
             </p>
+
             <p className={clsx(classes.comparisonBlockContent, classes.mediumText, classes.textMarginLarge)}>
                 Current Stable Release: <strong>TypeDB {typeDBVersion}</strong>
                 <br/>
                 <strong>{latestReleaseDateFormatted}</strong> <a>Release Notes</a>
             </p>
+
+            <p className={clsx(classes.comparisonBlockContent, classes.mediumText, classes.textMarginLarge)}>
+                <strong>Download and install with:</strong>
+                <br/>
+                <ul className={classes.horizontalBulletedList}>
+                    <li><a href={urls.docs.installTypeDB.homebrew}>Homebrew</a></li>
+                    <li><a href={urls.docs.installTypeDB.apt}>APT</a></li>
+                    <li><a href={urls.docs.installTypeDB.docker}>Docker</a></li>
+                </ul>
+            </p>
+
+            <div className={clsx(classes.comparisonBlockContent, classes.mediumText, classes.textMarginLarge, classes.selectGroup)}>
+                <FormControl variant="outlined">
+                    <Select native label="Operating System" value={selectedOS}
+                        onChange={(e) => setSelectedOS(e.target.value as string)}
+                        input={<VaticleSelectInput/>} inputProps={{ name: "os", id: "typedb-os" }}
+                        IconComponent={() => <ExpandMoreIcon style={{fontSize: 16, fill: "#FFF", position: "absolute", right: 10, pointerEvents: "none"}}/>}
+                    >
+                        <option value="Linux">Linux</option>
+                        <option value="Mac OS X">Mac OS X</option>
+                        <option value="Windows">Windows</option>
+                    </Select>
+                </FormControl>
+                <FormControl variant="outlined">
+                    <Select native label="Version" value={selectedVersion}
+                            onChange={(e) => setSelectedVersion(e.target.value as string)}
+                            input={<VaticleSelectInput/>} inputProps={{ name: "version", id: "typedb-version" }}
+                            IconComponent={() => <ExpandMoreIcon style={{fontSize: 16, fill: "#FFF", position: "absolute", right: 10, pointerEvents: "none"}}/>}
+                    >
+                        <option value="2.1.1">2.1.1</option>
+                        <option value="2.0.2">2.0.2</option>
+                        <option value="2.0.1">2.0.1</option>
+                        <option value="2.0.0">2.0.0</option>
+                    </Select>
+                </FormControl>
+            </div>
+
             <div className={clsx(classes.comparisonBlockContent, classes.mainActionList, classes.sectionMarginSmall)}>
                 <VaticleButton size="small" type="primary" href={urls.github.typedbReleases} target="_blank">Download</VaticleButton>
             </div>
         </>
     );
 }
+
+// TODO: THIS MOVES TO COMMON
+const VaticleSelectInput = withStyles((theme: Theme) =>
+    createStyles({
+        root: {
+            fontFamily: "inherit",
+        },
+
+        input: {
+            borderRadius: 5,
+            position: 'relative',
+            border: "1px solid rgba(255,255,255,.2)",
+            color: "#FFF",
+            fontSize: 16,
+            padding: '10px 26px 10px 12px',
+            transition: theme.transitions.create(['border-color', 'box-shadow']),
+
+            '&:focus': {
+                borderRadius: 5,
+                borderColor: vaticleTheme.palette.green["300"],
+            },
+
+            "& option": {
+                backgroundColor: `${vaticleTheme.palette.purple["700"]} !important`,
+            },
+        },
+    }),
+)(InputBase);
 
 const TypeDBClusterTab: React.FC = () => {
     return <p/>;

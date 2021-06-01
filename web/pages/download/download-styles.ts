@@ -119,5 +119,18 @@ export const downloadPageProductStyles = makeStyles({
         marginLeft: 34, // item body's (right padding) - (left padding)
     },
 
+    selectGroup: {
+        marginTop: 32,
+        display: "flex",
+
+        "& *": {
+            flex: 1,
+        },
+
+        "& :not(:first-child)": {
+            marginLeft: 16,
+        },
+    },
+
     // comparisonBlockItem
 });

@@ -127,6 +127,24 @@ export const vaticleStyles = makeStyles({
         borderColor: "#8069F5 !important",
     },
 
+    horizontalBulletedList: {
+        display: "flex",
+
+        "& li": {
+            position: "relative",
+            margin: "0 1.25em 0 .75em",
+
+            "&:before": {
+                content: "'•'",
+                position: "absolute",
+                left: "-.75em",
+                top: ".1em",
+                fontSize: "1em",
+                fontFamily: "Arial",
+            },
+        }
+    },
+
     hideDesktop: {
         "@media(min-width: 1200px)": {
             display: "none !important",

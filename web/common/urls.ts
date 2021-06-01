@@ -12,6 +12,18 @@ export const urls = {
     docs: {
         home: docsURL,
         typeDBQuickstart: `${docsURL}/general/quickstart`,
+
+        installTypeDB: {
+            homebrew: `${docsURL}/running-typedb/install-and-run#using-homebrew`,
+            apt: `${docsURL}/running-typedb/install-and-run#using-apt`,
+            docker: `${docsURL}/running-typedb/install-and-run#using-docker`,
+        },
+    },
+
+    github: {
+        home: githubURL,
+        typedb: `${githubURL}/typedb`,
+        typedbReleases: `${githubURL}/typedb/releases/`,
     },
 
     social: {
@@ -20,10 +32,4 @@ export const urls = {
         facebook: "https://www.facebook.com/VaticleHQ/",
         linkedIn: "https://www.linkedin.com/company/vaticle/",
     },
-
-    github: {
-        home: githubURL,
-        typedb: `${githubURL}/typedb`,
-        typedbReleases: `${githubURL}/typedb/releases/`,
-    }
 };
