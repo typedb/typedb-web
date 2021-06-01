@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { vaticleStyles } from "../../common/styles/vaticle-styles";
 import { downloadPageProductStyles } from "./download-styles";
 import moment from "moment";
@@ -17,16 +17,16 @@ export const TypeDBTab: React.FC = () => {
         content: () => <OpenSourcePane latestReleaseDate={new Date("2021-05-25")}/>,
     }, {
         title: "Commercial",
-        content: () => <p/>,
+        content: () => <CommercialPane/>,
     }];
 
     return (
         <>
-            <p className={classes.largeText}>
+            <p className={clsx(classes.largeText, classes.tabIntro)}>
                 TypeDB is a knowledge graph to organise complex networks of data and make it queryable. TypeQL is TypeDB’s
                 reasoning (through OLTP) and analytics (through OLAP) declarative query language. <a>Learn more</a>
             </p>
-            <ComparisonBlock items={items} className={classes.sectionMarginSmall}/>
+            <ComparisonBlock items={items}/>
         </>
     );
 }
@@ -35,14 +35,48 @@ interface OpenSourcePaneProps {
     latestReleaseDate: Date;
 }
 
+interface Downloads {
+    "Linux": NativeDownloads;
+    "Mac OS X": NativeDownloads;
+    "Windows": NativeDownloads;
+}
+
+type NativeDownloads = {[version: string]: string}
+
 const OpenSourcePane: React.FC<OpenSourcePaneProps> = ({latestReleaseDate}) => {
     const classes = Object.assign({}, vaticleStyles(), downloadPageProductStyles());
 
     const latestReleaseDateFormatted = moment(latestReleaseDate).format("Do [of] MMMM YYYY");
     const typeDBVersion = useTypeDBVersion()[0];
 
+    const downloads: Downloads = {
+        "Linux": {
+            "2.1.1": "https://github.com/vaticle/typedb/releases/download/2.1.1/typedb-all-linux-2.1.1.tar.gz",
+            "2.0.2": "https://github.com/vaticle/typedb/releases/download/2.0.2/grakn-core-all-linux-2.0.2.tar.gz",
+            "2.0.1": "https://github.com/vaticle/typedb/releases/download/2.0.1/grakn-core-all-linux-2.0.1.tar.gz",
+            "2.0.0": "https://github.com/vaticle/typedb/releases/download/2.0.0/grakn-core-all-linux-2.0.0.tar.gz",
+        },
+        "Mac OS X": {
+            "2.1.1": "https://github.com/vaticle/typedb/releases/download/2.1.1/typedb-all-mac-2.1.1.zip",
+            "2.0.2": "https://github.com/vaticle/typedb/releases/download/2.0.2/grakn-core-all-mac-2.0.2.zip",
+            "2.0.1": "https://github.com/vaticle/typedb/releases/download/2.0.1/grakn-core-all-mac-2.0.1.zip",
+            "2.0.0": "https://github.com/vaticle/typedb/releases/download/2.0.0/grakn-core-all-mac-2.0.0.zip",
+        },
+        "Windows": {
+            "2.1.1": "https://github.com/vaticle/typedb/releases/download/2.1.1/typedb-all-windows-2.1.1.zip",
+            "2.0.2": "https://github.com/vaticle/typedb/releases/download/2.0.2/grakn-core-all-windows-2.0.2.zip",
+            "2.0.1": "https://github.com/vaticle/typedb/releases/download/2.0.1/grakn-core-all-windows-2.0.1.zip",
+            "2.0.0": "https://github.com/vaticle/typedb/releases/download/2.0.0/grakn-core-all-windows-2.0.0.zip",
+        },
+    };
+
     const [selectedOS, setSelectedOS] = useState("Mac OS X");
     const [selectedVersion, setSelectedVersion] = useState("2.1.1");
+    const [downloadURL, setDownloadURL] = useState(downloads["Mac OS X"]["2.1.1"]);
+
+    useEffect(() => {
+        setDownloadURL(downloads[selectedOS][selectedVersion]);
+    }, [selectedOS, selectedVersion]);
 
     return (
         <>
@@ -86,8 +120,44 @@ const OpenSourcePane: React.FC<OpenSourcePaneProps> = ({latestReleaseDate}) => {
                 </VaticleSelect>
             </div>
 
+            <div className={classes.filler}/>
+
             <div className={clsx(classes.comparisonBlockContent, classes.mainActionList, classes.sectionMarginSmall)}>
-                <VaticleButton size="small" type="primary" href={urls.github.typedbReleases} target="_blank">Download</VaticleButton>
+                <VaticleButton size="small" type="primary" href={downloadURL} download="">Download</VaticleButton>
+            </div>
+        </>
+    );
+}
+
+const CommercialPane: React.FC = () => {
+    const classes = Object.assign({}, vaticleStyles(), downloadPageProductStyles());
+
+    return (
+        <>
+            <div className={classes.comparisonBlockHeading}>
+                <span className={clsx(classes.check, classes.checkPurple, classes.comparisonBlockHeadingCheck)}/>
+                <h5 className={clsx(classes.h5, classes.comparisonBlockContent)}>Commercial License</h5>
+            </div>
+            <p className={clsx(classes.comparisonBlockContent, classes.mediumText, classes.textMarginLarge)}>
+                If you want to freely integrate TypeDB into your product, and satisfy all of your organisation's
+                requirements, the commercial license gives you that peace of mind.
+            </p>
+
+            <div className={classes.comparisonBlockHeading}>
+                <span className={clsx(classes.check, classes.checkPurple, classes.comparisonBlockHeadingCheck)}/>
+                <h5 className={clsx(classes.h5, classes.comparisonBlockContent)}>Core Support</h5>
+            </div>
+            <p className={clsx(classes.comparisonBlockContent, classes.mediumText, classes.textMarginLarge)}>
+                Get direct support from our engineers. From development to production, we’re with you every step of
+                the way, so you can focus on building your application and your business.
+            </p>
+
+            <div className={classes.filler}/>
+
+            <div className={clsx(classes.comparisonBlockContent, classes.mainActionList)}>
+                <VaticleButton size="small" type="secondary" disabled={true} comingSoon={true} className={classes.buttonAfterText}>
+                    Get in touch
+                </VaticleButton>
             </div>
         </>
     );

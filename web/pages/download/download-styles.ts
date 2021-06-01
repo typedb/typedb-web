@@ -70,6 +70,10 @@ export const downloadPageProductStyles = makeStyles({
         backgroundColor: vaticleTheme.palette.purple["300"],
     },
 
+    tabIntro: {
+        margin: "40px auto",
+    },
+
     comparisonBlock: {
         width: "100%",
         display: "flex",
@@ -110,6 +114,10 @@ export const downloadPageProductStyles = makeStyles({
 
     comparisonBlockHeading: {
         position: "relative",
+
+        "&:not(:first-child)": {
+            marginTop: 24,
+        },
     },
 
     comparisonBlockHeadingCheck: {

@@ -15,6 +15,7 @@ export interface BaseButtonProps extends ClassProps {
     disabled?: boolean;
     comingSoon?: true;
     target?: string;
+    download?: string;
     htmlAttrs?: {
         type?: 'submit' | 'button';
         download?: string;
@@ -31,7 +32,7 @@ const defaultProps: Required<Pick<BaseButtonProps, 'size' | 'type' | 'htmlAttrs'
 export type BaseButtonFinalProps = React.PropsWithChildren<BaseButtonProps & typeof defaultProps>;
 
 export const VaticleButton: React.FC<BaseButtonProps> = props => {
-    const { children, className, href, to, size, type, onClick, htmlAttrs, target, disabled, comingSoon } = props as BaseButtonFinalProps;
+    const { children, className, href, to, size, type, onClick, htmlAttrs, target, download, disabled, comingSoon } = props as BaseButtonFinalProps;
 
     const classes = buttonStyles({ size, type });
 
@@ -46,7 +47,8 @@ export const VaticleButton: React.FC<BaseButtonProps> = props => {
     }
 
     return (
-        <a className={clsx(classes.root, disabled && classes.disable, className)} href={href} onClick={onClick} target={target} title={comingSoon && "coming soon"} {...htmlAttrs}>
+        <a className={clsx(classes.root, disabled && classes.disable, className)} href={href} onClick={onClick}
+           target={target} download={download} title={comingSoon && "coming soon"} {...htmlAttrs}>
             <div className={classes.childDiv}>
                 {children}
             </div>
