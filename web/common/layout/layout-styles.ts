@@ -16,8 +16,11 @@ export const defaultLayoutStyles = makeStyles({
 
     underDevelopmentRibbon: {
         position: "fixed",
+        top: 117,
+        right: 0,
+        transform: "translateX(32px) rotate(40deg)",
         zIndex: 350,
-        width: 170,
+        width: 190,
         height: 28,
         fontSize: 14,
         display: "flex",
@@ -25,9 +28,6 @@ export const defaultLayoutStyles = makeStyles({
         alignItems: "center",
         color: vaticleTheme.palette.purple["800"],
         backgroundColor: vaticleTheme.palette.green["300"],
-        top: 110,
-        right: 0,
-        transform: "translateX(30px) rotate(40deg)",
     },
 });
 
