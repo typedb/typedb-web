@@ -10,6 +10,7 @@ import { urls } from "../../common/urls";
 import { createStyles, FormControl, InputBase, Select, Theme, withStyles } from "@material-ui/core";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import { vaticleTheme } from "../../common/styles/theme";
+import { VaticleSelect } from "../../common/select/select";
 
 // TODO: This file has too many components and should be broken up
 type ProductName = "TypeDB" | "TypeDB Cluster" | "TypeDB Workbase";
@@ -135,29 +136,17 @@ const TypeDBOpenSource: React.FC<TypeDBOpenSourceProps> = ({latestReleaseDate}) 
             </p>
 
             <div className={clsx(classes.comparisonBlockContent, classes.mediumText, classes.textMarginLarge, classes.selectGroup)}>
-                <FormControl variant="outlined">
-                    <Select native label="Operating System" value={selectedOS}
-                        onChange={(e) => setSelectedOS(e.target.value as string)}
-                        input={<VaticleSelectInput/>} inputProps={{ name: "os", id: "typedb-os" }}
-                        IconComponent={() => <ExpandMoreIcon style={{fontSize: 16, fill: "#FFF", position: "absolute", right: 10, pointerEvents: "none"}}/>}
-                    >
-                        <option value="Linux">Linux</option>
-                        <option value="Mac OS X">Mac OS X</option>
-                        <option value="Windows">Windows</option>
-                    </Select>
-                </FormControl>
-                <FormControl variant="outlined">
-                    <Select native label="Version" value={selectedVersion}
-                            onChange={(e) => setSelectedVersion(e.target.value as string)}
-                            input={<VaticleSelectInput/>} inputProps={{ name: "version", id: "typedb-version" }}
-                            IconComponent={() => <ExpandMoreIcon style={{fontSize: 16, fill: "#FFF", position: "absolute", right: 10, pointerEvents: "none"}}/>}
-                    >
-                        <option value="2.1.1">2.1.1</option>
-                        <option value="2.0.2">2.0.2</option>
-                        <option value="2.0.1">2.0.1</option>
-                        <option value="2.0.0">2.0.0</option>
-                    </Select>
-                </FormControl>
+                <VaticleSelect label="Operating System" value={selectedOS} setValue={setSelectedOS} inputName="os" inputID="typedb-os">
+                    <option value="Linux">Linux</option>
+                    <option value="Mac OS X">Mac OS X</option>
+                    <option value="Windows">Windows</option>
+                </VaticleSelect>
+                <VaticleSelect label="Version" value={selectedVersion} setValue={setSelectedVersion} inputName="version" inputID="typedb-version">
+                    <option value="2.1.1">2.1.1</option>
+                    <option value="2.0.2">2.0.2</option>
+                    <option value="2.0.1">2.0.1</option>
+                    <option value="2.0.0">2.0.0</option>
+                </VaticleSelect>
             </div>
 
             <div className={clsx(classes.comparisonBlockContent, classes.mainActionList, classes.sectionMarginSmall)}>
@@ -166,34 +155,6 @@ const TypeDBOpenSource: React.FC<TypeDBOpenSourceProps> = ({latestReleaseDate}) 
         </>
     );
 }
-
-// TODO: THIS MOVES TO COMMON
-const VaticleSelectInput = withStyles((theme: Theme) =>
-    createStyles({
-        root: {
-            fontFamily: "inherit",
-        },
-
-        input: {
-            borderRadius: 5,
-            position: 'relative',
-            border: "1px solid rgba(255,255,255,.2)",
-            color: "#FFF",
-            fontSize: 16,
-            padding: '10px 26px 10px 12px',
-            transition: theme.transitions.create(['border-color', 'box-shadow']),
-
-            '&:focus': {
-                borderRadius: 5,
-                borderColor: vaticleTheme.palette.green["300"],
-            },
-
-            "& option": {
-                backgroundColor: `${vaticleTheme.palette.purple["700"]} !important`,
-            },
-        },
-    }),
-)(InputBase);
 
 const TypeDBClusterTab: React.FC = () => {
     return <p/>;
