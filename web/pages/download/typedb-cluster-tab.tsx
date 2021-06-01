@@ -18,10 +18,10 @@ export const TypeDBClusterTab: React.FC = () => {
 
     return (
         <>
-            <p className={classes.largeText}>
+            <p className={clsx(classes.largeText, classes.tabIntro)}>
                 TypeDB Enterprise Cluster is the Knowledge Graph Management System designed to scale with your business. <a>Learn more</a>
             </p>
-            <ComparisonBlock items={items} className={classes.sectionMarginSmall}/>
+            <ComparisonBlock items={items}/>
         </>
     );
 }

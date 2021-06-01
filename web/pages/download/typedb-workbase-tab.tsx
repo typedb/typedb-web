@@ -97,16 +97,6 @@ const OpenSourcePane: React.FC<OpenSourcePaneProps> = ({latestReleaseDate}) => {
                 <strong>{latestReleaseDateFormatted}</strong> <a>Release Notes</a>
             </p>
 
-            <p className={clsx(classes.comparisonBlockContent, classes.mediumText, classes.textMarginLarge)}>
-                <strong>Download and install with:</strong>
-                <br/>
-                <ul className={classes.horizontalBulletedList}>
-                    <li><a href={urls.docs.installTypeDB.homebrew}>Homebrew</a></li>
-                    <li><a href={urls.docs.installTypeDB.apt}>APT</a></li>
-                    <li><a href={urls.docs.installTypeDB.docker}>Docker</a></li>
-                </ul>
-            </p>
-
             <div className={clsx(classes.comparisonBlockContent, classes.mediumText, classes.textMarginLarge, classes.selectGroup)}>
                 <VaticleSelect label="Operating System" value={selectedOS} setValue={setSelectedOS} inputName="os" inputID="typedb-os">
                     <option value="Linux">Linux</option>
