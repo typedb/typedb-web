@@ -103,6 +103,8 @@ export const downloadPageProductStyles = makeStyles({
         flex: 1,
         backgroundColor: vaticleTheme.palette.purple["800"],
         padding: "35px 64px 35px 30px",
+        display: "flex",
+        flexDirection: "column",
         textAlign: "start",
     },
 

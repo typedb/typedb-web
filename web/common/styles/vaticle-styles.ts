@@ -145,6 +145,10 @@ export const vaticleStyles = makeStyles({
         }
     },
 
+    filler: {
+        flex: 1,
+    },
+
     hideDesktop: {
         "@media(min-width: 1200px)": {
             display: "none !important",

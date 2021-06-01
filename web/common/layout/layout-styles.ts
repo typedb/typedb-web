@@ -82,10 +82,6 @@ export const pageHeaderStyles = makeStyles({
         marginTop: -2,
     },
 
-    filler: {
-        flex: 1,
-    },
-
     linkText: {
         fontSize: "18px",
         lineHeight: 1.5,

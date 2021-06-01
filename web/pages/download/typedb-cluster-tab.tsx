@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { vaticleStyles } from "../../common/styles/vaticle-styles";
 import { downloadPageProductStyles } from "./download-styles";
 import { ComparisonBlock, ComparisonBlockItem } from "./comparison-block";
@@ -16,7 +16,14 @@ export const TypeDBClusterTab: React.FC = () => {
         content: () => <OnPremisePane/>,
     }];
 
-    return <ComparisonBlock items={items} className={classes.sectionMarginSmall}/>;
+    return (
+        <>
+            <p className={classes.largeText}>
+                TypeDB Enterprise Cluster is the Knowledge Graph Management System designed to scale with your business. <a>Learn more</a>
+            </p>
+            <ComparisonBlock items={items} className={classes.sectionMarginSmall}/>
+        </>
+    );
 }
 
 const CloudPane: React.FC = () => {
@@ -26,8 +33,10 @@ const CloudPane: React.FC = () => {
         <>
             <p className={clsx(classes.comparisonBlockContent, classes.mediumText)}>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                labore et dolore magna aliqua.
+                labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
             </p>
+
+            <div className={classes.filler}/>
 
             <div className={clsx(classes.comparisonBlockContent, classes.mainActionList)}>
                 <VaticleButton size="small" type="secondary" disabled={true} comingSoon={true} className={classes.buttonAfterText}>
@@ -47,6 +56,8 @@ const OnPremisePane: React.FC = () => {
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
                 labore et dolore magna aliqua.
             </p>
+
+            <div className={classes.filler}/>
 
             <div className={clsx(classes.comparisonBlockContent, classes.mainActionList)}>
                 <VaticleButton size="small" type="secondary" disabled={true} comingSoon={true} className={classes.buttonAfterText}>
