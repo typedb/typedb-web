@@ -119,6 +119,10 @@ export const downloadPageProductStyles = makeStyles({
         marginLeft: 34, // item body's (right padding) - (left padding)
     },
 
+    comparisonBlockMainAction: {
+        textAlign: "center",
+    },
+
     selectGroup: {
         marginTop: 32,
         display: "flex",
