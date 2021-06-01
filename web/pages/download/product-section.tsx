@@ -25,11 +25,11 @@ export const ProductSection: React.FC<ProductSectionProps> = ({className, latest
         name: "TypeDB",
         content: TypeDBTab,
     }, {
-        name: "TypeDB Cluster",
-        content: TypeDBClusterTab,
-    }, {
         name: "TypeDB Workbase",
         content: TypeDBWorkbaseTab,
+    }, {
+        name: "TypeDB Cluster",
+        content: TypeDBClusterTab,
     }];
 
     const [selectedProduct, setSelectedProduct] = useState<Product>(allProducts[0]);

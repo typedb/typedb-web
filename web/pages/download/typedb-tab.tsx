@@ -22,10 +22,6 @@ export const TypeDBTab: React.FC = () => {
 
     return (
         <>
-            <p className={clsx(classes.largeText, classes.tabIntro)}>
-                TypeDB is a knowledge graph to organise complex networks of data and make it queryable. TypeQL is TypeDB’s
-                reasoning (through OLTP) and analytics (through OLAP) declarative query language. <a>Learn more</a>
-            </p>
             <ComparisonBlock items={items}/>
         </>
     );
@@ -86,8 +82,8 @@ const OpenSourcePane: React.FC<OpenSourcePaneProps> = ({latestReleaseDate}) => {
             </div>
 
             <p className={clsx(classes.comparisonBlockContent, classes.mediumText, classes.textMarginLarge)}>
-                Deploy and operate your TypeDB knowledge graph immediately. TypeDB is licensed under AGPL so
-                that you can start developing quickly and adopt TypeDB within your solution in no time.
+                Deploy and operate your TypeDB database immediately. TypeDB is licensed under AGPL so
+                that you can start developing quickly and adopt TypeDB within your ecosystem in no time.
             </p>
 
             <p className={clsx(classes.comparisonBlockContent, classes.mediumText, classes.textMarginLarge)}>
@@ -139,13 +135,13 @@ const CommercialPane: React.FC = () => {
                 <h5 className={clsx(classes.h5, classes.comparisonBlockContent)}>Commercial License</h5>
             </div>
             <p className={clsx(classes.comparisonBlockContent, classes.mediumText, classes.textMarginLarge)}>
-                If you want to freely integrate TypeDB into your product, and satisfy all of your organisation's
+                If you want to freely integrate TypeDB into your ecosystem, and satisfy all of your organisation's
                 requirements, the commercial license gives you that peace of mind.
             </p>
 
             <div className={classes.comparisonBlockHeading}>
                 <span className={clsx(classes.check, classes.checkPurple, classes.comparisonBlockHeadingCheck)}/>
-                <h5 className={clsx(classes.h5, classes.comparisonBlockContent)}>Core Support</h5>
+                <h5 className={clsx(classes.h5, classes.comparisonBlockContent)}>Enterprise Support</h5>
             </div>
             <p className={clsx(classes.comparisonBlockContent, classes.mediumText, classes.textMarginLarge)}>
                 Get direct support from our engineers. From development to production, we’re with you every step of

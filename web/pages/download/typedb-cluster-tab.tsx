@@ -9,7 +9,7 @@ export const TypeDBClusterTab: React.FC = () => {
     const classes = Object.assign({}, vaticleStyles(), downloadPageProductStyles());
 
     const items: [ComparisonBlockItem, ComparisonBlockItem] = [{
-        title: "Cloud",
+        title: "Cloud Deployment",
         content: () => <CloudPane/>,
     }, {
         title: "On Premise",
@@ -18,9 +18,6 @@ export const TypeDBClusterTab: React.FC = () => {
 
     return (
         <>
-            <p className={clsx(classes.largeText, classes.tabIntro)}>
-                TypeDB Enterprise Cluster is the Knowledge Graph Management System designed to scale with your business. <a>Learn more</a>
-            </p>
             <ComparisonBlock items={items}/>
         </>
     );

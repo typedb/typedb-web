@@ -23,10 +23,6 @@ export const TypeDBWorkbaseTab: React.FC = () => {
 
     return (
         <>
-            <p className={clsx(classes.largeText, classes.tabIntro)}>
-                Workbase is an Integrated Development Environment to perform knowledge engineering at scale, and
-                control everything in your knowledge graph from development to production. <a>Learn more</a>
-            </p>
             <ComparisonBlock items={items}/>
         </>
     );
@@ -87,8 +83,8 @@ const OpenSourcePane: React.FC<OpenSourcePaneProps> = ({latestReleaseDate}) => {
             </div>
 
             <p className={clsx(classes.comparisonBlockContent, classes.mediumText, classes.textMarginLarge)}>
-                Begin visualising your TypeDB knowledge graph immediately. TypeDB is licensed under AGPL so
-                that you can start developing quickly and adopt TypeDB within your solution in no time.
+                Install and develop with TypeDB Workbase immediately. TypeDB Workbase is licensed under AGPL so
+                that you can start developing quickly and adopt TypeDB Workbase within your ecosystem in no time.
             </p>
 
             <p className={clsx(classes.comparisonBlockContent, classes.mediumText, classes.textMarginLarge)}>
@@ -130,13 +126,13 @@ const CommercialPane: React.FC = () => {
                 <h5 className={clsx(classes.h5, classes.comparisonBlockContent)}>Commercial License</h5>
             </div>
             <p className={clsx(classes.comparisonBlockContent, classes.mediumText, classes.textMarginLarge)}>
-                If you want to freely integrate TypeDB into your product, and satisfy all of your organisation's
+                If you want to freely integrate TypeDB Workbase into your ecosystem, and satisfy all of your organisation's
                 requirements, the commercial license gives you that peace of mind.
             </p>
 
             <div className={classes.comparisonBlockHeading}>
                 <span className={clsx(classes.check, classes.checkPurple, classes.comparisonBlockHeadingCheck)}/>
-                <h5 className={clsx(classes.h5, classes.comparisonBlockContent)}>Core Support</h5>
+                <h5 className={clsx(classes.h5, classes.comparisonBlockContent)}>Enterprise Support</h5>
             </div>
             <p className={clsx(classes.comparisonBlockContent, classes.mediumText, classes.textMarginLarge)}>
                 Get direct support from our engineers. From development to production, we’re with you every step of
