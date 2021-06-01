@@ -60,7 +60,7 @@ export const HomePage: React.FC = () => {
                     </a>
                     <div className={classes.mainLink}>
                         <VaticleButton className={classes.downloadTypeDBButton} size="small" type="primary" to="/download">
-                            Download {typeDBVersion}
+                            Download TypeDB {typeDBVersion}
                         </VaticleButton>
                     </div>
                 </div>
