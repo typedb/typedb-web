@@ -29,15 +29,14 @@ const CloudPane: React.FC = () => {
     return (
         <>
             <p className={clsx(classes.comparisonBlockContent, classes.mediumText)}>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                Deploy your TypeDB Cluster as a Helm package in your Kubernetes cluster, in the cloud provider of your choosing: Google Cloud, Amazong Web Services, or Microsoft Azure.
             </p>
 
             <div className={classes.filler}/>
 
             <div className={clsx(classes.comparisonBlockContent, classes.mainActionList)}>
                 <VaticleButton size="small" type="secondary" disabled={true} comingSoon={true} className={classes.buttonAfterText}>
-                    Coming soon
+                    Coming soon!
                 </VaticleButton>
             </div>
         </>
@@ -50,8 +49,7 @@ const OnPremisePane: React.FC = () => {
     return (
         <>
             <p className={clsx(classes.comparisonBlockContent, classes.mediumText)}>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                labore et dolore magna aliqua.
+                Deploy and manage TypeDB Cluster with full control in your own computing ecosystem.
             </p>
 
             <div className={classes.filler}/>
