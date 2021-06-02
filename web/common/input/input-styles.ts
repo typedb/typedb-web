@@ -49,12 +49,8 @@ export const textFieldStyles = makeStyles({
         },
     },
 
-    inputLabel: {
-        font: "inherit",
-    },
-
     inputLabelShrink: {
-        transform: "translate(12px, -7px) scale(0.75) !important",
+        transform: "translate(14px, -7px) scale(0.75) !important",
     },
 
     inputLabelFocused: {

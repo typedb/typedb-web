@@ -14,6 +14,5 @@ export const VaticleTextField: React.FC<VaticleTextFieldProps> = ({label, type, 
     return <TextField label={label} variant="outlined" type={type} multiline={multiline} rows={10}
                       classes={{root: classes.textField}}
                       InputProps={{classes: {multiline: classes.inputMultiline, focused: classes.inputFocused}}}
-                      InputLabelProps={{classes: {root: classes.inputLabel, shrink: classes.inputLabelShrink,
-                              focused: classes.inputLabelFocused, outlined: classes.inputLabelOutlined}}}/>
+                      InputLabelProps={{classes: {shrink: classes.inputLabelShrink, focused: classes.inputLabelFocused, outlined: classes.inputLabelOutlined}}}/>
 }

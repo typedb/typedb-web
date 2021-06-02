@@ -8,6 +8,7 @@ import { vaticleStyles } from "../../../common/styles/vaticle-styles";
 import { FormControlLabel } from "@material-ui/core";
 import { VaticleCheckbox } from "../../../common/input/checkbox";
 import { VaticleButton } from "../../../common/button/button";
+import { config } from "../../config/config";
 
 export const ContactForm: React.FC<ClassProps> = ({className}) => {
     const classes = Object.assign({}, vaticleStyles(), contactFormStyles());
@@ -28,6 +29,36 @@ export const ContactForm: React.FC<ClassProps> = ({className}) => {
 
     const toggleAreaOfInterest = (event: React.ChangeEvent<HTMLInputElement>) => {
         setSelectedAreasOfInterest({...selectedAreasOfInterest, [event.target.name]: event.target.checked});
+    };
+
+    const submit = () => {
+        // TODO: implement this with real data!
+        // fetch(new Request(`https://api.hsforms.com/submissions/v3/integration/submit/4332244/57919d26-b0ed-4837-9b3d-490b5a683a36/`, {
+        //     method: "POST",
+        //     headers: {
+        //         "Accept": "application/json",
+        //         "Content-Type": "application/json",
+        //     },
+        //     body: JSON.stringify({
+        //         "fields": [
+        //             { "name": "firstname", "value": "Jeff" },
+        //             { "name": "lastname", "value": "Test" },
+        //             { "name": "email", "value": "jeff@vaticle.com" },
+        //             { "name": "company", "value": "Vaticle" },
+        //             { "name": "job_function", "value": "software engineer" },
+        //         ],
+        //         "context": {
+        //             "pageUri": window.location.href,
+        //             "pageName": document.getElementsByTagName("title")[0].innerHTML,
+        //         },
+        //     }),
+        // }))
+        //     .then(res => res.json())
+        //     .then(result => console.log(result))
+        //     .catch(err => {
+        //         console.error(err);
+        //         throw err;
+        //     });
     };
 
     return (
@@ -102,7 +133,7 @@ export const ContactForm: React.FC<ClassProps> = ({className}) => {
                 </div>
 
                 <div className={clsx(classes.mainActionList, classes.buttonAfterText)}>
-                    <VaticleButton size="small" type="primary">Get in touch</VaticleButton>
+                    <VaticleButton size="small" type="primary" onClick={submit}>Get in touch</VaticleButton>
                 </div>
 
                 <aside className={clsx(classes.smallText, classes.buttonCaption)}>By submitting your personal data, you consent to emails from Vaticle. See our <a>Privacy Policy</a>.</aside>
