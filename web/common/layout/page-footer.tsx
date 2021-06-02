@@ -45,7 +45,7 @@ export const PageFooter: React.FC = () => {
                     <hr className={classes.separator}/>
                 </section>
 
-                <section className={classes.sectionMarginSmall}>
+                <section className={classes.subsectionMargin}>
                     <nav className={classes.linksSection}>
                         <div className={classes.contact}>
                             <h3 className={classes.h3}>Get in Touch</h3>

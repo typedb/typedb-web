@@ -112,7 +112,7 @@ export const TestimonialsSection: React.FC<ClassProps> = ({className}) => {
         <section className={clsx(className, classes.testimonialsSection)}>
             <h1 className={classes.h1}>Become the pioneer of your industry</h1>
 
-            <div className={clsx(classes.carouselContainer, classes.testimonialCarouselContainer, classes.sectionMarginSmall)}>
+            <div className={clsx(classes.carouselContainer, classes.testimonialCarouselContainer, classes.subsectionMargin)}>
                 <div className={clsx(classes.carousel, classes.testimonialCarousel)}>
                     {[0, 0, 0].map(() => (
                     <span className={classes.carouselHalf}>

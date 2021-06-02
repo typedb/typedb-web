@@ -59,7 +59,7 @@ export const ClusterSection: React.FC<ClassProps> = ({className}) => {
                 tools needed to take you from development to production and scale.
             </p>
 
-            <div className={clsx(classes.featurePanelList, classes.sectionMarginSmall)}>
+            <div className={clsx(classes.featurePanelList, classes.subsectionMargin)}>
                 {allFeatures.map(({name, description, icon, comingSoon}) => (
                     <a className={classes.featurePanel}>
                         {comingSoon && <div className={classes.featurePanelBanner}>coming soon</div>}
@@ -70,7 +70,7 @@ export const ClusterSection: React.FC<ClassProps> = ({className}) => {
                 ))}
             </div>
 
-            <div className={clsx(classes.mainActionList, classes.sectionMarginSmall)}>
+            <div className={clsx(classes.mainActionList, classes.subsectionMargin)}>
                 <VaticleButton size="small" type="secondary" disabled={true} comingSoon={true} className={classes.clusterAction}>Learn More</VaticleButton>
                 <VaticleButton size="small" type="primary" disabled={true} comingSoon={true} to="/cloud" className={classes.clusterAction}>Cloud Deployment</VaticleButton>
             </div>

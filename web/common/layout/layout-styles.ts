@@ -303,6 +303,7 @@ export const pageFooterStyles = makeStyles({
         borderTopLeftRadius: 5,
         borderBottomLeftRadius: 5,
         backgroundColor: "transparent",
+        padding: "6px 10px",
         color: buttonPalette.secondary.label,
         fontSize: vaticleTheme.typography.fontSize.small,
         fontWeight: 300

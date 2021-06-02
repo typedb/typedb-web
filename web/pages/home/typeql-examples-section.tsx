@@ -25,28 +25,28 @@ export const TypeQLExamplesSection: React.FC<TypeQLExamplesSectionProps> = ({cla
                 low-level and complex data patterns.
             </p>
 
-            <TypeQLExample className={classes.sectionMarginSmall} visualiserPosition="left"
+            <TypeQLExample className={classes.subsectionMargin} visualiserPosition="left"
                            code={expressivityExampleCode} graphData={expressivityExampleGraph} title="Expressivity"
                            body="TypeDB allows you to model your domain based on logical and object-oriented principles.
                                      Composed of entity, relationship, and attribute types, as well as type hierarchies,
                                      roles, and rules, TypeDB allows you to think higher-level as opposed to join-tables,
                                      columns, documents, vertices, edges, and properties."/>
 
-            <TypeQLExample className={classes.sectionMarginSmall} visualiserPosition="right"
+            <TypeQLExample className={classes.subsectionMargin} visualiserPosition="right"
                            code={safetyExampleCode} graphData={safetyExampleGraph} title="Safety"
                            body="Types provide a way to describe the logical structures of your data, allowing TypeDB
                                      to validate that your code is inserting and querying data correctly. Query validation
                                      goes beyond static type checking, and includes logical validations of meaningless queries.
                                      With strict type-checking errors, you have a dataset that you can trust."/>
 
-            <TypeQLExample className={classes.sectionMarginSmall} visualiserPosition="left"
+            <TypeQLExample className={classes.subsectionMargin} visualiserPosition="left"
                            code={inferenceExampleCode} graphData={inferenceExampleGraph} title="Inference"
                            body="TypeDB encodes your data for logical interpretation by a reasoning engine. It enables
                                      type-inference and rule-inference that creates logical abstractions of data.
                                      This allows the discovery of facts and patterns that would otherwise be too hard to
                                      find; and complex queries become much simpler."/>
 
-            <div className={clsx(classes.mainActionList, classes.sectionMarginSmall)}>
+            <div className={clsx(classes.mainActionList, classes.subsectionMargin)}>
                 <VaticleButton size="small" type="primary" to="/download">Download TypeDB {typeDBVersion}</VaticleButton>
                 <VaticleButton size="small" type="primary" href={urls.github.typedb} target="_blank">Fork/Star on GitHub</VaticleButton>
             </div>

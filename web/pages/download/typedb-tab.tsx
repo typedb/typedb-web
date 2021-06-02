@@ -103,12 +103,12 @@ const OpenSourcePane: React.FC<OpenSourcePaneProps> = ({latestReleaseDate}) => {
             </p>
 
             <div className={clsx(classes.comparisonBlockContent, classes.mediumText, classes.textMarginLarge, classes.selectGroup)}>
-                <VaticleSelect label="Operating System" value={selectedOS} setValue={setSelectedOS} inputName="os" inputID="typedb-os">
+                <VaticleSelect label="Operating System" value={selectedOS} setValue={setSelectedOS} inputName="os" inputID="typedb-os" variant="outlined">
                     <option value="Linux">Linux</option>
                     <option value="Mac OS X">Mac OS X</option>
                     <option value="Windows">Windows</option>
                 </VaticleSelect>
-                <VaticleSelect label="Version" value={selectedVersion} setValue={setSelectedVersion} inputName="version" inputID="typedb-version">
+                <VaticleSelect label="Version" value={selectedVersion} setValue={setSelectedVersion} inputName="version" inputID="typedb-version" variant="outlined">
                     <option value="2.1.1">2.1.1</option>
                     <option value="2.0.2">2.0.2</option>
                     <option value="2.0.1">2.0.1</option>
@@ -118,7 +118,7 @@ const OpenSourcePane: React.FC<OpenSourcePaneProps> = ({latestReleaseDate}) => {
 
             <div className={classes.filler}/>
 
-            <div className={clsx(classes.comparisonBlockContent, classes.mainActionList, classes.sectionMarginSmall)}>
+            <div className={clsx(classes.comparisonBlockContent, classes.mainActionList, classes.subsectionMargin)}>
                 <VaticleButton size="small" type="primary" href={downloadURL} download="">Download</VaticleButton>
             </div>
         </>

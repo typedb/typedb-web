@@ -10,7 +10,7 @@ export const vaticleStyles = makeStyles({
         },
     },
 
-    sectionMarginLarge: {
+    sectionMargin: {
         marginTop: 160,
 
         "@media(max-width: 767px)": {
@@ -18,7 +18,7 @@ export const vaticleStyles = makeStyles({
         },
     },
 
-    sectionMarginSmall: {
+    subsectionMargin: {
         marginTop: 80,
 
         "@media(max-width: 767px)": {
@@ -111,6 +111,10 @@ export const vaticleStyles = makeStyles({
         gap: "30px 40px",
     },
 
+    buttonCaption: {
+        marginTop: 24,
+    },
+
     check: {
         height: 16,
         width: 8,
@@ -147,6 +151,10 @@ export const vaticleStyles = makeStyles({
 
     filler: {
         flex: 1,
+    },
+
+    fullWidth: {
+        width: "100%",
     },
 
     hideDesktop: {

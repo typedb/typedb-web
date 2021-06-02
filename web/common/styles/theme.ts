@@ -120,4 +120,11 @@ export const vaticleTheme = {
 
 export const vaticleMuiTheme = createMuiTheme({
     vaticle: vaticleTheme,
+    typography: {
+        fontFamily: "'Titillium Web', Geneva, Tahoma, sans-serif",
+        fontSize: 16,
+        body1: {
+            fontSize: 16,
+        },
+    },
 });

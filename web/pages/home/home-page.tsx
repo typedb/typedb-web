@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { homePageStyles } from "./home-styles";
-import { VaticleAtom } from "../images/vaticle-atom";
+import { VaticleAtom } from "../common/images/vaticle-atom";
 import { faDiscord, faGithub, faTwitter } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { VaticleButton } from "../../common/button/button";
@@ -35,7 +35,7 @@ export const HomePage: React.FC = () => {
                     <VaticleAtom/>
                 </div>
 
-                <h1 className={clsx(classes.typeDBIntro, classes.h1, classes.sectionMarginSmall)}>Introducing TypeDB: a strongly-typed database</h1>
+                <h1 className={clsx(classes.typeDBIntro, classes.h1, classes.subsectionMargin)}>Introducing TypeDB: a strongly-typed database</h1>
                 <h1 className={clsx(classes.typeDBIntroMobile, classes.h1)}>
                     Introducing TypeDB:<br/>
                     a strongly-typed database
@@ -45,7 +45,7 @@ export const HomePage: React.FC = () => {
                     complex systems easily, using TypeQL as its query language.
                 </p>
 
-                <div className={clsx(classes.mainLinks, classes.sectionMarginSmall)}>
+                <div className={clsx(classes.mainLinks, classes.subsectionMargin)}>
                     <a href={urls.github.home} target="_blank" className={clsx(classes.mainLink, classes.firstMainLink)}>
                         <FontAwesomeIcon className={classes.mainLinkIcon} icon={faGithub} />
                         <div className={classes.mainLinkCaption}>GitHub</div>
@@ -66,20 +66,20 @@ export const HomePage: React.FC = () => {
                 </div>
             </section>
 
-            <CorporateLogosSection className={classes.sectionMarginLarge}/>
+            <CorporateLogosSection className={classes.sectionMargin}/>
 
-            <TypeQLExamplesSection className={classes.sectionMarginLarge} typeDBVersion={typeDBVersion}/>
+            <TypeQLExamplesSection className={classes.sectionMargin} typeDBVersion={typeDBVersion}/>
 
-            <IndustrySection className={classes.sectionMarginLarge}/>
+            <IndustrySection className={classes.sectionMargin}/>
 
-            <ClusterSection className={classes.sectionMarginLarge}/>
+            <ClusterSection className={classes.sectionMargin}/>
 
-            <TestimonialsSection className={classes.sectionMarginLarge}/>
+            <TestimonialsSection className={classes.sectionMargin}/>
 
-            <section className={clsx(classes.communitySection, classes.sectionMarginLarge)}>
+            <section className={clsx(classes.communitySection, classes.sectionMargin)}>
                 <h1 className={classes.h1}>Join the Vaticle community around the world</h1>
-                <VaticleWorld className={clsx(classes.vaticleWorld, classes.sectionMarginSmall)}/>
-                <VaticleButton size="small" type="primary" disabled={true} comingSoon={true} className={classes.sectionMarginSmall}>
+                <VaticleWorld className={clsx(classes.vaticleWorld, classes.subsectionMargin)}/>
+                <VaticleButton size="small" type="primary" disabled={true} comingSoon={true} className={classes.subsectionMargin}>
                     Join the Vaticle community<span className={classes.hideMobile}> around the world</span>
                 </VaticleButton>
             </section>
