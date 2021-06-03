@@ -149,7 +149,7 @@ export const ContactForm: React.FC<ClassProps> = ({className}) => {
                     <VaticleTextField label={tellUsMore} multiline/>
                 </div>
 
-                <div className={clsx(classes.mainActionList, classes.buttonAfterText)}>
+                <div className={clsx(classes.mainActionList, classes.contentMargin)}>
                     <VaticleButton size="small" type="primary" onClick={submit}>Get in touch</VaticleButton>
                 </div>
 

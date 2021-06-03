@@ -67,7 +67,7 @@ export const IndustrySection: React.FC<ClassProps> = ({className}) => {
             <h3 className={clsx(classes.h3, classes.textMarginLarge)}>{selectedIndustry.name}</h3>
 
             <p className={clsx(classes.industryDescription, classes.largeText)}>{selectedIndustry.description}</p>
-            <VaticleButton size="small" type="secondary" disabled={true} comingSoon={true} className={clsx(classes.buttonAfterText, classes.learnMore)}>
+            <VaticleButton size="small" type="secondary" disabled={true} comingSoon={true} className={clsx(classes.contentMargin, classes.learnMore)}>
                 Learn More
             </VaticleButton>
 

@@ -26,6 +26,14 @@ export const vaticleStyles = makeStyles({
         },
     },
 
+    contentMargin: {
+        marginTop: 40,
+
+        "@media(max-width: 767px)": {
+            marginTop: 30,
+        },
+    },
+
     h1: vaticleTheme.h1,
 
     h2: vaticleTheme.h2,
@@ -79,14 +87,6 @@ export const vaticleStyles = makeStyles({
         fontSize: 14,
         lineHeight: "23px",
         fontWeight: 300,
-    },
-
-    buttonAfterText: {
-        marginTop: 40,
-
-        "@media(max-width: 767px)": {
-            marginTop: 30,
-        },
     },
 
     learnMore: {
