@@ -29,6 +29,10 @@ export const contactFormStyles = makeStyles({
     form: {
         display: "flex",
         flexDirection: "column",
+
+        "@media(max-width: 767px)": {
+            alignItems: "center",
+        },
     },
 
     formRow: {
@@ -45,6 +49,18 @@ export const contactFormStyles = makeStyles({
 
             "@media (min-width: 768px) and (max-width: 1199px)": {
                 maxWidth: "40vw",
+            },
+
+            "@media(max-width: 767px)": {
+                maxWidth: "calc(100vw - 100px)",
+            },
+        },
+
+        "@media(max-width: 767px)": {
+            display: "block",
+
+            "& > *:not(:first-child)": {
+                marginTop: 30,
             },
         },
     },

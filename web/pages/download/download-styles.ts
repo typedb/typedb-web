@@ -77,12 +77,22 @@ export const downloadPageProductStyles = makeStyles({
     comparisonBlock: {
         width: "100%",
         display: "flex",
+
+        "@media(max-width: 767px)": {
+            flexDirection: "column",
+        },
     },
 
     comparisonBlockItem: {
         flex: 1,
         display: "flex",
         flexDirection: "column",
+
+        "@media(max-width: 767px)": {
+            "&:not(:first-child)": {
+                marginTop: 30,
+            },
+        }
     },
 
     comparisonBlockItemTitle: {
@@ -91,6 +101,10 @@ export const downloadPageProductStyles = makeStyles({
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
+
+        "@media(max-width: 767px)": {
+            borderRadius: "5px 5px 0 0",
+        },
     },
 
     comparisonBlockItem1Title: {

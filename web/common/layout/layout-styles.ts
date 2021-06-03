@@ -21,13 +21,20 @@ export const defaultLayoutStyles = makeStyles({
         transform: "translateX(32px) rotate(40deg)",
         zIndex: 350,
         width: 190,
-        height: 28,
+        height: "2em",
         fontSize: 14,
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
         color: vaticleTheme.palette.purple["800"],
         backgroundColor: vaticleTheme.palette.green["300"],
+
+        "@media(max-width: 767px)": {
+            top: 110,
+            width: 170,
+            fontSize: 12,
+            transform: "translateX(34px) rotate(40deg)",
+        },
     },
 });
 
