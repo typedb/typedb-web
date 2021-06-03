@@ -128,7 +128,7 @@ export const ContactForm: React.FC<ClassProps> = ({className}) => {
                             <option value="services">Professional Services</option>
                         </VaticleSelect>
                         <div className={classes.areasOfInterest}>
-                            <p className={clsx(classes.mediumText, classes.areasOfInterestCaption)}>Select all areas you're interested in:</p>
+                            <p className={clsx(classes.mediumText)}>Select all areas you're interested in:</p>
                             <div className={classes.areasOfInterestLists}>
                                 <div className={classes.areasOfInterestList}>
                                     <FormControlLabel label="Training" control={<VaticleCheckbox checked={selectedAreasOfInterest.training} onChange={toggleAreaOfInterest} name="training"/>}/>

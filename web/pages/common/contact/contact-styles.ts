@@ -80,10 +80,6 @@ export const contactFormStyles = makeStyles({
         alignItems: "flex-start",
     },
 
-    areasOfInterestCaption: {
-        textTransform: "uppercase",
-    },
-
     areasOfInterestLists: {
         width: "100%",
         display: "flex",
