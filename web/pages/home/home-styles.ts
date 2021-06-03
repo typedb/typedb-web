@@ -256,12 +256,8 @@ export const homePageIndustryStyles = makeStyles({
             height: 170,
         },
 
-        "@media(max-width: 767px)": {
-            height: 196,
-        },
-
         "@media(max-width: 479px)": {
-            height: 280,
+            height: 224,
         },
     },
 
@@ -271,8 +267,8 @@ export const homePageIndustryStyles = makeStyles({
         gridTemplateColumns: "repeat(auto-fit, 185px)",
         rowGap: "24px",
 
-        "@media(max-width: 767px)": {
-            gridTemplateColumns: "repeat(auto-fit, 176px)",
+        "@media(max-width: 479px)": {
+            gridTemplateColumns: "repeat(auto-fit, 17vw)",
         },
     },
 
@@ -280,6 +276,11 @@ export const homePageIndustryStyles = makeStyles({
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
+        borderRadius: 5,
+
+        "@media(max-width: 479px)": {
+            backgroundColor: vaticleTheme.palette.purple[600],
+        },
     },
 
     sectionToggleIconContainer: {
@@ -302,7 +303,16 @@ export const homePageIndustryStyles = makeStyles({
             "& g, & ellipse, & circle, & path": {
                 stroke: "#FFF",
             },
-        }
+        },
+
+        "@media(max-width: 479px)": {
+            width: "17vw",
+            height: "17vw",
+
+            "& svg": {
+                transform: "scale(.85)",
+            },
+        },
     },
 
     sectionToggleIconContainerSelected: {
@@ -318,6 +328,10 @@ export const homePageIndustryStyles = makeStyles({
         fontSize: 16,
         lineHeight: "28px",
         fontWeight: 300,
+
+        "@media(max-width: 479px)": {
+            display: "none !important",
+        },
     },
 });
 
@@ -331,6 +345,7 @@ export const homePageClusterStyles = makeStyles({
 
         "@media(max-width: 767px)": {
             gridTemplateColumns: "repeat(auto-fit, 335px)",
+            gridTemplateRows: "repeat(auto-fit, 192px)",
             gap: 30,
         },
     },
@@ -343,6 +358,17 @@ export const homePageClusterStyles = makeStyles({
         transition: "border-color 100ms ease",
         position: "relative",
         cursor: "default !important",
+
+        "@media(max-width: 767px)": {
+            padding: "24px 10px",
+            height: 192,
+
+            "& svg": {
+                transform: "scale(.8)",
+                marginTop: -5,
+                marginBottom: -5,
+            },
+        },
 
         // TODO: reintroduce this (and remove cursor: default) when the links are functional
         // "&:hover": {
