@@ -20,13 +20,14 @@ dev/setup-resources.sh
 
 ### Run local dev server
 
+First, set the following executable flags:
+- `--resources`: This should point to the `local/resources` folder in your project root
+- `--pages`: This should point to the `local/pages` folder in your project root
+
+Then run
 ```shell script
 bazel run //server:server-bin
 ```
-
-The following executable flags are **required**:
-- `--resources`: This should point to the `local/resources` folder in your project root
-- `--pages`: This should point to the `local/pages` folder in your project root
 
 ### Enabling live reload for the pages
 

@@ -5,16 +5,12 @@ import { PageFooter } from "./page-footer";
 import { vaticleStyles } from "../styles/vaticle-styles";
 import { urls } from "../urls";
 
-interface DefaultLayoutProps {
-    typeDBVersion?: string;
-}
-
-export const DefaultLayout: React.FC<DefaultLayoutProps> = ({ children, typeDBVersion }) => {
+export const DefaultLayout: React.FC = ({ children }) => {
     const ownClasses = Object.assign({}, vaticleStyles(), defaultLayoutStyles());
 
     return (
         <>
-            <PageHeader typeDBVersion={typeDBVersion}/>
+            <PageHeader/>
             <div className={ownClasses.underDevelopmentRibbon}>site under development</div>
             <main className={ownClasses.main}>
                 <article>

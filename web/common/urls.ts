@@ -3,7 +3,6 @@ const githubURL = "https://github.com/vaticle";
 
 export const urls = {
     legacySite: "https://grakn.ai",
-    legacyPrivacyPolicy: "https://grakn.ai/privacy-policy",
     support: "https://support.grakn.ai",
     forum: "https://forum.vaticle.com",
     blog: "https://blog.grakn.ai/?__hstc=146951137.435761e660f3decdcd676be2f619bfdd.1610018211811.1621937414072.1621950449351.33&__hssc=146951137.4.1621950449351&__hsfp=828018349",
@@ -24,8 +23,8 @@ export const urls = {
     github: {
         home: githubURL,
         typedb: `${githubURL}/typedb`,
-        typedbReleases: `${githubURL}/typedb/releases/`,
-        typedbWorkbaseReleases: `${githubURL}/typedb-workbase/releases/`,
+        typedbReleases: `${githubURL}/typedb/releases`,
+        typedbWorkbaseReleases: `${githubURL}/typedb-workbase/releases`,
     },
 
     social: {

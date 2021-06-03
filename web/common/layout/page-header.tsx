@@ -13,11 +13,7 @@ import { vaticleStyles } from "../styles/vaticle-styles";
 import { urls } from "../urls";
 import { routes } from "../../pages/router";
 
-interface PageHeaderProps {
-    typeDBVersion: string;
-}
-
-export const PageHeader: React.FC<PageHeaderProps> = ({typeDBVersion}) => {
+export const PageHeader: React.FC = () => {
     const classes = Object.assign({}, vaticleStyles(), pageHeaderStyles());
 
     const [menuOpen, setMenuOpen] = useState(false);
@@ -59,7 +55,7 @@ export const PageHeader: React.FC<PageHeaderProps> = ({typeDBVersion}) => {
 
                         <div className={classes.filler}/>
 
-                        <ExternalLinks typeDBVersion={typeDBVersion}/>
+                        <ExternalLinks/>
                     </div>
 
                     <HamburgerCollapse className={clsx(classes.toolbarItem, classes.hideDesktop)}
@@ -73,7 +69,7 @@ export const PageHeader: React.FC<PageHeaderProps> = ({typeDBVersion}) => {
                     </div>
 
                     <div className={classes.linksMenu}>
-                        <ExternalLinks typeDBVersion={typeDBVersion}/>
+                        <ExternalLinks/>
                     </div>
                 </div>
             </nav>
@@ -96,11 +92,7 @@ const Sitemap: React.FC = () => (
     </>
 );
 
-interface ExternalLinksProps {
-    typeDBVersion: string;
-}
-
-const ExternalLinks: React.FC<ExternalLinksProps> = ({typeDBVersion}) => {
+const ExternalLinks: React.FC = () => {
     const classes = pageHeaderStyles();
 
     return (

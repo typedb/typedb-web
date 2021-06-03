@@ -1,15 +1,14 @@
-import React, { useEffect } from 'react';
+import React from "react";
 import { homePageStyles } from "./home-styles";
 import { VaticleAtom } from "../common/images/vaticle-atom";
 import { faDiscord, faGithub, faTwitter } from "@fortawesome/free-brands-svg-icons";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { VaticleButton } from "../../common/button/button";
 import clsx from "clsx";
-import { IndustrySection } from './industry-section';
+import { IndustrySection } from "./industry-section";
 import { ClusterSection } from "./cluster-section";
 import { TestimonialsSection } from "./testimonials-section";
 import { vaticleStyles } from "../../common/styles/vaticle-styles";
-import { getTypeDBVersion } from "../api/typedb-service";
 import VaticleWorld from "../assets/graphics/vaticle-world.svg";
 import { CorporateLogosSection } from "./corporate-logos-section";
 import { TypeQLExamplesSection } from "./typeql-examples-section";
@@ -21,16 +20,10 @@ import { routes } from "../router";
 export const HomePage: React.FC = () => {
     const classes = Object.assign({}, vaticleStyles(), homePageStyles());
 
-    // TODO: This code shouldn't be duplicated on every page
-    const [typeDBVersion, setTypeDBVersion] = useTypeDBVersion();
-    useEffect(() => {
-        getTypeDBVersion().then(version => {
-            setTypeDBVersion(version);
-        });
-    }, []);
+    const typeDBVersion = useTypeDBVersion()[0];
 
     return (
-        <DefaultLayout typeDBVersion={typeDBVersion}>
+        <DefaultLayout>
             <section className={classes.firstSection}>
                 <div className={classes.vaticleAtomContainer}>
                     <VaticleAtom/>

@@ -14,11 +14,7 @@ interface Product {
     content: React.FC<any>;
 }
 
-interface ProductSectionProps extends ClassProps {
-    latestTypeDBVersion: string;
-}
-
-export const ProductSection: React.FC<ProductSectionProps> = ({className, latestTypeDBVersion}) => {
+export const ProductSection: React.FC<ClassProps> = ({ className }) => {
     const classes = Object.assign({}, vaticleStyles(), downloadPageProductStyles());
 
     const allProducts: Product[] = [{

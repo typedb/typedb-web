@@ -1,28 +1,19 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { DefaultLayout } from "../../common/layout/default-layout";
 import { downloadPageStyles } from "./download-styles";
 import { vaticleStyles } from "../../common/styles/vaticle-styles";
-import { getTypeDBVersion } from "../api/typedb-service";
 import { ProductSection } from "./product-section";
-import { useTypeDBVersion } from "../state/typedb-version";
 import clsx from "clsx";
 import { ContactForm } from "../common/contact/contact-form";
 
 export const DownloadPage: React.FC = () => {
     const classes = Object.assign({}, vaticleStyles(), downloadPageStyles());
 
-    const [typeDBVersion, setTypeDBVersion] = useTypeDBVersion();
-    useEffect(() => {
-        getTypeDBVersion().then(version => {
-            setTypeDBVersion(version);
-        });
-    }, []);
-
     return (
-        <DefaultLayout typeDBVersion={typeDBVersion}>
+        <DefaultLayout>
             <section className={classes.firstSection}>
                 <h1 className={classes.h1}>Download Centre</h1>
-                <ProductSection latestTypeDBVersion={typeDBVersion} className={classes.subsectionMargin}/>
+                <ProductSection className={classes.subsectionMargin}/>
             </section>
 
             <section className={classes.sectionMargin}>

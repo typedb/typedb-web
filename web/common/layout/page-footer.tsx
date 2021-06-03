@@ -35,7 +35,7 @@ export const PageFooter: React.FC = () => {
 
                         <div className={classes.subscribe}>
                             <p className={classes.personalDataNotice}>
-                                By submitting your personal data, you consent to emails from Vaticle. See our <a href={urls.legacyPrivacyPolicy} target="_blank">Privacy Policy</a>.
+                                By submitting your personal data, you consent to emails from Vaticle. See our <Link to={routes.privacyPolicy}>Privacy Policy</Link>.
                             </p>
                             <div className={classes.subscribeActionBlock}>
                                 <input type="email" placeholder="Email address" className={classes.subscribeEmail}/>
