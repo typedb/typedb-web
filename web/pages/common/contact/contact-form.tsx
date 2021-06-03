@@ -30,23 +30,9 @@ export const ContactForm: React.FC<ClassProps> = ({className}) => {
         cloud: false,
     });
 
-    const getTellUsMoreLabel = () => window.matchMedia("(max-width: 1023px)").matches
-        ? "Tell us more about how we can help"
-        : "Tell us a little bit more about how we can help you";
-
-    const [tellUsMore, setTellUsMore] = useState(getTellUsMoreLabel());
-
     const toggleAreaOfInterest = (event: React.ChangeEvent<HTMLInputElement>) => {
         setSelectedAreasOfInterest({...selectedAreasOfInterest, [event.target.name]: event.target.checked});
     };
-
-    useEffect(() => {
-        const updateText = () => {
-            setTellUsMore(getTellUsMoreLabel());
-        };
-        window.addEventListener("resize", updateText);
-        return () => window.removeEventListener("resize", updateText);
-    }, []);
 
     const submit = () => {
         // TODO: implement this with real data!
@@ -146,7 +132,7 @@ export const ContactForm: React.FC<ClassProps> = ({className}) => {
                         </div>
                     </div>
 
-                    <VaticleTextField label={tellUsMore} multiline/>
+                    <VaticleTextField label="Tell us how we can help you" multiline/>
                 </div>
 
                 <div className={clsx(classes.mainActionList, classes.contentMargin)}>
