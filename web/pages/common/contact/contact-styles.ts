@@ -7,6 +7,23 @@ export const contactFormStyles = makeStyles({
         marginRight: 40,
         backgroundColor: vaticleTheme.palette.purple["600"],
         padding: "80px 100px",
+
+        "@media(max-width: 1199px)": {
+            paddingLeft: 60,
+            paddingRight: 60,
+        },
+
+        "@media(max-width: 1023px)": {
+            marginLeft: 0,
+            marginRight: 0,
+            paddingLeft: 40,
+            paddingRight: 40,
+        },
+
+        "@media(max-width: 767px)": {
+            paddingLeft: 30,
+            paddingRight: 30,
+        },
     },
 
     form: {
@@ -25,6 +42,10 @@ export const contactFormStyles = makeStyles({
 
         "& > *": {
             width: 375,
+
+            "@media (min-width: 768px) and (max-width: 1199px)": {
+                maxWidth: "40vw",
+            },
         },
     },
 

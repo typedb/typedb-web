@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import clsx from "clsx";
 import CircleDecoration from "../assets/graphics/circle-decoration.svg";
 import { vaticleStyles } from "../../common/styles/vaticle-styles";
@@ -32,12 +32,6 @@ interface Testimonial {
 
 export const TestimonialsSection: React.FC<ClassProps> = ({className}) => {
     const classes = Object.assign({}, vaticleStyles(), homePageTestimonialsStyles());
-    const [mobile, setMobile] = useState(window.matchMedia("(max-width: 767px)").matches);
-
-    useEffect(() => {
-        const newMobile = window.matchMedia("(max-width: 767px)").matches;
-        if (mobile != newMobile) setMobile(newMobile);
-    }, [window.innerWidth]); // TODO: resizing window doesn't seem to trigger this hook
 
     const testimonials: Testimonial[] = [{
         companyName: "Flipkart",

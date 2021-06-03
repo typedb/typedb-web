@@ -191,19 +191,23 @@ export const CorporateLogosSection: React.FC<ClassProps> = ({className}) => {
     };
 
     useEffect(() => {
-        const newRowSize = computeRowSize();
-        if (newRowSize != rowSize) {
-            setRowSize(newRowSize);
-            const delta = visibleItemCount(newRowSize) - visibleItemCount(rowSize);
-            if (!delta) return;
-            updateLogoState({
-                spawning: false,
-                transitionIndex: -1,
-                visibleLogos: logos.slice(0, visibleItemCount(computeRowSize())),
-                hiddenLogos: logos.slice(visibleItemCount(computeRowSize())),
-            });
+        const updateRowSize = () => {
+            const newRowSize = computeRowSize();
+            if (newRowSize != rowSize) {
+                setRowSize(newRowSize);
+                const delta = visibleItemCount(newRowSize) - visibleItemCount(rowSize);
+                if (!delta) return;
+                updateLogoState({
+                    spawning: false,
+                    transitionIndex: -1,
+                    visibleLogos: logos.slice(0, visibleItemCount(computeRowSize())),
+                    hiddenLogos: logos.slice(visibleItemCount(computeRowSize())),
+                });
+            }
         }
-    }, [window.innerWidth]);
+        window.addEventListener("resize", updateRowSize);
+        return () => window.removeEventListener("resize", updateRowSize);
+    }, []);
 
     let despawningIndex, spawningIndex, spawningLogo, despawningLogo;
 
