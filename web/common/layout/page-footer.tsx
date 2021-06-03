@@ -76,6 +76,7 @@ export const PageFooter: React.FC = () => {
                                     <FooterLink href={urls.docs.home}>Documentation</FooterLink>
                                     <FooterLink href={urls.forum}>Forum</FooterLink>
                                     <FooterLink href={urls.github.home} target="_blank">GitHub</FooterLink>
+                                    <FooterLink href={urls.stackOverflow} target="_blank">Stack Overflow</FooterLink>
                                 </ul>
                             </div>
                             <div className={classes.linkBlock}>

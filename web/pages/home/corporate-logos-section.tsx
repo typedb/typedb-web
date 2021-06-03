@@ -190,24 +190,23 @@ export const CorporateLogosSection: React.FC<ClassProps> = ({className}) => {
         setLogoState(Object.assign({}, logoState, newLogoState));
     };
 
+    // TODO: This code is very fragile. We need to figure out the true interaction between local vars, React state
+    //       vars, setTimeout, and window resize events and use that to build a maintainable component. Or we can
+    //       check if such a prebuilt component exists on the Web.
     useEffect(() => {
-        const updateRowSize = () => {
-            const newRowSize = computeRowSize();
-            if (newRowSize != rowSize) {
-                setRowSize(newRowSize);
-                const delta = visibleItemCount(newRowSize) - visibleItemCount(rowSize);
-                if (!delta) return;
-                updateLogoState({
-                    spawning: false,
-                    transitionIndex: -1,
-                    visibleLogos: logos.slice(0, visibleItemCount(computeRowSize())),
-                    hiddenLogos: logos.slice(visibleItemCount(computeRowSize())),
-                });
-            }
+        const newRowSize = computeRowSize();
+        if (newRowSize != rowSize) {
+            setRowSize(newRowSize);
+            const delta = visibleItemCount(newRowSize) - visibleItemCount(rowSize);
+            if (!delta) return;
+            updateLogoState({
+                spawning: false,
+                transitionIndex: -1,
+                visibleLogos: logos.slice(0, visibleItemCount(computeRowSize())),
+                hiddenLogos: logos.slice(visibleItemCount(computeRowSize())),
+            });
         }
-        window.addEventListener("resize", updateRowSize);
-        return () => window.removeEventListener("resize", updateRowSize);
-    }, []);
+    }, [window.innerWidth]);
 
     let despawningIndex, spawningIndex, spawningLogo, despawningLogo;
 
