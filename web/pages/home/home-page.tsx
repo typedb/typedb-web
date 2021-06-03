@@ -35,8 +35,8 @@ export const HomePage: React.FC = () => {
                     a strongly-typed database
                 </h1>
                 <p className={clsx(classes.largeText, classes.typeDBIntroBody)}>
-                    TypeDB is a database with a rich and logical type system. TypeDB empowers you to build
-                    complex systems easily, using TypeQL as its query language.
+                    TypeDB is a database with a rich and logical type system. TypeDB empowers you to solve
+                    complex problems, using TypeQL as its query language.
                 </p>
 
                 <div className={clsx(classes.mainLinks, classes.subsectionMargin)}>
