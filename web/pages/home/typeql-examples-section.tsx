@@ -8,6 +8,7 @@ import clsx from "clsx";
 import { VaticleButton } from "../../common/button/button";
 import React from "react";
 import { urls } from "../../common/urls";
+import { routes } from "../router";
 
 interface TypeQLExamplesSectionProps extends ClassProps {
     typeDBVersion: string;
@@ -47,7 +48,7 @@ export const TypeQLExamplesSection: React.FC<TypeQLExamplesSectionProps> = ({cla
                                      find; and complex queries become much simpler."/>
 
             <div className={clsx(classes.mainActionList, classes.subsectionMargin)}>
-                <VaticleButton size="small" type="primary" to="/download">Download TypeDB {typeDBVersion}</VaticleButton>
+                <VaticleButton size="small" type="primary" to={routes.download}>Download TypeDB {typeDBVersion}</VaticleButton>
                 <VaticleButton size="small" type="primary" href={urls.github.typedb} target="_blank">Fork/Star on GitHub</VaticleButton>
             </div>
         </section>

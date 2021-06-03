@@ -155,9 +155,19 @@ export const downloadPageProductStyles = makeStyles({
             flex: 1,
         },
 
-        "& :not(:first-child)": {
-            marginLeft: 16,
+        "@media(min-width: 480px)": {
+            "& > :not(:first-child)": {
+                marginLeft: 16,
+            },
         },
+
+        "@media(max-width: 479px)": {
+            flexDirection: "column",
+
+            "& > :not(:first-child)": {
+                marginTop: 16,
+            },
+        }
     },
 
     // comparisonBlockItem

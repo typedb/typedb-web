@@ -16,6 +16,7 @@ import { TypeQLExamplesSection } from "./typeql-examples-section";
 import { DefaultLayout } from "../../common/layout/default-layout";
 import { urls } from "../../common/urls";
 import { useTypeDBVersion } from "../state/typedb-version";
+import { routes } from "../router";
 
 export const HomePage: React.FC = () => {
     const classes = Object.assign({}, vaticleStyles(), homePageStyles());
@@ -59,7 +60,7 @@ export const HomePage: React.FC = () => {
                         <div className={classes.mainLinkCaption}>Twitter</div>
                     </a>
                     <div className={classes.mainLink}>
-                        <VaticleButton className={classes.downloadTypeDBButton} size="small" type="primary" to="/download">
+                        <VaticleButton className={classes.downloadTypeDBButton} size="small" type="primary" to={routes.download}>
                             Download TypeDB {typeDBVersion}
                         </VaticleButton>
                     </div>

@@ -11,6 +11,7 @@ import clsx from 'clsx';
 import { HamburgerCollapse } from "react-animated-burgers/lib";
 import { vaticleStyles } from "../styles/vaticle-styles";
 import { urls } from "../urls";
+import { routes } from "../../pages/router";
 
 interface PageHeaderProps {
     typeDBVersion: string;
@@ -47,7 +48,7 @@ export const PageHeader: React.FC<PageHeaderProps> = ({typeDBVersion}) => {
         <>
             <header className={classes.appBar}>
                 <nav className={classes.toolbar}>
-                    <Link to="/" className={classes.toolbarFirstItem}>
+                    <Link to={routes.home} className={classes.toolbarFirstItem}>
                         <IconButton edge="start">
                             <VaticleLogo className={classes.logo}/>
                         </IconButton>
@@ -106,7 +107,7 @@ const ExternalLinks: React.FC<ExternalLinksProps> = ({typeDBVersion}) => {
         <>
             <ExternalLink>Contact</ExternalLink>
             <ExternalLink href={urls.support} target="_blank">Support</ExternalLink>
-            <VaticleButton size="small" type="secondary" to="/download"
+            <VaticleButton size="small" type="secondary" to={routes.download}
                            className={clsx(classes.toolbarItem, classes.externalLinksDownload)}>Download</VaticleButton>
             <div className={classes.externalLinksGithub}>
                 <GithubButton/>

@@ -17,7 +17,12 @@ const VaticleRoute: React.FC<VaticleRouteProps> = props => {
     });
 
     const { title, ...rest } = props;
-    return <Route {...rest} />;
+    return <Route exact {...rest} />;
+};
+
+export const routes = {
+    home: "/",
+    download: "/download",
 };
 
 export const VaticleRouter: React.FC = () => {
@@ -26,8 +31,8 @@ export const VaticleRouter: React.FC = () => {
             <Fragment>
                 <ScrollToTop/>
                 <Switch>
-                    <VaticleRoute path="/download" title="Download" component={DownloadPage}/>
-                    <VaticleRoute path="/" title="Home" component={HomePage} />
+                    <VaticleRoute path={routes.download} title="Download" component={DownloadPage}/>
+                    <VaticleRoute path={routes.home} title="Home" component={HomePage} />
                 </Switch>
             </Fragment>
         </BrowserRouter>

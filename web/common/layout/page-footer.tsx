@@ -7,6 +7,8 @@ import { VaticleButton } from "../button/button";
 import { faMapMarkerAlt, faPhoneAlt } from "@fortawesome/pro-solid-svg-icons";
 import { vaticleStyles } from "../styles/vaticle-styles";
 import { urls } from "../urls";
+import { Link } from "react-router-dom";
+import { routes } from '../../pages/router';
 
 export const PageFooter: React.FC = () => {
     const classes = Object.assign({}, vaticleStyles(), pageFooterStyles());
@@ -64,7 +66,7 @@ export const PageFooter: React.FC = () => {
                                 <h3 className={classes.h3}>TypeDB</h3>
                                 <ul className={classes.linkBlockList}>
                                     <FooterLink href={urls.docs.typeDBQuickstart}>Quickstart</FooterLink>
-                                    <FooterLink href={urls.downloadTypeDB}>Install</FooterLink>
+                                    <FooterLink to={routes.download}>Install</FooterLink>
                                     <FooterLink href={urls.support} target="_blank">Support</FooterLink>
                                 </ul>
                             </div>
@@ -92,7 +94,7 @@ export const PageFooter: React.FC = () => {
 
 interface FooterLinkProps {
     href?: string;
-    // to?: string;
+    to?: string;
     target?: string;
 }
 
@@ -121,8 +123,18 @@ const ContactDetail: React.FC<ContactDetailProps> = ({children, href, target, ic
     );
 };
 
-const FooterLink: React.FC<FooterLinkProps> = ({children, href, target}) => {
+const FooterLink: React.FC<FooterLinkProps> = ({children, to, href, target}) => {
     const ownClasses = Object.assign({}, vaticleStyles(), pageFooterStyles());
+
+    if (to) {
+        return (
+            <li>
+                <Link to={to} className={ownClasses.sitemapLink}>
+                    <p className={ownClasses.linkText}>{children}</p>
+                </Link>
+            </li>
+        );
+    }
 
     return (
         <li>

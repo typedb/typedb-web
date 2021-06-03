@@ -28,7 +28,7 @@ export const ContactForm: React.FC<ClassProps> = ({className}) => {
     });
 
     const getTellUsMoreLabel = () => window.matchMedia("(max-width: 1023px)").matches
-        ? "Tell us more about how we can help you"
+        ? "Tell us more about how we can help"
         : "Tell us a little bit more about how we can help you";
 
     const [tellUsMore, setTellUsMore] = useState(getTellUsMoreLabel());
