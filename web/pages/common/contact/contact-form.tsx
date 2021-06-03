@@ -9,6 +9,7 @@ import { FormControlLabel } from "@material-ui/core";
 import { VaticleCheckbox } from "../../../common/input/checkbox";
 import { VaticleButton } from "../../../common/button/button";
 import { config } from "../../config/config";
+import { urls } from "../../../common/urls";
 
 export const ContactForm: React.FC<ClassProps> = ({className}) => {
     const classes = Object.assign({}, vaticleStyles(), contactFormStyles());
@@ -150,7 +151,7 @@ export const ContactForm: React.FC<ClassProps> = ({className}) => {
                     <VaticleButton size="small" type="primary" onClick={submit}>Get in touch</VaticleButton>
                 </div>
 
-                <aside className={clsx(classes.smallText, classes.buttonCaption)}>By submitting your personal data, you consent to emails from Vaticle. See our <a>Privacy Policy</a>.</aside>
+                <aside className={clsx(classes.smallText, classes.buttonCaption)}>By submitting your personal data, you consent to emails from Vaticle. See our <a href={urls.legacyPrivacyPolicy} target="_blank">Privacy Policy</a>.</aside>
             </form>
         </div>
     );

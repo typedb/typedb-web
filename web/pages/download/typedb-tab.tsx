@@ -14,21 +14,13 @@ export const TypeDBTab: React.FC = () => {
 
     const items: [ComparisonBlockItem, ComparisonBlockItem] = [{
         title: "Open Source",
-        content: () => <OpenSourcePane latestReleaseDate={new Date("2021-05-25")}/>,
+        content: () => <OpenSourcePane/>,
     }, {
         title: "Commercial",
         content: () => <CommercialPane/>,
     }];
 
-    return (
-        <>
-            <ComparisonBlock items={items}/>
-        </>
-    );
-}
-
-interface OpenSourcePaneProps {
-    latestReleaseDate: Date;
+    return <ComparisonBlock items={items}/>;
 }
 
 interface Downloads {
@@ -39,11 +31,13 @@ interface Downloads {
 
 type NativeDownloads = {[version: string]: string}
 
-const OpenSourcePane: React.FC<OpenSourcePaneProps> = ({latestReleaseDate}) => {
+const OpenSourcePane: React.FC = () => {
     const classes = Object.assign({}, vaticleStyles(), downloadPageProductStyles());
 
+    const latestReleaseDate = new Date("2021-05-25");
     const latestReleaseDateFormatted = moment(latestReleaseDate).format("Do [of] MMMM YYYY");
     const typeDBVersion = useTypeDBVersion()[0];
+    const latestReleaseNotesURL = `${urls.github.typedbReleases}/tag/${typeDBVersion}`;
 
     const downloads: Downloads = {
         "Linux": {
@@ -89,7 +83,7 @@ const OpenSourcePane: React.FC<OpenSourcePaneProps> = ({latestReleaseDate}) => {
             <p className={clsx(classes.comparisonBlockContent, classes.mediumText, classes.textMarginLarge)}>
                 Current Stable Release: <strong>TypeDB {typeDBVersion}</strong>
                 <br/>
-                <strong>{latestReleaseDateFormatted}</strong> <a>Release Notes</a>
+                <strong>{latestReleaseDateFormatted}</strong> <a href={latestReleaseNotesURL} target="_blank">Release Notes</a>
             </p>
 
             <p className={clsx(classes.comparisonBlockContent, classes.mediumText, classes.textMarginLarge)}>
