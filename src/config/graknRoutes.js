@@ -1,10 +1,10 @@
 const docBase = 'https://docs.grakn.ai';
 
 module.exports = {
-  homebrew: `${docBase}/docs/running-grakn/install-and-run?tab=mac-os-x#using-homebrew`,
-  rpm: `${docBase}/docs/running-grakn/install-and-run?tab=linux#using-rpm-yum`,
-  debian: `${docBase}/docs/running-grakn/install-and-run?tab=linux#using-debian`,
-  docker: `${docBase}/docs/running-grakn/install-and-run?tab=docker`,
+  homebrew: `${docBase}/docs/running-typedb/install-and-run?tab=mac-os-x#using-homebrew`,
+  rpm: `${docBase}/docs/running-typedb/install-and-run?tab=linux#using-rpm-yum`,
+  debian: `${docBase}/docs/running-typedb/install-and-run?tab=linux#using-debian`,
+  docker: `${docBase}/docs/running-typedb/install-and-run?tab=docker`,
   docs: docBase,
   overview: `${docBase}/overview/`,
   quickstart: `${docBase}/docs/general/quickstart`,
