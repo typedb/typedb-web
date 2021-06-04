@@ -74,22 +74,35 @@ export const contactFormStyles = makeStyles({
         },
     },
 
-    areasOfInterest: {
+    helpTopics: {
         display: "flex",
         flexDirection: "column",
         alignItems: "flex-start",
     },
 
-    areasOfInterestLists: {
+    helpTopicsLists: {
         width: "100%",
         display: "flex",
+
+        "@media(max-width: 479px)": {
+            marginTop: 6,
+            flexDirection: "column",
+        },
     },
 
-    areasOfInterestList: {
-        marginTop: 6,
+    helpTopicsList: {
         flex: 1,
         display: "flex",
         flexDirection: "column",
         alignItems: "flex-start",
+
+        "@media(min-width: 480px)": {
+            marginTop: 6,
+        },
+    },
+
+    formControlLabel: {
+        marginRight: 0,
+        textAlign: "start",
     },
 });

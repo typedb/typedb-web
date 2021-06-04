@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { contactFormStyles } from "./contact-styles";
 import { ClassProps } from "../../../common/class-props";
 import clsx from "clsx";
@@ -8,131 +8,126 @@ import { vaticleStyles } from "../../../common/styles/vaticle-styles";
 import { FormControlLabel } from "@material-ui/core";
 import { VaticleCheckbox } from "../../../common/input/checkbox";
 import { VaticleButton } from "../../../common/button/button";
-import { config } from "../../config/config";
 import { urls } from "../../../common/urls";
 import { routes } from "../../router";
 import { Link } from "react-router-dom";
+import { VaticleSnackbar } from "../../../common/snackbar/snackbar";
 
 export const ContactForm: React.FC<ClassProps> = ({className}) => {
     const classes = Object.assign({}, vaticleStyles(), contactFormStyles());
 
-    const [selectedJobFunction, setSelectedJobFunction] = useState("");
-    const [selectedProduct, setSelectedProduct] = useState("");
-    const [selectedDevelopmentStage, setSelectedDevelopmentStage] = useState("");
-    const [selectedAreasOfInterest, setSelectedAreasOfInterest] = useState({
-        training: false,
-        migration: false,
-        deployment: false,
-        licensing: false,
-        modelling: false,
-        customAPI: false,
-        support: false,
-        cloud: false,
-    });
+    const [firstName, setFirstName] = useState("");
+    const [lastName, setLastName] = useState("");
+    const [email, setEmail] = useState("");
+    const [companyName, setCompanyName] = useState("");
+    const [jobFunction, setJobFunction] = useState("");
 
-    const toggleAreaOfInterest = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setSelectedAreasOfInterest({...selectedAreasOfInterest, [event.target.name]: event.target.checked});
+    const helpTopics = ["Products & Services", "Support", "Consulting", "Sales", "Training",
+        "Careers", "PR & Analyst Relations"] as const;
+
+    const [selectedHelpTopics, setSelectedHelpTopics] = useState(helpTopics.reduce(
+        (obj, topic) => ({...obj, [topic]: false}), {}) as {[key in typeof helpTopics[number]]: boolean});
+
+    const toggleHelpTopic = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setSelectedHelpTopics({...selectedHelpTopics, [event.target.name]: event.target.checked});
     };
 
+    const [tellUsMore, setTellUsMore] = useState("");
+    const [confirmationSnackbarOpen, setConfirmationSnackbarOpen] = useState(false);
+    const [errorSnackbarOpen, setErrorSnackbarOpen] = useState(false);
+
     const submit = () => {
-        // TODO: implement this with real data!
-        // fetch(new Request(`https://api.hsforms.com/submissions/v3/integration/submit/4332244/57919d26-b0ed-4837-9b3d-490b5a683a36/`, {
-        //     method: "POST",
-        //     headers: {
-        //         "Accept": "application/json",
-        //         "Content-Type": "application/json",
-        //     },
-        //     body: JSON.stringify({
-        //         "fields": [
-        //             { "name": "firstname", "value": "Jeff" },
-        //             { "name": "lastname", "value": "Test" },
-        //             { "name": "email", "value": "jeff@vaticle.com" },
-        //             { "name": "company", "value": "Vaticle" },
-        //             { "name": "job_function", "value": "software engineer" },
-        //         ],
-        //         "context": {
-        //             "pageUri": window.location.href,
-        //             "pageName": document.getElementsByTagName("title")[0].innerHTML,
-        //         },
-        //     }),
-        // }))
-        //     .then(res => res.json())
-        //     .then(result => console.log(result))
-        //     .catch(err => {
-        //         console.error(err);
-        //         throw err;
-        //     });
+        const supportRequestMultiCheckbox = Object.keys(selectedHelpTopics)
+            .filter(topic => selectedHelpTopics[topic])
+            .map(topic => topic.toLowerCase().replace("&", "and"))
+            .map(formattedTopic => {
+                return {
+                    "name": "support_request__multi_check_box_",
+                    "value": formattedTopic,
+                };
+            });
+
+        fetch(new Request(urls.hubspot.contactForm, {
+            method: "POST",
+            headers: {
+                "Accept": "application/json",
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                "fields": [
+                    { "name": "firstname", "value": firstName },
+                    { "name": "lastname", "value": lastName },
+                    { "name": "email", "value": email },
+                    { "name": "company", "value": companyName },
+                    { "name": "job_function", "value": jobFunction },
+                    { "name": "support_request__full_details_", value: tellUsMore },
+                ].concat(supportRequestMultiCheckbox),
+                "context": {
+                    "pageUri": window.location.href,
+                    "pageName": document.getElementsByTagName("title")[0].innerHTML,
+                },
+            }),
+        }))
+            // TODO: grakn.ai had some further tracking code here
+            .then((res) => {
+                if (res.ok) setConfirmationSnackbarOpen(true);
+                else setErrorSnackbarOpen(true);
+            }).catch((err) => {
+                // TODO: This form submission (and all others) should have consistent and robust error handling
+                console.error(err);
+            });
     };
 
     return (
         <div className={clsx(classes.root, className)}>
             <form className={classes.form}>
                 <div className={classes.formRow}>
-                    <VaticleTextField label="First Name"/>
-                    <VaticleTextField label="Last Name"/>
+                    <VaticleTextField value={firstName} setValue={setFirstName} label="First Name"/>
+                    <VaticleTextField value={lastName} setValue={setLastName} label="Last Name"/>
                 </div>
 
                 <div className={classes.formRow}>
-                    <VaticleTextField label="Email" type="email"/>
-                    <VaticleTextField label="Company"/>
-                </div>
-
-                <div className={classes.formRow}>
-                    <VaticleSelect label="Job function" value={selectedJobFunction} setValue={setSelectedJobFunction} inputName="job-function" inputID="contact-job-function" variant="filled">
-                        <option disabled value="">Job function</option>
-                        <option value="software engineer">Software Engineer</option>
-                        <option value="director">Director / Development Manager</option>
-                        <option value="it operations">IT/Dev Operations</option>
-                        <option value="software architect">Software Architect</option>
-                        <option value="dba">DBA</option>
-                        <option value="product manager">Product / Project Manager</option>
-                        <option value="consultant">Consultant</option>
-                        <option value="tech executive">Technology Executive (CTO, CIO, VP of Eng, etc.)</option>
-                        <option value="business executive">Business Executive (CEO, COO, CMO, etc.)</option>
-                        <option value="business development">Business Development Manager</option>
-                        <option value="academic">Academic (Student, Teacher, Professor)</option>
-                        <option value="other">Other</option>
-                    </VaticleSelect>
-
-                    <VaticleSelect label="Stage of development" value={selectedDevelopmentStage} setValue={setSelectedDevelopmentStage} inputName="development-stage" inputID="contact-development-stage" variant="filled">
-                        <option disabled value="">Stage of development</option>
-                        <option value="discovery">Discovery phase</option>
-                        <option value="installed">Just installed</option>
-                        <option value="development">Development</option>
-                        <option value="testing">Testing and Optimisation</option>
-                        <option value="production"> Live in production</option>
-                    </VaticleSelect>
+                    <VaticleTextField value={email} setValue={setEmail} label="Work Email" type="email"/>
+                    <VaticleTextField value={companyName} setValue={setCompanyName} label="Company Name"/>
                 </div>
 
                 <div className={classes.formRow}>
                     <div className={classes.formCell}>
-                        <VaticleSelect label="Product" value={selectedProduct} setValue={setSelectedProduct} inputName="product" inputID="contact-product" variant="filled">
-                            <option disabled value="">Product</option>
-                            <option value="core">TypeDB Core</option>
-                            <option value="kgms">TypeDB Cluster</option>
-                            <option value="workbase">TypeDB Workbase</option>
-                            <option value="services">Professional Services</option>
+                        <VaticleSelect label="Job function" value={jobFunction} setValue={setJobFunction} inputName="job-function" inputID="contact-job-function" variant="filled">
+                            <option disabled value="">Job function</option>
+                            <FormOption value="Tech Executive (CIO, CTO, VP Engineering, etc.)"/>
+                            <FormOption value="Business Executive (CEO, COO, CMO, etc.)"/>
+                            <FormOption value="Architect"/>
+                            <FormOption value="Business Development / Alliance Manager"/>
+                            <FormOption value="DBA"/>
+                            <FormOption value="Technical Operations"/>
+                            <FormOption value="Director / Development Manager"/>
+                            <FormOption value="Product / Project Manager"/>
+                            <FormOption value="Software Developer / Engineer"/>
+                            <FormOption value="Business Analyst"/>
+                            <FormOption value="Data Scientist"/>
+                            <FormOption value="Academic (Student, Teacher, Professor)"/>
+                            <FormOption value="Other"/>
                         </VaticleSelect>
-                        <div className={classes.areasOfInterest}>
-                            <p className={clsx(classes.mediumText)}>Select all areas you're interested in:</p>
-                            <div className={classes.areasOfInterestLists}>
-                                <div className={classes.areasOfInterestList}>
-                                    <FormControlLabel label="Training" control={<VaticleCheckbox checked={selectedAreasOfInterest.training} onChange={toggleAreaOfInterest} name="training"/>}/>
-                                    <FormControlLabel label="Migration" control={<VaticleCheckbox checked={selectedAreasOfInterest.migration} onChange={toggleAreaOfInterest} name="migration"/>}/>
-                                    <FormControlLabel label="Deployment" control={<VaticleCheckbox checked={selectedAreasOfInterest.deployment} onChange={toggleAreaOfInterest} name="deployment"/>}/>
-                                    <FormControlLabel label="Licensing" control={<VaticleCheckbox checked={selectedAreasOfInterest.licensing} onChange={toggleAreaOfInterest} name="licensing"/>}/>
+
+                        <div className={classes.helpTopics}>
+                            <p className={clsx(classes.mediumText)}>What can we help you with?</p>
+                            <div className={classes.helpTopicsLists}>
+                                <div className={classes.helpTopicsList}>
+                                {helpTopics.slice(0, 4).map(topic => (
+                                    <FormControlLabel classes={{root: classes.formControlLabel}} label={topic} control={<VaticleCheckbox checked={selectedHelpTopics[topic]} onChange={toggleHelpTopic} name={topic}/>}/>
+                                ))}
                                 </div>
-                                <div className={classes.areasOfInterestList}>
-                                    <FormControlLabel label="Modelling" control={<VaticleCheckbox checked={selectedAreasOfInterest.modelling} onChange={toggleAreaOfInterest} name="modelling"/>}/>
-                                    <FormControlLabel label="Custom API" control={<VaticleCheckbox checked={selectedAreasOfInterest.customAPI} onChange={toggleAreaOfInterest} name="customAPI"/>}/>
-                                    <FormControlLabel label="Support" control={<VaticleCheckbox checked={selectedAreasOfInterest.support} onChange={toggleAreaOfInterest} name="support"/>}/>
-                                    <FormControlLabel label="Cloud" control={<VaticleCheckbox checked={selectedAreasOfInterest.cloud} onChange={toggleAreaOfInterest} name="cloud"/>}/>
+                                <div className={classes.helpTopicsList}>
+                                {helpTopics.slice(4).map(topic => (
+                                    <FormControlLabel classes={{root: classes.formControlLabel}} label={topic} control={<VaticleCheckbox checked={selectedHelpTopics[topic]} onChange={toggleHelpTopic} name={topic}/>}/>
+                                ))}
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <VaticleTextField label="Tell us how we can help you" multiline/>
+                    <VaticleTextField value={tellUsMore} setValue={setTellUsMore} label="Tell us more about how we can help" multiline/>
                 </div>
 
                 <div className={clsx(classes.mainActionList, classes.contentMargin)}>
@@ -141,6 +136,15 @@ export const ContactForm: React.FC<ClassProps> = ({className}) => {
 
                 <aside className={clsx(classes.smallText, classes.buttonCaption)}>By submitting your personal data, you consent to emails from Vaticle. See our <Link to={routes.privacyPolicy}>Privacy Policy</Link>.</aside>
             </form>
+
+            <VaticleSnackbar variant="success" message="Your message has been sent." open={confirmationSnackbarOpen} setOpen={setConfirmationSnackbarOpen}/>
+            <VaticleSnackbar variant="error" message="Your message failed to send, please try again later." open={errorSnackbarOpen} setOpen={setErrorSnackbarOpen}/>
         </div>
     );
 }
+
+interface FormOptionProps {
+    value: string;
+}
+
+const FormOption: React.FC<FormOptionProps> = ({value}) => <option value={value}>{value}</option>;

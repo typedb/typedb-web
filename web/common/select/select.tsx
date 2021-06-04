@@ -8,7 +8,7 @@ import { ClassProps } from "../class-props";
 interface VaticleSelectProps extends ClassProps {
     label: string;
     value: any;
-    setValue: (value: any) => void;
+    setValue: (value: string) => void;
     inputName: string;
     inputID: string;
     variant: "outlined" | "filled";
@@ -22,7 +22,7 @@ export const VaticleSelect: React.FC<VaticleSelectProps> = ({children, className
     // TODO: Clicks seem buggy on desktop - maybe this would work better with 'native' only set on mobile?
     return (
         <FormControl variant="outlined" className={className}>
-            <Select native label={label} value={value} onChange={(e) => setValue(e.target.value)}
+            <Select native label={label} value={value} onChange={(e) => setValue(e.target.value as string)}
                     className={classes.select} input={inputElement} inputProps={{ name: inputName, id: inputID }}
                     IconComponent={() => <ExpandMoreIcon style={{fontSize: 16, fill: "#FFF", position: "absolute", right: 10, pointerEvents: "none"}}/>}>
                 {children}

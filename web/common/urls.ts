@@ -33,4 +33,8 @@ export const urls = {
         facebook: "https://www.facebook.com/VaticleHQ/",
         linkedIn: "https://www.linkedin.com/company/vaticle/",
     },
+
+    hubspot: {
+        contactForm: "https://api.hsforms.com/submissions/v3/integration/submit/4332244/57919d26-b0ed-4837-9b3d-490b5a683a36/",
+    },
 };
