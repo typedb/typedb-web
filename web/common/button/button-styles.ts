@@ -35,6 +35,15 @@ export const buttonStyles = makeStyles({
         backgroundColor: (props: StyleProps) => `${buttonPalette[props.type].disabledBackground} !important`,
     },
 
+    rootContainer: {
+        position: "relative",
+        display: "inline-flex",
+
+        "& > *": {
+            flex: 1,
+        },
+    },
+
     root: {
         height: 40,
         border: (props: StyleProps) => `1px solid ${buttonPalette[props.type].border}`,
@@ -73,5 +82,28 @@ export const githubButtonStyles = makeStyles({
     root: {
         color: '#FFF !important',
         fontSize: 36,
+    },
+});
+
+export const comingSoonPopupStyles = makeStyles({
+    root: {
+        position: "absolute",
+        display: "none",
+        top: -30,
+        left: 0,
+        right: 0,
+        margin: "0 auto",
+        borderRadius: 5,
+        width: 120,
+        height: 22,
+        lineHeight: "22px",
+        textAlign: "center",
+        fontSize: 14,
+        backgroundColor: vaticleTheme.palette.green["300"],
+        color: vaticleTheme.palette.purple["700"],
+    },
+
+    visible: {
+        display: "block !important",
     },
 });
