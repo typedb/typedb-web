@@ -271,6 +271,10 @@ export const pageFooterStyles = makeStyles({
 
     subscribe: {
         flex: 1,
+    },
+
+    subscribeForm: {
+        width: "100%",
         display: "flex",
         alignItems: "center",
 

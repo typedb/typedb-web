@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { pageFooterStyles } from "./layout-styles";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faDiscord, faFacebookSquare, faGithub, faLinkedin, faTwitter, IconDefinition } from "@fortawesome/free-brands-svg-icons";
@@ -9,9 +9,42 @@ import { vaticleStyles } from "../styles/vaticle-styles";
 import { urls } from "../urls";
 import { Link } from "react-router-dom";
 import { routes } from '../../pages/router';
+import { VaticleSnackbar } from "../snackbar/snackbar";
 
 export const PageFooter: React.FC = () => {
     const classes = Object.assign({}, vaticleStyles(), pageFooterStyles());
+
+    const [newsletterEmail, setNewsletterEmail] = useState("");
+    const [subscribeSuccessSnackbarOpen, setSubscribeSuccessSnackbarOpen] = useState(false);
+    const [subscribeErrorSnackbarOpen, setSubscribeErrorSnackbarOpen] = useState(false);
+
+    // TODO: This code was copied from ContactForm, we should extract it
+    const subscribe = () => {
+        const form = document.getElementById("newsletter-form") as HTMLFormElement;
+        const isValid = form.reportValidity();
+        if (!isValid) return;
+
+        fetch(new Request(urls.hubspot.newsletterForm, {
+            method: "POST",
+            headers: {
+                "Accept": "application/json",
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                "fields": [{ "name": "email", "value": newsletterEmail }],
+                "context": {
+                    "pageUri": window.location.href,
+                    "pageName": document.getElementsByTagName("title")[0].innerHTML,
+                },
+            }),
+        }))
+        .then((res) => {
+            if (res.ok) setSubscribeSuccessSnackbarOpen(true);
+            else setSubscribeErrorSnackbarOpen(true);
+        }).catch((err) => {
+            console.error(err);
+        });
+    };
 
     return (
         <footer className={classes.root}>
@@ -34,13 +67,16 @@ export const PageFooter: React.FC = () => {
                         </div>
 
                         <div className={classes.subscribe}>
-                            <p className={classes.personalDataNotice}>
-                                By submitting your personal data, you consent to emails from Vaticle. See our <Link to={routes.privacyPolicy}>Privacy Policy</Link>.
-                            </p>
-                            <div className={classes.subscribeActionBlock}>
-                                <input type="email" placeholder="Email address" className={classes.subscribeEmail}/>
-                                <VaticleButton size="small" type="primary" className={classes.subscribeButton}>Subscribe</VaticleButton>
-                            </div>
+                            <form id="newsletter-form" className={classes.subscribeForm}>
+                                <p className={classes.personalDataNotice}>
+                                    By submitting your personal data, you consent to emails from Vaticle. See our <Link to={routes.privacyPolicy}>Privacy Policy</Link>.
+                                </p>
+                                <div className={classes.subscribeActionBlock}>
+                                    <input type="email" placeholder="Email address" className={classes.subscribeEmail}
+                                           value={newsletterEmail} onChange={(e) => setNewsletterEmail(e.target.value)} required/>
+                                    <VaticleButton size="small" type="primary" className={classes.subscribeButton} onClick={subscribe}>Subscribe</VaticleButton>
+                                </div>
+                            </form>
                         </div>
                     </div>
 
@@ -89,6 +125,9 @@ export const PageFooter: React.FC = () => {
                     </nav>
                 </section>
             </div>
+
+            <VaticleSnackbar variant="success" message="Your email has been signed up to our newsletter." open={subscribeSuccessSnackbarOpen} setOpen={setSubscribeSuccessSnackbarOpen}/>
+            <VaticleSnackbar variant="error" message="Failed to process signup, please try again later." open={subscribeErrorSnackbarOpen} setOpen={setSubscribeErrorSnackbarOpen}/>
         </footer>
     );
 };
