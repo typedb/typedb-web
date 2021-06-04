@@ -88,7 +88,7 @@ const Sitemap: React.FC = () => (
         {/*<HeaderMenuItem>Developer</HeaderMenuItem>*/}
         {/*<HeaderMenuItem>Conference</HeaderMenuItem>*/}
         {/*<HeaderMenuItem>Community</HeaderMenuItem>*/}
-        {/*<HeaderMenuItem>Blog</HeaderMenuItem>*/}
+        <HeaderMenuItem href={urls.blog}>Blog</HeaderMenuItem>
     </>
 );
 

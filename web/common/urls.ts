@@ -5,7 +5,7 @@ export const urls = {
     legacySite: "https://grakn.ai",
     support: "https://support.grakn.ai",
     forum: "https://forum.vaticle.com",
-    blog: "https://blog.grakn.ai/?__hstc=146951137.435761e660f3decdcd676be2f619bfdd.1610018211811.1621937414072.1621950449351.33&__hssc=146951137.4.1621950449351&__hsfp=828018349",
+    blog: "https://medium.com/vaticle",
     stackOverflow: "https://stackoverflow.com/questions/tagged/vaticle-typedb%20vaticle-typeql?sort=Newest&edited=true",
     officeLocation: "https://goo.gl/maps/bNN99QajkdD8THb7A",
 
