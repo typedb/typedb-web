@@ -10,6 +10,7 @@ import { urls } from "../urls";
 import { Link } from "react-router-dom";
 import { routes } from '../../pages/router';
 import { VaticleSnackbar } from "../snackbar/snackbar";
+import { ContactFormDialog } from "../../pages/common/contact/contact-form-dialog";
 
 export const PageFooter: React.FC = () => {
     const classes = Object.assign({}, vaticleStyles(), pageFooterStyles());
@@ -17,6 +18,7 @@ export const PageFooter: React.FC = () => {
     const [newsletterEmail, setNewsletterEmail] = useState("");
     const [subscribeSuccessSnackbarOpen, setSubscribeSuccessSnackbarOpen] = useState(false);
     const [subscribeErrorSnackbarOpen, setSubscribeErrorSnackbarOpen] = useState(false);
+    const [contactFormDialogOpen, setContactFormDialogOpen] = useState(false);
 
     // TODO: This code was copied from ContactForm, we should extract it
     const subscribe = () => {
@@ -90,7 +92,7 @@ export const PageFooter: React.FC = () => {
                             <ul className={classes.linkList}>
                                 <ContactDetail href={urls.github.home} target="_blank" icon={faGithub}>Vaticle on GitHub</ContactDetail>
                                 <ContactDetail href={urls.social.discord} target="_blank" icon={faDiscord}>Vaticle on Discord</ContactDetail>
-                                <ContactDetail icon={faPhoneAlt}>Get in touch</ContactDetail>
+                                <ContactDetail icon={faPhoneAlt} onClick={() => setContactFormDialogOpen(true)}>Get in touch</ContactDetail>
                                 <ContactDetail href={urls.officeLocation} target="_blank" icon={faMapMarkerAlt} type="address" classes={{anchor: classes.linkTwoLine}}>
                                     3rd floor, East, 47-50 Margaret St,
                                     London W1W 8SE, UK
@@ -126,6 +128,8 @@ export const PageFooter: React.FC = () => {
                 </section>
             </div>
 
+            <ContactFormDialog open={contactFormDialogOpen} setOpen={setContactFormDialogOpen}/>
+
             <VaticleSnackbar variant="success" message="Your email has been signed up to our newsletter." open={subscribeSuccessSnackbarOpen} setOpen={setSubscribeSuccessSnackbarOpen}/>
             <VaticleSnackbar variant="error" message="Failed to process signup, please try again later." open={subscribeErrorSnackbarOpen} setOpen={setSubscribeErrorSnackbarOpen}/>
         </footer>
@@ -136,6 +140,7 @@ interface FooterLinkProps {
     href?: string;
     to?: string;
     target?: string;
+    onClick?: () => void;
 }
 
 interface ContactDetailProps extends FooterLinkProps {
@@ -144,12 +149,12 @@ interface ContactDetailProps extends FooterLinkProps {
     classes?: Partial<{ anchor: string }>;
 }
 
-const ContactDetail: React.FC<ContactDetailProps> = ({children, href, target, icon, type, classes}) => {
+const ContactDetail: React.FC<ContactDetailProps> = ({children, href, target, icon, type, onClick, classes}) => {
     const ownClasses = Object.assign({}, vaticleStyles(), pageFooterStyles());
 
     return (
         <li>
-            <a href={href} target={target} className={clsx(ownClasses.contactLink, classes?.anchor)}>
+            <a href={href} target={target} className={clsx(ownClasses.contactLink, classes?.anchor)} onClick={onClick}>
                 {icon &&
                 <span className={ownClasses.linkIconContainer}>
                     <FontAwesomeIcon className={ownClasses.linkIcon} icon={icon} />

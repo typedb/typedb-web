@@ -3,9 +3,9 @@ import { vaticleTheme } from "../../../common/styles/theme";
 
 export const contactFormStyles = makeStyles({
     root: {
-        marginLeft: 40,
-        marginRight: 40,
         backgroundColor: vaticleTheme.palette.purple["600"],
+        color: "#FFF",
+        textAlign: "center",
         padding: "80px 100px",
 
         "@media(max-width: 1199px)": {
@@ -30,6 +30,10 @@ export const contactFormStyles = makeStyles({
         display: "flex",
         flexDirection: "column",
 
+        "@media(min-width: 1200px)": {
+            width: 880,
+        },
+
         "@media(max-width: 767px)": {
             alignItems: "center",
         },
@@ -42,6 +46,12 @@ export const contactFormStyles = makeStyles({
 
         "&:not(:first-child)": {
             marginTop: 30,
+        },
+
+        "@media (min-width: 768px) and (max-width: 1199px)": {
+            "& > *:not(:first-child)": {
+                marginLeft: 30,
+            },
         },
 
         "& > *": {
@@ -57,7 +67,7 @@ export const contactFormStyles = makeStyles({
         },
 
         "@media(max-width: 767px)": {
-            display: "block",
+            flexDirection: "column",
 
             "& > *:not(:first-child)": {
                 marginTop: 30,

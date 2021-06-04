@@ -2,6 +2,12 @@ import { makeStyles } from '@material-ui/core/styles';
 import { vaticleTheme } from "../../common/styles/theme";
 
 export const downloadPageStyles = makeStyles({
+    contactFormContainer: {
+        "@media(min-width: 1200px)": {
+            marginLeft: 40,
+            marginRight: 40,
+        },
+    },
 });
 
 const tabGroupBorderRadius = 11;

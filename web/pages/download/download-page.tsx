@@ -22,7 +22,9 @@ export const DownloadPage: React.FC = () => {
                     Let us know how we can help you and we'll help you get up to speed.
                 </p>
 
-                <ContactForm className={classes.subsectionMargin}/>
+                <div className={classes.contactFormContainer}>
+                    <ContactForm className={classes.subsectionMargin}/>
+                </div>
             </section>
         </DefaultLayout>
     );

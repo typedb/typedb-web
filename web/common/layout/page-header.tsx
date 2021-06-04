@@ -12,6 +12,7 @@ import { HamburgerCollapse } from "react-animated-burgers/lib";
 import { vaticleStyles } from "../styles/vaticle-styles";
 import { urls } from "../urls";
 import { routes } from "../../pages/router";
+import { ContactFormDialog } from "../../pages/common/contact/contact-form-dialog";
 
 export const PageHeader: React.FC = () => {
     const classes = Object.assign({}, vaticleStyles(), pageHeaderStyles());
@@ -95,15 +96,19 @@ const Sitemap: React.FC = () => (
 const ExternalLinks: React.FC = () => {
     const classes = pageHeaderStyles();
 
+    const [contactFormDialogOpen, setContactFormDialogOpen] = useState(false);
+
     return (
         <>
-            <ExternalLink>Contact</ExternalLink>
+            <ExternalLink onClick={() => setContactFormDialogOpen(true)}>Contact</ExternalLink>
             <ExternalLink href={urls.support} target="_blank">Support</ExternalLink>
             <VaticleButton size="small" type="secondary" to={routes.download}
                            className={clsx(classes.toolbarItem, classes.externalLinksDownload)}>Download</VaticleButton>
             <div className={classes.externalLinksGithub}>
                 <GithubButton/>
             </div>
+
+            <ContactFormDialog open={contactFormDialogOpen} setOpen={setContactFormDialogOpen}/>
         </>
     );
 };
