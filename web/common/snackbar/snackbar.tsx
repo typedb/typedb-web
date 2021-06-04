@@ -19,11 +19,14 @@ export const VaticleSnackbar: React.FC<VaticleSnackbarProps> = ({variant, messag
     const handleClose = () => setOpen(false);
 
     return (
-        <Snackbar anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }} open={open} autoHideDuration={6000}
-            onClose={handleClose} classes={{root: clsx(classes.root, variant === "success" && classes.success, variant === "error" && classes.error)}}
+        <Snackbar anchorOrigin={{ vertical: 'top', horizontal: 'right' }} open={open} autoHideDuration={6000}
+            onClose={handleClose} classes={{
+                root: clsx(classes.root, variant === "success" && classes.success, variant === "error" && classes.error),
+                anchorOriginTopRight: classes.topRight,
+            }}
             action={
                 <>
-                    <p><span className={classes.statusIcon}>{variant === "success" ? "✓" : "⚠"}</span>{message}</p>
+                    <p><span className={classes.status}>{variant === "success" ? "Success: " : "Error: "}</span>{message}</p>
                     <div className={classes.filler}/>
                     <IconButton size="small" aria-label="close" color="inherit" onClick={handleClose} className={classes.close}>
                         <CloseIcon fontSize="small" />

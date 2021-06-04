@@ -5,7 +5,7 @@ export const snackbarStyles = makeStyles({
     root: {
         "& > *": {
             color: vaticleTheme.palette.purple["700"],
-            fontWeight: 600,
+            fontWeight: 400,
         },
 
         "& .MuiSnackbarContent-action": {
@@ -13,6 +13,10 @@ export const snackbarStyles = makeStyles({
             marginRight: 0,
             paddingLeft: 0,
         },
+    },
+
+    topRight: {
+        marginTop: 80,
     },
 
     success: {
@@ -27,8 +31,8 @@ export const snackbarStyles = makeStyles({
         },
     },
 
-    statusIcon: {
-        marginRight: ".75em",
+    status: {
+        fontWeight: 600,
     },
 
     close: {

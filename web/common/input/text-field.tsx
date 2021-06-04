@@ -8,13 +8,14 @@ interface VaticleTextFieldProps {
     label: string;
     type?: string;
     multiline?: boolean;
+    required?: boolean;
 }
 
-export const VaticleTextField: React.FC<VaticleTextFieldProps> = ({value, setValue, label, type, multiline}) => {
+export const VaticleTextField: React.FC<VaticleTextFieldProps> = ({value, setValue, label, type, multiline, required}) => {
     const classes = textFieldStyles();
 
     return <TextField label={label} variant="outlined" type={type} multiline={multiline} rows={10} value={value}
-                      classes={{root: classes.textField}} onChange={(e) => setValue(e.target.value)}
+                      classes={{root: classes.textField}} onChange={(e) => setValue(e.target.value)} required={required}
                       InputProps={{classes: {multiline: classes.inputMultiline, focused: classes.inputFocused}}}
                       InputLabelProps={{classes: {shrink: classes.inputLabelShrink, focused: classes.inputLabelFocused, outlined: classes.inputLabelOutlined}}}/>
 }

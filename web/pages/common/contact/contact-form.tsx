@@ -37,6 +37,10 @@ export const ContactForm: React.FC<ClassProps> = ({className}) => {
     const [errorSnackbarOpen, setErrorSnackbarOpen] = useState(false);
 
     const submit = () => {
+        const form = document.getElementById("contact-form") as HTMLFormElement;
+        const isValid = form.reportValidity();
+        if (!isValid) return;
+
         const supportRequestMultiCheckbox = Object.keys(selectedHelpTopics)
             .filter(topic => selectedHelpTopics[topic])
             .map(topic => topic.toLowerCase().replace("&", "and"))
@@ -80,15 +84,15 @@ export const ContactForm: React.FC<ClassProps> = ({className}) => {
 
     return (
         <div className={clsx(classes.root, className)}>
-            <form className={classes.form}>
+            <form className={classes.form} id="contact-form">
                 <div className={classes.formRow}>
-                    <VaticleTextField value={firstName} setValue={setFirstName} label="First Name"/>
-                    <VaticleTextField value={lastName} setValue={setLastName} label="Last Name"/>
+                    <VaticleTextField value={firstName} setValue={setFirstName} label="First Name" required/>
+                    <VaticleTextField value={lastName} setValue={setLastName} label="Last Name" required/>
                 </div>
 
                 <div className={classes.formRow}>
-                    <VaticleTextField value={email} setValue={setEmail} label="Work Email" type="email"/>
-                    <VaticleTextField value={companyName} setValue={setCompanyName} label="Company Name"/>
+                    <VaticleTextField value={email} setValue={setEmail} label="Work Email" type="email" required/>
+                    <VaticleTextField value={companyName} setValue={setCompanyName} label="Company Name" required/>
                 </div>
 
                 <div className={classes.formRow}>
