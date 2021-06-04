@@ -17,9 +17,9 @@ export const DownloadPage: React.FC = () => {
             </section>
 
             <section className={classes.sectionMargin}>
-                <h1 className={classes.h1}>Get your TypeDB!</h1>
+                <h1 className={classes.h1}>Get in touch about TypeDB</h1>
                 <p className={clsx(classes.largeText)}>
-                    Get your TypeDB commercial license and we'll help you quickly get up to speed.
+                    Let us know how we can help you and we'll help you get up to speed.
                 </p>
 
                 <ContactForm className={classes.subsectionMargin}/>
