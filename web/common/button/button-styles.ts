@@ -1,7 +1,6 @@
 import { makeStyles } from '@material-ui/core/styles';
 import { BaseButtonFinalProps } from './button';
 import { vaticleTheme } from "../styles/theme";
-import Color from "color";
 
 type StyleProps = Pick<BaseButtonFinalProps, 'size' | 'type'>;
 
@@ -35,15 +34,6 @@ export const buttonStyles = makeStyles({
         backgroundColor: (props: StyleProps) => `${buttonPalette[props.type].disabledBackground} !important`,
     },
 
-    rootContainer: {
-        position: "relative",
-        display: "inline-flex",
-
-        "& > *": {
-            flex: 1,
-        },
-    },
-
     root: {
         height: 40,
         border: (props: StyleProps) => `1px solid ${buttonPalette[props.type].border}`,
@@ -57,6 +47,7 @@ export const buttonStyles = makeStyles({
         fontSize: (props: StyleProps) => vaticleTheme.typography.fontSize[props.size],
         fontWeight: 600,
         lineHeight: '24px',
+        position: "relative",
 
         '& p, & svg': {
             lineHeight: '14px',

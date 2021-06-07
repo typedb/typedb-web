@@ -48,27 +48,23 @@ export const VaticleButton: React.FC<BaseButtonProps> = props => {
 
     if (to) {
         return (
-            <div className={classes.rootContainer}>
+            <Link to={to} className={clsx(classes.root, disabled && classes.disable, className)}>
                 <ComingSoonPopup visible={comingSoonPopupVisible}/>
-                <Link to={to} className={clsx(classes.root, disabled && classes.disable, className)}>
-                    <div className={classes.childDiv} onClick={comingSoon && showComingSoonPopup} onMouseOver={comingSoon && showComingSoonPopup}>
-                        {children}
-                    </div>
-                </Link>
-            </div>
+                <div className={classes.childDiv} onClick={comingSoon && showComingSoonPopup} onMouseOver={comingSoon && showComingSoonPopup}>
+                    {children}
+                </div>
+            </Link>
         )
     }
 
     return (
-        <div className={classes.rootContainer}>
+        <a className={clsx(classes.root, disabled && classes.disable, className)} href={href} onClick={onClick}
+           target={target} download={download} {...htmlAttrs}>
             <ComingSoonPopup visible={comingSoonPopupVisible}/>
-            <a className={clsx(classes.root, disabled && classes.disable, className)} href={href} onClick={onClick}
-               target={target} download={download} {...htmlAttrs}>
-                <div className={classes.childDiv} onClick={comingSoon && showComingSoonPopup} onMouseOver={comingSoon && showComingSoonPopup}>
-                    {children}
-                </div>
-            </a>
-        </div>
+            <div className={classes.childDiv} onClick={comingSoon && showComingSoonPopup} onMouseOver={comingSoon && showComingSoonPopup}>
+                {children}
+            </div>
+        </a>
     );
 };
 

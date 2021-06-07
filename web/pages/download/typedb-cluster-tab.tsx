@@ -34,8 +34,8 @@ const CloudPane: React.FC = () => {
 
             <div className={classes.filler}/>
 
-            <div className={clsx(classes.comparisonBlockContent, classes.mainActionList)}>
-                <VaticleButton size="small" type="secondary" disabled={true} comingSoon={true} className={classes.contentMargin}>
+            <div className={clsx(classes.comparisonBlockContent, classes.mainActionList, classes.contentMargin)}>
+                <VaticleButton size="small" type="secondary" disabled comingSoon>
                     Coming soon!
                 </VaticleButton>
             </div>
