@@ -92,8 +92,11 @@ const ComingSoonPopup: React.FC<ComingSoonPopupProps> = ({visible}) => {
     const classes = Object.assign({}, vaticleStyles(), comingSoonPopupStyles());
 
     return (
-        <div className={clsx(classes.root, visible && classes.visible)}>
-            Coming soon!
-        </div>
+        <>
+            <div className={clsx(classes.all, classes.textBox, visible && classes.visible)}>
+                Coming soon!
+            </div>
+            <div className={clsx(classes.all, classes.arrowhead, visible && classes.visible)}/>
+        </>
     );
 };

@@ -77,23 +77,35 @@ export const githubButtonStyles = makeStyles({
 });
 
 export const comingSoonPopupStyles = makeStyles({
-    root: {
+    all: {
         position: "absolute",
         opacity: 0,
         pointerEvents: "none",
-        top: -30,
         left: 0,
         right: 0,
         margin: "0 auto",
+        backgroundColor: vaticleTheme.palette.green["300"],
+        transition: "opacity 100ms ease",
+    },
+
+    textBox: {
+        top: -31,
+        zIndex: 50,
         borderRadius: 5,
         width: 120,
         height: 22,
         lineHeight: "22px",
         textAlign: "center",
         fontSize: 14,
-        backgroundColor: vaticleTheme.palette.green["300"],
         color: vaticleTheme.palette.purple["700"],
-        transition: "opacity 100ms ease",
+    },
+
+    arrowhead: {
+        top: -12,
+        width: 6,
+        height: 6,
+        zIndex: 25,
+        transform: "rotate(45deg)",
     },
 
     visible: {
