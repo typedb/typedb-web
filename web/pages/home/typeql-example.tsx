@@ -24,9 +24,9 @@ export const TypeQLExample: React.FC<TypeQLExampleProps> = ({className, title, b
             <div className={visualiserPosition === "left" ? classes.diagramCaptionSpacingLeft : classes.diagramCaptionSpacingRight}>
                 <h2 className={classes.h2}>{title}</h2>
                 <p className={clsx(classes.mediumText, classes.textMarginLarge)}>{body}</p>
-                <VaticleButton size="small" type="secondary" disabled={true} comingSoon={true} className={clsx(classes.learnMore, classes.showDesktop, classes.contentMargin)}>Learn More</VaticleButton>
+                <VaticleButton size="small" type="secondary" disabled comingSoon className={clsx(classes.learnMore, classes.showDesktop, classes.contentMargin)}>Learn More</VaticleButton>
             </div>
-            <VaticleButton size="small" type="secondary" disabled={true} comingSoon={true} className={clsx(classes.learnMore, classes.hideDesktop, classes.contentMargin)}>Learn More</VaticleButton>
+            <VaticleButton size="small" type="secondary" disabled comingSoon className={clsx(classes.learnMore, classes.hideDesktop, classes.contentMargin)}>Learn More</VaticleButton>
         </div>
     );
 }

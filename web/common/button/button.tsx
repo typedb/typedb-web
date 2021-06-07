@@ -39,18 +39,33 @@ export const VaticleButton: React.FC<BaseButtonProps> = props => {
 
     const [comingSoonPopupVisible, setComingSoonPopupVisible] = useState(false);
 
-    const showComingSoonPopup = () => {
+    const brieflyShowComingSoonPopup = () => {
         setComingSoonPopupVisible(true);
         setTimeout(() => {
             setComingSoonPopupVisible(false);
         }, 2000);
     };
 
+    const showComingSoonPopup = () => {
+        setComingSoonPopupVisible(true);
+    };
+
+    const hideComingSoonPopup = () => {
+        setComingSoonPopupVisible(false);
+    };
+
+    const onAnchorClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+        if (onClick) onClick(e);
+        if (comingSoon) brieflyShowComingSoonPopup();
+    };
+
     if (to) {
         return (
-            <Link to={to} className={clsx(classes.root, disabled && classes.disable, className)}>
+            <Link to={to} className={clsx(classes.root, disabled && classes.disable, className)}
+                  onClick={comingSoon && brieflyShowComingSoonPopup}
+                  onMouseEnter={comingSoon && showComingSoonPopup} onMouseLeave={comingSoon && hideComingSoonPopup}>
                 <ComingSoonPopup visible={comingSoonPopupVisible}/>
-                <div className={classes.childDiv} onClick={comingSoon && showComingSoonPopup} onMouseOver={comingSoon && showComingSoonPopup}>
+                <div className={classes.childDiv}>
                     {children}
                 </div>
             </Link>
@@ -58,10 +73,11 @@ export const VaticleButton: React.FC<BaseButtonProps> = props => {
     }
 
     return (
-        <a className={clsx(classes.root, disabled && classes.disable, className)} href={href} onClick={onClick}
-           target={target} download={download} {...htmlAttrs}>
+        <a className={clsx(classes.root, disabled && classes.disable, className)} href={href} onClick={onAnchorClick}
+           target={target} download={download} {...htmlAttrs}
+           onMouseEnter={comingSoon && showComingSoonPopup} onMouseLeave={comingSoon && hideComingSoonPopup}>
             <ComingSoonPopup visible={comingSoonPopupVisible}/>
-            <div className={classes.childDiv} onClick={comingSoon && showComingSoonPopup} onMouseOver={comingSoon && showComingSoonPopup}>
+            <div className={classes.childDiv}>
                 {children}
             </div>
         </a>

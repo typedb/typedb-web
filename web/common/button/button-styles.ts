@@ -79,7 +79,8 @@ export const githubButtonStyles = makeStyles({
 export const comingSoonPopupStyles = makeStyles({
     root: {
         position: "absolute",
-        display: "none",
+        opacity: 0,
+        pointerEvents: "none",
         top: -30,
         left: 0,
         right: 0,
@@ -92,9 +93,10 @@ export const comingSoonPopupStyles = makeStyles({
         fontSize: 14,
         backgroundColor: vaticleTheme.palette.green["300"],
         color: vaticleTheme.palette.purple["700"],
+        transition: "opacity 100ms ease",
     },
 
     visible: {
-        display: "block !important",
+        opacity: "1 !important",
     },
 });
