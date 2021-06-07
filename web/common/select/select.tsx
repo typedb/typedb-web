@@ -5,16 +5,16 @@ import React from "react";
 import { selectStyles } from "./select-styles";
 import { ClassProps } from "../class-props";
 
-interface VaticleSelectProps extends ClassProps {
+interface VaticleSelectProps<TItem extends string | number> extends ClassProps {
     label: string;
-    value: any;
-    setValue: (value: string) => void;
+    value: TItem;
+    setValue: (value: TItem) => void;
     inputName: string;
     inputID: string;
     variant: "outlined" | "filled";
 }
 
-export const VaticleSelect: React.FC<VaticleSelectProps> = ({children, className, label, value, setValue, inputName, inputID, variant}) => {
+export function VaticleSelect<TItem extends string | number>({children, className, label, value, setValue, inputName, inputID, variant}: React.PropsWithChildren<VaticleSelectProps<TItem>>): JSX.Element {
     const classes = selectStyles();
 
     const inputElement = React.createElement(vaticleSelectInput(variant));
@@ -22,7 +22,7 @@ export const VaticleSelect: React.FC<VaticleSelectProps> = ({children, className
     // TODO: Clicks seem buggy on desktop - maybe this would work better with 'native' only set on mobile?
     return (
         <FormControl variant="outlined" className={className}>
-            <Select native label={label} value={value} onChange={(e) => setValue(e.target.value as string)}
+            <Select native label={label} value={value} onChange={(e) => setValue(e.target.value as TItem)}
                     className={classes.select} input={inputElement} inputProps={{ name: inputName, id: inputID }}
                     IconComponent={() => <ExpandMoreIcon style={{fontSize: 16, fill: "#FFF", position: "absolute", right: 10, pointerEvents: "none"}}/>}>
                 {children}
