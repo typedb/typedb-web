@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-bazel build //...
+bazel build //web/pages:pages-dev
 mkdir -p local
 cp bazel-bin/web/pages-dev.tar.gz local/pages-dev.tar.gz
 cd local
