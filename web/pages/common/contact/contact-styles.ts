@@ -112,7 +112,7 @@ export const contactFormStyles = makeStyles({
     },
 
     formControlLabel: {
-        marginRight: 0,
+        marginRight: "0 !important",
         textAlign: "start",
     },
 });
