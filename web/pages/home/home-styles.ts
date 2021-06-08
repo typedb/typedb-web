@@ -257,7 +257,7 @@ export const homePageIndustryStyles = makeStyles({
         },
 
         "@media(max-width: 479px)": {
-            height: 224,
+            height: 252,
         },
     },
 
