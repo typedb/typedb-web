@@ -29,7 +29,7 @@ interface Downloads {
 
 type NativeDownloads = {[version in TypeDBVersion]: string}
 
-type TypeDBVersion = "2.1.2" | "2.1.1" | "2.0.2" | "2.0.1" | "2.0.0";
+type TypeDBVersion = "2.1.3" | "2.1.1" | "2.0.2" | "2.0.1" | "2.0.0";
 
 const OpenSourcePane: React.FC = () => {
     const classes = Object.assign({}, vaticleStyles(), downloadPageProductStyles());
@@ -41,21 +41,21 @@ const OpenSourcePane: React.FC = () => {
 
     const downloads: Downloads = {
         "Linux": {
-            "2.1.2": "https://github.com/vaticle/typedb/releases/download/2.1.2/typedb-all-linux-2.1.2.tar.gz",
+            "2.1.3": "https://github.com/vaticle/typedb/releases/download/2.1.3/typedb-all-linux-2.1.3.tar.gz",
             "2.1.1": "https://github.com/vaticle/typedb/releases/download/2.1.1/typedb-all-linux-2.1.1.tar.gz",
             "2.0.2": "https://github.com/vaticle/typedb/releases/download/2.0.2/grakn-core-all-linux-2.0.2.tar.gz",
             "2.0.1": "https://github.com/vaticle/typedb/releases/download/2.0.1/grakn-core-all-linux-2.0.1.tar.gz",
             "2.0.0": "https://github.com/vaticle/typedb/releases/download/2.0.0/grakn-core-all-linux-2.0.0.tar.gz",
         },
         "Mac OS X": {
-            "2.1.2": "https://github.com/vaticle/typedb/releases/download/2.1.2/typedb-all-mac-2.1.2.zip",
+            "2.1.3": "https://github.com/vaticle/typedb/releases/download/2.1.3/typedb-all-mac-2.1.3.zip",
             "2.1.1": "https://github.com/vaticle/typedb/releases/download/2.1.1/typedb-all-mac-2.1.1.zip",
             "2.0.2": "https://github.com/vaticle/typedb/releases/download/2.0.2/grakn-core-all-mac-2.0.2.zip",
             "2.0.1": "https://github.com/vaticle/typedb/releases/download/2.0.1/grakn-core-all-mac-2.0.1.zip",
             "2.0.0": "https://github.com/vaticle/typedb/releases/download/2.0.0/grakn-core-all-mac-2.0.0.zip",
         },
         "Windows": {
-            "2.1.2": "https://github.com/vaticle/typedb/releases/download/2.1.2/typedb-all-windows-2.1.2.zip",
+            "2.1.3": "https://github.com/vaticle/typedb/releases/download/2.1.3/typedb-all-windows-2.1.3.zip",
             "2.1.1": "https://github.com/vaticle/typedb/releases/download/2.1.1/typedb-all-windows-2.1.1.zip",
             "2.0.2": "https://github.com/vaticle/typedb/releases/download/2.0.2/grakn-core-all-windows-2.0.2.zip",
             "2.0.1": "https://github.com/vaticle/typedb/releases/download/2.0.1/grakn-core-all-windows-2.0.1.zip",
@@ -64,8 +64,8 @@ const OpenSourcePane: React.FC = () => {
     };
 
     const [selectedOS, setSelectedOS] = useState<keyof Downloads>("Mac OS X");
-    const [selectedVersion, setSelectedVersion] = useState<TypeDBVersion>("2.1.2");
-    const [downloadURL, setDownloadURL] = useState(downloads["Mac OS X"]["2.1.2"]);
+    const [selectedVersion, setSelectedVersion] = useState<TypeDBVersion>("2.1.3");
+    const [downloadURL, setDownloadURL] = useState(downloads["Mac OS X"]["2.1.3"]);
 
     useEffect(() => {
         setDownloadURL(downloads[selectedOS][selectedVersion]);
@@ -106,7 +106,7 @@ const OpenSourcePane: React.FC = () => {
                     <option value="Windows">Windows</option>
                 </VaticleSelect>
                 <VaticleSelect label="Version" value={selectedVersion} setValue={setSelectedVersion} inputName="version" inputID="typedb-version" variant="outlined">
-                    <option value="2.1.2">2.1.2</option>
+                    <option value="2.1.3">2.1.3</option>
                     <option value="2.1.1">2.1.1</option>
                     <option value="2.0.2">2.0.2</option>
                     <option value="2.0.1">2.0.1</option>
