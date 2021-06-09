@@ -88,13 +88,13 @@ export const PageFooter: React.FC = () => {
                 <section className={classes.subsectionMargin}>
                     <nav className={classes.linksSection}>
                         <div className={classes.contact}>
-                            <h3 className={classes.h3}>Get in Touch</h3>
+                            <h3 className={classes.h3}>Contact</h3>
                             <ul className={classes.linkList}>
                                 <ContactDetail href={urls.github.home} target="_blank" icon={faGithub}>Vaticle on GitHub</ContactDetail>
                                 <ContactDetail href={urls.social.discord} target="_blank" icon={faDiscord}>Vaticle on Discord</ContactDetail>
-                                <ContactDetail icon={faPhoneAlt} onClick={() => setContactFormDialogOpen(true)}>Get in touch</ContactDetail>
+                                <ContactDetail icon={faPhoneAlt} onClick={() => setContactFormDialogOpen(true)}>Get in Touch</ContactDetail>
                                 <ContactDetail href={urls.officeLocation} target="_blank" icon={faMapMarkerAlt} type="address" classes={{anchor: classes.linkTwoLine}}>
-                                    3rd floor, East, 47-50 Margaret St,
+                                    47-50 Margaret St, 3rd floor
                                     London W1W 8SE, UK
                                 </ContactDetail>
                             </ul>
