@@ -20,7 +20,8 @@ export const TypeQLCode: React.FC<TypeQLCodeProps> = ({ code }) => {
                 edges: { right: true },
                 listeners: {
                     move: (event) => {
-                        let width = event.rect.width;
+                        const scale = event.target.getBoundingClientRect().width / event.target.offsetWidth;
+                        let width = event.rect.width / scale;
                         if (width < 110) width = 110;
                         if (width > 600) width = 600;
                         event.target.style.width = `${width}px`;
