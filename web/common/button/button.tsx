@@ -64,7 +64,7 @@ export const VaticleButton: React.FC<BaseButtonProps> = props => {
             <Link to={to} className={clsx(classes.root, disabled && classes.disable, className)}
                   onClick={comingSoon && brieflyShowComingSoonPopup}
                   onMouseEnter={comingSoon && showComingSoonPopup} onMouseLeave={comingSoon && hideComingSoonPopup}>
-                <ComingSoonPopup visible={comingSoonPopupVisible}/>
+                {comingSoon && <ComingSoonPopup visible={comingSoonPopupVisible}/>}
                 <div className={classes.childDiv}>
                     {children}
                 </div>
@@ -76,7 +76,7 @@ export const VaticleButton: React.FC<BaseButtonProps> = props => {
         <a className={clsx(classes.root, disabled && classes.disable, className)} href={href} onClick={onAnchorClick}
            target={target} download={download} {...htmlAttrs}
            onMouseEnter={comingSoon && showComingSoonPopup} onMouseLeave={comingSoon && hideComingSoonPopup}>
-            <ComingSoonPopup visible={comingSoonPopupVisible}/>
+            {comingSoon && <ComingSoonPopup visible={comingSoonPopupVisible}/>}
             <div className={classes.childDiv}>
                 {children}
             </div>
