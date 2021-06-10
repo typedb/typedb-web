@@ -1,9 +1,6 @@
 import { makeStyles } from '@material-ui/core/styles';
 import { vaticleTheme } from "../../common/styles/theme";
 
-const testimonialWidth = 400;
-const testimonialWidthMobile = 360;
-
 // TODO: Break this object down by Component
 export const homePageStyles = makeStyles({
     vaticleAtomContainer: {
@@ -396,6 +393,10 @@ export const homePageClusterStyles = makeStyles({
     },
 });
 
+const testimonialWidth = 400;
+const testimonialWidthMobile = 360;
+const testimonialCount = 14;
+
 export const homePageTestimonialsStyles = makeStyles({
     testimonialsSection: {
         width: "100vw",
@@ -423,21 +424,21 @@ export const homePageTestimonialsStyles = makeStyles({
 
     "@keyframes testimonials": {
         "0%": { left: 0 },
-        "100%": { left: -testimonialWidth * 8 },
+        "100%": { left: -testimonialWidth * testimonialCount },
     },
 
     "@keyframes testimonialsMobile": {
         "0%": { left: 0 },
-        "100%": { left: -testimonialWidthMobile * 8 },
+        "100%": { left: -testimonialWidthMobile * testimonialCount },
     },
 
     testimonialCarousel: {
-        width: testimonialWidth * 24, // item width * (# of items) * 3
+        width: testimonialWidth * testimonialCount * 3,
         height: 416,
-        animation: "$testimonials 96s linear infinite", // (# of items) * 12s
+        animation: `$testimonials ${testimonialCount * 12}s linear infinite`,
 
         "@media(max-width: 767px)": {
-            width: testimonialWidthMobile * 24,
+            width: testimonialWidthMobile * testimonialCount * 3,
             height: 388,
             animationName: "$testimonialsMobile",
         },
@@ -445,8 +446,12 @@ export const homePageTestimonialsStyles = makeStyles({
 
     carouselHalf: {
         float: "left",
-        width: "33.3334%",
+        width: testimonialWidth * testimonialCount,
         height: "100%",
+
+        "@media(max-width: 767px)": {
+            width: testimonialWidthMobile * testimonialCount,
+        },
     },
 
     testimonialContainer: {
@@ -517,14 +522,23 @@ export const homePageTestimonialsStyles = makeStyles({
     },
 
     testimonialPerson: {
-        marginTop: 16,
+        marginTop: 4,
         display: "flex",
+        alignItems: "center",
+
+        "@media(max-width: 767px)": {
+            marginTop: 6,
+        },
     },
 
     testimonialAvatar: {
-        height: 48,
-        width: 48,
+        height: 64,
+        width: 64,
         borderRadius: 5,
+
+        "@media(max-width: 767px)": {
+            marginTop: 2,
+        },
     },
 
     testimonialPersonDetails: {
@@ -540,13 +554,11 @@ export const homePageTestimonialsStyles = makeStyles({
     testimonialPersonJob: {
         fontSize: 16,
         lineHeight: "24px",
-        marginTop: 2,
         fontWeight: 300,
 
         "@media(max-width: 767px)": {
             fontSize: 14,
             lineHeight: "20px",
-            marginTop: 2,
             fontWeight: 400,
         },
     },

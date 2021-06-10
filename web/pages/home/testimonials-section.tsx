@@ -11,6 +11,12 @@ import EnzoMartoglioAvatar from "../assets/images/enzo-martoglio.jpg";
 import MichaelBishopAvatar from "../assets/images/michael-bishop.jpg";
 import RadouaneOudrhiriAvatar from "../assets/images/radouane-oudrhiri.jpg";
 import SamuelPouytAvatar from "../assets/images/samuel-pouyt.jpg";
+import AlexDengAvatar from "../assets/images/alex-deng.jpg";
+import JeanPaulMochetAvatar from "../assets/images/jean-paul-mochet.jpg";
+import KimWagerAvatar from "../assets/images/kim-wager.png";
+import KonradMysliwiecAvatar from "../assets/images/konrad-mysliwiec.jpeg";
+import MichaelDoyleAvatar from "../assets/images/michael-doyle.png";
+import MuhannadAlomariAvatar from "../assets/images/muhannad-alomari.jpg";
 import FlipkartSquareLogo from "../assets/logos/squarewhite/flipkart-square-white.png";
 import BioCortexSquareLogo from "../assets/logos/squarewhite/biocortex-square-white.png";
 import GravrSquareLogo from "../assets/logos/squarewhite/gravr-square-white.png";
@@ -19,6 +25,12 @@ import AlphaVertexSquareLogo from "../assets/logos/squarewhite/alpha-vertex-squa
 import EagleGenomicsSquareLogo from "../assets/logos/squarewhite/eagle-genomics-square-white.png";
 import EuropeanRespiratorySocietySquareLogo from "../assets/logos/squarewhite/european-respiratory-society-square-white.png";
 import InfosysSquareLogo from "../assets/logos/squarewhite/infosys-square-white.png";
+import CapgeminiSquareLogo from "../assets/logos/squarewhite/capgemini-square-white.png";
+import ChinaMerchantsBankSquareLogo from "../assets/logos/squarewhite/china-merchants-bank-square-white.png";
+import OxfordPharmagenesisSquareLogo from "../assets/logos/squarewhite/oxford-pharmagenesis-square-white.png";
+import RAIRHealthSquareLogo from "../assets/logos/squarewhite/rair-health-square-white.png";
+import RocheSquareLogo from "../assets/logos/squarewhite/roche-square-white.png";
+import RollsRoyceSquareLogo from "../assets/logos/squarewhite/rolls-royce-square-white.png";
 import { homePageTestimonialsStyles } from "./home-styles";
 
 interface Testimonial {
@@ -51,6 +63,15 @@ export const TestimonialsSection: React.FC<ClassProps> = ({className}) => {
         body: `TypeDB makes it easy for our robots to operate autonomously in the real world by being the centre of their
         understanding. TypeDB makes it easy to incorporate expert knowledge and advanced reasoning into its knowledge base.`,
     }, {
+        companyName: "Rolls-Royce",
+        companyLogo: RollsRoyceSquareLogo,
+        personName: "Muhannad Alomari",
+        jobTitle: "European Hub AI Lead",
+        avatar: MuhannadAlomariAvatar,
+        body: `We here at Rolls-Royce are steadily moving into the knowledge-graph age; where design and business
+        decisions are being led through data mined from millions of internal reports, accumulated into a deep knowledge
+        graph. TypeDB allows us to move faster to developing this capability for Rolls-Royce.`,
+    }, {
         companyName: "BioCortex",
         companyLogo: BioCortexSquareLogo,
         personName: "Nik Sharma",
@@ -59,6 +80,75 @@ export const TestimonialsSection: React.FC<ClassProps> = ({className}) => {
         body: `For developers, TypeDB is really easy to work with. Its unique and expressive type system enables us to
         spend less time data modelling. We can easily integrate complex biomedical datasets. TypeDB provides us the
         backbone to our therapeutics platform to cure neurodegenerative diseases.`,
+    }, {
+        companyName: "China Merchants Bank",
+        companyLogo: ChinaMerchantsBankSquareLogo,
+        personName: "Alex Deng",
+        jobTitle: "Senior Engineer/Product Owner",
+        avatar: AlexDengAvatar,
+        body: `TypeDB is a unique technology that is so incredibly powerful in its ability to express and model
+        complex data while remaining simple and elegant in its use. We are so pleased with TypeDB, in particular as it
+        saves us from hiring an additional AI scientist to utilise semantic technologies in our projects.`,
+    }, {
+        companyName: "Oxford Pharmagenesis",
+        companyLogo: OxfordPharmagenesisSquareLogo,
+        personName: "Kim Wager",
+        jobTitle: "Scientific Director",
+        avatar: KimWagerAvatar,
+        body: `TypeDB and TypeQL allow us to model the biomedical domain, enabling us to surface insights that are
+        explainable and transparent; key requirements for AI in healthcare. Crucially, the Vaticle team provide more
+        than software, you gain access to a community. This is how the best work gets done – collaboratively.`,
+    }, {
+        companyName: "Capgemini",
+        companyLogo: CapgeminiSquareLogo,
+        personName: "Jean-Paul Mochet",
+        jobTitle: "Chief Enterprise Architect",
+        avatar: JeanPaulMochetAvatar,
+        body: `TypeDB is a powerful framework for data exploration. The way data, attributes and relations can be
+        expressed in a polymorphism manner allows us to build a rich network of multi-levels analysis and open
+        opportunities to query, discover and infer interactions between complex epidemic factors.`,
+    }, {
+        companyName: "Alpha Vertex",
+        companyLogo: AlphaVertexSquareLogo,
+        personName: "Michael Bishop",
+        jobTitle: "Chief Technology Officer",
+        avatar: MichaelBishopAvatar,
+        body: `TypeDB significantly streamlines our knowledge engineering process. TypeDB’s expressive schema allows us
+        to verify the logical consistency of patterns detected by our learning algorithms and improve accuracy.`,
+    }, {
+        companyName: "Roche",
+        companyLogo: RocheSquareLogo,
+        personName: "Konrad Myśliwiec",
+        jobTitle: "Data Science Software Engineer",
+        avatar: KonradMysliwiecAvatar,
+        body: `TypeDB provides a strongly typed database with n-ry relations that enables modelling the world much
+        closer to reality compared to other databases. In addition, its built-in inference engine enables to build next
+        generation AI systems — one of the many reasons to choose TypeDB to model biomedical data.`,
+    }, {
+        companyName: "Infosys",
+        companyLogo: InfosysSquareLogo,
+        personName: "Enzo Martoglio",
+        jobTitle: "AI Architect",
+        avatar: EnzoMartoglioAvatar,
+        body: `No business-centric implementation of AI can avoid having a Knowledge Graph at its core. Vaticle is one
+        of the few companies developing this tool that any AI business solution will require.`,
+    }, {
+        companyName: "RAIR Health",
+        companyLogo: RAIRHealthSquareLogo,
+        personName: "Michael Doyle",
+        jobTitle: "Chief Technology Officer",
+        avatar: MichaelDoyleAvatar,
+        body: `With TypeDB, we spend less time writing code and more time with clinical researchers exploring
+        relationships between genes, drugs and diseases. As one of our core technologies, it elegantly and concisely
+        models knowledge, allowing us to build a single system from our various bioinformatics databases.`,
+    }, {
+        companyName: "Eagle Genomics",
+        companyLogo: EagleGenomicsSquareLogo,
+        personName: "Radouane Oudrhiri",
+        jobTitle: "Chief Technology Officer",
+        avatar: RadouaneOudrhiriAvatar,
+        body: `TypeDB's query language, TypeQL, should be the de facto language for any graph representation because of
+        two things: the semantic expressiveness of the language and the optimisation of query execution.`,
     }, {
         companyName: "Gravr",
         companyLogo: GravrSquareLogo,
@@ -69,31 +159,7 @@ export const TestimonialsSection: React.FC<ClassProps> = ({className}) => {
         represents virtually any domain, and enforces well-formed models and data consistency - which is why we picked
         TypeDB to power Gravr, our general-purpose knowledge app.`,
     }, {
-        companyName: "Alpha Vertex",
-        companyLogo: AlphaVertexSquareLogo,
-        personName: "Michael Bishop",
-        jobTitle: "CTO",
-        avatar: MichaelBishopAvatar,
-        body: `TypeDB significantly streamlines our knowledge engineering process. TypeDB’s expressive schema allows us
-        to verify the logical consistency of patterns detected by our learning algorithms and improve accuracy.`,
-    }, {
-        companyName: "Eagle Genomics",
-        companyLogo: EagleGenomicsSquareLogo,
-        personName: "Radouane Oudrhiri",
-        jobTitle: "CTO",
-        avatar: RadouaneOudrhiriAvatar,
-        body: `TypeDB's query language, TypeQL, should be the de facto language for any graph representation because of
-        two things: the semantic expressiveness of the language and the optimisation of query execution.`,
-    }, {
-        companyName: "Infosys",
-        companyLogo: InfosysSquareLogo,
-        personName: "Enzo Martoglio",
-        jobTitle: "AI Architect",
-        avatar: EnzoMartoglioAvatar,
-        body: `No business-centric implementation of AI can avoid having a Knowledge Graph at its core. Vaticle is one
-        of the few companies developing this tool that any AI business solution will require.`,
-    }, {
-        companyName: "ERS",
+        companyName: "European Respiratory Society",
         companyLogo: EuropeanRespiratorySocietySquareLogo,
         personName: "Samuel Pouyt",
         jobTitle: "Software Architect",
@@ -123,7 +189,8 @@ export const TestimonialsSection: React.FC<ClassProps> = ({className}) => {
                                     <img src={avatar} alt={personName} className={classes.testimonialAvatar}/>
                                     <div className={classes.testimonialPersonDetails}>
                                         <p className={classes.testimonialPersonName}>{personName}</p>
-                                        <p className={classes.testimonialPersonJob}>{jobTitle}, {companyName}</p>
+                                        <p className={classes.testimonialPersonJob}>{jobTitle}</p>
+                                        <p className={classes.testimonialPersonJob}>{companyName}</p>
                                     </div>
                                 </div>
                             </div>
