@@ -5,6 +5,10 @@ import "../common/assets/css/reset.css";
 import "../common/assets/css/base.scss";
 import { installPrismTypeQL } from "../common/typeql/prism-typeql";
 import { VaticleWebApp } from "./app";
+import smoothscroll from "smoothscroll-polyfill";
+import "smoothscroll-anchor-polyfill";
+
+smoothscroll.polyfill();
 
 installPrismTypeQL();
 
