@@ -143,10 +143,7 @@ export const vaticleStyles = makeStyles({
         }
     },
 
-    // TODO: This may prevent nearby elements from being clickable
     pageAnchor: {
-        paddingTop: 80,
-        marginTop: -80,
     },
 
     filler: {

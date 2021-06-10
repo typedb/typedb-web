@@ -21,8 +21,10 @@ html, body {
   font-family: 'Titillium Web', Geneva, Tahoma, sans-serif;
 
   margin: 0;
-  --scroll-behavior: smooth;
-  scroll-behavior: smooth;
+  //--scroll-behavior: smooth;
+  //scroll-behavior: smooth;
+  --scroll-padding-top: 80px;
+  scroll-padding-top: 80px;
 
   * {
     box-sizing: border-box;

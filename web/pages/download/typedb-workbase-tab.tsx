@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { vaticleStyles } from "../../common/styles/vaticle-styles";
 import { downloadPageProductStyles } from "./download-styles";
 import moment from "moment";
-import { useTypeDBVersion } from "../state/typedb-version";
 import clsx from "clsx";
 import { urls } from "../../common/urls";
 import { VaticleSelect } from "../../common/select/select";
@@ -140,7 +139,7 @@ const CommercialPane: React.FC = () => {
             <div className={classes.filler}/>
 
             <div className={clsx(classes.comparisonBlockContent, classes.mainActionList)}>
-                <VaticleButton size="small" type="secondary" className={classes.contentMargin} href="#get-in-touch">
+                <VaticleButton size="small" type="secondary" className={classes.contentMargin} hashLink="#get-in-touch">
                     Get in touch
                 </VaticleButton>
             </div>

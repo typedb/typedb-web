@@ -149,7 +149,7 @@ const CommercialPane: React.FC = () => {
             <div className={classes.filler}/>
 
             <div className={clsx(classes.comparisonBlockContent, classes.mainActionList)}>
-                <VaticleButton size="small" type="secondary" className={classes.contentMargin} href="#get-in-touch">
+                <VaticleButton size="small" type="secondary" className={classes.contentMargin} hashLink="#get-in-touch">
                     Get in touch
                 </VaticleButton>
             </div>

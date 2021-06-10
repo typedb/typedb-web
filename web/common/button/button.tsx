@@ -6,10 +6,12 @@ import { SizeIndicator } from '../styles/theme';
 import { buttonStyles, comingSoonPopupStyles } from './button-styles';
 import { ClassProps } from "../class-props";
 import { vaticleStyles } from "../styles/vaticle-styles";
+import { headerHeight } from "../layout/layout-styles";
 
 export interface BaseButtonProps extends ClassProps {
     href?: string;
     to?: string;
+    hashLink?: string;
     type?: 'primary' | 'secondary';
     size?: SizeIndicator;
     onClick?: React.MouseEventHandler;
@@ -33,7 +35,7 @@ const defaultProps: Required<Pick<BaseButtonProps, 'size' | 'type' | 'htmlAttrs'
 export type BaseButtonFinalProps = React.PropsWithChildren<BaseButtonProps & typeof defaultProps>;
 
 export const VaticleButton: React.FC<BaseButtonProps> = props => {
-    const { children, className, href, to, size, type, onClick, htmlAttrs, target, download, disabled, comingSoon } = props as BaseButtonFinalProps;
+    const { children, className, href, to, hashLink, size, type, onClick, htmlAttrs, target, download, disabled, comingSoon } = props as BaseButtonFinalProps;
 
     const classes = buttonStyles({ size, type });
 
@@ -54,34 +56,37 @@ export const VaticleButton: React.FC<BaseButtonProps> = props => {
         setComingSoonPopupVisible(false);
     };
 
-    const onAnchorClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    const onLinkClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
         if (onClick) onClick(e);
         if (comingSoon) brieflyShowComingSoonPopup();
+        if (hashLink) {
+            const target = document.querySelector(hashLink) as HTMLElement;
+            window.scrollTo({ left: 0, top: target.offsetTop - headerHeight, behavior: "smooth" });
+        }
     };
 
-    if (to) {
-        return (
-            <Link to={to} className={clsx(classes.root, disabled && classes.disable, className)}
-                  onClick={comingSoon && brieflyShowComingSoonPopup}
-                  onMouseEnter={comingSoon && showComingSoonPopup} onMouseLeave={comingSoon && hideComingSoonPopup}>
-                {comingSoon && <ComingSoonPopup visible={comingSoonPopupVisible}/>}
-                <div className={classes.childDiv}>
-                    {children}
-                </div>
-            </Link>
-        )
-    }
+    const commonProps = {
+        to, href, target, download,
+        className: clsx(classes.root, disabled && classes.disable, className),
+        onClick: onLinkClick,
+        onMouseEnter: comingSoon && showComingSoonPopup,
+        onMouseLeave: comingSoon && hideComingSoonPopup,
+    };
 
-    return (
-        <a className={clsx(classes.root, disabled && classes.disable, className)} href={href} onClick={onAnchorClick}
-           target={target} download={download} {...htmlAttrs}
-           onMouseEnter={comingSoon && showComingSoonPopup} onMouseLeave={comingSoon && hideComingSoonPopup}>
+    const childContent = (
+        <>
             {comingSoon && <ComingSoonPopup visible={comingSoonPopupVisible}/>}
             <div className={classes.childDiv}>
                 {children}
             </div>
-        </a>
+        </>
     );
+
+    if (to) {
+        return <Link {...commonProps}>{childContent}</Link>;
+    }
+
+    return <a {...commonProps}>{childContent}</a>;
 };
 
 interface ComingSoonPopupProps {

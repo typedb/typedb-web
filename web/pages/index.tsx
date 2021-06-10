@@ -7,8 +7,10 @@ import { installPrismTypeQL } from "../common/typeql/prism-typeql";
 import { VaticleWebApp } from "./app";
 import smoothscroll from "smoothscroll-polyfill";
 import "smoothscroll-anchor-polyfill";
+import scrollSnapPolyfill from "css-scroll-snap-polyfill";
 
 smoothscroll.polyfill();
+scrollSnapPolyfill();
 
 installPrismTypeQL();
 
