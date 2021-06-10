@@ -2,16 +2,16 @@ import { homePageIndustryStyles } from "./home-styles";
 import { VaticleButton } from "../../common/button/button";
 import React, { useState } from "react";
 import clsx from "clsx";
+import LifeScienceIcon from "../assets/icons/life-science.svg";
 import SecurityIcon from "../assets/icons/security.svg";
-import FinanceIcon from "../assets/icons/finance.svg";
-import TelecommunicationsIcon from "../assets/icons/telecommunications.svg";
+import TelecommunicationIcon from "../assets/icons/telecommunication.svg";
+import KnowledgeGraph from "../assets/icons/knowledge-graph.svg";
 import MachineLearningIcon from "../assets/icons/machine-learning.svg";
-import LifeSciencesIcon from "../assets/icons/life-sciences.svg";
 import { vaticleTheme } from "../../common/styles/theme";
 import { vaticleStyles } from "../../common/styles/vaticle-styles";
 import { ClassProps } from "../../common/class-props";
 
-type IndustryName = "Health & Life Sciences" | "Defence & Security" | "Financial Services" | "Telecommunications" | "Machine Learning";
+type IndustryName =  "Knowledge Graph" | "Machine Learning" | "Health & Life Science" | "Defence & Security" | "Telecommunication";
 
 interface Industry {
     name: IndustryName;
@@ -23,8 +23,22 @@ export const IndustrySection: React.FC<ClassProps> = ({className}) => {
     const classes = Object.assign({}, vaticleStyles(), homePageIndustryStyles());
 
     const allIndustries: Industry[] = [{
-        name: "Health & Life Sciences",
-        icon: LifeSciencesIcon,
+        name: "Knowledge Graph",
+        icon: KnowledgeGraph,
+        description: `Knowledge Graphs (aka. Knowledge Bases) are systems that aggregate complex networks of facts to be 
+                    interrogated semantically and logically. TypeDB enables engineers to model and aggregate disparate 
+                    sources of data to become one unified Knowledge Graph, as it encodes data for logical interpretation 
+                    by its reasoning engine.`
+    }, {
+        name: "Machine Learning",
+        icon: MachineLearningIcon,
+        description: `Heterogeneous data holds significant inherent context. TypeDB enables ML systems to leverage this 
+                    context, and utilise this critical information to improve the accuracy and versatility of ML models. 
+                    TypeDB enables ML systems to accumulate datasets as one centralised, reusable, and highly contextualised 
+                    knowledge base.`
+    }, {
+        name: "Health & Life Science",
+        icon: LifeScienceIcon,
         description: `Systems biology produces a tremendous amount of heterogeneous data which are complex by nature and 
                     rich with semantics. TypeDB accelerates the knowledge discovery process in Health & Life Sciences 
                     by simplifying the integration of data, contextualising newly generated insights, and explaining 
@@ -37,26 +51,12 @@ export const IndustrySection: React.FC<ClassProps> = ({className}) => {
                     and interrogate these networks in real-time and stay two-steps ahead of bad actors, while avoiding critical, 
                     and costly mistakes.`
     }, {
-        name: "Financial Services",
-        icon: FinanceIcon,
-        description: `TypeDB is the solution for enterprises to aggregate all of their disparate data sources, which would 
-                    otherwise be a very complex task. By breaking down data silos, TypeDB allows organisations to unify
-                    their data in one place, generate new insights, and discover new revenue streams, such as Customer 360 
-                    and Master Mata Management.`
-    }, {
-        name: "Telecommunications",
-        icon: TelecommunicationsIcon,
+        name: "Telecommunication",
+        icon: TelecommunicationIcon,
         description: `The Telecommunications industry has the most complex networks of interconnected data points. Modelling 
                     and querying these networks are challenging, and the cost of mistakes are too high. TypeDB allows 
                     telecommunication providers to build robust models to capture entire networks of systems that did not have
                     visibility before.`
-    }, {
-        name: "Machine Learning",
-        icon: MachineLearningIcon,
-        description: `Heterogeneous data holds significant inherent context. TypeDB enables ML systems to leverage this 
-                    context, and utilise this critical information to improve the accuracy and versatility of ML models. 
-                    TypeDB enables ML systems to accumulate datasets as one centralised, reusable, and highly contextualised 
-                    knowledge base.`
     }];
 
     const [selectedIndustry, setSelectedIndustry] = useState<Industry>(allIndustries[0]);
