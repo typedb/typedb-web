@@ -21,7 +21,7 @@ export const urls = {
     },
 
     github: {
-        home: githubURL,
+        org: githubURL,
         typedb: `${githubURL}/typedb`,
         typedbReleases: `${githubURL}/typedb/releases`,
         typedbWorkbaseReleases: `${githubURL}/typedb-workbase/releases`,

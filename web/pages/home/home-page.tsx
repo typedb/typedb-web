@@ -40,7 +40,7 @@ export const HomePage: React.FC = () => {
                 </p>
 
                 <div className={clsx(classes.mainLinks, classes.subsectionMargin)}>
-                    <a href={urls.github.home} target="_blank" className={clsx(classes.mainLink, classes.firstMainLink)}>
+                    <a href={urls.github.typedb} target="_blank" className={clsx(classes.mainLink, classes.firstMainLink)}>
                         <FontAwesomeIcon className={classes.mainLinkIcon} icon={faGithub} />
                         <div className={classes.mainLinkCaption}>GitHub</div>
                     </a>
