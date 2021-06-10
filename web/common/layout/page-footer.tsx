@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useLayoutEffect, useState } from 'react';
 import { pageFooterStyles } from "./layout-styles";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faDiscord, faFacebookSquare, faGithub, faLinkedin, faTwitter, IconDefinition } from "@fortawesome/free-brands-svg-icons";
@@ -47,6 +47,14 @@ export const PageFooter: React.FC = () => {
             console.error(err);
         });
     };
+
+    useLayoutEffect(() => {
+        const params = new URLSearchParams(window.location.search);
+        if (params.get("dialog") === "contact") {
+            console.log("opening contact form!");
+            setContactFormDialogOpen(true);
+        }
+    }, []);
 
     return (
         <footer className={classes.root}>
