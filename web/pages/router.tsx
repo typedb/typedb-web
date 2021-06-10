@@ -1,5 +1,5 @@
-import { BrowserRouter, Route, RouteProps, Switch, useLocation } from "react-router-dom";
-import React, { useEffect, Fragment, useLayoutEffect } from "react";
+import { BrowserRouter, Route, RouteProps, Switch } from "react-router-dom";
+import React, { useEffect, useLayoutEffect } from "react";
 import { DownloadPage } from "./download/download-page";
 import { HomePage } from "./home/home-page";
 import { useTypeDBVersion } from "./state/typedb-version";
@@ -19,7 +19,11 @@ const VaticleRoute: React.FC<VaticleRouteProps> = props => {
     });
 
     useLayoutEffect(() => {
-        window.scrollTo(0, 0);
+        if (window.location.hash) {
+            document.querySelector(window.location.hash)?.scrollIntoView();
+        } else {
+            window.scrollTo(0, 0);
+        }
     });
 
     // TODO: While this is technically the optimal way to use a `useState`-like object, it is hardly intuitive
@@ -43,24 +47,11 @@ export const routes = {
 export const VaticleRouter: React.FC = () => {
     return (
         <BrowserRouter>
-            <Fragment>
-                <ScrollToTop/>
-                <Switch>
-                    <VaticleRoute path={routes.download} title="Download" component={DownloadPage}/>
-                    <VaticleRoute path={routes.privacyPolicy} title="Privacy Policy" component={PrivacyPolicyPage}/>
-                    <VaticleRoute path={routes.home} title="Home" component={HomePage} />
-                </Switch>
-            </Fragment>
+            <Switch>
+                <VaticleRoute path={routes.download} title="Download" component={DownloadPage}/>
+                <VaticleRoute path={routes.privacyPolicy} title="Privacy Policy" component={PrivacyPolicyPage}/>
+                <VaticleRoute path={routes.home} title="Home" component={HomePage} />
+            </Switch>
         </BrowserRouter>
     );
 };
-
-const ScrollToTop = () => {
-    const { pathname } = useLocation();
-
-    useEffect(() => {
-        window.scrollTo(0, 0);
-    }, [pathname]);
-
-    return null;
-}
