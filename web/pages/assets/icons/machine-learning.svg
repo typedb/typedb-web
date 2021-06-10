@@ -8,7 +8,6 @@
                     <g id="Machine-Learning" transform="translate(823.000000, 0.000000)">
                         <g transform="translate(19.000000, 0.000000)" id="icon">
                             <g transform="translate(20.000000, 21.000000)">
-                                <path d="M20,0 C21.6568542,0 23,1.34314575 23,3 C23,4.65685425 21.6568542,6 20,6 C18.3431458,6 17,4.65685425 17,3 C17,1.34314575 18.3431458,0 20,0 Z M20,1 C18.8954305,1 18,1.8954305 18,3 C18,4.1045695 18.8954305,5 20,5 C21.1045695,5 22,4.1045695 22,3 C22,1.8954305 21.1045695,1 20,1 Z" id="Combined-Shape"></path>
                                 <circle id="Oval" stroke="#FFFFFF" cx="20" cy="3" r="2.5"></circle>
                                 <circle id="Oval-Copy-7" stroke="#FFFFFF" cx="2" cy="11" r="2.5"></circle>
                                 <circle id="Oval-Copy-9" stroke="#FFFFFF" cx="38" cy="11" r="2.5"></circle>

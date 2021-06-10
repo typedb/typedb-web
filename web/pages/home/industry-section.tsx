@@ -4,12 +4,12 @@ import React, { useState } from "react";
 import clsx from "clsx";
 import SecurityIcon from "../assets/icons/security.svg";
 import FinanceIcon from "../assets/icons/finance.svg";
-import { LifeSciencesIcon } from "../common/images/life-sciences-icon";
+import TelecommunicationsIcon from "../assets/icons/telecommunications.svg";
+import MachineLearningIcon from "../assets/icons/machine-learning.svg";
+import LifeSciencesIcon from "../assets/icons/life-sciences.svg";
 import { vaticleTheme } from "../../common/styles/theme";
 import { vaticleStyles } from "../../common/styles/vaticle-styles";
 import { ClassProps } from "../../common/class-props";
-import { TelecommunicationsIcon } from "../common/images/telecommunications-icon";
-import { MachineLearningIcon } from "../common/images/machine-learning-icon";
 
 type IndustryName = "Health & Life Sciences" | "Defence & Security" | "Financial Services" | "Telecommunications" | "Machine Learning";
 
