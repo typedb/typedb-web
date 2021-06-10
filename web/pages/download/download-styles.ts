@@ -18,7 +18,6 @@ export const downloadPageProductStyles = makeStyles({
         width: '100%',
         marginLeft: "auto",
         marginRight: "auto",
-        marginBottom: 40,
         display: 'flex',
 
         "@media(max-width: 767px)": {
@@ -83,8 +82,10 @@ export const downloadPageProductStyles = makeStyles({
     comparisonBlock: {
         width: "100%",
         display: "flex",
+        marginTop: 80,
 
         "@media(max-width: 767px)": {
+            marginTop: 60,
             flexDirection: "column",
         },
     },

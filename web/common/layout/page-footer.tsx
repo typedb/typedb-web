@@ -57,7 +57,7 @@ export const PageFooter: React.FC = () => {
     }, []);
 
     return (
-        <footer className={classes.root}>
+        <footer className={clsx(classes.root, classes.sectionMargin)}>
             <div className={classes.content}>
                 <section>
                     <div className={classes.newsletterSection}>

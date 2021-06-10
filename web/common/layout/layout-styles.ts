@@ -188,17 +188,16 @@ export const pageHeaderStyles = makeStyles({
 
 export const pageFooterStyles = makeStyles({
     root: {
-        marginTop: 80,
         backgroundColor: vaticleTheme.palette.purple["800"],
     },
 
     content: {
-        paddingTop: 150,
-        paddingBottom: 132,
+        paddingTop: 80,
+        paddingBottom: 80,
 
         "@media(max-width: 767px)": {
             paddingTop: 60,
-            paddingBottom: 55,
+            paddingBottom: 60,
         },
     },
 
