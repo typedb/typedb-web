@@ -32,25 +32,28 @@ type NativeDownloads = {[version: string]: string}
 const OpenSourcePane: React.FC = () => {
     const classes = Object.assign({}, vaticleStyles(), downloadPageProductStyles());
 
-    const latestReleaseDate = new Date("2021-05-20 19:04:00");
+    const latestReleaseDate = new Date("2021-06-11 16:00:00");
     const latestReleaseDateFormatted = moment(latestReleaseDate).format("Do [of] MMMM YYYY");
-    const typeDBVersion = "2.1.0";
-    const latestReleaseNotesURL = `${urls.github.typedbWorkbaseReleases}/tag/${typeDBVersion}`;
+    const workbaseVersion = "2.1.2";
+    const latestReleaseNotesURL = `${urls.github.typedbWorkbaseReleases}/tag/${workbaseVersion}`;
 
     const downloads: Downloads = {
         "Linux": {
+            "2.1.2": "https://github.com/vaticle/typedb-workbase/releases/download/2.1.2/typedb-workbase-linux-2.1.2.AppImage",
             "2.1.0": "https://github.com/vaticle/typedb-workbase/releases/download/2.1.0/typedb-workbase-linux-2.1.0.AppImage",
             "2.0.2": "https://github.com/vaticle/typedb-workbase/releases/download/2.0.2/grakn-workbase-linux-2.0.2.AppImage",
             "2.0.1": "https://github.com/vaticle/typedb-workbase/releases/download/2.0.1/grakn-workbase-linux-2.0.1.AppImage",
             "2.0.0": "https://github.com/vaticle/typedb-workbase/releases/download/2.0.0/grakn-workbase-linux-2.0.0.AppImage",
         },
         "Mac OS X": {
+            "2.1.2": "https://github.com/vaticle/typedb-workbase/releases/download/2.1.2/typedb-workbase-mac-2.1.2.dmg",
             "2.1.0": "https://github.com/vaticle/typedb-workbase/releases/download/2.1.0/typedb-workbase-mac-2.1.0.dmg",
             "2.0.2": "https://github.com/vaticle/typedb-workbase/releases/download/2.0.2/grakn-workbase-mac-2.0.2.dmg",
             "2.0.1": "https://github.com/vaticle/typedb-workbase/releases/download/2.0.1/grakn-workbase-mac-2.0.1.dmg",
             "2.0.0": "https://github.com/vaticle/typedb-workbase/releases/download/2.0.0/grakn-workbase-mac-2.0.0.dmg",
         },
         "Windows": {
+            "2.1.2": "https://github.com/vaticle/typedb-workbase/releases/download/2.1.2/typedb-workbase-win-2.1.2.exe",
             "2.1.0": "https://github.com/vaticle/typedb-workbase/releases/download/2.1.0/typedb-workbase-win-2.1.0.exe",
             "2.0.2": "https://github.com/vaticle/typedb-workbase/releases/download/2.0.2/grakn-workbase-win-2.0.2.exe",
             "2.0.1": "https://github.com/vaticle/typedb-workbase/releases/download/2.0.1/grakn-workbase-win-2.0.1.exe",
@@ -59,8 +62,8 @@ const OpenSourcePane: React.FC = () => {
     };
 
     const [selectedOS, setSelectedOS] = useState("Mac OS X");
-    const [selectedVersion, setSelectedVersion] = useState("2.1.0");
-    const [downloadURL, setDownloadURL] = useState(downloads["Mac OS X"]["2.1.0"]);
+    const [selectedVersion, setSelectedVersion] = useState("2.1.2");
+    const [downloadURL, setDownloadURL] = useState(downloads["Mac OS X"]["2.1.2"]);
 
     useEffect(() => {
         setDownloadURL(downloads[selectedOS][selectedVersion]);
@@ -79,7 +82,7 @@ const OpenSourcePane: React.FC = () => {
             </p>
 
             <p className={clsx(classes.comparisonBlockContent, classes.mediumText, classes.textMarginLarge)}>
-                Current Stable Release: <strong>TypeDB Workbase {typeDBVersion}</strong>
+                Current Stable Release: <strong>TypeDB Workbase {workbaseVersion}</strong>
                 <br/>
                 <strong>{latestReleaseDateFormatted}</strong> <a href={latestReleaseNotesURL} target="_blank">Release Notes</a>
             </p>
@@ -91,6 +94,7 @@ const OpenSourcePane: React.FC = () => {
                     <option value="Windows">Windows</option>
                 </VaticleSelect>
                 <VaticleSelect label="Version" value={selectedVersion} setValue={setSelectedVersion} inputName="version" inputID="typedb-version" variant="outlined">
+                    <option value="2.1.2">2.1.2</option>
                     <option value="2.1.0">2.1.0</option>
                     <option value="2.0.2">2.0.2</option>
                     <option value="2.0.1">2.0.1</option>
