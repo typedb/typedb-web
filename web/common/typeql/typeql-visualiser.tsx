@@ -3,8 +3,8 @@ import { runTypeQLForceGraph } from "./typeql-force-graph";
 import { typeQLVisualiserStyles } from "./typeql-styles";
 import MacOSWindow from "../assets/graphics/macos-window.svg";
 import TypeQLVisualiserFooter from "../assets/graphics/typeql-visualiser-footer.svg";
-import { TypeQLCode } from "./typeql-code";
 import { TypeQLGraph } from "./typeql-data";
+import { CodeSample } from "../code/code-sample";
 
 interface VisualiserProps {
     code: string;
@@ -32,7 +32,7 @@ export const TypeQLVisualiser: React.FC<VisualiserProps> = ({ code, data }) => {
                 <MacOSWindow/>
             </div>
             <div className={classes.codeAndGraph}>
-                <TypeQLCode code={code}/>
+                <CodeSample source={{language: "typeql", body: code}} resizable/>
                 <div className={classes.graphPaneBG} />
                 <div ref={graphPaneRef} className={classes.graphPane} />
             </div>

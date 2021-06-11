@@ -27,61 +27,6 @@ export const typeQLVisualiserStyles = makeStyles({
         position: "relative",
     },
 
-    codePane: {
-        position: "absolute",
-        top: 0,
-        left: 0,
-        bottom: 0,
-        width: "50%",
-        zIndex: 50,
-        backgroundColor: "transparent",
-        overflow: "hidden",
-        touchAction: "none",
-        display: "flex",
-        fontSize: 16,
-        lineHeight: "24px",
-    },
-
-    lineNumbersSection: {
-        flex: "0 0 40px",
-        backgroundColor: "#140B44",
-        borderRight: `1px solid ${borderBlack}`,
-        textAlign: "center",
-        fontFamily: "\"Ubuntu Mono\", monospace",
-        color: "#888DCA",
-    },
-
-    lineNumbers: {
-        display: "flex",
-        flexDirection: "column",
-    },
-
-    codeSection: {
-        width: "calc(100% - 40px)",
-    },
-
-    codeArea: {
-        width: "calc(100% - 12px)",
-        height: "100%",
-        marginRight: 12,
-        backgroundColor: "#140B44",
-        paddingLeft: 20,
-    },
-
-    code: {
-        fontFamily: "\"Ubuntu Mono\", monospace",
-        display: "inline-block",
-        width: "100%",
-        overflow: "hidden",
-    },
-
-    panelSlider: {
-        position: "absolute",
-        top: 0,
-        right: 0,
-        zIndex: 50,
-    },
-
     graphPane: {
         position: "absolute",
         top: 0,
