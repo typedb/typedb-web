@@ -170,6 +170,10 @@ export const homePageStyles = makeStyles({
     vaticleWorld: {
         maxWidth: "calc(100vw - 40px)",
     },
+
+    aroundTheWorld: {
+        marginLeft: 3,
+    },
 });
 
 export const corporateLogosStyleVars = {
