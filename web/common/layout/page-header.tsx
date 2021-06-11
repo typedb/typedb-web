@@ -102,7 +102,7 @@ const ExternalLinks: React.FC = () => {
         <>
             <ExternalLink onClick={() => setContactFormDialogOpen(true)}>Contact</ExternalLink>
             <ExternalLink href={urls.support} target="_blank">Support</ExternalLink>
-            <VaticleButton size="small" type="secondary" to={`${routes.download}#get-in-touch`}
+            <VaticleButton size="small" type="secondary" to={routes.download}
                            className={clsx(classes.toolbarItem, classes.externalLinksDownload)}>Download</VaticleButton>
             <div className={classes.externalLinksGithub}>
                 <GithubButton/>

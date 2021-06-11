@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, RouteProps, Switch } from "react-router-dom";
+import { BrowserRouter, Route, RouteProps, Switch, useLocation } from "react-router-dom";
 import React, { useEffect, useLayoutEffect } from "react";
 import { DownloadPage } from "./download/download-page";
 import { HomePage } from "./home/home-page";
@@ -12,6 +12,7 @@ interface VaticleRouteProps extends RouteProps {
 }
 
 const VaticleRoute: React.FC<VaticleRouteProps> = props => {
+    const routerLocation = useLocation<{ samePageNavigation?: boolean, scroll?: boolean }>();
 
     // All effects placed here will be executed on every route change
 
@@ -20,9 +21,21 @@ const VaticleRoute: React.FC<VaticleRouteProps> = props => {
     });
 
     useLayoutEffect(() => {
-        if (window.location.hash) {
-            const y = (document.querySelector(window.location.hash) as HTMLElement)?.offsetTop - headerHeight;
-            window.scrollTo(0, y);
+        if (routerLocation.state?.scroll === false) return;
+
+        if (routerLocation.hash) {
+            const target = document.querySelector(routerLocation.hash) as HTMLElement;
+            if (!target) {
+                console.warn(`Attempted navigation to ${routerLocation.hash}, but no element could be found matching this ID!`);
+                return;
+            }
+            const scrollPaddingTopRaw = target.getAttribute("scroll-padding-top");
+            const scrollPaddingTop = scrollPaddingTopRaw ? parseFloat(scrollPaddingTopRaw) : 0;
+            const y = target.offsetTop - headerHeight - scrollPaddingTop;
+            // TODO: This isn't quite right - samePageNavigation may have the wrong value if navigating using the Back button
+            if (routerLocation.state?.samePageNavigation)
+                window.scrollTo({ left: 0, top: y, behavior: "smooth" });
+            else window.scrollTo(0, y);
         } else {
             window.scrollTo(0, 0);
         }

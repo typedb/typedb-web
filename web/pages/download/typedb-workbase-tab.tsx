@@ -10,8 +10,6 @@ import { ComparisonBlock, ComparisonBlockItem } from "./comparison-block";
 
 // TODO: This tab was copied from TypeDBTab - we should reuse and extend TypeDBTab
 export const TypeDBWorkbaseTab: React.FC = () => {
-    const classes = Object.assign({}, vaticleStyles(), downloadPageProductStyles());
-
     const items: [ComparisonBlockItem, ComparisonBlockItem] = [{
         title: "Open Source",
         content: () => <OpenSourcePane/>,
@@ -20,11 +18,7 @@ export const TypeDBWorkbaseTab: React.FC = () => {
         content: () => <CommercialPane/>,
     }];
 
-    return (
-        <>
-            <ComparisonBlock items={items}/>
-        </>
-    );
+    return <ComparisonBlock items={items}/>;
 }
 
 interface Downloads {

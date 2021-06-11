@@ -6,8 +6,6 @@ import clsx from "clsx";
 import { VaticleButton } from "../../common/button/button";
 
 export const TypeDBClusterTab: React.FC = () => {
-    const classes = Object.assign({}, vaticleStyles(), downloadPageProductStyles());
-
     const items: [ComparisonBlockItem, ComparisonBlockItem] = [{
         title: "Cloud Deployment",
         content: () => <CloudPane/>,
@@ -16,11 +14,7 @@ export const TypeDBClusterTab: React.FC = () => {
         content: () => <OnPremisePane/>,
     }];
 
-    return (
-        <>
-            <ComparisonBlock items={items}/>
-        </>
-    );
+    return <ComparisonBlock items={items}/>;
 }
 
 const CloudPane: React.FC = () => {

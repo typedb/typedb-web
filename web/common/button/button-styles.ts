@@ -40,9 +40,7 @@ export const buttonStyles = makeStyles({
         borderRadius: 5,
         backgroundColor: (props: StyleProps) => buttonPalette[props.type].background,
         transition: "background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,border 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;",
-        display: "inline-flex",
-        alignItems: "center",
-        justifyContent: "center",
+        display: "inline-block",
         color: (props: StyleProps) => buttonPalette[props.type].label,
         fontSize: (props: StyleProps) => vaticleTheme.typography.fontSize[props.size],
         fontWeight: 600,
@@ -64,8 +62,13 @@ export const buttonStyles = makeStyles({
         }
     },
 
-    childDiv: {
-        margin: '6px 16px',
+    content: {
+        width: "100%",
+        height: "100%",
+        padding: '6px 16px',
+        display: "inline-flex",
+        justifyContent: "center",
+        alignItems: "center",
     },
 });
 
