@@ -110,6 +110,7 @@ export const PageFooter: React.FC = () => {
                             <div className={classes.linkBlock}>
                                 <h3 className={classes.h3}>TypeDB</h3>
                                 <ul className={classes.linkBlockList}>
+                                    <FooterLink to={routes.typeDB}>TypeDB</FooterLink>
                                     <FooterLink href={urls.docs.typeDBQuickstart}>Quickstart</FooterLink>
                                     <FooterLink to={routes.download}>Install</FooterLink>
                                     <FooterLink href={urls.support} target="_blank">Support</FooterLink>

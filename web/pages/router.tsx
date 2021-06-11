@@ -6,6 +6,7 @@ import { useTypeDBVersion } from "./state/typedb-version";
 import { getTypeDBVersion } from "./api/typedb-service";
 import { PrivacyPolicyPage } from "./legal/privacy-policy-page";
 import { headerHeight } from "../common/layout/layout-styles";
+import { TypeDBPage } from "./products/typedb-page";
 
 interface VaticleRouteProps extends RouteProps {
     title: string;
@@ -59,14 +60,24 @@ export const routes = {
     download: "/download",
     home: "/",
     privacyPolicy: "/privacy-policy",
+    typeDB: "/typedb",
+};
+
+export const legacyRoutes = {
+    graknCore: "/grakn-core",
+    graknKGMS: "/grakn-kgms", // TODO: When the Cluster page is created, add this legacy route (for redirection)
+    deployment: "/deployment", // TODO: When the Cloud page is created, add this legacy route (for redirection)
 };
 
 export const VaticleRouter: React.FC = () => {
     return (
         <BrowserRouter>
             <Switch>
+                <VaticleRoute path={legacyRoutes.graknCore} title="TypeDB" component={TypeDBPage}/>
+
                 <VaticleRoute path={routes.download} title="Download" component={DownloadPage}/>
                 <VaticleRoute path={routes.privacyPolicy} title="Privacy Policy" component={PrivacyPolicyPage}/>
+                <VaticleRoute path={routes.typeDB} title="TypeDB" component={TypeDBPage}/>
                 <VaticleRoute path={routes.home} title="Home" component={HomePage} />
             </Switch>
         </BrowserRouter>
