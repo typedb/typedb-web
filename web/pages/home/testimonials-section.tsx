@@ -63,15 +63,6 @@ export const TestimonialsSection: React.FC<ClassProps> = ({className}) => {
         body: `TypeDB makes it easy for our robots to operate autonomously in the real world by being the centre of their
         understanding. TypeDB makes it easy to incorporate expert knowledge and advanced reasoning into its knowledge base.`,
     }, {
-        companyName: "Rolls-Royce",
-        companyLogo: RollsRoyceSquareLogo,
-        personName: "Muhannad Alomari",
-        jobTitle: "European Hub AI Lead",
-        avatar: MuhannadAlomariAvatar,
-        body: `We here at Rolls-Royce are steadily moving into the knowledge-graph age; where design and business
-        decisions are being led through data mined from millions of internal reports, accumulated into a deep knowledge
-        graph. TypeDB allows us to move faster to developing this capability for Rolls-Royce.`,
-    }, {
         companyName: "BioCortex",
         companyLogo: BioCortexSquareLogo,
         personName: "Nik Sharma",
@@ -81,14 +72,14 @@ export const TestimonialsSection: React.FC<ClassProps> = ({className}) => {
         spend less time data modelling. We can easily integrate complex biomedical datasets. TypeDB provides us the
         backbone to our therapeutics platform to cure neurodegenerative diseases.`,
     }, {
-        companyName: "China Merchants Bank",
-        companyLogo: ChinaMerchantsBankSquareLogo,
-        personName: "Alex Deng",
-        jobTitle: "Senior Engineer/Product Owner",
-        avatar: AlexDengAvatar,
-        body: `TypeDB is a unique technology that is so incredibly powerful in its ability to express and model
-        complex data while remaining simple and elegant in its use. We are so pleased with TypeDB, in particular as it
-        saves us from hiring an additional AI scientist to utilise semantic technologies in our projects.`,
+        companyName: "Rolls-Royce",
+        companyLogo: RollsRoyceSquareLogo,
+        personName: "Muhannad Alomari",
+        jobTitle: "European Hub AI Lead",
+        avatar: MuhannadAlomariAvatar,
+        body: `We here at Rolls-Royce are steadily moving into the knowledge-graph age; where design and business
+        decisions are being led through data mined from millions of internal reports, accumulated into a deep knowledge
+        graph. TypeDB allows us to move faster to developing this capability for Rolls-Royce.`,
     }, {
         companyName: "Oxford Pharmagenesis",
         companyLogo: OxfordPharmagenesisSquareLogo,
@@ -99,15 +90,6 @@ export const TestimonialsSection: React.FC<ClassProps> = ({className}) => {
         explainable and transparent; key requirements for AI in healthcare. Crucially, the Vaticle team provide more
         than software, you gain access to a community. This is how the best work gets done – collaboratively.`,
     }, {
-        companyName: "Capgemini",
-        companyLogo: CapgeminiSquareLogo,
-        personName: "Jean-Paul Mochet",
-        jobTitle: "Chief Enterprise Architect",
-        avatar: JeanPaulMochetAvatar,
-        body: `TypeDB is a powerful framework for data exploration. The way data, attributes and relations can be
-        expressed in a polymorphism manner allows us to build a rich network of multi-levels analysis and open
-        opportunities to query, discover and infer interactions between complex epidemic factors.`,
-    }, {
         companyName: "Alpha Vertex",
         companyLogo: AlphaVertexSquareLogo,
         personName: "Michael Bishop",
@@ -116,22 +98,14 @@ export const TestimonialsSection: React.FC<ClassProps> = ({className}) => {
         body: `TypeDB significantly streamlines our knowledge engineering process. TypeDB’s expressive schema allows us
         to verify the logical consistency of patterns detected by our learning algorithms and improve accuracy.`,
     }, {
-        companyName: "Roche",
-        companyLogo: RocheSquareLogo,
-        personName: "Konrad Myśliwiec",
-        jobTitle: "Data Science Software Engineer",
-        avatar: KonradMysliwiecAvatar,
-        body: `TypeDB provides a strongly typed database with n-ry relations that enables modelling the world much
-        closer to reality compared to other databases. In addition, its built-in inference engine enables to build next
-        generation AI systems — one of the many reasons to choose TypeDB to model biomedical data.`,
-    }, {
-        companyName: "Infosys",
-        companyLogo: InfosysSquareLogo,
-        personName: "Enzo Martoglio",
-        jobTitle: "AI Architect",
-        avatar: EnzoMartoglioAvatar,
-        body: `No business-centric implementation of AI can avoid having a Knowledge Graph at its core. Vaticle is one
-        of the few companies developing this tool that any AI business solution will require.`,
+        companyName: "China Merchants Bank",
+        companyLogo: ChinaMerchantsBankSquareLogo,
+        personName: "Alex Deng",
+        jobTitle: "Senior Engineer/Product Owner",
+        avatar: AlexDengAvatar,
+        body: `TypeDB is a unique technology that is so incredibly powerful in its ability to express and model
+        complex data while remaining simple and elegant in its use. We are so pleased with TypeDB, in particular as it
+        saves us from hiring an additional AI scientist to utilise semantic technologies in our projects.`,
     }, {
         companyName: "RAIR Health",
         companyLogo: RAIRHealthSquareLogo,
@@ -142,6 +116,23 @@ export const TestimonialsSection: React.FC<ClassProps> = ({className}) => {
         relationships between genes, drugs and diseases. As one of our core technologies, it elegantly and concisely
         models knowledge, allowing us to build a single system from our various bioinformatics databases.`,
     }, {
+        companyName: "Capgemini",
+        companyLogo: CapgeminiSquareLogo,
+        personName: "Jean-Paul Mochet",
+        jobTitle: "Chief Enterprise Architect",
+        avatar: JeanPaulMochetAvatar,
+        body: `TypeDB is a powerful framework for data exploration. The way data, attributes and relations can be
+        expressed in a polymorphism manner allows us to build a rich network of multi-levels analysis and open
+        opportunities to query, discover and infer interactions between complex epidemic factors.`,
+    }, {
+        companyName: "Infosys",
+        companyLogo: InfosysSquareLogo,
+        personName: "Enzo Martoglio",
+        jobTitle: "AI Architect",
+        avatar: EnzoMartoglioAvatar,
+        body: `No business-centric implementation of AI can avoid having a Knowledge Graph at its core. Vaticle is one
+        of the few companies developing this tool that any AI business solution will require.`,
+    }, {
         companyName: "Eagle Genomics",
         companyLogo: EagleGenomicsSquareLogo,
         personName: "Radouane Oudrhiri",
@@ -149,6 +140,15 @@ export const TestimonialsSection: React.FC<ClassProps> = ({className}) => {
         avatar: RadouaneOudrhiriAvatar,
         body: `TypeDB's query language, TypeQL, should be the de facto language for any graph representation because of
         two things: the semantic expressiveness of the language and the optimisation of query execution.`,
+    }, {
+        companyName: "Roche",
+        companyLogo: RocheSquareLogo,
+        personName: "Konrad Myśliwiec",
+        jobTitle: "Data Science Software Engineer",
+        avatar: KonradMysliwiecAvatar,
+        body: `TypeDB provides a strongly typed database with n-ry relations that enables modelling the world much
+        closer to reality compared to other databases. In addition, its built-in inference engine enables to build next
+        generation AI systems — one of the many reasons to choose TypeDB to model biomedical data.`,
     }, {
         companyName: "Gravr",
         companyLogo: GravrSquareLogo,
