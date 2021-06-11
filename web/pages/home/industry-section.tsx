@@ -27,7 +27,7 @@ export const IndustrySection: React.FC<ClassProps> = ({className}) => {
         icon: KnowledgeGraph,
         description: `Knowledge Graphs (aka. Knowledge Bases) are systems that aggregate complex networks of facts to be 
                     interrogated semantically and logically. TypeDB enables engineers to model and aggregate disparate 
-                    sources of data to become one unified Knowledge Graph, as it encodes data for logical interpretation 
+                    sources of data to become one unified Knowledge Graph, making it possible to infer new knowledge 
                     by its reasoning engine.`
     }, {
         name: "Machine Learning",
