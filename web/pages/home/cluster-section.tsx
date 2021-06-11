@@ -3,8 +3,8 @@ import React from "react";
 import clsx from "clsx";
 import HighAvailabilityIcon from "../assets/icons/high-availability.svg";
 import ElasticThroughputIcon from "../assets/icons/elastic-throughput.svg";
-import FingerprintIcon from "../assets/icons/fingerprint.svg";
-import EnterpriseSupportIcon from "../assets/icons/enterprise-support.svg";
+import AuthenticationIcon from "../assets/icons/authentication.svg";
+import EncryptionIcon from "../assets/icons/encryption.svg";
 import ClusterManagementIcon from "../assets/icons/cluster-management.svg";
 import BackupAndRecoveryIcon from "../assets/icons/backup-and-recovery.svg";
 import { VaticleButton } from "../../common/button/button";
@@ -33,11 +33,11 @@ export const ClusterSection: React.FC<ClassProps> = ({className}) => {
     }, {
         name: "Secure Authentication",
         description: "Ensuring only authenticated access and appropriately privileged users are allowed to access the database.",
-        icon: FingerprintIcon,
+        icon: AuthenticationIcon,
     }, {
-        name: "Enterprise Support",
-        description: "Access to advanced support SLA with faster response time and problem resolution.",
-        icon: EnterpriseSupportIcon,
+        name: "In-Flight Encryption",
+        description: "All client-and-server and server-and-server communication are fully encrypted during transmission.",
+        icon: EncryptionIcon,
     }, {
         name: "Cluster Management",
         description: "Easily deploy and scale up/down your database with tools that automate the orchestration of your cluster.",
