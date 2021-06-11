@@ -33,9 +33,11 @@ const VaticleRoute: React.FC<VaticleRouteProps> = props => {
             const scrollPaddingTop = scrollPaddingTopRaw ? parseFloat(scrollPaddingTopRaw) : 0;
             const y = target.offsetTop - headerHeight - scrollPaddingTop;
             // TODO: This isn't quite right - samePageNavigation may have the wrong value if navigating using the Back button
-            if (routerLocation.state?.samePageNavigation)
-                window.scrollTo({ left: 0, top: y, behavior: "smooth" });
-            else window.scrollTo(0, y);
+            setTimeout(() => {
+                if (routerLocation.state?.samePageNavigation)
+                    window.scrollTo({ left: 0, top: y, behavior: "smooth" });
+                else window.scrollTo(0, y);
+            }, 1); // setTimeout used to make scroll resolve after browser's default hash link handler (Safari)
         } else {
             window.scrollTo(0, 0);
         }
