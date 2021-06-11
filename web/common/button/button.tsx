@@ -1,17 +1,16 @@
 import React, { useState } from 'react';
 import clsx from 'clsx';
 
-import { Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { SizeIndicator } from '../styles/theme';
 import { buttonStyles, comingSoonPopupStyles } from './button-styles';
 import { ClassProps } from "../class-props";
 import { vaticleStyles } from "../styles/vaticle-styles";
 import { headerHeight } from "../layout/layout-styles";
 
-export interface BaseButtonProps extends ClassProps {
+export interface VaticleButtonProps extends ClassProps {
     href?: string;
     to?: string;
-    hashLink?: string;
     type?: 'primary' | 'secondary';
     size?: SizeIndicator;
     onClick?: React.MouseEventHandler;
@@ -19,27 +18,17 @@ export interface BaseButtonProps extends ClassProps {
     comingSoon?: true;
     target?: string;
     download?: string;
-    htmlAttrs?: {
-        type?: 'submit' | 'button';
-        download?: string;
-    };
 }
 
-const defaultProps: Required<Pick<BaseButtonProps, 'size' | 'type' | 'htmlAttrs'>> = {
-    size: 'smaller',
-    type: 'secondary',
-    htmlAttrs: { type: 'button' },
-};
-
-// TODO: This type structure is not necessary and should be aligned with rest of codebase
-export type BaseButtonFinalProps = React.PropsWithChildren<BaseButtonProps & typeof defaultProps>;
-
-export const VaticleButton: React.FC<BaseButtonProps> = props => {
-    const { children, className, href, to, hashLink, size, type, onClick, htmlAttrs, target, download, disabled, comingSoon } = props as BaseButtonFinalProps;
+// TODO: Large chunks of this component are no longer about button appearance, but more about link behaviour.
+//       Maybe we need a VaticleLink component?
+export const VaticleButton: React.FC<VaticleButtonProps> = props => {
+    const { children, className, href, to, size, type, onClick, target, download, disabled, comingSoon } = props;
 
     const classes = buttonStyles({ size, type });
 
     const [comingSoonPopupVisible, setComingSoonPopupVisible] = useState(false);
+    const routerHistory = useHistory();
 
     const brieflyShowComingSoonPopup = () => {
         setComingSoonPopupVisible(true);
@@ -56,37 +45,33 @@ export const VaticleButton: React.FC<BaseButtonProps> = props => {
         setComingSoonPopupVisible(false);
     };
 
+    const linkType = computeLinkType(props);
+
     const onLinkClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
         if (onClick) onClick(e);
         if (comingSoon) brieflyShowComingSoonPopup();
-        if (hashLink) {
-            const target = document.querySelector(hashLink) as HTMLElement;
-            window.scrollTo({ left: 0, top: target.offsetTop - headerHeight, behavior: "smooth" });
+
+        switch (linkType) {
+            case "route":
+            case "routeHash":
+                routerHistory.push(to);
+                break;
+            case "hash":
+                const target = document.querySelector(to) as HTMLElement;
+                window.scrollTo({ left: 0, top: target.offsetTop - headerHeight, behavior: "smooth" });
+                break;
         }
     };
 
-    const commonProps = {
-        to, href, target, download,
-        className: clsx(classes.root, disabled && classes.disable, className),
-        onClick: onLinkClick,
-        onMouseEnter: comingSoon && showComingSoonPopup,
-        onMouseLeave: comingSoon && hideComingSoonPopup,
-    };
-
-    const childContent = (
-        <>
+    return (
+        <a href={href} target={target} download={download} className={clsx(classes.root, disabled && classes.disable, className)}
+           onClick={onLinkClick} onMouseEnter={comingSoon && showComingSoonPopup} onMouseLeave={comingSoon && hideComingSoonPopup}>
             {comingSoon && <ComingSoonPopup visible={comingSoonPopupVisible}/>}
             <div className={classes.childDiv}>
                 {children}
             </div>
-        </>
+        </a>
     );
-
-    if (to) {
-        return <Link {...commonProps}>{childContent}</Link>;
-    }
-
-    return <a {...commonProps}>{childContent}</a>;
 };
 
 interface ComingSoonPopupProps {
@@ -105,3 +90,13 @@ const ComingSoonPopup: React.FC<ComingSoonPopupProps> = ({visible}) => {
         </>
     );
 };
+
+function computeLinkType(props: VaticleButtonProps) {
+    if (props.href) return "href";
+    if (!props.to) return "none";
+
+    const hashIndex = props.to.indexOf("#");
+    if (hashIndex === -1) return "route";
+    else if (hashIndex === 0) return "hash";
+    else return "routeHash";
+}

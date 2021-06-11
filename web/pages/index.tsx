@@ -9,8 +9,8 @@ import smoothscroll from "smoothscroll-polyfill";
 import "smoothscroll-anchor-polyfill";
 import scrollSnapPolyfill from "css-scroll-snap-polyfill";
 
-smoothscroll.polyfill();
-scrollSnapPolyfill();
+smoothscroll.polyfill(); // Prerequisite for css-scroll-snap-polyfill
+scrollSnapPolyfill(); // window.scrollTo({behavior: 'smooth'}) in Safari
 
 installPrismTypeQL();
 

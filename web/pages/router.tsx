@@ -21,33 +21,12 @@ const VaticleRoute: React.FC<VaticleRouteProps> = props => {
 
     useLayoutEffect(() => {
         if (window.location.hash) {
-            // const y = (document.querySelector(window.location.hash) as HTMLElement)?.offsetTop - headerHeight;
-            // window.scrollTo({ top: y, left: 0, behavior: "smooth" });
+            const y = (document.querySelector(window.location.hash) as HTMLElement)?.offsetTop - headerHeight;
+            window.scrollTo(0, y);
         } else {
             window.scrollTo(0, 0);
         }
     });
-
-    // useLayoutEffect(() => {
-    //     const anchors = document.querySelectorAll("a[href^='#']") as NodeListOf<HTMLAnchorElement>;
-    //
-    //     const scrollToTarget = (e: MouseEvent) => {
-    //         e.preventDefault();
-    //         console.log(e);
-    //     }
-    //
-    //     console.log(anchors);
-    //
-    //     for (const anchor of anchors) {
-    //         anchor.addEventListener("click", scrollToTarget);
-    //     }
-    //
-    //     return () => {
-    //         for (const anchor of anchors) {
-    //             anchor.removeEventListener("click", scrollToTarget);
-    //         }
-    //     };
-    // });
 
     // TODO: While this is technically the optimal way to use a `useState`-like object, it is hardly intuitive
     const setTypeDBVersion = useTypeDBVersion()[1];
