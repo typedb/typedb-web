@@ -9,7 +9,7 @@ interface TypeQLCodeProps {
     code: string;
 }
 
-const lineNumbers = [...Array(14).keys()].map(n => n + 1);
+const lineNumbers = [...Array(15).keys()].map(n => n + 1);
 
 export const TypeQLCode: React.FC<TypeQLCodeProps> = ({ code }) => {
     const classes = typeQLVisualiserStyles();

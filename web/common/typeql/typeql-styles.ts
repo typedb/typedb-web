@@ -1,15 +1,13 @@
 import { makeStyles } from "@material-ui/core";
 import { vaticleTheme } from "../styles/theme";
 
-const borderBlack = "#07053A";
+const borderBlack = "#08022E";
 
 export const typeQLVisualiserStyles = makeStyles({
     container: {
         width: 660,
-        height: 400,
+        height: 409,
         flexShrink: 0,
-        display: "flex",
-        flexDirection: "column",
 
         "@media(max-width: 767px)": {
             marginLeft: "50%",
@@ -25,7 +23,7 @@ export const typeQLVisualiserStyles = makeStyles({
     },
 
     codeAndGraph: {
-        height: 352,
+        height: 360,
         position: "relative",
     },
 
@@ -54,7 +52,6 @@ export const typeQLVisualiserStyles = makeStyles({
     },
 
     lineNumbers: {
-        margin: "6px 0 8px",
         display: "flex",
         flexDirection: "column",
     },
@@ -68,7 +65,7 @@ export const typeQLVisualiserStyles = makeStyles({
         height: "100%",
         marginRight: 12,
         backgroundColor: "#140B44",
-        padding: "6px 0 8px 20px",
+        paddingLeft: 20,
     },
 
     code: {
