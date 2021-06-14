@@ -3,12 +3,30 @@ import { makeStyles } from "@material-ui/core";
 const borderBlack = "#08022E";
 
 export const codeStyles = makeStyles({
+    windowContainer: {
+        width: 660,
+        height: 409,
+        flexShrink: 0,
+
+        "@media(max-width: 767px)": {
+            marginLeft: "50%",
+            transform: "translateX(-50%) scale(.54)",
+            marginTop: -92, // (1 - scale) * height / 2
+            marginBottom: -92,
+        },
+    },
+
+    windowHeader: {
+        display: "flex",
+        borderBottom: `1px solid ${borderBlack}`,
+    },
+
     codePane: {
-        position: "absolute",
+        // position: "absolute",
         top: 0,
         left: 0,
         bottom: 0,
-        width: "50%",
+        width: "100%",
         zIndex: 50,
         backgroundColor: "transparent",
         overflow: "hidden",
@@ -16,7 +34,13 @@ export const codeStyles = makeStyles({
         display: "flex",
         fontSize: 16,
         lineHeight: "24px",
+
+        "&$resizable": {
+            width: "50%",
+        },
     },
+
+    resizable: {},
 
     lineNumbersSection: {
         flex: "0 0 40px",
@@ -56,5 +80,14 @@ export const codeStyles = makeStyles({
         top: 0,
         right: 0,
         zIndex: 50,
+    },
+
+    tabsContainer: {
+        height: 360,
+        position: "relative",
+    },
+
+    polyglotTabItem: {
+        position: "initial",
     },
 });

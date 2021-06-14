@@ -18,7 +18,6 @@ export const downloadPageProductStyles = makeStyles({
         width: '100%',
         marginLeft: "auto",
         marginRight: "auto",
-        display: 'flex',
 
         "@media(max-width: 767px)": {
             width: 288,
@@ -39,14 +38,8 @@ export const downloadPageProductStyles = makeStyles({
     },
 
     tabItem: {
-        flex: 1,
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'center',
         height: 96,
         border: `1px solid ${vaticleTheme.palette.purple["300"]}`,
-        transition: "background-color 150ms ease",
 
         "@media(min-width: 768px)": {
             borderRightStyle: "none",
@@ -176,6 +169,4 @@ export const downloadPageProductStyles = makeStyles({
             },
         }
     },
-
-    // comparisonBlockItem
 });

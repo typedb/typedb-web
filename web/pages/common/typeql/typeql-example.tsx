@@ -1,11 +1,8 @@
-import { VaticleButton } from "../../../common/button/button";
 import React from "react";
-import clsx from "clsx";
-import { vaticleStyles } from "../../../common/styles/vaticle-styles";
 import { TypeQLVisualiser } from "../../../common/typeql/typeql-visualiser";
 import { TypeQLGraph } from "../../../common/typeql/typeql-data";
 import { ClassProps } from "../../../common/class-props";
-import { typeQLStyles } from "./typeql-styles";
+import { CodeExample } from "../code/code-example";
 
 export interface TypeQLExampleProps extends ClassProps {
     title: string;
@@ -17,17 +14,9 @@ export interface TypeQLExampleProps extends ClassProps {
 }
 
 export const TypeQLExample: React.FC<TypeQLExampleProps> = ({className, title, body, code, graphData, visualiserPosition, buttonText}) => {
-    const classes = Object.assign({}, vaticleStyles(), typeQLStyles());
-
     return (
-        <div className={clsx(classes.diagramAndCaption, visualiserPosition === "left" ? classes.visualiserLeft : classes.visualiserRight, className)}>
+        <CodeExample className={className} title={title} body={body} buttonText={buttonText} diagramPosition={visualiserPosition}>
             <TypeQLVisualiser code={code} data={graphData} />
-            <div className={visualiserPosition === "left" ? classes.diagramCaptionSpacingLeft : classes.diagramCaptionSpacingRight}>
-                <h2 className={classes.h2}>{title}</h2>
-                <p className={clsx(classes.mediumText, classes.textMarginLarge)}>{body}</p>
-                <VaticleButton size="small" type="secondary" disabled comingSoon className={clsx(classes.learnMore, classes.showDesktop, classes.contentMargin)}>{buttonText}</VaticleButton>
-            </div>
-            <VaticleButton size="small" type="secondary" disabled comingSoon className={clsx(classes.learnMore, classes.hideDesktop, classes.contentMargin)}>{buttonText}</VaticleButton>
-        </div>
+        </CodeExample>
     );
 }

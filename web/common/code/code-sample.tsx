@@ -5,7 +5,7 @@ import clsx from "clsx";
 import Prism from "prismjs";
 import { codeStyles } from "./code-styles";
 
-interface Code {
+export interface Code {
     language: string;
     body: string;
 }
@@ -50,7 +50,7 @@ export const CodeSample: React.FC<CodeSampleProps> = ({ source, sources, resizab
     }, []);
 
     return (
-        <div className={classes.codePane}>
+        <div className={clsx(classes.codePane, resizable && classes.resizable)}>
             <div className={classes.lineNumbersSection}>
                 <ol className={classes.lineNumbers}>
                     {lineNumbers.map(n => <li>{n}</li>)}

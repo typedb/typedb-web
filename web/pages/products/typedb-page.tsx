@@ -7,9 +7,30 @@ import { expressivityExampleCode, expressivityExampleGraph } from "../common/typ
 import { TypeQLExample } from "../common/typeql/typeql-example";
 import { typeHierarchyExampleCode, typeHierarchyExampleGraph } from "../common/typeql/example/type-hierarchy-example";
 import { safetyExampleCode, safetyExampleGraph } from "../common/typeql/example/safety-example";
+import { ClientCodeExample } from "../common/code/client-code-example";
+import { Code } from "../../common/code/code-sample";
 
 export const TypeDBPage: React.FC = () => {
     const classes = Object.assign({}, vaticleStyles(), typeDBStyles());
+
+    const simpleAPISources: Code[] = [{
+        language: "java",
+        body: `
+try (TypeDBClient client = TypeDB.coreClient("localhost:1729")) {
+    client.databases().create("my-typedb");
+    try (TypeDBSession session = client.session("my-typedb", DATA)) {
+        try (TypeDBTransaction tx = session.transaction(WRITE)) {
+            ...
+            ...
+        }
+    }
+}`}, {
+        language: "python",
+        body: `
+lorem ipsum dolor sit amet`}, {
+        language: "nodejs",
+        body: `
+i am a nodejs source`}];
 
     return (
         <DefaultLayout>
@@ -118,8 +139,8 @@ export const TypeDBPage: React.FC = () => {
                     cillum dolore eu fugiat nulla pariatur.
                 </p>
 
-                <TypeQLExample className={classes.subsectionMargin} visualiserPosition="left"
-                               code={safetyExampleCode} graphData={safetyExampleGraph} title="Simple & Stateful API"
+                <ClientCodeExample className={classes.subsectionMargin} codePosition="left"
+                               sources={simpleAPISources} title="Simple & Stateful API"
                                body="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
                                incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
                                exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
