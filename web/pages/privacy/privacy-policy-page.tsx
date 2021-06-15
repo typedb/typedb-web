@@ -1,7 +1,7 @@
 import React from "react";
-import { DefaultLayout } from "../../common/layout/default-layout";
-import { vaticleStyles } from "../../common/styles/vaticle-styles";
-import { legalPageStyles } from "./privacy-policy-styles";
+import {DefaultLayout} from "../../common/layout/default-layout";
+import {vaticleStyles} from "../../common/styles/vaticle-styles";
+import {legalPageStyles} from "./privacy-policy-styles";
 import clsx from "clsx";
 
 interface Cookie {
@@ -57,7 +57,7 @@ export const PrivacyPolicyPage: React.FC = () => {
         source: "HotJar",
         name: "_hjShownFeedbackMessage",
         purpose: "This cookie is set when a visitor minimizes or completes Incoming Feedback. This is done so that the Incoming Feedback will load as minimized immediately if they navigate to another page where it is set to show.",
-    }, ];
+    },];
 
     return (
         <DefaultLayout>
@@ -65,8 +65,10 @@ export const PrivacyPolicyPage: React.FC = () => {
                 <Heading>Privacy Policy</Heading>
 
                 <Paragraph>
-                    This privacy policy is for this website (Vaticle) and governs the privacy of its users who choose to use
-                    it. The policy sets out the different areas where user privacy is concerned and outlines the obligations
+                    This privacy policy is for this website (Vaticle) and governs the privacy of its users who choose to
+                    use
+                    it. The policy sets out the different areas where user privacy is concerned and outlines the
+                    obligations
                     and requirements of the users, the website and website owners. Furthermore, the way this website
                     processes, stores and protects user data and information will also be detailed within this policy.
                 </Paragraph>
@@ -110,7 +112,8 @@ export const PrivacyPolicyPage: React.FC = () => {
                     This software is provided by Google Analytics and Hotjar which uses cookies to track visitor usage.
                     The software will save a cookie to your computer’s hard drive in order to track and monitor your
                     engagement and usage of the website, but will not store, save or collect personal information. For
-                    further information, you can read Google's privacy policy <a href="https://www.google.com/policies/privacy/" target="_blank">here</a>,
+                    further information, you can read Google's privacy policy <a
+                    href="https://www.google.com/policies/privacy/" target="_blank">here</a>,
                     and Hotjar’s privacy policy <a href="https://www.hotjar.com/privacy" target="_blank">here</a>.
                 </Paragraph>
 
@@ -123,13 +126,13 @@ export const PrivacyPolicyPage: React.FC = () => {
                 <ComparisonTable>
                     <ComparisonTableHeader title1="Name" title2="Purpose"/>
                     <ComparisonTableBody>
-                    {cookies.map(({source, name, purpose}) => (
-                        <tr>
-                            <td>{source}</td>
-                            <td>{name}</td>
-                            <td>{purpose}</td>
-                        </tr>
-                    ))}
+                        {cookies.map(({source, name, purpose}) => (
+                            <tr>
+                                <td>{source}</td>
+                                <td>{name}</td>
+                                <td>{purpose}</td>
+                            </tr>
+                        ))}
                     </ComparisonTableBody>
                 </ComparisonTable>
             </Section>
@@ -138,7 +141,8 @@ export const PrivacyPolicyPage: React.FC = () => {
                 <Heading>Contact &amp; Communication</Heading>
 
                 <Paragraph>
-                    Users contacting Vaticle do so at their own discretion and provide any such personal details requested
+                    Users contacting Vaticle do so at their own discretion and provide any such personal details
+                    requested
                     at their own risk. Your personal information is kept private and stored securely until a time it is
                     no longer required or has no use, as detailed in the Data Protection Act 1998. Every effort has been
                     made to ensure a safe and secure form to email submission process but advise users using such form
@@ -273,14 +277,21 @@ export const PrivacyPolicyPage: React.FC = () => {
                 <Heading>Resources &amp; Further Information</Heading>
 
                 <List>
-                    <li><a href="https://www.legislation.gov.uk/ukpga/1998/29/contents" target="_blank">Data Protection Act 1998</a></li>
-                    <li><a href="https://www.legislation.gov.uk/uksi/2003/2426/contents/made" target="_blank">Privacy and Electronic Communications Regulations 2003</a></li>
-                    <li><a href="https://www.ico.gov.uk/for_organisations/privacy_and_electronic_communications/the_guide.aspx" target="_blank">Privacy and Electronic Communications Regulations 2003 - The Guide</a></li>
+                    <li><a href="https://www.legislation.gov.uk/ukpga/1998/29/contents" target="_blank">Data Protection
+                        Act 1998</a></li>
+                    <li><a href="https://www.legislation.gov.uk/uksi/2003/2426/contents/made" target="_blank">Privacy
+                        and Electronic Communications Regulations 2003</a></li>
+                    <li><a
+                        href="https://www.ico.gov.uk/for_organisations/privacy_and_electronic_communications/the_guide.aspx"
+                        target="_blank">Privacy and Electronic Communications Regulations 2003 - The Guide</a></li>
                     <li><a href="https://twitter.com/privacy" target="_blank">Twitter Privacy Policy</a></li>
-                    <li><a href="https://www.facebook.com/about/privacy/" target="_blank">Facebook Privacy Policy</a></li>
+                    <li><a href="https://www.facebook.com/about/privacy/" target="_blank">Facebook Privacy Policy</a>
+                    </li>
                     <li><a href="https://www.google.com/privacy.html" target="_blank">Google Privacy Policy</a></li>
-                    <li><a href="https://developers.facebook.com/policy" target="_blank">Facebook Platform Policies</a></li>
-                    <li><a href="https://dev.twitter.com/overview/terms/agreement-and-policy" target="_blank">Developer Agreement &amp; Policy | Twitter Developers</a></li>
+                    <li><a href="https://developers.facebook.com/policy" target="_blank">Facebook Platform Policies</a>
+                    </li>
+                    <li><a href="https://dev.twitter.com/overview/terms/agreement-and-policy" target="_blank">Developer
+                        Agreement &amp; Policy | Twitter Developers</a></li>
                 </List>
             </Section>
 
@@ -335,9 +346,9 @@ const ComparisonTableHeader: React.FC<ComparisonTableHeaderProps> = ({title1, ti
     const classes = Object.assign({}, vaticleStyles(), legalPageStyles());
     return (
         <thead className={clsx(classes.comparisonTableHeader)}>
-            <th/>
-            <th className={clsx(classes.comparisonTableHeaderItem, classes.comparisonTableHeaderItem1)}>{title1}</th>
-            <th className={clsx(classes.comparisonTableHeaderItem, classes.comparisonTableHeaderItem2)}>{title2}</th>
+        <th/>
+        <th className={clsx(classes.comparisonTableHeaderItem, classes.comparisonTableHeaderItem1)}>{title1}</th>
+        <th className={clsx(classes.comparisonTableHeaderItem, classes.comparisonTableHeaderItem2)}>{title2}</th>
         </thead>
     );
 }
@@ -346,7 +357,7 @@ const ComparisonTableBody: React.FC = ({children}) => {
     const classes = legalPageStyles();
     return (
         <tbody className={clsx(classes.comparisonTableBody)}>
-            {children}
+        {children}
         </tbody>
     );
 }

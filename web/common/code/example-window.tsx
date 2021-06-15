@@ -7,15 +7,15 @@ import BranchIcon from "../assets/graphics/branch.svg";
 import FetchIcon from "../assets/graphics/fetch.svg";
 import clsx from "clsx";
 
-export const CodeVisualiserWindow: React.FC = ({ children }) => <div className={codeStyles().windowContainer}>{children}</div>;
+export const ExampleWindow: React.FC = ({ children }) => <div className={codeStyles().windowContainer}>{children}</div>;
 
-export const CodeVisualiserHeader: React.FC = () => <div className={codeStyles().windowHeader}><MacOSWindow/></div>;
+export const ExampleWindowHeader: React.FC = () => <div className={codeStyles().windowHeader}><MacOSWindow/></div>;
 
-interface CodeVisualiserFooterProps {
+interface ExampleWindowFooterProps {
     language: LanguageDisplayName;
 }
 
-export const CodeVisualiserFooter: React.FC<CodeVisualiserFooterProps> = ({language}) => {
+export const ExampleWindowFooter: React.FC<ExampleWindowFooterProps> = ({language}) => {
     const classes = Object.assign({}, vaticleStyles(), codeVisualiserFooterStyles());
 
     return (

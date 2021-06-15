@@ -1,11 +1,6 @@
 import { makeStyles } from "@material-ui/core";
 
 export const typeQLVisualiserStyles = makeStyles({
-    codeAndGraph: {
-        height: 360,
-        position: "relative",
-    },
-
     graphPane: {
         position: "absolute",
         top: 0,

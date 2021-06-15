@@ -1,14 +1,15 @@
 import React from "react";
-import { vaticleStyles } from "../../common/styles/vaticle-styles";
-import { DefaultLayout } from "../../common/layout/default-layout";
+import {vaticleStyles} from "../../common/styles/vaticle-styles";
+import {DefaultLayout} from "../../common/layout/default-layout";
 import clsx from "clsx";
-import { typeDBStyles } from "./typedb-styles";
-import { expressivityExampleCode, expressivityExampleGraph } from "../common/typeql/example/expressivity-example";
-import { TypeQLExample } from "../common/typeql/typeql-example";
-import { typeHierarchyExampleCode, typeHierarchyExampleGraph } from "../common/typeql/example/type-hierarchy-example";
-import { safetyExampleCode, safetyExampleGraph } from "../common/typeql/example/safety-example";
-import { ClientCodeExample } from "../common/code/client-code-example";
-import { Code } from "../../common/code/code";
+import {typeDBStyles} from "./typedb-styles";
+import {expressivityExampleCode, expressivityExampleGraph} from "../common/typeql/example/expressivity-example";
+import {TypeQLExample} from "../feature/typeql-example";
+import {typeHierarchyExampleCode, typeHierarchyExampleGraph} from "../common/typeql/example/type-hierarchy-example";
+import {safetyExampleCode, safetyExampleGraph} from "../common/typeql/example/safety-example";
+import {Code} from "../../common/code/code";
+import {FeatureBlock} from "../feature/feature-block";
+import {PolyglotExample} from "../../common/code/polyglot-example";
 
 export const TypeDBPage: React.FC = () => {
     const classes = Object.assign({}, vaticleStyles(), typeDBStyles());
@@ -24,19 +25,23 @@ try (TypeDBClient client = TypeDB.coreClient("localhost:1729")) {
             ...
         }
     }
-}`}, {
+}`
+    }, {
         language: "python",
         body: `
 lorem ipsum dolor sit amet
-`}, {
+`
+    }, {
         language: "nodejs",
         body: `
 i am a nodejs source
-`}, {
+`
+    }, {
         language: "console",
         body: `
 transaction typedb schema write
-`}];
+`
+    }];
 
     return (
         <DefaultLayout>
@@ -44,7 +49,8 @@ transaction typedb schema write
 
                 <h1 className={classes.h1}>Meet TypeDB and TypeQL</h1>
                 <p className={classes.largeText}>
-                    TypeDB is a strongly-typed database with a rich and logical type system. TypeDB empowers you to tackle
+                    TypeDB is a strongly-typed database with a rich and logical type system. TypeDB empowers you to
+                    tackle
                     complex problems, and TypeQL is its query language.
                 </p>
 
@@ -60,33 +66,42 @@ transaction typedb schema write
                     and properties.
                 </p>
 
-                <TypeQLExample className={classes.subsectionMargin} visualiserPosition="left"
-                               code={expressivityExampleCode} graphData={expressivityExampleGraph} title="Entity-Relationship Model"
-                               body="TypeDB allows you to model your domain using the well-known Entity-Relationship
+                <FeatureBlock className={classes.subsectionMargin} examplePosition="left"
+                              title="Entity-Relationship Model"
+                              body="TypeDB allows you to model your domain using the well-known Entity-Relationship
                                model at its full expressivity. It is composed of entity types, relationship types, and
                                attribute types. Unlike other modelling languages, Grakn allows you to define type
-                               hierarchies, hyper-entities, hyper-relations, and rules to build rich knowledge" buttonText="Documentation"/>
+                               hierarchies, hyper-entities, hyper-relations, and rules to build rich knowledge"
+                              buttonText="Documentation">
+                    <TypeQLExample code={expressivityExampleCode} data={expressivityExampleGraph}/>
+                </FeatureBlock>
 
-                <TypeQLExample className={classes.subsectionMargin} visualiserPosition="right"
-                               code={typeHierarchyExampleCode} graphData={typeHierarchyExampleGraph} title="Type Hierarchies"
-                               body="TypeDB alows you to easily model type inheritance into the domain model. Following
+                <FeatureBlock className={classes.subsectionMargin} examplePosition="right" title="Type Hierarchies"
+                              body="TypeDB alows you to easily model type inheritance into the domain model. Following
                                logical and object-oriented principle, this allows data types to inherit the behaviour
                                and properties of their supertypes. Lorem ipsum dolor sit amet, consectetur adipiscing
-                               elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." buttonText="Documentation"/>
+                               elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+                              buttonText="Documentation">
+                    <TypeQLExample code={typeHierarchyExampleCode} data={typeHierarchyExampleGraph}/>
+                </FeatureBlock>
 
-                <TypeQLExample className={classes.subsectionMargin} visualiserPosition="left"
-                               code={expressivityExampleCode} graphData={expressivityExampleGraph} title="Ternary Relations"
-                               body="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                <FeatureBlock className={classes.subsectionMargin} examplePosition="left" title="Ternary Relations"
+                              body="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
                                incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
                                exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
-                               dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla" buttonText="Documentation"/>
+                               dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla"
+                              buttonText="Documentation">
+                    <TypeQLExample code={expressivityExampleCode} data={expressivityExampleGraph}/>
+                </FeatureBlock>
 
-                <TypeQLExample className={classes.subsectionMargin} visualiserPosition="right"
-                               code={expressivityExampleCode} graphData={expressivityExampleGraph} title="Nested Relations"
-                               body="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                <FeatureBlock className={classes.subsectionMargin} examplePosition="right" title="Nested Relations"
+                              body="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
                                incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
                                exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
-                               dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla" buttonText="Documentation"/>
+                               dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla"
+                              buttonText="Documentation">
+                    <TypeQLExample code={expressivityExampleCode} data={expressivityExampleGraph}/>
+                </FeatureBlock>
             </section>
 
             <section className={classes.subsectionMargin}>
@@ -98,19 +113,25 @@ transaction typedb schema write
                     you have a dataset that you can trust.
                 </p>
 
-                <TypeQLExample className={classes.subsectionMargin} visualiserPosition="left"
-                               code={safetyExampleCode} graphData={safetyExampleGraph} title="Logical Data Validation"
-                               body="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                <FeatureBlock className={classes.subsectionMargin} examplePosition="left"
+                              title="Logical Data Validation"
+                              body="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
                                incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
                                exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
-                               dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla" buttonText="Documentation"/>
+                               dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla"
+                              buttonText="Documentation">
+                    <TypeQLExample code={safetyExampleCode} data={safetyExampleGraph}/>
+                </FeatureBlock>
 
-                <TypeQLExample className={classes.subsectionMargin} visualiserPosition="right"
-                               code={safetyExampleCode} graphData={safetyExampleGraph} title="Semantic Query Validation"
-                               body="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                <FeatureBlock className={classes.subsectionMargin} examplePosition="right"
+                              title="Semantic Query Validation"
+                              body="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
                                incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
                                exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
-                               dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla" buttonText="Documentation"/>
+                               dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla"
+                              buttonText="Documentation">
+                    <TypeQLExample code={safetyExampleCode} data={safetyExampleGraph}/>
+                </FeatureBlock>
             </section>
 
             <section className={classes.subsectionMargin}>
@@ -121,19 +142,23 @@ transaction typedb schema write
                     patterns that would otherwise be too hard to find; and complex queries become much simpler.
                 </p>
 
-                <TypeQLExample className={classes.subsectionMargin} visualiserPosition="left"
-                               code={safetyExampleCode} graphData={safetyExampleGraph} title="Rules"
-                               body="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                <FeatureBlock className={classes.subsectionMargin} examplePosition="left" title="Rules"
+                              body="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
                                incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
                                exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
-                               dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla" buttonText="Documentation"/>
+                               dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla"
+                              buttonText="Documentation">
+                    <TypeQLExample code={safetyExampleCode} data={safetyExampleGraph}/>
+                </FeatureBlock>
 
-                <TypeQLExample className={classes.subsectionMargin} visualiserPosition="right"
-                               code={safetyExampleCode} graphData={safetyExampleGraph} title="Inference"
-                               body="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                <FeatureBlock className={classes.subsectionMargin} examplePosition="right" title="Inference"
+                              body="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
                                incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
                                exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
-                               dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla" buttonText="Documentation"/>
+                               dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla"
+                              buttonText="Documentation">
+                    <TypeQLExample code={safetyExampleCode} data={safetyExampleGraph}/>
+                </FeatureBlock>
             </section>
 
             <section className={classes.subsectionMargin}>
@@ -145,19 +170,23 @@ transaction typedb schema write
                     cillum dolore eu fugiat nulla pariatur.
                 </p>
 
-                <ClientCodeExample className={classes.subsectionMargin} codePosition="left"
-                               sources={simpleAPISources} title="Simple & Stateful API" id="simple-stateful-api"
-                               body="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                <FeatureBlock className={classes.subsectionMargin} examplePosition="left" title="Simple & Stateful API"
+                              body="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
                                incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
                                exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
-                               dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla" buttonText="Documentation"/>
+                               dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla"
+                              buttonText="Documentation">
+                    <PolyglotExample id="simple-stateful-api" sources={simpleAPISources}/>
+                </FeatureBlock>
 
-                <TypeQLExample className={classes.subsectionMargin} visualiserPosition="right"
-                               code={safetyExampleCode} graphData={safetyExampleGraph} title="ACID Transactions"
-                               body="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                <FeatureBlock className={classes.subsectionMargin} examplePosition="right" title="ACID Transactions"
+                              body="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
                                incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
                                exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
-                               dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla" buttonText="Documentation"/>
+                               dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla"
+                              buttonText="Documentation">
+                    <TypeQLExample code={safetyExampleCode} data={safetyExampleGraph}/>
+                </FeatureBlock>
             </section>
         </DefaultLayout>
     );

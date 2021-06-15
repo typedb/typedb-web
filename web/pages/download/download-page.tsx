@@ -1,10 +1,10 @@
 import React from 'react';
-import { DefaultLayout } from "../../common/layout/default-layout";
-import { downloadPageStyles } from "./download-styles";
-import { vaticleStyles } from "../../common/styles/vaticle-styles";
-import { ProductSection } from "./product-section";
+import {DefaultLayout} from "../../common/layout/default-layout";
+import {downloadPageStyles} from "./download-styles";
+import {vaticleStyles} from "../../common/styles/vaticle-styles";
+import {ProductSection} from "./product-section";
 import clsx from "clsx";
-import { ContactForm } from "../contact/contact-form";
+import {ContactForm} from "../contact/contact-form";
 
 export const DownloadPage: React.FC = () => {
     const classes = Object.assign({}, vaticleStyles(), downloadPageStyles());

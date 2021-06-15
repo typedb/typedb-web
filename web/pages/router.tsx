@@ -1,12 +1,12 @@
-import { BrowserRouter, Route, RouteProps, Switch, useLocation } from "react-router-dom";
-import React, { useEffect, useLayoutEffect } from "react";
-import { DownloadPage } from "./download/download-page";
-import { HomePage } from "./home/home-page";
-import { useTypeDBVersion } from "../state/typedb-version";
-import { getTypeDBVersion } from "../api/typedb-service";
-import { PrivacyPolicyPage } from "./privacy/privacy-policy-page";
-import { headerHeight } from "../common/layout/layout-styles";
-import { TypeDBPage } from "./typedb/typedb-page";
+import {BrowserRouter, Route, RouteProps, Switch, useLocation} from "react-router-dom";
+import React, {useEffect, useLayoutEffect} from "react";
+import {DownloadPage} from "./download/download-page";
+import {HomePage} from "./home/home-page";
+import {useTypeDBVersion} from "../state/typedb-version";
+import {getTypeDBVersion} from "../api/typedb-service";
+import {PrivacyPolicyPage} from "./privacy/privacy-policy-page";
+import {headerHeight} from "../common/layout/layout-styles";
+import {TypeDBPage} from "./typedb/typedb-page";
 
 interface VaticleRouteProps extends RouteProps {
     title: string;
@@ -36,7 +36,7 @@ const VaticleRoute: React.FC<VaticleRouteProps> = props => {
             // TODO: This isn't quite right - samePageNavigation may have the wrong value if navigating using the Back button
             setTimeout(() => {
                 if (routerLocation.state?.samePageNavigation)
-                    window.scrollTo({ left: 0, top: y, behavior: "smooth" });
+                    window.scrollTo({left: 0, top: y, behavior: "smooth"});
                 else window.scrollTo(0, y);
             }, 1); // setTimeout used to make scroll resolve after browser's default hash link handler (Safari)
         } else {
@@ -52,7 +52,7 @@ const VaticleRoute: React.FC<VaticleRouteProps> = props => {
         });
     });
 
-    const { title, ...rest } = props;
+    const {title, ...rest} = props;
     return <Route exact {...rest} />;
 };
 
@@ -78,7 +78,7 @@ export const VaticleRouter: React.FC = () => {
                 <VaticleRoute path={routes.download} title="Download" component={DownloadPage}/>
                 <VaticleRoute path={routes.privacyPolicy} title="Privacy Policy" component={PrivacyPolicyPage}/>
                 <VaticleRoute path={routes.typeDB} title="TypeDB" component={TypeDBPage}/>
-                <VaticleRoute path={routes.home} title="Home" component={HomePage} />
+                <VaticleRoute path={routes.home} title="Home" component={HomePage}/>
             </Switch>
         </BrowserRouter>
     );

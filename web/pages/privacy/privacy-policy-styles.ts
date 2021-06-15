@@ -1,5 +1,5 @@
-import { makeStyles } from "@material-ui/core/styles";
-import { vaticleTheme } from "../../common/styles/theme";
+import {makeStyles} from "@material-ui/core/styles";
+import {vaticleTheme} from "../../common/styles/theme";
 
 const textLineHeight = 28;
 
@@ -16,15 +16,13 @@ export const legalPageStyles = makeStyles({
         marginTop: textLineHeight,
     },
 
-    // TODO: These styles are very similar to ComparisonBlock
+    // TODO: These styles are very similar to DistributionBlock
     comparisonTable: {
         width: "100%",
         tableLayout: "fixed",
     },
 
-    comparisonTableHeader: {
-
-    },
+    comparisonTableHeader: {},
 
     comparisonTableHeaderItem: {
         height: 45,

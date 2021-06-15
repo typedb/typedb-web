@@ -1,4 +1,4 @@
-import { homePageClusterStyles } from "./home-styles";
+import {homePageClusterStyles} from "./home-styles";
 import React from "react";
 import clsx from "clsx";
 import HighAvailabilityIcon from "../../assets/icons/high-availability.svg";
@@ -7,9 +7,9 @@ import AuthenticationIcon from "../../assets/icons/authentication.svg";
 import EncryptionIcon from "../../assets/icons/encryption.svg";
 import ClusterManagementIcon from "../../assets/icons/cluster-management.svg";
 import BackupAndRecoveryIcon from "../../assets/icons/backup-and-recovery.svg";
-import { VaticleButton } from "../../common/button/button";
-import { vaticleStyles } from "../../common/styles/vaticle-styles";
-import { ClassProps } from "../../common/class-props";
+import {VaticleButton} from "../../common/button/button";
+import {vaticleStyles} from "../../common/styles/vaticle-styles";
+import {ClassProps} from "../../common/class-props";
 
 interface ClusterFeature {
     name: string;
@@ -71,8 +71,10 @@ export const ClusterSection: React.FC<ClassProps> = ({className}) => {
             </div>
 
             <div className={clsx(classes.mainActionList, classes.subsectionMargin)}>
-                <VaticleButton size="small" type="secondary" disabled comingSoon className={classes.clusterAction}>Learn More</VaticleButton>
-                <VaticleButton size="small" type="primary" disabled comingSoon className={classes.clusterAction}>Cloud Deployment</VaticleButton>
+                <VaticleButton size="small" type="secondary" disabled comingSoon className={classes.clusterAction}>Learn
+                    More</VaticleButton>
+                <VaticleButton size="small" type="primary" disabled comingSoon className={classes.clusterAction}>Cloud
+                    Deployment</VaticleButton>
             </div>
         </section>
     );

@@ -1,6 +1,6 @@
-import { makeStyles } from "@material-ui/core";
+import {makeStyles} from "@material-ui/core";
 
-export const typeQLStyles = makeStyles({
+export const featureStyles = makeStyles({
     diagramAndCaption: {
         textAlign: "start",
         display: "flex",
@@ -16,13 +16,13 @@ export const typeQLStyles = makeStyles({
         },
     },
 
-    visualiserLeft: {
+    exampleLeft: {
         "@media(min-width: 1200px)": {
             flexDirection: "row",
         },
     },
 
-    visualiserRight: {
+    exampleRight: {
         "@media(min-width: 1200px)": {
             flexDirection: "row-reverse",
         },
@@ -54,5 +54,10 @@ export const typeQLStyles = makeStyles({
         "@media(max-width: 767px)": {
             marginTop: 30,
         },
+    },
+
+    typeQLExample: {
+        height: 360,
+        position: "relative",
     },
 });

@@ -1,8 +1,8 @@
 import clsx from "clsx";
-import React, { useEffect, useState } from "react";
-import { vaticleStyles } from "../../common/styles/vaticle-styles";
-import { corporateLogosStyles, corporateLogosStyleVars as styleVars } from "./home-styles";
-import { ClassProps } from "../../common/class-props";
+import React, {useEffect, useState} from "react";
+import {vaticleStyles} from "../../common/styles/vaticle-styles";
+import {corporateLogosStyles, corporateLogosStyleVars as styleVars} from "./home-styles";
+import {ClassProps} from "../../common/class-props";
 import SixPointSixLogo from "../../assets/logos/purple/6point6.png";
 import AcchaLogo from "../../assets/logos/purple/accha.png";
 import AriwontoLogo from "../../assets/logos/purple/ariwonto.png";
@@ -267,11 +267,12 @@ export const CorporateLogosSection: React.FC<ClassProps> = ({className}) => {
 
     return (
         <section className={clsx(className, classes.corporateLogos)}>
-        {logoState.visibleLogos.map(({logo, altText}, idx) => (
-            <div className={classes.corporateLogoContainer}>
-                <CorporateLogo logo={logo} altText={altText} className={clsx(classes.corporateLogo, idx === logoState.transitionIndex && (logoState.spawning ? classes.corporateLogoFadeIn : classes.corporateLogoFadeOut))}/>
-            </div>
-        ))}
+            {logoState.visibleLogos.map(({logo, altText}, idx) => (
+                <div className={classes.corporateLogoContainer}>
+                    <CorporateLogo logo={logo} altText={altText}
+                                   className={clsx(classes.corporateLogo, idx === logoState.transitionIndex && (logoState.spawning ? classes.corporateLogoFadeIn : classes.corporateLogoFadeOut))}/>
+                </div>
+            ))}
         </section>
     );
 }

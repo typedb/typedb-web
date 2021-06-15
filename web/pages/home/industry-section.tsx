@@ -1,17 +1,22 @@
-import { homePageIndustryStyles } from "./home-styles";
-import { VaticleButton } from "../../common/button/button";
-import React, { useState } from "react";
+import {homePageIndustryStyles} from "./home-styles";
+import {VaticleButton} from "../../common/button/button";
+import React, {useState} from "react";
 import clsx from "clsx";
 import LifeScienceIcon from "../../assets/icons/life-science.svg";
 import SecurityIcon from "../../assets/icons/security.svg";
 import TelecommunicationIcon from "../../assets/icons/telecommunication.svg";
 import KnowledgeGraph from "../../assets/icons/knowledge-graph.svg";
 import MachineLearningIcon from "../../assets/icons/machine-learning.svg";
-import { vaticleTheme } from "../../common/styles/theme";
-import { vaticleStyles } from "../../common/styles/vaticle-styles";
-import { ClassProps } from "../../common/class-props";
+import {vaticleTheme} from "../../common/styles/theme";
+import {vaticleStyles} from "../../common/styles/vaticle-styles";
+import {ClassProps} from "../../common/class-props";
 
-type IndustryName =  "Knowledge Graph" | "Machine Learning" | "Health & Life Science" | "Defence & Security" | "Telecommunication";
+type IndustryName =
+    "Knowledge Graph"
+    | "Machine Learning"
+    | "Health & Life Science"
+    | "Defence & Security"
+    | "Telecommunication";
 
 interface Industry {
     name: IndustryName;
@@ -67,14 +72,16 @@ export const IndustrySection: React.FC<ClassProps> = ({className}) => {
             <h3 className={clsx(classes.h3, classes.textMarginLarge)}>{selectedIndustry.name}</h3>
 
             <p className={clsx(classes.industryDescription, classes.largeText)}>{selectedIndustry.description}</p>
-            <VaticleButton size="small" type="secondary" disabled comingSoon className={clsx(classes.learnMore, classes.contentMargin)}>
+            <VaticleButton size="small" type="secondary" disabled comingSoon
+                           className={clsx(classes.learnMore, classes.contentMargin)}>
                 Learn More
             </VaticleButton>
 
             <div className={clsx(classes.subsectionMargin, classes.sectionToggleGroup)}>
-            {allIndustries.map(industry => (
-                <SectionToggle industry={industry} binding={setSelectedIndustry} selected={industry.name === selectedIndustry.name}/>
-            ))}
+                {allIndustries.map(industry => (
+                    <SectionToggle industry={industry} binding={setSelectedIndustry}
+                                   selected={industry.name === selectedIndustry.name}/>
+                ))}
             </div>
         </section>
     );
@@ -91,7 +98,9 @@ export const SectionToggle: React.FC<SectionToggleProps> = ({industry, binding, 
 
     return (
         <div className={classes.sectionToggle}>
-            <div className={clsx(classes.sectionToggleIconContainer, selected && classes.sectionToggleIconContainerSelected)} onClick={() => binding(industry)}>
+            <div
+                className={clsx(classes.sectionToggleIconContainer, selected && classes.sectionToggleIconContainerSelected)}
+                onClick={() => binding(industry)}>
                 <industry.icon color={selected ? vaticleTheme.palette.green[300] : "#FFF"}/>
             </div>
             <p className={clsx(classes.sectionToggleTitle)}>{industry.name}</p>

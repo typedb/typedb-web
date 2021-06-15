@@ -1,5 +1,5 @@
-import { makeStyles } from '@material-ui/core/styles';
-import { vaticleTheme } from "../../common/styles/theme";
+import {makeStyles} from '@material-ui/core/styles';
+import {vaticleTheme} from "../../common/styles/theme";
 
 export const vaticleGalaxyStyles = makeStyles({
     root: {
@@ -221,13 +221,13 @@ export const corporateLogosStyles = makeStyles({
     },
 
     "@keyframes fadeIn": {
-        "0%": { opacity: 0 },
-        "100%": { opacity: 1 },
+        "0%": {opacity: 0},
+        "100%": {opacity: 1},
     },
 
     "@keyframes fadeOut": {
-        "0%": { opacity: 1 },
-        "100%": { opacity: 0 },
+        "0%": {opacity: 1},
+        "100%": {opacity: 0},
     },
 });
 
@@ -409,13 +409,13 @@ export const homePageTestimonialsStyles = makeStyles({
     },
 
     "@keyframes testimonials": {
-        "0%": { left: 0 },
-        "100%": { left: -testimonialWidth * testimonialCount },
+        "0%": {left: 0},
+        "100%": {left: -testimonialWidth * testimonialCount},
     },
 
     "@keyframes testimonialsMobile": {
-        "0%": { left: 0 },
-        "100%": { left: -testimonialWidthMobile * testimonialCount },
+        "0%": {left: 0},
+        "100%": {left: -testimonialWidthMobile * testimonialCount},
     },
 
     testimonialCarousel: {

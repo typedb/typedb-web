@@ -1,8 +1,8 @@
 import React from "react";
 import clsx from "clsx";
 import CircleDecoration from "../../assets/graphics/circle-decoration.svg";
-import { vaticleStyles } from "../../common/styles/vaticle-styles";
-import { ClassProps } from "../../common/class-props";
+import {vaticleStyles} from "../../common/styles/vaticle-styles";
+import {ClassProps} from "../../common/class-props";
 import JonThompsonAvatar from "../../assets/images/jon-thompson.jpg";
 import JorisSijsAvatar from "../../assets/images/joris-sijs.jpeg";
 import NikSharmaAvatar from "../../assets/images/nik-sharma.jpg";
@@ -23,7 +23,8 @@ import GravrSquareLogo from "../../assets/logos/squarewhite/gravr-square-white.p
 import TNOSquareLogo from "../../assets/logos/squarewhite/tno-square-white.png";
 import AlphaVertexSquareLogo from "../../assets/logos/squarewhite/alpha-vertex-square-white.png";
 import EagleGenomicsSquareLogo from "../../assets/logos/squarewhite/eagle-genomics-square-white.png";
-import EuropeanRespiratorySocietySquareLogo from "../../assets/logos/squarewhite/european-respiratory-society-square-white.png";
+import EuropeanRespiratorySocietySquareLogo
+    from "../../assets/logos/squarewhite/european-respiratory-society-square-white.png";
 import InfosysSquareLogo from "../../assets/logos/squarewhite/infosys-square-white.png";
 import CapgeminiSquareLogo from "../../assets/logos/squarewhite/capgemini-square-white.png";
 import ChinaMerchantsBankSquareLogo from "../../assets/logos/squarewhite/china-merchants-bank-square-white.png";
@@ -31,7 +32,7 @@ import OxfordPharmagenesisSquareLogo from "../../assets/logos/squarewhite/oxford
 import RAIRHealthSquareLogo from "../../assets/logos/squarewhite/rair-health-square-white.png";
 import RocheSquareLogo from "../../assets/logos/squarewhite/roche-square-white.png";
 import RollsRoyceSquareLogo from "../../assets/logos/squarewhite/rolls-royce-square-white.png";
-import { homePageTestimonialsStyles } from "./home-styles";
+import {homePageTestimonialsStyles} from "./home-styles";
 
 interface Testimonial {
     companyName: string;
@@ -172,10 +173,11 @@ export const TestimonialsSection: React.FC<ClassProps> = ({className}) => {
         <section className={clsx(className, classes.testimonialsSection)}>
             <h1 className={classes.h1}>Become the pioneer of your industry</h1>
 
-            <div className={clsx(classes.carouselContainer, classes.testimonialCarouselContainer, classes.subsectionMargin)}>
+            <div
+                className={clsx(classes.carouselContainer, classes.testimonialCarouselContainer, classes.subsectionMargin)}>
                 <div className={clsx(classes.carousel, classes.testimonialCarousel)}>
                     {[0, 0, 0].map(() => (
-                    <span className={classes.carouselHalf}>
+                        <span className={classes.carouselHalf}>
                     {testimonials.map(({companyName, companyLogo, personName, jobTitle, avatar, body}) => (
                         <div className={classes.testimonialContainer}>
                             <img src={companyLogo} alt={companyName} className={classes.testimonialCompanyLogo}/>

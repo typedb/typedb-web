@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from "react";
-import { vaticleStyles } from "../../common/styles/vaticle-styles";
-import { downloadPageProductStyles } from "./download-styles";
+import React, {useEffect, useState} from "react";
+import {vaticleStyles} from "../../common/styles/vaticle-styles";
+import {downloadPageProductStyles} from "./download-styles";
 import moment from "moment";
 import clsx from "clsx";
-import { urls } from "../../common/urls";
-import { VaticleSelect } from "../../common/select/select";
-import { VaticleButton } from "../../common/button/button";
-import { ComparisonBlock, ComparisonBlockItem } from "./comparison-block";
+import {urls} from "../../common/urls";
+import {VaticleSelect} from "../../common/select/select";
+import {VaticleButton} from "../../common/button/button";
+import {ComparisonBlockItem, DistributionBlock} from "./distribution-block";
 
 // TODO: This tab was copied from TypeDBTab - we should reuse and extend TypeDBTab
 export const TypeDBWorkbaseTab: React.FC = () => {
@@ -18,7 +18,7 @@ export const TypeDBWorkbaseTab: React.FC = () => {
         content: () => <CommercialPane/>,
     }];
 
-    return <ComparisonBlock items={items}/>;
+    return <DistributionBlock items={items}/>;
 }
 
 interface Downloads {
@@ -27,7 +27,7 @@ interface Downloads {
     "Windows": NativeDownloads;
 }
 
-type NativeDownloads = {[version: string]: string}
+type NativeDownloads = { [version: string]: string }
 
 const OpenSourcePane: React.FC = () => {
     const classes = Object.assign({}, vaticleStyles(), downloadPageProductStyles());
@@ -84,16 +84,20 @@ const OpenSourcePane: React.FC = () => {
             <p className={clsx(classes.comparisonBlockContent, classes.mediumText, classes.textMarginLarge)}>
                 Current Stable Release: <strong>TypeDB Workbase {workbaseVersion}</strong>
                 <br/>
-                <strong>{latestReleaseDateFormatted}</strong> <a href={latestReleaseNotesURL} target="_blank">Release Notes</a>
+                <strong>{latestReleaseDateFormatted}</strong> <a href={latestReleaseNotesURL} target="_blank">Release
+                Notes</a>
             </p>
 
-            <div className={clsx(classes.comparisonBlockContent, classes.mediumText, classes.textMarginLarge, classes.selectGroup)}>
-                <VaticleSelect label="Operating System" value={selectedOS} setValue={setSelectedOS} inputName="os" inputID="typedb-os" variant="outlined">
+            <div
+                className={clsx(classes.comparisonBlockContent, classes.mediumText, classes.textMarginLarge, classes.selectGroup)}>
+                <VaticleSelect label="Operating System" value={selectedOS} setValue={setSelectedOS} inputName="os"
+                               inputID="typedb-os" variant="outlined">
                     <option value="Linux">Linux</option>
                     <option value="Mac OS X">Mac OS X</option>
                     <option value="Windows">Windows</option>
                 </VaticleSelect>
-                <VaticleSelect label="Version" value={selectedVersion} setValue={setSelectedVersion} inputName="version" inputID="typedb-version" variant="outlined">
+                <VaticleSelect label="Version" value={selectedVersion} setValue={setSelectedVersion} inputName="version"
+                               inputID="typedb-version" variant="outlined">
                     <option value="2.1.2">2.1.2</option>
                     <option value="2.1.0">2.1.0</option>
                     <option value="2.0.2">2.0.2</option>
@@ -121,7 +125,8 @@ const CommercialPane: React.FC = () => {
                 <h5 className={clsx(classes.h5, classes.comparisonBlockContent)}>Commercial License</h5>
             </div>
             <p className={clsx(classes.comparisonBlockContent, classes.mediumText, classes.textMarginLarge)}>
-                If you want to freely integrate TypeDB Workbase into your ecosystem, and satisfy all of your organisation's
+                If you want to freely integrate TypeDB Workbase into your ecosystem, and satisfy all of your
+                organisation's
                 requirements, the commercial license gives you that peace of mind.
             </p>
 

@@ -6,13 +6,13 @@ import Prism from "prismjs";
 import { codeStyles } from "./code-styles";
 import { Code } from "./code";
 
-interface CodeSampleProps {
+interface CodePaneProps {
     code: Code;
     lines: number;
     resizable?: boolean;
 }
 
-export const CodeSample: React.FC<CodeSampleProps> = ({ code, lines, resizable }) => {
+export const CodePane: React.FC<CodePaneProps> = ({ code, lines, resizable }) => {
     const classes = codeStyles();
     const lineNumbers = [...Array(lines).keys()].map(n => n + 1);
 

@@ -1,13 +1,13 @@
-import React, { useEffect, useState } from "react";
-import { vaticleStyles } from "../../common/styles/vaticle-styles";
-import { downloadPageProductStyles } from "./download-styles";
+import React, {useEffect, useState} from "react";
+import {vaticleStyles} from "../../common/styles/vaticle-styles";
+import {downloadPageProductStyles} from "./download-styles";
 import moment from "moment";
-import { useTypeDBVersion } from "../../state/typedb-version";
+import {useTypeDBVersion} from "../../state/typedb-version";
 import clsx from "clsx";
-import { urls } from "../../common/urls";
-import { VaticleSelect } from "../../common/select/select";
-import { VaticleButton } from "../../common/button/button";
-import { ComparisonBlock, ComparisonBlockItem } from "./comparison-block";
+import {urls} from "../../common/urls";
+import {VaticleSelect} from "../../common/select/select";
+import {VaticleButton} from "../../common/button/button";
+import {ComparisonBlockItem, DistributionBlock} from "./distribution-block";
 
 export const TypeDBTab: React.FC = () => {
     const items: [ComparisonBlockItem, ComparisonBlockItem] = [{
@@ -18,7 +18,7 @@ export const TypeDBTab: React.FC = () => {
         content: () => <CommercialPane/>,
     }];
 
-    return <ComparisonBlock items={items}/>;
+    return <DistributionBlock items={items}/>;
 }
 
 interface Downloads {
@@ -27,7 +27,7 @@ interface Downloads {
     "Windows": NativeDownloads;
 }
 
-type NativeDownloads = {[version in TypeDBVersion]: string}
+type NativeDownloads = { [version in TypeDBVersion]: string }
 
 type TypeDBVersion = "2.1.3" | "2.1.1" | "2.0.2" | "2.0.1" | "2.0.0";
 
@@ -86,7 +86,8 @@ const OpenSourcePane: React.FC = () => {
             <p className={clsx(classes.comparisonBlockContent, classes.mediumText, classes.textMarginLarge)}>
                 Current Stable Release: <strong>TypeDB {typeDBVersion}</strong>
                 <br/>
-                <strong>{latestReleaseDateFormatted}</strong> <a href={latestReleaseNotesURL} target="_blank">Release Notes</a>
+                <strong>{latestReleaseDateFormatted}</strong> <a href={latestReleaseNotesURL} target="_blank">Release
+                Notes</a>
             </p>
 
             <p className={clsx(classes.comparisonBlockContent, classes.mediumText, classes.textMarginLarge)}>
@@ -99,13 +100,16 @@ const OpenSourcePane: React.FC = () => {
                 </ul>
             </p>
 
-            <div className={clsx(classes.comparisonBlockContent, classes.mediumText, classes.textMarginLarge, classes.selectGroup)}>
-                <VaticleSelect label="Operating System" value={selectedOS} setValue={setSelectedOS} inputName="os" inputID="typedb-os" variant="outlined">
+            <div
+                className={clsx(classes.comparisonBlockContent, classes.mediumText, classes.textMarginLarge, classes.selectGroup)}>
+                <VaticleSelect label="Operating System" value={selectedOS} setValue={setSelectedOS} inputName="os"
+                               inputID="typedb-os" variant="outlined">
                     <option value="Linux">Linux</option>
                     <option value="Mac OS X">Mac OS X</option>
                     <option value="Windows">Windows</option>
                 </VaticleSelect>
-                <VaticleSelect label="Version" value={selectedVersion} setValue={setSelectedVersion} inputName="version" inputID="typedb-version" variant="outlined">
+                <VaticleSelect label="Version" value={selectedVersion} setValue={setSelectedVersion} inputName="version"
+                               inputID="typedb-version" variant="outlined">
                     <option value="2.1.3">2.1.3</option>
                     <option value="2.1.1">2.1.1</option>
                     <option value="2.0.2">2.0.2</option>

@@ -1,12 +1,12 @@
 import React from "react";
-import { ClassProps } from "../../common/class-props";
-import { downloadPageProductStyles } from "./download-styles";
-import { TypeDBTab } from "./typedb-tab";
-import { TypeDBClusterTab } from "./typedb-cluster-tab";
-import { TypeDBWorkbaseTab } from "./typedb-workbase-tab";
-import { VaticleTabs } from "../../common/tabs/tabs";
+import {ClassProps} from "../../common/class-props";
+import {downloadPageProductStyles} from "./download-styles";
+import {TypeDBTab} from "./typedb-tab";
+import {TypeDBClusterTab} from "./typedb-cluster-tab";
+import {TypeDBWorkbaseTab} from "./typedb-workbase-tab";
+import {VaticleTabs} from "../../common/tabs/tabs";
 import clsx from "clsx";
-import { vaticleStyles } from "../../common/styles/vaticle-styles";
+import {vaticleStyles} from "../../common/styles/vaticle-styles";
 
 type ProductName = "TypeDB" | "TypeDB Cluster" | "TypeDB Workbase";
 
@@ -17,7 +17,7 @@ interface Product {
     id: string;
 }
 
-export const ProductSection: React.FC<ClassProps> = ({ className }) => {
+export const ProductSection: React.FC<ClassProps> = ({className}) => {
     const classes = Object.assign({}, vaticleStyles(), downloadPageProductStyles());
 
     const allProducts: Product[] = [{
@@ -36,8 +36,10 @@ export const ProductSection: React.FC<ClassProps> = ({ className }) => {
 
     return (
         <section className={className}>
-            <VaticleTabs items={allProducts} classes={{tabGroup: classes.tabGroup, tabItem: clsx(classes.tabItem, classes.h5),
-                selected: classes.tabItemSelected, first: classes.firstTabItem, last: classes.lastTabItem}}/>
+            <VaticleTabs items={allProducts} classes={{
+                tabGroup: classes.tabGroup, tabItem: clsx(classes.tabItem, classes.h5),
+                selected: classes.tabItemSelected, first: classes.firstTabItem, last: classes.lastTabItem
+            }}/>
         </section>
     );
 }

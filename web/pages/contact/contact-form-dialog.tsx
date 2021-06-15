@@ -1,6 +1,6 @@
 import React from "react";
-import { VaticleDialog } from "../../common/dialog/dialog";
-import { ContactForm } from "./contact-form";
+import {VaticleDialog} from "../../common/dialog/dialog";
+import {ContactForm} from "./contact-form";
 
 interface ContactFormDialogProps {
     open: boolean;

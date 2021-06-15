@@ -1,21 +1,21 @@
 import React from "react";
-import { homePageStyles } from "./home-styles";
-import { VaticleGalaxy } from "./vaticle-galaxy";
-import { faDiscord, faGithub, faTwitter } from "@fortawesome/free-brands-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { VaticleButton } from "../../common/button/button";
+import {homePageStyles} from "./home-styles";
+import {VaticleGalaxy} from "./vaticle-galaxy";
+import {faDiscord, faGithub, faTwitter} from "@fortawesome/free-brands-svg-icons";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {VaticleButton} from "../../common/button/button";
 import clsx from "clsx";
-import { IndustrySection } from "./industry-section";
-import { ClusterSection } from "./cluster-section";
-import { TestimonialsSection } from "./testimonials-section";
-import { vaticleStyles } from "../../common/styles/vaticle-styles";
+import {IndustrySection} from "./industry-section";
+import {ClusterSection} from "./cluster-section";
+import {TestimonialsSection} from "./testimonials-section";
+import {vaticleStyles} from "../../common/styles/vaticle-styles";
 import VaticleWorld from "../../assets/graphics/vaticle-world.svg";
-import { CorporateLogosSection } from "./corporate-logos-section";
-import { TypeQLExamplesSection } from "./typeql-examples-section";
-import { DefaultLayout } from "../../common/layout/default-layout";
-import { urls } from "../../common/urls";
-import { useTypeDBVersion } from "../../state/typedb-version";
-import { routes } from "../router";
+import {CorporateLogosSection} from "./corporate-logos-section";
+import {TypeQLExamplesSection} from "./typeql-examples-section";
+import {DefaultLayout} from "../../common/layout/default-layout";
+import {urls} from "../../common/urls";
+import {useTypeDBVersion} from "../../state/typedb-version";
+import {routes} from "../router";
 
 export const HomePage: React.FC = () => {
     const classes = Object.assign({}, vaticleStyles(), homePageStyles());
@@ -29,7 +29,8 @@ export const HomePage: React.FC = () => {
                     <VaticleGalaxy/>
                 </div>
 
-                <h1 className={clsx(classes.typeDBIntro, classes.h1, classes.subsectionMargin)}>Introducing TypeDB: a strongly-typed database</h1>
+                <h1 className={clsx(classes.typeDBIntro, classes.h1, classes.subsectionMargin)}>Introducing TypeDB: a
+                    strongly-typed database</h1>
                 <h1 className={clsx(classes.typeDBIntroMobile, classes.h1)}>
                     Introducing TypeDB:<br/>
                     a strongly-typed database
@@ -40,20 +41,22 @@ export const HomePage: React.FC = () => {
                 </p>
 
                 <div className={clsx(classes.mainLinks, classes.subsectionMargin)}>
-                    <a href={urls.github.typedb} target="_blank" className={clsx(classes.mainLink, classes.firstMainLink)}>
-                        <FontAwesomeIcon className={classes.mainLinkIcon} icon={faGithub} />
+                    <a href={urls.github.typedb} target="_blank"
+                       className={clsx(classes.mainLink, classes.firstMainLink)}>
+                        <FontAwesomeIcon className={classes.mainLinkIcon} icon={faGithub}/>
                         <div className={classes.mainLinkCaption}>GitHub</div>
                     </a>
                     <a href={urls.social.discord} target="_blank" className={classes.mainLink}>
-                        <FontAwesomeIcon className={classes.mainLinkIcon} icon={faDiscord} />
+                        <FontAwesomeIcon className={classes.mainLinkIcon} icon={faDiscord}/>
                         <div className={classes.mainLinkCaption}>Discord</div>
                     </a>
                     <a href={urls.social.twitter} target="_blank" className={classes.mainLink}>
-                        <FontAwesomeIcon className={classes.mainLinkIconCircle} icon={faTwitter} />
+                        <FontAwesomeIcon className={classes.mainLinkIconCircle} icon={faTwitter}/>
                         <div className={classes.mainLinkCaption}>Twitter</div>
                     </a>
                     <div className={classes.mainLink}>
-                        <VaticleButton className={classes.downloadTypeDBButton} size="small" type="primary" to={routes.download}>
+                        <VaticleButton className={classes.downloadTypeDBButton} size="small" type="primary"
+                                       to={routes.download}>
                             Download TypeDB {typeDBVersion}
                         </VaticleButton>
                     </div>

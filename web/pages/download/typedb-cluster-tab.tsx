@@ -1,9 +1,9 @@
 import React from "react";
-import { vaticleStyles } from "../../common/styles/vaticle-styles";
-import { downloadPageProductStyles } from "./download-styles";
-import { ComparisonBlock, ComparisonBlockItem } from "./comparison-block";
+import {vaticleStyles} from "../../common/styles/vaticle-styles";
+import {downloadPageProductStyles} from "./download-styles";
+import {ComparisonBlockItem, DistributionBlock} from "./distribution-block";
 import clsx from "clsx";
-import { VaticleButton } from "../../common/button/button";
+import {VaticleButton} from "../../common/button/button";
 
 export const TypeDBClusterTab: React.FC = () => {
     const items: [ComparisonBlockItem, ComparisonBlockItem] = [{
@@ -14,7 +14,7 @@ export const TypeDBClusterTab: React.FC = () => {
         content: () => <OnPremisePane/>,
     }];
 
-    return <ComparisonBlock items={items}/>;
+    return <DistributionBlock items={items}/>;
 }
 
 const CloudPane: React.FC = () => {
@@ -23,7 +23,8 @@ const CloudPane: React.FC = () => {
     return (
         <>
             <p className={clsx(classes.comparisonBlockContent, classes.mediumText)}>
-                Deploy your TypeDB Cluster as a Helm package in your Kubernetes cluster, in the cloud provider of your choosing: Google Cloud, Amazong Web Services, or Microsoft Azure.
+                Deploy your TypeDB Cluster as a Helm package in your Kubernetes cluster, in the cloud provider of your
+                choosing: Google Cloud, Amazong Web Services, or Microsoft Azure.
             </p>
 
             <div className={classes.filler}/>
