@@ -19,13 +19,13 @@ export const ExampleWindowFooter: React.FC<ExampleWindowFooterProps> = ({languag
     const classes = Object.assign({}, vaticleStyles(), codeVisualiserFooterStyles());
 
     return (
-        <div className={clsx(classes.root, classes.smallText)}>
+        <div className={clsx(classes.root)}>
             <div>{language}</div>
 
             <div className={classes.filler}/>
 
-            <BranchIcon/><span>master</span>
-            <FetchIcon/><span>fetch</span>
+            <BranchIcon className={classes.icon}/><span className={classes.iconLabel}>master</span>
+            <FetchIcon className={classes.icon}/><span className={classes.iconLabel}>fetch</span>
         </div>
     );
 };

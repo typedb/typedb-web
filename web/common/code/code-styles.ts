@@ -115,5 +115,16 @@ export const codeVisualiserFooterStyles = makeStyles({
         backgroundColor: "#0B0339",
         display: "flex",
         alignItems: "center",
+        padding: "0 8px",
+        fontSize: 12,
+        color: "#484B72",
     },
+
+    icon: {
+        marginLeft: 8,
+    },
+
+    iconLabel: {
+        marginLeft: 5,
+    }
 });
