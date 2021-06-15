@@ -1,16 +1,16 @@
-import React, { useLayoutEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
-import clsx from "clsx";
-import { vaticleStyles } from "../../common/styles/vaticle-styles";
+import React from "react";
 import { ClassProps } from "../../common/class-props";
 import { downloadPageProductStyles } from "./download-styles";
 import { TypeDBTab } from "./typedb-tab";
 import { TypeDBClusterTab } from "./typedb-cluster-tab";
 import { TypeDBWorkbaseTab } from "./typedb-workbase-tab";
-import { VaticleLink } from "../../common/link/link";
+import { VaticleTabs } from "../../common/tabs/tabs";
+import clsx from "clsx";
+import { vaticleStyles } from "../../common/styles/vaticle-styles";
 
 type ProductName = "TypeDB" | "TypeDB Cluster" | "TypeDB Workbase";
 
+// TODO: Refactor into TabItem<ProductName>
 interface Product {
     name: ProductName,
     content: React.FC<any>;
@@ -34,41 +34,10 @@ export const ProductSection: React.FC<ClassProps> = ({ className }) => {
         id: "typedb-cluster",
     }];
 
-    const routerLocation = useLocation();
-    const [selectedProduct, setSelectedProduct] = useState(allProducts.find(p => p.id === routerLocation.hash.slice(1)) || allProducts[0]);
-
-    useLayoutEffect(() => {
-        let matchedProduct = allProducts.find(p => p.id === routerLocation.hash.slice(1));
-        if (matchedProduct) setSelectedProduct(matchedProduct);
-    }, [routerLocation.hash]);
-
     return (
         <section className={className}>
-            <div className={classes.tabGroup}>
-            {allProducts.map((product, idx) => (
-                <Tab product={product} first={idx === 0} last={idx === allProducts.length - 1} selected={product.name === selectedProduct.name}/>
-            ))}
-            </div>
-            <selectedProduct.content/>
+            <VaticleTabs items={allProducts} classes={{tabGroup: classes.tabGroup, tabItem: clsx(classes.tabItem, classes.h5),
+                selected: classes.tabItemSelected, first: classes.firstTabItem, last: classes.lastTabItem}}/>
         </section>
-    );
-}
-
-// TODO: This component has a lot in common with <SectionToggle/>
-interface TabProps {
-    product: Product;
-    first?: boolean;
-    last?: boolean;
-    selected: boolean;
-}
-
-const Tab: React.FC<TabProps> = ({product, first, last, selected}) => {
-    const classes = Object.assign({}, vaticleStyles(), downloadPageProductStyles());
-
-    return (
-        <VaticleLink className={clsx(classes.tabItem, classes.h5, classes.pageAnchor, first && classes.firstTabItem, last && classes.lastTabItem, selected && classes.tabItemSelected)}
-           id={product.id} to={`#${product.id}`} scroll={false} scrollPaddingTop={160}>
-            {product.name}
-        </VaticleLink>
     );
 }

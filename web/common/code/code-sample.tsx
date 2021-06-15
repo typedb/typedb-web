@@ -4,26 +4,21 @@ import PanelSlider from "../assets/graphics/panel-slider.svg";
 import clsx from "clsx";
 import Prism from "prismjs";
 import { codeStyles } from "./code-styles";
-
-interface Code {
-    language: string;
-    body: string;
-}
+import { Code } from "./code";
 
 interface CodeSampleProps {
-    source?: Code;
-    sources?: Code[];
+    code: Code;
+    lines: number;
     resizable?: boolean;
 }
 
-export const CodeSample: React.FC<CodeSampleProps> = ({ source, sources, resizable }) => {
+export const CodeSample: React.FC<CodeSampleProps> = ({ code, lines, resizable }) => {
     const classes = codeStyles();
-
-    const lineNumbers = [...Array(sources ? 13 : 15).keys()].map(n => n + 1);
+    const lineNumbers = [...Array(lines).keys()].map(n => n + 1);
 
     if (resizable) {
         useEffect(() => {
-            interact(`.${classes.codePane}`)
+            interact(`.${classes.codePane}.${classes.resizable}`)
                 .resizable({
                     edges: { right: true },
                     listeners: {
@@ -50,15 +45,15 @@ export const CodeSample: React.FC<CodeSampleProps> = ({ source, sources, resizab
     }, []);
 
     return (
-        <div className={classes.codePane}>
+        <div className={clsx(classes.codePane, resizable && classes.resizable)}>
             <div className={classes.lineNumbersSection}>
                 <ol className={classes.lineNumbers}>
                     {lineNumbers.map(n => <li>{n}</li>)}
                 </ol>
             </div>
             <div className={classes.codeSection}>
-                <pre className={classes.codeArea}>
-                    <code className={clsx(`language-${source.language}`, classes.code)}>{source.body}</code>
+                <pre className={clsx(classes.codeArea, resizable && classes.resizable)}>
+                    <code className={clsx(`language-${code.language}`, classes.code)}>{code.body}</code>
                 </pre>
                 {resizable && <PanelSlider className={classes.panelSlider}/>}
             </div>

@@ -1,27 +1,6 @@
 import { makeStyles } from "@material-ui/core";
-import { vaticleTheme } from "../styles/theme";
-
-const borderBlack = "#08022E";
 
 export const typeQLVisualiserStyles = makeStyles({
-    container: {
-        width: 660,
-        height: 409,
-        flexShrink: 0,
-
-        "@media(max-width: 767px)": {
-            marginLeft: "50%",
-            transform: "translateX(-50%) scale(.54)",
-            marginTop: -92, // (1 - scale) * height / 2
-            marginBottom: -92,
-        },
-    },
-
-    header: {
-        display: "flex",
-        borderBottom: `1px solid ${borderBlack}`,
-    },
-
     codeAndGraph: {
         height: 360,
         position: "relative",
