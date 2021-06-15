@@ -1,4 +1,4 @@
-import {TypeQLGraph} from "../../../../common/typeql/typeql-data";
+import {TypeQLGraph} from "../../../common/typeql/typeql-data";
 
 export const expressivityExampleCode = `
 define
