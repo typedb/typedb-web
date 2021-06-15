@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { vaticleStyles } from "../../common/styles/vaticle-styles";
 import { downloadPageProductStyles } from "./download-styles";
 import moment from "moment";
-import { useTypeDBVersion } from "../state/typedb-version";
+import { useTypeDBVersion } from "../../state/typedb-version";
 import clsx from "clsx";
 import { urls } from "../../common/urls";
 import { VaticleSelect } from "../../common/select/select";

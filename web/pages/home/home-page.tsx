@@ -1,6 +1,6 @@
 import React from "react";
 import { homePageStyles } from "./home-styles";
-import { VaticleAtom } from "../common/images/vaticle-atom";
+import { VaticleGalaxy } from "./vaticle-galaxy";
 import { faDiscord, faGithub, faTwitter } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { VaticleButton } from "../../common/button/button";
@@ -9,12 +9,12 @@ import { IndustrySection } from "./industry-section";
 import { ClusterSection } from "./cluster-section";
 import { TestimonialsSection } from "./testimonials-section";
 import { vaticleStyles } from "../../common/styles/vaticle-styles";
-import VaticleWorld from "../assets/graphics/vaticle-world.svg";
+import VaticleWorld from "../../assets/graphics/vaticle-world.svg";
 import { CorporateLogosSection } from "./corporate-logos-section";
 import { TypeQLExamplesSection } from "./typeql-examples-section";
 import { DefaultLayout } from "../../common/layout/default-layout";
 import { urls } from "../../common/urls";
-import { useTypeDBVersion } from "../state/typedb-version";
+import { useTypeDBVersion } from "../../state/typedb-version";
 import { routes } from "../router";
 
 export const HomePage: React.FC = () => {
@@ -26,7 +26,7 @@ export const HomePage: React.FC = () => {
         <DefaultLayout>
             <section className={classes.firstSection}>
                 <div className={classes.vaticleAtomContainer}>
-                    <VaticleAtom/>
+                    <VaticleGalaxy/>
                 </div>
 
                 <h1 className={clsx(classes.typeDBIntro, classes.h1, classes.subsectionMargin)}>Introducing TypeDB: a strongly-typed database</h1>

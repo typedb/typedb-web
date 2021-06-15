@@ -1,17 +1,17 @@
 import React, { useState } from "react";
 import { contactFormStyles } from "./contact-styles";
-import { ClassProps } from "../../../common/class-props";
+import { ClassProps } from "../../common/class-props";
 import clsx from "clsx";
-import { VaticleTextField } from "../../../common/input/text-field";
-import { VaticleSelect } from "../../../common/select/select";
-import { vaticleStyles } from "../../../common/styles/vaticle-styles";
+import { VaticleTextField } from "../../common/input/text-field";
+import { VaticleSelect } from "../../common/select/select";
+import { vaticleStyles } from "../../common/styles/vaticle-styles";
 import { FormControlLabel } from "@material-ui/core";
-import { VaticleCheckbox } from "../../../common/input/checkbox";
-import { VaticleButton } from "../../../common/button/button";
-import { urls } from "../../../common/urls";
-import { routes } from "../../router";
+import { VaticleCheckbox } from "../../common/input/checkbox";
+import { VaticleButton } from "../../common/button/button";
+import { urls } from "../../common/urls";
+import { routes } from "../router";
 import { Link } from "react-router-dom";
-import { VaticleSnackbar } from "../../../common/snackbar/snackbar";
+import { VaticleSnackbar } from "../../common/snackbar/snackbar";
 
 export const ContactForm: React.FC<ClassProps> = ({className}) => {
     const classes = Object.assign({}, vaticleStyles(), contactFormStyles());

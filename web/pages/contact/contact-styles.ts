@@ -1,5 +1,5 @@
 import { makeStyles } from "@material-ui/core";
-import { vaticleTheme } from "../../../common/styles/theme";
+import { vaticleTheme } from "../../common/styles/theme";
 
 export const contactFormStyles = makeStyles({
     root: {

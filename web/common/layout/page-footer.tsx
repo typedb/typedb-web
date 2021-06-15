@@ -10,7 +10,7 @@ import { urls } from "../urls";
 import { Link } from "react-router-dom";
 import { routes } from '../../pages/router';
 import { VaticleSnackbar } from "../snackbar/snackbar";
-import { ContactFormDialog } from "../../pages/common/contact/contact-form-dialog";
+import { ContactFormDialog } from "../../pages/contact/contact-form-dialog";
 
 export const PageFooter: React.FC = () => {
     const classes = Object.assign({}, vaticleStyles(), pageFooterStyles());

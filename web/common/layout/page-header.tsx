@@ -12,7 +12,7 @@ import { HamburgerCollapse } from "react-animated-burgers/lib";
 import { vaticleStyles } from "../styles/vaticle-styles";
 import { urls } from "../urls";
 import { routes } from "../../pages/router";
-import { ContactFormDialog } from "../../pages/common/contact/contact-form-dialog";
+import { ContactFormDialog } from "../../pages/contact/contact-form-dialog";
 
 export const PageHeader: React.FC = () => {
     const classes = Object.assign({}, vaticleStyles(), pageHeaderStyles());

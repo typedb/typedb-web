@@ -7,7 +7,7 @@ module.exports = merge(common, {
   devtool: 'inline-source-map',
   plugins: [
     new webpack.NormalModuleReplacementPlugin(
-      /pages\/config\/config\.ts/,
+      /config\/config\.ts/,
       "./config.serve.ts"
     )
   ],

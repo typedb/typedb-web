@@ -1,9 +1,9 @@
 import React from 'react';
 
-import { vaticleAtomStyles } from "./images-styles";
+import { vaticleGalaxyStyles } from "./home-styles";
 
-export const VaticleAtom: React.FC = (props) => {
-    const classes = vaticleAtomStyles();
+export const VaticleGalaxy: React.FC = (props) => {
+    const classes = vaticleGalaxyStyles();
 
     return (
         <svg width={480} height={480} xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" className={classes.root} {...props}>
