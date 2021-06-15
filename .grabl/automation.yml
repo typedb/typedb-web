@@ -1,0 +1,27 @@
+config:
+  version-candidate: VERSION
+  dependencies:
+    dependencies: [build]
+
+build:
+  correctness:
+    build:
+      image: vaticle-ubuntu-20.04
+      command: |
+        bazel build //...
+
+release:
+  deployment:
+    deploy-artifact-release:
+      image: vaticle-ubuntu-20.04
+      command: |
+        export DEPLOY_ARTIFACT_USERNAME=$REPO_VATICLE_USERNAME
+        export DEPLOY_ARTIFACT_PASSWORD=$REPO_VATICLE_PASSWORD
+        bazel run --define version=$(cat VERSION) //:deploy-web-main -- release
+    deploy-production:
+      image: vaticle-ubuntu-20.04
+      dependencies: [deploy-artifact-release]
+      command: |
+        echo $NOMAD_CACERT_BASE64 | base64 -d > /tmp/nomad-ca.pem
+        export NOMAD_CACERT=/tmp/nomad-ca.pem
+        VERSION=$(cat VERSION) COMMIT=$(git rev-parse HEAD) envsubst <infrastructure/web-main.nomad | nomad job run -

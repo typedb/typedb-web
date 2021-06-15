@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="360px" viewBox="0 0 24 360" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>14AD0BEC-6624-4793-8960-23EB48361AB8</title>
+    <g id="Home" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="TypeDB" transform="translate(-709.000000, -756.000000)">
+            <g id="Entity-Relationship-Model" transform="translate(380.000000, 731.000000)">
+                <g id="code" transform="translate(0.000000, 25.000000)">
+                    <g id="slider" transform="translate(329.000000, 0.000000)">
+                        <rect fill="#1D1354" x="8" y="0" width="8" height="360" rx="4"></rect>
+                        <circle id="Oval" fill="#1D1354" cx="12" cy="180" r="12"></circle>
+                        <rect id="line" fill="#FFFFFF" x="7" y="177" width="10" height="2" rx="1"></rect>
+                        <rect id="line" fill="#FFFFFF" x="9" y="181" width="8" height="2" rx="1"></rect>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

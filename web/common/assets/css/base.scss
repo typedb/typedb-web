@@ -1,0 +1,67 @@
+@import url('https://fonts.googleapis.com/css2?family=Titillium+Web:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700&family=Ubuntu+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+$color-white: #FFF;
+$color-purple-600: #261C5E;
+$color-purple-700: #1D1354;
+$color-green-300: #02DAC9;
+
+$default-background: $color-purple-700;
+$default-text-color: $color-white;
+
+html, body {
+  height: 100%;
+  background-color: $default-background;
+  color: $default-text-color;
+  font-size: 16px;
+
+  // smoother edges on browsers running on Mac OS
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  font-family: 'Titillium Web', Geneva, Tahoma, sans-serif;
+
+  margin: 0;
+  scroll-padding-top: 80px; // Scrolling is handled in JS but this rule makes hash links less "jumpy" in supported browsers
+
+  * {
+    box-sizing: border-box;
+  }
+}
+
+body {
+  overflow-x: hidden;
+}
+
+#root {
+  height: 100%;
+}
+
+section {
+  width: 1160px;
+  max-width: calc(100vw - 40px);
+  margin: 0 auto;
+}
+
+a {
+  cursor: pointer;
+}
+
+a p, a address {
+  color: #FFF;
+}
+
+p a, aside a, li a {
+  color: $color-green-300;
+}
+
+strong {
+  font-weight: 600;
+}
+
+input[type="text"], input[type="email"] {
+  font-family: 'Titillium Web', Geneva, Tahoma, sans-serif;
+}
+
+address {
+  font-style: normal;
+}

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="48px" height="52px" viewBox="0 0 48 52" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Backup and Recovery</title>
+    <g id="Home" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Home-Desktop" transform="translate(-1336.000000, -5694.000000)">
+            <g id="scale-knowledge" transform="translate(0.000000, 5030.000000)">
+                <g id="Backup-and-Recovery" transform="translate(1180.000000, 632.000000)">
+                    <g id="backup-and-recovery" transform="translate(40.000000, 0.000000)">
+                        <g id="icon" transform="translate(116.000000, 32.000000)">
+                            <g id="Backup-and-Recovery" transform="translate(0.800000, 0.400000)">
+                                <rect id="Rectangle-2" stroke="#FFFFFF" x="14.990566" y="0.5" width="30.755798" height="12.6824321" rx="1.63475112"></rect>
+                                <rect id="Rectangle-Copy" stroke="#FFFFFF" x="14.990566" y="13.0566233" width="30.755798" height="12.6824321" rx="1.63475112"></rect>
+                                <rect id="Rectangle-Copy-2" stroke="#FFFFFF" x="14.990566" y="25.6132466" width="30.755798" height="12.6824321" rx="1.63475112"></rect>
+                                <ellipse id="Oval" fill="#FFFFFF" cx="20.2562702" cy="7.15486288" rx="1.5" ry="1.49316683"></ellipse>
+                                <ellipse id="Oval-Copy" fill="#FFFFFF" cx="20.1781716" cy="22.5318566" rx="1.4219014" ry="1.41542401"></ellipse>
+                                <ellipse id="Oval-Copy-2" fill="#FFFFFF" cx="20.1781716" cy="37.9865931" rx="1.4219014" ry="1.41542401"></ellipse>
+                                <rect id="Rectangle" fill="#FFFFFF" x="2.36983567" y="21.5722786" width="27.0161267" height="3.52041356"></rect>
+                                <rect id="Rectangle-Copy-3" fill="#FFFFFF" x="2.36983567" y="36.8878922" width="27.0161267" height="3.52041356"></rect>
+                                <rect id="Rectangle" stroke="#FFFFFF" fill="#261C5E" x="0.5" y="12.0924528" width="30.755798" height="12.6824321" rx="1.63475112"></rect>
+                                <rect id="Rectangle-Copy" stroke="#FFFFFF" fill="#261C5E" x="0.5" y="24.6490761" width="30.755798" height="12.6824321" rx="1.63475112"></rect>
+                                <rect id="Rectangle-Copy-2" stroke="#FFFFFF" fill="#261C5E" x="0.5" y="37.209434" width="30.755798" height="12.6824321" rx="1.63475112"></rect>
+                                <ellipse id="Oval" fill="#FFFFFF" cx="5.77256864" cy="18.7541489" rx="1.50686444" ry="1.5"></ellipse>
+                                <ellipse id="Oval-Copy" fill="#FFFFFF" cx="5.77256864" cy="31.3107722" rx="1.50686444" ry="1.5"></ellipse>
+                                <ellipse id="Oval-Copy-2" fill="#FFFFFF" cx="5.37101538" cy="44.0056604" rx="1.50686444" ry="1.5"></ellipse>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

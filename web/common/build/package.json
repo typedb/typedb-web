@@ -1,0 +1,109 @@
+{
+  "name": "vaticle-web-common",
+  "version": "0.1.8",
+  "main": "dist/index.js",
+  "module": "dist/index.esm.js",
+  "description": "Vaticle Website common React components, stylesheets and utils",
+  "scripts": {
+    "build-webpack": "webpack --mode production",
+    "build": "rollup -c",
+    "build-watch": "rollup -c -w",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vaticle/web-main/"
+  },
+  "keywords": [
+    "Vaticle"
+  ],
+  "author": "Vaticle",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vaticle/web-main/issues"
+  },
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    "./": "./dist"
+  },
+  "typings": "dist/index.d.ts",
+  "homepage": "https://github.com/vaticle/web-main#readme",
+  "publishConfig": {
+    "registry": "https://repo.vaticle.com/repository/npm-snapshot/"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.14.3",
+    "@babel/core": "^7.10.4",
+    "@babel/plugin-transform-runtime": "^7.10.5",
+    "@babel/preset-env": "^7.10.4",
+    "@babel/preset-react": "^7.10.4",
+    "@babel/preset-typescript": "^7.10.4",
+    "@bazel/typescript": "2.3.1",
+    "@rollup/plugin-babel": "^5.3.0",
+    "@rollup/plugin-commonjs": "^19.0.0",
+    "@rollup/plugin-node-resolve": "^13.0.0",
+    "@types/color": "^3.0.1",
+    "@types/d3": "^6.3.0",
+    "@types/prismjs": "^1.16.5",
+    "@types/react": "^16.9.41",
+    "@types/react-dom": "^16.9.8",
+    "@types/react-redux": "^7.1.9",
+    "@types/react-router-dom": "^5.1.5",
+    "@typescript-eslint/eslint-plugin": "^3.5.0",
+    "@typescript-eslint/parser": "^3.5.0",
+    "babel-eslint": "^10.1.0",
+    "babel-loader": "^8.1.0",
+    "babel-plugin-inline-react-svg": "^1.1.1",
+    "babel-plugin-named-asset-import": "^0.3.6",
+    "clean-webpack-plugin": "^4.0.0-alpha.0",
+    "css-loader": "^3.6.0",
+    "eslint": "^7.4.0",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-react": "^7.20.3",
+    "file-loader": "^6.0.0",
+    "html-webpack-plugin": "^4.3.0",
+    "node-sass": "^4.14.1",
+    "react-redux": "^7.2.0",
+    "redux": "^4.0.5",
+    "redux-devtools-extension": "^2.13.8",
+    "rollup": "^2.48.0",
+    "rollup-plugin-delete": "^2.0.0",
+    "rollup-plugin-peer-deps-external": "^2.2.4",
+    "rollup-plugin-svg": "^2.0.0",
+    "rollup-plugin-typescript2": "^0.30.0",
+    "sass": "^1.26.9",
+    "sass-loader": "^9.0.1",
+    "style-loader": "^1.2.1",
+    "ts-loader": "^7.0.5",
+    "typescript": "^3.9.6",
+    "webpack": "^4.43.0",
+    "webpack-cli": "^3.3.12",
+    "webpack-dev-server": "^3.11.0",
+    "webpack-merge": "^5.7.3"
+  },
+  "peerDependencies": {
+    "@babel/runtime": "^7.10.5",
+    "@fortawesome/fontawesome-pro": "^5.13.1",
+    "@fortawesome/fontawesome-svg-core": "^1.2.29",
+    "@fortawesome/free-brands-svg-icons": "^5.13.1",
+    "@fortawesome/pro-solid-svg-icons": "^5.15.3",
+    "@fortawesome/react-fontawesome": "^0.1.11",
+    "@material-ui/core": "^4.11.0",
+    "@material-ui/lab": "^4.0.0-alpha.56",
+    "clsx": "^1.1.1",
+    "color": "^3.1.2",
+    "d3": "^6.7.0",
+    "fontfaceobserver": "^2.1.0",
+    "interactjs": "^1.10.11",
+    "pixi-viewport": "^4.30.2",
+    "pixi.js": "^6.0.2",
+    "prismjs": "^1.23.0",
+    "react": "^16.13.1",
+    "react-animated-burgers": "^1.2.8",
+    "react-dom": "^16.13.1",
+    "react-router-dom": "^5.2.0",
+    "styled-components": "^4.4.1"
+  }
+}
