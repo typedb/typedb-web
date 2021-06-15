@@ -1,4 +1,5 @@
 import { makeStyles } from "@material-ui/core";
+import { vaticleTheme } from "../styles/theme";
 
 const borderBlack = "#08022E";
 
@@ -22,21 +23,21 @@ export const codeStyles = makeStyles({
     },
 
     codePane: {
-        // position: "absolute",
-        top: 0,
-        left: 0,
-        bottom: 0,
         width: "100%",
-        zIndex: 50,
-        backgroundColor: "transparent",
-        overflow: "hidden",
-        touchAction: "none",
         display: "flex",
         fontSize: 16,
         lineHeight: "24px",
 
         "&$resizable": {
+            position: "absolute",
+            top: 0,
+            left: 0,
+            bottom: 0,
             width: "50%",
+            zIndex: 50,
+            backgroundColor: "transparent",
+            overflow: "hidden",
+            touchAction: "none",
         },
     },
 
@@ -61,11 +62,15 @@ export const codeStyles = makeStyles({
     },
 
     codeArea: {
-        width: "calc(100% - 12px)",
+        width: "100%",
         height: "100%",
-        marginRight: 12,
         backgroundColor: "#140B44",
         paddingLeft: 20,
+
+        "&$resizable": {
+            width: "calc(100% - 12px)",
+            marginRight: 12,
+        }
     },
 
     code: {
@@ -87,7 +92,18 @@ export const codeStyles = makeStyles({
         position: "relative",
     },
 
-    polyglotTabItem: {
-        position: "initial",
+    multiLanguageTabGroup: {
+        height: 48,
+    },
+
+    multiLanguageTab: {
+        position: "initial", // TODO: delete this once position isn't set to absolute elsewhere
+        backgroundColor: vaticleTheme.palette.purple["600"],
+        color: "#888DCA",
+    },
+
+    multiLanguageTabSelected: {
+        backgroundColor: `${vaticleTheme.palette.purple["300"]} !important`,
+        color: "#FFF !important",
     },
 });

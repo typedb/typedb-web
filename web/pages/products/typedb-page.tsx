@@ -27,10 +27,16 @@ try (TypeDBClient client = TypeDB.coreClient("localhost:1729")) {
 }`}, {
         language: "python",
         body: `
-lorem ipsum dolor sit amet`}, {
+lorem ipsum dolor sit amet
+`}, {
         language: "nodejs",
         body: `
-i am a nodejs source`}];
+i am a nodejs source
+`}, {
+        language: "console",
+        body: `
+transaction typedb schema write
+`}];
 
     return (
         <DefaultLayout>
@@ -140,7 +146,7 @@ i am a nodejs source`}];
                 </p>
 
                 <ClientCodeExample className={classes.subsectionMargin} codePosition="left"
-                               sources={simpleAPISources} title="Simple & Stateful API"
+                               sources={simpleAPISources} title="Simple & Stateful API" id="simple-stateful-api"
                                body="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
                                incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
                                exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure

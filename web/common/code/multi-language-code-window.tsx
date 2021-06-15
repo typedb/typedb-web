@@ -1,10 +1,11 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Code, CodeSample } from "./code-sample";
 import { CodeWindow } from "./code-window";
 import { codeStyles } from "./code-styles";
 import { VaticleTabs } from "../tabs/tabs";
 
-interface PolyglotCodeWindowProps {
+interface MultiLanguageCodeWindowProps {
+    id: string;
     sources: Code[];
 }
 
@@ -14,7 +15,7 @@ interface CodeTab {
     content: React.FC;
 }
 
-export const PolyglotCodeWindow: React.FC<PolyglotCodeWindowProps> = ({ sources }) => {
+export const MultiLanguageCodeWindow: React.FC<MultiLanguageCodeWindowProps> = ({ id, sources }) => {
     const classes = codeStyles();
 
     // TODO: strengthen typing
@@ -25,17 +26,17 @@ export const PolyglotCodeWindow: React.FC<PolyglotCodeWindowProps> = ({ sources 
         "console": "Console",
     };
 
-    const codeTabs: CodeTab[] = sources.map(source => {
+    const codeTabs: CodeTab[] = sources.map(code => {
         return {
-            id: source.language,
-            name: languageDisplayNames[source.language],
-            content: () => <CodeSample source={source}/>
+            id: `${id}-${code.language}`,
+            name: languageDisplayNames[code.language],
+            content: () => <CodeSample code={code} lines={13}/>
         }
     });
 
     return (
         <CodeWindow>
-            <VaticleTabs items={codeTabs} classes={{tabItem: classes.polyglotTabItem}}/>
+            <VaticleTabs items={codeTabs} classes={{tabGroup: classes.multiLanguageTabGroup, tabItem: classes.multiLanguageTab, selected: classes.multiLanguageTabSelected}}/>
         </CodeWindow>
     );
 }

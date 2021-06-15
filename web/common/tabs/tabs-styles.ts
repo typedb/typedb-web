@@ -12,5 +12,6 @@ export const tabsStyles = makeStyles({
         justifyContent: 'center',
         alignItems: 'center',
         transition: "background-color 150ms ease",
+        userSelect: "none",
     },
 });

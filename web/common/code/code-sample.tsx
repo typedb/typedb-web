@@ -11,19 +11,18 @@ export interface Code {
 }
 
 interface CodeSampleProps {
-    source?: Code;
-    sources?: Code[];
+    code: Code;
+    lines: number;
     resizable?: boolean;
 }
 
-export const CodeSample: React.FC<CodeSampleProps> = ({ source, sources, resizable }) => {
+export const CodeSample: React.FC<CodeSampleProps> = ({ code, lines, resizable }) => {
     const classes = codeStyles();
-
-    const lineNumbers = [...Array(sources ? 13 : 15).keys()].map(n => n + 1);
+    const lineNumbers = [...Array(lines).keys()].map(n => n + 1);
 
     if (resizable) {
         useEffect(() => {
-            interact(`.${classes.codePane}`)
+            interact(`.${classes.codePane}.${classes.resizable}`)
                 .resizable({
                     edges: { right: true },
                     listeners: {
@@ -57,8 +56,8 @@ export const CodeSample: React.FC<CodeSampleProps> = ({ source, sources, resizab
                 </ol>
             </div>
             <div className={classes.codeSection}>
-                <pre className={classes.codeArea}>
-                    <code className={clsx(`language-${source.language}`, classes.code)}>{source.body}</code>
+                <pre className={clsx(classes.codeArea, resizable && classes.resizable)}>
+                    <code className={clsx(`language-${code.language}`, classes.code)}>{code.body}</code>
                 </pre>
                 {resizable && <PanelSlider className={classes.panelSlider}/>}
             </div>

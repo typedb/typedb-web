@@ -58,7 +58,7 @@ export const VaticleTab: React.FC<VaticleTabProps> = ({item, selected, first, la
     const ownClasses = Object.assign({}, vaticleStyles(), tabsStyles());
 
     return (
-        <VaticleLink className={clsx(ownClasses.tabItem, classes.tabItem, ownClasses.h5, ownClasses.pageAnchor,
+        <VaticleLink className={clsx(ownClasses.tabItem, classes.tabItem, ownClasses.pageAnchor,
             first && classes.first, last && classes.last, selected && classes.selected)}
                      id={item.id} to={`#${item.id}`} scroll={false} scrollPaddingTop={160}>
             {item.name}

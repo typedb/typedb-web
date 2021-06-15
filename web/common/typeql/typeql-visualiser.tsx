@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import { runTypeQLForceGraph } from "./typeql-force-graph";
 import { typeQLVisualiserStyles } from "./typeql-styles";
 import { TypeQLGraph } from "./typeql-data";
@@ -11,7 +11,7 @@ interface VisualiserProps {
 }
 
 export const TypeQLVisualiser: React.FC<VisualiserProps> = ({ code, data }) => {
-    const graphPaneRef: React.MutableRefObject<any> = React.useRef(null);
+    const graphPaneRef: React.MutableRefObject<any> = useRef(null);
     const classes = typeQLVisualiserStyles();
 
     useEffect(() => {
@@ -28,7 +28,7 @@ export const TypeQLVisualiser: React.FC<VisualiserProps> = ({ code, data }) => {
     return (
         <CodeWindow>
             <div className={classes.codeAndGraph}>
-                <CodeSample source={{language: "typeql", body: code}} resizable/>
+                <CodeSample code={{language: "typeql", body: code}} lines={15} resizable/>
                 <div className={classes.graphPaneBG} />
                 <div ref={graphPaneRef} className={classes.graphPane} />
             </div>
