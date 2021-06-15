@@ -3,7 +3,7 @@
 $color-blue: #7BA0FF;
 $color-yellow: #FFE4A7;
 $color-pink-200: #F28DD7;
-$color-green: #55EAE2;
+$color-aqua: #55EAE2;
 $color-orange: #FFA187;
 $color-red: #F66B65;
 $color-grey: #7F83AF;
@@ -17,20 +17,23 @@ pre[class*="language-"] {
     color: $color-grey;
 }
 
-.token.super {
+.token.super,
+.token.function {
     color: $color-yellow;
 }
 
 .token.string {
-    color: $color-green;
+    color: $color-aqua;
 }
 
 .token.operator,
-.token.keyword {
+.token.keyword,
+.token.punctuation {
     color: $color-blue;
 }
 
-.token.variable {
+.token.variable,
+.token.class-name {
     color: $color-orange;
 }
 
