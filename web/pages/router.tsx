@@ -4,9 +4,9 @@ import { DownloadPage } from "./download/download-page";
 import { HomePage } from "./home/home-page";
 import { useTypeDBVersion } from "../state/typedb-version";
 import { getTypeDBVersion } from "../api/typedb-service";
-import { PrivacyPolicyPage } from "./legal/privacy-policy-page";
+import { PrivacyPolicyPage } from "./privacy/privacy-policy-page";
 import { headerHeight } from "../common/layout/layout-styles";
-import { TypeDBPage } from "./products/typedb-page";
+import { TypeDBPage } from "./typedb/typedb-page";
 
 interface VaticleRouteProps extends RouteProps {
     title: string;

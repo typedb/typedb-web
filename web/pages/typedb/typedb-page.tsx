@@ -2,7 +2,7 @@ import React from "react";
 import { vaticleStyles } from "../../common/styles/vaticle-styles";
 import { DefaultLayout } from "../../common/layout/default-layout";
 import clsx from "clsx";
-import { typeDBStyles } from "./products-styles";
+import { typeDBStyles } from "./typedb-styles";
 import { expressivityExampleCode, expressivityExampleGraph } from "../common/typeql/example/expressivity-example";
 import { TypeQLExample } from "../common/typeql/typeql-example";
 import { typeHierarchyExampleCode, typeHierarchyExampleGraph } from "../common/typeql/example/type-hierarchy-example";

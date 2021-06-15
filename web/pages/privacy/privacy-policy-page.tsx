@@ -1,7 +1,7 @@
 import React from "react";
 import { DefaultLayout } from "../../common/layout/default-layout";
 import { vaticleStyles } from "../../common/styles/vaticle-styles";
-import { legalPageStyles } from "./legal-styles";
+import { legalPageStyles } from "./privacy-policy-styles";
 import clsx from "clsx";
 
 interface Cookie {
