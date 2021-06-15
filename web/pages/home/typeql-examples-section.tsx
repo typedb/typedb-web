@@ -1,8 +1,8 @@
 import {ClassProps} from "../../common/class-props";
 import {vaticleStyles} from "../../common/styles/vaticle-styles";
-import {expressivityExampleCode, expressivityExampleGraph} from "../common/typeql/example/expressivity-example";
-import {safetyExampleCode, safetyExampleGraph} from "../common/typeql/example/safety-example";
-import {inferenceExampleCode, inferenceExampleGraph} from "../common/typeql/example/inference-example";
+import {expressivityExampleCode, expressivityExampleGraph} from "../typedb/examples/expressivity-example";
+import {safetyExampleCode, safetyExampleGraph} from "../typedb/examples/safety-example";
+import {inferenceExampleCode, inferenceExampleGraph} from "../typedb/examples/inference-example";
 import clsx from "clsx";
 import {VaticleButton} from "../../common/button/button";
 import React from "react";
