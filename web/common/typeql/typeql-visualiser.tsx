@@ -3,7 +3,7 @@ import { runTypeQLForceGraph } from "./typeql-force-graph";
 import { typeQLVisualiserStyles } from "./typeql-styles";
 import { TypeQLGraph } from "./typeql-data";
 import { CodeSample } from "../code/code-sample";
-import { CodeWindow } from "../code/code-window";
+import { CodeVisualiserFooter, CodeVisualiserWindow } from "../code/code-visualiser-window";
 
 interface VisualiserProps {
     code: string;
@@ -26,12 +26,13 @@ export const TypeQLVisualiser: React.FC<VisualiserProps> = ({ code, data }) => {
     }, [data]);
 
     return (
-        <CodeWindow>
+        <CodeVisualiserWindow>
             <div className={classes.codeAndGraph}>
                 <CodeSample code={{language: "typeql", body: code}} lines={15} resizable/>
                 <div className={classes.graphPaneBG} />
                 <div ref={graphPaneRef} className={classes.graphPane} />
             </div>
-        </CodeWindow>
+            <CodeVisualiserFooter language="TypeQL"/>
+        </CodeVisualiserWindow>
     );
 }

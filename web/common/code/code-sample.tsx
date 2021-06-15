@@ -4,11 +4,7 @@ import PanelSlider from "../assets/graphics/panel-slider.svg";
 import clsx from "clsx";
 import Prism from "prismjs";
 import { codeStyles } from "./code-styles";
-
-export interface Code {
-    language: string;
-    body: string;
-}
+import { Code } from "./code";
 
 interface CodeSampleProps {
     code: Code;

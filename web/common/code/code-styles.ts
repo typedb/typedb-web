@@ -107,3 +107,13 @@ export const codeStyles = makeStyles({
         color: "#FFF !important",
     },
 });
+
+export const codeVisualiserFooterStyles = makeStyles({
+    root: {
+        height: 24,
+        borderRadius: "0 0 5px 5px",
+        backgroundColor: "#0B0339",
+        display: "flex",
+        alignItems: "center",
+    },
+});

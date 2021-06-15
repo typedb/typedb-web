@@ -18,7 +18,6 @@ import FIDELogo from "../assets/logos/purple/fide.png";
 import FlipkartLogo from "../assets/logos/purple/flipkart.png";
 import GeminosLogo from "../assets/logos/purple/geminos.png";
 import GenentechLogo from "../assets/logos/purple/genentech.png";
-import IBMLogo from "../assets/logos/purple/ibm.png";
 import IceLabLogo from "../assets/logos/purple/ice-lab.png";
 import MedasLogo from "../assets/logos/purple/medas.png";
 import NestleLogo from "../assets/logos/purple/nestle.png";
@@ -32,7 +31,6 @@ import RowzzyLogo from "../assets/logos/purple/rowzzy.png";
 import TNOLogo from "../assets/logos/purple/tno.png";
 import TripudioLogo from "../assets/logos/purple/tripudio.png";
 import TwoSixLogo from "../assets/logos/purple/twosix.png";
-import UCSFLogo from "../assets/logos/purple/ucsf.png";
 import WeLevelLogo from "../assets/logos/purple/welevel.png";
 import ZessLogo from "../assets/logos/purple/zess.png";
 

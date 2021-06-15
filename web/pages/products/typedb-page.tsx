@@ -8,7 +8,7 @@ import { TypeQLExample } from "../common/typeql/typeql-example";
 import { typeHierarchyExampleCode, typeHierarchyExampleGraph } from "../common/typeql/example/type-hierarchy-example";
 import { safetyExampleCode, safetyExampleGraph } from "../common/typeql/example/safety-example";
 import { ClientCodeExample } from "../common/code/client-code-example";
-import { Code } from "../../common/code/code-sample";
+import { Code } from "../../common/code/code";
 
 export const TypeDBPage: React.FC = () => {
     const classes = Object.assign({}, vaticleStyles(), typeDBStyles());
