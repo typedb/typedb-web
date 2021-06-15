@@ -52,7 +52,7 @@ export const ClusterSection: React.FC<ClassProps> = ({className}) => {
 
     return (
         <section className={className}>
-            <h1 className={classes.h1}>Scale your database with TypeDB Cluster</h1>
+            <h1 className={classes.h1}>Scale with TypeDB Cluster</h1>
             <p className={classes.largeText}>
                 TypeDB Cluster is the distributed database designed to scale with your organisation. Whether
                 you have a growing dataset, application workload, or user requests, TypeDB Cluster will provide the
