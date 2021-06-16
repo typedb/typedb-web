@@ -52,7 +52,18 @@ try {
     }, {
         language: "console",
         body: `
-transaction typedb schema write
+$ ./typedb console
+
+Welcome to TypeDB Console. You are now in TypeDB Wonderland!
+Copyright (C) 2021 Vaticle
+
+> database create my-typedb
+Database 'my-typedb' created
+
+> transaction typedb schema write
+typedb::schema::write> ...
+
+> exit
 `
     }];
 
