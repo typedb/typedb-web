@@ -7,65 +7,12 @@ import {expressivityExampleCode, expressivityExampleGraph} from "./examples/expr
 import {TypeQLExample} from "../feature/typeql-example";
 import {typeHierarchyExampleCode, typeHierarchyExampleGraph} from "./examples/type-hierarchy-example";
 import {safetyExampleCode, safetyExampleGraph} from "./examples/safety-example";
-import {Code} from "../../common/code/code";
 import {FeatureBlock} from "../feature/feature-block";
 import {PolyglotExample} from "../../common/code/polyglot-example";
+import { simpleStatefulAPIExampleSources } from "./examples/simple-stateful-api-example";
 
 export const TypeDBPage: React.FC = () => {
     const classes = Object.assign({}, vaticleStyles(), typeDBStyles());
-
-    const simpleAPISources: Code[] = [{
-        language: "java",
-        body: `
-try (TypeDBClient client = TypeDB.coreClient("localhost:1729")) {
-    client.databases().create("my-typedb");
-    try (TypeDBSession session = client.session("my-typedb", DATA)) {
-        try (TypeDBTransaction tx = session.transaction(WRITE)) {
-            ...
-            ...
-        }
-    }
-}`
-    }, {
-        language: "python",
-        body: `
-with TypeDB.core_client("localhost:1729") as client:
-    client.databases().create("my-typedb")
-    with client.session("my-typedb", SessionType.DATA) as session:
-        with session.transaction(TransactionType.WRITE) as write_transaction:
-            ...
-            ...
-`
-    }, {
-        language: "javascript",
-        body: `
-const client = TypeDB.coreClient("localhost:1729");
-client.databases().create("my-typedb");
-const session = await client.session("my-typedb");
-try {
-    const tx = session.transaction(TransactionType.WRITE);
-    ...
-} finally {
-    session.close();
-}
-`
-    }, {
-        language: "console",
-        body: `
-$ ./typedb console
-
-Welcome to TypeDB Console. You are now in TypeDB Wonderland!
-Copyright (C) 2021 Vaticle
-
-> database create my-typedb
-Database 'my-typedb' created
-
-> transaction typedb schema write
-typedb::schema::write> ...
-
-> exit
-`
-    }];
 
     return (
         <DefaultLayout>
@@ -200,7 +147,7 @@ typedb::schema::write> ...
                                exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
                                dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla"
                               buttonText="Documentation">
-                    <PolyglotExample id="simple-stateful-api" sources={simpleAPISources}/>
+                    <PolyglotExample id="simple-stateful-api" sources={simpleStatefulAPIExampleSources}/>
                 </FeatureBlock>
 
                 <FeatureBlock className={classes.subsectionMargin} examplePosition="right" title="ACID Transactions"
@@ -209,7 +156,7 @@ typedb::schema::write> ...
                                exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
                                dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla"
                               buttonText="Documentation">
-                    <PolyglotExample id="acid-transactions" sources={simpleAPISources}/>
+                    <PolyglotExample id="acid-transactions" sources={simpleStatefulAPIExampleSources}/>
                 </FeatureBlock>
             </section>
         </DefaultLayout>
