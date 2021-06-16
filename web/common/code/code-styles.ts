@@ -92,17 +92,21 @@ export const codeStyles = makeStyles({
         position: "relative",
     },
 
-    multiLanguageTabGroup: {
+    polyglotTabGroup: {
         height: 48,
     },
 
-    multiLanguageTab: {
+    polyglotTab: {
         position: "initial", // TODO: delete this once position isn't set to absolute elsewhere
         backgroundColor: vaticleTheme.palette.purple["600"],
         color: "#888DCA",
+
+        "&:hover": {
+            backgroundColor: vaticleTheme.palette.purple["400"],
+        },
     },
 
-    multiLanguageTabSelected: {
+    polyglotTabSelected: {
         backgroundColor: `${vaticleTheme.palette.purple["300"]} !important`,
         color: "#FFF !important",
     },

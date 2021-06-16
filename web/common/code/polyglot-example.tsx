@@ -34,7 +34,7 @@ export const PolyglotExample: React.FC<PolyglotExampleProps> = ({ id, sources })
     return (
         <ExampleWindow>
             <ExampleWindowHeader/>
-            <VaticleTabs items={codeTabs} classes={{tabGroup: classes.multiLanguageTabGroup, tabItem: classes.multiLanguageTab, selected: classes.multiLanguageTabSelected}}/>
+            <VaticleTabs items={codeTabs} classes={{tabGroup: classes.polyglotTabGroup, tabItem: classes.polyglotTab, selected: classes.polyglotTabSelected}}/>
         </ExampleWindow>
     );
 }
