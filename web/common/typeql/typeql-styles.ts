@@ -10,16 +10,6 @@ export const typeQLVisualiserStyles = makeStyles({
         backgroundColor: "#0E053F",
         zIndex: 25,
     },
-
-    graphPaneBG: {
-        position: "absolute",
-        top: 0,
-        left: 0,
-        bottom: 0,
-        right: 0,
-        backgroundColor: "#0E053F",
-        zIndex: 20,
-    }
 });
 
 const green = 0x02DAC9;

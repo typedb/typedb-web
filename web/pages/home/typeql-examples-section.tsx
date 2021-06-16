@@ -31,7 +31,8 @@ export const TypeQLExamplesSection: React.FC<TypeQLExamplesSectionProps> = ({cla
                           body="TypeDB allows you to model your domain based on logical and object-oriented principles.
                                      Composed of entity, relationship, and attribute types, as well as type hierarchies,
                                      roles, and rules, TypeDB allows you to think higher-level as opposed to join-tables,
-                                     columns, documents, vertices, edges, and properties." buttonText="Learn More">
+                                     columns, documents, vertices, edges, and properties."
+                          button={{text: "Learn More", disabled: true, comingSoon: true}}>
                 <TypeQLExample code={expressivityExampleCode} data={expressivityExampleGraph}/>
             </FeatureBlock>
 
@@ -40,7 +41,7 @@ export const TypeQLExamplesSection: React.FC<TypeQLExamplesSectionProps> = ({cla
                                      to validate that your code is inserting and querying data correctly. Query validation
                                      goes beyond static type checking, and includes logical validations of meaningless queries.
                                      With strict type-checking errors, you have a dataset that you can trust."
-                          buttonText="Learn More">
+                          button={{text: "Learn More", disabled: true, comingSoon: true}}>
                 <TypeQLExample code={safetyExampleCode} data={safetyExampleGraph}/>
             </FeatureBlock>
 
@@ -48,7 +49,8 @@ export const TypeQLExamplesSection: React.FC<TypeQLExamplesSectionProps> = ({cla
                           body="TypeDB encodes your data for logical interpretation by its reasoning engine. It enables
                                      type-inference and rule-inference that creates logical abstractions of data.
                                      This allows the discovery of facts and patterns that would otherwise be too hard to
-                                     find; and complex queries become much simpler." buttonText="Learn More">
+                                     find; and complex queries become much simpler."
+                          button={{text: "Learn More", disabled: true, comingSoon: true}}>
                 <TypeQLExample code={inferenceExampleCode} data={inferenceExampleGraph}/>
             </FeatureBlock>
 

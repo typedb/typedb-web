@@ -49,7 +49,7 @@ export const TypeDBPage: React.FC = () => {
                                model at its full expressivity. It is composed of entity types, relationship types, and
                                attribute types. Unlike other modelling languages, Grakn allows you to define type
                                hierarchies, hyper-entities, hyper-relations, and rules to build rich knowledge"
-                              buttonText="Documentation">
+                              button={{text: "Documentation", disabled: true, comingSoon: true}}>
                     <TypeQLExample code={expressivityExampleCode} data={expressivityExampleGraph}/>
                 </FeatureBlock>
 
@@ -58,7 +58,7 @@ export const TypeDBPage: React.FC = () => {
                                logical and object-oriented principle, this allows data types to inherit the behaviour
                                and properties of their supertypes. Lorem ipsum dolor sit amet, consectetur adipiscing
                                elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-                              buttonText="Documentation">
+                              button={{text: "Documentation", disabled: true, comingSoon: true}}>
                     <TypeQLExample code={typeHierarchyExampleCode} data={typeHierarchyExampleGraph}/>
                 </FeatureBlock>
 
@@ -67,7 +67,7 @@ export const TypeDBPage: React.FC = () => {
                                incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
                                exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
                                dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla"
-                              buttonText="Documentation">
+                              button={{text: "Documentation", disabled: true, comingSoon: true}}>
                     <TypeQLExample code={expressivityExampleCode} data={expressivityExampleGraph}/>
                 </FeatureBlock>
 
@@ -76,7 +76,7 @@ export const TypeDBPage: React.FC = () => {
                                incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
                                exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
                                dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla"
-                              buttonText="Documentation">
+                              button={{text: "Documentation", disabled: true, comingSoon: true}}>
                     <TypeQLExample code={expressivityExampleCode} data={expressivityExampleGraph}/>
                 </FeatureBlock>
             </section>
@@ -96,7 +96,7 @@ export const TypeDBPage: React.FC = () => {
                                incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
                                exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
                                dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla"
-                              buttonText="Documentation">
+                              button={{text: "Documentation", disabled: true, comingSoon: true}}>
                     <TypeQLExample code={safetyExampleCode} data={safetyExampleGraph}/>
                 </FeatureBlock>
 
@@ -106,7 +106,7 @@ export const TypeDBPage: React.FC = () => {
                                incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
                                exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
                                dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla"
-                              buttonText="Documentation">
+                              button={{text: "Documentation", disabled: true, comingSoon: true}}>
                     <TypeQLExample code={safetyExampleCode} data={safetyExampleGraph}/>
                 </FeatureBlock>
             </section>
@@ -124,7 +124,7 @@ export const TypeDBPage: React.FC = () => {
                                incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
                                exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
                                dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla"
-                              buttonText="Documentation">
+                              button={{text: "Documentation", disabled: true, comingSoon: true}}>
                     <TypeQLExample code={safetyExampleCode} data={safetyExampleGraph}/>
                 </FeatureBlock>
 
@@ -133,7 +133,7 @@ export const TypeDBPage: React.FC = () => {
                                incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
                                exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
                                dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla"
-                              buttonText="Documentation">
+                              button={{text: "Documentation", disabled: true, comingSoon: true}}>
                     <TypeQLExample code={safetyExampleCode} data={safetyExampleGraph}/>
                 </FeatureBlock>
             </section>
@@ -152,7 +152,7 @@ export const TypeDBPage: React.FC = () => {
                                incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
                                exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
                                dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla"
-                              buttonText="Documentation">
+                              button={{text: "Documentation", disabled: true, comingSoon: true}}>
                     <PolyglotExample id="simple-stateful-api" sources={simpleStatefulAPIExampleSources}/>
                 </FeatureBlock>
 
@@ -161,7 +161,7 @@ export const TypeDBPage: React.FC = () => {
                                incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
                                exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
                                dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla"
-                              buttonText="Documentation">
+                              button={{text: "Documentation", disabled: true, comingSoon: true}}>
                     <PolyglotExample id="acid-transactions" sources={simpleStatefulAPIExampleSources}/>
                 </FeatureBlock>
             </section>

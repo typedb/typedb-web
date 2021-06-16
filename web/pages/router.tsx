@@ -7,6 +7,7 @@ import {getTypeDBVersion} from "../api/typedb-service";
 import {PrivacyPolicyPage} from "./privacy/privacy-policy-page";
 import {headerHeight} from "../common/layout/layout-styles";
 import {TypeDBPage} from "./typedb/typedb-page";
+import { Vaticle404Page } from "./error/404-page";
 
 interface VaticleRouteProps extends RouteProps {
     title: string;
@@ -53,7 +54,7 @@ const VaticleRoute: React.FC<VaticleRouteProps> = props => {
     });
 
     const {title, ...rest} = props;
-    return <Route exact {...rest} />;
+    return <Route {...rest} />;
 };
 
 export const routes = {
@@ -73,12 +74,14 @@ export const VaticleRouter: React.FC = () => {
     return (
         <BrowserRouter>
             <Switch>
-                <VaticleRoute path={legacyRoutes.graknCore} title="TypeDB" component={TypeDBPage}/>
+                <VaticleRoute exact path={legacyRoutes.graknCore} title="TypeDB" component={TypeDBPage}/>
 
-                <VaticleRoute path={routes.download} title="Download" component={DownloadPage}/>
-                <VaticleRoute path={routes.privacyPolicy} title="Privacy Policy" component={PrivacyPolicyPage}/>
-                <VaticleRoute path={routes.typeDB} title="TypeDB" component={TypeDBPage}/>
-                <VaticleRoute path={routes.home} title="Home" component={HomePage}/>
+                <VaticleRoute exact path={routes.download} title="Download" component={DownloadPage}/>
+                <VaticleRoute exact path={routes.privacyPolicy} title="Privacy Policy" component={PrivacyPolicyPage}/>
+                <VaticleRoute exact path={routes.typeDB} title="TypeDB" component={TypeDBPage}/>
+                <VaticleRoute exact path={routes.home} title="Home" component={HomePage}/>
+
+                <VaticleRoute title="404" component={Vaticle404Page}/>
             </Switch>
         </BrowserRouter>
     );
