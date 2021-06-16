@@ -29,7 +29,12 @@ try (TypeDBClient client = TypeDB.coreClient("localhost:1729")) {
     }, {
         language: "python",
         body: `
-lorem ipsum dolor sit amet
+with TypeDB.core_client("localhost:1729") as client:
+    client.databases().create("my-typedb")
+    with client.session("my-typedb", SessionType.DATA) as session:
+        with session.transaction(TransactionType.WRITE) as write_transaction:
+            ...
+            ...
 `
     }, {
         language: "nodejs",
