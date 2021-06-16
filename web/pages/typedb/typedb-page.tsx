@@ -10,9 +10,15 @@ import {safetyExampleCode, safetyExampleGraph} from "./examples/safety-example";
 import {FeatureBlock} from "../feature/feature-block";
 import {PolyglotExample} from "../../common/code/polyglot-example";
 import { simpleStatefulAPIExampleSources } from "./examples/simple-stateful-api-example";
+import { VaticleButton } from "../../common/button/button";
+import { routes } from "../router";
+import { urls } from "../../common/urls";
+import { useTypeDBVersion } from "../../state/typedb-version";
 
 export const TypeDBPage: React.FC = () => {
     const classes = Object.assign({}, vaticleStyles(), typeDBStyles());
+
+    const typeDBVersion = useTypeDBVersion()[0];
 
     return (
         <DefaultLayout>
@@ -158,6 +164,26 @@ export const TypeDBPage: React.FC = () => {
                               buttonText="Documentation">
                     <PolyglotExample id="acid-transactions" sources={simpleStatefulAPIExampleSources}/>
                 </FeatureBlock>
+            </section>
+
+            <section className={clsx(classes.mainActionList, classes.subsectionMargin)}>
+                <VaticleButton size="small" type="primary" to={routes.download}>Download
+                    TypeDB {typeDBVersion}</VaticleButton>
+                <VaticleButton size="small" type="primary" href={urls.github.typedb} target="_blank">Fork/Star on
+                    GitHub</VaticleButton>
+            </section>
+
+            <section className={classes.sectionMargin}>
+                <h1 className={classes.h1}>Scale with TypeDB Cluster</h1>
+                <p className={classes.largeText}>
+                    TypeDB Cluster is the distributed database designed to scale with your organisation. Whether
+                    you have a growing dataset, application workload, or user requests, TypeDB Cluster will provide the
+                    functionalities needed to take you from development to production and scale.
+                </p>
+
+                <div className={clsx(classes.mainActionList, classes.contentMargin)}>
+                    <VaticleButton size="small" type="secondary" disabled comingSoon>Learn More</VaticleButton>
+                </div>
             </section>
         </DefaultLayout>
     );
