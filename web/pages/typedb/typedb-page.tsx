@@ -37,9 +37,17 @@ with TypeDB.core_client("localhost:1729") as client:
             ...
 `
     }, {
-        language: "nodejs",
+        language: "javascript",
         body: `
-i am a nodejs source
+const client = TypeDB.coreClient("localhost:1729");
+client.databases().create("my-typedb");
+const session = await client.session("my-typedb");
+try {
+    const tx = session.transaction(TransactionType.WRITE);
+    ...
+} finally {
+    session.close();
+}
 `
     }, {
         language: "console",

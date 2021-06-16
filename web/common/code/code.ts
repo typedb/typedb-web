@@ -2,7 +2,7 @@ export const languageNames = {
     "typeql": "TypeQL",
     "java": "Java",
     "python": "Python",
-    "nodejs": "Node.js",
+    "javascript": "Node.js",
     "console": "Console",
 } as const;
 
