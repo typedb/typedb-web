@@ -209,7 +209,7 @@ typedb::schema::write> ...
                                exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
                                dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla"
                               buttonText="Documentation">
-                    <TypeQLExample code={safetyExampleCode} data={safetyExampleGraph}/>
+                    <PolyglotExample id="acid-transactions" sources={simpleAPISources}/>
                 </FeatureBlock>
             </section>
         </DefaultLayout>
