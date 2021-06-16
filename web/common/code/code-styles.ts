@@ -8,6 +8,8 @@ export const codeStyles = makeStyles({
         width: 660,
         height: 409,
         flexShrink: 0,
+        display: "flex",
+        flexDirection: "column",
 
         "@media(max-width: 767px)": {
             marginLeft: "50%",
@@ -23,6 +25,7 @@ export const codeStyles = makeStyles({
     },
 
     codePane: {
+        flex: 1,
         width: "100%",
         display: "flex",
         fontSize: 16,
@@ -59,7 +62,13 @@ export const codeStyles = makeStyles({
 
     codeSection: {
         width: "calc(100% - 40px)",
+
+        "&$console": {
+            width: "100%",
+        },
     },
+
+    console: {},
 
     codeArea: {
         width: "100%",
@@ -92,6 +101,12 @@ export const codeStyles = makeStyles({
         position: "relative",
     },
 
+    polyglotTabs: {
+        flex: 1,
+        display: "flex",
+        flexDirection: "column",
+    },
+
     polyglotTabGroup: {
         height: 48,
     },
@@ -109,6 +124,12 @@ export const codeStyles = makeStyles({
     polyglotTabSelected: {
         backgroundColor: `${vaticleTheme.palette.purple["300"]} !important`,
         color: "#FFF !important",
+    },
+
+    polyglotTabContent: {
+        flex: 1,
+        display: "flex",
+        flexDirection: "column",
     },
 });
 

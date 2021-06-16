@@ -24,7 +24,7 @@ const CloudPane: React.FC = () => {
         <>
             <p className={clsx(classes.comparisonBlockContent, classes.mediumText)}>
                 Deploy your TypeDB Cluster as a Helm package in your Kubernetes cluster, in the cloud provider of your
-                choosing: Google Cloud, Amazong Web Services, or Microsoft Azure.
+                choosing: Google Cloud, Amazon Web Services, or Microsoft Azure.
             </p>
 
             <div className={classes.filler}/>

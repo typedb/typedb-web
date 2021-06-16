@@ -12,11 +12,13 @@ export interface VaticleTabItem {
 }
 
 export interface VaticleTabsClasses {
+    root?: string;
     tabGroup?: string;
     tabItem?: string;
     first?: string;
     last?: string;
     selected?: string;
+    tabContent?: string;
 }
 
 export interface VaticleTabsProps {
@@ -36,12 +38,15 @@ export const VaticleTabs: React.FC<VaticleTabsProps> = ({classes, items}) => {
     }, [routerLocation.hash]);
 
     return (
-        <div>
+        <div className={classes.root}>
             <div className={clsx(ownClasses.tabGroup, classes.tabGroup)}>
                 {items.map((item, idx) => <VaticleTab classes={classes} item={item} selected={item.id === selectedItem.id}
                                                       first={idx === 0} last={idx === items.length - 1}/>)}
             </div>
-            <selectedItem.content/>
+            {items.map((item) =>
+            <div hidden={item.id !== selectedItem.id} className={classes.tabContent}>
+                <item.content/>
+            </div>)}
         </div>
     );
 }

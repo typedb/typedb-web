@@ -46,12 +46,13 @@ export const CodePane: React.FC<CodePaneProps> = ({ code, lines, resizable }) =>
 
     return (
         <div className={clsx(classes.codePane, resizable && classes.resizable)}>
+            {code.language !== "console" &&
             <div className={classes.lineNumbersSection}>
                 <ol className={classes.lineNumbers}>
                     {lineNumbers.map(n => <li>{n}</li>)}
                 </ol>
-            </div>
-            <div className={classes.codeSection}>
+            </div>}
+            <div className={clsx(classes.codeSection, code.language === "console" && classes.console)}>
                 <pre className={clsx(classes.codeArea, resizable && classes.resizable)}>
                     <code className={clsx(`language-${code.language}`, classes.code)}>{code.body}</code>
                 </pre>

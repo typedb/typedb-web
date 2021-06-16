@@ -25,8 +25,8 @@ export const PolyglotExample: React.FC<PolyglotExampleProps> = ({ id, sources })
             name: languageNames[code.language],
             content: () => (
                     <>
-                        <CodePane code={code} lines={13}/>
-                        <ExampleWindowFooter language={languageNames[code.language]}/>
+                        <CodePane code={code} lines={code.language === "console" ? 14 : 13}/>
+                        {code.language !== "console" && <ExampleWindowFooter language={languageNames[code.language]}/>}
                     </>),
         }
     });
@@ -34,7 +34,8 @@ export const PolyglotExample: React.FC<PolyglotExampleProps> = ({ id, sources })
     return (
         <ExampleWindow>
             <ExampleWindowHeader/>
-            <VaticleTabs items={codeTabs} classes={{tabGroup: classes.polyglotTabGroup, tabItem: classes.polyglotTab, selected: classes.polyglotTabSelected}}/>
+            <VaticleTabs items={codeTabs} classes={{root: classes.polyglotTabs, tabGroup: classes.polyglotTabGroup,
+                tabItem: classes.polyglotTab, selected: classes.polyglotTabSelected, tabContent: classes.polyglotTabContent}}/>
         </ExampleWindow>
     );
 }

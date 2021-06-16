@@ -65,3 +65,7 @@ input[type="text"], input[type="email"] {
 address {
   font-style: normal;
 }
+
+[hidden] {
+  display: none !important;
+}
