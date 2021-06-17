@@ -93,6 +93,7 @@ export const vaticleStyles = makeStyles({
         width: 160,
 
         "@media(max-width: 767px)": {
+            width: 224,
             marginLeft: "auto",
             marginRight: "auto",
         },
