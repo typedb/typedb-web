@@ -231,7 +231,6 @@ export const CorporateLogosSection: React.FC<ClassProps> = ({className}) => {
         const interval = setInterval(() => {
             beginTransition();
         }, transitionInterval);
-        // TODO: Ideally we'd just use setTimeout, called from inside beginTransition, but it doesn't seem to work.
         const interval2 = setInterval(() => {
             if (logoState.spawning || Date.now() - lastTransitionStartRef.current < 900) return;
             endTransition();
