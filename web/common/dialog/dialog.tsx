@@ -3,6 +3,8 @@ import { Dialog, DialogTitle, DialogTitleProps, IconButton, useMediaQuery } from
 import { dialogStyles } from "./dialog-styles";
 import { vaticleStyles } from "../styles/vaticle-styles";
 import CloseIcon from "@material-ui/icons/Close";
+import { useHistory, useLocation } from "react-router-dom";
+import { deleteSearchParam } from "../util/search-params";
 
 interface VaticleDialogProps {
     open: boolean;
@@ -12,8 +14,13 @@ interface VaticleDialogProps {
 export const VaticleDialog: React.FC<VaticleDialogProps> = ({children, open, setOpen}) => {
     const classes = dialogStyles();
 
+    const routerHistory = useHistory();
+    const routerLocation = useLocation();
     const fullScreen = useMediaQuery("@media(max-width: 767px)");
-    const handleClose = () => setOpen(false);
+    const handleClose = () => {
+        setOpen(false);
+        deleteSearchParam(routerHistory, routerLocation, "dialog");
+    }
 
     return (
         <Dialog open={open} onClose={handleClose} maxWidth="lg" fullScreen={fullScreen} classes={{paper: classes.paper}}>

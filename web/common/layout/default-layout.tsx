@@ -3,33 +3,40 @@ import { defaultLayoutStyles } from './layout-styles';
 import { PageHeader } from "./page-header";
 import { PageFooter } from "./page-footer";
 import { vaticleStyles } from "../styles/vaticle-styles";
-import { urls } from "../urls";
-import { ContactFormDialog } from "../../pages/contact/contact-form-dialog";
+import { ContactForm } from "../../pages/contact/contact-form";
+import { VaticleDialog } from "../dialog/dialog";
+import { useLocation, useHistory } from 'react-router-dom';
+import { getSearchParam, setSearchParam } from "../util/search-params";
 
 export const DefaultLayout: React.FC = ({ children }) => {
     const ownClasses = Object.assign({}, vaticleStyles(), defaultLayoutStyles());
 
     const [contactFormDialogOpen, setContactFormDialogOpen] = useState(false);
+    const routerLocation = useLocation();
+    const routerHistory = useHistory();
+
+    const navigateToContactForm = () => {
+        setSearchParam(routerHistory, routerLocation, "dialog", "contact");
+    };
 
     useLayoutEffect(() => {
-        const params = new URLSearchParams(window.location.search);
-        if (params.get("dialog") === "contact") {
-            setContactFormDialogOpen(true);
-        }
-    }, []);
+        setContactFormDialogOpen(getSearchParam("dialog") === "contact");
+    }, [routerLocation.search]);
 
     return (
         <>
-            <PageHeader onContactClick={() => setContactFormDialogOpen(true)}/>
+            <PageHeader onContactClick={navigateToContactForm}/>
             <div className={ownClasses.underDevelopmentRibbon}>site under development</div>
             <main className={ownClasses.main}>
                 <article>
                     {children}
                 </article>
             </main>
-            <PageFooter onContactClick={() => setContactFormDialogOpen(true)}/>
+            <PageFooter onContactClick={navigateToContactForm}/>
 
-            <ContactFormDialog open={contactFormDialogOpen} setOpen={setContactFormDialogOpen}/>
+            <VaticleDialog open={contactFormDialogOpen} setOpen={setContactFormDialogOpen}>
+                <ContactForm/>
+            </VaticleDialog>
         </>
     );
 };
