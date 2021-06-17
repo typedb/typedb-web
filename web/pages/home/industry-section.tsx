@@ -77,11 +77,13 @@ export const IndustrySection: React.FC<ClassProps> = ({className}) => {
                 Learn More
             </VaticleButton>
 
-            <div className={clsx(classes.subsectionMargin, classes.sectionToggleGroup)}>
-                {allIndustries.map(industry => (
-                    <SectionToggle industry={industry} binding={setSelectedIndustry}
-                                   selected={industry.name === selectedIndustry.name}/>
-                ))}
+            <div className={clsx(classes.subsectionMargin, classes.sectionToggleGroupContainer)}>
+                <div className={classes.sectionToggleGroup}>
+                    {allIndustries.map(industry => (
+                        <SectionToggle industry={industry} binding={setSelectedIndustry}
+                                       selected={industry.name === selectedIndustry.name}/>
+                    ))}
+                </div>
             </div>
         </section>
     );

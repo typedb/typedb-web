@@ -244,14 +244,23 @@ export const homePageIndustryStyles = makeStyles({
         },
     },
 
+    sectionToggleGroupContainer: {
+        "@media(max-width: 767px)": {
+            display: "flex",
+            justifyContent: "center",
+        },
+    },
+
     sectionToggleGroup: {
         display: "grid",
         justifyContent: "center",
         gridTemplateColumns: "repeat(auto-fit, 185px)",
         rowGap: "24px",
 
-        "@media(max-width: 479px)": {
-            gridTemplateColumns: "repeat(auto-fit, 17vw)",
+        "@media(max-width: 767px)": {
+            display: "flex",
+            borderRadius: 5,
+            backgroundColor: vaticleTheme.palette.purple["600"],
         },
     },
 
@@ -261,7 +270,7 @@ export const homePageIndustryStyles = makeStyles({
         alignItems: "center",
         borderRadius: 5,
 
-        "@media(max-width: 479px)": {
+        "@media(max-width: 767px)": {
             backgroundColor: vaticleTheme.palette.purple[600],
         },
     },
@@ -288,10 +297,12 @@ export const homePageIndustryStyles = makeStyles({
             },
         },
 
-        "@media(max-width: 479px)": {
+        "@media(max-width: 767px)": {
             width: "17vw",
             height: "17vw",
+        },
 
+        "@media(max-width: 479px)": {
             "& svg": {
                 transform: "scale(.85)",
             },
@@ -312,7 +323,7 @@ export const homePageIndustryStyles = makeStyles({
         lineHeight: "28px",
         fontWeight: 300,
 
-        "@media(max-width: 479px)": {
+        "@media(max-width: 767px)": {
             display: "none !important",
         },
     },
