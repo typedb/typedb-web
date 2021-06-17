@@ -5,6 +5,7 @@ export const vaticleGalaxyStyles = makeStyles({
     root: {
         "@media(max-width: 767px)": {
             marginLeft: "50%",
+            marginRight: "-75%",
             transform: "translateX(-50%) scale(.667)",
         },
     },
