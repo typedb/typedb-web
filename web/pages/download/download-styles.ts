@@ -21,7 +21,7 @@ export const downloadPageProductStyles = makeStyles({
 
         "@media(max-width: 767px)": {
             width: 288,
-            display: "block",
+            display: "block !important",
         },
     },
 
