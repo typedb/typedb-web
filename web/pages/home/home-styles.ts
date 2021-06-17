@@ -10,13 +10,18 @@ export const vaticleGalaxyStyles = makeStyles({
         },
     },
 
+    winkWink: {
+        transformOrigin: "40px 40px",
+        animation: "$winkWink 20s ease-in-out infinite",
+    },
+
     green: {
         animation: "$spin 320s linear infinite",
         transformOrigin: "center",
     },
 
     yellow: {
-        animation: "$spin 160s linear infinite reverse",
+        animation: "$spin 160s linear infinite",
         transformOrigin: "center",
     },
 
@@ -26,7 +31,7 @@ export const vaticleGalaxyStyles = makeStyles({
     },
 
     pink: {
-        animation: "$spin 320s linear infinite reverse",
+        animation: "$spin 320s linear infinite",
         transformOrigin: "center",
     },
 
@@ -37,6 +42,13 @@ export const vaticleGalaxyStyles = makeStyles({
         to: {
             transform: "rotate(360deg)",
         },
+    },
+
+    "@keyframes winkWink": {
+        "0%": { transform: "scaleY(1)" },
+        "99%": { transform: "scaleY(1)" },
+        "99.5%": { transform: "scaleY(0.01)" },
+        "100%": { transform: "scaleY(1)" },
     },
 });
 
