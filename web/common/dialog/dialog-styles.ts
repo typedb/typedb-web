@@ -4,6 +4,7 @@ import { vaticleTheme } from "../styles/theme";
 export const dialogStyles = makeStyles({
     paper: {
         margin: 0,
+        backgroundColor: "transparent",
     },
 
     dialogTitle: {
