@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useRef, useState } from "react";
 import {vaticleStyles} from "../../common/styles/vaticle-styles";
 import {corporateLogosStyles, corporateLogosStyleVars as styleVars} from "./home-styles";
 import {ClassProps} from "../../common/class-props";
@@ -188,9 +188,6 @@ export const CorporateLogosSection: React.FC<ClassProps> = ({className}) => {
         setLogoState(Object.assign({}, logoState, newLogoState));
     };
 
-    // TODO: This code is very fragile. We need to figure out the true interaction between local vars, React state
-    //       vars, setTimeout, and window resize events and use that to build a maintainable component. Or we can
-    //       check if such a prebuilt component exists on the Web.
     useEffect(() => {
         const newRowSize = computeRowSize();
         if (newRowSize != rowSize) {
@@ -209,23 +206,11 @@ export const CorporateLogosSection: React.FC<ClassProps> = ({className}) => {
     let despawningIndex, spawningIndex, spawningLogo, despawningLogo;
 
     const transitionInterval = 2000;
-
-    useEffect(() => {
-        const interval = setInterval(() => {
-            beginTransition();
-        }, transitionInterval);
-        let interval2;
-        const timeout = setTimeout(() => {
-            interval2 = setInterval(() => {
-                endTransition();
-            }, transitionInterval);
-        }, 900);
-        return () => {
-            clearTimeout(timeout);
-            clearInterval(interval);
-            clearInterval(interval2);
-        }
-    }, [rowSize]);
+    // TODO: I think we can make use of this horrible construction with useState + useRef to clean up this code.
+    //       Ideally, we'd end transitions using a single setTimeout for each transition, triggered on transition start.
+    const [lastTransitionStart, setLastTransitionStart] = useState<number>(null);
+    const lastTransitionStartRef = useRef(lastTransitionStart);
+    lastTransitionStartRef.current = lastTransitionStart;
 
     const beginTransition = () => {
         despawningIndex = selectDespawnIndex();
@@ -238,7 +223,24 @@ export const CorporateLogosSection: React.FC<ClassProps> = ({className}) => {
             transitionIndex: despawningIndex,
             suppressTransition: false,
         });
+
+        setLastTransitionStart(Date.now());
     };
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            beginTransition();
+        }, transitionInterval);
+        // TODO: Ideally we'd just use setTimeout, called from inside beginTransition, but it doesn't seem to work.
+        const interval2 = setInterval(() => {
+            if (logoState.spawning || Date.now() - lastTransitionStartRef.current < 900) return;
+            endTransition();
+        }, 50);
+        return () => {
+            clearInterval(interval);
+            clearInterval(interval2);
+        }
+    }, [rowSize]);
 
     const endTransition = () => {
         const newVisibleLogos = [];
