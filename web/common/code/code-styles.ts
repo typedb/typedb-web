@@ -65,6 +65,10 @@ export const codeStyles = makeStyles({
 
         "&$console": {
             width: "100%",
+
+            "& pre": {
+                borderRadius: "0 0 5px 5px",
+            },
         },
     },
 
@@ -79,7 +83,7 @@ export const codeStyles = makeStyles({
         "&$resizable": {
             width: "calc(100% - 12px)",
             marginRight: 12,
-        }
+        },
     },
 
     code: {
