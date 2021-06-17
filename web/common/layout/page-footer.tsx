@@ -1,4 +1,4 @@
-import React, { useLayoutEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { pageFooterStyles } from "./layout-styles";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faDiscord, faFacebookSquare, faGithub, faLinkedin, faTwitter, IconDefinition } from "@fortawesome/free-brands-svg-icons";
@@ -10,15 +10,18 @@ import { urls } from "../urls";
 import { Link } from "react-router-dom";
 import { routes } from '../../pages/router';
 import { VaticleSnackbar } from "../snackbar/snackbar";
-import { ContactFormDialog } from "../../pages/contact/contact-form-dialog";
 
-export const PageFooter: React.FC = () => {
+interface PageFooterProps {
+    onContactClick: () => void;
+}
+
+// TODO: The routes used in this Footer must be parameterised. Otherwise, it depends on pages, which is not allowed.
+export const PageFooter: React.FC<PageFooterProps> = ({ onContactClick }) => {
     const classes = Object.assign({}, vaticleStyles(), pageFooterStyles());
 
     const [newsletterEmail, setNewsletterEmail] = useState("");
     const [subscribeSuccessSnackbarOpen, setSubscribeSuccessSnackbarOpen] = useState(false);
     const [subscribeErrorSnackbarOpen, setSubscribeErrorSnackbarOpen] = useState(false);
-    const [contactFormDialogOpen, setContactFormDialogOpen] = useState(false);
 
     // TODO: This code was copied from ContactForm, we should extract it
     const subscribe = () => {
@@ -47,13 +50,6 @@ export const PageFooter: React.FC = () => {
             console.error(err);
         });
     };
-
-    useLayoutEffect(() => {
-        const params = new URLSearchParams(window.location.search);
-        if (params.get("dialog") === "contact") {
-            setContactFormDialogOpen(true);
-        }
-    }, []);
 
     return (
         <footer className={clsx(classes.root, classes.sectionMargin)}>
@@ -99,7 +95,7 @@ export const PageFooter: React.FC = () => {
                             <ul className={classes.linkList}>
                                 <ContactDetail href={urls.github.org} target="_blank" icon={faGithub}>Vaticle on GitHub</ContactDetail>
                                 <ContactDetail href={urls.social.discord} target="_blank" icon={faDiscord}>Vaticle on Discord</ContactDetail>
-                                <ContactDetail icon={faPhoneAlt} onClick={() => setContactFormDialogOpen(true)}>Get in Touch</ContactDetail>
+                                <ContactDetail icon={faPhoneAlt} onClick={onContactClick}>Get in Touch</ContactDetail>
                                 <ContactDetail href={urls.officeLocation} target="_blank" icon={faMapMarkerAlt} type="address" classes={{anchor: classes.linkTwoLine}}>
                                     47-50 Margaret St, 3rd floor
                                     London W1W 8SE, UK
@@ -135,8 +131,6 @@ export const PageFooter: React.FC = () => {
                     </nav>
                 </section>
             </div>
-
-            <ContactFormDialog open={contactFormDialogOpen} setOpen={setContactFormDialogOpen}/>
 
             <VaticleSnackbar variant="success" message="Your email has been signed up to our newsletter." open={subscribeSuccessSnackbarOpen} setOpen={setSubscribeSuccessSnackbarOpen}/>
             <VaticleSnackbar variant="error" message="Failed to process signup, please try again later." open={subscribeErrorSnackbarOpen} setOpen={setSubscribeErrorSnackbarOpen}/>

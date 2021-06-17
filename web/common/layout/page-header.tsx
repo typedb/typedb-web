@@ -12,9 +12,12 @@ import { HamburgerCollapse } from "react-animated-burgers/lib";
 import { vaticleStyles } from "../styles/vaticle-styles";
 import { urls } from "../urls";
 import { routes } from "../../pages/router";
-import { ContactFormDialog } from "../../pages/contact/contact-form-dialog";
 
-export const PageHeader: React.FC = () => {
+interface PageHeaderProps {
+    onContactClick: () => void;
+}
+
+export const PageHeader: React.FC<PageHeaderProps> = ({ onContactClick }) => {
     const classes = Object.assign({}, vaticleStyles(), pageHeaderStyles());
 
     const [menuOpen, setMenuOpen] = useState(false);
@@ -56,7 +59,7 @@ export const PageHeader: React.FC = () => {
 
                         <div className={classes.filler}/>
 
-                        <ExternalLinks/>
+                        <ExternalLinks onContactClick={onContactClick}/>
                     </div>
 
                     <HamburgerCollapse className={clsx(classes.toolbarItem, classes.hideDesktop)}
@@ -70,7 +73,7 @@ export const PageHeader: React.FC = () => {
                     </div>
 
                     <div className={classes.linksMenu}>
-                        <ExternalLinks/>
+                        <ExternalLinks onContactClick={onContactClick}/>
                     </div>
                 </div>
             </nav>
@@ -93,22 +96,18 @@ const Sitemap: React.FC = () => (
     </>
 );
 
-const ExternalLinks: React.FC = () => {
+const ExternalLinks: React.FC<PageHeaderProps> = ({ onContactClick }) => {
     const classes = pageHeaderStyles();
-
-    const [contactFormDialogOpen, setContactFormDialogOpen] = useState(false);
 
     return (
         <>
-            <ExternalLink onClick={() => setContactFormDialogOpen(true)}>Contact</ExternalLink>
+            <ExternalLink onClick={onContactClick}>Contact</ExternalLink>
             <ExternalLink href={urls.support} target="_blank">Support</ExternalLink>
             <VaticleButton size="small" type="secondary" to={routes.download}
                            className={clsx(classes.toolbarItem, classes.externalLinksDownload)}>Download</VaticleButton>
             <div className={classes.externalLinksGithub}>
                 <GithubButton/>
             </div>
-
-            <ContactFormDialog open={contactFormDialogOpen} setOpen={setContactFormDialogOpen}/>
         </>
     );
 };
