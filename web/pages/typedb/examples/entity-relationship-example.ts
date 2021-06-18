@@ -1,6 +1,6 @@
 import {TypeQLGraph} from "../../../common/typeql/typeql-data";
 
-export const expressivityExampleCode = `
+export const entityRelationshipExampleCode = `
 define
 
 person sub entity,
@@ -16,7 +16,7 @@ name sub attribute,
   value string;
 `;
 
-export const expressivityExampleGraph: TypeQLGraph = {
+export const entityRelationshipExampleGraph: TypeQLGraph = {
     "vertices": [{
         "id": 1,
         "label": "employment",

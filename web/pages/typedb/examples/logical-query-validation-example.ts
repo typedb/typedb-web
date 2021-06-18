@@ -1,6 +1,6 @@
 import {TypeQLGraph} from "../../../common/typeql/typeql-data";
 
-export const safetyExampleCode = `
+export const logicalQueryValidationExampleCode = `
 match
 
 $alice isa person, has name "Alice";
@@ -14,7 +14,7 @@ answers>>
 ERROR: unsatisfiable query detected during type resolution
 `;
 
-export const safetyExampleGraph: TypeQLGraph = {
+export const logicalQueryValidationExampleGraph: TypeQLGraph = {
     "vertices": [{
         "id": 1,
         "encoding": "entity",
@@ -67,12 +67,12 @@ export const safetyExampleGraph: TypeQLGraph = {
     }, {
         "source": 4,
         "target": 3,
-        "label": "wife",
+        "label": "?",
         "highlight": "error",
     }, {
         "source": 4,
         "target": 5,
-        "label": "husband",
+        "label": "?",
         "highlight": "error",
     }]
 };
