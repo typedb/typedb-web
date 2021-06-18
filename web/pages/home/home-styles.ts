@@ -21,17 +21,17 @@ export const vaticleGalaxyStyles = makeStyles({
     },
 
     yellow: {
-        animation: "$spin 160s linear infinite",
+        animation: "$spin 200s linear infinite",
         transformOrigin: "center",
     },
 
     red: {
-        animation: "$spin 160s linear infinite",
+        animation: "$spin 120s linear infinite",
         transformOrigin: "center",
     },
 
     pink: {
-        animation: "$spin 320s linear infinite",
+        animation: "$spin 260s linear infinite",
         transformOrigin: "center",
     },
 
