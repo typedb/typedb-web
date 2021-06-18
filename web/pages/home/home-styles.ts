@@ -47,7 +47,8 @@ export const vaticleGalaxyStyles = makeStyles({
     "@keyframes winkWink": {
         "0%": { transform: "scaleY(1)" },
         "99%": { transform: "scaleY(1)" },
-        "99.5%": { transform: "scaleY(0.01)" },
+        "99.2%": { transform: "scaleY(0.1)" },
+        "99.8%": { transform: "scaleY(0.1)" },
         "100%": { transform: "scaleY(1)" },
     },
 });
