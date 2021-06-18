@@ -19,12 +19,9 @@ pre[class*="language-"] {
 }
 
 .token.constant,
+.token.super,
 .token.variable {
     color: $color-yellow;
-}
-
-.token.super {
-    color: $color-orange;
 }
 
 .token.class-name,

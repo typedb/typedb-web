@@ -7,9 +7,7 @@ $charlie isa person, has name "Charlie";
 $dataCo isa company, has name "DataCo";
 (husband: $charlie, wife: $dataCo) isa marriage; # invalid relation
 
-commit 
-
-answers>>
+commit>>
 
 ERROR: invalid data detected during type validation
 `;
