@@ -8,7 +8,7 @@ type TypeQLEdgeHighlight = "inferred" | "error";
 
 export interface TypeQLVertex {
     id: number;
-    text: string;
+    label: string;
     encoding: TypeQLVertexEncoding;
     x: number;
     y: number;

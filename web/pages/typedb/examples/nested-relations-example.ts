@@ -1,78 +1,76 @@
 import {TypeQLGraph} from "../../../common/typeql/typeql-data";
 
-export const safetyExampleCode = `
+export const nestedRelationsExampleCode = `
 match
-
+ 
 $alice isa person, has name "Alice";
 $bob isa person, has name "Bob";
-($alice, $bob) isa marriage;
-$dataCo isa company, has name "DataCo";
-($bob, $dataCo) isa marriage; # invalid relation
-
+$mar ($alice, $bob) isa marriage;
+$city isa city;
+($mar, $city) isa located;
+ 
 answers>>
-
-ERROR: unsatisfiable query detected during type resolution
+ 
+$city isa city, has name "London";
 `;
 
-export const safetyExampleGraph: TypeQLGraph = {
+export const nestedRelationsExampleGraph: TypeQLGraph = {
     "vertices": [{
         "id": 1,
         "encoding": "entity",
         "label": "person: Alice",
         "x": 20,
         "y": 20,
-        "width": 130,
+        "width": 120,
         "height": 32,
     }, {
         "id": 2,
-        "label": "marriage",
-        "encoding": "relation",
-        "x": 55,
-        "y": 20,
-        "width": 105,
-        "height": 66,
-    }, {
-        "id": 3,
         "encoding": "entity",
         "label": "person: Bob",
         "x": 80,
-        "y": 50,
-        "width": 130,
+        "y": 20,
+        "width": 120,
         "height": 32,
     }, {
-        "id": 4,
-        "label": "marriage",
+        "id": 3,
         "encoding": "relation",
-        "x": 55,
+        "label": "marriage",
+        "x": 50,
+        "y": 45,
+        "width": 105,
+        "height": 66,
+    }, {
+        "id": 4,
+        "encoding": "relation",
+        "label": "location",
+        "x": 30,
         "y": 80,
         "width": 105,
         "height": 66,
     }, {
         "id": 5,
         "encoding": "entity",
-        "label": "company: DataCo",
-        "x": 20,
+        "label": "city: London",
+        "x": 75,
         "y": 80,
-        "width": 130,
+        "width": 120,
         "height": 32,
     }],
     "edges": [{
-        "source": 2,
+        "source": 3,
         "target": 1,
-        "label": "wife",
+        "label": "wife"
     }, {
-        "source": 2,
-        "target": 3,
-        "label": "husband",
+        "source": 3,
+        "target": 2,
+        "label": "husband"
     }, {
         "source": 4,
         "target": 3,
-        "label": "wife",
-        "highlight": "error",
+        "label": "located"
     }, {
         "source": 4,
         "target": 5,
-        "label": "husband",
-        "highlight": "error",
+        "label": "locating"
     }]
 };
