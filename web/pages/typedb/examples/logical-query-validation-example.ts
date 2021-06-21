@@ -1,6 +1,6 @@
 import {TypeQLGraph} from "../../../common/typeql/typeql-data";
 
-export const safetyExampleCode = `
+export const logicalQueryValidationExampleCode = `
 match
 
 $alice isa person, has name "Alice";
@@ -14,18 +14,18 @@ answers>>
 ERROR: unsatisfiable query detected during type resolution
 `;
 
-export const safetyExampleGraph: TypeQLGraph = {
+export const logicalQueryValidationExampleGraph: TypeQLGraph = {
     "vertices": [{
         "id": 1,
         "encoding": "entity",
-        "text": "person: Alice",
+        "label": "person: Alice",
         "x": 20,
         "y": 20,
         "width": 130,
         "height": 32,
     }, {
         "id": 2,
-        "text": "marriage",
+        "label": "marriage",
         "encoding": "relation",
         "x": 55,
         "y": 20,
@@ -34,14 +34,14 @@ export const safetyExampleGraph: TypeQLGraph = {
     }, {
         "id": 3,
         "encoding": "entity",
-        "text": "person: Bob",
+        "label": "person: Bob",
         "x": 80,
         "y": 50,
         "width": 130,
         "height": 32,
     }, {
         "id": 4,
-        "text": "marriage",
+        "label": "marriage",
         "encoding": "relation",
         "x": 55,
         "y": 80,
@@ -50,7 +50,7 @@ export const safetyExampleGraph: TypeQLGraph = {
     }, {
         "id": 5,
         "encoding": "entity",
-        "text": "company: DataCo",
+        "label": "company: DataCo",
         "x": 20,
         "y": 80,
         "width": 130,
@@ -67,12 +67,12 @@ export const safetyExampleGraph: TypeQLGraph = {
     }, {
         "source": 4,
         "target": 3,
-        "label": "wife",
+        "label": "?",
         "highlight": "error",
     }, {
         "source": 4,
         "target": 5,
-        "label": "husband",
+        "label": "?",
         "highlight": "error",
     }]
 };

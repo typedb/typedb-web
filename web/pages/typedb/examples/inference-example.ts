@@ -16,7 +16,7 @@ $person isa postgrad, has name "Bob";`;
 export const inferenceExampleGraph: TypeQLGraph = {
     "vertices": [{
         "id": 1,
-        "text": "teacher: Alice",
+        "label": "teacher: Alice",
         "encoding": "entity",
         "x": 20,
         "y": 10,
@@ -24,7 +24,7 @@ export const inferenceExampleGraph: TypeQLGraph = {
         "height": 32,
     }, {
         "id": 2,
-        "text": "location",
+        "label": "location",
         "encoding": "relation",
         "x": 50,
         "y": 30,
@@ -32,7 +32,7 @@ export const inferenceExampleGraph: TypeQLGraph = {
         "height": 66,
     }, {
         "id": 3,
-        "text": "country: UK",
+        "label": "country: UK",
         "encoding": "entity",
         "x": 80,
         "y": 10,
@@ -40,7 +40,7 @@ export const inferenceExampleGraph: TypeQLGraph = {
         "height": 32,
     }, {
         "id": 4,
-        "text": "location",
+        "label": "location",
         "encoding": "relation",
         "x": 70,
         "y": 50,
@@ -48,7 +48,7 @@ export const inferenceExampleGraph: TypeQLGraph = {
         "height": 66,
     }, {
         "id": 5,
-        "text": "city: London",
+        "label": "city: London",
         "encoding": "entity",
         "x": 80,
         "y": 90,
@@ -56,7 +56,7 @@ export const inferenceExampleGraph: TypeQLGraph = {
         "height": 32,
     }, {
         "id": 6,
-        "text": "location",
+        "label": "location",
         "encoding": "relation",
         "x": 50,
         "y": 70,
@@ -64,7 +64,7 @@ export const inferenceExampleGraph: TypeQLGraph = {
         "height": 66,
     }, {
         "id": 7,
-        "text": "postgrad: Bob",
+        "label": "postgrad: Bob",
         "encoding": "entity",
         "x": 20,
         "y": 90,

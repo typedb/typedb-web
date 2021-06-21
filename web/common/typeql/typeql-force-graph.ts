@@ -203,14 +203,14 @@ function renderVertex(vertex: Vertex, fontFace: { load: () => Promise<any> }) {
     vertex.gfx.endFill();
 
     fontFace.load().then(() => {
-        renderVertexText(vertex, false);
+        renderVertexLabel(vertex, false);
     }, () => {
-        renderVertexText(vertex, true);
+        renderVertexLabel(vertex, true);
     });
 }
 
-function renderVertexText(vertex: Vertex, useFallbackFont: boolean) {
-    const text1 = new PIXI.Text(vertex.text, {
+function renderVertexLabel(vertex: Vertex, useFallbackFont: boolean) {
+    const text1 = new PIXI.Text(vertex.label, {
         fontSize: styles.vertexLabel.fontSize,
         fontFamily: useFallbackFont ? styles.fontFamilyFallback : styles.fontFamily,
         fill: colours.vertexLabel,

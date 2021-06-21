@@ -1,11 +1,3 @@
-/**
- * Contains the TypeQL syntax highlighter for Prism.
- * Written by Felix
- * Modified by Harjyot
- * Updated (1.4.3) by Soroush
- * Updated (2.0.2) by alexjpwalker
- */
-
 import Prism from "prismjs";
 
 export function installPrismTypeQL() {

@@ -1,19 +1,24 @@
 import React from "react";
-import {vaticleStyles} from "../../common/styles/vaticle-styles";
 import {DefaultLayout} from "../../common/layout/default-layout";
-import clsx from "clsx";
-import {typeDBStyles} from "./typedb-styles";
-import {expressivityExampleCode, expressivityExampleGraph} from "./examples/expressivity-example";
 import {TypeQLExample} from "../feature/typeql-example";
-import {typeHierarchyExampleCode, typeHierarchyExampleGraph} from "./examples/type-hierarchy-example";
-import {safetyExampleCode, safetyExampleGraph} from "./examples/safety-example";
 import {FeatureBlock} from "../feature/feature-block";
 import {PolyglotExample} from "../../common/code/polyglot-example";
-import { simpleStatefulAPIExampleSources } from "./examples/simple-stateful-api-example";
-import { VaticleButton } from "../../common/button/button";
-import { routes } from "../router";
-import { urls } from "../../common/urls";
-import { useTypeDBVersion } from "../../state/typedb-version";
+import {VaticleButton} from "../../common/button/button";
+import {useTypeDBVersion} from "../../state/typedb-version";
+import clsx from "clsx";
+import {routes} from "../router";
+import {urls} from "../../common/urls";
+import {vaticleStyles} from "../../common/styles/vaticle-styles";
+import {typeDBStyles} from "./typedb-styles";
+import {entityRelationshipExampleCode, entityRelationshipExampleGraph} from "./examples/entity-relationship-example";
+import {typeHierarchyExampleCode, typeHierarchyExampleGraph} from "./examples/type-hierarchy-example";
+import {ternaryRelationsExampleCode, ternaryRelationsExampleGraph} from "./examples/ternary-relations-example";
+import {logicalQueryValidationExampleCode, logicalQueryValidationExampleGraph} from "./examples/logical-query-validation-example";
+import {simpleStatefulAPIExampleSources} from "./examples/simple-stateful-api-example";
+import {nestedRelationsExampleCode, nestedRelationsExampleGraph} from "./examples/nested-relations-example";
+import {logicalDataValidationExampleCode, logicalDataValidationExampleGraph} from "./examples/logical-data-validation-example";
+import {inferenceExampleCode, inferenceExampleGraph} from "./examples/inference-example";
+import {rulesExampleCode, rulesExampleGraph} from "./examples/rules-example";
 
 export const TypeDBPage: React.FC = () => {
     const classes = Object.assign({}, vaticleStyles(), typeDBStyles());
@@ -50,7 +55,7 @@ export const TypeDBPage: React.FC = () => {
                                attribute types. Unlike other modelling languages, Grakn allows you to define type
                                hierarchies, hyper-entities, hyper-relations, and rules to build rich knowledge"
                               button={{text: "Documentation", disabled: true, comingSoon: true}}>
-                    <TypeQLExample code={expressivityExampleCode} data={expressivityExampleGraph}/>
+                    <TypeQLExample code={entityRelationshipExampleCode} data={entityRelationshipExampleGraph}/>
                 </FeatureBlock>
 
                 <FeatureBlock className={classes.subsectionMargin} examplePosition="right" title="Type Hierarchies"
@@ -68,7 +73,7 @@ export const TypeDBPage: React.FC = () => {
                                exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
                                dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla"
                               button={{text: "Documentation", disabled: true, comingSoon: true}}>
-                    <TypeQLExample code={expressivityExampleCode} data={expressivityExampleGraph}/>
+                    <TypeQLExample code={ternaryRelationsExampleCode} data={ternaryRelationsExampleGraph}/>
                 </FeatureBlock>
 
                 <FeatureBlock className={classes.subsectionMargin} examplePosition="right" title="Nested Relations"
@@ -77,7 +82,7 @@ export const TypeDBPage: React.FC = () => {
                                exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
                                dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla"
                               button={{text: "Documentation", disabled: true, comingSoon: true}}>
-                    <TypeQLExample code={expressivityExampleCode} data={expressivityExampleGraph}/>
+                    <TypeQLExample code={nestedRelationsExampleCode} data={nestedRelationsExampleGraph}/>
                 </FeatureBlock>
             </section>
 
@@ -97,17 +102,17 @@ export const TypeDBPage: React.FC = () => {
                                exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
                                dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla"
                               button={{text: "Documentation", disabled: true, comingSoon: true}}>
-                    <TypeQLExample code={safetyExampleCode} data={safetyExampleGraph}/>
+                    <TypeQLExample code={logicalDataValidationExampleCode} data={logicalDataValidationExampleGraph}/>
                 </FeatureBlock>
 
                 <FeatureBlock className={classes.subsectionMargin} examplePosition="right"
-                              title="Semantic Query Validation"
+                              title="Logical Query Validation"
                               body="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
                                incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
                                exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
                                dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla"
                               button={{text: "Documentation", disabled: true, comingSoon: true}}>
-                    <TypeQLExample code={safetyExampleCode} data={safetyExampleGraph}/>
+                    <TypeQLExample code={logicalQueryValidationExampleCode} data={logicalQueryValidationExampleGraph}/>
                 </FeatureBlock>
             </section>
 
@@ -125,7 +130,7 @@ export const TypeDBPage: React.FC = () => {
                                exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
                                dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla"
                               button={{text: "Documentation", disabled: true, comingSoon: true}}>
-                    <TypeQLExample code={safetyExampleCode} data={safetyExampleGraph}/>
+                    <TypeQLExample code={rulesExampleCode} data={rulesExampleGraph}/>
                 </FeatureBlock>
 
                 <FeatureBlock className={classes.subsectionMargin} examplePosition="right" title="Inference"
@@ -134,7 +139,7 @@ export const TypeDBPage: React.FC = () => {
                                exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
                                dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla"
                               button={{text: "Documentation", disabled: true, comingSoon: true}}>
-                    <TypeQLExample code={safetyExampleCode} data={safetyExampleGraph}/>
+                    <TypeQLExample code={inferenceExampleCode} data={inferenceExampleGraph}/>
                 </FeatureBlock>
             </section>
 

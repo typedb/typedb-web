@@ -1,7 +1,7 @@
 import {ClassProps} from "../../common/class-props";
 import {vaticleStyles} from "../../common/styles/vaticle-styles";
-import {expressivityExampleCode, expressivityExampleGraph} from "../typedb/examples/expressivity-example";
-import {safetyExampleCode, safetyExampleGraph} from "../typedb/examples/safety-example";
+import {entityRelationshipExampleCode, entityRelationshipExampleGraph} from "../typedb/examples/entity-relationship-example";
+import {logicalQueryValidationExampleCode, logicalQueryValidationExampleGraph} from "../typedb/examples/logical-query-validation-example";
 import {inferenceExampleCode, inferenceExampleGraph} from "../typedb/examples/inference-example";
 import clsx from "clsx";
 import {VaticleButton} from "../../common/button/button";
@@ -33,7 +33,7 @@ export const TypeQLExamplesSection: React.FC<TypeQLExamplesSectionProps> = ({cla
                                      roles, and rules, TypeDB allows you to think higher-level as opposed to join-tables,
                                      columns, documents, vertices, edges, and properties."
                           button={{text: "Learn More", disabled: true, comingSoon: true}}>
-                <TypeQLExample code={expressivityExampleCode} data={expressivityExampleGraph}/>
+                <TypeQLExample code={entityRelationshipExampleCode} data={entityRelationshipExampleGraph}/>
             </FeatureBlock>
 
             <FeatureBlock className={classes.subsectionMargin} examplePosition="right" title="Safety"
@@ -42,7 +42,7 @@ export const TypeQLExamplesSection: React.FC<TypeQLExamplesSectionProps> = ({cla
                                      goes beyond static type checking, and includes logical validations of meaningless queries.
                                      With strict type-checking errors, you have a dataset that you can trust."
                           button={{text: "Learn More", disabled: true, comingSoon: true}}>
-                <TypeQLExample code={safetyExampleCode} data={safetyExampleGraph}/>
+                <TypeQLExample code={logicalQueryValidationExampleCode} data={logicalQueryValidationExampleGraph}/>
             </FeatureBlock>
 
             <FeatureBlock className={classes.subsectionMargin} examplePosition="left" title="Inference"

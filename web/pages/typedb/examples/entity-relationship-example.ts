@@ -1,7 +1,8 @@
 import {TypeQLGraph} from "../../../common/typeql/typeql-data";
 
-export const expressivityExampleCode = `
+export const entityRelationshipExampleCode = `
 define
+
 person sub entity,
   owns name,
   plays employment:employee;
@@ -12,12 +13,13 @@ employment sub relation,
   relates employee,
   relates employer;
 name sub attribute,
-  value string;`;
+  value string;
+`;
 
-export const expressivityExampleGraph: TypeQLGraph = {
+export const entityRelationshipExampleGraph: TypeQLGraph = {
     "vertices": [{
         "id": 1,
-        "text": "employment",
+        "label": "employment",
         "encoding": "relation",
         "x": 50,
         "y": 20,
@@ -26,7 +28,7 @@ export const expressivityExampleGraph: TypeQLGraph = {
     }, {
         "id": 2,
         "encoding": "entity",
-        "text": "person",
+        "label": "person",
         "x": 20,
         "y": 50,
         "width": 100,
@@ -34,7 +36,7 @@ export const expressivityExampleGraph: TypeQLGraph = {
     }, {
         "id": 3,
         "encoding": "entity",
-        "text": "company",
+        "label": "company",
         "x": 80,
         "y": 50,
         "width": 100,
@@ -42,7 +44,7 @@ export const expressivityExampleGraph: TypeQLGraph = {
     }, {
         "id": 4,
         "encoding": "attribute",
-        "text": "name",
+        "label": "name",
         "x": 50,
         "y": 80,
         "width": 100,
