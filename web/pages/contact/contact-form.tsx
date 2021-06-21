@@ -8,8 +8,8 @@ import {vaticleStyles} from "../../common/styles/vaticle-styles";
 import {FormControlLabel} from "@material-ui/core";
 import {VaticleCheckbox} from "../../common/input/checkbox";
 import {urls} from "../../common/urls";
-import { formStyles } from "../../common/form/form-styles";
 import { FormOption, VaticleForm } from "../../common/form/form";
+import { formStyles } from "../../common/form/form-styles";
 
 export const ContactForm: React.FC<ClassProps> = ({className}) => {
     const classes = Object.assign({}, vaticleStyles(), formStyles(), contactFormStyles());
@@ -67,7 +67,7 @@ export const ContactForm: React.FC<ClassProps> = ({className}) => {
     };
 
     return (
-        <VaticleForm className={className} id="contact-form" submitText="Get in touch" onSubmit={submit}
+        <VaticleForm classes={{root: className}} id="contact-form" submitText="Get in touch" onSubmit={submit}
                      successMessage="Your message has been sent." errorMessage="Your message failed to send, please try again later.">
             <div className={classes.formRow}>
                 <VaticleTextField value={firstName} setValue={setFirstName} label="First Name" required/>

@@ -48,14 +48,14 @@ export const formStyles = makeStyles({
             marginTop: 30,
         },
 
-        "@media (min-width: 768px) and (max-width: 1199px)": {
-            "& > *:not(:first-child)": {
-                marginLeft: 30,
-            },
-        },
-
         "& > *": {
             width: 375,
+
+            "@media(min-width: 768px)": {
+                "&:not(:first-child)": {
+                    marginLeft: 30,
+                },
+            },
 
             "@media (min-width: 768px) and (max-width: 1199px)": {
                 maxWidth: "40vw",
