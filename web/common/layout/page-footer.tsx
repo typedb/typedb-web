@@ -56,7 +56,7 @@ export const PageFooter: React.FC<PageFooterProps> = ({ onContactClick }) => {
 
                         <div className={classes.subscribe}>
                             <VaticleButton size="small" type="secondary"
-                                           onClick={navigateToNewsletterForm}>Subscribe to our Newsletter</VaticleButton>
+                                           onClick={navigateToNewsletterForm}>Subscribe to our newsletter</VaticleButton>
                         </div>
                     </div>
 
