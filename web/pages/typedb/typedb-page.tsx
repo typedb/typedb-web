@@ -52,36 +52,36 @@ export const TypeDBPage: React.FC = () => {
                 <FeatureBlock className={classes.subsectionMargin} examplePosition="left"
                               title="Entity-Relationship Model"
                               body="TypeDB allows you to model your domain using the well-known Entity-Relationship
-                               model at its full expressivity. It is composed of entity types, relationship types, and
-                               attribute types. Unlike other modelling languages, Grakn allows you to define type
-                               hierarchies, hyper-entities, hyper-relations, and rules to build rich knowledge"
+                              model. It is composed of entity types, relation types, and attribute types, with the
+                              introduction of role types. TypeDB allows you to leverage the full expressivity of the
+                              ER model, and describe your schema through first normal form."
                               button={{text: "Documentation", disabled: true, comingSoon: true}}>
                     <TypeQLExample code={entityRelationshipExampleCode} data={entityRelationshipExampleGraph}/>
                 </FeatureBlock>
 
                 <FeatureBlock className={classes.subsectionMargin} examplePosition="right" title="Type Hierarchies"
-                              body="TypeDB alows you to easily model type inheritance into the domain model. Following
-                               logical and object-oriented principle, this allows data types to inherit the behaviour
-                               and properties of their supertypes. Lorem ipsum dolor sit amet, consectetur adipiscing
-                               elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+                              body="TypeDB allows you to easily model type inheritance into the domain model. Following
+                              logical and object-oriented principle, TypeDB allows data types to inherit the behaviours
+                              and properties of their supertypes. Complex data structures become reusable, and
+                              data interpretation become richer through polymorphism."
                               button={{text: "Documentation", disabled: true, comingSoon: true}}>
                     <TypeQLExample code={typeHierarchyExampleCode} data={typeHierarchyExampleGraph}/>
                 </FeatureBlock>
 
                 <FeatureBlock className={classes.subsectionMargin} examplePosition="left" title="Ternary Relations"
-                              body="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                               incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-                               exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
-                               dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla"
+                              body="In the real world, relationships aren't just binary - a pair between two things.
+                              In rich systems, we often need to capture three or more things being related with each
+                              other at once, which implies every pair of things in that relationship are also related.
+                              TypeDB allows you capture this naturally, as relationships are not bound to two things."
                               button={{text: "Documentation", disabled: true, comingSoon: true}}>
                     <TypeQLExample code={ternaryRelationsExampleCode} data={ternaryRelationsExampleGraph}/>
                 </FeatureBlock>
 
                 <FeatureBlock className={classes.subsectionMargin} examplePosition="right" title="Nested Relations"
-                              body="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                               incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-                               exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
-                               dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla"
+                              body="Relations are concepts we use to describe the association between two or more things.
+                              Sometimes, those things can be relations themselves. TypeDB can represent these structures
+                              naturally, as it enables relations to be nested in another relation, allowing you to
+                              express the model of your system in the natural form."
                               button={{text: "Documentation", disabled: true, comingSoon: true}}>
                     <TypeQLExample code={nestedRelationsExampleCode} data={nestedRelationsExampleGraph}/>
                 </FeatureBlock>
