@@ -4,8 +4,7 @@ import {vaticleTheme} from "../../common/styles/theme";
 export const vaticleGalaxyStyles = makeStyles({
     root: {
         "@media(max-width: 767px)": {
-            marginLeft: "50%",
-            marginRight: "calc(100vw - 480px)", // viewport width - unscaled SVG width
+            position: "absolute",
             transform: "translateX(-50%) scale(.667)",
         },
     },
@@ -54,17 +53,19 @@ export const vaticleGalaxyStyles = makeStyles({
 });
 
 export const homePageStyles = makeStyles({
-    vaticleAtomContainer: {
+    vaticleGalaxyContainer: {
         width: "100%",
 
         "@media(max-width: 767px)": {
             marginTop: -60,
+            position: "relative",
+            height: 1, // This forces the element to take up space on the screen, so the header text gets a top margin.
         },
     },
 
     typeDBIntro: {
         "@media(max-width: 767px)": {
-            marginTop: -30,
+            marginTop: 450,
         },
 
         "@media(max-width: 479px)": {
@@ -73,7 +74,7 @@ export const homePageStyles = makeStyles({
     },
 
     typeDBIntroMobile: {
-        marginTop: -30,
+        marginTop: 450,
 
         "@media(min-width: 480px)": {
             display: "none",

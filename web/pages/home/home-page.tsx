@@ -25,7 +25,7 @@ export const HomePage: React.FC = () => {
     return (
         <DefaultLayout>
             <section className={classes.firstSection}>
-                <div className={classes.vaticleAtomContainer}>
+                <div className={classes.vaticleGalaxyContainer}>
                     <VaticleGalaxy/>
                 </div>
 

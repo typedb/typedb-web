@@ -270,59 +270,8 @@ export const pageFooterStyles = makeStyles({
 
     subscribe: {
         flex: 1,
-    },
-
-    subscribeForm: {
-        width: "100%",
         display: "flex",
-        alignItems: "center",
-
-        "@media(max-width: 1199px)": {
-            width: 800,
-            maxWidth: "calc(100vw - 40px)",
-        },
-
-        "@media(max-width: 767px)": {
-            flexDirection: "column",
-        },
-    },
-
-    personalDataNotice: {
-        width: 330,
-        maxWidth: "calc(100vw - 40px)",
-        fontSize: 16,
-        lineHeight: "24px",
-        fontWeight: 400,
-    },
-
-    subscribeActionBlock: {
-        flex: 1,
-        minWidth: 320,
-        display: "flex",
-
-        "@media(max-width: 767px)": {
-            marginTop: 30,
-        },
-    },
-
-    subscribeEmail: {
-        marginLeft: 20,
-        flex: 2,
-        height: 40,
-        border: `1px solid ${buttonPalette.secondary.border}`,
-        borderTopLeftRadius: 5,
-        borderBottomLeftRadius: 5,
-        backgroundColor: "transparent",
-        padding: "6px 10px",
-        color: buttonPalette.secondary.label,
-        fontSize: vaticleTheme.typography.fontSize.small,
-        fontWeight: 300
-    },
-
-    subscribeButton: {
-        flex: 1,
-        borderTopLeftRadius: 0,
-        borderBottomLeftRadius: 0,
+        justifyContent: "flex-end",
     },
 
     separator: {

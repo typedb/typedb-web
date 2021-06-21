@@ -8,11 +8,11 @@ export function getSearchParam(name: string) {
 export function setSearchParam(routerHistory: H.History, routerLocation: H.Location, name: string, value: string) {
     const params = new URLSearchParams(window.location.search);
     params.set(name, value);
-    routerHistory.push(`${routerLocation.pathname}?${params.toString()}`, { samePageNavigation: true });
+    routerHistory.push(`${routerLocation.pathname}?${params.toString()}`, { scroll: false });
 }
 
 export function deleteSearchParam(routerHistory: H.History, routerLocation: H.Location, name: string) {
     const params = new URLSearchParams(window.location.search);
     params.delete(name);
-    routerHistory.push(`${routerLocation.pathname}?${params.toString()}`, { samePageNavigation: true });
+    routerHistory.push(`${routerLocation.pathname}?${params.toString()}`, { scroll: false });
 }
