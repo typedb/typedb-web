@@ -4,51 +4,56 @@ export const simpleStatefulAPIExampleSources: Code[] = [{
     language: "java",
     body: `
 try (TypeDBClient client = TypeDB.coreClient("localhost:1729")) {
-    client.databases().create("my-typedb");
     try (TypeDBSession session = client.session("my-typedb", DATA)) {
         try (TypeDBTransaction tx = session.transaction(WRITE)) {
-            ...
-            ...
+            tx.query().insert(TypeQL.insert(var().isa("person")));
+            tx.commit();
+        }
+        try (TypeDBTransaction tx = session.transaction(READ)) {
+            Stream<ConceptMap> answers = tx.query().match(TypeQL.match(var("x").isa("person")));
         }
     }
-}`
+}
+`
 }, {
     language: "python",
     body: `
 with TypeDB.core_client("localhost:1729") as client:
-    client.databases().create("my-typedb")
     with client.session("my-typedb", SessionType.DATA) as session:
-        with session.transaction(TransactionType.WRITE) as write_transaction:
-            ...
-            ...
+        with session.transaction(TransactionType.WRITE) as tx:
+            tx.query().insert("insert $_ isa person;")
+            tx.commit()
+        
+        with session.transaction(TransactionType.READ) as tx:
+            answers: Iterator[ConceptMap] = tx.query().match("match $x isa person")
 `
 }, {
     language: "javascript",
     body: `
-const client = TypeDB.coreClient("localhost:1729");
-client.databases().create("my-typedb");
-const session = await client.session("my-typedb");
+let client, session, tx;
 try {
-    const tx = session.transaction(TransactionType.WRITE);
-    ...
+    client = TypeDB.coreClient("localhost:1729");
+    session = await client.session("my-typedb");
+    tx = session.transaction(TransactionType.WRITE);
+    tx.query().insert("insert $_ isa person");
+    tx.commit()
+    tx = session.transaction(TransactionType.READ);
+    const answer = tx.query().match("match $x isa person");
 } finally {
-    session.close();
+    if (tx) tx.close(); if (session) session.close(); if (client) client.close();
 }
 `
 }, {
     language: "console",
     body: `
 $ ./typedb console
-
-Welcome to TypeDB Console. You are now in TypeDB Wonderland!
-Copyright (C) 2021 Vaticle
-
-> database create my-typedb
-Database 'my-typedb' created
-
-> transaction typedb schema write
-typedb::schema::write> ...
-
-> exit
+>
+> transaction my-typedb data write
+my-typedb::data::write> insert $x isa person;
+my-typedb::data::write> commit
+>
+> transaction my-typedb data read
+my-typedb::data::read> match $x isa person;
+...
 `
 }];
