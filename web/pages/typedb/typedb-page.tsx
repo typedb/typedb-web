@@ -14,11 +14,12 @@ import {entityRelationshipExampleCode, entityRelationshipExampleGraph} from "./e
 import {typeHierarchyExampleCode, typeHierarchyExampleGraph} from "./examples/type-hierarchy-example";
 import {ternaryRelationsExampleCode, ternaryRelationsExampleGraph} from "./examples/ternary-relations-example";
 import {logicalQueryValidationExampleCode, logicalQueryValidationExampleGraph} from "./examples/logical-query-validation-example";
-import {simpleStatefulAPIExampleSources} from "./examples/simple-stateful-api-example";
+import {simpleStatefulAPIExample} from "./examples/simple-stateful-api-example";
 import {nestedRelationsExampleCode, nestedRelationsExampleGraph} from "./examples/nested-relations-example";
 import {logicalDataValidationExampleCode, logicalDataValidationExampleGraph} from "./examples/logical-data-validation-example";
 import {inferenceExampleCode, inferenceExampleGraph} from "./examples/inference-example";
 import {rulesExampleCode, rulesExampleGraph} from "./examples/rules-example";
+import {acidTransactionsExampleCode} from "./examples/acid-transactions-example";
 
 export const TypeDBPage: React.FC = () => {
     const classes = Object.assign({}, vaticleStyles(), typeDBStyles());
@@ -158,7 +159,7 @@ export const TypeDBPage: React.FC = () => {
                                exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
                                dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla"
                               button={{text: "Documentation", disabled: true, comingSoon: true}}>
-                    <PolyglotExample id="simple-stateful-api" sources={simpleStatefulAPIExampleSources}/>
+                    <PolyglotExample id="simple-stateful-api" sources={simpleStatefulAPIExample}/>
                 </FeatureBlock>
 
                 <FeatureBlock className={classes.subsectionMargin} examplePosition="right" title="ACID Transactions"
@@ -167,7 +168,7 @@ export const TypeDBPage: React.FC = () => {
                                exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
                                dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla"
                               button={{text: "Documentation", disabled: true, comingSoon: true}}>
-                    <PolyglotExample id="acid-transactions" sources={simpleStatefulAPIExampleSources}/>
+                    <PolyglotExample id="acid-transactions" sources={acidTransactionsExampleCode}/>
                 </FeatureBlock>
             </section>
 
