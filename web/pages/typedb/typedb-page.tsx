@@ -41,7 +41,7 @@ export const TypeDBPage: React.FC = () => {
                 <hr className={clsx(classes.subsectionMargin, classes.shortDivider)}/>
             </section>
 
-            <section className={classes.subsectionMargin}>
+            <section id="expressivity" className={classes.subsectionMargin}>
                 <h2 className={classes.h2}>A higher level of expressivity</h2>
                 <p className={classes.largeText}>
                     TypeDB allows you to model your domain based on logical and object-oriented principles. Composed of
@@ -88,7 +88,7 @@ export const TypeDBPage: React.FC = () => {
                 </FeatureBlock>
             </section>
 
-            <section className={classes.subsectionMargin}>
+            <section id="safety" className={classes.subsectionMargin}>
                 <h2 className={classes.h2}>A higher degree of safety</h2>
                 <p className={classes.largeText}>
                     Types provide a way to describe the logical structures of your data, allowing TypeDB to validate
@@ -155,19 +155,19 @@ export const TypeDBPage: React.FC = () => {
                 </p>
 
                 <FeatureBlock className={classes.subsectionMargin} examplePosition="left" title="Simple & Stateful API"
-                              body="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                               incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-                               exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
-                               dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla"
+                              body="TypeDB's API is implemented as a remote gRPC client, providing bi-directional streaming,
+                              compression, and strong message typing, that REST APIs could not provide. TypeDB Clients
+                              are delivered as libraries in dedicated languages that provide stateful objects, Session
+                              and Transactions, for you to interact with the database programmatically."
                               button={{text: "Documentation", disabled: true, comingSoon: true}}>
                     <PolyglotExample id="simple-stateful-api" sources={simpleStatefulAPIExample}/>
                 </FeatureBlock>
 
                 <FeatureBlock className={classes.subsectionMargin} examplePosition="right" title="ACID Transactions"
-                              body="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                               incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-                               exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
-                               dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla"
+                              body="TypeDB provides ACID guarantees, up to Snapshot Isolation, through the combination
+                              of schema validation and consistent transactions. By providing lightweight optimistic
+                              transactions, TypeDB allows a high number of concurrent reads and writes. And by
+                              committing all-or-nothing, its semantics is easy to reason over."
                               button={{text: "Documentation", disabled: true, comingSoon: true}}>
                     <ConsoleExample code={acidTransactionsExampleCode}/>
                 </FeatureBlock>
@@ -189,7 +189,7 @@ export const TypeDBPage: React.FC = () => {
                 </p>
 
                 <div className={clsx(classes.mainActionList, classes.contentMargin)}>
-                    <VaticleButton size="small" type="secondary" disabled comingSoon>Learn More</VaticleButton>
+                    <VaticleButton size="small" type="secondary" to={routes.typeDBCluster}>Learn More</VaticleButton>
                 </div>
             </section>
         </DefaultLayout>

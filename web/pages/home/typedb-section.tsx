@@ -32,7 +32,7 @@ export const TypeDBSection: React.FC<TypeDBSectionProps> = ({className, typeDBVe
                                      Composed of entity, relationship, and attribute types, as well as type hierarchies,
                                      roles, and rules, TypeDB allows you to think higher-level as opposed to join-tables,
                                      columns, documents, vertices, edges, and properties."
-                          button={{text: "Learn More", disabled: true, comingSoon: true}}>
+                          button={{text: "Learn More", to: routes.typeDB}}>
                 <TypeQLExample code={entityRelationshipExampleCode} data={entityRelationshipExampleGraph}/>
             </FeatureBlock>
 
@@ -41,7 +41,7 @@ export const TypeDBSection: React.FC<TypeDBSectionProps> = ({className, typeDBVe
                                      to validate that your code is inserting and querying data correctly. Query validation
                                      goes beyond static type checking, and includes logical validations of meaningless queries.
                                      With strict type-checking errors, you have a dataset that you can trust."
-                          button={{text: "Learn More", disabled: true, comingSoon: true}}>
+                          button={{text: "Learn More", to: routes.typeDB}}>
                 <TypeQLExample code={logicalQueryValidationExampleCode} data={logicalQueryValidationExampleGraph}/>
             </FeatureBlock>
 
@@ -50,7 +50,7 @@ export const TypeDBSection: React.FC<TypeDBSectionProps> = ({className, typeDBVe
                                      type-inference and rule-inference that creates logical abstractions of data.
                                      This allows the discovery of facts and patterns that would otherwise be too hard to
                                      find, and complex queries become much simpler."
-                          button={{text: "Learn More", disabled: true, comingSoon: true}}>
+                          button={{text: "Learn More", to: routes.typeDB}}>
                 <TypeQLExample code={inferenceExampleCode} data={inferenceExampleGraph}/>
             </FeatureBlock>
 

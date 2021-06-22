@@ -26,7 +26,7 @@ export const DefaultLayout: React.FC = ({ children }) => {
     return (
         <>
             <PageHeader onContactClick={navigateToContactForm}/>
-            <div className={ownClasses.underDevelopmentRibbon}>site under development</div>
+            {/*<div className={ownClasses.underDevelopmentRibbon}>site under development</div>*/}
             <main className={ownClasses.main}>
                 <article>
                     {children}
