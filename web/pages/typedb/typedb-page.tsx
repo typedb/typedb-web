@@ -20,6 +20,7 @@ import {logicalDataValidationExampleCode, logicalDataValidationExampleGraph} fro
 import {inferenceExampleCode, inferenceExampleGraph} from "./examples/inference-example";
 import {rulesExampleCode, rulesExampleGraph} from "./examples/rules-example";
 import {acidTransactionsExampleCode} from "./examples/acid-transactions-example";
+import { ConsoleExample } from "../../common/code/console-example";
 
 export const TypeDBPage: React.FC = () => {
     const classes = Object.assign({}, vaticleStyles(), typeDBStyles());
@@ -168,7 +169,7 @@ export const TypeDBPage: React.FC = () => {
                                exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
                                dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla"
                               button={{text: "Documentation", disabled: true, comingSoon: true}}>
-                    <PolyglotExample id="acid-transactions" sources={acidTransactionsExampleCode}/>
+                    <ConsoleExample code={acidTransactionsExampleCode}/>
                 </FeatureBlock>
             </section>
 
