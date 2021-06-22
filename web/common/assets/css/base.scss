@@ -69,3 +69,7 @@ address {
 [hidden] {
   display: none !important;
 }
+
+::-webkit-scrollbar {
+  display: none;
+}

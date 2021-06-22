@@ -90,7 +90,8 @@ export const codeStyles = makeStyles({
         fontFamily: "\"Ubuntu Mono\", monospace",
         display: "inline-block",
         width: "100%",
-        overflow: "hidden",
+        height: "100%",
+        overflowX: "scroll",
     },
 
     panelSlider: {
