@@ -1,4 +1,4 @@
-import {BrowserRouter, Route, RouteProps, Switch, useLocation} from "react-router-dom";
+import {BrowserRouter, Route, RouteProps, Switch, useLocation, Redirect} from "react-router-dom";
 import React, {useEffect, useLayoutEffect} from "react";
 import {DownloadPage} from "./download/download-page";
 import {HomePage} from "./home/home-page";
@@ -8,6 +8,40 @@ import {PrivacyPolicyPage} from "./privacy/privacy-policy-page";
 import {headerHeight} from "../common/layout/layout-styles";
 import {TypeDBPage} from "./typedb/typedb-page";
 import { Vaticle404Page } from "./error/404-page";
+import { TypeDBClusterPage } from "./typedb/typedb-cluster-page";
+
+export const routes = {
+    download: "/download",
+    home: "/",
+    privacyPolicy: "/privacy-policy",
+    typeDB: "/typedb",
+    typeDBCluster: "/typedb-cluster",
+};
+
+export const legacyRoutes = {
+    graknCore: "/grakn-core",
+    graknKGMS: "/grakn-kgms",
+    deployment: "/deployment", // TODO: When the Cloud page is created, add this legacy route (for redirection)
+};
+
+export const VaticleRouter: React.FC = () => {
+    return (
+        <BrowserRouter>
+            <Switch>
+                <VaticleRoute exact path={routes.download} title="Download" component={DownloadPage}/>
+                <VaticleRoute exact path={routes.privacyPolicy} title="Privacy Policy" component={PrivacyPolicyPage}/>
+                <VaticleRoute exact path={routes.typeDB} title="TypeDB" component={TypeDBPage}/>
+                <VaticleRoute exact path={routes.typeDBCluster} title="TypeDB Cluster" component={TypeDBClusterPage}/>
+                <VaticleRoute exact path={routes.home} title="Home" component={HomePage}/>
+
+                <Redirect exact path={legacyRoutes.graknCore} to={routes.typeDB}/>
+                <Redirect exact path={legacyRoutes.graknKGMS} to={routes.typeDBCluster}/>
+
+                <VaticleRoute title="404" component={Vaticle404Page}/>
+            </Switch>
+        </BrowserRouter>
+    );
+};
 
 interface VaticleRouteProps extends RouteProps {
     title: string;
@@ -55,34 +89,4 @@ const VaticleRoute: React.FC<VaticleRouteProps> = props => {
 
     const {title, ...rest} = props;
     return <Route {...rest} />;
-};
-
-export const routes = {
-    download: "/download",
-    home: "/",
-    privacyPolicy: "/privacy-policy",
-    typeDB: "/typedb",
-};
-
-export const legacyRoutes = {
-    graknCore: "/grakn-core",
-    graknKGMS: "/grakn-kgms", // TODO: When the Cluster page is created, add this legacy route (for redirection)
-    deployment: "/deployment", // TODO: When the Cloud page is created, add this legacy route (for redirection)
-};
-
-export const VaticleRouter: React.FC = () => {
-    return (
-        <BrowserRouter>
-            <Switch>
-                <VaticleRoute exact path={legacyRoutes.graknCore} title="TypeDB" component={TypeDBPage}/>
-
-                <VaticleRoute exact path={routes.download} title="Download" component={DownloadPage}/>
-                <VaticleRoute exact path={routes.privacyPolicy} title="Privacy Policy" component={PrivacyPolicyPage}/>
-                <VaticleRoute exact path={routes.typeDB} title="TypeDB" component={TypeDBPage}/>
-                <VaticleRoute exact path={routes.home} title="Home" component={HomePage}/>
-
-                <VaticleRoute title="404" component={Vaticle404Page}/>
-            </Switch>
-        </BrowserRouter>
-    );
 };
