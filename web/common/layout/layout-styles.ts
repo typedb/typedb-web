@@ -204,7 +204,7 @@ export const pageFooterStyles = makeStyles({
     newsletterSection: {
         display: "flex",
 
-        "@media(max-width: 1199px)": {
+        "@media(max-width: 767px)": {
             flexDirection: "column-reverse",
             alignItems: "center",
         },
@@ -214,11 +214,11 @@ export const pageFooterStyles = makeStyles({
         display: "flex",
         alignItems: "center",
 
-        "@media(min-width: 1200px)": {
+        "@media(min-width: 768px)": {
             flex: "0 0 380px",
         },
 
-        "@media(max-width: 1199px)": {
+        "@media(max-width: 767px)": {
             marginTop: 44,
         },
     },
@@ -272,6 +272,7 @@ export const pageFooterStyles = makeStyles({
         flex: 1,
         display: "flex",
         justifyContent: "flex-end",
+        alignItems: "center",
     },
 
     separator: {
@@ -344,7 +345,11 @@ export const pageFooterStyles = makeStyles({
     contact: {
         flex: "0 0 360px",
 
-        "@media(max-width: 1199px)": {
+        "@media (min-width: 768px) and (max-width: 1199px)": {
+            flex: "1 1 180px",
+        },
+
+        "@media(max-width: 767px)": {
             flex: .5,
         },
     },
@@ -359,6 +364,10 @@ export const pageFooterStyles = makeStyles({
             alignItems: "flex-start",
         },
 
+        "@media (min-width: 768px) and (max-width: 1199px)": {
+            flex: "1 1 360px",
+        },
+
         "@media(max-width: 767px)": {
             marginTop: 30,
             display: "grid",
@@ -368,10 +377,14 @@ export const pageFooterStyles = makeStyles({
     },
 
     linkBlock: {
-        "@media(min-width: 768px)": {
+        "@media(min-width: 1200px)": {
             "&:not(:first-child)": {
                 marginLeft: 104,
             },
+        },
+
+        "@media (min-width: 768px) and (max-width: 1199px)": {
+            flex: 1,
         },
     },
 
