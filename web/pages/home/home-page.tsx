@@ -73,14 +73,6 @@ export const HomePage: React.FC = () => {
 
             <TestimonialsSection className={classes.sectionMargin}/>
 
-            <section className={clsx(classes.communitySection, classes.sectionMargin)}>
-                <h1 className={classes.h1}>Join the Vaticle community around the world</h1>
-                <VaticleWorld className={clsx(classes.vaticleWorld, classes.subsectionMargin)}/>
-                <VaticleButton size="small" type="primary" disabled comingSoon className={classes.subsectionMargin}>
-                    Join the Vaticle community<span className={clsx(classes.aroundTheWorld, classes.hideMobile)}>around the world</span>
-                </VaticleButton>
-            </section>
-
         </DefaultLayout>
     );
 };
