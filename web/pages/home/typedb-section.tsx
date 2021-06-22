@@ -3,13 +3,21 @@ import clsx from "clsx";
 import {urls} from "../../common/urls";
 import {routes} from "../router";
 import {vaticleStyles} from "../../common/styles/vaticle-styles";
-import {entityRelationshipExampleCode, entityRelationshipExampleGraph} from "../typedb/examples/entity-relationship-example";
-import {logicalQueryValidationExampleCode, logicalQueryValidationExampleGraph} from "../typedb/examples/logical-query-validation-example";
+import {
+    entityRelationshipExampleCode,
+    entityRelationshipExampleGraph
+} from "../typedb/examples/entity-relationship-example";
+import {
+    logicalQueryValidationExampleCode,
+    logicalQueryValidationExampleGraph
+} from "../typedb/examples/logical-query-validation-example";
 import {inferenceExampleCode, inferenceExampleGraph} from "../typedb/examples/inference-example";
+import {simpleStatefulAPIExample} from "../typedb/examples/simple-stateful-api-example";
 import {ClassProps} from "../../common/class-props";
 import {VaticleButton} from "../../common/button/button";
-import {TypeQLExample} from "../feature/typeql-example";
 import {FeatureBlock} from "../feature/feature-block";
+import {TypeQLExample} from "../feature/typeql-example";
+import {PolyglotExample} from "../../common/code/polyglot-example";
 
 interface TypeDBSectionProps extends ClassProps {
     typeDBVersion: string;
@@ -52,6 +60,15 @@ export const TypeDBSection: React.FC<TypeDBSectionProps> = ({className, typeDBVe
                                      find, and complex queries become much simpler."
                           button={{text: "Learn More", to: routes.typeDB}}>
                 <TypeQLExample code={inferenceExampleCode} data={inferenceExampleGraph}/>
+            </FeatureBlock>
+
+            <FeatureBlock className={classes.subsectionMargin} examplePosition="right" title="Programmatic API"
+                          body="TypeDB's API is provided through a gRPC client, built with robust functionalities that
+                          REST cannot provide. TypeDB Clients provide stateful objects, Sessions and Transactions, to
+                          interact with the database programmatically. The transactions provide ACID guarantees, up to
+                          snapshot isolation."
+                          button={{text: "Learn More", to: routes.typeDB}}>
+                <PolyglotExample id="simple-stateful-api" sources={simpleStatefulAPIExample}/>
             </FeatureBlock>
 
             <div className={clsx(classes.mainActionList, classes.subsectionMargin)}>
