@@ -6,7 +6,7 @@ import {ClassProps} from "../../common/class-props";
 import {featureStyles} from "./feature-styles";
 
 interface FeatureBlockButtonProps extends VaticleButtonProps {
-    text: "Learn More" | "Documentation" | "Back Home";
+    text: "Learn More" | "Documentation" | "Back Home" | "Coming Soon!";
 }
 
 export interface FeatureBlockProps extends ClassProps {
