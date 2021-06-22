@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
-import { IconButton } from '@material-ui/core';
-import React, { MouseEventHandler, useState } from 'react';
+import { IconButton, Popover, Popper } from '@material-ui/core';
+import React, { useLayoutEffect, useRef, useState } from 'react';
 
 import VaticleLogo from "../assets/logos/vaticle.svg";
 
@@ -12,6 +12,7 @@ import { HamburgerCollapse } from "react-animated-burgers/lib";
 import { vaticleStyles } from "../styles/vaticle-styles";
 import { urls } from "../urls";
 import { routes } from "../../pages/router";
+import { VaticleLink, VaticleLinkProps } from "../link/link";
 
 interface PageHeaderProps {
     onContactClick: () => void;
@@ -81,28 +82,65 @@ export const PageHeader: React.FC<PageHeaderProps> = ({ onContactClick }) => {
     );
 };
 
+// interface Submenu {
+//     open: boolean;
+//     setOpen: (value: boolean) => void;
+//     element: typeof SubmenuElement;
+// }
+
 // TODO: Add sitemap once most of the linked pages are implemented
-const Sitemap: React.FC = () => (
-    <>
-        <HeaderMenuItem href={urls.docs.home}>Documentation</HeaderMenuItem>
-        <HeaderMenuItem href={urls.forum}>Forum</HeaderMenuItem>
-        {/*<HeaderMenuItem>Databases</HeaderMenuItem>*/}
-        {/*<HeaderMenuItem>Solutions</HeaderMenuItem>*/}
-        {/*<HeaderMenuItem>Use Cases</HeaderMenuItem>*/}
-        {/*<HeaderMenuItem>Developer</HeaderMenuItem>*/}
-        {/*<HeaderMenuItem>Conference</HeaderMenuItem>*/}
-        {/*<HeaderMenuItem>Community</HeaderMenuItem>*/}
-        <HeaderMenuItem href={urls.blog} target="_blank">Blog</HeaderMenuItem>
-    </>
-);
+const Sitemap: React.FC = () => {
+    const classes = pageHeaderStyles();
+
+    const [technologiesOpen, setTechnologiesOpen] = useState(false);
+    const anchorElRef = useRef<HTMLDivElement>(null);
+    const [anchorEl, setAnchorEl] = React.useState<HTMLElement>(null);
+
+    useLayoutEffect(() => {
+        setAnchorEl(anchorElRef.current);
+    }, []);
+
+    // const technologiesElement: React.FC = () => (
+    //     <SubmenuElement open={technologiesOpen}>
+    //         <MenuItem text="TypeDB" to={routes.typeDB}/>
+    //         <MenuItem text="TypeDB Cluster" to={routes.typeDBCluster}/>
+    //     </SubmenuElement>
+    // );
+
+    return (
+        <ul className={classes.sitemap}>
+            <li className={classes.menuItem}>
+                <VaticleLink className={clsx(classes.toolbarItem, classes.linkText)}>Technologies</VaticleLink>
+                <ul className={classes.submenu} style={{width: 158}}>
+                    <li className={classes.submenuItem}>
+                        <VaticleLink className={clsx(classes.linkText)} to={routes.typeDB}>TypeDB</VaticleLink>
+                    </li>
+                    <li className={classes.submenuItem}>
+                        <VaticleLink className={clsx(classes.linkText)} to={routes.typeDBCluster}>TypeDB Cluster</VaticleLink>
+                    </li>
+                </ul>
+            </li>
+            {/*<MenuItem text="Technologies" submenu={{open: technologiesOpen, setOpen: setTechnologiesOpen, element: technologiesElement}}/>*/}
+            {/*<MenuItem href={urls.docs.home}>Documentation</MenuItem>*/}
+            {/*<MenuItem href={urls.forum}>Forum</MenuItem>*/}
+            {/*<MenuItem>Databases</MenuItem>*/}
+            {/*<MenuItem>Solutions</MenuItem>*/}
+            {/*<MenuItem>Use Cases</MenuItem>*/}
+            {/*<MenuItem>Developer</MenuItem>*/}
+            {/*<MenuItem>Conference</MenuItem>*/}
+            {/*<MenuItem>Community</MenuItem>*/}
+            {/*<MenuItem href={urls.blog} target="_blank">Blog</MenuItem>*/}
+        </ul>
+    );
+}
 
 const ExternalLinks: React.FC<PageHeaderProps> = ({ onContactClick }) => {
     const classes = pageHeaderStyles();
 
     return (
         <>
-            <ExternalLink onClick={onContactClick}>Contact</ExternalLink>
-            <ExternalLink href={urls.support} target="_blank">Support</ExternalLink>
+            <ExternalLink text="Contact" onClick={onContactClick}/>
+            <ExternalLink text="Support" href={urls.support} target="_blank"/>
             <VaticleButton size="small" type="secondary" to={routes.download}
                            className={clsx(classes.toolbarItem, classes.externalLinksDownload)}>Download</VaticleButton>
             <div className={classes.externalLinksGithub}>
@@ -112,17 +150,34 @@ const ExternalLinks: React.FC<PageHeaderProps> = ({ onContactClick }) => {
     );
 };
 
-interface HeaderLinkProps {
-    href?: string;
-    target?: string;
-    onClick?: MouseEventHandler<HTMLAnchorElement>;
+interface HeaderLinkProps extends VaticleLinkProps {
+    text: string;
+    // submenu?: Submenu;
 }
 
-const HeaderMenuItem: React.FC<HeaderLinkProps> = ({children, href, target}) => {
+const MenuItem: React.FC<HeaderLinkProps> = ({text, href, target, to}) => {
     const classes = pageHeaderStyles();
 
-    return <a href={href} target={target} className={clsx(classes.toolbarItem, classes.linkText)}>{children}</a>;
+    return (
+        <div>
+            <VaticleLink href={href} target={target} to={to} className={clsx(classes.toolbarItem, classes.linkText)}>{text}</VaticleLink>
+        </div>
+    );
 }
+
+interface SubmenuProps {
+    open: boolean;
+    anchorEl: Element;
+}
+
+// const SubmenuElement: React.FC<SubmenuProps> = ({children, open, anchorEl}) => {
+//     return (
+//         <Popper open={open} anchorOrigin={{vertical: "bottom", horizontal: "left"}}
+//                  transformOrigin={{vertical: "top", horizontal: "left"}}>
+//             {children}
+//         </Popper>
+//     );
+// }
 
 const ExternalLink: React.FC<HeaderLinkProps> = ({children, href, target, onClick}) => {
     return (

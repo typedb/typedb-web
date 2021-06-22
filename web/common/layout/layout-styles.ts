@@ -53,10 +53,9 @@ export const pageHeaderStyles = makeStyles({
     },
 
     toolbar: {
-        margin: "auto 50px",
+        margin: "0 50px",
         flex: 1,
         display: "flex",
-        alignItems: "center",
 
         "@media(max-width: 1199px)": {
             margin: "auto 17px auto 32px",
@@ -67,12 +66,12 @@ export const pageHeaderStyles = makeStyles({
     desktopItems: {
         flex: 1,
         display: "flex",
-        alignItems: "center",
     },
 
     toolbarItem: {
         "@media(min-width: 1200px)": {
-            marginLeft: 35,
+            padding: "0 20px",
+            lineHeight: "80px",
         },
     },
 
@@ -90,9 +89,8 @@ export const pageHeaderStyles = makeStyles({
     },
 
     linkText: {
+        height: "100%",
         fontSize: "18px",
-        lineHeight: 1.5,
-        padding: "12px 0",
         color: "#FFF",
     },
 
@@ -153,6 +151,10 @@ export const pageHeaderStyles = makeStyles({
         },
     },
 
+    sitemap: {
+        display: "flex",
+    },
+
     sitemapMenu: {
         display: "flex",
         flexDirection: "column",
@@ -183,6 +185,30 @@ export const pageHeaderStyles = makeStyles({
             marginTop: 24,
             marginBottom: 24,
         },
+    },
+
+    menuItem: {
+        position: "relative",
+
+        "&:hover": {
+            backgroundColor: vaticleTheme.palette.purple["300"],
+
+            "& $submenu": {
+                display: "block",
+            },
+        },
+    },
+
+    submenu: {
+        zIndex: 2000,
+        backgroundColor: vaticleTheme.palette.purple["600"],
+        display: "none",
+        position: "absolute",
+    },
+
+    submenuItem: {
+        padding: "0 20px",
+        lineHeight: "40px",
     },
 });
 
