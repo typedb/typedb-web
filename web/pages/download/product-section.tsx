@@ -36,7 +36,7 @@ export const ProductSection: React.FC<ClassProps> = ({className}) => {
 
     return (
         <section className={className}>
-            <VaticleTabs items={allProducts} classes={{
+            <VaticleTabs items={allProducts} anchor classes={{
                 tabGroup: classes.tabGroup, tabItem: clsx(classes.tabItem, classes.h5),
                 selected: classes.tabItemSelected, first: classes.firstTabItem, last: classes.lastTabItem
             }}/>

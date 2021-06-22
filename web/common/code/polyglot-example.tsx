@@ -10,7 +10,7 @@ interface PolyglotExampleProps {
     sources: Code[];
 }
 
-interface PolygotExampleTab {
+interface PolyglotExampleTab {
     id: string;
     name: string;
     content: React.FC;
@@ -19,7 +19,7 @@ interface PolygotExampleTab {
 export const PolyglotExample: React.FC<PolyglotExampleProps> = ({ id, sources }) => {
     const classes = codeStyles();
 
-    const codeTabs: PolygotExampleTab[] = sources.map(code => {
+    const codeTabs: PolyglotExampleTab[] = sources.map(code => {
         return {
             id: `${id}-${code.language}`,
             name: languageNames[code.language],

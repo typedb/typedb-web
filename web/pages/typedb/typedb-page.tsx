@@ -82,7 +82,7 @@ export const TypeDBPage: React.FC = () => {
                               body="Relations are concepts we use to describe the association between two or more things.
                               Sometimes, those things can be relations themselves. TypeDB can represent these structures
                               naturally, as it enables relations to be nested in another relation, allowing you to
-                              express the model of your system in the natural form."
+                              express the model of your system in the most natural form."
                               button={{text: "Documentation", disabled: true, comingSoon: true}}>
                     <TypeQLExample code={nestedRelationsExampleCode} data={nestedRelationsExampleGraph}/>
                 </FeatureBlock>
@@ -99,10 +99,10 @@ export const TypeDBPage: React.FC = () => {
 
                 <FeatureBlock className={classes.subsectionMargin} examplePosition="left"
                               title="Logical Data Validation"
-                              body="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                               incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-                               exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
-                               dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla"
+                              body="Inserted data gets validated beyond static type checking of attribute value types.
+                              Entities are validated to only have the correct attributes, and relations are validated to
+                              only relate things that are logically allowed. TypeDB performs richer validation of inserted
+                              entities and relations by evaluating the polymorphic types of the things involved."
                               button={{text: "Documentation", disabled: true, comingSoon: true}}>
                     <TypeQLExample code={logicalDataValidationExampleCode} data={logicalDataValidationExampleGraph}/>
                 </FeatureBlock>

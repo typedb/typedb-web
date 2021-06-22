@@ -1,4 +1,4 @@
-export const acidTransactionsExampleCode = `
+export const acidTransactionsExampleCode = `$
 $ ./typedb console
 >
 > transaction my-typedb data write

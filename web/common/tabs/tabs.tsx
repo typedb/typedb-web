@@ -1,9 +1,9 @@
-import React, { useLayoutEffect, useState } from "react";
-import { tabsStyles } from "./tabs-styles";
-import { VaticleLink } from "../link/link";
+import React, {useLayoutEffect, useState} from "react";
+import {tabsStyles} from "./tabs-styles";
+import {VaticleLink} from "../link/link";
 import clsx from "clsx";
-import { vaticleStyles } from "../styles/vaticle-styles";
-import { useLocation } from "react-router-dom";
+import {vaticleStyles} from "../styles/vaticle-styles";
+import {useLocation} from "react-router-dom";
 
 export interface VaticleTabItem {
     id: string;
@@ -24,9 +24,10 @@ export interface VaticleTabsClasses {
 export interface VaticleTabsProps {
     classes?: VaticleTabsClasses;
     items: VaticleTabItem[];
+    anchor?: boolean;
 }
 
-export const VaticleTabs: React.FC<VaticleTabsProps> = ({classes, items}) => {
+export const VaticleTabs: React.FC<VaticleTabsProps> = ({classes, items, anchor}) => {
     const ownClasses = Object.assign({}, vaticleStyles(), tabsStyles());
 
     const routerLocation = useLocation();
@@ -40,13 +41,15 @@ export const VaticleTabs: React.FC<VaticleTabsProps> = ({classes, items}) => {
     return (
         <div className={classes.root}>
             <div className={clsx(ownClasses.tabGroup, classes.tabGroup)}>
-                {items.map((item, idx) => <VaticleTab classes={classes} item={item} selected={item.id === selectedItem.id}
-                                                      first={idx === 0} last={idx === items.length - 1}/>)}
+                {items.map((item, idx) => <VaticleTab classes={classes} item={item} setSelectedItem={setSelectedItem}
+                                                      selected={item.id === selectedItem.id}
+                                                      anchor={anchor} first={idx === 0}
+                                                      last={idx === items.length - 1}/>)}
             </div>
             {items.map((item) =>
-            <div hidden={item.id !== selectedItem.id} className={classes.tabContent}>
-                <item.content/>
-            </div>)}
+                <div hidden={item.id !== selectedItem.id} className={classes.tabContent}>
+                    <item.content/>
+                </div>)}
         </div>
     );
 }
@@ -54,18 +57,24 @@ export const VaticleTabs: React.FC<VaticleTabsProps> = ({classes, items}) => {
 interface VaticleTabProps {
     item: VaticleTabItem;
     selected: boolean;
+    anchor: boolean;
     first: boolean;
     last: boolean;
     classes?: VaticleTabsClasses;
+    setSelectedItem: (value: VaticleTabItem) => void;
 }
 
-export const VaticleTab: React.FC<VaticleTabProps> = ({item, selected, first, last, classes}) => {
+const VaticleTab: React.FC<VaticleTabProps> = ({item, selected, anchor, first, last, classes, setSelectedItem}) => {
     const ownClasses = Object.assign({}, vaticleStyles(), tabsStyles());
 
+    const selectTab = () => {
+        setSelectedItem(item);
+    }
     return (
         <VaticleLink className={clsx(ownClasses.tabItem, classes.tabItem, ownClasses.pageAnchor,
             first && classes.first, last && classes.last, selected && classes.selected)}
-                     id={item.id} to={`#${item.id}`} scroll={false} scrollPaddingTop={160}>
+                     id={item.id} to={anchor && `#${item.id}`} onClick={!anchor && selectTab} scroll={false}
+                     scrollPaddingTop={160}>
             {item.name}
         </VaticleLink>
     );

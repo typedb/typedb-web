@@ -45,7 +45,7 @@ try {
 `
 }, {
     language: "console",
-    body: `
+    body: `$
 $ ./typedb console
 >
 > transaction my-typedb data write
