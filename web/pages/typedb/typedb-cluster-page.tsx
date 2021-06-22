@@ -6,7 +6,7 @@ import clsx from "clsx";
 import {vaticleStyles} from "../../common/styles/vaticle-styles";
 import { ConsoleExample } from "../../common/code/console-example";
 import {
-    backupAndRecoveryExample,
+    liveBackupExample,
     clusterManagementExample,
     elasticThroughputExample,
     highAvailabilityExample, inFlightEncryptionExample,
@@ -77,7 +77,7 @@ export const TypeDBClusterPage: React.FC = () => {
                               exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
                               dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla"
                               button={{text: "Documentation", disabled: true, comingSoon: true}}>
-                    <ConsoleExample code={backupAndRecoveryExample}/>
+                    <ConsoleExample code={liveBackupExample}/>
                 </FeatureBlock>
             </section>
 

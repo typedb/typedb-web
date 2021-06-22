@@ -1,5 +1,5 @@
 export const highAvailabilityExample =
-`> database mytypedb status replica
+`> database my-typedb status replica
 1) 10.1.17.23:
   - availability     : available
   - role             : primary
@@ -16,7 +16,7 @@ export const highAvailabilityExample =
   - availability     : unavailable`;
 
 export const elasticThroughputExample =
-`> database mytypedb status request
+`> database my-typedb status request
 1) 10.1.17.23 (primary):
   - last 1 second    : 15,541 writes, 21,756 reads
   - last 1 hour        : 50,206,440 writes, 78,211,600 reads
@@ -50,11 +50,12 @@ Node 0: 10.1.17.2:59947
 Node 1: 10.1.17.15:1729
 126
 46
-EnCt245fd8f82a976d84690296a8ddd386964f068dcfa45fd8f82a976d84690296azof2yx2Ajp
-GlNakGmQzhMRYKeHjpS4Wn48jcDYtgPucSkldHlraTZbY0fN8hsTwRtxVc3gukaypsmFaXU6eyTO2
-R525LaphqzaUIyJnhB9VSAqGC8evoCnZHuO9QqlwUUFysLbblPS5dJvqMTvHOEGM3LXUlEmxZQbyJ
-j5tPUFIoCyQPDWJ1UUqbJjzr3ZFaNBBy3B1b59xJNjzJpJi26VFN6wY6oS6FFfO5VNV3WcE1T35Oe
-Vhruh5oAZzOOEnKeHjpS`;
+{.D....U..0.:3..J..RX...MW.o...w5.V..Z..V../........Vf..%....|.......T'.V.Q..7.s
+v...U*L.].C3.0......RNK,4E'......S...w..r..3.....Y.v.T...j..j.....2*.....p.9....
+......nR...X.."/..j.I&.,...b.x..j.h....=p.x..h.....(..u.....Q.o3.M1A.x..C.....|o
+...(.A3X..p..U.6...Kv...&:.e.....N.]3..d8.Zo=.....J;.k.f.b..n].tK..{.D....U..0.:
+3..J..RX...MW.o...w5.V..Z..V../........Vf..%....|.......T'.V.Q..7.sv...U*L.].C3.
+0......RNK,4E'......S...w..r..3.....Y.v.T...j..j.....2*.....p.9..........nR...X.`;
 
 export const clusterManagementExample =
 `root$ ./typedb cluster --username=admin \
@@ -70,19 +71,20 @@ Server 10.1.17.23 has left the cluster
 > cluster 10.1.17.37 left
 Server 10.1.17.37 has left the cluster`;
 
-export const backupAndRecoveryExample =
-`> database mytypedb backup status
-status       : scheduled
-frequency : Every 7 days
-next          : Mon 07 Jun 2021 12:26:33 UTC
->
-> database mytypedb backup now
-> 
-> database mytypedb backup schedule start=2021-06-21T12:00:00 every=7d
->
-> database mytypedb backup 4 delete
->
-> database mytypedb backup 3 restore
-The following backup will be restored: (id: 3) Mon 21 Jun 2021 12:26:02 UTC
-Press [Y] to continue or [n] to cancel: Y
-Restoration is in progress ...`;
+export const liveBackupExample =
+`> database my-typedb backup status
+- status        : active
+- snapshot      : 1,263,523     
+- compaction
+  * frequency   : every 7 days
+  * last        : Mon 21 Jun 2021 12:00:00 UTC
+  * next        : Mon 28 Jun 2021 12:00:00 UTC
+
+> database my-typedb backup compaction start=2021-06-25T12:00:00 every=2d
+
+> database my-typedb restore 1164825
+The following backup copy will be restored: 
+Snapshot: 1,164,825 
+From: Mon 22 Jun 2021 15:26:02 UTC
+Press [y] to continue or [n] to cancel: y
+Restoration is in progress. Database will be running in 'read-only' mode during the process.`;

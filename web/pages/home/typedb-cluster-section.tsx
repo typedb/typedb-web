@@ -47,7 +47,7 @@ export const TypeDBClusterSection: React.FC<ClassProps> = ({className}) => {
         icon: ClusterManagementIcon,
         comingSoon: true,
     }, {
-        name: "Backup and Recovery",
+        name: "Live Backup",
         description: "Protect your database from data loss through automatic periodic backups and reconstruction tools.",
         icon: BackupAndRecoveryIcon,
         comingSoon: true,
