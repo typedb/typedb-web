@@ -366,7 +366,6 @@ export const homePageClusterStyles = makeStyles({
         border: "1px solid transparent",
         transition: "border-color 100ms ease",
         position: "relative",
-        cursor: "default !important",
 
         "@media(max-width: 767px)": {
             padding: "24px 10px",
@@ -379,10 +378,9 @@ export const homePageClusterStyles = makeStyles({
             },
         },
 
-        // TODO: reintroduce this (and remove cursor: default) when the links are functional
-        // "&:hover": {
-        //     borderColor: vaticleTheme.palette.green[300],
-        // },
+        "&:hover": {
+            borderColor: vaticleTheme.palette.green[300],
+        },
     },
 
     featurePanelBanner: {

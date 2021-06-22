@@ -10,6 +10,8 @@ import BackupAndRecoveryIcon from "../../assets/icons/backup-and-recovery.svg";
 import {VaticleButton} from "../../common/button/button";
 import {vaticleStyles} from "../../common/styles/vaticle-styles";
 import {ClassProps} from "../../common/class-props";
+import { VaticleLink } from "../../common/link/link";
+import { routes } from "../router";
 
 interface ClusterFeature {
     name: string;
@@ -61,12 +63,12 @@ export const TypeDBClusterSection: React.FC<ClassProps> = ({className}) => {
 
             <div className={clsx(classes.featurePanelList, classes.subsectionMargin)}>
                 {allFeatures.map(({name, description, icon, comingSoon}) => (
-                    <a className={classes.featurePanel}>
+                    <VaticleLink className={classes.featurePanel} to={routes.typeDBCluster}>
                         {comingSoon && <div className={classes.featurePanelBanner}>coming soon</div>}
                         {React.createElement(icon)}
                         <h4 className={clsx(classes.h4, classes.textMarginLarge)}>{name}</h4>
                         <p className={clsx(classes.mediumText, classes.textMarginSmall)}>{description}</p>
-                    </a>
+                    </VaticleLink>
                 ))}
             </div>
 
