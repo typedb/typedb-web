@@ -67,8 +67,8 @@ export const PageHeader: React.FC<PageHeaderProps> = ({ onContactClick }) => {
                                        barColor="#FFF" isActive={menuOpen} toggleButton={() => toggleMenuOpen()}/>
                 </nav>
             </header>
-            <nav className={clsx(classes.mainMenu, classes.hideDesktop, menuOpen && "open", menuInvisible && "invisible")}>
-                <div className={classes.mainMenuContent}>
+            <nav className={clsx(classes.mobileMenu, classes.hideDesktop, menuOpen && "open", menuInvisible && "invisible")}>
+                <div className={classes.mobileMenuContent}>
                     <div className={classes.sitemapMenu}>
                         <Sitemap/>
                     </div>
@@ -113,10 +113,10 @@ const Sitemap: React.FC = () => {
                 <VaticleLink className={clsx(classes.toolbarItem, classes.linkText)}>Technologies</VaticleLink>
                 <ul className={classes.submenu} style={{width: 158}}>
                     <li className={classes.submenuItem}>
-                        <VaticleLink className={clsx(classes.linkText)} to={routes.typeDB}>TypeDB</VaticleLink>
+                        <VaticleLink className={clsx(classes.submenuLink, classes.linkText)} to={routes.typeDB}>TypeDB</VaticleLink>
                     </li>
                     <li className={classes.submenuItem}>
-                        <VaticleLink className={clsx(classes.linkText)} to={routes.typeDBCluster}>TypeDB Cluster</VaticleLink>
+                        <VaticleLink className={clsx(classes.submenuLink, classes.linkText)} to={routes.typeDBCluster}>TypeDB Cluster</VaticleLink>
                     </li>
                 </ul>
             </li>

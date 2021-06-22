@@ -69,6 +69,8 @@ export const pageHeaderStyles = makeStyles({
     },
 
     toolbarItem: {
+        display: "inline-block",
+
         "@media(min-width: 1200px)": {
             padding: "0 20px",
             lineHeight: "80px",
@@ -89,8 +91,6 @@ export const pageHeaderStyles = makeStyles({
     },
 
     linkText: {
-        height: "100%",
-        fontSize: "18px",
         color: "#FFF",
     },
 
@@ -99,6 +99,8 @@ export const pageHeaderStyles = makeStyles({
         height: '1px',
         border: 0,
         backgroundColor: '#FFF',
+        transform: "scaleX(0)",
+        transition: "transform 300ms linear",
     },
 
     hamburger: {
@@ -106,7 +108,7 @@ export const pageHeaderStyles = makeStyles({
         fontSize: 32,
     },
 
-    mainMenu: {
+    mobileMenu: {
         position: "fixed",
         top: headerHeight,
         zIndex: 500,
@@ -139,7 +141,7 @@ export const pageHeaderStyles = makeStyles({
         },
     },
 
-    mainMenuContent: {
+    mobileMenuContent: {
         margin: "24px 32px",
         display: "flex",
         justifyContent: "space-between",
@@ -189,9 +191,10 @@ export const pageHeaderStyles = makeStyles({
 
     menuItem: {
         position: "relative",
+        fontSize: 18,
 
         "&:hover": {
-            backgroundColor: vaticleTheme.palette.purple["300"],
+            backgroundColor: vaticleTheme.palette.purple["400"],
 
             "& $submenu": {
                 display: "block",
@@ -207,8 +210,22 @@ export const pageHeaderStyles = makeStyles({
     },
 
     submenuItem: {
-        padding: "0 20px",
         lineHeight: "40px",
+        fontSize: 16,
+
+        "&:hover": {
+            backgroundColor: vaticleTheme.palette.purple["400"],
+
+            "& $submenu": {
+                display: "block",
+            },
+        },
+    },
+
+    submenuLink: {
+        width: "100%",
+        display: "inline-block",
+        padding: "0 20px",
     },
 });
 
