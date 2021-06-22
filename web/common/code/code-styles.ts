@@ -78,7 +78,7 @@ export const codeStyles = makeStyles({
         width: "100%",
         height: "100%",
         backgroundColor: "#140B44",
-        paddingLeft: 10,
+        padding: "0 10px",
 
         "&$resizable": {
             width: "calc(100% - 12px)",
