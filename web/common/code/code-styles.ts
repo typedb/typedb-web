@@ -6,7 +6,7 @@ const borderBlack = "#08022E";
 export const codeStyles = makeStyles({
     windowContainer: {
         width: 660,
-        height: 409,
+        height: 413,
         flexShrink: 0,
         display: "flex",
         flexDirection: "column",
@@ -14,8 +14,8 @@ export const codeStyles = makeStyles({
         "@media(max-width: 767px)": {
             marginLeft: "50%",
             transform: "translateX(-50%) scale(.54)",
-            marginTop: -92, // (1 - scale) * height / 2
-            marginBottom: -92,
+            marginTop: -94, // (1 - scale) * height / 2
+            marginBottom: -94,
         },
     },
 
@@ -58,6 +58,7 @@ export const codeStyles = makeStyles({
     lineNumbers: {
         display: "flex",
         flexDirection: "column",
+        padding: "2px 0",
     },
 
     codeSection: {
@@ -78,7 +79,7 @@ export const codeStyles = makeStyles({
         width: "100%",
         height: "100%",
         backgroundColor: "#140B44",
-        padding: "0 10px",
+        padding: "2px 0 2px 10px",
 
         "&$resizable": {
             width: "calc(100% - 12px)",
@@ -91,6 +92,7 @@ export const codeStyles = makeStyles({
         display: "inline-block",
         width: "100%",
         height: "100%",
+        paddingRight: 10,
         overflowX: "scroll",
     },
 
