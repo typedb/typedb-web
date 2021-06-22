@@ -109,10 +109,10 @@ export const TypeDBPage: React.FC = () => {
 
                 <FeatureBlock className={classes.subsectionMargin} examplePosition="right"
                               title="Logical Query Validation"
-                              body="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                               incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-                               exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
-                               dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla"
+                              body="Read queries executed on TypeDB goes through a type resolution process. Besides
+                              optimisation of the query, this process allows TypeDB to identify if the query resolvable
+                              with respect to the schema. If it isn't, then the query is rendered invalid and meaningless,
+                              instead of returning an empty answer, which could be misleading."
                               button={{text: "Documentation", disabled: true, comingSoon: true}}>
                     <TypeQLExample code={logicalQueryValidationExampleCode} data={logicalQueryValidationExampleGraph}/>
                 </FeatureBlock>
