@@ -112,7 +112,7 @@ export const TypeDBPage: React.FC = () => {
                               body="Read queries executed on TypeDB goes through a type resolution process. Besides
                               optimisation of the query, this process allows TypeDB to identify if the query resolvable
                               with respect to the schema. If it isn't, then the query is rendered invalid and meaningless,
-                              instead of returning an empty answer, which could be misleading."
+                              instead of returning an empty answer, which would be misleading."
                               button={{text: "Documentation", disabled: true, comingSoon: true}}>
                     <TypeQLExample code={logicalQueryValidationExampleCode} data={logicalQueryValidationExampleGraph}/>
                 </FeatureBlock>
@@ -127,19 +127,19 @@ export const TypeDBPage: React.FC = () => {
                 </p>
 
                 <FeatureBlock className={classes.subsectionMargin} examplePosition="left" title="Rules"
-                              body="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                               incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-                               exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
-                               dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla"
+                              body="TypeDB allows you to define rules in your schema, which extends the expressivity of
+                              your model as it enables the system to derive new conclusions when a certain logical form
+                              in your dataset is satisfied. Like functions in programming, rules can chain itself to one
+                              another, creating abstractions of behaviour at the data level."
                               button={{text: "Documentation", disabled: true, comingSoon: true}}>
                     <TypeQLExample code={rulesExampleCode} data={rulesExampleGraph}/>
                 </FeatureBlock>
 
                 <FeatureBlock className={classes.subsectionMargin} examplePosition="right" title="Inference"
-                              body="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                               incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-                               exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
-                               dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla"
+                              body="TypeDB's inference facility translates one query into all of its possible
+                              interpretations. This happens through two mechanisms: type-based and rule-based inference.
+                              Not only does this derive new conclusions and uncovers relationships that would otherwise
+                              be hidden, but it also enables the abstraction of complex patterns into simple queries."
                               button={{text: "Documentation", disabled: true, comingSoon: true}}>
                     <TypeQLExample code={inferenceExampleCode} data={inferenceExampleGraph}/>
                 </FeatureBlock>

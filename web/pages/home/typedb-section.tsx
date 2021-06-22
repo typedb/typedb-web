@@ -49,7 +49,7 @@ export const TypeDBSection: React.FC<TypeDBSectionProps> = ({className, typeDBVe
                           body="TypeDB encodes your data for logical interpretation by its reasoning engine. It enables
                                      type-inference and rule-inference that creates logical abstractions of data.
                                      This allows the discovery of facts and patterns that would otherwise be too hard to
-                                     find; and complex queries become much simpler."
+                                     find, and complex queries become much simpler."
                           button={{text: "Learn More", disabled: true, comingSoon: true}}>
                 <TypeQLExample code={inferenceExampleCode} data={inferenceExampleGraph}/>
             </FeatureBlock>
