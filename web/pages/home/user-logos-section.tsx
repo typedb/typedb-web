@@ -34,16 +34,16 @@ import TwoSixLogo from "../../assets/logos/purple/twosix.png";
 import WeLevelLogo from "../../assets/logos/purple/welevel.png";
 import ZessLogo from "../../assets/logos/purple/zess.png";
 
-interface CorporateLogoData {
+interface UserLogo {
     logo: string;
     altText: string;
     weight: number;
 }
 
-export const CorporateLogosSection: React.FC<ClassProps> = ({className}) => {
+export const UserLogosSection: React.FC<ClassProps> = ({className}) => {
     const classes = Object.assign({}, vaticleStyles(), corporateLogosStyles());
 
-    const logos: CorporateLogoData[] = [{
+    const logos: UserLogo[] = [{
         logo: FlipkartLogo,
         altText: "Flipkart",
         weight: 3,
@@ -278,6 +278,6 @@ export const CorporateLogosSection: React.FC<ClassProps> = ({className}) => {
     );
 }
 
-const CorporateLogo: React.FC<Partial<CorporateLogoData> & ClassProps> = ({logo, altText, className}) => {
+const CorporateLogo: React.FC<Partial<UserLogo> & ClassProps> = ({logo, altText, className}) => {
     return <img src={logo} alt={altText} className={className}/>
 }

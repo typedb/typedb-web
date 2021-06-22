@@ -1,21 +1,21 @@
 import React from "react";
+import clsx from "clsx";
+import VaticleWorld from "../../assets/graphics/vaticle-world.svg";
 import {homePageStyles} from "./home-styles";
-import {VaticleGalaxy} from "./vaticle-galaxy";
 import {faDiscord, faGithub, faTwitter} from "@fortawesome/free-brands-svg-icons";
+import {vaticleStyles} from "../../common/styles/vaticle-styles";
+import {urls} from "../../common/urls";
+import {routes} from "../router";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {VaticleButton} from "../../common/button/button";
-import clsx from "clsx";
-import {IndustrySection} from "./industry-section";
-import {ClusterSection} from "./cluster-section";
-import {TestimonialsSection} from "./testimonials-section";
-import {vaticleStyles} from "../../common/styles/vaticle-styles";
-import VaticleWorld from "../../assets/graphics/vaticle-world.svg";
-import {CorporateLogosSection} from "./corporate-logos-section";
-import {TypeQLExamplesSection} from "./typeql-examples-section";
 import {DefaultLayout} from "../../common/layout/default-layout";
-import {urls} from "../../common/urls";
 import {useTypeDBVersion} from "../../state/typedb-version";
-import {routes} from "../router";
+import {VaticleGalaxy} from "./vaticle-galaxy";
+import {UserLogosSection} from "./user-logos-section";
+import {TypeDBSection} from "./typedb-section";
+import {UseCaseSection} from "./use-case-section";
+import {TypeDBClusterSection} from "./typedb-cluster-section";
+import {TestimonialsSection} from "./testimonials-section";
 
 export const HomePage: React.FC = () => {
     const classes = Object.assign({}, vaticleStyles(), homePageStyles());
@@ -63,13 +63,13 @@ export const HomePage: React.FC = () => {
                 </div>
             </section>
 
-            <CorporateLogosSection className={classes.sectionMargin}/>
+            <UserLogosSection className={classes.sectionMargin}/>
 
-            <TypeQLExamplesSection className={classes.sectionMargin} typeDBVersion={typeDBVersion}/>
+            <TypeDBSection className={classes.sectionMargin} typeDBVersion={typeDBVersion}/>
 
-            <IndustrySection className={classes.sectionMargin}/>
+            <UseCaseSection className={classes.sectionMargin}/>
 
-            <ClusterSection className={classes.sectionMargin}/>
+            <TypeDBClusterSection className={classes.sectionMargin}/>
 
             <TestimonialsSection className={classes.sectionMargin}/>
 

@@ -1,21 +1,21 @@
-import {ClassProps} from "../../common/class-props";
+import React from "react";
+import clsx from "clsx";
+import {urls} from "../../common/urls";
+import {routes} from "../router";
 import {vaticleStyles} from "../../common/styles/vaticle-styles";
 import {entityRelationshipExampleCode, entityRelationshipExampleGraph} from "../typedb/examples/entity-relationship-example";
 import {logicalQueryValidationExampleCode, logicalQueryValidationExampleGraph} from "../typedb/examples/logical-query-validation-example";
 import {inferenceExampleCode, inferenceExampleGraph} from "../typedb/examples/inference-example";
-import clsx from "clsx";
+import {ClassProps} from "../../common/class-props";
 import {VaticleButton} from "../../common/button/button";
-import React from "react";
-import {urls} from "../../common/urls";
-import {routes} from "../router";
 import {TypeQLExample} from "../feature/typeql-example";
 import {FeatureBlock} from "../feature/feature-block";
 
-interface TypeQLExamplesSectionProps extends ClassProps {
+interface TypeDBSectionProps extends ClassProps {
     typeDBVersion: string;
 }
 
-export const TypeQLExamplesSection: React.FC<TypeQLExamplesSectionProps> = ({className, typeDBVersion}) => {
+export const TypeDBSection: React.FC<TypeDBSectionProps> = ({className, typeDBVersion}) => {
     const classes = Object.assign({}, vaticleStyles());
 
     return (

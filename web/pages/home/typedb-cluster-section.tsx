@@ -19,7 +19,7 @@ interface ClusterFeature {
     comingSoon?: true;
 }
 
-export const ClusterSection: React.FC<ClassProps> = ({className}) => {
+export const TypeDBClusterSection: React.FC<ClassProps> = ({className}) => {
     const classes = Object.assign({}, vaticleStyles(), homePageClusterStyles());
 
     const allFeatures: ClusterFeature[] = [{

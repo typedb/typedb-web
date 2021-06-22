@@ -11,23 +11,23 @@ import {vaticleTheme} from "../../common/styles/theme";
 import {vaticleStyles} from "../../common/styles/vaticle-styles";
 import {ClassProps} from "../../common/class-props";
 
-type IndustryName =
+type UseCaseName =
     "Knowledge Graph"
     | "Machine Learning"
     | "Health & Life Science"
     | "Defence & Security"
     | "Telecommunication";
 
-interface Industry {
-    name: IndustryName;
+interface UseCase {
+    name: UseCaseName;
     icon: React.FC<any>;
     description: string;
 }
 
-export const IndustrySection: React.FC<ClassProps> = ({className}) => {
+export const UseCaseSection: React.FC<ClassProps> = ({className}) => {
     const classes = Object.assign({}, vaticleStyles(), homePageIndustryStyles());
 
-    const allIndustries: Industry[] = [{
+    const useCases: UseCase[] = [{
         name: "Knowledge Graph",
         icon: KnowledgeGraph,
         description: `Knowledge Graphs (aka. Knowledge Bases) are systems that aggregate complex networks of facts to be 
@@ -64,7 +64,7 @@ export const IndustrySection: React.FC<ClassProps> = ({className}) => {
                     visibility before.`
     }];
 
-    const [selectedIndustry, setSelectedIndustry] = useState<Industry>(allIndustries[0]);
+    const [selectedIndustry, setSelectedIndustry] = useState<UseCase>(useCases[0]);
 
     return (
         <section className={className}>
@@ -79,7 +79,7 @@ export const IndustrySection: React.FC<ClassProps> = ({className}) => {
 
             <div className={clsx(classes.subsectionMargin, classes.sectionToggleGroupContainer)}>
                 <div className={classes.sectionToggleGroup}>
-                    {allIndustries.map(industry => (
+                    {useCases.map(industry => (
                         <SectionToggle industry={industry} binding={setSelectedIndustry}
                                        selected={industry.name === selectedIndustry.name}/>
                     ))}
@@ -90,8 +90,8 @@ export const IndustrySection: React.FC<ClassProps> = ({className}) => {
 }
 
 interface SectionToggleProps {
-    industry: Industry;
-    binding: (industry: Industry) => void;
+    industry: UseCase;
+    binding: (industry: UseCase) => void;
     selected: boolean;
 }
 

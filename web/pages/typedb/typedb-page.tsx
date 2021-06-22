@@ -123,7 +123,7 @@ export const TypeDBPage: React.FC = () => {
                 <p className={classes.largeText}>
                     TypeDB encodes your data for logical interpretation by a reasoning engine. It enables type-inference
                     and rule-inference that creates logical abstractions of data. This allows the discovery of facts and
-                    patterns that would otherwise be too hard to find; and complex queries become much simpler.
+                    patterns that would otherwise be too hard to find, and complex queries become much simpler.
                 </p>
 
                 <FeatureBlock className={classes.subsectionMargin} examplePosition="left" title="Rules"
