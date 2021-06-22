@@ -74,8 +74,7 @@ export const TypeDBClusterSection: React.FC<ClassProps> = ({className}) => {
             </div>
 
             <div className={clsx(classes.mainActionList, classes.subsectionMargin)}>
-                <VaticleButton size="small" type="secondary" to={routes.typeDBCluster}
-                               className={classes.clusterAction}>
+                <VaticleButton size="small" type="secondary" to={routes.typeDBCluster} className={classes.clusterAction}>
                     Learn More
                 </VaticleButton>
                 <VaticleButton size="small" type="primary" disabled comingSoon className={classes.clusterAction}>
