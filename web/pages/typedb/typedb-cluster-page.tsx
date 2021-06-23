@@ -54,7 +54,7 @@ export const TypeDBClusterPage: React.FC = () => {
                 </FeatureBlock>
 
                 <FeatureBlock className={classes.subsectionMargin} examplePosition="right" title="In-Flight Encryption"
-                              body="Server-to-server communiation is encrypted using the ZMQCurve protocol, ensuring the
+                              body="Server-to-server communication is encrypted using the ZMQCurve protocol, ensuring the
                               safety of data replication across the cluster. Client-to-server communication is encrypted
                               using the TLS protocol, ensuring the privacy, authenticity, and integrity of data
                               transmitted to and from the the database server."
@@ -63,10 +63,10 @@ export const TypeDBClusterPage: React.FC = () => {
                 </FeatureBlock>
 
                 <FeatureBlock className={classes.subsectionMargin} examplePosition="left" title="Cluster Management"
-                              body="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                              incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-                              exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
-                              dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla"
+                              body="TypeDB Cluster allows you to easily scale up or down the cluster to meet application
+                              demands. Data replication and consistency are transparently managed throughout cluster
+                              transformation, including in the event of cluster resizing failure. TypeDB Clients
+                              also allow applications discover new cluster servers automatically."
                               button={{text: "Coming Soon!", disabled: true, comingSoon: true}}>
                     <ConsoleExample code={clusterManagementExample}/>
                 </FeatureBlock>
