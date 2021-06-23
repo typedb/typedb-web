@@ -84,7 +84,9 @@ export const TypeDBClusterPage: React.FC = () => {
                     computing environment.
                 </p>
                 <div className={clsx(classes.mainActionList, classes.contentMargin)}>
-                    <VaticleButton size="small" type="secondary" disabled comingSoon>Learn More</VaticleButton>
+                    <VaticleButton size="small" type="secondary" className={classes.contentMargin} to="?dialog=contact">
+                        Get in touch
+                    </VaticleButton>
                 </div>
             </section>
         </DefaultLayout>
