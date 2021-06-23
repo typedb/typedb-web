@@ -28,7 +28,10 @@ export const buttonPalette = {
 };
 
 export const buttonStyles = makeStyles({
-    disable: {},
+    disable: {
+        borderColor: () => `${vaticleTheme.palette.purple[300]} !important`,
+        backgroundColor: (props: StyleProps) => `${buttonPalette[props.type].disabledBackground} !important`,
+    },
 
     root: {
         height: 40,
@@ -45,9 +48,8 @@ export const buttonStyles = makeStyles({
         position: "relative",
 
         "&$disable": {
+            // We need this nesting to ensure this style overrides the important style on root
             color: (props: StyleProps) => `${buttonPalette[props.type].disabledLabel} !important`,
-            borderColor: () => vaticleTheme.palette.purple[300],
-            backgroundColor: (props: StyleProps) => buttonPalette[props.type].disabledBackground,
         },
 
         '& p, & svg': {
