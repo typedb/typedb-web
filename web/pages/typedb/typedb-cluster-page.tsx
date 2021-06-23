@@ -67,16 +67,17 @@ export const TypeDBClusterPage: React.FC = () => {
                               demands. Data replication and consistency are transparently managed throughout cluster
                               transformation, including in the event of cluster resizing failure. TypeDB Clients
                               also allow applications discover new cluster servers automatically."
-                              button={{text: "Coming Soon!", disabled: true, comingSoon: true}}>
+                              button={{text: "Coming Soon!"}}>
                     <ConsoleExample code={clusterManagementExample}/>
                 </FeatureBlock>
 
-                <FeatureBlock className={classes.subsectionMargin} examplePosition="right" title="Backup & Recovery"
-                              body="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                              incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-                              exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
-                              dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla"
-                              button={{text: "Coming Soon!", disabled: true, comingSoon: true}}>
+                <FeatureBlock className={classes.subsectionMargin} examplePosition="right" title="Live Backup"
+                              body="TypeDB Cluster provides a granular live backup mechanism, that allows applications
+                              to recover from any disaster, to the latest database version of a successfully committed
+                              transaction. This minimises the possibly of data loss significantly. Backup operations
+                              perform incrementally, minimising CPU usage, storage usage, and network overhead. Backup
+                              restore operations can be performed via simple commands in the CLI."
+                              button={{text: "Coming Soon!"}}>
                     <ConsoleExample code={liveBackupExample}/>
                 </FeatureBlock>
             </section>
