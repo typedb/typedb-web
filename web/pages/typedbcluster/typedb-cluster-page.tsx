@@ -12,7 +12,7 @@ import {
     inFlightEncryptionExample,
     liveBackupExample,
     secureAuthenticationExample
-} from "./examples/typedb-cluster-examples";
+} from "./typedb-cluster-examples";
 
 export const TypeDBClusterPage: React.FC = () => {
     const classes = vaticleStyles();

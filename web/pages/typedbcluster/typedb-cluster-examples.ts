@@ -67,7 +67,7 @@ Server 10.1.17.23 has left the cluster
 > cluster 10.1.17.37 left
 Server 10.1.17.37 has left the cluster`;
 
-export const liveBackupExample = `>
+export const liveBackupExample = `> database my-typedb backup activate /disk2/backup
 > database my-typedb backup status
 - status        : active
 - snapshot      : 1,263,523     

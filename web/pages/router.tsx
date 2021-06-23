@@ -8,7 +8,7 @@ import {PrivacyPolicyPage} from "./privacy/privacy-policy-page";
 import {headerHeight} from "../common/layout/layout-styles";
 import {TypeDBPage} from "./typedb/typedb-page";
 import { Vaticle404Page } from "./error/404-page";
-import { TypeDBClusterPage } from "./typedb/typedb-cluster-page";
+import { TypeDBClusterPage } from "./typedbcluster/typedb-cluster-page";
 
 export const routes = {
     download: "/download",
