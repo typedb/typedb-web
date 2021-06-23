@@ -159,18 +159,6 @@ export const homePageStyles = makeStyles({
             height: "calc((100vw - 40px) * .6)",
         },
     },
-
-    communitySection: {
-        width: 1220,
-    },
-
-    vaticleWorld: {
-        maxWidth: "calc(100vw - 40px)",
-    },
-
-    aroundTheWorld: {
-        marginLeft: 3,
-    },
 });
 
 export const corporateLogosStyleVars = {

@@ -3,14 +3,8 @@ import clsx from "clsx";
 import {urls} from "../../common/urls";
 import {routes} from "../router";
 import {vaticleStyles} from "../../common/styles/vaticle-styles";
-import {
-    entityRelationshipExampleCode,
-    entityRelationshipExampleGraph
-} from "../typedb/examples/entity-relationship-example";
-import {
-    logicalQueryValidationExampleCode,
-    logicalQueryValidationExampleGraph
-} from "../typedb/examples/logical-query-validation-example";
+import {entityRelationshipExampleCode, entityRelationshipExampleGraph} from "../typedb/examples/entity-relationship-example";
+import {logicalQueryValidationExampleCode, logicalQueryValidationExampleGraph} from "../typedb/examples/logical-query-validation-example";
 import {inferenceExampleCode, inferenceExampleGraph} from "../typedb/examples/inference-example";
 import {simpleStatefulAPIExample} from "../typedb/examples/simple-stateful-api-example";
 import {ClassProps} from "../../common/class-props";

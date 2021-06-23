@@ -31,7 +31,7 @@ export const TypeDBClusterSection: React.FC<ClassProps> = ({className}) => {
         icon: HighAvailabilityIcon,
     }, {
         name: "Elastic Throughput",
-        description: "Read and write throughput scales linearly as new machines are added to the TypeDB Cluster.",
+        description: "Scale application read throughput linearly as new machines are added to the database cluster.",
         icon: ElasticThroughputIcon,
     }, {
         name: "Secure Authentication",
@@ -47,8 +47,8 @@ export const TypeDBClusterSection: React.FC<ClassProps> = ({className}) => {
         icon: ClusterManagementIcon,
         comingSoon: true,
     }, {
-        name: "Backup and Recovery",
-        description: "Protect your database from data loss through automatic periodic backups and reconstruction tools.",
+        name: "Live Backup",
+        description: "Recover from any system disaster to the most up-to-date version of your database with live backup.",
         icon: BackupAndRecoveryIcon,
         comingSoon: true,
     }];
