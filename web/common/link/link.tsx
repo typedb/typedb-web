@@ -33,7 +33,7 @@ export const VaticleLink: React.FC<VaticleLinkProps> = ({ children, href, to, on
         }
     };
 
-    return <a id={id} href={href} target={target} download={download} className={className} onClick={onLinkClick} scroll-padding-top={scrollPaddingTop}>{children}</a>;
+    return <a id={id} href={href} target={target} tabIndex={!href && 0} download={download} className={className} onClick={onLinkClick} scroll-padding-top={scrollPaddingTop}>{children}</a>;
 };
 
 function computeLinkType(href?: string, to?: string) {
