@@ -39,7 +39,7 @@ export const TypeDBClusterSection: React.FC<ClassProps> = ({className}) => {
         icon: AuthenticationIcon,
     }, {
         name: "In-Flight Encryption",
-        description: "All client-and-server and server-and-server communication are fully encrypted during transmission.",
+        description: "All client-to-server and server-to-server communication are fully encrypted during transmission.",
         icon: EncryptionIcon,
     }, {
         name: "Cluster Management",
