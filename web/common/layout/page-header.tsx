@@ -1,6 +1,4 @@
-import { Link } from 'react-router-dom';
-import { IconButton } from '@material-ui/core';
-import React, { MouseEventHandler, useState } from 'react';
+import React, { useState } from 'react';
 
 import VaticleLogo from "../assets/logos/vaticle.svg";
 
@@ -12,6 +10,9 @@ import { HamburgerCollapse } from "react-animated-burgers/lib";
 import { vaticleStyles } from "../styles/vaticle-styles";
 import { urls } from "../urls";
 import { routes } from "../../pages/router";
+import { VaticleLink, VaticleLinkProps } from "../link/link";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faLongArrowLeft } from "@fortawesome/pro-light-svg-icons/faLongArrowLeft";
 
 interface PageHeaderProps {
     onContactClick: () => void;
@@ -20,26 +21,27 @@ interface PageHeaderProps {
 export const PageHeader: React.FC<PageHeaderProps> = ({ onContactClick }) => {
     const classes = Object.assign({}, vaticleStyles(), pageHeaderStyles());
 
-    const [menuOpen, setMenuOpen] = useState(false);
-    const [menuInvisible, setMenuInvisible] = useState(true);
-    const [menuLocked, setMenuLocked] = useState(false);
+    const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+    const [mobileMenuInvisible, setMobileMenuInvisible] = useState(true);
+    const [mobileMenuLocked, setMobileMenuLocked] = useState(false);
 
-    const toggleMenuOpen = () => {
-        if (menuLocked) return;
+    const toggleMobileMenuOpen = () => {
+        if (mobileMenuLocked) return;
+        if (window.matchMedia("(min-width: 1200px)").matches) return;
 
-        if (menuOpen) {
-            setMenuOpen(false);
-            setMenuLocked(true);
+        if (mobileMenuOpen) {
+            setMobileMenuOpen(false);
+            setMobileMenuLocked(true);
             setTimeout(() => {
-                setMenuInvisible(true);
-                setMenuLocked(false);
+                setMobileMenuInvisible(true);
+                setMobileMenuLocked(false);
             }, 400);
-        } else { // if (!menuOpen)
-            setMenuOpen(true);
-            setMenuInvisible(false);
-            setMenuLocked(true);
+        } else { // if (!mobileMenuOpen)
+            setMobileMenuOpen(true);
+            setMobileMenuInvisible(false);
+            setMobileMenuLocked(true);
             setTimeout(() => {
-                setMenuLocked(false);
+                setMobileMenuLocked(false);
             }, 400);
         }
     };
@@ -48,97 +50,108 @@ export const PageHeader: React.FC<PageHeaderProps> = ({ onContactClick }) => {
         <>
             <header className={classes.appBar}>
                 <nav className={classes.toolbar}>
-                    <Link to={routes.home} className={classes.toolbarFirstItem}>
-                        <IconButton edge="start">
-                            <VaticleLogo className={classes.logo}/>
-                        </IconButton>
-                    </Link>
+                    <VaticleLink className={classes.logoContainer} to={routes.home}>
+                        <VaticleLogo className={classes.logo}/>
+                    </VaticleLink>
 
                     <div className={clsx(classes.desktopItems, classes.showDesktop)}>
-                        <Sitemap/>
+                        <Sitemap toggleMobileMenuOpen={toggleMobileMenuOpen}/>
 
                         <div className={classes.filler}/>
 
                         <ExternalLinks onContactClick={onContactClick}/>
                     </div>
 
-                    <HamburgerCollapse className={clsx(classes.toolbarItem, classes.hideDesktop)}
-                                       barColor="#FFF" isActive={menuOpen} toggleButton={() => toggleMenuOpen()}/>
+                    <HamburgerCollapse className={clsx(classes.hamburger, classes.hideDesktop)} barColor="#FFF"
+                                       isActive={mobileMenuOpen} toggleButton={() => toggleMobileMenuOpen()}/>
                 </nav>
             </header>
-            <nav className={clsx(classes.mainMenu, classes.hideDesktop, menuOpen && "open", menuInvisible && "invisible")}>
-                <div className={classes.mainMenuContent}>
-                    <div className={classes.sitemapMenu}>
-                        <Sitemap/>
-                    </div>
+            <nav className={clsx(classes.mobileMenu, classes.hideDesktop, mobileMenuOpen && "open", mobileMenuInvisible && "invisible")}>
+                <div className={classes.mobileMenuContent}>
+                    <Sitemap toggleMobileMenuOpen={toggleMobileMenuOpen}/>
 
-                    <div className={classes.linksMenu}>
-                        <ExternalLinks onContactClick={onContactClick}/>
-                    </div>
+                    <div className={classes.filler}/>
+
+                    <ExternalLinks onContactClick={onContactClick}/>
                 </div>
             </nav>
         </>
     );
 };
 
-// TODO: Add sitemap once most of the linked pages are implemented
-const Sitemap: React.FC = () => (
-    <>
-        <HeaderMenuItem href={urls.docs.home}>Documentation</HeaderMenuItem>
-        <HeaderMenuItem href={urls.forum}>Forum</HeaderMenuItem>
-        {/*<HeaderMenuItem>Databases</HeaderMenuItem>*/}
-        {/*<HeaderMenuItem>Solutions</HeaderMenuItem>*/}
-        {/*<HeaderMenuItem>Use Cases</HeaderMenuItem>*/}
-        {/*<HeaderMenuItem>Developer</HeaderMenuItem>*/}
-        {/*<HeaderMenuItem>Conference</HeaderMenuItem>*/}
-        {/*<HeaderMenuItem>Community</HeaderMenuItem>*/}
-        <HeaderMenuItem href={urls.blog} target="_blank">Blog</HeaderMenuItem>
-    </>
-);
+interface SitemapProps {
+    toggleMobileMenuOpen: () => void;
+}
+
+const Sitemap: React.FC<SitemapProps> = ({toggleMobileMenuOpen}) => {
+    const classes = pageHeaderStyles();
+
+    return (
+        <ul className={classes.menu}>
+            <li>
+                <VaticleLink>
+                    Technologies
+                    <ul>
+                        <li className={classes.backMenuItem}>
+                            <VaticleLink><span><FontAwesomeIcon className={classes.backButton} icon={faLongArrowLeft}/></span></VaticleLink>
+                        </li>
+                        <li>
+                            <VaticleLink onClick={toggleMobileMenuOpen} className={classes.standardMenuLink} to={routes.typeDB}><span>TypeDB</span></VaticleLink>
+                        </li>
+                        <li>
+                            <VaticleLink onClick={toggleMobileMenuOpen} className={classes.standardMenuLink} to={routes.typeDBCluster}><span>TypeDB Cluster</span></VaticleLink>
+                        </li>
+                    </ul>
+                </VaticleLink>
+            </li>
+            <li>
+                <VaticleLink>
+                    Developer
+                    <ul>
+                        <li className={classes.backMenuItem}>
+                            <VaticleLink><span><FontAwesomeIcon className={classes.backButton} icon={faLongArrowLeft}/></span></VaticleLink>
+                        </li>
+                        <li>
+                            <VaticleLink onClick={toggleMobileMenuOpen} className={classes.standardMenuLink} href={urls.docs.home}><span>Documentation</span></VaticleLink>
+                        </li>
+                        <li>
+                            <VaticleLink onClick={toggleMobileMenuOpen} className={classes.standardMenuLink} href={urls.forum}><span>Discussion Forum</span></VaticleLink>
+                        </li>
+                    </ul>
+                </VaticleLink>
+            </li>
+            <li>
+                <VaticleLink className={classes.standardMenuLink} href={urls.blog} target="_blank"><span>Blog</span></VaticleLink>
+            </li>
+        </ul>
+    );
+}
 
 const ExternalLinks: React.FC<PageHeaderProps> = ({ onContactClick }) => {
     const classes = pageHeaderStyles();
 
     return (
-        <>
-            <ExternalLink onClick={onContactClick}>Contact</ExternalLink>
-            <ExternalLink href={urls.support} target="_blank">Support</ExternalLink>
-            <VaticleButton size="small" type="secondary" to={routes.download}
-                           className={clsx(classes.toolbarItem, classes.externalLinksDownload)}>Download</VaticleButton>
-            <div className={classes.externalLinksGithub}>
+        <ul className={clsx(classes.menu, classes.linksMenu, classes.flat)}>
+            <li>
+                <ExternalLink className={classes.standardMenuLink} onClick={onContactClick}><span>Contact</span></ExternalLink>
+            </li>
+            <li>
+                <ExternalLink className={classes.standardMenuLink} href={urls.support} target="_blank"><span>Support</span></ExternalLink>
+            </li>
+            <li className={classes.download}>
+                <VaticleButton className={classes.noHover} size="small" type="secondary" to={routes.download}>Download</VaticleButton>
+            </li>
+            <li className={classes.externalLinksGithub}>
                 <GithubButton/>
-            </div>
-        </>
+            </li>
+        </ul>
     );
 };
 
-interface HeaderLinkProps {
-    href?: string;
-    target?: string;
-    onClick?: MouseEventHandler<HTMLAnchorElement>;
-}
-
-const HeaderMenuItem: React.FC<HeaderLinkProps> = ({children, href, target}) => {
-    const classes = pageHeaderStyles();
-
-    return <a href={href} target={target} className={clsx(classes.toolbarItem, classes.linkText)}>{children}</a>;
-}
-
-const ExternalLink: React.FC<HeaderLinkProps> = ({children, href, target, onClick}) => {
+const ExternalLink: React.FC<VaticleLinkProps> = ({className, children, href, target, onClick}) => {
     return (
-        <a href={href} target={target} onClick={onClick}>
-            <ExternalLinkText>{children}</ExternalLinkText>
+        <a className={className} href={href} target={target} onClick={onClick}>
+            {children}
         </a>
-    );
-}
-
-const ExternalLinkText: React.FC = ({children}) => {
-    const classes = pageHeaderStyles();
-
-    return (
-        <div className={clsx(classes.toolbarItem, classes.linkText)}>
-            <p>{children}</p>
-            <hr className={classes.linkUnderline}/>
-        </div>
     );
 }

@@ -1,6 +1,5 @@
 import { makeStyles } from '@material-ui/core';
 import { vaticleTheme } from "../styles/theme";
-import { buttonPalette } from "../button/button-styles";
 
 export const headerHeight = 80;
 const footerHeight = 65;
@@ -53,10 +52,9 @@ export const pageHeaderStyles = makeStyles({
     },
 
     toolbar: {
-        margin: "auto 50px",
+        margin: "0 30px",
         flex: 1,
         display: "flex",
-        alignItems: "center",
 
         "@media(max-width: 1199px)": {
             margin: "auto 17px auto 32px",
@@ -67,48 +65,222 @@ export const pageHeaderStyles = makeStyles({
     desktopItems: {
         flex: 1,
         display: "flex",
-        alignItems: "center",
     },
-
-    toolbarItem: {
-        "@media(min-width: 1200px)": {
-            marginLeft: 35,
-        },
-    },
-
-    toolbarFirstItem: {},
 
     content: {
         height: headerHeight,
         margin: '0 auto',
     },
 
+    logoContainer: {
+        display: "flex",
+        alignItems: "center",
+
+        "&:hover": {
+            backgroundColor: vaticleTheme.palette.purple["400"],
+        },
+
+        "@media(min-width: 1200px)": {
+            padding: "0 20px",
+        },
+    },
+
     logo: {
         width: 125,
         height: 38,
-        marginTop: -2,
+        marginTop: -5,
     },
 
-    linkText: {
-        fontSize: "18px",
-        lineHeight: 1.5,
-        padding: "12px 0",
-        color: "#FFF",
+    externalLinksGithub: {
+        "@media(max-width: 1199px)": {
+            paddingTop: 8,
+        },
+
+        "@media(max-width: 767px)": {
+            alignSelf: "flex-start",
+        },
     },
 
-    linkUnderline: {
-        margin: 0,
-        height: '1px',
-        border: 0,
-        backgroundColor: '#FFF',
+    download: {
+        padding: "0 20px",
+
+        "@media(max-width: 1199px)": {
+            order: 99,
+            padding: "10px 30px",
+        },
+
+        "@media(max-width: 767px)": {
+            alignSelf: "flex-start",
+        },
     },
+
+    menu: {
+        display: "flex",
+
+        "@media(max-width: 1199px)": {
+            flexDirection: "column",
+        },
+
+        "@media (min-width: 768px) and (max-width: 1199px)": {
+            position: "relative",
+
+            "&:not($flat)": {
+                boxShadow: headerBoxShadow,
+            },
+        },
+
+        "@media(max-width: 767px)": {
+            width: "100%",
+        },
+
+        "& a": {
+            color: "#FFF",
+            display: "inline-block",
+            padding: "0 20px",
+            width: "100%",
+
+            "@media(max-width: 1199px)": {
+                padding: "0 32px",
+            },
+        },
+
+        "& li": {
+            lineHeight: "40px",
+            fontSize: 16,
+
+            "& > a$standardMenuLink > span": {
+                position: "relative",
+                padding: "8px 0",
+                lineHeight: "24px",
+
+                "&:after": {
+                    content: "''",
+                    position: "absolute",
+                    left: 0, // horizontal padding
+                    right: 0,
+                    top: 31, // top padding + line height - element height
+                    height: 1,
+                    backgroundColor: "#FFF",
+                    transform: "scaleX(0)",
+                    transition: "transform 300ms linear",
+
+                    "@media(max-width: 1199px)": {
+                        top: 34,
+                    },
+                },
+            },
+
+            "@media(min-width: 1200px)": {
+                "& a:hover:not($noHover)": {
+                    backgroundColor: vaticleTheme.palette.purple["400"],
+
+                    "&$standardMenuLink > span:after": {
+                        transform: "scaleX(1)",
+                    },
+
+                    "& > ul": {
+                        display: "block",
+
+                        "@media(max-width: 767px)": {
+                            transform: "translateX(0px)",
+                        },
+                    },
+                },
+            },
+
+            "@media(max-width: 1199px)": {
+                lineHeight: "50px",
+                fontSize: 18,
+
+                "& a:focus:not($noHover)": {
+                    backgroundColor: vaticleTheme.palette.purple["400"],
+
+                    "&$standardMenuLink > span:after": {
+                        transform: "scaleX(1)",
+                    },
+                },
+
+                "& a:focus > ul": {
+                    display: "block",
+
+                    "@media(max-width: 767px)": {
+                        transform: "translateX(0px)",
+                    },
+                },
+
+                "@media(min-width: 768px)": {
+                    "& a:hover:not($noHover)": {
+                        backgroundColor: vaticleTheme.palette.purple["400"],
+
+                        "&$standardMenuLink > span:after": {
+                            transform: "scaleX(1)",
+                        },
+                    },
+
+                    "& a:hover > ul": {
+                        display: "block",
+
+                        "@media(max-width: 767px)": {
+                            transform: "translateX(0px)",
+                        },
+                    },
+                },
+            },
+
+            "& a > ul": {
+                zIndex: 2000,
+                backgroundColor: vaticleTheme.palette.purple["600"],
+                position: "absolute",
+                transition: "transform 250ms ease-in-out",
+                whiteSpace: "nowrap",
+
+                "@media(min-width: 1200px)": {
+                    left: 0,
+                },
+
+                "@media(min-width: 768px)": {
+                    display: "none",
+                    boxShadow: headerBoxShadow,
+                },
+
+                "@media(max-width: 1199px)": {
+                    top: 0,
+                    right: 0,
+                    transform: "translateX(100%)",
+                },
+
+                "@media(max-width: 767px)": {
+                    left: 0,
+                    height: "100%",
+                },
+            },
+        },
+
+        "& > li": {
+            fontSize: 18,
+
+            "@media(min-width: 1200px)": {
+                lineHeight: "80px",
+                position: "relative",
+            },
+
+            "& > a$standardMenuLink > span": {
+                "&:after": {
+                    top: "34px !important",
+                },
+            },
+        },
+    },
+
+    flat: {},
+
+    standardMenuLink: {},
 
     hamburger: {
-        color: "#FFF",
-        fontSize: 32,
+        alignSelf: "center",
     },
 
-    mainMenu: {
+    mobileMenu: {
         position: "fixed",
         top: headerHeight,
         zIndex: 500,
@@ -116,7 +288,7 @@ export const pageHeaderStyles = makeStyles({
         width: "100%",
         height: 0,
         overflow: "hidden",
-        backgroundColor: vaticleTheme.palette.purple["800"],
+        backgroundColor: vaticleTheme.palette.purple["600"],
         transition: "height 350ms ease-in-out, width 350ms ease-in-out, margin-left 350ms ease-out",
 
         "&.invisible": {
@@ -126,7 +298,6 @@ export const pageHeaderStyles = makeStyles({
         "&.open": {
             "@media(min-width: 768px)": {
                 height: 295,
-                // height: 405,
             },
 
             "@media(max-width: 767px)": {
@@ -141,48 +312,45 @@ export const pageHeaderStyles = makeStyles({
         },
     },
 
-    mainMenuContent: {
-        margin: "24px 32px",
+    mobileMenuContent: {
+        margin: "11px 0",
         display: "flex",
         justifyContent: "space-between",
+        alignItems: "flex-start",
 
         "@media(max-width: 767px)": {
+            height: "100%",
             flexDirection: "column",
             justifyContent: "flex-start",
-            marginRight: 10,
+            position: "relative",
         },
-    },
-
-    sitemapMenu: {
-        display: "flex",
-        flexDirection: "column",
     },
 
     linksMenu: {
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "flex-end",
+        "@media(max-width: 1199px)": {
+            display: "flex",
+            flexDirection: "column",
+        },
+
+        "@media (min-width: 768px) and (max-width: 1199px)": {
+            alignItems: "flex-end",
+        },
 
         "@media(max-width: 767px)": {
-            alignItems: "flex-start",
+            marginBottom: 20,
         },
     },
 
-    externalLinksDownload: {
-        "@media(max-width: 1199px)": {
-            order: 99,
+    noHover: {},
+
+    backMenuItem: {
+        "@media(min-width: 768px)": {
+            display: "none",
         },
     },
 
-    externalLinksGithub: {
-        "@media(min-width: 1200px)": {
-            marginLeft: 35,
-        },
-
-        "@media(max-width: 1199px)": {
-            marginTop: 24,
-            marginBottom: 24,
-        },
+    backButton: {
+        fontSize: 24,
     },
 });
 

@@ -28,11 +28,7 @@ export const buttonPalette = {
 };
 
 export const buttonStyles = makeStyles({
-    disable: {
-        color: (props: StyleProps) => `${buttonPalette[props.type].disabledLabel} !important`,
-        borderColor: () => `${vaticleTheme.palette.purple[300]} !important`,
-        backgroundColor: (props: StyleProps) => `${buttonPalette[props.type].disabledBackground} !important`,
-    },
+    disable: {},
 
     root: {
         height: 40,
@@ -41,25 +37,32 @@ export const buttonStyles = makeStyles({
         backgroundColor: (props: StyleProps) => buttonPalette[props.type].background,
         transition: "background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,border 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;",
         display: "inline-block",
-        color: (props: StyleProps) => buttonPalette[props.type].label,
+        color: (props: StyleProps) => `${buttonPalette[props.type].label} !important`,
         fontSize: (props: StyleProps) => vaticleTheme.typography.fontSize[props.size],
         fontWeight: 600,
-        lineHeight: '24px',
+        lineHeight: "24px !important",
+        padding: "0 !important",
         position: "relative",
+
+        "&$disable": {
+            color: (props: StyleProps) => `${buttonPalette[props.type].disabledLabel} !important`,
+            borderColor: () => vaticleTheme.palette.purple[300],
+            backgroundColor: (props: StyleProps) => buttonPalette[props.type].disabledBackground,
+        },
 
         '& p, & svg': {
             lineHeight: '14px',
         },
 
-        '&:hover:not($disable)': {
+        "&:hover:not($disable)": {
+            color: (props: StyleProps) => `${buttonPalette[props.type].hoverLabel} !important`,
             backgroundColor: (props: StyleProps) => buttonPalette[props.type].hoverBackground,
-            color: (props: StyleProps) => buttonPalette[props.type].hoverLabel,
             borderColor: (props: StyleProps) => buttonPalette[props.type].hoverBorder,
         },
 
         '& a': {
             color: (props: StyleProps) => buttonPalette[props.type].label,
-        }
+        },
     },
 
     content: {
