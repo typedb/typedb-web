@@ -42,11 +42,11 @@ export const TypeDBClusterPage: React.FC = () => {
                               button={{text: "Documentation", disabled: true, comingSoon: true}}>
                     <ConsoleExample code={elasticThroughputExample}/>
                 </FeatureBlock>
-                <FeatureBlock className={classes.subsectionMargin} examplePosition="left" title="Secure Authentication"
-                              body="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                              incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-                              exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
-                              dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla"
+                <FeatureBlock className={classes.subsectionMargin} examplePosition="left" title="User Authentication"
+                              body="TypeDB Cluster ensures users are authenticated, and that only those with the right
+                              authorisation can perform user/database management operations or access specific databases.
+                              TypeDB Cluster allows you to define specific privileges for user roles, to allow read or
+                              write access on a given database schema or data."
                               button={{text: "Documentation", disabled: true, comingSoon: true}}>
                     <ConsoleExample code={secureAuthenticationExample}/>
                 </FeatureBlock>

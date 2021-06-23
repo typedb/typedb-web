@@ -34,9 +34,15 @@ root$ ./typedb console --cluster=10.1.17.15:1729 --username admin
 Password: ************
 > user create alice
 Password: ************
-> user alice password
-Password: ************************
-> user delete alice`;
+> role create developer access:dev-db:* access:prod-db:data:read
+> role list
+admin       : user:create, user:list, user:delete, database:create, database:list, database:delete, access:*:*:*
+developer   : access:dev-db:*, access:prod-db:data:read
+> role developer add access:staging-db:data:write
+> user alice role add developer
+> user list
+admin       : admin
+alice       : developer`;
 
 export const inFlightEncryptionExample = `root$
 root$ tshark -i eth0 -T fields -e "data.data" -z "follow,tcp,ascii,0"

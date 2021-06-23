@@ -34,7 +34,7 @@ export const TypeDBClusterSection: React.FC<ClassProps> = ({className}) => {
         description: "Scale application read throughput linearly as new machines are added to the database cluster.",
         icon: ElasticThroughputIcon,
     }, {
-        name: "Secure Authentication",
+        name: "User Authentication",
         description: "Ensuring only authenticated access and appropriately privileged users are allowed to access the database.",
         icon: AuthenticationIcon,
     }, {
