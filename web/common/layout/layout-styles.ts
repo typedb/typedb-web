@@ -124,7 +124,9 @@ export const pageHeaderStyles = makeStyles({
 
         "@media (min-width: 768px) and (max-width: 1199px)": {
             position: "relative",
-            borderTop: `1px solid ${borderBlack}`,
+            border: `1px solid ${borderBlack}`,
+            borderLeftStyle: "none",
+            borderBottomStyle: "none",
 
             "&:not($flat)": {
                 boxShadow: headerBoxShadow,
@@ -198,23 +200,24 @@ export const pageHeaderStyles = makeStyles({
                 "@media(min-width: 768px)": {
                     display: "none",
                     boxShadow: headerBoxShadow,
+                    border: `1px solid ${borderBlack}`,
                 },
 
                 "@media(max-width: 1199px)": {
                     right: 0,
                     transform: "translateX(100%)",
-                    height: "100%",
                 },
 
                 "@media (min-width: 768px) and (max-width: 1199px)": {
                     top: -1, // - (border top width) of parent
-                    borderTop: `1px solid ${borderBlack}`,
-                    borderLeft: `1px solid ${borderBlack}`,
+                    borderBottomStyle: "none",
+                    height: "calc(100% + 1px)", // 100% - (top)
                 },
 
                 "@media(max-width: 767px)": {
                     top: 0,
                     left: 0,
+                    height: "100%",
                 },
             },
         },
