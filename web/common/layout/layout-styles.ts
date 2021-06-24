@@ -5,6 +5,8 @@ export const headerHeight = 80;
 const footerHeight = 65;
 const headerBoxShadow = "2px 2px 1px -1px rgba(0,0,0,0.2),2px 2px 3px 0px rgba(0,0,0,0.14),2px 1px 5px 0px rgba(0,0,0,0.12)";
 const borderBlack = "#180F49"; // TODO: this was copied from code-styles.ts
+const submenuWidthDesktop = 158;
+const menuWidthTablet = 188;
 
 export const defaultLayoutStyles = makeStyles({
     main: {
@@ -124,9 +126,8 @@ export const pageHeaderStyles = makeStyles({
 
         "@media (min-width: 768px) and (max-width: 1199px)": {
             position: "relative",
-            border: `1px solid ${borderBlack}`,
-            borderLeftStyle: "none",
-            borderBottomStyle: "none",
+            borderRight: `1px solid ${borderBlack}`,
+            width: menuWidthTablet,
         },
 
         "@media(max-width: 767px)": {
@@ -183,12 +184,13 @@ export const pageHeaderStyles = makeStyles({
 
                 "@media(min-width: 1200px)": {
                     left: -1,
+                    border: `1px solid ${borderBlack}`,
                     boxShadow: headerBoxShadow,
+                    width: submenuWidthDesktop,
                 },
 
                 "@media(min-width: 768px)": {
                     display: "none",
-                    border: `1px solid ${borderBlack}`,
                 },
 
                 "@media(max-width: 1199px)": {
@@ -197,9 +199,9 @@ export const pageHeaderStyles = makeStyles({
                 },
 
                 "@media (min-width: 768px) and (max-width: 1199px)": {
-                    top: -1,
-                    borderBottomStyle: "none",
-                    height: "calc(100% + 1px)",
+                    top: 0,
+                    borderRight: `1px solid ${borderBlack}`,
+                    width: menuWidthTablet,
                 },
 
                 "@media(max-width: 767px)": {
