@@ -133,6 +133,7 @@ export const pageHeaderStyles = makeStyles({
             width: "100%",
         },
 
+        // Links in menu and submenu items
         "& a": {
             color: "#FFF",
             display: "inline-block",
@@ -142,36 +143,9 @@ export const pageHeaderStyles = makeStyles({
             "@media(max-width: 1199px)": {
                 padding: "0 32px",
             },
-        },
 
-        "& li": {
-            lineHeight: "40px",
-            fontSize: 16,
-
-            "& > a$standardMenuLink > span": {
-                position: "relative",
-                padding: "8px 0",
-                lineHeight: "24px",
-
-                "&:after": {
-                    content: "''",
-                    position: "absolute",
-                    left: 0, // horizontal padding
-                    right: 0,
-                    top: 31, // top padding + line height - element height
-                    height: 1,
-                    backgroundColor: "#FFF",
-                    transform: "scaleX(0)",
-                    transition: "transform 300ms linear",
-
-                    "@media(max-width: 1199px)": {
-                        top: 34,
-                    },
-                },
-            },
-
-            "@media(min-width: 1200px)": {
-                "& a:hover:not($noHover)": {
+            "&:hover:not($noHover)": {
+                "@media(min-width: 768px)": {
                     backgroundColor: vaticleTheme.palette.purple["400"],
 
                     "&$standardMenuLink > span:after": {
@@ -188,36 +162,15 @@ export const pageHeaderStyles = makeStyles({
                 },
             },
 
-            "@media(max-width: 1199px)": {
-                lineHeight: "50px",
-                fontSize: 18,
-
-                "& a:focus:not($noHover)": {
+            "&:focus:not($noHover)": {
+                "@media(max-width: 1199px)": {
                     backgroundColor: vaticleTheme.palette.purple["400"],
 
                     "&$standardMenuLink > span:after": {
                         transform: "scaleX(1)",
                     },
-                },
 
-                "& a:focus > ul": {
-                    display: "block",
-
-                    "@media(max-width: 767px)": {
-                        transform: "translateX(0px)",
-                    },
-                },
-
-                "@media(min-width: 768px)": {
-                    "& a:hover:not($noHover)": {
-                        backgroundColor: vaticleTheme.palette.purple["400"],
-
-                        "&$standardMenuLink > span:after": {
-                            transform: "scaleX(1)",
-                        },
-                    },
-
-                    "& a:hover > ul": {
+                    "& > ul": {
                         display: "block",
 
                         "@media(max-width: 767px)": {
@@ -227,7 +180,8 @@ export const pageHeaderStyles = makeStyles({
                 },
             },
 
-            "& a > ul": {
+            // Submenus
+            "& > ul": {
                 zIndex: 2000,
                 backgroundColor: vaticleTheme.palette.purple["600"],
                 position: "absolute",
@@ -256,6 +210,40 @@ export const pageHeaderStyles = makeStyles({
             },
         },
 
+        // Menu and submenu items
+        "& li": {
+            lineHeight: "40px",
+            fontSize: 16,
+
+            "@media(max-width: 1199px)": {
+                lineHeight: "50px",
+                fontSize: 18,
+            },
+
+            "& > a$standardMenuLink > span": {
+                position: "relative",
+                padding: "8px 0",
+                lineHeight: "24px",
+
+                "&:after": {
+                    content: "''",
+                    position: "absolute",
+                    left: 0, // horizontal padding
+                    right: 0,
+                    top: 31, // top padding + line height - element height
+                    height: 1,
+                    backgroundColor: "#FFF",
+                    transform: "scaleX(0)",
+                    transition: "transform 300ms linear",
+
+                    "@media(max-width: 1199px)": {
+                        top: 34,
+                    },
+                },
+            },
+        },
+
+        // Menu items, top level only
         "& > li": {
             fontSize: 18,
 
@@ -274,6 +262,7 @@ export const pageHeaderStyles = makeStyles({
 
     flat: {},
 
+    // TODO: We shouldn't need a class for this - use the [href] selector once VaticleLink is implemented correctly
     standardMenuLink: {},
 
     hamburger: {
