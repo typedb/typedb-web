@@ -3,8 +3,14 @@ import clsx from "clsx";
 import {urls} from "../../common/urls";
 import {routes} from "../router";
 import {vaticleStyles} from "../../common/styles/vaticle-styles";
-import {entityRelationshipExampleCode, entityRelationshipExampleGraph} from "../typedb/examples/entity-relationship-example";
-import {logicalQueryValidationExampleCode, logicalQueryValidationExampleGraph} from "../typedb/examples/logical-query-validation-example";
+import {
+    entityRelationshipExampleCode,
+    entityRelationshipExampleGraph
+} from "../typedb/examples/entity-relationship-example";
+import {
+    logicalQueryValidationExampleCode,
+    logicalQueryValidationExampleGraph
+} from "../typedb/examples/logical-query-validation-example";
 import {inferenceExampleCode, inferenceExampleGraph} from "../typedb/examples/inference-example";
 import {simpleStatefulAPIExample} from "../typedb/examples/simple-stateful-api-example";
 import {ClassProps} from "../../common/class-props";
@@ -31,27 +37,27 @@ export const TypeDBSection: React.FC<TypeDBSectionProps> = ({className, typeDBVe
 
             <FeatureBlock className={classes.subsectionMargin} examplePosition="left" title="Expressivity"
                           body="TypeDB allows you to model your domain based on logical and object-oriented principles.
-                                     Composed of entity, relationship, and attribute types, as well as type hierarchies,
-                                     roles, and rules, TypeDB allows you to think higher-level as opposed to join-tables,
-                                     columns, documents, vertices, edges, and properties."
+                          Composed of entity, relationship, and attribute types, as well as type hierarchies, roles, and
+                          rules, TypeDB allows you to think higher-level as opposed to join-tables, columns, documents,
+                          vertices, edges, and properties."
                           button={{text: "Learn More", to: routes.typeDB.expressivity}}>
                 <TypeQLExample code={entityRelationshipExampleCode} data={entityRelationshipExampleGraph}/>
             </FeatureBlock>
 
             <FeatureBlock className={classes.subsectionMargin} examplePosition="right" title="Safety"
-                          body="Types provide a way to describe the logical structures of your data, allowing TypeDB
-                                     to validate that your code is inserting and querying data correctly. Query validation
-                                     goes beyond static type checking, and includes logical validations of meaningless queries.
-                                     With strict type-checking errors, you have a dataset that you can trust."
+                          body="Types provide a way to describe the logical structures of your data, allowing TypeDB to
+                          validate that your code inserts and queries data correctly. Query validation goes beyond
+                          static type checking, and includes logical validations of meaningless queries. With strict
+                          type-checking errors, you have a dataset that you can trust."
                           button={{text: "Learn More", to: routes.typeDB.safety}}>
                 <TypeQLExample code={logicalQueryValidationExampleCode} data={logicalQueryValidationExampleGraph}/>
             </FeatureBlock>
 
             <FeatureBlock className={classes.subsectionMargin} examplePosition="left" title="Inference"
                           body="TypeDB encodes your data for logical interpretation by its reasoning engine. It enables
-                                     type-inference and rule-inference that creates logical abstractions of data.
-                                     This allows the discovery of facts and patterns that would otherwise be too hard to
-                                     find, and complex queries become much simpler."
+                          type-inference and rule-inference that creates logical abstractions of data. This allows the
+                          discovery of facts and patterns that would otherwise be too hard to find; and complex queries
+                          become much simpler."
                           button={{text: "Learn More", to: routes.typeDB.inference}}>
                 <TypeQLExample code={inferenceExampleCode} data={inferenceExampleGraph}/>
             </FeatureBlock>

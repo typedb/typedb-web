@@ -61,19 +61,19 @@ export const TypeDBPage: React.FC = () => {
                 </FeatureBlock>
 
                 <FeatureBlock className={classes.subsectionMargin} examplePosition="right" title="Type Hierarchies"
-                              body="TypeDB allows you to easily model type inheritance into the domain model. Following
+                              body="TypeDB allows you to easily model type inheritance into your domain model. Following
                               logical and object-oriented principle, TypeDB allows data types to inherit the behaviours
                               and properties of their supertypes. Complex data structures become reusable, and
-                              data interpretation become richer through polymorphism."
+                              data interpretation becomes richer through polymorphism."
                               button={{text: "Documentation", href: urls.docs.home}}>
                     <TypeQLExample code={typeHierarchyExampleCode} data={typeHierarchyExampleGraph}/>
                 </FeatureBlock>
 
                 <FeatureBlock className={classes.subsectionMargin} examplePosition="left" title="N-ary Relations"
-                              body="In the real world, relationships aren't just binary - a pair between two things.
-                              In rich systems, we often need to capture three or more things being related with each
-                              other at once, which implies every pair of things in that relationship are also related.
-                              TypeDB allows you capture this naturally, as relationships are not bound to two things."
+                              body="In the real world, relations aren't just binary connections between two things.
+                              In rich systems, we often need to capture three or more things related with each other at
+                              once. Representing them as separate binary relationships would loose information. TypeDB
+                              can naturally represent arbitrary number of things as one relation."
                               button={{text: "Documentation", href: urls.docs.home}}>
                     <TypeQLExample code={ternaryRelationsExampleCode} data={ternaryRelationsExampleGraph}/>
                 </FeatureBlock>
@@ -92,9 +92,9 @@ export const TypeDBPage: React.FC = () => {
                 <h2 className={classes.h2}>A higher degree of safety</h2>
                 <p className={classes.largeText}>
                     Types provide a way to describe the logical structures of your data, allowing TypeDB to validate
-                    that your code is inserting and querying data correctly. Query validation goes beyond static type
-                    checking, and includes logical validations of meaningless queries. With strict type-checking errors,
-                    you have a dataset that you can trust.
+                    that your code inserts and queries data correctly. Query validation goes beyond static type checking,
+                    and includes logical validations of meaningless queries. With strict type-checking errors, you have
+                    a dataset that you can trust.
                 </p>
 
                 <FeatureBlock className={classes.subsectionMargin} examplePosition="left"
@@ -109,10 +109,9 @@ export const TypeDBPage: React.FC = () => {
 
                 <FeatureBlock className={classes.subsectionMargin} examplePosition="right"
                               title="Logical Query Validation"
-                              body="Read queries executed on TypeDB goes through a type resolution process. Besides
-                              optimisation of the query, this process allows TypeDB to identify if the query resolvable
-                              with respect to the schema. If it isn't, then the query is rendered invalid and meaningless,
-                              instead of returning an empty answer, which would be misleading."
+                              body="Read queries executed on TypeDB go through a type resolution process. This process
+                              not only optimises the query's execution, but also acts as a static type checker to reject
+                              meaningless and unsatisfiable queries, as they are likely a user error."
                               button={{text: "Documentation", href: urls.docs.home}}>
                     <TypeQLExample code={logicalQueryValidationExampleCode} data={logicalQueryValidationExampleGraph}/>
                 </FeatureBlock>
@@ -123,13 +122,13 @@ export const TypeDBPage: React.FC = () => {
                 <p className={classes.largeText}>
                     TypeDB encodes your data for logical interpretation by a reasoning engine. It enables type-inference
                     and rule-inference that creates logical abstractions of data. This allows the discovery of facts and
-                    patterns that would otherwise be too hard to find, and complex queries become much simpler.
+                    patterns that would otherwise be too hard to find; and complex queries become much simpler.
                 </p>
 
                 <FeatureBlock className={classes.subsectionMargin} examplePosition="left" title="Rules"
-                              body="TypeDB allows you to define rules in your schema, which extends the expressivity of
+                              body="TypeDB allows you to define rules in your schema. This extends the expressivity of
                               your model as it enables the system to derive new conclusions when a certain logical form
-                              in your dataset is satisfied. Like functions in programming, rules can chain itself to one
+                              in your dataset is satisfied. Like functions in programming, rules can chain onto one
                               another, creating abstractions of behaviour at the data level."
                               button={{text: "Documentation", href: urls.docs.home}}>
                     <TypeQLExample code={rulesExampleCode} data={rulesExampleGraph}/>
@@ -146,7 +145,7 @@ export const TypeDBPage: React.FC = () => {
             </section>
 
             <section id="api" className={classes.subsectionMargin}>
-                <h2 className={classes.h2}>A robust programmatic API</h2>
+                <h2 className={classes.h2}>A robust, programmatic API</h2>
                 <p className={classes.largeText}>
                     TypeDB's API is provided through a gRPC client, built with robust functionalities that REST cannot
                     provide. TypeDB Clients provide stateful objects, Sessions and Transactions, to interact with the
@@ -164,10 +163,10 @@ export const TypeDBPage: React.FC = () => {
                 </FeatureBlock>
 
                 <FeatureBlock className={classes.subsectionMargin} examplePosition="right" title="ACID Transactions"
-                              body="TypeDB provides ACID guarantees, up to Snapshot Isolation, through the combination
-                              of schema validation and consistent transactions. By providing lightweight optimistic
-                              transactions, TypeDB allows a high number of concurrent read and write transactions. And
-                              by committing all-or-nothing, its semantics is easy to reason over."
+                              body="TypeDB provides ACID guarantees, up to Snapshot Isolation, through of schema
+                              validation and consistent transactions. With lightweight optimistic transactions,
+                              TypeDB allows a high number of concurrent read and write transactions. With atomic
+                              all-or-nothing commits, transactional semantics become easy to reason over."
                               button={{text: "Documentation", href: urls.docs.home}}>
                     <ConsoleExample code={acidTransactionsExampleCode}/>
                 </FeatureBlock>
