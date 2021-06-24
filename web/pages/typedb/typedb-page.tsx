@@ -56,7 +56,7 @@ export const TypeDBPage: React.FC = () => {
                               model. It is composed of entity types, relation types, and attribute types, with the
                               introduction of role types. TypeDB allows you to leverage the full expressivity of the
                               ER model, and describe your schema through first normal form."
-                              button={{text: "Documentation", disabled: true, comingSoon: true}}>
+                              button={{text: "Documentation", href: urls.docs.home}}>
                     <TypeQLExample code={entityRelationshipExampleCode} data={entityRelationshipExampleGraph}/>
                 </FeatureBlock>
 
@@ -65,7 +65,7 @@ export const TypeDBPage: React.FC = () => {
                               logical and object-oriented principle, TypeDB allows data types to inherit the behaviours
                               and properties of their supertypes. Complex data structures become reusable, and
                               data interpretation become richer through polymorphism."
-                              button={{text: "Documentation", disabled: true, comingSoon: true}}>
+                              button={{text: "Documentation", href: urls.docs.home}}>
                     <TypeQLExample code={typeHierarchyExampleCode} data={typeHierarchyExampleGraph}/>
                 </FeatureBlock>
 
@@ -74,7 +74,7 @@ export const TypeDBPage: React.FC = () => {
                               In rich systems, we often need to capture three or more things being related with each
                               other at once, which implies every pair of things in that relationship are also related.
                               TypeDB allows you capture this naturally, as relationships are not bound to two things."
-                              button={{text: "Documentation", disabled: true, comingSoon: true}}>
+                              button={{text: "Documentation", href: urls.docs.home}}>
                     <TypeQLExample code={ternaryRelationsExampleCode} data={ternaryRelationsExampleGraph}/>
                 </FeatureBlock>
 
@@ -83,7 +83,7 @@ export const TypeDBPage: React.FC = () => {
                               Sometimes, those things can be relations themselves. TypeDB can represent these structures
                               naturally, as it enables relations to be nested in another relation, allowing you to
                               express the model of your system in the most natural form."
-                              button={{text: "Documentation", disabled: true, comingSoon: true}}>
+                              button={{text: "Documentation", href: urls.docs.home}}>
                     <TypeQLExample code={nestedRelationsExampleCode} data={nestedRelationsExampleGraph}/>
                 </FeatureBlock>
             </section>
@@ -103,7 +103,7 @@ export const TypeDBPage: React.FC = () => {
                               Entities are validated to only have the correct attributes, and relations are validated to
                               only relate things that are logically allowed. TypeDB performs richer validation of inserted
                               entities and relations by evaluating the polymorphic types of the things involved."
-                              button={{text: "Documentation", disabled: true, comingSoon: true}}>
+                              button={{text: "Documentation", href: urls.docs.home}}>
                     <TypeQLExample code={logicalDataValidationExampleCode} data={logicalDataValidationExampleGraph}/>
                 </FeatureBlock>
 
@@ -113,7 +113,7 @@ export const TypeDBPage: React.FC = () => {
                               optimisation of the query, this process allows TypeDB to identify if the query resolvable
                               with respect to the schema. If it isn't, then the query is rendered invalid and meaningless,
                               instead of returning an empty answer, which would be misleading."
-                              button={{text: "Documentation", disabled: true, comingSoon: true}}>
+                              button={{text: "Documentation", href: urls.docs.home}}>
                     <TypeQLExample code={logicalQueryValidationExampleCode} data={logicalQueryValidationExampleGraph}/>
                 </FeatureBlock>
             </section>
@@ -131,7 +131,7 @@ export const TypeDBPage: React.FC = () => {
                               your model as it enables the system to derive new conclusions when a certain logical form
                               in your dataset is satisfied. Like functions in programming, rules can chain itself to one
                               another, creating abstractions of behaviour at the data level."
-                              button={{text: "Documentation", disabled: true, comingSoon: true}}>
+                              button={{text: "Documentation", href: urls.docs.home}}>
                     <TypeQLExample code={rulesExampleCode} data={rulesExampleGraph}/>
                 </FeatureBlock>
 
@@ -140,7 +140,7 @@ export const TypeDBPage: React.FC = () => {
                               interpretations. This happens through two mechanisms: type-based and rule-based inference.
                               Not only does this derive new conclusions and uncovers relationships that would otherwise
                               be hidden, but it also enables the abstraction of complex patterns into simple queries."
-                              button={{text: "Documentation", disabled: true, comingSoon: true}}>
+                              button={{text: "Documentation", href: urls.docs.home}}>
                     <TypeQLExample code={inferenceExampleCode} data={inferenceExampleGraph}/>
                 </FeatureBlock>
             </section>
@@ -159,7 +159,7 @@ export const TypeDBPage: React.FC = () => {
                               compression, and strong message typing, that REST APIs could not provide. TypeDB Clients
                               are delivered as libraries in dedicated languages that provide stateful objects, Session
                               and Transactions, for you to interact with the database programmatically."
-                              button={{text: "Documentation", disabled: true, comingSoon: true}}>
+                              button={{text: "Documentation", href: urls.docs.home}}>
                     <PolyglotExample id="simple-stateful-api" sources={simpleStatefulAPIExample}/>
                 </FeatureBlock>
 
@@ -168,7 +168,7 @@ export const TypeDBPage: React.FC = () => {
                               of schema validation and consistent transactions. By providing lightweight optimistic
                               transactions, TypeDB allows a high number of concurrent read and write transactions. And
                               by committing all-or-nothing, its semantics is easy to reason over."
-                              button={{text: "Documentation", disabled: true, comingSoon: true}}>
+                              button={{text: "Documentation", href: urls.docs.home}}>
                     <ConsoleExample code={acidTransactionsExampleCode}/>
                 </FeatureBlock>
             </section>

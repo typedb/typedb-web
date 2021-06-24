@@ -14,7 +14,7 @@ export interface FeatureBlockProps extends ClassProps {
     title: string;
     body: string;
     examplePosition: "left" | "right";
-    button: FeatureBlockButtonProps;
+    button?: FeatureBlockButtonProps;
 }
 
 export const FeatureBlock: React.FC<FeatureBlockProps> = ({className, id, title, body, examplePosition, button, children}) => {
@@ -29,9 +29,9 @@ export const FeatureBlock: React.FC<FeatureBlockProps> = ({className, id, title,
             <div className={examplePosition === "left" ? classes.diagramCaptionSpacingLeft : classes.diagramCaptionSpacingRight}>
                 <h2 className={classes.h2}>{title}</h2>
                 <p className={clsx(classes.mediumText, classes.textMarginLarge)}>{body}</p>
-                <VaticleButton {...buttonProps} className={clsx(classes.learnMore, classes.showDesktop, classes.contentMargin)}>{button.text}</VaticleButton>
+                {button && <VaticleButton {...buttonProps} className={clsx(classes.learnMore, classes.showDesktop, classes.contentMargin)}>{button.text}</VaticleButton>}
             </div>
-            <VaticleButton {...buttonProps} className={clsx(classes.learnMore, classes.hideDesktop, classes.contentMargin)}>{button.text}</VaticleButton>
+            {button && <VaticleButton {...buttonProps} className={clsx(classes.learnMore, classes.hideDesktop, classes.contentMargin)}>{button.text}</VaticleButton>}
         </div>
     );
 }

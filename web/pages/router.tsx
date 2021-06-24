@@ -1,20 +1,20 @@
-import {BrowserRouter, Route, RouteProps, Switch, useLocation, Redirect} from "react-router-dom";
+import {BrowserRouter, Redirect, Route, RouteProps, Switch, useLocation} from "react-router-dom";
 import React, {useEffect, useLayoutEffect} from "react";
+import {headerHeight} from "../common/layout/layout-styles";
 import {DownloadPage} from "./download/download-page";
 import {HomePage} from "./home/home-page";
 import {useTypeDBVersion} from "../state/typedb-version";
 import {getTypeDBVersion} from "../api/typedb-service";
 import {PrivacyPolicyPage} from "./privacy/privacy-policy-page";
-import {headerHeight} from "../common/layout/layout-styles";
 import {TypeDBPage} from "./typedb/typedb-page";
-import { Vaticle404Page } from "./error/404-page";
-import { TypeDBClusterPage } from "./typedbcluster/typedb-cluster-page";
+import {Vaticle404Page} from "./error/404-page";
+import {TypeDBClusterPage} from "./typedbcluster/typedb-cluster-page";
 
 export const routes = {
     download: "/download",
     home: "/",
     privacyPolicy: "/privacy-policy",
-    typeDB : {
+    typeDB: {
         page: "/typedb",
         expressivity: "/typedb#expressivity",
         safety: "/typedb#safety",
@@ -46,7 +46,8 @@ export const VaticleRouter: React.FC = () => {
                 <VaticleRoute exact path={routes.download} title="Download" component={DownloadPage}/>
                 <VaticleRoute exact path={routes.privacyPolicy} title="Privacy Policy" component={PrivacyPolicyPage}/>
                 <VaticleRoute exact path={routes.typeDB.page} title="TypeDB" component={TypeDBPage}/>
-                <VaticleRoute exact path={routes.typeDBCluster.page} title="TypeDB Cluster" component={TypeDBClusterPage}/>
+                <VaticleRoute exact path={routes.typeDBCluster.page} title="TypeDB Cluster"
+                              component={TypeDBClusterPage}/>
                 <VaticleRoute exact path={routes.home} title="Home" component={HomePage}/>
 
                 <Redirect exact path={legacyRoutes.graknCore} to={routes.typeDB.page}/>
