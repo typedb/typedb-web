@@ -230,8 +230,6 @@ export const pageHeaderStyles = makeStyles({
         },
     },
 
-    flat: {},
-
     hamburger: {
         alignSelf: "center",
     },

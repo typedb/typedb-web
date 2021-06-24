@@ -131,7 +131,7 @@ const ExternalLinks: React.FC<PageHeaderProps> = ({ onContactClick }) => {
     const classes = pageHeaderStyles();
 
     return (
-        <ul className={clsx(classes.menu, classes.linksMenu, classes.flat)}>
+        <ul className={clsx(classes.menu, classes.linksMenu)}>
             <li>
                 <ExternalLink onClick={onContactClick}><span>Contact</span></ExternalLink>
             </li>
