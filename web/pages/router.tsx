@@ -46,8 +46,7 @@ export const VaticleRouter: React.FC = () => {
                 <VaticleRoute exact path={routes.download} title="Download" component={DownloadPage}/>
                 <VaticleRoute exact path={routes.privacyPolicy} title="Privacy Policy" component={PrivacyPolicyPage}/>
                 <VaticleRoute exact path={routes.typeDB.page} title="TypeDB" component={TypeDBPage}/>
-                <VaticleRoute exact path={routes.typeDBCluster.page} title="TypeDB Cluster"
-                              component={TypeDBClusterPage}/>
+                <VaticleRoute exact path={routes.typeDBCluster.page} title="TypeDB Cluster" component={TypeDBClusterPage}/>
                 <VaticleRoute exact path={routes.home} title="Home" component={HomePage}/>
 
                 <Redirect exact path={legacyRoutes.graknCore} to={routes.typeDB.page}/>
