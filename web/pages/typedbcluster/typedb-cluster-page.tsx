@@ -13,14 +13,16 @@ import {
     liveBackupExample,
     secureAuthenticationExample
 } from "./typedb-cluster-examples";
+import { typeDBClusterStyles } from "./typedb-cluster-styles";
 
 export const TypeDBClusterPage: React.FC = () => {
-    const classes = vaticleStyles();
+    const classes = Object.assign({}, vaticleStyles(), typeDBClusterStyles());
 
     return (
         <DefaultLayout>
             <section className={classes.firstSection}>
-                <h1 className={classes.h1}>Scale your database with TypeDB Cluster</h1>
+                <h1 className={clsx(classes.intro, classes.h1)}>Scale your database with TypeDB Cluster</h1>
+                <h1 className={clsx(classes.introMobile, classes.h1)}>Scale your database with<br/>TypeDB Cluster</h1>
                 <p className={classes.largeText}>
                     TypeDB Cluster is the distributed database designed to scale with your organisation. Whether you
                     have a growing dataset, application workload, or user requests, TypeDB Cluster will provide the
