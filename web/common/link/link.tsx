@@ -18,22 +18,29 @@ export const VaticleLink: React.FC<VaticleLinkProps> = ({ children, href, to, on
     const routerLocation = useLocation();
 
     const linkType = computeLinkType(href, to);
+    const computedHref = href || to;
 
     const onLinkClick = (e: React.MouseEvent<HTMLElement>) => {
         if (onClick) onClick(e);
+        const newTabRequested = e.metaKey || e.ctrlKey;
 
         switch (linkType) {
             case "route":
             case "routeHash":
-                routerHistory.push(to);
+                e.preventDefault();
+                if (newTabRequested) window.open(to, "_blank").focus();
+                else routerHistory.push(to);
                 break;
             case "hash":
-                routerHistory.push(`${routerLocation.pathname}${to}`, { samePageNavigation: true, scroll: scroll !== false });
+                e.preventDefault();
+                const path = `${routerLocation.pathname}${to}`;
+                if (newTabRequested) window.open(path, "_blank").focus();
+                else routerHistory.push(path, { samePageNavigation: true, scroll: scroll !== false });
                 break;
         }
     };
 
-    return <a id={id} href={href} target={target} tabIndex={!href && 0} download={download} className={className} onClick={onLinkClick} scroll-padding-top={scrollPaddingTop}>{children}</a>;
+    return <a id={id} href={computedHref} target={target} tabIndex={!href && 0} download={download} className={className} onClick={onLinkClick} scroll-padding-top={scrollPaddingTop}>{children}</a>;
 };
 
 function computeLinkType(href?: string, to?: string) {
