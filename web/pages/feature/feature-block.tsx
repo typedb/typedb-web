@@ -25,9 +25,10 @@ export const FeatureBlock: React.FC<FeatureBlockProps> = ({className, id, title,
 
     return (
         <div id={id} className={clsx(classes.diagramAndCaption, examplePosition === "left" ? classes.exampleLeft : classes.exampleRight, className)}>
+            <h2 className={clsx(classes.h2, classes.hideDesktop)}>{title}</h2>
             {children}
             <div className={examplePosition === "left" ? classes.diagramCaptionSpacingLeft : classes.diagramCaptionSpacingRight}>
-                <h2 className={classes.h2}>{title}</h2>
+                <h2 className={clsx(classes.h2, classes.showDesktop)}>{title}</h2>
                 <p className={clsx(classes.mediumText, classes.textMarginLarge)}>{body}</p>
                 {button && <VaticleButton {...buttonProps} className={clsx(classes.learnMore, classes.showDesktop, classes.contentMargin)}>{button.text}</VaticleButton>}
             </div>

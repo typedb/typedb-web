@@ -11,10 +11,13 @@ export const codeStyles = makeStyles({
         display: "flex",
         flexDirection: "column",
 
+        "@media (min-width: 768px) and (max-width: 1199px)": {
+            marginTop: 20,
+        },
+
         "@media(max-width: 767px)": {
-            marginLeft: "50%",
-            transform: "translateX(-50%) scale(.54)",
-            marginTop: -94, // (1 - scale) * height / 2
+            transform: "scale(.54)",
+            marginTop: -86, // (1 - scale) * height / 2 + 8px
             marginBottom: -94,
         },
     },
@@ -94,6 +97,7 @@ export const codeStyles = makeStyles({
         height: "100%",
         paddingRight: 10,
         overflowX: "scroll",
+        textAlign: "start",
     },
 
     panelSlider: {

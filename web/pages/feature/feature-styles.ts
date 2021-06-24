@@ -9,7 +9,7 @@ export const featureStyles = makeStyles({
 
         "@media(max-width: 1199px)": {
             flexDirection: "column",
-            alignItems: "flex-start",
+            textAlign: "center",
             maxWidth: 660,
             marginLeft: "auto",
             marginRight: "auto",
@@ -34,11 +34,7 @@ export const featureStyles = makeStyles({
         },
 
         "@media (min-width: 768px) and (max-width: 1199px)": {
-            marginTop: 40,
-        },
-
-        "@media(max-width: 767px)": {
-            marginTop: 30,
+            marginTop: 8,
         },
     },
 
@@ -48,11 +44,7 @@ export const featureStyles = makeStyles({
         },
 
         "@media (min-width: 768px) and (max-width: 1199px)": {
-            marginTop: 40,
-        },
-
-        "@media(max-width: 767px)": {
-            marginTop: 30,
+            marginTop: 8,
         },
     },
 
