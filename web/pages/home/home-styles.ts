@@ -313,6 +313,8 @@ export const homePageIndustryStyles = makeStyles({
     },
 
     sectionToggleIconContainerSelected: {
+        borderColor: vaticleTheme.palette.green["300"],
+
         "& svg": {
             "& g, & ellipse, & circle, & path": {
                 stroke: `${vaticleTheme.palette.green[300]} !important`,
