@@ -192,6 +192,7 @@ export const pageHeaderStyles = makeStyles({
                 "@media(max-width: 1199px)": {
                     right: 0,
                     transform: "translateX(100%)",
+                    height: "100%",
                 },
 
                 "@media (min-width: 768px) and (max-width: 1199px)": {
@@ -204,7 +205,6 @@ export const pageHeaderStyles = makeStyles({
                 "@media(max-width: 767px)": {
                     top: 0,
                     left: 0,
-                    height: "100%",
                 },
             },
         },
