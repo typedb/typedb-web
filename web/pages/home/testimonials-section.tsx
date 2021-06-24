@@ -33,6 +33,7 @@ import RAIRHealthSquareLogo from "../../assets/logos/squarewhite/rair-health-squ
 import RocheSquareLogo from "../../assets/logos/squarewhite/roche-square-white.png";
 import RollsRoyceSquareLogo from "../../assets/logos/squarewhite/rolls-royce-square-white.png";
 import {homePageTestimonialsStyles} from "./home-styles";
+import { VaticleButton } from "../../common/button/button";
 
 interface Testimonial {
     companyName: string;
@@ -199,6 +200,12 @@ export const TestimonialsSection: React.FC<ClassProps> = ({className}) => {
                         </div>))}
                     </span>))}
                 </div>
+            </div>
+
+            <div className={clsx(classes.mainActionList, classes.contentMargin)}>
+                <VaticleButton size="small" type="secondary" className={classes.contentMargin} to="?dialog=contact">
+                    Get in touch
+                </VaticleButton>
             </div>
         </section>
     );
