@@ -69,7 +69,7 @@ export const TypeDBPage: React.FC = () => {
                     <TypeQLExample code={typeHierarchyExampleCode} data={typeHierarchyExampleGraph}/>
                 </FeatureBlock>
 
-                <FeatureBlock className={classes.subsectionMargin} examplePosition="left" title="Ternary Relations"
+                <FeatureBlock className={classes.subsectionMargin} examplePosition="left" title="N-ary Relations"
                               body="In the real world, relationships aren't just binary - a pair between two things.
                               In rich systems, we often need to capture three or more things being related with each
                               other at once, which implies every pair of things in that relationship are also related.
