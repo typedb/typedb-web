@@ -40,8 +40,8 @@ export const TypeDBClusterPage: React.FC = () => {
                 </FeatureBlock>
                 <FeatureBlock id="throughput" className={classes.subsectionMargin} examplePosition="right"
                               title="Elastic Throughput"
-                              body="TypeDB Cluster provides strong consistency reads through the primary replica, and
-                              eventual consistency reads through the secondary replicas, allowing applications to
+                              body="TypeDB Cluster provides strongly-consistent reads through the primary replica, and
+                              eventually-consistent reads through the secondary replicas, allowing applications to
                               increase their read throughput from the database. TypeDB Clients provide automatic
                               load-balancing transparently for applications."
                               button={{text: "Documentation", href: urls.docs.home}}>
