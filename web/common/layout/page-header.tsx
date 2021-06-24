@@ -50,7 +50,7 @@ export const PageHeader: React.FC<PageHeaderProps> = ({ onContactClick }) => {
         <>
             <header className={classes.appBar}>
                 <nav className={classes.toolbar}>
-                    <VaticleLink className={classes.logoContainer} to={routes.home}>
+                    <VaticleLink className={clsx(classes.logoContainer)} to={routes.home}>
                         <VaticleLogo className={classes.logo}/>
                     </VaticleLink>
 

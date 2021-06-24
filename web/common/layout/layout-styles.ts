@@ -79,10 +79,6 @@ export const pageHeaderStyles = makeStyles({
         display: "flex",
         alignItems: "center",
 
-        "&:hover": {
-            backgroundColor: vaticleTheme.palette.purple["400"],
-        },
-
         "@media(min-width: 1200px)": {
             padding: "0 20px",
         },
