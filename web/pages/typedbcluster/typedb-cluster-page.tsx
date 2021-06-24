@@ -80,7 +80,7 @@ export const TypeDBClusterPage: React.FC = () => {
                               to recover from any disaster, to the latest database version of a successfully committed
                               transaction. This minimises the possibly of data loss significantly. Backup operations
                               perform incrementally, minimising CPU usage, storage usage, and network overhead. Backup
-                              restore operations can be performed via simple commands in the CLI."
+                              and restore operations can be performed via simple commands in the CLI."
                               button={{text: "Coming Soon!", disabled: true, comingSoon: true}}>
                     <ConsoleExample code={liveBackupExample}/>
                 </FeatureBlock>
