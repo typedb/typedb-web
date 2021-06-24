@@ -1,4 +1,4 @@
-import React, { useLayoutEffect, useState } from 'react';
+import React, { useLayoutEffect, useState } from "react";
 import { pageFooterStyles } from "./layout-styles";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faDiscord, faFacebookSquare, faGithub, faLinkedin, faTwitter, IconDefinition } from "@fortawesome/free-brands-svg-icons";
@@ -7,28 +7,19 @@ import { VaticleButton } from "../button/button";
 import { faMapMarkerAlt, faPhoneAlt } from "@fortawesome/pro-solid-svg-icons";
 import { vaticleStyles } from "../styles/vaticle-styles";
 import { urls } from "../urls";
-import { Link, useHistory, useLocation } from "react-router-dom";
-import { routes } from '../../pages/router';
+import { Link, useLocation } from "react-router-dom";
+import { routes } from "../../pages/router";
 import { VaticleDialog } from "../dialog/dialog";
 import { NewsletterForm } from "../../pages/newsletter/newsletter-form";
-import { getSearchParam, setSearchParam } from "../util/search-params";
-
-interface PageFooterProps {
-    onContactClick: () => void;
-}
+import { getSearchParam } from "../util/search-params";
 
 // TODO: The routes used in this Footer must be parameterised. Otherwise, it depends on pages, which is not allowed.
-export const PageFooter: React.FC<PageFooterProps> = ({ onContactClick }) => {
+export const PageFooter: React.FC = () => {
     const classes = Object.assign({}, vaticleStyles(), pageFooterStyles());
 
     const [newsletterFormOpen, setNewsletterFormOpen] = useState(false);
 
     const routerLocation = useLocation();
-    const routerHistory = useHistory();
-
-    const navigateToNewsletterForm = () => {
-        setSearchParam(routerHistory, routerLocation, "dialog", "newsletter");
-    };
 
     useLayoutEffect(() => {
         setNewsletterFormOpen(getSearchParam("dialog") === "newsletter");
@@ -55,8 +46,7 @@ export const PageFooter: React.FC<PageFooterProps> = ({ onContactClick }) => {
                         </div>
 
                         <div className={classes.subscribe}>
-                            <VaticleButton size="small" type="secondary"
-                                           onClick={navigateToNewsletterForm}>Subscribe to our newsletter</VaticleButton>
+                            <VaticleButton size="small" type="secondary" to="?dialog=newsletter">Subscribe to our newsletter</VaticleButton>
                         </div>
                     </div>
 
@@ -70,7 +60,7 @@ export const PageFooter: React.FC<PageFooterProps> = ({ onContactClick }) => {
                             <ul className={classes.linkList}>
                                 <ContactDetail href={urls.github.org} target="_blank" icon={faGithub}>Vaticle on GitHub</ContactDetail>
                                 <ContactDetail href={urls.social.discord} target="_blank" icon={faDiscord}>Vaticle on Discord</ContactDetail>
-                                <ContactDetail icon={faPhoneAlt} onClick={onContactClick}>Get in Touch</ContactDetail>
+                                <ContactDetail icon={faPhoneAlt} to="?dialog=contact">Get in Touch</ContactDetail>
                                 <ContactDetail href={urls.officeLocation} target="_blank" icon={faMapMarkerAlt} type="address" classes={{anchor: classes.linkTwoLine}}>
                                     47-50 Margaret St, 3rd floor
                                     London W1W 8SE, UK
@@ -118,7 +108,6 @@ interface FooterLinkProps {
     href?: string;
     to?: string;
     target?: string;
-    onClick?: () => void;
 }
 
 interface ContactDetailProps extends FooterLinkProps {
@@ -127,12 +116,12 @@ interface ContactDetailProps extends FooterLinkProps {
     classes?: Partial<{ anchor: string }>;
 }
 
-const ContactDetail: React.FC<ContactDetailProps> = ({children, href, target, icon, type, onClick, classes}) => {
+const ContactDetail: React.FC<ContactDetailProps> = ({children, href, target, icon, type, classes}) => {
     const ownClasses = Object.assign({}, vaticleStyles(), pageFooterStyles());
 
     return (
         <li>
-            <a href={href} target={target} className={clsx(ownClasses.contactLink, classes?.anchor)} onClick={onClick}>
+            <a href={href} target={target} className={clsx(ownClasses.contactLink, classes?.anchor)}>
                 {icon &&
                 <span className={ownClasses.linkIconContainer}>
                     <FontAwesomeIcon className={ownClasses.linkIcon} icon={icon} />

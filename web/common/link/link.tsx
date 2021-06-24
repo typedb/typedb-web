@@ -1,6 +1,7 @@
 import React from "react";
 import { useHistory, useLocation } from 'react-router-dom';
 import { ClassProps } from "../class-props";
+import { SearchParam, setSearchParam } from "../util/search-params";
 
 export interface VaticleLinkProps extends ClassProps {
     href?: string;
@@ -27,15 +28,28 @@ export const VaticleLink: React.FC<VaticleLinkProps> = ({ children, href, to, on
         switch (linkType) {
             case "route":
             case "routeHash":
+            case "routeSearch":
                 e.preventDefault();
-                if (newTabRequested) window.open(to, "_blank").focus();
+                if (newTabRequested) window.open(to, "_blank");
                 else routerHistory.push(to);
                 break;
             case "hash":
                 e.preventDefault();
                 const path = `${routerLocation.pathname}${to}`;
-                if (newTabRequested) window.open(path, "_blank").focus();
+                if (newTabRequested) window.open(path, "_blank");
                 else routerHistory.push(path, { samePageNavigation: true, scroll: scroll !== false });
+                break;
+            case "search":
+                e.preventDefault();
+                const newParams = new URLSearchParams(to);
+                if (newTabRequested) {
+                    const params = new URLSearchParams(window.location.search);
+                    for (const [key, value] of newParams.entries()) params.set(key, value);
+                    const path = `${routerLocation.pathname}?${params.toString()}`;
+                    window.open(path, "_blank");
+                } else {
+                    for (const [key, value] of newParams.entries()) setSearchParam(routerHistory, routerLocation, key as SearchParam, value);
+                }
                 break;
         }
     };
@@ -48,7 +62,10 @@ function computeLinkType(href?: string, to?: string) {
     if (!to) return "none";
 
     const hashIndex = to.indexOf("#");
-    if (hashIndex === -1) return "route";
+    const searchIndex = to.indexOf("?");
+    if (hashIndex === -1 && searchIndex === -1) return "route";
     else if (hashIndex === 0) return "hash";
-    else return "routeHash";
+    else if (hashIndex > 0) return "routeHash";
+    else if (searchIndex === 0) return "search";
+    else return "routeSearch";
 }

@@ -5,20 +5,16 @@ import VaticleLogo from "../assets/logos/vaticle.svg";
 import { pageHeaderStyles } from "./layout-styles";
 import { GithubButton } from "../button/github-button";
 import { VaticleButton } from "../button/button";
-import clsx from 'clsx';
+import clsx from "clsx";
 import { HamburgerCollapse } from "react-animated-burgers/lib";
 import { vaticleStyles } from "../styles/vaticle-styles";
 import { urls } from "../urls";
 import { routes } from "../../pages/router";
-import { VaticleLink, VaticleLinkProps } from "../link/link";
+import { VaticleLink } from "../link/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLongArrowLeft } from "@fortawesome/pro-light-svg-icons/faLongArrowLeft";
 
-interface PageHeaderProps {
-    onContactClick: () => void;
-}
-
-export const PageHeader: React.FC<PageHeaderProps> = ({ onContactClick }) => {
+export const PageHeader: React.FC = () => {
     const classes = Object.assign({}, vaticleStyles(), pageHeaderStyles());
 
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -59,7 +55,7 @@ export const PageHeader: React.FC<PageHeaderProps> = ({ onContactClick }) => {
 
                         <div className={classes.filler}/>
 
-                        <ExternalLinks onContactClick={onContactClick}/>
+                        <ExternalLinks/>
                     </div>
 
                     <HamburgerCollapse className={clsx(classes.hamburger, classes.hideDesktop)} barColor="#FFF"
@@ -72,7 +68,7 @@ export const PageHeader: React.FC<PageHeaderProps> = ({ onContactClick }) => {
 
                     <div className={classes.filler}/>
 
-                    <ExternalLinks onContactClick={onContactClick}/>
+                    <ExternalLinks/>
                 </div>
             </nav>
         </>
@@ -127,16 +123,16 @@ const Sitemap: React.FC<SitemapProps> = ({toggleMobileMenuOpen}) => {
     );
 }
 
-const ExternalLinks: React.FC<PageHeaderProps> = ({ onContactClick }) => {
+const ExternalLinks: React.FC = () => {
     const classes = pageHeaderStyles();
 
     return (
         <ul className={clsx(classes.menu, classes.linksMenu)}>
             <li>
-                <ExternalLink onClick={onContactClick}><span>Contact</span></ExternalLink>
+                <VaticleLink to="?dialog=contact"><span>Contact</span></VaticleLink>
             </li>
             <li>
-                <ExternalLink href={urls.support} target="_blank"><span>Support</span></ExternalLink>
+                <VaticleLink href={urls.support} target="_blank"><span>Support</span></VaticleLink>
             </li>
             <li className={classes.download}>
                 <VaticleButton className={classes.noHover} size="small" type="secondary" to={routes.download}>Download</VaticleButton>
@@ -147,11 +143,3 @@ const ExternalLinks: React.FC<PageHeaderProps> = ({ onContactClick }) => {
         </ul>
     );
 };
-
-const ExternalLink: React.FC<VaticleLinkProps> = ({className, children, href, target, onClick}) => {
-    return (
-        <a className={className} href={href} target={target} onClick={onClick}>
-            {children}
-        </a>
-    );
-}
