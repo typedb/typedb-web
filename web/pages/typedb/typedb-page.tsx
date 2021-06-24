@@ -189,7 +189,7 @@ export const TypeDBPage: React.FC = () => {
                 </p>
 
                 <div className={clsx(classes.mainActionList, classes.contentMargin)}>
-                    <VaticleButton size="small" type="secondary" to={routes.typeDBCluster}>Learn More</VaticleButton>
+                    <VaticleButton size="small" type="secondary" to={routes.typeDBCluster.page}>Learn More</VaticleButton>
                 </div>
             </section>
         </DefaultLayout>

@@ -95,7 +95,7 @@ const Sitemap: React.FC<SitemapProps> = ({toggleMobileMenuOpen}) => {
                             <VaticleLink onClick={toggleMobileMenuOpen} to={routes.typeDB.page}><span>TypeDB</span></VaticleLink>
                         </li>
                         <li>
-                            <VaticleLink onClick={toggleMobileMenuOpen} to={routes.typeDBCluster}><span>TypeDB Cluster</span></VaticleLink>
+                            <VaticleLink onClick={toggleMobileMenuOpen} to={routes.typeDBCluster.page}><span>TypeDB Cluster</span></VaticleLink>
                         </li>
                     </ul>
                 </VaticleLink>

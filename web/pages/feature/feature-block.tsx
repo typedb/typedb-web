@@ -10,20 +10,21 @@ interface FeatureBlockButtonProps extends VaticleButtonProps {
 }
 
 export interface FeatureBlockProps extends ClassProps {
+    id?: string,
     title: string;
     body: string;
     examplePosition: "left" | "right";
     button: FeatureBlockButtonProps;
 }
 
-export const FeatureBlock: React.FC<FeatureBlockProps> = ({className, title, body, examplePosition, button, children}) => {
+export const FeatureBlock: React.FC<FeatureBlockProps> = ({className, id, title, body, examplePosition, button, children}) => {
     const classes = Object.assign({}, vaticleStyles(), featureStyles());
 
     const buttonProps: FeatureBlockButtonProps = Object.assign({ size: "small", type: "secondary" }, button);
     delete buttonProps.text;
 
     return (
-        <div className={clsx(classes.diagramAndCaption, examplePosition === "left" ? classes.exampleLeft : classes.exampleRight, className)}>
+        <div id={id} className={clsx(classes.diagramAndCaption, examplePosition === "left" ? classes.exampleLeft : classes.exampleRight, className)}>
             {children}
             <div className={examplePosition === "left" ? classes.diagramCaptionSpacingLeft : classes.diagramCaptionSpacingRight}>
                 <h2 className={classes.h2}>{title}</h2>

@@ -28,7 +28,7 @@ export const TypeDBClusterPage: React.FC = () => {
                     have a growing dataset, application workload, or user requests, TypeDB Cluster will provide the
                     functionalities needed to take you from development to production and scale.
                 </p>
-                <FeatureBlock className={classes.subsectionMargin} examplePosition="left" title="High-Availability"
+                <FeatureBlock id="availability" className={classes.subsectionMargin} examplePosition="left" title="High-Availability"
                               body="Through a primary-secondary (master-slave) architecture based on Raft, TypeDB
                               Cluster replicates data across multiple servers in real-time, to provide a highly-available
                               database service that is tolerant against non-majority server failures. When such failures
@@ -36,7 +36,7 @@ export const TypeDBClusterPage: React.FC = () => {
                               button={{text: "Documentation", disabled: true, comingSoon: true}}>
                     <ConsoleExample code={highAvailabilityExample}/>
                 </FeatureBlock>
-                <FeatureBlock className={classes.subsectionMargin} examplePosition="right" title="Elastic Throughput"
+                <FeatureBlock id="throughput" className={classes.subsectionMargin} examplePosition="right" title="Elastic Throughput"
                               body="TypeDB Cluster provides strong consistency reads through the primary replica, and
                               eventual consistency reads through the secondary replicas, allowing applications to
                               increase their read throughput from the database. TypeDB Clients provide automatic
@@ -44,7 +44,7 @@ export const TypeDBClusterPage: React.FC = () => {
                               button={{text: "Documentation", disabled: true, comingSoon: true}}>
                     <ConsoleExample code={elasticThroughputExample}/>
                 </FeatureBlock>
-                <FeatureBlock className={classes.subsectionMargin} examplePosition="left" title="User Authentication"
+                <FeatureBlock id="authentication" className={classes.subsectionMargin} examplePosition="left" title="User Authentication"
                               body="TypeDB Cluster ensures users are authenticated, and that only those with the right
                               authorisation can perform user/database management operations or access specific databases.
                               TypeDB Cluster allows you to define specific privileges for user roles, to allow read or
@@ -52,7 +52,7 @@ export const TypeDBClusterPage: React.FC = () => {
                               button={{text: "Documentation", disabled: true, comingSoon: true}}>
                     <ConsoleExample code={secureAuthenticationExample}/>
                 </FeatureBlock>
-                <FeatureBlock className={classes.subsectionMargin} examplePosition="right" title="In-Flight Encryption"
+                <FeatureBlock id="encryption" className={classes.subsectionMargin} examplePosition="right" title="In-Flight Encryption"
                               body="Server-to-server communication is encrypted using the ZMQCurve protocol, ensuring the
                               safety of data replication across the cluster. Client-to-server communication is encrypted
                               using the TLS protocol, ensuring the privacy, authenticity, and integrity of data
@@ -60,7 +60,7 @@ export const TypeDBClusterPage: React.FC = () => {
                               button={{text: "Documentation", disabled: true, comingSoon: true}}>
                     <ConsoleExample code={inFlightEncryptionExample}/>
                 </FeatureBlock>
-                <FeatureBlock className={classes.subsectionMargin} examplePosition="left" title="Cluster Management"
+                <FeatureBlock id="management" className={classes.subsectionMargin} examplePosition="left" title="Cluster Management"
                               body="TypeDB Cluster allows you to easily scale up or down the cluster to meet application
                               demands. Data replication and consistency are transparently managed throughout cluster
                               transformation, including in the event of cluster resizing failure. TypeDB Clients
@@ -68,7 +68,7 @@ export const TypeDBClusterPage: React.FC = () => {
                               button={{text: "Coming Soon!"}}>
                     <ConsoleExample code={clusterManagementExample}/>
                 </FeatureBlock>
-                <FeatureBlock className={classes.subsectionMargin} examplePosition="right" title="Live Backup"
+                <FeatureBlock id="backup" className={classes.subsectionMargin} examplePosition="right" title="Live Backup"
                               body="TypeDB Cluster provides a granular live backup mechanism, that allows applications
                               to recover from any disaster, to the latest database version of a successfully committed
                               transaction. This minimises the possibly of data loss significantly. Backup operations
@@ -78,7 +78,7 @@ export const TypeDBClusterPage: React.FC = () => {
                     <ConsoleExample code={liveBackupExample}/>
                 </FeatureBlock>
             </section>
-            <section className={classes.sectionMargin}>
+            <section id="deploy" className={classes.sectionMargin}>
                 <h1 className={classes.h1}>Deploy TypeDB Cluster in the Cloud or On-Premise</h1>
                 <p className={classes.largeText}>
                     You can easily deploy TypeDB Cluster on Google Cloud Platform, Amazon Web Services, or Microsoft

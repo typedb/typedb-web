@@ -14,7 +14,6 @@ export const routes = {
     download: "/download",
     home: "/",
     privacyPolicy: "/privacy-policy",
-    typeDBCluster: "/typedb-cluster",
     typeDB : {
         page: "/typedb",
         expressivity: "/typedb#expressivity",
@@ -22,6 +21,15 @@ export const routes = {
         inference: "typedb#inference",
         api: "/typedb#api",
         scale: "typedb#scale"
+    },
+    typeDBCluster: {
+        page: "/typedb-cluster",
+        availability: "/typedb-cluster#availability",
+        throughput: "/typedb-cluster#throughput",
+        authentication: "/typedb-cluster#authentication",
+        encryption: "/typedb-cluster#encryption",
+        management: "/typedb-cluster#management",
+        backup: "/typedb-cluster#backup",
     }
 };
 
@@ -38,11 +46,11 @@ export const VaticleRouter: React.FC = () => {
                 <VaticleRoute exact path={routes.download} title="Download" component={DownloadPage}/>
                 <VaticleRoute exact path={routes.privacyPolicy} title="Privacy Policy" component={PrivacyPolicyPage}/>
                 <VaticleRoute exact path={routes.typeDB.page} title="TypeDB" component={TypeDBPage}/>
-                <VaticleRoute exact path={routes.typeDBCluster} title="TypeDB Cluster" component={TypeDBClusterPage}/>
+                <VaticleRoute exact path={routes.typeDBCluster.page} title="TypeDB Cluster" component={TypeDBClusterPage}/>
                 <VaticleRoute exact path={routes.home} title="Home" component={HomePage}/>
 
                 <Redirect exact path={legacyRoutes.graknCore} to={routes.typeDB.page}/>
-                <Redirect exact path={legacyRoutes.graknKGMS} to={routes.typeDBCluster}/>
+                <Redirect exact path={legacyRoutes.graknKGMS} to={routes.typeDBCluster.page}/>
 
                 <VaticleRoute title="404" component={Vaticle404Page}/>
             </Switch>

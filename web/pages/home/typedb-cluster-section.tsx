@@ -18,7 +18,7 @@ interface ClusterFeature {
     name: string;
     description: string;
     icon: React.FC;
-    linkTo?: string;
+    to: string;
     comingSoon?: true;
 }
 
@@ -29,28 +29,34 @@ export const TypeDBClusterSection: React.FC<ClassProps> = ({className}) => {
         name: "High Availability",
         description: "Replicate your data across multiple servers while maintaining transactional behaviour and up-time.",
         icon: HighAvailabilityIcon,
+        to: routes.typeDBCluster.availability
     }, {
         name: "Elastic Throughput",
         description: "Scale application read throughput linearly as new machines are added to the database cluster.",
         icon: ElasticThroughputIcon,
+        to: routes.typeDBCluster.throughput
     }, {
         name: "User Authentication",
         description: "Ensuring only authenticated access and appropriately privileged users are allowed to access the database.",
         icon: AuthenticationIcon,
+        to: routes.typeDBCluster.authentication
     }, {
         name: "In-Flight Encryption",
         description: "All client-to-server and server-to-server communication are fully encrypted during transmission.",
         icon: EncryptionIcon,
+        to: routes.typeDBCluster.encryption
     }, {
         name: "Cluster Management",
         description: "Easily deploy and scale up/down your database with tools that automate the orchestration of your cluster.",
         icon: ClusterManagementIcon,
         comingSoon: true,
+        to: routes.typeDBCluster.management
     }, {
         name: "Live Backup",
         description: "Recover from any system disaster to the most up-to-date version of your database with live backup.",
         icon: BackupAndRecoveryIcon,
         comingSoon: true,
+        to: routes.typeDBCluster.backup
     }];
 
     return (
@@ -63,8 +69,8 @@ export const TypeDBClusterSection: React.FC<ClassProps> = ({className}) => {
             </p>
 
             <div className={clsx(classes.featurePanelList, classes.subsectionMargin)}>
-                {allFeatures.map(({name, description, icon, comingSoon}) => (
-                    <VaticleLink className={classes.featurePanel} to={routes.typeDBCluster}>
+                {allFeatures.map(({name, description, icon, comingSoon, to}) => (
+                    <VaticleLink className={classes.featurePanel} to={to}>
                         {comingSoon && <div className={classes.featurePanelBanner}>coming soon</div>}
                         {React.createElement(icon)}
                         <h4 className={clsx(classes.h4, classes.textMarginLarge)}>{name}</h4>
@@ -74,7 +80,7 @@ export const TypeDBClusterSection: React.FC<ClassProps> = ({className}) => {
             </div>
 
             <div className={clsx(classes.mainActionList, classes.subsectionMargin)}>
-                <VaticleButton size="small" type="secondary" to={routes.typeDBCluster} className={classes.clusterAction}>
+                <VaticleButton size="small" type="secondary" to={routes.typeDBCluster.page} className={classes.clusterAction}>
                     Learn More
                 </VaticleButton>
                 <VaticleButton size="small" type="primary" disabled comingSoon className={classes.clusterAction}>
