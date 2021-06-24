@@ -4,6 +4,7 @@ import { vaticleTheme } from "../styles/theme";
 export const headerHeight = 80;
 const footerHeight = 65;
 const headerBoxShadow = "2px 2px 1px -1px rgba(0,0,0,0.2),2px 2px 3px 0px rgba(0,0,0,0.14),2px 1px 5px 0px rgba(0,0,0,0.12)";
+const borderBlack = "#08022E"; // TODO: this was copied from code-styles.ts
 
 export const defaultLayoutStyles = makeStyles({
     main: {
@@ -123,6 +124,7 @@ export const pageHeaderStyles = makeStyles({
 
         "@media (min-width: 768px) and (max-width: 1199px)": {
             position: "relative",
+            borderTop: `1px solid ${borderBlack}`,
 
             "&:not($flat)": {
                 boxShadow: headerBoxShadow,
@@ -139,6 +141,7 @@ export const pageHeaderStyles = makeStyles({
             display: "inline-block",
             padding: "0 20px",
             width: "100%",
+            transition: "background-color 150ms ease",
 
             "@media(max-width: 1199px)": {
                 padding: "0 32px",
@@ -148,9 +151,9 @@ export const pageHeaderStyles = makeStyles({
                 "@media(min-width: 768px)": {
                     backgroundColor: vaticleTheme.palette.purple["400"],
 
-                    "&$standardMenuLink > span:after": {
-                        transform: "scaleX(1)",
-                    },
+                    // "&$standardMenuLink > span:after": {
+                    //     transform: "scaleX(1)",
+                    // },
 
                     "& > ul": {
                         display: "block",
@@ -166,9 +169,9 @@ export const pageHeaderStyles = makeStyles({
                 "@media(max-width: 1199px)": {
                     backgroundColor: vaticleTheme.palette.purple["400"],
 
-                    "&$standardMenuLink > span:after": {
-                        transform: "scaleX(1)",
-                    },
+                    // "&$standardMenuLink > span:after": {
+                    //     transform: "scaleX(1)",
+                    // },
 
                     "& > ul": {
                         display: "block",
@@ -198,14 +201,20 @@ export const pageHeaderStyles = makeStyles({
                 },
 
                 "@media(max-width: 1199px)": {
-                    top: 0,
                     right: 0,
                     transform: "translateX(100%)",
+                    height: "100%",
+                },
+
+                "@media (min-width: 768px) and (max-width: 1199px)": {
+                    top: -1, // - (border top width) of parent
+                    borderTop: `1px solid ${borderBlack}`,
+                    borderLeft: `1px solid ${borderBlack}`,
                 },
 
                 "@media(max-width: 767px)": {
+                    top: 0,
                     left: 0,
-                    height: "100%",
                 },
             },
         },
@@ -220,27 +229,27 @@ export const pageHeaderStyles = makeStyles({
                 fontSize: 18,
             },
 
-            "& > a$standardMenuLink > span": {
-                position: "relative",
-                padding: "8px 0",
-                lineHeight: "24px",
-
-                "&:after": {
-                    content: "''",
-                    position: "absolute",
-                    left: 0, // horizontal padding
-                    right: 0,
-                    top: 31, // top padding + line height - element height
-                    height: 1,
-                    backgroundColor: "#FFF",
-                    transform: "scaleX(0)",
-                    transition: "transform 300ms linear",
-
-                    "@media(max-width: 1199px)": {
-                        top: 34,
-                    },
-                },
-            },
+            // "& > a$standardMenuLink > span": {
+            //     position: "relative",
+            //     padding: "8px 0",
+            //     lineHeight: "24px",
+            //
+            //     "&:after": {
+            //         content: "''",
+            //         position: "absolute",
+            //         left: 0, // horizontal padding
+            //         right: 0,
+            //         top: 31, // top padding + line height - element height
+            //         height: 1,
+            //         backgroundColor: "#FFF",
+            //         transform: "scaleX(0)",
+            //         transition: "transform 300ms linear",
+            //
+            //         "@media(max-width: 1199px)": {
+            //             top: 34,
+            //         },
+            //     },
+            // },
         },
 
         // Menu items, top level only
@@ -252,11 +261,11 @@ export const pageHeaderStyles = makeStyles({
                 position: "relative",
             },
 
-            "& > a$standardMenuLink > span": {
-                "&:after": {
-                    top: "34px !important",
-                },
-            },
+            // "& > a$standardMenuLink > span": {
+            //     "&:after": {
+            //         top: "34px !important",
+            //     },
+            // },
         },
     },
 
@@ -302,13 +311,11 @@ export const pageHeaderStyles = makeStyles({
     },
 
     mobileMenuContent: {
-        margin: "11px 0",
+        height: "100%",
         display: "flex",
         justifyContent: "space-between",
-        alignItems: "flex-start",
 
         "@media(max-width: 767px)": {
-            height: "100%",
             flexDirection: "column",
             justifyContent: "flex-start",
             position: "relative",
@@ -322,7 +329,7 @@ export const pageHeaderStyles = makeStyles({
         },
 
         "@media (min-width: 768px) and (max-width: 1199px)": {
-            alignItems: "flex-end",
+            textAlign: "end",
         },
 
         "@media(max-width: 767px)": {
