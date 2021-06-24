@@ -5,11 +5,6 @@ export const indexStyles = makeStyles({
     root: {
         height: '100%',
 
-        '& a, & a:hover': {
-            cursor: "pointer",
-            textDecoration: 'none',
-        },
-
         '& *::-webkit-scrollbar': {
             width: 5,
             height: 3,

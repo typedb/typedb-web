@@ -42,16 +42,16 @@ section {
   margin: 0 auto;
 }
 
-a {
+a, a p, a address {
   cursor: pointer;
-}
-
-a p, a address {
   color: #FFF;
+  text-decoration: none;
 }
 
-p a, aside a, li a {
-  color: $color-green-300;
+p, aside, li {
+  a, a:visited {
+    color: $color-green-300;
+  }
 }
 
 strong {
