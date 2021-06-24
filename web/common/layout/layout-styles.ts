@@ -195,6 +195,7 @@ export const pageHeaderStyles = makeStyles({
                 },
 
                 "@media (min-width: 768px) and (max-width: 1199px)": {
+                    left: 0,
                     top: 0,
                     borderRight: `1px solid ${borderBlack}`,
                     width: menuWidthTablet,
