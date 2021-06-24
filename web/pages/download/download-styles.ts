@@ -23,6 +23,10 @@ export const downloadPageProductStyles = makeStyles({
             width: 288,
             display: "block !important",
         },
+
+        "& a, & a:visited": {
+            color: "#FFF",
+        },
     },
 
     firstTabItem: {
