@@ -72,7 +72,7 @@ export const TypeDBPage: React.FC = () => {
                 <FeatureBlock className={classes.subsectionMargin} examplePosition="left" title="N-ary Relations"
                               body="In the real world, relations aren't just binary connections between two things.
                               In rich systems, we often need to capture three or more things related with each other at
-                              once. Representing them as separate binary relationships would loose information. TypeDB
+                              once. Representing them as separate binary relationships would lose information. TypeDB
                               can naturally represent arbitrary number of things as one relation."
                               button={{text: "Documentation", href: urls.docs.home}}>
                     <TypeQLExample code={ternaryRelationsExampleCode} data={ternaryRelationsExampleGraph}/>
