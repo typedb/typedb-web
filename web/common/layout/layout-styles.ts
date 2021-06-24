@@ -127,10 +127,6 @@ export const pageHeaderStyles = makeStyles({
             border: `1px solid ${borderBlack}`,
             borderLeftStyle: "none",
             borderBottomStyle: "none",
-
-            "&:not($flat)": {
-                boxShadow: headerBoxShadow,
-            },
         },
 
         "@media(max-width: 767px)": {
@@ -153,10 +149,6 @@ export const pageHeaderStyles = makeStyles({
                 "@media(min-width: 768px)": {
                     backgroundColor: vaticleTheme.palette.purple["400"],
 
-                    // "&$standardMenuLink > span:after": {
-                    //     transform: "scaleX(1)",
-                    // },
-
                     "& > ul": {
                         display: "block",
 
@@ -170,10 +162,6 @@ export const pageHeaderStyles = makeStyles({
             "&:focus:not($noHover)": {
                 "@media(max-width: 1199px)": {
                     backgroundColor: vaticleTheme.palette.purple["400"],
-
-                    // "&$standardMenuLink > span:after": {
-                    //     transform: "scaleX(1)",
-                    // },
 
                     "& > ul": {
                         display: "block",
@@ -194,12 +182,12 @@ export const pageHeaderStyles = makeStyles({
                 whiteSpace: "nowrap",
 
                 "@media(min-width: 1200px)": {
-                    left: 0,
+                    left: -1,
+                    boxShadow: headerBoxShadow,
                 },
 
                 "@media(min-width: 768px)": {
                     display: "none",
-                    boxShadow: headerBoxShadow,
                     border: `1px solid ${borderBlack}`,
                 },
 
@@ -209,9 +197,9 @@ export const pageHeaderStyles = makeStyles({
                 },
 
                 "@media (min-width: 768px) and (max-width: 1199px)": {
-                    top: -1, // - (border top width) of parent
+                    top: -1,
                     borderBottomStyle: "none",
-                    height: "calc(100% + 1px)", // 100% - (top)
+                    height: "calc(100% + 1px)",
                 },
 
                 "@media(max-width: 767px)": {
@@ -231,28 +219,6 @@ export const pageHeaderStyles = makeStyles({
                 lineHeight: "50px",
                 fontSize: 18,
             },
-
-            // "& > a$standardMenuLink > span": {
-            //     position: "relative",
-            //     padding: "8px 0",
-            //     lineHeight: "24px",
-            //
-            //     "&:after": {
-            //         content: "''",
-            //         position: "absolute",
-            //         left: 0, // horizontal padding
-            //         right: 0,
-            //         top: 31, // top padding + line height - element height
-            //         height: 1,
-            //         backgroundColor: "#FFF",
-            //         transform: "scaleX(0)",
-            //         transition: "transform 300ms linear",
-            //
-            //         "@media(max-width: 1199px)": {
-            //             top: 34,
-            //         },
-            //     },
-            // },
         },
 
         // Menu items, top level only
@@ -263,19 +229,10 @@ export const pageHeaderStyles = makeStyles({
                 lineHeight: "80px",
                 position: "relative",
             },
-
-            // "& > a$standardMenuLink > span": {
-            //     "&:after": {
-            //         top: "34px !important",
-            //     },
-            // },
         },
     },
 
     flat: {},
-
-    // TODO: We shouldn't need a class for this - use the [href] selector once VaticleLink is implemented correctly
-    standardMenuLink: {},
 
     hamburger: {
         alignSelf: "center",

@@ -96,10 +96,10 @@ const Sitemap: React.FC<SitemapProps> = ({toggleMobileMenuOpen}) => {
                             <VaticleLink><span><FontAwesomeIcon className={classes.backButton} icon={faLongArrowLeft}/></span></VaticleLink>
                         </li>
                         <li>
-                            <VaticleLink onClick={toggleMobileMenuOpen} className={classes.standardMenuLink} to={routes.typeDB}><span>TypeDB</span></VaticleLink>
+                            <VaticleLink onClick={toggleMobileMenuOpen} to={routes.typeDB}><span>TypeDB</span></VaticleLink>
                         </li>
                         <li>
-                            <VaticleLink onClick={toggleMobileMenuOpen} className={classes.standardMenuLink} to={routes.typeDBCluster}><span>TypeDB Cluster</span></VaticleLink>
+                            <VaticleLink onClick={toggleMobileMenuOpen} to={routes.typeDBCluster}><span>TypeDB Cluster</span></VaticleLink>
                         </li>
                     </ul>
                 </VaticleLink>
@@ -112,16 +112,16 @@ const Sitemap: React.FC<SitemapProps> = ({toggleMobileMenuOpen}) => {
                             <VaticleLink><span><FontAwesomeIcon className={classes.backButton} icon={faLongArrowLeft}/></span></VaticleLink>
                         </li>
                         <li>
-                            <VaticleLink onClick={toggleMobileMenuOpen} className={classes.standardMenuLink} href={urls.docs.home}><span>Documentation</span></VaticleLink>
+                            <VaticleLink onClick={toggleMobileMenuOpen} href={urls.docs.home}><span>Documentation</span></VaticleLink>
                         </li>
                         <li>
-                            <VaticleLink onClick={toggleMobileMenuOpen} className={classes.standardMenuLink} href={urls.forum}><span>Discussion Forum</span></VaticleLink>
+                            <VaticleLink onClick={toggleMobileMenuOpen} href={urls.forum}><span>Discussion Forum</span></VaticleLink>
                         </li>
                     </ul>
                 </VaticleLink>
             </li>
             <li>
-                <VaticleLink className={classes.standardMenuLink} href={urls.blog} target="_blank"><span>Blog</span></VaticleLink>
+                <VaticleLink href={urls.blog} target="_blank"><span>Blog</span></VaticleLink>
             </li>
         </ul>
     );
@@ -133,10 +133,10 @@ const ExternalLinks: React.FC<PageHeaderProps> = ({ onContactClick }) => {
     return (
         <ul className={clsx(classes.menu, classes.linksMenu, classes.flat)}>
             <li>
-                <ExternalLink className={classes.standardMenuLink} onClick={onContactClick}><span>Contact</span></ExternalLink>
+                <ExternalLink onClick={onContactClick}><span>Contact</span></ExternalLink>
             </li>
             <li>
-                <ExternalLink className={classes.standardMenuLink} href={urls.support} target="_blank"><span>Support</span></ExternalLink>
+                <ExternalLink href={urls.support} target="_blank"><span>Support</span></ExternalLink>
             </li>
             <li className={classes.download}>
                 <VaticleButton className={classes.noHover} size="small" type="secondary" to={routes.download}>Download</VaticleButton>
