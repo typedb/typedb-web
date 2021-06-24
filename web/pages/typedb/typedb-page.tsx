@@ -118,7 +118,7 @@ export const TypeDBPage: React.FC = () => {
                 </FeatureBlock>
             </section>
 
-            <section className={classes.subsectionMargin}>
+            <section id="inference" className={classes.subsectionMargin}>
                 <h2 className={classes.h2}>Evolved with logical inference</h2>
                 <p className={classes.largeText}>
                     TypeDB encodes your data for logical interpretation by a reasoning engine. It enables type-inference
@@ -145,7 +145,7 @@ export const TypeDBPage: React.FC = () => {
                 </FeatureBlock>
             </section>
 
-            <section className={classes.subsectionMargin}>
+            <section id="api" className={classes.subsectionMargin}>
                 <h2 className={classes.h2}>A robust programmatic API</h2>
                 <p className={classes.largeText}>
                     TypeDB's API is provided through a gRPC client, built with robust functionalities that REST cannot
@@ -180,7 +180,7 @@ export const TypeDBPage: React.FC = () => {
                     GitHub</VaticleButton>
             </section>
 
-            <section className={classes.sectionMargin}>
+            <section id="scale" className={classes.sectionMargin}>
                 <h1 className={classes.h1}>Scale with TypeDB Cluster</h1>
                 <p className={classes.largeText}>
                     TypeDB Cluster is the distributed database designed to scale with your organisation. Whether

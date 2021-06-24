@@ -92,7 +92,7 @@ const Sitemap: React.FC<SitemapProps> = ({toggleMobileMenuOpen}) => {
                             <VaticleLink><span><FontAwesomeIcon className={classes.backButton} icon={faLongArrowLeft}/></span></VaticleLink>
                         </li>
                         <li>
-                            <VaticleLink onClick={toggleMobileMenuOpen} to={routes.typeDB}><span>TypeDB</span></VaticleLink>
+                            <VaticleLink onClick={toggleMobileMenuOpen} to={routes.typeDB.page}><span>TypeDB</span></VaticleLink>
                         </li>
                         <li>
                             <VaticleLink onClick={toggleMobileMenuOpen} to={routes.typeDBCluster}><span>TypeDB Cluster</span></VaticleLink>

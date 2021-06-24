@@ -14,8 +14,15 @@ export const routes = {
     download: "/download",
     home: "/",
     privacyPolicy: "/privacy-policy",
-    typeDB: "/typedb",
     typeDBCluster: "/typedb-cluster",
+    typeDB : {
+        page: "/typedb",
+        expressivity: "/typedb#expressivity",
+        safety: "/typedb#safety",
+        inference: "typedb#inference",
+        api: "/typedb#api",
+        scale: "typedb#scale"
+    }
 };
 
 export const legacyRoutes = {
@@ -30,11 +37,11 @@ export const VaticleRouter: React.FC = () => {
             <Switch>
                 <VaticleRoute exact path={routes.download} title="Download" component={DownloadPage}/>
                 <VaticleRoute exact path={routes.privacyPolicy} title="Privacy Policy" component={PrivacyPolicyPage}/>
-                <VaticleRoute exact path={routes.typeDB} title="TypeDB" component={TypeDBPage}/>
+                <VaticleRoute exact path={routes.typeDB.page} title="TypeDB" component={TypeDBPage}/>
                 <VaticleRoute exact path={routes.typeDBCluster} title="TypeDB Cluster" component={TypeDBClusterPage}/>
                 <VaticleRoute exact path={routes.home} title="Home" component={HomePage}/>
 
-                <Redirect exact path={legacyRoutes.graknCore} to={routes.typeDB}/>
+                <Redirect exact path={legacyRoutes.graknCore} to={routes.typeDB.page}/>
                 <Redirect exact path={legacyRoutes.graknKGMS} to={routes.typeDBCluster}/>
 
                 <VaticleRoute title="404" component={Vaticle404Page}/>
