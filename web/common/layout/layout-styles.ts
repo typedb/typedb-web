@@ -6,7 +6,7 @@ const footerHeight = 65;
 const headerBoxShadow = "2px 2px 1px -1px rgba(0,0,0,0.2),2px 2px 3px 0px rgba(0,0,0,0.14),2px 1px 5px 0px rgba(0,0,0,0.12)";
 const borderBlack = "#180F49"; // TODO: this was copied from code-styles.ts
 const submenuWidthDesktop = 158;
-const menuWidthTablet = 188;
+const menuWidthTablet = 196;
 
 export const defaultLayoutStyles = makeStyles({
     main: {
@@ -105,7 +105,7 @@ export const pageHeaderStyles = makeStyles({
 
         "@media(max-width: 1199px)": {
             order: 99,
-            padding: "10px 30px",
+            padding: "10px 24px",
         },
 
         "@media(max-width: 767px)": {
@@ -139,7 +139,7 @@ export const pageHeaderStyles = makeStyles({
             transition: "background-color 150ms ease",
 
             "@media(max-width: 1199px)": {
-                padding: "0 32px",
+                padding: "0 24px",
             },
 
             "&:hover:not($noHover)": {
