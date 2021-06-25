@@ -1,5 +1,5 @@
 GET     /api/typedb/version     com.vaticle.web.main.server.api.TypeDBController.version()
 
-GET     /discord       controllers.Default.redirect(to = "https://discord.gg/grakn")
+GET     /discord       controllers.Default.redirect(to = "https://discord.gg/vaticle")
 
 GET     /$file<.*>     com.vaticle.web.main.server.FileController.serve(file, default="index.html")
