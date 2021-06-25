@@ -85,7 +85,7 @@ const Sitemap: React.FC<SitemapProps> = ({toggleMobileMenuOpen}) => {
     return (
         <ul className={classes.menu}>
             <li>
-                <VaticleLink>
+                <div tabIndex={0}>
                     Technologies
                     <ul>
                         <li className={classes.backMenuItem}>
@@ -98,10 +98,10 @@ const Sitemap: React.FC<SitemapProps> = ({toggleMobileMenuOpen}) => {
                             <VaticleLink onClick={toggleMobileMenuOpen} to={routes.typeDBCluster.page}><span>TypeDB Cluster</span></VaticleLink>
                         </li>
                     </ul>
-                </VaticleLink>
+                </div>
             </li>
             <li>
-                <VaticleLink>
+                <div tabIndex={0}>
                     Developer
                     <ul>
                         <li className={classes.backMenuItem}>
@@ -114,7 +114,7 @@ const Sitemap: React.FC<SitemapProps> = ({toggleMobileMenuOpen}) => {
                             <VaticleLink onClick={toggleMobileMenuOpen} href={urls.forum}><span>Discussion Forum</span></VaticleLink>
                         </li>
                     </ul>
-                </VaticleLink>
+                </div>
             </li>
             <li>
                 <VaticleLink href={urls.blog} target="_blank"><span>Blog</span></VaticleLink>
