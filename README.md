@@ -1,6 +1,8 @@
 ## Infrastructure manual
 
-**NOTE:** All the following code assumes you have GCP credentials and nomad credential environment variables set up in your shell. Refer to `web-infrastructure` repo on how to set them up.
+The infrastructure package contains the nomad client machine definition (written in [terraform](https://www.terraform.io/)) and nomad job definition (written in [nomad](https://www.nomadproject.io/)). During deployment, the nomad client machine will be created, and the nomad job will run as a container on the nomad client machine.
+
+**NOTE:** All the following code assumes you have GCP credentials and nomad credential environment variables set up in your shell. Refer to `web-infrastructure` repo on how to set them up. Please access the GCP console [here](https://console.cloud.google.com/), and the project name is `vaticle-web-prod`.
 
 #### Deployment
 
@@ -18,14 +20,4 @@
    vault kv put web-main/application-secret value=$(cat application-secret)
     ```
  
-3. Deploy the new version of web-main to `repo.vaticle.com`.
-
-    ```
-   DEPLOY_ARTIFACT_USERNAME=<username> DEPLOY_ARTIFACT_PASSWORD=<password> bazel run --define version=$(cat VERSION) //:deploy-web-main -- snapshot
-    ```
-   
-4. Run the new web-main application through nomad.
-
-    ```
-   VERSION=$(cat VERSION) envsubst <web-main.nomad | nomad job run -
-    ```
+3. Then follow the steps in the Release pipeline defined in grabl.
