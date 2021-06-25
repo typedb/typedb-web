@@ -131,7 +131,7 @@ export const pageHeaderStyles = makeStyles({
         },
 
         // Links in menu and submenu items
-        "& a, & a:visited, & [tabindex]": {
+        "& a, & a:visited, & div[tabindex]": {
             color: "#FFF",
             display: "inline-block",
             padding: "0 20px",
