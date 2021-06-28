@@ -18,7 +18,6 @@ export const VaticleWebApp: React.FC = () => {
                 <meta property="og:site_name" content="Vaticle"/>
                 <meta name="theme-color" content={vaticleTheme.palette.purple["700"]}/>
                 <meta property="og:title" content="Introducing TypeDB: a strongly-typed database"/>
-                <meta property="og:url" content="https://vaticle.com/"/>
                 <meta name="description" content="TypeDB is a database with a rich and logical type system. TypeDB empowers you to solve complex problems, using TypeQL as its query language."/>
                 <meta property="og:description" content="TypeDB is a database with a rich and logical type system. TypeDB empowers you to solve complex problems, using TypeQL as its query language."/>
                 <meta property="og:image" content={ogImageVaticle}/>
