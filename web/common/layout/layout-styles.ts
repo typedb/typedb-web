@@ -47,7 +47,7 @@ export const pageHeaderStyles = makeStyles({
         boxShadow: headerBoxShadow,
         top: 0,
         left: "auto",
-        right: 9,
+        right: 0,
         position: "fixed",
         width: "100%",
         display: "flex",
