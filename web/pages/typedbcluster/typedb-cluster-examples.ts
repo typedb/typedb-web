@@ -86,7 +86,6 @@ export const liveBackupExample = `> database my-typedb backup activate /disk2/ba
 >
 > database my-typedb restore 1164825
 The following backup copy will be restored: 
-Snapshot: 1,164,825 
-From: Mon 22 Jun 2021 15:26:02 UTC
+Snapshot 1,164,825 from Mon 22 Jun 2021 15:26:02 UTC
 Press [y] to continue or [n] to cancel: y
 Restoration is in progress. Database will be running in 'read-only' mode during the process.`;
