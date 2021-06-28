@@ -62,7 +62,7 @@ export const TypeDBPage: React.FC = () => {
 
                 <FeatureBlock className={classes.subsectionMargin} examplePosition="right" title="Type Hierarchies"
                               body="TypeDB allows you to easily model type inheritance into your domain model. Following
-                              logical and object-oriented principle, TypeDB allows data types to inherit the behaviours
+                              logical and object-oriented principles, TypeDB allows data types to inherit the behaviours
                               and properties of their supertypes. Complex data structures become reusable, and
                               data interpretation becomes richer through polymorphism."
                               button={{text: "Documentation", href: urls.docs.home}}>
