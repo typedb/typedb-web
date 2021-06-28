@@ -27,10 +27,11 @@ ts_project(
         "@npm//d3",
         "@npm//interactjs",
         "@npm//pixi-viewport",
-        "@npm//pixi.js",
+        "@npm//pixi.js-legacy",
         "@npm//prismjs",
         "@npm//react",
         "@npm//react-animated-burgers",
+        "@npm//react-helmet",
         "@npm//react-router-dom",
     ],
 )
