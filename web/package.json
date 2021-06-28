@@ -63,6 +63,7 @@
     "babel-plugin-inline-react-svg": "^1.1.1",
     "babel-plugin-named-asset-import": "^0.3.6",
     "clean-webpack-plugin": "^4.0.0-alpha.0",
+    "copy-webpack-plugin": "^6.4.1",
     "css-loader": "^3.6.0",
     "eslint": "^7.4.0",
     "eslint-plugin-import": "^2.22.1",

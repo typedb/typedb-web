@@ -1,6 +1,7 @@
 const path = require("path");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const CopyWebpackPlugin = require("copy-webpack-plugin");
 
 module.exports = {
   entry: "pages/index.tsx",
@@ -14,6 +15,11 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: "pages/index.html",
       favicon: "common/assets/logos/favicon.png",
+    }),
+    new CopyWebpackPlugin({
+      patterns: [
+        { from: "assets/images/og-image-vaticle.png", to: "og-image-vaticle.png" },
+      ],
     }),
   ],
   resolve: {
@@ -41,7 +47,7 @@ module.exports = {
       },
       {
         test: /\.(png|svg|jpe?g|gif|otf)$/,
-        use: 'file-loader'
+        use: 'file-loader',
       },
     ],
   },
