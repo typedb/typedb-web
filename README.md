@@ -21,3 +21,13 @@ The infrastructure package contains the nomad client machine definition (written
     ```
  
 3. Then follow the steps in the Release pipeline defined in grabl.
+
+#### Operation
+
+To ssh into the machine, install the `gcloud` CLI and use the following command.
+
+```
+gcloud ssh web-main
+```
+
+To view the logs of the job, go to the nomad GUI and select the job `web-main` and view its log there.
