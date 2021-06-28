@@ -3,10 +3,10 @@
  */
 
 import * as d3 from "d3";
-import * as PIXI from "pixi.js";
+import * as PIXI from "pixi.js-legacy";
 // @ts-ignore
 import FontFaceObserver from "fontfaceobserver";
-import { Viewport } from 'pixi-viewport';
+// import { Viewport } from 'pixi-viewport';
 import {
     arrowhead,
     diamondIncomingLineIntersect, Ellipse,
@@ -33,20 +33,22 @@ export function runTypeQLForceGraph(container: HTMLElement, graphData: TypeQLGra
     const vertices: Vertex[] = graphData.vertices.map((d) => Object.assign({}, d));
     let dragged = false;
 
-    const app = new PIXI.Application({ width, height, antialias: !0, backgroundAlpha: 0, resolution: window.devicePixelRatio });
+    const app = new PIXI.Application({ width, height, antialias: !0, backgroundAlpha: 0, resolution: window.devicePixelRatio, forceCanvas: true });
+    console.log(app.renderer);
     container.innerHTML = "";
     container.appendChild(app.view);
 
-    const viewport = new Viewport({
-        screenWidth: width,
-        screenHeight: height,
-        worldWidth: width,
-        worldHeight: height,
-        passiveWheel: false,
+    // const viewport = new Viewport({
+    //     screenWidth: width,
+    //     screenHeight: height,
+    //     worldWidth: width,
+    //     worldHeight: height,
+    //     passiveWheel: false,
+    //
+    //     interaction: app.renderer.plugins.interaction // the interaction module is important for wheel to work properly when renderer.view is placed or scaled
+    // });
 
-        interaction: app.renderer.plugins.interaction // the interaction module is important for wheel to work properly when renderer.view is placed or scaled
-    });
-    app.stage.addChild(viewport);
+    // app.stage.addChild(viewport);
 
     // activate plugins
     // viewport.drag({ factor: .33 })
@@ -60,7 +62,7 @@ export function runTypeQLForceGraph(container: HTMLElement, graphData: TypeQLGra
     const ubuntuMono = new FontFaceObserver("Ubuntu Mono") as { load: () => Promise<any> };
 
     function onDragStart(this: any, evt: any) {
-        viewport.plugins.pause('drag');
+        // viewport.plugins.pause('drag');
         simulation.alphaTarget(0.3).restart();
         this.isDown = true;
         this.eventData = evt.data;
@@ -75,7 +77,7 @@ export function runTypeQLForceGraph(container: HTMLElement, graphData: TypeQLGra
         gfx.eventData = null;
         delete this.fx;
         delete this.fy;
-        viewport.plugins.resume('drag');
+        // viewport.plugins.resume('drag');
     }
 
     function onDragMove(this: any, gfx: any) {
@@ -106,11 +108,11 @@ export function runTypeQLForceGraph(container: HTMLElement, graphData: TypeQLGra
         vertex.gfx.interactive = true;
         vertex.gfx.buttonMode = true;
 
-        viewport.addChild(vertex.gfx);
+        app.stage.addChild(vertex.gfx);
     });
 
     const edgesGFX = new PIXI.Graphics();
-    viewport.addChild(edgesGFX);
+    app.stage.addChild(edgesGFX);
 
     const onTick = () => {
         vertices.forEach((vertex) => {
