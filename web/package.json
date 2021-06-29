@@ -30,6 +30,7 @@
     "prismjs": "^1.23.0",
     "react": "^16.13.1",
     "react-animated-burgers": "^1.2.8",
+    "react-cookie-consent": "^6.2.4",
     "react-dom": "^16.13.1",
     "react-helmet": "^6.1.0",
     "react-router-dom": "^5.2.0",
