@@ -25,39 +25,7 @@ export const PrivacyPolicyPage: React.FC = () => {
         source: "Google Analytics",
         name: "_gid",
         purpose: "Used to distinguish users.",
-    }, {
-        source: "HotJar",
-        name: "hjClosedSurveyInvites",
-        purpose: "This cookie is set once a visitor interacts with a Survey invitation modal pop-up. It is used to ensure that the same invite does not re-appear if it has already been shown.",
-    }, {
-        source: "HotJar",
-        name: "_hjDonePolls",
-        purpose: "This cookie is set once a visitor completes a Poll using the Feedback Poll widget. It is used to ensure that the same Poll does not re-appear if it has already been filled in.",
-    }, {
-        source: "HotJar",
-        name: "_hjMinimizedPolls",
-        purpose: "This cookie is set once a visitor minimizes a Feedback Poll widget. It is used to ensure that the widget stays minimized when the visitor navigates through your site.",
-    }, {
-        source: "HotJar",
-        name: "_hjDoneTestersWidgets",
-        purpose: "This cookie is set once a visitor submits their information in the Recruit User Testers widget. It is used to ensure that the same form does not re-appear if it has already been filled in.",
-    }, {
-        source: "HotJar",
-        name: "_hjMinimizedTestersWidgets",
-        purpose: "This cookie is set once a visitor minimizes a Recruit User Testers widget. It is used to ensure that the widget stays minimized when the visitor navigates through your site.",
-    }, {
-        source: "HotJar",
-        name: "_hjDoneSurveys",
-        purpose: "This cookie is set once a visitor completes a survey. It is used to only load the survey content if the visitor hasnt completed the survey yet.",
-    }, {
-        source: "HotJar",
-        name: "_hjIncludedInSample",
-        purpose: "This session cookie is set to let Hotjar know whether that visitor is included in the sample which is used to generate funnels.",
-    }, {
-        source: "HotJar",
-        name: "_hjShownFeedbackMessage",
-        purpose: "This cookie is set when a visitor minimizes or completes Incoming Feedback. This is done so that the Incoming Feedback will load as minimized immediately if they navigate to another page where it is set to show.",
-    },];
+    }];
 
     return (
         <DefaultLayout>
