@@ -21,15 +21,11 @@ export const TypeDBTab: React.FC = () => {
     return <DistributionBlock items={items}/>;
 }
 
-interface Downloads {
-    "Linux": NativeDownloads;
-    "Mac OS X": NativeDownloads;
-    "Windows": NativeDownloads;
-}
+type OS = "macOS" | "Linux" | "Windows";
+type TypeDBVersion = "2.1.3" | "2.1.1" | "2.0.2" | "2.0.1" | "2.0.0";
 
 type NativeDownloads = { [version in TypeDBVersion]: string }
-
-type TypeDBVersion = "2.1.3" | "2.1.1" | "2.0.2" | "2.0.1" | "2.0.0";
+type Downloads = {[os in OS]: NativeDownloads}
 
 const OpenSourcePane: React.FC = () => {
     const classes = Object.assign({}, vaticleStyles(), downloadPageProductStyles());
@@ -40,19 +36,19 @@ const OpenSourcePane: React.FC = () => {
     const latestReleaseNotesURL = `${urls.github.typedbReleases}/tag/${typeDBVersion}`;
 
     const downloads: Downloads = {
+        "macOS": {
+            "2.1.3": "https://github.com/vaticle/typedb/releases/download/2.1.3/typedb-all-mac-2.1.3.zip",
+            "2.1.1": "https://github.com/vaticle/typedb/releases/download/2.1.1/typedb-all-mac-2.1.1.zip",
+            "2.0.2": "https://github.com/vaticle/typedb/releases/download/2.0.2/grakn-core-all-mac-2.0.2.zip",
+            "2.0.1": "https://github.com/vaticle/typedb/releases/download/2.0.1/grakn-core-all-mac-2.0.1.zip",
+            "2.0.0": "https://github.com/vaticle/typedb/releases/download/2.0.0/grakn-core-all-mac-2.0.0.zip",
+        },
         "Linux": {
             "2.1.3": "https://github.com/vaticle/typedb/releases/download/2.1.3/typedb-all-linux-2.1.3.tar.gz",
             "2.1.1": "https://github.com/vaticle/typedb/releases/download/2.1.1/typedb-all-linux-2.1.1.tar.gz",
             "2.0.2": "https://github.com/vaticle/typedb/releases/download/2.0.2/grakn-core-all-linux-2.0.2.tar.gz",
             "2.0.1": "https://github.com/vaticle/typedb/releases/download/2.0.1/grakn-core-all-linux-2.0.1.tar.gz",
             "2.0.0": "https://github.com/vaticle/typedb/releases/download/2.0.0/grakn-core-all-linux-2.0.0.tar.gz",
-        },
-        "Mac OS X": {
-            "2.1.3": "https://github.com/vaticle/typedb/releases/download/2.1.3/typedb-all-mac-2.1.3.zip",
-            "2.1.1": "https://github.com/vaticle/typedb/releases/download/2.1.1/typedb-all-mac-2.1.1.zip",
-            "2.0.2": "https://github.com/vaticle/typedb/releases/download/2.0.2/grakn-core-all-mac-2.0.2.zip",
-            "2.0.1": "https://github.com/vaticle/typedb/releases/download/2.0.1/grakn-core-all-mac-2.0.1.zip",
-            "2.0.0": "https://github.com/vaticle/typedb/releases/download/2.0.0/grakn-core-all-mac-2.0.0.zip",
         },
         "Windows": {
             "2.1.3": "https://github.com/vaticle/typedb/releases/download/2.1.3/typedb-all-windows-2.1.3.zip",
@@ -63,9 +59,11 @@ const OpenSourcePane: React.FC = () => {
         },
     };
 
-    const [selectedOS, setSelectedOS] = useState<keyof Downloads>("Mac OS X");
-    const [selectedVersion, setSelectedVersion] = useState<TypeDBVersion>("2.1.3");
-    const [downloadURL, setDownloadURL] = useState(downloads["Mac OS X"]["2.1.3"]);
+    const defaultOS = "macOS" as OS;
+    const latestVersion = Object.keys(downloads[defaultOS])[0] as TypeDBVersion;
+    const [selectedOS, setSelectedOS] = useState<keyof Downloads>();
+    const [selectedVersion, setSelectedVersion] = useState(latestVersion);
+    const [downloadURL, setDownloadURL] = useState(downloads[defaultOS][latestVersion]);
 
     useEffect(() => {
         setDownloadURL(downloads[selectedOS][selectedVersion]);
@@ -105,7 +103,7 @@ const OpenSourcePane: React.FC = () => {
                 <VaticleSelect label="Operating System" value={selectedOS} setValue={setSelectedOS} inputName="os"
                                inputID="typedb-os" variant="outlined">
                     <option value="Linux">Linux</option>
-                    <option value="Mac OS X">Mac OS X</option>
+                    <option value="macOS">macOS</option>
                     <option value="Windows">Windows</option>
                 </VaticleSelect>
                 <VaticleSelect label="Version" value={selectedVersion} setValue={setSelectedVersion} inputName="version"
