@@ -123,9 +123,9 @@ export const PrivacyPolicyPage: React.FC = () => {
             </Section>
 
             <Section>
-                <ComparisonTable>
-                    <ComparisonTableHeader title1="Name" title2="Purpose"/>
-                    <ComparisonTableBody>
+                <Table>
+                    <TableHeader titles={["Source", "Name", "Purpose"]}/>
+                    <TableBody>
                         {cookies.map(({source, name, purpose}) => (
                             <tr>
                                 <td>{source}</td>
@@ -133,8 +133,8 @@ export const PrivacyPolicyPage: React.FC = () => {
                                 <td>{purpose}</td>
                             </tr>
                         ))}
-                    </ComparisonTableBody>
-                </ComparisonTable>
+                    </TableBody>
+                </Table>
             </Section>
 
             <Section>
@@ -332,28 +332,25 @@ const List: React.FC = ({children}) => {
     return <ul className={clsx(classes.mediumText, classes.legalList)}>{children}</ul>;
 }
 
-const ComparisonTable: React.FC = ({children}) => {
+const Table: React.FC = ({children}) => {
     const classes = Object.assign({}, vaticleStyles(), legalPageStyles());
     return <table className={clsx(classes.comparisonTable)}>{children}</table>;
 }
 
-interface ComparisonTableHeaderProps {
-    title1: string;
-    title2: string;
+interface TableHeaderProps {
+    titles: string[];
 }
 
-const ComparisonTableHeader: React.FC<ComparisonTableHeaderProps> = ({title1, title2}) => {
+const TableHeader: React.FC<TableHeaderProps> = ({titles}) => {
     const classes = Object.assign({}, vaticleStyles(), legalPageStyles());
     return (
         <thead className={clsx(classes.comparisonTableHeader)}>
-        <th/>
-        <th className={clsx(classes.comparisonTableHeaderItem, classes.comparisonTableHeaderItem1)}>{title1}</th>
-        <th className={clsx(classes.comparisonTableHeaderItem, classes.comparisonTableHeaderItem2)}>{title2}</th>
+        {titles.map(title => <th className={classes.comparisonTableHeaderItem}>{title}</th>)}
         </thead>
     );
 }
 
-const ComparisonTableBody: React.FC = ({children}) => {
+const TableBody: React.FC = ({children}) => {
     const classes = legalPageStyles();
     return (
         <tbody className={clsx(classes.comparisonTableBody)}>

@@ -1,5 +1,6 @@
 import { makeStyles } from "@material-ui/core";
 import { headerHeight } from "../../common/layout/layout-styles";
+import {vaticleTheme} from "../../common/styles/theme";
 
 const contentHeight = {
     desktop: 409,
@@ -24,7 +25,7 @@ export const errorStyles = makeStyles({
 
     errorWindow: {
         flex: 1,
-        backgroundColor: "#0E053F",
+        backgroundColor: vaticleTheme.palette.purple["900"],
         borderRadius: "0 0 5px 5px",
         display: "flex",
         flexDirection: "column",

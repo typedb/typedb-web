@@ -26,18 +26,22 @@ export const vaticleTheme = {
             600: '#261C5E', // Purple 3
             700: '#1D1354', // Purple 2
             800: '#180F49', // Purple 1
+            900: '#0E053F',
         },
         green: {
             300: '#02DAC9', // Green
         },
         red: {
             100: '#F66B65', // Red
+            2: '#FFA187',
         },
         yellow: {
             300: '#F6C94C', // Yellow
+            2: '#FFE4A7',
         },
         pink: {
             200: '#F28DD7', // Pink
+            2: '#FFA9E8',
         },
     },
     shape: {

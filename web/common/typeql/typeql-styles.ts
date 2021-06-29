@@ -1,4 +1,5 @@
 import { makeStyles } from "@material-ui/core";
+import {vaticleTheme} from "../styles/theme";
 
 export const typeQLVisualiserStyles = makeStyles({
     graphPane: {
@@ -7,7 +8,7 @@ export const typeQLVisualiserStyles = makeStyles({
         left: 100,
         bottom: 0,
         right: 0,
-        backgroundColor: "#0E053F",
+        backgroundColor: vaticleTheme.palette.purple["900"],
         zIndex: 25,
     },
 });

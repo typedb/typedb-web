@@ -1,7 +1,7 @@
 import { makeStyles } from "@material-ui/core";
 import { vaticleTheme } from "../styles/theme";
 
-const borderBlack = "#08022E";
+const borderBlack = vaticleTheme.palette.purple["900"];
 
 export const codeStyles = makeStyles({
     windowContainer: {

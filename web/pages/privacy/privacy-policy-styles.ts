@@ -26,28 +26,20 @@ export const legalPageStyles = makeStyles({
 
     comparisonTableHeaderItem: {
         height: 45,
-        color: vaticleTheme.palette.purple["700"],
         lineHeight: "45px",
-        borderRadius: "5px 5px 0 0",
         fontWeight: 600,
-    },
-
-    comparisonTableHeaderItem1: {
-        backgroundColor: vaticleTheme.palette.green["300"],
-        borderTopRightRadius: 0,
-    },
-
-    comparisonTableHeaderItem2: {
-        backgroundColor: "#8069F5",
-        borderTopLeftRadius: 0,
+        color: vaticleTheme.palette.green["300"],
+        backgroundColor: vaticleTheme.palette.purple["900"],
+        "&:first-child": {
+            borderTopLeftRadius: 5,
+        },
+        "&:last-child": {
+            borderTopRightRadius: 5,
+        },
     },
 
     comparisonTableBody: {
-        backgroundColor: "#140B44",
-
-        "& tr + tr": {
-            borderTop: "1px solid #08022E",
-        },
+        backgroundColor: vaticleTheme.palette.purple["800"],
 
         "& td": {
             padding: 10,
@@ -61,8 +53,8 @@ export const legalPageStyles = makeStyles({
             },
         },
 
-        "& tr:nth-child(even) td:not(:first-child)": {
-            backgroundColor: "#0E053F",
+        "& tr:nth-child(even)": {
+            backgroundColor: vaticleTheme.palette.purple["900"],
         },
     },
 });
