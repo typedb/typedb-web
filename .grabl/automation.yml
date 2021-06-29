@@ -6,6 +6,7 @@ config:
 build:
   correctness:
     build:
+      machine: 4-core-8-gb
       image: vaticle-ubuntu-20.04
       command: |
         bazel build //...
@@ -13,12 +14,14 @@ build:
 release:
   deployment:
     deploy-artifact-release:
+      machine: 4-core-8-gb
       image: vaticle-ubuntu-20.04
       command: |
         export DEPLOY_ARTIFACT_USERNAME=$REPO_VATICLE_USERNAME
         export DEPLOY_ARTIFACT_PASSWORD=$REPO_VATICLE_PASSWORD
         bazel run --define version=$(cat VERSION) //:deploy-web-main -- release
     deploy-production:
+      machine: 4-core-8-gb
       image: vaticle-ubuntu-20.04
       dependencies: [deploy-artifact-release]
       command: |
