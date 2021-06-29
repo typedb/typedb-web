@@ -6,6 +6,6 @@ export const typeDBStyles = makeStyles({
         width: 80,
         height: 0,
         border: 0,
-        borderTop: `1px solid ${vaticleTheme.palette.purple["300"]}`,
+        borderTop: `1px solid ${vaticleTheme.palette.purple["7"]}`,
     },
 });

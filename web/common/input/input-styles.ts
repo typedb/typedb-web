@@ -4,7 +4,7 @@ import { vaticleTheme } from "../styles/theme";
 export const textFieldStyles = makeStyles({
     textField: {
         borderRadius: 5,
-        backgroundColor: vaticleTheme.palette.purple["700"],
+        backgroundColor: vaticleTheme.palette.purple["3"],
         color: "#FFF",
 
         "& input, & textarea": {
@@ -26,7 +26,7 @@ export const textFieldStyles = makeStyles({
         },
 
         "& input:hover:focus + fieldset": {
-            borderColor: `${vaticleTheme.palette.green["300"]} !important`,
+            borderColor: `${vaticleTheme.palette.green["1"]} !important`,
         },
     },
 
@@ -38,13 +38,13 @@ export const textFieldStyles = makeStyles({
         },
 
         "&:hover:focus fieldset": {
-            borderColor: `${vaticleTheme.palette.green["300"]} !important`,
+            borderColor: `${vaticleTheme.palette.green["1"]} !important`,
         },
     },
 
     inputFocused: {
         "& fieldset, &:hover fieldset": {
-            borderColor: `${vaticleTheme.palette.green["300"]} !important`,
+            borderColor: `${vaticleTheme.palette.green["1"]} !important`,
             borderWidth: "1px !important",
         },
     },
@@ -54,7 +54,7 @@ export const textFieldStyles = makeStyles({
     },
 
     inputLabelFocused: {
-        color: `${vaticleTheme.palette.green["300"]} !important`,
+        color: `${vaticleTheme.palette.green["1"]} !important`,
     },
 
     inputLabelOutlined: {

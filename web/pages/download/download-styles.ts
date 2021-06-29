@@ -43,7 +43,7 @@ export const downloadPageProductStyles = makeStyles({
 
     tabItem: {
         height: 96,
-        border: `1px solid ${vaticleTheme.palette.purple["300"]}`,
+        border: `1px solid ${vaticleTheme.palette.purple["7"]}`,
 
         "@media(min-width: 768px)": {
             borderRightStyle: "none",
@@ -69,7 +69,7 @@ export const downloadPageProductStyles = makeStyles({
     },
 
     tabItemSelected: {
-        backgroundColor: vaticleTheme.palette.purple["300"],
+        backgroundColor: vaticleTheme.palette.purple["7"],
     },
 
     tabIntro: {
@@ -101,7 +101,7 @@ export const downloadPageProductStyles = makeStyles({
 
     comparisonBlockItemTitle: {
         height: 45,
-        color: vaticleTheme.palette.purple["700"],
+        color: vaticleTheme.palette.purple["3"],
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
@@ -113,7 +113,7 @@ export const downloadPageProductStyles = makeStyles({
 
     comparisonBlockItem1Title: {
         borderTopLeftRadius: 5,
-        backgroundColor: vaticleTheme.palette.green["300"],
+        backgroundColor: vaticleTheme.palette.green["1"],
     },
 
     comparisonBlockItem2Title: {
@@ -123,7 +123,7 @@ export const downloadPageProductStyles = makeStyles({
 
     comparisonBlockItemBody: {
         flex: 1,
-        backgroundColor: vaticleTheme.palette.purple["800"],
+        backgroundColor: vaticleTheme.palette.purple["2"],
         padding: "35px 64px 35px 30px",
         display: "flex",
         flexDirection: "column",

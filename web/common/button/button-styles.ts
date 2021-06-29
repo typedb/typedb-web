@@ -6,30 +6,30 @@ type StyleProps = Pick<VaticleButtonProps, 'size' | 'type'>;
 
 export const buttonPalette = {
     primary: {
-        background: vaticleTheme.palette.green[300],
+        background: vaticleTheme.palette.green["1"],
         border: 'transparent',
-        label: vaticleTheme.palette.purple[700],
+        label: vaticleTheme.palette.purple["3"],
         hoverBackground: "#0B939F",
         hoverBorder: 'transparent',
-        hoverLabel: vaticleTheme.palette.purple[700],
-        disabledBackground: vaticleTheme.palette.purple[300],
-        disabledLabel: vaticleTheme.palette.purple[700],
+        hoverLabel: vaticleTheme.palette.purple["3"],
+        disabledBackground: vaticleTheme.palette.purple["7"],
+        disabledLabel: vaticleTheme.palette.purple["3"],
     },
     secondary: {
         background: "transparent",
-        border: vaticleTheme.palette.green[300],
-        label: vaticleTheme.palette.green[300],
-        hoverBackground: vaticleTheme.palette.green[300],
-        hoverBorder: vaticleTheme.palette.green[300],
-        hoverLabel: vaticleTheme.palette.purple[700],
+        border: vaticleTheme.palette.green["1"],
+        label: vaticleTheme.palette.green["1"],
+        hoverBackground: vaticleTheme.palette.green["1"],
+        hoverBorder: vaticleTheme.palette.green["1"],
+        hoverLabel: vaticleTheme.palette.purple["3"],
         disabledBackground: "transparent",
-        disabledLabel: vaticleTheme.palette.purple[300],
+        disabledLabel: vaticleTheme.palette.purple["7"],
     },
 };
 
 export const buttonStyles = makeStyles({
     disable: {
-        borderColor: () => `${vaticleTheme.palette.purple[300]} !important`,
+        borderColor: () => `${vaticleTheme.palette.purple["7"]} !important`,
         backgroundColor: (props: StyleProps) => `${buttonPalette[props.type].disabledBackground} !important`,
     },
 
@@ -92,7 +92,7 @@ export const comingSoonPopupStyles = makeStyles({
         left: 0,
         right: 0,
         margin: "0 auto",
-        backgroundColor: vaticleTheme.palette.green["300"],
+        backgroundColor: vaticleTheme.palette.green["1"],
         transition: "opacity 100ms ease",
     },
 
@@ -105,7 +105,7 @@ export const comingSoonPopupStyles = makeStyles({
         lineHeight: "22px",
         textAlign: "center",
         fontSize: 14,
-        color: vaticleTheme.palette.purple["700"],
+        color: vaticleTheme.palette.purple["3"],
     },
 
     arrowhead: {

@@ -41,7 +41,7 @@ const vaticleSelectInput: (variant: "outlined" | "filled") => any = (variant) =>
             borderRadius: 5,
             position: 'relative',
             border: `1px solid ${variant === "outlined" ? "rgba(255,255,255,.2)" : "transparent"}`,
-            backgroundColor: variant === "outlined" ? "transparent" : vaticleTheme.palette.purple["700"],
+            backgroundColor: variant === "outlined" ? "transparent" : vaticleTheme.palette.purple["3"],
             color: "#FFF",
             fontSize: 16,
             padding: '10px 26px 10px 12px',
@@ -49,11 +49,11 @@ const vaticleSelectInput: (variant: "outlined" | "filled") => any = (variant) =>
 
             '&:focus': {
                 borderRadius: 5,
-                borderColor: vaticleTheme.palette.green["300"],
+                borderColor: vaticleTheme.palette.green["1"],
             },
 
             "& option": {
-                backgroundColor: `${vaticleTheme.palette.purple["700"]} !important`,
+                backgroundColor: `${vaticleTheme.palette.purple["3"]} !important`,
                 color: "#FFF",
 
                 "&[disabled]": {

@@ -4,7 +4,7 @@ import { vaticleTheme } from "../styles/theme";
 export const headerHeight = 80;
 const footerHeight = 65;
 const headerBoxShadow = "2px 2px 1px -1px rgba(0,0,0,0.2),2px 2px 3px 0px rgba(0,0,0,0.14),2px 1px 5px 0px rgba(0,0,0,0.12)";
-const borderBlack = "#180F49"; // TODO: this was copied from code-styles.ts
+const borderBlack = vaticleTheme.palette.purple["2"];
 const submenuWidthDesktop = 158;
 const menuWidthTablet = 196;
 
@@ -28,8 +28,8 @@ export const defaultLayoutStyles = makeStyles({
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-        color: vaticleTheme.palette.purple["800"],
-        backgroundColor: vaticleTheme.palette.green["300"],
+        color: vaticleTheme.palette.purple["2"],
+        backgroundColor: vaticleTheme.palette.green["1"],
 
         "@media(max-width: 767px)": {
             top: 110,
@@ -43,7 +43,7 @@ export const defaultLayoutStyles = makeStyles({
 export const pageHeaderStyles = makeStyles({
     appBar: {
         height: headerHeight,
-        backgroundColor: vaticleTheme.palette.purple[600],
+        backgroundColor: vaticleTheme.palette.purple["4"],
         boxShadow: headerBoxShadow,
         top: 0,
         left: "auto",
@@ -145,7 +145,7 @@ export const pageHeaderStyles = makeStyles({
 
             "&:hover:not($noHover)": {
                 "@media(min-width: 768px)": {
-                    backgroundColor: vaticleTheme.palette.purple["400"],
+                    backgroundColor: vaticleTheme.palette.purple["6"],
 
                     "& > ul": {
                         display: "block",
@@ -159,7 +159,7 @@ export const pageHeaderStyles = makeStyles({
 
             "&:focus:not($noHover)": {
                 "@media(max-width: 1199px)": {
-                    backgroundColor: vaticleTheme.palette.purple["400"],
+                    backgroundColor: vaticleTheme.palette.purple["6"],
 
                     "& > ul": {
                         display: "block",
@@ -174,7 +174,7 @@ export const pageHeaderStyles = makeStyles({
             // Submenus
             "& > ul": {
                 zIndex: 2000,
-                backgroundColor: vaticleTheme.palette.purple["600"],
+                backgroundColor: vaticleTheme.palette.purple["4"],
                 position: "absolute",
                 transition: "transform 250ms ease-in-out",
                 whiteSpace: "nowrap",
@@ -244,7 +244,7 @@ export const pageHeaderStyles = makeStyles({
         width: "100%",
         height: 0,
         overflow: "hidden",
-        backgroundColor: vaticleTheme.palette.purple["600"],
+        backgroundColor: vaticleTheme.palette.purple["4"],
         transition: "height 350ms ease-in-out, width 350ms ease-in-out, margin-left 350ms ease-out",
 
         "&.invisible": {
@@ -310,7 +310,7 @@ export const pageHeaderStyles = makeStyles({
 
 export const pageFooterStyles = makeStyles({
     root: {
-        backgroundColor: vaticleTheme.palette.purple["800"],
+        backgroundColor: vaticleTheme.palette.purple["2"],
     },
 
     content: {
@@ -362,7 +362,7 @@ export const pageFooterStyles = makeStyles({
         height: 40,
         fontSize: 40,
         borderRadius: 4,
-        color: vaticleTheme.palette.purple["700"],
+        color: vaticleTheme.palette.purple["3"],
         backgroundColor: "#FFF",
     },
 
@@ -372,7 +372,7 @@ export const pageFooterStyles = makeStyles({
 
     socialIconFacebook: {
         color: "#FFF",
-        backgroundColor: vaticleTheme.palette.purple["700"],
+        backgroundColor: vaticleTheme.palette.purple["3"],
         width: "46px !important",
         height: 46,
         fontSize: 44,
@@ -380,7 +380,7 @@ export const pageFooterStyles = makeStyles({
 
     socialIconLinkedIn: {
         color: "#FFF",
-        backgroundColor: vaticleTheme.palette.purple["700"],
+        backgroundColor: vaticleTheme.palette.purple["3"],
         width: "46px !important",
         height: 46,
         fontSize: 44,
@@ -400,7 +400,7 @@ export const pageFooterStyles = makeStyles({
     separator: {
         marginTop: 67,
         height: 0,
-        border: `1px solid ${vaticleTheme.palette.purple["450"]}`,
+        border: `1px solid ${vaticleTheme.palette.purple["5"]}`,
     },
 
     linksSection: {

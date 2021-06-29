@@ -90,7 +90,7 @@ export const homePageStyles = makeStyles({
         marginLeft: "auto",
         marginRight: "auto",
         display: 'flex',
-        border: `1px solid ${vaticleTheme.palette.purple[300]}`,
+        border: `1px solid ${vaticleTheme.palette.purple["7"]}`,
         borderRadius: 11,
 
         "@media(max-width: 767px)": {
@@ -118,11 +118,11 @@ export const homePageStyles = makeStyles({
         height: 160,
 
         "@media(min-width: 768px)": {
-            borderLeft: `1px solid ${vaticleTheme.palette.purple["300"]}`,
+            borderLeft: `1px solid ${vaticleTheme.palette.purple["7"]}`,
         },
 
         "@media(max-width: 767px)": {
-            borderTop: `1px solid ${vaticleTheme.palette.purple["300"]}`,
+            borderTop: `1px solid ${vaticleTheme.palette.purple["7"]}`,
         },
     },
 
@@ -135,7 +135,7 @@ export const homePageStyles = makeStyles({
         width: "60px !important",
         height: 60,
         borderRadius: "50%",
-        color: vaticleTheme.palette.purple["700"],
+        color: vaticleTheme.palette.purple["3"],
         backgroundColor: "#FFF",
         padding: "14px 13px 14px 15px",
     },
@@ -263,7 +263,7 @@ export const homePageIndustryStyles = makeStyles({
         "@media(max-width: 767px)": {
             display: "flex",
             borderRadius: 5,
-            backgroundColor: vaticleTheme.palette.purple["600"],
+            backgroundColor: vaticleTheme.palette.purple["4"],
         },
     },
 
@@ -274,7 +274,7 @@ export const homePageIndustryStyles = makeStyles({
         borderRadius: 5,
 
         "@media(max-width: 767px)": {
-            backgroundColor: vaticleTheme.palette.purple[600],
+            backgroundColor: vaticleTheme.palette.purple["4"],
         },
     },
 
@@ -282,7 +282,7 @@ export const homePageIndustryStyles = makeStyles({
         width: 80,
         height: 80,
         borderRadius: 5,
-        backgroundColor: vaticleTheme.palette.purple[600],
+        backgroundColor: vaticleTheme.palette.purple["4"],
         display: "inline-flex",
         justifyContent: "center",
         alignItems: "center",
@@ -291,7 +291,7 @@ export const homePageIndustryStyles = makeStyles({
         cursor: "pointer",
 
         "&:hover": {
-            borderColor: vaticleTheme.palette.green[300],
+            borderColor: vaticleTheme.palette.green["1"],
         },
 
         "& svg": {
@@ -313,11 +313,11 @@ export const homePageIndustryStyles = makeStyles({
     },
 
     sectionToggleIconContainerSelected: {
-        borderColor: vaticleTheme.palette.green["300"],
+        borderColor: vaticleTheme.palette.green["1"],
 
         "& svg": {
             "& g, & ellipse, & circle, & path": {
-                stroke: `${vaticleTheme.palette.green[300]} !important`,
+                stroke: `${vaticleTheme.palette.green["1"]} !important`,
             },
         },
     },
@@ -350,7 +350,7 @@ export const homePageClusterStyles = makeStyles({
     },
 
     featurePanel: {
-        backgroundColor: vaticleTheme.palette.purple["600"],
+        backgroundColor: vaticleTheme.palette.purple["4"],
         borderRadius: 5,
         padding: "32px 40px",
         border: "1px solid transparent",
@@ -369,7 +369,7 @@ export const homePageClusterStyles = makeStyles({
         },
 
         "&:hover": {
-            borderColor: vaticleTheme.palette.green[300],
+            borderColor: vaticleTheme.palette.green["1"],
         },
     },
 
@@ -380,7 +380,7 @@ export const homePageClusterStyles = makeStyles({
         width: 100,
         height: 32,
         borderRadius: 5,
-        backgroundColor: vaticleTheme.palette.purple["400"], // TODO: this colour is not in the palette
+        backgroundColor: vaticleTheme.palette.purple["6"], // TODO: this colour is not in the palette
         display: "inline-flex",
         justifyContent: "center",
         fontSize: 14,
@@ -477,7 +477,7 @@ export const homePageTestimonialsStyles = makeStyles({
         width: 78,
         height: 78,
         borderRadius: "50%",
-        border: `5px solid ${vaticleTheme.palette.purple["700"]}`,
+        border: `5px solid ${vaticleTheme.palette.purple["3"]}`,
     },
 
     testimonialCompanyLogoDecoration: {
@@ -493,7 +493,7 @@ export const homePageTestimonialsStyles = makeStyles({
 
     testimonial: {
         height: 372,
-        backgroundColor: vaticleTheme.palette.purple["600"],
+        backgroundColor: vaticleTheme.palette.purple["4"],
         borderRadius: 5,
         display: "flex",
         flexDirection: "column",
@@ -518,7 +518,7 @@ export const homePageTestimonialsStyles = makeStyles({
         marginTop: 16,
         height: 0,
         width: "100%",
-        border: `1px solid ${vaticleTheme.palette.purple["450"]}`, // TODO: this colour is not in the palette
+        border: `1px solid ${vaticleTheme.palette.purple["5"]}`, // TODO: this colour is not in the palette
     },
 
     testimonialPerson: {

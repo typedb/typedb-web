@@ -3,7 +3,7 @@ import { vaticleTheme } from "../styles/theme";
 
 export const formStyles = makeStyles({
     formContainer: {
-        backgroundColor: vaticleTheme.palette.purple["600"],
+        backgroundColor: vaticleTheme.palette.purple["4"],
         color: "#FFF",
         textAlign: "center",
         padding: "80px 100px",

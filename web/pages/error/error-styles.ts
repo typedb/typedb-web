@@ -25,7 +25,7 @@ export const errorStyles = makeStyles({
 
     errorWindow: {
         flex: 1,
-        backgroundColor: vaticleTheme.palette.purple["900"],
+        backgroundColor: vaticleTheme.palette.purple["1"],
         borderRadius: "0 0 5px 5px",
         display: "flex",
         flexDirection: "column",

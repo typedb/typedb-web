@@ -8,7 +8,7 @@ export const typeQLVisualiserStyles = makeStyles({
         left: 100,
         bottom: 0,
         right: 0,
-        backgroundColor: vaticleTheme.palette.purple["900"],
+        backgroundColor: vaticleTheme.palette.purple["1"],
         zIndex: 25,
     },
 });

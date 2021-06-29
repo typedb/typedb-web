@@ -28,8 +28,8 @@ export const legalPageStyles = makeStyles({
         height: 45,
         lineHeight: "45px",
         fontWeight: 600,
-        color: vaticleTheme.palette.green["300"],
-        backgroundColor: vaticleTheme.palette.purple["900"],
+        color: vaticleTheme.palette.green["1"],
+        backgroundColor: vaticleTheme.palette.purple["1"],
         "&:first-child": {
             borderTopLeftRadius: 5,
         },
@@ -39,7 +39,7 @@ export const legalPageStyles = makeStyles({
     },
 
     comparisonTableBody: {
-        backgroundColor: vaticleTheme.palette.purple["800"],
+        backgroundColor: vaticleTheme.palette.purple["2"],
 
         "& td": {
             padding: 10,
@@ -54,7 +54,7 @@ export const legalPageStyles = makeStyles({
         },
 
         "& tr:nth-child(even)": {
-            backgroundColor: vaticleTheme.palette.purple["900"],
+            backgroundColor: vaticleTheme.palette.purple["1"],
         },
     },
 });

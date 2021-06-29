@@ -119,7 +119,7 @@ export const vaticleStyles = makeStyles({
     },
 
     checkGreen: {
-        borderColor: `${vaticleTheme.palette.green["300"]} !important`,
+        borderColor: `${vaticleTheme.palette.green["1"]} !important`,
     },
 
     checkPurple: {

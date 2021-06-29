@@ -1,7 +1,7 @@
 import { makeStyles } from "@material-ui/core";
 import { vaticleTheme } from "../styles/theme";
 
-const borderBlack = vaticleTheme.palette.purple["900"];
+const borderBlack = vaticleTheme.palette.purple["1"];
 
 export const codeStyles = makeStyles({
     windowContainer: {
@@ -124,16 +124,16 @@ export const codeStyles = makeStyles({
 
     polyglotTab: {
         position: "initial", // TODO: delete this once position isn't set to absolute elsewhere
-        backgroundColor: vaticleTheme.palette.purple["600"],
+        backgroundColor: vaticleTheme.palette.purple["4"],
         color: "#888DCA",
 
         "&:hover": {
-            backgroundColor: vaticleTheme.palette.purple["400"],
+            backgroundColor: vaticleTheme.palette.purple["6"],
         },
     },
 
     polyglotTabSelected: {
-        backgroundColor: `${vaticleTheme.palette.purple["300"]} !important`,
+        backgroundColor: `${vaticleTheme.palette.purple["7"]} !important`,
         color: "#FFF !important",
     },
 

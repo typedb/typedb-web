@@ -8,11 +8,11 @@ export const VaticleCheckbox = withStyles({
 
         "& svg": {
             borderRadius: 5,
-            backgroundColor: vaticleTheme.palette.purple["700"],
+            backgroundColor: vaticleTheme.palette.purple["3"],
         },
 
         '&$checked': {
-            color: vaticleTheme.palette.purple["200"],
+            color: vaticleTheme.palette.purple["8"],
         },
     },
     checked: {},

@@ -4,7 +4,7 @@ import { vaticleTheme } from "../styles/theme";
 export const snackbarStyles = makeStyles({
     root: {
         "& > *": {
-            color: vaticleTheme.palette.purple["700"],
+            color: vaticleTheme.palette.purple["3"],
             fontWeight: 400,
         },
 
@@ -21,13 +21,13 @@ export const snackbarStyles = makeStyles({
 
     success: {
         "& > *": {
-            backgroundColor: vaticleTheme.palette.green["300"],
+            backgroundColor: vaticleTheme.palette.green["1"],
         },
     },
 
     error: {
         "& > *": {
-            backgroundColor: vaticleTheme.palette.red["100"],
+            backgroundColor: vaticleTheme.palette.red["1"],
         },
     },
 
