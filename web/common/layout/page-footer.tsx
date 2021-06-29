@@ -81,7 +81,7 @@ export const PageFooter: React.FC = () => {
                                 <h3 className={classes.h3}>Developer</h3>
                                 <ul className={classes.linkBlockList}>
                                     <FooterLink href={urls.docs.home}>Documentation</FooterLink>
-                                    <FooterLink href={urls.forum}>Forum</FooterLink>
+                                    <FooterLink href={urls.forum}>Discussion Forum</FooterLink>
                                     <FooterLink href={urls.github.org} target="_blank">GitHub</FooterLink>
                                     <FooterLink href={urls.stackOverflow} target="_blank">Stack Overflow</FooterLink>
                                 </ul>
@@ -90,6 +90,7 @@ export const PageFooter: React.FC = () => {
                                 <h3 className={classes.h3}>Company</h3>
                                 <ul className={classes.linkBlockList}>
                                     <FooterLink href={urls.blog} target="_blank">Blog</FooterLink>
+                                    <FooterLink href={routes.privacyPolicy}>Privacy Policy</FooterLink>
                                 </ul>
                             </div>
                         </div>
