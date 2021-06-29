@@ -3,6 +3,7 @@ import {DefaultLayout} from "../../common/layout/default-layout";
 import {vaticleStyles} from "../../common/styles/vaticle-styles";
 import {legalPageStyles} from "./privacy-policy-styles";
 import clsx from "clsx";
+import { ClassProps } from "../../common/class-props";
 
 interface Cookie {
     source: string;
@@ -11,7 +12,7 @@ interface Cookie {
 }
 
 export const PrivacyPolicyPage: React.FC = () => {
-    const classes = Object.assign({}, vaticleStyles(), legalPageStyles());
+    const classes = vaticleStyles();
 
     const cookies: Cookie[] = [{
         source: "Google Analytics",
@@ -29,7 +30,7 @@ export const PrivacyPolicyPage: React.FC = () => {
 
     return (
         <DefaultLayout>
-            <Section>
+            <Section className={classes.firstSection}>
                 <Heading>Privacy Policy</Heading>
 
                 <Paragraph>
@@ -280,9 +281,10 @@ export const PrivacyPolicyPage: React.FC = () => {
     );
 };
 
-const Section: React.FC = ({children}) => {
+const Section: React.FC<ClassProps> = ({children, className}) => {
     const classes = Object.assign({}, vaticleStyles(), legalPageStyles());
-    return <section className={clsx(classes.legalSection, classes.contentMargin)}>{children}</section>;
+    // NOTE: className overrides contentMargin class
+    return <section className={clsx(classes.legalSection, className || classes.contentMargin)}>{children}</section>;
 }
 
 const Heading: React.FC = ({children}) => {
