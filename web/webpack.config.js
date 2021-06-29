@@ -18,7 +18,7 @@ module.exports = {
     }),
     new CopyWebpackPlugin({
       patterns: [
-        { from: "assets/images/og-image-vaticle.png", to: "og-image-vaticle.png" },
+        { from: "assets/images/vaticle-preview.png", to: "vaticle-preview.png" },
       ],
     }),
   ],
