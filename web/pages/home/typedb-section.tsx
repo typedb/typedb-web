@@ -72,7 +72,7 @@ export const TypeDBSection: React.FC<TypeDBSectionProps> = ({className, typeDBVe
             </FeatureBlock>
 
             <div className={clsx(classes.mainActionList, classes.subsectionMargin)}>
-                <VaticleButton size="small" type="secondary" to={routes.typeDB.page}>Learn More</VaticleButton>
+                <VaticleButton className={classes.hideMobile} size="small" type="secondary" to={routes.typeDB.page}>Learn More</VaticleButton>
                 <VaticleButton size="small" type="primary" href={urls.github.typedb} target="_blank">Fork/Star on
                     GitHub</VaticleButton>
             </div>
