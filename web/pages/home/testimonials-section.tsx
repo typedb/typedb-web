@@ -17,6 +17,7 @@ import KimWagerAvatar from "../../assets/images/kim-wager.png";
 import KonradMysliwiecAvatar from "../../assets/images/konrad-mysliwiec.jpeg";
 import MichaelDoyleAvatar from "../../assets/images/michael-doyle.png";
 import MuhannadAlomariAvatar from "../../assets/images/muhannad-alomari.jpg";
+import SamuelHassineAvatar from "../../assets/images/samuel-hassine.jpeg";
 import FlipkartSquareLogo from "../../assets/logos/squarewhite/flipkart-square-white.png";
 import BioCortexSquareLogo from "../../assets/logos/squarewhite/biocortex-square-white.png";
 import GravrSquareLogo from "../../assets/logos/squarewhite/gravr-square-white.png";
@@ -28,6 +29,7 @@ import EuropeanRespiratorySocietySquareLogo
 import InfosysSquareLogo from "../../assets/logos/squarewhite/infosys-square-white.png";
 import CapgeminiSquareLogo from "../../assets/logos/squarewhite/capgemini-square-white.png";
 import ChinaMerchantsBankSquareLogo from "../../assets/logos/squarewhite/china-merchants-bank-square-white.png";
+import OpenCTISquareLogo from "../../assets/logos/squarewhite/opencti-square-white.png";
 import OxfordPharmagenesisSquareLogo from "../../assets/logos/squarewhite/oxford-pharmagenesis-square-white.png";
 import RAIRHealthSquareLogo from "../../assets/logos/squarewhite/rair-health-square-white.png";
 import RocheSquareLogo from "../../assets/logos/squarewhite/roche-square-white.png";
@@ -91,6 +93,15 @@ export const TestimonialsSection: React.FC<ClassProps> = ({className}) => {
         body: `TypeDB and TypeQL allow us to model the biomedical domain, enabling us to surface insights that are
         explainable and transparent; key requirements for AI in healthcare. Crucially, the Vaticle team provide more
         than software, you gain access to a community. This is how the best work gets done – collaboratively.`,
+    }, {
+        companyName: "OpenCTI",
+        companyLogo: OpenCTISquareLogo,
+        personName: "Samuel Hassine",
+        jobTitle: "Co-founder & Lead Developer",
+        avatar: SamuelHassineAvatar,
+        body: `TypeDB's expressivity allows us to unify all levels of cyber intelligence for cyber security knowledge
+        management systems. Through nested and hyper relations, we can easily represent TTPs and observables,
+        attribution and victimology. During an attack, this gives analysts 360 views of any observable.`,
     }, {
         companyName: "Alpha Vertex",
         companyLogo: AlphaVertexSquareLogo,
