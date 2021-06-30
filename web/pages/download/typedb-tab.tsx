@@ -1,13 +1,13 @@
 import React, {useEffect, useState} from "react";
-import {vaticleStyles} from "../../common/styles/vaticle-styles";
-import {downloadPageProductStyles} from "./download-styles";
 import moment from "moment";
+import {ComparisonBlockItem, DistributionBlock} from "./distribution-block";
 import {useTypeDBVersion} from "../../state/typedb-version";
-import clsx from "clsx";
-import {urls} from "../../common/urls";
 import {VaticleSelect} from "../../common/select/select";
 import {VaticleButton} from "../../common/button/button";
-import {ComparisonBlockItem, DistributionBlock} from "./distribution-block";
+import clsx from "clsx";
+import {urls} from "../../common/urls";
+import {vaticleStyles} from "../../common/styles/vaticle-styles";
+import {downloadPageProductStyles} from "./download-styles";
 
 export const TypeDBTab: React.FC = () => {
     const items: [ComparisonBlockItem, ComparisonBlockItem] = [{
@@ -25,7 +25,7 @@ type OS = "macOS" | "Linux" | "Windows";
 type TypeDBVersion = "2.2.0" | "2.1.3" | "2.1.1" | "2.0.2" | "2.0.1" | "2.0.0";
 
 type NativeDownloads = { [version in TypeDBVersion]: string }
-type Downloads = {[os in OS]: NativeDownloads}
+type Downloads = { [os in OS]: NativeDownloads }
 
 const OpenSourcePane: React.FC = () => {
     const classes = Object.assign({}, vaticleStyles(), downloadPageProductStyles());
@@ -64,7 +64,7 @@ const OpenSourcePane: React.FC = () => {
 
     const defaultOS = "macOS" as OS;
     const latestVersion = Object.keys(downloads[defaultOS])[0] as TypeDBVersion;
-    const [selectedOS, setSelectedOS] = useState<keyof Downloads>();
+    const [selectedOS, setSelectedOS] = useState<keyof Downloads>(defaultOS);
     const [selectedVersion, setSelectedVersion] = useState(latestVersion);
     const [downloadURL, setDownloadURL] = useState(downloads[defaultOS][latestVersion]);
 
@@ -111,11 +111,7 @@ const OpenSourcePane: React.FC = () => {
                 </VaticleSelect>
                 <VaticleSelect label="Version" value={selectedVersion} setValue={setSelectedVersion} inputName="version"
                                inputID="typedb-version" variant="outlined">
-                    <option value="2.1.3">2.1.3</option>
-                    <option value="2.1.1">2.1.1</option>
-                    <option value="2.0.2">2.0.2</option>
-                    <option value="2.0.1">2.0.1</option>
-                    <option value="2.0.0">2.0.0</option>
+                    {Object.keys(downloads[selectedOS]).map(version => <option value={version}>{version}</option>)}
                 </VaticleSelect>
             </div>
 
