@@ -1,5 +1,6 @@
 import { makeStyles } from '@material-ui/core';
 import { vaticleTheme } from "../styles/theme";
+import { buttonPalette } from "../button/button-styles";
 
 export const headerHeight = 80;
 const footerHeight = 65;
@@ -14,6 +15,26 @@ export const defaultLayoutStyles = makeStyles({
         margin: `${headerHeight}px auto 0`,
         width: '100%',
         textAlign: 'center',
+    },
+
+    cookieConsentButton: {
+        margin: "15px !important",
+        height: 40,
+        border: `1px solid ${buttonPalette.secondary.border} !important`,
+        borderRadius: "5px !important",
+        backgroundColor: `${buttonPalette.secondary.background} !important`,
+        fontFamily: "Titillium Web",
+        fontSize: 16,
+        fontWeight: 600,
+        lineHeight: "24px",
+        color: `${buttonPalette.secondary.label} !important`,
+        transition: "background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,border 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms",
+
+        "&:hover": {
+            color: `${buttonPalette.secondary.hoverLabel} !important`,
+            backgroundColor: `${buttonPalette.secondary.hoverBackground} !important`,
+            borderColor: `${buttonPalette.secondary.hoverBorder} !important`,
+        },
     },
 
     underDevelopmentRibbon: {

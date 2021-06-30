@@ -7,9 +7,12 @@ import { ContactForm } from "../../pages/contact/contact-form";
 import { VaticleDialog } from "../dialog/dialog";
 import { useLocation } from "react-router-dom";
 import { getSearchParam } from "../util/search-params";
+import CookieConsent from "react-cookie-consent";
+import { VaticleLink } from "../link/link";
+import { routes } from "../../pages/router";
 
 export const DefaultLayout: React.FC = ({ children }) => {
-    const ownClasses = Object.assign({}, vaticleStyles(), defaultLayoutStyles());
+    const classes = Object.assign({}, vaticleStyles(), defaultLayoutStyles());
 
     const [contactFormDialogOpen, setContactFormDialogOpen] = useState(false);
     const routerLocation = useLocation();
@@ -22,12 +25,19 @@ export const DefaultLayout: React.FC = ({ children }) => {
         <>
             <PageHeader/>
             {/*<div className={ownClasses.underDevelopmentRibbon}>site under development</div>*/}
-            <main className={ownClasses.main}>
+            <main className={classes.main}>
                 <article>
                     {children}
                 </article>
             </main>
             <PageFooter/>
+
+            <CookieConsent buttonClasses={classes.cookieConsentButton}>
+                <p>
+                    We use cookies to improve the user experience on our website. If you want to know more about it,
+                    you can read our <VaticleLink to={routes.privacyPolicy}>privacy policy</VaticleLink>.
+                </p>
+            </CookieConsent>
 
             <VaticleDialog open={contactFormDialogOpen} setOpen={setContactFormDialogOpen}>
                 <ContactForm/>
