@@ -18,13 +18,10 @@ import {VaticleButton} from "../../common/button/button";
 import {FeatureBlock} from "../feature/feature-block";
 import {TypeQLExample} from "../feature/typeql-example";
 import {PolyglotExample} from "../../common/code/polyglot-example";
+import { homePageTypeDBStyles } from "./home-styles";
 
-interface TypeDBSectionProps extends ClassProps {
-    typeDBVersion: string;
-}
-
-export const TypeDBSection: React.FC<TypeDBSectionProps> = ({className, typeDBVersion}) => {
-    const classes = Object.assign({}, vaticleStyles());
+export const TypeDBSection: React.FC<ClassProps> = ({className}) => {
+    const classes = Object.assign({}, vaticleStyles(), homePageTypeDBStyles());
 
     return (
         <section className={className}>
@@ -71,7 +68,7 @@ export const TypeDBSection: React.FC<TypeDBSectionProps> = ({className, typeDBVe
                 <PolyglotExample id="simple-stateful-api" sources={simpleStatefulAPIExample}/>
             </FeatureBlock>
 
-            <div className={clsx(classes.mainActionList, classes.subsectionMargin)}>
+            <div className={clsx(classes.mainActionList, classes.actions)}>
                 <VaticleButton className={classes.hideMobile} size="small" type="secondary" to={routes.typeDB.page}>Learn More</VaticleButton>
                 <VaticleButton size="small" type="primary" href={urls.github.typedb} target="_blank">Fork/Star on
                     GitHub</VaticleButton>

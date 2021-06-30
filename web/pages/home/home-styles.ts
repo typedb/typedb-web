@@ -1,5 +1,6 @@
 import {makeStyles} from '@material-ui/core/styles';
 import {vaticleTheme} from "../../common/styles/theme";
+import { standardMargins } from "../../common/styles/vaticle-styles";
 
 export const vaticleGalaxyStyles = makeStyles({
     root: {
@@ -330,6 +331,16 @@ export const homePageIndustryStyles = makeStyles({
 
         "@media(max-width: 767px)": {
             display: "none !important",
+        },
+    },
+});
+
+export const homePageTypeDBStyles = makeStyles({
+    actions: {
+        marginTop: standardMargins.subsection.desktop,
+
+        "@media(max-width: 767px)": {
+            marginTop: standardMargins.content.mobile,
         },
     },
 });

@@ -1,6 +1,5 @@
 import React from "react";
 import clsx from "clsx";
-import VaticleWorld from "../../assets/graphics/vaticle-world.svg";
 import {homePageStyles} from "./home-styles";
 import {faDiscord, faGithub, faTwitter} from "@fortawesome/free-brands-svg-icons";
 import {vaticleStyles} from "../../common/styles/vaticle-styles";
@@ -65,7 +64,7 @@ export const HomePage: React.FC = () => {
 
             <UserLogosSection className={classes.sectionMargin}/>
 
-            <TypeDBSection className={classes.sectionMargin} typeDBVersion={typeDBVersion}/>
+            <TypeDBSection className={classes.sectionMargin}/>
 
             <UseCaseSection className={classes.sectionMargin}/>
 
