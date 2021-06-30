@@ -1,4 +1,5 @@
 import {makeStyles} from "@material-ui/core";
+import { standardMargins } from "../../common/styles/vaticle-styles";
 
 export const featureStyles = makeStyles({
     diagramAndCaption: {
@@ -34,7 +35,11 @@ export const featureStyles = makeStyles({
         },
 
         "@media (min-width: 768px) and (max-width: 1199px)": {
-            marginTop: 8,
+            marginTop: standardMargins.content.desktop,
+        },
+
+        "@media(max-width: 767px)": {
+            marginTop: standardMargins.content.mobile,
         },
     },
 
@@ -44,7 +49,11 @@ export const featureStyles = makeStyles({
         },
 
         "@media (min-width: 768px) and (max-width: 1199px)": {
-            marginTop: 8,
+            marginTop: standardMargins.content.desktop,
+        },
+
+        "@media(max-width: 767px)": {
+            marginTop: standardMargins.content.mobile,
         },
     },
 

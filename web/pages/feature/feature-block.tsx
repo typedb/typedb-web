@@ -29,7 +29,7 @@ export const FeatureBlock: React.FC<FeatureBlockProps> = ({className, id, title,
             {children}
             <div className={examplePosition === "left" ? classes.diagramCaptionSpacingLeft : classes.diagramCaptionSpacingRight}>
                 <h2 className={clsx(classes.h2, classes.showDesktop)}>{title}</h2>
-                <p className={clsx(classes.mediumText, classes.textMarginLarge)}>{body}</p>
+                <p className={classes.mediumText}>{body}</p>
                 {button && <VaticleButton {...buttonProps} className={clsx(classes.learnMore, classes.showDesktop, classes.contentMargin)}>{button.text}</VaticleButton>}
             </div>
             {button && <VaticleButton {...buttonProps} className={clsx(classes.learnMore, classes.hideDesktop, classes.contentMargin)}>{button.text}</VaticleButton>}

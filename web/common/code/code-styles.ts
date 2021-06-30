@@ -11,13 +11,9 @@ export const codeStyles = makeStyles({
         display: "flex",
         flexDirection: "column",
 
-        "@media (min-width: 768px) and (max-width: 1199px)": {
-            marginTop: 20,
-        },
-
         "@media(max-width: 767px)": {
             transform: "scale(.54)",
-            marginTop: -86, // (1 - scale) * height / 2 + 8px
+            marginTop: -94, // (1 - scale) * height / 2
             marginBottom: -94,
         },
     },

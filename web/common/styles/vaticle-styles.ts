@@ -1,36 +1,58 @@
 import { makeStyles } from '@material-ui/core/styles';
 import { vaticleTheme } from "./theme";
 
+export const standardMargins = {
+    firstSection: {
+        desktop: 180,
+        mobile: 140,
+    },
+
+    section: {
+        desktop: 160,
+        mobile: 120,
+    },
+
+    subsection: {
+        desktop: 80,
+        mobile: 60,
+    },
+
+    content: {
+        desktop: 40,
+        mobile: 30,
+    },
+}
+
 export const vaticleStyles = makeStyles({
     firstSection: {
-        marginTop: 180,
+        marginTop: standardMargins.firstSection.desktop,
 
         "@media(max-width: 767px)": {
-            marginTop: 140,
+            marginTop: standardMargins.firstSection.mobile,
         },
     },
 
     sectionMargin: {
-        marginTop: 160,
+        marginTop: standardMargins.section.desktop,
 
         "@media(max-width: 767px)": {
-            marginTop: 120,
+            marginTop: standardMargins.section.mobile,
         },
     },
 
     subsectionMargin: {
-        marginTop: 80,
+        marginTop: standardMargins.subsection.desktop,
 
         "@media(max-width: 767px)": {
-            marginTop: 60,
+            marginTop: standardMargins.subsection.mobile,
         },
     },
 
     contentMargin: {
-        marginTop: 40,
+        marginTop: standardMargins.content.desktop,
 
         "@media(max-width: 767px)": {
-            marginTop: 30,
+            marginTop: standardMargins.content.mobile,
         },
     },
 

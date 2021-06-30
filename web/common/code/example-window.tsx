@@ -7,7 +7,15 @@ import BranchIcon from "../assets/graphics/branch.svg";
 import FetchIcon from "../assets/graphics/fetch.svg";
 import clsx from "clsx";
 
-export const ExampleWindow: React.FC = ({ children }) => <div className={codeStyles().windowContainer}>{children}</div>;
+export const ExampleWindow: React.FC = ({ children }) => {
+    const classes = Object.assign({}, vaticleStyles(), codeStyles());
+
+    return (
+        <div className={classes.contentMargin}>
+            <div className={codeStyles().windowContainer}>{children}</div>
+        </div>
+    );
+}
 
 export const ExampleWindowHeader: React.FC = () => <div className={codeStyles().windowHeader}><MacOSWindow/></div>;
 

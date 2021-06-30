@@ -1,5 +1,6 @@
 import {makeStyles} from '@material-ui/core/styles';
 import {vaticleTheme} from "../../common/styles/theme";
+import { standardMargins } from "../../common/styles/vaticle-styles";
 
 export const downloadPageStyles = makeStyles({
     contactFormContainer: {
@@ -79,10 +80,10 @@ export const downloadPageProductStyles = makeStyles({
     comparisonBlock: {
         width: "100%",
         display: "flex",
-        marginTop: 80,
+        marginTop: standardMargins.subsection.desktop,
 
         "@media(max-width: 767px)": {
-            marginTop: 60,
+            marginTop: standardMargins.subsection.mobile,
             flexDirection: "column",
         },
     },
