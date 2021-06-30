@@ -4,7 +4,13 @@ import { vaticleTheme } from "../styles/theme";
 const borderBlack = vaticleTheme.palette.purple["1"];
 
 export const codeStyles = makeStyles({
-    windowContainer: {
+    window: {
+        "@media(max-width: 767px)": {
+            transform: "scale(.54)",
+        },
+    },
+
+    windowContent: {
         width: 660,
         height: 413,
         flexShrink: 0,
@@ -12,8 +18,7 @@ export const codeStyles = makeStyles({
         flexDirection: "column",
 
         "@media(max-width: 767px)": {
-            transform: "scale(.54)",
-            marginTop: -94, // (1 - scale) * height / 2
+            marginTop: -94, // (1 - window scale) * height / 2
             marginBottom: -94,
         },
     },

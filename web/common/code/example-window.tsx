@@ -11,8 +11,8 @@ export const ExampleWindow: React.FC = ({ children }) => {
     const classes = Object.assign({}, vaticleStyles(), codeStyles());
 
     return (
-        <div className={classes.contentMargin}>
-            <div className={codeStyles().windowContainer}>{children}</div>
+        <div className={clsx(classes.window, classes.contentMargin)}>
+            <div className={classes.windowContent}>{children}</div>
         </div>
     );
 }
