@@ -90,7 +90,7 @@ export const PageFooter: React.FC = () => {
                                 <h3 className={classes.h3}>Company</h3>
                                 <ul className={classes.linkBlockList}>
                                     <FooterLink href={urls.blog} target="_blank">Blog</FooterLink>
-                                    <FooterLink href={routes.privacyPolicy}>Privacy Policy</FooterLink>
+                                    <FooterLink to={routes.privacyPolicy}>Privacy Policy</FooterLink>
                                 </ul>
                             </div>
                         </div>
