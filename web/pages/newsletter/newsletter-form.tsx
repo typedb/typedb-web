@@ -41,9 +41,9 @@ export const NewsletterForm: React.FC<ClassProps> = ({className}) => {
                      successMessage="Your email has been signed up to our newsletter."
                      errorMessage="Failed to process signup, please try again later.">
             <div className={clsx(classes.formRow, classes.newsletterFormRow)}>
-                <VaticleTextField value={firstName} setValue={setFirstName} label="First Name" required/>
-                <VaticleTextField value={lastName} setValue={setLastName} label="Last Name" required/>
-                <VaticleTextField value={email} setValue={setEmail} label="Email" type="email" required/>
+                <VaticleTextField name="first-name" autocomplete="given-name" value={firstName} setValue={setFirstName} label="First Name" required/>
+                <VaticleTextField name="last-name" autocomplete="family-name" value={lastName} setValue={setLastName} label="Last Name" required/>
+                <VaticleTextField name="email" autocomplete="email" value={email} setValue={setEmail} label="Email" type="email" required/>
             </div>
         </VaticleForm>
     );

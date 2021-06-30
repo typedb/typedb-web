@@ -70,13 +70,13 @@ export const ContactForm: React.FC<ClassProps> = ({className}) => {
         <VaticleForm classes={{root: className}} id="contact-form" submitText="Get in touch" onSubmit={submit}
                      successMessage="Your message has been sent." errorMessage="Your message failed to send, please try again later.">
             <div className={classes.formRow}>
-                <VaticleTextField value={firstName} setValue={setFirstName} label="First Name" required/>
-                <VaticleTextField value={lastName} setValue={setLastName} label="Last Name" required/>
+                <VaticleTextField name="first-name" autocomplete="given-name" value={firstName} setValue={setFirstName} label="First Name" required/>
+                <VaticleTextField name="last-name" autocomplete="family-name" value={lastName} setValue={setLastName} label="Last Name" required/>
             </div>
 
             <div className={classes.formRow}>
-                <VaticleTextField value={email} setValue={setEmail} label="Work Email" type="email" required/>
-                <VaticleTextField value={companyName} setValue={setCompanyName} label="Company Name" required/>
+                <VaticleTextField name="email" autocomplete="email" value={email} setValue={setEmail} label="Work Email" type="email" required/>
+                <VaticleTextField name="company-name" autocomplete="organization" value={companyName} setValue={setCompanyName} label="Company Name" required/>
             </div>
 
             <div className={classes.formRow}>
@@ -122,8 +122,7 @@ export const ContactForm: React.FC<ClassProps> = ({className}) => {
                     </div>
                 </div>
 
-                <VaticleTextField value={tellUsMore} setValue={setTellUsMore}
-                                  label="Tell us more about how we can help" multiline/>
+                <VaticleTextField name="query" value={tellUsMore} setValue={setTellUsMore} label="Tell us more about how we can help" multiline/>
             </div>
         </VaticleForm>
     );
