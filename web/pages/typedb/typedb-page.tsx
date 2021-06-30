@@ -13,14 +13,20 @@ import {typeDBStyles} from "./typedb-styles";
 import {entityRelationshipExampleCode, entityRelationshipExampleGraph} from "./examples/entity-relationship-example";
 import {typeHierarchyExampleCode, typeHierarchyExampleGraph} from "./examples/type-hierarchy-example";
 import {ternaryRelationsExampleCode, ternaryRelationsExampleGraph} from "./examples/ternary-relations-example";
-import {logicalQueryValidationExampleCode, logicalQueryValidationExampleGraph} from "./examples/logical-query-validation-example";
+import {
+    logicalQueryValidationExampleCode,
+    logicalQueryValidationExampleGraph
+} from "./examples/logical-query-validation-example";
 import {simpleStatefulAPIExample} from "./examples/simple-stateful-api-example";
 import {nestedRelationsExampleCode, nestedRelationsExampleGraph} from "./examples/nested-relations-example";
-import {logicalDataValidationExampleCode, logicalDataValidationExampleGraph} from "./examples/logical-data-validation-example";
+import {
+    logicalDataValidationExampleCode,
+    logicalDataValidationExampleGraph
+} from "./examples/logical-data-validation-example";
 import {inferenceExampleCode, inferenceExampleGraph} from "./examples/inference-example";
 import {rulesExampleCode, rulesExampleGraph} from "./examples/rules-example";
 import {acidTransactionsExampleCode} from "./examples/acid-transactions-example";
-import { ConsoleExample } from "../../common/code/console-example";
+import {ConsoleExample} from "../../common/code/console-example";
 
 export const TypeDBPage: React.FC = () => {
     const classes = Object.assign({}, vaticleStyles(), typeDBStyles());
@@ -37,8 +43,11 @@ export const TypeDBPage: React.FC = () => {
                     tackle
                     complex problems, and TypeQL is its query language.
                 </p>
+            </section>
 
-                <hr className={clsx(classes.subsectionMargin, classes.shortDivider)}/>
+            <section className={clsx(classes.mainActionList, classes.subsectionMargin)}>
+                <VaticleButton size="small" type="primary" href={urls.github.typedb} target="_blank">Fork/Star on GitHub</VaticleButton>
+                <VaticleButton size="small" type="secondary" to={routes.typeDBCluster.page}>TypeDB Cluster</VaticleButton>
             </section>
 
             <section id="expressivity" className={classes.subsectionMargin}>
@@ -92,7 +101,8 @@ export const TypeDBPage: React.FC = () => {
                 <h2 className={classes.h2}>A higher degree of safety</h2>
                 <p className={classes.largeText}>
                     Types provide a way to describe the logical structures of your data, allowing TypeDB to validate
-                    that your code inserts and queries data correctly. Query validation goes beyond static type checking,
+                    that your code inserts and queries data correctly. Query validation goes beyond static type
+                    checking,
                     and includes logical validations of meaningless queries. With strict type-checking errors, you have
                     a dataset that you can trust.
                 </p>
@@ -173,10 +183,10 @@ export const TypeDBPage: React.FC = () => {
             </section>
 
             <section className={clsx(classes.mainActionList, classes.subsectionMargin)}>
-                <VaticleButton size="small" type="primary" to={routes.download}>Download
-                    TypeDB {typeDBVersion}</VaticleButton>
                 <VaticleButton size="small" type="primary" href={urls.github.typedb} target="_blank">Fork/Star on
                     GitHub</VaticleButton>
+                <VaticleButton size="small" type="secondary" to={routes.download}>Download
+                    TypeDB {typeDBVersion}</VaticleButton>
             </section>
 
             <section id="scale" className={classes.sectionMargin}>
@@ -188,7 +198,8 @@ export const TypeDBPage: React.FC = () => {
                 </p>
 
                 <div className={clsx(classes.mainActionList, classes.contentMargin)}>
-                    <VaticleButton size="small" type="secondary" to={routes.typeDBCluster.page}>Learn More</VaticleButton>
+                    <VaticleButton size="small" type="secondary" to={routes.typeDBCluster.page}>Learn
+                        More</VaticleButton>
                 </div>
             </section>
         </DefaultLayout>
