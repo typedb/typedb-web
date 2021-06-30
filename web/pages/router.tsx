@@ -83,9 +83,10 @@ const VaticleRoute: React.FC<VaticleRouteProps> = props => {
             setTypeDBVersion(version);
         });
 
-        const hubspot = window._hsq = window._hsq || [];
-        hubspot.push(["setPath", routerLocation.pathname]);
-        hubspot.push(["trackPageView"]);
+        // HubSpot tracking code
+        if (!window._hsq?.length) window._hsq = [];
+        window._hsq.push(["setPath", routerLocation.pathname]);
+        window._hsq.push(["trackPageView"]);
     });
 
     useLayoutEffect(() => {
