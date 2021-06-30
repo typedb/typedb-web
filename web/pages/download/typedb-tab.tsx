@@ -105,9 +105,7 @@ const OpenSourcePane: React.FC = () => {
                 className={clsx(classes.comparisonBlockContent, classes.mediumText, classes.textMarginLarge, classes.selectGroup)}>
                 <VaticleSelect label="Operating System" value={selectedOS} setValue={setSelectedOS} inputName="os"
                                inputID="typedb-os" variant="outlined">
-                    <option value="Linux">Linux</option>
-                    <option value="macOS">macOS</option>
-                    <option value="Windows">Windows</option>
+                    {Object.keys(downloads).map(os => <option value={os}>{os}</option>)}
                 </VaticleSelect>
                 <VaticleSelect label="Version" value={selectedVersion} setValue={setSelectedVersion} inputName="version"
                                inputID="typedb-version" variant="outlined">
