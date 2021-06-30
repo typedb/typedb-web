@@ -10,6 +10,12 @@ export const typeQLVisualiserStyles = makeStyles({
         right: 0,
         backgroundColor: vaticleTheme.palette.purple["1"],
         zIndex: 25,
+
+        "& canvas": {
+            "@media(max-width: 767px)": {
+                pointerEvents: "none",
+            },
+        },
     },
 });
 
