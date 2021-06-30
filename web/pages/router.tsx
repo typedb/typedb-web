@@ -10,6 +10,12 @@ import {TypeDBPage} from "./typedb/typedb-page";
 import {Vaticle404Page} from "./error/404-page";
 import {TypeDBClusterPage} from "./typedbcluster/typedb-cluster-page";
 
+declare global {
+    interface Window {
+        _hsq: any[];
+    }
+}
+
 export const routes = {
     download: "/download",
     home: "/",
@@ -67,8 +73,19 @@ const VaticleRoute: React.FC<VaticleRouteProps> = props => {
 
     // All effects placed here will be executed on every route change
 
+    // TODO: While this is technically the optimal way to use a `useState`-like object, it is hardly intuitive
+    const setTypeDBVersion = useTypeDBVersion()[1];
+
     useEffect(() => {
         document.title = `Vaticle | ${props.title}`;
+
+        getTypeDBVersion().then(version => {
+            setTypeDBVersion(version);
+        });
+
+        const hubspot = window._hsq = window._hsq || [];
+        hubspot.push(["setPath", routerLocation.pathname]);
+        hubspot.push(["trackPageView"]);
     });
 
     useLayoutEffect(() => {
@@ -92,14 +109,6 @@ const VaticleRoute: React.FC<VaticleRouteProps> = props => {
         } else {
             window.scrollTo(0, 0);
         }
-    });
-
-    // TODO: While this is technically the optimal way to use a `useState`-like object, it is hardly intuitive
-    const setTypeDBVersion = useTypeDBVersion()[1];
-    useEffect(() => {
-        getTypeDBVersion().then(version => {
-            setTypeDBVersion(version);
-        });
     });
 
     const {title, ...rest} = props;
