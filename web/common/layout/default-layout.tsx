@@ -33,7 +33,7 @@ export const DefaultLayout: React.FC = ({ children }) => {
             <PageFooter/>
 
             <CookieConsent buttonClasses={classes.cookieConsentButton}>
-                <p>
+                <p className={classes.mediumText}>
                     We use cookies to improve the user experience on our website. If you want to know more about it,
                     you can read our <VaticleLink to={routes.privacyPolicy}>privacy policy</VaticleLink>.
                 </p>
