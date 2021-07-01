@@ -13,9 +13,10 @@ import { formStyles } from "../../common/form/form-styles";
 
 interface ContactFormProps extends ClassProps {
     id: string;
+    onSubmitDone: (res: Response) => any;
 }
 
-export const ContactForm: React.FC<ContactFormProps> = ({className, id}) => {
+export const ContactForm: React.FC<ContactFormProps> = ({className, id, onSubmitDone}) => {
     const classes = Object.assign({}, vaticleStyles(), formStyles(), contactFormStyles());
 
     const [firstName, setFirstName] = useState("");
@@ -36,7 +37,7 @@ export const ContactForm: React.FC<ContactFormProps> = ({className, id}) => {
 
     const [tellUsMore, setTellUsMore] = useState("");
 
-    const submit = () => {
+    const submit = async () => {
         const supportRequestMultiCheckbox = Object.keys(selectedHelpTopics)
             .filter(topic => selectedHelpTopics[topic])
             .map(topic => topic.toLowerCase().replace("&", "and"))
@@ -47,7 +48,7 @@ export const ContactForm: React.FC<ContactFormProps> = ({className, id}) => {
                 };
             });
 
-        return fetch(new Request(urls.hubspot.contactForm, {
+        const res = await fetch(new Request(urls.hubspot.contactForm, {
             method: "POST",
             headers: {
                 "Accept": "application/json",
@@ -68,11 +69,13 @@ export const ContactForm: React.FC<ContactFormProps> = ({className, id}) => {
                 },
             }),
         }));
+
+        onSubmitDone(res);
+        return res;
     };
 
     return (
-        <VaticleForm classes={{root: className}} id={id} submitText="Get in touch" onSubmit={submit}
-                     successMessage="Your message has been sent." errorMessage="Your message failed to send, please try again later.">
+        <VaticleForm classes={{root: className}} id={id} submitText="Get in touch" onSubmit={submit}>
             <div className={classes.formRow}>
                 <VaticleTextField name="first-name" autocomplete="given-name" value={firstName} setValue={setFirstName} label="First Name" required/>
                 <VaticleTextField name="last-name" autocomplete="family-name" value={lastName} setValue={setLastName} label="Last Name" required/>

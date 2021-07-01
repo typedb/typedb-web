@@ -12,8 +12,6 @@ interface FormProps {
     id: string;
     submitText: string;
     onSubmit: () => Promise<Response>;
-    successMessage: string;
-    errorMessage: string;
 }
 
 interface FormClasses {
@@ -21,21 +19,15 @@ interface FormClasses {
     form?: string;
 }
 
-export const VaticleForm: React.FC<FormProps> = ({classes, children, id, submitText, onSubmit, successMessage, errorMessage}) => {
+export const VaticleForm: React.FC<FormProps> = ({classes, children, id, submitText, onSubmit}) => {
     const ownClasses = Object.assign({}, vaticleStyles(), formStyles());
-
-    const [confirmationSnackbarOpen, setConfirmationSnackbarOpen] = useState(false);
-    const [errorSnackbarOpen, setErrorSnackbarOpen] = useState(false);
 
     const submit = () => {
         const form = document.getElementById(id) as HTMLFormElement;
         const isValid = form.reportValidity();
         if (!isValid) return;
 
-        onSubmit().then((res) => {
-            if (res.ok) setConfirmationSnackbarOpen(true);
-            else setErrorSnackbarOpen(true);
-        }).catch((err) => {
+        onSubmit().catch((err) => {
             console.error(err);
         });
     };
@@ -53,9 +45,6 @@ export const VaticleForm: React.FC<FormProps> = ({classes, children, id, submitT
                     consent to emails from Vaticle. See our <Link to={routes.privacyPolicy}>Privacy Policy</Link>.
                 </aside>
             </form>
-
-            <VaticleSnackbar variant="success" message={successMessage} open={confirmationSnackbarOpen} setOpen={setConfirmationSnackbarOpen}/>
-            <VaticleSnackbar variant="error" message={errorMessage} open={errorSnackbarOpen} setOpen={setErrorSnackbarOpen}/>
         </div>
     );
 }

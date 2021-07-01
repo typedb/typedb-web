@@ -7,23 +7,36 @@ import { VaticleButton } from "../button/button";
 import { faMapMarkerAlt, faPhoneAlt } from "@fortawesome/pro-solid-svg-icons";
 import { vaticleStyles } from "../styles/vaticle-styles";
 import { urls } from "../urls";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useHistory, useLocation } from "react-router-dom";
 import { routes } from "../../pages/router";
 import { VaticleDialog } from "../dialog/dialog";
 import { NewsletterForm } from "../../pages/newsletter/newsletter-form";
-import { getSearchParam } from "../util/search-params";
+import { deleteSearchParam, getSearchParam } from "../util/search-params";
+import { VaticleSnackbar } from "../snackbar/snackbar";
 
 // TODO: The routes used in this Footer must be parameterised. Otherwise, it depends on pages, which is not allowed.
 export const PageFooter: React.FC = () => {
     const classes = Object.assign({}, vaticleStyles(), pageFooterStyles());
 
     const [newsletterFormOpen, setNewsletterFormOpen] = useState(false);
+    const [newsletterSuccessSnackbarOpen, setNewsletterSuccessSnackbarOpen] = useState(false);
+    const [newsletterErrorSnackbarOpen, setNewsletterErrorSnackbarOpen] = useState(false);
 
+    const routerHistory = useHistory();
     const routerLocation = useLocation();
 
     useLayoutEffect(() => {
         setNewsletterFormOpen(getSearchParam("dialog") === "newsletter");
     }, [routerLocation.search]);
+
+    const onNewsletterFormSubmitDone = (res: Response) => {
+        if (res.ok) {
+            deleteSearchParam(routerHistory, routerLocation, "dialog");
+            setNewsletterSuccessSnackbarOpen(true);
+        } else {
+            setNewsletterErrorSnackbarOpen(true);
+        }
+    };
 
     return (
         <footer className={clsx(classes.root, classes.sectionMargin)}>
@@ -99,8 +112,10 @@ export const PageFooter: React.FC = () => {
             </div>
 
             <VaticleDialog open={newsletterFormOpen} setOpen={setNewsletterFormOpen}>
-                <NewsletterForm/>
+                <NewsletterForm onSubmitDone={onNewsletterFormSubmitDone}/>
             </VaticleDialog>
+            <VaticleSnackbar variant="success" message="Your email has been signed up to our newsletter." open={newsletterSuccessSnackbarOpen} setOpen={setNewsletterSuccessSnackbarOpen}/>
+            <VaticleSnackbar variant="error" message="Failed to process signup, please try again later." open={newsletterErrorSnackbarOpen} setOpen={setNewsletterErrorSnackbarOpen}/>
         </footer>
     );
 };
