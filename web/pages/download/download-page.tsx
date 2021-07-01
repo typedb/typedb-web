@@ -23,7 +23,7 @@ export const DownloadPage: React.FC = () => {
                 </p>
 
                 <div className={classes.contactFormContainer}>
-                    <ContactForm className={classes.subsectionMargin}/>
+                    <ContactForm id="contact-form-download-page" className={classes.subsectionMargin}/>
                 </div>
             </section>
         </DefaultLayout>

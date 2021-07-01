@@ -40,7 +40,7 @@ export const DefaultLayout: React.FC = ({ children }) => {
             </CookieConsent>
 
             <VaticleDialog open={contactFormDialogOpen} setOpen={setContactFormDialogOpen}>
-                <ContactForm/>
+                <ContactForm id="contact-form-popup"/>
             </VaticleDialog>
         </>
     );

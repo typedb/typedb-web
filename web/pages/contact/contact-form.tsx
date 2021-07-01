@@ -11,7 +11,11 @@ import {urls} from "../../common/urls";
 import { FormOption, VaticleForm } from "../../common/form/form";
 import { formStyles } from "../../common/form/form-styles";
 
-export const ContactForm: React.FC<ClassProps> = ({className}) => {
+interface ContactFormProps extends ClassProps {
+    id: string;
+}
+
+export const ContactForm: React.FC<ContactFormProps> = ({className, id}) => {
     const classes = Object.assign({}, vaticleStyles(), formStyles(), contactFormStyles());
 
     const [firstName, setFirstName] = useState("");
@@ -67,7 +71,7 @@ export const ContactForm: React.FC<ClassProps> = ({className}) => {
     };
 
     return (
-        <VaticleForm classes={{root: className}} id="contact-form" submitText="Get in touch" onSubmit={submit}
+        <VaticleForm classes={{root: className}} id={id} submitText="Get in touch" onSubmit={submit}
                      successMessage="Your message has been sent." errorMessage="Your message failed to send, please try again later.">
             <div className={classes.formRow}>
                 <VaticleTextField name="first-name" autocomplete="given-name" value={firstName} setValue={setFirstName} label="First Name" required/>
