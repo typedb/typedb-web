@@ -18,7 +18,7 @@ export const DownloadPage: React.FC = () => {
 
             <section className={classes.subsectionMargin}>
                 <h1 id="get-in-touch" className={clsx(classes.h1, classes.pageAnchor)}>Get in touch about TypeDB</h1>
-                <p className={clsx(classes.sectionCaption)}>
+                <p className={clsx(classes.sectionIntro)}>
                     Let us know how we can help you and we'll help you get up to speed.
                 </p>
 

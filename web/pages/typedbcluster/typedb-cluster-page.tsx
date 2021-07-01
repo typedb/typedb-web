@@ -24,7 +24,7 @@ export const TypeDBClusterPage: React.FC = () => {
             <section className={classes.firstSectionMargin}>
                 <h1 className={clsx(classes.intro, classes.h1)}>Scale your database with TypeDB Cluster</h1>
                 <h1 className={clsx(classes.introMobile, classes.h1)}>Scale your database with<br/>TypeDB Cluster</h1>
-                <p className={classes.headlineText}>
+                <p className={classes.sectionIntro}>
                     TypeDB Cluster is the distributed database designed to scale with your organisation. Whether you
                     have a growing dataset, application workload, or user requests, TypeDB Cluster will provide the
                     functionalities needed to take you from development to production and scale.
@@ -87,7 +87,7 @@ export const TypeDBClusterPage: React.FC = () => {
             </section>
             <section id="deploy" className={classes.sectionMargin}>
                 <h1 className={classes.h1}>Deploy TypeDB Cluster in the Cloud or On-Premise</h1>
-                <p className={classes.sectionCaption} style={{maxWidth: 750}}>
+                <p className={classes.sectionIntro}>
                     You can easily deploy TypeDB Cluster on Google Cloud Platform, Amazon Web Services, or Microsoft
                     Azure, through each respective marketplaces, or you can deploy TypeDB Cluster in your own
                     computing environment.

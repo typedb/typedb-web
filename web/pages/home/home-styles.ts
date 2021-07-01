@@ -1,6 +1,6 @@
 import {makeStyles} from '@material-ui/core/styles';
 import {vaticleTheme} from "../../common/styles/theme";
-import { standardMargins, standardTextStyles } from "../../common/styles/vaticle-styles";
+import { sectionIntroMaxWidth, standardMargins, standardTextStyles } from "../../common/styles/vaticle-styles";
 
 export const vaticleGalaxyStyles = makeStyles({
     root: {
@@ -238,7 +238,7 @@ export const corporateLogosStyles = makeStyles({
 export const homePageIndustryStyles = makeStyles({
     industryDescription: {
         ...standardTextStyles.desktop,
-        maxWidth: 800,
+        maxWidth: sectionIntroMaxWidth,
         margin: "0 auto",
         height: parseInt(standardTextStyles.desktop.lineHeight) * 3,
         marginTop: standardMargins.text.desktop,

@@ -41,6 +41,8 @@ export const standardTextStyles = {
     },
 }
 
+export const sectionIntroMaxWidth = 800;
+
 export const vaticleStyles = makeStyles({
     firstSectionMargin: {
         marginTop: standardMargins.firstSection.desktop,
@@ -111,9 +113,10 @@ export const vaticleStyles = makeStyles({
         },
     },
 
-    sectionCaption: {
+    sectionIntro: {
         margin: "0 auto",
         marginTop: standardMargins.text.desktop,
+        maxWidth: sectionIntroMaxWidth,
         ...standardTextStyles.desktop,
 
         "@media(max-width: 767px)": standardTextStyles.mobile,
