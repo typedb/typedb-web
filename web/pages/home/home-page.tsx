@@ -23,7 +23,7 @@ export const HomePage: React.FC = () => {
 
     return (
         <DefaultLayout>
-            <section className={classes.firstSection}>
+            <section className={classes.firstSectionMargin}>
                 <div className={classes.vaticleGalaxyContainer}>
                     <VaticleGalaxy/>
                 </div>
@@ -34,7 +34,7 @@ export const HomePage: React.FC = () => {
                     Introducing TypeDB:<br/>
                     a strongly-typed database
                 </h1>
-                <p className={clsx(classes.largeText, classes.typeDBIntroBody)}>
+                <p className={clsx(classes.headlineText, classes.typeDBIntroBody)}>
                     TypeDB is a database with a rich and logical type system. TypeDB empowers you to solve
                     complex problems, using TypeQL as its query language.
                 </p>

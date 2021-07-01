@@ -57,6 +57,12 @@ export const featureStyles = makeStyles({
         },
     },
 
+    body: {
+        "@media(min-width: 1200px)": {
+            marginTop: standardMargins.text.desktop,
+        },
+    },
+
     typeQLExample: {
         height: 360,
         position: "relative",

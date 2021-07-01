@@ -1,6 +1,6 @@
 import {makeStyles} from '@material-ui/core/styles';
 import {vaticleTheme} from "../../common/styles/theme";
-import { standardMargins } from "../../common/styles/vaticle-styles";
+import { standardMargins, standardTextStyles } from "../../common/styles/vaticle-styles";
 
 export const vaticleGalaxyStyles = makeStyles({
     root: {
@@ -83,7 +83,7 @@ export const homePageStyles = makeStyles({
     },
 
     typeDBIntroBody: {
-        maxWidth: "650px !important",
+        maxWidth: 650,
     },
 
     mainLinks: {
@@ -237,14 +237,20 @@ export const corporateLogosStyles = makeStyles({
 
 export const homePageIndustryStyles = makeStyles({
     industryDescription: {
-        height: 102,
+        ...standardTextStyles.desktop,
+        maxWidth: 800,
+        margin: "0 auto",
+        height: parseInt(standardTextStyles.desktop.lineHeight) * 3,
+        marginTop: standardMargins.text.desktop,
 
-        "@media(max-width: 900px)": {
-            height: 170,
+        "@media(max-width: 767px)": {
+            ...standardTextStyles.mobile,
+            marginTop: standardMargins.text.mobile,
+            height: parseInt(standardTextStyles.mobile.lineHeight) * 4,
         },
 
         "@media(max-width: 479px)": {
-            height: 252,
+            height: parseInt(standardTextStyles.mobile.lineHeight) * 7,
         },
     },
 
@@ -336,6 +342,10 @@ export const homePageIndustryStyles = makeStyles({
 });
 
 export const homePageTypeDBStyles = makeStyles({
+    intro: {
+        maxWidth: "850px !important",
+    },
+
     actions: {
         marginTop: standardMargins.subsection.desktop,
 

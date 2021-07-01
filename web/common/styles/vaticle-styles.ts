@@ -21,10 +21,28 @@ export const standardMargins = {
         desktop: 40,
         mobile: 30,
     },
+
+    text: {
+        desktop: 16,
+        mobile: 8,
+    },
+}
+
+export const standardTextStyles = {
+    desktop: {
+        fontSize: 16,
+        lineHeight: "28px",
+        fontWeight: 300,
+    },
+    mobile: {
+        fontSize: 14,
+        lineHeight: "23px",
+        fontWeight: 300,
+    },
 }
 
 export const vaticleStyles = makeStyles({
-    firstSection: {
+    firstSectionMargin: {
         marginTop: standardMargins.firstSection.desktop,
 
         "@media(max-width: 767px)": {
@@ -68,11 +86,11 @@ export const vaticleStyles = makeStyles({
 
     h6: vaticleTheme.h6,
 
-    textMarginLarge: {
-        marginTop: 16,
+    textMargin: {
+        marginTop: standardMargins.text.desktop,
 
         "@media(max-width: 767px)": {
-            marginTop: 8,
+            marginTop: standardMargins.text.mobile,
         },
     },
 
@@ -80,13 +98,12 @@ export const vaticleStyles = makeStyles({
         marginTop: 8,
     },
 
-    largeText: {
+    headlineText: {
         margin: '0 auto',
-        marginTop: 16,
+        marginTop: standardMargins.text.desktop,
         fontSize: 20,
         fontWeight: 300,
         lineHeight: '34px',
-        maxWidth: '960px',
 
         "@media(max-width: 767px)": {
             fontSize: 18,
@@ -94,15 +111,18 @@ export const vaticleStyles = makeStyles({
         },
     },
 
-    mediumText: {
-        fontSize: 16,
-        lineHeight: "28px",
-        fontWeight: 300,
+    sectionCaption: {
+        margin: "0 auto",
+        marginTop: standardMargins.text.desktop,
+        ...standardTextStyles.desktop,
 
-        "@media(max-width: 767px)": {
-            fontSize: 14,
-            lineHeight: "23px",
-        },
+        "@media(max-width: 767px)": standardTextStyles.mobile,
+    },
+
+    mediumText: {
+        ...standardTextStyles.desktop,
+
+        "@media(max-width: 767px)": standardTextStyles.mobile,
     },
 
     smallText: {

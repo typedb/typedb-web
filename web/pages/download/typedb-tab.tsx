@@ -79,19 +79,19 @@ const OpenSourcePane: React.FC = () => {
                 <h5 className={clsx(classes.h5, classes.comparisonBlockContent)}>AGPL v3.0 License</h5>
             </div>
 
-            <p className={clsx(classes.comparisonBlockContent, classes.mediumText, classes.textMarginLarge)}>
+            <p className={clsx(classes.comparisonBlockContent, classes.mediumText, classes.textMargin)}>
                 Deploy and operate your TypeDB database immediately. TypeDB is licensed under AGPL so
                 that you can start developing quickly and adopt TypeDB within your ecosystem in no time.
             </p>
 
-            <p className={clsx(classes.comparisonBlockContent, classes.mediumText, classes.textMarginLarge)}>
+            <p className={clsx(classes.comparisonBlockContent, classes.mediumText, classes.textMargin)}>
                 Current Stable Release: <strong>TypeDB {typeDBVersion}</strong>
                 <br/>
                 <strong>{latestReleaseDateFormatted}</strong> <a href={latestReleaseNotesURL} target="_blank">Release
                 Notes</a>
             </p>
 
-            <p className={clsx(classes.comparisonBlockContent, classes.mediumText, classes.textMarginLarge)}>
+            <p className={clsx(classes.comparisonBlockContent, classes.mediumText, classes.textMargin)}>
                 <strong>Download and install with:</strong>
                 <br/>
                 <ul className={classes.horizontalBulletedList}>
@@ -102,7 +102,7 @@ const OpenSourcePane: React.FC = () => {
             </p>
 
             <div
-                className={clsx(classes.comparisonBlockContent, classes.mediumText, classes.textMarginLarge, classes.selectGroup)}>
+                className={clsx(classes.comparisonBlockContent, classes.mediumText, classes.textMargin, classes.selectGroup)}>
                 <VaticleSelect label="Operating System" value={selectedOS} setValue={setSelectedOS} inputName="os"
                                inputID="typedb-os" variant="outlined">
                     {Object.keys(downloads).map(os => <option value={os}>{os}</option>)}
@@ -131,7 +131,7 @@ const CommercialPane: React.FC = () => {
                 <span className={clsx(classes.check, classes.checkPurple, classes.comparisonBlockHeadingCheck)}/>
                 <h5 className={clsx(classes.h5, classes.comparisonBlockContent)}>Commercial License</h5>
             </div>
-            <p className={clsx(classes.comparisonBlockContent, classes.mediumText, classes.textMarginLarge)}>
+            <p className={clsx(classes.comparisonBlockContent, classes.mediumText, classes.textMargin)}>
                 If you want to freely integrate TypeDB into your ecosystem, and satisfy all of your organisation's
                 requirements, the commercial license gives you that peace of mind.
             </p>
@@ -140,7 +140,7 @@ const CommercialPane: React.FC = () => {
                 <span className={clsx(classes.check, classes.checkPurple, classes.comparisonBlockHeadingCheck)}/>
                 <h5 className={clsx(classes.h5, classes.comparisonBlockContent)}>Enterprise Support</h5>
             </div>
-            <p className={clsx(classes.comparisonBlockContent, classes.mediumText, classes.textMarginLarge)}>
+            <p className={clsx(classes.comparisonBlockContent, classes.mediumText, classes.textMargin)}>
                 Get direct support from our engineers. From development to production, we’re with you every step of
                 the way, so you can focus on building your application and your business.
             </p>

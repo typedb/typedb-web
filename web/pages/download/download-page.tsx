@@ -11,14 +11,14 @@ export const DownloadPage: React.FC = () => {
 
     return (
         <DefaultLayout>
-            <section className={classes.firstSection}>
+            <section className={classes.firstSectionMargin}>
                 <h1 className={classes.h1}>Download Centre</h1>
                 <ProductSection className={classes.subsectionMargin}/>
             </section>
 
             <section className={classes.subsectionMargin}>
                 <h1 id="get-in-touch" className={clsx(classes.h1, classes.pageAnchor)}>Get in touch about TypeDB</h1>
-                <p className={clsx(classes.largeText)}>
+                <p className={clsx(classes.sectionCaption)}>
                     Let us know how we can help you and we'll help you get up to speed.
                 </p>
 

@@ -35,13 +35,12 @@ export const TypeDBPage: React.FC = () => {
 
     return (
         <DefaultLayout>
-            <section className={classes.firstSection}>
+            <section className={classes.firstSectionMargin}>
 
                 <h1 className={classes.h1}>Meet TypeDB and TypeQL</h1>
-                <p className={classes.largeText}>
+                <p className={classes.headlineText}>
                     TypeDB is a strongly-typed database with a rich and logical type system. TypeDB empowers you to
-                    tackle
-                    complex problems, and TypeQL is its query language.
+                    tackle complex problems, and TypeQL is its query language.
                 </p>
             </section>
 
@@ -52,7 +51,7 @@ export const TypeDBPage: React.FC = () => {
 
             <section id="expressivity" className={classes.subsectionMargin}>
                 <h2 className={classes.h2}>A higher level of expressivity</h2>
-                <p className={classes.largeText}>
+                <p className={classes.sectionCaption} style={{maxWidth: 1040}}>
                     TypeDB allows you to model your domain based on logical and object-oriented principles. Composed of
                     entity, relationship, and attribute types, as well as type hierarchies, roles, and rules, TypeDB
                     allows you to think higher-level as opposed to join-tables, columns, documents, vertices, edges,
@@ -99,7 +98,7 @@ export const TypeDBPage: React.FC = () => {
 
             <section id="safety" className={classes.subsectionMargin}>
                 <h2 className={classes.h2}>A higher degree of safety</h2>
-                <p className={classes.largeText}>
+                <p className={classes.sectionCaption} style={{maxWidth: 750}}>
                     Types provide a way to describe the logical structures of your data, allowing TypeDB to validate
                     that your code inserts and queries data correctly. Query validation goes beyond static type
                     checking,
@@ -129,7 +128,7 @@ export const TypeDBPage: React.FC = () => {
 
             <section id="inference" className={classes.subsectionMargin}>
                 <h2 className={classes.h2}>Evolved with logical inference</h2>
-                <p className={classes.largeText}>
+                <p className={classes.sectionCaption} style={{maxWidth: 1080}}>
                     TypeDB encodes your data for logical interpretation by a reasoning engine. It enables type-inference
                     and rule-inference that creates logical abstractions of data. This allows the discovery of facts and
                     patterns that would otherwise be too hard to find; and complex queries become much simpler.
@@ -156,11 +155,10 @@ export const TypeDBPage: React.FC = () => {
 
             <section id="api" className={classes.subsectionMargin}>
                 <h2 className={classes.h2}>A robust, programmatic API</h2>
-                <p className={classes.largeText}>
+                <p className={classes.sectionCaption} style={{maxWidth: 1000}}>
                     TypeDB's API is provided through a gRPC client, built with robust functionalities that REST cannot
                     provide. TypeDB Clients provide stateful objects, Sessions and Transactions, to interact with the
                     database programmatically. The transactions provide ACID guarantees, up to snapshot isolation.
-
                 </p>
 
                 <FeatureBlock className={classes.subsectionMargin} examplePosition="left" title="Simple & Stateful API"
@@ -191,7 +189,7 @@ export const TypeDBPage: React.FC = () => {
 
             <section id="scale" className={classes.sectionMargin}>
                 <h1 className={classes.h1}>Scale with TypeDB Cluster</h1>
-                <p className={classes.largeText}>
+                <p className={classes.sectionCaption} style={{maxWidth: 950}}>
                     TypeDB Cluster is the distributed database designed to scale with your organisation. Whether
                     you have a growing dataset, application workload, or user requests, TypeDB Cluster will provide the
                     functionalities needed to take you from development to production and scale.

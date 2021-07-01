@@ -30,7 +30,7 @@ export const PrivacyPolicyPage: React.FC = () => {
 
     return (
         <DefaultLayout>
-            <Section className={classes.firstSection}>
+            <Section className={classes.firstSectionMargin}>
                 <Heading>Privacy Policy</Heading>
 
                 <Paragraph>
