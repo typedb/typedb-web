@@ -6,7 +6,6 @@ import * as d3 from "d3";
 import * as PIXI from "pixi.js-legacy";
 // @ts-ignore
 import FontFaceObserver from "fontfaceobserver";
-// import { Viewport } from 'pixi-viewport';
 import {
     arrowhead,
     diamondIncomingLineIntersect, Ellipse,
@@ -38,6 +37,7 @@ export function runTypeQLForceGraph(container: HTMLElement, graphData: TypeQLGra
     container.innerHTML = "";
     container.appendChild(app.view);
 
+    // TODO: We should reintroduce pixi-viewport when we stop using pixi.js-legacy
     // const viewport = new Viewport({
     //     screenWidth: width,
     //     screenHeight: height,
