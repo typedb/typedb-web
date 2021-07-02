@@ -32,8 +32,7 @@ export function runTypeQLForceGraph(container: HTMLElement, graphData: TypeQLGra
     const vertices: Vertex[] = graphData.vertices.map((d) => Object.assign({}, d));
     let dragged = false;
 
-    const app = new PIXI.Application({ width, height, antialias: !0, backgroundAlpha: 0, resolution: window.devicePixelRatio, forceCanvas: true });
-    console.log(app.renderer);
+    const app = new PIXI.Application({ width, height, antialias: !0, backgroundAlpha: 0, resolution: window.devicePixelRatio });
     container.innerHTML = "";
     container.appendChild(app.view);
 
