@@ -35,10 +35,10 @@ try {
     client = TypeDB.coreClient("localhost:1729");
     session = await client.session("my-typedb");
     tx = session.transaction(TransactionType.WRITE);
-    tx.query().insert("insert $_ isa person");
+    tx.query().insert("insert $_ isa person;");
     tx.commit()
     tx = session.transaction(TransactionType.READ);
-    const answer = tx.query().match("match $x isa person");
+    const answer = tx.query().match("match $x isa person;");
 } finally {
     if (tx) tx.close(); if (session) session.close(); if (client) client.close();
 }
