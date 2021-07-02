@@ -1,3 +1,4 @@
 local
+node_modules
 web/dist
 web/common/dist
