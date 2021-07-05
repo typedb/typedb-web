@@ -1,7 +1,7 @@
-import React from 'react';
-import {indexStyles} from './index-styles';
+import React from "react";
+import {indexStyles} from "./index-styles";
 import { VaticleRouter } from "./router";
-import { vaticleMuiTheme, vaticleTheme } from "../common/styles/theme";
+import { vaticleMuiTheme } from "../common/styles/theme";
 import {ThemeProvider} from "@material-ui/core";
 
 export const VaticleWebApp: React.FC = () => {

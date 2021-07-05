@@ -1,6 +1,7 @@
 import { makeStyles } from '@material-ui/core';
 import { vaticleTheme } from "../styles/theme";
 import { buttonPalette } from "../button/button-styles";
+import { standardMargins } from "../styles/vaticle-styles";
 
 export const headerHeight = 80;
 const footerHeight = 65;
@@ -335,12 +336,12 @@ export const pageFooterStyles = makeStyles({
     },
 
     content: {
-        paddingTop: 80,
-        paddingBottom: 80,
+        paddingTop: standardMargins.subsection.desktop,
+        paddingBottom: standardMargins.content.desktop,
 
         "@media(max-width: 767px)": {
-            paddingTop: 60,
-            paddingBottom: 60,
+            paddingTop: standardMargins.subsection.mobile,
+            paddingBottom: standardMargins.content.mobile,
         },
     },
 
