@@ -1,5 +1,5 @@
 import React from "react";
-import {DefaultLayout} from "../../common/layout/default-layout";
+import {VaticleLayout} from "../../common/layout/layout";
 import {TypeQLExample} from "../feature/typeql-example";
 import {FeatureBlock} from "../feature/feature-block";
 import {PolyglotExample} from "../../common/code/polyglot-example";
@@ -34,7 +34,7 @@ export const TypeDBPage: React.FC = () => {
     const typeDBVersion = useTypeDBVersion()[0];
 
     return (
-        <DefaultLayout>
+        <VaticleLayout>
             <section className={classes.firstSectionMargin}>
 
                 <h1 className={classes.h1}>Meet TypeDB and TypeQL</h1>
@@ -200,6 +200,6 @@ export const TypeDBPage: React.FC = () => {
                         More</VaticleButton>
                 </div>
             </section>
-        </DefaultLayout>
+        </VaticleLayout>
     );
 };

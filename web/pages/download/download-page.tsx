@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import {DefaultLayout} from "../../common/layout/default-layout";
+import {VaticleLayout} from "../../common/layout/layout";
 import {downloadPageStyles} from "./download-styles";
 import {vaticleStyles} from "../../common/styles/vaticle-styles";
 import {ProductSection} from "./product-section";
@@ -28,7 +28,7 @@ export const DownloadPage: React.FC = () => {
     };
 
     return (
-        <DefaultLayout>
+        <VaticleLayout>
             <section className={classes.firstSectionMargin}>
                 <h1 className={classes.h1}>Download Centre</h1>
                 <ProductSection className={classes.subsectionMargin}/>
@@ -47,6 +47,6 @@ export const DownloadPage: React.FC = () => {
 
             <VaticleSnackbar variant="success" message="Your message has been sent." open={contactSuccessSnackbarOpen} setOpen={setContactSuccessSnackbarOpen}/>
             <VaticleSnackbar variant="error" message="Your message failed to send, please try again later." open={contactErrorSnackbarOpen} setOpen={setContactErrorSnackbarOpen}/>
-        </DefaultLayout>
+        </VaticleLayout>
     );
 };

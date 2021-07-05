@@ -3,14 +3,14 @@ import { vaticleStyles } from "../../common/styles/vaticle-styles";
 import { errorStyles } from "./error-styles";
 import { FeatureBlock } from "../feature/feature-block";
 import { routes } from "../router";
-import { DefaultLayout } from "../../common/layout/default-layout";
+import { VaticleLayout } from "../../common/layout/layout";
 import { ExampleWindow, ExampleWindowHeader } from "../../common/code/example-window";
 
 export const Vaticle404Page: React.FC = () => {
     const classes = Object.assign({}, vaticleStyles(), errorStyles());
 
     return (
-        <DefaultLayout>
+        <VaticleLayout>
             <section className={classes.main}>
                 <FeatureBlock examplePosition="right" title="OOOPS....."
                               body={`The requested URL ${window.location.href} was not found on this server. You may have
@@ -24,6 +24,6 @@ export const Vaticle404Page: React.FC = () => {
                     </ExampleWindow>
                 </FeatureBlock>
             </section>
-        </DefaultLayout>
+        </VaticleLayout>
     );
 }

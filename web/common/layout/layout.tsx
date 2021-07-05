@@ -12,7 +12,7 @@ import { VaticleLink } from "../link/link";
 import { routes } from "../../pages/router";
 import { VaticleSnackbar } from "../snackbar/snackbar";
 
-export const DefaultLayout: React.FC = ({ children }) => {
+export const VaticleLayout: React.FC = ({ children }) => {
     const classes = Object.assign({}, vaticleStyles(), defaultLayoutStyles());
 
     const [contactFormDialogOpen, setContactFormDialogOpen] = useState(false);

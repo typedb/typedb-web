@@ -1,5 +1,5 @@
 import React from "react";
-import {DefaultLayout} from "../../common/layout/default-layout";
+import {VaticleLayout} from "../../common/layout/layout";
 import {vaticleStyles} from "../../common/styles/vaticle-styles";
 import {legalPageStyles} from "./privacy-policy-styles";
 import clsx from "clsx";
@@ -29,7 +29,7 @@ export const PrivacyPolicyPage: React.FC = () => {
     }];
 
     return (
-        <DefaultLayout>
+        <VaticleLayout>
             <Section className={classes.firstSectionMargin}>
                 <Heading>Privacy Policy</Heading>
 
@@ -277,7 +277,7 @@ export const PrivacyPolicyPage: React.FC = () => {
                     Vaticle Ltd., 3rd floor, East, 47-50 Margaret St, London W1W 8SE, UK
                 </Paragraph>
             </Section>
-        </DefaultLayout>
+        </VaticleLayout>
     );
 };
 

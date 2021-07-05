@@ -11,7 +11,7 @@ import {
     liveBackupExample,
     secureAuthenticationExample
 } from "./typedb-cluster-examples";
-import {DefaultLayout} from "../../common/layout/default-layout";
+import {VaticleLayout} from "../../common/layout/layout";
 import {VaticleButton} from "../../common/button/button";
 import {FeatureBlock} from "../feature/feature-block";
 import {ConsoleExample} from "../../common/code/console-example";
@@ -20,7 +20,7 @@ export const TypeDBClusterPage: React.FC = () => {
     const classes = Object.assign({}, vaticleStyles(), typeDBClusterStyles());
 
     return (
-        <DefaultLayout>
+        <VaticleLayout>
             <section className={classes.firstSectionMargin}>
                 <h1 className={clsx(classes.intro, classes.h1)}>Scale your database with TypeDB Cluster</h1>
                 <h1 className={clsx(classes.introMobile, classes.h1)}>Scale your database with<br/>TypeDB Cluster</h1>
@@ -98,6 +98,6 @@ export const TypeDBClusterPage: React.FC = () => {
                     </VaticleButton>
                 </div>
             </section>
-        </DefaultLayout>
+        </VaticleLayout>
     );
 };

@@ -7,7 +7,7 @@ import {urls} from "../../common/urls";
 import {routes} from "../router";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {VaticleButton} from "../../common/button/button";
-import {DefaultLayout} from "../../common/layout/default-layout";
+import {VaticleLayout} from "../../common/layout/layout";
 import {useTypeDBVersion} from "../../state/typedb-version";
 import {VaticleGalaxy} from "./vaticle-galaxy";
 import {UserLogosSection} from "./user-logos-section";
@@ -22,7 +22,7 @@ export const HomePage: React.FC = () => {
     const typeDBVersion = useTypeDBVersion()[0];
 
     return (
-        <DefaultLayout>
+        <VaticleLayout>
             <section className={classes.firstSectionMargin}>
                 <div className={classes.vaticleGalaxyContainer}>
                     <VaticleGalaxy/>
@@ -72,6 +72,6 @@ export const HomePage: React.FC = () => {
 
             <TestimonialsSection className={classes.sectionMargin}/>
 
-        </DefaultLayout>
+        </VaticleLayout>
     );
 };
