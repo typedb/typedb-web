@@ -1,9 +1,8 @@
 import React from "react";
-import {TypeQLGraph} from "../../common/typeql/typeql-data";
 import {CodePane} from "../../common/code/code-pane";
 import { ExampleWindow, ExampleWindowFooter, ExampleWindowHeader } from "../../common/code/example-window";
-import {TypeQLVisualiser} from "../../common/typeql/typeql-visualiser";
 import {featureStyles} from "./feature-styles";
+import { TypeQLGraph, TypeQLVisualiserPixiJSLegacy as TypeQLVisualiser } from "typedb-visualiser";
 
 interface TypeQLExampleProps {
     code: string;
