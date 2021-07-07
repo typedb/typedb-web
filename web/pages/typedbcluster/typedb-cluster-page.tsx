@@ -70,7 +70,7 @@ export const TypeDBClusterPage: React.FC = () => {
                               body="TypeDB Cluster allows you to easily scale up or down the cluster to meet application
                               demands. Data replication and consistency are transparently managed throughout cluster
                               transformation, including in the event of cluster resizing failure. TypeDB Clients
-                              also allow applications discover new cluster servers automatically."
+                              also allow applications to discover new cluster servers automatically."
                               button={{text: "Coming Soon!", disabled: true, comingSoon: true}}>
                     <ConsoleExample code={clusterManagementExample}/>
                 </FeatureBlock>
