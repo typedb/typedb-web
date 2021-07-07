@@ -9,7 +9,7 @@ These instructions are for setting up a local development environment for the we
 ```shell script
 bazel build //...
 cd web
-npm start
+yarn start
 ```
 
 
