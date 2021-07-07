@@ -55,7 +55,7 @@ export const TestimonialsSection: React.FC<ClassProps> = ({className}) => {
         personName: "Ram Anvesh",
         jobTitle: "Software Engineer",
         avatar: RamAnveshAvatar,
-        body: `With its simple yet immensely powerful query language, native support for n-ary relationships and focus on
+        body: `With its simple yet immensely powerful query language, native support for N-ary relationships and focus on
         semantic schema, TypeDB solves all our modelling problems so that we can focus more on solving higher level
         problems instead of tweaking traditional graph databases to fit our use cases.`,
     }, {
@@ -159,7 +159,7 @@ export const TestimonialsSection: React.FC<ClassProps> = ({className}) => {
         personName: "Konrad Myśliwiec",
         jobTitle: "Data Science Software Engineer",
         avatar: KonradMysliwiecAvatar,
-        body: `TypeDB provides a strongly typed database with n-ry relations that enables modelling the world much
+        body: `TypeDB provides a strongly typed database with N-ary relations that enables modelling the world much
         closer to reality compared to other databases. In addition, its built-in inference engine enables to build next
         generation AI systems — one of the many reasons to choose TypeDB to model biomedical data.`,
     }, {
