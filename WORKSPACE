@@ -75,16 +75,16 @@ bind(
 # Load //builder/nodejs
 load("@vaticle_dependencies//builder/nodejs:deps.bzl", nodejs_deps = "deps")
 nodejs_deps()
-load("@build_bazel_rules_nodejs//:index.bzl", "node_repositories", "npm_install")
+load("@build_bazel_rules_nodejs//:index.bzl", "node_repositories", "yarn_install")
 
 node_repositories(
     package_json = ["//web:package.json"],
 )
 
-npm_install(
+yarn_install(
     name = "npm",
     package_json = "//web:package.json",
-    package_lock_json = "//web:package-lock.json",
+    yarn_lock = "//web:yarn.lock"
 )
 
 ###############

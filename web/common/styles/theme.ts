@@ -1,9 +1,9 @@
-import { createMuiTheme } from '@material-ui/core/styles';
+import { createTheme } from '@material-ui/core/styles';
 import createSpacing from '@material-ui/core/styles/createSpacing';
 
 export type SizeIndicator = 'smallest' | 'smaller' | 'small' | 'medium' | 'large' | 'larger' | 'largest';
 
-declare module '@material-ui/core/styles/createMuiTheme' {
+declare module '@material-ui/core/styles/createTheme' {
     interface Theme {
         vaticle: any;
     }
@@ -125,7 +125,7 @@ export const vaticleTheme = {
     }
 };
 
-export const vaticleMuiTheme = createMuiTheme({
+export const vaticleMuiTheme = createTheme({
     vaticle: vaticleTheme,
     typography: {
         fontFamily: "'Titillium Web', Geneva, Tahoma, sans-serif",
