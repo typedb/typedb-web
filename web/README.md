@@ -21,14 +21,19 @@ The common library is built using React.
 
 The Main Website depends on the source files directly and compiles them as part of its regular Webpack build. Other Vaticle-owned websites, such as Docs, depend on the common library as an `npm` package.
 
-### Build npm package (WIP)
+### Build npm package
 
 ```shell script
 cd web/common
 ./build.sh
-mv build/package.json ./package.json
-npm publish
-mv ./package.json build/package.json
+```
+
+### Publish npm package
+
+First, set the desired version number in `web/common/build/package.json`, and then run:
+```shell script
+cd web/common
+./publish.sh
 ```
 
 
