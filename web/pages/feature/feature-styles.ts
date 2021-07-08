@@ -1,5 +1,6 @@
 import {makeStyles} from "@material-ui/core";
 import { standardMargins } from "../../common/styles/vaticle-styles";
+import { vaticleTheme } from "../../common/styles/theme";
 
 export const featureStyles = makeStyles({
     diagramAndCaption: {
@@ -66,5 +67,21 @@ export const featureStyles = makeStyles({
     typeQLExample: {
         height: 360,
         position: "relative",
+    },
+
+    visualiser: {
+        position: "absolute",
+        top: 0,
+        left: 100,
+        bottom: 0,
+        right: 0,
+        backgroundColor: vaticleTheme.palette.purple["1"],
+        zIndex: 25,
+
+        "& canvas": {
+            "@media(max-width: 767px)": {
+                pointerEvents: "none",
+            },
+        },
     },
 });

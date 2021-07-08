@@ -1,4 +1,4 @@
-import { TypeQLGraph } from "typedb-visualiser";
+import { TypeDBVisualiserData } from "typedb-visualiser";
 
 export const entityRelationshipExampleCode = `
 define
@@ -16,18 +16,18 @@ name sub attribute,
   value string;
 `;
 
-export const entityRelationshipExampleGraph: TypeQLGraph = {
+export const entityRelationshipExampleGraph: TypeDBVisualiserData.Graph = {
     "vertices": [{
         "id": 1,
         "label": "employment",
-        "encoding": "relation",
+        "encoding": "relationType",
         "x": 50,
         "y": 20,
         "width": 105,
         "height": 66,
     }, {
         "id": 2,
-        "encoding": "entity",
+        "encoding": "entityType",
         "label": "person",
         "x": 20,
         "y": 50,
@@ -35,7 +35,7 @@ export const entityRelationshipExampleGraph: TypeQLGraph = {
         "height": 32,
     }, {
         "id": 3,
-        "encoding": "entity",
+        "encoding": "entityType",
         "label": "company",
         "x": 80,
         "y": 50,
@@ -43,7 +43,7 @@ export const entityRelationshipExampleGraph: TypeQLGraph = {
         "height": 32,
     }, {
         "id": 4,
-        "encoding": "attribute",
+        "encoding": "attributeType",
         "label": "name",
         "x": 50,
         "y": 80,

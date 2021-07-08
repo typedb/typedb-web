@@ -1,4 +1,4 @@
-import { TypeQLGraph } from "typedb-visualiser";
+import { TypeDBVisualiserData } from "typedb-visualiser";
 
 export const nestedRelationsExampleCode = `
 match
@@ -14,10 +14,10 @@ answers>>
 $city isa city, has name "London";
 `;
 
-export const nestedRelationsExampleGraph: TypeQLGraph = {
+export const nestedRelationsExampleGraph: TypeDBVisualiserData.Graph = {
     "vertices": [{
         "id": 1,
-        "encoding": "entity",
+        "encoding": "entityType",
         "label": "person: Alice",
         "x": 20,
         "y": 20,
@@ -25,7 +25,7 @@ export const nestedRelationsExampleGraph: TypeQLGraph = {
         "height": 32,
     }, {
         "id": 2,
-        "encoding": "entity",
+        "encoding": "entityType",
         "label": "person: Bob",
         "x": 80,
         "y": 20,
@@ -33,7 +33,7 @@ export const nestedRelationsExampleGraph: TypeQLGraph = {
         "height": 32,
     }, {
         "id": 3,
-        "encoding": "relation",
+        "encoding": "relationType",
         "label": "marriage",
         "x": 50,
         "y": 45,
@@ -41,7 +41,7 @@ export const nestedRelationsExampleGraph: TypeQLGraph = {
         "height": 66,
     }, {
         "id": 4,
-        "encoding": "relation",
+        "encoding": "relationType",
         "label": "location",
         "x": 30,
         "y": 80,
@@ -49,7 +49,7 @@ export const nestedRelationsExampleGraph: TypeQLGraph = {
         "height": 66,
     }, {
         "id": 5,
-        "encoding": "entity",
+        "encoding": "entityType",
         "label": "city: London",
         "x": 75,
         "y": 80,

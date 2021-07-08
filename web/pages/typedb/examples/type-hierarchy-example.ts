@@ -1,4 +1,4 @@
-import { TypeQLGraph } from "typedb-visualiser";
+import { TypeDBVisualiserData } from "typedb-visualiser";
 
 export const typeHierarchyExampleCode = `
 define
@@ -16,11 +16,11 @@ supervisor sub teacher;
 professor sub teacher;
 `;
 
-export const typeHierarchyExampleGraph: TypeQLGraph = {
+export const typeHierarchyExampleGraph: TypeDBVisualiserData.Graph = {
     "vertices": [{
         "id": 1,
         "label": "person",
-        "encoding": "entity",
+        "encoding": "entityType",
         "x": 50,
         "y": 20,
         "width": 100,
@@ -28,7 +28,7 @@ export const typeHierarchyExampleGraph: TypeQLGraph = {
     }, {
         "id": 2,
         "label": "student",
-        "encoding": "entity",
+        "encoding": "entityType",
         "x": 28,
         "y": 50,
         "width": 100,
@@ -36,7 +36,7 @@ export const typeHierarchyExampleGraph: TypeQLGraph = {
     }, {
         "id": 3,
         "label": "teacher",
-        "encoding": "entity",
+        "encoding": "entityType",
         "x": 72,
         "y": 50,
         "width": 100,
@@ -44,7 +44,7 @@ export const typeHierarchyExampleGraph: TypeQLGraph = {
     }, {
         "id": 4,
         "label": "undergrad",
-        "encoding": "entity",
+        "encoding": "entityType",
         "x": 17,
         "y": 80,
         "width": 100,
@@ -52,7 +52,7 @@ export const typeHierarchyExampleGraph: TypeQLGraph = {
     }, {
         "id": 5,
         "label": "postgrad",
-        "encoding": "entity",
+        "encoding": "entityType",
         "x": 39,
         "y": 80,
         "width": 100,
@@ -60,7 +60,7 @@ export const typeHierarchyExampleGraph: TypeQLGraph = {
     }, {
         "id": 6,
         "label": "supervisor",
-        "encoding": "entity",
+        "encoding": "entityType",
         "x": 61,
         "y": 80,
         "width": 100,
@@ -68,7 +68,7 @@ export const typeHierarchyExampleGraph: TypeQLGraph = {
     }, {
         "id": 7,
         "label": "professor",
-        "encoding": "entity",
+        "encoding": "entityType",
         "x": 83,
         "y": 80,
         "width": 100,

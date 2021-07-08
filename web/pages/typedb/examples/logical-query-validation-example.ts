@@ -1,4 +1,4 @@
-import { TypeQLGraph } from "typedb-visualiser";
+import { TypeDBVisualiserData } from "typedb-visualiser";
 
 export const logicalQueryValidationExampleCode = `
 match
@@ -14,10 +14,10 @@ answers>>
 ERROR: unsatisfiable query detected during type resolution
 `;
 
-export const logicalQueryValidationExampleGraph: TypeQLGraph = {
+export const logicalQueryValidationExampleGraph: TypeDBVisualiserData.Graph = {
     "vertices": [{
         "id": 1,
-        "encoding": "entity",
+        "encoding": "entityType",
         "label": "person: Alice",
         "x": 20,
         "y": 20,
@@ -26,14 +26,14 @@ export const logicalQueryValidationExampleGraph: TypeQLGraph = {
     }, {
         "id": 2,
         "label": "marriage",
-        "encoding": "relation",
+        "encoding": "relationType",
         "x": 55,
         "y": 20,
         "width": 105,
         "height": 66,
     }, {
         "id": 3,
-        "encoding": "entity",
+        "encoding": "entityType",
         "label": "person: Bob",
         "x": 80,
         "y": 50,
@@ -42,14 +42,14 @@ export const logicalQueryValidationExampleGraph: TypeQLGraph = {
     }, {
         "id": 4,
         "label": "marriage",
-        "encoding": "relation",
+        "encoding": "relationType",
         "x": 55,
         "y": 80,
         "width": 105,
         "height": 66,
     }, {
         "id": 5,
-        "encoding": "entity",
+        "encoding": "entityType",
         "label": "company: DataCo",
         "x": 20,
         "y": 80,

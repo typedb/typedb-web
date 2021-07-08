@@ -1,4 +1,4 @@
-import { TypeQLGraph } from "typedb-visualiser";
+import { TypeDBVisualiserData } from "typedb-visualiser";
 
 export const logicalDataValidationExampleCode = `
 insert
@@ -12,10 +12,10 @@ commit>>
 ERROR: invalid data detected during type validation
 `;
 
-export const logicalDataValidationExampleGraph: TypeQLGraph = {
+export const logicalDataValidationExampleGraph: TypeDBVisualiserData.Graph = {
     "vertices": [{
         "id": 1,
-        "encoding": "entity",
+        "encoding": "entityType",
         "label": "person: Charlie",
         "x": 20,
         "y": 30,
@@ -24,14 +24,14 @@ export const logicalDataValidationExampleGraph: TypeQLGraph = {
     }, {
         "id": 2,
         "label": "marriage",
-        "encoding": "relation",
+        "encoding": "relationType",
         "x": 50,
         "y": 70,
         "width": 105,
         "height": 66,
     }, {
         "id": 3,
-        "encoding": "entity",
+        "encoding": "entityType",
         "label": "company: DataCo",
         "x": 80,
         "y": 30,

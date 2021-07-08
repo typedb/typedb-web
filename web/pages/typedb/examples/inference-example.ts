@@ -1,4 +1,4 @@
-import { TypeQLGraph } from "typedb-visualiser";
+import { TypeDBVisualiserData } from "typedb-visualiser";
 
 export const inferenceExampleCode = `
 match
@@ -13,11 +13,11 @@ answers>>
 $person isa teacher, has name "Alice";
 $person isa postgrad, has name "Bob";`;
 
-export const inferenceExampleGraph: TypeQLGraph = {
+export const inferenceExampleGraph: TypeDBVisualiserData.Graph = {
     "vertices": [{
         "id": 1,
         "label": "teacher: Alice",
-        "encoding": "entity",
+        "encoding": "entityType",
         "x": 20,
         "y": 10,
         "width": 156,
@@ -25,7 +25,7 @@ export const inferenceExampleGraph: TypeQLGraph = {
     }, {
         "id": 2,
         "label": "location",
-        "encoding": "relation",
+        "encoding": "relationType",
         "x": 50,
         "y": 30,
         "width": 105,
@@ -33,7 +33,7 @@ export const inferenceExampleGraph: TypeQLGraph = {
     }, {
         "id": 3,
         "label": "country: UK",
-        "encoding": "entity",
+        "encoding": "entityType",
         "x": 80,
         "y": 10,
         "width": 156,
@@ -41,7 +41,7 @@ export const inferenceExampleGraph: TypeQLGraph = {
     }, {
         "id": 4,
         "label": "location",
-        "encoding": "relation",
+        "encoding": "relationType",
         "x": 70,
         "y": 50,
         "width": 105,
@@ -49,7 +49,7 @@ export const inferenceExampleGraph: TypeQLGraph = {
     }, {
         "id": 5,
         "label": "city: London",
-        "encoding": "entity",
+        "encoding": "entityType",
         "x": 80,
         "y": 90,
         "width": 156,
@@ -57,7 +57,7 @@ export const inferenceExampleGraph: TypeQLGraph = {
     }, {
         "id": 6,
         "label": "location",
-        "encoding": "relation",
+        "encoding": "relationType",
         "x": 50,
         "y": 70,
         "width": 105,
@@ -65,7 +65,7 @@ export const inferenceExampleGraph: TypeQLGraph = {
     }, {
         "id": 7,
         "label": "postgrad: Bob",
-        "encoding": "entity",
+        "encoding": "entityType",
         "x": 20,
         "y": 90,
         "width": 156,

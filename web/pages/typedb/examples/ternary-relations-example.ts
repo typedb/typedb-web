@@ -1,4 +1,4 @@
-import { TypeQLGraph } from "typedb-visualiser";
+import { TypeDBVisualiserData } from "typedb-visualiser";
 
 export const ternaryRelationsExampleCode = `
 match
@@ -14,10 +14,10 @@ answers>>
 $movie isa movie, has name "Titanic";
 `;
 
-export const ternaryRelationsExampleGraph: TypeQLGraph = {
+export const ternaryRelationsExampleGraph: TypeDBVisualiserData.Graph = {
     "vertices": [{
         "id": 1,
-        "encoding": "entity",
+        "encoding": "entityType",
         "label": "person: Leonardo",
         "x": 50,
         "y": 20,
@@ -25,7 +25,7 @@ export const ternaryRelationsExampleGraph: TypeQLGraph = {
         "height": 32,
     }, {
         "id": 2,
-        "encoding": "relation",
+        "encoding": "relationType",
         "label": "cast",
         "x": 50,
         "y": 50,
@@ -33,7 +33,7 @@ export const ternaryRelationsExampleGraph: TypeQLGraph = {
         "height": 66,
     }, {
         "id": 3,
-        "encoding": "entity",
+        "encoding": "entityType",
         "label": "movie: Titanic",
         "x": 20,
         "y": 70,
@@ -41,7 +41,7 @@ export const ternaryRelationsExampleGraph: TypeQLGraph = {
         "height": 32,
     }, {
         "id": 4,
-        "encoding": "entity",
+        "encoding": "entityType",
         "label": "character: Jack",
         "x": 80,
         "y": 70,
@@ -49,7 +49,7 @@ export const ternaryRelationsExampleGraph: TypeQLGraph = {
         "height": 32,
     }, {
         "id": 5,
-        "encoding": "attribute",
+        "encoding": "attributeType",
         "label": "billing: 1",
         "x": 50,
         "y": 80,

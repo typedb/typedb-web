@@ -2,11 +2,11 @@ import React from "react";
 import {CodePane} from "../../common/code/code-pane";
 import { ExampleWindow, ExampleWindowFooter, ExampleWindowHeader } from "../../common/code/example-window";
 import {featureStyles} from "./feature-styles";
-import { TypeQLGraph, TypeQLVisualiserPixiJSLegacy as TypeQLVisualiser } from "typedb-visualiser";
+import { TypeDBStaticVisualiser, TypeDBVisualiserData } from "typedb-visualiser";
 
 interface TypeQLExampleProps {
     code: string;
-    data: TypeQLGraph;
+    data: TypeDBVisualiserData.Graph;
 }
 
 export const TypeQLExample: React.FC<TypeQLExampleProps> = ({code, data}) => {
@@ -18,7 +18,7 @@ export const TypeQLExample: React.FC<TypeQLExampleProps> = ({code, data}) => {
 
             <div className={classes.typeQLExample}>
                 <CodePane code={{language: "typeql", body: code}} lines={15} resizable/>
-                <TypeQLVisualiser data={data}/>
+                <TypeDBStaticVisualiser data={data} className={classes.visualiser}/>
             </div>
 
             <ExampleWindowFooter language="TypeQL"/>

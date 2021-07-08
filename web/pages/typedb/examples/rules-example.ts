@@ -1,4 +1,4 @@
-import { TypeQLGraph } from "typedb-visualiser";
+import { TypeDBVisualiserData } from "typedb-visualiser";
 
 export const rulesExampleCode = `
 define
@@ -12,10 +12,10 @@ when {
 };
 `;
 
-export const rulesExampleGraph: TypeQLGraph = {
+export const rulesExampleGraph: TypeDBVisualiserData.Graph = {
     "vertices": [{
         "id": 1,
-        "encoding": "relation",
+        "encoding": "relationType",
         "label": "location",
         "x": 50,
         "y": 20,
@@ -23,7 +23,7 @@ export const rulesExampleGraph: TypeQLGraph = {
         "height": 66,
     }, {
         "id": 2,
-        "encoding": "entity",
+        "encoding": "entityType",
         "label": "borough: Camden",
         "x": 20,
         "y": 50,
@@ -31,7 +31,7 @@ export const rulesExampleGraph: TypeQLGraph = {
         "height": 32,
     }, {
         "id": 3,
-        "encoding": "entity",
+        "encoding": "entityType",
         "label": "city: London",
         "x": 50,
         "y": 50,
@@ -39,7 +39,7 @@ export const rulesExampleGraph: TypeQLGraph = {
         "height": 32,
     }, {
         "id": 4,
-        "encoding": "entity",
+        "encoding": "entityType",
         "label": "country: UK",
         "x": 80,
         "y": 50,
@@ -47,7 +47,7 @@ export const rulesExampleGraph: TypeQLGraph = {
         "height": 32,
     }, {
         "id": 5,
-        "encoding": "relation",
+        "encoding": "relationType",
         "label": "location",
         "x": 35,
         "y": 80,
@@ -55,7 +55,7 @@ export const rulesExampleGraph: TypeQLGraph = {
         "height": 66,
     }, {
         "id": 6,
-        "encoding": "relation",
+        "encoding": "relationType",
         "label": "location",
         "x": 65,
         "y": 80,
