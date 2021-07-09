@@ -1,9 +1,8 @@
 import clsx from "clsx";
-import React, { useEffect, useRef, useState } from "react";
+import React, {useEffect, useRef, useState} from "react";
 import {vaticleStyles} from "../../common/styles/vaticle-styles";
 import {corporateLogosStyles, corporateLogosStyleVars as styleVars} from "./home-styles";
 import {ClassProps} from "../../common/class-props";
-import SixPointSixLogo from "../../assets/logos/purple/6point6.png";
 import AcchaLogo from "../../assets/logos/purple/accha.png";
 import AriwontoLogo from "../../assets/logos/purple/ariwonto.png";
 import AstraZenecaLogo from "../../assets/logos/purple/astrazeneca.png";
@@ -18,6 +17,7 @@ import FIDELogo from "../../assets/logos/purple/fide.png";
 import FlipkartLogo from "../../assets/logos/purple/flipkart.png";
 import GeminosLogo from "../../assets/logos/purple/geminos.png";
 import GenentechLogo from "../../assets/logos/purple/genentech.png";
+import IBMLogo from "../../assets/logos/purple/ibm.png";
 import IceLabLogo from "../../assets/logos/purple/ice-lab.png";
 import MedasLogo from "../../assets/logos/purple/medas.png";
 import NestleLogo from "../../assets/logos/purple/nestle.png";
@@ -28,6 +28,7 @@ import RheosMedicinesLogo from "../../assets/logos/purple/rheos-medicines.png";
 import RocheLogo from "../../assets/logos/purple/roche.png";
 import RollsRoyceLogo from "../../assets/logos/purple/rolls-royce.png";
 import RowzzyLogo from "../../assets/logos/purple/rowzzy.png";
+import SixPointSixLogo from "../../assets/logos/purple/6point6.png";
 import TNOLogo from "../../assets/logos/purple/tno.png";
 import TripudioLogo from "../../assets/logos/purple/tripudio.png";
 import TwoSixLogo from "../../assets/logos/purple/twosix.png";
@@ -44,6 +45,10 @@ export const UserLogosSection: React.FC<ClassProps> = ({className}) => {
     const classes = Object.assign({}, vaticleStyles(), corporateLogosStyles());
 
     const logos: UserLogo[] = [{
+        logo: IBMLogo,
+        altText: "IBM",
+        weight: 3,
+    }, {
         logo: FlipkartLogo,
         altText: "Flipkart",
         weight: 3,

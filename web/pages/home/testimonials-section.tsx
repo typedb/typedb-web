@@ -1,41 +1,38 @@
 import React from "react";
 import clsx from "clsx";
-import CircleDecoration from "../../assets/graphics/circle-decoration.svg";
+import {VaticleButton} from "../../common/button/button";
 import {vaticleStyles} from "../../common/styles/vaticle-styles";
+import {homePageTestimonialsStyles} from "./home-styles";
 import {ClassProps} from "../../common/class-props";
+import CircleDecoration from "../../assets/graphics/circle-decoration.svg";
+import AlexDengAvatar from "../../assets/images/alex-deng.jpg";
+import BioCortexSquareLogo from "../../assets/logos/squarewhite/biocortex-square-white.png";
+import CapgeminiSquareLogo from "../../assets/logos/squarewhite/capgemini-square-white.png";
+import ChinaMerchantsBankSquareLogo from "../../assets/logos/squarewhite/china-merchants-bank-square-white.png";
+import DixitShahAvatar from "../../assets/images/dixit-shah.png";
+import EagleGenomicsSquareLogo from "../../assets/logos/squarewhite/eagle-genomics-square-white.png";
+import EnzoMartoglioAvatar from "../../assets/images/enzo-martoglio.jpg";
+import FlipkartSquareLogo from "../../assets/logos/squarewhite/flipkart-square-white.png";
+import GravrSquareLogo from "../../assets/logos/squarewhite/gravr-square-white.png";
+import IBMLogo from "../../assets/logos/squarewhite/ibm-square-white.png";
+import InfosysSquareLogo from "../../assets/logos/squarewhite/infosys-square-white.png";
+import JeanPaulMochetAvatar from "../../assets/images/jean-paul-mochet.jpg";
 import JonThompsonAvatar from "../../assets/images/jon-thompson.jpg";
 import JorisSijsAvatar from "../../assets/images/joris-sijs.jpeg";
-import NikSharmaAvatar from "../../assets/images/nik-sharma.jpg";
-import RamAnveshAvatar from "../../assets/images/ram-anvesh.jpg";
-import EnzoMartoglioAvatar from "../../assets/images/enzo-martoglio.jpg";
-import MichaelBishopAvatar from "../../assets/images/michael-bishop.jpg";
-import RadouaneOudrhiriAvatar from "../../assets/images/radouane-oudrhiri.jpg";
-import SamuelPouytAvatar from "../../assets/images/samuel-pouyt.jpg";
-import AlexDengAvatar from "../../assets/images/alex-deng.jpg";
-import JeanPaulMochetAvatar from "../../assets/images/jean-paul-mochet.jpg";
 import KimWagerAvatar from "../../assets/images/kim-wager.png";
 import KonradMysliwiecAvatar from "../../assets/images/konrad-mysliwiec.jpeg";
 import MichaelDoyleAvatar from "../../assets/images/michael-doyle.png";
 import MuhannadAlomariAvatar from "../../assets/images/muhannad-alomari.jpg";
-import SamuelHassineAvatar from "../../assets/images/samuel-hassine.jpeg";
-import FlipkartSquareLogo from "../../assets/logos/squarewhite/flipkart-square-white.png";
-import BioCortexSquareLogo from "../../assets/logos/squarewhite/biocortex-square-white.png";
-import GravrSquareLogo from "../../assets/logos/squarewhite/gravr-square-white.png";
-import TNOSquareLogo from "../../assets/logos/squarewhite/tno-square-white.png";
-import AlphaVertexSquareLogo from "../../assets/logos/squarewhite/alpha-vertex-square-white.png";
-import EagleGenomicsSquareLogo from "../../assets/logos/squarewhite/eagle-genomics-square-white.png";
-import EuropeanRespiratorySocietySquareLogo
-    from "../../assets/logos/squarewhite/european-respiratory-society-square-white.png";
-import InfosysSquareLogo from "../../assets/logos/squarewhite/infosys-square-white.png";
-import CapgeminiSquareLogo from "../../assets/logos/squarewhite/capgemini-square-white.png";
-import ChinaMerchantsBankSquareLogo from "../../assets/logos/squarewhite/china-merchants-bank-square-white.png";
+import NikSharmaAvatar from "../../assets/images/nik-sharma.jpg";
 import OpenCTISquareLogo from "../../assets/logos/squarewhite/opencti-square-white.png";
 import OxfordPharmagenesisSquareLogo from "../../assets/logos/squarewhite/oxford-pharmagenesis-square-white.png";
+import RadouaneOudrhiriAvatar from "../../assets/images/radouane-oudrhiri.jpg";
 import RAIRHealthSquareLogo from "../../assets/logos/squarewhite/rair-health-square-white.png";
+import RamAnveshAvatar from "../../assets/images/ram-anvesh.jpg";
 import RocheSquareLogo from "../../assets/logos/squarewhite/roche-square-white.png";
 import RollsRoyceSquareLogo from "../../assets/logos/squarewhite/rolls-royce-square-white.png";
-import {homePageTestimonialsStyles} from "./home-styles";
-import { VaticleButton } from "../../common/button/button";
+import SamuelHassineAvatar from "../../assets/images/samuel-hassine.jpeg";
+import TNOSquareLogo from "../../assets/logos/squarewhite/tno-square-white.png";
 
 interface Testimonial {
     companyName: string;
@@ -103,14 +100,6 @@ export const TestimonialsSection: React.FC<ClassProps> = ({className}) => {
         management systems. Through nested and hyper relations, we can easily represent TTPs and observables,
         attribution and victimology. During an attack, this gives analysts 360 views of any observable.`,
     }, {
-        companyName: "Alpha Vertex",
-        companyLogo: AlphaVertexSquareLogo,
-        personName: "Michael Bishop",
-        jobTitle: "Chief Technology Officer",
-        avatar: MichaelBishopAvatar,
-        body: `TypeDB significantly streamlines our knowledge engineering process. TypeDB’s expressive schema allows us
-        to verify the logical consistency of patterns detected by our learning algorithms and improve accuracy.`,
-    }, {
         companyName: "China Merchants Bank",
         companyLogo: ChinaMerchantsBankSquareLogo,
         personName: "Alex Deng",
@@ -119,6 +108,15 @@ export const TestimonialsSection: React.FC<ClassProps> = ({className}) => {
         body: `TypeDB is a unique technology that is so incredibly powerful in its ability to express and model
         complex data while remaining simple and elegant in its use. We are so pleased with TypeDB, in particular as it
         saves us from hiring an additional AI scientist to utilise semantic technologies in our projects.`,
+    }, {
+        companyName: "IBM",
+        companyLogo: IBMLogo,
+        personName: "Dixit Shah",
+        jobTitle: "Managing Consultant",
+        avatar: DixitShahAvatar,
+        body: `TypeDB enables us to model the supply chains of large Global CPG clients and identify environmental 
+        and social risks. We have found its strongly typed nature and expressivity to be world leading, allowing 
+        our customers to gain novel insights. With TypeDB, we can solve problems at the world's greatest companies.`,
     }, {
         companyName: "RAIR Health",
         companyLogo: RAIRHealthSquareLogo,
@@ -137,14 +135,6 @@ export const TestimonialsSection: React.FC<ClassProps> = ({className}) => {
         body: `TypeDB is a powerful framework for data exploration. The way data, attributes and relations can be
         expressed in a polymorphism manner allows us to build a rich network of multi-levels analysis and open
         opportunities to query, discover and infer interactions between complex epidemic factors.`,
-    }, {
-        companyName: "Infosys",
-        companyLogo: InfosysSquareLogo,
-        personName: "Enzo Martoglio",
-        jobTitle: "AI Architect",
-        avatar: EnzoMartoglioAvatar,
-        body: `No business-centric implementation of AI can avoid having a Knowledge Graph at its core. Vaticle is one
-        of the few companies developing this tool that any AI business solution will require.`,
     }, {
         companyName: "Eagle Genomics",
         companyLogo: EagleGenomicsSquareLogo,
@@ -171,14 +161,6 @@ export const TestimonialsSection: React.FC<ClassProps> = ({className}) => {
         body: `TypeDB performs complicated logic queries at blazing speeds. Its strongly typed data model elegantly
         represents virtually any domain, and enforces well-formed models and data consistency - which is why we picked
         TypeDB to power Gravr, our general-purpose knowledge app.`,
-    }, {
-        companyName: "European Respiratory Society",
-        companyLogo: EuropeanRespiratorySocietySquareLogo,
-        personName: "Samuel Pouyt",
-        jobTitle: "Software Architect",
-        avatar: SamuelPouytAvatar,
-        body: `Whether it is for content recommendation, managing GDPR, or text classification, the more I use TypeDB,
-        the more I discover suitable use cases. Its power and simplicity make it an everyday tool.`,
     }];
 
     return (

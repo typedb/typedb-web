@@ -416,7 +416,7 @@ export const homePageClusterStyles = makeStyles({
 
 const testimonialWidth = 400;
 const testimonialWidthMobile = 360;
-const testimonialCount = 15;
+const testimonialCount = 13;
 
 export const homePageTestimonialsStyles = makeStyles({
     testimonialsSection: {
