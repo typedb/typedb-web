@@ -35,7 +35,7 @@
     "smoothscroll-anchor-polyfill": "^1.3.2",
     "smoothscroll-polyfill": "^0.4.4",
     "styled-components": "^4.4.1",
-    "typedb-visualiser": "https://repo.vaticle.com/repository/npm-snapshot/typedb-visualiser/-/typedb-visualiser-0.0.12.tgz"
+    "typedb-visualiser": "https://repo.vaticle.com/repository/npm-snapshot/typedb-visualiser/-/typedb-visualiser-0.0.17.tgz"
   },
   "devDependencies": {
     "@babel/cli": "^7.14.3",

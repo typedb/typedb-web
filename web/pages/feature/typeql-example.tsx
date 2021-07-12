@@ -2,7 +2,8 @@ import React from "react";
 import {CodePane} from "../../common/code/code-pane";
 import { ExampleWindow, ExampleWindowFooter, ExampleWindowHeader } from "../../common/code/example-window";
 import {featureStyles} from "./feature-styles";
-import { TypeDBStaticVisualiser, TypeDBVisualiserData } from "typedb-visualiser";
+import { TypeDBVisualiserData } from "typedb-visualiser";
+import TypeDBStaticVisualiser from "typedb-visualiser/react/TypeDBStaticVisualiser";
 
 interface TypeQLExampleProps {
     code: string;

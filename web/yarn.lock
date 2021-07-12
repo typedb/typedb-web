@@ -7979,9 +7979,9 @@ typedarray@^0.0.6:
   resolved "https://registry.yarnpkg.com/typedarray/-/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
   integrity sha1-hnrHTjhkGHsdPUfZlqeOxciDB3c=
 
-"typedb-visualiser@https://repo.vaticle.com/repository/npm-snapshot/typedb-visualiser/-/typedb-visualiser-0.0.12.tgz":
-  version "0.0.12"
-  resolved "https://repo.vaticle.com/repository/npm-snapshot/typedb-visualiser/-/typedb-visualiser-0.0.12.tgz#45dc4d4ef1e3d3433d2f9cb1a045e57a7ff16deb"
+"typedb-visualiser@https://repo.vaticle.com/repository/npm-snapshot/typedb-visualiser/-/typedb-visualiser-0.0.17.tgz":
+  version "0.0.17"
+  resolved "https://repo.vaticle.com/repository/npm-snapshot/typedb-visualiser/-/typedb-visualiser-0.0.17.tgz#6c2c3358a922d029ae27adf5b4361b7f4c72a304"
   dependencies:
     d3-force "^3.0.0"
     fontfaceobserver "^2.1.0"
