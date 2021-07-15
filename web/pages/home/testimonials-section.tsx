@@ -6,16 +6,16 @@ import {homePageTestimonialsStyles} from "./home-styles";
 import {ClassProps} from "../../common/class-props";
 import CircleDecoration from "../../assets/graphics/circle-decoration.svg";
 import AlexDengAvatar from "../../assets/images/alex-deng.jpg";
+import AltamiraSquareLogo from "../../assets/logos/squarewhite/altamira-square-white.png";
 import BioCortexSquareLogo from "../../assets/logos/squarewhite/biocortex-square-white.png";
 import CapgeminiSquareLogo from "../../assets/logos/squarewhite/capgemini-square-white.png";
 import ChinaMerchantsBankSquareLogo from "../../assets/logos/squarewhite/china-merchants-bank-square-white.png";
 import DixitShahAvatar from "../../assets/images/dixit-shah.png";
 import EagleGenomicsSquareLogo from "../../assets/logos/squarewhite/eagle-genomics-square-white.png";
-import EnzoMartoglioAvatar from "../../assets/images/enzo-martoglio.jpg";
 import FlipkartSquareLogo from "../../assets/logos/squarewhite/flipkart-square-white.png";
 import GravrSquareLogo from "../../assets/logos/squarewhite/gravr-square-white.png";
 import IBMLogo from "../../assets/logos/squarewhite/ibm-square-white.png";
-import InfosysSquareLogo from "../../assets/logos/squarewhite/infosys-square-white.png";
+import JamesZylinskiAvatar from "../../assets/images/james-zylinski.png";
 import JeanPaulMochetAvatar from "../../assets/images/jean-paul-mochet.jpg";
 import JonThompsonAvatar from "../../assets/images/jon-thompson.jpg";
 import JorisSijsAvatar from "../../assets/images/joris-sijs.jpeg";
@@ -56,14 +56,6 @@ export const TestimonialsSection: React.FC<ClassProps> = ({className}) => {
         semantic schema, TypeDB solves all our modelling problems so that we can focus more on solving higher level
         problems instead of tweaking traditional graph databases to fit our use cases.`,
     }, {
-        companyName: "TNO",
-        companyLogo: TNOSquareLogo,
-        personName: "Joris Sijs",
-        jobTitle: "Senior Research Lead",
-        avatar: JorisSijsAvatar,
-        body: `TypeDB makes it easy for our robots to operate autonomously in the real world by being the centre of their
-        understanding. TypeDB makes it easy to incorporate expert knowledge and advanced reasoning into its knowledge base.`,
-    }, {
         companyName: "BioCortex",
         companyLogo: BioCortexSquareLogo,
         personName: "Nik Sharma",
@@ -72,6 +64,14 @@ export const TestimonialsSection: React.FC<ClassProps> = ({className}) => {
         body: `For developers, TypeDB is really easy to work with. Its unique and expressive type system enables us to
         spend less time data modelling. We can easily integrate complex biomedical datasets. TypeDB provides us the
         backbone to our therapeutics platform to cure neurodegenerative diseases.`,
+    }, {
+        companyName: "TNO",
+        companyLogo: TNOSquareLogo,
+        personName: "Joris Sijs",
+        jobTitle: "Senior Research Lead",
+        avatar: JorisSijsAvatar,
+        body: `TypeDB makes it easy for our robots to operate autonomously in the real world by being the centre of their
+        understanding. TypeDB makes it easy to incorporate expert knowledge and advanced reasoning into its knowledge base.`,
     }, {
         companyName: "Rolls-Royce",
         companyLogo: RollsRoyceSquareLogo,
@@ -82,15 +82,6 @@ export const TestimonialsSection: React.FC<ClassProps> = ({className}) => {
         decisions are being led through data mined from millions of internal reports, accumulated into a deep knowledge
         graph. TypeDB allows us to move faster to developing this capability for Rolls-Royce.`,
     }, {
-        companyName: "Oxford Pharmagenesis",
-        companyLogo: OxfordPharmagenesisSquareLogo,
-        personName: "Kim Wager",
-        jobTitle: "Scientific Director",
-        avatar: KimWagerAvatar,
-        body: `TypeDB and TypeQL allow us to model the biomedical domain, enabling us to surface insights that are
-        explainable and transparent; key requirements for AI in healthcare. Crucially, the Vaticle team provide more
-        than software, you gain access to a community. This is how the best work gets done – collaboratively.`,
-    }, {
         companyName: "OpenCTI",
         companyLogo: OpenCTISquareLogo,
         personName: "Samuel Hassine",
@@ -99,6 +90,15 @@ export const TestimonialsSection: React.FC<ClassProps> = ({className}) => {
         body: `TypeDB's expressivity allows us to unify all levels of cyber intelligence for cyber security knowledge
         management systems. Through nested and hyper relations, we can easily represent TTPs and observables,
         attribution and victimology. During an attack, this gives analysts 360 views of any observable.`,
+    }, {
+        companyName: "Altamira Corporation",
+        companyLogo: AltamiraSquareLogo,
+        personName: "James Zylinski",
+        jobTitle: "Data Scientist",
+        avatar: JamesZylinskiAvatar,
+        body: `TypeDB's reasoner is a powerful technology for quickly inferring tons of relationships with little effort.
+        The community engagement of Vaticle's development team is also amazing. I ran into an issue with an earlier
+        version, and was provided with a pre-release build that got me back up-and-running in minutes.`,
     }, {
         companyName: "China Merchants Bank",
         companyLogo: ChinaMerchantsBankSquareLogo,
@@ -143,6 +143,15 @@ export const TestimonialsSection: React.FC<ClassProps> = ({className}) => {
         avatar: RadouaneOudrhiriAvatar,
         body: `TypeDB's query language, TypeQL, should be the de facto language for any graph representation because of
         two things: the semantic expressiveness of the language and the optimisation of query execution.`,
+    }, {
+        companyName: "Oxford Pharmagenesis",
+        companyLogo: OxfordPharmagenesisSquareLogo,
+        personName: "Kim Wager",
+        jobTitle: "Scientific Director",
+        avatar: KimWagerAvatar,
+        body: `TypeDB and TypeQL allow us to model the biomedical domain, enabling us to surface insights that are
+        explainable and transparent; key requirements for AI in healthcare. Crucially, the Vaticle team provide more
+        than software, you gain access to a community. This is how the best work gets done – collaboratively.`,
     }, {
         companyName: "Roche",
         companyLogo: RocheSquareLogo,

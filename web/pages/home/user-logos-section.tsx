@@ -4,6 +4,7 @@ import {vaticleStyles} from "../../common/styles/vaticle-styles";
 import {corporateLogosStyles, corporateLogosStyleVars as styleVars} from "./home-styles";
 import {ClassProps} from "../../common/class-props";
 import AcchaLogo from "../../assets/logos/purple/accha.png";
+import AltamiraLogo from "../../assets/logos/purple/altamira.png";
 import AriwontoLogo from "../../assets/logos/purple/ariwonto.png";
 import AstraZenecaLogo from "../../assets/logos/purple/astrazeneca.png";
 import AustinCapitalDataLogo from "../../assets/logos/purple/austin-capital-data.png";
@@ -93,9 +94,9 @@ export const UserLogosSection: React.FC<ClassProps> = ({className}) => {
         altText: "Digicust",
         weight: 1,
     }, {
-        logo: RowzzyLogo,
-        altText: "Rowzzy",
-        weight: 1,
+        logo: AltamiraLogo,
+        altText: "Altamira",
+        weight: 2,
     }, {
         logo: OxfordPharmagenesisLogo,
         altText: "Oxford Pharmagenesis",
@@ -108,6 +109,10 @@ export const UserLogosSection: React.FC<ClassProps> = ({className}) => {
         logo: TripudioLogo,
         altText: "Tripudio",
         weight: 2,
+    }, {
+        logo: RowzzyLogo,
+        altText: "Rowzzy",
+        weight: 1,
     }, {
         logo: AcchaLogo,
         altText: "Accha",
