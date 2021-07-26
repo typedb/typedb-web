@@ -31,10 +31,10 @@ export const TypeDBClusterSection: React.FC<ClassProps> = ({className}) => {
         icon: HighAvailabilityIcon,
         to: routes.typeDBCluster.availability
     }, {
-        name: "Elastic Throughput",
+        name: "Horizontal Scalability",
         description: "Scale application read throughput linearly as new machines are added to the database cluster.",
         icon: ElasticThroughputIcon,
-        to: routes.typeDBCluster.throughput
+        to: routes.typeDBCluster.scalability
     }, {
         name: "User Authentication",
         description: "Ensuring only authenticated access and appropriately privileged users are allowed to access the database.",

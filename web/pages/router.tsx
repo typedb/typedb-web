@@ -31,7 +31,7 @@ export const routes = {
     typeDBCluster: {
         page: "/typedb-cluster",
         availability: "/typedb-cluster#availability",
-        throughput: "/typedb-cluster#throughput",
+        scalability: "/typedb-cluster#scalability",
         authentication: "/typedb-cluster#authentication",
         encryption: "/typedb-cluster#encryption",
         management: "/typedb-cluster#management",
