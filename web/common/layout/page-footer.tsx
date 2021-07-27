@@ -1,4 +1,5 @@
 import React, { useLayoutEffect, useState } from "react";
+import { VaticleLink } from "../link/link";
 import { pageFooterStyles } from "./layout-styles";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faDiscord, faFacebookSquare, faGithub, faLinkedin, faTwitter, IconDefinition } from "@fortawesome/free-brands-svg-icons";
@@ -139,12 +140,12 @@ interface ContactDetailProps extends FooterLinkProps {
     classes?: Partial<{ anchor: string }>;
 }
 
-const ContactDetail: React.FC<ContactDetailProps> = ({children, href, target, icon, type, classes}) => {
+const ContactDetail: React.FC<ContactDetailProps> = ({children, href, target, to, icon, type, classes}) => {
     const ownClasses = Object.assign({}, vaticleStyles(), pageFooterStyles());
 
     return (
         <li>
-            <a href={href} target={target} className={clsx(ownClasses.contactLink, classes?.anchor)}>
+            <VaticleLink href={href} target={target} to={to} className={clsx(ownClasses.contactLink, classes?.anchor)}>
                 {icon &&
                 <span className={ownClasses.linkIconContainer}>
                     <FontAwesomeIcon className={ownClasses.linkIcon} icon={icon} />
@@ -153,7 +154,7 @@ const ContactDetail: React.FC<ContactDetailProps> = ({children, href, target, ic
                 <address className={ownClasses.linkText}>
                     {children}
                 </address> : <p className={ownClasses.linkText}>{children}</p>}
-            </a>
+            </VaticleLink>
         </li>
     );
 };
