@@ -6,7 +6,7 @@ export const vaticleGalaxyStyles = makeStyles({
     root: {
         "@media(min-width: 768px)": {
             position: "absolute",
-            transform: "translateX(-50%) scale(.667)",
+            transform: "translateX(-50%) scale(.75)",
         },
 
         "@media(max-width: 767px)": {
@@ -60,7 +60,7 @@ export const vaticleGalaxyStyles = makeStyles({
 
 export const homePageStyles = makeStyles({
     homePageFirstSection: {
-        marginTop: standardMargins.firstSection.mobile,
+        marginTop: 160,
     },
 
     vaticleGalaxyContainer: {
@@ -75,7 +75,7 @@ export const homePageStyles = makeStyles({
 
     typeDBIntro: {
         // "@media(max-width: 767px)": {
-            marginTop: 450,
+            marginTop: 470,
         // },
 
         "@media(max-width: 479px)": {
