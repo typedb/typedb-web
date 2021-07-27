@@ -68,7 +68,7 @@ export const UseCaseSection: React.FC<ClassProps> = ({className}) => {
 
     return (
         <section className={className}>
-            <h1 className={classes.h1}>Empower your organisation to solve complex problems</h1>
+            <h1 className={classes.h1}>Empower your organisation <br className={classes.showTablet}/> to solve complex problems</h1>
             <h3 className={clsx(classes.h3, classes.textMargin)}>{selectedIndustry.name}</h3>
 
             <p className={classes.industryDescription}>{selectedIndustry.description}</p>

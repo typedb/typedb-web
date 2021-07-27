@@ -25,7 +25,7 @@ export const TypeDBSection: React.FC<ClassProps> = ({className}) => {
 
     return (
         <section className={className}>
-            <h1 className={classes.h1}>Type systems make complex problems easier to tackle</h1>
+            <h1 className={classes.h1}>Type systems make complex problems <br className={classes.showTablet}/> easier to tackle</h1>
             <p className={classes.sectionIntro}>
                 TypeDB provides a strong type system for developers to break down complex problems into
                 meaningful and logical systems. Through TypeQL, TypeDB provides powerful abstractions over

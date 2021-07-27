@@ -212,6 +212,21 @@ export const vaticleStyles = makeStyles({
         },
     },
 
+    hideTablet: {
+        "@media (min-width: 768px) and (max-width: 1199px)": {
+            display: "none !important",
+        },
+    },
+
+    showTablet: {
+        "@media(min-width: 1200px)": {
+            display: "none !important",
+        },
+        "@media(max-width: 767px)": {
+            display: "none !important",
+        },
+    },
+
     hideMobile: {
         "@media(max-width: 767px)": {
             display: "none !important",

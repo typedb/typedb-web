@@ -4,6 +4,11 @@ import { sectionIntroMaxWidth, standardMargins, standardTextStyles } from "../..
 
 export const vaticleGalaxyStyles = makeStyles({
     root: {
+        "@media(min-width: 768px)": {
+            position: "absolute",
+            transform: "translateX(-50%) scale(.667)",
+        },
+
         "@media(max-width: 767px)": {
             position: "absolute",
             transform: "translateX(-50%) scale(.667)",
@@ -54,20 +59,24 @@ export const vaticleGalaxyStyles = makeStyles({
 });
 
 export const homePageStyles = makeStyles({
+    homePageFirstSection: {
+        marginTop: standardMargins.firstSection.mobile,
+    },
+
     vaticleGalaxyContainer: {
         width: "100%",
 
-        "@media(max-width: 767px)": {
+        // "@media(max-width: 767px)": {
             marginTop: -60,
             position: "relative",
             height: 1, // This forces the element to take up space on the screen, so the header text gets a top margin.
-        },
+        // },
     },
 
     typeDBIntro: {
-        "@media(max-width: 767px)": {
+        // "@media(max-width: 767px)": {
             marginTop: 450,
-        },
+        // },
 
         "@media(max-width: 479px)": {
             display: "none",

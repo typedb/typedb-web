@@ -23,7 +23,7 @@ export const HomePage: React.FC = () => {
 
     return (
         <VaticleLayout>
-            <section className={classes.firstSectionMargin}>
+            <section className={classes.homePageFirstSection}>
                 <div className={classes.vaticleGalaxyContainer}>
                     <VaticleGalaxy/>
                 </div>
@@ -56,7 +56,8 @@ export const HomePage: React.FC = () => {
                     <div className={classes.mainLink}>
                         <VaticleButton className={classes.downloadTypeDBButton} size="small" type="primary"
                                        to={routes.download}>
-                            Download TypeDB {typeDBVersion}
+                            <span className={classes.hideTablet}>Download TypeDB {typeDBVersion}</span>
+                            <span className={classes.showTablet}>Download<br/>TypeDB {typeDBVersion}</span>
                         </VaticleButton>
                     </div>
                 </div>
