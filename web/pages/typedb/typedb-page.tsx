@@ -100,9 +100,8 @@ export const TypeDBPage: React.FC = () => {
                 <h2 className={classes.h2}>A higher degree of safety</h2>
                 <p className={classes.sectionIntro}>
                     Types provide a way to describe the logical structures of your data, allowing TypeDB to validate
-                    that your code inserts and queries data correctly. Query validation goes beyond static type
-                    checking,
-                    and includes logical validations of meaningless queries. With strict type-checking errors, you have
+                    that your code inserts and queries data correctly. Query validation goes beyond static type checking,
+                    and includes logical validation of meaningless queries. With strict type-checking errors, you have
                     a dataset that you can trust.
                 </p>
 
