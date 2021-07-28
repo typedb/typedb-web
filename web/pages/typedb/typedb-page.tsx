@@ -100,14 +100,14 @@ export const TypeDBPage: React.FC = () => {
                 <h2 className={classes.h2}>A higher degree of safety</h2>
                 <p className={classes.sectionIntro}>
                     Types provide a way to describe the logical structures of your data, allowing TypeDB to validate
-                    that your code inserts and queries data correctly. Query validation goes beyond static type checking,
+                    that your code inserts and queries data correctly. Query validation goes beyond static type-checking,
                     and includes logical validation of meaningless queries. With strict type-checking errors, you have
                     a dataset that you can trust.
                 </p>
 
                 <FeatureBlock className={classes.subsectionMargin} examplePosition="left"
                               title="Logical Data Validation"
-                              body="Inserted data gets validated beyond static type checking of attribute value types.
+                              body="Inserted data gets validated beyond static type-checking of attribute value types.
                               Entities are validated to only have the correct attributes, and relations are validated to
                               only relate things that are logically allowed. TypeDB performs richer validation of inserted
                               entities and relations by evaluating the polymorphic types of the things involved."

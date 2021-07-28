@@ -44,7 +44,7 @@ export const TypeDBSection: React.FC<ClassProps> = ({className}) => {
             <FeatureBlock className={classes.subsectionMargin} examplePosition="right" title="Safety"
                           body="Types provide a way to describe the logical structures of your data, allowing TypeDB to
                           validate that your code inserts and queries data correctly. Query validation goes beyond
-                          static type checking, and includes logical validation of meaningless queries. With strict
+                          static type-checking, and includes logical validation of meaningless queries. With strict
                           type-checking errors, you have a dataset that you can trust."
                           button={{text: "Learn More", to: routes.typeDB.safety}}>
                 <TypeQLExample code={logicalQueryValidationExampleCode} data={logicalQueryValidationExampleGraph}/>
