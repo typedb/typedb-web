@@ -54,7 +54,7 @@ export const TypeDBPage: React.FC = () => {
                 <p className={classes.sectionIntro}>
                     TypeDB allows you to model your domain based on logical and object-oriented principles. Composed of
                     entity, relationship, and attribute types, as well as type hierarchies, roles, and rules, TypeDB
-                    allows you to think higher-level as opposed to join-tables, columns, documents, vertices, edges,
+                    allows you to think higher-level, as opposed to join-tables, columns, documents, vertices, edges,
                     and properties.
                 </p>
 
@@ -129,7 +129,7 @@ export const TypeDBPage: React.FC = () => {
                 <h2 className={classes.h2}>Evolved with logical inference</h2>
                 <p className={classes.sectionIntro}>
                     TypeDB encodes your data for logical interpretation by a reasoning engine. It enables type-inference
-                    and rule-inference that creates logical abstractions of data. This allows the discovery of facts and
+                    and rule-inference, which create logical abstractions of data. This allows the discovery of facts and
                     patterns that would otherwise be too hard to find; and complex queries become much simpler.
                 </p>
 

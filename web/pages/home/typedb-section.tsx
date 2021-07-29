@@ -35,7 +35,7 @@ export const TypeDBSection: React.FC<ClassProps> = ({className}) => {
             <FeatureBlock className={classes.subsectionMargin} examplePosition="left" title="Expressivity"
                           body="TypeDB allows you to model your domain based on logical and object-oriented principles.
                           Composed of entity, relationship, and attribute types, as well as type hierarchies, roles, and
-                          rules, TypeDB allows you to think higher-level as opposed to join-tables, columns, documents,
+                          rules, TypeDB allows you to think higher-level, as opposed to join-tables, columns, documents,
                           vertices, edges, and properties."
                           button={{text: "Learn More", to: routes.typeDB.expressivity}}>
                 <TypeQLExample code={entityRelationshipExampleCode} data={entityRelationshipExampleGraph}/>
@@ -52,7 +52,7 @@ export const TypeDBSection: React.FC<ClassProps> = ({className}) => {
 
             <FeatureBlock className={classes.subsectionMargin} examplePosition="left" title="Inference"
                           body="TypeDB encodes your data for logical interpretation by its reasoning engine. It enables
-                          type-inference and rule-inference that creates logical abstractions of data. This allows the
+                          type-inference and rule-inference, which create logical abstractions of data. This allows the
                           discovery of facts and patterns that would otherwise be too hard to find; and complex queries
                           become much simpler."
                           button={{text: "Learn More", to: routes.typeDB.inference}}>

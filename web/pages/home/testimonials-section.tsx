@@ -133,7 +133,7 @@ export const TestimonialsSection: React.FC<ClassProps> = ({className}) => {
         jobTitle: "Chief Enterprise Architect",
         avatar: JeanPaulMochetAvatar,
         body: `TypeDB is a powerful framework for data exploration. The way data, attributes and relations can be
-        expressed in a polymorphism manner allows us to build a rich network of multi-levels analysis and open
+        expressed in a polymorphic manner allows us to build a rich network of multi-levels analysis and open
         opportunities to query, discover and infer interactions between complex epidemic factors.`,
     }, {
         companyName: "Eagle Genomics",

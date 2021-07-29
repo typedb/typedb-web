@@ -42,7 +42,7 @@ export const TypeDBClusterSection: React.FC<ClassProps> = ({className}) => {
         to: routes.typeDBCluster.authentication
     }, {
         name: "In-Flight Encryption",
-        description: "All client-to-server and server-to-server communications are fully encrypted during transmission.",
+        description: "All client-to-server and server-to-server communications are fully encrypted throughout transmission.",
         icon: EncryptionIcon,
         to: routes.typeDBCluster.encryption
     }, {
