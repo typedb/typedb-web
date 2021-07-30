@@ -86,10 +86,6 @@ export const UserLogosSection: React.FC<ClassProps> = ({className}) => {
         altText: "TNO",
         weight: 2,
     }, {
-        logo: RollsRoyceLogo,
-        altText: "Rolls-Royce",
-        weight: 3,
-    }, {
         logo: DigicustLogo,
         altText: "Digicust",
         weight: 1,
