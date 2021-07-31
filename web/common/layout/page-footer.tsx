@@ -74,7 +74,7 @@ export const PageFooter: React.FC = () => {
                             <ul className={classes.linkList}>
                                 <ContactDetail href={urls.github.org} target="_blank" icon={faGithub}>Vaticle on GitHub</ContactDetail>
                                 <ContactDetail href={urls.social.discord} target="_blank" icon={faDiscord}>Vaticle on Discord</ContactDetail>
-                                <ContactDetail icon={faPhoneAlt} to="?dialog=contact">Get in Touch</ContactDetail>
+                                <ContactDetail icon={faPhoneAlt} to="?dialog=contact">Get in touch</ContactDetail>
                                 <ContactDetail href={urls.officeLocation} target="_blank" icon={faMapMarkerAlt} type="address" classes={{anchor: classes.linkTwoLine}}>
                                     47-50 Margaret St, 3rd floor
                                     London W1W 8SE, UK

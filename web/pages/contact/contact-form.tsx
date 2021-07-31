@@ -88,9 +88,9 @@ export const ContactForm: React.FC<ContactFormProps> = ({className, id, onSubmit
 
             <div className={classes.formRow}>
                 <div className={classes.formCell}>
-                    <VaticleSelect label="Job function" value={jobFunction} setValue={setJobFunction}
+                    <VaticleSelect label="Job Function" value={jobFunction} setValue={setJobFunction}
                                    inputName="job-function" inputID="contact-job-function" variant="filled">
-                        <option disabled value="">Job function</option>
+                        <option disabled value="">Job Function</option>
                         <FormOption value="Tech Executive (CIO, CTO, VP Engineering, etc.)"/>
                         <FormOption value="Business Executive (CEO, COO, CMO, etc.)"/>
                         <FormOption value="Architect"/>
