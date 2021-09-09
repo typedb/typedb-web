@@ -113,8 +113,8 @@ export const PageFooter: React.FC = () => {
 
                     <hr className={classes.separator}/>
 
-                    <p className={clsx(classes.mediumText, classes.contentMargin)}>© {new Date().getFullYear()} Vaticle
-                        <br/>
+                    <p className={clsx(classes.mediumText, classes.contentMargin)}>
+                        © {new Date().getFullYear()} Vaticle Ltd <br/>
                         Vaticle™, TypeDB™ and TypeQL™ are trademarks of Vaticle Ltd
                     </p>
                 </section>
