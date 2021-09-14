@@ -33,6 +33,7 @@ export const urls = {
         twitter: "https://twitter.com/VaticleHQ",
         facebook: "https://www.facebook.com/VaticleHQ/",
         linkedIn: "https://www.linkedin.com/company/vaticle/",
+        youtube: "https://www.youtube.com/c/Vaticle",
     },
 
     hubspot: {

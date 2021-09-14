@@ -375,6 +375,10 @@ export const pageFooterStyles = makeStyles({
         marginLeft: 19,
     },
 
+    socialLinkYoutube: {
+        marginLeft: 19,
+    },
+
     socialLinkGithub: {
         marginLeft: 22,
     },
@@ -401,6 +405,14 @@ export const pageFooterStyles = makeStyles({
     },
 
     socialIconLinkedIn: {
+        color: "#FFF",
+        backgroundColor: vaticleTheme.palette.purple["3"],
+        width: "46px !important",
+        height: 46,
+        fontSize: 44,
+    },
+
+    socialIconYoutube: {
         color: "#FFF",
         backgroundColor: vaticleTheme.palette.purple["3"],
         width: "46px !important",

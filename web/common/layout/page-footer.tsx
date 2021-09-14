@@ -2,7 +2,7 @@ import React, { useLayoutEffect, useState } from "react";
 import { VaticleLink } from "../link/link";
 import { pageFooterStyles } from "./layout-styles";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faDiscord, faFacebookSquare, faGithub, faLinkedin, faTwitter, IconDefinition } from "@fortawesome/free-brands-svg-icons";
+import { faDiscord, faFacebookSquare, faGithub, faLinkedin, faTwitter, faYoutubeSquare, IconDefinition } from "@fortawesome/free-brands-svg-icons";
 import clsx from "clsx";
 import { VaticleButton } from "../button/button";
 import { faMapMarkerAlt, faPhoneAlt } from "@fortawesome/pro-solid-svg-icons";
@@ -53,6 +53,9 @@ export const PageFooter: React.FC = () => {
                             </a>
                             <a href={urls.social.linkedIn} target="_blank" className={classes.socialLinkLinkedIn}>
                                 <FontAwesomeIcon className={clsx(classes.socialIcon, classes.socialIconLinkedIn)} icon={faLinkedin} />
+                            </a>
+                            <a href={urls.social.youtube} target="_blank" className={classes.socialLinkYoutube}>
+                                <FontAwesomeIcon className={clsx(classes.socialIcon, classes.socialIconYoutube)} icon={faYoutubeSquare} />
                             </a>
                             <a href={urls.github.org} target="_blank" className={classes.socialLinkGithub}>
                                 <FontAwesomeIcon className={clsx(classes.socialIcon, classes.socialIconGithub)} icon={faGithub} />
