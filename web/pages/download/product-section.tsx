@@ -8,7 +8,7 @@ import {VaticleTabs} from "../../common/tabs/tabs";
 import clsx from "clsx";
 import {vaticleStyles} from "../../common/styles/vaticle-styles";
 
-type ProductName = "TypeDB" | "TypeDB Cluster" | "TypeDB Workbase";
+type ProductName = "TypeDB" | "TypeDB Cluster" | "TypeDB Studio";
 
 // TODO: Refactor into TabItem<ProductName>
 interface Product {
@@ -25,7 +25,7 @@ export const ProductSection: React.FC<ClassProps> = ({className}) => {
         content: TypeDBTab,
         id: "typedb",
     }, {
-        name: "TypeDB Workbase",
+        name: "TypeDB Studio",
         content: TypeDBWorkbaseTab,
         id: "typedb-workbase",
     }, {

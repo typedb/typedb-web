@@ -32,13 +32,14 @@ type NativeDownloads = { [version: string]: string }
 const OpenSourcePane: React.FC = () => {
     const classes = Object.assign({}, vaticleStyles(), downloadPageProductStyles());
 
-    const latestReleaseDate = new Date("2021-06-11 16:00:00");
+    const latestReleaseDate = new Date("2021-09-17 16:00:00");
     const latestReleaseDateFormatted = moment(latestReleaseDate).format("Do [of] MMMM YYYY");
-    const workbaseVersion = "2.1.2";
+    const workbaseVersion = "2.4.0-alpha";
     const latestReleaseNotesURL = `${urls.github.typedbWorkbaseReleases}/tag/${workbaseVersion}`;
 
     const downloads: Downloads = {
         "Linux": {
+            "2.4.0-alpha": "https://github.com/vaticle/typedb-studio/releases/download/2.4.0-alpha/typedb-studio-linux_2.4.0-alpha_amd64.deb",
             "2.1.2": "https://github.com/vaticle/typedb-workbase/releases/download/2.1.2/typedb-workbase-linux-2.1.2.AppImage",
             "2.1.0": "https://github.com/vaticle/typedb-workbase/releases/download/2.1.0/typedb-workbase-linux-2.1.0.AppImage",
             "2.0.2": "https://github.com/vaticle/typedb-workbase/releases/download/2.0.2/grakn-workbase-linux-2.0.2.AppImage",
@@ -46,6 +47,7 @@ const OpenSourcePane: React.FC = () => {
             "2.0.0": "https://github.com/vaticle/typedb-workbase/releases/download/2.0.0/grakn-workbase-linux-2.0.0.AppImage",
         },
         "Mac OS X": {
+            "2.4.0-alpha": "https://github.com/vaticle/typedb-studio/releases/download/2.4.0-alpha/typedb-studio-mac-2.4.0-alpha.dmg",
             "2.1.2": "https://github.com/vaticle/typedb-workbase/releases/download/2.1.2/typedb-workbase-mac-2.1.2.dmg",
             "2.1.0": "https://github.com/vaticle/typedb-workbase/releases/download/2.1.0/typedb-workbase-mac-2.1.0.dmg",
             "2.0.2": "https://github.com/vaticle/typedb-workbase/releases/download/2.0.2/grakn-workbase-mac-2.0.2.dmg",
@@ -53,6 +55,7 @@ const OpenSourcePane: React.FC = () => {
             "2.0.0": "https://github.com/vaticle/typedb-workbase/releases/download/2.0.0/grakn-workbase-mac-2.0.0.dmg",
         },
         "Windows": {
+            "2.4.0-alpha": "https://github.com/vaticle/typedb-studio/releases/download/2.4.0-alpha/typedb-studio-windows-2.4.0-alpha.exe",
             "2.1.2": "https://github.com/vaticle/typedb-workbase/releases/download/2.1.2/typedb-workbase-win-2.1.2.exe",
             "2.1.0": "https://github.com/vaticle/typedb-workbase/releases/download/2.1.0/typedb-workbase-win-2.1.0.exe",
             "2.0.2": "https://github.com/vaticle/typedb-workbase/releases/download/2.0.2/grakn-workbase-win-2.0.2.exe",
@@ -62,8 +65,8 @@ const OpenSourcePane: React.FC = () => {
     };
 
     const [selectedOS, setSelectedOS] = useState("Mac OS X");
-    const [selectedVersion, setSelectedVersion] = useState("2.1.2");
-    const [downloadURL, setDownloadURL] = useState(downloads["Mac OS X"]["2.1.2"]);
+    const [selectedVersion, setSelectedVersion] = useState("2.4.0-alpha");
+    const [downloadURL, setDownloadURL] = useState(downloads["Mac OS X"]["2.4.0-alpha"]);
 
     useEffect(() => {
         setDownloadURL(downloads[selectedOS][selectedVersion]);
@@ -77,12 +80,12 @@ const OpenSourcePane: React.FC = () => {
             </div>
 
             <p className={clsx(classes.comparisonBlockContent, classes.mediumText, classes.textMargin)}>
-                Install and develop with TypeDB Workbase immediately. TypeDB Workbase is licensed under AGPL so
-                that you can start developing quickly and adopt TypeDB Workbase within your ecosystem in no time.
+                Install and develop with TypeDB Studio immediately. TypeDB Studio is licensed under AGPL so
+                that you can start developing quickly and adopt TypeDB Studio within your ecosystem in no time.
             </p>
 
             <p className={clsx(classes.comparisonBlockContent, classes.mediumText, classes.textMargin)}>
-                Current Stable Release: <strong>TypeDB Workbase {workbaseVersion}</strong>
+                Current Stable Release: <strong>TypeDB Studio {workbaseVersion}</strong>
                 <br/>
                 <strong>{latestReleaseDateFormatted}</strong> <a href={latestReleaseNotesURL} target="_blank">Release
                 Notes</a>
@@ -98,6 +101,7 @@ const OpenSourcePane: React.FC = () => {
                 </VaticleSelect>
                 <VaticleSelect label="Version" value={selectedVersion} setValue={setSelectedVersion} inputName="version"
                                inputID="typedb-version" variant="outlined">
+                    <option value="2.4.0-alpha">2.4.0-alpha</option>
                     <option value="2.1.2">2.1.2</option>
                     <option value="2.1.0">2.1.0</option>
                     <option value="2.0.2">2.0.2</option>
@@ -125,7 +129,7 @@ const CommercialPane: React.FC = () => {
                 <h5 className={clsx(classes.h5, classes.comparisonBlockContent)}>Commercial License</h5>
             </div>
             <p className={clsx(classes.comparisonBlockContent, classes.mediumText, classes.textMargin)}>
-                If you want to freely integrate TypeDB Workbase into your ecosystem, and satisfy all of your
+                If you want to freely integrate TypeDB Studio into your ecosystem, and satisfy all of your
                 organisation's
                 requirements, the commercial license gives you that peace of mind.
             </p>
