@@ -84,6 +84,7 @@ export const codeStyles = makeStyles({
         height: "100%",
         backgroundColor: "#140B44",
         padding: "2px 0 2px 10px",
+        overflowX: "scroll",
 
         "&$resizable": {
             width: "calc(100% - 12px)",
@@ -97,7 +98,6 @@ export const codeStyles = makeStyles({
         width: "100%",
         height: "100%",
         paddingRight: 10,
-        overflowX: "scroll",
         textAlign: "start",
     },
 
