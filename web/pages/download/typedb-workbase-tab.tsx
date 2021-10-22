@@ -85,7 +85,7 @@ const OpenSourcePane: React.FC = () => {
             </p>
 
             <p className={clsx(classes.comparisonBlockContent, classes.mediumText, classes.textMargin)}>
-                Current Stable Release: <strong>TypeDB Studio {workbaseVersion}</strong>
+                Latest Release: <strong>TypeDB Studio {workbaseVersion}</strong>
                 <br/>
                 <strong>{latestReleaseDateFormatted}</strong> <a href={latestReleaseNotesURL} target="_blank">Release
                 Notes</a>

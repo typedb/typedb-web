@@ -103,7 +103,7 @@ const OpenSourcePane: React.FC = () => {
             </p>
 
             <p className={clsx(classes.comparisonBlockContent, classes.mediumText, classes.textMargin)}>
-                Current Stable Release: <strong>TypeDB {typeDBVersion}</strong>
+                Latest Release: <strong>TypeDB {typeDBVersion}</strong>
                 <br/>
                 <strong>{latestReleaseDateFormatted}</strong> <a href={latestReleaseNotesURL} target="_blank">Release
                 Notes</a>
