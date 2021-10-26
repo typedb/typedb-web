@@ -8,6 +8,7 @@ import clsx from "clsx";
 import {urls} from "../../common/urls";
 import {vaticleStyles} from "../../common/styles/vaticle-styles";
 import {downloadPageProductStyles} from "./download-styles";
+import { getCurrentOS, OS } from "../../common/util/platform";
 
 export const TypeDBTab: React.FC = () => {
     const items: [ComparisonBlockItem, ComparisonBlockItem] = [{
@@ -21,11 +22,24 @@ export const TypeDBTab: React.FC = () => {
     return <DistributionBlock items={items}/>;
 }
 
-type OS = "macOS" | "Linux" | "Windows";
 type TypeDBVersion = "2.5.0" | "2.4.0" | "2.3.3" | "2.3.2" | "2.3.1" | "2.3.0" | "2.2.0" | "2.1.3" | "2.1.1" | "2.0.2" | "2.0.1" | "2.0.0";
 
-type NativeDownloads = { [version in TypeDBVersion]: string }
-type Downloads = { [os in OS]: NativeDownloads }
+interface Downloads {
+    "macOS": NativeDownloads;
+    "Linux": NativeDownloads;
+    "Windows": NativeDownloads;
+}
+
+type NativeDownloads = { [version: string]: string }
+
+const defaultOSMap: {[key in OS]: keyof Downloads} = {
+    macOS: "macOS",
+    iOS: "macOS",
+    Linux: "Linux",
+    Windows: "Windows",
+    Android: "macOS",
+    Other: "macOS",
+}
 
 const OpenSourcePane: React.FC = () => {
     const classes = Object.assign({}, vaticleStyles(), downloadPageProductStyles());
@@ -80,7 +94,7 @@ const OpenSourcePane: React.FC = () => {
         },
     };
 
-    const defaultOS = "macOS" as OS;
+    const defaultOS: keyof Downloads = defaultOSMap[getCurrentOS()]
     const latestVersion = Object.keys(downloads[defaultOS])[0] as TypeDBVersion;
     const [selectedOS, setSelectedOS] = useState<keyof Downloads>(defaultOS);
     const [selectedVersion, setSelectedVersion] = useState(latestVersion);

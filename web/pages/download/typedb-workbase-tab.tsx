@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from "react";
 import {vaticleStyles} from "../../common/styles/vaticle-styles";
+import { getCurrentOS, OS } from "../../common/util/platform";
 import {downloadPageProductStyles} from "./download-styles";
 import moment from "moment";
 import clsx from "clsx";
@@ -29,6 +30,15 @@ interface Downloads {
 }
 
 type NativeDownloads = { [version: string]: string }
+
+const defaultOSMap: {[key in OS]: keyof Downloads} = {
+    macOS: "macOS",
+    iOS: "macOS",
+    Linux: "Ubuntu / Debian",
+    Windows: "Windows",
+    Android: "macOS",
+    Other: "macOS",
+}
 
 const OpenSourcePane: React.FC = () => {
     const classes = Object.assign({}, vaticleStyles(), downloadPageProductStyles());
@@ -68,9 +78,16 @@ const OpenSourcePane: React.FC = () => {
         },
     };
 
-    const [selectedOS, setSelectedOS] = useState("macOS");
-    const [selectedVersion, setSelectedVersion] = useState("2.4.0-alpha-3");
-    const [downloadURL, setDownloadURL] = useState(downloads["macOS"]["2.4.0-alpha-3"]);
+    const defaultOS: keyof Downloads = defaultOSMap[getCurrentOS()];
+    const defaultVersion: string = "2.4.0-alpha-3";
+    const [selectedOS, setSelectedOS] = useState(defaultOS);
+    const [selectedVersion, setSelectedVersion] = useState(defaultVersion);
+    const [downloadURL, setDownloadURL] = useState(downloads[defaultOS][defaultVersion]);
+
+    const selectOS = (value: keyof Downloads) => {
+        setSelectedOS(value);
+        if (value == "Linux (cross-platform)") setSelectedVersion(defaultVersion)
+    }
 
     useEffect(() => {
         setDownloadURL(downloads[selectedOS][selectedVersion]);
@@ -97,9 +114,9 @@ const OpenSourcePane: React.FC = () => {
 
             <div
                 className={clsx(classes.comparisonBlockContent, classes.mediumText, classes.textMargin, classes.selectGroup)}>
-                <VaticleSelect label="Operating System" value={selectedOS} setValue={setSelectedOS} inputName="os"
+                <VaticleSelect label="Operating System" value={selectedOS} setValue={selectOS} inputName="os"
                                inputID="typedb-os" variant="outlined">
-                    <option value="Debian / Ubuntu">Debian / Ubuntu</option>
+                    <option value="Ubuntu / Debian">Ubuntu / Debian</option>
                     <option value="Linux (cross-platform)">Linux (cross-platform)</option>
                     <option value="macOS">macOS</option>
                     <option value="Windows">Windows</option>
@@ -107,11 +124,14 @@ const OpenSourcePane: React.FC = () => {
                 <VaticleSelect label="Version" value={selectedVersion} setValue={setSelectedVersion} inputName="version"
                                inputID="typedb-version" variant="outlined">
                     <option value="2.4.0-alpha-3">2.4.0-alpha-3</option>
-                    <option value="2.1.2">2.1.2</option>
-                    <option value="2.1.0">2.1.0</option>
-                    <option value="2.0.2">2.0.2</option>
-                    <option value="2.0.1">2.0.1</option>
-                    <option value="2.0.0">2.0.0</option>
+                    {selectedOS !== "Linux (cross-platform)" &&
+                    <>
+                        <option value="2.1.2">2.1.2</option>
+                        <option value="2.1.0">2.1.0</option>
+                        <option value="2.0.2">2.0.2</option>
+                        <option value="2.0.1">2.0.1</option>
+                        <option value="2.0.0">2.0.0</option>
+                    </>}
                 </VaticleSelect>
             </div>
 
