@@ -45,12 +45,12 @@ const OpenSourcePane: React.FC = () => {
 
     const latestReleaseDate = new Date("2021-10-26 17:00:00");
     const latestReleaseDateFormatted = moment(latestReleaseDate).format("Do [of] MMMM YYYY");
-    const workbaseVersion = "2.4.0-alpha-3";
+    const workbaseVersion = "2.4.0-alpha-4";
     const latestReleaseNotesURL = `${urls.github.typedbWorkbaseReleases}/tag/${workbaseVersion}`;
 
     const downloads: Downloads = {
         "Ubuntu / Debian": {
-            "2.4.0-alpha-3": "https://github.com/vaticle/typedb-studio/releases/download/2.4.0-alpha-3/typedb-studio-linux_2.4.0-alpha-3-1_amd64.deb",
+            "2.4.0-alpha-4": "https://github.com/vaticle/typedb-studio/releases/download/2.4.0-alpha-4/typedb-studio-linux_2.4.0-alpha-4-1_amd64.deb",
             "2.1.2": "https://github.com/vaticle/typedb-workbase/releases/download/2.1.2/typedb-workbase-linux-2.1.2.AppImage",
             "2.1.0": "https://github.com/vaticle/typedb-workbase/releases/download/2.1.0/typedb-workbase-linux-2.1.0.AppImage",
             "2.0.2": "https://github.com/vaticle/typedb-workbase/releases/download/2.0.2/grakn-workbase-linux-2.0.2.AppImage",
@@ -58,10 +58,10 @@ const OpenSourcePane: React.FC = () => {
             "2.0.0": "https://github.com/vaticle/typedb-workbase/releases/download/2.0.0/grakn-workbase-linux-2.0.0.AppImage",
         },
         "Linux (cross-platform)": {
-            "2.4.0-alpha-3": "https://github.com/vaticle/typedb-studio/releases/download/2.4.0-alpha-3/typedb-studio-linux-java-binary-2.4.0-alpha-3.tar.gz",
+            "2.4.0-alpha-4": "https://github.com/vaticle/typedb-studio/releases/download/2.4.0-alpha-4/typedb-studio-linux-java-binary-2.4.0-alpha-4.tar.gz",
         },
         "macOS": {
-            "2.4.0-alpha-3": "https://github.com/vaticle/typedb-studio/releases/download/2.4.0-alpha-3/typedb-studio-mac-2.4.0-alpha-3.dmg",
+            "2.4.0-alpha-4": "https://github.com/vaticle/typedb-studio/releases/download/2.4.0-alpha-4/typedb-studio-mac-2.4.0-alpha-4.dmg",
             "2.1.2": "https://github.com/vaticle/typedb-workbase/releases/download/2.1.2/typedb-workbase-mac-2.1.2.dmg",
             "2.1.0": "https://github.com/vaticle/typedb-workbase/releases/download/2.1.0/typedb-workbase-mac-2.1.0.dmg",
             "2.0.2": "https://github.com/vaticle/typedb-workbase/releases/download/2.0.2/grakn-workbase-mac-2.0.2.dmg",
@@ -69,7 +69,7 @@ const OpenSourcePane: React.FC = () => {
             "2.0.0": "https://github.com/vaticle/typedb-workbase/releases/download/2.0.0/grakn-workbase-mac-2.0.0.dmg",
         },
         "Windows": {
-            "2.4.0-alpha-3": "https://github.com/vaticle/typedb-studio/releases/download/2.4.0-alpha-3/typedb-studio-windows-2.4.0-alpha-3.exe",
+            "2.4.0-alpha-4": "https://github.com/vaticle/typedb-studio/releases/download/2.4.0-alpha-4/typedb-studio-windows-2.4.0-alpha-4.exe",
             "2.1.2": "https://github.com/vaticle/typedb-workbase/releases/download/2.1.2/typedb-workbase-win-2.1.2.exe",
             "2.1.0": "https://github.com/vaticle/typedb-workbase/releases/download/2.1.0/typedb-workbase-win-2.1.0.exe",
             "2.0.2": "https://github.com/vaticle/typedb-workbase/releases/download/2.0.2/grakn-workbase-win-2.0.2.exe",
@@ -79,7 +79,7 @@ const OpenSourcePane: React.FC = () => {
     };
 
     const defaultOS: keyof Downloads = defaultOSMap[getCurrentOS()];
-    const defaultVersion: string = "2.4.0-alpha-3";
+    const defaultVersion: string = "2.4.0-alpha-4";
     const [selectedOS, setSelectedOS] = useState(defaultOS);
     const [selectedVersion, setSelectedVersion] = useState(defaultVersion);
     const [downloadURL, setDownloadURL] = useState(downloads[defaultOS][defaultVersion]);
@@ -123,7 +123,7 @@ const OpenSourcePane: React.FC = () => {
                 </VaticleSelect>
                 <VaticleSelect label="Version" value={selectedVersion} setValue={setSelectedVersion} inputName="version"
                                inputID="typedb-version" variant="outlined">
-                    <option value="2.4.0-alpha-3">2.4.0-alpha-3</option>
+                    <option value="2.4.0-alpha-4">2.4.0-alpha-4</option>
                     {selectedOS !== "Linux (cross-platform)" &&
                     <>
                         <option value="2.1.2">2.1.2</option>
