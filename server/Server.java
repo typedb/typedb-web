@@ -67,7 +67,7 @@ public class Server {
             if (pagesRoot == null) pagesRoot = ".";
             FileController pages = new FileController(Paths.get(pagesRoot).toAbsolutePath());
 
-            return new Routes(scalaHttpErrorHandler(), typeDBController, defaultController, pages).asJava();
+            return new Routes(scalaHttpErrorHandler(), pages, typeDBController, defaultController).asJava();
         }
     }
 }

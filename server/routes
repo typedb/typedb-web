@@ -1,3 +1,5 @@
+GET     /robots.txt    com.vaticle.web.main.server.FileController.robotsTxt()
+
 GET     /api/typedb/version     com.vaticle.web.main.server.api.TypeDBController.version()
 
 GET     /careers       controllers.Default.redirect(to = "https://apply.workable.com/vaticle")

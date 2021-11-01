@@ -25,4 +25,8 @@ public class FileController extends Controller {
             return ok(basedir.resolve(defaultFile));
         }
     }
+
+    public Result robotsTxt() {
+        return ok("# This is a blank robots.txt file. All robots may freely crawl this site. I, for one, welcome our new robot overlords. Beep boop, beep boop.");
+    }
 }
