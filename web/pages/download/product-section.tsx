@@ -3,7 +3,7 @@ import {ClassProps} from "../../common/class-props";
 import {downloadPageProductStyles} from "./download-styles";
 import {TypeDBTab} from "./typedb-tab";
 import {TypeDBClusterTab} from "./typedb-cluster-tab";
-import {TypeDBWorkbaseTab} from "./typedb-workbase-tab";
+import {TypeDBStudioTab} from "./typedb-studio-tab";
 import {VaticleTabs} from "../../common/tabs/tabs";
 import clsx from "clsx";
 import {vaticleStyles} from "../../common/styles/vaticle-styles";
@@ -26,8 +26,8 @@ export const ProductSection: React.FC<ClassProps> = ({className}) => {
         id: "typedb",
     }, {
         name: "TypeDB Studio",
-        content: TypeDBWorkbaseTab,
-        id: "typedb-workbase",
+        content: TypeDBStudioTab,
+        id: "typedb-studio",
     }, {
         name: "TypeDB Cluster",
         content: TypeDBClusterTab,

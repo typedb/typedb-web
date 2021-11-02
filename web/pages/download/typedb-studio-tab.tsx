@@ -10,7 +10,7 @@ import {VaticleButton} from "../../common/button/button";
 import {ComparisonBlockItem, DistributionBlock} from "./distribution-block";
 
 // TODO: This tab was copied from TypeDBTab - we should reuse and extend TypeDBTab
-export const TypeDBWorkbaseTab: React.FC = () => {
+export const TypeDBStudioTab: React.FC = () => {
     const items: [ComparisonBlockItem, ComparisonBlockItem] = [{
         title: "Open Source",
         content: () => <OpenSourcePane/>,
@@ -45,8 +45,8 @@ const OpenSourcePane: React.FC = () => {
 
     const latestReleaseDate = new Date("2021-10-26 17:00:00");
     const latestReleaseDateFormatted = moment(latestReleaseDate).format("Do [of] MMMM YYYY");
-    const workbaseVersion = "2.4.0-alpha-4";
-    const latestReleaseNotesURL = `${urls.github.typedbWorkbaseReleases}/tag/${workbaseVersion}`;
+    const studioVersion = "2.4.0-alpha-4";
+    const latestReleaseNotesURL = `${urls.github.typedbStudioReleases}/tag/${studioVersion}`;
 
     const downloads: Downloads = {
         "Ubuntu / Debian": {
@@ -106,7 +106,7 @@ const OpenSourcePane: React.FC = () => {
             </p>
 
             <p className={clsx(classes.comparisonBlockContent, classes.mediumText, classes.textMargin)}>
-                Latest Release: <strong>TypeDB Studio {workbaseVersion}</strong>
+                Latest Release: <strong>TypeDB Studio {studioVersion}</strong>
                 <br/>
                 <strong>{latestReleaseDateFormatted}</strong> <a href={latestReleaseNotesURL} target="_blank">Release
                 Notes</a>

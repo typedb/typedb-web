@@ -25,7 +25,7 @@ export const urls = {
         org: githubURL,
         typedb: `${githubURL}/typedb`,
         typedbReleases: `${githubURL}/typedb/releases`,
-        typedbWorkbaseReleases: `${githubURL}/typedb-workbase/releases`,
+        typedbStudioReleases: `${githubURL}/typedb-studio/releases`,
     },
 
     social: {
