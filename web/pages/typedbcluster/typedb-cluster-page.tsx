@@ -58,7 +58,7 @@ export const TypeDBClusterPage: React.FC = () => {
                 </FeatureBlock>
                 <FeatureBlock id="encryption" className={classes.subsectionMargin} examplePosition="right"
                               title="In-Flight Encryption"
-                              body="Server-to-server communication is encrypted using the ZMQCurve protocol, ensuring the
+                              body="Server-to-server communication is encrypted using the CurveZMQ protocol, ensuring the
                               safety of data replication across the cluster. Client-to-server communication is encrypted
                               using the TLS protocol, ensuring the privacy, authenticity, and integrity of data
                               transmitted to and from the the database server."
