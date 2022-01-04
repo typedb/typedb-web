@@ -14,7 +14,7 @@ import { defaultStyles, TypeDBVisualiserTheme } from "./styles";
 type ForceGraphVertex = d3.SimulationNodeDatum & TypeDBVisualiserData.Vertex;
 type ForceGraphEdge = d3.SimulationLinkDatum<ForceGraphVertex> & TypeDBVisualiserData.Edge;
 
-export declare namespace Renderer {
+declare namespace Renderer {
     export type Edge = ForceGraphEdge & { labelGFX?: PIXI.Text };
     export type VertexGFX = PIXI.Graphics & { vertex?: Vertex };
     export type Vertex = ForceGraphVertex & { gfx?: VertexGFX };
