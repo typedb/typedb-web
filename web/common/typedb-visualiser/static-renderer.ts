@@ -1,11 +1,18 @@
-import * as PIXI from "pixi.js-legacy";
+/*
+ Source: https://levelup.gitconnected.com/creating-a-force-graph-using-react-d3-and-pixijs-95616051aba
+ */
+
+import * as d3 from "d3-force";
 // @ts-ignore
 import FontFaceObserver from "fontfaceobserver";
+import * as PIXI from "pixi.js-legacy";
 import { TypeDBVisualiserData } from "./data";
-import { stickyForceSimulation, ForceGraphEdge, ForceGraphVertex } from "./d3-force-simulation";
-import { defaultStyles, TypeDBVisualiserTheme } from "./styles";
 import { arrowhead, diamondIncomingLineIntersect, Ellipse, ellipseIncomingLineIntersect, midpoint, Point, Rect,
     rectIncomingLineIntersect } from "./geometry";
+import { defaultStyles, TypeDBVisualiserTheme } from "./styles";
+
+type ForceGraphVertex = d3.SimulationNodeDatum & TypeDBVisualiserData.Vertex;
+type ForceGraphEdge = d3.SimulationLinkDatum<ForceGraphVertex> & TypeDBVisualiserData.Edge;
 
 export declare namespace Renderer {
     export type Edge = ForceGraphEdge & { labelGFX?: PIXI.Text };
@@ -171,7 +178,26 @@ export function renderStaticGraph(container: HTMLElement, graphData: TypeDBVisua
     container.innerHTML = "";
     container.appendChild(app.view);
 
-    const simulation = stickyForceSimulation(vertices, edges, width, height);
+    const simulation = d3.forceSimulation(vertices)
+        .force("link", d3.forceLink(edges) // This force provides links between nodes
+            .id((d: any) => d.id) // This sets the node id accessor to the specified function. If not specified, will default to the index of a node.
+            .distance(function (d: any) {
+                const source = {
+                        x: width * d.source.x / 100,
+                        y: height * d.source.y / 100,
+                    },
+                    target = {
+                        x: width * d.target.x / 100,
+                        y: height * d.target.y / 100,
+                    };
+
+                return Math.sqrt(Math.pow(source.x - target.x, 2) + Math.pow(source.y - target.y, 2));
+            })
+        )
+        .force("charge", d3.forceManyBody().strength(-100)) // This adds repulsion (if it's negative) between nodes.
+        .force("x", d3.forceX().x((d: any) => width * d.x / 100).strength(1))
+        .force("y", d3.forceY().y((d: any) => height * d.y / 100).strength(1))
+        .velocityDecay(0.8);
     const ubuntuMono = new FontFaceObserver("Ubuntu Mono") as { load: () => Promise<any> };
 
     function onDragStart(this: any, evt: any) {
