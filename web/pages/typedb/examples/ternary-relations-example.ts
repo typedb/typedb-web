@@ -1,4 +1,4 @@
-import { TypeDBVisualiserData } from "../../../common/typedb-visualiser";
+import { TypeDBVisualiserData } from "../../../common/typedb-visualiser/data";
 
 export const ternaryRelationsExampleCode = `
 match
