@@ -168,7 +168,7 @@ export function edgeEndpoint(source: Renderer.Vertex, target: Renderer.Vertex): 
     }
 }
 
-export function renderStaticGraph(container: HTMLElement, graphData: TypeDBVisualiserData.Graph, theme: TypeDBVisualiserTheme) {
+export function renderGraph(container: HTMLElement, graphData: TypeDBVisualiserData.Graph, theme: TypeDBVisualiserTheme) {
     const [width, height] = [container.offsetWidth, container.offsetHeight];
     const edges: Renderer.Edge[] = graphData.edges.map((d) => Object.assign({}, d));
     const vertices: Renderer.Vertex[] = graphData.vertices.map((d) => Object.assign({}, d));
