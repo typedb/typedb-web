@@ -168,17 +168,8 @@ export function edgeEndpoint(source: Renderer.Vertex, target: Renderer.Vertex): 
     }
 }
 
-export function renderGraph(container: HTMLElement, graphData: TypeDBVisualiserData.Graph, theme: TypeDBVisualiserTheme) {
-    const [width, height] = [container.offsetWidth, container.offsetHeight];
-    const edges: Renderer.Edge[] = graphData.edges.map((d) => Object.assign({}, d));
-    const vertices: Renderer.Vertex[] = graphData.vertices.map((d) => Object.assign({}, d));
-    let dragged = false;
-
-    const app = new PIXI.Application({ width, height, antialias: !0, backgroundAlpha: 0, resolution: window.devicePixelRatio });
-    container.innerHTML = "";
-    container.appendChild(app.view);
-
-    const simulation = d3.forceSimulation(vertices)
+function createD3ForceSimulation(vertices: Renderer.Vertex[], edges: Renderer.Edge[], width: number, height: number) {
+    return d3.forceSimulation(vertices)
         .force("link", d3.forceLink(edges) // This force provides links between nodes
             .id((d: any) => d.id) // This sets the node id accessor to the specified function. If not specified, will default to the index of a node.
             .distance(function (d: any) {
@@ -198,6 +189,19 @@ export function renderGraph(container: HTMLElement, graphData: TypeDBVisualiserD
         .force("x", d3.forceX().x((d: any) => width * d.x / 100).strength(1))
         .force("y", d3.forceY().y((d: any) => height * d.y / 100).strength(1))
         .velocityDecay(0.8);
+}
+
+export function renderGraph(container: HTMLElement, graphData: TypeDBVisualiserData.Graph, theme: TypeDBVisualiserTheme) {
+    const [width, height] = [container.offsetWidth, container.offsetHeight];
+    const edges: Renderer.Edge[] = graphData.edges.map((d) => Object.assign({}, d));
+    const vertices: Renderer.Vertex[] = graphData.vertices.map((d) => Object.assign({}, d));
+    let dragged = false;
+
+    const app = new PIXI.Application({ width, height, antialias: !0, backgroundAlpha: 0, resolution: window.devicePixelRatio });
+    container.innerHTML = "";
+    container.appendChild(app.view);
+
+    const simulation = createD3ForceSimulation(vertices, edges, width, height);
     const ubuntuMono = new FontFaceObserver("Ubuntu Mono") as { load: () => Promise<any> };
 
     function onDragStart(this: any, evt: any) {
