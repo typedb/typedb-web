@@ -11,7 +11,6 @@ const palette: {[key: string]: string} = {
     black: "#09022F",
     white: "#FFFFFF",
 }
-export const typeDBVisualiserPalette = palette;
 
 type ColorKey = "background" | "thingType" | "entityType" | "relationType" | "attributeType" | "entity" | "relation"
     | "attribute" | "edge" | "inferred" | "error" | "vertexLabel";

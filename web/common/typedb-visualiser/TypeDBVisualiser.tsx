@@ -8,7 +8,7 @@ export interface StaticVisualiserProps {
     className?: string;
 }
 
-export const TypeDBStaticVisualiser: React.FC<StaticVisualiserProps> = ({data, className}) => {
+export const TypeDBVisualiser: React.FC<StaticVisualiserProps> = ({data, className}) => {
     const graphPaneRef: React.MutableRefObject<any> = React.useRef(null);
 
     React.useEffect(() => {
