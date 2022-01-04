@@ -1,4 +1,4 @@
-import { TypeDBVisualiserData } from "typedb-visualiser";
+import { TypeDBVisualiserData } from "../../../common/typedb-visualiser";
 
 export const typeHierarchyExampleCode = `
 define
