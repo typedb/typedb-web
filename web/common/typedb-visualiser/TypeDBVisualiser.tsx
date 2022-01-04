@@ -3,12 +3,12 @@ import { TypeDBVisualiserData } from "./data";
 import { defaultTypeDBVisualiserTheme } from "./styles";
 import { renderStaticGraph } from "./renderer";
 
-export interface StaticVisualiserProps {
+interface VisualiserProps {
     data: TypeDBVisualiserData.Graph;
     className?: string;
 }
 
-export const TypeDBVisualiser: React.FC<StaticVisualiserProps> = ({data, className}) => {
+export const TypeDBVisualiser: React.FC<VisualiserProps> = ({data, className}) => {
     const graphPaneRef: React.MutableRefObject<any> = React.useRef(null);
 
     React.useEffect(() => {
