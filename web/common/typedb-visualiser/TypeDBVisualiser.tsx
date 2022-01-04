@@ -1,7 +1,7 @@
 import React from "react";
 import { TypeDBVisualiserData } from "./data";
 import { defaultTypeDBVisualiserTheme } from "./styles";
-import { renderStaticGraph } from "./static-renderer";
+import { renderStaticGraph } from "./renderer";
 
 export interface StaticVisualiserProps {
     data: TypeDBVisualiserData.Graph;
