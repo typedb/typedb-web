@@ -1,4 +1,4 @@
-import { TypeDBVisualiserData } from "typedb-visualiser";
+import { TypeDBVisualiserData } from "../../../common/typedb-visualiser/data";
 
 export const nestedRelationsExampleCode = `
 match

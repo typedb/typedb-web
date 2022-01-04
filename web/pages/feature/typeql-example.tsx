@@ -2,8 +2,8 @@ import React from "react";
 import {CodePane} from "../../common/code/code-pane";
 import { ExampleWindow, ExampleWindowFooter, ExampleWindowHeader } from "../../common/code/example-window";
 import {featureStyles} from "./feature-styles";
-import { TypeDBVisualiserData } from "typedb-visualiser";
-import TypeDBStaticVisualiser from "typedb-visualiser/react/TypeDBStaticVisualiser";
+import { TypeDBVisualiserData } from "../../common/typedb-visualiser/data";
+import { TypeDBVisualiser } from "../../common/typedb-visualiser/TypeDBVisualiser";
 
 interface TypeQLExampleProps {
     code: string;
@@ -19,7 +19,7 @@ export const TypeQLExample: React.FC<TypeQLExampleProps> = ({code, data}) => {
 
             <div className={classes.typeQLExample}>
                 <CodePane code={{language: "typeql", body: code}} lines={15} resizable/>
-                <TypeDBStaticVisualiser data={data} className={classes.visualiser}/>
+                <TypeDBVisualiser data={data} className={classes.visualiser}/>
             </div>
 
             <ExampleWindowFooter language="TypeQL"/>
