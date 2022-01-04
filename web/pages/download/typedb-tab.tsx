@@ -44,7 +44,7 @@ const defaultOSMap: {[key in OS]: keyof Downloads} = {
 const OpenSourcePane: React.FC = () => {
     const classes = Object.assign({}, vaticleStyles(), downloadPageProductStyles());
 
-    const latestReleaseDate = new Date("2021-10-13");
+    const latestReleaseDate = new Date("2021-12-22");
     const latestReleaseDateFormatted = moment(latestReleaseDate).format("Do [of] MMMM YYYY");
     const typeDBVersion = useTypeDBVersion()[0];
     const latestReleaseNotesURL = `${urls.github.typedbReleases}/tag/${typeDBVersion}`;
