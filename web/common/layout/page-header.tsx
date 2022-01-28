@@ -119,6 +119,9 @@ const Sitemap: React.FC<SitemapProps> = ({toggleMobileMenuOpen}) => {
             <li>
                 <VaticleLink href={urls.blog} target="_blank"><span>Blog</span></VaticleLink>
             </li>
+            <li>
+                <VaticleLink href={"/cosmos/index.html"} target="_blank"><span>Cosmos</span></VaticleLink>
+            </li>
         </ul>
     );
 }

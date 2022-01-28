@@ -1,0 +1,84 @@
+<!doctype html>
+<html class="no-js" lang="">
+
+<head>
+    <title>
+        Grakn Cosmos
+    </title>
+
+    <meta charset="utf-8">
+    <meta name="description" content="The first global conference of knowledge graph applications in ML, NLP, Biotech, Cyber Security, Robotics">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <meta property="og:title" content="Grakn Cosmos 2020 | February 6-7 | London">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://grakncosmos.com/img/banners/grakn-cosmos-og.png">
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:image:width" content="1910">
+    <meta property="og:image:height" content="1000">
+    
+    <meta property="og:url" content="https://grakncosmos.com">
+    <meta property="og:site_name" content="Grakn Cosmos 2020 | February 6-7 | London">
+    <meta property="og:description" content="The first global conference of knowledge graph applications in ML, NLP, Biotech, Cyber Security, Robotics">
+    <meta property="og:email" content="cosmos@grakn.ai">
+    <meta name="theme-color" content="#998efc">
+    
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Grakn Cosmos 2020 | February 6-7 | London">
+    <meta name="twitter:description" content="The first global conference of knowledge graph applications in ML, NLP, Biotech, Cyber Security, Robotics">
+    <meta name="twitter:image" content="https://grakncosmos.com/img/banners/grakn-cosmos-og.png">
+    <meta name="twitter:site" content="@graknlabs">
+    <meta name="twitter:creator" content="@graknlabs">
+    
+    <link rel="icon" type="image/png" sizes="32x32" href="/cosmos/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/cosmos/icons/favicon-16x16.png">
+    <link rel="shortcut icon" href="/cosmos/icons/favicon.ico">
+    
+    <meta name="apple-mobile-web-app-title" content="Cosmos">
+    <link rel="apple-touch-icon" sizes="180x180" href="/cosmos/icons/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/cosmos/icons/apple-touch-icon.png">
+    <link rel="mask-icon" href="/cosmos/icons/safari-pinned-tab.svg" color="#0b0929">
+    
+    <meta name="msapplication-TileColor" content="#0b0929">
+    <meta name="msapplication-TileImage" content="/cosmos/icons/mstile-144x144.png">
+    <meta name="msapplication-config" content="/cosmos/icons/browserconfig.xml">
+    <meta name="theme-color" content="#0b0929">
+    <link rel="manifest" href="site.webmanifest">
+    <link rel="shortcut icon" type="image/png" size="64x64" href="/cosmos/icons/favicon.png">
+    
+    <link rel="preload" href="https://fonts.googleapis.com/css?family=Titillium+Web:200,300,400,600&display=swap"
+        as="style">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web:200,300,400,600&display=swap">
+    
+    <link rel="stylesheet" href="/cosmos/css/vendor/bootstrap.css">
+    <link rel="stylesheet" href="/cosmos/css/vendor/hamburger.css">
+    <link rel="stylesheet" href="/cosmos/css/common.css?v=9">
+<link rel="stylesheet" href="css/thankyouPage.css?v=9">
+</head>
+
+<body>
+    <div class='go-back-block'>
+        <p id="title" class="title h2 Titillium-Md mb-3">We'll get in touch soon!</p>
+        <p id="subtitle" class="message h4 Titillium-Rg mb-4">Hope to see you at Grakn Cosmos.</p>
+        <a class="button Titillium-Md" href="./">Back to Grakn Cosmos</a>
+    </div>
+
+    <script src="js/vendor/jquery-3.3.1.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('body').addClass('spaceship');
+
+        const source = new URL(window.location.href).searchParams.get('source');
+        
+        if (source === "student-success") {
+            $('#title').html("Check your inbox for your free ticket!");
+            $('#subtitle').html("Hope to see you at Grakn Cosmos.");
+        } else if ( source === "student-failure") {
+            $('#title').html("Something went wrong!");
+            $('#subtitle').html("We'll in get in touch soon.");
+        }
+    });
+</script>
+</body>
+
+</html>
