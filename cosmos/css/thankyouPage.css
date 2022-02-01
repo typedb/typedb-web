@@ -19,14 +19,14 @@ body {
     body .go-back-block .button {
       width: 200px; }
   body.spaceship {
-    background-image: url(/img/404-spaceship-lg.svg);
+    background-image: url(/cosmos/img/404-spaceship-lg.svg);
     background-position: center;
     background-color: #0b0929;
     background-size: contain;
     background-repeat: no-repeat; }
     @media (max-width: 768px) {
       body.spaceship {
-        background-image: url(/img/404-spaceship-md.svg); } }
+        background-image: url(/cosmos/img/404-spaceship-md.svg); } }
     body.spaceship .go-back-block {
       bottom: 130px; }
 

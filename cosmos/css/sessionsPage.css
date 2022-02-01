@@ -10,7 +10,7 @@
     background-repeat: no-repeat;
     position: absolute;
     margin: 0;
-    background-image: url(/img/newsletter-wave.svg);
+    background-image: url(/cosmos/img/newsletter-wave.svg);
     background-position: top; }
   .section-newsletter-logo {
     width: 198px;
@@ -106,7 +106,7 @@
     background-repeat: no-repeat;
     position: absolute;
     margin: 0;
-    background-image: url(/img/planet-pink-medium.svg);
+    background-image: url(/cosmos/img/planet-pink-medium.svg);
     background-position: left;
     top: 20px;
     right: 0;
@@ -118,7 +118,7 @@
     background-repeat: no-repeat;
     position: absolute;
     margin: 0;
-    background-image: url(/img/spaceship.svg);
+    background-image: url(/cosmos/img/spaceship.svg);
     background-position: right;
     top: 20px;
     left: 0;
@@ -130,7 +130,7 @@
     background-repeat: no-repeat;
     position: absolute;
     margin: 0;
-    background-image: url(/img/planet-pink-medium.svg);
+    background-image: url(/cosmos/img/planet-pink-medium.svg);
     background-position: center center;
     bottom: 100px;
     right: 40px;
@@ -142,7 +142,7 @@
     background-repeat: no-repeat;
     position: absolute;
     margin: 0px;
-    background-image: url(/img/spaceship.svg);
+    background-image: url(/cosmos/img/spaceship.svg);
     background-position: center center;
     top: 20px;
     left: 60px;
@@ -471,7 +471,7 @@ header {
     .page-sessions .sessions-list-item .speaker-container {
       width: 280px; }
       .page-sessions .sessions-list-item .speaker-container .speaker-frame {
-        background: url(/img/speaker-frame.svg) no-repeat;
+        background: url(/cosmos/img/speaker-frame.svg) no-repeat;
         background-size: 60px 60px;
         transition: all 0.2s ease-in-out;
         background-position: top center;
