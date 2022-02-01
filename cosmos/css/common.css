@@ -1321,4 +1321,38 @@ button {
     vertical-align: middle;
     width: 80px !important; }
 
+.site-header-header {
+    position: fixed;
+    height: 28px;
+    padding: 0 10px;
+    box-shadow: 2px 2px 1px -1px rgba(0,0,0,0.2),2px 2px 3px 0 rgba(0,0,0,0.14),2px 1px 5px 0 rgba(0,0,0,0.12);
+    background-color: #261c5e;
+}
+
+.site-header-header a {
+    padding: 0 10px;
+    font-size: 14px;
+    line-height: 28px;
+    color: white;
+}
+
+.spacer {
+    flex: 1;
+}
+
+.header-githubIcon {
+    width: 18px;
+    margin-bottom: 3px;
+}
+
+body .site-header {
+    top: 28px;
+}
+
+@media (max-width: 600px) {
+    #header-item-main-site {
+        padding-right: 20px;
+    }
+}
+
 /*# sourceMappingURL=common.css.map */
