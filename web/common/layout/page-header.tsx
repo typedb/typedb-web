@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 
 import VaticleLogo from "../assets/logos/vaticle.svg";
+import { CosmosBanner } from "./cosmos-banner";
 
 import { pageHeaderStyles } from "./layout-styles";
 import { GithubButton } from "../button/github-button";
@@ -43,7 +44,8 @@ export const PageHeader: React.FC = () => {
     };
 
     return (
-        <>
+        <div className={classes.headerSection}>
+            {/*<CosmosBanner/>*/}
             <header className={classes.appBar}>
                 <nav className={classes.toolbar}>
                     <VaticleLink className={clsx(classes.logoContainer)} to={routes.home}>
@@ -71,7 +73,7 @@ export const PageHeader: React.FC = () => {
                     <ExternalLinks/>
                 </div>
             </nav>
-        </>
+        </div>
     );
 };
 
@@ -117,10 +119,20 @@ const Sitemap: React.FC<SitemapProps> = ({toggleMobileMenuOpen}) => {
                 </div>
             </li>
             <li>
-                <VaticleLink href={urls.blog} target="_blank"><span>Blog</span></VaticleLink>
+                <div tabIndex={0}>
+                    Conferences
+                    <ul>
+                        <li className={classes.backMenuItem}>
+                            <VaticleLink><span><FontAwesomeIcon className={classes.backButton} icon={faLongArrowLeft}/></span></VaticleLink>
+                        </li>
+                        <li>
+                            <VaticleLink onClick={toggleMobileMenuOpen} href={urls.cosmos2020}><span>Cosmos 2020</span></VaticleLink>
+                        </li>
+                    </ul>
+                </div>
             </li>
             <li>
-                <VaticleLink href={"/cosmos/index.html"} target="_blank"><span>Cosmos</span></VaticleLink>
+                <VaticleLink href={urls.blog} target="_blank"><span>Blog</span></VaticleLink>
             </li>
         </ul>
     );

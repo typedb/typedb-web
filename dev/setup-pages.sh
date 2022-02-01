@@ -9,4 +9,4 @@ tar -xf pages-dev.tar.gz
 mv dist pages
 rm -f pages-dev.tar.gz
 cd ..
-cp -R cosmos local/pages
+cp -R events local/pages

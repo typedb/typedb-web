@@ -1,4 +1,5 @@
 import React, { useLayoutEffect, useState } from "react";
+import { CosmosBanner } from "./cosmos-banner";
 import { defaultLayoutStyles } from './layout-styles';
 import { PageHeader } from "./page-header";
 import { PageFooter } from "./page-footer";

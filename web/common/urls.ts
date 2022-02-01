@@ -2,13 +2,13 @@ const docsURL = "https://docs.vaticle.com/docs";
 const githubURL = "https://github.com/vaticle";
 
 export const urls = {
-    legacySite: "https://grakn.ai",
     support: "https://support.grakn.ai",
     forum: "https://forum.vaticle.com",
     blog: "https://medium.com/vaticle",
-    careers: "https://vaticle.com/careers",
+    careers: "/careers",
     stackOverflow: "https://stackoverflow.com/questions/tagged/vaticle-typedb%20vaticle-typeql?sort=Newest&edited=true",
     officeLocation: "https://goo.gl/maps/bNN99QajkdD8THb7A",
+    cosmos2020: "/events/cosmos-2020",
 
     docs: {
         home: docsURL,
