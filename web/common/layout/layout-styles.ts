@@ -63,17 +63,20 @@ export const defaultLayoutStyles = makeStyles({
 });
 
 export const pageHeaderStyles = makeStyles({
-    appBar: {
-        height: headerHeight,
-        backgroundColor: vaticleTheme.palette.purple["4"],
-        boxShadow: headerBoxShadow,
+    headerSection: {
         top: 0,
         left: "auto",
         right: 0,
         position: "fixed",
         width: "100%",
-        display: "flex",
         zIndex: 1100,
+    },
+
+    appBar: {
+        height: headerHeight,
+        backgroundColor: vaticleTheme.palette.purple["4"],
+        boxShadow: headerBoxShadow,
+        display: "flex",
     },
 
     toolbar: {
@@ -550,5 +553,27 @@ export const pageFooterStyles = makeStyles({
         "@media(max-width: 767px)": {
             marginTop: 14,
         },
+    },
+});
+
+export const cosmosBannerStyles = makeStyles({
+    root: {
+        height: 64,
+        display: "flex",
+        backgroundImage: `url(../../assets/images/banner-cosmos-bg-left.svg), url(../../assets/images/banner-cosmos-bg-right.svg), linear-gradient(#0F0A32, #2F1D77)`,
+        backgroundPosition: "left top, right top, center",
+        backgroundRepeat: "no-repeat, no-repeat, repeat",
+    },
+
+    backgroundLeft: {
+
+    },
+
+    backgroundRight: {
+
+    },
+
+    content: {
+        backgroundColor: `linear-gradient(#0F0A32, #2F1D77)`,
     },
 });

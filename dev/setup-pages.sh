@@ -1,11 +1,12 @@
 #!/usr/bin/env bash
 
-bazel build //web:pages-dev
+bazel build //web:react-pages-dev
 mkdir -p local
-cp bazel-bin/web/pages-dev.tar.gz local/pages-dev.tar.gz
+cp bazel-bin/web/react-pages-dev.tar.gz local/react-pages-dev.tar.gz
 cd local
 rm -rf pages
-tar -xf pages-dev.tar.gz
+tar -xf react-pages-dev.tar.gz
 mv dist pages
-rm -f pages-dev.tar.gz
+rm -f react-pages-dev.tar.gz
 cd ..
+cp -R events local/pages
