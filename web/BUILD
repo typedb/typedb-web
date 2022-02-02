@@ -9,7 +9,7 @@ filegroup(
 )
 
 assemble_react(
-    name = "pages-dev",
+    name = "react-pages-dev",
     srcs = [":content"],
     package_dir = "web",
     webpack_output_path = "dist",
@@ -18,7 +18,7 @@ assemble_react(
 )
 
 assemble_react(
-    name = "pages",
+    name = "react-pages",
     srcs = [":content"],
     package_dir = "web",
     webpack_output_path = "dist",
