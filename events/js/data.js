@@ -14,7 +14,7 @@ const getData = async () => {
       name: "#devtools",
       color: "pink-a",
       description:
-        "Tools built with Grakn specifically to help software developers"
+        "Tools built with TypeDB specifically to help software developers"
     },
     {
       name: "#expertsystem",

@@ -128,6 +128,9 @@ const Sitemap: React.FC<SitemapProps> = ({toggleMobileMenuOpen}) => {
                         <li>
                             <VaticleLink onClick={toggleMobileMenuOpen} href={urls.cosmos2020}><span>TypeDB Cosmos 2020</span></VaticleLink>
                         </li>
+                        <li>
+                            <VaticleLink onClick={toggleMobileMenuOpen} href={urls.cosmos2022}><span>TypeDB Cosmos 2022</span></VaticleLink>
+                        </li>
                     </ul>
                 </div>
             </li>

@@ -9,6 +9,7 @@ export const urls = {
     stackOverflow: "https://stackoverflow.com/questions/tagged/vaticle-typedb%20vaticle-typeql?sort=Newest&edited=true",
     officeLocation: "https://goo.gl/maps/bNN99QajkdD8THb7A",
     cosmos2020: "/events/typedb-cosmos-2020",
+    cosmos2022: "/events/typedb-cosmos-2022",
 
     docs: {
         home: docsURL,

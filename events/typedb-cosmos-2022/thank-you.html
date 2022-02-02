@@ -17,7 +17,7 @@
     <meta property="og:image:width" content="1910">
     <meta property="og:image:height" content="1000">
     
-    <meta property="og:url" content="https://vaticle.com/events/typedb-cosmos-2020">
+    <meta property="og:url" content="https://vaticle.com/events/typedb-cosmos-2022">
     <meta property="og:site_name" content="TypeDB Cosmos 2020 | February 6-7 | London">
     <meta property="og:description" content="The first global conference of knowledge graph applications in ML, NLP, Biotech, Cyber Security, Robotics">
 
@@ -52,24 +52,29 @@
     <link rel="stylesheet" href="/events/css/vendor/bootstrap.css">
     <link rel="stylesheet" href="/events/css/vendor/hamburger.css">
     <link rel="stylesheet" href="/events/css/common.css?v=9">
-<link rel="stylesheet" href="../css/404Page.css?v=9">
+<link rel="stylesheet" href="../css/thankyouPage.css?v=9">
 </head>
 
 <body>
     <div class='go-back-block'>
-        <p class="title Titillium-Md">404</p>
-        <p class="message h3 Titillium-Rg">You are in uncharted territory!</p>
-        <a class="button Titillium-Md" href="/events/typedb-cosmos-2020/">Go Back</a>
+        <p id="title" class="title h2 Titillium-Md mb-3">We'll get in touch soon!</p>
+        <p id="subtitle" class="message h4 Titillium-Rg mb-4">Hope to see you at TypeDB Cosmos.</p>
+        <a class="button Titillium-Md" href="/events/typedb-cosmos-2022/">Back to TypeDB Cosmos</a>
     </div>
 
     <script src="../js/vendor/jquery-3.3.1.min.js"></script>
 <script>
     $(document).ready(function () {
-        const randomNum = Math.ceil(Math.random() * 10);
-        if (randomNum <= 5) {
-            $('body').addClass('lost-in-space');
-        } else {
-            $('body').addClass('spaceship');
+        $('body').addClass('spaceship');
+
+        const source = new URL(window.location.href).searchParams.get('source');
+        
+        if (source === "student-success") {
+            $('#title').html("Check your inbox for your free ticket!");
+            $('#subtitle').html("Hope to see you at TypeDB Cosmos.");
+        } else if ( source === "student-failure") {
+            $('#title').html("Something went wrong!");
+            $('#subtitle').html("We'll in get in touch soon.");
         }
     });
 </script>
