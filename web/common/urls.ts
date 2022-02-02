@@ -8,7 +8,7 @@ export const urls = {
     careers: "/careers",
     stackOverflow: "https://stackoverflow.com/questions/tagged/vaticle-typedb%20vaticle-typeql?sort=Newest&edited=true",
     officeLocation: "https://goo.gl/maps/bNN99QajkdD8THb7A",
-    cosmos2020: "/events/cosmos-2020",
+    cosmos2020: "/events/typedb-cosmos-2020",
 
     docs: {
         home: docsURL,

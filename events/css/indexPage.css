@@ -1,0 +1,536 @@
+.section-intro {
+  position: relative; }
+  .section-intro .bg {
+    background: #0a0926;
+    background: linear-gradient(180deg, #0a0926 0%, #28116b 35%, #00c8d8 100%); }
+  .section-intro .stars {
+    height: calc(773px - 50px);
+    background-image: url(/events/img/intro-stars.svg); }
+  .section-intro .futuristic-city {
+    width: 100%;
+    height: 800px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: absolute;
+    margin: 0;
+    background-image: url(/events/img/intro-futuristic-city-lg.svg);
+    background-position: center bottom;
+    bottom: 0;
+    z-index: -1; }
+    @media (max-width: 1480px) {
+      .section-intro .futuristic-city {
+        background-image: url(/events/img/intro-futuristic-city-md.svg);
+        background-size: contain; } }
+    @media (max-width: 768px) {
+      .section-intro .futuristic-city {
+        height: 470px;
+        background-image: url(/events/img/intro-futuristic-city-sm.svg); } }
+  .section-intro .m-planet-blue,
+  .section-intro .m-planet-purple,
+  .section-intro .m-planet-pink,
+  .section-intro .m-spaceship {
+    background-position: center center; }
+  .section-intro .m-planet-purple {
+    width: 205px;
+    height: 205px;
+    background-size: auto;
+    background-repeat: no-repeat;
+    position: absolute;
+    margin: 0;
+    background-image: url(/events/img/planet-purple.svg);
+    top: 160px;
+    left: 60px;
+    z-index: -9; }
+    @media (max-width: 1024px) {
+      .section-intro .m-planet-purple {
+        background-size: 120px 120px; } }
+    @media (max-width: 768px) {
+      .section-intro .m-planet-purple {
+        width: 60px;
+        background-position: right;
+        top: 125px;
+        left: 0; } }
+  .section-intro .m-planet-blue {
+    width: 205px;
+    height: 205px;
+    background-size: auto;
+    background-repeat: no-repeat;
+    position: absolute;
+    margin: 0;
+    background-image: url(/events/img/planet-blue.svg);
+    top: 160px;
+    right: 70px;
+    z-index: -8; }
+    @media (max-width: 1024px) {
+      .section-intro .m-planet-blue {
+        background-size: 120px 120px; } }
+    @media (max-width: 768px) {
+      .section-intro .m-planet-blue {
+        width: 70px;
+        background-position: left;
+        top: 115px;
+        right: 0; } }
+  .section-intro .m-planet-pink {
+    width: 138px;
+    height: 138px;
+    background-size: auto;
+    background-repeat: no-repeat;
+    position: absolute;
+    margin: 0;
+    background-image: url(/events/img/planet-pink.svg);
+    top: 720px;
+    left: 100px;
+    z-index: -7; }
+    @media (max-width: 1024px) {
+      .section-intro .m-planet-pink {
+        background-size: 100px 100px; } }
+    @media (max-width: 768px) {
+      .section-intro .m-planet-pink {
+        width: 43px;
+        background-position: right;
+        top: 740px;
+        left: 0; } }
+  .section-intro .m-spaceship {
+    width: 129px;
+    height: 190px;
+    background-size: auto;
+    background-repeat: no-repeat;
+    position: absolute;
+    margin: 0px;
+    background-image: url(/events/img/spaceship.svg);
+    top: 730px;
+    right: 100px;
+    z-index: -6;
+    transform: scaleX(-1);
+    -moz-transform: scaleX(-1);
+    -ms-transform: scaleX(-1);
+    -o-transform: scaleX(-1);
+    -webkit-transform: scaleX(-1);
+    filter: FlipH;
+    -ms-filter: "FlipH"; }
+    @media (max-width: 1024px) {
+      .section-intro .m-spaceship {
+        background-size: 128px 170px; } }
+    @media (max-width: 768px) {
+      .section-intro .m-spaceship {
+        width: 80px;
+        background-position: right;
+        top: 730px;
+        right: 0; } }
+  .section-intro .sub-section-summary {
+    padding-top: 216px; }
+    .section-intro .sub-section-summary .h1 {
+      font-size: 2.5rem; }
+      @media (max-width: 1024px) {
+        .section-intro .sub-section-summary .h1 {
+          font-size: 2rem; } }
+      @media (max-width: 768px) {
+        .section-intro .sub-section-summary .h1 {
+          font-size: 1.75rem; } }
+    .section-intro .sub-section-summary .h2 {
+      font-size: 2rem; }
+      @media (max-width: 1024px) {
+        .section-intro .sub-section-summary .h2 {
+          font-size: 1.75rem; } }
+      @media (max-width: 768px) {
+        .section-intro .sub-section-summary .h2 {
+          font-size: 1.5rem; } }
+    .section-intro .sub-section-summary .grakn-logo-inline {
+      background-color: #3c1888;
+      border-radius: 3px;
+      -moz-border-radius: 3px;
+      -webkit-border-radius: 3px;
+      padding: 5px; }
+    .section-intro .sub-section-summary .container {
+      position: relative; }
+    .section-intro .sub-section-summary .planet-blue,
+    .section-intro .sub-section-summary .planet-purple,
+    .section-intro .sub-section-summary .planet-pink,
+    .section-intro .sub-section-summary .spaceship {
+      background-position: center center; }
+    .section-intro .sub-section-summary .planet-blue {
+      width: 205px;
+      height: 205px;
+      background-size: auto;
+      background-repeat: no-repeat;
+      position: absolute;
+      margin: 0;
+      background-image: url(/events/img/planet-blue.svg);
+      right: 0;
+      top: -90px;
+      z-index: -8; }
+    .section-intro .sub-section-summary .planet-purple {
+      width: 238px;
+      height: 172px;
+      background-size: auto;
+      background-repeat: no-repeat;
+      position: absolute;
+      margin: 0;
+      background-image: url(/events/img/planet-purple.svg);
+      top: -60px;
+      z-index: -9; }
+    .section-intro .sub-section-summary .planet-pink {
+      width: 138px;
+      height: 138px;
+      background-size: auto;
+      background-repeat: no-repeat;
+      position: absolute;
+      margin: 0;
+      background-image: url(/events/img/planet-pink.svg);
+      top: 330px;
+      left: 100px;
+      z-index: -7; }
+      @media (max-width: 1330px) {
+        .section-intro .sub-section-summary .planet-pink {
+          display: none; } }
+    .section-intro .sub-section-summary .spaceship {
+      width: 160px;
+      height: 190px;
+      background-size: auto;
+      background-repeat: no-repeat;
+      position: absolute;
+      margin: 0px;
+      background-image: url(/events/img/spaceship.svg);
+      top: 300px;
+      right: 60px;
+      z-index: -6; }
+      @media (max-width: 1330px) {
+        .section-intro .sub-section-summary .spaceship {
+          display: none; } }
+  .section-intro .sub-section-description {
+    height: 750px;
+    max-width: 1050px; }
+    @media (max-width: 576px) {
+      .section-intro .sub-section-description {
+        height: 650px; } }
+    @media (max-width: 335px) {
+      .section-intro .sub-section-description {
+        height: 680px; } }
+    @media (max-width: 300px) {
+      .section-intro .sub-section-description {
+        height: 700px; } }
+    .section-intro .sub-section-description .h5 {
+      letter-spacing: 0.69px; }
+
+.section-motives {
+  width: 100%;
+  position: relative;
+  z-index: 0; }
+  .section-motives .container {
+    max-width: 1080px; }
+  .section-motives .bg {
+    background: #0a0926;
+    background: linear-gradient(180deg, #0a0926 0%, #0b0743 100%); }
+  .section-motives .stars {
+    height: calc(100% - 50px);
+    background-image: url(/events/img/motives-stars.svg); }
+  .section-motives .motive-text-block {
+    padding: 0 40px; }
+    @media (max-width: 768px) {
+      .section-motives .motive-text-block {
+        padding-left: 20px;
+        padding-right: 20px; } }
+
+.section-speakers {
+  position: relative; }
+  .section-speakers #speakers-list li:first-child {
+    margin-left: 0; }
+  .section-speakers #speakers-list li:last-child {
+    margin-right: 0; }
+  .section-speakers .bg {
+    background: #0b0743;
+    background: linear-gradient(180deg, #0b0743 0%, #0a0926 100%); }
+  .section-speakers .stars {
+    width: calc(100% - (50px * 2));
+    height: calc(760px - (50px * 2));
+    background-size: auto;
+    background-repeat: repeat;
+    position: absolute;
+    margin: 50px;
+    background-image: url(/events/img/speakers-stars.svg);
+    z-index: -1; }
+  .section-speakers .container {
+    position: relative; }
+  .section-speakers ul li {
+    width: 190px;
+    height: 350px;
+    cursor: pointer;
+    display: list-item;
+    margin-right: 22px;
+    margin-left: 22px; }
+    @media (max-width: 576px) {
+      .section-speakers ul li {
+        width: 180px; } }
+    .section-speakers ul li .fullname {
+      font-size: 1.25rem; }
+    .section-speakers ul li .company-logo {
+      display: inline-block; }
+      .section-speakers ul li .company-logo img {
+        margin: 0 auto; }
+    .section-speakers ul li:hover .speaker-frame {
+      transform: scale(1.2); }
+    .section-speakers ul li .speaker-frame {
+      background: url(/events/img/speaker-frame.svg) no-repeat;
+      background-size: 190px 190px;
+      transition: all 0.2s ease-in-out;
+      background-position: top center;
+      padding: 10px; }
+      .section-speakers ul li .speaker-frame img.profile-picture {
+        width: 170px;
+        height: 170px;
+        border-radius: 50%;
+        -moz-border-radius: 50%;
+        -webkit-border-radius: 50%;
+        display: block; }
+      @media (max-width: 576px) {
+        .section-speakers ul li .speaker-frame {
+          background-size: 180px 180px; }
+          .section-speakers ul li .speaker-frame img.profile-picture {
+            width: 160px;
+            height: 160px; } }
+    .section-speakers ul li a:hover {
+      text-decoration: none; }
+
+.section-apply {
+  width: 100%;
+  position: relative; }
+  .section-apply .bg-wrapper {
+    width: 100%;
+    height: 100%;
+    position: absolute; }
+    .section-apply .bg-wrapper .bg {
+      width: 100%;
+      height: 100%;
+      background-size: cover;
+      background-repeat: no-repeat;
+      position: absolute;
+      margin: 0;
+      background-image: url(/events/img/apply-galaxy.svg);
+      background-color: #2346e7;
+      background-position: center center;
+      z-index: 0; }
+    .section-apply .bg-wrapper svg {
+      width: 100%;
+      height: 10vw;
+      position: absolute; }
+      .section-apply .bg-wrapper svg.top-mask {
+        top: -1px; }
+      .section-apply .bg-wrapper svg.bottom-mask {
+        bottom: -1px; }
+  .section-apply .container {
+    max-width: 700px;
+    height: 600px;
+    position: relative; }
+    .section-apply .container .apply-content {
+      width: 100%;
+      left: 0;
+      top: 50%;
+      position: absolute;
+      transform: translateY(-50%); }
+    .section-apply .container .button {
+      background-color: white;
+      color: #2346e7 !important; }
+    @media (max-width: 768px) {
+      .section-apply .container {
+        height: 400px; } }
+    @media (max-width: 1024px) {
+      .section-apply .container {
+        height: 500px; } }
+
+.section-venue {
+  position: relative; }
+  .section-venue .container {
+    max-width: 1080px;
+    margin: 0 auto; }
+  .section-venue .row {
+    position: relative; }
+  .section-venue .bg {
+    background: #0a0926;
+    background: linear-gradient(180deg, #0a0926 0%, #170c44 100%); }
+  .section-venue .address {
+    color: #BDB5FF;
+    line-height: 35px; }
+  .section-venue .stars {
+    height: calc(668px - 100px);
+    background-image: url(/events/img/venue-stars.svg); }
+  @media (max-width: 768px) {
+    .section-venue .h2 {
+      line-height: 1.5; } }
+  .section-venue .venue-london-sm {
+    position: absolute;
+    right: 0; }
+  @media (max-width: 600px) {
+    .section-venue .venue-details {
+      margin-top: 80%; } }
+
+.section-sponsors {
+  position: relative; }
+  .section-sponsors .bg {
+    background: #170c44;
+    background: linear-gradient(180deg, #170c44 0%, #0f0538 100%); }
+    .section-sponsors .bg.promo {
+      background: #170c44;
+      background: linear-gradient(180deg, #0a0926 0%, #090642 100%); }
+  .section-sponsors .stars {
+    height: calc(668px - 50px);
+    background-image: url(/events/img/sponsors-stars.svg); }
+  @media (min-width: 375px) {
+    .section-sponsors .partner-logo {
+      width: 50%;
+      padding: 1.5rem !important; } }
+  @media (max-width: 320px) {
+    .section-sponsors .partner-logo {
+      width: 100%;
+      padding: 2rem 4rem; } }
+
+.section-newsletter {
+  position: relative; }
+  .section-newsletter .bg {
+    background: #100638;
+    background: linear-gradient(180deg, #100638 0%, #090642 100%); }
+  .section-newsletter .wave {
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: absolute;
+    margin: 0;
+    background-image: url(/events/img/newsletter-wave.svg);
+    background-position: top; }
+  .section-newsletter-logo {
+    width: 198px;
+    height: 149px; }
+  .section-newsletter form.newsletter {
+    width: 550px;
+    max-width: 100%;
+    height: 50px;
+    padding: 0;
+    position: relative;
+    margin: 0 auto; }
+    .section-newsletter form.newsletter label.error, .section-newsletter form.newsletter label.success {
+      width: 100%;
+      font-family: "Titillium Web";
+      text-align: left;
+      margin-top: 70px; }
+    .section-newsletter form.newsletter label.error {
+      color: #e74c3c; }
+    .section-newsletter form.newsletter label.success {
+      display: none; }
+    .section-newsletter form.newsletter input {
+      width: calc(100% - 140px);
+      height: 50px;
+      background-color: #190d47;
+      border: 1px solid #BDB5FF;
+      border-right: none;
+      border-radius: 5px 0 0 5px;
+      -moz-border-radius: 5px 0 0 5px;
+      -webkit-border-radius: 5px 0 0 5px;
+      box-shadow: none;
+      -moz-box-shadow: none;
+      -webkit-box-shadow: none;
+      outline: none;
+      letter-spacing: 1px;
+      line-height: 50px;
+      padding: 5px 20px;
+      position: absolute;
+      left: 0; }
+      @media (max-width: 576px) {
+        .section-newsletter form.newsletter input {
+          width: calc(100% - 100px);
+          padding: 3px 10px;
+          letter-spacing: 0; } }
+      .section-newsletter form.newsletter input:-ms-input-placeholder {
+        color: #BDB5FF;
+        font-size: 1rem; }
+      .section-newsletter form.newsletter input::-ms-input-placeholder {
+        color: #BDB5FF;
+        font-size: 1rem; }
+      .section-newsletter form.newsletter input::placeholder {
+        color: #BDB5FF;
+        font-size: 1rem;
+        opacity: 1;
+        -moz-opacity: 1;
+        -webkit-opacity: 1;
+        -ms-filter: progid:DXImageTransform.Microsoft.Alpha(opacity=100);
+        /* IE 8 */
+        filter: alpha(opacity=100);
+        /* IE 5-7 */ }
+    .section-newsletter form.newsletter button {
+      width: 140px;
+      height: 50px;
+      border-radius: 0 5px 5px 0;
+      -moz-border-radius: 0 5px 5px 0;
+      -webkit-border-radius: 0 5px 5px 0;
+      position: absolute;
+      top: 0;
+      right: 0; }
+      @media (max-width: 576px) {
+        .section-newsletter form.newsletter button {
+          width: 100px; } }
+      .section-newsletter form.newsletter button .spinner-border {
+        display: block;
+        color: #240F61;
+        margin: 0 auto; }
+    .section-newsletter form.newsletter .form-messages {
+      width: 100%;
+      height: fit-content;
+      padding: 10px 5px;
+      position: absolute;
+      top: 50px; }
+      .section-newsletter form.newsletter .form-messages .response {
+        font-size: 0.85rem;
+        text-align: left; }
+        .section-newsletter form.newsletter .form-messages .response.error {
+          color: #e74c3c; }
+  .section-newsletter .container {
+    position: relative; }
+  .section-newsletter .m-planet-pink {
+    width: 70px;
+    height: 110px;
+    background-size: 100px 100px;
+    background-repeat: no-repeat;
+    position: absolute;
+    margin: 0;
+    background-image: url(/events/img/planet-pink-medium.svg);
+    background-position: left;
+    top: 20px;
+    right: 0;
+    z-index: -1; }
+  .section-newsletter .m-spaceship {
+    width: 90px;
+    height: 190px;
+    background-size: 129px 190px;
+    background-repeat: no-repeat;
+    position: absolute;
+    margin: 0;
+    background-image: url(/events/img/spaceship.svg);
+    background-position: right;
+    top: 20px;
+    left: 0;
+    z-index: -1; }
+  .section-newsletter .planet-pink {
+    width: 138px;
+    height: 138px;
+    background-size: auto;
+    background-repeat: no-repeat;
+    position: absolute;
+    margin: 0;
+    background-image: url(/events/img/planet-pink-medium.svg);
+    background-position: center center;
+    bottom: 100px;
+    right: 40px;
+    z-index: -1; }
+  .section-newsletter .spaceship {
+    width: 160px;
+    height: 190px;
+    background-size: auto;
+    background-repeat: no-repeat;
+    position: absolute;
+    margin: 0px;
+    background-image: url(/events/img/spaceship.svg);
+    background-position: center center;
+    top: 20px;
+    left: 60px;
+    z-index: -1; }
+
+/*# sourceMappingURL=indexPage.css.map */

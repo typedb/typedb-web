@@ -12,7 +12,7 @@ assemble_targz(
     additional_files = WEB_MAIN_DIST_ADDITIONAL_FILES,
     targets = [
         "//web:react-pages-dev",
-        "//events/cosmos-2020",
+        "//events/typedb-cosmos-2020",
     ],
     output_filename = "web-main-dev"
 )
@@ -22,7 +22,7 @@ assemble_targz(
     additional_files = WEB_MAIN_DIST_ADDITIONAL_FILES,
     targets = [
         "//web:react-pages",
-        "//events/cosmos-2020",
+        "//events/typedb-cosmos-2020",
     ],
     output_filename = "web-main"
 )
