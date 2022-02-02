@@ -762,8 +762,6 @@ code {
     text-decoration: none; }
   .site-header-logo .logo-type-cosmos {
     margin-bottom: 8px; }
-  .site-header-nav {
-    width: 810px; }
     .site-header-nav ul a {
       color: white;
       line-height: 1;
@@ -1347,6 +1345,16 @@ button {
 
 body .site-header {
     top: 28px;
+}
+
+@media (min-width: 768px) {
+    .site-header-nav ul > a {
+        padding: 0 15px;
+    }
+
+    .site-header-nav ul > li {
+        padding-left: 15px;
+    }
 }
 
 @media (max-width: 600px) {
