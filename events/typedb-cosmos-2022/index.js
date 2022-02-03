@@ -102,11 +102,8 @@ const scrollToSection = () => {
 
 const loadHomeSpeakers = speakers => {
   if (window.location.href.indexOf("/promo")) {
-    const hari = speakers.find(s => s.fullName === "Hari Radhakrishnan");
-    const paul = speakers.find(s => s.fullName === "Paul Agapow");
-    const alexander = speakers.find(s => s.fullName === "Alexander De Leon");
-    const joris = speakers.find(s => s.fullName === "Joris Sijs");
-    const topPromoSpeakers = [hari, paul, alexander, joris];
+    const haikal = speakers.find(s => s.fullName === "Haikal Pribadi");
+    const topPromoSpeakers = [haikal];
     const restOfSpeakers = speakers.filter(s => !topPromoSpeakers.map(ts => ts.fullName).some(tsName => tsName === s.fullName));
     speakers = [...topPromoSpeakers, ...restOfSpeakers]
   }
@@ -138,7 +135,8 @@ const swapSpeakers = async (displayedSpeakers, allSpeakers) => {
     1: [1]
   };
 
-  let shouldSwapSpeakers = true;
+  // let shouldSwapSpeakers = true;
+  let shouldSwapSpeakers = false; // TODO: set to true when # of speakers > 5
 
   const windowWidth = $(window).width();
   $(window).resize(() => {
