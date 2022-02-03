@@ -126,7 +126,10 @@ const Sitemap: React.FC<SitemapProps> = ({toggleMobileMenuOpen}) => {
                             <VaticleLink><span><FontAwesomeIcon className={classes.backButton} icon={faLongArrowLeft}/></span></VaticleLink>
                         </li>
                         <li>
-                            <VaticleLink onClick={toggleMobileMenuOpen} href={urls.cosmos2020}><span>Cosmos 2020</span></VaticleLink>
+                            <VaticleLink onClick={toggleMobileMenuOpen} href={urls.cosmos2020}><span>TypeDB Cosmos 2020</span></VaticleLink>
+                        </li>
+                        <li>
+                            <VaticleLink onClick={toggleMobileMenuOpen} href={urls.cosmos2022}><span>TypeDB Cosmos 2022</span></VaticleLink>
                         </li>
                     </ul>
                 </div>
