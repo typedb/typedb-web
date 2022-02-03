@@ -186,130 +186,130 @@ const swapSpeakers = async (displayedSpeakers, allSpeakers) => {
 
 const loadPartners = () => {
   const partners = [
-    {
-      image: "taxfix.png",
-      url: "https://taxfix.de"
-    },
-    {
-      image: "icelab.png",
-      url: "http://icelab.uk"
-    },
-    {
-      image: "sourcepp.png",
-      url: "https://sourceplusplus.com"
-    },
-    {
-      image: "ariwonto.png",
-      url: "https://ariwonto.com"
-    },
-    {
-      image: "mauna.png",
-      url: "https://www.mauna.ai"
-    },
-    {
-      image: "deutschetelekom.png",
-      url: "https://www.telekom.com"
-    },
-    {
-      image: "austincapitaldata.png",
-      url: "https://capitaldata.github.io"
-    },
-    {
-      image: "google.png",
-      url: "https://cloud.google.com"
-    },
-    {
-      image: "augmentedthinking.png",
-      url: "https://www.augmented-thinking.ai"
-    },
-    {
-      image: "tno.png",
-      url: "https://www.tno.nl"
-    },
-    {
-      image: "infosys.png",
-      url: "https://www.infosys.com"
-    },
-    {
-      image: "astrazeneca.png",
-      url: "https://www.astrazeneca.co.uk"
-    },
-    {
-      image: "opencti.png",
-      url: "https://www.opencti.io"
-    },
-    {
-      image: "aresgenetics.png",
-      url: "https://www.ares-genetics.com"
-    },
-    {
-      image: "ustglobal.png",
-      url: "https://ust-global.com"
-    },
-    {
-      image: "dunnhumby.png",
-      url: "https://www.dunnhumby.com"
-    },
-    {
-      image: "rasa.png",
-      url: "https://rasa.com"
-    },
-    {
-      image: "cisco.png",
-      url: "https://cisco.com"
-    },
-    {
-      image: "icarcnr.png",
-      url: "https://www.icar.cnr.it/en/"
-    },
-    {
-      image: "6point6.png",
-      url: "https://6point6.co.uk/"
-    },
-    {
-      image: "bdsg.png",
-      url: "https://berkeleydatasciencegroup.github.io/"
-    },
-    {
-      image: "capco.png",
-      url: "https://www.capco.com/"
-    },
-    {
-      image: "deloitte.png",
-      url: "https://www2.deloitte.com/uk/en.html"
-    },
-    {
-      image: "federico.png",
-      url: "http://www.unina.it/"
-    },
-    {
-      image: "innovolve.png",
-      url: "https://www.linkedin.com/company/innovolve/about/?viewAsMember=true"
-    },
-    {
-      image: "livingmatrix.png",
-      url: "https://livingmatrix.com/"
-    },
-    {
-      image: "medas.png",
-      url: "https://medas-solutions.it/"
-    },
-    {
-      image: "michigan.png",
-      url: "https://umich.edu/"
-    },
-    {
-      image: "eaglegenomics.png",
-      url: "https://www.eaglegenomics.com/"
-    },
-    {
-      image: "ucsf.png",
-      url: "https://bakarinstitute.ucsf.edu/"
-    },
-    {
-      image: "yooi.png",
-      url: "https://www.yooi.com/"
-    }
+    // {
+    //   image: "taxfix.png",
+    //   url: "https://taxfix.de"
+    // },
+    // {
+    //   image: "icelab.png",
+    //   url: "http://icelab.uk"
+    // },
+    // {
+    //   image: "sourcepp.png",
+    //   url: "https://sourceplusplus.com"
+    // },
+    // {
+    //   image: "ariwonto.png",
+    //   url: "https://ariwonto.com"
+    // },
+    // {
+    //   image: "mauna.png",
+    //   url: "https://www.mauna.ai"
+    // },
+    // {
+    //   image: "deutschetelekom.png",
+    //   url: "https://www.telekom.com"
+    // },
+    // {
+    //   image: "austincapitaldata.png",
+    //   url: "https://capitaldata.github.io"
+    // },
+    // {
+    //   image: "google.png",
+    //   url: "https://cloud.google.com"
+    // },
+    // {
+    //   image: "augmentedthinking.png",
+    //   url: "https://www.augmented-thinking.ai"
+    // },
+    // {
+    //   image: "tno.png",
+    //   url: "https://www.tno.nl"
+    // },
+    // {
+    //   image: "infosys.png",
+    //   url: "https://www.infosys.com"
+    // },
+    // {
+    //   image: "astrazeneca.png",
+    //   url: "https://www.astrazeneca.co.uk"
+    // },
+    // {
+    //   image: "opencti.png",
+    //   url: "https://www.opencti.io"
+    // },
+    // {
+    //   image: "aresgenetics.png",
+    //   url: "https://www.ares-genetics.com"
+    // },
+    // {
+    //   image: "ustglobal.png",
+    //   url: "https://ust-global.com"
+    // },
+    // {
+    //   image: "dunnhumby.png",
+    //   url: "https://www.dunnhumby.com"
+    // },
+    // {
+    //   image: "rasa.png",
+    //   url: "https://rasa.com"
+    // },
+    // {
+    //   image: "cisco.png",
+    //   url: "https://cisco.com"
+    // },
+    // {
+    //   image: "icarcnr.png",
+    //   url: "https://www.icar.cnr.it/en/"
+    // },
+    // {
+    //   image: "6point6.png",
+    //   url: "https://6point6.co.uk/"
+    // },
+    // {
+    //   image: "bdsg.png",
+    //   url: "https://berkeleydatasciencegroup.github.io/"
+    // },
+    // {
+    //   image: "capco.png",
+    //   url: "https://www.capco.com/"
+    // },
+    // {
+    //   image: "deloitte.png",
+    //   url: "https://www2.deloitte.com/uk/en.html"
+    // },
+    // {
+    //   image: "federico.png",
+    //   url: "http://www.unina.it/"
+    // },
+    // {
+    //   image: "innovolve.png",
+    //   url: "https://www.linkedin.com/company/innovolve/about/?viewAsMember=true"
+    // },
+    // {
+    //   image: "livingmatrix.png",
+    //   url: "https://livingmatrix.com/"
+    // },
+    // {
+    //   image: "medas.png",
+    //   url: "https://medas-solutions.it/"
+    // },
+    // {
+    //   image: "michigan.png",
+    //   url: "https://umich.edu/"
+    // },
+    // {
+    //   image: "eaglegenomics.png",
+    //   url: "https://www.eaglegenomics.com/"
+    // },
+    // {
+    //   image: "ucsf.png",
+    //   url: "https://bakarinstitute.ucsf.edu/"
+    // },
+    // {
+    //   image: "yooi.png",
+    //   url: "https://www.yooi.com/"
+    // }
   ];
 
   for (partner of partners) {
