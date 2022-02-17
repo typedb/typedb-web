@@ -1363,4 +1363,8 @@ body .site-header {
     }
 }
 
+.logo-cosmos {
+    max-width: 260px;
+}
+
 /*# sourceMappingURL=common.css.map */
