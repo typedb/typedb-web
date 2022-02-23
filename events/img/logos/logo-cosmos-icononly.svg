@@ -1,38 +1,40 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="143" height="129" viewBox="0 0 143 129">
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="687px" height="687px" viewBox="0 0 687 687" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>TybeDB Cosmos Bot - colored -  transparent bg - 687x687</title>
     <defs>
-        <linearGradient id="a" x1="32.197%" x2="89.656%" y1="81.075%" y2="81.075%">
-            <stop offset="0%" stop-color="#FFF"/>
-            <stop offset="100%" stop-color="#8F77E1"/>
+        <linearGradient x1="100%" y1="50%" x2="-25.2959672%" y2="-34.0930684%" id="linearGradient-1">
+            <stop stop-color="#FFFFFF" offset="0%"></stop>
+            <stop stop-color="#A38BF6" offset="100%"></stop>
         </linearGradient>
-        <linearGradient id="b" x1="50%" x2="50%" y1="30.503%" y2="124.067%">
-            <stop offset="0%" stop-color="#060639"/>
-            <stop offset="100%" stop-color="#291B78"/>
+        <linearGradient x1="100%" y1="50%" x2="-51.9913124%" y2="40.9956366%" id="linearGradient-2">
+            <stop stop-color="#FFFFFF" offset="0%"></stop>
+            <stop stop-color="#A38BF6" offset="100%"></stop>
         </linearGradient>
-        <linearGradient id="c" x1="124.661%" x2="19.359%" y1="52.544%" y2="52.544%">
-            <stop offset="0%" stop-color="#3C2E7C"/>
-            <stop offset="100%" stop-color="#0C0C60"/>
+        <linearGradient x1="29.117677%" y1="45.8942275%" x2="64.2092792%" y2="48.1210924%" id="linearGradient-3">
+            <stop stop-color="#C6B7FF" offset="0%"></stop>
+            <stop stop-color="#FFFFFF" offset="100%"></stop>
         </linearGradient>
-        <linearGradient id="d" x1="50%" x2="50%" y1="0%" y2="100%">
-            <stop offset="0%" stop-color="#02DAC9"/>
-            <stop offset="100%" stop-color="#1AEBA8"/>
-        </linearGradient>
-        <linearGradient id="e" x1="34.951%" x2="60.24%" y1="-4.351%" y2="25.128%">
-            <stop offset="0%" stop-color="#C6B7FF"/>
-            <stop offset="100%" stop-color="#FFF"/>
-        </linearGradient>
-        <linearGradient id="f" x1="18.72%" x2="52.514%" y1="19.057%" y2="7.236%">
-            <stop offset="0%" stop-color="#B9ACEE"/>
-            <stop offset="100%" stop-color="#FFF"/>
+        <linearGradient x1="32.8876677%" y1="46.9823267%" x2="96.9692841%" y2="46.2228878%" id="linearGradient-4">
+            <stop stop-color="#B9ACEE" offset="0%"></stop>
+            <stop stop-color="#FFFFFF" offset="100%"></stop>
         </linearGradient>
     </defs>
-    <g fill="none" fill-rule="evenodd">
-        <path fill="url(#a)" d="M123.067 53.784l16.416-.002c1.68 0 3.132 1.17 3.49 2.811l4.247 19.495-31.894.004 4.253-19.498a3.571 3.571 0 0 1 3.488-2.81z" transform="rotate(89 131.273 64.937)"/>
-        <path fill="url(#a)" d="M3.505 53.784l16.415-.002c1.68 0 3.132 1.17 3.49 2.811l4.247 19.495-31.893.004L.016 56.594a3.571 3.571 0 0 1 3.489-2.81z" transform="scale(-1 1) rotate(89 0 53.02)"/>
-        <ellipse cx="71.243" cy="64.787" fill="url(#b)" rx="64.243" ry="63.788"/>
-        <path fill="url(#c)" d="M70.95 127.393zM18.429 30.14C29.63 12.316 49.43.474 71.988.474c22.25 0 41.817 11.521 53.097 28.94-14.399-7.626-32.716-12.193-52.658-12.193-20.566 0-39.405 4.857-54 12.92z" transform="rotate(90 71.756 63.938)"/>
-        <path fill="url(#c)" d="M70.95 127.393zM18.429 30.14C29.63 12.316 49.43.474 71.988.474c22.25 0 41.817 11.521 53.097 28.94-14.399-7.626-32.716-12.193-52.658-12.193-20.566 0-39.405 4.857-54 12.92z" transform="matrix(0 1 1 0 7.819 -7.819)"/>
-        <path fill="url(#d)" d="M53.852 51.26h40.932C100.98 51.26 106 56.28 106 62.475v13.871c0 6.195-5.021 11.216-11.216 11.216h-31.36V127L39 117.266v-54.79c0-5.636 4.157-10.301 9.571-11.096V40.07c-2.325-.945-3.96-3.183-3.96-5.794 0-3.466 2.881-6.276 6.436-6.276 3.554 0 6.436 2.81 6.436 6.276 0 2.485-1.482 4.633-3.63 5.65V51.26zm9.572 25.982c4.374 0 7.92-3.459 7.92-7.725 0-4.265-3.546-7.724-7.92-7.724-4.375 0-7.922 3.459-7.922 7.724 0 4.266 3.547 7.725 7.922 7.725zm24.093 0c4.375 0 7.921-3.459 7.921-7.725 0-4.265-3.546-7.724-7.92-7.724-4.376 0-7.922 3.459-7.922 7.724 0 4.266 3.546 7.725 7.921 7.725z"/>
-        <path fill="url(#e)" d="M70.563 128.527zm-53.332-97.75A64.303 64.303 0 0 1 71.616.96a64.303 64.303 0 0 1 53.915 29.088c-14.62-7.666-33.22-12.255-53.469-12.255-20.883 0-40.012 4.881-54.83 12.984z"/>
-        <path fill="url(#f)" d="M70.563 128.527zm-53.332-97.75A64.303 64.303 0 0 1 71.616.96a64.303 64.303 0 0 1 53.915 29.088c-14.62-7.666-33.22-12.255-53.469-12.255-20.883 0-40.012 4.881-54.83 12.984z" transform="matrix(1 0 0 -1 0 129.495)"/>
+    <g id="TybeDB-Cosmos-Bot---colored----transparent-bg---687x687" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="logo" transform="translate(80.000000, 90.000000)">
+            <g id="space-logo" transform="translate(0.000000, 35.766988)">
+                <path d="M458.173965,195.048731 L511.245755,195.0405 C519.656721,195.039195 526.931206,200.900758 528.718617,209.119609 L543.605805,277.573699 L543.605805,277.573699 L425.797233,277.59197 L440.707712,209.122957 C442.496579,200.908467 449.766951,195.050035 458.173965,195.048731 Z" id="Rectangle" fill="url(#linearGradient-1)" transform="translate(484.701519, 236.315117) rotate(89.000000) translate(-484.701519, -236.315117) "></path>
+                <path d="M15.770928,195.048731 L68.8427176,195.0405 C77.2536835,195.039195 84.5281687,200.900758 86.3155795,209.119609 L101.202767,277.573699 L101.202767,277.573699 L-16.6058046,277.59197 L-1.69532543,209.122957 C0.0935418459,200.908467 7.36391392,195.050035 15.770928,195.048731 Z" id="Rectangle-Copy-2" fill="url(#linearGradient-2)" transform="translate(42.298481, 236.315117) scale(-1, 1) rotate(89.000000) translate(-42.298481, -236.315117) "></path>
+                <ellipse id="Oval" fill="#261C5E" cx="263.960853" cy="235.616506" rx="237.71071" ry="235.616506"></ellipse>
+                <path d="M263.960853,0 C347.554785,0 421.070593,42.7694344 463.450321,107.435864 C409.348822,79.1272761 340.531819,62.176578 265.611622,62.176578 C188.338643,62.176578 117.558203,80.2086269 62.7246867,110.139812 C104.812614,43.9647412 179.206841,0 263.960853,0 Z" id="Combined-Shape" fill="url(#linearGradient-3)"></path>
+                <path d="M263.960853,361.093747 C347.554785,361.093747 421.070593,403.863181 463.450321,468.529611 C409.348822,440.221023 340.531819,423.270325 265.611622,423.270325 C188.338643,423.270325 117.558203,441.302374 62.7246867,471.233559 C104.812614,405.058488 179.206841,361.093747 263.960853,361.093747 Z" id="Combined-Shape-Copy" fill="url(#linearGradient-4)" transform="translate(263.088555, 416.163379) scale(1, -1) translate(-263.088555, -416.163379) "></path>
+                <g id="Group" transform="translate(326.849114, 94.901093)"></g>
+            </g>
+            <g id="Group-2" transform="translate(49.550054, 153.587654)">
+                <rect id="Rectangle" fill="#392D7F" x="0" y="0" width="428.261577" height="235.641333" rx="117.820666"></rect>
+                <ellipse id="Oval" fill="#05E9A8" cx="140.135097" cy="118.16162" rx="52.2002102" ry="50.1271072"></ellipse>
+                <ellipse id="Oval-Copy" fill="#05E9A8" cx="298.910736" cy="118.16162" rx="52.2002102" ry="50.1271072"></ellipse>
+            </g>
+            <path d="M112.614532,0 C126.562368,0 137.869322,11.4962601 137.869322,25.6776156 C137.869322,36.1851751 131.661863,45.2186312 122.772071,49.1938382 L122.772556,107.300964 L102.568724,107.300964 L102.567805,49.243066 C93.6188284,45.2935806 87.3597423,36.2287798 87.3597423,25.6776156 C87.3597423,11.4962601 98.6666969,0 112.614532,0 Z" id="Combined-Shape-Copy-16" fill="#C6B7FF"></path>
+        </g>
     </g>
 </svg>

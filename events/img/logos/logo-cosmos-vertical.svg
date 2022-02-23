@@ -1,15 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg width="1294px" height="1017px" viewBox="0 0 1294 1017" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <title>grakn-cosmos-7</title>
-    <g id="grakn-cosmos-7" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+    <title>TybeDB Cosmos logo - green white - transparent bg - 1294x1017</title>
+    <defs>
+        <linearGradient x1="100%" y1="50%" x2="-25.2959672%" y2="-34.4097137%" id="linearGradient-1">
+            <stop stop-color="#FFFFFF" offset="0%"></stop>
+            <stop stop-color="#A38BF6" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="100%" y1="50%" x2="-51.9913124%" y2="40.9616192%" id="linearGradient-2">
+            <stop stop-color="#FFFFFF" offset="0%"></stop>
+            <stop stop-color="#A38BF6" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="29.117677%" y1="45.9093169%" x2="64.2092792%" y2="48.1279977%" id="linearGradient-3">
+            <stop stop-color="#C6B7FF" offset="0%"></stop>
+            <stop stop-color="#FFFFFF" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="32.8876677%" y1="46.9934171%" x2="96.9692841%" y2="46.2367693%" id="linearGradient-4">
+            <stop stop-color="#B9ACEE" offset="0%"></stop>
+            <stop stop-color="#FFFFFF" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="TybeDB-Cosmos-logo---green-white---transparent-bg---1294x1017" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
         <g id="space-logo" transform="translate(251.339892, -0.067711)">
-            <g id="bot-copy-2" transform="translate(84.000000, 4.000000)" fill="#05E9A8">
-                <path d="M318,68.5949189 C493.62655,68.5949189 636,211.059049 636,386.797459 C636,562.53587 493.62655,705 318,705 C142.37345,705 0,562.53587 0,386.797459 C0,211.059049 142.37345,68.5949189 318,68.5949189 Z M441.920124,232.572029 L190.052188,232.572541 L190.052188,232.572541 L189.654144,232.574074 C104.075166,233.013742 35.056119,302.745633 35.495787,388.32461 C35.9384799,474.492385 105.881681,544.129559 192.050569,544.194406 L192.050569,544.194406 L441.920168,544.38245 L441.920168,544.38245 L442.037453,544.382494 C528.109135,544.382494 597.88402,474.607609 597.88402,388.535926 C597.88402,302.399444 528.056605,232.572029 441.920124,232.572029 L441.920124,232.572029 Z" id="Combined-Shape"></path>
-                <ellipse id="Oval" cx="219.223997" cy="389.451438" rx="68.6232898" ry="66.3706034"></ellipse>
-                <ellipse id="Oval-Copy" cx="427.95317" cy="389.451438" rx="68.6232898" ry="66.3706034"></ellipse>
-                <path d="M73.2165192,0 C106.990856,0 134.370365,27.3969481 134.370365,61.1927963 C134.370365,86.2330092 119.339811,107.760412 97.8141519,117.234119 L97.8139202,255.710893 L48.8908433,255.710893 L48.8901631,117.352723 C27.2196141,107.940988 12.062673,86.338066 12.062673,61.1927963 C12.062673,27.3969481 39.4421826,0 73.2165192,0 Z" id="Combined-Shape-Copy-16"></path>
-            </g>
             <g id="text-logo" transform="translate(401.660108, 856.067711)"></g>
+        </g>
+        <g id="logo" transform="translate(277.000000, 1.000000)">
+            <g id="space-logo" transform="translate(1.445539, 50.012448)">
+                <path d="M636.633467,272.627352 L721.398377,272.611455 C730.077631,272.609827 737.583478,278.660158 739.424417,287.141927 L761.364923,388.228581 L761.364923,388.228581 L596.634853,388.259475 L618.615666,287.151742 C620.45842,278.675409 627.959139,272.628979 636.633467,272.627352 Z" id="Rectangle" fill="url(#linearGradient-1)" transform="translate(678.999888, 330.434071) rotate(89.000000) translate(-678.999888, -330.434071) "></path>
+                <path d="M16.8880962,272.627612 L101.652987,272.611183 C110.332293,272.609501 117.838209,278.659856 119.679147,287.141678 L141.619648,388.228934 L141.619648,388.228934 L-23.1104223,388.259828 L-1.12958893,287.152001 C0.713155996,278.675711 8.21381173,272.629293 16.8880962,272.627612 Z" id="Rectangle-Copy-2" fill="url(#linearGradient-2)" transform="translate(59.254613, 330.434065) scale(-1, 1) rotate(89.000000) translate(-59.254613, -330.434065) "></path>
+                <ellipse id="Oval" fill="#261C5E" cx="369.773021" cy="329.459061" rx="333" ry="329.459061"></ellipse>
+                <path d="M369.773021,0 C486.876463,0 589.861878,59.8037061 649.230083,150.225613 C573.440809,110.64231 477.037999,86.9405856 372.085521,86.9405856 C263.837416,86.9405856 164.684347,112.154202 87.8703444,154.006043 C146.829931,61.4742444 251.045278,0 369.773021,0 Z" id="Combined-Shape" fill="url(#linearGradient-3)"></path>
+                <path d="M369.773021,504.912489 C486.876463,504.912489 589.861878,564.716195 649.230083,655.138102 C573.440809,615.554799 477.037999,591.853075 372.085521,591.853075 C263.837416,591.853075 164.684347,617.066691 87.8703444,658.918532 C146.829931,566.386733 251.045278,504.912489 369.773021,504.912489 Z" id="Combined-Shape-Copy" fill="url(#linearGradient-4)" transform="translate(368.550919, 581.915306) scale(1, -1) translate(-368.550919, -581.915306) "></path>
+                <g id="Group" transform="translate(457.870822, 132.698789)"></g>
+            </g>
+            <g id="Group-2" transform="translate(70.858529, 214.759336)">
+                <rect id="Rectangle" fill="#392D7F" x="0" y="0" width="599.935548" height="329.493776" rx="164.746888"></rect>
+                <ellipse id="Oval" fill="#05E9A8" cx="196.30999" cy="165.223638" rx="73.1253125" ry="70.0919895"></ellipse>
+                <ellipse id="Oval-Copy" fill="#05E9A8" cx="418.732816" cy="165.223638" rx="73.1253125" ry="70.0919895"></ellipse>
+            </g>
+            <path d="M159.203187,0 C178.742186,0 194.581673,16.0750498 194.581673,35.9046286 C194.581673,50.5969357 185.886182,63.2280981 173.433156,68.7867213 L173.43318,150.037344 L145.130392,150.037344 L145.129863,68.8561819 C132.593173,63.3338523 123.824701,50.6584622 123.824701,35.9046286 C123.824701,16.0750498 139.664189,0 159.203187,0 Z" id="Combined-Shape-Copy-16" fill="#C6B7FF"></path>
         </g>
         <g id="Group-3" transform="translate(0.000000, 856.000000)" fill-rule="nonzero">
             <g id="Group-2" transform="translate(0.000000, 2.000000)" fill="#FFFFFF">

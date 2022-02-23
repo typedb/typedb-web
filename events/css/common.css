@@ -1367,4 +1367,15 @@ body .site-header {
     max-width: 260px;
 }
 
+.section-intro-logo {
+    margin-top: -2rem;
+    margin-bottom: 1.5rem !important;
+}
+
+@media (min-width: 786px) {
+    .section-intro-logo {
+        margin-bottom: 1rem !important;
+    }
+}
+
 /*# sourceMappingURL=common.css.map */
