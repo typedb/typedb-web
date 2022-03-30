@@ -57,7 +57,7 @@ export const PageHeader: React.FC = () => {
 
                         <div className={classes.filler}/>
 
-                        <ExternalLinks/>
+                        <ImportantLinks/>
                     </div>
 
                     <HamburgerCollapse className={clsx(classes.hamburger, classes.hideDesktop)} barColor="#FFF"
@@ -70,7 +70,7 @@ export const PageHeader: React.FC = () => {
 
                     <div className={classes.filler}/>
 
-                    <ExternalLinks/>
+                    <ImportantLinks/>
                 </div>
             </nav>
         </div>
@@ -141,7 +141,7 @@ const Sitemap: React.FC<SitemapProps> = ({toggleMobileMenuOpen}) => {
     );
 }
 
-const ExternalLinks: React.FC = () => {
+const ImportantLinks: React.FC = () => {
     const classes = pageHeaderStyles();
 
     return (
@@ -150,12 +150,12 @@ const ExternalLinks: React.FC = () => {
                 <VaticleLink to="?dialog=contact"><span>Contact</span></VaticleLink>
             </li>
             <li>
-                <VaticleLink href={urls.support} target="_blank"><span>Support</span></VaticleLink>
+                <VaticleLink to={routes.support}><span>Support</span></VaticleLink>
             </li>
             <li className={classes.download}>
                 <VaticleButton className={classes.noHover} size="small" type="secondary" to={routes.download}>Download</VaticleButton>
             </li>
-            <li className={classes.externalLinksGithub}>
+            <li className={classes.importantLinksGithub}>
                 <GithubButton/>
             </li>
         </ul>

@@ -2,15 +2,6 @@ import {makeStyles} from '@material-ui/core/styles';
 import {vaticleTheme} from "../../common/styles/theme";
 import { standardMargins } from "../../common/styles/vaticle-styles";
 
-export const downloadPageStyles = makeStyles({
-    contactFormContainer: {
-        "@media(min-width: 1200px)": {
-            marginLeft: 40,
-            marginRight: 40,
-        },
-    },
-});
-
 const tabGroupBorderRadius = 11;
 
 export const downloadPageProductStyles = makeStyles({

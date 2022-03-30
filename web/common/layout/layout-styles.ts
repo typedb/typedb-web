@@ -115,7 +115,7 @@ export const pageHeaderStyles = makeStyles({
         marginTop: -5,
     },
 
-    externalLinksGithub: {
+    importantLinksGithub: {
         "@media(max-width: 1199px)": {
             paddingTop: 8,
         },

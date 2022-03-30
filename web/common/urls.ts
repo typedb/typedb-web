@@ -2,7 +2,7 @@ const docsURL = "https://docs.vaticle.com/docs";
 const githubURL = "https://github.com/vaticle";
 
 export const urls = {
-    support: "https://support.grakn.ai",
+    supportPlatform: "https://support.grakn.ai",
     forum: "https://forum.vaticle.com",
     blog: "https://medium.com/vaticle",
     careers: "/careers",

@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import {VaticleLayout} from "../../common/layout/layout";
-import {downloadPageStyles} from "./download-styles";
 import {vaticleStyles} from "../../common/styles/vaticle-styles";
 import {ProductSection} from "./product-section";
 import clsx from "clsx";
@@ -10,7 +9,7 @@ import { deleteSearchParam } from "../../common/util/search-params";
 import { useHistory, useLocation } from "react-router-dom";
 
 export const DownloadPage: React.FC = () => {
-    const classes = Object.assign({}, vaticleStyles(), downloadPageStyles());
+    const classes = vaticleStyles();
 
     const [contactSuccessSnackbarOpen, setContactSuccessSnackbarOpen] = useState(false);
     const [contactErrorSnackbarOpen, setContactErrorSnackbarOpen] = useState(false);
@@ -40,7 +39,7 @@ export const DownloadPage: React.FC = () => {
                     Let us know how we can help you and we'll help you get up to speed.
                 </p>
 
-                <div className={classes.contactFormContainer}>
+                <div className={classes.inlineForm}>
                     <ContactForm id="contact-form-download-page" className={classes.subsectionMargin} onSubmitDone={onContactFormSubmitDone}/>
                 </div>
             </section>
