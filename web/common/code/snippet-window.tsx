@@ -7,7 +7,7 @@ import BranchIcon from "../assets/graphics/branch.svg";
 import FetchIcon from "../assets/graphics/fetch.svg";
 import clsx from "clsx";
 
-export const ExampleWindow: React.FC = ({ children }) => {
+export const CodeSnippetWindow: React.FC = ({ children }) => {
     const classes = Object.assign({}, vaticleStyles(), codeStyles());
 
     return (
@@ -17,13 +17,13 @@ export const ExampleWindow: React.FC = ({ children }) => {
     );
 }
 
-export const ExampleWindowHeader: React.FC = () => <div className={codeStyles().windowHeader}><MacOSWindow/></div>;
+export const CodeSnippetWindowHeader: React.FC = () => <div className={codeStyles().windowHeader}><MacOSWindow/></div>;
 
-interface ExampleWindowFooterProps {
+interface CodeSnippetWindowFooterProps {
     language: LanguageDisplayName;
 }
 
-export const ExampleWindowFooter: React.FC<ExampleWindowFooterProps> = ({language}) => {
+export const CodeSnippetWindowFooter: React.FC<CodeSnippetWindowFooterProps> = ({language}) => {
     const classes = Object.assign({}, vaticleStyles(), codeVisualiserFooterStyles());
 
     return (

@@ -1,41 +1,41 @@
 import React from "react";
 import { CodePane } from "./code-pane";
-import { ExampleWindowFooter, ExampleWindowHeader, ExampleWindow } from "./example-window";
+import { CodeSnippetWindowFooter, CodeSnippetWindowHeader, CodeSnippetWindow } from "./snippet-window";
 import { codeStyles } from "./code-styles";
 import { VaticleTabs } from "../tabs/tabs";
 import { Code, languageNames } from "./code";
 
-interface PolyglotExampleProps {
+interface PolyglotSnippetProps {
     id: string;
     sources: Code[];
 }
 
-interface PolyglotExampleTab {
+interface PolyglotSnippetTab {
     id: string;
     name: string;
     content: React.FC;
 }
 
-export const PolyglotExample: React.FC<PolyglotExampleProps> = ({ id, sources }) => {
+export const PolyglotSnippet: React.FC<PolyglotSnippetProps> = ({ id, sources }) => {
     const classes = codeStyles();
 
-    const codeTabs: PolyglotExampleTab[] = sources.map(code => {
+    const codeTabs: PolyglotSnippetTab[] = sources.map(code => {
         return {
             id: `${id}-${code.language}`,
             name: languageNames[code.language],
             content: () => (
                     <>
                         <CodePane code={code} lines={code.language === "console" ? 14 : 13}/>
-                        {code.language !== "console" && <ExampleWindowFooter language={languageNames[code.language]}/>}
+                        {code.language !== "console" && <CodeSnippetWindowFooter language={languageNames[code.language]}/>}
                     </>),
         }
     });
 
     return (
-        <ExampleWindow>
-            <ExampleWindowHeader/>
+        <CodeSnippetWindow>
+            <CodeSnippetWindowHeader/>
             <VaticleTabs items={codeTabs} classes={{root: classes.polyglotTabs, tabGroup: classes.polyglotTabGroup,
                 tabItem: classes.polyglotTab, selected: classes.polyglotTabSelected, tabContent: classes.polyglotTabContent}}/>
-        </ExampleWindow>
+        </CodeSnippetWindow>
     );
 }

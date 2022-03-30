@@ -3,7 +3,7 @@ import { standardMargins } from "../../common/styles/vaticle-styles";
 import { vaticleTheme } from "../../common/styles/theme";
 
 export const featureStyles = makeStyles({
-    diagramAndCaption: {
+    featureWithSnippet: {
         textAlign: "start",
         display: "flex",
         justifyContent: "space-between",
@@ -18,19 +18,19 @@ export const featureStyles = makeStyles({
         },
     },
 
-    exampleLeft: {
+    snippetLeft: {
         "@media(min-width: 1200px)": {
             flexDirection: "row",
         },
     },
 
-    exampleRight: {
+    snippetRight: {
         "@media(min-width: 1200px)": {
             flexDirection: "row-reverse",
         },
     },
 
-    diagramCaptionSpacingLeft: {
+    snippetSpacingLeft: {
         "@media(min-width: 1200px)": {
             marginLeft: 40,
         },
@@ -44,7 +44,7 @@ export const featureStyles = makeStyles({
         },
     },
 
-    diagramCaptionSpacingRight: {
+    snippetSpacingRight: {
         "@media(min-width: 1200px)": {
             marginRight: 40,
         },
@@ -64,7 +64,7 @@ export const featureStyles = makeStyles({
         },
     },
 
-    typeQLExample: {
+    typeQLSnippet: {
         height: 360,
         position: "relative",
     },

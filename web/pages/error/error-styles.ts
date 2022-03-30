@@ -10,7 +10,7 @@ const contentHeight = {
 
 export const errorStyles = makeStyles({
     main: {
-        // We can't use Flexbox because it causes the scaled ExampleWindow to stretch the window horizontally on mobile.
+        // We can't use Flexbox because it causes the scaled CodeSnippetWindow to stretch the window horizontally on mobile.
 
         paddingTop: `calc((100vh - ${contentHeight.desktop}px - ${headerHeight}px) / 2)`,
 

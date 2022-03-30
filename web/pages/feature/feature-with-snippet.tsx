@@ -17,17 +17,17 @@ export interface FeatureBlockProps extends ClassProps {
     button?: FeatureBlockButtonProps;
 }
 
-export const FeatureBlock: React.FC<FeatureBlockProps> = ({className, id, title, body, examplePosition, button, children}) => {
+export const FeatureWithSnippet: React.FC<FeatureBlockProps> = ({className, id, title, body, examplePosition, button, children}) => {
     const classes = Object.assign({}, vaticleStyles(), featureStyles());
 
     const buttonProps: FeatureBlockButtonProps = Object.assign({ size: "small", type: "secondary" }, button);
     delete buttonProps.text;
 
     return (
-        <div id={id} className={clsx(classes.diagramAndCaption, examplePosition === "left" ? classes.exampleLeft : classes.exampleRight, className)}>
+        <div id={id} className={clsx(classes.featureWithSnippet, examplePosition === "left" ? classes.snippetLeft : classes.snippetRight, className)}>
             <h2 className={clsx(classes.h2, classes.hideDesktop)}>{title}</h2>
             {children}
-            <div className={examplePosition === "left" ? classes.diagramCaptionSpacingLeft : classes.diagramCaptionSpacingRight}>
+            <div className={examplePosition === "left" ? classes.snippetSpacingLeft : classes.snippetSpacingRight}>
                 <h2 className={clsx(classes.h2, classes.showDesktop)}>{title}</h2>
                 <p className={clsx(classes.mediumText, classes.body)}>{body}</p>
                 {button && <VaticleButton {...buttonProps} className={clsx(classes.learnMore, classes.showDesktop, classes.contentMargin)}>{button.text}</VaticleButton>}

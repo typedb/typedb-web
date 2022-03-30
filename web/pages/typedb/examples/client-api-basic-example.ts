@@ -1,6 +1,6 @@
 import { Code } from "../../../common/code/code";
 
-export const simpleStatefulAPIExample: Code[] = [{
+export const clientAPIBasicExample: Code[] = [{
     language: "java",
     body: `
 try (TypeDBClient client = TypeDB.coreClient("localhost:1729")) {
