@@ -1,7 +1,7 @@
 import React from "react";
 import { vaticleStyles } from "../../common/styles/vaticle-styles";
 import { errorStyles } from "./error-styles";
-import { FeatureWithSnippet } from "../feature/feature-with-snippet";
+import { FeatureWithSnippet } from "../../common/feature/feature-with-snippet";
 import { routes } from "../router";
 import { VaticleLayout } from "../../common/layout/layout";
 import { CodeSnippetWindow, CodeSnippetWindowHeader } from "../../common/code/snippet-window";

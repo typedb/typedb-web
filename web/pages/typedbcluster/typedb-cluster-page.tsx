@@ -13,7 +13,7 @@ import {
 } from "./typedb-cluster-examples";
 import {VaticleLayout} from "../../common/layout/layout";
 import {VaticleButton} from "../../common/button/button";
-import {FeatureWithSnippet} from "../feature/feature-with-snippet";
+import {FeatureWithSnippet} from "../../common/feature/feature-with-snippet";
 import {ConsoleSnippet} from "../../common/code/console-snippet";
 
 export const TypeDBClusterPage: React.FC = () => {

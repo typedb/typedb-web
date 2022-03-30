@@ -1,6 +1,6 @@
 import {makeStyles} from "@material-ui/core";
-import { standardMargins } from "../../common/styles/vaticle-styles";
-import { vaticleTheme } from "../../common/styles/theme";
+import { standardMargins } from "../styles/vaticle-styles";
+import { vaticleTheme } from "../styles/theme";
 
 export const featureStyles = makeStyles({
     featureWithSnippet: {

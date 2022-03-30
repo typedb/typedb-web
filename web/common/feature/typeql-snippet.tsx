@@ -1,9 +1,9 @@
 import React from "react";
-import {CodePane} from "../../common/code/code-pane";
-import { CodeSnippetWindow, CodeSnippetWindowFooter, CodeSnippetWindowHeader } from "../../common/code/snippet-window";
+import {CodePane} from "../code/code-pane";
+import { CodeSnippetWindow, CodeSnippetWindowFooter, CodeSnippetWindowHeader } from "../code/snippet-window";
 import {featureStyles} from "./feature-styles";
-import { TypeDBVisualiserData } from "../../common/typedb-visualiser/data";
-import { TypeDBVisualiser } from "../../common/typedb-visualiser/TypeDBVisualiser";
+import { TypeDBVisualiserData } from "../typedb-visualiser/data";
+import { TypeDBVisualiser } from "../typedb-visualiser/TypeDBVisualiser";
 
 interface TypeQLSnippetProps {
     code: string;

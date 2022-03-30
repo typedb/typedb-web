@@ -1,8 +1,8 @@
-import { VaticleButton, VaticleButtonProps } from "../../common/button/button";
+import { VaticleButton, VaticleButtonProps } from "../button/button";
 import React from "react";
 import clsx from "clsx";
-import {vaticleStyles} from "../../common/styles/vaticle-styles";
-import {ClassProps} from "../../common/class-props";
+import {vaticleStyles} from "../styles/vaticle-styles";
+import {ClassProps} from "../class-props";
 import {featureStyles} from "./feature-styles";
 
 interface FeatureBlockButtonProps extends VaticleButtonProps {

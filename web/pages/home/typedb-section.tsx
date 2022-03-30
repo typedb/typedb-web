@@ -15,8 +15,8 @@ import {inferenceExampleCode, inferenceExampleGraph} from "../typedb/examples/in
 import {clientAPIBasicExample} from "../typedb/examples/client-api-basic-example";
 import {ClassProps} from "../../common/class-props";
 import {VaticleButton} from "../../common/button/button";
-import {FeatureWithSnippet} from "../feature/feature-with-snippet";
-import {TypeQLSnippet} from "../feature/typeql-snippet";
+import {FeatureWithSnippet} from "../../common/feature/feature-with-snippet";
+import {TypeQLSnippet} from "../../common/feature/typeql-snippet";
 import {PolyglotSnippet} from "../../common/code/polyglot-snippet";
 import { homePageTypeDBStyles } from "./home-styles";
 
