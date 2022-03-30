@@ -369,59 +369,6 @@ export const homePageTypeDBStyles = makeStyles({
 });
 
 export const homePageClusterStyles = makeStyles({
-    featurePanelList: {
-        display: "grid",
-        justifyContent: "center",
-        gridTemplateColumns: "repeat(auto-fit, 360px)",
-        gridTemplateRows: "repeat(auto-fit, 260px)",
-        gap: 40,
-
-        "@media(max-width: 767px)": {
-            gridTemplateColumns: "repeat(auto-fit, 335px)",
-            gridTemplateRows: "repeat(auto-fit, 192px)",
-            gap: 30,
-        },
-    },
-
-    featurePanel: {
-        backgroundColor: vaticleTheme.palette.purple["4"],
-        borderRadius: 5,
-        padding: "32px 40px",
-        border: "1px solid transparent",
-        transition: "border-color 100ms ease",
-        position: "relative",
-
-        "@media(max-width: 767px)": {
-            padding: "24px 10px",
-            height: 192,
-
-            "& svg": {
-                transform: "scale(.8)",
-                marginTop: -5,
-                marginBottom: -5,
-            },
-        },
-
-        "&:hover": {
-            borderColor: vaticleTheme.palette.green["1"],
-        },
-    },
-
-    featurePanelBanner: {
-        position: "absolute",
-        top: 0,
-        right: 0,
-        width: 100,
-        height: 32,
-        borderRadius: 5,
-        backgroundColor: vaticleTheme.palette.purple["6"], // TODO: this colour is not in the palette
-        display: "inline-flex",
-        justifyContent: "center",
-        fontSize: 14,
-        lineHeight: "28px",
-        fontWeight: 400,
-    },
-
     clusterAction: {
         width: 224,
     },

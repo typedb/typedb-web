@@ -1,7 +1,7 @@
 import React from "react";
 import clsx from "clsx";
 import {urls} from "../../common/urls";
-import {routes} from "../router";
+import { hashRoutes, routes } from "../router";
 import {vaticleStyles} from "../../common/styles/vaticle-styles";
 import {
     entityRelationshipExampleCode,
@@ -37,7 +37,7 @@ export const TypeDBSection: React.FC<ClassProps> = ({className}) => {
                           Composed of entity, relationship, and attribute types, as well as type hierarchies, roles, and
                           rules, TypeDB allows you to think higher-level, as opposed to join-tables, columns, documents,
                           vertices, edges, and properties."
-                                button={{text: "Learn More", to: routes.typeDB.expressivity}}>
+                                button={{text: "Learn More", to: hashRoutes.typeDB.expressivity}}>
                 <TypeQLSnippet code={entityRelationshipExampleCode} data={entityRelationshipExampleGraph}/>
             </FeatureWithSnippet>
 
@@ -46,7 +46,7 @@ export const TypeDBSection: React.FC<ClassProps> = ({className}) => {
                           validate that your code inserts and queries data correctly. Query validation goes beyond
                           static type-checking, and includes logical validation of meaningless queries. With strict
                           type-checking errors, you have a dataset that you can trust."
-                                button={{text: "Learn More", to: routes.typeDB.safety}}>
+                                button={{text: "Learn More", to: hashRoutes.typeDB.safety}}>
                 <TypeQLSnippet code={logicalQueryValidationExampleCode} data={logicalQueryValidationExampleGraph}/>
             </FeatureWithSnippet>
 
@@ -55,7 +55,7 @@ export const TypeDBSection: React.FC<ClassProps> = ({className}) => {
                           type-inference and rule-inference, which create logical abstractions of data. This allows the
                           discovery of facts and patterns that would otherwise be too hard to find; and complex queries
                           become much simpler."
-                                button={{text: "Learn More", to: routes.typeDB.inference}}>
+                                button={{text: "Learn More", to: hashRoutes.typeDB.inference}}>
                 <TypeQLSnippet code={inferenceExampleCode} data={inferenceExampleGraph}/>
             </FeatureWithSnippet>
 
@@ -64,12 +64,12 @@ export const TypeDBSection: React.FC<ClassProps> = ({className}) => {
                           REST cannot provide. TypeDB Clients provide stateful objects, Sessions and Transactions, to
                           interact with the database programmatically. The transactions provide ACID guarantees, up to
                           snapshot isolation."
-                                button={{text: "Learn More", to: routes.typeDB.api}}>
+                                button={{text: "Learn More", to: hashRoutes.typeDB.api}}>
                 <PolyglotSnippet id="simple-stateful-api" sources={clientAPIBasicExample}/>
             </FeatureWithSnippet>
 
             <div className={clsx(classes.mainActionList, classes.actions)}>
-                <VaticleButton className={classes.hideMobile} size="small" type="secondary" to={routes.typeDB.page}>Learn More</VaticleButton>
+                <VaticleButton className={classes.hideMobile} size="small" type="secondary" to={routes.typeDB}>Learn More</VaticleButton>
                 <VaticleButton size="small" type="primary" href={urls.github.typedb} target="_blank">Fork/Star on
                     GitHub</VaticleButton>
             </div>

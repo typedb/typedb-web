@@ -46,7 +46,7 @@ export const TypeDBPage: React.FC = () => {
 
             <section className={clsx(classes.mainActionList, classes.subsectionMargin)}>
                 <VaticleButton size="small" type="primary" href={urls.github.typedb} target="_blank">Fork/Star on GitHub</VaticleButton>
-                <VaticleButton size="small" type="secondary" to={routes.typeDBCluster.page}>TypeDB Cluster</VaticleButton>
+                <VaticleButton size="small" type="secondary" to={routes.typeDBCluster}>TypeDB Cluster</VaticleButton>
             </section>
 
             <section id="expressivity" className={classes.subsectionMargin}>
@@ -195,8 +195,7 @@ export const TypeDBPage: React.FC = () => {
                 </p>
 
                 <div className={clsx(classes.mainActionList, classes.contentMargin)}>
-                    <VaticleButton size="small" type="secondary" to={routes.typeDBCluster.page}>Learn
-                        More</VaticleButton>
+                    <VaticleButton size="small" type="secondary" to={routes.typeDBCluster}>Learn More</VaticleButton>
                 </div>
             </section>
         </VaticleLayout>

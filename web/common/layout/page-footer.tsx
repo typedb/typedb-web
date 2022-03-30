@@ -88,8 +88,8 @@ export const PageFooter: React.FC = () => {
                             <div className={classes.linkBlock}>
                                 <h3 className={classes.h3}>TypeDB</h3>
                                 <ul className={classes.linkBlockList}>
-                                    <FooterLink to={routes.typeDB.page}>TypeDB</FooterLink>
-                                    <FooterLink to={routes.typeDBCluster.page}>TypeDB Cluster</FooterLink>
+                                    <FooterLink to={routes.typeDB}>TypeDB</FooterLink>
+                                    <FooterLink to={routes.typeDBCluster}>TypeDB Cluster</FooterLink>
                                     <FooterLink href={urls.docs.typeDBQuickstart}>Quickstart</FooterLink>
                                     <FooterLink href={urls.support} target="_blank">Support</FooterLink>
                                 </ul>
