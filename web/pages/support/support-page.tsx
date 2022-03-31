@@ -7,6 +7,7 @@ import {urls} from "../../common/urls";
 import {vaticleStyles} from "../../common/styles/vaticle-styles";
 import { deleteSearchParam } from "../../common/util/search-params";
 import { ContactForm } from "../contact/contact-form";
+import { TestimonialsSection } from "../testimonials/testimonials-section";
 import { supportPageStyles } from "./support-styles";
 
 export const SupportPage: React.FC = () => {
@@ -39,6 +40,9 @@ export const SupportPage: React.FC = () => {
                     <VaticleButton size="small" type="primary" href={urls.supportPlatform} target="_blank">Go to Support Platform</VaticleButton>
                 </div>
             </section>
+
+            <TestimonialsSection className={classes.sectionMargin} title="Loved by the pioneers in industry"
+                                 contactButton={{text: "Get in touch with our team", to: "#get-in-touch"}}/>
 
             <section className={classes.sectionMargin}>
                 <h1 id="get-in-touch" className={clsx(classes.h1, classes.pageAnchor)}>Get in touch with our team!</h1>
