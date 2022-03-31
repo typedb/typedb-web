@@ -3,174 +3,12 @@ import clsx from "clsx";
 import {VaticleButton} from "../../common/button/button";
 import {vaticleStyles} from "../../common/styles/vaticle-styles";
 import {ClassProps} from "../../common/class-props";
-import CircleDecoration from "../../assets/graphics/circle-decoration.svg";
-import AlexDengAvatar from "../../assets/images/alex-deng.jpg";
-import AltamiraSquareLogo from "../../assets/logos/squarewhite/altamira-square-white.png";
-import BioCortexSquareLogo from "../../assets/logos/squarewhite/biocortex-square-white.png";
-import CapgeminiSquareLogo from "../../assets/logos/squarewhite/capgemini-square-white.png";
-import ChinaMerchantsBankSquareLogo from "../../assets/logos/squarewhite/china-merchants-bank-square-white.png";
-import DixitShahAvatar from "../../assets/images/dixit-shah.png";
-import EagleGenomicsSquareLogo from "../../assets/logos/squarewhite/eagle-genomics-square-white.png";
-import FlipkartSquareLogo from "../../assets/logos/squarewhite/flipkart-square-white.png";
-import GravrSquareLogo from "../../assets/logos/squarewhite/gravr-square-white.png";
-import IBMLogo from "../../assets/logos/squarewhite/ibm-square-white.png";
-import JamesZylinskiAvatar from "../../assets/images/james-zylinski.png";
-import JeanPaulMochetAvatar from "../../assets/images/jean-paul-mochet.jpg";
-import JonThompsonAvatar from "../../assets/images/jon-thompson.jpg";
-import JorisSijsAvatar from "../../assets/images/joris-sijs.jpeg";
-import KimWagerAvatar from "../../assets/images/kim-wager.png";
-import KonradMysliwiecAvatar from "../../assets/images/konrad-mysliwiec.jpeg";
-import MichaelDoyleAvatar from "../../assets/images/michael-doyle.png";
-import MuhannadAlomariAvatar from "../../assets/images/muhannad-alomari.jpg";
-import NikSharmaAvatar from "../../assets/images/nik-sharma.jpg";
-import OpenCTISquareLogo from "../../assets/logos/squarewhite/opencti-square-white.png";
-import OxfordPharmagenesisSquareLogo from "../../assets/logos/squarewhite/oxford-pharmagenesis-square-white.png";
-import RadouaneOudrhiriAvatar from "../../assets/images/radouane-oudrhiri.jpg";
-import RAIRHealthSquareLogo from "../../assets/logos/squarewhite/rair-health-square-white.png";
-import RamAnveshAvatar from "../../assets/images/ram-anvesh.jpg";
-import RocheSquareLogo from "../../assets/logos/squarewhite/roche-square-white.png";
-import RollsRoyceSquareLogo from "../../assets/logos/squarewhite/rolls-royce-square-white.png";
-import SamuelHassineAvatar from "../../assets/images/samuel-hassine.jpeg";
-import TNOSquareLogo from "../../assets/logos/squarewhite/tno-square-white.png";
+import { typeDBTestimonials } from "./data/typedb-testimonials";
+import { Testimonial } from "./testimonial";
 import { testimonialsStyles } from "./testimonials-styles";
-
-interface Testimonial {
-    companyName: string;
-    companyLogo: string;
-    personName: string;
-    jobTitle: string;
-    avatar: string;
-    body: string;
-}
 
 export const TestimonialsSection: React.FC<ClassProps> = ({className}) => {
     const classes = Object.assign({}, vaticleStyles(), testimonialsStyles());
-
-    const testimonials: Testimonial[] = [{
-        companyName: "Flipkart",
-        companyLogo: FlipkartSquareLogo,
-        personName: "Ram Anvesh",
-        jobTitle: "Software Engineer",
-        avatar: RamAnveshAvatar,
-        body: `With its simple yet immensely powerful query language, native support for N-ary relationships and focus on
-        semantic schema, TypeDB solves all our modelling problems so that we can focus more on solving higher level
-        problems instead of tweaking traditional graph databases to fit our use cases.`,
-    }, {
-        companyName: "BioCortex",
-        companyLogo: BioCortexSquareLogo,
-        personName: "Nik Sharma",
-        jobTitle: "Founder & CEO",
-        avatar: NikSharmaAvatar,
-        body: `For developers, TypeDB is really easy to work with. Its unique and expressive type system enables us to
-        spend less time data modelling. We can easily integrate complex biomedical datasets. TypeDB provides us the
-        backbone to our therapeutics platform to cure neurodegenerative diseases.`,
-    }, {
-        companyName: "TNO",
-        companyLogo: TNOSquareLogo,
-        personName: "Joris Sijs",
-        jobTitle: "Senior Research Lead",
-        avatar: JorisSijsAvatar,
-        body: `TypeDB makes it easy for our robots to operate autonomously in the real world by being the centre of their
-        understanding. TypeDB makes it easy to incorporate expert knowledge and advanced reasoning into its knowledge base.`,
-    }, {
-        companyName: "Rolls-Royce",
-        companyLogo: RollsRoyceSquareLogo,
-        personName: "Muhannad Alomari",
-        jobTitle: "European Hub AI Lead",
-        avatar: MuhannadAlomariAvatar,
-        body: `We here at Rolls-Royce are steadily moving into the knowledge-graph age; where design and business
-        decisions are being led through data mined from millions of internal reports, accumulated into a deep knowledge
-        graph. TypeDB allows us to move faster to developing this capability for Rolls-Royce.`,
-    }, {
-        companyName: "OpenCTI",
-        companyLogo: OpenCTISquareLogo,
-        personName: "Samuel Hassine",
-        jobTitle: "Co-founder & Lead Developer",
-        avatar: SamuelHassineAvatar,
-        body: `TypeDB's expressivity allows us to unify all levels of cyber intelligence for cyber security knowledge
-        management systems. Through nested and hyper relations, we can easily represent TTPs and observables,
-        attribution and victimology. During an attack, this gives analysts 360 views of any observable.`,
-    }, {
-        companyName: "Altamira Corporation",
-        companyLogo: AltamiraSquareLogo,
-        personName: "James Zylinski",
-        jobTitle: "Data Scientist",
-        avatar: JamesZylinskiAvatar,
-        body: `TypeDB's reasoner is a powerful technology for quickly inferring tons of relationships with little effort.
-        The community engagement of Vaticle's development team is also amazing. I ran into an issue with an earlier
-        version, and was provided with a pre-release build that got me back up-and-running in minutes.`,
-    }, {
-        companyName: "China Merchants Bank",
-        companyLogo: ChinaMerchantsBankSquareLogo,
-        personName: "Alex Deng",
-        jobTitle: "Senior Engineer/Product Owner",
-        avatar: AlexDengAvatar,
-        body: `TypeDB is a unique technology that is so incredibly powerful in its ability to express and model
-        complex data while remaining simple and elegant in its use. We are so pleased with TypeDB, in particular as it
-        saves us from hiring an additional AI scientist to utilise semantic technologies in our projects.`,
-    }, {
-        companyName: "IBM",
-        companyLogo: IBMLogo,
-        personName: "Dixit Shah",
-        jobTitle: "Managing Consultant",
-        avatar: DixitShahAvatar,
-        body: `TypeDB enables us to model the supply chains of large Global CPG clients and identify environmental 
-        and social risks. We have found its strongly typed nature and expressivity to be world leading, allowing 
-        our customers to gain novel insights. With TypeDB, we can solve problems at the world's greatest companies.`,
-    }, {
-        companyName: "RAIR Health",
-        companyLogo: RAIRHealthSquareLogo,
-        personName: "Michael Doyle",
-        jobTitle: "Chief Technology Officer",
-        avatar: MichaelDoyleAvatar,
-        body: `With TypeDB, we spend less time writing code and more time with clinical researchers exploring
-        relationships between genes, drugs and diseases. As one of our core technologies, it elegantly and concisely
-        models knowledge, allowing us to build a single system from our various bioinformatics databases.`,
-    }, {
-        companyName: "Capgemini",
-        companyLogo: CapgeminiSquareLogo,
-        personName: "Jean-Paul Mochet",
-        jobTitle: "Chief Enterprise Architect",
-        avatar: JeanPaulMochetAvatar,
-        body: `TypeDB is a powerful framework for data exploration. The way data, attributes and relations can be
-        expressed in a polymorphic manner allows us to build a rich network of multi-levels analysis and open
-        opportunities to query, discover and infer interactions between complex epidemic factors.`,
-    }, {
-        companyName: "Eagle Genomics",
-        companyLogo: EagleGenomicsSquareLogo,
-        personName: "Radouane Oudrhiri",
-        jobTitle: "Chief Technology Officer",
-        avatar: RadouaneOudrhiriAvatar,
-        body: `TypeDB's query language, TypeQL, should be the de facto language for any graph representation because of
-        two things: the semantic expressiveness of the language and the optimisation of query execution.`,
-    }, {
-        companyName: "Oxford Pharmagenesis",
-        companyLogo: OxfordPharmagenesisSquareLogo,
-        personName: "Kim Wager",
-        jobTitle: "Scientific Director",
-        avatar: KimWagerAvatar,
-        body: `TypeDB and TypeQL allow us to model the biomedical domain, enabling us to surface insights that are
-        explainable and transparent; key requirements for AI in healthcare. Crucially, the Vaticle team provide more
-        than software, you gain access to a community. This is how the best work gets done – collaboratively.`,
-    }, {
-        companyName: "Roche",
-        companyLogo: RocheSquareLogo,
-        personName: "Konrad Myśliwiec",
-        jobTitle: "Data Science Software Engineer",
-        avatar: KonradMysliwiecAvatar,
-        body: `TypeDB provides a strongly typed database with N-ary relations that enables modelling the world much
-        closer to reality compared to other databases. In addition, its built-in inference engine enables to build next
-        generation AI systems — one of the many reasons to choose TypeDB to model biomedical data.`,
-    }, {
-        companyName: "Gravr",
-        companyLogo: GravrSquareLogo,
-        personName: "Jon Thompson",
-        jobTitle: "Founder",
-        avatar: JonThompsonAvatar,
-        body: `TypeDB performs complicated logic queries at blazing speeds. Its strongly typed data model elegantly
-        represents virtually any domain, and enforces well-formed models and data consistency - which is why we picked
-        TypeDB to power Gravr, our general-purpose knowledge app.`,
-    }];
 
     return (
         <section className={clsx(className, classes.section)}>
@@ -178,28 +16,11 @@ export const TestimonialsSection: React.FC<ClassProps> = ({className}) => {
 
             <div className={clsx(classes.carouselContainer, classes.testimonialCarouselContainer, classes.subsectionMargin)}>
                 <div className={clsx(classes.carousel, classes.testimonialCarousel)}>
-                    {[0, 0, 0].map(() => (
-                        <span className={classes.carouselHalf}>
-                    {testimonials.map(({companyName, companyLogo, personName, jobTitle, avatar, body}) => (
-                        <div className={classes.testimonialContainer}>
-                            <img src={companyLogo} alt={companyName} className={classes.companyLogo}/>
-                            <CircleDecoration className={classes.testimonialCompanyLogoDecoration}/>
-
-                            <div className={classes.testimonial}>
-                                <p className={clsx(classes.testimonialBody, classes.mediumText)}>{body}</p>
-                                <hr className={classes.testimonialDivider}/>
-
-                                <div className={classes.testimonialPerson}>
-                                    <img src={avatar} alt={personName} className={classes.testimonialAvatar}/>
-                                    <div className={classes.testimonialPersonDetails}>
-                                        <p className={classes.testimonialPersonName}>{personName}</p>
-                                        <p className={classes.testimonialPersonJob}>{jobTitle}</p>
-                                        <p className={classes.testimonialPersonJob}>{companyName}</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>))}
-                    </span>))}
+                {[0, 0, 0].map(() => (
+                    <span className={classes.carouselHalf}>
+                        {typeDBTestimonials.map(testimonialData => <Testimonial {...testimonialData}/>)}
+                    </span>
+                ))}
                 </div>
             </div>
 
