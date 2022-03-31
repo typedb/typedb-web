@@ -1,5 +1,6 @@
 import React from "react";
 import clsx from "clsx";
+import { TestimonialsSection } from "../testimonials/testimonials-section";
 import {homePageStyles} from "./home-styles";
 import {faDiscord, faGithub, faTwitter} from "@fortawesome/free-brands-svg-icons";
 import {vaticleStyles} from "../../common/styles/vaticle-styles";
@@ -14,7 +15,6 @@ import {UserLogosSection} from "./user-logos-section";
 import {TypeDBSection} from "./typedb-section";
 import {UseCaseSection} from "./use-case-section";
 import {TypeDBClusterSection} from "./typedb-cluster-section";
-import {TestimonialsSection} from "./testimonials-section";
 
 export const HomePage: React.FC = () => {
     const classes = Object.assign({}, vaticleStyles(), homePageStyles());

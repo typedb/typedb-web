@@ -2,7 +2,6 @@ import React from "react";
 import clsx from "clsx";
 import {VaticleButton} from "../../common/button/button";
 import {vaticleStyles} from "../../common/styles/vaticle-styles";
-import {homePageTestimonialsStyles} from "./home-styles";
 import {ClassProps} from "../../common/class-props";
 import CircleDecoration from "../../assets/graphics/circle-decoration.svg";
 import AlexDengAvatar from "../../assets/images/alex-deng.jpg";
@@ -33,6 +32,7 @@ import RocheSquareLogo from "../../assets/logos/squarewhite/roche-square-white.p
 import RollsRoyceSquareLogo from "../../assets/logos/squarewhite/rolls-royce-square-white.png";
 import SamuelHassineAvatar from "../../assets/images/samuel-hassine.jpeg";
 import TNOSquareLogo from "../../assets/logos/squarewhite/tno-square-white.png";
+import { testimonialsStyles } from "./testimonials-styles";
 
 interface Testimonial {
     companyName: string;
@@ -44,7 +44,7 @@ interface Testimonial {
 }
 
 export const TestimonialsSection: React.FC<ClassProps> = ({className}) => {
-    const classes = Object.assign({}, vaticleStyles(), homePageTestimonialsStyles());
+    const classes = Object.assign({}, vaticleStyles(), testimonialsStyles());
 
     const testimonials: Testimonial[] = [{
         companyName: "Flipkart",
@@ -173,17 +173,16 @@ export const TestimonialsSection: React.FC<ClassProps> = ({className}) => {
     }];
 
     return (
-        <section className={clsx(className, classes.testimonialsSection)}>
+        <section className={clsx(className, classes.section)}>
             <h1 className={classes.h1}>Become the pioneer of your industry</h1>
 
-            <div
-                className={clsx(classes.carouselContainer, classes.testimonialCarouselContainer, classes.subsectionMargin)}>
+            <div className={clsx(classes.carouselContainer, classes.testimonialCarouselContainer, classes.subsectionMargin)}>
                 <div className={clsx(classes.carousel, classes.testimonialCarousel)}>
                     {[0, 0, 0].map(() => (
                         <span className={classes.carouselHalf}>
                     {testimonials.map(({companyName, companyLogo, personName, jobTitle, avatar, body}) => (
                         <div className={classes.testimonialContainer}>
-                            <img src={companyLogo} alt={companyName} className={classes.testimonialCompanyLogo}/>
+                            <img src={companyLogo} alt={companyName} className={classes.companyLogo}/>
                             <CircleDecoration className={classes.testimonialCompanyLogoDecoration}/>
 
                             <div className={classes.testimonial}>
