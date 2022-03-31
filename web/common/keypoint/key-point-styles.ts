@@ -1,9 +1,10 @@
-import {makeStyles} from "@material-ui/core";
+import { makeStyles, Omit, Theme } from "@material-ui/core";
 import { standardMargins } from "../styles/vaticle-styles";
 import { vaticleTheme } from "../styles/theme";
+import { KeyPointPanelProps, KeyPointPanelsProps } from "./key-point-panels";
 
-export const featureStyles = makeStyles({
-    featureWithSnippet: {
+export const keyPointStyles = makeStyles({
+    keyPointWithExample: {
         textAlign: "start",
         display: "flex",
         justifyContent: "space-between",
@@ -18,19 +19,19 @@ export const featureStyles = makeStyles({
         },
     },
 
-    snippetLeft: {
+    exampleLeft: {
         "@media(min-width: 1200px)": {
             flexDirection: "row",
         },
     },
 
-    snippetRight: {
+    exampleRight: {
         "@media(min-width: 1200px)": {
             flexDirection: "row-reverse",
         },
     },
 
-    snippetSpacingLeft: {
+    exampleSpacingLeft: {
         "@media(min-width: 1200px)": {
             marginLeft: 40,
         },
@@ -44,7 +45,7 @@ export const featureStyles = makeStyles({
         },
     },
 
-    snippetSpacingRight: {
+    exampleSpacingRight: {
         "@media(min-width: 1200px)": {
             marginRight: 40,
         },
@@ -64,7 +65,7 @@ export const featureStyles = makeStyles({
         },
     },
 
-    typeQLSnippet: {
+    typeQLExample: {
         height: 360,
         position: "relative",
     },
@@ -84,32 +85,38 @@ export const featureStyles = makeStyles({
             },
         },
     },
+});
 
-    featurePanelList: {
+export const keyPointPanelGridStyles = makeStyles<Theme, KeyPointPanelsProps>({
+    keyPointPanelGrid: {
         display: "grid",
         justifyContent: "center",
         gridTemplateColumns: "repeat(auto-fit, 360px)",
-        gridTemplateRows: "repeat(auto-fit, 260px)",
+        gridTemplateRows: ({panelHeight}) => `repeat(auto-fit, ${panelHeight?.desktop || 360}px)`,
         gap: 40,
 
         "@media(max-width: 767px)": {
             gridTemplateColumns: "repeat(auto-fit, 335px)",
-            gridTemplateRows: "repeat(auto-fit, 192px)",
+            gridTemplateRows: ({panelHeight}) => `repeat(auto-fit, ${panelHeight?.mobile || 192}px)`,
             gap: 30,
         },
     },
+});
 
-    featurePanel: {
+type KeyPointPanelStyleProps = Omit<KeyPointPanelProps, "data">;
+
+export const keyPointPanelStyles = makeStyles<Theme, KeyPointPanelStyleProps>({
+    keyPointPanel: {
         backgroundColor: vaticleTheme.palette.purple["4"],
         borderRadius: 5,
-        padding: "32px 40px",
+        padding: ({horizontalPadding}) => `32px ${horizontalPadding || 40}px`,
         border: "1px solid transparent",
         transition: "border-color 100ms ease",
         position: "relative",
 
         "@media(max-width: 767px)": {
             padding: "24px 10px",
-            height: 192,
+            height: ({mobileHeight}) => mobileHeight || 192,
 
             "& svg": {
                 transform: "scale(.8)",
@@ -123,7 +130,7 @@ export const featureStyles = makeStyles({
         },
     },
 
-    featurePanelComingSoonBanner: {
+    keyPointPanelComingSoonBanner: {
         position: "absolute",
         top: 0,
         right: 0,
@@ -137,4 +144,21 @@ export const featureStyles = makeStyles({
         lineHeight: "28px",
         fontWeight: 400,
     },
+});
+
+export const keyPointTableStyles = makeStyles({
+    tableRow: {
+        display: "flex",
+        justifyContent: "space-between",
+        textAlign: "start",
+
+        "&:not(:first-child)": {
+            marginTop: 80,
+        },
+    },
+
+    titleColumn: {
+        width: 300,
+        flexShrink: 0,
+    }
 });

@@ -1,7 +1,7 @@
 import React from "react";
 import {CodePane} from "../code/code-pane";
-import { CodeSnippetWindow, CodeSnippetWindowFooter, CodeSnippetWindowHeader } from "../code/snippet-window";
-import {featureStyles} from "./feature-styles";
+import { CodeExampleWindow, CodeExampleWindowFooter, CodeExampleWindowHeader } from "../code/example-window";
+import {keyPointStyles} from "./key-point-styles";
 import { TypeDBVisualiserData } from "../typedb-visualiser/data";
 import { TypeDBVisualiser } from "../typedb-visualiser/TypeDBVisualiser";
 
@@ -11,18 +11,18 @@ interface TypeQLSnippetProps {
 }
 
 export const TypeQLSnippet: React.FC<TypeQLSnippetProps> = ({code, data}) => {
-    const classes = featureStyles();
+    const classes = keyPointStyles();
 
     return (
-        <CodeSnippetWindow>
-            <CodeSnippetWindowHeader/>
+        <CodeExampleWindow>
+            <CodeExampleWindowHeader/>
 
-            <div className={classes.typeQLSnippet}>
+            <div className={classes.typeQLExample}>
                 <CodePane code={{language: "typeql", body: code}} lines={15} resizable/>
                 <TypeDBVisualiser data={data} className={classes.visualiser}/>
             </div>
 
-            <CodeSnippetWindowFooter language="TypeQL"/>
-        </CodeSnippetWindow>
+            <CodeExampleWindowFooter language="TypeQL"/>
+        </CodeExampleWindow>
     );
 }

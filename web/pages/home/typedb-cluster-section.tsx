@@ -6,14 +6,14 @@ import AuthenticationIcon from "../../assets/icons/authentication.svg";
 import EncryptionIcon from "../../assets/icons/encryption.svg";
 import ClusterManagementIcon from "../../assets/icons/cluster-management.svg";
 import BackupAndRecoveryIcon from "../../assets/icons/backup-and-recovery.svg";
-import { FeaturePanel, FeaturePanelData, FeaturePanelList } from "../../common/feature/feature-panel";
+import { KeyPointPanel, KeyPointPanelData, KeyPointPanels } from "../../common/keypoint/key-point-panels";
 import { hashRoutes, routes } from "../router";
 import {vaticleStyles} from "../../common/styles/vaticle-styles";
 import {homePageClusterStyles} from "./home-styles";
 import {ClassProps} from "../../common/class-props";
 import {VaticleButton} from "../../common/button/button";
 
-interface ClusterFeaturePanelData extends FeaturePanelData {
+interface ClusterFeaturePanelData extends KeyPointPanelData {
     description: string;
 }
 
@@ -63,9 +63,9 @@ export const TypeDBClusterSection: React.FC<ClassProps> = ({className}) => {
                 functionalities needed to take you from development to production and scale.
             </p>
 
-            <FeaturePanelList className={classes.subsectionMargin}>
-                {features.map(feature => <FeaturePanel {...feature}>{feature.description}</FeaturePanel>)}
-            </FeaturePanelList>
+            <KeyPointPanels className={classes.subsectionMargin}>
+                {features.map(feature => <KeyPointPanel data={{...feature}}>{feature.description}</KeyPointPanel>)}
+            </KeyPointPanels>
 
             <div className={clsx(classes.mainActionList, classes.subsectionMargin)}>
                 <VaticleButton size="small" type="secondary" to={routes.typeDBCluster} className={classes.clusterAction}>

@@ -1,8 +1,8 @@
 import React from "react";
 import {VaticleLayout} from "../../common/layout/layout";
-import {TypeQLSnippet} from "../../common/feature/typeql-snippet";
-import {FeatureWithSnippet} from "../../common/feature/feature-with-snippet";
-import {PolyglotSnippet} from "../../common/code/polyglot-snippet";
+import {TypeQLSnippet} from "../../common/keypoint/typeql-example";
+import {KeyPointWithCodeExample} from "../../common/keypoint/key-point-with-code-example";
+import {PolyglotCodeExample} from "../../common/code/polyglot-example";
 import {VaticleButton} from "../../common/button/button";
 import {useTypeDBVersion} from "../../state/typedb-version";
 import clsx from "clsx";
@@ -26,7 +26,7 @@ import {
 import {inferenceExampleCode, inferenceExampleGraph} from "./examples/inference-example";
 import {rulesExampleCode, rulesExampleGraph} from "./examples/rules-example";
 import {acidTransactionsExampleCode} from "./examples/acid-transactions-example";
-import {ConsoleSnippet} from "../../common/code/console-snippet";
+import {ConsoleCodeExample} from "../../common/code/console-example";
 
 export const TypeDBPage: React.FC = () => {
     const classes = Object.assign({}, vaticleStyles(), typeDBStyles());
@@ -58,42 +58,42 @@ export const TypeDBPage: React.FC = () => {
                     and properties.
                 </p>
 
-                <FeatureWithSnippet className={classes.subsectionMargin} examplePosition="left"
-                                    title="Entity-Relationship Model"
-                                    body="TypeDB allows you to model your domain using the well-known Entity-Relationship
+                <KeyPointWithCodeExample className={classes.subsectionMargin} examplePosition="left"
+                                         title="Entity-Relationship Model"
+                                         body="TypeDB allows you to model your domain using the well-known Entity-Relationship
                               model. It is composed of entity types, relation types, and attribute types, with the
                               introduction of role types. TypeDB allows you to leverage the full expressivity of the
                               ER model, and describe your schema through first normal form."
-                                    button={{text: "Documentation", href: urls.docs.home}}>
+                                         button={{text: "Documentation", href: urls.docs.home}}>
                     <TypeQLSnippet code={entityRelationshipExampleCode} data={entityRelationshipExampleGraph}/>
-                </FeatureWithSnippet>
+                </KeyPointWithCodeExample>
 
-                <FeatureWithSnippet className={classes.subsectionMargin} examplePosition="right" title="Type Hierarchies"
-                                    body="TypeDB allows you to easily model type inheritance into your domain model. Following
+                <KeyPointWithCodeExample className={classes.subsectionMargin} examplePosition="right" title="Type Hierarchies"
+                                         body="TypeDB allows you to easily model type inheritance into your domain model. Following
                               logical and object-oriented principles, TypeDB allows data types to inherit the behaviours
                               and properties of their supertypes. Complex data structures become reusable, and
                               data interpretation becomes richer through polymorphism."
-                                    button={{text: "Documentation", href: urls.docs.home}}>
+                                         button={{text: "Documentation", href: urls.docs.home}}>
                     <TypeQLSnippet code={typeHierarchyExampleCode} data={typeHierarchyExampleGraph}/>
-                </FeatureWithSnippet>
+                </KeyPointWithCodeExample>
 
-                <FeatureWithSnippet className={classes.subsectionMargin} examplePosition="left" title="N-ary Relations"
-                                    body="In the real world, relations aren't just binary connections between two things.
+                <KeyPointWithCodeExample className={classes.subsectionMargin} examplePosition="left" title="N-ary Relations"
+                                         body="In the real world, relations aren't just binary connections between two things.
                               In rich systems, we often need to capture three or more things related with each other at
                               once. Representing them as separate binary relationships would lose information. TypeDB
                               can naturally represent an arbitrary number of things as one relation."
-                                    button={{text: "Documentation", href: urls.docs.home}}>
+                                         button={{text: "Documentation", href: urls.docs.home}}>
                     <TypeQLSnippet code={ternaryRelationsExampleCode} data={ternaryRelationsExampleGraph}/>
-                </FeatureWithSnippet>
+                </KeyPointWithCodeExample>
 
-                <FeatureWithSnippet className={classes.subsectionMargin} examplePosition="right" title="Nested Relations"
-                                    body="Relations are concepts we use to describe the association between two or more things.
+                <KeyPointWithCodeExample className={classes.subsectionMargin} examplePosition="right" title="Nested Relations"
+                                         body="Relations are concepts we use to describe the association between two or more things.
                               Sometimes, those things can be relations themselves. TypeDB can represent these structures
                               naturally, as it enables relations to be nested in another relation, allowing you to
                               express the model of your system in the most natural form."
-                                    button={{text: "Documentation", href: urls.docs.home}}>
+                                         button={{text: "Documentation", href: urls.docs.home}}>
                     <TypeQLSnippet code={nestedRelationsExampleCode} data={nestedRelationsExampleGraph}/>
-                </FeatureWithSnippet>
+                </KeyPointWithCodeExample>
             </section>
 
             <section id="safety" className={classes.subsectionMargin}>
@@ -105,24 +105,24 @@ export const TypeDBPage: React.FC = () => {
                     a dataset that you can trust.
                 </p>
 
-                <FeatureWithSnippet className={classes.subsectionMargin} examplePosition="left"
-                                    title="Logical Data Validation"
-                                    body="Inserted data gets validated beyond static type-checking of attribute value types.
+                <KeyPointWithCodeExample className={classes.subsectionMargin} examplePosition="left"
+                                         title="Logical Data Validation"
+                                         body="Inserted data gets validated beyond static type-checking of attribute value types.
                               Entities are validated to only have the correct attributes, and relations are validated to
                               only relate things that are logically allowed. TypeDB performs richer validation of inserted
                               entities and relations by evaluating the polymorphic types of the things involved."
-                                    button={{text: "Documentation", href: urls.docs.home}}>
+                                         button={{text: "Documentation", href: urls.docs.home}}>
                     <TypeQLSnippet code={logicalDataValidationExampleCode} data={logicalDataValidationExampleGraph}/>
-                </FeatureWithSnippet>
+                </KeyPointWithCodeExample>
 
-                <FeatureWithSnippet className={classes.subsectionMargin} examplePosition="right"
-                                    title="Logical Query Validation"
-                                    body="Read queries executed on TypeDB go through a type resolution process. This process
+                <KeyPointWithCodeExample className={classes.subsectionMargin} examplePosition="right"
+                                         title="Logical Query Validation"
+                                         body="Read queries executed on TypeDB go through a type resolution process. This process
                               not only optimises the query's execution, but also acts as a static type checker to reject
                               meaningless and unsatisfiable queries, as they are likely a user error."
-                                    button={{text: "Documentation", href: urls.docs.home}}>
+                                         button={{text: "Documentation", href: urls.docs.home}}>
                     <TypeQLSnippet code={logicalQueryValidationExampleCode} data={logicalQueryValidationExampleGraph}/>
-                </FeatureWithSnippet>
+                </KeyPointWithCodeExample>
             </section>
 
             <section id="inference" className={classes.subsectionMargin}>
@@ -133,23 +133,23 @@ export const TypeDBPage: React.FC = () => {
                     patterns that would otherwise be too hard to find; and complex queries become much simpler.
                 </p>
 
-                <FeatureWithSnippet className={classes.subsectionMargin} examplePosition="left" title="Rules"
-                                    body="TypeDB allows you to define rules in your schema. This extends the expressivity of
+                <KeyPointWithCodeExample className={classes.subsectionMargin} examplePosition="left" title="Rules"
+                                         body="TypeDB allows you to define rules in your schema. This extends the expressivity of
                               your model as it enables the system to derive new conclusions when a certain logical form
                               in your dataset is satisfied. Like functions in programming, rules can chain onto one
                               another, creating abstractions of behaviour at the data level."
-                                    button={{text: "Documentation", href: urls.docs.home}}>
+                                         button={{text: "Documentation", href: urls.docs.home}}>
                     <TypeQLSnippet code={rulesExampleCode} data={rulesExampleGraph}/>
-                </FeatureWithSnippet>
+                </KeyPointWithCodeExample>
 
-                <FeatureWithSnippet className={classes.subsectionMargin} examplePosition="right" title="Inference"
-                                    body="TypeDB's inference facility translates one query into all of its possible
+                <KeyPointWithCodeExample className={classes.subsectionMargin} examplePosition="right" title="Inference"
+                                         body="TypeDB's inference facility translates one query into all of its possible
                               interpretations. This happens through two mechanisms: type-based and rule-based inference.
                               Not only does this derive new conclusions and uncovers relationships that would otherwise
                               be hidden, but it also enables the abstraction of complex patterns into simple queries."
-                                    button={{text: "Documentation", href: urls.docs.home}}>
+                                         button={{text: "Documentation", href: urls.docs.home}}>
                     <TypeQLSnippet code={inferenceExampleCode} data={inferenceExampleGraph}/>
-                </FeatureWithSnippet>
+                </KeyPointWithCodeExample>
             </section>
 
             <section id="api" className={classes.subsectionMargin}>
@@ -160,23 +160,23 @@ export const TypeDBPage: React.FC = () => {
                     database programmatically. The transactions provide ACID guarantees, up to snapshot isolation.
                 </p>
 
-                <FeatureWithSnippet className={classes.subsectionMargin} examplePosition="left" title="Simple & Stateful API"
-                                    body="TypeDB's API is provided through a gRPC client, providing bi-directional streaming,
+                <KeyPointWithCodeExample className={classes.subsectionMargin} examplePosition="left" title="Simple & Stateful API"
+                                         body="TypeDB's API is provided through a gRPC client, providing bi-directional streaming,
                               compression, and strong message typing, that REST APIs could not provide. TypeDB Clients
                               are delivered as libraries in dedicated languages that provide stateful objects, Session
                               and Transactions, for you to interact with the database programmatically."
-                                    button={{text: "Documentation", href: urls.docs.home}}>
-                    <PolyglotSnippet id="simple-stateful-api" sources={clientAPIBasicExample}/>
-                </FeatureWithSnippet>
+                                         button={{text: "Documentation", href: urls.docs.home}}>
+                    <PolyglotCodeExample id="simple-stateful-api" sources={clientAPIBasicExample}/>
+                </KeyPointWithCodeExample>
 
-                <FeatureWithSnippet className={classes.subsectionMargin} examplePosition="right" title="ACID Transactions"
-                                    body="TypeDB provides ACID guarantees, up to Snapshot Isolation, through of schema
+                <KeyPointWithCodeExample className={classes.subsectionMargin} examplePosition="right" title="ACID Transactions"
+                                         body="TypeDB provides ACID guarantees, up to Snapshot Isolation, through of schema
                               validation and consistent transactions. With lightweight optimistic transactions,
                               TypeDB allows a high number of concurrent read and write transactions. With atomic
                               all-or-nothing commits, transactional semantics become easy to reason over."
-                                    button={{text: "Documentation", href: urls.docs.home}}>
-                    <ConsoleSnippet code={acidTransactionsExampleCode}/>
-                </FeatureWithSnippet>
+                                         button={{text: "Documentation", href: urls.docs.home}}>
+                    <ConsoleCodeExample code={acidTransactionsExampleCode}/>
+                </KeyPointWithCodeExample>
             </section>
 
             <section className={clsx(classes.mainActionList, classes.subsectionMargin)}>

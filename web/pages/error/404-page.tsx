@@ -1,10 +1,10 @@
 import React from "react";
 import { vaticleStyles } from "../../common/styles/vaticle-styles";
 import { errorStyles } from "./error-styles";
-import { FeatureWithSnippet } from "../../common/feature/feature-with-snippet";
+import { KeyPointWithCodeExample } from "../../common/keypoint/key-point-with-code-example";
 import { routes } from "../router";
 import { VaticleLayout } from "../../common/layout/layout";
-import { CodeSnippetWindow, CodeSnippetWindowHeader } from "../../common/code/snippet-window";
+import { CodeExampleWindow, CodeExampleWindowHeader } from "../../common/code/example-window";
 
 export const Vaticle404Page: React.FC = () => {
     const classes = Object.assign({}, vaticleStyles(), errorStyles());
@@ -12,17 +12,17 @@ export const Vaticle404Page: React.FC = () => {
     return (
         <VaticleLayout>
             <section className={classes.main}>
-                <FeatureWithSnippet examplePosition="right" title="OOOPS....."
-                                    body={`The requested URL ${window.location.href} was not found on this server. You may have
+                <KeyPointWithCodeExample examplePosition="right" title="OOOPS....."
+                                         body={`The requested URL ${window.location.href} was not found on this server. You may have
                           entered a broken URL.`} button={{text: "Back Home", type: "primary", to: routes.home}}>
-                    <CodeSnippetWindow>
-                        <CodeSnippetWindowHeader/>
+                    <CodeExampleWindow>
+                        <CodeExampleWindowHeader/>
                         <div className={classes.errorWindow}>
                             <div className={classes.statusCode}>404</div>
                             <div className={classes.statusText}>Page not found</div>
                         </div>
-                    </CodeSnippetWindow>
-                </FeatureWithSnippet>
+                    </CodeExampleWindow>
+                </KeyPointWithCodeExample>
             </section>
         </VaticleLayout>
     );
