@@ -1,69 +1,22 @@
 import { makeStyles } from "@material-ui/core/styles";
+import { CarouselProps } from "../../common/carousel/carousel";
 import { vaticleTheme } from "../../common/styles/theme";
 
-const testimonialWidth = 400;
-const testimonialWidthMobile = 360;
-const testimonialCount = 14;
+export const testimonialSize: CarouselProps["itemSize"] = {
+    desktop: { width: 400, height: 416 },
+    mobile: { width: 360, height: 388 }
+}
 
-export const testimonialsStyles = makeStyles({
-    section: {
+export const testimonialsSectionStyles = makeStyles({
+    root: {
         width: "100vw",
         maxWidth: "100vw",
     },
+});
 
-    carouselContainer: {
-        overflow: "hidden",
-        position: "relative",
-    },
-
-    carousel: {
-        display: "block",
-        position: "absolute",
-
-        "&:hover": {
-            animationPlayState: "paused",
-        },
-    },
-
-    testimonialCarouselContainer: {
-        height: 416,
-        width: "100%",
-    },
-
-    "@keyframes testimonials": {
-        "0%": {left: 0},
-        "100%": {left: -testimonialWidth * testimonialCount},
-    },
-
-    "@keyframes testimonialsMobile": {
-        "0%": {left: 0},
-        "100%": {left: -testimonialWidthMobile * testimonialCount},
-    },
-
-    testimonialCarousel: {
-        width: testimonialWidth * testimonialCount * 3,
-        height: 416,
-        animation: `$testimonials ${testimonialCount * 12}s linear infinite`,
-
-        "@media(max-width: 767px)": {
-            width: testimonialWidthMobile * testimonialCount * 3,
-            height: 388,
-            animationName: "$testimonialsMobile",
-        },
-    },
-
-    carouselHalf: {
-        float: "left",
-        width: testimonialWidth * testimonialCount,
-        height: "100%",
-
-        "@media(max-width: 767px)": {
-            width: testimonialWidthMobile * testimonialCount,
-        },
-    },
-
-    testimonialContainer: {
-        width: testimonialWidth,
+export const testimonialStyles = makeStyles({
+    root: {
+        width: testimonialSize.desktop.width,
         height: "100%",
         padding: "0 20px",
         display: "inline-flex",
@@ -72,7 +25,7 @@ export const testimonialsStyles = makeStyles({
         position: "relative",
 
         "@media(max-width: 767px)": {
-            width: testimonialWidthMobile,
+            width: testimonialSize.mobile.width,
         },
     },
 
@@ -88,7 +41,7 @@ export const testimonialsStyles = makeStyles({
         border: `5px solid ${vaticleTheme.palette.purple["3"]}`,
     },
 
-    testimonialCompanyLogoDecoration: {
+    companyLogoDecoration: {
         position: "absolute",
         top: 0,
         left: 0,
@@ -99,7 +52,7 @@ export const testimonialsStyles = makeStyles({
         borderRadius: "50%",
     },
 
-    testimonial: {
+    panel: {
         height: 372,
         backgroundColor: vaticleTheme.palette.purple["4"],
         borderRadius: 5,
@@ -113,7 +66,7 @@ export const testimonialsStyles = makeStyles({
         },
     },
 
-    testimonialBody: {
+    panelBody: {
         marginTop: 58,
         height: 196, // lineHeight * 7
 
@@ -122,14 +75,14 @@ export const testimonialsStyles = makeStyles({
         },
     },
 
-    testimonialDivider: {
+    panelDivider: {
         marginTop: 16,
         height: 0,
         width: "100%",
-        border: `1px solid ${vaticleTheme.palette.purple["5"]}`, // TODO: this colour is not in the palette
+        border: `1px solid ${vaticleTheme.palette.purple["5"]}`,
     },
 
-    testimonialPerson: {
+    person: {
         marginTop: 4,
         display: "flex",
         alignItems: "center",
@@ -139,7 +92,7 @@ export const testimonialsStyles = makeStyles({
         },
     },
 
-    testimonialAvatar: {
+    avatar: {
         height: 64,
         width: 64,
         borderRadius: 5,
@@ -149,17 +102,17 @@ export const testimonialsStyles = makeStyles({
         },
     },
 
-    testimonialPersonDetails: {
+    personDetails: {
         marginLeft: 16,
     },
 
-    testimonialPersonName: {
+    personName: {
         fontSize: 18,
         lineHeight: "26px",
         fontWeight: 600,
     },
 
-    testimonialPersonJob: {
+    personJobDetail: {
         fontSize: 16,
         lineHeight: "24px",
         fontWeight: 300,

@@ -3,26 +3,26 @@ import React from "react";
 import CircleDecoration from "../../assets/graphics/circle-decoration.svg";
 import { vaticleStyles } from "../../common/styles/vaticle-styles";
 import { TestimonialData } from "./data/testimonial-data";
-import { testimonialsStyles } from "./testimonials-styles";
+import { testimonialStyles } from "./testimonials-styles";
 
 export const Testimonial: React.FC<TestimonialData> = ({companyName, companyLogo, personName, jobTitle, avatar, body}) => {
-    const classes = Object.assign({}, vaticleStyles(), testimonialsStyles());
+    const classes = Object.assign({}, vaticleStyles(), testimonialStyles());
 
     return (
-        <div className={classes.testimonialContainer}>
+        <div className={classes.root}>
             <img src={companyLogo} alt={companyName} className={classes.companyLogo}/>
-            <CircleDecoration className={classes.testimonialCompanyLogoDecoration}/>
+            <CircleDecoration className={classes.companyLogoDecoration}/>
 
-            <div className={classes.testimonial}>
-                <p className={clsx(classes.testimonialBody, classes.mediumText)}>{body}</p>
-                <hr className={classes.testimonialDivider}/>
+            <div className={classes.panel}>
+                <p className={clsx(classes.panelBody, classes.mediumText)}>{body}</p>
+                <hr className={classes.panelDivider}/>
 
-                <div className={classes.testimonialPerson}>
-                    <img src={avatar} alt={personName} className={classes.testimonialAvatar}/>
-                    <div className={classes.testimonialPersonDetails}>
-                        <p className={classes.testimonialPersonName}>{personName}</p>
-                        <p className={classes.testimonialPersonJob}>{jobTitle}</p>
-                        <p className={classes.testimonialPersonJob}>{companyName}</p>
+                <div className={classes.person}>
+                    <img src={avatar} alt={personName} className={classes.avatar}/>
+                    <div className={classes.personDetails}>
+                        <p className={classes.personName}>{personName}</p>
+                        <p className={classes.personJobDetail}>{jobTitle}</p>
+                        <p className={classes.personJobDetail}>{companyName}</p>
                     </div>
                 </div>
             </div>
