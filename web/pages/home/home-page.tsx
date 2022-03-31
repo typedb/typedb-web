@@ -71,7 +71,7 @@ export const HomePage: React.FC = () => {
 
             <TypeDBClusterSection className={classes.sectionMargin}/>
 
-            <TestimonialsSection className={classes.sectionMargin}/>
+            <TestimonialsSection className={classes.sectionMargin} title="Become the pioneer of your industry" />
 
         </VaticleLayout>
     );
