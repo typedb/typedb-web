@@ -13,7 +13,7 @@ export const lifeSciencesData: UseCaseData = {
     },
     "whitePaperLink": {
         "text": "Download White Paper",
-        "hubspotFormID": "af230a8b-1c5e-43b4-84c8-8c6f0ee78f58", // this is a test form ID
+        "hubspotFormID": "55564d17-935c-4ff5-8642-a682fb09de95",
         "url": "https://vaticle.com/files/Accelerating_Drug_Discovery_with_a_TypeDB_Knowledge_Graph.pdf"
     },
     "section1": {
