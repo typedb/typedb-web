@@ -56,7 +56,7 @@ export const lifeSciencesData: UseCaseData = {
         "keyPoints": [
             {
                 "title": "Target Identification",
-                "body": "TypeDB enables you to model any sort of biomedical data at scale, making it easy to ingest heterogeneous datasests from public (e.g. Uniprot, Reactome) to private sources. With this knowledge foundation, you'll be able to leverage TypeDB's inference engine combined with machine learning models to predict and validate the most promising target hypotheses."
+                "body": "TypeDB enables you to model any sort of biomedical data at scale, making it easy to ingest heterogeneous datasets from public (e.g. Uniprot, Reactome) to private sources. With this knowledge foundation, you'll be able to leverage TypeDB's inference engine combined with machine learning models to predict and validate the most promising target hypotheses."
             },
             {
                 "title": "Precision Medicine",
