@@ -79,7 +79,7 @@ export const UseCasePage: React.FC<UseCaseData> = ({ pageTitle, mainLink, whiteP
                 <h1 className={classes.h1}>{section5.title}</h1>
                 <div className={clsx(classes.mainActionList, classes.contentMargin)}>
                     <VaticleButton size="small" type="primary" href={mainLink.url} target="_blank">{mainLink.text}</VaticleButton>
-                    <VaticleButton size="small" type="secondary" href={whitePaperLink.url} target="_blank">{whitePaperLink.text}</VaticleButton>
+                    <VaticleButton size="small" type="secondary" to="?dialog=download-white-paper">{whitePaperLink.text}</VaticleButton>
                 </div>
             </section>
 
