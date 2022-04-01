@@ -16,7 +16,7 @@ export const KeyPointTable: React.FC<KeyPointTableProps> = ({keyPoints, classNam
         {keyPoints.map((keyPoint) => (
             <div className={classes.tableRow}>
                 <div className={clsx(classes.h4, classes.titleColumn)}>{keyPoint.title}</div>
-                <div className={classes.mediumText}>{keyPoint.body}</div>
+                <div className={clsx(classes.mediumText, classes.bodyColumn)}>{keyPoint.body}</div>
             </div>
         ))}
         </div>

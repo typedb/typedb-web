@@ -153,12 +153,26 @@ export const keyPointTableStyles = makeStyles({
         textAlign: "start",
 
         "&:not(:first-child)": {
-            marginTop: 80,
+            marginTop: standardMargins.subsection.desktop,
+        },
+
+        "@media(max-width: 767px)": {
+            flexDirection: "column",
+
+            "&:not(:first-child)": {
+                marginTop: standardMargins.subsection.mobile,
+            },
         },
     },
 
     titleColumn: {
         width: 300,
         flexShrink: 0,
-    }
+    },
+
+    bodyColumn: {
+        "@media(max-width: 767px)": {
+            marginTop: standardMargins.text.mobile,
+        },
+    },
 });

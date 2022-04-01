@@ -26,7 +26,7 @@ export const routes = {
     typeDBCluster: "/typedb-cluster",
     support: "/support",
     useCases: {
-        precisionMedicine: "/precision-medicine",
+        precisionMedicine: "/precision-medicine-temp",
     }
 }
 

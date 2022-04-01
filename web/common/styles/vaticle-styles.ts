@@ -97,7 +97,7 @@ export const vaticleStyles = makeStyles({
     },
 
     textMarginSmall: {
-        marginTop: 8,
+        marginTop: standardMargins.text.mobile,
     },
 
     headlineText: {
