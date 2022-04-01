@@ -64,7 +64,7 @@ export const lifeSciencesData: UseCaseData = {
             },
             {
                 "title": "Drug Repurposing",
-                "body": "Integrate large volumes of biomedical data into TypeDB to build predictive systems to enable hypothesis generation for drug repurposing. With TypeDB, you'll be able find not previously known insights and enable you to quickly ingest and integrate experimental biomedical data, for example high throughput systems or sequencing algorithms."
+                "body": "Integrate large volumes of biomedical data into TypeDB to build predictive systems to enable hypothesis generation for drug repurposing. With TypeDB, you'll be able to find not previously known insights and enable you to quickly ingest and integrate experimental biomedical data, for example high throughput systems or sequencing algorithms."
             },
             {
                 "title": "Biomedical Knowledge Graphs",
