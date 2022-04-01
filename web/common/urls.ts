@@ -23,7 +23,7 @@ export const urls = {
     },
 
     github: {
-        org: githubURL,
+        vaticle: githubURL,
         typedb: `${githubURL}/typedb`,
         typedbReleases: `${githubURL}/typedb/releases`,
         typedbStudioReleases: `${githubURL}/typedb-studio/releases`,

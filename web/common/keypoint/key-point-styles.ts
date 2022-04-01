@@ -1,4 +1,4 @@
-import { makeStyles, Omit, Theme } from "@material-ui/core";
+import { makeStyles, Theme } from "@material-ui/core";
 import { standardMargins } from "../styles/vaticle-styles";
 import { vaticleTheme } from "../styles/theme";
 import { KeyPointPanelProps, KeyPointPanelsProps } from "./key-point-panels";
@@ -92,7 +92,7 @@ export const keyPointPanelGridStyles = makeStyles<Theme, KeyPointPanelsProps>({
         display: "grid",
         justifyContent: "center",
         gridTemplateColumns: "repeat(auto-fit, 360px)",
-        gridTemplateRows: ({panelHeight}) => `repeat(auto-fit, ${panelHeight?.desktop || 360}px)`,
+        gridTemplateRows: ({panelHeight}) => `repeat(auto-fit, ${panelHeight?.desktop || 260}px)`,
         gap: 40,
 
         "@media(max-width: 767px)": {
@@ -103,9 +103,7 @@ export const keyPointPanelGridStyles = makeStyles<Theme, KeyPointPanelsProps>({
     },
 });
 
-type KeyPointPanelStyleProps = Omit<KeyPointPanelProps, "data">;
-
-export const keyPointPanelStyles = makeStyles<Theme, KeyPointPanelStyleProps>({
+export const keyPointPanelStyles = makeStyles<Theme, KeyPointPanelProps>({
     keyPointPanel: {
         backgroundColor: vaticleTheme.palette.purple["4"],
         borderRadius: 5,
@@ -126,7 +124,7 @@ export const keyPointPanelStyles = makeStyles<Theme, KeyPointPanelStyleProps>({
         },
 
         "&:hover": {
-            borderColor: vaticleTheme.palette.green["1"],
+            borderColor: (props) => props.data.linkTo && vaticleTheme.palette.green["1"],
         },
     },
 

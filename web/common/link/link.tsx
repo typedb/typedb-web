@@ -14,6 +14,8 @@ export interface VaticleLinkProps extends ClassProps {
     scrollPaddingTop?: number;
 }
 
+export type LinkType = "href" | "none" | "route" | "hash" | "routeHash" | "search" | "routeSearch";
+
 export const VaticleLink: React.FC<VaticleLinkProps> = ({ children, href, to, onClick, target, download, id, scroll, scrollPaddingTop, className }) => {
     const routerHistory = useHistory();
     const routerLocation = useLocation();
@@ -57,7 +59,7 @@ export const VaticleLink: React.FC<VaticleLinkProps> = ({ children, href, to, on
     return <a id={id} href={computedHref} target={target} tabIndex={href ? undefined : 0} download={download} className={className} onClick={onLinkClick} scroll-padding-top={scrollPaddingTop}>{children}</a>;
 };
 
-function computeLinkType(href?: string, to?: string) {
+function computeLinkType(href?: string, to?: string): LinkType {
     if (href) return "href";
     if (!to) return "none";
 

@@ -1,13 +1,21 @@
 import React, { useState } from "react";
 import { useHistory, useLocation } from "react-router-dom";
+import HighAvailabilityIcon from "../../assets/icons/high-availability.svg";
+import LifebuoyIcon from "../../assets/icons/lifebuoy.svg";
+import CommunityResourcesIcon from "../../assets/icons/community-resources.svg";
+import EnterpriseSupportIcon from "../../assets/icons/enterprise-support.svg";
+import { KeyPointPanel, KeyPointPanels } from "../../common/keypoint/key-point-panels";
 import {VaticleLayout} from "../../common/layout/layout";
 import {VaticleButton} from "../../common/button/button";
 import clsx from "clsx";
+import { VaticleLink } from "../../common/link/link";
 import {urls} from "../../common/urls";
 import {vaticleStyles} from "../../common/styles/vaticle-styles";
 import { deleteSearchParam } from "../../common/util/search-params";
 import { ContactForm } from "../contact/contact-form";
+import { routes } from "../router";
 import { TestimonialsSection } from "../testimonials/testimonials-section";
+import { KeyPointsSection } from "./key-points-section";
 import { supportPageStyles } from "./support-styles";
 
 export const SupportPage: React.FC = () => {
@@ -40,6 +48,8 @@ export const SupportPage: React.FC = () => {
                     <VaticleButton size="small" type="primary" href={urls.supportPlatform} target="_blank">Go to Support Platform</VaticleButton>
                 </div>
             </section>
+
+            <KeyPointsSection className={classes.sectionMargin}/>
 
             <TestimonialsSection className={classes.sectionMargin} title="Loved by the pioneers in industry"
                                  contactButton={{text: "Get in touch with our team", to: "#get-in-touch"}}/>

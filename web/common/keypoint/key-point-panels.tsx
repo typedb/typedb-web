@@ -18,17 +18,22 @@ export interface KeyPointPanelProps {
     mobileHeight?: number,
 }
 
-export const KeyPointPanel: React.FC<KeyPointPanelProps> = ({data, children, ...props}) => {
+export const KeyPointPanel: React.FC<KeyPointPanelProps> = ({children, ...props}) => {
     const classes = Object.assign({}, vaticleStyles(), keyPointPanelStyles(props));
+    const { comingSoon, icon, linkTo, name } = props.data;
 
-    return (
-        <VaticleLink className={classes.keyPointPanel} to={data.linkTo}>
-            {data.comingSoon && <div className={classes.keyPointPanelComingSoonBanner}>coming soon</div>}
-            {React.createElement(data.icon)}
-            <h4 className={clsx(classes.h4, classes.textMargin)}>{data.name}</h4>
+    const inner = (
+        <>
+            {comingSoon && <div className={classes.keyPointPanelComingSoonBanner}>coming soon</div>}
+            {React.createElement(icon)}
+            <h4 className={clsx(classes.h4, classes.textMargin)}>{name}</h4>
             <p className={clsx(classes.mediumText, classes.textMarginSmall)}>{children}</p>
-        </VaticleLink>
-    )
+        </>
+    );
+
+    return linkTo
+        ? <VaticleLink className={classes.keyPointPanel} to={linkTo}>{inner}</VaticleLink>
+        : <div className={classes.keyPointPanel}>{inner}</div>;
 }
 
 export interface KeyPointPanelsProps extends ClassProps {
