@@ -1,4 +1,5 @@
 import React from "react";
+import { YoutubeVideoEmbed } from "../../common/embed/youtube-video-embed";
 import { KeyPointPanel, KeyPointPanels } from "../../common/keypoint/key-point-panels";
 import {VaticleLayout} from "../../common/layout/layout";
 import {VaticleButton} from "../../common/button/button";
@@ -9,7 +10,7 @@ import { useCaseStyles } from "./use-case-styles";
 import HighAvailabilityIcon from "../../assets/icons/high-availability.svg";
 import { KeyPointTable } from "../../common/keypoint/key-point-table";
 
-export const UseCasePage: React.FC<UseCaseData> = ({ pageTitle, mainLink, whitePaperLink, section1, section2, section3, section4, section5}) => {
+export const UseCasePage: React.FC<UseCaseData> = ({ pageTitle, mainLink, whitePaperLink, introVideoURL, section1, section2, section3, section4, section5}) => {
     const classes = Object.assign({}, vaticleStyles(), useCaseStyles());
     const keyPointPanelMobileHeight = 344;
 
@@ -20,10 +21,10 @@ export const UseCasePage: React.FC<UseCaseData> = ({ pageTitle, mainLink, whiteP
                 <div className={clsx(classes.mainActionList, classes.contentMargin)}>
                     <VaticleButton size="small" type="primary" href={mainLink.url} target="_blank">{mainLink.text}</VaticleButton>
                 </div>
-            </section>
 
-            <section className={classes.sectionMargin}>
-                <h2 className={classes.h2}>{section1.title}</h2>
+                <YoutubeVideoEmbed url={introVideoURL} className={classes.subsectionMargin}/>
+
+                <h2 className={clsx(classes.h2, classes.subsectionMargin)}>{section1.title}</h2>
                 {section1.body.map(text => <p className={clsx(classes.headlineText, classes.introBody)}>{text}</p>)}
                 <div className={clsx(classes.mainActionList, classes.contentMargin)}>
                     <VaticleButton size="small" type="secondary" href={whitePaperLink.url} target="_blank">{whitePaperLink.text}</VaticleButton>

@@ -10,7 +10,7 @@ import { SupportPage } from "./support/support-page";
 import {TypeDBPage} from "./typedb/typedb-page";
 import {Vaticle404Page} from "./error/404-page";
 import {TypeDBClusterPage} from "./typedbcluster/typedb-cluster-page";
-import { PrecisionMedicinePage } from "./usecase/use-case-pages";
+import { LifeSciencesPage, PrecisionMedicinePage } from "./usecase/use-case-pages";
 
 declare global {
     interface Window {
@@ -27,6 +27,7 @@ export const routes = {
     support: "/support",
     services: "/services",
     useCases: {
+        lifeSciences: "/life-sciences",
         precisionMedicine: "/precision-medicine-temp",
     }
 }
@@ -64,6 +65,7 @@ export const VaticleRouter: React.FC = () => {
                 <VaticleRoute exact path={routes.typeDB} title="TypeDB" component={TypeDBPage}/>
                 <VaticleRoute exact path={routes.typeDBCluster} title="TypeDB Cluster" component={TypeDBClusterPage}/>
                 <VaticleRoute exact path={routes.support} title="Support" component={SupportPage}/>
+                <VaticleRoute exact path={routes.useCases.lifeSciences} title="Life Sciences" component={LifeSciencesPage}/>
                 <VaticleRoute exact path={routes.useCases.precisionMedicine} title="Precision Medicine" component={PrecisionMedicinePage}/>
                 <VaticleRoute exact path={routes.home} title="Home" component={HomePage}/>
 

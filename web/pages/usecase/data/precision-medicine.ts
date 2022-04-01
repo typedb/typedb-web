@@ -2,7 +2,7 @@ import { UseCaseData } from "./use-case-data";
 
 export const precisionMedicineData: UseCaseData = {
     "pageTitle": "Precision Medicine Knowledge Graphs",
-    "introVideoURL": "https://example.com",
+    "introVideoURL": "https://www.youtube.com/watch?v=LUXl3GM604s",
     "mainLink": {
         "text": "Try BioGrakn for free",
         "url": "https://example.com"
