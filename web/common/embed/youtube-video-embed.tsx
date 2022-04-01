@@ -17,14 +17,12 @@ export const YoutubeVideoEmbed: React.FC<YoutubeVideoEmbedProps> = ({className, 
     return isMobile
         ? (
             <div className={clsx(className, classes.embedContainerMobile)}>
-                <iframe className={classes.embedMobile} src={embedURL}
-                        title="YouTube video player" frameBorder="0"
+                <iframe src={embedURL} title="YouTube video player" frameBorder="0"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                         allowFullScreen/>
             </div>
         ) : (
-            <iframe className={className} src={embedURL}
-                    width="760" height="451" title="YouTube video player" frameBorder="0"
+            <iframe className={className} src={embedURL} width="760" height="451" title="YouTube video player" frameBorder="0"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     allowFullScreen/>
         );

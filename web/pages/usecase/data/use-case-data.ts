@@ -1,10 +1,25 @@
+import React from "react";
+
 interface Link {
     text: string,
     url: string
 }
 
+interface HubspotLink extends Link {
+    hubspotFormID: string
+}
+
 interface Title {
     title: string
+}
+
+interface ImageData {
+    url: string
+    altText: string
+}
+
+interface Image {
+    image: ImageData
 }
 
 interface BodySingleParagraph {
@@ -15,21 +30,30 @@ interface BodyMultiParagraph {
     body: string[]
 }
 
+interface Icon {
+    icon: React.FC
+}
+
 type KeyPoint = Title & BodySingleParagraph;
 
 export interface KeyPoints {
     keyPoints: KeyPoint[]
 }
 
-type KeyPointPanels = KeyPoints & { keyPointPanelHeight: number };
+type KeyPointPanel = KeyPoint & Icon;
+
+export interface KeyPointPanels {
+    keyPoints: KeyPointPanel[]
+    keyPointPanelHeight: number
+}
 
 export interface UseCaseData {
     pageTitle: string,
     introVideoURL: string,
     mainLink: Link,
-    whitePaperLink: Link,
+    whitePaperLink: HubspotLink,
     section1: Title & BodyMultiParagraph,
-    section2: Title,
+    section2: Title & Image,
     section3: Title & KeyPointPanels,
     section4: Title & KeyPoints,
     section5: Title

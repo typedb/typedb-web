@@ -37,8 +37,9 @@ export const urls = {
         youtube: "https://www.youtube.com/c/Vaticle",
     },
 
-    hubspot: {
-        contactForm: "https://api.hsforms.com/submissions/v3/integration/submit/4332244/57919d26-b0ed-4837-9b3d-490b5a683a36/",
-        newsletterForm: "https://api.hsforms.com/submissions/v3/integration/submit/4332244/383fe621-0704-4577-96b1-3fe3321eb9b6/",
+    hubspotForm: {
+        byID: (formID: string) => `https://api.hsforms.com/submissions/v3/integration/submit/4332244/${formID}/`,
+        contact: "https://api.hsforms.com/submissions/v3/integration/submit/4332244/57919d26-b0ed-4837-9b3d-490b5a683a36/",
+        newsletter: "https://api.hsforms.com/submissions/v3/integration/submit/4332244/383fe621-0704-4577-96b1-3fe3321eb9b6/",
     },
 };

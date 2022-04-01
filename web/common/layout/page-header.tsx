@@ -104,6 +104,19 @@ const Sitemap: React.FC<SitemapProps> = ({toggleMobileMenuOpen}) => {
             </li>
             <li>
                 <div tabIndex={0}>
+                    Use Cases
+                    <ul>
+                        <li className={classes.backMenuItem}>
+                            <VaticleLink><span><FontAwesomeIcon className={classes.backButton} icon={faLongArrowLeft}/></span></VaticleLink>
+                        </li>
+                        <li>
+                            <VaticleLink onClick={toggleMobileMenuOpen} to={routes.useCases.lifeSciences}><span>Life Sciences</span></VaticleLink>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+            <li>
+                <div tabIndex={0}>
                     Developer
                     <ul>
                         <li className={classes.backMenuItem}>

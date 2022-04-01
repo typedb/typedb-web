@@ -1,4 +1,5 @@
 import { UseCaseData } from "./use-case-data";
+import HighAvailabilityIcon from "../../../assets/icons/high-availability.svg";
 
 export const precisionMedicineData: UseCaseData = {
     "pageTitle": "Precision Medicine Knowledge Graphs",
@@ -9,6 +10,7 @@ export const precisionMedicineData: UseCaseData = {
     },
     "whitePaperLink": {
         "text": "Download White Paper",
+        "hubspotFormID": "1234",
         "url": "https://example.com"
     },
     "section1": {
@@ -19,25 +21,32 @@ export const precisionMedicineData: UseCaseData = {
         ]
     },
     "section2": {
-        "title": "Building a Precision Medicine Knowledge Graph is Easy"
+        "title": "Building a Precision Medicine Knowledge Graph is Easy",
+        "image": {
+            "url": "https://vaticle.com/favicon.png",
+            "altText": "Precision Medicine Knowledge Graph"
+        },
     },
     "section3": {
         "title": "Grakn Makes it Easy to work with Biomedical Data",
         "keyPoints": [
             {
                 "title": "Fast Ingestion and Integration of Data",
-                "body": "Grakn works with any type of data, wherever it comes from. Grakn's expressive query language enables you to create your own semantically rich knowledge graphs by ingesting and integrating extremely heterogeneous patient profiles and biomedical data sets in an intuitive and flexible way."
+                "body": "Grakn works with any type of data, wherever it comes from. Grakn's expressive query language enables you to create your own semantically rich knowledge graphs by ingesting and integrating extremely heterogeneous patient profiles and biomedical data sets in an intuitive and flexible way.",
+                "icon": HighAvailabilityIcon,
             },
             {
                 "title": "Contextualise Relations within your data",
-                "body": "With Grakn, your development moves magnitudes faster because it enables you to iteratively and quickly contextualise newly generated insights in order to understand how it interacts and connects with all your data sources. Grakn becomes your unified representation of contextualised knowledge."
+                "body": "With Grakn, your development moves magnitudes faster because it enables you to iteratively and quickly contextualise newly generated insights in order to understand how it interacts and connects with all your data sources. Grakn becomes your unified representation of contextualised knowledge.",
+                "icon": HighAvailabilityIcon,
             },
             {
                 "title": "Discover and Explain New Connections in Complex Networks",
-                "body": "Grakn discovers new connections and uncovers hidden insights within your data through its in-built automated deductive reasoning engine. Grakn gives you full explainability of every single insights such as identification of potential targets and potential drug candidates."
+                "body": "Grakn discovers new connections and uncovers hidden insights within your data through its in-built automated deductive reasoning engine. Grakn gives you full explainability of every single insights such as identification of potential targets and potential drug candidates.",
+                "icon": HighAvailabilityIcon,
             }
         ],
-        keyPointPanelHeight: 408,
+        "keyPointPanelHeight": 408,
     },
     "section4": {
         "title": "Why Other Databases Are Insufficient for Machine Learning",

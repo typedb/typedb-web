@@ -7,13 +7,13 @@ export const embedStyles = makeStyles({
         overflow: "hidden",
         position: "relative",
         paddingBottom: "56.25%",
-    },
 
-    embedMobile: {
-        position: "absolute",
-        top: 0,
-        left: 0,
-        width: "100%",
-        height: "100%",
-    }
+        "& iframe": {
+            position: "absolute",
+            top: 0,
+            left: 0,
+            width: "100%",
+            height: "100%",
+        }
+    },
 });

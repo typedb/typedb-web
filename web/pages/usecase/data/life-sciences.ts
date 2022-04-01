@@ -1,4 +1,8 @@
 import { UseCaseData } from "./use-case-data";
+import BackupAndRecoveryIcon from "../../../assets/icons/backup-and-recovery.svg";
+import ComplexNetworkIcon from "../../../assets/icons/complex-network.svg";
+import ContextualiseIcon from "../../../assets/icons/contextualise.svg";
+import LifeSciencesGraph from "../../../assets/images/life-sciences-graph.png";
 
 export const lifeSciencesData: UseCaseData = {
     "pageTitle": "Biomedical Knowledge Graphs",
@@ -9,7 +13,8 @@ export const lifeSciencesData: UseCaseData = {
     },
     "whitePaperLink": {
         "text": "Download White Paper",
-        "url": "https://example.com"
+        "hubspotFormID": "af230a8b-1c5e-43b4-84c8-8c6f0ee78f58", // this is a test form ID
+        "url": "https://vaticle.com/files/Accelerating_Drug_Discovery_with_a_TypeDB_Knowledge_Graph.pdf"
     },
     "section1": {
         "title": "Accelerating Biomedical Knowledge Discovery with TypeDB",
@@ -19,22 +24,29 @@ export const lifeSciencesData: UseCaseData = {
         ]
     },
     "section2": {
-        "title": "Discover New Ways to Treat Disease"
+        "title": "Discover New Ways to Treat Disease",
+        "image": {
+            "url": LifeSciencesGraph,
+            "altText": "Biomedical Knowledge Graph Query"
+        },
     },
     "section3": {
         "title": "TypeDB Makes it Easy to work with Biomedical Data",
         "keyPoints": [
             {
                 "title": "Fast Ingestion and Integration of Heterogeneous Data",
-                "body": "TypeDB's expressiveness enables you to quickly create and iterate over a model to create semantically rich knowledge graphs. This allows you to easily ingest and integrate extremely heterogeneous biomedical data (for example, proteins, genes, diseases, drugs) in an intuitive and flexible way."
+                "body": "TypeDB's expressiveness enables you to quickly create and iterate over a model to create semantically rich knowledge graphs. This allows you to easily ingest and integrate extremely heterogeneous biomedical data (for example, proteins, genes, diseases, drugs) in an intuitive and flexible way.",
+                "icon": BackupAndRecoveryIcon
             },
             {
                 "title": "Contextualise Your Biomedical Data",
-                "body": "With TypeDB, your development moves much faster as it becomes easy to understand the context around your existing data and newly generated insights. By becoming the unified representation of knowledge, TypeDB allows you to understand the complicated connections at the gene, protein or cell level."
+                "body": "With TypeDB, your development moves much faster as it becomes easy to understand the context around your existing data and newly generated insights. By becoming the unified representation of knowledge, TypeDB allows you to understand the complicated connections at the gene, protein or cell level.",
+                "icon": ContextualiseIcon
             },
             {
                 "title": "Explain New Connections in Complex Networks",
-                "body": "TypeDB uncovers biomedical insights within your data through its built-in inference engine, for example, a new potential gene target or patient cohort. Rather than being a black box, TypeDB gives you full explainability of every single insight and the internal mechanics in human understandable terms."
+                "body": "TypeDB uncovers biomedical insights within your data through its built-in inference engine, for example, a new potential gene target or patient cohort. Rather than being a black box, TypeDB gives you full explainability of every single insight and the internal mechanics in human understandable terms.",
+                "icon": ComplexNetworkIcon
             }
         ],
         keyPointPanelHeight: 408,

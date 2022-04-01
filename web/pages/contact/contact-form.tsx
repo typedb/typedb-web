@@ -48,7 +48,7 @@ export const ContactForm: React.FC<ContactFormProps> = ({className, id, onSubmit
                 };
             });
 
-        const res = await fetch(new Request(urls.hubspot.contactForm, {
+        const res = await fetch(new Request(urls.hubspotForm.contact, {
             method: "POST",
             headers: {
                 "Accept": "application/json",
@@ -61,7 +61,7 @@ export const ContactForm: React.FC<ContactFormProps> = ({className, id, onSubmit
                     {"name": "email", "value": email},
                     {"name": "company", "value": companyName},
                     {"name": "job_function", "value": jobFunction},
-                    {"name": "support_request__full_details_", value: tellUsMore},
+                    {"name": "support_request__full_details_", "value": tellUsMore},
                 ].concat(supportRequestMultiCheckbox),
                 "context": {
                     "pageUri": window.location.href,

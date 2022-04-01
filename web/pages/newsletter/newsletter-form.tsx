@@ -7,8 +7,6 @@ import { formStyles } from "../../common/form/form-styles";
 import { VaticleForm } from "../../common/form/form";
 import { newsletterStyles } from "./newsletter-styles";
 import clsx from "clsx";
-import { deleteSearchParam } from "../../common/util/search-params";
-import { useHistory, useLocation } from "react-router-dom";
 
 interface NewsletterFormProps extends ClassProps {
     onSubmitDone: (res: Response) => any;
@@ -22,7 +20,7 @@ export const NewsletterForm: React.FC<NewsletterFormProps> = ({className, onSubm
     const [email, setEmail] = useState("");
 
     const submit = async () => {
-        const res = await fetch(new Request(urls.hubspot.newsletterForm, {
+        const res = await fetch(new Request(urls.hubspotForm.newsletter, {
             method: "POST",
             headers: {
                 "Accept": "application/json",
