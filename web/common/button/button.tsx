@@ -9,7 +9,7 @@ export interface VaticleButtonProps extends VaticleLinkProps {
     type?: 'primary' | 'secondary';
     size?: SizeIndicator;
     disabled?: boolean;
-    comingSoon?: true;
+    comingSoon?: boolean;
 }
 
 export const VaticleButton: React.FC<VaticleButtonProps> = props => {

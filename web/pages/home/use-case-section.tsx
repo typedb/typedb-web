@@ -1,3 +1,4 @@
+import { routes } from "../router";
 import {homePageIndustryStyles} from "./home-styles";
 import {VaticleButton} from "../../common/button/button";
 import React, {useState} from "react";
@@ -14,7 +15,7 @@ import {ClassProps} from "../../common/class-props";
 type UseCaseName =
     "Knowledge Graph"
     | "Machine Learning"
-    | "Health & Life Science"
+    | "Life Sciences"
     | "Defence & Security"
     | "Telecommunication";
 
@@ -22,6 +23,7 @@ interface UseCase {
     name: UseCaseName;
     icon: React.FC<any>;
     description: string;
+    learnMoreRoute: string | null;
 }
 
 export const UseCaseSection: React.FC<ClassProps> = ({className}) => {
@@ -33,38 +35,44 @@ export const UseCaseSection: React.FC<ClassProps> = ({className}) => {
         description: `Knowledge Graphs (aka. Knowledge Bases) are systems that aggregate complex networks of facts to be 
                     interrogated semantically and logically. TypeDB enables engineers to model and aggregate disparate 
                     sources of data to become one unified Knowledge Graph, making it possible to infer new knowledge 
-                    by its reasoning engine.`
+                    by its reasoning engine.`,
+        learnMoreRoute: null,
     }, {
         name: "Machine Learning",
         icon: MachineLearningIcon,
         description: `Heterogeneous data holds significant inherent context. TypeDB enables ML systems to leverage this 
                     context, and utilise this critical information to improve the accuracy and versatility of ML models. 
                     TypeDB enables ML systems to accumulate datasets as one centralised, reusable, and highly contextualised 
-                    knowledge base.`
+                    knowledge base.`,
+        learnMoreRoute: null,
     }, {
-        name: "Health & Life Science",
+        name: "Life Sciences",
         icon: LifeScienceIcon,
         description: `Systems biology produces a tremendous amount of heterogeneous data which are complex by nature and 
-                    rich with semantics. TypeDB accelerates the knowledge discovery process in Health & Life Sciences 
+                    rich with semantics. TypeDB accelerates the knowledge discovery process in Life Sciences 
                     by simplifying the integration of data, contextualising newly generated insights, and explaining 
-                    patterns in complex networks.`
+                    patterns in complex networks.`,
+        learnMoreRoute: routes.useCases.lifeSciences,
     }, {
         name: "Defence & Security",
         icon: SecurityIcon,
         description: `In this internet era, defence and security means connecting anything and everything, to uncover
                     pieces of information that are deliberately hidden. TypeDB allows defence organisations to easily aggregate, 
                     and interrogate these networks in real-time and stay two-steps ahead of bad actors, while avoiding critical, 
-                    and costly mistakes.`
+                    and costly mistakes.`,
+        learnMoreRoute: null,
     }, {
         name: "Telecommunication",
         icon: TelecommunicationIcon,
         description: `The Telecommunications industry has the most complex networks of interconnected data points. Modelling 
                     and querying these networks are challenging, and the cost of mistakes are too high. TypeDB allows 
                     telecommunication providers to build robust models to capture entire networks of systems that did not have
-                    visibility before.`
+                    visibility before.`,
+        learnMoreRoute: null,
     }];
 
-    const [selectedIndustry, setSelectedIndustry] = useState<UseCase>(useCases[0]);
+    const [selectedIndustry, setSelectedIndustry] = useState<UseCase>(useCases[2]);
+    const comingSoon = selectedIndustry.learnMoreRoute == null;
 
     return (
         <section className={className}>
@@ -72,8 +80,8 @@ export const UseCaseSection: React.FC<ClassProps> = ({className}) => {
             <h3 className={clsx(classes.h3, classes.textMargin)}>{selectedIndustry.name}</h3>
 
             <p className={classes.industryDescription}>{selectedIndustry.description}</p>
-            <VaticleButton size="small" type="secondary" disabled comingSoon
-                           className={clsx(classes.learnMore, classes.contentMargin)}>
+            <VaticleButton size="small" type="secondary" to={selectedIndustry.learnMoreRoute} disabled={comingSoon}
+                           comingSoon={comingSoon} className={clsx(classes.learnMore, classes.contentMargin)}>
                 Learn More
             </VaticleButton>
 
