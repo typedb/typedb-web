@@ -104,6 +104,19 @@ const Sitemap: React.FC<SitemapProps> = ({toggleMobileMenuOpen}) => {
             </li>
             <li>
                 <div tabIndex={0}>
+                    Solutions
+                    <ul>
+                        <li className={classes.backMenuItem}>
+                            <VaticleLink><span><FontAwesomeIcon className={classes.backButton} icon={faLongArrowLeft}/></span></VaticleLink>
+                        </li>
+                        <li>
+                            <VaticleLink onClick={toggleMobileMenuOpen} to={routes.support}><span>Support</span></VaticleLink>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+            <li>
+                <div tabIndex={0}>
                     Use Cases
                     <ul>
                         <li className={classes.backMenuItem}>
@@ -163,7 +176,7 @@ const ImportantLinks: React.FC = () => {
                 <VaticleLink to="?dialog=contact"><span>Contact</span></VaticleLink>
             </li>
             <li>
-                <VaticleLink to={routes.support}><span>Support</span></VaticleLink>
+                <VaticleLink href={urls.supportPlatform} target="_blank"><span>Support</span></VaticleLink>
             </li>
             <li className={classes.download}>
                 <VaticleButton className={classes.noHover} size="small" type="secondary" to={routes.download}>Download</VaticleButton>
