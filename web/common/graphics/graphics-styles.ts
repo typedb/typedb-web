@@ -9,6 +9,17 @@ export const macOSWindowHeaderStyles = makeStyles({
     }
 });
 
+export const macOSWindowStyles = makeStyles({
+    root: {
+        "@media(max-width: 767px)": {
+            transform: "scale(.5)",
+            marginTop: -58,
+            marginBottom: -138,
+            marginLeft: -106, // TODO: this is NOT correct - fix properly
+        },
+    }
+});
+
 export const gitWindowFooterStyles = makeStyles({
     root: {
         height: 24,

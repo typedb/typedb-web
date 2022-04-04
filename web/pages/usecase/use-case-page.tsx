@@ -3,6 +3,7 @@ import { useHistory, useLocation } from "react-router-dom";
 import { VaticleDialog } from "../../common/dialog/dialog";
 import { YoutubeVideoEmbed } from "../../common/embed/youtube-video-embed";
 import { GitWindowFooter } from "../../common/graphics/git-window-footer";
+import { MacOSWindow } from "../../common/graphics/macos-window";
 import { MacOSWindowHeader } from "../../common/graphics/macos-window-header";
 import { KeyPointPanel, KeyPointPanels } from "../../common/keypoint/key-point-panels";
 import {VaticleLayout} from "../../common/layout/layout";
@@ -67,9 +68,9 @@ export const UseCasePage: React.FC<UseCaseData> = ({ pageTitle, mainLink, whiteP
 
             <section className={classes.sectionMargin}>
                 <h1 className={classes.h1}>{section2.title}</h1>
-                <MacOSWindowHeader className={classes.subsectionMargin} width={760}/>
-                <img src={section2.image.url} alt={section2.image.altText} className={classes.section2Image}/>
-                <GitWindowFooter width={760}/>
+                <MacOSWindow width={760} className={classes.subsectionMargin}>
+                    <img src={section2.image.url} alt={section2.image.altText} className={classes.section2Image}/>
+                </MacOSWindow>
             </section>
 
             <section className={classes.sectionMargin}>
