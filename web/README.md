@@ -19,7 +19,7 @@ yarn start
 If you need to style specific parts of an SVG, use a tool such as `svgr` to first create a React component from the SVG:
 
 ```shell script
-npm i -g svgr
+npm i -g @svgr/cli
 svgr assets/images/vaticle-atom.svg
 ```
 The component code is outputted to the terminal window and can be copied into a .tsx component file.

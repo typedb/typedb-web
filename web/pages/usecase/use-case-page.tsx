@@ -2,6 +2,8 @@ import React, { useLayoutEffect, useState } from "react";
 import { useHistory, useLocation } from "react-router-dom";
 import { VaticleDialog } from "../../common/dialog/dialog";
 import { YoutubeVideoEmbed } from "../../common/embed/youtube-video-embed";
+import { GitWindowFooter } from "../../common/graphics/git-window-footer";
+import { MacOSWindowHeader } from "../../common/graphics/macos-window-header";
 import { KeyPointPanel, KeyPointPanels } from "../../common/keypoint/key-point-panels";
 import {VaticleLayout} from "../../common/layout/layout";
 import {VaticleButton} from "../../common/button/button";
@@ -65,7 +67,9 @@ export const UseCasePage: React.FC<UseCaseData> = ({ pageTitle, mainLink, whiteP
 
             <section className={classes.sectionMargin}>
                 <h1 className={classes.h1}>{section2.title}</h1>
-                <img src={section2.image.url} alt={section2.image.altText} className={clsx(classes.subsectionMargin, classes.section2Image)}/>
+                <MacOSWindowHeader className={classes.subsectionMargin} width={760}/>
+                <img src={section2.image.url} alt={section2.image.altText} className={classes.section2Image}/>
+                <GitWindowFooter width={760}/>
             </section>
 
             <section className={classes.sectionMargin}>

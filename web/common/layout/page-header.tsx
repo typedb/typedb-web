@@ -24,7 +24,7 @@ export const PageHeader: React.FC = () => {
 
     const toggleMobileMenuOpen = () => {
         if (mobileMenuLocked) return;
-        if (window.matchMedia("(min-width: 1200px)").matches) return;
+        if (window.matchMedia("(min-width: 1350px)").matches) return;
 
         if (mobileMenuOpen) {
             setMobileMenuOpen(false);
@@ -52,7 +52,7 @@ export const PageHeader: React.FC = () => {
                         <VaticleLogo className={classes.logo}/>
                     </VaticleLink>
 
-                    <div className={clsx(classes.desktopItems, classes.showDesktop)}>
+                    <div className={clsx(classes.desktopItems, classes.showMediumDesktop)}>
                         <Sitemap toggleMobileMenuOpen={toggleMobileMenuOpen}/>
 
                         <div className={classes.filler}/>
@@ -60,11 +60,11 @@ export const PageHeader: React.FC = () => {
                         <ImportantLinks/>
                     </div>
 
-                    <HamburgerCollapse className={clsx(classes.hamburger, classes.hideDesktop)} barColor="#FFF"
+                    <HamburgerCollapse className={clsx(classes.hamburger, classes.hideMediumDesktop)} barColor="#FFF"
                                        isActive={mobileMenuOpen} toggleButton={() => toggleMobileMenuOpen()}/>
                 </nav>
             </header>
-            <nav className={clsx(classes.mobileMenu, classes.hideDesktop, mobileMenuOpen && "open", mobileMenuInvisible && "invisible")}>
+            <nav className={clsx(classes.mobileMenu, classes.hideMediumDesktop, mobileMenuOpen && "open", mobileMenuInvisible && "invisible")}>
                 <div className={classes.mobileMenuContent}>
                     <Sitemap toggleMobileMenuOpen={toggleMobileMenuOpen}/>
 

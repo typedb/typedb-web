@@ -84,7 +84,7 @@ export const pageHeaderStyles = makeStyles({
         flex: 1,
         display: "flex",
 
-        "@media(max-width: 1199px)": {
+        "@media(max-width: 1359px)": {
             margin: "auto 17px auto 32px",
             justifyContent: "space-between",
         },
@@ -93,6 +93,18 @@ export const pageHeaderStyles = makeStyles({
     desktopItems: {
         flex: 1,
         display: "flex",
+    },
+
+    showMediumDesktop: {
+        "@media(max-width: 1359px)": {
+            display: "none !important",
+        },
+    },
+
+    hideMediumDesktop: {
+        "@media(min-width: 1360px)": {
+            display: "none !important",
+        },
     },
 
     content: {
@@ -104,7 +116,7 @@ export const pageHeaderStyles = makeStyles({
         display: "flex",
         alignItems: "center",
 
-        "@media(min-width: 1200px)": {
+        "@media(min-width: 1360px)": {
             padding: "0 20px",
         },
     },
@@ -116,7 +128,7 @@ export const pageHeaderStyles = makeStyles({
     },
 
     importantLinksGithub: {
-        "@media(max-width: 1199px)": {
+        "@media(max-width: 1359px)": {
             paddingTop: 8,
         },
 
@@ -128,7 +140,7 @@ export const pageHeaderStyles = makeStyles({
     download: {
         padding: "0 20px",
 
-        "@media(max-width: 1199px)": {
+        "@media(max-width: 1359px)": {
             order: 99,
             padding: "10px 24px",
         },
@@ -141,11 +153,11 @@ export const pageHeaderStyles = makeStyles({
     menu: {
         display: "flex",
 
-        "@media(max-width: 1199px)": {
+        "@media(max-width: 1359px)": {
             flexDirection: "column",
         },
 
-        "@media (min-width: 768px) and (max-width: 1199px)": {
+        "@media (min-width: 768px) and (max-width: 1359px)": {
             position: "relative",
             borderRight: `1px solid ${borderBlack}`,
             width: menuWidthTablet,
@@ -164,7 +176,7 @@ export const pageHeaderStyles = makeStyles({
             transition: "background-color 150ms ease",
             cursor: "pointer",
 
-            "@media(max-width: 1199px)": {
+            "@media(max-width: 1359px)": {
                 padding: "0 24px",
             },
 
@@ -183,7 +195,7 @@ export const pageHeaderStyles = makeStyles({
             },
 
             "&:focus:not($noHover)": {
-                "@media(max-width: 1199px)": {
+                "@media(max-width: 1359px)": {
                     backgroundColor: vaticleTheme.palette.purple["6"],
 
                     "& > ul": {
@@ -204,7 +216,7 @@ export const pageHeaderStyles = makeStyles({
                 transition: "transform 250ms ease-in-out",
                 whiteSpace: "nowrap",
 
-                "@media(min-width: 1200px)": {
+                "@media(min-width: 1360px)": {
                     left: -1,
                     border: `1px solid ${borderBlack}`,
                     boxShadow: headerBoxShadow,
@@ -215,13 +227,13 @@ export const pageHeaderStyles = makeStyles({
                     display: "none",
                 },
 
-                "@media(max-width: 1199px)": {
+                "@media(max-width: 1359px)": {
                     right: 0,
                     transform: "translateX(100%)",
                     height: "100%",
                 },
 
-                "@media (min-width: 768px) and (max-width: 1199px)": {
+                "@media (min-width: 768px) and (max-width: 1359px)": {
                     left: 0,
                     top: 0,
                     borderRight: `1px solid ${borderBlack}`,
@@ -240,7 +252,7 @@ export const pageHeaderStyles = makeStyles({
             lineHeight: "40px",
             fontSize: 16,
 
-            "@media(max-width: 1199px)": {
+            "@media(max-width: 1359px)": {
                 lineHeight: "50px",
                 fontSize: 18,
             },
@@ -250,7 +262,7 @@ export const pageHeaderStyles = makeStyles({
         "& > li": {
             fontSize: 18,
 
-            "@media(min-width: 1200px)": {
+            "@media(min-width: 1360px)": {
                 lineHeight: "80px",
                 position: "relative",
             },
@@ -306,12 +318,12 @@ export const pageHeaderStyles = makeStyles({
     },
 
     linksMenu: {
-        "@media(max-width: 1199px)": {
+        "@media(max-width: 1359px)": {
             display: "flex",
             flexDirection: "column",
         },
 
-        "@media (min-width: 768px) and (max-width: 1199px)": {
+        "@media (min-width: 768px) and (max-width: 1359px)": {
             textAlign: "end",
         },
 
@@ -504,7 +516,7 @@ export const pageFooterStyles = makeStyles({
     contact: {
         flex: "0 0 360px",
 
-        "@media (min-width: 768px) and (max-width: 1199px)": {
+        "@media (min-width: 768px) and (max-width: 1359px)": {
             flex: "1 1 180px",
         },
 
@@ -523,7 +535,7 @@ export const pageFooterStyles = makeStyles({
             alignItems: "flex-start",
         },
 
-        "@media (min-width: 768px) and (max-width: 1199px)": {
+        "@media (min-width: 768px) and (max-width: 1359px)": {
             flex: "1 1 360px",
         },
 
@@ -536,13 +548,13 @@ export const pageFooterStyles = makeStyles({
     },
 
     linkBlock: {
-        "@media(min-width: 1200px)": {
+        "@media(min-width: 1360px)": {
             "&:not(:first-child)": {
                 marginLeft: 104,
             },
         },
 
-        "@media (min-width: 768px) and (max-width: 1199px)": {
+        "@media (min-width: 768px) and (max-width: 1359px)": {
             flex: 1,
         },
     },

@@ -23,11 +23,6 @@ export const codeStyles = makeStyles({
         },
     },
 
-    windowHeader: {
-        display: "flex",
-        borderBottom: `1px solid ${borderBlack}`,
-    },
-
     codePane: {
         flex: 1,
         width: "100%",
@@ -143,25 +138,4 @@ export const codeStyles = makeStyles({
         display: "flex",
         flexDirection: "column",
     },
-});
-
-export const codeVisualiserFooterStyles = makeStyles({
-    root: {
-        height: 24,
-        borderRadius: "0 0 5px 5px",
-        backgroundColor: "#0B0339",
-        display: "flex",
-        alignItems: "center",
-        padding: "0 8px",
-        fontSize: 12,
-        color: "#484B72",
-    },
-
-    icon: {
-        marginLeft: 8,
-    },
-
-    iconLabel: {
-        marginLeft: 5,
-    }
 });
