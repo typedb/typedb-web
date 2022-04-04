@@ -28,10 +28,19 @@ export const UseCasePage: React.FC<UseCaseData> = ({ pageTitle, mainLink, whiteP
         setDownloadFormOpen(getSearchParam("dialog") === "download-white-paper");
     }, [routerLocation.search]);
 
+    const download = (url: string) => {
+        const link = document.createElement("a");
+        link.setAttribute("download", "");
+        link.href = url;
+        document.body.appendChild(link);
+        link.click();
+        link.remove();
+    };
+
     const onDownloadFormSubmitDone = (res: Response) => {
         if (res.ok) {
             deleteSearchParam(routerHistory, routerLocation, "dialog");
-            window.open(whitePaperLink.url, "_blank");
+            download(whitePaperLink.url);
         } else {
             setDownloadErrorSnackbarOpen(true);
         }
