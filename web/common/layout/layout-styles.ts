@@ -581,11 +581,15 @@ export const siteBannerStyles = makeStyles({
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-        height: 28,
+        height: 30,
         boxShadow: headerBoxShadow,
         backgroundColor: vaticleTheme.palette.purple["6"],
-        fontSize: 12,
-        lineHeight: "24px",
+        fontSize: 14,
+
+        "@media(max-width: 767px)": {
+            fontSize: 12,
+            height: 28,
+        }
     },
 
     pipe: {
