@@ -571,10 +571,20 @@ export const pageFooterStyles = makeStyles({
 export const cosmosBannerStyles = makeStyles({
     root: {
         height: 64,
+        padding: "0 20px",
         display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
         backgroundImage: `url(../../assets/images/banner-cosmos-bg-left.svg), url(../../assets/images/banner-cosmos-bg-right.svg), linear-gradient(#0F0A32, #2F1D77)`,
         backgroundPosition: "left top, right top, center",
         backgroundRepeat: "no-repeat, no-repeat, repeat",
+        borderBottom: `1px solid ${borderBlack}`,
+        fontSize: 17,
+        position: "relative",
+
+        "& > * + *": {
+            marginLeft: 20,
+        }
     },
 
     backgroundLeft: {
@@ -585,7 +595,13 @@ export const cosmosBannerStyles = makeStyles({
 
     },
 
-    content: {
-        backgroundColor: `linear-gradient(#0F0A32, #2F1D77)`,
+    closeButton: {
+        position: "absolute",
+        top: 0,
+        bottom: 0,
+        right: 20,
+        margin: "auto",
+        fontSize: 28,
+        color: vaticleTheme.palette.green["1"],
     },
 });
