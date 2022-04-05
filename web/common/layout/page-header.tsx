@@ -14,6 +14,7 @@ import { routes } from "../../pages/router";
 import { VaticleLink } from "../link/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLongArrowLeft } from "@fortawesome/pro-light-svg-icons/faLongArrowLeft";
+import { EventBanner } from "./event-banner";
 
 export const PageHeader: React.FC = () => {
     const classes = Object.assign({}, vaticleStyles(), pageHeaderStyles());
@@ -46,6 +47,7 @@ export const PageHeader: React.FC = () => {
     return (
         <div className={classes.headerSection}>
             {/*<CosmosBanner/>*/}
+            <EventBanner/>
             <header className={classes.appBar}>
                 <nav className={classes.toolbar}>
                     <VaticleLink className={clsx(classes.logoContainer)} to={routes.home}>

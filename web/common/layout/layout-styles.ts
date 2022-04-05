@@ -3,7 +3,10 @@ import { vaticleTheme } from "../styles/theme";
 import { buttonPalette } from "../button/button-styles";
 import { standardMargins } from "../styles/vaticle-styles";
 
-export const headerHeight = 80;
+const headerBarHeight = 80;
+const eventBannerHeight = 28;
+const eventBannerVisible = true; // Set this to false when we aren't displaying an event banner
+export const headerAreaHeight = eventBannerVisible ? headerBarHeight + eventBannerHeight : headerBarHeight;
 const footerHeight = 65;
 const headerBoxShadow = "2px 2px 1px -1px rgba(0,0,0,0.2),2px 2px 3px 0px rgba(0,0,0,0.14),2px 1px 5px 0px rgba(0,0,0,0.12)";
 const borderBlack = vaticleTheme.palette.purple["2"];
@@ -13,7 +16,7 @@ const menuWidthTablet = 216;
 export const defaultLayoutStyles = makeStyles({
     main: {
         minHeight: `calc(100% - ${footerHeight}px)`,
-        margin: `${headerHeight}px auto 0`,
+        margin: `${headerAreaHeight}px auto 0`,
         width: '100%',
         textAlign: 'center',
     },
@@ -64,7 +67,7 @@ export const defaultLayoutStyles = makeStyles({
 
 export const pageHeaderStyles = makeStyles({
     headerSection: {
-        top: 0,
+        top: "28px",
         left: "auto",
         right: 0,
         position: "fixed",
@@ -73,7 +76,7 @@ export const pageHeaderStyles = makeStyles({
     },
 
     appBar: {
-        height: headerHeight,
+        height: headerBarHeight,
         backgroundColor: vaticleTheme.palette.purple["4"],
         boxShadow: headerBoxShadow,
         display: "flex",
@@ -108,7 +111,7 @@ export const pageHeaderStyles = makeStyles({
     },
 
     content: {
-        height: headerHeight,
+        height: headerBarHeight,
         margin: '0 auto',
     },
 
@@ -275,7 +278,7 @@ export const pageHeaderStyles = makeStyles({
 
     mobileMenu: {
         position: "fixed",
-        top: headerHeight,
+        top: headerAreaHeight,
         zIndex: 500,
         boxShadow: headerBoxShadow,
         width: "100%",
@@ -300,7 +303,7 @@ export const pageHeaderStyles = makeStyles({
 
         "@media(max-width: 767px)": {
             width: "100vw",
-            height: `calc(100vh - ${headerHeight}px)`,
+            height: `calc(100vh - ${headerAreaHeight}px)`,
             marginLeft: "-100vw",
         },
     },
@@ -565,6 +568,33 @@ export const pageFooterStyles = makeStyles({
         "@media(max-width: 767px)": {
             marginTop: 14,
         },
+    },
+});
+
+export const siteBannerStyles = makeStyles({
+    root: {
+        position: "fixed",
+        top: 0,
+        right: 0,
+        left: 0,
+        zIndex: 1030,
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        height: 28,
+        boxShadow: headerBoxShadow,
+        backgroundColor: vaticleTheme.palette.purple["6"],
+        fontSize: 12,
+        lineHeight: "24px",
+    },
+
+    pipe: {
+        marginLeft: 6,
+        marginRight: 6,
+    },
+
+    link: {
+        color: vaticleTheme.palette.green["1"],
     },
 });
 

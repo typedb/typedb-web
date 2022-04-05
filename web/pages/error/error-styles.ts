@@ -1,5 +1,5 @@
 import { makeStyles } from "@material-ui/core";
-import { headerHeight } from "../../common/layout/layout-styles";
+import { headerAreaHeight } from "../../common/layout/layout-styles";
 import {vaticleTheme} from "../../common/styles/theme";
 
 const contentHeight = {
@@ -12,14 +12,14 @@ export const errorStyles = makeStyles({
     main: {
         // We can't use Flexbox because it causes the scaled CodeSnippetWindow to stretch the window horizontally on mobile.
 
-        paddingTop: `calc((100vh - ${contentHeight.desktop}px - ${headerHeight}px) / 2)`,
+        paddingTop: `calc((100vh - ${contentHeight.desktop}px - ${headerAreaHeight}px) / 2)`,
 
         "@media (min-width: 768px) and (max-width: 1199px)": {
-            paddingTop: `calc((100vh - ${contentHeight.tablet}px - ${headerHeight}px) / 2)`,
+            paddingTop: `calc((100vh - ${contentHeight.tablet}px - ${headerAreaHeight}px) / 2)`,
         },
 
         "@media(max-width: 767px)": {
-            paddingTop: `calc((100vh - ${contentHeight.mobile}px - ${headerHeight}px) / 2)`,
+            paddingTop: `calc((100vh - ${contentHeight.mobile}px - ${headerAreaHeight}px) / 2)`,
         },
     },
 

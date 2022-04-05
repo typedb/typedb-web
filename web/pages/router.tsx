@@ -1,6 +1,6 @@
 import {BrowserRouter, Redirect, Route, RouteProps, Switch, useLocation} from "react-router-dom";
 import React, {useEffect, useLayoutEffect} from "react";
-import {headerHeight} from "../common/layout/layout-styles";
+import { headerAreaHeight } from "../common/layout/layout-styles";
 import {DownloadPage} from "./download/download-page";
 import {HomePage} from "./home/home-page";
 import {useTypeDBVersion} from "../state/typedb-version";
@@ -114,7 +114,7 @@ const VaticleRoute: React.FC<VaticleRouteProps> = props => {
             }
             const scrollPaddingTopRaw = target.getAttribute("scroll-padding-top");
             const scrollPaddingTop = scrollPaddingTopRaw ? parseFloat(scrollPaddingTopRaw) : 0;
-            const y = target.offsetTop - headerHeight - scrollPaddingTop;
+            const y = target.offsetTop - headerAreaHeight - scrollPaddingTop;
             // TODO: This isn't quite right - samePageNavigation may have the wrong value if navigating using the Back button
             setTimeout(() => {
                 if (routerLocation.state?.samePageNavigation)
