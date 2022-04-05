@@ -2,9 +2,7 @@ import React, { useLayoutEffect, useState } from "react";
 import { useHistory, useLocation } from "react-router-dom";
 import { VaticleDialog } from "../../common/dialog/dialog";
 import { YoutubeVideoEmbed } from "../../common/embed/youtube-video-embed";
-import { GitWindowFooter } from "../../common/graphics/git-window-footer";
 import { MacOSWindow } from "../../common/graphics/macos-window";
-import { MacOSWindowHeader } from "../../common/graphics/macos-window-header";
 import { KeyPointPanel, KeyPointPanels } from "../../common/keypoint/key-point-panels";
 import {VaticleLayout} from "../../common/layout/layout";
 import {VaticleButton} from "../../common/button/button";
@@ -68,7 +66,7 @@ export const UseCasePage: React.FC<UseCaseData> = ({ pageTitle, mainLink, whiteP
 
             <section className={classes.sectionMargin}>
                 <h1 className={classes.h1}>{section2.title}</h1>
-                <MacOSWindow width={760} className={classes.subsectionMargin}>
+                <MacOSWindow width={760} mobileScale={0.5} mobileVerticalMargin={-138} className={classes.subsectionMargin}>
                     <img src={section2.image.url} alt={section2.image.altText} className={classes.section2Image}/>
                 </MacOSWindow>
             </section>

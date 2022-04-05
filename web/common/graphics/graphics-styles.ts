@@ -1,5 +1,6 @@
-import { makeStyles } from "@material-ui/core";
+import { makeStyles, Theme } from "@material-ui/core";
 import { vaticleTheme } from "../styles/theme";
+import { MacOSWindowProps } from "./macos-window";
 
 const borderBlack = vaticleTheme.palette.purple["1"];
 
@@ -9,13 +10,18 @@ export const macOSWindowHeaderStyles = makeStyles({
     }
 });
 
-export const macOSWindowStyles = makeStyles({
-    root: {
+export const macOSWindowStyles = makeStyles<Theme, MacOSWindowProps>({
+    graphicContainer: {
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+    },
+
+    graphic: {
         "@media(max-width: 767px)": {
-            transform: "scale(.5)",
-            marginTop: -58,
-            marginBottom: -138,
-            marginLeft: -106, // TODO: this is NOT correct - fix properly
+            transform: (props) => `scale(${props.mobileScale})`,
+            marginTop: (props) => props.mobileVerticalMargin,
+            marginBottom: (props) => props.mobileVerticalMargin,
         },
     }
 });

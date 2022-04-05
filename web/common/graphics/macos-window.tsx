@@ -5,16 +5,20 @@ import { macOSWindowStyles } from "./graphics-styles";
 import { MacOSWindowHeader } from "./macos-window-header";
 import { ClassProps } from "../class-props";
 
-interface MacOSWindowProps extends ClassProps {
+export interface MacOSWindowProps extends ClassProps {
     width: number;
+    mobileScale: number;
+    mobileVerticalMargin: number;
 }
 
-export const MacOSWindow: React.FC<MacOSWindowProps> = ({width, className, children}) => {
-    const classes = macOSWindowStyles();
+export const MacOSWindow: React.FC<MacOSWindowProps> = ({className, children, ...props}) => {
+    const classes = macOSWindowStyles(props);
 
-    return <div className={clsx(classes.root, className)}>
-        <MacOSWindowHeader width={width}/>
-        {children}
-        <GitWindowFooter width={width}/>
+    return <div className={clsx(classes.graphicContainer, className)}>
+        <div className={classes.graphic}>
+            <MacOSWindowHeader width={props.width}/>
+            {children}
+            <GitWindowFooter width={props.width}/>
+        </div>
     </div>
 }
