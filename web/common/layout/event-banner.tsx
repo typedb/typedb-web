@@ -7,8 +7,8 @@ export const EventBanner: React.FC = () => {
     const classes = siteBannerStyles();
 
     return <div className={classes.root}>
-        Live Meetups in Cambridge (UK), Boston, and New York
-        <span className={classes.pipe}>|</span>
-        <VaticleLink className={classes.link} href={urls.meetupsApr2022}>Join now</VaticleLink>
+        Join us in Cambridge, New York and Boston this month!
+        <span className={classes.spacer}/>
+        <VaticleLink className={classes.link} href={urls.meetupsApr2022}>Learn more</VaticleLink>
     </div>
 }
