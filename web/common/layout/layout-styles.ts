@@ -588,8 +588,9 @@ export const siteBannerStyles = makeStyles({
         lineHeight: "24px",
     },
 
-    spacer: {
-        width: 4,
+    pipe: {
+        marginLeft: 4,
+        marginRight: 4,
     },
 
     link: {
