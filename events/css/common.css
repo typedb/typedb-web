@@ -1321,7 +1321,7 @@ button {
 
 .site-header-header {
     position: fixed;
-    height: 28px;
+    height: 30px;
     padding: 0 10px;
     box-shadow: 2px 2px 1px -1px rgba(0,0,0,0.2),2px 2px 3px 0 rgba(0,0,0,0.14),2px 1px 5px 0 rgba(0,0,0,0.12);
     background-color: #261c5e;
@@ -1334,6 +1334,16 @@ button {
     color: white;
 }
 
+@media (max-width: 767px) {
+    .site-header-header {
+        height: 28px;
+    }
+
+    .site-header-header a {
+        font-size: 12px;
+    }
+}
+
 .spacer {
     flex: 1;
 }
@@ -1344,7 +1354,13 @@ button {
 }
 
 body .site-header {
-    top: 28px;
+    top: 30px;
+}
+
+@media (max-width: 767px) {
+    body .site-header {
+        top: 28px;
+    }
 }
 
 @media (min-width: 768px) {
