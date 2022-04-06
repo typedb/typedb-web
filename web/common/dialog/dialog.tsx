@@ -16,7 +16,7 @@ export const VaticleDialog: React.FC<VaticleDialogProps> = ({children, open, set
 
     const routerHistory = useHistory();
     const routerLocation = useLocation();
-    const fullScreen = useMediaQuery("@media(max-width: 767px)");
+    const fullScreen = useMediaQuery("(max-width: 767px)");
     const handleClose = () => {
         setOpen(false);
         deleteSearchParam(routerHistory, routerLocation, "dialog");

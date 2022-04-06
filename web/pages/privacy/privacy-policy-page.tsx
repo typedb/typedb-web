@@ -95,7 +95,7 @@ export const PrivacyPolicyPage: React.FC = () => {
             <Section>
                 <DataTable>
                     <DataTableHeader titles={["Source", "Name", "Purpose"]}/>
-                    <DataTableBody>
+                    <DataTableBody striped>
                         {cookies.map(({source, name, purpose}) => (
                             <tr>
                                 <td>{source}</td>

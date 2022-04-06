@@ -4,12 +4,19 @@ import { vaticleTheme } from "../styles/theme";
 export const tableStyles = makeStyles({
     dataTable: {
         width: "100%",
+        display: "table",
         tableLayout: "fixed",
+        overflow: "hidden",
+        borderRadius: "0 0 5px 5px",
     },
 
-    dataTableHeader: {},
+    dataTableHeader: {
+        display: "table-header-group",
+        borderRadius: "5px 5px 0 0",
+    },
 
     dataTableHeaderItem: {
+        display: "table-cell",
         height: 45,
         lineHeight: "45px",
         fontWeight: 600,
@@ -24,22 +31,34 @@ export const tableStyles = makeStyles({
     },
 
     dataTableBody: {
-        backgroundColor: vaticleTheme.palette.purple["2"],
+        display: "table-row-group",
+        backgroundColor: vaticleTheme.palette.purple["1"],
 
-        "& td": {
-            padding: 10,
+        "& th, & td": {
+            padding: "10px 30px",
             fontSize: 16,
             lineHeight: "28px",
-            fontWeight: 300,
+            fontWeight: 400,
 
             "@media(max-width: 767px)": {
                 fontSize: 14,
+                padding: "4px 10px",
                 lineHeight: "23px",
             },
         },
 
-        "& tr:nth-child(even)": {
-            backgroundColor: vaticleTheme.palette.purple["1"],
+        "& td + td, & th + td": {
+            borderLeft: "1px solid #08022E",
+        },
+
+        "&$striped tr:nth-child(odd)": {
+            backgroundColor: vaticleTheme.palette.purple["2"],
+        },
+
+        "& tr + tr": {
+            borderTop: "1px solid #08022E",
         },
     },
+
+    striped: {},
 });

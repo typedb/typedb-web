@@ -1,11 +1,12 @@
 import clsx from "clsx";
 import React from "react";
+import { ClassProps } from "../class-props";
 import { vaticleStyles } from "../styles/vaticle-styles";
 import { tableStyles } from "./table-styles";
 
-export const DataTable: React.FC = ({children}) => {
+export const DataTable: React.FC<ClassProps> = ({children, className}) => {
     const classes = Object.assign({}, vaticleStyles(), tableStyles());
-    return <table className={clsx(classes.dataTable)}>{children}</table>;
+    return <table className={clsx(classes.dataTable, className)}>{children}</table>;
 }
 
 interface DataTableHeaderProps {
@@ -21,7 +22,18 @@ export const DataTableHeader: React.FC<DataTableHeaderProps> = ({titles}) => {
     );
 }
 
-export const DataTableBody: React.FC = ({children}) => {
+enum DataTableBodyBorderRounding {
+    Bottom,
+    AllExceptTopRight
+}
+
+interface DataTableBodyProps extends ClassProps {
+    striped?: boolean;
+    borderRounding?: DataTableBodyBorderRounding;
+}
+
+export const DataTableBody: React.FC<DataTableBodyProps> = ({className, striped, borderRounding, children}) => {
     const classes = tableStyles();
-    return <tbody className={clsx(classes.dataTableBody)}>{children}</tbody>;
+    const borderRadius = borderRounding === DataTableBodyBorderRounding.AllExceptTopRight ? "5px 0 5px 5px" : "0 0 5px 5px";
+    return <tbody className={clsx(classes.dataTableBody, striped && classes.striped, className)} style={{borderRadius: borderRadius}}>{children}</tbody>;
 }

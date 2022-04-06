@@ -32,6 +32,9 @@ export const comparisonStyles = makeStyles(({
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
+        fontWeight: 600,
+        fontSize: 16,
+        lineHeight: "24px",
 
         "@media(max-width: 767px)": {
             borderRadius: "5px 5px 0 0",
@@ -76,5 +79,25 @@ export const comparisonStyles = makeStyles(({
 
     comparisonBlockMainAction: {
         textAlign: "center",
+    },
+
+    comparisonTableHeaderDesktop: {},
+
+    comparisonTableBody: {
+        "& th, & td": {
+            fontWeight: "normal",
+        },
+    },
+
+    comparisonTableMobile: {
+        "& > * + *": {
+            marginTop: 30,
+        },
+    },
+
+    comparisonTableHeaderMobile: {
+        fontSize: 16,
+        lineHeight: "45px",
+        background: vaticleTheme.palette.purple["2"],
     },
 }));

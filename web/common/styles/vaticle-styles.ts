@@ -156,6 +156,7 @@ export const vaticleStyles = makeStyles({
     },
 
     check: {
+        display: "inline-block",
         height: 16,
         width: 8,
         borderRight: "2px solid #FFF",

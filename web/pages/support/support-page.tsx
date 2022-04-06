@@ -1,22 +1,17 @@
 import React, { useState } from "react";
 import { useHistory, useLocation } from "react-router-dom";
-import HighAvailabilityIcon from "../../assets/icons/high-availability.svg";
-import LifebuoyIcon from "../../assets/icons/lifebuoy.svg";
-import CommunityResourcesIcon from "../../assets/icons/community-resources.svg";
-import EnterpriseSupportIcon from "../../assets/icons/enterprise-support.svg";
-import { KeyPointPanel, KeyPointPanels } from "../../common/keypoint/key-point-panels";
 import {VaticleLayout} from "../../common/layout/layout";
 import {VaticleButton} from "../../common/button/button";
 import clsx from "clsx";
-import { VaticleLink } from "../../common/link/link";
+import { VaticleSnackbar } from "../../common/snackbar/snackbar";
 import {urls} from "../../common/urls";
 import {vaticleStyles} from "../../common/styles/vaticle-styles";
 import { deleteSearchParam } from "../../common/util/search-params";
 import { ContactForm } from "../contact/contact-form";
-import { routes } from "../router";
 import { TestimonialsSection } from "../testimonials/testimonials-section";
 import { KeyPointsSection } from "./key-points-section";
 import { supportPageStyles } from "./support-styles";
+import { SupportOfferingsSection } from "./support-offerings-section";
 
 export const SupportPage: React.FC = () => {
     const classes = Object.assign({}, vaticleStyles(), supportPageStyles());
@@ -51,6 +46,8 @@ export const SupportPage: React.FC = () => {
 
             <KeyPointsSection className={classes.sectionMargin}/>
 
+            <SupportOfferingsSection className={classes.sectionMargin}/>
+
             <TestimonialsSection className={classes.sectionMargin} title="Loved by the pioneers in industry"
                                  contactButton={{text: "Get in touch with our team", to: "#get-in-touch"}}/>
 
@@ -59,6 +56,8 @@ export const SupportPage: React.FC = () => {
                 <div className={classes.inlineForm}>
                     <ContactForm id="contact-form-support-page" className={classes.subsectionMargin} onSubmitDone={onContactFormSubmitDone}/>
                 </div>
+                <VaticleSnackbar variant="success" message="Your message has been sent." open={contactSuccessSnackbarOpen} setOpen={setContactSuccessSnackbarOpen}/>
+                <VaticleSnackbar variant="error" message="Your message failed to send, please try again later." open={contactErrorSnackbarOpen} setOpen={setContactErrorSnackbarOpen}/>
             </section>
         </VaticleLayout>
     );
