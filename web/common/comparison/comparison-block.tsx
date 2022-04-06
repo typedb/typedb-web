@@ -1,7 +1,7 @@
 import React from "react";
-import {ClassProps} from "../../common/class-props";
-import {vaticleStyles} from "../../common/styles/vaticle-styles";
-import {downloadPageProductStyles} from "./download-styles";
+import {ClassProps} from "../class-props";
+import {vaticleStyles} from "../styles/vaticle-styles";
+import { comparisonStyles } from "./comparison-styles";
 import clsx from "clsx";
 
 export interface ComparisonBlockItem {
@@ -9,12 +9,12 @@ export interface ComparisonBlockItem {
     content: React.FC<any>;
 }
 
-interface ComparisonBlockProps {
+interface ComparisonBlockProps extends ClassProps {
     items: [ComparisonBlockItem, ComparisonBlockItem];
 }
 
-export const DistributionBlock: React.FC<ComparisonBlockProps & ClassProps> = ({items: [item1, item2], className}) => {
-    const classes = Object.assign({}, vaticleStyles(), downloadPageProductStyles());
+export const ComparisonBlock: React.FC<ComparisonBlockProps> = ({items: [item1, item2], className}) => {
+    const classes = Object.assign({}, vaticleStyles(), comparisonStyles());
 
     return (
         <div className={clsx(classes.comparisonBlock, className)}>

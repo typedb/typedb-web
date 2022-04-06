@@ -1,7 +1,8 @@
 import React from "react";
+import { ComparisonBlock, ComparisonBlockItem } from "../../common/comparison/comparison-block";
+import { comparisonStyles } from "../../common/comparison/comparison-styles";
 import {vaticleStyles} from "../../common/styles/vaticle-styles";
 import {downloadPageProductStyles} from "./download-styles";
-import {ComparisonBlockItem, DistributionBlock} from "./distribution-block";
 import clsx from "clsx";
 import {VaticleButton} from "../../common/button/button";
 
@@ -14,11 +15,11 @@ export const TypeDBClusterTab: React.FC = () => {
         content: () => <OnPremisePane/>,
     }];
 
-    return <DistributionBlock items={items}/>;
+    return <ComparisonBlock items={items}/>;
 }
 
 const CloudPane: React.FC = () => {
-    const classes = Object.assign({}, vaticleStyles(), downloadPageProductStyles());
+    const classes = Object.assign({}, vaticleStyles(), downloadPageProductStyles(), comparisonStyles());
 
     return (
         <>
@@ -39,7 +40,7 @@ const CloudPane: React.FC = () => {
 }
 
 const OnPremisePane: React.FC = () => {
-    const classes = Object.assign({}, vaticleStyles(), downloadPageProductStyles());
+    const classes = Object.assign({}, vaticleStyles(), downloadPageProductStyles(), comparisonStyles());
 
     return (
         <>

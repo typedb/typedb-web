@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from "react";
 import moment from "moment";
-import {ComparisonBlockItem, DistributionBlock} from "./distribution-block";
+import { ComparisonBlock, ComparisonBlockItem } from "../../common/comparison/comparison-block";
+import { comparisonStyles } from "../../common/comparison/comparison-styles";
 import {useTypeDBVersion} from "../../state/typedb-version";
 import {VaticleSelect} from "../../common/select/select";
 import {VaticleButton} from "../../common/button/button";
@@ -19,7 +20,7 @@ export const TypeDBTab: React.FC = () => {
         content: () => <CommercialPane/>,
     }];
 
-    return <DistributionBlock items={items}/>;
+    return <ComparisonBlock items={items}/>;
 }
 
 type TypeDBVersion = "2.8.0" | "2.7.1" | "2.7.0" | "2.6.4" | "2.6.3" | "2.6.2" | "2.6.1" | "2.6.0" | "2.5.0" | "2.4.0" |
@@ -43,7 +44,7 @@ const defaultOSMap: {[key in OS]: keyof Downloads} = {
 }
 
 const OpenSourcePane: React.FC = () => {
-    const classes = Object.assign({}, vaticleStyles(), downloadPageProductStyles());
+    const classes = Object.assign({}, vaticleStyles(), downloadPageProductStyles(), comparisonStyles());
 
     const latestReleaseDate = new Date("2022-03-22");
     const latestReleaseDateFormatted = moment(latestReleaseDate).format("Do [of] MMMM YYYY");
@@ -180,7 +181,7 @@ const OpenSourcePane: React.FC = () => {
 }
 
 const CommercialPane: React.FC = () => {
-    const classes = Object.assign({}, vaticleStyles(), downloadPageProductStyles());
+    const classes = Object.assign({}, vaticleStyles(), downloadPageProductStyles(), comparisonStyles());
 
     return (
         <>
