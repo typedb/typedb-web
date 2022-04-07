@@ -27,4 +27,11 @@ export const contactFormStyles = makeStyles({
             marginTop: 6,
         },
     },
+
+    inlineForm: {
+        "@media(min-width: 1200px)": {
+            marginLeft: 40,
+            marginRight: 40,
+        },
+    },
 });

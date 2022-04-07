@@ -16,6 +16,9 @@ interface ContactFormProps extends ClassProps {
     onSubmitDone: (res: Response) => any;
 }
 
+const helpTopics = ["Products & Services", "Support", "Consulting", "Sales", "Training",
+    "Careers", "PR & Analyst Relations"] as const;
+
 export const ContactForm: React.FC<ContactFormProps> = ({className, id, onSubmitDone}) => {
     const classes = Object.assign({}, vaticleStyles(), formStyles(), contactFormStyles());
 
@@ -25,17 +28,14 @@ export const ContactForm: React.FC<ContactFormProps> = ({className, id, onSubmit
     const [companyName, setCompanyName] = useState("");
     const [jobFunction, setJobFunction] = useState("");
 
-    const helpTopics = ["Products & Services", "Support", "Consulting", "Sales", "Training",
-        "Careers", "PR & Analyst Relations"] as const;
-
     const [selectedHelpTopics, setSelectedHelpTopics] = useState(helpTopics.reduce(
         (obj, topic) => ({...obj, [topic]: false}), {}) as { [key in typeof helpTopics[number]]: boolean });
+
+    const [tellUsMore, setTellUsMore] = useState("");
 
     const toggleHelpTopic = (event: React.ChangeEvent<HTMLInputElement>) => {
         setSelectedHelpTopics({...selectedHelpTopics, [event.target.name]: event.target.checked});
     };
-
-    const [tellUsMore, setTellUsMore] = useState("");
 
     const submit = async () => {
         const supportRequestMultiCheckbox = Object.keys(selectedHelpTopics)

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="41px" height="42px" viewBox="0 0 41 42" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>8E9AAE7A-6AEB-4E92-A7F0-EDBF16C2E122</title>
+    <g id="Services" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Services-Desktop" transform="translate(-392.000000, -1529.000000)" stroke="#FFFFFF" stroke-width="0.5">
+            <g id="2nd-section" transform="translate(0.000000, 358.000000)">
+                <g id="Deployment-and-Scaling" transform="translate(380.000000, 1160.000000)">
+                    <g id="icon" transform="translate(13.000000, 11.000000)">
+                        <g id="Group-26" transform="translate(0.000000, 29.735109)" stroke-linecap="round">
+                            <line x1="10.3584127" y1="0.194202389" x2="0.21509703" y2="10.8897449" id="Path-60"></line>
+                            <polyline id="Path-61" points="0.39412918 5.0934884 0.21509703 10.8897449 5.73494967 10.8897449"></polyline>
+                        </g>
+                        <g id="Group-26-Copy" transform="translate(33.339342, 35.735109) scale(-1, 1) translate(-33.339342, -35.735109) translate(27.839342, 29.735109)" stroke-linecap="round">
+                            <line x1="10.3584127" y1="0.194202389" x2="0.21509703" y2="10.8897449" id="Path-60"></line>
+                            <polyline id="Path-61" points="0.39412918 5.0934884 0.21509703 10.8897449 5.73494967 10.8897449"></polyline>
+                        </g>
+                        <g id="Group-26-Copy-2" transform="translate(33.339342, 6.396779) scale(-1, -1) translate(-33.339342, -6.396779) translate(27.839342, 0.396779)" stroke-linecap="round">
+                            <g id="Group-68" transform="translate(0.000000, 0.194202)">
+                                <line x1="10.3584127" y1="2.96689645e-13" x2="0.21509703" y2="10.6955425" id="Path-60"></line>
+                                <polyline id="Path-61" points="0.39412918 4.89928601 0.21509703 10.6955425 5.73494967 10.6955425"></polyline>
+                            </g>
+                        </g>
+                        <g id="Group-26-Copy-3" transform="translate(5.715097, 6.396779) scale(1, -1) translate(-5.715097, -6.396779) translate(0.215097, 0.396779)" stroke-linecap="round">
+                            <line x1="10.2879873" y1="0.411757511" x2="0.21509703" y2="10.8897449" id="Path-60"></line>
+                            <polyline id="Path-61" points="0.39412918 5.0934884 0.21509703 10.8897449 5.73494967 10.8897449"></polyline>
+                        </g>
+                        <g id="Group-27" transform="translate(13.552367, 15.477684)">
+                            <path d="M0.139610382,11.1277564 L0.139610382,0.674824039 C0.139610382,0.302129013 0.441739395,-1.53581639e-16 0.814434421,0 L4.65268655,0 C4.76380769,9.06096796e-17 4.86780444,0.0547124033 4.93074819,0.146287468 L5.93065367,1.60102134 C5.99359742,1.6925964 6.09759416,1.7473088 6.20871531,1.7473088 L12.0706891,1.7473088 C12.2561284,1.7473088 12.406814,1.89695859 12.4080931,2.08239342 L12.4704878,11.1277564 L12.4704878,11.1277564 L0.139610382,11.1277564 Z" id="Path-63"></path>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

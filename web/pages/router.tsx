@@ -6,11 +6,12 @@ import {HomePage} from "./home/home-page";
 import {useTypeDBVersion} from "../state/typedb-version";
 import {getTypeDBVersion} from "../api/typedb-service";
 import {PrivacyPolicyPage} from "./privacy/privacy-policy-page";
+import { ServicesPage } from "./services/services-page";
 import { SupportPage } from "./support/support-page";
 import {TypeDBPage} from "./typedb/typedb-page";
 import {Vaticle404Page} from "./error/404-page";
 import {TypeDBClusterPage} from "./typedbcluster/typedb-cluster-page";
-import { LifeSciencesPage, PrecisionMedicinePage } from "./usecase/use-case-pages";
+import { LifeSciencesPage } from "./usecase/use-case-pages";
 
 declare global {
     interface Window {
@@ -28,7 +29,6 @@ export const routes = {
     services: "/services",
     useCases: {
         lifeSciences: "/life-sciences",
-        precisionMedicine: "/precision-medicine-temp",
     }
 }
 
@@ -65,8 +65,8 @@ export const VaticleRouter: React.FC = () => {
                 <VaticleRoute exact path={routes.typeDB} title="TypeDB" component={TypeDBPage}/>
                 <VaticleRoute exact path={routes.typeDBCluster} title="TypeDB Cluster" component={TypeDBClusterPage}/>
                 <VaticleRoute exact path={routes.support} title="Support" component={SupportPage}/>
+                <VaticleRoute exact path={routes.services} title="Services" component={ServicesPage}/>
                 <VaticleRoute exact path={routes.useCases.lifeSciences} title="Life Sciences" component={LifeSciencesPage}/>
-                <VaticleRoute exact path={routes.useCases.precisionMedicine} title="Precision Medicine" component={PrecisionMedicinePage}/>
                 <VaticleRoute exact path={routes.home} title="Home" component={HomePage}/>
 
                 <Redirect exact path={legacyRoutes.graknCore} to={routes.typeDB}/>

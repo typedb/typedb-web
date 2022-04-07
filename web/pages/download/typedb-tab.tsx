@@ -11,17 +11,15 @@ import {vaticleStyles} from "../../common/styles/vaticle-styles";
 import {downloadPageProductStyles} from "./download-styles";
 import { getCurrentOS, OS } from "../../common/util/platform";
 
-export const TypeDBTab: React.FC = () => {
-    const items: [ComparisonBlockItem, ComparisonBlockItem] = [{
-        title: "Open Source",
-        content: () => <OpenSourcePane/>,
-    }, {
-        title: "Commercial",
-        content: () => <CommercialPane/>,
-    }];
+const items: [ComparisonBlockItem, ComparisonBlockItem] = [{
+    title: "Open Source",
+    content: () => <OpenSourcePane/>,
+}, {
+    title: "Commercial",
+    content: () => <CommercialPane/>,
+}];
 
-    return <ComparisonBlock items={items}/>;
-}
+export const TypeDBTab: React.FC = () => <ComparisonBlock items={items}/>;
 
 type TypeDBVersion = "2.8.0" | "2.7.1" | "2.7.0" | "2.6.4" | "2.6.3" | "2.6.2" | "2.6.1" | "2.6.0" | "2.5.0" | "2.4.0" |
                      "2.3.3" | "2.3.2" | "2.3.1" | "2.3.0" | "2.2.0" | "2.1.3" | "2.1.1" | "2.0.2" | "2.0.1" | "2.0.0";
@@ -43,85 +41,84 @@ const defaultOSMap: {[key in OS]: keyof Downloads} = {
     Other: "macOS",
 }
 
+const latestReleaseDate = new Date("2022-03-22");
+const latestReleaseDateFormatted = moment(latestReleaseDate).format("Do [of] MMMM YYYY");
+const downloads: Downloads = {
+    "macOS": {
+        "2.8.0": "https://github.com/vaticle/typedb/releases/download/2.8.0/typedb-all-mac-2.8.0.zip",
+        "2.7.1": "https://github.com/vaticle/typedb/releases/download/2.7.1/typedb-all-mac-2.7.1.zip",
+        "2.7.0": "https://github.com/vaticle/typedb/releases/download/2.7.0/typedb-all-mac-2.7.0.zip",
+        "2.6.4": "https://github.com/vaticle/typedb/releases/download/2.6.4/typedb-all-mac-2.6.4.zip",
+        "2.6.3": "https://github.com/vaticle/typedb/releases/download/2.6.3/typedb-all-mac-2.6.3.zip",
+        "2.6.2": "https://github.com/vaticle/typedb/releases/download/2.6.2/typedb-all-mac-2.6.2.zip",
+        "2.6.1": "https://github.com/vaticle/typedb/releases/download/2.6.1/typedb-all-mac-2.6.1.zip",
+        "2.6.0": "https://github.com/vaticle/typedb/releases/download/2.6.0/typedb-all-mac-2.6.0.zip",
+        "2.5.0": "https://github.com/vaticle/typedb/releases/download/2.5.0/typedb-all-mac-2.5.0.zip",
+        "2.4.0": "https://github.com/vaticle/typedb/releases/download/2.4.0/typedb-all-mac-2.4.0.zip",
+        "2.3.3": "https://github.com/vaticle/typedb/releases/download/2.3.3/typedb-all-mac-2.3.3.zip",
+        "2.3.2": "https://github.com/vaticle/typedb/releases/download/2.3.2/typedb-all-mac-2.3.2.zip",
+        "2.3.1": "https://github.com/vaticle/typedb/releases/download/2.3.1/typedb-all-mac-2.3.1.zip",
+        "2.3.0": "https://github.com/vaticle/typedb/releases/download/2.3.0/typedb-all-mac-2.3.0.zip",
+        "2.2.0": "https://github.com/vaticle/typedb/releases/download/2.2.0/typedb-all-mac-2.2.0.zip",
+        "2.1.3": "https://github.com/vaticle/typedb/releases/download/2.1.3/typedb-all-mac-2.1.3.zip",
+        "2.1.1": "https://github.com/vaticle/typedb/releases/download/2.1.1/typedb-all-mac-2.1.1.zip",
+        "2.0.2": "https://github.com/vaticle/typedb/releases/download/2.0.2/grakn-core-all-mac-2.0.2.zip",
+        "2.0.1": "https://github.com/vaticle/typedb/releases/download/2.0.1/grakn-core-all-mac-2.0.1.zip",
+        "2.0.0": "https://github.com/vaticle/typedb/releases/download/2.0.0/grakn-core-all-mac-2.0.0.zip",
+    },
+    "Linux": {
+        "2.8.0": "https://github.com/vaticle/typedb/releases/download/2.8.0/typedb-all-linux-2.8.0.tar.gz",
+        "2.7.1": "https://github.com/vaticle/typedb/releases/download/2.7.1/typedb-all-linux-2.7.1.tar.gz",
+        "2.7.0": "https://github.com/vaticle/typedb/releases/download/2.7.0/typedb-all-linux-2.7.0.tar.gz",
+        "2.6.4": "https://github.com/vaticle/typedb/releases/download/2.6.4/typedb-all-linux-2.6.4.tar.gz",
+        "2.6.3": "https://github.com/vaticle/typedb/releases/download/2.6.3/typedb-all-linux-2.6.3.tar.gz",
+        "2.6.2": "https://github.com/vaticle/typedb/releases/download/2.6.2/typedb-all-linux-2.6.2.tar.gz",
+        "2.6.1": "https://github.com/vaticle/typedb/releases/download/2.6.1/typedb-all-linux-2.6.1.tar.gz",
+        "2.6.0": "https://github.com/vaticle/typedb/releases/download/2.6.0/typedb-all-linux-2.6.0.tar.gz",
+        "2.5.0": "https://github.com/vaticle/typedb/releases/download/2.5.0/typedb-all-linux-2.5.0.tar.gz",
+        "2.4.0": "https://github.com/vaticle/typedb/releases/download/2.4.0/typedb-all-linux-2.4.0.tar.gz",
+        "2.3.3": "https://github.com/vaticle/typedb/releases/download/2.3.3/typedb-all-linux-2.3.3.tar.gz",
+        "2.3.2": "https://github.com/vaticle/typedb/releases/download/2.3.2/typedb-all-linux-2.3.2.tar.gz",
+        "2.3.1": "https://github.com/vaticle/typedb/releases/download/2.3.0/typedb-all-linux-2.3.1.tar.gz",
+        "2.3.0": "https://github.com/vaticle/typedb/releases/download/2.3.0/typedb-all-linux-2.3.0.tar.gz",
+        "2.2.0": "https://github.com/vaticle/typedb/releases/download/2.2.0/typedb-all-linux-2.2.0.tar.gz",
+        "2.1.3": "https://github.com/vaticle/typedb/releases/download/2.1.3/typedb-all-linux-2.1.3.tar.gz",
+        "2.1.1": "https://github.com/vaticle/typedb/releases/download/2.1.1/typedb-all-linux-2.1.1.tar.gz",
+        "2.0.2": "https://github.com/vaticle/typedb/releases/download/2.0.2/grakn-core-all-linux-2.0.2.tar.gz",
+        "2.0.1": "https://github.com/vaticle/typedb/releases/download/2.0.1/grakn-core-all-linux-2.0.1.tar.gz",
+        "2.0.0": "https://github.com/vaticle/typedb/releases/download/2.0.0/grakn-core-all-linux-2.0.0.tar.gz",
+    },
+    "Windows": {
+        "2.8.0": "https://github.com/vaticle/typedb/releases/download/2.8.0/typedb-all-windows-2.8.0.zip",
+        "2.7.1": "https://github.com/vaticle/typedb/releases/download/2.7.1/typedb-all-windows-2.7.1.zip",
+        "2.7.0": "https://github.com/vaticle/typedb/releases/download/2.7.0/typedb-all-windows-2.7.0.zip",
+        "2.6.4": "https://github.com/vaticle/typedb/releases/download/2.6.4/typedb-all-windows-2.6.4.zip",
+        "2.6.3": "https://github.com/vaticle/typedb/releases/download/2.6.3/typedb-all-windows-2.6.3.zip",
+        "2.6.2": "https://github.com/vaticle/typedb/releases/download/2.6.2/typedb-all-windows-2.6.2.zip",
+        "2.6.1": "https://github.com/vaticle/typedb/releases/download/2.6.1/typedb-all-windows-2.6.1.zip",
+        "2.6.0": "https://github.com/vaticle/typedb/releases/download/2.6.0/typedb-all-windows-2.6.0.zip",
+        "2.5.0": "https://github.com/vaticle/typedb/releases/download/2.5.0/typedb-all-windows-2.5.0.zip",
+        "2.4.0": "https://github.com/vaticle/typedb/releases/download/2.4.0/typedb-all-windows-2.4.0.zip",
+        "2.3.3": "https://github.com/vaticle/typedb/releases/download/2.3.3/typedb-all-windows-2.3.3.zip",
+        "2.3.2": "https://github.com/vaticle/typedb/releases/download/2.3.2/typedb-all-windows-2.3.2.zip",
+        "2.3.1": "https://github.com/vaticle/typedb/releases/download/2.3.1/typedb-all-windows-2.3.1.zip",
+        "2.3.0": "https://github.com/vaticle/typedb/releases/download/2.3.0/typedb-all-windows-2.3.0.zip",
+        "2.2.0": "https://github.com/vaticle/typedb/releases/download/2.2.0/typedb-all-windows-2.2.0.zip",
+        "2.1.3": "https://github.com/vaticle/typedb/releases/download/2.1.3/typedb-all-windows-2.1.3.zip",
+        "2.1.1": "https://github.com/vaticle/typedb/releases/download/2.1.1/typedb-all-windows-2.1.1.zip",
+        "2.0.2": "https://github.com/vaticle/typedb/releases/download/2.0.2/grakn-core-all-windows-2.0.2.zip",
+        "2.0.1": "https://github.com/vaticle/typedb/releases/download/2.0.1/grakn-core-all-windows-2.0.1.zip",
+        "2.0.0": "https://github.com/vaticle/typedb/releases/download/2.0.0/grakn-core-all-windows-2.0.0.zip",
+    },
+};
+const defaultOS: keyof Downloads = defaultOSMap[getCurrentOS()]
+const latestVersion = Object.keys(downloads[defaultOS])[0] as TypeDBVersion;
+
 const OpenSourcePane: React.FC = () => {
     const classes = Object.assign({}, vaticleStyles(), downloadPageProductStyles(), comparisonStyles());
 
-    const latestReleaseDate = new Date("2022-03-22");
-    const latestReleaseDateFormatted = moment(latestReleaseDate).format("Do [of] MMMM YYYY");
     const typeDBVersion = useTypeDBVersion()[0];
     const latestReleaseNotesURL = `${urls.github.typedbReleases}/tag/${typeDBVersion}`;
-
-    const downloads: Downloads = {
-        "macOS": {
-            "2.8.0": "https://github.com/vaticle/typedb/releases/download/2.8.0/typedb-all-mac-2.8.0.zip",
-            "2.7.1": "https://github.com/vaticle/typedb/releases/download/2.7.1/typedb-all-mac-2.7.1.zip",
-            "2.7.0": "https://github.com/vaticle/typedb/releases/download/2.7.0/typedb-all-mac-2.7.0.zip",
-            "2.6.4": "https://github.com/vaticle/typedb/releases/download/2.6.4/typedb-all-mac-2.6.4.zip",
-            "2.6.3": "https://github.com/vaticle/typedb/releases/download/2.6.3/typedb-all-mac-2.6.3.zip",
-            "2.6.2": "https://github.com/vaticle/typedb/releases/download/2.6.2/typedb-all-mac-2.6.2.zip",
-            "2.6.1": "https://github.com/vaticle/typedb/releases/download/2.6.1/typedb-all-mac-2.6.1.zip",
-            "2.6.0": "https://github.com/vaticle/typedb/releases/download/2.6.0/typedb-all-mac-2.6.0.zip",
-            "2.5.0": "https://github.com/vaticle/typedb/releases/download/2.5.0/typedb-all-mac-2.5.0.zip",
-            "2.4.0": "https://github.com/vaticle/typedb/releases/download/2.4.0/typedb-all-mac-2.4.0.zip",
-            "2.3.3": "https://github.com/vaticle/typedb/releases/download/2.3.3/typedb-all-mac-2.3.3.zip",
-            "2.3.2": "https://github.com/vaticle/typedb/releases/download/2.3.2/typedb-all-mac-2.3.2.zip",
-            "2.3.1": "https://github.com/vaticle/typedb/releases/download/2.3.1/typedb-all-mac-2.3.1.zip",
-            "2.3.0": "https://github.com/vaticle/typedb/releases/download/2.3.0/typedb-all-mac-2.3.0.zip",
-            "2.2.0": "https://github.com/vaticle/typedb/releases/download/2.2.0/typedb-all-mac-2.2.0.zip",
-            "2.1.3": "https://github.com/vaticle/typedb/releases/download/2.1.3/typedb-all-mac-2.1.3.zip",
-            "2.1.1": "https://github.com/vaticle/typedb/releases/download/2.1.1/typedb-all-mac-2.1.1.zip",
-            "2.0.2": "https://github.com/vaticle/typedb/releases/download/2.0.2/grakn-core-all-mac-2.0.2.zip",
-            "2.0.1": "https://github.com/vaticle/typedb/releases/download/2.0.1/grakn-core-all-mac-2.0.1.zip",
-            "2.0.0": "https://github.com/vaticle/typedb/releases/download/2.0.0/grakn-core-all-mac-2.0.0.zip",
-        },
-        "Linux": {
-            "2.8.0": "https://github.com/vaticle/typedb/releases/download/2.8.0/typedb-all-linux-2.8.0.tar.gz",
-            "2.7.1": "https://github.com/vaticle/typedb/releases/download/2.7.1/typedb-all-linux-2.7.1.tar.gz",
-            "2.7.0": "https://github.com/vaticle/typedb/releases/download/2.7.0/typedb-all-linux-2.7.0.tar.gz",
-            "2.6.4": "https://github.com/vaticle/typedb/releases/download/2.6.4/typedb-all-linux-2.6.4.tar.gz",
-            "2.6.3": "https://github.com/vaticle/typedb/releases/download/2.6.3/typedb-all-linux-2.6.3.tar.gz",
-            "2.6.2": "https://github.com/vaticle/typedb/releases/download/2.6.2/typedb-all-linux-2.6.2.tar.gz",
-            "2.6.1": "https://github.com/vaticle/typedb/releases/download/2.6.1/typedb-all-linux-2.6.1.tar.gz",
-            "2.6.0": "https://github.com/vaticle/typedb/releases/download/2.6.0/typedb-all-linux-2.6.0.tar.gz",
-            "2.5.0": "https://github.com/vaticle/typedb/releases/download/2.5.0/typedb-all-linux-2.5.0.tar.gz",
-            "2.4.0": "https://github.com/vaticle/typedb/releases/download/2.4.0/typedb-all-linux-2.4.0.tar.gz",
-            "2.3.3": "https://github.com/vaticle/typedb/releases/download/2.3.3/typedb-all-linux-2.3.3.tar.gz",
-            "2.3.2": "https://github.com/vaticle/typedb/releases/download/2.3.2/typedb-all-linux-2.3.2.tar.gz",
-            "2.3.1": "https://github.com/vaticle/typedb/releases/download/2.3.0/typedb-all-linux-2.3.1.tar.gz",
-            "2.3.0": "https://github.com/vaticle/typedb/releases/download/2.3.0/typedb-all-linux-2.3.0.tar.gz",
-            "2.2.0": "https://github.com/vaticle/typedb/releases/download/2.2.0/typedb-all-linux-2.2.0.tar.gz",
-            "2.1.3": "https://github.com/vaticle/typedb/releases/download/2.1.3/typedb-all-linux-2.1.3.tar.gz",
-            "2.1.1": "https://github.com/vaticle/typedb/releases/download/2.1.1/typedb-all-linux-2.1.1.tar.gz",
-            "2.0.2": "https://github.com/vaticle/typedb/releases/download/2.0.2/grakn-core-all-linux-2.0.2.tar.gz",
-            "2.0.1": "https://github.com/vaticle/typedb/releases/download/2.0.1/grakn-core-all-linux-2.0.1.tar.gz",
-            "2.0.0": "https://github.com/vaticle/typedb/releases/download/2.0.0/grakn-core-all-linux-2.0.0.tar.gz",
-        },
-        "Windows": {
-            "2.8.0": "https://github.com/vaticle/typedb/releases/download/2.8.0/typedb-all-windows-2.8.0.zip",
-            "2.7.1": "https://github.com/vaticle/typedb/releases/download/2.7.1/typedb-all-windows-2.7.1.zip",
-            "2.7.0": "https://github.com/vaticle/typedb/releases/download/2.7.0/typedb-all-windows-2.7.0.zip",
-            "2.6.4": "https://github.com/vaticle/typedb/releases/download/2.6.4/typedb-all-windows-2.6.4.zip",
-            "2.6.3": "https://github.com/vaticle/typedb/releases/download/2.6.3/typedb-all-windows-2.6.3.zip",
-            "2.6.2": "https://github.com/vaticle/typedb/releases/download/2.6.2/typedb-all-windows-2.6.2.zip",
-            "2.6.1": "https://github.com/vaticle/typedb/releases/download/2.6.1/typedb-all-windows-2.6.1.zip",
-            "2.6.0": "https://github.com/vaticle/typedb/releases/download/2.6.0/typedb-all-windows-2.6.0.zip",
-            "2.5.0": "https://github.com/vaticle/typedb/releases/download/2.5.0/typedb-all-windows-2.5.0.zip",
-            "2.4.0": "https://github.com/vaticle/typedb/releases/download/2.4.0/typedb-all-windows-2.4.0.zip",
-            "2.3.3": "https://github.com/vaticle/typedb/releases/download/2.3.3/typedb-all-windows-2.3.3.zip",
-            "2.3.2": "https://github.com/vaticle/typedb/releases/download/2.3.2/typedb-all-windows-2.3.2.zip",
-            "2.3.1": "https://github.com/vaticle/typedb/releases/download/2.3.1/typedb-all-windows-2.3.1.zip",
-            "2.3.0": "https://github.com/vaticle/typedb/releases/download/2.3.0/typedb-all-windows-2.3.0.zip",
-            "2.2.0": "https://github.com/vaticle/typedb/releases/download/2.2.0/typedb-all-windows-2.2.0.zip",
-            "2.1.3": "https://github.com/vaticle/typedb/releases/download/2.1.3/typedb-all-windows-2.1.3.zip",
-            "2.1.1": "https://github.com/vaticle/typedb/releases/download/2.1.1/typedb-all-windows-2.1.1.zip",
-            "2.0.2": "https://github.com/vaticle/typedb/releases/download/2.0.2/grakn-core-all-windows-2.0.2.zip",
-            "2.0.1": "https://github.com/vaticle/typedb/releases/download/2.0.1/grakn-core-all-windows-2.0.1.zip",
-            "2.0.0": "https://github.com/vaticle/typedb/releases/download/2.0.0/grakn-core-all-windows-2.0.0.zip",
-        },
-    };
-
-    const defaultOS: keyof Downloads = defaultOSMap[getCurrentOS()]
-    const latestVersion = Object.keys(downloads[defaultOS])[0] as TypeDBVersion;
     const [selectedOS, setSelectedOS] = useState<keyof Downloads>(defaultOS);
     const [selectedVersion, setSelectedVersion] = useState(latestVersion);
     const [downloadURL, setDownloadURL] = useState(downloads[defaultOS][latestVersion]);

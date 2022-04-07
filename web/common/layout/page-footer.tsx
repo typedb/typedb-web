@@ -15,7 +15,8 @@ import { NewsletterForm } from "../../pages/newsletter/newsletter-form";
 import { deleteSearchParam, getSearchParam } from "../util/search-params";
 import { VaticleSnackbar } from "../snackbar/snackbar";
 
-// TODO: The routes used in this Footer must be parameterised. Otherwise, it depends on pages, which is not allowed.
+// TODO: The routes used in this Footer must be parameterised. Otherwise, it depends on 'pages', which will
+//  not be allowed once 'common' is a separate NPM package.
 export const PageFooter: React.FC = () => {
     const classes = Object.assign({}, vaticleStyles(), pageFooterStyles());
 
@@ -91,7 +92,7 @@ export const PageFooter: React.FC = () => {
                                     <FooterLink to={routes.typeDB}>TypeDB</FooterLink>
                                     <FooterLink to={routes.typeDBCluster}>TypeDB Cluster</FooterLink>
                                     <FooterLink href={urls.docs.typeDBQuickstart}>Quickstart</FooterLink>
-                                    <FooterLink to={routes.support} target="_blank">Support</FooterLink>
+                                    <FooterLink to={routes.services} target="_blank">Services</FooterLink>
                                 </ul>
                             </div>
                             <div className={classes.linkBlock}>

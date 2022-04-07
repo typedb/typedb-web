@@ -10,33 +10,32 @@ import {vaticleStyles} from "../../common/styles/vaticle-styles";
 
 type ProductName = "TypeDB" | "TypeDB Cluster" | "TypeDB Studio";
 
-// TODO: Refactor into TabItem<ProductName>
 interface Product {
     name: ProductName,
     content: React.FC<any>;
     id: string;
 }
 
+const products: Product[] = [{
+    name: "TypeDB",
+    content: TypeDBTab,
+    id: "typedb",
+}, {
+    name: "TypeDB Studio",
+    content: TypeDBStudioTab,
+    id: "typedb-studio",
+}, {
+    name: "TypeDB Cluster",
+    content: TypeDBClusterTab,
+    id: "typedb-cluster",
+}];
+
 export const ProductSection: React.FC<ClassProps> = ({className}) => {
     const classes = Object.assign({}, vaticleStyles(), downloadPageProductStyles());
 
-    const allProducts: Product[] = [{
-        name: "TypeDB",
-        content: TypeDBTab,
-        id: "typedb",
-    }, {
-        name: "TypeDB Studio",
-        content: TypeDBStudioTab,
-        id: "typedb-studio",
-    }, {
-        name: "TypeDB Cluster",
-        content: TypeDBClusterTab,
-        id: "typedb-cluster",
-    }];
-
     return (
         <section className={className}>
-            <VaticleTabs items={allProducts} anchor classes={{
+            <VaticleTabs items={products} anchor classes={{
                 tabGroup: classes.tabGroup, tabItem: clsx(classes.tabItem, classes.h5),
                 selected: classes.tabItemSelected, first: classes.firstTabItem, last: classes.lastTabItem
             }}/>

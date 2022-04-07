@@ -6,17 +6,15 @@ import {downloadPageProductStyles} from "./download-styles";
 import clsx from "clsx";
 import {VaticleButton} from "../../common/button/button";
 
-export const TypeDBClusterTab: React.FC = () => {
-    const items: [ComparisonBlockItem, ComparisonBlockItem] = [{
-        title: "Cloud Deployment",
-        content: () => <CloudPane/>,
-    }, {
-        title: "On Premise",
-        content: () => <OnPremisePane/>,
-    }];
+const items: [ComparisonBlockItem, ComparisonBlockItem] = [{
+    title: "Cloud Deployment",
+    content: () => <CloudPane/>,
+}, {
+    title: "On Premise",
+    content: () => <OnPremisePane/>,
+}];
 
-    return <ComparisonBlock items={items}/>;
-}
+export const TypeDBClusterTab: React.FC = () => <ComparisonBlock items={items}/>;
 
 const CloudPane: React.FC = () => {
     const classes = Object.assign({}, vaticleStyles(), downloadPageProductStyles(), comparisonStyles());

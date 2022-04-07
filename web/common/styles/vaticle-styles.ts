@@ -239,11 +239,4 @@ export const vaticleStyles = makeStyles({
             display: "none !important",
         },
     },
-
-    inlineForm: {
-        "@media(min-width: 1200px)": {
-            marginLeft: 40,
-            marginRight: 40,
-        },
-    },
 });

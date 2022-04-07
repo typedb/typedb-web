@@ -14,7 +14,7 @@ export const lifeSciencesData: UseCaseData = {
     "whitePaperLink": {
         "text": "Download White Paper",
         "hubspotFormID": "55564d17-935c-4ff5-8642-a682fb09de95",
-        "url": "/files/Accelerating_Drug_Discovery_with_a_TypeDB_Knowledge_Graph.pdf"
+        "url": "/documents/Accelerating_Drug_Discovery_with_a_TypeDB_Knowledge_Graph.pdf"
     },
     "section1": {
         "title": "Accelerating Biomedical Knowledge Discovery with TypeDB",

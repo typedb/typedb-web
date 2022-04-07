@@ -12,22 +12,22 @@ interface Cookie {
     purpose: string;
 }
 
+const cookies: Cookie[] = [{
+    source: "Google Analytics",
+    name: "_ga",
+    purpose: "Used to distinguish users.",
+}, {
+    source: "Google Analytics",
+    name: "_gat",
+    purpose: "Used to distinguish users.",
+}, {
+    source: "Google Analytics",
+    name: "_gid",
+    purpose: "Used to distinguish users.",
+}];
+
 export const PrivacyPolicyPage: React.FC = () => {
     const classes = vaticleStyles();
-
-    const cookies: Cookie[] = [{
-        source: "Google Analytics",
-        name: "_ga",
-        purpose: "Used to distinguish users.",
-    }, {
-        source: "Google Analytics",
-        name: "_gat",
-        purpose: "Used to distinguish users.",
-    }, {
-        source: "Google Analytics",
-        name: "_gid",
-        purpose: "Used to distinguish users.",
-    }];
 
     return (
         <VaticleLayout>

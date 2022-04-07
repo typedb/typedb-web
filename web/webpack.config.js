@@ -19,7 +19,7 @@ module.exports = {
     new CopyWebpackPlugin({
       patterns: [
         { from: "assets/images/vaticle-preview.png", to: "vaticle-preview.png" },
-        { from: "assets/files/Accelerating_Drug_Discovery_with_a_TypeDB_Knowledge_Graph.pdf", to: "files/Accelerating_Drug_Discovery_with_a_TypeDB_Knowledge_Graph.pdf" },
+        { from: "assets/documents/Accelerating_Drug_Discovery_with_a_TypeDB_Knowledge_Graph.pdf", to: "documents/Accelerating_Drug_Discovery_with_a_TypeDB_Knowledge_Graph.pdf" },
       ],
     }),
   ],

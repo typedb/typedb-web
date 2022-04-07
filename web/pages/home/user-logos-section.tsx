@@ -27,7 +27,6 @@ import QRGeneticsLogo from "../../assets/logos/purple/qr-genetics.png";
 import RAIRHealthLogo from "../../assets/logos/purple/rair-health.png";
 import RheosMedicinesLogo from "../../assets/logos/purple/rheos-medicines.png";
 import RocheLogo from "../../assets/logos/purple/roche.png";
-import RollsRoyceLogo from "../../assets/logos/purple/rolls-royce.png";
 import RowzzyLogo from "../../assets/logos/purple/rowzzy.png";
 import SixPointSixLogo from "../../assets/logos/purple/6point6.png";
 import TNOLogo from "../../assets/logos/purple/tno.png";
@@ -42,134 +41,134 @@ interface UserLogo {
     weight: number;
 }
 
+const logos: UserLogo[] = [{
+    logo: IBMLogo,
+    altText: "IBM",
+    weight: 3,
+}, {
+    logo: FlipkartLogo,
+    altText: "Flipkart",
+    weight: 3,
+}, {
+    logo: RocheLogo,
+    altText: "Roche",
+    weight: 3,
+}, {
+    logo: GenentechLogo,
+    altText: "Genentech",
+    weight: 3,
+}, {
+    logo: NestleLogo,
+    altText: "Nestle",
+    weight: 3,
+}, {
+    logo: AstraZenecaLogo,
+    altText: "AstraZeneca",
+    weight: 3,
+}, {
+    logo: EagleGenomicsLogo,
+    altText: "Eagle Genomics",
+    weight: 2,
+}, {
+    logo: CapgeminiLogo,
+    altText: "Capgemini",
+    weight: 3,
+}, {
+    logo: RheosMedicinesLogo,
+    altText: "Rheos Medicines",
+    weight: 2,
+}, {
+    logo: TNOLogo,
+    altText: "TNO",
+    weight: 2,
+}, {
+    logo: DigicustLogo,
+    altText: "Digicust",
+    weight: 1,
+}, {
+    logo: AltamiraLogo,
+    altText: "Altamira",
+    weight: 2,
+}, {
+    logo: OxfordPharmagenesisLogo,
+    altText: "Oxford Pharmagenesis",
+    weight: 2,
+}, {
+    logo: ClearskyCybersecurityLogo,
+    altText: "Clearsky Cybersecurity",
+    weight: 2,
+}, {
+    logo: TripudioLogo,
+    altText: "Tripudio",
+    weight: 2,
+}, {
+    logo: RowzzyLogo,
+    altText: "Rowzzy",
+    weight: 1,
+}, {
+    logo: AcchaLogo,
+    altText: "Accha",
+    weight: 1,
+}, {
+    logo: WeLevelLogo,
+    altText: "welevel.academy",
+    weight: 1,
+}, {
+    logo: TwoSixLogo,
+    altText: "two six labs",
+    weight: 1,
+}, {
+    logo: QRGeneticsLogo,
+    altText: "QR Genetics",
+    weight: 1,
+}, {
+    logo: DataSpartanLogo,
+    altText: "Dataspartan",
+    weight: 1,
+}, {
+    logo: BioCortexLogo,
+    altText: "BioCortex",
+    weight: 1,
+}, {
+    logo: MedasLogo,
+    altText: "Medas Solutions",
+    weight: 1,
+}, {
+    logo: IceLabLogo,
+    altText: "Ice Lab",
+    weight: 1,
+}, {
+    logo: AriwontoLogo,
+    altText: "Ariwonto",
+    weight: 1,
+}, {
+    logo: AustinCapitalDataLogo,
+    altText: "Austin Capital Data",
+    weight: 1,
+}, {
+    logo: GeminosLogo,
+    altText: "Geminos",
+    weight: 1,
+}, {
+    logo: ZessLogo,
+    altText: "Zess",
+    weight: 1,
+}, {
+    logo: SixPointSixLogo,
+    altText: "6point6",
+    weight: 1,
+}, {
+    logo: FIDELogo,
+    altText: "Fide PBC",
+    weight: 1,
+}, {
+    logo: RAIRHealthLogo,
+    altText: "RAIR Health",
+    weight: 1,
+}];
+
 export const UserLogosSection: React.FC<ClassProps> = ({className}) => {
     const classes = Object.assign({}, vaticleStyles(), corporateLogosStyles());
-
-    const logos: UserLogo[] = [{
-        logo: IBMLogo,
-        altText: "IBM",
-        weight: 3,
-    }, {
-        logo: FlipkartLogo,
-        altText: "Flipkart",
-        weight: 3,
-    }, {
-        logo: RocheLogo,
-        altText: "Roche",
-        weight: 3,
-    }, {
-        logo: GenentechLogo,
-        altText: "Genentech",
-        weight: 3,
-    }, {
-        logo: NestleLogo,
-        altText: "Nestle",
-        weight: 3,
-    }, {
-        logo: AstraZenecaLogo,
-        altText: "AstraZeneca",
-        weight: 3,
-    }, {
-        logo: EagleGenomicsLogo,
-        altText: "Eagle Genomics",
-        weight: 2,
-    }, {
-        logo: CapgeminiLogo,
-        altText: "Capgemini",
-        weight: 3,
-    }, {
-        logo: RheosMedicinesLogo,
-        altText: "Rheos Medicines",
-        weight: 2,
-    }, {
-        logo: TNOLogo,
-        altText: "TNO",
-        weight: 2,
-    }, {
-        logo: DigicustLogo,
-        altText: "Digicust",
-        weight: 1,
-    }, {
-        logo: AltamiraLogo,
-        altText: "Altamira",
-        weight: 2,
-    }, {
-        logo: OxfordPharmagenesisLogo,
-        altText: "Oxford Pharmagenesis",
-        weight: 2,
-    }, {
-        logo: ClearskyCybersecurityLogo,
-        altText: "Clearsky Cybersecurity",
-        weight: 2,
-    }, {
-        logo: TripudioLogo,
-        altText: "Tripudio",
-        weight: 2,
-    }, {
-        logo: RowzzyLogo,
-        altText: "Rowzzy",
-        weight: 1,
-    }, {
-        logo: AcchaLogo,
-        altText: "Accha",
-        weight: 1,
-    }, {
-        logo: WeLevelLogo,
-        altText: "welevel.academy",
-        weight: 1,
-    }, {
-        logo: TwoSixLogo,
-        altText: "two six labs",
-        weight: 1,
-    }, {
-        logo: QRGeneticsLogo,
-        altText: "QR Genetics",
-        weight: 1,
-    }, {
-        logo: DataSpartanLogo,
-        altText: "Dataspartan",
-        weight: 1,
-    }, {
-        logo: BioCortexLogo,
-        altText: "BioCortex",
-        weight: 1,
-    }, {
-        logo: MedasLogo,
-        altText: "Medas Solutions",
-        weight: 1,
-    }, {
-        logo: IceLabLogo,
-        altText: "Ice Lab",
-        weight: 1,
-    }, {
-        logo: AriwontoLogo,
-        altText: "Ariwonto",
-        weight: 1,
-    }, {
-        logo: AustinCapitalDataLogo,
-        altText: "Austin Capital Data",
-        weight: 1,
-    }, {
-        logo: GeminosLogo,
-        altText: "Geminos",
-        weight: 1,
-    }, {
-        logo: ZessLogo,
-        altText: "Zess",
-        weight: 1,
-    }, {
-        logo: SixPointSixLogo,
-        altText: "6point6",
-        weight: 1,
-    }, {
-        logo: FIDELogo,
-        altText: "Fide PBC",
-        weight: 1,
-    }, {
-        logo: RAIRHealthLogo,
-        altText: "RAIR Health",
-        weight: 1,
-    }];
 
     const cellWidth = () => styleVars.cellWidth[window.matchMedia("(max-width: 767px)").matches ? "mobile" : "desktop"];
     const cellSpacing = () => styleVars.rowSpacing[window.matchMedia("(max-width: 767px)").matches ? "mobile" : "desktop"]
@@ -212,7 +211,7 @@ export const UserLogosSection: React.FC<ClassProps> = ({className}) => {
     let despawningIndex, spawningIndex, spawningLogo, despawningLogo;
 
     const transitionInterval = 2000;
-    // TODO: I think we can make use of this horrible construction with useState + useRef to clean up this code.
+    // TODO: I think we can make more use of useState + useRef to clean up the overall user logos animation code.
     //       Ideally, we'd end transitions using a single setTimeout for each transition, triggered on transition start.
     const [lastTransitionStart, setLastTransitionStart] = useState<number>(null);
     const lastTransitionStartRef = useRef(lastTransitionStart);

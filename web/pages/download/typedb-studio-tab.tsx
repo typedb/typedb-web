@@ -10,18 +10,16 @@ import {urls} from "../../common/urls";
 import {VaticleSelect} from "../../common/select/select";
 import {VaticleButton} from "../../common/button/button";
 
-// TODO: This tab was copied from TypeDBTab - we should reuse and extend TypeDBTab
-export const TypeDBStudioTab: React.FC = () => {
-    const items: [ComparisonBlockItem, ComparisonBlockItem] = [{
-        title: "Open Source",
-        content: () => <OpenSourcePane/>,
-    }, {
-        title: "Commercial",
-        content: () => <CommercialPane/>,
-    }];
+const items: [ComparisonBlockItem, ComparisonBlockItem] = [{
+    title: "Open Source",
+    content: () => <OpenSourcePane/>,
+}, {
+    title: "Commercial",
+    content: () => <CommercialPane/>,
+}];
 
-    return <ComparisonBlock items={items}/>;
-}
+// TODO: This tab was copied from TypeDBTab - we should reuse and extend TypeDBTab
+export const TypeDBStudioTab: React.FC = () => <ComparisonBlock items={items}/>;
 
 interface Downloads {
     "Ubuntu / Debian": NativeDownloads;
@@ -41,46 +39,45 @@ const defaultOSMap: {[key in OS]: keyof Downloads} = {
     Other: "macOS",
 }
 
+const latestReleaseDate = new Date("2022-03-29 17:00:00");
+const latestReleaseDateFormatted = moment(latestReleaseDate).format("Do [of] MMMM YYYY");
+const studioVersion = "2.4.0-alpha-5";
+const latestReleaseNotesURL = `${urls.github.typedbStudioReleases}/tag/${studioVersion}`;
+const downloads: Downloads = {
+    "Ubuntu / Debian": {
+        "2.4.0-alpha-5": "https://github.com/vaticle/typedb-studio/releases/download/2.4.0-alpha-5/typedb-studio-linux_2.4.0-alpha-5-1_amd64.deb",
+        "2.1.2": "https://github.com/vaticle/typedb-workbase/releases/download/2.1.2/typedb-workbase-linux-2.1.2.AppImage",
+        "2.1.0": "https://github.com/vaticle/typedb-workbase/releases/download/2.1.0/typedb-workbase-linux-2.1.0.AppImage",
+        "2.0.2": "https://github.com/vaticle/typedb-workbase/releases/download/2.0.2/grakn-workbase-linux-2.0.2.AppImage",
+        "2.0.1": "https://github.com/vaticle/typedb-workbase/releases/download/2.0.1/grakn-workbase-linux-2.0.1.AppImage",
+        "2.0.0": "https://github.com/vaticle/typedb-workbase/releases/download/2.0.0/grakn-workbase-linux-2.0.0.AppImage",
+    },
+    "Linux (cross-platform)": {
+        "2.4.0-alpha-5": "https://github.com/vaticle/typedb-studio/releases/download/2.4.0-alpha-5/typedb-studio-linux-java-binary-2.4.0-alpha-5.tar.gz",
+    },
+    "macOS": {
+        "2.4.0-alpha-5": "https://github.com/vaticle/typedb-studio/releases/download/2.4.0-alpha-5/typedb-studio-mac-2.4.0-alpha-5.dmg",
+        "2.1.2": "https://github.com/vaticle/typedb-workbase/releases/download/2.1.2/typedb-workbase-mac-2.1.2.dmg",
+        "2.1.0": "https://github.com/vaticle/typedb-workbase/releases/download/2.1.0/typedb-workbase-mac-2.1.0.dmg",
+        "2.0.2": "https://github.com/vaticle/typedb-workbase/releases/download/2.0.2/grakn-workbase-mac-2.0.2.dmg",
+        "2.0.1": "https://github.com/vaticle/typedb-workbase/releases/download/2.0.1/grakn-workbase-mac-2.0.1.dmg",
+        "2.0.0": "https://github.com/vaticle/typedb-workbase/releases/download/2.0.0/grakn-workbase-mac-2.0.0.dmg",
+    },
+    "Windows": {
+        "2.4.0-alpha-5": "https://github.com/vaticle/typedb-studio/releases/download/2.4.0-alpha-5/typedb-studio-windows-2.4.0-alpha-5.exe",
+        "2.1.2": "https://github.com/vaticle/typedb-workbase/releases/download/2.1.2/typedb-workbase-win-2.1.2.exe",
+        "2.1.0": "https://github.com/vaticle/typedb-workbase/releases/download/2.1.0/typedb-workbase-win-2.1.0.exe",
+        "2.0.2": "https://github.com/vaticle/typedb-workbase/releases/download/2.0.2/grakn-workbase-win-2.0.2.exe",
+        "2.0.1": "https://github.com/vaticle/typedb-workbase/releases/download/2.0.1/grakn-workbase-win-2.0.1.exe",
+        "2.0.0": "https://github.com/vaticle/typedb-workbase/releases/download/2.0.0/grakn-workbase-win-2.0.0.exe",
+    },
+};
+const defaultOS: keyof Downloads = defaultOSMap[getCurrentOS()];
+const defaultVersion: string = "2.4.0-alpha-5";
+
 const OpenSourcePane: React.FC = () => {
     const classes = Object.assign({}, vaticleStyles(), downloadPageProductStyles(), comparisonStyles());
 
-    const latestReleaseDate = new Date("2022-03-29 17:00:00");
-    const latestReleaseDateFormatted = moment(latestReleaseDate).format("Do [of] MMMM YYYY");
-    const studioVersion = "2.4.0-alpha-5";
-    const latestReleaseNotesURL = `${urls.github.typedbStudioReleases}/tag/${studioVersion}`;
-
-    const downloads: Downloads = {
-        "Ubuntu / Debian": {
-            "2.4.0-alpha-5": "https://github.com/vaticle/typedb-studio/releases/download/2.4.0-alpha-5/typedb-studio-linux_2.4.0-alpha-5-1_amd64.deb",
-            "2.1.2": "https://github.com/vaticle/typedb-workbase/releases/download/2.1.2/typedb-workbase-linux-2.1.2.AppImage",
-            "2.1.0": "https://github.com/vaticle/typedb-workbase/releases/download/2.1.0/typedb-workbase-linux-2.1.0.AppImage",
-            "2.0.2": "https://github.com/vaticle/typedb-workbase/releases/download/2.0.2/grakn-workbase-linux-2.0.2.AppImage",
-            "2.0.1": "https://github.com/vaticle/typedb-workbase/releases/download/2.0.1/grakn-workbase-linux-2.0.1.AppImage",
-            "2.0.0": "https://github.com/vaticle/typedb-workbase/releases/download/2.0.0/grakn-workbase-linux-2.0.0.AppImage",
-        },
-        "Linux (cross-platform)": {
-            "2.4.0-alpha-5": "https://github.com/vaticle/typedb-studio/releases/download/2.4.0-alpha-5/typedb-studio-linux-java-binary-2.4.0-alpha-5.tar.gz",
-        },
-        "macOS": {
-            "2.4.0-alpha-5": "https://github.com/vaticle/typedb-studio/releases/download/2.4.0-alpha-5/typedb-studio-mac-2.4.0-alpha-5.dmg",
-            "2.1.2": "https://github.com/vaticle/typedb-workbase/releases/download/2.1.2/typedb-workbase-mac-2.1.2.dmg",
-            "2.1.0": "https://github.com/vaticle/typedb-workbase/releases/download/2.1.0/typedb-workbase-mac-2.1.0.dmg",
-            "2.0.2": "https://github.com/vaticle/typedb-workbase/releases/download/2.0.2/grakn-workbase-mac-2.0.2.dmg",
-            "2.0.1": "https://github.com/vaticle/typedb-workbase/releases/download/2.0.1/grakn-workbase-mac-2.0.1.dmg",
-            "2.0.0": "https://github.com/vaticle/typedb-workbase/releases/download/2.0.0/grakn-workbase-mac-2.0.0.dmg",
-        },
-        "Windows": {
-            "2.4.0-alpha-5": "https://github.com/vaticle/typedb-studio/releases/download/2.4.0-alpha-5/typedb-studio-windows-2.4.0-alpha-5.exe",
-            "2.1.2": "https://github.com/vaticle/typedb-workbase/releases/download/2.1.2/typedb-workbase-win-2.1.2.exe",
-            "2.1.0": "https://github.com/vaticle/typedb-workbase/releases/download/2.1.0/typedb-workbase-win-2.1.0.exe",
-            "2.0.2": "https://github.com/vaticle/typedb-workbase/releases/download/2.0.2/grakn-workbase-win-2.0.2.exe",
-            "2.0.1": "https://github.com/vaticle/typedb-workbase/releases/download/2.0.1/grakn-workbase-win-2.0.1.exe",
-            "2.0.0": "https://github.com/vaticle/typedb-workbase/releases/download/2.0.0/grakn-workbase-win-2.0.0.exe",
-        },
-    };
-
-    const defaultOS: keyof Downloads = defaultOSMap[getCurrentOS()];
-    const defaultVersion: string = "2.4.0-alpha-5";
     const [selectedOS, setSelectedOS] = useState(defaultOS);
     const [selectedVersion, setSelectedVersion] = useState(defaultVersion);
     const [downloadURL, setDownloadURL] = useState(downloads[defaultOS][defaultVersion]);

@@ -1,30 +1,12 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {VaticleLayout} from "../../common/layout/layout";
 import {vaticleStyles} from "../../common/styles/vaticle-styles";
+import { InlineContactForm } from "../contact/inline-contact-form";
 import {ProductSection} from "./product-section";
 import clsx from "clsx";
-import {ContactForm} from "../contact/contact-form";
-import { VaticleSnackbar } from "../../common/snackbar/snackbar";
-import { deleteSearchParam } from "../../common/util/search-params";
-import { useHistory, useLocation } from "react-router-dom";
 
 export const DownloadPage: React.FC = () => {
     const classes = vaticleStyles();
-
-    const [contactSuccessSnackbarOpen, setContactSuccessSnackbarOpen] = useState(false);
-    const [contactErrorSnackbarOpen, setContactErrorSnackbarOpen] = useState(false);
-
-    const routerHistory = useHistory();
-    const routerLocation = useLocation();
-
-    const onContactFormSubmitDone = (res: Response) => {
-        if (res.ok) {
-            deleteSearchParam(routerHistory, routerLocation, "dialog");
-            setContactSuccessSnackbarOpen(true);
-        } else {
-            setContactErrorSnackbarOpen(true);
-        }
-    };
 
     return (
         <VaticleLayout>
@@ -38,14 +20,8 @@ export const DownloadPage: React.FC = () => {
                 <p className={clsx(classes.sectionIntro)}>
                     Let us know how we can help you and we'll help you get up to speed.
                 </p>
-
-                <div className={classes.inlineForm}>
-                    <ContactForm id="contact-form-download-page" className={classes.subsectionMargin} onSubmitDone={onContactFormSubmitDone}/>
-                </div>
+                <InlineContactForm className={classes.subsectionMargin}/>
             </section>
-
-            <VaticleSnackbar variant="success" message="Your message has been sent." open={contactSuccessSnackbarOpen} setOpen={setContactSuccessSnackbarOpen}/>
-            <VaticleSnackbar variant="error" message="Your message failed to send, please try again later." open={contactErrorSnackbarOpen} setOpen={setContactErrorSnackbarOpen}/>
         </VaticleLayout>
     );
 };

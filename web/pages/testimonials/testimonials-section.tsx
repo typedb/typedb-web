@@ -31,8 +31,7 @@ export const TestimonialsSection: React.FC<TestimonialsSectionProps> = ({title, 
             </Carousel>
 
             <div className={clsx(classes.mainActionList, classes.contentMargin)}>
-                <VaticleButton size="small" type="secondary" className={classes.contentMargin}
-                               to={contactButton?.to || "?dialog=contact"} href={contactButton?.href}>
+                <VaticleButton size="small" type="secondary" to={contactButton?.to || "?dialog=contact"} href={contactButton?.href}>
                     {contactButton?.text || "Get in touch"}
                 </VaticleButton>
             </div>
