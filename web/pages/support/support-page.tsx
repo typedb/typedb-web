@@ -1,14 +1,14 @@
-import React from "react";
-import {VaticleLayout} from "../../common/layout/layout";
-import {VaticleButton} from "../../common/button/button";
 import clsx from "clsx";
-import {urls} from "../../common/urls";
-import {vaticleStyles} from "../../common/styles/vaticle-styles";
+import React from "react";
+import { VaticleButton } from "../../common/button/button";
+import { VaticleLayout } from "../../common/layout/layout";
+import { vaticleStyles } from "../../common/styles/vaticle-styles";
+import { urls } from "../../common/urls";
 import { InlineContactForm } from "../contact/inline-contact-form";
-import { TestimonialsSection } from "../testimonials/testimonials-section";
+import { ContactButtonTarget, TestimonialsSection } from "../testimonials/testimonials-section";
 import { KeyPointsSection } from "./key-points-section";
-import { supportPageStyles } from "./support-styles";
 import { SupportOfferingsSection } from "./support-offerings-section";
+import { supportPageStyles } from "./support-styles";
 
 export const SupportPage: React.FC = () => {
     const classes = Object.assign({}, vaticleStyles(), supportPageStyles());
@@ -31,7 +31,7 @@ export const SupportPage: React.FC = () => {
             <SupportOfferingsSection className={classes.sectionMargin}/>
 
             <TestimonialsSection className={classes.sectionMargin} title="Loved by the pioneers in industry"
-                                 contactButton={{text: "Get in touch with our team", to: "#get-in-touch"}}/>
+                                 contactButton={{text: "Get in touch with our team", target: ContactButtonTarget.InlineForm}}/>
 
             <section className={classes.sectionMargin}>
                 <h1 id="get-in-touch" className={clsx(classes.h1, classes.pageAnchor)}>Get in touch with our team!</h1>

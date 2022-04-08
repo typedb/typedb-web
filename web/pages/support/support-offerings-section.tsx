@@ -4,6 +4,7 @@ import { VaticleButton } from "../../common/button/button";
 import { ClassProps } from "../../common/class-props";
 import { ComparisonTable, ComparisonTableRowData } from "../../common/comparison/comparison-table";
 import { vaticleStyles } from "../../common/styles/vaticle-styles";
+import { hashRoutes } from "../router";
 
 const tier1 = "Premium Support";
 const tier2 = "Advanced Support";
@@ -65,7 +66,7 @@ export const SupportOfferingsSection: React.FC<ClassProps> = ({className}) => {
             <h1 className={classes.h1}>Whatever stage and size your company is, we have a support plan that fits your team</h1>
             <ComparisonTable className={classes.subsectionMargin} item1={tier1} item2={tier2} rows={rows}/>
             <div className={clsx(classes.mainActionList, classes.contentMargin)}>
-                <VaticleButton size="small" type="primary" to="#get-in-touch">Contact our sales team</VaticleButton>
+                <VaticleButton size="small" type="primary" to={hashRoutes.contactSection}>Contact our sales team</VaticleButton>
             </div>
         </section>
     );

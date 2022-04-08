@@ -3,6 +3,7 @@ import { ComparisonBlock, ComparisonBlockItem } from "../../common/comparison/co
 import { comparisonStyles } from "../../common/comparison/comparison-styles";
 import {vaticleStyles} from "../../common/styles/vaticle-styles";
 import { getCurrentOS, OS } from "../../common/util/platform";
+import { hashRoutes } from "../router";
 import {downloadPageProductStyles} from "./download-styles";
 import moment from "moment";
 import clsx from "clsx";
@@ -169,7 +170,7 @@ const CommercialPane: React.FC = () => {
             <div className={classes.filler}/>
 
             <div className={clsx(classes.comparisonBlockContent, classes.mainActionList)}>
-                <VaticleButton size="small" type="secondary" className={classes.contentMargin} to="#get-in-touch">
+                <VaticleButton size="small" type="secondary" className={classes.contentMargin} to={hashRoutes.contactSection}>
                     Get in touch
                 </VaticleButton>
             </div>

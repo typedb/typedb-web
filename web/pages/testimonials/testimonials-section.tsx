@@ -4,14 +4,19 @@ import {VaticleButton} from "../../common/button/button";
 import { Carousel } from "../../common/carousel/carousel";
 import {vaticleStyles} from "../../common/styles/vaticle-styles";
 import {ClassProps} from "../../common/class-props";
+import { hashRoutes } from "../router";
 import { typeDBTestimonials } from "./data/typedb-testimonials";
 import { Testimonial } from "./testimonial";
 import { testimonialSize, testimonialsSectionStyles } from "./testimonials-styles";
 
+export enum ContactButtonTarget {
+    PopupForm,
+    InlineForm,
+}
+
 interface ContactButtonProps {
     text?: string,
-    to?: string,
-    href?: string,
+    target: ContactButtonTarget
 }
 
 interface TestimonialsSectionProps extends ClassProps {
@@ -21,6 +26,7 @@ interface TestimonialsSectionProps extends ClassProps {
 
 export const TestimonialsSection: React.FC<TestimonialsSectionProps> = ({title, contactButton, className}) => {
     const classes = Object.assign({}, vaticleStyles(), testimonialsSectionStyles());
+    const useInlineContactForm = contactButton?.target === ContactButtonTarget.InlineForm;
 
     return (
         <section className={clsx(className, classes.root)}>
@@ -31,7 +37,8 @@ export const TestimonialsSection: React.FC<TestimonialsSectionProps> = ({title, 
             </Carousel>
 
             <div className={clsx(classes.mainActionList, classes.contentMargin)}>
-                <VaticleButton size="small" type="secondary" to={contactButton?.to || "?dialog=contact"} href={contactButton?.href}>
+                <VaticleButton size="small" type="secondary" to={!useInlineContactForm && "?dialog=contact"}
+                               href={useInlineContactForm && hashRoutes.contactSection}>
                     {contactButton?.text || "Get in touch"}
                 </VaticleButton>
             </div>

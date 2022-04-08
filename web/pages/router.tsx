@@ -33,6 +33,7 @@ export const routes = {
 }
 
 export const hashRoutes = {
+    contactSection: "#get-in-touch",
     typeDB: {
         expressivity: `${routes.typeDB}#expressivity`,
         safety: `${routes.typeDB}#safety`,

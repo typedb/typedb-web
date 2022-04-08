@@ -1,12 +1,11 @@
-import React from "react";
-import {VaticleLayout} from "../../common/layout/layout";
-import {VaticleButton} from "../../common/button/button";
 import clsx from "clsx";
-import {urls} from "../../common/urls";
-import {vaticleStyles} from "../../common/styles/vaticle-styles";
+import React from "react";
+import { VaticleButton } from "../../common/button/button";
+import { VaticleLayout } from "../../common/layout/layout";
+import { vaticleStyles } from "../../common/styles/vaticle-styles";
 import { InlineContactForm } from "../contact/inline-contact-form";
 import { routes } from "../router";
-import { TestimonialsSection } from "../testimonials/testimonials-section";
+import { ContactButtonTarget, TestimonialsSection } from "../testimonials/testimonials-section";
 import { ServiceOfferingsSection } from "./service-offerings-section";
 import { servicesPageStyles } from "./services-styles";
 
@@ -37,7 +36,7 @@ export const ServicesPage: React.FC = () => {
             </section>
 
             <TestimonialsSection className={classes.sectionMargin} title="Loved by the pioneers in industry"
-                                 contactButton={{text: "Get in touch with our team", to: "#get-in-touch"}}/>
+                                 contactButton={{text: "Get in touch with our team", target: ContactButtonTarget.InlineForm}}/>
 
             <section className={classes.subsectionMargin}>
                 <h1 id="get-in-touch" className={clsx(classes.h1, classes.pageAnchor)}>Get in touch about TypeDB</h1>

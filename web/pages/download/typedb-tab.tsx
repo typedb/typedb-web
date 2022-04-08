@@ -8,6 +8,7 @@ import {VaticleButton} from "../../common/button/button";
 import clsx from "clsx";
 import {urls} from "../../common/urls";
 import {vaticleStyles} from "../../common/styles/vaticle-styles";
+import { hashRoutes } from "../router";
 import {downloadPageProductStyles} from "./download-styles";
 import { getCurrentOS, OS } from "../../common/util/platform";
 
@@ -203,7 +204,7 @@ const CommercialPane: React.FC = () => {
             <div className={classes.filler}/>
 
             <div className={clsx(classes.comparisonBlockContent, classes.mainActionList)}>
-                <VaticleButton size="small" type="secondary" className={classes.contentMargin} to="#get-in-touch">
+                <VaticleButton size="small" type="secondary" className={classes.contentMargin} to={hashRoutes.contactSection}>
                     Get in touch
                 </VaticleButton>
             </div>

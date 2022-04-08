@@ -5,8 +5,10 @@ import KnowledgeModellingIcon from "../../assets/icons/knowledge-modelling.svg";
 import MigrationAndIntegrationIcon from "../../assets/icons/migration-and-integration.svg";
 import ContextualiseIcon from "../../assets/icons/contextualise.svg";
 import ScalingIcon from "../../assets/icons/scaling.svg";
+import { VaticleButton } from "../../common/button/button";
 import { ClassProps } from "../../common/class-props";
 import { vaticleStyles } from "../../common/styles/vaticle-styles";
+import { hashRoutes } from "../router";
 import { servicesPageStyles } from "./services-styles";
 
 interface ServiceOfferingData {
@@ -77,12 +79,18 @@ const serviceOfferings: ServiceOfferingData[] = [{
 }];
 
 export const ServiceOfferingsSection: React.FC<ClassProps> = ({className}) => {
-    const classes = servicesPageStyles();
+    const classes = Object.assign({}, vaticleStyles(), servicesPageStyles());
 
     return (
-        <section className={clsx(classes.serviceOfferingsSection, className)}>
-            {serviceOfferings.map(offering => <ServiceOffering {...offering}/>)}
-        </section>
+        <>
+            <section className={clsx(classes.serviceOfferingsSection, className)}>
+                {serviceOfferings.map(offering => <ServiceOffering {...offering}/>)}
+
+            </section>
+            <div className={clsx(classes.mainActionList, classes.contentMargin)}>
+                <VaticleButton size="small" type="secondary" to={hashRoutes.contactSection}>Get in touch</VaticleButton>
+            </div>
+        </>
     )
 }
 
