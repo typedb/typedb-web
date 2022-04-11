@@ -83,7 +83,11 @@ export const UseCasePage: React.FC<UseCaseData> = ({ pageTitle, mainLink, whiteP
 
             <section className={classes.sectionMargin}>
                 <h1 className={classes.h1}>{section4.title}</h1>
-                <KeyPointTable className={classes.subsectionMargin} keyPoints={section4.keyPoints}/>
+                <KeyPointTable className={clsx(classes.section4KeyPoints, classes.contentMargin)} keyPoints={section4.keyPoints}/>
+                {section4.body &&
+                <div className={classes.contentMargin}>
+                    {section4.body.map(text => <p className={clsx(classes.mediumText, classes.textMargin, classes.introBody)}>{text}</p>)}
+                </div>}
             </section>
 
             <section className={classes.sectionMargin}>

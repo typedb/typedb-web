@@ -1,12 +1,22 @@
 import {makeStyles} from "@material-ui/core";
 
+const textContentMaxWidth = 960;
+
 export const useCaseStyles = makeStyles({
     introBody: {
-        maxWidth: 960
+        maxWidth: textContentMaxWidth,
+        marginLeft: "auto",
+        marginRight: "auto",
     },
 
     section2Image: {
         width: 760
+    },
+
+    section4KeyPoints: {
+        maxWidth: textContentMaxWidth,
+        marginLeft: "auto",
+        marginRight: "auto",
     },
 
     whitePaperFormContainer: {

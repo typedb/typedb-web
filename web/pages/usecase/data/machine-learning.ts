@@ -1,8 +1,8 @@
 import { UseCaseData } from "./use-case-data";
 import MachineLearningDiagram from "../../../assets/images/machine-learning-diagram.png";
-import DatabaseServerIcon from "../../../assets/icons/database-server.svg";
 import SecurityIcon from "../../../assets/icons/security.svg";
-import ProfessorIcon from "../../../assets/icons/professor.svg";
+import ContextualiseIcon from "../../../assets/icons/contextualise.svg";
+import LearningAndTrainingIcon from "../../../assets/icons/learning-and-training.svg";
 
 export const machineLearningData: UseCaseData = {
     "pageTitle": "Knowledge Graphs and Machine Learning",
@@ -20,10 +20,7 @@ export const machineLearningData: UseCaseData = {
         "title": "Why use TypeDB Knowledge Graphs for Machine Learning?",
         "body": [
             "TypeDB's strong type system allows you to model your data natively based on the entity relationship model, making it possible to build a Knowledge Graph that encodes the necessary context and semantics in your domain. It's then straightforward to learn and make predictions over interrelated data, for instance, data that has been ingested from various corporate silos using ontologies or taxonomies.",
-            "TypeDB makes it possible to build the best possible features for your models to consume. Its strong type system ensures that your data has a clear structure defined by a schema. By checking that everything you insert adheres to a schema, this gives concrete assurance that the data is both typed and logically consistent. TypeDB also provides type hierarchies, which means learning about one type can have implications for other types in the same hierarchy. There are many more benefits that TypeDB's strong type system provides (see white paper below).",
-            "This solves a serious problem with learning over data held in tables. When flattening such data to build features we are prone to omit context and semantics. For instance, a graph ML algorithm wouldn't be able to walk over an SQL table if it had fields such as \"address1\", \"address2\", \"address3\" - it wouldn't know these to be interchangeable and equivalent.",
-            "In other words, building a strongly-typed knowledge graph for machine learning with TypeDB provides context and semantics enabling your learner to really understand and capitalise upon connected data. Using TypeDB, you can use any of the wide range of graph learning approaches, such as link prediction, node classification and attribute prediction. Through our open source repository KGLIB, TypeDB has also direct integrations with TensorFlow and PyTorch Geometric that you can start using today.",
-            "Given the new insights that TypeDB enables you to find, this can provide your company with the next competitive edge. That's why today TypeDB knowledge graphs are used for machine learning across various industries such as drug discovery, cyber security, robotics, fraud detection, and many more. Learn more in the white paper below."
+            "TypeDB makes it possible to build the best possible features for your models to consume. Its strong type system ensures that your data has a clear structure defined by a schema. By checking that everything you insert adheres to a schema, this gives concrete assurance that the data is both typed and logically consistent. TypeDB also provides type hierarchies, which means learning about one type can have implications for other types in the same hierarchy. There are many more benefits that TypeDB's strong type system provides (see white paper below)."
         ]
     },
     "section2": {
@@ -39,7 +36,7 @@ export const machineLearningData: UseCaseData = {
             {
                 "title": "Add Context to your Data",
                 "body": "Adding type information in machine learning ensures that every piece of data is guaranteed to have a predefined type. You can rely on these types as additional and contextual features for your entire knowledge graph.",
-                "icon": DatabaseServerIcon
+                "icon": ContextualiseIcon
             },
             {
                 "title": "Type Safety Guarantees",
@@ -49,7 +46,7 @@ export const machineLearningData: UseCaseData = {
             {
                 "title": "Learning with Inference",
                 "body": "Use TypeDB's built-in inference engine, combined with a neural network to predict new elements in a knowledge graph. Find new attributes, discover new relations, or build generic embeddings of TypeDB concepts.",
-                "icon": ProfessorIcon
+                "icon": LearningAndTrainingIcon
             }
         ],
         "keyPointPanelHeight": { desktop: 324, mobile: 275 }
@@ -67,12 +64,13 @@ export const machineLearningData: UseCaseData = {
             },
             {
                 "title": "Robotics",
-                "body": "Autonomous vehicles leverage machine learning with TypeDB to create an underlying database of real-world observations. Through object recognition, TypeBD's inference engine can, for example, infer in what room of a house it's located in or how it should execute a particular task."
+                "body": "Autonomous vehicles leverage machine learning with TypeDB to create an underlying database of real-world observations. Through object recognition, TypeDB's inference engine can, for example, infer in what room of a house it's located in or how it should execute a particular task."
             },
-            {
-                "title": "Fraud Detection",
-                "body": ""
-            }
+        ],
+        "body": [
+            "Building a strongly-typed knowledge graph for machine learning with TypeDB provides context and semantics enabling your learner to really understand and capitalise upon connected data. Using TypeDB, you can use any of the wide range of graph learning approaches, such as link prediction, node classification and attribute prediction. Through our open source repository KGLIB, TypeDB has also direct integrations with TensorFlow and PyTorch Geometric that you can start using today.",
+            "This solves a serious problem with learning over data held in tables. When flattening such data to build features we are prone to omit context and semantics. For instance, a graph ML algorithm wouldn't be able to walk over an SQL table if it had fields such as \"address1\", \"address2\", \"address3\" - it wouldn't know these to be interchangeable and equivalent.",
+            "Given the new insights that TypeDB enables you to find, this can provide your company with the next competitive edge. That's why today TypeDB knowledge graphs are used for machine learning across various industries such as drug discovery, cyber security, robotics, fraud detection, and many more. Learn more in the white paper below."
         ]
     },
     "section5": {

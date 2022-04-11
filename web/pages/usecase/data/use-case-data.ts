@@ -30,6 +30,8 @@ interface BodyMultiParagraph {
     body: string[]
 }
 
+type BodyMultiParagraphOptional = Partial<BodyMultiParagraph>;
+
 interface Icon {
     icon: React.FC
 }
@@ -55,6 +57,6 @@ export interface UseCaseData {
     section1: Title & BodyMultiParagraph,
     section2: Title & Image,
     section3: Title & KeyPointPanels,
-    section4: Title & KeyPoints,
+    section4: Title & KeyPoints & BodyMultiParagraphOptional,
     section5: Title
 }

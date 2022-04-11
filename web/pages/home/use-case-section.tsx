@@ -23,7 +23,7 @@ interface UseCase {
     name: UseCaseName;
     icon: React.FC<any>;
     description: string;
-    learnMoreRoute: string | null;
+    learnMoreRoute: string | undefined;
 }
 
 export const UseCaseSection: React.FC<ClassProps> = ({className}) => {
@@ -36,7 +36,7 @@ export const UseCaseSection: React.FC<ClassProps> = ({className}) => {
                     interrogated semantically and logically. TypeDB enables engineers to model and aggregate disparate 
                     sources of data to become one unified Knowledge Graph, making it possible to infer new knowledge 
                     by its reasoning engine.`,
-        learnMoreRoute: null,
+        learnMoreRoute: undefined,
     }, {
         name: "Machine Learning",
         icon: MachineLearningIcon,
@@ -44,7 +44,7 @@ export const UseCaseSection: React.FC<ClassProps> = ({className}) => {
                     context, and utilise this critical information to improve the accuracy and versatility of ML models. 
                     TypeDB enables ML systems to accumulate datasets as one centralised, reusable, and highly contextualised 
                     knowledge base.`,
-        learnMoreRoute: null,
+        learnMoreRoute: undefined,
     }, {
         name: "Life Sciences",
         icon: LifeScienceIcon,
@@ -60,7 +60,7 @@ export const UseCaseSection: React.FC<ClassProps> = ({className}) => {
                     pieces of information that are deliberately hidden. TypeDB allows defence organisations to easily aggregate, 
                     and interrogate these networks in real-time and stay two-steps ahead of bad actors, while avoiding critical, 
                     and costly mistakes.`,
-        learnMoreRoute: null,
+        learnMoreRoute: undefined,
     }, {
         name: "Telecommunication",
         icon: TelecommunicationIcon,
@@ -68,7 +68,7 @@ export const UseCaseSection: React.FC<ClassProps> = ({className}) => {
                     and querying these networks are challenging, and the cost of mistakes are too high. TypeDB allows 
                     telecommunication providers to build robust models to capture entire networks of systems that did not have
                     visibility before.`,
-        learnMoreRoute: null,
+        learnMoreRoute: undefined,
     }];
 
     const [selectedIndustry, setSelectedIndustry] = useState<UseCase>(useCases[2]);

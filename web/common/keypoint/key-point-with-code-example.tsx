@@ -5,7 +5,7 @@ import {vaticleStyles} from "../styles/vaticle-styles";
 import {ClassProps} from "../class-props";
 import {keyPointStyles} from "./key-point-styles";
 
-interface KeyPointWithCodeExampleButtonProps extends VaticleButtonProps {
+interface KeyPointWithCodeExampleButtonProps extends Partial<VaticleButtonProps> {
     text: "Learn More" | "Documentation" | "Back Home" | "Coming Soon!";
 }
 
@@ -20,7 +20,7 @@ export interface KeyPointWithCodeExampleProps extends ClassProps {
 export const KeyPointWithCodeExample: React.FC<KeyPointWithCodeExampleProps> = ({className, id, title, body, examplePosition, button, children}) => {
     const classes = Object.assign({}, vaticleStyles(), keyPointStyles());
 
-    const buttonProps: KeyPointWithCodeExampleButtonProps = Object.assign({ size: "small", type: "secondary" }, button);
+    const buttonProps: KeyPointWithCodeExampleButtonProps & Pick<VaticleButtonProps, "size" | "type"> = Object.assign({ size: "small", type: "secondary" }, button);
     delete buttonProps.text;
 
     return (
