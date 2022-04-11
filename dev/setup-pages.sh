@@ -9,5 +9,5 @@ tar -xf react-pages-dev.tar.gz
 mv dist pages
 rm -f react-pages-dev.tar.gz
 cd ..
-cp -R events local/pages
+cp -R conferences local/pages
 rm -f local/pages/conferences/BUILD
