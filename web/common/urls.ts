@@ -4,7 +4,7 @@ const githubURL = "https://github.com/vaticle";
 export const urls = {
     supportPlatform: "https://support.grakn.ai",
     forum: "https://forum.vaticle.com",
-    blog: "https://medium.com/vaticle",
+    blog: "https://blog.vaticle.com",
     careers: "/careers",
     stackOverflow: "https://stackoverflow.com/questions/tagged/vaticle-typedb%20vaticle-typeql?sort=Newest&edited=true",
     officeLocation: "https://goo.gl/maps/bNN99QajkdD8THb7A",
