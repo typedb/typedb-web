@@ -32,8 +32,8 @@ export const VaticleLink: React.FC<VaticleLinkProps> = ({ children, href, to, on
             case "routeHash":
             case "routeSearch":
                 e.preventDefault();
-                if (newTabRequested) window.open(to, "_blank");
-                else routerHistory.push(to);
+                if (newTabRequested) window.open(to!, "_blank");
+                else routerHistory.push(to!);
                 break;
             case "hash":
                 e.preventDefault();

@@ -22,7 +22,7 @@ export interface VaticleTabsClasses {
 }
 
 export interface VaticleTabsProps {
-    classes?: VaticleTabsClasses;
+    classes: VaticleTabsClasses;
     items: VaticleTabItem[];
     anchor?: boolean;
 }
@@ -57,10 +57,10 @@ export const VaticleTabs: React.FC<VaticleTabsProps> = ({classes, items, anchor}
 interface VaticleTabProps {
     item: VaticleTabItem;
     selected: boolean;
-    anchor: boolean;
+    anchor?: boolean;
     first: boolean;
     last: boolean;
-    classes?: VaticleTabsClasses;
+    classes: VaticleTabsClasses;
     setSelectedItem: (value: VaticleTabItem) => void;
 }
 
@@ -73,7 +73,7 @@ const VaticleTab: React.FC<VaticleTabProps> = ({item, selected, anchor, first, l
     return (
         <VaticleLink className={clsx(ownClasses.tabItem, classes.tabItem, ownClasses.pageAnchor,
             first && classes.first, last && classes.last, selected && classes.selected)}
-                     id={item.id} to={anchor && `#${item.id}`} onClick={!anchor && selectTab} scroll={false}
+                     id={item.id} to={anchor ? `#${item.id}` : undefined} onClick={!anchor ? selectTab : undefined} scroll={false}
                      scrollPaddingTop={160}>
             {item.name}
         </VaticleLink>

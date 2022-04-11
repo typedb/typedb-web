@@ -6,8 +6,8 @@ import { vaticleStyles } from "../styles/vaticle-styles";
 import { VaticleLink, VaticleLinkProps } from "../link/link";
 
 export interface VaticleButtonProps extends VaticleLinkProps {
-    type?: 'primary' | 'secondary';
-    size?: SizeIndicator;
+    type: 'primary' | 'secondary';
+    size: SizeIndicator;
     disabled?: boolean;
     comingSoon?: boolean;
 }
@@ -42,7 +42,8 @@ export const VaticleButton: React.FC<VaticleButtonProps> = props => {
     return (
         <VaticleLink href={href} to={to} target={target} download={download} className={clsx(classes.root, disabled && classes.disable, className)} onClick={onLinkClick}>
             {comingSoon && <ComingSoonPopup visible={comingSoonPopupVisible}/>}
-            <div className={classes.content} onMouseEnter={comingSoon && showComingSoonPopup} onMouseLeave={comingSoon && hideComingSoonPopup}>
+            <div className={classes.content} onMouseEnter={comingSoon ? showComingSoonPopup : undefined}
+                 onMouseLeave={comingSoon ? hideComingSoonPopup : undefined}>
                 {children}
             </div>
         </VaticleLink>

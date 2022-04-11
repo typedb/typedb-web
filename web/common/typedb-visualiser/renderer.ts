@@ -80,7 +80,7 @@ export function renderVertexLabel(vertex: Renderer.Vertex, useFallbackFont: bool
     });
     text1.anchor.set(0.5);
     text1.resolution = window.devicePixelRatio * 2;
-    vertex.gfx.addChild(text1);
+    vertex.gfx!.addChild(text1);
 }
 
 export function renderEdge(edge: Renderer.Edge, edgesGFX: PIXI.Graphics, theme: TypeDBVisualiserTheme) {
@@ -247,7 +247,7 @@ export function renderGraph(container: HTMLElement, graphData: TypeDBVisualiserD
         edges.forEach((edge) => {
             computeEdgeLabelMetrics(edge);
             renderEdgeLabel(edge, useFallbackFont, theme);
-            app.stage.addChild(edge.labelGFX);
+            app.stage.addChild(edge.labelGFX!);
         });
 
         vertices.forEach((vertex) => {
@@ -255,7 +255,7 @@ export function renderGraph(container: HTMLElement, graphData: TypeDBVisualiserD
             const boundDragEnd = onDragEnd.bind(vertex);
             renderVertex(vertex, useFallbackFont, theme);
 
-            vertex.gfx
+            vertex.gfx!
                 .on('click', (e: Event) => {
                     if (!dragged) {
                         e.stopPropagation();
@@ -266,17 +266,17 @@ export function renderGraph(container: HTMLElement, graphData: TypeDBVisualiserD
                 .on('mouseup', () => boundDragEnd(vertex.gfx))
                 .on('mouseupoutside', () => boundDragEnd(vertex.gfx))
                 .on('mousemove', () => boundDragMove(vertex.gfx));
-            vertex.gfx.interactive = true;
-            vertex.gfx.buttonMode = true;
+            vertex.gfx!.interactive = true;
+            vertex.gfx!.buttonMode = true;
 
-            app.stage.addChild(vertex.gfx);
+            app.stage.addChild(vertex.gfx!);
         });
     }
 
     const onTick = () => {
         vertices.forEach((vertex) => {
             let { x, y, gfx } = vertex;
-            gfx.position.set(x, y);
+            gfx!.position.set(x, y);
         });
 
         for (let i = edgesGFX.children.length - 1; i >= 0; i--) {
@@ -297,7 +297,7 @@ export function renderGraph(container: HTMLElement, graphData: TypeDBVisualiserD
         destroy: () => {
             simulation.stop();
             vertices.forEach((vertex) => {
-                vertex.gfx.clear();
+                vertex.gfx!.clear();
             });
             edgesGFX.clear();
         }

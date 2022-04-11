@@ -147,7 +147,7 @@ export function installPrismPython() {
         'number': /(?:\b(?=\d)|\B(?=\.))(?:0[bo])?(?:(?:\d|0x[\da-f])[\da-f]*(?:\.\d*)?|\.\d+)(?:e[+-]?\d+)?j?\b/i,
         'operator': /[-+%=]=?|!=|\*\*?=?|\/\/?=?|<[<=>]?|>[=>]?|[&|^~]/,
         'punctuation': /[{}[\];(),.:]/
-    };
+    } as any;
 
     (Prism.languages.python['string-interpolation'] as any).inside['interpolation'].inside.rest = Prism.languages.python;
 

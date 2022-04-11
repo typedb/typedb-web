@@ -37,8 +37,8 @@ export const TestimonialsSection: React.FC<TestimonialsSectionProps> = ({title, 
             </Carousel>
 
             <div className={clsx(classes.mainActionList, classes.contentMargin)}>
-                <VaticleButton size="small" type="secondary" to={!useInlineContactForm && "?dialog=contact"}
-                               href={useInlineContactForm && hashRoutes.contactSection}>
+                <VaticleButton size="small" type="secondary" to={!useInlineContactForm ? "?dialog=contact" : undefined}
+                               href={useInlineContactForm ? hashRoutes.contactSection : undefined}>
                     {contactButton?.text || "Get in touch"}
                 </VaticleButton>
             </div>

@@ -213,7 +213,7 @@ export const UserLogosSection: React.FC<ClassProps> = ({className}) => {
     const transitionInterval = 2000;
     // TODO: I think we can make more use of useState + useRef to clean up the overall user logos animation code.
     //       Ideally, we'd end transitions using a single setTimeout for each transition, triggered on transition start.
-    const [lastTransitionStart, setLastTransitionStart] = useState<number>(null);
+    const [lastTransitionStart, setLastTransitionStart] = useState<number | null>(null);
     const lastTransitionStartRef = useRef(lastTransitionStart);
     lastTransitionStartRef.current = lastTransitionStart;
 
@@ -237,7 +237,7 @@ export const UserLogosSection: React.FC<ClassProps> = ({className}) => {
             beginTransition();
         }, transitionInterval);
         const interval2 = setInterval(() => {
-            if (logoState.spawning || Date.now() - lastTransitionStartRef.current < 900) return;
+            if (logoState.spawning || Date.now() - lastTransitionStartRef.current! < 900) return;
             endTransition();
         }, 50);
         return () => {
@@ -247,8 +247,8 @@ export const UserLogosSection: React.FC<ClassProps> = ({className}) => {
     }, [rowSize]);
 
     const endTransition = () => {
-        const newVisibleLogos = [];
-        const newHiddenLogos = [];
+        const newVisibleLogos: UserLogo[] = [];
+        const newHiddenLogos: UserLogo[] = [];
         logoState.visibleLogos[despawningIndex] = spawningLogo;
         newVisibleLogos.push(...logoState.visibleLogos);
         logoState.hiddenLogos[spawningIndex] = despawningLogo;
