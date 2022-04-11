@@ -12,7 +12,7 @@ assemble_targz(
     additional_files = WEB_MAIN_DIST_ADDITIONAL_FILES,
     targets = [
         "//web:react-pages-dev",
-        "//events:static-pages",
+        "//conferences",
     ],
     output_filename = "web-main-dev"
 )
@@ -22,7 +22,7 @@ assemble_targz(
     additional_files = WEB_MAIN_DIST_ADDITIONAL_FILES,
     targets = [
         "//web:react-pages",
-        "//events:static-pages",
+        "//conferences",
     ],
     output_filename = "web-main"
 )

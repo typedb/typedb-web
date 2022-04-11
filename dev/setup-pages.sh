@@ -10,4 +10,4 @@ mv dist pages
 rm -f react-pages-dev.tar.gz
 cd ..
 cp -R events local/pages
-rm -f local/pages/events/BUILD
+rm -f local/pages/conferences/BUILD

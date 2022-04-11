@@ -4,6 +4,6 @@ GET     /api/typedb/version     com.vaticle.web.main.server.api.TypeDBController
 
 GET     /careers                      controllers.Default.redirect(to = "https://apply.workable.com/vaticle")
 GET     /discord                      controllers.Default.redirect(to = "https://discord.gg/vaticle")
-GET     /events/typedb-cosmos-2020    controllers.Default.redirect(to = "/events/typedb-cosmos-2020/speakers")
+GET     /conferences/typedb-cosmos-2020    controllers.Default.redirect(to = "/conferences/typedb-cosmos-2020/speakers")
 
 GET     /$file<.*>     com.vaticle.web.main.server.FileController.serve(file, default="index.html")
