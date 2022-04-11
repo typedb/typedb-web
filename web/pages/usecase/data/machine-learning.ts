@@ -13,7 +13,7 @@ export const machineLearningData: UseCaseData = {
     },
     "whitePaperLink": {
         "text": "Download White Paper",
-        "url": "https://example.com",
+        "url": "/documents/Machine_Learning_White_Paper.pdf",
         "hubspotFormID": "54db22d0-ef1d-45b1-b78b-8d576f8ae2fd"
     },
     "section1": {
