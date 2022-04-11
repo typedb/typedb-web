@@ -11,7 +11,7 @@ import { SupportPage } from "./support/support-page";
 import {TypeDBPage} from "./typedb/typedb-page";
 import {Vaticle404Page} from "./error/404-page";
 import {TypeDBClusterPage} from "./typedbcluster/typedb-cluster-page";
-import { LifeSciencesPage } from "./usecase/use-case-pages";
+import { LifeSciencesPage, MachineLearningPage } from "./usecase/use-case-pages";
 
 declare global {
     interface Window {
@@ -29,6 +29,7 @@ export const routes = {
     services: "/services",
     useCases: {
         lifeSciences: "/life-sciences",
+        machineLearning: "/machine-learning",
     }
 }
 
@@ -68,6 +69,7 @@ export const VaticleRouter: React.FC = () => {
                 <VaticleRoute exact path={routes.support} title="Support" component={SupportPage}/>
                 <VaticleRoute exact path={routes.services} title="Services" component={ServicesPage}/>
                 <VaticleRoute exact path={routes.useCases.lifeSciences} title="Life Sciences" component={LifeSciencesPage}/>
+                <VaticleRoute exact path={routes.useCases.machineLearning} title="Machine Learning" component={MachineLearningPage}/>
                 <VaticleRoute exact path={routes.home} title="Home" component={HomePage}/>
 
                 <Redirect exact path={legacyRoutes.graknCore} to={routes.typeDB}/>

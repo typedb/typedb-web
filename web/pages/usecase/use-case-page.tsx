@@ -17,7 +17,6 @@ import { WhitePaperForm } from "./white-paper-form";
 
 export const UseCasePage: React.FC<UseCaseData> = ({ pageTitle, mainLink, whitePaperLink, introVideoURL, section1, section2, section3, section4, section5}) => {
     const classes = Object.assign({}, vaticleStyles(), useCaseStyles());
-    const keyPointPanelMobileHeight = 344;
 
     const [downloadFormOpen, setDownloadFormOpen] = useState(false);
     const [downloadErrorSnackbarOpen, setDownloadErrorSnackbarOpen] = useState(false);
@@ -73,10 +72,10 @@ export const UseCasePage: React.FC<UseCaseData> = ({ pageTitle, mainLink, whiteP
 
             <section className={classes.sectionMargin}>
                 <h1 className={classes.h1}>{section3.title}</h1>
-                <KeyPointPanels className={classes.subsectionMargin} panelHeight={{desktop: 408, mobile: keyPointPanelMobileHeight}}>
+                <KeyPointPanels className={classes.subsectionMargin} panelHeight={section3.keyPointPanelHeight}>
                 {section3.keyPoints.map(keyPoint =>
                     <KeyPointPanel data={{name: keyPoint.title, icon: keyPoint.icon}} horizontalPadding={20}
-                                   mobileHeight={keyPointPanelMobileHeight}>{keyPoint.body}
+                                   mobileHeight={section3.keyPointPanelHeight.mobile}>{keyPoint.body}
                     </KeyPointPanel>
                 )}
                 </KeyPointPanels>

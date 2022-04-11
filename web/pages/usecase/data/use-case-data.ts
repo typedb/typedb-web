@@ -44,7 +44,7 @@ type KeyPointPanel = KeyPoint & Icon;
 
 export interface KeyPointPanels {
     keyPoints: KeyPointPanel[]
-    keyPointPanelHeight: number
+    keyPointPanelHeight: { desktop: number, mobile: number }
 }
 
 export interface UseCaseData {

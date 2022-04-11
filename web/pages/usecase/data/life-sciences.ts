@@ -1,5 +1,5 @@
 import { UseCaseData } from "./use-case-data";
-import BackupAndRecoveryIcon from "../../../assets/icons/backup-and-recovery.svg";
+import DatabaseServerIcon from "../../../assets/icons/database-server.svg";
 import ComplexNetworkIcon from "../../../assets/icons/complex-network.svg";
 import ContextualiseIcon from "../../../assets/icons/contextualise.svg";
 import LifeSciencesGraph from "../../../assets/images/life-sciences-graph.png";
@@ -36,7 +36,7 @@ export const lifeSciencesData: UseCaseData = {
             {
                 "title": "Fast Ingestion and Integration of Heterogeneous Data",
                 "body": "TypeDB's expressiveness enables you to quickly create and iterate over a model to create semantically rich knowledge graphs. This allows you to easily ingest and integrate extremely heterogeneous biomedical data (for example, proteins, genes, diseases, drugs) in an intuitive and flexible way.",
-                "icon": BackupAndRecoveryIcon
+                "icon": DatabaseServerIcon
             },
             {
                 "title": "Contextualise Your Biomedical Data",
@@ -49,7 +49,7 @@ export const lifeSciencesData: UseCaseData = {
                 "icon": ComplexNetworkIcon
             }
         ],
-        keyPointPanelHeight: 408,
+        "keyPointPanelHeight": { desktop: 408, mobile: 344 }
     },
     "section4": {
         "title": "Expanding the Possibilities Across all Areas of Drug Discovery",

@@ -5,7 +5,7 @@ import ElasticThroughputIcon from "../../assets/icons/elastic-throughput.svg";
 import AuthenticationIcon from "../../assets/icons/authentication.svg";
 import EncryptionIcon from "../../assets/icons/encryption.svg";
 import ClusterManagementIcon from "../../assets/icons/cluster-management.svg";
-import BackupAndRecoveryIcon from "../../assets/icons/backup-and-recovery.svg";
+import DatabaseServerIcon from "../../assets/icons/database-server.svg";
 import { KeyPointPanel, KeyPointPanelData, KeyPointPanels } from "../../common/keypoint/key-point-panels";
 import { hashRoutes, routes } from "../router";
 import {vaticleStyles} from "../../common/styles/vaticle-styles";
@@ -49,7 +49,7 @@ export const TypeDBClusterSection: React.FC<ClassProps> = ({className}) => {
     }, {
         name: "Live Backup",
         description: "Recover from any system disaster to the most up-to-date version of your database with live backup.",
-        icon: BackupAndRecoveryIcon,
+        icon: DatabaseServerIcon,
         comingSoon: true,
         linkTo: hashRoutes.typeDBCluster.backup
     }];

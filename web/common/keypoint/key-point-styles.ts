@@ -112,6 +112,10 @@ export const keyPointPanelStyles = makeStyles<Theme, KeyPointPanelProps>({
         transition: "border-color 100ms ease",
         position: "relative",
 
+        "& svg": {
+            height: 52,
+        },
+
         "@media(max-width: 767px)": {
             padding: "24px 10px",
             height: ({mobileHeight}) => mobileHeight || 192,
