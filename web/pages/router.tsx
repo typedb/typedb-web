@@ -28,8 +28,8 @@ export const routes = {
     support: "/support",
     services: "/services",
     useCases: {
-        lifeSciences: "/life-sciences",
-        machineLearning: "/machine-learning",
+        lifeSciences: "/use-cases/life-sciences",
+        machineLearning: "/use-cases/machine-learning",
     }
 }
 
