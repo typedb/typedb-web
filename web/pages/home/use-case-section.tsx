@@ -16,7 +16,7 @@ type UseCaseName =
     "Knowledge Graph"
     | "Machine Learning"
     | "Life Sciences"
-    | "Defence & Security"
+    | "Cyber Security"
     | "Telecommunication";
 
 interface UseCase {
@@ -33,41 +33,41 @@ export const UseCaseSection: React.FC<ClassProps> = ({className}) => {
         name: "Knowledge Graph",
         icon: KnowledgeGraph,
         description: `Knowledge Graphs (aka. Knowledge Bases) are systems that aggregate complex networks of facts to be 
-                    interrogated semantically and logically. TypeDB enables engineers to model and aggregate disparate 
-                    sources of data to become one unified Knowledge Graph, making it possible to infer new knowledge 
-                    by its reasoning engine.`,
+                      interrogated semantically and logically. TypeDB enables engineers to model and aggregate disparate 
+                      sources of data to become one unified Knowledge Graph, making it possible to infer new knowledge 
+                      by its reasoning engine.`,
         learnMoreRoute: undefined,
     }, {
         name: "Machine Learning",
         icon: MachineLearningIcon,
         description: `Heterogeneous data holds significant inherent context. TypeDB enables ML systems to leverage this 
-                    context, and utilise this critical information to improve the accuracy and versatility of ML models. 
-                    TypeDB enables ML systems to accumulate datasets as one centralised, reusable, and highly contextualised 
-                    knowledge base.`,
+                      context, and utilise this critical information to improve the accuracy and versatility of ML
+                      models. TypeDB enables ML systems to accumulate datasets as one centralised, reusable, and highly
+                      contextualised knowledge base.`,
         learnMoreRoute: undefined,
     }, {
         name: "Life Sciences",
         icon: LifeScienceIcon,
         description: `Systems biology produces a tremendous amount of heterogeneous data which are complex by nature and 
-                    rich with semantics. TypeDB accelerates the knowledge discovery process in Life Sciences 
-                    by simplifying the integration of data, contextualising newly generated insights, and explaining 
-                    patterns in complex networks.`,
+                      rich with semantics. TypeDB accelerates the knowledge discovery process in Life Sciences 
+                      by simplifying the integration of data, contextualising newly generated insights, and explaining 
+                      patterns in complex networks.`,
         learnMoreRoute: routes.useCases.lifeSciences,
     }, {
-        name: "Defence & Security",
+        name: "Cyber Security",
         icon: SecurityIcon,
-        description: `In this internet era, defence and security means connecting anything and everything, to uncover
-                    pieces of information that are deliberately hidden. TypeDB allows defence organisations to easily aggregate, 
-                    and interrogate these networks in real-time and stay two-steps ahead of bad actors, while avoiding critical, 
-                    and costly mistakes.`,
+        description: `In this internet era, cyber security means connecting anything and everything, to uncover pieces
+                      of information that are deliberately hidden. TypeDB allows enterprises to easily aggregate, and
+                      interrogate these networks in real-time and stay two-steps ahead of bad actors, while avoiding
+                      critical, and costly mistakes.`,
         learnMoreRoute: undefined,
     }, {
         name: "Telecommunication",
         icon: TelecommunicationIcon,
-        description: `The Telecommunications industry has the most complex networks of interconnected data points. Modelling 
-                    and querying these networks are challenging, and the cost of mistakes are too high. TypeDB allows 
-                    telecommunication providers to build robust models to capture entire networks of systems that did not have
-                    visibility before.`,
+        description: `The Telecommunications industry has the most complex networks of interconnected data points.
+                      Modelling and querying these networks are challenging, and the cost of mistakes are too high.
+                      TypeDB allows telecommunication providers to build robust models to capture entire networks of
+                      systems that did not have visibility before.`,
         learnMoreRoute: undefined,
     }];
 

@@ -13,7 +13,7 @@ export const cyberSecurityData: UseCaseData = {
     },
     "whitePaperLink": {
         "text": "Download White Paper",
-        "url": "https://example.com",
+        "url": "/documents/Cyber_Threat_Intelligence_White_Paper.pdf",
         "hubspotFormID": "d670fe41-d5f8-47d4-953b-d4d8aca49af8",
     },
     "section1": {
