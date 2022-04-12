@@ -45,7 +45,7 @@ export const cyberSecurityData: UseCaseData = {
             },
             {
                 "title": "Logical Inference",
-                "body": "Use TypeDB's built-in inference engine to discover new insights from existing data. TypeDB is able to make inference at query run time when defining rules, allowing for the discovery of facts and patterns.",
+                "body": "Use TypeDB's built-in inference engine to discover new insights from existing data. TypeDB is able to make inferences at query run time when defining rules, allowing for the discovery of facts and patterns.",
                 "icon": InferenceIcon
             }
         ],
@@ -60,7 +60,7 @@ export const cyberSecurityData: UseCaseData = {
             },
             {
                 "title": "Threat Intelligence",
-                "body": "CTI data is complex, dynamic and heterogeneous. This makes it a perfect fit for TypeDB. Through its strong type system, it allows for concepts such as type hierarchies and hyper relations, which give us a level of expressivity to model the most complex cybersecurity data as accurately as possible, improving prevention of cyberattacks and the understanding of our CTI knowledge."
+                "body": "CTI data is complex, dynamic and heterogeneous. This makes it a perfect fit for TypeDB. Through its strong type system, it allows for concepts such as type hierarchies and hyper relations, which gives you a level of expressivity to model the most complex cybersecurity data as accurately as possible, improving prevention of cyberattacks and the understanding of our CTI knowledge."
             },
             {
                 "title": "Endpoint Detection and Response",
