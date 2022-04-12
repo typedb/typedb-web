@@ -15,7 +15,7 @@ export const ParagraphWithLinks: React.FC<ParagraphWithLinksProps> = ({text, cla
         const [matchedText, parsedLinkText, parsedLinkURL] = match;
         reactNodes.push(<span>{text.substring(startIndex, match.index)}</span>)
         reactNodes.push(<VaticleLink href={parsedLinkURL} target="_blank">{parsedLinkText}</VaticleLink>)
-        startIndex += match.index + matchedText.length;
+        startIndex = match.index + matchedText.length;
         match = linkRegex.exec(text);
     }
     reactNodes.push(<span>{text.substring(startIndex)}</span>)
