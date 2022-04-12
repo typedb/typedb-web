@@ -11,13 +11,17 @@ import { SupportPage } from "./support/support-page";
 import {TypeDBPage} from "./typedb/typedb-page";
 import {Vaticle404Page} from "./error/404-page";
 import {TypeDBClusterPage} from "./typedbcluster/typedb-cluster-page";
-import { LifeSciencesPage, MachineLearningPage } from "./usecase/use-case-pages";
+import { LifeSciencesPage, MachineLearningPage, CyberSecurityPage } from "./usecase/use-case-pages";
 
 declare global {
     interface Window {
         _hsq: any[];
     }
 }
+
+const fragments = {
+    useCases: "/use-cases"
+};
 
 export const routes = {
     download: "/download",
@@ -28,8 +32,9 @@ export const routes = {
     support: "/support",
     services: "/services",
     useCases: {
-        lifeSciences: "/use-cases/life-sciences",
-        machineLearning: "/use-cases/machine-learning",
+        cyberSecurity: `${fragments.useCases}/cyber-security`,
+        lifeSciences: `${fragments.useCases}/life-sciences`,
+        machineLearning: `${fragments.useCases}/machine-learning`,
     }
 }
 
@@ -68,6 +73,7 @@ export const VaticleRouter: React.FC = () => {
                 <VaticleRoute exact path={routes.typeDBCluster} title="TypeDB Cluster" component={TypeDBClusterPage}/>
                 <VaticleRoute exact path={routes.support} title="Support" component={SupportPage}/>
                 <VaticleRoute exact path={routes.services} title="Services" component={ServicesPage}/>
+                <VaticleRoute exact path={routes.useCases.cyberSecurity} title="Cyber Security" component={CyberSecurityPage}/>
                 <VaticleRoute exact path={routes.useCases.lifeSciences} title="Life Sciences" component={LifeSciencesPage}/>
                 <VaticleRoute exact path={routes.useCases.machineLearning} title="Machine Learning" component={MachineLearningPage}/>
                 <VaticleRoute exact path={routes.home} title="Home" component={HomePage}/>

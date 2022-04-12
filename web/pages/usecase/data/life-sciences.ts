@@ -1,6 +1,6 @@
 import { UseCaseData } from "./use-case-data";
 import DatabaseServerIcon from "../../../assets/icons/database-server.svg";
-import ComplexNetworkIcon from "../../../assets/icons/complex-network.svg";
+import InferenceIcon from "../../../assets/icons/inference.svg";
 import ContextualiseIcon from "../../../assets/icons/contextualise.svg";
 import LifeSciencesGraph from "../../../assets/images/life-sciences-graph.png";
 
@@ -46,7 +46,7 @@ export const lifeSciencesData: UseCaseData = {
             {
                 "title": "Explain New Connections in Complex Networks",
                 "body": "TypeDB uncovers biomedical insights within your data through its built-in inference engine, for example, a new potential gene target or patient cohort. Rather than being a black box, TypeDB gives you full explainability of every single insight and the internal mechanics in human understandable terms.",
-                "icon": ComplexNetworkIcon
+                "icon": InferenceIcon
             }
         ],
         "keyPointPanelHeight": { desktop: 408, mobile: 344 }

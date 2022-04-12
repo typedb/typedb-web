@@ -11,6 +11,7 @@ import { VaticleSnackbar } from "../../common/snackbar/snackbar";
 import {vaticleStyles} from "../../common/styles/vaticle-styles";
 import { deleteSearchParam, getSearchParam } from "../../common/util/search-params";
 import { UseCaseData } from "./data/use-case-data";
+import { ParagraphWithLinks } from "./paragraph-with-links";
 import { useCaseStyles } from "./use-case-styles";
 import { KeyPointTable } from "../../common/keypoint/key-point-table";
 import { WhitePaperForm } from "./white-paper-form";
@@ -86,7 +87,7 @@ export const UseCasePage: React.FC<UseCaseData> = ({ pageTitle, mainLink, whiteP
                 <KeyPointTable className={clsx(classes.section4KeyPoints, classes.contentMargin)} keyPoints={section4.keyPoints}/>
                 {section4.body &&
                 <div className={classes.contentMargin}>
-                    {section4.body.map(text => <p className={clsx(classes.mediumText, classes.textMargin, classes.introBody)}>{text}</p>)}
+                    {section4.body.map(text => <ParagraphWithLinks text={text} className={clsx(classes.mediumText, classes.textMargin, classes.introBody)}/>)}
                 </div>}
             </section>
 
