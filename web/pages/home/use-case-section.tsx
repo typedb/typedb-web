@@ -44,7 +44,7 @@ export const UseCaseSection: React.FC<ClassProps> = ({className}) => {
                       context, and utilise this critical information to improve the accuracy and versatility of ML
                       models. TypeDB enables ML systems to accumulate datasets as one centralised, reusable, and highly
                       contextualised knowledge base.`,
-        learnMoreRoute: undefined,
+        learnMoreRoute: routes.useCases.machineLearning,
     }, {
         name: "Life Sciences",
         icon: LifeScienceIcon,
@@ -60,7 +60,7 @@ export const UseCaseSection: React.FC<ClassProps> = ({className}) => {
                       of information that are deliberately hidden. TypeDB allows enterprises to easily aggregate, and
                       interrogate these networks in real-time and stay two-steps ahead of bad actors, while avoiding
                       critical, and costly mistakes.`,
-        learnMoreRoute: undefined,
+        learnMoreRoute: routes.useCases.cyberSecurity,
     }, {
         name: "Telecommunication",
         icon: TelecommunicationIcon,
@@ -71,7 +71,7 @@ export const UseCaseSection: React.FC<ClassProps> = ({className}) => {
         learnMoreRoute: undefined,
     }];
 
-    const [selectedIndustry, setSelectedIndustry] = useState<UseCase>(useCases[2]);
+    const [selectedIndustry, setSelectedIndustry] = useState<UseCase>(useCases[1]);
     const comingSoon = selectedIndustry.learnMoreRoute == null;
 
     return (

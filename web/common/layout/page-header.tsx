@@ -128,7 +128,13 @@ const Sitemap: React.FC<SitemapProps> = ({toggleMobileMenuOpen}) => {
                             <VaticleLink><span><FontAwesomeIcon className={classes.backButton} icon={faLongArrowLeft}/></span></VaticleLink>
                         </li>
                         <li>
+                            <VaticleLink onClick={toggleMobileMenuOpen} to={routes.useCases.machineLearning}><span>Machine Learning</span></VaticleLink>
+                        </li>
+                        <li>
                             <VaticleLink onClick={toggleMobileMenuOpen} to={routes.useCases.lifeSciences}><span>Life Sciences</span></VaticleLink>
+                        </li>
+                        <li>
+                            <VaticleLink onClick={toggleMobileMenuOpen} to={routes.useCases.cyberSecurity}><span>Cyber Security</span></VaticleLink>
                         </li>
                     </ul>
                 </div>
