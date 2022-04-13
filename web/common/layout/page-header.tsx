@@ -25,7 +25,7 @@ export const PageHeader: React.FC = () => {
 
     const toggleMobileMenuOpen = () => {
         if (mobileMenuLocked) return;
-        if (window.matchMedia("(min-width: 1350px)").matches) return;
+        if (window.matchMedia("(min-width: 1360px)").matches) return;
 
         if (mobileMenuOpen) {
             setMobileMenuOpen(false);
@@ -88,89 +88,27 @@ const Sitemap: React.FC<SitemapProps> = ({toggleMobileMenuOpen}) => {
 
     return (
         <ul className={classes.menu}>
-            <li>
-                <div tabIndex={0}>
-                    Technologies
-                    <ul>
-                        <li className={classes.backMenuItem}>
-                            <VaticleLink><span><FontAwesomeIcon className={classes.backButton} icon={faLongArrowLeft}/></span></VaticleLink>
-                        </li>
-                        <li>
-                            <VaticleLink onClick={toggleMobileMenuOpen} to={routes.typeDB}><span>TypeDB</span></VaticleLink>
-                        </li>
-                        <li>
-                            <VaticleLink onClick={toggleMobileMenuOpen} to={routes.typeDBCluster}><span>TypeDB Cluster</span></VaticleLink>
-                        </li>
-                    </ul>
-                </div>
-            </li>
-            <li>
-                <div tabIndex={0}>
-                    Solutions
-                    <ul>
-                        <li className={classes.backMenuItem}>
-                            <VaticleLink><span><FontAwesomeIcon className={classes.backButton} icon={faLongArrowLeft}/></span></VaticleLink>
-                        </li>
-                        <li>
-                            <VaticleLink onClick={toggleMobileMenuOpen} to={routes.services}><span>Services</span></VaticleLink>
-                        </li>
-                        <li>
-                            <VaticleLink onClick={toggleMobileMenuOpen} to={routes.support}><span>Support</span></VaticleLink>
-                        </li>
-                    </ul>
-                </div>
-            </li>
-            <li>
-                <div tabIndex={0}>
-                    Use Cases
-                    <ul>
-                        <li className={classes.backMenuItem}>
-                            <VaticleLink><span><FontAwesomeIcon className={classes.backButton} icon={faLongArrowLeft}/></span></VaticleLink>
-                        </li>
-                        <li>
-                            <VaticleLink onClick={toggleMobileMenuOpen} to={routes.useCases.machineLearning}><span>Machine Learning</span></VaticleLink>
-                        </li>
-                        <li>
-                            <VaticleLink onClick={toggleMobileMenuOpen} to={routes.useCases.lifeSciences}><span>Life Sciences</span></VaticleLink>
-                        </li>
-                        <li>
-                            <VaticleLink onClick={toggleMobileMenuOpen} to={routes.useCases.cyberSecurity}><span>Cyber Security</span></VaticleLink>
-                        </li>
-                    </ul>
-                </div>
-            </li>
-            <li>
-                <div tabIndex={0}>
-                    Developer
-                    <ul>
-                        <li className={classes.backMenuItem}>
-                            <VaticleLink><span><FontAwesomeIcon className={classes.backButton} icon={faLongArrowLeft}/></span></VaticleLink>
-                        </li>
-                        <li>
-                            <VaticleLink onClick={toggleMobileMenuOpen} href={urls.docs.home}><span>Documentation</span></VaticleLink>
-                        </li>
-                        <li>
-                            <VaticleLink onClick={toggleMobileMenuOpen} href={urls.forum}><span>Discussion Forum</span></VaticleLink>
-                        </li>
-                    </ul>
-                </div>
-            </li>
-            <li>
-                <div tabIndex={0}>
-                    Conferences
-                    <ul>
-                        <li className={classes.backMenuItem}>
-                            <VaticleLink><span><FontAwesomeIcon className={classes.backButton} icon={faLongArrowLeft}/></span></VaticleLink>
-                        </li>
-                        <li>
-                            <VaticleLink onClick={toggleMobileMenuOpen} href={urls.cosmos2020}><span>TypeDB Cosmos 2020</span></VaticleLink>
-                        </li>
-                        <li>
-                            <VaticleLink onClick={toggleMobileMenuOpen} href={urls.cosmos2022}><span>TypeDB Cosmos 2022</span></VaticleLink>
-                        </li>
-                    </ul>
-                </div>
-            </li>
+            <SitemapSubmenu title="Technologies">
+                <SitemapSubmenuItem to={routes.typeDB} onClick={toggleMobileMenuOpen}>TypeDB</SitemapSubmenuItem>
+                <SitemapSubmenuItem to={routes.typeDBCluster} onClick={toggleMobileMenuOpen}>TypeDB Cluster</SitemapSubmenuItem>
+            </SitemapSubmenu>
+            <SitemapSubmenu title="Solutions">
+                <SitemapSubmenuItem to={routes.services} onClick={toggleMobileMenuOpen}>Services</SitemapSubmenuItem>
+                <SitemapSubmenuItem to={routes.support} onClick={toggleMobileMenuOpen}>Support</SitemapSubmenuItem>
+            </SitemapSubmenu>
+            <SitemapSubmenu title="Use Cases">
+                <SitemapSubmenuItem to={routes.useCases.cyberSecurity} onClick={toggleMobileMenuOpen}>Cyber Security</SitemapSubmenuItem>
+                <SitemapSubmenuItem to={routes.useCases.lifeSciences} onClick={toggleMobileMenuOpen}>Life Sciences</SitemapSubmenuItem>
+                <SitemapSubmenuItem to={routes.useCases.machineLearning} onClick={toggleMobileMenuOpen}>Machine Learning</SitemapSubmenuItem>
+            </SitemapSubmenu>
+            <SitemapSubmenu title="Developer">
+                <SitemapSubmenuItem href={urls.docs.home} onClick={toggleMobileMenuOpen}>Documentation</SitemapSubmenuItem>
+                <SitemapSubmenuItem href={urls.forum} onClick={toggleMobileMenuOpen}>Discussion Forum</SitemapSubmenuItem>
+            </SitemapSubmenu>
+            <SitemapSubmenu title="Conferences">
+                <SitemapSubmenuItem href={urls.cosmos2020} onClick={toggleMobileMenuOpen}>TypeDB Cosmos 2020</SitemapSubmenuItem>
+                <SitemapSubmenuItem href={urls.cosmos2022} onClick={toggleMobileMenuOpen}>TypeDB Cosmos 2022</SitemapSubmenuItem>
+            </SitemapSubmenu>
             <li>
                 <VaticleLink href={urls.blog} target="_blank"><span>Blog</span></VaticleLink>
             </li>
@@ -178,23 +116,54 @@ const Sitemap: React.FC<SitemapProps> = ({toggleMobileMenuOpen}) => {
     );
 }
 
+interface SitemapSubmenuItemData {
+    to?: string;
+    href?: string;
+}
+
+interface SitemapSubmenuProps {
+    title: string;
+}
+
+const SitemapSubmenu: React.FC<SitemapSubmenuProps> = ({title, children}) => {
+    const classes = pageHeaderStyles();
+
+    const backButton = (
+        <li className={classes.backMenuItem}>
+            <VaticleLink><span><FontAwesomeIcon className={classes.backButton} icon={faLongArrowLeft}/></span></VaticleLink>
+        </li>
+    );
+
+    return (
+        <li><div tabIndex={0}>
+            {title}
+            <ul>
+                {backButton}
+                {children}
+            </ul>
+        </div></li>
+    );
+}
+
+interface SitemapSubmenuItemProps extends SitemapSubmenuItemData {
+    onClick: () => void;
+}
+
+const SitemapSubmenuItem: React.FC<SitemapSubmenuItemProps> = ({children, to, href, onClick}) => (
+    <li><VaticleLink onClick={onClick} to={to} href={href}><span>{children}</span></VaticleLink></li>
+);
+
 const ImportantLinks: React.FC = () => {
     const classes = pageHeaderStyles();
 
     return (
         <ul className={clsx(classes.menu, classes.linksMenu)}>
-            <li>
-                <VaticleLink to="?dialog=contact"><span>Contact</span></VaticleLink>
-            </li>
-            <li>
-                <VaticleLink href={urls.supportPlatform} target="_blank"><span>Support</span></VaticleLink>
-            </li>
+            <li><VaticleLink to="?dialog=contact"><span>Contact</span></VaticleLink></li>
+            <li><VaticleLink href={urls.supportPlatform} target="_blank"><span>Support</span></VaticleLink></li>
             <li className={classes.download}>
                 <VaticleButton className={classes.noHover} size="small" type="secondary" to={routes.download}>Download</VaticleButton>
             </li>
-            <li className={classes.importantLinksGithub}>
-                <GithubButton/>
-            </li>
+            <li className={classes.importantLinksGithub}><GithubButton/></li>
         </ul>
     );
 };
