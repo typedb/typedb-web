@@ -5,6 +5,7 @@ import {vaticleStyles} from "../../common/styles/vaticle-styles";
 import {urls} from "../../common/urls";
 import { FormOption, VaticleForm } from "../../common/form/form";
 import { formStyles } from "../../common/form/form-styles";
+import { getCookieByName } from "../../common/util/cookie";
 import { useCaseStyles } from "./use-case-styles";
 
 interface WhitePaperFormProps {
@@ -22,6 +23,13 @@ export const WhitePaperForm: React.FC<WhitePaperFormProps> = ({hubspotFormID, on
     const [jobFunction, setJobFunction] = useState("");
 
     const submit = async () => {
+        const context: any = {
+            "pageUri": window.location.href,
+            "pageName": document.getElementsByTagName("title")[0].innerHTML,
+        };
+        const hutk = getCookieByName("hubspotutk");
+        if (hutk) context.hutk = hutk;
+
         const res = await fetch(new Request(urls.hubspotForm.byID(hubspotFormID), {
             method: "POST",
             headers: {
@@ -36,10 +44,7 @@ export const WhitePaperForm: React.FC<WhitePaperFormProps> = ({hubspotFormID, on
                     {"name": "company", "value": companyName},
                     {"name": "job_function", "value": jobFunction},
                 ],
-                "context": {
-                    "pageUri": window.location.href,
-                    "pageName": document.getElementsByTagName("title")[0].innerHTML,
-                },
+                "context": context
             }),
         }));
 

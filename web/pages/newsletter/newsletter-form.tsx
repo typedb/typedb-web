@@ -5,6 +5,7 @@ import {vaticleStyles} from "../../common/styles/vaticle-styles";
 import {urls} from "../../common/urls";
 import { formStyles } from "../../common/form/form-styles";
 import { VaticleForm } from "../../common/form/form";
+import { getCookieByName } from "../../common/util/cookie";
 import { newsletterStyles } from "./newsletter-styles";
 import clsx from "clsx";
 
@@ -20,6 +21,12 @@ export const NewsletterForm: React.FC<NewsletterFormProps> = ({className, onSubm
     const [email, setEmail] = useState("");
 
     const submit = async () => {
+        const context: any = {
+            "pageUri": window.location.href,
+            "pageName": document.getElementsByTagName("title")[0].innerHTML,
+        };
+        const hutk = getCookieByName("hubspotutk");
+        if (hutk) context.hutk = hutk;
         const res = await fetch(new Request(urls.hubspotForm.newsletter, {
             method: "POST",
             headers: {
@@ -32,10 +39,7 @@ export const NewsletterForm: React.FC<NewsletterFormProps> = ({className, onSubm
                     {"name": "lastname", "value": lastName},
                     {"name": "email", "value": email},
                 ],
-                "context": {
-                    "pageUri": window.location.href,
-                    "pageName": document.getElementsByTagName("title")[0].innerHTML,
-                },
+                "context": context
             }),
         }));
         onSubmitDone(res);
