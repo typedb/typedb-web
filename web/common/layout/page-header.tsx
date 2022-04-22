@@ -47,7 +47,7 @@ export const PageHeader: React.FC = () => {
     return (
         <div className={classes.headerSection}>
             {/*<CosmosBanner/>*/}
-            <EventBanner/>
+            {/*<EventBanner/>*/}
             <header className={classes.appBar}>
                 <nav className={classes.toolbar}>
                     <VaticleLink className={clsx(classes.logoContainer)} to={routes.home}>
