@@ -35,3 +35,11 @@ deploy_artifact(
     release = deployment['artifact.release'],
     snapshot = deployment['artifact.snapshot'],
 )
+
+# CI targets that are not declared in any BUILD file, but are called externally
+filegroup(
+    name = "ci",
+    data = [
+        "@vaticle_dependencies//tool/release/version:bump",
+    ],
+)
