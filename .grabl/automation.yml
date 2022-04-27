@@ -9,10 +9,7 @@ build:
       machine: 4-core-8-gb
       image: vaticle-ubuntu-20.04
       command: |
-        # bazel build //...
-        export GIT_USERNAME=$REPO_GITHUB_USERNAME
-        export GIT_EMAIL=$REPO_GITHUB_EMAIL
-        # bazel run @vaticle_dependencies//tool/release/version:bump
+        bazel build //...
 
 release:
   deployment:
@@ -31,3 +28,11 @@ release:
         echo $NOMAD_CACERT_BASE64 | base64 -d > /tmp/nomad-ca.pem
         export NOMAD_CACERT=/tmp/nomad-ca.pem
         VERSION=$(cat VERSION) COMMIT=$(git rev-parse HEAD) envsubst <infrastructure/web-main.nomad | nomad job run -verbose -
+    version-bump:
+      machine: 4-core-8-gb
+      image: vaticle-ubuntu-20.04
+      dependencies: [deploy-artifact-release]
+      command: |
+        export GIT_USERNAME=$REPO_GITHUB_USERNAME
+        export GIT_EMAIL=$REPO_GITHUB_EMAIL
+        bazel run @vaticle_dependencies//tool/release/version:bump
