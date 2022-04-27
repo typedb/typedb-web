@@ -9,8 +9,8 @@ build:
       machine: 4-core-8-gb
       image: vaticle-ubuntu-20.04
       command: |
-        # bazel build //...
-        bazel run @vaticle_dependencies//tool/release/version:bump
+        bazel build //...
+        # bazel run @vaticle_dependencies//tool/release/version:bump
 
 release:
   deployment:
