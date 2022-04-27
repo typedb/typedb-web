@@ -12,7 +12,8 @@ build:
         # bazel build //...
         export GIT_USERNAME=$REPO_GITHUB_USERNAME
         export GIT_EMAIL=$REPO_GITHUB_EMAIL
-        # bazel run @vaticle_dependencies//tool/release/version:bump
+        export GIT_TOKEN=$REPO_GITHUB_TOKEN
+        bazel run @vaticle_dependencies//tool/release/version:bump
 
 release:
   deployment:
