@@ -9,9 +9,6 @@ build:
       machine: 4-core-8-gb
       image: vaticle-ubuntu-20.04
       command: |
-        git checkout version-bump
-        git commit -m "test" --allow-empty
-        git push
         # bazel build //...
         # export GIT_USERNAME=$REPO_GITHUB_USERNAME
         # export GIT_EMAIL=$REPO_GITHUB_EMAIL
