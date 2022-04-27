@@ -10,6 +10,8 @@ build:
       image: vaticle-ubuntu-20.04
       command: |
         # bazel build //...
+        export GIT_USERNAME=$REPO_GITHUB_USERNAME
+        export GIT_EMAIL=$REPO_GITHUB_EMAIL
         bazel run @vaticle_dependencies//tool/release/version:bump
 
 release:
