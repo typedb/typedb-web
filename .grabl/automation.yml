@@ -31,7 +31,7 @@ release:
     version-bump:
       machine: 4-core-8-gb
       image: vaticle-ubuntu-20.04
-      dependencies: [deploy-artifact-release]
+      dependencies: [deploy-production]
       command: |
         export GIT_USERNAME=$REPO_GITHUB_USERNAME
         export GIT_EMAIL=$REPO_GITHUB_EMAIL
