@@ -61,6 +61,11 @@ export const legacyRoutes = {
     graknCore: "/grakn-core",
     graknKGMS: "/grakn-kgms",
     deployment: "/deployment", // TODO: When the Cloud page is created, add this legacy route (for redirection)
+    useCases: {
+        lifeSciences: "/life-sciences",
+        cyberSecurity: "/cyber-security",
+        machineLearning: "/machine-learning",
+    }
 }
 
 export const VaticleRouter: React.FC = () => {
@@ -80,6 +85,9 @@ export const VaticleRouter: React.FC = () => {
 
                 <Redirect exact path={legacyRoutes.graknCore} to={routes.typeDB}/>
                 <Redirect exact path={legacyRoutes.graknKGMS} to={routes.typeDBCluster}/>
+                <Redirect exact path={legacyRoutes.useCases.cyberSecurity} to={routes.useCases.cyberSecurity}/>
+                <Redirect exact path={legacyRoutes.useCases.lifeSciences} to={routes.useCases.lifeSciences}/>
+                <Redirect exact path={legacyRoutes.useCases.machineLearning} to={routes.useCases.machineLearning}/>
 
                 <VaticleRoute title="404" component={Vaticle404Page}/>
             </Switch>
