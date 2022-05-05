@@ -7,8 +7,8 @@ export const EventBanner: React.FC = () => {
     const classes = siteBannerStyles();
 
     return <div className={classes.root}>
-        Join us in Cambridge, New York and Boston this month
+        Learn more about TypeDB at our weekly webinars
         <span className={classes.pipe}>|</span>
-        <VaticleLink className={classes.link} href={urls.meetupsApr2022}>Learn more</VaticleLink>
+        <VaticleLink className={classes.link} href={urls.eventsMay2022}>Sign Up</VaticleLink>
     </div>
 }

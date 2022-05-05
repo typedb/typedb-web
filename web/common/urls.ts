@@ -10,7 +10,7 @@ export const urls = {
     officeLocation: "https://goo.gl/maps/bNN99QajkdD8THb7A",
     cosmos2020: "/conferences/typedb-cosmos-2020",
     cosmos2022: "/conferences/typedb-cosmos-2022",
-    meetupsApr2022: "https://forum.vaticle.com/t/april-2022-live-meetups/90",
+    eventsMay2022: "https://forum.vaticle.com/t/may-2022-events/119",
 
     docs: {
         home: docsURL,

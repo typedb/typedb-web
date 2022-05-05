@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import VaticleLogo from "../assets/logos/vaticle.svg";
 import { CosmosBanner } from "./cosmos-banner";
 
-import { pageHeaderStyles } from "./layout-styles";
+import { eventBannerVisible, pageHeaderStyles } from "./layout-styles";
 import { GithubButton } from "../button/github-button";
 import { VaticleButton } from "../button/button";
 import clsx from "clsx";
@@ -47,7 +47,7 @@ export const PageHeader: React.FC = () => {
     return (
         <div className={classes.headerSection}>
             {/*<CosmosBanner/>*/}
-            {/*<EventBanner/>*/}
+            {eventBannerVisible && <EventBanner/>}
             <header className={classes.appBar}>
                 <nav className={classes.toolbar}>
                     <VaticleLink className={clsx(classes.logoContainer)} to={routes.home}>
