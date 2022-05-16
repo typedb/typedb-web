@@ -1,8 +1,8 @@
 import { UseCaseData } from "./use-case-data";
 import KnowledgeGraphImage from "../../../assets/images/knowledge-graph.png";
-import SecurityIcon from "../../../assets/icons/security.svg";
-import ContextualiseIcon from "../../../assets/icons/contextualise.svg";
 import InferenceIcon from "../../../assets/icons/inference.svg";
+import MigrationAndIntegrationIcon from "../../../assets/icons/migration-and-integration.svg";
+import LearningAndTrainingIcon from "../../../assets/icons/learning-and-training.svg";
 
 export const knowledgeGraphData: UseCaseData = {
     "pageTitle": "Knowledge Graphs",
@@ -36,17 +36,12 @@ export const knowledgeGraphData: UseCaseData = {
             {
                 "title": "Bridge Disparate Data Silos",
                 "body": "Organisations have diverse and disparate data silos in various formats. TypeDB enables you to bring these together into one knowledge graph, allowing you to query and gain insights at scale. Through TypeDB’s flexible data model, data integration becomes much easier.",
-                "icon": ContextualiseIcon
+                "icon": MigrationAndIntegrationIcon
             },
             {
                 "title": "Turn Data into Knowledge",
                 "body": "TypeDB allows you to model your knowledge graph by leveraging the full expressivity of the Entity-Relationship model. This enables you to natively capture context and semantics into a data model that accurately represents your domain - turning your data into knowledge.",
-                "icon": ContextualiseIcon
-            },
-            {
-                "title": "Knowledge-Driven Organisations",
-                "body": "Building a knowledge graph with TypeDB enables you to capture the changing nature of your data. Become a knowledge-driven organisation with TypeDB, where decisions are made based on full context and confidence. With TypeDB’s inference engine, you’ll be able to obtain new insights for complex decisions.",
-                "icon": ContextualiseIcon
+                "icon": LearningAndTrainingIcon
             },
             {
                 "title": "More Powerful Insights",
@@ -54,7 +49,7 @@ export const knowledgeGraphData: UseCaseData = {
                 "icon": InferenceIcon
             }
         ],
-        "keyPointPanelHeight": { desktop: 408, mobile: 344 }
+        "keyPointPanelHeight": { desktop: 352, mobile: 301 }
     },
     "section4": {
         "title": "What Are TypeDB Knowledge Graphs Used For?",

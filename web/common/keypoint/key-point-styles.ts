@@ -113,6 +113,7 @@ export const keyPointPanelStyles = makeStyles<Theme, KeyPointPanelProps>({
         position: "relative",
 
         "& svg": {
+            width: 52,
             height: 52,
         },
 
