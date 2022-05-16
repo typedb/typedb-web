@@ -1,5 +1,6 @@
 import clsx from "clsx";
 import React from "react";
+import { ParagraphWithLinks } from "../../pages/usecase/paragraph-with-links";
 import { ClassProps } from "../class-props";
 import { vaticleStyles } from "../styles/vaticle-styles";
 import { keyPointTableStyles } from "./key-point-styles";
@@ -16,7 +17,7 @@ export const KeyPointTable: React.FC<KeyPointTableProps> = ({keyPoints, classNam
         {keyPoints.map((keyPoint) => (
             <div className={classes.tableRow}>
                 <div className={clsx(classes.mediumText, classes.titleColumn)}>{keyPoint.title}</div>
-                <div className={clsx(classes.mediumText, classes.bodyColumn)}>{keyPoint.body}</div>
+                <ParagraphWithLinks text={keyPoint.body} className={clsx(classes.mediumText, classes.bodyColumn)}/>
             </div>
         ))}
         </div>
