@@ -16,7 +16,7 @@ export const knowledgeGraphData: UseCaseData = {
     },
     "whitePaperLink": {
         "text": "Download White Paper",
-        "url": "https://example.com",
+        "url": "/documents/Building_a_Knowledge_Graph_with_TypeDB.pdf",
         "hubspotFormID": "e548f768-a41c-428c-ad0e-be50b4a798fa"
     },
     "section1": {
