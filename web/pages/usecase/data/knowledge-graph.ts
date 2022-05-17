@@ -3,6 +3,9 @@ import KnowledgeGraphImage from "../../../assets/images/knowledge-graph.png";
 import InferenceIcon from "../../../assets/icons/inference.svg";
 import MigrationAndIntegrationIcon from "../../../assets/icons/migration-and-integration.svg";
 import LearningAndTrainingIcon from "../../../assets/icons/learning-and-training.svg";
+import AstraZenecaLogo from "../../../assets/logos/purple/astrazeneca.png";
+import FlipkartLogo from "../../../assets/logos/purple/flipkart.png";
+import IBMLogo from "../../../assets/logos/purple/ibm.png";
 
 export const knowledgeGraphData: UseCaseData = {
     "pageTitle": "Knowledge Graphs",
@@ -31,7 +34,7 @@ export const knowledgeGraphData: UseCaseData = {
         }
     },
     "section3": {
-        "title": "Why",
+        "title": "Benefits of a TypeDB Knowledge Graph",
         "keyPoints": [
             {
                 "title": "Bridge Disparate Data Silos",
@@ -72,7 +75,7 @@ export const knowledgeGraphData: UseCaseData = {
             },
             {
                 "title": "Robotics",
-                "body": "Autonomous vehicles leverage TypeDB [knowledge graphs](https://dzone.com/articles/object-recognition-and-spacial-awareness-for-a-spo) to create a centralised source of truth for a system's observations. Through [object recognition](https://www.youtube.com/watch?v=4mz6ZlFWAro, TypeDB's reasoning engine can, for example, infer in what room of a house it's located in or how it should execute a particular task ([further reading](http://ceur-ws.org/Vol-2708/robontics6.pdf))."
+                "body": "Autonomous vehicles leverage TypeDB [knowledge graphs](https://dzone.com/articles/object-recognition-and-spacial-awareness-for-a-spo) to create a centralised source of truth for a system's observations. Through [object recognition](https://www.youtube.com/watch?v=4mz6ZlFWAro), TypeDB's reasoning engine can, for example, infer in what room of a house it's located in or how it should execute a particular task ([further reading](http://ceur-ws.org/Vol-2708/robontics6.pdf))."
             },
         ],
         "body": [
@@ -81,6 +84,13 @@ export const knowledgeGraphData: UseCaseData = {
         ]
     },
     "section5": {
+        "users": [
+            { "name": "AstraZeneca", logo: { src: AstraZenecaLogo, width: 210 } },
+            { "name": "Flipkart", logo: { src: FlipkartLogo, width: 200 } },
+            { "name": "IBM", logo: { src: IBMLogo } }
+        ]
+    },
+    "section6": {
         "title": "Start Building Your Knowledge Graph with TypeDB"
     }
 }

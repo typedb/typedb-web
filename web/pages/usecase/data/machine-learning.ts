@@ -1,3 +1,6 @@
+import NestleLogo from "../../../assets/logos/purple/nestle.png";
+import RheosMedicinesLogo from "../../../assets/logos/purple/rheos-medicines.png";
+import TNOLogo from "../../../assets/logos/purple/tno.png";
 import { UseCaseData } from "./use-case-data";
 import MachineLearningDiagram from "../../../assets/images/machine-learning-diagram.png";
 import SecurityIcon from "../../../assets/icons/security.svg";
@@ -74,6 +77,13 @@ export const machineLearningData: UseCaseData = {
         ]
     },
     "section5": {
+        "users": [
+            { "name": "Nestle", logo: { src: NestleLogo } },
+            { "name": "TNO", logo: { src: TNOLogo, width: 210 } },
+            { "name": "Rheos Medicines", logo: { src: RheosMedicinesLogo, width: 195 } }
+        ]
+    },
+    "section6": {
         "title": "Start Learning Over Your TypeDB Knowledge Graph"
     }
 }

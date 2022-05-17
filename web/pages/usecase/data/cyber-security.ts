@@ -1,3 +1,6 @@
+import AstraZenecaLogo from "../../../assets/logos/purple/astrazeneca.png";
+import FlipkartLogo from "../../../assets/logos/purple/flipkart.png";
+import IBMLogo from "../../../assets/logos/purple/ibm.png";
 import { UseCaseData } from "./use-case-data";
 import CTIQueryAnswersImage from "../../../assets/images/cti-query-answers.png";
 import SecurityIcon from "../../../assets/icons/security.svg";
@@ -73,7 +76,7 @@ export const cyberSecurityData: UseCaseData = {
             "With the new insights that TypeDB can provide, your company can benefit from the next competitive edge. That's why today TypeDB is used to represent cybersecurity data for applications such as security information and event management, threat intelligence, endpoint detection and response, and many more. Learn more in the white paper below."
         ]
     },
-    "section5": {
+    "section6": {
         "title": "Learn More About TypeDB for Cyber Security Today"
     }
 }

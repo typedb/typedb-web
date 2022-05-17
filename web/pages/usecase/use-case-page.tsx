@@ -7,6 +7,7 @@ import { KeyPointPanel, KeyPointPanels } from "../../common/keypoint/key-point-p
 import {VaticleLayout} from "../../common/layout/layout";
 import {VaticleButton} from "../../common/button/button";
 import clsx from "clsx";
+import { MainLink, MainLinkIcon, MainLinks } from "../../common/link/main-links";
 import { VaticleSnackbar } from "../../common/snackbar/snackbar";
 import {vaticleStyles} from "../../common/styles/vaticle-styles";
 import { deleteSearchParam, getSearchParam } from "../../common/util/search-params";
@@ -16,7 +17,7 @@ import { useCaseStyles } from "./use-case-styles";
 import { KeyPointTable } from "../../common/keypoint/key-point-table";
 import { WhitePaperForm } from "./white-paper-form";
 
-export const UseCasePage: React.FC<UseCaseData> = ({ pageTitle, mainLink, whitePaperLink, introVideoURL, section1, section2, section3, section4, section5}) => {
+export const UseCasePage: React.FC<UseCaseData> = ({pageTitle, mainLink, whitePaperLink, introVideoURL, section1, section2, section3, section4, section5, section6}) => {
     const classes = Object.assign({}, vaticleStyles(), useCaseStyles());
 
     const [downloadFormOpen, setDownloadFormOpen] = useState(false);
@@ -91,8 +92,20 @@ export const UseCasePage: React.FC<UseCaseData> = ({ pageTitle, mainLink, whiteP
                 </div>}
             </section>
 
+            {section5 &&
             <section className={classes.sectionMargin}>
-                <h1 className={classes.h1}>{section5.title}</h1>
+                <MainLinks className={classes.subsectionMargin}>
+                    {section5.users.map(({name, logo}) => (
+                        <MainLink>
+                            <MainLinkIcon icon={<img src={logo.src} alt={name} className={classes.section4UserLogo}
+                                                     style={logo.width ? {maxWidth: logo.width} : undefined}/>}/>
+                        </MainLink>
+                    ))}
+                </MainLinks>
+            </section>}
+
+            <section className={classes.sectionMargin}>
+                <h1 className={classes.h1}>{section6.title}</h1>
                 <div className={clsx(classes.mainActionList, classes.contentMargin)}>
                     <VaticleButton size="small" type="primary" href={mainLink.url} target="_blank">{mainLink.text}</VaticleButton>
                     <VaticleButton size="small" type="secondary" to="?dialog=download-white-paper">{whitePaperLink.text}</VaticleButton>

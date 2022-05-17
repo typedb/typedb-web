@@ -1,5 +1,6 @@
 import React from "react";
 import clsx from "clsx";
+import { MainLink, MainLinkIcon, MainLinks } from "../../common/link/main-links";
 import { TestimonialsSection } from "../testimonials/testimonials-section";
 import {homePageStyles} from "./home-styles";
 import {faDiscord, faGithub, faTwitter} from "@fortawesome/free-brands-svg-icons";
@@ -39,28 +40,25 @@ export const HomePage: React.FC = () => {
                     complex problems, using TypeQL as its query language.
                 </p>
 
-                <div className={clsx(classes.mainLinks, classes.subsectionMargin)}>
-                    <a href={urls.github.typedb} target="_blank"
-                       className={clsx(classes.mainLink, classes.firstMainLink)}>
-                        <FontAwesomeIcon className={classes.mainLinkIcon} icon={faGithub}/>
-                        <div className={classes.mainLinkCaption}>GitHub</div>
-                    </a>
-                    <a href={urls.social.discord} target="_blank" className={classes.mainLink}>
-                        <FontAwesomeIcon className={classes.mainLinkIcon} icon={faDiscord}/>
-                        <div className={classes.mainLinkCaption}>Discord</div>
-                    </a>
-                    <a href={urls.social.twitter} target="_blank" className={classes.mainLink}>
-                        <FontAwesomeIcon className={classes.mainLinkIconCircle} icon={faTwitter}/>
-                        <div className={classes.mainLinkCaption}>Twitter</div>
-                    </a>
-                    <div className={classes.mainLink}>
+                <MainLinks className={classes.subsectionMargin}>
+                    <MainLink href={urls.github.typedb} target="_blank">
+                        <MainLinkIcon icon={<FontAwesomeIcon icon={faGithub}/>} caption="GitHub"/>
+                    </MainLink>
+                    <MainLink href={urls.social.discord} target="_blank">
+                        <MainLinkIcon icon={<FontAwesomeIcon icon={faDiscord}/>} caption="Discord"/>
+                    </MainLink>
+                    <MainLink href={urls.social.twitter} target="_blank">
+                        <MainLinkIcon icon={<FontAwesomeIcon className={classes.mainLinkIconCircle} icon={faTwitter}/>}
+                                      caption="Twitter"/>
+                    </MainLink>
+                    <MainLink>
                         <VaticleButton className={classes.downloadTypeDBButton} size="small" type="primary"
                                        to={routes.download}>
                             <span className={classes.hideTablet}>Download TypeDB {typeDBVersion}</span>
                             <span className={classes.showTablet}>Download<br/>TypeDB {typeDBVersion}</span>
                         </VaticleButton>
-                    </div>
-                </div>
+                    </MainLink>
+                </MainLinks>
             </section>
 
             <UserLogosSection className={classes.sectionMargin}/>

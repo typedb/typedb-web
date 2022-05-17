@@ -1,3 +1,6 @@
+import AstraZenecaLogo from "../../../assets/logos/purple/astrazeneca.png";
+import RocheLogo from "../../../assets/logos/purple/roche.png";
+import GenentechLogo from "../../../assets/logos/purple/genentech.png";
 import { UseCaseData } from "./use-case-data";
 import DatabaseServerIcon from "../../../assets/icons/database-server.svg";
 import InferenceIcon from "../../../assets/icons/inference.svg";
@@ -73,6 +76,13 @@ export const lifeSciencesData: UseCaseData = {
         ]
     },
     "section5": {
+        "users": [
+            { "name": "Roche", logo: { src: RocheLogo } },
+            { "name": "AstraZeneca", logo: { src: AstraZenecaLogo, width: 210 } },
+            { "name": "Genentech", logo: { src: GenentechLogo } }
+        ]
+    },
+    "section6": {
         "title": "Accelerating Biomedical Knowledge Discovery with TypeDB"
     }
 }

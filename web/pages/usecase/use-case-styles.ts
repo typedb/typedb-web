@@ -19,6 +19,12 @@ export const useCaseStyles = makeStyles({
         marginRight: "auto",
     },
 
+    section4UserLogo: {
+        maxWidth: 185,
+        maxHeight: 70,
+        margin: "auto",
+    },
+
     whitePaperFormContainer: {
         maxWidth: 720,
     },

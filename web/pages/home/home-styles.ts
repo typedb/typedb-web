@@ -99,69 +99,17 @@ export const homePageStyles = makeStyles({
         maxWidth: 650,
     },
 
-    mainLinks: {
-        width: '100%',
-        marginLeft: "auto",
-        marginRight: "auto",
-        display: 'flex',
-        border: `1px solid ${vaticleTheme.palette.purple["7"]}`,
-        borderRadius: 11,
-
-        "@media(max-width: 767px)": {
-            width: 288,
-            display: "block",
-        },
-    },
-
-    firstMainLink: {
-        "@media(min-width: 768px)": {
-            borderLeftStyle: "none !important",
-        },
-
-        "@media(max-width: 767px)": {
-            borderTopStyle: "none !important",
-        },
-    },
-
-    mainLink: {
-        flex: 1,
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'center',
-        height: 160,
-
-        "@media(min-width: 768px)": {
-            borderLeft: `1px solid ${vaticleTheme.palette.purple["7"]}`,
-        },
-
-        "@media(max-width: 767px)": {
-            borderTop: `1px solid ${vaticleTheme.palette.purple["7"]}`,
-        },
-    },
-
-    mainLinkIcon: {
-        color: '#FFF !important',
-        fontSize: 66,
-    },
-
     mainLinkIconCircle: {
-        width: "60px !important",
+        width: "60px !important", // overrides style set by FontAwesome
         height: 60,
         borderRadius: "50%",
-        color: vaticleTheme.palette.purple["3"],
+        color: `${vaticleTheme.palette.purple["3"]} !important`, // overrides style set by MainLink
         backgroundColor: "#FFF",
         padding: "14px 13px 14px 15px",
     },
 
-    mainLinkCaption: {
-        color: "#FFF",
-        marginTop: '8px',
-        fontSize: 16,
-    },
-
     downloadTypeDBButton: {
-        height: '72px !important',
+        height: "72px !important",
     },
 
     videoPlayer: {

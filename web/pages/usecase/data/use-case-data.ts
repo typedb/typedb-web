@@ -30,8 +30,6 @@ interface BodyMultiParagraph {
     body: string[]
 }
 
-type BodyMultiParagraphOptional = Partial<BodyMultiParagraph>;
-
 interface Icon {
     icon: React.FC
 }
@@ -49,14 +47,29 @@ export interface KeyPointPanels {
     keyPointPanelHeight: { desktop: number, mobile: number }
 }
 
+export interface Users {
+    users: User[]
+}
+
+export interface User {
+    name: string
+    logo: UserLogo
+}
+
+export interface UserLogo {
+    src: string
+    width?: number
+}
+
 export interface UseCaseData {
-    pageTitle: string,
-    introVideoURL: string,
-    mainLink: Link,
-    whitePaperLink: HubspotLink,
-    section1: Title & BodyMultiParagraph,
-    section2: Title & Image,
-    section3: Title & KeyPointPanels,
-    section4: Title & KeyPoints & BodyMultiParagraphOptional,
-    section5: Title
+    pageTitle: string
+    introVideoURL: string
+    mainLink: Link
+    whitePaperLink: HubspotLink
+    section1: Title & BodyMultiParagraph
+    section2: Title & Image
+    section3: Title & KeyPointPanels
+    section4: Title & KeyPoints & Partial<BodyMultiParagraph>
+    section5?: Users
+    section6: Title
 }
