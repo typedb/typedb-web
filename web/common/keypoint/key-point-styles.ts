@@ -169,7 +169,7 @@ export const keyPointTableStyles = makeStyles({
     },
 
     titleColumn: {
-        width: 170,
+        width: 185,
         flexShrink: 0,
         fontWeight: "600 !important" as any, // overrides mediumText
         paddingRight: 20,

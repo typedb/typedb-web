@@ -6,14 +6,14 @@ import clsx from "clsx";
 import LifeScienceIcon from "../../assets/icons/life-science.svg";
 import SecurityIcon from "../../assets/icons/security.svg";
 import TelecommunicationIcon from "../../assets/icons/telecommunication.svg";
-import KnowledgeGraph from "../../assets/icons/knowledge-graph.svg";
+import KnowledgeGraphsIcon from "../../assets/icons/knowledge-graphs.svg";
 import MachineLearningIcon from "../../assets/icons/machine-learning.svg";
 import {vaticleTheme} from "../../common/styles/theme";
 import {vaticleStyles} from "../../common/styles/vaticle-styles";
 import {ClassProps} from "../../common/class-props";
 
 type UseCaseName =
-    "Knowledge Graph"
+    "Knowledge Graphs"
     | "Machine Learning"
     | "Life Sciences"
     | "Cyber Security"
@@ -30,21 +30,21 @@ export const UseCaseSection: React.FC<ClassProps> = ({className}) => {
     const classes = Object.assign({}, vaticleStyles(), homePageIndustryStyles());
 
     const useCases: UseCase[] = [{
-        name: "Knowledge Graph",
-        icon: KnowledgeGraph,
+        name: "Cyber Security",
+        icon: SecurityIcon,
+        description: `In this internet era, cyber security means connecting anything and everything, to uncover pieces
+                      of information that are deliberately hidden. TypeDB allows enterprises to easily aggregate, and
+                      interrogate these networks in real-time and stay two-steps ahead of bad actors, while avoiding
+                      critical, and costly mistakes.`,
+        learnMoreRoute: routes.useCases.cyberSecurity,
+    }, {
+        name: "Knowledge Graphs",
+        icon: KnowledgeGraphsIcon,
         description: `Knowledge Graphs (aka. Knowledge Bases) are systems that aggregate complex networks of facts to be 
                       interrogated semantically and logically. TypeDB enables engineers to model and aggregate disparate 
                       sources of data to become one unified Knowledge Graph, making it possible to infer new knowledge 
                       by its reasoning engine.`,
-        learnMoreRoute: undefined,
-    }, {
-        name: "Machine Learning",
-        icon: MachineLearningIcon,
-        description: `Heterogeneous data holds significant inherent context. TypeDB enables ML systems to leverage this 
-                      context, and utilise this critical information to improve the accuracy and versatility of ML
-                      models. TypeDB enables ML systems to accumulate datasets as one centralised, reusable, and highly
-                      contextualised knowledge base.`,
-        learnMoreRoute: routes.useCases.machineLearning,
+        learnMoreRoute: routes.useCases.knowledgeGraphs,
     }, {
         name: "Life Sciences",
         icon: LifeScienceIcon,
@@ -54,13 +54,13 @@ export const UseCaseSection: React.FC<ClassProps> = ({className}) => {
                       patterns in complex networks.`,
         learnMoreRoute: routes.useCases.lifeSciences,
     }, {
-        name: "Cyber Security",
-        icon: SecurityIcon,
-        description: `In this internet era, cyber security means connecting anything and everything, to uncover pieces
-                      of information that are deliberately hidden. TypeDB allows enterprises to easily aggregate, and
-                      interrogate these networks in real-time and stay two-steps ahead of bad actors, while avoiding
-                      critical, and costly mistakes.`,
-        learnMoreRoute: routes.useCases.cyberSecurity,
+        name: "Machine Learning",
+        icon: MachineLearningIcon,
+        description: `Heterogeneous data holds significant inherent context. TypeDB enables ML systems to leverage this 
+                      context, and utilise this critical information to improve the accuracy and versatility of ML
+                      models. TypeDB enables ML systems to accumulate datasets as one centralised, reusable, and highly
+                      contextualised knowledge base.`,
+        learnMoreRoute: routes.useCases.machineLearning,
     }, {
         name: "Telecommunication",
         icon: TelecommunicationIcon,

@@ -7,7 +7,7 @@ import AstraZenecaLogo from "../../../assets/logos/purple/astrazeneca.png";
 import FlipkartLogo from "../../../assets/logos/purple/flipkart.png";
 import IBMLogo from "../../../assets/logos/purple/ibm.png";
 
-export const knowledgeGraphData: UseCaseData = {
+export const knowledgeGraphsData: UseCaseData = {
     "pageTitle": "Knowledge Graphs",
     "introVideoURL": "https://www.youtube.com/watch?v=e0lmTSb-rzY",
     "mainLink": {
@@ -43,7 +43,7 @@ export const knowledgeGraphData: UseCaseData = {
             },
             {
                 "title": "Turn Data into Knowledge",
-                "body": "TypeDB allows you to model your knowledge graph by leveraging the full expressivity of the Entity-Relationship model. This enables you to natively capture context and semantics into a data model that accurately represents your domain - turning your data into knowledge.",
+                "body": "TypeDB allows you to model your knowledge graph by leveraging the full expressivity of the [Entity-Relationship model](https://docs.vaticle.com/docs/schema/overview#what-is-a-typedb-schema). This enables you to natively capture context and semantics into a data model that accurately represents your domain - turning your data into knowledge.",
                 "icon": LearningAndTrainingIcon
             },
             {
@@ -58,8 +58,8 @@ export const knowledgeGraphData: UseCaseData = {
         "title": "What Are TypeDB Knowledge Graphs Used For?",
         "keyPoints": [
             {
-                "title": "Cybersecurity",
-                "body": "Integrating cybersecurity data into one semantic data model in TypeDB enables you to have one unified representation in the form of a knowledge graph and make actionable use of it. This becomes your knowledge foundation to build applications such as security event and incident management systems, [threat intelligence platforms](https://blog.vaticle.com/introducing-a-knowledge-graph-for-cyber-threat-intelligence-with-typedb-bdb559a92d2a) or endpoint detection and response systems. [Learn more](https://www.vaticle.com/use-cases/cyber-security)."
+                "title": "Cyber Security",
+                "body": "Integrating cyber security data into one semantic data model in TypeDB enables you to have one unified representation in the form of a knowledge graph and make actionable use of it. This becomes your knowledge foundation to build applications such as security event and incident management systems, [threat intelligence platforms](https://blog.vaticle.com/introducing-a-knowledge-graph-for-cyber-threat-intelligence-with-typedb-bdb559a92d2a) or endpoint detection and response systems. [Learn more](https://www.vaticle.com/use-cases/cyber-security)."
             },
             {
                 "title": "Data Governance",
@@ -75,12 +75,12 @@ export const knowledgeGraphData: UseCaseData = {
             },
             {
                 "title": "Robotics",
-                "body": "Autonomous vehicles leverage TypeDB [knowledge graphs](https://dzone.com/articles/object-recognition-and-spacial-awareness-for-a-spo) to create a centralised source of truth for a system's observations. Through [object recognition](https://www.youtube.com/watch?v=4mz6ZlFWAro), TypeDB's reasoning engine can, for example, infer in what room of a house it's located in or how it should execute a particular task ([further reading](http://ceur-ws.org/Vol-2708/robontics6.pdf))."
+                "body": "[Autonomous vehicles](https://dzone.com/articles/object-recognition-and-spacial-awareness-for-a-spo) leverage TypeDB knowledge graphs to create a centralised source of truth for a system's observations. Through [object recognition](https://www.youtube.com/watch?v=4mz6ZlFWAro), TypeDB's reasoning engine can, for example, infer in what room of a house it's located in or how it should execute a particular task ([further reading](http://ceur-ws.org/Vol-2708/robontics6.pdf))."
             },
         ],
         "body": [
             "Regardless of the industry you're in, TypeDB is the perfect solution to serve as the database for your knowledge graph applications. Its rich and logical type system enables you to build powerful ontologies that aggregate disparate sources of data and infer new knowledge through its reasoning engine.",
-            "To help you get started in building your knowledge graph with TypeDB, we provide lots of resources. A good place to start is this [TypeDB introductory video](https://www.youtube.com/watch?v=e0lmTSb-rzY) and our 3-part [TypeDB Academy](https://www.youtube.com/watch?v=vfSAgFayLnk&list=PLtEF8_xCPklasC8w3Il718lrpD32MinC6) training series. Make sure not to miss our [Quickstart](https://docs.vaticle.com/docs/general/quickstart) tutorial, and we also have several example knowledge graphs available for you to play with on Github: [cybersecurity](https://github.com/typedb-osi/typedb-cti), [life sciences](https://github.com/typedb-osi/typedb-bio) and [offshore leaks](https://github.com/typedb-osi/typedb-offshoreleaks)."
+            "We provide several resources to help you get started on building your knowledge graph with TypeDB. A good place to start is this [TypeDB introductory video](https://www.youtube.com/watch?v=e0lmTSb-rzY), our 3-part [TypeDB Academy](https://www.youtube.com/watch?v=vfSAgFayLnk&list=PLtEF8_xCPklasC8w3Il718lrpD32MinC6) training series, and our [Quickstart](https://docs.vaticle.com/docs/general/quickstart) tutorial. We also have sample knowledge graphs available for you to play with on GitHub: [cyber security](https://github.com/typedb-osi/typedb-cti), [life sciences](https://github.com/typedb-osi/typedb-bio) and [offshore leaks](https://github.com/typedb-osi/typedb-offshoreleaks)."
         ]
     },
     "section5": {

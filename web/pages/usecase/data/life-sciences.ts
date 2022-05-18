@@ -22,8 +22,8 @@ export const lifeSciencesData: UseCaseData = {
     "section1": {
         "title": "Accelerating Biomedical Knowledge Discovery with TypeDB",
         "body": [
-            "Systems biology produces a tremendous amount of heterogeneous data between biological components such as genes, proteins, tissues and cells. This data presents challenges for bioinformaticians in their integration due to their inherent complex nature and rich semantics. However, analysing large volumes of biological data through traditional database systems is troublesome and challenging.",
-            "With TypeDB, working with life sciences data becomes much easier enabling you to accelerate the entire drug discovery process."
+            "Systems biology produces a tremendous amount of heterogeneous data between biological components such as genes, proteins, tissues, and cells. Integrating this data presents challenges for bioinformaticians due to the data's inherent complex nature and rich semantics. Furthermore, analysing large volumes of biological data through traditional database systems is troublesome and challenging.",
+            "With TypeDB, working with life sciences data becomes much easier, enabling you to accelerate the entire drug discovery process."
         ]
     },
     "section2": {
@@ -59,20 +59,24 @@ export const lifeSciencesData: UseCaseData = {
         "keyPoints": [
             {
                 "title": "Target Identification",
-                "body": "TypeDB enables you to model any sort of biomedical data at scale, making it easy to ingest heterogeneous datasets from public (e.g. Uniprot, Reactome) to private sources. With this knowledge foundation, you'll be able to leverage TypeDB's inference engine combined with machine learning models to predict and validate the most promising target hypotheses."
+                "body": "TypeDB enables you to model any sort of biomedical data at scale, making it easy to ingest heterogeneous datasets from public (e.g. Uniprot, Reactome) to private sources. With this knowledge foundation, you'll be able to leverage TypeDB's inference engine combined with machine learning models to predict and validate the most promising target hypotheses. You can read more about target identification on this [blog](https://medium.com/vaticle/drug-discovery-knowledge-graphs-46db4212777c)."
             },
             {
                 "title": "Precision Medicine",
-                "body": "Build your own personalised target identification process by leveraging TypeDB to identify patient subgroups that could respond similarly to particular treatments. Through TypeDB's unique modelling constructs, you'll be able to create complex knowledge models that evolve flexibly, which can inform the design of your clinical trials."
+                "body": "Build your own personalised target identification process by leveraging TypeDB to identify patient subgroups that could respond similarly to particular treatments. Through TypeDB's unique modelling constructs, you'll be able to create complex knowledge models that evolve flexibly, which can inform the design of your clinical trials. Learn more [here](https://medium.com/vaticle/precision-medicine-knowledge-graph-eea957d60c08)."
             },
             {
                 "title": "Drug Repurposing",
-                "body": "Integrate large volumes of biomedical data into TypeDB to build predictive systems to enable hypothesis generation for drug repurposing. With TypeDB, you'll be able to find not previously known insights and enable you to quickly ingest and integrate experimental biomedical data, for example high throughput systems or sequencing algorithms."
+                "body": "Integrate large volumes of biomedical data into TypeDB to build predictive systems to enable hypothesis generation for drug repurposing. With TypeDB, you'll be able to find not previously known insights and quickly ingest and integrate experimental biomedical data, for example high throughput systems or sequencing algorithms. Read more [here](https://blog.vaticle.com/drug-repositioning-with-a-grakn-ai-knowledge-graph-for-bioinformatics-4701591f38c1)."
             },
             {
                 "title": "Biomedical Knowledge Graphs",
                 "body": "With TypeDB, you'll be able to build your own Knowledge Graph to serve as an engine for your drug discovery programmes. Ingest publicly available biomedical data, experimental in-vitro findings and data mined from scientific literature to consistently enrich your Knowledge Graph, and create a unified and accurate representation of all biomedical data relevant to you."
             },
+            {
+                "title": "Text Mining",
+                "body": "NLP and text mining have become powerful tools which can automatically extract structured semantic information from unstructured medical texts. However, it can be a major challenge to map this information into a format which allows you to contextualise this text-mined output, and query it for insights. Through TypeDB's expressive data model and inference engine, you'll be able to easily model, store, and explore beneficial information extracted from these types of algorithms. Learn more [here](https://medium.com/vaticle/text-mined-knowledge-graphs-beyond-text-mining-1ff207a7d850)."
+            }
         ]
     },
     "section5": {

@@ -98,6 +98,7 @@ const Sitemap: React.FC<SitemapProps> = ({toggleMobileMenuOpen}) => {
             </SitemapSubmenu>
             <SitemapSubmenu title="Use Cases">
                 <SitemapSubmenuItem to={routes.useCases.cyberSecurity} onClick={toggleMobileMenuOpen}>Cyber Security</SitemapSubmenuItem>
+                <SitemapSubmenuItem to={routes.useCases.knowledgeGraphs} onClick={toggleMobileMenuOpen}>Knowledge Graphs</SitemapSubmenuItem>
                 <SitemapSubmenuItem to={routes.useCases.lifeSciences} onClick={toggleMobileMenuOpen}>Life Sciences</SitemapSubmenuItem>
                 <SitemapSubmenuItem to={routes.useCases.machineLearning} onClick={toggleMobileMenuOpen}>Machine Learning</SitemapSubmenuItem>
             </SitemapSubmenu>

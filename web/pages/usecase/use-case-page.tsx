@@ -77,7 +77,8 @@ export const UseCasePage: React.FC<UseCaseData> = ({pageTitle, mainLink, whitePa
                 <KeyPointPanels className={classes.subsectionMargin} panelHeight={section3.keyPointPanelHeight}>
                 {section3.keyPoints.map(keyPoint =>
                     <KeyPointPanel data={{name: keyPoint.title, icon: keyPoint.icon}} horizontalPadding={20}
-                                   mobileHeight={section3.keyPointPanelHeight.mobile}>{keyPoint.body}
+                                   mobileHeight={section3.keyPointPanelHeight.mobile}>
+                        <ParagraphWithLinks text={keyPoint.body}/>
                     </KeyPointPanel>
                 )}
                 </KeyPointPanels>
