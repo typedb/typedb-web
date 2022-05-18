@@ -2,7 +2,7 @@ import NestleLogo from "../../../assets/logos/purple/nestle.png";
 import RheosMedicinesLogo from "../../../assets/logos/purple/rheos-medicines.png";
 import TNOLogo from "../../../assets/logos/purple/tno.png";
 import { UseCaseData } from "./use-case-data";
-import MachineLearningDiagram from "../../../assets/images/machine-learning-diagram.png";
+import MachineLearningDiagram from "../../../assets/images/ml-typedb.jpeg";
 import SecurityIcon from "../../../assets/icons/security.svg";
 import ContextualiseIcon from "../../../assets/icons/contextualise.svg";
 import LearningAndTrainingIcon from "../../../assets/icons/learning-and-training.svg";
@@ -27,7 +27,7 @@ export const machineLearningData: UseCaseData = {
         ]
     },
     "section2": {
-        "title": "Predict New Relations or Classify Nodes using Machine Learning",
+        "title": "Improve Machine Learning Performance with Reasoning",
         "image": {
             "url": MachineLearningDiagram,
             "altText": "Knowledge Graph -> Aggregate -> Combine"
