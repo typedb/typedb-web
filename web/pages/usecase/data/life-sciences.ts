@@ -81,9 +81,9 @@ export const lifeSciencesData: UseCaseData = {
     },
     "section5": {
         "users": [
-            { "name": "Roche", logo: { src: RocheLogo } },
             { "name": "AstraZeneca", logo: { src: AstraZenecaLogo, width: 210 } },
-            { "name": "Genentech", logo: { src: GenentechLogo } }
+            { "name": "Genentech", logo: { src: GenentechLogo } },
+            { "name": "Roche", logo: { src: RocheLogo } }
         ]
     },
     "section6": {

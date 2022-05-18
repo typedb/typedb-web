@@ -79,8 +79,8 @@ export const machineLearningData: UseCaseData = {
     "section5": {
         "users": [
             { "name": "Nestle", logo: { src: NestleLogo } },
-            { "name": "TNO", logo: { src: TNOLogo, width: 210 } },
-            { "name": "Rheos Medicines", logo: { src: RheosMedicinesLogo, width: 195 } }
+            { "name": "Rheos Medicines", logo: { src: RheosMedicinesLogo, width: 195 } },
+            { "name": "TNO", logo: { src: TNOLogo, width: 210 } }
         ]
     },
     "section6": {

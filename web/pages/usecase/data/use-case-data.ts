@@ -70,6 +70,6 @@ export interface UseCaseData {
     section2: Title & Image
     section3: Title & KeyPointPanels
     section4: Title & KeyPoints & Partial<BodyMultiParagraph>
-    section5?: Users
+    section5: Users
     section6: Title
 }

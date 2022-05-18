@@ -1,6 +1,6 @@
-import AstraZenecaLogo from "../../../assets/logos/purple/astrazeneca.png";
-import FlipkartLogo from "../../../assets/logos/purple/flipkart.png";
-import IBMLogo from "../../../assets/logos/purple/ibm.png";
+import ATTLogo from "../../../assets/logos/purple/att.png";
+import NokiaBellLabsLogo from "../../../assets/logos/purple/nokia-bell-labs.png";
+import VirginiaTechLogo from "../../../assets/logos/purple/virginia-tech.png";
 import { UseCaseData } from "./use-case-data";
 import CTIQueryAnswersImage from "../../../assets/images/cti-query-answers.png";
 import SecurityIcon from "../../../assets/icons/security.svg";
@@ -74,6 +74,13 @@ export const cyberSecurityData: UseCaseData = {
             "Whatever cyber security application you are building, the data will inherently be complex and heterogeneous. You'll be dealing with entities such as threat actors, malwares, campaigns, vulnerabilities, and their interrelated connections. Using TypeDB you can now fully represent this complexity in a database that can take into account all of its context and semantics. TypeDB becomes a necessary tool to not only store this data, but also to reveal implicit knowledge and insights, in order to improve the security of your organisation.",
             "To help you get started with TypeDB, together with the community we have released an open source CTI platform called [TypeDB CTI](https://github.com/typedb-osi/typedb-cti) that you can start using today. Based on the well-known [STIX](https://oasis-open.github.io/cti-documentation/stix/intro.html) data standard, it provides a unified approach to the description of different kinds of cyber security data. This makes it straightforward for cyber security analysts to ingest heterogeneous threat intelligence data through a single common language which describes the data they work with.",
             "With the new insights that TypeDB can provide, your company can benefit from the next competitive edge. That's why today TypeDB is used to represent cyber security data for applications such as security information and event management, threat intelligence, endpoint detection and response, and many more. Learn more in the white paper below."
+        ]
+    },
+    "section5": {
+        "users": [
+            { "name": "AT&T", logo: { src: ATTLogo } },
+            { "name": "Nokia Bell Labs", logo: { src: NokiaBellLabsLogo, width: 210 } },
+            { "name": "Virginia Tech", logo: { src: VirginiaTechLogo, width: 195 } }
         ]
     },
     "section6": {
