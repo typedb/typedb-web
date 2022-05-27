@@ -110,7 +110,7 @@ const VaticleRoute: React.FC<VaticleRouteProps> = props => {
     const setTypeDBVersion = useTypeDBVersion()[1];
 
     useEffect(() => {
-        document.title = `Vaticle | ${props.title}`;
+        document.title = `${props.title} | Vaticle`;
 
         getTypeDBVersion().then(version => {
             setTypeDBVersion(version);
