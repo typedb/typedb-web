@@ -21,13 +21,13 @@ const products: Product[] = [{
     content: TypeDBTab,
     id: "typedb",
 }, {
-    name: "TypeDB Studio",
-    content: TypeDBStudioTab,
-    id: "typedb-studio",
-}, {
     name: "TypeDB Cluster",
     content: TypeDBClusterTab,
     id: "typedb-cluster",
+}, {
+    name: "TypeDB Studio",
+    content: TypeDBStudioTab,
+    id: "typedb-studio",
 }];
 
 export const ProductSection: React.FC<ClassProps> = ({className}) => {
