@@ -40,7 +40,7 @@ const defaultOSMap: {[key in OS]: keyof Downloads} = {
     Other: "macOS",
 }
 
-const latestReleaseDate = new Date("2022-05-30 22:32:00");
+const latestReleaseDate = new Date("2022-05-30");
 const latestReleaseDateFormatted = moment(latestReleaseDate).format("Do [of] MMMM YYYY");
 const studioVersion = "2.10.0-alpha-3";
 const latestReleaseNotesURL = `${urls.github.typedbStudioReleases}/tag/${studioVersion}`;
