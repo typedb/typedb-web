@@ -12,7 +12,7 @@ export const machineLearningData: UseCaseData = {
     "introVideoURL": "https://www.youtube.com/watch?v=qhUyurWMiSQ",
     "mainLink": {
         "text": "Download TypeDB",
-        "url": "https://github.com/vaticle/typedb"
+        "url": "https://vaticle.com/download"
     },
     "whitePaperLink": {
         "text": "Download White Paper",

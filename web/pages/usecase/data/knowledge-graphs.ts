@@ -12,7 +12,7 @@ export const knowledgeGraphsData: UseCaseData = {
     "introVideoURL": "https://www.youtube.com/watch?v=e0lmTSb-rzY",
     "mainLink": {
         "text": "Download TypeDB",
-        "url": "https://github.com/vaticle/typedb"
+        "url": "https://vaticle.com/download"
     },
     "whitePaperLink": {
         "text": "Download White Paper",

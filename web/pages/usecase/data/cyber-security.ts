@@ -12,7 +12,7 @@ export const cyberSecurityData: UseCaseData = {
     "introVideoURL": "https://www.youtube.com/watch?v=xuiYorG8-1Q",
     "mainLink": {
         "text": "Download TypeDB",
-        "url": "https://github.com/vaticle/typedb"
+        "url": "https://vaticle.com/download"
     },
     "whitePaperLink": {
         "text": "Download White Paper",
