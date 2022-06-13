@@ -1,16 +1,16 @@
 import React, {useEffect, useState} from "react";
 import moment from "moment";
-import { ComparisonBlock, ComparisonBlockItem } from "../../common/comparison/comparison-block";
-import { comparisonStyles } from "../../common/comparison/comparison-styles";
+import {ComparisonBlock, ComparisonBlockItem} from "../../common/comparison/comparison-block";
+import {comparisonStyles} from "../../common/comparison/comparison-styles";
 import {useTypeDBVersion} from "../../state/typedb-version";
 import {VaticleSelect} from "../../common/select/select";
 import {VaticleButton} from "../../common/button/button";
 import clsx from "clsx";
 import {urls} from "../../common/urls";
 import {vaticleStyles} from "../../common/styles/vaticle-styles";
-import { hashRoutes } from "../router";
+import {hashRoutes} from "../router";
 import {downloadPageProductStyles} from "./download-styles";
-import { getCurrentOS, OS } from "../../common/util/platform";
+import {getCurrentOS, OS} from "../../common/util/platform";
 
 const items: [ComparisonBlockItem, ComparisonBlockItem] = [{
     title: "Open Source",
@@ -22,7 +22,7 @@ const items: [ComparisonBlockItem, ComparisonBlockItem] = [{
 
 export const TypeDBTab: React.FC = () => <ComparisonBlock items={items}/>;
 
-type TypeDBVersion = "2.10.0" | "2.8.1" | "2.8.0" | "2.7.1" | "2.7.0" | "2.6.4" | "2.6.3" | "2.6.2" | "2.6.1"
+type TypeDBVersion = "2.11.0" | "2.10.0" | "2.8.1" | "2.8.0" | "2.7.1" | "2.7.0" | "2.6.4" | "2.6.3" | "2.6.2" | "2.6.1"
     | "2.6.0" | "2.5.0" | "2.4.0" | "2.3.3" | "2.3.2" | "2.3.1" | "2.3.0" | "2.2.0" | "2.1.3" | "2.1.1" | "2.0.2"
     | "2.0.1" | "2.0.0";
 
@@ -43,10 +43,10 @@ const defaultOSMap: {[key in OS]: keyof Downloads} = {
     Other: "macOS",
 }
 
-const latestReleaseDate = new Date("2022-05-25");
-const latestReleaseDateFormatted = moment(latestReleaseDate).format("Do [of] MMMM YYYY");
+const latestReleaseDateFormatted = moment(new Date("2022-06-10")).format("Do [of] MMMM YYYY");
 const downloads: Downloads = {
     "macOS": {
+        "2.11.0": "https://github.com/vaticle/typedb/releases/download/2.11.0/typedb-all-mac-2.11.0.zip",
         "2.10.0": "https://github.com/vaticle/typedb/releases/download/2.10.0/typedb-all-mac-2.10.0.zip",
         "2.8.1": "https://github.com/vaticle/typedb/releases/download/2.8.1/typedb-all-mac-2.8.1.zip",
         "2.8.0": "https://github.com/vaticle/typedb/releases/download/2.8.0/typedb-all-mac-2.8.0.zip",
@@ -71,6 +71,7 @@ const downloads: Downloads = {
         "2.0.0": "https://github.com/vaticle/typedb/releases/download/2.0.0/grakn-core-all-mac-2.0.0.zip",
     },
     "Linux": {
+        "2.11.0": "https://github.com/vaticle/typedb/releases/download/2.11.0/typedb-all-linux-2.11.0.tar.gz",
         "2.10.0": "https://github.com/vaticle/typedb/releases/download/2.10.0/typedb-all-linux-2.10.0.tar.gz",
         "2.8.1": "https://github.com/vaticle/typedb/releases/download/2.8.1/typedb-all-linux-2.8.1.tar.gz",
         "2.8.0": "https://github.com/vaticle/typedb/releases/download/2.8.0/typedb-all-linux-2.8.0.tar.gz",
@@ -95,6 +96,7 @@ const downloads: Downloads = {
         "2.0.0": "https://github.com/vaticle/typedb/releases/download/2.0.0/grakn-core-all-linux-2.0.0.tar.gz",
     },
     "Windows": {
+        "2.11.0": "https://github.com/vaticle/typedb/releases/download/2.11.0/typedb-all-windows-2.11.0.zip",
         "2.10.0": "https://github.com/vaticle/typedb/releases/download/2.10.0/typedb-all-windows-2.10.0.zip",
         "2.8.1": "https://github.com/vaticle/typedb/releases/download/2.8.1/typedb-all-windows-2.8.1.zip",
         "2.8.0": "https://github.com/vaticle/typedb/releases/download/2.8.0/typedb-all-windows-2.8.0.zip",
