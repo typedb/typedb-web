@@ -444,7 +444,7 @@ const generateSpeakerHtml = (speaker) => {
         <li class="speaker" data-speaker-id="${id}">
           <a href="#speaker-${fullName}">
             <div class="speaker-frame mb-2 mb-md-4">
-                <img class="profile-picture" src="${profileImg.src}" />
+                <img class="profile-picture" src="${profileImg.src}" alt="${fullName}" />
             </div>
             <p class="fullname h5 Titillium-Rg pt-2">${fullName}</p>
             <p class="position h6 Titillium-Lt pt-1">${shortPosition}</p>
