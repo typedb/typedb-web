@@ -81,9 +81,9 @@ export const VaticleRouter: React.FC = () => {
                 <VaticleRoute exact path={routes.support} title="Support" component={SupportPage}/>
                 <VaticleRoute exact path={routes.services} title="Services" component={ServicesPage}/>
                 <VaticleRoute exact path={routes.useCases.cyberSecurity} title="Cyber Security" component={CyberSecurityPage}/>
-                <VaticleRoute exact path={routes.useCases.knowledgeGraphs} title="Knowledge Graphs" component={KnowledgeGraphsPage}/>
-                <VaticleRoute exact path={routes.useCases.lifeSciences} title="Life Sciences" component={LifeSciencesPage}/>
-                <VaticleRoute exact path={routes.useCases.machineLearning} title="Machine Learning" component={MachineLearningPage}/>
+                <VaticleRoute exact path={routes.useCases.knowledgeGraphs} title="Knowledge Graph" component={KnowledgeGraphsPage}/>
+                <VaticleRoute exact path={routes.useCases.lifeSciences} title="Biomedical Knowledge Graph" component={LifeSciencesPage}/>
+                <VaticleRoute exact path={routes.useCases.machineLearning} title="Machine Learning Knowledge Graph" component={MachineLearningPage}/>
                 <VaticleRoute exact path={routes.useCases.robotics} title="Robotics" component={RoboticsPage}/>
                 <VaticleRoute exact path={routes.home} title="Home" component={HomePage}/>
 
