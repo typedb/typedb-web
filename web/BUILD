@@ -29,12 +29,14 @@ assemble_react(
 nodejs_binary(
     name = "webpack_cli_bazel_wrapper",
     data = [
-        "@npm//webpack-cli",
         "@npm//babel-loader",
-        "@npm//sass-loader",
         "@npm//clean-webpack-plugin",
         "@npm//copy-webpack-plugin",
-        "@npm//html-webpack-plugin"
+        "@npm//html-webpack-plugin",
+        "@npm//mkdirp",
+        "@npm//sass-loader",
+        "@npm//terser-webpack-plugin",
+        "@npm//webpack-cli",
     ],
     entry_point = "@npm//:node_modules/webpack-cli/bin/cli.js",
     visibility = ["//visibility:public"]
