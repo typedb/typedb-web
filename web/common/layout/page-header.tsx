@@ -88,28 +88,29 @@ const Sitemap: React.FC<SitemapProps> = ({toggleMobileMenuOpen}) => {
 
     return (
         <ul className={classes.menu}>
-            <SitemapSubmenu title="Technologies">
-                <SitemapSubmenuItem to={routes.typeDB} onClick={toggleMobileMenuOpen}>TypeDB</SitemapSubmenuItem>
-                <SitemapSubmenuItem to={routes.typeDBCluster} onClick={toggleMobileMenuOpen}>TypeDB Cluster</SitemapSubmenuItem>
-            </SitemapSubmenu>
-            <SitemapSubmenu title="Solutions">
-                <SitemapSubmenuItem to={routes.services} onClick={toggleMobileMenuOpen}>Services</SitemapSubmenuItem>
-                <SitemapSubmenuItem to={routes.support} onClick={toggleMobileMenuOpen}>Support</SitemapSubmenuItem>
-            </SitemapSubmenu>
-            <SitemapSubmenu title="Use Cases">
-                <SitemapSubmenuItem to={routes.useCases.cyberSecurity} onClick={toggleMobileMenuOpen}>Cyber Security</SitemapSubmenuItem>
-                <SitemapSubmenuItem to={routes.useCases.knowledgeGraphs} onClick={toggleMobileMenuOpen}>Knowledge Graphs</SitemapSubmenuItem>
-                <SitemapSubmenuItem to={routes.useCases.lifeSciences} onClick={toggleMobileMenuOpen}>Life Sciences</SitemapSubmenuItem>
-                <SitemapSubmenuItem to={routes.useCases.machineLearning} onClick={toggleMobileMenuOpen}>Machine Learning</SitemapSubmenuItem>
-            </SitemapSubmenu>
-            <SitemapSubmenu title="Developer">
-                <SitemapSubmenuItem href={urls.docs.home} onClick={toggleMobileMenuOpen}>Documentation</SitemapSubmenuItem>
-                <SitemapSubmenuItem href={urls.forum} onClick={toggleMobileMenuOpen}>Discussion Forum</SitemapSubmenuItem>
-            </SitemapSubmenu>
-            <SitemapSubmenu title="Conferences">
-                <SitemapSubmenuItem href={urls.cosmos2020} onClick={toggleMobileMenuOpen}>TypeDB Cosmos 2020</SitemapSubmenuItem>
-                <SitemapSubmenuItem href={urls.cosmos2022} onClick={toggleMobileMenuOpen}>TypeDB Cosmos 2022</SitemapSubmenuItem>
-            </SitemapSubmenu>
+            <Submenu title="Technologies">
+                <SubmenuItem to={routes.typeDB} onClick={toggleMobileMenuOpen}>TypeDB</SubmenuItem>
+                <SubmenuItem to={routes.typeDBCluster} onClick={toggleMobileMenuOpen}>TypeDB Cluster</SubmenuItem>
+            </Submenu>
+            <Submenu title="Solutions">
+                <SubmenuItem to={routes.services} onClick={toggleMobileMenuOpen}>Services</SubmenuItem>
+                <SubmenuItem to={routes.support} onClick={toggleMobileMenuOpen}>Support</SubmenuItem>
+            </Submenu>
+            <Submenu title="Use Cases">
+                <SubmenuItem to={routes.useCases.cyberSecurity} onClick={toggleMobileMenuOpen}>Cyber Security</SubmenuItem>
+                <SubmenuItem to={routes.useCases.knowledgeGraphs} onClick={toggleMobileMenuOpen}>Knowledge Graphs</SubmenuItem>
+                <SubmenuItem to={routes.useCases.lifeSciences} onClick={toggleMobileMenuOpen}>Life Sciences</SubmenuItem>
+                <SubmenuItem to={routes.useCases.machineLearning} onClick={toggleMobileMenuOpen}>Machine Learning</SubmenuItem>
+                <SubmenuItem to={routes.useCases.robotics} onClick={toggleMobileMenuOpen}>Robotics</SubmenuItem>
+            </Submenu>
+            <Submenu title="Developer">
+                <SubmenuItem href={urls.docs.home} onClick={toggleMobileMenuOpen}>Documentation</SubmenuItem>
+                <SubmenuItem href={urls.forum} onClick={toggleMobileMenuOpen}>Discussion Forum</SubmenuItem>
+            </Submenu>
+            <Submenu title="Conferences">
+                <SubmenuItem href={urls.cosmos2020} onClick={toggleMobileMenuOpen}>TypeDB Cosmos 2020</SubmenuItem>
+                <SubmenuItem href={urls.cosmos2022} onClick={toggleMobileMenuOpen}>TypeDB Cosmos 2022</SubmenuItem>
+            </Submenu>
             <li>
                 <VaticleLink href={urls.blog} target="_blank"><span>Blog</span></VaticleLink>
             </li>
@@ -117,16 +118,16 @@ const Sitemap: React.FC<SitemapProps> = ({toggleMobileMenuOpen}) => {
     );
 }
 
-interface SitemapSubmenuItemData {
+interface SubmenuItemData {
     to?: string;
     href?: string;
 }
 
-interface SitemapSubmenuProps {
+interface SubmenuProps {
     title: string;
 }
 
-const SitemapSubmenu: React.FC<SitemapSubmenuProps> = ({title, children}) => {
+const Submenu: React.FC<SubmenuProps> = ({title, children}) => {
     const classes = pageHeaderStyles();
 
     const backButton = (
@@ -146,11 +147,11 @@ const SitemapSubmenu: React.FC<SitemapSubmenuProps> = ({title, children}) => {
     );
 }
 
-interface SitemapSubmenuItemProps extends SitemapSubmenuItemData {
+interface SubmenuItemProps extends SubmenuItemData {
     onClick: () => void;
 }
 
-const SitemapSubmenuItem: React.FC<SitemapSubmenuItemProps> = ({children, to, href, onClick}) => (
+const SubmenuItem: React.FC<SubmenuItemProps> = ({children, to, href, onClick}) => (
     <li><VaticleLink onClick={onClick} to={to} href={href}><span>{children}</span></VaticleLink></li>
 );
 
