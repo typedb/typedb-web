@@ -64,7 +64,7 @@ export const UseCaseSection: React.FC<ClassProps> = ({className}) => {
     }, {
         name: "Robotics",
         icon: RoboticsIcon,
-        description: `Robotic systems consume a lot of disparate data relating to real world objects, planning systems,
+        description: `Robotics systems consume a lot of disparate data relating to real world objects, planning systems,
                       hardware data etc. This requires a database that can build models to accurately represent this
                       level of complexity and semantic richness. TypeDB allows organisations to build robust models that
                       enable robots to reason and become more autonomous.`,
