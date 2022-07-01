@@ -40,7 +40,7 @@ export const roboticsData: UseCaseData = {
             },
             {
                 "title": "More Intelligent Environment Modelling",
-                "body": "As your robot navigates through the real world, it obtains sensory features and creates symbolic representations in TypeDB. By leveraging the full expressivity of the entity-relationship model, this enables TypeDB to create contextual knowledge that your robot can use to reason and make decisions independently.",
+                "body": "As your robot navigates through the real world, it obtains sensory features and creates symbolic representations in TypeDB. By leveraging the full expressivity of the ER model, this enables TypeDB to create contextual knowledge that your robot can use to reason and make decisions independently.",
                 "icon": LearningAndTrainingIcon
             },
             {
