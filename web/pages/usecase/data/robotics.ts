@@ -13,8 +13,8 @@ export const roboticsData: UseCaseData = {
     },
     "whitePaperLink": {
         "text": "Download White Paper",
-        "url": "https://www.example.com",
-        "hubspotFormID": "!!!TODO!!!",
+        "url": "/documents/Robotics_White_Paper.pdf",
+        "hubspotFormID": "f979dc22-8281-4857-ac59-a28015fff7eb",
     },
     "section1": {
         "title": "Why use TypeDB Knowledge Graphs for Robotics?",

@@ -5,7 +5,7 @@ import React, {useState} from "react";
 import clsx from "clsx";
 import LifeScienceIcon from "../../assets/icons/life-science.svg";
 import SecurityIcon from "../../assets/icons/security.svg";
-import TelecommunicationIcon from "../../assets/icons/telecommunication.svg";
+import RoboticsIcon from "../../assets/icons/robotics.svg";
 import KnowledgeGraphsIcon from "../../assets/icons/knowledge-graphs.svg";
 import MachineLearningIcon from "../../assets/icons/machine-learning.svg";
 import {vaticleTheme} from "../../common/styles/theme";
@@ -13,11 +13,11 @@ import {vaticleStyles} from "../../common/styles/vaticle-styles";
 import {ClassProps} from "../../common/class-props";
 
 type UseCaseName =
-    "Knowledge Graphs"
-    | "Machine Learning"
+    "Cyber Security"
+    | "Knowledge Graphs"
     | "Life Sciences"
-    | "Cyber Security"
-    | "Telecommunication";
+    | "Machine Learning"
+    | "Robotics";
 
 interface UseCase {
     name: UseCaseName;
@@ -62,13 +62,13 @@ export const UseCaseSection: React.FC<ClassProps> = ({className}) => {
                       contextualised knowledge base.`,
         learnMoreRoute: routes.useCases.machineLearning,
     }, {
-        name: "Telecommunication",
-        icon: TelecommunicationIcon,
-        description: `The Telecommunications industry has the most complex networks of interconnected data points.
-                      Modelling and querying these networks are challenging, and the cost of mistakes are too high.
-                      TypeDB allows telecommunication providers to build robust models to capture entire networks of
-                      systems that did not have visibility before.`,
-        learnMoreRoute: undefined,
+        name: "Robotics",
+        icon: RoboticsIcon,
+        description: `Robotic systems consume a lot of disparate data relating to real world objects, planning systems,
+                      hardware data etc. This requires a database that can build models to accurately represent this
+                      level of complexity and semantic richness. TypeDB allows organisations to build robust models that
+                      enable robots to reason and become more autonomous.`,
+        learnMoreRoute: routes.useCases.robotics,
     }];
 
     const [selectedIndustry, setSelectedIndustry] = useState<UseCase>(useCases[1]);
