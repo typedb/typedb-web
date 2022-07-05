@@ -53,7 +53,7 @@ const downloads: Downloads = {
         "2.0.0": "https://github.com/vaticle/typedb-workbase/releases/download/2.0.0/grakn-workbase-linux-2.0.0.AppImage",
     },
     "Linux (cross-platform)": {
-        "2.11.0": "https://github.com/vaticle/typedb-studio/releases/download/2.11.0/typedb-studio-linux-java-binary-2.11.0.tar.gz",
+        "2.11.0": "https://github.com/vaticle/typedb-studio/releases/download/2.11.0/typedb-studio-linux-2.11.0.tar.gz",
     },
     "macOS": {
         "2.11.0": "https://github.com/vaticle/typedb-studio/releases/download/2.11.0/typedb-studio-mac-2.11.0.dmg",
