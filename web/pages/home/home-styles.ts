@@ -197,7 +197,7 @@ export const corporateLogosStyles = makeStyles({
 });
 
 export const homePageIndustryStyles = makeStyles({
-    industryDescription: {
+    useCaseDescription: {
         ...standardTextStyles.desktop,
         maxWidth: sectionIntroMaxWidth,
         margin: "0 auto",

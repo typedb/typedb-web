@@ -22,7 +22,7 @@ export const machineLearningData: UseCaseData = {
     "section1": {
         "title": "Why use TypeDB Knowledge Graphs for Machine Learning?",
         "body": [
-            "TypeDB's strong type system allows you to model your data natively based on the entity-relationship model, making it possible to build a Knowledge Graph that encodes the context and semantics of your domain. It's then straightforward to learn and make predictions over interrelated data, for instance, data that has been ingested from various corporate silos using ontologies or taxonomies.",
+            "TypeDB's strong type system allows you to model your data natively based on the entity-relationship model, making it possible to build a [Knowledge Graph](https://blog.vaticle.com/what-is-a-knowledge-graph-5234363bf7f5) that encodes the context and semantics of your domain. It's then straightforward to learn and make predictions over interrelated data, for instance, data that has been ingested from various corporate silos using ontologies or taxonomies.",
             "TypeDB makes it possible to build the best possible features for your models to consume. Its strong type system ensures that your data has a clear structure defined by a schema. Checking that everything inserted adheres to a schema gives concrete assurance that the data is both typed and logically consistent. TypeDB provides type hierarchies, which means learning about one type can have implications for other types in the same hierarchy. There are many more benefits that TypeDB's strong type system provides (see white paper below)."
         ]
     },

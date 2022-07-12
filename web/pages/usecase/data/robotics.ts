@@ -19,7 +19,7 @@ export const roboticsData: UseCaseData = {
     "section1": {
         "title": "Why use TypeDB Knowledge Graphs for Robotics?",
         "body": [
-            "Data in robotics is often incredibly heterogeneous as it needs to represent real world data, planning systems, hardware data, and much more. This requires a database system that can build the type of knowledge graphs or knowledge bases that can model this type of information and all its semantic richness. This is why many robotics organisations use TypeDB to natively model constructs such as hyper relations, nested relations, type hierarchies and much more.",
+            "Data in robotics is often incredibly heterogeneous as it needs to represent real world data, planning systems, hardware data, and much more. This requires a database system that can build the type of [knowledge graphs](https://blog.vaticle.com/what-is-a-knowledge-graph-5234363bf7f5) or knowledge bases that can model this type of information and all its semantic richness. This is why many robotics organisations use TypeDB to natively model constructs such as hyper relations, nested relations, type hierarchies and much more.",
             "With TypeDB, you'll have the right framework to build knowledge-enabled robots. TypeDB gives robots the ability to reason independently without having to rely exclusively on human intervention or expensive machine learning approaches. Download the white paper below to learn how TypeDB can be used to build robotics systems. The white paper includes code examples that you can start using today."
         ]
     },

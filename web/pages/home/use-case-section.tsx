@@ -1,4 +1,5 @@
 import { routes } from "../router";
+import { ParagraphWithLinks } from "../usecase/paragraph-with-links";
 import {homePageIndustryStyles} from "./home-styles";
 import {VaticleButton} from "../../common/button/button";
 import React, {useState} from "react";
@@ -40,8 +41,9 @@ export const UseCaseSection: React.FC<ClassProps> = ({className}) => {
     }, {
         name: "Knowledge Graphs",
         icon: KnowledgeGraphsIcon,
-        description: `Knowledge Graphs (aka. Knowledge Bases) are systems that aggregate complex networks of facts to be 
-                      interrogated semantically and logically. TypeDB enables engineers to model and aggregate disparate 
+        description: `[Knowledge Graphs](https://blog.vaticle.com/what-is-a-knowledge-graph-5234363bf7f5)
+                      (aka. Knowledge Bases) are systems that aggregate complex networks of facts to be interrogated
+                      semantically and logically. TypeDB enables engineers to model and aggregate disparate 
                       sources of data to become one unified Knowledge Graph, making it possible to infer new knowledge 
                       by its reasoning engine.`,
         learnMoreRoute: routes.useCases.knowledgeGraphs,
@@ -71,25 +73,25 @@ export const UseCaseSection: React.FC<ClassProps> = ({className}) => {
         learnMoreRoute: routes.useCases.robotics,
     }];
 
-    const [selectedIndustry, setSelectedIndustry] = useState<UseCase>(useCases[1]);
-    const comingSoon = selectedIndustry.learnMoreRoute == null;
+    const [selectedUseCase, setSelectedUseCase] = useState<UseCase>(useCases[1]);
+    const comingSoon = selectedUseCase.learnMoreRoute == null;
 
     return (
         <section className={className}>
             <h1 className={classes.h1}>Empower your organisation <br className={classes.showTablet}/> to solve complex problems</h1>
-            <h3 className={clsx(classes.h3, classes.textMargin)}>{selectedIndustry.name}</h3>
+            <h3 className={clsx(classes.h3, classes.textMargin)}>{selectedUseCase.name}</h3>
 
-            <p className={classes.industryDescription}>{selectedIndustry.description}</p>
-            <VaticleButton size="small" type="secondary" to={selectedIndustry.learnMoreRoute} disabled={comingSoon}
+            <ParagraphWithLinks className={classes.useCaseDescription} text={selectedUseCase.description}/>
+            <VaticleButton size="small" type="secondary" to={selectedUseCase.learnMoreRoute} disabled={comingSoon}
                            comingSoon={comingSoon} className={clsx(classes.learnMore, classes.contentMargin)}>
                 Learn More
             </VaticleButton>
 
             <div className={clsx(classes.subsectionMargin, classes.sectionToggleGroupContainer)}>
                 <div className={classes.sectionToggleGroup}>
-                    {useCases.map(industry => (
-                        <SectionToggle industry={industry} binding={setSelectedIndustry}
-                                       selected={industry.name === selectedIndustry.name}/>
+                    {useCases.map(useCase => (
+                        <SectionToggle useCase={useCase} binding={setSelectedUseCase}
+                                       selected={useCase.name === selectedUseCase.name}/>
                     ))}
                 </div>
             </div>
@@ -98,22 +100,22 @@ export const UseCaseSection: React.FC<ClassProps> = ({className}) => {
 }
 
 interface SectionToggleProps {
-    industry: UseCase;
-    binding: (industry: UseCase) => void;
+    useCase: UseCase;
+    binding: (useCase: UseCase) => void;
     selected: boolean;
 }
 
-export const SectionToggle: React.FC<SectionToggleProps> = ({industry, binding, selected}) => {
+export const SectionToggle: React.FC<SectionToggleProps> = ({useCase, binding, selected}) => {
     const classes = homePageIndustryStyles();
 
     return (
         <div className={classes.sectionToggle}>
             <div
                 className={clsx(classes.sectionToggleIconContainer, selected && classes.sectionToggleIconContainerSelected)}
-                onClick={() => binding(industry)}>
-                <industry.icon color={selected ? vaticleTheme.palette.green["1"] : "#FFF"}/>
+                onClick={() => binding(useCase)}>
+                <useCase.icon color={selected ? vaticleTheme.palette.green["1"] : "#FFF"}/>
             </div>
-            <p className={clsx(classes.sectionToggleTitle)}>{industry.name}</p>
+            <p className={clsx(classes.sectionToggleTitle)}>{useCase.name}</p>
         </div>
     );
 }

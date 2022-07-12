@@ -71,7 +71,7 @@ export const lifeSciencesData: UseCaseData = {
             },
             {
                 "title": "Biomedical Knowledge Graphs",
-                "body": "With TypeDB, you'll be able to build your own Knowledge Graph to serve as an engine for your drug discovery programmes. Ingest publicly available biomedical data, experimental in-vitro findings and data mined from scientific literature to consistently enrich your Knowledge Graph, and create a unified and accurate representation of all biomedical data relevant to you."
+                "body": "With TypeDB, you'll be able to build your own [Knowledge Graph](https://blog.vaticle.com/what-is-a-knowledge-graph-5234363bf7f5) to serve as an engine for your drug discovery programmes. Ingest publicly available biomedical data, experimental in-vitro findings and data mined from scientific literature to consistently enrich your Knowledge Graph, and create a unified and accurate representation of all biomedical data relevant to you."
             },
             {
                 "title": "Text Mining",

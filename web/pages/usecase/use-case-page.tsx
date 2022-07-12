@@ -59,7 +59,7 @@ export const UseCasePage: React.FC<UseCaseData> = ({pageTitle, mainLink, whitePa
                 <YoutubeVideoEmbed url={introVideoURL} className={classes.subsectionMargin}/>
 
                 <h2 className={clsx(classes.h2, classes.subsectionMargin)}>{section1.title}</h2>
-                {section1.body.map(text => <p className={clsx(classes.mediumText, classes.textMargin, classes.introBody)}>{text}</p>)}
+                {section1.body.map(text => <ParagraphWithLinks className={clsx(classes.mediumText, classes.textMargin, classes.introBody)} text={text}/>)}
                 <div className={clsx(classes.mainActionList, classes.contentMargin)}>
                     <VaticleButton size="small" type="secondary" to="?dialog=download-white-paper">{whitePaperLink.text}</VaticleButton>
                 </div>
