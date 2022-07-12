@@ -75,7 +75,7 @@ export const knowledgeGraphsData: UseCaseData = {
             },
             {
                 "title": "Robotics",
-                "body": "[Autonomous vehicles](https://dzone.com/articles/object-recognition-and-spacial-awareness-for-a-spo) leverage TypeDB knowledge graphs to create a centralised source of truth for a system's observations. Through [object recognition](https://www.youtube.com/watch?v=4mz6ZlFWAro), TypeDB's reasoning engine can, for example, infer in what room of a house it's located in or devise an [execution plan](/documents/on-planning-in-a-knowledge-hypergraph.pdf) for a particular task. [Learn more](https://www.vaticle.com/use-cases/robotics)."
+                "body": "[Autonomous vehicles](https://dzone.com/articles/object-recognition-and-spacial-awareness-for-a-spo) leverage TypeDB knowledge graphs to create a centralised source of truth for a system's observations. Through [object recognition](https://www.youtube.com/watch?v=4mz6ZlFWAro), TypeDB's reasoning engine can, for example, infer in what room of a house it's located in or devise an [execution plan](http://ceur-ws.org/Vol-2708/robontics6.pdf) for a particular task. [Learn more](https://www.vaticle.com/use-cases/robotics)."
             },
         ],
         "body": [
