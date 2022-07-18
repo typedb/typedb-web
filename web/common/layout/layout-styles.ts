@@ -5,7 +5,7 @@ import { standardMargins } from "../styles/vaticle-styles";
 
 const headerBarHeight = 80;
 const eventBannerHeight = 28;
-export const eventBannerVisible = false; // Set this to false when we aren't displaying an event banner
+export const eventBannerVisible = true; // Set this to false when we aren't displaying an event banner
 export const headerAreaHeight = eventBannerVisible ? headerBarHeight + eventBannerHeight : headerBarHeight;
 const footerHeight = 65;
 const headerBoxShadow = "2px 2px 1px -1px rgba(0,0,0,0.2),2px 2px 3px 0px rgba(0,0,0,0.14),2px 1px 5px 0px rgba(0,0,0,0.12)";

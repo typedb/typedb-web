@@ -9,6 +9,6 @@ export const EventBanner: React.FC = () => {
     return <div className={classes.root}>
         Learn more about TypeDB at our weekly webinars
         <span className={classes.pipe}>|</span>
-        <VaticleLink className={classes.link} href={urls.eventsJune2022}>Sign Up</VaticleLink>
+        <VaticleLink className={classes.link} href={urls.eventsJuly2022}>Sign Up</VaticleLink>
     </div>
 }
