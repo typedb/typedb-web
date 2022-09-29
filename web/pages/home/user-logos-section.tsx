@@ -10,6 +10,7 @@ import AstraZenecaLogo from "../../assets/logos/purple/astrazeneca.png";
 import AustinCapitalDataLogo from "../../assets/logos/purple/austin-capital-data.png";
 import BioCortexLogo from "../../assets/logos/purple/biocortex.png";
 import CapgeminiLogo from "../../assets/logos/purple/capgemini.png";
+import CiscoLogo from "../../assets/logos/purple/cisco.png";
 import ClearskyCybersecurityLogo from "../../assets/logos/purple/clearsky-cybersecurity.png";
 import DataSpartanLogo from "../../assets/logos/purple/dataspartan.png";
 import DigicustLogo from "../../assets/logos/purple/digicust.png";
@@ -77,6 +78,10 @@ const logos: UserLogo[] = [{
     logo: RheosMedicinesLogo,
     altText: "Rheos Medicines",
     weight: 2,
+}, {
+    logo: CiscoLogo,
+    altText: "Cisco",
+    weight: 3,
 }, {
     logo: TNOLogo,
     altText: "TNO",
