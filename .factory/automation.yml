@@ -7,7 +7,7 @@ build:
   correctness:
     build:
       machine: 4-core-8-gb
-      image: vaticle-ubuntu-20.04
+      image: vaticle-ubuntu-22.04
       command: |
         bazel build //...
 
@@ -15,14 +15,14 @@ release:
   deployment:
     deploy-artifact-release:
       machine: 4-core-8-gb
-      image: vaticle-ubuntu-20.04
+      image: vaticle-ubuntu-22.04
       command: |
         export DEPLOY_ARTIFACT_USERNAME=$REPO_VATICLE_USERNAME
         export DEPLOY_ARTIFACT_PASSWORD=$REPO_VATICLE_PASSWORD
         bazel run --define version=$(cat VERSION) //:deploy-web-main -- release
     deploy-nomad-production:
       machine: 4-core-8-gb
-      image: vaticle-ubuntu-20.04
+      image: vaticle-ubuntu-22.04
       dependencies: [deploy-artifact-release]
       command: |
         echo $NOMAD_CACERT_BASE64 | base64 -d > /tmp/nomad-ca.pem
@@ -30,7 +30,7 @@ release:
         VERSION=$(cat VERSION) COMMIT=$(git rev-parse HEAD) envsubst <infrastructure/web-main.nomad | nomad job run -verbose -
     version-bump:
       machine: 4-core-8-gb
-      image: vaticle-ubuntu-20.04
+      image: vaticle-ubuntu-22.04
       dependencies: [deploy-nomad-production]
       command: |
         export GIT_USERNAME=$REPO_GITHUB_USERNAME

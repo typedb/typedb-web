@@ -20,7 +20,7 @@ The infrastructure package contains the nomad client machine definition (written
    vault kv put web-main/application-secret value=$(cat application-secret)
     ```
  
-3. Then follow the steps in the Release pipeline defined in grabl.
+3. Then follow the steps in the Release pipeline defined in Factory.
 
 #### Operation
 
