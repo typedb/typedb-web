@@ -9,6 +9,7 @@ build:
       machine: 4-core-16-gb
       image: vaticle-ubuntu-20.04
       command: |
+        sudo ln -s /usr/bin/python3 /usr/bin/python
         bazel build //...
 
 release:
