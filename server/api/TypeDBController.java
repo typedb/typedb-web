@@ -8,6 +8,6 @@ import static com.vaticle.web.main.server.api.APIUtils.okResult;
 
 public class TypeDBController extends Controller {
     public Result version() {
-        return okResult(new JsonObject().add("version", "2.11.1").toString());
+        return okResult(new JsonObject().add("version", "2.12.0").toString());
     }
 }
