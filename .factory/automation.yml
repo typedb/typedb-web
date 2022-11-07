@@ -18,6 +18,7 @@ release:
       machine: 4-core-16-gb
       image: vaticle-ubuntu-20.04
       command: |
+        sudo ln -s /usr/bin/python3 /usr/bin/python
         export DEPLOY_ARTIFACT_USERNAME=$REPO_VATICLE_USERNAME
         export DEPLOY_ARTIFACT_PASSWORD=$REPO_VATICLE_PASSWORD
         bazel run --define version=$(cat VERSION) //:deploy-web-main -- release
