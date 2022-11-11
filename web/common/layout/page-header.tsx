@@ -109,7 +109,7 @@ const Sitemap: React.FC<SitemapProps> = ({toggleMobileMenuOpen}) => {
             </Submenu>
             <Submenu title="Conferences">
                 <SubmenuItem href={urls.cosmos2020} onClick={toggleMobileMenuOpen}>TypeDB Cosmos 2020</SubmenuItem>
-                <SubmenuItem href={urls.cosmos2022} onClick={toggleMobileMenuOpen}>TypeDB Cosmos 2022</SubmenuItem>
+                {/*<SubmenuItem href={urls.cosmos2023} onClick={toggleMobileMenuOpen}>TypeDB Cosmos 2023</SubmenuItem>*/}
             </Submenu>
             <li>
                 <VaticleLink href={urls.blog} target="_blank"><span>Blog</span></VaticleLink>

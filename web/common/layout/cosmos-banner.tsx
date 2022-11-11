@@ -13,7 +13,7 @@ export const CosmosBanner: React.FC = () => {
 
     return (
         <div className={classes.root}>
-            <p>Join us at Cosmos 2022 | TypeDB's Virtual Conference | Jun 11-12</p>
+            <p>Join us at Cosmos 2023 | TypeDB's Virtual Conference | Jun 11-12</p>
             <VaticleButton size="small" type="primary" href={urls.cosmos2020}>Register for Free {">"}</VaticleButton>
             <FontAwesomeIcon className={classes.closeButton} icon={faTimesCircle}/>
         </div>
