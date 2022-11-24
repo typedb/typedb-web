@@ -40,11 +40,12 @@ const defaultOSMap: {[key in OS]: keyof Downloads} = {
     Other: "macOS",
 }
 
-const latestReleaseDateFormatted = moment(new Date("2022-07-05")).format("Do [of] MMMM YYYY");
-const studioVersion = "2.11.0";
+const latestReleaseDateFormatted = moment(new Date("2022-11-24")).format("Do [of] MMMM YYYY");
+const studioVersion = "2.14.0";
 const latestReleaseNotesURL = `${urls.github.typedbStudioReleases}/tag/${studioVersion}`;
 const downloads: Downloads = {
     "Ubuntu / Debian": {
+        "2.14.0": "https://github.com/vaticle/typedb-studio/releases/download/2.14.0/typedb-studio_2.14.0-1_amd64.deb",
         "2.11.0": "https://github.com/vaticle/typedb-studio/releases/download/2.11.0/typedb-studio_2.11.0-1_amd64.deb",
         "2.1.2": "https://github.com/vaticle/typedb-workbase/releases/download/2.1.2/typedb-workbase-linux-2.1.2.AppImage",
         "2.1.0": "https://github.com/vaticle/typedb-workbase/releases/download/2.1.0/typedb-workbase-linux-2.1.0.AppImage",
@@ -53,9 +54,11 @@ const downloads: Downloads = {
         "2.0.0": "https://github.com/vaticle/typedb-workbase/releases/download/2.0.0/grakn-workbase-linux-2.0.0.AppImage",
     },
     "Linux (cross-platform)": {
+        "2.14.0": "https://github.com/vaticle/typedb-studio/releases/download/2.14.0/typedb-studio-linux-2.14.0.tar.gz",
         "2.11.0": "https://github.com/vaticle/typedb-studio/releases/download/2.11.0/typedb-studio-linux-2.11.0.tar.gz",
     },
     "macOS": {
+        "2.14.0": "https://github.com/vaticle/typedb-studio/releases/download/2.14.0/typedb-studio-mac-2.14.0.dmg",
         "2.11.0": "https://github.com/vaticle/typedb-studio/releases/download/2.11.0/typedb-studio-mac-2.11.0.dmg",
         "2.1.2": "https://github.com/vaticle/typedb-workbase/releases/download/2.1.2/typedb-workbase-mac-2.1.2.dmg",
         "2.1.0": "https://github.com/vaticle/typedb-workbase/releases/download/2.1.0/typedb-workbase-mac-2.1.0.dmg",
@@ -64,6 +67,7 @@ const downloads: Downloads = {
         "2.0.0": "https://github.com/vaticle/typedb-workbase/releases/download/2.0.0/grakn-workbase-mac-2.0.0.dmg",
     },
     "Windows": {
+        "2.14.0": "https://github.com/vaticle/typedb-studio/releases/download/2.14.0/typedb-studio-windows-2.14.0.exe",
         "2.11.0": "https://github.com/vaticle/typedb-studio/releases/download/2.11.0/typedb-studio-windows-2.11.0.exe",
         "2.1.2": "https://github.com/vaticle/typedb-workbase/releases/download/2.1.2/typedb-workbase-win-2.1.2.exe",
         "2.1.0": "https://github.com/vaticle/typedb-workbase/releases/download/2.1.0/typedb-workbase-win-2.1.0.exe",
@@ -73,7 +77,7 @@ const downloads: Downloads = {
     },
 };
 const defaultOS: keyof Downloads = defaultOSMap[getCurrentOS()];
-const defaultVersion: string = "2.11.0";
+const defaultVersion: string = "2.14.0";
 
 const OpenSourcePane: React.FC = () => {
     const classes = Object.assign({}, vaticleStyles(), downloadPageProductStyles(), comparisonStyles());
@@ -121,9 +125,10 @@ const OpenSourcePane: React.FC = () => {
                 </VaticleSelect>
                 <VaticleSelect label="Version" value={selectedVersion} setValue={setSelectedVersion} inputName="version"
                                inputID="typedb-version" variant="outlined">
-                    <option value="2.11.0">2.11.0</option>
+                    <option value="2.14.0">2.14.0</option>
                     {selectedOS !== "Linux (cross-platform)" &&
                     <>
+                        <option value="2.11.0">2.11.0</option>
                         <option value="2.1.2">2.1.2</option>
                         <option value="2.1.0">2.1.0</option>
                         <option value="2.0.2">2.0.2</option>
