@@ -43,7 +43,7 @@ const defaultOSMap: {[key in OS]: keyof Downloads} = {
     Other: "macOS",
 }
 
-const latestReleaseDateFormatted = moment(new Date("2022-11-25")).format("Do [of] MMMM YYYY");
+const latestReleaseDateFormatted = moment(new Date("2022-12-02")).format("Do [of] MMMM YYYY");
 const downloads: Downloads = {
     "macOS": {
         "2.14.2": "https://github.com/vaticle/typedb/releases/download/2.14.2/typedb-all-mac-2.14.2.zip",
