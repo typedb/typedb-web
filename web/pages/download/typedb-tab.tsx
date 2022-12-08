@@ -22,9 +22,9 @@ const items: [ComparisonBlockItem, ComparisonBlockItem] = [{
 
 export const TypeDBTab: React.FC = () => <ComparisonBlock items={items}/>;
 
-type TypeDBVersion = "2.14.1" | "2.13.0" | "2.12.0" | "2.11.1" | "2.11.0" | "2.10.0" | "2.8.1" | "2.8.0" | "2.7.1"
-    | "2.7.0" | "2.6.4" | "2.6.3" | "2.6.2" | "2.6.1" | "2.6.0" | "2.5.0" | "2.4.0" | "2.3.3" | "2.3.2" | "2.3.1"
-    | "2.3.0" | "2.2.0" | "2.1.3" | "2.1.1" | "2.0.2" | "2.0.1" | "2.0.0";
+type TypeDBVersion = "2.14.2" | "2.14.1" | "2.13.0" | "2.12.0" | "2.11.1" | "2.11.0" | "2.10.0" | "2.8.1" | "2.8.0"
+    | "2.7.1" | "2.7.0" | "2.6.4" | "2.6.3" | "2.6.2" | "2.6.1" | "2.6.0" | "2.5.0" | "2.4.0" | "2.3.3" | "2.3.2"
+    | "2.3.1" | "2.3.0" | "2.2.0" | "2.1.3" | "2.1.1" | "2.0.2" | "2.0.1" | "2.0.0";
 
 interface Downloads {
     "macOS": NativeDownloads;
@@ -43,9 +43,10 @@ const defaultOSMap: {[key in OS]: keyof Downloads} = {
     Other: "macOS",
 }
 
-const latestReleaseDateFormatted = moment(new Date("2022-11-25")).format("Do [of] MMMM YYYY");
+const latestReleaseDateFormatted = moment(new Date("2022-12-02")).format("Do [of] MMMM YYYY");
 const downloads: Downloads = {
     "macOS": {
+        "2.14.2": "https://github.com/vaticle/typedb/releases/download/2.14.2/typedb-all-mac-2.14.2.zip",
         "2.14.1": "https://github.com/vaticle/typedb/releases/download/2.14.1/typedb-all-mac-2.14.1.zip",
         "2.13.0": "https://github.com/vaticle/typedb/releases/download/2.13.0/typedb-all-mac-2.13.0.zip",
         "2.12.0": "https://github.com/vaticle/typedb/releases/download/2.12.0/typedb-all-mac-2.12.0.zip",
@@ -75,6 +76,7 @@ const downloads: Downloads = {
         "2.0.0": "https://github.com/vaticle/typedb/releases/download/2.0.0/grakn-core-all-mac-2.0.0.zip",
     },
     "Linux": {
+        "2.14.2": "https://github.com/vaticle/typedb/releases/download/2.14.2/typedb-all-linux-2.14.2.tar.gz",
         "2.14.1": "https://github.com/vaticle/typedb/releases/download/2.14.1/typedb-all-linux-2.14.1.tar.gz",
         "2.13.0": "https://github.com/vaticle/typedb/releases/download/2.13.0/typedb-all-linux-2.13.0.tar.gz",
         "2.11.1": "https://github.com/vaticle/typedb/releases/download/2.11.1/typedb-all-linux-2.11.1.tar.gz",
@@ -103,6 +105,7 @@ const downloads: Downloads = {
         "2.0.0": "https://github.com/vaticle/typedb/releases/download/2.0.0/grakn-core-all-linux-2.0.0.tar.gz",
     },
     "Windows": {
+        "2.14.2": "https://github.com/vaticle/typedb/releases/download/2.14.2/typedb-all-windows-2.14.2.zip",
         "2.14.1": "https://github.com/vaticle/typedb/releases/download/2.14.1/typedb-all-windows-2.14.1.zip",
         "2.13.0": "https://github.com/vaticle/typedb/releases/download/2.13.0/typedb-all-windows-2.13.0.zip",
         "2.11.1": "https://github.com/vaticle/typedb/releases/download/2.11.1/typedb-all-windows-2.11.1.zip",
