@@ -1,6 +1,7 @@
 export const highAvailabilityExample = `> database replicas my-typedb
 > database list
 my-typedb
+
 > database replicas my-typedb
 { address: typedb-cluster-2:1729; role: primary; term: 87 }
 { address: typedb-cluster-1:1729; role: secondary; term: 87 }
