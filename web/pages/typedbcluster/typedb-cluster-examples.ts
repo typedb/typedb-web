@@ -1,20 +1,13 @@
-export const highAvailabilityExample = `> database my-typedb status replica
-1) 10.1.17.23:
-  - availability     : available
-  - role             : primary
-  - uptime           : 12h 3m
-  - syncing          : 0 / 34,321
-  - term             : 51
-2) 10.1.17.15:
-  - availability     : available
-  - role             : secondary
-  - uptime           : 3d 8h 14m 2s
-  - syncing          : 21 / 34,319
-  - term             : 51
-3) 10.1.17.37:
-  - availability     : unavailable`;
+export const highAvailabilityExample = `> database replicas my-typedb
+> database list
+my-typedb
+> database replicas my-typedb
+{ address: typedb-cluster-2:1729; role: primary; term: 87 }
+{ address: typedb-cluster-1:1729; role: secondary; term: 87 }
+{ address: typedb-cluster-0:1729; role: secondary; term: 87 }
+`;
 
-export const elasticThroughputExample = `>
+export const elasticThroughputExample = `
 > database my-typedb status request
 1) 10.1.17.23 (primary):
   - last 1 second    : 15,541 writes, 21,756 reads

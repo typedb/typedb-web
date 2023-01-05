@@ -47,15 +47,6 @@ export const TypeDBClusterPage: React.FC = () => {
                                          button={{text: "Documentation", href: urls.docs.home}}>
                     <ConsoleCodeExample code={elasticThroughputExample}/>
                 </KeyPointWithCodeExample>
-                <KeyPointWithCodeExample id="authentication" className={classes.subsectionMargin} examplePosition="left"
-                                         title="User Authentication"
-                                         body="TypeDB Cluster ensures users are authenticated, and that only those with the right
-                              authorisation can perform user/database management operations or access specific databases.
-                              TypeDB Cluster allows you to define specific privileges for user roles, to allow read or
-                              write access on a given database schema or data."
-                                         button={{text: "Documentation", href: urls.docs.home}}>
-                    <ConsoleCodeExample code={secureAuthenticationExample}/>
-                </KeyPointWithCodeExample>
                 <KeyPointWithCodeExample id="encryption" className={classes.subsectionMargin} examplePosition="right"
                                          title="In-Flight Encryption"
                                          body="Server-to-server communication is encrypted using the CurveZMQ protocol, ensuring the
@@ -64,6 +55,15 @@ export const TypeDBClusterPage: React.FC = () => {
                               transmitted to and from the the database server."
                                          button={{text: "Documentation", href: urls.docs.home}}>
                     <ConsoleCodeExample code={inFlightEncryptionExample}/>
+                </KeyPointWithCodeExample>
+                <KeyPointWithCodeExample id="authentication" className={classes.subsectionMargin} examplePosition="left"
+                                         title="User Authentication"
+                                         body="TypeDB Cluster ensures users are authenticated, and that only those with the right
+                              authorisation can perform user/database management operations or access specific databases.
+                              TypeDB Cluster allows you to define specific privileges for user roles, to allow read or
+                              write access on a given database schema or data."
+                                         button={{text: "Coming Soon!", disabled: true, comingSoon: true}}>
+                    <ConsoleCodeExample code={secureAuthenticationExample}/>
                 </KeyPointWithCodeExample>
                 <KeyPointWithCodeExample id="management" className={classes.subsectionMargin} examplePosition="left"
                                          title="Cluster Management"
@@ -88,9 +88,9 @@ export const TypeDBClusterPage: React.FC = () => {
             <section id="deploy" className={classes.sectionMargin}>
                 <h1 className={classes.h1}>Deploy TypeDB Cluster in the Cloud or On-Premise</h1>
                 <p className={classes.sectionIntro}>
-                    You can easily deploy TypeDB Cluster on Google Cloud Platform, Amazon Web Services, or Microsoft
-                    Azure, through each respective marketplaces, or you can deploy TypeDB Cluster in your own
-                    computing environment.
+                    You can easily deploy TypeDB Cluster in your own computing environment, in the cloud or on-premise.
+                    Soon, you'll be able to deploy straight to the cloud through TypeDB Cloud, our upcoming cloud
+                    deployment platform.
                 </p>
                 <div className={clsx(classes.mainActionList, classes.contentMargin)}>
                     <VaticleButton size="small" type="secondary" to="?dialog=contact">Get in touch</VaticleButton>
