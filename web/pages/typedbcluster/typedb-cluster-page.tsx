@@ -55,7 +55,6 @@ export const TypeDBClusterPage: React.FC = () => {
                                          button={{text: "Documentation", href: urls.docs.home}}>
                     <ConsoleCodeExample code={secureAuthenticationExample}/>
                 </KeyPointWithCodeExample>
-                </KeyPointWithCodeExample>
                 <KeyPointWithCodeExample id="encryption" className={classes.subsectionMargin} examplePosition="right"
                                          title="In-Flight Encryption"
                                          body="Server-to-server communication is encrypted using the CurveZMQ protocol, ensuring the
