@@ -3,9 +3,11 @@ export const highAvailabilityExample = `> database replicas my-typedb
 my-typedb
 
 > database replicas my-typedb
-{ address: typedb-cluster-2:1729; role: primary; term: 87 }
+{ address: typedb-cluster-0:1729; role: primary; term: 87 }
 { address: typedb-cluster-1:1729; role: secondary; term: 87 }
-{ address: typedb-cluster-0:1729; role: secondary; term: 87 }
+{ address: typedb-cluster-2:1729; role: secondary; term: 87 }
+{ address: typedb-cluster-3:1729; role: secondary; term: 87 }
+{ address: typedb-cluster-4:1729; role: secondary; term: 87 }
 `;
 
 export const elasticThroughputExample = `

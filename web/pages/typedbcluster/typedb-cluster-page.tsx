@@ -46,6 +46,7 @@ export const TypeDBClusterPage: React.FC = () => {
                               load-balancing transparently for applications."
                                          button={{text: "Documentation", href: urls.docs.home}}>
                     <ConsoleCodeExample code={elasticThroughputExample}/>
+                </KeyPointWithCodeExample>
                 <KeyPointWithCodeExample id="authentication" className={classes.subsectionMargin} examplePosition="left"
                                          title="User Authentication"
                                          body="TypeDB Cluster ensures users are authorised to perform user/database
