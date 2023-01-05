@@ -48,10 +48,10 @@ export const TypeDBClusterPage: React.FC = () => {
                     <ConsoleCodeExample code={elasticThroughputExample}/>
                 <KeyPointWithCodeExample id="authentication" className={classes.subsectionMargin} examplePosition="left"
                                          title="User Authentication"
-                                         body="TypeDB Cluster ensures users must be authorised in order to
-                              perform user/database management operations or to access databases. In the future, TypeDB
-                              Cluster will allow you to define specific privileges for user roles, to allow read or
-                              write access on a given database schema or data."
+                                         body="TypeDB Cluster ensures users are authorised to perform user/database
+                              management operations or to access databases. In the future, TypeDB Cluster will allow you
+                              to define specific privileges for user roles, to allow read or write access on a given
+                              database schema or data."
                                          button={{text: "Documentation", href: urls.docs.home}}>
                     <ConsoleCodeExample code={secureAuthenticationExample}/>
                 </KeyPointWithCodeExample>
