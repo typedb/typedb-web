@@ -39,6 +39,11 @@ variable "auto_upgrade" {
     description = "Whether nodes should auto-upgrade when the control plane is updated, as per https://cloud.google.com/kubernetes-engine/docs/how-to/node-auto-upgrades"
 }
 
+variable "gcp_service_account_name" {
+  type = string
+  description = "The name attached to the GCP Service Account. This is the local-part of the Service Account email - i.e. the part before the '@'."
+}
+
 #########################
 # VPC Network variables #
 #########################

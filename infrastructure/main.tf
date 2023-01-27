@@ -9,10 +9,11 @@ module "gcp" {
   machine_type = var.machine_type
   auto_repair = var.auto_repair
   auto_upgrade = var.auto_upgrade
-  kubernetes_sa_namespace = local.kubernetes_sa_namespace
-  kubernetes_sa_name = local.kubernetes_sa_name
   docker_version = local.docker_version
   credentials_file = var.credentials_file
+  workload_id_kubernetes_sa = local.workload_id_kubernetes_sa
+  workload_id_namespace = local.workload_id_namespace
+  gcp_service_account_email = "${var.gcp_service_account_name}@${var.project}.iam.gserviceaccount.com"
 }
 
 module "argocd" {
@@ -26,6 +27,6 @@ module "argocd" {
   cluster_name              = var.cluster_name
   project                   = var.project
   region                    = var.region
-  kubernetes_service_account           = local.kubernetes_sa_name
-  kubernetes_service_account_namespace = local.kubernetes_sa_namespace
+  kubernetes_service_account           = local.workload_id_kubernetes_sa
+  kubernetes_service_account_namespace = local.workload_id_namespace
 }
