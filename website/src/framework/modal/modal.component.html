@@ -1,0 +1,5 @@
+<div *ngIf="displayModal" class="modal" [style.display]="displayStyle" (click)="clickBackground()">
+    <div class="modal-content" [style.width]="width" (click)="clickModal($event)">
+        <ng-content></ng-content>
+    </div>
+</div>

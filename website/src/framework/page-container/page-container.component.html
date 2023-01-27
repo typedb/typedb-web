@@ -1,0 +1,13 @@
+<div class="page-container">
+    <div class="top-navbar-container">
+        <ng-template [ngTemplateOutlet]="topBarTemplateRef"></ng-template>
+    </div>
+    <div class="main-container">
+        <div class="side-navbar-container">
+            <ng-template [ngTemplateOutlet]="sideBarTemplateRef"></ng-template>
+        </div>
+        <div class="content-container">
+            <ng-content></ng-content>
+        </div>
+    </div>
+</div>

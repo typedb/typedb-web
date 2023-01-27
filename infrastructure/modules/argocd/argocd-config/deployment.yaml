@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: deployment
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  source:
+    repoURL: 'git@github.com:${platform_deployment_repo}.git'
+    type: git
+    path: apps
+    targetRevision: main
+  destination:
+    server: 'https://kubernetes.default.svc'
+    namespace: cloud
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true

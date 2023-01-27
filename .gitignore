@@ -15,4 +15,9 @@ local
 dist
 lib
 
-.terraform*
+# Terraform and Terraform credentials
+infrastructure/credentials/*
+!infrastructure/credentials/.gitkeep
+**/.terraform
+**/terraform.tfstate*
+.local/**

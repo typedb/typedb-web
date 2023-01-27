@@ -1,0 +1,13 @@
+<page-container [topBarTemplateRef]="topBarContent" [sideBarTemplateRef]="sideBarContent">
+    <ng-content></ng-content>
+</page-container>
+
+<!-- Top Bar Template -->
+<ng-template #topBarContent>
+    <vaticle-topbar></vaticle-topbar>
+</ng-template>
+
+<!-- Side Bar Template -->
+<ng-template #sideBarContent>
+    <vaticle-sidebar></vaticle-sidebar>
+</ng-template>

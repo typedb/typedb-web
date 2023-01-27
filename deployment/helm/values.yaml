@@ -1,0 +1,18 @@
+infrastructure:
+  gcp:
+    project_id: vaticle-engineers
+    service_account_name: cloud-dev-460
+    secret_manager:
+      docker:
+        name: docker
+        version: "1"
+  gke:
+    name: web-dev
+    location: europe-west2-a
+    service_account_name: gcp-service-account
+
+image:
+  repository: to-be-replaced # to be replaced during assembly
+  tag: 0.0.0 # to be replaced during assembly
+address: 0.0.0.0:80
+replica_count: 1

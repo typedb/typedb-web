@@ -1,0 +1,33 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: "${deployment.application-name}"
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  source:
+    chart: typedb-web
+    repoURL: https://repo.vaticle.com/repository/helm-snapshot/
+    targetRevision: "${deployment.target-revision}"
+    helm:
+        parameters:
+          - name: "infrastructure.gcp.project_id"
+            value: "${infrastructure.gcp.project_id}"
+          - name: "infrastructure.gcp.service_account_name"
+            value: "${infrastructure.gcp.service_account_name}"
+          - name: "infrastructure.gcp.secret_manager.docker.version"
+            value: "${infrastructure.gcp.secret_manager.docker.version}"
+          - name: "infrastructure.gke.name"
+            value: "${infrastructure.gke.name}"
+          - name: "infrastructure.gke.location"
+            value: "${infrastructure.gke.location}"
+          - name: "infrastructure.gke.service_account_name"
+            value: "${infrastructure.gke.service_account_name}"
+  destination:
+    namespace: "${deployment.namespace}"
+    server: https://kubernetes.default.svc
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true
