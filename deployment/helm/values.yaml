@@ -1,7 +1,7 @@
 infrastructure:
   gcp:
-    project_id: vaticle-engineers
-    service_account_name: cloud-dev-460
+    project_id: vaticle-web-dev
+    service_account_name: Alex
     secret_manager:
       docker:
         name: docker
@@ -9,7 +9,7 @@ infrastructure:
   gke:
     name: web-dev
     location: europe-west2-a
-    service_account_name: gcp-service-account
+    service_account_name: gcp-service-account-2
 
 image:
   repository: to-be-replaced # to be replaced during assembly

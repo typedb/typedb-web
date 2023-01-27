@@ -53,7 +53,7 @@ class Update : Callable<Int> {
             description = [
                 "The GKE Kubernetes Service Account.",
             ],
-            defaultValue = "gcp-service-account"
+            defaultValue = "gcp-service-account-2"
     )
     private lateinit var gkeServiceAccount: String
 
