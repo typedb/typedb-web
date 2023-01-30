@@ -9,7 +9,7 @@ infrastructure:
   gke:
     name: web-dev
     location: europe-west2-a
-    service_account_name: gcp-service-account-2
+    service_account_name: gcp-service-account
 
 image:
   repository: to-be-replaced # to be replaced during assembly

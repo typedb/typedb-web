@@ -1,40 +1,69 @@
 config:
   version-candidate: VERSION
-  dependencies:
-    dependencies: [build]
 
 build:
   correctness:
     build:
-      machine: 4-core-16-gb
+      machine: 8-core-32-gb
       image: vaticle-ubuntu-20.04
       command: |
-        sudo ln -s /usr/bin/python3 /usr/bin/python
-        bazel build //...
+        # The next build command has to be run before building everything in order to "fix" the flakiness of rules_js.
+        # See more information at https://github.com/vaticle/cloud/issues/15.
+        bazel build //website:distribution # Temporary until rules_js fixes https://github.com/aspect-build/rules_js/issues/483
+        # Fix for flakiness related to building multiple helm charts from the same build file at once
+        bazel build --define snapshot-version=$(echo -n "0.0.0-$(git rev-parse HEAD)") //deployment/helm:distribution-snapshot
+        bazel build --define version=$(cat VERSION) --define snapshot-version=$(echo -n "0.0.0-$(git rev-parse HEAD)") //...
+    deploy-docker-snapshot:
+      machine: 4-core-16-gb
+      image: vaticle-ubuntu-20.04
+      #      dependencies: [build] # Deploy Docker image immediately to speed up CI during the early phase of development
+      command: |
+        docker login -u $REPO_DOCKER_USERNAME -p $REPO_DOCKER_PASSWORD
+        bazel run --define snapshot-version=$(echo -n "0.0.0-$(git rev-parse HEAD)") //deployment/docker:assemble-snapshot
+        bazel run --define snapshot-version=$(echo -n "0.0.0-$(git rev-parse HEAD)") //deployment/docker:deploy-snapshot
+    deploy-helm-snapshot:
+      image: vaticle-ubuntu-20.04
+      # dependencies: [deploy-docker-snapshot] # TODO: do we need this?
+      command: |
+        export DEPLOY_HELM_USERNAME=$REPO_VATICLE_USERNAME
+        export DEPLOY_HELM_PASSWORD=$REPO_VATICLE_PASSWORD
+        bazel run --define snapshot-version=$(echo -n "0.0.0-$(git rev-parse HEAD)") //deployment/helm:deploy-snapshot
+#    test-behaviour:
+#      machine: 4-core-16-gb
+#      image: vaticle-ubuntu-20.04
+#      dependencies: [deploy-helm-snapshot]
+#      command: |
+#        set -u
+#        bazel run //test/behaviour/setup/util:install-deps
+#        pnpm -C test/behaviour install
+#
+#        GCP_SERVICE_ACCOUNT_CRED_FILE='credentials.json'
+#        echo $GCP_SERVICE_ACCOUNT_CREDENTIALS | base64 -d > $GCP_SERVICE_ACCOUNT_CRED_FILE
+#
+#        bazel run //test/behaviour/setup:behaviour \
+#            --ui_event_filters=-info \
+#            -- \
+#            --factory-job "$FACTORY_JOB" \
+#            --commit-sha "$FACTORY_COMMIT" \
+#            --gcp-service-account-credentials-file "$(readlink -f $GCP_SERVICE_ACCOUNT_CRED_FILE)" \
+#            --gke-cluster "$GKE_CLOUD_CLUSTER" \
+#            --deployment-repo "$REPO_CLOUD_DEPLOYMENT" \
+#            --cloud-helm-chart "0.0.0-$FACTORY_COMMIT"
 
 release:
+  filter:
+    owner: vaticle
+    branch: master
   deployment:
-    deploy-artifact-release:
-      machine: 4-core-16-gb
+    deploy-docker:
       image: vaticle-ubuntu-20.04
       command: |
-        sudo ln -s /usr/bin/python3 /usr/bin/python
-        export DEPLOY_ARTIFACT_USERNAME=$REPO_VATICLE_USERNAME
-        export DEPLOY_ARTIFACT_PASSWORD=$REPO_VATICLE_PASSWORD
-        bazel run --define version=$(cat VERSION) //:deploy-web-main -- release
-    deploy-nomad-production:
-      machine: 4-core-16-gb
+        docker login -u $REPO_DOCKER_USERNAME -p $REPO_DOCKER_PASSWORD
+        bazel run //docker:deploy
+    deploy-helm:
       image: vaticle-ubuntu-20.04
-      dependencies: [deploy-artifact-release]
+      dependencies: [deploy-docker]
       command: |
-        echo $NOMAD_CACERT_BASE64 | base64 -d > /tmp/nomad-ca.pem
-        export NOMAD_CACERT=/tmp/nomad-ca.pem
-        VERSION=$(cat VERSION) COMMIT=$(git rev-parse HEAD) envsubst <infrastructure/web-main.nomad | nomad job run -verbose -
-    version-bump:
-      machine: 4-core-16-gb
-      image: vaticle-ubuntu-20.04
-      dependencies: [deploy-nomad-production]
-      command: |
-        export GIT_USERNAME=$REPO_GITHUB_USERNAME
-        export GIT_EMAIL=$REPO_GITHUB_EMAIL
-        bazel run @vaticle_dependencies//tool/release/version:bump
+        export DEPLOY_HELM_USERNAME=$REPO_VATICLE_USERNAME
+        export DEPLOY_HELM_PASSWORD=$REPO_VATICLE_PASSWORD
+        bazel run --define version=$(cat VERSION) //deployment/helm:deploy
