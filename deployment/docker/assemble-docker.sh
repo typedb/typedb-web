@@ -25,6 +25,6 @@ DOCKER_REPO=$4
 rm -f ./package.tar.gz
 cp $5 ./package.tar.gz
 
-docker build -t $DOCKER_ORG/$DOCKER_REPO:$DOCKER_VERSION --build-arg server_package=package.tar.gz -f /Users/aw/Desktop/workspace/web-main/deployment/docker/Dockerfile .
+docker build -t $DOCKER_ORG/$DOCKER_REPO:$DOCKER_VERSION --build-arg server_package=package.tar.gz -f $1 .
 
 chmod +w ./package.tar.gz
