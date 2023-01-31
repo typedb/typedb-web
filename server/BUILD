@@ -10,7 +10,7 @@ rust_binary(
         "@crates//:mime_guess",
         "@crates//:tokio",
     ],
-#    data = [ "//application/frontend:distribution" ],
+    data = [ "//website:distribution" ],
 )
 
 assemble_targz(
@@ -18,12 +18,12 @@ assemble_targz(
     targets = [],
     additional_files = {
         "//server:bin": "server",
-#        "//application/frontend:distribution": "frontend"
+        "//website:distribution": "website"
     },
-#    empty_directories = ["frontend/assets"],
-#    permissions = {
-#        "frontend/assets": "0755"
-#    },
+    empty_directories = ["website/assets"],
+    permissions = {
+        "website/assets": "0755"
+    },
     output_filename = "typedb-web",
     append_version = False,
     visibility = ["//deployment/docker:__pkg__"]

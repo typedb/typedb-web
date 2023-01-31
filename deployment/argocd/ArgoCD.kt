@@ -27,7 +27,7 @@ class ArgoCD(
         deploymentRepo: String,
         deploymentBranch: String,
         kubectlPort: Int
-    ): Optional<URL> {
+    ): URL? {
         val clusterConnection = connectToCluster(gcpCredentials, kubectlPort)
         try {
             val deploymentManifest = writeDeploymentManifest(deploymentManifestTemplate, deploymentRepo, deploymentBranch)
@@ -43,7 +43,7 @@ class ArgoCD(
                 mainAppName
             ).forEach { waitForSync(it) }
 
-            return deployedIpAddress(gkeNamespace).map { URL("http://$it") }
+            return deployedIpAddress(gkeNamespace)?.let { URL("http://$it") }
         }
         finally {
             clusterConnection.destroy()
@@ -177,20 +177,16 @@ class ArgoCD(
         println("$app has finished deploying")
     }
 
-    private fun deployedIpAddress(cloudServerNamespace: String): Optional<String> {
-        val vaticleCloudServices = shell.execute(listOf(
-            "kubectl", "get", "services", "-n", cloudServerNamespace
-        )).output.string.split("\n")
+    private fun deployedIpAddress(gkeNamespace: String): String? {
+        val services = shell.execute(listOf("kubectl", "get", "services", "-n", gkeNamespace))
+            .output.string.split("\n")
 
-        val vaticleCloudIp = vaticleCloudServices.singleOrNull { it.contains("typedb-web-server") }
+        val newServiceIP = services.singleOrNull { it.contains("typedb-web-active") }
             ?.split(Regex("\\s+"))
             ?.getOrNull(3)
 
         val ipAddressPattern = Regex("^((25[0-5]|(2[0-4]|1\\d|[1-9]|)\\d)\\.?\\b){4}\$")
-        if (vaticleCloudIp != null && ipAddressPattern.matches(vaticleCloudIp))
-            return Optional.of(vaticleCloudIp)
-
-        return Optional.empty()
+        return newServiceIP?.let { if (ipAddressPattern.matches(newServiceIP)) it else null }
     }
 
     private fun isPortInUse(port: Int): Boolean =

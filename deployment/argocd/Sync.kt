@@ -110,10 +110,6 @@ class Sync : Callable<Int> {
             deploymentBranch = deploymentBranch,
             kubectlPort = kubernetesConnectionPort,
         )
-
-        if (!appURL.isPresent)
-            throw RuntimeException("Could not launch TypeDB Web.")
-
-        return appURL.get()
+        return appURL ?: throw RuntimeException("Could not launch TypeDB Web.")
     }
 }
