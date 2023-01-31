@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "frontend": {
+    "website": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {"style":  "scss"}
@@ -16,7 +16,7 @@
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
             "optimization": false,
-            "outputPath": "dist/frontend",
+            "outputPath": "dist/website",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -67,10 +67,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "frontend:build:production"
+              "browserTarget": "website:build:production"
             },
             "development": {
-              "browserTarget": "frontend:build:development"
+              "browserTarget": "website:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -78,7 +78,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "frontend:build"
+            "browserTarget": "website:build"
           }
         },
         "test": {
