@@ -65,7 +65,8 @@ public class Server {
 
             String pagesRoot = System.getProperty("pages.root");
             if (pagesRoot == null) pagesRoot = ".";
-            FileController pages = new FileController(Paths.get(pagesRoot).toAbsolutePath());
+            String robotsTxt = "# This is a blank robots.txt file. All robots may freely crawl this site. I, for one, welcome our new robot overlords. Beep boop, beep boop.";
+            FileController pages = new FileController(Paths.get(pagesRoot).toAbsolutePath(), robotsTxt);
 
             return new Routes(scalaHttpErrorHandler(), pages, typeDBController, defaultController).asJava();
         }

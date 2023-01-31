@@ -8,9 +8,11 @@ import java.nio.file.Paths;
 
 public class FileController extends Controller {
     private Path basedir;
+    private String robotsTxt;
 
-    public FileController(Path basedir) {
+    public FileController(Path basedir, String robotsTxt) {
         this.basedir = basedir;
+        this.robotsTxt = robotsTxt;
     }
 
     public Result serve(String file, String defaultFile) {
@@ -27,6 +29,6 @@ public class FileController extends Controller {
     }
 
     public Result robotsTxt() {
-        return ok("# This is a blank robots.txt file. All robots may freely crawl this site. I, for one, welcome our new robot overlords. Beep boop, beep boop.");
+        return ok(robotsTxt);
     }
 }
