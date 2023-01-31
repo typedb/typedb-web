@@ -15,6 +15,10 @@ local
 dist
 lib
 
+target
+Cargo.lock
+Cargo.toml
+
 # Terraform and Terraform credentials
 infrastructure/credentials/*
 !infrastructure/credentials/.gitkeep
