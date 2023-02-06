@@ -15,4 +15,11 @@ local
 dist
 lib
 
+# Terraform and Terraform credentials
+infrastructure/credentials/*
+**/.terraform
+**/terraform.tfstate.backup
+**/terraform.tfstate.*.backup
+**/terraform.tfstate
+**/.terraform.tfstate.lock.info
 .terraform*
