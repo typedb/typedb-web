@@ -13,6 +13,9 @@ build:
         bazel build //...
 
 release:
+  filter:
+    owner: vaticle
+    branch: master
   deployment:
     deploy-artifact-release:
       machine: 4-core-16-gb
