@@ -18,49 +18,23 @@
 load("//:deployment.bzl", "deployment")
 
 sh_binary(
-    name = "assemble",
-    srcs = ["assemble.sh"],
-    data = ["Dockerfile"],
+    name = "assemble_docker",
+    srcs = ["assemble-docker.sh"],
+    data = [".dockerignore", "Dockerfile"],
     args = [
         "$(location Dockerfile)",
         "$(version)",
         deployment["docker.organisation"],
-        deployment["docker.release-repository"]
+        deployment["docker.strapi-release-repository"]
     ]
 )
 
 sh_binary(
-    name = "assemble-snapshot",
-    srcs = ["assemble.sh"],
-    data = [
-        "Dockerfile",
-        "//server:distribution"
-    ],
-    args = [
-        "$(location Dockerfile)",
-        "$(snapshot-version)",
-        deployment["docker.organisation"],
-        deployment["docker.snapshot-repository"],
-        "$(location //server:distribution)"
-    ]
-)
-
-sh_binary(
-    name = "deploy",
-    srcs = ["deploy.sh"],
+    name = "deploy_docker",
+    srcs = ["deploy-docker.sh"],
     args = [
         "$(version)",
         deployment["docker.organisation"],
-        deployment["docker.release-repository"]
-    ]
-)
-
-sh_binary(
-    name = "deploy-snapshot",
-    srcs = ["deploy.sh"],
-    args = [
-        "$(snapshot-version)",
-        deployment["docker.organisation"],
-        deployment["docker.snapshot-repository"]
+        deployment["docker.strapi-release-repository"]
     ]
 )

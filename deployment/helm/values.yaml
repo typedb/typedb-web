@@ -1,13 +1,13 @@
 infrastructure:
   gcp:
-    project_id: vaticle-web-dev
+    project_id: vaticle-web-prod
     service_account_name: Alex
     secret_manager:
       docker:
         name: docker
         version: "1"
   gke:
-    name: web-dev
+    name: web-prod
     location: europe-west2-a
     service_account_name: gcp-service-account
 

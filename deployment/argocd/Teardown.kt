@@ -60,7 +60,6 @@ class Teardown : Callable<Int> {
     @Option(
         names = ["--gcp-project"],
         description = ["The GCP project that the pre-existing GKE Cluster is in."],
-        defaultValue = "vaticle-web-dev"
     )
     private lateinit var gcpProject: String
 

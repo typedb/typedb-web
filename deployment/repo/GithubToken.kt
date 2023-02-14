@@ -18,7 +18,7 @@ class ClassicGithubToken(private val token: String): GithubToken() {
 
 class FineGrainedGithubToken(private val token: String): GithubToken() {
     companion object {
-        const val tokenVar = "REPO_CLOUD_DEPLOYMENT_FINE_GRAINED_TOKEN"
+        const val tokenVar = "REPO_WEB_DEPLOYMENT_FINE_GRAINED_TOKEN"
     }
 
     override fun getUrl(repoId: String) =

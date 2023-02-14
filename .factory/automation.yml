@@ -28,6 +28,17 @@ build:
         export DEPLOY_HELM_USERNAME=$REPO_VATICLE_USERNAME
         export DEPLOY_HELM_PASSWORD=$REPO_VATICLE_PASSWORD
         bazel run --define snapshot-version=$(echo -n "0.0.0-$(git rev-parse HEAD)") //deployment/helm:deploy-snapshot
+    deploy-strapi-docker:
+      # filter:
+      #   owner: vaticle
+      #   branch: deploy-strapi-docker
+      machine: 4-core-16-gb
+      image: vaticle-ubuntu-20.04
+      command: |
+        docker login -u $REPO_DOCKER_USERNAME -p $REPO_DOCKER_PASSWORD
+        bazel run --define snapshot-version=$(echo -n "0.0.0-$(git rev-parse HEAD)") //deployment/strapi:assemble_docker
+        bazel run --define snapshot-version=$(echo -n "0.0.0-$(git rev-parse HEAD)") //deployment/strapi:deploy_docker
+
 #    test-behaviour:
 #      machine: 4-core-16-gb
 #      image: vaticle-ubuntu-20.04
@@ -46,8 +57,8 @@ build:
 #            --factory-job "$FACTORY_JOB" \
 #            --commit-sha "$FACTORY_COMMIT" \
 #            --gcp-service-account-credentials-file "$(readlink -f $GCP_SERVICE_ACCOUNT_CRED_FILE)" \
-#            --gke-cluster "$GKE_CLOUD_CLUSTER" \
-#            --deployment-repo "$REPO_CLOUD_DEPLOYMENT" \
+#            --gke-cluster "$GKE_WEB_CLUSTER" \
+#            --deployment-repo "$REPO_WEB_DEPLOYMENT" \
 #            --cloud-helm-chart "0.0.0-$FACTORY_COMMIT"
 
 release:

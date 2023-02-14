@@ -16,5 +16,5 @@ auto_upgrade = true
 ###########################
 # Configuration variables #
 ###########################
-credentials_file = "credentials/credentials.json"
+credentials_file = "credentials/gcp/credentials.json"
 ssh_private_key_file = "credentials/ssh-key.priv"
