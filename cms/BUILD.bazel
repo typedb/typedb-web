@@ -1,0 +1,8 @@
+load("@rules_pkg//:pkg.bzl", "pkg_tar")
+
+pkg_tar(
+    name = "srcs_bundle",
+    srcs = glob(["**/*"], exclude = ["node_modules"]),
+    extension = "tar.gz",
+    strip_prefix = ".", # preserve directory structure (see https://github.com/bazelbuild/rules_pkg/issues/82)
+)

@@ -22,4 +22,7 @@ DOCKER_VERSION=$2
 DOCKER_ORG=$3
 DOCKER_REPO=$4
 
-docker build -t $DOCKER_ORG/$DOCKER_REPO:$DOCKER_VERSION --build-arg NODE_ENV=production -f $1 .
+rm -f ./cms-package.tar.gz
+cp $5 ./cms-package.tar.gz
+
+docker build -t $DOCKER_ORG/$DOCKER_REPO:$DOCKER_VERSION --build-arg cms_package=cms-package.tar.gz --build-arg node_env=production -f $1 .

@@ -20,12 +20,17 @@ load("//:deployment.bzl", "deployment")
 sh_binary(
     name = "assemble_docker",
     srcs = ["assemble-docker.sh"],
-    data = [".dockerignore", "Dockerfile"],
+    data = [
+        ".dockerignore",
+        "Dockerfile",
+        "//cms:srcs_bundle",
+    ],
     args = [
         "$(location Dockerfile)",
         "$(version)",
         deployment["docker.organisation"],
-        deployment["docker.strapi-release-repository"]
+        deployment["docker.strapi-release-repository"],
+        "$(location //cms:srcs_bundle)"
     ]
 )
 
