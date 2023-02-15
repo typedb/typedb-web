@@ -5,4 +5,5 @@ pkg_tar(
     srcs = glob(["**/*"], exclude = ["node_modules"]),
     extension = "tar.gz",
     strip_prefix = ".", # preserve directory structure (see https://github.com/bazelbuild/rules_pkg/issues/82)
+    visibility = ["//deployment/strapi:__pkg__"]
 )
