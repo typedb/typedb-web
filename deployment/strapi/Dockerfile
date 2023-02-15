@@ -19,16 +19,14 @@
 FROM node:16-alpine as build
 # Installing libvips-dev for sharp Compatibility
 RUN apk update && apk add --no-cache build-base gcc autoconf automake zlib-dev libpng-dev vips-dev > /dev/null 2>&1
-ARG cms_package
 ARG node_env=production
-ADD ${cms_package} /opt
 WORKDIR /opt/
-COPY ./package.json ./yarn.lock ./
+COPY ./package.json ./
 ENV PATH /opt/node_modules/.bin:$PATH
 ENV NODE_ENV=${node_env}
 RUN yarn config set network-timeout 600000 -g && yarn install --production
 WORKDIR /opt/app
-COPY ./ .
+ADD ./cms-package.tar.gz ./
 RUN yarn build
 
 

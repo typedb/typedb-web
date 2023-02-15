@@ -1,8 +1,14 @@
 load("@rules_pkg//:pkg.bzl", "pkg_tar")
 
+filegroup(
+    name = "package_json",
+    srcs = ["package.json"],
+    visibility = ["//deployment/strapi:__pkg__"]
+)
+
 pkg_tar(
     name = "srcs_bundle",
-    srcs = glob(["**/*"], exclude = ["node_modules"]),
+    srcs = glob(["**/*"], exclude = ["node_modules", "package.json"]),
     extension = "tar.gz",
     strip_prefix = ".", # preserve directory structure (see https://github.com/bazelbuild/rules_pkg/issues/82)
     visibility = ["//deployment/strapi:__pkg__"]

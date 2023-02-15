@@ -23,6 +23,7 @@ sh_binary(
     data = [
         ".dockerignore",
         "Dockerfile",
+        "//cms:package_json",
         "//cms:srcs_bundle",
     ],
     args = [
@@ -30,6 +31,7 @@ sh_binary(
         "$(version)",
         deployment["docker.organisation"],
         deployment["docker.strapi-release-repository"],
+        "$(location //cms:package_json)",
         "$(location //cms:srcs_bundle)"
     ]
 )
