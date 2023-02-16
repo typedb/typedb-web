@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: strapi-db
+spec:
+  serviceName: "strapi-db"
+  replicas: 1
+  selector:
+    matchLabels:
+      app: strapi-db
+  template:
+    metadata:
+      labels:
+        app: strapi-db
+    spec:
+      containers:
+        - name: strapi-db
+          image: mysql:5.7
+          securityContext:
+            runAsUser: 1000
+            allowPrivilegeEscalation: false
+          ports:
+            - containerPort: 3306
+              name: mysql
+          envFrom:
+            - configMapRef:
+                name: strapi-db-config
+            - secretRef:
+                name: strapi-db-secret
+          volumeMounts:
+            - name: mysql-persistent-storage
+              mountPath: /var/lib/mysql
+  volumeClaimTemplates:
+    - metadata:
+        name: mysql-persistent-storage
+      spec:
+        accessModes: [ "ReadWriteOnce" ]
+        resources:
+          requests:
+            storage: 5Gi

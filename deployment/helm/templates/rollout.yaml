@@ -7,7 +7,7 @@ spec:
     apiVersion: apps/v1
     kind: Deployment
     name: typedb-web
-  replicas: {{ .Values.replica_count }}
+  replicas: {{ .Values.application.typedb_web.replica_count }}
   revisionHistoryLimit: 2
   strategy:
     blueGreen:

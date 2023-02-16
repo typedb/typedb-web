@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: strapi-application-config
+data:
+  HOST: {{ .Values.application.strapi.host }}
+  PORT: {{ .Values.application.strapi.port }}
+  NODE_ENV: {{ .Values.application.strapi.node_env }}
+  DATABASE_HOST: {{ .Values.db.host }}
+  DATABASE_PORT: {{ .Values.db.port }}
+  DATABASE_USERNAME: {{ .Values.db.credentials.username }}
+  DATABASE_NAME: {{ .Values.db.database_name }}

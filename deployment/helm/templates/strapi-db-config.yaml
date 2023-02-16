@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: strapi-db
+data:
+  MYSQL_USER: {{ .Values.db.credentials.username }}
+  MYSQL_DATABASE: {{ .Values.db.database_name }}

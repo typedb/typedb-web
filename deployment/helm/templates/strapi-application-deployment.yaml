@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: strapi-application
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: strapi-application
+  template:
+    metadata:
+      name: strapi-application
+      labels:
+        app: strapi-application
+    spec:
+      containers:
+        - name: strapi
+          image: {{ .Values.application.strapi.image.repository }}:{{ .Values.application.strapi.image.tag }}
+          ports:
+            - containerPort: 1337
+              name: http
+          envFrom:
+            - configMapRef:
+                name: strapi-application-config
+            - secretRef:
+                name: strapi-application-secret
