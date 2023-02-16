@@ -18,8 +18,7 @@ class Update : Callable<Int> {
             names = ["--gcp-project"],
             description = [
                 "The location that the pre-existing GKE Cluster is deployed in.",
-            ],
-            defaultValue = "vaticle-cloud-dev"
+            ]
     )
     private lateinit var gcpProject: String
 
