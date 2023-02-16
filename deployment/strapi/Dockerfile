@@ -34,7 +34,7 @@ FROM node:16-alpine
 RUN apk add --no-cache vips-dev
 ARG node_env=production
 ENV NODE_ENV=${node_env}
-WORKDIR /opt/app
+WORKDIR /opt/
 COPY --from=build /opt/node_modules ./node_modules
 ENV PATH /opt/node_modules/.bin:$PATH
 COPY --from=build /opt/app ./
