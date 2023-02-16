@@ -25,7 +25,6 @@ COPY ./package.json ./
 ENV PATH /opt/node_modules/.bin:$PATH
 ENV NODE_ENV=${node_env}
 RUN yarn config set network-timeout 600000 -g && yarn install --production
-WORKDIR /opt/app
 ADD ./cms-package.tar.gz ./
 RUN yarn build
 
@@ -35,8 +34,7 @@ RUN apk add --no-cache vips-dev
 ARG node_env=production
 ENV NODE_ENV=${node_env}
 WORKDIR /opt/
-COPY --from=build /opt/node_modules ./node_modules
+COPY --from=build /opt ./
 ENV PATH /opt/node_modules/.bin:$PATH
-COPY --from=build /opt/app ./
 EXPOSE 1337
 CMD ["yarn", "start"]
