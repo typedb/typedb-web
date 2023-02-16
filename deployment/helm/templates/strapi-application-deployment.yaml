@@ -24,3 +24,5 @@ spec:
                 name: strapi-application-config
             - secretRef:
                 name: strapi-application-secret
+      imagePullSecrets:
+        - name: docker-secret
