@@ -4,9 +4,9 @@ metadata:
   name: strapi-application-config
 data:
   HOST: {{ .Values.application.strapi.host }}
-  PORT: "{{ $values.application.strapi.port }}"
+  PORT: "1337"
   NODE_ENV: {{ .Values.application.strapi.node_env }}
   DATABASE_HOST: {{ .Values.db.host }}
-  DATABASE_PORT: "{{ $values.db.port }}"
+  DATABASE_PORT: "3306"
   DATABASE_USERNAME: {{ .Values.db.credentials.username }}
   DATABASE_NAME: {{ .Values.db.database_name }}
