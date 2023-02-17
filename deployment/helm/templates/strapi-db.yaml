@@ -29,7 +29,7 @@ spec:
                 name: strapi-db-secret
           volumeMounts:
             - name: mysql-persistent-storage
-              mountPath: /var/lib/mysql
+              mountPath: /var/lib/strapi/db
   volumeClaimTemplates:
     - metadata:
         name: mysql-persistent-storage
