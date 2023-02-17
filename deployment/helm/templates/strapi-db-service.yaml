@@ -7,6 +7,6 @@ spec:
   selector:
     app: strapi-db
   ports:
-    - name: http
+    - name: strapi-db
       port: 3306
       targetPort: 3306
