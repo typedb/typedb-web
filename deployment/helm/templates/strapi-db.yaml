@@ -21,7 +21,7 @@ spec:
             allowPrivilegeEscalation: false
           ports:
             - containerPort: 3306
-              name: mysql
+              name: strapi-db
           envFrom:
             - configMapRef:
                 name: strapi-db-config
