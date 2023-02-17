@@ -3,12 +3,10 @@ kind: Service
 metadata:
   name: strapi-application
 spec:
-  type: NodePort
+  type: LoadBalancer
   selector:
     app: strapi-application
   ports:
-    - name: http
-      protocol: TCP
+    - protocol: TCP
       port: 1337
-      nodePort: 31337
       targetPort: http
