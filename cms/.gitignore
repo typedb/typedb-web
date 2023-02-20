@@ -113,3 +113,6 @@ exports
 dist
 build
 .strapi-updater.json
+
+# The package tree in production (Docker) don't necessarily match those in local dev environments
+yarn.lock

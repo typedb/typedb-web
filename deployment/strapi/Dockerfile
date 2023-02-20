@@ -37,4 +37,4 @@ WORKDIR /opt/
 COPY --from=build /opt ./
 ENV PATH /opt/node_modules/.bin:$PATH
 EXPOSE 1337
-CMD ["yarn", "start"]
+CMD ["yarn", "develop"]
