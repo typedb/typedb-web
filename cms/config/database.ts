@@ -6,7 +6,7 @@ export default ({ env }) => ({
       port: env.int('DATABASE_PORT', 3306),
       database: env('DATABASE_NAME', 'cms'),
       user: env('DATABASE_USERNAME', 'strapi'),
-      password: env('DATABASE_PASSWORD', 'strapi'),
+      password: env('DATABASE_PASSWORD', 'strapi-password'),
       ssl: env.bool('DATABASE_SSL', false),
     },
   },

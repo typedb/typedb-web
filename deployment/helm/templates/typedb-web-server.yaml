@@ -1,0 +1,72 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: typedb-web-server
+spec:
+  replicas: 0
+  selector:
+    matchLabels:
+      app: typedb-web-server
+  template:
+    metadata:
+      name: typedb-web-server
+      labels:
+        app: typedb-web-server
+    spec:
+      containers:
+        - name: typedb-web-server
+          image: {{ .Values.application.typedb_web.image.repository }}:{{ .Values.application.typedb_web.image.tag }}
+          ports:
+            - containerPort: 80
+              name: http
+              protocol: TCP
+          workingDir: /opt/typedb-web
+          command: [
+            ./server,
+            --address={{ .Values.application.typedb_web.address }},
+          ]
+      imagePullSecrets:
+        - name: docker-secret
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Rollout
+metadata:
+  name: typedb-web-server
+spec:
+  workloadRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: typedb-web-server
+  replicas: {{ .Values.application.typedb_web.replica_count }}
+  revisionHistoryLimit: 2
+  strategy:
+    blueGreen:
+      activeService: typedb-web-server-active
+      previewService: typedb-web-server-preview
+      autoPromotionEnabled: false
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: typedb-web-server-active
+spec:
+  type: LoadBalancer
+  selector:
+    app: typedb-web-server
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: http
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: typedb-web-server-preview
+spec:
+  type: LoadBalancer
+  selector:
+    app: typedb-web-server
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: http

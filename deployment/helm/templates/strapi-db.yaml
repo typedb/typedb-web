@@ -28,13 +28,44 @@ spec:
             - secretRef:
                 name: strapi-db-secret
           volumeMounts:
-            - name: mysql-persistent-storage
+            - name: storage
               mountPath: /var/lib/strapi/db
   volumeClaimTemplates:
     - metadata:
-        name: mysql-persistent-storage
+        name: storage
       spec:
         accessModes: [ "ReadWriteOnce" ]
         resources:
           requests:
             storage: 20Gi
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: strapi-db-config
+data:
+  MYSQL_USER: {{ .Values.db.credentials.username }}
+  MYSQL_DATABASE: {{ .Values.db.database_name }}
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: strapi-db-secret
+type: Opaque
+data:
+  MYSQL_ROOT_PASSWORD: {{ .Values.db.credentials.root_password }}
+  MYSQL_PASSWORD: {{ .Values.db.credentials.password }}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: strapi-db
+spec:
+  type: ClusterIP
+  clusterIP: None
+  selector:
+    app: strapi-db
+  ports:
+    - name: strapi-db
+      port: 3306
+      targetPort: 3306
