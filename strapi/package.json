@@ -1,8 +1,8 @@
 {
-  "name": "cms",
+  "name": "typedb-web-strapi",
   "private": true,
   "version": "0.1.0",
-  "description": "A Strapi application",
+  "description": "typedb.com's Strapi CMS image",
   "scripts": {
     "develop": "strapi develop",
     "start": "strapi start",
@@ -17,7 +17,7 @@
     "mysql": "2.18.1"
   },
   "author": {
-    "name": "A Strapi developer"
+    "name": "Alex Walker"
   },
   "strapi": {
     "uuid": "138a44f2-6103-47f3-89d3-6334f077c5c3"

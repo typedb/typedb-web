@@ -21,11 +21,10 @@ FROM node:16-alpine as build
 RUN apk update && apk add --no-cache build-base gcc autoconf automake zlib-dev libpng-dev vips-dev > /dev/null 2>&1
 ARG node_env=production
 WORKDIR /opt/
-COPY ./package.json ./
+ADD ./strapi.tar.gz ./
 ENV PATH /opt/node_modules/.bin:$PATH
 ENV NODE_ENV=${node_env}
 RUN yarn config set network-timeout 600000 -g && yarn install --production
-ADD ./cms-package.tar.gz ./
 RUN yarn build
 
 
@@ -37,4 +36,4 @@ WORKDIR /opt/
 COPY --from=build /opt ./
 ENV PATH /opt/node_modules/.bin:$PATH
 EXPOSE 1337
-CMD ["yarn", "develop"]
+CMD ["yarn", "start"]

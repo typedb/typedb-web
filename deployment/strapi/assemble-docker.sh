@@ -22,10 +22,7 @@ DOCKER_VERSION=$2
 DOCKER_ORG=$3
 DOCKER_REPO=$4
 
-rm -f ./package.json
-cp $5 ./package.json
-
-rm -f ./cms-package.tar.gz
-cp $6 ./cms-package.tar.gz
+rm -f ./strapi.tar.gz
+cp $5 ./strapi.tar.gz
 
 docker build -t $DOCKER_ORG/$DOCKER_REPO:$DOCKER_VERSION --build-arg node_env=production -f $1 .
