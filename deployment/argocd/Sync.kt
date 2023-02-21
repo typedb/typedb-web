@@ -100,15 +100,15 @@ class Sync : Callable<Int> {
         return 0
     }
 
-    private fun appURL(argoCD: ArgoCD): URL {
+    private fun appURL(argoCD: ArgoCD): String {
         val credentials = Paths.get(gcpServiceAccountCredentialsFile).toFile().readText()
-        val appURL = argoCD.deploy(
+        val appURLs = argoCD.deploy(
             deploymentManifestTemplate = deploymentManifest,
             gcpCredentials = credentials,
             deploymentRepo = deploymentRepo,
             deploymentBranch = deploymentBranch,
             kubectlPort = kubernetesConnectionPort,
         )
-        return appURL ?: throw RuntimeException("Could not launch TypeDB Web.")
+        return appURLs
     }
 }

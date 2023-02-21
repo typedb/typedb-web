@@ -9,7 +9,6 @@ import java.nio.file.Files
 import java.nio.file.Path
 import java.nio.file.Paths
 import java.util.Base64
-import java.util.Optional
 
 class ArgoCD(
     private val cluster: String,
@@ -27,7 +26,7 @@ class ArgoCD(
         deploymentRepo: String,
         deploymentBranch: String,
         kubectlPort: Int
-    ): URL? {
+    ): String {
         val clusterConnection = connectToCluster(gcpCredentials, kubectlPort)
         try {
             val deploymentManifest = writeDeploymentManifest(deploymentManifestTemplate, deploymentRepo, deploymentBranch)
@@ -43,7 +42,7 @@ class ArgoCD(
                 mainAppName
             ).forEach { waitForSync(it) }
 
-            return deployedIpAddress(gkeNamespace)?.let { URL("http://$it") }
+            return deployedURLs(gkeNamespace)
         }
         finally {
             clusterConnection.destroy()
@@ -177,16 +176,25 @@ class ArgoCD(
         println("$app has finished deploying")
     }
 
-    private fun deployedIpAddress(gkeNamespace: String): String? {
+    private fun deployedURLs(gkeNamespace: String): String {
         val services = shell.execute(listOf("kubectl", "get", "services", "-n", gkeNamespace))
             .output.string.split("\n")
 
-        val newServiceIP = services.singleOrNull { it.contains("typedb-web-active") }
+        val ipAddressPattern = Regex("^((25[0-5]|(2[0-4]|1\\d|[1-9]|)\\d)\\.?\\b){4}\$")
+
+        val newWebsiteIP = services.singleOrNull { it.contains("typedb-web-server-active") }
             ?.split(Regex("\\s+"))
             ?.getOrNull(3)
+            ?.takeIf { ipAddressPattern.matches(it) }
+            ?.let { "http://$it" }
 
-        val ipAddressPattern = Regex("^((25[0-5]|(2[0-4]|1\\d|[1-9]|)\\d)\\.?\\b){4}\$")
-        return newServiceIP?.let { if (ipAddressPattern.matches(newServiceIP)) it else null }
+        val newStrapiIP = services.singleOrNull { it.contains("typedb-web-server-active") }
+            ?.split(Regex("\\s+"))
+            ?.getOrNull(3)
+            ?.takeIf { ipAddressPattern.matches(it) }
+            ?.let { "http://$it" }
+
+        return "$newWebsiteIP\n$newStrapiIP"
     }
 
     private fun isPortInUse(port: Int): Boolean =
