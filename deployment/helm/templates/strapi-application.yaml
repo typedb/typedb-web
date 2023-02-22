@@ -25,7 +25,7 @@ spec:
             - secretRef:
                 name: strapi-application-secret
             - secretRef:
-                name: strapi_application_db_password
+                name: strapiapplicationdbpassword
       imagePullSecrets:
         - name: docker-credentials
 ---
