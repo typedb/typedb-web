@@ -26,9 +26,9 @@ spec:
             - configMapRef:
                 name: strapi-db-config
             - secretRef:
-                name: strapi-db-root-password
+                name: strapi_db_root_password
             - secretRef:
-                name: strapi-db-user-password
+                name: strapi_db_user_password
           volumeMounts:
             - name: storage
               mountPath: /var/lib/strapi/db
