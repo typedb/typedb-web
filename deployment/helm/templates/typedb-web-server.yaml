@@ -26,7 +26,7 @@ spec:
             --address={{ .Values.application.typedb_web.address }},
           ]
       imagePullSecrets:
-        - name: docker-secret
+        - name: docker-credentials
 ---
 apiVersion: argoproj.io/v1alpha1
 kind: Rollout

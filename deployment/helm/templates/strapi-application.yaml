@@ -1,15 +1,3 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: strapi-application-config
-data:
-  HOST: {{ .Values.application.strapi.host }}
-  PORT: "1337"
-  NODE_ENV: {{ .Values.application.strapi.node_env }}
-  DATABASE_HOST: {{ .Values.db.host }}
-  DATABASE_PORT: "3306"
-  DATABASE_USERNAME: {{ .Values.db.credentials.username }}
-  DATABASE_NAME: {{ .Values.db.database_name }}
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -37,8 +25,23 @@ spec:
                 name: strapi-application-config
             - secretRef:
                 name: strapi-application-secret
+            - secretRef:
+                name: strapi-application-db-password
       imagePullSecrets:
-        - name: docker-secret
+        - name: docker-credentials
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: strapi-application-config
+data:
+  HOST: {{ .Values.application.strapi.host }}
+  PORT: "1337"
+  NODE_ENV: {{ .Values.application.strapi.node_env }}
+  DATABASE_HOST: {{ .Values.db.host }}
+  DATABASE_PORT: "3306"
+  DATABASE_USERNAME: {{ .Values.db.credentials.username }}
+  DATABASE_NAME: {{ .Values.db.database_name }}
 ---
 apiVersion: v1
 kind: Secret
@@ -50,7 +53,6 @@ data:
   API_TOKEN_SALT: {{ .Values.application.strapi.credentials.api_token_salt }}
   ADMIN_JWT_SECRET: {{ .Values.application.strapi.credentials.admin_jwt_secret }}
   JWT_SECRET: {{ .Values.application.strapi.credentials.jwt_secret }}
-  DATABASE_PASSWORD: {{ .Values.db.credentials.password }}
 ---
 apiVersion: v1
 kind: Service

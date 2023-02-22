@@ -186,13 +186,13 @@ class ArgoCD(
             ?.split(Regex("\\s+"))
             ?.getOrNull(3)
             ?.takeIf { ipAddressPattern.matches(it) }
-            ?.let { "http://$it" }
+            ?.let { "typedb website: http://$it" }
 
-        val newStrapiIP = services.singleOrNull { it.contains("typedb-web-server-active") }
+        val newStrapiIP = services.singleOrNull { it.contains("strapi-application") }
             ?.split(Regex("\\s+"))
             ?.getOrNull(3)
             ?.takeIf { ipAddressPattern.matches(it) }
-            ?.let { "http://$it" }
+            ?.let { "strapi admin portal: http://$it:1337/admin" }
 
         return "$newWebsiteIP\n$newStrapiIP"
     }

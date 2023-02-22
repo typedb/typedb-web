@@ -26,7 +26,9 @@ spec:
             - configMapRef:
                 name: strapi-db-config
             - secretRef:
-                name: strapi-db-secret
+                name: strapi-db-root-password
+            - secretRef:
+                name: strapi-db-user-password
           volumeMounts:
             - name: storage
               mountPath: /var/lib/strapi/db
@@ -46,15 +48,6 @@ metadata:
 data:
   MYSQL_USER: {{ .Values.db.credentials.username }}
   MYSQL_DATABASE: {{ .Values.db.database_name }}
----
-apiVersion: v1
-kind: Secret
-metadata:
-  name: strapi-db-secret
-type: Opaque
-data:
-  MYSQL_ROOT_PASSWORD: {{ .Values.db.credentials.root_password }}
-  MYSQL_PASSWORD: {{ .Values.db.credentials.password }}
 ---
 apiVersion: v1
 kind: Service

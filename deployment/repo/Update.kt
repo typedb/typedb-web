@@ -112,7 +112,9 @@ class Update : Callable<Int> {
         "deployment", "repo", "template", "deployment-repo"
     )
 
-    private val gcpSecretDockerVersion = "1" // Helm expects this to be a string
+    private val gcpSecretDockerCredentialsVersion = "1" // Helm expects this to be a string
+    private val gcpSecretStrapiDBRootPasswordVersion = "1"
+    private val gcpSecretStrapiDBUserPasswordVersion = "1"
 
     override fun call(): Int {
         val tempDeploymentDir = Files.createTempDirectory("deployment").toAbsolutePath()
@@ -120,16 +122,18 @@ class Update : Callable<Int> {
 
         repo.clone(GithubTokenFactory.readFromEnvironment(), deploymentRepo)
         val helmValues = HelmValues(
-                gcpProject = gcpProject,
-                gcpServiceAccountName = gcpServiceAccountName.orElse("$gkeCluster-sa"),
-                gcpSecretDockerVersion = gcpSecretDockerVersion,
-                gkeName = gkeCluster,
-                gkeLocation = gkeClusterLocation,
-                gkeServiceAccount = gkeServiceAccount,
-                deploymentRepo = deploymentRepo,
-                argoCDAppGKENamespace = argoCDAppGKENamespace,
-                argoCDAppName = argoCDAppName,
-                helmChart = helmChart
+            gcpProject = gcpProject,
+            gcpServiceAccountName = gcpServiceAccountName.orElse("$gkeCluster-sa"),
+            gcpSecretDockerCredentialsVersion = gcpSecretDockerCredentialsVersion,
+            gcpSecretStrapiDBRootPasswordVersion = gcpSecretStrapiDBRootPasswordVersion,
+            gcpSecretStrapiDBUserPasswordVersion = gcpSecretStrapiDBUserPasswordVersion,
+            gkeName = gkeCluster,
+            gkeLocation = gkeClusterLocation,
+            gkeServiceAccount = gkeServiceAccount,
+            deploymentRepo = deploymentRepo,
+            argoCDAppGKENamespace = argoCDAppGKENamespace,
+            argoCDAppName = argoCDAppName,
+            helmChart = helmChart
         )
         repo.renderManifests(helmValues, deploymentHelmPackage)
         repo.gitCommitAndPush()
