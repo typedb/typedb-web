@@ -23,11 +23,22 @@ spec:
             - configMapRef:
                 name: strapi-application-config
             - secretRef:
-                name: strapi-application-secret
-            - secretRef:
-                name: strapi-application-db-password
+                name: strapi-application-secrets
       imagePullSecrets:
         - name: docker-credentials
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: strapi-application
+spec:
+  type: LoadBalancer
+  selector:
+    app: strapi-application
+  ports:
+    - protocol: TCP
+      port: 1337
+      targetPort: http
 ---
 apiVersion: v1
 kind: ConfigMap
@@ -42,26 +53,45 @@ data:
   DATABASE_USERNAME: {{ .Values.db.credentials.username }}
   DATABASE_NAME: {{ .Values.db.database_name }}
 ---
-apiVersion: v1
-kind: Secret
+apiVersion: external-secrets.io/v1beta1
+kind: ExternalSecret
 metadata:
-  name: strapi-application-secret
-type: Opaque
-data:
-  APP_KEYS: {{ .Values.application.strapi.credentials.app_keys }}
-  API_TOKEN_SALT: {{ .Values.application.strapi.credentials.api_token_salt }}
-  ADMIN_JWT_SECRET: {{ .Values.application.strapi.credentials.admin_jwt_secret }}
-  JWT_SECRET: {{ .Values.application.strapi.credentials.jwt_secret }}
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: strapi-application
+  name: strapi-application-secrets
 spec:
-  type: LoadBalancer
-  selector:
-    app: strapi-application
-  ports:
-    - protocol: TCP
-      port: 1337
-      targetPort: http
+  refreshInterval: 1h
+  secretStoreRef:
+    name: cluster-secret-store
+    kind: ClusterSecretStore
+  target:
+    template:
+      type: Opaque
+      engineVersion: v2
+      data:
+        APP_KEYS: "{{ `{{ .app_keys }}` }}"
+        API_TOKEN_SALT: "{{ `{{ .api_token_salt }}` }}"
+        ADMIN_JWT_SECRET: "{{ `{{ .admin_jwt_secret }}` }}"
+        JWT_SECRET: "{{ `{{ .jwt_secret }}` }}"
+        DATABASE_PASSWORD: "{{ `{{ .db_password }}` }}"
+    name: strapi-application-secrets
+    creationPolicy: Owner
+  data:
+    - secretKey: app_keys
+      remoteRef:
+        key: {{ .Values.infrastructure.gcp.secret_manager.strapi_application_app_keys.name }}
+        version: {{ .Values.infrastructure.gcp.secret_manager.strapi_application_app_keys.version | quote }}
+    - secretKey: api_token_salt
+      remoteRef:
+        key: {{ .Values.infrastructure.gcp.secret_manager.strapi_application_api_token_salt.name }}
+        version: {{ .Values.infrastructure.gcp.secret_manager.strapi_application_api_token_salt.version | quote }}
+    - secretKey: admin_jwt_secret
+      remoteRef:
+        key: {{ .Values.infrastructure.gcp.secret_manager.strapi_application_admin_jwt_secret.name }}
+        version: {{ .Values.infrastructure.gcp.secret_manager.strapi_application_admin_jwt_secret.version | quote }}
+    - secretKey: jwt_secret
+      remoteRef:
+        key: {{ .Values.infrastructure.gcp.secret_manager.strapi_application_jwt_secret.name }}
+        version: {{ .Values.infrastructure.gcp.secret_manager.strapi_application_jwt_secret.version | quote }}
+    - secretKey: db_password
+      remoteRef:
+        key: {{ .Values.infrastructure.gcp.secret_manager.strapi_db_user_password.name }}
+        version: {{ .Values.infrastructure.gcp.secret_manager.strapi_db_user_password.version | quote }}
