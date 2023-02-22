@@ -117,8 +117,8 @@ class Update : Callable<Int> {
     private val gcpSecretStrapiDBUserPasswordVersion = "1"
     private val gcpSecretStrapiAppKeysVersion = "1"
     private val gcpSecretStrapiApiTokenSaltVersion = "1"
-    private val gcpSecretStrapiAdminJwtTokenVersion = "1"
-    private val gcpSecretStrapiJwtTokenVersion = "1"
+    private val gcpSecretStrapiAdminJwtSecretVersion = "1"
+    private val gcpSecretStrapiJwtSecretVersion = "1"
 
     override fun call(): Int {
         val tempDeploymentDir = Files.createTempDirectory("deployment").toAbsolutePath()
@@ -133,8 +133,8 @@ class Update : Callable<Int> {
             gcpSecretStrapiDBUserPasswordVersion = gcpSecretStrapiDBUserPasswordVersion,
             gcpSecretStrapiAppKeysVersion = gcpSecretStrapiAppKeysVersion,
             gcpSecretStrapiApiTokenSaltVersion = gcpSecretStrapiApiTokenSaltVersion,
-            gcpSecretStrapiAdminJwtTokenVersion = gcpSecretStrapiAdminJwtTokenVersion,
-            gcpSecretStrapiJwtTokenVersion = gcpSecretStrapiJwtTokenVersion,
+            gcpSecretStrapiAdminJwtSecretVersion = gcpSecretStrapiAdminJwtSecretVersion,
+            gcpSecretStrapiJwtSecretVersion = gcpSecretStrapiJwtSecretVersion,
             gkeName = gkeCluster,
             gkeLocation = gkeClusterLocation,
             gkeServiceAccount = gkeServiceAccount,
