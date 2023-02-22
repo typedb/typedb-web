@@ -20,11 +20,11 @@ infrastructure:
         api_token_salt:
           name: strapi-api-token-salt
           version: "1"
-        admin_jwt_token:
-          name: strapi-admin-jwt-token
+        admin_jwt_secret:
+          name: strapi-admin-jwt-secret
           version: "1"
-        jwt_token:
-          name: strapi-jwt-token
+        jwt_secret:
+          name: strapi-jwt-secret
           version: "1"
   gke:
     name: web-prod

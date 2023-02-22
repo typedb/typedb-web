@@ -85,12 +85,12 @@ spec:
         version: {{ .Values.infrastructure.gcp.secret_manager.strapi.api_token_salt.version | quote }}
     - secretKey: admin_jwt_secret
       remoteRef:
-        key: {{ .Values.infrastructure.gcp.secret_manager.strapi.admin_jwt_token.name }}
-        version: {{ .Values.infrastructure.gcp.secret_manager.strapi.admin_jwt_token.version | quote }}
+        key: {{ .Values.infrastructure.gcp.secret_manager.strapi.admin_jwt_secret.name }}
+        version: {{ .Values.infrastructure.gcp.secret_manager.strapi.admin_jwt_secret.version | quote }}
     - secretKey: jwt_secret
       remoteRef:
-        key: {{ .Values.infrastructure.gcp.secret_manager.strapi.jwt_token.name }}
-        version: {{ .Values.infrastructure.gcp.secret_manager.strapi.jwt_token.version | quote }}
+        key: {{ .Values.infrastructure.gcp.secret_manager.strapi.jwt_secret.name }}
+        version: {{ .Values.infrastructure.gcp.secret_manager.strapi.jwt_secret.version | quote }}
     - secretKey: db_password
       remoteRef:
         key: {{ .Values.infrastructure.gcp.secret_manager.strapi.db.user_password.name }}
