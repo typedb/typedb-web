@@ -1,18 +1,53 @@
 infrastructure:
   gcp:
     project_id: vaticle-web-prod
-    service_account_name: Alex
+    service_account_name: alexwalker
     secret_manager:
-      docker:
-        name: docker
+      docker_credentials:
+        name: docker-credentials
         version: "1"
+      strapi:
+        db:
+          root_password:
+            name: strapi-db-root-password
+            version: "1"
+          user_password:
+            name: strapi-db-user-password
+            version: "1"
+        app_keys:
+          name: strapi-app-keys
+          version: "1"
+        api_token_salt:
+          name: strapi-api-token-salt
+          version: "1"
+        admin_jwt_token:
+          name: strapi-admin-jwt-token
+          version: "1"
+        jwt_token:
+          name: strapi-jwt-token
+          version: "1"
   gke:
     name: web-prod
     location: europe-west2-a
     service_account_name: gcp-service-account
 
-image:
-  repository: to-be-replaced # to be replaced during assembly
-  tag: 0.0.0 # to be replaced during assembly
-address: 0.0.0.0:80
-replica_count: 1
+application:
+  typedb_web:
+    image:
+      repository: vaticle/typedb-web-snapshot
+      tag: 0.0.0-f39d89e409aa8c6e55bf9ea9189176b0999fa9f8
+    address: 0.0.0.0:80
+    replica_count: 1
+  strapi:
+    image:
+      repository: vaticle/strapi
+      tag: 0.1.5
+    host: 0.0.0.0
+    port: "1337"
+    node_env: production
+
+db:
+  host: strapi-db-0.strapi-db
+  port: "3306"
+  database_name: strapi
+  username: strapi

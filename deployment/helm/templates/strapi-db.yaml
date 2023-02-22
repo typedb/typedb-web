@@ -58,7 +58,7 @@ kind: ConfigMap
 metadata:
   name: strapi-db-config
 data:
-  MYSQL_USER: {{ .Values.db.credentials.username }}
+  MYSQL_USER: {{ .Values.db.username }}
   MYSQL_DATABASE: {{ .Values.db.database_name }}
 ---
 apiVersion: external-secrets.io/v1beta1
@@ -82,9 +82,9 @@ spec:
   data:
     - secretKey: root_password
       remoteRef:
-        key: {{ .Values.infrastructure.gcp.secret_manager.strapi_db_root_password.name }}
-        version: {{ .Values.infrastructure.gcp.secret_manager.strapi_db_root_password.version | quote }}
+        key: {{ .Values.infrastructure.gcp.secret_manager.strapi.db.root_password.name }}
+        version: {{ .Values.infrastructure.gcp.secret_manager.strapi.db.root_password.version | quote }}
     - secretKey: user_password
       remoteRef:
-        key: { { .Values.infrastructure.gcp.secret_manager.strapi_db_user_password.name } }
-        version: { { .Values.infrastructure.gcp.secret_manager.strapi_db_user_password.version | quote } }
+        key: { { .Values.infrastructure.gcp.secret_manager.strapi.db.user_password.name } }
+        version: { { .Values.infrastructure.gcp.secret_manager.strapi.db.user_password.version | quote } }

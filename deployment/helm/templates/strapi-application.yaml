@@ -50,7 +50,7 @@ data:
   NODE_ENV: {{ .Values.application.strapi.node_env }}
   DATABASE_HOST: {{ .Values.db.host }}
   DATABASE_PORT: "3306"
-  DATABASE_USERNAME: {{ .Values.db.credentials.username }}
+  DATABASE_USERNAME: {{ .Values.db.username }}
   DATABASE_NAME: {{ .Values.db.database_name }}
 ---
 apiVersion: external-secrets.io/v1beta1
@@ -77,21 +77,21 @@ spec:
   data:
     - secretKey: app_keys
       remoteRef:
-        key: {{ .Values.infrastructure.gcp.secret_manager.strapi_application_app_keys.name }}
-        version: {{ .Values.infrastructure.gcp.secret_manager.strapi_application_app_keys.version | quote }}
+        key: {{ .Values.infrastructure.gcp.secret_manager.strapi.app_keys.name }}
+        version: {{ .Values.infrastructure.gcp.secret_manager.strapi.app_keys.version | quote }}
     - secretKey: api_token_salt
       remoteRef:
-        key: {{ .Values.infrastructure.gcp.secret_manager.strapi_application_api_token_salt.name }}
-        version: {{ .Values.infrastructure.gcp.secret_manager.strapi_application_api_token_salt.version | quote }}
+        key: {{ .Values.infrastructure.gcp.secret_manager.strapi.api_token_salt.name }}
+        version: {{ .Values.infrastructure.gcp.secret_manager.strapi.api_token_salt.version | quote }}
     - secretKey: admin_jwt_secret
       remoteRef:
-        key: {{ .Values.infrastructure.gcp.secret_manager.strapi_application_admin_jwt_secret.name }}
-        version: {{ .Values.infrastructure.gcp.secret_manager.strapi_application_admin_jwt_secret.version | quote }}
+        key: {{ .Values.infrastructure.gcp.secret_manager.strapi.admin_jwt_secret.name }}
+        version: {{ .Values.infrastructure.gcp.secret_manager.strapi.admin_jwt_secret.version | quote }}
     - secretKey: jwt_secret
       remoteRef:
-        key: {{ .Values.infrastructure.gcp.secret_manager.strapi_application_jwt_secret.name }}
-        version: {{ .Values.infrastructure.gcp.secret_manager.strapi_application_jwt_secret.version | quote }}
+        key: {{ .Values.infrastructure.gcp.secret_manager.strapi.jwt_secret.name }}
+        version: {{ .Values.infrastructure.gcp.secret_manager.strapi.jwt_secret.version | quote }}
     - secretKey: db_password
       remoteRef:
-        key: {{ .Values.infrastructure.gcp.secret_manager.strapi_db_user_password.name }}
-        version: {{ .Values.infrastructure.gcp.secret_manager.strapi_db_user_password.version | quote }}
+        key: {{ .Values.infrastructure.gcp.secret_manager.strapi.db.user_password.name }}
+        version: {{ .Values.infrastructure.gcp.secret_manager.strapi.db.user_password.version | quote }}
