@@ -86,5 +86,5 @@ spec:
         version: {{ .Values.infrastructure.gcp.secret_manager.strapi.db.root_password.version | quote }}
     - secretKey: user_password
       remoteRef:
-        key: { { .Values.infrastructure.gcp.secret_manager.strapi.db.user_password.name } }
-        version: { { .Values.infrastructure.gcp.secret_manager.strapi.db.user_password.version | quote } }
+        key: {{ .Values.infrastructure.gcp.secret_manager.strapi.db.user_password.name }}
+        version: {{ .Values.infrastructure.gcp.secret_manager.strapi.db.user_password.version | quote }}
