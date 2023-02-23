@@ -22,7 +22,13 @@ DOCKER_VERSION=$2
 DOCKER_ORG=$3
 DOCKER_REPO=$4
 
+DOCKER_TAG=$DOCKER_ORG/$DOCKER_REPO:$DOCKER_VERSION
+
 rm -f ./strapi.tar.gz
 cp $5 ./strapi.tar.gz
 
-docker build -t $DOCKER_ORG/$DOCKER_REPO:$DOCKER_VERSION --build-arg node_env=production -f $1 .
+docker build \
+    -t $DOCKER_TAG \
+    --build-arg node_env=production \
+    --build-arg docker_image_tag=$DOCKER_TAG \
+    -f $1 .

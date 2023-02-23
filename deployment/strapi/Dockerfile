@@ -19,18 +19,21 @@
 FROM node:16-alpine as build
 # Installing libvips-dev for sharp Compatibility
 RUN apk update && apk add --no-cache build-base gcc autoconf automake zlib-dev libpng-dev vips-dev > /dev/null 2>&1
-ARG node_env=production
+ARG node_env
+ARG docker_image_tag
 WORKDIR /opt/
 ADD ./strapi.tar.gz ./
 ENV PATH /opt/node_modules/.bin:$PATH
 ENV NODE_ENV=${node_env}
 RUN yarn config set network-timeout 600000 -g && yarn install --production
 RUN yarn build
+ENV DOCKER_IMAGE_TAG=${docker_image_tag}
+RUN echo DOCKER_IMAGE_TAG > docker_image_tag.txt
 
 
 FROM node:16-alpine
 RUN apk add --no-cache vips-dev
-ARG node_env=production
+ARG node_env
 ENV NODE_ENV=${node_env}
 WORKDIR /opt/
 COPY --from=build /opt ./

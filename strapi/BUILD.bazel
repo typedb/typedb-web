@@ -8,7 +8,14 @@ load("@rules_pkg//:pkg.bzl", "pkg_tar")
 
 pkg_tar(
     name = "application_bundle",
-    srcs = glob(["**/*"], exclude = ["node_modules", "yarn.lock"]),
+    srcs = glob([
+        "config/**/*",
+        "database/**/*",
+        "public/**/*",
+        "src/**/*",
+        "favicon.png",
+        "package.json"
+    ]),
     extension = "tar.gz",
     strip_prefix = ".", # preserve directory structure (see https://github.com/bazelbuild/rules_pkg/issues/82)
     visibility = ["//deployment/strapi:__pkg__"]
