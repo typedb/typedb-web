@@ -50,7 +50,7 @@ build:
       image: vaticle-ubuntu-20.04
       dependencies: [deploy-server-docker, deploy-strapi-docker, deploy-helm]
       command: |
-        export GCP_SERVICE_ACCOUNT_CREDENTIALS=`$GCP_SERVICE_ACCOUNT_CREDENTIALS_BASE64 | base64 --decode`
+        export GCP_SERVICE_ACCOUNT_CREDENTIALS=`echo $GCP_SERVICE_ACCOUNT_CREDENTIALS_BASE64 | base64 --decode`
         bazel run //deployment/actions:deployment_repo_update
         bazel run //deployment/actions:argocd_sync
 
