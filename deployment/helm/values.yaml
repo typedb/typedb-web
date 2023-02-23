@@ -41,7 +41,7 @@ application:
   strapi:
     image:
       repository: vaticle/typedb-web-strapi
-      tag: 0.1.7
+      tag: 0.1.8
     host: 0.0.0.0
     port: "1337"
     node_env: production

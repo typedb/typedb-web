@@ -28,7 +28,7 @@ ENV NODE_ENV=${node_env}
 RUN yarn config set network-timeout 600000 -g && yarn install --production
 RUN yarn build
 ENV DOCKER_IMAGE_TAG=${docker_image_tag}
-RUN echo DOCKER_IMAGE_TAG > docker_image_tag.txt
+RUN echo $DOCKER_IMAGE_TAG > docker_image_tag.txt
 
 
 FROM node:16-alpine
