@@ -14,7 +14,8 @@ pkg_tar(
         "public/**/*",
         "src/**/*",
         "favicon.png",
-        "package.json"
+        "package.json",
+        "tsconfig.json",
     ]),
     extension = "tar.gz",
     strip_prefix = ".", # preserve directory structure (see https://github.com/bazelbuild/rules_pkg/issues/82)
