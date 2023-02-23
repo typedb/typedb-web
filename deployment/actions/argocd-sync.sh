@@ -6,8 +6,9 @@ DEPLOYMENT_REPO_ORG=$3
 DEPLOYMENT_REPO_NAME=$4
 
 cd $BUILD_WORKSPACE_DIRECTORY
+echo $GCP_SERVICE_ACCOUNT_CREDENTIALS_BASE64 | base64 -d > "credentials.json"
 bazel run //deployment/argocd:sync -- \
     --gcp-project $GCP_PROJECT \
     --gke-cluster $GKE_CLUSTER \
-    --gcp-service-account-credentials $GCP_SERVICE_ACCOUNT_CREDENTIALS \
+    --gcp-service-account-credentials-file "credentials.json" \
     --deployment-repo $DEPLOYMENT_REPO_ORG/$DEPLOYMENT_REPO_NAME
