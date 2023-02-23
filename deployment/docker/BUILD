@@ -20,12 +20,16 @@ load("//:deployment.bzl", "deployment")
 sh_binary(
     name = "assemble",
     srcs = ["assemble.sh"],
-    data = ["Dockerfile"],
+    data = [
+        "Dockerfile",
+        "//server:distribution"
+    ],
     args = [
         "$(location Dockerfile)",
         "$(version)",
         deployment["docker.organisation"],
-        deployment["docker.release-repository"]
+        deployment["docker.release-repository"],
+        "$(location //server:distribution)"
     ]
 )
 
