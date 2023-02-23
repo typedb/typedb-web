@@ -43,7 +43,7 @@ spec:
     blueGreen:
       activeService: typedb-web-server-active
       previewService: typedb-web-server-preview
-      autoPromotionEnabled: false
+      autoPromotionEnabled: true
 ---
 apiVersion: v1
 kind: Service

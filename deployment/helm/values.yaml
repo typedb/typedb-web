@@ -1,7 +1,7 @@
 infrastructure:
   gcp:
     project_id: vaticle-web-prod
-    service_account_name: alexwalker
+    service_account_name: grabl-prod
     secret_manager:
       docker_credentials:
         name: docker-credentials
@@ -34,14 +34,14 @@ infrastructure:
 application:
   typedb_web:
     image:
-      repository: vaticle/typedb-web-snapshot
-      tag: 0.0.0-f39d89e409aa8c6e55bf9ea9189176b0999fa9f8
+      repository: vaticle/typedb-web-server
+      tag: 0.0.0-{COMMIT_SHA}
     address: 0.0.0.0:80
     replica_count: 1
   strapi:
     image:
       repository: vaticle/typedb-web-strapi
-      tag: 0.1.8
+      tag: 0.0.0-{COMMIT_SHA}
     host: 0.0.0.0
     port: "1337"
     node_env: production

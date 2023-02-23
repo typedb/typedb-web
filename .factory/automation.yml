@@ -4,40 +4,55 @@ config:
 build:
   correctness:
     build:
-      machine: 8-core-32-gb
       image: vaticle-ubuntu-20.04
       command: |
         # The next build command has to be run before building everything in order to "fix" the flakiness of rules_js.
         # See more information at https://github.com/vaticle/cloud/issues/15.
         bazel build //website:distribution # Temporary until rules_js fixes https://github.com/aspect-build/rules_js/issues/483
         # Fix for flakiness related to building multiple helm charts from the same build file at once
-        bazel build --define snapshot-version=$(echo -n "0.0.0-$(git rev-parse HEAD)") //deployment/helm:distribution-snapshot
+        # bazel build --define snapshot-version=0.0.0-$(git rev-parse HEAD) //deployment/helm:distribution-snapshot
         bazel build --define version=$(cat VERSION) --define snapshot-version=$(echo -n "0.0.0-$(git rev-parse HEAD)") //...
-    deploy-docker-snapshot:
+    deploy-server-docker:
+      # filter:
+      #   owner: vaticle
+      #   branch: master
       machine: 4-core-16-gb
       image: vaticle-ubuntu-20.04
-      #      dependencies: [build] # Deploy Docker image immediately to speed up CI during the early phase of development
       command: |
         docker login -u $REPO_DOCKER_USERNAME -p $REPO_DOCKER_PASSWORD
-        bazel run --define snapshot-version=$(echo -n "0.0.0-$(git rev-parse HEAD)") //deployment/docker:assemble-snapshot
-        bazel run --define snapshot-version=$(echo -n "0.0.0-$(git rev-parse HEAD)") //deployment/docker:deploy-snapshot
-    deploy-helm-snapshot:
-      image: vaticle-ubuntu-20.04
-      # dependencies: [deploy-docker-snapshot] # TODO: do we need this?
-      command: |
-        export DEPLOY_HELM_USERNAME=$REPO_VATICLE_USERNAME
-        export DEPLOY_HELM_PASSWORD=$REPO_VATICLE_PASSWORD
-        bazel run --define snapshot-version=$(echo -n "0.0.0-$(git rev-parse HEAD)") //deployment/helm:deploy-snapshot
+        bazel run --define version=0.0.0-$(git rev-parse HEAD) //deployment/docker:assemble
+        bazel run --define version=0.0.0-$(git rev-parse HEAD) //deployment/docker:deploy
     deploy-strapi-docker:
       # filter:
       #   owner: vaticle
-      #   branch: deploy-strapi-docker
+      #   branch: master
       machine: 4-core-16-gb
       image: vaticle-ubuntu-20.04
       command: |
         docker login -u $REPO_DOCKER_USERNAME -p $REPO_DOCKER_PASSWORD
-        bazel run --define version=$(cat deployment/strapi/VERSION) //deployment/strapi:assemble_docker
-        bazel run --define version=$(cat deployment/strapi/VERSION) //deployment/strapi:deploy_docker
+        bazel run --define version=0.0.0-$(git rev-parse HEAD) //deployment/strapi:assemble_docker
+        bazel run --define version=0.0.0-$(git rev-parse HEAD) //deployment/strapi:deploy_docker
+    deploy-helm:
+      # filter:
+      #   owner: vaticle
+      #   branch: master
+      image: vaticle-ubuntu-20.04
+      command: |
+        export DEPLOY_HELM_USERNAME=$REPO_VATICLE_USERNAME
+        export DEPLOY_HELM_PASSWORD=$REPO_VATICLE_PASSWORD
+        bazel run //deployment/helm:expand_values_template
+        bazel run --define version=0.0.0-$(git rev-parse HEAD) //deployment/helm:deploy
+    deploy-production:
+      # filter:
+      #   owner: vaticle
+      #   branch: master
+      machine: 4-core-16-gb
+      image: vaticle-ubuntu-20.04
+      dependencies: [deploy-server-docker, deploy-strapi-docker, deploy-helm]
+      command: |
+        export GCP_SERVICE_ACCOUNT_CREDENTIALS=`$GCP_SERVICE_ACCOUNT_CREDENTIALS_BASE64 | base64 --decode`
+        bazel run //deployment/actions:deployment_repo_update
+        bazel run //deployment/actions:argocd_sync
 
 #    test-behaviour:
 #      machine: 4-core-16-gb
@@ -61,20 +76,20 @@ build:
 #            --deployment-repo "$REPO_WEB_DEPLOYMENT" \
 #            --cloud-helm-chart "0.0.0-$FACTORY_COMMIT"
 
-release:
-  filter:
-    owner: vaticle
-    branch: master
-  deployment:
-    deploy-docker:
-      image: vaticle-ubuntu-20.04
-      command: |
-        docker login -u $REPO_DOCKER_USERNAME -p $REPO_DOCKER_PASSWORD
-        bazel run //docker:deploy
-    deploy-helm:
-      image: vaticle-ubuntu-20.04
-      dependencies: [deploy-docker]
-      command: |
-        export DEPLOY_HELM_USERNAME=$REPO_VATICLE_USERNAME
-        export DEPLOY_HELM_PASSWORD=$REPO_VATICLE_PASSWORD
-        bazel run --define version=$(cat VERSION) //deployment/helm:deploy
+#release:
+#  filter:
+#    owner: vaticle
+#    branch: master
+#  deployment:
+#    deploy-docker:
+#      image: vaticle-ubuntu-20.04
+#      command: |
+#        docker login -u $REPO_DOCKER_USERNAME -p $REPO_DOCKER_PASSWORD
+#        bazel run //docker:deploy
+#    deploy-helm:
+#      image: vaticle-ubuntu-20.04
+#      dependencies: [deploy-docker]
+#      command: |
+#        export DEPLOY_HELM_USERNAME=$REPO_VATICLE_USERNAME
+#        export DEPLOY_HELM_PASSWORD=$REPO_VATICLE_PASSWORD
+#        bazel run --define version=$(cat VERSION) //deployment/helm:deploy

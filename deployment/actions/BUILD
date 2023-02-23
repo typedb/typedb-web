@@ -18,28 +18,24 @@
 load("//:deployment.bzl", "deployment")
 
 sh_binary(
-    name = "assemble_docker",
-    srcs = ["assemble-docker.sh"],
-    data = [
-        ".dockerignore",
-        "Dockerfile",
-        "//strapi:application_bundle",
-    ],
+    name = "deployment_repo_update",
+    srcs = ["deployment-repo-update.sh"],
     args = [
-        "$(location Dockerfile)",
-        "$(version)",
-        deployment["docker.organisation"],
-        deployment["docker.strapi-release-repository"],
-        "$(location //strapi:application_bundle)"
+        deployment["gcp.project"],
+        deployment["gcp.service-account-name"],
+        deployment["gke.cluster"],
+        deployment["deployment-repo.org"],
+        deployment["deployment-repo.name"]
     ]
 )
 
 sh_binary(
-    name = "deploy_docker",
-    srcs = ["deploy-docker.sh"],
+    name = "argocd_sync",
+    srcs = ["argocd-sync.sh"],
     args = [
-        "$(version)",
-        deployment["docker.organisation"],
-        deployment["docker.strapi-release-repository"]
+        deployment["gcp.project"],
+        deployment["gke.cluster"],
+        deployment["deployment-repo.org"],
+        deployment["deployment-repo.name"]
     ]
 )

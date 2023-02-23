@@ -2,7 +2,6 @@ package com.vaticle.typedb.web.deployment.argocd
 
 import picocli.CommandLine
 import picocli.CommandLine.Option
-import java.net.URL
 import java.nio.file.Path
 import java.nio.file.Paths
 import java.util.concurrent.Callable
@@ -14,10 +13,16 @@ fun main(args: Array<String>) {
 
 class Sync : Callable<Int> {
     @Option(
+        names = ["--gcp-service-account-credentials"],
+        description = ["The JSON credentials for the GCP Service Account."],
+    )
+    private var gcpServiceAccountCredentials: String? = null
+
+    @Option(
         names = ["--gcp-service-account-credentials-file"],
         description = ["The file path to the JSON credentials for the GCP Service Account."],
     )
-    private lateinit var gcpServiceAccountCredentialsFile: String
+    private var gcpServiceAccountCredentialsFile: String? = null
 
     @Option(
         names = ["--gke-cluster"],
@@ -88,6 +93,9 @@ class Sync : Callable<Int> {
     )
 
     override fun call(): Int {
+        if (gcpServiceAccountCredentials.isNullOrBlank() && gcpServiceAccountCredentialsFile.isNullOrBlank()) {
+            throw IllegalArgumentException("One of --gcp-service-account-credentials or --gcp-service-account-credentials-file must be set")
+        }
         val cloud = ArgoCD(
             cluster = gkeCluster,
             gkeNamespace = gkeNamespace,
@@ -101,14 +109,15 @@ class Sync : Callable<Int> {
     }
 
     private fun appURL(argoCD: ArgoCD): String {
-        val credentials = Paths.get(gcpServiceAccountCredentialsFile).toFile().readText()
-        val appURLs = argoCD.deploy(
+        val credentials = gcpServiceAccountCredentials?.takeIf { it.isNotBlank() }
+            ?: Paths.get(gcpServiceAccountCredentialsFile!!).toFile().readText()
+
+        return argoCD.deploy(
             deploymentManifestTemplate = deploymentManifest,
             gcpCredentials = credentials,
             deploymentRepo = deploymentRepo,
             deploymentBranch = deploymentBranch,
             kubectlPort = kubernetesConnectionPort,
         )
-        return appURLs
     }
 }
