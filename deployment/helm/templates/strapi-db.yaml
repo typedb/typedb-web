@@ -42,7 +42,7 @@ spec:
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: strapi-db-BANANA
+  name: strapi-db
 spec:
   capacity:
     storage: 20Gi
@@ -53,7 +53,7 @@ spec:
     name: storage-strapi-db-0
   csi:
     driver: pd.csi.storage.gke.io
-    volumeHandle: {{ .Values.infrastructure.gcp.strapi_db_disk_id }}
+    volumeHandle: "3754088169077043496"
     fsType: ext4
 ---
 apiVersion: v1
