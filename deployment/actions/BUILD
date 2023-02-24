@@ -18,6 +18,11 @@
 load("//:deployment.bzl", "deployment")
 
 sh_binary(
+    name = "install_deps",
+    srcs = ["install-deps.sh"],
+)
+
+sh_binary(
     name = "deployment_repo_update",
     srcs = ["deployment-repo-update.sh"],
     args = [
