@@ -9,7 +9,7 @@ spec:
   project: default
   source:
     chart: typedb-web
-    repoURL: https://repo.vaticle.com/repository/helm-snapshot/
+    repoURL: https://repo.vaticle.com/repository/helm/
     targetRevision: "${deployment.target-revision}"
     helm:
         parameters:
