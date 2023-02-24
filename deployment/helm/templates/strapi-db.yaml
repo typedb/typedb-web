@@ -41,6 +41,8 @@ spec:
 ---
 apiVersion: v1
 kind: PersistentVolume
+metadata:
+  name: strapi-db
 spec:
   capacity:
     storage: 20Gi
