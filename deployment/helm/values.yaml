@@ -26,7 +26,7 @@ infrastructure:
         jwt_secret:
           name: strapi-jwt-secret
           version: "1"
-    strapi_db_disk_id: 3754088169077043496
+    strapi_db_disk_id: "3754088169077043496"
   gke:
     name: web-prod
     location: europe-west2-a
