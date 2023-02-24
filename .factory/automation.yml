@@ -50,6 +50,10 @@ build:
       image: vaticle-ubuntu-20.04
       dependencies: [deploy-server-docker, deploy-strapi-docker, deploy-helm]
       command: |
+        curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+        sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
+        kubectl version --client
+        
         export GCP_SERVICE_ACCOUNT_CREDENTIALS=`echo $GCP_SERVICE_ACCOUNT_CREDENTIALS_BASE64 | base64 --decode`
         bazel run //deployment/actions:deployment_repo_update
         bazel run //deployment/actions:argocd_sync

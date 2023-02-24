@@ -7,7 +7,6 @@ DEPLOYMENT_REPO_ORG=$4
 DEPLOYMENT_REPO_NAME=$5
 
 cd $BUILD_WORKSPACE_DIRECTORY
-gcloud components install kubectl
 
 bazel run //deployment/repo:update -- \
     --gcp-project $GCP_PROJECT \
