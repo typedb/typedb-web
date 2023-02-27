@@ -70,7 +70,7 @@ spec:
     name: test-pv
   csi:
     driver: pd.csi.storage.gke.io
-    volumeHandle: "banana"
+    volumeHandle: "test-disk"
     fsType: ext4
 ---
 apiVersion: v1
