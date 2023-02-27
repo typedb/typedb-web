@@ -108,7 +108,7 @@ spec:
     - ReadWriteOnce
   claimRef:
     namespace: typedb-web
-    name: test-pv
+    name: storage-xyz-0
   csi:
     driver: pd.csi.storage.gke.io
     volumeHandle: "projects/vaticle-web-prod/zones/europe-west2-a/disks/test-disk"
