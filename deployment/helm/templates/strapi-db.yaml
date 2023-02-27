@@ -111,7 +111,7 @@ spec:
     name: storage-xyz-0
   csi:
     driver: pd.csi.storage.gke.io
-    volumeHandle: "projects/vaticle-web-prod/zones/europe-west2-a/disks/test-disk"
+    volumeHandle: "123456789"
     fsType: ext4
 ---
 apiVersion: v1
