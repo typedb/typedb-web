@@ -56,6 +56,47 @@ spec:
     volumeHandle: "projects/vaticle-web-prod/zones/europe-west2-a/disks/typedb-web-strapi-db"
     fsType: ext4
 ---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: xyz
+spec:
+  serviceName: "xyz"
+  replicas: 1
+  selector:
+    matchLabels:
+      app: xyz
+  template:
+    metadata:
+      labels:
+        app: xyz
+    spec:
+      containers:
+        - name: xyz
+          image: mysql:5.7
+          securityContext:
+            runAsUser: 1000
+            allowPrivilegeEscalation: false
+          ports:
+            - containerPort: 3306
+              name: xyz
+          envFrom:
+            - configMapRef:
+                name: strapi-db-config
+            - secretRef:
+                name: strapi-db-secrets
+          volumeMounts:
+            - name: storage
+              mountPath: /var/lib/strapi/db
+  volumeClaimTemplates:
+    - metadata:
+        name: storage
+      spec:
+        accessModes: [ "ReadWriteOnce" ]
+        resources:
+          requests:
+            storage: 20Gi
+---
 apiVersion: v1
 kind: PersistentVolume
 metadata:
