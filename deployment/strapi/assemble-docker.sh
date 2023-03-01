@@ -31,4 +31,5 @@ docker build \
     -t $DOCKER_TAG \
     --build-arg node_env=production \
     --build-arg docker_image_tag=$DOCKER_TAG \
+    --build-arg gcp_credentials_base64=$GCP_CREDENTIALS_BASE64 \
     -f $1 .

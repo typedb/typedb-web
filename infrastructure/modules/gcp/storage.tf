@@ -1,36 +1,15 @@
-resource "google_compute_disk" "strapi_db_persistent_volume" {
-  name = "typedb-web-strapi-db"
+resource "google_storage_bucket" "strapi_backup" {
+  name = "${var.project}-strapi-backup"
   project = var.project
-  size = 20
-  type = "pd-balanced"
-  zone = var.zone
-}
-
-resource "google_compute_resource_policy" "daily_backup_30d_retention" {
-  name = "daily-backup-30d-retention"
-  description = "Take a daily application-consistent snapshot of the attached disk with a 30-day retention period"
-  project = var.project
-  region = var.region
-  snapshot_schedule_policy {
-    schedule {
-      daily_schedule {
-        days_in_cycle = 1
-        start_time = "06:00"
-      }
-    }
-    retention_policy {
-      max_retention_days = 30
-      on_source_disk_delete = "KEEP_AUTO_SNAPSHOTS"
-    }
-    snapshot_properties {
-      storage_locations = [var.region]
-    }
+  location = var.region
+  storage_class = "STANDARD"
+  uniform_bucket_level_access = true
+  public_access_prevention = "enforced"
+  versioning {
+    enabled = false
   }
-}
-
-resource "google_compute_disk_resource_policy_attachment" "strapi_db_daily_backup_policy" {
-  disk = google_compute_disk.strapi_db_persistent_volume.name
-  name = google_compute_resource_policy.daily_backup_30d_retention.name
-  project = var.project
-  zone = var.zone
+  retention_policy {
+    retention_period = 31557600 # 1 year in seconds
+    is_locked = false # Prevent users accidentally deleting files, but allow us to unset the policy in case we intend to delete them
+  }
 }

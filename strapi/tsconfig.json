@@ -12,8 +12,10 @@
   ],
   "exclude": [
     "node_modules/",
+    "BUILD.bazel",
     "build/",
     "dist/",
+    ".backups/",
     ".cache/",
     ".tmp/",
     "src/admin/",

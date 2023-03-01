@@ -9,6 +9,7 @@ load("@rules_pkg//:pkg.bzl", "pkg_tar")
 pkg_tar(
     name = "application_bundle",
     srcs = glob([
+        ".backup/**/*",
         "config/**/*",
         "database/**/*",
         "public/**/*",

@@ -25,3 +25,8 @@ infrastructure/credentials/*
 **/.terraform
 **/terraform.tfstate*
 .local/**
+
+# Strapi
+strapi/.backup/**/*
+!strapi/.backup/.gitkeep
+!strapi/.backup/gcp/.gitkeep

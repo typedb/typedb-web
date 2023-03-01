@@ -21,6 +21,7 @@ FROM node:16-alpine as build
 RUN apk update && apk add --no-cache build-base gcc autoconf automake zlib-dev libpng-dev vips-dev > /dev/null 2>&1
 ARG node_env
 ARG docker_image_tag
+ARG gcp_credentials_base64
 WORKDIR /opt/
 ADD ./strapi.tar.gz ./
 ENV PATH /opt/node_modules/.bin:$PATH
@@ -29,6 +30,8 @@ RUN yarn config set network-timeout 600000 -g && yarn install --production
 RUN yarn build
 ENV DOCKER_IMAGE_TAG=${docker_image_tag}
 RUN echo $DOCKER_IMAGE_TAG > docker_image_tag.txt
+ENV GCP_CREDENTIALS_BASE64=${gcp_credentials_base64}
+RUN echo $GCP_CREDENTIALS_BASE64 | base64 --decode > .backup/gcp/credentials.json
 
 
 FROM node:16-alpine

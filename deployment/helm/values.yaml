@@ -20,11 +20,17 @@ infrastructure:
         api_token_salt:
           name: strapi-api-token-salt
           version: "1"
+        transfer_token_salt:
+          name: strapi-transfer-token-salt
+          version: "1"
         admin_jwt_secret:
           name: strapi-admin-jwt-secret
           version: "1"
         jwt_secret:
           name: strapi-jwt-secret
+          version: "1"
+        backup_encryption_key:
+          name: strapi-backup-encryption-key
           version: "1"
   gke:
     name: web-prod

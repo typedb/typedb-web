@@ -69,9 +69,11 @@ spec:
       data:
         APP_KEYS: "{{ `{{ .app_keys }}` }}"
         API_TOKEN_SALT: "{{ `{{ .api_token_salt }}` }}"
+        TRANSFER_TOKEN_SALT: "{{ `{{ .transfer_token_salt }}` }}"
         ADMIN_JWT_SECRET: "{{ `{{ .admin_jwt_secret }}` }}"
         JWT_SECRET: "{{ `{{ .jwt_secret }}` }}"
         DATABASE_PASSWORD: "{{ `{{ .db_password }}` }}"
+        BACKUP_ENCRYPTION_KEY: "{{ `{{ .backup_encryption_key }}` }}"
     name: strapi-application-secrets
     creationPolicy: Owner
   data:
@@ -83,6 +85,10 @@ spec:
       remoteRef:
         key: {{ .Values.infrastructure.gcp.secret_manager.strapi.api_token_salt.name }}
         version: {{ .Values.infrastructure.gcp.secret_manager.strapi.api_token_salt.version | quote }}
+    - secretKey: transfer_token_salt
+      remoteRef:
+        key: {{ .Values.infrastructure.gcp.secret_manager.strapi.transfer_token_salt.name }}
+        version: {{ .Values.infrastructure.gcp.secret_manager.strapi.transfer_token_salt.version | quote }}
     - secretKey: admin_jwt_secret
       remoteRef:
         key: {{ .Values.infrastructure.gcp.secret_manager.strapi.admin_jwt_secret.name }}
@@ -95,3 +101,7 @@ spec:
       remoteRef:
         key: {{ .Values.infrastructure.gcp.secret_manager.strapi.db.user_password.name }}
         version: {{ .Values.infrastructure.gcp.secret_manager.strapi.db.user_password.version | quote }}
+    - secretKey: backup_encryption_key
+      remoteRef:
+        key: {{ .Values.infrastructure.gcp.secret_manager.strapi.backup_encryption_key.name }}
+        version: {{ .Values.infrastructure.gcp.secret_manager.strapi.backup_encryption_key.version | quote }}
