@@ -1,5 +1,3 @@
-import cronTasks from "./cron-tasks";
-
 export default ({ env }) => ({
   host: env('HOST', '0.0.0.0'),
   port: env.int('PORT', 1337),
@@ -8,13 +6,5 @@ export default ({ env }) => ({
   },
   webhooks: {
     populateRelations: env.bool('WEBHOOKS_POPULATE_RELATIONS', false),
-  },
-  cron: {
-    enabled: true,
-    tasks: cronTasks,
-  },
-  backup: {
-    gcsBucket: "vaticle-web-prod-strapi-backup",
-    encryptionKey: env('BACKUP_ENCRYPTION_KEY'),
   },
 });
