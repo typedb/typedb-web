@@ -15,31 +15,31 @@
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 #
 
-load("//:deployment.bzl", "deployment")
-
-sh_binary(
-    name = "assemble_docker",
-    srcs = ["assemble-docker.sh"],
-    data = [
-        ".dockerignore",
-        "Dockerfile",
-        "//strapi:application_bundle",
-    ],
-    args = [
-        "$(location Dockerfile)",
-        "$(version)",
-        deployment["docker.organisation"],
-        deployment["docker.strapi-release-repository"],
-        "$(location //strapi:application_bundle)"
-    ]
-)
-
-sh_binary(
-    name = "deploy_docker",
-    srcs = ["deploy-docker.sh"],
-    args = [
-        "$(version)",
-        deployment["docker.organisation"],
-        deployment["docker.strapi-release-repository"]
-    ]
-)
+#load("//:deployment.bzl", "deployment")
+#
+#sh_binary(
+#    name = "assemble_docker",
+#    srcs = ["assemble-docker.sh"],
+#    data = [
+#        ".dockerignore",
+#        "Dockerfile",
+#        "//strapi:application_bundle",
+#    ],
+#    args = [
+#        "$(location Dockerfile)",
+#        "$(version)",
+#        deployment["docker.organisation"],
+#        deployment["docker.strapi-release-repository"],
+#        "$(location //strapi:application_bundle)"
+#    ]
+#)
+#
+#sh_binary(
+#    name = "deploy_docker",
+#    srcs = ["deploy-docker.sh"],
+#    args = [
+#        "$(version)",
+#        deployment["docker.organisation"],
+#        deployment["docker.strapi-release-repository"]
+#    ]
+#)
