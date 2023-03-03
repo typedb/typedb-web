@@ -1,0 +1,18 @@
+{
+  "collectionName": "components_use_case_section_use_case_section1s",
+  "info": {
+    "displayName": "useCaseSection1",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "body": {
+      "type": "richtext",
+      "required": true
+    }
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "collectionName": "components_use_case_section_use_case_section2s",
+  "info": {
+    "displayName": "useCaseSection2"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "image": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": false,
+      "required": true
+    }
+  }
+}

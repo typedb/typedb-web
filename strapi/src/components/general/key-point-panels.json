@@ -1,0 +1,18 @@
+{
+  "collectionName": "components_general_key_point_panels",
+  "info": {
+    "displayName": "Key Point Panels",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "panelHeightDesktopPx": {
+      "type": "integer",
+      "required": true
+    },
+    "panelHeightMobilePx": {
+      "type": "integer",
+      "required": true
+    }
+  }
+}

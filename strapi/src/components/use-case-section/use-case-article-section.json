@@ -1,0 +1,14 @@
+{
+  "collectionName": "components_use_case_section_use_case_article_sections",
+  "info": {
+    "displayName": "Use Case Article Section",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    }
+  }
+}
