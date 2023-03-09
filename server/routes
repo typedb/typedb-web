@@ -3,8 +3,8 @@ GET     /robots.txt    com.vaticle.web.main.server.FileController.robotsTxt()
 GET     /api/typedb/version     com.vaticle.web.main.server.api.TypeDBController.version()
 
 GET     /careers                           controllers.Default.redirect(to = "https://apply.workable.com/vaticle")
-GET     /discord                           controllers.Default.redirect(to = "https://discord.gg/vaticle")
-GET     /slack                             controllers.Default.redirect(to = "https://discord.gg/vaticle")
+GET     /discord                           controllers.Default.redirect(to = "https://discord.gg/typedb")
+GET     /slack                             controllers.Default.redirect(to = "https://discord.gg/typedb")
 GET     /conferences/typedb-cosmos-2020    controllers.Default.redirect(to = "/conferences/typedb-cosmos-2020/speakers")
 
 GET     /$file<.*>     com.vaticle.web.main.server.FileController.serve(file, default="index.html")
