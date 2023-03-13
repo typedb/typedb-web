@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_general_hubspot_links",
+  "info": {
+    "displayName": "Hubspot Link",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "hubspotFormID": {
+      "type": "string",
+      "required": true
+    },
+    "link": {
+      "type": "component",
+      "repeatable": true,
+      "component": "common.hyperlink"
+    }
+  }
+}

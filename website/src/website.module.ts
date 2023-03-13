@@ -1,42 +1,33 @@
-import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from "@angular/core";
+import { BrowserModule } from "@angular/platform-browser";
+import { FrameworkModule } from "./framework/framework.module";
+import { LayoutModule } from "./layout/layout.module";
+import { PageModule } from "./page/page.module";
+import { ServiceModule } from "./service/service.module";
 import { WebsiteRoutingModule } from "./website-routing.module";
 import { WebsiteComponent } from "./website.component";
-import { PageContainerComponent } from "./framework/page-container/page-container.component";
-import { NotFoundPageComponent } from "./module/not-found-page/not-found-page.component";
 import { FormsModule } from "@angular/forms";
-import { SpinningWheelComponent } from "./framework/spinning-wheel/spinning-wheel.component";
 import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
-import {VaticleTopbarComponent} from "./module/vaticle-topbar/vaticle-topbar.component";
-import {VaticleSidebarComponent} from "./module/vaticle-sidebar/vaticle-sidebar.component";
-import {IndexPageComponent} from "./module/index-page/index-page.component";
-import {VaticlePageContainer} from "./module/vaticle-page-container/vaticle-page-container";
-import {ApiService} from "./services/api.service";
-import {ModalComponent} from "./framework/modal/modal.component";
+import { ScullyLibModule } from "@scullyio/ng-lib";
 import { HttpClientModule } from "@angular/common/http";
 
 @NgModule({
     declarations: [
         WebsiteComponent,
-        IndexPageComponent,
-        PageContainerComponent,
-        NotFoundPageComponent,
-        SpinningWheelComponent,
-        VaticleTopbarComponent,
-        VaticleSidebarComponent,
-        VaticlePageContainer,
-        ModalComponent,
     ],
     imports: [
-        WebsiteRoutingModule,
         BrowserModule,
         FormsModule,
         FontAwesomeModule,
-        HttpClientModule
+        FrameworkModule,
+        LayoutModule,
+        HttpClientModule,
+        PageModule,
+        ScullyLibModule,
+        ServiceModule,
+        WebsiteRoutingModule,
     ],
-    providers: [
-        ApiService,
-    ],
+    providers: [],
     bootstrap: [WebsiteComponent]
 })
 export class WebsiteModule { }

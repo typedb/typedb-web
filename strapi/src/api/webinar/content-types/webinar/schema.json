@@ -1,0 +1,37 @@
+{
+  "kind": "collectionType",
+  "collectionName": "webinars",
+  "info": {
+    "singularName": "webinar",
+    "pluralName": "webinars",
+    "displayName": "Webinar",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Title": {
+      "type": "string"
+    },
+    "Date": {
+      "type": "datetime"
+    },
+    "Length": {
+      "type": "integer"
+    },
+    "Description": {
+      "type": "richtext"
+    },
+    "URL": {
+      "type": "string"
+    },
+    "Presenters": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::person.person",
+      "inversedBy": "Webinars"
+    }
+  }
+}

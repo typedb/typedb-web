@@ -1,27 +1,19 @@
 import {Component, Input, Output, EventEmitter} from "@angular/core";
 
 @Component({
-    selector: "modal",
+    selector: "td-modal",
     templateUrl: "./modal.component.html",
     styleUrls: ["./modal.component.scss"],
 })
 export class ModalComponent {
     @Input() width!: string;
-
-    displayStyle: "none" | "block" = "none";
-    displayModal: boolean = false;
-
-    @Input() set display(value: boolean) {
-        if (value) {
-            this.displayModal = true;
-            this.displayStyle = "block";
-        } else {
-            this.displayModal = false;
-            this.displayStyle = "none";
-        }
-    }
+    @Input() visible: boolean = false;
 
     @Output() clickBackgroundEvent = new EventEmitter<boolean>();
+
+    get displayStyle() {
+        return this.visible ? "block" : "none";
+    }
 
     clickBackground = () => {
         this.clickBackgroundEvent.emit(true);

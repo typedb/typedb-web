@@ -13,7 +13,7 @@
       "displayName": "Key Point Panels",
       "type": "component",
       "repeatable": false,
-      "component": "general.key-point-panels"
+      "component": "common.key-point-panels"
     }
   }
 }

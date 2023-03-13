@@ -26,7 +26,18 @@ infrastructure/credentials/*
 **/terraform.tfstate*
 .local/**
 
+# Website
+website/.angular
+website/scully.log
+website/src/service/credentials/**/*
+!website/src/service/credentials/.gitkeep
+
 # Strapi
 strapi/.backup/**/*
 !strapi/.backup/.gitkeep
 !strapi/.backup/gcp/.gitkeep
+
+# Sanity
+sanity/data.json
+sanity/scripts/credentials/**/*
+!sanity/scripts/credentials/.gitkeep

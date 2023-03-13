@@ -1,12 +1,9 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
-import {NotFoundPageComponent} from "./module/not-found-page/not-found-page.component";
-import {IndexPageComponent} from "./module/index-page/index-page.component";
+import { NgModule } from "@angular/core";
+import { RouterModule, Routes } from "@angular/router";
+import { GenericPageComponent } from "./page/generic-page/generic-page.component";
 
 const routes: Routes = [
-    {path: "", redirectTo: "index", pathMatch: "full"},
-    {path: "index", component: IndexPageComponent},
-    {path: "**", component: NotFoundPageComponent},
+    { path: "**", component: GenericPageComponent },
 ];
 
 @NgModule({

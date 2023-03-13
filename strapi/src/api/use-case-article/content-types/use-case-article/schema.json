@@ -23,12 +23,12 @@
     "mainLink": {
       "type": "component",
       "repeatable": false,
-      "component": "general.hyperlink"
+      "component": "common.hyperlink"
     },
     "whitePaperLink": {
       "type": "component",
       "repeatable": false,
-      "component": "general.hubspot-link",
+      "component": "common.hubspot-link",
       "required": true
     },
     "section1": {
