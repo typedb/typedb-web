@@ -38,7 +38,7 @@ const textLinkSchema = defineType({
             name: "link",
             title: "Link",
             type: "reference",
-            to: [{type: "externalLink"}, {type: "route"}],
+            to: [{type: "externalLink"}, {type: "page"}],
             validation: (rule: ReferenceRule) => rule.required(),
         }),
     ],

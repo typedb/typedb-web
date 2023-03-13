@@ -1,7 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
-import { PageContent } from "../../model/page";
-import { Route } from "../../model/route";
+import { Page, PageContent } from "../../model/page";
 import { ContentService } from "../../service/content.service";
 
 @Component({
@@ -11,22 +10,22 @@ import { ContentService } from "../../service/content.service";
 })
 export class GenericPageComponent implements OnInit {
 
-    route?: Route;
+    page?: Page;
 
     constructor(private router: Router, private sanityService: ContentService) {}
 
     ngOnInit() {
         this.sanityService.data.subscribe((data) => {
-            const rawRoute = data.byType["route"].find(x => x["route"].current === this.router.url);
-            if (rawRoute) {
-                this.route = new Route(rawRoute, data);
+            const rawPage = data.byType["page"].find(x => x["route"].current === this.router.url);
+            if (rawPage) {
+                this.page = new Page(rawPage, data);
             } else {
-                this.route = undefined;
+                this.page = undefined;
             }
         });
     }
 
     get contentBlocks(): PageContent[] | undefined {
-        return this.route?.page.content;
+        return this.page?.content;
     }
 }

@@ -1,5 +1,5 @@
 import { BlockContentIcon, DocumentTextIcon } from "@sanity/icons";
-import { defineField, defineType } from "sanity";
+import { defineField, defineType, SlugRule } from "sanity";
 
 const bodyTextSchema = defineType({
     name: "bodyText",
@@ -42,6 +42,18 @@ const pageSchema = defineType({
             type: "string",
         }),
         defineField({
+            name: "route",
+            title: "Route",
+            type: "slug",
+            initialValue: {current: "/"},
+            description: "URL fragment for this page. e.g. /typedb-studio",
+            validation: (rule: SlugRule) => rule.custom((value, _context) => {
+                if (!value?.current) return "Required";
+                if (!value.current.startsWith("/") || value.current.startsWith("//")) return "Must start with a single '/'";
+                return true;
+            }),
+        }),
+        defineField({
             name: "content",
             title: "Content",
             type: "array",
@@ -54,6 +66,10 @@ const pageSchema = defineType({
             }],
         }),
     ],
+    preview: {
+        select: { title: "title", route: "route.current" },
+        prepare: (selection) => ({ title: selection.title, subtitle: selection.route }),
+    },
 });
 
 export const pageSchemas = [bodyTextSchema, sectionSchema, pageSchema];

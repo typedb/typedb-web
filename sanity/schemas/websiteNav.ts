@@ -30,7 +30,7 @@ const listBlockItemSchema = defineType({
         defineField({
             name: "link",
             type: "reference",
-            to: [{type: "route"}, {type: "externalLink"}],
+            to: [{type: "page"}, {type: "externalLink"}],
             validation: (rule: ReferenceRule) => rule.required(),
         }),
     ],
@@ -57,7 +57,7 @@ const listBlockSchema = defineType({
         select: { title: "title", links: "links" },
         prepare: (selection) => ({
             title: selection.title,
-            subtitle: `${selection.links?.map(x => x.title).join(", ") || ""}`,
+            subtitle: `${selection.links?.map((x: any) => x.title).join(", ") || ""}`,
         }),
     },
 });
@@ -97,7 +97,7 @@ const expandableItemSchema = defineType({
         select: { title: "title", menuBlocks: "menuBlocks" },
         prepare: (selection) => ({
             title: selection.title,
-            subtitle: `${selection.menuBlocks?.map(x => x.title).join(", ") || ""}`,
+            subtitle: `${selection.menuBlocks?.map((x: any) => x.title).join(", ") || ""}`,
         }),
     },
 });
@@ -116,14 +116,14 @@ const singleLinkSchema = defineType({
         defineField({
             name: "link",
             type: "reference",
-            to: [{ type: "route" }, { type: "externalLink" }],
+            to: [{ type: "page" }, { type: "externalLink" }],
             validation: (rule: ReferenceRule) => rule.required(),
         }),
     ],
     preview: {
         select: {
             title: "title",
-            routeName: "link.route.current", routeTo: "link.destination.title",
+            routeName: "link.route.current", routeTo: "link.title",
             externalLinkName: "link.title", externalLinkURL: "link.destination"
         },
         prepare: (selection) => {
