@@ -4,7 +4,7 @@ import { ReplaySubject } from "rxjs";
 import { RawDataset } from "../model/content";
 import { ContentEndpointService } from "./content-endpoint.service";
 
-const GET_ALL_DATA_QUERY = "*[!(_id in path('drafts.**')) && !(_type in path('system.**'))]";
+const GET_ALL_DATA_QUERY = "*[!(_id in path('drafts.**')) && !(_type match 'system.**')]";
 
 @Injectable({
     providedIn: "root",
