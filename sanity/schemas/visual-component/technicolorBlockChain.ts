@@ -34,7 +34,6 @@ const visualContentField = defineField({
     title: "Visual content (diagrams, bullet points, etc.)",
     type: "reference",
     to: [{type: "organisationLogosPanel"}, {type: "keyPointPanels"}],
-    validation: (rule: ReferenceRule) => rule.required(),
 });
 
 const optionalActionsField = defineField({
@@ -97,6 +96,7 @@ const blockChainSchema = defineType({
             title: "Other Blocks",
             type: "array",
             of: [{"type": "technicolorBlock"}],
+            validation: (rule: ArrayRule<any>) => rule.required(),
         }),
     ],
     preview: {

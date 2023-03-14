@@ -7,7 +7,7 @@ interface CommonFields {
     title: ParagraphWithHighlights;
     body: ParagraphWithHighlights;
     themeColor: ThemeColor;
-    visualContent: VisualContent;
+    visualContent?: VisualContent;
     /* actions: Actions; */
 }
 
@@ -18,7 +18,7 @@ function parseCommonFields(data: RawDocument, db: RawDataset): CommonFields {
         title: new ParagraphWithHighlights(data["title"]),
         body: new ParagraphWithHighlights(data["body"]),
         themeColor: new ThemeColor(db.resolveReference(data["themeColor"])),
-        visualContent: new OrganisationLogosPanel(db.resolveReference(data["visualContent"]), db),
+        visualContent: data["visualContent"] ? new OrganisationLogosPanel(db.resolveReference(data["visualContent"]), db) : undefined,
     };
 }
 
@@ -26,7 +26,7 @@ export class TechnicolorBlock implements CommonFields {
     readonly title: ParagraphWithHighlights;
     readonly body: ParagraphWithHighlights;
     readonly themeColor: ThemeColor;
-    readonly visualContent: VisualContent;
+    readonly visualContent?: VisualContent;
 
     constructor(data: RawDocument, db: RawDataset) {
         const commonFields = parseCommonFields(data, db);
