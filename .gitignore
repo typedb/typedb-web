@@ -26,11 +26,15 @@ infrastructure/credentials/*
 **/terraform.tfstate*
 .local/**
 
-# Website
+# Website - Angular
 website/.angular
-website/scully.log
 website/src/service/credentials/**/*
 !website/src/service/credentials/.gitkeep
+
+# Website - Scully
+website/scully.log
+website/scully/plugins/credentials/**/*
+!website/scully/plugins/credentials/.gitkeep
 
 # Strapi
 strapi/.backup/**/*
