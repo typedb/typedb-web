@@ -1,17 +1,13 @@
 import { LinkIcon } from "@sanity/icons";
-import { defineField, defineType, ReferenceRule, StringRule, UrlRule } from "sanity";
+import { defineField, defineType, ReferenceRule, UrlRule } from "@sanity/types";
+import { titleField, titleFieldName } from "./common-fields";
 
 const externalLinkSchema = defineType({
     name: "externalLink",
     icon: LinkIcon,
     type: "document",
     fields: [
-        defineField({
-            name: "title",
-            title: "Description",
-            type: "string",
-            validation: (rule: StringRule) => rule.required(),
-        }),
+        Object.assign({}, titleField, { title: "Description" }),
         defineField({
             name: "destination",
             title: "URL",
@@ -20,7 +16,7 @@ const externalLinkSchema = defineType({
         }),
     ],
     preview: {
-        select: { title: "title", url: "url" },
+        select: { title: titleFieldName, url: "url" },
         prepare: (selection) => ({ title: selection.title, subtitle: selection.url }),
     },
 });

@@ -1,16 +1,16 @@
-import { BlockElementIcon, DocumentIcon } from "@sanity/icons";
+import { BlockElementIcon, CodeIcon, DocumentIcon } from "@sanity/icons";
 import { defineConfig, isDev } from "sanity";
 import { colorInput } from "@sanity/color-input";
 import { visionTool } from "@sanity/vision";
 import { deskTool } from "sanity/desk";
 import { StructureBuilder } from "sanity/lib/exports/desk";
+import { schemaTypes } from "typedb-web-schema";
 import { config } from "./config";
-import { schemaTypes } from "./schemas";
 import { getStartedPlugin } from "./plugins/sanity-plugin-tutorial";
 
 const devOnlyPlugins = [getStartedPlugin()]
 const singletonActions = new Set(["publish", "discardChanges", "restore"]);
-const singletonTypes = new Set(["topbarAndFooter"]);
+const singletonTypes = new Set(["topbarAndFooter", "customCSS"]);
 
 export default defineConfig({
     name: "default",
@@ -25,6 +25,7 @@ export default defineConfig({
                 .title("Content")
                 .items([
                     singletonListItem(s, "topbarAndFooter", "Topbar & Footer", BlockElementIcon),
+                    singletonListItem(s, "customCSS", "Custom CSS", CodeIcon),
                     ...s.documentTypeListItems().filter(x => !singletonTypes.has(x.getId()))
                 ])
         }),
@@ -35,6 +36,13 @@ export default defineConfig({
 
     schema: {
         types: schemaTypes,
+    },
+
+    document: {
+        actions: (input, context) =>
+            singletonTypes.has(context.schemaType)
+                ? input.filter(({ action }) => action && singletonActions.has(action))
+                : input,
     },
 });
 

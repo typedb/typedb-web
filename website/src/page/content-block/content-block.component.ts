@@ -1,5 +1,5 @@
 import { Component, Input } from "@angular/core";
-import { PageContent } from "../../model/page";
+import { PageContent } from "typedb-web-schema";
 
 @Component({
     selector: "td-content-block",

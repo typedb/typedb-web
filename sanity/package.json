@@ -1,43 +1,45 @@
 {
-  "name": "typedb-web-sanity",
-  "private": true,
-  "version": "1.0.0",
-  "main": "package.json",
-  "license": "UNLICENSED",
-  "scripts": {
-    "dev": "sanity dev",
-    "start": "sanity start",
-    "build": "sanity build",
-    "deploy": "sanity deploy",
-    "deploy-graphql": "sanity graphql deploy"
-  },
-  "keywords": [
-    "sanity"
-  ],
-  "dependencies": {
-    "@sanity/color-input": "3.0.2",
-    "@sanity/icons": "2.2.2",
-    "@sanity/ui": "1.3.0",
-    "@sanity/vision": "3.5.1",
-    "react": "18.2.0",
-    "react-dom": "18.2.0",
-    "react-is": "18.2.0",
-    "sanity": "3.6.0",
-    "styled-components": "5.3.8"
-  },
-  "devDependencies": {
-    "@sanity/client": "3.4.1",
-    "@sanity/eslint-config-studio": "2.0.1",
-    "@types/react": "18.0.28",
-    "@types/styled-components": "5.1.26",
-    "eslint": "8.35.0",
-    "prettier": "2.8.4",
-    "typescript": "4.9.5"
-  },
-  "prettier": {
-    "semi": false,
-    "printWidth": 100,
-    "bracketSpacing": false,
-    "singleQuote": true
-  }
+    "name": "typedb-web-sanity",
+    "private": true,
+    "version": "1.0.0",
+    "main": "package.json",
+    "license": "UNLICENSED",
+    "scripts": {
+        "dev": "sanity dev",
+        "start": "sanity start",
+        "build": "sanity build",
+        "deploy": "sanity deploy",
+        "deploy-graphql": "sanity graphql deploy"
+    },
+    "keywords": [
+        "sanity"
+    ],
+    "dependencies": {
+        "@sanity/code-input": "4.1.0",
+        "@sanity/color-input": "3.0.2",
+        "@sanity/icons": "2.2.2",
+        "@sanity/ui": "1.3.0",
+        "@sanity/vision": "3.5.1",
+        "react": "18.2.0",
+        "react-dom": "18.2.0",
+        "react-is": "18.2.0",
+        "sanity": "3.6.0",
+        "styled-components": "5.3.8",
+        "typedb-web-schema": "../schema"
+    },
+    "devDependencies": {
+        "@sanity/client": "3.4.1",
+        "@sanity/eslint-config-studio": "2.0.1",
+        "@types/react": "18.0.28",
+        "@types/styled-components": "5.1.26",
+        "eslint": "8.35.0",
+        "prettier": "2.8.4",
+        "typescript": "4.9.5"
+    },
+    "prettier": {
+        "semi": false,
+        "printWidth": 100,
+        "bracketSpacing": false,
+        "singleQuote": false
+    }
 }

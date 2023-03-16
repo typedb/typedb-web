@@ -3,6 +3,7 @@ import { RouterModule, Routes } from "@angular/router";
 import { GenericPageComponent } from "./page/generic-page/generic-page.component";
 
 const routes: Routes = [
+    { path: "", component: GenericPageComponent },
     { path: ":route", component: GenericPageComponent },
 ];
 

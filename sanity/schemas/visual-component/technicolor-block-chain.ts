@@ -29,6 +29,12 @@ const commonFields = [
     }),
 ];
 
+const backgroundImageField = defineField({
+    name: "backgroundImage",
+    title: "Background Image",
+    type: "image",
+});
+
 const visualContentField = defineField({
     name: "visualContent",
     title: "Visual content (diagrams, bullet points, etc.)",
@@ -40,6 +46,13 @@ const optionalActionsField = defineField({
     name: "actions",
     title: "Actions (optional)",
     type: "actions",
+});
+
+const customCSSField = defineField({
+    name: "customCSSClasses",
+    title: "Custom CSS Classes (optional)",
+    description: "Applied to the root element of this block. Space-separated.",
+    type: "string",
 });
 
 const technicolorBlockPreview = {
@@ -56,8 +69,10 @@ const blockSchema = defineType({
     type: "object",
     fields: [
         ...commonFields,
+        backgroundImageField,
         visualContentField,
         optionalActionsField,
+        customCSSField,
     ],
     preview: technicolorBlockPreview,
 });
@@ -68,8 +83,10 @@ const firstBlockSchema = defineType({
     type: "object",
     fields: [
         ...commonFields,
+        Object.assign({}, backgroundImageField, { description: "Displayed above title" }),
         Object.assign({}, optionalActionsField, { description: "Displayed between body and visual content" }),
         visualContentField,
+        customCSSField,
     ],
     preview: technicolorBlockPreview,
 });

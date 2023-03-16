@@ -1,4 +1,4 @@
-import { defineField, defineType, ObjectRule } from "sanity";
+import { defineField, defineType, Rule } from "sanity";
 
 export const keyPointPanelsSchema = defineType({
     name: "keyPointPanels",
@@ -13,8 +13,8 @@ export const keyPointPanelsSchema = defineType({
         defineField({
             name: "content",
             type: "keyPointList",
-            validation: (rule: any) => rule.required().custom((value, _context) => {
-                return value?.keyPoints?.length === 3 ? true : "Must contain exactly 3 key points";
+            validation: (rule: Rule) => rule.required().custom((value, _context) => {
+                return (value as any)?.keyPoints?.length === 3 ? true : "Must contain exactly 3 key points";
             }),
         }),
     ],

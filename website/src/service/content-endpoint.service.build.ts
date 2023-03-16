@@ -1,6 +1,5 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { RawDocument } from "../model/content";
 
 /**
  * @see content-endpoint.service.ts

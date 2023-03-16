@@ -1,7 +1,7 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { ReplaySubject } from "rxjs";
-import { RawDataset } from "../model/content";
+import { SanityDataset } from "typedb-web-schema";
 import { ContentEndpointService } from "./content-endpoint.service";
 
 const GET_ALL_DATA_QUERY = "*[!(_id in path('drafts.**')) && !(_type match 'system.**')]";
@@ -10,11 +10,11 @@ const GET_ALL_DATA_QUERY = "*[!(_id in path('drafts.**')) && !(_type match 'syst
     providedIn: "root",
 })
 export class ContentService {
-    public data = new ReplaySubject<RawDataset>();
+    public data = new ReplaySubject<SanityDataset>();
 
     constructor(private http: HttpClient, private endpoint: ContentEndpointService) {
         this.endpoint.query(GET_ALL_DATA_QUERY).subscribe(data => {
-            this.data.next(new RawDataset({
+            this.data.next(new SanityDataset({
                 byType: groupBy(data.result, x => x._type),
                 byId: associateBy(data.result, x => x._id),
             }));

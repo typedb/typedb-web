@@ -1,6 +1,6 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { RawDocument } from "../model/content";
+import { SanityDocument } from "@sanity/types";
 import { SANITY_TOKEN } from "./credentials/token";
 
 const SANITY_PROJECT_ID = "xndl14mc";
@@ -26,7 +26,7 @@ export class ContentEndpointService {
     constructor(private http: HttpClient) {}
 
     query(query: string) {
-        return this.http.get<{ result: RawDocument[] }>(SANITY_URL, {
+        return this.http.get<{ result: SanityDocument[] }>(SANITY_URL, {
             headers: { "Authorization": `Bearer ${SANITY_TOKEN}` },
             params: { "query": query }
         });

@@ -1,4 +1,11 @@
-<div *ngFor="let block of blocks">
+<div [ngClass]="firstBlock.customCSSClasses">
+    <img *ngIf="firstBlock.backgroundImageURL" [src]="firstBlock.backgroundImageURL" alt=""/>
+    <h2><span *ngFor="let span of firstBlock.title.spans" [ngStyle]="span.highlight ? { 'color': firstBlock.themeColor.hex } : undefined">{{ span.text }}</span></h2>
+    <p><span *ngFor="let span of firstBlock.body.spans" [ngStyle]="span.highlight ? { 'color': firstBlock.themeColor.hex } : undefined">{{ span.text }}</span></p>
+</div>
+
+<div *ngFor="let block of blocks" [ngClass]="block.customCSSClasses">
+    <img *ngIf="block.backgroundImageURL" [src]="block.backgroundImageURL" alt=""/>
     <h2>
         <span *ngFor="let span of block.title.spans" [ngStyle]="span.highlight ? { 'color': block.themeColor.hex } : undefined">{{ span.text }}</span>
     </h2>

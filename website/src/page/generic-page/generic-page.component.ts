@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
-import { Page, PageContent } from "../../model/page";
+import { Page, PageContent, SanityPage } from "typedb-web-schema";
 import { ContentService } from "../../service/content.service";
 
 @Component({
@@ -16,9 +16,9 @@ export class GenericPageComponent implements OnInit {
 
     ngOnInit() {
         this.sanityService.data.subscribe((data) => {
-            const rawPage = data.byType["page"].find(x => x["route"].current === this.router.url);
-            if (rawPage) {
-                this.page = new Page(rawPage, data);
+            const sanityPage = (data.byType["page"] as SanityPage[]).find(x => x.route.current === this.router.url);
+            if (sanityPage) {
+                this.page = new Page(sanityPage, data);
             } else {
                 this.page = undefined;
             }
