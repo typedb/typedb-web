@@ -48,7 +48,7 @@ spec:
     blueGreen:
       activeService: server-production
       previewService: server-production-preview
-      autoPromotionEnabled: true
+      autoPromotionEnabled: false
 ---
 apiVersion: v1
 kind: Service
