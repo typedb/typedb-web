@@ -17,7 +17,7 @@ impl Args {
         Config {
             env: self.env.clone(),
             address: self.address.parse().expect(Self::invalid_address(&self.address).as_str()),
-            sanity_url: self.sanity_url.parse().expect(Self::invalid_address(&self.sanity_url).as_str()),
+            sanity_url: self.sanity_url.clone(),
         }
     }
 

@@ -104,11 +104,13 @@ class Sync : Callable<Int> {
             gcpProject = gcpProject,
             clusterRegion = gkeClusterLocation,
         )
-        println(appURL(cloud))
-        return 0
+        val urls = appURLs(cloud)
+        println("typedb web server (production): ${urls.first ?: "failed to deploy"}")
+        println("typedb web server (staging): ${urls.second ?: "failed to deploy"}")
+        return if (urls.first != null && urls.second != null) 0 else 1
     }
 
-    private fun appURL(argoCD: ArgoCD): String {
+    private fun appURLs(argoCD: ArgoCD): Pair<String?, String?> {
         val credentials = gcpServiceAccountCredentials?.takeIf { it.isNotBlank() }
             ?: Paths.get(gcpServiceAccountCredentialsFile!!).toFile().readText()
 

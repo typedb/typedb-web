@@ -2,12 +2,13 @@ load("@rules_rust//rust:defs.bzl", "rust_binary")
 load("@vaticle_bazel_distribution//common:rules.bzl", "assemble_targz")
 
 rust_binary(
-    name = "bin",
+    name = "server",
     srcs = glob(["src/**/*.rs"]),
     deps = [
         "@crates//:axum",
         "@crates//:clap",
         "@crates//:mime_guess",
+        "@crates//:reqwest",
         "@crates//:tokio",
     ],
     data = [ "//website:distribution" ],
@@ -17,7 +18,7 @@ assemble_targz(
     name = "distribution",
     targets = [],
     additional_files = {
-        "//server:bin": "server",
+        "//server": "server",
         "//website:distribution": "website"
     },
     empty_directories = ["website/assets"],

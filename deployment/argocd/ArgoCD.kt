@@ -25,7 +25,7 @@ class ArgoCD(
         deploymentRepo: String,
         deploymentBranch: String,
         kubectlPort: Int
-    ): String {
+    ): Pair<String?, String?> {
         val clusterConnection = connectToCluster(gcpCredentials, kubectlPort)
         try {
             val deploymentManifest = writeDeploymentManifest(deploymentManifestTemplate, deploymentRepo, deploymentBranch)
@@ -175,7 +175,7 @@ class ArgoCD(
         println("$app has finished deploying")
     }
 
-    private fun deployedURLs(gkeNamespace: String): String {
+    private fun deployedURLs(gkeNamespace: String): Pair<String?, String?> {
         val services = shell.execute(listOf("kubectl", "get", "services", "-n", gkeNamespace))
             .output.string.split("\n")
 
@@ -185,15 +185,15 @@ class ArgoCD(
             ?.split(Regex("\\s+"))
             ?.getOrNull(3)
             ?.takeIf { ipAddressPattern.matches(it) }
-            ?.let { "typedb website (production): http://$it" }
+            ?.let { "http://$it" }
 
         val newStagingIP = services.singleOrNull { it.contains("server-staging") }
             ?.split(Regex("\\s+"))
             ?.getOrNull(3)
             ?.takeIf { ipAddressPattern.matches(it) }
-            ?.let { "typedb website (staging): http://$it" }
+            ?.let { "http://$it" }
 
-        return "$newProductionIP\n$newStagingIP"
+        return Pair(newProductionIP, newStagingIP)
     }
 
     private fun isPortInUse(port: Int): Boolean =
