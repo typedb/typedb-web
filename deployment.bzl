@@ -4,10 +4,7 @@ deployment = {
 
   "docker.registry": "index.docker.io",
   "docker.organisation": "vaticle",
-  "docker.release-repository": "typedb-web-server",
-  "docker.snapshot-repository": "typedb-web-server-snapshot",
-  "docker.strapi-release-repository": "typedb-web-strapi",
-  "docker.strapi-snapshot-repository": "typedb-web-strapi-snapshot",
+  "docker.repository": "typedb-web-server",
 
   "gcp.project": "vaticle-web-prod",
   "gcp.service-account-name": "grabl-prod",

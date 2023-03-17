@@ -28,26 +28,26 @@ sh_binary(
         "$(location Dockerfile)",
         "$(version)",
         deployment["docker.organisation"],
-        deployment["docker.release-repository"],
+        deployment["docker.repository"],
         "$(location //server:distribution)"
     ]
 )
 
-sh_binary(
-    name = "assemble-snapshot",
-    srcs = ["assemble.sh"],
-    data = [
-        "Dockerfile",
-        "//server:distribution"
-    ],
-    args = [
-        "$(location Dockerfile)",
-        "$(snapshot-version)",
-        deployment["docker.organisation"],
-        deployment["docker.snapshot-repository"],
-        "$(location //server:distribution)"
-    ]
-)
+#sh_binary(
+#    name = "assemble-snapshot",
+#    srcs = ["assemble.sh"],
+#    data = [
+#        "Dockerfile",
+#        "//server:distribution"
+#    ],
+#    args = [
+#        "$(location Dockerfile)",
+#        "$(snapshot-version)",
+#        deployment["docker.organisation"],
+#        deployment["docker.snapshot-repository"],
+#        "$(location //server:distribution)"
+#    ]
+#)
 
 sh_binary(
     name = "deploy",
@@ -55,16 +55,16 @@ sh_binary(
     args = [
         "$(version)",
         deployment["docker.organisation"],
-        deployment["docker.release-repository"]
+        deployment["docker.repository"]
     ]
 )
 
-sh_binary(
-    name = "deploy-snapshot",
-    srcs = ["deploy.sh"],
-    args = [
-        "$(snapshot-version)",
-        deployment["docker.organisation"],
-        deployment["docker.snapshot-repository"]
-    ]
-)
+#sh_binary(
+#    name = "deploy-snapshot",
+#    srcs = ["deploy.sh"],
+#    args = [
+#        "$(snapshot-version)",
+#        deployment["docker.organisation"],
+#        deployment["docker.snapshot-repository"]
+#    ]
+#)

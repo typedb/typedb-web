@@ -1,5 +1,8 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
+import { SanityDocument } from "@sanity/types";
+
+const SERVER_URL = "/api/content";
 
 /**
  * @see content-endpoint.service.ts
@@ -11,6 +14,8 @@ export class ContentEndpointService {
     constructor(private http: HttpClient) {}
 
     query(query: string) {
-        throw "Not implemented";
+        return this.http.get<{ result: SanityDocument[] }>(SERVER_URL, {
+            params: { "query": query }
+        });
     }
 }

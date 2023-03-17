@@ -29,6 +29,7 @@ impl Server {
     }
 
     async fn serve(self: &Self) -> () {
+        let sanity_token = env::var("SANITY_TOKEN").unwrap_or_else(|_| panic!("The environment variable 'SANITY_TOKEN' must be set"));
         println!("server.serve(): started");
         axum::Server::bind(&self.config.address)
             .serve(self.router().into_make_service())

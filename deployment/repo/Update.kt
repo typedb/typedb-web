@@ -113,14 +113,7 @@ class Update : Callable<Int> {
     )
 
     private val gcpSecretDockerCredentialsVersion = "1" // Helm expects this to be a string
-    private val gcpSecretStrapiDBRootPasswordVersion = "1"
-    private val gcpSecretStrapiDBUserPasswordVersion = "1"
-    private val gcpSecretStrapiAppKeysVersion = "1"
-    private val gcpSecretStrapiApiTokenSaltVersion = "1"
-    private val gcpSecretStrapiTransferTokenSaltVersion = "1"
-    private val gcpSecretStrapiAdminJwtSecretVersion = "1"
-    private val gcpSecretStrapiJwtSecretVersion = "1"
-    private val gcpSecretStrapiBackupEncryptionKeyVersion = "1"
+    private val gcpSecretSanityTokenVersion = "1"
 
     override fun call(): Int {
         val tempDeploymentDir = Files.createTempDirectory("deployment").toAbsolutePath()
@@ -131,14 +124,7 @@ class Update : Callable<Int> {
             gcpProject = gcpProject,
             gcpServiceAccountName = gcpServiceAccountName.orElse("$gkeCluster-sa"),
             gcpSecretDockerCredentialsVersion = gcpSecretDockerCredentialsVersion,
-            gcpSecretStrapiDBRootPasswordVersion = gcpSecretStrapiDBRootPasswordVersion,
-            gcpSecretStrapiDBUserPasswordVersion = gcpSecretStrapiDBUserPasswordVersion,
-            gcpSecretStrapiAppKeysVersion = gcpSecretStrapiAppKeysVersion,
-            gcpSecretStrapiApiTokenSaltVersion = gcpSecretStrapiApiTokenSaltVersion,
-            gcpSecretStrapiTransferTokenSaltVersion = gcpSecretStrapiTransferTokenSaltVersion,
-            gcpSecretStrapiAdminJwtSecretVersion = gcpSecretStrapiAdminJwtSecretVersion,
-            gcpSecretStrapiJwtSecretVersion = gcpSecretStrapiJwtSecretVersion,
-            gcpSecretStrapiBackupEncryptionKeyVersion = gcpSecretStrapiBackupEncryptionKeyVersion,
+            gcpSecretSanityTokenVersion = gcpSecretSanityTokenVersion,
             gkeName = gkeCluster,
             gkeLocation = gkeClusterLocation,
             gkeServiceAccount = gkeServiceAccount,

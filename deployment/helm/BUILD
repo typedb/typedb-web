@@ -7,7 +7,7 @@ helm_chart(
     srcs = glob(["**"]),
     helm_chart_version = "{version}",
     image_tag = "{version}",
-    image_repository = "{}/{}".format(deployment["docker.organisation"], deployment["docker.release-repository"]),
+    image_repository = "{}/{}".format(deployment["docker.organisation"], deployment["docker.repository"]),
     visibility = ["//visibility:public"],
     tags = ["manual", "no-ide"],
 )
@@ -42,8 +42,3 @@ helm_push(
 #    repository_password = "$DEPLOY_HELM_PASSWORD",
 #    repo_type = "nexus",
 #)
-
-sh_binary(
-    name = "expand_values_template",
-    srcs = ["expand-values-template.sh"]
-)

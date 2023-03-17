@@ -1,5 +1,5 @@
-resource "google_storage_bucket" "strapi_backup" {
-  name = "${var.project}-strapi-backup"
+resource "google_storage_bucket" "sanity_backup" {
+  name = "${var.project}-sanity-backup"
   project = var.project
   location = var.region
   storage_class = "STANDARD"

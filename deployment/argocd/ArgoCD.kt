@@ -3,7 +3,6 @@ package com.vaticle.typedb.web.deployment.argocd
 import com.vaticle.bazel.distribution.common.Logging.LogLevel
 import com.vaticle.bazel.distribution.common.Logging.Logger
 import com.vaticle.bazel.distribution.common.shell.Shell
-import java.net.URL
 import java.nio.charset.StandardCharsets
 import java.nio.file.Files
 import java.nio.file.Path
@@ -182,19 +181,19 @@ class ArgoCD(
 
         val ipAddressPattern = Regex("^((25[0-5]|(2[0-4]|1\\d|[1-9]|)\\d)\\.?\\b){4}\$")
 
-        val newWebsiteIP = services.singleOrNull { it.contains("typedb-web-server-active") }
+        val newProductionIP = services.singleOrNull { it.contains("server-production") }
             ?.split(Regex("\\s+"))
             ?.getOrNull(3)
             ?.takeIf { ipAddressPattern.matches(it) }
-            ?.let { "typedb website: http://$it" }
+            ?.let { "typedb website (production): http://$it" }
 
-        val newStrapiIP = services.singleOrNull { it.contains("strapi-application") }
+        val newStagingIP = services.singleOrNull { it.contains("server-staging") }
             ?.split(Regex("\\s+"))
             ?.getOrNull(3)
             ?.takeIf { ipAddressPattern.matches(it) }
-            ?.let { "strapi admin portal: http://$it:1337/admin" }
+            ?.let { "typedb website (staging): http://$it" }
 
-        return "$newWebsiteIP\n$newStrapiIP"
+        return "$newProductionIP\n$newStagingIP"
     }
 
     private fun isPortInUse(port: Int): Boolean =
