@@ -73,7 +73,7 @@ impl Server {
     }
 
     fn get_html_file_path(uri: &Uri) -> PathBuf {
-        Path::new(WEBSITE_BASEDIR).join(uri.path().trim_start_matches("/") + ".html")
+        Path::new(WEBSITE_BASEDIR).join(uri.path().trim_start_matches("/").to_owned() + ".html")
     }
 
     fn get_index_html_path() -> PathBuf {
