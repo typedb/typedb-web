@@ -23,6 +23,7 @@ pkg_tar(
     strip_prefix = ".",
     srcs = [
         "//server",
+        "//schema",
         "//website:srcs",
         "//website:distribution",
     ],

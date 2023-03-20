@@ -34,5 +34,8 @@ npm_package(
        "package.json",
        "tsconfig.json",
     ]),
-    visibility = ["//website:__pkg__"],
+    visibility = [
+        "//website:__pkg__",
+        "//server:__pkg__",
+    ],
 )
