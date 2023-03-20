@@ -38,9 +38,10 @@ class ArgoCD(
                 "external-secrets-operator",
                 "cluster-secret-store",
                 "argo-rollouts",
-                mainAppName
             ).forEach { waitForSync(it) }
 
+            println("Please visit the ArgoCD dashboard to deploy the production server.")
+            waitForSync(mainAppName)
             return deployedURLs(gkeNamespace)
         }
         finally {
