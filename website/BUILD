@@ -7,7 +7,7 @@ exports_files([
 ])
 
 filegroup(
-    name = "content",
+    name = "srcs",
     srcs = glob(
         [
             "scully/**/*",
@@ -67,10 +67,10 @@ APPLICATION_DEPS = [
 
 angular_cli_bin.ng(
     name = "distribution",
-    srcs = [":content"] + APPLICATION_DEPS,
+    srcs = [":srcs"] + APPLICATION_DEPS,
     args = ["build"],
     chdir = package_name(),
     log_level = "debug",
-    out_dirs = ["dist/website"],
-    visibility = ["//visibility:public"]
+    out_dirs = ["dist/dynamic"],
+    visibility = ["//visibility:public"],
 )

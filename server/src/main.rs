@@ -17,7 +17,7 @@ use crate::config::Config;
 mod args;
 mod config;
 
-const WEBSITE_BASEDIR: &str = "website";
+const WEBSITE_BASEDIR: &str = "website/dist/static";
 
 struct Server {
     config: Config,
@@ -48,8 +48,12 @@ impl Server {
     }
 
     async fn fallback_handler(uri: Uri) -> (StatusCode, Response) {
-        let file_path = Self::get_file_path(&uri);
-        let file_read = std::fs::read(&file_path);
+        let mut file_path = Self::get_file_path(&uri);
+        let mut file_read = std::fs::read(&file_path);
+        if !file_read.is_ok() {
+            file_path = Self::get_html_file_path(&uri);
+            file_read = std::fs::read(&file_path);
+        }
         let response = if file_read.is_ok() {
             let mime = mime_guess::from_path(&file_path).first_or_text_plain();
             let file_content = file_read.unwrap();
@@ -66,6 +70,10 @@ impl Server {
 
     fn get_file_path(uri: &Uri) -> PathBuf {
         Path::new(WEBSITE_BASEDIR).join(uri.path().trim_start_matches("/"))
+    }
+
+    fn get_html_file_path(uri: &Uri) -> PathBuf {
+        Path::new(WEBSITE_BASEDIR).join(uri.path().trim_start_matches("/") + ".html")
     }
 
     fn get_index_html_path() -> PathBuf {

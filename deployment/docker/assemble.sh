@@ -22,9 +22,9 @@ DOCKER_VERSION=$2
 DOCKER_ORG=$3
 DOCKER_REPO=$4
 
-rm -f ./package.tar.gz
-cp $5 ./package.tar.gz
+rm -f ./typedb-web-server.tar.gz
+cp $5 ./typedb-web-server.tar.gz
 
-docker build -t $DOCKER_ORG/$DOCKER_REPO:$DOCKER_VERSION --build-arg server_package=package.tar.gz -f $1 .
+docker build -t $DOCKER_ORG/$DOCKER_REPO:$DOCKER_VERSION --build-arg typedb_web_server_pkg=typedb-web-server.tar.gz -f $1 .
 
-chmod +w ./package.tar.gz
+chmod +w ./typedb-web-server.tar.gz

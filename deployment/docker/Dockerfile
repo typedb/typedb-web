@@ -15,7 +15,20 @@
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 #
 
+FROM node:16-alpine as build
+ARG typedb_web_server_pkg
+# Installing libvips-dev for sharp Compatibility
+RUN apk update && apk add --no-cache build-base gcc autoconf automake zlib-dev libpng-dev vips-dev > /dev/null 2>&1
+# Install pnpm
+RUN corepack enable && corepack prepare pnpm@latest --activate
+ADD ${typedb_web_server_pkg} /opt
+WORKDIR /opt/website
+RUN pnpm i
 
-FROM vaticle/ubuntu:4ee548cea883c716055566847c4736a7ef791c38
-ARG server_package
-ADD ${server_package} /opt
+FROM node:16-alpine
+RUN apk add --no-cache vips-dev
+WORKDIR /opt/
+COPY --from=build /opt ./
+EXPOSE 80 443
+ENV OUT_DIR=./dist/static
+RUN npx scully --scanRoutes

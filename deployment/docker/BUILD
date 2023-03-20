@@ -22,7 +22,7 @@ sh_binary(
     srcs = ["assemble.sh"],
     data = [
         "Dockerfile",
-        "//server:distribution"
+        "//server:distribution",
     ],
     args = [
         "$(location Dockerfile)",
