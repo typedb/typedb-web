@@ -181,13 +181,13 @@ class ArgoCD(
 
         val ipAddressPattern = Regex("^((25[0-5]|(2[0-4]|1\\d|[1-9]|)\\d)\\.?\\b){4}\$")
 
-        val newProductionIP = services.singleOrNull { it.contains("server-production") }
+        val newProductionIP = services.singleOrNull { it.contains("server-production ") }
             ?.split(Regex("\\s+"))
             ?.getOrNull(3)
             ?.takeIf { ipAddressPattern.matches(it) }
             ?.let { "http://$it" }
 
-        val newStagingIP = services.singleOrNull { it.contains("server-staging") }
+        val newStagingIP = services.singleOrNull { it.contains("server-staging ") }
             ?.split(Regex("\\s+"))
             ?.getOrNull(3)
             ?.takeIf { ipAddressPattern.matches(it) }
