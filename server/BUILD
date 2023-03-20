@@ -1,3 +1,4 @@
+load("@rules_pkg//:pkg.bzl", "pkg_tar")
 load("@rules_rust//rust:defs.bzl", "rust_binary")
 load("@vaticle_bazel_distribution//common:rules.bzl", "assemble_targz")
 
@@ -16,14 +17,27 @@ rust_binary(
     data = ["//website:distribution"],
 )
 
-assemble_targz(
+pkg_tar(
     name = "distribution",
-    targets = [],
-    additional_files = {
-        "//server": "server",
-        "//website:distribution": "website"
-    },
-    output_filename = "typedb-web",
-    append_version = False,
+    extension = "tar.gz",
+    strip_prefix = ".",
+    srcs = [
+        "//server",
+        "//website:srcs",
+        "//website:distribution",
+    ],
     visibility = ["//deployment/docker:__pkg__"]
 )
+
+#assemble_targz(
+#    name = "distribution",
+#    targets = [],
+#    additional_files = {
+#        "//server": "server",
+#        "//website:srcs": "website",
+#        "//website:distribution": "website/dist/dynamic"
+#    },
+#    output_filename = "typedb-web",
+#    append_version = False,
+#    visibility = ["//deployment/docker:__pkg__"]
+#)

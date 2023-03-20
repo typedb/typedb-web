@@ -25,7 +25,8 @@ sh_binary(
         "//server:distribution",
     ],
     args = [
-        "$(location Dockerfile)",
+#        "$(location Dockerfile)",
+        "/Users/aw/Desktop/workspace/web-main/deployment/docker/Dockerfile",
         "$(version)",
         deployment["docker.organisation"],
         deployment["docker.repository"],
