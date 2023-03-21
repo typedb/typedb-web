@@ -9,4 +9,7 @@ export const config: ScullyConfig = {
     routes: {
         "/:route": { type: pageRoutes },
     },
+    puppeteerLaunchOptions: {
+        args: ["--no-sandbox"],
+    },
 };
