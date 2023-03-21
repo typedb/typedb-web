@@ -15,13 +15,13 @@
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 #
 
-FROM vaticle/ubuntu:316dd7e77c0aa9a44f96553ae4fc0def88dae795 as build
+FROM vaticle/ubuntu:a4b1c6e88cc304488c59099b5b985304a892b929 as build
 ARG typedb_web_server_pkg
 ADD ${typedb_web_server_pkg} /opt/typedb-web
 WORKDIR /opt/typedb-web/website
 RUN pnpm i
 
-FROM vaticle/ubuntu:316dd7e77c0aa9a44f96553ae4fc0def88dae795
+FROM vaticle/ubuntu:a4b1c6e88cc304488c59099b5b985304a892b929
 WORKDIR /opt/typedb-web
 COPY --from=build /opt/typedb-web ./
 EXPOSE 80 443
