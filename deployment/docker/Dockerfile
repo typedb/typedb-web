@@ -15,18 +15,13 @@
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 #
 
-FROM node:16-alpine as build
+FROM vaticle/ubuntu:316dd7e77c0aa9a44f96553ae4fc0def88dae795 as build
 ARG typedb_web_server_pkg
-# Installing libvips-dev for sharp Compatibility
-RUN apk update && apk add --no-cache build-base gcc autoconf automake zlib-dev libpng-dev vips-dev > /dev/null 2>&1
-# Install pnpm
-RUN corepack enable && corepack prepare pnpm@latest --activate
 ADD ${typedb_web_server_pkg} /opt/typedb-web
 WORKDIR /opt/typedb-web/website
 RUN pnpm i
 
-FROM node:16-alpine
-RUN apk add --no-cache vips-dev
+FROM vaticle/ubuntu:316dd7e77c0aa9a44f96553ae4fc0def88dae795
 WORKDIR /opt/typedb-web
 COPY --from=build /opt/typedb-web ./
 EXPOSE 80 443
