@@ -2,6 +2,7 @@ extern crate core;
 
 use std::env;
 use std::path::{Path, PathBuf};
+use std::process::Command;
 
 use axum::body;
 use axum::body::{Body, Full};
@@ -29,7 +30,6 @@ impl Server {
     }
 
     async fn serve(self: &Self) -> () {
-        let sanity_token = env::var("SANITY_TOKEN").unwrap_or_else(|_| panic!("The environment variable 'SANITY_TOKEN' must be set"));
         println!("server.serve(): started");
         axum::Server::bind(&self.config.address)
             .serve(self.router().into_make_service())
@@ -84,10 +84,22 @@ impl Server {
 #[tokio::main]
 async fn main() {
     let config = Args::parse().config();
+
+    let sanity_token = env::var("SANITY_TOKEN").unwrap_or_else(|_| panic!("The environment variable 'SANITY_TOKEN' must be set"));
+    let scully_output = Command::new("npx").arg("scully").arg("--scanRoutes").arg("--noPrompt")
+        .current_dir("/opt/website")
+        .env("OUT_DIR", "./dist/static")
+        .output()
+        .expect("Failed to execute command 'npx scully'");
+
+    println!("'npx scully' status: {}", scully_output.status);
+    println!("'npx scully' stdout: {}", String::from_utf8_lossy(&scully_output.stdout));
+    println!("'npx scully' stderr: {}", String::from_utf8_lossy(&scully_output.stderr));
+
     println!(
-        "TypeDB Web server started on '{}' (workdir = {})...",
+        "Starting TypeDB Web server on '{}' (workdir = {})...",
+        config.address,
         env::current_dir().unwrap().as_path().display(),
-        config.address
     );
 
     let server = Server::new(config).await;

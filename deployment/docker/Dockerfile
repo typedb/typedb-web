@@ -31,4 +31,3 @@ WORKDIR /opt/
 COPY --from=build /opt ./
 EXPOSE 80 443
 ENV OUT_DIR=./dist/static
-RUN npx scully --scanRoutes
