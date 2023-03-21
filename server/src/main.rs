@@ -87,7 +87,7 @@ async fn main() {
 
     let sanity_token = env::var("SANITY_TOKEN").unwrap_or_else(|_| panic!("The environment variable 'SANITY_TOKEN' must be set"));
     let scully_output = Command::new("npx").arg("scully").arg("--scanRoutes").arg("--noPrompt")
-        .current_dir("/opt/website")
+        .current_dir("/opt/typedb-web/website")
         .env("OUT_DIR", "./dist/static")
         .output()
         .expect("Failed to execute command 'npx scully'");

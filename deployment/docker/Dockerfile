@@ -21,13 +21,13 @@ ARG typedb_web_server_pkg
 RUN apk update && apk add --no-cache build-base gcc autoconf automake zlib-dev libpng-dev vips-dev > /dev/null 2>&1
 # Install pnpm
 RUN corepack enable && corepack prepare pnpm@latest --activate
-ADD ${typedb_web_server_pkg} /opt
-WORKDIR /opt/website
+ADD ${typedb_web_server_pkg} /opt/typedb-web
+WORKDIR /opt/typedb-web/website
 RUN pnpm i
 
 FROM node:16-alpine
 RUN apk add --no-cache vips-dev
-WORKDIR /opt/
-COPY --from=build /opt ./
+WORKDIR /opt/typedb-web
+COPY --from=build /opt/typedb-web ./
 EXPOSE 80 443
 ENV OUT_DIR=./dist/static
