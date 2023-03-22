@@ -7,6 +7,7 @@ SERVER_DEPS = [
     "@crates//:clap",
     "@crates//:mime_guess",
     "@crates//:reqwest",
+    "@crates//:serde",
     "@crates//:tokio",
 ]
 
@@ -14,7 +15,11 @@ rust_binary(
     name = "server",
     srcs = glob(["src/**/*.rs"]),
     deps = SERVER_DEPS,
-    data = ["//website:distribution"],
+    data = [
+        "//website:srcs",
+        "//website:distribution",
+        "//website:node_modules",
+    ],
 )
 
 pkg_tar(

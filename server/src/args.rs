@@ -1,11 +1,11 @@
 use clap::Parser;
-use crate::config::Config;
+use crate::config::{Config, Environment};
 
 #[derive(Parser)]
 #[command(author, version, about, long_about = None)]
 pub(super) struct Args {
-    #[arg(short, long)]
-    env: String,
+    #[arg(long = "env", value_enum)]
+    env: Environment,
     #[arg(short, long)]
     address: String,
     #[arg(long = "sanity-url")]

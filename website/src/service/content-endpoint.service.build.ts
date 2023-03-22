@@ -2,7 +2,7 @@ import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { SanityDocument } from "@sanity/types";
 
-const SERVER_URL = "/api/content";
+const SERVER_URL = "http://localhost/api/content";
 
 /**
  * @see content-endpoint.service.ts

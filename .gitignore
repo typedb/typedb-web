@@ -45,5 +45,7 @@ website/src/service/credentials/**/*
 
 # Website - Scully
 website/scully.log
+website/scully/**/*.js
+website/scully/**/*.js.map
 website/scully/plugins/credentials/**/*
 !website/scully/plugins/credentials/.gitkeep
