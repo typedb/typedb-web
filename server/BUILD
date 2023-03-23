@@ -9,6 +9,7 @@ SERVER_DEPS = [
     "@crates//:reqwest",
     "@crates//:serde",
     "@crates//:tokio",
+    "@crates//:tower-http",
 ]
 
 rust_binary(
@@ -22,13 +23,19 @@ rust_binary(
     ],
 )
 
+rust_binary(
+    name = "server_local",
+    srcs = glob(["src/**/*.rs"]),
+    deps = SERVER_DEPS,
+)
+
 pkg_tar(
     name = "distribution",
     extension = "tar.gz",
     strip_prefix = ".",
     srcs = [
         "//server",
-        "//schema",
+        "//schema:srcs",
         "//website:srcs",
         "//website:distribution",
     ],

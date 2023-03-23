@@ -26,7 +26,7 @@ export default defineConfig({
                 .items([
                     singletonListItem(s, "topbarAndFooter", "Topbar & Footer", BlockElementIcon),
                     singletonListItem(s, "customCSS", "Custom CSS", CodeIcon),
-                    ...s.documentTypeListItems().filter(x => !singletonTypes.has(x.getId()))
+                    ...s.documentTypeListItems().filter(x => !singletonTypes.has(x.getId()!))
                 ])
         }),
         visionTool(),

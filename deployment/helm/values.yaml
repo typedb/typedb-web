@@ -14,12 +14,9 @@ infrastructure:
     location: europe-west2-a
     service_account_name: gcp-service-account
 
-sanity_url: https://xndl14mc.api.sanity.io/
-
 image:
   repository: to-be-replaced # to be replaced during assembly
   tag: 0.0.0 # to be replaced during assembly
-address: 0.0.0.0:80
 
 replica_count:
   staging: 1

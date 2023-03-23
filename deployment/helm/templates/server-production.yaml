@@ -24,8 +24,6 @@ spec:
           command: [
             ./server,
             --env=production,
-            --address={{ .Values.address }},
-            --sanity-url={{ .Values.sanity_url }},
           ]
           envFrom:
             - secretRef:

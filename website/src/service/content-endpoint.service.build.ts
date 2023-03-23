@@ -3,7 +3,7 @@ import { Injectable } from "@angular/core";
 import { SanityDocument } from "@sanity/types";
 import { TransferStateService } from "@scullyio/ng-lib";
 
-const SERVER_URL = "http://localhost/api/content";
+const SERVER_URL = "/api/content";
 
 /**
  * @see content-endpoint.service.ts
@@ -14,12 +14,10 @@ const SERVER_URL = "http://localhost/api/content";
 export class ContentEndpointService {
     constructor(private http: HttpClient, private transferState: TransferStateService) {}
 
-    query(query: string) {
+    getContent() {
         return this.transferState.useScullyTransferState(
             "content",
-            this.http.get<{ result: SanityDocument[] }>(SERVER_URL, {
-                params: { "query": query }
-            })
+            this.http.get<{ result: SanityDocument[] }>(SERVER_URL)
         );
     }
 }
