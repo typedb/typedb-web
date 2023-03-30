@@ -1,16 +1,18 @@
+import "./styles.css";
+
 import { BlockElementIcon, CodeIcon, DocumentIcon } from "@sanity/icons";
 import { defineConfig, isDev } from "sanity";
 import { colorInput } from "@sanity/color-input";
 import { visionTool } from "@sanity/vision";
 import { deskTool } from "sanity/desk";
 import { StructureBuilder } from "sanity/lib/exports/desk";
-import { schemaTypes } from "typedb-web-schema";
+import { customCssSchemaName, homePageSchemaName, introPageSchemaName, linkSchemaName, organisationLogosStripSchemaName, schemaTypes, topbarAndFooterSchemaName, useCasePageSchemaName, webinarsPageSchemaName } from "typedb-web-schema";
 import { config } from "./config";
 import { getStartedPlugin } from "./plugins/sanity-plugin-tutorial";
 
 const devOnlyPlugins = [getStartedPlugin()]
 const singletonActions = new Set(["publish", "discardChanges", "restore"]);
-const singletonTypes = new Set(["topbarAndFooter", "customCSS"]);
+const singletonTypes = new Set([customCssSchemaName, topbarAndFooterSchemaName, webinarsPageSchemaName]);
 
 export default defineConfig({
     name: "default",
@@ -21,13 +23,38 @@ export default defineConfig({
 
     plugins: [
         deskTool({
-            structure: (s: StructureBuilder) => s.list()
-                .title("Content")
-                .items([
-                    singletonListItem(s, "topbarAndFooter", "Topbar & Footer", BlockElementIcon),
-                    singletonListItem(s, "customCSS", "Custom CSS", CodeIcon),
-                    ...s.documentTypeListItems().filter(x => !singletonTypes.has(x.getId()!))
-                ])
+            structure: (s: StructureBuilder) => s.list().title("Content").items([
+                s.listItem().title("Site Layout").child(s.list().title("Site Layout")
+                    .items([
+                        singletonListItem(s, topbarAndFooterSchemaName, "Topbar & Footer", BlockElementIcon),
+                    ])
+                ),
+                s.listItem().title("Pages").child(s.list().title("Pages")
+                    .items([
+                        singletonListItem(s, homePageSchemaName, "Home", DocumentIcon),
+                        singletonListItem(s, introPageSchemaName, "Introduction", DocumentIcon),
+                        singletonListItem(s, webinarsPageSchemaName, "Webinars", DocumentIcon),
+                        s.divider(),
+                        s.documentTypeListItem(useCasePageSchemaName),
+                    ])
+                ),
+                s.listItem().title("Components").child(s.list().title("Components")
+                    .items([
+                        s.documentTypeListItem(organisationLogosStripSchemaName),
+                    ])
+                ),
+                s.listItem().title("Forms").child(s.list().title("Forms")
+                    .items([
+                        s.documentTypeListItem("formEmailOnly"),
+                    ])
+                ),
+                s.listItem().title("Other").child(s.list().title("Other")
+                    .items([
+                        singletonListItem(s, customCssSchemaName, "Custom CSS", CodeIcon),
+                        s.documentTypeListItem(linkSchemaName),
+                    ])
+                ),
+            ])
         }),
         visionTool(),
         colorInput(),

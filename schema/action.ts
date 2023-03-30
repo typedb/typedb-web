@@ -1,9 +1,16 @@
 import { LinkIcon } from "@sanity/icons";
-import { defineField, defineType, ReferenceRule, UrlRule } from "@sanity/types";
+import { defineField, defineType, Reference, ReferenceRule, UrlRule } from "@sanity/types";
 import { titleField, titleFieldName } from "./common-fields";
 
-const externalLinkSchema = defineType({
-    name: "externalLink",
+export type SanityAction = { text: string, link: Reference };
+
+export type SanityActions = { actions: SanityAction[] };
+
+export const linkSchemaName = "link";
+export type linkType = "autoDetect" | "route" | "external";
+
+const linkSchema = defineType({
+    name: linkSchemaName,
     icon: LinkIcon,
     type: "document",
     fields: [
@@ -13,6 +20,21 @@ const externalLinkSchema = defineType({
             title: "URL",
             type: "url",
             validation: (rule: UrlRule) => rule.required(),
+        }),
+        defineField({
+            name: "type",
+            title: "Link Type",
+            type: "string",
+            initialValue: "autoDetect",
+            options: {
+                list: [
+                    { title: "Auto-detect", value: "autoDetect" },
+                    { title: "Route", value: "route" },
+                    { title: "External Link", value: "external" },
+                ],
+                layout: "radio",
+                direction: "horizontal",
+            },
         }),
     ],
     preview: {
@@ -34,14 +56,16 @@ const textLinkSchema = defineType({
             name: "link",
             title: "Link",
             type: "reference",
-            to: [{type: "externalLink"}, {type: "page"}],
+            to: [{type: "link"}],
             validation: (rule: ReferenceRule) => rule.required(),
         }),
     ],
 });
 
+export const buttonSchemaName = "button";
+
 const buttonSchema = defineType({
-    name: "button",
+    name: buttonSchemaName,
     type: "object",
     fields: [
         defineField({
@@ -59,16 +83,16 @@ const buttonSchema = defineType({
         ...textLinkSchema.fields
     ],
     preview: {
-        select: { text: "text", action: "link" },
-        prepare: (selection) => ({ title: selection.text, subtitle: selection.action }),
+        select: { text: "text", linkDestination: "link.destination", linkRoute: "link.route.current" },
+        prepare: (selection) => ({ title: selection.text, subtitle: selection.linkDestination || selection.linkRoute }),
     },
 });
 
 const actionsSchema = defineType({
     name: "actions",
-    title: "Actions (optional)",
+    title: "Actions",
     type: "array",
     of: [{type: "button"}, {type: "formEmailOnlyComponent"}],
 });
 
-export const actionSchemas = [externalLinkSchema, textLinkSchema, buttonSchema, actionsSchema];
+export const actionSchemas = [linkSchema, textLinkSchema, buttonSchema, actionsSchema];

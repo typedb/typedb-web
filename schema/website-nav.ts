@@ -1,6 +1,6 @@
 import { BlockElementIcon, LinkIcon, MasterDetailIcon } from "@sanity/icons";
-import { defineField, defineType, ReferenceRule, StringRule } from "@sanity/types";
-import { titleField, titleFieldName } from "./common-fields";
+import { defineField, defineType, ReferenceRule } from "@sanity/types";
+import { linkField, titleField, titleFieldName, videoURLField } from "./common-fields";
 
 const listBlockItemSchema = defineType({
     name: "topbarListBlockItem",
@@ -12,12 +12,7 @@ const listBlockItemSchema = defineType({
             name: "description",
             type: "string",
         }),
-        defineField({
-            name: "link",
-            type: "reference",
-            to: [{type: "page"}, {type: "externalLink"}],
-            validation: (rule: ReferenceRule) => rule.required(),
-        }),
+        linkField,
     ],
     preview: {
         select: { title: "title", description: "description", link: "link.title" },
@@ -53,10 +48,7 @@ const videoBlockSchema = defineType({
     type: "object",
     fields: [
         titleField,
-        defineField({
-            name: "videoURL",
-            type: "url",
-        }),
+        videoURLField,
     ],
 });
 
@@ -90,12 +82,7 @@ const singleLinkSchema = defineType({
     type: "object",
     fields: [
         titleField,
-        defineField({
-            name: "link",
-            type: "reference",
-            to: [{ type: "page" }, { type: "externalLink" }],
-            validation: (rule: ReferenceRule) => rule.required(),
-        }),
+        linkField,
     ],
     preview: {
         select: {
@@ -139,8 +126,10 @@ const topbarSchema = defineType({
     ],
 });
 
+export const topbarAndFooterSchemaName = "topbarAndFooter";
+
 const headerAndFooterSchema = defineType({
-    name: "topbarAndFooter",
+    name: topbarAndFooterSchemaName,
     icon: BlockElementIcon,
     type: "document",
     fields: [

@@ -1,14 +1,12 @@
 import { NgModule } from "@angular/core";
 import { BrowserModule } from "@angular/platform-browser";
 import { FrameworkModule } from "../framework/framework.module";
-import { ContentBlockComponent } from "./content-block/content-block.component";
 import { NotFoundPageComponent } from "./not-found-page/not-found-page.component";
-import { GenericPageComponent } from "./generic-page/generic-page.component";
+import { HomePageComponent } from "./home-page/home-page.component";
 
 @NgModule({
     declarations: [
-        ContentBlockComponent,
-        GenericPageComponent,
+        HomePageComponent,
         NotFoundPageComponent,
     ],
     imports: [

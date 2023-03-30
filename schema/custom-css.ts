@@ -1,8 +1,10 @@
 import { CodeIcon } from "@sanity/icons";
 import { defineField, defineType } from "@sanity/types";
 
+export const customCssSchemaName = "customCSS";
+
 export const customCssSchema = defineType({
-    name: "customCSS",
+    name: customCssSchemaName,
     type: "document",
     icon: CodeIcon,
     fields: [

@@ -1,7 +1,5 @@
 import { SanityDocument, Reference } from "@sanity/types";
 
-export type SanityColor = { hex: string };
-
 export class SanityDataset {
     readonly byType: { [key: string]: SanityDocument[] };
     readonly byId: { [id: string]: SanityDocument };

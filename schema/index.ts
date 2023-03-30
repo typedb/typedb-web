@@ -1,28 +1,33 @@
 import { actionSchemas } from "./action";
-import { colorSchema } from "./color";
+import { componentSchemas } from "./component";
 import { customCssSchema } from "./custom-css";
 import { formSchemas } from "./form";
 import { keyPointSchemas } from "./key-point";
 import { organisationSchema } from "./organisation";
 import { pageSchemas } from "./page";
 import { formEmailOnlyComponentSchema } from "./form-component";
-import { keyPointPanelsSchema } from "./key-point-panels";
-import { organisationLogosPanelSchema } from "./organisation-logos-panel";
-import { technicolorBlockChainSchemas } from "./technicolor-block-chain";
+import { organisationLogosStripSchema } from "./organisation-logos-strip";
+import { textSchemas } from "./text";
 import { websiteNavSchemas } from "./website-nav";
 
 export const schemaTypes = [
-    ...actionSchemas, colorSchema, customCssSchema, ...formSchemas, formEmailOnlyComponentSchema, keyPointPanelsSchema,
-    ...keyPointSchemas, organisationSchema, organisationLogosPanelSchema, ...pageSchemas,
-    ...technicolorBlockChainSchemas, ...websiteNavSchemas
+    ...actionSchemas, ...componentSchemas, customCssSchema, ...formSchemas, formEmailOnlyComponentSchema, ...keyPointSchemas,
+    organisationSchema, organisationLogosStripSchema, ...pageSchemas, ...textSchemas, ...websiteNavSchemas
 ];
 
-export { ThemeColor } from "./color";
-export { Document } from "./document";
+export { linkSchemaName } from "./action";
+export { customCssSchemaName } from "./custom-css";
+export { Document } from "./sanity-core/document";
 export { SanityDataset } from "./sanity-core";
-export type { SanityColor } from "./sanity-core";
-export { Page } from "./page";
-export type { PageContent, SanityPage } from "./page";
-export { ParagraphWithHighlights } from "./text";
-export { OrganisationLogosPanel } from "./organisation-logos-panel";
-export { TechnicolorBlock, TechnicolorBlockChain } from "./technicolor-block-chain";
+export { OrganisationLogosStrip, organisationLogosStripSchemaName } from "./organisation-logos-strip";
+export { Page } from "./page/common";
+export type { SanityPage } from "./page/common";
+export { HomePage, homePageSchemaName } from "./page/home";
+export type { SanityHomePage } from "./page/home";
+export { IntroPage, introPageSchemaName } from "./page/intro";
+export type { SanityIntroPage } from "./page/intro";
+export { ParagraphWithHighlights, RichText } from "./text";
+export type { SanityPortableText } from "./text";
+export { useCasePageSchemaName } from "./page/use-case";
+export { webinarsPageSchemaName } from "./page/webinars";
+export { topbarAndFooterSchemaName } from "./website-nav";

@@ -1,9 +1,27 @@
-import { UlistIcon } from "@sanity/icons";
-import { ArrayRule, defineField, defineType } from "@sanity/types";
-import { bodyFieldRichText, nameField, titleField } from "./common-fields";
+import { defineType, PortableTextTextBlock } from "@sanity/types";
+import { bodyFieldRichText, titleField } from "./common-fields";
+import { ParagraphWithHighlights } from "./text";
+import { schemaName } from "./util";
+
+export interface SanityKeyPoint {
+    title: string;
+    body: PortableTextTextBlock[];
+}
+
+export class KeyPoint {
+    title: string;
+    body: ParagraphWithHighlights;
+
+    constructor(data: SanityKeyPoint) {
+        this.title = data.title;
+        this.body = new ParagraphWithHighlights(data.body);
+    }
+}
+
+export const keyPointSchemaName = schemaName(KeyPoint);
 
 const keyPointSchema = defineType({
-    name: "keyPoint",
+    name: keyPointSchemaName,
     title: "Key Point",
     type: "object",
     fields: [
@@ -17,20 +35,4 @@ const keyPointSchema = defineType({
     ]
 });
 
-const keyPointListSchema = defineType({
-    name: "keyPointList",
-    title: "List of Key Points",
-    icon: UlistIcon,
-    type: "document",
-    fields: [
-        nameField,
-        defineField({
-            name: "keyPoints",
-            type: "array",
-            of: [{type: "keyPoint"}],
-            validation: (rule: ArrayRule<any>) => rule.required(),
-        }),
-    ],
-});
-
-export const keyPointSchemas = [keyPointSchema, keyPointListSchema];
+export const keyPointSchemas = [keyPointSchema];

@@ -1,5 +1,7 @@
 import { defineField } from "@sanity/types";
 
+export const formEmailOnlyComponentSchemaName = "formEmailOnlyComponent";
+
 export const formEmailOnlyComponentSchema = defineField({
     name: "formEmailOnlyComponent",
     title: "Form (email address only)",
@@ -18,4 +20,8 @@ export const formEmailOnlyComponentSchema = defineField({
             initialValue: "Submit",
         }),
     ],
+    preview: {
+        select: { formName: "form.name", submitText: "submitButtonText" },
+        prepare: (selection) => ({ title: selection.submitText, subtitle: selection.formName }),
+    },
 });
