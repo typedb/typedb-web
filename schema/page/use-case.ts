@@ -1,9 +1,8 @@
 import { DocumentIcon } from "@sanity/icons";
 import { ArrayRule, defineField, defineType } from "@sanity/types";
-import { bodyFieldRichText, collapsibleOptions, pageTitleField, routeField, titleAndBodyFields, videoURLField } from "../common-fields";
+import { bodyFieldRichText, collapsibleOptions, keyPointsField, pageTitleField, routeField, titleAndBodyFields, videoURLField } from "../common-fields";
 import { linkPanelSchemaName } from "../component/link-panel";
-import { KeyPoint, keyPointSchemaName, SanityKeyPoint } from "../key-point";
-import { SanityDataset } from "../sanity-core";
+import { KeyPoint, SanityKeyPoint } from "../key-point";
 import { RichText, SanityBodyText, SanityPortableText, SanityTitleAndBody, TitleAndBody } from "../text";
 import { schemaName } from "../util";
 import { displayedSectionsField, Page, SanityPage } from "./common";
@@ -54,7 +53,7 @@ export class UseCasePage extends Page {
     readonly [sections.intro.id]?: IntroSection;
     readonly [sections.challenges.id]?: KeyPointsSection;
 
-    constructor(data: SanityUseCasePage, db: SanityDataset) {
+    constructor(data: SanityUseCasePage) {
         super(data);
         this.introSection = data.displayedSections.includes(sections.intro.id) ? new IntroSection(data.introSection) : undefined;
         this.challengesSection = data.displayedSections.includes(sections.challenges.id) ? new KeyPointsSection(data.challengesSection) : undefined;
@@ -112,14 +111,6 @@ const linkPanelsField = defineField({
     of: [{type: linkPanelSchemaName}],
     validation: (rule: ArrayRule<any>) => rule.length(3),
 });
-
-const keyPointsField = (count?: number) => defineField({
-    name: "keyPoints",
-    title: "Key Points",
-    type: "array",
-    of: [{type: keyPointSchemaName}],
-    validation: count != null ? ((rule: ArrayRule<any>) => rule.length(count)) : undefined,
-})
 
 const sectionSchemas = [
     sectionSchema("intro", [

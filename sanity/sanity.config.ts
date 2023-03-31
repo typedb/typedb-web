@@ -1,18 +1,18 @@
 import "./styles.css";
 
-import { BlockElementIcon, CodeIcon, DocumentIcon } from "@sanity/icons";
+import { BlockElementIcon, DocumentIcon, FolderIcon } from "@sanity/icons";
 import { defineConfig, isDev } from "sanity";
 import { colorInput } from "@sanity/color-input";
 import { visionTool } from "@sanity/vision";
 import { deskTool } from "sanity/desk";
 import { StructureBuilder } from "sanity/lib/exports/desk";
-import { customCssSchemaName, homePageSchemaName, introPageSchemaName, linkSchemaName, organisationLogosStripSchemaName, schemaTypes, topbarAndFooterSchemaName, useCasePageSchemaName, webinarsPageSchemaName } from "typedb-web-schema";
+import { featuresPageSchemaName, homePageSchemaName, introPageSchemaName, linkSchemaName, organisationLogosStripSchemaName, schemaTypes, topbarAndFooterSchemaName, useCasePageSchemaName, webinarsPageSchemaName } from "typedb-web-schema";
 import { config } from "./config";
 import { getStartedPlugin } from "./plugins/sanity-plugin-tutorial";
 
 const devOnlyPlugins = [getStartedPlugin()]
 const singletonActions = new Set(["publish", "discardChanges", "restore"]);
-const singletonTypes = new Set([customCssSchemaName, topbarAndFooterSchemaName, webinarsPageSchemaName]);
+const singletonTypes = new Set([topbarAndFooterSchemaName, webinarsPageSchemaName]);
 
 export default defineConfig({
     name: "default",
@@ -33,9 +33,10 @@ export default defineConfig({
                     .items([
                         singletonListItem(s, homePageSchemaName, "Home", DocumentIcon),
                         singletonListItem(s, introPageSchemaName, "Introduction", DocumentIcon),
+                        singletonListItem(s, featuresPageSchemaName, "Features", DocumentIcon),
                         singletonListItem(s, webinarsPageSchemaName, "Webinars", DocumentIcon),
                         s.divider(),
-                        s.documentTypeListItem(useCasePageSchemaName),
+                        s.documentTypeListItem(useCasePageSchemaName).title("Use Cases").icon(FolderIcon),
                     ])
                 ),
                 s.listItem().title("Components").child(s.list().title("Components")
@@ -50,7 +51,6 @@ export default defineConfig({
                 ),
                 s.listItem().title("Other").child(s.list().title("Other")
                     .items([
-                        singletonListItem(s, customCssSchemaName, "Custom CSS", CodeIcon),
                         s.documentTypeListItem(linkSchemaName),
                     ])
                 ),

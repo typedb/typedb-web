@@ -1,6 +1,6 @@
 import { defineField, defineType } from "@sanity/types";
 import { bodyFieldRichText, collapsibleOptions, pageTitleField, titleFieldWithHighlights } from "../common-fields";
-import { SanityBodyText, SanityTitleAndBody, SanityTitleWithHighlights, titleAndBodySchemaName, TitleBodyActionsSection, titleBodyActionsSectionSchemaName } from "../text";
+import { SanityTitleAndBody, SanityTitleBodyActionsSection, TitleAndBody, titleAndBodySchemaName, TitleBodyActionsSection } from "../text";
 import { schemaName } from "../util";
 import { SanityPage } from "./common";
 
@@ -8,18 +8,21 @@ const introSection = "introSection";
 const coreSections = "coreSections";
 
 export interface SanityIntroPage extends SanityPage {
-    [introSection]: SanityTitleAndBody;
+    [introSection]: SanityTitleBodyActionsSection;
+    [coreSections]: SanityCoreSection[];
 }
 
-interface SanityCoreSection extends SanityTitleWithHighlights, SanityBodyText {
+interface SanityCoreSection extends SanityTitleAndBody {
 
 }
 
 export class IntroPage {
     readonly [introSection]: TitleBodyActionsSection;
+    readonly [coreSections]: TitleAndBody[];
 
     constructor(data: SanityIntroPage) {
         this.introSection = new TitleBodyActionsSection(data.introSection);
+        this.coreSections = data.coreSections.map(x => new TitleAndBody(x));
     }
 }
 

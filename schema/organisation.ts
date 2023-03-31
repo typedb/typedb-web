@@ -9,11 +9,13 @@ export interface SanityOrganisation extends SanityDocument {
     logo: Image;
 }
 
+export const organisationSchemaName = "organisation";
+
 export const organisationSchema = defineType({
-    name: "organisation",
+    name: organisationSchemaName,
     title: "Organisation",
     icon: CaseIcon,
-    type: "object",
+    type: "document",
     fields: [
         nameField,
         defineField({

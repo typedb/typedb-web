@@ -1,6 +1,8 @@
 import { BlockContentIcon, PlayIcon } from "@sanity/icons";
 import { ArrayRule, defineField, ReferenceRule, SlugRule, StringRule } from "@sanity/types";
 
+// IMPORTANT: Do not reference other schema files from this file, as this generally creates cyclic dependencies.
+
 export const collapsibleOptions = {
     collapsible: true,
     collapsed: true,
@@ -64,6 +66,19 @@ export const titleAndBodyFields = [
     bodyFieldRichText,
 ];
 
+export const iconFieldName = "icon";
+
+export const iconField = defineField({
+    name: iconFieldName,
+    title: "Icon",
+    type: "image",
+});
+
+export const titleBodyIconFields = [
+    ...titleAndBodyFields,
+    iconField,
+];
+
 export const actionsFieldName = "actions";
 
 export const optionalActionsField = defineField({
@@ -100,10 +115,20 @@ export const linkField = defineField({
 export const videoURLFieldName = "videoURL";
 
 export const videoURLField = defineField({
-    name: "videoURL",
+    name: videoURLFieldName,
     title: "Video URL",
     type: "url",
 });
+
+export const keyPointsFieldName = "keyPoints";
+
+export const keyPointsField = (count?: number) => defineField({
+    name: keyPointsFieldName,
+    title: "Key Points",
+    type: "array",
+    of: [{type: "keyPoint"}],
+    validation: count != null ? ((rule: ArrayRule<any>) => rule.length(count)) : undefined,
+})
 
 export const isVisibleFieldName = "isVisible";
 
@@ -113,3 +138,4 @@ export const isVisibleField = defineField({
     type: "boolean",
     initialValue: true,
 });
+

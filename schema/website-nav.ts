@@ -1,5 +1,5 @@
 import { BlockElementIcon, LinkIcon, MasterDetailIcon } from "@sanity/icons";
-import { defineField, defineType, ReferenceRule } from "@sanity/types";
+import { defineField, defineType } from "@sanity/types";
 import { linkField, titleField, titleFieldName, videoURLField } from "./common-fields";
 
 const listBlockItemSchema = defineType({
@@ -113,13 +113,15 @@ const topbarSchema = defineType({
         }),
         defineField({
             name: "mainArea",
-            description: "Displayed at the top on mobile, and on the left on tablet & desktop",
+            title: "Left Side Items",
+            description: "Displayed at the top on mobile",
             type: "array",
             of: topbarItemTypes,
         }),
         defineField({
             name: "secondaryArea",
-            description: "Displayed at the bottom on mobile, and on the right on tablet & desktop",
+            title: "Right Side Items",
+            description: "Displayed at the bottom on mobile",
             type: "array",
             of: topbarItemTypes,
         }),

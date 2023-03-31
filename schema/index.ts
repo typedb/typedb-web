@@ -1,27 +1,28 @@
 import { actionSchemas } from "./action";
 import { componentSchemas } from "./component";
-import { customCssSchema } from "./custom-css";
 import { formSchemas } from "./form";
 import { keyPointSchemas } from "./key-point";
 import { organisationSchema } from "./organisation";
 import { pageSchemas } from "./page";
 import { formEmailOnlyComponentSchema } from "./form-component";
 import { organisationLogosStripSchema } from "./organisation-logos-strip";
+import { testimonialSchema } from "./testimonial";
 import { textSchemas } from "./text";
 import { websiteNavSchemas } from "./website-nav";
 
 export const schemaTypes = [
-    ...actionSchemas, ...componentSchemas, customCssSchema, ...formSchemas, formEmailOnlyComponentSchema, ...keyPointSchemas,
-    organisationSchema, organisationLogosStripSchema, ...pageSchemas, ...textSchemas, ...websiteNavSchemas
+    ...actionSchemas, ...componentSchemas, ...formSchemas, formEmailOnlyComponentSchema, ...keyPointSchemas,
+    organisationSchema, organisationLogosStripSchema, ...pageSchemas, ...textSchemas, testimonialSchema, ...websiteNavSchemas
 ];
 
 export { linkSchemaName } from "./action";
-export { customCssSchemaName } from "./custom-css";
 export { Document } from "./sanity-core/document";
 export { SanityDataset } from "./sanity-core";
 export { OrganisationLogosStrip, organisationLogosStripSchemaName } from "./organisation-logos-strip";
 export { Page } from "./page/common";
 export type { SanityPage } from "./page/common";
+export { FeaturesPage, featuresPageSchemaName } from "./page/features";
+export type { SanityFeaturesPage } from "./page/features";
 export { HomePage, homePageSchemaName } from "./page/home";
 export type { SanityHomePage } from "./page/home";
 export { IntroPage, introPageSchemaName } from "./page/intro";

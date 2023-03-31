@@ -1,9 +1,11 @@
 import { defineField, defineType, SanityDocument } from "@sanity/types";
 import { buttonSchemaName } from "../action";
-import { collapsibleOptions, pageTitleField, titleAndBodyFields, titleField, titleFieldWithHighlights } from "../common-fields";
+import { bodyFieldRichText, collapsibleOptions, iconField, keyPointsField, linkField, linkFieldName, optionalActionsField, pageTitleField, titleAndBodyFields, titleBodyIconFields, titleField, titleFieldWithHighlights, videoURLField } from "../common-fields";
 import { formEmailOnlyComponentSchemaName } from "../form-component";
 import { OrganisationLogosStrip, organisationLogosStripField, SanityOrganisationLogosStrip } from "../organisation-logos-strip";
 import { SanityDataset } from "../sanity-core";
+import { socialMedias } from "../social-media";
+import { testimonialSchemaName } from "../testimonial";
 import { BodyText, ParagraphWithHighlights, RichText, SanityBodyText, SanityTitleBodyActionsSection, SanityTitleWithHighlights, TitleBodyActionsSection, TitleWithHighlights } from "../text";
 
 import { schemaName } from "../util";
@@ -95,9 +97,24 @@ const sectionSchema = (key: SectionKey, fields: any[]) => defineType({
     fields: fields,
 });
 
+const useCaseSchemaName = `${homePageSchemaName}_useCase`;
+
+const useCaseSchema = defineType({
+    name: useCaseSchemaName,
+    title: "Use Case",
+    type: "object",
+    fields: [
+        titleField,
+        iconField,
+        videoURLField,
+        bodyFieldRichText,
+        Object.assign({}, linkField, { title: "Link to Use Case Page" }),
+    ],
+});
+
 const sectionSchemas = [
     sectionSchema("intro", [
-        ...titleAndBodyFields,
+        ...titleBodyIconFields,
         defineField({
             name: "button",
             title: "Button (optional)",
@@ -111,27 +128,51 @@ const sectionSchemas = [
         organisationLogosStripField,
     ]),
     sectionSchema("features", [
-        ...titleAndBodyFields,
+        ...titleBodyIconFields,
         // featuresField
     ]),
     sectionSchema("useCases", [
-        ...titleAndBodyFields,
-        // useCasesField
+        ...titleBodyIconFields,
+        defineField({
+            name: "useCases",
+            title: "Use Cases",
+            type: "array",
+            of: [{type: useCaseSchemaName}],
+        }),
     ]),
     sectionSchema("tooling", [
-        ...titleAndBodyFields,
+        ...titleBodyIconFields,
+        keyPointsField(3),
     ]),
     sectionSchema("cloud", [
-        ...titleAndBodyFields,
+        ...titleBodyIconFields,
+        keyPointsField(5),
     ]),
     sectionSchema("community", [
-        ...titleAndBodyFields,
+        ...titleBodyIconFields,
+        defineField({
+            name: "socialMediaLinks",
+            title: "Social Media Links",
+            type: "array",
+            of: [{type: "string"}],
+            options: {
+                layout: "grid",
+                list: Object.entries(socialMedias).map(([id, title]) => ({ value: id, title: title })),
+            },
+        }),
     ]),
     sectionSchema("testimonials", [
-        ...titleAndBodyFields,
+        ...titleBodyIconFields,
+        defineField({
+            name: "testimonials",
+            title: "Testimonials",
+            type: "array",
+            of: [{type: testimonialSchemaName}],
+        }),
     ]),
     sectionSchema("conclusion", [
         ...titleAndBodyFields,
+        optionalActionsField,
     ]),
 ];
 
@@ -154,4 +195,4 @@ const homePageSchema = defineType({
     preview: { prepare: (_selection) => ({ title: "Home Page" }), },
 });
 
-export const homePageSchemas = [homePageSchema, ...sectionSchemas];
+export const homePageSchemas = [homePageSchema, ...sectionSchemas, useCaseSchema];
