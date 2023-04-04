@@ -1,5 +1,5 @@
 import { defineField, defineType } from "@sanity/types";
-import { bodyFieldRichText, collapsibleOptions, pageTitleField, titleFieldWithHighlights } from "../common-fields";
+import { bodyFieldRichText, collapsibleOptions, isVisibleField, pageTitleField, titleFieldWithHighlights } from "../common-fields";
 import { SanityTitleAndBody, SanityTitleBodyActionsSection, TitleAndBody, titleAndBodySchemaName, TitleBodyActionsSection } from "../text";
 import { schemaName } from "../util";
 import { SanityPage } from "./common";
@@ -37,6 +37,7 @@ const introPageCoreSectionSchema = defineType({
     fields: [
         titleFieldWithHighlights,
         bodyFieldRichText,
+        isVisibleField,
     ],
 });
 

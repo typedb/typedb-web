@@ -1,13 +1,35 @@
 import { LinkIcon } from "@sanity/icons";
-import { defineField, defineType, Reference, ReferenceRule, UrlRule } from "@sanity/types";
-import { titleField, titleFieldName } from "./common-fields";
+import { defineField, defineType, Reference, ReferenceRule, SanityDocument, Slug, SlugRule } from "@sanity/types";
+import { linkField, titleField, titleFieldName } from "./common-fields";
+import { Document } from "./sanity-core/document";
+import { schemaName } from "./util";
 
 export type SanityAction = { text: string, link: Reference };
 
 export type SanityActions = { actions: SanityAction[] };
 
-export const linkSchemaName = "link";
-export type linkType = "autoDetect" | "route" | "external";
+export type LinkType = "autoDetect" | "route" | "external";
+
+export interface SanityLink extends SanityDocument {
+    destination: Slug;
+    type: LinkType;
+    opensNewTab: boolean;
+}
+
+export class Link extends Document {
+    readonly destination: string;
+    readonly type: LinkType;
+    readonly opensNewTab: boolean;
+
+    constructor(data: SanityLink) {
+        super(data);
+        this.destination = data.destination.current;
+        this.type = data.type;
+        this.opensNewTab = data.opensNewTab;
+    }
+}
+
+export const linkSchemaName = schemaName(Link);
 
 const linkSchema = defineType({
     name: linkSchemaName,
@@ -17,9 +39,9 @@ const linkSchema = defineType({
         Object.assign({}, titleField, { title: "Description" }),
         defineField({
             name: "destination",
-            title: "URL",
-            type: "url",
-            validation: (rule: UrlRule) => rule.required(),
+            title: "Link Address",
+            type: "slug",
+            validation: (rule: SlugRule) => rule.required(),
         }),
         defineField({
             name: "type",
@@ -36,10 +58,16 @@ const linkSchema = defineType({
                 direction: "horizontal",
             },
         }),
+        defineField({
+            name: "opensNewTab",
+            title: "Opens in New Tab",
+            type: "boolean",
+            initialValue: false,
+        }),
     ],
     preview: {
-        select: { title: titleFieldName, url: "url" },
-        prepare: (selection) => ({ title: selection.title, subtitle: selection.url }),
+        select: { title: titleFieldName, destination: "destination.current" },
+        prepare: (selection) => ({ title: selection.title, subtitle: selection.destination }),
     },
 });
 
@@ -52,13 +80,7 @@ const textLinkSchema = defineType({
             title: "Text",
             type: "string",
         }),
-        defineField({
-            name: "link",
-            title: "Link",
-            type: "reference",
-            to: [{type: "link"}],
-            validation: (rule: ReferenceRule) => rule.required(),
-        }),
+        linkField,
     ],
 });
 

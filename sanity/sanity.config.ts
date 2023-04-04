@@ -1,18 +1,19 @@
 import "./styles.css";
 
-import { BlockElementIcon, DocumentIcon, FolderIcon } from "@sanity/icons";
+import { BlockElementIcon, ClipboardImageIcon, DocumentIcon, DocumentsIcon, FolderIcon, ImagesIcon, ThListIcon } from "@sanity/icons";
 import { defineConfig, isDev } from "sanity";
 import { colorInput } from "@sanity/color-input";
 import { visionTool } from "@sanity/vision";
+import { media } from "sanity-plugin-media";
 import { deskTool } from "sanity/desk";
 import { StructureBuilder } from "sanity/lib/exports/desk";
-import { featuresPageSchemaName, homePageSchemaName, introPageSchemaName, linkSchemaName, organisationLogosStripSchemaName, schemaTypes, topbarAndFooterSchemaName, useCasePageSchemaName, webinarsPageSchemaName } from "typedb-web-schema";
+import { featuresPageSchemaName, homePageSchemaName, sectionIconSchemaName, introPageSchemaName, linkSchemaName, organisationLogosSchemaName, schemaTypes, topbarSchemaName, useCasePageSchemaName, webinarsPageSchemaName } from "typedb-web-schema";
 import { config } from "./config";
 import { getStartedPlugin } from "./plugins/sanity-plugin-tutorial";
 
 const devOnlyPlugins = [getStartedPlugin()]
 const singletonActions = new Set(["publish", "discardChanges", "restore"]);
-const singletonTypes = new Set([topbarAndFooterSchemaName, webinarsPageSchemaName]);
+const singletonTypes = new Set([topbarSchemaName, webinarsPageSchemaName]);
 
 export default defineConfig({
     name: "default",
@@ -24,38 +25,35 @@ export default defineConfig({
     plugins: [
         deskTool({
             structure: (s: StructureBuilder) => s.list().title("Content").items([
-                s.listItem().title("Site Layout").child(s.list().title("Site Layout")
+                s.listItem().title("Site Navigation").icon(BlockElementIcon).child(s.list().title("Site Navigation")
                     .items([
-                        singletonListItem(s, topbarAndFooterSchemaName, "Topbar & Footer", BlockElementIcon),
+                        singletonListItem(s, topbarSchemaName, "Topbar", ThListIcon),
                     ])
                 ),
-                s.listItem().title("Pages").child(s.list().title("Pages")
+                s.listItem().title("Pages").icon(DocumentsIcon).child(s.list().title("Pages")
                     .items([
-                        singletonListItem(s, homePageSchemaName, "Home", DocumentIcon),
-                        singletonListItem(s, introPageSchemaName, "Introduction", DocumentIcon),
-                        singletonListItem(s, featuresPageSchemaName, "Features", DocumentIcon),
-                        singletonListItem(s, webinarsPageSchemaName, "Webinars", DocumentIcon),
+                        singletonListItem(s, homePageSchemaName, "Home Page", DocumentIcon),
+                        singletonListItem(s, introPageSchemaName, "Introduction Page", DocumentIcon),
+                        singletonListItem(s, featuresPageSchemaName, "Features Page", DocumentIcon),
+                        singletonListItem(s, webinarsPageSchemaName, "Webinars Page", DocumentIcon),
                         s.divider(),
-                        s.documentTypeListItem(useCasePageSchemaName).title("Use Cases").icon(FolderIcon),
+                        s.documentTypeListItem(useCasePageSchemaName).title("Use Case Pages").icon(DocumentsIcon),
                     ])
                 ),
-                s.listItem().title("Components").child(s.list().title("Components")
+                s.listItem().title("Forms").icon(ClipboardImageIcon).child(s.list().title("Forms")
                     .items([
-                        s.documentTypeListItem(organisationLogosStripSchemaName),
+                        s.documentTypeListItem("formEmailOnly").title("Email-Only Forms"),
                     ])
                 ),
-                s.listItem().title("Forms").child(s.list().title("Forms")
+                s.listItem().title("Images").icon(ImagesIcon).child(s.list().title("Images")
                     .items([
-                        s.documentTypeListItem("formEmailOnly"),
+                        s.documentTypeListItem(sectionIconSchemaName).title("Section Icons"),
                     ])
                 ),
-                s.listItem().title("Other").child(s.list().title("Other")
-                    .items([
-                        s.documentTypeListItem(linkSchemaName),
-                    ])
-                ),
+                s.documentTypeListItem(linkSchemaName).title("Links"),
             ])
         }),
+        media(),
         visionTool(),
         colorInput(),
         ...(isDev ? devOnlyPlugins : [])

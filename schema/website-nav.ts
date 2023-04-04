@@ -2,9 +2,9 @@ import { BlockElementIcon, LinkIcon, MasterDetailIcon } from "@sanity/icons";
 import { defineField, defineType } from "@sanity/types";
 import { linkField, titleField, titleFieldName, videoURLField } from "./common-fields";
 
-const listBlockItemSchema = defineType({
-    name: "topbarListBlockItem",
-    title: "List Block Item",
+const listColumnItemSchema = defineType({
+    name: "topbarListColumnItem",
+    title: "List Column Item",
     type: "object",
     fields: [
         titleField,
@@ -20,16 +20,16 @@ const listBlockItemSchema = defineType({
     },
 });
 
-const listBlockSchema = defineType({
-    name: "topbarListBlock",
-    title: "List Block",
+const listColumnSchema = defineType({
+    name: "topbarListColumn",
+    title: "List Column",
     type: "object",
     fields: [
         titleField,
         defineField({
             name: "links",
             type: "array",
-            of: [{type: "topbarListBlockItem"}],
+            of: [{type: "topbarListColumnItem"}],
             initialValue: [],
         })
     ],
@@ -42,9 +42,9 @@ const listBlockSchema = defineType({
     },
 });
 
-const videoBlockSchema = defineType({
-    name: "topbarVideoBlock",
-    title: "Video Block",
+const videoColumnSchema = defineType({
+    name: "topbarVideoColumn",
+    title: "Video Column",
     type: "object",
     fields: [
         titleField,
@@ -52,25 +52,24 @@ const videoBlockSchema = defineType({
     ],
 });
 
-const expandableItemSchema = defineType({
-    name: "topbarExpandableItem",
-    title: "Expandable Item",
+const topbarMenuPanelSchema = defineType({
+    name: "topbarMenuPanel",
+    title: "Menu Panel",
     icon: MasterDetailIcon,
     type: "object",
     fields: [
         titleField,
         defineField({
-            name: "menuBlocks",
-            description: "Displayed on touching the item on mobile/tablet, and on hovering the item on desktop",
+            name: "columns",
             type: "array",
-            of: [{type: "topbarListBlock"}, {type: "topbarVideoBlock"}],
+            of: [{type: "topbarListColumn"}, {type: "topbarVideoColumn"}],
         }),
     ],
     preview: {
-        select: { title: titleFieldName, menuBlocks: "menuBlocks" },
+        select: { title: titleFieldName, columns: "columns" },
         prepare: (selection) => ({
             title: selection.title,
-            subtitle: `${selection.menuBlocks?.map((x: any) => x.title).join(", ") || ""}`,
+            subtitle: `${selection.columns?.map((x: any) => x.title).join(", ") || ""}`,
         }),
     },
 });
@@ -101,16 +100,15 @@ const singleLinkSchema = defineType({
     },
 });
 
-const topbarItemTypes = [{type: "topbarExpandableItem"}, {type: "topbarSingleLink"},/* {type: "topbarImageLink"}*/];
+const topbarItemTypes = [{type: "topbarMenuPanel"}, {type: "topbarSingleLink"},/* {type: "topbarImageLink"}*/];
+
+export const topbarSchemaName = "topbar";
 
 const topbarSchema = defineType({
-    name: "topbar",
-    type: "object",
+    name: topbarSchemaName,
+    icon: BlockElementIcon,
+    type: "document",
     fields: [
-        defineField({
-            name: "logo",
-            type: "image",
-        }),
         defineField({
             name: "mainArea",
             title: "Left Side Items",
@@ -126,27 +124,9 @@ const topbarSchema = defineType({
             of: topbarItemTypes,
         }),
     ],
-});
-
-export const topbarAndFooterSchemaName = "topbarAndFooter";
-
-const headerAndFooterSchema = defineType({
-    name: topbarAndFooterSchemaName,
-    icon: BlockElementIcon,
-    type: "document",
-    fields: [
-        defineField({
-            name: "topbar",
-            type: "topbar",
-        }),
-        // defineField({
-        //     name: "footer",
-        //     type: "footer",
-        // }),
-    ],
     preview: {
-        prepare: (_selection) => ({ title: "Topbar & Footer" }),
+        prepare: (_selection) => ({ title: "Topbar" }),
     },
 });
 
-export const websiteNavSchemas = [listBlockItemSchema, listBlockSchema, videoBlockSchema, expandableItemSchema, singleLinkSchema, topbarSchema, headerAndFooterSchema];
+export const websiteNavSchemas = [listColumnItemSchema, listColumnSchema, videoColumnSchema, topbarMenuPanelSchema, singleLinkSchema, topbarSchema];

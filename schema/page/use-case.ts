@@ -1,11 +1,11 @@
 import { DocumentIcon } from "@sanity/icons";
 import { ArrayRule, defineField, defineType } from "@sanity/types";
-import { bodyFieldRichText, collapsibleOptions, keyPointsField, pageTitleField, routeField, titleAndBodyFields, videoURLField } from "../common-fields";
+import { bodyFieldRichText, collapsibleOptions, isVisibleField, keyPointsField, pageTitleField, routeField, titleAndBodyFields, videoURLField } from "../common-fields";
 import { linkPanelSchemaName } from "../component/link-panel";
 import { KeyPoint, SanityKeyPoint } from "../key-point";
 import { RichText, SanityBodyText, SanityPortableText, SanityTitleAndBody, TitleAndBody } from "../text";
 import { schemaName } from "../util";
-import { displayedSectionsField, Page, SanityPage } from "./common";
+import { Page, SanityPage } from "./common";
 
 const displayedSections = "displayedSections";
 
@@ -117,25 +117,31 @@ const sectionSchemas = [
         ...titleAndBodyFields,
         videoURLField,
         linkPanelsField,
+        isVisibleField,
     ]),
     sectionSchema("requirements", [
         bodyFieldRichText,
         keyPointsField(4),
+        isVisibleField,
     ]),
     sectionSchema("challenges", [
         bodyFieldRichText,
         keyPointsField(4),
+        isVisibleField,
     ]),
     sectionSchema("solution", [
         bodyFieldRichText,
         keyPointsField(),
+        isVisibleField,
     ]),
     sectionSchema("example", [
         bodyFieldRichText,
+        isVisibleField,
     ]),
     sectionSchema("furtherReading", [
         bodyFieldRichText,
         linkPanelsField,
+        isVisibleField,
     ]),
 ];
 
@@ -153,8 +159,7 @@ const useCasePageSchema = defineType({
     icon: DocumentIcon,
     fields: [
         pageTitleField,
-        Object.assign({}, routeField, { description: "URL fragment for this use case page (e.g. /identity-access-management). Do not include 'use-case', this is automatically prepended" }),
-        displayedSectionsField(sections),
+        Object.assign({}, routeField, { description: "URL fragment for this use case page (e.g. identity-access-management). Do not include 'use-case', this is automatically prepended" }),
         ...sectionFields,
     ],
     preview: {

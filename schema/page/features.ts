@@ -1,6 +1,6 @@
 import { defineField, defineType } from "@sanity/types";
-import { bodyFieldRichText, collapsibleOptions, optionalActionsField, pageTitleField, titleFieldWithHighlights } from "../common-fields";
-import { OrganisationLogosStrip, organisationLogosStripField, SanityOrganisationLogosStrip } from "../organisation-logos-strip";
+import { bodyFieldRichText, collapsibleOptions, isVisibleField, optionalActionsField, pageTitleField, titleFieldWithHighlights } from "../common-fields";
+import { Organisation, organisationLogosField, SanityOrganisation } from "../organisation";
 import { SanityDataset } from "../sanity-core";
 import { SanityTitleAndBody, SanityTitleBodyActionsSection, TitleAndBody, TitleBodyActionsSection } from "../text";
 import { schemaName } from "../util";
@@ -15,7 +15,7 @@ export interface SanityFeaturesPage extends SanityPage {
 }
 
 interface SanityIntroSection extends SanityTitleBodyActionsSection {
-    userLogos: SanityOrganisationLogosStrip;
+    userLogos: SanityOrganisation[];
 }
 
 interface SanityCoreSection extends SanityTitleAndBody {
@@ -33,11 +33,11 @@ export class FeaturesPage {
 }
 
 class IntroSection extends TitleBodyActionsSection {
-    readonly userLogos: OrganisationLogosStrip;
+    readonly userLogos: Organisation[];
 
     constructor(data: SanityIntroSection, db: SanityDataset) {
         super(data);
-        this.userLogos = new OrganisationLogosStrip(data.userLogos, db);
+        this.userLogos = data.userLogos.map(x => new Organisation(x, db));
     }
 }
 
@@ -57,7 +57,7 @@ const introSectionSchema = defineType({
         titleFieldWithHighlights,
         bodyFieldRichText,
         optionalActionsField,
-        Object.assign({}, organisationLogosStripField, { name: "userLogos", title: "User Logos" }),
+        Object.assign({}, organisationLogosField, { name: "userLogos", title: "User Logos" }),
     ],
 });
 
@@ -70,6 +70,7 @@ const coreSectionSchema = defineType({
     fields: [
         titleFieldWithHighlights,
         bodyFieldRichText,
+        isVisibleField,
     ],
 });
 

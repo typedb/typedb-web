@@ -5,6 +5,8 @@ import { schemaName } from "./util";
 
 export type SanityPortableText = PortableTextTextBlock[];
 
+export type SanityTitle = { title: string };
+
 export type SanityTitleWithHighlights = { title: SanityPortableText };
 
 export type SanityBodyText = { body: SanityPortableText };

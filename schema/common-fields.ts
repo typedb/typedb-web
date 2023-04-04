@@ -1,5 +1,6 @@
 import { BlockContentIcon, PlayIcon } from "@sanity/icons";
 import { ArrayRule, defineField, ReferenceRule, SlugRule, StringRule } from "@sanity/types";
+import { sectionIconSchemaName } from "./image";
 
 // IMPORTANT: Do not reference other schema files from this file, as this generally creates cyclic dependencies.
 
@@ -43,14 +44,6 @@ export function titleWithHighlightsPreview(value: any[]): string {
     return (value || [])[0]?.children.map((x: any) => x.text).join("") as string || "Untitled";
 }
 
-export const themeColorField = defineField({
-    name: "themeColor",
-    title: "Theme Color",
-    type: "reference",
-    to: [{type: "themeColor"}],
-    validation: (rule: ReferenceRule) => rule.required(),
-});
-
 export const bodyFieldName = "body";
 
 export const bodyFieldRichText = defineField({
@@ -68,15 +61,19 @@ export const titleAndBodyFields = [
 
 export const iconFieldName = "icon";
 
-export const iconField = defineField({
+export const sectionIconTag = "section-icon";
+
+export const sectionIconField = defineField({
     name: iconFieldName,
     title: "Icon",
-    type: "image",
+    type: "reference",
+    to: [{type: sectionIconSchemaName}],
+    options: { disableNew: true },
 });
 
 export const titleBodyIconFields = [
     ...titleAndBodyFields,
-    iconField,
+    sectionIconField,
 ];
 
 export const actionsFieldName = "actions";
@@ -94,13 +91,8 @@ export const routeField = defineField({
     name: routeFieldName,
     title: "Route",
     type: "slug",
-    initialValue: {current: "/"},
-    description: "URL fragment for this page. e.g. /typedb-studio",
-    validation: (rule: SlugRule) => rule.custom((value, _context) => {
-        if (!value?.current) return "Required";
-        if (!value.current.startsWith("/") || value.current.startsWith("//")) return "Must start with a single '/'";
-        return true;
-    }),
+    description: "URL fragment for this page. e.g. typedb-studio",
+    validation: (rule: SlugRule) => rule.required(),
 });
 
 export const linkFieldName = "link";
@@ -138,4 +130,3 @@ export const isVisibleField = defineField({
     type: "boolean",
     initialValue: true,
 });
-

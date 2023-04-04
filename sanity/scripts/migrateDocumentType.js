@@ -2,8 +2,8 @@ import createClient from "@sanity/client";
 import { token } from "./credentials/token";
 import { config } from "../config";
 
-const OLD_TYPE = "homePage";
-const NEW_TYPE = "technicolorBlockChain";
+const OLD_TYPE = "topbarAndFooter";
+const NEW_TYPE = "topbar";
 
 // Run this script from within your project folder in your terminal with: `sanity exec scripts/migrateDocumentType.js`
 

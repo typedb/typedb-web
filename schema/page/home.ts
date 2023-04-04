@@ -1,17 +1,17 @@
-import { defineField, defineType, SanityDocument } from "@sanity/types";
-import { buttonSchemaName } from "../action";
-import { bodyFieldRichText, collapsibleOptions, iconField, keyPointsField, linkField, linkFieldName, optionalActionsField, pageTitleField, titleAndBodyFields, titleBodyIconFields, titleField, titleFieldWithHighlights, videoURLField } from "../common-fields";
+import { defineField, defineType, Reference } from "@sanity/types";
+import { buttonSchemaName, Link, SanityActions } from "../action";
+import { bodyFieldRichText, collapsibleOptions, sectionIconField, isVisibleField, keyPointsField, linkField, optionalActionsField, pageTitleField, titleAndBodyFields, titleBodyIconFields, titleField, videoURLField } from "../common-fields";
+import { ContentTextTab, contentTextTabSchema, SanityContentTextTab } from "../component/content-text-tabs";
 import { formEmailOnlyComponentSchemaName } from "../form-component";
-import { OrganisationLogosStrip, organisationLogosStripField, SanityOrganisationLogosStrip } from "../organisation-logos-strip";
+import { KeyPoint, SanityKeyPoint } from "../key-point";
+import { Organisation, organisationLogosField, SanityOrganisation } from "../organisation";
 import { SanityDataset } from "../sanity-core";
-import { socialMedias } from "../social-media";
+import { SocialMediaID, socialMedias } from "../social-media";
 import { testimonialSchemaName } from "../testimonial";
-import { BodyText, ParagraphWithHighlights, RichText, SanityBodyText, SanityTitleBodyActionsSection, SanityTitleWithHighlights, TitleBodyActionsSection, TitleWithHighlights } from "../text";
+import { BodyText, ParagraphWithHighlights, RichText, SanityBodyText, SanityTitle, SanityTitleWithHighlights, TitleBodyActionsSection, TitleWithHighlights } from "../text";
 
 import { schemaName } from "../util";
-import { displayedSectionsField, Page, SanityPage } from "./common";
-
-const displayedSections = "displayedSections";
+import { Page, SanityPage } from "./common";
 
 const sections = {
     intro: { id: "introSection", title: "Intro" },
@@ -27,63 +27,163 @@ const sections = {
 type SectionKey = keyof typeof sections;
 type SectionID = typeof sections[SectionKey]["id"];
 
-interface SanitySection<CONTENT extends SanityDocument> extends SanityTitleWithHighlights, SanityBodyText {
-    visualContent: CONTENT;
+interface SanitySection extends SanityTitleWithHighlights, SanityBodyText {
+    isVisible: boolean;
 }
+
+interface SanityIntroSection extends SanitySection {
+    userLogos: SanityOrganisation[];
+}
+
+interface SanityFeaturesSection extends SanitySection {
+    featureTabs: SanityContentTextTab[];
+}
+
+interface SanityUseCase extends SanityTitle, SanityBodyText {
+    icon: Reference;
+    videoURL: string;
+    learnMoreLink: Reference;
+}
+
+interface SanityUseCasesSection extends SanitySection {
+    useCases: SanityUseCase[];
+}
+
+interface SanityToolingSection extends SanitySection {
+    keyPoints: SanityKeyPoint[];
+}
+
+interface SanityCloudSection extends SanitySection, SanityActions {
+    keyPoints: SanityKeyPoint[];
+}
+
+interface SanityCommunitySection extends SanitySection {
+    socialMedias: SocialMediaID[];
+}
+
+interface SanityTestimonialsSection extends SanitySection {}
+
+interface SanityConclusionSection extends SanitySection {}
 
 export interface SanityHomePage extends SanityPage {
-    [displayedSections]: SectionID[];
-    [sections.intro.id]: SanitySection<SanityOrganisationLogosStrip>;
-    [sections.features.id]: SanitySection<SanityOrganisationLogosStrip>;
-    [sections.useCases.id]: SanitySection<SanityOrganisationLogosStrip>;
-    [sections.tooling.id]: SanitySection<SanityOrganisationLogosStrip>;
-    [sections.cloud.id]: SanitySection<SanityOrganisationLogosStrip>;
-    [sections.community.id]: SanitySection<SanityOrganisationLogosStrip>;
-    [sections.testimonials.id]: SanitySection<SanityOrganisationLogosStrip>;
-    [sections.conclusion.id]: SanityTitleBodyActionsSection;
+    [sections.intro.id]: SanityIntroSection;
+    [sections.features.id]: SanityFeaturesSection;
+    [sections.useCases.id]: SanityUseCasesSection;
+    [sections.tooling.id]: SanityToolingSection;
+    [sections.cloud.id]: SanityCloudSection;
+    [sections.community.id]: SanityCommunitySection;
+    [sections.testimonials.id]: SanityTestimonialsSection;
+    [sections.conclusion.id]: SanityConclusionSection;
 }
 
+export abstract class HomePageSection implements TitleWithHighlights, BodyText {
+    readonly body: RichText;
+    readonly title: ParagraphWithHighlights;
+
+    protected constructor(data: SanitySection) {
+        this.body = new RichText(data.body);
+        this.title = new ParagraphWithHighlights(data.body);
+    }
+}
+
+export class HomePageIntroSection extends HomePageSection {
+    readonly userLogos: Organisation[];
+    constructor(data: SanityIntroSection, db: SanityDataset) {
+        super(data);
+        this.userLogos = data.userLogos.map(x => new Organisation(x, db));
+    }
+}
+
+export class HomePageFeaturesSection extends HomePageSection {
+    readonly featureTabs: ContentTextTab[];
+
+    constructor(data: SanityFeaturesSection) {
+        super(data);
+        this.featureTabs = data.featureTabs.map(x => new ContentTextTab(x));
+    }
+}
+
+export class HomePageUseCase {
+    readonly title: string;
+    readonly iconURL: string;
+    readonly videoURL: string;
+    readonly body: RichText;
+    readonly learnMoreLink: Link;
+
+    constructor(data: SanityUseCase, db: SanityDataset) {
+        this.title = data.title;
+        this.iconURL = db.resolveImageRef(data.icon).url;
+        this.videoURL = data.videoURL;
+        this.body = new RichText(data.body);
+        this.learnMoreLink = new Link(db.resolveRef(data.learnMoreLink));
+    }
+}
+
+export class HomePageUseCasesSection extends HomePageSection {
+    readonly useCases: HomePageUseCase[];
+
+    constructor(data: SanityUseCasesSection, db: SanityDataset) {
+        super(data);
+        this.useCases = data.useCases.map(x => new HomePageUseCase(x, db));
+    }
+}
+
+export class HomePageToolingSection extends HomePageSection {
+    readonly keyPoints: KeyPoint[];
+
+    constructor(data: SanityToolingSection, db: SanityDataset) {
+        super(data);
+        this.keyPoints = data.keyPoints.map(x => new KeyPoint(x, db));
+    }
+}
+
+export class HomePageCloudSection extends HomePageSection {
+    readonly keyPoints: KeyPoint[];
+
+    constructor(data: SanityCloudSection, db: SanityDataset) {
+        super(data);
+        this.keyPoints = data.keyPoints.map(x => new KeyPoint(x, db));
+    }
+}
+
+export class HomePageCommunitySection extends HomePageSection {
+    readonly socialMedias: SocialMediaID[];
+
+    constructor(data: SanityCommunitySection) {
+        super(data);
+        this.socialMedias = data.socialMedias;
+    }
+}
+
+export class HomePageTestimonialsSection extends HomePageSection {
+    constructor(data: SanityTestimonialsSection) {
+        super(data);
+    }
+}
+
+type HomePageConclusionSection = TitleBodyActionsSection;
+
 export class HomePage extends Page {
-    readonly [sections.intro.id]?: HomePageSection<OrganisationLogosStrip, SanityOrganisationLogosStrip>;
-    readonly [sections.features.id]?: HomePageSection<OrganisationLogosStrip, SanityOrganisationLogosStrip>;
-    // readonly [useCasesSection]?: HomePageSection<OrganisationLogosStrip, SanityOrganisationLogosStrip>;
-    // readonly [toolingSection]?: HomePageSection<OrganisationLogosStrip, SanityOrganisationLogosStrip>;
-    // readonly [cloudSection]?: HomePageSection<OrganisationLogosStrip, SanityOrganisationLogosStrip>;
-    // readonly [communitySection]?: HomePageSection<OrganisationLogosStrip, SanityOrganisationLogosStrip>;
-    // readonly [testimonialsSection]?: HomePageSection<OrganisationLogosStrip, SanityOrganisationLogosStrip>;
-    readonly [sections.conclusion.id]?: TitleBodyActionsSection;
+    readonly [sections.intro.id]?: HomePageIntroSection;
+    readonly [sections.features.id]?: HomePageFeaturesSection;
+    readonly [sections.useCases.id]?: HomePageUseCasesSection;
+    readonly [sections.tooling.id]?: HomePageToolingSection;
+    readonly [sections.cloud.id]?: HomePageCloudSection;
+    readonly [sections.community.id]?: HomePageCommunitySection;
+    readonly [sections.testimonials.id]?: HomePageTestimonialsSection;
+    readonly [sections.conclusion.id]?: HomePageConclusionSection;
 
     constructor(data: SanityHomePage, db: SanityDataset) {
         super(data);
-        this.introSection = data.displayedSections.includes(sections.intro.id) ? new HomePageSection(data.introSection, db, VisualContentFactory.organisationLogosStrip) : undefined;
-        this.featuresSection = data.displayedSections.includes(sections.features.id) ? new HomePageSection(data.featuresSection, db, VisualContentFactory.organisationLogosStrip) : undefined;
-        this.conclusionSection = data.displayedSections.includes(sections.conclusion.id) ? new TitleBodyActionsSection(data.conclusionSection) : undefined;
+        this.introSection = data.introSection.isVisible ? new HomePageIntroSection(data.introSection, db) : undefined;
+        this.featuresSection = data.featuresSection.isVisible ? new HomePageFeaturesSection(data.featuresSection) : undefined;
+        this.useCasesSection = data.useCasesSection.isVisible ? new HomePageUseCasesSection(data.useCasesSection, db) : undefined;
+        this.toolingSection = data.toolingSection.isVisible ? new HomePageToolingSection(data.toolingSection, db) : undefined;
+        this.cloudSection = data.cloudSection.isVisible ? new HomePageCloudSection(data.cloudSection, db) : undefined;
+        this.communitySection = data.communitySection.isVisible ? new HomePageCommunitySection(data.communitySection) : undefined;
+        this.testimonialsSection = data.testimonialsSection.isVisible ? new HomePageTestimonialsSection(data.testimonialsSection) : undefined;
+        this.conclusionSection = data.conclusionSection.isVisible ? new TitleBodyActionsSection(data.conclusionSection) : undefined;
     }
-}
-
-class HomePageSection<CONTENT extends VisualContent, SANITY_CONTENT extends SanityDocument> implements TitleWithHighlights, BodyText {
-    readonly body: RichText;
-    readonly title: ParagraphWithHighlights;
-    readonly visualContent: CONTENT;
-
-    constructor(
-        data: SanitySection<SANITY_CONTENT>,
-        db: SanityDataset,
-        visualContentFn: VisualContentFactory.Method<CONTENT, SANITY_CONTENT>
-    ) {
-        this.body = new RichText(data.body);
-        this.title = new ParagraphWithHighlights(data.body);
-        this.visualContent = visualContentFn(data.visualContent, db);
-    }
-}
-
-type VisualContent = OrganisationLogosStrip;
-
-namespace VisualContentFactory {
-    export type Method<CONTENT extends VisualContent, SANITY_CONTENT extends SanityDocument> = (sanityContent: SANITY_CONTENT, db: SanityDataset) => CONTENT;
-
-    export const organisationLogosStrip: Method<OrganisationLogosStrip, SanityOrganisationLogosStrip>
-        = (data, db) => new OrganisationLogosStrip(data, db);
 }
 
 export const homePageSchemaName = schemaName(HomePage);
@@ -97,6 +197,18 @@ const sectionSchema = (key: SectionKey, fields: any[]) => defineType({
     fields: fields,
 });
 
+const featureTabSchemaName = `${homePageSchemaName}_featureTab`;
+
+const featureTabSchema = defineType({
+    name: featureTabSchemaName,
+    title: "Feature Tab",
+    type: "object",
+    fields: [
+        ...contentTextTabSchema.fields,
+        Object.assign({}, linkField, { name: "learnMoreLink", title: "'Learn More' Link" }),
+    ],
+});
+
 const useCaseSchemaName = `${homePageSchemaName}_useCase`;
 
 const useCaseSchema = defineType({
@@ -105,7 +217,7 @@ const useCaseSchema = defineType({
     type: "object",
     fields: [
         titleField,
-        iconField,
+        sectionIconField,
         videoURLField,
         bodyFieldRichText,
         Object.assign({}, linkField, { title: "Link to Use Case Page" }),
@@ -125,11 +237,18 @@ const sectionSchemas = [
             title: "Form (email only, optional)",
             type: formEmailOnlyComponentSchemaName,
         }),
-        organisationLogosStripField,
+        Object.assign({}, organisationLogosField, { name: "visualContent" }),
+        isVisibleField,
     ]),
     sectionSchema("features", [
         ...titleBodyIconFields,
-        // featuresField
+        defineField({
+            name: "featureTabs",
+            title: "Feature Tabs",
+            type: "array",
+            of: [{type: featureTabSchemaName}],
+        }),
+        isVisibleField,
     ]),
     sectionSchema("useCases", [
         ...titleBodyIconFields,
@@ -139,14 +258,17 @@ const sectionSchemas = [
             type: "array",
             of: [{type: useCaseSchemaName}],
         }),
+        isVisibleField,
     ]),
     sectionSchema("tooling", [
         ...titleBodyIconFields,
         keyPointsField(3),
+        isVisibleField,
     ]),
     sectionSchema("cloud", [
         ...titleBodyIconFields,
         keyPointsField(5),
+        isVisibleField,
     ]),
     sectionSchema("community", [
         ...titleBodyIconFields,
@@ -160,6 +282,7 @@ const sectionSchemas = [
                 list: Object.entries(socialMedias).map(([id, title]) => ({ value: id, title: title })),
             },
         }),
+        isVisibleField,
     ]),
     sectionSchema("testimonials", [
         ...titleBodyIconFields,
@@ -169,10 +292,12 @@ const sectionSchemas = [
             type: "array",
             of: [{type: testimonialSchemaName}],
         }),
+        isVisibleField,
     ]),
     sectionSchema("conclusion", [
         ...titleAndBodyFields,
         optionalActionsField,
+        isVisibleField,
     ]),
 ];
 
@@ -189,10 +314,9 @@ const homePageSchema = defineType({
     type: "document",
     fields: [
         pageTitleField,
-        displayedSectionsField(sections),
         ...sectionFields,
     ],
     preview: { prepare: (_selection) => ({ title: "Home Page" }), },
 });
 
-export const homePageSchemas = [homePageSchema, ...sectionSchemas, useCaseSchema];
+export const homePageSchemas = [featureTabSchema, homePageSchema, ...sectionSchemas, useCaseSchema];
