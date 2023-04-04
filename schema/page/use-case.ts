@@ -1,13 +1,13 @@
 import { DocumentIcon } from "@sanity/icons";
-import { ArrayRule, defineField, defineType } from "@sanity/types";
-import { bodyFieldRichText, collapsibleOptions, isVisibleField, keyPointsField, pageTitleField, routeField, titleAndBodyFields, videoURLField } from "../common-fields";
-import { linkPanelSchemaName } from "../component/link-panel";
+import { ArrayRule, defineField, defineType, Reference } from "@sanity/types";
+import { Link } from "../action";
+import { bodyFieldRichText, collapsibleOptions, isVisibleField, keyPointsField, linkField, pageTitleField, routeField, SanityVisibleToggle, titleAndBodyFields, titleField, videoURLField } from "../common-fields";
+import { LinkPanel, linkPanelSchemaName, SanityLinkPanel } from "../component/link-panel";
 import { KeyPoint, SanityKeyPoint } from "../key-point";
-import { RichText, SanityBodyText, SanityPortableText, SanityTitleAndBody, TitleAndBody } from "../text";
+import { SanityDataset } from "../sanity-core";
+import { RichText, SanityBodyText, SanityTitle, SanityTitleAndBody, TitleAndBody } from "../text";
 import { schemaName } from "../util";
 import { Page, SanityPage } from "./common";
-
-const displayedSections = "displayedSections";
 
 const sections = {
     intro: { id: "introSection", title: "Intro" },
@@ -22,7 +22,6 @@ type SectionKey = keyof typeof sections;
 type SectionID = typeof sections[SectionKey]["id"];
 
 export interface SanityUseCasePage extends SanityPage {
-    [displayedSections]: SectionID[];
     [sections.intro.id]: SanityIntroSection;
     [sections.requirements.id]: SanityKeyPointsSection;
     [sections.challenges.id]: SanityKeyPointsSection;
@@ -31,43 +30,37 @@ export interface SanityUseCasePage extends SanityPage {
     [sections.furtherReading.id]: SanityFurtherReadingSection;
 }
 
-interface SanityIntroSection extends SanityTitleAndBody {
+interface SanityIntroSection extends SanityTitleAndBody, SanityVisibleToggle {
     videoURL: string;
     links: SanityLinkPanel[];
 }
 
-type SanityLinkPanel = { title: string, description: SanityPortableText; url: string };
-
-interface SanityKeyPointsSection extends SanityBodyText {
+interface SanityKeyPointsSection extends SanityBodyText, SanityVisibleToggle {
     keyPoints: SanityKeyPoint[];
 }
 
-interface SanityExampleSection extends SanityBodyText {
+interface SanityExampleTab extends SanityTitle, SanityBodyText {
+    videoURL: string;
+    learnMoreLink: Reference;
 }
 
-interface SanityFurtherReadingSection extends SanityBodyText {
+interface SanityExampleSection extends SanityBodyText, SanityVisibleToggle {
+    exampleTabs: SanityExampleTab[];
+    sampleProjectLink: Reference;
+}
+
+interface SanityFurtherReadingSection extends SanityBodyText, SanityVisibleToggle {
     links: SanityLinkPanel[];
-}
-
-export class UseCasePage extends Page {
-    readonly [sections.intro.id]?: IntroSection;
-    readonly [sections.challenges.id]?: KeyPointsSection;
-
-    constructor(data: SanityUseCasePage) {
-        super(data);
-        this.introSection = data.displayedSections.includes(sections.intro.id) ? new IntroSection(data.introSection) : undefined;
-        this.challengesSection = data.displayedSections.includes(sections.challenges.id) ? new KeyPointsSection(data.challengesSection) : undefined;
-    }
 }
 
 class IntroSection extends TitleAndBody {
     readonly videoURL: string;
     readonly links: LinkPanel[];
 
-    constructor(data: SanityIntroSection) {
+    constructor(data: SanityIntroSection, db: SanityDataset) {
         super(data);
         this.videoURL = data.videoURL;
-        this.links = data.links.map(x => new LinkPanel(x));
+        this.links = data.links.map(x => new LinkPanel(x, db));
     }
 }
 
@@ -75,21 +68,64 @@ class KeyPointsSection {
     readonly body: RichText;
     readonly keyPoints: KeyPoint[];
 
-    constructor(data: SanityKeyPointsSection) {
+    constructor(data: SanityKeyPointsSection, db: SanityDataset) {
         this.body = new RichText(data.body);
-        this.keyPoints = data.keyPoints.map(x => new KeyPoint(x));
+        this.keyPoints = data.keyPoints.map(x => new KeyPoint(x, db));
     }
 }
 
-class LinkPanel {
+class ExampleTab {
     readonly title: string;
-    readonly description: RichText;
-    readonly url: string;
+    readonly videoURL: string;
+    readonly body: RichText;
+    readonly learnMoreLink: Link;
 
-    constructor(data: SanityLinkPanel) {
+    constructor(data: SanityExampleTab, db: SanityDataset) {
         this.title = data.title;
-        this.description = new RichText(data.description);
-        this.url = data.url;
+        this.videoURL = data.videoURL;
+        this.body = new RichText(data.body);
+        this.learnMoreLink = new Link(db.resolveRef(data.learnMoreLink));
+    }
+}
+
+class ExampleSection {
+    readonly body: RichText;
+    readonly exampleTabs: ExampleTab[];
+    readonly sampleProjectLink: Link;
+
+    constructor(data: SanityExampleSection, db: SanityDataset) {
+        this.body = new RichText(data.body);
+        this.exampleTabs = data.exampleTabs.map(x => new ExampleTab(x, db));
+        this.sampleProjectLink = new Link(db.resolveRef(data.sampleProjectLink));
+    }
+}
+
+class FurtherReadingSection {
+    readonly body: RichText;
+    readonly links: LinkPanel[];
+
+    constructor(data: SanityFurtherReadingSection, db: SanityDataset) {
+        this.body = new RichText(data.body);
+        this.links = data.links.map(x => new LinkPanel(x, db));
+    }
+}
+
+export class UseCasePage extends Page {
+    readonly [sections.intro.id]?: IntroSection;
+    readonly [sections.requirements.id]?: KeyPointsSection;
+    readonly [sections.challenges.id]?: KeyPointsSection;
+    readonly [sections.solution.id]?: KeyPointsSection;
+    readonly [sections.example.id]?: ExampleSection;
+    readonly [sections.furtherReading.id]?: FurtherReadingSection;
+
+    constructor(data: SanityUseCasePage, db: SanityDataset) {
+        super(data);
+        this.introSection = data.introSection.isVisible ? new IntroSection(data.introSection, db) : undefined;
+        this.requirementsSection = data.requirementsSection.isVisible ? new KeyPointsSection(data.requirementsSection, db) : undefined;
+        this.challengesSection = data.challengesSection.isVisible ? new KeyPointsSection(data.challengesSection, db) : undefined;
+        this.solutionSection = data.solutionSection.isVisible ? new KeyPointsSection(data.solutionSection, db) : undefined;
+        this.exampleSection = data.exampleSection.isVisible ? new ExampleSection(data.exampleSection, db) : undefined;
+        this.furtherReadingSection = data.furtherReadingSection.isVisible ? new FurtherReadingSection(data.furtherReadingSection, db) : undefined;
     }
 }
 
@@ -110,6 +146,20 @@ const linkPanelsField = defineField({
     type: "array",
     of: [{type: linkPanelSchemaName}],
     validation: (rule: ArrayRule<any>) => rule.length(3),
+});
+
+const exampleTabSchemaName = `${useCasePageSchemaName}_${schemaName(ExampleTab)}`;
+
+const exampleTabSchema = defineType({
+    name: exampleTabSchemaName,
+    title: "Example",
+    type: "object",
+    fields: [
+        titleField,
+        videoURLField,
+        bodyFieldRichText,
+        Object.assign({}, linkField, { name: "learnMoreLink", title: "'Learn More' link" }),
+    ],
 });
 
 const sectionSchemas = [
@@ -136,6 +186,12 @@ const sectionSchemas = [
     ]),
     sectionSchema("example", [
         bodyFieldRichText,
+        defineField({
+            name: "exampleTabs",
+            title: "Example Tabs",
+            type: "array",
+            of: [{type: exampleTabSchemaName}],
+        }),
         isVisibleField,
     ]),
     sectionSchema("furtherReading", [
@@ -171,4 +227,4 @@ const useCasePageSchema = defineType({
     },
 });
 
-export const useCasePageSchemas = [...sectionSchemas, useCasePageSchema];
+export const useCasePageSchemas = [exampleTabSchema, ...sectionSchemas, useCasePageSchema];

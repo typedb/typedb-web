@@ -1,6 +1,7 @@
 import { LinkIcon } from "@sanity/icons";
 import { defineField, defineType, Reference, ReferenceRule, SanityDocument, Slug, SlugRule } from "@sanity/types";
 import { linkField, titleField, titleFieldName } from "./common-fields";
+import { SanityDataset } from "./sanity-core";
 import { Document } from "./sanity-core/document";
 import { schemaName } from "./util";
 
@@ -16,16 +17,29 @@ export interface SanityLink extends SanityDocument {
     opensNewTab: boolean;
 }
 
-export class Link extends Document {
+export interface SanityTextLink {
+    text: string;
+    link: Reference;
+}
+
+export class Link {
     readonly destination: string;
     readonly type: LinkType;
     readonly opensNewTab: boolean;
 
     constructor(data: SanityLink) {
-        super(data);
         this.destination = data.destination.current;
         this.type = data.type;
         this.opensNewTab = data.opensNewTab;
+    }
+}
+
+export class TextLink extends Link {
+    readonly text: string;
+
+    constructor(data: SanityTextLink, db: SanityDataset) {
+        super(db.resolveRef(data.link));
+        this.text = data.text;
     }
 }
 
@@ -71,8 +85,10 @@ const linkSchema = defineType({
     },
 });
 
+export const textLinkSchemaName = schemaName(TextLink);
+
 const textLinkSchema = defineType({
-    name: "textLink",
+    name: textLinkSchemaName,
     type: "object",
     fields: [
         defineField({

@@ -1,6 +1,5 @@
 import { BlockContentIcon, PlayIcon } from "@sanity/icons";
 import { ArrayRule, defineField, ReferenceRule, SlugRule, StringRule } from "@sanity/types";
-import { sectionIconSchemaName } from "./image";
 
 // IMPORTANT: Do not reference other schema files from this file, as this generally creates cyclic dependencies.
 
@@ -61,13 +60,11 @@ export const titleAndBodyFields = [
 
 export const iconFieldName = "icon";
 
-export const sectionIconTag = "section-icon";
-
 export const sectionIconField = defineField({
     name: iconFieldName,
     title: "Icon",
     type: "reference",
-    to: [{type: sectionIconSchemaName}],
+    to: [{type: "sectionIcon"}],
     options: { disableNew: true },
 });
 
@@ -104,6 +101,12 @@ export const linkField = defineField({
     validation: (rule: ReferenceRule) => rule.required(),
 });
 
+export const textLinkField = defineField({
+    name: linkFieldName,
+    title: "Link",
+    type: "textLink",
+});
+
 export const videoURLFieldName = "videoURL";
 
 export const videoURLField = defineField({
@@ -120,7 +123,11 @@ export const keyPointsField = (count?: number) => defineField({
     type: "array",
     of: [{type: "keyPoint"}],
     validation: count != null ? ((rule: ArrayRule<any>) => rule.length(count)) : undefined,
-})
+});
+
+export interface SanityVisibleToggle {
+    isVisible: boolean;
+}
 
 export const isVisibleFieldName = "isVisible";
 

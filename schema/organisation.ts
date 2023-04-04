@@ -43,7 +43,6 @@ const organisationSchema = defineType({
 export const organisationLogosField = defineType({
     name: "organisationLogos",
     title: "Organisation Logos",
-    description: "Typically used to showcase users of a particular product, e.g. TypeDB",
     icon: UsersIcon,
     type: "array",
     of: [{type: "reference", to: [{type: organisationSchemaName}]}],
