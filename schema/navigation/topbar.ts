@@ -1,6 +1,12 @@
 import { BlockElementIcon, LinkIcon, MasterDetailIcon } from "@sanity/icons";
 import { defineField, defineType } from "@sanity/types";
-import { linkField, titleField, titleFieldName, videoURLField } from "./common-fields";
+import { linkField, titleField, titleFieldName, videoURLField } from "../common-fields";
+
+const descriptionField = defineField({
+    name: "description",
+    title: "Description",
+    type: "string",
+});
 
 const listColumnItemSchema = defineType({
     name: "topbarListColumnItem",
@@ -8,10 +14,7 @@ const listColumnItemSchema = defineType({
     type: "object",
     fields: [
         titleField,
-        defineField({
-            name: "description",
-            type: "string",
-        }),
+        descriptionField,
         linkField,
     ],
     preview: {
@@ -27,17 +30,17 @@ const listColumnSchema = defineType({
     fields: [
         titleField,
         defineField({
-            name: "links",
+            name: "items",
+            description: "Items",
             type: "array",
             of: [{type: "topbarListColumnItem"}],
-            initialValue: [],
-        })
+        }),
     ],
     preview: {
-        select: { title: titleFieldName, links: "links" },
+        select: { title: titleFieldName, items: "items" },
         prepare: (selection) => ({
             title: selection.title,
-            subtitle: `${selection.links?.map((x: any) => x.title).join(", ") || ""}`,
+            subtitle: `${selection.items?.map((x: any) => x.title).join(", ") || ""}`,
         }),
     },
 });
@@ -87,7 +90,7 @@ const singleLinkSchema = defineType({
         select: {
             title: titleFieldName,
             routeName: "link.route.current", routeTo: "link.title",
-            externalLinkName: "link.title", externalLinkURL: "link.destination"
+            externalLinkName: "link.title", externalLinkURL: "link.destination.current"
         },
         prepare: (selection) => {
             const subtitle = selection.routeName
@@ -124,9 +127,7 @@ const topbarSchema = defineType({
             of: topbarItemTypes,
         }),
     ],
-    preview: {
-        prepare: (_selection) => ({ title: "Topbar" }),
-    },
+    preview: { prepare: (_selection) => ({ title: "Topbar" }) },
 });
 
-export const websiteNavSchemas = [listColumnItemSchema, listColumnSchema, videoColumnSchema, topbarMenuPanelSchema, singleLinkSchema, topbarSchema];
+export const topbarSchemas = [listColumnItemSchema, listColumnSchema, videoColumnSchema, topbarMenuPanelSchema, singleLinkSchema, topbarSchema];

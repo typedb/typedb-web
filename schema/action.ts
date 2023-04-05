@@ -121,7 +121,7 @@ const buttonSchema = defineType({
         ...textLinkSchema.fields
     ],
     preview: {
-        select: { text: "text", linkDestination: "link.destination", linkRoute: "link.route.current" },
+        select: { text: "text", linkDestination: "link.destination.current", linkRoute: "link.route.current" },
         prepare: (selection) => ({ title: selection.text, subtitle: selection.linkDestination || selection.linkRoute }),
     },
 });

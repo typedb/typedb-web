@@ -1,13 +1,13 @@
 import "./styles.css";
 
-import { BlockElementIcon, ClipboardImageIcon, DocumentIcon, DocumentsIcon, FolderIcon, ImagesIcon, ThListIcon } from "@sanity/icons";
+import { BlockElementIcon, ClipboardImageIcon, CodeIcon, CommentIcon, DocumentIcon, DocumentsIcon, FolderIcon, ImagesIcon, MasterDetailIcon, ThListIcon } from "@sanity/icons";
 import { defineConfig, isDev } from "sanity";
 import { colorInput } from "@sanity/color-input";
 import { visionTool } from "@sanity/vision";
 import { media } from "sanity-plugin-media";
 import { deskTool } from "sanity/desk";
 import { StructureBuilder } from "sanity/lib/exports/desk";
-import { featuresPageSchemaName, homePageSchemaName, sectionIconSchemaName, introPageSchemaName, linkSchemaName, organisationLogosSchemaName, schemaTypes, topbarSchemaName, useCasePageSchemaName, webinarsPageSchemaName } from "typedb-web-schema";
+import { featuresPageSchemaName, homePageSchemaName, sectionIconSchemaName, introPageSchemaName, linkSchemaName, schemaTypes, topbarSchemaName, useCasePageSchemaName, webinarsPageSchemaName, footerSchemaName, communityResourcesSchemaName } from "typedb-web-schema";
 import { config } from "./config";
 import { getStartedPlugin } from "./plugins/sanity-plugin-tutorial";
 
@@ -28,7 +28,8 @@ export default defineConfig({
                 s.listItem().title("Site Navigation").icon(BlockElementIcon).child(s.list().title("Site Navigation")
                     .items([
                         singletonListItem(s, topbarSchemaName, "Topbar", ThListIcon),
-                    ])
+                        singletonListItem(s, footerSchemaName, "Footer", ThListIcon),
+                    ]),
                 ),
                 s.listItem().title("Pages").icon(DocumentsIcon).child(s.list().title("Pages")
                     .items([
@@ -51,7 +52,9 @@ export default defineConfig({
                     ])
                 ),
                 s.documentTypeListItem(linkSchemaName).title("Links"),
-            ])
+                s.divider(),
+                singletonListItem(s, communityResourcesSchemaName, "Community Resources", CommentIcon),
+            ]),
         }),
         media(),
         visionTool(),

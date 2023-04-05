@@ -9,12 +9,13 @@ const formEmailOnlySchema = defineType({
     type: "document",
     fields: [
         nameField,
-        defineField({
-            name: "hubspotFormID",
-            title: "Hubspot Form ID",
-            type: "string",
-            validation: (rule: StringRule) => rule.required(),
-        }),
+        // TODO: replace with Amplitude form?
+        // defineField({
+        //     name: "hubspotFormID",
+        //     title: "Hubspot Form ID",
+        //     type: "string",
+        //     validation: (rule: StringRule) => rule.required(),
+        // }),
     ],
 });
 

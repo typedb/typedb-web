@@ -6,7 +6,7 @@ import { formEmailOnlyComponentSchemaName } from "../form-component";
 import { KeyPoint, SanityKeyPoint } from "../key-point";
 import { Organisation, organisationLogosField, SanityOrganisation } from "../organisation";
 import { SanityDataset } from "../sanity-core";
-import { SocialMediaID, socialMedias } from "../social-media";
+import { SocialMediaID, socialMediaLinksField, socialMedias } from "../social-media";
 import { testimonialSchemaName } from "../testimonial";
 import { BodyText, ParagraphWithHighlights, RichText, SanityBodyText, SanityTitle, SanityTitleWithHighlights, TitleBodyActionsSection, TitleWithHighlights } from "../text";
 
@@ -272,16 +272,7 @@ const sectionSchemas = [
     ]),
     sectionSchema("community", [
         ...titleBodyIconFields,
-        defineField({
-            name: "socialMediaLinks",
-            title: "Social Media Links",
-            type: "array",
-            of: [{type: "string"}],
-            options: {
-                layout: "grid",
-                list: Object.entries(socialMedias).map(([id, title]) => ({ value: id, title: title })),
-            },
-        }),
+        socialMediaLinksField,
         isVisibleField,
     ]),
     sectionSchema("testimonials", [
