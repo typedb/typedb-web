@@ -1,5 +1,6 @@
 import { BlockElementIcon, LinkIcon, MasterDetailIcon } from "@sanity/icons";
 import { defineField, defineType } from "@sanity/types";
+import { textLinkSchemaName } from "../action";
 import { linkField, titleField, titleFieldName, videoURLField } from "../common-fields";
 
 const descriptionField = defineField({
@@ -103,9 +104,31 @@ const singleLinkSchema = defineType({
     },
 });
 
-const topbarItemTypes = [{type: "topbarMenuPanel"}, {type: "topbarSingleLink"},/* {type: "topbarImageLink"}*/];
-
 export const topbarSchemaName = "topbar";
+
+const secondaryAreaSchemaName = `${topbarSchemaName}_secondaryArea`;
+
+const secondaryAreaSchema = defineType({
+    name: secondaryAreaSchemaName,
+    title: "Right Side Items",
+    type: "object",
+    fields: [
+        defineField({
+            name: "links",
+            title: "Links",
+            type: "array",
+            of: [{type: "topbarSingleLink"}],
+        }),
+        defineField({
+            name: "cta",
+            title: "CTA",
+            type: "reference",
+            to: [{type: textLinkSchemaName}],
+        }),
+    ],
+});
+
+const topbarItemTypes = [{type: "topbarMenuPanel"}, {type: "topbarSingleLink"}];
 
 const topbarSchema = defineType({
     name: topbarSchemaName,
@@ -122,12 +145,11 @@ const topbarSchema = defineType({
         defineField({
             name: "secondaryArea",
             title: "Right Side Items",
-            description: "Displayed at the bottom on mobile",
-            type: "array",
-            of: topbarItemTypes,
+            description: "Displayed at the bottom on mobile (GitHub link is always displayed)",
+            type: secondaryAreaSchemaName,
         }),
     ],
     preview: { prepare: (_selection) => ({ title: "Topbar" }) },
 });
 
-export const topbarSchemas = [listColumnItemSchema, listColumnSchema, videoColumnSchema, topbarMenuPanelSchema, singleLinkSchema, topbarSchema];
+export const topbarSchemas = [listColumnItemSchema, listColumnSchema, videoColumnSchema, topbarMenuPanelSchema, secondaryAreaSchema, singleLinkSchema, topbarSchema];

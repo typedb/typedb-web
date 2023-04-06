@@ -29,35 +29,40 @@ export const communityResourcesSchema = defineType({
     name: communityResourcesSchemaName,
     title: "Community Resources",
     type: "document",
-    fieldsets: [
-        { name: "social", title: "Social Media" },
-        { name: "other", title: "Other" },
+    groups: [
+        { name: "developerAndSupport", title: "Developer / Support Platforms" },
+        { name: "socialMedia", title: "Social Media" },
     ],
     fields: [
         defineField({
             name: "githubURL",
             title: "GitHub URL",
             type: "url",
+            group: "developerAndSupport",
         }),
         defineField({
             name: "discussionForumURL",
             title: "Discussion Forum URL",
             type: "url",
+            group: "developerAndSupport",
         }),
         defineField({
             name: "stackOverflowURL",
             title: "Stack Overflow URL",
             type: "url",
+            group: "developerAndSupport",
         }),
         defineField({
             name: "enterpriseSupportURL",
             title: "Enterprise Support URL",
             type: "url",
+            group: "developerAndSupport",
         }),
         ...Object.entries(socialMedias).map(([id, title]) => defineField({
             name: `${id}URL`,
             title: `${title} URL`,
             type: "url",
+            group: "socialMedia",
         })),
     ],
     preview: { prepare: (_selection) => ({ title: "Community Resources" }) },
