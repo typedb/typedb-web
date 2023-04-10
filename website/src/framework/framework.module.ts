@@ -5,13 +5,13 @@ import { SpinningWheelComponent } from "./spinning-wheel/spinning-wheel.componen
 import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
 import { ModalComponent } from "./modal/modal.component";
 import { HttpClientModule } from "@angular/common/http";
-import { TechnicolorBlockChainComponent } from "./technicolor-block-chain/technicolor-block-chain.component";
+import { TechnicolorBlockComponent } from "./technicolor-block/technicolor-block.component";
 
 @NgModule({
     declarations: [
         ModalComponent,
         SpinningWheelComponent,
-        TechnicolorBlockChainComponent,
+        TechnicolorBlockComponent,
     ],
     imports: [
         BrowserModule,
@@ -20,7 +20,7 @@ import { TechnicolorBlockChainComponent } from "./technicolor-block-chain/techni
         HttpClientModule,
     ],
     exports: [
-        TechnicolorBlockChainComponent,
+        TechnicolorBlockComponent,
     ],
     providers: [
     ],

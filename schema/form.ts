@@ -1,22 +1,36 @@
-import { ClipboardIcon } from "@sanity/icons";
-import { defineField, defineType, StringRule } from "@sanity/types";
-import { nameField } from "./common-fields";
+import { defineField, defineType } from "@sanity/types";
 
-const formEmailOnlySchema = defineType({
-    name: "formEmailOnly",
-    title: "Simple Form (email only)",
-    icon: ClipboardIcon,
+export const forms = {
+    typeDBCloudWaitlist: "TypeDB Cloud Waitlist",
+} as const;
+
+export const formList = Object.keys(forms);
+
+export type FormID = keyof typeof forms;
+
+export const formsSchemaName = "forms";
+
+export const formsSchema = defineType({
+    name: formsSchemaName,
+    title: "HubSpot Forms",
     type: "document",
     fields: [
-        nameField,
-        // TODO: replace with Amplitude form?
-        // defineField({
-        //     name: "hubspotFormID",
-        //     title: "Hubspot Form ID",
-        //     type: "string",
-        //     validation: (rule: StringRule) => rule.required(),
-        // }),
+        ...Object.entries(forms).map(([id, title]) => defineField({
+            name: `${id}ID`,
+            title: `${title} Form ID`,
+            type: "string",
+        })),
     ],
+    preview: { prepare: (_selection) => ({ title: "HubSpot Forms" }) },
 });
 
-export const formSchemas = [formEmailOnlySchema];
+export const formField = defineField({
+    name: "form",
+    title: "Form",
+    type: "string",
+    options: {
+        list: formList,
+    },
+});
+
+export const formSchemas = [formsSchema];

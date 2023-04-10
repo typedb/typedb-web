@@ -2,13 +2,13 @@ import { defineField, defineType, Reference } from "@sanity/types";
 import { buttonSchemaName, Link, SanityActions } from "../action";
 import { bodyFieldRichText, collapsibleOptions, sectionIconField, isVisibleField, keyPointsField, linkField, optionalActionsField, pageTitleField, titleAndBodyFields, titleBodyIconFields, titleField, videoURLField } from "../common-fields";
 import { ContentTextTab, contentTextTabSchema, SanityContentTextTab } from "../component/content-text-tabs";
-import { formEmailOnlyComponentSchemaName } from "../form-component";
+import { formField } from "../form";
 import { KeyPoint, SanityKeyPoint } from "../key-point";
-import { Organisation, organisationLogosField, SanityOrganisation } from "../organisation";
+import { Organisation, organisationLogosField } from "../organisation";
 import { SanityDataset } from "../sanity-core";
-import { SocialMediaID, socialMediaLinksField, socialMedias } from "../social-media";
+import { SocialMediaID, socialMediaLinksField } from "../social-media";
 import { testimonialSchemaName } from "../testimonial";
-import { BodyText, ParagraphWithHighlights, RichText, SanityBodyText, SanityTitle, SanityTitleWithHighlights, TitleBodyActionsSection, TitleWithHighlights } from "../text";
+import { BodyText, ParagraphWithHighlights, RichText, SanityBodyText, SanityTitle, SanityTitleWithHighlights, TitleWithHighlights } from "../text";
 
 import { schemaName } from "../util";
 import { Page, SanityPage } from "./common";
@@ -32,7 +32,7 @@ interface SanitySection extends SanityTitleWithHighlights, SanityBodyText {
 }
 
 interface SanityIntroSection extends SanitySection {
-    userLogos: SanityOrganisation[];
+    userLogos: Reference[];
 }
 
 interface SanityFeaturesSection extends SanitySection {
@@ -90,7 +90,7 @@ export class HomePageIntroSection extends HomePageSection {
     readonly userLogos: Organisation[];
     constructor(data: SanityIntroSection, db: SanityDataset) {
         super(data);
-        this.userLogos = data.userLogos.map(x => new Organisation(x, db));
+        this.userLogos = data.userLogos.map(x => new Organisation(db.resolveRef(x), db));
     }
 }
 
@@ -161,7 +161,11 @@ export class HomePageTestimonialsSection extends HomePageSection {
     }
 }
 
-type HomePageConclusionSection = TitleBodyActionsSection;
+export class HomePageConclusionSection extends HomePageSection {
+    constructor(data: SanityConclusionSection) {
+        super(data);
+    }
+}
 
 export class HomePage extends Page {
     readonly [sections.intro.id]?: HomePageIntroSection;
@@ -182,7 +186,14 @@ export class HomePage extends Page {
         this.cloudSection = data.cloudSection.isVisible ? new HomePageCloudSection(data.cloudSection, db) : undefined;
         this.communitySection = data.communitySection.isVisible ? new HomePageCommunitySection(data.communitySection) : undefined;
         this.testimonialsSection = data.testimonialsSection.isVisible ? new HomePageTestimonialsSection(data.testimonialsSection) : undefined;
-        this.conclusionSection = data.conclusionSection.isVisible ? new TitleBodyActionsSection(data.conclusionSection) : undefined;
+        this.conclusionSection = data.conclusionSection.isVisible ? new HomePageConclusionSection(data.conclusionSection) : undefined;
+    }
+
+    get displayedSections(): HomePageSection[] {
+        return [
+            this.introSection, this.featuresSection, this.useCasesSection, this.toolingSection,
+            this.cloudSection, this.communitySection, this.testimonialsSection, this.conclusionSection
+        ].filter(x => !!x) as HomePageSection[];
     }
 }
 
@@ -232,12 +243,8 @@ const sectionSchemas = [
             title: "Button (optional)",
             type: buttonSchemaName,
         }),
-        defineField({
-            name: "formEmailOnly",
-            title: "Form (email only, optional)",
-            type: formEmailOnlyComponentSchemaName,
-        }),
-        Object.assign({}, organisationLogosField, { name: "visualContent" }),
+        formField,
+        Object.assign({}, organisationLogosField, { name: "userLogos" }),
         isVisibleField,
     ]),
     sectionSchema("features", [
@@ -268,6 +275,7 @@ const sectionSchemas = [
     sectionSchema("cloud", [
         ...titleBodyIconFields,
         keyPointsField(5),
+        optionalActionsField,
         isVisibleField,
     ]),
     sectionSchema("community", [

@@ -130,7 +130,7 @@ const actionsSchema = defineType({
     name: "actions",
     title: "Actions",
     type: "array",
-    of: [{type: "button"}, {type: "formEmailOnlyComponent"}],
+    of: [{type: "button"}],
 });
 
 export const actionSchemas = [linkSchema, textLinkSchema, buttonSchema, actionsSchema];

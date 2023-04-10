@@ -1,4 +1,0 @@
-<div *ngFor="let block of blocks; index as idx" [ngStyle]="{ 'backgroundImage': backgroundImageURLForIndex(idx) }">
-    <h2><span *ngFor="let span of block.title.spans" [ngStyle]="span.highlight ? { 'color': 'red' } : undefined">{{ span.text }}</span></h2>
-    <p><span *ngFor="let span of block.body.spans" [ngStyle]="span.highlight ? { 'color': 'red' } : undefined">{{ span.text }}</span></p>
-</div>

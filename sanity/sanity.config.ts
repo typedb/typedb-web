@@ -1,17 +1,17 @@
 import "./styles.css";
 
-import { BlockElementIcon, ClipboardImageIcon, CodeIcon, CommentIcon, DocumentIcon, DocumentsIcon, FolderIcon, ImagesIcon, MasterDetailIcon, ThListIcon } from "@sanity/icons";
+import { BlockElementIcon, ClipboardImageIcon, CommentIcon, DocumentIcon, DocumentsIcon, ImagesIcon, ThListIcon } from "@sanity/icons";
 import { defineConfig, isDev } from "sanity";
 import { colorInput } from "@sanity/color-input";
 import { visionTool } from "@sanity/vision";
 import { media } from "sanity-plugin-media";
 import { deskTool } from "sanity/desk";
 import { StructureBuilder } from "sanity/lib/exports/desk";
-import { featuresPageSchemaName, homePageSchemaName, sectionIconSchemaName, introPageSchemaName, linkSchemaName, schemaTypes, topbarSchemaName, useCasePageSchemaName, webinarsPageSchemaName, footerSchemaName, communityResourcesSchemaName } from "typedb-web-schema";
+import { featuresPageSchemaName, homePageSchemaName, sectionIconSchemaName, introPageSchemaName, linkSchemaName, schemaTypes, topbarSchemaName, useCasePageSchemaName, webinarsPageSchemaName, footerSchemaName, communityResourcesSchemaName, formsSchemaName } from "typedb-web-schema";
 import { config } from "./config";
 import { getStartedPlugin } from "./plugins/sanity-plugin-tutorial";
 
-const devOnlyPlugins = [getStartedPlugin()]
+const devOnlyPlugins = [getStartedPlugin()];
 const singletonActions = new Set(["publish", "discardChanges", "restore"]);
 const singletonTypes = new Set([topbarSchemaName, webinarsPageSchemaName]);
 
@@ -41,11 +41,6 @@ export default defineConfig({
                         s.documentTypeListItem(useCasePageSchemaName).title("Use Case Pages").icon(DocumentsIcon),
                     ])
                 ),
-                s.listItem().title("Forms").icon(ClipboardImageIcon).child(s.list().title("Forms")
-                    .items([
-                        s.documentTypeListItem("formEmailOnly").title("Email-Only Forms"),
-                    ])
-                ),
                 s.listItem().title("Images").icon(ImagesIcon).child(s.list().title("Images")
                     .items([
                         s.documentTypeListItem(sectionIconSchemaName).title("Section Icons"),
@@ -54,6 +49,7 @@ export default defineConfig({
                 s.documentTypeListItem(linkSchemaName).title("Links"),
                 s.divider(),
                 singletonListItem(s, communityResourcesSchemaName, "Community Resources", CommentIcon),
+                singletonListItem(s, formsSchemaName, "Forms", ClipboardImageIcon),
             ]),
         }),
         media(),

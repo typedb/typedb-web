@@ -12,10 +12,10 @@ export class HomePageComponent implements OnInit {
 
     page?: HomePage;
 
-    constructor(private router: Router, private sanityService: ContentService) {}
+    constructor(private router: Router, private contentService: ContentService) {}
 
     ngOnInit() {
-        this.sanityService.data.subscribe((data) => {
+        this.contentService.data.subscribe((data) => {
             const sanityPage = (data.byType["homePage"] as SanityPage[])[0];
             if (sanityPage) {
                 this.page = new HomePage(sanityPage as SanityHomePage, data);

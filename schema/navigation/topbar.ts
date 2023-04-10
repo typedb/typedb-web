@@ -120,10 +120,9 @@ const secondaryAreaSchema = defineType({
             of: [{type: "topbarSingleLink"}],
         }),
         defineField({
-            name: "cta",
-            title: "CTA",
-            type: "reference",
-            to: [{type: textLinkSchemaName}],
+            name: "button",
+            title: "Button",
+            type: textLinkSchemaName,
         }),
     ],
 });

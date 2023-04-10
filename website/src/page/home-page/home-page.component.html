@@ -1,4 +1,4 @@
-<ng-container *ngIf="page">
-    <td-technicolor-block-chain [content]="page.coreContent"></td-technicolor-block-chain>
-    <!-- TODO conclusion -->
-</ng-container>
+<div *ngIf="page" class="bg-nebula-main">
+    <td-home-page-block *ngIf="page.introSection" [section]="page.introSection" [page]="page"></td-home-page-block>
+    <!-- TODO other blocks, visual contents -->
+</div>
