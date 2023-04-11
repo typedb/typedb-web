@@ -1,25 +1,27 @@
 <!--<section *ngFor="let block of blocks; index as idx" [ngStyle]="{ 'backgroundImage': backgroundImageURLForIndex(idx) }">-->
-<div [ngStyle]="{ 'backgroundImage': backgroundImageURLForIndex(index) }">
+<section [ngStyle]="{ 'backgroundImage': backgroundImageURL ? 'url(' + backgroundImageURL + ')' : undefined }">
     <div class="tb-margin-top">
         <div *ngIf="index > 0" class="tb-graphic-line"></div>
     </div>
     <div class="tb-core">
         <div class="tb-graphic">
-            <div class="tb-graphic-icon-bg">
-                <div class="tb-graphic-icon"></div>
+            <div class="tb-graphic-icon-area">
+                <div class="tb-graphic-icon-bg"></div>
+                <img class="tb-graphic-icon" [src]="block.iconURL" alt=""/>
             </div>
             <div *ngIf="index < numberOfBlocks - 1" class="tb-graphic-line"></div>
         </div>
         <div class="tb-body">
             <ng-container *ngIf="block.isRegularBlock()">
-                <h1><span *ngFor="let span of block.title.spans" [ngStyle]="span.highlight ? { 'color': 'red' } : undefined">{{ span.text }}</span></h1>
-                <p *ngFor="let paragraph of block.body.paragraphs"><span *ngFor="let span of paragraph.spans" [ngStyle]="span.marks.includes('strong') ? { 'color': 'red' } : undefined">{{ span.text }}</span></p>
+                <h1 class="text-xl"><span *ngFor="let span of block.title.spans" [ngStyle]="span.highlight ? { 'color': themeColorHex } : undefined">{{ span.text }}</span></h1>
+                <p *ngFor="let paragraph of block.body.paragraphs" class="p-margin-top text-m"><span *ngFor="let span of paragraph.spans" [ngStyle]="span.marks.includes('strong') ? { 'color': themeColorHex } : undefined">{{ span.text }}</span></p>
             </ng-container>
             <ng-container *ngIf="block.isHomePageIntroBlock()">
-                <h1><span *ngFor="let span of block.title.spans" [ngStyle]="span.highlight ? { 'color': 'red' } : undefined">{{ span.text }}</span></h1>
-                <p *ngFor="let paragraph of block.body.paragraphs"><span *ngFor="let span of paragraph.spans" [ngStyle]="span.marks.includes('strong') ? { 'color': 'red' } : undefined">{{ span.text }}</span></p>
+                <h1 class="text-xxl"><span *ngFor="let span of block.title.spans" [ngStyle]="span.highlight ? { 'color': themeColorHex } : undefined">{{ span.text }}</span></h1>
+                <p *ngFor="let paragraph of block.body.paragraphs" class="p-margin-top text-l"><span *ngFor="let span of paragraph.spans" [ngStyle]="span.marks.includes('strong') ? { 'color': themeColorHex } : undefined">{{ span.text }}</span></p>
             </ng-container>
+            <div class="tb-body-margin-bottom"></div>
         </div>
     </div>
-</div>
+</section>
 <!--</section>-->

@@ -6,10 +6,12 @@ export class TechnicolorBlock {
     readonly variant?: TechnicolorBlockVariant;
     readonly title: ParagraphWithHighlights;
     readonly body: RichText;
+    readonly iconURL: string;
 
-    constructor(title: ParagraphWithHighlights, body: RichText) {
+    constructor(title: ParagraphWithHighlights, body: RichText, iconURL: string) {
         this.title = title;
         this.body = body;
+        this.iconURL = iconURL;
     }
 
     isRegularBlock(): boolean {
@@ -24,8 +26,8 @@ export class TechnicolorBlock {
 export class HomePageIntroTechnicolorBlock extends TechnicolorBlock {
     // readonly actions: Action[];
 
-    constructor(title: ParagraphWithHighlights, body: RichText) {
-        super(title, body);
+    constructor(title: ParagraphWithHighlights, body: RichText, iconURL: string) {
+        super(title, body, iconURL);
     }
 
     override isHomePageIntroBlock(): boolean {

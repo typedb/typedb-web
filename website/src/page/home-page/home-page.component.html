@@ -1,4 +1,13 @@
-<div *ngIf="page" class="bg-nebula-main">
-    <td-home-page-block *ngIf="page.introSection" [section]="page.introSection" [page]="page"></td-home-page-block>
-    <!-- TODO other blocks, visual contents -->
-</div>
+<article class="bg-nebula-main">
+    <div *ngIf="page">
+        <ng-container *ngIf="page.introSection">
+            <td-home-page-technicolor-block [section]="page.introSection" [page]="page" class="hp-intro-block"></td-home-page-technicolor-block>
+            <td-home-page-organisation-logos [organisations]="page.introSection.userLogos"></td-home-page-organisation-logos>
+        </ng-container>
+        <ng-container *ngIf="page.featuresSection">
+            <td-home-page-technicolor-block [section]="page.featuresSection" [page]="page"></td-home-page-technicolor-block>
+            <td-home-page-feature-tabs [featureTabs]="page.featuresSection.featureTabs"></td-home-page-feature-tabs>
+        </ng-container>
+        <!-- TODO other blocks, visual contents -->
+    </div>
+</article>

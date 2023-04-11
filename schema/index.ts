@@ -16,6 +16,7 @@ export const schemaTypes = [
 ];
 
 export { linkSchemaName } from "./action";
+export { ContentTextTab } from "./component/content-text-tabs";
 export { formsSchemaName } from "./form";
 export { sectionIconSchemaName } from "./image";
 export { footerSchemaName } from "./navigation/footer";
@@ -26,7 +27,7 @@ export { Page } from "./page/common";
 export type { SanityPage } from "./page/common";
 export { FeaturesPage, featuresPageSchemaName } from "./page/features";
 export type { SanityFeaturesPage } from "./page/features";
-export { HomePage, HomePageIntroSection, HomePageSection, homePageSchemaName } from "./page/home";
+export { HomePage, HomePageCoreSection, HomePageIntroSection, HomePageSection, homePageSchemaName } from "./page/home";
 export type { SanityHomePage } from "./page/home";
 export { IntroPage, introPageSchemaName } from "./page/intro";
 export type { SanityIntroPage } from "./page/intro";

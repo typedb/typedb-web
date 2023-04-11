@@ -18,6 +18,6 @@ export class SanityDataset {
 
     resolveImageRef(ref: Reference) {
         const imageRef = this.resolveRef<SanityImageRef>(ref);
-        return this.resolveRef<ImageAsset>(imageRef.assetRef);
+        return this.resolveRef<ImageAsset>(imageRef.assetRef.asset);
     }
 }

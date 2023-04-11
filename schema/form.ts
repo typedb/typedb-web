@@ -4,7 +4,7 @@ export const forms = {
     typeDBCloudWaitlist: "TypeDB Cloud Waitlist",
 } as const;
 
-export const formList = Object.keys(forms);
+export const formList = Object.entries(forms).map(([id, title]) => ({ value: id, title: title }));
 
 export type FormID = keyof typeof forms;
 

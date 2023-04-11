@@ -1,0 +1,20 @@
+@import "../../styles/colors";
+@import "../../styles/sizes";
+
+.ol-root {
+    height: 162px;
+    padding: 48px 72px;
+    border: 1px solid $color-light-purple;
+    border-radius: $border-radius;
+    background: $color-purple;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.ol-image {
+    margin: auto;
+    max-width: 185px;
+    max-height: 70px;
+}

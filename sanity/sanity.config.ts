@@ -41,15 +41,16 @@ export default defineConfig({
                         s.documentTypeListItem(useCasePageSchemaName).title("Use Case Pages").icon(DocumentsIcon),
                     ])
                 ),
-                s.listItem().title("Images").icon(ImagesIcon).child(s.list().title("Images")
-                    .items([
-                        s.documentTypeListItem(sectionIconSchemaName).title("Section Icons"),
-                    ])
-                ),
                 s.documentTypeListItem(linkSchemaName).title("Links"),
                 s.divider(),
                 singletonListItem(s, communityResourcesSchemaName, "Community Resources", CommentIcon),
                 singletonListItem(s, formsSchemaName, "Forms", ClipboardImageIcon),
+                s.divider(),
+                s.listItem().title("Icons & Logos").icon(ImagesIcon).child(s.list().title("Icons & Logos")
+                    .items([
+                        s.documentTypeListItem(sectionIconSchemaName).title("Section Icons"),
+                    ])
+                ),
             ]),
         }),
         media(),

@@ -1,4 +1,4 @@
-import { defineField, defineType, Reference } from "@sanity/types";
+import { ArrayRule, defineField, defineType, Reference } from "@sanity/types";
 import { buttonSchemaName, Link, SanityActions } from "../action";
 import { bodyFieldRichText, collapsibleOptions, sectionIconField, isVisibleField, keyPointsField, linkField, optionalActionsField, pageTitleField, titleAndBodyFields, titleBodyIconFields, titleField, videoURLField } from "../common-fields";
 import { ContentTextTab, contentTextTabSchema, SanityContentTextTab } from "../component/content-text-tabs";
@@ -31,11 +31,15 @@ interface SanitySection extends SanityTitleWithHighlights, SanityBodyText {
     isVisible: boolean;
 }
 
-interface SanityIntroSection extends SanitySection {
+interface SanityCoreSection extends SanitySection {
+    icon: Reference;
+}
+
+interface SanityIntroSection extends SanityCoreSection {
     userLogos: Reference[];
 }
 
-interface SanityFeaturesSection extends SanitySection {
+interface SanityFeaturesSection extends SanityCoreSection {
     featureTabs: SanityContentTextTab[];
 }
 
@@ -45,23 +49,23 @@ interface SanityUseCase extends SanityTitle, SanityBodyText {
     learnMoreLink: Reference;
 }
 
-interface SanityUseCasesSection extends SanitySection {
+interface SanityUseCasesSection extends SanityCoreSection {
     useCases: SanityUseCase[];
 }
 
-interface SanityToolingSection extends SanitySection {
+interface SanityToolingSection extends SanityCoreSection {
     keyPoints: SanityKeyPoint[];
 }
 
-interface SanityCloudSection extends SanitySection, SanityActions {
+interface SanityCloudSection extends SanityCoreSection, SanityActions {
     keyPoints: SanityKeyPoint[];
 }
 
-interface SanityCommunitySection extends SanitySection {
+interface SanityCommunitySection extends SanityCoreSection {
     socialMedias: SocialMediaID[];
 }
 
-interface SanityTestimonialsSection extends SanitySection {}
+interface SanityTestimonialsSection extends SanityCoreSection {}
 
 interface SanityConclusionSection extends SanitySection {}
 
@@ -82,23 +86,32 @@ export abstract class HomePageSection implements TitleWithHighlights, BodyText {
 
     protected constructor(data: SanitySection) {
         this.body = new RichText(data.body);
-        this.title = new ParagraphWithHighlights(data.body);
+        this.title = new ParagraphWithHighlights(data.title);
     }
 }
 
-export class HomePageIntroSection extends HomePageSection {
+export abstract class HomePageCoreSection extends HomePageSection {
+    readonly iconURL: string;
+
+    protected constructor(data: SanityCoreSection, db: SanityDataset) {
+        super(data);
+        this.iconURL = db.resolveImageRef(data.icon).url;
+    }
+}
+
+export class HomePageIntroSection extends HomePageCoreSection {
     readonly userLogos: Organisation[];
     constructor(data: SanityIntroSection, db: SanityDataset) {
-        super(data);
+        super(data, db);
         this.userLogos = data.userLogos.map(x => new Organisation(db.resolveRef(x), db));
     }
 }
 
-export class HomePageFeaturesSection extends HomePageSection {
+export class HomePageFeaturesSection extends HomePageCoreSection {
     readonly featureTabs: ContentTextTab[];
 
-    constructor(data: SanityFeaturesSection) {
-        super(data);
+    constructor(data: SanityFeaturesSection, db: SanityDataset) {
+        super(data, db);
         this.featureTabs = data.featureTabs.map(x => new ContentTextTab(x));
     }
 }
@@ -119,45 +132,45 @@ export class HomePageUseCase {
     }
 }
 
-export class HomePageUseCasesSection extends HomePageSection {
+export class HomePageUseCasesSection extends HomePageCoreSection {
     readonly useCases: HomePageUseCase[];
 
     constructor(data: SanityUseCasesSection, db: SanityDataset) {
-        super(data);
+        super(data, db);
         this.useCases = data.useCases.map(x => new HomePageUseCase(x, db));
     }
 }
 
-export class HomePageToolingSection extends HomePageSection {
+export class HomePageToolingSection extends HomePageCoreSection {
     readonly keyPoints: KeyPoint[];
 
     constructor(data: SanityToolingSection, db: SanityDataset) {
-        super(data);
+        super(data, db);
         this.keyPoints = data.keyPoints.map(x => new KeyPoint(x, db));
     }
 }
 
-export class HomePageCloudSection extends HomePageSection {
+export class HomePageCloudSection extends HomePageCoreSection {
     readonly keyPoints: KeyPoint[];
 
     constructor(data: SanityCloudSection, db: SanityDataset) {
-        super(data);
+        super(data, db);
         this.keyPoints = data.keyPoints.map(x => new KeyPoint(x, db));
     }
 }
 
-export class HomePageCommunitySection extends HomePageSection {
+export class HomePageCommunitySection extends HomePageCoreSection {
     readonly socialMedias: SocialMediaID[];
 
-    constructor(data: SanityCommunitySection) {
-        super(data);
+    constructor(data: SanityCommunitySection, db: SanityDataset) {
+        super(data, db);
         this.socialMedias = data.socialMedias;
     }
 }
 
-export class HomePageTestimonialsSection extends HomePageSection {
-    constructor(data: SanityTestimonialsSection) {
-        super(data);
+export class HomePageTestimonialsSection extends HomePageCoreSection {
+    constructor(data: SanityTestimonialsSection, db: SanityDataset) {
+        super(data, db);
     }
 }
 
@@ -180,12 +193,12 @@ export class HomePage extends Page {
     constructor(data: SanityHomePage, db: SanityDataset) {
         super(data);
         this.introSection = data.introSection.isVisible ? new HomePageIntroSection(data.introSection, db) : undefined;
-        this.featuresSection = data.featuresSection.isVisible ? new HomePageFeaturesSection(data.featuresSection) : undefined;
+        this.featuresSection = data.featuresSection.isVisible ? new HomePageFeaturesSection(data.featuresSection, db) : undefined;
         this.useCasesSection = data.useCasesSection.isVisible ? new HomePageUseCasesSection(data.useCasesSection, db) : undefined;
         this.toolingSection = data.toolingSection.isVisible ? new HomePageToolingSection(data.toolingSection, db) : undefined;
         this.cloudSection = data.cloudSection.isVisible ? new HomePageCloudSection(data.cloudSection, db) : undefined;
-        this.communitySection = data.communitySection.isVisible ? new HomePageCommunitySection(data.communitySection) : undefined;
-        this.testimonialsSection = data.testimonialsSection.isVisible ? new HomePageTestimonialsSection(data.testimonialsSection) : undefined;
+        this.communitySection = data.communitySection.isVisible ? new HomePageCommunitySection(data.communitySection, db) : undefined;
+        this.testimonialsSection = data.testimonialsSection.isVisible ? new HomePageTestimonialsSection(data.testimonialsSection, db) : undefined;
         this.conclusionSection = data.conclusionSection.isVisible ? new HomePageConclusionSection(data.conclusionSection) : undefined;
     }
 
@@ -254,6 +267,7 @@ const sectionSchemas = [
             title: "Feature Tabs",
             type: "array",
             of: [{type: featureTabSchemaName}],
+            validation: (rule: ArrayRule<any>) => rule.required(),
         }),
         isVisibleField,
     ]),

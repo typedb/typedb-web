@@ -65,6 +65,7 @@ export const sectionIconField = defineField({
     title: "Icon",
     type: "reference",
     to: [{type: "sectionIcon"}],
+    validation: (rule: ReferenceRule) => rule.required(),
     options: { disableNew: true },
 });
 

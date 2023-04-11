@@ -4,7 +4,7 @@ import { defineField, defineType, Reference, SanityDocument } from "@sanity/type
 export const assetRefFieldName = "assetRef";
 
 export interface SanityImageRef extends SanityDocument {
-    assetRef: Reference;
+    assetRef: { asset: Reference };
 }
 
 export const sectionIconSchemaName = "sectionIcon";
