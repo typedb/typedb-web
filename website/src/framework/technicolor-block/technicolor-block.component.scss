@@ -62,15 +62,15 @@ $block-gap: 144px;
 }
 
 .tb-graphic-line-green {
-    background: linear-gradient(#000 0%, $color-green 35%, $color-green 65%, #000 100%);
+    background: linear-gradient(transparent 0%, #02DAC911 10%, $color-green 50%, #02DAC911 90%, transparent 100%);
 }
 
 .tb-graphic-line-pink {
-    background: linear-gradient(#000 0%, $color-secondary-pink 35%, $color-secondary-pink 65%, #000 100%);
+    background: linear-gradient(transparent 0%, #FF87DC11 10%, $color-secondary-pink 50%, #FF87DC11 90%, transparent 100%);
 }
 
 .tb-graphic-line-yellow {
-    background: linear-gradient(#000 0%, $color-secondary-yellow 35%, $color-secondary-yellow 65%, #000 100%);
+    background: linear-gradient(transparent 0%, #FFE49E11 10%, $color-secondary-yellow 50%, #FFE49E11 90%, transparent 100%);
 }
 
 .tb-graphic-line-top {
