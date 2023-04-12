@@ -2,7 +2,7 @@ import { NgModule } from "@angular/core";
 import { BrowserModule } from "@angular/platform-browser";
 import { FrameworkModule } from "../framework/framework.module";
 import { NotFoundPageComponent } from "./not-found-page/not-found-page.component";
-import { HomePageTechnicolorBlockComponent, HomePageComponent, HomePageOrganisationLogosComponent, HomePageFeatureTabsComponent } from "./home-page/home-page.component";
+import { HomePageTechnicolorBlockComponent, HomePageComponent, HomePageOrganisationLogosComponent, HomePageFeatureTabsComponent, HomePageUseCasesComponent } from "./home-page/home-page.component";
 
 @NgModule({
     declarations: [
@@ -10,6 +10,7 @@ import { HomePageTechnicolorBlockComponent, HomePageComponent, HomePageOrganisat
         HomePageComponent,
         HomePageFeatureTabsComponent,
         HomePageOrganisationLogosComponent,
+        HomePageUseCasesComponent,
         NotFoundPageComponent,
     ],
     imports: [

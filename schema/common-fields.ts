@@ -108,12 +108,16 @@ export const textLinkField = defineField({
     type: "textLink",
 });
 
-export const videoURLFieldName = "videoURL";
+export const learnMoreLinkField = Object.assign({}, linkField, { name: "learnMoreLink", title: "'Learn More' link" });
 
-export const videoURLField = defineField({
-    name: videoURLFieldName,
-    title: "Video URL",
-    type: "url",
+export const videoEmbedFieldName = "videoEmbed";
+
+export const videoEmbedField = defineField({
+    name: videoEmbedFieldName,
+    title: "Video Embed",
+    type: "reference",
+    to: [{type: "videoEmbed"}],
+    validation: (rule: ReferenceRule) => rule.required(),
 });
 
 export const keyPointsFieldName = "keyPoints";

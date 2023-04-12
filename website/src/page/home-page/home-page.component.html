@@ -8,6 +8,10 @@
             <td-home-page-technicolor-block [section]="page.featuresSection" [page]="page"></td-home-page-technicolor-block>
             <td-home-page-feature-tabs [featureTabs]="page.featuresSection.featureTabs"></td-home-page-feature-tabs>
         </ng-container>
+        <ng-container *ngIf="page.useCasesSection">
+            <td-home-page-technicolor-block [section]="page.useCasesSection" [page]="page"></td-home-page-technicolor-block>
+            <td-home-page-use-cases [useCases]="page.useCasesSection.useCases"></td-home-page-use-cases>
+        </ng-container>
         <!-- TODO other blocks, visual contents -->
     </div>
 </article>

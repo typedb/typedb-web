@@ -1,4 +1,5 @@
 import { actionSchemas } from "./action";
+import { linkSchemas } from "./link";
 import { componentSchemas } from "./component";
 import { formSchemas } from "./form";
 import { sectionIconSchema } from "./image";
@@ -11,11 +12,11 @@ import { testimonialSchema } from "./testimonial";
 import { textSchemas } from "./text";
 
 export const schemaTypes = [
-    ...actionSchemas, ...componentSchemas, ...formSchemas, ...keyPointSchemas, sectionIconSchema,
+    ...actionSchemas, ...linkSchemas, ...componentSchemas, ...formSchemas, ...keyPointSchemas, sectionIconSchema,
     ...navigationSchemas, ...organisationSchemas, ...pageSchemas, ...socialMediaSchemas, ...textSchemas, testimonialSchema
 ];
 
-export { linkSchemaName } from "./action";
+export { linkSchemaName, Link, videoEmbedSchemaName, VideoEmbed } from "./link";
 export { ContentTextTab } from "./component/content-text-tabs";
 export { formsSchemaName } from "./form";
 export { sectionIconSchemaName } from "./image";
@@ -27,7 +28,7 @@ export { Page } from "./page/common";
 export type { SanityPage } from "./page/common";
 export { FeaturesPage, featuresPageSchemaName } from "./page/features";
 export type { SanityFeaturesPage } from "./page/features";
-export { HomePage, HomePageCoreSection, HomePageIntroSection, HomePageSection, homePageSchemaName } from "./page/home";
+export { HomePage, HomePageCoreSection, HomePageIntroSection, HomePageSection, HomePageUseCase, homePageSchemaName } from "./page/home";
 export type { SanityHomePage } from "./page/home";
 export { IntroPage, introPageSchemaName } from "./page/intro";
 export type { SanityIntroPage } from "./page/intro";

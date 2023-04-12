@@ -1,5 +1,5 @@
 import { defineField, defineType } from "@sanity/types";
-import { linkSchemaName } from "../action";
+import { linkSchemaName } from "../link";
 import { titleField, titleFieldName } from "../common-fields";
 import { socialMediaLinksField, socialMedias } from "../social-media";
 

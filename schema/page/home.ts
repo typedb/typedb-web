@@ -1,6 +1,7 @@
 import { ArrayRule, defineField, defineType, Reference } from "@sanity/types";
-import { buttonSchemaName, Link, SanityActions } from "../action";
-import { bodyFieldRichText, collapsibleOptions, sectionIconField, isVisibleField, keyPointsField, linkField, optionalActionsField, pageTitleField, titleAndBodyFields, titleBodyIconFields, titleField, videoURLField } from "../common-fields";
+import { buttonSchemaName } from "../action";
+import { Link, SanityActions } from "../link";
+import { bodyFieldRichText, collapsibleOptions, sectionIconField, isVisibleField, keyPointsField, linkField, optionalActionsField, pageTitleField, titleAndBodyFields, titleBodyIconFields, titleField, videoEmbedField, learnMoreLinkField } from "../common-fields";
 import { ContentTextTab, contentTextTabSchema, SanityContentTextTab } from "../component/content-text-tabs";
 import { formField } from "../form";
 import { KeyPoint, SanityKeyPoint } from "../key-point";
@@ -112,7 +113,7 @@ export class HomePageFeaturesSection extends HomePageCoreSection {
 
     constructor(data: SanityFeaturesSection, db: SanityDataset) {
         super(data, db);
-        this.featureTabs = data.featureTabs.map(x => new ContentTextTab(x));
+        this.featureTabs = data.featureTabs.map(x => new ContentTextTab(x, db));
     }
 }
 
@@ -229,7 +230,7 @@ const featureTabSchema = defineType({
     type: "object",
     fields: [
         ...contentTextTabSchema.fields,
-        Object.assign({}, linkField, { name: "learnMoreLink", title: "'Learn More' Link" }),
+        learnMoreLinkField,
     ],
 });
 
@@ -242,9 +243,9 @@ const useCaseSchema = defineType({
     fields: [
         titleField,
         sectionIconField,
-        videoURLField,
+        videoEmbedField,
         bodyFieldRichText,
-        Object.assign({}, linkField, { title: "Link to Use Case Page" }),
+        Object.assign({}, learnMoreLinkField, { title: "Link to Use Case Page" }),
     ],
 });
 
@@ -278,6 +279,7 @@ const sectionSchemas = [
             title: "Use Cases",
             type: "array",
             of: [{type: useCaseSchemaName}],
+            validation: (rule: ArrayRule<any>) => rule.required().length(5),
         }),
         isVisibleField,
     ]),

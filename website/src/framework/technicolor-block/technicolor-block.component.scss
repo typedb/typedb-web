@@ -1,5 +1,9 @@
+@import "../../styles/colors";
+
+$block-gap: 144px;
+
 .tb-margin-top {
-    height: 144px;
+    height: $block-gap;
     display: flex;
     flex-direction: column;
 }
@@ -14,6 +18,7 @@
     padding: 0 14px;
     display: flex;
     flex-direction: column;
+    align-items: center;
 }
 
 .tb-graphic-icon-area {
@@ -26,9 +31,20 @@
     position: absolute;
     width: 100%;
     height: 100%;
-    background: rgba(2, 218, 201, 0.15);
     filter: blur(15px);
     border-radius: 50%;
+}
+
+.tb-graphic-icon-bg-green {
+    background: rgba(2, 218, 201, 0.15);
+}
+
+.tb-graphic-icon-bg-pink {
+    background: rgba(255, 133, 219, 0.15);
+}
+
+.tb-graphic-icon-bg-yellow {
+    background: rgba(254, 170, 116, 0.15);
 }
 
 .tb-graphic-icon {
@@ -42,9 +58,23 @@
 }
 
 .tb-graphic-line {
-    flex: 1;
     width: 3px;
-    background: linear-gradient(#00DEC9 0%, #000 100%);
+}
+
+.tb-graphic-line-green {
+    background: linear-gradient(#000 0%, $color-green 35%, $color-green 65%, #000 100%);
+}
+
+.tb-graphic-line-pink {
+    background: linear-gradient(#000 0%, $color-secondary-pink 35%, $color-secondary-pink 65%, #000 100%);
+}
+
+.tb-graphic-line-yellow {
+    background: linear-gradient(#000 0%, $color-secondary-yellow 35%, $color-secondary-yellow 65%, #000 100%);
+}
+
+.tb-graphic-line-top {
+    height: $block-gap;
 }
 
 .tb-body {

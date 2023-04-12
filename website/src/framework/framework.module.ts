@@ -1,6 +1,7 @@
 import { NgModule } from "@angular/core";
 import { BrowserModule } from "@angular/platform-browser";
 import { FormsModule } from "@angular/forms";
+import { LinkDirective } from "./link/link.directive";
 import { SpinningWheelComponent } from "./spinning-wheel/spinning-wheel.component";
 import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
 import { ModalComponent } from "./modal/modal.component";
@@ -9,6 +10,7 @@ import { TechnicolorBlockComponent } from "./technicolor-block/technicolor-block
 
 @NgModule({
     declarations: [
+        LinkDirective,
         ModalComponent,
         SpinningWheelComponent,
         TechnicolorBlockComponent,
@@ -21,6 +23,7 @@ import { TechnicolorBlockComponent } from "./technicolor-block/technicolor-block
     ],
     exports: [
         TechnicolorBlockComponent,
+        LinkDirective,
     ],
     providers: [
     ],

@@ -1,5 +1,5 @@
 import { defineType } from "@sanity/types";
-import { SanityLink, SanityTextLink } from "../action";
+import { SanityLink, SanityTextLink } from "../link";
 import { bodyFieldRichText, textLinkField, titleField } from "../common-fields";
 import { SanityDataset } from "../sanity-core";
 import { RichText, SanityPortableText } from "../text";

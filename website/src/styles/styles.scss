@@ -61,7 +61,7 @@ p, aside, li {
 }
 
 strong {
-    font-weight: 600;
+    font-weight: 700;
 }
 
 input[type="text"], input[type="email"] {
@@ -74,6 +74,10 @@ address {
 
 [hidden] {
     display: none !important;
+}
+
+.flex {
+    flex: 1;
 }
 
 .text-xxl {
@@ -98,7 +102,7 @@ address {
 
 .text-s {
     font-size: 18px;
-    line-height: 28px;
+    line-height: 26px;
 }
 
 .text-xs {

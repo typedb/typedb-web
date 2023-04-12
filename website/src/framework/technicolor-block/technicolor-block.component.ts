@@ -24,6 +24,24 @@ export class TechnicolorBlockComponent {
         }
     }
 
+    get graphicLineColorClass(): string {
+        switch (this.index % 3) {
+            case 0: return "tb-graphic-line-green";
+            case 1: return "tb-graphic-line-pink";
+            case 2: return "tb-graphic-line-yellow";
+            default: throw "Unreachable code";
+        }
+    }
+
+    get graphicIconBgColorClass(): string {
+        switch (this.index % 3) {
+            case 0: return "tb-graphic-icon-bg-green";
+            case 1: return "tb-graphic-icon-bg-pink";
+            case 2: return "tb-graphic-icon-bg-yellow";
+            default: throw "Unreachable code";
+        }
+    }
+
     get themeColorHex(): string {
         switch (this.index % 3) {
             case 0: return "#02DAC9"; // TODO: parametrise

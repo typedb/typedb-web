@@ -1,7 +1,7 @@
 import { DocumentIcon } from "@sanity/icons";
 import { ArrayRule, defineField, defineType, Reference } from "@sanity/types";
-import { Link } from "../action";
-import { bodyFieldRichText, collapsibleOptions, isVisibleField, keyPointsField, linkField, pageTitleField, routeField, SanityVisibleToggle, titleAndBodyFields, titleField, videoURLField } from "../common-fields";
+import { Link } from "../link";
+import { bodyFieldRichText, collapsibleOptions, isVisibleField, keyPointsField, learnMoreLinkField, linkField, pageTitleField, routeField, SanityVisibleToggle, titleAndBodyFields, titleField, videoEmbedField } from "../common-fields";
 import { LinkPanel, linkPanelSchemaName, SanityLinkPanel } from "../component/link-panel";
 import { KeyPoint, SanityKeyPoint } from "../key-point";
 import { SanityDataset } from "../sanity-core";
@@ -156,16 +156,16 @@ const exampleTabSchema = defineType({
     type: "object",
     fields: [
         titleField,
-        videoURLField,
+        videoEmbedField,
         bodyFieldRichText,
-        Object.assign({}, linkField, { name: "learnMoreLink", title: "'Learn More' link" }),
+        learnMoreLinkField,
     ],
 });
 
 const sectionSchemas = [
     sectionSchema("intro", [
         ...titleAndBodyFields,
-        videoURLField,
+        videoEmbedField,
         linkPanelsField,
         isVisibleField,
     ]),

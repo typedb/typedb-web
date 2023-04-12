@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
-import { ContentTextTab, HomePage, HomePageCoreSection, HomePageIntroSection, Organisation, SanityHomePage, SanityPage } from "typedb-web-schema";
+import { ContentTextTab, HomePage, HomePageCoreSection, HomePageIntroSection, HomePageUseCase, Organisation, SanityHomePage, SanityPage } from "typedb-web-schema";
 import { HomePageIntroTechnicolorBlock, TechnicolorBlock } from "../../model/technicolor-block";
 import { ContentService } from "../../service/content.service";
 
@@ -77,11 +77,40 @@ export class HomePageFeatureTabsComponent implements OnInit {
     }
 
     tabID(featureTab: ContentTextTab): string {
-        return featureTab.title.replace(" ", "-");
+        return sanitiseHtmlID(featureTab.title);
     }
 
     setSelectedTab(featureTab: ContentTextTab) {
         // TODO: invoke when navigating via hashroute
         this.selectedTab = featureTab;
     }
+}
+
+@Component({
+    selector: "td-home-page-use-cases",
+    templateUrl: "use-cases.component.html",
+    styleUrls: ["use-cases.component.scss"],
+})
+export class HomePageUseCasesComponent implements OnInit {
+    @Input() useCases!: HomePageUseCase[];
+    selectedUseCase!: HomePageUseCase;
+
+    ngOnInit() {
+        this.selectedUseCase = this.useCases[0];
+    }
+
+    tabID(useCase: HomePageUseCase): string {
+        return sanitiseHtmlID(useCase.title);
+    }
+
+    setSelectedTab(useCase: HomePageUseCase) {
+        // TODO: invoke when navigating via hashroute
+        this.selectedUseCase = useCase;
+    }
+}
+
+function sanitiseHtmlID(raw: string): string {
+    return raw.replace(/\s/g, "-")
+        .replace(/,/g, "")
+        .replace(/&/g, "");
 }

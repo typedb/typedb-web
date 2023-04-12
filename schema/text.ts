@@ -1,5 +1,5 @@
 import { defineType, PortableTextTextBlock } from "@sanity/types";
-import { SanityActions } from "./action";
+import { SanityActions } from "./link";
 import { bodyFieldRichText, optionalActionsField, titleFieldWithHighlights } from "./common-fields";
 import { schemaName } from "./util";
 

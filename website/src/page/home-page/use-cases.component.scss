@@ -1,50 +1,54 @@
 @import "../../styles/colors";
 @import "../../styles/sizes";
 
-.ft-root {
-    height: 630px;
+.uc-root {
+    height: 800px;
     border: 1px solid $color-light-purple;
     border-radius: $border-radius;
     background: $color-purple;
     display: flex;
-    flex-direction: column;
-}
-
-.ft-tabs {
-    height: 74px;
-    display: flex;
     flex-direction: row;
-    border-bottom: 1px solid $color-light-purple;
 }
 
-.ft-tab {
+.uc-tabs {
+    width: 202px;
+    display: flex;
+    flex-direction: column;
+    border-right: 1px solid $color-light-purple;
+    text-align: center;
+}
+
+.uc-tab {
     flex: 1;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
+    gap: 8px;
+    padding: 12px;
 
     &:not(:first-child) {
-        border-left: 1px solid $color-light-purple;
+        border-top: 1px solid $color-light-purple;
     }
 }
 
-.ft-tab-selected {
+.uc-tab-selected {
     color: $color-green;
 }
 
-.ft-tab-content {
+.uc-tab-content {
     flex: 1;
     padding: 40px;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     gap: 40px;
 }
 
-.ft-graphic {
-    width: 674px;
+.uc-video {
+    height: 480px;
 }
 
-.ft-text-area {
+.uc-text-area {
     flex: 1;
     display: flex;
     flex-direction: column;

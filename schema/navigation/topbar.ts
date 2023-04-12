@@ -1,7 +1,7 @@
 import { BlockElementIcon, LinkIcon, MasterDetailIcon } from "@sanity/icons";
 import { defineField, defineType } from "@sanity/types";
-import { textLinkSchemaName } from "../action";
-import { linkField, titleField, titleFieldName, videoURLField } from "../common-fields";
+import { textLinkSchemaName } from "../link";
+import { linkField, titleField, titleFieldName, videoEmbedField } from "../common-fields";
 
 const descriptionField = defineField({
     name: "description",
@@ -52,7 +52,7 @@ const videoColumnSchema = defineType({
     type: "object",
     fields: [
         titleField,
-        videoURLField,
+        videoEmbedField,
     ],
 });
 
