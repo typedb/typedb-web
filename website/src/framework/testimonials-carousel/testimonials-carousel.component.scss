@@ -1,0 +1,123 @@
+@import "../../styles/colors";
+@import "../../styles/sizes";
+
+.tc-carousel {
+    position: relative;
+    height: 304px;
+    perspective: 1400px;
+    transform-style: preserve-3d;
+}
+
+.tc-card {
+    position: absolute;
+    width: 560px;
+    height: 304px;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    top: 0;
+    border-radius: $border-radius;
+    background: $color-deep-purple;
+    box-shadow: 0 8px 6px rgba(6, 4, 20, 0.601481);
+    transition-property: transform;
+    transition-duration: 400ms;
+    transition-timing-function: ease;
+
+    &.tc-card-0 {
+        transform: translate3d(-60%, 0, -380px);
+        > .tc-card-content { opacity: 40%; }
+    }
+    &.tc-card-1 {
+        transform: translate3d(-40%, 0, -230px);
+        > .tc-card-content { opacity: 60%; }
+    }
+    &.tc-card-2 {
+        transform: translate3d(-20%, 0, -100px);
+        > .tc-card-content { opacity: 80%; }
+    }
+    &.tc-card-3 {
+        transform: translate3d(0%, 0, 0);
+        > .tc-card-content { opacity: 100%; }
+    }
+    &.tc-card-4 {
+        transform: translate3d(20%, 0, -100px);
+        > .tc-card-content { opacity: 80%; }
+    }
+    &.tc-card-5 {
+        transform: translate3d(40%, 0, -230px);
+        > .tc-card-content { opacity: 60%; }
+    }
+    &.tc-card-6 {
+        transform: translate3d(60%, 0, -380px);
+        > .tc-card-content { opacity: 40%; }
+    }
+}
+
+.tc-card-content {
+    height: 100%;
+    width: 100%;
+    background: $color-purple;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.tc-details {
+    border-top: 1px solid $color-light-purple;
+    padding-top: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.tc-person {
+    display: flex;
+    flex-direction: row;
+    gap: 16px;
+}
+
+.tc-logo {
+    height: 48px;
+}
+
+.tc-control-panel {
+    margin-top: 48px;
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+}
+
+.tc-controls-btn {
+    width: 45px;
+    height: 45px;
+    border: 1px solid $color-green;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: transparent;
+    cursor: pointer;
+}
+
+.tc-beads {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    gap: 20px;
+}
+
+.tc-bead {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: $color-light-purple;
+    transition: transform 150ms ease;
+
+    &.tc-bead-focused {
+        transform: scale(1.5);
+        background: $color-green;
+    }
+}

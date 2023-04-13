@@ -1,7 +1,36 @@
-import { defineField, defineType } from "@sanity/types";
-import { organisationSchemaName } from "./organisation";
+import { defineField, defineType, Reference, SanityDocument } from "@sanity/types";
+import { headshotSchemaName, SanityImageRef } from "./image";
+import { Organisation, organisationSchemaName } from "./organisation";
+import { SanityDataset } from "./sanity-core";
+import { Document } from "./sanity-core/document";
+import { schemaName } from "./util";
 
-export const testimonialSchemaName = "testimonial";
+export interface SanityTestimonial extends SanityDocument {
+    organisation: Reference;
+    author: string;
+    headshot: Reference;
+    jobTitle: string;
+    body: string;
+}
+
+export class Testimonial extends Document {
+    readonly organisation: Organisation;
+    readonly author: string;
+    readonly headshotURL: string;
+    readonly jobTitle: string;
+    readonly body: string;
+
+    constructor(data: SanityTestimonial, db: SanityDataset) {
+        super(data);
+        this.organisation = new Organisation(db.resolveRef(data.organisation), db);
+        this.author = data.author;
+        this.headshotURL = db.resolveImageRef(data.headshot).url;
+        this.jobTitle = data.jobTitle;
+        this.body = data.body;
+    }
+}
+
+export const testimonialSchemaName = schemaName(Testimonial);
 
 export const testimonialSchema = defineType({
     name: testimonialSchemaName,
@@ -22,7 +51,8 @@ export const testimonialSchema = defineType({
         defineField({
             name: "headshot",
             title: "Headshot",
-            type: "image",
+            type: "reference",
+            to: [{type: headshotSchemaName}],
         }),
         defineField({
             name: "jobTitle",

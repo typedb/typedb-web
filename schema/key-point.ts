@@ -1,7 +1,7 @@
 import { defineType, PortableTextTextBlock, Reference } from "@sanity/types";
-import { bodyFieldRichText, titleField } from "./common-fields";
+import { bodyFieldRichText, sectionIconField, titleField } from "./common-fields";
 import { SanityDataset } from "./sanity-core";
-import { ParagraphWithHighlights } from "./text";
+import { RichText } from "./text";
 import { schemaName } from "./util";
 
 export interface SanityKeyPoint {
@@ -12,12 +12,12 @@ export interface SanityKeyPoint {
 
 export class KeyPoint {
     title: string;
-    body: ParagraphWithHighlights;
+    body: RichText;
     iconURL: string;
 
     constructor(data: SanityKeyPoint, db: SanityDataset) {
         this.title = data.title;
-        this.body = new ParagraphWithHighlights(data.body);
+        this.body = new RichText(data.body);
         this.iconURL = db.resolveImageRef(data.icon).url;
     }
 }
@@ -31,11 +31,7 @@ const keyPointSchema = defineType({
     fields: [
         titleField,
         bodyFieldRichText,
-        // TODO
-        // defineField({
-        //     name: "icon",
-        //     type: ???
-        // }),
+        sectionIconField,
     ]
 });
 

@@ -8,7 +8,7 @@ import { KeyPoint, SanityKeyPoint } from "../key-point";
 import { Organisation, organisationLogosField } from "../organisation";
 import { SanityDataset } from "../sanity-core";
 import { SocialMediaID, socialMediaLinksField } from "../social-media";
-import { testimonialSchemaName } from "../testimonial";
+import { SanityTestimonial, Testimonial, testimonialSchemaName } from "../testimonial";
 import { BodyText, ParagraphWithHighlights, RichText, SanityBodyText, SanityTitle, SanityTitleWithHighlights, TitleWithHighlights } from "../text";
 
 import { schemaName } from "../util";
@@ -63,10 +63,12 @@ interface SanityCloudSection extends SanityCoreSection, SanityActions {
 }
 
 interface SanityCommunitySection extends SanityCoreSection {
-    socialMedias: SocialMediaID[];
+    socialMediaLinks: SocialMediaID[];
 }
 
-interface SanityTestimonialsSection extends SanityCoreSection {}
+interface SanityTestimonialsSection extends SanityCoreSection {
+    testimonials: SanityTestimonial[];
+}
 
 interface SanityConclusionSection extends SanitySection {}
 
@@ -165,13 +167,16 @@ export class HomePageCommunitySection extends HomePageCoreSection {
 
     constructor(data: SanityCommunitySection, db: SanityDataset) {
         super(data, db);
-        this.socialMedias = data.socialMedias;
+        this.socialMedias = data.socialMediaLinks;
     }
 }
 
 export class HomePageTestimonialsSection extends HomePageCoreSection {
+    readonly testimonials: Testimonial[];
+
     constructor(data: SanityTestimonialsSection, db: SanityDataset) {
         super(data, db);
+        this.testimonials = data.testimonials.map(x => new Testimonial(x, db));
     }
 }
 

@@ -1,0 +1,45 @@
+@import "../../styles/colors";
+@import "../../styles/sizes";
+
+$kpt-border: 1px solid $color-light-purple;
+
+.kpt-table {
+    background: $color-purple;
+    border-radius: $border-radius;
+    border-collapse: collapse;
+    box-shadow: 0 0 0 1px $color-light-purple;
+
+    tr {
+        height: 132px;
+
+        &:not(:first-child) {
+            border-top: $kpt-border;
+        }
+    }
+
+    th, td {
+        padding: 32px;
+
+        &:not(:first-child) {
+            border-left: $kpt-border;
+        }
+    }
+
+    th {
+        width: 140px;
+
+        > div {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    }
+
+    td > div {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        gap: $p-margin-s;
+    }
+}

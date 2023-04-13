@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Titillium+Web:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700&family=Ubuntu+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap');
 @import "colors";
+@import "sizes";
 
 $default-background: $color-black-purple;
 $default-text-color: $color-white;
@@ -48,6 +49,10 @@ h1, h2, h3, h4, h5, h6, p {
     margin: 0;
 }
 
+h2, h3, h4, h5, h6 {
+    font-weight: 400;
+}
+
 a, a p, a address {
     cursor: pointer;
     color: $color-white;
@@ -80,6 +85,22 @@ address {
     flex: 1;
 }
 
+.page-section {
+    margin-top: $section-margin;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.subsection {
+    margin-top: $subsection-margin;
+}
+
+.subtitle {
+    margin-top: $subtitle-margin;
+}
+
 .text-xxl {
     font-size: 56px;
     line-height: 64px;
@@ -107,7 +128,7 @@ address {
 
 .text-xs {
     font-size: 16px;
-    line-height: 24px;
+    line-height: 28px;
 }
 
 .text-xxs {
@@ -115,8 +136,16 @@ address {
     line-height: 24px;
 }
 
-.p-margin-top {
-    margin-top: 32px;
+.header-margin-s {
+    margin-top: 14px;
+}
+
+.p-margin-l {
+    margin-top: $p-margin-l;
+}
+
+.p-margin-s {
+    margin-top: $p-margin-s;
 }
 
 .bg-nebula-main {

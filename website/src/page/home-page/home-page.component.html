@@ -12,6 +12,25 @@
             <td-home-page-technicolor-block [section]="page.useCasesSection" [page]="page"></td-home-page-technicolor-block>
             <td-home-page-use-cases [useCases]="page.useCasesSection.useCases"></td-home-page-use-cases>
         </ng-container>
-        <!-- TODO other blocks, visual contents -->
+        <ng-container *ngIf="page.toolingSection">
+            <td-home-page-technicolor-block [section]="page.toolingSection" [page]="page"></td-home-page-technicolor-block>
+            <td-key-point-panels-3x1 [keyPoints]="page.toolingSection.keyPoints"></td-key-point-panels-3x1>
+        </ng-container>
+        <ng-container *ngIf="page.cloudSection">
+            <td-home-page-technicolor-block [section]="page.cloudSection" [page]="page"></td-home-page-technicolor-block>
+            <td-key-point-table [keyPoints]="page.cloudSection.keyPoints"></td-key-point-table>
+        </ng-container>
+        <ng-container *ngIf="page.communitySection">
+            <td-home-page-technicolor-block [section]="page.communitySection" [page]="page"></td-home-page-technicolor-block>
+            <td-social-media-panels [socialMedias]="page.communitySection.socialMedias"></td-social-media-panels>
+        </ng-container>
+        <ng-container *ngIf="page.testimonialsSection">
+            <td-home-page-technicolor-block [section]="page.testimonialsSection" [page]="page"></td-home-page-technicolor-block>
+            <td-testimonials-carousel [testimonials]="page.testimonialsSection.testimonials"></td-testimonials-carousel>
+        </ng-container>
+        <section *ngIf="page.conclusionSection" class="page-section">
+            <td-h1-with-highlights [value]="page.conclusionSection.title" class="text-xxl"></td-h1-with-highlights>
+            <td-rich-text [value]="page.conclusionSection.body" class="subtitle text-m"></td-rich-text>
+        </section>
     </div>
 </article>

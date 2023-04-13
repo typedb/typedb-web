@@ -1,0 +1,5 @@
+<p *ngFor="let paragraph of value.paragraphs">
+    <span *ngFor="let span of paragraph.spans" [ngStyle]="span.marks.includes('strong') ? { 'font-weight': '700' } : undefined">
+        {{ span.text }}
+    </span>
+</p>

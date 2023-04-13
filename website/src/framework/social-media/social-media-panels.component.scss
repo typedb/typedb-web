@@ -1,0 +1,22 @@
+@import "../../styles/colors";
+@import "../../styles/sizes";
+
+.sm-root {
+    height: 160px;
+    border: 1px solid $color-light-purple;
+    border-radius: $border-radius;
+    background: $color-purple;
+    display: flex;
+    flex-direction: row;
+}
+
+.sm-panel {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &:not(:first-child) {
+        border-left: 1px solid $color-light-purple;
+    }
+}

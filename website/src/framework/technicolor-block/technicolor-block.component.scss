@@ -2,6 +2,10 @@
 
 $block-gap: 144px;
 
+.tb-root {
+    background-repeat: no-repeat;
+}
+
 .tb-margin-top {
     height: $block-gap;
     display: flex;

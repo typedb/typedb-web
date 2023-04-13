@@ -2,7 +2,7 @@ import { actionSchemas } from "./action";
 import { linkSchemas } from "./link";
 import { componentSchemas } from "./component";
 import { formSchemas } from "./form";
-import { sectionIconSchema } from "./image";
+import { imageSchemas } from "./image";
 import { keyPointSchemas } from "./key-point";
 import { navigationSchemas } from "./navigation";
 import { organisationSchemas } from "./organisation";
@@ -12,7 +12,7 @@ import { testimonialSchema } from "./testimonial";
 import { textSchemas } from "./text";
 
 export const schemaTypes = [
-    ...actionSchemas, ...linkSchemas, ...componentSchemas, ...formSchemas, ...keyPointSchemas, sectionIconSchema,
+    ...actionSchemas, ...linkSchemas, ...componentSchemas, ...formSchemas, ...keyPointSchemas, ...imageSchemas,
     ...navigationSchemas, ...organisationSchemas, ...pageSchemas, ...socialMediaSchemas, ...textSchemas, testimonialSchema
 ];
 
@@ -20,6 +20,7 @@ export { linkSchemaName, Link, videoEmbedSchemaName, VideoEmbed } from "./link";
 export { ContentTextTab } from "./component/content-text-tabs";
 export { formsSchemaName } from "./form";
 export { sectionIconSchemaName } from "./image";
+export { KeyPoint } from "./key-point";
 export { footerSchemaName } from "./navigation/footer";
 export { topbarSchemaName } from "./navigation/topbar";
 export { Organisation } from "./organisation";
@@ -36,6 +37,9 @@ export { useCasePageSchemaName } from "./page/use-case";
 export { webinarsPageSchemaName } from "./page/webinars";
 export { Document } from "./sanity-core/document";
 export { SanityDataset } from "./sanity-core";
-export { communityResourcesSchemaName } from "./social-media";
+export { communityResourcesSchemaName, socialMedias } from "./social-media";
+export type { SocialMediaID } from "./social-media";
+export { Testimonial } from "./testimonial";
+export type { SanityTestimonial } from "./testimonial";
 export { ParagraphWithHighlights, RichText } from "./text";
 export type { SanityPortableText } from "./text";

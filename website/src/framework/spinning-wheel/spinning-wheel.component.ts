@@ -1,5 +1,5 @@
-import {Component} from "@angular/core";
-import {faSpinner} from "@fortawesome/free-solid-svg-icons";
+import { Component } from "@angular/core";
+import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 
 @Component({
     selector: "spinning-wheel",

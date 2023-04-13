@@ -1,0 +1,30 @@
+<div class="section tc-root">
+    <div class="tc-carousel">
+        <div *ngFor="let testimonial of testimonials; index as idx" [class]="'tc-card ' + cardClass(idx)">
+            <div class="tc-card-content">
+                <p class="text-s"><em>{{ testimonial.body }}</em></p>
+                <div class="tc-details">
+                    <div class="tc-person">
+                        <img class="tc-headshot" [src]="testimonial.headshotURL" alt=""/>
+                        <div class="tc-person-text">
+                            <h3 class="text-s"><strong>{{ testimonial.author }}</strong></h3>
+                            <p class="text-xxs">{{ testimonial.jobTitle }}, {{ testimonial.organisation.name }}</p>
+                        </div>
+                    </div>
+                    <img class="tc-logo" [src]="testimonial.organisation.logoURL" alt=""/>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="tc-control-panel">
+        <button class="tc-controls-btn" (click)="previous()">
+            <img src="/assets/img/chevron-left.svg" alt="<"/>
+        </button>
+        <div class="tc-beads">
+            <div *ngFor="let _ of testimonials; index as idx" class="tc-bead" [ngClass]="{'tc-bead-focused': idx === focusedIndex}"></div>
+        </div>
+        <button class="tc-controls-btn" (click)="next()">
+            <img src="/assets/img/chevron-right.svg" alt=">"/>
+        </button>
+    </div>
+</div>

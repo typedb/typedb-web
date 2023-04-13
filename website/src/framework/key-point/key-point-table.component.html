@@ -1,0 +1,11 @@
+<table class="section kpt-table">
+    <tr *ngFor="let keyPoint of keyPoints">
+        <th><div><img [src]="keyPoint.iconURL" alt=""/></div></th>
+        <td>
+            <div>
+                <h2 class="text-m">{{ keyPoint.title }}</h2>
+                <td-rich-text [value]="keyPoint.body" class="text-xs"></td-rich-text>
+            </div>
+        </td>
+    </tr>
+</table>
