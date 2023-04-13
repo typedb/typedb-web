@@ -16,6 +16,7 @@ export const schemaTypes = [
     ...navigationSchemas, ...organisationSchemas, ...pageSchemas, ...socialMediaSchemas, ...textSchemas, testimonialSchema
 ];
 
+export { Action } from "./action";
 export { linkSchemaName, Link, videoEmbedSchemaName, VideoEmbed } from "./link";
 export { ContentTextTab } from "./component/content-text-tabs";
 export { formsSchemaName } from "./form";

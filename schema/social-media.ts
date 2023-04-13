@@ -5,7 +5,7 @@ export const socialMedias = {
     meetup: "Meetup",
     twitter: "Twitter",
     youtube: "YouTube",
-    linkedIn: "LinkedIn",
+    linkedin: "LinkedIn",
 } as const;
 
 export const socialMediaList = Object.keys(socialMedias);

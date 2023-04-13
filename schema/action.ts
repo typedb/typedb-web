@@ -1,5 +1,35 @@
-import { defineField, defineType } from "@sanity/types";
-import { textLinkSchema } from "./link";
+import { defineField, defineType, Reference } from "@sanity/types";
+import { Link, textLinkSchema } from "./link";
+import { SanityDataset } from "./sanity-core";
+
+export const buttonStyles = {
+    primary: "Primary",
+    secondary: "Secondary",
+} as const;
+
+export const buttonStyleList = Object.keys(buttonStyles);
+
+export type ButtonStyle = keyof typeof buttonStyles;
+
+export interface SanityButton {
+    style: ButtonStyle;
+    text: string;
+    link: Reference;
+}
+
+export type SanityActions = SanityButton[];
+
+export class Action {
+    readonly buttonStyle: ButtonStyle;
+    readonly text: string;
+    readonly link: Link;
+
+    constructor(data: SanityButton, db: SanityDataset) {
+        this.buttonStyle = data.style;
+        this.text = data.text;
+        this.link = new Link(db.resolveRef(data.link));
+    }
+}
 
 export const buttonSchemaName = "button";
 
@@ -13,7 +43,7 @@ const buttonSchema = defineType({
             description: "Primary (solid) buttons stand out more than secondary (hollow) ones",
             type: "string",
             options: {
-                list: ["primary", "secondary"],
+                list: buttonStyleList,
                 layout: "radio",
                 direction: "horizontal",
             },

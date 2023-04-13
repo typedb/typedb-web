@@ -18,13 +18,13 @@
     </div>
     <div class="tc-control-panel">
         <button class="tc-controls-btn" (click)="previous()">
-            <img src="/assets/img/chevron-left.svg" alt="<"/>
+            <img src="/assets/image/chevron-left.svg" alt="<"/>
         </button>
         <div class="tc-beads">
             <div *ngFor="let _ of testimonials; index as idx" class="tc-bead" [ngClass]="{'tc-bead-focused': idx === focusedIndex}"></div>
         </div>
         <button class="tc-controls-btn" (click)="next()">
-            <img src="/assets/img/chevron-right.svg" alt=">"/>
+            <img src="/assets/image/chevron-right.svg" alt=">"/>
         </button>
     </div>
 </div>

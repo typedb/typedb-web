@@ -1,0 +1,11 @@
+import { Component, Input } from "@angular/core";
+import { Action } from "typedb-web-schema";
+
+@Component({
+    selector: "td-actions",
+    templateUrl: "actions.component.html",
+    styleUrls: ["./actions.component.scss"],
+})
+export class ActionsComponent {
+    @Input() actions?: Action[];
+}

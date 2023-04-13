@@ -1,0 +1,8 @@
+@import "../../styles/sizes";
+
+.root {
+    display: flex;
+    flex-direction: row;
+    gap: 16px;
+    margin-top: $subsection-margin;
+}

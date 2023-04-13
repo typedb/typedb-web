@@ -1,13 +1,9 @@
 import { DocumentVideoIcon, LinkIcon } from "@sanity/icons";
-import { defineField, defineType, Reference, ReferenceRule, SanityDocument, Slug, SlugRule } from "@sanity/types";
+import { defineField, defineType, Reference, SanityDocument, Slug, SlugRule } from "@sanity/types";
 import { linkField, titleField, titleFieldName } from "./common-fields";
 import { SanityDataset } from "./sanity-core";
 import { Document } from "./sanity-core/document";
 import { schemaName } from "./util";
-
-export type SanityAction = { text: string, link: Reference };
-
-export type SanityActions = { actions: SanityAction[] };
 
 export type LinkType = "autoDetect" | "route" | "external";
 

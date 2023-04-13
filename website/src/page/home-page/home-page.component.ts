@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
-import { ContentTextTab, HomePage, HomePageCoreSection, HomePageIntroSection, HomePageUseCase, Organisation, SanityHomePage, SanityPage } from "typedb-web-schema";
+import { ContentTextTab, HomePage, HomePageCoreSection, HomePageIntroSection, HomePageSection, HomePageUseCase, Organisation, SanityHomePage, SanityPage } from "typedb-web-schema";
 import { HomePageIntroTechnicolorBlock, TechnicolorBlock } from "../../model/technicolor-block";
 import { ContentService } from "../../service/content.service";
 
@@ -29,7 +29,7 @@ export class HomePageComponent implements OnInit {
 
 @Component({
     selector: "td-home-page-technicolor-block",
-    template: "<td-technicolor-block [block]=\"block\" [index]=\"index\" [numberOfBlocks]=\"numberOfBlocks\"></td-technicolor-block>",
+    template: "<td-technicolor-block [block]=\"block\" [index]=\"index\" [numberOfBlocks]=\"allBlocks.length\"></td-technicolor-block>",
 })
 export class HomePageTechnicolorBlockComponent implements OnInit {
     @Input() section!: HomePageCoreSection;
@@ -39,18 +39,21 @@ export class HomePageTechnicolorBlockComponent implements OnInit {
 
     ngOnInit() {
         if (this.section instanceof HomePageIntroSection) {
-            this.block = new HomePageIntroTechnicolorBlock(this.section.title, this.section.body, this.section.iconURL);
+            this.block = new HomePageIntroTechnicolorBlock(this.section.title, this.section.body, this.section.iconURL, this.section.actions);
         } else {
             this.block = new TechnicolorBlock(this.section.title, this.section.body, this.section.iconURL);
         }
     }
 
-    get index() {
-        return this.page!.displayedSections.indexOf(this.section!);
+    get allBlocks(): HomePageSection[] {
+        return [
+            this.page!.introSection, this.page!.featuresSection, this.page!.useCasesSection, this.page!.toolingSection,
+            this.page!.cloudSection, this.page!.communitySection, this.page!.testimonialsSection
+        ].filter(x => !!x) as HomePageSection[];
     }
 
-    get numberOfBlocks() {
-        return this.page!.displayedSections.length;
+    get index() {
+        return this.allBlocks.indexOf(this.section!);
     }
 }
 

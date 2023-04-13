@@ -18,6 +18,7 @@
             <ng-container *ngIf="block.isHomePageIntroBlock()">
                 <h1 class="text-xxl"><span *ngFor="let span of block.title.spans" [ngStyle]="span.highlight ? { 'color': themeColorHex } : undefined">{{ span.text }}</span></h1>
                 <p *ngFor="let paragraph of block.body.paragraphs" class="p-margin-l text-l"><span *ngFor="let span of paragraph.spans" [ngStyle]="span.marks.includes('strong') ? { 'color': themeColorHex } : undefined">{{ span.text }}</span></p>
+                <td-actions [actions]="$any(block).actions"></td-actions>
             </ng-container>
             <div class="tb-body-margin-bottom"></div>
         </div>

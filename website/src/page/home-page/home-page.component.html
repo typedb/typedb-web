@@ -19,6 +19,7 @@
         <ng-container *ngIf="page.cloudSection">
             <td-home-page-technicolor-block [section]="page.cloudSection" [page]="page"></td-home-page-technicolor-block>
             <td-key-point-table [keyPoints]="page.cloudSection.keyPoints"></td-key-point-table>
+            <td-actions [actions]="page.cloudSection.actions"></td-actions>
         </ng-container>
         <ng-container *ngIf="page.communitySection">
             <td-home-page-technicolor-block [section]="page.communitySection" [page]="page"></td-home-page-technicolor-block>
@@ -31,6 +32,8 @@
         <section *ngIf="page.conclusionSection" class="page-section">
             <td-h1-with-highlights [value]="page.conclusionSection.title" class="text-xxl"></td-h1-with-highlights>
             <td-rich-text [value]="page.conclusionSection.body" class="subtitle text-m"></td-rich-text>
+            <td-actions [actions]="page.conclusionSection.actions"></td-actions>
+            <div class="planet-blue"></div>
         </section>
     </div>
 </article>

@@ -13,10 +13,16 @@
 .sm-panel {
     flex: 1;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 
     &:not(:first-child) {
         border-left: 1px solid $color-light-purple;
+    }
+
+    img {
+        width: 52px;
+        height: 52px;
     }
 }

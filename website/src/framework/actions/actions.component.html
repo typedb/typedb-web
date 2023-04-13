@@ -1,0 +1,5 @@
+<ng-container *ngIf="actions?.length">
+    <div class="root">
+        <td-button *ngFor="let action of actions" [data]="action"></td-button>
+    </div>
+</ng-container>

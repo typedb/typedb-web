@@ -1,9 +1,8 @@
 import { ArrayRule, defineField, defineType, Reference } from "@sanity/types";
-import { buttonSchemaName } from "../action";
-import { Link, SanityActions } from "../link";
-import { bodyFieldRichText, collapsibleOptions, sectionIconField, isVisibleField, keyPointsField, linkField, optionalActionsField, pageTitleField, titleAndBodyFields, titleBodyIconFields, titleField, videoEmbedField, learnMoreLinkField } from "../common-fields";
+import { Action, SanityActions } from "../action";
+import { Link } from "../link";
+import { bodyFieldRichText, collapsibleOptions, sectionIconField, isVisibleField, keyPointsField, optionalActionsField, pageTitleField, titleAndBodyFields, titleBodyIconFields, titleField, videoEmbedField, learnMoreLinkField } from "../common-fields";
 import { ContentTextTab, contentTextTabSchema, SanityContentTextTab } from "../component/content-text-tabs";
-import { formField } from "../form";
 import { KeyPoint, SanityKeyPoint } from "../key-point";
 import { Organisation, organisationLogosField } from "../organisation";
 import { SanityDataset } from "../sanity-core";
@@ -37,6 +36,7 @@ interface SanityCoreSection extends SanitySection {
 }
 
 interface SanityIntroSection extends SanityCoreSection {
+    actions?: SanityActions;
     userLogos: Reference[];
 }
 
@@ -60,6 +60,7 @@ interface SanityToolingSection extends SanityCoreSection {
 
 interface SanityCloudSection extends SanityCoreSection, SanityActions {
     keyPoints: SanityKeyPoint[];
+    actions?: SanityActions;
 }
 
 interface SanityCommunitySection extends SanityCoreSection {
@@ -70,7 +71,9 @@ interface SanityTestimonialsSection extends SanityCoreSection {
     testimonials: SanityTestimonial[];
 }
 
-interface SanityConclusionSection extends SanitySection {}
+interface SanityConclusionSection extends SanitySection {
+    actions?: SanityActions;
+}
 
 export interface SanityHomePage extends SanityPage {
     [sections.intro.id]: SanityIntroSection;
@@ -103,9 +106,11 @@ export abstract class HomePageCoreSection extends HomePageSection {
 }
 
 export class HomePageIntroSection extends HomePageCoreSection {
+    readonly actions?: Action[];
     readonly userLogos: Organisation[];
     constructor(data: SanityIntroSection, db: SanityDataset) {
         super(data, db);
+        this.actions = data.actions?.map(x => new Action(x, db));
         this.userLogos = data.userLogos.map(x => new Organisation(db.resolveRef(x), db));
     }
 }
@@ -155,10 +160,12 @@ export class HomePageToolingSection extends HomePageCoreSection {
 
 export class HomePageCloudSection extends HomePageCoreSection {
     readonly keyPoints: KeyPoint[];
+    readonly actions?: Action[];
 
     constructor(data: SanityCloudSection, db: SanityDataset) {
         super(data, db);
         this.keyPoints = data.keyPoints.map(x => new KeyPoint(x, db));
+        this.actions = data.actions?.map(x => new Action(x, db));
     }
 }
 
@@ -181,8 +188,10 @@ export class HomePageTestimonialsSection extends HomePageCoreSection {
 }
 
 export class HomePageConclusionSection extends HomePageSection {
-    constructor(data: SanityConclusionSection) {
+    readonly actions?: Action[];
+    constructor(data: SanityConclusionSection, db: SanityDataset) {
         super(data);
+        this.actions = data.actions?.map(x => new Action(x, db));
     }
 }
 
@@ -205,14 +214,7 @@ export class HomePage extends Page {
         this.cloudSection = data.cloudSection.isVisible ? new HomePageCloudSection(data.cloudSection, db) : undefined;
         this.communitySection = data.communitySection.isVisible ? new HomePageCommunitySection(data.communitySection, db) : undefined;
         this.testimonialsSection = data.testimonialsSection.isVisible ? new HomePageTestimonialsSection(data.testimonialsSection, db) : undefined;
-        this.conclusionSection = data.conclusionSection.isVisible ? new HomePageConclusionSection(data.conclusionSection) : undefined;
-    }
-
-    get displayedSections(): HomePageSection[] {
-        return [
-            this.introSection, this.featuresSection, this.useCasesSection, this.toolingSection,
-            this.cloudSection, this.communitySection, this.testimonialsSection, this.conclusionSection
-        ].filter(x => !!x) as HomePageSection[];
+        this.conclusionSection = data.conclusionSection.isVisible ? new HomePageConclusionSection(data.conclusionSection, db) : undefined;
     }
 }
 
@@ -257,12 +259,7 @@ const useCaseSchema = defineType({
 const sectionSchemas = [
     sectionSchema("intro", [
         ...titleBodyIconFields,
-        defineField({
-            name: "button",
-            title: "Button (optional)",
-            type: buttonSchemaName,
-        }),
-        formField,
+        optionalActionsField,
         Object.assign({}, organisationLogosField, { name: "userLogos" }),
         isVisibleField,
     ]),

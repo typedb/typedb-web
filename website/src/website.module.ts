@@ -10,6 +10,7 @@ import { FormsModule } from "@angular/forms";
 import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
 import { ScullyLibModule } from "@scullyio/ng-lib";
 import { HttpClientModule } from "@angular/common/http";
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
     declarations: [
@@ -26,6 +27,7 @@ import { HttpClientModule } from "@angular/common/http";
         ScullyLibModule,
         ServiceModule,
         WebsiteRoutingModule,
+        BrowserAnimationsModule,
     ],
     providers: [],
     bootstrap: [WebsiteComponent]

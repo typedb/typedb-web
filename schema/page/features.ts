@@ -1,5 +1,6 @@
 import { defineField, defineType } from "@sanity/types";
-import { Link, SanityActions, SanityLink } from "../link";
+import { SanityActions } from "../action";
+import { Link, SanityLink } from "../link";
 import { bodyFieldRichText, collapsibleOptions, isVisibleField, optionalActionsField, pageTitleField, sectionIconField, titleFieldWithHighlights } from "../common-fields";
 import { Organisation, organisationLogosField, SanityOrganisation } from "../organisation";
 import { SanityDataset } from "../sanity-core";

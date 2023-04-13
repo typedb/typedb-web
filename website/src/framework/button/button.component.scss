@@ -1,0 +1,46 @@
+@import "../../styles/colors";
+@import "../../styles/sizes";
+
+button {
+    height: 48px;
+    width: 202px;
+    border-width: 1px;
+    border-style: solid;
+    border-radius: $border-radius;
+    font-size: $font-size-xs;
+    font-weight: 600;
+    line-height: $line-height-xs;
+    transition-property: background-color, border;
+    transition-duration: 250ms;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+
+    &.primary {
+        border-color: transparent;
+        background: $color-green;
+
+        a {
+            color: $color-purple;
+        }
+
+        &:hover {
+            background-color: #0B939F;
+        }
+    }
+
+    &.secondary {
+        border-color: $color-green;
+        background: transparent;
+
+        a {
+            color: $color-green;
+        }
+
+        &:hover {
+            background-color: $color-green;
+
+            a {
+                color: $color-purple;
+            }
+        }
+    }
+}

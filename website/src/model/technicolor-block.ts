@@ -1,9 +1,6 @@
-import { ParagraphWithHighlights, RichText } from "typedb-web-schema";
-
-export type TechnicolorBlockVariant = "homePageIntro";
+import { Action, ParagraphWithHighlights, RichText } from "typedb-web-schema";
 
 export class TechnicolorBlock {
-    readonly variant?: TechnicolorBlockVariant;
     readonly title: ParagraphWithHighlights;
     readonly body: RichText;
     readonly iconURL: string;
@@ -24,10 +21,11 @@ export class TechnicolorBlock {
 }
 
 export class HomePageIntroTechnicolorBlock extends TechnicolorBlock {
-    // readonly actions: Action[];
+    readonly actions?: Action[];
 
-    constructor(title: ParagraphWithHighlights, body: RichText, iconURL: string) {
+    constructor(title: ParagraphWithHighlights, body: RichText, iconURL: string, actions?: Action[]) {
         super(title, body, iconURL);
+        this.actions = actions;
     }
 
     override isHomePageIntroBlock(): boolean {

@@ -15,7 +15,7 @@ html, body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 
-    font-family: 'Titillium Web', Geneva, Tahoma, sans-serif;
+    font-family: 'Titillium Web', sans-serif;
 
     margin: 0;
     scroll-padding-top: 80px;
@@ -69,8 +69,8 @@ strong {
     font-weight: 700;
 }
 
-input[type="text"], input[type="email"] {
-    font-family: 'Titillium Web', Geneva, Tahoma, sans-serif;
+button, input[type="text"], input[type="email"], [class^='mat-'], [class*=' mat-'] {
+    font-family: 'Titillium Web', sans-serif;
 }
 
 address {
@@ -102,38 +102,32 @@ address {
 }
 
 .text-xxl {
-    font-size: 56px;
-    line-height: 64px;
+    font-size: $font-size-xxl;
+    line-height: $line-height-xxl;
 }
-
 .text-xl {
-    font-size: 40px;
-    line-height: 54px;
+    font-size: $font-size-xl;
+    line-height: $line-height-xl;
 }
-
 .text-l {
-    font-size: 32px;
-    line-height: 44px;
+    font-size: $font-size-l;
+    line-height: $line-height-l;
 }
-
 .text-m {
-    font-size: 24px;
-    line-height: 32px;
+    font-size: $font-size-m;
+    line-height: $line-height-m;
 }
-
 .text-s {
-    font-size: 18px;
-    line-height: 26px;
+    font-size: $font-size-s;
+    line-height: $line-height-s;
 }
-
 .text-xs {
-    font-size: 16px;
-    line-height: 28px;
+    font-size: $font-size-xs;
+    line-height: $line-height-xs;
 }
-
 .text-xxs {
-    font-size: 14px;
-    line-height: 24px;
+    font-size: $font-size-xxs;
+    line-height: $line-height-xxs;
 }
 
 .header-margin-s {
@@ -149,7 +143,16 @@ address {
 }
 
 .bg-nebula-main {
-    background-image: url("/assets/img/nebula-main.jpg");
+    background-image: url("/assets/image/nebula-main.jpg");
     background-position: center -80px;
     background-repeat: no-repeat;
+}
+
+.planet-blue {
+    margin-top: -24px;
+    z-index: -1;
+    width: 1920px;
+    height: 562px;
+    background-image: url("/assets/image/planet-blue.jpg");
+    background-position-x: center;
 }
