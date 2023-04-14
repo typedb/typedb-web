@@ -1,0 +1,13 @@
+<article>
+    <div *ngIf="page">
+        <section class="intro-section page-section">
+            <td-h1-with-highlights [value]="page.introSection.title" class="text-xxl"></td-h1-with-highlights>
+            <td-rich-text [value]="page.introSection.body" class="subtitle-l text-l"></td-rich-text>
+        </section>
+        <ng-container *ngFor="let section of page.coreSections; index as idx">
+            <td-intro-page-technicolor-block [section]="section" [page]="page" [index]="idx"></td-intro-page-technicolor-block>
+            <td-content-tabs [tabs]="section.contentTabs"></td-content-tabs>
+        </ng-container>
+        <div class="yellow planet"></div>
+    </div>
+</article>

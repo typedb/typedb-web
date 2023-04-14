@@ -18,7 +18,7 @@ export const schemaTypes = [
 
 export { Action } from "./action";
 export { linkSchemaName, Link, videoEmbedSchemaName, VideoEmbed } from "./link";
-export { ContentTextTab } from "./component/content-text-tabs";
+export { ContentTab, ContentTextTab } from "./component/content-text-tabs";
 export { formsSchemaName } from "./form";
 export { sectionIconSchemaName } from "./image";
 export { KeyPoint } from "./key-point";
@@ -32,7 +32,7 @@ export { FeaturesPage, featuresPageSchemaName } from "./page/features";
 export type { SanityFeaturesPage } from "./page/features";
 export { HomePage, HomePageCoreSection, HomePageIntroSection, HomePageSection, HomePageUseCase, homePageSchemaName } from "./page/home";
 export type { SanityHomePage } from "./page/home";
-export { IntroPage, introPageSchemaName } from "./page/intro";
+export { IntroPage, IntroPageCoreSection, introPageSchemaName } from "./page/intro";
 export type { SanityIntroPage } from "./page/intro";
 export { useCasePageSchemaName } from "./page/use-case";
 export { webinarsPageSchemaName } from "./page/webinars";
@@ -42,5 +42,5 @@ export { communityResourcesSchemaName, socialMedias } from "./social-media";
 export type { SocialMediaID } from "./social-media";
 export { Testimonial } from "./testimonial";
 export type { SanityTestimonial } from "./testimonial";
-export { ParagraphWithHighlights, RichText } from "./text";
+export { ParagraphWithHighlights, RichText, TitleAndBody } from "./text";
 export type { SanityPortableText } from "./text";

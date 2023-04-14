@@ -9,7 +9,9 @@ import { TechnicolorBlock } from "../../model/technicolor-block";
 export class TechnicolorBlockComponent {
     @Input() block!: TechnicolorBlock;
     @Input() index!: number;
-    @Input() numberOfBlocks!: number;
+    @Input() size?: "medium" | "large" = "medium";
+    @Input() noTrailingLine?: boolean;
+    @Input() noBackgroundImage?: boolean;
 
     get backgroundImageURL(): string | undefined {
         if (this.index === 0) return undefined;

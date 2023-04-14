@@ -1,5 +1,7 @@
-import { defineField, defineType } from "@sanity/types";
+import { ArrayRule, defineField, defineType, Reference } from "@sanity/types";
 import { bodyFieldRichText, collapsibleOptions, isVisibleField, pageTitleField, sectionIconField, titleFieldWithHighlights } from "../common-fields";
+import { ContentTab, contentTabSchemaName, contentTextTabSchemaName, SanityContentTab } from "../component/content-text-tabs";
+import { SanityDataset } from "../sanity-core";
 import { SanityTitleAndBody, SanityTitleBodyActionsSection, TitleAndBody, titleAndBodySchemaName, TitleBodyActionsSection } from "../text";
 import { schemaName } from "../util";
 import { SanityPage } from "./common";
@@ -13,16 +15,28 @@ export interface SanityIntroPage extends SanityPage {
 }
 
 interface SanityCoreSection extends SanityTitleAndBody {
-
+    icon: Reference;
+    contentTabs: SanityContentTab[];
 }
 
 export class IntroPage {
     readonly [introSection]: TitleBodyActionsSection;
-    readonly [coreSections]: TitleAndBody[];
+    readonly [coreSections]: IntroPageCoreSection[];
 
-    constructor(data: SanityIntroPage) {
+    constructor(data: SanityIntroPage, db: SanityDataset) {
         this.introSection = new TitleBodyActionsSection(data.introSection);
-        this.coreSections = data.coreSections.map(x => new TitleAndBody(x));
+        this.coreSections = data.coreSections.map(x => new IntroPageCoreSection(x, db));
+    }
+}
+
+export class IntroPageCoreSection extends TitleAndBody {
+    readonly iconURL: string;
+    readonly contentTabs: ContentTab[];
+
+    constructor(data: SanityCoreSection, db: SanityDataset) {
+        super(data);
+        this.iconURL = db.resolveImageRef(data.icon).url;
+        this.contentTabs = data.contentTabs.map(x => new ContentTab(x));
     }
 }
 
@@ -38,6 +52,13 @@ const introPageCoreSectionSchema = defineType({
         titleFieldWithHighlights,
         bodyFieldRichText,
         sectionIconField,
+        defineField({
+            name: "contentTabs",
+            title: "Content Tabs",
+            type: "array",
+            of: [{type: contentTabSchemaName}],
+            validation: (rule: ArrayRule<any>) => rule.required(),
+        }),
         isVisibleField,
     ],
 });

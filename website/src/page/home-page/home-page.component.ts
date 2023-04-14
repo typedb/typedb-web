@@ -1,6 +1,10 @@
 import { Component, Input, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
-import { ContentTextTab, HomePage, HomePageCoreSection, HomePageIntroSection, HomePageSection, HomePageUseCase, Organisation, SanityHomePage, SanityPage } from "typedb-web-schema";
+import {
+    HomePage, HomePageCoreSection, HomePageIntroSection, homePageSchemaName, HomePageSection,
+    HomePageUseCase, Organisation, SanityHomePage
+} from "typedb-web-schema";
+import { sanitiseHtmlID } from "../../framework/util";
 import { HomePageIntroTechnicolorBlock, TechnicolorBlock } from "../../model/technicolor-block";
 import { ContentService } from "../../service/content.service";
 
@@ -17,9 +21,9 @@ export class HomePageComponent implements OnInit {
 
     ngOnInit() {
         this.contentService.data.subscribe((data) => {
-            const sanityPage = (data.byType["homePage"] as SanityPage[])[0];
-            if (sanityPage) {
-                this.page = new HomePage(sanityPage as SanityHomePage, data);
+            const sanityHomePage = data.byId[homePageSchemaName] as SanityHomePage;
+            if (sanityHomePage) {
+                this.page = new HomePage(sanityHomePage, data);
             } else {
                 this.page = undefined;
             }
@@ -29,7 +33,7 @@ export class HomePageComponent implements OnInit {
 
 @Component({
     selector: "td-home-page-technicolor-block",
-    template: "<td-technicolor-block [block]=\"block\" [index]=\"index\" [numberOfBlocks]=\"allBlocks.length\"></td-technicolor-block>",
+    template: "<td-technicolor-block [block]=\"block\" [index]=\"index\" size='large' [noTrailingLine]=\"noTrailingLine\"></td-technicolor-block>",
 })
 export class HomePageTechnicolorBlockComponent implements OnInit {
     @Input() section!: HomePageCoreSection;
@@ -55,6 +59,10 @@ export class HomePageTechnicolorBlockComponent implements OnInit {
     get index() {
         return this.allBlocks.indexOf(this.section!);
     }
+
+    get noTrailingLine() {
+        return this.index >= this.allBlocks.length - 1;
+    }
 }
 
 @Component({
@@ -64,29 +72,6 @@ export class HomePageTechnicolorBlockComponent implements OnInit {
 })
 export class HomePageOrganisationLogosComponent {
     @Input() organisations!: Organisation[];
-}
-
-@Component({
-    selector: "td-home-page-feature-tabs",
-    templateUrl: "feature-tabs.component.html",
-    styleUrls: ["feature-tabs.component.scss"],
-})
-export class HomePageFeatureTabsComponent implements OnInit {
-    @Input() featureTabs!: ContentTextTab[];
-    selectedTab!: ContentTextTab;
-
-    ngOnInit() {
-        this.selectedTab = this.featureTabs[0];
-    }
-
-    tabID(featureTab: ContentTextTab): string {
-        return sanitiseHtmlID(featureTab.title);
-    }
-
-    setSelectedTab(featureTab: ContentTextTab) {
-        // TODO: invoke when navigating via hashroute
-        this.selectedTab = featureTab;
-    }
 }
 
 @Component({
@@ -110,10 +95,4 @@ export class HomePageUseCasesComponent implements OnInit {
         // TODO: invoke when navigating via hashroute
         this.selectedUseCase = useCase;
     }
-}
-
-function sanitiseHtmlID(raw: string): string {
-    return raw.replace(/\s/g, "-")
-        .replace(/,/g, "")
-        .replace(/&/g, "");
 }

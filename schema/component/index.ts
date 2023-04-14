@@ -1,4 +1,4 @@
-import { contentTextTabSchema } from "./content-text-tabs";
+import { contextTextTabSchemas } from "./content-text-tabs";
 import { linkPanelSchema } from "./link-panel";
 
-export const componentSchemas = [contentTextTabSchema, linkPanelSchema];
+export const componentSchemas = [...contextTextTabSchemas, linkPanelSchema];

@@ -41,11 +41,11 @@
 }
 
 .ft-graphic {
-    width: 674px;
+    flex: 1;
 }
 
 .ft-text-area {
-    flex: 1;
+    width: 366px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;

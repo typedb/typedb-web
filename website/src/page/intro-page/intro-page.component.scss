@@ -1,0 +1,11 @@
+@import "../../styles/sizes";
+
+article {
+    background: url("/assets/image/deep-space2.jpg");
+}
+
+.intro-section {
+    margin-top: 200px;
+    width: 870px;
+    margin-bottom: $section-margin;
+}

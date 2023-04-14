@@ -97,6 +97,10 @@ address {
     margin-top: $subsection-margin;
 }
 
+.subtitle-l {
+    margin-top: $subtitle-margin-l;
+}
+
 .subtitle {
     margin-top: $subtitle-margin;
 }
@@ -148,11 +152,22 @@ address {
     background-repeat: no-repeat;
 }
 
-.planet-blue {
+.planet {
     margin-top: -24px;
     z-index: -1;
     width: 1920px;
     height: 562px;
-    background-image: url("/assets/image/planet-blue.jpg");
     background-position-x: center;
+
+    &.blue {
+        background-image: url("/assets/image/planet-blue.jpg");
+    }
+
+    &.yellow {
+        background-image: url("/assets/image/planet-yellow.jpg");
+    }
+}
+
+.mat-button .mat-button-wrapper > * {
+    vertical-align: unset !important;
 }

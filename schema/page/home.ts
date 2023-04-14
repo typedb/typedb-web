@@ -2,7 +2,7 @@ import { ArrayRule, defineField, defineType, Reference } from "@sanity/types";
 import { Action, SanityActions } from "../action";
 import { Link } from "../link";
 import { bodyFieldRichText, collapsibleOptions, sectionIconField, isVisibleField, keyPointsField, optionalActionsField, pageTitleField, titleAndBodyFields, titleBodyIconFields, titleField, videoEmbedField, learnMoreLinkField } from "../common-fields";
-import { ContentTextTab, contentTextTabSchema, SanityContentTextTab } from "../component/content-text-tabs";
+import { ContentTextTab, contentTextTabSchemaName, SanityContentTextTab } from "../component/content-text-tabs";
 import { KeyPoint, SanityKeyPoint } from "../key-point";
 import { Organisation, organisationLogosField } from "../organisation";
 import { SanityDataset } from "../sanity-core";
@@ -229,18 +229,6 @@ const sectionSchema = (key: SectionKey, fields: any[]) => defineType({
     fields: fields,
 });
 
-const featureTabSchemaName = `${homePageSchemaName}_featureTab`;
-
-const featureTabSchema = defineType({
-    name: featureTabSchemaName,
-    title: "Feature Tab",
-    type: "object",
-    fields: [
-        ...contentTextTabSchema.fields,
-        learnMoreLinkField,
-    ],
-});
-
 const useCaseSchemaName = `${homePageSchemaName}_useCase`;
 
 const useCaseSchema = defineType({
@@ -269,7 +257,7 @@ const sectionSchemas = [
             name: "featureTabs",
             title: "Feature Tabs",
             type: "array",
-            of: [{type: featureTabSchemaName}],
+            of: [{type: contentTextTabSchemaName}],
             validation: (rule: ArrayRule<any>) => rule.required(),
         }),
         isVisibleField,
@@ -336,4 +324,4 @@ const homePageSchema = defineType({
     preview: { prepare: (_selection) => ({ title: "Home Page" }), },
 });
 
-export const homePageSchemas = [featureTabSchema, homePageSchema, ...sectionSchemas, useCaseSchema];
+export const homePageSchemas = [homePageSchema, ...sectionSchemas, useCaseSchema];
