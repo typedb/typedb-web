@@ -74,6 +74,14 @@ export const titleBodyIconFields = [
     sectionIconField,
 ];
 
+export const descriptionFieldName = "description";
+
+export const descriptionField = defineField({
+    name: descriptionFieldName,
+    title: "Description",
+    type: "string",
+});
+
 export const actionsFieldName = "actions";
 
 export const optionalActionsField = defineField({

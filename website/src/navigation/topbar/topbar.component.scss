@@ -1,0 +1,40 @@
+@import "../../styles/colors";
+
+.tb-root {
+    top: 0;
+    left: auto;
+    right: 0;
+    position: fixed;
+    width: 100%;
+    z-index: 1100;
+}
+
+nav {
+    height: 80px;
+    background-color: transparent;
+    padding: 0 30px;
+    display: flex;
+    flex-direction: row;
+
+    .tb-logo-container {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
+
+    .tb-desktop-items {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+
+        .tb-menu {
+            display: flex;
+            flex-direction: row;
+
+            li {
+                list-style: none;
+            }
+        }
+    }
+}
+

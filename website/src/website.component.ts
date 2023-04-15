@@ -9,6 +9,7 @@ import { filter } from "rxjs";
     styleUrls: [],
 })
 export class WebsiteComponent {
+    // TODO: (html) cookie consent
     constructor(router: Router, viewportScroller: ViewportScroller) {
         router.events.pipe(
             filter((e: Event): e is Scroll => e instanceof Scroll)

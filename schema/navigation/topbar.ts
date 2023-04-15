@@ -1,13 +1,108 @@
-import { BlockElementIcon, LinkIcon, MasterDetailIcon } from "@sanity/icons";
-import { defineField, defineType } from "@sanity/types";
-import { textLinkSchemaName } from "../link";
-import { linkField, titleField, titleFieldName, videoEmbedField } from "../common-fields";
+import { BlockElementIcon, MasterDetailIcon } from "@sanity/icons";
+import { defineField, defineType, Reference, SanityDocument } from "@sanity/types";
+import { Link, SanityTextLink, TextLink, textLinkSchemaName } from "../link";
+import { descriptionField, linkField, titleField, titleFieldName, videoEmbedField } from "../common-fields";
+import { SanityDataset } from "../sanity-core";
+import { Document } from "../sanity-core/document";
 
-const descriptionField = defineField({
-    name: "description",
-    title: "Description",
-    type: "string",
-});
+export interface SanityTopbar extends SanityDocument {
+    mainArea: (SanityTopbarMenuPanel | SanityTextLink)[];
+    secondaryArea: SanityTopbarSecondaryArea;
+}
+
+interface SanityTopbarMenuPanel {
+    title: string;
+    columns: (SanityTopbarListColumn | SanityTopbarVideoColumn)[];
+}
+
+interface SanityTopbarVideoColumn {
+    title: string;
+    videoEmbed: Reference;
+}
+
+interface SanityTopbarListColumn {
+    title: string;
+    items: SanityTopbarListColumnItem[];
+}
+
+interface SanityTopbarListColumnItem {
+    title: string;
+    description: string;
+    link: Reference;
+}
+
+interface SanityTopbarSecondaryArea {
+    links: SanityTextLink[];
+    button: { text: string; link: Reference };
+}
+
+export class Topbar extends Document {
+    readonly mainArea: (TopbarMenuPanel | TextLink)[];
+    readonly secondaryArea: TopbarSecondaryArea;
+
+    constructor(data: SanityTopbar, db: SanityDataset) {
+        super(data);
+        this.mainArea = data.mainArea.map(x => {
+            if ("columns" in x) return new TopbarMenuPanel(x, db);
+            else return new TextLink(x, db);
+        });
+        this.secondaryArea = new TopbarSecondaryArea(data.secondaryArea, db);
+    }
+}
+
+export class TopbarMenuPanel {
+    readonly title: string;
+    readonly columns: (TopbarListColumn | TopbarVideoColumn)[];
+
+    constructor(data: SanityTopbarMenuPanel, db: SanityDataset) {
+        this.title = data.title;
+        this.columns = data.columns.map(x => {
+            if ("items" in x) return new TopbarListColumn(x, db);
+            else return new TopbarVideoColumn(x);
+        });
+    }
+}
+
+export class TopbarVideoColumn {
+    readonly title: string;
+    // TODO: video embed
+
+    constructor(data: SanityTopbarVideoColumn) {
+        this.title = data.title;
+    }
+}
+
+export class TopbarListColumn {
+    readonly title: string;
+    readonly items: TopbarListColumnItem[];
+
+    constructor(data: SanityTopbarListColumn, db: SanityDataset) {
+        this.title = data.title;
+        this.items = data.items.map(x => new TopbarListColumnItem(x, db));
+    }
+}
+
+export class TopbarListColumnItem {
+    readonly title: string;
+    readonly description: string;
+    readonly link: Link;
+
+    constructor(data: SanityTopbarListColumnItem, db: SanityDataset) {
+        this.title = data.title;
+        this.description = data.description;
+        this.link = new Link(db.resolveRef(data.link));
+    }
+}
+
+export class TopbarSecondaryArea {
+    readonly links: TextLink[];
+    readonly button: { text: string; link: Link };
+
+    constructor(data: SanityTopbarSecondaryArea, db: SanityDataset) {
+        this.links = data.links.map(x => new TextLink(x, db));
+        this.button = { text: data.button.text, link: new Link(db.resolveRef(data.button.link)) };
+    }
+}
 
 const listColumnItemSchema = defineType({
     name: "topbarListColumnItem",
@@ -78,32 +173,6 @@ const topbarMenuPanelSchema = defineType({
     },
 });
 
-const singleLinkSchema = defineType({
-    name: "topbarSingleLink",
-    title: "Single Link",
-    icon: LinkIcon,
-    type: "object",
-    fields: [
-        titleField,
-        linkField,
-    ],
-    preview: {
-        select: {
-            title: titleFieldName,
-            routeName: "link.route.current", routeTo: "link.title",
-            externalLinkName: "link.title", externalLinkURL: "link.destination.current"
-        },
-        prepare: (selection) => {
-            const subtitle = selection.routeName
-                ? `${selection.routeName} (${selection.routeTo})`
-                : selection.externalLinkName
-                    ? `${selection.externalLinkName} (${selection.externalLinkURL})`
-                    : "(unset)";
-            return { title: selection.title, subtitle: subtitle };
-        },
-    },
-});
-
 export const topbarSchemaName = "topbar";
 
 const secondaryAreaSchemaName = `${topbarSchemaName}_secondaryArea`;
@@ -117,7 +186,7 @@ const secondaryAreaSchema = defineType({
             name: "links",
             title: "Links",
             type: "array",
-            of: [{type: "topbarSingleLink"}],
+            of: [{type: textLinkSchemaName}],
         }),
         defineField({
             name: "button",
@@ -127,7 +196,7 @@ const secondaryAreaSchema = defineType({
     ],
 });
 
-const topbarItemTypes = [{type: "topbarMenuPanel"}, {type: "topbarSingleLink"}];
+const topbarItemTypes = [{type: "topbarMenuPanel"}, {type: textLinkSchemaName}];
 
 const topbarSchema = defineType({
     name: topbarSchemaName,
@@ -151,4 +220,4 @@ const topbarSchema = defineType({
     preview: { prepare: (_selection) => ({ title: "Topbar" }) },
 });
 
-export const topbarSchemas = [listColumnItemSchema, listColumnSchema, videoColumnSchema, topbarMenuPanelSchema, secondaryAreaSchema, singleLinkSchema, topbarSchema];
+export const topbarSchemas = [listColumnItemSchema, listColumnSchema, videoColumnSchema, topbarMenuPanelSchema, secondaryAreaSchema, topbarSchema];
