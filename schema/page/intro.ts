@@ -1,6 +1,6 @@
 import { ArrayRule, defineField, defineType, Reference } from "@sanity/types";
 import { bodyFieldRichText, collapsibleOptions, isVisibleField, pageTitleField, sectionIconField, titleFieldWithHighlights } from "../common-fields";
-import { ContentTab, contentTabSchemaName, contentTextTabSchemaName, SanityContentTab } from "../component/content-text-tabs";
+import { ContentPanel, contentPanelSchemaName, contentTextPanelSchemaName, SanityContentPanel } from "../component/content-text-panel";
 import { SanityDataset } from "../sanity-core";
 import { SanityTitleAndBody, SanityTitleBodyActionsSection, TitleAndBody, titleAndBodySchemaName, TitleBodyActionsSection } from "../text";
 import { schemaName } from "../util";
@@ -16,7 +16,7 @@ export interface SanityIntroPage extends SanityPage {
 
 interface SanityCoreSection extends SanityTitleAndBody {
     icon: Reference;
-    contentTabs: SanityContentTab[];
+    contentTabs: SanityContentPanel[];
 }
 
 export class IntroPage {
@@ -24,19 +24,19 @@ export class IntroPage {
     readonly [coreSections]: IntroPageCoreSection[];
 
     constructor(data: SanityIntroPage, db: SanityDataset) {
-        this.introSection = new TitleBodyActionsSection(data.introSection);
+        this.introSection = new TitleBodyActionsSection(data.introSection, db);
         this.coreSections = data.coreSections.map(x => new IntroPageCoreSection(x, db));
     }
 }
 
 export class IntroPageCoreSection extends TitleAndBody {
     readonly iconURL: string;
-    readonly contentTabs: ContentTab[];
+    readonly contentTabs: ContentPanel[];
 
     constructor(data: SanityCoreSection, db: SanityDataset) {
         super(data);
         this.iconURL = db.resolveImageRef(data.icon).url;
-        this.contentTabs = data.contentTabs.map(x => new ContentTab(x));
+        this.contentTabs = data.contentTabs.map(x => new ContentPanel(x));
     }
 }
 
@@ -56,7 +56,7 @@ const introPageCoreSectionSchema = defineType({
             name: "contentTabs",
             title: "Content Tabs",
             type: "array",
-            of: [{type: contentTabSchemaName}],
+            of: [{type: contentPanelSchemaName}],
             validation: (rule: ArrayRule<any>) => rule.required(),
         }),
         isVisibleField,

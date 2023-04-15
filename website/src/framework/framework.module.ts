@@ -6,9 +6,12 @@ import { MatButtonModule } from "@angular/material/button";
 import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
 import { ActionsComponent } from "./actions/actions.component";
 import { ButtonComponent } from "./button/button.component";
+import { ContentPanelGridComponent } from "./content-panel-grid/content-panel-grid.component";
+import { ContentPanelComponent } from "./content-panel/content-panel.component";
 import { ContentTabsComponent } from "./content-tabs/content-tabs.component";
 import { KeyPointPanels3x1Component, KeyPointTableComponent } from "./key-point/key-point.component";
 import { LinkDirective } from "./link/link.directive";
+import { TitleBodyActionsSectionComponent } from "./section/title-body-actions-section.component";
 import { SocialMediaPanelsComponent } from "./social-media/social-media-panels.component";
 import { SpinningWheelComponent } from "./spinning-wheel/spinning-wheel.component";
 import { ModalComponent } from "./modal/modal.component";
@@ -21,6 +24,8 @@ import { H1WithHighlightsComponent, ParagraphWithHighlightsComponent } from "./t
     declarations: [
         ActionsComponent,
         ButtonComponent,
+        ContentPanelComponent,
+        ContentPanelGridComponent,
         ContentTabsComponent,
         H1WithHighlightsComponent,
         LinkDirective,
@@ -33,6 +38,7 @@ import { H1WithHighlightsComponent, ParagraphWithHighlightsComponent } from "./t
         SpinningWheelComponent,
         TechnicolorBlockComponent,
         TestimonialsCarouselComponent,
+        TitleBodyActionsSectionComponent,
     ],
     imports: [
         BrowserModule,
@@ -44,6 +50,8 @@ import { H1WithHighlightsComponent, ParagraphWithHighlightsComponent } from "./t
     exports: [
         ActionsComponent,
         ButtonComponent,
+        ContentPanelComponent,
+        ContentPanelGridComponent,
         ContentTabsComponent,
         H1WithHighlightsComponent,
         KeyPointPanels3x1Component,
@@ -54,6 +62,7 @@ import { H1WithHighlightsComponent, ParagraphWithHighlightsComponent } from "./t
         RichTextComponent,
         TechnicolorBlockComponent,
         TestimonialsCarouselComponent,
+        TitleBodyActionsSectionComponent,
     ],
     providers: [
     ],

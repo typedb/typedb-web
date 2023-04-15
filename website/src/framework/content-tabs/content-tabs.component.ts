@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from "@angular/core";
-import { ContentTab, ContentTextTab } from "typedb-web-schema";
+import { ContentPanel } from "typedb-web-schema";
 import { sanitiseHtmlID } from "../util";
 
 @Component({
@@ -8,22 +8,18 @@ import { sanitiseHtmlID } from "../util";
     styleUrls: ["content-tabs.component.scss"],
 })
 export class ContentTabsComponent implements OnInit {
-    @Input() tabs!: ContentTab[];
-    selectedTab!: ContentTab;
+    @Input() tabs!: ContentPanel[];
+    selectedTab!: ContentPanel;
 
     ngOnInit() {
         this.selectedTab = this.tabs[0];
     }
 
-    get contentTextTabs(): ContentTextTab[] | undefined {
-        return this.tabs.every(x => x instanceof ContentTextTab) ? this.tabs.map(x => x as ContentTextTab) : undefined;
-    }
-
-    tabID(tab: ContentTab): string {
+    tabID(tab: ContentPanel): string {
         return sanitiseHtmlID(tab.title);
     }
 
-    setSelectedTab(tab: ContentTab) {
+    setSelectedTab(tab: ContentPanel) {
         // TODO: invoke when navigating via hashroute
         this.selectedTab = tab;
     }

@@ -21,36 +21,29 @@
     background: $color-deep-purple;
     box-shadow: 0 8px 6px rgba(6, 4, 20, 0.601481);
     transition-property: transform;
-    transition-duration: 400ms;
+    transition-duration: 750ms;
     transition-timing-function: ease;
 
     &.tc-card-0 {
         transform: translate3d(-60%, 0, -380px);
-        > .tc-card-content { opacity: 40%; }
     }
     &.tc-card-1 {
         transform: translate3d(-40%, 0, -230px);
-        > .tc-card-content { opacity: 60%; }
     }
     &.tc-card-2 {
         transform: translate3d(-20%, 0, -100px);
-        > .tc-card-content { opacity: 80%; }
     }
     &.tc-card-3 {
         transform: translate3d(0%, 0, 0);
-        > .tc-card-content { opacity: 100%; }
     }
     &.tc-card-4 {
         transform: translate3d(20%, 0, -100px);
-        > .tc-card-content { opacity: 80%; }
     }
     &.tc-card-5 {
         transform: translate3d(40%, 0, -230px);
-        > .tc-card-content { opacity: 60%; }
     }
     &.tc-card-6 {
         transform: translate3d(60%, 0, -380px);
-        > .tc-card-content { opacity: 40%; }
     }
 }
 

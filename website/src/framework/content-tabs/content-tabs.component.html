@@ -4,15 +4,5 @@
             <p [ngClass]="{'ft-tab-selected': selectedTab === tab}">{{ tab.title }}</p>
         </a>
     </div>
-    <div *ngFor="let tab of tabs; index as idx" class="ft-tab-content" [hidden]="selectedTab !== tab">
-        <div class="ft-graphic"></div>
-        <div *ngIf="contentTextTabs" class="ft-text-area">
-            <div>
-                <p *ngFor="let paragraph of contentTextTabs[idx].body.paragraphs" class="text-m" >
-                    <span *ngFor="let span of paragraph.spans" [ngStyle]="span.marks.includes('strong') ? { 'font-weight': '700' } : undefined">{{ span.text }}</span>
-                </p>
-            </div>
-            <a [tdLink]="contentTextTabs[idx].learnMoreLink" class="text-s"><strong>Learn More</strong></a>
-        </div>
-    </div>
+    <td-content-panel *ngFor="let tab of tabs" [panel]="tab" [hidden]="selectedTab !== tab"></td-content-panel>
 </div>

@@ -37,12 +37,21 @@ article {
     display: flex;
     flex-direction: row;
     justify-content: center;
+
+    > div {
+        display: flex;
+        flex-direction: column;
+    }
 }
 
 section, .section {
     width: 1160px;
     max-width: calc(100vw - 40px);
     margin: 0 auto;
+}
+
+.section-body-text {
+    width: 870px;
 }
 
 h1, h2, h3, h4, h5, h6, p {
@@ -142,6 +151,10 @@ address {
     margin-top: $p-margin-l;
 }
 
+.p-margin-m {
+    margin-top: $p-margin-m;
+}
+
 .p-margin-s {
     margin-top: $p-margin-s;
 }
@@ -153,8 +166,6 @@ address {
 }
 
 .planet {
-    margin-top: -24px;
-    z-index: -1;
     width: 1920px;
     height: 562px;
     background-position-x: center;

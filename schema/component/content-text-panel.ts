@@ -5,49 +5,49 @@ import { SanityDataset } from "../sanity-core";
 import { RichText, SanityBodyText, SanityTitle } from "../text";
 import { schemaName } from "../util";
 
-export interface SanityContentTab extends SanityTitle {
+export interface SanityContentPanel extends SanityTitle {
 
 }
 
-export interface SanityContentTextTab extends SanityContentTab, SanityBodyText {
+export interface SanityContentTextPanel extends SanityContentPanel, SanityBodyText {
     learnMoreLink: Reference;
 }
 
-export class ContentTab {
+export class ContentPanel {
     readonly title: string;
 
-    constructor(data: SanityContentTab) {
+    constructor(data: SanityContentPanel) {
         this.title = data.title;
     }
 }
 
-export class ContentTextTab extends ContentTab {
+export class ContentTextPanel extends ContentPanel {
     readonly body: RichText;
     readonly learnMoreLink: Link;
 
-    constructor(data: SanityContentTextTab, db: SanityDataset) {
+    constructor(data: SanityContentTextPanel, db: SanityDataset) {
         super(data);
         this.body = new RichText(data.body);
         this.learnMoreLink = new Link(db.resolveRef(data.learnMoreLink));
     }
 }
 
-export const contentTabSchemaName = schemaName(ContentTab);
+export const contentPanelSchemaName = schemaName(ContentPanel);
 
-const contentTabSchema = defineType({
-    name: contentTabSchemaName,
-    title: "Content Tab",
+const contentPanelSchema = defineType({
+    name: contentPanelSchemaName,
+    title: "Content Panel",
     type: "object",
     fields: [
         titleField,
     ],
 });
 
-export const contentTextTabSchemaName = schemaName(ContentTextTab);
+export const contentTextPanelSchemaName = schemaName(ContentTextPanel);
 
-const contentTextTabSchema = defineType({
-    name: contentTextTabSchemaName,
-    title: "Content + Text Tab",
+const contentTextPanelSchema = defineType({
+    name: contentTextPanelSchemaName,
+    title: "Content/Text Panel",
     type: "object",
     fields: [
         titleField,
@@ -56,4 +56,4 @@ const contentTextTabSchema = defineType({
     ],
 });
 
-export const contextTextTabSchemas = [contentTabSchema, contentTextTabSchema];
+export const contextTextPanelSchemas = [contentPanelSchema, contentTextPanelSchema];

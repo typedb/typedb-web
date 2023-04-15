@@ -7,7 +7,7 @@ import { ParagraphWithHighlights } from "typedb-web-schema";
 })
 export class H1WithHighlightsComponent {
     @Input() value!: ParagraphWithHighlights;
-    @Input() themeColorHex!: string;
+    @Input() themeColorHex: string = "#02DAC9";
 }
 
 @Component({
@@ -16,5 +16,5 @@ export class H1WithHighlightsComponent {
 })
 export class ParagraphWithHighlightsComponent {
     @Input() value!: ParagraphWithHighlights;
-    @Input() themeColorHex!: string;
+    @Input() themeColorHex: string = "#02DAC9";
 }

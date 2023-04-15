@@ -10,18 +10,18 @@ export class TechnicolorBlockComponent {
     @Input() block!: TechnicolorBlock;
     @Input() index!: number;
     @Input() size?: "medium" | "large" = "medium";
+    @Input() noLeadingLine?: boolean;
     @Input() noTrailingLine?: boolean;
     @Input() noBackgroundImage?: boolean;
 
     get backgroundImageURL(): string | undefined {
-        if (this.index === 0) return undefined;
         switch (this.index % 6) {
+            case 0: return "/assets/image/nebula-secondary.jpg";
             case 1: return "/assets/image/nebula-secondary.jpg";
             case 2: return "/assets/image/nebula-secondary.jpg";
             case 3: return "/assets/image/nebula-secondary.jpg";
             case 4: return "/assets/image/nebula-secondary.jpg";
             case 5: return "/assets/image/nebula-secondary.jpg";
-            case 0: return "/assets/image/nebula-secondary.jpg";
             default: throw "Unreachable code";
         }
     }

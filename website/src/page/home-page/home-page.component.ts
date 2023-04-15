@@ -33,7 +33,7 @@ export class HomePageComponent implements OnInit {
 
 @Component({
     selector: "td-home-page-technicolor-block",
-    template: "<td-technicolor-block [block]=\"block\" [index]=\"index\" size='large' [noTrailingLine]=\"noTrailingLine\"></td-technicolor-block>",
+    template: "<td-technicolor-block [block]=\"block\" [index]=\"index\" size='large' [noLeadingLine]='index === 0' [noBackgroundImage]='index === 0' [noTrailingLine]=\"noTrailingLine\"></td-technicolor-block>",
 })
 export class HomePageTechnicolorBlockComponent implements OnInit {
     @Input() section!: HomePageCoreSection;

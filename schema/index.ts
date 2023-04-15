@@ -18,7 +18,7 @@ export const schemaTypes = [
 
 export { Action } from "./action";
 export { linkSchemaName, Link, videoEmbedSchemaName, VideoEmbed } from "./link";
-export { ContentTab, ContentTextTab } from "./component/content-text-tabs";
+export { ContentPanel, ContentTextPanel } from "./component/content-text-panel";
 export { formsSchemaName } from "./form";
 export { sectionIconSchemaName } from "./image";
 export { KeyPoint } from "./key-point";
@@ -28,7 +28,7 @@ export { Organisation } from "./organisation";
 export type { SanityOrganisation } from "./organisation";
 export { Page } from "./page/common";
 export type { SanityPage } from "./page/common";
-export { FeaturesPage, featuresPageSchemaName } from "./page/features";
+export { FeaturesPage, FeaturesPageCoreSection, featuresPageSchemaName } from "./page/features";
 export type { SanityFeaturesPage } from "./page/features";
 export { HomePage, HomePageCoreSection, HomePageIntroSection, HomePageSection, HomePageUseCase, homePageSchemaName } from "./page/home";
 export type { SanityHomePage } from "./page/home";

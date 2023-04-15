@@ -3,9 +3,6 @@
 
 .ft-root {
     height: 630px;
-    border: 1px solid $color-light-purple;
-    border-radius: $border-radius;
-    background: $color-purple;
     display: flex;
     flex-direction: column;
 }
@@ -14,7 +11,11 @@
     height: 74px;
     display: flex;
     flex-direction: row;
-    border-bottom: 1px solid $color-light-purple;
+    border: 1px solid $color-light-purple;
+    border-bottom: none;
+    border-top-left-radius: $border-radius;
+    border-top-right-radius: $border-radius;
+    background: $color-purple;
 }
 
 .ft-tab {

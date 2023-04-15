@@ -2,7 +2,7 @@ import { ArrayRule, defineField, defineType, Reference } from "@sanity/types";
 import { Action, SanityActions } from "../action";
 import { Link } from "../link";
 import { bodyFieldRichText, collapsibleOptions, sectionIconField, isVisibleField, keyPointsField, optionalActionsField, pageTitleField, titleAndBodyFields, titleBodyIconFields, titleField, videoEmbedField, learnMoreLinkField } from "../common-fields";
-import { ContentTextTab, contentTextTabSchemaName, SanityContentTextTab } from "../component/content-text-tabs";
+import { ContentTextPanel, contentTextPanelSchemaName, SanityContentTextPanel } from "../component/content-text-panel";
 import { KeyPoint, SanityKeyPoint } from "../key-point";
 import { Organisation, organisationLogosField } from "../organisation";
 import { SanityDataset } from "../sanity-core";
@@ -41,7 +41,7 @@ interface SanityIntroSection extends SanityCoreSection {
 }
 
 interface SanityFeaturesSection extends SanityCoreSection {
-    featureTabs: SanityContentTextTab[];
+    featureTabs: SanityContentTextPanel[];
 }
 
 interface SanityUseCase extends SanityTitle, SanityBodyText {
@@ -116,11 +116,11 @@ export class HomePageIntroSection extends HomePageCoreSection {
 }
 
 export class HomePageFeaturesSection extends HomePageCoreSection {
-    readonly featureTabs: ContentTextTab[];
+    readonly featureTabs: ContentTextPanel[];
 
     constructor(data: SanityFeaturesSection, db: SanityDataset) {
         super(data, db);
-        this.featureTabs = data.featureTabs.map(x => new ContentTextTab(x, db));
+        this.featureTabs = data.featureTabs.map(x => new ContentTextPanel(x, db));
     }
 }
 
@@ -257,7 +257,7 @@ const sectionSchemas = [
             name: "featureTabs",
             title: "Feature Tabs",
             type: "array",
-            of: [{type: contentTextTabSchemaName}],
+            of: [{type: contentTextPanelSchemaName}],
             validation: (rule: ArrayRule<any>) => rule.required(),
         }),
         isVisibleField,

@@ -1,0 +1,9 @@
+<div class="section cg-root">
+    <td-content-panel class="cg-panel-1" [panel]="panels[0]" size="m" position="standalone" orientation="landscape" [textFirst]="false"></td-content-panel>
+    <td-content-panel *ngIf="panels.length === 2" [panel]="panels[1]" size="m" position="standalone" orientation="landscape" [textFirst]="true"></td-content-panel>
+    <div *ngIf="panels.length >= 3" class="cg-portraits">
+        <td-content-panel [panel]="panels[1]" size="m" position="standalone" orientation="portrait" [textFirst]="true"></td-content-panel>
+        <td-content-panel [panel]="panels[2]" size="m" position="standalone" orientation="portrait" [textFirst]="false"></td-content-panel>
+    </div>
+    <td-content-panel *ngIf="panels.length === 4" [panel]="panels[3]" size="m" position="standalone" orientation="landscape" [textFirst]="true"></td-content-panel>
+</div>

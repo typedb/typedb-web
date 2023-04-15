@@ -1,0 +1,68 @@
+@import "../../styles/colors";
+@import "../../styles/sizes";
+
+.cp-root {
+    border: 1px solid $color-light-purple;
+    border-radius: $border-radius;
+    background: $color-purple;
+    padding: 24px;
+    display: flex;
+    gap: 40px;
+
+    &.landscape {
+        &.size-l {
+            height: 554px;
+        }
+
+        &.size-m {
+            height: 430px;
+        }
+
+        &.content-first {
+            flex-direction: row;
+        }
+
+        &.text-first {
+            flex-direction: row-reverse;
+        }
+    }
+
+    &.portrait {
+        width: 560px;
+        height: 870px;
+
+        &.content-first {
+            flex-direction: column;
+        }
+
+        &.text-first {
+            flex-direction: column-reverse;
+        }
+    }
+
+    &.embedded {
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+    }
+}
+
+.cp-graphic {
+    &.flex-2 {
+        flex: 2;
+    }
+
+    &.flex-1 {
+        flex: 1;
+    }
+}
+
+.cp-text-area {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.title-standalone {
+    margin-bottom: $p-margin-m;
+}

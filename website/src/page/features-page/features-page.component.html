@@ -2,8 +2,8 @@
     <div *ngIf="page">
         <td-title-body-actions-section class="intro-section" [title]="page.introSection.title" [body]="page.introSection.body"></td-title-body-actions-section>
         <ng-container *ngFor="let section of page.coreSections; index as idx">
-            <td-intro-page-technicolor-block [section]="section" [page]="page" [index]="idx"></td-intro-page-technicolor-block>
-            <td-content-tabs [tabs]="section.contentTabs"></td-content-tabs>
+            <td-features-page-technicolor-block [section]="section" [page]="page" [index]="idx"></td-features-page-technicolor-block>
+            <td-content-panel-grid [panels]="section.panels"></td-content-panel-grid>
         </ng-container>
         <div class="yellow planet"></div>
     </div>

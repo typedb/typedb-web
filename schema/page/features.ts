@@ -1,10 +1,10 @@
-import { defineField, defineType } from "@sanity/types";
-import { SanityActions } from "../action";
-import { Link, SanityLink } from "../link";
+import { ArrayRule, defineField, defineType, Reference } from "@sanity/types";
+import { Action, SanityActions } from "../action";
+import { ContentTextPanel, contentTextPanelSchemaName, SanityContentTextPanel } from "../component/content-text-panel";
 import { bodyFieldRichText, collapsibleOptions, isVisibleField, optionalActionsField, pageTitleField, sectionIconField, titleFieldWithHighlights } from "../common-fields";
 import { Organisation, organisationLogosField, SanityOrganisation } from "../organisation";
 import { SanityDataset } from "../sanity-core";
-import { RichText, SanityBodyText, SanityTitle, SanityTitleAndBody, SanityTitleBodyActionsSection, TitleAndBody, TitleBodyActionsSection, titleBodyActionsSectionSchemaName } from "../text";
+import { SanityTitleAndBody, SanityTitleBodyActionsSection, TitleAndBody, TitleBodyActionsSection, titleBodyActionsSectionSchemaName } from "../text";
 import { schemaName } from "../util";
 import { SanityPage } from "./common";
 
@@ -21,27 +21,25 @@ export interface SanityFeaturesPage extends SanityPage {
 }
 
 interface SanityIntroSection extends SanityTitleBodyActionsSection {
-    userLogos: SanityOrganisation[];
-}
-
-interface SanityFeaturePanel extends SanityTitle, SanityBodyText {
-    documentationLink: SanityLink;
+    userLogos: Reference[];
 }
 
 interface SanityCoreSection extends SanityTitleAndBody {
-    features: SanityFeaturePanel[];
+    icon: Reference;
+    panels: SanityContentTextPanel[];
 }
 
 export class FeaturesPage {
     readonly [introSection]: IntroSection;
-    readonly [coreSections]: CoreSection[];
-    // readonly [secondaryActions]: Action[];
+    readonly [coreSections]: FeaturesPageCoreSection[];
+    readonly [secondaryActions]: Action[];
     readonly [finalSection]: TitleBodyActionsSection;
 
     constructor(data: SanityFeaturesPage, db: SanityDataset) {
         this.introSection = new IntroSection(data.introSection, db);
-        this.coreSections = data.coreSections.map(x => new CoreSection(x));
-        this.finalSection = new TitleBodyActionsSection(data.finalSection);
+        this.coreSections = data.coreSections.map(x => new FeaturesPageCoreSection(x, db));
+        this.secondaryActions = data.secondaryActions.map(x => new Action(x, db));
+        this.finalSection = new TitleBodyActionsSection(data.finalSection, db);
     }
 }
 
@@ -49,29 +47,19 @@ class IntroSection extends TitleBodyActionsSection {
     readonly userLogos: Organisation[];
 
     constructor(data: SanityIntroSection, db: SanityDataset) {
-        super(data);
-        this.userLogos = data.userLogos.map(x => new Organisation(x, db));
+        super(data, db);
+        this.userLogos = data.userLogos.map(x => new Organisation(db.resolveRef(x), db));
     }
 }
 
-class FeaturePanel {
-    readonly title: string;
-    readonly body: RichText;
-    readonly documentationLink: Link;
+export class FeaturesPageCoreSection extends TitleAndBody {
+    readonly iconURL: string;
+    readonly panels: ContentTextPanel[];
 
-    constructor(data: SanityFeaturePanel) {
-        this.title = data.title;
-        this.body = new RichText(data.body);
-        this.documentationLink = new Link(data.documentationLink);
-    }
-}
-
-class CoreSection extends TitleAndBody {
-    features: FeaturePanel[];
-
-    constructor(data: SanityCoreSection) {
+    constructor(data: SanityCoreSection, db: SanityDataset) {
         super(data);
-        this.features = data.features.map(x => new FeaturePanel(x));
+        this.iconURL = db.resolveImageRef(data.icon).url;
+        this.panels = data.panels.map(x => new ContentTextPanel(x, db));
     }
 }
 
@@ -101,6 +89,13 @@ const coreSectionSchema = defineType({
         titleFieldWithHighlights,
         bodyFieldRichText,
         sectionIconField,
+        defineField({
+            name: "panels",
+            title: "Panels",
+            type: "array",
+            of: [{type: contentTextPanelSchemaName}],
+            validation: (rule: ArrayRule<any>) => rule.required().min(1).max(4),
+        }),
         isVisibleField,
     ],
 });
