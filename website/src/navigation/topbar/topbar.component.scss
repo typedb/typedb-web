@@ -16,25 +16,56 @@ nav {
     display: flex;
     flex-direction: row;
 
+    .tb-logo-container, .tb-desktop-items li > div[tabindex], .tb-desktop-items li > a {
+        padding: 0 20px;
+
+        &:hover, &:focus {
+            color: $color-green;
+            font-weight: 600;
+            text-decoration: underline;
+        }
+    }
+
     .tb-logo-container {
         display: flex;
         flex-direction: row;
         align-items: center;
     }
 
+    ::ng-deep button {
+        height: 40px;
+        width: 118px;
+    }
+
     .tb-desktop-items {
+        width: 100%;
         display: flex;
         flex-direction: row;
-        align-items: center;
+        justify-content: space-between;
 
-        .tb-menu {
+        .tb-top-level-items {
             display: flex;
             flex-direction: row;
 
             li {
                 list-style: none;
+                display: flex;
+                flex-direction: row;
+
+                > * {
+                    display: flex;
+                    align-items: center;
+                }
+
+                img {
+                    width: 40px;
+                    height: 40px;
+                }
             }
         }
     }
 }
 
+a {
+    color: $color-white;
+}

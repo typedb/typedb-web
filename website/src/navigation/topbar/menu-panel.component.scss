@@ -1,0 +1,40 @@
+@import "../../styles/colors";
+@import "../../styles/sizes";
+
+.mp-root {
+    border-top: 1px solid $color-secondary-purple;
+    border-bottom: 1px solid $color-secondary-purple;
+    box-shadow: 0 8px 30px rgba($color-black-purple, 0.58);
+    background: rgba($color-purple, .8);
+    backdrop-filter: blur(20px);
+    padding: 32px 0 32px 194px;
+    display: flex;
+    flex-direction: row;
+}
+
+.mp-column {
+    width: 344px;
+    padding: 0 32px;
+
+    &:not(:first-child) {
+        border-left: 1px solid $color-light-purple;
+    }
+
+    a {
+        color: $color-white;
+    }
+
+    ul, li {
+        list-style: none;
+    }
+
+    li {
+        margin-top: $p-margin-m;
+
+        &:hover h4, &:focus h4 {
+            color: $color-green;
+            font-weight: 600;
+            text-decoration: underline;
+        }
+    }
+}

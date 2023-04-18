@@ -17,12 +17,9 @@ button {
     &.primary {
         border-color: transparent;
         background: $color-green;
+        color: $color-purple;
 
-        a {
-            color: $color-purple;
-        }
-
-        &:hover {
+        &:hover, &:focus {
             background-color: #0B939F;
         }
     }
@@ -30,17 +27,11 @@ button {
     &.secondary {
         border-color: $color-green;
         background: transparent;
+        color: $color-green;
 
-        a {
-            color: $color-green;
-        }
-
-        &:hover {
+        &:hover, &:focus {
             background-color: $color-green;
-
-            a {
-                color: $color-purple;
-            }
+            color: $color-purple;
         }
     }
 }

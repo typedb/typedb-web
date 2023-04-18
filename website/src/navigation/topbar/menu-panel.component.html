@@ -1,0 +1,16 @@
+<div class="mp-root">
+    <div *ngFor="let column of columns" class="mp-column">
+        <div class="text-xxs"><strong>{{ column.title }}</strong></div>
+        <ul *ngIf="isListColumn(column)">
+            <li *ngFor="let item of column.items">
+                <a [tdLink]="item.link">
+                    <h4 class="text-s">{{ item.title }}</h4>
+                    <p class="text-xxs">{{ item.description }}</p>
+                </a>
+            </li>
+        </ul>
+        <div *ngIf="isVideoColumn(column)">
+            TODO: Video
+        </div>
+    </div>
+</div>

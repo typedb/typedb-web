@@ -7,5 +7,5 @@ import { Action } from "typedb-web-schema";
     styleUrls: ["./button.component.scss"],
 })
 export class ButtonComponent {
-    @Input() data!: Action;
+    @Input() button!: Action;
 }

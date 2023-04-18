@@ -1,4 +1,5 @@
-import { defineField, defineType } from "@sanity/types";
+import { defineField, defineType, SanityDocument } from "@sanity/types";
+import { Document } from "./sanity-core/document";
 
 export const socialMedias = {
     discord: "Discord",
@@ -11,6 +12,43 @@ export const socialMedias = {
 export const socialMediaList = Object.keys(socialMedias);
 
 export type SocialMediaID = keyof typeof socialMedias;
+
+export interface SanityCommunityResources extends SanityDocument {
+    githubURL: string;
+    discussionForumURL: string;
+    stackOverflowURL: string;
+    enterpriseSupportURL: string;
+    discordURL: string;
+    meetupURL: string;
+    twitterURL: string;
+    youtubeURL: string;
+    linkedinURL: string;
+}
+
+export class CommunityResources extends Document implements Omit<SanityCommunityResources, keyof SanityDocument> {
+    readonly discordURL: string;
+    readonly discussionForumURL: string;
+    readonly enterpriseSupportURL: string;
+    readonly githubURL: string;
+    readonly linkedinURL: string;
+    readonly meetupURL: string;
+    readonly stackOverflowURL: string;
+    readonly twitterURL: string;
+    readonly youtubeURL: string;
+
+    constructor(data: SanityCommunityResources) {
+        super(data);
+        this.discordURL = data.discordURL;
+        this.discussionForumURL = data.discussionForumURL;
+        this.enterpriseSupportURL = data.enterpriseSupportURL;
+        this.githubURL = data.githubURL;
+        this.linkedinURL = data.linkedinURL;
+        this.meetupURL = data.meetupURL;
+        this.stackOverflowURL = data.stackOverflowURL;
+        this.twitterURL = data.twitterURL;
+        this.youtubeURL = data.youtubeURL;
+    }
+}
 
 export const socialMediaLinksField = defineField({
     name: "socialMediaLinks",

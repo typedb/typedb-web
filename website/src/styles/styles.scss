@@ -54,8 +54,9 @@ section, .section {
     width: 870px;
 }
 
-h1, h2, h3, h4, h5, h6, p {
+h1, h2, h3, h4, h5, h6, p, ul, ol {
     margin: 0;
+    padding: 0;
 }
 
 h2, h3, h4, h5, h6 {
@@ -92,6 +93,10 @@ address {
 
 .flex {
     flex: 1;
+}
+
+div[tabindex] {
+    cursor: pointer;
 }
 
 .page-section {

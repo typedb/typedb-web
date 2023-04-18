@@ -1,5 +1,6 @@
 import { BlockElementIcon, MasterDetailIcon } from "@sanity/icons";
 import { defineField, defineType, Reference, SanityDocument } from "@sanity/types";
+import { Action, buttonSchemaName, SanityButton } from "../action";
 import { Link, SanityTextLink, TextLink, textLinkSchemaName } from "../link";
 import { descriptionField, linkField, titleField, titleFieldName, videoEmbedField } from "../common-fields";
 import { SanityDataset } from "../sanity-core";
@@ -33,7 +34,7 @@ interface SanityTopbarListColumnItem {
 
 interface SanityTopbarSecondaryArea {
     links: SanityTextLink[];
-    button: { text: string; link: Reference };
+    button: SanityButton;
 }
 
 export class Topbar extends Document {
@@ -96,11 +97,11 @@ export class TopbarListColumnItem {
 
 export class TopbarSecondaryArea {
     readonly links: TextLink[];
-    readonly button: { text: string; link: Link };
+    readonly button: Action;
 
     constructor(data: SanityTopbarSecondaryArea, db: SanityDataset) {
         this.links = data.links.map(x => new TextLink(x, db));
-        this.button = { text: data.button.text, link: new Link(db.resolveRef(data.button.link)) };
+        this.button = new Action(data.button, db);
     }
 }
 
@@ -191,7 +192,7 @@ const secondaryAreaSchema = defineType({
         defineField({
             name: "button",
             title: "Button",
-            type: textLinkSchemaName,
+            type: buttonSchemaName,
         }),
     ],
 });

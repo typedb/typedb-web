@@ -1,6 +1,6 @@
-import { Component } from "@angular/core";
+import { Component, HostListener, Input } from "@angular/core";
 import { Router } from "@angular/router";
-import { SanityTopbar, Topbar, topbarSchemaName } from "typedb-web-schema";
+import { communityResourcesSchemaName, SanityCommunityResources, SanityTopbar, Topbar, TopbarListColumn, TopbarMenuPanel, topbarSchemaName, TopbarVideoColumn } from "typedb-web-schema";
 import { ContentService } from "../../service/content.service";
 
 @Component({
@@ -10,6 +10,10 @@ import { ContentService } from "../../service/content.service";
 })
 export class TopbarComponent {
     topbar?: Topbar;
+    githubURL?: string;
+    hoveredMenuItem?: TopbarMenuPanel;
+    hoveredMenuPanel?: TopbarMenuPanel;
+    focusedMenuPanel?: TopbarMenuPanel;
 
     constructor(private router: Router, private contentService: ContentService) {}
 
@@ -21,6 +25,72 @@ export class TopbarComponent {
             } else {
                 this.topbar = undefined;
             }
+            const communityResources = data.byId[communityResourcesSchemaName] as SanityCommunityResources;
+            if (communityResources) {
+                this.githubURL = communityResources.githubURL;
+            }
         });
+    }
+
+    get menuPanels(): TopbarMenuPanel[] {
+        return this.topbar!.mainArea.filter(this.isMenuPanel);
+    }
+
+    isMenuPanel(obj: any): obj is TopbarMenuPanel {
+        return obj instanceof TopbarMenuPanel;
+    }
+
+    isMenuPanelVisible(menuPanel: TopbarMenuPanel): boolean {
+        return [this.hoveredMenuItem, this.hoveredMenuPanel, this.focusedMenuPanel].includes(menuPanel);
+    }
+
+    onMenuItemMouseEnter(menuPanel: TopbarMenuPanel) {
+        this.hoveredMenuItem = menuPanel;
+        this.focusedMenuPanel = undefined;
+    }
+
+    onMenuItemMouseLeave(menuPanel: TopbarMenuPanel) {
+        if (this.hoveredMenuItem === menuPanel) this.hoveredMenuItem = undefined;
+        this.focusedMenuPanel = undefined;
+    }
+
+    onMenuPanelMouseEnter(menuPanel: TopbarMenuPanel) {
+        this.hoveredMenuPanel = menuPanel;
+        this.focusedMenuPanel = undefined;
+    }
+
+    onMenuPanelMouseLeave(menuPanel: TopbarMenuPanel) {
+        if (this.hoveredMenuPanel === menuPanel) this.hoveredMenuPanel = undefined;
+        this.focusedMenuPanel = undefined;
+    }
+
+    @HostListener("window:keyup.escape", ["$event"])
+    onEscKeyPressed(_event: KeyboardEvent) {
+        this.focusedMenuPanel = undefined;
+    }
+}
+
+@Component({
+    selector: "td-topbar-menu-panel",
+    templateUrl: "./menu-panel.component.html",
+    styleUrls: ["./menu-panel.component.scss"],
+})
+export class TopbarMenuPanelComponent {
+    @Input() menuPanel!: TopbarMenuPanel;
+
+    get columns() {
+        return this.menuPanel.columns;
+    }
+
+    get title() {
+        return this.menuPanel.title;
+    }
+
+    isListColumn(obj: any): obj is TopbarListColumn {
+        return obj instanceof TopbarListColumn;
+    }
+
+    isVideoColumn(obj: any): obj is TopbarVideoColumn {
+        return obj instanceof TopbarVideoColumn;
     }
 }
