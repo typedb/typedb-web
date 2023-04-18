@@ -2,6 +2,9 @@
 #
 
 SRCS = glob([
+    "component/*.ts",
+    "navigation/*.ts",
+    "page/*.ts",
     "sanity-core/*.ts",
     "util/*.ts",
     "*.ts",
