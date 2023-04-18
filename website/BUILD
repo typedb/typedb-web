@@ -32,6 +32,7 @@ APPLICATION_DEPS = [
     ":node_modules/@angular/compiler",
     ":node_modules/@angular/core",
     ":node_modules/@angular/forms",
+    ":node_modules/@angular/material",
     ":node_modules/@angular/platform-browser",
     ":node_modules/@angular/platform-browser-dynamic",
     ":node_modules/@angular/router",
