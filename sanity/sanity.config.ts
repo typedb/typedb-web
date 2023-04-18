@@ -1,7 +1,7 @@
 import "./styles.css";
 
 import { BlockElementIcon, ClipboardImageIcon, CommentIcon, DocumentIcon, DocumentsIcon, ImagesIcon, ThListIcon } from "@sanity/icons";
-import { defineConfig, isDev } from "sanity";
+import { defineConfig, isDev, useCurrentUser, userHasRole } from "sanity";
 import { colorInput } from "@sanity/color-input";
 import { visionTool } from "@sanity/vision";
 import { media } from "sanity-plugin-media";
@@ -14,6 +14,8 @@ import { getStartedPlugin } from "./plugins/sanity-plugin-tutorial";
 const devOnlyPlugins = [getStartedPlugin()];
 const singletonActions = new Set(["publish", "discardChanges", "restore"]);
 const singletonTypes = new Set([topbarSchemaName, webinarsPageSchemaName]);
+
+const isAdmin = () => userHasRole(useCurrentUser()!, 'administrator');
 
 export default defineConfig({
     name: "default",
@@ -46,12 +48,11 @@ export default defineConfig({
                 s.divider(),
                 singletonListItem(s, communityResourcesSchemaName, "Community Resources", CommentIcon),
                 singletonListItem(s, formsSchemaName, "Forms", ClipboardImageIcon),
-                s.divider(),
-                s.listItem().title("Icons & Logos").icon(ImagesIcon).child(s.list().title("Icons & Logos")
+                isAdmin() ? s.listItem().title("Icons & Logos").icon(ImagesIcon).child(s.list().title("Icons & Logos")
                     .items([
                         s.documentTypeListItem(sectionIconSchemaName).title("Section Icons"),
                     ])
-                ),
+                ) : s.divider(),
             ]),
         }),
         media(),
