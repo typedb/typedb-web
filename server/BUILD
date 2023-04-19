@@ -37,7 +37,7 @@ pkg_tar(
         "//server",
         "//schema:srcs",
         "//website:srcs",
-        "//website:distribution",
+#        "//website:distribution",
     ],
     visibility = ["//deployment/docker:__pkg__"]
 )

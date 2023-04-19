@@ -69,9 +69,22 @@ APPLICATION_DEPS = [
 angular_cli_bin.ng(
     name = "distribution",
     srcs = [":srcs"] + APPLICATION_DEPS,
-    args = ["build"],
+    args = ["build", "-c", "development"],
     chdir = package_name(),
     log_level = "debug",
     out_dirs = ["dist/dynamic"],
     visibility = ["//visibility:public"],
 )
+
+#load("@npm//website:@angular/compiler-cli/package_json.bzl", compiler_cli = "bin")
+#compiler_cli.ngc_binary(name = "ngc")
+#
+#load("@aspect_rules_ts//ts:defs.bzl", "ts_project")
+#ts_project(
+#    name = "distribution",
+#    tsc = ":ngc",
+#    supports_workers = False,
+#    srcs = [":srcs"] + APPLICATION_DEPS,
+#    args = ["build", "-c", "development"],
+#    visibility = ["//visibility:public"],
+#)

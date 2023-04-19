@@ -17,9 +17,13 @@
 
 FROM vaticle/ubuntu:4c2fe7ba670f7c48437d98eef844b7f8927f7e82 as build
 ARG typedb_web_server_pkg
+ARG env
 ADD ${typedb_web_server_pkg} /opt/typedb-web
+WORKDIR /opt/typedb-web/schema
+RUN pnpm i
 WORKDIR /opt/typedb-web/website
 RUN pnpm i
+RUN ng build
 
 FROM vaticle/ubuntu:4c2fe7ba670f7c48437d98eef844b7f8927f7e82
 WORKDIR /opt/typedb-web

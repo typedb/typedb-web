@@ -31,6 +31,17 @@ filegroup(
 #    visibility = ["//website:__subpackages__"],
 #)
 
+#load("@aspect_rules_ts//ts:defs.bzl", "ts_project")
+#ts_project(
+#    name = "schema_tsc",
+#    srcs = SRCS,
+#    tsconfig = ":tsconfig.json",
+#    deps = [
+#        "//website:node_modules/@sanity/icons",
+#        "//website:node_modules/@sanity/types",
+#    ]
+#)
+
 load("@aspect_rules_js//npm:defs.bzl", "npm_package")
 npm_package(
     name = "schema",
