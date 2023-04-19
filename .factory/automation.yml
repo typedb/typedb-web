@@ -34,7 +34,7 @@ build:
         export DEPLOY_HELM_USERNAME=$REPO_VATICLE_USERNAME
         export DEPLOY_HELM_PASSWORD=$REPO_VATICLE_PASSWORD
         bazel run --define version=0.0.0-$(git rev-parse HEAD) //deployment/helm:deploy
-    deploy-website:
+    deploy-server-staging:
       # TODO: move to release workflow
       # filter:
       #   owner: vaticle
