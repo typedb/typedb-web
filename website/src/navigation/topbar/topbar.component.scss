@@ -1,12 +1,31 @@
 @import "../../styles/colors";
 
-.tb-root {
-    top: 0;
+.tb-root, td-topbar-menu-panel {
     left: auto;
     right: 0;
     position: fixed;
     width: 100%;
     z-index: 1100;
+    background-color: transparent;
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid transparent;
+    //transition-property: background-color, border-bottom-color;
+    //transition-duration: 100ms;
+    //transition-timing-function: ease;
+}
+
+.tb-root {
+    top: 0;
+
+    &.tb-solid, &:hover {
+        background-color: rgba($color-purple, .8);
+        border-bottom-color: $color-secondary-purple;
+    }
+}
+
+td-topbar-menu-panel {
+    top: 80px;
+    border-bottom: 1px solid $color-secondary-purple;
 }
 
 nav {

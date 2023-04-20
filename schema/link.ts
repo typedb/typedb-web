@@ -3,7 +3,6 @@ import { defineField, defineType, Reference, SanityDocument, Slug, SlugRule } fr
 import { linkField, titleField, titleFieldName } from "./common-fields";
 import { SanityDataset } from "./sanity-core";
 import { Document } from "./sanity-core/document";
-import { schemaName } from "./util";
 
 export type LinkType = "autoDetect" | "route" | "external";
 

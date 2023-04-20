@@ -1,4 +1,4 @@
-<header class="tb-root" *ngIf="topbar">
+<header class="tb-root" [ngClass]="rootNgClass" *ngIf="topbar">
     <nav>
         <a [routerLink]="['/']" class="tb-logo-container"><img src="/assets/image/vaticle-typedb.svg" alt="Vaticle TypeDB"/></a>
         <div class="tb-desktop-items text-s">
@@ -19,5 +19,5 @@
             </ul>
         </div>
     </nav>
-    <td-topbar-menu-panel *ngFor="let menuPanel of menuPanels" [menuPanel]="menuPanel" [hidden]="!isMenuPanelVisible(menuPanel)" (mouseenter)="onMenuPanelMouseEnter(menuPanel)" (mouseleave)="onMenuPanelMouseLeave(menuPanel)"></td-topbar-menu-panel>
 </header>
+<td-topbar-menu-panel *ngFor="let menuPanel of menuPanels" [menuPanel]="menuPanel" [hidden]="!isMenuPanelVisible(menuPanel)" (mouseenter)="onMenuPanelMouseEnter(menuPanel)" (mouseleave)="onMenuPanelMouseLeave(menuPanel)"></td-topbar-menu-panel>

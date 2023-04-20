@@ -2,7 +2,6 @@ import { defineType, PortableTextTextBlock } from "@sanity/types";
 import { Action, SanityActions } from "./action";
 import { bodyFieldRichText, optionalActionsField, titleFieldWithHighlights } from "./common-fields";
 import { SanityDataset } from "./sanity-core";
-import { schemaName } from "./util";
 
 export type SanityPortableText = PortableTextTextBlock[];
 

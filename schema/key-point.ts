@@ -2,7 +2,6 @@ import { defineType, PortableTextTextBlock, Reference } from "@sanity/types";
 import { bodyFieldRichText, sectionIconField, titleField } from "./common-fields";
 import { SanityDataset } from "./sanity-core";
 import { RichText } from "./text";
-import { schemaName } from "./util";
 
 export interface SanityKeyPoint {
     title: string;

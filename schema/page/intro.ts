@@ -3,7 +3,6 @@ import { bodyFieldRichText, collapsibleOptions, isVisibleField, pageTitleField, 
 import { ContentPanel, contentPanelSchemaName, contentTextPanelSchemaName, SanityContentPanel } from "../component/content-text-panel";
 import { SanityDataset } from "../sanity-core";
 import { SanityTitleAndBody, SanityTitleBodyActionsSection, TitleAndBody, titleAndBodySchemaName, TitleBodyActionsSection } from "../text";
-import { schemaName } from "../util";
 import { SanityPage } from "./common";
 
 const introSection = "introSection";

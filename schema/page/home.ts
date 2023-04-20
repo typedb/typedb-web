@@ -10,7 +10,6 @@ import { SocialMediaID, socialMediaLinksField } from "../social-media";
 import { SanityTestimonial, Testimonial, testimonialSchemaName } from "../testimonial";
 import { BodyText, ParagraphWithHighlights, RichText, SanityBodyText, SanityTitle, SanityTitleWithHighlights, TitleWithHighlights } from "../text";
 
-import { schemaName } from "../util";
 import { Page, SanityPage } from "./common";
 
 const sections = {

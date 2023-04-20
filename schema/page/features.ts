@@ -5,7 +5,6 @@ import { bodyFieldRichText, collapsibleOptions, isVisibleField, optionalActionsF
 import { Organisation, organisationLogosField, SanityOrganisation } from "../organisation";
 import { SanityDataset } from "../sanity-core";
 import { SanityTitleAndBody, SanityTitleBodyActionsSection, TitleAndBody, TitleBodyActionsSection, titleBodyActionsSectionSchemaName } from "../text";
-import { schemaName } from "../util";
 import { SanityPage } from "./common";
 
 const introSection = "introSection";

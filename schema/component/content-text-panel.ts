@@ -3,7 +3,6 @@ import { Link } from "../link";
 import { bodyFieldRichText, learnMoreLinkField, linkField, titleField } from "../common-fields";
 import { SanityDataset } from "../sanity-core";
 import { RichText, SanityBodyText, SanityTitle } from "../text";
-import { schemaName } from "../util";
 
 export interface SanityContentPanel extends SanityTitle {
 

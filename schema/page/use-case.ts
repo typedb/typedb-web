@@ -6,7 +6,6 @@ import { LinkPanel, linkPanelSchemaName, SanityLinkPanel } from "../component/li
 import { KeyPoint, SanityKeyPoint } from "../key-point";
 import { SanityDataset } from "../sanity-core";
 import { RichText, SanityBodyText, SanityTitle, SanityTitleAndBody, TitleAndBody } from "../text";
-import { schemaName } from "../util";
 import { Page, SanityPage } from "./common";
 
 const sections = {

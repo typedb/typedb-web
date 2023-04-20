@@ -14,6 +14,7 @@ export class TopbarComponent {
     hoveredMenuItem?: TopbarMenuPanel;
     hoveredMenuPanel?: TopbarMenuPanel;
     focusedMenuPanel?: TopbarMenuPanel;
+    private _pageYOffset = 0;
 
     constructor(private router: Router, private contentService: ContentService) {}
 
@@ -34,6 +35,10 @@ export class TopbarComponent {
 
     get menuPanels(): TopbarMenuPanel[] {
         return this.topbar!.mainArea.filter(this.isMenuPanel);
+    }
+
+    get rootNgClass(): { [clazz: string]: boolean } {
+        return { "tb-solid": this._pageYOffset > 0 };
     }
 
     isMenuPanel(obj: any): obj is TopbarMenuPanel {
@@ -67,6 +72,11 @@ export class TopbarComponent {
     @HostListener("window:keyup.escape", ["$event"])
     onEscKeyPressed(_event: KeyboardEvent) {
         this.focusedMenuPanel = undefined;
+    }
+
+    @HostListener("window:scroll", ["$event"])
+    onWindowScroll(_event: any) {
+        this._pageYOffset = window.pageYOffset;
     }
 }
 

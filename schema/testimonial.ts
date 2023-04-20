@@ -3,7 +3,6 @@ import { headshotSchemaName, SanityImageRef } from "./image";
 import { Organisation, organisationSchemaName } from "./organisation";
 import { SanityDataset } from "./sanity-core";
 import { Document } from "./sanity-core/document";
-import { schemaName } from "./util";
 
 export interface SanityTestimonial extends SanityDocument {
     organisation: Reference;

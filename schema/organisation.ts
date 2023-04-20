@@ -3,7 +3,6 @@ import { Asset, defineField, defineType, Image, SanityDocument } from "@sanity/t
 import { nameField } from "./common-fields";
 import { SanityDataset } from "./sanity-core";
 import { Document } from "./sanity-core/document";
-import { schemaName } from "./util";
 
 const logoFieldName = "logo";
 
