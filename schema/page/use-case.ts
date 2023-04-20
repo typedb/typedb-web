@@ -129,7 +129,7 @@ export class UseCasePage extends Page {
     }
 }
 
-export const useCasePageSchemaName = schemaName(UseCasePage);
+export const useCasePageSchemaName = "useCasePage";
 
 const sectionSchemaName = (key: SectionKey) => `${useCasePageSchemaName}_${sections[key].id}`;
 
@@ -148,7 +148,7 @@ const linkPanelsField = defineField({
     validation: (rule: ArrayRule<any>) => rule.length(3),
 });
 
-const exampleTabSchemaName = `${useCasePageSchemaName}_${schemaName(ExampleTab)}`;
+const exampleTabSchemaName = `${useCasePageSchemaName}_exampleTab`;
 
 const exampleTabSchema = defineType({
     name: exampleTabSchemaName,

@@ -30,7 +30,7 @@ export class Testimonial extends Document {
     }
 }
 
-export const testimonialSchemaName = schemaName(Testimonial);
+export const testimonialSchemaName = "testimonial";
 
 export const testimonialSchema = defineType({
     name: testimonialSchemaName,

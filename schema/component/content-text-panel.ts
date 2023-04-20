@@ -32,7 +32,7 @@ export class ContentTextPanel extends ContentPanel {
     }
 }
 
-export const contentPanelSchemaName = schemaName(ContentPanel);
+export const contentPanelSchemaName = "contentPanel";
 
 const contentPanelSchema = defineType({
     name: contentPanelSchemaName,
@@ -43,7 +43,7 @@ const contentPanelSchema = defineType({
     ],
 });
 
-export const contentTextPanelSchemaName = schemaName(ContentTextPanel);
+export const contentTextPanelSchemaName = "contentTextPanel";
 
 const contentTextPanelSchema = defineType({
     name: contentTextPanelSchemaName,

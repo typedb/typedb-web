@@ -25,7 +25,7 @@ export class LinkPanel {
     }
 }
 
-export const linkPanelSchemaName = schemaName(LinkPanel);
+export const linkPanelSchemaName = "linkPanel";
 
 export const linkPanelSchema = defineType({
     name: linkPanelSchemaName,

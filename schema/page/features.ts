@@ -63,7 +63,7 @@ export class FeaturesPageCoreSection extends TitleAndBody {
     }
 }
 
-export const featuresPageSchemaName = schemaName(FeaturesPage);
+export const featuresPageSchemaName = "featuresPage";
 
 const introSectionSchemaName = `${featuresPageSchemaName}_introSection`;
 

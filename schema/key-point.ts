@@ -22,7 +22,7 @@ export class KeyPoint {
     }
 }
 
-export const keyPointSchemaName = schemaName(KeyPoint);
+export const keyPointSchemaName = "keyPoint";
 
 const keyPointSchema = defineType({
     name: keyPointSchemaName,

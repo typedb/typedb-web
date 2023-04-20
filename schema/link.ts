@@ -52,7 +52,7 @@ export class VideoEmbed extends Document {
     }
 }
 
-export const linkSchemaName = schemaName(Link);
+export const linkSchemaName = "link";
 
 const linkSchema = defineType({
     name: linkSchemaName,
@@ -94,7 +94,7 @@ const linkSchema = defineType({
     },
 });
 
-export const textLinkSchemaName = schemaName(TextLink);
+export const textLinkSchemaName = "textLink";
 
 export const textLinkSchema = defineType({
     name: textLinkSchemaName,
@@ -109,7 +109,7 @@ export const textLinkSchema = defineType({
     ],
 });
 
-export const videoEmbedSchemaName = schemaName(VideoEmbed);
+export const videoEmbedSchemaName = "videoEmbed";
 
 const videoEmbedSchema = defineType({
     name: videoEmbedSchemaName,

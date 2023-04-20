@@ -218,7 +218,7 @@ export class HomePage extends Page {
     }
 }
 
-export const homePageSchemaName = schemaName(HomePage);
+export const homePageSchemaName = "homePage";
 
 const sectionSchemaName = (key: SectionKey) => `${homePageSchemaName}_${sections[key].id}`;
 

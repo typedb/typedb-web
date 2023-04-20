@@ -40,7 +40,7 @@ export class IntroPageCoreSection extends TitleAndBody {
     }
 }
 
-export const introPageSchemaName = schemaName(IntroPage);
+export const introPageSchemaName = "introPage";
 
 const introPageCoreSectionSchemaName = `${introPageSchemaName}_coreSection`;
 

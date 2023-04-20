@@ -19,7 +19,7 @@ class CoreSection extends TitleAndBody {
 
 export const webinarsPageSchemaName = "webinarsPage";
 
-const coreSectionSchemaName = `${webinarsPageSchemaName}_${schemaName(CoreSection)}`;
+const coreSectionSchemaName = `${webinarsPageSchemaName}_coreSection`;
 
 const coreSectionSchema = defineType({
     name: coreSectionSchemaName,

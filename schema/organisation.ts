@@ -23,7 +23,7 @@ export class Organisation extends Document {
     }
 }
 
-export const organisationSchemaName = schemaName(Organisation);
+export const organisationSchemaName = "organisation";
 
 const organisationSchema = defineType({
     name: organisationSchemaName,

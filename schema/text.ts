@@ -61,9 +61,9 @@ export class TitleBodyActionsSection extends TitleAndBody {
     }
 }
 
-export const titleAndBodySchemaName = schemaName(TitleAndBody);
+export const titleAndBodySchemaName = "titleAndBody";
 
-export const titleBodyActionsSectionSchemaName = schemaName(TitleBodyActionsSection);
+export const titleBodyActionsSectionSchemaName = "titleBodyActionsSection";
 
 const titleAndBodySchema = defineType({
     name: titleAndBodySchemaName,
