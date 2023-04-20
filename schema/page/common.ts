@@ -1,6 +1,6 @@
 import { BlockContentIcon } from "@sanity/icons";
 import { defineType, SanityDocument } from "@sanity/types";
-import { Document } from "../sanity-core/document";
+import { Document } from "../sanity-core";
 
 export interface SanityPage extends SanityDocument {
     title: string;

@@ -1,7 +1,8 @@
-import { defineField, defineType } from "@sanity/types";
-import { linkSchemaName } from "../link";
+import { defineField, defineType, SanityDocument } from "@sanity/types";
+import { SanityButton } from "../action";
+import { linkSchemaName, SanityTextLink, textLinkSchemaName } from "../link";
 import { titleField, titleFieldName } from "../common-fields";
-import { socialMediaLinksField, socialMedias } from "../social-media";
+import { SocialMediaID, socialMediaLinksField, socialMedias } from "../social-media";
 
 export const footerSchemaName = "footer";
 
@@ -15,6 +16,18 @@ export const contactMediaList = Object.keys(contactMedias);
 
 export type ContactMediaID = keyof typeof contactMedias;
 
+export interface SanityFooter extends SanityDocument {
+    button: SanityButton;
+    socialMediaLinks: SocialMediaID[];
+    contactMediaLinks: ContactMediaID[];
+    columns: SanityFooterColumn[];
+}
+
+export interface SanityFooterColumn {
+    title: string;
+    items: SanityTextLink[];
+}
+
 const columnSchemaName = "footerColumn";
 
 const columnSchema = defineType({
@@ -27,14 +40,14 @@ const columnSchema = defineType({
             name: "items",
             description: "Items",
             type: "array",
-            of: [{type: "reference", to: [{type: linkSchemaName}]}],
+            of: [{type: textLinkSchemaName}],
         }),
     ],
     preview: {
         select: { title: titleFieldName, items: "items" },
         prepare: (selection) => ({
             title: selection.title,
-            subtitle: `${selection.items?.map((x: any) => x.title).join(", ") || ""}`,
+            subtitle: `${selection.items?.map((x: any) => x.text).join(", ") || ""}`,
         }),
     },
 });
@@ -48,6 +61,12 @@ const footerSchema = defineType({
         { name: "bottomSection", title: "Bottom Section" },
     ],
     fields: [
+        defineField({
+            fieldset: "topSection",
+            name: "button",
+            title: "Button",
+            type: "button",
+        }),
         Object.assign({}, socialMediaLinksField, { fieldset: "topSection" } ),
         defineField({
             fieldset: "bottomSection",

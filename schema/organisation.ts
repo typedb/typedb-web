@@ -1,8 +1,7 @@
 import { CaseIcon, UsersIcon } from "@sanity/icons";
 import { Asset, defineField, defineType, Image, SanityDocument } from "@sanity/types";
 import { nameField } from "./common-fields";
-import { SanityDataset } from "./sanity-core";
-import { Document } from "./sanity-core/document";
+import { Document, SanityDataset } from "./sanity-core";
 
 const logoFieldName = "logo";
 

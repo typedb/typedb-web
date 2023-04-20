@@ -1,13 +1,12 @@
-import { defineField, defineType, Reference, SanityDocument } from "@sanity/types";
+import { defineField, defineType, SanityDocument } from "@sanity/types";
 import { headshotSchemaName, SanityImageRef } from "./image";
-import { Organisation, organisationSchemaName } from "./organisation";
-import { SanityDataset } from "./sanity-core";
-import { Document } from "./sanity-core/document";
+import { Organisation, organisationSchemaName, SanityOrganisation } from "./organisation";
+import { Document, SanityDataset, SanityReference } from "./sanity-core";
 
 export interface SanityTestimonial extends SanityDocument {
-    organisation: Reference;
+    organisation: SanityReference<SanityOrganisation>;
     author: string;
-    headshot: Reference;
+    headshot: SanityReference<SanityImageRef>;
     jobTitle: string;
     body: string;
 }

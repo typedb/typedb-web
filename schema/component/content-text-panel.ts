@@ -1,7 +1,7 @@
-import { defineType, Reference } from "@sanity/types";
-import { Link } from "../link";
+import { defineType } from "@sanity/types";
+import { Link, SanityLink } from "../link";
 import { bodyFieldRichText, learnMoreLinkField, linkField, titleField } from "../common-fields";
-import { SanityDataset } from "../sanity-core";
+import { SanityDataset, SanityReference } from "../sanity-core";
 import { RichText, SanityBodyText, SanityTitle } from "../text";
 
 export interface SanityContentPanel extends SanityTitle {
@@ -9,7 +9,7 @@ export interface SanityContentPanel extends SanityTitle {
 }
 
 export interface SanityContentTextPanel extends SanityContentPanel, SanityBodyText {
-    learnMoreLink: Reference;
+    learnMoreLink: SanityReference<SanityLink>;
 }
 
 export class ContentPanel {

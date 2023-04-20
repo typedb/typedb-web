@@ -1,8 +1,7 @@
 import { DocumentVideoIcon, LinkIcon } from "@sanity/icons";
-import { defineField, defineType, Reference, SanityDocument, Slug, SlugRule } from "@sanity/types";
+import { defineField, defineType, SanityDocument, Slug, SlugRule } from "@sanity/types";
 import { linkField, titleField, titleFieldName } from "./common-fields";
-import { SanityDataset } from "./sanity-core";
-import { Document } from "./sanity-core/document";
+import { Document, SanityDataset, SanityReference } from "./sanity-core";
 
 export type LinkType = "autoDetect" | "route" | "external";
 
@@ -14,7 +13,7 @@ export interface SanityLink extends SanityDocument {
 
 export interface SanityTextLink {
     text: string;
-    link: Reference;
+    link: SanityReference<SanityLink>;
 }
 
 export interface SanityVideoEmbed extends SanityDocument {

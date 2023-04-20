@@ -1,11 +1,12 @@
 import { ImageIcon } from "@sanity/icons";
-import { defineField, defineType, Reference, SanityDocument } from "@sanity/types";
+import { defineField, defineType, ImageAsset, Reference, SanityDocument } from "@sanity/types";
 import { titleField } from "./common-fields";
+import { SanityReference } from "./sanity-core";
 
 export const assetRefFieldName = "assetRef";
 
 export interface SanityImageRef extends SanityDocument {
-    assetRef: { asset: Reference };
+    assetRef: { asset: SanityReference<ImageAsset> };
 }
 
 const assetRefField = defineField({

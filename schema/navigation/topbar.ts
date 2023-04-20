@@ -1,10 +1,9 @@
 import { BlockElementIcon, MasterDetailIcon } from "@sanity/icons";
-import { defineField, defineType, Reference, SanityDocument } from "@sanity/types";
+import { defineField, defineType, SanityDocument } from "@sanity/types";
 import { Action, buttonSchemaName, SanityButton } from "../action";
-import { Link, SanityTextLink, TextLink, textLinkSchemaName } from "../link";
+import { Link, SanityLink, SanityTextLink, SanityVideoEmbed, TextLink, textLinkSchemaName } from "../link";
 import { descriptionField, linkField, titleField, titleFieldName, videoEmbedField } from "../common-fields";
-import { SanityDataset } from "../sanity-core";
-import { Document } from "../sanity-core/document";
+import { Document, SanityDataset, SanityReference } from "../sanity-core";
 
 export interface SanityTopbar extends SanityDocument {
     mainArea: (SanityTopbarMenuPanel | SanityTextLink)[];
@@ -18,7 +17,7 @@ interface SanityTopbarMenuPanel {
 
 interface SanityTopbarVideoColumn {
     title: string;
-    videoEmbed: Reference;
+    videoEmbed: SanityReference<SanityVideoEmbed>;
 }
 
 interface SanityTopbarListColumn {
@@ -29,7 +28,7 @@ interface SanityTopbarListColumn {
 interface SanityTopbarListColumnItem {
     title: string;
     description: string;
-    link: Reference;
+    link: SanityReference<SanityLink>;
 }
 
 interface SanityTopbarSecondaryArea {

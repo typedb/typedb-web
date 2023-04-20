@@ -1,11 +1,12 @@
-import { ArrayRule, defineField, defineType, Reference } from "@sanity/types";
+import { ArrayRule, defineField, defineType } from "@sanity/types";
 import { Action, SanityActions } from "../action";
-import { Link } from "../link";
+import { SanityImageRef } from "../image";
+import { Link, SanityLink } from "../link";
 import { bodyFieldRichText, collapsibleOptions, sectionIconField, isVisibleField, keyPointsField, optionalActionsField, pageTitleField, titleAndBodyFields, titleBodyIconFields, titleField, videoEmbedField, learnMoreLinkField } from "../common-fields";
 import { ContentTextPanel, contentTextPanelSchemaName, SanityContentTextPanel } from "../component/content-text-panel";
 import { KeyPoint, SanityKeyPoint } from "../key-point";
-import { Organisation, organisationLogosField } from "../organisation";
-import { SanityDataset } from "../sanity-core";
+import { Organisation, organisationLogosField, SanityOrganisation } from "../organisation";
+import { SanityDataset, SanityReference } from "../sanity-core";
 import { SocialMediaID, socialMediaLinksField } from "../social-media";
 import { SanityTestimonial, Testimonial, testimonialSchemaName } from "../testimonial";
 import { BodyText, ParagraphWithHighlights, RichText, SanityBodyText, SanityTitle, SanityTitleWithHighlights, TitleWithHighlights } from "../text";
@@ -31,12 +32,12 @@ interface SanitySection extends SanityTitleWithHighlights, SanityBodyText {
 }
 
 interface SanityCoreSection extends SanitySection {
-    icon: Reference;
+    icon: SanityReference<SanityImageRef>;
 }
 
 interface SanityIntroSection extends SanityCoreSection {
     actions?: SanityActions;
-    userLogos: Reference[];
+    userLogos: SanityReference<SanityOrganisation>[];
 }
 
 interface SanityFeaturesSection extends SanityCoreSection {
@@ -44,9 +45,9 @@ interface SanityFeaturesSection extends SanityCoreSection {
 }
 
 interface SanityUseCase extends SanityTitle, SanityBodyText {
-    icon: Reference;
+    icon: SanityReference<SanityImageRef>;
     videoURL: string;
-    learnMoreLink: Reference;
+    learnMoreLink: SanityReference<SanityLink>;
 }
 
 interface SanityUseCasesSection extends SanityCoreSection {

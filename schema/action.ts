@@ -1,6 +1,6 @@
-import { defineField, defineType, Reference } from "@sanity/types";
-import { Link, textLinkSchema } from "./link";
-import { SanityDataset } from "./sanity-core";
+import { defineField, defineType } from "@sanity/types";
+import { Link, SanityLink, textLinkSchema } from "./link";
+import { SanityDataset, SanityReference } from "./sanity-core";
 
 export const buttonStyles = {
     primary: "Primary",
@@ -14,7 +14,7 @@ export type ButtonStyle = keyof typeof buttonStyles;
 export interface SanityButton {
     style: ButtonStyle;
     text: string;
-    link: Reference;
+    link: SanityReference<SanityLink>;
 }
 
 export type SanityActions = SanityButton[];

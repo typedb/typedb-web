@@ -1,10 +1,11 @@
-import { defineField, defineType, Reference } from "@sanity/types";
-import { bodyFieldRichText, collapsibleOptions, pageTitleField, sectionIconField, titleAndBodyFields, titleFieldWithHighlights } from "../common-fields";
-import { SanityDataset } from "../sanity-core";
+import { defineField, defineType } from "@sanity/types";
+import { collapsibleOptions, pageTitleField, sectionIconField, titleAndBodyFields } from "../common-fields";
+import { SanityImageRef } from "../image";
+import { SanityDataset, SanityReference } from "../sanity-core";
 import { SanityTitleAndBody, TitleAndBody, titleAndBodySchemaName } from "../text";
 
 interface SanityCoreSection extends SanityTitleAndBody {
-    icon: Reference;
+    icon: SanityReference<SanityImageRef>;
 }
 
 class CoreSection extends TitleAndBody {

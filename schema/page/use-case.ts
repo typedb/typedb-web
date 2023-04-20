@@ -1,10 +1,10 @@
 import { DocumentIcon } from "@sanity/icons";
-import { ArrayRule, defineField, defineType, Reference } from "@sanity/types";
-import { Link } from "../link";
-import { bodyFieldRichText, collapsibleOptions, isVisibleField, keyPointsField, learnMoreLinkField, linkField, pageTitleField, routeField, SanityVisibleToggle, titleAndBodyFields, titleField, videoEmbedField } from "../common-fields";
+import { ArrayRule, defineField, defineType } from "@sanity/types";
+import { Link, SanityLink } from "../link";
+import { bodyFieldRichText, collapsibleOptions, isVisibleField, keyPointsField, learnMoreLinkField, pageTitleField, routeField, SanityVisibleToggle, titleAndBodyFields, titleField, videoEmbedField } from "../common-fields";
 import { LinkPanel, linkPanelSchemaName, SanityLinkPanel } from "../component/link-panel";
 import { KeyPoint, SanityKeyPoint } from "../key-point";
-import { SanityDataset } from "../sanity-core";
+import { SanityDataset, SanityReference } from "../sanity-core";
 import { RichText, SanityBodyText, SanityTitle, SanityTitleAndBody, TitleAndBody } from "../text";
 import { Page, SanityPage } from "./common";
 
@@ -40,12 +40,12 @@ interface SanityKeyPointsSection extends SanityBodyText, SanityVisibleToggle {
 
 interface SanityExampleTab extends SanityTitle, SanityBodyText {
     videoURL: string;
-    learnMoreLink: Reference;
+    learnMoreLink: SanityReference<SanityLink>;
 }
 
 interface SanityExampleSection extends SanityBodyText, SanityVisibleToggle {
     exampleTabs: SanityExampleTab[];
-    sampleProjectLink: Reference;
+    sampleProjectLink: SanityReference<SanityLink>;
 }
 
 interface SanityFurtherReadingSection extends SanityBodyText, SanityVisibleToggle {

@@ -1,12 +1,13 @@
 import { defineType, PortableTextTextBlock, Reference } from "@sanity/types";
 import { bodyFieldRichText, sectionIconField, titleField } from "./common-fields";
-import { SanityDataset } from "./sanity-core";
+import { SanityImageRef } from "./image";
+import { SanityDataset, SanityReference } from "./sanity-core";
 import { RichText } from "./text";
 
 export interface SanityKeyPoint {
     title: string;
     body: PortableTextTextBlock[];
-    icon: Reference;
+    icon: SanityReference<SanityImageRef>;
 }
 
 export class KeyPoint {

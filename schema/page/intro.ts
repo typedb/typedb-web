@@ -1,7 +1,8 @@
-import { ArrayRule, defineField, defineType, Reference } from "@sanity/types";
+import { ArrayRule, defineField, defineType } from "@sanity/types";
 import { bodyFieldRichText, collapsibleOptions, isVisibleField, pageTitleField, sectionIconField, titleFieldWithHighlights } from "../common-fields";
-import { ContentPanel, contentPanelSchemaName, contentTextPanelSchemaName, SanityContentPanel } from "../component/content-text-panel";
-import { SanityDataset } from "../sanity-core";
+import { ContentPanel, contentPanelSchemaName, SanityContentPanel } from "../component/content-text-panel";
+import { SanityImageRef } from "../image";
+import { SanityDataset, SanityReference } from "../sanity-core";
 import { SanityTitleAndBody, SanityTitleBodyActionsSection, TitleAndBody, titleAndBodySchemaName, TitleBodyActionsSection } from "../text";
 import { SanityPage } from "./common";
 
@@ -14,7 +15,7 @@ export interface SanityIntroPage extends SanityPage {
 }
 
 interface SanityCoreSection extends SanityTitleAndBody {
-    icon: Reference;
+    icon: SanityReference<SanityImageRef>;
     contentTabs: SanityContentPanel[];
 }
 

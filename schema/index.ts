@@ -31,8 +31,7 @@ export { HomePage, HomePageCoreSection, HomePageIntroSection, HomePageSection, H
 export { IntroPage, IntroPageCoreSection, introPageSchemaName, type SanityIntroPage } from "./page/intro";
 export { useCasePageSchemaName } from "./page/use-case";
 export { webinarsPageSchemaName } from "./page/webinars";
-export { Document } from "./sanity-core/document";
-export { SanityDataset } from "./sanity-core";
+export { Document, SanityDataset } from "./sanity-core";
 export { type SanityCommunityResources, CommunityResources, communityResourcesSchemaName, type SocialMediaID, socialMedias } from "./social-media";
 export { type SanityTestimonial, Testimonial } from "./testimonial";
 export { ParagraphWithHighlights, RichText, type SanityPortableText, TitleAndBody } from "./text";

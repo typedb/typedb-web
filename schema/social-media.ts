@@ -1,5 +1,5 @@
 import { defineField, defineType, SanityDocument } from "@sanity/types";
-import { Document } from "./sanity-core/document";
+import { Document } from "./sanity-core";
 
 export const socialMedias = {
     discord: "Discord",
