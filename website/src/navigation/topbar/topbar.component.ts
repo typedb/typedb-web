@@ -1,4 +1,4 @@
-import { Component, HostListener, Input } from "@angular/core";
+import { Component, HostListener, Input, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 import { communityResourcesSchemaName, SanityCommunityResources, SanityTopbar, Topbar, TopbarListColumn, TopbarMenuPanel, topbarSchemaName, TopbarVideoColumn } from "typedb-web-schema";
 import { ContentService } from "../../service/content.service";
@@ -8,7 +8,7 @@ import { ContentService } from "../../service/content.service";
     templateUrl: "./topbar.component.html",
     styleUrls: ["./topbar.component.scss"],
 })
-export class TopbarComponent {
+export class TopbarComponent implements OnInit {
     topbar?: Topbar;
     githubURL?: string;
     hoveredMenuItem?: TopbarMenuPanel;

@@ -1,0 +1,38 @@
+<footer *ngIf="footer">
+    <div class="ft-section ft-social-section">
+        <td-button [button]="footer.button"></td-button>
+        <div class="ft-social-links">
+            <a *ngFor="let socialMediaLink of socialMediaLinks" class="sm-panel text-xs" [href]="socialMediaLink.link.destination">
+                <img [src]="socialMediaLink.iconURL" [alt]="socialMediaLink.text"/>
+            </a>
+        </div>
+    </div>
+    <nav class="ft-section ft-nav-section">
+        <div class="ft-contact-section">
+            <h3 class="text-ml">{{ footer.contactSectionTitle }}</h3>
+            <ul>
+                <li *ngFor="let contactMediaLink of contactMediaLinks" class="text-xs">
+                    <a [tdLink]="contactMediaLink.link">
+                        <img [src]="contactMediaLink.iconURL" alt=""/>
+                        <p>{{ contactMediaLink.text }}</p>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="ft-sitemap-section">
+            <div *ngFor="let column of footer.columns">
+                <h3 class="text-ml">{{ column.title }}</h3>
+                <ul>
+                    <li *ngFor="let item of column.items" class="text-xs">
+                        <a [tdLink]="item">{{ item.text }}</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="ft-section ft-credits-section">
+        <aside class="text-xxs">
+            <img src="/assets/icon/code-1.svg" alt="Made"/> with <img src="/assets/icon/heart.svg" alt="love"/> by <strong class="text-xs">Vaticle</strong>
+        </aside>
+    </div>
+</footer>

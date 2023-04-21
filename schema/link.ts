@@ -25,10 +25,14 @@ export class Link {
     readonly type: LinkType;
     readonly opensNewTab: boolean;
 
-    constructor(data: SanityLink) {
-        this.destination = data.destination.current;
+    constructor(data: SanityLink | { destination: string, type: LinkType, opensNewTab: boolean }) {
         this.type = data.type;
         this.opensNewTab = data.opensNewTab;
+        if (typeof data.destination === "string") {
+            this.destination = data.destination;
+        } else {
+            this.destination = data.destination.current;
+        }
     }
 }
 

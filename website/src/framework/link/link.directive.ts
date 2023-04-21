@@ -31,8 +31,10 @@ export class LinkDirective implements OnInit {
 
     constructRouterLink(el: ElementRef<HTMLAnchorElement>) {
         el.nativeElement.tabIndex = 0;
-        el.nativeElement.addEventListener("click", () => {
-            const [path, query] = this.link.destination.split("?");
+        el.nativeElement.href = this.link.destination;
+        const [path, query] = this.link.destination.split("?");
+        el.nativeElement.addEventListener("click", (e: MouseEvent) => {
+            e.preventDefault();
             if (!query) {
                 this.router.navigate([this.link.destination]);
             } else {

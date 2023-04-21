@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FrameworkModule } from "../framework/framework.module";
+import { FooterComponent } from "./footer/footer.component";
 import { SidenavComponent } from "./sidenav/sidenav.component";
 import { FormsModule } from "@angular/forms";
 import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
@@ -10,6 +11,7 @@ import { RouterModule } from '@angular/router';
 
 @NgModule({
     declarations: [
+        FooterComponent,
         TopbarComponent,
         TopbarMenuPanelComponent,
         SidenavComponent,
@@ -24,6 +26,7 @@ import { RouterModule } from '@angular/router';
     ],
     providers: [],
     exports: [
+        FooterComponent,
         TopbarComponent
     ]
 })

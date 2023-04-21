@@ -1,12 +1,15 @@
 @import "../../styles/colors";
 @import "../../styles/sizes";
 
-button {
+a {
+    display: flex;
     height: 48px;
     width: 202px;
     border-width: 1px;
     border-style: solid;
     border-radius: $border-radius;
+    justify-content: center;
+    align-items: center;
     font-size: $font-size-xs;
     font-weight: 600;
     line-height: $line-height-xs;

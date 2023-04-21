@@ -22,7 +22,7 @@ export { ContentPanel, ContentTextPanel } from "./component/content-text-panel";
 export { formsSchemaName } from "./form";
 export { sectionIconSchemaName } from "./image";
 export { KeyPoint } from "./key-point";
-export { footerSchemaName } from "./navigation/footer";
+export { type ContactMediaID, contactMedias, Footer, footerSchemaName, type SanityFooter } from "./navigation/footer";
 export { type SanityTopbar, Topbar, TopbarListColumn, TopbarMenuPanel, topbarSchemaName, TopbarVideoColumn } from "./navigation/topbar";
 export { Organisation, type SanityOrganisation } from "./organisation";
 export { Page, type SanityPage } from "./page/common";
@@ -32,6 +32,6 @@ export { IntroPage, IntroPageCoreSection, introPageSchemaName, type SanityIntroP
 export { useCasePageSchemaName } from "./page/use-case";
 export { webinarsPageSchemaName } from "./page/webinars";
 export { Document, SanityDataset } from "./sanity-core";
-export { type SanityCommunityResources, CommunityResources, communityResourcesSchemaName, type SocialMediaID, socialMedias } from "./social-media";
+export { type SanityCommunityResources, communityResourcesSchemaName, type SocialMediaID, socialMedias } from "./social-media";
 export { type SanityTestimonial, Testimonial } from "./testimonial";
 export { ParagraphWithHighlights, RichText, type SanityPortableText, TitleAndBody } from "./text";

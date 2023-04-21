@@ -1,5 +1,4 @@
 import { defineField, defineType, SanityDocument } from "@sanity/types";
-import { Document } from "./sanity-core";
 
 export const socialMedias = {
     discord: "Discord",
@@ -23,31 +22,6 @@ export interface SanityCommunityResources extends SanityDocument {
     twitterURL: string;
     youtubeURL: string;
     linkedinURL: string;
-}
-
-export class CommunityResources extends Document implements Omit<SanityCommunityResources, keyof SanityDocument> {
-    readonly discordURL: string;
-    readonly discussionForumURL: string;
-    readonly enterpriseSupportURL: string;
-    readonly githubURL: string;
-    readonly linkedinURL: string;
-    readonly meetupURL: string;
-    readonly stackOverflowURL: string;
-    readonly twitterURL: string;
-    readonly youtubeURL: string;
-
-    constructor(data: SanityCommunityResources) {
-        super(data);
-        this.discordURL = data.discordURL;
-        this.discussionForumURL = data.discussionForumURL;
-        this.enterpriseSupportURL = data.enterpriseSupportURL;
-        this.githubURL = data.githubURL;
-        this.linkedinURL = data.linkedinURL;
-        this.meetupURL = data.meetupURL;
-        this.stackOverflowURL = data.stackOverflowURL;
-        this.twitterURL = data.twitterURL;
-        this.youtubeURL = data.youtubeURL;
-    }
 }
 
 export const socialMediaLinksField = defineField({

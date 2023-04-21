@@ -1,0 +1,117 @@
+@import "../../styles/colors";
+@import "../../styles/sizes";
+
+footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+a, a:visited, a p {
+    color: $color-white;
+
+    &:hover, &:focus {
+        font-weight: 600;
+        color: $color-green;
+        text-decoration: underline;
+    }
+}
+
+a:hover p, a:focus p {
+    color: $color-green;
+}
+
+.ft-section {
+    width: $section-width;
+    padding: 40px 0;
+
+    &:not(:first-child) {
+        border-top: 1px solid $color-light-purple;
+    }
+}
+
+.ft-social-section {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.ft-social-links {
+    display: flex;
+    flex-direction: row;
+    gap: 24px;
+
+    img {
+        width: 48px;
+        height: 48px;
+    }
+}
+
+.ft-nav-section {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    ul, li {
+        list-style: none;
+    }
+}
+
+.ft-contact-section {
+    ul {
+        margin-top: 32px;
+    }
+
+    li:not(:first-child) {
+        margin-top: 16px;
+    }
+
+    a {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 32px;
+    }
+
+    img {
+        width: 32px;
+        height: 32px;
+    }
+}
+
+.ft-sitemap-section {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 104px;
+
+    ul {
+        margin-top: 34px;
+    }
+
+    li:not(:first-child) {
+        margin-top: 20px;
+    }
+}
+
+.ft-credits-section {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+
+    aside {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 4px;
+
+        img {
+            width: 16px;
+            height: 16px;
+        }
+
+        strong {
+            margin-bottom: 2px;
+        }
+    }
+}

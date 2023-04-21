@@ -1,6 +1,6 @@
 @import "../../styles/colors";
 
-.tb-root, td-topbar-menu-panel {
+header, td-topbar-menu-panel {
     left: auto;
     right: 0;
     position: fixed;
@@ -14,7 +14,7 @@
     //transition-timing-function: ease;
 }
 
-.tb-root {
+header {
     top: 0;
 
     &.tb-solid, &:hover {
@@ -45,13 +45,17 @@ nav {
         }
     }
 
+    .tb-desktop-items li > td-button {
+        padding: 0 20px;
+    }
+
     .tb-logo-container {
         display: flex;
         flex-direction: row;
         align-items: center;
     }
 
-    ::ng-deep button {
+    ::ng-deep td-button a {
         height: 40px;
         width: 118px;
     }
@@ -85,6 +89,6 @@ nav {
     }
 }
 
-a {
+a, a:visited {
     color: $color-white;
 }
