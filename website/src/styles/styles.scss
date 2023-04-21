@@ -87,6 +87,10 @@ address {
     font-style: normal;
 }
 
+aside {
+    color: $color-grey;
+}
+
 [hidden] {
     display: none !important;
 }
@@ -169,7 +173,7 @@ div[tabindex] {
 }
 
 .bg-nebula-main {
-    background-image: url("/assets/image/nebula-main.jpg");
+    background-image: url("/assets/image/nebula-large-purple.jpg");
     background-position: center 0;
     background-repeat: no-repeat;
 }
@@ -186,8 +190,4 @@ div[tabindex] {
     &.yellow {
         background-image: url("/assets/image/planet-yellow.jpg");
     }
-}
-
-.mat-button .mat-button-wrapper > * {
-    vertical-align: unset !important;
 }

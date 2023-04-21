@@ -4,6 +4,10 @@ $block-gap: 144px;
 
 .tb-root {
     background-repeat: no-repeat;
+
+    &:not(.tb-no-leading-line) {
+        background-position-y: 72px;
+    }
 }
 
 .tb-margin-top {

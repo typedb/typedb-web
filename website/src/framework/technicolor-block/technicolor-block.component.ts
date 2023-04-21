@@ -16,12 +16,12 @@ export class TechnicolorBlockComponent {
 
     get backgroundImageURL(): string | undefined {
         switch (this.index % 6) {
-            case 0: return "/assets/image/nebula-secondary.jpg";
-            case 1: return "/assets/image/nebula-secondary.jpg";
-            case 2: return "/assets/image/nebula-secondary.jpg";
-            case 3: return "/assets/image/nebula-secondary.jpg";
-            case 4: return "/assets/image/nebula-secondary.jpg";
-            case 5: return "/assets/image/nebula-secondary.jpg";
+            case 0: return "/assets/image/nebula-small-green2.jpg";
+            case 1: return "/assets/image/nebula-small-purple1.jpg";
+            case 2: return "/assets/image/nebula-small-yellow1.jpg";
+            case 3: return "/assets/image/nebula-small-green1.jpg";
+            case 4: return "/assets/image/nebula-small-purple2.jpg";
+            case 5: return "/assets/image/nebula-small-yellow2.jpg";
             default: throw "Unreachable code";
         }
     }

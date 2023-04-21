@@ -23,7 +23,7 @@ a:hover p, a:focus p {
 
 .ft-section {
     width: $section-width;
-    padding: 40px 0;
+    padding: $p-margin-l 0;
 
     &:not(:first-child) {
         border-top: 1px solid $color-light-purple;
@@ -40,6 +40,7 @@ a:hover p, a:focus p {
     display: flex;
     flex-direction: row;
     gap: 24px;
+    height: 48px;
 
     img {
         width: 48px;
@@ -94,24 +95,24 @@ a:hover p, a:focus p {
     }
 }
 
-.ft-credits-section {
+.ft-copyright-section {
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    justify-content: space-between;
+}
 
-    aside {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        gap: 4px;
+.ft-credits {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 4px;
 
-        img {
-            width: 16px;
-            height: 16px;
-        }
+    img {
+        width: 16px;
+        height: 16px;
+    }
 
-        strong {
-            margin-bottom: 2px;
-        }
+    strong {
+        margin-bottom: 2px;
     }
 }

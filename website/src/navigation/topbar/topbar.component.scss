@@ -7,7 +7,6 @@ header, td-topbar-menu-panel {
     width: 100%;
     z-index: 1100;
     background-color: transparent;
-    backdrop-filter: blur(20px);
     border-bottom: 1px solid transparent;
     //transition-property: background-color, border-bottom-color;
     //transition-duration: 100ms;
@@ -20,12 +19,14 @@ header {
     &.tb-solid, &:hover {
         background-color: rgba($color-purple, .8);
         border-bottom-color: $color-secondary-purple;
+        backdrop-filter: blur(20px);
     }
 }
 
 td-topbar-menu-panel {
     top: 80px;
     border-bottom: 1px solid $color-secondary-purple;
+    backdrop-filter: blur(20px);
 }
 
 nav {
