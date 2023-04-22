@@ -11,7 +11,7 @@
         </div>
         <div class="tb-body">
             <div class="tb-margin-top"></div>
-            <ng-container *ngIf="block.isRegularBlock()">
+            <ng-container *ngIf="block.isRegularBlock() || block.isHomePageCloudBlock()">
                 <h1 [class]="size === 'large' ? 'text-xl' : 'text-l'"><span *ngFor="let span of block.title.spans" [ngStyle]="span.highlight ? { 'color': themeColorHex } : undefined">{{ span.text }}</span></h1>
                 <p *ngFor="let paragraph of block.body.paragraphs" [class]="'p-margin-l ' + (size === 'large' ? 'text-m' : 'text-s')"><span *ngFor="let span of paragraph.spans" [ngStyle]="span.marks.includes('strong') ? { 'color': themeColorHex } : undefined">{{ span.text }}</span></p>
             </ng-container>
@@ -20,6 +20,7 @@
                 <p *ngFor="let paragraph of block.body.paragraphs" class="p-margin-l text-l"><span *ngFor="let span of paragraph.spans" [ngStyle]="span.marks.includes('strong') ? { 'color': themeColorHex } : undefined">{{ span.text }}</span></p>
                 <td-actions [actions]="$any(block).actions"></td-actions>
             </ng-container>
+            <td-actions *ngIf="block.isHomePageCloudBlock()" [actions]="$any(block).actions"></td-actions>
             <div class="tb-body-margin-bottom"></div>
         </div>
     </div>

@@ -1,12 +1,12 @@
 import { Component, Input, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 import {
-    HomePage, HomePageCoreSection, HomePageIntroSection, homePageSchemaName, HomePageSection,
+    HomePage, HomePageCloudSection, HomePageCoreSection, HomePageIntroSection, homePageSchemaName, HomePageSection,
     HomePageUseCase, SanityHomePage
 } from "typedb-web-schema";
 import { sanitiseHtmlID } from "../../framework/util";
 import { SocialMediaLink } from "../../model/social-media-link";
-import { HomePageIntroTechnicolorBlock, TechnicolorBlock } from "../../model/technicolor-block";
+import { HomePageCloudTechnicolorBlock, HomePageIntroTechnicolorBlock, TechnicolorBlock } from "../../model/technicolor-block";
 import { ContentService } from "../../service/content.service";
 
 @Component({
@@ -45,6 +45,8 @@ export class HomePageTechnicolorBlockComponent implements OnInit {
     ngOnInit() {
         if (this.section instanceof HomePageIntroSection) {
             this.block = new HomePageIntroTechnicolorBlock(this.section.title, this.section.body, this.section.iconURL, this.section.actions);
+        } else if (this.section instanceof HomePageCloudSection) {
+            this.block = new HomePageCloudTechnicolorBlock(this.section.title, this.section.body, this.section.iconURL, this.section.actions);
         } else {
             this.block = new TechnicolorBlock(this.section.title, this.section.body, this.section.iconURL);
         }

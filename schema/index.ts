@@ -27,7 +27,7 @@ export { type SanityTopbar, Topbar, TopbarListColumn, TopbarMenuPanel, topbarSch
 export { Organisation, type SanityOrganisation } from "./organisation";
 export { Page, type SanityPage } from "./page/common";
 export { FeaturesPage, FeaturesPageCoreSection, featuresPageSchemaName, type SanityFeaturesPage } from "./page/features";
-export { HomePage, HomePageCoreSection, HomePageIntroSection, HomePageSection, HomePageUseCase, homePageSchemaName, type SanityHomePage } from "./page/home";
+export { HomePage, HomePageCloudSection, HomePageCoreSection, HomePageIntroSection, HomePageSection, HomePageUseCase, homePageSchemaName, type SanityHomePage } from "./page/home";
 export { IntroPage, IntroPageCoreSection, introPageSchemaName, type SanityIntroPage } from "./page/intro";
 export { useCasePageSchemaName } from "./page/use-case";
 export { webinarsPageSchemaName } from "./page/webinars";
