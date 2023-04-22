@@ -29,7 +29,7 @@ export class FooterComponent implements OnInit {
 }
 
 const contactMediaIcons: { [key in ContactMediaID]: string } = {
-    forum: "/assets/icon/discourse.svg",
+    forum: "/assets/icon/social/discourse.svg",
     discord: "/assets/icon/social/discord.svg",
     contactForm: "/assets/icon/mail.svg"
 }

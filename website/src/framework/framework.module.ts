@@ -11,6 +11,7 @@ import { ContentPanelComponent } from "./content-panel/content-panel.component";
 import { ContentTabsComponent } from "./content-tabs/content-tabs.component";
 import { KeyPointPanels3x1Component, KeyPointTableComponent } from "./key-point/key-point.component";
 import { LinkDirective } from "./link/link.directive";
+import { OrganisationLogosComponent } from "./organisation-logos/organisation-logos.component";
 import { TitleBodyActionsSectionComponent } from "./section/title-body-actions-section.component";
 import { SocialMediaPanelsComponent } from "./social-media/social-media-panels.component";
 import { SpinningWheelComponent } from "./spinning-wheel/spinning-wheel.component";
@@ -32,6 +33,7 @@ import { H1WithHighlightsComponent, ParagraphWithHighlightsComponent } from "./t
         KeyPointPanels3x1Component,
         KeyPointTableComponent,
         ModalComponent,
+        OrganisationLogosComponent,
         ParagraphWithHighlightsComponent,
         RichTextComponent,
         SocialMediaPanelsComponent,
@@ -57,6 +59,7 @@ import { H1WithHighlightsComponent, ParagraphWithHighlightsComponent } from "./t
         KeyPointPanels3x1Component,
         KeyPointTableComponent,
         LinkDirective,
+        OrganisationLogosComponent,
         ParagraphWithHighlightsComponent,
         SocialMediaPanelsComponent,
         RichTextComponent,

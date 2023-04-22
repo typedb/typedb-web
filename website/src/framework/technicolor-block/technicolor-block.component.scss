@@ -4,10 +4,7 @@ $block-gap: 144px;
 
 .tb-root {
     background-repeat: no-repeat;
-
-    &:not(.tb-no-leading-line) {
-        background-position-y: 72px;
-    }
+    background-position-y: 72px;
 }
 
 .tb-margin-top {
@@ -55,6 +52,10 @@ $block-gap: 144px;
     background: rgba(254, 170, 116, 0.15);
 }
 
+.tb-graphic-icon-bg-grey {
+    background: rgba(149, 143, 168, 0.15);
+}
+
 .tb-graphic-icon {
     position: absolute;
     left: 0;
@@ -62,6 +63,8 @@ $block-gap: 144px;
     top: 0;
     bottom: 0;
     margin: auto;
+    width: 40px;
+    height: 40px;
     z-index: 1;
 }
 
@@ -69,16 +72,24 @@ $block-gap: 144px;
     width: 3px;
 }
 
+@mixin graphic-line-gradient($base-color) {
+    background: linear-gradient(transparent 0%, rgba($base-color, .08) 10%, $base-color 50%, rgba($base-color, .08) 90%, transparent 100%);
+}
+
 .tb-graphic-line-green {
-    background: linear-gradient(transparent 0%, #02DAC911 10%, $color-green 50%, #02DAC911 90%, transparent 100%);
+    @include graphic-line-gradient($color-green);
 }
 
 .tb-graphic-line-pink {
-    background: linear-gradient(transparent 0%, #FF87DC11 10%, $color-secondary-pink 50%, #FF87DC11 90%, transparent 100%);
+    @include graphic-line-gradient($color-secondary-pink);
 }
 
 .tb-graphic-line-yellow {
-    background: linear-gradient(transparent 0%, #FFE49E11 10%, $color-secondary-yellow 50%, #FFE49E11 90%, transparent 100%);
+    @include graphic-line-gradient($color-secondary-yellow);
+}
+
+.tb-graphic-line-grey {
+    @include graphic-line-gradient($color-secondary-purple);
 }
 
 .tb-graphic-line-top {

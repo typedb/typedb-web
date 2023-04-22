@@ -1,6 +1,6 @@
 <section class="sm-root">
-    <a *ngFor="let socialMedia of socialMedias" class="sm-panel text-xs" [href]="">
-        <img [src]="'/assets/icon/social/' + socialMedia + '-rectangle.svg'" alt=""/>
-        <p>{{ displayName(socialMedia) }}</p>
+    <a *ngFor="let link of socialMediaLinks" class="sm-panel text-xs" [tdLink]="link.link">
+        <img [src]="link.iconURL" alt=""/>
+        <p>{{ link.text }}</p>
     </a>
 </section>

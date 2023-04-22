@@ -1,5 +1,5 @@
 import { Component, Input } from "@angular/core";
-import { SocialMediaID, socialMedias } from "typedb-web-schema";
+import { SocialMediaLink } from "../../model/social-media-link";
 
 @Component({
     selector: "td-social-media-panels",
@@ -7,9 +7,5 @@ import { SocialMediaID, socialMedias } from "typedb-web-schema";
     styleUrls: ["./social-media-panels.component.scss"],
 })
 export class SocialMediaPanelsComponent {
-    @Input() socialMedias!: SocialMediaID[];
-
-    displayName(socialMediaID: SocialMediaID) {
-        return socialMedias[socialMediaID];
-    }
+    @Input() socialMediaLinks!: SocialMediaLink[];
 }

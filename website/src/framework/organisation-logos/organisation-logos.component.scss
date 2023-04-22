@@ -2,15 +2,21 @@
 @import "../../styles/sizes";
 
 .ol-root {
-    height: 162px;
-    padding: 48px 72px;
-    border: 1px solid $color-light-purple;
     border-radius: $border-radius;
-    background: $color-purple;
+    padding-left: 72px;
+    padding-right: 72px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+
+    &.ol-root-panel {
+        height: 162px;
+        padding-top: 48px;
+        padding-bottom: 48px;
+        border: 1px solid $color-light-purple;
+        background: $color-purple;
+    }
 }
 
 .ol-image {

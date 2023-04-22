@@ -28,7 +28,7 @@ export class IntroPageComponent implements OnInit {
 
 @Component({
     selector: "td-intro-page-technicolor-block",
-    template: "<td-technicolor-block [block]=\"block\" [index]=\"index\" [noLeadingLine]='index === 0' [noBackgroundImage]='true'></td-technicolor-block>",
+    template: "<td-technicolor-block [block]=\"block\" [index]=\"index\" [noLeadingLine]='index === 0' [noBackgroundImage]='true' [greyLine]='true'></td-technicolor-block>",
 })
 export class IntroPageTechnicolorBlockComponent implements OnInit {
     @Input() section!: IntroPageCoreSection;

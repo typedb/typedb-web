@@ -1,4 +1,4 @@
-<section class="tb-root" [ngClass]="{ 'tb-no-leading-line': noLeadingLine }" [ngStyle]="{ 'backgroundImage': backgroundImageURL && !noBackgroundImage ? 'url(' + backgroundImageURL + ')' : undefined }">
+<section class="tb-root" [ngStyle]="{ 'backgroundImage': backgroundImageURL && !noBackgroundImage ? 'url(' + backgroundImageURL + ')' : undefined }">
     <div class="tb-core">
         <div class="tb-graphic">
             <div *ngIf="!noLeadingLine" [class]="'tb-graphic-line tb-graphic-line-top ' + graphicLineColorClass"></div>

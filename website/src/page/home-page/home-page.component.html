@@ -2,7 +2,7 @@
     <div *ngIf="page">
         <ng-container *ngIf="page.introSection">
             <td-home-page-technicolor-block [section]="page.introSection" [page]="page" class="hp-intro-block"></td-home-page-technicolor-block>
-            <td-home-page-organisation-logos [organisations]="page.introSection.userLogos"></td-home-page-organisation-logos>
+            <td-organisation-logos [organisations]="page.introSection.userLogos" appearance="panel"></td-organisation-logos>
         </ng-container>
         <ng-container *ngIf="page.featuresSection">
             <td-home-page-technicolor-block [section]="page.featuresSection" [page]="page"></td-home-page-technicolor-block>
@@ -23,7 +23,7 @@
         </ng-container>
         <ng-container *ngIf="page.communitySection">
             <td-home-page-technicolor-block [section]="page.communitySection" [page]="page"></td-home-page-technicolor-block>
-            <td-social-media-panels [socialMedias]="page.communitySection.socialMedias"></td-social-media-panels>
+            <td-social-media-panels [socialMediaLinks]="socialMediaLinks!"></td-social-media-panels>
         </ng-container>
         <ng-container *ngIf="page.testimonialsSection">
             <td-home-page-technicolor-block [section]="page.testimonialsSection" [page]="page"></td-home-page-technicolor-block>

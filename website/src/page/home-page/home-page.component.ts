@@ -2,9 +2,10 @@ import { Component, Input, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 import {
     HomePage, HomePageCoreSection, HomePageIntroSection, homePageSchemaName, HomePageSection,
-    HomePageUseCase, Organisation, SanityHomePage
+    HomePageUseCase, SanityHomePage
 } from "typedb-web-schema";
 import { sanitiseHtmlID } from "../../framework/util";
+import { SocialMediaLink } from "../../model/social-media-link";
 import { HomePageIntroTechnicolorBlock, TechnicolorBlock } from "../../model/technicolor-block";
 import { ContentService } from "../../service/content.service";
 
@@ -16,6 +17,7 @@ import { ContentService } from "../../service/content.service";
 export class HomePageComponent implements OnInit {
 
     page?: HomePage;
+    socialMediaLinks?: SocialMediaLink[];
 
     constructor(private router: Router, private contentService: ContentService) {}
 
@@ -24,8 +26,7 @@ export class HomePageComponent implements OnInit {
             const sanityHomePage = data.byId[homePageSchemaName] as SanityHomePage;
             if (sanityHomePage) {
                 this.page = new HomePage(sanityHomePage, data);
-            } else {
-                this.page = undefined;
+                this.socialMediaLinks = this.page.communitySection?.socialMedias.map(x => new SocialMediaLink(x, data));
             }
         });
     }
@@ -63,15 +64,6 @@ export class HomePageTechnicolorBlockComponent implements OnInit {
     get noTrailingLine() {
         return this.index >= this.allBlocks.length - 1;
     }
-}
-
-@Component({
-    selector: "td-home-page-organisation-logos",
-    templateUrl: "organisation-logos.component.html",
-    styleUrls: ["organisation-logos.component.scss"],
-})
-export class HomePageOrganisationLogosComponent {
-    @Input() organisations!: Organisation[];
 }
 
 @Component({
