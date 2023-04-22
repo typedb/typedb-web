@@ -17,11 +17,11 @@ export const schemaTypes = [
 ];
 
 export { Action } from "./action";
-export { linkSchemaName, Link, videoEmbedSchemaName, VideoEmbed } from "./link";
 export { ContentPanel, ContentTextPanel } from "./component/content-text-panel";
 export { formsSchemaName } from "./form";
 export { sectionIconSchemaName } from "./image";
 export { KeyPoint } from "./key-point";
+export { linkSchemaName, Link, TextLink, videoEmbedSchemaName, VideoEmbed } from "./link";
 export { type ContactMediaID, contactMedias, Footer, footerSchemaName, type SanityFooter } from "./navigation/footer";
 export { type SanityTopbar, Topbar, TopbarListColumn, TopbarMenuPanel, topbarSchemaName, TopbarVideoColumn } from "./navigation/topbar";
 export { Organisation, type SanityOrganisation } from "./organisation";

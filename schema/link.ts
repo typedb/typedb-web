@@ -3,11 +3,12 @@ import { defineField, defineType, SanityDocument, Slug, SlugRule } from "@sanity
 import { linkField, titleField, titleFieldName } from "./common-fields";
 import { Document, SanityDataset, SanityReference } from "./sanity-core";
 
-export type LinkType = "autoDetect" | "route" | "external";
+export type LinkType = "route" | "external";
+export type SanityLinkType = LinkType | "autoDetect";
 
 export interface SanityLink extends SanityDocument {
     destination: Slug;
-    type: LinkType;
+    type: SanityLinkType;
     opensNewTab: boolean;
 }
 
@@ -26,12 +27,18 @@ export class Link {
     readonly opensNewTab: boolean;
 
     constructor(data: SanityLink | { destination: string, type: LinkType, opensNewTab: boolean }) {
-        this.type = data.type;
+        const destination = typeof data.destination === "string" ? data.destination : data.destination.current;
+        this.destination = destination;
         this.opensNewTab = data.opensNewTab;
-        if (typeof data.destination === "string") {
-            this.destination = data.destination;
+        if (data.type === "autoDetect") {
+            try {
+                new URL(destination);
+                this.type = "external";
+            } catch {
+                this.type = "route";
+            }
         } else {
-            this.destination = data.destination.current;
+            this.type = data.type;
         }
     }
 }

@@ -12,14 +12,6 @@ export class LinkDirective implements OnInit {
 
     ngOnInit() {
         switch (this.link.type) {
-            case "autoDetect":
-                try {
-                    new URL(this.link.destination);
-                    this.constructHrefLink(this.el);
-                } catch {
-                    this.constructRouterLink(this.el);
-                }
-                break;
             case "external":
                 this.constructHrefLink(this.el);
                 break;

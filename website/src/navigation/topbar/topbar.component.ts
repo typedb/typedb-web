@@ -1,6 +1,6 @@
 import { Component, HostListener, Input, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
-import { communityResourcesSchemaName, SanityCommunityResources, SanityTopbar, Topbar, TopbarListColumn, TopbarMenuPanel, topbarSchemaName, TopbarVideoColumn } from "typedb-web-schema";
+import { communityResourcesSchemaName, SanityCommunityResources, SanityTopbar, TextLink, Topbar, TopbarListColumn, TopbarMenuPanel, topbarSchemaName, TopbarVideoColumn } from "typedb-web-schema";
 import { ContentService } from "../../service/content.service";
 
 @Component({
@@ -43,6 +43,10 @@ export class TopbarComponent implements OnInit {
 
     isMenuPanel(obj: any): obj is TopbarMenuPanel {
         return obj instanceof TopbarMenuPanel;
+    }
+
+    isTextLink(obj: any): obj is TextLink {
+        return obj instanceof TextLink;
     }
 
     isMenuPanelVisible(menuPanel: TopbarMenuPanel): boolean {
