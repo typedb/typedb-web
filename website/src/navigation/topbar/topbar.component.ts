@@ -38,7 +38,7 @@ export class TopbarComponent implements OnInit {
     }
 
     get rootNgClass(): { [clazz: string]: boolean } {
-        return { "tb-solid": this._pageYOffset > 0 };
+        return { "tb-solid": this._pageYOffset > 0 || !!this.hoveredMenuPanel };
     }
 
     isMenuPanel(obj: any): obj is TopbarMenuPanel {
