@@ -2,6 +2,7 @@ import { Component, HostListener, Input, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 import { communityResourcesSchemaName, SanityCommunityResources, SanityTopbar, TextLink, Topbar, TopbarListColumn, TopbarMenuPanel, topbarSchemaName, TopbarVideoColumn } from "typedb-web-schema";
 import { ContentService } from "../../service/content.service";
+import { DialogService } from "../../service/dialog.service";
 
 @Component({
     selector: "td-topbar",
@@ -16,7 +17,7 @@ export class TopbarComponent implements OnInit {
     focusedMenuPanel?: TopbarMenuPanel;
     private _pageYOffset = 0;
 
-    constructor(private router: Router, private contentService: ContentService) {}
+    constructor(private router: Router, private contentService: ContentService, private dialogService: DialogService) {}
 
     ngOnInit() {
         this.contentService.data.subscribe((data) => {
@@ -38,7 +39,11 @@ export class TopbarComponent implements OnInit {
     }
 
     get rootNgClass(): { [clazz: string]: boolean } {
-        return { "tb-solid": this._pageYOffset > 0 || !!this.hoveredMenuPanel };
+        return { "tb-solid": this.shouldBeOpaque };
+    }
+
+    private get shouldBeOpaque(): boolean {
+        return this._pageYOffset > 0 || !!this.hoveredMenuPanel || !!this.dialogService.current;
     }
 
     isMenuPanel(obj: any): obj is TopbarMenuPanel {

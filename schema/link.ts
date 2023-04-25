@@ -108,6 +108,7 @@ export const textLinkSchemaName = "textLink";
 export const textLinkSchema = defineType({
     name: textLinkSchemaName,
     type: "object",
+    icon: LinkIcon,
     fields: [
         defineField({
             name: "text",
@@ -116,6 +117,10 @@ export const textLinkSchema = defineType({
         }),
         linkField,
     ],
+    preview: {
+        select: { text: "text", destination: "link.destination.current" },
+        prepare: (selection) => ({ title: selection.text, subtitle: selection.destination }),
+    },
 });
 
 export const videoEmbedSchemaName = "videoEmbed";

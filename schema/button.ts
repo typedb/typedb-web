@@ -17,16 +17,23 @@ export interface SanityButton {
     link: SanityReference<SanityLink>;
 }
 
-export type SanityActions = SanityButton[];
+export type SanityButtons = SanityButton[];
 
-export class Action {
-    readonly buttonStyle: ButtonStyle;
+export class ActionButton {
+    readonly style: ButtonStyle;
     readonly text: string;
+
+    constructor(props: { style: ButtonStyle, text: string }) {
+        this.style = props.style;
+        this.text = props.text;
+    }
+}
+
+export class LinkButton extends ActionButton {
     readonly link: Link;
 
     constructor(data: SanityButton, db: SanityDataset) {
-        this.buttonStyle = data.style;
-        this.text = data.text;
+        super(data);
         this.link = new Link(db.resolveRef(data.link));
     }
 }

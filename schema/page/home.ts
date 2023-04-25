@@ -1,5 +1,5 @@
 import { ArrayRule, defineField, defineType } from "@sanity/types";
-import { Action, SanityActions } from "../action";
+import { LinkButton, SanityButtons } from "../button";
 import { SanityImageRef } from "../image";
 import { Link, SanityLink } from "../link";
 import { bodyFieldRichText, collapsibleOptions, sectionIconField, isVisibleField, keyPointsField, optionalActionsField, pageTitleField, titleAndBodyFields, titleBodyIconFields, titleField, videoEmbedField, learnMoreLinkField } from "../common-fields";
@@ -36,7 +36,7 @@ interface SanityCoreSection extends SanitySection {
 }
 
 interface SanityIntroSection extends SanityCoreSection {
-    actions?: SanityActions;
+    actions?: SanityButtons;
     userLogos: SanityReference<SanityOrganisation>[];
 }
 
@@ -58,9 +58,9 @@ interface SanityToolingSection extends SanityCoreSection {
     keyPoints: SanityKeyPoint[];
 }
 
-interface SanityCloudSection extends SanityCoreSection, SanityActions {
+interface SanityCloudSection extends SanityCoreSection, SanityButtons {
     keyPoints: SanityKeyPoint[];
-    actions?: SanityActions;
+    actions?: SanityButtons;
 }
 
 interface SanityCommunitySection extends SanityCoreSection {
@@ -72,7 +72,7 @@ interface SanityTestimonialsSection extends SanityCoreSection {
 }
 
 interface SanityConclusionSection extends SanitySection {
-    actions?: SanityActions;
+    actions?: SanityButtons;
 }
 
 export interface SanityHomePage extends SanityPage {
@@ -106,11 +106,11 @@ export abstract class HomePageCoreSection extends HomePageSection {
 }
 
 export class HomePageIntroSection extends HomePageCoreSection {
-    readonly actions?: Action[];
+    readonly actions?: LinkButton[];
     readonly userLogos: Organisation[];
     constructor(data: SanityIntroSection, db: SanityDataset) {
         super(data, db);
-        this.actions = data.actions?.map(x => new Action(x, db));
+        this.actions = data.actions?.map(x => new LinkButton(x, db));
         this.userLogos = data.userLogos.map(x => new Organisation(db.resolveRef(x), db));
     }
 }
@@ -160,12 +160,12 @@ export class HomePageToolingSection extends HomePageCoreSection {
 
 export class HomePageCloudSection extends HomePageCoreSection {
     readonly keyPoints: KeyPoint[];
-    readonly actions?: Action[];
+    readonly actions?: LinkButton[];
 
     constructor(data: SanityCloudSection, db: SanityDataset) {
         super(data, db);
         this.keyPoints = data.keyPoints.map(x => new KeyPoint(x, db));
-        this.actions = data.actions?.map(x => new Action(x, db));
+        this.actions = data.actions?.map(x => new LinkButton(x, db));
     }
 }
 
@@ -188,10 +188,10 @@ export class HomePageTestimonialsSection extends HomePageCoreSection {
 }
 
 export class HomePageConclusionSection extends HomePageSection {
-    readonly actions?: Action[];
+    readonly actions?: LinkButton[];
     constructor(data: SanityConclusionSection, db: SanityDataset) {
         super(data);
-        this.actions = data.actions?.map(x => new Action(x, db));
+        this.actions = data.actions?.map(x => new LinkButton(x, db));
     }
 }
 

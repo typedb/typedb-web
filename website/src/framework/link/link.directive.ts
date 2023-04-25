@@ -6,11 +6,13 @@ import { Link } from "typedb-web-schema";
     selector: "[tdLink]",
 })
 export class LinkDirective implements OnInit {
-    @Input("tdLink") link!: Link;
+    @Input("tdLink") link?: Link;
 
     constructor(private el: ElementRef<HTMLAnchorElement>, private router: Router) {}
 
     ngOnInit() {
+        if (!this.link) return;
+
         switch (this.link.type) {
             case "external":
                 this.constructHrefLink(this.el);
@@ -23,12 +25,12 @@ export class LinkDirective implements OnInit {
 
     constructRouterLink(el: ElementRef<HTMLAnchorElement>) {
         el.nativeElement.tabIndex = 0;
-        el.nativeElement.href = this.link.destination;
-        const [path, query] = this.link.destination.split("?");
+        el.nativeElement.href = this.link!.destination;
+        const [path, query] = this.link!.destination.split("?");
         el.nativeElement.addEventListener("click", (e: MouseEvent) => {
             e.preventDefault();
             if (!query) {
-                this.router.navigate([this.link.destination]);
+                this.router.navigate([this.link!.destination]);
             } else {
                 const queryParams = Object.fromEntries(new URLSearchParams(query).entries());
                 this.router.navigate([path], { queryParams });
@@ -37,7 +39,7 @@ export class LinkDirective implements OnInit {
     }
 
     constructHrefLink(el: ElementRef<HTMLAnchorElement>) {
-        el.nativeElement.href = this.link.destination;
-        el.nativeElement.target = this.link.opensNewTab ? "_blank" : "";
+        el.nativeElement.href = this.link!.destination;
+        el.nativeElement.target = this.link!.opensNewTab ? "_blank" : "";
     }
 }

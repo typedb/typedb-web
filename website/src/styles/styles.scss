@@ -27,10 +27,6 @@ html, body {
     }
 }
 
-body {
-    overflow-x: hidden;
-}
-
 #root {
     height: 100%;
 }
@@ -182,6 +178,7 @@ div[tabindex] {
 
 .planet {
     width: 1920px;
+    max-width: 100vw;
     height: 562px;
     background-position-x: center;
 
@@ -221,10 +218,15 @@ div[tabindex] {
 .mat-dialog-content {
     display: flex !important;
     flex-direction: column;
+
+    form {
+        display: flex;
+        flex-direction: column;
+    }
 }
 
-.mat-form-field-flex > .mat-form-field-infix {
-    padding: 7px 0 !important;
+.mat-form-field-infix {
+    padding: 0 !important;
 }
 .mat-form-field-appearance-outline .mat-form-field-label {
     margin-top: -15px;
@@ -267,6 +269,7 @@ body .mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-gap 
     width: 133.33333%;
 }
 input.mat-input-element {
+    line-height: 32px;
     margin-bottom: 8px;
     caret-color: $color-green;
 }

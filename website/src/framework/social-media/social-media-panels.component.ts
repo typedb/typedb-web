@@ -1,5 +1,5 @@
 import { Component, Input } from "@angular/core";
-import { SocialMediaLink } from "../../model/social-media-link";
+import { SocialMediaLink } from "typedb-web-schema";
 
 @Component({
     selector: "td-social-media-panels",

@@ -1,6 +1,6 @@
 import { BlockElementIcon, MasterDetailIcon } from "@sanity/icons";
 import { defineField, defineType, SanityDocument } from "@sanity/types";
-import { Action, buttonSchemaName, SanityButton } from "../action";
+import { LinkButton, buttonSchemaName, SanityButton } from "../button";
 import { Link, SanityLink, SanityTextLink, SanityVideoEmbed, TextLink, textLinkSchemaName } from "../link";
 import { descriptionField, linkField, titleField, titleFieldName, videoEmbedField } from "../common-fields";
 import { Document, SanityDataset, SanityReference } from "../sanity-core";
@@ -96,11 +96,11 @@ export class TopbarListColumnItem {
 
 export class TopbarSecondaryArea {
     readonly links: TextLink[];
-    readonly button: Action;
+    readonly button: LinkButton;
 
     constructor(data: SanityTopbarSecondaryArea, db: SanityDataset) {
         this.links = data.links.map(x => new TextLink(x, db));
-        this.button = new Action(data.button, db);
+        this.button = new LinkButton(data.button, db);
     }
 }
 

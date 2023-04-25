@@ -1,5 +1,5 @@
 import { ArrayRule, defineField, defineType } from "@sanity/types";
-import { Action, SanityActions } from "../action";
+import { LinkButton, SanityButtons } from "../button";
 import { ContentTextPanel, contentTextPanelSchemaName, SanityContentTextPanel } from "../component/content-text-panel";
 import { bodyFieldRichText, collapsibleOptions, isVisibleField, optionalActionsField, pageTitleField, sectionIconField, titleFieldWithHighlights } from "../common-fields";
 import { SanityImageRef } from "../image";
@@ -16,7 +16,7 @@ const finalSection = "finalSection";
 export interface SanityFeaturesPage extends SanityPage {
     [introSection]: SanityIntroSection;
     [coreSections]: SanityCoreSection[];
-    [secondaryActions]: SanityActions;
+    [secondaryActions]: SanityButtons;
     [finalSection]: SanityTitleBodyActionsSection;
 }
 
@@ -32,13 +32,13 @@ interface SanityCoreSection extends SanityTitleAndBody {
 export class FeaturesPage {
     readonly [introSection]: IntroSection;
     readonly [coreSections]: FeaturesPageCoreSection[];
-    readonly [secondaryActions]: Action[];
+    readonly [secondaryActions]: LinkButton[];
     readonly [finalSection]: TitleBodyActionsSection;
 
     constructor(data: SanityFeaturesPage, db: SanityDataset) {
         this.introSection = new IntroSection(data.introSection, db);
         this.coreSections = data.coreSections.map(x => new FeaturesPageCoreSection(x, db));
-        this.secondaryActions = data.secondaryActions.map(x => new Action(x, db));
+        this.secondaryActions = data.secondaryActions.map(x => new LinkButton(x, db));
         this.finalSection = new TitleBodyActionsSection(data.finalSection, db);
     }
 }

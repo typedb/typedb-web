@@ -1,5 +1,5 @@
 import { defineField, defineType, SanityDocument } from "@sanity/types";
-import { Action, SanityButton } from "../action";
+import { LinkButton, SanityButton } from "../button";
 import { SanityTextLink, TextLink, textLinkSchemaName } from "../link";
 import { titleField, titleFieldName } from "../common-fields";
 import { Document, SanityDataset } from "../sanity-core";
@@ -31,7 +31,7 @@ export interface SanityFooterColumn {
 }
 
 export class Footer extends Document {
-    readonly button: Action;
+    readonly button: LinkButton;
     readonly socialMediaLinks: SocialMediaID[];
     readonly contactSectionTitle: string;
     readonly contactMediaLinks: ContactMediaID[];
@@ -39,7 +39,7 @@ export class Footer extends Document {
 
     constructor(data: SanityFooter, db: SanityDataset) {
         super(data);
-        this.button = new Action(data.button, db);
+        this.button = new LinkButton(data.button, db);
         this.socialMediaLinks = data.socialMediaLinks;
         this.contactSectionTitle = data.contactSectionTitle;
         this.contactMediaLinks = data.contactMediaLinks;

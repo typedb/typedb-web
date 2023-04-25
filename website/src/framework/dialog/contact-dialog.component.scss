@@ -1,0 +1,17 @@
+.cd-row {
+    display: flex;
+    flex-direction: row;
+    gap: 32px;
+
+    mat-form-field {
+        flex: 1;
+    }
+}
+
+.cd-actions-row {
+    margin-top: 32px;
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    align-items: center;
+}

@@ -1,5 +1,5 @@
 import { Component, Input } from "@angular/core";
-import { TechnicolorBlock } from "../../model/technicolor-block";
+import { TechnicolorBlock } from "typedb-web-schema";
 
 @Component({
     selector: "td-technicolor-block",

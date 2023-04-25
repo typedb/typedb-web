@@ -12,7 +12,7 @@ import { ButtonComponent } from "./button/button.component";
 import { ContentPanelGridComponent } from "./content-panel-grid/content-panel-grid.component";
 import { ContentPanelComponent } from "./content-panel/content-panel.component";
 import { ContentTabsComponent } from "./content-tabs/content-tabs.component";
-import { CloudWaitlistDialogComponent, NameEmailDialogComponent } from "./dialog/name-email-dialog.component";
+import { CloudWaitlistDialogComponent, ContactDialogComponent, NameEmailDialogComponent, NewsletterDialogComponent } from "./dialog/dialog.component";
 import { KeyPointPanels3x1Component, KeyPointTableComponent } from "./key-point/key-point.component";
 import { LinkDirective } from "./link/link.directive";
 import { OrganisationLogosComponent } from "./organisation-logos/organisation-logos.component";
@@ -29,6 +29,7 @@ import { H1WithHighlightsComponent, ParagraphWithHighlightsComponent } from "./t
         ActionsComponent,
         ButtonComponent,
         CloudWaitlistDialogComponent,
+        ContactDialogComponent,
         ContentPanelComponent,
         ContentPanelGridComponent,
         ContentTabsComponent,
@@ -37,6 +38,7 @@ import { H1WithHighlightsComponent, ParagraphWithHighlightsComponent } from "./t
         KeyPointPanels3x1Component,
         KeyPointTableComponent,
         NameEmailDialogComponent,
+        NewsletterDialogComponent,
         OrganisationLogosComponent,
         ParagraphWithHighlightsComponent,
         RichTextComponent,
@@ -66,7 +68,6 @@ import { H1WithHighlightsComponent, ParagraphWithHighlightsComponent } from "./t
         KeyPointPanels3x1Component,
         KeyPointTableComponent,
         LinkDirective,
-        NameEmailDialogComponent,
         OrganisationLogosComponent,
         ParagraphWithHighlightsComponent,
         SocialMediaPanelsComponent,

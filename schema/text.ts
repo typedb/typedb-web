@@ -1,5 +1,5 @@
 import { defineType, PortableTextTextBlock } from "@sanity/types";
-import { Action, SanityActions } from "./action";
+import { LinkButton, SanityButtons } from "./button";
 import { bodyFieldRichText, optionalActionsField, titleFieldWithHighlights } from "./common-fields";
 import { SanityDataset } from "./sanity-core";
 
@@ -13,7 +13,7 @@ export type SanityBodyText = { body: SanityPortableText };
 
 export type SanityTitleAndBody = SanityTitleWithHighlights & SanityBodyText;
 
-export type SanityTitleBodyActionsSection = SanityTitleAndBody & { actions?: SanityActions };
+export type SanityTitleBodyActionsSection = SanityTitleAndBody & { actions?: SanityButtons };
 
 export class ParagraphWithHighlights {
     readonly spans: { text: string, highlight: boolean }[];
@@ -52,11 +52,11 @@ export class TitleAndBody implements TitleWithHighlights, BodyText {
 }
 
 export class TitleBodyActionsSection extends TitleAndBody {
-    readonly actions?: Action[];
+    readonly actions?: LinkButton[];
 
     constructor(data: SanityTitleBodyActionsSection, db: SanityDataset) {
         super(data);
-        this.actions = data.actions?.map(x => new Action(x, db));
+        this.actions = data.actions?.map(x => new LinkButton(x, db));
     }
 }
 

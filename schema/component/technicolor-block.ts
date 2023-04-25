@@ -1,4 +1,5 @@
-import { Action, ParagraphWithHighlights, RichText } from "typedb-web-schema";
+import { LinkButton } from "../button";
+import { ParagraphWithHighlights, RichText } from "../text";
 
 export class TechnicolorBlock {
     readonly title: ParagraphWithHighlights;
@@ -25,9 +26,9 @@ export class TechnicolorBlock {
 }
 
 export class HomePageIntroTechnicolorBlock extends TechnicolorBlock {
-    readonly actions?: Action[];
+    readonly actions?: LinkButton[];
 
-    constructor(title: ParagraphWithHighlights, body: RichText, iconURL: string, actions?: Action[]) {
+    constructor(title: ParagraphWithHighlights, body: RichText, iconURL: string, actions?: LinkButton[]) {
         super(title, body, iconURL);
         this.actions = actions;
     }
@@ -38,9 +39,9 @@ export class HomePageIntroTechnicolorBlock extends TechnicolorBlock {
 }
 
 export class HomePageCloudTechnicolorBlock extends TechnicolorBlock {
-    readonly actions?: Action[];
+    readonly actions?: LinkButton[];
 
-    constructor(title: ParagraphWithHighlights, body: RichText, iconURL: string, actions?: Action[]) {
+    constructor(title: ParagraphWithHighlights, body: RichText, iconURL: string, actions?: LinkButton[]) {
         super(title, body, iconURL);
         this.actions = actions;
     }

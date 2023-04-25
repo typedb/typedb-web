@@ -1,5 +1,5 @@
 import { Component, Input } from "@angular/core";
-import { Action, ParagraphWithHighlights, RichText } from "typedb-web-schema";
+import { LinkButton, ParagraphWithHighlights, RichText } from "typedb-web-schema";
 
 @Component({
     selector: "td-title-body-actions-section",
@@ -8,7 +8,7 @@ import { Action, ParagraphWithHighlights, RichText } from "typedb-web-schema";
 export class TitleBodyActionsSectionComponent {
     @Input() title!: ParagraphWithHighlights;
     @Input() body!: RichText;
-    @Input() actions?: Action[];
+    @Input() actions?: LinkButton[];
     @Input() size: "m" | "l" = "l";
 
     get titleClass(): string {

@@ -1,0 +1,34 @@
+<div mat-dialog-title>
+    <h1>Contact us</h1>
+    <button mat-icon-button aria-label="close dialog" mat-dialog-close>
+        <img src="/assets/icon/close.svg" alt="Close"/>
+    </button>
+</div>
+<div mat-dialog-content>
+    <form #formEl>
+        <div class="cd-row">
+            <mat-form-field appearance="outline">
+                <mat-label>First name</mat-label>
+                <input type="text" name="firstName" [(ngModel)]="form.firstName" autocomplete="given-name" matNativeControl required/>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Last name</mat-label>
+                <input type="text" name="lastName" [(ngModel)]="form.lastName" autocomplete="family-name" matNativeControl required/>
+            </mat-form-field>
+        </div>
+        <div class="cd-row">
+            <mat-form-field appearance="outline">
+                <mat-label>Work email</mat-label>
+                <input type="email" name="email" [(ngModel)]="form.email" autocomplete="email" matNativeControl required/>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Company name</mat-label>
+                <input type="text" name="companyName" [(ngModel)]="form.companyName" autocomplete="organization" matNativeControl required/>
+            </mat-form-field>
+        </div>
+        <div class="cd-actions-row">
+            <td-button [button]="{ style: 'primary', text: 'Get In Touch' }" (buttonClick)="onSubmit()"></td-button>
+            <p>By submitting your personal data, you consent to emails from Vaticle. See our <a href="/privacy-policy">Privacy Policy</a>.</p>
+        </div>
+    </form>
+</div>

@@ -5,8 +5,8 @@ import {
     HomePageUseCase, SanityHomePage
 } from "typedb-web-schema";
 import { sanitiseHtmlID } from "../../framework/util";
-import { SocialMediaLink } from "../../model/social-media-link";
-import { HomePageCloudTechnicolorBlock, HomePageIntroTechnicolorBlock, TechnicolorBlock } from "../../model/technicolor-block";
+import { SocialMediaLink } from "typedb-web-schema";
+import { HomePageCloudTechnicolorBlock, HomePageIntroTechnicolorBlock, TechnicolorBlock } from "typedb-web-schema";
 import { ContentService } from "../../service/content.service";
 
 @Component({

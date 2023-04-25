@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from "@angular/core";
-import { Action, ButtonStyle } from "typedb-web-schema";
+import { LinkButton, ActionButton } from "typedb-web-schema";
 
 @Component({
     selector: "td-button",
@@ -7,16 +7,16 @@ import { Action, ButtonStyle } from "typedb-web-schema";
     styleUrls: ["./button.component.scss"],
 })
 export class ButtonComponent {
-    @Input() button!: Action | CustomAction;
+    @Input() button!: ActionButton;
     @Input() buttonWidth?: string;
     @Output() buttonClick = new EventEmitter();
 
-    onClick() {
+    get linkButton(): LinkButton | undefined {
+        return this.button instanceof LinkButton ? this.button : undefined;
+    }
+
+    onClick(event: Event) {
+        event.preventDefault();
         this.buttonClick.emit();
     }
-}
-
-export interface CustomAction {
-    buttonStyle: ButtonStyle;
-    text: string;
 }

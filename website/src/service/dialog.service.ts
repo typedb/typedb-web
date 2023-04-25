@@ -2,7 +2,7 @@ import { ComponentType } from "@angular/cdk/portal";
 import { Injectable } from "@angular/core";
 import { MatDialog, MatDialogConfig, MatDialogRef } from "@angular/material/dialog";
 import { ActivatedRoute, NavigationEnd, Router } from "@angular/router";
-import { CloudWaitlistDialogComponent } from "../framework/dialog/name-email-dialog.component";
+import { CloudWaitlistDialogComponent, ContactDialogComponent, NewsletterDialogComponent } from "../framework/dialog/dialog.component";
 
 @Injectable({
     providedIn: "root",
@@ -19,15 +19,21 @@ export class DialogService {
                     case "cloud-waitlist":
                         this.openCloudWaitlistFormDialog();
                         break;
+                    case "contact":
+                        this.openContactDialog();
+                        break;
+                    case "newsletter":
+                        this.openNewsletterDialog();
+                        break;
                     default:
-                        this.current?.close();
+                        this.closeCurrent();
                 }
             }
         });
     }
 
     open<T>(component: ComponentType<T>, config?: MatDialogConfig<any> | undefined) {
-        this.current?.close();
+        this.closeCurrent();
         const newDialog = this.dialog.open(component, config);
         newDialog.afterClosed().subscribe(() => {
             this.router.navigate([], {
@@ -39,7 +45,20 @@ export class DialogService {
         this.current = newDialog;
     }
 
+    closeCurrent() {
+        this.current?.close();
+        this.current = undefined;
+    }
+
     openCloudWaitlistFormDialog() {
         this.open(CloudWaitlistDialogComponent, { width: "560px" });
+    }
+
+    openNewsletterDialog() {
+        this.open(NewsletterDialogComponent, { width: "560px" });
+    }
+
+    openContactDialog() {
+        this.open(ContactDialogComponent, { width: "1088px" });
     }
 }

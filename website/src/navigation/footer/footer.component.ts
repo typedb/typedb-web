@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 import { ContactMediaID, contactMedias, Footer, footerSchemaName, Link, SanityCommunityResources, SanityDataset, SanityFooter, SocialMediaID, socialMedias } from "typedb-web-schema";
-import { SocialMediaLink } from "../../model/social-media-link";
+import { SocialMediaLink } from "typedb-web-schema";
 import { ContentService } from "../../service/content.service";
 
 @Component({

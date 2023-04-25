@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 import { FeaturesPage, FeaturesPageCoreSection, featuresPageSchemaName, IntroPage, IntroPageCoreSection, SanityFeaturesPage } from "typedb-web-schema";
-import { TechnicolorBlock } from "../../model/technicolor-block";
+import { TechnicolorBlock } from "typedb-web-schema";
 import { ContentService } from "../../service/content.service";
 
 @Component({

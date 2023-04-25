@@ -1,4 +1,4 @@
-import { actionSchemas } from "./action";
+import { actionSchemas } from "./button";
 import { linkSchemas } from "./link";
 import { componentSchemas } from "./component";
 import { formSchemas } from "./form";
@@ -16,8 +16,9 @@ export const schemaTypes = [
     ...navigationSchemas, ...organisationSchemas, ...pageSchemas, ...socialMediaSchemas, ...textSchemas, testimonialSchema
 ];
 
-export { Action, type ButtonStyle } from "./action";
+export { ActionButton, LinkButton, type ButtonStyle } from "./button";
 export { ContentPanel, ContentTextPanel } from "./component/content-text-panel";
+export { HomePageCloudTechnicolorBlock, HomePageIntroTechnicolorBlock, TechnicolorBlock } from "./component/technicolor-block";
 export { formsSchemaName } from "./form";
 export { sectionIconSchemaName } from "./image";
 export { KeyPoint } from "./key-point";
@@ -32,6 +33,6 @@ export { IntroPage, IntroPageCoreSection, introPageSchemaName, type SanityIntroP
 export { useCasePageSchemaName } from "./page/use-case";
 export { webinarsPageSchemaName } from "./page/webinars";
 export { Document, SanityDataset } from "./sanity-core";
-export { type SanityCommunityResources, communityResourcesSchemaName, type SocialMediaID, socialMedias } from "./social-media";
+export { type SanityCommunityResources, communityResourcesSchemaName, type SocialMediaID, SocialMediaLink, socialMedias } from "./social-media";
 export { type SanityTestimonial, Testimonial } from "./testimonial";
 export { ParagraphWithHighlights, RichText, type SanityPortableText, TitleAndBody } from "./text";

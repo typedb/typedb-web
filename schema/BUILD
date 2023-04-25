@@ -21,7 +21,7 @@ filegroup(
 #
 #copy_to_bin(
 #    name = "action",
-#    srcs = ["action.ts"],
+#    srcs = ["button.ts"],
 #    visibility = ["//website:__subpackages__"],
 #)
 #
