@@ -186,8 +186,20 @@ div[tabindex] {
         background-image: url("/assets/image/planet-blue.jpg");
     }
 
-    &.yellow {
-        background-image: url("/assets/image/planet-yellow.jpg");
+    &.blue-pink {
+        background-image: url("/assets/image/planet-blue-pink.jpg");
+    }
+
+    &.deep-pink {
+        background-image: url("/assets/image/planet-deep-pink.jpg");
+    }
+
+    &.pink {
+        background-image: url("/assets/image/planet-pink.jpg");
+    }
+
+    &.yellow-green {
+        background-image: url("/assets/image/planet-yellow-green.jpg");
     }
 }
 
