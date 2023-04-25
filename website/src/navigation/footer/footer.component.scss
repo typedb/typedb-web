@@ -11,7 +11,7 @@ a, a:visited, a p {
     color: $color-white;
 
     &:hover, &:focus {
-        font-weight: 600;
+        font-weight: $font-weight-bold;
         color: $color-green;
         text-decoration: underline;
     }
@@ -23,7 +23,7 @@ a:hover p, a:focus p {
 
 .ft-section {
     width: $section-width;
-    padding: $p-margin-l 0;
+    padding: 40px 0;
 
     &:not(:first-child) {
         border-top: 1px solid $color-light-purple;

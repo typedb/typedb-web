@@ -32,8 +32,13 @@
 
         &:hover h4, &:focus h4 {
             color: $color-green;
-            font-weight: 600;
+            font-weight: $font-weight-bold;
             text-decoration: underline;
         }
     }
+}
+
+.mp-list-column-description {
+    color: $color-secondary-light-grey;
+    margin-top: 4px;
 }

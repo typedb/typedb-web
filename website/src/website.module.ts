@@ -1,5 +1,6 @@
 import { NgModule } from "@angular/core";
 import { BrowserModule } from "@angular/platform-browser";
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FrameworkModule } from "./framework/framework.module";
 import { NavigationModule } from "./navigation/navigation.module";
 import { PageModule } from "./page/page.module";
@@ -10,13 +11,13 @@ import { FormsModule } from "@angular/forms";
 import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
 import { ScullyLibModule } from "@scullyio/ng-lib";
 import { HttpClientModule } from "@angular/common/http";
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
     declarations: [
         WebsiteComponent,
     ],
     imports: [
+        BrowserAnimationsModule,
         BrowserModule,
         FormsModule,
         FontAwesomeModule,
@@ -27,7 +28,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
         ScullyLibModule,
         ServiceModule,
         WebsiteRoutingModule,
-        BrowserAnimationsModule,
     ],
     providers: [],
     bootstrap: [WebsiteComponent]

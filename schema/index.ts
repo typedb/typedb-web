@@ -16,7 +16,7 @@ export const schemaTypes = [
     ...navigationSchemas, ...organisationSchemas, ...pageSchemas, ...socialMediaSchemas, ...textSchemas, testimonialSchema
 ];
 
-export { Action } from "./action";
+export { Action, type ButtonStyle } from "./action";
 export { ContentPanel, ContentTextPanel } from "./component/content-text-panel";
 export { formsSchemaName } from "./form";
 export { sectionIconSchemaName } from "./image";

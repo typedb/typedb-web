@@ -1,0 +1,22 @@
+<div mat-dialog-title>
+    <h1>{{ titleProp }}</h1>
+    <button mat-icon-button aria-label="close dialog" mat-dialog-close>
+        <img src="/assets/icon/close.svg" alt="Close"/>
+    </button>
+</div>
+<div mat-dialog-content>
+    <mat-form-field appearance="outline">
+        <mat-label>First name</mat-label>
+        <input type="text" autocomplete="given-name" matInput/>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+        <mat-label>Last name</mat-label>
+        <input type="text" autocomplete="family-name" matInput/>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+        <mat-label>Email</mat-label>
+        <input type="email" autocomplete="email" matInput/>
+    </mat-form-field>
+    <td-button [button]="{ buttonStyle: 'primary', text: 'Join the TypeDB Cloud Waitlist' }" buttonWidth="unset" (buttonClick)="onSubmit.emit()"></td-button>
+    <p class="p-margin-l">By submitting your personal data, you consent to emails from Vaticle. See our <a href="/privacy-policy">Privacy Policy</a>.</p>
+</div>

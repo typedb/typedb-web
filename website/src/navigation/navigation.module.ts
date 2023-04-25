@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { MatDialogModule } from "@angular/material/dialog";
 import { FrameworkModule } from "../framework/framework.module";
 import { FooterComponent } from "./footer/footer.component";
 import { SidenavComponent } from "./sidenav/sidenav.component";
@@ -22,6 +23,7 @@ import { RouterModule } from '@angular/router';
         FontAwesomeModule,
         FrameworkModule,
         HttpClientModule,
+        MatDialogModule,
         RouterModule,
     ],
     providers: [],

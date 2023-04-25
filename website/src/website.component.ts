@@ -2,6 +2,7 @@ import { ViewportScroller } from "@angular/common";
 import { Component } from "@angular/core";
 import { Event, Router, Scroll } from "@angular/router";
 import { filter } from "rxjs";
+import { DialogService } from "./service/dialog.service";
 
 @Component({
     selector: "typedb-website",
@@ -10,7 +11,7 @@ import { filter } from "rxjs";
 })
 export class WebsiteComponent {
     // TODO: (html) cookie consent
-    constructor(router: Router, viewportScroller: ViewportScroller) {
+    constructor(router: Router, viewportScroller: ViewportScroller, _dialogService: DialogService) {
         router.events.pipe(
             filter((e: Event): e is Scroll => e instanceof Scroll)
         ).subscribe(e => {

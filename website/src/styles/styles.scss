@@ -1,3 +1,5 @@
+@use "@angular/material" as mat;
+
 @import url('https://fonts.googleapis.com/css2?family=Titillium+Web:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700&family=Ubuntu+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap');
 @import "colors";
 @import "sizes";
@@ -190,4 +192,81 @@ div[tabindex] {
     &.yellow {
         background-image: url("/assets/image/planet-yellow.jpg");
     }
+}
+
+.mat-dialog-container {
+    padding: 32px;
+    background: $color-purple;
+}
+
+.mat-dialog-title {
+    margin-bottom: 28px !important;
+    display: flex !important;
+    justify-content: space-between;
+    align-items: center;
+
+    h1 {
+        font-size: $font-size-m;
+        line-height: $line-height-m;
+        font-weight: $font-weight-bold;
+    }
+
+    img {
+        width: 40px;
+        height: 40px;
+        margin-top: -4px;
+    }
+}
+
+.mat-dialog-content {
+    display: flex !important;
+    flex-direction: column;
+}
+
+.mat-form-field-flex > .mat-form-field-infix {
+    padding: 7px 0 !important;
+}
+.mat-form-field-appearance-outline .mat-form-field-label {
+    margin-top: -15px;
+}
+.mat-form-field-appearance-outline .mat-form-field-outline {
+    background: $color-secondary-purple;
+}
+body .mat-form-field-label {
+    color: $color-secondary-grey;
+    font-style: italic;
+}
+body .mat-focused .mat-form-field-label {
+    font-style: normal;
+}
+.mat-form-field-appearance-outline.mat-focused {
+    .mat-form-field-outline, .mat-form-field-label {
+        color: $color-green !important;
+    }
+}
+body .mat-form-field-appearance-outline .mat-form-field-outline-start,
+body .mat-form-field-appearance-outline .mat-form-field-outline-end,
+body .mat-form-field-appearance-outline .mat-form-field-outline-gap {
+    border-color: $color-secondary-deep-grey;
+}
+body .mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-start,
+body .mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-end,
+body .mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-gap {
+    border-color: $color-green;
+}
+.mat-form-field-wrapper {
+    padding-bottom: 14px;
+}
+.mat-form-field-label-wrapper {
+    top: -10px;
+    padding-top: 10px;
+    overflow: visible !important;
+}
+.mat-form-field-appearance-outline.mat-form-field-can-float.mat-form-field-should-float .mat-form-field-label {
+    transform: translateY(-21px) translateX(-4px) scale(.75);
+    width: 133.33333%;
+}
+input.mat-input-element {
+    margin-bottom: 8px;
+    caret-color: $color-green;
 }

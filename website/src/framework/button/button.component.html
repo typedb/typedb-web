@@ -1,1 +1,1 @@
-<a [class]="button.buttonStyle" [tdLink]="button.link">{{ button.text }}</a>
+<a tabindex="0" [class]="button.buttonStyle" [tdLink]="$any(button).link" [ngStyle]="{ 'width': buttonWidth }" (click)="onClick()">{{ button.text }}</a>
