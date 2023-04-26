@@ -1,6 +1,6 @@
 import { DocumentIcon } from "@sanity/icons";
-import { ArrayRule, defineField, defineType } from "@sanity/types";
-import { Link, SanityLink } from "../link";
+import { ArrayRule, defineField, defineType, Slug } from "@sanity/types";
+import { Link, linkSchemaName, SanityLink } from "../link";
 import { bodyFieldRichText, collapsibleOptions, isVisibleField, keyPointsField, learnMoreLinkField, pageTitleField, routeField, SanityVisibleToggle, titleAndBodyFields, titleField, videoEmbedField } from "../common-fields";
 import { LinkPanel, linkPanelSchemaName, SanityLinkPanel } from "../component/link-panel";
 import { KeyPoint, SanityKeyPoint } from "../key-point";
@@ -21,6 +21,8 @@ type SectionKey = keyof typeof sections;
 type SectionID = typeof sections[SectionKey]["id"];
 
 export interface SanityUseCasePage extends SanityPage {
+    title: string;
+    route: Slug;
     [sections.intro.id]: SanityIntroSection;
     [sections.requirements.id]: SanityKeyPointsSection;
     [sections.challenges.id]: SanityKeyPointsSection;
@@ -191,6 +193,12 @@ const sectionSchemas = [
             type: "array",
             of: [{type: exampleTabSchemaName}],
         }),
+        defineField({
+            name: "sampleProjectLink",
+            title: "Link to Sample Project",
+            type: "reference",
+            to: [{type: linkSchemaName}],
+        }),
         isVisibleField,
     ]),
     sectionSchema("furtherReading", [
@@ -214,7 +222,7 @@ const useCasePageSchema = defineType({
     icon: DocumentIcon,
     fields: [
         pageTitleField,
-        Object.assign({}, routeField, { description: "URL fragment for this use case page (e.g. identity-access-management). Do not include 'use-case', this is automatically prepended" }),
+        Object.assign({}, routeField, { description: "URL fragment for this use case page (e.g. identity-access-management). Do not include 'use-cases', this is automatically prepended" }),
         ...sectionFields,
     ],
     preview: {

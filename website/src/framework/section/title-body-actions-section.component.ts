@@ -10,6 +10,11 @@ export class TitleBodyActionsSectionComponent {
     @Input() body!: RichText;
     @Input() actions?: LinkButton[];
     @Input() size: "m" | "l" = "l";
+    @Input() isIntroSection = false;
+
+    get sectionClasses(): string {
+        return this.isIntroSection ? "page-section page-intro-section" : "page-section";
+    }
 
     get titleClass(): string {
         switch (this.size) {

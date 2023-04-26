@@ -18,6 +18,7 @@ export const schemaTypes = [
 
 export { ActionButton, LinkButton, type ButtonStyle } from "./button";
 export { ContentPanel, ContentTextPanel } from "./component/content-text-panel";
+export { LinkPanel } from "./component/link-panel";
 export { HomePageCloudTechnicolorBlock, HomePageIntroTechnicolorBlock, TechnicolorBlock } from "./component/technicolor-block";
 export { formsSchemaName } from "./form";
 export { sectionIconSchemaName } from "./image";
@@ -30,7 +31,7 @@ export { Page, type SanityPage } from "./page/common";
 export { FeaturesPage, FeaturesPageCoreSection, featuresPageSchemaName, type SanityFeaturesPage } from "./page/features";
 export { HomePage, HomePageCloudSection, HomePageCoreSection, HomePageIntroSection, HomePageSection, HomePageUseCase, homePageSchemaName, type SanityHomePage } from "./page/home";
 export { IntroPage, IntroPageCoreSection, introPageSchemaName, type SanityIntroPage } from "./page/intro";
-export { useCasePageSchemaName } from "./page/use-case";
+export { type SanityUseCasePage, UseCasePage, useCasePageSchemaName } from "./page/use-case";
 export { webinarsPageSchemaName } from "./page/webinars";
 export { Document, SanityDataset } from "./sanity-core";
 export { type SanityCommunityResources, communityResourcesSchemaName, type SocialMediaID, SocialMediaLink, socialMedias } from "./social-media";

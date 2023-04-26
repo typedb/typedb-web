@@ -26,7 +26,7 @@ export const titleField = defineField({
     validation: (rule: StringRule) => rule.required(),
 });
 
-export const pageTitleField = Object.assign({}, titleField, { description: "Displayed in the browser's address bar" });
+export const pageTitleField = Object.assign({}, titleField, { title: "Web Page Title", description: "Displayed in the browser's address bar" });
 
 export const titleFieldWithHighlights = defineField({
     name: titleFieldName,

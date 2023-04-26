@@ -1,0 +1,7 @@
+<div class="section lp-root">
+    <div *ngFor="let panel of panels" class="lp-panel">
+        <h2 class="text-m"><strong>{{ panel.title }}</strong></h2>
+        <td-rich-text [value]="panel.body" class="text-xs"></td-rich-text>
+        <td-button [button]=""></td-button>
+    </div>
+</div>

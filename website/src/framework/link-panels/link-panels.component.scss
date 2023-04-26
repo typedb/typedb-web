@@ -1,0 +1,53 @@
+@import "../../styles/colors";
+@import "../../styles/sizes";
+
+.ft-root {
+    height: 630px;
+    display: flex;
+    flex-direction: column;
+}
+
+.ft-tabs {
+    height: 74px;
+    display: flex;
+    flex-direction: row;
+    border: 1px solid $color-light-purple;
+    border-bottom: none;
+    border-top-left-radius: $border-radius;
+    border-top-right-radius: $border-radius;
+    background: $color-purple;
+}
+
+.ft-tab {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &:not(:first-child) {
+        border-left: 1px solid $color-light-purple;
+    }
+}
+
+.ft-tab-selected {
+    color: $color-green;
+}
+
+.ft-tab-content {
+    flex: 1;
+    padding: 40px;
+    display: flex;
+    flex-direction: row;
+    gap: 40px;
+}
+
+.ft-graphic {
+    flex: 1;
+}
+
+.ft-text-area {
+    width: 366px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}

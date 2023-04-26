@@ -5,6 +5,7 @@ import { FeaturesPageComponent, FeaturesPageTechnicolorBlockComponent } from "./
 import { IntroPageComponent, IntroPageTechnicolorBlockComponent } from "./intro-page/intro-page.component";
 import { NotFoundPageComponent } from "./not-found-page/not-found-page.component";
 import { HomePageTechnicolorBlockComponent, HomePageComponent, HomePageUseCasesComponent } from "./home-page/home-page.component";
+import { UseCasePageComponent, UseCasePageTechnicolorBlockComponent } from "./use-case-page/use-case-page.component";
 
 @NgModule({
     declarations: [
@@ -16,6 +17,8 @@ import { HomePageTechnicolorBlockComponent, HomePageComponent, HomePageUseCasesC
         IntroPageComponent,
         IntroPageTechnicolorBlockComponent,
         NotFoundPageComponent,
+        UseCasePageComponent,
+        UseCasePageTechnicolorBlockComponent,
     ],
     imports: [
         BrowserModule,

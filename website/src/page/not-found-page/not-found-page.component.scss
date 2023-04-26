@@ -1,0 +1,14 @@
+.nf-root {
+    width: 100%;
+    min-height: 800px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-image: url("/assets/image/deep-space1.jpg");
+}
+
+h1 {
+    font-size: 144px;
+    font-weight: 600;
+}
