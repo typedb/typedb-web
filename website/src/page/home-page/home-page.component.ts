@@ -1,8 +1,7 @@
 import { Component, Input, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
-import { HomePage, homePageSchemaName, HomePageUseCase, SanityHomePage } from "typedb-web-schema";
+import { HomePage, homePageSchemaName, SanityHomePage } from "typedb-web-schema";
 import { TechnicolorBlockComponent } from "../../framework/technicolor-block/technicolor-block.component";
-import { sanitiseHtmlID } from "../../framework/util";
 import { SocialMediaLink } from "typedb-web-schema";
 import { TechnicolorBlock } from "typedb-web-schema";
 import { ContentService } from "../../service/content.service";
@@ -55,28 +54,5 @@ export class HomePageTechnicolorBlockComponent {
 
     get noTrailingLine() {
         return this.index >= this.allBlocks.length - 1;
-    }
-}
-
-@Component({
-    selector: "td-home-page-use-cases",
-    templateUrl: "use-cases.component.html",
-    styleUrls: ["use-cases.component.scss"],
-})
-export class HomePageUseCasesComponent implements OnInit {
-    @Input() useCases!: HomePageUseCase[];
-    selectedUseCase!: HomePageUseCase;
-
-    ngOnInit() {
-        this.selectedUseCase = this.useCases[0];
-    }
-
-    tabID(useCase: HomePageUseCase): string {
-        return sanitiseHtmlID(useCase.title);
-    }
-
-    setSelectedTab(useCase: HomePageUseCase) {
-        // TODO: invoke when navigating via hashroute
-        this.selectedUseCase = useCase;
     }
 }

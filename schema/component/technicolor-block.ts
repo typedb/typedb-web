@@ -9,10 +9,6 @@ export interface SanityTechnicolorBlock extends SanityTitleBodyActions {
     icon: SanityReference<SanityImageRef>;
 }
 
-export interface SanityKeyPointsTechnicolorBlock extends SanityTechnicolorBlock {
-    keyPoints: SanityKeyPoint[];
-}
-
 export class TechnicolorBlock {
     readonly title: ParagraphWithHighlights;
     readonly body: RichText;
@@ -33,20 +29,5 @@ export class TechnicolorBlock {
             actions: data.actions?.map(x => LinkButton.fromSanity(x, db)),
             iconURL: db.resolveImageRef(data.icon).url,
         });
-    }
-}
-
-export class KeyPointsTechnicolorBlock extends TechnicolorBlock {
-    readonly keyPoints: KeyPoint[];
-
-    constructor(props: PropsOf<KeyPointsTechnicolorBlock>) {
-        super(props);
-        this.keyPoints = props.keyPoints;
-    }
-
-    static fromSanityKeyPointsTechnicolorBlock(data: SanityKeyPointsTechnicolorBlock, db: SanityDataset) {
-        return new KeyPointsTechnicolorBlock(Object.assign(TechnicolorBlock.fromSanityTechnicolorBlock(data, db), {
-            keyPoints: data.keyPoints.map(x => new KeyPoint(x, db)),
-        }));
     }
 }

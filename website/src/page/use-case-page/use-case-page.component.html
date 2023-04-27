@@ -9,6 +9,18 @@
             <td-use-case-page-technicolor-block [block]="page.requirementsSection" [page]="page"></td-use-case-page-technicolor-block>
             <td-key-point-panels-2x2 [keyPoints]="page.requirementsSection.keyPoints"></td-key-point-panels-2x2>
         </ng-container>
+        <ng-container *ngIf="page.challengesSection">
+            <td-use-case-page-technicolor-block [block]="page.challengesSection" [page]="page"></td-use-case-page-technicolor-block>
+            <td-key-point-panels-2x2 [keyPoints]="page.challengesSection.keyPoints"></td-key-point-panels-2x2>
+        </ng-container>
+        <ng-container *ngIf="page.solutionSection">
+            <td-use-case-page-technicolor-block [block]="page.solutionSection" [page]="page"></td-use-case-page-technicolor-block>
+            <td-key-point-table [keyPoints]="page.solutionSection.keyPoints"></td-key-point-table>
+        </ng-container>
+        <ng-container *ngIf="page.furtherReadingSection">
+            <td-use-case-page-technicolor-block [block]="page.furtherReadingSection" [page]="page"></td-use-case-page-technicolor-block>
+            <td-link-panels [panels]="page.furtherReadingSection.links"></td-link-panels>
+        </ng-container>
         <div class="yellow-green planet"></div>
     </div>
 </article>

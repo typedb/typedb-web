@@ -1,11 +1,11 @@
 import { ArrayRule, defineField, defineType } from "@sanity/types";
-import { SanityButtons, SanityOptionalActions } from "../button";
-import { KeyPointsTechnicolorBlock, SanityTechnicolorBlock, TechnicolorBlock } from "../component/technicolor-block";
+import { SanityOptionalActions } from "../button";
+import { SanityTechnicolorBlock, TechnicolorBlock } from "../component/technicolor-block";
 import { SanityImageRef } from "../image";
 import { Link, SanityLink } from "../link";
 import { bodyFieldRichText, collapsibleOptions, sectionIconField, isVisibleField, keyPointsField, optionalActionsField, pageTitleField, titleAndBodyFields, titleBodyIconFields, titleField, videoEmbedField, learnMoreLinkField, SanityVisibleToggle } from "../common-fields";
 import { ContentTextPanel, contentTextPanelSchemaName, SanityContentTextPanel } from "../component/content-text-panel";
-import { SanityKeyPoint } from "../key-point";
+import { KeyPoint, SanityKeyPoint } from "../key-point";
 import { Organisation, organisationLogosField, SanityOrganisation } from "../organisation";
 import { SanityDataset, SanityReference } from "../sanity-core";
 import { SocialMediaID, socialMediaLinksField } from "../social-media";
@@ -80,8 +80,8 @@ export class HomePage extends Page {
     readonly [sections.intro.id]?: IntroSection;
     readonly [sections.features.id]?: FeaturesSection;
     readonly [sections.useCases.id]?: UseCasesSection;
-    readonly [sections.tooling.id]?: KeyPointsTechnicolorBlock;
-    readonly [sections.cloud.id]?: KeyPointsTechnicolorBlock;
+    readonly [sections.tooling.id]?: KeyPointsSection;
+    readonly [sections.cloud.id]?: KeyPointsSection;
     readonly [sections.community.id]?: CommunitySection;
     readonly [sections.testimonials.id]?: TestimonialsSection;
     readonly [sections.conclusion.id]?: TitleBodyActions;
@@ -91,8 +91,8 @@ export class HomePage extends Page {
         this.introSection = data.introSection.isVisible ? IntroSection.fromSanityIntroSection(data.introSection, db) : undefined;
         this.featuresSection = data.featuresSection.isVisible ? FeaturesSection.fromSanityFeaturesSection(data.featuresSection, db) : undefined;
         this.useCasesSection = data.useCasesSection.isVisible ? UseCasesSection.fromSanityUseCasesSection(data.useCasesSection, db) : undefined;
-        this.toolingSection = data.toolingSection.isVisible ? KeyPointsTechnicolorBlock.fromSanityKeyPointsTechnicolorBlock(data.toolingSection, db) : undefined;
-        this.cloudSection = data.cloudSection.isVisible ? KeyPointsTechnicolorBlock.fromSanityKeyPointsTechnicolorBlock(data.cloudSection, db) : undefined;
+        this.toolingSection = data.toolingSection.isVisible ? KeyPointsSection.fromSanityKeyPointsSection(data.toolingSection, db) : undefined;
+        this.cloudSection = data.cloudSection.isVisible ? KeyPointsSection.fromSanityKeyPointsSection(data.cloudSection, db) : undefined;
         this.communitySection = data.communitySection.isVisible ? CommunitySection.fromSanityCommunitySection(data.communitySection, db) : undefined;
         this.testimonialsSection = data.testimonialsSection.isVisible ? TestimonialsSection.fromSanityTestimonialsSection(data.testimonialsSection, db) : undefined;
         this.conclusionSection = data.conclusionSection.isVisible ? TitleBodyActions.fromSanityTitleBodyActions(data.conclusionSection, db) : undefined;
@@ -156,6 +156,21 @@ class UseCasesSection extends TechnicolorBlock {
     static fromSanityUseCasesSection(data: SanityUseCasesSection, db: SanityDataset) {
         return new UseCasesSection(Object.assign(TechnicolorBlock.fromSanityTechnicolorBlock(data, db), {
             useCases: data.useCases.map(x => new HomePageUseCase(x, db)),
+        }));
+    }
+}
+
+class KeyPointsSection extends TechnicolorBlock {
+    readonly keyPoints: KeyPoint[];
+
+    constructor(props: PropsOf<KeyPointsSection>) {
+        super(props);
+        this.keyPoints = props.keyPoints;
+    }
+
+    static fromSanityKeyPointsSection(data: SanityKeyPointsSection, db: SanityDataset) {
+        return new KeyPointsSection(Object.assign(TechnicolorBlock.fromSanityTechnicolorBlock(data, db), {
+            keyPoints: data.keyPoints.map(x => new KeyPoint(x, db)),
         }));
     }
 }

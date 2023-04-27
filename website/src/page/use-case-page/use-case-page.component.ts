@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from "@angular/core";
 import { ActivatedRoute, ParamMap, Router } from "@angular/router";
-import { HomePage, SanityUseCasePage, UseCasePage, useCasePageSchemaName } from "typedb-web-schema";
+import { SanityUseCasePage, UseCasePage, useCasePageSchemaName } from "typedb-web-schema";
 import { TechnicolorBlock } from "typedb-web-schema";
 import { ContentService } from "../../service/content.service";
 
@@ -29,7 +29,7 @@ export class UseCasePageComponent implements OnInit {
 
 @Component({
     selector: "td-use-case-page-technicolor-block",
-    template: "<td-technicolor-block [block]=\"block\" [index]=\"index\" size='large' [noLeadingLine]='index === 0' [noBackgroundImage]='index === 0' [noTrailingLine]=\"noTrailingLine\"></td-technicolor-block>",
+    template: "<td-technicolor-block [block]=\"block\" [index]=\"index + 1\" size='medium' [noLeadingLine]='index === 0' [noBackgroundImage]='index === 0' [noTrailingLine]=\"noTrailingLine\" [greyLine]='true'></td-technicolor-block>",
 })
 export class UseCasePageTechnicolorBlockComponent {
     @Input() block!: TechnicolorBlock;
@@ -37,7 +37,7 @@ export class UseCasePageTechnicolorBlockComponent {
 
     get allBlocks(): TechnicolorBlock[] {
         return [
-            this.page!.introSection, this.page!.requirementsSection, this.page!.challengesSection, this.page!.solutionSection,
+            this.page!.requirementsSection, this.page!.challengesSection, this.page!.solutionSection,
             this.page!.exampleSection, this.page!.furtherReadingSection
         ].filter(x => !!x) as TechnicolorBlock[];
     }

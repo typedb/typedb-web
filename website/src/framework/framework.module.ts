@@ -11,7 +11,7 @@ import { ActionsComponent } from "./actions/actions.component";
 import { ButtonComponent } from "./button/button.component";
 import { ContentPanelGridComponent } from "./content-panel-grid/content-panel-grid.component";
 import { ContentPanelComponent } from "./content-panel/content-panel.component";
-import { ContentTabsComponent } from "./content-tabs/content-tabs.component";
+import { ContentTabsComponent, VerticalContentTabsComponent } from "./content-tabs/content-tabs.component";
 import { CloudWaitlistDialogComponent, ContactDialogComponent, NameEmailDialogComponent, NewsletterDialogComponent } from "./dialog/dialog.component";
 import { KeyPointPanels2x2Component, KeyPointPanels3x1Component, KeyPointTableComponent } from "./key-point/key-point.component";
 import { LinkPanelsComponent } from "./link-panels/link-panels.component";
@@ -50,6 +50,7 @@ import { H1WithHighlightsComponent, ParagraphWithHighlightsComponent } from "./t
         TechnicolorBlockComponent,
         TestimonialsCarouselComponent,
         TitleBodyActionsSectionComponent,
+        VerticalContentTabsComponent,
     ],
     imports: [
         BrowserModule,
@@ -80,6 +81,7 @@ import { H1WithHighlightsComponent, ParagraphWithHighlightsComponent } from "./t
         TechnicolorBlockComponent,
         TestimonialsCarouselComponent,
         TitleBodyActionsSectionComponent,
+        VerticalContentTabsComponent,
     ],
     providers: [
     ],
