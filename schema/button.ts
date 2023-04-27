@@ -32,10 +32,18 @@ export class ActionButton {
 export class LinkButton extends ActionButton {
     readonly link: Link;
 
-    constructor(data: SanityButton, db: SanityDataset) {
-        super(data);
-        this.link = new Link(db.resolveRef(data.link));
+    constructor(props: { style: ButtonStyle, text: string, link: Link }) {
+        super(props);
+        this.link = props.link;
     }
+
+    static fromSanity(data: SanityButton, db: SanityDataset) {
+        return new LinkButton({ style: data.style, text: data.text, link: Link.fromSanityLinkRef(data.link, db) });
+    }
+}
+
+export interface SanityOptionalActions {
+    actions?: SanityButtons;
 }
 
 export const buttonSchemaName = "button";

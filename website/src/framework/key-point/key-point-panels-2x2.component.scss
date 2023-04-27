@@ -2,20 +2,16 @@
 @import "../../styles/sizes";
 
 .kpp-root {
-    display: flex;
-    justify-content: space-between;
+    display: grid;
     gap: 40px;
 }
 
 .kpp-panel {
-    flex: 1;
     background: $color-purple;
     border: 1px solid $color-light-purple;
     border-radius: $border-radius;
-    padding: 30px 32px;
+    padding: 32px;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
+    flex-direction: row;
+    align-items: flex-start;
 }

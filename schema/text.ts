@@ -1,7 +1,8 @@
 import { defineType, PortableTextTextBlock } from "@sanity/types";
-import { LinkButton, SanityButtons } from "./button";
+import { LinkButton, SanityOptionalActions } from "./button";
 import { bodyFieldRichText, optionalActionsField, titleFieldWithHighlights } from "./common-fields";
 import { SanityDataset } from "./sanity-core";
+import { PropsOf } from "./types";
 
 export type SanityPortableText = PortableTextTextBlock[];
 
@@ -13,16 +14,22 @@ export type SanityBodyText = { body: SanityPortableText };
 
 export type SanityTitleAndBody = SanityTitleWithHighlights & SanityBodyText;
 
-export type SanityTitleBodyActionsSection = SanityTitleAndBody & { actions?: SanityButtons };
+export type SanityTitleBodyActions = SanityTitleAndBody & SanityOptionalActions;
 
 export class ParagraphWithHighlights {
     readonly spans: { text: string, highlight: boolean }[];
 
-    constructor(data: SanityPortableText) {
+    constructor(props: PropsOf<ParagraphWithHighlights>) {
+        this.spans = props.spans;
+    }
+
+    static fromSanity(data: SanityPortableText) {
         console.assert(data.length === 1);
-        this.spans = data[0].children
-            .filter(block => block._type === "span")
-            .map(block => ({ text: block.text as string, highlight: (block.marks as string[]).includes("strong") }));
+        return new ParagraphWithHighlights({
+            spans: data[0].children
+                .filter(block => block._type === "span")
+                .map(block => ({ text: block.text as string, highlight: (block.marks as string[]).includes("strong") }))
+        });
     }
 }
 
@@ -45,18 +52,31 @@ export class TitleAndBody implements TitleWithHighlights, BodyText {
     readonly title: ParagraphWithHighlights;
     readonly body: RichText;
 
-    constructor(data: SanityTitleAndBody) {
-        this.title = new ParagraphWithHighlights(data.title);
-        this.body = new RichText(data.body);
+    constructor(props: PropsOf<TitleAndBody>) {
+        this.title = props.title;
+        this.body = props.body;
+    }
+
+    static fromSanityTitleAndBody(data: SanityTitleAndBody) {
+        return new TitleAndBody({
+            title: ParagraphWithHighlights.fromSanity(data.title),
+            body: new RichText(data.body),
+        });
     }
 }
 
-export class TitleBodyActionsSection extends TitleAndBody {
+export class TitleBodyActions extends TitleAndBody {
     readonly actions?: LinkButton[];
 
-    constructor(data: SanityTitleBodyActionsSection, db: SanityDataset) {
-        super(data);
-        this.actions = data.actions?.map(x => new LinkButton(x, db));
+    constructor(props: PropsOf<TitleBodyActions>) {
+        super(props);
+        this.actions = props.actions;
+    }
+
+    static fromSanityTitleBodyActions(data: SanityTitleBodyActions, db: SanityDataset) {
+        return new TitleBodyActions(Object.assign(TitleAndBody.fromSanityTitleAndBody(data), {
+            actions: data.actions?.map(x => LinkButton.fromSanity(x, db))
+        }));
     }
 }
 

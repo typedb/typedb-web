@@ -48,7 +48,7 @@ section, .section {
     margin: 0 auto;
 }
 
-.section-body-text {
+.narrow-section {
     width: 870px;
 }
 
@@ -125,35 +125,38 @@ div[tabindex] {
     margin-top: $subtitle-margin;
 }
 
-.text-xxl {
+.text-xxl, .text-xxl * {
     font-size: $font-size-xxl;
     line-height: $line-height-xxl;
 }
-.text-xl {
+.text-xl, .text-xl * {
     font-size: $font-size-xl;
     line-height: $line-height-xl;
 }
-.text-l {
+.text-l, .text-l * {
     font-size: $font-size-l;
     line-height: $line-height-l;
 }
-.text-ml {
+.text-ml, .text-ml * {
     font-size: $font-size-ml;
     line-height: $line-height-ml;
 }
-.text-m {
+.text-m, .text-m * {
     font-size: $font-size-m;
     line-height: $line-height-m;
 }
-.text-s {
+.text-s, .text-s * {
     font-size: $font-size-s;
     line-height: $line-height-s;
 }
-.text-xs {
+.text-xs, .text-xs * {
     font-size: $font-size-xs;
     line-height: $line-height-xs;
+    &.text-sparse {
+        line-height: $line-height-xs-sparse;
+    }
 }
-.text-xxs {
+.text-xxs, .text-xxs * {
     font-size: $font-size-xxs;
     line-height: $line-height-xxs;
 }

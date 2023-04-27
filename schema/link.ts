@@ -26,29 +26,43 @@ export class Link {
     readonly type: LinkType;
     readonly opensNewTab: boolean;
 
-    constructor(data: SanityLink | { destination: string, type: LinkType, opensNewTab: boolean }) {
-        const destination = typeof data.destination === "string" ? data.destination : data.destination.current;
-        this.destination = destination;
-        this.opensNewTab = data.opensNewTab;
+    constructor(props: { destination: string, type: LinkType, opensNewTab: boolean }) {
+        this.destination = props.destination;
+        this.type = props.type;
+        this.opensNewTab = props.opensNewTab;
+    }
+
+    static fromSanityLink(data: SanityLink) {
+        let type: LinkType;
         if (data.type === "autoDetect") {
             try {
-                new URL(destination);
-                this.type = "external";
+                new URL(data.destination.current);
+                type = "external";
             } catch {
-                this.type = "route";
+                type = "route";
             }
         } else {
-            this.type = data.type;
+            type = data.type;
         }
+        return new Link({ destination: data.destination.current, type: type, opensNewTab: data.opensNewTab });
+    }
+
+    static fromSanityLinkRef(ref: SanityReference<SanityLink>, db: SanityDataset) {
+        return Link.fromSanityLink(db.resolveRef(ref));
     }
 }
 
 export class TextLink extends Link {
     readonly text: string;
 
-    constructor(data: SanityTextLink, db: SanityDataset) {
-        super(db.resolveRef(data.link));
-        this.text = data.text;
+    constructor(props: { text: string, destination: string, type: LinkType, opensNewTab: boolean }) {
+        super(props);
+        this.text = props.text;
+    }
+
+    static fromSanityTextLink(data: SanityTextLink, db: SanityDataset) {
+        const link = Link.fromSanityLinkRef(data.link, db);
+        return new TextLink({ text: data.text, destination: link.destination, type: link.type, opensNewTab: link.opensNewTab });
     }
 }
 

@@ -27,7 +27,7 @@ export class ContentTextPanel extends ContentPanel {
     constructor(data: SanityContentTextPanel, db: SanityDataset) {
         super(data);
         this.body = new RichText(data.body);
-        this.learnMoreLink = new Link(db.resolveRef(data.learnMoreLink));
+        this.learnMoreLink = Link.fromSanityLinkRef(data.learnMoreLink, db);
     }
 }
 

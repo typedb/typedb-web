@@ -1,0 +1,11 @@
+<div class="section kpp-root">
+    <div *ngFor="let keyPoint of keyPoints" class="kpp-panel">
+        <div class="kpp-image-block">
+            <img [src]="keyPoint.iconURL" alt=""/>
+        </div>
+        <div class="kpp-text-block">
+            <h2 class="text-m">{{ keyPoint.title }}</h2>
+            <td-rich-text [value]="keyPoint.body" class="p-margin-s text-xs"></td-rich-text>
+        </div>
+    </div>
+</div>

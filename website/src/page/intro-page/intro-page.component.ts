@@ -38,6 +38,6 @@ export class IntroPageTechnicolorBlockComponent implements OnInit {
     block!: TechnicolorBlock;
 
     ngOnInit() {
-        this.block = new TechnicolorBlock(this.section.title, this.section.body, this.section.iconURL);
+        this.block = new TechnicolorBlock(this.section);
     }
 }

@@ -9,7 +9,7 @@ import { TechnicolorBlock } from "typedb-web-schema";
 export class TechnicolorBlockComponent {
     @Input() block!: TechnicolorBlock;
     @Input() index!: number;
-    @Input() size?: "medium" | "large" = "medium";
+    @Input() size: "small" | "medium" | "large" = "small";
     @Input() noLeadingLine?: boolean;
     @Input() noTrailingLine?: boolean;
     @Input() noBackgroundImage?: boolean;
@@ -53,6 +53,22 @@ export class TechnicolorBlockComponent {
             case 1: return "#FF87DC";
             case 2: return "#FFE49E";
             default: throw "Unreachable code";
+        }
+    }
+
+    get titleClass(): string {
+        switch (this.size) {
+            case "large": return "text-xxl";
+            case "medium": return "text-xl";
+            case "small": return "text-l";
+        }
+    }
+
+    get bodyClass(): string {
+        switch (this.size) {
+            case "large": return "p-margin-l text-l";
+            case "medium": return "p-margin-l text-m";
+            case "small": return "p-margin-l text-s";
         }
     }
 }

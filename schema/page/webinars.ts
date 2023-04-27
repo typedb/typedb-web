@@ -1,21 +1,6 @@
 import { defineField, defineType } from "@sanity/types";
 import { collapsibleOptions, pageTitleField, sectionIconField, titleAndBodyFields } from "../common-fields";
-import { SanityImageRef } from "../image";
-import { SanityDataset, SanityReference } from "../sanity-core";
-import { SanityTitleAndBody, TitleAndBody, titleAndBodySchemaName } from "../text";
-
-interface SanityCoreSection extends SanityTitleAndBody {
-    icon: SanityReference<SanityImageRef>;
-}
-
-class CoreSection extends TitleAndBody {
-    readonly iconURL: string;
-
-    constructor(data: SanityCoreSection, db: SanityDataset) {
-        super(data);
-        this.iconURL = db.resolveImageRef(data.icon).url;
-    }
-}
+import { titleAndBodySchemaName } from "../text";
 
 export const webinarsPageSchemaName = "webinarsPage";
 

@@ -1,52 +1,52 @@
 import { LinkButton } from "../button";
-import { ParagraphWithHighlights, RichText } from "../text";
+import { SanityImageRef } from "../image";
+import { KeyPoint, SanityKeyPoint } from "../key-point";
+import { SanityDataset, SanityReference } from "../sanity-core";
+import { ParagraphWithHighlights, RichText, SanityTitleBodyActions } from "../text";
+import { PropsOf } from "../types";
+
+export interface SanityTechnicolorBlock extends SanityTitleBodyActions {
+    icon: SanityReference<SanityImageRef>;
+}
+
+export interface SanityKeyPointsTechnicolorBlock extends SanityTechnicolorBlock {
+    keyPoints: SanityKeyPoint[];
+}
 
 export class TechnicolorBlock {
     readonly title: ParagraphWithHighlights;
     readonly body: RichText;
     readonly iconURL: string;
+    readonly actions?: LinkButton[];
 
-    constructor(title: ParagraphWithHighlights, body: RichText, iconURL: string) {
-        this.title = title;
-        this.body = body;
-        this.iconURL = iconURL;
+    constructor(props: PropsOf<TechnicolorBlock>) {
+        this.title = props.title;
+        this.body = props.body;
+        this.iconURL = props.iconURL;
+        this.actions = props.actions;
     }
 
-    isRegularBlock(): boolean {
-        return this.constructor.name === TechnicolorBlock.name;
-    }
-
-    isHomePageIntroBlock(): this is HomePageIntroTechnicolorBlock {
-        return false;
-    }
-
-    isHomePageCloudBlock(): this is HomePageCloudTechnicolorBlock {
-        return false;
+    static fromSanityTechnicolorBlock(data: SanityTechnicolorBlock, db: SanityDataset) {
+        return new TechnicolorBlock({
+            title: ParagraphWithHighlights.fromSanity(data.title),
+            body: new RichText(data.body),
+            actions: data.actions?.map(x => LinkButton.fromSanity(x, db)),
+            iconURL: db.resolveImageRef(data.icon).url,
+        });
     }
 }
 
-export class HomePageIntroTechnicolorBlock extends TechnicolorBlock {
-    readonly actions?: LinkButton[];
+export class KeyPointsTechnicolorBlock extends TechnicolorBlock {
+    readonly keyPoints: KeyPoint[];
 
-    constructor(title: ParagraphWithHighlights, body: RichText, iconURL: string, actions?: LinkButton[]) {
-        super(title, body, iconURL);
-        this.actions = actions;
+    constructor(props: PropsOf<KeyPointsTechnicolorBlock>) {
+        super(props);
+        this.keyPoints = props.keyPoints;
     }
 
-    override isHomePageIntroBlock() {
-        return true;
-    }
-}
-
-export class HomePageCloudTechnicolorBlock extends TechnicolorBlock {
-    readonly actions?: LinkButton[];
-
-    constructor(title: ParagraphWithHighlights, body: RichText, iconURL: string, actions?: LinkButton[]) {
-        super(title, body, iconURL);
-        this.actions = actions;
-    }
-
-    override isHomePageCloudBlock() {
-        return true;
+    static fromSanityKeyPointsTechnicolorBlock(data: SanityKeyPointsTechnicolorBlock, db: SanityDataset) {
+        return new KeyPointsTechnicolorBlock(Object.assign(TechnicolorBlock.fromSanityTechnicolorBlock(data, db), {
+            keyPoints: data.keyPoints.map(x => new KeyPoint(x, db)),
+        }));
     }
 }

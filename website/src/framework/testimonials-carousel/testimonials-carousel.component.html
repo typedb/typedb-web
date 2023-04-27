@@ -5,10 +5,10 @@
                 <p class="text-s"><em>{{ testimonial.body }}</em></p>
                 <div class="tc-details">
                     <div class="tc-person">
-                        <img class="tc-headshot" [src]="testimonial.headshotURL" alt=""/>
-                        <div class="tc-person-text">
+                        <img [src]="testimonial.headshotURL" alt=""/>
+                        <div>
                             <h3 class="text-s"><strong>{{ testimonial.author }}</strong></h3>
-                            <p class="text-xxs">{{ testimonial.jobTitle }}, {{ testimonial.organisation.name }}</p>
+                            <p class="tc-person-job text-xxs">{{ testimonial.jobTitle }}, {{ testimonial.organisation.name }}</p>
                         </div>
                     </div>
                     <img class="tc-logo" [src]="testimonial.organisation.logoURL" alt=""/>

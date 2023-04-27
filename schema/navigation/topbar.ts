@@ -44,7 +44,7 @@ export class Topbar extends Document {
         super(data);
         this.mainArea = data.mainArea.map(x => {
             if ("columns" in x) return new TopbarMenuPanel(x, db);
-            else return new TextLink(x, db);
+            else return TextLink.fromSanityTextLink(x, db);
         });
         this.secondaryArea = new TopbarSecondaryArea(data.secondaryArea, db);
     }
@@ -90,7 +90,7 @@ export class TopbarListColumnItem {
     constructor(data: SanityTopbarListColumnItem, db: SanityDataset) {
         this.title = data.title;
         this.description = data.description;
-        this.link = new Link(db.resolveRef(data.link));
+        this.link = Link.fromSanityLinkRef(data.link, db);
     }
 }
 
@@ -99,8 +99,8 @@ export class TopbarSecondaryArea {
     readonly button: LinkButton;
 
     constructor(data: SanityTopbarSecondaryArea, db: SanityDataset) {
-        this.links = data.links.map(x => new TextLink(x, db));
-        this.button = new LinkButton(data.button, db);
+        this.links = data.links.map(x => TextLink.fromSanityTextLink(x, db));
+        this.button = LinkButton.fromSanity(data.button, db);
     }
 }
 

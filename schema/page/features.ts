@@ -2,10 +2,12 @@ import { ArrayRule, defineField, defineType } from "@sanity/types";
 import { LinkButton, SanityButtons } from "../button";
 import { ContentTextPanel, contentTextPanelSchemaName, SanityContentTextPanel } from "../component/content-text-panel";
 import { bodyFieldRichText, collapsibleOptions, isVisibleField, optionalActionsField, pageTitleField, sectionIconField, titleFieldWithHighlights } from "../common-fields";
+import { SanityTechnicolorBlock, TechnicolorBlock } from "../component/technicolor-block";
 import { SanityImageRef } from "../image";
 import { Organisation, organisationLogosField, SanityOrganisation } from "../organisation";
 import { SanityDataset, SanityReference } from "../sanity-core";
-import { SanityTitleAndBody, SanityTitleBodyActionsSection, TitleAndBody, TitleBodyActionsSection, titleBodyActionsSectionSchemaName } from "../text";
+import { SanityTitleAndBody, SanityTitleBodyActions, TitleAndBody, TitleBodyActions, titleBodyActionsSectionSchemaName } from "../text";
+import { PropsOf } from "../types";
 import { SanityPage } from "./common";
 
 const introSection = "introSection";
@@ -17,15 +19,14 @@ export interface SanityFeaturesPage extends SanityPage {
     [introSection]: SanityIntroSection;
     [coreSections]: SanityCoreSection[];
     [secondaryActions]: SanityButtons;
-    [finalSection]: SanityTitleBodyActionsSection;
+    [finalSection]: SanityTitleBodyActions;
 }
 
-interface SanityIntroSection extends SanityTitleBodyActionsSection {
+interface SanityIntroSection extends SanityTitleBodyActions {
     userLogos: SanityReference<SanityOrganisation>[];
 }
 
-interface SanityCoreSection extends SanityTitleAndBody {
-    icon: SanityReference<SanityImageRef>;
+interface SanityCoreSection extends SanityTechnicolorBlock {
     panels: SanityContentTextPanel[];
 }
 
@@ -33,33 +34,43 @@ export class FeaturesPage {
     readonly [introSection]: IntroSection;
     readonly [coreSections]: FeaturesPageCoreSection[];
     readonly [secondaryActions]: LinkButton[];
-    readonly [finalSection]: TitleBodyActionsSection;
+    readonly [finalSection]: TitleBodyActions;
 
     constructor(data: SanityFeaturesPage, db: SanityDataset) {
-        this.introSection = new IntroSection(data.introSection, db);
-        this.coreSections = data.coreSections.map(x => new FeaturesPageCoreSection(x, db));
-        this.secondaryActions = data.secondaryActions.map(x => new LinkButton(x, db));
-        this.finalSection = new TitleBodyActionsSection(data.finalSection, db);
+        this.introSection = IntroSection.fromSanityIntroSection(data.introSection, db);
+        this.coreSections = data.coreSections.map(x => FeaturesPageCoreSection.fromSanityCoreSection(x, db));
+        this.secondaryActions = data.secondaryActions.map(x => LinkButton.fromSanity(x, db));
+        this.finalSection = TitleBodyActions.fromSanityTitleBodyActions(data.finalSection, db);
     }
 }
 
-class IntroSection extends TitleBodyActionsSection {
+class IntroSection extends TitleBodyActions {
     readonly userLogos: Organisation[];
 
-    constructor(data: SanityIntroSection, db: SanityDataset) {
-        super(data, db);
-        this.userLogos = data.userLogos.map(x => new Organisation(db.resolveRef(x), db));
+    constructor(props: PropsOf<IntroSection>) {
+        super(props);
+        this.userLogos = props.userLogos;
+    }
+
+    static fromSanityIntroSection(data: SanityIntroSection, db: SanityDataset) {
+        return Object.assign(TitleBodyActions.fromSanityTitleBodyActions(data, db), {
+            userLogos: data.userLogos.map(x => new Organisation(db.resolveRef(x), db))
+        });
     }
 }
 
-export class FeaturesPageCoreSection extends TitleAndBody {
-    readonly iconURL: string;
+export class FeaturesPageCoreSection extends TechnicolorBlock {
     readonly panels: ContentTextPanel[];
 
-    constructor(data: SanityCoreSection, db: SanityDataset) {
-        super(data);
-        this.iconURL = db.resolveImageRef(data.icon).url;
-        this.panels = data.panels.map(x => new ContentTextPanel(x, db));
+    constructor(props: PropsOf<FeaturesPageCoreSection>) {
+        super(props);
+        this.panels = props.panels;
+    }
+
+    static fromSanityCoreSection(data: SanityCoreSection, db: SanityDataset) {
+        return Object.assign(TechnicolorBlock.fromSanityTechnicolorBlock(data, db), {
+            panels: data.panels.map(x => new ContentTextPanel(x, db))
+        });
     }
 }
 

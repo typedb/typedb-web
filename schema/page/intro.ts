@@ -1,16 +1,18 @@
 import { ArrayRule, defineField, defineType } from "@sanity/types";
 import { bodyFieldRichText, collapsibleOptions, isVisibleField, pageTitleField, sectionIconField, titleFieldWithHighlights } from "../common-fields";
 import { ContentPanel, contentPanelSchemaName, SanityContentPanel } from "../component/content-text-panel";
+import { TechnicolorBlock } from "../component/technicolor-block";
 import { SanityImageRef } from "../image";
 import { SanityDataset, SanityReference } from "../sanity-core";
-import { SanityTitleAndBody, SanityTitleBodyActionsSection, TitleAndBody, titleAndBodySchemaName, TitleBodyActionsSection } from "../text";
+import { SanityTitleAndBody, SanityTitleBodyActions, TitleAndBody, titleAndBodySchemaName, TitleBodyActions } from "../text";
+import { PropsOf } from "../types";
 import { SanityPage } from "./common";
 
 const introSection = "introSection";
 const coreSections = "coreSections";
 
 export interface SanityIntroPage extends SanityPage {
-    [introSection]: SanityTitleBodyActionsSection;
+    [introSection]: SanityTitleBodyActions;
     [coreSections]: SanityCoreSection[];
 }
 
@@ -20,23 +22,27 @@ interface SanityCoreSection extends SanityTitleAndBody {
 }
 
 export class IntroPage {
-    readonly [introSection]: TitleBodyActionsSection;
+    readonly [introSection]: TitleBodyActions;
     readonly [coreSections]: IntroPageCoreSection[];
 
     constructor(data: SanityIntroPage, db: SanityDataset) {
-        this.introSection = new TitleBodyActionsSection(data.introSection, db);
-        this.coreSections = data.coreSections.map(x => new IntroPageCoreSection(x, db));
+        this.introSection = TitleBodyActions.fromSanityTitleBodyActions(data.introSection, db);
+        this.coreSections = data.coreSections.map(x => IntroPageCoreSection.fromSanityCoreSection(x, db));
     }
 }
 
-export class IntroPageCoreSection extends TitleAndBody {
-    readonly iconURL: string;
+export class IntroPageCoreSection extends TechnicolorBlock {
     readonly contentTabs: ContentPanel[];
 
-    constructor(data: SanityCoreSection, db: SanityDataset) {
-        super(data);
-        this.iconURL = db.resolveImageRef(data.icon).url;
-        this.contentTabs = data.contentTabs.map(x => new ContentPanel(x));
+    constructor(props: PropsOf<IntroPageCoreSection>) {
+        super(props);
+        this.contentTabs = props.contentTabs;
+    }
+
+    static fromSanityCoreSection(data: SanityCoreSection, db: SanityDataset) {
+        return new IntroPageCoreSection(Object.assign(TechnicolorBlock.fromSanityTechnicolorBlock(data, db), {
+            contentTabs: data.contentTabs.map(x => new ContentPanel(x))
+        }));
     }
 }
 

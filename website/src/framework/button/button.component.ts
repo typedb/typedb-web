@@ -9,10 +9,17 @@ import { LinkButton, ActionButton } from "typedb-web-schema";
 export class ButtonComponent {
     @Input() button!: ActionButton;
     @Input() buttonWidth?: string;
+    @Input() size: "medium" | "small" = "medium";
     @Output() buttonClick = new EventEmitter();
 
     get linkButton(): LinkButton | undefined {
         return this.button instanceof LinkButton ? this.button : undefined;
+    }
+
+    get rootNgClass(): { [key: string]: boolean } {
+        return {
+            "bt-size-s": this.size === "small",
+        };
     }
 
     onClick(event: Event) {

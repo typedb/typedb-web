@@ -1,12 +1,10 @@
 import { Component, Input, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
-import {
-    HomePage, HomePageCloudSection, HomePageCoreSection, HomePageIntroSection, homePageSchemaName, HomePageSection,
-    HomePageUseCase, SanityHomePage
-} from "typedb-web-schema";
+import { HomePage, homePageSchemaName, HomePageUseCase, SanityHomePage } from "typedb-web-schema";
+import { TechnicolorBlockComponent } from "../../framework/technicolor-block/technicolor-block.component";
 import { sanitiseHtmlID } from "../../framework/util";
 import { SocialMediaLink } from "typedb-web-schema";
-import { HomePageCloudTechnicolorBlock, HomePageIntroTechnicolorBlock, TechnicolorBlock } from "typedb-web-schema";
+import { TechnicolorBlock } from "typedb-web-schema";
 import { ContentService } from "../../service/content.service";
 
 @Component({
@@ -34,33 +32,25 @@ export class HomePageComponent implements OnInit {
 
 @Component({
     selector: "td-home-page-technicolor-block",
-    template: "<td-technicolor-block [block]=\"block\" [index]=\"index\" size='large' [noLeadingLine]='index === 0' [noBackgroundImage]='index === 0' [noTrailingLine]=\"noTrailingLine\"></td-technicolor-block>",
+    template: "<td-technicolor-block [block]='block' [index]='index' [size]='size' [noLeadingLine]='index === 0' [noBackgroundImage]='index === 0' [noTrailingLine]=\"noTrailingLine\"></td-technicolor-block>",
 })
-export class HomePageTechnicolorBlockComponent implements OnInit {
-    @Input() section!: HomePageCoreSection;
+export class HomePageTechnicolorBlockComponent {
+    @Input() block!: TechnicolorBlock;
     @Input() page!: HomePage;
 
-    block!: TechnicolorBlock;
-
-    ngOnInit() {
-        if (this.section instanceof HomePageIntroSection) {
-            this.block = new HomePageIntroTechnicolorBlock(this.section.title, this.section.body, this.section.iconURL, this.section.actions);
-        } else if (this.section instanceof HomePageCloudSection) {
-            this.block = new HomePageCloudTechnicolorBlock(this.section.title, this.section.body, this.section.iconURL, this.section.actions);
-        } else {
-            this.block = new TechnicolorBlock(this.section.title, this.section.body, this.section.iconURL);
-        }
-    }
-
-    get allBlocks(): HomePageSection[] {
+    get allBlocks(): TechnicolorBlock[] {
         return [
             this.page!.introSection, this.page!.featuresSection, this.page!.useCasesSection, this.page!.toolingSection,
             this.page!.cloudSection, this.page!.communitySection, this.page!.testimonialsSection
-        ].filter(x => !!x) as HomePageSection[];
+        ].filter(x => !!x) as TechnicolorBlock[];
+    }
+
+    get size(): TechnicolorBlockComponent["size"] {
+        return this.block === this.page!.introSection ? "large" : "medium";
     }
 
     get index() {
-        return this.allBlocks.indexOf(this.section!);
+        return this.allBlocks.indexOf(this.block!);
     }
 
     get noTrailingLine() {

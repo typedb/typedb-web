@@ -1,5 +1,6 @@
 import { defineType } from "@sanity/types";
-import { SanityLink, SanityTextLink } from "../link";
+import { LinkButton } from "../button";
+import { Link, SanityTextLink } from "../link";
 import { bodyFieldRichText, textLinkField, titleField } from "../common-fields";
 import { SanityDataset } from "../sanity-core";
 import { RichText, SanityPortableText } from "../text";
@@ -13,14 +14,20 @@ export interface SanityLinkPanel {
 export class LinkPanel {
     readonly title: string;
     readonly body: RichText;
-    readonly linkText: string;
-    readonly url: string;
+    readonly button: LinkButton;
 
-    constructor(data: SanityLinkPanel, db: SanityDataset) {
-        this.title = data.title;
-        this.body = new RichText(data.body);
-        this.linkText = data.link.text;
-        this.url = db.resolveRef<SanityLink>(data.link.link).destination.current;
+    constructor(props: { title: string, body: RichText, button: LinkButton }) {
+        this.title = props.title;
+        this.body = props.body;
+        this.button = props.button;
+    }
+
+    static fromSanity(data: SanityLinkPanel, db: SanityDataset) {
+        return new LinkPanel({
+            title: data.title,
+            body: new RichText(data.body),
+            button: new LinkButton({ style: "secondary", text: data.link.text, link: Link.fromSanityLinkRef(data.link.link, db) })
+        });
     }
 }
 

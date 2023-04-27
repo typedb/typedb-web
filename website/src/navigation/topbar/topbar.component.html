@@ -20,7 +20,7 @@
                     <li *ngFor="let link of topbar.secondaryArea.links">
                         <a [tdLink]="link">{{ link.text }}</a>
                     </li>
-                    <li><td-button [button]="topbar.secondaryArea.button"></td-button></li>
+                    <li><td-button [button]="topbar.secondaryArea.button" size="small"></td-button></li>
                     <li><a [href]="githubURL"><img src="/assets/icon/social/github.svg" alt="GitHub"/></a></li>
                 </ul>
             </div>

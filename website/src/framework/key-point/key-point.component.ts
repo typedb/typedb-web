@@ -11,6 +11,15 @@ export class KeyPointPanels3x1Component {
 }
 
 @Component({
+    selector: "td-key-point-panels-2x2",
+    templateUrl: "key-point-panels-2x2.component.html",
+    styleUrls: ["./key-point-panels-2x2.component.scss"],
+})
+export class KeyPointPanels2x2Component {
+    @Input() keyPoints!: KeyPoint[];
+}
+
+@Component({
     selector: "td-key-point-table",
     templateUrl: "key-point-table.component.html",
     styleUrls: ["./key-point-table.component.scss"],

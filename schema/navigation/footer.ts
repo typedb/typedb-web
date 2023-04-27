@@ -3,7 +3,7 @@ import { LinkButton, SanityButton } from "../button";
 import { SanityTextLink, TextLink, textLinkSchemaName } from "../link";
 import { titleField, titleFieldName } from "../common-fields";
 import { Document, SanityDataset } from "../sanity-core";
-import { SocialMediaID, socialMediaLinksField, socialMedias } from "../social-media";
+import { SocialMediaID, socialMediaLinksField } from "../social-media";
 
 export const footerSchemaName = "footer";
 
@@ -39,7 +39,7 @@ export class Footer extends Document {
 
     constructor(data: SanityFooter, db: SanityDataset) {
         super(data);
-        this.button = new LinkButton(data.button, db);
+        this.button = LinkButton.fromSanity(data.button, db);
         this.socialMediaLinks = data.socialMediaLinks;
         this.contactSectionTitle = data.contactSectionTitle;
         this.contactMediaLinks = data.contactMediaLinks;
@@ -53,7 +53,7 @@ export class FooterColumn {
 
     constructor(data: SanityFooterColumn, db: SanityDataset) {
         this.title = data.title;
-        this.items = data.items.map(x => new TextLink(x, db));
+        this.items = data.items.map(x => TextLink.fromSanityTextLink(x, db));
     }
 }
 

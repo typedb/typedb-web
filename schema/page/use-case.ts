@@ -1,11 +1,15 @@
 import { DocumentIcon } from "@sanity/icons";
 import { ArrayRule, defineField, defineType, Slug } from "@sanity/types";
+import { LinkButton, SanityOptionalActions } from "../button";
+import { TechnicolorBlock } from "../component/technicolor-block";
+import { SanityImageRef } from "../image";
 import { Link, linkSchemaName, SanityLink } from "../link";
 import { bodyFieldRichText, collapsibleOptions, isVisibleField, keyPointsField, learnMoreLinkField, pageTitleField, routeField, SanityVisibleToggle, titleAndBodyFields, titleField, videoEmbedField } from "../common-fields";
 import { LinkPanel, linkPanelSchemaName, SanityLinkPanel } from "../component/link-panel";
 import { KeyPoint, SanityKeyPoint } from "../key-point";
 import { SanityDataset, SanityReference } from "../sanity-core";
-import { RichText, SanityBodyText, SanityTitle, SanityTitleAndBody, TitleAndBody } from "../text";
+import { ParagraphWithHighlights, RichText, SanityBodyText, SanityPortableText, SanityTitle, SanityTitleAndBody, SanityTitleBodyActions, SanityTitleWithHighlights, TitleAndBody } from "../text";
+import { PropsOf } from "../types";
 import { Page, SanityPage } from "./common";
 
 const sections = {
@@ -31,12 +35,16 @@ export interface SanityUseCasePage extends SanityPage {
     [sections.furtherReading.id]: SanityFurtherReadingSection;
 }
 
-interface SanityIntroSection extends SanityTitleAndBody, SanityVisibleToggle {
+interface SanityCoreSection extends SanityBodyText, SanityOptionalActions, SanityVisibleToggle {
+    icon: SanityReference<SanityImageRef>;
+}
+
+interface SanityIntroSection extends SanityTitleWithHighlights, SanityBodyText, SanityVisibleToggle {
     videoURL: string;
     links: SanityLinkPanel[];
 }
 
-interface SanityKeyPointsSection extends SanityBodyText, SanityVisibleToggle {
+interface SanityKeyPointsSection extends SanityCoreSection {
     keyPoints: SanityKeyPoint[];
 }
 
@@ -45,33 +53,69 @@ interface SanityExampleTab extends SanityTitle, SanityBodyText {
     learnMoreLink: SanityReference<SanityLink>;
 }
 
-interface SanityExampleSection extends SanityBodyText, SanityVisibleToggle {
+interface SanityExampleSection extends SanityCoreSection {
     exampleTabs: SanityExampleTab[];
     sampleProjectLink: SanityReference<SanityLink>;
 }
 
-interface SanityFurtherReadingSection extends SanityBodyText, SanityVisibleToggle {
+interface SanityFurtherReadingSection extends SanityCoreSection {
     links: SanityLinkPanel[];
+}
+
+export class UseCasePage extends Page {
+    readonly [sections.intro.id]?: IntroSection;
+    readonly [sections.requirements.id]?: KeyPointsSection;
+    readonly [sections.challenges.id]?: KeyPointsSection;
+    readonly [sections.solution.id]?: KeyPointsSection;
+    readonly [sections.example.id]?: ExampleSection;
+    readonly [sections.furtherReading.id]?: FurtherReadingSection;
+
+    constructor(data: SanityUseCasePage, db: SanityDataset) {
+        super(data);
+        this.introSection = data.introSection.isVisible ? IntroSection.fromSanityIntroSection(data.introSection, db) : undefined;
+        this.requirementsSection = data.requirementsSection.isVisible ? KeyPointsSection.fromSanityKeyPointsSection(data.requirementsSection, db, new ParagraphWithHighlights({ spans: [] })) : undefined;
+        this.challengesSection = data.challengesSection.isVisible ? KeyPointsSection.fromSanityKeyPointsSection(data.challengesSection, db, new ParagraphWithHighlights({ spans: [] })) : undefined;
+        this.solutionSection = data.solutionSection.isVisible ? KeyPointsSection.fromSanityKeyPointsSection(data.solutionSection, db, new ParagraphWithHighlights({ spans: [] })) : undefined;
+        this.exampleSection = data.exampleSection.isVisible ? ExampleSection.fromSanityExampleSection(data.exampleSection, db) : undefined;
+        this.furtherReadingSection = data.furtherReadingSection.isVisible ? FurtherReadingSection.fromSanityFurtherReadingSection(data.furtherReadingSection, db) : undefined;
+    }
 }
 
 class IntroSection extends TitleAndBody {
     readonly videoURL: string;
     readonly links: LinkPanel[];
 
-    constructor(data: SanityIntroSection, db: SanityDataset) {
-        super(data);
-        this.videoURL = data.videoURL;
-        this.links = data.links.map(x => new LinkPanel(x, db));
+    constructor(props: PropsOf<IntroSection>) {
+        super(props);
+        this.videoURL = props.videoURL;
+        this.links = props.links;
+    }
+
+    static fromSanityIntroSection(data: SanityIntroSection, db: SanityDataset) {
+        const titleAndBody = TitleAndBody.fromSanityTitleAndBody(data);
+        return new IntroSection(Object.assign(titleAndBody, {
+            videoURL: data.videoURL,
+            links: data.links.map(x => LinkPanel.fromSanity(x, db))
+        }));
     }
 }
 
-class KeyPointsSection {
-    readonly body: RichText;
+class KeyPointsSection extends TechnicolorBlock {
     readonly keyPoints: KeyPoint[];
 
-    constructor(data: SanityKeyPointsSection, db: SanityDataset) {
-        this.body = new RichText(data.body);
-        this.keyPoints = data.keyPoints.map(x => new KeyPoint(x, db));
+    constructor(props: PropsOf<KeyPointsSection>) {
+        super(props);
+        this.keyPoints = props.keyPoints;
+    }
+
+    static fromSanityKeyPointsSection(data: SanityKeyPointsSection, db: SanityDataset, title: ParagraphWithHighlights) {
+        return new KeyPointsSection({
+            title: title,
+            body: new RichText(data.body),
+            actions: data.actions?.map(x => LinkButton.fromSanity(x, db)),
+            iconURL: db.resolveImageRef(data.icon).url,
+            keyPoints: data.keyPoints.map(x => new KeyPoint(x, db)),
+        });
     }
 }
 
@@ -85,48 +129,48 @@ class ExampleTab {
         this.title = data.title;
         this.videoURL = data.videoURL;
         this.body = new RichText(data.body);
-        this.learnMoreLink = new Link(db.resolveRef(data.learnMoreLink));
+        this.learnMoreLink = Link.fromSanityLinkRef(data.learnMoreLink, db);
     }
 }
 
-class ExampleSection {
-    readonly body: RichText;
+class ExampleSection extends TechnicolorBlock {
     readonly exampleTabs: ExampleTab[];
     readonly sampleProjectLink: Link;
 
-    constructor(data: SanityExampleSection, db: SanityDataset) {
-        this.body = new RichText(data.body);
-        this.exampleTabs = data.exampleTabs.map(x => new ExampleTab(x, db));
-        this.sampleProjectLink = new Link(db.resolveRef(data.sampleProjectLink));
+    constructor(props: PropsOf<ExampleSection>) {
+        super(props);
+        this.exampleTabs = props.exampleTabs;
+        this.sampleProjectLink = props.sampleProjectLink;
+    }
+
+    static fromSanityExampleSection(data: SanityExampleSection, db: SanityDataset) {
+        return new ExampleSection({
+            title: new ParagraphWithHighlights({ spans: [] }),
+            body: new RichText(data.body),
+            actions: data.actions?.map(x => LinkButton.fromSanity(x, db)),
+            iconURL: db.resolveImageRef(data.icon).url,
+            exampleTabs: data.exampleTabs.map(x => new ExampleTab(x, db)),
+            sampleProjectLink: Link.fromSanityLinkRef(data.sampleProjectLink, db),
+        });
     }
 }
 
-class FurtherReadingSection {
-    readonly body: RichText;
+class FurtherReadingSection extends TechnicolorBlock {
     readonly links: LinkPanel[];
 
-    constructor(data: SanityFurtherReadingSection, db: SanityDataset) {
-        this.body = new RichText(data.body);
-        this.links = data.links.map(x => new LinkPanel(x, db));
+    constructor(props: PropsOf<FurtherReadingSection>) {
+        super(props);
+        this.links = props.links;
     }
-}
 
-export class UseCasePage extends Page {
-    readonly [sections.intro.id]?: IntroSection;
-    readonly [sections.requirements.id]?: KeyPointsSection;
-    readonly [sections.challenges.id]?: KeyPointsSection;
-    readonly [sections.solution.id]?: KeyPointsSection;
-    readonly [sections.example.id]?: ExampleSection;
-    readonly [sections.furtherReading.id]?: FurtherReadingSection;
-
-    constructor(data: SanityUseCasePage, db: SanityDataset) {
-        super(data);
-        this.introSection = data.introSection.isVisible ? new IntroSection(data.introSection, db) : undefined;
-        this.requirementsSection = data.requirementsSection.isVisible ? new KeyPointsSection(data.requirementsSection, db) : undefined;
-        this.challengesSection = data.challengesSection.isVisible ? new KeyPointsSection(data.challengesSection, db) : undefined;
-        this.solutionSection = data.solutionSection.isVisible ? new KeyPointsSection(data.solutionSection, db) : undefined;
-        this.exampleSection = data.exampleSection.isVisible ? new ExampleSection(data.exampleSection, db) : undefined;
-        this.furtherReadingSection = data.furtherReadingSection.isVisible ? new FurtherReadingSection(data.furtherReadingSection, db) : undefined;
+    static fromSanityFurtherReadingSection(data: SanityFurtherReadingSection, db: SanityDataset) {
+        return new FurtherReadingSection({
+            title: new ParagraphWithHighlights({ spans: [] }),
+            body: new RichText(data.body),
+            actions: data.actions?.map(x => LinkButton.fromSanity(x, db)),
+            iconURL: db.resolveImageRef(data.icon).url,
+            links: data.links.map(x => LinkPanel.fromSanity(x, db)),
+        });
     }
 }
 
