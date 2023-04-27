@@ -28,6 +28,7 @@ npm_link_all_packages(
 
 APPLICATION_DEPS = [
     ":node_modules/@angular/animations",
+    ":node_modules/@angular/cdk",
     ":node_modules/@angular/common",
     ":node_modules/@angular/compiler",
     ":node_modules/@angular/core",
