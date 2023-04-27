@@ -3,7 +3,7 @@ import { SanityImageRef } from "../image";
 import { KeyPoint, SanityKeyPoint } from "../key-point";
 import { SanityDataset, SanityReference } from "../sanity-core";
 import { ParagraphWithHighlights, RichText, SanityTitleBodyActions } from "../text";
-import { PropsOf } from "../types";
+import { PropsOf } from "../util";
 
 export interface SanityTechnicolorBlock extends SanityTitleBodyActions {
     icon: SanityReference<SanityImageRef>;

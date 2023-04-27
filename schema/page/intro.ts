@@ -5,7 +5,7 @@ import { TechnicolorBlock } from "../component/technicolor-block";
 import { SanityImageRef } from "../image";
 import { SanityDataset, SanityReference } from "../sanity-core";
 import { SanityTitleAndBody, SanityTitleBodyActions, TitleAndBody, titleAndBodySchemaName, TitleBodyActions } from "../text";
-import { PropsOf } from "../types";
+import { PropsOf } from "../util";
 import { SanityPage } from "./common";
 
 const introSection = "introSection";

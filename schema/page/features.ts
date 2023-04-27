@@ -7,7 +7,7 @@ import { SanityImageRef } from "../image";
 import { Organisation, organisationLogosField, SanityOrganisation } from "../organisation";
 import { SanityDataset, SanityReference } from "../sanity-core";
 import { SanityTitleAndBody, SanityTitleBodyActions, TitleAndBody, TitleBodyActions, titleBodyActionsSectionSchemaName } from "../text";
-import { PropsOf } from "../types";
+import { PropsOf } from "../util";
 import { SanityPage } from "./common";
 
 const introSection = "introSection";

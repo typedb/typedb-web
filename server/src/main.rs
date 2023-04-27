@@ -98,15 +98,20 @@ impl Server {
     async fn api_content(config: Config) -> Response<String> {
         match config.env {
             Production => {
+                let params = [("query", "*[!(_id in path('drafts.**')) && !(_type match 'system.**')]")];
                 todo!()
             }
             _ => {
                 let full_sanity_url = format!("{}/v2021-10-21/data/query/production", SANITY_URL);
-                let params = [("query", "*[!(_id in path('drafts.**')) && !(_type match 'system.**')]")];
+                let params = [("query", "*[!(_type match 'system.**')]")];
                 let url = Url::parse_with_params(&full_sanity_url, params).unwrap();
+                let client = reqwest::Client::new();
+                let sanity_res = client.get(url)
+                    .header(header::AUTHORIZATION, format!("Bearer {}", env::var("SANITY_TOKEN").unwrap()))
+                    .send().await.unwrap();
                 Response::builder()
                     .header(header::CONTENT_TYPE, "application/json")
-                    .body(reqwest::get(url).await.unwrap().text().await.unwrap())
+                    .body(sanity_res.text().await.unwrap())
                     .unwrap()
             }
         }

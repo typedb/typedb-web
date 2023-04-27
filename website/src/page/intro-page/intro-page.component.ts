@@ -16,7 +16,7 @@ export class IntroPageComponent implements OnInit {
 
     ngOnInit() {
         this.contentService.data.subscribe((data) => {
-            const sanityIntroPage = data.byId[introPageSchemaName] as SanityIntroPage;
+            const sanityIntroPage = data.getDocumentByID(introPageSchemaName) as SanityIntroPage;
             if (sanityIntroPage) {
                 this.page = new IntroPage(sanityIntroPage, data);
             } else {

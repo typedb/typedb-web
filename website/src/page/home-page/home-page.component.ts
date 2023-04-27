@@ -20,7 +20,7 @@ export class HomePageComponent implements OnInit {
 
     ngOnInit() {
         this.contentService.data.subscribe((data) => {
-            const sanityHomePage = data.byId[homePageSchemaName] as SanityHomePage;
+            const sanityHomePage = data.getDocumentByID(homePageSchemaName) as SanityHomePage;
             if (sanityHomePage) {
                 this.page = new HomePage(sanityHomePage, data);
                 this.socialMediaLinks = this.page.communitySection?.socialMedias.map(x => new SocialMediaLink(x, data));

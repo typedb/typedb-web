@@ -11,7 +11,7 @@ import { SanityDataset, SanityReference } from "../sanity-core";
 import { SocialMediaID, socialMediaLinksField } from "../social-media";
 import { SanityTestimonial, Testimonial, testimonialSchemaName } from "../testimonial";
 import { RichText, SanityBodyText, SanityTitle, SanityTitleBodyActions, TitleBodyActions } from "../text";
-import { PropsOf } from "../types";
+import { PropsOf } from "../util";
 
 import { Page, SanityPage } from "./common";
 

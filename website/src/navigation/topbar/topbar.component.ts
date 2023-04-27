@@ -21,13 +21,13 @@ export class TopbarComponent implements OnInit {
 
     ngOnInit() {
         this.contentService.data.subscribe((data) => {
-            const sanityTopbar = data.byId[topbarSchemaName] as SanityTopbar;
+            const sanityTopbar = data.getDocumentByID(topbarSchemaName) as SanityTopbar;
             if (sanityTopbar) {
                 this.topbar = new Topbar(sanityTopbar, data);
             } else {
                 this.topbar = undefined;
             }
-            const communityResources = data.byId[communityResourcesSchemaName] as SanityCommunityResources;
+            const communityResources = data.getDocumentByID(communityResourcesSchemaName) as SanityCommunityResources;
             if (communityResources) {
                 this.githubURL = communityResources.githubURL;
             }

@@ -18,7 +18,7 @@ export class FooterComponent implements OnInit {
 
     ngOnInit() {
         this.contentService.data.subscribe((data) => {
-            const sanityFooter = data.byId[footerSchemaName] as SanityFooter;
+            const sanityFooter = data.getDocumentByID(footerSchemaName) as SanityFooter;
             if (sanityFooter) this.footer = new Footer(sanityFooter, data);
             if (this.footer) {
                 this.socialMediaLinks = this.footer.socialMediaLinks.map(x => new SocialMediaLink(x, data));
@@ -44,7 +44,7 @@ class ContactMediaLink {
         this.id = id;
         this.text = contactMedias[id];
         this.iconURL = contactMediaIcons[id];
-        const communityResources = db.byId["communityResources"] as SanityCommunityResources;
+        const communityResources = db.getDocumentByID("communityResources") as SanityCommunityResources;
         this.link = this.getLink(id, communityResources);
     }
 

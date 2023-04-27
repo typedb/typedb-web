@@ -8,7 +8,7 @@ import { LinkPanel, linkPanelSchemaName, SanityLinkPanel } from "../component/li
 import { KeyPoint, SanityKeyPoint } from "../key-point";
 import { SanityDataset, SanityReference } from "../sanity-core";
 import { ParagraphWithHighlights, RichText, SanityBodyText, SanityTitle, SanityTitleWithHighlights, TitleAndBody } from "../text";
-import { PropsOf } from "../types";
+import { PropsOf } from "../util";
 import { Page, SanityPage } from "./common";
 
 const sections = {

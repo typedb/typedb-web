@@ -17,7 +17,7 @@ export class UseCasePageComponent implements OnInit {
     ngOnInit() {
         this.activatedRoute.paramMap.subscribe((params: ParamMap) => {
             this.contentService.data.subscribe((data) => {
-                const sanityUseCasePages = data.byType[useCasePageSchemaName] as SanityUseCasePage[];
+                const sanityUseCasePages = data.getDocumentsByType(useCasePageSchemaName) as SanityUseCasePage[];
                 const sanityUseCasePage = sanityUseCasePages.find(x => x.route.current === params.get("route"));
                 if (sanityUseCasePage) {
                     this.page = new UseCasePage(sanityUseCasePage, data);

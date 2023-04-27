@@ -37,3 +37,4 @@ export { Document, SanityDataset } from "./sanity-core";
 export { type SanityCommunityResources, communityResourcesSchemaName, type SocialMediaID, SocialMediaLink, socialMedias } from "./social-media";
 export { type SanityTestimonial, Testimonial } from "./testimonial";
 export { ParagraphWithHighlights, RichText, type SanityPortableText, TitleAndBody } from "./text";
+export { groupBy, associateBy } from "./util";

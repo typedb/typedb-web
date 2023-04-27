@@ -2,7 +2,7 @@ import { defineType, PortableTextTextBlock } from "@sanity/types";
 import { LinkButton, SanityOptionalActions } from "./button";
 import { bodyFieldRichText, optionalActionsField, titleFieldWithHighlights } from "./common-fields";
 import { SanityDataset } from "./sanity-core";
-import { PropsOf } from "./types";
+import { PropsOf } from "./util";
 
 export type SanityPortableText = PortableTextTextBlock[];
 

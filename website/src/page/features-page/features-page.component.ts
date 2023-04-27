@@ -16,7 +16,7 @@ export class FeaturesPageComponent implements OnInit {
 
     ngOnInit() {
         this.contentService.data.subscribe((data) => {
-            const sanityFeaturesPage = data.byId[featuresPageSchemaName] as SanityFeaturesPage;
+            const sanityFeaturesPage = data.getDocumentByID(featuresPageSchemaName) as SanityFeaturesPage;
             if (sanityFeaturesPage) {
                 this.page = new FeaturesPage(sanityFeaturesPage, data);
             } else {
