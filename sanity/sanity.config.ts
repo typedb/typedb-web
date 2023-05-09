@@ -7,7 +7,7 @@ import { visionTool } from "@sanity/vision";
 import { media } from "sanity-plugin-media";
 import { deskTool } from "sanity/desk";
 import { StructureBuilder } from "sanity/lib/exports/desk";
-import { featuresPageSchemaName, homePageSchemaName, sectionIconSchemaName, introPageSchemaName, linkSchemaName, schemaTypes, topbarSchemaName, useCasePageSchemaName, webinarsPageSchemaName, footerSchemaName, communityResourcesSchemaName, formsSchemaName, videoEmbedSchemaName } from "typedb-web-schema";
+import { featuresPageSchemaName, homePageSchemaName, sectionIconSchemaName, introPageSchemaName, linkSchemaName, schemaTypes, topbarSchemaName, useCasePageSchemaName, webinarsPageSchemaName, footerSchemaName, communityResourcesSchemaName, formsSchemaName, videoEmbedSchemaName, organisationSchemaName } from "typedb-web-schema";
 import { config } from "./config";
 import { getStartedPlugin } from "./plugins/sanity-plugin-tutorial";
 
@@ -45,6 +45,7 @@ export default defineConfig({
                 ),
                 s.documentTypeListItem(linkSchemaName).title("Links"),
                 s.documentTypeListItem(videoEmbedSchemaName).title("Video Embeds"),
+                s.documentTypeListItem(organisationSchemaName).title("Organisations"),
                 s.divider(),
                 singletonListItem(s, communityResourcesSchemaName, "Community Resources", CommentIcon),
                 singletonListItem(s, formsSchemaName, "Forms", ClipboardImageIcon),

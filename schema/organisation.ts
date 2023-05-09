@@ -1,5 +1,5 @@
 import { CaseIcon, UsersIcon } from "@sanity/icons";
-import { Asset, defineField, defineType, Image, SanityDocument } from "@sanity/types";
+import { Asset, defineField, defineType, Image, ImageRule, SanityDocument } from "@sanity/types";
 import { nameField } from "./common-fields";
 import { Document, SanityDataset } from "./sanity-core";
 
@@ -34,6 +34,7 @@ const organisationSchema = defineType({
             name: logoFieldName,
             title: "Logo",
             type: "image",
+            validation: (rule: ImageRule) => rule.required(),
         }),
     ],
 });

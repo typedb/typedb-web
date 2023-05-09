@@ -1,5 +1,7 @@
 @use "@angular/material" as mat;
 
+// @import '~prismjs/plugins/toolbar/prism-toolbar.css';
+// @import '~prismjs/themes/prism-tomorrow';
 @import url('https://fonts.googleapis.com/css2?family=Titillium+Web:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700&family=Ubuntu+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap');
 @import "colors";
 @import "sizes";
@@ -17,6 +19,7 @@ html, body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 
+    // TODO: import this from npm @fontsource/titillium-web
     font-family: 'Titillium Web', sans-serif;
 
     margin: 0;
@@ -27,25 +30,25 @@ html, body {
     }
 }
 
-#root {
+typedb-website {
     height: 100%;
-}
 
-article {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-
-    > div {
+    article {
         display: flex;
-        flex-direction: column;
-    }
-}
+        flex-direction: row;
+        justify-content: center;
 
-section, .section {
-    width: 1160px;
-    max-width: calc(100vw - 40px);
-    margin: 0 auto;
+        > div {
+            display: flex;
+            flex-direction: column;
+        }
+    }
+
+    section, .section {
+        width: 1160px;
+        max-width: calc(100vw - 40px);
+        margin: 0 auto;
+    }
 }
 
 .narrow-section {
@@ -285,4 +288,8 @@ input.mat-input-element {
     line-height: 32px;
     margin-bottom: 8px;
     caret-color: $color-green;
+}
+
+.markdown pre {
+    background: transparent;
 }

@@ -26,7 +26,7 @@ export { KeyPoint } from "./key-point";
 export { linkSchemaName, Link, TextLink, videoEmbedSchemaName, VideoEmbed } from "./link";
 export { type ContactMediaID, contactMedias, Footer, footerSchemaName, type SanityFooter } from "./navigation/footer";
 export { type SanityTopbar, Topbar, TopbarListColumn, TopbarMenuPanel, topbarSchemaName, TopbarVideoColumn } from "./navigation/topbar";
-export { Organisation, type SanityOrganisation } from "./organisation";
+export { Organisation, organisationSchemaName, type SanityOrganisation } from "./organisation";
 export { Page, type SanityPage } from "./page/common";
 export { FeaturesPage, FeaturesPageCoreSection, featuresPageSchemaName, type SanityFeaturesPage } from "./page/features";
 export { HomePage, HomePageUseCase, homePageSchemaName, type SanityHomePage } from "./page/home";

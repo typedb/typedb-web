@@ -59,6 +59,7 @@ APPLICATION_DEPS = [
     ":node_modules/karma-coverage",
     ":node_modules/karma-jasmine",
     ":node_modules/karma-jasmine-html-reporter",
+    ":node_modules/prismjs",
     ":node_modules/react",
     ":node_modules/tslib",
     ":node_modules/typescript",

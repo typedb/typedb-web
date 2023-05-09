@@ -8,6 +8,8 @@
     transform-style: preserve-3d;
 }
 
+$card-offset-base: 26%;
+
 .tc-card {
     position: absolute;
     width: 560px;
@@ -19,31 +21,35 @@
     top: 0;
     border-radius: $border-radius;
     background: $color-deep-purple;
+    opacity: 1;
     box-shadow: 0 8px 6px rgba(6, 4, 20, 0.601481);
-    transition-property: transform;
+    transition-property: transform, opacity;
     transition-duration: 750ms;
     transition-timing-function: ease;
 
     &.tc-card-0 {
-        transform: translate3d(-60%, 0, -380px);
+        transform: translate3d(calc($card-offset-base * -3), 0, -380px);
     }
     &.tc-card-1 {
-        transform: translate3d(-40%, 0, -230px);
+        transform: translate3d(calc($card-offset-base * -2), 0, -230px);
     }
     &.tc-card-2 {
-        transform: translate3d(-20%, 0, -100px);
+        transform: translate3d(calc($card-offset-base * -1), 0, -100px);
     }
     &.tc-card-3 {
         transform: translate3d(0%, 0, 0);
     }
     &.tc-card-4 {
-        transform: translate3d(20%, 0, -100px);
+        transform: translate3d(calc($card-offset-base * 1), 0, -100px);
     }
     &.tc-card-5 {
-        transform: translate3d(40%, 0, -230px);
+        transform: translate3d(calc($card-offset-base * 2), 0, -230px);
     }
     &.tc-card-6 {
-        transform: translate3d(60%, 0, -380px);
+        transform: translate3d(calc($card-offset-base * 3), 0, -380px);
+    }
+    &.tc-fade {
+        opacity: 0;
     }
 }
 

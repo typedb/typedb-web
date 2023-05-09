@@ -122,7 +122,7 @@ impl Server {
 async fn main() {
     let config = Args::parse().config();
     env::set_var(WEBSITE_BASEDIR_VAR, if let Production = config.env { "website/dist/static" } else { "website/dist/dynamic" });
-    env::set_var(ADDRESS_VAR, if let Local = config.env { "0.0.0.0:8080" } else { "0.0.0.0:80" });
+    env::set_var(ADDRESS_VAR, "0.0.0.0:9271");
 
     if let Production = config.env {
         tokio::spawn(async move {

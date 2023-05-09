@@ -9,21 +9,34 @@ import { Testimonial } from "typedb-web-schema";
 export class TestimonialsCarouselComponent {
     @Input() testimonials!: Testimonial[];
     startIndex = 0;
+    fadeIndexes: number[] = [];
 
     get focusedIndex() {
         return (10 - this.startIndex) % 7;
     }
 
     cardClass(idx: number) {
-        return `tc-card-${(idx + this.startIndex) % 7}`;
+        let clazz = `tc-card-${(idx + this.startIndex) % 7}`;
+        if (this.fadeIndexes.includes(idx)) {
+            clazz += ` tc-fade`;
+        }
+        return clazz;
     }
 
     previous() {
+        this.fadeIndexes = [this.focusedIndex % 7, (this.focusedIndex - 1) % 7, (this.focusedIndex + 3) % 7];
+        setTimeout(() => {
+            this.fadeIndexes = [];
+        }, 300);
         this.startIndex++;
         if (this.startIndex > 6) this.startIndex = 0;
     }
 
     next() {
+        this.fadeIndexes = [this.focusedIndex % 7, (this.focusedIndex + 1) % 7, (this.focusedIndex - 3) % 7];
+        setTimeout(() => {
+            this.fadeIndexes = [];
+        }, 300);
         this.startIndex--;
         if (this.startIndex < 0) this.startIndex = 6;
     }
