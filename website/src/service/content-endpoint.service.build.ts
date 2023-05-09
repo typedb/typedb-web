@@ -3,7 +3,7 @@ import { Injectable } from "@angular/core";
 import { SanityDocument } from "@sanity/types";
 import { TransferStateService } from "@scullyio/ng-lib";
 
-const SERVER_URL = "http://localhost:9271/api/content";
+const SERVER_URL = "http://localhost/api/content";
 
 /**
  * @see content-endpoint.service.ts
