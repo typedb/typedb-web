@@ -1,0 +1,18 @@
+site:
+  title: TypeDB Docs
+  start_page: typedb:00-general:03-introduction.adoc
+content:
+  sources:
+    - url: ..
+      start_path: docs/content
+      branches: HEAD
+asciidoc:
+  extensions:
+    - "@asciidoctor/tabs"
+ui: 
+  bundle:
+    url: ./ui/build/ui-bundle.zip
+    snapshot: true  
+output:
+  clean: true
+  dir: ./dist
