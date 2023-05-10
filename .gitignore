@@ -13,7 +13,6 @@ node_modules
 
 local
 dist
-lib
 
 target
 Cargo.lock
