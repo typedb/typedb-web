@@ -6,11 +6,11 @@
         </ng-container>
         <ng-container *ngIf="page.featuresSection">
             <td-home-page-technicolor-block [block]="page.featuresSection" [page]="page"></td-home-page-technicolor-block>
-            <td-content-tabs [tabs]="page.featuresSection.featureTabs"></td-content-tabs>
+            <td-content-tabs id="features" [tabs]="page.featuresSection.featureTabs"></td-content-tabs>
         </ng-container>
         <ng-container *ngIf="page.useCasesSection">
             <td-home-page-technicolor-block [block]="page.useCasesSection" [page]="page"></td-home-page-technicolor-block>
-            <td-vertical-content-tabs [useCases]="page.useCasesSection.useCases"></td-vertical-content-tabs>
+            <td-link-panels [panels]="page.useCasesSection.useCases" [cols]="4"></td-link-panels>
         </ng-container>
         <ng-container *ngIf="page.toolingSection">
             <td-home-page-technicolor-block [block]="page.toolingSection" [page]="page"></td-home-page-technicolor-block>
@@ -28,7 +28,10 @@
             <td-home-page-technicolor-block [block]="page.testimonialsSection" [page]="page"></td-home-page-technicolor-block>
             <td-testimonials-carousel [testimonials]="page.testimonialsSection.testimonials"></td-testimonials-carousel>
         </ng-container>
-        <td-title-body-actions-section *ngIf="page.conclusionSection" [title]="page.conclusionSection.title" [body]="page.conclusionSection.body" [actions]="page.conclusionSection.actions"></td-title-body-actions-section>
+        <ng-container *ngIf="page.conclusionSection">
+            <td-home-page-technicolor-block [block]="page.conclusionSection" [page]="page"></td-home-page-technicolor-block>
+            <td-conclusion-panel [panel]="page.conclusionSection.panel"></td-conclusion-panel>
+        </ng-container>
         <div class="blue planet"></div>
     </div>
 </article>

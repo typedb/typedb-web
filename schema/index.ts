@@ -17,6 +17,7 @@ export const schemaTypes = [
 ];
 
 export { ActionButton, LinkButton, type ButtonStyle } from "./button";
+export { type SanityConclusionPanel, ConclusionPanel } from "./component/conclusion-panel";
 export { ContentPanel, ContentTextPanel } from "./component/content-text-panel";
 export { LinkPanel } from "./component/link-panel";
 export { TechnicolorBlock } from "./component/technicolor-block";
@@ -29,7 +30,7 @@ export { type SanityTopbar, Topbar, TopbarListColumn, TopbarMenuPanel, topbarSch
 export { Organisation, organisationSchemaName, type SanityOrganisation } from "./organisation";
 export { Page, type SanityPage } from "./page/common";
 export { FeaturesPage, FeaturesPageCoreSection, featuresPageSchemaName, type SanityFeaturesPage } from "./page/features";
-export { HomePage, HomePageUseCase, homePageSchemaName, type SanityHomePage } from "./page/home";
+export { HomePage, homePageSchemaName, type SanityHomePage } from "./page/home";
 export { IntroPage, IntroPageCoreSection, introPageSchemaName, type SanityIntroPage } from "./page/intro";
 export { type SanityUseCasePage, UseCasePage, useCasePageSchemaName } from "./page/use-case";
 export { webinarsPageSchemaName } from "./page/webinars";

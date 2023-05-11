@@ -11,7 +11,7 @@ a, a:visited, a p {
     color: $color-white;
 
     &:hover, &:focus {
-        font-weight: $font-weight-bold;
+        font-weight: $font-weight-semi-bold;
         color: $color-green;
         text-decoration: underline;
     }

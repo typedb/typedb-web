@@ -3,7 +3,7 @@
         <td-title-body-actions-section [isIntroSection]="true" [title]="page.introSection.title" [body]="page.introSection.body"></td-title-body-actions-section>
         <ng-container *ngFor="let section of page.coreSections; index as idx">
             <td-intro-page-technicolor-block [section]="section" [page]="page" [index]="idx"></td-intro-page-technicolor-block>
-            <td-content-tabs [tabs]="section.contentTabs"></td-content-tabs>
+            <td-content-tabs [id]="'section' + idx" [tabs]="section.contentTabs"></td-content-tabs>
         </ng-container>
         <div class="yellow-green planet"></div>
     </div>

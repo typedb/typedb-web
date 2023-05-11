@@ -1,16 +1,16 @@
 import { ArrayRule, defineField, defineType } from "@sanity/types";
 import { SanityOptionalActions } from "../button";
+import { ConclusionPanel, conclusionPanelSchemaName, SanityConclusionPanel } from "../component/conclusion-panel";
+import { LinkPanel, linkPanelSchemaName, SanityLinkPanel } from "../component/link-panel";
 import { SanityTechnicolorBlock, TechnicolorBlock } from "../component/technicolor-block";
-import { SanityImageRef } from "../image";
-import { Link, SanityLink } from "../link";
-import { bodyFieldRichText, collapsibleOptions, sectionIconField, isVisibleField, keyPointsField, optionalActionsField, pageTitleField, titleAndBodyFields, titleBodyIconFields, titleField, videoEmbedField, learnMoreLinkField, SanityVisibleToggle } from "../common-fields";
+import { collapsibleOptions, isVisibleField, keyPointsField, optionalActionsField, pageTitleField, titleAndBodyFields, titleBodyIconFields, SanityVisibleToggle } from "../common-fields";
 import { ContentTextPanel, contentTextPanelSchemaName, SanityContentTextPanel } from "../component/content-text-panel";
 import { KeyPoint, SanityKeyPoint } from "../key-point";
 import { Organisation, organisationLogosField, SanityOrganisation } from "../organisation";
 import { SanityDataset, SanityReference } from "../sanity-core";
 import { SocialMediaID, socialMediaLinksField } from "../social-media";
 import { SanityTestimonial, Testimonial, testimonialSchemaName } from "../testimonial";
-import { RichText, SanityBodyText, SanityTitle, SanityTitleBodyActions, TitleBodyActions } from "../text";
+import { SanityTitleBodyActions } from "../text";
 import { PropsOf } from "../util";
 
 import { Page, SanityPage } from "./common";
@@ -52,14 +52,8 @@ interface SanityFeaturesSection extends SanityCoreSection {
     featureTabs: SanityContentTextPanel[];
 }
 
-interface SanityUseCase extends SanityTitle, SanityBodyText {
-    icon: SanityReference<SanityImageRef>;
-    videoURL: string;
-    learnMoreLink: SanityReference<SanityLink>;
-}
-
 interface SanityUseCasesSection extends SanityCoreSection {
-    useCases: SanityUseCase[];
+    useCases: SanityLinkPanel[];
 }
 
 interface SanityKeyPointsSection extends SanityCoreSection {
@@ -74,7 +68,9 @@ interface SanityTestimonialsSection extends SanityCoreSection {
     testimonials: SanityTestimonial[];
 }
 
-interface SanityConclusionSection extends SanitySection {}
+interface SanityConclusionSection extends SanityCoreSection {
+    panel: SanityConclusionPanel;
+}
 
 export class HomePage extends Page {
     readonly [sections.intro.id]?: IntroSection;
@@ -84,7 +80,7 @@ export class HomePage extends Page {
     readonly [sections.cloud.id]?: KeyPointsSection;
     readonly [sections.community.id]?: CommunitySection;
     readonly [sections.testimonials.id]?: TestimonialsSection;
-    readonly [sections.conclusion.id]?: TitleBodyActions;
+    readonly [sections.conclusion.id]?: ConclusionSection;
 
     constructor(data: SanityHomePage, db: SanityDataset) {
         super(data);
@@ -95,7 +91,7 @@ export class HomePage extends Page {
         this.cloudSection = data.cloudSection.isVisible ? KeyPointsSection.fromSanityKeyPointsSection(data.cloudSection, db) : undefined;
         this.communitySection = data.communitySection.isVisible ? CommunitySection.fromSanityCommunitySection(data.communitySection, db) : undefined;
         this.testimonialsSection = data.testimonialsSection.isVisible ? TestimonialsSection.fromSanityTestimonialsSection(data.testimonialsSection, db) : undefined;
-        this.conclusionSection = data.conclusionSection.isVisible ? TitleBodyActions.fromSanityTitleBodyActions(data.conclusionSection, db) : undefined;
+        this.conclusionSection = data.conclusionSection.isVisible ? ConclusionSection.fromSanityConclusionSection(data.conclusionSection, db) : undefined;
     }
 }
 
@@ -129,24 +125,8 @@ class FeaturesSection extends TechnicolorBlock {
     }
 }
 
-export class HomePageUseCase {
-    readonly title: string;
-    readonly iconURL: string;
-    readonly videoURL: string;
-    readonly body: RichText;
-    readonly learnMoreLink: Link;
-
-    constructor(data: SanityUseCase, db: SanityDataset) {
-        this.title = data.title;
-        this.iconURL = db.resolveImageRef(data.icon).url;
-        this.videoURL = data.videoURL;
-        this.body = new RichText(data.body);
-        this.learnMoreLink = Link.fromSanityLinkRef(data.learnMoreLink, db);
-    }
-}
-
 class UseCasesSection extends TechnicolorBlock {
-    readonly useCases: HomePageUseCase[];
+    readonly useCases: LinkPanel[];
 
     constructor(props: PropsOf<UseCasesSection>) {
         super(props);
@@ -155,7 +135,7 @@ class UseCasesSection extends TechnicolorBlock {
 
     static fromSanityUseCasesSection(data: SanityUseCasesSection, db: SanityDataset) {
         return new UseCasesSection(Object.assign(TechnicolorBlock.fromSanityTechnicolorBlock(data, db), {
-            useCases: data.useCases.map(x => new HomePageUseCase(x, db)),
+            useCases: data.useCases.map(x => LinkPanel.fromSanity(x, db)),
         }));
     }
 }
@@ -205,6 +185,21 @@ class TestimonialsSection extends TechnicolorBlock {
     }
 }
 
+class ConclusionSection extends TechnicolorBlock {
+    readonly panel: ConclusionPanel;
+
+    constructor(props: PropsOf<ConclusionSection>) {
+        super(props);
+        this.panel = props.panel;
+    }
+
+    static fromSanityConclusionSection(data: SanityConclusionSection, db: SanityDataset) {
+        return new ConclusionSection(Object.assign(TechnicolorBlock.fromSanityTechnicolorBlock(data, db), {
+            panel: ConclusionPanel.fromSanity(data.panel, db)
+        }));
+    }
+}
+
 export const homePageSchemaName = "homePage";
 
 const sectionSchemaName = (key: SectionKey) => `${homePageSchemaName}_${sections[key].id}`;
@@ -214,21 +209,6 @@ const sectionSchema = (key: SectionKey, fields: any[]) => defineType({
     title: `${sections[key].title} Section`,
     type: "object",
     fields: fields,
-});
-
-const useCaseSchemaName = `${homePageSchemaName}_useCase`;
-
-const useCaseSchema = defineType({
-    name: useCaseSchemaName,
-    title: "Use Case",
-    type: "object",
-    fields: [
-        titleField,
-        sectionIconField,
-        videoEmbedField,
-        bodyFieldRichText,
-        Object.assign({}, learnMoreLinkField, { title: "Link to Use Case Page" }),
-    ],
 });
 
 const sectionSchemas = [
@@ -255,8 +235,11 @@ const sectionSchemas = [
             name: "useCases",
             title: "Use Cases",
             type: "array",
-            of: [{type: useCaseSchemaName}],
-            validation: (rule: ArrayRule<any>) => rule.required().length(5),
+            of: [{type: linkPanelSchemaName}],
+            validation: (rule: ArrayRule<any>) => rule.required().custom((value) => {
+                if ([4, 8].includes(value.length)) return true;
+                return "Must contain exactly 4 or 8 items";
+            }),
         }),
         isVisibleField,
     ]),
@@ -287,8 +270,13 @@ const sectionSchemas = [
         isVisibleField,
     ]),
     sectionSchema("conclusion", [
-        ...titleAndBodyFields,
+        ...titleBodyIconFields,
         optionalActionsField,
+        defineField({
+            name: "panel",
+            title: "Panel",
+            type: conclusionPanelSchemaName,
+        }),
         isVisibleField,
     ]),
 ];
@@ -311,4 +299,4 @@ const homePageSchema = defineType({
     preview: { prepare: (_selection) => ({ title: "Home Page" }), },
 });
 
-export const homePageSchemas = [homePageSchema, ...sectionSchemas, useCaseSchema];
+export const homePageSchemas = [homePageSchema, ...sectionSchemas];

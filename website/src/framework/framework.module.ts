@@ -9,9 +9,10 @@ import { MatInputModule } from "@angular/material/input";
 import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
 import { ActionsComponent } from "./actions/actions.component";
 import { ButtonComponent } from "./button/button.component";
+import { ConclusionPanelComponent } from "./conclusion-panel/conclusion-panel.component";
 import { ContentPanelGridComponent } from "./content-panel-grid/content-panel-grid.component";
 import { ContentPanelComponent } from "./content-panel/content-panel.component";
-import { ContentTabsComponent, VerticalContentTabsComponent } from "./content-tabs/content-tabs.component";
+import { ContentTabsComponent } from "./content-tabs/content-tabs.component";
 import { CloudWaitlistDialogComponent, ContactDialogComponent, NameEmailDialogComponent, NewsletterDialogComponent } from "./dialog/dialog.component";
 import { KeyPointPanels2x2Component, KeyPointPanels3x1Component, KeyPointTableComponent } from "./key-point/key-point.component";
 import { LinkPanelsComponent } from "./link-panels/link-panels.component";
@@ -24,12 +25,14 @@ import { TechnicolorBlockComponent } from "./technicolor-block/technicolor-block
 import { TestimonialsCarouselComponent } from "./testimonials-carousel/testimonials-carousel.component";
 import { RichTextComponent } from "./text/rich-text.component";
 import { H1WithHighlightsComponent, ParagraphWithHighlightsComponent } from "./text/text-with-highlights.component";
+import { RouterModule } from "@angular/router";
 
 @NgModule({
     declarations: [
         ActionsComponent,
         ButtonComponent,
         CloudWaitlistDialogComponent,
+        ConclusionPanelComponent,
         ContactDialogComponent,
         ContentPanelComponent,
         ContentPanelGridComponent,
@@ -50,7 +53,6 @@ import { H1WithHighlightsComponent, ParagraphWithHighlightsComponent } from "./t
         TechnicolorBlockComponent,
         TestimonialsCarouselComponent,
         TitleBodyActionsSectionComponent,
-        VerticalContentTabsComponent,
     ],
     imports: [
         BrowserModule,
@@ -61,10 +63,12 @@ import { H1WithHighlightsComponent, ParagraphWithHighlightsComponent } from "./t
         MatDialogModule,
         MatFormFieldModule,
         MatInputModule,
+        RouterModule,
     ],
     exports: [
         ActionsComponent,
         ButtonComponent,
+        ConclusionPanelComponent,
         ContentPanelComponent,
         ContentPanelGridComponent,
         ContentTabsComponent,
@@ -81,7 +85,6 @@ import { H1WithHighlightsComponent, ParagraphWithHighlightsComponent } from "./t
         TechnicolorBlockComponent,
         TestimonialsCarouselComponent,
         TitleBodyActionsSectionComponent,
-        VerticalContentTabsComponent,
     ],
     providers: [
     ],

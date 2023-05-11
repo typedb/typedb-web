@@ -2,6 +2,6 @@
     <div *ngFor="let keyPoint of keyPoints" class="kpp-panel">
         <img [src]="keyPoint.iconURL" alt=""/>
         <h2 class="header-margin-s text-m">{{ keyPoint.title }}</h2>
-        <td-rich-text [value]="keyPoint.body" class="p-margin-s text-xs"></td-rich-text>
+        <td-rich-text [value]="keyPoint.body" class="text-margin-xs text-xs text-sparse"></td-rich-text>
     </div>
 </div>

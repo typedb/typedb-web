@@ -58,6 +58,11 @@ typedb-website {
 h1, h2, h3, h4, h5, h6, p, ul, ol {
     margin: 0;
     padding: 0;
+    font-size: unset;
+}
+
+h1 {
+    font-weight: $font-weight-bold;
 }
 
 h2, h3, h4, h5, h6 {
@@ -70,14 +75,24 @@ a, a p, a address {
     text-decoration: none;
 }
 
-p, aside, li {
+p, aside {
     a, a:visited {
         color: $color-green;
     }
 }
 
+a.link-tertiary, a.link-tertiary:visited {
+    color: $color-white;
+    font-weight: $font-weight-bold;
+
+    &:hover, &:focus {
+        color: $color-white;
+        text-decoration: underline;
+    }
+}
+
 strong {
-    font-weight: 700;
+    font-weight: $font-weight-bold;
 }
 
 button, input[type="text"], input[type="email"], [class^='mat-'], [class*=' mat-'] {
@@ -128,38 +143,38 @@ div[tabindex] {
     margin-top: $subtitle-margin;
 }
 
-.text-xxl, .text-xxl * {
+.text-xxl {
     font-size: $font-size-xxl;
     line-height: $line-height-xxl;
 }
-.text-xl, .text-xl * {
+.text-xl {
     font-size: $font-size-xl;
     line-height: $line-height-xl;
 }
-.text-l, .text-l * {
+.text-l {
     font-size: $font-size-l;
     line-height: $line-height-l;
 }
-.text-ml, .text-ml * {
+.text-ml {
     font-size: $font-size-ml;
     line-height: $line-height-ml;
 }
-.text-m, .text-m * {
+.text-m {
     font-size: $font-size-m;
     line-height: $line-height-m;
 }
-.text-s, .text-s * {
+.text-s {
     font-size: $font-size-s;
     line-height: $line-height-s;
 }
-.text-xs, .text-xs * {
+.text-xs {
     font-size: $font-size-xs;
     line-height: $line-height-xs;
     &.text-sparse {
         line-height: $line-height-xs-sparse;
     }
 }
-.text-xxs, .text-xxs * {
+.text-xxs {
     font-size: $font-size-xxs;
     line-height: $line-height-xxs;
 }
@@ -168,16 +183,20 @@ div[tabindex] {
     margin-top: 14px;
 }
 
-.p-margin-l {
-    margin-top: $p-margin-l;
+.text-margin-l {
+    margin-top: $text-margin-l;
 }
 
-.p-margin-m {
-    margin-top: $p-margin-m;
+.text-margin-m {
+    margin-top: $text-margin-m;
 }
 
-.p-margin-s {
-    margin-top: $p-margin-s;
+.text-margin-s {
+    margin-top: $text-margin-s;
+}
+
+.text-margin-xs {
+    margin-top: $text-margin-xs;
 }
 
 .planet {

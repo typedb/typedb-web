@@ -28,11 +28,11 @@
     }
 
     li {
-        margin-top: $p-margin-m;
+        margin-top: $text-margin-s;
 
         &:hover h4, &:focus h4 {
             color: $color-green;
-            font-weight: $font-weight-bold;
+            font-weight: $font-weight-semi-bold;
             text-decoration: underline;
         }
     }

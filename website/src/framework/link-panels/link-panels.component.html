@@ -1,7 +1,17 @@
-<div class="section lp-root">
-    <div *ngFor="let panel of panels" class="lp-panel">
-        <h2 class="text-m"><strong>{{ panel.title }}</strong></h2>
-        <td-rich-text [value]="panel.body" class="text-xs p-margin-m"></td-rich-text>
-        <td-button [button]="panel.button" size="small" buttonWidth="unset"></td-button>
+<ng-container [ngSwitch]="cols">
+    <div class="section lp-root-cols-3" *ngSwitchCase="3">
+        <div *ngFor="let panel of panels" class="lp-panel lp-panel-cols-3">
+            <h2 class="text-m"><strong>{{ panel.title }}</strong></h2>
+            <td-rich-text [value]="panel.body" class="text-xs text-margin-s"></td-rich-text>
+            <td-button [button]="panel.button" size="small" buttonWidth="unset"></td-button>
+        </div>
     </div>
-</div>
+    <div class="section lp-root-cols-4" *ngSwitchCase="4">
+        <div *ngFor="let panel of panels" class="lp-panel lp-panel-cols-4">
+            <h2 class="text-m">{{ panel.title }}</h2>
+            <td-rich-text [value]="panel.body" class="text-xs text-margin-s"></td-rich-text>
+            <div class="flex"></div>
+            <a [tdLink]="panel.button.link" class="text-xs cp-learn-more link-tertiary">{{ panel.button.text }}</a>
+        </div>
+    </div>
+</ng-container>

@@ -1,0 +1,40 @@
+@import "../../styles/colors";
+@import "../../styles/sizes";
+
+.cp-root {
+    border: 1px solid $color-light-purple;
+    border-radius: $border-radius;
+    display: flex;
+
+    > * {
+        padding: 40px;
+    }
+}
+
+.cp-main-area {
+    width: 800px;
+    display: flex;
+    flex-direction: column;
+    background: $color-purple;
+    border-radius: $border-radius 0 0 $border-radius;
+}
+
+.cp-resources-area {
+    flex: 1;
+    background: $color-deep-purple;
+    border-radius: 0 $border-radius $border-radius 0;
+    border-left: 1px solid $color-light-purple;
+
+    ul {
+        list-style: none;
+        font-size: $font-size-xs;
+
+        li:not(:first-child) {
+            margin-top: $text-margin-xs;
+        }
+
+        a {
+            line-height: 32px;
+        }
+    }
+}

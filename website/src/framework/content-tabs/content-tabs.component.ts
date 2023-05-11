@@ -1,5 +1,8 @@
-import { Component, Input, OnInit } from "@angular/core";
-import { ContentPanel, HomePageUseCase } from "typedb-web-schema";
+import { Component, ElementRef, Input, OnInit } from "@angular/core";
+import { Event as RouterEvent, Router, Scroll } from "@angular/router";
+
+import { filter } from "rxjs";
+import { ContentPanel } from "typedb-web-schema";
 import { sanitiseHtmlID } from "../util";
 
 @Component({
@@ -9,41 +12,77 @@ import { sanitiseHtmlID } from "../util";
 })
 export class ContentTabsComponent implements OnInit {
     @Input() tabs!: ContentPanel[];
-    selectedTab!: ContentPanel;
+    @Input() setWindowHashOnTabClick = false;
+    private _elementID!: string;
+    selectedTabID: string | undefined;
+
+    constructor(private router: Router, private _el: ElementRef) {
+        router.events.pipe(filter((e: RouterEvent): e is Scroll => e instanceof Scroll)).subscribe(_e => {
+            this.setSelectedTabFromWindowHash();
+        });
+    }
 
     ngOnInit() {
-        this.selectedTab = this.tabs[0];
+        if (!this._el.nativeElement.id.length) {
+            throw `${this.constructor.name}'s native HTML element must have an id set`;
+        }
+        this._elementID = this._el.nativeElement.id;
+        this.setSelectedTabFromWindowHash();
+        if (!this.selectedTabID) {
+            this.selectedTabID = this.tabID(this.tabs[0]);
+        }
+    }
+
+    get selectedTab(): ContentPanel {
+        const selectedTab = this.tabs.find(x => this.tabID(x) === this.selectedTabID);
+        if (selectedTab) return selectedTab;
+        else throw "Unreachable code";
     }
 
     tabID(tab: ContentPanel): string {
-        return sanitiseHtmlID(tab.title);
+        return `${this._elementID}-${sanitiseHtmlID(tab.title)}`;
+    }
+
+    setSelectedTabFromWindowHash() {
+        const targetedTab = this.tabs.find(x => this.tabID(x) === window.location.hash.slice(1));
+        if (targetedTab) this.setSelectedTab(targetedTab);
+    }
+
+    onTabClick(tab: ContentPanel, event: Event) {
+        event.preventDefault();
+        this.setSelectedTab(tab);
     }
 
     setSelectedTab(tab: ContentPanel) {
-        // TODO: invoke when navigating via hashroute
-        this.selectedTab = tab;
+        this.selectedTabID = this.tabID(tab);
+        if (this.setWindowHashOnTabClick) {
+            this.router.navigate([], {
+                fragment: this.tabID(tab),
+                state: { preventScrollToAnchor: true }
+            });
+        }
     }
 }
 
-@Component({
-    selector: "td-vertical-content-tabs",
-    templateUrl: "./vertical-content-tabs.component.html",
-    styleUrls: ["./vertical-content-tabs.component.scss"],
-})
-export class VerticalContentTabsComponent implements OnInit {
-    @Input() useCases!: HomePageUseCase[];
-    selectedUseCase!: HomePageUseCase;
-
-    ngOnInit() {
-        this.selectedUseCase = this.useCases[0];
-    }
-
-    tabID(useCase: HomePageUseCase): string {
-        return sanitiseHtmlID(useCase.title);
-    }
-
-    setSelectedTab(useCase: HomePageUseCase) {
-        // TODO: invoke when navigating via hashroute
-        this.selectedUseCase = useCase;
-    }
-}
+// @Component({
+//     selector: "td-vertical-content-tabs",
+//     templateUrl: "./vertical-content-tabs.component.html",
+//     styleUrls: ["./vertical-content-tabs.component.scss"],
+// })
+// export class VerticalContentTabsComponent implements OnInit {
+//     @Input() useCases!: HomePageUseCase[];
+//     selectedUseCase!: HomePageUseCase;
+//
+//     ngOnInit() {
+//         this.selectedUseCase = this.useCases[0];
+//     }
+//
+//     tabID(useCase: HomePageUseCase): string {
+//         return sanitiseHtmlID(useCase.title);
+//     }
+//
+//     setSelectedTab(useCase: HomePageUseCase) {
+//         // TODO: invoke when navigating via hashroute
+//         this.selectedUseCase = useCase;
+//     }
+// }

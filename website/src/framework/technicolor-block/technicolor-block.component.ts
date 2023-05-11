@@ -16,13 +16,15 @@ export class TechnicolorBlockComponent {
     @Input() greyLine?: boolean;
 
     get backgroundImageURL(): string | undefined {
-        switch (this.index % 6) {
+        switch (this.index % 9) {
             case 0: return "/assets/image/nebula-small-green2.jpg";
             case 1: return "/assets/image/nebula-small-purple1.jpg";
-            case 2: return "/assets/image/nebula-small-yellow1.jpg";
+            case 2: case 8: return "/assets/image/nebula-small-yellow1.jpg";
             case 3: return "/assets/image/nebula-small-green1.jpg";
             case 4: return "/assets/image/nebula-small-purple2.jpg";
             case 5: return "/assets/image/nebula-small-yellow2.jpg";
+            case 6: return "/assets/image/nebula-small-green2.jpg";
+            case 7: return "/assets/image/nebula-small-purple3.jpg";
             default: throw "Unreachable code";
         }
     }
@@ -66,9 +68,9 @@ export class TechnicolorBlockComponent {
 
     get bodyClass(): string {
         switch (this.size) {
-            case "large": return "p-margin-l text-l";
-            case "medium": return "p-margin-l text-m";
-            case "small": return "p-margin-l text-s";
+            case "large": return "text-margin-l text-l";
+            case "medium": return "text-margin-l text-m";
+            case "small": return "text-margin-l text-s";
         }
     }
 }

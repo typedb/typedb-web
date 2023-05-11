@@ -1,6 +1,6 @@
 <div class="section ft-root">
     <div class="ft-tabs">
-        <a *ngFor="let tab of tabs" class="ft-tab text-s" [id]="tabID(tab)" [href]="'#' + tabID(tab)" (click)="setSelectedTab(tab)">
+        <a *ngFor="let tab of tabs" class="ft-tab text-s" [id]="tabID(tab)" [href]="'#' + tabID(tab)" (click)="onTabClick(tab, $event)">
             <p [ngClass]="{'ft-tab-selected': selectedTab === tab}">{{ tab.title }}</p>
         </a>
     </div>

@@ -8,4 +8,5 @@ import { LinkPanel } from "typedb-web-schema";
 })
 export class LinkPanelsComponent {
     @Input() panels!: LinkPanel[];
+    @Input() cols!: 3 | 4;
 }

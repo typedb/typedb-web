@@ -1,21 +1,35 @@
 @import "../../styles/colors";
 @import "../../styles/sizes";
 
-.lp-root {
+.lp-root-cols-3 {
     display: flex;
     flex-direction: row;
     gap: 32px;
+}
+
+.lp-root-cols-4 {
+    display: grid;
+    gap: 40px;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-auto-rows: 340px;
 }
 
 .lp-panel {
     flex: 1;
     border-radius: $border-radius;
     background-color: $color-purple;
-    border: 1px solid $color-light-purple;
-    padding: 20px;
+    outline: 1px solid $color-light-purple;
     display: flex;
     flex-direction: column;
     text-align: start;
+
+    &.lp-panel-cols-3 {
+        padding: 20px;
+    }
+
+    &.lp-panel-cols-4 {
+        padding: 20px 32px;
+    }
 }
 
 td-button {

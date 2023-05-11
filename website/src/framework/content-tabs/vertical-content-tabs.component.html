@@ -1,19 +1,19 @@
-<div class="section uc-root">
-    <div class="uc-tabs">
-        <a *ngFor="let useCase of useCases" class="uc-tab text-s" [id]="tabID(useCase)" [href]="'#' + tabID(useCase)" (click)="setSelectedTab(useCase)">
-            <img class="uc-icon" [src]="useCase.iconURL" alt=""/>
-            <p [ngClass]="{'uc-tab-selected': selectedUseCase === useCase}">{{ useCase.title }}</p>
-        </a>
-    </div>
-    <div *ngFor="let useCase of useCases" class="uc-tab-content" [hidden]="selectedUseCase !== useCase">
-        <div class="uc-video"></div>
-        <div class="uc-text-area">
-            <div>
-                <p *ngFor="let paragraph of useCase.body.paragraphs" class="text-m" >
-                    <span *ngFor="let span of paragraph.spans" [ngStyle]="span.marks.includes('strong') ? { 'font-weight': '700' } : undefined">{{ span.text }}</span>
-                </p>
-            </div>
-            <a [tdLink]="useCase.learnMoreLink" class="text-s uc-learn-more"><strong>Learn More</strong></a>
-        </div>
-    </div>
-</div>
+<!--<div class="section uc-root">-->
+<!--    <div class="uc-tabs">-->
+<!--        <a *ngFor="let useCase of useCases" class="uc-tab text-s" [id]="tabID(useCase)" [href]="'#' + tabID(useCase)" (click)="setSelectedTab(useCase)">-->
+<!--            <img class="uc-icon" [src]="useCase.iconURL" alt=""/>-->
+<!--            <p [ngClass]="{'uc-tab-selected': selectedUseCase === useCase}">{{ useCase.title }}</p>-->
+<!--        </a>-->
+<!--    </div>-->
+<!--    <div *ngFor="let useCase of useCases" class="uc-tab-content" [hidden]="selectedUseCase !== useCase">-->
+<!--        <div class="uc-video"></div>-->
+<!--        <div class="uc-text-area">-->
+<!--            <div>-->
+<!--                <p *ngFor="let paragraph of useCase.body.paragraphs" class="text-m" >-->
+<!--                    <span *ngFor="let span of paragraph.spans" [ngStyle]="span.marks.includes('strong') ? { 'font-weight': '700' } : undefined">{{ span.text }}</span>-->
+<!--                </p>-->
+<!--            </div>-->
+<!--            <a [tdLink]="useCase.learnMoreLink" class="text-s uc-learn-more"><strong>Learn More</strong></a>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
