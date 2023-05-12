@@ -1,5 +1,7 @@
 <div [ngClass]="rootNgClass" [hidden]="hidden">
-    <div class="cp-graphic" [ngClass]="graphicNgClass"></div>
+    <div class="cp-graphic" [ngClass]="graphicNgClass">
+        <img src="/assets/image/illustration-generic.png" alt="Generic illustration"/>
+    </div>
     <div *ngIf="contentTextPanel" class="cp-text-area">
         <div>
             <h2 *ngIf="position === 'standalone'" class="text-m title-standalone"><strong>{{ contentTextPanel.title }}</strong></h2>

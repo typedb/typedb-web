@@ -1,20 +1,20 @@
 @import "../../styles/colors";
 @import "../../styles/sizes";
 
-.lp-root-cols-3 {
+.lc-root-cols-3 {
     display: flex;
     flex-direction: row;
     gap: 32px;
 }
 
-.lp-root-cols-4 {
+.lc-root-cols-4 {
     display: grid;
     gap: 40px;
     grid-template-columns: repeat(4, minmax(0, 1fr));
     grid-auto-rows: 340px;
 }
 
-.lp-panel {
+.lc-card {
     flex: 1;
     border-radius: $border-radius;
     background-color: $color-purple;
@@ -22,12 +22,17 @@
     display: flex;
     flex-direction: column;
     text-align: start;
+    transition: outline-color 150ms ease;
 
-    &.lp-panel-cols-3 {
+    &:hover, &:focus {
+        outline-color: $color-green;
+    }
+
+    &.lc-card-cols-3 {
         padding: 20px;
     }
 
-    &.lp-panel-cols-4 {
+    &.lc-card-cols-4 {
         padding: 20px 32px;
     }
 }

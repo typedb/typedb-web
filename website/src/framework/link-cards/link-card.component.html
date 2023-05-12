@@ -1,0 +1,17 @@
+<ng-container [ngSwitch]="cols">
+    <div class="section lc-root-cols-3" *ngSwitchCase="3">
+        <a *ngFor="let card of cards" class="lc-card lc-card-cols-3">
+            <h2 class="text-m"><strong>{{ card.title }}</strong></h2>
+            <td-rich-text [value]="card.body" class="text-xs text-margin-s"></td-rich-text>
+            <td-button [button]="card.button" size="small" buttonWidth="unset"></td-button>
+        </a>
+    </div>
+    <div class="section lc-root-cols-4" *ngSwitchCase="4">
+        <a *ngFor="let card of cards" [tdLink]="card.button.link" class="lc-card lc-card-cols-4">
+            <h2 class="text-m">{{ card.title }}</h2>
+            <td-rich-text [value]="card.body" class="text-xs text-margin-s"></td-rich-text>
+            <div class="flex"></div>
+            <a class="text-xs cp-learn-more"><strong>{{ card.button.text }}</strong></a>
+        </a>
+    </div>
+</ng-container>

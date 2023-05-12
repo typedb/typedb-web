@@ -15,7 +15,7 @@ import { ContentPanelComponent } from "./content-panel/content-panel.component";
 import { ContentTabsComponent } from "./content-tabs/content-tabs.component";
 import { CloudWaitlistDialogComponent, ContactDialogComponent, NameEmailDialogComponent, NewsletterDialogComponent } from "./dialog/dialog.component";
 import { KeyPointPanels2x2Component, KeyPointPanels3x1Component, KeyPointTableComponent } from "./key-point/key-point.component";
-import { LinkPanelsComponent } from "./link-panels/link-panels.component";
+import { LinkCardComponent } from "./link-cards/link-card.component";
 import { LinkDirective } from "./link/link.directive";
 import { OrganisationLogosComponent } from "./organisation-logos/organisation-logos.component";
 import { TitleBodyActionsSectionComponent } from "./section/title-body-actions-section.component";
@@ -39,7 +39,7 @@ import { RouterModule } from "@angular/router";
         ContentTabsComponent,
         H1WithHighlightsComponent,
         LinkDirective,
-        LinkPanelsComponent,
+        LinkCardComponent,
         KeyPointPanels2x2Component,
         KeyPointPanels3x1Component,
         KeyPointTableComponent,
@@ -77,7 +77,7 @@ import { RouterModule } from "@angular/router";
         KeyPointPanels3x1Component,
         KeyPointTableComponent,
         LinkDirective,
-        LinkPanelsComponent,
+        LinkCardComponent,
         OrganisationLogosComponent,
         ParagraphWithHighlightsComponent,
         SocialMediaPanelsComponent,
