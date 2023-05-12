@@ -1,0 +1,16 @@
+<ng-container [ngSwitch]="cols">
+    <div class="section lc-root-cols-3" *ngSwitchCase="3">
+        <a *ngFor="let panel of panels" class="lc-card lc-card-cols-3">
+            <h2 class="text-m"><strong>{{ panel.title }}</strong></h2>
+            <td-rich-text [value]="panel.body" class="text-xs text-margin-s"></td-rich-text>
+            <td-button [button]="$any(panel).button" size="small" buttonWidth="unset"></td-button>
+        </a>
+    </div>
+    <div class="section lc-root-cols-4" *ngSwitchCase="4">
+        <a *ngFor="let panel of panels" [tdLink]="panel.link" class="lc-card lc-card-cols-4">
+            <h2 class="text-m">{{ panel.title }}</h2>
+            <td-rich-text [value]="panel.body" class="text-xs text-margin-s"></td-rich-text>
+            <div class="flex"></div>
+        </a>
+    </div>
+</ng-container>

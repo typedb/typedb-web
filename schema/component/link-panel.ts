@@ -1,17 +1,43 @@
 import { defineType } from "@sanity/types";
 import { LinkButton } from "../button";
-import { Link, SanityTextLink } from "../link";
-import { bodyFieldRichText, textLinkField, titleField } from "../common-fields";
-import { SanityDataset } from "../sanity-core";
+import { Link, SanityLink, SanityTextLink } from "../link";
+import { bodyFieldRichText, linkField, textLinkField, titleField } from "../common-fields";
+import { SanityDataset, SanityReference } from "../sanity-core";
 import { RichText, SanityPortableText } from "../text";
 
 export interface SanityLinkPanel {
+    title: string;
+    body: SanityPortableText;
+    link: SanityReference<SanityLink>;
+}
+
+export interface SanityLinkButtonPanel {
     title: string;
     body: SanityPortableText;
     link: SanityTextLink;
 }
 
 export class LinkPanel {
+    readonly title: string;
+    readonly body: RichText;
+    readonly link: Link;
+
+    constructor(props: { title: string, body: RichText, link: Link }) {
+        this.title = props.title;
+        this.body = props.body;
+        this.link = props.link;
+    }
+
+    static fromSanity(data: SanityLinkPanel, db: SanityDataset) {
+        return new LinkPanel({
+            title: data.title,
+            body: new RichText(data.body),
+            link: Link.fromSanityLinkRef(data.link, db),
+        });
+    }
+}
+
+export class LinkButtonPanel {
     readonly title: string;
     readonly body: RichText;
     readonly button: LinkButton;
@@ -22,8 +48,8 @@ export class LinkPanel {
         this.button = props.button;
     }
 
-    static fromSanity(data: SanityLinkPanel, db: SanityDataset) {
-        return new LinkPanel({
+    static fromSanity(data: SanityLinkButtonPanel, db: SanityDataset) {
+        return new LinkButtonPanel({
             title: data.title,
             body: new RichText(data.body),
             button: new LinkButton({ style: "secondary", text: data.link.text, link: Link.fromSanityLinkRef(data.link.link, db) })
@@ -33,9 +59,22 @@ export class LinkPanel {
 
 export const linkPanelSchemaName = "linkPanel";
 
-export const linkPanelSchema = defineType({
+const linkPanelSchema = defineType({
     name: linkPanelSchemaName,
     title: "Link Panel",
+    type: "object",
+    fields: [
+        titleField,
+        bodyFieldRichText,
+        linkField,
+    ],
+});
+
+export const linkButtonPanelSchemaName = "linkButtonPanel";
+
+const linkButtonPanelSchema = defineType({
+    name: linkButtonPanelSchemaName,
+    title: "Link Button Panel",
     type: "object",
     fields: [
         titleField,
@@ -43,3 +82,5 @@ export const linkPanelSchema = defineType({
         textLinkField,
     ],
 });
+
+export const linkPanelSchemas = [linkPanelSchema, linkButtonPanelSchema];
