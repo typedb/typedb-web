@@ -1,18 +1,21 @@
 site:
-  title: TypeDB Docs
-  start_page: typedb:00-general:03-introduction.adoc
+  title: TypeDB Documentation portal
+  start_page: typedb:01-typedb:docs.adoc
 content:
   sources:
     - url: ..
-      start_path: docs/content
+      start_path: docs/content/typedb-src
+      branches: HEAD
+    - url: ..
+      start_path: docs/content/clients-src
       branches: HEAD
 asciidoc:
   extensions:
     - "@asciidoctor/tabs"
-ui: 
+ui:
   bundle:
     url: ./ui/build/ui-bundle.zip
-    snapshot: true  
+    snapshot: true
 output:
   clean: true
   dir: ./dist
