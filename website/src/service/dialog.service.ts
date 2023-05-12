@@ -51,14 +51,14 @@ export class DialogService {
     }
 
     openCloudWaitlistFormDialog() {
-        this.open(CloudWaitlistDialogComponent, { width: "560px" });
+        this.open(CloudWaitlistDialogComponent, { width: "560px", autoFocus: "input" });
     }
 
     openNewsletterDialog() {
-        this.open(NewsletterDialogComponent, { width: "560px" });
+        this.open(NewsletterDialogComponent, { width: "560px", autoFocus: "input" });
     }
 
     openContactDialog() {
-        this.open(ContactDialogComponent, { width: "1088px" });
+        this.open(ContactDialogComponent, { width: "1088px", autoFocus: "input" });
     }
 }

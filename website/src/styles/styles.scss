@@ -259,6 +259,9 @@ div[tabindex] {
         flex-direction: column;
     }
 }
+body .mat-dialog-content {
+    overflow: visible;
+}
 
 .mat-form-field-infix {
     padding: 0 !important;
@@ -302,11 +305,55 @@ body .mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-gap 
 .mat-form-field-appearance-outline.mat-form-field-can-float.mat-form-field-should-float .mat-form-field-label {
     transform: translateY(-21px) translateX(-4px) scale(.75);
     width: 133.33333%;
+    font-style: italic;
 }
-input.mat-input-element {
+body .mat-input-element {
     line-height: 32px;
     margin-bottom: 8px;
     caret-color: $color-green;
+}
+body textarea.mat-input-element {
+    line-height: $line-height-xs;
+    margin-bottom: 8px;
+}
+body select.mat-input-element {
+    margin-bottom: -9px;
+}
+body .mat-form-field.mat-warn .mat-input-element,
+body .mat-form-field-invalid .mat-input-element,
+body .mat-form-field.mat-form-field-invalid .mat-form-field-label {
+    caret-color: $color-red;
+    color: $color-red;
+}
+body .mat-form-field-type-mat-native-select .mat-form-field-infix::after {
+    width: 48px;
+    height: 46px;
+    border: none;
+    top: -3px;
+    bottom: 1px;
+    right: 0;
+    border-left: 1px solid $color-light-purple;
+    background: no-repeat center url("/assets/icon/chevron-down.svg");
+}
+.mat-form-field-type-mat-native-select.mat-form-field-appearance-outline .mat-form-field-flex {
+    padding: 0;
+}
+.mat-form-field-type-mat-native-select .mat-input-element {
+    padding: 1em .75em 9px;
+    margin-bottom: -18px;
+}
+.mat-form-field-type-mat-native-select .mat-form-field-label {
+    padding-left: 18px;
+}
+body .mat-checkbox-inner-container {
+    margin-left: 4px;
+    margin-right: 12px;
+}
+.mat-checkbox-indeterminate.mat-accent .mat-checkbox-background,
+.mat-checkbox-checked.mat-accent .mat-checkbox-background,
+.mat-checkbox-checked:not(.mat-checkbox-disabled).mat-accent .mat-ripple-element,
+.mat-checkbox:active:not(.mat-checkbox-disabled).mat-accent .mat-ripple-element {
+    background-color: $color-green;
 }
 
 .markdown pre {

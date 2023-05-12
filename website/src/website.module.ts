@@ -8,10 +8,10 @@ import { ServiceModule } from "./service/service.module";
 import { WebsiteRoutingModule } from "./website-routing.module";
 import { WebsiteComponent } from "./website.component";
 import { FormsModule } from "@angular/forms";
-import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
 import { ScullyLibModule } from "@scullyio/ng-lib";
 import { HttpClientModule } from "@angular/common/http";
 
+// TODO: integrate tslint
 @NgModule({
     declarations: [
         WebsiteComponent,
@@ -20,7 +20,6 @@ import { HttpClientModule } from "@angular/common/http";
         BrowserAnimationsModule,
         BrowserModule,
         FormsModule,
-        FontAwesomeModule,
         FrameworkModule,
         HttpClientModule,
         NavigationModule,

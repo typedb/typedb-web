@@ -55,6 +55,10 @@ export class NewsletterDialogComponent {
     }
 }
 
+const CONTACT_FORM_TOPICS = ["Products & Services", "Support", "Consulting", "Sales", "Training", "Careers", "PR & Analyst Relations"] as const;
+
+type ContactFormTopic = typeof CONTACT_FORM_TOPICS[number];
+
 @Component({
     selector: "td-contact-dialog",
     templateUrl: "contact-dialog.component.html",
@@ -62,7 +66,8 @@ export class NewsletterDialogComponent {
 })
 export class ContactDialogComponent {
     @ViewChild("formEl") formEl!: ElementRef<HTMLFormElement>;
-    form: ContactForm = { firstName: "", lastName: "", email: "", companyName: "" };
+    allTopics = ["Products & Services", "Support", "Consulting", "Sales", "Training", "Careers", "PR & Analyst Relations"] as const;
+    form: ContactForm = { firstName: "", lastName: "", email: "", companyName: "", jobFunction: "", topics: CONTACT_FORM_TOPICS.reduce((obj, x) => Object.assign(obj, {[x]: false}), {}) as any, body: "" };
 
     constructor(private dialogRef: MatDialogRef<ContactDialogComponent>) {
     }
@@ -76,4 +81,7 @@ export class ContactDialogComponent {
 
 interface ContactForm extends NameEmailForm {
     companyName: string;
+    jobFunction: string;
+    topics: { [topic in ContactFormTopic]: boolean };
+    body: string;
 }
