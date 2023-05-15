@@ -117,7 +117,7 @@ class IntroSection extends TitleAndBody {
         const titleAndBody = TitleAndBody.fromSanityTitleAndBody(data);
         return new IntroSection(Object.assign(titleAndBody, {
             videoURL: data.videoURL,
-            links: data.links.map(x => LinkPanel.fromSanity(x, db))
+            links: data.links.map(x => LinkPanel.fromSanityLinkPanel(x, db))
         }));
     }
 }
@@ -192,7 +192,7 @@ class FurtherReadingSection extends TechnicolorBlock {
             body: new RichText(data.body),
             actions: data.actions?.map(x => LinkButton.fromSanity(x, db)),
             iconURL: iconURL,
-            links: data.links.map(x => LinkPanel.fromSanity(x, db)),
+            links: data.links.map(x => LinkPanel.fromSanityLinkPanel(x, db)),
         });
     }
 }

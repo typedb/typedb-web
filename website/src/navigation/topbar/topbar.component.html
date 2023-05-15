@@ -5,15 +5,16 @@
             <div class="tb-desktop-items text-s">
                 <ul class="tb-top-level-items">
                     <li *ngFor="let item of topbar.mainArea">
-                        <div *ngIf="isMenuPanel(item)" tabindex="0" (mouseenter)="onMenuItemMouseEnter(item)" (mouseleave)="onMenuItemMouseLeave(item)">
+                        <div *ngIf="isMenuPanel(item)" tabindex="0" (mouseenter)="onMenuItemMouseEnter(item)" (mouseleave)="onMenuItemMouseLeave(item)" (focus)="onMenuItemFocus(item)" (blur)="onMenuItemBlur(item)">
                             {{ item.title }}
                         </div>
-                        <a *ngIf="isTextLink(item)" [tdLink]="item">
+                        <a *ngIf="isTextLink(item)" [tdLink]="item" (mouseenter)="clearFocus()">
                             {{ item.text }}
                             <svg *ngIf="item.type === 'external'" class="tb-external-link-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M16.6707 8.97635L6.64706 19L5 17.353L15.0237 7.3293H6.1889V5H19V17.8111H16.6707V8.97635Z" fill="white"/>
                             </svg>
                         </a>
+                        <td-topbar-menu-panel *ngIf="isMenuPanel(item)" [menuPanel]="item" [hidden]="!isMenuPanelVisible(item)" (mouseenter)="onMenuPanelMouseEnter(item)" (mouseleave)="onMenuPanelMouseLeave(item)"></td-topbar-menu-panel>
                     </li>
                 </ul>
                 <ul class="tb-top-level-items">
@@ -26,5 +27,4 @@
             </div>
         </nav>
     </header>
-    <td-topbar-menu-panel *ngFor="let menuPanel of menuPanels" [menuPanel]="menuPanel" [hidden]="!isMenuPanelVisible(menuPanel)" (mouseenter)="onMenuPanelMouseEnter(menuPanel)" (mouseleave)="onMenuPanelMouseLeave(menuPanel)"></td-topbar-menu-panel>
 </ng-container>

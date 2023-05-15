@@ -1,59 +1,52 @@
 import { defineType } from "@sanity/types";
 import { LinkButton } from "../button";
-import { Link, SanityLink, SanityTextLink } from "../link";
-import { bodyFieldRichText, linkField, textLinkField, titleField } from "../common-fields";
+import { SanityImageRef } from "../image";
+import { Link, SanityTextLink } from "../link";
+import { bodyFieldRichText, sectionIconField, textLinkField, titleField } from "../common-fields";
 import { SanityDataset, SanityReference } from "../sanity-core";
 import { RichText, SanityPortableText } from "../text";
+import { PropsOf } from "../util";
 
 export interface SanityLinkPanel {
-    title: string;
-    body: SanityPortableText;
-    link: SanityReference<SanityLink>;
-}
-
-export interface SanityLinkButtonPanel {
     title: string;
     body: SanityPortableText;
     link: SanityTextLink;
 }
 
-export class LinkPanel {
-    readonly title: string;
-    readonly body: RichText;
-    readonly link: Link;
-
-    constructor(props: { title: string, body: RichText, link: Link }) {
-        this.title = props.title;
-        this.body = props.body;
-        this.link = props.link;
-    }
-
-    static fromSanity(data: SanityLinkPanel, db: SanityDataset) {
-        return new LinkPanel({
-            title: data.title,
-            body: new RichText(data.body),
-            link: Link.fromSanityLinkRef(data.link, db),
-        });
-    }
+export interface SanityLinkPanelWithIcon extends SanityLinkPanel {
+    icon: SanityReference<SanityImageRef>;
 }
 
-export class LinkButtonPanel {
+export class LinkPanel {
     readonly title: string;
     readonly body: RichText;
     readonly button: LinkButton;
 
-    constructor(props: { title: string, body: RichText, button: LinkButton }) {
+    constructor(props: PropsOf<LinkPanel>) {
         this.title = props.title;
         this.body = props.body;
         this.button = props.button;
     }
 
-    static fromSanity(data: SanityLinkButtonPanel, db: SanityDataset) {
-        return new LinkButtonPanel({
+    static fromSanityLinkPanel(data: SanityLinkPanel, db: SanityDataset) {
+        return new LinkPanel({
             title: data.title,
             body: new RichText(data.body),
             button: new LinkButton({ style: "secondary", text: data.link.text, link: Link.fromSanityLinkRef(data.link.link, db) })
         });
+    }
+}
+
+export class LinkPanelWithIcon extends LinkPanel {
+    readonly iconURL: string;
+
+    constructor(props: PropsOf<LinkPanelWithIcon>) {
+        super(props);
+        this.iconURL = props.iconURL;
+    }
+
+    static fromSanityLinkPanelWithIcon(data: SanityLinkPanelWithIcon, db: SanityDataset): LinkPanelWithIcon {
+        return new LinkPanelWithIcon(Object.assign(LinkPanel.fromSanityLinkPanel(data, db), { iconURL: db.resolveImageRef(data.icon).url }));
     }
 }
 
@@ -66,21 +59,22 @@ const linkPanelSchema = defineType({
     fields: [
         titleField,
         bodyFieldRichText,
-        linkField,
+        textLinkField,
     ],
 });
 
-export const linkButtonPanelSchemaName = "linkButtonPanel";
+export const linkPanelWithIconSchemaName = "linkPanelWithIcon";
 
-const linkButtonPanelSchema = defineType({
-    name: linkButtonPanelSchemaName,
-    title: "Link Button Panel",
+const linkPanelWithIconSchema = defineType({
+    name: linkPanelWithIconSchemaName,
+    title: "Link Panel",
     type: "object",
     fields: [
         titleField,
         bodyFieldRichText,
         textLinkField,
+        sectionIconField,
     ],
 });
 
-export const linkPanelSchemas = [linkPanelSchema, linkButtonPanelSchema];
+export const linkPanelSchemas = [linkPanelSchema, linkPanelWithIconSchema];

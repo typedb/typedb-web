@@ -9,25 +9,30 @@ header, td-topbar-menu-panel {
     z-index: 1100;
     background-color: transparent;
     border-bottom: 1px solid transparent;
-    //transition-property: background-color, border-bottom-color;
-    //transition-duration: 100ms;
-    //transition-timing-function: ease;
 }
 
 header {
     top: 0;
 
     &.tb-solid, &:hover {
-        background-color: rgba($color-purple, .8);
+        background-color: $color-purple;
         border-bottom-color: $color-secondary-purple;
-        backdrop-filter: blur(20px);
     }
 }
 
 td-topbar-menu-panel {
     top: 80px;
     border-bottom: 1px solid $color-secondary-purple;
-    backdrop-filter: blur(20px);
+    background-color: rgba($color-purple, .8);
+
+    &::before {
+        content: '';
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        backdrop-filter: blur(20px);
+    }
 }
 
 nav {

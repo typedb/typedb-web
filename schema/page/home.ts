@@ -135,7 +135,7 @@ class UseCasesSection extends TechnicolorBlock {
 
     static fromSanityUseCasesSection(data: SanityUseCasesSection, db: SanityDataset) {
         return new UseCasesSection(Object.assign(TechnicolorBlock.fromSanityTechnicolorBlock(data, db), {
-            useCases: data.useCases.map(x => LinkPanel.fromSanity(x, db)),
+            useCases: data.useCases.map(x => LinkPanel.fromSanityLinkPanel(x, db)),
         }));
     }
 }

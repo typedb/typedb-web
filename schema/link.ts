@@ -128,6 +128,7 @@ export const textLinkSchema = defineType({
             name: "text",
             title: "Text",
             type: "string",
+            initialValue: "Learn more",
         }),
         linkField,
     ],

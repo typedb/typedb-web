@@ -13,6 +13,7 @@ export class TopbarComponent implements OnInit {
     topbar?: Topbar;
     githubURL?: string;
     hoveredMenuItem?: TopbarMenuPanel;
+    focusedMenuItem?: TopbarMenuPanel;
     hoveredMenuPanel?: TopbarMenuPanel;
     focusedMenuPanel?: TopbarMenuPanel;
     private _pageYOffset = 0;
@@ -55,17 +56,30 @@ export class TopbarComponent implements OnInit {
     }
 
     isMenuPanelVisible(menuPanel: TopbarMenuPanel): boolean {
-        return [this.hoveredMenuItem, this.hoveredMenuPanel, this.focusedMenuPanel].includes(menuPanel);
+        return [this.hoveredMenuItem, this.hoveredMenuPanel, this.focusedMenuItem, this.focusedMenuPanel].includes(menuPanel);
     }
 
     onMenuItemMouseEnter(menuPanel: TopbarMenuPanel) {
         this.hoveredMenuItem = menuPanel;
+        if (this.focusedMenuItem !== menuPanel) this.clearFocus();
         this.focusedMenuPanel = undefined;
+    }
+
+    clearFocus() {
+        (document.activeElement as HTMLElement)?.blur();
     }
 
     onMenuItemMouseLeave(menuPanel: TopbarMenuPanel) {
         if (this.hoveredMenuItem === menuPanel) this.hoveredMenuItem = undefined;
         this.focusedMenuPanel = undefined;
+    }
+
+    onMenuItemFocus(menuPanel: TopbarMenuPanel) {
+        this.focusedMenuItem = menuPanel;
+    }
+
+    onMenuItemBlur(menuPanel: TopbarMenuPanel) {
+        if (this.focusedMenuItem === menuPanel) this.focusedMenuItem = undefined;
     }
 
     onMenuPanelMouseEnter(menuPanel: TopbarMenuPanel) {
@@ -80,6 +94,7 @@ export class TopbarComponent implements OnInit {
 
     @HostListener("window:keyup.escape", ["$event"])
     onEscKeyPressed(_event: KeyboardEvent) {
+        this.clearFocus();
         this.focusedMenuPanel = undefined;
     }
 
