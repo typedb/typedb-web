@@ -1,4 +1,5 @@
 import { defineType } from "@sanity/types";
+import { illustrationField } from "../illustration";
 import { Link, SanityLink } from "../link";
 import { bodyFieldRichText, learnMoreLinkField, linkField, titleField } from "../common-fields";
 import { SanityDataset, SanityReference } from "../sanity-core";
@@ -52,6 +53,7 @@ const contentTextPanelSchema = defineType({
         titleField,
         bodyFieldRichText,
         learnMoreLinkField,
+        illustrationField,
     ],
 });
 

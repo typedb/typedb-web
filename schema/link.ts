@@ -1,7 +1,7 @@
-import { DocumentVideoIcon, LinkIcon } from "@sanity/icons";
+import { LinkIcon } from "@sanity/icons";
 import { defineField, defineType, SanityDocument, Slug, SlugRule } from "@sanity/types";
 import { linkField, titleField, titleFieldName } from "./common-fields";
-import { Document, SanityDataset, SanityReference } from "./sanity-core";
+import { SanityDataset, SanityReference } from "./sanity-core";
 
 export type LinkType = "route" | "external";
 export type SanityLinkType = LinkType | "autoDetect";
@@ -15,10 +15,6 @@ export interface SanityLink extends SanityDocument {
 export interface SanityTextLink {
     text: string;
     link: SanityReference<SanityLink>;
-}
-
-export interface SanityVideoEmbed extends SanityDocument {
-    url: Slug;
 }
 
 export class Link {
@@ -66,19 +62,11 @@ export class TextLink extends Link {
     }
 }
 
-export class VideoEmbed extends Document {
-    readonly url: string;
-
-    constructor(data: SanityVideoEmbed) {
-        super(data);
-        this.url = data.url.current;
-    }
-}
-
 export const linkSchemaName = "link";
 
 const linkSchema = defineType({
     name: linkSchemaName,
+    title: "Link",
     icon: LinkIcon,
     type: "document",
     fields: [
@@ -122,6 +110,7 @@ export const textLinkSchemaName = "textLink";
 export const textLinkSchema = defineType({
     name: textLinkSchemaName,
     type: "object",
+    title: "Text Link",
     icon: LinkIcon,
     fields: [
         defineField({
@@ -138,22 +127,4 @@ export const textLinkSchema = defineType({
     },
 });
 
-export const videoEmbedSchemaName = "videoEmbed";
-
-const videoEmbedSchema = defineType({
-    name: videoEmbedSchemaName,
-    title: "Video Embed",
-    icon: DocumentVideoIcon,
-    type: "document",
-    fields: [
-        Object.assign({}, titleField, { title: "Description" }),
-        defineField({
-            name: "url",
-            title: "URL",
-            type: "slug",
-            validation: (rule: SlugRule) => rule.required(),
-        }),
-    ],
-})
-
-export const linkSchemas = [linkSchema, textLinkSchema, videoEmbedSchema];
+export const linkSchemas = [linkSchema, textLinkSchema];

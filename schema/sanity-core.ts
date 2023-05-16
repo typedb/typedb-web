@@ -34,10 +34,10 @@ export class SanityDataset {
     }
 }
 
-export abstract class Document {
+export class Document {
     readonly id: string;
 
-    protected constructor(data: SanityDocument) {
+    protected constructor(data: { _id: string }) {
         this.id = data._id;
     }
 }

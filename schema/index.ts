@@ -1,4 +1,5 @@
 import { actionSchemas } from "./button";
+import { illustrationSchemas } from "./illustration";
 import { linkSchemas } from "./link";
 import { componentSchemas } from "./component";
 import { formSchemas } from "./form";
@@ -7,13 +8,14 @@ import { keyPointSchemas } from "./key-point";
 import { navigationSchemas } from "./navigation";
 import { organisationSchemas } from "./organisation";
 import { pageSchemas } from "./page";
+import { referenceMaterialSchema } from "./reference-material";
 import { socialMediaSchemas } from "./social-media";
 import { testimonialSchema } from "./testimonial";
 import { textSchemas } from "./text";
 
 export const schemaTypes = [
-    ...actionSchemas, ...linkSchemas, ...componentSchemas, ...formSchemas, ...keyPointSchemas, ...imageSchemas,
-    ...navigationSchemas, ...organisationSchemas, ...pageSchemas, ...socialMediaSchemas, ...textSchemas, testimonialSchema
+    ...actionSchemas, ...linkSchemas, ...componentSchemas, ...formSchemas, ...keyPointSchemas, ...illustrationSchemas, ...imageSchemas,
+    ...navigationSchemas, ...organisationSchemas, ...pageSchemas, referenceMaterialSchema, ...socialMediaSchemas, ...textSchemas, testimonialSchema
 ];
 
 export { ActionButton, LinkButton, type ButtonStyle } from "./button";
@@ -22,9 +24,10 @@ export { ContentPanel, ContentTextPanel } from "./component/content-text-panel";
 export { LinkPanel, LinkPanelWithIcon } from "./component/link-panel";
 export { TechnicolorBlock } from "./component/technicolor-block";
 export { formsSchemaName } from "./form";
+export { imageIllustrationSchemaName, videoEmbedSchemaName, codeSnippetSchemaName, polyglotSnippetSchemaName, graphVisualisationSchemaName, splitPaneIllustrationSchemaName } from "./illustration";
 export { sectionIconSchemaName } from "./image";
 export { KeyPoint } from "./key-point";
-export { linkSchemaName, Link, TextLink, videoEmbedSchemaName, VideoEmbed } from "./link";
+export { linkSchemaName, Link, TextLink } from "./link";
 export { type ContactMediaID, contactMedias, Footer, footerSchemaName, type SanityFooter } from "./navigation/footer";
 export { type SanityTopbar, Topbar, TopbarListColumn, TopbarMenuPanel, topbarSchemaName, TopbarVideoColumn } from "./navigation/topbar";
 export { Organisation, organisationSchemaName, type SanityOrganisation } from "./organisation";
@@ -34,6 +37,7 @@ export { HomePage, homePageSchemaName, type SanityHomePage } from "./page/home";
 export { IntroPage, IntroPageCoreSection, introPageSchemaName, type SanityIntroPage } from "./page/intro";
 export { type SanityUseCasePage, UseCasePage, useCasePageSchemaName } from "./page/use-case";
 export { webinarsPageSchemaName } from "./page/webinars";
+export { referenceMaterialSchemaName } from "./reference-material";
 export { Document, SanityDataset } from "./sanity-core";
 export { type SanityCommunityResources, communityResourcesSchemaName, type SocialMediaID, SocialMediaLink, socialMedias } from "./social-media";
 export { type SanityTestimonial, Testimonial } from "./testimonial";

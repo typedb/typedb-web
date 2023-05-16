@@ -51,6 +51,7 @@ export const buttonSchemaName = "button";
 const buttonSchema = defineType({
     name: buttonSchemaName,
     type: "object",
+    title: "Button",
     fields: [
         defineField({
             name: "style",

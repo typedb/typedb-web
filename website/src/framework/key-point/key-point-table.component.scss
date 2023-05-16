@@ -43,4 +43,9 @@ $kpt-border: 1px solid $color-light-purple;
         align-items: flex-start;
         gap: $text-margin-xs;
     }
+
+    img {
+        width: 48px;
+        height: 48px;
+    }
 }

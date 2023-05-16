@@ -18,14 +18,14 @@
     flex: 1;
     border-radius: $border-radius;
     background-color: $color-purple;
-    outline: 1px solid $color-light-purple;
+    border: 1px solid $color-light-purple;
     display: flex;
     flex-direction: column;
     text-align: start;
-    transition: outline-color 150ms ease;
+    transition: border-color 150ms ease;
 
     &:hover, &:focus {
-        outline-color: $color-green;
+        border-color: $color-green;
     }
 
     &.lc-card-cols-3 {
@@ -33,7 +33,7 @@
     }
 
     &.lc-card-cols-4 {
-        padding: 20px 32px;
+        padding: 20px 30px;
     }
 }
 

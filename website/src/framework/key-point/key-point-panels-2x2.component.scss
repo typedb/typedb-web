@@ -3,6 +3,7 @@
 
 .kpp-root {
     display: grid;
+    grid-template-columns: repeat(2, 560px);
     gap: 40px;
 }
 
@@ -14,4 +15,14 @@
     display: flex;
     flex-direction: row;
     align-items: flex-start;
+    gap: 24px;
+}
+
+.kpp-image-block img {
+    width: 48px;
+    height: 48px;
+}
+
+.kpp-text-block td-rich-text {
+    display: block;
 }

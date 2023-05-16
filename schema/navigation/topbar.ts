@@ -1,7 +1,8 @@
 import { BlockElementIcon, MasterDetailIcon } from "@sanity/icons";
 import { defineField, defineType, SanityDocument } from "@sanity/types";
 import { LinkButton, buttonSchemaName, SanityButton } from "../button";
-import { Link, SanityLink, SanityTextLink, SanityVideoEmbed, TextLink, textLinkSchemaName } from "../link";
+import { SanityVideoEmbed } from "../illustration";
+import { Link, SanityLink, SanityTextLink, TextLink, textLinkSchemaName } from "../link";
 import { descriptionField, linkField, titleField, titleFieldName, videoEmbedField } from "../common-fields";
 import { Document, SanityDataset, SanityReference } from "../sanity-core";
 
@@ -201,6 +202,7 @@ const topbarItemTypes = [{type: "topbarMenuPanel"}, {type: textLinkSchemaName}];
 const topbarSchema = defineType({
     name: topbarSchemaName,
     icon: BlockElementIcon,
+    title: "Topbar",
     type: "document",
     fields: [
         defineField({

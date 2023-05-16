@@ -1,13 +1,16 @@
 import "./styles.css";
 
-import { BlockElementIcon, ClipboardImageIcon, CommentIcon, DocumentIcon, DocumentsIcon, ImagesIcon, ThListIcon } from "@sanity/icons";
+import { BlockElementIcon, ClipboardImageIcon, CommentIcon, DocumentIcon, DocumentsIcon, ImagesIcon, PresentationIcon, ThListIcon } from "@sanity/icons";
 import { defineConfig, isDev, useCurrentUser, userHasRole } from "sanity";
-import { colorInput } from "@sanity/color-input";
 import { visionTool } from "@sanity/vision";
 import { media } from "sanity-plugin-media";
 import { deskTool } from "sanity/desk";
 import { StructureBuilder } from "sanity/lib/exports/desk";
-import { featuresPageSchemaName, homePageSchemaName, sectionIconSchemaName, introPageSchemaName, linkSchemaName, schemaTypes, topbarSchemaName, useCasePageSchemaName, webinarsPageSchemaName, footerSchemaName, communityResourcesSchemaName, formsSchemaName, videoEmbedSchemaName, organisationSchemaName } from "typedb-web-schema";
+import {
+    featuresPageSchemaName, homePageSchemaName, sectionIconSchemaName, introPageSchemaName, linkSchemaName, schemaTypes, topbarSchemaName, useCasePageSchemaName,
+    webinarsPageSchemaName, footerSchemaName, communityResourcesSchemaName, formsSchemaName, videoEmbedSchemaName, organisationSchemaName, imageIllustrationSchemaName,
+    codeSnippetSchemaName, polyglotSnippetSchemaName, graphVisualisationSchemaName, splitPaneIllustrationSchemaName, referenceMaterialSchemaName
+} from "typedb-web-schema";
 import { config } from "./config";
 import { getStartedPlugin } from "./plugins/sanity-plugin-tutorial";
 
@@ -27,38 +30,40 @@ export default defineConfig({
     plugins: [
         deskTool({
             structure: (s: StructureBuilder) => s.list().title("Content").items([
-                s.listItem().title("Site Navigation").icon(BlockElementIcon).child(s.list().title("Site Navigation")
-                    .items([
-                        singletonListItem(s, topbarSchemaName, "Topbar", ThListIcon),
-                        singletonListItem(s, footerSchemaName, "Footer", ThListIcon),
-                    ]),
-                ),
-                s.listItem().title("Pages").icon(DocumentsIcon).child(s.list().title("Pages")
-                    .items([
-                        singletonListItem(s, homePageSchemaName, "Home Page", DocumentIcon),
-                        singletonListItem(s, introPageSchemaName, "Introduction Page", DocumentIcon),
-                        singletonListItem(s, featuresPageSchemaName, "Features Page", DocumentIcon),
-                        singletonListItem(s, webinarsPageSchemaName, "Webinars Page", DocumentIcon),
-                        s.divider(),
-                        s.documentTypeListItem(useCasePageSchemaName).title("Use Case Pages").icon(DocumentsIcon),
-                    ])
-                ),
+                s.listItem().title("Site Navigation").icon(BlockElementIcon).child(s.list().title("Site Navigation").items([
+                    singletonListItem(s, topbarSchemaName, "Topbar", ThListIcon),
+                    singletonListItem(s, footerSchemaName, "Footer", ThListIcon),
+                ])),
+                s.listItem().title("Pages").icon(DocumentsIcon).child(s.list().title("Pages").items([
+                    singletonListItem(s, homePageSchemaName, "Home Page", DocumentIcon),
+                    singletonListItem(s, introPageSchemaName, "Introduction Page", DocumentIcon),
+                    singletonListItem(s, featuresPageSchemaName, "Features Page", DocumentIcon),
+                    singletonListItem(s, webinarsPageSchemaName, "Webinars Page", DocumentIcon),
+                    s.divider(),
+                    s.documentTypeListItem(useCasePageSchemaName).title("Use Case Pages").icon(DocumentsIcon),
+                ])),
                 s.documentTypeListItem(linkSchemaName).title("Links"),
-                s.documentTypeListItem(videoEmbedSchemaName).title("Video Embeds"),
+                s.listItem().title("Illustrations & Videos").icon(PresentationIcon).child(s.list().title("Illustrations & Videos").items([
+                    s.documentTypeListItem(splitPaneIllustrationSchemaName).title("Split Pane Illustrations"),
+                    s.documentTypeListItem(imageIllustrationSchemaName).title("Images"),
+                    s.documentTypeListItem(videoEmbedSchemaName).title("Video Embeds"),
+                    s.documentTypeListItem(codeSnippetSchemaName).title("Code Snippets"),
+                    s.documentTypeListItem(polyglotSnippetSchemaName).title("Polyglot Code Snippets"),
+                    s.documentTypeListItem(graphVisualisationSchemaName).title("Graph Visualisations"),
+                ])),
                 s.documentTypeListItem(organisationSchemaName).title("Organisations"),
                 s.divider(),
                 singletonListItem(s, communityResourcesSchemaName, "Community Resources", CommentIcon),
                 singletonListItem(s, formsSchemaName, "Forms", ClipboardImageIcon),
-                isAdmin() ? s.listItem().title("Icons & Logos").icon(ImagesIcon).child(s.list().title("Icons & Logos")
-                    .items([
-                        s.documentTypeListItem(sectionIconSchemaName).title("Section Icons"),
-                    ])
-                ) : s.divider(),
+                isAdmin() ? s.listItem().title("Icons & Logos").icon(ImagesIcon).child(s.list().title("Icons & Logos").items([
+                    s.documentTypeListItem(sectionIconSchemaName).title("Section Icons"),
+                ])) : s.divider(),
+                s.divider(),
+                s.documentTypeListItem(referenceMaterialSchemaName).title("CMS Reference Material"),
             ]),
         }),
         media(),
         visionTool(),
-        colorInput(),
         ...(isDev ? devOnlyPlugins : [])
     ],
 

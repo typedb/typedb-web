@@ -98,7 +98,7 @@ export class UseCasePage extends Page {
             ? ExampleSection.fromSanityExampleSection(data.exampleSection, db, "/assets/icon/section/globe-code.svg")
             : undefined;
         this.furtherReadingSection = data.furtherReadingSection.isVisible
-            ? FurtherReadingSection.fromSanityFurtherReadingSection(data.furtherReadingSection, db, "/assets/icon/section/learn.svg")
+            ? FurtherReadingSection.fromSanityFurtherReadingSection(data.furtherReadingSection, db, "/assets/icon/section/book-open.svg")
             : undefined;
     }
 }
