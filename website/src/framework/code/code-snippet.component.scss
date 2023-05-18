@@ -1,0 +1,39 @@
+@import "../../styles/colors";
+@import "../../styles/sizes";
+
+:host {
+    display: block;
+    height: 100%;
+}
+
+.cs-root {
+    width: 100%;
+    display: flex;
+}
+
+.cs-line-numbers {
+    width: 32px;
+    padding-right: 4px;
+    background-color: $color-black-purple;
+    font-family: 'Ubuntu Mono', monospace;
+    color: #66637F;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: $border-radius 0 0 $border-radius;
+}
+
+.cs-code-area {
+    flex: 1;
+    display: flex;
+}
+
+ol {
+    list-style: none;
+}
+
+pre {
+    background-color: $color-black-purple;
+    width: 100%;
+    height: 100%;
+}

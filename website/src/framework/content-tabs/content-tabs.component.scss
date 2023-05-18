@@ -15,7 +15,7 @@
     border-bottom: none;
     border-top-left-radius: $border-radius;
     border-top-right-radius: $border-radius;
-    background: $color-purple;
+    background: $color-deep-purple;
 }
 
 .ft-tab {
@@ -29,8 +29,9 @@
     }
 }
 
-.ft-tab-selected {
+.ft-tab-selected, .ft-tab-selected p {
     color: $color-green;
+    background: $color-purple;
 }
 
 .ft-tab-content {

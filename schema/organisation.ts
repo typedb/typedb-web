@@ -1,13 +1,13 @@
 import { CaseIcon, UsersIcon } from "@sanity/icons";
-import { Asset, defineField, defineType, Image, ImageRule, SanityDocument } from "@sanity/types";
+import { defineField, defineType, ImageRule, SanityDocument } from "@sanity/types";
 import { nameField } from "./common-fields";
-import { Document, SanityDataset } from "./sanity-core";
+import { Document, SanityDataset, SanityImage } from "./sanity-core";
 
 const logoFieldName = "logo";
 
 export interface SanityOrganisation extends SanityDocument {
     name: string;
-    logo: Image;
+    logo: SanityImage;
 }
 
 export class Organisation extends Document {
@@ -17,7 +17,7 @@ export class Organisation extends Document {
     constructor(data: SanityOrganisation, db: SanityDataset) {
         super(data);
         this.name = data.name;
-        this.logoURL = db.resolveRef<Asset>(data.logo.asset!).url;
+        this.logoURL = db.resolveRef(data.logo.asset).url;
     }
 }
 

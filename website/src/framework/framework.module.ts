@@ -9,12 +9,15 @@ import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatInputModule } from "@angular/material/input";
 import { ActionsComponent } from "./actions/actions.component";
 import { ButtonComponent } from "./button/button.component";
+import { CodeSnippetComponent } from "./code/code-snippet.component";
 import { ConclusionPanelComponent } from "./conclusion-panel/conclusion-panel.component";
 import { ContentPanelGridComponent } from "./content-panel-grid/content-panel-grid.component";
 import { ContentPanelComponent } from "./content-panel/content-panel.component";
 import { ContentTabsComponent } from "./content-tabs/content-tabs.component";
 import { CloudWaitlistDialogComponent, ContactDialogComponent, NameEmailDialogComponent, NewsletterDialogComponent } from "./dialog/dialog.component";
 import { OptionDirective } from "./dialog/option.directive";
+import { GraphVisualisationComponent } from "./graph/graph-visualisation.component";
+import { IllustrationComponent, SplitPaneIllustrationComponent } from "./illustration/illustration.component";
 import { KeyPointPanels2x2Component, KeyPointPanels3x1Component, KeyPointTableComponent } from "./key-point/key-point.component";
 import { LinkPanelsComponent } from "./link-panels/link-panels.component";
 import { LinkDirective } from "./link/link.directive";
@@ -32,12 +35,15 @@ import { RouterModule } from "@angular/router";
         ActionsComponent,
         ButtonComponent,
         CloudWaitlistDialogComponent,
+        CodeSnippetComponent,
         ConclusionPanelComponent,
         ContactDialogComponent,
         ContentPanelComponent,
         ContentPanelGridComponent,
         ContentTabsComponent,
+        GraphVisualisationComponent,
         H1WithHighlightsComponent,
+        IllustrationComponent,
         LinkDirective,
         LinkPanelsComponent,
         KeyPointPanels2x2Component,
@@ -50,6 +56,7 @@ import { RouterModule } from "@angular/router";
         ParagraphWithHighlightsComponent,
         RichTextComponent,
         SocialMediaPanelsComponent,
+        SplitPaneIllustrationComponent,
         TechnicolorBlockComponent,
         TestimonialsCarouselComponent,
         TitleBodyActionsSectionComponent,
@@ -73,6 +80,7 @@ import { RouterModule } from "@angular/router";
         ContentPanelGridComponent,
         ContentTabsComponent,
         H1WithHighlightsComponent,
+        IllustrationComponent,
         KeyPointPanels2x2Component,
         KeyPointPanels3x1Component,
         KeyPointTableComponent,

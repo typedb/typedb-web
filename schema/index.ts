@@ -24,7 +24,10 @@ export { ContentPanel, ContentTextPanel } from "./component/content-text-panel";
 export { LinkPanel, LinkPanelWithIcon } from "./component/link-panel";
 export { TechnicolorBlock } from "./component/technicolor-block";
 export { formsSchemaName } from "./form";
-export { imageIllustrationSchemaName, videoEmbedSchemaName, codeSnippetSchemaName, polyglotSnippetSchemaName, graphVisualisationSchemaName, splitPaneIllustrationSchemaName } from "./illustration";
+export {
+    imageIllustrationSchemaName, videoEmbedSchemaName, codeSnippetSchemaName, polyglotSnippetSchemaName, graphVisualisationSchemaName, splitPaneIllustrationSchemaName,
+    ImageIllustration, VideoEmbed, CodeSnippet, PolyglotSnippet, GraphVisualisation, SplitPaneIllustration, type Illustration, type SplitPaneIllustrationContent,
+} from "./illustration";
 export { sectionIconSchemaName } from "./image";
 export { KeyPoint } from "./key-point";
 export { linkSchemaName, Link, TextLink } from "./link";

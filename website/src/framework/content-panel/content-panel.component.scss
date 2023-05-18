@@ -7,11 +7,11 @@
     background: $color-purple;
     padding: 40px;
     display: flex;
-    gap: 40px;
+    gap: 38px;
 
     &.landscape {
         &.size-l {
-            height: 554px;
+            height: 542px;
         }
 
         &.size-m {
@@ -46,14 +46,8 @@
     }
 }
 
-.cp-graphic {
-    &.flex-2 {
-        flex: 2;
-    }
-
-    &.flex-1 {
-        flex: 1;
-    }
+td-illustration {
+    width: 674px;
 }
 
 .cp-text-area {

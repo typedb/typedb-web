@@ -1,0 +1,69 @@
+import { Component, ElementRef, Input, OnInit, ViewChild } from "@angular/core";
+import interact from "interactjs";
+import { CodeSnippet, GraphVisualisation, Illustration, ImageIllustration, PolyglotSnippet, SplitPaneIllustration, VideoEmbed } from "typedb-web-schema";
+
+@Component({
+    selector: "td-illustration",
+    templateUrl: "illustration.component.html",
+    styleUrls: ["illustration.component.scss"],
+})
+export class IllustrationComponent {
+    @Input() illustration!: Illustration;
+
+    get imageIllustration(): ImageIllustration | undefined {
+        return this.illustration instanceof ImageIllustration ? this.illustration : undefined;
+    }
+
+    get videoEmbed(): VideoEmbed | undefined {
+        return this.illustration instanceof VideoEmbed ? this.illustration : undefined;
+    }
+
+    get codeSnippet(): CodeSnippet | undefined {
+        return this.illustration instanceof CodeSnippet ? this.illustration : undefined;
+    }
+
+    get polyglotSnippet(): PolyglotSnippet | undefined {
+        return this.illustration instanceof PolyglotSnippet ? this.illustration : undefined;
+    }
+
+    get graphVisualisation(): GraphVisualisation | undefined {
+        return this.illustration instanceof GraphVisualisation ? this.illustration : undefined;
+    }
+
+    get splitPaneIllustration(): SplitPaneIllustration | undefined {
+        return this.illustration instanceof SplitPaneIllustration ? this.illustration : undefined;
+    }
+}
+
+@Component({
+    selector: "td-split-pane-illustration",
+    templateUrl: "split-pane-illustration.component.html",
+    styleUrls: ["split-pane-illustration.component.scss"],
+})
+export class SplitPaneIllustrationComponent implements OnInit {
+    @Input() panes!: SplitPaneIllustration;
+    @ViewChild("sliderEl") sliderEl!: ElementRef<HTMLElement>;
+
+    ngOnInit() {
+        interact(`.sp-pane-resizable`)
+            .resizable({
+                edges: { right: true },
+                listeners: {
+                    move: (event: any) => {
+                        const scale = event.target.getBoundingClientRect().width / event.target.offsetWidth;
+                        let width = event.rect.width / scale;
+                        if (width < 110) width = 110;
+                        if (width > 600) width = 600;
+                        event.target.style.width = `${width}px`;
+                        this.sliderEl.nativeElement.style.left = `${width - 28}px`;
+                    }
+                }
+            })
+            .on("resizestart", (event: any) => {
+                event.target!.style["user-select"] = "none";
+            })
+            .on("resizeend", (event: any) => {
+                event.target.style["user-select"] = "text";
+            });
+    }
+}

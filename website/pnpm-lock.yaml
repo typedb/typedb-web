@@ -26,6 +26,7 @@ specifiers:
   axios: 1.3.4
   detect-libc: 2.0.1
   dprint-node: 1.0.7
+  interactjs: 1.10.17
   jasmine-core: 4.1.1
   karma: 6.3.20
   karma-chrome-launcher: 3.1.1
@@ -60,6 +61,7 @@ dependencies:
   '@scullyio/scully-plugin-puppeteer': 2.1.41_ym5pji37ur5g6bhcgqiyia5unu
   detect-libc: 2.0.1
   dprint-node: 1.0.7
+  interactjs: 1.10.17
   long: 5.2.1
   prismjs: 1.29.0
   rxjs: 7.5.7
@@ -1958,6 +1960,10 @@ packages:
   /@gar/promisify/1.1.3:
     resolution: {integrity: sha512-k2Ty1JcVojjJFwrg/ThKi2ujJ7XNLYaFGNB/bWT9wGR+oSMJHMa5w+CUq6p/pVrKeNNgA7pCqEcjSnHVoqJQFw==}
     dev: true
+
+  /@interactjs/types/1.10.17:
+    resolution: {integrity: sha512-X2JpoM7xUw0p9Me0tMaI0HNfcF/Hd07ZZlzpnpEMpGerUZOLoyeThrV9P+CrBHxZrluWJrigJbcdqXliFd0YMA==}
+    dev: false
 
   /@istanbuljs/load-nyc-config/1.1.0:
     resolution: {integrity: sha512-VjeHSlIzpv/NyD3N0YuHfXOPDIixcA1q2ZV98wsMqcYlPmv2n3Yb2lYP9XMElnaFVXg5A7YLTeLu6V84uQDjmQ==}
@@ -5050,6 +5056,12 @@ packages:
       through: 2.3.8
       wrap-ansi: 7.0.0
     dev: true
+
+  /interactjs/1.10.17:
+    resolution: {integrity: sha512-grjHJgnWkCoQLmAlk2yalNd1r0ztUhXLJNVjSOfWn1wfNNgU2tx1cDEkro9WYerDNC9UG3MZTeD4O6zOM5gbIA==}
+    dependencies:
+      '@interactjs/types': 1.10.17
+    dev: false
 
   /into-stream/6.0.0:
     resolution: {integrity: sha512-XHbaOAvP+uFKUFsOgoNPRjLkwB+I22JFPFe5OjTkQ0nwgj6+pSjb4NmB6VMxaPshLiOf+zcpOCBQuLwC1KHhZA==}

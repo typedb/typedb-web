@@ -1,4 +1,4 @@
-import { ImageAsset, Reference, SanityDocument } from "@sanity/types";
+import { Image, ImageAsset, Reference, SanityDocument } from "@sanity/types";
 import { SanityImageRef } from "./image";
 import { associateBy } from "./util";
 
@@ -30,7 +30,7 @@ export class SanityDataset {
 
     resolveImageRef(ref: SanityReference<SanityImageRef>) {
         const imageRef = this.resolveRef(ref);
-        return this.resolveRef<ImageAsset>(imageRef.assetRef.asset);
+        return this.resolveRef(imageRef.assetRef.asset);
     }
 }
 
@@ -43,3 +43,11 @@ export class Document {
 }
 
 export interface SanityReference<REFERENCED_TYPE> extends Reference {}
+
+export interface SanityImageAsset extends ImageAsset {
+    altText?: string;
+}
+
+export interface SanityImage extends Image {
+    asset: SanityReference<SanityImageAsset>;
+}

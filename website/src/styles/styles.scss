@@ -30,6 +30,10 @@ html, body {
     }
 }
 
+pre, code {
+    font-family: 'Ubuntu Mono', monospace;
+}
+
 typedb-website {
     height: 100%;
 
@@ -55,7 +59,7 @@ typedb-website {
     width: 870px;
 }
 
-h1, h2, h3, h4, h5, h6, p, ul, ol {
+h1, h2, h3, h4, h5, h6, p, ul, ol, pre {
     margin: 0;
     padding: 0;
     font-size: unset;
@@ -177,6 +181,10 @@ div[tabindex] {
 .text-xxs {
     font-size: $font-size-xxs;
     line-height: $line-height-xxs;
+}
+
+.text-weight-light {
+    font-weight: $font-weight-light;
 }
 
 .header-margin-s {
