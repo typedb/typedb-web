@@ -14,6 +14,10 @@ export class ContentPanelComponent {
     @Input() size: "m" | "l" = "l";
     @Input() position: "embedded" | "standalone" = "embedded";
 
+    public ngDoCheck() {
+        console.log('doCheck', Zone.currentTask!.source);
+    }
+
     get contentTextPanel(): ContentTextPanel | undefined {
         return this.panel instanceof ContentTextPanel ? this.panel : undefined;
     }

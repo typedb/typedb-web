@@ -1,5 +1,5 @@
 <div [ngClass]="rootNgClass" [hidden]="hidden">
-    <td-illustration [ngClass]="graphicNgClass" [illustration]="panel.illustration"></td-illustration>
+    <td-illustration [ngClass]="graphicNgClass" [illustration]="panel.illustration" [visible]="!hidden"></td-illustration>
     <div *ngIf="contentTextPanel" class="cp-text-area">
         <div>
             <h2 *ngIf="position === 'standalone'" class="text-m title-standalone"><strong>{{ contentTextPanel.title }}</strong></h2>

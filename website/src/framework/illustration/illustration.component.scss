@@ -5,6 +5,7 @@
     display: block;
     border-radius: $border-radius;
     height: 464px;
+    position: relative;
 
     &:not(.sp-pane) {
         border: 1px solid $color-light-purple;

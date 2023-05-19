@@ -9,6 +9,7 @@ import { CodeSnippet, GraphVisualisation, Illustration, ImageIllustration, Polyg
 })
 export class IllustrationComponent {
     @Input() illustration!: Illustration;
+    @Input() visible = false;
 
     get imageIllustration(): ImageIllustration | undefined {
         return this.illustration instanceof ImageIllustration ? this.illustration : undefined;
@@ -42,6 +43,7 @@ export class IllustrationComponent {
 })
 export class SplitPaneIllustrationComponent implements OnInit {
     @Input() panes!: SplitPaneIllustration;
+    @Input() visible = false;
     @ViewChild("sliderEl") sliderEl!: ElementRef<HTMLElement>;
 
     ngOnInit() {
@@ -52,7 +54,7 @@ export class SplitPaneIllustrationComponent implements OnInit {
                     move: (event: any) => {
                         const scale = event.target.getBoundingClientRect().width / event.target.offsetWidth;
                         let width = event.rect.width / scale;
-                        if (width < 110) width = 110;
+                        if (width < 50) width = 50;
                         if (width > 600) width = 600;
                         event.target.style.width = `${width}px`;
                         this.sliderEl.nativeElement.style.left = `${width - 28}px`;

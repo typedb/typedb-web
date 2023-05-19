@@ -2,5 +2,5 @@
 <p *ngIf="videoEmbed">TODO: video embed with URL {{ videoEmbed.url }}</p>
 <td-code-snippet *ngIf="codeSnippet" [snippet]="codeSnippet" [lines]=22></td-code-snippet>
 <p *ngIf="polyglotSnippet">TODO: polyglot snippet</p>
-<td-graph-visualisation *ngIf="graphVisualisation" [graph]="graphVisualisation"></td-graph-visualisation>
-<td-split-pane-illustration *ngIf="splitPaneIllustration" [panes]="splitPaneIllustration"></td-split-pane-illustration>
+<td-graph-visualisation *ngIf="graphVisualisation && visible" [graph]="graphVisualisation"></td-graph-visualisation>
+<td-split-pane-illustration *ngIf="splitPaneIllustration" [panes]="splitPaneIllustration" [visible]="visible"></td-split-pane-illustration>
