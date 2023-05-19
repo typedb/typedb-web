@@ -22,6 +22,7 @@ specifiers:
   '@scullyio/scully-plugin-puppeteer': 2.1.41
   '@types/jasmine': 4.0.3
   '@types/node': 18.8.1
+  '@types/prismjs': 1.26.0
   '@types/react': 18.0.28
   axios: 1.3.4
   detect-libc: 2.0.1
@@ -79,6 +80,7 @@ devDependencies:
   '@sanity/types': 3.6.0
   '@types/jasmine': 4.0.3
   '@types/node': 18.8.1
+  '@types/prismjs': 1.26.0
   '@types/react': 18.0.28
   axios: 1.3.4
   jasmine-core: 4.1.1
@@ -2495,6 +2497,10 @@ packages:
 
   /@types/parse-json/4.0.0:
     resolution: {integrity: sha512-//oorEZjL6sbPcKUaCdIGlIUeH26mgzimjBB77G6XRgnDl/L5wOnpyBGRe/Mmf5CVW3PwEBE1NjiMZ/ssFh4wA==}
+    dev: true
+
+  /@types/prismjs/1.26.0:
+    resolution: {integrity: sha512-ZTaqn/qSqUuAq1YwvOFQfVW1AR/oQJlLSZVustdjwI+GZ8kr0MSHBj0tsXPW1EqHubx50gtBEjbPGsdZwQwCjQ==}
     dev: true
 
   /@types/prop-types/15.7.5:
