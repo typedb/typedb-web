@@ -1,4 +1,5 @@
 local
+docs
 website/node_modules
 dev/local
 web/dist
