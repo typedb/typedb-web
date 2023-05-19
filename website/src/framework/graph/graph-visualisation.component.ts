@@ -6,6 +6,7 @@ import * as PIXI from "pixi.js";
 import FontFaceObserver from "fontfaceobserver";
 import { arrowhead, diamondIncomingLineIntersect, Ellipse, ellipseIncomingLineIntersect, midpoint, Point, Rect, rectIncomingLineIntersect } from "./geometry";
 import { defaultGraphVisualisationTheme, defaultStyles, GraphVisualisationTheme } from "./theme";
+import VertexEncoding = GraphVisualisation.VertexEncoding;
 
 @Component({
     selector: "td-graph-visualisation",
@@ -217,10 +218,16 @@ function createD3ForceSimulation(vertices: Renderer.Vertex[], edges: Renderer.Ed
     return simulation;
 }
 
+const vertexSize: { [encoding in VertexEncoding]: { width: number, height: number } } = {
+    entity: { width: 125, height: 40 },
+    relation: { width: 100, height: 62},
+    attribute: { width: 125, height: 40 },
+}
+
 export function renderGraph(container: HTMLElement, graphData: GraphVisualisation, theme: GraphVisualisationTheme) {
     const [width, height] = [container.offsetWidth, container.offsetHeight];
     const edges: Renderer.Edge[] = graphData.edges.map((d) => Object.assign({}, d));
-    const vertices: Renderer.Vertex[] = graphData.vertices.map((d) => Object.assign({}, d, { width: 125, height: 40 })) as any;
+    const vertices: Renderer.Vertex[] = graphData.vertices.map((d) => Object.assign({}, d, vertexSize[d.encoding])) as any;
     let dragged = false;
 
     const app = new PIXI.Application({ width, height, antialias: !0, backgroundAlpha: 0, resolution: window.devicePixelRatio });
@@ -324,9 +331,10 @@ export function renderGraph(container: HTMLElement, graphData: GraphVisualisatio
         destroy: () => {
             simulation.stop();
             vertices.forEach((vertex) => {
-                vertex.gfx!.clear();
+                vertex.gfx?.clear();
             });
             edgesGFX.clear();
+            app.destroy();
         }
     };
 }
