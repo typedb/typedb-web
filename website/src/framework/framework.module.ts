@@ -18,7 +18,7 @@ import { CloudWaitlistDialogComponent, ContactDialogComponent, NameEmailDialogCo
 import { OptionDirective } from "./dialog/option.directive";
 import { GraphVisualisationComponent } from "./graph/graph-visualisation.component";
 import { IllustrationComponent, SplitPaneIllustrationComponent } from "./illustration/illustration.component";
-import { KeyPointPanels2x2Component, KeyPointPanels3x1Component, KeyPointTableComponent } from "./key-point/key-point.component";
+import { KeyPointPanels2x2Component, KeyPointTableComponent } from "./key-point/key-point.component";
 import { LinkPanelsComponent } from "./link-panels/link-panels.component";
 import { LinkDirective } from "./link/link.directive";
 import { OrganisationLogosComponent } from "./organisation-logos/organisation-logos.component";
@@ -47,7 +47,6 @@ import { RouterModule } from "@angular/router";
         LinkDirective,
         LinkPanelsComponent,
         KeyPointPanels2x2Component,
-        KeyPointPanels3x1Component,
         KeyPointTableComponent,
         NameEmailDialogComponent,
         NewsletterDialogComponent,
@@ -82,7 +81,6 @@ import { RouterModule } from "@angular/router";
         H1WithHighlightsComponent,
         IllustrationComponent,
         KeyPointPanels2x2Component,
-        KeyPointPanels3x1Component,
         KeyPointTableComponent,
         LinkDirective,
         LinkPanelsComponent,

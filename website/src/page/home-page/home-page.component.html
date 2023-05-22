@@ -14,7 +14,7 @@
         </ng-container>
         <ng-container *ngIf="page.toolingSection">
             <td-home-page-technicolor-block [block]="page.toolingSection" [page]="page"></td-home-page-technicolor-block>
-            <td-key-point-panels-3x1 [keyPoints]="page.toolingSection.keyPoints"></td-key-point-panels-3x1>
+            <td-link-panels [panels]="page.toolingSection.panels" [cols]="3"></td-link-panels>
         </ng-container>
         <ng-container *ngIf="page.cloudSection">
             <td-home-page-technicolor-block [block]="page.cloudSection" [page]="page"></td-home-page-technicolor-block>

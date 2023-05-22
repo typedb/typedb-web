@@ -12,7 +12,6 @@ import { ContentService } from "../../service/content.service";
     styleUrls: ["./home-page.component.scss"]
 })
 export class HomePageComponent implements OnInit {
-
     page?: HomePage;
     socialMediaLinks?: SocialMediaLink[];
 

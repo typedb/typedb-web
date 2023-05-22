@@ -1,7 +1,7 @@
 import { ArrayRule, defineField, defineType } from "@sanity/types";
 import { SanityOptionalActions } from "../button";
 import { ConclusionPanel, conclusionPanelSchemaName, SanityConclusionPanel } from "../component/conclusion-panel";
-import { LinkPanel, linkPanelSchemaName, SanityLinkPanel } from "../component/link-panel";
+import { LinkPanel, linkPanelSchemaName, LinkPanelWithIcon, linkPanelWithIconSchemaName, SanityLinkPanel, SanityLinkPanelWithIcon } from "../component/link-panel";
 import { SanityTechnicolorBlock, TechnicolorBlock } from "../component/technicolor-block";
 import { collapsibleOptions, isVisibleField, keyPointsField, optionalActionsField, pageTitleField, titleAndBodyFields, titleBodyIconFields, SanityVisibleToggle } from "../common-fields";
 import { ContentTextPanel, contentTextPanelSchemaName, SanityContentTextPanel } from "../component/content-text-panel";
@@ -33,7 +33,7 @@ export interface SanityHomePage extends SanityPage {
     [sections.intro.id]: SanityIntroSection;
     [sections.features.id]: SanityFeaturesSection;
     [sections.useCases.id]: SanityUseCasesSection;
-    [sections.tooling.id]: SanityKeyPointsSection;
+    [sections.tooling.id]: SanityToolingSection;
     [sections.cloud.id]: SanityKeyPointsSection;
     [sections.community.id]: SanityCommunitySection;
     [sections.testimonials.id]: SanityTestimonialsSection;
@@ -56,6 +56,10 @@ interface SanityUseCasesSection extends SanityCoreSection {
     useCases: SanityLinkPanel[];
 }
 
+interface SanityToolingSection extends SanityCoreSection {
+    panels: SanityLinkPanelWithIcon[];
+}
+
 interface SanityKeyPointsSection extends SanityCoreSection {
     keyPoints: SanityKeyPoint[];
 }
@@ -76,8 +80,8 @@ export class HomePage extends Page {
     readonly [sections.intro.id]?: IntroSection;
     readonly [sections.features.id]?: FeaturesSection;
     readonly [sections.useCases.id]?: UseCasesSection;
-    readonly [sections.tooling.id]?: KeyPointsSection;
-    readonly [sections.cloud.id]?: KeyPointsSection;
+    readonly [sections.tooling.id]?: ToolingSection;
+    readonly [sections.cloud.id]?: CloudSection;
     readonly [sections.community.id]?: CommunitySection;
     readonly [sections.testimonials.id]?: TestimonialsSection;
     readonly [sections.conclusion.id]?: ConclusionSection;
@@ -87,8 +91,8 @@ export class HomePage extends Page {
         this.introSection = data.introSection.isVisible ? IntroSection.fromSanityIntroSection(data.introSection, db) : undefined;
         this.featuresSection = data.featuresSection.isVisible ? FeaturesSection.fromSanityFeaturesSection(data.featuresSection, db) : undefined;
         this.useCasesSection = data.useCasesSection.isVisible ? UseCasesSection.fromSanityUseCasesSection(data.useCasesSection, db) : undefined;
-        this.toolingSection = data.toolingSection.isVisible ? KeyPointsSection.fromSanityKeyPointsSection(data.toolingSection, db) : undefined;
-        this.cloudSection = data.cloudSection.isVisible ? KeyPointsSection.fromSanityKeyPointsSection(data.cloudSection, db) : undefined;
+        this.toolingSection = data.toolingSection.isVisible ? ToolingSection.fromSanityToolingSection(data.toolingSection, db) : undefined;
+        this.cloudSection = data.cloudSection.isVisible ? CloudSection.fromSanityKeyPointsSection(data.cloudSection, db) : undefined;
         this.communitySection = data.communitySection.isVisible ? CommunitySection.fromSanityCommunitySection(data.communitySection, db) : undefined;
         this.testimonialsSection = data.testimonialsSection.isVisible ? TestimonialsSection.fromSanityTestimonialsSection(data.testimonialsSection, db) : undefined;
         this.conclusionSection = data.conclusionSection.isVisible ? ConclusionSection.fromSanityConclusionSection(data.conclusionSection, db) : undefined;
@@ -140,16 +144,31 @@ class UseCasesSection extends TechnicolorBlock {
     }
 }
 
-class KeyPointsSection extends TechnicolorBlock {
+class ToolingSection extends TechnicolorBlock {
+    readonly panels: LinkPanelWithIcon[];
+
+    constructor(props: PropsOf<ToolingSection>) {
+        super(props);
+        this.panels = props.panels;
+    }
+
+    static fromSanityToolingSection(data: SanityToolingSection, db: SanityDataset) {
+        return new ToolingSection(Object.assign(TechnicolorBlock.fromSanityTechnicolorBlock(data, db), {
+            panels: data.panels.map(x => LinkPanelWithIcon.fromSanityLinkPanelWithIcon(x, db)),
+        }));
+    }
+}
+
+class CloudSection extends TechnicolorBlock {
     readonly keyPoints: KeyPoint[];
 
-    constructor(props: PropsOf<KeyPointsSection>) {
+    constructor(props: PropsOf<CloudSection>) {
         super(props);
         this.keyPoints = props.keyPoints;
     }
 
     static fromSanityKeyPointsSection(data: SanityKeyPointsSection, db: SanityDataset) {
-        return new KeyPointsSection(Object.assign(TechnicolorBlock.fromSanityTechnicolorBlock(data, db), {
+        return new CloudSection(Object.assign(TechnicolorBlock.fromSanityTechnicolorBlock(data, db), {
             keyPoints: data.keyPoints.map(x => new KeyPoint(x, db)),
         }));
     }
@@ -245,7 +264,13 @@ const sectionSchemas = [
     ]),
     sectionSchema("tooling", [
         ...titleBodyIconFields,
-        keyPointsField(3),
+        defineField({
+            name: "panels",
+            title: "Panels",
+            type: "array",
+            of: [{type: linkPanelWithIconSchemaName}],
+            validation: (rule: ArrayRule<any>) => rule.required().length(3),
+        }),
         isVisibleField,
     ]),
     sectionSchema("cloud", [
