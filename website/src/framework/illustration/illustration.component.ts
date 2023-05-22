@@ -1,4 +1,4 @@
-import { Component, ElementRef, Input, OnInit, ViewChild } from "@angular/core";
+import { AfterViewInit, Component, ElementRef, Input, NgZone, OnInit, ViewChild } from "@angular/core";
 import interact from "interactjs";
 import { CodeSnippet, GraphVisualisation, Illustration, ImageIllustration, PolyglotSnippet, SplitPaneIllustration, VideoEmbed } from "typedb-web-schema";
 
@@ -45,27 +45,33 @@ export class SplitPaneIllustrationComponent implements OnInit {
     @Input() panes!: SplitPaneIllustration;
     @Input() visible = false;
     @ViewChild("sliderEl") sliderEl!: ElementRef<HTMLElement>;
+    resizablePaneID = "";
+
+    constructor(private _ngZone: NgZone) {}
 
     ngOnInit() {
-        interact(`.sp-pane-resizable`)
-            .resizable({
-                edges: { right: true },
-                listeners: {
-                    move: (event: any) => {
-                        const scale = event.target.getBoundingClientRect().width / event.target.offsetWidth;
-                        let width = event.rect.width / scale;
-                        if (width < 50) width = 50;
-                        if (width > 600) width = 600;
-                        event.target.style.width = `${width}px`;
-                        this.sliderEl.nativeElement.style.left = `${width - 28}px`;
+        this.resizablePaneID = `resizable_${Math.floor(Math.random() * 1e9)}`;
+        this._ngZone.runOutsideAngular(() => {
+            interact(`#${this.resizablePaneID}`)
+                .resizable({
+                    edges: { right: true },
+                    listeners: {
+                        move: (event: any) => {
+                            const scale = event.target.getBoundingClientRect().width / event.target.offsetWidth;
+                            let width = event.rect.width / scale;
+                            if (width < 50) width = 50;
+                            if (width > 600) width = 600;
+                            event.target.style.width = `${width}px`;
+                            this.sliderEl.nativeElement.style.left = `${width - 28}px`;
+                        }
                     }
-                }
-            })
-            .on("resizestart", (event: any) => {
-                event.target!.style["user-select"] = "none";
-            })
-            .on("resizeend", (event: any) => {
-                event.target.style["user-select"] = "text";
-            });
+                })
+                .on("resizestart", (event: any) => {
+                    event.target!.style["user-select"] = "none";
+                })
+                .on("resizeend", (event: any) => {
+                    event.target.style["user-select"] = "text";
+                });
+        });
     }
 }

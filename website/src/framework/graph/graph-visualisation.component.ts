@@ -230,7 +230,7 @@ export function renderGraph(container: HTMLElement, graphData: GraphVisualisatio
     const vertices: Renderer.Vertex[] = graphData.vertices.map((d) => Object.assign({}, d, vertexSize[d.encoding])) as any;
     let dragged = false;
 
-    const app = new PIXI.Application({ width, height, antialias: !0, backgroundAlpha: 0, resolution: window.devicePixelRatio });
+    const app = new PIXI.Application({ width, height, antialias: true, autoDensity: true, backgroundAlpha: 0 });
     container.innerHTML = "";
     container.appendChild(app.view as any);
 
@@ -243,6 +243,7 @@ export function renderGraph(container: HTMLElement, graphData: GraphVisualisatio
         this.eventData = evt.data;
         this.alpha = 0.75;
         this.dragging = true;
+        console.log(this);
     }
 
     function onDragEnd(this: any, gfx: any) {
@@ -288,17 +289,18 @@ export function renderGraph(container: HTMLElement, graphData: GraphVisualisatio
             const boundDragEnd = onDragEnd.bind(vertex);
             renderVertex(vertex, useFallbackFont, theme);
 
-            vertex.gfx!
-                .on('click', (e: any) => {
-                    if (!dragged) {
-                        e.stopPropagation();
-                    }
-                    dragged = false;
-                })
-                .on('mousedown', onDragStart)
-                .on('mouseup', () => boundDragEnd(vertex.gfx))
-                .on('mouseupoutside', () => boundDragEnd(vertex.gfx))
-                .on('mousemove', () => boundDragMove(vertex.gfx));
+            // TODO: for some reason, none of these events are triggered
+            vertex.gfx!.onclick = (e: any) => {
+                console.log("you clicked me: ", vertex)
+                if (!dragged) {
+                    e.stopPropagation();
+                }
+                dragged = false;
+            };
+            vertex.gfx!.onmousedown = onDragStart;
+            vertex.gfx!.onmouseup = () => boundDragEnd(vertex.gfx);
+            vertex.gfx!.onmouseupoutside = () => boundDragEnd(vertex.gfx);
+            vertex.gfx!.onmousemove = () => boundDragMove(vertex.gfx);
             vertex.gfx!.eventMode = "auto";
             // vertex.gfx!.buttonMode = true;
 
