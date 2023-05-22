@@ -26,6 +26,10 @@ export class FooterComponent implements OnInit {
             }
         });
     }
+
+    get copyrightYear(): number {
+        return new Date().getFullYear();
+    }
 }
 
 const contactMediaIcons: { [key in ContactMediaID]: string } = {
