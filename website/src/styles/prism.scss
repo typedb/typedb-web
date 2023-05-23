@@ -1,27 +1,35 @@
-/* PrismJS 1.23.0 https://prismjs.com/download.html#themes=prism */
-
-$color-white: #DDDDDD;
-$color-blue: #7BA0FF;
-$color-yellow: #FFE4A7;
-$color-pink: #F28DD7;
-$color-aqua: #55EAE2;
+$color-white: #D5CCFF;
+$color-cyan: #55EAE2;
+$color-green: #4DC97C;
+$color-red: #FF8080;
+$color-pink: #FF7ABD;
+$color-blue: #82B6FF;
 $color-orange: #FFA187;
-$color-red: #F66B65;
-$color-grey: #7F83AF;
+$color-yellow: #FFE4A7;
+$color-grey: #978ABA;
 
 code[class*="language-"],
 pre[class*="language-"] {
-    color: $color-pink;
+    color: $color-white;
 }
 
 .token.comment {
-    color: $color-grey;
+    color: $color-green;
 }
 
-.token.constant,
 .token.super,
+.token.type {
+    color: $color-cyan;
+    font-style: italic;
+}
+
 .token.variable {
-    color: $color-yellow;
+    color: $color-cyan;
+}
+
+.token.modifier {
+    color: $color-blue;
+    font-style: italic;
 }
 
 .token.class-name,
@@ -29,16 +37,17 @@ pre[class*="language-"] {
     color: $color-white;
 }
 
+.token.constant,
 .token.number,
 .token.string {
-    color: $color-aqua;
+    color: $color-yellow;
 }
 
 .token.operator,
 .token.keyword,
 .token.punctuation,
 .token.special {
-    color: $color-blue;
+    color: $color-pink;
 }
 
 .token.error {

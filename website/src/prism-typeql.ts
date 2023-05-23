@@ -3,25 +3,24 @@ import Prism from "prismjs";
 export function installPrismTypeQL() {
     Prism.languages["typeql"] = {
         comment: {
-            pattern: /#.*/,
-            alias: 'comment'
+            pattern: /#.*/
         },
         error: {
-            pattern: /ERROR:.*/,
-            alias: 'error'
+            pattern: /ERROR:.*/
         },
         string: {
-            pattern: /".*?"/,
-            alias: 'string'
+            pattern: /".*?"/
         },
         keyword: {
-            pattern: /((?:(?![-a-zA-Z_0-9]|\$).)|^|\s)(as|sub|sub!|has|owns|@key|abstract|relates|plays|value|match|isa|isa!|contains|regex|val|via|iid|label|define|undefine|get|insert|delete|aggregate|std|median|mean|max|min|sum|count|group|where|from|to|in|of|limit|offset|sort|asc|desc|when|then|commit)(?![-a-zA-Z_0-9])/,
-            alias: 'typeql-keyword',
+            pattern: /((?:(?![-a-zA-Z_0-9]|\$).)|^|\s)(as|sub|sub!|has|owns|@key|abstract|relates|plays|value|match|isa|isa!|contains|regex|val|via|iid|label|define|undefine|get|insert|delete|aggregate|std|median|mean|max|min|sum|count|group|where|from|to|in|of|limit|offset|sort|asc|desc|when|then|commit|rule)(?![-a-zA-Z_0-9])/,
             lookbehind: true
         },
-        super: {
-            pattern: /((?:(?![-a-zA-Z_0-9]|\$).)|^|\s)(entity|relation|attribute|rule|thing|boolean|double|long|string|datetime)(?![-a-zA-Z_0-9])/,
-            alias: 'type',
+        type: {
+            pattern: /((?:(?![-a-zA-Z_0-9]|\$).)|^|\s)(entity|relation|attribute|thing)(?![-a-zA-Z_0-9])/,
+            lookbehind: true
+        },
+        modifier: {
+            pattern: /((?:(?![-a-zA-Z_0-9]|\$).)|^|\s)(boolean|double|long|string|datetime)(?![-a-zA-Z_0-9])/,
             lookbehind: true
         },
         special: {
