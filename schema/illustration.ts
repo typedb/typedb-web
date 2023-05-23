@@ -1,5 +1,5 @@
 import { CodeBlockIcon, CodeIcon, DocumentVideoIcon, ImageIcon, SplitVerticalIcon, SunIcon } from "@sanity/icons";
-import { ArrayRule, defineField, defineType, SanityDocument, Slug, SlugRule, StringRule, TextRule } from "@sanity/types";
+import { ArrayRule, defineField, defineType, ReferenceRule, SanityDocument, Slug, SlugRule, StringRule, TextRule } from "@sanity/types";
 import { titleField } from "./common-fields";
 import { Document, SanityDataset, SanityImage, SanityReference } from "./sanity-core";
 import { PropsOf } from "./util";
@@ -360,6 +360,7 @@ export const illustrationField = defineField({
         { type: splitPaneIllustrationSchemaName }, { type: imageIllustrationSchemaName }, { type: videoEmbedSchemaName },
         { type: codeSnippetSchemaName }, { type: polyglotSnippetSchemaName }, { type: graphVisualisationSchemaName }
     ],
+    validation: (rule: ReferenceRule) => rule.required(),
 });
 
 export const illustrationSchemas = [imageIllustrationSchema, videoEmbedSchema, codeSnippetSchema, polyglotSnippetSchema, graphVisualisationSchema, splitPaneIllustrationSchema];

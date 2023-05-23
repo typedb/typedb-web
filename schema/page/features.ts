@@ -1,24 +1,20 @@
 import { ArrayRule, defineField, defineType } from "@sanity/types";
-import { LinkButton, SanityButtons } from "../button";
 import { ContentTextPanel, contentTextPanelSchemaName, SanityContentTextPanel } from "../component/content-text-panel";
 import { bodyFieldRichText, collapsibleOptions, isVisibleField, optionalActionsField, pageTitleField, sectionIconField, titleFieldWithHighlights } from "../common-fields";
 import { SanityTechnicolorBlock, TechnicolorBlock } from "../component/technicolor-block";
-import { SanityImageRef } from "../image";
 import { Organisation, organisationLogosField, SanityOrganisation } from "../organisation";
 import { SanityDataset, SanityReference } from "../sanity-core";
-import { SanityTitleAndBody, SanityTitleBodyActions, TitleAndBody, TitleBodyActions, titleBodyActionsSectionSchemaName } from "../text";
+import { SanityTitleBodyActions, TitleBodyActions, titleBodyActionsSectionSchemaName } from "../text";
 import { PropsOf } from "../util";
 import { SanityPage } from "./common";
 
 const introSection = "introSection";
 const coreSections = "coreSections";
-const secondaryActions = "secondaryActions";
 const finalSection = "finalSection";
 
 export interface SanityFeaturesPage extends SanityPage {
     [introSection]: SanityIntroSection;
     [coreSections]: SanityCoreSection[];
-    [secondaryActions]: SanityButtons;
     [finalSection]: SanityTitleBodyActions;
 }
 
@@ -33,13 +29,11 @@ interface SanityCoreSection extends SanityTechnicolorBlock {
 export class FeaturesPage {
     readonly [introSection]: IntroSection;
     readonly [coreSections]: FeaturesPageCoreSection[];
-    readonly [secondaryActions]: LinkButton[];
     readonly [finalSection]: TitleBodyActions;
 
     constructor(data: SanityFeaturesPage, db: SanityDataset) {
         this.introSection = IntroSection.fromSanityIntroSection(data.introSection, db);
         this.coreSections = data.coreSections.map(x => FeaturesPageCoreSection.fromSanityCoreSection(x, db));
-        this.secondaryActions = data.secondaryActions.map(x => LinkButton.fromSanity(x, db));
         this.finalSection = TitleBodyActions.fromSanityTitleBodyActions(data.finalSection, db);
     }
 }
@@ -102,7 +96,7 @@ const coreSectionSchema = defineType({
         sectionIconField,
         defineField({
             name: "panels",
-            title: "Panels",
+            title: "Content Tabs",
             type: "array",
             of: [{type: contentTextPanelSchemaName}],
             validation: (rule: ArrayRule<any>) => rule.required().min(1).max(4),
@@ -129,7 +123,6 @@ const featuresPageSchema = defineType({
             type: "array",
             of: [{type: coreSectionSchemaName}],
         }),
-        Object.assign({}, optionalActionsField, { name: secondaryActions, title: "Secondary Actions", description: "Displayed after the final feature section" }),
         defineField({
             name: finalSection,
             title: "Final Section",
