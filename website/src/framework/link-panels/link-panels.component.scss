@@ -41,6 +41,10 @@
     &.lc-card-cols-4 {
         text-align: start;
         padding: 20px 30px;
+
+        h2 {
+            height: calc($line-height-m * 2);
+        }
     }
 
     .lc-cta-weak {

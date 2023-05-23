@@ -114,7 +114,7 @@ export function renderEdge(edge: Renderer.Edge, edgesGFX: PIXI.Graphics, theme: 
     const colors = theme.colors.numeric;
     const edgeColor = edge.highlight ? colors[edge.highlight] : colors.edge;
 
-    if (lineSource && lineTarget) {
+    if (lineSource && lineTarget && edgeLabelMetrics[edge.label]) {
         const { label } = edge;
         edgesGFX.lineStyle(1, edgeColor);
         const centrePoint = midpoint({ from: lineSource, to: lineTarget });

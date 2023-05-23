@@ -98,6 +98,7 @@ export class TopbarComponent implements OnInit {
         this.focusedMenuPanel = undefined;
     }
 
+    // TODO: this listener triggers many unwanted change detection cycles
     @HostListener("window:scroll", ["$event"])
     onWindowScroll(_event: any) {
         this._pageYOffset = window.pageYOffset;
