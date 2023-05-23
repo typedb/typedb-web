@@ -2,23 +2,23 @@
     <div *ngIf="page">
         <section class="page-section page-intro-section" *ngIf="page.introSection">
             <td-h1-with-highlights [value]="page.introSection.title" class="text-xxl narrow-section"></td-h1-with-highlights>
-            <td-rich-text [value]="page.introSection.body" class="subsection text-m uc-intro-body"></td-rich-text>
+            <td-rich-text [value]="page.introSection.body" class="subsection text-m"></td-rich-text>
             <td-link-panels class="subsection" [panels]="page.introSection.links" [cols]="3"></td-link-panels>
         </section>
-        <ng-container *ngIf="page.requirementsSection">
-            <td-use-case-page-technicolor-block [block]="page.requirementsSection" [page]="page"></td-use-case-page-technicolor-block>
-            <td-key-point-panels-2x2 [keyPoints]="page.requirementsSection.keyPoints"></td-key-point-panels-2x2>
+        <ng-container *ngIf="page.useCasesSection">
+            <td-solution-page-technicolor-block [block]="page.useCasesSection" [page]="page"></td-solution-page-technicolor-block>
+            <td-key-point-panels-2x2 [keyPoints]="page.useCasesSection.keyPoints"></td-key-point-panels-2x2>
         </ng-container>
         <ng-container *ngIf="page.challengesSection">
-            <td-use-case-page-technicolor-block [block]="page.challengesSection" [page]="page"></td-use-case-page-technicolor-block>
+            <td-solution-page-technicolor-block [block]="page.challengesSection" [page]="page"></td-solution-page-technicolor-block>
             <td-key-point-panels-2x2 [keyPoints]="page.challengesSection.keyPoints"></td-key-point-panels-2x2>
         </ng-container>
         <ng-container *ngIf="page.solutionSection">
-            <td-use-case-page-technicolor-block [block]="page.solutionSection" [page]="page"></td-use-case-page-technicolor-block>
+            <td-solution-page-technicolor-block [block]="page.solutionSection" [page]="page"></td-solution-page-technicolor-block>
             <td-key-point-table [keyPoints]="page.solutionSection.keyPoints"></td-key-point-table>
         </ng-container>
         <ng-container *ngIf="page.furtherReadingSection">
-            <td-use-case-page-technicolor-block [block]="page.furtherReadingSection" [page]="page"></td-use-case-page-technicolor-block>
+            <td-solution-page-technicolor-block [block]="page.furtherReadingSection" [page]="page"></td-solution-page-technicolor-block>
             <td-link-panels [panels]="page.furtherReadingSection.links" [cols]="3"></td-link-panels>
         </ng-container>
         <div class="yellow-green planet"></div>

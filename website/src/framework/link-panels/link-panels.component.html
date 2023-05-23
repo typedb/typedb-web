@@ -7,14 +7,13 @@
                 <td-rich-text [value]="panel.body" class="text-margin-xs text-xs text-sparse"></td-rich-text>
                 <ng-container [ngSwitch]="ctaStrength">
                     <a *ngSwitchCase="'weak'" class="text-xs link-tertiary lc-cta-weak">{{ panel.button.text }}</a>
-
                 </ng-container>
             </a>
             <ng-template #panelWithoutIcon>
                 <a class="lc-card lc-card-cols-3">
                     <h2 class="text-m"><strong>{{ panel.title }}</strong></h2>
                     <td-rich-text [value]="panel.body" class="text-xs text-margin-s"></td-rich-text>
-                    <td-button [button]="$any(panel).button" size="small" buttonWidth="unset"></td-button>
+                    <td-button [button]="$any(panel).button" size="small" buttonWidth="100%"></td-button>
                 </a>
             </ng-template>
         </ng-container>

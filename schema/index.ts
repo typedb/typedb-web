@@ -39,7 +39,7 @@ export { Page, type SanityPage } from "./page/common";
 export { FeaturesPage, FeaturesPageCoreSection, featuresPageSchemaName, type SanityFeaturesPage } from "./page/features";
 export { HomePage, homePageSchemaName, type SanityHomePage } from "./page/home";
 export { IntroPage, IntroPageCoreSection, introPageSchemaName, type SanityIntroPage } from "./page/intro";
-export { type SanityUseCasePage, UseCasePage, solutionPageSchemaName } from "./page/solution";
+export { type SanitySolutionPage, SolutionPage, solutionPageSchemaName } from "./page/solution";
 export { webinarsPageSchemaName } from "./page/webinars";
 export { referenceMaterialSchemaName } from "./reference-material";
 export { Document, SanityDataset } from "./sanity-core";

@@ -6,7 +6,7 @@ import { FeaturesPageComponent, FeaturesPageTechnicolorBlockComponent } from "./
 import { IntroPageComponent, IntroPageTechnicolorBlockComponent } from "./intro-page/intro-page.component";
 import { NotFoundPageComponent } from "./not-found-page/not-found-page.component";
 import { HomePageTechnicolorBlockComponent, HomePageComponent } from "./home-page/home-page.component";
-import { UseCasePageComponent, UseCasePageTechnicolorBlockComponent } from "./use-case-page/use-case-page.component";
+import { SolutionPageComponent, SolutionPageTechnicolorBlockComponent } from "./solution-page/solution-page.component";
 
 @NgModule({
     declarations: [
@@ -19,8 +19,8 @@ import { UseCasePageComponent, UseCasePageTechnicolorBlockComponent } from "./us
         IntroPageComponent,
         IntroPageTechnicolorBlockComponent,
         NotFoundPageComponent,
-        UseCasePageComponent,
-        UseCasePageTechnicolorBlockComponent,
+        SolutionPageComponent,
+        SolutionPageTechnicolorBlockComponent,
     ],
     imports: [
         BrowserModule,

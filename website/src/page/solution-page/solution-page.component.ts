@@ -1,26 +1,26 @@
 import { Component, Input, OnInit } from "@angular/core";
 import { ActivatedRoute, ParamMap, Router } from "@angular/router";
-import { SanityUseCasePage, UseCasePage, solutionPageSchemaName } from "typedb-web-schema";
+import { SanitySolutionPage, SolutionPage, solutionPageSchemaName } from "typedb-web-schema";
 import { TechnicolorBlock } from "typedb-web-schema";
 import { ContentService } from "../../service/content.service";
 
 @Component({
-    selector: "td-use-case-page",
-    templateUrl: "./use-case-page.component.html",
-    styleUrls: ["./use-case-page.component.scss"]
+    selector: "td-solution-page",
+    templateUrl: "./solution-page.component.html",
+    styleUrls: ["./solution-page.component.scss"]
 })
-export class UseCasePageComponent implements OnInit {
-    page?: UseCasePage;
+export class SolutionPageComponent implements OnInit {
+    page?: SolutionPage;
 
     constructor(private router: Router, private activatedRoute: ActivatedRoute, private contentService: ContentService) {}
 
     ngOnInit() {
         this.activatedRoute.paramMap.subscribe((params: ParamMap) => {
             this.contentService.data.subscribe((data) => {
-                const sanityUseCasePages = data.getDocumentsByType(solutionPageSchemaName) as SanityUseCasePage[];
+                const sanityUseCasePages = data.getDocumentsByType(solutionPageSchemaName) as SanitySolutionPage[];
                 const sanityUseCasePage = sanityUseCasePages.find(x => x.route.current === params.get("route"));
                 if (sanityUseCasePage) {
-                    this.page = new UseCasePage(sanityUseCasePage, data);
+                    this.page = new SolutionPage(sanityUseCasePage, data);
                 }
             });
         });
@@ -28,16 +28,16 @@ export class UseCasePageComponent implements OnInit {
 }
 
 @Component({
-    selector: "td-use-case-page-technicolor-block",
-    template: "<td-technicolor-block [block]=\"block\" [index]=\"index + 1\" size='medium' [noLeadingLine]='index === 0' [noBackgroundImage]='index === 0' [noTrailingLine]=\"noTrailingLine\" [greyLine]='true'></td-technicolor-block>",
+    selector: "td-solution-page-technicolor-block",
+    template: "<td-technicolor-block [block]=\"block\" [index]=\"index + 1\" size='medium' [noLeadingLine]='index === 0' [noTrailingLine]=\"noTrailingLine\" [greyLine]='true'></td-technicolor-block>",
 })
-export class UseCasePageTechnicolorBlockComponent {
+export class SolutionPageTechnicolorBlockComponent {
     @Input() block!: TechnicolorBlock;
-    @Input() page!: UseCasePage;
+    @Input() page!: SolutionPage;
 
     get allBlocks(): TechnicolorBlock[] {
         return [
-            this.page!.requirementsSection, this.page!.challengesSection, this.page!.solutionSection,
+            this.page!.useCasesSection, this.page!.challengesSection, this.page!.solutionSection,
             this.page!.exampleSection, this.page!.furtherReadingSection
         ].filter(x => !!x) as TechnicolorBlock[];
     }

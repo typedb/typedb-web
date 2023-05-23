@@ -23,7 +23,7 @@ const sections = {
 type SectionKey = keyof typeof sections;
 type SectionID = typeof sections[SectionKey]["id"];
 
-export interface SanityUseCasePage extends SanityPage {
+export interface SanitySolutionPage extends SanityPage {
     title: string;
     route: Slug;
     [sections.intro.id]: SanityIntroSection;
@@ -59,7 +59,7 @@ interface SanityFurtherReadingSection extends SanityCoreSection {
     links: SanityLinkPanel[];
 }
 
-export class UseCasePage extends Page {
+export class SolutionPage extends Page {
     readonly [sections.intro.id]?: IntroSection;
     readonly [sections.useCases.id]?: KeyPointsSection;
     readonly [sections.challenges.id]?: KeyPointsSection;
@@ -67,7 +67,7 @@ export class UseCasePage extends Page {
     readonly [sections.example.id]?: ExampleSection;
     readonly [sections.furtherReading.id]?: FurtherReadingSection;
 
-    constructor(data: SanityUseCasePage, db: SanityDataset) {
+    constructor(data: SanitySolutionPage, db: SanityDataset) {
         super(data);
         this.introSection = data.introSection.isVisible ? IntroSection.fromSanityIntroSection(data.introSection, db) : undefined;
         if (data.useCasesSection.isVisible) {
@@ -282,7 +282,7 @@ const sectionFields = (Object.keys(sections) as SectionKey[]).map(key => defineF
     options: collapsibleOptions,
 }));
 
-const useCasePageSchema = defineType({
+const solutionPageSchema = defineType({
     name: solutionPageSchemaName,
     title: "Solution Page",
     type: "document",
@@ -298,4 +298,4 @@ const useCasePageSchema = defineType({
     },
 });
 
-export const useCasePageSchemas = [exampleTabSchema, ...sectionSchemas, useCasePageSchema];
+export const solutionPageSchemas = [exampleTabSchema, ...sectionSchemas, solutionPageSchema];
