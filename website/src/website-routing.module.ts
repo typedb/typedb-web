@@ -14,7 +14,7 @@ const routes: Routes = [
     { path: "features", component: FeaturesPageComponent },
     { path: "cloud", component: GenericPageComponent, data: { documentID: "cloudPage" } },
     { path: "studio", component: GenericPageComponent, data: { documentID: "studioPage" } },
-    { path: "use-case/:route", component: UseCasePageComponent },
+    { path: "solution/:route", component: UseCasePageComponent },
     // { path: "webinars", component: WebinarsPageComponent },
     { path: "**", component: NotFoundPageComponent },
 ];

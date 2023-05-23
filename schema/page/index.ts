@@ -3,7 +3,7 @@ import { basePageSchemas } from "./common";
 import { featuresPageSchemas } from "./features";
 import { homePageSchemas } from "./home";
 import { introPageSchemas } from "./intro";
-import { useCasePageSchemas } from "./use-case";
+import { useCasePageSchemas } from "./solution";
 import { webinarsPageSchemas } from "./webinars";
 
 export const pageSchemas = [...basePageSchemas, ...genericPageSchemas, ...featuresPageSchemas, ...homePageSchemas, ...introPageSchemas, ...useCasePageSchemas, ...webinarsPageSchemas];

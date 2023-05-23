@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from "@angular/core";
 import { ActivatedRoute, ParamMap, Router } from "@angular/router";
-import { SanityUseCasePage, UseCasePage, useCasePageSchemaName } from "typedb-web-schema";
+import { SanityUseCasePage, UseCasePage, solutionPageSchemaName } from "typedb-web-schema";
 import { TechnicolorBlock } from "typedb-web-schema";
 import { ContentService } from "../../service/content.service";
 
@@ -17,7 +17,7 @@ export class UseCasePageComponent implements OnInit {
     ngOnInit() {
         this.activatedRoute.paramMap.subscribe((params: ParamMap) => {
             this.contentService.data.subscribe((data) => {
-                const sanityUseCasePages = data.getDocumentsByType(useCasePageSchemaName) as SanityUseCasePage[];
+                const sanityUseCasePages = data.getDocumentsByType(solutionPageSchemaName) as SanityUseCasePage[];
                 const sanityUseCasePage = sanityUseCasePages.find(x => x.route.current === params.get("route"));
                 if (sanityUseCasePage) {
                     this.page = new UseCasePage(sanityUseCasePage, data);

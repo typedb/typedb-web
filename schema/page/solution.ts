@@ -13,7 +13,7 @@ import { Page, SanityPage } from "./common";
 
 const sections = {
     intro: { id: "introSection", title: "Intro" },
-    requirements: { id: "requirementsSection", title: "Requirements" },
+    useCases: { id: "useCasesSection", title: "Use Cases" },
     challenges: { id: "challengesSection", title: "Challenges" },
     solution: { id: "solutionSection", title: "Solution" },
     example: { id: "exampleSection", title: "Example" },
@@ -27,7 +27,7 @@ export interface SanityUseCasePage extends SanityPage {
     title: string;
     route: Slug;
     [sections.intro.id]: SanityIntroSection;
-    [sections.requirements.id]: SanityKeyPointsSection;
+    [sections.useCases.id]: SanityKeyPointsSection;
     [sections.challenges.id]: SanityKeyPointsSection;
     [sections.solution.id]: SanityKeyPointsSection;
     [sections.example.id]: SanityExampleSection;
@@ -61,7 +61,7 @@ interface SanityFurtherReadingSection extends SanityCoreSection {
 
 export class UseCasePage extends Page {
     readonly [sections.intro.id]?: IntroSection;
-    readonly [sections.requirements.id]?: KeyPointsSection;
+    readonly [sections.useCases.id]?: KeyPointsSection;
     readonly [sections.challenges.id]?: KeyPointsSection;
     readonly [sections.solution.id]?: KeyPointsSection;
     readonly [sections.example.id]?: ExampleSection;
@@ -70,9 +70,9 @@ export class UseCasePage extends Page {
     constructor(data: SanityUseCasePage, db: SanityDataset) {
         super(data);
         this.introSection = data.introSection.isVisible ? IntroSection.fromSanityIntroSection(data.introSection, db) : undefined;
-        if (data.requirementsSection.isVisible) {
-            this.requirementsSection = KeyPointsSection.fromSanityKeyPointsSection({
-                data: data.requirementsSection,
+        if (data.useCasesSection.isVisible) {
+            this.useCasesSection = KeyPointsSection.fromSanityKeyPointsSection({
+                data: data.useCasesSection,
                 db: db,
                 title: new ParagraphWithHighlights({ spans: [{ text: "Requirements", highlight: true }] }),
                 iconURL: "/assets/icon/section/clipboard.svg"
@@ -197,9 +197,9 @@ class FurtherReadingSection extends TechnicolorBlock {
     }
 }
 
-export const useCasePageSchemaName = "useCasePage";
+export const solutionPageSchemaName = "solutionPage";
 
-const sectionSchemaName = (key: SectionKey) => `${useCasePageSchemaName}_${sections[key].id}`;
+const sectionSchemaName = (key: SectionKey) => `${solutionPageSchemaName}_${sections[key].id}`;
 
 const sectionSchema = (key: SectionKey, fields: any[]) => defineType({
     name: sectionSchemaName(key),
@@ -216,7 +216,7 @@ const linkPanelsField = defineField({
     validation: (rule: ArrayRule<any>) => rule.length(3),
 });
 
-const exampleTabSchemaName = `${useCasePageSchemaName}_exampleTab`;
+const exampleTabSchemaName = `${solutionPageSchemaName}_exampleTab`;
 
 const exampleTabSchema = defineType({
     name: exampleTabSchemaName,
@@ -237,7 +237,7 @@ const sectionSchemas = [
         linkPanelsField,
         isVisibleField,
     ]),
-    sectionSchema("requirements", [
+    sectionSchema("useCases", [
         bodyFieldRichText,
         keyPointsField(4),
         isVisibleField,
@@ -283,21 +283,18 @@ const sectionFields = (Object.keys(sections) as SectionKey[]).map(key => defineF
 }));
 
 const useCasePageSchema = defineType({
-    name: useCasePageSchemaName,
-    title: "Use Case Page",
+    name: solutionPageSchemaName,
+    title: "Solution Page",
     type: "document",
     icon: DocumentIcon,
     fields: [
         pageTitleField,
-        Object.assign({}, routeField, { description: "URL fragment for this use case page (e.g. identity-access-management). Do not include 'use-cases', this is automatically prepended" }),
+        Object.assign({}, routeField, { description: "URL fragment for this solution page (e.g. identity-access-management). Do not include 'solution', this is automatically prepended" }),
         ...sectionFields,
     ],
     preview: {
         select: { title: "title" },
-        prepare: (selection) => ({
-            title: selection.title,
-            subtitle: "Use Case Page",
-        }),
+        prepare: (selection) => ({ title: selection.title }),
     },
 });
 
