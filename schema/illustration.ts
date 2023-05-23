@@ -54,6 +54,10 @@ export interface SanitySplitPaneIllustration extends SanityDocument {
 
 export type SanityIllustration = SanityImageIllustration | SanityVideoEmbed | SanityCodeSnippet | SanityPolyglotSnippet | SanityGraphVisualisation | SanitySplitPaneIllustration;
 
+export interface SanityIllustrationField {
+    illustration: SanityReference<SanityIllustration>;
+}
+
 export function isImageIllustration(doc: SanityDocument): doc is SanityImageIllustration {
     return doc._type === imageIllustrationSchemaName;
 }

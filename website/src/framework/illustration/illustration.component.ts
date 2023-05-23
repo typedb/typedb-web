@@ -1,6 +1,6 @@
 import { AfterViewInit, Component, ElementRef, Input, NgZone, OnInit, ViewChild } from "@angular/core";
 import interact from "interactjs";
-import { CodeSnippet, GraphVisualisation, Illustration, ImageIllustration, PolyglotSnippet, SplitPaneIllustration, VideoEmbed } from "typedb-web-schema";
+import { CodeSnippet, GraphVisualisation, Illustration, ImageIllustration, PolyglotSnippet, RichText, SplitPaneIllustration, VideoEmbed } from "typedb-web-schema";
 
 @Component({
     selector: "td-illustration",
@@ -9,6 +9,7 @@ import { CodeSnippet, GraphVisualisation, Illustration, ImageIllustration, Polyg
 })
 export class IllustrationComponent {
     @Input() illustration!: Illustration;
+    // TODO: requiring the caller to set visible explicitly is counter-intuitive
     @Input() visible = false;
 
     get imageIllustration(): ImageIllustration | undefined {
@@ -74,4 +75,14 @@ export class SplitPaneIllustrationComponent implements OnInit {
                 });
         });
     }
+}
+
+@Component({
+    selector: "td-captioned-illustration",
+    templateUrl: "captioned-illustration.component.html",
+    styleUrls: ["captioned-illustration.component.scss"],
+})
+export class CaptionedIllustrationComponent {
+    @Input() illustration!: Illustration;
+    @Input() caption!: RichText;
 }

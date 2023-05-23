@@ -10,9 +10,11 @@ export class TechnicolorBlockComponent {
     @Input() block!: TechnicolorBlock;
     @Input() index!: number;
     @Input() size: "small" | "medium" | "large" = "small";
+    @Input() contentWidth: "narrow" | "wide" = "wide";
     @Input() noLeadingLine?: boolean;
     @Input() noTrailingLine?: boolean;
     @Input() noBackgroundImage?: boolean;
+    @Input() noBody?: boolean;
     @Input() greyLine?: boolean;
 
     get backgroundImageURL(): string | undefined {

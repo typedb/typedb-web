@@ -1,7 +1,9 @@
 import { BlockContentIcon, PlayIcon } from "@sanity/icons";
-import { ArrayRule, defineField, ReferenceRule, SlugRule, StringRule } from "@sanity/types";
+import { ArrayRule, defineField, RuleDef } from "@sanity/types";
 
 // IMPORTANT: Do not reference other schema files from this file, as this generally creates cyclic dependencies.
+
+export const requiredRule = (rule: RuleDef<any>) => rule.required();
 
 export const collapsibleOptions = {
     collapsible: true,
@@ -14,7 +16,7 @@ export const nameField = defineField({
     name: nameFieldName,
     title: "Name",
     type: "string",
-    validation: (rule: StringRule) => rule.required(),
+    validation: requiredRule,
 });
 
 export const titleFieldName = "title";
@@ -23,7 +25,7 @@ export const titleField = defineField({
     name: titleFieldName,
     title: "Title",
     type: "string",
-    validation: (rule: StringRule) => rule.required(),
+    validation: requiredRule,
 });
 
 export const pageTitleField = Object.assign({}, titleField, { title: "Web Page Title", description: "Displayed in the browser's address bar" });
@@ -50,7 +52,7 @@ export const bodyFieldRichText = defineField({
     type: "array",
     icon: BlockContentIcon,
     of: [{type: "block"}],
-    validation: (rule: ArrayRule<any>) => rule.required(),
+    validation: requiredRule,
 });
 
 export const titleAndBodyFields = [
@@ -65,7 +67,7 @@ export const sectionIconField = defineField({
     title: "Icon",
     type: "reference",
     to: [{type: "sectionIcon"}],
-    validation: (rule: ReferenceRule) => rule.required(),
+    validation: requiredRule,
     options: { disableNew: true },
 });
 
@@ -98,7 +100,7 @@ export const routeField = defineField({
     title: "Route",
     type: "slug",
     description: "URL fragment for this page. e.g. typedb-studio",
-    validation: (rule: SlugRule) => rule.required(),
+    validation: requiredRule,
 });
 
 export const linkFieldName = "link";
@@ -107,7 +109,7 @@ export const linkField = defineField({
     name: linkFieldName,
     type: "reference",
     to: [{type: "link"}],
-    validation: (rule: ReferenceRule) => rule.required(),
+    validation: requiredRule,
 });
 
 export const textLinkField = defineField({
@@ -125,7 +127,7 @@ export const videoEmbedField = defineField({
     title: "Video Embed",
     type: "reference",
     to: [{type: "videoEmbed"}],
-    validation: (rule: ReferenceRule) => rule.required(),
+    validation: requiredRule,
 });
 
 export const keyPointsFieldName = "keyPoints";

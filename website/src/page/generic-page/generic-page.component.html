@@ -1,10 +1,9 @@
 <article>
     <div *ngIf="page">
         <td-title-body-actions-section [isIntroSection]="true" [title]="page.introSection.title" [body]="page.introSection.body" [actions]="page.introSection.actions"></td-title-body-actions-section>
-        <td-organisation-logos [organisations]="page.introSection.userLogos" class="fp-user-logos"></td-organisation-logos>
         <ng-container *ngFor="let section of page.coreSections; index as idx">
-            <td-features-page-technicolor-block [section]="section" [index]="idx"></td-features-page-technicolor-block>
-            <td-content-tabs [id]="'section' + idx" [tabs]="section.panels"></td-content-tabs>
+            <td-generic-page-technicolor-block [section]="section" [index]="idx"></td-generic-page-technicolor-block>
+            <td-captioned-illustration [illustration]="section.illustration" [caption]="section.body"></td-captioned-illustration>
         </ng-container>
         <td-title-body-actions-section [title]="page.finalSection.title" [body]="page.finalSection.body" [actions]="page.finalSection.actions"></td-title-body-actions-section>
         <div class="pink planet"></div>

@@ -1,0 +1,19 @@
+@import "../../styles/colors";
+@import "../../styles/sizes";
+
+.ci-root {
+    display: flex;
+    gap: 64px;
+}
+
+.ci-illustration {
+    width: 700px;
+    padding: 16px;
+    background: $color-purple;
+    border-radius: $border-radius;
+    border: 1px solid $color-light-purple;
+}
+
+td-illustration {
+    width: 100%;
+}

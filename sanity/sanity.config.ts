@@ -9,7 +9,7 @@ import { StructureBuilder } from "sanity/lib/exports/desk";
 import {
     featuresPageSchemaName, homePageSchemaName, sectionIconSchemaName, introPageSchemaName, linkSchemaName, schemaTypes, topbarSchemaName, useCasePageSchemaName,
     webinarsPageSchemaName, footerSchemaName, communityResourcesSchemaName, formsSchemaName, videoEmbedSchemaName, organisationSchemaName, imageIllustrationSchemaName,
-    codeSnippetSchemaName, polyglotSnippetSchemaName, graphVisualisationSchemaName, splitPaneIllustrationSchemaName, referenceMaterialSchemaName
+    codeSnippetSchemaName, polyglotSnippetSchemaName, graphVisualisationSchemaName, splitPaneIllustrationSchemaName, referenceMaterialSchemaName, genericPageSchemaName
 } from "typedb-web-schema";
 import { config } from "./config";
 import { getStartedPlugin } from "./plugins/sanity-plugin-tutorial";
@@ -31,16 +31,18 @@ export default defineConfig({
         deskTool({
             structure: (s: StructureBuilder) => s.list().title("Content").items([
                 s.listItem().title("Site Navigation").icon(BlockElementIcon).child(s.list().title("Site Navigation").items([
-                    singletonListItem(s, topbarSchemaName, "Topbar", ThListIcon),
-                    singletonListItem(s, footerSchemaName, "Footer", ThListIcon),
+                    singletonListItem(s, topbarSchemaName, { title: "Topbar", icon: ThListIcon }),
+                    singletonListItem(s, footerSchemaName, { title: "Footer", icon: ThListIcon }),
                 ])),
                 s.listItem().title("Pages").icon(DocumentsIcon).child(s.list().title("Pages").items([
-                    singletonListItem(s, homePageSchemaName, "Home Page", DocumentIcon),
-                    singletonListItem(s, introPageSchemaName, "Introduction Page", DocumentIcon),
-                    singletonListItem(s, featuresPageSchemaName, "Features Page", DocumentIcon),
-                    singletonListItem(s, webinarsPageSchemaName, "Webinars Page", DocumentIcon),
+                    singletonListItem(s, homePageSchemaName, { title: "Home", icon: DocumentIcon }),
+                    singletonListItem(s, introPageSchemaName, { title: "Introduction", icon: DocumentIcon }),
+                    singletonListItem(s, featuresPageSchemaName, { title: "Features", icon: DocumentIcon }),
+                    singletonListItem(s, genericPageSchemaName, { title: "Cloud", icon: DocumentIcon, documentID: "cloudPage" }),
+                    singletonListItem(s, genericPageSchemaName, { title: "Studio", icon: DocumentIcon, documentID: "studioPage" }),
+                    singletonListItem(s, webinarsPageSchemaName, { title: "Webinars", icon: DocumentIcon }),
                     s.divider(),
-                    s.documentTypeListItem(useCasePageSchemaName).title("Use Case Pages").icon(DocumentsIcon),
+                    s.documentTypeListItem(useCasePageSchemaName).title("Solutions").icon(DocumentsIcon),
                 ])),
                 s.documentTypeListItem(linkSchemaName).title("Links"),
                 s.listItem().title("Illustrations & Videos").icon(PresentationIcon).child(s.list().title("Illustrations & Videos").items([
@@ -53,8 +55,8 @@ export default defineConfig({
                 ])),
                 s.documentTypeListItem(organisationSchemaName).title("Organisations"),
                 s.divider(),
-                singletonListItem(s, communityResourcesSchemaName, "Community Resources", CommentIcon),
-                singletonListItem(s, formsSchemaName, "Forms", ClipboardImageIcon),
+                singletonListItem(s, communityResourcesSchemaName, { title: "Community Resources", icon: CommentIcon }),
+                singletonListItem(s, formsSchemaName, { title: "Forms", icon: ClipboardImageIcon }),
                 isAdmin() ? s.listItem().title("Icons & Logos").icon(ImagesIcon).child(s.list().title("Icons & Logos").items([
                     s.documentTypeListItem(sectionIconSchemaName).title("Section Icons"),
                 ])) : s.divider(),
@@ -80,8 +82,8 @@ export default defineConfig({
 });
 
 // N.B: To rename part of the schema of a singleton type, use 'sanity documents (get|create|delete)'
-const singletonListItem = (s: StructureBuilder, typeName: string, title?: string, icon?: any) => s.listItem()
-    .title(title || typeName)
-    .id(typeName)
-    .icon(icon || DocumentIcon)
-    .child(s.document().schemaType(typeName).documentId(typeName));
+const singletonListItem = (s: StructureBuilder, typeName: string, options: { title?: string, icon?: any, documentID?: string } = {}) => s.listItem()
+    .title(options?.title || typeName)
+    .id(options?.documentID || typeName)
+    .icon(options?.icon || DocumentIcon)
+    .child(s.document().schemaType(typeName).documentId(options?.documentID || typeName));

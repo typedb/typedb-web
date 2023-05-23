@@ -33,7 +33,6 @@ export class FeaturesPageComponent implements OnInit {
 export class FeaturesPageTechnicolorBlockComponent implements OnInit {
     @Input() section!: FeaturesPageCoreSection;
     @Input() index!: number;
-    @Input() page!: FeaturesPage;
 
     block!: TechnicolorBlock;
 

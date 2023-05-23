@@ -98,7 +98,13 @@ $block-gap: 144px;
 
 .tb-body {
     flex: 1;
-    max-width: 660px;
+
+    &.tb-body-wide {
+        max-width: 660px;
+    }
+    &.tb-body-narrow {
+        max-width: 560px;
+    }
 }
 
 .tb-body-margin-bottom {

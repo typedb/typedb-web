@@ -1,13 +1,11 @@
 import { defineType } from "@sanity/types";
-import { Illustration, illustrationField, illustrationFromSanity, SanityIllustration } from "../illustration";
+import { Illustration, illustrationField, illustrationFromSanity, SanityIllustrationField } from "../illustration";
 import { Link, SanityLink } from "../link";
 import { bodyFieldRichText, learnMoreLinkField, titleField } from "../common-fields";
 import { SanityDataset, SanityReference } from "../sanity-core";
 import { RichText, SanityBodyText, SanityTitle } from "../text";
 
-export interface SanityContentPanel extends SanityTitle {
-    illustration: SanityReference<SanityIllustration>;
-}
+export interface SanityContentPanel extends SanityTitle, SanityIllustrationField {}
 
 export interface SanityContentTextPanel extends SanityContentPanel, SanityBodyText {
     learnMoreLink: SanityReference<SanityLink>;

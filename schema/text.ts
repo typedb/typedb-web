@@ -1,6 +1,8 @@
 import { defineType, PortableTextTextBlock } from "@sanity/types";
 import { LinkButton, SanityOptionalActions } from "./button";
-import { bodyFieldRichText, optionalActionsField, titleFieldWithHighlights } from "./common-fields";
+import { bodyFieldRichText, isVisibleField, optionalActionsField, SanityVisibleToggle, sectionIconField, titleFieldWithHighlights } from "./common-fields";
+import { SanityTechnicolorBlock, TechnicolorBlock } from "./component/technicolor-block";
+import { Illustration, illustrationField, illustrationFromSanity, SanityIllustrationField } from "./illustration";
 import { SanityDataset } from "./sanity-core";
 import { PropsOf } from "./util";
 
@@ -15,6 +17,8 @@ export type SanityBodyText = { body: SanityPortableText };
 export type SanityTitleAndBody = SanityTitleWithHighlights & SanityBodyText;
 
 export type SanityTitleBodyActions = SanityTitleAndBody & SanityOptionalActions;
+
+export type SanityTitleBodyIllustrationSection = SanityTechnicolorBlock & SanityIllustrationField & SanityVisibleToggle;
 
 export class ParagraphWithHighlights {
     readonly spans: { text: string, highlight: boolean }[];
@@ -80,9 +84,26 @@ export class TitleBodyActions extends TitleAndBody {
     }
 }
 
+export class TitleBodyIllustrationSection extends TechnicolorBlock {
+    readonly illustration: Illustration;
+
+    constructor(props: PropsOf<TitleBodyIllustrationSection>) {
+        super(props);
+        this.illustration = props.illustration;
+    }
+
+    static fromSanityTitleBodyIllustrationSection(data: SanityTitleBodyIllustrationSection, db: SanityDataset) {
+        return new TitleBodyIllustrationSection(Object.assign(TechnicolorBlock.fromSanityTechnicolorBlock(data, db), {
+            illustration: illustrationFromSanity(db.resolveRef(data.illustration), db),
+        }));
+    }
+}
+
 export const titleAndBodySchemaName = "titleAndBody";
 
 export const titleBodyActionsSectionSchemaName = "titleBodyActionsSection";
+
+export const titleBodyIllustrationSectionSchemaName = "titleBodyIllustrationSection";
 
 const titleAndBodySchema = defineType({
     name: titleAndBodySchemaName,
@@ -105,4 +126,17 @@ const titleBodyActionsSectionSchema = defineType({
     ],
 });
 
-export const textSchemas = [titleAndBodySchema, titleBodyActionsSectionSchema];
+const titleBodyIllustrationSectionSchema = defineType({
+    name: titleBodyIllustrationSectionSchemaName,
+    title: "Title, Body & Illustration",
+    type: "document",
+    fields: [
+        titleFieldWithHighlights,
+        bodyFieldRichText,
+        sectionIconField,
+        illustrationField,
+        isVisibleField,
+    ],
+});
+
+export const textSchemas = [titleAndBodySchema, titleBodyActionsSectionSchema, titleBodyIllustrationSectionSchema];
