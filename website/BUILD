@@ -46,7 +46,7 @@ APPLICATION_DEPS = [
     ":node_modules/d3-force",
     ":node_modules/fontfaceobserver",
     ":node_modules/interactjs",
-    ":node_modules/pixi.js",
+    ":node_modules/pixi.js-legacy",
     ":node_modules/prismjs",
     ":node_modules/rxjs",
     ":node_modules/typedb-web-schema",

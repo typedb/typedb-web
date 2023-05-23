@@ -1,7 +1,8 @@
 import { AfterViewInit, Component, ElementRef, Input, NgZone, OnDestroy, ViewChild } from "@angular/core";
 import { GraphVisualisation } from "typedb-web-schema";
 import * as d3 from "d3-force";
-import * as PIXI from "pixi.js";
+// pixi.js (non-legacy) causes a text blurring issue
+import * as PIXI from "pixi.js-legacy";
 // @ts-ignore
 import FontFaceObserver from "fontfaceobserver";
 import { arrowhead, diamondIncomingLineIntersect, Ellipse, ellipseIncomingLineIntersect, midpoint, Point, Rect, rectIncomingLineIntersect } from "./geometry";
@@ -103,7 +104,7 @@ export function renderVertexLabel(vertex: Renderer.Vertex, useFallbackFont: bool
         fill: colors[vertex.encoding],
     });
     text1.anchor.set(0.5);
-    text1.resolution = window.devicePixelRatio * 2;
+    text1.resolution = window.devicePixelRatio;
     vertex.gfx!.addChild(text1 as any);
 }
 
@@ -162,7 +163,7 @@ export function renderEdgeLabel(edge: Renderer.Edge, useFallbackFont: boolean, t
         fill: edge.highlight ? theme.colors.numeric[edge.highlight] : theme.colors.numeric.edge,
     });
     text1.anchor.set(0.5);
-    text1.resolution = window.devicePixelRatio * 2;
+    text1.resolution = window.devicePixelRatio;
     edge.labelGFX = text1;
 }
 
@@ -230,7 +231,8 @@ export function renderGraph(container: HTMLElement, graphData: GraphVisualisatio
     const vertices: Renderer.Vertex[] = graphData.vertices.map((d) => Object.assign({}, d, vertexSize[d.encoding])) as any;
     let dragged = false;
 
-    const app = new PIXI.Application({ width, height, antialias: true, autoDensity: true, backgroundAlpha: 0 });
+    PIXI.settings.ROUND_PIXELS = true;
+    const app = new PIXI.Application({ width, height, autoDensity: true, backgroundAlpha: 0, resolution: devicePixelRatio });
     container.innerHTML = "";
     container.appendChild(app.view as any);
 
