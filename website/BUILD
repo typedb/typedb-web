@@ -37,7 +37,6 @@ APPLICATION_DEPS = [
     ":node_modules/@angular/platform-browser",
     ":node_modules/@angular/platform-browser-dynamic",
     ":node_modules/@angular/router",
-    ":node_modules/@pixi/utils",
     ":node_modules/@scullyio/ng-lib",
     ":node_modules/@scullyio/scully",
     ":node_modules/@scullyio/scully-plugin-puppeteer",
