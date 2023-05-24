@@ -16,6 +16,7 @@ import { ContentPanelComponent } from "./content-panel/content-panel.component";
 import { ContentTabsComponent } from "./content-tabs/content-tabs.component";
 import { CloudWaitlistDialogComponent, ContactDialogComponent, NameEmailDialogComponent, NewsletterDialogComponent } from "./dialog/dialog.component";
 import { OptionDirective } from "./dialog/option.directive";
+import { FeatureTableComponent } from "./feature-table/feature-table.component";
 import { GraphVisualisationComponent } from "./graph/graph-visualisation.component";
 import { CaptionedIllustrationComponent, IllustrationComponent, SplitPaneIllustrationComponent } from "./illustration/illustration.component";
 import { KeyPointPanels2x2Component, KeyPointTableComponent } from "./key-point/key-point.component";
@@ -42,6 +43,7 @@ import { RouterModule } from "@angular/router";
         ContentPanelComponent,
         ContentPanelGridComponent,
         ContentTabsComponent,
+        FeatureTableComponent,
         GraphVisualisationComponent,
         H1WithHighlightsComponent,
         IllustrationComponent,
@@ -81,6 +83,7 @@ import { RouterModule } from "@angular/router";
         ContentPanelComponent,
         ContentPanelGridComponent,
         ContentTabsComponent,
+        FeatureTableComponent,
         H1WithHighlightsComponent,
         IllustrationComponent,
         KeyPointPanels2x2Component,

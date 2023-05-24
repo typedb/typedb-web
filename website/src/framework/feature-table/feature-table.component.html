@@ -1,0 +1,11 @@
+<table class="section">
+    <thead>
+        <tr><th *ngFor="let header of table.headerRow">{{ header }}</th></tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let row of table.bodyRows">
+            <th>{{ row.heading }}</th>
+            <td *ngFor="let cell of row.cells">Hello World</td>
+        </tr>
+    </tbody>
+</table>
