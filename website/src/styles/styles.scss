@@ -126,6 +126,28 @@ div[tabindex] {
     cursor: pointer;
 }
 
+table {
+    background: $color-vaticle-purple;
+    border-radius: $border-radius;
+    border-collapse: collapse;
+    box-shadow: 0 0 0 1px $color-vaticle-light-purple;
+
+    tr:not(:first-child) {
+        border-top: 1px solid $color-vaticle-light-purple;
+    }
+
+    th, td {
+        &:not(:first-child) {
+            border-left: 1px solid $color-vaticle-light-purple;
+        }
+    }
+}
+
+hr {
+    border: 0;
+    border-top: 1px solid $color-vaticle-light-purple;
+}
+
 .page-section {
     margin-top: $section-margin;
     display: flex;
@@ -165,6 +187,9 @@ div[tabindex] {
 .text-ml {
     font-size: $font-size-ml;
     line-height: $line-height-ml;
+    &.text-sparse {
+        line-height: $line-height-ml-sparse;
+    }
 }
 .text-m {
     font-size: $font-size-m;

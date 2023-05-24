@@ -1,5 +1,5 @@
 import { Component, Input } from "@angular/core";
-import { LinkPanel } from "typedb-web-schema";
+import { LinkPanel, ProductPanel } from "typedb-web-schema";
 
 @Component({
     selector: "td-link-panels",
@@ -7,7 +7,17 @@ import { LinkPanel } from "typedb-web-schema";
     styleUrls: ["link-panels.component.scss"],
 })
 export class LinkPanelsComponent {
+    // TODO: when hovering the panel, also highlight the button
     @Input() panels!: LinkPanel[];
     @Input() cols!: 3 | 4;
     @Input() ctaStrength: "weak" | "strong" = "weak";
+}
+
+@Component({
+    selector: "td-product-panels",
+    templateUrl: "product-panels.component.html",
+    styleUrls: ["product-panels.component.scss"],
+})
+export class ProductPanelsComponent {
+    @Input() panels!: ProductPanel[];
 }

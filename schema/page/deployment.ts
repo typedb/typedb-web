@@ -1,68 +1,139 @@
 import { defineField, defineType } from "@sanity/types";
-import { collapsibleOptions, pageTitleField, requiredRule } from "../common-fields";
-import { SanityConclusionSection } from "../component/conclusion-panel";
-import { SanityTechnicolorBlock } from "../component/technicolor-block";
+import { bodyFieldRichText, collapsibleOptions, isVisibleField, pageTitleField, requiredRule, sectionIconField, titleFieldWithHighlights } from "../common-fields";
+import { ConclusionSection, conclusionSectionSchemaName, SanityConclusionSection } from "../component/conclusion-panel";
+import { FeatureTable, featureTableSchemaName, SanityFeatureTable } from "../component/feature-table";
+import { ProductPanel, productPanelSchemaName, SanityProductPanel } from "../component/link-panel";
+import { SanityTechnicolorBlock, TechnicolorBlock } from "../component/technicolor-block";
 import { SanityDataset } from "../sanity-core";
-import { SanityTitleBodyActions, SanityTitleBodyIllustrationSection, TitleBodyActions, titleBodyActionsSectionSchemaName, TitleBodyIllustrationSection, titleBodyIllustrationSectionSchemaName } from "../text";
+import { PropsOf } from "../util";
 import { SanityPage } from "./common";
 
 export interface SanityDeploymentPage extends SanityPage {
     introSection: SanityIntroSection;
-    comparisonTableSection: SanityComparisonTableSection;
+    featureTableSection: SanityFeatureTableSection;
     finalSection: SanityConclusionSection;
 }
 
 export interface SanityIntroSection extends SanityTechnicolorBlock {
-    productPanels: ProductPanel[];
+    productPanels: SanityProductPanel[];
 }
 
-export interface SanityComparisonTableSection extends SanityTechnicolorBlock {
-    comparisonTable: SanityComparisonTable;
+export interface SanityFeatureTableSection extends SanityTechnicolorBlock {
+    featureTable: SanityFeatureTable;
 }
 
-export class GenericPage {
-    readonly introSection: TitleBodyActions;
-    readonly coreSections: TitleBodyIllustrationSection[];
-    readonly finalSection: TitleBodyActions;
+export class DeploymentPage {
+    readonly introSection: IntroSection;
+    readonly featureTableSection: FeatureTableSection;
+    readonly finalSection: ConclusionSection;
 
     constructor(data: SanityDeploymentPage, db: SanityDataset) {
-        this.introSection = TitleBodyActions.fromSanityTitleBodyActions(data.introSection, db);
-        this.coreSections = data.coreSections.map(x => TitleBodyIllustrationSection.fromSanityTitleBodyIllustrationSection(x, db));
-        this.finalSection = TitleBodyActions.fromSanityTitleBodyActions(data.finalSection, db);
+        this.introSection = IntroSection.fromSanityIntroSection(data.introSection, db);
+        this.featureTableSection = FeatureTableSection.fromSanityFeatureTableSection(data.featureTableSection, db);
+        this.finalSection = ConclusionSection.fromSanityConclusionSection(data.finalSection, db);
     }
 }
 
-export const genericPageSchemaName = "genericPage";
+export class IntroSection extends TechnicolorBlock {
+    readonly productPanels: ProductPanel[];
 
-const genericPageSchema = defineType({
-    name: genericPageSchemaName,
-    title: "Page",
+    constructor(props: PropsOf<IntroSection>) {
+        super(props);
+        this.productPanels = props.productPanels;
+    }
+
+    static fromSanityIntroSection(data: SanityIntroSection, db: SanityDataset) {
+        return new IntroSection(Object.assign(TechnicolorBlock.fromSanityTechnicolorBlock(data, db), {
+            productPanels: data.productPanels.map(x => ProductPanel.fromSanityProductPanel(x, db))
+        }));
+    }
+}
+
+export class FeatureTableSection extends TechnicolorBlock {
+    readonly featureTable: FeatureTable;
+
+    constructor(props: PropsOf<FeatureTableSection>) {
+        super(props);
+        this.featureTable = props.featureTable;
+    }
+
+    static fromSanityFeatureTableSection(data: SanityFeatureTableSection, db: SanityDataset) {
+        return new FeatureTableSection(Object.assign(TechnicolorBlock.fromSanityTechnicolorBlock(data, db), {
+            featureTable: FeatureTable.fromSanity(data.featureTable, db)
+        }));
+    }
+}
+
+export const deploymentPageSchemaName = "deploymentPage";
+
+const introSectionSchemaName = `${deploymentPageSchemaName}_introSection`;
+const featureTableSectionSchemaName = `${deploymentPageSchemaName}_featureTableSection`;
+
+const introSectionSchema = defineType({
+    name: introSectionSchemaName,
+    title: "Intro Section",
+    type: "object",
+    fields: [
+        titleFieldWithHighlights,
+        bodyFieldRichText,
+        sectionIconField,
+        defineField({
+            name: "productPanels",
+            title: "Product Panels",
+            type: "array",
+            of: [{ type: productPanelSchemaName }],
+        }),
+        isVisibleField,
+    ],
+});
+
+const featureTableSectionSchema = defineType({
+    name: featureTableSectionSchemaName,
+    title: "Feature Table Section",
+    type: "object",
+    fields: [
+        titleFieldWithHighlights,
+        bodyFieldRichText,
+        sectionIconField,
+        defineField({
+            name: "featureTable",
+            title: "Feature Table",
+            type: featureTableSchemaName,
+            validation: requiredRule,
+        }),
+        isVisibleField,
+    ],
+});
+
+const deploymentPageSchema = defineType({
+    name: deploymentPageSchemaName,
+    title: "Deployment Page",
     type: "document",
     fields: [
         pageTitleField,
         defineField({
             name: "introSection",
             title: "Intro Section",
-            type: titleBodyActionsSectionSchemaName,
+            type: introSectionSchemaName,
             options: collapsibleOptions,
             validation: requiredRule,
         }),
         defineField({
-            name: "coreSections",
-            title: "Core Sections",
-            type: "array",
-            of: [{type: titleBodyIllustrationSectionSchemaName}],
+            name: "featureTableSection",
+            title: "Feature Table Section",
+            type: featureTableSectionSchemaName,
+            options: collapsibleOptions,
             validation: requiredRule,
         }),
         defineField({
             name: "finalSection",
             title: "Final Section",
-            type: titleBodyActionsSectionSchemaName,
+            type: conclusionSectionSchemaName,
             options: collapsibleOptions,
             validation: requiredRule,
         }),
     ],
-    preview: { prepare: (_selection) => ({ title: "Page" }), },
+    preview: { prepare: (_selection) => ({ title: "Deployment Page" }), },
 });
 
-export const genericPageSchemas = [genericPageSchema];
+export const deploymentPageSchemas = [introSectionSchema, featureTableSectionSchema, deploymentPageSchema];

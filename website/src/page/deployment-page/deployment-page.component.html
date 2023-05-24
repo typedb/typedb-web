@@ -1,0 +1,12 @@
+<article>
+    <div *ngIf="page">
+        <td-deployment-page-technicolor-block [block]="page.introSection" [index]="0" class="dp-intro-block"></td-deployment-page-technicolor-block>
+        <td-product-panels [panels]="page.introSection.productPanels"></td-product-panels>
+
+        <td-deployment-page-technicolor-block [block]="page.featureTableSection" [index]="1"></td-deployment-page-technicolor-block>
+
+
+        <td-deployment-page-technicolor-block [block]="page.finalSection" [index]="2"></td-deployment-page-technicolor-block>
+        <td-conclusion-panel [panel]="page.finalSection.panel"></td-conclusion-panel>
+    </div>
+</article>

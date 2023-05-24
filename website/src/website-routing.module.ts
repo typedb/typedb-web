@@ -1,5 +1,6 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
+import { DeploymentPageComponent } from "./page/deployment-page/deployment-page.component";
 import { GenericPageComponent } from "./page/generic-page/generic-page.component";
 import { FeaturesPageComponent } from "./page/features-page/features-page.component";
 import { HomePageComponent } from "./page/home-page/home-page.component";
@@ -14,6 +15,7 @@ const routes: Routes = [
     { path: "features", component: FeaturesPageComponent },
     { path: "cloud", component: GenericPageComponent, data: { documentID: "cloudPage" } },
     { path: "studio", component: GenericPageComponent, data: { documentID: "studioPage" } },
+    { path: "deploy", component: DeploymentPageComponent },
     { path: "solution/:route", component: SolutionPageComponent },
     // { path: "webinars", component: WebinarsPageComponent },
     { path: "**", component: NotFoundPageComponent },

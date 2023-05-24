@@ -1,28 +1,15 @@
 @import "../../styles/colors";
 @import "../../styles/sizes";
 
-$kpt-border: 1px solid $color-vaticle-light-purple;
-
 .kpt-table {
-    background: $color-vaticle-purple;
-    border-radius: $border-radius;
-    border-collapse: collapse;
     box-shadow: 0 0 0 1px $color-vaticle-light-purple;
 
     tr {
         height: 132px;
-
-        &:not(:first-child) {
-            border-top: $kpt-border;
-        }
     }
 
     th, td {
         padding: 32px;
-
-        &:not(:first-child) {
-            border-left: $kpt-border;
-        }
     }
 
     th {

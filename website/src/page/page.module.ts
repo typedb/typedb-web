@@ -1,6 +1,7 @@
 import { NgModule } from "@angular/core";
 import { BrowserModule } from "@angular/platform-browser";
 import { FrameworkModule } from "../framework/framework.module";
+import { DeploymentPageComponent, DeploymentPageTechnicolorBlockComponent } from "./deployment-page/deployment-page.component";
 import { GenericPageComponent, GenericPageTechnicolorBlockComponent } from "./generic-page/generic-page.component";
 import { FeaturesPageComponent, FeaturesPageTechnicolorBlockComponent } from "./features-page/features-page.component";
 import { IntroPageComponent, IntroPageTechnicolorBlockComponent } from "./intro-page/intro-page.component";
@@ -10,6 +11,8 @@ import { SolutionPageComponent, SolutionPageTechnicolorBlockComponent } from "./
 
 @NgModule({
     declarations: [
+        DeploymentPageComponent,
+        DeploymentPageTechnicolorBlockComponent,
         GenericPageComponent,
         GenericPageTechnicolorBlockComponent,
         FeaturesPageComponent,

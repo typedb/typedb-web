@@ -21,7 +21,8 @@ export const schemaTypes = [
 export { ActionButton, LinkButton, type ButtonStyle } from "./button";
 export { type SanityConclusionPanel, ConclusionPanel, ConclusionSection } from "./component/conclusion-panel";
 export { ContentPanel, ContentTextPanel } from "./component/content-text-panel";
-export { LinkPanel, LinkPanelWithIcon } from "./component/link-panel";
+export { featureTableSchemaName } from "./component/feature-table";
+export { LinkPanel, LinkPanelWithIcon, ProductPanel } from "./component/link-panel";
 export { TechnicolorBlock } from "./component/technicolor-block";
 export { formsSchemaName } from "./form";
 export {
@@ -36,6 +37,7 @@ export { type SanityTopbar, Topbar, TopbarListColumn, TopbarMenuPanel, topbarSch
 export { Organisation, organisationSchemaName, type SanityOrganisation } from "./organisation";
 export { GenericPage, type SanityGenericPage, genericPageSchemaName } from "./page/generic";
 export { Page, type SanityPage } from "./page/common";
+export { DeploymentPage, type SanityDeploymentPage, deploymentPageSchemaName } from "./page/deployment";
 export { FeaturesPage, FeaturesPageCoreSection, featuresPageSchemaName, type SanityFeaturesPage } from "./page/features";
 export { HomePage, homePageSchemaName, type SanityHomePage } from "./page/home";
 export { IntroPage, IntroPageCoreSection, introPageSchemaName, type SanityIntroPage } from "./page/intro";

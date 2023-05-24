@@ -9,7 +9,7 @@ import { StructureBuilder } from "sanity/lib/exports/desk";
 import {
     featuresPageSchemaName, homePageSchemaName, sectionIconSchemaName, introPageSchemaName, linkSchemaName, schemaTypes, topbarSchemaName, solutionPageSchemaName,
     webinarsPageSchemaName, footerSchemaName, communityResourcesSchemaName, formsSchemaName, videoEmbedSchemaName, organisationSchemaName, imageIllustrationSchemaName,
-    codeSnippetSchemaName, polyglotSnippetSchemaName, graphVisualisationSchemaName, splitPaneIllustrationSchemaName, referenceMaterialSchemaName, genericPageSchemaName
+    codeSnippetSchemaName, polyglotSnippetSchemaName, graphVisualisationSchemaName, splitPaneIllustrationSchemaName, referenceMaterialSchemaName, genericPageSchemaName, deploymentPageSchemaName
 } from "typedb-web-schema";
 import { config } from "./config";
 import { getStartedPlugin } from "./plugins/sanity-plugin-tutorial";
@@ -40,6 +40,7 @@ export default defineConfig({
                     singletonListItem(s, featuresPageSchemaName, { title: "Features", icon: DocumentIcon }),
                     singletonListItem(s, genericPageSchemaName, { title: "Cloud", icon: DocumentIcon, documentID: "cloudPage" }),
                     singletonListItem(s, genericPageSchemaName, { title: "Studio", icon: DocumentIcon, documentID: "studioPage" }),
+                    singletonListItem(s, deploymentPageSchemaName, { title: "Deployment", icon: DocumentIcon }),
                     singletonListItem(s, webinarsPageSchemaName, { title: "Webinars", icon: DocumentIcon }),
                     s.divider(),
                     s.documentTypeListItem(solutionPageSchemaName).title("Solutions").icon(DocumentsIcon),

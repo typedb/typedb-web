@@ -19,7 +19,7 @@ import { OptionDirective } from "./dialog/option.directive";
 import { GraphVisualisationComponent } from "./graph/graph-visualisation.component";
 import { CaptionedIllustrationComponent, IllustrationComponent, SplitPaneIllustrationComponent } from "./illustration/illustration.component";
 import { KeyPointPanels2x2Component, KeyPointTableComponent } from "./key-point/key-point.component";
-import { LinkPanelsComponent } from "./link-panels/link-panels.component";
+import { LinkPanelsComponent, ProductPanelsComponent } from "./link-panels/link-panels.component";
 import { LinkDirective } from "./link/link.directive";
 import { OrganisationLogosComponent } from "./organisation-logos/organisation-logos.component";
 import { TitleBodyActionsSectionComponent } from "./section/title-body-actions-section.component";
@@ -54,6 +54,7 @@ import { RouterModule } from "@angular/router";
         OptionDirective,
         OrganisationLogosComponent,
         ParagraphWithHighlightsComponent,
+        ProductPanelsComponent,
         RichTextComponent,
         SocialMediaPanelsComponent,
         SplitPaneIllustrationComponent,
@@ -88,6 +89,7 @@ import { RouterModule } from "@angular/router";
         LinkPanelsComponent,
         OrganisationLogosComponent,
         ParagraphWithHighlightsComponent,
+        ProductPanelsComponent,
         SocialMediaPanelsComponent,
         RichTextComponent,
         TechnicolorBlockComponent,

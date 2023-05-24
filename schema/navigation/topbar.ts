@@ -3,7 +3,7 @@ import { defineField, defineType, SanityDocument } from "@sanity/types";
 import { LinkButton, buttonSchemaName, SanityButton } from "../button";
 import { SanityVideoEmbed } from "../illustration";
 import { Link, SanityLink, SanityTextLink, TextLink, textLinkSchemaName } from "../link";
-import { descriptionField, linkField, titleField, titleFieldName, videoEmbedField } from "../common-fields";
+import { descriptionField, linkField, requiredRule, titleField, titleFieldName, videoEmbedField } from "../common-fields";
 import { Document, SanityDataset, SanityReference } from "../sanity-core";
 
 export interface SanityTopbar extends SanityDocument {
@@ -111,7 +111,7 @@ const listColumnItemSchema = defineType({
     type: "object",
     fields: [
         titleField,
-        descriptionField,
+        Object.assign({}, descriptionField, { validation: requiredRule }),
         linkField,
     ],
     preview: {

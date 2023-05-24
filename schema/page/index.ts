@@ -1,3 +1,4 @@
+import { deploymentPageSchemas } from "./deployment";
 import { genericPageSchemas } from "./generic";
 import { basePageSchemas } from "./common";
 import { featuresPageSchemas } from "./features";
@@ -6,4 +7,4 @@ import { introPageSchemas } from "./intro";
 import { solutionPageSchemas } from "./solution";
 import { webinarsPageSchemas } from "./webinars";
 
-export const pageSchemas = [...basePageSchemas, ...genericPageSchemas, ...featuresPageSchemas, ...homePageSchemas, ...introPageSchemas, ...solutionPageSchemas, ...webinarsPageSchemas];
+export const pageSchemas = [...basePageSchemas, ...deploymentPageSchemas, ...genericPageSchemas, ...featuresPageSchemas, ...homePageSchemas, ...introPageSchemas, ...solutionPageSchemas, ...webinarsPageSchemas];

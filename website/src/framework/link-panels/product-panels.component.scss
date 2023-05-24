@@ -1,0 +1,76 @@
+@import "../../styles/colors";
+@import "../../styles/sizes";
+
+table {
+    text-align: center;
+}
+
+td {
+    padding: 24px;
+}
+
+td-rich-text {
+    display: block;
+}
+
+.pp-body-text {
+    height: 120px;
+}
+
+.pp-button-row {
+    background: $color-vaticle-deep-purple;
+}
+
+.lc-root-cols-3 {
+    display: flex;
+    justify-content: space-between;
+    gap: 40px;
+}
+
+.lc-root-cols-4 {
+    display: grid;
+    gap: 40px;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-auto-rows: 340px;
+}
+
+.lc-card {
+    flex: 1;
+    border-radius: $border-radius;
+    background-color: $color-vaticle-purple;
+    border: 1px solid $color-vaticle-light-purple;
+    display: flex;
+    flex-direction: column;
+    transition: border-color 150ms ease;
+
+    img {
+        width: 48px;
+        height: 48px;
+    }
+
+    &:hover, &:focus {
+        border-color: $color-vaticle-green;
+    }
+
+    &.lc-card-cols-3 {
+        text-align: center;
+        padding: 30px 32px;
+    }
+
+    &.lc-card-cols-4 {
+        text-align: start;
+        padding: 20px 30px;
+
+        h2 {
+            height: calc($line-height-m * 2);
+        }
+    }
+
+    .lc-cta-weak {
+        margin-top: 14px;
+    }
+}
+
+td-button {
+    margin-top: 24px;
+}

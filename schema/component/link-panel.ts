@@ -1,8 +1,8 @@
-import { defineType } from "@sanity/types";
+import { defineField, defineType } from "@sanity/types";
 import { LinkButton } from "../button";
 import { SanityImageRef } from "../image";
 import { Link, SanityTextLink } from "../link";
-import { bodyFieldRichText, sectionIconField, textLinkField, titleField } from "../common-fields";
+import { bodyFieldRichText, requiredRule, sectionIconField, textLinkField, titleField } from "../common-fields";
 import { SanityDataset, SanityReference } from "../sanity-core";
 import { RichText, SanityPortableText } from "../text";
 import { PropsOf } from "../util";
@@ -15,6 +15,10 @@ export interface SanityLinkPanel {
 
 export interface SanityLinkPanelWithIcon extends SanityLinkPanel {
     icon: SanityReference<SanityImageRef>;
+}
+
+export interface SanityProductPanel extends SanityLinkPanel {
+    secondaryBody: SanityPortableText;
 }
 
 export class LinkPanel {
@@ -50,6 +54,19 @@ export class LinkPanelWithIcon extends LinkPanel {
     }
 }
 
+export class ProductPanel extends LinkPanel {
+    readonly secondaryBody: RichText;
+
+    constructor(props: PropsOf<ProductPanel>) {
+        super(props);
+        this.secondaryBody = props.secondaryBody;
+    }
+
+    static fromSanityProductPanel(data: SanityProductPanel, db: SanityDataset): ProductPanel {
+        return new ProductPanel(Object.assign(LinkPanel.fromSanityLinkPanel(data, db), { secondaryBody: new RichText(data.secondaryBody) }))
+    }
+}
+
 export const linkPanelSchemaName = "linkPanel";
 
 const linkPanelSchema = defineType({
@@ -70,11 +87,30 @@ const linkPanelWithIconSchema = defineType({
     title: "Link Panel",
     type: "object",
     fields: [
-        titleField,
-        bodyFieldRichText,
-        textLinkField,
+        ...linkPanelSchema.fields,
         sectionIconField,
     ],
 });
 
-export const linkPanelSchemas = [linkPanelSchema, linkPanelWithIconSchema];
+export const productPanelSchemaName = "productPanel";
+
+const productPanelSchema = defineType({
+    name: productPanelSchemaName,
+    title: "Product Panel",
+    type: "object",
+    fields: [
+        titleField,
+        bodyFieldRichText,
+        defineField({
+            name: "secondaryBody",
+            title: "Secondary Body",
+            description: "Displayed under the primary body, separated by a horizontal rule",
+            type: "array",
+            of: [{ type: "block" }],
+            validation: requiredRule,
+        }),
+        textLinkField,
+    ],
+});
+
+export const linkPanelSchemas = [linkPanelSchema, linkPanelWithIconSchema, productPanelSchema];
