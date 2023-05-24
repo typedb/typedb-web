@@ -1,13 +1,13 @@
 @import "../../styles/colors";
 @import "../../styles/sizes";
 
-$kpt-border: 1px solid $color-light-purple;
+$kpt-border: 1px solid $color-vaticle-light-purple;
 
 .kpt-table {
-    background: $color-purple;
+    background: $color-vaticle-purple;
     border-radius: $border-radius;
     border-collapse: collapse;
-    box-shadow: 0 0 0 1px $color-light-purple;
+    box-shadow: 0 0 0 1px $color-vaticle-light-purple;
 
     tr {
         height: 132px;
@@ -27,7 +27,7 @@ $kpt-border: 1px solid $color-light-purple;
 
     th {
         width: 140px;
-        background: $color-deep-purple;
+        background: $color-vaticle-deep-purple;
 
         > div {
             display: flex;

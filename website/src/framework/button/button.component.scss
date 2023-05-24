@@ -19,8 +19,8 @@ a {
 
     &.primary {
         border-color: transparent;
-        background: $color-green;
-        color: $color-purple;
+        background: $color-vaticle-green;
+        color: $color-vaticle-purple;
 
         &:hover, &:focus {
             background-color: #0B939F;
@@ -28,13 +28,13 @@ a {
     }
 
     &.secondary {
-        border-color: $color-green;
+        border-color: $color-vaticle-green;
         background: transparent;
-        color: $color-green;
+        color: $color-vaticle-green;
 
         &:hover, &:focus {
-            background-color: $color-green;
-            color: $color-purple;
+            background-color: $color-vaticle-green;
+            color: $color-vaticle-purple;
         }
     }
 

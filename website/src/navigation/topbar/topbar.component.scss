@@ -15,15 +15,15 @@ header {
     top: 0;
 
     &.tb-solid, &:hover {
-        background-color: $color-purple;
-        border-bottom-color: $color-secondary-purple;
+        background-color: $color-vaticle-purple;
+        border-bottom-color: $color-vaticle-secondary-purple;
     }
 }
 
 td-topbar-menu-panel {
     top: 80px;
-    border-bottom: 1px solid $color-secondary-purple;
-    background-color: rgba($color-purple, .8);
+    border-bottom: 1px solid $color-vaticle-secondary-purple;
+    background-color: rgba($color-vaticle-purple, .8);
 
     &::before {
         content: '';
@@ -46,7 +46,7 @@ nav {
         padding: 0 20px;
 
         &:hover, &:focus {
-            color: $color-green;
+            color: $color-vaticle-green;
             font-weight: $font-weight-semi-bold;
             text-decoration: underline;
         }
@@ -96,7 +96,7 @@ nav {
 }
 
 a, a:visited {
-    color: $color-white;
+    color: $color-vaticle-white;
 }
 
 a .tb-external-link-icon {
@@ -107,7 +107,7 @@ a .tb-external-link-icon {
     visibility: hidden;
 
     path {
-        fill: $color-green;
+        fill: $color-vaticle-green;
     }
 }
 

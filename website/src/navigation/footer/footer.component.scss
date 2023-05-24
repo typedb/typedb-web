@@ -8,17 +8,17 @@ footer {
 }
 
 a, a:visited, a p {
-    color: $color-white;
+    color: $color-vaticle-white;
 
     &:hover, &:focus {
         font-weight: $font-weight-semi-bold;
-        color: $color-green;
+        color: $color-vaticle-green;
         text-decoration: underline;
     }
 }
 
 a:hover p, a:focus p {
-    color: $color-green;
+    color: $color-vaticle-green;
 }
 
 .ft-section {
@@ -26,7 +26,7 @@ a:hover p, a:focus p {
     padding: 40px 0;
 
     &:not(:first-child) {
-        border-top: 1px solid $color-light-purple;
+        border-top: 1px solid $color-vaticle-light-purple;
     }
 }
 

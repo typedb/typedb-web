@@ -17,8 +17,8 @@
 .lc-card {
     flex: 1;
     border-radius: $border-radius;
-    background-color: $color-purple;
-    border: 1px solid $color-light-purple;
+    background-color: $color-vaticle-purple;
+    border: 1px solid $color-vaticle-light-purple;
     display: flex;
     flex-direction: column;
     transition: border-color 150ms ease;
@@ -29,7 +29,7 @@
     }
 
     &:hover, &:focus {
-        border-color: $color-green;
+        border-color: $color-vaticle-green;
     }
 
     &.lc-card-cols-3 {

@@ -20,7 +20,7 @@ $card-offset-base: 26%;
     margin-right: auto;
     top: 0;
     border-radius: $border-radius;
-    background: $color-deep-purple;
+    background: $color-vaticle-deep-purple;
     opacity: 1;
     box-shadow: 0 8px 6px rgba(6, 4, 20, 0.601481);
     transition-property: transform, opacity;
@@ -56,7 +56,7 @@ $card-offset-base: 26%;
 .tc-card-content {
     height: 100%;
     width: 100%;
-    background: $color-purple;
+    background: $color-vaticle-purple;
     padding: 40px;
     display: flex;
     flex-direction: column;
@@ -64,7 +64,7 @@ $card-offset-base: 26%;
 }
 
 .tc-details {
-    border-top: 1px solid $color-light-purple;
+    border-top: 1px solid $color-vaticle-light-purple;
     padding-top: 20px;
     display: flex;
     flex-direction: row;
@@ -95,7 +95,7 @@ $card-offset-base: 26%;
 .tc-controls-btn {
     width: 45px;
     height: 45px;
-    border: 1px solid $color-green;
+    border: 1px solid $color-vaticle-green;
     border-radius: 50%;
     display: flex;
     justify-content: center;
@@ -116,11 +116,11 @@ $card-offset-base: 26%;
     width: 8px;
     height: 8px;
     border-radius: 50%;
-    background: $color-light-purple;
+    background: $color-vaticle-light-purple;
     transition: transform 150ms ease;
 
     &.tc-bead-focused {
         transform: scale(1.5);
-        background: $color-green;
+        background: $color-vaticle-green;
     }
 }

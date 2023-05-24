@@ -5,8 +5,8 @@
 @import "colors";
 @import "sizes";
 
-$default-background: $color-black-purple;
-$default-text-color: $color-white;
+$default-background: $color-vaticle-black-purple;
+$default-text-color: $color-vaticle-grey;
 
 html, body {
     height: 100%;
@@ -64,6 +64,10 @@ h1, h2, h3, h4, h5, h6, p, ul, ol, pre {
     font-size: unset;
 }
 
+h1, h2, h3, h4, h5, h6 {
+    color: $color-vaticle-white;
+}
+
 h1 {
     font-weight: $font-weight-bold;
 }
@@ -74,22 +78,22 @@ h2, h3, h4, h5, h6 {
 
 a, a p, a address {
     cursor: pointer;
-    color: $color-white;
+    color: $color-vaticle-white;
     text-decoration: none;
 }
 
 p, aside {
     a, a:visited {
-        color: $color-green;
+        color: $color-vaticle-green;
     }
 }
 
 a.link-tertiary, a.link-tertiary:visited {
-    color: $color-white;
+    color: $color-vaticle-white;
     font-weight: $font-weight-bold;
 
     &:hover, &:focus {
-        color: $color-white;
+        color: $color-vaticle-white;
         text-decoration: underline;
     }
 }
@@ -107,7 +111,7 @@ address {
 }
 
 aside {
-    color: $color-grey;
+    color: $color-vaticle-grey;
 }
 
 [hidden] {
@@ -235,7 +239,7 @@ div[tabindex] {
 
 .mat-dialog-container {
     padding: 32px;
-    background: $color-purple;
+    background: $color-vaticle-purple;
 }
 
 .mat-dialog-title {
@@ -277,10 +281,10 @@ body .mat-dialog-content {
     margin-top: -15px;
 }
 .mat-form-field-appearance-outline .mat-form-field-outline {
-    background: $color-secondary-purple;
+    background: $color-vaticle-secondary-purple;
 }
 body .mat-form-field-label {
-    color: $color-secondary-grey;
+    color: $color-vaticle-secondary-grey;
     font-style: italic;
 }
 body .mat-focused .mat-form-field-label {
@@ -288,18 +292,18 @@ body .mat-focused .mat-form-field-label {
 }
 .mat-form-field-appearance-outline.mat-focused {
     .mat-form-field-outline, .mat-form-field-label {
-        color: $color-green !important;
+        color: $color-vaticle-green !important;
     }
 }
 body .mat-form-field-appearance-outline .mat-form-field-outline-start,
 body .mat-form-field-appearance-outline .mat-form-field-outline-end,
 body .mat-form-field-appearance-outline .mat-form-field-outline-gap {
-    border-color: $color-secondary-deep-grey;
+    border-color: $color-vaticle-secondary-deep-grey;
 }
 body .mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-start,
 body .mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-end,
 body .mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-gap {
-    border-color: $color-green;
+    border-color: $color-vaticle-green;
 }
 .mat-form-field-wrapper {
     padding-bottom: 14px;
@@ -317,7 +321,7 @@ body .mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-gap 
 body .mat-input-element {
     line-height: 32px;
     margin-bottom: 8px;
-    caret-color: $color-green;
+    caret-color: $color-vaticle-green;
 }
 body textarea.mat-input-element {
     line-height: $line-height-xs;
@@ -329,8 +333,8 @@ body select.mat-input-element {
 body .mat-form-field.mat-warn .mat-input-element,
 body .mat-form-field-invalid .mat-input-element,
 body .mat-form-field.mat-form-field-invalid .mat-form-field-label {
-    caret-color: $color-red;
-    color: $color-red;
+    caret-color: $color-vaticle-red;
+    color: $color-vaticle-red;
 }
 body .mat-form-field-type-mat-native-select .mat-form-field-infix::after {
     width: 48px;
@@ -339,7 +343,7 @@ body .mat-form-field-type-mat-native-select .mat-form-field-infix::after {
     top: -3px;
     bottom: 1px;
     right: 0;
-    border-left: 1px solid $color-light-purple;
+    border-left: 1px solid $color-vaticle-light-purple;
     background: no-repeat center url("/assets/icon/chevron-down.svg");
 }
 .mat-form-field-type-mat-native-select.mat-form-field-appearance-outline .mat-form-field-flex {
@@ -360,7 +364,7 @@ body .mat-checkbox-inner-container {
 .mat-checkbox-checked.mat-accent .mat-checkbox-background,
 .mat-checkbox-checked:not(.mat-checkbox-disabled).mat-accent .mat-ripple-element,
 .mat-checkbox:active:not(.mat-checkbox-disabled).mat-accent .mat-ripple-element {
-    background-color: $color-green;
+    background-color: $color-vaticle-green;
 }
 
 .markdown pre {

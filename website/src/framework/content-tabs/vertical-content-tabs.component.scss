@@ -3,9 +3,9 @@
 
 .uc-root {
     height: 796px;
-    border: 1px solid $color-light-purple;
+    border: 1px solid $color-vaticle-light-purple;
     border-radius: $border-radius;
-    background: $color-purple;
+    background: $color-vaticle-purple;
     display: flex;
     flex-direction: row;
 }
@@ -14,7 +14,7 @@
     width: 202px;
     display: flex;
     flex-direction: column;
-    border-right: 1px solid $color-light-purple;
+    border-right: 1px solid $color-vaticle-light-purple;
     text-align: center;
 }
 
@@ -28,7 +28,7 @@
     padding: 12px;
 
     &:not(:first-child) {
-        border-top: 1px solid $color-light-purple;
+        border-top: 1px solid $color-vaticle-light-purple;
     }
 
     @for $n from 2 through 5 {
@@ -39,7 +39,7 @@
 }
 
 .uc-tab-selected {
-    color: $color-green;
+    color: $color-vaticle-green;
 }
 
 .uc-tab-content {

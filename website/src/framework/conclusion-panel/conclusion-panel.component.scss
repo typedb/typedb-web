@@ -2,7 +2,7 @@
 @import "../../styles/sizes";
 
 .cp-root {
-    border: 1px solid $color-light-purple;
+    border: 1px solid $color-vaticle-light-purple;
     border-radius: $border-radius;
     display: flex;
 
@@ -15,15 +15,15 @@
     width: 800px;
     display: flex;
     flex-direction: column;
-    background: $color-purple;
+    background: $color-vaticle-purple;
     border-radius: $border-radius 0 0 $border-radius;
 }
 
 .cp-resources-area {
     flex: 1;
-    background: $color-deep-purple;
+    background: $color-vaticle-deep-purple;
     border-radius: 0 $border-radius $border-radius 0;
-    border-left: 1px solid $color-light-purple;
+    border-left: 1px solid $color-vaticle-light-purple;
 
     ul {
         list-style: none;

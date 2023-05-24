@@ -77,19 +77,19 @@ $block-gap: 144px;
 }
 
 .tb-graphic-line-green {
-    @include graphic-line-gradient($color-green);
+    @include graphic-line-gradient($color-vaticle-green);
 }
 
 .tb-graphic-line-pink {
-    @include graphic-line-gradient($color-secondary-pink);
+    @include graphic-line-gradient($color-vaticle-secondary-pink);
 }
 
 .tb-graphic-line-yellow {
-    @include graphic-line-gradient($color-secondary-yellow);
+    @include graphic-line-gradient($color-vaticle-secondary-yellow);
 }
 
 .tb-graphic-line-grey {
-    @include graphic-line-gradient($color-secondary-purple);
+    @include graphic-line-gradient($color-vaticle-secondary-purple);
 }
 
 .tb-graphic-line-top {

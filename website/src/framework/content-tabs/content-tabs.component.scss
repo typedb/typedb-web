@@ -11,11 +11,11 @@
     height: 74px;
     display: flex;
     flex-direction: row;
-    border: 1px solid $color-light-purple;
+    border: 1px solid $color-vaticle-light-purple;
     border-bottom: none;
     border-top-left-radius: $border-radius;
     border-top-right-radius: $border-radius;
-    background: $color-deep-purple;
+    background: $color-vaticle-deep-purple;
 }
 
 .ft-tab {
@@ -25,13 +25,13 @@
     align-items: center;
 
     &:not(:first-child) {
-        border-left: 1px solid $color-light-purple;
+        border-left: 1px solid $color-vaticle-light-purple;
     }
 }
 
 .ft-tab-selected, .ft-tab-selected p {
-    color: $color-green;
-    background: $color-purple;
+    color: $color-vaticle-green;
+    background: $color-vaticle-purple;
 }
 
 .ft-tab-content {

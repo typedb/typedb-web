@@ -3,9 +3,9 @@
 
 .sm-root {
     height: 160px;
-    border: 1px solid $color-light-purple;
+    border: 1px solid $color-vaticle-light-purple;
     border-radius: $border-radius;
-    background: $color-purple;
+    background: $color-vaticle-purple;
     display: flex;
     flex-direction: row;
 }
@@ -19,7 +19,7 @@
     gap: 4px;
 
     &:not(:first-child) {
-        border-left: 1px solid $color-light-purple;
+        border-left: 1px solid $color-vaticle-light-purple;
     }
 
     img {
