@@ -19,7 +19,7 @@ export const schemaTypes = [
 ];
 
 export { ActionButton, LinkButton, type ButtonStyle } from "./button";
-export { type SanityConclusionPanel, ConclusionPanel } from "./component/conclusion-panel";
+export { type SanityConclusionPanel, ConclusionPanel, ConclusionSection } from "./component/conclusion-panel";
 export { ContentPanel, ContentTextPanel } from "./component/content-text-panel";
 export { LinkPanel, LinkPanelWithIcon } from "./component/link-panel";
 export { TechnicolorBlock } from "./component/technicolor-block";

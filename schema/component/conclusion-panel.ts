@@ -1,14 +1,19 @@
 import { defineField, defineType, StringRule } from "@sanity/types";
 import { LinkButton, SanityOptionalActions } from "../button";
 import { SanityTextLink, TextLink, textLinkSchemaName } from "../link";
-import { bodyFieldRichText, optionalActionsField, titleField } from "../common-fields";
+import { bodyFieldRichText, isVisibleField, optionalActionsField, titleBodyIconFields, titleField } from "../common-fields";
 import { SanityDataset } from "../sanity-core";
 import { RichText, SanityBodyText, SanityTitle } from "../text";
 import { PropsOf } from "../util";
+import { SanityTechnicolorBlock, TechnicolorBlock } from "./technicolor-block";
 
 export interface SanityConclusionPanel extends SanityTitle, SanityBodyText, SanityOptionalActions {
     resourceListTitle: string;
     resources: SanityTextLink[];
+}
+
+export interface SanityConclusionSection extends SanityTechnicolorBlock {
+    panel: SanityConclusionPanel;
 }
 
 export class ConclusionPanel {
@@ -37,9 +42,24 @@ export class ConclusionPanel {
     }
 }
 
+export class ConclusionSection extends TechnicolorBlock {
+    readonly panel: ConclusionPanel;
+
+    constructor(props: PropsOf<ConclusionSection>) {
+        super(props);
+        this.panel = props.panel;
+    }
+
+    static fromSanityConclusionSection(data: SanityConclusionSection, db: SanityDataset) {
+        return new ConclusionSection(Object.assign(TechnicolorBlock.fromSanityTechnicolorBlock(data, db), {
+            panel: ConclusionPanel.fromSanity(data.panel, db)
+        }));
+    }
+}
+
 export const conclusionPanelSchemaName = "conclusionPanel";
 
-export const conclusionPanelSchema = defineType({
+const conclusionPanelSchema = defineType({
     name: conclusionPanelSchemaName,
     title: "Conclusion Panel",
     type: "object",
@@ -61,3 +81,23 @@ export const conclusionPanelSchema = defineType({
         }),
     ],
 });
+
+export const conclusionSectionSchemaName = "conclusionSection";
+
+const conclusionSectionSchema = defineType({
+    name: conclusionSectionSchemaName,
+    title: `Conclusion Section`,
+    type: "object",
+    fields: [
+        ...titleBodyIconFields,
+        optionalActionsField,
+        defineField({
+            name: "panel",
+            title: "Panel",
+            type: conclusionPanelSchemaName,
+        }),
+        isVisibleField,
+    ],
+});
+
+export const conclusionPanelSchemas = [conclusionPanelSchema, conclusionSectionSchema];

@@ -1,47 +1,50 @@
-import { ArrayRule, defineField, defineType } from "@sanity/types";
-import { bodyFieldRichText, collapsibleOptions, isVisibleField, pageTitleField, sectionIconField, titleFieldWithHighlights } from "../common-fields";
+import { defineField, defineType } from "@sanity/types";
+import { bodyFieldRichText, collapsibleOptions, isVisibleField, pageTitleField, requiredRule, SanityVisibleToggle, sectionIconField, titleFieldWithHighlights } from "../common-fields";
+import { ConclusionSection, conclusionSectionSchemaName, SanityConclusionSection } from "../component/conclusion-panel";
 import { ContentPanel, contentPanelSchemaName, SanityContentPanel } from "../component/content-text-panel";
-import { TechnicolorBlock } from "../component/technicolor-block";
-import { SanityImageRef } from "../image";
-import { SanityDataset, SanityReference } from "../sanity-core";
-import { SanityTitleAndBody, SanityTitleBodyActions, TitleAndBody, titleAndBodySchemaName, TitleBodyActions } from "../text";
+import { SanityTechnicolorBlock, TechnicolorBlock } from "../component/technicolor-block";
+import { SanityDataset } from "../sanity-core";
+import { RichText, SanityPortableText, SanityTitleBodyActions, titleAndBodySchemaName, TitleBodyActions } from "../text";
 import { PropsOf } from "../util";
 import { SanityPage } from "./common";
 
-const introSection = "introSection";
-const coreSections = "coreSections";
-
 export interface SanityIntroPage extends SanityPage {
-    [introSection]: SanityTitleBodyActions;
-    [coreSections]: SanityCoreSection[];
+    introSection: SanityTitleBodyActions;
+    coreSections: SanityCoreSection[];
+    finalSection: SanityConclusionSection;
 }
 
-interface SanityCoreSection extends SanityTitleAndBody {
-    icon: SanityReference<SanityImageRef>;
+interface SanityCoreSection extends SanityTechnicolorBlock, SanityVisibleToggle {
     contentTabs: SanityContentPanel[];
+    longText: SanityPortableText;
 }
 
 export class IntroPage {
-    readonly [introSection]: TitleBodyActions;
-    readonly [coreSections]: IntroPageCoreSection[];
+    readonly introSection: TitleBodyActions;
+    readonly coreSections: IntroPageCoreSection[];
+    readonly finalSection: ConclusionSection;
 
     constructor(data: SanityIntroPage, db: SanityDataset) {
         this.introSection = TitleBodyActions.fromSanityTitleBodyActions(data.introSection, db);
         this.coreSections = data.coreSections.map(x => IntroPageCoreSection.fromSanityCoreSection(x, db));
+        this.finalSection = ConclusionSection.fromSanityConclusionSection(data.finalSection, db);
     }
 }
 
 export class IntroPageCoreSection extends TechnicolorBlock {
     readonly contentTabs: ContentPanel[];
+    readonly longText: RichText;
 
     constructor(props: PropsOf<IntroPageCoreSection>) {
         super(props);
         this.contentTabs = props.contentTabs;
+        this.longText = props.longText;
     }
 
     static fromSanityCoreSection(data: SanityCoreSection, db: SanityDataset) {
         return new IntroPageCoreSection(Object.assign(TechnicolorBlock.fromSanityTechnicolorBlock(data, db), {
-            contentTabs: data.contentTabs.map(x => new ContentPanel(x, db))
+            contentTabs: data.contentTabs.map(x => new ContentPanel(x, db)),
+            longText: new RichText(data.longText),
         }));
     }
 }
@@ -63,7 +66,14 @@ const introPageCoreSectionSchema = defineType({
             title: "Content Tabs",
             type: "array",
             of: [{type: contentPanelSchemaName}],
-            validation: (rule: ArrayRule<any>) => rule.required(),
+            validation: requiredRule,
+        }),
+        defineField({
+            name: "longText",
+            title: "Long Text",
+            type: "array",
+            of: [{type: "block"}],
+            validation: requiredRule,
         }),
         isVisibleField,
     ],
@@ -76,17 +86,25 @@ const introPageSchema = defineType({
     fields: [
         pageTitleField,
         defineField({
-            name: introSection,
+            name: "introSection",
             title: "Intro Section",
             type: titleAndBodySchemaName,
             options: collapsibleOptions,
+            validation: requiredRule,
         }),
         defineField({
-            name: coreSections,
+            name: "coreSections",
             title: "Core Sections",
             type: "array",
             of: [{type: introPageCoreSectionSchemaName}],
+            validation: requiredRule,
         }),
+        defineField({
+            name: "finalSection",
+            title: "Final Section",
+            type: conclusionSectionSchemaName,
+            validation: requiredRule,
+        })
     ],
     preview: { prepare: (_selection) => ({ title: "Introduction Page" }), },
 });

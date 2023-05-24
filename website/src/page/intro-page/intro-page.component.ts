@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
-import { IntroPage, IntroPageCoreSection, introPageSchemaName, SanityIntroPage } from "typedb-web-schema";
+import { ConclusionSection, IntroPage, IntroPageCoreSection, introPageSchemaName, SanityIntroPage } from "typedb-web-schema";
 import { TechnicolorBlock } from "typedb-web-schema";
 import { ContentService } from "../../service/content.service";
 
@@ -28,10 +28,10 @@ export class IntroPageComponent implements OnInit {
 
 @Component({
     selector: "td-intro-page-technicolor-block",
-    template: "<td-technicolor-block [block]=\"block\" [index]=\"index\" [noLeadingLine]='index === 0' [noBackgroundImage]='true' [greyLine]='true'></td-technicolor-block>",
+    template: "<td-technicolor-block [block]=\"block\" [index]=\"index\" size='medium' [noLeadingLine]='index === 0' [noBackgroundImage]='true' [greyLine]='true'></td-technicolor-block>",
 })
 export class IntroPageTechnicolorBlockComponent implements OnInit {
-    @Input() section!: IntroPageCoreSection;
+    @Input() section!: IntroPageCoreSection | ConclusionSection;
     @Input() index!: number;
     @Input() page!: IntroPage;
 

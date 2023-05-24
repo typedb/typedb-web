@@ -1,9 +1,9 @@
 import { ArrayRule, defineField, defineType } from "@sanity/types";
 import { SanityOptionalActions } from "../button";
-import { ConclusionPanel, conclusionPanelSchemaName, SanityConclusionPanel } from "../component/conclusion-panel";
+import { conclusionPanelSchemaName, ConclusionSection, SanityConclusionSection } from "../component/conclusion-panel";
 import { LinkPanel, linkPanelSchemaName, LinkPanelWithIcon, linkPanelWithIconSchemaName, SanityLinkPanel, SanityLinkPanelWithIcon } from "../component/link-panel";
 import { SanityTechnicolorBlock, TechnicolorBlock } from "../component/technicolor-block";
-import { collapsibleOptions, isVisibleField, keyPointsField, optionalActionsField, pageTitleField, titleAndBodyFields, titleBodyIconFields, SanityVisibleToggle } from "../common-fields";
+import { collapsibleOptions, isVisibleField, keyPointsField, optionalActionsField, pageTitleField, titleBodyIconFields, SanityVisibleToggle } from "../common-fields";
 import { ContentTextPanel, contentTextPanelSchemaName, SanityContentTextPanel } from "../component/content-text-panel";
 import { KeyPoint, SanityKeyPoint } from "../key-point";
 import { Organisation, organisationLogosField, SanityOrganisation } from "../organisation";
@@ -72,10 +72,6 @@ interface SanityTestimonialsSection extends SanityCoreSection {
     testimonials: SanityTestimonial[];
 }
 
-interface SanityConclusionSection extends SanityCoreSection {
-    panel: SanityConclusionPanel;
-}
-
 export class HomePage extends Page {
     readonly [sections.intro.id]?: IntroSection;
     readonly [sections.features.id]?: FeaturesSection;
@@ -95,7 +91,7 @@ export class HomePage extends Page {
         this.cloudSection = data.cloudSection.isVisible ? CloudSection.fromSanityKeyPointsSection(data.cloudSection, db) : undefined;
         this.communitySection = data.communitySection.isVisible ? CommunitySection.fromSanityCommunitySection(data.communitySection, db) : undefined;
         this.testimonialsSection = data.testimonialsSection.isVisible ? TestimonialsSection.fromSanityTestimonialsSection(data.testimonialsSection, db) : undefined;
-        this.conclusionSection = data.conclusionSection.isVisible ? ConclusionSection.fromSanityConclusionSection(data.conclusionSection, db) : undefined;
+        this.conclusionSection = ConclusionSection.fromSanityConclusionSection(data.conclusionSection, db);
     }
 }
 
@@ -200,21 +196,6 @@ class TestimonialsSection extends TechnicolorBlock {
     static fromSanityTestimonialsSection(data: SanityTestimonialsSection, db: SanityDataset) {
         return new TestimonialsSection(Object.assign(TechnicolorBlock.fromSanityTechnicolorBlock(data, db), {
             testimonials: data.testimonials.map(x => new Testimonial(x, db)),
-        }));
-    }
-}
-
-class ConclusionSection extends TechnicolorBlock {
-    readonly panel: ConclusionPanel;
-
-    constructor(props: PropsOf<ConclusionSection>) {
-        super(props);
-        this.panel = props.panel;
-    }
-
-    static fromSanityConclusionSection(data: SanityConclusionSection, db: SanityDataset) {
-        return new ConclusionSection(Object.assign(TechnicolorBlock.fromSanityTechnicolorBlock(data, db), {
-            panel: ConclusionPanel.fromSanity(data.panel, db)
         }));
     }
 }
