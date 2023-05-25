@@ -1,2 +1,42 @@
 @import "../../styles/colors";
 @import "../../styles/sizes";
+
+table {
+    color: $color-vaticle-white;
+}
+
+col:not(:first-child) {
+    width: 266px;
+}
+
+thead {
+    background: $color-vaticle-deep-purple;
+}
+
+th:first-of-type {
+    text-align: start;
+}
+
+thead th {
+    font-weight: $font-weight-semi-bold;
+}
+
+tbody th {
+    font-weight: $font-weight-regular;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+}
+
+td {
+    text-align: center;
+}
+
+th, td {
+    height: 80px;
+}
+
+th {
+    padding: 0 24px;
+}

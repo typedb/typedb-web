@@ -1,11 +1,22 @@
 <table class="section">
-    <thead>
+    <colgroup>
+        <col>
+        <col>
+        <col>
+        <col>
+    </colgroup>
+    <thead class="text-m">
         <tr><th *ngFor="let header of table.headerRow">{{ header }}</th></tr>
     </thead>
-    <tbody>
+    <tbody class="text-s">
         <tr *ngFor="let row of table.bodyRows">
-            <th>{{ row.heading }}</th>
-            <td *ngFor="let cell of row.cells">Hello World</td>
+            <th>
+                <span>{{ row.heading }}</span>
+                <td-info-button *ngIf="row.description" [tooltipText]="row.description"></td-info-button>
+            </th>
+            <td *ngFor="let cell of row.cells">
+                <td-feature-table-cell [cell]="cell"></td-feature-table-cell>
+            </td>
         </tr>
     </tbody>
 </table>

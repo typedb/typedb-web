@@ -74,7 +74,7 @@ class FeatureTableRow {
     }
 }
 
-type FeatureTableCell = boolean | string | LinkButton;
+export type FeatureTableCell = boolean | string | LinkButton;
 
 function featureTableCellFromSanity(data: SanityFeatureTableCell, db: SanityDataset): FeatureTableCell {
     if (isBooleanCell(data)) return data.isChecked;

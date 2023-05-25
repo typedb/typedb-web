@@ -1,0 +1,56 @@
+@import "../../styles/colors";
+@import "../../styles/sizes";
+
+:host, .ib-root {
+    display: inline-flex;
+    align-items: center;
+    position: relative;
+}
+
+.ib-root {
+    &:hover, &:focus {
+        svg path {
+            fill: #FFF;
+        }
+
+        [class^='ib-tooltip'] {
+            opacity: 1;
+        }
+    }
+}
+
+svg {
+    cursor: pointer;
+}
+
+[class^='ib-tooltip'] {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    background-color: $color-vaticle-light-purple;
+    transition: opacity 100ms ease;
+}
+
+.ib-tooltip-text-box {
+    top: -36px;
+    z-index: 50;
+    border-radius: 4px;
+    height: 28px;
+    text-align: center;
+    color: $color-vaticle-white;
+    width: max-content;
+    padding: 4px 8px;
+    transform: translateX(-50%) translateX(9px); // centre inside parent container, then offset half the info button width
+}
+
+.ib-tooltip-arrowhead {
+    top: -12px;
+    width: 8px;
+    height: 8px;
+    border-bottom-right-radius: 2px;
+    z-index: 25;
+    transform: rotate(45deg);
+}
