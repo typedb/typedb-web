@@ -22,7 +22,7 @@ a {
         background: $color-vaticle-green;
         color: $color-vaticle-purple;
 
-        &:hover, &:focus {
+        &:hover {
             background-color: #0B939F;
         }
     }
@@ -32,7 +32,7 @@ a {
         background: transparent;
         color: $color-vaticle-green;
 
-        &:hover, &:focus {
+        &:hover {
             background-color: $color-vaticle-green;
             color: $color-vaticle-purple;
         }
