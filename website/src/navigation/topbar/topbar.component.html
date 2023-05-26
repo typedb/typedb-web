@@ -5,9 +5,9 @@
             <div class="tb-desktop-items text-s">
                 <ul class="tb-top-level-items">
                     <li *ngFor="let item of topbar.mainArea">
-                        <div *ngIf="isMenuPanel(item)" tabindex="0" (mouseenter)="onMenuItemMouseEnter(item)" (mouseleave)="onMenuItemMouseLeave(item)" (focus)="onMenuItemFocus(item)" (blur)="onMenuItemBlur(item)">
+                        <a *ngIf="isMenuPanel(item)" tabindex="0" (mouseenter)="onMenuItemMouseEnter(item)" (mouseleave)="onMenuItemMouseLeave(item)" (focus)="onMenuItemFocus(item)" (blur)="onMenuItemBlur(item)">
                             {{ item.title }}
-                        </div>
+                        </a>
                         <a *ngIf="isTextLink(item)" [tdLink]="item" (mouseenter)="clearFocus()">
                             {{ item.text }}
                             <svg *ngIf="item.type === 'external'" class="tb-external-link-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">

@@ -1,9 +1,9 @@
 import { ArrayRule, defineField, defineType } from "@sanity/types";
 import { SanityOptionalActions } from "../button";
-import { conclusionPanelSchemaName, ConclusionSection, SanityConclusionSection } from "../component/conclusion-panel";
+import { ConclusionSection, conclusionSectionSchemaName, SanityConclusionSection } from "../component/conclusion-panel";
 import { LinkPanel, linkPanelSchemaName, LinkPanelWithIcon, linkPanelWithIconSchemaName, SanityLinkPanel, SanityLinkPanelWithIcon } from "../component/link-panel";
 import { SanityTechnicolorBlock, TechnicolorBlock } from "../component/technicolor-block";
-import { collapsibleOptions, isVisibleField, keyPointsField, optionalActionsField, pageTitleField, titleBodyIconFields, SanityVisibleToggle } from "../common-fields";
+import { collapsibleOptions, isVisibleField, keyPointsField, optionalActionsField, pageTitleField, titleBodyIconFields, SanityVisibleToggle, requiredRule } from "../common-fields";
 import { ContentTextPanel, contentTextPanelSchemaName, SanityContentTextPanel } from "../component/content-text-panel";
 import { KeyPoint, SanityKeyPoint } from "../key-point";
 import { Organisation, organisationLogosField, SanityOrganisation } from "../organisation";
@@ -18,12 +18,11 @@ import { Page, SanityPage } from "./common";
 const sections = {
     intro: { id: "introSection", title: "Intro" },
     features: { id: "featuresSection", title: "Features" },
-    useCases: { id: "useCasesSection", title: "Use Cases" },
+    solutions: { id: "solutionsSection", title: "Solutions" },
     tooling: { id: "toolingSection", title: "Tooling" },
     cloud: { id: "cloudSection", title: "Cloud" },
     community: { id: "communitySection", title: "Community" },
     testimonials: { id: "testimonialsSection", title: "Testimonials" },
-    conclusion: { id: "conclusionSection", title: "Conclusion" },
 } as const;
 
 type SectionKey = keyof typeof sections;
@@ -32,12 +31,12 @@ type SectionID = typeof sections[SectionKey]["id"];
 export interface SanityHomePage extends SanityPage {
     [sections.intro.id]: SanityIntroSection;
     [sections.features.id]: SanityFeaturesSection;
-    [sections.useCases.id]: SanityUseCasesSection;
+    [sections.solutions.id]: SanitySolutionsSection;
     [sections.tooling.id]: SanityToolingSection;
     [sections.cloud.id]: SanityKeyPointsSection;
     [sections.community.id]: SanityCommunitySection;
     [sections.testimonials.id]: SanityTestimonialsSection;
-    [sections.conclusion.id]: SanityConclusionSection;
+    conclusionSection: SanityConclusionSection;
 }
 
 interface SanitySection extends SanityTitleBodyActions, SanityVisibleToggle {}
@@ -52,8 +51,8 @@ interface SanityFeaturesSection extends SanityCoreSection {
     featureTabs: SanityContentTextPanel[];
 }
 
-interface SanityUseCasesSection extends SanityCoreSection {
-    useCases: SanityLinkPanel[];
+interface SanitySolutionsSection extends SanityCoreSection {
+    solutions: SanityLinkPanel[];
 }
 
 interface SanityToolingSection extends SanityCoreSection {
@@ -75,23 +74,23 @@ interface SanityTestimonialsSection extends SanityCoreSection {
 export class HomePage extends Page {
     readonly [sections.intro.id]?: IntroSection;
     readonly [sections.features.id]?: FeaturesSection;
-    readonly [sections.useCases.id]?: UseCasesSection;
+    readonly [sections.solutions.id]?: SolutionsSection;
     readonly [sections.tooling.id]?: ToolingSection;
     readonly [sections.cloud.id]?: CloudSection;
     readonly [sections.community.id]?: CommunitySection;
     readonly [sections.testimonials.id]?: TestimonialsSection;
-    readonly [sections.conclusion.id]?: ConclusionSection;
+    readonly conclusionSection?: ConclusionSection;
 
     constructor(data: SanityHomePage, db: SanityDataset) {
         super(data);
         this.introSection = data.introSection.isVisible ? IntroSection.fromSanityIntroSection(data.introSection, db) : undefined;
         this.featuresSection = data.featuresSection.isVisible ? FeaturesSection.fromSanityFeaturesSection(data.featuresSection, db) : undefined;
-        this.useCasesSection = data.useCasesSection.isVisible ? UseCasesSection.fromSanityUseCasesSection(data.useCasesSection, db) : undefined;
+        this.solutionsSection = data.solutionsSection.isVisible ? SolutionsSection.fromSanitySolutionsSection(data.solutionsSection, db) : undefined;
         this.toolingSection = data.toolingSection.isVisible ? ToolingSection.fromSanityToolingSection(data.toolingSection, db) : undefined;
         this.cloudSection = data.cloudSection.isVisible ? CloudSection.fromSanityKeyPointsSection(data.cloudSection, db) : undefined;
         this.communitySection = data.communitySection.isVisible ? CommunitySection.fromSanityCommunitySection(data.communitySection, db) : undefined;
         this.testimonialsSection = data.testimonialsSection.isVisible ? TestimonialsSection.fromSanityTestimonialsSection(data.testimonialsSection, db) : undefined;
-        this.conclusionSection = ConclusionSection.fromSanityConclusionSection(data.conclusionSection, db);
+        this.conclusionSection = data.conclusionSection.isVisible ? ConclusionSection.fromSanityConclusionSection(data.conclusionSection, db) : undefined;
     }
 }
 
@@ -125,17 +124,17 @@ class FeaturesSection extends TechnicolorBlock {
     }
 }
 
-class UseCasesSection extends TechnicolorBlock {
-    readonly useCases: LinkPanel[];
+class SolutionsSection extends TechnicolorBlock {
+    readonly solutions: LinkPanel[];
 
-    constructor(props: PropsOf<UseCasesSection>) {
+    constructor(props: PropsOf<SolutionsSection>) {
         super(props);
-        this.useCases = props.useCases;
+        this.solutions = props.solutions;
     }
 
-    static fromSanityUseCasesSection(data: SanityUseCasesSection, db: SanityDataset) {
-        return new UseCasesSection(Object.assign(TechnicolorBlock.fromSanityTechnicolorBlock(data, db), {
-            useCases: data.useCases.map(x => LinkPanel.fromSanityLinkPanel(x, db)),
+    static fromSanitySolutionsSection(data: SanitySolutionsSection, db: SanityDataset) {
+        return new SolutionsSection(Object.assign(TechnicolorBlock.fromSanityTechnicolorBlock(data, db), {
+            solutions: data.solutions.map(x => LinkPanel.fromSanityLinkPanel(x, db)),
         }));
     }
 }
@@ -229,11 +228,11 @@ const sectionSchemas = [
         }),
         isVisibleField,
     ]),
-    sectionSchema("useCases", [
+    sectionSchema("solutions", [
         ...titleBodyIconFields,
         defineField({
-            name: "useCases",
-            title: "Use Cases",
+            name: "solutions",
+            title: "Solutions",
             type: "array",
             of: [{type: linkPanelSchemaName}],
             validation: (rule: ArrayRule<any>) => rule.required().custom((value) => {
@@ -275,16 +274,6 @@ const sectionSchemas = [
         }),
         isVisibleField,
     ]),
-    sectionSchema("conclusion", [
-        ...titleBodyIconFields,
-        optionalActionsField,
-        defineField({
-            name: "panel",
-            title: "Panel",
-            type: conclusionPanelSchemaName,
-        }),
-        isVisibleField,
-    ]),
 ];
 
 const sectionFields = (Object.keys(sections) as SectionKey[]).map(key => defineField({
@@ -301,6 +290,13 @@ const homePageSchema = defineType({
     fields: [
         pageTitleField,
         ...sectionFields,
+        defineField({
+            name: "conclusionSection",
+            title: "Conclusion Section",
+            type: conclusionSectionSchemaName,
+            options: collapsibleOptions,
+            validation: requiredRule,
+        }),
     ],
     preview: { prepare: (_selection) => ({ title: "Home Page" }), },
 });

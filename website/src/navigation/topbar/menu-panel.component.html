@@ -1,6 +1,6 @@
 <div class="mp-root">
     <div *ngFor="let column of columns" class="mp-column">
-        <div class="text-xxs"><strong>{{ column.title }}</strong></div>
+        <h3 class="text-xxs"><strong>{{ column.title }}</strong></h3>
         <ul *ngIf="isListColumn(column)">
             <li *ngFor="let item of column.items">
                 <a [tdLink]="item.link">

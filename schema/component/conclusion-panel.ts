@@ -1,7 +1,7 @@
 import { defineField, defineType, StringRule } from "@sanity/types";
 import { LinkButton, SanityOptionalActions } from "../button";
 import { SanityTextLink, TextLink, textLinkSchemaName } from "../link";
-import { bodyFieldRichText, isVisibleField, optionalActionsField, requiredRule, titleBodyIconFields, titleField } from "../common-fields";
+import { bodyFieldRichText, isVisibleField, optionalActionsField, requiredRule, SanityVisibleToggle, titleBodyIconFields, titleField } from "../common-fields";
 import { SanityDataset } from "../sanity-core";
 import { RichText, SanityBodyText, SanityTitle } from "../text";
 import { PropsOf } from "../util";
@@ -12,7 +12,7 @@ export interface SanityConclusionPanel extends SanityTitle, SanityBodyText, Sani
     resources: SanityTextLink[];
 }
 
-export interface SanityConclusionSection extends SanityTechnicolorBlock {
+export interface SanityConclusionSection extends SanityTechnicolorBlock, SanityVisibleToggle {
     panel: SanityConclusionPanel;
 }
 

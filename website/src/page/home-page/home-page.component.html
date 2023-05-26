@@ -8,9 +8,9 @@
             <td-home-page-technicolor-block [block]="page.featuresSection" [page]="page"></td-home-page-technicolor-block>
             <td-content-tabs id="features" [tabs]="page.featuresSection.featureTabs"></td-content-tabs>
         </ng-container>
-        <ng-container *ngIf="page.useCasesSection">
-            <td-home-page-technicolor-block [block]="page.useCasesSection" [page]="page"></td-home-page-technicolor-block>
-            <td-link-panels [panels]="page.useCasesSection.useCases" [cols]="4"></td-link-panels>
+        <ng-container *ngIf="page.solutionsSection">
+            <td-home-page-technicolor-block [block]="page.solutionsSection" [page]="page"></td-home-page-technicolor-block>
+            <td-link-panels [panels]="page.solutionsSection.solutions" [cols]="4"></td-link-panels>
         </ng-container>
         <ng-container *ngIf="page.toolingSection">
             <td-home-page-technicolor-block [block]="page.toolingSection" [page]="page"></td-home-page-technicolor-block>
