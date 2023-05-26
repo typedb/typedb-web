@@ -61,7 +61,6 @@ export default defineConfig({
                 isAdmin() ? s.listItem().title("Icons & Logos").icon(ImagesIcon).child(s.list().title("Icons & Logos").items([
                     s.documentTypeListItem(sectionIconSchemaName).title("Section Icons"),
                 ])) : s.divider(),
-                s.divider(),
                 s.documentTypeListItem(referenceMaterialSchemaName).title("CMS Reference Material"),
             ]),
         }),
