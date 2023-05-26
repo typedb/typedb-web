@@ -1,7 +1,8 @@
 @import "../../styles/sizes";
 
 article {
-    background: no-repeat center bottom url("/assets/image/planet-magenta.jpg");
+    background: no-repeat center 0 url("/assets/image/nebula-large-green.jpg"),
+                no-repeat center bottom url("/assets/image/planet-magenta.jpg");
 }
 
 .ip-long-text {
