@@ -1,4 +1,5 @@
 import { ArrayRule, defineField, defineType } from "@sanity/types";
+import { ConclusionSection, conclusionSectionSchemaName, SanityConclusionSection } from "../component/conclusion-panel";
 import { ContentTextPanel, contentTextPanelSchemaName, SanityContentTextPanel } from "../component/content-text-panel";
 import { bodyFieldRichText, collapsibleOptions, isVisibleField, optionalActionsField, pageTitleField, sectionIconField, titleFieldWithHighlights } from "../common-fields";
 import { SanityTechnicolorBlock, TechnicolorBlock } from "../component/technicolor-block";
@@ -15,7 +16,7 @@ const finalSection = "finalSection";
 export interface SanityFeaturesPage extends SanityPage {
     [introSection]: SanityIntroSection;
     [coreSections]: SanityCoreSection[];
-    [finalSection]: SanityTitleBodyActions;
+    [finalSection]: SanityConclusionSection;
 }
 
 interface SanityIntroSection extends SanityTitleBodyActions {
@@ -29,12 +30,12 @@ interface SanityCoreSection extends SanityTechnicolorBlock {
 export class FeaturesPage {
     readonly [introSection]: IntroSection;
     readonly [coreSections]: FeaturesPageCoreSection[];
-    readonly [finalSection]: TitleBodyActions;
+    readonly [finalSection]: ConclusionSection;
 
     constructor(data: SanityFeaturesPage, db: SanityDataset) {
         this.introSection = IntroSection.fromSanityIntroSection(data.introSection, db);
         this.coreSections = data.coreSections.map(x => FeaturesPageCoreSection.fromSanityCoreSection(x, db));
-        this.finalSection = TitleBodyActions.fromSanityTitleBodyActions(data.finalSection, db);
+        this.finalSection = ConclusionSection.fromSanityConclusionSection(data.finalSection, db);
     }
 }
 
@@ -126,7 +127,7 @@ const featuresPageSchema = defineType({
         defineField({
             name: finalSection,
             title: "Final Section",
-            type: titleBodyActionsSectionSchemaName,
+            type: conclusionSectionSchemaName,
             options: collapsibleOptions,
         }),
     ],
