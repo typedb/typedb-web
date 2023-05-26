@@ -151,4 +151,5 @@ export const isVisibleField = defineField({
     title: "Is Visible",
     type: "boolean",
     initialValue: true,
+    validation: requiredRule,
 });

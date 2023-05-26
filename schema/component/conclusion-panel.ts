@@ -1,7 +1,7 @@
 import { defineField, defineType, StringRule } from "@sanity/types";
 import { LinkButton, SanityOptionalActions } from "../button";
 import { SanityTextLink, TextLink, textLinkSchemaName } from "../link";
-import { bodyFieldRichText, isVisibleField, optionalActionsField, titleBodyIconFields, titleField } from "../common-fields";
+import { bodyFieldRichText, isVisibleField, optionalActionsField, requiredRule, titleBodyIconFields, titleField } from "../common-fields";
 import { SanityDataset } from "../sanity-core";
 import { RichText, SanityBodyText, SanityTitle } from "../text";
 import { PropsOf } from "../util";
@@ -71,13 +71,14 @@ const conclusionPanelSchema = defineType({
             name: "resourceListTitle",
             title: "Resource List Title",
             type: "string",
-            validation: (rule: StringRule) => rule.required(),
+            validation: requiredRule,
         }),
         defineField({
             name: "resources",
             title: "Resources",
             type: "array",
             of: [{type: textLinkSchemaName}],
+            validation: requiredRule,
         }),
     ],
 });
@@ -95,6 +96,7 @@ const conclusionSectionSchema = defineType({
             name: "panel",
             title: "Panel",
             type: conclusionPanelSchemaName,
+            validation: requiredRule,
         }),
         isVisibleField,
     ],

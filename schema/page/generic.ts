@@ -1,5 +1,6 @@
 import { defineField, defineType } from "@sanity/types";
 import { collapsibleOptions, pageTitleField, requiredRule } from "../common-fields";
+import { ConclusionSection, conclusionSectionSchemaName, SanityConclusionSection } from "../component/conclusion-panel";
 import { SanityDataset } from "../sanity-core";
 import { SanityTitleBodyActions, SanityTitleBodyIllustrationSection, TitleBodyActions, titleBodyActionsSectionSchemaName, TitleBodyIllustrationSection, titleBodyIllustrationSectionSchemaName } from "../text";
 import { SanityPage } from "./common";
@@ -7,18 +8,18 @@ import { SanityPage } from "./common";
 export interface SanityGenericPage extends SanityPage {
     introSection: SanityTitleBodyActions;
     coreSections: SanityTitleBodyIllustrationSection[];
-    finalSection: SanityTitleBodyActions;
+    finalSection: SanityConclusionSection;
 }
 
 export class GenericPage {
     readonly introSection: TitleBodyActions;
     readonly coreSections: TitleBodyIllustrationSection[];
-    readonly finalSection: TitleBodyActions;
+    readonly finalSection: ConclusionSection;
 
     constructor(data: SanityGenericPage, db: SanityDataset) {
         this.introSection = TitleBodyActions.fromSanityTitleBodyActions(data.introSection, db);
         this.coreSections = data.coreSections.map(x => TitleBodyIllustrationSection.fromSanityTitleBodyIllustrationSection(x, db));
-        this.finalSection = TitleBodyActions.fromSanityTitleBodyActions(data.finalSection, db);
+        this.finalSection = ConclusionSection.fromSanityConclusionSection(data.finalSection, db);
     }
 }
 
@@ -47,7 +48,7 @@ const genericPageSchema = defineType({
         defineField({
             name: "finalSection",
             title: "Final Section",
-            type: titleBodyActionsSectionSchemaName,
+            type: conclusionSectionSchemaName,
             options: collapsibleOptions,
             validation: requiredRule,
         }),
