@@ -75,10 +75,14 @@ h2, h3, h4, h5, h6 {
     font-weight: 400;
 }
 
-a, a p, a address {
+a {
     cursor: pointer;
     color: $color-vaticle-white;
     text-decoration: none;
+
+    p {
+        color: $color-vaticle-grey;
+    }
 }
 
 p, aside {
@@ -109,20 +113,12 @@ address {
     font-style: normal;
 }
 
-aside {
-    color: $color-vaticle-grey;
-}
-
 [hidden] {
     display: none !important;
 }
 
 .flex {
     flex: 1;
-}
-
-div[tabindex] {
-    cursor: pointer;
 }
 
 table {
