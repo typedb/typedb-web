@@ -52,10 +52,6 @@ $block-gap: 144px;
     background: rgba(254, 170, 116, 0.15);
 }
 
-.tb-graphic-icon-bg-grey {
-    background: rgba(149, 143, 168, 0.15);
-}
-
 .tb-graphic-icon {
     position: absolute;
     left: 0;
@@ -86,10 +82,6 @@ $block-gap: 144px;
 
 .tb-graphic-line-yellow {
     @include graphic-line-gradient($color-vaticle-secondary-yellow);
-}
-
-.tb-graphic-line-grey {
-    @include graphic-line-gradient($color-vaticle-secondary-purple);
 }
 
 .tb-graphic-line-top {

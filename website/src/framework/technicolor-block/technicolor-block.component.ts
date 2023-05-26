@@ -14,10 +14,8 @@ export class TechnicolorBlockComponent {
     @Input() noLeadingLine?: boolean;
     @Input() noTrailingLine?: boolean;
     @Input() noBody?: boolean;
-    @Input() greyLine?: boolean;
 
     get graphicLineColorClass(): string {
-        if (this.greyLine) return "tb-graphic-line-grey";
         switch (this.index % 3) {
             case 0: return "tb-graphic-line-green";
             case 1: return "tb-graphic-line-pink";
@@ -27,7 +25,6 @@ export class TechnicolorBlockComponent {
     }
 
     get graphicIconBgColorClass(): string {
-        if (this.greyLine) return "tb-graphic-icon-bg-grey";
         switch (this.index % 3) {
             case 0: return "tb-graphic-icon-bg-green";
             case 1: return "tb-graphic-icon-bg-pink";

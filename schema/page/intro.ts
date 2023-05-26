@@ -103,6 +103,7 @@ const introPageSchema = defineType({
             name: "finalSection",
             title: "Final Section",
             type: conclusionSectionSchemaName,
+            options: collapsibleOptions,
             validation: requiredRule,
         })
     ],

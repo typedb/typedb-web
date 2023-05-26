@@ -28,7 +28,7 @@ export class FeaturesPageComponent implements OnInit {
 
 @Component({
     selector: "td-features-page-technicolor-block",
-    template: "<td-technicolor-block [block]=\"block\" [index]=\"index + 1\" [noLeadingLine]='index === 0' [greyLine]='true'></td-technicolor-block>",
+    template: "<td-technicolor-block [block]=\"block\" [index]=\"index + 1\" [noLeadingLine]='index === 0'></td-technicolor-block>",
 })
 export class FeaturesPageTechnicolorBlockComponent implements OnInit {
     @Input() section!: FeaturesPageCoreSection;
