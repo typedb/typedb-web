@@ -44,7 +44,7 @@ export class TopbarComponent implements OnInit {
     }
 
     private get shouldBeOpaque(): boolean {
-        return this._pageYOffset > 0 || !!this.hoveredMenuPanel || !!this.dialogService.current;
+        return this._pageYOffset > 80 || !!this.hoveredMenuPanel || !!this.dialogService.current;
     }
 
     isMenuPanel(obj: any): obj is TopbarMenuPanel {

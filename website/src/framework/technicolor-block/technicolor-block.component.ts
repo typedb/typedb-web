@@ -13,23 +13,8 @@ export class TechnicolorBlockComponent {
     @Input() contentWidth: "narrow" | "wide" = "wide";
     @Input() noLeadingLine?: boolean;
     @Input() noTrailingLine?: boolean;
-    @Input() noBackgroundImage?: boolean;
     @Input() noBody?: boolean;
     @Input() greyLine?: boolean;
-
-    get backgroundImageURL(): string | undefined {
-        switch (this.index % 9) {
-            case 0: return "/assets/image/nebula-small-green2.jpg";
-            case 1: return "/assets/image/nebula-small-purple1.jpg";
-            case 2: case 8: return "/assets/image/nebula-small-yellow1.jpg";
-            case 3: return "/assets/image/nebula-small-green1.jpg";
-            case 4: return "/assets/image/nebula-small-purple2.jpg";
-            case 5: return "/assets/image/nebula-small-yellow2.jpg";
-            case 6: return "/assets/image/nebula-small-green2.jpg";
-            case 7: return "/assets/image/nebula-small-purple3.jpg";
-            default: throw "Unreachable code";
-        }
-    }
 
     get graphicLineColorClass(): string {
         if (this.greyLine) return "tb-graphic-line-grey";

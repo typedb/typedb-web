@@ -1,7 +1,15 @@
 @import "../../styles/sizes";
 
 article {
-    background: url("/assets/image/deep-space2.jpg");
+    &.planet-blue-pink {
+        background: no-repeat center top url("/assets/image/nebula-large-purple.jpg"),
+                    no-repeat center bottom url("/assets/image/planet-blue-pink.jpg");
+    }
+
+    &.planet-pink {
+        background: no-repeat center top url("/assets/image/nebula-large-purple2.jpg"),
+                    no-repeat center bottom url("/assets/image/planet-pink.jpg");
+    }
 }
 
 .fp-user-logos {

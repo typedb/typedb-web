@@ -25,11 +25,15 @@ export class GenericPageComponent implements OnInit {
             });
         });
     }
+
+    get articleClass(): string {
+        return this.router.url.includes("cloud") ? "planet-blue-pink" : "planet-pink";
+    }
 }
 
 @Component({
     selector: "td-generic-page-technicolor-block",
-    template: "<td-technicolor-block [block]=\"block\" [index]=\"index + 1\" size='medium' contentWidth='narrow' [noLeadingLine]='index === 0' [noBackgroundImage]='true' [noBody]='true' [greyLine]='true'></td-technicolor-block>",
+    template: "<td-technicolor-block [block]=\"block\" [index]=\"index + 1\" size='medium' contentWidth='narrow' [noLeadingLine]='index === 0' [noBody]='true' [greyLine]='true'></td-technicolor-block>",
 })
 export class GenericPageTechnicolorBlockComponent implements OnInit {
     @Input() section!: TitleBodyIllustrationSection;

@@ -1,5 +1,6 @@
 article {
-    background: no-repeat center 0 url("/assets/image/nebula-large-with-rocket.jpg");
+    background: no-repeat center top url("/assets/image/nebula-large-with-rocket.jpg"),
+                no-repeat center bottom url("/assets/image/planet-blue.jpg");
 }
 
 .hp-intro-block {

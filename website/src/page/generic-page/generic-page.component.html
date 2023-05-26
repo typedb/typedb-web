@@ -1,4 +1,4 @@
-<article>
+<article [class]="articleClass">
     <div *ngIf="page">
         <td-title-body-actions-section [isIntroSection]="true" [title]="page.introSection.title" [body]="page.introSection.body" [actions]="page.introSection.actions"></td-title-body-actions-section>
         <ng-container *ngFor="let section of page.coreSections; index as idx">
@@ -6,6 +6,5 @@
             <td-captioned-illustration [illustration]="section.illustration" [caption]="section.body"></td-captioned-illustration>
         </ng-container>
         <td-title-body-actions-section [title]="page.finalSection.title" [body]="page.finalSection.body" [actions]="page.finalSection.actions"></td-title-body-actions-section>
-        <div class="pink planet"></div>
     </div>
 </article>

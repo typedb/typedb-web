@@ -1,7 +1,8 @@
 @import "../../styles/sizes";
 
 article {
-    background: url("/assets/image/deep-space2.jpg");
+    background: no-repeat center top url("/assets/image/nebula-large-purple.jpg"),
+                no-repeat center bottom url("/assets/image/planet-yellow-green.jpg");
 }
 
 .fp-user-logos {
