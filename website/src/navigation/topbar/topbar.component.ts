@@ -1,4 +1,4 @@
-import { Component, HostListener, Input, OnInit } from "@angular/core";
+import { Component, HostListener, Input, NgZone, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 import { communityResourcesSchemaName, SanityCommunityResources, SanityTopbar, TextLink, Topbar, TopbarListColumn, TopbarMenuPanel, topbarSchemaName, TopbarVideoColumn } from "typedb-web-schema";
 import { ContentService } from "../../service/content.service";
@@ -16,9 +16,15 @@ export class TopbarComponent implements OnInit {
     focusedMenuItem?: TopbarMenuPanel;
     hoveredMenuPanel?: TopbarMenuPanel;
     focusedMenuPanel?: TopbarMenuPanel;
-    private _pageYOffset = 0;
 
-    constructor(private router: Router, private contentService: ContentService, private dialogService: DialogService) {}
+    constructor(private router: Router, private contentService: ContentService, private dialogService: DialogService, private _ngZone: NgZone) {
+        this._ngZone.runOutsideAngular(() => {
+            window.addEventListener("scroll", () => {
+                const headerEl = document.getElementById("siteHeader");
+                if (headerEl) headerEl.style.backgroundColor = `rgba(26, 24, 42, ${window.pageYOffset / 500})`; // vaticle purple
+            });
+        });
+    }
 
     ngOnInit() {
         this.contentService.data.subscribe((data) => {
@@ -35,16 +41,12 @@ export class TopbarComponent implements OnInit {
         });
     }
 
-    get menuPanels(): TopbarMenuPanel[] {
-        return this.topbar!.mainArea.filter(this.isMenuPanel);
-    }
-
     get rootNgClass(): { [clazz: string]: boolean } {
-        return { "tb-solid": this.shouldBeOpaque };
+        return { "tb-solid": this.shouldForceOpaque };
     }
 
-    private get shouldBeOpaque(): boolean {
-        return this._pageYOffset > 80 || !!this.hoveredMenuPanel || !!this.dialogService.current;
+    private get shouldForceOpaque(): boolean {
+        return !!this.hoveredMenuPanel || !!this.dialogService.current;
     }
 
     isMenuPanel(obj: any): obj is TopbarMenuPanel {
@@ -96,12 +98,6 @@ export class TopbarComponent implements OnInit {
     onEscKeyPressed(_event: KeyboardEvent) {
         this.clearFocus();
         this.focusedMenuPanel = undefined;
-    }
-
-    // TODO: this listener triggers many unwanted change detection cycles
-    @HostListener("window:scroll", ["$event"])
-    onWindowScroll(_event: any) {
-        this._pageYOffset = window.pageYOffset;
     }
 }
 

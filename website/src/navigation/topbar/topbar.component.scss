@@ -13,10 +13,11 @@ header, td-topbar-menu-panel {
 
 header {
     top: 0;
+    transition: background-color 100ms ease;
 
     &.tb-solid, &:hover {
-        background-color: $color-vaticle-purple;
-        border-bottom-color: $color-vaticle-secondary-purple;
+        background-color: $color-vaticle-purple !important;
+        border-bottom-color: $color-vaticle-secondary-purple !important;
     }
 }
 
