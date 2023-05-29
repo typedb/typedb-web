@@ -16,7 +16,7 @@ const sections = {
     useCases: { id: "useCasesSection", title: "Use Cases" },
     challenges: { id: "challengesSection", title: "Challenges" },
     solution: { id: "solutionSection", title: "Solution" },
-    example: { id: "exampleSection", title: "Example" },
+    // example: { id: "exampleSection", title: "Example" },
     furtherReading: { id: "furtherReadingSection", title: "Further Reading" },
 } as const;
 
@@ -30,7 +30,7 @@ export interface SanitySolutionPage extends SanityPage {
     [sections.useCases.id]: SanityKeyPointsSection;
     [sections.challenges.id]: SanityKeyPointsSection;
     [sections.solution.id]: SanitySolutionSection;
-    [sections.example.id]: SanityExampleSection;
+    // [sections.example.id]: SanityExampleSection;
     [sections.furtherReading.id]: SanityFurtherReadingSection;
 }
 
@@ -68,7 +68,7 @@ export class SolutionPage extends Page {
     readonly [sections.useCases.id]?: KeyPointsSection;
     readonly [sections.challenges.id]?: KeyPointsSection;
     readonly [sections.solution.id]?: SolutionSection;
-    readonly [sections.example.id]?: ExampleSection;
+    // readonly [sections.example.id]?: ExampleSection;
     readonly [sections.furtherReading.id]?: FurtherReadingSection;
 
     constructor(data: SanitySolutionPage, db: SanityDataset) {
@@ -91,7 +91,7 @@ export class SolutionPage extends Page {
             });
         }
         this.solutionSection = data.solutionSection.isVisible ? SolutionSection.fromSanitySolutionSection({ data: data.solutionSection, db: db, }) : undefined;
-        this.exampleSection = data.exampleSection.isVisible ? ExampleSection.fromSanityExampleSection(data.exampleSection, db) : undefined;
+        // this.exampleSection = data.exampleSection.isVisible ? ExampleSection.fromSanityExampleSection(data.exampleSection, db) : undefined;
         this.furtherReadingSection = data.furtherReadingSection.isVisible ? FurtherReadingSection.fromSanityFurtherReadingSection(data.furtherReadingSection, db) : undefined;
     }
 }
@@ -265,22 +265,22 @@ const sectionSchemas = [
         keyPointsWithIconsField(),
         isVisibleField,
     ]),
-    sectionSchema("example", [
-        bodyFieldRichText,
-        defineField({
-            name: "exampleTabs",
-            title: "Example Tabs",
-            type: "array",
-            of: [{type: exampleTabSchemaName}],
-        }),
-        defineField({
-            name: "sampleProjectLink",
-            title: "Link to Sample Project",
-            type: "reference",
-            to: [{type: linkSchemaName}],
-        }),
-        isVisibleField,
-    ]),
+    // sectionSchema("example", [
+    //     bodyFieldRichText,
+    //     defineField({
+    //         name: "exampleTabs",
+    //         title: "Example Tabs",
+    //         type: "array",
+    //         of: [{type: exampleTabSchemaName}],
+    //     }),
+    //     defineField({
+    //         name: "sampleProjectLink",
+    //         title: "Link to Sample Project",
+    //         type: "reference",
+    //         to: [{type: linkSchemaName}],
+    //     }),
+    //     isVisibleField,
+    // ]),
     sectionSchema("furtherReading", [
         bodyFieldRichText,
         linkPanelsField,
@@ -302,7 +302,7 @@ const solutionPageSchema = defineType({
     icon: DocumentIcon,
     fields: [
         pageTitleField,
-        Object.assign({}, routeField, { description: "URL fragment for this solution page (e.g. identity-access-management). Do not include 'solution', this is automatically prepended" }),
+        Object.assign({}, routeField, { description: "URL fragment for this solution page (e.g. cybersecurity). Do not include 'solution', this is automatically prepended" }),
         ...sectionFields,
     ],
     preview: {
