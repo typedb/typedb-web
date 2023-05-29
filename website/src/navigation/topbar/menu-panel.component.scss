@@ -29,9 +29,8 @@
 
     ul {
         margin-top: $text-margin-s;
-        display: grid;
-        grid-template-rows: repeat(4, 72px);
-        grid-auto-flow: column;
+        display: flex;
+        flex-flow: column wrap;
         gap: $text-margin-s 32px;
         max-height: calc(72px * 4 + $text-margin-s * 3);
     }
