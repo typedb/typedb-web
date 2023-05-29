@@ -17,7 +17,7 @@ import { ContentTabsComponent } from "./content-tabs/content-tabs.component";
 import { CloudWaitlistDialogComponent, ContactDialogComponent, NameEmailDialogComponent, NewsletterDialogComponent } from "./dialog/dialog.component";
 import { OptionDirective } from "./dialog/option.directive";
 import { FeatureTableCellComponent, FeatureTableComponent } from "./feature-table/feature-table.component";
-import { GraphVisualisationComponent } from "./graph/graph-visualisation.component";
+import { GraphVisualisationComponent } from "././graph-visualisation/graph-visualisation.component";
 import { CaptionedIllustrationComponent, IllustrationComponent, SplitPaneIllustrationComponent } from "./illustration/illustration.component";
 import { InfoButtonComponent } from "./info-button/info-button.component";
 import { KeyPointPanels2x2Component, KeyPointTableComponent } from "./key-point/key-point.component";

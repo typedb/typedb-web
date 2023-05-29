@@ -1,7 +1,8 @@
 import { AfterViewInit, Component, ElementRef, Input, NgZone, OnDestroy, ViewChild } from "@angular/core";
 import { GraphVisualisation } from "typedb-web-schema";
 import * as d3 from "d3-force";
-// pixi.js (non-legacy) causes a text blurring issue
+// pixi.js-legacy 7.x causes an issue where dragging stops at the edge of the visualisation, which is not a nice UX
+// pixi.js (non-legacy) causes an issue where all text is blurred
 import * as PIXI from "pixi.js-legacy";
 // @ts-ignore
 import FontFaceObserver from "fontfaceobserver";
@@ -27,8 +28,8 @@ export class GraphVisualisationComponent implements AfterViewInit, OnDestroy {
             vertices: [{ label: "test", x: 100, y: 100, encoding: "entity", id: 1 }],
             edges: [],
         });
-        this._ngZone.runOutsideAngular(() => {
-            this.onDestroy = renderGraph(this.graphContainerEl.nativeElement, this.graph, defaultGraphVisualisationTheme).destroy;
+        this.onDestroy = this._ngZone.runOutsideAngular(() => {
+            return renderGraph(this.graphContainerEl.nativeElement, this.graph, defaultGraphVisualisationTheme).destroy;
         });
     }
 
@@ -207,9 +208,12 @@ function createD3ForceSimulation(vertices: Renderer.Vertex[], edges: Renderer.Ed
                 return Math.sqrt(Math.pow(source.x - target.x, 2) + Math.pow(source.y - target.y, 2));
             })
         )
+        .force("collide", d3.forceCollide(65))
         .force("charge", d3.forceManyBody().strength(-100)) // This adds repulsion (if it's negative) between nodes.
-        .force("x", d3.forceX().x((d: any) => width * d.x / 100).strength(1))
-        .force("y", d3.forceY().y((d: any) => height * d.y / 100).strength(1))
+        .force("x1", d3.forceX().x((d: any) => width * d.x / 100).strength(1)).force("x2", d3.forceX().x((d: any) => width * d.x / 100).strength(1))
+        .force("y1", d3.forceY().y((d: any) => height * d.y / 100).strength(1)).force("y2", d3.forceY().y((d: any) => height * d.y / 100).strength(1))
+        .force("x3", d3.forceX().x((d: any) => width * d.x / 100).strength(.33))
+        .force("y3", d3.forceY().y((d: any) => height * d.y / 100).strength(.33))
         .velocityDecay(0.8);
 
     vertices.forEach((vertex, idx) => {
@@ -291,20 +295,19 @@ export function renderGraph(container: HTMLElement, graphData: GraphVisualisatio
             const boundDragEnd = onDragEnd.bind(vertex);
             renderVertex(vertex, useFallbackFont, theme);
 
-            // TODO: for some reason, none of these events are triggered
-            vertex.gfx!.onclick = (e: any) => {
-                console.log("you clicked me: ", vertex)
-                if (!dragged) {
-                    e.stopPropagation();
-                }
-                dragged = false;
-            };
-            vertex.gfx!.onmousedown = onDragStart;
-            vertex.gfx!.onmouseup = () => boundDragEnd(vertex.gfx);
-            vertex.gfx!.onmouseupoutside = () => boundDragEnd(vertex.gfx);
-            vertex.gfx!.onmousemove = () => boundDragMove(vertex.gfx);
-            vertex.gfx!.eventMode = "auto";
-            // vertex.gfx!.buttonMode = true;
+            vertex.gfx!
+                .on('click', (e: Event) => {
+                    if (!dragged) {
+                        e.stopPropagation();
+                    }
+                    dragged = false;
+                })
+                .on('mousedown', onDragStart)
+                .on('mouseup', () => boundDragEnd(vertex.gfx))
+                .on('mouseupoutside', () => boundDragEnd(vertex.gfx))
+                .on('mousemove', () => boundDragMove(vertex.gfx));
+            vertex.gfx!.interactive = true;
+            vertex.gfx!.buttonMode = true;
 
             app.stage.addChild(vertex.gfx! as any);
         });

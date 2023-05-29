@@ -23,6 +23,7 @@ export interface SanityVideoEmbed extends SanityDocument {
 
 export const languages = {
     "typeql": "TypeQL",
+    "sql": "SQL",
     "typedb-console": "Console",
     "rust": "Rust",
     "java": "Java",
