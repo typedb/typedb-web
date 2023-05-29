@@ -3,9 +3,9 @@ import { SanityOptionalActions } from "../button";
 import { ConclusionSection, conclusionSectionSchemaName, SanityConclusionSection } from "../component/conclusion-panel";
 import { LinkPanel, linkPanelSchemaName, LinkPanelWithIcon, linkPanelWithIconSchemaName, SanityLinkPanel, SanityLinkPanelWithIcon } from "../component/link-panel";
 import { SanityTechnicolorBlock, TechnicolorBlock } from "../component/technicolor-block";
-import { collapsibleOptions, isVisibleField, keyPointsField, optionalActionsField, pageTitleField, titleBodyIconFields, SanityVisibleToggle, requiredRule } from "../common-fields";
+import { collapsibleOptions, isVisibleField, optionalActionsField, pageTitleField, titleBodyIconFields, SanityVisibleToggle, requiredRule, keyPointsWithIconsField } from "../common-fields";
 import { ContentTextPanel, contentTextPanelSchemaName, SanityContentTextPanel } from "../component/content-text-panel";
-import { KeyPoint, SanityKeyPoint } from "../key-point";
+import { KeyPointWithIcon, SanityKeyPointWithIcon } from "../key-point";
 import { Organisation, organisationLogosField, SanityOrganisation } from "../organisation";
 import { SanityDataset, SanityReference } from "../sanity-core";
 import { SocialMediaID, socialMediaLinksField } from "../social-media";
@@ -60,7 +60,7 @@ interface SanityToolingSection extends SanityCoreSection {
 }
 
 interface SanityKeyPointsSection extends SanityCoreSection {
-    keyPoints: SanityKeyPoint[];
+    keyPoints: SanityKeyPointWithIcon[];
 }
 
 interface SanityCommunitySection extends SanityCoreSection {
@@ -155,7 +155,7 @@ class ToolingSection extends TechnicolorBlock {
 }
 
 class CloudSection extends TechnicolorBlock {
-    readonly keyPoints: KeyPoint[];
+    readonly keyPoints: KeyPointWithIcon[];
 
     constructor(props: PropsOf<CloudSection>) {
         super(props);
@@ -164,7 +164,7 @@ class CloudSection extends TechnicolorBlock {
 
     static fromSanityKeyPointsSection(data: SanityKeyPointsSection, db: SanityDataset) {
         return new CloudSection(Object.assign(TechnicolorBlock.fromSanityTechnicolorBlock(data, db), {
-            keyPoints: data.keyPoints.map(x => new KeyPoint(x, db)),
+            keyPoints: data.keyPoints.map(x => new KeyPointWithIcon(x, db)),
         }));
     }
 }
@@ -255,7 +255,7 @@ const sectionSchemas = [
     ]),
     sectionSchema("cloud", [
         ...titleBodyIconFields,
-        keyPointsField(5),
+        keyPointsWithIconsField(5),
         optionalActionsField,
         isVisibleField,
     ]),

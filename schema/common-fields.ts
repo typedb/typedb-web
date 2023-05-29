@@ -140,6 +140,14 @@ export const keyPointsField = (count?: number) => defineField({
     validation: count != null ? ((rule: ArrayRule<any>) => rule.length(count)) : undefined,
 });
 
+export const keyPointsWithIconsField = (count?: number) => defineField({
+    name: keyPointsFieldName,
+    title: "Key Points",
+    type: "array",
+    of: [{type: "keyPointWithIcon"}],
+    validation: count != null ? ((rule: ArrayRule<any>) => rule.length(count)) : undefined,
+});
+
 export interface SanityVisibleToggle {
     isVisible: boolean;
 }

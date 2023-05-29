@@ -38,7 +38,7 @@ export class SolutionPageTechnicolorBlockComponent {
     get allBlocks(): TechnicolorBlock[] {
         return [
             this.page!.useCasesSection, this.page!.challengesSection, this.page!.solutionSection,
-            this.page!.exampleSection, this.page!.furtherReadingSection
+            this.page!.furtherReadingSection
         ].filter(x => !!x) as TechnicolorBlock[];
     }
 

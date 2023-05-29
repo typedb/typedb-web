@@ -1,5 +1,5 @@
 import { Component, Input } from "@angular/core";
-import { KeyPoint } from "typedb-web-schema";
+import { KeyPoint, KeyPointWithIcon } from "typedb-web-schema";
 
 @Component({
     selector: "td-key-point-panels-2x2",
@@ -16,5 +16,5 @@ export class KeyPointPanels2x2Component {
     styleUrls: ["./key-point-table.component.scss"],
 })
 export class KeyPointTableComponent {
-    @Input() keyPoints!: KeyPoint[];
+    @Input() keyPoints!: KeyPointWithIcon[];
 }

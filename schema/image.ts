@@ -19,13 +19,7 @@ const imageRefSchemaBase = defineType({
     name: "",
     type: "document",
     icon: ImageIcon,
-    fields: [assetRefField],
-    preview: {
-        select: { title: "title", assetTitle: "assetRef.asset.title", originalFilename: "assetRef.asset.originalFilename" },
-        prepare: (selection) => ({
-            title: selection.title || selection.assetTitle || selection.originalFilename,
-        }),
-    },
+    fields: [titleField, assetRefField],
 });
 
 export const sectionIconSchemaName = "sectionIcon";
