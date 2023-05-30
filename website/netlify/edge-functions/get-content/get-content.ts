@@ -8,20 +8,12 @@ export default async (request: Request, context: Context) => {
     console.log(params);
     const draft = params?.get("draft") === "true";
     console.log(draft);
+    const sanityQuery = draft ? "*[!(_type match 'system.**')]" : "*[!(_id in path('drafts.**')) %26%26 !(_type match 'system.**')]";
 
-    if (draft) {
-        return await fetch(`${Netlify.env.get("SANITY_URL")}/v2021-10-21/data/query/production?query=*[!(_type match 'system.**')]`, {
-            method: "GET",
-            headers: {
-                "Authorization": `Bearer ${Netlify.env.get("SANITY_TOKEN")}`
-            }
-        });
-    } else {
-        return await fetch(`${Netlify.env.get("SANITY_URL")}/v2021-10-21/data/query/production?query=*[!(_id in path('drafts.**')) %26%26 !(_type match 'system.**')]`, {
-            method: "GET",
-            headers: {
-                "Authorization": `Bearer ${Netlify.env.get("SANITY_TOKEN")}`
-            }
-        });
-    }
+    return await fetch(`${Netlify.env.get("SANITY_URL")}/v2021-10-21/data/query/production?query=${sanityQuery}`, {
+        method: "GET",
+        headers: {
+            "Authorization": `Bearer ${Netlify.env.get("SANITY_TOKEN")}`
+        }
+    });
 };
