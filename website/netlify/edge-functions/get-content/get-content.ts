@@ -10,11 +10,17 @@ export default async (request: Request, context: Context) => {
     console.log(draft);
     const sanityQuery = draft ? "*[!(_type match 'system.**')]" : "*[!(_id in path('drafts.**')) %26%26 !(_type match 'system.**')]";
 
-    return await fetch(`${Netlify.env.get("SANITY_URL")}/v2021-10-21/data/query/production?query=${sanityQuery}`, {
+    const resp = await fetch(`${Netlify.env.get("SANITY_URL")}/v2021-10-21/data/query/production?query=${sanityQuery}`, {
         method: "GET",
         headers: {
             "Authorization": `Bearer ${Netlify.env.get("SANITY_TOKEN")}`
         },
-        mode: "no-cors",
+    });
+    const body = await resp.text();
+    return new Response(body, {
+        headers: {
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Origin": "*",
+        },
     });
 };
