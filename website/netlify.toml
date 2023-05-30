@@ -7,7 +7,3 @@ command = "pnpm run build-ci-staging"
 
 [context.development]
 command = "pnpm run build-ci-dev"
-
-[[edge_functions]]
-function = "get-content"
-path = "/api/content"
