@@ -53,7 +53,30 @@
                 },
                 {
                   "replace": "src/service/content-endpoint.service.ts",
-                  "with": "src/service/content-endpoint.service.build.ts"
+                  "with": "src/service/content-endpoint.service.prod.ts"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "staging": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "src/environment/environment.ts",
+                  "with": "src/environment/environment.prod.ts"
+                },
+                {
+                  "replace": "src/service/content-endpoint.service.ts",
+                  "with": "src/service/content-endpoint.service.staging.ts"
                 }
               ],
               "outputHashing": "all"

@@ -62,6 +62,8 @@ export default defineConfig({
                     s.documentTypeListItem(sectionIconSchemaName).title("Section Icons"),
                 ])) : s.divider(),
                 s.documentTypeListItem(referenceMaterialSchemaName).title("CMS Reference Material"),
+                s.divider(),
+                s.listItem().title("Release to Live Site").child(s.component()),
             ]),
         }),
         media(),

@@ -2,10 +2,10 @@ import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { SanityDocument } from "@sanity/types";
 
-const SERVER_URL = "/api/content?draft=true";
+const SERVER_URL = "/api/content";
 
 /**
- * When running `ng build` (e.g. in production), this file is replaced with `content-endpoint.service.prod.ts`.
+ * @see content-endpoint.service.ts
  */
 @Injectable({
     providedIn: "root",
