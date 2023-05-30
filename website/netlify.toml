@@ -1,5 +1,6 @@
 [context.production]
 command = "pnpm run build-ci-prod"
+publish = "dist/static"
 
 [context.staging]
 command = "pnpm run build-ci-staging"
