@@ -10,6 +10,7 @@ export const config: ScullyConfig = {
         "/:route": { type: pageRoutes },
     },
     puppeteerLaunchOptions: {
-        args: ["--no-sandbox"],
+        // executablePath: "/opt/homebrew/bin/chromium",
+        args: ["--no-sandbox", "--disabled-setupid-sandbox"],
     },
 };
