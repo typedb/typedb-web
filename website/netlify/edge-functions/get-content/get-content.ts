@@ -1,11 +1,15 @@
 import type { Context } from "https://edge.netlify.com";
 
 export default async (request: Request, context: Context) => {
-    // const queryString = request.url.includes("?") ? request.url.split("?")[1] : null;
-    // const params = queryString ? new URLSearchParams(queryString) : null;
-    // const draft = params?.get("draft") === "true";
+    console.log(request.url);
+    const queryString = request.url.includes("?") ? request.url.split("?")[1] : null;
+    console.log(queryString);
+    const params = queryString ? new URLSearchParams(queryString) : null;
+    console.log(params);
+    const draft = params?.get("draft") === "true";
+    console.log(draft);
 
-    if (true) {
+    if (draft) {
         return await fetch(`${Netlify.env.get("SANITY_URL")}/v2021-10-21/data/query/production?query=*[!(_type match 'system.**')]`, {
             method: "GET",
             headers: {
