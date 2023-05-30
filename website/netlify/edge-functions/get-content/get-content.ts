@@ -14,6 +14,7 @@ export default async (request: Request, context: Context) => {
         method: "GET",
         headers: {
             "Authorization": `Bearer ${Netlify.env.get("SANITY_TOKEN")}`
-        }
+        },
+        mode: "no-cors",
     });
 };
