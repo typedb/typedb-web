@@ -48,3 +48,6 @@ website/scully/**/*.js
 website/scully/**/*.js.map
 website/scully/plugins/credentials/**/*
 !website/scully/plugins/credentials/.gitkeep
+
+# Local Netlify folder
+.netlify
