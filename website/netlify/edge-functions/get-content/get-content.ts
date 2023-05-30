@@ -17,7 +17,7 @@ export default async (request: Request, context: Context) => {
             }
         });
     } else {
-        return await fetch(`${Netlify.env.get("SANITY_URL")}/v2021-10-21/data/query/production?query=*[!(_id in path('drafts.**')) && !(_type match 'system.**')]`, {
+        return await fetch(`${Netlify.env.get("SANITY_URL")}/v2021-10-21/data/query/production?query=*[!(_id in path('drafts.**')) %26%26 !(_type match 'system.**')]`, {
             method: "GET",
             headers: {
                 "Authorization": `Bearer ${Netlify.env.get("SANITY_TOKEN")}`
