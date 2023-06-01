@@ -1,5 +1,5 @@
 import { defineField, defineType } from "@sanity/types";
-import { collapsibleOptions, pageTitleField, requiredRule, sectionIconField, titleAndBodyFields } from "../common-fields";
+import { collapsibleOptions, isVisibleField, pageTitleField, requiredRule, SanityVisibleToggle, sectionIconField, titleAndBodyFields } from "../common-fields";
 import { SanityTechnicolorBlock, TechnicolorBlock } from "../component/technicolor-block";
 import { SanityDataset } from "../sanity-core";
 import { ParagraphWithHighlights, RichText, SanityTitleAndBody, TitleAndBody, titleAndBodySchemaName } from "../text";
@@ -14,19 +14,19 @@ export interface SanityWebinarsPage extends SanityPage {
 
 export interface SanityIntroSection extends SanityTitleAndBody {}
 
-export interface SanityFeaturedWebinarsSection extends SanityTechnicolorBlock {}
+export interface SanityFeaturedWebinarsSection extends SanityTechnicolorBlock, SanityVisibleToggle {}
 
-export interface SanityExploreWebinarsSection extends SanityTechnicolorBlock {}
+export interface SanityExploreWebinarsSection extends SanityTechnicolorBlock, SanityVisibleToggle {}
 
 export class WebinarsPage {
     readonly introSection: IntroSection;
-    readonly featuredWebinarsSection: FeaturedWebinarsSection;
-    readonly exploreWebinarsSection: ExploreWebinarsSection;
+    readonly featuredWebinarsSection?: FeaturedWebinarsSection;
+    readonly exploreWebinarsSection?: ExploreWebinarsSection;
 
     constructor(data: SanityWebinarsPage, db: SanityDataset) {
         this.introSection = IntroSection.fromSanityIntroSection(data.introSection, db);
-        this.featuredWebinarsSection = FeaturedWebinarsSection.fromSanityFeaturedWebinarsSection(data.featuredWebinarsSection, db);
-        this.exploreWebinarsSection = ExploreWebinarsSection.fromSanityExploreWebinarsSection(data.exploreWebinarsSection, db);
+        this.featuredWebinarsSection = data.featuredWebinarsSection.isVisible ? FeaturedWebinarsSection.fromSanityFeaturedWebinarsSection(data.featuredWebinarsSection, db) : undefined;
+        this.exploreWebinarsSection = data.exploreWebinarsSection.isVisible ? ExploreWebinarsSection.fromSanityExploreWebinarsSection(data.exploreWebinarsSection, db) : undefined;
     }
 }
 
@@ -71,6 +71,7 @@ const featuredWebinarsSectionSchema = defineType({
     fields: [
         ...titleAndBodyFields,
         sectionIconField,
+        isVisibleField,
     ],
 });
 
@@ -81,6 +82,7 @@ const exploreWebinarsSectionSchema = defineType({
     fields: [
         ...titleAndBodyFields,
         sectionIconField,
+        isVisibleField,
     ],
 });
 

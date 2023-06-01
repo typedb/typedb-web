@@ -3,11 +3,33 @@ import { defineField, defineType, NumberRule, SanityDocument } from "@sanity/typ
 import { descriptionField, descriptionFieldRichText, nameField, requiredRule, titleField } from "./common-fields";
 import { organisationSchemaName } from "./organisation";
 import { Person, personSchemaName } from "./person";
+import { SanityImage } from "./sanity-core";
 import { RichText } from "./text";
 import { PropsOf } from "./util";
 
 export interface SanityWebinar extends SanityDocument {
-    title: string;
+    airmeetID: string;
+    hubspotFormID: string;
+    image: SanityImage;
+}
+
+export interface Airmeet {
+    uid: string;
+    name: string;
+    // description: string; // TODO description is not currently returned correctly by the Airmeet API
+}
+
+export interface AirmeetSession {
+    start_time: string;
+    duration: number;
+    speakerList: AirmeetSpeaker[];
+}
+
+export interface AirmeetSpeaker {
+    name: string;
+    company: string;
+    designation: string;
+    speaker_img: string;
 }
 
 export class Webinar {
@@ -18,6 +40,7 @@ export class Webinar {
     readonly imageURL: string;
     readonly speakers: Person[];
     readonly airmeetID: string;
+    readonly hubspotFormID: string;
 
     constructor(props: PropsOf<Webinar>) {
         this.title = props.title;
@@ -27,6 +50,7 @@ export class Webinar {
         this.imageURL = props.imageURL;
         this.speakers = props.speakers;
         this.airmeetID = props.airmeetID;
+        this.hubspotFormID = props.hubspotFormID;
     }
 }
 
