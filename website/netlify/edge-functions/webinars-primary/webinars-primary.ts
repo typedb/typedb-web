@@ -3,8 +3,8 @@ import type { Context } from "https://edge.netlify.com";
 const AIRMEET_API_URL = `https://api-gateway.airmeet.com/prod`;
 const internalServerError = () => new Response(null, { status: 500, headers: { "Access-Control-Allow-Origin": "*" } });
 
-async function fetchSession(airmeetID: string, token: string): Promise<any> {
-    const sessionsResponse = await fetch(`${AIRMEET_API_URL}/airmeet/${airmeetID}/info`, {
+async function fetchSession(airmeet: any, token: string): Promise<any> {
+    const sessionsResponse = await fetch(`${AIRMEET_API_URL}/airmeet/${airmeet.uid}/info`, {
         method: "GET",
         headers: {
             "X-Airmeet-Access-Token": token,
@@ -15,7 +15,7 @@ async function fetchSession(airmeetID: string, token: string): Promise<any> {
         throw internalServerError();
     }
     const sessionsResponseBody = await sessionsResponse.json();
-    return { airmeetID: airmeetID, session: sessionsResponseBody.sessions[0] };
+    return { airmeet: airmeet, session: sessionsResponseBody.sessions[0] };
 }
 
 export default async (request: Request, context: Context) => {
@@ -56,16 +56,16 @@ export default async (request: Request, context: Context) => {
     }
     const airmeetsResponseBody = await airmeetsResponse.json();
     console.log(airmeetsResponseBody);
-    const airmeetIDs: any[] = airmeetsResponseBody.data.map((x: any) => x.uid);
+    const airmeets: any[] = airmeetsResponseBody.data;
 
-    let sessions;
+    let webinars;
     try {
-        sessions = await Promise.all(airmeetIDs.map(x => fetchSession(x, token)));
+        webinars = await Promise.all(airmeets.map(x => fetchSession(x, token)));
     } catch (e) {
         return internalServerError();
     }
 
-    return new Response(JSON.stringify(sessions), {
+    return new Response(JSON.stringify(webinars), {
         headers: {
             "Content-Type": "application/json",
             "Access-Control-Allow-Origin": "*",
