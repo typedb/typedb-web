@@ -7,3 +7,13 @@ command = "pnpm run build-ci-staging"
 
 [context.development]
 command = "pnpm run build-ci-dev"
+
+[[redirects]]
+from = "https://development.dev.typedb.com/*"
+to = "https://development.dev.typedb.com/index.html"
+status = 200
+
+[[redirects]]
+from = "https://staging.dev.typedb.com/*"
+to = "https://staging.dev.typedb.com/index.html"
+status = 200
