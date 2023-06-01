@@ -55,7 +55,8 @@ export default async (request: Request, context: Context) => {
         return internalServerError();
     }
     const airmeetsResponseBody = await airmeetsResponse.json();
-    const airmeetIDs: any[] = airmeetsResponseBody.map((x: any) => x.uid);
+    console.log(airmeetsResponseBody);
+    const airmeetIDs: any[] = airmeetsResponseBody.data.map((x: any) => x.uid);
 
     let sessions;
     try {
