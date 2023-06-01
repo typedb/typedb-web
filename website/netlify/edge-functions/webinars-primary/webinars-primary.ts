@@ -15,7 +15,7 @@ async function fetchSession(airmeetID: string, token: string): Promise<any> {
         throw internalServerError();
     }
     const sessionsResponseBody = await sessionsResponse.json();
-    return sessionsResponseBody.sessions[0];
+    return { airmeetID: airmeetID, session: sessionsResponseBody.sessions[0] };
 }
 
 export default async (request: Request, context: Context) => {
