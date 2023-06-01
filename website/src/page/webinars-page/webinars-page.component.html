@@ -1,7 +1,11 @@
 <article>
     <div *ngIf="page">
         <td-title-body-actions-section [isIntroSection]="true" [title]="page.introSection.title" [body]="page.introSection.body"></td-title-body-actions-section>
-        <td-technicolor-block [block]="page.featuredWebinarsSection" [index]="1" [noLeadingLine]="true"></td-technicolor-block>
-        <td-technicolor-block [block]="page.exploreWebinarsSection" [index]="2"></td-technicolor-block>
+        <ng-container *ngIf="page.featuredWebinarsSection">
+            <td-technicolor-block [block]="page.featuredWebinarsSection" [index]="1" [noLeadingLine]="true"></td-technicolor-block>
+        </ng-container>
+        <ng-container *ngIf="page.exploreWebinarsSection">
+            <td-technicolor-block [block]="page.exploreWebinarsSection" [index]="2"></td-technicolor-block>
+        </ng-container>
     </div>
 </article>
