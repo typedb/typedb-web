@@ -28,11 +28,13 @@ export default async (request: Request, context: Context) => {
     // console.log(draft);
     // const sanityQuery = draft ? "*[!(_type match 'system.**')]" : "*[!(_id in path('drafts.**')) %26%26 !(_type match 'system.**')]";
 
+    const [accessKey, secretKey] = [Netlify.env.get("AIRMEET_API_ACCESS_KEY"), Netlify.env.get("AIRMEET_API_SECRET_KEY")];
+    console.log([accessKey, secretKey]);
     const authResponse = await fetch(`${AIRMEET_API_URL}/auth`, {
         method: "GET",
         headers: {
-            "X-Airmeet-Access-Key": Netlify.env.get("AIRMEET_API_ACCESS_KEY"),
-            "X-Airmeet-Secret-Key": Netlify.env.get("AIRMEET_API_SECRET_KEY"),
+            "X-Airmeet-Access-Key": accessKey,
+            "X-Airmeet-Secret-Key": secretKey,
         },
     });
     if (!authResponse.ok) {
