@@ -7,7 +7,7 @@ import { HomePageComponent } from "./page/home-page/home-page.component";
 import { IntroPageComponent } from "./page/intro-page/intro-page.component";
 import { NotFoundPageComponent } from "./page/not-found-page/not-found-page.component";
 import { SolutionPageComponent } from "./page/solution-page/solution-page.component";
-// import { WebinarsPageComponent } from "./page/webinars-page/webinars-page.component";
+import { WebinarsPageComponent } from "./page/webinars-page/webinars-page.component";
 
 const routes: Routes = [
     { path: "", component: HomePageComponent },
@@ -17,7 +17,7 @@ const routes: Routes = [
     { path: "studio", component: GenericPageComponent, data: { documentID: "studioPage" } },
     { path: "deploy", component: DeploymentPageComponent },
     { path: "solution/:route", component: SolutionPageComponent },
-    // { path: "webinars", component: WebinarsPageComponent },
+    { path: "webinars", component: WebinarsPageComponent },
     { path: "**", component: NotFoundPageComponent },
 ];
 

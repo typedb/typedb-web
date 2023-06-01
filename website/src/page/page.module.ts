@@ -8,6 +8,7 @@ import { IntroPageComponent, IntroPageTechnicolorBlockComponent } from "./intro-
 import { NotFoundPageComponent } from "./not-found-page/not-found-page.component";
 import { HomePageTechnicolorBlockComponent, HomePageComponent } from "./home-page/home-page.component";
 import { SolutionPageComponent, SolutionPageTechnicolorBlockComponent } from "./solution-page/solution-page.component";
+import { WebinarsPageComponent } from "./webinars-page/webinars-page.component";
 
 @NgModule({
     declarations: [
@@ -24,6 +25,7 @@ import { SolutionPageComponent, SolutionPageTechnicolorBlockComponent } from "./
         NotFoundPageComponent,
         SolutionPageComponent,
         SolutionPageTechnicolorBlockComponent,
+        WebinarsPageComponent,
     ],
     imports: [
         BrowserModule,

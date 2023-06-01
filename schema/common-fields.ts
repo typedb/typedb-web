@@ -84,6 +84,13 @@ export const descriptionField = defineField({
     type: "string",
 });
 
+export const descriptionFieldRichText = defineField({
+    name: descriptionFieldName,
+    title: "Description",
+    type: "array",
+    of: [{type: "block"}],
+});
+
 export const actionsFieldName = "actions";
 
 export const optionalActionsField = defineField({

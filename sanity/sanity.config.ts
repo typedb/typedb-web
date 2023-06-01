@@ -9,7 +9,7 @@ import { StructureBuilder } from "sanity/lib/exports/desk";
 import {
     featuresPageSchemaName, homePageSchemaName, sectionIconSchemaName, introPageSchemaName, linkSchemaName, schemaTypes, topbarSchemaName, solutionPageSchemaName,
     webinarsPageSchemaName, footerSchemaName, communityResourcesSchemaName, formsSchemaName, videoEmbedSchemaName, organisationSchemaName, imageIllustrationSchemaName,
-    codeSnippetSchemaName, polyglotSnippetSchemaName, graphVisualisationSchemaName, splitPaneIllustrationSchemaName, referenceMaterialSchemaName, genericPageSchemaName, deploymentPageSchemaName
+    codeSnippetSchemaName, polyglotSnippetSchemaName, graphVisualisationSchemaName, splitPaneIllustrationSchemaName, referenceMaterialSchemaName, genericPageSchemaName, deploymentPageSchemaName, personSchemaName, webinarSchemaName
 } from "typedb-web-schema";
 import { config } from "./config";
 import { getStartedPlugin } from "./plugins/sanity-plugin-tutorial";
@@ -54,7 +54,9 @@ export default defineConfig({
                     s.documentTypeListItem(polyglotSnippetSchemaName).title("Polyglot Code Snippets"),
                     s.documentTypeListItem(graphVisualisationSchemaName).title("Graph Visualisations"),
                 ])),
+                s.documentTypeListItem(personSchemaName).title("People"),
                 s.documentTypeListItem(organisationSchemaName).title("Organisations"),
+                s.documentTypeListItem(webinarSchemaName).title("Webinars"),
                 s.divider(),
                 singletonListItem(s, communityResourcesSchemaName, { title: "Community Resources", icon: CommentIcon }),
                 singletonListItem(s, formsSchemaName, { title: "Forms", icon: ClipboardImageIcon }),
@@ -62,8 +64,6 @@ export default defineConfig({
                     s.documentTypeListItem(sectionIconSchemaName).title("Section Icons"),
                 ])) : s.divider(),
                 s.documentTypeListItem(referenceMaterialSchemaName).title("CMS Reference Material"),
-                s.divider(),
-                s.listItem().title("Release to Live Site").child(s.component()),
             ]),
         }),
         media(),

@@ -8,14 +8,16 @@ import { keyPointSchemas } from "./key-point";
 import { navigationSchemas } from "./navigation";
 import { organisationSchemas } from "./organisation";
 import { pageSchemas } from "./page";
+import { personSchemas } from "./person";
 import { referenceMaterialSchema } from "./reference-material";
 import { socialMediaSchemas } from "./social-media";
 import { testimonialSchema } from "./testimonial";
 import { textSchemas } from "./text";
+import { webinarSchemas } from "./webinar";
 
 export const schemaTypes = [
-    ...actionSchemas, ...linkSchemas, ...componentSchemas, ...formSchemas, ...keyPointSchemas, ...illustrationSchemas, ...imageSchemas,
-    ...navigationSchemas, ...organisationSchemas, ...pageSchemas, referenceMaterialSchema, ...socialMediaSchemas, ...textSchemas, testimonialSchema
+    ...actionSchemas, ...linkSchemas, ...componentSchemas, ...formSchemas, ...keyPointSchemas, ...illustrationSchemas, ...imageSchemas, ...navigationSchemas,
+    ...organisationSchemas, ...pageSchemas, ...personSchemas, referenceMaterialSchema, ...socialMediaSchemas, ...textSchemas, testimonialSchema, ...webinarSchemas,
 ];
 
 export { ActionButton, LinkButton, type ButtonStyle } from "./button";
@@ -42,10 +44,12 @@ export { FeaturesPage, FeaturesPageCoreSection, featuresPageSchemaName, type San
 export { HomePage, homePageSchemaName, type SanityHomePage } from "./page/home";
 export { IntroPage, IntroPageCoreSection, introPageSchemaName, type SanityIntroPage } from "./page/intro";
 export { type SanitySolutionPage, SolutionPage, solutionPageSchemaName } from "./page/solution";
-export { webinarsPageSchemaName } from "./page/webinars";
+export { WebinarsPage, type SanityWebinarsPage, webinarsPageSchemaName } from "./page/webinars";
+export { Person, type SanityPerson, personSchemaName } from "./person";
 export { referenceMaterialSchemaName } from "./reference-material";
 export { Document, SanityDataset } from "./sanity-core";
 export { type SanityCommunityResources, communityResourcesSchemaName, type SocialMediaID, SocialMediaLink, socialMedias } from "./social-media";
 export { type SanityTestimonial, Testimonial } from "./testimonial";
 export { ParagraphWithHighlights, RichText, type SanityPortableText, TitleAndBody, TitleBodyIllustrationSection } from "./text";
 export { groupBy, associateBy } from "./util";
+export { Webinar, type SanityWebinar, webinarSchemaName } from "./webinar";

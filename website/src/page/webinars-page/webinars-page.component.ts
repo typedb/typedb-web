@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
-import { FeaturesPage, featuresPageSchemaName, SanityFeaturesPage } from "typedb-web-schema";
+import { SanityWebinarsPage, WebinarsPage, webinarsPageSchemaName } from "typedb-web-schema";
 import { ContentService } from "../../service/content.service";
 
 @Component({
@@ -9,15 +9,15 @@ import { ContentService } from "../../service/content.service";
     styleUrls: ["./webinars-page.component.scss"]
 })
 export class WebinarsPageComponent implements OnInit {
-    page?: FeaturesPage;
+    page?: WebinarsPage;
 
     constructor(private router: Router, private contentService: ContentService) {}
 
     ngOnInit() {
         this.contentService.data.subscribe((data) => {
-            const sanityFeaturesPage = data.getDocumentByID(featuresPageSchemaName) as SanityFeaturesPage;
-            if (sanityFeaturesPage) {
-                this.page = new FeaturesPage(sanityFeaturesPage, data);
+            const sanityWebinarsPage = data.getDocumentByID(webinarsPageSchemaName) as SanityWebinarsPage;
+            if (sanityWebinarsPage) {
+                this.page = new WebinarsPage(sanityWebinarsPage, data);
             } else {
                 this.page = undefined;
             }
