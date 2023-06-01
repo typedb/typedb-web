@@ -41,6 +41,11 @@ server/Cargo.toml
 website/.angular
 website/src/service/credentials/**/*
 !website/src/service/credentials/.gitkeep
+!website/dist
+website/dist/**/*
+!website/dist/dynamic
+website/dist/dynamic/**/*
+!website/dist/dynamic/_redirects
 
 # Website - Scully
 website/scully.log
