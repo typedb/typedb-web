@@ -23,16 +23,15 @@ async function fetchSession(airmeet: any, token: string): Promise<any> {
 
 export default async (request: Request, context: Context) => {
     console.log(request.url);
-    const queryString = request.url.includes("?") ? request.url.split("?")[1] : null;
-    console.log(queryString);
-    const params = queryString ? new URLSearchParams(queryString) : null;
-    console.log(params);
+    // const queryString = request.url.includes("?") ? request.url.split("?")[1] : null;
+    // console.log(queryString);
+    // const params = queryString ? new URLSearchParams(queryString) : null;
+    // console.log(params);
     // const draft = params?.get("draft") === "true";
     // console.log(draft);
     // const sanityQuery = draft ? "*[!(_type match 'system.**')]" : "*[!(_id in path('drafts.**')) %26%26 !(_type match 'system.**')]";
 
     const [accessKey, secretKey] = [Netlify.env.get("AIRMEET_API_ACCESS_KEY"), Netlify.env.get("AIRMEET_API_SECRET_KEY")];
-    console.log([accessKey, secretKey]);
     let startTime = Date.now();
     const authResponse = await fetch(`${AIRMEET_API_URL}/auth`, {
         method: "POST",
@@ -62,7 +61,7 @@ export default async (request: Request, context: Context) => {
         return internalServerError();
     }
     const airmeetsResponseBody = await airmeetsResponse.json();
-    console.log(airmeetsResponseBody);
+    // console.log(airmeetsResponseBody);
     const airmeets: any[] = airmeetsResponseBody.data;
     endTime = Date.now();
     console.log("GET /airmeets: completed in " + (endTime - startTime) + "ms");
