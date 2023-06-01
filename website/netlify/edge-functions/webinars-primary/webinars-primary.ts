@@ -42,7 +42,7 @@ export default async (request: Request, context: Context) => {
         return internalServerError();
     }
     const authResponseBody = await authResponse.json();
-    const token = authResponseBody.data.token;
+    const token = authResponseBody.token;
 
     const airmeetsResponse = await fetch(`${AIRMEET_API_URL}/airmeets`, {
         method: "GET",
@@ -55,7 +55,7 @@ export default async (request: Request, context: Context) => {
         return internalServerError();
     }
     const airmeetsResponseBody = await airmeetsResponse.json();
-    const airmeetIDs: any[] = airmeetsResponseBody.data.map((x: any) => x.uid);
+    const airmeetIDs: any[] = airmeetsResponseBody.map((x: any) => x.uid);
 
     let sessions;
     try {
