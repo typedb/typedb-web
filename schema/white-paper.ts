@@ -1,17 +1,19 @@
-import { defineField, defineType, SanityDocument } from "@sanity/types";
+import { defineField, defineType, File, SanityDocument } from "@sanity/types";
 import { headshotSchemaName, SanityImageRef } from "./image";
 import { Organisation, organisationSchemaName, SanityOrganisation } from "./organisation";
-import { Document, SanityDataset, SanityReference } from "./sanity-core";
+import { Document, SanityDataset, SanityFile, SanityImage, SanityReference } from "./sanity-core";
 import { SanityPortableText } from "./text";
 
 export interface SanityWhitePaper extends SanityDocument {
     title: string;
     description: SanityPortableText;
-    downloadURL: string;
+    file: SanityFile;
     tags: string[];
+    portraitImage: SanityImage;
+    landscapeImage: SanityImage;
 }
 
-export class Testimonial extends Document {
+export class WhitePaper extends Document {
     readonly organisation: Organisation;
     readonly author: string;
     readonly headshotURL: string;

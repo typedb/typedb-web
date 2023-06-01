@@ -1,4 +1,4 @@
-import { Image, ImageAsset, Reference, SanityDocument } from "@sanity/types";
+import { File, FileAsset, Image, ImageAsset, Reference, SanityDocument } from "@sanity/types";
 import { SanityImageRef } from "./image";
 import { associateBy } from "./util";
 
@@ -50,4 +50,8 @@ export interface SanityImageAsset extends ImageAsset {
 
 export interface SanityImage extends Image {
     asset: SanityReference<SanityImageAsset>;
+}
+
+export interface SanityFile extends File {
+    asset: SanityReference<FileAsset>;
 }

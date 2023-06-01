@@ -17,3 +17,7 @@ status = 200
 from = "https://staging.dev.typedb.com/*"
 to = "https://staging.dev.typedb.com/index.html"
 status = 200
+
+[[edge_functions]]
+function = "webinars-primary"
+path = "/api/webinars/primary"
