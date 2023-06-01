@@ -31,7 +31,7 @@ export default async (request: Request, context: Context) => {
     const [accessKey, secretKey] = [Netlify.env.get("AIRMEET_API_ACCESS_KEY"), Netlify.env.get("AIRMEET_API_SECRET_KEY")];
     console.log([accessKey, secretKey]);
     const authResponse = await fetch(`${AIRMEET_API_URL}/auth`, {
-        method: "GET",
+        method: "POST",
         headers: {
             "X-Airmeet-Access-Key": accessKey,
             "X-Airmeet-Secret-Key": secretKey,
