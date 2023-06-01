@@ -1,6 +1,6 @@
 import type { Context } from "https://edge.netlify.com";
 
-const AIRMEET_API_URL = `https://api-gateway-prod.us.airmeet.com/prod`;
+const AIRMEET_API_URL = `https://api-gateway.airmeet.com/prod`;
 const internalServerError = () => new Response(null, { status: 500, headers: { "Access-Control-Allow-Origin": "*" } });
 
 async function fetchSession(airmeetID: string, token: string): Promise<any> {

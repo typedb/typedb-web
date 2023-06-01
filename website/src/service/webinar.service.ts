@@ -13,6 +13,9 @@ export class WebinarService {
     public data = new ReplaySubject<any>();
 
     constructor(private http: HttpClient) {
+        // this.http.post("https://api-gateway-prod.us.airmeet.com/prod/auth", {}, { headers: { } }).subscribe(data => {
+        //     this.data.next(data);
+        // })
         this.http.get<{ result: any }>(apiURLs.primary).subscribe(data => {
             this.data.next(data);
         });
