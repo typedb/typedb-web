@@ -1,42 +1,27 @@
-import { PresentationIcon, UserIcon } from "@sanity/icons";
+import { PresentationIcon } from "@sanity/icons";
 import { defineField, defineType, NumberRule, SanityDocument } from "@sanity/types";
-import { descriptionField, descriptionFieldRichText, nameField, requiredRule, titleField } from "./common-fields";
-import { organisationSchemaName } from "./organisation";
-import { Person, personSchemaName } from "./person";
-import { SanityImage } from "./sanity-core";
-import { RichText } from "./text";
+import { descriptionFieldRichText, requiredRule, titleField } from "./common-fields";
+import { Person, personSchemaName, SanityPerson } from "./person";
+import { SanityDataset, SanityImage, SanityReference } from "./sanity-core";
+import { RichText, SanityPortableText } from "./text";
 import { PropsOf } from "./util";
 
 export interface SanityWebinar extends SanityDocument {
+    title: string;
+    description: SanityPortableText;
+    datetime: string;
+    durationMins: number;
+    image: SanityImage;
+    speakers: SanityReference<SanityPerson>[];
     airmeetID: string;
     hubspotFormID: string;
-    image: SanityImage;
-}
-
-export interface Airmeet {
-    uid: string;
-    name: string;
-    // description: string; // TODO description is not currently returned correctly by the Airmeet API
-}
-
-export interface AirmeetSession {
-    start_time: string;
-    duration: number;
-    speakerList: AirmeetSpeaker[];
-}
-
-export interface AirmeetSpeaker {
-    name: string;
-    company: string;
-    designation: string;
-    speaker_img: string;
 }
 
 export class Webinar {
     readonly title: string;
-    readonly date: Date;
-    readonly durationMins: number;
     readonly description: RichText;
+    readonly datetime: Date;
+    readonly durationMins: number;
     readonly imageURL: string;
     readonly speakers: Person[];
     readonly airmeetID: string;
@@ -44,13 +29,26 @@ export class Webinar {
 
     constructor(props: PropsOf<Webinar>) {
         this.title = props.title;
-        this.date = props.date;
-        this.durationMins = props.durationMins;
         this.description = props.description;
+        this.datetime = props.datetime;
+        this.durationMins = props.durationMins;
         this.imageURL = props.imageURL;
         this.speakers = props.speakers;
         this.airmeetID = props.airmeetID;
         this.hubspotFormID = props.hubspotFormID;
+    }
+
+    static fromSanity(data: SanityWebinar, db: SanityDataset): Webinar {
+        return new Webinar({
+            title: data.title,
+            description: new RichText(data.description),
+            datetime: new Date(data.datetime),
+            durationMins: data.durationMins,
+            imageURL: db.resolveRef(data.image.asset).url,
+            speakers: data.speakers.map(x => Person.fromSanity(db.resolveRef(x), db)),
+            airmeetID: data.airmeetID,
+            hubspotFormID: data.hubspotFormID,
+        });
     }
 }
 
@@ -63,6 +61,7 @@ const webinarSchema = defineType({
     type: "document",
     fields: [
         titleField,
+        descriptionFieldRichText,
         defineField({
             name: "datetime",
             title: "Date & Time",
@@ -78,7 +77,6 @@ const webinarSchema = defineType({
             type: "number",
             validation: (rule: NumberRule) => rule.required().positive(),
         }),
-        descriptionFieldRichText,
         defineField({
             name: "image",
             title: "Image",
@@ -89,12 +87,17 @@ const webinarSchema = defineType({
             name: "speakers",
             title: "Speakers",
             type: "array",
-            of: [{type: personSchemaName}],
+            of: [{type: "reference", to: [{type: personSchemaName}]}],
             validation: requiredRule,
         }),
         defineField({
             name: "airmeetID",
             title: "Airmeet ID",
+            type: "string",
+        }),
+        defineField({
+            name: "hubspotFormID",
+            title: "Hubspot Form ID",
             type: "string",
         }),
     ],

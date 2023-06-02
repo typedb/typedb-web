@@ -10,6 +10,7 @@ export interface SanityPerson extends SanityDocument {
     organisation: SanityReference<SanityOrganisation>;
     jobTitle: string;
     headshot: SanityImage;
+    linkedInURL?: string;
 }
 
 export class Person {
@@ -17,12 +18,14 @@ export class Person {
     readonly organisation: Organisation;
     readonly jobTitle: string;
     readonly headshotURL: string;
+    readonly linkedInURL?: string;
 
     constructor(props: PropsOf<Person>) {
         this.name = props.name;
         this.organisation = props.organisation;
         this.jobTitle = props.jobTitle;
         this.headshotURL = props.headshotURL;
+        this.linkedInURL = props.linkedInURL;
     }
 
     static fromSanity(data: SanityPerson, db: SanityDataset) {
@@ -31,6 +34,7 @@ export class Person {
             organisation: new Organisation(db.resolveRef(data.organisation), db),
             jobTitle: data.jobTitle,
             headshotURL: db.resolveRef(data.headshot.asset).url,
+            linkedInURL: data.linkedInURL,
         });
     }
 }
@@ -62,6 +66,11 @@ const personSchema = defineType({
             title: "Headshot",
             type: "image",
             validation: requiredRule,
+        }),
+        defineField({
+            name: "linkedInURL",
+            title: "LinkedIn URL",
+            type: "url",
         }),
     ],
 });

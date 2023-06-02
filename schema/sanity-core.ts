@@ -1,6 +1,7 @@
 import { File, FileAsset, Image, ImageAsset, Reference, SanityDocument } from "@sanity/types";
 import { SanityImageRef } from "./image";
 import { associateBy } from "./util";
+import { SanityWebinar, webinarSchemaName } from "./webinar";
 
 export class SanityDataset {
     private readonly _byType: { [key: string]: SanityDocument[] };

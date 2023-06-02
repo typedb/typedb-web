@@ -1,5 +1,6 @@
 const https = require('https');
 
+// NB this is not a real key
 const accessKey = "a26b1324-0e13-4479-a6e5-13c139e4044b#in";
 const secretKey = "abe08ca3-6d67-4524-9723-0acd4f7c53bc";
 
