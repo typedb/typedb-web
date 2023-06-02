@@ -37,6 +37,7 @@ export default async (request: Request, context: Context) => {
     const authResponse = await fetch(`${AIRMEET_API_URL}/auth`, {
         method: "POST",
         headers: {
+            "Content-Type": "application/json",
             "X-Airmeet-Access-Key": accessKey,
             "X-Airmeet-Secret-Key": secretKey,
         },
