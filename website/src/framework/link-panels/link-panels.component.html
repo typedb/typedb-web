@@ -1,7 +1,7 @@
 <ng-container [ngSwitch]="cols">
     <div class="section lc-root-cols-3" *ngSwitchCase="3">
         <ng-container *ngFor="let panel of panels">
-            <a *ngIf="$any(panel).iconURL; else panelWithoutIcon" class="lc-card lc-card-cols-3" [tdLink]="panel.button.link">
+            <a *ngIf="$any(panel).iconURL; else panelWithoutIcon" class="hoverable card lc-card lc-card-cols-3" [tdLink]="panel.button.link">
                 <div><img [src]="$any(panel).iconURL" alt=""/></div>
                 <h2 class="header-margin-s text-m">{{ panel.title }}</h2>
                 <td-rich-text [value]="panel.body" class="text-margin-xs text-xs text-sparse"></td-rich-text>
@@ -10,7 +10,7 @@
                 </ng-container>
             </a>
             <ng-template #panelWithoutIcon>
-                <a class="lc-card lc-card-cols-3">
+                <a class="hoverable card lc-card lc-card-cols-3">
                     <h2 class="text-m">{{ panel.title }}</h2>
                     <td-rich-text [value]="panel.body" class="text-xs text-margin-s"></td-rich-text>
                     <td-button [button]="$any(panel).button" size="small" buttonWidth="100%"></td-button>
@@ -19,7 +19,7 @@
         </ng-container>
     </div>
     <div class="section lc-root-cols-4" *ngSwitchCase="4">
-        <a *ngFor="let panel of panels" [tdLink]="panel.button.link" class="lc-card lc-card-cols-4">
+        <a *ngFor="let panel of panels" [tdLink]="panel.button.link" class="hoverable card lc-card lc-card-cols-4">
             <h2 class="text-m">{{ panel.title }}</h2>
             <td-rich-text [value]="panel.body" class="text-xs text-margin-s"></td-rich-text>
             <div class="flex"></div>

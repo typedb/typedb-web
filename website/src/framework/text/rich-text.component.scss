@@ -1,5 +1,9 @@
 @import "../../styles/sizes";
 
+:host {
+    display: block;
+}
+
 p + p {
     margin-top: $text-margin-m;
 }

@@ -1,4 +1,48 @@
+@import "../../styles/sizes";
+@import "../../styles/colors";
+
 article {
     background: no-repeat center top url("/assets/image/nebula-large-purple3.jpg"),
                 no-repeat center bottom url("/assets/image/planet-yellow-green.jpg");
+}
+
+.wp-primary-webinar {
+    padding: 40px;
+}
+
+.wp-primary-placeholder {
+    width: 1080px;
+    height: 720px;
+}
+
+.wp-img {
+    border: 1px solid $color-vaticle-light-purple;
+    border-radius: $border-radius;
+}
+
+.wp-img-primary {
+    width: 1080px;
+}
+
+.wp-primary-webinar-summary {
+    display: flex;
+    justify-content: space-between;
+}
+
+.wp-webinar-title {
+    color: $color-vaticle-white;
+}
+
+.wp-webinar-description {
+    height: $line-height-xs * 2;
+    width: 840px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.wp-primary-webinar-actions {
+    align-self: flex-end;
 }

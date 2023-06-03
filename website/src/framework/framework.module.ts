@@ -14,10 +14,11 @@ import { ConclusionPanelComponent } from "./conclusion-panel/conclusion-panel.co
 import { ContentPanelGridComponent } from "./content-panel-grid/content-panel-grid.component";
 import { ContentPanelComponent } from "./content-panel/content-panel.component";
 import { ContentTabsComponent } from "./content-tabs/content-tabs.component";
+import { OrdinalDatePipe } from "./date/ordinal-date.pipe";
 import { CloudWaitlistDialogComponent, ContactDialogComponent, NameEmailDialogComponent, NewsletterDialogComponent } from "./dialog/dialog.component";
 import { OptionDirective } from "./dialog/option.directive";
 import { FeatureTableCellComponent, FeatureTableComponent } from "./feature-table/feature-table.component";
-import { GraphVisualisationComponent } from "././graph-visualisation/graph-visualisation.component";
+import { GraphVisualisationComponent } from "./graph-visualisation/graph-visualisation.component";
 import { CaptionedIllustrationComponent, IllustrationComponent, SplitPaneIllustrationComponent } from "./illustration/illustration.component";
 import { InfoButtonComponent } from "./info-button/info-button.component";
 import { KeyPointPanels2x2Component, KeyPointTableComponent } from "./key-point/key-point.component";
@@ -57,6 +58,7 @@ import { RouterModule } from "@angular/router";
         NameEmailDialogComponent,
         NewsletterDialogComponent,
         OptionDirective,
+        OrdinalDatePipe,
         OrganisationLogosComponent,
         ParagraphWithHighlightsComponent,
         ProductPanelsComponent,
@@ -93,6 +95,7 @@ import { RouterModule } from "@angular/router";
         KeyPointTableComponent,
         LinkDirective,
         LinkPanelsComponent,
+        OrdinalDatePipe,
         OrganisationLogosComponent,
         ParagraphWithHighlightsComponent,
         ProductPanelsComponent,
@@ -102,7 +105,6 @@ import { RouterModule } from "@angular/router";
         TestimonialsCarouselComponent,
         TitleBodyActionsSectionComponent,
     ],
-    providers: [
-    ],
+    providers: [],
 })
 export class FrameworkModule { }

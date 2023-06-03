@@ -1,5 +1,5 @@
 <div class="section kpp-root">
-    <div *ngFor="let keyPoint of keyPoints" class="kpp-panel">
+    <div *ngFor="let keyPoint of keyPoints" class="kpp-panel card">
         <div class="kpp-image-block" *ngIf="$any(keyPoint).iconURL">
             <img [src]="$any(keyPoint).iconURL" alt=""/>
         </div>

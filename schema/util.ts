@@ -1,4 +1,4 @@
-export type PropsOf<OBJECT> = { [KEY in keyof OBJECT]: OBJECT[KEY] }
+export type PropsOf<OBJECT> = Pick<OBJECT, { [KEY in keyof OBJECT]: OBJECT[KEY] extends Function ? never : KEY }[keyof OBJECT]>;
 
 export function groupBy<T>(arr: T[], key: (i: T) => string) {
     return arr.reduce((groups, item) => {

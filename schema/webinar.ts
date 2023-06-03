@@ -15,6 +15,7 @@ export interface SanityWebinar extends SanityDocument {
     speakers: SanityReference<SanityPerson>[];
     airmeetID: string;
     hubspotFormID: string;
+    onDemandVideoURL?: string;
 }
 
 export class Webinar {
@@ -26,6 +27,7 @@ export class Webinar {
     readonly speakers: Person[];
     readonly airmeetID: string;
     readonly hubspotFormID: string;
+    readonly onDemandVideoURL?: string;
 
     constructor(props: PropsOf<Webinar>) {
         this.title = props.title;
@@ -36,6 +38,7 @@ export class Webinar {
         this.speakers = props.speakers;
         this.airmeetID = props.airmeetID;
         this.hubspotFormID = props.hubspotFormID;
+        this.onDemandVideoURL = props.onDemandVideoURL;
     }
 
     static fromSanity(data: SanityWebinar, db: SanityDataset): Webinar {
@@ -48,7 +51,12 @@ export class Webinar {
             speakers: data.speakers.map(x => Person.fromSanity(db.resolveRef(x), db)),
             airmeetID: data.airmeetID,
             hubspotFormID: data.hubspotFormID,
+            onDemandVideoURL: data.onDemandVideoURL,
         });
+    }
+
+    isFinished(): boolean {
+        return Date.now() > this.datetime.valueOf() + this.durationMins * 60_000;
     }
 }
 
@@ -99,6 +107,11 @@ const webinarSchema = defineType({
             name: "hubspotFormID",
             title: "Hubspot Form ID",
             type: "string",
+        }),
+        defineField({
+            name: "onDemandVideoURL",
+            title: "On-Demand Video URL",
+            type: "url",
         }),
     ],
 });

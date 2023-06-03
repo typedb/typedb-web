@@ -1,6 +1,25 @@
 <article>
     <div *ngIf="page">
-        <td-title-body-actions-section [isIntroSection]="true" [title]="page.introSection.title" [body]="page.introSection.body"></td-title-body-actions-section>
+        <div class="section">
+            <td-title-body-actions-section [isIntroSection]="true" [title]="page.introSection.title" [body]="page.introSection.body"></td-title-body-actions-section>
+            <div class="subsection wp-primary-webinar card">
+                <div *ngIf="!primaryWebinar" class="wp-primary-placeholder"></div>
+                <ng-container *ngIf="primaryWebinar">
+                    <div>
+                        <img [src]="primaryWebinar.imageURL" class="wp-img wp-img-primary" [alt]=""/>
+                    </div>
+                    <div class="wp-primary-webinar-summary text-margin-l">
+                        <div class="wp-primary-webinar-text">
+                            <p class="text-m"><span class="wp-webinar-title"><strong>{{ primaryWebinar.title }}</strong></span> | <span>{{ primaryWebinar.datetime | ordinalDate }}</span></p>
+                            <td-rich-text class="wp-webinar-description text-margin-s" [value]="primaryWebinar.description"></td-rich-text>
+                        </div>
+                        <div class="wp-primary-webinar-actions">
+                            <td-button [button]="actionButtonForWebinar(primaryWebinar)"></td-button>
+                        </div>
+                    </div>
+                </ng-container>
+            </div>
+        </div>
         <ng-container *ngIf="page.featuredWebinarsSection">
             <td-technicolor-block [block]="page.featuredWebinarsSection" [index]="1" [noLeadingLine]="true"></td-technicolor-block>
         </ng-container>

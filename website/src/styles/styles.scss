@@ -230,6 +230,17 @@ hr {
     margin-top: $text-margin-xs;
 }
 
+.card {
+    border-radius: $border-radius;
+    background-color: $color-vaticle-purple;
+    border: 1px solid $color-vaticle-light-purple;
+    transition: border-color 150ms ease;
+
+    &.hoverable:hover {
+        border-color: $color-vaticle-green;
+    }
+}
+
 .mat-dialog-container {
     padding: 32px;
     background: $color-vaticle-purple;

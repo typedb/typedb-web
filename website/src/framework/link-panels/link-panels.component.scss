@@ -16,9 +16,6 @@
 
 .lc-card {
     flex: 1;
-    border-radius: $border-radius;
-    background-color: $color-vaticle-purple;
-    border: 1px solid $color-vaticle-light-purple;
     display: flex;
     flex-direction: column;
     transition: border-color 150ms ease;
@@ -26,10 +23,6 @@
     img {
         width: 48px;
         height: 48px;
-    }
-
-    &:hover, &:focus {
-        border-color: $color-vaticle-green;
     }
 
     &.lc-card-cols-3 {

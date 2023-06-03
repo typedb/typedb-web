@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
-import { SanityWebinarsPage, WebinarsPage, webinarsPageSchemaName } from "typedb-web-schema";
+import { ActionButton, SanityWebinarsPage, Webinar, WebinarsPage, webinarsPageSchemaName } from "typedb-web-schema";
 import { WebinarService } from "../../service/webinar.service";
 import { ContentService } from "../../service/content.service";
 
@@ -25,6 +25,22 @@ export class WebinarsPageComponent implements OnInit {
         });
         this._webinarService.data.subscribe((data) => {
             console.log(data);
+        });
+    }
+
+    get primaryWebinar(): Webinar | undefined {
+        return this.page?.introSection?.featuredWebinar;
+    }
+
+    get secondaryWebinars(): Webinar[] | undefined {
+        return this.page?.featuredWebinarsSection?.featuredWebinars;
+    }
+
+    actionButtonForWebinar(webinar: Webinar): ActionButton {
+        const isFinished = webinar.isFinished();
+        return new ActionButton({
+            style: isFinished ? "secondary" : "primary",
+            text: isFinished ? "Register" : "Watch now",
         });
     }
 }

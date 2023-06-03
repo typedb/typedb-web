@@ -7,12 +7,13 @@ const secretKey = "abe08ca3-6d67-4524-9723-0acd4f7c53bc";
 const options = {
     method: "POST",
     headers: {
+        "Content-Type": "application/json",
         "X-Airmeet-Access-Key": accessKey,
         "X-Airmeet-Secret-Key": secretKey,
     }
 }
 
-const req = https.request("https://api-gateway.airmeet.com/prod/auth", options, res => {
+const req = https.request("https://api-gateway-prod.us.airmeet.com/prod/auth", options, res => {
     let data = [];
     const headerDate = res.headers && res.headers.date ? res.headers.date : 'no response date';
     console.log('Status Code:', res.statusCode);

@@ -4,7 +4,7 @@ import { SanityTechnicolorBlock, TechnicolorBlock } from "../component/technicol
 import { SanityDataset, SanityReference } from "../sanity-core";
 import { ParagraphWithHighlights, RichText, SanityTitleAndBody, TitleAndBody, titleAndBodySchemaName } from "../text";
 import { PropsOf } from "../util";
-import { SanityWebinar, Webinar } from "../webinar";
+import { SanityWebinar, Webinar, webinarSchemaName } from "../webinar";
 import { SanityPage } from "./common";
 
 export interface SanityWebinarsPage extends SanityPage {
@@ -86,6 +86,13 @@ const introSectionSchema = defineType({
     type: "object",
     fields: [
         ...titleAndBodyFields,
+        defineField({
+            name: "featuredWebinar",
+            title: "Featured Webinar",
+            description: "If unset, the next webinar will be displayed, or the most recent one if no webinars are scheduled",
+            type: "reference",
+            to: [{type: webinarSchemaName}],
+        }),
         isVisibleField,
     ],
 });
@@ -97,6 +104,13 @@ const featuredWebinarsSectionSchema = defineType({
     fields: [
         ...titleAndBodyFields,
         sectionIconField,
+        defineField({
+            name: "featuredWebinars",
+            title: "Featured Webinars",
+            description: "If unset, the next 3 webinars will be displayed, falling back to the most recent ones if < 3 webinars are scheduled",
+            type: "array",
+            of: [{type: "reference", to: [{type: webinarSchemaName}]}],
+        }),
         isVisibleField,
     ],
 });
