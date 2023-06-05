@@ -12,10 +12,10 @@ import { ContentService } from "../../service/content.service";
 export class SolutionPageComponent implements OnInit {
     page?: SolutionPage;
 
-    constructor(private router: Router, private activatedRoute: ActivatedRoute, private contentService: ContentService) {}
+    constructor(private router: Router, private _activatedRoute: ActivatedRoute, private contentService: ContentService) {}
 
     ngOnInit() {
-        this.activatedRoute.paramMap.subscribe((params: ParamMap) => {
+        this._activatedRoute.paramMap.subscribe((params: ParamMap) => {
             this.contentService.data.subscribe((data) => {
                 const sanityUseCasePages = data.getDocumentsByType(solutionPageSchemaName) as SanitySolutionPage[];
                 const sanityUseCasePage = sanityUseCasePages.find(x => x.route.current === params.get("route"));

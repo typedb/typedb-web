@@ -1,5 +1,6 @@
 import { Component, ElementRef, EventEmitter, Input, Output, ViewChild } from "@angular/core";
 import { MatDialogRef } from "@angular/material/dialog";
+import { NameEmailForm } from "./form";
 
 @Component({
     selector: "td-name-email-dialog",
@@ -21,12 +22,6 @@ export class NameEmailDialogComponent {
 
         this.submit.emit(this.form);
     }
-}
-
-interface NameEmailForm {
-    firstName: string;
-    lastName: string;
-    email: string;
 }
 
 @Component({

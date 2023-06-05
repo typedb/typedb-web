@@ -11,7 +11,6 @@ a, a:visited, a p {
     color: $color-vaticle-white;
 
     &:hover, &:focus {
-        font-weight: $font-weight-semi-bold;
         color: $color-vaticle-green;
         text-decoration: underline;
     }

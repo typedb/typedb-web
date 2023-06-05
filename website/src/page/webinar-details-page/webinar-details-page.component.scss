@@ -1,0 +1,74 @@
+@import "../../styles/sizes";
+@import "../../styles/colors";
+
+article {
+    background: no-repeat center top url("/assets/image/nebula-large-purple3.jpg"),
+                no-repeat center bottom url("/assets/image/planet-yellow-green.jpg");
+}
+
+ul.wd-subtitle {
+    list-style: none;
+    display: flex;
+
+    li + li:before {
+        content: "|";
+        margin: 0 24px;
+    }
+
+    img {
+        margin-right: 8px;
+    }
+}
+
+.wd-details-area {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    text-align: start;
+    gap: 40px;
+
+    > * {
+        flex: 1;
+    }
+}
+
+ul.wd-speakers {
+    list-style: none;
+    display: flex;
+    flex-flow: row wrap;
+    gap: 16px;
+}
+
+.wd-speaker {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 16px;
+
+    img {
+        width: 88px;
+        height: 88px;
+    }
+
+    h3 {
+        font-weight: $font-weight-semi-bold;
+    }
+}
+
+.wd-speaker-job {
+    margin-top: 2px;
+}
+
+.wd-form-card {
+    padding: 32px;
+
+    form {
+        margin-top: 24px;
+        display: flex;
+        flex-direction: column;
+    }
+
+    td-button {
+        margin-top: 32px;
+    }
+}

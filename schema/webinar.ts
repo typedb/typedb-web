@@ -1,7 +1,8 @@
 import { PresentationIcon } from "@sanity/icons";
-import { defineField, defineType, NumberRule, SanityDocument } from "@sanity/types";
-import { ActionButton } from "./button";
-import { descriptionFieldRichText, requiredRule, titleField } from "./common-fields";
+import { defineField, defineType, NumberRule, SanityDocument, Slug } from "@sanity/types";
+import { ActionButton, LinkButton } from "./button";
+import { descriptionFieldRichText, requiredRule, slugField, titleField } from "./common-fields";
+import { Link } from "./link";
 import { Person, personSchemaName, SanityPerson } from "./person";
 import { SanityDataset, SanityImage, SanityReference } from "./sanity-core";
 import { RichText, SanityPortableText } from "./text";
@@ -9,6 +10,7 @@ import { PropsOf } from "./util";
 
 export interface SanityWebinar extends SanityDocument {
     title: string;
+    slug: Slug;
     description: SanityPortableText;
     datetime: string;
     durationMins: number;
@@ -21,6 +23,7 @@ export interface SanityWebinar extends SanityDocument {
 
 export class Webinar {
     readonly title: string;
+    readonly slug: string;
     readonly description: RichText;
     readonly datetime: Date;
     readonly durationMins: number;
@@ -32,6 +35,7 @@ export class Webinar {
 
     constructor(props: PropsOf<Webinar>) {
         this.title = props.title;
+        this.slug = props.slug;
         this.description = props.description;
         this.datetime = props.datetime;
         this.durationMins = props.durationMins;
@@ -45,6 +49,7 @@ export class Webinar {
     static fromSanity(data: SanityWebinar, db: SanityDataset): Webinar {
         return new Webinar({
             title: data.title,
+            slug: data.slug.current,
             description: new RichText(data.description),
             datetime: new Date(data.datetime),
             durationMins: data.durationMins,
@@ -69,9 +74,14 @@ export class Webinar {
     }
 
     registrationButton(): ActionButton {
-        return new ActionButton({
+        return new LinkButton({
             style: this.isFinished() ? "secondary" : "primary",
             text: this.isFinished() ? "Register" : "Watch now",
+            link: new Link({
+                type: "route",
+                destination: `/webinar/${this.slug}`,
+                opensNewTab: false,
+            }),
         });
     }
 }
@@ -85,6 +95,7 @@ const webinarSchema = defineType({
     type: "document",
     fields: [
         titleField,
+        slugField,
         descriptionFieldRichText,
         defineField({
             name: "datetime",

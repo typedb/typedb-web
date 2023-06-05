@@ -60,6 +60,16 @@ export const titleAndBodyFields = [
     bodyFieldRichText,
 ];
 
+export const slugFieldName = "slug";
+
+export const slugField = defineField({
+    name: slugFieldName,
+    title: "Slug",
+    description: "URL fragment for this resource displayed in the browser's address bar",
+    type: "slug",
+    validation: requiredRule,
+});
+
 export const iconFieldName = "icon";
 
 export const sectionIconField = defineField({

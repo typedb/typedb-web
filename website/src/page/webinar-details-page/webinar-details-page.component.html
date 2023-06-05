@@ -1,0 +1,68 @@
+<article>
+    <div *ngIf="webinar">
+        <section class="page-section page-intro-section">
+            <h1 class="text-xxl">{{ webinar.title }}</h1>
+            <ul class="wd-subtitle text-l text-margin-l">
+                <li>Webinar</li>
+                <li><img src="/assets/icon/calendar.svg" alt="Date/Time:"/> {{ webinar.datetime | ordinalDate }} @{{ webinar.datetime | date:"HH:mm z" }} </li>
+                <li><img src="/assets/icon/time.svg" alt="Duration:"/> {{ webinar.durationMins | eventDuration }}</li>
+            </ul>
+            <div class="subsection-margin wd-details-area">
+                <div>
+                    <td-rich-text class="text-m" [value]="webinar.description"></td-rich-text>
+                    <ul class="wd-speakers subsection-margin">
+                        <li *ngFor="let speaker of webinar.speakers" class="wd-speaker">
+                            <img [src]="speaker.headshotURL" alt=""/>
+                            <div>
+                                <h3 class="text-s">{{ speaker.name }}</h3>
+                                <p class="text-xxs text-quiet">{{ speaker.jobTitle }},<br>{{ speaker.organisation.name }}</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="card wd-form-card">
+                    <h2 class="text-m"><strong>Register to Webinar</strong></h2>
+                    <form #formEl>
+                        <mat-form-field appearance="outline">
+                            <mat-label>First name</mat-label>
+                            <input type="text" name="firstName" [(ngModel)]="form.firstName" autocomplete="given-name" matNativeControl required/>
+                        </mat-form-field>
+                        <mat-form-field appearance="outline">
+                            <mat-label>Last name</mat-label>
+                            <input type="text" name="lastName" [(ngModel)]="form.lastName" autocomplete="family-name" matNativeControl required/>
+                        </mat-form-field>
+                        <mat-form-field appearance="outline">
+                            <mat-label>Work email</mat-label>
+                            <input type="email" name="email" [(ngModel)]="form.email" autocomplete="email" matNativeControl required/>
+                        </mat-form-field>
+                        <mat-form-field appearance="outline">
+                            <mat-label>Company</mat-label>
+                            <input type="text" name="companyName" [(ngModel)]="form.email" autocomplete="organization" matNativeControl required/>
+                        </mat-form-field>
+                        <mat-form-field appearance="outline">
+                            <mat-label>Job function</mat-label>
+                            <select matNativeControl required>
+                                <option value="" selected disabled></option>
+                                <option tdOption="Tech Executive (CIO, CTO, VP Engineering, etc.)"></option>
+                                <option tdOption="Business Executive (CEO, COO, CMO, etc.)"></option>
+                                <option tdOption="Architect"></option>
+                                <option tdOption="Business Development / Alliance Manager"></option>
+                                <option tdOption="DBA"></option>
+                                <option tdOption="Technical Operations"></option>
+                                <option tdOption="Director / Development Manager"></option>
+                                <option tdOption="Product / Project Manager"></option>
+                                <option tdOption="Software Developer / Engineer"></option>
+                                <option tdOption="Business Analyst"></option>
+                                <option tdOption="Data Scientist"></option>
+                                <option tdOption="Academic (Student, Teacher, Professor)"></option>
+                                <option tdOption="Other"></option>
+                            </select>
+                        </mat-form-field>
+                        <td-button [button]="{ style: 'primary', text: 'Register' }" buttonWidth="100%" (buttonClick)="onSubmit()"></td-button>
+                        <p class="text-margin-l">By submitting your personal data, you consent to emails from Vaticle. See our <a href="/privacy-policy">Privacy Policy</a>.</p>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </div>
+</article>

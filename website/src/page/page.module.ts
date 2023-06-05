@@ -8,12 +8,19 @@ import { IntroPageComponent, IntroPageTechnicolorBlockComponent } from "./intro-
 import { NotFoundPageComponent } from "./not-found-page/not-found-page.component";
 import { HomePageTechnicolorBlockComponent, HomePageComponent } from "./home-page/home-page.component";
 import { SolutionPageComponent, SolutionPageTechnicolorBlockComponent } from "./solution-page/solution-page.component";
+import { EventDurationPipe } from "./webinar-details-page/event-duration.pipe";
+import { WebinarDetailsPageComponent } from "./webinar-details-page/webinar-details-page.component";
 import { WebinarsPageComponent } from "./webinars-page/webinars-page.component";
+import { CommonModule } from "@angular/common";
+import { MatFormFieldModule } from "@angular/material/form-field";
+import { FormsModule } from "@angular/forms";
+import { MatInputModule } from "@angular/material/input";
 
 @NgModule({
     declarations: [
         DeploymentPageComponent,
         DeploymentPageTechnicolorBlockComponent,
+        EventDurationPipe,
         GenericPageComponent,
         GenericPageTechnicolorBlockComponent,
         FeaturesPageComponent,
@@ -25,11 +32,16 @@ import { WebinarsPageComponent } from "./webinars-page/webinars-page.component";
         NotFoundPageComponent,
         SolutionPageComponent,
         SolutionPageTechnicolorBlockComponent,
+        WebinarDetailsPageComponent,
         WebinarsPageComponent,
     ],
     imports: [
         BrowserModule,
+        CommonModule,
+        FormsModule,
         FrameworkModule,
+        MatFormFieldModule,
+        MatInputModule,
     ],
     providers: [],
 })

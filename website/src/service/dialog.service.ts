@@ -2,7 +2,7 @@ import { ComponentType } from "@angular/cdk/portal";
 import { Injectable } from "@angular/core";
 import { MatDialog, MatDialogConfig, MatDialogRef } from "@angular/material/dialog";
 import { ActivatedRoute, NavigationEnd, Router } from "@angular/router";
-import { CloudWaitlistDialogComponent, ContactDialogComponent, NewsletterDialogComponent } from "../framework/dialog/dialog.component";
+import { CloudWaitlistDialogComponent, ContactDialogComponent, NewsletterDialogComponent } from "../framework/./form/dialog.component";
 
 @Injectable({
     providedIn: "root",
