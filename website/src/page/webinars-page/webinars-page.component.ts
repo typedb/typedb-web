@@ -35,12 +35,4 @@ export class WebinarsPageComponent implements OnInit {
     get secondaryWebinars(): Webinar[] | undefined {
         return this.page?.featuredWebinarsSection?.featuredWebinars;
     }
-
-    actionButtonForWebinar(webinar: Webinar): ActionButton {
-        const isFinished = webinar.isFinished();
-        return new ActionButton({
-            style: isFinished ? "secondary" : "primary",
-            text: isFinished ? "Register" : "Watch now",
-        });
-    }
 }

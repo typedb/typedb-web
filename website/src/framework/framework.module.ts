@@ -22,7 +22,7 @@ import { GraphVisualisationComponent } from "./graph-visualisation/graph-visuali
 import { CaptionedIllustrationComponent, IllustrationComponent, SplitPaneIllustrationComponent } from "./illustration/illustration.component";
 import { InfoButtonComponent } from "./info-button/info-button.component";
 import { KeyPointPanels2x2Component, KeyPointTableComponent } from "./key-point/key-point.component";
-import { LinkPanelsComponent, ProductPanelsComponent } from "./link-panels/link-panels.component";
+import { LinkPanelsComponent, ProductPanelsComponent, WebinarPanelsComponent } from "./link-panels/link-panels.component";
 import { LinkDirective } from "./link/link.directive";
 import { OrganisationLogosComponent } from "./organisation-logos/organisation-logos.component";
 import { TitleBodyActionsSectionComponent } from "./section/title-body-actions-section.component";
@@ -68,6 +68,7 @@ import { RouterModule } from "@angular/router";
         TechnicolorBlockComponent,
         TestimonialsCarouselComponent,
         TitleBodyActionsSectionComponent,
+        WebinarPanelsComponent,
     ],
     imports: [
         BrowserModule,
@@ -104,6 +105,7 @@ import { RouterModule } from "@angular/router";
         TechnicolorBlockComponent,
         TestimonialsCarouselComponent,
         TitleBodyActionsSectionComponent,
+        WebinarPanelsComponent,
     ],
     providers: [],
 })

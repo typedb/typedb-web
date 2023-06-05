@@ -14,14 +14,15 @@
                             <td-rich-text class="wp-webinar-description text-margin-s" [value]="primaryWebinar.description"></td-rich-text>
                         </div>
                         <div class="wp-primary-webinar-actions">
-                            <td-button [button]="actionButtonForWebinar(primaryWebinar)"></td-button>
+                            <td-button [button]="primaryWebinar.registrationButton()"></td-button>
                         </div>
                     </div>
                 </ng-container>
             </div>
         </div>
-        <ng-container *ngIf="page.featuredWebinarsSection">
+        <ng-container *ngIf="page.featuredWebinarsSection && secondaryWebinars && secondaryWebinars.length">
             <td-technicolor-block [block]="page.featuredWebinarsSection" [index]="1" [noLeadingLine]="true"></td-technicolor-block>
+            <td-webinar-panels [webinars]="secondaryWebinars"></td-webinar-panels>
         </ng-container>
         <ng-container *ngIf="page.exploreWebinarsSection">
             <td-technicolor-block [block]="page.exploreWebinarsSection" [index]="2"></td-technicolor-block>

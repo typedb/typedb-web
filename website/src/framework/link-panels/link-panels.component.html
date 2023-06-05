@@ -2,7 +2,7 @@
     <div class="section lc-root-cols-3" *ngSwitchCase="3">
         <ng-container *ngFor="let panel of panels">
             <a *ngIf="$any(panel).iconURL; else panelWithoutIcon" class="hoverable card lc-card lc-card-cols-3" [tdLink]="panel.button.link">
-                <div><img [src]="$any(panel).iconURL" alt=""/></div>
+                <div><img class="lc-icon" [src]="$any(panel).iconURL" alt=""/></div>
                 <h2 class="header-margin-s text-m">{{ panel.title }}</h2>
                 <td-rich-text [value]="panel.body" class="text-margin-xs text-xs text-sparse"></td-rich-text>
                 <ng-container [ngSwitch]="ctaStrength">

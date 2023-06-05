@@ -1,5 +1,6 @@
 import { PresentationIcon } from "@sanity/icons";
 import { defineField, defineType, NumberRule, SanityDocument } from "@sanity/types";
+import { ActionButton } from "./button";
 import { descriptionFieldRichText, requiredRule, titleField } from "./common-fields";
 import { Person, personSchemaName, SanityPerson } from "./person";
 import { SanityDataset, SanityImage, SanityReference } from "./sanity-core";
@@ -57,6 +58,21 @@ export class Webinar {
 
     isFinished(): boolean {
         return Date.now() > this.datetime.valueOf() + this.durationMins * 60_000;
+    }
+
+    listSpeakers(): string {
+        return this.speakers.map(x => x.name).join(", ");
+    }
+
+    listSpeakerJobs(): string {
+        return this.speakers.map(x => x.jobDescription()).join(", ");
+    }
+
+    registrationButton(): ActionButton {
+        return new ActionButton({
+            style: this.isFinished() ? "secondary" : "primary",
+            text: this.isFinished() ? "Register" : "Watch now",
+        });
     }
 }
 

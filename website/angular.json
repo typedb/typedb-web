@@ -99,8 +99,7 @@
               "browserTarget": "typedb-web:build:production"
             },
             "development": {
-              "browserTarget": "typedb-web:build:development",
-              "proxyConfig": "src/proxy.conf.json"
+              "browserTarget": "typedb-web:build:development"
             }
           },
           "defaultConfiguration": "development"

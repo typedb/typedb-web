@@ -1,0 +1,36 @@
+@import "../../styles/colors";
+@import "../../styles/sizes";
+
+$card-width: 320px;
+
+.wp-root {
+    display: flex;
+    justify-content: space-between;
+    gap: 40px;
+}
+
+.wp-card {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    text-align: start;
+    padding: 30px 32px;
+
+    img {
+        width: $card-width;
+        height: 166px;
+        border: 1px solid $color-vaticle-light-purple;
+        border-radius: $border-radius;
+    }
+
+    h2, p {
+        max-width: $card-width;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+}
+
+td-button {
+    margin-top: 24px;
+}

@@ -37,6 +37,12 @@ export class Person {
             linkedInURL: data.linkedInURL,
         });
     }
+
+    jobDescription(): string {
+        return this.jobTitle
+            ? this.organisation ? `${this.jobTitle} at ${this.organisation.name}` : this.jobTitle
+            : this.organisation ? this.organisation.name : "";
+    }
 }
 
 export const personSchemaName = "person";

@@ -1,5 +1,5 @@
 import { Component, Input } from "@angular/core";
-import { LinkPanel, ProductPanel } from "typedb-web-schema";
+import { LinkPanel, ProductPanel, Webinar } from "typedb-web-schema";
 
 @Component({
     selector: "td-link-panels",
@@ -20,4 +20,13 @@ export class LinkPanelsComponent {
 })
 export class ProductPanelsComponent {
     @Input() panels!: ProductPanel[];
+}
+
+@Component({
+    selector: "td-webinar-panels",
+    templateUrl: "webinar-panels.component.html",
+    styleUrls: ["webinar-panels.component.scss"],
+})
+export class WebinarPanelsComponent {
+    @Input() webinars!: Webinar[];
 }

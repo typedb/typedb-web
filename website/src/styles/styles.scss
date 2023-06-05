@@ -230,6 +230,14 @@ hr {
     margin-top: $text-margin-xs;
 }
 
+.text-margin-xxs {
+    margin-top: $text-margin-xxs;
+}
+
+.text-quiet {
+    color: $color-vaticle-secondary-light-grey;
+}
+
 .card {
     border-radius: $border-radius;
     background-color: $color-vaticle-purple;
