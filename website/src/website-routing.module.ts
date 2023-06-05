@@ -9,6 +9,7 @@ import { NotFoundPageComponent } from "./page/not-found-page/not-found-page.comp
 import { SolutionPageComponent } from "./page/solution-page/solution-page.component";
 import { WebinarDetailsPageComponent } from "./page/webinar-details-page/webinar-details-page.component";
 import { WebinarsPageComponent } from "./page/webinars-page/webinars-page.component";
+import { WhitePapersPageComponent } from "./page/white-papers-page/white-papers-page.component";
 
 const routes: Routes = [
     { path: "", component: HomePageComponent },
@@ -20,6 +21,7 @@ const routes: Routes = [
     { path: "solution/:route", component: SolutionPageComponent },
     { path: "webinar/:slug", component: WebinarDetailsPageComponent },
     { path: "webinars", component: WebinarsPageComponent },
+    { path: "white-papers", component: WhitePapersPageComponent },
     { path: "**", component: NotFoundPageComponent },
 ];
 

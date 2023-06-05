@@ -1,0 +1,28 @@
+@import "../../styles/sizes";
+@import "../../styles/colors";
+
+article {
+    background: no-repeat center top url("/assets/image/nebula-large-purple3.jpg"),
+                no-repeat center bottom url("/assets/image/planet-yellow-green.jpg");
+}
+
+.wp-primary-whitepaper {
+    padding: 40px;
+    display: flex;
+    gap: 32px;
+    flex-direction: row;
+}
+
+.wp-primary-whitepaper-summary {
+    display: flex;
+    flex-direction: column;
+}
+
+.wp-primary-whitepaper-title {
+    font-weight: $font-weight-semi-bold;
+}
+
+.wp-img {
+    border: 1px solid $color-vaticle-light-purple;
+    border-radius: $border-radius;
+}

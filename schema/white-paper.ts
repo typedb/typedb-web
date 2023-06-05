@@ -1,11 +1,14 @@
-import { defineField, defineType, File, SanityDocument } from "@sanity/types";
-import { headshotSchemaName, SanityImageRef } from "./image";
-import { Organisation, organisationSchemaName, SanityOrganisation } from "./organisation";
-import { Document, SanityDataset, SanityFile, SanityImage, SanityReference } from "./sanity-core";
-import { SanityPortableText } from "./text";
+import { DocumentPdfIcon } from "@sanity/icons";
+import { defineField, defineType, SanityDocument, Slug } from "@sanity/types";
+import { bodyFieldRichText, descriptionFieldRichText, requiredRule, slugField, titleField } from "./common-fields";
+import { Link } from "./link";
+import { SanityDataset, SanityFile, SanityImage } from "./sanity-core";
+import { RichText, SanityPortableText } from "./text";
+import { PropsOf } from "./util";
 
 export interface SanityWhitePaper extends SanityDocument {
     title: string;
+    slug: Slug;
     description: SanityPortableText;
     file: SanityFile;
     tags: string[];
@@ -13,56 +16,74 @@ export interface SanityWhitePaper extends SanityDocument {
     landscapeImage: SanityImage;
 }
 
-export class WhitePaper extends Document {
-    readonly organisation: Organisation;
-    readonly author: string;
-    readonly headshotURL: string;
-    readonly jobTitle: string;
-    readonly body: string;
+export class WhitePaper {
+    readonly title: string;
+    readonly slug: string;
+    readonly description: RichText;
+    readonly fileURL: string;
+    readonly tags: string[];
+    readonly portraitImageURL: string;
+    readonly landscapeImageURL: string;
 
-    constructor(data: SanityTestimonial, db: SanityDataset) {
-        super(data);
-        this.organisation = new Organisation(db.resolveRef(data.organisation), db);
-        this.author = data.author;
-        this.headshotURL = db.resolveImageRef(data.headshot).url;
-        this.jobTitle = data.jobTitle;
-        this.body = data.body;
+    constructor(props: PropsOf<WhitePaper>) {
+        this.title = props.title;
+        this.slug = props.slug;
+        this.description = props.description;
+        this.fileURL = props.fileURL;
+        this.tags = props.tags;
+        this.portraitImageURL = props.portraitImageURL;
+        this.landscapeImageURL = props.landscapeImageURL;
+    }
+
+    static fromSanity(data: SanityWhitePaper, db: SanityDataset): WhitePaper {
+        return new WhitePaper({
+            title: data.title,
+            slug: data.slug.current,
+            description: new RichText(data.description),
+            fileURL: db.resolveRef(data.file.asset).url,
+            tags: data.tags,
+            portraitImageURL: db.resolveRef(data.portraitImage.asset).url,
+            landscapeImageURL: db.resolveRef(data.landscapeImage.asset).url,
+        });
+    }
+
+    detailsPageLink(): Link {
+        return new Link({
+            type: "route",
+            destination: `white-paper/${this.slug}`,
+            opensNewTab: false,
+        });
     }
 }
 
-export const testimonialSchemaName = "testimonial";
+export const whitePaperSchemaName = "whitePaper";
 
-export const testimonialSchema = defineType({
-    name: testimonialSchemaName,
-    title: "Testimonial",
+export const whitePaperSchema = defineType({
+    name: whitePaperSchemaName,
+    title: "White Paper",
+    icon: DocumentPdfIcon,
     type: "document",
     fields: [
+        titleField,
+        slugField,
+        descriptionFieldRichText,
         defineField({
-            name: "organisation",
-            title: "Organisation",
-            type: "reference",
-            to: [{type: organisationSchemaName}],
+            name: "file",
+            title: "File",
+            type: "file",
+            validation: requiredRule,
         }),
         defineField({
-            name: "author",
-            title: "Author",
-            type: "string",
+            name: "portraitImage",
+            title: "Portrait Image",
+            type: "image",
+            validation: requiredRule,
         }),
         defineField({
-            name: "headshot",
-            title: "Headshot",
-            type: "reference",
-            to: [{type: headshotSchemaName}],
-        }),
-        defineField({
-            name: "jobTitle",
-            title: "Job Title",
-            type: "string",
-        }),
-        defineField({
-            name: "body",
-            title: "Body",
-            type: "text",
+            name: "landscapeImage",
+            title: "Landscape Image",
+            type: "image",
+            validation: requiredRule,
         }),
     ],
 });

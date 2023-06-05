@@ -1,5 +1,5 @@
 <div class="section wp-root">
-    <a class="hoverable card wp-card" *ngFor="let webinar of webinars">
+    <a class="hoverable card wp-card" *ngFor="let webinar of webinars" [tdLink]="webinar.registrationButton().link">
         <img [src]="webinar.imageURL" alt=""/>
         <h2 class="text-m text-margin-m">{{ webinar.title }}</h2>
         <p class="text-margin-s"><strong>{{ webinar.listSpeakers() }}</strong></p>

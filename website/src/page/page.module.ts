@@ -15,6 +15,7 @@ import { CommonModule } from "@angular/common";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { FormsModule } from "@angular/forms";
 import { MatInputModule } from "@angular/material/input";
+import { WhitePapersPageComponent } from "./white-papers-page/white-papers-page.component";
 
 @NgModule({
     declarations: [
@@ -34,6 +35,7 @@ import { MatInputModule } from "@angular/material/input";
         SolutionPageTechnicolorBlockComponent,
         WebinarDetailsPageComponent,
         WebinarsPageComponent,
+        WhitePapersPageComponent,
     ],
     imports: [
         BrowserModule,

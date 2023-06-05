@@ -1,0 +1,18 @@
+<article>
+    <div *ngIf="page">
+        <div class="section">
+            <td-title-body-actions-section [isIntroSection]="true" [title]="page.introSection.title" [body]="page.introSection.body"></td-title-body-actions-section>
+            <div class="subsection-margin wp-primary-whitepaper card">
+                <div class="wp-primary-whitepaper-summary">
+                    <h2 class="text-m wp-primary-whitepaper-title">{{ page.featuredWhitePaper.title }}</h2>
+                    <td-rich-text class="wp-primary-whitepaper-description text-margin-s" [value]="page.featuredWhitePaper.description"></td-rich-text>
+                    <div class="flex"></div>
+                    <td-button [button]="accessResourceButton(page.featuredWhitePaper, 'primary', 'Read Now')"></td-button>
+                </div>
+                <div>
+                    <img [src]="page.featuredWhitePaper.portraitImageURL" class="wp-img wp-img-primary" [alt]=""/>
+                </div>
+            </div>
+        </div>
+    </div>
+</article>

@@ -1,10 +1,36 @@
 import { defineField, defineType } from "@sanity/types";
-import { collapsibleOptions, pageTitleField, sectionIconField, titleAndBodyFields } from "../common-fields";
-import { titleAndBodySchemaName } from "../text";
+import { collapsibleOptions, pageTitleField } from "../common-fields";
+import { SanityDataset, SanityReference } from "../sanity-core";
+import { SanityTitleAndBody, TitleAndBody, titleAndBodySchemaName } from "../text";
+import { PropsOf } from "../util";
+import { SanityWhitePaper, WhitePaper, whitePaperSchemaName } from "../white-paper";
+import { SanityPage } from "./common";
+
+export interface SanityWhitePapersPage extends SanityPage {
+    introSection: SanityTitleAndBody;
+    featuredWhitePaper: SanityReference<SanityWhitePaper>;
+}
+
+export class WhitePapersPage {
+    readonly introSection: TitleAndBody;
+    readonly featuredWhitePaper: WhitePaper;
+
+    constructor(props: PropsOf<WhitePapersPage>) {
+        this.introSection = props.introSection;
+        this.featuredWhitePaper = props.featuredWhitePaper;
+    }
+
+    static fromSanity(data: SanityWhitePapersPage, db: SanityDataset): WhitePapersPage {
+        return new WhitePapersPage({
+            introSection: TitleAndBody.fromSanityTitleAndBody(data.introSection),
+            featuredWhitePaper: WhitePaper.fromSanity(db.resolveRef(data.featuredWhitePaper), db),
+        });
+    }
+}
 
 export const whitePapersPageSchemaName = "whitePapersPage";
 
-const whitePapersPageSchema = defineType({
+export const whitePapersPageSchema = defineType({
     name: whitePapersPageSchemaName,
     title: "White Papers Page",
     type: "document",
@@ -19,20 +45,11 @@ const whitePapersPageSchema = defineType({
         defineField({
             name: "featuredWhitePaper",
             title: "Featured White Paper",
-            type: coreSectionSchemaName,
-            options: collapsibleOptions,
-        }),
-        defineField({
-            name: "exploreWebinarsSection",
-            title: "Explore Webinars Section",
-            description: "A searchable list of all our webinars will be displayed in this section",
-            type: coreSectionSchemaName,
-            options: collapsibleOptions,
+            type: "reference",
+            to: [{type: whitePaperSchemaName}],
         }),
     ],
     preview: {
-        prepare: (_selection) => ({ title: "Webinars Page" }),
+        prepare: (_selection) => ({ title: "White Papers Page" }),
     },
 });
-
-export const webinarsPageSchemas = [coreSectionSchema, webinarsPageSchema];

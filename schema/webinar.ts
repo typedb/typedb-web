@@ -73,7 +73,7 @@ export class Webinar {
         return this.speakers.map(x => x.jobDescription()).join(", ");
     }
 
-    registrationButton(): ActionButton {
+    registrationButton(): LinkButton {
         return new LinkButton({
             style: this.isFinished() ? "secondary" : "primary",
             text: this.isFinished() ? "Register" : "Watch now",
