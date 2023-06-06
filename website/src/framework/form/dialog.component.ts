@@ -30,7 +30,8 @@ export class NameEmailDialogComponent {
     template: "<td-name-email-dialog titleProp='Join TypeDB Cloud waitlist' submitButtonText='Register' (submit)='onSubmit($event)'></td-name-email-dialog>",
 })
 export class CloudWaitlistDialogComponent {
-    constructor(private dialogRef: MatDialogRef<CloudWaitlistDialogComponent>) {
+    constructor(private dialogRef: MatDialogRef<CloudWaitlistDialogComponent>, private _formService: FormService) {
+        this._formService.embedHubspotForm("typeDBCloudWaitlist", "popup-hubspot-form-holder");
     }
 
     onSubmit(data: NameEmailForm) {
@@ -43,7 +44,8 @@ export class CloudWaitlistDialogComponent {
     template: "<td-name-email-dialog titleProp='Subscribe to TypeDB newsletter' submitButtonText='Subscribe' (submit)='onSubmit($event)'></td-name-email-dialog>",
 })
 export class NewsletterDialogComponent {
-    constructor(private dialogRef: MatDialogRef<NewsletterDialogComponent>) {
+    constructor(private dialogRef: MatDialogRef<NewsletterDialogComponent>, private _formService: FormService) {
+        this._formService.embedHubspotForm("newsletter", "popup-hubspot-form-holder");
     }
 
     onSubmit(data: NameEmailForm) {

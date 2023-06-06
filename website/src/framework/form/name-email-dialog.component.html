@@ -5,20 +5,6 @@
     </button>
 </div>
 <div mat-dialog-content>
-    <form #formEl>
-        <mat-form-field appearance="outline">
-            <mat-label>First name</mat-label>
-            <input type="text" name="firstName" [(ngModel)]="form.firstName" autocomplete="given-name" matNativeControl required/>
-        </mat-form-field>
-        <mat-form-field appearance="outline">
-            <mat-label>Last name</mat-label>
-            <input type="text" name="lastName" [(ngModel)]="form.lastName" autocomplete="family-name" matNativeControl required/>
-        </mat-form-field>
-        <mat-form-field appearance="outline">
-            <mat-label>Email</mat-label>
-            <input type="email" name="email" [(ngModel)]="form.email" autocomplete="email" matNativeControl required/>
-        </mat-form-field>
-        <td-button [button]="{ style: 'primary', text: submitButtonText }" buttonWidth="unset" (buttonClick)="onSubmit()"></td-button>
-        <p class="text-margin-l">By submitting your personal data, you consent to emails from Vaticle. See our <a href="/privacy-policy">Privacy Policy</a>.</p>
-    </form>
+    <div id="popup-hubspot-form-holder"></div>
+    <p class="text-margin-l">By submitting your personal data, you consent to emails from Vaticle. See our <a href="/privacy-policy">Privacy Policy</a>.</p>
 </div>

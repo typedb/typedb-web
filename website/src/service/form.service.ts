@@ -38,10 +38,11 @@ export class FormService {
                 if (formEl) {
                     clearInterval(formElementPoller);
                     document.getElementById(placeholderElementID)!.appendChild(formEl);
-                } else if (retries > 60) {
+                } else if (retries > 30) {
                     clearInterval(formElementPoller);
                     throw "Retry limit exceeded attempting to embed HubSpot form!";
                 }
+                retries++;
             }, 50);
         });
     }

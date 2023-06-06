@@ -1,54 +1,5 @@
 @import "../../styles/sizes";
 
-.cd-row {
-    display: flex;
-    flex-direction: row;
-    gap: 32px;
-
-    mat-form-field, .cd-fieldset {
-        flex: 1;
-    }
-
-    .cd-fieldset {
-        display: flex;
-        flex-direction: column;
-    }
-}
-
-::ng-deep .cd-tell-us-more.mat-form-field-appearance-outline .mat-form-field-wrapper {
-    padding-bottom: 0;
-    margin-bottom: 0;
-}
-
-.cd-actions-row {
-    margin-top: 32px;
-    display: flex;
-    flex-direction: row-reverse;
-    justify-content: space-between;
-    align-items: center;
-}
-
-ul {
-    margin-top: 20px;
-    height: calc(26px * 4 + 12px * 3);
-    list-style: none;
-    display: flex;
-    flex-flow: column wrap;
-    gap: 12px;
-
-    li {
-        width: 212px;
-    }
-}
-
-h2 {
-    font-weight: $font-weight-semi-bold;
-}
-
-textarea.mat-input-element {
-    resize: none;
-}
-
 p {
     align-self: flex-start;
     margin-top: -36px;
