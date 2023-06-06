@@ -3,3 +3,8 @@ export interface NameEmailForm {
     lastName: string;
     email: string;
 }
+
+export interface ResourceAccessForm extends NameEmailForm {
+    companyName: string;
+    jobFunction: string;
+}

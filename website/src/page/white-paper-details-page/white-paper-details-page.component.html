@@ -1,0 +1,56 @@
+<article>
+    <div *ngIf="whitePaper">
+        <section class="page-section page-intro-section">
+            <h1 class="text-xxl narrow-section">{{ whitePaper.title }}</h1>
+            <div class="subsection-margin card wd-landscape-img-card">
+                <img [src]="whitePaper.landscapeImageURL" class="wd-img wd-img-landscape" [alt]=""/>
+            </div>
+            <td-rich-text class="text-m subsection-margin wd-description" [value]="whitePaper.description"></td-rich-text>
+            <div class="subsection-margin card wd-form-card">
+                <img [src]="whitePaper.portraitImageURL" class="wd-img wd-img-portrait" [alt]="whitePaper.title"/>
+                <div>
+                    <h2 class="text-m"><strong>Get the white paper</strong></h2>
+                    <form #formEl>
+                        <mat-form-field appearance="outline">
+                            <mat-label>First name</mat-label>
+                            <input type="text" name="firstName" [(ngModel)]="form.firstName" autocomplete="given-name" matNativeControl required/>
+                        </mat-form-field>
+                        <mat-form-field appearance="outline">
+                            <mat-label>Last name</mat-label>
+                            <input type="text" name="lastName" [(ngModel)]="form.lastName" autocomplete="family-name" matNativeControl required/>
+                        </mat-form-field>
+                        <mat-form-field appearance="outline">
+                            <mat-label>Work email</mat-label>
+                            <input type="email" name="email" [(ngModel)]="form.email" autocomplete="email" matNativeControl required/>
+                        </mat-form-field>
+                        <mat-form-field appearance="outline">
+                            <mat-label>Company</mat-label>
+                            <input type="text" name="companyName" [(ngModel)]="form.email" autocomplete="organization" matNativeControl required/>
+                        </mat-form-field>
+                        <mat-form-field appearance="outline">
+                            <mat-label>Job function</mat-label>
+                            <select matNativeControl required>
+                                <option value="" selected disabled></option>
+                                <option tdOption="Tech Executive (CIO, CTO, VP Engineering, etc.)"></option>
+                                <option tdOption="Business Executive (CEO, COO, CMO, etc.)"></option>
+                                <option tdOption="Architect"></option>
+                                <option tdOption="Business Development / Alliance Manager"></option>
+                                <option tdOption="DBA"></option>
+                                <option tdOption="Technical Operations"></option>
+                                <option tdOption="Director / Development Manager"></option>
+                                <option tdOption="Product / Project Manager"></option>
+                                <option tdOption="Software Developer / Engineer"></option>
+                                <option tdOption="Business Analyst"></option>
+                                <option tdOption="Data Scientist"></option>
+                                <option tdOption="Academic (Student, Teacher, Professor)"></option>
+                                <option tdOption="Other"></option>
+                            </select>
+                        </mat-form-field>
+                        <td-button [button]="{ style: 'primary', text: 'Download' }" buttonWidth="100%" (buttonClick)="onSubmit()"></td-button>
+                        <p class="text-margin-l">By submitting your personal data, you consent to emails from Vaticle. See our <a href="/privacy-policy">Privacy Policy</a>.</p>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </div>
+</article>

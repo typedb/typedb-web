@@ -1,0 +1,43 @@
+@import "../../styles/sizes";
+@import "../../styles/colors";
+
+article {
+    background: no-repeat center top url("/assets/image/nebula-large-purple3.jpg"),
+                no-repeat center bottom url("/assets/image/planet-yellow-green.jpg");
+}
+
+.wd-description {
+    text-align: start;
+    columns: 2;
+}
+
+.wd-landscape-img-card {
+    padding: 32px;
+}
+
+.wd-form-card {
+    padding: 32px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 32px;
+
+    > * {
+        flex: 1;
+    }
+
+    form {
+        text-align: start;
+        margin-top: 24px;
+        display: flex;
+        flex-direction: column;
+    }
+
+    td-button {
+        margin-top: 32px;
+    }
+
+    h2 {
+        text-align: start;
+    }
+}
