@@ -1,5 +1,6 @@
 import { Component, ElementRef, EventEmitter, Input, Output, ViewChild } from "@angular/core";
 import { MatDialogRef } from "@angular/material/dialog";
+import { FormService } from "../../service/form.service";
 import { NameEmailForm } from "./form";
 
 @Component({
@@ -64,7 +65,8 @@ export class ContactDialogComponent {
     allTopics = ["Products & Services", "Support", "Consulting", "Sales", "Training", "Careers", "PR & Analyst Relations"] as const;
     form: ContactForm = { firstName: "", lastName: "", email: "", companyName: "", jobFunction: "", topics: CONTACT_FORM_TOPICS.reduce((obj, x) => Object.assign(obj, {[x]: false}), {}) as any, body: "" };
 
-    constructor(private dialogRef: MatDialogRef<ContactDialogComponent>) {
+    constructor(private dialogRef: MatDialogRef<ContactDialogComponent>, private _formService: FormService) {
+        this._formService.embedHubspotForm("contact", "hubspot-form-holder-contact");
     }
 
     onSubmit() {

@@ -61,7 +61,7 @@ export default defineConfig({
                 s.documentTypeListItem(whitePaperSchemaName).title("White Papers"),
                 s.divider(),
                 singletonListItem(s, communityResourcesSchemaName, { title: "Community Resources", icon: CommentIcon }),
-                singletonListItem(s, formsSchemaName, { title: "Forms", icon: ClipboardImageIcon }),
+                singletonListItem(s, formsSchemaName, { title: "HubSpot Forms", icon: ClipboardImageIcon }),
                 isAdmin() ? s.listItem().title("Icons & Logos").icon(ImagesIcon).child(s.list().title("Icons & Logos").items([
                     s.documentTypeListItem(sectionIconSchemaName).title("Section Icons"),
                 ])) : s.divider(),

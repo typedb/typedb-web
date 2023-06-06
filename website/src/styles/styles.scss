@@ -250,6 +250,50 @@ hr {
     }
 }
 
+input[type='text'], input[type='email'] {
+    padding: 0 4px;
+    background-color: $color-vaticle-purple;
+    color: $default-text-color;
+    border: 1px solid $color-vaticle-light-purple;
+    caret-color: $default-text-color;
+    border-radius: $border-radius;
+    font-size: $font-size-xs;
+    line-height: 46px;
+}
+
+.hs-form-field {
+    text-align: start;
+}
+
+.hbspt-form fieldset + fieldset {
+    margin-top: 16px;
+}
+
+input[type='submit'].hs-button {
+    margin-top: 46px;
+    display: flex;
+    height: 48px;
+    width: 100%;
+    border: 1px solid transparent;
+    border-radius: $border-radius;
+    justify-content: center;
+    align-items: center;
+    font-size: $font-size-xs;
+    font-weight: $font-weight-semi-bold;
+    line-height: $line-height-xs;
+    transition-property: background-color, border;
+    transition-duration: 250ms;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    background: $color-vaticle-green;
+    color: $color-vaticle-purple;
+    cursor: pointer;
+    font-family: 'Titillium Web', sans-serif;
+
+    &:hover {
+        background-color: #0B939F;
+    }
+}
+
 .mat-dialog-container {
     padding: 32px;
     background: $color-vaticle-purple;
