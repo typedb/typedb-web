@@ -59,6 +59,6 @@ export class DialogService {
     }
 
     openContactDialog() {
-        this.open(ContactDialogComponent, { width: "1088px", autoFocus: "input" });
+        this.open(ContactDialogComponent, { width: "1088px", height: "658px", autoFocus: "input" });
     }
 }

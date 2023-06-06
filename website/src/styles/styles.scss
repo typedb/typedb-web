@@ -250,8 +250,21 @@ hr {
     }
 }
 
-input[type='text'], input[type='email'] {
-    padding: 0 4px;
+.hs-form label {
+    color: $color-vaticle-white;
+}
+
+.hs-form ul {
+    list-style: none;
+    display: flex;
+    flex-flow: column wrap;
+    gap: 12px;
+    margin-top: 12px;
+}
+
+.hs-form input[type='text'], input[type='email'] {
+    width: 100%;
+    padding: 0 8px;
     background-color: $color-vaticle-purple;
     color: $default-text-color;
     border: 1px solid $color-vaticle-light-purple;
@@ -261,12 +274,73 @@ input[type='text'], input[type='email'] {
     line-height: 46px;
 }
 
+.hs-form input[type=checkbox]:focus
+{
+    outline: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.hs-form input[type=checkbox]
+{
+    background-color: transparent;
+    border-radius: 4px;
+    border: 2px solid $color-vaticle-grey;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    width: 17px !important;
+    height: 17px;
+    cursor: pointer;
+    position: relative;
+    top: 5px;
+    margin-right: 12px;
+}
+
+.hs-form input[type=checkbox]:checked
+{
+    background: url("data:image/gif;base64,R0lGODlhCwAKAIABAP////3cnSH5BAEKAAEALAAAAAALAAoAAAIUjH+AC73WHIsw0UCjglraO20PNhYAOw==") 1px 1px no-repeat;
+}
+
 .hs-form-field {
     text-align: start;
 }
 
-.hbspt-form fieldset + fieldset {
+body .hs-form fieldset {
+    max-width: unset;
+
+    &.form-columns-2 .input {
+        margin-right: 32px;
+    }
+}
+
+.hs-form fieldset + fieldset {
     margin-top: 16px;
+}
+
+.hs_support_request__multi_check_box_ {
+    width: 50%;
+    float: left;
+
+    ul {
+        height: 160px;
+    }
+}
+
+.hs_support_request__full_details_ div.input {
+    position: relative;
+
+    > textarea {
+        position: absolute;
+        height: 264px;
+        width: 100%;
+        background-color: $color-vaticle-purple;
+        color: $default-text-color;
+        border: 1px solid $color-vaticle-light-purple;
+        caret-color: $default-text-color;
+        border-radius: $border-radius;
+        font-size: $font-size-xs;
+        font-family: 'Titillium Web', sans-serif;
+        padding: 8px;
+    }
 }
 
 input[type='submit'].hs-button {
@@ -292,6 +366,12 @@ input[type='submit'].hs-button {
     &:hover {
         background-color: #0B939F;
     }
+}
+
+#hubspot-form-holder-contact input[type='submit'].hs-button {
+    width: 202px;
+    float: right;
+    margin-top: 32px;
 }
 
 .mat-dialog-container {
