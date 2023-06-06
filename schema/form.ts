@@ -16,6 +16,17 @@ export type FormID = keyof typeof forms;
 
 export type SanityHubspotForms = SanityDocument & { [key in FormID]: string; };
 
+export interface WebinarRegistrationForm {
+    airmeetID: string;
+    email: string;
+    firstName: string;
+    lastName: string;
+    companyName: string;
+    jobTitle: string;
+    city?: string;
+    country?: string;
+}
+
 export const formsSchemaName = "forms";
 
 export const formsSchema = defineType({

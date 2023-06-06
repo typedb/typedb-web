@@ -27,7 +27,7 @@ export { ContentTextPanel } from "./component/content-text-panel";
 export { FeatureTable, featureTableSchemaName, type FeatureTableCell } from "./component/feature-table";
 export { LinkPanel, LinkPanelWithIcon, ProductPanel } from "./component/link-panel";
 export { TechnicolorBlock } from "./component/technicolor-block";
-export { type FormID, type SanityHubspotForms, formsSchemaName } from "./form";
+export { type FormID, type SanityHubspotForms, formsSchemaName, type WebinarRegistrationForm } from "./form";
 export {
     imageIllustrationSchemaName, videoEmbedSchemaName, codeSnippetSchemaName, polyglotSnippetSchemaName, graphVisualisationSchemaName, splitPaneIllustrationSchemaName,
     ImageIllustration, VideoEmbed, CodeSnippet, PolyglotSnippet, GraphVisualisation, SplitPaneIllustration, type Illustration, type SplitPaneIllustrationContent,

@@ -1,9 +1,11 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { ReplaySubject } from "rxjs";
+import { WebinarRegistrationForm } from "typedb-web-schema";
 
 const apiURLs = {
     primary: `https://development.dev.typedb.com/api/webinars/primary`,
+    register: `https://development.dev.typedb.com/api/webinars/register`,
 };
 
 @Injectable({
@@ -18,6 +20,12 @@ export class WebinarService {
         // })
         this.http.get<{ result: any }>(apiURLs.primary).subscribe(data => {
             this.data.next(data);
+        });
+    }
+
+    registerForWebinar(props: WebinarRegistrationForm) {
+        this.http.post(apiURLs.register, props).subscribe(resp => {
+            console.log(resp);
         });
     }
 }

@@ -24,7 +24,7 @@ export class FormService {
         });
     }
 
-    embedHubspotForm(form: FormID, placeholderElementID: string) {
+    embedHubspotForm(form: FormID, placeholderElementID: string, onSubmit?: (formEl: HTMLFormElement) => any) {
         this.forms.subscribe((data) => {
             const hubspotFormID = data[form];
             window.hbspt.forms.create({
@@ -34,10 +34,13 @@ export class FormService {
             });
             let retries = 0;
             const formElementPoller = setInterval(() => {
-                const formEl = document.getElementById(`hsForm_${hubspotFormID}`);
+                const formEl = document.getElementById(`hsForm_${hubspotFormID}`) as HTMLFormElement | null;
                 if (formEl) {
                     clearInterval(formElementPoller);
                     document.getElementById(placeholderElementID)!.appendChild(formEl);
+                    if (onSubmit) {
+                        this.attachOnSubmitAction(formEl, onSubmit);
+                    }
                 } else if (retries > 30) {
                     clearInterval(formElementPoller);
                     throw "Retry limit exceeded attempting to embed HubSpot form!";
@@ -46,4 +49,11 @@ export class FormService {
             }, 50);
         });
     }
+
+    attachOnSubmitAction(formEl: HTMLFormElement, action: (formEl: HTMLFormElement) => any) {
+        formEl.addEventListener("submit", () => {
+            action(formEl);
+        });
+    }
 }
+
