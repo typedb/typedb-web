@@ -135,7 +135,9 @@ export const textLinkField = defineField({
     type: "textLink",
 });
 
-export const learnMoreLinkField = Object.assign({}, linkField, { name: "learnMoreLink", title: "'Learn More' link" });
+export const learnMoreLinkFieldName = "learnMoreLink";
+
+export const learnMoreLinkField = Object.assign({}, linkField, { name: learnMoreLinkFieldName, title: "'Learn More' link" });
 
 export const videoEmbedFieldName = "videoEmbed";
 

@@ -1,5 +1,5 @@
 import { Component, Input } from "@angular/core";
-import { ContentPanel } from "typedb-web-schema";
+import { ContentTextPanel } from "typedb-web-schema";
 
 @Component({
     selector: "td-content-panel-grid",
@@ -7,5 +7,5 @@ import { ContentPanel } from "typedb-web-schema";
     styleUrls: ["content-panel-grid.component.scss"],
 })
 export class ContentPanelGridComponent {
-    @Input() panels!: ContentPanel[];
+    @Input() panels!: ContentTextPanel[];
 }

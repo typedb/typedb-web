@@ -1,48 +1,27 @@
-import { defineType } from "@sanity/types";
+import { defineField, defineType } from "@sanity/types";
 import { Illustration, illustrationField, illustrationFromSanity, SanityIllustrationField } from "../illustration";
-import { Link, SanityLink } from "../link";
-import { bodyFieldRichText, learnMoreLinkField, titleField } from "../common-fields";
+import { Link, linkSchemaName, SanityLink } from "../link";
+import { bodyFieldRichText, learnMoreLinkField, learnMoreLinkFieldName, titleField } from "../common-fields";
 import { SanityDataset, SanityReference } from "../sanity-core";
 import { RichText, SanityBodyText, SanityTitle } from "../text";
 
-export interface SanityContentPanel extends SanityTitle, SanityIllustrationField {}
-
-export interface SanityContentTextPanel extends SanityContentPanel, SanityBodyText {
-    learnMoreLink: SanityReference<SanityLink>;
+export interface SanityContentTextPanel extends SanityTitle, SanityIllustrationField, SanityBodyText {
+    learnMoreLink?: SanityReference<SanityLink>;
 }
 
-export class ContentPanel {
+export class ContentTextPanel {
     readonly title: string;
-    readonly illustration: Illustration;
-
-    constructor(data: SanityContentPanel, db: SanityDataset) {
-        this.title = data.title;
-        this.illustration = illustrationFromSanity(db.resolveRef(data.illustration), db);
-    }
-}
-
-export class ContentTextPanel extends ContentPanel {
     readonly body: RichText;
-    readonly learnMoreLink: Link;
+    readonly illustration: Illustration;
+    readonly learnMoreLink?: Link;
 
     constructor(data: SanityContentTextPanel, db: SanityDataset) {
-        super(data, db);
+        this.title = data.title;
+        this.illustration = illustrationFromSanity(db.resolveRef(data.illustration), db);
         this.body = new RichText(data.body);
-        this.learnMoreLink = Link.fromSanityLinkRef(data.learnMoreLink, db);
+        this.learnMoreLink = data.learnMoreLink ? Link.fromSanityLinkRef(data.learnMoreLink, db) : undefined;
     }
 }
-
-export const contentPanelSchemaName = "contentPanel";
-
-const contentPanelSchema = defineType({
-    name: contentPanelSchemaName,
-    title: "Illustration Panel",
-    type: "object",
-    fields: [
-        titleField,
-        illustrationField,
-    ],
-});
 
 export const contentTextPanelSchemaName = "contentTextPanel";
 
@@ -53,9 +32,14 @@ const contentTextPanelSchema = defineType({
     fields: [
         titleField,
         bodyFieldRichText,
-        learnMoreLinkField,
         illustrationField,
+        defineField({
+            name: learnMoreLinkFieldName,
+            title: "'Learn More' link",
+            type: "reference",
+            to: [{type: linkSchemaName}],
+        }),
     ],
 });
 
-export const contextTextPanelSchemas = [contentPanelSchema, contentTextPanelSchema];
+export const contextTextPanelSchemas = [contentTextPanelSchema];

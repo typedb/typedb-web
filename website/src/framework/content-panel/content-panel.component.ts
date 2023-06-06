@@ -1,5 +1,5 @@
 import { Component, Input } from "@angular/core";
-import { ContentPanel, ContentTextPanel } from "typedb-web-schema";
+import { ContentTextPanel } from "typedb-web-schema";
 
 @Component({
     selector: "td-content-panel",
@@ -8,7 +8,7 @@ import { ContentPanel, ContentTextPanel } from "typedb-web-schema";
 })
 export class ContentPanelComponent {
     @Input() hidden?: boolean;
-    @Input() panel!: ContentPanel;
+    @Input() panel!: ContentTextPanel;
     @Input() orientation: "landscape" | "portrait" = "landscape";
     @Input() textFirst?: boolean;
     @Input() size: "m" | "l" = "l";

@@ -1,7 +1,7 @@
 import { defineField, defineType } from "@sanity/types";
 import { bodyFieldRichText, collapsibleOptions, isVisibleField, pageTitleField, requiredRule, SanityVisibleToggle, sectionIconField, titleFieldWithHighlights } from "../common-fields";
 import { ConclusionSection, conclusionSectionSchemaName, SanityConclusionSection } from "../component/conclusion-panel";
-import { ContentPanel, contentPanelSchemaName, SanityContentPanel } from "../component/content-text-panel";
+import { ContentTextPanel, contentTextPanelSchemaName, SanityContentTextPanel } from "../component/content-text-panel";
 import { SanityTechnicolorBlock, TechnicolorBlock } from "../component/technicolor-block";
 import { SanityDataset } from "../sanity-core";
 import { RichText, SanityPortableText, SanityTitleBodyActions, titleAndBodySchemaName, TitleBodyActions } from "../text";
@@ -15,7 +15,7 @@ export interface SanityIntroPage extends SanityPage {
 }
 
 interface SanityCoreSection extends SanityTechnicolorBlock, SanityVisibleToggle {
-    contentTabs: SanityContentPanel[];
+    contentTabs: SanityContentTextPanel[];
     longText: SanityPortableText;
 }
 
@@ -32,7 +32,7 @@ export class IntroPage {
 }
 
 export class IntroPageCoreSection extends TechnicolorBlock {
-    readonly contentTabs: ContentPanel[];
+    readonly contentTabs: ContentTextPanel[];
     readonly longText: RichText;
 
     constructor(props: PropsOf<IntroPageCoreSection>) {
@@ -43,7 +43,7 @@ export class IntroPageCoreSection extends TechnicolorBlock {
 
     static fromSanityCoreSection(data: SanityCoreSection, db: SanityDataset) {
         return new IntroPageCoreSection(Object.assign(TechnicolorBlock.fromSanityTechnicolorBlock(data, db), {
-            contentTabs: data.contentTabs.map(x => new ContentPanel(x, db)),
+            contentTabs: data.contentTabs.map(x => new ContentTextPanel(x, db)),
             longText: new RichText(data.longText),
         }));
     }
@@ -65,7 +65,7 @@ const introPageCoreSectionSchema = defineType({
             name: "contentTabs",
             title: "Content Tabs",
             type: "array",
-            of: [{type: contentPanelSchemaName}],
+            of: [{type: contentTextPanelSchemaName}],
             validation: requiredRule,
         }),
         defineField({

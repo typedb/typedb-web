@@ -1,7 +1,7 @@
 import { Component, ElementRef, Input, OnInit } from "@angular/core";
 import { Event as RouterEvent, Router, Scroll } from "@angular/router";
 import { filter } from "rxjs";
-import { ContentPanel } from "typedb-web-schema";
+import { ContentTextPanel } from "typedb-web-schema";
 import { sanitiseHtmlID } from "../util";
 
 @Component({
@@ -10,7 +10,7 @@ import { sanitiseHtmlID } from "../util";
     styleUrls: ["content-tabs.component.scss"],
 })
 export class ContentTabsComponent implements OnInit {
-    @Input() tabs!: ContentPanel[];
+    @Input() tabs!: ContentTextPanel[];
     @Input() setWindowHashOnTabClick = false;
     private _elementID!: string;
     selectedTabID: string | undefined;
@@ -32,13 +32,13 @@ export class ContentTabsComponent implements OnInit {
         }
     }
 
-    get selectedTab(): ContentPanel {
+    get selectedTab(): ContentTextPanel {
         const selectedTab = this.tabs.find(x => this.tabID(x) === this.selectedTabID);
         if (selectedTab) return selectedTab;
         else throw "Unreachable code";
     }
 
-    tabID(tab: ContentPanel): string {
+    tabID(tab: ContentTextPanel): string {
         return `${this._elementID}-${sanitiseHtmlID(tab.title)}`;
     }
 
@@ -47,12 +47,12 @@ export class ContentTabsComponent implements OnInit {
         if (targetedTab) this.setSelectedTab(targetedTab);
     }
 
-    onTabClick(tab: ContentPanel, event: Event) {
+    onTabClick(tab: ContentTextPanel, event: Event) {
         event.preventDefault();
         this.setSelectedTab(tab);
     }
 
-    setSelectedTab(tab: ContentPanel) {
+    setSelectedTab(tab: ContentTextPanel) {
         this.selectedTabID = this.tabID(tab);
         if (this.setWindowHashOnTabClick) {
             this.router.navigate([], {
