@@ -21,3 +21,7 @@ status = 200
 [[edge_functions]]
 function = "webinars-primary"
 path = "/api/webinars/primary"
+
+[[edge_functions]]
+function = "webinars-register"
+path = "/api/webinars/register"
