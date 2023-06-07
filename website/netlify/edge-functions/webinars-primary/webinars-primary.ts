@@ -32,7 +32,6 @@ export default async (request: Request, context: Context) => {
     // const sanityQuery = draft ? "*[!(_type match 'system.**')]" : "*[!(_id in path('drafts.**')) %26%26 !(_type match 'system.**')]";
 
     const [accessKey, secretKey] = [Netlify.env.get("AIRMEET_API_ACCESS_KEY"), Netlify.env.get("AIRMEET_API_SECRET_KEY")];
-    console.log([accessKey, secretKey]);
     let startTime = Date.now();
     const authResponse = await fetch(`${AIRMEET_API_URL}/auth`, {
         method: "POST",
