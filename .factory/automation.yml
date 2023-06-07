@@ -1,8 +1,8 @@
 config:
   version-candidate: VERSION
 
-build:
-  correctness:
+#build:
+#  correctness:
 #    build:
 #      machine: 8-core-32-gb
 #      image: vaticle-ubuntu-20.04
@@ -34,19 +34,19 @@ build:
 #        export DEPLOY_HELM_USERNAME=$REPO_VATICLE_USERNAME
 #        export DEPLOY_HELM_PASSWORD=$REPO_VATICLE_PASSWORD
 #        bazel run --define version=0.0.0-$(git rev-parse HEAD) //deployment/helm:deploy
-    deploy-staging:
+#    deploy-staging:
       # TODO: move to release workflow
       # filter:
       #   owner: vaticle
       #   branch: master
-      machine: 8-core-32-gb
-      image: vaticle-ubuntu-20.04
+#      machine: 8-core-32-gb
+#      image: vaticle-ubuntu-20.04
 #      dependencies: [deploy-docker, deploy-helm]
-      command: |
-        export GCP_SERVICE_ACCOUNT_CREDENTIALS=`echo $GCP_SERVICE_ACCOUNT_CREDENTIALS_BASE64 | base64 --decode`
-        bazel run //deployment/actions:install_deps
-        bazel run //deployment/actions:deployment_repo_update
-        bazel run //deployment/actions:argocd_sync
+#      command: |
+#        export GCP_SERVICE_ACCOUNT_CREDENTIALS=`echo $GCP_SERVICE_ACCOUNT_CREDENTIALS_BASE64 | base64 --decode`
+#        bazel run //deployment/actions:install_deps
+#        bazel run //deployment/actions:deployment_repo_update
+#        bazel run //deployment/actions:argocd_sync
 
 #    test-behaviour:
 #      machine: 4-core-16-gb
@@ -70,11 +70,18 @@ build:
 #            --deployment-repo "$REPO_WEB_DEPLOYMENT" \
 #            --cloud-helm-chart "0.0.0-$FACTORY_COMMIT"
 
-#release:
-#  filter:
-#    owner: vaticle
-#    branch: master
-#  deployment:
+release:
+  filter:
+    owner: vaticle
+    branch: master
+  deployment:
+    deploy-live:
+      image: vaticle-ubuntu-22.04
+      command: |
+        git checkout live
+        git merge master
+        git push
+        echo The deployment will be handled by Netlify and can be tracked at https://app.netlify.com/sites/typedb/overview
 #    deploy-docker:
 #      image: vaticle-ubuntu-20.04
 #      command: |
