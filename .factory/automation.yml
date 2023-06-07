@@ -1,13 +1,6 @@
 config:
   version-candidate: VERSION
 
-build:
-  correctness:
-    hello-world:
-      image: vaticle-ubuntu-22.04
-      command: |
-        echo Hello World
-        echo This job does nothing. It exists because Factory ignores repos that don't have a 'build' pipeline.
 #    build:
 #      machine: 8-core-32-gb
 #      image: vaticle-ubuntu-20.04
