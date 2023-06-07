@@ -4,8 +4,9 @@ const AIRMEET_API_URL = `https://api-gateway-prod.us.airmeet.com/prod`;
 const internalServerError = () => new Response(null, { status: 500, headers: { "Access-Control-Allow-Origin": "*" } });
 
 export default async (request: Request, context: Context) => {
-    console.log(request.url);
+    // console.log(request.url);
     const requestBody = await request.json();
+    console.log(requestBody);
 
     const [accessKey, secretKey] = [Netlify.env.get("AIRMEET_API_ACCESS_KEY"), Netlify.env.get("AIRMEET_API_SECRET_KEY")];
     let startTime = Date.now();
