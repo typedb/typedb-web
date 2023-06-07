@@ -4,6 +4,15 @@ const AIRMEET_API_URL = `https://api-gateway-prod.us.airmeet.com/prod`;
 const internalServerError = () => new Response(null, { status: 500, headers: { "Access-Control-Allow-Origin": "*" } });
 
 export default async (request: Request, context: Context) => {
+    if (request.method.toLowerCase() === "options") {
+        console.log("OPTIONS /api/webinars/register");
+        return new Response(null, {
+            status: 200,
+            headers: {
+                "Access-Control-Allow-Origin": "*",
+            },
+        });
+    }
     // console.log(request.url);
     const requestBody = await request.json();
     console.log(requestBody);
