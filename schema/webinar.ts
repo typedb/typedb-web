@@ -129,6 +129,7 @@ const webinarSchema = defineType({
             name: "airmeetID",
             title: "Airmeet ID",
             type: "string",
+            validation: requiredRule,
         }),
         defineField({
             name: "hubspotFormID",

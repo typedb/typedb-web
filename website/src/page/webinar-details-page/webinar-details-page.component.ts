@@ -25,7 +25,7 @@ export class WebinarDetailsPageComponent implements OnInit {
                 if (sanityWebinar) {
                     this.webinar = Webinar.fromSanity(sanityWebinar, data);
                     this._formService.embedHubspotForm("webinarRegistration", "hubspot-form-holder", (formEl) => {
-                        this._webinarService.registerForWebinar({
+                        this._webinarService.register({
                             airmeetID: this.webinar!.airmeetID,
                             firstName: formEl["firstname"].value,
                             lastName: formEl["lastname"].value,

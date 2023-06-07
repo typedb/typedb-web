@@ -23,7 +23,7 @@ export class WebinarService {
         });
     }
 
-    registerForWebinar(props: WebinarRegistrationForm) {
+    register(props: WebinarRegistrationForm) {
         this.http.post(apiURLs.register, props).subscribe(resp => {
             console.log(resp);
         });
