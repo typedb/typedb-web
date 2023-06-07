@@ -5,7 +5,6 @@ export const forms = {
     contact: "Contact",
     newsletter: "Newsletter",
     typeDBCloudWaitlist: "TypeDB Cloud Waitlist",
-    webinarRegistration: "Webinar Registration",
     whitePaperDownload: "White Paper Download",
     requestTechTalk: "Request Tech Talk",
 } as const;

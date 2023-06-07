@@ -135,6 +135,7 @@ const webinarSchema = defineType({
             name: "hubspotFormID",
             title: "Hubspot Form ID",
             type: "string",
+            validation: requiredRule,
         }),
         defineField({
             name: "onDemandVideoURL",

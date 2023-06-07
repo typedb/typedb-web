@@ -24,9 +24,9 @@ export class FormService {
         });
     }
 
-    embedHubspotForm(form: FormID, placeholderElementID: string, onSubmit?: (formEl: HTMLFormElement) => any) {
+    embedHubspotForm(form: FormID | string, placeholderElementID: string, onSubmit?: (formEl: HTMLFormElement) => any) {
         this.forms.subscribe((data) => {
-            const hubspotFormID = data[form];
+            const hubspotFormID = data[form] || form;
             window.hbspt.forms.create({
                 region: HUBSPOT_REGION,
                 portalId: HUBSPOT_PORTAL_ID,
