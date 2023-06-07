@@ -4,9 +4,11 @@ publish = "dist/static"
 
 [context.staging]
 command = "pnpm run build-ci-staging"
+publish = "dist/dynamic"
 
 [context.development]
 command = "pnpm run build-ci-dev"
+publish = "dist/dynamic"
 
 [[redirects]]
 from = "https://development.dev.typedb.com/*"
