@@ -2,12 +2,12 @@
 
 article {
     &.planet-blue-pink {
-        background: no-repeat center top url("/assets/image/nebula-large-purple.jpg"),
+        background: no-repeat center top / 75% url("/assets/image/cloud_02june (2) 1.png"),
                     no-repeat center bottom url("/assets/image/planet-blue-pink.jpg");
     }
 
     &.planet-pink {
-        background: no-repeat center top url("/assets/image/nebula-large-purple2.jpg"),
+        background: no-repeat center top / 75% url("/assets/image/studio_02june (5) 1.png"),
                     no-repeat center bottom url("/assets/image/planet-pink.jpg");
     }
 }
