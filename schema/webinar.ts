@@ -76,7 +76,7 @@ export class Webinar {
     registrationButton(): LinkButton {
         return new LinkButton({
             style: this.isFinished() ? "secondary" : "primary",
-            text: this.isFinished() ? "Register" : "Watch now",
+            text: this.isFinished() ? "Watch now" : "Register",
             link: new Link({
                 type: "route",
                 destination: `/webinar/${this.slug}`,
