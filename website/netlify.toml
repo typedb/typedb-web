@@ -11,42 +11,6 @@ command = "pnpm run build-ci-dev"
 publish = "dist/dynamic"
 
 [[redirects]]
-from = "https://dev.typedb.com/docs/*"
-to = "https://docs.dev.typedb.com/:splat"
-status = 200
-force = true
-
-[[redirects]]
-from = "https://dev.typedb.com/docs"
-to = "https://dev.typedb.com/docs/typedb/2.x/docs.html"
-status = 200
-force = true
-
-[[redirects]]
-from = "https://staging.dev.typedb.com/docs/*"
-to = "https://master.docs.dev.typedb.com/:splat"
-status = 200
-force = true
-
-[[redirects]]
-from = "https://staging.dev.typedb.com/docs"
-to = "https://staging.dev.typedb.com/docs/typedb/2.x/docs.html"
-status = 200
-force = true
-
-[[redirects]]
-from = "https://development.dev.typedb.com/docs/*"
-to = "https://development.docs.dev.typedb.com/:splat"
-status = 200
-force = true
-
-[[redirects]]
-from = "https://development.dev.typedb.com/docs"
-to = "https://development.dev.typedb.com/docs/typedb/2.x/docs.html"
-status = 200
-force = true
-
-[[redirects]]
 from = "https://staging.dev.typedb.com/*"
 to = "https://master.dev.typedb.com/index.html"
 status = 200
