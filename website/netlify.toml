@@ -12,37 +12,37 @@ publish = "dist/dynamic"
 
 [[redirects]]
 from = "https://dev.typedb.com/docs"
-to = "https://typedb-docs.netlify.app/typedb/2.x/docs.html"
+to = "https://typedb-docs.netlify.app/docs/typedb/2.x/docs.html"
 status = 200
 force = true
 
 [[redirects]]
 from = "https://dev.typedb.com/docs/*"
-to = "https://typedb-docs.netlify.app/:splat"
+to = "https://typedb-docs.netlify.app/docs/:splat"
 status = 200
 force = true
 
 [[redirects]]
 from = "https://staging.dev.typedb.com/docs"
-to = "https://master--typedb-docs.netlify.app/typedb/2.x/docs.html"
+to = "https://master--typedb-docs.netlify.app/docs/typedb/2.x/docs.html"
 status = 200
 force = true
 
 [[redirects]]
 from = "https://staging.dev.typedb.com/docs/*"
-to = "https://master--typedb-docs.netlify.app/:splat"
+to = "https://master--typedb-docs.netlify.app/docs/:splat"
 status = 200
 force = true
 
 [[redirects]]
 from = "https://development.dev.typedb.com/docs"
-to = "https://development--typedb-docs.netlify.app/typedb/2.x/docs.html"
+to = "https://development--typedb-docs.netlify.app/docs/typedb/2.x/docs.html"
 status = 200
 force = true
 
 [[redirects]]
 from = "https://development.dev.typedb.com/docs/*"
-to = "https://development--typedb-docs.netlify.app/:splat"
+to = "https://development--typedb-docs.netlify.app/docs/:splat"
 status = 200
 force = true
 
