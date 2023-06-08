@@ -12,7 +12,7 @@ export function installPrismTypeQL() {
             pattern: /".*?"/
         },
         keyword: {
-            pattern: /((?:(?![-a-zA-Z_0-9]|\$).)|^|\s)(as|sub|sub!|has|owns|@key|abstract|relates|plays|value|match|isa|isa!|contains|regex|val|via|iid|label|define|undefine|get|insert|delete|aggregate|std|median|mean|max|min|sum|count|group|where|from|to|in|limit|offset|sort|asc|desc|when|then|commit|rule)(?![-a-zA-Z_0-9])/,
+            pattern: /((?:(?![-a-zA-Z_0-9]|\$).)|^|\s)(as|sub|sub!|has|owns|@key|abstract|relates|plays|value|match|isa|isa!|contains|regex|iid|label|define|undefine|get|insert|delete|aggregate|std|median|mean|max|min|sum|count|group|where|limit|offset|sort|asc|desc|when|then|commit|rule)(?![-a-zA-Z_0-9])/,
             lookbehind: true
         },
         type: {
