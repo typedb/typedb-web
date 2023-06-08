@@ -1,14 +1,12 @@
 @import "../../styles/sizes";
+@import "../background";
 
 article {
     &.planet-blue-pink {
-        background: no-repeat center top / 1920px url("/assets/image/cloud_02june (2) 1.png"),
-                    no-repeat center bottom url("/assets/image/planet-blue-pink.jpg");
+        @include page-background("cloud_02june (2) 1.png", "planet-blue-pink.png");
     }
-
     &.planet-pink {
-        background: no-repeat center top / 1920px url("/assets/image/studio_02june (5) 1.png"),
-                    no-repeat center bottom url("/assets/image/planet-pink.jpg");
+        @include page-background("studio_02june (5) 1.png", "planet-pink.png");
     }
 }
 

@@ -1,7 +1,7 @@
+@import "../background";
+
 article {
-    background: no-repeat center top / 1920px url("/assets/image/MainNebula31mai 1.png"),
-                repeat center top url("/assets/image/deep-space1.jpg"),
-                no-repeat center bottom url("/assets/image/planet-blue.jpg");
+    @include page-background("MainNebula31mai 1.png", "planet-blue.png");
 }
 
 .hp-intro-block {

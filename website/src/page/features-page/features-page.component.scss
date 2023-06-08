@@ -1,8 +1,8 @@
 @import "../../styles/sizes";
+@import "../background";
 
 article {
-    background: no-repeat center top / 1920px url("/assets/image/features_02june 1.png"),
-                no-repeat center bottom url("/assets/image/planet-yellow-green.jpg");
+    @include page-background("features_02june 1.png", "planet-yellow-green.png");
 }
 
 .fp-user-logos {

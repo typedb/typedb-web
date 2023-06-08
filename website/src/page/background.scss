@@ -1,0 +1,7 @@
+@mixin page-background($nebula, $planet) {
+    background: no-repeat center bottom url("/assets/image/#{$planet}"),
+                no-repeat center top / 1920px url("/assets/image/#{$nebula}"),
+                no-repeat center 140px url("/assets/image/deep-space1.jpg"),
+                no-repeat center 2140px url("/assets/image/deep-space2.jpg"),
+                repeat center 4140px url("/assets/image/deep-space3.jpg");
+}
