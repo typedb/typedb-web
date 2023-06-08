@@ -11,20 +11,14 @@ command = "pnpm run build-ci-dev"
 publish = "dist/dynamic"
 
 [[redirects]]
-from = "https://dev.typedb.com/docs/*"
-to = "https://typedb-docs.netlify.app/:splat"
-status = 200
-force = true
-
-[[redirects]]
 from = "https://dev.typedb.com/docs"
 to = "https://typedb-docs.netlify.app/typedb/2.x/docs.html"
 status = 200
 force = true
 
 [[redirects]]
-from = "https://staging.dev.typedb.com/docs/*"
-to = "https://master--typedb-docs.netlify.app/:splat"
+from = "https://dev.typedb.com/docs/*"
+to = "https://typedb-docs.netlify.app/:splat"
 status = 200
 force = true
 
@@ -35,14 +29,20 @@ status = 200
 force = true
 
 [[redirects]]
-from = "https://development.dev.typedb.com/docs/*"
-to = "https://development--typedb-docs.netlify.app/:splat"
+from = "https://staging.dev.typedb.com/docs/*"
+to = "https://master--typedb-docs.netlify.app/:splat"
 status = 200
 force = true
 
 [[redirects]]
 from = "https://development.dev.typedb.com/docs"
 to = "https://development--typedb-docs.netlify.app/typedb/2.x/docs.html"
+status = 200
+force = true
+
+[[redirects]]
+from = "https://development.dev.typedb.com/docs/*"
+to = "https://development--typedb-docs.netlify.app/:splat"
 status = 200
 force = true
 
