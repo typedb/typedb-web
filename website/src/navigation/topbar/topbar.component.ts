@@ -21,7 +21,7 @@ export class TopbarComponent implements OnInit {
         this._ngZone.runOutsideAngular(() => {
             window.addEventListener("scroll", () => {
                 const headerEl = document.getElementById("siteHeader");
-                if (headerEl) headerEl.style.backgroundColor = `rgba(26, 24, 42, ${window.pageYOffset / 500})`; // vaticle purple
+                if (headerEl) headerEl.style.backgroundColor = `rgba(26, 24, 42, ${window.pageYOffset / 300})`; // vaticle purple
             });
         });
     }
