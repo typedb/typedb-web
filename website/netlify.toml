@@ -47,6 +47,11 @@ status = 200
 force = true
 
 [[redirects]]
+from = "/typedb/2.x/docs.html"
+to = "/docs/typedb/2.x/docs.html"
+status = 200
+
+[[redirects]]
 from = "https://staging.dev.typedb.com/*"
 to = "https://master.dev.typedb.com/index.html"
 status = 200
