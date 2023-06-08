@@ -1,6 +1,13 @@
 config:
   version-candidate: VERSION
 
+build:
+  correctness:
+    hello-world:
+      image: vaticle-ubuntu-22.04
+      command: |
+        echo Hello World
+        echo "This job does nothing, but exists because Factory only displays a Release button if there is a Build workflow."
 #    build:
 #      machine: 8-core-32-gb
 #      image: vaticle-ubuntu-20.04
