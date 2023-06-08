@@ -1,3 +1,0 @@
-[build]
-publish = "dist"
-command = "cd ui && gulp bundle && cd .. && npx antora --redirect-facility=netlify antora-playbook.yml"
