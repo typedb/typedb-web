@@ -13,7 +13,11 @@ These instructions are for compiling the docs site locally.
 ### Prerequisites
 
 1. Install Node.js v18, preferably through [NVM (Node Version Manager)](https://github.com/nvm-sh/nvm)
-2. With `docs` as your working directory, run `./install-deps.sh` to install Node.js, Antora, Gulp and all required `node_modules`
+2. With `docs` as your working directory, run `npm i` to install Node.js, Antora, Gulp and all required `node_modules`
+
+#### Note
+
+⚠️ `pnpm` is not compatible with the Antora UI bundle. Use `npm` instead.
 
 ### Build
 

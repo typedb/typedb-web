@@ -1,7 +1,7 @@
 {
     "name": "typedb-web-docs",
     "scripts": {
-        "install": "./install-deps.sh",
+        "postinstall": "./install-additional-deps.sh",
         "build": "./build.sh"
     },
     "devDependencies": {
