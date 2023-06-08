@@ -20,6 +20,12 @@ from = "https://staging.dev.typedb.com/*"
 to = "https://staging.dev.typedb.com/index.html"
 status = 200
 
+[[redirects]]
+from = "/docs/*"
+to = "typedb-docs.netlify.app/:splat"
+status = 200
+force = true
+
 [[edge_functions]]
 function = "webinars-primary"
 path = "/api/webinars/primary"
