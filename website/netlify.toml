@@ -24,25 +24,25 @@ force = true
 
 [[redirects]]
 from = "https://staging.dev.typedb.com/docs/*"
-to = "https://master.typedb-docs.netlify.app/:splat"
+to = "https://master--typedb-docs.netlify.app/:splat"
 status = 200
 force = true
 
 [[redirects]]
 from = "https://staging.dev.typedb.com/docs"
-to = "https://master.typedb-docs.netlify.app"
+to = "https://master--typedb-docs.netlify.app"
 status = 200
 force = true
 
 [[redirects]]
 from = "https://development.dev.typedb.com/docs/*"
-to = "https://development.typedb-docs.netlify.app/:splat"
+to = "https://development--typedb-docs.netlify.app/:splat"
 status = 200
 force = true
 
 [[redirects]]
 from = "https://development.dev.typedb.com/docs"
-to = "https://development.typedb-docs.netlify.app"
+to = "https://development--typedb-docs.netlify.app"
 status = 200
 force = true
 
