@@ -11,11 +11,6 @@ command = "pnpm run build-ci-dev"
 publish = "dist/dynamic"
 
 [[redirects]]
-from = "https://development.dev.typedb.com/docs"
-to = "https://development--typedb-docs.netlify.app"
-status = 200
-
-[[redirects]]
 from = "https://dev.typedb.com/docs/*"
 to = "https://typedb-docs.netlify.app/:splat"
 status = 200
@@ -30,23 +25,23 @@ from = "https://development.dev.typedb.com/docs/*"
 to = "https://development--typedb-docs.netlify.app/:splat"
 status = 200
 
-#[[redirects]]
-#from = "https://dev.typedb.com/typedb/2.x/docs.html"
-#to = "https://dev.typedb.com/docs/typedb/2.x/docs.html"
-#status = 301
-#force = true
-#
-#[[redirects]]
-#from = "https://staging.dev.typedb.com/typedb/2.x/docs.html"
-#to = "https://staging.dev.typedb.com/docs/typedb/2.x/docs.html"
-#status = 301
-#force = true
-#
-#[[redirects]]
-#from = "https://development.dev.typedb.com/typedb/2.x/docs.html"
-#to = "https://development.dev.typedb.com/docs/typedb/2.x/docs.html"
-#status = 301
-#force = true
+[[redirects]]
+from = "https://dev.typedb.com/typedb/2.x/docs.html"
+to = "https://dev.typedb.com/docs/typedb/2.x/docs.html"
+status = 301
+force = true
+
+[[redirects]]
+from = "https://staging.dev.typedb.com/typedb/2.x/docs.html"
+to = "https://staging.dev.typedb.com/docs/typedb/2.x/docs.html"
+status = 301
+force = true
+
+[[redirects]]
+from = "https://development.dev.typedb.com/typedb/2.x/docs.html"
+to = "https://development.dev.typedb.com/docs/typedb/2.x/docs.html"
+status = 301
+force = true
 
 [[redirects]]
 from = "https://dev.typedb.com/*"
