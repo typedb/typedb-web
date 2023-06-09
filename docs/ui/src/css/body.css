@@ -1,5 +1,11 @@
 @media screen and (min-width: 1024px) {
   .body {
     display: flex;
+    justify-content: center;
+    overflow: scroll;
+      margin-top: 40px;
+      position: fixed;
+      width: 100%;
+      height: 100%;
   }
 }

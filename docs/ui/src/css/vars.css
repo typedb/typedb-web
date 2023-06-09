@@ -25,6 +25,7 @@
   --color-green: #02DAC9;
   --color-red: #E96464;
   --color-secondary-light-grey: #958FA8;
+  --color-secondary-purple: #232135;
   /* fonts */
   --rem-base: 16; /* used to compute rem value from desired pixel value (e.g., calc(18 / var(--rem-base) * 1rem) = 18px) */
   --body-font-size: 1.0625em; /* 17px */
@@ -36,6 +37,24 @@
   --body-font-weight-bold: 600;
   --monospace-font-family: "Ubuntu Mono", monospace;
   --monospace-font-weight-bold: 700;
+    --font-size-xxl: 56px;
+    --line-height-xxl: 64px;
+    --font-size-xl: 40px;
+    --line-height-xl: 54px;
+    --font-size-l: 32px;
+    --line-height-l: 44px;
+    --font-size-ml: 28px;
+    --line-height-ml: 36px;
+    --line-height-ml-sparse: 42px;
+    --font-size-m: 24px;
+    --line-height-m: 32px;
+    --font-size-s: 18px;
+    --line-height-s: 26px;
+    --font-size-xs: 16px;
+    --line-height-xs: 24px;
+    --line-height-xs-sparse: 28px;
+    --font-size-xxs: 14px;
+    --line-height-xxs: 21px;
   /* base */
   --body-background: var(--color-black-purple);
   --panel-background: var(--color-black-purple);
@@ -132,8 +151,8 @@
   --footer-font-color: var(--color-gray-70);
   --footer-link-font-color: var(--color-jet-80);
   /* dimensions and positioning */
-  --navbar-height: calc(63 / var(--rem-base) * 1rem);
-  --toolbar-height: calc(45 / var(--rem-base) * 1rem);
+  --navbar-height: calc(80 / var(--rem-base) * 1rem);
+  --toolbar-height: calc(48 / var(--rem-base) * 1rem);
   --drawer-height: var(--toolbar-height);
   --body-top: var(--navbar-height);
   --body-min-height: calc(100vh - var(--body-top));
@@ -147,7 +166,7 @@
   --toc-width: calc(162 / var(--rem-base) * 1rem);
   --toc-width--widescreen: calc(216 / var(--rem-base) * 1rem);
   --doc-max-width: calc(720 / var(--rem-base) * 1rem);
-  --doc-max-width--desktop: calc(828 / var(--rem-base) * 1rem);
+  --doc-max-width--desktop: calc(900 / var(--rem-base) * 1rem);
   /* stacking */
   --z-index-nav: 1;
   --z-index-toolbar: 2;

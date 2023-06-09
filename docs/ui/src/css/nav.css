@@ -18,9 +18,11 @@
   .nav-container {
     font-size: calc(15.5 / var(--rem-base) * 1rem);
     flex: none;
-    position: static;
-    top: 0;
+    position: fixed;
+    top: 120px;
     visibility: visible;
+      left: 50%;
+      margin-left: -800px;
   }
 }
 
@@ -72,17 +74,6 @@ html.is-clipped--nav {
 
 .nav-panel-menu:not(.is-active) .nav-menu {
   opacity: 0.75;
-}
-
-.nav-panel-menu:not(.is-active)::after {
-  content: "";
-  background: rgba(0, 0, 0, 0.5);
-  display: block;
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
 }
 
 .nav-menu {
@@ -155,11 +146,6 @@ html.is-clipped--nav {
   background: var(--nav-background);
   display: flex;
   flex-direction: column;
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
 }
 
 .nav-panel-explore:not(:first-child) {
