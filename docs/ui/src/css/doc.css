@@ -7,7 +7,6 @@
     font-weight: 300;
   hyphens: auto;
   line-height: var(--doc-line-height);
-  margin: var(--doc-margin);
   max-width: var(--doc-max-width);
   padding: 0 1rem 4rem;
 }
@@ -15,10 +14,22 @@
 @media screen and (min-width: 1024px) {
   .doc {
     font-size: var(--doc-font-size--desktop);
-    margin: var(--doc-margin--desktop);
-    width: 900px;
-    min-width: 900px;
+    min-width: calc(100vw - 320px);
   }
+}
+
+@media screen and (min-width: 1300px) {
+    .doc {
+        margin: 0 auto;
+        min-width: 700px;
+    }
+}
+
+@media screen and (min-width: 1500px) {
+    .doc {
+        width: 900px;
+        min-width: 900px;
+    }
 }
 
 .doc h1,

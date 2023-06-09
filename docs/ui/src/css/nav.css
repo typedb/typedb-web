@@ -18,12 +18,24 @@
   .nav-container {
     font-size: calc(15.5 / var(--rem-base) * 1rem);
     flex: none;
-    position: fixed;
     top: 120px;
     visibility: visible;
-      left: 50%;
-      margin-left: -800px;
   }
+}
+
+@media screen and (min-width: 1300px) {
+    .nav-container {
+        position: fixed;
+        left: 50%;
+        margin-left: -640px;
+    }
+}
+
+@media screen and (min-width: 1500px) {
+    .nav-container {
+        left: 50%;
+        margin-left: -740px;
+    }
 }
 
 .nav-container.is-active {

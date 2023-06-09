@@ -1,4 +1,4 @@
-@media screen and (max-width: 1023.5px) {
+@media screen and (max-width: 1300px) {
   aside.toc.sidebar {
     display: none;
   }
@@ -24,7 +24,14 @@
   aside.toc.sidebar {
     flex: 0 0 var(--toc-width);
     order: 1;
+      margin-left: 16px;
   }
+}
+
+@media screen and (min-width: 1300px) {
+    main {
+        margin-left: 30px;
+    }
 }
 
 @media screen and (min-width: 1216px) {
