@@ -11,13 +11,47 @@ command = "pnpm run build-ci-dev"
 publish = "dist/dynamic"
 
 [[redirects]]
-from = "https://development.dev.typedb.com/docs/*"
-to = "https://development.docs.dev.typedb.com/:splat"
+from = "https://dev.typedb.com/docs/*"
+to = "https://typedb-docs.netlify.app/:splat"
 status = 200
+
+[[redirects]]
+from = "https://staging.dev.typedb.com/docs/*"
+to = "https://master--typedb-docs.netlify.app/:splat"
+status = 200
+
+[[redirects]]
+from = "https://development.dev.typedb.com/docs/*"
+to = "https://development--typedb-docs.netlify.app/:splat"
+status = 200
+
+[[redirects]]
+from = "https://dev.typedb.com/_/*"
+to = "https://dev.typedb.com/docs/_/:splat"
+status = 200
+force = true
+
+[[redirects]]
+from = "https://staging.dev.typedb.com/_/*"
+to = "https://staging.dev.typedb.com/docs/_/:splat"
+status = 200
+force = true
 
 [[redirects]]
 from = "https://development.dev.typedb.com/_/*"
 to = "https://development.dev.typedb.com/docs/_/:splat"
+status = 200
+force = true
+
+[[redirects]]
+from = "https://dev.typedb.com/typedb/*"
+to = "https://dev.typedb.com/docs/typedb/:splat"
+status = 200
+force = true
+
+[[redirects]]
+from = "https://staging.dev.typedb.com/typedb/*"
+to = "https://staging.dev.typedb.com/docs/typedb/:splat"
 status = 200
 force = true
 
@@ -28,10 +62,27 @@ status = 200
 force = true
 
 [[redirects]]
+from = "https://dev.typedb.com/clients/*"
+to = "https://dev.typedb.com/docs/clients/:splat"
+status = 200
+force = true
+
+[[redirects]]
+from = "https://staging.dev.typedb.com/clients/*"
+to = "https://staging.dev.typedb.com/docs/clients/:splat"
+status = 200
+force = true
+
+[[redirects]]
 from = "https://development.dev.typedb.com/clients/*"
 to = "https://development.dev.typedb.com/docs/clients/:splat"
 status = 200
 force = true
+
+[[redirects]]
+from = "https://dev.typedb.com/*"
+to = "https://dev.typedb.com/index.html"
+status = 200
 
 [[redirects]]
 from = "https://staging.dev.typedb.com/*"
