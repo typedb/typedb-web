@@ -33,11 +33,11 @@ const cleanTask = createTask({
 //   call: task.lintCss(glob.css),
 // })
 
-const lintJsTask = createTask({
-  name: 'lint:js',
-  desc: 'Lint the JavaScript source files using eslint (JavaScript Standard Style)',
-  call: task.lintJs(glob.js),
-})
+// const lintJsTask = createTask({
+//   name: 'lint:js',
+//   desc: 'Lint the JavaScript source files using eslint (JavaScript Standard Style)',
+//   call: task.lintJs(glob.js),
+// })
 
 // const lintTask = createTask({
 //   name: 'lint',
@@ -45,11 +45,11 @@ const lintJsTask = createTask({
 //   call: parallel(lintCssTask, lintJsTask),
 // })
 
-const lintTask = createTask({
-  name: 'lint',
-  desc: 'Lint the JavaScript source files',
-  call: lintJsTask,
-})
+// const lintTask = createTask({
+//   name: 'lint',
+//   desc: 'Lint the JavaScript source files',
+//   call: lintJsTask,
+// })
 
 const formatTask = createTask({
   name: 'format',
@@ -69,7 +69,7 @@ const buildTask = createTask({
 
 const bundleBuildTask = createTask({
   name: 'bundle:build',
-  call: series(cleanTask, lintTask, buildTask),
+  call: series(cleanTask, buildTask),
 })
 
 const bundlePackTask = createTask({
@@ -120,7 +120,6 @@ const previewTask = createTask({
 module.exports = exportTasks(
   bundleTask,
   cleanTask,
-  lintTask,
   formatTask,
   buildTask,
   bundleTask,

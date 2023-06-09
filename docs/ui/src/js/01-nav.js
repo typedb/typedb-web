@@ -33,6 +33,16 @@
     }
   })
 
+    find(menuPanel, '.nav-text-toggle').forEach(function (btn) {
+        var li = btn.parentElement
+        btn.addEventListener('click', toggleActive.bind(li))
+        var navItemSpan = findNextElement(btn, '.nav-text')
+        if (navItemSpan) {
+            navItemSpan.style.cursor = 'pointer'
+            navItemSpan.addEventListener('click', toggleActive.bind(li))
+        }
+    })
+
   if (explorePanel) {
     explorePanel.querySelector('.context').addEventListener('click', function () {
       // NOTE logic assumes there are only two panels

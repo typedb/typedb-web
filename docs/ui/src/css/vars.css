@@ -102,7 +102,7 @@
   --warning-on-color: var(--color-white);
   /* doc */
   --doc-background: var(--color-deep-purple);
-  --doc-font-color: var(--color-white);
+  --doc-font-color: var(--color-grey);
   --doc-font-size: inherit;
   --doc-font-size--desktop: calc(16 / var(--rem-base) * 1rem);
   --doc-line-height: 1.5;
