@@ -19,11 +19,13 @@ status = 200
 from = "/typedb/*"
 to = "/docs/typedb/:splat"
 status = 200
+force = true
 
 [[redirects]]
 from = "/clients/*"
 to = "/docs/clients/:splat"
 status = 200
+force = true
 
 [[redirects]]
 from = "https://staging.dev.typedb.com/*"
