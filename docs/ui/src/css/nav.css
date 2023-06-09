@@ -146,6 +146,7 @@ html.is-clipped--nav {
   background: var(--nav-background);
   display: flex;
   flex-direction: column;
+    position: relative;
 }
 
 .nav-panel-explore:not(:first-child) {
@@ -156,14 +157,17 @@ html.is-clipped--nav {
 .nav-panel-explore .context {
   font-size: calc(15 / var(--rem-base) * 1rem);
   flex-shrink: 0;
-  color: var(--nav-muted-color);
-  box-shadow: 0 -1px 0 var(--nav-panel-divider-color);
-  padding: 0 0.5rem;
+  color: var(--color-white);
+    font-weight: var(--body-font-weight-bold);
+    background: var(--color-purple);
+  padding: 14px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   line-height: 1;
   height: var(--drawer-height);
+    border-radius: var(--border-radius);
+    border: 1px solid var(--color-light-purple);
 }
 
 .nav-panel-explore:not(:first-child) .context {
@@ -191,8 +195,10 @@ html.is-clipped--nav {
   margin: 0;
   overflow-y: scroll;
   overscroll-behavior: none;
-  max-height: 100%;
   display: block;
+    position: absolute;
+    top: 52px;
+    width: 100%;
 }
 
 .nav-panel-explore:not(.is-active) .components {
