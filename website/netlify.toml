@@ -26,56 +26,20 @@ to = "https://development--typedb-docs.netlify.app/:splat"
 status = 200
 
 [[redirects]]
-from = "https://dev.typedb.com/_/*"
-to = "https://dev.typedb.com/docs/_/:splat"
+from = "https://dev.typedb.com/typedb/2.x/docs.html"
+to = "https://dev.typedb.com/docs/typedb/2.x/docs.html"
 status = 301
 force = true
 
 [[redirects]]
-from = "https://staging.dev.typedb.com/_/*"
-to = "https://staging.dev.typedb.com/docs/_/:splat"
+from = "https://staging.dev.typedb.com/typedb/2.x/docs.html"
+to = "https://staging.dev.typedb.com/docs/typedb/2.x/docs.html"
 status = 301
 force = true
 
 [[redirects]]
-from = "https://development.dev.typedb.com/_/*"
-to = "https://development.dev.typedb.com/docs/_/:splat"
-status = 301
-force = true
-
-[[redirects]]
-from = "https://dev.typedb.com/typedb/*"
-to = "https://dev.typedb.com/docs/typedb/:splat"
-status = 301
-force = true
-
-[[redirects]]
-from = "https://staging.dev.typedb.com/typedb/*"
-to = "https://staging.dev.typedb.com/docs/typedb/:splat"
-status = 301
-force = true
-
-[[redirects]]
-from = "https://development.dev.typedb.com/typedb/*"
-to = "https://development.dev.typedb.com/docs/typedb/:splat"
-status = 301
-force = true
-
-[[redirects]]
-from = "https://dev.typedb.com/clients/*"
-to = "https://dev.typedb.com/docs/clients/:splat"
-status = 301
-force = true
-
-[[redirects]]
-from = "https://staging.dev.typedb.com/clients/*"
-to = "https://staging.dev.typedb.com/docs/clients/:splat"
-status = 301
-force = true
-
-[[redirects]]
-from = "https://development.dev.typedb.com/clients/*"
-to = "https://development.dev.typedb.com/docs/clients/:splat"
+from = "https://development.dev.typedb.com/typedb/2.x/docs.html"
+to = "https://development.dev.typedb.com/docs/typedb/2.x/docs.html"
 status = 301
 force = true
 
