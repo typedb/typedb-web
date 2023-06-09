@@ -1,0 +1,8 @@
+[context.production]
+command = "npm run build-ci-live"
+
+[context.staging]
+command = "npm run build-ci-staging"
+
+[context.development]
+command = "npm run build-ci-development"
