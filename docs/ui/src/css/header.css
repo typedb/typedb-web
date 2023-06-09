@@ -132,6 +132,11 @@ header .mp-column a {
     color: var(--color-white);
 }
 
+header ul {
+    padding: 0;
+    margin: 0;
+}
+
 header ul, header li {
     list-style: none;
 }
