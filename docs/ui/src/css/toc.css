@@ -4,8 +4,7 @@
 
 .toc.sidebar .toc-menu {
   margin-right: 0.75rem;
-  position: sticky;
-  top: var(--toc-top);
+  position: fixed;
 }
 
 .toc .toc-menu h3 {

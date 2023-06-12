@@ -12,14 +12,18 @@ These instructions are for compiling the docs site locally.
 
 ### Prerequisites
 
-1. Install Bazel
-2. Install [NVM (Node Version Manager)](https://github.com/nvm-sh/nvm)
-3. Run `bazel run //docs:install_deps` to install Node.js, Antora, Gulp and all required `node_modules`
+1. Install Node.js v18, preferably through [NVM (Node Version Manager)](https://github.com/nvm-sh/nvm)
+2. With `docs` as your working directory, run `npm i` to install Node.js, Antora, Gulp and all required `node_modules`
+
+#### Note
+
+⚠️ `pnpm` is not compatible with the Antora UI bundle. Use `npm` instead.
 
 ### Build
 
+With `docs` as your working directory, run:
 ```shell
-bazel run //docs:build
+./build.sh
 ```
 
 The docs site will be built and output to `dist`.

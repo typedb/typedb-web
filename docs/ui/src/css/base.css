@@ -29,6 +29,7 @@ body {
 
 a {
   text-decoration: none;
+    cursor: pointer;
 }
 
 a:hover {
@@ -76,6 +77,10 @@ strong strong { /* stylelint-disable-line */
   font-weight: normal;
 }
 
+ul, ol {
+    margin: 0;
+}
+
 button {
   cursor: pointer;
   font-family: inherit;
@@ -106,6 +111,49 @@ object[type="image/svg+xml"]:not([width]) {
 
 ::placeholder {
   opacity: 0.5;
+}
+
+[hidden] {
+    display: none !important;
+}
+
+.text-xxl {
+    font-size: var(--font-size-xxl);
+    line-height: var(--line-height-xxl);
+}
+.text-xl {
+    font-size: var(--font-size-xl);
+    line-height: var(--line-height-xl);
+}
+.text-l {
+    font-size: var(--font-size-l);
+    line-height: var(--line-height-l);
+}
+.text-ml {
+    font-size: var(--font-size-ml);
+    line-height: var(--line-height-ml);
+}
+.text-ml.text-sparse {
+    line-height: var(--line-height-ml-sparse);
+}
+.text-m {
+    font-size: var(--font-size-m);
+    line-height: var(--line-height-m);
+}
+.text-s {
+    font-size: var(--font-size-s);
+    line-height: var(--line-height-s);
+}
+.text-xs {
+    font-size: var(--font-size-xs);
+    line-height: var(--line-height-xs);
+}
+.text-xs.text-sparse {
+     line-height: var(--line-height-xs-sparse);
+}
+.text-xxs {
+    font-size: var(--font-size-xxs);
+    line-height: var(--line-height-xxs);
 }
 
 @media (pointer: fine) {

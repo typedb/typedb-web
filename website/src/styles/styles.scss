@@ -374,6 +374,33 @@ input[type='submit'].hs-button {
     margin-top: 32px;
 }
 
+// TODO: these styles should only apply to a "success" popup
+.mat-snack-bar-container {
+    background: rgb(1, 52, 50);
+    color: $color-vaticle-white;
+    border-radius: $border-radius;
+    border: 1px solid $color-vaticle-green;
+}
+
+.mat-simple-snackbar {
+    gap: 12px;
+    font-size: $font-size-xs;
+    line-height: $line-height-xs;
+}
+
+.mat-simple-snackbar::before {
+    content: '';
+    width: 20px;
+    height: 20px;
+    background-image: url("/assets/icon/check-circle.svg");
+}
+
+.mat-simple-snackbar-action {
+    margin-left: 0 !important; // overrides inline style
+    color: transparent;
+    background: no-repeat center center url("/assets/icon/close-large.svg");
+}
+
 .mat-dialog-container {
     padding: 32px;
     background: $color-vaticle-purple;

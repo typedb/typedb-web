@@ -4,21 +4,32 @@
   border-radius: var(--border-radius);
   color: var(--doc-font-color);
   font-size: var(--doc-font-size);
+    font-weight: 300;
   hyphens: auto;
   line-height: var(--doc-line-height);
-  margin: var(--doc-margin);
   max-width: var(--doc-max-width);
   padding: 0 1rem 4rem;
 }
 
 @media screen and (min-width: 1024px) {
   .doc {
-    flex: auto;
     font-size: var(--doc-font-size--desktop);
-    margin: var(--doc-margin--desktop);
-    max-width: var(--doc-max-width--desktop);
-    min-width: 0;
+    min-width: calc(100vw - 320px);
   }
+}
+
+@media screen and (min-width: 1300px) {
+    .doc {
+        margin: 0 auto;
+        min-width: 700px;
+    }
+}
+
+@media screen and (min-width: 1500px) {
+    .doc {
+        width: 900px;
+        min-width: 900px;
+    }
 }
 
 .doc h1,
@@ -335,9 +346,50 @@
   vertical-align: middle;
 }
 
-.doc .admonitionblock {
+.doc .admonitionblock>table {
   margin: 1.4rem 0 0;
   border: 1px solid var(--panel-border-color);
+    border-radius: var(--border-radius);
+    border-collapse:separate;
+}
+
+.doc .admonitionblock .content::before {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: var(--body-font-weight-bold);
+}
+
+.doc .admonitionblock.note .content::before {
+    content: 'Note';
+}
+.doc .admonitionblock.important .content::before {
+    content: 'Important';
+}
+.doc .admonitionblock.advanced .content::before {
+    content: 'Advanced';
+}
+.doc .admonitionblock.warning .content::before {
+    content: 'Warning';
+}
+
+.doc .admonitionblock.note>table {
+    border-color: var(--color-secondary-blue);
+    background: rgba(123, 160, 255, .15); /* secondary blue */
+}
+
+.doc .admonitionblock.important>table {
+    border-color: var(--color-secondary-yellow);
+    background: rgba(255, 228, 158, .15); /* secondary yellow */
+}
+
+.doc .admonitionblock.advanced>table {
+    border-color: var(--color-green);
+    background: rgba(2, 218, 201, .15); /* green */
+}
+
+.doc .admonitionblock.warning>table {
+    border-color: var(--color-red);
+    background: rgba(233, 100, 100, .15); /* red */
 }
 
 .doc .admonitionblock p,
@@ -362,12 +414,12 @@
 
 .doc .admonitionblock td.content {
   padding: 1rem 1rem 0.75rem;
-  background: var(--admonition-background);
   width: 100%;
   word-wrap: anywhere;
 }
 
 .doc .admonitionblock .icon {
+    display: none;
   position: absolute;
   top: 0;
   left: 0;
@@ -376,7 +428,7 @@
   height: 1.25rem;
   line-height: 1;
   font-weight: var(--admonition-label-font-weight);
-  text-transform: uppercase;
+  text-transform: capitalize;
   border-radius: 0.45rem;
   transform: translate(-0.5rem, -50%);
 }

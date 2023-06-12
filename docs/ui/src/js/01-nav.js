@@ -4,10 +4,10 @@
   var SECT_CLASS_RX = /^sect(\d)$/
 
   var navContainer = document.querySelector('.nav-container')
-  var navToggle = document.querySelector('.nav-toggle')
+  // var navToggle = document.querySelector('.nav-toggle')
   var nav = navContainer.querySelector('.nav')
 
-  navToggle.addEventListener('click', showNav)
+  // navToggle.addEventListener('click', showNav)
   navContainer.addEventListener('click', trapEvent)
 
   var menuPanel = navContainer.querySelector('[data-panel=menu]')
@@ -32,6 +32,16 @@
       navItemSpan.addEventListener('click', toggleActive.bind(li))
     }
   })
+
+    find(menuPanel, '.nav-text-toggle').forEach(function (btn) {
+        var li = btn.parentElement
+        btn.addEventListener('click', toggleActive.bind(li))
+        var navItemSpan = findNextElement(btn, '.nav-text')
+        if (navItemSpan) {
+            navItemSpan.style.cursor = 'pointer'
+            navItemSpan.addEventListener('click', toggleActive.bind(li))
+        }
+    })
 
   if (explorePanel) {
     explorePanel.querySelector('.context').addEventListener('click', function () {
@@ -112,27 +122,27 @@
     }
   }
 
-  function showNav (e) {
-    if (navToggle.classList.contains('is-active')) return hideNav(e)
-    trapEvent(e)
-    var html = document.documentElement
-    html.classList.add('is-clipped--nav')
-    navToggle.classList.add('is-active')
-    navContainer.classList.add('is-active')
-    var bounds = nav.getBoundingClientRect()
-    var expectedHeight = window.innerHeight - Math.round(bounds.top)
-    if (Math.round(bounds.height) !== expectedHeight) nav.style.height = expectedHeight + 'px'
-    html.addEventListener('click', hideNav)
-  }
+  // function showNav (e) {
+  //   if (navToggle.classList.contains('is-active')) return hideNav(e)
+  //   trapEvent(e)
+  //   var html = document.documentElement
+  //   html.classList.add('is-clipped--nav')
+  //   navToggle.classList.add('is-active')
+  //   navContainer.classList.add('is-active')
+  //   var bounds = nav.getBoundingClientRect()
+  //   var expectedHeight = window.innerHeight - Math.round(bounds.top)
+  //   if (Math.round(bounds.height) !== expectedHeight) nav.style.height = expectedHeight + 'px'
+  //   html.addEventListener('click', hideNav)
+  // }
 
-  function hideNav (e) {
-    trapEvent(e)
-    var html = document.documentElement
-    html.classList.remove('is-clipped--nav')
-    navToggle.classList.remove('is-active')
-    navContainer.classList.remove('is-active')
-    html.removeEventListener('click', hideNav)
-  }
+  // function hideNav (e) {
+  //   trapEvent(e)
+  //   var html = document.documentElement
+  //   html.classList.remove('is-clipped--nav')
+  //   navToggle.classList.remove('is-active')
+  //   navContainer.classList.remove('is-active')
+  //   html.removeEventListener('click', hideNav)
+  // }
 
   function trapEvent (e) {
     e.stopPropagation()

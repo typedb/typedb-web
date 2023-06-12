@@ -10,9 +10,9 @@ import { ContentService } from "./content.service";
         HttpClientModule,
     ],
     providers: [
-        WebinarService,
         ContentEndpointService,
         ContentService,
+        WebinarService,
     ],
 })
 export class ServiceModule { }

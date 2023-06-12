@@ -32,6 +32,7 @@ import { TestimonialsCarouselComponent } from "./testimonials-carousel/testimoni
 import { RichTextComponent } from "./text/rich-text.component";
 import { H1WithHighlightsComponent, ParagraphWithHighlightsComponent } from "./text/text-with-highlights.component";
 import { RouterModule } from "@angular/router";
+import { MatSnackBarModule } from "@angular/material/snack-bar";
 
 @NgModule({
     declarations: [
@@ -79,6 +80,7 @@ import { RouterModule } from "@angular/router";
         MatDialogModule,
         MatFormFieldModule,
         MatInputModule,
+        MatSnackBarModule,
         RouterModule,
     ],
     exports: [
