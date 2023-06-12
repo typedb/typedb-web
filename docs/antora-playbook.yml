@@ -1,7 +1,6 @@
 site:
   title: TypeDB Documentation portal
-  start_page: typedb:ROOT:docs.adoc
-  url: https://development.dev.typedb.com/docs
+  start_page: typedb:ROOT:01-start/docs.adoc
 content:
   sources:
     - url: ..
