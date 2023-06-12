@@ -4,6 +4,7 @@ import { SanityWebinar, Webinar, webinarSchemaName } from "typedb-web-schema";
 import { ResourceAccessForm } from "../../framework/form/form";
 import { ContentService } from "../../service/content.service";
 import { FormService } from "../../service/form.service";
+import { PopupNotificationService } from "../../service/popup-notification.service";
 import { WebinarService } from "../../service/webinar.service";
 
 @Component({
@@ -15,7 +16,8 @@ export class WebinarDetailsPageComponent implements OnInit {
     webinar?: Webinar;
     form: ResourceAccessForm = { firstName: "", lastName: "", email: "", companyName: "", jobFunction: "" };
 
-    constructor(private router: Router, private _activatedRoute: ActivatedRoute, private contentService: ContentService, private _formService: FormService, private _webinarService: WebinarService) {}
+    constructor(private router: Router, private _activatedRoute: ActivatedRoute, private contentService: ContentService, private _formService: FormService,
+                private _webinarService: WebinarService, private _popupNotificationService: PopupNotificationService) {}
 
     ngOnInit() {
         this._activatedRoute.paramMap.subscribe((params: ParamMap) => {
@@ -42,6 +44,6 @@ export class WebinarDetailsPageComponent implements OnInit {
     }
 
     onSubmit() {
-        alert("Thanks for signing up! We'll let you know when this page is implemented, so something actually happens.");
+        this._popupNotificationService.success("Your message has been sent!");
     }
 }

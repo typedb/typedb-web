@@ -10,7 +10,7 @@
                 <img [src]="whitePaper.portraitImageURL" class="wd-img wd-img-portrait" [alt]="whitePaper.title"/>
                 <div>
                     <h2 class="text-m"><strong>Get the white paper</strong></h2>
-                    <div id="hubspot-form-holder"></div>
+                    <div id="hubspot-form-holder" (submit)="onSubmit()"></div>
                     <p class="text-margin-l">By submitting your personal data, you consent to emails from Vaticle. See our <a href="/privacy-policy">Privacy Policy</a>.</p>
                 </div>
             </div>

@@ -4,6 +4,7 @@ import { SanityWhitePaper, WhitePaper, whitePaperSchemaName } from "typedb-web-s
 import { ResourceAccessForm } from "../../framework/form/form";
 import { ContentService } from "../../service/content.service";
 import { FormService } from "../../service/form.service";
+import { PopupNotificationService } from "../../service/popup-notification.service";
 
 @Component({
     selector: "td-white-paper-details-page",
@@ -14,7 +15,7 @@ export class WhitePaperDetailsPageComponent implements OnInit {
     whitePaper?: WhitePaper;
     form: ResourceAccessForm = { firstName: "", lastName: "", email: "", companyName: "", jobFunction: "" };
 
-    constructor(private router: Router, private _activatedRoute: ActivatedRoute, private contentService: ContentService, private _formService: FormService) {}
+    constructor(private router: Router, private _activatedRoute: ActivatedRoute, private contentService: ContentService, private _formService: FormService, private _popupNotificationService: PopupNotificationService) {}
 
     ngOnInit() {
         this._activatedRoute.paramMap.subscribe((params: ParamMap) => {
@@ -32,6 +33,6 @@ export class WhitePaperDetailsPageComponent implements OnInit {
     }
 
     onSubmit() {
-        alert("Thanks for signing up! We'll let you know when this page is implemented, so something actually happens.");
+        this._popupNotificationService.success("Your message has been sent!");
     }
 }
