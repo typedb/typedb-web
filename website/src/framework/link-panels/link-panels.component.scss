@@ -19,6 +19,10 @@
     display: flex;
     flex-direction: column;
 
+    &:not(.hoverable) {
+        cursor: initial;
+    }
+
     img {
         width: 48px;
         height: 48px;

@@ -1,6 +1,10 @@
 @import "../../styles/colors";
 @import "../../styles/sizes";
 
+:host {
+    position: relative;
+}
+
 a {
     display: flex;
     height: 48px;
@@ -22,7 +26,13 @@ a {
         background: $color-vaticle-green;
         color: $color-vaticle-purple;
 
-        &:hover {
+        &.bt-disabled {
+            background: #445;
+            color: $color-vaticle-purple;
+            border-color: transparent;
+        }
+
+        &:hover:not(.bt-disabled) {
             background-color: #0B939F;
         }
     }
@@ -32,7 +42,13 @@ a {
         background: transparent;
         color: $color-vaticle-green;
 
-        &:hover {
+        &.bt-disabled {
+            background: #445;
+            color: $color-vaticle-purple;
+            border-color: transparent;
+        }
+
+        &:hover:not(.bt-disabled) {
             background-color: $color-vaticle-green;
             color: $color-vaticle-purple;
         }

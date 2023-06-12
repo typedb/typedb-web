@@ -126,7 +126,7 @@ export const linkField = defineField({
     name: linkFieldName,
     type: "reference",
     to: [{type: "link"}],
-    validation: requiredRule,
+    // TODO: should be required - but isn't in certain cases. Rethink
 });
 
 export const textLinkField = defineField({

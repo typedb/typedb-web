@@ -29,6 +29,7 @@ export class WhitePapersPageComponent implements OnInit {
             style: style,
             text: text,
             link: whitePaper.detailsPageLink(),
+            comingSoon: false,
         });
     }
 }

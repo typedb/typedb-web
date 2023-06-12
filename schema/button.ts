@@ -1,4 +1,5 @@
 import { defineField, defineType } from "@sanity/types";
+import { requiredRule } from "./common-fields";
 import { Link, SanityLink, textLinkSchema } from "./link";
 import { SanityDataset, SanityReference } from "./sanity-core";
 
@@ -14,6 +15,7 @@ export type ButtonStyle = keyof typeof buttonStyles;
 export interface SanityButton {
     style: ButtonStyle;
     text: string;
+    comingSoon: boolean;
     link: SanityReference<SanityLink>;
 }
 
@@ -22,23 +24,25 @@ export type SanityButtons = SanityButton[];
 export class ActionButton {
     readonly style: ButtonStyle;
     readonly text: string;
+    readonly comingSoon: boolean;
 
-    constructor(props: { style: ButtonStyle, text: string }) {
+    constructor(props: { style: ButtonStyle, text: string, comingSoon: boolean }) {
         this.style = props.style;
         this.text = props.text;
+        this.comingSoon = props.comingSoon;
     }
 }
 
 export class LinkButton extends ActionButton {
     readonly link: Link;
 
-    constructor(props: { style: ButtonStyle, text: string, link: Link }) {
+    constructor(props: { style: ButtonStyle, text: string, comingSoon: boolean, link: Link }) {
         super(props);
         this.link = props.link;
     }
 
     static fromSanity(data: SanityButton, db: SanityDataset) {
-        return new LinkButton({ style: data.style, text: data.text, link: Link.fromSanityLinkRef(data.link, db) });
+        return new LinkButton({ style: data.style, text: data.text, comingSoon: data.comingSoon, link: Link.fromSanityLinkRef(data.link, db) });
     }
 }
 
@@ -65,7 +69,7 @@ const buttonSchema = defineType({
             },
             initialValue: "primary",
         }),
-        ...textLinkSchema.fields
+        ...textLinkSchema.fields,
     ],
     preview: {
         select: { text: "text", linkDestination: "link.destination.current", linkRoute: "link.route.current" },

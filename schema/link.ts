@@ -1,6 +1,6 @@
 import { LinkIcon } from "@sanity/icons";
 import { defineField, defineType, SanityDocument, Slug, SlugRule } from "@sanity/types";
-import { linkField, titleField, titleFieldName } from "./common-fields";
+import { linkField, requiredRule, titleField, titleFieldName } from "./common-fields";
 import { SanityDataset, SanityReference } from "./sanity-core";
 
 export type LinkType = "route" | "external";
@@ -15,6 +15,7 @@ export interface SanityLink extends SanityDocument {
 export interface SanityTextLink {
     text: string;
     link: SanityReference<SanityLink>;
+    comingSoon: boolean;
 }
 
 export class Link {
@@ -50,15 +51,17 @@ export class Link {
 
 export class TextLink extends Link {
     readonly text: string;
+    readonly comingSoon: boolean;
 
-    constructor(props: { text: string, destination: string, type: LinkType, opensNewTab: boolean }) {
+    constructor(props: { text: string, destination: string, type: LinkType, opensNewTab: boolean, comingSoon: boolean }) {
         super(props);
         this.text = props.text;
+        this.comingSoon = props.comingSoon;
     }
 
     static fromSanityTextLink(data: SanityTextLink, db: SanityDataset) {
         const link = Link.fromSanityLinkRef(data.link, db);
-        return new TextLink({ text: data.text, destination: link.destination, type: link.type, opensNewTab: link.opensNewTab });
+        return new TextLink({ text: data.text, destination: link.destination, type: link.type, opensNewTab: link.opensNewTab, comingSoon: data.comingSoon });
     }
 }
 
@@ -120,6 +123,14 @@ export const textLinkSchema = defineType({
             initialValue: "Learn more",
         }),
         linkField,
+        defineField({
+            name: "comingSoon",
+            title: "Coming soon?",
+            description: "If set, this link will be disabled and display a 'Coming Soon' popup on hover",
+            type: "boolean",
+            initialValue: false,
+            validation: requiredRule,
+        }),
     ],
     preview: {
         select: { text: "text", destination: "link.destination.current" },

@@ -82,6 +82,7 @@ export class Webinar {
                 destination: `/webinar/${this.slug}`,
                 opensNewTab: false,
             }),
+            comingSoon: false,
         });
     }
 }
