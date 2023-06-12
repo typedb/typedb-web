@@ -2,7 +2,7 @@
 command = "pnpm run build-ci-prod"
 publish = "dist/static"
 
-[context.staging]
+[context.master]
 command = "pnpm run build-ci-staging"
 publish = "dist/dynamic"
 
@@ -50,6 +50,11 @@ status = 200
 
 [[redirects]]
 from = "https://staging.dev.typedb.com/*"
+to = "https://master.dev.typedb.com/index.html"
+status = 200
+
+[[redirects]]
+from = "https://master.dev.typedb.com/*"
 to = "https://master.dev.typedb.com/index.html"
 status = 200
 
