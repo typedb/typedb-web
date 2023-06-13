@@ -56,7 +56,7 @@ class ContactMediaLink {
         switch (id) {
             case "contactForm": return new Link({ destination: "?dialog=contact", type: "route", opensNewTab: false });
             case "discord": return new Link({ destination: communityResources.discordURL || "", type: "external", opensNewTab: true });
-            case "forum": return new Link({ destination: communityResources.discussionForumURL || "", type: "external", opensNewTab: false });
+            case "forum": return new Link({ destination: communityResources.discussionForumURL || "", type: "external", opensNewTab: true });
         }
     }
 }
