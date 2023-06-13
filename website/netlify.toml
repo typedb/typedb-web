@@ -31,20 +31,20 @@ to = "https://development--typedb-docs.netlify.app/:splat"
 status = 200
 
 [[redirects]]
-from = "https://dev.typedb.com/typedb/2.x/01-start/docs.html"
-to = "https://dev.typedb.com/docs/typedb/2.x/01-start/docs.html"
+from = "https://dev.typedb.com/typedb/2.x/overview.html"
+to = "https://dev.typedb.com/docs/typedb/2.x/overview.html"
 status = 301
 force = true
 
 [[redirects]]
-from = "https://master.dev.typedb.com/typedb/2.x/01-start/docs.html"
-to = "https://master.dev.typedb.com/docs/typedb/2.x/01-start/docs.html"
+from = "https://master.dev.typedb.com/typedb/2.x/overview.html"
+to = "https://master.dev.typedb.com/docs/typedb/2.x/overview.html"
 status = 301
 force = true
 
 [[redirects]]
-from = "https://development.dev.typedb.com/typedb/2.x/01-start/docs.html"
-to = "https://development.dev.typedb.com/docs/typedb/2.x/01-start/docs.html"
+from = "https://development.dev.typedb.com/typedb/2.x/overview.html"
+to = "https://development.dev.typedb.com/docs/typedb/2.x/overview.html"
 status = 301
 force = true
 
