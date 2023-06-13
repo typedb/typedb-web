@@ -33,6 +33,7 @@ export class WhitePaperDetailsPageComponent implements OnInit {
     }
 
     onSubmit() {
+        this._popupNotificationService.success("Your file will be downloaded shortly.");
         fetch(this.whitePaper!.fileURL)
             .then(resp => resp.blob())
             .then(blob => {
