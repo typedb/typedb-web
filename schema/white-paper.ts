@@ -1,6 +1,7 @@
 import { DocumentPdfIcon } from "@sanity/icons";
 import { defineField, defineType, SanityDocument, Slug } from "@sanity/types";
 import { bodyFieldRichText, descriptionFieldRichText, requiredRule, slugField, titleField } from "./common-fields";
+import { hubspotFormIDField } from "./form";
 import { Link } from "./link";
 import { SanityDataset, SanityFile, SanityImage } from "./sanity-core";
 import { RichText, SanityPortableText } from "./text";
@@ -14,6 +15,7 @@ export interface SanityWhitePaper extends SanityDocument {
     tags: string[];
     portraitImage: SanityImage;
     landscapeImage: SanityImage;
+    hubspotFormID: string;
 }
 
 export class WhitePaper {
@@ -24,6 +26,7 @@ export class WhitePaper {
     readonly tags: string[];
     readonly portraitImageURL: string;
     readonly landscapeImageURL: string;
+    readonly hubspotFormID: string;
 
     constructor(props: PropsOf<WhitePaper>) {
         this.title = props.title;
@@ -33,6 +36,7 @@ export class WhitePaper {
         this.tags = props.tags;
         this.portraitImageURL = props.portraitImageURL;
         this.landscapeImageURL = props.landscapeImageURL;
+        this.hubspotFormID = props.hubspotFormID;
     }
 
     static fromSanity(data: SanityWhitePaper, db: SanityDataset): WhitePaper {
@@ -44,6 +48,7 @@ export class WhitePaper {
             tags: data.tags,
             portraitImageURL: db.resolveRef(data.portraitImage.asset).url,
             landscapeImageURL: db.resolveRef(data.landscapeImage.asset).url,
+            hubspotFormID: data.hubspotFormID,
         });
     }
 
@@ -85,5 +90,6 @@ export const whitePaperSchema = defineType({
             type: "image",
             validation: requiredRule,
         }),
+        hubspotFormIDField,
     ],
 });

@@ -24,7 +24,7 @@ export class WhitePaperDetailsPageComponent implements OnInit {
                 const sanityWhitePaper = sanityWhitePapers.find(x => x.slug.current === params.get("slug"));
                 if (sanityWhitePaper) {
                     this.whitePaper = WhitePaper.fromSanity(sanityWhitePaper, data);
-                    this._formService.embedHubspotForm("whitePaperDownload", "hubspot-form-holder");
+                    this._formService.embedHubspotForm(this.whitePaper.hubspotFormID, "hubspot-form-holder");
                 } else {
                     this.whitePaper = undefined;
                 }
