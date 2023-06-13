@@ -48,7 +48,9 @@ export class WebinarDetailsPageComponent implements OnInit {
     onSubmit() {
         const webinar = this.webinar!;
         if (webinar.isFinished()) {
-            window.open(webinar.onDemandVideoURL)
+            window.open(webinar.onDemandVideoURL);
+        } else {
+            this._popupNotificationService.success("You've been successfully signed up for the webinar. You'll receive a link in your email, which you can use to join the event.");
         }
     }
 }
