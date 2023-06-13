@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
-import { ActionButton, SanityWebinarsPage, Webinar, WebinarsPage, webinarsPageSchemaName } from "typedb-web-schema";
+import { ActionButton, SanityWebinar, SanityWebinarsPage, Webinar, webinarSchemaName, WebinarsPage, webinarsPageSchemaName } from "typedb-web-schema";
 import { WebinarService } from "../../service/webinar.service";
 import { ContentService } from "../../service/content.service";
 
@@ -11,6 +11,7 @@ import { ContentService } from "../../service/content.service";
 })
 export class WebinarsPageComponent implements OnInit {
     page?: WebinarsPage;
+    allWebinars?: Webinar[];
 
     constructor(private router: Router, private contentService: ContentService, private _webinarService: WebinarService) {}
 
@@ -22,6 +23,11 @@ export class WebinarsPageComponent implements OnInit {
             } else {
                 this.page = undefined;
             }
+            const sanityWebinars = data.getDocumentsByType(webinarSchemaName) as SanityWebinar[];
+            const webinars = sanityWebinars.map(x => Webinar.fromSanity(x, data));
+            const futureWebinars = webinars.filter(x => !x.isFinished()).sort((a, b) => +a.datetime - +b.datetime);
+            const pastWebinars = webinars.filter(x => x.isFinished()).sort((a, b) => +b.datetime - +a.datetime);
+            this.allWebinars = [...futureWebinars, ...pastWebinars];
         });
         this._webinarService.data.subscribe((data) => {
             console.log(data);
