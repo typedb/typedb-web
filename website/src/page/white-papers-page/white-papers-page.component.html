@@ -4,13 +4,21 @@
             <td-title-body-actions-section [isIntroSection]="true" [title]="page.introSection.title" [body]="page.introSection.body"></td-title-body-actions-section>
             <div class="subsection-margin wp-primary-whitepaper card">
                 <div class="wp-primary-whitepaper-summary">
-                    <h2 class="text-m wp-primary-whitepaper-title">{{ page.featuredWhitePaper.title }}</h2>
+                    <h2 class="text-m wp-whitepaper-title">{{ page.featuredWhitePaper.title }}</h2>
                     <td-rich-text class="wp-primary-whitepaper-description text-margin-s" [value]="page.featuredWhitePaper.description"></td-rich-text>
                     <div class="flex"></div>
                     <td-button [button]="accessResourceButton(page.featuredWhitePaper, 'primary', 'Read Now')"></td-button>
                 </div>
                 <div>
                     <img [src]="page.featuredWhitePaper.portraitImageURL" class="wp-img wp-img-primary" [alt]=""/>
+                </div>
+            </div>
+            <div class="subsection-margin wp-grid card">
+                <div *ngFor="let whitePaper of page.whitePapersList" class="wp-grid-item">
+                    <img [src]="whitePaper.landscapeImageURL" class="wp-img wp-img-secondary" [alt]=""/>
+                    <h2 class="text-m wp-whitepaper-title wp-grid-item-title">{{ whitePaper.title }}</h2>
+                    <td-rich-text class="wp-grid-item-description text-margin-xs" [value]="whitePaper.description"></td-rich-text>
+                    <td-button class="text-margin-s" [button]="accessResourceButton(whitePaper, 'secondary', 'Read')" size="small" buttonWidth="100%"></td-button>
                 </div>
             </div>
         </div>
