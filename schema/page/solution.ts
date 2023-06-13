@@ -146,7 +146,7 @@ class SolutionSection extends TechnicolorBlock {
     static fromSanitySolutionSection(props: { data: SanitySolutionSection, db: SanityDataset }): SolutionSection {
         const { data, db } = props;
         return new SolutionSection({
-            title: new ParagraphWithHighlights({ spans: [{ text: "TypeDB", highlight: true }, { text: " solution", highlight: false }] }),
+            title: new ParagraphWithHighlights({ spans: [{ text: "TypeDB", highlight: true }, { text: " Solution", highlight: false }] }),
             body: new RichText(data.body),
             actions: data.actions?.map(x => LinkButton.fromSanity(x, db)),
             iconURL: "/assets/icon/section/app-window-wrench.svg",

@@ -1,4 +1,4 @@
-import { defineField, defineType, DocumentRule, ObjectRule } from "@sanity/types";
+import { defineField, defineType, DocumentRule } from "@sanity/types";
 import { bodyFieldRichText, collapsibleOptions, isVisibleField, pageTitleField, requiredRule, sectionIconField, titleFieldWithHighlights } from "../common-fields";
 import { ConclusionSection, conclusionSectionSchemaName, SanityConclusionSection } from "../component/conclusion-panel";
 import { FeatureTable, featureTableSchemaName, SanityFeatureTable } from "../component/feature-table";
@@ -135,8 +135,8 @@ const deploymentPageSchema = defineType({
     ],
     preview: { prepare: (_selection) => ({ title: "Deployment Page" }), },
     validation: (rule: DocumentRule) => rule.custom((value) => {
-        if (!value?.featureTableSection) return true; // handled at lower level
-        const featureTableSection = value.featureTableSection as { featureTable?: any };
+        if (!value || !value["featureTableSection"]) return true; // handled at lower level
+        const featureTableSection = value["featureTableSection"] as { featureTable?: any };
         if (!featureTableSection.featureTable) return true;
         const featureTable = featureTableSection.featureTable as { headerRow?: string[], bodyRows: { heading: string, cells: any[] }[] };
         if (!featureTable.headerRow || !featureTable.bodyRows) return true;
