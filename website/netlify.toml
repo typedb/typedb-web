@@ -1,3 +1,6 @@
+[build]
+ignore = "git diff --quiet $CACHED_COMMIT_REF $COMMIT_REF"
+
 [context.production]
 command = "pnpm run build-ci-prod"
 publish = "dist/static"
