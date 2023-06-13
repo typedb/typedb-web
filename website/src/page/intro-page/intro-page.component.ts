@@ -3,6 +3,7 @@ import { Router } from "@angular/router";
 import { ConclusionSection, IntroPage, IntroPageCoreSection, introPageSchemaName, SanityIntroPage } from "typedb-web-schema";
 import { TechnicolorBlock } from "typedb-web-schema";
 import { ContentService } from "../../service/content.service";
+import { Title } from "@angular/platform-browser";
 
 @Component({
     selector: "td-intro-page",
@@ -12,13 +13,14 @@ import { ContentService } from "../../service/content.service";
 export class IntroPageComponent implements OnInit {
     page?: IntroPage;
 
-    constructor(private router: Router, private contentService: ContentService) {}
+    constructor(private router: Router, private contentService: ContentService, private _title: Title) {}
 
     ngOnInit() {
         this.contentService.data.subscribe((data) => {
             const sanityIntroPage = data.getDocumentByID(introPageSchemaName) as SanityIntroPage;
             if (sanityIntroPage) {
                 this.page = new IntroPage(sanityIntroPage, data);
+                this._title.setTitle(`${this.page.title} - TypeDB`);
             } else {
                 this.page = undefined;
             }

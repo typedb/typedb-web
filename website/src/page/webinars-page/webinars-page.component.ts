@@ -3,6 +3,7 @@ import { Router } from "@angular/router";
 import { ActionButton, SanityWebinar, SanityWebinarsPage, Webinar, webinarSchemaName, WebinarsPage, webinarsPageSchemaName } from "typedb-web-schema";
 import { WebinarService } from "../../service/webinar.service";
 import { ContentService } from "../../service/content.service";
+import { Title } from "@angular/platform-browser";
 
 @Component({
     selector: "td-webinars-page",
@@ -13,13 +14,14 @@ export class WebinarsPageComponent implements OnInit {
     page?: WebinarsPage;
     allWebinars?: Webinar[];
 
-    constructor(private router: Router, private contentService: ContentService, private _webinarService: WebinarService) {}
+    constructor(private router: Router, private contentService: ContentService, private _webinarService: WebinarService, private _title: Title) {}
 
     ngOnInit() {
         this.contentService.data.subscribe((data) => {
             const sanityWebinarsPage = data.getDocumentByID(webinarsPageSchemaName) as SanityWebinarsPage;
             if (sanityWebinarsPage) {
                 this.page = new WebinarsPage(sanityWebinarsPage, data);
+                this._title.setTitle(`${this.page.title} - TypeDB`);
             } else {
                 this.page = undefined;
             }

@@ -4,7 +4,7 @@ import { SanityDataset, SanityReference } from "../sanity-core";
 import { SanityTitleAndBody, TitleAndBody, titleAndBodySchemaName } from "../text";
 import { PropsOf } from "../util";
 import { SanityWhitePaper, WhitePaper, whitePaperSchemaName } from "../white-paper";
-import { SanityPage } from "./common";
+import { Page, SanityPage } from "./common";
 
 export interface SanityWhitePapersPage extends SanityPage {
     introSection: SanityTitleAndBody;
@@ -12,23 +12,16 @@ export interface SanityWhitePapersPage extends SanityPage {
     whitePapersList: SanityReference<SanityWhitePaper>[];
 }
 
-export class WhitePapersPage {
+export class WhitePapersPage extends Page {
     readonly introSection: TitleAndBody;
     readonly featuredWhitePaper: WhitePaper;
     readonly whitePapersList: WhitePaper[];
 
-    constructor(props: PropsOf<WhitePapersPage>) {
-        this.introSection = props.introSection;
-        this.featuredWhitePaper = props.featuredWhitePaper;
-        this.whitePapersList = props.whitePapersList;
-    }
-
-    static fromSanity(data: SanityWhitePapersPage, db: SanityDataset): WhitePapersPage {
-        return new WhitePapersPage({
-            introSection: TitleAndBody.fromSanityTitleAndBody(data.introSection),
-            featuredWhitePaper: WhitePaper.fromSanity(db.resolveRef(data.featuredWhitePaper), db),
-            whitePapersList: data.whitePapersList.map(x => WhitePaper.fromSanity(db.resolveRef(x), db)),
-        });
+    constructor(data: SanityWhitePapersPage, db: SanityDataset) {
+        super(data);
+        this.introSection = TitleAndBody.fromSanityTitleAndBody(data.introSection);
+        this.featuredWhitePaper = WhitePaper.fromSanity(db.resolveRef(data.featuredWhitePaper), db);
+        this.whitePapersList = data.whitePapersList.map(x => WhitePaper.fromSanity(db.resolveRef(x), db));
     }
 }
 

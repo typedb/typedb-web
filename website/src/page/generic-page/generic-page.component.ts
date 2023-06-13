@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import { GenericPage, SanityGenericPage, TechnicolorBlock, TitleBodyIllustrationSection } from "typedb-web-schema";
 import { ContentService } from "../../service/content.service";
+import { Title } from "@angular/platform-browser";
 
 @Component({
     selector: "td-generic-page",
@@ -11,7 +12,7 @@ import { ContentService } from "../../service/content.service";
 export class GenericPageComponent implements OnInit {
     page?: GenericPage;
 
-    constructor(private router: Router, private _activatedRoute: ActivatedRoute, private contentService: ContentService) {}
+    constructor(private router: Router, private _activatedRoute: ActivatedRoute, private contentService: ContentService, private _title: Title) {}
 
     ngOnInit() {
         this.contentService.data.subscribe((data) => {
@@ -19,6 +20,7 @@ export class GenericPageComponent implements OnInit {
                 const sanityCloudPage = data.getDocumentByID(routeData["documentID"]) as SanityGenericPage;
                 if (sanityCloudPage) {
                     this.page = new GenericPage(sanityCloudPage, data);
+                    this._title.setTitle(`${this.page.title} - TypeDB`);
                 } else {
                     this.page = undefined;
                 }

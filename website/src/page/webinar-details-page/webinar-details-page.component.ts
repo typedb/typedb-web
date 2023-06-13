@@ -6,6 +6,7 @@ import { ContentService } from "../../service/content.service";
 import { FormService } from "../../service/form.service";
 import { PopupNotificationService } from "../../service/popup-notification.service";
 import { WebinarService } from "../../service/webinar.service";
+import { Title } from "@angular/platform-browser";
 
 @Component({
     selector: "td-webinar-details-page",
@@ -17,7 +18,7 @@ export class WebinarDetailsPageComponent implements OnInit {
     form: ResourceAccessForm = { firstName: "", lastName: "", email: "", companyName: "", jobFunction: "" };
 
     constructor(private router: Router, private _activatedRoute: ActivatedRoute, private contentService: ContentService, private _formService: FormService,
-                private _webinarService: WebinarService, private _popupNotificationService: PopupNotificationService) {}
+                private _webinarService: WebinarService, private _popupNotificationService: PopupNotificationService, private _title: Title) {}
 
     ngOnInit() {
         this._activatedRoute.paramMap.subscribe((params: ParamMap) => {
@@ -26,6 +27,7 @@ export class WebinarDetailsPageComponent implements OnInit {
                 const sanityWebinar = sanityWebinars.find(x => x.slug.current === params.get("slug"));
                 if (sanityWebinar) {
                     this.webinar = Webinar.fromSanity(sanityWebinar, data);
+                    this._title.setTitle(`${this.webinar.title} - TypeDB Webinars`);
                     if (!this.webinar.isFinished() || this.webinar.onDemandVideoURL) {
                         this._formService.embedHubspotForm(this.webinar.hubspotFormID, "hubspot-form-holder", (formEl) => {
                             this._webinarService.register({

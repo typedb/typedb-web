@@ -6,7 +6,7 @@ import { ProductPanel, productPanelSchemaName, SanityProductPanel } from "../com
 import { SanityTechnicolorBlock, TechnicolorBlock } from "../component/technicolor-block";
 import { SanityDataset } from "../sanity-core";
 import { PropsOf } from "../util";
-import { SanityPage } from "./common";
+import { Page, SanityPage } from "./common";
 
 export interface SanityDeploymentPage extends SanityPage {
     introSection: SanityIntroSection;
@@ -22,12 +22,13 @@ export interface SanityFeatureTableSection extends SanityTechnicolorBlock {
     featureTable: SanityFeatureTable;
 }
 
-export class DeploymentPage {
+export class DeploymentPage extends Page {
     readonly introSection: IntroSection;
     readonly featureTableSection: FeatureTableSection;
     readonly finalSection: ConclusionSection;
 
     constructor(data: SanityDeploymentPage, db: SanityDataset) {
+        super(data);
         this.introSection = IntroSection.fromSanityIntroSection(data.introSection, db);
         this.featureTableSection = FeatureTableSection.fromSanityFeatureTableSection(data.featureTableSection, db);
         this.finalSection = ConclusionSection.fromSanityConclusionSection(data.finalSection, db);
