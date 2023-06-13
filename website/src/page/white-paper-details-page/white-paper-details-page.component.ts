@@ -33,6 +33,18 @@ export class WhitePaperDetailsPageComponent implements OnInit {
     }
 
     onSubmit() {
-        this._popupNotificationService.success("Your message has been sent!");
+        fetch(this.whitePaper!.fileURL)
+            .then(resp => resp.blob())
+            .then(blob => {
+                const url = window.URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.style.display = 'none';
+                a.href = url;
+                // the filename you want
+                a.download = this.whitePaper!.fileName || "";
+                document.body.appendChild(a);
+                a.click();
+                window.URL.revokeObjectURL(url);
+            });
     }
 }

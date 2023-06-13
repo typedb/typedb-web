@@ -23,6 +23,7 @@ export class WhitePaper {
     readonly slug: string;
     readonly description: RichText;
     readonly fileURL: string;
+    readonly fileName?: string;
     readonly tags: string[];
     readonly portraitImageURL: string;
     readonly landscapeImageURL: string;
@@ -33,6 +34,7 @@ export class WhitePaper {
         this.slug = props.slug;
         this.description = props.description;
         this.fileURL = props.fileURL;
+        this.fileName = props.fileName;
         this.tags = props.tags;
         this.portraitImageURL = props.portraitImageURL;
         this.landscapeImageURL = props.landscapeImageURL;
@@ -45,6 +47,7 @@ export class WhitePaper {
             slug: data.slug.current,
             description: new RichText(data.description),
             fileURL: db.resolveRef(data.file.asset).url,
+            fileName: db.resolveRef(data.file.asset).originalFilename,
             tags: data.tags,
             portraitImageURL: db.resolveRef(data.portraitImage.asset).url,
             landscapeImageURL: db.resolveRef(data.landscapeImage.asset).url,
