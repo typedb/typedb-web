@@ -26,16 +26,18 @@ export class WebinarDetailsPageComponent implements OnInit {
                 const sanityWebinar = sanityWebinars.find(x => x.slug.current === params.get("slug"));
                 if (sanityWebinar) {
                     this.webinar = Webinar.fromSanity(sanityWebinar, data);
-                    this._formService.embedHubspotForm(this.webinar.hubspotFormID, "hubspot-form-holder", (formEl) => {
-                        this._webinarService.register({
-                            airmeetID: this.webinar!.airmeetID,
-                            firstName: formEl["firstname"].value,
-                            lastName: formEl["lastname"].value,
-                            email: formEl["email"].value,
-                            companyName: formEl["company"].value,
-                            jobTitle: formEl["job_function"].value,
+                    if (!this.webinar.isFinished() || this.webinar.onDemandVideoURL) {
+                        this._formService.embedHubspotForm(this.webinar.hubspotFormID, "hubspot-form-holder", (formEl) => {
+                            this._webinarService.register({
+                                airmeetID: this.webinar!.airmeetID,
+                                firstName: formEl["firstname"].value,
+                                lastName: formEl["lastname"].value,
+                                email: formEl["email"].value,
+                                companyName: formEl["company"].value,
+                                jobTitle: formEl["job_function"].value,
+                            });
                         });
-                    });
+                    }
                 } else {
                     this.webinar = undefined;
                 }
@@ -44,6 +46,9 @@ export class WebinarDetailsPageComponent implements OnInit {
     }
 
     onSubmit() {
-        this._popupNotificationService.success("Your message has been sent!");
+        const webinar = this.webinar!;
+        if (webinar.isFinished()) {
+            window.open(webinar.onDemandVideoURL)
+        }
     }
 }
