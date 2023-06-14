@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { ReplaySubject } from "rxjs";
 import { FormID, formsSchemaName, SanityHubspotForms } from "typedb-web-schema";
 import { ContentService } from "./content.service";
-import { HUBSPOT_PORTAL_ID, HUBSPOT_REGION } from "./hubspot-pixel.service";
+import { HUBSPOT_PORTAL_ID, HUBSPOT_REGION } from "./analytics.service";
 
 declare global {
     interface Window {

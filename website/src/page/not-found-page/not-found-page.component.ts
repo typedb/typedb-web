@@ -1,5 +1,5 @@
 import {Component, OnInit} from "@angular/core";
-import { HubspotPixelService } from "../../service/hubspot-pixel.service";
+import { AnalyticsService } from "../../service/analytics.service";
 
 @Component({
     selector: 'not-found-page',
@@ -7,9 +7,9 @@ import { HubspotPixelService } from "../../service/hubspot-pixel.service";
     styleUrls: ['./not-found-page.component.scss'],
 })
 export class NotFoundPageComponent implements OnInit {
-    constructor(private _hubspotPixelService: HubspotPixelService) {}
+    constructor(private _analytics: AnalyticsService) {}
 
     ngOnInit() {
-        this._hubspotPixelService.trackPageView();
+        this._analytics.hubspot.trackPageView();
     }
 }

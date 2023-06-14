@@ -10,13 +10,13 @@ export const HUBSPOT_PORTAL_ID = "4332244";
 export const HUBSPOT_REGION = "na1";
 
 /**
- * When building the 'production' configuration, this file is replaced with `hubspot-pixel.service.prod.ts`.
+ * When building the 'production' configuration, this file is replaced with `analytics.service.prod.ts`.
  */
 @Injectable({
     providedIn: "root",
 })
-export class HubspotPixelService {
-    trackPageView() {
-        // Page views are only tracked in production.
+export class AnalyticsService {
+    hubspot = {
+        trackPageView: () => { /* Page views are only tracked in production. */ }
     }
 }

@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 import { ActionButton, SanityWebinar, SanityWebinarsPage, Webinar, webinarSchemaName, WebinarsPage, webinarsPageSchemaName } from "typedb-web-schema";
-import { HubspotPixelService } from "../../service/hubspot-pixel.service";
+import { AnalyticsService } from "../../service/analytics.service";
 import { WebinarService } from "../../service/webinar.service";
 import { ContentService } from "../../service/content.service";
 import { Title } from "@angular/platform-browser";
@@ -15,7 +15,7 @@ export class WebinarsPageComponent implements OnInit {
     page?: WebinarsPage;
     allWebinars?: Webinar[];
 
-    constructor(private router: Router, private contentService: ContentService, private _webinarService: WebinarService, private _title: Title, private _hubspotPixelService: HubspotPixelService) {}
+    constructor(private router: Router, private contentService: ContentService, private _webinarService: WebinarService, private _title: Title, private _analytics: AnalyticsService) {}
 
     ngOnInit() {
         this.contentService.data.subscribe((data) => {
@@ -23,7 +23,7 @@ export class WebinarsPageComponent implements OnInit {
             if (sanityWebinarsPage) {
                 this.page = new WebinarsPage(sanityWebinarsPage, data);
                 this._title.setTitle(`${this.page.title} - TypeDB`);
-                this._hubspotPixelService.trackPageView();
+                this._analytics.hubspot.trackPageView();
             } else {
                 this.page = undefined;
             }

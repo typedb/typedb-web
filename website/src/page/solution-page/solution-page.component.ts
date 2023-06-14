@@ -4,7 +4,7 @@ import { SanitySolutionPage, SolutionPage, solutionPageSchemaName } from "typedb
 import { TechnicolorBlock } from "typedb-web-schema";
 import { ContentService } from "../../service/content.service";
 import { Title } from "@angular/platform-browser";
-import { HubspotPixelService } from "../../service/hubspot-pixel.service";
+import { AnalyticsService } from "../../service/analytics.service";
 
 @Component({
     selector: "td-solution-page",
@@ -14,7 +14,7 @@ import { HubspotPixelService } from "../../service/hubspot-pixel.service";
 export class SolutionPageComponent implements OnInit {
     page?: SolutionPage;
 
-    constructor(private router: Router, private _activatedRoute: ActivatedRoute, private contentService: ContentService, private _title: Title, private _hubspotPixelService: HubspotPixelService) {}
+    constructor(private router: Router, private _activatedRoute: ActivatedRoute, private contentService: ContentService, private _title: Title, private _analytics: AnalyticsService) {}
 
     ngOnInit() {
         this._activatedRoute.paramMap.subscribe((params: ParamMap) => {
@@ -24,7 +24,7 @@ export class SolutionPageComponent implements OnInit {
                 if (sanityUseCasePage) {
                     this.page = new SolutionPage(sanityUseCasePage, data);
                     this._title.setTitle(`${this.page.title} - TypeDB Solutions`);
-                    this._hubspotPixelService.trackPageView();
+                    this._analytics.hubspot.trackPageView();
                 }
             });
         });

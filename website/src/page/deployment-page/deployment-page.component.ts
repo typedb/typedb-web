@@ -4,7 +4,7 @@ import { DeploymentPage, deploymentPageSchemaName, SanityDeploymentPage, Technic
 import { TechnicolorBlockComponent } from "../../framework/technicolor-block/technicolor-block.component";
 import { ContentService } from "../../service/content.service";
 import { Title } from "@angular/platform-browser";
-import { HubspotPixelService } from "../../service/hubspot-pixel.service";
+import { AnalyticsService } from "../../service/analytics.service";
 
 @Component({
     selector: "td-deployment-page",
@@ -14,7 +14,7 @@ import { HubspotPixelService } from "../../service/hubspot-pixel.service";
 export class DeploymentPageComponent implements OnInit {
     page?: DeploymentPage;
 
-    constructor(private router: Router, private contentService: ContentService, private _title: Title, private _hubspotPixelService: HubspotPixelService) {}
+    constructor(private router: Router, private contentService: ContentService, private _title: Title, private _analytics: AnalyticsService) {}
 
     ngOnInit() {
         this.contentService.data.subscribe((data) => {
@@ -22,7 +22,7 @@ export class DeploymentPageComponent implements OnInit {
             if (sanityDeploymentPage) {
                 this.page = new DeploymentPage(sanityDeploymentPage, data);
                 this._title.setTitle(`${this.page.title} - TypeDB`);
-                this._hubspotPixelService.trackPageView();
+                this._analytics.hubspot.trackPageView();
             }
         });
     }

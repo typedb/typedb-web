@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { GenericPage, SanityGenericPage, TechnicolorBlock, TitleBodyIllustrationSection } from "typedb-web-schema";
 import { ContentService } from "../../service/content.service";
 import { Title } from "@angular/platform-browser";
-import { HubspotPixelService } from "../../service/hubspot-pixel.service";
+import { AnalyticsService } from "../../service/analytics.service";
 
 @Component({
     selector: "td-generic-page",
@@ -13,7 +13,7 @@ import { HubspotPixelService } from "../../service/hubspot-pixel.service";
 export class GenericPageComponent implements OnInit {
     page?: GenericPage;
 
-    constructor(private router: Router, private _activatedRoute: ActivatedRoute, private contentService: ContentService, private _title: Title, private _hubspotPixelService: HubspotPixelService) {}
+    constructor(private router: Router, private _activatedRoute: ActivatedRoute, private contentService: ContentService, private _title: Title, private _analytics: AnalyticsService) {}
 
     ngOnInit() {
         this.contentService.data.subscribe((data) => {
@@ -22,7 +22,7 @@ export class GenericPageComponent implements OnInit {
                 if (sanityCloudPage) {
                     this.page = new GenericPage(sanityCloudPage, data);
                     this._title.setTitle(`${this.page.title} - TypeDB`);
-                    this._hubspotPixelService.trackPageView();
+                    this._analytics.hubspot.trackPageView();
                 } else {
                     this.page = undefined;
                 }
