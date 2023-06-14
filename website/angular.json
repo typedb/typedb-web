@@ -58,8 +58,8 @@
                                     "with": "src/service/content-endpoint.service.prod.ts"
                                 },
                                 {
-                                    "replace": "src/service/hubspot-pixel.service.ts",
-                                    "with": "src/service/hubspot-pixel.service.prod.ts"
+                                    "replace": "src/service/analytics.service.ts",
+                                    "with": "src/service/analytics.service.prod.ts"
                                 }
                             ],
                             "outputHashing": "all"
