@@ -28,7 +28,7 @@ export class NameEmailDialogComponent {
 
 @Component({
     selector: "td-cloud-waitlist-dialog",
-    template: "<td-name-email-dialog titleProp='Join TypeDB Cloud waitlist' submitButtonText='Register' (submit)='onSubmit($event)'></td-name-email-dialog>",
+    template: "<td-name-email-dialog titleProp='Join TypeDB Cloud Waitlist' submitButtonText='Register' (submit)='onSubmit($event)'></td-name-email-dialog>",
 })
 export class CloudWaitlistDialogComponent {
     constructor(private dialogRef: MatDialogRef<CloudWaitlistDialogComponent>, private _formService: FormService, private _popupNotificationService: PopupNotificationService) {

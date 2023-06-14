@@ -274,6 +274,11 @@ hr {
     line-height: 46px;
     height: 48px;
     font-family: 'Titillium Web', sans-serif;
+
+    &::placeholder {
+        color: $color-vaticle-secondary-grey;
+        font-style: italic;
+    }
 }
 
 .hs-form select {
