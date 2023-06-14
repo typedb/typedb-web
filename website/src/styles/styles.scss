@@ -262,7 +262,7 @@ hr {
     margin-top: 12px;
 }
 
-.hs-form input[type='text'], input[type='email'] {
+.hs-form input[type='text'], input[type='email'], select {
     width: 100%;
     padding: 0 8px;
     background-color: $color-vaticle-purple;
@@ -272,6 +272,30 @@ hr {
     border-radius: $border-radius;
     font-size: $font-size-xs;
     line-height: 46px;
+    height: 48px;
+    font-family: 'Titillium Web', sans-serif;
+}
+
+.hs-form select {
+    appearance: none;
+}
+
+.hs-fieldtype-select .input {
+    position: relative;
+
+    &::after {
+        position: absolute;
+        content: '';
+        width: 48px;
+        height: 46px;
+        border: none;
+        top: 1px;
+        bottom: 1px;
+        right: 0;
+        border-left: 1px solid $color-vaticle-light-purple;
+        background: no-repeat center url("/assets/icon/chevron-down.svg");
+        pointer-events: none;
+    }
 }
 
 .hs-form input[type=checkbox]:focus
