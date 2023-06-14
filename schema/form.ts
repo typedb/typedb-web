@@ -5,7 +5,6 @@ export const forms = {
     contact: "Contact",
     newsletter: "Newsletter",
     typeDBCloudWaitlist: "TypeDB Cloud Waitlist",
-    whitePaperDownload: "White Paper Download",
     requestTechTalk: "Request Tech Talk",
 } as const;
 
@@ -50,6 +49,15 @@ export const formField = defineField({
     options: {
         list: formList,
     },
+});
+
+export const hubspotFormIDFieldName = "hubspotFormID";
+
+export const hubspotFormIDField = defineField({
+    name: hubspotFormIDFieldName,
+    title: "Hubspot Form ID",
+    type: "string",
+    validation: requiredRule,
 });
 
 export const formSchemas = [formsSchema];

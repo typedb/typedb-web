@@ -9,7 +9,8 @@ const SANITY_QUERY_URL = `${SANITY_URL}/v2021-10-21/data/query/production?query=
 const SANITY_TOKEN = "skIRNgnaiMLWn9XUwl20yvPaUODDE4P6kNWiRicQEthG2J4wvcCA1vRaCkTC9y4SChNzoq8BAw2vRuDEKvXRayMbVgUFsuER7otBti0zDzDk6mrEPze4oDfEPYyiw9eklL352jwFXVELvHNESrvkRiAm5IDxECjN3aYM3JjNH7bWbp5czrw3";
 
 /**
- * When running `ng build` (e.g. in production), this file is replaced with `content-endpoint.service.prod.ts`.
+ * When building the 'staging' configuration, this file is replaced with `content-endpoint.service.staging.ts`.
+ * When building the 'production' configuration, this file is replaced with `content-endpoint.service.prod.ts`.
  */
 @Injectable({
     providedIn: "root",

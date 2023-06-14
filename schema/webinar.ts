@@ -2,6 +2,7 @@ import { PresentationIcon } from "@sanity/icons";
 import { defineField, defineType, NumberRule, SanityDocument, Slug } from "@sanity/types";
 import { ActionButton, LinkButton } from "./button";
 import { descriptionFieldRichText, requiredRule, slugField, titleField } from "./common-fields";
+import { hubspotFormIDField } from "./form";
 import { Link } from "./link";
 import { Person, personSchemaName, SanityPerson } from "./person";
 import { SanityDataset, SanityImage, SanityReference } from "./sanity-core";
@@ -82,6 +83,7 @@ export class Webinar {
                 destination: `/webinar/${this.slug}`,
                 opensNewTab: false,
             }),
+            comingSoon: false,
         });
     }
 }
@@ -131,12 +133,7 @@ const webinarSchema = defineType({
             type: "string",
             validation: requiredRule,
         }),
-        defineField({
-            name: "hubspotFormID",
-            title: "Hubspot Form ID",
-            type: "string",
-            validation: requiredRule,
-        }),
+        hubspotFormIDField,
         defineField({
             name: "onDemandVideoURL",
             title: "On-Demand Video URL",

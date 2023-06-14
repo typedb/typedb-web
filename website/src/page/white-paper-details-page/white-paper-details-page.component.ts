@@ -4,7 +4,9 @@ import { SanityWhitePaper, WhitePaper, whitePaperSchemaName } from "typedb-web-s
 import { ResourceAccessForm } from "../../framework/form/form";
 import { ContentService } from "../../service/content.service";
 import { FormService } from "../../service/form.service";
+import { AnalyticsService } from "../../service/analytics.service";
 import { PopupNotificationService } from "../../service/popup-notification.service";
+import { Title } from "@angular/platform-browser";
 
 @Component({
     selector: "td-white-paper-details-page",
@@ -15,7 +17,8 @@ export class WhitePaperDetailsPageComponent implements OnInit {
     whitePaper?: WhitePaper;
     form: ResourceAccessForm = { firstName: "", lastName: "", email: "", companyName: "", jobFunction: "" };
 
-    constructor(private router: Router, private _activatedRoute: ActivatedRoute, private contentService: ContentService, private _formService: FormService, private _popupNotificationService: PopupNotificationService) {}
+    constructor(private router: Router, private _activatedRoute: ActivatedRoute, private contentService: ContentService, private _formService: FormService,
+                private _popupNotificationService: PopupNotificationService, private _title: Title, private _analytics: AnalyticsService) {}
 
     ngOnInit() {
         this._activatedRoute.paramMap.subscribe((params: ParamMap) => {
@@ -24,7 +27,9 @@ export class WhitePaperDetailsPageComponent implements OnInit {
                 const sanityWhitePaper = sanityWhitePapers.find(x => x.slug.current === params.get("slug"));
                 if (sanityWhitePaper) {
                     this.whitePaper = WhitePaper.fromSanity(sanityWhitePaper, data);
-                    this._formService.embedHubspotForm("whitePaperDownload", "hubspot-form-holder");
+                    this._title.setTitle(`${this.whitePaper.title} - TypeDB White Papers`);
+                    this._analytics.hubspot.trackPageView();
+                    this._formService.embedHubspotForm(this.whitePaper.hubspotFormID, "hubspot-form-holder");
                 } else {
                     this.whitePaper = undefined;
                 }
@@ -33,6 +38,19 @@ export class WhitePaperDetailsPageComponent implements OnInit {
     }
 
     onSubmit() {
-        this._popupNotificationService.success("Your message has been sent!");
+        this._popupNotificationService.success("Your file will be downloaded shortly.");
+        fetch(this.whitePaper!.fileURL)
+            .then(resp => resp.blob())
+            .then(blob => {
+                const url = window.URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.style.display = 'none';
+                a.href = url;
+                // the filename you want
+                a.download = this.whitePaper!.fileName || "";
+                document.body.appendChild(a);
+                a.click();
+                window.URL.revokeObjectURL(url);
+            });
     }
 }

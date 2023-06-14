@@ -36,7 +36,7 @@ export class LinkPanel {
         return new LinkPanel({
             title: data.title,
             body: new RichText(data.body),
-            button: new LinkButton({ style: "secondary", text: data.link.text, link: Link.fromSanityLinkRef(data.link.link, db) })
+            button: new LinkButton({ style: "secondary", text: data.link.text, comingSoon: data.link.comingSoon, link: Link.fromSanityLinkRef(data.link.link, db) })
         });
     }
 }

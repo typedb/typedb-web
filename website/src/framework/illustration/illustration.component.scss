@@ -4,8 +4,11 @@
 :host {
     display: block;
     border-radius: $border-radius;
-    height: 464px;
     position: relative;
+
+    &:not(.il-dynamic-height) {
+        height: 464px;
+    }
 
     &:not(.sp-pane) {
         border: 1px solid $color-vaticle-light-purple;

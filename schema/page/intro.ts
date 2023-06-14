@@ -6,7 +6,7 @@ import { SanityTechnicolorBlock, TechnicolorBlock } from "../component/technicol
 import { SanityDataset } from "../sanity-core";
 import { RichText, SanityPortableText, SanityTitleBodyActions, titleAndBodySchemaName, TitleBodyActions } from "../text";
 import { PropsOf } from "../util";
-import { SanityPage } from "./common";
+import { Page, SanityPage } from "./common";
 
 export interface SanityIntroPage extends SanityPage {
     introSection: SanityTitleBodyActions;
@@ -19,12 +19,13 @@ interface SanityCoreSection extends SanityTechnicolorBlock, SanityVisibleToggle 
     longText: SanityPortableText;
 }
 
-export class IntroPage {
+export class IntroPage extends Page {
     readonly introSection: TitleBodyActions;
     readonly coreSections: IntroPageCoreSection[];
     readonly finalSection: ConclusionSection;
 
     constructor(data: SanityIntroPage, db: SanityDataset) {
+        super(data);
         this.introSection = TitleBodyActions.fromSanityTitleBodyActions(data.introSection, db);
         this.coreSections = data.coreSections.map(x => IntroPageCoreSection.fromSanityCoreSection(x, db));
         this.finalSection = ConclusionSection.fromSanityConclusionSection(data.finalSection, db);

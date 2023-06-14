@@ -1,3 +1,6 @@
+[build]
+ignore = "git diff --quiet $CACHED_COMMIT_REF $COMMIT_REF"
+
 [context.production]
 command = "pnpm run build-ci-prod"
 publish = "dist/static"
@@ -16,7 +19,12 @@ to = "https://typedb-docs.netlify.app/:splat"
 status = 200
 
 [[redirects]]
-from = "https://staging.dev.typedb.com/docs/*"
+from = "https://staging.dev.typedb.com/*"
+to = "https://master.dev.typedb.com/:splat"
+status = 200
+
+[[redirects]]
+from = "https://master.dev.typedb.com/docs/*"
 to = "https://master--typedb-docs.netlify.app/:splat"
 status = 200
 
@@ -26,20 +34,20 @@ to = "https://development--typedb-docs.netlify.app/:splat"
 status = 200
 
 [[redirects]]
-from = "https://dev.typedb.com/typedb/2.x/docs.html"
-to = "https://dev.typedb.com/docs/typedb/2.x/docs.html"
+from = "https://dev.typedb.com/typedb/2.x/overview.html"
+to = "https://dev.typedb.com/docs/typedb/2.x/overview.html"
 status = 301
 force = true
 
 [[redirects]]
-from = "https://staging.dev.typedb.com/typedb/2.x/docs.html"
-to = "https://staging.dev.typedb.com/docs/typedb/2.x/docs.html"
+from = "https://master.dev.typedb.com/typedb/2.x/overview.html"
+to = "https://master.dev.typedb.com/docs/typedb/2.x/overview.html"
 status = 301
 force = true
 
 [[redirects]]
-from = "https://development.dev.typedb.com/typedb/2.x/docs.html"
-to = "https://development.dev.typedb.com/docs/typedb/2.x/docs.html"
+from = "https://development.dev.typedb.com/typedb/2.x/overview.html"
+to = "https://development.dev.typedb.com/docs/typedb/2.x/overview.html"
 status = 301
 force = true
 

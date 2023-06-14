@@ -5,6 +5,8 @@ import { TechnicolorBlockComponent } from "../../framework/technicolor-block/tec
 import { SocialMediaLink } from "typedb-web-schema";
 import { TechnicolorBlock } from "typedb-web-schema";
 import { ContentService } from "../../service/content.service";
+import { Title } from "@angular/platform-browser";
+import { AnalyticsService } from "../../service/analytics.service";
 
 @Component({
     selector: "td-home-page",
@@ -15,14 +17,16 @@ export class HomePageComponent implements OnInit {
     page?: HomePage;
     socialMediaLinks?: SocialMediaLink[];
 
-    constructor(private router: Router, private contentService: ContentService) {}
+    constructor(private router: Router, private contentService: ContentService, private _title: Title, private _analytics: AnalyticsService) {}
 
     ngOnInit() {
         this.contentService.data.subscribe((data) => {
             const sanityHomePage = data.getDocumentByID(homePageSchemaName) as SanityHomePage;
             if (sanityHomePage) {
                 this.page = new HomePage(sanityHomePage, data);
+                this._title.setTitle(`${this.page.title} - TypeDB`);
                 this.socialMediaLinks = this.page.communitySection?.socialMedias.map(x => new SocialMediaLink(x, data));
+                this._analytics.hubspot.trackPageView();
             }
         });
     }

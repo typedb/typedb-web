@@ -7,7 +7,7 @@ import { Organisation, organisationLogosField, SanityOrganisation } from "../org
 import { SanityDataset, SanityReference } from "../sanity-core";
 import { SanityTitleBodyActions, TitleBodyActions, titleBodyActionsSectionSchemaName } from "../text";
 import { PropsOf } from "../util";
-import { SanityPage } from "./common";
+import { Page, SanityPage } from "./common";
 
 const introSection = "introSection";
 const coreSections = "coreSections";
@@ -27,12 +27,13 @@ interface SanityCoreSection extends SanityTechnicolorBlock {
     panels: SanityContentTextPanel[];
 }
 
-export class FeaturesPage {
+export class FeaturesPage extends Page {
     readonly [introSection]: IntroSection;
     readonly [coreSections]: FeaturesPageCoreSection[];
     readonly [finalSection]: ConclusionSection;
 
     constructor(data: SanityFeaturesPage, db: SanityDataset) {
+        super(data);
         this.introSection = IntroSection.fromSanityIntroSection(data.introSection, db);
         this.coreSections = data.coreSections.map(x => FeaturesPageCoreSection.fromSanityCoreSection(x, db));
         this.finalSection = ConclusionSection.fromSanityConclusionSection(data.finalSection, db);
