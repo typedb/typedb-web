@@ -126,7 +126,7 @@ export const textLinkSchema = defineType({
         defineField({
             name: "comingSoon",
             title: "Coming soon?",
-            description: "If set, this link will be disabled and display a 'Coming Soon' popup on hover",
+            description: "If set, this link will be disabled and 'Coming Soon' text will be shown",
             type: "boolean",
             initialValue: false,
             validation: requiredRule,
