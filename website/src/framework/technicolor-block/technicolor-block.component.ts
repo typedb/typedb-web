@@ -14,6 +14,7 @@ export class TechnicolorBlockComponent {
     @Input() noLeadingLine?: boolean;
     @Input() noTrailingLine?: boolean;
     @Input() noBody?: boolean;
+    @Input() longUpperChain?: boolean;
 
     get graphicLineColorClass(): string {
         switch (this.index % 3) {

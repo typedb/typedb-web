@@ -34,11 +34,12 @@ export class HomePageComponent implements OnInit {
 
 @Component({
     selector: "td-home-page-technicolor-block",
-    template: "<td-technicolor-block [block]='block' [index]='index' [size]='size' [noLeadingLine]='index === 0'></td-technicolor-block>",
+    template: "<td-technicolor-block [block]='block' [index]='index' [size]='size' [noLeadingLine]='index === 0' [longUpperChain]='variant === \"conclusion\"'></td-technicolor-block>",
 })
 export class HomePageTechnicolorBlockComponent {
     @Input() block!: TechnicolorBlock;
     @Input() page!: HomePage;
+    @Input() variant: "none" | "conclusion" = "none";
 
     get allBlocks(): TechnicolorBlock[] {
         return [
