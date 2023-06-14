@@ -1,4 +1,4 @@
-<td-tooltip *ngIf="button.comingSoon" text="Coming soon!" [visible]="comingSoonPopupVisible"></td-tooltip>
+<td-tooltip *ngIf="button.comingSoon && !noComingSoonTooltip" text="Coming soon!" [visible]="comingSoonPopupVisible"></td-tooltip>
 
 <a tabindex="0" [class]="button.style" [ngClass]="rootNgClass" [tdLink]="linkButton && (!linkButton.comingSoon) ? linkButton.link : undefined" [ngStyle]="{ 'width': buttonWidth }"
    (click)="onClick($event)" (mouseenter)="onMouseEnter($event)" (mouseleave)="onMouseLeave($event)">

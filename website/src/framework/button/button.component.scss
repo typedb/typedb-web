@@ -21,16 +21,14 @@ a {
     transition-duration: 250ms;
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 
+    &.bt-disabled {
+        opacity: 50%;
+    }
+
     &.primary {
         border-color: transparent;
         background: $color-vaticle-green;
         color: $color-vaticle-purple;
-
-        &.bt-disabled {
-            background: #445;
-            color: $color-vaticle-purple;
-            border-color: transparent;
-        }
 
         &:hover:not(.bt-disabled) {
             background-color: #0B939F;
@@ -41,12 +39,6 @@ a {
         border-color: $color-vaticle-green;
         background: transparent;
         color: $color-vaticle-green;
-
-        &.bt-disabled {
-            background: #445;
-            color: $color-vaticle-purple;
-            border-color: transparent;
-        }
 
         &:hover:not(.bt-disabled) {
             background-color: $color-vaticle-green;

@@ -10,6 +10,7 @@ export class ButtonComponent {
     @Input() button!: ActionButton;
     @Input() buttonWidth?: string;
     @Input() size: "medium" | "small" = "medium";
+    @Input() noComingSoonTooltip = false;
 
     comingSoonPopupVisible: boolean = false;
 
