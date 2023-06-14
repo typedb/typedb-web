@@ -6,6 +6,7 @@ import { SocialMediaLink } from "typedb-web-schema";
 import { TechnicolorBlock } from "typedb-web-schema";
 import { ContentService } from "../../service/content.service";
 import { Title } from "@angular/platform-browser";
+import { HubspotPixelService } from "../../service/hubspot-pixel.service";
 
 @Component({
     selector: "td-home-page",
@@ -16,7 +17,7 @@ export class HomePageComponent implements OnInit {
     page?: HomePage;
     socialMediaLinks?: SocialMediaLink[];
 
-    constructor(private router: Router, private contentService: ContentService, private _title: Title) {}
+    constructor(private router: Router, private contentService: ContentService, private _title: Title, private _hubspotPixelService: HubspotPixelService) {}
 
     ngOnInit() {
         this.contentService.data.subscribe((data) => {
@@ -25,6 +26,7 @@ export class HomePageComponent implements OnInit {
                 this.page = new HomePage(sanityHomePage, data);
                 this._title.setTitle(`${this.page.title} - TypeDB`);
                 this.socialMediaLinks = this.page.communitySection?.socialMedias.map(x => new SocialMediaLink(x, data));
+                this._hubspotPixelService.trackPageView();
             }
         });
     }

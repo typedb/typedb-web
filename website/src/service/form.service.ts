@@ -2,15 +2,13 @@ import { Injectable } from "@angular/core";
 import { ReplaySubject } from "rxjs";
 import { FormID, formsSchemaName, SanityHubspotForms } from "typedb-web-schema";
 import { ContentService } from "./content.service";
+import { HUBSPOT_PORTAL_ID, HUBSPOT_REGION } from "./hubspot-pixel.service";
 
 declare global {
     interface Window {
         hbspt: any;
     }
 }
-
-const HUBSPOT_PORTAL_ID = "4332244";
-const HUBSPOT_REGION = "na1";
 
 @Injectable({
     providedIn: "root",

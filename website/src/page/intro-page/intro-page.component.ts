@@ -4,6 +4,7 @@ import { ConclusionSection, IntroPage, IntroPageCoreSection, introPageSchemaName
 import { TechnicolorBlock } from "typedb-web-schema";
 import { ContentService } from "../../service/content.service";
 import { Title } from "@angular/platform-browser";
+import { HubspotPixelService } from "../../service/hubspot-pixel.service";
 
 @Component({
     selector: "td-intro-page",
@@ -13,7 +14,7 @@ import { Title } from "@angular/platform-browser";
 export class IntroPageComponent implements OnInit {
     page?: IntroPage;
 
-    constructor(private router: Router, private contentService: ContentService, private _title: Title) {}
+    constructor(private router: Router, private contentService: ContentService, private _title: Title, private _hubspotPixelService: HubspotPixelService) {}
 
     ngOnInit() {
         this.contentService.data.subscribe((data) => {
@@ -21,6 +22,7 @@ export class IntroPageComponent implements OnInit {
             if (sanityIntroPage) {
                 this.page = new IntroPage(sanityIntroPage, data);
                 this._title.setTitle(`${this.page.title} - TypeDB`);
+                this._hubspotPixelService.trackPageView();
             } else {
                 this.page = undefined;
             }
