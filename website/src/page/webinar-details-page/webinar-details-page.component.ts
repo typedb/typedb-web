@@ -4,8 +4,10 @@ import { SanityWebinar, Webinar, webinarSchemaName } from "typedb-web-schema";
 import { ResourceAccessForm } from "../../framework/form/form";
 import { ContentService } from "../../service/content.service";
 import { FormService } from "../../service/form.service";
+import { AnalyticsService } from "../../service/analytics.service";
 import { PopupNotificationService } from "../../service/popup-notification.service";
 import { WebinarService } from "../../service/webinar.service";
+import { Title } from "@angular/platform-browser";
 
 @Component({
     selector: "td-webinar-details-page",
@@ -17,7 +19,7 @@ export class WebinarDetailsPageComponent implements OnInit {
     form: ResourceAccessForm = { firstName: "", lastName: "", email: "", companyName: "", jobFunction: "" };
 
     constructor(private router: Router, private _activatedRoute: ActivatedRoute, private contentService: ContentService, private _formService: FormService,
-                private _webinarService: WebinarService, private _popupNotificationService: PopupNotificationService) {}
+                private _webinarService: WebinarService, private _popupNotificationService: PopupNotificationService, private _title: Title, private _analytics: AnalyticsService) {}
 
     ngOnInit() {
         this._activatedRoute.paramMap.subscribe((params: ParamMap) => {
@@ -26,16 +28,20 @@ export class WebinarDetailsPageComponent implements OnInit {
                 const sanityWebinar = sanityWebinars.find(x => x.slug.current === params.get("slug"));
                 if (sanityWebinar) {
                     this.webinar = Webinar.fromSanity(sanityWebinar, data);
-                    this._formService.embedHubspotForm(this.webinar.hubspotFormID, "hubspot-form-holder", (formEl) => {
-                        this._webinarService.register({
-                            airmeetID: this.webinar!.airmeetID,
-                            firstName: formEl["firstname"].value,
-                            lastName: formEl["lastname"].value,
-                            email: formEl["email"].value,
-                            companyName: formEl["company"].value,
-                            jobTitle: formEl["job_function"].value,
+                    this._title.setTitle(`${this.webinar.title} - TypeDB Webinars`);
+                    this._analytics.hubspot.trackPageView();
+                    if (!this.webinar.isFinished() || this.webinar.onDemandVideoURL) {
+                        this._formService.embedHubspotForm(this.webinar.hubspotFormID, "hubspot-form-holder", (formEl) => {
+                            this._webinarService.register({
+                                airmeetID: this.webinar!.airmeetID,
+                                firstName: formEl["firstname"].value,
+                                lastName: formEl["lastname"].value,
+                                email: formEl["email"].value,
+                                companyName: formEl["company"].value,
+                                jobTitle: formEl["job_function"].value,
+                            });
                         });
-                    });
+                    }
                 } else {
                     this.webinar = undefined;
                 }
@@ -44,6 +50,11 @@ export class WebinarDetailsPageComponent implements OnInit {
     }
 
     onSubmit() {
-        this._popupNotificationService.success("Your message has been sent!");
+        const webinar = this.webinar!;
+        if (webinar.isFinished()) {
+            window.open(webinar.onDemandVideoURL);
+        } else {
+            this._popupNotificationService.success("You've been successfully signed up for the webinar. You'll receive a link in your email, which you can use to join the event.");
+        }
     }
 }

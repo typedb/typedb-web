@@ -33,6 +33,7 @@ import { RichTextComponent } from "./text/rich-text.component";
 import { H1WithHighlightsComponent, ParagraphWithHighlightsComponent } from "./text/text-with-highlights.component";
 import { RouterModule } from "@angular/router";
 import { MatSnackBarModule } from "@angular/material/snack-bar";
+import { TooltipComponent } from "./tooltip/tooltip.component";
 
 @NgModule({
     declarations: [
@@ -69,6 +70,7 @@ import { MatSnackBarModule } from "@angular/material/snack-bar";
         TechnicolorBlockComponent,
         TestimonialsCarouselComponent,
         TitleBodyActionsSectionComponent,
+        TooltipComponent,
         WebinarPanelsComponent,
     ],
     imports: [

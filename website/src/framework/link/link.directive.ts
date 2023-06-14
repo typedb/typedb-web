@@ -25,15 +25,23 @@ export class LinkDirective implements OnInit {
 
     constructRouterLink(el: ElementRef<HTMLAnchorElement>) {
         el.nativeElement.tabIndex = 0;
-        el.nativeElement.href = this.link!.destination;
         const [path, query] = this.link!.destination.split("?");
+        if (path) {
+            el.nativeElement.href = this.link!.destination;
+        } else {
+            el.nativeElement.href = `?${query}`;
+        }
         el.nativeElement.addEventListener("click", (e: MouseEvent) => {
             e.preventDefault();
             if (!query) {
                 this.router.navigate([this.link!.destination]);
             } else {
                 const queryParams = Object.fromEntries(new URLSearchParams(query).entries());
-                this.router.navigate([path], { queryParams });
+                if (!path) {
+                    this.router.navigate([], { queryParams });
+                } else {
+                    this.router.navigate([path], { queryParams });
+                }
             }
         });
     }

@@ -5,7 +5,7 @@ import { SanityDataset, SanityReference } from "../sanity-core";
 import { ParagraphWithHighlights, RichText, SanityTitleAndBody, TitleAndBody, titleAndBodySchemaName } from "../text";
 import { PropsOf } from "../util";
 import { SanityWebinar, Webinar, webinarSchemaName } from "../webinar";
-import { SanityPage } from "./common";
+import { Page, SanityPage } from "./common";
 
 export interface SanityWebinarsPage extends SanityPage {
     introSection: SanityIntroSection;
@@ -23,12 +23,13 @@ export interface SanityFeaturedWebinarsSection extends SanityTechnicolorBlock, S
 
 export interface SanityExploreWebinarsSection extends SanityTechnicolorBlock, SanityVisibleToggle {}
 
-export class WebinarsPage {
+export class WebinarsPage extends Page {
     readonly introSection: IntroSection;
     readonly featuredWebinarsSection?: FeaturedWebinarsSection;
     readonly exploreWebinarsSection?: ExploreWebinarsSection;
 
     constructor(data: SanityWebinarsPage, db: SanityDataset) {
+        super(data);
         this.introSection = IntroSection.fromSanityIntroSection(data.introSection, db);
         this.featuredWebinarsSection = data.featuredWebinarsSection.isVisible ? FeaturedWebinarsSection.fromSanityFeaturedWebinarsSection(data.featuredWebinarsSection, db) : undefined;
         this.exploreWebinarsSection = data.exploreWebinarsSection.isVisible ? ExploreWebinarsSection.fromSanityExploreWebinarsSection(data.exploreWebinarsSection, db) : undefined;

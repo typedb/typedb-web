@@ -24,7 +24,7 @@ const routes: Routes = [
     { path: "webinars", component: WebinarsPageComponent },
     { path: "white-paper/:slug", component: WhitePaperDetailsPageComponent },
     { path: "white-papers", component: WhitePapersPageComponent },
-    { path: "**", component: NotFoundPageComponent },
+    { path: "**", component: NotFoundPageComponent, title: "404 - TypeDB" },
 ];
 
 @NgModule({

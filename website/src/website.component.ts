@@ -5,12 +5,6 @@ import { filter } from "rxjs";
 import { ContentService } from "./service/content.service";
 import { DialogService } from "./service/dialog.service";
 
-declare global {
-    interface Window {
-        _hsq: any[];
-    }
-}
-
 @Component({
     selector: "typedb-website",
     templateUrl: "./website.component.html",
@@ -43,12 +37,5 @@ export class WebsiteComponent {
                 this._componentBeforeNavigation = currentRoute.component;
             });
         });
-    }
-
-    onRouteChange(routeChangeEvent: { router: Router }) {
-        // HubSpot tracking code
-        if (!window._hsq?.length) window._hsq = [];
-        window._hsq.push(["setPath"], routeChangeEvent.router.url);
-        window._hsq.push(["trackPageView"]);
     }
 }

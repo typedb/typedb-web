@@ -3,6 +3,8 @@ import { Router } from "@angular/router";
 import { DeploymentPage, deploymentPageSchemaName, SanityDeploymentPage, TechnicolorBlock } from "typedb-web-schema";
 import { TechnicolorBlockComponent } from "../../framework/technicolor-block/technicolor-block.component";
 import { ContentService } from "../../service/content.service";
+import { Title } from "@angular/platform-browser";
+import { AnalyticsService } from "../../service/analytics.service";
 
 @Component({
     selector: "td-deployment-page",
@@ -12,13 +14,15 @@ import { ContentService } from "../../service/content.service";
 export class DeploymentPageComponent implements OnInit {
     page?: DeploymentPage;
 
-    constructor(private router: Router, private contentService: ContentService) {}
+    constructor(private router: Router, private contentService: ContentService, private _title: Title, private _analytics: AnalyticsService) {}
 
     ngOnInit() {
         this.contentService.data.subscribe((data) => {
             const sanityDeploymentPage = data.getDocumentByID(deploymentPageSchemaName) as SanityDeploymentPage;
             if (sanityDeploymentPage) {
                 this.page = new DeploymentPage(sanityDeploymentPage, data);
+                this._title.setTitle(`${this.page.title} - TypeDB`);
+                this._analytics.hubspot.trackPageView();
             }
         });
     }

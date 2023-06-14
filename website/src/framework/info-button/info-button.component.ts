@@ -7,4 +7,8 @@ import { Component, Input } from "@angular/core";
 })
 export class InfoButtonComponent {
     @Input() tooltipText!: string;
+
+    tooltipVisible: boolean = false;
+
+
 }

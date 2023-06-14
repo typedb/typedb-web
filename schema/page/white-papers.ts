@@ -1,30 +1,27 @@
-import { defineField, defineType } from "@sanity/types";
+import { ArrayRule, defineField, defineType } from "@sanity/types";
 import { collapsibleOptions, pageTitleField } from "../common-fields";
 import { SanityDataset, SanityReference } from "../sanity-core";
 import { SanityTitleAndBody, TitleAndBody, titleAndBodySchemaName } from "../text";
 import { PropsOf } from "../util";
 import { SanityWhitePaper, WhitePaper, whitePaperSchemaName } from "../white-paper";
-import { SanityPage } from "./common";
+import { Page, SanityPage } from "./common";
 
 export interface SanityWhitePapersPage extends SanityPage {
     introSection: SanityTitleAndBody;
     featuredWhitePaper: SanityReference<SanityWhitePaper>;
+    whitePapersList: SanityReference<SanityWhitePaper>[];
 }
 
-export class WhitePapersPage {
+export class WhitePapersPage extends Page {
     readonly introSection: TitleAndBody;
     readonly featuredWhitePaper: WhitePaper;
+    readonly whitePapersList: WhitePaper[];
 
-    constructor(props: PropsOf<WhitePapersPage>) {
-        this.introSection = props.introSection;
-        this.featuredWhitePaper = props.featuredWhitePaper;
-    }
-
-    static fromSanity(data: SanityWhitePapersPage, db: SanityDataset): WhitePapersPage {
-        return new WhitePapersPage({
-            introSection: TitleAndBody.fromSanityTitleAndBody(data.introSection),
-            featuredWhitePaper: WhitePaper.fromSanity(db.resolveRef(data.featuredWhitePaper), db),
-        });
+    constructor(data: SanityWhitePapersPage, db: SanityDataset) {
+        super(data);
+        this.introSection = TitleAndBody.fromSanityTitleAndBody(data.introSection);
+        this.featuredWhitePaper = WhitePaper.fromSanity(db.resolveRef(data.featuredWhitePaper), db);
+        this.whitePapersList = data.whitePapersList.map(x => WhitePaper.fromSanity(db.resolveRef(x), db));
     }
 }
 
@@ -47,6 +44,18 @@ export const whitePapersPageSchema = defineType({
             title: "Featured White Paper",
             type: "reference",
             to: [{type: whitePaperSchemaName}],
+        }),
+        defineField({
+            name: "whitePapersList",
+            title: "White Papers List",
+            description: "Displayed as a tiled grid with 2 columns",
+            type: "array",
+            of: [{type: "reference", to: [{type: whitePaperSchemaName}]}],
+            validation: (rule: ArrayRule<any>) => rule.custom((value: any[] | undefined) => {
+                if (!value) return "Required";
+                if (value.length % 2 === 1) return "Must contain an even number of items";
+                else return true;
+            }),
         }),
     ],
     preview: {

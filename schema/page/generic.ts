@@ -3,7 +3,7 @@ import { collapsibleOptions, pageTitleField, requiredRule } from "../common-fiel
 import { ConclusionSection, conclusionSectionSchemaName, SanityConclusionSection } from "../component/conclusion-panel";
 import { SanityDataset } from "../sanity-core";
 import { SanityTitleBodyActions, SanityTitleBodyIllustrationSection, TitleBodyActions, titleBodyActionsSectionSchemaName, TitleBodyIllustrationSection, titleBodyIllustrationSectionSchemaName } from "../text";
-import { SanityPage } from "./common";
+import { Page, SanityPage } from "./common";
 
 export interface SanityGenericPage extends SanityPage {
     introSection: SanityTitleBodyActions;
@@ -11,12 +11,13 @@ export interface SanityGenericPage extends SanityPage {
     finalSection: SanityConclusionSection;
 }
 
-export class GenericPage {
+export class GenericPage extends Page {
     readonly introSection: TitleBodyActions;
     readonly coreSections: TitleBodyIllustrationSection[];
     readonly finalSection: ConclusionSection;
 
     constructor(data: SanityGenericPage, db: SanityDataset) {
+        super(data);
         this.introSection = TitleBodyActions.fromSanityTitleBodyActions(data.introSection, db);
         this.coreSections = data.coreSections.map(x => TitleBodyIllustrationSection.fromSanityTitleBodyIllustrationSection(x, db));
         this.finalSection = ConclusionSection.fromSanityConclusionSection(data.finalSection, db);

@@ -1,4 +1,4 @@
-import { defineField, defineType } from "@sanity/types";
+import { ArrayRule, defineField, defineType } from "@sanity/types";
 import { buttonSchemaName, LinkButton, SanityButton } from "../button";
 import { descriptionField, requiredRule } from "../common-fields";
 import { SanityDataset } from "../sanity-core";
@@ -141,6 +141,7 @@ const rowSchema = defineType({
             title: "Cells",
             type: "array",
             of: [{ type: booleanCellSchemaName }, { type: textCellSchemaName }, { type: buttonSchemaName }],
+            validation: (rule: ArrayRule<any>) => rule.required(),
         }),
     ],
     preview: {
