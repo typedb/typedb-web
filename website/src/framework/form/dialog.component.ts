@@ -52,7 +52,8 @@ export class NewsletterDialogComponent {
 
     onSubmit() {
         // TODO: maybe don't close immediately but show a loading indicator until it's submitted
-        // TODO: we don't actually check the submission status; the 'submit' event is triggered regardless
+        // TODO: we don't actually check the submission status; the 'submit' event is triggered regardless.
+        //       this also means the user might have sent invalid data (that fails form validation)
         this.dialogRef.close();
         this._popupNotificationService.success("Your email is now subscribed to our newsletter!");
     }
@@ -68,7 +69,6 @@ type ContactFormTopic = typeof CONTACT_FORM_TOPICS[number];
     styleUrls: ["./contact-dialog.component.scss"]
 })
 export class ContactDialogComponent {
-    @ViewChild("formEl") formEl!: ElementRef<HTMLFormElement>;
     allTopics = ["Products & Services", "Support", "Consulting", "Sales", "Training", "Careers", "PR & Analyst Relations"] as const;
     form: ContactForm = { firstName: "", lastName: "", email: "", companyName: "", jobFunction: "", topics: CONTACT_FORM_TOPICS.reduce((obj, x) => Object.assign(obj, {[x]: false}), {}) as any, body: "" };
 
@@ -76,9 +76,7 @@ export class ContactDialogComponent {
         this._formService.embedHubspotForm("contact", "hubspot-form-holder-contact");
     }
 
-    onSubmit() {
-        if (!this.formEl.nativeElement.reportValidity()) return;
-
+    onSubmit(event: SubmitEvent) {
         this.dialogRef.close();
         this._popupNotificationService.success("Your message has been sent!");
     }
