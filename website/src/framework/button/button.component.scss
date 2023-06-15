@@ -17,9 +17,9 @@ a {
     font-size: $font-size-xs;
     font-weight: $font-weight-semi-bold;
     line-height: $line-height-xs;
-    transition-property: background-color, border;
-    transition-duration: 250ms;
-    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-property: background-color, border, box-shadow, opacity;
+    transition-duration: 100ms;
+    transition-timing-function: ease;
 
     &.bt-disabled {
         opacity: 50%;
@@ -32,7 +32,11 @@ a {
         color: $color-vaticle-purple;
 
         &:hover:not(.bt-disabled) {
-            background-color: #0B939F;
+            box-shadow: 0 3px 26px 0 rgba($color-vaticle-green, .4);
+        }
+
+        &:active:not(.bt-disabled) {
+            background-color: rgb((2 + 26) / 2, (218 + 24) / 2, (201 + 42) / 2); // = lerp(green, purple, .5)
         }
     }
 
