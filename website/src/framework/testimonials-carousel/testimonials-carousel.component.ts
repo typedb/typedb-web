@@ -24,19 +24,11 @@ export class TestimonialsCarouselComponent {
     }
 
     previous() {
-        this.fadeIndexes = [this.focusedIndex % 7, (this.focusedIndex - 1) % 7, (this.focusedIndex + 3) % 7];
-        setTimeout(() => {
-            this.fadeIndexes = [];
-        }, 300);
         this.startIndex++;
         if (this.startIndex > 6) this.startIndex = 0;
     }
 
     next() {
-        this.fadeIndexes = [this.focusedIndex % 7, (this.focusedIndex + 1) % 7, (this.focusedIndex - 3) % 7];
-        setTimeout(() => {
-            this.fadeIndexes = [];
-        }, 300);
         this.startIndex--;
         if (this.startIndex < 0) this.startIndex = 6;
     }
