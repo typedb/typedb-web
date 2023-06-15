@@ -23,6 +23,8 @@ export class DeploymentPageComponent implements OnInit {
                 this.page = new DeploymentPage(sanityDeploymentPage, data);
                 this._title.setTitle(`${this.page.title} - TypeDB`);
                 this._analytics.hubspot.trackPageView();
+            } else {
+                this.router.navigate(["404"]);
             }
         });
     }

@@ -78,7 +78,13 @@ const linkSchema = defineType({
             name: "destination",
             title: "Link Address",
             type: "slug",
-            validation: (rule: SlugRule) => rule.required(),
+            validation: (rule: SlugRule) => rule.custom((value) => {
+                if (!value?.current) return "Required";
+                if (value.current.startsWith("http://")) return true;
+                if (value.current.startsWith("https://")) return true;
+                if (value.current.startsWith("/")) return true;
+                return "URL must start with either '/', 'http://' or 'https://'";
+            }),
         }),
         defineField({
             name: "type",

@@ -43,7 +43,7 @@ export class WebinarDetailsPageComponent implements OnInit {
                         });
                     }
                 } else {
-                    this.webinar = undefined;
+                    this.router.navigate(["404"]);
                 }
             });
         });

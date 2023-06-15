@@ -27,6 +27,8 @@ export class HomePageComponent implements OnInit {
                 this._title.setTitle(`${this.page.title} - TypeDB`);
                 this.socialMediaLinks = this.page.communitySection?.socialMedias.map(x => new SocialMediaLink(x, data));
                 this._analytics.hubspot.trackPageView();
+            } else {
+                this.router.navigate(["404"]);
             }
         });
     }
