@@ -13,6 +13,10 @@ th:first-of-type {
     text-align: start;
 }
 
+tr:last-of-type {
+    background: $color-vaticle-deep-purple;
+}
+
 thead th {
     font-weight: $font-weight-semi-bold;
 }

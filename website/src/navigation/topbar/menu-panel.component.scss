@@ -37,9 +37,27 @@
         height: 72px;
         width: 280px;
 
+        h4 {
+            position: relative;
+            width: fit-content;
+        }
+
         &:hover h4, &:focus h4 {
             color: $color-vaticle-green;
             text-decoration: underline;
+        }
+
+        .mp-coming-soon {
+            cursor: default;
+
+            h4 span, p {
+                opacity: .5;
+            }
+        }
+
+        &:hover .mp-coming-soon h4, &:focus .mp-coming-soon h4 {
+            color: $color-vaticle-white;
+            text-decoration: none;
         }
     }
 }

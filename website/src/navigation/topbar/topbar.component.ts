@@ -1,6 +1,6 @@
 import { Component, HostListener, Input, NgZone, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
-import { communityResourcesSchemaName, SanityCommunityResources, SanityTopbar, TextLink, Topbar, TopbarListColumn, TopbarMenuPanel, topbarSchemaName, TopbarVideoColumn } from "typedb-web-schema";
+import { communityResourcesSchemaName, SanityCommunityResources, SanityTopbar, TextLink, Topbar, TopbarListColumn, TopbarListColumnItem, TopbarMenuPanel, topbarSchemaName, TopbarVideoColumn } from "typedb-web-schema";
 import { ContentService } from "../../service/content.service";
 import { DialogService } from "../../service/dialog.service";
 
@@ -109,6 +109,8 @@ export class TopbarComponent implements OnInit {
 export class TopbarMenuPanelComponent {
     @Input() menuPanel!: TopbarMenuPanel;
 
+    comingSoonPopupVisible: Map<TopbarListColumnItem, boolean> = new Map<TopbarListColumnItem, boolean>();
+
     get columns() {
         return this.menuPanel.columns;
     }
@@ -123,5 +125,13 @@ export class TopbarMenuPanelComponent {
 
     isVideoColumn(obj: any): obj is TopbarVideoColumn {
         return obj instanceof TopbarVideoColumn;
+    }
+
+    onMouseEnter(item: TopbarListColumnItem) {
+        if (item.comingSoon) this.comingSoonPopupVisible.set(item, true);
+    }
+
+    onMouseLeave(item: TopbarListColumnItem) {
+        if (item.comingSoon) this.comingSoonPopupVisible.set(item, false);
     }
 }

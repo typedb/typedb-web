@@ -23,6 +23,7 @@ a {
 
     &.bt-disabled {
         opacity: 50%;
+        cursor: default;
     }
 
     &.primary {

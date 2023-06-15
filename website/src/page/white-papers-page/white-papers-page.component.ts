@@ -23,7 +23,7 @@ export class WhitePapersPageComponent implements OnInit {
                 this._title.setTitle(`${this.page.title} - TypeDB`);
                 this._analytics.hubspot.trackPageView();
             } else {
-                this.page = undefined;
+                this.router.navigate(["404"]);
             }
         });
     }
