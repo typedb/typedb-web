@@ -16,7 +16,7 @@ export interface SanityButton {
     style: ButtonStyle;
     text: string;
     comingSoon: boolean;
-    link: SanityReference<SanityLink>;
+    link?: SanityReference<SanityLink>;
 }
 
 export type SanityButtons = SanityButton[];
@@ -34,15 +34,15 @@ export class ActionButton {
 }
 
 export class LinkButton extends ActionButton {
-    readonly link: Link;
+    readonly link?: Link;
 
-    constructor(props: { style: ButtonStyle, text: string, comingSoon: boolean, link: Link }) {
+    constructor(props: { style: ButtonStyle, text: string, comingSoon: boolean, link?: Link }) {
         super(props);
         this.link = props.link;
     }
 
     static fromSanity(data: SanityButton, db: SanityDataset) {
-        return new LinkButton({ style: data.style, text: data.text, comingSoon: data.comingSoon, link: Link.fromSanityLinkRef(data.link, db) });
+        return new LinkButton({ style: data.style, text: data.text, comingSoon: data.comingSoon, link: data.link ? Link.fromSanityLinkRef(data.link, db) : undefined });
     }
 }
 

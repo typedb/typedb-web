@@ -26,7 +26,7 @@ export class ButtonComponent {
     }
 
     onClick(event: Event) {
-        if (this.linkButton && this.linkButton.link.type === "route") {
+        if (this.linkButton?.link?.type === "route") {
             event.preventDefault();
         }
     }

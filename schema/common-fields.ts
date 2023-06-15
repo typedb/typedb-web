@@ -1,4 +1,4 @@
-import { BlockContentIcon, PlayIcon } from "@sanity/icons";
+import { BlockContentIcon, LinkIcon, PlayIcon } from "@sanity/icons";
 import { ArrayRule, defineField, RuleDef } from "@sanity/types";
 
 // IMPORTANT: Do not reference other schema files from this file, as this generally creates cyclic dependencies.
@@ -99,6 +99,16 @@ export const descriptionFieldRichText = defineField({
     title: "Description",
     type: "array",
     of: [{type: "block"}],
+});
+
+export const buttonFieldName = "button";
+
+export const buttonField = defineField({
+    name: buttonFieldName,
+    title: "Button",
+    type: "button",
+    icon: LinkIcon,
+    validation: requiredRule,
 });
 
 export const actionsFieldName = "actions";
