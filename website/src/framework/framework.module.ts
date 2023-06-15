@@ -109,6 +109,7 @@ import { TooltipComponent } from "./tooltip/tooltip.component";
         TechnicolorBlockComponent,
         TestimonialsCarouselComponent,
         TitleBodyActionsSectionComponent,
+        TooltipComponent,
         WebinarPanelsComponent,
     ],
     providers: [],

@@ -149,6 +149,15 @@ export const learnMoreLinkFieldName = "learnMoreLink";
 
 export const learnMoreLinkField = Object.assign({}, linkField, { name: learnMoreLinkFieldName, title: "'Learn More' link" });
 
+export const comingSoonField = defineField({
+    name: "comingSoon",
+    title: "Coming soon?",
+    description: "If set, this link will be disabled and 'Coming Soon' text will be shown",
+    type: "boolean",
+    initialValue: false,
+    validation: requiredRule,
+});
+
 export const videoEmbedFieldName = "videoEmbed";
 
 export const videoEmbedField = defineField({

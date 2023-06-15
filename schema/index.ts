@@ -36,7 +36,7 @@ export { sectionIconSchemaName } from "./image";
 export { KeyPoint, KeyPointWithIcon } from "./key-point";
 export { linkSchemaName, Link, TextLink } from "./link";
 export { type ContactMediaID, contactMedias, Footer, footerSchemaName, type SanityFooter } from "./navigation/footer";
-export { type SanityTopbar, Topbar, TopbarListColumn, TopbarMenuPanel, topbarSchemaName, TopbarVideoColumn } from "./navigation/topbar";
+export { type SanityTopbar, Topbar, TopbarListColumn, TopbarListColumnItem, TopbarMenuPanel, topbarSchemaName, TopbarVideoColumn } from "./navigation/topbar";
 export { Organisation, organisationSchemaName, type SanityOrganisation } from "./organisation";
 export { GenericPage, type SanityGenericPage, genericPageSchemaName } from "./page/generic";
 export { Page, type SanityPage } from "./page/common";
