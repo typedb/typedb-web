@@ -353,22 +353,22 @@
     border-collapse:separate;
 }
 
-.doc .admonitionblock .content::before {
+.doc .admonitionblock td.content::before {
     display: block;
     margin-bottom: 10px;
     font-weight: var(--body-font-weight-bold);
 }
 
-.doc .admonitionblock.note .content::before {
+.doc .admonitionblock.note td.content::before {
     content: 'Note';
 }
-.doc .admonitionblock.important .content::before {
+.doc .admonitionblock.important td.content::before {
     content: 'Important';
 }
-.doc .admonitionblock.advanced .content::before {
+.doc .admonitionblock.advanced td.content::before {
     content: 'Advanced';
 }
-.doc .admonitionblock.warning .content::before {
+.doc .admonitionblock.warning td.content::before {
     content: 'Warning';
 }
 

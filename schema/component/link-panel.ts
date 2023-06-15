@@ -1,8 +1,7 @@
 import { defineField, defineType } from "@sanity/types";
-import { LinkButton } from "../button";
+import { LinkButton, SanityButton } from "../button";
 import { SanityImageRef } from "../image";
-import { Link, SanityTextLink } from "../link";
-import { bodyFieldRichText, requiredRule, sectionIconField, textLinkField, titleField } from "../common-fields";
+import { bodyFieldRichText, buttonField, requiredRule, sectionIconField, titleField } from "../common-fields";
 import { SanityDataset, SanityReference } from "../sanity-core";
 import { RichText, SanityPortableText } from "../text";
 import { PropsOf } from "../util";
@@ -10,7 +9,7 @@ import { PropsOf } from "../util";
 export interface SanityLinkPanel {
     title: string;
     body: SanityPortableText;
-    link: SanityTextLink;
+    button: SanityButton;
 }
 
 export interface SanityLinkPanelWithIcon extends SanityLinkPanel {
@@ -36,7 +35,7 @@ export class LinkPanel {
         return new LinkPanel({
             title: data.title,
             body: new RichText(data.body),
-            button: new LinkButton({ style: "secondary", text: data.link.text, comingSoon: data.link.comingSoon, link: Link.fromSanityLinkRef(data.link.link, db) })
+            button: LinkButton.fromSanity(data.button, db),
         });
     }
 }
@@ -76,7 +75,7 @@ const linkPanelSchema = defineType({
     fields: [
         titleField,
         bodyFieldRichText,
-        textLinkField,
+        buttonField,
     ],
 });
 
@@ -109,7 +108,7 @@ const productPanelSchema = defineType({
             of: [{ type: "block" }],
             validation: requiredRule,
         }),
-        textLinkField,
+        buttonField,
     ],
 });
 

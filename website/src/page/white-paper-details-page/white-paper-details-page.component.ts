@@ -31,7 +31,7 @@ export class WhitePaperDetailsPageComponent implements OnInit {
                     this._analytics.hubspot.trackPageView();
                     this._formService.embedHubspotForm(this.whitePaper.hubspotFormID, "hubspot-form-holder");
                 } else {
-                    this.whitePaper = undefined;
+                    this.router.navigate(["404"]);
                 }
             });
         });

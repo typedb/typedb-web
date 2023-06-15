@@ -26,6 +26,11 @@
     &:not(:first-child) {
         border-left: 1px solid $color-vaticle-light-purple;
     }
+
+    &:hover p {
+        color: $color-vaticle-green;
+        text-decoration: underline;
+    }
 }
 
 .ft-tab-selected, .ft-tab-selected p {

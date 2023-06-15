@@ -3,7 +3,7 @@ import { defineField, defineType, SanityDocument } from "@sanity/types";
 import { LinkButton, buttonSchemaName, SanityButton } from "../button";
 import { SanityVideoEmbed } from "../illustration";
 import { Link, SanityLink, SanityTextLink, TextLink, textLinkSchemaName } from "../link";
-import { descriptionField, linkField, requiredRule, titleField, titleFieldName, videoEmbedField } from "../common-fields";
+import { comingSoonField, descriptionField, linkField, requiredRule, titleField, titleFieldName, videoEmbedField } from "../common-fields";
 import { Document, SanityDataset, SanityReference } from "../sanity-core";
 
 export interface SanityTopbar extends SanityDocument {
@@ -29,7 +29,8 @@ interface SanityTopbarListColumn {
 interface SanityTopbarListColumnItem {
     title: string;
     description: string;
-    link: SanityReference<SanityLink>;
+    link?: SanityReference<SanityLink>;
+    comingSoon: boolean;
 }
 
 interface SanityTopbarSecondaryArea {
@@ -86,12 +87,14 @@ export class TopbarListColumn {
 export class TopbarListColumnItem {
     readonly title: string;
     readonly description: string;
-    readonly link: Link;
+    readonly link?: Link;
+    readonly comingSoon: boolean;
 
     constructor(data: SanityTopbarListColumnItem, db: SanityDataset) {
         this.title = data.title;
         this.description = data.description;
-        this.link = Link.fromSanityLinkRef(data.link, db);
+        this.link = data.link ? Link.fromSanityLinkRef(data.link, db) : undefined;
+        this.comingSoon = data.comingSoon;
     }
 }
 
@@ -113,6 +116,7 @@ const listColumnItemSchema = defineType({
         titleField,
         Object.assign({}, descriptionField, { validation: requiredRule }),
         linkField,
+        comingSoonField,
     ],
     preview: {
         select: { title: "title", description: "description", link: "link.title" },

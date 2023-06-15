@@ -2,7 +2,7 @@ import { ComponentType } from "@angular/cdk/portal";
 import { Injectable } from "@angular/core";
 import { MatDialog, MatDialogConfig, MatDialogRef } from "@angular/material/dialog";
 import { ActivatedRoute, NavigationEnd, Router } from "@angular/router";
-import { CloudWaitlistDialogComponent, ContactDialogComponent, NewsletterDialogComponent } from "../framework/./form/dialog.component";
+import { CloudWaitlistDialogComponent, ContactDialogComponent, NewsletterDialogComponent } from "../framework/form/dialog.component";
 
 @Injectable({
     providedIn: "root",
@@ -10,8 +10,8 @@ import { CloudWaitlistDialogComponent, ContactDialogComponent, NewsletterDialogC
 export class DialogService {
     current?: MatDialogRef<any>;
 
-    constructor(private router: Router, private activatedRoute: ActivatedRoute, private dialog: MatDialog) {
-        this.router.events.subscribe(e => {
+    constructor(private _router: Router, private activatedRoute: ActivatedRoute, private dialog: MatDialog) {
+        this._router.events.subscribe(e => {
             if (e instanceof NavigationEnd) {
                 const searchParams = new URLSearchParams(window.location.search);
                 const dialogParam = searchParams.get("dialog");
@@ -36,7 +36,7 @@ export class DialogService {
         this.closeCurrent();
         const newDialog = this.dialog.open(component, config);
         newDialog.afterClosed().subscribe(() => {
-            this.router.navigate([], {
+            this._router.navigate([], {
                 relativeTo: this.activatedRoute,
                 queryParams: { dialog: undefined },
                 queryParamsHandling: "merge",

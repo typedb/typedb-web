@@ -335,10 +335,14 @@ hr {
 
 body .hs-form fieldset {
     max-width: unset;
+}
 
-    &.form-columns-2 .input {
-        margin-right: 32px;
-    }
+body .hs-form fieldset.form-columns-2 > div:first-of-type .input {
+    margin-right: 32px;
+}
+
+body .hs-form fieldset.form-columns-1 .hs-input {
+    width: 100%;
 }
 
 .hs-form fieldset + fieldset {

@@ -19,12 +19,14 @@ export class SolutionPageComponent implements OnInit {
     ngOnInit() {
         this._activatedRoute.paramMap.subscribe((params: ParamMap) => {
             this.contentService.data.subscribe((data) => {
-                const sanityUseCasePages = data.getDocumentsByType(solutionPageSchemaName) as SanitySolutionPage[];
-                const sanityUseCasePage = sanityUseCasePages.find(x => x.route.current === params.get("route"));
-                if (sanityUseCasePage) {
-                    this.page = new SolutionPage(sanityUseCasePage, data);
+                const sanitySolutionPages = data.getDocumentsByType(solutionPageSchemaName) as SanitySolutionPage[];
+                const sanitySolutionPage = sanitySolutionPages.find(x => x.route.current === params.get("route"));
+                if (sanitySolutionPage) {
+                    this.page = new SolutionPage(sanitySolutionPage, data);
                     this._title.setTitle(`${this.page.title} - TypeDB Solutions`);
                     this._analytics.hubspot.trackPageView();
+                } else {
+                    this.router.navigate(["404"]);
                 }
             });
         });

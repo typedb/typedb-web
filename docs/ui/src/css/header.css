@@ -7,7 +7,7 @@ header, td-topbar-menu-panel {
     right: 0;
     position: fixed;
     width: 100%;
-    z-index: 1100;
+    z-index: 700;
     background-color: var(--color-purple);
     border-bottom: 1px solid var(--color-secondary-purple);
 }

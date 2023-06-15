@@ -1,6 +1,6 @@
 import { LinkIcon } from "@sanity/icons";
 import { defineField, defineType, SanityDocument, Slug, SlugRule } from "@sanity/types";
-import { linkField, requiredRule, titleField, titleFieldName } from "./common-fields";
+import { comingSoonField, linkField, requiredRule, titleField, titleFieldName } from "./common-fields";
 import { SanityDataset, SanityReference } from "./sanity-core";
 
 export type LinkType = "route" | "external";
@@ -78,7 +78,13 @@ const linkSchema = defineType({
             name: "destination",
             title: "Link Address",
             type: "slug",
-            validation: (rule: SlugRule) => rule.required(),
+            validation: (rule: SlugRule) => rule.custom((value) => {
+                if (!value?.current) return "Required";
+                if (value.current.startsWith("http://")) return true;
+                if (value.current.startsWith("https://")) return true;
+                if (value.current.startsWith("/")) return true;
+                return "URL must start with either '/', 'http://' or 'https://'";
+            }),
         }),
         defineField({
             name: "type",
@@ -123,14 +129,7 @@ export const textLinkSchema = defineType({
             initialValue: "Learn more",
         }),
         linkField,
-        defineField({
-            name: "comingSoon",
-            title: "Coming soon?",
-            description: "If set, this link will be disabled and 'Coming Soon' text will be shown",
-            type: "boolean",
-            initialValue: false,
-            validation: requiredRule,
-        }),
+        comingSoonField,
     ],
     preview: {
         select: { text: "text", destination: "link.destination.current" },

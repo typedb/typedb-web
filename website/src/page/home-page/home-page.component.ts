@@ -27,6 +27,8 @@ export class HomePageComponent implements OnInit {
                 this._title.setTitle(`${this.page.title} - TypeDB`);
                 this.socialMediaLinks = this.page.communitySection?.socialMedias.map(x => new SocialMediaLink(x, data));
                 this._analytics.hubspot.trackPageView();
+            } else {
+                this.router.navigate(["404"]);
             }
         });
     }
@@ -34,11 +36,12 @@ export class HomePageComponent implements OnInit {
 
 @Component({
     selector: "td-home-page-technicolor-block",
-    template: "<td-technicolor-block [block]='block' [index]='index' [size]='size' [noLeadingLine]='index === 0'></td-technicolor-block>",
+    template: "<td-technicolor-block [block]='block' [index]='index' [size]='size' [noLeadingLine]='index === 0' [longUpperChain]='variant === \"conclusion\"'></td-technicolor-block>",
 })
 export class HomePageTechnicolorBlockComponent {
     @Input() block!: TechnicolorBlock;
     @Input() page!: HomePage;
+    @Input() variant: "none" | "conclusion" = "none";
 
     get allBlocks(): TechnicolorBlock[] {
         return [
