@@ -47,6 +47,10 @@ export class Link {
     static fromSanityLinkRef(ref: SanityReference<SanityLink>, db: SanityDataset) {
         return Link.fromSanityLink(db.resolveRef(ref));
     }
+
+    isForExternalDomain(): boolean {
+        return this.destination.startsWith("http");
+    }
 }
 
 export class TextLink extends Link {
