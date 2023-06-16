@@ -339,8 +339,8 @@ hr {
 }
 
 // TODO: embedded hubspot forms malfunction in production - this hack patches out the bug
-body > .hs-form, body > .hbspt-form {
-    display: none;
+body > .hs-form, body > .hbspt-form, form + form {
+    display: none !important;
 }
 
 body .hs-form fieldset {
