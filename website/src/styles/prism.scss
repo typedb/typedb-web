@@ -1,5 +1,6 @@
 $color-prism-white: #D5CCFF;
 $color-prism-cyan: #55EAE2;
+$color-prism-light-green: #02DAC9;
 $color-prism-green: #4DC97C;
 $color-prism-red: #FF8080;
 $color-prism-pink: #FF7ABD;
@@ -15,6 +16,7 @@ pre[class*="language-"] {
 
 .token.comment {
     color: $color-prism-green;
+    font-style: italic;
 }
 
 .token.super,
@@ -34,7 +36,7 @@ pre[class*="language-"] {
 
 .token.class-name,
 .token.function {
-    color: $color-prism-white;
+    color: $color-prism-light-green;
 }
 
 .token.constant,
