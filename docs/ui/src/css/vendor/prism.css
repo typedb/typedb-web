@@ -36,7 +36,8 @@ pre[class*="language-"] {
     font-style: italic;
 }
 
-.token.class-name {
+.token.class-name,
+.token.number {
     color: var(--color-prism-blue);
 }
 
@@ -45,7 +46,6 @@ pre[class*="language-"] {
 }
 
 .token.constant,
-.token.number,
 .token.string {
     color: var(--color-prism-yellow);
 }
