@@ -66,3 +66,20 @@
     color: $color-vaticle-secondary-light-grey;
     margin-top: 4px;
 }
+
+a .tb-external-link-icon {
+    margin-left: 4px;
+    margin-right: -24px;
+    margin-bottom: -4px;
+    width: 20px;
+    height: 20px;
+    visibility: hidden;
+
+    path {
+        fill: $color-vaticle-green;
+    }
+}
+
+a:hover .tb-external-link-icon, a:focus .tb-external-link-icon {
+    visibility: visible;
+}

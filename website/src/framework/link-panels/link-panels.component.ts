@@ -11,15 +11,16 @@ export class LinkPanelsComponent {
     @Input() panels!: LinkPanel[];
     @Input() cols!: 3 | 4;
     @Input() ctaStrength: "weak" | "strong" = "weak";
-}
 
-@Component({
-    selector: "td-product-panels",
-    templateUrl: "product-panels.component.html",
-    styleUrls: ["product-panels.component.scss"],
-})
-export class ProductPanelsComponent {
-    @Input() panels!: ProductPanel[];
+    private _hoveredPanels = new Map<LinkPanel, boolean>();
+
+    setPanelHovered(panel: LinkPanel, value: boolean) {
+        this._hoveredPanels.set(panel, value);
+    }
+
+    isPanelHovered(panel: LinkPanel) {
+        return this._hoveredPanels.get(panel) === true;
+    }
 }
 
 @Component({
@@ -29,4 +30,14 @@ export class ProductPanelsComponent {
 })
 export class WebinarPanelsComponent {
     @Input() webinars!: Webinar[];
+
+    private _hoveredPanels = new Map<Webinar, boolean>();
+
+    setPanelHovered(panel: Webinar, value: boolean) {
+        this._hoveredPanels.set(panel, value);
+    }
+
+    isPanelHovered(panel: Webinar) {
+        return this._hoveredPanels.get(panel) === true;
+    }
 }

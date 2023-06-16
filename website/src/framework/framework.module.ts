@@ -22,9 +22,10 @@ import { GraphVisualisationComponent } from "./graph-visualisation/graph-visuali
 import { CaptionedIllustrationComponent, IllustrationComponent, SplitPaneIllustrationComponent } from "./illustration/illustration.component";
 import { InfoButtonComponent } from "./info-button/info-button.component";
 import { KeyPointPanels2x2Component, KeyPointTableComponent } from "./key-point/key-point.component";
-import { LinkPanelsComponent, ProductPanelsComponent, WebinarPanelsComponent } from "./link-panels/link-panels.component";
+import { LinkPanelsComponent, WebinarPanelsComponent } from "./link-panels/link-panels.component";
 import { LinkDirective } from "./link/link.directive";
 import { OrganisationLogosComponent } from "./organisation-logos/organisation-logos.component";
+import { ProductTableComponent } from "./product-table/product-table.component";
 import { TitleBodyActionsSectionComponent } from "./section/title-body-actions-section.component";
 import { SocialMediaPanelsComponent } from "./social-media/social-media-panels.component";
 import { TechnicolorBlockComponent } from "./technicolor-block/technicolor-block.component";
@@ -63,7 +64,7 @@ import { TooltipComponent } from "./tooltip/tooltip.component";
         OrdinalDatePipe,
         OrganisationLogosComponent,
         ParagraphWithHighlightsComponent,
-        ProductPanelsComponent,
+        ProductTableComponent,
         RichTextComponent,
         SocialMediaPanelsComponent,
         SplitPaneIllustrationComponent,
@@ -103,7 +104,7 @@ import { TooltipComponent } from "./tooltip/tooltip.component";
         OrdinalDatePipe,
         OrganisationLogosComponent,
         ParagraphWithHighlightsComponent,
-        ProductPanelsComponent,
+        ProductTableComponent,
         SocialMediaPanelsComponent,
         RichTextComponent,
         TechnicolorBlockComponent,
