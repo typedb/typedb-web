@@ -176,6 +176,19 @@ header .mp-column li:hover h4, li:focus h4 {
     text-decoration: underline;
 }
 
+header .mp-column li .mp-coming-soon {
+    cursor: default;
+}
+
+header .mp-column li .mp-coming-soon h4 span, header li .mp-coming-soon p {
+    opacity: .5;
+}
+
+header .mp-column li:hover .mp-coming-soon h4, header .mp-column li:focus .mp-coming-soon h4 {
+    color: var(--color-white);
+    text-decoration: none;
+}
+
 .mp-list-column-description {
     color: var(--color-secondary-light-grey);
     margin-top: 4px;
