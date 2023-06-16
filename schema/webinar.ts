@@ -1,7 +1,7 @@
 import { PresentationIcon } from "@sanity/icons";
 import { defineField, defineType, NumberRule, SanityDocument, Slug } from "@sanity/types";
-import { ActionButton, LinkButton } from "./button";
-import { descriptionFieldRichText, requiredRule, slugField, titleField } from "./common-fields";
+import { LinkButton } from "./button";
+import { comingSoonField, descriptionFieldRichText, requiredRule, slugField, titleField } from "./common-fields";
 import { hubspotFormIDField } from "./form";
 import { Link } from "./link";
 import { Person, personSchemaName, SanityPerson } from "./person";
@@ -17,9 +17,10 @@ export interface SanityWebinar extends SanityDocument {
     durationMins: number;
     image: SanityImage;
     speakers: SanityReference<SanityPerson>[];
-    airmeetID: string;
-    hubspotFormID: string;
+    airmeetID?: string;
+    hubspotFormID?: string;
     onDemandVideoURL?: string;
+    comingSoon: boolean;
 }
 
 export class Webinar {
@@ -30,9 +31,10 @@ export class Webinar {
     readonly durationMins: number;
     readonly imageURL: string;
     readonly speakers: Person[];
-    readonly airmeetID: string;
-    readonly hubspotFormID: string;
+    readonly airmeetID?: string;
+    readonly hubspotFormID?: string;
     readonly onDemandVideoURL?: string;
+    readonly comingSoon: boolean;
 
     constructor(props: PropsOf<Webinar>) {
         this.title = props.title;
@@ -45,6 +47,7 @@ export class Webinar {
         this.airmeetID = props.airmeetID;
         this.hubspotFormID = props.hubspotFormID;
         this.onDemandVideoURL = props.onDemandVideoURL;
+        this.comingSoon = props.comingSoon;
     }
 
     static fromSanity(data: SanityWebinar, db: SanityDataset): Webinar {
@@ -59,6 +62,7 @@ export class Webinar {
             airmeetID: data.airmeetID,
             hubspotFormID: data.hubspotFormID,
             onDemandVideoURL: data.onDemandVideoURL,
+            comingSoon: data.comingSoon,
         });
     }
 
@@ -76,14 +80,14 @@ export class Webinar {
 
     registrationButton(): LinkButton {
         return new LinkButton({
-            style: this.isFinished() ? "secondary" : "primary",
-            text: this.isFinished() ? "Watch now" : "Register",
-            link: new Link({
+            style: this.isFinished() || this.comingSoon ? "secondary" : "primary",
+            text: this.comingSoon ? "Coming soon!" : this.isFinished() ? "Watch now" : "Register",
+            link: this.comingSoon ? undefined : new Link({
                 type: "route",
                 destination: `/webinar/${this.slug}`,
                 opensNewTab: false,
             }),
-            comingSoon: false,
+            comingSoon: this.comingSoon,
         });
     }
 }
@@ -139,6 +143,7 @@ const webinarSchema = defineType({
             title: "On-Demand Video URL",
             type: "url",
         }),
+        Object.assign({}, comingSoonField, { description: "If set, the Register button will be disabled and show 'Coming soon!'" }),
     ],
 });
 
