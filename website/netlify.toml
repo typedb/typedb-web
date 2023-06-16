@@ -5,6 +5,10 @@ ignore = "git diff --quiet $CACHED_COMMIT_REF $COMMIT_REF"
 command = "pnpm run build-ci-prod"
 publish = "dist/static"
 
+[context.live-temp]
+command = "pnpm run build-ci-prod"
+publish = "dist/static"
+
 [context.master]
 command = "pnpm run build-ci-staging"
 publish = "dist/dynamic"
@@ -19,51 +23,67 @@ to = "https://discord.com/invite/typedb"
 status = 303
 
 [[redirects]]
-from = "https://dev.typedb.com/docs/*"
+from = "https://typedb.com/docs/*"
 to = "https://master--typedb-docs.netlify.app/:splat"
 status = 200
 
 [[redirects]]
-from = "https://master.dev.typedb.com/docs/*"
+from = "https://live-temp.typedb.com/docs/*"
 to = "https://master--typedb-docs.netlify.app/:splat"
 status = 200
 
 [[redirects]]
-from = "https://development.dev.typedb.com/docs/*"
+from = "https://master.typedb.com/docs/*"
+to = "https://master--typedb-docs.netlify.app/:splat"
+status = 200
+
+[[redirects]]
+from = "https://development.typedb.com/docs/*"
 to = "https://development--typedb-docs.netlify.app/:splat"
 status = 200
 
 [[redirects]]
-from = "https://dev.typedb.com/typedb/2.x/overview.html"
-to = "https://dev.typedb.com/docs/typedb/2.x/overview.html"
+from = "https://typedb.com/typedb/2.x/overview.html"
+to = "https://typedb.com/docs/typedb/2.x/overview.html"
 status = 301
 force = true
 
 [[redirects]]
-from = "https://master.dev.typedb.com/typedb/2.x/overview.html"
-to = "https://master.dev.typedb.com/docs/typedb/2.x/overview.html"
+from = "https://live-temp.typedb.com/typedb/2.x/overview.html"
+to = "https://live-temp.typedb.com/docs/typedb/2.x/overview.html"
 status = 301
 force = true
 
 [[redirects]]
-from = "https://development.dev.typedb.com/typedb/2.x/overview.html"
-to = "https://development.dev.typedb.com/docs/typedb/2.x/overview.html"
+from = "https://master.typedb.com/typedb/2.x/overview.html"
+to = "https://master.typedb.com/docs/typedb/2.x/overview.html"
 status = 301
 force = true
 
 [[redirects]]
-from = "https://dev.typedb.com/*"
-to = "https://dev.typedb.com/index.html"
+from = "https://development.typedb.com/typedb/2.x/overview.html"
+to = "https://development.typedb.com/docs/typedb/2.x/overview.html"
+status = 301
+force = true
+
+[[redirects]]
+from = "https://typedb.com/*"
+to = "https://typedb.com/index.html"
 status = 200
 
 [[redirects]]
-from = "https://master.dev.typedb.com/*"
-to = "https://master.dev.typedb.com/index.html"
+from = "https://live-temp.typedb.com/*"
+to = "https://live-temp.typedb.com/index.html"
 status = 200
 
 [[redirects]]
-from = "https://development.dev.typedb.com/*"
-to = "https://development.dev.typedb.com/index.html"
+from = "https://master.typedb.com/*"
+to = "https://master.typedb.com/index.html"
+status = 200
+
+[[redirects]]
+from = "https://development.typedb.com/*"
+to = "https://development.typedb.com/index.html"
 status = 200
 
 [[edge_functions]]
